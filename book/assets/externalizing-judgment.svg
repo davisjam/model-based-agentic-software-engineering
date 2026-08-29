@@ -36,16 +36,16 @@
 
   <!-- deterministic = solid rust -->
   <rect id="deterministic" x="120" y="256" width="260" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="250" y="284" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">DETERMINISTIC</text>
-  <text x="250" y="304" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">OUTCOME</text>
+  <text x="250" y="284" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">EXECUTE</text>
+  <text x="250" y="304" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">DETERMINED</text>
   <!-- bounded = dashed blue -->
   <rect id="bounded" x="370" y="256" width="260" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2" stroke-dasharray="7 5"/>
-  <text x="500" y="284" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">BOUNDED</text>
-  <text x="500" y="304" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">JUDGMENT</text>
+  <text x="500" y="284" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">DELEGATE</text>
+  <text x="500" y="304" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">BOUNDED</text>
   <!-- irreducible = dotted dark -->
   <rect id="irreducible" x="620" y="256" width="260" height="64" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2" stroke-dasharray="2 4"/>
-  <text x="750" y="284" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">IRREDUCIBLE</text>
-  <text x="750" y="304" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">JUDGMENT</text>
+  <text x="750" y="284" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ESCALATE</text>
+  <text x="750" y="304" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">IRREDUCIBLE</text>
 
   <!-- edge: deterministic -> tool -->
   <line x1="250" y1="320" x2="250" y2="360" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>

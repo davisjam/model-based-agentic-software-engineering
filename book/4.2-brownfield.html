@@ -778,7 +778,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 19 · Migrating to MAGE — MAGE"><header class="chap"><div class="kicker"><a href="part-4-intro.html" aria-label="Beginning of Part 4 — The MAGE Method">Part 4 — The MAGE Method</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 19</a></div><h1><span class="chap-num">4.2</span> Migrating to MAGE</h1></header><span id="idx-def-greenfield"></span><span id="idx-def-brownfield-migration"></span><p>Most readers do not begin on a blank page. You inherit some combination of code, tests, schemas, architectural documents, CI rules, operational lore, permissions, dashboards, and conventions. That estate carries liabilities and assets: technical debt, certainly, but also useful engineering structures that nobody has connected well enough to reuse. Migration is partly <strong>asset recovery</strong> — find the useful representations and controls already present, reconnect them to their territory, retire what has rotted, and invest where recurring costs justify stronger structure.</p>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 19 · Migrating to MAGE — MAGE"><header class="chap"><div class="kicker"><a href="part-4-intro.html" aria-label="Beginning of Part 4 — The MAGE Method">Part 4 — The MAGE Method</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 19</a></div><h1><span class="chap-num">4.2</span> Migrating to MAGE</h1></header><span id="idx-def-greenfield"></span><span id="idx-def-brownfield-migration"></span><p>Most readers do not begin on a blank page. You inherit code, tests, schemas, architectural documents, CI rules, permissions, dashboards, conventions, and operational lore. Some of that inheritance is debt; some is useful engineering structure that has become fragmented, stale, or difficult to reuse. Migration is therefore partly an exercise in recovery: find the representations and controls the system already owns, reconnect them to the territory they describe, repair or retire what has drifted, and invest in new structure where recurring engineering costs justify it.</p>
 <blockquote class="box-inset"><span class="box-badge">SOFTWARE ENGINEERING</span><p class="inset-title" id="inset-software-evolution">Inset — Software evolves; its engineering structure must evolve with it</p>
 <p>Software engineering has long treated change as a normal property of successful systems rather than an exceptional maintenance phase. Lehman's work on software evolution observed that systems embedded in a changing real-world environment must continually adapt, while their complexity tends to increase unless engineers act to control it <sup class="cite-ref"><a href="#wc-4-2-brownfield-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Meir M. Lehman and L. A. Belady, <em>Program Evolution: Processes of Software Change</em> (Academic Press, 1985).</span>.</p>
 <p>MAGE extends that maintenance obligation beyond implementation. Models, validators, gates, runbooks, and other governance mechanisms describe or constrain a system that continues to change. They can therefore drift, preserve assumptions that no longer hold, or impose costs that no longer earn their keep. A governed engineering environment is not a finished artifact. Its engineering structure must evolve with the system it governs.</p></blockquote>
@@ -862,10 +862,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>So the practical question is not how much to model in the abstract. It is how much structure the next unit of work needs. A familiar problem with strong tests and a well-matched reasoner may need little added representation; an unfamiliar domain with weak observability may need substantial modeling before autonomous work can be trusted. <strong>Add enough representation and evidence for the next unit of work to be delegated and evaluated responsibly; then let realization proceed.</strong></p>
 <p>At the low-structure extreme, implementation-first agentic development is heuristic search driven largely by the model's learned prior. In a familiar domain a capable agent can infer adequate abstractions, architecture, and implementation from surprisingly little explicit structure. Repeated failure changes the calculation. When agents keep reconstructing the same concept, cross the same hidden boundary, or re-search the same unproductive region, another attempt is worth less than changing how the problem is represented. <strong>Implementation-first becomes churn when the search repeatedly reconstructs structure whose explicit representation would cost less than continued rediscovery.</strong></p>
 <h2><span class="sec-num">4.2.1</span> Start with What You Already Have</h2>
-<p>Survey the estate before designing the replacement. Architecture documents, API specifications, deployment manifests, ADRs, schemas, ownership files, tests, CI configuration, permissions, and runbooks are all partial engineering structures. Some are <strong>models</strong>: reduced representations of the system used for a purpose. Some are already <strong>governance mechanisms</strong>: CI rejects a merge, a schema excludes an invalid state, a permission denies an action. Many are both weakly connected and unevenly trusted.</p>
-<p>So the first brownfield move is two inventories in parallel, not one:</p>
-<ul><li><strong>What representations do we already reason through?</strong> Which document, schema, graph, test structure, or configuration repeatedly saves someone from reading raw implementation?</li><li><strong>What authority already acts?</strong> Which permissions, types, validators, CI checks, reviews, and operational gates currently constrain or admit work — and what semantics can each actually see?</li></ul>
-<p>That second inventory matters because inherited artifacts may already carry authority. A CI configuration may already gate merges; a schema may already reject data; a type system may already constrain states; tests may already carry admission authority. A mature estate may already contain substantial local Alignment while relying on human reviewers to bridge gaps in system-level representation. The migration target is to connect useful representations to the territory they describe, make important obligations explicit enough to evaluate, and place authority where the necessary semantics are available. Strengthen <strong>both inventories</strong> together rather than repairing the map first and installing authority afterward.</p>
+<p>Begin with two questions, because representation and authority are different things. First, what does the organization already reason through? Which documents, schemas, graphs, tests, or configurations repeatedly save someone from reconstructing the system from raw implementation? Second, what already has authority? Which permissions, types, validators, CI checks, reviews, or operational gates currently constrain or admit work, and what can each actually decide? A mature system may already contain substantial local Alignment even when its system-level representations are weak. A schema may reject invalid data, a type system may exclude states, and CI may block a merge. The migration problem is therefore not simply to build a better map and add controls afterward. Strengthen representation and authority together: connect useful representations to the territory they describe, make important obligations explicit enough to evaluate, and place authority where the required semantics are available.</p>
 <p>A wiki is a useful first path because many organizations already have one and the migration distance is short. Treat it as an <strong>informal model</strong>: a reduced representation people already use to reason about the system, even though its semantics are weak and nothing mechanical guarantees correspondence with the code. Pages supply nodes of a kind, links supply relationships of a kind, and search supplies navigation. That does not make the wiki equivalent to the structured graph Part 2 built. It makes it raw material.</p>
 <p>The first improvement is connection, not replacement. Important claims should point to the code, tests, configuration, or runtime evidence that realizes them; important implementation regions should point back to the pages that explain why they exist.<sup class="note-ref"><a href="#note-4-2-brownfield-2" role="doc-noteref" aria-label="note 2">†</a></sup><span class="editorial-note" id="note-4-2-brownfield-2"><span class="cn-mark">†</span> The earlier Parts develop the stronger form of this join: every model node can point to the implementation it represents, and that implementation can point back to the model node that explains it.</span> The resulting trace is not yet a proof that the prose is true. It is a disciplined join that lets audits and later mechanisms discover when the map and the territory disagree. <a class="xref" href="4.2-brownfield.html#fig-4-2-2">Figure&nbsp;4.2-2</a> draws the two independent ways that join can be strengthened.</p>
 <p>Brownfield representations can be strengthened incrementally from informal descriptions to structured, machine-readable models and, where a consumer justifies the cost, executable models.</p>
@@ -964,230 +961,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="480" y="430" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">Independent tracks: a representation can strengthen without every claim becoming a gate;</text>
   <text x="480" y="450" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">only selected obligations acquire authority, and along a separate track.</text>
 </svg><figcaption data-short="Representation and authority strengthen independently"><span class="fig-label">Figure 4.2-2.</span> <em>Representation and authority strengthen independently.</em> A representation may become more structured and executable while authority attaches only to selected obligations once the representation is trustworthy enough and enforcement is warranted.</figcaption></figure>
-<h2><span class="sec-num">4.2.2</span> Induce Models from the Implementation</h2>
-<p>Brownfield models need not begin with an engineer inventing the right abstraction in advance. Existing implementation can contain repeated structure that points toward a missing model. In DocAble, a weak primitive-density detector surfaced regions repeatedly passing anonymous strings, integers, tuples, and other low-level values. Most findings deserved no new abstraction. Where similar shapes recurred across related components, however, comparison exposed candidate concepts that the implementation had been expressing repeatedly without naming. Language mutations, job identities, and other concepts became explicit types through this process.</p>
-<p>The detector did not discover the model by itself. It located repeated form. Architectural context distinguished signal from legitimate low-level detail, but repetition still did not tell us how the system should be represented. That step required engineering judgment: compare the instances, ask what relationships they preserve, and look for a representation that makes the consequential regularity easier to reason about. Brownfield modeling can therefore proceed from implementation outward: expose repetition, compare instances, propose a representation, and retain it only where it makes later reasoning cheaper or more reliable.</p>
-<p>Sometimes that representation is already latent in an engineering artifact: a registry supplies the nodes, an API specification supplies interfaces, or a lifecycle enum supplies states. Sometimes it emerges only while engineers try to answer a question. The remediation graph in Part II developed this way. Deriving dependencies exposed that one apparent relation was actually two — data flow and control gating — and the representation changed accordingly. Brownfield modeling is therefore not simply extraction. The existing system supplies evidence, but engineers may still have to find the distinctions that make that evidence intelligible.</p>
-<p>One way to search is by analogy. A collection of conditionals may behave like a state machine; repeated parameter bundles may act like a domain object; competing workers may be easier to understand as a lease or queue. The analogy does not establish that the representation is correct. It suggests relationships worth testing against the system. If those relationships survive comparison and make consequential questions easier to answer, the representation may be worth keeping. If they do not, rotate the problem again. <a class="xref" href="4.2-brownfield.html#fig-4-2-3">Figure&nbsp;4.2-3</a> traces this path from realized code to an explicit model and separates what weak mechanical discovery can surface from the engineering judgment required to turn those observations into a reusable reasoning surface.</p>
-<figure id="fig-4-2-3" class="book-figure" data-label="recovering-model-from-brownfield"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 954"
-     role="img" aria-labelledby="f-recovering-model-from-brownfield-rmbTitle f-recovering-model-from-brownfield-rmbDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-recovering-model-from-brownfield-rmbTitle">Inducing a model from brownfield structure: a vertical chain from realized code up to a named model, where weak mechanical discovery surfaces evidence and engineering judgment proposes, compares, and revises the representation</title>
-  <desc id="f-recovering-model-from-brownfield-rmbDesc">A single vertical chain of eight stages, read top to bottom. The first three stages are
-    the mechanical-discovery phase (drawn neutral gray): realized code — repos, diffs, existing
-    implementation; then repeated low-level forms — raw strings, tuples, repeated loops, ad hoc
-    structures; then candidate regularities surfaced by weak detectors, retrieval, and clustering. The
-    chain then crosses into the engineering-judgment phase (drawn in rust): contextual comparison, which
-    asks which repetitions carry the same engineering meaning; then a candidate representation — what
-    entities, relations, states, or distinctions explain the consequential regularity; then compare
-    against instances — what does the representation preserve, and where does it break. Judgment produces
-    the reusable-surface phase: an explicit model or typed vocabulary — JobId, MutationSpec, PdfModel,
-    relations — and then future work that reasons through the model, so tools search and check it and
-    agents reuse it rather than re-derive it. A bracket in the right gutter groups and labels the three
-    phases. The point the figure makes: detectors surface repetition, but repetition alone does not
-    determine the model — engineering judgment proposes and tests a representation that preserves the
-    relationships needed for later reasoning.</desc>
-
-  <defs>
-    <marker id="f-recovering-model-from-brownfield-rmb-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
-    <marker id="f-recovering-model-from-brownfield-rmb-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
-    </marker>
-    <marker id="f-recovering-model-from-brownfield-rmb-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="f-recovering-model-from-brownfield-rmb-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
-    </marker>
-  </defs>
-
-  <!-- ===== heading ===== -->
-  <text x="356" y="42" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Brownfield model induction</text>
-
-  <!-- ===== NODES (the vertical chain) ===== -->
-  <!-- 1. realized code (discovery) -->
-  <rect id="f-recovering-model-from-brownfield-n1" x="40" y="70" width="400" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
-  <text x="240" y="100" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">realized code</text>
-  <text x="240" y="122" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">repos · diffs · existing implementation</text>
-
-  <!-- 2. repeated low-level forms (discovery) -->
-  <rect id="f-recovering-model-from-brownfield-n2" x="40" y="166" width="400" height="88" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
-  <text x="240" y="196" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">repeated low-level forms</text>
-  <text x="240" y="218" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">raw strings · tuples ·</text>
-  <text x="240" y="236" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">repeated loops · ad hoc structures</text>
-
-  <!-- 3. candidate regularities (discovery) -->
-  <rect id="f-recovering-model-from-brownfield-n3" x="40" y="280" width="400" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
-  <text x="240" y="310" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">candidate regularities</text>
-  <text x="240" y="332" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">weak detectors · retrieval · clustering</text>
-
-  <!-- 4. contextual comparison (JUDGMENT) -->
-  <rect id="f-recovering-model-from-brownfield-n4" x="40" y="376" width="400" height="88" rx="10" fill="#f6ece4" stroke="#9a3f12" stroke-width="2.0"/>
-  <text x="240" y="406" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">contextual comparison</text>
-  <text x="240" y="428" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">which repetitions carry the</text>
-  <text x="240" y="446" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">same engineering meaning?</text>
-
-  <!-- 5. candidate representation (JUDGMENT — the pivot: the proposal) -->
-  <rect id="f-recovering-model-from-brownfield-n5" x="40" y="490" width="400" height="88" rx="10" fill="#f6ece4" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="240" y="520" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">candidate representation</text>
-  <text x="240" y="542" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">what entities, relations, states, or distinctions</text>
-  <text x="240" y="560" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">explain the consequential regularity?</text>
-
-  <!-- 6. compare against instances (JUDGMENT) -->
-  <rect id="f-recovering-model-from-brownfield-n6" x="40" y="604" width="400" height="88" rx="10" fill="#f6ece4" stroke="#9a3f12" stroke-width="2.0"/>
-  <text x="240" y="634" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">compare against instances</text>
-  <text x="240" y="656" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">what does the representation preserve?</text>
-  <text x="240" y="674" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">where does it break?</text>
-
-  <!-- 7. explicit model / typed vocabulary (reusable surface) -->
-  <rect id="f-recovering-model-from-brownfield-n7" x="40" y="718" width="400" height="70" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="240" y="748" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">explicit model / typed vocabulary</text>
-  <text x="240" y="770" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">JobId · MutationSpec · PdfModel · relations</text>
-
-  <!-- 8. future work reasons through the model (reusable surface) -->
-  <rect id="f-recovering-model-from-brownfield-n8" x="40" y="814" width="400" height="112" rx="10" fill="#e7f0ea" stroke="#155c38" stroke-width="2.4"/>
-  <text x="240" y="844" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">future work reasons</text>
-  <text x="240" y="866" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">through the model</text>
-  <text x="240" y="888" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">tools search and check it ·</text>
-  <text x="240" y="906" text-anchor="middle" font-size="13.6" font-style="italic" fill="#57534e">agents reuse rather than re-derive</text>
-
-  <!-- ===== EDGES (directed; drawn on top so heads seat on the target border) ===== -->
-  <!-- edge: n1 -> n2 -->
-  <line x1="240" y1="140" x2="240" y2="164" stroke="#57534e" stroke-width="2.3" marker-end="url(#f-recovering-model-from-brownfield-rmb-k)"/>
-  <!-- edge: n2 -> n3 -->
-  <line x1="240" y1="254" x2="240" y2="278" stroke="#57534e" stroke-width="2.3" marker-end="url(#f-recovering-model-from-brownfield-rmb-k)"/>
-  <!-- edge: n3 -> n4  (discovery crosses into judgment; colour turns) -->
-  <line x1="240" y1="350" x2="240" y2="374" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#f-recovering-model-from-brownfield-rmb-r)"/>
-  <!-- edge: n4 -> n5  (propose a representation) -->
-  <line x1="240" y1="464" x2="240" y2="488" stroke="#9a3f12" stroke-width="2.3" marker-end="url(#f-recovering-model-from-brownfield-rmb-r)"/>
-  <!-- edge: n5 -> n6  (test it against instances) -->
-  <line x1="240" y1="578" x2="240" y2="602" stroke="#9a3f12" stroke-width="2.3" marker-end="url(#f-recovering-model-from-brownfield-rmb-r)"/>
-  <!-- edge: n6 -> n7  (judgment produces the model) -->
-  <line x1="240" y1="692" x2="240" y2="716" stroke="#2f5169" stroke-width="2.6" marker-end="url(#f-recovering-model-from-brownfield-rmb-b)"/>
-  <!-- edge: n7 -> n8  (the model enables downstream reuse) -->
-  <line x1="240" y1="788" x2="240" y2="812" stroke="#155c38" stroke-width="2.3" marker-end="url(#f-recovering-model-from-brownfield-rmb-g)"/>
-
-  <!-- ===== PHASE BRACKETS (right gutter; grouping only — no arrowheads, not edges) ===== -->
-  <!-- discovery: nodes 1-3 -->
-  <path d="M472,70 L480,70 L480,350 L472,350" fill="none" stroke="#57534e" stroke-width="2.0"/>
-  <text x="494" y="201" font-size="15" font-weight="700" fill="#57534e">mechanical</text>
-  <text x="494" y="219" font-size="15" font-weight="700" fill="#57534e">discovery</text>
-  <text x="494" y="238" font-size="13.6" font-style="italic" fill="#57534e">weak machinery</text>
-  <text x="494" y="254" font-size="13.6" font-style="italic" fill="#57534e">surfaces evidence</text>
-  <!-- judgment: nodes 4-6 -->
-  <path d="M472,376 L480,376 L480,692 L472,692" fill="none" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="494" y="521" font-size="15" font-weight="700" fill="#9a3f12">engineering</text>
-  <text x="494" y="539" font-size="15" font-weight="700" fill="#9a3f12">judgment</text>
-  <text x="494" y="558" font-size="13.6" font-style="italic" fill="#9a3f12">propose · compare · revise</text>
-  <!-- reusable surface: nodes 7-8 -->
-  <path d="M472,718 L480,718 L480,926 L472,926" fill="none" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="494" y="809" font-size="15" font-weight="700" fill="#2f5169">reusable</text>
-  <text x="494" y="827" font-size="15" font-weight="700" fill="#2f5169">surface</text>
-  <text x="494" y="846" font-size="13.6" font-style="italic" fill="#57534e">later work reasons</text>
-  <text x="494" y="862" font-size="13.6" font-style="italic" fill="#57534e">through the model</text>
-</svg><figcaption data-short="Inducing a model from brownfield structure — realized code → repeated forms → candidate regularities → contextual comparison → candidate representation → compare against instances → explicit model → future work reasons through the model"><span class="fig-label">Figure 4.2-3.</span> <em>Inducing a model from brownfield structure.</em> Existing implementation may express consequential regularities without representing them explicitly. Weak detectors can surface repeated forms and candidate regularities, but repetition alone does not determine the model. Contextual comparison and engineering judgment propose and test a representation that preserves the relationships needed for later reasoning. Once made explicit, the model becomes a reusable reasoning surface for future work.</figcaption></figure>
-<blockquote class="box-inset"><span class="box-badge">PROBLEM SOLVING</span><p class="inset-title" id="inset-rotate-the-problem">Inset — Rotate the problem</p>
-<p>When a problem is difficult, try looking at it from another angle. George Pólya made this a basic strategy of problem solving: draw a figure, introduce different notation, consider a related problem, work backward, or restate the problem in another form <sup class="cite-ref"><a href="#wc-4-2-brownfield-3" aria-label="citation 3">3</a></sup><span class="cite-note"><span class="cn-mark">3.</span> George Pólya, <em>How to Solve It: A New Aspect of Mathematical Method</em>, 2nd ed. (Princeton University Press, 1957).</span>. These moves do not change the underlying problem. They change the representation in which you are trying to solve it. In engineering, the same move can turn an awkward collection of conditions into a state machine, a tangle of calls into a graph, or a complicated sequence of events into a lifecycle.</p>
-<p>Metaphor and analogy provide another way to rotate the problem. They let us understand an unfamiliar system using relationships we already understand elsewhere. Lakoff and Johnson argue in <em>Metaphors We Live By</em> that metaphor is not merely decorative language: it shapes what we notice and how we reason <sup class="cite-ref"><a href="#wc-4-2-brownfield-4" aria-label="citation 4">4</a></sup><span class="cite-note"><span class="cn-mark">4.</span> George Lakoff and Mark Johnson, <em>Metaphors We Live by</em> (University of Chicago Press, 1980).</span>. This is useful for modeling because a good analogy can suggest a useful representation. But every representation emphasizes some relationships and suppresses others. Calling a system a <em>pipeline</em> makes stages and flow easy to see, while directing attention away from other aspects of the same system.</p>
-<p>The goal, then, is not to discover the one correct representation. Different representations can make different aspects of the same system easier to reason about. Rotate the problem and ask what becomes visible: a graph may expose reachability, a state machine may expose legal transitions, and a lifecycle model may expose temporal obligations. Keep the representations that make consequential engineering questions easier to answer, and use more than one when the questions demand it. This is why Part II develops several model classes rather than prescribing a single universal model.</p></blockquote>
-<h2><span class="sec-num">4.2.3</span> Reconcile the Map, Then Promote Obligations</h2>
-<p>Begin with audit. Join the representation to the implementation and surface disagreement without blocking work — a legacy map is known to drift, and making every claim mandatory before repairing it would only canonize old errors. Reconcile nearby claims through ordinary feature and maintenance work, requiring each disagreement to be surfaced rather than silently resolved toward prose or code.</p>
-<p>Promote selected obligations only after the representation is trustworthy enough to support the consumer. Extend the model where retrieval, analysis, generation, validation, measurement, or gating will use the added structure — do not add model structure without a consumer. The companion <a href="appendix-d-from-drifted-wiki-to-trusted-model.html">From-Drifted-Wiki-to-Trusted-Model</a> operator card holds the drill whole.</p>
-<h2><span class="sec-num">4.2.4</span> Migrate One Bounded Surface at a Time</h2>
-<span id="idx-def-quality"></span><span id="idx-def-quality-case-traceability"></span><p>The immediate goal is a <strong>trusted map</strong> over the parts that matter now: important claims have known anchors, important implementation regions have explanatory homes, and agents can navigate the join without rediscovering it. Beyond that, build only enough representation and evidence to support the <strong>quality case</strong> the system must defend — enough architecture, behavior, ownership, measurement, and traceability to answer the properties you mean to stand behind. The right endpoint is the one whose future value justifies its upkeep.</p>
-<p>A live estate rarely tolerates a wholesale cutover. Choose a bounded surface — a subsystem, service, policy family, or recurring workflow — and let old and new coexist while the replacement earns trust. A <strong>strangler</strong> migration and a <strong>pilot cell</strong> are two versions of the same operational principle: <em>bound the experiment, preserve reversibility, and generalize only what the slice supports.</em> DocAble's serverless re-platforming ran this shape — a stateful job pipeline moved off long-lived polling workers onto instances that scale to zero behind a managed push queue; the push plane grew beside the poll plane behind a default-off toggle, proved green on a staging namespace running identical code, took the traffic, then the old cluster was deleted and preserved on an archive branch.</p>
-<span id="idx-def-top-down-refinement"></span><span id="idx-def-lint-cover-induce"></span><span id="idx-def-bottom-up-induction"></span><p>Within that slice, recover the representation using whichever direction the evidence supports. <strong>Top-down</strong> work starts from intended architecture or requirements and refines toward implementation. <strong>Bottom-up</strong> work induces stable abstractions from the code and rises toward a model. Removing accidental complexity — under tests — first can make either direction easier. The directions should meet at the grain where the relevant property becomes answerable.</p>
-<p>A disagreement then has the familiar three-way diagnosis — the representation is wrong, the grain is wrong, or the implementation is wrong. Do not decide which in advance; shifting a legacy codebase from "the tests pass" to "these properties hold across all behaviors" surfaces disagreements by design.</p>
-<blockquote class="box-inset"><span class="box-badge">SOFTWARE ENGINEERING</span><p class="inset-title" id="inset-three-outcomes">Inset — When the model and the code disagree</p>
-<p>Tighten a model against real code and it will, sooner or later, contradict the code. The disagreement usually points to one of three questions:</p>
-<ul><li><strong>Is the model wrong?</strong> It may claim something the code never promised. Refine the model.</li><li><strong>Is the model at the wrong grain?</strong> It may be asking a question at a level of abstraction that cannot see the answer. Build a different model at the grain the property lives at.</li><li><strong>Is the implementation wrong?</strong> The model may be right, the code disagrees, and the disagreement may expose an implementation defect.</li></ul>
-<p>The discipline is to decide <em>which</em> before you act. Fixing code when the model was wrong bakes in a false claim; refining the model when the code had a bug hides the bug behind an adjusted spec.</p></blockquote>
-<p id="idx-def-control-substrate-dependency">For consequential substrate changes, represent important dependencies strongly enough to query the migration blast radius before cutover; the <a href="../models-bridge/system-models/control-substrate-dependency.html">control↔substrate dependency model</a> gives the operator pattern.</p>
-<h2><span class="sec-num">4.2.5</span> Audit → Drain → Promote</h2>
-<p>A valid future invariant is not always a valid present admission rule. A legacy tree may violate the rule everywhere on the day you first decide the rule is worth having. Turning it blocking immediately does not improve the estate; it merely breaks all work already in flight. So introduce a new obligation over an inherited estate in three beats — and the order is the safety.</p>
-<blockquote class="box-canonical"><p class="inset-title" id="audit-drain-promote">The move — Audit → Drain → Promote</p>
-<ul><li><strong>Audit.</strong> Install the proposed rule as evidence only. It reports every detected violation and blocks no commit, so it never breaks an in-flight agent.</li><li><strong>Drain.</strong> A fix wave repairs the existing findings under sufficient tests and other evidence to preserve intended behavior, converting the legacy code to the new convention behavior-for-behavior.</li><li><strong>Promote.</strong> Once the estate satisfies the obligation, grant the mechanism blocking authority so detected violations cannot re-enter through the governed boundary.</li></ul></blockquote>
-<p>Cloudflare's public account describes a similar <strong>approved → enforced</strong> sequence, landing each policy control advisory and flipping it to enforced once the tree is clean, so the promotion never breaks work in flight <sup class="cite-ref"><a href="#wc-4-2-brownfield-5" aria-label="citation 5">5</a></sup><span class="cite-note"><span class="cn-mark">5.</span> Timo Reimann, “How Cloudflare Enforces Engineering Standards Using Ai,” Cloudflare, August 4, 2026, <a href="https://blog.cloudflare.com/engineering-standards-enforcement/">https://blog.cloudflare.com/engineering-standards-enforcement/</a>.</span>. <a class="xref" href="4.2-brownfield.html#fig-4-2-4">Figure&nbsp;4.2-4</a> draws the three beats as one lint is worn into a legacy tree.</p>
-<figure id="fig-4-2-4" class="book-figure" data-label="squash-zero-promote"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420"
-     role="group" aria-labelledby="f-squash-zero-promote-szpTitle f-squash-zero-promote-szpDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-squash-zero-promote-szpTitle">Squash, zero, promote: how a lint is worn into a legacy tree one step at a time</title>
-  <desc id="f-squash-zero-promote-szpDesc">A new smell-detecting lint moves through three states, left to right. First it
-    lands audit-only: it reports every finding but blocks no commit, so it never breaks an in-flight
-    agent. Then a fix wave — an agent making behavior-preserving edits under test coverage — drains
-    the finding count to zero; this is a loop that runs under the audit-only state until nothing is
-    left. Only when the count reaches zero is the lint promoted to blocking: it now fails any commit
-    that reintroduces the smell. A one-way barrier sits after the blocking state, marking that the
-    class of smell can never return. Squash the findings, drive them to zero, then promote — and the
-    smells that leave stay gone.</desc>
-
-  <defs>
-    <marker id="f-squash-zero-promote-szpArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#1c1917"/>
-    </marker>
-    <marker id="f-squash-zero-promote-szpArrowRed" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#b23b3b"/>
-    </marker>
-  </defs>
-
-  <!-- start -->
-  <circle id="f-squash-zero-promote-start" cx="70" cy="150" r="12" fill="#1c1917"/>
-  <text x="70" y="192" text-anchor="middle" font-size="20" fill="#57534e">new lint</text>
-
-  <!-- state 1: audit-only -->
-  <rect id="f-squash-zero-promote-audit" x="130" y="110" width="230" height="80" rx="10" fill="#faf1e6" stroke="#b23b3b" stroke-width="2.5"/>
-  <text x="245" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Audit-only</text>
-  <text x="245" y="172" text-anchor="middle" font-size="20" fill="#57534e">reports, blocks nothing</text>
-
-  <!-- state 2: draining (the middle work) -->
-  <rect id="f-squash-zero-promote-drain" x="430" y="110" width="230" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="545" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Findings → 0</text>
-  <text x="545" y="172" text-anchor="middle" font-size="20" fill="#1c1917">a fix wave drains it</text>
-
-  <!-- state 3: blocking -->
-  <rect id="f-squash-zero-promote-blocking" x="715.82" y="110" width="258.35" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="845" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Blocking</text>
-  <text x="845" y="172" text-anchor="middle" font-size="20" fill="#1c1917">fails a regressing commit</text>
-
-  <!-- edges along the spine (one edge comment per branch drawable) -->
-  <g fill="none" stroke="#1c1917" stroke-width="2.5" marker-end="url(#f-squash-zero-promote-szpArrow)">
-    <!-- edge: start -> audit -->
-    <path d="M82,150 L128,150"/>
-    <!-- edge: audit -> drain -->
-    <path d="M360,150 L428,150"/>
-    <!-- edge: drain -> blocking -->
-    <path d="M660,150 L728,150"/>
-  </g>
-  <text x="395" y="140" text-anchor="middle" font-size="20" fill="#57534e">land</text>
-  <text x="695" y="140" text-anchor="middle" font-size="20" fill="#57534e">at zero</text>
-
-  <!-- fix-wave loop under the middle state (self-loop drain -> drain) -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.5" marker-end="url(#f-squash-zero-promote-szpArrow)">
-    <!-- edge: drain -> drain -->
-    <path d="M490,190 C460,250 600,222 600,192"/>
-  </g>
-  <text x="545" y="268" text-anchor="middle" font-size="20" font-style="italic" fill="#2f5169">behavior-preserving fixes, under test coverage</text>
-
-  <!-- one-way barrier after blocking: the class can't return -->
-  <line x1="972" y1="96" x2="972" y2="204" stroke="#b23b3b" stroke-width="4"/>
-  <g fill="none" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#f-squash-zero-promote-szpArrowRed)">
-    <path d="M845,206 C845,240 940,240 966,206"/>
-  </g>
-  <text x="812" y="300" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">a detected violation now blocks re-entry</text>
-</svg><figcaption data-short="Audit, Drain, Promote"><span class="fig-label">Figure 4.2-4.</span> <em>Audit, Drain, Promote.</em> A new lint lands audit-only — every finding reported, no commit blocked, so it never breaks an in-flight agent. A fix wave drains it to zero, and only then is it promoted to blocking, so future violations within the mechanism's declared detection surface are refused at that boundary.</figcaption></figure>
-<h2><span class="sec-num">4.2.6</span> Finding the Model in the Code</h2>
-<p>Brownfield modeling has a bootstrapping problem. The system already embodies years of engineering decisions, but many of them exist only as repeated implementation shapes. Asking an engineer to "model the architecture" merely moves the reconstruction problem into a meeting.</p>
-<p>DocAble encountered this problem through type discipline. An audit-only lint measured primitive density: roughly, how much of a file's function interface was expressed through bare or untyped values rather than structured types. A high score was deliberately treated as a smell, not a defect. String-heavy protocol adapters can be perfectly sound; so can numerical helpers and one-off tooling. The lint's job was to direct attention, not pronounce judgment.</p>
-<p>The first large audit demonstrated why that distinction mattered. Hundreds of files triggered the detector. They did not share one remedy. Some needed ordinary annotations. Some were test fixtures or tooling whose primitive-heavy interfaces were appropriate. Some sat at IPC or external boundaries where wire formats naturally expose primitive values. Others required local engineering judgment. The backlog therefore had to be partitioned before it could be drained.</p>
-<p>A smaller subset was much more interesting. In the C# document mutators, the audit exposed recurring parameter shapes across files: language mutations repeatedly carried a language tag and pass name; alt-text mutations repeatedly carried description, attribution, and related state; title and contrast operations showed similar repetition. These were not duplicated bugs. They were domain concepts that existed in the implementation without names. The migration extracted them into explicit records that subsequent code could share.</p>
-<p>The lint alone could not reliably tell which primitive-heavy interfaces represented missing domain concepts. DocAble's component model supplied another piece of information: whether code lived at an internal, external, or IPC boundary. Internal application code and external protocol adapters warranted different expectations. Once the boundary kind was explicit, primitive density could be interpreted in architectural context rather than as a universal style rule.</p>
-<p>The two views composed. Primitive density asked, what shape may be hiding here? The component model asked, what kind of boundary is this? An agent could then inspect clusters rather than isolated findings and ask whether several sites were independently expressing the same concept. In one C# wave, this exposed six cross-file patterns across document mutators. Subsequent extraction and migration also exposed an attribution defect and an asymmetric API that neither lint alone was designed to detect.</p>
-<p><a class="xref" href="4.2-brownfield.html#fig-4-2-5">Figure&nbsp;4.2-5</a> draws the method. Weak signals identify places worth inspecting; a partition separates legitimate primitive-heavy code and mechanical debt from the repeated shapes that reveal missing concepts; and naming those concepts changes the substrate later migration runs on.</p>
-<figure id="fig-4-2-5" class="book-figure" data-label="discovering-models-migration"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 940"
+<h2><span class="sec-num">4.2.2</span> Finding Models in the Implementation</h2>
+<p>Brownfield models need not begin with an engineer inventing the right abstraction in advance. Existing implementation often contains repeated structures that point toward models the system has never named. Static analysis, search, clustering, and other detectors can surface those patterns at scale, but their findings are evidence rather than conclusions. Repetition may reveal a missing domain concept; it may instead reflect appropriate low-level implementation, a protocol boundary, test scaffolding, or ordinary local cleanup. The detector finds places worth examining. Engineering judgment determines whether the repeated structure carries a shared meaning worth representing.</p>
+<p>DocAble encountered this problem through a primitive-density detector, which identifies interfaces expressed heavily through bare strings, integers, tuples, and other low-level values. Primitive density is intentionally a weak signal: such interfaces sometimes indicate that a concept is being repeatedly reconstructed rather than represented explicitly, but they are also common in perfectly legitimate code. The detector therefore produced hundreds of findings without claiming that hundreds of models were missing. Most findings needed ordinary annotations or local cleanup, or occurred in test fixtures and protocol adapters where primitive-heavy interfaces were appropriate.</p>
+<p>A smaller subset behaved differently. Across related document mutators, the same parameter shapes recurred: language mutations repeatedly carried the same language and provenance concepts; alt-text mutations repeatedly carried description and attribution state. Looking across those instances revealed something that no individual finding established on its own. The repeated primitives were not merely similar code. They were recurring expressions of domain concepts that the implementation had never named.</p>
+<p>Repetition alone is not enough to make that inference. The finding must be interpreted in its architectural context. A primitive-heavy external protocol adapter is different from primitive-heavy internal domain code: the former may be faithfully representing an external interface, while the latter may be forcing every consumer to reconstruct a concept the system already understands. The same distinction applies more generally. A recurring structure may be legitimate shape, mechanical debt, or evidence of a latent concept. The useful question is therefore not simply <em>does this pattern repeat?</em> but what explains the repetition, and would naming the shared meaning change future reasoning?</p>
+<p>This gives a practical route from weak implementation signals to explicit models. Surface repeated structure; partition findings by architectural role and likely cause; compare related instances for shared meaning; name a concept only when that meaning earns a representation; then migrate consumers and enforce whatever narrower relationships the new model makes decidable. <a class="xref" href="4.2-brownfield.html#fig-4-2-3">Figure&nbsp;4.2-3</a> summarizes that process. The schematic is intentionally simpler than the judgment that produces it: detection narrows the search space, while engineering interpretation decides whether there is a model to recover.</p>
+<figure id="fig-4-2-3" class="book-figure" data-label="discovering-models-migration"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 940"
      role="img" aria-labelledby="f-discovering-models-migration-dmTitle f-discovering-models-migration-dmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-discovering-models-migration-dmTitle">Discovering models during a brownfield migration: weak signals locate work, partitioning separates it, and only repeated shape that earns a name becomes a model</title>
@@ -1326,133 +1106,106 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="40" y1="866" x2="920" y2="866" stroke="#e7e2da" stroke-width="1.4"/>
   <text x="480" y="894" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">Weak signals locate the work; they do not dictate the remedy.</text>
   <text x="480" y="917" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">Only repeated structure that earns a name becomes a model &#8212; the rest is accepted or mechanically cleaned.</text>
-</svg><figcaption data-short="Discovering models during migration — weak signals → partition {legitimate shape · mechanical debt · latent concept} → name the model → migrate consumers → narrower enforcement → stronger substrate"><span class="fig-label">Figure 4.2-5.</span> <em>Discovering models during a brownfield migration.</em> Weak signals — primitive density, repeated shapes, the component and boundary view — identify places worth inspecting; they do not dictate the remedy. Partitioning separates legitimate primitive-heavy code and mechanical debt from repeated shapes that reveal missing engineering concepts. Naming those concepts as typed vocabulary and explicit relations changes the substrate on which later migration and enforcement operate.</figcaption></figure>
+</svg><figcaption data-short="Discovering models during migration — weak signals → partition {legitimate shape · mechanical debt · latent concept} → name the model → migrate consumers → narrower enforcement → stronger substrate"><span class="fig-label">Figure 4.2-3.</span> <em>Discovering models during a brownfield migration.</em> Weak signals — primitive density, repeated shapes, the component and boundary view — identify places worth inspecting; they do not dictate the remedy. Partitioning separates legitimate primitive-heavy code and mechanical debt from repeated shapes that reveal missing engineering concepts. Naming those concepts as typed vocabulary and explicit relations changes the substrate on which later migration and enforcement operate.</figcaption></figure>
 <blockquote class="box-evidence"><p class="inset-title" id="inset-primitive-density-field-record">Field record — Primitive-density migration</p>
 <p>The primitive-density backlog fell from 698 file-level findings on June 8 to 472 on June 9 and 299 on June 10. The declining count is not the important result. What matters is that the remaining population was repeatedly reclassified as it shrank:</p>
 <ul><li><strong>June 8 — 698 findings</strong>, partitioned into cluster-uniform, mechanical, per-site-judgment, boundary, and test-fixture-or-exempt buckets.</li><li><strong>June 9 — 472 findings.</strong></li><li><strong>June 10 — 299 findings</strong>, dispositioned as annotate, exempt, extract-a-model, redesign, retire, or defer-for-judgment.</li></ul>
 <p>Some findings disappeared through mechanical work, some exposed missing shared types, some warranted exemptions or lint changes, and some required design judgment. The chronology records those observations; it makes no claim that a single planned wave caused each step of the decline.</p></blockquote>
-<h3>The detector finds the problem; it does not choose the model</h3>
-<p>The same method could conclude that no new model was warranted. A later partition found experimental files that might simply be retired, HTTP handlers needing ordinary return annotations, lint implementations whose primitive-heavy signatures were canonical, and fuzzing code whose repeated operation shape did warrant a shared protocol. The detector was useful precisely because its findings were not treated as commands.</p>
-<p>This is a useful brownfield pattern: <strong>use weak signals to locate reconstruction work, partition before repairing, and extract a model only where repeated structure earns one.</strong></p>
-<p>The migration then compounds. Once a concept has a name, later work can refer to it directly. Mechanical codemods can migrate consumers. Type checking can enforce relationships that previously had to be reconstructed. Other lints can become simpler because they no longer need to infer the concept independently. And design practice can move upstream: if a new design depends on <code>JobId</code>, <code>ChunkId</code>, or a mutation specification, the design can name that vocabulary before implementation scatters anonymous copies of it.</p>
-<p>The final step is subtle. DocAble did not turn primitive density itself into a universal blocking rule. The smell remained audit-only. After the backlog had been understood and reduced, narrower mechanisms could prevent specific regressions; the design called for a drift guard rather than pretending that every future high-density file was wrong.</p>
-<p><strong>Sometimes you promote the obligation, not the instrument that discovered it.</strong> That is the mature form of Audit → Drain → Promote: an audit mechanism may reveal the property that deserves authority without itself becoming the final authority mechanism.</p>
-<p><a class="xref" href="4.2-brownfield.html#fig-4-2-6">Figure&nbsp;4.2-6</a> generalizes the three beats. The audit produces findings; a partition sorts them into drain, redesign, and accept; draining and redesign identify the real obligation; and only then does the work choose the final mechanism — promoting the detector to blocking authority in the simple case, or retaining it as an audit signal while a narrower control carries the authority.</p>
-<figure id="fig-4-2-6" class="book-figure" data-label="audit-drain-promote-generalized"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 690"
-     role="img" aria-labelledby="f-audit-drain-promote-generalized-adpTitle f-audit-drain-promote-generalized-adpDesc"
+<blockquote class="box-inset"><span class="box-badge">PROBLEM SOLVING</span><p class="inset-title" id="inset-rotate-the-problem">Inset — Rotate the problem</p>
+<p>When a problem is difficult, try looking at it from another angle. George Pólya made this a basic strategy of problem solving: draw a figure, introduce different notation, consider a related problem, work backward, or restate the problem in another form <sup class="cite-ref"><a href="#wc-4-2-brownfield-3" aria-label="citation 3">3</a></sup><span class="cite-note"><span class="cn-mark">3.</span> George Pólya, <em>How to Solve It: A New Aspect of Mathematical Method</em>, 2nd ed. (Princeton University Press, 1957).</span>. These moves do not change the underlying problem. They change the representation in which you are trying to solve it. In engineering, the same move can turn an awkward collection of conditions into a state machine, a tangle of calls into a graph, or a complicated sequence of events into a lifecycle.</p>
+<p>Metaphor and analogy provide another way to rotate the problem. They let us understand an unfamiliar system using relationships we already understand elsewhere. Lakoff and Johnson argue in <em>Metaphors We Live By</em> that metaphor is not merely decorative language: it shapes what we notice and how we reason <sup class="cite-ref"><a href="#wc-4-2-brownfield-4" aria-label="citation 4">4</a></sup><span class="cite-note"><span class="cn-mark">4.</span> George Lakoff and Mark Johnson, <em>Metaphors We Live by</em> (University of Chicago Press, 1980).</span>. This is useful for modeling because a good analogy can suggest a useful representation. But every representation emphasizes some relationships and suppresses others. Calling a system a <em>pipeline</em> makes stages and flow easy to see, while directing attention away from other aspects of the same system.</p>
+<p>The goal, then, is not to discover the one correct representation. Different representations can make different aspects of the same system easier to reason about. Rotate the problem and ask what becomes visible: a graph may expose reachability, a state machine may expose legal transitions, and a lifecycle model may expose temporal obligations. Keep the representations that make consequential engineering questions easier to answer, and use more than one when the questions demand it. This is why Part II develops several model classes rather than prescribing a single universal model.</p></blockquote>
+<h2><span class="sec-num">4.2.3</span> Reconcile the Map, Then Promote Obligations</h2>
+<p>Begin with audit. Join the representation to the implementation and surface disagreement without blocking work. A legacy map is expected to drift; making every inherited claim authoritative before reconciling it would merely give old errors new authority. Repair disagreements through ordinary feature and maintenance work without assuming in advance that prose or code is correct: the representation may be stale, the implementation may be wrong, or the representation may be asking the question at the wrong grain. Promote selected obligations only after the representation is trustworthy enough for the consumer that will rely on it. Add structure when retrieval, analysis, generation, validation, measurement, or gating will use it; do not enrich a model merely because more structure can be represented. The companion <a href="appendix-d-from-drifted-wiki-to-trusted-model.html">From-Drifted-Wiki-to-Trusted-Model</a> operator card holds the drill whole.</p>
+<h2><span class="sec-num">4.2.4</span> Migrate One Bounded Surface at a Time</h2>
+<span id="idx-def-quality"></span><span id="idx-def-quality-case-traceability"></span><p>The immediate goal is not a complete model of the inherited system. It is a <strong>trusted map</strong> over the surface that matters now: important claims have known anchors, important implementation regions have explanatory homes, and agents can navigate between them without repeatedly reconstructing the relationship. Build only as much further representation and evidence as the <strong>quality case</strong> the system must defend requires — enough architecture, behavior, ownership, measurement, and traceability to answer the properties you mean to stand behind. A live system rarely tolerates wholesale migration, so choose a bounded surface — a subsystem, service, policy family, or recurring workflow — and let old and new coexist while the replacement earns trust. Preserve reversibility, and generalize only what the bounded migration teaches you.</p>
+<p>DocAble's serverless re-platforming ran this shape — a stateful job pipeline moved off long-lived polling workers onto instances that scale to zero behind a managed push queue; the push plane grew beside the poll plane behind a default-off toggle, proved green on a staging namespace running identical code, took the traffic, then the old cluster was deleted and preserved on an archive branch.</p>
+<span id="idx-def-top-down-refinement"></span><span id="idx-def-lint-cover-induce"></span><span id="idx-def-bottom-up-induction"></span><p>Within that slice, recover the representation using whichever direction the evidence supports. <strong>Top-down</strong> work starts from intended architecture or requirements and refines toward implementation. <strong>Bottom-up</strong> work induces stable abstractions from the code and rises toward a model. Removing accidental complexity — under tests — first can make either direction easier. The directions should meet at the grain where the relevant property becomes answerable.</p>
+<p>A disagreement then has the familiar three-way diagnosis — the representation is wrong, the grain is wrong, or the implementation is wrong. Do not decide which in advance; shifting a legacy codebase from "the tests pass" to "these properties hold across all behaviors" surfaces disagreements by design.</p>
+<blockquote class="box-inset"><span class="box-badge">SOFTWARE ENGINEERING</span><p class="inset-title" id="inset-three-outcomes">Inset — When the model and the code disagree</p>
+<p>Tighten a model against real code and it will, sooner or later, contradict the code. The disagreement usually points to one of three questions:</p>
+<ul><li><strong>Is the model wrong?</strong> It may claim something the code never promised. Refine the model.</li><li><strong>Is the model at the wrong grain?</strong> It may be asking a question at a level of abstraction that cannot see the answer. Build a different model at the grain the property lives at.</li><li><strong>Is the implementation wrong?</strong> The model may be right, the code disagrees, and the disagreement may expose an implementation defect.</li></ul>
+<p>The discipline is to decide <em>which</em> before you act. Fixing code when the model was wrong bakes in a false claim; refining the model when the code had a bug hides the bug behind an adjusted spec.</p></blockquote>
+<p id="idx-def-control-substrate-dependency">For consequential substrate changes, represent important dependencies strongly enough to query the migration blast radius before cutover; the <a href="../models-bridge/system-models/control-substrate-dependency.html">control↔substrate dependency model</a> gives the operator pattern.</p>
+<h2><span class="sec-num">4.2.5</span> Audit → Drain → Promote</h2>
+<p>A valid future invariant is not always a valid present admission rule. A legacy system may violate a worthwhile new rule everywhere on the day you introduce it. Making the rule blocking immediately does not improve the system; it simply stops existing work. Introduce the obligation in three beats: Audit, Drain, Promote.</p>
+<blockquote class="box-canonical"><p class="inset-title" id="audit-drain-promote">The move — Audit → Drain → Promote</p>
+<ul><li><strong>Audit.</strong> Install the proposed rule as evidence only. It reports every detected violation and blocks no commit, so it never breaks an in-flight agent.</li><li><strong>Drain.</strong> A fix wave repairs the existing findings under sufficient tests and other evidence to preserve intended behavior, converting the legacy code to the new convention behavior-for-behavior.</li><li><strong>Promote.</strong> Once the estate satisfies the obligation, grant the mechanism blocking authority so detected violations cannot re-enter through the governed boundary.</li></ul></blockquote>
+<p>Cloudflare's public account describes a similar <strong>approved → enforced</strong> sequence, landing each policy control advisory and flipping it to enforced once the tree is clean, so the promotion never breaks work in flight <sup class="cite-ref"><a href="#wc-4-2-brownfield-5" aria-label="citation 5">5</a></sup><span class="cite-note"><span class="cn-mark">5.</span> Timo Reimann, “How Cloudflare Enforces Engineering Standards Using Ai,” Cloudflare, August 4, 2026, <a href="https://blog.cloudflare.com/engineering-standards-enforcement/">https://blog.cloudflare.com/engineering-standards-enforcement/</a>.</span>. <a class="xref" href="4.2-brownfield.html#fig-4-2-4">Figure&nbsp;4.2-4</a> draws the three beats as one lint is worn into a legacy tree.</p>
+<figure id="fig-4-2-4" class="book-figure" data-label="squash-zero-promote"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420"
+     role="group" aria-labelledby="f-squash-zero-promote-szpTitle f-squash-zero-promote-szpDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-audit-drain-promote-generalized-adpTitle">The generalized form of Audit, Drain, Promote: an audit's findings are partitioned, the drain may reveal an obligation, and that obligation may be promoted or the audit retained</title>
-  <desc id="f-audit-drain-promote-generalized-adpDesc">A top-down flow. An audit produces findings, which are partitioned before repair. The partition
-    splits three ways: drain does mechanical work, redesign produces new structure, and accept or exempt is a dead-end.
-    Drain and redesign feed the identification of an obligation — the property that deserves authority — and then the
-    choice of a final mechanism. That choice resolves two ways: promote to a stronger authority, or retain the audit as
-    a signal. Audit, drain, promote is the common case, not a requirement that the discovering mechanism itself become
-    blocking.</desc>
+  <title id="f-squash-zero-promote-szpTitle">Squash, zero, promote: how a lint is worn into a legacy tree one step at a time</title>
+  <desc id="f-squash-zero-promote-szpDesc">A new smell-detecting lint moves through three states, left to right. First it
+    lands audit-only: it reports every finding but blocks no commit, so it never breaks an in-flight
+    agent. Then a fix wave — an agent making behavior-preserving edits under test coverage — drains
+    the finding count to zero; this is a loop that runs under the audit-only state until nothing is
+    left. Only when the count reaches zero is the lint promoted to blocking: it now fails any commit
+    that reintroduces the smell. A one-way barrier sits after the blocking state, marking that the
+    class of smell can never return. Squash the findings, drive them to zero, then promote — and the
+    smells that leave stay gone.</desc>
 
   <defs>
-    <marker id="f-audit-drain-promote-generalized-adp-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    <marker id="f-squash-zero-promote-szpArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#1c1917"/>
     </marker>
-    <marker id="f-audit-drain-promote-generalized-adp-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="f-audit-drain-promote-generalized-adp-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    <marker id="f-squash-zero-promote-szpArrowRed" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#b23b3b"/>
     </marker>
   </defs>
 
-  <!-- ===== audit -> findings -> partition ===== -->
-  <rect id="f-audit-drain-promote-generalized-audit" x="390" y="30" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="480" y="58" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">audit</text>
-  <!-- edge: audit -> findings -->
-  <line x1="480" y1="74" x2="480" y2="90" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
+  <!-- start -->
+  <circle id="f-squash-zero-promote-start" cx="70" cy="150" r="12" fill="#1c1917"/>
+  <text x="70" y="192" text-anchor="middle" font-size="20" fill="#57534e">new lint</text>
 
-  <rect id="f-audit-drain-promote-generalized-findings" x="390" y="92" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="480" y="120" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">findings</text>
-  <!-- edge: findings -> partition -->
-  <line x1="480" y1="136" x2="480" y2="152" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
+  <!-- state 1: audit-only -->
+  <rect id="f-squash-zero-promote-audit" x="130" y="110" width="230" height="80" rx="10" fill="#faf1e6" stroke="#b23b3b" stroke-width="2.5"/>
+  <text x="245" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Audit-only</text>
+  <text x="245" y="172" text-anchor="middle" font-size="20" fill="#57534e">reports, blocks nothing</text>
 
-  <rect id="f-audit-drain-promote-generalized-partition" x="378" y="154" width="204" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
-  <text x="480" y="183" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">partition</text>
+  <!-- state 2: draining (the middle work) -->
+  <rect id="f-squash-zero-promote-drain" x="430" y="110" width="230" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="545" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Findings → 0</text>
+  <text x="545" y="172" text-anchor="middle" font-size="20" fill="#1c1917">a fix wave drains it</text>
 
-  <!-- fan to three -->
-  <g fill="none" stroke-width="2.4">
-    <!-- edge: partition -> drain -->
-    <path d="M394,200 L394,215 L244,215 L244,230" stroke="#57534e" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
-    <!-- edge: partition -> redesign -->
-    <path d="M480,200 L480,230" stroke="#2f5169" marker-end="url(#f-audit-drain-promote-generalized-adp-b)"/>
-    <!-- edge: partition -> accept-exempt -->
-    <path d="M566,200 L566,215 L716,215 L716,230" stroke="#57534e" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
+  <!-- state 3: blocking -->
+  <rect id="f-squash-zero-promote-blocking" x="715.82" y="110" width="258.35" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="845" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Blocking</text>
+  <text x="845" y="172" text-anchor="middle" font-size="20" fill="#1c1917">fails a regressing commit</text>
+
+  <!-- edges along the spine (one edge comment per branch drawable) -->
+  <g fill="none" stroke="#1c1917" stroke-width="2.5" marker-end="url(#f-squash-zero-promote-szpArrow)">
+    <!-- edge: start -> audit -->
+    <path d="M82,150 L128,150"/>
+    <!-- edge: audit -> drain -->
+    <path d="M360,150 L428,150"/>
+    <!-- edge: drain -> blocking -->
+    <path d="M660,150 L728,150"/>
   </g>
+  <text x="395" y="140" text-anchor="middle" font-size="20" fill="#57534e">land</text>
+  <text x="695" y="140" text-anchor="middle" font-size="20" fill="#57534e">at zero</text>
 
-  <!-- drain (gray) -->
-  <rect id="f-audit-drain-promote-generalized-drain" x="60" y="232" width="200" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="160" y="260" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">drain</text>
-  <text x="160" y="279" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">mechanical work</text>
-
-  <!-- redesign (blue - produces a model) -->
-  <rect id="f-audit-drain-promote-generalized-redesign" x="380" y="232" width="200" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="480" y="260" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">redesign</text>
-  <text x="480" y="279" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">new structure</text>
-
-  <!-- accept / exempt (gray dead-end) -->
-  <rect id="f-audit-drain-promote-generalized-accept-exempt" x="700" y="232" width="200" height="58" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2"/>
-  <text x="800" y="260" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">accept / exempt</text>
-  <text x="800" y="279" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">leave as-is</text>
-
-  <!-- drain + redesign merge into identify obligation -->
-  <g fill="none" stroke-width="2.4">
-    <!-- edge: drain -> identify-obligation -->
-    <path d="M244,290 L244,317 L346,317 L346,344" stroke="#57534e" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
-    <!-- edge: redesign -> identify-obligation -->
-    <path d="M480,290 L480,344" stroke="#2f5169" marker-end="url(#f-audit-drain-promote-generalized-adp-b)"/>
+  <!-- fix-wave loop under the middle state (self-loop drain -> drain) -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.5" marker-end="url(#f-squash-zero-promote-szpArrow)">
+    <!-- edge: drain -> drain -->
+    <path d="M490,190 C460,250 600,222 600,192"/>
   </g>
+  <text x="545" y="268" text-anchor="middle" font-size="20" font-style="italic" fill="#2f5169">behavior-preserving fixes, under test coverage</text>
 
-  <!-- identify obligation (rust - the property) -->
-  <rect id="f-audit-drain-promote-generalized-identify-obligation" x="307.25" y="346" width="345.51" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="480" y="373" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">identify obligation</text>
-  <text x="480" y="393" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">the property that deserves authority</text>
-  <!-- edge: identify-obligation -> choose-mechanism -->
-  <line x1="480" y1="404" x2="480" y2="426" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
-
-  <!-- choose final mechanism -->
-  <rect id="f-audit-drain-promote-generalized-choose-mechanism" x="330" y="428" width="300" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="480" y="454" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">choose final mechanism</text>
-  <text x="480" y="473" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">which authority fits the property</text>
-
-  <!-- resolve two ways -->
-  <g fill="none" stroke-width="2.4">
-    <!-- edge: choose-mechanism -> promote -->
-    <path d="M397.5,482 L397.5,532" stroke="#9a3f12" marker-end="url(#f-audit-drain-promote-generalized-adp-r)"/>
-    <!-- edge: choose-mechanism -> retain -->
-    <path d="M562.5,482 L562.5,532" stroke="#57534e" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
+  <!-- one-way barrier after blocking: the class can't return -->
+  <line x1="972" y1="96" x2="972" y2="204" stroke="#b23b3b" stroke-width="4"/>
+  <g fill="none" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#f-squash-zero-promote-szpArrowRed)">
+    <path d="M845,206 C845,240 940,240 966,206"/>
   </g>
-
-  <!-- PROMOTE (rust) -->
-  <rect id="f-audit-drain-promote-generalized-promote" x="215" y="534" width="250" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="340" y="563" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">PROMOTE</text>
-  <text x="340" y="585" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">stronger authority</text>
-
-  <!-- RETAIN (gray) -->
-  <rect id="f-audit-drain-promote-generalized-retain" x="495" y="534" width="250" height="66" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2.2"/>
-  <text x="620" y="563" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">RETAIN</text>
-  <text x="620" y="585" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">audit signal</text>
-
-  <!-- footer: protect the point -->
-  <line x1="40" y1="624" x2="920" y2="624" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="480" y="651" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">Sometimes you promote the obligation, not the instrument that discovered it.</text>
-  <text x="480" y="673" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">The drain may reveal a different obligation &#8212; and that obligation may deserve a different mechanism.</text>
-</svg><figcaption data-short="Audit → Drain → Promote generalized — audit → findings → partition {drain · redesign · accept} → identify obligation → choose mechanism {promote · retain}"><span class="fig-label">Figure 4.2-6.</span> <em>Audit → Drain → Promote, generalized.</em> The simple three-beat move is the simplest case. In general the audit's findings are partitioned, draining and redesign identify the obligation that deserves authority, and the final mechanism may be the original detector promoted to blocking or a narrower constraint, validator, or drift guard — while the detector itself remains an audit signal.</figcaption></figure>
-<p>Audit → Drain → Promote does not require the discovering mechanism itself to become blocking. The final authority may belong to a narrower constraint, validator, or gate while the original detector remains an audit signal.</p>
-<h2><span class="sec-num">4.2.7</span> Measure What the Map Still Cannot Explain</h2>
-<p>Models expose what they contain more readily than what they omit. Reverse traceability can surface candidate gaps: exercised implementation with no corresponding model claim, or modeled obligations with no evidence. Treat these as candidates for investigation — some reveal missing representation, others missing trace edges or deliberately unmodeled detail. A companion mechanism runs the join in the other direction: project test coverage onto model nodes so an untested invariant appears as a named gap instead of hiding inside a line-coverage percentage. This is <a href="../models-bridge/system-models/coverage-model-mapping.html">coverage-to-model mapping</a>.</p>
-<h2 id="derive-dont-copy"><span class="sec-num">4.2.8</span> Derive, Don't Copy</h2>
-<p>Recovering a model is only the first step. The next question is what happens to the facts it owns.</p>
-<p>A common failure is to name one representation as the source of truth while continuing to copy its contents elsewhere. A service belongs to one team in the model and to that team again in a config file. An architectural edge exists in the graph and again in a hand-maintained allowlist. A symbol-to-requirement relation exists in the model and again as a string in a test. Parallel copies turn agreement into maintenance work and drift independently.</p>
-<p><strong>If a fact already has a queryable source of truth, consume or derive it rather than copying it.</strong> This holds for relationships as much as for scalar facts. Prefer a join over two independently maintained lists. Prefer a stable symbol or identifier over a copied path or line number — a snapshotted cross-reference rots silently, while a derived one reddens the moment the code moves. Prefer generation over synchronized hand-editing when one representation can honestly own the result.</p>
-<p>Where neither representation should be derived wholly from the other, make their correspondence observable rather than assumed. A parity check earns its keep precisely because neither side is silently trusted: the implementation can expose a stale model, and the model can expose an implementation that has escaped its declared intent. A one-way regenerate-from-code check makes the implementation the source of truth for that relation and cannot detect whether the model should instead constrain the implementation. Where one side is the source of truth, derive or generate accordingly; where neither fully determines the other, maintain explicit traceability and check the correspondences that are mechanically decidable.</p>
-<p><a class="xref" href="4.2-brownfield.html#fig-4-2-7">Figure&nbsp;4.2-7</a> draws the shape: once a fact has a source of truth, downstream consumers query, join, derive, or generate from it, and where neither fully determines the other, a correspondence check makes disagreement visible.</p>
-<figure id="fig-4-2-7" class="book-figure" data-label="derive-dont-copy"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
+  <text x="812" y="300" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">a detected violation now blocks re-entry</text>
+</svg><figcaption data-short="Audit, Drain, Promote"><span class="fig-label">Figure 4.2-4.</span> <em>Audit, Drain, Promote.</em> A new lint lands audit-only — every finding reported, no commit blocked, so it never breaks an in-flight agent. A fix wave drains it to zero, and only then is it promoted to blocking, so future violations within the mechanism's declared detection surface are refused at that boundary.</figcaption></figure>
+<p>The final step requires care. DocAble did not promote primitive density itself into a universal blocking rule. The detector was a smell: useful for locating work, but too broad to define correctness. Once the findings had been understood, narrower mechanisms could prevent the specific regressions that mattered. Sometimes you promote the obligation, not the instrument that discovered it. An audit may reveal the property that deserves authority without being the right mechanism to carry that authority; the detector can remain advisory while a narrower type, constraint, validator, or gate becomes authoritative.</p>
+<h2 id="derive-dont-copy"><span class="sec-num">4.2.6</span> Derive, Don't Copy</h2>
+<p>Recovering a model is only the first step. The next question is what happens to the facts it owns. A common failure is to declare one representation the source of truth while continuing to copy its facts elsewhere: ownership appears in the model and again in configuration; an architectural edge appears in the graph and again in an allowlist; a requirement relation appears in the model and again as a string in a test. Each copy creates another place that can drift. If a fact already has a queryable source of truth, derive it rather than copying it. Prefer a join over parallel lists, a stable identifier over a copied path, and generation over synchronized hand-editing when one representation can honestly own the result. Sometimes neither side should own the other; in that case, make their correspondence observable and check agreement rather than silently declaring either the model or the implementation authoritative.</p>
+<p><a class="xref" href="4.2-brownfield.html#fig-4-2-5">Figure&nbsp;4.2-5</a> draws the shape: once a fact has a source of truth, downstream consumers query, join, derive, or generate from it, and where neither fully determines the other, a correspondence check makes disagreement visible.</p>
+<figure id="fig-4-2-5" class="book-figure" data-label="derive-dont-copy"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
      role="img" aria-labelledby="f-derive-dont-copy-ddTitle f-derive-dont-copy-ddDesc"
      font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
   <title id="f-derive-dont-copy-ddTitle">Derive, don't copy — consume a fact from its source of truth instead of snapshotting it.</title>
@@ -1505,9 +1258,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- edge: model .. world -->
   <line x1="462" y1="409" x2="538" y2="409" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#f-derive-dont-copy-dd-ah-rust)" marker-end="url(#f-derive-dont-copy-dd-ah-rust)"/>
   <text x="500" y="456" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">parity</text>
-</svg><figcaption data-short="Derive, don&#x27;t copy — one source of truth, consumers query/join/generate; where neither determines the other, parity check"><span class="fig-label">Figure 4.2-7.</span> <em>Derive, don't copy.</em> Once a fact has a source of truth, downstream consumers should query, derive, join, or generate from it rather than maintain parallel snapshots. Where neither representation fully determines the other, explicit correspondence checks make disagreement visible.</figcaption></figure>
+</svg><figcaption data-short="Derive, don&#x27;t copy — one source of truth, consumers query/join/generate; where neither determines the other, parity check"><span class="fig-label">Figure 4.2-5.</span> <em>Derive, don't copy.</em> Once a fact has a source of truth, downstream consumers should query, derive, join, or generate from it rather than maintain parallel snapshots. Where neither representation fully determines the other, explicit correspondence checks make disagreement visible.</figcaption></figure>
 <p>Hidden assumptions deserve the same treatment as copied facts. A control that depends on a particular runtime, directory layout, deployment topology, tool version, or model capability carries that dependency whether or not anyone wrote it down. When changing the substrate could invalidate the control, represent the dependency strongly enough that its blast radius can be <em>queried</em> before the change — the blast-radius move above is exactly this, worked through on a real re-platforming. Do not model every dependency. Model the ones whose rediscovery by breakage is expensive. <strong>Make consequential assumptions queryable before they become surprises.</strong></p>
-<h2><span class="sec-num">4.2.9</span> Price the Investment</h2>
+<h2><span class="sec-num">4.2.7</span> Price the Investment</h2>
 <p>A recurring gap does not automatically deserve machinery. Price the expected future loss against the cost of building <em>and carrying</em> the response. Frequency and consequence are useful first approximations; detectability, reversibility, legal exposure, and the stability of the obligation can move the decision substantially. Cheap, rare failures often remain judgment. Cheap, frequent failures may justify a lint, script, or reusable procedure, because repeated agent and human attention is itself cost. Consequential failures justify a <strong>larger investment and a stronger assurance response</strong>: better representation, prevention by construction where possible, stronger sensing and validation, and authority at an appropriate boundary. Catastrophic or legally intolerable failures need not recur even once to earn that investment.</p>
 <p><a class="xref" href="4.2-brownfield.html#tbl-4-2-1">Table&nbsp;4.2-1</a> crosses how much a failure costs against how often it happens; it gives a first-pass heuristic, not a decision rule. Do not build the larger mechanism until the expected cost of the failure justifies it.</p>
 <table id="tbl-4-2-1" class="book-table" data-label="governance-sizing-matrix"><caption data-short="Sizing the mechanism"><span class="tbl-label">Table 4.2-1.</span> <em>The Sizing Matrix.</em> Failure cost runs against failure frequency, and each cell suggests a proportionate first move — a heuristic, not a decision rule. Cheap, rare failures stay with judgment, while cheap, frequent ones earn a lint, script, or reusable procedure. Costly failures earn a recovery path with admission control, and prefer structural prevention once the failure's shape is decidable. The costly, frequent corner earns both prevention and a gate.<sup class="note-ref"><a href="#note-4-2-brownfield-3" role="doc-noteref" aria-label="note 3">‡</a></sup><span class="editorial-note" id="note-4-2-brownfield-3"><span class="cn-mark">‡</span> Escalate one tier when the failure is hard to detect, hard to reverse, or legally or safety intolerable.</span></caption><thead><tr><th>Cost × frequency</th><th>Rare failure</th><th>Frequent failure</th></tr></thead><tbody><tr><td><strong>Cheap</strong></td><td>Judgment.</td><td>A lint, script, or reusable procedure.</td></tr><tr><td><strong>Costly</strong></td><td>Recovery with admission control.</td><td>Structural prevention with admission control.</td></tr></tbody></table>

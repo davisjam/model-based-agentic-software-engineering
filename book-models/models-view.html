@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>32</b> chapters · <b>202</b> sections · <b>68</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>32</b> chapters · <b>199</b> sections · <b>68</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -409,10 +409,10 @@
 <h3 id="ch-4-2-brownfield"><span class="tier-kick">Lesson</span><a href="../book/4.2-brownfield.html" class="ch-link">4.2-brownfield</a> <span class="ch-slug">4.2-brownfield</span></h3>
 <div class="section s2" id="sec-4-2-brownfield--start-with-what-you-already-have">
 <div class="sec-h"><a href="../book/4.2-brownfield.html">Start with What You Already Have</a></div>
-<p class="topic">Survey the estate before designing the replacement.</p>
+<p class="topic">Begin with two questions, because representation and authority are different things.</p>
 </div>
-<div class="section s2" id="sec-4-2-brownfield--induce-models-from-the-implementation">
-<div class="sec-h"><a href="../book/4.2-brownfield.html">Induce Models from the Implementation</a></div>
+<div class="section s2" id="sec-4-2-brownfield--finding-models-in-the-implementation">
+<div class="sec-h"><a href="../book/4.2-brownfield.html">Finding Models in the Implementation</a></div>
 <p class="topic">Brownfield models need not begin with an engineer inventing the right abstraction in advance.</p>
 </div>
 <div class="section s2" id="sec-4-2-brownfield--reconcile-the-map-then-promote-obligations">
@@ -421,23 +421,11 @@
 </div>
 <div class="section s2" id="sec-4-2-brownfield--migrate-one-bounded-surface-at-a-time">
 <div class="sec-h"><a href="../book/4.2-brownfield.html">Migrate One Bounded Surface at a Time</a></div>
-<p class="topic">The immediate goal is a **trusted map** over the parts that matter now: important claims have known anchors, important implementation regions have explanatory homes, and agents can navigate the join without rediscovering it.</p>
+<p class="topic">The immediate goal is not a complete model of the inherited system.</p>
 </div>
 <div class="section s2" id="sec-4-2-brownfield--audit-drain-promote">
 <div class="sec-h"><a href="../book/4.2-brownfield.html">Audit → Drain → Promote</a></div>
 <p class="topic">A valid future invariant is not always a valid present admission rule.</p>
-</div>
-<div class="section s2" id="sec-4-2-brownfield--finding-the-model-in-the-code">
-<div class="sec-h"><a href="../book/4.2-brownfield.html">Finding the Model in the Code</a></div>
-<p class="topic">Brownfield modeling has a bootstrapping problem.</p>
-</div>
-<div class="section s3" id="sec-4-2-brownfield--the-detector-finds-the-problem-it-does-not-choose-the-model">
-<div class="sec-h"><a href="../book/4.2-brownfield.html">The detector finds the problem; it does not choose the model</a></div>
-<p class="topic">The same method could conclude that no new model was warranted.</p>
-</div>
-<div class="section s2" id="sec-4-2-brownfield--measure-what-the-map-still-cannot-explain">
-<div class="sec-h"><a href="../book/4.2-brownfield.html">Measure What the Map Still Cannot Explain</a></div>
-<p class="topic">Models expose what they contain more readily than what they omit.</p>
 </div>
 <div class="section s2" id="sec-4-2-brownfield--derive-dont-copy">
 <div class="sec-h"><a href="../book/4.2-brownfield.html">Derive, Don&#x27;t Copy</a></div>
@@ -499,7 +487,7 @@
 </div>
 <div class="section s2" id="sec-4-4-operating-mage--measure-the-state-that-matters">
 <div class="sec-h"><a href="../book/4.4-operating-mage.html">Measure the State That Matters</a></div>
-<p class="topic">Operational control fails easily when it acts on a proxy that only sometimes tracks the property that matters.</p>
+<p class="topic">Operational measurement should expose the state the decision actually depends on.</p>
 </div>
 <div class="section s3" id="sec-4-4-operating-mage--one-hard-example-coverage-measured-one-level-deeper">
 <div class="sec-h"><a href="../book/4.4-operating-mage.html">One hard example: coverage measured one level deeper</a></div>
@@ -520,17 +508,17 @@
 </div>
 <div class="chapter">
 <h3 id="ch-4-5-packaging-the-method-as-skills"><span class="tier-kick">Lesson</span><a href="../book/4.5-packaging-the-method-as-skills.html" class="ch-link">4.5-packaging-the-method-as-skills</a> <span class="ch-slug">4.5-packaging-the-method-as-skills</span></h3>
-<div class="section s2" id="sec-4-5-packaging-the-method-as-skills--the-skill-skeleton">
-<div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">The Skill Skeleton</a></div>
-<p class="topic">The three examples share a construction pattern, drawn in [ref:skill-recipe].</p>
+<div class="section s2" id="sec-4-5-packaging-the-method-as-skills--what-a-reusable-skill-needs">
+<div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">What a Reusable Skill Needs</a></div>
+<p class="topic">A reusable skill needs three things: a useful model of the domain, the recurring decisions that matter within it, and a procedure for making those decisions.</p>
 </div>
 <div class="section s2" id="sec-4-5-packaging-the-method-as-skills--deliver-the-right-context-and-measure-it">
 <div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Deliver the Right Context—and Measure It</a></div>
-<p class="topic">A reusable procedure helps only if the actor reaches it when it matters.</p>
+<p class="topic">Packaging knowledge solves only half the problem.</p>
 </div>
 <div class="section s2" id="sec-4-5-packaging-the-method-as-skills--self-governance-engineering-the-environment">
 <div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Self-Governance: Engineering the Environment</a></div>
-<p class="topic">Self-governance packages Modeling and Alignment as a procedure the agent can apply to its own engineering work.</p>
+<p class="topic">Self-governance packages the MAGE method itself.</p>
 </div>
 <div class="section s3" id="sec-4-5-packaging-the-method-as-skills--governance-must-earn-its-carrying-cost">
 <div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Governance must earn its carrying cost</a></div>
@@ -538,7 +526,7 @@
 </div>
 <div class="section s2" id="sec-4-5-packaging-the-method-as-skills--self-operate-running-the-environment">
 <div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Self-Operate: Running the Environment</a></div>
-<p class="topic">Self-operate packages the previous chapter&#x27;s lifecycles, recovery paths, runbook step types, and operating heuristics.</p>
+<p class="topic">Self-operate packages the operating loop of the previous chapter.</p>
 </div>
 <div class="section s2" id="sec-4-5-packaging-the-method-as-skills--self-communicate-a-boundary-test">
 <div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Self-Communicate: a Boundary Test</a></div>
