@@ -70,6 +70,18 @@ These six classes organize recurring engineering questions rather than partition
 overlap, and they are not exhaustive. There is no single "model of the system": each model is a
 purposeful reduction chosen for a question.
 
+<!-- point: each-family-chapter-runs-canonical-move-then-docable-specialization | Each family chapter runs the same progression — the canonical engineering move outside DocAble, then how DocAble specializes it — so the reader recognizes an established representation before meeting its production instance. | terms: model-classes -->
+Each of the six chapters ahead runs the same progression: the canonical engineering move as software
+engineering already knows it — the representation, the properties it makes expressible, the analyses it
+supports — and then how DocAble specializes that move in the running system. The aim is to recognize an
+established representation first, and meet its production instance second.
+
+<!-- point: keep-property-invariant-analysis-and-authority-distinct | A property is a claim expressible over a model; an invariant a property required to hold over a declared domain; an analysis a method producing evidence about a property; authority the consequence attached to that evidence — Part II owns the first three, Part III owns authority. | terms: modeling-principle, alignment-principle -->
+Four terms stay distinct through the Part. A **property** is a claim that can be expressed over a model.
+An **invariant** is a property required to hold over a declared domain. An **analysis** or check produces
+evidence about a property. Whether that evidence gets to constrain an action or block a consequence is a
+separate question of **authority**, and it belongs to Part III.
+
 <!-- box-family: inset -->
 > #### Four questions for every model
 >

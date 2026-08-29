@@ -1111,87 +1111,10 @@ assert all(invariant(s) for s in reachable_states())  # check every reachable st
 <h2><span class="sec-num">2.8.3</span> Modeling Makes Properties Available to Alignment</h2>
 <p>A model does not govern the system merely by existing. The structural model can <em>name</em> a forbidden dependency without preventing it. The recovery model can name an illegal transition without rejecting it. The measurement model can represent a budget without stopping the work that exceeds it. The provenance model can specify the evidence an operation should leave without requiring the operation to leave it. Each class makes a property explicit; none, by itself, gives that property force.</p>
 <p>The remediation graph makes the point concrete. Its projection supplied a structural property, and its parity check supplied correspondence evidence, yet neither settles whether the represented architecture is itself correct. Part III separates that correspondence obligation from the question of whether the architecture itself is correct. A blocking parity check therefore establishes correspondence, not conformance.</p>
-<p><strong>Modeling makes an engineering property explicit; Alignment gives selected properties consequence.</strong> Where an appropriate boundary and evaluator exist, a constraint may exclude an unwanted state, a sensor may produce relevant evidence, a validator may evaluate it, and a gate may give the verdict consequence. <a class="xref" href="2.8-system-knowledge.html#fig-2-8-6">Figure&nbsp;2.8-6</a> draws the path from territory to consequence.</p>
-<figure id="fig-2-8-6" class="book-figure" data-label="modeling-creates-surfaces"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 680"
-     role="img" aria-labelledby="f-modeling-creates-surfaces-mcTitle f-modeling-creates-surfaces-mcDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-modeling-creates-surfaces-mcTitle">Modeling makes properties available to Alignment — but is not the only path</title>
-  <desc id="f-modeling-creates-surfaces-mcDesc">Two paths join at one Alignment. The direct path: a territory or action is acted on
-    directly, a local observable obligation. The model-mediated path: territory is reduced by abstraction to
-    a model, which makes an explicit property available, a richer semantic obligation. Both land side by
-    side on one Alignment — constraint, sensor, validator, gate — which leads to consequence. Governance can
-    act directly; models add reach but are not required.</desc>
-
-  <defs>
-    <marker id="f-modeling-creates-surfaces-mc-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/>
-    </marker>
-    <marker id="f-modeling-creates-surfaces-mc-kk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
-    <marker id="f-modeling-creates-surfaces-mc-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="f-modeling-creates-surfaces-mc-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
-    </marker>
-  </defs>
-
-  <text x="360" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Two paths to Alignment</text>
-
-  <!-- ===== LEFT: DIRECT PATH ===== -->
-  <text x="185" y="72" text-anchor="middle" font-size="14.4" font-weight="700" letter-spacing="1" fill="#57534e">DIRECT PATH</text>
-  <rect id="f-modeling-creates-surfaces-territory-action" x="55" y="250" width="260" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="185" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">TERRITORY / ACTION</text>
-  <text x="185" y="304" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
-  <!-- direct arrow onto Alignment (left landing); last control point above the endpoint so the head arrives perpendicular into ALIGNMENT's top -->
-  <!-- edge: territory-action -> alignment -->
-  <path d="M270,316 L270,408" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#f-modeling-creates-surfaces-mc-kk)"/>
-  <text x="196" y="360" text-anchor="start" font-size="14.4" font-weight="700" fill="#57534e">acted on directly</text>
-  <text x="196" y="377" text-anchor="start" font-size="14.4" font-style="italic" fill="#57534e">local observable obligation</text>
-
-  <!-- ===== RIGHT: MODEL-MEDIATED PATH ===== -->
-  <text x="535" y="72" text-anchor="middle" font-size="14.4" font-weight="700" letter-spacing="1" fill="#2f5169">MODEL-MEDIATED PATH</text>
-  <!-- TERRITORY -->
-  <rect id="f-modeling-creates-surfaces-territory" x="405" y="86" width="260" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="535" y="116" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">TERRITORY</text>
-  <!-- edge: territory -> model -->
-  <line x1="535" y1="134" x2="535" y2="168" stroke="#1c1917" stroke-width="2" marker-end="url(#f-modeling-creates-surfaces-mc-k)"/>
-  <text x="547" y="156" font-size="14.4" font-style="italic" fill="#57534e">abstraction</text>
-  <!-- MODEL -->
-  <rect id="f-modeling-creates-surfaces-model" x="405" y="170" width="260" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="535" y="200" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">MODEL</text>
-  <!-- edge: model -> explicit-property -->
-  <line x1="535" y1="218" x2="535" y2="252" stroke="#1c1917" stroke-width="2" marker-end="url(#f-modeling-creates-surfaces-mc-k)"/>
-  <text x="547" y="240" font-size="14.4" font-style="italic" fill="#57534e">makes explicit</text>
-  <!-- EXPLICIT PROPERTY -->
-  <rect id="f-modeling-creates-surfaces-explicit-property" x="405" y="254" width="260" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="535" y="287" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">EXPLICIT PROPERTY</text>
-  <!-- model arrow onto Alignment (right landing); last control point above the endpoint so the head arrives perpendicular into ALIGNMENT's top -->
-  <!-- edge: explicit-property -> alignment -->
-  <path d="M450,308 L450,408" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#f-modeling-creates-surfaces-mc-b)"/>
-  <text x="524" y="360" text-anchor="end" font-size="14.4" font-weight="700" fill="#2f5169">available to</text>
-  <text x="524" y="377" text-anchor="end" font-size="14.4" font-style="italic" fill="#2f5169">richer semantic obligation</text>
-
-  <!-- ===== THE JOIN: ALIGNMENT ===== -->
-  <rect id="f-modeling-creates-surfaces-alignment" x="225" y="410" width="270" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
-  <text x="360" y="440" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
-  <text x="360" y="462" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">constraint &#183; sensor &#183; validator &#183; gate</text>
-  <!-- edge: alignment -> consequence -->
-  <line x1="360" y1="476" x2="360" y2="524" stroke="#155c38" stroke-width="2.4" marker-end="url(#f-modeling-creates-surfaces-mc-g)"/>
-  <text x="372" y="504" font-size="14.4" font-style="italic" fill="#155c38">gives consequence</text>
-
-  <!-- ===== CONSEQUENCE ===== -->
-  <rect id="f-modeling-creates-surfaces-consequence" x="255" y="526" width="210" height="54" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
-  <text x="360" y="559" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">CONSEQUENCE</text>
-
-  <!-- footer: protect the point -->
-  <text x="360" y="626" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Alignment mechanisms can act directly on observable actions; explicit models make</text>
-  <text x="360" y="648" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">richer system properties available too &#8212; model-mediated is not the only path.</text>
-</svg><figcaption data-short="Modeling expands the semantic reach of Alignment"><span class="fig-label">Figure 2.8-6.</span> <em>Modeling expands the semantic reach of Alignment.</em> Alignment mechanisms can act directly on observable actions and artifacts; explicit models make additional system-level properties available for constraint, sensing, evaluation, and admission.</figcaption></figure>
+<p><strong>Modeling makes an engineering property explicit; Alignment gives selected properties consequence.</strong> Where an appropriate boundary and evaluator exist, a constraint may exclude an unwanted state, a sensor may produce relevant evidence, a validator may evaluate it, and a gate may give the verdict consequence.</p>
 <p>As a model makes more system semantics explicit, more system-level obligations become available for analysis and governance. A local static check can constrain a local, syntactic property with almost no explicit modeling. Architectural boundaries, temporal obligations, distributed ownership, provenance requirements, and end-to-end policies each require a representation that exposes enough system semantics for the obligation to be evaluated.</p>
 <p>Modeling can therefore make an engineering tolerance explicit: it can state which variation the system may admit and which variation would violate an obligation. It can also leave the remaining realization choices visibly open. Neither fact gives the model authority. A represented boundary may remain advisory, just as an unrepresented local rule may already be enforced by a type, sandbox, or test. Part III asks the next question: which obligations should the environment itself hold, and what evidence and mechanism are sufficient to give them consequence?</p>
-<p>Alignment does not require a separately represented model. A sandbox can deny network access, a compiler can reject an illegal construct, and a test can block a regression over observed behavior. These mechanisms already carry real authority.</p>
+<p>Alignment does not require a separately represented model: some obligations are already observable at an action or artifact boundary and can be constrained directly.</p>
 <p>Models expand the semantic reach of such authority. By making architecture, behavior, ownership, decisions, measurements, and provenance explicit, they make properties available that would otherwise have to be reconstructed by a human or agent each time.</p>
 <blockquote class="box-inset"><span class="box-badge">AI</span><p class="inset-title" id="inset-beneath-commodity-intelligence">Deep dive — Beneath commodity intelligence: why structure helps</p>
 <p>MAGE deliberately treats intelligence as a commodity. The method should not depend on a particular neural architecture, training recipe, or context-window size. Still, the language-model systems available in 2026 offer a useful view one level below that abstraction. They suggest why engineering the structure around an intelligent agent can matter as much as improving the intelligence itself.</p>

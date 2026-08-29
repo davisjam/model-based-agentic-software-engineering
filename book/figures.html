@@ -2029,11 +2029,213 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="484" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">interpret the evidence</text>
   <text x="500" y="579" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">decide what deserves authority</text>
   <text x="500" y="632" text-anchor="middle" font-size="16" font-style="italic" fill="#155c38">→ Alignment (Part 3)</text>
-</svg><figcaption data-short="From engineering question to authority"><span class="fig-label">Figure 2.1-2.</span> <em>From engineering question to authority.</em> Hold the system fixed and change the question, and the representation changes with it—a closed state or action space, a finite transition system, or temporal behavior. The representation determines which analyses become tractable, not a single prescribed technique; the analysis yields evidence to interpret. Only then does engineering decide what deserves authority, the question Part III takes up.</figcaption></figure><p class="gallery-source">From <a href="2.1-context-is-the-first-modeling-problem.html#fig-2-1-2">5 · From Context to Engineering Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-1-3-fig-2-1-3" class="book-figure" data-label="model-ontology"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 415"
-     role="img" aria-labelledby="fig-2-1-3-f-model-ontology-onTitle fig-2-1-3-f-model-ontology-onDesc"
+</svg><figcaption data-short="From engineering question to authority"><span class="fig-label">Figure 2.1-2.</span> <em>From engineering question to authority.</em> Hold the system fixed and change the question, and the representation changes with it—a closed state or action space, a finite transition system, or temporal behavior. The representation determines which analyses become tractable, not a single prescribed technique; the analysis yields evidence to interpret. Only then does engineering decide what deserves authority, the question Part III takes up.</figcaption></figure><p class="gallery-source">From <a href="2.1-context-is-the-first-modeling-problem.html#fig-2-1-2">5 · From Context to Engineering Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-1-3-fig-2-1-3" class="book-figure" data-label="modeling-repertoire"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1816 1568" role="img" aria-labelledby="fig-2-1-3-f-modeling-repertoire-modeling-repertoireT fig-2-1-3-f-modeling-repertoire-modeling-repertoireD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-2-1-3-f-modeling-repertoire-modeling-repertoireT">The engineering modeling repertoire: nine familiar model forms</title>
+  <desc id="fig-2-1-3-f-modeling-repertoire-modeling-repertoireD">A three-by-three spread of nine familiar modeling forms — component/dependency, finite-state, data-flow, ownership/resource, decision/policy, quantitative, entity/schema, provenance/derivation, and call/control-flow. Each panel shows a small diagram plus a Question, Property, and Analysis line. The same graphical primitives — rounded entities, labeled directed arrows, a struck-through dashed arrow for a forbidden relation, and a bracketed envelope for a bound — recur across panels while the semantics change, and each family carries its own ground colour.</desc>
+  <defs>
+    <marker id="fig-2-1-3-f-modeling-repertoire-ah-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
+    <marker id="fig-2-1-3-f-modeling-repertoire-ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="fig-2-1-3-f-modeling-repertoire-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="fig-2-1-3-f-modeling-repertoire-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
+    <marker id="fig-2-1-3-f-modeling-repertoire-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1816" height="1568" fill="#fdfcf9"/>
+  <text x="908" y="52" text-anchor="middle" font-size="30" font-weight="700" fill="#1c1917">The engineering modeling repertoire</text><text x="908" y="82" text-anchor="middle" font-size="21" font-style="italic" fill="#57534e">Familiar forms, different questions — the graphical primitives recur while the semantics change.</text>
+  <rect x="40" y="96" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="40" y="96" width="560" height="40" rx="14" fill="#faf1e6" stroke="none"/>
+  <rect x="40" y="122" width="560" height="14" fill="#faf1e6" stroke="none"/>
+  <line x1="40" y1="136" x2="600" y2="136" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="320" y="125" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#9a3f12">COMPONENT / DEPENDENCY</text>
+  <rect x="265" y="158" width="110" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="320" y="189" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">UI</text>
+  <rect x="265" y="224" width="110" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="320" y="255" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">API</text>
+  <rect x="110" y="294" width="120" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="170" y="325" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DB</text>
+  <rect x="410" y="294" width="120" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="470" y="325" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CACHE</text>
+  <line x1="320" y1="206" x2="320" y2="222" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-rust)"/>
+  <path d="M290,272 L290,284 L170,284 L170,292" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-rust)"/>
+  <path d="M350,272 L350,284 L470,284 L470,292" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-rust)"/>
+  <text x="340" y="218" text-anchor="start" font-size="18" font-style="italic" fill="#57534e">depends on</text>
+  <text x="66" y="378" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What depends on what?</text>
+  <text x="66" y="407" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> reachability, layering,</text>
+  <text x="84" y="432" font-size="20" fill="#1c1917">forbidden edges</text>
+  <text x="66" y="461" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> graph traversal,</text>
+  <text x="84" y="486" font-size="20" fill="#1c1917">cycle &amp; path checking</text>
+  <rect x="628" y="96" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="628" y="96" width="560" height="40" rx="14" fill="#e7edf3" stroke="none"/>
+  <rect x="628" y="122" width="560" height="14" fill="#e7edf3" stroke="none"/>
+  <line x1="628" y1="136" x2="1188" y2="136" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="908" y="125" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#2f5169">FINITE-STATE MODEL</text>
+  <rect x="658" y="192" width="100" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="708" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">IDLE</text>
+  <rect x="808" y="192" width="140" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="878" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">RUNNING</text>
+  <rect x="998" y="192" width="110" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="1053" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DONE</text>
+  <rect x="808" y="282" width="140" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="878" y="313" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">FAILED</text>
+  <line x1="758" y1="216" x2="806" y2="216" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-blue)"/>
+  <line x1="948" y1="216" x2="996" y2="216" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-blue)"/>
+  <line x1="878" y1="240" x2="878" y2="280" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-blue)"/>
+  <text x="782" y="184" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">may become</text>
+  <text x="654" y="378" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What may happen next?</text>
+  <text x="654" y="407" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> legal states, safety,</text>
+  <text x="672" y="432" font-size="20" fill="#1c1917">liveness</text>
+  <text x="654" y="461" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> state exploration,</text>
+  <text x="672" y="486" font-size="20" fill="#1c1917">model checking</text>
+  <rect x="1216" y="96" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="1216" y="96" width="560" height="40" rx="14" fill="#faf1e6" stroke="none"/>
+  <rect x="1216" y="122" width="560" height="14" fill="#faf1e6" stroke="none"/>
+  <line x1="1216" y1="136" x2="1776" y2="136" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="1496" y="125" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#9a3f12">DATA-FLOW MODEL</text>
+  <rect x="1246" y="192" width="100" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1296" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">INPUT</text>
+  <rect x="1381" y="192" width="130" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1446" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">PARSE</text>
+  <rect x="1546" y="192" width="130" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1611" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">MODEL</text>
+  <rect x="1546" y="282" width="130" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1611" y="313" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">OUTPUT</text>
+  <line x1="1346" y1="216" x2="1379" y2="216" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-rust)"/>
+  <line x1="1511" y1="216" x2="1544" y2="216" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-rust)"/>
+  <line x1="1611" y1="240" x2="1611" y2="280" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-rust)"/>
+  <text x="1363" y="184" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">flows to</text>
+  <text x="1242" y="378" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> Where does data flow?</text>
+  <text x="1242" y="407" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> source, sink, path,</text>
+  <text x="1260" y="432" font-size="20" fill="#1c1917">transformation</text>
+  <text x="1242" y="461" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> flow / taint /</text>
+  <text x="1260" y="486" font-size="20" fill="#1c1917">dependency analysis</text>
+  <rect x="40" y="574" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="40" y="574" width="560" height="40" rx="14" fill="#e7edf3" stroke="none"/>
+  <rect x="40" y="600" width="560" height="14" fill="#e7edf3" stroke="none"/>
+  <line x1="40" y1="614" x2="600" y2="614" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="320" y="603" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#2f5169">OWNERSHIP / RESOURCE</text>
+  <rect x="70" y="652" width="160" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="150" y="683" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Worker A</text>
+  <rect x="370" y="702" width="170" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="455" y="739" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Job 42</text>
+  <rect x="70" y="754" width="160" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="150" y="785" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Worker B</text>
+  <path d="M230,676 L300,676 L300,724 L368,724" fill="none" stroke="#2f5169" stroke-width="3" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-blue)"/>
+  <text x="305" y="670" text-anchor="middle" font-size="18" font-style="italic" fill="#2f5169">owns</text>
+  <line x1="230" y1="778" x2="362" y2="744" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-muted)"/>
+  <line x1="285" y1="750" x2="307" y2="772" stroke="#1c1917" stroke-width="3"/><line x1="285" y1="772" x2="307" y2="750" stroke="#1c1917" stroke-width="3"/>
+  <text x="290" y="799" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">stale claim</text>
+  <text x="66" y="856" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> Who may control what?</text>
+  <text x="66" y="885" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> exclusivity, valid</text>
+  <text x="84" y="910" font-size="20" fill="#1c1917">transfer / reclaim</text>
+  <text x="66" y="939" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> interleaving,</text>
+  <text x="84" y="964" font-size="20" fill="#1c1917">invariant checking</text>
+  <rect x="628" y="574" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="628" y="574" width="560" height="40" rx="14" fill="#e3f0e7" stroke="none"/>
+  <rect x="628" y="600" width="560" height="14" fill="#e3f0e7" stroke="none"/>
+  <line x1="628" y1="614" x2="1188" y2="614" stroke="#1f7a4d" stroke-width="1.5"/>
+  <text x="908" y="603" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#155c38">DECISION / POLICY</text>
+  <rect x="658" y="702" width="110" height="48" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="713" y="733" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">WEB</text>
+  <rect x="908" y="654" width="110" height="48" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="963" y="685" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">API</text>
+  <rect x="908" y="760" width="110" height="48" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="963" y="791" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DB</text>
+  <path d="M768,720 L838,720 L838,678 L906,678" fill="none" stroke="#155c38" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-green)"/>
+  <text x="833" y="702" text-anchor="middle" font-size="17" font-style="italic" fill="#155c38">may call</text>
+  <text x="1043" y="683" font-size="18" font-weight="700" fill="#155c38">ALLOW</text>
+  <line x1="768" y1="732 " x2="906" y2="779" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-muted)"/>
+  <line x1="822" y1="745" x2="844" y2="767" stroke="#1c1917" stroke-width="3"/><line x1="822" y1="767" x2="844" y2="745" stroke="#1c1917" stroke-width="3"/>
+  <text x="1043" y="789" font-size="18" font-weight="700" fill="#57534e">DENY</text>
+  <text x="654" y="856" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What is permitted?</text>
+  <text x="654" y="885" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> consistency, exclusion,</text>
+  <text x="672" y="910" font-size="20" fill="#1c1917">implication</text>
+  <text x="654" y="939" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> rule / constraint</text>
+  <text x="672" y="964" font-size="20" fill="#1c1917">checking</text>
+  <rect x="1216" y="574" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="1216" y="574" width="560" height="40" rx="14" fill="#f6f4ef" stroke="none"/>
+  <rect x="1216" y="600" width="560" height="14" fill="#f6f4ef" stroke="none"/>
+  <line x1="1216" y1="614" x2="1776" y2="614" stroke="#57534e" stroke-width="1.5"/>
+  <text x="1496" y="603" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#57534e">QUANTITATIVE MODEL</text>
+  <rect x="1246" y="666" width="160" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="1326" y="696" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">requests</text>
+  <rect x="1246" y="746" width="160" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="1326" y="776" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">errors</text>
+  <path d="M1496,686 L1486,686 L1486,752 L1496,752" fill="none" stroke="#1c1917" stroke-width="2.4"/>
+  <path d="M1736,686 L1746,686 L1746,752 L1736,752" fill="none" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="1616" y="726" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">error rate &lt; 1%</text>
+  <line x1="1406" y1="689" x2="1482" y2="706" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-muted)"/>
+  <line x1="1406" y1="769" x2="1482" y2="732" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-muted)"/>
+  <text x="1448" y="682" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">compare</text>
+  <text x="1242" y="856" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> How much / what bound?</text>
+  <text x="1242" y="885" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> budget, margin,</text>
+  <text x="1260" y="910" font-size="20" fill="#1c1917">capacity, rate</text>
+  <text x="1242" y="939" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> aggregation, comparison,</text>
+  <text x="1260" y="964" font-size="20" fill="#1c1917">optimization</text>
+  <rect x="40" y="1052" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="40" y="1052" width="560" height="40" rx="14" fill="#faf1e6" stroke="none"/>
+  <rect x="40" y="1078" width="560" height="14" fill="#faf1e6" stroke="none"/>
+  <line x1="40" y1="1092" x2="600" y2="1092" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="320" y="1081" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#9a3f12">ENTITY / SCHEMA MODEL</text>
+  <rect x="70" y="1172" width="120" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="130" y="1203" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">USER</text>
+  <rect x="370" y="1130" width="160" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="450" y="1161" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DOCUMENT</text>
+  <rect x="380" y="1240" width="130" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="445" y="1271" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ORG</text>
+  <path d="M190,1190 L280,1190 L280,1154 L368,1154" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-rust)"/>
+  <path d="M190,1202 L280,1202 L280,1264 L378,1264" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-rust)"/>
+  <text x="285" y="1148" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">owns</text>
+  <text x="288" y="1292" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">memberOf</text>
+  <text x="66" y="1334" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What entities &amp; relations?</text>
+  <text x="66" y="1363" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> keys, cardinality,</text>
+  <text x="84" y="1388" font-size="20" fill="#1c1917">referential structure</text>
+  <text x="66" y="1417" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> joins, schema checking</text>
+  <rect x="628" y="1052" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="628" y="1052" width="560" height="40" rx="14" fill="#f6f4ef" stroke="none"/>
+  <rect x="628" y="1078" width="560" height="14" fill="#f6f4ef" stroke="none"/>
+  <line x1="628" y1="1092" x2="1188" y2="1092" stroke="#57534e" stroke-width="1.5"/>
+  <text x="908" y="1081" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#57534e">PROVENANCE / DERIVATION</text>
+  <rect x="658" y="1148" width="130" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="723" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">SOURCE</text>
+  <rect x="838" y="1148" width="170" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="923" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">TRANSFORM</text>
+  <rect x="838" y="1238" width="170" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="923" y="1269" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ARTIFACT</text>
+  <line x1="788" y1="1172" x2="836" y2="1172" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-muted)"/>
+  <line x1="923" y1="1196" x2="923" y2="1236" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-muted)"/>
+  <text x="812" y="1140" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">derivedFrom</text>
+  <text x="1018" y="1220" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">producedBy</text>
+  <text x="654" y="1334" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What produced this?</text>
+  <text x="654" y="1363" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> attribution, lineage,</text>
+  <text x="672" y="1388" font-size="20" fill="#1c1917">evidence</text>
+  <text x="654" y="1417" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> lineage / audit</text>
+  <text x="672" y="1442" font-size="20" fill="#1c1917">traversal</text>
+  <rect x="1216" y="1052" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="1216" y="1052" width="560" height="40" rx="14" fill="#faf1e6" stroke="none"/>
+  <rect x="1216" y="1078" width="560" height="14" fill="#faf1e6" stroke="none"/>
+  <line x1="1216" y1="1092" x2="1776" y2="1092" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="1496" y="1081" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#9a3f12">CALL / CONTROL-FLOW</text>
+  <rect x="1240" y="1148" width="120" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1300" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">main()</text>
+  <rect x="1396" y="1148" width="140" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1466" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">handle()</text>
+  <rect x="1576" y="1148" width="150" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1651" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">validate()</text>
+  <rect x="1396" y="1238" width="140" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1466" y="1269" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">persist()</text>
+  <line x1="1360" y1="1172" x2="1394" y2="1172" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-rust)"/>
+  <line x1="1536" y1="1172" x2="1574" y2="1172" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-rust)"/>
+  <line x1="1466" y1="1196" x2="1466" y2="1236" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-1-3-f-modeling-repertoire-ah-rust)"/>
+  <text x="1377" y="1140" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">calls</text>
+  <text x="1242" y="1334" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What calls what?</text>
+  <text x="1242" y="1363" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> entry points,</text>
+  <text x="1260" y="1388" font-size="20" fill="#1c1917">reachable calls</text>
+  <text x="1242" y="1417" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> call-graph traversal</text>
+  <text x="908" y="1544" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">One question selects one reduction; the same arrow means dependency, transition, or permission by its family.</text>
+</svg><figcaption data-short="The engineering modeling repertoire"><span class="fig-label">Figure 2.1-3.</span> <em>The engineering modeling repertoire.</em> Nine familiar representations, colour-coded by the six questions they answer. The graphical primitives recur — boxes, labelled arrows, a value against a bound — while the semantics they carry, what a node and an edge mean, change with the question.</figcaption></figure><p class="gallery-source">From <a href="2.1-context-is-the-first-modeling-problem.html#fig-2-1-3">5 · From Context to Engineering Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-1-4-fig-2-1-4" class="book-figure" data-label="model-ontology"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 415"
+     role="img" aria-labelledby="fig-2-1-4-f-model-ontology-onTitle fig-2-1-4-f-model-ontology-onDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-1-3-f-model-ontology-onTitle">MAGE's working model ontology: six model classes and their engineering questions</title>
-  <desc id="fig-2-1-3-f-model-ontology-onDesc">Six model classes, each a box carrying the two engineering questions it answers.
+  <title id="fig-2-1-4-f-model-ontology-onTitle">MAGE's working model ontology: six model classes and their engineering questions</title>
+  <desc id="fig-2-1-4-f-model-ontology-onDesc">Six model classes, each a box carrying the two engineering questions it answers.
     Structural: what exists, how related. Behavioral: what may happen, in what order. Ownership: who
     controls, for how long. Decision: what is allowed, what choice. Measurement: how much, what envelope.
     Provenance: what happened, what evidence. The classes may overlap. Below them, a separate axis: the
@@ -2042,7 +2244,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     these models form the system's explicit engineering knowledge.</desc>
 
   <defs>
-    <marker id="fig-2-1-3-f-model-ontology-on-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+    <marker id="fig-2-1-4-f-model-ontology-on-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
             orient="auto-start-reverse" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
@@ -2086,18 +2288,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- transparent anchor over the six-box class grid + the overlap note: the class end of the many-to-many
        relation. fill/stroke none = zero visual change; the lint reads its geometry like any node. -->
-  <rect id="fig-2-1-3-f-model-ontology-classes" x="40" y="58" width="880" height="204" fill="none" stroke="none"/>
+  <rect id="fig-2-1-4-f-model-ontology-classes" x="40" y="58" width="880" height="204" fill="none" stroke="none"/>
   <!-- double-headed arrow to the orthogonal representation-form axis: the relation is MANY-TO-MANY -->
   <!-- edge: classes -> forms -->
   <line x1="480" y1="264" x2="480" y2="288" stroke="#2f5169" stroke-width="2.2"
-        marker-start="url(#fig-2-1-3-f-model-ontology-on-b)" marker-end="url(#fig-2-1-3-f-model-ontology-on-b)"/>
+        marker-start="url(#fig-2-1-4-f-model-ontology-on-b)" marker-end="url(#fig-2-1-4-f-model-ontology-on-b)"/>
 
-  <rect id="fig-2-1-3-f-model-ontology-forms" x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="fig-2-1-4-f-model-ontology-forms" x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="314" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1.2" fill="#57534e">EXAMPLE REPRESENTATION FORMS</text>
   <text x="480" y="342" text-anchor="middle" font-size="19.2" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 
   <text x="480" y="394" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">Connected through shared identity and traceability, these models form the system&#8217;s explicit engineering knowledge.</text>
-</svg><figcaption data-short="MAGE&#x27;s working model ontology"><span class="fig-label">Figure 2.1-3.</span> <em>MAGE's working model ontology.</em> The six classes distinguish models by the engineering question they answer. Classes may overlap, and each may be encoded using several representation forms.</figcaption></figure><p class="gallery-source">From <a href="2.1-context-is-the-first-modeling-problem.html#fig-2-1-3">5 · From Context to Engineering Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-2-1-fig-2-2-1" class="book-figure" data-label="canonical-structural"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" role="img" aria-labelledby="fig-2-2-1-f-canonical-structural-canonical-structuralT fig-2-2-1-f-canonical-structural-canonical-structuralD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+</svg><figcaption data-short="MAGE&#x27;s working model ontology"><span class="fig-label">Figure 2.1-4.</span> <em>MAGE's working model ontology.</em> The six classes distinguish models by the engineering question they answer. Classes may overlap, and each may be encoded using several representation forms.</figcaption></figure><p class="gallery-source">From <a href="2.1-context-is-the-first-modeling-problem.html#fig-2-1-4">5 · From Context to Engineering Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-2-1-fig-2-2-1" class="book-figure" data-label="canonical-structural"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" role="img" aria-labelledby="fig-2-2-1-f-canonical-structural-canonical-structuralT fig-2-2-1-f-canonical-structural-canonical-structuralD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-2-1-f-canonical-structural-canonical-structuralT">Canonical structural model: a small service architecture</title>
   <desc id="fig-2-2-1-f-canonical-structural-canonical-structuralD">A structural opener in the shared grammar. WEB depends on API; API reaches DATABASE and CACHE. A struck-through dashed arrow marks a forbidden bypass from WEB straight to DATABASE around API. Caption: Question, Semantics, Typical analysis. Rust ground marks the structural family.</desc>
   <defs>
@@ -3425,83 +3627,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- footer: protect the point -->
   <!-- summary line removed 260820 (figure-min-font wave): duplicated the md caption and overflowed the viewBox when bumped to floor size — the caption carries it. -->
 
-</svg><figcaption data-short="Checked predicates over a structured model"><span class="fig-label">Figure 2.8-5.</span> <em>Checked predicates over a structured model.</em> A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-5">12 · System Knowledge: Connecting the Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-6-fig-2-8-6" class="book-figure" data-label="modeling-creates-surfaces"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 680"
-     role="img" aria-labelledby="fig-2-8-6-f-modeling-creates-surfaces-mcTitle fig-2-8-6-f-modeling-creates-surfaces-mcDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-8-6-f-modeling-creates-surfaces-mcTitle">Modeling makes properties available to Alignment — but is not the only path</title>
-  <desc id="fig-2-8-6-f-modeling-creates-surfaces-mcDesc">Two paths join at one Alignment. The direct path: a territory or action is acted on
-    directly, a local observable obligation. The model-mediated path: territory is reduced by abstraction to
-    a model, which makes an explicit property available, a richer semantic obligation. Both land side by
-    side on one Alignment — constraint, sensor, validator, gate — which leads to consequence. Governance can
-    act directly; models add reach but are not required.</desc>
-
-  <defs>
-    <marker id="fig-2-8-6-f-modeling-creates-surfaces-mc-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/>
-    </marker>
-    <marker id="fig-2-8-6-f-modeling-creates-surfaces-mc-kk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
-    <marker id="fig-2-8-6-f-modeling-creates-surfaces-mc-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="fig-2-8-6-f-modeling-creates-surfaces-mc-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
-    </marker>
-  </defs>
-
-  <text x="360" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Two paths to Alignment</text>
-
-  <!-- ===== LEFT: DIRECT PATH ===== -->
-  <text x="185" y="72" text-anchor="middle" font-size="14.4" font-weight="700" letter-spacing="1" fill="#57534e">DIRECT PATH</text>
-  <rect id="fig-2-8-6-f-modeling-creates-surfaces-territory-action" x="55" y="250" width="260" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="185" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">TERRITORY / ACTION</text>
-  <text x="185" y="304" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
-  <!-- direct arrow onto Alignment (left landing); last control point above the endpoint so the head arrives perpendicular into ALIGNMENT's top -->
-  <!-- edge: territory-action -> alignment -->
-  <path d="M270,316 L270,408" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#fig-2-8-6-f-modeling-creates-surfaces-mc-kk)"/>
-  <text x="196" y="360" text-anchor="start" font-size="14.4" font-weight="700" fill="#57534e">acted on directly</text>
-  <text x="196" y="377" text-anchor="start" font-size="14.4" font-style="italic" fill="#57534e">local observable obligation</text>
-
-  <!-- ===== RIGHT: MODEL-MEDIATED PATH ===== -->
-  <text x="535" y="72" text-anchor="middle" font-size="14.4" font-weight="700" letter-spacing="1" fill="#2f5169">MODEL-MEDIATED PATH</text>
-  <!-- TERRITORY -->
-  <rect id="fig-2-8-6-f-modeling-creates-surfaces-territory" x="405" y="86" width="260" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="535" y="116" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">TERRITORY</text>
-  <!-- edge: territory -> model -->
-  <line x1="535" y1="134" x2="535" y2="168" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-8-6-f-modeling-creates-surfaces-mc-k)"/>
-  <text x="547" y="156" font-size="14.4" font-style="italic" fill="#57534e">abstraction</text>
-  <!-- MODEL -->
-  <rect id="fig-2-8-6-f-modeling-creates-surfaces-model" x="405" y="170" width="260" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="535" y="200" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">MODEL</text>
-  <!-- edge: model -> explicit-property -->
-  <line x1="535" y1="218" x2="535" y2="252" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-8-6-f-modeling-creates-surfaces-mc-k)"/>
-  <text x="547" y="240" font-size="14.4" font-style="italic" fill="#57534e">makes explicit</text>
-  <!-- EXPLICIT PROPERTY -->
-  <rect id="fig-2-8-6-f-modeling-creates-surfaces-explicit-property" x="405" y="254" width="260" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="535" y="287" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">EXPLICIT PROPERTY</text>
-  <!-- model arrow onto Alignment (right landing); last control point above the endpoint so the head arrives perpendicular into ALIGNMENT's top -->
-  <!-- edge: explicit-property -> alignment -->
-  <path d="M450,308 L450,408" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#fig-2-8-6-f-modeling-creates-surfaces-mc-b)"/>
-  <text x="524" y="360" text-anchor="end" font-size="14.4" font-weight="700" fill="#2f5169">available to</text>
-  <text x="524" y="377" text-anchor="end" font-size="14.4" font-style="italic" fill="#2f5169">richer semantic obligation</text>
-
-  <!-- ===== THE JOIN: ALIGNMENT ===== -->
-  <rect id="fig-2-8-6-f-modeling-creates-surfaces-alignment" x="225" y="410" width="270" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
-  <text x="360" y="440" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
-  <text x="360" y="462" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">constraint &#183; sensor &#183; validator &#183; gate</text>
-  <!-- edge: alignment -> consequence -->
-  <line x1="360" y1="476" x2="360" y2="524" stroke="#155c38" stroke-width="2.4" marker-end="url(#fig-2-8-6-f-modeling-creates-surfaces-mc-g)"/>
-  <text x="372" y="504" font-size="14.4" font-style="italic" fill="#155c38">gives consequence</text>
-
-  <!-- ===== CONSEQUENCE ===== -->
-  <rect id="fig-2-8-6-f-modeling-creates-surfaces-consequence" x="255" y="526" width="210" height="54" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
-  <text x="360" y="559" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">CONSEQUENCE</text>
-
-  <!-- footer: protect the point -->
-  <text x="360" y="626" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Alignment mechanisms can act directly on observable actions; explicit models make</text>
-  <text x="360" y="648" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">richer system properties available too &#8212; model-mediated is not the only path.</text>
-</svg><figcaption data-short="Modeling expands the semantic reach of Alignment"><span class="fig-label">Figure 2.8-6.</span> <em>Modeling expands the semantic reach of Alignment.</em> Alignment mechanisms can act directly on observable actions and artifacts; explicit models make additional system-level properties available for constraint, sensing, evaluation, and admission.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-6">12 · System Knowledge: Connecting the Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-0-1-fig-3-0-1" class="book-figure" data-label="part3-nav-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
+</svg><figcaption data-short="Checked predicates over a structured model"><span class="fig-label">Figure 2.8-5.</span> <em>Checked predicates over a structured model.</em> A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-5">12 · System Knowledge: Connecting the Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-0-1-fig-3-0-1" class="book-figure" data-label="part3-nav-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
      role="group" aria-labelledby="fig-3-0-1-f-part3-nav-arc-naTitle fig-3-0-1-f-part3-nav-arc-naDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-3-0-1-f-part3-nav-arc-naTitle">Part III as five questions, one per chapter, on a single descending arc</title>

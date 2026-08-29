@@ -783,7 +783,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The first <strong>modeling move</strong> is simple: externalize engineering knowledge that should not have to be rediscovered. Name the services, modules, APIs, queues, owners, requirements, policies, tests, and their relationships. The agent then retrieves the connected slice its task touches instead of rebuilding that slice from raw files every time.</p>
 <p id="idx-def-modeling-principle"><strong>The Modeling Principle:</strong> externalize engineering knowledge and intent into explicit, structured models that both engineers and agents can reason through. <em>In other words:</em> once a system outgrows what anyone can hold in mind, stop reconstructing its meaning from raw files. Give each recurring question a purposeful representation instead.</p>
 <p>This Part begins with the lightest form—externalized context—and progressively adds semantics, explicit properties, and stronger correspondence to the system. This chapter defines what counts as a model and the questions used to choose one.</p>
-<h2><span class="sec-num">2.1.1</span> A Model Is a Purposeful Reduction</h2>
+<h2><span class="sec-num">2.1.1</span> Modeling Is a Classical Engineering Move</h2>
+<p>Engineering models work by refusing to represent everything. A floor plan omits the grain of the wood; a circuit diagram omits the physical route of most wires; a state machine omits the statements that implement each transition; a dependency graph may omit behavior entirely and keep only components and their relations. Those omissions are not deficiencies. They are what make the representation useful for the question it was built to answer.</p>
+<p>Software engineering has accumulated a broad repertoire of such reductions. Architecture and component models expose decomposition and dependency; data-flow models expose the movement of information; entity-relationship and schema models expose data structure; state machines and transition systems expose legal behavior; decision tables and constraint models expose permitted combinations; performance and resource models expose quantitative bounds; provenance graphs expose derivation and attribution. MAGE draws on that repertoire rather than replacing it.</p>
+<p>The changed ingredient is the economics around it. Maintaining an explicit representation historically competed with maintaining the implementation itself; when code was expensive, the implementation became the durable artifact and other views decayed into diagrams nobody trusted. Commodity intelligence changes both sides. Implementation becomes cheaper to generate and modify, while deriving, reconciling, regenerating, and querying a structured representation can also be delegated. The result is not that every system should acquire more documentation. It is that a representation is again worth carrying when it changes the cost or reliability of repeated reasoning.</p>
+<p>A useful model need not be elaborate. Sometimes it is three states and two legal transitions; sometimes a list of permitted service edges; sometimes a schema joined on stable identifiers. The question is never <em>how much can we model?</em> It is <em>what representation makes this recurring engineering question easier to answer?</em></p>
+<h2><span class="sec-num">2.1.2</span> A Model Is a Purposeful Reduction</h2>
 <p id="idx-def-model">A <strong>model</strong> is a purposeful reduction of a system. It preserves the information one engineering question needs and suppresses the detail that question does not. Its value is not completeness but selective omission. A reduction an engineer or agent can reason through is more useful than a faithful copy too large to hold in view.</p>
 <p>Purposeful reduction is therefore not only compression. It can change the difficulty and character of reasoning. A property that requires semantic reconstruction over thousands of implementation details may become a relation over a small graph, a transition over a finite state space, or a bound over a measured quantity. The representation does not make the answer true. It can make the question tractable.</p>
 <p>This is the connection Modeling shares with representation learning: what a reasoner can infer efficiently depends partly on the form in which the problem is presented. MAGE begins from representations engineering has already developed for consequential system questions rather than asking a learned reasoner to rediscover those abstractions on every task.</p>
@@ -870,12 +875,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <blockquote class="aside-sidenote def-inset"><p><strong>Hold the system constant. Change the engineering question. Watch the model change.</strong></p></blockquote>
 <p>There is no single "model of the system," only reductions built to expose particular properties. A model earns its place by the question it settles, not by how much of the system it draws. <strong>What should I model, and what will the model let me know?</strong> — that is the question this Part asks of every system, and asks again at every turn.</p>
 <p>The reduction comes first, even when the representation is executable. Some models in this Part participate directly in execution or analysis: machines query them, derive artifacts from them, generate from them, or check properties over them. Executability changes what you can <em>do</em> with a model. It does not eliminate the underlying abstraction. That is why the examples ahead are drawn as reductions before their implementations are discussed: the abstraction should remain visible apart from its encoding.</p>
-<h2><span class="sec-num">2.1.2</span> Structure Makes Representations Machine-Operable</h2>
+<h2><span class="sec-num">2.1.3</span> Structure Makes Representations Machine-Operable</h2>
 <p id="idx-def-structured">Externalizing knowledge saves reconstruction only if a machine can read it back. Machines can read externalized knowledge more reliably when its important entities and relations are <strong>structured</strong> — given a declared shape — rather than recoverable only from prose. Schemas, registries, graphs, and typed records expose entities and relations that tools can traverse, validate, and join reliably.</p>
 <p id="idx-def-system-knowledge-graph">A common useful form is a graph of engineering entities and relations. Its nodes are engineering entities: services, modules, endpoints, queues, databases, requirements, tests, owners. Its edges name the relations: calls, depends on, deployed to, owned by, verified by. The graph need not live in a graph database. YAML, registries, and schemas joined on stable identifiers can represent the same structure. The word <em>graph</em> names the structure, not the storage. Relevance then follows relationships: start at the entity a task names, and its neighbors come with it, so the agent reasons over a connected slice instead of a document dump.</p>
 <p>Many of these representations can be interpreted as graphs of entities and relations. Their shape is not what distinguishes them; their semantics are. A knowledge graph exposes what exists and how facts relate. A representation becomes an <strong>engineering model</strong> when it is structured to answer an engineering question and carries the semantics or intent needed to reason about that question. <strong>Authority is a separate dimension</strong>: a sandbox can govern an action from a locally encoded conception of what is permitted, while a validator can use an explicit model to check an obligation neither the sandbox nor the raw artifact expresses.</p>
 <p>Externalizing knowledge this way is the lightest form of Modeling, and much of current practice already stands on it. Spotify's public account describes a retrievable service catalog. Cloudflare's describes standards externalized under stable identifiers. Shopify's describes a different form, in which agent sessions are mined into reusable skills. DocAble assembles its graph from registries, schemas, and YAML joined on stable identifiers. Each makes selected engineering knowledge durable outside a single reasoning episode, allowing later agents to retrieve rather than reconstruct it.</p>
-<h2><span class="sec-num">2.1.3</span> Representations Support Accumulating Capabilities</h2>
+<h2><span class="sec-num">2.1.4</span> Representations Support Accumulating Capabilities</h2>
 <p id="idx-def-capability-ladder">Structured representations can support progressively different capabilities: externalized knowledge, typed relationships, explicit semantics, stated properties, derivation, generation, traceability, and checking. A representation may acquire additional capabilities as engineers ask more of it, but they are not a required sequence or a maturity model.</p>
 <p>Authority is a separate dimension. A system may have strong permissions, sandboxes, compilers, or tests while representing little system-level intent explicitly. Conversely, a rich model may remain advisory. Add structure to the representation when the environment cannot answer a recurring engineering question cheaply and reliably with what it already exposes.</p>
 <p>The practical rule is selective modeling. Model facts that are repeatedly reconstructed, and properties that are repeatedly adjudicated. A service catalogue may end repeated ownership discovery; an invariant may retire a recurring class of judgment. The cost is justified by the engineering question, not by a desire to climb a hierarchy.</p>
@@ -965,14 +970,218 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="579" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">decide what deserves authority</text>
   <text x="500" y="632" text-anchor="middle" font-size="16" font-style="italic" fill="#155c38">→ Alignment (Part 3)</text>
 </svg><figcaption data-short="From engineering question to authority"><span class="fig-label">Figure 2.1-2.</span> <em>From engineering question to authority.</em> Hold the system fixed and change the question, and the representation changes with it—a closed state or action space, a finite transition system, or temporal behavior. The representation determines which analyses become tractable, not a single prescribed technique; the analysis yields evidence to interpret. Only then does engineering decide what deserves authority, the question Part III takes up.</figcaption></figure>
-<h2><span class="sec-num">2.1.4</span> Six Classes of Engineering Question</h2>
+<h2><span class="sec-num">2.1.5</span> Six Classes of Engineering Question</h2>
 <blockquote class="aside-sidenote"><p>MAGE uses six model classes as a working classification. The classes are organized by the engineering question a model helps answer, not by notation or implementation form. They are useful rather than exhaustive, and they can overlap: one represented object may participate in several classes. The classification is a working engineering repertoire, not a claim that these six classes form a minimal basis for engineering reasoning; Part VI reopens that question.</p></blockquote>
 <p>The six classes ahead differ less in shape than in semantics. At an abstract level, each can be understood as a graph: a set of things and relationships among them. A structural model might use nodes for components and edges for dependencies. A behavioral model can use nodes for states and edges for transitions. An ownership model relates work, owners, and claims; a decision model relates alternatives through permitted choices; measurement and provenance models likewise connect quantities or events through meaningful relations. The important difference is not that one is a graph and another is not. It is what the nodes and edges mean, and therefore what questions the representation can answer.</p>
 <p>This is why MAGE classifies models by engineering question rather than notation. The same graph-shaped representation can answer very different questions depending on its semantics, and one system fact can participate in several views.</p>
-<p>The six classes (<a class="xref" href="2.1-context-is-the-first-modeling-problem.html#fig-2-1-3">Figure&nbsp;2.1-3</a>) name the questions the rest of the Part is built around:</p>
+<p><a class="xref" href="2.1-context-is-the-first-modeling-problem.html#fig-2-1-3">Figure&nbsp;2.1-3</a> sets out a portion of that repertoire: nine familiar representations, read as a set of moves rather than a taxonomy of all modeling. MAGE prescribes no new notation, and the repertoire is larger than the six classes the rest of this Part organizes.</p>
+<figure id="fig-2-1-3" class="book-figure" data-label="modeling-repertoire"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1816 1568" role="img" aria-labelledby="f-modeling-repertoire-modeling-repertoireT f-modeling-repertoire-modeling-repertoireD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="f-modeling-repertoire-modeling-repertoireT">The engineering modeling repertoire: nine familiar model forms</title>
+  <desc id="f-modeling-repertoire-modeling-repertoireD">A three-by-three spread of nine familiar modeling forms — component/dependency, finite-state, data-flow, ownership/resource, decision/policy, quantitative, entity/schema, provenance/derivation, and call/control-flow. Each panel shows a small diagram plus a Question, Property, and Analysis line. The same graphical primitives — rounded entities, labeled directed arrows, a struck-through dashed arrow for a forbidden relation, and a bracketed envelope for a bound — recur across panels while the semantics change, and each family carries its own ground colour.</desc>
+  <defs>
+    <marker id="f-modeling-repertoire-ah-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
+    <marker id="f-modeling-repertoire-ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="f-modeling-repertoire-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="f-modeling-repertoire-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
+    <marker id="f-modeling-repertoire-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1816" height="1568" fill="#fdfcf9"/>
+  <text x="908" y="52" text-anchor="middle" font-size="30" font-weight="700" fill="#1c1917">The engineering modeling repertoire</text><text x="908" y="82" text-anchor="middle" font-size="21" font-style="italic" fill="#57534e">Familiar forms, different questions — the graphical primitives recur while the semantics change.</text>
+  <rect x="40" y="96" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="40" y="96" width="560" height="40" rx="14" fill="#faf1e6" stroke="none"/>
+  <rect x="40" y="122" width="560" height="14" fill="#faf1e6" stroke="none"/>
+  <line x1="40" y1="136" x2="600" y2="136" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="320" y="125" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#9a3f12">COMPONENT / DEPENDENCY</text>
+  <rect x="265" y="158" width="110" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="320" y="189" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">UI</text>
+  <rect x="265" y="224" width="110" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="320" y="255" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">API</text>
+  <rect x="110" y="294" width="120" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="170" y="325" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DB</text>
+  <rect x="410" y="294" width="120" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="470" y="325" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CACHE</text>
+  <line x1="320" y1="206" x2="320" y2="222" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-rust)"/>
+  <path d="M290,272 L290,284 L170,284 L170,292" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-rust)"/>
+  <path d="M350,272 L350,284 L470,284 L470,292" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-rust)"/>
+  <text x="340" y="218" text-anchor="start" font-size="18" font-style="italic" fill="#57534e">depends on</text>
+  <text x="66" y="378" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What depends on what?</text>
+  <text x="66" y="407" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> reachability, layering,</text>
+  <text x="84" y="432" font-size="20" fill="#1c1917">forbidden edges</text>
+  <text x="66" y="461" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> graph traversal,</text>
+  <text x="84" y="486" font-size="20" fill="#1c1917">cycle &amp; path checking</text>
+  <rect x="628" y="96" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="628" y="96" width="560" height="40" rx="14" fill="#e7edf3" stroke="none"/>
+  <rect x="628" y="122" width="560" height="14" fill="#e7edf3" stroke="none"/>
+  <line x1="628" y1="136" x2="1188" y2="136" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="908" y="125" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#2f5169">FINITE-STATE MODEL</text>
+  <rect x="658" y="192" width="100" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="708" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">IDLE</text>
+  <rect x="808" y="192" width="140" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="878" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">RUNNING</text>
+  <rect x="998" y="192" width="110" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="1053" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DONE</text>
+  <rect x="808" y="282" width="140" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="878" y="313" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">FAILED</text>
+  <line x1="758" y1="216" x2="806" y2="216" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-blue)"/>
+  <line x1="948" y1="216" x2="996" y2="216" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-blue)"/>
+  <line x1="878" y1="240" x2="878" y2="280" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-blue)"/>
+  <text x="782" y="184" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">may become</text>
+  <text x="654" y="378" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What may happen next?</text>
+  <text x="654" y="407" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> legal states, safety,</text>
+  <text x="672" y="432" font-size="20" fill="#1c1917">liveness</text>
+  <text x="654" y="461" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> state exploration,</text>
+  <text x="672" y="486" font-size="20" fill="#1c1917">model checking</text>
+  <rect x="1216" y="96" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="1216" y="96" width="560" height="40" rx="14" fill="#faf1e6" stroke="none"/>
+  <rect x="1216" y="122" width="560" height="14" fill="#faf1e6" stroke="none"/>
+  <line x1="1216" y1="136" x2="1776" y2="136" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="1496" y="125" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#9a3f12">DATA-FLOW MODEL</text>
+  <rect x="1246" y="192" width="100" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1296" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">INPUT</text>
+  <rect x="1381" y="192" width="130" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1446" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">PARSE</text>
+  <rect x="1546" y="192" width="130" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1611" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">MODEL</text>
+  <rect x="1546" y="282" width="130" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1611" y="313" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">OUTPUT</text>
+  <line x1="1346" y1="216" x2="1379" y2="216" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-rust)"/>
+  <line x1="1511" y1="216" x2="1544" y2="216" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-rust)"/>
+  <line x1="1611" y1="240" x2="1611" y2="280" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-rust)"/>
+  <text x="1363" y="184" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">flows to</text>
+  <text x="1242" y="378" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> Where does data flow?</text>
+  <text x="1242" y="407" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> source, sink, path,</text>
+  <text x="1260" y="432" font-size="20" fill="#1c1917">transformation</text>
+  <text x="1242" y="461" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> flow / taint /</text>
+  <text x="1260" y="486" font-size="20" fill="#1c1917">dependency analysis</text>
+  <rect x="40" y="574" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="40" y="574" width="560" height="40" rx="14" fill="#e7edf3" stroke="none"/>
+  <rect x="40" y="600" width="560" height="14" fill="#e7edf3" stroke="none"/>
+  <line x1="40" y1="614" x2="600" y2="614" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="320" y="603" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#2f5169">OWNERSHIP / RESOURCE</text>
+  <rect x="70" y="652" width="160" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="150" y="683" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Worker A</text>
+  <rect x="370" y="702" width="170" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="455" y="739" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Job 42</text>
+  <rect x="70" y="754" width="160" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="150" y="785" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Worker B</text>
+  <path d="M230,676 L300,676 L300,724 L368,724" fill="none" stroke="#2f5169" stroke-width="3" marker-end="url(#f-modeling-repertoire-ah-blue)"/>
+  <text x="305" y="670" text-anchor="middle" font-size="18" font-style="italic" fill="#2f5169">owns</text>
+  <line x1="230" y1="778" x2="362" y2="744" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#f-modeling-repertoire-ah-muted)"/>
+  <line x1="285" y1="750" x2="307" y2="772" stroke="#1c1917" stroke-width="3"/><line x1="285" y1="772" x2="307" y2="750" stroke="#1c1917" stroke-width="3"/>
+  <text x="290" y="799" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">stale claim</text>
+  <text x="66" y="856" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> Who may control what?</text>
+  <text x="66" y="885" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> exclusivity, valid</text>
+  <text x="84" y="910" font-size="20" fill="#1c1917">transfer / reclaim</text>
+  <text x="66" y="939" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> interleaving,</text>
+  <text x="84" y="964" font-size="20" fill="#1c1917">invariant checking</text>
+  <rect x="628" y="574" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="628" y="574" width="560" height="40" rx="14" fill="#e3f0e7" stroke="none"/>
+  <rect x="628" y="600" width="560" height="14" fill="#e3f0e7" stroke="none"/>
+  <line x1="628" y1="614" x2="1188" y2="614" stroke="#1f7a4d" stroke-width="1.5"/>
+  <text x="908" y="603" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#155c38">DECISION / POLICY</text>
+  <rect x="658" y="702" width="110" height="48" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="713" y="733" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">WEB</text>
+  <rect x="908" y="654" width="110" height="48" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="963" y="685" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">API</text>
+  <rect x="908" y="760" width="110" height="48" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="963" y="791" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DB</text>
+  <path d="M768,720 L838,720 L838,678 L906,678" fill="none" stroke="#155c38" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-green)"/>
+  <text x="833" y="702" text-anchor="middle" font-size="17" font-style="italic" fill="#155c38">may call</text>
+  <text x="1043" y="683" font-size="18" font-weight="700" fill="#155c38">ALLOW</text>
+  <line x1="768" y1="732 " x2="906" y2="779" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#f-modeling-repertoire-ah-muted)"/>
+  <line x1="822" y1="745" x2="844" y2="767" stroke="#1c1917" stroke-width="3"/><line x1="822" y1="767" x2="844" y2="745" stroke="#1c1917" stroke-width="3"/>
+  <text x="1043" y="789" font-size="18" font-weight="700" fill="#57534e">DENY</text>
+  <text x="654" y="856" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What is permitted?</text>
+  <text x="654" y="885" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> consistency, exclusion,</text>
+  <text x="672" y="910" font-size="20" fill="#1c1917">implication</text>
+  <text x="654" y="939" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> rule / constraint</text>
+  <text x="672" y="964" font-size="20" fill="#1c1917">checking</text>
+  <rect x="1216" y="574" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="1216" y="574" width="560" height="40" rx="14" fill="#f6f4ef" stroke="none"/>
+  <rect x="1216" y="600" width="560" height="14" fill="#f6f4ef" stroke="none"/>
+  <line x1="1216" y1="614" x2="1776" y2="614" stroke="#57534e" stroke-width="1.5"/>
+  <text x="1496" y="603" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#57534e">QUANTITATIVE MODEL</text>
+  <rect x="1246" y="666" width="160" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="1326" y="696" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">requests</text>
+  <rect x="1246" y="746" width="160" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="1326" y="776" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">errors</text>
+  <path d="M1496,686 L1486,686 L1486,752 L1496,752" fill="none" stroke="#1c1917" stroke-width="2.4"/>
+  <path d="M1736,686 L1746,686 L1746,752 L1736,752" fill="none" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="1616" y="726" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">error rate &lt; 1%</text>
+  <line x1="1406" y1="689" x2="1482" y2="706" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-muted)"/>
+  <line x1="1406" y1="769" x2="1482" y2="732" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-muted)"/>
+  <text x="1448" y="682" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">compare</text>
+  <text x="1242" y="856" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> How much / what bound?</text>
+  <text x="1242" y="885" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> budget, margin,</text>
+  <text x="1260" y="910" font-size="20" fill="#1c1917">capacity, rate</text>
+  <text x="1242" y="939" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> aggregation, comparison,</text>
+  <text x="1260" y="964" font-size="20" fill="#1c1917">optimization</text>
+  <rect x="40" y="1052" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="40" y="1052" width="560" height="40" rx="14" fill="#faf1e6" stroke="none"/>
+  <rect x="40" y="1078" width="560" height="14" fill="#faf1e6" stroke="none"/>
+  <line x1="40" y1="1092" x2="600" y2="1092" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="320" y="1081" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#9a3f12">ENTITY / SCHEMA MODEL</text>
+  <rect x="70" y="1172" width="120" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="130" y="1203" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">USER</text>
+  <rect x="370" y="1130" width="160" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="450" y="1161" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DOCUMENT</text>
+  <rect x="380" y="1240" width="130" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="445" y="1271" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ORG</text>
+  <path d="M190,1190 L280,1190 L280,1154 L368,1154" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-rust)"/>
+  <path d="M190,1202 L280,1202 L280,1264 L378,1264" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-rust)"/>
+  <text x="285" y="1148" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">owns</text>
+  <text x="288" y="1292" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">memberOf</text>
+  <text x="66" y="1334" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What entities &amp; relations?</text>
+  <text x="66" y="1363" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> keys, cardinality,</text>
+  <text x="84" y="1388" font-size="20" fill="#1c1917">referential structure</text>
+  <text x="66" y="1417" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> joins, schema checking</text>
+  <rect x="628" y="1052" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="628" y="1052" width="560" height="40" rx="14" fill="#f6f4ef" stroke="none"/>
+  <rect x="628" y="1078" width="560" height="14" fill="#f6f4ef" stroke="none"/>
+  <line x1="628" y1="1092" x2="1188" y2="1092" stroke="#57534e" stroke-width="1.5"/>
+  <text x="908" y="1081" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#57534e">PROVENANCE / DERIVATION</text>
+  <rect x="658" y="1148" width="130" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="723" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">SOURCE</text>
+  <rect x="838" y="1148" width="170" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="923" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">TRANSFORM</text>
+  <rect x="838" y="1238" width="170" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="923" y="1269" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ARTIFACT</text>
+  <line x1="788" y1="1172" x2="836" y2="1172" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-muted)"/>
+  <line x1="923" y1="1196" x2="923" y2="1236" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-muted)"/>
+  <text x="812" y="1140" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">derivedFrom</text>
+  <text x="1018" y="1220" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">producedBy</text>
+  <text x="654" y="1334" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What produced this?</text>
+  <text x="654" y="1363" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> attribution, lineage,</text>
+  <text x="672" y="1388" font-size="20" fill="#1c1917">evidence</text>
+  <text x="654" y="1417" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> lineage / audit</text>
+  <text x="672" y="1442" font-size="20" fill="#1c1917">traversal</text>
+  <rect x="1216" y="1052" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="1216" y="1052" width="560" height="40" rx="14" fill="#faf1e6" stroke="none"/>
+  <rect x="1216" y="1078" width="560" height="14" fill="#faf1e6" stroke="none"/>
+  <line x1="1216" y1="1092" x2="1776" y2="1092" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="1496" y="1081" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#9a3f12">CALL / CONTROL-FLOW</text>
+  <rect x="1240" y="1148" width="120" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1300" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">main()</text>
+  <rect x="1396" y="1148" width="140" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1466" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">handle()</text>
+  <rect x="1576" y="1148" width="150" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1651" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">validate()</text>
+  <rect x="1396" y="1238" width="140" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="1466" y="1269" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">persist()</text>
+  <line x1="1360" y1="1172" x2="1394" y2="1172" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-rust)"/>
+  <line x1="1536" y1="1172" x2="1574" y2="1172" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-rust)"/>
+  <line x1="1466" y1="1196" x2="1466" y2="1236" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#f-modeling-repertoire-ah-rust)"/>
+  <text x="1377" y="1140" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">calls</text>
+  <text x="1242" y="1334" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What calls what?</text>
+  <text x="1242" y="1363" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> entry points,</text>
+  <text x="1260" y="1388" font-size="20" fill="#1c1917">reachable calls</text>
+  <text x="1242" y="1417" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> call-graph traversal</text>
+  <text x="908" y="1544" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">One question selects one reduction; the same arrow means dependency, transition, or permission by its family.</text>
+</svg><figcaption data-short="The engineering modeling repertoire"><span class="fig-label">Figure 2.1-3.</span> <em>The engineering modeling repertoire.</em> Nine familiar representations, colour-coded by the six questions they answer. The graphical primitives recur — boxes, labelled arrows, a value against a bound — while the semantics they carry, what a node and an edge mean, change with the question.</figcaption></figure>
+<p>The six classes (<a class="xref" href="2.1-context-is-the-first-modeling-problem.html#fig-2-1-4">Figure&nbsp;2.1-4</a>) name the questions the rest of the Part is built around:</p>
 <ul><li><strong>Structural</strong> — what exists, and how the parts relate?</li><li><strong>Behavioral</strong> — what may happen, and in what order?</li><li><strong>Ownership</strong> — who controls what, and for how long?</li><li><strong>Decision</strong> — what is allowed, or which alternative should be selected?</li><li><strong>Measurement</strong> — how much, and against what envelope?</li><li><strong>Provenance</strong> — what happened, and what evidence records it?</li></ul>
 <p>These are views, not boxes. The in-flight lease we reach in the ownership chapter supports Ownership, Behavioral, and Measurement models at once. The classification tells us which question we are asking, not where the representation belongs. A class suggests the questions to ask and the relationships worth preserving; it does not prescribe one notation, and a useful model may cross class boundaries.</p>
-<figure id="fig-2-1-3" class="book-figure" data-label="model-ontology"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 415"
+<figure id="fig-2-1-4" class="book-figure" data-label="model-ontology"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 415"
      role="img" aria-labelledby="f-model-ontology-onTitle f-model-ontology-onDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-model-ontology-onTitle">MAGE's working model ontology: six model classes and their engineering questions</title>
@@ -1040,11 +1249,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="480" y="342" text-anchor="middle" font-size="19.2" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 
   <text x="480" y="394" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">Connected through shared identity and traceability, these models form the system&#8217;s explicit engineering knowledge.</text>
-</svg><figcaption data-short="MAGE&#x27;s working model ontology"><span class="fig-label">Figure 2.1-3.</span> <em>MAGE's working model ontology.</em> The six classes distinguish models by the engineering question they answer. Classes may overlap, and each may be encoded using several representation forms.</figcaption></figure>
+</svg><figcaption data-short="MAGE&#x27;s working model ontology"><span class="fig-label">Figure 2.1-4.</span> <em>MAGE's working model ontology.</em> The six classes distinguish models by the engineering question they answer. Classes may overlap, and each may be encoded using several representation forms.</figcaption></figure>
 <p>System knowledge is not a seventh class. It is the connected substrate in which the six meet — where a service named in a structural model is the same service a decision model references, and a work item in an ownership model resolves to the measurements associated with it. The final chapter of the Part treats that substrate directly.</p>
 <p>The classes expose different kinds of acceptable variation. A behavioral model can distinguish legal from illegal executions; a decision model can delimit a set of permitted alternatives; a measurement model can place a quantity against an envelope. Structural, ownership, and provenance models can likewise expose obligations that constrain some realizations while leaving others open. Tolerance names the permitted variation under an obligation; it is not a seventh class of model.</p>
 <p>The model class names the engineering question; the <strong>representation form</strong> is a separate choice. Structural, behavioral, or ownership questions might all be represented as graphs, tables, schemas, or other structured forms. Purpose comes first; representation follows. The question determines which entities, relations, and properties the model must preserve — so represent shared facts once where practical, then project or join the view the question requires.</p>
-<h2><span class="sec-num">2.1.5</span> The Six Model Classes</h2>
+<h2><span class="sec-num">2.1.6</span> The Six Model Classes</h2>
 <p>Each of the next six chapters takes one class through one production model from DocAble:</p>
 <ul><li><strong>Structural</strong> — the document-processing architecture and its sanctioned mutation seam.</li><li><strong>Behavioral</strong> — a recovery ordering whose most important fact is an edge that does not exist.</li><li><strong>Ownership</strong> — an in-flight lease with an owner, an epoch, and a lifetime.</li><li><strong>Decision</strong> — a service-flow model that declares which services may communicate.</li><li><strong>Measurement</strong> — a generation-cost model relating usage, capacity, and budget.</li><li><strong>Provenance</strong> — an attribution model that records actions and derives the explanations.</li></ul>
 <p>The final chapter steps back to the connected substrate — how a family of structured models joins on shared identity rather than collapsing into one universal graph.</p>
