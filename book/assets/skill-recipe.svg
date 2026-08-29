@@ -9,7 +9,7 @@
      role="group" aria-labelledby="srTitle srDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="srTitle">What a reusable skill needs, and the three skills that instantiate it</title>
-  <desc id="srDesc">A domain model of the work sits at the left. Several recurring concerns layer on top
+  <desc id="srDesc">The representations needed for the work sit at the left. Several recurring concerns layer on top
     of it, each an independent decision the work repeatedly raises. All of them feed a decision procedure
     that ties the concerns together and tells the agent when to reach for which — and that, over its
     concerns, composes into a reusable skill. The three shipped skills are three instances of this one
@@ -26,8 +26,8 @@
   <g>
     <path d="M 40,145 v 90 a 125,13 0 0 0 250,0 v -90" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
     <ellipse cx="165" cy="145" rx="125" ry="13" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-    <text x="165" y="192" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">domain model</text>
-    <text x="165" y="220" text-anchor="middle" font-size="23.6" fill="#57534e">of the work</text>
+    <text x="165" y="192" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">representations</text>
+    <text x="165" y="220" text-anchor="middle" font-size="23.6" fill="#57534e">for the work</text>
   </g>
 
   <!-- base -> the orthogonal models (fan out) -->

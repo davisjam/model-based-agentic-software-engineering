@@ -1,9 +1,11 @@
 <!-- part-foreshadows: modeling-principle, alignment-principle, govern-the-environment, failures-become-machinery -->
 
 Parts II and III developed Modeling and Alignment separately. This Part runs them together as a
-method. The ordering is methodological, not a strict dependency. MAGE begins by asking what should be
-made explicit, places authority where stable obligations become legible, and converts recurring
-judgment into durable engineering structure.
+method. Modeling supplied a repertoire of representations for making different engineering questions
+tractable; Alignment supplied the mechanisms through which selected obligations can acquire authority. In
+practice, engineers choose and connect these moves as the work demands. MAGE begins by asking what should
+be made explicit, places authority where stable obligations become legible and enforceable, and converts
+recurring judgment into durable engineering structure.
 
 <!-- principlebox -->
 <!-- box-family: canonical -->
