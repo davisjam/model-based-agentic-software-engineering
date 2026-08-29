@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>32</b> chapters · <b>196</b> sections · <b>68</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>36</b> chapters · <b>208</b> sections · <b>68</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -233,13 +233,73 @@
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-2-7-provenance"><span class="tier-kick">Lesson</span><a href="../book/2.7-provenance.html" class="ch-link">2.7-provenance</a> <span class="ch-slug">2.7-provenance</span></h3>
-<div class="section s2" id="sec-2-7-provenance--provenance-is-modeled-history">
-<div class="sec-h"><a href="../book/2.7-provenance.html">Provenance Is Modeled History</a></div>
-<p class="topic">Recording history is not the same as modeling it.</p>
+<h3 id="ch-2-3-behavioral"><span class="tier-kick">Lesson</span><a href="../book/2.3-behavioral.html" class="ch-link">2.3-behavioral</a> <span class="ch-slug">2.3-behavioral</span></h3>
+<div class="section s2" id="sec-2-3-behavioral--the-canonical-move-states-transitions-and-executions">
+<div class="sec-h"><a href="../book/2.3-behavioral.html">The Canonical Move: States, Transitions, and Executions</a></div>
+<p class="topic">Engineering has represented behavior this way for a long time.</p>
 </div>
-<div class="section s2" id="sec-2-7-provenance--a-record-can-be-executable-without-becoming-the-implementation">
-<div class="sec-h"><a href="../book/2.7-provenance.html">A Record Can Be Executable Without Becoming the Implementation</a></div>
+<div class="section s2" id="sec-2-3-behavioral--docable-recovery-ordering">
+<div class="sec-h"><a href="../book/2.3-behavioral.html">DocAble: Recovery Ordering</a></div>
+<p class="topic">DocAble has one behavioral obligation whose violation is quiet and expensive.</p>
+</div>
+<div class="section s2" id="sec-2-3-behavioral--what-the-model-makes-checkable">
+<div class="sec-h"><a href="../book/2.3-behavioral.html">What the Model Makes Checkable</a></div>
+<p class="topic">The recovery model answers a safety question — can a bad state be reached?</p>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-2-4-ownership"><span class="tier-kick">Lesson</span><a href="../book/2.4-ownership.html" class="ch-link">2.4-ownership</a> <span class="ch-slug">2.4-ownership</span></h3>
+<div class="section s2" id="sec-2-4-ownership--the-canonical-move-resource-ownership">
+<div class="sec-h"><a href="../book/2.4-ownership.html">The Canonical Move: Resource Ownership</a></div>
+<p class="topic">Software engineering has a long vocabulary for control over a shared resource: locks and leases[cite: graycheriton1989], resource-allocation relationships, capability and claim relationships, ownership transfer, and the lifecycle of a claim from acquisition through expiry to reclamation.</p>
+</div>
+<div class="section s2" id="sec-2-4-ownership--docable-in-flight-ownership">
+<div class="sec-h"><a href="../book/2.4-ownership.html">DocAble: In-Flight Ownership</a></div>
+<p class="topic">DocAble leases each in-flight job to one worker.</p>
+</div>
+<div class="section s2" id="sec-2-4-ownership--one-representation-several-questions">
+<div class="sec-h"><a href="../book/2.4-ownership.html">One Representation, Several Questions</a></div>
+<p class="topic">The lease is the Part&#x27;s clearest case of one representation answering several classes of question.</p>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-2-5-decision"><span class="tier-kick">Lesson</span><a href="../book/2.5-decision.html" class="ch-link">2.5-decision</a> <span class="ch-slug">2.5-decision</span></h3>
+<div class="section s2" id="sec-2-5-decision--the-canonical-move-permitted-alternatives">
+<div class="sec-h"><a href="../book/2.5-decision.html">The Canonical Move: Permitted Alternatives</a></div>
+<p class="topic">Engineering represents permission in several familiar forms: decision tables that map conditions to allowed actions, rule systems, access-control matrices that record which subject may act on which object[cite: lampson1974], policy graphs, feature models that constrain which combinations of options are valid, and constraint systems that declare which assignments are admissible.</p>
+</div>
+<div class="section s2" id="sec-2-5-decision--docable-service-flow-policy">
+<div class="sec-h"><a href="../book/2.5-decision.html">DocAble: Service-Flow Policy</a></div>
+<p class="topic">DocAble declares which of its services may communicate with which.</p>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-2-6-measurement"><span class="tier-kick">Lesson</span><a href="../book/2.6-measurement.html" class="ch-link">2.6-measurement</a> <span class="ch-slug">2.6-measurement</span></h3>
+<div class="section s2" id="sec-2-6-measurement--the-canonical-move-quantities-relations-and-bounds">
+<div class="sec-h"><a href="../book/2.6-measurement.html">The Canonical Move: Quantities, Relations, and Bounds</a></div>
+<p class="topic">Engineering has many quantitative representations: performance and parametric models, capacity models, cost models, and the budgets and envelopes they are compared against; queueing and resource models appear where contention matters[cite: lazowska1984].</p>
+</div>
+<div class="section s2" id="sec-2-6-measurement--docable-genai-cost-and-capacity">
+<div class="sec-h"><a href="../book/2.6-measurement.html">DocAble: GenAI Cost and Capacity</a></div>
+<p class="topic">DocAble&#x27;s consequential quantities are the cost of its GenAI usage and the capacity its concurrent work demands.</p>
+</div>
+<div class="section s2" id="sec-2-6-measurement--tolerance-and-margin">
+<div class="sec-h"><a href="../book/2.6-measurement.html">Tolerance and Margin</a></div>
+<p class="topic">A bound is rarely a single line.</p>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-2-7-provenance"><span class="tier-kick">Lesson</span><a href="../book/2.7-provenance.html" class="ch-link">2.7-provenance</a> <span class="ch-slug">2.7-provenance</span></h3>
+<div class="section s2" id="sec-2-7-provenance--the-canonical-move-provenance-attribution-and-derivation">
+<div class="sec-h"><a href="../book/2.7-provenance.html">The Canonical Move: Provenance, Attribution, and Derivation</a></div>
+<p class="topic">Provenance is built on the most general representational primitive there is: a relation over stable identities.</p>
+</div>
+<div class="section s2" id="sec-2-7-provenance--docable-attribution">
+<div class="sec-h"><a href="../book/2.7-provenance.html">DocAble: Attribution</a></div>
+<p class="topic">When an autonomous system changes a user&#x27;s artifact, completion is not the only fact worth preserving.</p>
+</div>
+<div class="section s2" id="sec-2-7-provenance--record-replay-and-explanation">
+<div class="sec-h"><a href="../book/2.7-provenance.html">Record, Replay, and Explanation</a></div>
 <p class="topic">DocAble&#x27;s edit record has an unusual property for a provenance model: it runs.</p>
 </div>
 </div>

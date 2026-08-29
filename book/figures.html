@@ -2707,17 +2707,54 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- footer: protect the point -->
   <text x="450" y="346" text-anchor="middle" font-size="18" font-style="italic" fill="#1c1917">Observation reveals what is. The decision model declares what belongs.</text>
   <text x="450" y="368" text-anchor="middle" font-size="18" font-style="italic" fill="#1c1917">Agreement between them establishes correspondence, not correctness.</text>
-</svg><figcaption data-short="Observation and intent answer different questions"><span class="fig-label">Figure 2.5-2.</span> <em>Observation and intent answer different questions.</em> The observed system can reveal that A calls C; the decision model can state whether that relationship is permitted. Agreement establishes correspondence, not correctness.</figcaption></figure><p class="gallery-source">From <a href="2.5-decision.html#fig-2-5-2">9 · Decision Models: What Is Allowed?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-1-fig-2-6-1" class="book-figure" data-label="genai-cost-capacity-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 390"
-     role="img" aria-labelledby="fig-2-6-1-f-genai-cost-capacity-model-gcTitle fig-2-6-1-f-genai-cost-capacity-model-gcDesc"
+</svg><figcaption data-short="Observation and intent answer different questions"><span class="fig-label">Figure 2.5-2.</span> <em>Observation and intent answer different questions.</em> The observed system can reveal that A calls C; the decision model can state whether that relationship is permitted. Agreement establishes correspondence, not correctness.</figcaption></figure><p class="gallery-source">From <a href="2.5-decision.html#fig-2-5-2">9 · Decision Models: What Is Allowed?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-1-fig-2-6-1" class="book-figure" data-label="measured-quantity-comparison"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300"
+     role="img" aria-labelledby="fig-2-6-1-f-measured-quantity-comparison-mqTitle fig-2-6-1-f-measured-quantity-comparison-mqDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-6-1-f-genai-cost-capacity-model-gcTitle">DocAble's GenAI cost-and-capacity measurement model: two separate envelopes</title>
-  <desc id="fig-2-6-1-f-genai-cost-capacity-model-gcDesc">Generation work splits into two independent quantity chains. One chain: usage relates
+  <title id="fig-2-6-1-f-measured-quantity-comparison-mqTitle">A current value is compared against a separately declared reference bound</title>
+  <desc id="fig-2-6-1-f-measured-quantity-comparison-mqDesc">Two peer inputs — a current value and a reference bound — converge into a comparison.
+    The reference bound is declared separately; it is not derived from the measured quantity. The model says
+    what is compared, not what to do about the result.</desc>
+
+  <defs>
+    <marker id="fig-2-6-1-f-measured-quantity-comparison-mq-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- current value (top-left peer) -->
+  <rect id="fig-2-6-1-f-measured-quantity-comparison-current-value" x="40" y="46" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="150" y="78" text-anchor="middle" font-size="14.56" font-weight="700" fill="#2f5169">CURRENT VALUE</text>
+  <text x="150" y="99" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">what is now</text>
+
+  <!-- reference bound (bottom-left peer, declared separately) -->
+  <rect id="fig-2-6-1-f-measured-quantity-comparison-reference-bound" x="40" y="166" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="150" y="198" text-anchor="middle" font-size="14.56" font-weight="700" fill="#2f5169">REFERENCE BOUND</text>
+  <text x="150" y="219" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">declared separately</text>
+
+  <!-- converge into comparison (two peers into one node; heads seated on the comparison's left border) -->
+  <!-- edge: current-value -> comparison -->
+  <path d="M260,78 C310,96 336,134 366,134" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-1-f-measured-quantity-comparison-mq-b)"/>
+  <!-- edge: reference-bound -> comparison -->
+  <path d="M260,198 C310,180 336,142 366,142" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-1-f-measured-quantity-comparison-mq-b)"/>
+
+  <!-- comparison -->
+  <rect id="fig-2-6-1-f-measured-quantity-comparison-comparison" x="368" y="108" width="160" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="448" y="144" text-anchor="middle" font-size="14.56" font-weight="700" fill="#2f5169">COMPARISON</text>
+
+  <!-- footer: protect the point -->
+  <text x="280" y="264" text-anchor="middle" font-size="13.5" font-style="italic" fill="#1c1917">The bound is declared apart from the quantity.</text>
+  <text x="280" y="285" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">The model compares; it does not decide the consequence.</text>
+</svg><figcaption data-short="Core measurement relation"><span class="fig-label">Figure 2.6-1.</span> <em>Core measurement relation.</em> A current value is interpreted against a separately declared reference bound. The model defines what is compared; it does not determine the consequence of the comparison.</figcaption></figure><p class="gallery-source">From <a href="2.6-measurement.html#fig-2-6-1">10 · Measurement Models: How Much, and Against What Bound?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-2-fig-2-6-2" class="book-figure" data-label="genai-cost-capacity-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 390"
+     role="img" aria-labelledby="fig-2-6-2-f-genai-cost-capacity-model-gcTitle fig-2-6-2-f-genai-cost-capacity-model-gcDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-2-6-2-f-genai-cost-capacity-model-gcTitle">DocAble's GenAI cost-and-capacity measurement model: two separate envelopes</title>
+  <desc id="fig-2-6-2-f-genai-cost-capacity-model-gcDesc">Generation work splits into two independent quantity chains. One chain: usage relates
     to cost, which is compared against a cost budget. A separate chain: concurrency relates to capacity,
     which is compared against a capacity envelope. The two chains are drawn apart because they are distinct
     envelopes, not one shared budget.</desc>
 
   <defs>
-    <marker id="fig-2-6-1-f-genai-cost-capacity-model-gc-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="fig-2-6-2-f-genai-cost-capacity-model-gc-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -2728,45 +2765,45 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <g fill="none" stroke="#2f5169" stroke-width="2.2">
     <!-- generation work forks to the two chains (one path per branch) -->
     <!-- edge: genwork -> usage -->
-    <path d="M156,171 L245,171 L245,128" marker-end="url(#fig-2-6-1-f-genai-cost-capacity-model-gc-b)"/>
+    <path d="M156,171 L245,171 L245,128" marker-end="url(#fig-2-6-2-f-genai-cost-capacity-model-gc-b)"/>
     <!-- edge: genwork -> concurrency -->
-    <path d="M156,171 L245,171 L245,240" marker-end="url(#fig-2-6-1-f-genai-cost-capacity-model-gc-b)"/>
+    <path d="M156,171 L245,171 L245,240" marker-end="url(#fig-2-6-2-f-genai-cost-capacity-model-gc-b)"/>
     <!-- top chain -->
     <!-- edge: usage -> cost -->
-    <path d="M300,101 L338,101" marker-end="url(#fig-2-6-1-f-genai-cost-capacity-model-gc-b)"/>
+    <path d="M300,101 L338,101" marker-end="url(#fig-2-6-2-f-genai-cost-capacity-model-gc-b)"/>
     <!-- edge: cost -> cost-budget -->
-    <path d="M440,101 L478,101" marker-end="url(#fig-2-6-1-f-genai-cost-capacity-model-gc-b)"/>
+    <path d="M440,101 L478,101" marker-end="url(#fig-2-6-2-f-genai-cost-capacity-model-gc-b)"/>
     <!-- bottom chain -->
     <!-- edge: concurrency -> capacity -->
-    <path d="M300,267 L338,267" marker-end="url(#fig-2-6-1-f-genai-cost-capacity-model-gc-b)"/>
+    <path d="M300,267 L338,267" marker-end="url(#fig-2-6-2-f-genai-cost-capacity-model-gc-b)"/>
     <!-- edge: capacity -> capacity-envelope -->
-    <path d="M440,267 L478,267" marker-end="url(#fig-2-6-1-f-genai-cost-capacity-model-gc-b)"/>
+    <path d="M440,267 L478,267" marker-end="url(#fig-2-6-2-f-genai-cost-capacity-model-gc-b)"/>
   </g>
 
   <!-- ===== NODES (on top) ===== -->
   <!-- generation work (source, left, spans both chains) -->
-  <rect id="fig-2-6-1-f-genai-cost-capacity-model-genwork" x="24" y="128" width="132" height="86" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="fig-2-6-2-f-genai-cost-capacity-model-genwork" x="24" y="128" width="132" height="86" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="90" y="166" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">generation</text>
   <text x="90" y="186" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">work</text>
 
   <!-- ===== TOP CHAIN: usage -> cost -> budget ===== -->
   <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect id="fig-2-6-1-f-genai-cost-capacity-model-usage" x="190" y="76" width="110" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-6-2-f-genai-cost-capacity-model-usage" x="190" y="76" width="110" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="245" y="107">usage</text>
-    <rect id="fig-2-6-1-f-genai-cost-capacity-model-cost" x="340" y="76" width="100" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-6-2-f-genai-cost-capacity-model-cost" x="340" y="76" width="100" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="390" y="107">cost</text>
-    <rect id="fig-2-6-1-f-genai-cost-capacity-model-cost-budget" x="480" y="76" width="150" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+    <rect id="fig-2-6-2-f-genai-cost-capacity-model-cost-budget" x="480" y="76" width="150" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
     <text x="555" y="99" font-size="15">cost</text>
     <text x="555" y="118" font-size="15">budget</text>
   </g>
 
   <!-- ===== BOTTOM CHAIN: concurrency -> capacity -> capacity envelope ===== -->
   <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect id="fig-2-6-1-f-genai-cost-capacity-model-concurrency" x="190" y="242" width="110" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-6-2-f-genai-cost-capacity-model-concurrency" x="190" y="242" width="110" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="245" y="266" font-size="14">concurrency</text>
-    <rect id="fig-2-6-1-f-genai-cost-capacity-model-capacity" x="340" y="242" width="100" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-6-2-f-genai-cost-capacity-model-capacity" x="340" y="242" width="100" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="390" y="273">capacity</text>
-    <rect id="fig-2-6-1-f-genai-cost-capacity-model-capacity-envelope" x="480" y="242" width="150" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+    <rect id="fig-2-6-2-f-genai-cost-capacity-model-capacity-envelope" x="480" y="242" width="150" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
     <text x="555" y="265" font-size="15">capacity</text>
     <text x="555" y="284" font-size="15">envelope</text>
   </g>
@@ -2774,44 +2811,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- footer: protect the two-envelopes point -->
   <text x="330" y="346" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Two chains, two envelopes &#8212; usage feeds a cost budget,</text>
   <text x="330" y="366" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">concurrency feeds a capacity envelope; they are not one relation.</text>
-</svg><figcaption data-short="GenAI cost-and-capacity model"><span class="fig-label">Figure 2.6-1.</span> <em>GenAI cost-and-capacity model.</em> Generation work fans into usage and concurrency; usage and pricing determine cost against a budget, and concurrency contributes to capacity demand against a capacity envelope. The model names the quantities worth relating — the interpretation placed over raw requests and charges, not the telemetry itself.</figcaption></figure><p class="gallery-source">From <a href="2.6-measurement.html#fig-2-6-1">10 · Measurement Models: How Much, and Against What Bound?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-2-fig-2-6-2" class="book-figure" data-label="measured-quantity-comparison"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300"
-     role="img" aria-labelledby="fig-2-6-2-f-measured-quantity-comparison-mqTitle fig-2-6-2-f-measured-quantity-comparison-mqDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-6-2-f-measured-quantity-comparison-mqTitle">A current value is compared against a separately declared reference bound</title>
-  <desc id="fig-2-6-2-f-measured-quantity-comparison-mqDesc">Two peer inputs — a current value and a reference bound — converge into a comparison.
-    The reference bound is declared separately; it is not derived from the measured quantity. The model says
-    what is compared, not what to do about the result.</desc>
-
-  <defs>
-    <marker id="fig-2-6-2-f-measured-quantity-comparison-mq-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-  </defs>
-
-  <!-- current value (top-left peer) -->
-  <rect id="fig-2-6-2-f-measured-quantity-comparison-current-value" x="40" y="46" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="150" y="78" text-anchor="middle" font-size="14.56" font-weight="700" fill="#2f5169">CURRENT VALUE</text>
-  <text x="150" y="99" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">what is now</text>
-
-  <!-- reference bound (bottom-left peer, declared separately) -->
-  <rect id="fig-2-6-2-f-measured-quantity-comparison-reference-bound" x="40" y="166" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="150" y="198" text-anchor="middle" font-size="14.56" font-weight="700" fill="#2f5169">REFERENCE BOUND</text>
-  <text x="150" y="219" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">declared separately</text>
-
-  <!-- converge into comparison (two peers into one node; heads seated on the comparison's left border) -->
-  <!-- edge: current-value -> comparison -->
-  <path d="M260,78 C310,96 336,134 366,134" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-2-f-measured-quantity-comparison-mq-b)"/>
-  <!-- edge: reference-bound -> comparison -->
-  <path d="M260,198 C310,180 336,142 366,142" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-2-f-measured-quantity-comparison-mq-b)"/>
-
-  <!-- comparison -->
-  <rect id="fig-2-6-2-f-measured-quantity-comparison-comparison" x="368" y="108" width="160" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="448" y="144" text-anchor="middle" font-size="14.56" font-weight="700" fill="#2f5169">COMPARISON</text>
-
-  <!-- footer: protect the point -->
-  <text x="280" y="264" text-anchor="middle" font-size="13.5" font-style="italic" fill="#1c1917">The bound is declared apart from the quantity.</text>
-  <text x="280" y="285" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">The model compares; it does not decide the consequence.</text>
-</svg><figcaption data-short="Core measurement relation"><span class="fig-label">Figure 2.6-2.</span> <em>Core measurement relation.</em> A current value is interpreted against a separately declared reference bound. The model defines what is compared; it does not determine the consequence of the comparison.</figcaption></figure><p class="gallery-source">From <a href="2.6-measurement.html#fig-2-6-2">10 · Measurement Models: How Much, and Against What Bound?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-3-fig-2-6-3" class="book-figure" data-label="modeling-perp-authority"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380"
+</svg><figcaption data-short="GenAI cost-and-capacity model"><span class="fig-label">Figure 2.6-2.</span> <em>GenAI cost-and-capacity model.</em> Generation work fans into usage and concurrency; usage and pricing determine cost against a budget, and concurrency contributes to capacity demand against a capacity envelope. The model names the quantities worth relating — the interpretation placed over raw requests and charges, not the telemetry itself.</figcaption></figure><p class="gallery-source">From <a href="2.6-measurement.html#fig-2-6-2">10 · Measurement Models: How Much, and Against What Bound?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-3-fig-2-6-3" class="book-figure" data-label="modeling-perp-authority"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380"
      role="img" aria-labelledby="fig-2-6-3-f-modeling-perp-authority-paTitle fig-2-6-3-f-modeling-perp-authority-paDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-6-3-f-modeling-perp-authority-paTitle">One measurement, different authority decisions</title>

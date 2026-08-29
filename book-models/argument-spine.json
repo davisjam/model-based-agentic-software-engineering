@@ -272,6 +272,10 @@
         "1.3-the-agentic-substrate",
         "1.4-the-new-engineering-problem",
         "2.1-context-is-the-first-modeling-problem",
+        "2.3-behavioral",
+        "2.4-ownership",
+        "2.5-decision",
+        "2.6-measurement",
         "2.7-provenance",
         "2.8-system-knowledge",
         "3.2-models-and-the-semantic-gap",
@@ -281,11 +285,7 @@
         "4.3-validating-change",
         "5.3-the-road-to-mage",
         "metrics",
-        "modeling-structure-and-ownership",
-        "modeling-behavior-and-execution",
-        "modeling-ownership",
-        "modeling-decision",
-        "modeling-measurement-and-evidence"
+        "modeling-structure-and-ownership"
       ],
       "body_depth": 15,
       "front_loaded": false,
@@ -634,6 +634,34 @@
       "exempt": null
     },
     {
+      "slug": "2.3-behavioral",
+      "advances": [
+        "modeling-principle"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "2.4-ownership",
+      "advances": [
+        "modeling-principle"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "2.5-decision",
+      "advances": [
+        "modeling-principle"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "2.6-measurement",
+      "advances": [
+        "modeling-principle"
+      ],
+      "exempt": null
+    },
+    {
       "slug": "2.7-provenance",
       "advances": [
         "modeling-principle"
@@ -856,34 +884,6 @@
         "modeling-principle"
       ],
       "exempt": null
-    },
-    {
-      "slug": "modeling-behavior-and-execution",
-      "advances": [
-        "modeling-principle"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "modeling-ownership",
-      "advances": [
-        "modeling-principle"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "modeling-decision",
-      "advances": [
-        "modeling-principle"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "modeling-measurement-and-evidence",
-      "advances": [
-        "modeling-principle"
-      ],
-      "exempt": null
     }
   ],
   "flags": {
@@ -967,6 +967,10 @@
           "1.3-the-agentic-substrate",
           "1.4-the-new-engineering-problem",
           "2.1-context-is-the-first-modeling-problem",
+          "2.3-behavioral",
+          "2.4-ownership",
+          "2.5-decision",
+          "2.6-measurement",
           "2.7-provenance",
           "2.8-system-knowledge",
           "3.2-models-and-the-semantic-gap",
@@ -976,11 +980,7 @@
           "4.3-validating-change",
           "5.3-the-road-to-mage",
           "metrics",
-          "modeling-structure-and-ownership",
-          "modeling-behavior-and-execution",
-          "modeling-ownership",
-          "modeling-decision",
-          "modeling-measurement-and-evidence"
+          "modeling-structure-and-ownership"
         ]
       },
       {

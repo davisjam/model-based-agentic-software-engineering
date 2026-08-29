@@ -44,6 +44,18 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 2.1-context-is-the-first-modeling-problem
 
 
+### Lesson 2.3-behavioral
+
+
+### Lesson 2.4-ownership
+
+
+### Lesson 2.5-decision
+
+
+### Lesson 2.6-measurement
+
+
 ### Lesson 2.7-provenance
 
 

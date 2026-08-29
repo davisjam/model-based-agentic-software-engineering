@@ -282,6 +282,126 @@
       ]
     },
     {
+      "slug": "modeling-behavior-and-execution",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "note": "One-model-class-per-chapter reconstruction: this chapter is now the BEHAVIORAL example (label carried forward; filename -> 2.3-behavioral.md). Question (may recovery publish durable state naming a not-yet-published artifact?) + answer (three states and one forbidden ordering). The star is the recovery model; the broad job lifecycle is demoted to a secondary example. 'Executable models are still models' carries the executability point. Closes transitioning to ownership across time.",
+      "opening_anchor": "Behavioral models add time.",
+      "closing_anchor": "ownership across time.",
+      "delivers": {
+        "concepts": [],
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the recovery-ordering model and the model-first-encoding-second figure",
+            "anchor": "recovery-ordering-model"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "exempt": null,
+      "spine_advances": [
+        "modeling-principle"
+      ]
+    },
+    {
+      "slug": "modeling-ownership",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "note": "New OWNERSHIP chapter (one-model-class-per-chapter reconstruction). Question (who appears to own this work, and when is that ownership stale?) + answer (an in-flight lease: owner, epoch, lifetime, release/reclaim). Distinguishes recovery from permission (durable CAS underneath the lease is the authority). Shows class overlap: the same lease answers an ownership and a measurement question. Closes transitioning to the decision chapter.",
+      "opening_anchor": "Autonomous systems make runtime ownership unusually important.",
+      "closing_anchor": "which of its parts may reach which.",
+      "delivers": {
+        "concepts": [],
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the in-flight ownership model and the lease-overlap figure",
+            "anchor": "in-flight-ownership-states"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "exempt": null,
+      "spine_advances": [
+        "modeling-principle"
+      ]
+    },
+    {
+      "slug": "modeling-decision",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "note": "New DECISION chapter (one-model-class-per-chapter reconstruction). Question (which service may call which, and reach which resource?) + answer (a declared service-flow graph; an absent edge declares no relationship). Separates the descriptive question (does A call B?) from the intent question (may A call B?) — correspondence, not correctness, handed to Part III. Closes transitioning to measurement.",
+      "opening_anchor": "A decision model represents permitted choices and relationships.",
+      "closing_anchor": "against what envelope those numbers are read.",
+      "delivers": {
+        "concepts": [],
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the service-flow model and the observed-vs-declared figure",
+            "anchor": "service-flow-model"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "exempt": null,
+      "spine_advances": [
+        "modeling-principle"
+      ]
+    },
+    {
+      "slug": "modeling-measurement-and-evidence",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "note": "One-model-class-per-chapter reconstruction: this chapter is now the MEASUREMENT example (label carried forward; filename -> 2.6-measurement.md). Replaces the operational-envelope treatment with the richer GenAI usage/cost/capacity model and DELETES the stale report-only claim (the hard daily gate exists but is dormant unless configured). Question (how much capacity, what cost, how close to a budget envelope?) + answer (a web of related quantities). Separates modeling a quantity from assigning it authority (Part III). Closes transitioning to provenance.",
+      "opening_anchor": "Quantitative engineering begins by deciding which quantities matter",
+      "closing_anchor": "what an operation did to an artifact",
+      "delivers": {
+        "concepts": [],
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the GenAI cost-and-capacity model plus the measured-quantity and modeling-perp-authority figures",
+            "anchor": "genai-cost-capacity-model"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "exempt": null,
+      "spine_advances": [
+        "modeling-principle"
+      ]
+    },
+    {
       "slug": "modeling-provenance",
       "opening": {
         "failure_question": "explicit",
@@ -1084,126 +1204,6 @@
             "type": "framework",
             "name": "the document-mutation model and the structural-reduction figure",
             "anchor": "document-mutation-model"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "exempt": null,
-      "spine_advances": [
-        "modeling-principle"
-      ]
-    },
-    {
-      "slug": "modeling-behavior-and-execution",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "note": "One-model-class-per-chapter reconstruction: this chapter is now the BEHAVIORAL example (label carried forward; filename -> 2.3-behavioral.md). Question (may recovery publish durable state naming a not-yet-published artifact?) + answer (three states and one forbidden ordering). The star is the recovery model; the broad job lifecycle is demoted to a secondary example. 'Executable models are still models' carries the executability point. Closes transitioning to ownership across time.",
-      "opening_anchor": "Behavioral models add time.",
-      "closing_anchor": "ownership across time.",
-      "delivers": {
-        "concepts": [],
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the recovery-ordering model and the model-first-encoding-second figure",
-            "anchor": "recovery-ordering-model"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "exempt": null,
-      "spine_advances": [
-        "modeling-principle"
-      ]
-    },
-    {
-      "slug": "modeling-ownership",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "note": "New OWNERSHIP chapter (one-model-class-per-chapter reconstruction). Question (who appears to own this work, and when is that ownership stale?) + answer (an in-flight lease: owner, epoch, lifetime, release/reclaim). Distinguishes recovery from permission (durable CAS underneath the lease is the authority). Shows class overlap: the same lease answers an ownership and a measurement question. Closes transitioning to the decision chapter.",
-      "opening_anchor": "Autonomous systems make runtime ownership unusually important.",
-      "closing_anchor": "which of its parts may reach which.",
-      "delivers": {
-        "concepts": [],
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the in-flight ownership model and the lease-overlap figure",
-            "anchor": "in-flight-ownership-states"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "exempt": null,
-      "spine_advances": [
-        "modeling-principle"
-      ]
-    },
-    {
-      "slug": "modeling-decision",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "note": "New DECISION chapter (one-model-class-per-chapter reconstruction). Question (which service may call which, and reach which resource?) + answer (a declared service-flow graph; an absent edge declares no relationship). Separates the descriptive question (does A call B?) from the intent question (may A call B?) — correspondence, not correctness, handed to Part III. Closes transitioning to measurement.",
-      "opening_anchor": "A decision model represents permitted choices and relationships.",
-      "closing_anchor": "against what envelope those numbers are read.",
-      "delivers": {
-        "concepts": [],
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the service-flow model and the observed-vs-declared figure",
-            "anchor": "service-flow-model"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "exempt": null,
-      "spine_advances": [
-        "modeling-principle"
-      ]
-    },
-    {
-      "slug": "modeling-measurement-and-evidence",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "note": "One-model-class-per-chapter reconstruction: this chapter is now the MEASUREMENT example (label carried forward; filename -> 2.6-measurement.md). Replaces the operational-envelope treatment with the richer GenAI usage/cost/capacity model and DELETES the stale report-only claim (the hard daily gate exists but is dormant unless configured). Question (how much capacity, what cost, how close to a budget envelope?) + answer (a web of related quantities). Separates modeling a quantity from assigning it authority (Part III). Closes transitioning to provenance.",
-      "opening_anchor": "Quantitative engineering begins by deciding which quantities matter",
-      "closing_anchor": "what an operation did to an artifact",
-      "delivers": {
-        "concepts": [],
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the GenAI cost-and-capacity model plus the measured-quantity and modeling-perp-authority figures",
-            "anchor": "genai-cost-capacity-model"
           }
         ],
         "artifact_would_help": false
