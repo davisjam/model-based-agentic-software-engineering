@@ -5,6 +5,11 @@ engineers, agents, and tools reason over properties that would otherwise have to
 lower-level detail. This Part asks a different question. **Which of those properties express engineering
 obligations the environment should hold, and how should it hold them?**
 
+Those models are also objects of analysis. Part II showed how their structure can make properties explicit
+and engineering questions tractable. Alignment now asks a different question: does the realized system
+satisfy the obligations those models express, what evidence can establish that correspondence, and what
+consequence should follow when it does not?
+
 Alignment is the move from guidance to authority. Some obligations require no rich system model: a
 permission can forbid network access, a type can rule out an illegal value, a sandbox can make an action
 unavailable. Explicit models extend that reach. Once architecture, ownership, behavior, measurement, or
