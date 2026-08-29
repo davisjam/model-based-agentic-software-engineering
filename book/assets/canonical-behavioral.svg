@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part 2 canonical opener — Behavioral (Fig 2.3-C1). Shared visual grammar; blue family ground. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" width="1040" height="640" role="img" aria-labelledby="canonical-behavioralT canonical-behavioralD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="canonical-behavioralT">Canonical behavioral model: reduce an implementation to states and transitions</title>
+  <desc id="canonical-behavioralD">A behavioral opener. A neutral implementation slab reduces to a state model: IDLE starts RUNNING, which finishes to DONE or fails to FAILED. A struck-through dashed arc marks the forbidden direct IDLE-to-DONE transition (no skipping RUNNING). Caption: Question, Semantics, Typical analysis. Blue ground marks the behavioral family.</desc>
+  <defs>
+    <marker id="ah-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
+    <marker id="ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
+    <marker id="ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="640" fill="#fdfcf9"/>
+  <text x="520" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Behavioral model — what may happen, in what order?</text>
+  <rect x="70" y="150" width="300" height="150" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="220" y="208" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">IMPLEMENTATION</text>
+  <text x="220" y="232" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">handlers · retries</text>
+  <text x="220" y="256" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">writes · logging …</text>
+  <line x1="378" y1="225" x2="452" y2="225" stroke="#57534e" stroke-width="2.6" marker-end="url(#ah-muted)"/>
+  <text x="415" y="210" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">reduce to</text>
+  <rect x="470" y="130" width="120" height="56" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="530" y="166" text-anchor="middle" font-size="23" font-weight="700" fill="#2f5169">IDLE</text>
+  <rect x="650" y="130" width="160" height="56" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="730" y="166" text-anchor="middle" font-size="23" font-weight="700" fill="#2f5169">RUNNING</text>
+  <rect x="870" y="130" width="110" height="56" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="925" y="166" text-anchor="middle" font-size="23" font-weight="700" fill="#2f5169">DONE</text>
+  <rect x="650" y="268" width="160" height="56" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="730" y="304" text-anchor="middle" font-size="23" font-weight="700" fill="#2f5169">FAILED</text>
+  <line x1="590" y1="158" x2="648" y2="158" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ah-blue)"/>
+  <line x1="810" y1="158" x2="868" y2="158" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ah-blue)"/>
+  <line x1="730" y1="186" x2="730" y2="266" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ah-blue)"/>
+  <text x="618" y="148" text-anchor="middle" font-size="19" font-style="italic" fill="#2f5169">start</text>
+  <text x="838" y="148" text-anchor="middle" font-size="19" font-style="italic" fill="#2f5169">finish</text>
+  <text x="760" y="232" text-anchor="middle" font-size="19" font-style="italic" fill="#2f5169">fail</text>
+  <path d="M530,128 C620,86 820,86 912,126" fill="none" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#ah-muted)"/>
+  <line x1="709" y1="80" x2="733" y2="104" stroke="#1c1917" stroke-width="3"/><line x1="709" y1="104" x2="733" y2="80" stroke="#1c1917" stroke-width="3"/>
+  <text x="721" y="74" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">no such transition (no skipping)</text>
+  <text x="26" y="474" font-size="21" fill="#1c1917"><tspan font-weight="700">Question:</tspan> What may happen, and in what order?</text>
+  <text x="26" y="505" font-size="21" fill="#1c1917"><tspan font-weight="700">Semantics:</tspan> node = a legal state; edge = a permitted transition; a path = an admitted execution.</text>
+  <text x="26" y="536" font-size="21" fill="#1c1917"><tspan font-weight="700">Typical analysis:</tspan> reachability, safety, liveness.</text>
+</svg>

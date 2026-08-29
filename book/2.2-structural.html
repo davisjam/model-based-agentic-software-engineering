@@ -778,12 +778,52 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 6 · Structural Models: What Is Connected to What? — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 6</a></div><h1><span class="chap-num">2.2</span> Structural Models: What Is Connected to What?</h1></header><p>A structural model suppresses behavior to expose components, boundaries, and relationships. It says what parts exist and which may depend on which, and it leaves time out. Consider document mutation in DocAble — the running accessibility service — as the first example.</p>
-<p>DocAble supports several structured document formats through libraries powerful enough to alter their underlying object structures. Those libraries are necessary, but they sit behind a deliberate architectural boundary. Most remediation logic works through DocAble's structured document abstractions rather than reaching directly into the format-specific implementation.</p>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 6 · Structural Models: What Is Connected to What? — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 6</a></div><h1><span class="chap-num">2.2</span> Structural Models: What Is Connected to What?</h1></header><p>Structural models hold a system still. They suppress most behavior and keep the entities, boundaries, containment, dependency, and flow — what parts exist and which rest on which. It is the most familiar reduction in engineering, and the natural place to begin.</p>
+<h2><span class="sec-num">2.2.1</span> The Canonical Move: Structure and Dependency</h2>
+<p>A component diagram names which services exist; a dependency graph names which modules rest on which; a call graph names which procedures may invoke which; a data-flow diagram names how information moves through transformations; a deployment topology names what is connected across execution locations. The graphical forms differ, but the reduction is the same — keep the entities and the declared relations, discard the behavior. <a class="xref" href="2.2-structural.html#fig-2-2-1">Figure&nbsp;2.2-1</a> draws the move.</p>
+<figure id="fig-2-2-1" class="book-figure" data-label="canonical-structural"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" role="img" aria-labelledby="f-canonical-structural-canonical-structuralT f-canonical-structural-canonical-structuralD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="f-canonical-structural-canonical-structuralT">Canonical structural model: a small service architecture</title>
+  <desc id="f-canonical-structural-canonical-structuralD">A structural opener in the shared grammar. WEB depends on API; API reaches DATABASE and CACHE. A struck-through dashed arrow marks a forbidden bypass from WEB straight to DATABASE around API. Caption: Question, Semantics, Typical analysis. Rust ground marks the structural family.</desc>
+  <defs>
+    <marker id="f-canonical-structural-ah-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
+    <marker id="f-canonical-structural-ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="f-canonical-structural-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="f-canonical-structural-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
+    <marker id="f-canonical-structural-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="640" fill="#fdfcf9"/>
+  <text x="520" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Structural model — what is connected to what?</text>
+  <rect x="445" y="92" width="150" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="520" y="130" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">WEB</text>
+  <rect x="445" y="214" width="150" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="520" y="252" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">API</text>
+  <rect x="250" y="336" width="200" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="350" y="374" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">DATABASE</text>
+  <rect x="600" y="336" width="180" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="690" y="374" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">CACHE</text>
+  <line x1="520" y1="152" x2="520" y2="212" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#f-canonical-structural-ah-rust)"/>
+  <text x="540" y="187" text-anchor="start" font-size="20" font-style="italic" fill="#57534e">depends on</text>
+  <path d="M470,274 L470,305 L350,305 L350,334" fill="none" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#f-canonical-structural-ah-rust)"/>
+  <path d="M570,274 L570,305 L690,305 L690,334" fill="none" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#f-canonical-structural-ah-rust)"/>
+  <text x="300" y="300" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">reaches</text>
+  <text x="742" y="300" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">reaches</text>
+  <path d="M443,132 C300,190 210,250 300,336" fill="none" stroke="#57534e" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#f-canonical-structural-ah-muted)"/>
+  <line x1="238" y1="224" x2="262" y2="248" stroke="#1c1917" stroke-width="3"/><line x1="238" y1="248" x2="262" y2="224" stroke="#1c1917" stroke-width="3"/>
+  <text x="196" y="300" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">forbidden</text>
+  <text x="196" y="324" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">bypass</text>
+  <text x="26" y="474" font-size="21" fill="#1c1917"><tspan font-weight="700">Question:</tspan> What exists, and what is connected to what?</text>
+  <text x="26" y="505" font-size="21" fill="#1c1917"><tspan font-weight="700">Semantics:</tspan> node = an engineering entity; edge = a declared structural relation.</text>
+  <text x="26" y="536" font-size="21" fill="#1c1917"><tspan font-weight="700">Typical analysis:</tspan> reachability, path / cut analysis, cycle detection.</text>
+</svg><figcaption data-short="The structural move"><span class="fig-label">Figure 2.2-1.</span> <em>The structural move: entities and typed relations.</em> Nodes are the entities a question needs; edges are the declared relations between them, and the edge label carries the meaning. Its analyses are graph operations — reachability, path, and cycle checks.</figcaption></figure>
+<p>The model selects both the entities and the relations. A graph of service boundaries should not carry every helper function; if the question is about architecture, that detail only makes the model worse. And the edge label is where the engineering meaning lives. "A depends on B," "A calls B," and "a record is stored in a database" are different relations; collapsing them into a generic "related-to" edge throws away exactly the distinction the model was built to preserve.</p>
+<p>Once structure is explicit, the claims an engineer wants become graph properties. Some are local: component A may not depend directly on component C. Some concern paths: every route from ordinary logic to a format-specific library must cross a sanctioned seam. Some concern the whole graph: the dependency relation must be acyclic. The analyses follow — reachability, reverse traversal to find what depends on a node, cycle detection, impact analysis over a proposed change, and conformance of an observed graph against a declared one. A question that would otherwise mean reading imports, configuration, and deployment manifests becomes an operation over a declared graph.</p>
+<p>Static analysis can sometimes derive the graph from the implementation; in other cases engineers declare the architecture as intent. Those are different claims — one describes what the system appears to do, the other what it is supposed to do — and Part III treats the distinction carefully. For now the move is smaller: choose the structural relation that makes the engineering question explicit. DocAble uses that move at two grains.</p>
+<h2><span class="sec-num">2.2.2</span> DocAble: Document-Mutation Structure</h2>
+<p>DocAble supports several structured document formats through libraries powerful enough to alter their underlying object structures. Those libraries are necessary, but they sit behind a deliberate architectural boundary: most remediation logic works through DocAble's structured-document abstractions rather than reaching into a format-specific implementation directly.</p>
 <blockquote class="box-model-card"><span class="box-corner">MODEL CARD</span><p class="inset-title">Document-mutation model · Structural</p>
-<ul><li><strong>Engineering question</strong> — Where is document mutation supposed to occur?</li><li><strong>Model</strong> — a layered structural relation: remediation logic operates through a structured document model, realized by format-specific implementations for DOCX, PPTX, XLSX, and PDF.</li><li><strong>Property</strong> — the intended architecture places format-specific mutation behind one sanctioned seam; ordinary remediation logic is not intended to bypass it.</li><li><strong>Quality attribute</strong> — architectural integrity and modifiability.</li></ul></blockquote>
-<p>The useful model is small. <a class="xref" href="2.2-structural.html#fig-2-2-1">Figure&nbsp;2.2-1</a> draws it: remediation logic operates <em>through</em> a structured document model, which is <em>realized through</em> a format-specific implementation, which finally touches the concrete DOCX, PPTX, XLSX, and PDF formats.</p>
-<figure id="fig-2-2-1" class="book-figure" data-label="document-mutation-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 438"
+<ul><li><strong>Engineering question</strong> — Where is document mutation supposed to occur?</li><li><strong>Model</strong> — a layered structural relation: remediation logic operates through a structured-document model, realized by format-specific implementations for DOCX, PPTX, XLSX, and PDF.</li><li><strong>Property</strong> — the intended architecture places format-specific mutation behind one sanctioned seam; ordinary remediation logic is not intended to bypass it.</li><li><strong>Quality attribute</strong> — architectural integrity and modifiability.</li></ul></blockquote>
+<p>The useful model is small. <a class="xref" href="2.2-structural.html#fig-2-2-2">Figure&nbsp;2.2-2</a> draws it: remediation logic operates <em>through</em> a structured-document model, which is <em>realized through</em> a format-specific implementation, which finally touches the concrete DOCX, PPTX, XLSX, and PDF formats. It says nothing about queues, retries, deployment, user sessions, or the mechanics of individual repairs. Those facts are real but irrelevant to the question; the reduction preserves only the architectural boundary that matters.</p>
+<figure id="fig-2-2-2" class="book-figure" data-label="document-mutation-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 438"
      role="img" aria-labelledby="f-document-mutation-model-dmTitle f-document-mutation-model-dmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-document-mutation-model-dmTitle">DocAble's document-mutation model: mutation reaches formats through a sanctioned seam</title>
@@ -848,83 +888,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- footer: protect the point (model, not yet constraint). Enforcement microtext removed — the caption carries it. -->
   <text x="320" y="410" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The model marks where mutation is supposed to occur.</text>
-</svg><figcaption data-short="Document-mutation structural model"><span class="fig-label">Figure 2.2-1.</span> <em>Document-mutation structural model.</em> The reduction preserves one architectural relation: ordinary remediation reaches format-specific mutation through a structured-document seam. Enforcement of that relation is a separate Alignment decision.</figcaption></figure>
-<p>The model leaves almost everything else out. It says nothing about queues, retries, deployment, user sessions, cost, or the mechanics of individual repairs. Those facts are real but irrelevant to this question. The model deliberately preserves only the architectural boundary that matters here.</p>
-<p>Note that the model only <em>states</em> that relation; it does not enforce it. Part III returns to the same relation when a static control detects code that bypasses the seam. The model supplies the architectural claim; the mechanism gives that claim authority.</p>
+</svg><figcaption data-short="Document-mutation structural model"><span class="fig-label">Figure 2.2-2.</span> <em>Document-mutation structural model.</em> The reduction preserves one architectural relation: ordinary remediation reaches format-specific mutation through a structured-document seam. Enforcement of that relation is a separate Alignment decision.</figcaption></figure>
+<p>The principal property is a path claim: every ordinary route to format-specific mutation crosses the seam, and no route reaches a raw format library directly. The model <em>states</em> that relation and exposes it to checking; it does not, by existing, enforce it. Part III returns to the same relation when a static control flags code that bypasses the seam. The model supplies the architectural claim; the mechanism gives that claim authority. This obligation is a <strong>hard</strong> one — a lint refuses the bypass — but the refusal belongs to Part III.</p>
 <p id="idx-def-model-drift">A structural model carries the opposite risk too. The code moves and the drawing does not, so the boundary it shows quietly stops matching the system. That gap between a model and the system it describes is <strong>model drift</strong>. Later sections make the correspondence explicit by deriving, generating, or tracing between model and implementation.</p>
-<p>The reduction is the point. <a class="xref" href="2.2-structural.html#fig-2-2-2">Figure&nbsp;2.2-2</a> shows what the model keeps and what it drops: a territory crowded with UI, queues, workers, retries, storage, and deployment collapses to the one seam the question is about.</p>
-<figure id="fig-2-2-2" class="book-figure" data-label="structural-reduction"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400"
-     role="img" aria-labelledby="f-structural-reduction-srTitle f-structural-reduction-srDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-structural-reduction-srTitle">Structural reduction: the full territory reduced to the seam that answers one question</title>
-  <desc id="f-structural-reduction-srDesc">On the left, the full territory: UI, queue, workers, retries, remediation and format
-    libraries, storage, and deployment — a crowd of runtime and implementation detail. A purposeful
-    reduction arrow points right to a clean three-layer model: remediation logic, structured document
-    model, format implementation. The reduction preserves one question — where may document mutation
-    occur — and suppresses everything unrelated to it.</desc>
-
-  <defs>
-    <marker id="f-structural-reduction-sr-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-  </defs>
-
-  <!-- LEFT: full territory (gray) — deliberately noisy but UNIFORM; no item is visually privileged -->
-  <text x="235" y="34" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1.2" fill="#57534e">TERRITORY</text>
-  <rect id="f-structural-reduction-territory" x="40" y="48" width="390" height="284" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <g font-size="19.2" fill="#57534e" text-anchor="middle">
-    <text x="118" y="88">UI</text>
-    <text x="235" y="88">queue</text>
-    <text x="352" y="88">workers</text>
-    <text x="118" y="120">retries</text>
-    <text x="235" y="120">scaling</text>
-    <text x="352" y="120">cache</text>
-    <text x="118" y="152">storage</text>
-    <text x="235" y="152">deployment</text>
-    <text x="352" y="152">logging</text>
-    <text x="118" y="184">metrics</text>
-    <text x="235" y="184">auth</text>
-    <text x="352" y="184">config</text>
-    <text x="118" y="216">remediation</text>
-    <text x="235" y="216">format libs</text>
-    <text x="352" y="216">billing</text>
-  </g>
-  <text x="235" y="278" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">most of the system is not relevant</text>
-  <text x="235" y="300" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">to this question</text>
-
-  <!-- reduction arrow: territory reduces to the surviving seam. Tail seats on the territory's right border,
-       head on the seam box's left border (was floating in the whitespace between the two groups). -->
-  <!-- edge: territory -> seam -->
-  <line x1="430" y1="168" x2="598" y2="168" stroke="#2f5169" stroke-width="2.6" marker-end="url(#f-structural-reduction-sr-b)"/>
-  <text x="484" y="178" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">purposeful</text>
-  <text x="484" y="212" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">reduction</text>
-
-  <!-- RIGHT: reduced model (blue) -->
-  <text x="745" y="34" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1.2" fill="#2f5169">MODEL</text>
-  <rect id="f-structural-reduction-rem-logic" x="600" y="60" width="290" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="745" y="92" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">remediation logic</text>
-  <!-- edge: rem-logic -> seam -->
-  <line x1="745" y1="112" x2="745" y2="140" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-structural-reduction-sr-b)"/>
-  <!-- the ONE thing the reduction preserves: the seam. Highlighted; the other two layers are ordinary blue. -->
-  <rect id="f-structural-reduction-seam" x="600" y="142" width="290" height="52" rx="10" fill="#d3e0ea" stroke="#2f5169" stroke-width="3.4"/>
-  <text x="745" y="168" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">structured document model</text>
-  <text x="745" y="186" text-anchor="middle" font-size="19.2" font-style="italic" fill="#2f5169">the surviving seam</text>
-  <!-- edge: seam -> format-impl -->
-  <line x1="745" y1="194" x2="745" y2="222" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-structural-reduction-sr-b)"/>
-  <rect id="f-structural-reduction-format-impl" x="600" y="224" width="290" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="745" y="256" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">format implementation</text>
-  <text x="745" y="302" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">Question preserved:</text>
-  <text x="745" y="322" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">&#8220;Where may document mutation occur?&#8221;</text>
-
-  <!-- footer: protect the point -->
-  <text x="480" y="372" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">The question determines what survives the reduction.</text>
-</svg><figcaption data-short="Purposeful reduction"><span class="fig-label">Figure 2.2-2.</span> <em>Purposeful reduction.</em> The structural model suppresses unrelated runtime and implementation detail while preserving the architectural seam needed to answer where document mutation belongs.</figcaption></figure>
-<p>The engineering question — <em>where may document mutation occur?</em> — is preserved; everything the question does not need is gone.</p>
+<h2><span class="sec-num">2.2.3</span> DocAble: Computation and Composition</h2>
 <p>The document-mutation model asked where one kind of change belongs. A second structural question reaches further inside the system: what computations make up remediation, and how do they depend on one another? DocAble runs a document through a collection of registered remediation passes. A pass may detect a condition, produce information a later pass uses, decide whether remediation should proceed, apply a bounded change to the intermediate representation, or edit a larger region directly. That structure exists in the implementation whether or not a model names it. The first reduction is the obvious one: treat each registered pass as a node, and suppress the statements, library calls, and loops inside it.</p>
 <blockquote class="box-model-card"><span class="box-corner">MODEL CARD</span><p class="inset-title">Remediation-computation model · Structural</p>
 <ul><li><strong>Engineering question</strong> — What consequential computations make up remediation, and how does information move among them?</li><li><strong>Model</strong> — a static directed graph whose nodes are registered computations and whose typed edges represent declared composition among them.</li><li><strong>Property</strong> — declared data dependencies and control dependencies are distinguishable and consistent with pipeline ordering; each modeled computation also states whether its effect is bounded as a typed patch, unbounded as a direct edit, or read-only.</li><li><strong>Quality attribute</strong> — analyzability, modifiability, and architectural integrity.</li></ul></blockquote>
-<p>DocAble's remediation-computation model represents registered computations as nodes and distinguishes two kinds of composition. A data-flow edge means one computation produces information another consumes in producing its result. A control edge means one computation produces information another consults only to decide whether it should run. Treating both as a generic dependency would obscure a consequential distinction: information that contributes to a result is different from information that controls whether the computation occurs.</p>
-<p><a class="xref" href="2.2-structural.html#fig-2-2-3">Figure&nbsp;2.2-3</a> shows the resulting reduction.</p>
+<p>DocAble's remediation-computation model represents registered computations as nodes and distinguishes two kinds of composition. A data-flow edge means one computation produces information another consumes in producing its result. A control edge means one computation produces information another consults only to decide whether it should run. Treating both as a generic dependency would obscure a consequential distinction: information that contributes to a result is different from information that controls whether the computation occurs. <a class="xref" href="2.2-structural.html#fig-2-2-3">Figure&nbsp;2.2-3</a> draws the resulting reduction.</p>
 <figure id="fig-2-2-3" class="book-figure" data-label="from-nodes-to-composition"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 606"
      role="img" aria-labelledby="f-from-nodes-to-composition-fncTitle f-from-nodes-to-composition-fncDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-from-nodes-to-composition-fncTitle">From computations to composition</title>
@@ -1010,7 +981,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="242" y="524" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">113 computations</text>
   <text x="242" y="546" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">2 authored relations</text>
   <text x="500" y="580" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">2 authored edges  →  33 derived, typed relations  →  11 payload + 22 control</text>
-</svg><figcaption data-short="From computations to composition"><span class="fig-label">Figure 2.2-3.</span> <em>From computations to composition.</em> The initial projection captured 113 registered computations but only two hand-authored relations. Deriving and typing thirty-three candidate dependencies exposed two distinct semantics: eleven payload-bearing relations — ten data-flow and one cross-service — and twenty-two control gates.</figcaption></figure>
+</svg><figcaption data-short="From computations to composition"><span class="fig-label">Figure 2.2-3.</span> <em>From computations to composition.</em> Typing the dependencies among registered computations separates payload-bearing relations — data-flow and cross-service — from control gates that a computation consults only to decide whether it runs.</figcaption></figure>
 <p>The same model also records how bounded each computation's effect is: some produce typed patches, some edit document state directly, and some are read-only. These distinctions do not declare one form universally better. They make previously implicit differences available for engineering questions about composition and mutation. A useful model can therefore expose distinctions that the implementation contains but does not represent uniformly.</p>
-<p>The graph is deliberately static. It says nothing about which pass ran in a given job, how long it took, what it cost, whether it retried, or which model fingerprint took part. Those questions belong to an execution model or an execution record. DocAble already records part of that runtime history — a per-session log of the mutations a remediation actually made — but it does not yet join that history to the static computation graph. That record answers a different question, <em>what happened to this artifact</em>, and belongs with the provenance model later in this Part. The two could eventually be joined through shared computation identity. Today they are separate by design.</p>
+<p>The graph is deliberately static. It says nothing about which pass ran in a given job, how long it took, what it cost, whether it retried, or which model fingerprint took part. Those questions belong to an execution record. DocAble already records part of that runtime history — a per-session log of the mutations a remediation actually made — but it does not yet join that history to the static computation graph. That record answers a different question, <em>what happened to this artifact</em>, and belongs with the provenance model later in this Part. The two could eventually be joined through shared computation identity; today they are separate by design.</p>
 <p>The next chapter adds time: what states a thing occupies, and the orderings it is allowed to move through.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">« Beginning of part</a><a href="2.1-context-is-the-first-modeling-problem.html" aria-label="Previous chapter — 5 · From Context to Engineering Models">« Previous chapter</a></div><span class="chapnav-here" title="6 · Structural Models: What Is Connected to What?">6 · Structural Models: What Is Connected to What?</span><div class="chapnav-fwd"><a href="2.3-behavioral.html" aria-label="Next chapter — 7 · Behavioral Models: What May Happen?">Next chapter »</a><a href="part-3-intro.html" aria-label="Next part — Part 3 — Alignment">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

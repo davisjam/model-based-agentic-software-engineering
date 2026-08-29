@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part 2 canonical opener — Structural (2.2 small service architecture). Shared visual grammar; rust family ground. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" width="1040" height="640" role="img" aria-labelledby="canonical-structuralT canonical-structuralD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="canonical-structuralT">Canonical structural model: a small service architecture</title>
+  <desc id="canonical-structuralD">A structural opener in the shared grammar. WEB depends on API; API reaches DATABASE and CACHE. A struck-through dashed arrow marks a forbidden bypass from WEB straight to DATABASE around API. Caption: Question, Semantics, Typical analysis. Rust ground marks the structural family.</desc>
+  <defs>
+    <marker id="ah-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
+    <marker id="ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
+    <marker id="ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="640" fill="#fdfcf9"/>
+  <text x="520" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Structural model — what is connected to what?</text>
+  <rect x="445" y="92" width="150" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="520" y="130" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">WEB</text>
+  <rect x="445" y="214" width="150" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="520" y="252" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">API</text>
+  <rect x="250" y="336" width="200" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="350" y="374" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">DATABASE</text>
+  <rect x="600" y="336" width="180" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="690" y="374" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">CACHE</text>
+  <line x1="520" y1="152" x2="520" y2="212" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#ah-rust)"/>
+  <text x="540" y="187" text-anchor="start" font-size="20" font-style="italic" fill="#57534e">depends on</text>
+  <path d="M470,274 L470,305 L350,305 L350,334" fill="none" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#ah-rust)"/>
+  <path d="M570,274 L570,305 L690,305 L690,334" fill="none" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#ah-rust)"/>
+  <text x="300" y="300" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">reaches</text>
+  <text x="742" y="300" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">reaches</text>
+  <path d="M443,132 C300,190 210,250 300,336" fill="none" stroke="#57534e" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#ah-muted)"/>
+  <line x1="238" y1="224" x2="262" y2="248" stroke="#1c1917" stroke-width="3"/><line x1="238" y1="248" x2="262" y2="224" stroke="#1c1917" stroke-width="3"/>
+  <text x="196" y="300" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">forbidden</text>
+  <text x="196" y="324" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">bypass</text>
+  <text x="26" y="474" font-size="21" fill="#1c1917"><tspan font-weight="700">Question:</tspan> What exists, and what is connected to what?</text>
+  <text x="26" y="505" font-size="21" fill="#1c1917"><tspan font-weight="700">Semantics:</tspan> node = an engineering entity; edge = a declared structural relation.</text>
+  <text x="26" y="536" font-size="21" fill="#1c1917"><tspan font-weight="700">Typical analysis:</tspan> reachability, path / cut analysis, cycle detection.</text>
+</svg>

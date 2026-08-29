@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 15,
     "elaborative_links": 20,
     "units_serving_as_elaborative": 17,
-    "sections_total": 208,
+    "sections_total": 211,
     "sections_primary_of_an_outcome": 26,
     "modules": 8,
-    "lessons": 34
+    "lessons": 35
   },
   "taxonomy": {
     "know": [
@@ -153,6 +153,11 @@
         "lessons": [
           {
             "lesson": "2.1-context-is-the-first-modeling-problem",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "2.2-structural",
             "own_outcomes": [],
             "section_outcomes": []
           },

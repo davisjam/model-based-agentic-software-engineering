@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part 2 canonical opener — Decision (Fig 2.5-C1). Shared visual grammar; green family ground. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" width="1040" height="640" role="img" aria-labelledby="canonical-decisionT canonical-decisionD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="canonical-decisionT">Canonical decision model: the same arrow carries a different mood</title>
+  <desc id="canonical-decisionD">A decision opener. On the left, a descriptive structural edge: Service A calls B, a fact. On the right, a normative decision edge with identical topology: Service A may call B, a rule. A struck-through dashed arrow on the normative side shows that an absent edge means not permitted. Caption: Question, Semantics, Typical analysis. Green ground marks the decision family.</desc>
+  <defs>
+    <marker id="ah-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
+    <marker id="ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
+    <marker id="ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="640" fill="#fdfcf9"/>
+  <text x="520" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Decision model — same arrow, different mood</text>
+  <line x1="520" y1="96" x2="520" y2="330" stroke="#e4e0d8" stroke-width="2"/>
+  <text x="270" y="132" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">DESCRIPTIVE</text>
+  <text x="270" y="158" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">a fact about what happens</text>
+  <rect x="90" y="190" width="140" height="58" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="160" y="226" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Service A</text>
+  <rect x="340" y="190" width="130" height="58" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="405" y="226" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">B</text>
+  <line x1="230" y1="219" x2="338" y2="219" stroke="#155c38" stroke-width="2.2" marker-end="url(#ah-green)"/>
+  <text x="285" y="208" text-anchor="middle" font-size="20" font-style="italic" fill="#155c38">calls</text>
+  <text x="775" y="132" text-anchor="middle" font-size="22" font-weight="700" fill="#155c38">NORMATIVE</text>
+  <text x="775" y="158" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">a rule about what is permitted</text>
+  <rect x="590" y="190" width="140" height="58" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="660" y="226" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Service A</text>
+  <rect x="840" y="190" width="130" height="58" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="905" y="226" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">B</text>
+  <line x1="730" y1="219" x2="838" y2="219" stroke="#155c38" stroke-width="2.2" marker-end="url(#ah-green)"/>
+  <text x="785" y="208" text-anchor="middle" font-size="20" font-style="italic" fill="#155c38">may call</text>
+  <line x1="590" y1="300" x2="834" y2="300" stroke="#57534e" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#ah-muted)"/>
+  <line x1="700" y1="288" x2="724" y2="312" stroke="#1c1917" stroke-width="3"/><line x1="700" y1="312" x2="724" y2="288" stroke="#1c1917" stroke-width="3"/>
+  <text x="775" y="328" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">an absent edge = not permitted</text>
+  <text x="26" y="474" font-size="21" fill="#1c1917"><tspan font-weight="700">Question:</tspan> What is allowed, required, or prohibited?</text>
+  <text x="26" y="505" font-size="21" fill="#1c1917"><tspan font-weight="700">Semantics:</tspan> an edge is a permission, not an observation;</text>
+  <text x="44" y="532" font-size="21" fill="#1c1917">an absent edge reads “not allowed,” not “never happens.”</text>
+  <text x="26" y="563" font-size="21" fill="#1c1917"><tspan font-weight="700">Typical analysis:</tspan> rule evaluation, conflict and consistency checking.</text>
+</svg>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part 2 canonical opener — Measurement (Fig 2.6-C1). Shared visual grammar; neutral family ground. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" width="1040" height="640" role="img" aria-labelledby="canonical-measurementT canonical-measurementD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="canonical-measurementT">Canonical measurement model: two chains, two bounds</title>
+  <desc id="canonical-measurementD">A measurement opener. A cost chain relates usage and pricing to an attributable cost, compared against a bracketed BUDGET envelope. A capacity chain relates concurrency to a capacity demand, compared against a bracketed CAPACITY ENVELOPE. The bracketed envelope is the reusable quantity-versus-bound glyph. Caption: Question, Semantics, Typical analysis. Neutral ground marks the measurement family.</desc>
+  <defs>
+    <marker id="ah-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
+    <marker id="ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
+    <marker id="ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="640" fill="#fdfcf9"/>
+  <text x="520" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Measurement model — how much, against what bound?</text>
+  <text x="70" y="132" font-size="19" font-weight="700" letter-spacing="0.06em" fill="#57534e">COST CHAIN</text>
+  <rect x="70" y="146" width="210" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="175" y="182" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">usage + pricing</text>
+  <rect x="360" y="146" width="220" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="470" y="182" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">attributable cost</text>
+  <line x1="280" y1="175" x2="358" y2="175" stroke="#57534e" stroke-width="2.2" marker-end="url(#ah-muted)"/>
+  <path d="M710,148 L700,148 L700,204 L710,204" fill="none" stroke="#1c1917" stroke-width="2.4"/>
+  <path d="M960,148 L970,148 L970,204 L960,204" fill="none" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="835" y="184" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">BUDGET</text>
+  <line x1="580" y1="175" x2="698" y2="175" stroke="#57534e" stroke-width="2.2" marker-end="url(#ah-muted)"/>
+  <text x="639" y="165" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">compare</text>
+  <text x="70" y="292" font-size="19" font-weight="700" letter-spacing="0.06em" fill="#57534e">CAPACITY CHAIN</text>
+  <rect x="70" y="306" width="210" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="175" y="342" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">concurrency</text>
+  <rect x="360" y="306" width="220" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="470" y="342" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">capacity demand</text>
+  <line x1="280" y1="335" x2="358" y2="335" stroke="#57534e" stroke-width="2.2" marker-end="url(#ah-muted)"/>
+  <path d="M690,308 L680,308 L680,364 L690,364" fill="none" stroke="#1c1917" stroke-width="2.4"/>
+  <path d="M980,308 L990,308 L990,364 L980,364" fill="none" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="835" y="343" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">CAPACITY ENVELOPE</text>
+  <line x1="580" y1="335" x2="678" y2="335" stroke="#57534e" stroke-width="2.2" marker-end="url(#ah-muted)"/>
+  <text x="629" y="325" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">compare</text>
+  <text x="26" y="474" font-size="21" fill="#1c1917"><tspan font-weight="700">Question:</tspan> How much, and against what bound?</text>
+  <text x="26" y="505" font-size="21" fill="#1c1917"><tspan font-weight="700">Semantics:</tspan> relate quantities (usage × price = cost; concurrency = demand),</text>
+  <text x="44" y="532" font-size="21" fill="#1c1917">then compare each against a bracketed bound.</text>
+  <text x="26" y="563" font-size="21" fill="#1c1917"><tspan font-weight="700">Typical analysis:</tspan> aggregation, comparison against a bound, capacity planning.</text>
+</svg>

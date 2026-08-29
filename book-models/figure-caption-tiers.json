@@ -1170,6 +1170,42 @@
       "kind": "conceptual-convergence",
       "location": "part6",
       "rationale": "two established traditions (engineering + AI) converge in MAGE's new composition → GEE → governance conversion → engineering capital; the §6.5.4 heritage anchor"
+    },
+    "assets/canonical-structural.svg": {
+      "tier": "B",
+      "kind": "canonical-opener",
+      "location": "part2",
+      "rationale": "the structural move — entities and typed relations, the edge label carrying the engineering meaning; supporting caption naming reachability/path/cycle analyses"
+    },
+    "assets/canonical-behavioral.svg": {
+      "tier": "B",
+      "kind": "canonical-opener",
+      "location": "part2",
+      "rationale": "the behavioral move — states and permitted transitions, the omitted edge as the forbidden behavior; supporting caption on the reachability/liveness analyses"
+    },
+    "assets/canonical-ownership.svg": {
+      "tier": "B",
+      "kind": "canonical-opener",
+      "location": "part2",
+      "rationale": "the ownership move — a claim over time carrying the generation that rejects a stale claimant; supporting caption on interleaving analysis"
+    },
+    "assets/canonical-decision.svg": {
+      "tier": "B",
+      "kind": "canonical-opener",
+      "location": "part2",
+      "rationale": "the decision move — the same arrow read descriptively (calls) and normatively (may call); supporting caption on the absent edge and policy checks"
+    },
+    "assets/canonical-measurement.svg": {
+      "tier": "B",
+      "kind": "canonical-opener",
+      "location": "part2",
+      "rationale": "the measurement move — quantities related and a value read against a declared envelope; supporting caption on aggregate-and-compare analysis"
+    },
+    "assets/canonical-provenance.svg": {
+      "tier": "B",
+      "kind": "canonical-opener",
+      "location": "part2",
+      "rationale": "the provenance move — typed derivation/attribution relations over stable identities; supporting caption on lineage/audit traversals"
     }
   }
 }

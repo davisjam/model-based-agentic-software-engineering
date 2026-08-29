@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part 2 canonical opener — Ownership (Fig 2.4-C1). Shared visual grammar; blue family ground. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" width="1040" height="640" role="img" aria-labelledby="canonical-ownershipT canonical-ownershipD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="canonical-ownershipT">Canonical ownership model: a claim relates a holder to a resource, with time</title>
+  <desc id="canonical-ownershipD">An ownership opener. Worker A holds the current claim on Job 42, stamped with owner, generation, and expiry. A struck-through dashed arrow marks Worker B's stale claim, which cannot supersede the current one. Caption: Question, Semantics, Typical analysis. Blue ground marks the ownership family.</desc>
+  <defs>
+    <marker id="ah-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
+    <marker id="ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
+    <marker id="ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="640" fill="#fdfcf9"/>
+  <text x="520" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Ownership model — who controls what, and when?</text>
+  <rect x="90" y="140" width="210" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="195" y="179" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Worker A</text>
+  <rect x="560" y="208" width="280" height="88" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="700" y="248" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Job 42</text>
+  <text x="700" y="276" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">owner · epoch · expiry</text>
+  <rect x="90" y="322" width="210" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="195" y="361" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Worker B</text>
+  <path d="M300,171 L430,171 L430,240 L558,240" fill="none" stroke="#2f5169" stroke-width="3.2" marker-end="url(#ah-blue)"/>
+  <text x="452" y="160" text-anchor="middle" font-size="20" font-style="italic" fill="#2f5169">owns (current claim)</text>
+  <path d="M300,353 L430,353 L430,282 L556,282" fill="none" stroke="#57534e" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#ah-muted)"/>
+  <line x1="418" y1="306" x2="442" y2="330" stroke="#1c1917" stroke-width="3"/><line x1="418" y1="330" x2="442" y2="306" stroke="#1c1917" stroke-width="3"/>
+  <text x="470" y="404" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">stale claim — cannot supersede</text>
+  <text x="26" y="474" font-size="21" fill="#1c1917"><tspan font-weight="700">Question:</tspan> Who controls what, and when?</text>
+  <text x="26" y="505" font-size="21" fill="#1c1917"><tspan font-weight="700">Semantics:</tspan> node = a holder or a resource; edge = a claim,</text>
+  <text x="44" y="532" font-size="21" fill="#1c1917">stamped with a generation and a lifetime.</text>
+  <text x="26" y="563" font-size="21" fill="#1c1917"><tspan font-weight="700">Typical analysis:</tspan> interleaving exploration; invariant checking over claims.</text>
+</svg>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part 2 canonical opener — Provenance (Fig 2.7-C1). Shared visual grammar; neutral family ground. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" width="1040" height="640" role="img" aria-labelledby="canonical-provenanceT canonical-provenanceD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="canonical-provenanceT">Canonical provenance model: general relations specialized to derivation and attribution</title>
+  <desc id="canonical-provenanceD">A provenance opener. A general entity-relation-entity row (tuples, triples, RDF) specializes downward into a provenance graph: an artifact is derivedFrom a source and producedBy an activity, which is attributedTo an agent. Caption: Question, Semantics, Typical analysis. Neutral ground marks the provenance family.</desc>
+  <defs>
+    <marker id="ah-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
+    <marker id="ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
+    <marker id="ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="640" fill="#fdfcf9"/>
+  <text x="520" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Provenance model — what happened, and what records it?</text>
+  <rect x="250" y="110" width="150" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="325" y="144" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">entity</text>
+  <rect x="520" y="110" width="150" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="595" y="144" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">entity</text>
+  <line x1="400" y1="137" x2="518" y2="137" stroke="#57534e" stroke-width="2.2" marker-end="url(#ah-muted)"/>
+  <text x="459" y="127" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">relation</text>
+  <text x="985" y="141" text-anchor="end" font-size="19" font-style="italic" fill="#57534e">(general: tuples / triples / RDF)</text>
+  <line x1="520" y1="168" x2="520" y2="202" stroke="#57534e" stroke-width="2.4" marker-end="url(#ah-muted)"/>
+  <text x="548" y="190" text-anchor="start" font-size="19" font-style="italic" fill="#57534e">specialize to</text>
+  <rect x="110" y="300" width="160" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="190" y="337" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">artifact</text>
+  <rect x="430" y="214" width="150" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="505" y="249" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">source</text>
+  <rect x="430" y="380" width="170" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="515" y="415" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">activity</text>
+  <rect x="760" y="380" width="150" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="835" y="415" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">agent</text>
+  <path d="M270,312 L350,312 L350,242 L428,242" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#ah-muted)"/>
+  <text x="356" y="232" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">derivedFrom</text>
+  <path d="M270,348 L350,348 L350,408 L428,408" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#ah-muted)"/>
+  <text x="356" y="398" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">producedBy</text>
+  <line x1="600" y1="408" x2="758" y2="408" stroke="#57534e" stroke-width="2.6" marker-end="url(#ah-muted)"/>
+  <text x="679" y="398" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">attributedTo</text>
+  <text x="26" y="474" font-size="21" fill="#1c1917"><tspan font-weight="700">Question:</tspan> What happened, and what evidence records it?</text>
+  <text x="26" y="505" font-size="21" fill="#1c1917"><tspan font-weight="700">Semantics:</tspan> typed attribution &amp; derivation edges (producedBy, derivedFrom,</text>
+  <text x="44" y="532" font-size="21" fill="#1c1917">attributedTo) over stable identities — a reduction of history.</text>
+  <text x="26" y="563" font-size="21" fill="#1c1917"><tspan font-weight="700">Typical analysis:</tspan> backward lineage, forward impact, audit reconstruction.</text>
+</svg>
