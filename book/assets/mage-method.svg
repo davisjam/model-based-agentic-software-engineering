@@ -37,8 +37,8 @@
     Engineering Imbalance, making implementation abundant while judgment, representation, evidence, and
     authority stay scarce; it changes the economics of the imbalance but does not cause the reasoning
     horizon. The Modeling Principle answers the imbalance by making consequential knowledge and intent
-    explicit at useful scales, which expands the semantic surface that governance can act on and reaches
-    the Alignment Principle, where obligations are given authority through constraints, sensors, validators,
+    explicit at useful scales, which exposes those properties for analysis and reaches
+    the Alignment Principle, where selected obligations are given authority through constraints, sensors, validators,
     and gates. Passing through Alignment the spine enters the Governed Engineering Environment — the
     synthesis of both principles — and effort compounds as Engineering Capital when future value exceeds its
     carrying cost. A single subordinate governance-conversion loop feeds recurring failures and judgment
@@ -129,8 +129,8 @@
   <path d="M500,500 L500,600" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#mm-ah)"/>
   <!-- the relationship label's background doubles as the node the governance-conversion loop plugs into -->
   <rect id="semantic-surface" x="342" y="512" width="316" height="56" fill="#fdfcf9"/>
-  <text x="500" y="536" text-anchor="middle" font-size="20" font-weight="600" fill="#1f7a4d">makes more of the</text>
-  <text x="500" y="560" text-anchor="middle" font-size="20" font-weight="600" fill="#1f7a4d">system governable</text>
+  <text x="500" y="536" text-anchor="middle" font-size="20" font-weight="600" fill="#1f7a4d">exposes properties</text>
+  <text x="500" y="560" text-anchor="middle" font-size="20" font-weight="600" fill="#1f7a4d">for analysis</text>
 
   <!-- Alignment Principle -->
   <rect id="alignment" x="350" y="602" width="300" height="126" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
