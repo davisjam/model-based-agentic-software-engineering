@@ -38,5 +38,5 @@ precise enough to be wrong.
 **Carrying forward:** Commodity intelligence · Modeling Principle · Alignment Principle · Governed
 Engineering Environment · Engineering capital · Probabilistic surface
 
-**New here:** Dynamic Model · Environment quality · Determinization frontier · Scope conditions ·
+**New here:** Dynamic Model · Environment quality · Determinization frontier · Representation innovation · Scope conditions ·
 Testable predictions · Research agenda
