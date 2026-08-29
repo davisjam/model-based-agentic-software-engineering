@@ -7,7 +7,7 @@
     "derived_ids": 188,
     "missing_topic_sentence": 2,
     "sections_drained": 121,
-    "paragraph_points": 494
+    "paragraph_points": 493
   },
   "chapters": [
     {
@@ -1733,11 +1733,6 @@
               "slug": "decidable-edges-a-lint-settles-semantic-ones-a-validator-or-human-judges",
               "text": "Some candidate conflicts are mechanically decidable; others are semantic — a sensor produces evidence of the interaction, a validator or human judges whether it is a conflict.",
               "block_index": 23
-            },
-            {
-              "slug": "the-graph-makes-mechanisms-compose-explicit-and-checkable",
-              "text": "A governed environment is a claim that its mechanisms compose; the graph makes that claim explicit and checkable at authoring time.",
-              "block_index": 25
             }
           ]
         },
@@ -1747,22 +1742,22 @@
           "heading_text": "Trace Obligations to Mechanisms",
           "topic_sentence": "Interactions are only half of governing the control machinery.",
           "id_source": "derived",
-          "block_index": 27,
+          "block_index": 25,
           "points": [
             {
               "slug": "a-catalogue-and-a-graph-do-not-say-what-should-be-governed-but-is-not",
               "text": "A catalogue says what exists and a graph says where controls collide; neither says what should be governed but is not.",
-              "block_index": 29
+              "block_index": 27
             },
             {
               "slug": "coverage-is-a-requirements-traceability-problem-gap-vs-orphan",
               "text": "Coverage is a small requirements-traceability problem: an obligation with no adequate mechanism is a coverage gap; a mechanism with no obligation is an orphan.",
-              "block_index": 31
+              "block_index": 29
             },
             {
               "slug": "gap-is-under-governance-orphan-is-governance-debt-neither-automatically-bad",
               "text": "A coverage gap is an uncovered obligation; an orphan is a mechanism with no current purpose. Neither is automatically bad — an orphan is a finding to reconcile, not proof to delete.",
-              "block_index": 34
+              "block_index": 32
             }
           ]
         },
@@ -1772,27 +1767,27 @@
           "heading_text": "Add, Reconcile, and Retire Controls",
           "topic_sentence": "Governance conversion and coverage auditing provide complementary pressures.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 35,
           "points": [
             {
               "slug": "conversion-is-reactive-coverage-is-proactive-a-healthy-environment-needs-both",
               "text": "Governance conversion is reactive and coverage auditing is proactive; a healthy environment needs both.",
-              "block_index": 39
+              "block_index": 37
             },
             {
               "slug": "the-same-audit-pushes-against-permanent-accumulation-capital-is-not-the-number-of-controls",
               "text": "The same audit pushes against permanent accumulation: engineering capital is not the number of controls.",
-              "block_index": 41
+              "block_index": 39
             },
             {
               "slug": "the-meta-model-stays-connected-where-controls-are-modeled-explicitly",
               "text": "Where DocAble models controls explicitly, entries can be anchored to their implementations and drift-checked, so a mis-placed control fails loud.",
-              "block_index": 43
+              "block_index": 41
             },
             {
               "slug": "stop-the-recursion-unless-experience-earns-more-model-the-estate-that-exists",
               "text": "Stop the recursion unless experience earns more: a governance model can itself become bureaucracy.",
-              "block_index": 45
+              "block_index": 43
             }
           ]
         }

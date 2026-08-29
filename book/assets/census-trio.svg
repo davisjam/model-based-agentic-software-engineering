@@ -27,8 +27,7 @@
     panel, the interaction graph, relates [A] and [B] through a shared resource, the commit set, where they
     collide; [C] stands alone. Right panel, the coverage view, relates controls to the obligations that
     justify them: scope-bounded traces to [A] and brief-followed to [B], while the cost-ceiling obligation
-    has no control — a GAP, under-governance — and [C] traces to no obligation — an ORPHAN, candidate
-    governance debt. The same control identities appear in every view; each view selects and adds the
+    has no control — a coverage gap — and [C] traces to no obligation — an orphan. The same control identities appear in every view; each view selects and adds the
     relations its engineering question needs.</desc>
 
   <defs>
@@ -141,11 +140,8 @@
 
   <!-- GAP + ORPHAN flags -->
   <g text-anchor="middle" font-weight="700" fill="#b23b3b" font-size="25.6">
-    <text x="976" y="366">GAP</text>
-    <text x="976" y="392">under-governance</text>
+    <text x="976" y="366">COVERAGE GAP</text>
     <text x="1180" y="366">ORPHAN</text>
-    <text x="1180" y="392">candidate</text>
-    <text x="1180" y="418">governance debt</text>
   </g>
 
   <!-- ============ footer ============ -->
