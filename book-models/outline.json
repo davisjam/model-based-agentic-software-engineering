@@ -4203,7 +4203,7 @@
           "heading_text": "The engineering-capital proposition",
           "topic_sentence": "Representation leverage explains how structure can make one episode of reasoning easier.",
           "id_source": "derived",
-          "block_index": 47,
+          "block_index": 52,
           "points": []
         },
         {
@@ -4212,7 +4212,7 @@
           "heading_text": "Modeling and Alignment Are Distinct—and Compound",
           "topic_sentence": "The previous propositions explain why durable structure can help, but they combine two effects that MAGE deliberately keeps separate.",
           "id_source": "derived",
-          "block_index": 56,
+          "block_index": 61,
           "points": []
         },
         {
@@ -4221,7 +4221,7 @@
           "heading_text": "Cost and failure, separately",
           "topic_sentence": "The distinction can be made precise by considering cost and failure separately.",
           "id_source": "derived",
-          "block_index": 62,
+          "block_index": 67,
           "points": []
         },
         {
@@ -4230,7 +4230,7 @@
           "heading_text": "Software engineering changes the problem",
           "topic_sentence": "The analysis so far asks what happens when repeated attempts face the same realization problem.",
           "id_source": "derived",
-          "block_index": 78,
+          "block_index": 83,
           "points": []
         },
         {
@@ -4239,7 +4239,7 @@
           "heading_text": "Modeling can also enable Alignment",
           "topic_sentence": "The two principles interact in a second way.",
           "id_source": "derived",
-          "block_index": 88,
+          "block_index": 93,
           "points": []
         },
         {
@@ -4248,7 +4248,7 @@
           "heading_text": "The joint engineering problem",
           "topic_sentence": "We can now put the pieces back together.",
           "id_source": "derived",
-          "block_index": 97,
+          "block_index": 102,
           "points": []
         }
       ],
@@ -4372,9 +4372,9 @@
           "points": []
         },
         {
-          "section_id": "representation-selection-and-learning",
+          "section_id": "representation-selection-induction-and-innovation",
           "level": 2,
-          "heading_text": "Representation Selection and Learning",
+          "heading_text": "Representation Selection, Induction, and Innovation",
           "topic_sentence": "Part II offered six useful classes of engineering model, not a proof that those classes are necessary, sufficient, or minimal.",
           "id_source": "derived",
           "block_index": 34,
@@ -4386,7 +4386,7 @@
           "heading_text": "Experimental Designs",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 42,
           "points": []
         },
         {
@@ -4395,7 +4395,7 @@
           "heading_text": "Separating Modeling from Alignment",
           "topic_sentence": "One particularly clean factorial design can separate Modeling from Alignment.",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 43,
           "points": []
         },
         {
@@ -4404,7 +4404,7 @@
           "heading_text": "Multi-project longitudinal design",
           "topic_sentence": "This design should vary or observe engineered-environment quality while tracking durable throughput, defect escape, and human-attention burden over weeks or months.",
           "id_source": "derived",
-          "block_index": 42,
+          "block_index": 45,
           "points": []
         },
         {
@@ -4413,7 +4413,7 @@
           "heading_text": "Subsystem-level design",
           "topic_sentence": "It should compare engineering surfaces that differ in representation and governance while holding as much surrounding repository context constant as possible.",
           "id_source": "derived",
-          "block_index": 45,
+          "block_index": 48,
           "points": []
         },
         {
@@ -4422,7 +4422,7 @@
           "heading_text": "Event-centered longitudinal design",
           "topic_sentence": "It should follow one failure class through its whole life: first occurrence, repeat exposure, structural recognition, local repair, any durable conversion, propagation to later work, later recurrence, and eventual maintenance or retirement of the resulting asset.",
           "id_source": "derived",
-          "block_index": 47,
+          "block_index": 50,
           "points": []
         },
         {
@@ -4431,7 +4431,7 @@
           "heading_text": "What the designs still need",
           "topic_sentence": "All three designs require credible measures of durable throughput, human-attention burden, environment quality, and engineering-capital return.",
           "id_source": "derived",
-          "block_index": 49,
+          "block_index": 52,
           "points": []
         }
       ],
