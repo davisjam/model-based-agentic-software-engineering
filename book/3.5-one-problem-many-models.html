@@ -781,7 +781,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="One Problem, Many Models — MAGE"><header class="chap"><div class="kicker"><a href="3.5-one-problem-many-models.html" aria-label="Beginning of Interlude">Interlude</a></div><h1>One Problem, Many Models</h1></header><p>Parts II and III separated Modeling from Alignment so that each could be examined clearly. Engineering does not usually present them that way.</p>
-<p>A problem arrives as an observation: a file fails, a service slows down, or a new requirement exceeds the system's current range. The engineer may not yet know which property matters. A model makes one relation explicit, and an analysis of that model may answer the question — or reveal that the original question was the wrong one.</p>
+<p>A problem arrives as an observation: a file fails, a service slows down, or a new requirement exceeds the system's current range. The engineer may not yet know which property matters. A model makes one relation explicit. Analyzing it may answer the question or reveal a better one.</p>
 <p>This interlude follows one such problem in DocAble. It began with a PowerPoint file.</p>
 <h2>I. One Document, One Worker</h2>
 <p>The original remediation architecture treated a document as one unit of work.</p>
@@ -800,8 +800,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
                            │                                  │
                            └-&gt; [ pages 21-30 ] -&gt; [ worker ] -┘</code></pre>
 <p>Each worker handled only part of the document; multiple chunks could run concurrently, and their results could later be recombined. Chunking worked across a much broader workload: ordinary teaching presentations and hundreds of documents from multiple universities. Page ranges gave each ChunkWorker a practical bound on its working state, and experience provided no reason to replace that design merely because another architecture was possible.</p>
-<p>Like most architectures, it embodied assumptions inherited from the inputs encountered so far, and successful operation could exercise those assumptions without exposing them. The page boundary gradually became part of how DocAble was understood: a document was divided into chunks because chunks were how large documents were processed.</p>
-<p>Then a colleague supplied a presentation of roughly 250 MB, with enough embedded media to cross a boundary the previous workload had never reached. The next question first sounded like another scaling problem — how do we process a much larger PowerPoint file? — but the useful question turned out to be narrower: which bytes actually need to reside in a remediation worker?</p>
+<p>The architecture necessarily reflected the inputs encountered so far. Successful operation across that workload gave no reason to suspect which assumptions a different class of input might expose. The page boundary gradually became part of how DocAble was understood: a document was divided into chunks because chunks were how large documents were processed.</p>
+<p>Then a colleague supplied a presentation of roughly 250 MB, with enough embedded media to cross a boundary the previous workload had never reached. The apparent problem was simply how to process a much larger PowerPoint file. Modeling made a narrower question possible: which bytes actually need to reside in a remediation worker?</p>
 <h2>III. A New Class of Input</h2>
 <p>A 250 MB file does not imply that remediation needs 250 MB of document content in memory. The file holds several kinds of information. Some describe document structure: slides, shapes, text, relationships, identifiers, and references. The rest is payload: images, animated GIFs, movies, and other embedded media. Most remediation operations need the first group; they may need access to the second, but not every media byte resident at once.</p>
 <p>The existing representation coupled them.</p>
@@ -856,7 +856,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   + handles
   + remediation working set</code></pre>
 <p>and C does not grow with total media size.</p>
-<p>This is a different kind of claim from the one chunking could make. Chunking had empirical support:</p>
+<p>The claim is stronger than the empirical claim available from chunking. Chunking had empirical support:</p>
 <pre><code>these documents worked
         |
         v
@@ -914,16 +914,16 @@ FRONTIER 3
                                   [ next ready nodes ]
                                       causal</code></pre>
 <p>ChunkWorker partitions the work spatially; frontier execution partitions it causally. Skeletonization removed the memory pressure that had made page ranges the natural execution boundary, so the two approaches reconcile. Page identity can survive as metadata on graph nodes — useful for locality, debugging, rate limiting, or failure isolation — without remaining the fundamental unit of executable remediation.</p>
-<p>That distinction also guards against premature abstraction. The architecture needs a clean seam between the remediation graph and its executor:</p>
+<p>The architecture therefore needs only a clean seam between the remediation graph and its executor:</p>
 <pre><code>              remediation graph
                      |
                      | ready work +
                      | dependencies
                      v
                   executor</code></pre>
-<p>The executor can schedule by frontier now and by page locality later if measurements justify it. There is no need to build a strategy hierarchy because two policies are conceivable; the graph/executor seam preserves the degree of freedom without spending it. And once remediation has this representation, a further class of questions becomes answerable without changing the implementation at all.</p>
+<p>The executor can schedule by frontier now and by page locality later if measurements justify it. There is no need to build a strategy hierarchy merely because two policies are conceivable. The graph/executor seam preserves the degree of freedom without spending it. And once remediation has this representation, a further class of questions becomes answerable without changing the implementation at all.</p>
 <h2>VI. Analyze Before You Build</h2>
-<p>A remediation graph is executable structure, but it is also an object of analysis. Suppose a graph contains:</p>
+<p>A remediation graph is executable structure, but it can be analyzed before any executor is written. Suppose a graph contains:</p>
 <pre><code>                 [ A ]
                 /     \
                v       v
@@ -962,7 +962,7 @@ FRONTIER 3
                     /       |       \
                    v        v        v
                [ ALT 1 ] [ ALT 2 ] [ ALT 3 ] ...</code></pre>
-<p>Now each image consumes bounded neighboring visual context instead of a sibling's generated alt text. The payload grows, but the dependency disappears, and the operation stays a parallel MAP rather than a serial SCAN. This was as much a requirement discovery as a performance optimization: the visual context needed for good alt text can itself be represented and reused, just as textual document context already is. The model changed the proposed implementation before that implementation existed.</p>
+<p>Now each image consumes bounded neighboring visual context instead of a sibling's generated alt text. The payload grows, but the dependency disappears, and the operation stays a parallel MAP rather than a serial SCAN. The analysis also clarified the requirement. Good alt text needs sufficient visual context; it does not require serial generation. That context can itself be represented and reused, just as textual document context already is. The model changed the proposed implementation before that implementation existed.</p>
 <h3>Predicting latency</h3>
 <p>The same graph supports a first-order latency model. For the representative workload used during this analysis, the relevant GenAI chain had three levels:</p>
 <pre><code>section summary
@@ -1005,7 +1005,7 @@ on critical path?</code></pre>
           v        v        v
        wrong     wrong    missing
       parameter relation  mechanism</code></pre>
-<p>The numbers above illustrate the reasoning; the 17.8-second observation is not a measurement from this case. A residual creates an engineering question. Perhaps queue overhead was underestimated, perhaps two nodes believed independent share a serialized resource, perhaps media loading adds a cost the latency model omitted, perhaps the graph is missing a real dependency. A prediction that matches reality is evidence that the model captures the dominant mechanisms; a prediction that misses points to where the model or the system deserves investigation. The cycle becomes:</p>
+<p>The numbers above illustrate the reasoning; the 17.8-second observation is not a measurement from this case. A residual creates an engineering question. The queue overhead may have been underestimated. Two apparently independent nodes may share a serialized resource. Media loading may add a cost the latency model omitted, or the graph itself may be missing a real dependency. A prediction that matches reality provides evidence that the model captures the dominant mechanisms; a miss identifies where the model or system deserves investigation. The cycle becomes:</p>
 <pre><code>model -&gt; predict -&gt; implement -&gt; measure
   ^                             |
   |                             v
@@ -1041,7 +1041,7 @@ on critical path?</code></pre>
 <p>Steps 1–3 accumulate empirical evidence, and step 4 expands the known input space again. Steps 5–7 do something different: they seek a property over a declared class of inputs. The resulting guarantee is deliberately narrow — within the modeled envelope, total media size does not determine peak worker memory. Other unknowns remain possible; a future artifact may expose another structural dimension or another resource limit, and MAGE offers no reason to pretend otherwise. But if the next 250 MB deck arrives because it carries more media, the architecture should not have to learn this lesson again.</p>
 <h3>Three days</h3>
 <p>Laid out this way, the sequence looks like a substantial architecture project. It included the large-file requirement, skeletonization and streaming, typed-patch work, the reconsideration of ChunkWorker, the remediation and fact graphs, the chunkless execution design, the quantitative models, the analysis, the implementation, and the corrections when assumptions proved wrong. The elapsed engineering time was about three days, working inside the existing governed engineering environment.</p>
-<p>That timescale changes the economics of modeling. Dependency graphs, performance models, data-flow models, invariants, and intermediate representations are established software-engineering tools, and their cost has always bounded how aggressively engineers use them: a model that takes a week to build may describe code that changes the next day, so the rational response is often to model less, implement the candidate, and measure. When the modeling work itself becomes cheap, that calculation shifts. Here the models evolved alongside the implementation fast enough to change decisions before those decisions became code. The critical-path model rejected a serial SCAN before anyone paid to build it and flagged a wide node as an optimization target; the residency model stated the memory property the implementation had to preserve; and the graph revealed that page chunking was one scheduling policy, not the structure of remediation itself.</p>
+<p>That timescale changes the economics of modeling. Dependency graphs, performance models, data-flow models, invariants, and intermediate representations are established software-engineering tools, and their cost has long limited how aggressively engineers use them: a model that takes a week to build may describe code that changes the next day, so the rational response is often to model less, implement the candidate, and measure. When the modeling work itself becomes cheap, that calculation shifts. Here the models evolved alongside the implementation fast enough to change decisions before those decisions became code. The critical-path model rejected a serial SCAN before anyone paid to build it and flagged a wide node as an optimization target; the residency model stated the memory property the implementation had to preserve; and the graph revealed that page chunking was one scheduling policy, not the structure of remediation itself.</p>
 <p>Modeling can change what you build before you build it.</p>
 <h3>Finding the models</h3>
 <p>Part IV asks engineers to find the models their work needs. This example shows what that instruction means in practice. Nobody began with a plan to construct seven models. The whole-document architecture worked until larger workloads made memory consequential; page chunking solved that across the workload then observed; a media-heavy document exposed a remaining scaling relationship; modeling residency led to skeletonization; skeletonization removed the memory rationale for page partitioning; the remediation graph then exposed causal structure, and critical-path analysis exposed both latency limits and optimization opportunities. Each model answered a question, and its answer either changed the design or made the next question visible.</p>
