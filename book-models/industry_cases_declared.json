@@ -100,7 +100,9 @@
       {"id": "shopify", "organization": "Shopify", "domain": "software / commerce platform", "distinctive_starting_point": "shared agent-ready environment + organizational learning", "status": "authored"},
       {"id": "docker", "organization": "Docker", "domain": "software / developer infrastructure", "distinctive_starting_point": "authority boundaries + autonomous fleet + evaluation loops", "status": "authored"},
       {"id": "siemens", "organization": "Siemens", "domain": "embedded / CPS / model-based engineering", "distinctive_starting_point": "model-first engineering; models already are the development surface", "status": "authored"},
-      {"id": "zenseact", "organization": "Zenseact", "domain": "engineering knowledge work / automotive", "distinctive_starting_point": "autonomous knowledge work over distributed engineering systems", "status": "authored"}
+      {"id": "zenseact", "organization": "Zenseact", "domain": "engineering knowledge work / automotive", "distinctive_starting_point": "autonomous knowledge work over distributed engineering systems", "status": "authored"},
+      {"id": "uber-software-factory", "organization": "Uber", "domain": "software / ride-hailing + logistics platform", "distinctive_starting_point": "software-factory economics at scale", "status": "authored"},
+      {"id": "gitlab-abundant", "organization": "GitLab", "domain": "software / DevSecOps platform", "distinctive_starting_point": "a durable trust layer around replaceable models and agents", "status": "authored"}
     ]
   },
 
@@ -590,6 +592,380 @@
       "limitations": ["no-invariant-bearing-system-model-described-modeling-tension", "no-model-territory-drift-gate", "churn-defect-outcome-vocabulary-strains-on-knowledge-work", "no-productivity-or-defect-or-before-after-outcome-data", "deployment-duration-unstated", "reasoning-quality-half-of-progressive-disclosure-unmeasured", "single-primary-source", "reconcile-retire-not-described"],
       "index_blurb": "Carries the same governance past source code into federated knowledge work — deterministic tools behind structured seams, permissions per role.",
       "result_sentence": "Zenseact built a federated internal agent platform - deterministic tools behind structured seams, a per-tool/per-role permission table, bounded delegation, and a deterministic TF-IDF disclosure router with measured 67-98% / 43-97% context reduction - over distributed engineering-and-enterprise knowledge work rather than source code, carrying MAGE's Alignment, reasoning-horizon, capital, and conversion machinery cleanly beyond code (the governance half of the MBAE widening, complementary to Siemens's modeling half), with the honest bound that its churn/defect outcome vocabulary strains on non-artifact-production work and no effectiveness outcomes are reported."
+    },
+    {
+      "id": "uber-software-factory",
+      "onepager_lede": "Uber is the case where the economics came first. Faced with agents already writing most of its code, Uber treated the surrounding environment—not the model—as the thing to engineer: real work becomes benchmarks, models are chosen on cost-per-completed-task against those benchmarks, bounded subwork is routed to cheaper models, context and tools are compiled down so the reasoner spends fewer tokens, recurring workflows harden into reusable skills, and managed agents are judged in outcome units like cost per merged PR. The book reads the case as the clearest factory-scale view of the agentic environment as an object of continuous measurement and optimization—recognizably MAGE-like in everything except the modeling tier, where the richest structure stays a knowledge/context graph rather than an executable model of the system's behavior.",
+      "organization": "Uber",
+      "domain": "software / ride-hailing + logistics platform",
+      "distinctive_starting_point": "software-factory economics at scale",
+      "status": "authored",
+      "source": {
+        "citation_key": "medisetty2026factory",
+        "source_type": "practitioner-report",
+        "independence": "independent",
+        "author_role": "engineering (Distinguished Engineer, engineering productivity; internal practice account)",
+        "account_type": "retrospective",
+        "evidence_horizon": "months"
+      },
+      "setting": {
+        "scale": "org-wide",
+        "brownfield": true,
+        "scale_facts": [
+          "more than 70% of pull requests attributed to local or cloud agents; code output per engineer roughly doubled year over year",
+          "3,600+ agent skills across the SDLC; 30K+ skill executions/day; 25 pre-built code-mode skills",
+          "weekly active agentic users 7x and weekly agentic requests 9.4x (Feb-Aug 2026); cost per 1,000 model requests down ~34% and cost per session down 52% from their peaks",
+          "AI Context Graph: 24M nodes / 80M edges (86 node types, 117 edge types) integrating 30+ internal systems; a graph-grounded task ran in 38s vs 20+ minutes ungrounded",
+          "code-mode collapses N model turns into one subprocess script (>90% token savings on bulk workflows, 55-71% on common SQL); 1,000+ MCP tools projected as CLI commands to avoid 50-70K tokens of schema overhead"
+        ]
+      },
+      "autonomous_work": "Managed agents span code review (uReview, on all PRs), self-healing CI failures, completing end-to-end PRs with visual validation, triaging on-call alerts, debugging incoming bugs, and a range of code-maintenance tasks, with human reviews and escalations. Local and cloud agents author most PRs; a primary model decomposes and evaluates while cheaper subagents execute bounded work.",
+      "object_territory": [
+        "source-code",
+        "incident-reports",
+        "design-docs"
+      ],
+      "representations": [
+        "architecture-model",
+        "tests",
+        "informal-knowledge"
+      ],
+      "traceability": "Partial and descriptive. The AI Context Graph relates services, teams, incidents, PRs, design docs, deployments, and historical table usage into one queryable network, and outcome metrics + session traces record what agents did; but there is no generalized model<->implementation drift join that maintains a declared system model against the code the agents edit and can block divergence.",
+      "context_strategy": "Aggressive reasoning-horizon engineering: code-mode runs multi-step tool loops in a subprocess and returns only a summary; 1,000+ MCP tools are projected as on-demand CLI commands (tool search loads only what a task needs) instead of loading 50-70K tokens of schema; the AI Context Graph is grounded into prompts so relationships are queried rather than reconstructed; automatic compaction at 400k tokens and prompt caching (1-hour main-thread TTL, 5-minute subagent TTL) bound context cost.",
+      "agent_authority": "Managed agents act autonomously on review, CI self-healing, alert triage, and maintenance with human reviews/escalations; PR merges and tier upgrades stay human, and model selection allows manual overrides. The primary model holds decomposition/evaluation authority; subagents are defaulted to a weaker, cheaper model. Authority is engineered per workload, not set in the prompt.",
+      "mechanisms": [
+        "llm-reviewer",
+        "retrieval-layer",
+        "constrained-api",
+        "merge-gate",
+        "provenance"
+      ],
+      "judgment": {
+        "model_selection": "deterministic",
+        "task_decomposition": "llm",
+        "subagent_execution": "llm",
+        "code_review_scoring": "llm",
+        "admission_to_main": "human",
+        "tier_upgrade": "human"
+      },
+      "feedback_adaptation": "Continuous, measurement-driven capital formation. Recurring tool workflows are packaged as reusable skills (code-mode plugins per server); a benchmark built from thousands of real PRs drives model selection across managed agents, and the Pareto frontier is re-evaluated every few weeks ('keep moving'); outcome-denominated metrics (cost per merged PR/review/alert; revert rate, F1, MTTR) plus an anti-pattern dashboard steer ongoing optimization. This is engineering-capital accumulation more than a measured failure->control->recurrence-drop loop.",
+      "org_memory": "Durable, reusable assets outliving any session or model: 3,600+ agent skills and 25 code-mode skills; the Uber SWE and uReview benchmarks built from real work with known bugs; the AI Context Graph; and a model harness / Pareto-frontier registry with a unified wrapper for config, auth, and cost visibility.",
+      "implicit_theory": "The book reads Uber as treating the engineered environment itself as the object of continuous optimization: measure the factory in outcome units, benchmark models on real work, route each workload to the most cost-efficient model, compile context and tools down so the reasoner spends fewer tokens, and harden recurring workflows into skills the whole fleet inherits. Reliability comes from the environment's economics and measurement, not from any single model.",
+      "mage_constructs": [
+        {
+          "construct": "alignment-principle",
+          "strength": "partial",
+          "note": "the book reads outcome-denominated gates, human merge/tier authority, and per-workload guardrails as Alignment behavior, though authority-without-the-author is less emphasized than at the policy-first or fleet-first sites"
+        },
+        {
+          "construct": "modeling-principle",
+          "strength": "partial",
+          "note": "the book reads the AI Context Graph and real-work benchmarks as rich KNOWLEDGE representations while the governed SYSTEM'S behavior is not modeled as a primary reasoning surface (modeling ceiling)"
+        },
+        {
+          "construct": "externalized-knowledge",
+          "strength": "strong",
+          "note": "the book reads the 24M-node AI Context Graph plus 3,600+ reusable skills as a strong externalization of engineering knowledge into queryable, inheritable structure"
+        },
+        {
+          "construct": "bootstrap-governance",
+          "strength": "partial",
+          "note": "the book reads skills, standard agent configs, and benchmarks as reusable E(0) that later work drops into, short of a full prior-standards estate"
+        },
+        {
+          "construct": "governance-conversion",
+          "strength": "partial",
+          "note": "the book reads recurring-workflow->skill packaging and benchmark-driven optimization as capital formation; the source shows accumulation more than a measured failure->control->recurrence-retired loop"
+        },
+        {
+          "construct": "determinization",
+          "strength": "partial",
+          "note": "the book reads code-mode's deterministic subprocess orchestration and deterministic model/tool routing as moving decidable work off per-call inference"
+        },
+        {
+          "construct": "reasoning-horizon",
+          "strength": "strong",
+          "note": "the book reads code-mode, CLI tool projection, graph grounding, compaction, and caching as the sample's most explicit case of the environment performing reasoning that would otherwise burn model context"
+        },
+        {
+          "construct": "engineers-seat",
+          "strength": "partial",
+          "note": "the book reads human ownership of merges, tier upgrades, objectives, and overrides as authority held outside the agent, alongside heavy delegated autonomy"
+        },
+        {
+          "construct": "graduated-governance",
+          "strength": "partial",
+          "note": "the book reads primary-vs-subagent routing, per-workload model selection, and human-gated tier upgrades as graduated per-work authority, short of an explicit advisory->enforced promotion lifecycle"
+        }
+      ],
+      "modeling_ceiling": [
+        {
+          "rung": "topology",
+          "level": "some",
+          "note": "the AI Context Graph relates services and systems, but as a knowledge graph rather than a governed topology model"
+        },
+        {
+          "rung": "ownership-deps",
+          "level": "some",
+          "note": "the graph carries team ownership and dependency/usage edges across 30+ systems"
+        },
+        {
+          "rung": "infra-as-code",
+          "level": "some",
+          "note": "deployments and CI are represented and acted on, though not the account's emphasis"
+        },
+        {
+          "rung": "structured-policy",
+          "level": "implicit",
+          "note": "governance is expressed as cost/quality gates and guardrails rather than a machine-readable policy corpus"
+        },
+        {
+          "rung": "data-lineage",
+          "level": "some",
+          "note": "provenance via session traces, outcome metrics, and historical table-usage edges in the graph"
+        },
+        {
+          "rung": "behavioral-state",
+          "level": "not-seen",
+          "note": "no executable behavioral/state model of the governed system as a reasoning surface"
+        },
+        {
+          "rung": "process-concurrency",
+          "level": "not-seen",
+          "note": "not described"
+        },
+        {
+          "rung": "scenario",
+          "level": "not-seen",
+          "note": "not described"
+        },
+        {
+          "rung": "invariant-registry",
+          "level": "not-seen",
+          "note": "correctness rests on outcome metrics and human escalation, not a checked invariant set"
+        },
+        {
+          "rung": "model-derived-verification",
+          "level": "not-seen",
+          "note": "not described"
+        },
+        {
+          "rung": "bidirectional-traceability",
+          "level": "not-seen",
+          "note": "not described"
+        },
+        {
+          "rung": "drift-gate",
+          "level": "not-seen",
+          "note": "no model<->implementation drift gate"
+        }
+      ],
+      "hypotheses": [
+        "H4-representation-leverage",
+        "H4a-representation-efficiency",
+        "H6-oversight-amortization",
+        "H3-mechanized-assurance"
+      ],
+      "adds_to_mage": [
+        "environment-first-agent-economics",
+        "environment-improvement-can-target-context-selection",
+        "the-context-router-can-be-deterministic",
+        "skills-encode-roles-not-procedures"
+      ],
+      "mage_explains_implicit": "MAGE reads Uber's cost equation, benchmark-driven routing, code-mode, and skills as engineering the reasoning-horizon and the economics of the environment around a replaceable reasoner: the environment, not the model, is tuned to convert abundant intelligence into durable throughput at bounded cost.",
+      "limitations": "Self-reported operational metrics, not a causal test; the account is strong on context, skills, routing, benchmarks, and cost/quality measurement but describes no executable behavioral, scenario, or invariant model, and no model<->implementation correspondence check, as a primary software-reasoning surface. Its sophistication therefore strengthens rather than dissolves the modeling ceiling.",
+      "candidate_insertions": [
+        "governed-environment",
+        "engineers-seat"
+      ],
+      "index_blurb": "Factory-scale economics: benchmark-driven model routing, code-mode context compilation, reusable skills, and outcome-denominated measurement of the agentic environment.",
+      "result_sentence": "Uber engineers the economics and reasoning-horizon of the environment around replaceable models, reaching a knowledge/context tier without an executable model of the system's behavior."
+    },
+    {
+      "id": "gitlab-abundant",
+      "onepager_lede": "GitLab is the case that names the shift directly: producing code is getting cheap, trusting it is not. Its answer is a durable layer around the model—execution, context, verification, governance, identity, provenance, and organizational memory—explicitly kept independent of any one model or agent so the organization's context and controls persist as reasoners change. The Orbit context graph connects code, work items, pipelines, deployments, and production signals so agents query relationships instead of reconstructing them, and governance is placed around the agent (identity, policy, approval, audit) rather than inside the prompt. The book reads GitLab as an unusually clean statement of the Governed Engineering Environment—strong on knowledge, provenance, and authority, and still, on its public account, within the software-first modeling tier.",
+      "organization": "GitLab",
+      "domain": "software / DevSecOps platform",
+      "distinctive_starting_point": "a durable trust layer around replaceable models and agents",
+      "status": "authored",
+      "source": {
+        "citation_key": "staples2026abundant",
+        "source_type": "vendor-report",
+        "independence": "vendor-aligned",
+        "author_role": "executive (CEO; product-architecture vision account)",
+        "account_type": "architectural",
+        "evidence_horizon": "months"
+      },
+      "setting": {
+        "scale": "org-wide",
+        "brownfield": true,
+        "scale_facts": [
+          "positions the durable context/verification/governance layer as independent of any single model or agent, so context and controls persist as reasoners change",
+          "Orbit connects code, work items, pipelines, deployments, and production signals into one queryable context graph across the lifecycle",
+          "governance for agents applies identity, policy, approval, and audit controls around agent actions, so autonomy can rise without giving up evidence or accountability",
+          "reports up to 50x faster task execution while moving dramatically less data by rebuilding source control for machine-scale execution",
+          "agents operate the inner loop generate -> build -> test -> validate -> review -> remediate under deterministic feedback and constraints"
+        ]
+      },
+      "autonomous_work": "Agents operate the inner development loop—generate, build, test, validate, review, remediate—inside deterministic feedback and constraints, querying the Orbit context graph for the relationships a change touches. Governance around the agent decides what an agent is allowed to do and records why it was allowed; humans retain authority and accountability over consequential admission.",
+      "object_territory": [
+        "source-code",
+        "specs",
+        "incident-reports"
+      ],
+      "representations": [
+        "architecture-model",
+        "structured-policy",
+        "tests"
+      ],
+      "traceability": "Strong on provenance, not on model<->implementation drift. Orbit relates intent, code, policy, evidence, deployment, and outcome as a connected causal graph that must stay coherent at machine velocity, and governance records what agents did and why it was allowed; but the public account does not describe a declared system model checked mechanically against the implementation to block divergence.",
+      "context_strategy": "The context graph is the reasoning surface: agents query relationships across code, work items, pipelines, deployments, and production signals directly instead of reconstructing them from disconnected systems, and the layer is kept durable across models and agents so context is not re-established per reasoner.",
+      "agent_authority": "Governance surrounds the agent rather than living in the prompt: identity, policy, approval, and audit controls bound agent actions, letting the organization increase autonomy without giving up evidence or accountability. Humans keep authority over consequential decisions; enforceable boundaries plus visibility, not model trust, gate what advances.",
+      "mechanisms": [
+        "retrieval-layer",
+        "merge-gate",
+        "deterministic-lint",
+        "provenance",
+        "stable-identity"
+      ],
+      "judgment": {
+        "policy_authoring": "human",
+        "agent_admission": "composite",
+        "inner_loop_feedback": "deterministic",
+        "consequential_approval": "human"
+      },
+      "feedback_adaptation": "GitLab describes the same conversion from repeated judgment to durable structure: a production failure can become a regression test, a security incident a policy, a performance requirement an automated constraint, and a compliance obligation continuous validation. The artifact differs, but the move is the same—knowledge gained once becomes structure later work inherits rather than reconstructs.",
+      "org_memory": "A durable layer of context, verification, governance, identity, provenance, and organizational memory around the model, explicitly independent of any one model or agent, so the organization's accumulated context and controls persist as the underlying reasoner changes.",
+      "implicit_theory": "The book reads GitLab as treating the durable environment around the reasoner—context, verification, governance, identity, provenance, memory—as the engineering object: keep the model replaceable, keep the trust layer permanent, and make relationships among intent, code, evidence, and outcome queryable and governable at machine velocity.",
+      "mage_constructs": [
+        {
+          "construct": "alignment-principle",
+          "strength": "strong",
+          "note": "the book reads governance placed AROUND the agent (identity, policy, approval, audit) as authority held outside the producing reasoner, enforceable boundaries plus visibility rather than prompt-level trust"
+        },
+        {
+          "construct": "modeling-principle",
+          "strength": "partial",
+          "note": "the book reads the Orbit context/causal graph as a knowledge/provenance representation, not an executable model of system behavior serving as the primary reasoning surface (modeling ceiling)"
+        },
+        {
+          "construct": "externalized-knowledge",
+          "strength": "strong",
+          "note": "the book reads Orbit—code, work items, pipelines, deployments, and production signals as one queryable context graph—as strong externalization agents query instead of reconstruct"
+        },
+        {
+          "construct": "bootstrap-governance",
+          "strength": "partial",
+          "note": "the book reads the durable layer's independence from any one model/agent as an E carried forward across reasoners"
+        },
+        {
+          "construct": "governance-conversion",
+          "strength": "partial",
+          "note": "the book reads the stated conversions (failure->regression test, incident->policy, requirement->constraint, obligation->continuous validation) as the governance-conversion move, described as design rather than measured recurrence-drop"
+        },
+        {
+          "construct": "determinization",
+          "strength": "partial",
+          "note": "the book reads the deterministic feedback and constraints around the inner loop as moving decidable checks off per-call inference"
+        },
+        {
+          "construct": "reasoning-horizon",
+          "strength": "strong",
+          "note": "the book reads querying the context graph for the relationships a change touches, instead of reconstructing them, as the environment performing reasoning that would otherwise burn model context"
+        },
+        {
+          "construct": "engineers-seat",
+          "strength": "strong",
+          "note": "the book reads governance keeping human authority, evidence, and accountability while autonomy rises as authority deliberately held outside the agent"
+        },
+        {
+          "construct": "graduated-governance",
+          "strength": "partial",
+          "note": "the book reads 'increase autonomy without giving up evidence or accountability' as autonomy graduated against governance coverage, short of an explicit advisory->enforced promotion lifecycle"
+        }
+      ],
+      "modeling_ceiling": [
+        {
+          "rung": "topology",
+          "level": "some",
+          "note": "Orbit relates services/code and lifecycle objects, as a context graph rather than a governed topology model"
+        },
+        {
+          "rung": "ownership-deps",
+          "level": "some",
+          "note": "relationships across code, work items, pipelines, and deployments are connected and queryable"
+        },
+        {
+          "rung": "infra-as-code",
+          "level": "some",
+          "note": "pipelines and deployments are represented in the graph and governed"
+        },
+        {
+          "rung": "structured-policy",
+          "level": "yes",
+          "note": "governance for agents makes policy, identity, approval, and audit machine-actionable boundaries around agent actions"
+        },
+        {
+          "rung": "data-lineage",
+          "level": "yes",
+          "note": "intent -> action -> outcome provenance kept as a connected causal graph coherent at machine velocity"
+        },
+        {
+          "rung": "behavioral-state",
+          "level": "not-seen",
+          "note": "no executable behavioral/state model of the governed system as a reasoning surface"
+        },
+        {
+          "rung": "process-concurrency",
+          "level": "not-seen",
+          "note": "not described"
+        },
+        {
+          "rung": "scenario",
+          "level": "not-seen",
+          "note": "not described"
+        },
+        {
+          "rung": "invariant-registry",
+          "level": "not-seen",
+          "note": "verification is deterministic feedback + governance, not a checked invariant registry"
+        },
+        {
+          "rung": "model-derived-verification",
+          "level": "not-seen",
+          "note": "not described"
+        },
+        {
+          "rung": "bidirectional-traceability",
+          "level": "some",
+          "note": "intent/code/evidence/outcome relationships are traced in the graph, short of a mechanical model<->implementation correspondence check"
+        },
+        {
+          "rung": "drift-gate",
+          "level": "not-seen",
+          "note": "no declared-model<->implementation drift gate"
+        }
+      ],
+      "hypotheses": [
+        "H8-learning-propagation",
+        "H3-mechanized-assurance",
+        "H6-oversight-amortization",
+        "H4-representation-leverage"
+      ],
+      "adds_to_mage": [
+        "durable-session-as-model-independent-asset",
+        "authority-as-runtime-property-two-boundary-model",
+        "trust-boundaries-run-in-both-directions",
+        "environment-can-precede-the-workforce"
+      ],
+      "mage_explains_implicit": "MAGE reads GitLab's durable layer as a Governed Engineering Environment stated explicitly: keep the reasoner replaceable and the trust layer permanent, externalize relationships into a queryable graph, and give obligations authority around the agent rather than inside its prompt.",
+      "limitations": "A vendor-aligned architectural vision rather than an independent measured study; strong on context, provenance, and authority, but the public account describes a knowledge/provenance/causal graph plus external governance, with no executable behavioral, scenario, or invariant model, and no model<->implementation correspondence check, as a primary reasoning surface. It remains within the software-first modeling tier used in this comparison.",
+      "candidate_insertions": [
+        "governed-environment",
+        "engineers-seat"
+      ],
+      "index_blurb": "A durable trust layer around replaceable models: the Orbit context/causal graph plus governance around the agent (identity, policy, approval, audit).",
+      "result_sentence": "GitLab makes the Governed Engineering Environment explicit—context, provenance, and authority around a replaceable reasoner—reaching a knowledge/provenance tier without an executable model of system behavior."
     }
   ],
 
@@ -609,7 +985,7 @@
         "statement": "Autonomy needs a representation the model cannot safely rebuild each run.",
         "bucket": "universal",
         "maps_to_construct": "reasoning-horizon",
-        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "yes"},
         "mage_generalization_note": "MAGE names the general principle: autonomy needs an external representation the model cannot safely reconstruct each run.",
         "nearest_external": null
       },
@@ -619,7 +995,7 @@
         "statement": "The sanctioned tool seam, not the prompt, is where authority is allocated.",
         "bucket": "universal",
         "maps_to_construct": "alignment-principle",
-        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "yes"},
         "mage_generalization_note": "MAGE generalizes the sanctioned tool seam as the place authority is allocated, not the prompt.",
         "nearest_external": null
       },
@@ -629,7 +1005,7 @@
         "statement": "The environment, not the reasoner, sets the limit on what an agent may do.",
         "bucket": "universal",
         "maps_to_construct": "alignment-principle",
-        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "yes"},
         "mage_generalization_note": "MAGE names authority-in-the-environment as an Alignment invariant across all six sites.",
         "nearest_external": null
       },
@@ -639,7 +1015,7 @@
         "statement": "Probabilistic reasoning on the ambiguous; deterministic machinery on the decidable residue.",
         "bucket": "universal",
         "maps_to_construct": "determinization",
-        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "yes"},
         "mage_generalization_note": "MAGE names determinization as the general move: spend commodity intelligence on ambiguity, deterministic machinery on what has ceased to be ambiguous.",
         "nearest_external": null
       },
@@ -649,7 +1025,7 @@
         "statement": "Humans hold intent and consequential decisions while agents scale reach.",
         "bucket": "universal",
         "maps_to_construct": "engineers-seat",
-        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "yes"},
         "mage_generalization_note": "MAGE names the engineer's seat: humans direct intent and consequential authority while agents scale reach.",
         "nearest_external": null
       },
@@ -659,7 +1035,7 @@
         "statement": "Curate what enters the context window; a bloated prompt degrades reasoning.",
         "bucket": "universal",
         "maps_to_construct": "reasoning-horizon",
-        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "partial", "siemens": "yes", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "partial", "siemens": "yes", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "yes"},
         "mage_generalization_note": "MAGE generalizes context engineering as a reasoning-horizon discipline; Docker's short horizon makes its instance partial (the guidance's own qualification).",
         "nearest_external": null
       },
@@ -669,7 +1045,7 @@
         "statement": "Shared infrastructure is the environment each new agent inherits.",
         "bucket": "universal",
         "maps_to_construct": "bootstrap-governance",
-        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "yes"},
         "mage_generalization_note": "MAGE names shared infrastructure as the E(0) each new agent drops into.",
         "nearest_external": null
       },
@@ -679,7 +1055,7 @@
         "statement": "Generation is not evaluation, so verify the work independently.",
         "bucket": "universal",
         "maps_to_construct": "alignment-principle",
-        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "yes"},
         "mage_generalization_note": "MAGE names independent validation as an Alignment mechanism — generation is not evaluation.",
         "nearest_external": null
       },
@@ -689,7 +1065,7 @@
         "statement": "When a limit appears, fix the system rather than re-prompt the agent.",
         "bucket": "universal",
         "maps_to_construct": "governance-conversion",
-        "support": {"cloudflare-codex": "partial", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "partial", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "partial", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "partial", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "yes"},
         "mage_generalization_note": "MAGE names the structural-diagnosis reflex; Siemens shows less evidence of changing the governance of future agents (the guidance's own qualification, the card §10 gap). Cloudflare is partial: it makes obligations machine-checkable and re-extracts on RFC change, and source D ('Code Orange: Fail Small is complete') describes the incident->RFC->Codex-rule->enforcement loop near-verbatim — but no measured recurrence-drop closes it, so partial is the ratified reading grounded in that described-but-unmeasured loop. Cloudflare discovered the loop; MAGE names and generalizes it.",
         "nearest_external": null
       },
@@ -700,7 +1076,7 @@
         "statement": "A recurring loop turns each failure into a durable environmental fix.",
         "bucket": "generalizes",
         "maps_to_construct": "governance-conversion",
-        "support": {"cloudflare-codex": "partial", "spotify-honk": "partial", "shopify": "yes", "docker": "yes", "siemens": "no", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "partial", "spotify-honk": "partial", "shopify": "yes", "docker": "yes", "siemens": "no", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "yes"},
         "mage_generalization_note": "MAGE generalizes failure->diagnosis->durable mechanism; Spotify's Loop B is intent not measured (partial); Siemens's governance-conversion is not evidenced (the honest — cell). Cloudflare is partial: it makes obligations machine-checkable and re-extracts on RFC change, and source D ('Code Orange: Fail Small is complete') describes the incident->RFC->Codex-rule->enforcement loop — but no measured recurrence-drop closes it, so partial is the ratified reading grounded in that described-but-unmeasured loop. Cloudflare discovered the loop; MAGE names and generalizes it.",
         "nearest_external": null
       },
@@ -710,7 +1086,7 @@
         "statement": "Institutional knowledge accumulates as compounding engineering capital.",
         "bucket": "generalizes",
         "maps_to_construct": "bootstrap-governance",
-        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "yes"},
         "mage_generalization_note": "MAGE names engineering capital as a compounding asset; every site accumulates it, none theorizes the full dynamic (see the distinctive bucket).",
         "nearest_external": null
       },
@@ -720,7 +1096,7 @@
         "statement": "Disclose only task-relevant knowledge, on demand.",
         "bucket": "generalizes",
         "maps_to_construct": "reasoning-horizon",
-        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "partial", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "partial", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "yes"},
         "mage_generalization_note": "MAGE generalizes disclosure routing as a reasoning-horizon mechanism; Siemens's is architectural (scoped agents), rated partial.",
         "nearest_external": null
       },
@@ -730,7 +1106,7 @@
         "statement": "Evidence gates admit the work; review is amortized, not per-change.",
         "bucket": "generalizes",
         "maps_to_construct": "graduated-governance",
-        "support": {"cloudflare-codex": "partial", "spotify-honk": "yes", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "partial"},
+        "support": {"cloudflare-codex": "partial", "spotify-honk": "yes", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "partial", "uber-software-factory": "partial", "gitlab-abundant": "partial"},
         "mage_generalization_note": "The SPARSE row: Spotify's automerger predates agents (yes); Cloudflare merge-block but human promotion (partial); Zenseact auto_approve for read-only (partial); Docker/Shopify/Siemens keep a human on every merge/BOM-confirm (no). Shows the review-amortization frontier is unevenly crossed.",
         "nearest_external": null
       },
@@ -740,7 +1116,7 @@
         "statement": "Scoped specialist roles instead of one monolithic agent.",
         "bucket": "generalizes",
         "maps_to_construct": "alignment-principle",
-        "support": {"cloudflare-codex": "no", "spotify-honk": "partial", "shopify": "partial", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
+        "support": {"cloudflare-codex": "no", "spotify-honk": "partial", "shopify": "partial", "docker": "yes", "siemens": "yes", "zenseact": "yes", "uber-software-factory": "yes", "gitlab-abundant": "partial"},
         "mage_generalization_note": "MAGE generalizes scoped roles as an authority + reasoning-horizon device; Docker (7 roles), Siemens (scoped specialist agents), Zenseact (delegation graph) are the strong cases; Spotify/Shopify partial (subagents/profiles); Cloudflare none.",
         "nearest_external": null
       },
@@ -750,7 +1126,7 @@
         "statement": "Act through a model of the system, not raw code.",
         "bucket": "generalizes",
         "maps_to_construct": "modeling-principle",
-        "support": {"cloudflare-codex": "partial", "spotify-honk": "yes", "shopify": "partial", "docker": "no", "siemens": "yes", "zenseact": "partial"},
+        "support": {"cloudflare-codex": "partial", "spotify-honk": "yes", "shopify": "partial", "docker": "no", "siemens": "yes", "zenseact": "partial", "uber-software-factory": "no", "gitlab-abundant": "no"},
         "mage_generalization_note": "Spotify (lineage->repo set) and Siemens (BOM/model-driven code-gen) are the two strong cases; Docker has no model layer (no); the rest partial.",
         "nearest_external": null
       },
@@ -760,7 +1136,7 @@
         "statement": "The strongest notion of model — a Model Zoo spanning logical / behavior / process / physical / scenario / invariant / lineage / traceability views.",
         "bucket": "distinctive",
         "maps_to_construct": "modeling-principle",
-        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no"},
+        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no", "uber-software-factory": "no", "gitlab-abundant": "no"},
         "mage_generalization_note": "MAGE proposes the full multi-view model set as the object of engineering. Among software-first sites, not-seen; only Siemens shows the idea is not fanciful — it is normal in model-based engineering.",
         "nearest_external": "siemens"
       },
@@ -769,7 +1145,7 @@
         "statement": "Explicitly binds the model to the territory — general model<->implementation parity plus a mechanical drift check.",
         "bucket": "distinctive",
         "maps_to_construct": "modeling-principle",
-        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no"},
+        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no", "uber-software-factory": "no", "gitlab-abundant": "no"},
         "mage_generalization_note": "MAGE names a blocking parity gate over agent edits. Siemens's digital thread synchronizes and propagates, but is NOT a blocking parity gate; no site reaches the generalized discipline.",
         "nearest_external": "siemens"
       },
@@ -778,7 +1154,7 @@
         "statement": "A common grammar for governance mechanisms — representation / constraint / sensor / validator / gate / feedback as cross-technology types.",
         "bucket": "distinctive",
         "maps_to_construct": null,
-        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no"},
+        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no", "uber-software-factory": "no", "gitlab-abundant": "no"},
         "mage_generalization_note": "The explanatory compression each case's analysis performs FOR the sites, never stated BY them; no external case names the grammar.",
         "nearest_external": null
       },
@@ -787,7 +1163,7 @@
         "statement": "Governance conversion as a general engineering operation — classify the failure, then choose the durable mechanism from model|constraint|sensor|validator|gate|interface|architecture|no-mechanism.",
         "bucket": "distinctive",
         "maps_to_construct": "governance-conversion",
-        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no"},
+        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no", "uber-software-factory": "no", "gitlab-abundant": "no"},
         "mage_generalization_note": "MAGE names the abstraction, not the instance. Cloudflare (incident->RFC->Codex-rule->enforcement) is one described instance of an environmental response — source D ('Code Orange: Fail Small is complete') describes the loop and the record's governance-conversion cell reads partial — but the source shows no measured recurrence-closing conversion loop, so the generalized operation (classify-the-failure, then choose the durable mechanism) is MAGE-only. Cloudflare discovered the loop; MAGE names and generalizes it.",
         "nearest_external": "cloudflare-codex"
       },
@@ -796,7 +1172,7 @@
         "statement": "Governs the accumulated governance itself — strengthen / reconcile / retire.",
         "bucket": "distinctive",
         "maps_to_construct": null,
-        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no"},
+        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no", "uber-software-factory": "no", "gitlab-abundant": "no"},
         "mage_generalization_note": "Every external site is in accumulation mode; the subtractive arm (reconcile/retire) is the counterweight to 'more controls forever' and is MAGE-only in the corpus.",
         "nearest_external": null
       },
@@ -805,7 +1181,7 @@
         "statement": "Explicitly theorizes engineering capital — the compounding feedback loop as a dynamic, not just an accumulation.",
         "bucket": "distinctive",
         "maps_to_construct": "bootstrap-governance",
-        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no"},
+        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no", "uber-software-factory": "no", "gitlab-abundant": "no"},
         "mage_generalization_note": "Spotify and Shopify near-name it; the full dynamic theory is MAGE-only.",
         "nearest_external": "shopify"
       },
@@ -814,7 +1190,7 @@
         "statement": "Integrates Modeling and Alignment as the two irreducible moves — better models make more obligations deterministically enforceable.",
         "bucket": "distinctive",
         "maps_to_construct": null,
-        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no"},
+        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no", "uber-software-factory": "no", "gitlab-abundant": "no"},
         "mage_generalization_note": "The connective tissue no software case articulates: the two principles as one architecture, each strengthening the other.",
         "nearest_external": null
       },
@@ -823,7 +1199,7 @@
         "statement": "Treats the environment itself as the object of engineering — THE SPINE (RH2), not a peer of the other seven; they are its consequences.",
         "bucket": "distinctive",
         "maps_to_construct": null,
-        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no"},
+        "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no", "uber-software-factory": "no", "gitlab-abundant": "no"},
         "mage_generalization_note": "The shift from agent to environment is more explicit in MAGE than in any source. Ask what is missing from the environment that every future agent will inherit — no site makes the environment the object of engineering.",
         "nearest_external": null
       }

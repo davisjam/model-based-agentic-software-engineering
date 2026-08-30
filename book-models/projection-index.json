@@ -3,12 +3,12 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1149,
+    "total_sites": 1157,
     "by_projection": {
       "book-pdf": 14,
       "book-web": 808,
       "website-catalogue": 219,
-      "website-industry-cases": 43,
+      "website-industry-cases": 51,
       "website-landing": 13,
       "website-misc": 38,
       "website-resources": 6,
@@ -556,6 +556,10 @@
             "occ": 10
           },
           {
+            "file": "industry-case-gitlab-abundant.html",
+            "occ": 13
+          },
+          {
             "file": "industry-case-shopify.html",
             "occ": 8
           },
@@ -569,7 +573,11 @@
           },
           {
             "file": "industry-case-studies.html",
-            "occ": 2
+            "occ": 3
+          },
+          {
+            "file": "industry-case-uber-software-factory.html",
+            "occ": 4
           },
           {
             "file": "industry-case-zenseact.html",
@@ -1392,6 +1400,10 @@
             "occ": 3
           },
           {
+            "file": "industry-case-gitlab-abundant.html",
+            "occ": 6
+          },
+          {
             "file": "industry-case-shopify.html",
             "occ": 5
           },
@@ -1406,6 +1418,10 @@
           {
             "file": "industry-case-studies.html",
             "occ": 4
+          },
+          {
+            "file": "industry-case-uber-software-factory.html",
+            "occ": 6
           },
           {
             "file": "industry-case-zenseact.html",
@@ -2920,6 +2936,10 @@
             "occ": 2
           },
           {
+            "file": "industry-case-gitlab-abundant.html",
+            "occ": 11
+          },
+          {
             "file": "industry-case-shopify.html",
             "occ": 2
           },
@@ -2933,7 +2953,11 @@
           },
           {
             "file": "industry-case-studies.html",
-            "occ": 2
+            "occ": 3
+          },
+          {
+            "file": "industry-case-uber-software-factory.html",
+            "occ": 17
           },
           {
             "file": "industry-case-zenseact.html",
@@ -3542,6 +3566,10 @@
             "occ": 2
           },
           {
+            "file": "industry-case-gitlab-abundant.html",
+            "occ": 2
+          },
+          {
             "file": "industry-case-shopify.html",
             "occ": 2
           },
@@ -3551,6 +3579,10 @@
           },
           {
             "file": "industry-case-spotify-honk.html",
+            "occ": 2
+          },
+          {
+            "file": "industry-case-uber-software-factory.html",
             "occ": 2
           },
           {
