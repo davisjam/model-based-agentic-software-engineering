@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: interlude-execution-unit). Two stacked panels showing the first change to
+     DocAble's execution unit: (a) whole-document execution in one long-running worker; (b) page-chunked
+     execution across smaller workers. viewBox width 920 so labels normalize into the figure font band. -->
+<!-- semantic-families: neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" width="920" height="430"
+     role="group" aria-labelledby="euTitle euDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="euTitle">The first change reduced the unit of residency</title>
+  <desc id="euDesc">Two panels. (a) Whole-document execution: a document enters one long-running Kubernetes
+    worker that holds the full document state and its media resident in memory, sources GenAI requests from
+    that memory, and emits the output. (b) Page-chunked execution: the document is split into page-range
+    partitions, each handled by a smaller worker holding only its range; the results are recombined into the
+    output. Chunking lowers per-worker memory without changing how document media is represented.</desc>
+
+  <defs>
+    <marker id="eu-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="430" fill="#fdfcf9"/>
+
+  <!-- Panel (a) — whole-document execution -->
+  <text x="24" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Whole-document execution</text>
+
+  <rect x="24" y="44" width="150" height="52" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="99" y="75" text-anchor="middle" font-size="18.4" fill="#1c1917">document</text>
+  <line x1="174" y1="70" x2="214" y2="70" stroke="#1c1917" stroke-width="2.2" marker-end="url(#eu-ah)"/>
+
+  <rect x="214" y="40" width="430" height="120" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="429" y="66" text-anchor="middle" font-size="18.4" font-weight="700" fill="#1c1917">long-running Kubernetes worker</text>
+  <text x="238" y="92" font-size="17" fill="#44403c">• full document state resident in memory</text>
+  <text x="238" y="116" font-size="17" fill="#44403c">• media resident from that state</text>
+  <text x="238" y="140" font-size="17" fill="#44403c">• GenAI request sourced from worker memory</text>
+  <line x1="644" y1="100" x2="684" y2="100" stroke="#1c1917" stroke-width="2.2" marker-end="url(#eu-ah)"/>
+
+  <rect x="684" y="74" width="150" height="52" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="759" y="105" text-anchor="middle" font-size="18.4" fill="#1c1917">output</text>
+
+  <!-- Panel (b) — page-chunked execution -->
+  <text x="24" y="250" font-size="18.4" font-weight="700" fill="#57534e">(b) Page-chunked execution</text>
+
+  <rect x="24" y="290" width="126" height="52" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="87" y="321" text-anchor="middle" font-size="18.4" fill="#1c1917">document</text>
+  <line x1="150" y1="316" x2="190" y2="316" stroke="#1c1917" stroke-width="2.2" marker-end="url(#eu-ah)"/>
+
+  <!-- page partitions → smaller workers (three lanes) -->
+  <rect x="190" y="272" width="150" height="30" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="265" y="292" text-anchor="middle" font-size="15" fill="#1c1917">pages 1–10 → worker</text>
+  <rect x="190" y="301" width="150" height="30" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="265" y="321" text-anchor="middle" font-size="15" fill="#1c1917">pages 11–20 → worker</text>
+  <rect x="190" y="330" width="150" height="30" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="265" y="350" text-anchor="middle" font-size="15" fill="#1c1917">pages 21–30 → worker</text>
+  <line x1="340" y1="316" x2="380" y2="316" stroke="#1c1917" stroke-width="2.2" marker-end="url(#eu-ah)"/>
+
+  <rect x="380" y="290" width="110" height="52" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="435" y="321" text-anchor="middle" font-size="18.4" fill="#1c1917">merge</text>
+  <line x1="490" y1="316" x2="530" y2="316" stroke="#1c1917" stroke-width="2.2" marker-end="url(#eu-ah)"/>
+
+  <rect x="530" y="290" width="120" height="52" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="590" y="321" text-anchor="middle" font-size="18.4" fill="#1c1917">output</text>
+
+  <text x="684" y="312" font-size="16" font-style="italic" fill="#78716c">each worker holds a</text>
+  <text x="684" y="332" font-size="16" font-style="italic" fill="#78716c">smaller page range</text>
+</svg>

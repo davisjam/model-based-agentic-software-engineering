@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: interlude-analysis-before-build). Three panels showing what a dependency
+     model exposes before any code runs: (a) a critical path through a weighted graph; (b) decomposing the
+     dominant node to expose parallelism and shorten the path; (c) replacing a serial information dependency
+     (SCAN) with a shared intermediate representation that restores a parallel MAP. viewBox 920 for the
+     figure font band. Graph edges are deliberately angled (keep-angles). -->
+<!-- semantic-families: modeling, neutral -->
+<!-- edge-grammar: keep-angles -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 380" width="920" height="380"
+     role="group" aria-labelledby="abTitle abDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="abTitle">An explicit dependency model exposes optimization opportunities before implementation</title>
+  <desc id="abDesc">Three panels. (a) Critical path: in a weighted dependency graph, the heaviest chain from
+    top to bottom is the critical path and sets the latency floor. (b) Node split: decomposing the dominant
+    node into parallel children shortens the critical path, discoverable from the model before implementing
+    the split. (c) Dependency redesign: a serial information dependency among alt-text operations (a SCAN)
+    becomes a parallel MAP when each operation instead consumes a shared intermediate representation. Whether
+    a predicted gain survives implementation is then an empirical question.</desc>
+
+  <defs>
+    <marker id="ab-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+    <marker id="ab-ah-crit" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="380" fill="#fdfcf9"/>
+  <line x1="310" y1="44" x2="310" y2="352" stroke="#e7e2d6" stroke-width="1.5"/>
+  <line x1="620" y1="44" x2="620" y2="352" stroke="#e7e2d6" stroke-width="1.5"/>
+
+  <!-- ===== (a) critical path ===== -->
+  <text x="20" y="30" font-size="17.5" font-weight="700" fill="#57534e">(a) Critical path</text>
+  <!-- critical edges (rust) A->B->D->F -->
+  <line x1="150" y1="84" x2="96" y2="128" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#ab-ah-crit)"/>
+  <line x1="96" y1="176" x2="96" y2="212" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#ab-ah-crit)"/>
+  <line x1="96" y1="260" x2="150" y2="300" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#ab-ah-crit)"/>
+  <!-- side edges (muted) A->C->E->F -->
+  <line x1="150" y1="84" x2="214" y2="128" stroke="#57534e" stroke-width="1.6" marker-end="url(#ab-ah)"/>
+  <line x1="214" y1="176" x2="214" y2="212" stroke="#57534e" stroke-width="1.6" marker-end="url(#ab-ah)"/>
+  <line x1="214" y1="260" x2="150" y2="300" stroke="#57534e" stroke-width="1.6" marker-end="url(#ab-ah)"/>
+  <g font-size="14" fill="#1c1917" text-anchor="middle">
+    <rect x="126" y="60" width="48" height="30" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="150" y="80">A</text>
+    <rect x="60" y="128" width="72" height="48" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/><text x="96" y="157">B (heavy)</text>
+    <rect x="190" y="132" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="214" y="157">C</text>
+    <rect x="72" y="212" width="48" height="40" rx="6" fill="#fff" stroke="#9a3f12" stroke-width="1.8"/><text x="96" y="237">D</text>
+    <rect x="190" y="212" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="214" y="237">E</text>
+    <rect x="126" y="300" width="48" height="30" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="150" y="320">F</text>
+  </g>
+
+  <!-- ===== (b) node split ===== -->
+  <text x="330" y="30" font-size="17.5" font-weight="700" fill="#57534e">(b) Node split</text>
+  <line x1="465" y1="84" x2="405" y2="128" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
+  <line x1="465" y1="84" x2="465" y2="128" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
+  <line x1="465" y1="84" x2="525" y2="128" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
+  <line x1="405" y1="160" x2="465" y2="212" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
+  <line x1="465" y1="160" x2="465" y2="212" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
+  <line x1="525" y1="160" x2="465" y2="212" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
+  <line x1="465" y1="252" x2="465" y2="300" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
+  <g font-size="14" fill="#1c1917" text-anchor="middle">
+    <rect x="441" y="60" width="48" height="30" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="465" y="80">A</text>
+    <rect x="378" y="128" width="54" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="405" y="149">B1</text>
+    <rect x="438" y="128" width="54" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="465" y="149">B2</text>
+    <rect x="498" y="128" width="54" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="525" y="149">B3</text>
+    <rect x="441" y="212" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="465" y="237">D</text>
+    <rect x="441" y="300" width="48" height="30" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="465" y="320">F</text>
+  </g>
+  <text x="465" y="352" text-anchor="middle" font-size="13.5" font-style="italic" fill="#1f7a4d">parallel children shorten the path</text>
+
+  <!-- ===== (c) dependency redesign ===== -->
+  <text x="640" y="30" font-size="17.5" font-weight="700" fill="#57534e">(c) Dependency redesign</text>
+  <!-- serial SCAN -->
+  <text x="640" y="78" font-size="13.5" fill="#9a3f12">serial SCAN</text>
+  <g font-size="13" fill="#1c1917" text-anchor="middle">
+    <rect x="640" y="88" width="52" height="32" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="666" y="109">alt 1</text>
+    <rect x="726" y="88" width="52" height="32" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="752" y="109">alt 2</text>
+    <rect x="812" y="88" width="52" height="32" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="838" y="109">alt 3</text>
+  </g>
+  <line x1="692" y1="104" x2="726" y2="104" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#ab-ah-crit)"/>
+  <line x1="778" y1="104" x2="812" y2="104" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#ab-ah-crit)"/>
+  <!-- shared IR → parallel MAP -->
+  <text x="640" y="196" font-size="13.5" fill="#1f7a4d">parallel MAP</text>
+  <rect x="702" y="206" width="96" height="34" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="750" y="228" text-anchor="middle" font-size="13" fill="#1c1917">shared IR</text>
+  <line x1="726" y1="240" x2="678" y2="286" stroke="#57534e" stroke-width="1.7" marker-end="url(#ab-ah)"/>
+  <line x1="750" y1="240" x2="750" y2="286" stroke="#57534e" stroke-width="1.7" marker-end="url(#ab-ah)"/>
+  <line x1="774" y1="240" x2="822" y2="286" stroke="#57534e" stroke-width="1.7" marker-end="url(#ab-ah)"/>
+  <g font-size="13" fill="#1c1917" text-anchor="middle">
+    <rect x="640" y="286" width="52" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="666" y="307">alt 1</text>
+    <rect x="724" y="286" width="52" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="750" y="307">alt 2</text>
+    <rect x="808" y="286" width="52" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="834" y="307">alt 3</text>
+  </g>
+</svg>

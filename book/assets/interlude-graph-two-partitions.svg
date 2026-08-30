@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: interlude-graph-two-partitions). The SAME remediation graph drawn twice, with
+     identical node positions, partitioned two ways: (a) spatially, grouped by page/artifact location;
+     (b) causally, grouped by topological frontier (readiness). The point is that the two designs are not
+     different graphs but different partitions of one graph. viewBox 920 for the figure font band. -->
+<!-- semantic-families: modeling, governance -->
+<!-- edge-grammar: keep-angles -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" width="920" height="400"
+     role="group" aria-labelledby="tpTitle tpDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="tpTitle">Page chunking and frontier execution partition the same remediation graph</title>
+  <desc id="tpDesc">The same seven-node remediation graph appears in both panels with identical node
+    positions: three local semantic-work nodes feed a document-level node, which feeds three downstream
+    remediation nodes. (a) Spatial partition: nodes are grouped into vertical page groups by artifact
+    location, cutting across the causal levels. (b) Causal partition: the same nodes are grouped into three
+    horizontal topological frontiers by readiness. Once media residency no longer forces page-sized workers,
+    the partition becomes an executor choice rather than part of the remediation model.</desc>
+
+  <defs>
+    <marker id="tp-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="400" fill="#fdfcf9"/>
+  <line x1="460" y1="44" x2="460" y2="372" stroke="#e7e2d6" stroke-width="1.5"/>
+
+  <!-- ===== Panel (a): spatial / page partition ===== -->
+  <text x="30" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Spatial partition (by page)</text>
+
+  <!-- page group shading (vertical columns, behind nodes) -->
+  <rect x="44" y="52" width="96" height="268" rx="10" fill="#faf1e6" opacity="0.7"/>
+  <rect x="162" y="52" width="96" height="268" rx="10" fill="#f0e7d8" opacity="0.7"/>
+  <rect x="280" y="52" width="96" height="268" rx="10" fill="#faf1e6" opacity="0.7"/>
+
+  <!-- edges -->
+  <line x1="92" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#tp-ah)"/>
+  <line x1="210" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#tp-ah)"/>
+  <line x1="328" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#tp-ah)"/>
+  <line x1="210" y1="204" x2="92" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#tp-ah)"/>
+  <line x1="210" y1="204" x2="210" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#tp-ah)"/>
+  <line x1="210" y1="204" x2="328" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#tp-ah)"/>
+
+  <!-- nodes -->
+  <g font-size="14" fill="#1c1917" text-anchor="middle">
+    <rect x="60" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="92" y="89">local</text>
+    <rect x="178" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="210" y="89">local</text>
+    <rect x="296" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="328" y="89">local</text>
+    <rect x="170" y="160" width="80" height="44" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/><text x="210" y="186">document</text>
+    <rect x="60" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="92" y="285">down</text>
+    <rect x="178" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="210" y="285">down</text>
+    <rect x="296" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="328" y="285">down</text>
+  </g>
+  <text x="210" y="344" text-anchor="middle" font-size="14.5" font-style="italic" fill="#9a3f12">groups by artifact location</text>
+
+  <!-- ===== Panel (b): causal / frontier partition ===== -->
+  <text x="500" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) Causal partition (by frontier)</text>
+
+  <!-- frontier band shading (horizontal rows, behind nodes) -->
+  <rect x="500" y="58" width="392" height="52" rx="10" fill="#e3f0e7" opacity="0.7"/>
+  <rect x="500" y="154" width="392" height="56" rx="10" fill="#e3f0e7" opacity="0.7"/>
+  <rect x="500" y="254" width="392" height="52" rx="10" fill="#e3f0e7" opacity="0.7"/>
+  <text x="884" y="88" text-anchor="end" font-size="12.5" fill="#1f7a4d">frontier 1</text>
+  <text x="884" y="186" text-anchor="end" font-size="12.5" fill="#1f7a4d">frontier 2</text>
+  <text x="884" y="284" text-anchor="end" font-size="12.5" fill="#1f7a4d">frontier 3</text>
+
+  <!-- edges -->
+  <line x1="562" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#tp-ah)"/>
+  <line x1="680" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#tp-ah)"/>
+  <line x1="798" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#tp-ah)"/>
+  <line x1="680" y1="204" x2="562" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#tp-ah)"/>
+  <line x1="680" y1="204" x2="680" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#tp-ah)"/>
+  <line x1="680" y1="204" x2="798" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#tp-ah)"/>
+
+  <!-- nodes -->
+  <g font-size="14" fill="#1c1917" text-anchor="middle">
+    <rect x="530" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="562" y="89">local</text>
+    <rect x="648" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="680" y="89">local</text>
+    <rect x="766" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="798" y="89">local</text>
+    <rect x="640" y="160" width="80" height="44" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/><text x="680" y="186">document</text>
+    <rect x="530" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="562" y="285">down</text>
+    <rect x="648" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="680" y="285">down</text>
+    <rect x="766" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="798" y="285">down</text>
+  </g>
+  <text x="680" y="344" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1f7a4d">groups by causal readiness</text>
+</svg>

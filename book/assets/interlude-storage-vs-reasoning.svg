@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: interlude-storage-vs-reasoning). Two panels: (a) the format-native
+     representation, where structural XML and large binary media both flow into the in-memory document and
+     the worker; (b) the skeletonized representation, where the worker keeps only the small structural
+     skeleton plus references, and large media stays external and streams on demand. viewBox 920 for the
+     figure font band. The giant media block visibly bypasses persistent worker residency in (b). -->
+<!-- semantic-families: modeling, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470" width="920" height="470"
+     role="group" aria-labelledby="srTitle srDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="srTitle">Skeletonization separates the storage representation from the reasoning representation</title>
+  <desc id="srDesc">Two panels. (a) Format-native representation: an OOXML package holds a small block of
+    structural XML and a large block of binary media; both are loaded into the in-memory document
+    representation and therefore into worker memory, so total media size scales worker residency. (b)
+    Skeletonized representation: streaming separation keeps the small structural skeleton and stable
+    references in the worker, while the large media block stays in external storage and streams to the GenAI
+    service only when an operation requires it. Total media size leaves the worker-memory scaling relation.</desc>
+
+  <defs>
+    <marker id="sr-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+    <marker id="sr-ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#78716c"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="470" fill="#fdfcf9"/>
+  <line x1="460" y1="40" x2="460" y2="450" stroke="#e7e2d6" stroke-width="1.5"/>
+
+  <!-- Panel (a) — format-native -->
+  <text x="30" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Format-native representation</text>
+
+  <rect x="60" y="46" width="340" height="96" rx="8" fill="#fbf9f4" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="230" y="68" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">OOXML package</text>
+  <rect x="76" y="80" width="96" height="46" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+  <text x="124" y="101" text-anchor="middle" font-size="14.5" fill="#1c1917">structural</text>
+  <text x="124" y="117" text-anchor="middle" font-size="14.5" fill="#1c1917">XML</text>
+  <rect x="188" y="80" width="196" height="46" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="286" y="107" text-anchor="middle" font-size="14.5" fill="#1c1917">binary media (large)</text>
+
+  <line x1="230" y1="142" x2="230" y2="176" stroke="#1c1917" stroke-width="2.2" marker-end="url(#sr-ah)"/>
+  <rect x="90" y="176" width="280" height="44" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="230" y="203" text-anchor="middle" font-size="16.5" fill="#1c1917">in-memory document representation</text>
+
+  <line x1="230" y1="220" x2="230" y2="254" stroke="#1c1917" stroke-width="2.2" marker-end="url(#sr-ah)"/>
+  <rect x="90" y="254" width="280" height="150" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="230" y="278" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">worker residency</text>
+  <rect x="112" y="292" width="100" height="96" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="162" y="344" text-anchor="middle" font-size="14" fill="#1c1917">structure</text>
+  <rect x="228" y="292" width="120" height="96" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/>
+  <text x="288" y="344" text-anchor="middle" font-size="14" fill="#1c1917">media</text>
+  <text x="230" y="424" text-anchor="middle" font-size="15" font-style="italic" fill="#78716c">media size scales worker memory</text>
+
+  <!-- Panel (b) — skeletonized -->
+  <text x="490" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) Skeletonized representation</text>
+
+  <rect x="520" y="46" width="340" height="60" rx="8" fill="#fbf9f4" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="690" y="72" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">OOXML package</text>
+  <text x="690" y="93" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">streaming separation</text>
+
+  <line x1="620" y1="106" x2="620" y2="140" stroke="#1c1917" stroke-width="2.2" marker-end="url(#sr-ah)"/>
+  <rect x="500" y="140" width="240" height="70" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="620" y="166" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">worker</text>
+  <text x="620" y="189" text-anchor="middle" font-size="14.5" fill="#44403c">structural skeleton + references</text>
+
+  <!-- media stays external -->
+  <line x1="760" y1="76" x2="800" y2="76" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#sr-ah-muted)"/>
+  <rect x="800" y="140" width="96" height="70" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="848" y="170" text-anchor="middle" font-size="14.5" fill="#1c1917">external</text>
+  <text x="848" y="188" text-anchor="middle" font-size="14.5" fill="#1c1917">media</text>
+  <!-- reference from worker to external media (orthogonal elbow) -->
+  <polyline points="740,175 800,175" fill="none" stroke="#78716c" stroke-width="1.8" marker-end="url(#sr-ah-muted)"/>
+  <text x="770" y="168" text-anchor="middle" font-size="13" fill="#78716c">ref</text>
+
+  <line x1="848" y1="210" x2="848" y2="300" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#sr-ah-muted)"/>
+  <text x="864" y="258" font-size="13.5" font-style="italic" fill="#78716c">stream</text>
+  <text x="864" y="274" font-size="13.5" font-style="italic" fill="#78716c">on demand</text>
+  <rect x="520" y="300" width="200" height="52" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="620" y="331" text-anchor="middle" font-size="16.5" fill="#1c1917">GenAI service</text>
+  <polyline points="800,326 720,326" fill="none" stroke="#78716c" stroke-width="1.8" marker-end="url(#sr-ah-muted)"/>
+
+  <text x="620" y="392" text-anchor="middle" font-size="15" font-style="italic" fill="#78716c">large media bypasses persistent worker residency</text>
+</svg>

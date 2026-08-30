@@ -784,22 +784,73 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A problem arrives as an observation: a file fails, a service slows down, or a new requirement exceeds the system's current range. The engineer may not yet know which property matters. A model makes one relation explicit. Analyzing it may answer the question or reveal a better one.</p>
 <p>This interlude follows one such problem in DocAble.</p>
 <h2>I. One Document, One Worker</h2>
-<p>The original remediation architecture treated a document as one unit of work.</p>
-<pre><code>                         one unit of work
-                    ┌─────────────────────┐
-                    │                     │
-                    v                     │
-              [ document ] -&gt; [ worker ] -&gt; [ output ]</code></pre>
+<p>The original remediation architecture treated a document as one unit of work; <a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-1">Figure&nbsp;3.5.1-1</a> traces how that unit later changed.</p>
+<figure id="fig-3-5-1-1" class="book-figure" data-label="interlude-execution-unit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430"
+     role="group" aria-labelledby="f-interlude-execution-unit-euTitle f-interlude-execution-unit-euDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="f-interlude-execution-unit-euTitle">The first change reduced the unit of residency</title>
+  <desc id="f-interlude-execution-unit-euDesc">Two panels. (a) Whole-document execution: a document enters one long-running Kubernetes
+    worker that holds the full document state and its media resident in memory, sources GenAI requests from
+    that memory, and emits the output. (b) Page-chunked execution: the document is split into page-range
+    partitions, each handled by a smaller worker holding only its range; the results are recombined into the
+    output. Chunking lowers per-worker memory without changing how document media is represented.</desc>
+
+  <defs>
+    <marker id="f-interlude-execution-unit-eu-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="430" fill="#fdfcf9"/>
+
+  <!-- Panel (a) — whole-document execution -->
+  <text x="24" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Whole-document execution</text>
+
+  <rect x="24" y="44" width="150" height="52" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="99" y="75" text-anchor="middle" font-size="18.4" fill="#1c1917">document</text>
+  <line x1="174" y1="70" x2="214" y2="70" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-interlude-execution-unit-eu-ah)"/>
+
+  <rect x="214" y="40" width="430" height="120" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="429" y="66" text-anchor="middle" font-size="18.4" font-weight="700" fill="#1c1917">long-running Kubernetes worker</text>
+  <text x="238" y="92" font-size="17" fill="#44403c">• full document state resident in memory</text>
+  <text x="238" y="116" font-size="17" fill="#44403c">• media resident from that state</text>
+  <text x="238" y="140" font-size="17" fill="#44403c">• GenAI request sourced from worker memory</text>
+  <line x1="644" y1="100" x2="684" y2="100" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-interlude-execution-unit-eu-ah)"/>
+
+  <rect x="684" y="74" width="150" height="52" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="759" y="105" text-anchor="middle" font-size="18.4" fill="#1c1917">output</text>
+
+  <!-- Panel (b) — page-chunked execution -->
+  <text x="24" y="250" font-size="18.4" font-weight="700" fill="#57534e">(b) Page-chunked execution</text>
+
+  <rect x="24" y="290" width="126" height="52" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="87" y="321" text-anchor="middle" font-size="18.4" fill="#1c1917">document</text>
+  <line x1="150" y1="316" x2="190" y2="316" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-interlude-execution-unit-eu-ah)"/>
+
+  <!-- page partitions → smaller workers (three lanes) -->
+  <rect x="190" y="272" width="150" height="30" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="265" y="292" text-anchor="middle" font-size="15" fill="#1c1917">pages 1–10 → worker</text>
+  <rect x="190" y="301" width="150" height="30" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="265" y="321" text-anchor="middle" font-size="15" fill="#1c1917">pages 11–20 → worker</text>
+  <rect x="190" y="330" width="150" height="30" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="265" y="350" text-anchor="middle" font-size="15" fill="#1c1917">pages 21–30 → worker</text>
+  <line x1="340" y1="316" x2="380" y2="316" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-interlude-execution-unit-eu-ah)"/>
+
+  <rect x="380" y="290" width="110" height="52" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="435" y="321" text-anchor="middle" font-size="18.4" fill="#1c1917">merge</text>
+  <line x1="490" y1="316" x2="530" y2="316" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-interlude-execution-unit-eu-ah)"/>
+
+  <rect x="530" y="290" width="120" height="52" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="590" y="321" text-anchor="middle" font-size="18.4" fill="#1c1917">output</text>
+
+  <text x="684" y="312" font-size="16" font-style="italic" fill="#78716c">each worker holds a</text>
+  <text x="684" y="332" font-size="16" font-style="italic" fill="#78716c">smaller page range</text>
+</svg><figcaption data-short="Evolution of the execution unit"><span class="fig-label">Figure 3.5.1-1.</span> <em>Evolution of the execution unit.</em> (a) Whole-document execution kept the artifact's working state, and its media, resident in one long-running worker, which sourced GenAI requests from that memory. (b) Page chunking divided that state across smaller workers, lowering per-worker memory without changing how document media is represented.</figcaption></figure>
 <p>A long-running Kubernetes worker opened the document, loaded the state needed for remediation into memory, modified the document, and produced the result. The document therefore served as both the user's artifact and the worker's in-memory unit of computation. Media needed by GenAI operations was likewise read from that resident representation and sent to the model as needed.</p>
 <p>For the small presentations used to develop the system, this worked well. The architecture was simple, and the document was a natural boundary: a user submitted a document and expected a document back. Nothing in the observed workload justified another unit of execution.</p>
 <p>Experience eventually expanded the workload. Real teaching presentations carried more slides, images, and other media, and handling the whole document in one process began to put enough pressure on worker memory that the execution unit needed to shrink. How could the system process a document without one worker carrying the entire job? The first answer was pages.</p>
 <h2>II. Pages as the Unit of Scale</h2>
-<p>DocAble introduced ChunkWorker, which divided a document into page ranges.</p>
-<pre><code>                           ┌-&gt; [ pages  1-10 ] -&gt; [ worker ] -┐
-                           │                                  │
-[ presentation ] ----------+-&gt; [ pages 11-20 ] -&gt; [ worker ] -+-&gt; [ merge ]
-                           │                                  │
-                           └-&gt; [ pages 21-30 ] -&gt; [ worker ] -┘</code></pre>
+<p>DocAble introduced ChunkWorker, which divided a document into page ranges (<a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-1">Figure&nbsp;3.5.1-1</a>, panel b).</p>
 <p>The next representation treated contiguous pages as independent work partitions. For a presentation, a chunk contained a range of slides together with the document state needed to remediate them; the system later recombined the resulting patches into the complete artifact.</p>
 <p>Each worker now handled only part of the document, and multiple chunks could run concurrently. More importantly, chunking reduced the memory required by an individual worker. Memory affects both infrastructure cost and cold-start behavior, so a smaller worker was useful even for documents that did not strictly require chunking to fit.</p>
 <p>Chunking worked across a much broader workload: ordinary teaching presentations and hundreds of documents from multiple universities. Page ranges gave each ChunkWorker a practical bound on its working state, and experience provided no reason to replace that design merely because another architecture was possible.</p>
@@ -811,46 +862,86 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The file therefore holds two broad kinds of information. One kind describes document structure: slides, shapes, text, relationships, identifiers, and references. The other is media payload: images, animated GIFs, movies, and other embedded binaries.</p>
 <p>The structural portion is comparatively small. It is largely text, and even an unusually large Office document may require only low megabytes to represent its semantic skeleton. The media payload can be hundreds of megabytes. Most remediation operations need only the structural portion; they may reach into the media, but not every media byte need be resident at once.</p>
 <p>Until this point, DocAble had largely accepted the storage representation supplied by the document format as its working representation. For Office documents, that meant opening the OOXML package through the document library and letting its structure and media participate in the in-memory object graph; other formats followed analogous format-native representations. That was reasonable while the input sizes fit the worker. Handling a roughly 250 MB media-heavy file without allocating correspondingly large workers required us to reconsider the arrangement itself.</p>
-<p>The existing representation coupled the two.</p>
-<pre><code>                         PRESENTATION
-                              |
-                  +-----------+-----------+
-                  |                       |
-                  v                       v
-              structure                 media
-              ---------                 -----
-              slides                    images
-              shapes                    movies
-              text                      GIFs
-              relationships             binaries
-              identifiers
-                  |                       |
-                  +-----------+-----------+
-                              |
-                              v
-                        worker memory</code></pre>
-<p>So the architecture carried an implicit scaling relation:</p>
-<pre><code>       total media size increases
-                   |
-                   v
-       resident worker state increases
-                   |
-                   v
-          OOM risk increases</code></pre>
-<p>Chunking reduced how much of the document met this relation at one time, but it did not remove the relation. On the observed workload that made no difference; the new file made it decisive.</p>
-<p>A residency model made the alternative visible. The structural pipeline could operate on a lightweight representation while media lived in object storage, and operations that needed media could reach it by reference.</p>
-<pre><code>                    +----------------------+
-                    |     media store      |
-                    +----------+-----------+
-                               ^
-                               | handle / stream
-                               |
-[ document ] -&gt; [ skeleton ] -&gt; [ remediation ]
-                    |
-                    +-&gt; structure
-                    +-&gt; text
-                    +-&gt; relationships
-                    +-&gt; stable media references</code></pre>
+<p>The existing representation coupled the two, and <a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-2">Figure&nbsp;3.5.1-2</a> contrasts that arrangement with the one that replaced it.</p>
+<figure id="fig-3-5-1-2" class="book-figure" data-label="interlude-storage-vs-reasoning"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470"
+     role="group" aria-labelledby="f-interlude-storage-vs-reasoning-srTitle f-interlude-storage-vs-reasoning-srDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="f-interlude-storage-vs-reasoning-srTitle">Skeletonization separates the storage representation from the reasoning representation</title>
+  <desc id="f-interlude-storage-vs-reasoning-srDesc">Two panels. (a) Format-native representation: an OOXML package holds a small block of
+    structural XML and a large block of binary media; both are loaded into the in-memory document
+    representation and therefore into worker memory, so total media size scales worker residency. (b)
+    Skeletonized representation: streaming separation keeps the small structural skeleton and stable
+    references in the worker, while the large media block stays in external storage and streams to the GenAI
+    service only when an operation requires it. Total media size leaves the worker-memory scaling relation.</desc>
+
+  <defs>
+    <marker id="f-interlude-storage-vs-reasoning-sr-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+    <marker id="f-interlude-storage-vs-reasoning-sr-ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#78716c"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="470" fill="#fdfcf9"/>
+  <line x1="460" y1="40" x2="460" y2="450" stroke="#e7e2d6" stroke-width="1.5"/>
+
+  <!-- Panel (a) — format-native -->
+  <text x="30" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Format-native representation</text>
+
+  <rect x="60" y="46" width="340" height="96" rx="8" fill="#fbf9f4" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="230" y="68" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">OOXML package</text>
+  <rect x="76" y="80" width="96" height="46" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+  <text x="124" y="101" text-anchor="middle" font-size="14.5" fill="#1c1917">structural</text>
+  <text x="124" y="117" text-anchor="middle" font-size="14.5" fill="#1c1917">XML</text>
+  <rect x="188" y="80" width="196" height="46" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="286" y="107" text-anchor="middle" font-size="14.5" fill="#1c1917">binary media (large)</text>
+
+  <line x1="230" y1="142" x2="230" y2="176" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-interlude-storage-vs-reasoning-sr-ah)"/>
+  <rect x="90" y="176" width="280" height="44" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="230" y="203" text-anchor="middle" font-size="16.5" fill="#1c1917">in-memory document representation</text>
+
+  <line x1="230" y1="220" x2="230" y2="254" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-interlude-storage-vs-reasoning-sr-ah)"/>
+  <rect x="90" y="254" width="280" height="150" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="230" y="278" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">worker residency</text>
+  <rect x="112" y="292" width="100" height="96" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="162" y="344" text-anchor="middle" font-size="14" fill="#1c1917">structure</text>
+  <rect x="228" y="292" width="120" height="96" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/>
+  <text x="288" y="344" text-anchor="middle" font-size="14" fill="#1c1917">media</text>
+  <text x="230" y="424" text-anchor="middle" font-size="15" font-style="italic" fill="#78716c">media size scales worker memory</text>
+
+  <!-- Panel (b) — skeletonized -->
+  <text x="490" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) Skeletonized representation</text>
+
+  <rect x="520" y="46" width="340" height="60" rx="8" fill="#fbf9f4" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="690" y="72" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">OOXML package</text>
+  <text x="690" y="93" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">streaming separation</text>
+
+  <line x1="620" y1="106" x2="620" y2="140" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-interlude-storage-vs-reasoning-sr-ah)"/>
+  <rect x="500" y="140" width="240" height="70" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="620" y="166" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">worker</text>
+  <text x="620" y="189" text-anchor="middle" font-size="14.5" fill="#44403c">structural skeleton + references</text>
+
+  <!-- media stays external -->
+  <line x1="760" y1="76" x2="800" y2="76" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
+  <rect x="800" y="140" width="96" height="70" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="848" y="170" text-anchor="middle" font-size="14.5" fill="#1c1917">external</text>
+  <text x="848" y="188" text-anchor="middle" font-size="14.5" fill="#1c1917">media</text>
+  <!-- reference from worker to external media (orthogonal elbow) -->
+  <polyline points="740,175 800,175" fill="none" stroke="#78716c" stroke-width="1.8" marker-end="url(#f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
+  <text x="770" y="168" text-anchor="middle" font-size="13" fill="#78716c">ref</text>
+
+  <line x1="848" y1="210" x2="848" y2="300" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
+  <text x="864" y="258" font-size="13.5" font-style="italic" fill="#78716c">stream</text>
+  <text x="864" y="274" font-size="13.5" font-style="italic" fill="#78716c">on demand</text>
+  <rect x="520" y="300" width="200" height="52" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="620" y="331" text-anchor="middle" font-size="16.5" fill="#1c1917">GenAI service</text>
+  <polyline points="800,326 720,326" fill="none" stroke="#78716c" stroke-width="1.8" marker-end="url(#f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
+
+  <text x="620" y="392" text-anchor="middle" font-size="15" font-style="italic" fill="#78716c">large media bypasses persistent worker residency</text>
+</svg><figcaption data-short="Storage representation versus reasoning representation"><span class="fig-label">Figure 3.5.1-2.</span> <em>Storage representation versus reasoning representation.</em> (a) The format-native representation loads both the small structural XML and the large binary media into the worker, so total media size scales worker memory. (b) Skeletonization keeps only the structural skeleton and references in the worker; the media stays in external storage and streams to the GenAI service on demand, leaving worker memory independent of total media size.</figcaption></figure>
+<p>So the architecture carried an implicit scaling relation: total media size drove resident worker state, and resident state drove the risk of running out of memory. Chunking reduced how much of the document met this relation at one time, but it did not remove the relation. On the observed workload that made no difference; the new file made it decisive.</p>
+<p>A residency model made the alternative visible (panel b): the structural pipeline could operate on a lightweight representation while media lived in object storage, and operations that needed media could reach it by reference.</p>
 <p>The 250 MB requirement had exposed a representation problem: storage size and reasoning state had been allowed to scale together, even though most remediation operations needed only the structural portion. The next design removed media from the worker's persistent working set.</p>
 <h2>IV. Remove Media from the Working Set</h2>
 <p>Skeletonization separates document structure from large media before remediation. For OOXML documents, the pipeline streams through the package, moves media into external storage, and leaves stable references in a much smaller structural skeleton.</p>
@@ -864,111 +955,248 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   + handles
   + remediation working set</code></pre>
 <p>and C does not grow with total media size.</p>
-<p>The claim is stronger than the empirical claim available from chunking. Chunking had empirical support:</p>
-<pre><code>these documents worked
-        |
-        v
-these larger documents worked
-        |
-        v
-hundreds of varied documents worked</code></pre>
-<p>That evidence expands the region in which success has been observed; it cannot establish what happens for every larger media payload. The skeletonized design supports a structural argument instead:</p>
-<pre><code>total media size
-       |
-       X
-       |
-       v
-peak worker memory</code></pre>
+<p>The claim is stronger than the empirical claim available from chunking; <a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-3">Figure&nbsp;3.5.1-3</a> sets the two side by side. Chunking had empirical support: each newly handled document that worked expanded the region in which success had been observed, but that evidence cannot establish what happens for every larger media payload. The skeletonized design supports a structural argument instead.</p>
+<figure id="fig-3-5-1-3" class="book-figure" data-label="interlude-bound-vs-accommodation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400"
+     role="group" aria-labelledby="f-interlude-bound-vs-accommodation-bvTitle f-interlude-bound-vs-accommodation-bvDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="f-interlude-bound-vs-accommodation-bvTitle">Empirical accommodation expands a region; a structural bound closes a class</title>
+  <desc id="f-interlude-bound-vs-accommodation-bvDesc">Two panels. (a) Empirical expansion: along an axis of input size and complexity, observed
+    successes grow from small decks to ordinary decks to hundreds of university documents, then the 250 MB
+    media-heavy deck falls outside the observed region and fails. (b) The modeled property: with total media
+    size on the x-axis and peak worker resident memory on the y-axis, the format-native architecture rises
+    with media size while the skeletonized design stays flat within the declared operating envelope. The
+    empirical curve widens the region known to work; the structural bound removes media size from the
+    scaling relation.</desc>
+
+  <defs>
+    <marker id="f-interlude-bound-vs-accommodation-bv-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="400" fill="#fdfcf9"/>
+  <line x1="460" y1="40" x2="460" y2="380" stroke="#e7e2d6" stroke-width="1.5"/>
+
+  <!-- Panel (a) — empirical expansion -->
+  <text x="30" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Empirical accommodation</text>
+
+  <!-- axis -->
+  <line x1="56" y1="300" x2="410" y2="300" stroke="#1c1917" stroke-width="2" marker-end="url(#f-interlude-bound-vs-accommodation-bv-ah)"/>
+  <text x="233" y="330" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">input size / complexity →</text>
+
+  <!-- observed successes (green ticks) -->
+  <circle cx="96" cy="300" r="6" fill="#1f7a4d"/>
+  <text x="96" y="284" text-anchor="middle" font-size="14" fill="#1c1917">small</text>
+  <circle cx="176" cy="300" r="6" fill="#1f7a4d"/>
+  <text x="176" y="284" text-anchor="middle" font-size="14" fill="#1c1917">ordinary</text>
+  <circle cx="276" cy="300" r="6" fill="#1f7a4d"/>
+  <text x="276" y="278" text-anchor="middle" font-size="14" fill="#1c1917">hundreds of</text>
+  <text x="276" y="262" text-anchor="middle" font-size="14" fill="#1c1917">documents</text>
+  <!-- 250 MB failure (rust X) -->
+  <text x="386" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">✕</text>
+  <text x="386" y="278" text-anchor="middle" font-size="14" fill="#9a3f12">250 MB</text>
+  <!-- observed region bracket -->
+  <path d="M84,318 L84,330 L300,330 L300,318" fill="none" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="192" y="348" text-anchor="middle" font-size="14" font-style="italic" fill="#1f7a4d">region observed to work</text>
+
+  <!-- Panel (b) — modeled property -->
+  <text x="490" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) Modeled property</text>
+
+  <!-- axes -->
+  <line x1="536" y1="90" x2="536" y2="320" stroke="#1c1917" stroke-width="2"/>
+  <line x1="536" y1="320" x2="892" y2="320" stroke="#1c1917" stroke-width="2" marker-end="url(#f-interlude-bound-vs-accommodation-bv-ah)"/>
+  <text x="714" y="352" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">total media size →</text>
+  <text x="516" y="205" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e" transform="rotate(-90 516 205)">peak worker RSS</text>
+
+  <!-- format-native: rising line (plotted data) -->
+  <line x1="536" y1="300" x2="872" y2="110" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="770" y="128" font-size="14.5" fill="#9a3f12">format-native (rises)</text>
+
+  <!-- skeletonized: flat line within envelope -->
+  <line x1="536" y1="276" x2="872" y2="276" stroke="#2f5169" stroke-width="2.6" stroke-dasharray="7 4"/>
+  <text x="612" y="266" font-size="14.5" fill="#2f5169">skeletonized (flat, within envelope)</text>
+</svg><figcaption data-short="Empirical accommodation versus a structural bound"><span class="fig-label">Figure 3.5.1-3.</span> <em>Empirical accommodation versus a structural bound.</em> (a) Each observed success widens the region known to work, until the 250 MB deck falls outside it. (b) The residency model bounds the shape of the relation instead: peak worker memory rises with media size under the format-native design but stays flat, within the declared envelope, under skeletonization.</figcaption></figure>
 <p>No stage in the modeled path retains the complete media payload. OOXML media moves through bounded streaming buffers, the structural skeleton stays small relative to the media it references, and a media consumer holds bounded active state rather than accumulating the document's media. The guarantee depends on those assumptions; in particular, the write path must stream too. A supposedly streaming architecture that buffers the complete payload before writing it has only moved the memory spike.</p>
 <p>The implementation enforces the assumptions behind the bound as invariants; measurement checks that the realized system behaves as the model predicts. The PDF path already shows approximately flat peak-RSS scaling across a count-scaled media sweep when each object is flushed; the corresponding OOXML media-size sweep remains a designed validation step.</p>
 <p>None of this proves that arbitrary documents can never exhaust memory. A document could expose another scaling dimension: pathological structure, an individual object beyond the supported bound, excessive concurrency, or something not yet modeled. It closes a narrower class: within the modeled envelope, total media size no longer determines worker memory.</p>
 <p>The colleague's presentation had exposed a previously unobserved input class, and with it an implicit scaling relationship the earlier workload had never exercised. The response was not to make that one example fit; it was to remove the relationship that produced the failure class. And that solution exposed another assumption. If the whole structural skeleton now fits comfortably in memory, why divide remediation by page at all?</p>
 <h2>V. Once Memory Is Solved, Why Are We Chunking?</h2>
 <p>Page chunking had served two roles at once: an execution strategy and a memory-management strategy. Skeletonization removed most of the second, leaving a question about computation. What actually determines which remediation work can execute together? A page tells us where content occurs, not which computations depend on which others.</p>
-<p>DocAble already represented remediation as a dependency graph. Some operations can run from the source document alone. Others consume intermediate semantic structures produced by earlier work: local interpretations may feed a document-level representation, which in turn supplies context to downstream remediation.</p>
-<pre><code>local semantic work ─┐
-local semantic work ─┼─&gt; document-level semantic structure ─&gt; downstream remediation
-local semantic work ─┘</code></pre>
+<p>DocAble already represented remediation as a dependency graph. Some operations can run from the source document alone. Others consume intermediate semantic structures produced by earlier work: local interpretations may feed a document-level representation, which in turn supplies context to downstream remediation. <a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-4">Figure&nbsp;3.5.1-4</a> shows this dependency graph and the two ways it can be partitioned.</p>
 <p>The graph explains the ordering. Independent semantic work can run together; a consumer waits only when it needs information produced upstream. Pages do not create those dependencies. Information does.</p>
-<p>Expressed as a directed acyclic graph, the ready work forms a frontier:<sup class="note-ref"><a href="#note-3-5-one-problem-many-models-fn-topo-dag" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-3-5-one-problem-many-models-fn-topo-dag"><span class="cn-mark">*</span> This is ordinary topological traversal of a directed acyclic graph, familiar from compilers, build systems, and dependency schedulers. I once answered essentially this question in an interview for a position at Google in 2017; the pattern came back to mind here.</span></p>
-<pre><code>FRONTIER 1
-+------+------+------+------+------+
-|  S1  |  S2  |  S3  |  S4  |  S5  |
-+------+------+------+------+------+
-                     |
-                     v
-FRONTIER 2
-                 +-------+
-                 |  DOC  |
-                 +-------+
-                     |
-                     v
-FRONTIER 3
-+-------+-------+-------+-------+-------+
-| ALT 1 | ALT 2 | ALT 3 | ALT 4 |  ...  |
-+-------+-------+-------+-------+-------+</code></pre>
-<p>A worker executes ready graph nodes, materializes their outputs, derives the next ready frontier, and passes execution forward. That reframes ChunkWorker itself: the page-oriented and frontier-oriented designs are not different remediation graphs but two partitions of the same graph.</p>
-<pre><code>            SAME REMEDIATION GRAPH
-       page partition             frontier partition
-       --------------             ------------------
-       [ page range 1 ]           [ ready nodes ]
-       [ page range 2 ]                 |
-       [ page range 3 ]                 v
-                                  [ next ready nodes ]
-          spatial                       |
-                                        v
-                                  [ next ready nodes ]
-                                      causal</code></pre>
+<p>Expressed as a directed acyclic graph, the ready work forms a frontier: the nodes with no unmet dependency, which advance together as a wave.<sup class="note-ref"><a href="#note-3-5-one-problem-many-models-fn-topo-dag" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-3-5-one-problem-many-models-fn-topo-dag"><span class="cn-mark">*</span> This is ordinary topological traversal of a directed acyclic graph, familiar from compilers, build systems, and dependency schedulers. I once answered essentially this question in an interview for a position at Google in 2017; the pattern came back to mind here.</span> A worker executes ready graph nodes, materializes their outputs, derives the next ready frontier, and passes execution forward. That reframes ChunkWorker itself: the page-oriented and frontier-oriented designs are not different remediation graphs but two partitions of the same graph.</p>
+<figure id="fig-3-5-1-4" class="book-figure" data-label="interlude-graph-two-partitions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400"
+     role="group" aria-labelledby="f-interlude-graph-two-partitions-tpTitle f-interlude-graph-two-partitions-tpDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="f-interlude-graph-two-partitions-tpTitle">Page chunking and frontier execution partition the same remediation graph</title>
+  <desc id="f-interlude-graph-two-partitions-tpDesc">The same seven-node remediation graph appears in both panels with identical node
+    positions: three local semantic-work nodes feed a document-level node, which feeds three downstream
+    remediation nodes. (a) Spatial partition: nodes are grouped into vertical page groups by artifact
+    location, cutting across the causal levels. (b) Causal partition: the same nodes are grouped into three
+    horizontal topological frontiers by readiness. Once media residency no longer forces page-sized workers,
+    the partition becomes an executor choice rather than part of the remediation model.</desc>
+
+  <defs>
+    <marker id="f-interlude-graph-two-partitions-tp-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="400" fill="#fdfcf9"/>
+  <line x1="460" y1="44" x2="460" y2="372" stroke="#e7e2d6" stroke-width="1.5"/>
+
+  <!-- ===== Panel (a): spatial / page partition ===== -->
+  <text x="30" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Spatial partition (by page)</text>
+
+  <!-- page group shading (vertical columns, behind nodes) -->
+  <rect x="44" y="52" width="96" height="268" rx="10" fill="#faf1e6" opacity="0.7"/>
+  <rect x="162" y="52" width="96" height="268" rx="10" fill="#f0e7d8" opacity="0.7"/>
+  <rect x="280" y="52" width="96" height="268" rx="10" fill="#faf1e6" opacity="0.7"/>
+
+  <!-- edges -->
+  <line x1="92" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="210" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="328" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="210" y1="204" x2="92" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="210" y1="204" x2="210" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="210" y1="204" x2="328" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+
+  <!-- nodes -->
+  <g font-size="14" fill="#1c1917" text-anchor="middle">
+    <rect x="60" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="92" y="89">local</text>
+    <rect x="178" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="210" y="89">local</text>
+    <rect x="296" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="328" y="89">local</text>
+    <rect x="170" y="160" width="80" height="44" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/><text x="210" y="186">document</text>
+    <rect x="60" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="92" y="285">down</text>
+    <rect x="178" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="210" y="285">down</text>
+    <rect x="296" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="328" y="285">down</text>
+  </g>
+  <text x="210" y="344" text-anchor="middle" font-size="14.5" font-style="italic" fill="#9a3f12">groups by artifact location</text>
+
+  <!-- ===== Panel (b): causal / frontier partition ===== -->
+  <text x="500" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) Causal partition (by frontier)</text>
+
+  <!-- frontier band shading (horizontal rows, behind nodes) -->
+  <rect x="500" y="58" width="392" height="52" rx="10" fill="#e3f0e7" opacity="0.7"/>
+  <rect x="500" y="154" width="392" height="56" rx="10" fill="#e3f0e7" opacity="0.7"/>
+  <rect x="500" y="254" width="392" height="52" rx="10" fill="#e3f0e7" opacity="0.7"/>
+  <text x="884" y="88" text-anchor="end" font-size="12.5" fill="#1f7a4d">frontier 1</text>
+  <text x="884" y="186" text-anchor="end" font-size="12.5" fill="#1f7a4d">frontier 2</text>
+  <text x="884" y="284" text-anchor="end" font-size="12.5" fill="#1f7a4d">frontier 3</text>
+
+  <!-- edges -->
+  <line x1="562" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="680" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="798" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="680" y1="204" x2="562" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="680" y1="204" x2="680" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="680" y1="204" x2="798" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+
+  <!-- nodes -->
+  <g font-size="14" fill="#1c1917" text-anchor="middle">
+    <rect x="530" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="562" y="89">local</text>
+    <rect x="648" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="680" y="89">local</text>
+    <rect x="766" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="798" y="89">local</text>
+    <rect x="640" y="160" width="80" height="44" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/><text x="680" y="186">document</text>
+    <rect x="530" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="562" y="285">down</text>
+    <rect x="648" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="680" y="285">down</text>
+    <rect x="766" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="798" y="285">down</text>
+  </g>
+  <text x="680" y="344" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1f7a4d">groups by causal readiness</text>
+</svg><figcaption data-short="Two partitions of one remediation graph"><span class="fig-label">Figure 3.5.1-4.</span> <em>Two partitions of one remediation graph.</em> The same graph — local semantic work feeding a document-level structure feeding downstream remediation — grouped (a) spatially, by page or artifact location, and (b) causally, by topological frontier. Once media residency no longer forces page-sized workers, the partition becomes an executor's choice rather than part of the remediation model.</figcaption></figure>
 <p>ChunkWorker partitions the work spatially; frontier execution partitions it causally. Skeletonization removed the memory pressure that had made page ranges the natural execution boundary, so the two approaches reconcile. Page identity can survive as metadata on graph nodes — useful for locality, debugging, rate limiting, or failure isolation — without remaining the fundamental unit of executable remediation.</p>
-<p>The architecture therefore needs only a clean seam between the remediation graph and its executor:</p>
-<pre><code>              remediation graph
-                     |
-                     | ready work +
-                     | dependencies
-                     v
-                  executor</code></pre>
-<p>The executor can schedule by frontier now and by page locality later if measurements justify it. There is no need to build a strategy hierarchy merely because two policies are conceivable. The graph/executor seam preserves the degree of freedom without spending it. And once remediation has this representation, a further class of questions becomes answerable without changing the implementation at all.</p>
+<p>The architecture therefore needs only a clean seam between the remediation graph and its executor: the graph supplies ready work and its dependencies; the executor consumes them. The executor can schedule by frontier now and by page locality later if measurements justify it. There is no need to build a strategy hierarchy merely because two policies are conceivable. The graph/executor seam preserves the degree of freedom without spending it. And once remediation has this representation, a further class of questions becomes answerable without changing the implementation at all.</p>
 <h2>VI. Analyze Before You Build</h2>
-<p>A remediation graph is executable structure, but it can be analyzed before any executor is written. Suppose a graph contains:</p>
-<pre><code>                 [ A ]
-                /     \
-               v       v
-             [ B ]   [ C ]
-               |       |
-               v       v
-             [ D ]   [ E ]
-                \     /
-                 v   v
-                  [ F ]</code></pre>
-<p>Before executing anything, the graph tells us that B and C may run concurrently, that D must wait for B, and that adding workers cannot shorten a dependency edge. Attach estimated or measured costs to the nodes and it tells us more:</p>
-<pre><code>                 [ A ]
-                /     \
-               v       v
-           [ BBBB ]   [ C ]
-               |
-               v
-           [ DDDD ]
-               |
-               v
-              [ F ]</code></pre>
-<p>If B dominates the critical path, the model has found an optimization target. The next question is structural: must B be one node? If its semantics permit decomposition,</p>
-<pre><code>                    [ A ]
-                 /    |    \
-                v     v     v
-              [B1]  [B2]  [B3]
-                 \    |    /
-                      v
-                    [ D ]</code></pre>
-<p>the model shows that splitting it can expose parallelism, with no implementation of the split required to discover the possibility. The graph cannot promise the optimization will pay off, since smaller operations may add coordination cost, lose batching efficiency, or contend for another resource; but it names the candidate and the quantities that decide whether it helps.</p>
+<p>A remediation graph is executable structure, but it can be analyzed before any executor is written. <a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-5">Figure&nbsp;3.5.1-5</a> shows three moves that analysis makes.</p>
+<figure id="fig-3-5-1-5" class="book-figure" data-label="interlude-analysis-before-build"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 380"
+     role="group" aria-labelledby="f-interlude-analysis-before-build-abTitle f-interlude-analysis-before-build-abDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="f-interlude-analysis-before-build-abTitle">An explicit dependency model exposes optimization opportunities before implementation</title>
+  <desc id="f-interlude-analysis-before-build-abDesc">Three panels. (a) Critical path: in a weighted dependency graph, the heaviest chain from
+    top to bottom is the critical path and sets the latency floor. (b) Node split: decomposing the dominant
+    node into parallel children shortens the critical path, discoverable from the model before implementing
+    the split. (c) Dependency redesign: a serial information dependency among alt-text operations (a SCAN)
+    becomes a parallel MAP when each operation instead consumes a shared intermediate representation. Whether
+    a predicted gain survives implementation is then an empirical question.</desc>
+
+  <defs>
+    <marker id="f-interlude-analysis-before-build-ab-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+    <marker id="f-interlude-analysis-before-build-ab-ah-crit" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="380" fill="#fdfcf9"/>
+  <line x1="310" y1="44" x2="310" y2="352" stroke="#e7e2d6" stroke-width="1.5"/>
+  <line x1="620" y1="44" x2="620" y2="352" stroke="#e7e2d6" stroke-width="1.5"/>
+
+  <!-- ===== (a) critical path ===== -->
+  <text x="20" y="30" font-size="17.5" font-weight="700" fill="#57534e">(a) Critical path</text>
+  <!-- critical edges (rust) A->B->D->F -->
+  <line x1="150" y1="84" x2="96" y2="128" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <line x1="96" y1="176" x2="96" y2="212" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <line x1="96" y1="260" x2="150" y2="300" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <!-- side edges (muted) A->C->E->F -->
+  <line x1="150" y1="84" x2="214" y2="128" stroke="#57534e" stroke-width="1.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="214" y1="176" x2="214" y2="212" stroke="#57534e" stroke-width="1.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="214" y1="260" x2="150" y2="300" stroke="#57534e" stroke-width="1.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <g font-size="14" fill="#1c1917" text-anchor="middle">
+    <rect x="126" y="60" width="48" height="30" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="150" y="80">A</text>
+    <rect x="60" y="128" width="72" height="48" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/><text x="96" y="157">B (heavy)</text>
+    <rect x="190" y="132" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="214" y="157">C</text>
+    <rect x="72" y="212" width="48" height="40" rx="6" fill="#fff" stroke="#9a3f12" stroke-width="1.8"/><text x="96" y="237">D</text>
+    <rect x="190" y="212" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="214" y="237">E</text>
+    <rect x="126" y="300" width="48" height="30" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="150" y="320">F</text>
+  </g>
+
+  <!-- ===== (b) node split ===== -->
+  <text x="330" y="30" font-size="17.5" font-weight="700" fill="#57534e">(b) Node split</text>
+  <line x1="465" y1="84" x2="405" y2="128" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="465" y1="84" x2="465" y2="128" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="465" y1="84" x2="525" y2="128" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="405" y1="160" x2="465" y2="212" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="465" y1="160" x2="465" y2="212" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="525" y1="160" x2="465" y2="212" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="465" y1="252" x2="465" y2="300" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <g font-size="14" fill="#1c1917" text-anchor="middle">
+    <rect x="441" y="60" width="48" height="30" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="465" y="80">A</text>
+    <rect x="378" y="128" width="54" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="405" y="149">B1</text>
+    <rect x="438" y="128" width="54" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="465" y="149">B2</text>
+    <rect x="498" y="128" width="54" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="525" y="149">B3</text>
+    <rect x="441" y="212" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="465" y="237">D</text>
+    <rect x="441" y="300" width="48" height="30" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="465" y="320">F</text>
+  </g>
+  <text x="465" y="352" text-anchor="middle" font-size="13.5" font-style="italic" fill="#1f7a4d">parallel children shorten the path</text>
+
+  <!-- ===== (c) dependency redesign ===== -->
+  <text x="640" y="30" font-size="17.5" font-weight="700" fill="#57534e">(c) Dependency redesign</text>
+  <!-- serial SCAN -->
+  <text x="640" y="78" font-size="13.5" fill="#9a3f12">serial SCAN</text>
+  <g font-size="13" fill="#1c1917" text-anchor="middle">
+    <rect x="640" y="88" width="52" height="32" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="666" y="109">alt 1</text>
+    <rect x="726" y="88" width="52" height="32" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="752" y="109">alt 2</text>
+    <rect x="812" y="88" width="52" height="32" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="838" y="109">alt 3</text>
+  </g>
+  <line x1="692" y1="104" x2="726" y2="104" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <line x1="778" y1="104" x2="812" y2="104" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <!-- shared IR → parallel MAP -->
+  <text x="640" y="196" font-size="13.5" fill="#1f7a4d">parallel MAP</text>
+  <rect x="702" y="206" width="96" height="34" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="750" y="228" text-anchor="middle" font-size="13" fill="#1c1917">shared IR</text>
+  <line x1="726" y1="240" x2="678" y2="286" stroke="#57534e" stroke-width="1.7" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="750" y1="240" x2="750" y2="286" stroke="#57534e" stroke-width="1.7" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="774" y1="240" x2="822" y2="286" stroke="#57534e" stroke-width="1.7" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <g font-size="13" fill="#1c1917" text-anchor="middle">
+    <rect x="640" y="286" width="52" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="666" y="307">alt 1</text>
+    <rect x="724" y="286" width="52" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="750" y="307">alt 2</text>
+    <rect x="808" y="286" width="52" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="834" y="307">alt 3</text>
+  </g>
+</svg><figcaption data-short="Analysis before implementation"><span class="fig-label">Figure 3.5.1-5.</span> <em>Analysis before implementation.</em> (a) In a weighted dependency graph the heaviest chain is the critical path, which sets the latency floor and names an optimization target. (b) Decomposing the dominant node exposes parallel children and shortens the path, discoverable from the model before the split is built. (c) A serial information dependency (a SCAN) becomes a parallel MAP when each operation consumes a shared intermediate representation instead of its predecessor's output.</figcaption></figure>
+<p>Given the weighted graph in panel (a), the model reports which operations may run concurrently, which must wait, and that adding workers cannot shorten a dependency edge; the heaviest chain from start to finish is the critical path. If one node dominates that path, the model has found an optimization target, and the next question is structural: must it be one node? If its semantics permit decomposition, splitting it can expose parallelism and shorten the path (panel b), discoverable from the model with no implementation of the split. The graph cannot promise the optimization will pay off, since smaller operations may add coordination cost, lose batching efficiency, or contend for another resource; but it names the candidate and the quantities that decide whether it helps.</p>
 <h3>Dependencies can be redesigned</h3>
-<p>The same analysis exposed a problem in contextual image description. Suppose each image description consumes the description generated for the preceding image:</p>
-<pre><code>[ ALT 1 ] -&gt; [ ALT 2 ] -&gt; [ ALT 3 ] -&gt; [ ALT 4 ] -&gt; ...</code></pre>
-<p>This is a SCAN. For N images the dependency depth approaches N, so if each GenAI call takes roughly t, the serial floor grows as about N·t, and more workers cannot remove it. But the requirement is not to generate alt text serially; it is to give each image enough surrounding context to produce an adequate description. A different representation can supply that context. Render surrounding pages up front and treat those thumbnails as a visual IR:</p>
-<pre><code>                       [ visual IR ]
-                    /       |       \
-                   v        v        v
-               [ ALT 1 ] [ ALT 2 ] [ ALT 3 ] ...</code></pre>
-<p>Now each image consumes bounded neighboring visual context instead of a sibling's generated alt text. The payload grows, but the dependency disappears, and the operation stays a parallel MAP rather than a serial SCAN. The analysis also clarified the requirement. Good alt text needs sufficient visual context; it does not require serial generation. That context can itself be represented and reused, just as textual document context already is. The model changed the proposed implementation before that implementation existed.</p>
+<p>The same analysis exposed a problem in contextual image description (panel c). If each image description consumed the description generated for the preceding image, the operations formed a serial SCAN: for N images the dependency depth approaches N, so if each GenAI call takes roughly t, the serial floor grows as about N·t, and more workers cannot remove it. But the requirement is not to generate alt text serially; it is to give each image enough surrounding context to produce an adequate description. Rendering the surrounding pages up front and treating those thumbnails as a shared visual IR supplies that context: each image then consumes bounded neighboring visual context instead of a sibling's generated alt text, the payload grows but the dependency disappears, and the operation stays a parallel MAP. The analysis also clarified the requirement. Good alt text needs sufficient visual context; it does not require serial generation. That context can itself be represented and reused, just as textual document context already is. The model changed the proposed implementation before that implementation existed.</p>
 <h3>Predicting latency</h3>
 <p>The same graph supports a first-order latency model. For the representative workload used during this analysis, the relevant GenAI chain had three levels:</p>
 <pre><code>section summary

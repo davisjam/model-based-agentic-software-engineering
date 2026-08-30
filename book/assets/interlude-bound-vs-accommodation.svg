@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: interlude-bound-vs-accommodation). (a) Empirical expansion: the region of
+     observed success grows along an input-size axis until the 250 MB media-heavy deck falls outside it.
+     (b) The modeled property: peak worker RSS against total media size — the format-native architecture
+     rises with media size; the skeletonized target stays flat within the declared envelope. viewBox 920
+     for the figure font band. Diagonal marks in (b) are plotted data, not box connectors. -->
+<!-- semantic-families: modeling, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" width="920" height="400"
+     role="group" aria-labelledby="bvTitle bvDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="bvTitle">Empirical accommodation expands a region; a structural bound closes a class</title>
+  <desc id="bvDesc">Two panels. (a) Empirical expansion: along an axis of input size and complexity, observed
+    successes grow from small decks to ordinary decks to hundreds of university documents, then the 250 MB
+    media-heavy deck falls outside the observed region and fails. (b) The modeled property: with total media
+    size on the x-axis and peak worker resident memory on the y-axis, the format-native architecture rises
+    with media size while the skeletonized design stays flat within the declared operating envelope. The
+    empirical curve widens the region known to work; the structural bound removes media size from the
+    scaling relation.</desc>
+
+  <defs>
+    <marker id="bv-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="400" fill="#fdfcf9"/>
+  <line x1="460" y1="40" x2="460" y2="380" stroke="#e7e2d6" stroke-width="1.5"/>
+
+  <!-- Panel (a) — empirical expansion -->
+  <text x="30" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Empirical accommodation</text>
+
+  <!-- axis -->
+  <line x1="56" y1="300" x2="410" y2="300" stroke="#1c1917" stroke-width="2" marker-end="url(#bv-ah)"/>
+  <text x="233" y="330" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">input size / complexity →</text>
+
+  <!-- observed successes (green ticks) -->
+  <circle cx="96" cy="300" r="6" fill="#1f7a4d"/>
+  <text x="96" y="284" text-anchor="middle" font-size="14" fill="#1c1917">small</text>
+  <circle cx="176" cy="300" r="6" fill="#1f7a4d"/>
+  <text x="176" y="284" text-anchor="middle" font-size="14" fill="#1c1917">ordinary</text>
+  <circle cx="276" cy="300" r="6" fill="#1f7a4d"/>
+  <text x="276" y="278" text-anchor="middle" font-size="14" fill="#1c1917">hundreds of</text>
+  <text x="276" y="262" text-anchor="middle" font-size="14" fill="#1c1917">documents</text>
+  <!-- 250 MB failure (rust X) -->
+  <text x="386" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">✕</text>
+  <text x="386" y="278" text-anchor="middle" font-size="14" fill="#9a3f12">250 MB</text>
+  <!-- observed region bracket -->
+  <path d="M84,318 L84,330 L300,330 L300,318" fill="none" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="192" y="348" text-anchor="middle" font-size="14" font-style="italic" fill="#1f7a4d">region observed to work</text>
+
+  <!-- Panel (b) — modeled property -->
+  <text x="490" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) Modeled property</text>
+
+  <!-- axes -->
+  <line x1="536" y1="90" x2="536" y2="320" stroke="#1c1917" stroke-width="2"/>
+  <line x1="536" y1="320" x2="892" y2="320" stroke="#1c1917" stroke-width="2" marker-end="url(#bv-ah)"/>
+  <text x="714" y="352" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">total media size →</text>
+  <text x="516" y="205" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e" transform="rotate(-90 516 205)">peak worker RSS</text>
+
+  <!-- format-native: rising line (plotted data) -->
+  <line x1="536" y1="300" x2="872" y2="110" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="770" y="128" font-size="14.5" fill="#9a3f12">format-native (rises)</text>
+
+  <!-- skeletonized: flat line within envelope -->
+  <line x1="536" y1="276" x2="872" y2="276" stroke="#2f5169" stroke-width="2.6" stroke-dasharray="7 4"/>
+  <text x="612" y="266" font-size="14.5" fill="#2f5169">skeletonized (flat, within envelope)</text>
+</svg>
