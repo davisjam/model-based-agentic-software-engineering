@@ -782,7 +782,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="One Problem, Many Models — MAGE"><header class="chap"><div class="kicker"><a href="3.5-one-problem-many-models.html" aria-label="Beginning of Interlude">Interlude</a></div><h1>One Problem, Many Models</h1></header><p>Parts II and III separated Modeling from Alignment so that each could be examined clearly. Engineering does not usually present them that way.</p>
 <p>A problem arrives as an observation: a file fails, a service slows down, or a new requirement exceeds the system's current range. The engineer may not yet know which property matters. A model makes one relation explicit. Analyzing it may answer the question or reveal a better one.</p>
-<p>This interlude follows one such problem in DocAble. It began with a PowerPoint file.</p>
+<p>This interlude follows one such problem in DocAble.</p>
 <h2>I. One Document, One Worker</h2>
 <p>The original remediation architecture treated a document as one unit of work.</p>
 <pre><code>                         one unit of work
@@ -790,8 +790,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
                     │                     │
                     v                     │
               [ document ] -&gt; [ worker ] -&gt; [ output ]</code></pre>
-<p>A worker opened the document, constructed the state needed for remediation, modified the document, and produced the result. For the modest presentations used to develop the system, this worked well. The architecture was simple, and the document was a natural boundary: a user submitted a document and expected a document back. Nothing in the observed workload justified another unit of execution.</p>
-<p>Experience eventually expanded the workload. Real teaching presentations carried more slides, images, and other media, and the whole-document design began to put enough pressure on worker memory that the execution unit needed to shrink. How could the system process a document without one worker carrying the entire job? The first answer was pages.</p>
+<p>A long-running Kubernetes worker opened the document, loaded the state needed for remediation into memory, modified the document, and produced the result. The document therefore served as both the user's artifact and the worker's in-memory unit of computation. Media needed by GenAI operations was likewise read from that resident representation and sent to the model as needed.</p>
+<p>For the small presentations used to develop the system, this worked well. The architecture was simple, and the document was a natural boundary: a user submitted a document and expected a document back. Nothing in the observed workload justified another unit of execution.</p>
+<p>Experience eventually expanded the workload. Real teaching presentations carried more slides, images, and other media, and handling the whole document in one process began to put enough pressure on worker memory that the execution unit needed to shrink. How could the system process a document without one worker carrying the entire job? The first answer was pages.</p>
 <h2>II. Pages as the Unit of Scale</h2>
 <p>DocAble introduced ChunkWorker, which divided a document into page ranges.</p>
 <pre><code>                           ┌-&gt; [ pages  1-10 ] -&gt; [ worker ] -┐
@@ -799,12 +800,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 [ presentation ] ----------+-&gt; [ pages 11-20 ] -&gt; [ worker ] -+-&gt; [ merge ]
                            │                                  │
                            └-&gt; [ pages 21-30 ] -&gt; [ worker ] -┘</code></pre>
-<p>Each worker handled only part of the document; multiple chunks could run concurrently, and their results could later be recombined. Chunking worked across a much broader workload: ordinary teaching presentations and hundreds of documents from multiple universities. Page ranges gave each ChunkWorker a practical bound on its working state, and experience provided no reason to replace that design merely because another architecture was possible.</p>
-<p>The architecture necessarily reflected the inputs encountered so far. Successful operation across that workload gave no reason to suspect which assumptions a different class of input might expose. The page boundary gradually became part of how DocAble was understood: a document was divided into chunks because chunks were how large documents were processed.</p>
+<p>The next representation treated contiguous pages as independent work partitions. For a presentation, a chunk contained a range of slides together with the document state needed to remediate them; the system later recombined the resulting patches into the complete artifact.</p>
+<p>Each worker now handled only part of the document, and multiple chunks could run concurrently. More importantly, chunking reduced the memory required by an individual worker. Memory affects both infrastructure cost and cold-start behavior, so a smaller worker was useful even for documents that did not strictly require chunking to fit.</p>
+<p>Chunking worked across a much broader workload: ordinary teaching presentations and hundreds of documents from multiple universities. Page ranges gave each ChunkWorker a practical bound on its working state, and experience provided no reason to replace that design merely because another architecture was possible.</p>
+<p>This architecture accommodated the inputs encountered so far. The page boundary gradually became part of how DocAble was understood: a document was divided into chunks because chunks were how large documents were processed.</p>
 <p>Then a colleague supplied a presentation of roughly 250 MB, with enough embedded media to cross a boundary the previous workload had never reached. The apparent problem was simply how to process a much larger PowerPoint file. Modeling made a narrower question possible: which bytes actually need to reside in a remediation worker?</p>
 <h2>III. A New Class of Input</h2>
-<p>A 250 MB file does not imply that remediation needs 250 MB of document content in memory. The file holds several kinds of information. Some describe document structure: slides, shapes, text, relationships, identifiers, and references. The rest is payload: images, animated GIFs, movies, and other embedded media. Most remediation operations need the first group; they may need access to the second, but not every media byte resident at once.</p>
-<p>The existing representation coupled them.</p>
+<p>A 250 MB PowerPoint file does not imply that remediation needs 250 MB of document content resident in memory.</p>
+<p>Modern Office documents use Office Open XML (OOXML). A <code>.pptx</code>, <code>.docx</code>, or <code>.xlsx</code> file is a package containing many parts. Much of its semantic structure is XML: text, slides, relationships, identifiers, and references among objects. Large binary assets such as images and other media live alongside those XML parts inside the package.</p>
+<p>The file therefore holds two broad kinds of information. One kind describes document structure: slides, shapes, text, relationships, identifiers, and references. The other is media payload: images, animated GIFs, movies, and other embedded binaries.</p>
+<p>The structural portion is comparatively small. It is largely text, and even an unusually large Office document may require only low megabytes to represent its semantic skeleton. The media payload can be hundreds of megabytes. Most remediation operations need only the structural portion; they may reach into the media, but not every media byte need be resident at once.</p>
+<p>Until this point, DocAble had largely accepted the storage representation supplied by the document format as its working representation. For Office documents, that meant opening the OOXML package through the document library and letting its structure and media participate in the in-memory object graph; other formats followed analogous format-native representations. That was reasonable while the input sizes fit the worker. Handling a roughly 250 MB media-heavy file without allocating correspondingly large workers required us to reconsider the arrangement itself.</p>
+<p>The existing representation coupled the two.</p>
 <pre><code>                         PRESENTATION
                               |
                   +-----------+-----------+
@@ -844,9 +851,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
                     +-&gt; text
                     +-&gt; relationships
                     +-&gt; stable media references</code></pre>
-<p>The 250 MB requirement had exposed a representation problem, and the next design removed media from the worker's persistent working set.</p>
+<p>The 250 MB requirement had exposed a representation problem: storage size and reasoning state had been allowed to scale together, even though most remediation operations needed only the structural portion. The next design removed media from the worker's persistent working set.</p>
 <h2>IV. Remove Media from the Working Set</h2>
-<p>Skeletonization separates document structure from large media before remediation. For OOXML documents such as PowerPoint, the pipeline streams through the package, moves media into object storage, and leaves references in a much smaller structural skeleton. Remediation then operates over that skeleton: a vision operation that needs an image follows its reference and streams the required media, and recombination streams media back into the delivered artifact. The worker no longer needs memory proportional to total media size.</p>
+<p>Skeletonization separates document structure from large media before remediation. For OOXML documents, the pipeline streams through the package, moves media into external storage, and leaves stable references in a much smaller structural skeleton.</p>
+<p>Remediation then operates on the skeleton. If a GenAI operation needs an image, the worker follows the reference and streams that media through the network to the GenAI service without first materializing the document's complete media payload in worker memory. Recombination follows the same discipline in reverse. The worker no longer needs memory proportional to total media size.</p>
 <p>The corresponding memory invariant states the property directly:</p>
 <pre><code>peak worker RSS &lt;= C</code></pre>
 <p>where, within the declared operating envelope,</p>
@@ -872,19 +880,17 @@ hundreds of varied documents worked</code></pre>
        v
 peak worker memory</code></pre>
 <p>No stage in the modeled path retains the complete media payload. OOXML media moves through bounded streaming buffers, the structural skeleton stays small relative to the media it references, and a media consumer holds bounded active state rather than accumulating the document's media. The guarantee depends on those assumptions; in particular, the write path must stream too. A supposedly streaming architecture that buffers the complete payload before writing it has only moved the memory spike.</p>
-<p>The implementation therefore carries structural invariants that enforce the modeled property, and measurement provides another check. The PDF path already shows approximately flat peak-RSS scaling across a count-scaled media sweep when each object is flushed; the corresponding OOXML media-size sweep remains a designed validation step.</p>
+<p>The implementation enforces the assumptions behind the bound as invariants; measurement checks that the realized system behaves as the model predicts. The PDF path already shows approximately flat peak-RSS scaling across a count-scaled media sweep when each object is flushed; the corresponding OOXML media-size sweep remains a designed validation step.</p>
 <p>None of this proves that arbitrary documents can never exhaust memory. A document could expose another scaling dimension: pathological structure, an individual object beyond the supported bound, excessive concurrency, or something not yet modeled. It closes a narrower class: within the modeled envelope, total media size no longer determines worker memory.</p>
 <p>The colleague's presentation had exposed a previously unobserved input class, and with it an implicit scaling relationship the earlier workload had never exercised. The response was not to make that one example fit; it was to remove the relationship that produced the failure class. And that solution exposed another assumption. If the whole structural skeleton now fits comfortably in memory, why divide remediation by page at all?</p>
 <h2>V. Once Memory Is Solved, Why Are We Chunking?</h2>
 <p>Page chunking had served two roles at once: an execution strategy and a memory-management strategy. Skeletonization removed most of the second, leaving a question about computation. What actually determines which remediation work can execute together? A page tells us where content occurs, not which computations depend on which others.</p>
-<p>DocAble already represented remediation operations as a graph, with nodes naming computations and typed edges recording relations among them. Consider a simplified PowerPoint path:</p>
-<pre><code>[ section 1 summary ] --\
-[ section 2 summary ] ---\
-[ section 3 summary ] ----&gt; [ document summary ] ---&gt; [ alt text 1 ]
-[ section 4 summary ] ---/                         \--&gt; [ alt text 2 ]
-[ section 5 summary ] --/                           \-&gt; [ alt text 3 ]</code></pre>
-<p>The graph explains the ordering. The section summaries run independently; the document summary waits because it consumes them; image alt-text generation waits for the document summary because that summary feeds its prompt. Pages do not create those dependencies. Information does.</p>
-<p>Expressed as a directed acyclic graph, the ready work forms a frontier:</p>
+<p>DocAble already represented remediation as a dependency graph. Some operations can run from the source document alone. Others consume intermediate semantic structures produced by earlier work: local interpretations may feed a document-level representation, which in turn supplies context to downstream remediation.</p>
+<pre><code>local semantic work ─┐
+local semantic work ─┼─&gt; document-level semantic structure ─&gt; downstream remediation
+local semantic work ─┘</code></pre>
+<p>The graph explains the ordering. Independent semantic work can run together; a consumer waits only when it needs information produced upstream. Pages do not create those dependencies. Information does.</p>
+<p>Expressed as a directed acyclic graph, the ready work forms a frontier:<sup class="note-ref"><a href="#note-3-5-one-problem-many-models-fn-topo-dag" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-3-5-one-problem-many-models-fn-topo-dag"><span class="cn-mark">*</span> This is ordinary topological traversal of a directed acyclic graph, familiar from compilers, build systems, and dependency schedulers. I once answered essentially this question in an interview for a position at Google in 2017; the pattern came back to mind here.</span></p>
 <pre><code>FRONTIER 1
 +------+------+------+------+------+
 |  S1  |  S2  |  S3  |  S4  |  S5  |

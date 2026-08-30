@@ -2150,16 +2150,16 @@
           "heading_text": "II. Pages as the Unit of Scale",
           "topic_sentence": "DocAble introduced ChunkWorker, which divided a document into page ranges.",
           "id_source": "derived",
-          "block_index": 8,
+          "block_index": 9,
           "points": []
         },
         {
           "section_id": "iii-a-new-class-of-input",
           "level": 2,
           "heading_text": "III. A New Class of Input",
-          "topic_sentence": "A 250 MB file does not imply that remediation needs 250 MB of document content in memory.",
+          "topic_sentence": "A 250 MB PowerPoint file does not imply that remediation needs 250 MB of document content resident in memory.",
           "id_source": "derived",
-          "block_index": 14,
+          "block_index": 17,
           "points": []
         },
         {
@@ -2168,7 +2168,7 @@
           "heading_text": "IV. Remove Media from the Working Set",
           "topic_sentence": "Skeletonization separates document structure from large media before remediation.",
           "id_source": "derived",
-          "block_index": 24,
+          "block_index": 31,
           "points": []
         },
         {
@@ -2177,7 +2177,7 @@
           "heading_text": "V. Once Memory Is Solved, Why Are We Chunking?",
           "topic_sentence": "Page chunking had served two roles at once: an execution strategy and a memory-management strategy.",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 47,
           "points": []
         },
         {
@@ -2186,7 +2186,7 @@
           "heading_text": "VI. Analyze Before You Build",
           "topic_sentence": "A remediation graph is executable structure, but it can be analyzed before any executor is written.",
           "id_source": "derived",
-          "block_index": 52,
+          "block_index": 60,
           "points": []
         },
         {
@@ -2195,7 +2195,7 @@
           "heading_text": "Dependencies can be redesigned",
           "topic_sentence": "The same analysis exposed a problem in contextual image description.",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 68,
           "points": []
         },
         {
@@ -2204,7 +2204,7 @@
           "heading_text": "Predicting latency",
           "topic_sentence": "The same graph supports a first-order latency model.",
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 74,
           "points": []
         },
         {
@@ -2213,7 +2213,7 @@
           "heading_text": "Predicting the cost of a design change",
           "topic_sentence": "Models can also answer questions about designs that do not exist yet.",
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 81,
           "points": []
         },
         {
@@ -2222,7 +2222,7 @@
           "heading_text": "Use prediction error as evidence",
           "topic_sentence": "Implementation eventually supplies measurements, and the useful comparison is not simply whether the result was fast.",
           "id_source": "derived",
-          "block_index": 77,
+          "block_index": 85,
           "points": []
         },
         {
@@ -2231,7 +2231,7 @@
           "heading_text": "VII. The Resulting Model Family",
           "topic_sentence": "The large-file requirement did not produce one model.",
           "id_source": "derived",
-          "block_index": 83,
+          "block_index": 91,
           "points": []
         },
         {
@@ -2240,7 +2240,7 @@
           "heading_text": "From examples to a bound",
           "topic_sentence": "The memory story shows the progression clearly:",
           "id_source": "derived",
-          "block_index": 90,
+          "block_index": 98,
           "points": []
         },
         {
@@ -2249,7 +2249,7 @@
           "heading_text": "Three days",
           "topic_sentence": "Laid out this way, the sequence looks like a substantial architecture project.",
           "id_source": "derived",
-          "block_index": 94,
+          "block_index": 102,
           "points": []
         },
         {
@@ -2258,7 +2258,7 @@
           "heading_text": "Finding the models",
           "topic_sentence": "Part IV asks engineers to find the models their work needs.",
           "id_source": "derived",
-          "block_index": 98,
+          "block_index": 106,
           "points": []
         }
       ],
