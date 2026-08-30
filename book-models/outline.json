@@ -90,7 +90,7 @@
           "heading_text": "Evidence and scope",
           "topic_sentence": "MAGE draws on two kinds of evidence.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 35,
           "points": []
         },
         {
@@ -99,7 +99,7 @@
           "heading_text": "What the method turned out to be",
           "topic_sentence": "Two principles organize MAGE:",
           "id_source": "derived",
-          "block_index": 36,
+          "block_index": 37,
           "points": []
         },
         {
@@ -108,7 +108,7 @@
           "heading_text": "Who this book is for",
           "topic_sentence": "This book is for software engineers who suspect the ground has moved and want to know where to stand.",
           "id_source": "derived",
-          "block_index": 43,
+          "block_index": 44,
           "points": []
         }
       ],
@@ -230,7 +230,7 @@
           "section_id": "accessibility-and-the-engineering-experiment",
           "level": 2,
           "heading_text": "Accessibility and the Engineering Experiment",
-          "topic_sentence": "The explicit problem is the scale of inaccessible documents.",
+          "topic_sentence": "In 2024, the U.S.",
           "id_source": "derived",
           "block_index": 2,
           "points": [
@@ -241,7 +241,7 @@
             },
             {
               "slug": "two-birds-one-stone-motive",
-              "text": "One project answered both problems at once: build the production system, and use the engineering work to discover what sustained agentic development demanded.",
+              "text": "One project answered both problems: build the production system, and use the engineering work to discover what sustained agentic development demanded.",
               "block_index": 6
             }
           ]

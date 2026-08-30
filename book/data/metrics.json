@@ -31,7 +31,8 @@
   "hours_per_document": "3",
   "documents_per_course": "100",
   "hours_per_course": "300",
-  "workweeks_per_course": "7.5",
+  "_workweeks_note": "Displayed rounded UP to a whole week for readability (the reader needn't do fractions): the underlying estimate is hours_per_course 300 / a 40-hour week = 7.5, presented as ~8.",
+  "workweeks_per_course": "8",
   "diy_cost_per_course": "$20,000",
 
   "vendor_cost_per_page": "$3 to $40",
