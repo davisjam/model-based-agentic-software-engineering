@@ -27,7 +27,7 @@ resources too, so hook-pileup falls under the same machinery as lock contention.
 closed four-value taxonomy: contradiction, contention, ordering, and soft-versus-hard; each names the
 resource, its type, and a resolution, and whether the edge is decidable-by-machine or needs-judgment is
 *derived* from the conflict type. A query surface answers what fires on this event, what touches this
-resource, and — the load-bearing one — whether a *proposed* mechanism is consistent, run before it is wired.
+resource, and — the essential one — whether a *proposed* mechanism is consistent, run before it is wired.
 A drift lint re-resolves each node's code anchor and reddens when a mechanism is wired but absent.
 
 ## Engineering Consequences

@@ -77,10 +77,10 @@ if __name__ == "__main__":
 
 - **The floor closes *absence*, not *quality*** — it proves a major part has a local test, not that the
   test drives the real gesture.
-- **The join key is load-bearing** — a major part with no key to its tests can't be checked, so it is
+- **The join key is essential** — a major part with no key to its tests can't be checked, so it is
   itself a finding.
 - **Reclassification is the only escape, by design** — moving a part off the local floor forces a
-  criticality demotion, friction that is the point.
+  criticality demotion.
 
 ### Known Uses
 

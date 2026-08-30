@@ -79,7 +79,7 @@ def handle(cat: FailureCategory) -> str:
 
 ### Consequences
 
-- **Adding a category touches every handler** — the point (it forces handling), but real work.
+- **Adding a category touches every handler** (it forces handling), but real work.
 - **Boundary translation.** External strings still arrive as strings and must be mapped in at a controlled
   seam.
 

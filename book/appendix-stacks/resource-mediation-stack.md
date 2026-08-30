@@ -15,7 +15,7 @@ Reach for it when:
 ## The Composition
 
 <!-- label: resource-mediation-stack -->
-<!-- figure: assets/resource-mediation-stack.svg | The resource-mediation composition. A RESOURCE POLICY states which resource is scarce and what capacity is acceptable; a MEDIATOR admits at most N actors through one admission point to the SHARED RESOURCE. A dashed LIVE PRESSURE loop tightens or relaxes effective capacity when justified. N=1 and N>1 are settings of the same mediator, not separate stacks. Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required for the capability. -->
+<!-- figure: assets/resource-mediation-stack.svg | The resource-mediation composition. A RESOURCE POLICY states which resource is scarce and what capacity is acceptable; a MEDIATOR admits at most N actors through one admission point to the SHARED RESOURCE. A dashed LIVE PRESSURE loop tightens or relaxes effective capacity when justified. N=1 and N>1 are settings of the same mediator, not separate stacks. Solid path: the required path. Dashed attachment: a useful enhancement, not required for the capability. -->
 
 ## Constituent Moves
 

@@ -10,12 +10,12 @@
 ## Independent pre-implementation design review
 
 **Intent** — Before any implementation phase, a fresh reviewer that did not author the design re-derives it
-from the code, verifies its load-bearing claims empirically, and rules on the open design forks — the
+from the code, verifies its central claims empirically, and rules on the open design forks — the
 reviewer wins conflicts, and implementation proceeds only on the ratified design.
 
 ### Motivation
 
-An author cannot audit their own premises. The load-bearing assumption feels obvious *because* they wrote
+An author cannot audit their own premises. The central assumption feels obvious *because* they wrote
 it, so it never gets re-tested — an unverified constant, a stronger-model over-reach, a plausible-but-wrong
 assumption that shapes the whole plan. The failure is an author's design bias sliding unchecked into the
 code, and it is silent: the design reads clean until the flaw surfaces on work already built atop it.
@@ -29,7 +29,7 @@ implementation rather than degrading to advisory prose.
 ### Structure
 
 The design passes to a reviewer who did not write it. The reviewer re-derives it from the code, runs the
-load-bearing claims, and rules on the open forks; implementation proceeds only on a ratified design and is
+central claims, and rules on the open forks; implementation proceeds only on a ratified design and is
 blocked on a revise.
 
 ```mermaid
@@ -64,7 +64,7 @@ def admit_design(design, reviewer, *, author) -> int:
 
 - **It doubles the design cost** — a full second pass by an independent mind, spent because a wrong premise
   baked into implementation is far more expensive to unwind than to catch.
-- **Only founding / load-bearing designs earn it** — forcing the gate onto a mechanical fix is ceremony the
+- **Only founding / high-stakes designs earn it** — forcing the gate onto a mechanical fix is ceremony the
   author routes around; scope it to designs whose flaws would compound.
 - **Independence can be faked** — a reviewer who defers to the author, or reads the prose instead of
   re-deriving from the code, files a review that looks done and catches nothing.

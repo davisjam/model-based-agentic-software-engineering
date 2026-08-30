@@ -24,7 +24,7 @@ inputs, and it hides across an input space far too large to enumerate.
 
 Reach for this when the input space is too large to enumerate, malformed inputs occur in the wild, and a
 crash or corruption on a weird byte sequence is a real failure. Run adversarial campaigns, track coverage
-against a baseline so reach is measurable, and — the load-bearing discipline — fix each finding to the
+against a baseline so reach is measurable, and — the essential discipline — fix each finding to the
 stable point in the format spec, so the fix closes every spec-allowed input, not just the failing seed.
 
 ### Structure

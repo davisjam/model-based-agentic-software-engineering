@@ -19,7 +19,7 @@ config field, every seam — and a green suite on a handful of examples no longe
 ## The Composition
 
 <!-- label: assurance-stack -->
-<!-- figure: assets/assurance-stack.svg | The assurance composition. A SPEC states the obligation; a CENSUS establishes the population it applies to; discharge fans out to the evidence each obligation deserves — TEST for examples, LINT for structure, PROVE for semantics — and all three lanes converge on COVERAGE, which joins each obligation back to its evidence so omissions show. Solid path: the load-bearing composition. -->
+<!-- figure: assets/assurance-stack.svg | The assurance composition. A SPEC states the obligation; a CENSUS establishes the population it applies to; discharge fans out to the evidence each obligation deserves — TEST for examples, LINT for structure, PROVE for semantics — and all three lanes converge on COVERAGE, which joins each obligation back to its evidence so omissions show. Solid path: the required spine. -->
 
 ## Constituent Moves
 

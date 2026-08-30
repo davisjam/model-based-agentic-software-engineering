@@ -68,7 +68,7 @@ def orphan_report(sites, model_rows, control_nodes) -> int:
   thin facades chases coverage nobody needs; a small glue-only residual is the honest stopping point.
 - **It measures presence, not strength** — a site a weak model or soft-only control reaches counts as
   covered; the metric closes the "nothing reaches this at all" gap and leans on others to judge strength.
-- **The tracer's reach rule is load-bearing** — a mis-resolved site reports a false orphan or false
+- **The tracer's reach rule is essential** — a mis-resolved site reports a false orphan or false
   coverage, so the reach rule must track how models and controls anchor to code.
 
 ### Known Uses

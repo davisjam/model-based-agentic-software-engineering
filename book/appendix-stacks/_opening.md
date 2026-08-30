@@ -30,7 +30,7 @@ contribute to a governed engineering environment.
 
 This appendix starts from a capability and asks which mechanisms must work together to provide it. Appendix
 B starts from recurring problems and shows how the same engineering move can produce different mechanisms in
-different settings. Each stack gives its capability, constituent moves, dependencies, and load-bearing
+different settings. Each stack gives its capability, constituent moves, dependencies, and required
 composition. Concrete implementations of these moves appear in the companion MAGE Mechanism Catalog.
 
 ## Why Stacks Exist

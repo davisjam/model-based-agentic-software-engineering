@@ -64,9 +64,9 @@ deterministic seams. Preserve the guarantees; let the substrate decide the mecha
 
 ## 7. Stop
 
-The objective is not maximum governance. Stop when the smallest load-bearing stack makes the capability claim true for the failure classes that matter.
+The objective is not maximum governance. Stop when the smallest required stack makes the capability claim true for the failure classes that matter.
 
 ## The Method in One Picture
 
 <!-- label: appendix-a-composing-a-stack -->
-<!-- figure: assets/appendix-a-composing-a-stack.svg | Composing an engineering stack. Begin with a capability and its failure classes. Identify the guarantees required to close those failures, select mechanisms that provide them, determine their dependencies, and retain the smallest load-bearing composition that makes the capability claim valid. -->
+<!-- figure: assets/appendix-a-composing-a-stack.svg | Composing an engineering stack. Begin with a capability and its failure classes. Identify the guarantees required to close those failures, select mechanisms that provide them, determine their dependencies, and retain the smallest required composition that makes the capability claim valid. -->

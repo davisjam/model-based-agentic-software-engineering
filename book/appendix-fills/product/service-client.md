@@ -79,7 +79,7 @@ with open("/tmp/chunk.pdf", "rb") as fh:
 
 - **All cross-service calls funnel through one client** — a coupling point that must cover every HTTP
   shape callers need.
-- **Slightly more ceremony.** Callers open a file handle rather than pass a path string — the point, but
+- **Slightly more ceremony.** Callers open a file handle rather than pass a path string — deliberate, but
   friction.
 - **The seam bottlenecks evolution.** New call patterns require extending the one client.
 

@@ -84,7 +84,7 @@ def gate(findings, changed_files, model) -> list[str]:
   cap the per-commit output and let the backstop force the drain.
 - **Whole-tree cost per governed commit** — grading every finding means running the lints whole-tree;
   measure it, keep the cheap members central, route the expensive ones to a self-scoped path.
-- **The contract is now load-bearing** — a lint that stops emitting a well-formed finding degrades to opaque
+- **The contract now carries weight** — a lint that stops emitting a well-formed finding degrades to opaque
   HARD; the emission contract earns a check of its own.
 
 ### Known Uses

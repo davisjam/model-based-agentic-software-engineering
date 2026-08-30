@@ -14,7 +14,7 @@ Reach for it when:
 ## The Composition
 
 <!-- label: model-coherence-stack -->
-<!-- figure: assets/model-coherence-stack.svg | The model-coherence composition. An authored MODEL feeds two paths: consumers CONSUME it live rather than copying its facts, and where the model owns the fact it can EMIT downstream artifacts. Consumption flows into a CORRESPONDENCE check — model against world — which DERIVEs its verdict from stable identities where an independent join exists; on disagreement a GATE gives the modeled property authority. Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required for the capability. -->
+<!-- figure: assets/model-coherence-stack.svg | The model-coherence composition. An authored MODEL feeds two paths: consumers CONSUME it live rather than copying its facts, and where the model owns the fact it can EMIT downstream artifacts. Consumption flows into a CORRESPONDENCE check — model against world — which DERIVEs its verdict from stable identities where an independent join exists; on disagreement a GATE gives the modeled property authority. Solid path: the required composition. Dashed attachment: a useful enhancement, not required for the capability. -->
 
 ## Constituent Moves
 

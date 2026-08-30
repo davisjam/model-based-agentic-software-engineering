@@ -16,7 +16,7 @@ Reach for it where:
 ## The Composition
 
 <!-- label: auditable-transformation-stack -->
-<!-- figure: assets/auditable-transformation-stack.svg | The auditable-transformation composition. A sanctioned mutation flows through MARK (attach actor and action) to EMIT (persist a structured record); COVER detects any mutation that escaped attribution; READ reconstructs the transformation history from the records; a FIDELITY GATE checks that the transformed artifact kept its required semantics. Solid path: the load-bearing composition. -->
+<!-- figure: assets/auditable-transformation-stack.svg | The auditable-transformation composition. A sanctioned mutation flows through MARK (attach actor and action) to EMIT (persist a structured record); COVER detects any mutation that escaped attribution; READ reconstructs the transformation history from the records; a FIDELITY GATE checks that the transformed artifact kept its required semantics. Solid path: the core path, every step required. -->
 
 ## Constituent Moves
 

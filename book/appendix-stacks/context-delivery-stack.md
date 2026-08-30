@@ -15,7 +15,7 @@ Reach for it when:
 ## The Composition
 
 <!-- label: context-delivery-stack -->
-<!-- figure: assets/context-delivery-stack.svg | The context-delivery composition. Engineering knowledge — models, rules, decisions — splits into a STANDING POLICY that is always seen and a TASK SLICE retrieved as needed; both feed the actor's context, which drives the action. A dashed POINT-OF-ACTION attachment reasserts important obligations at the moment of action, and for critical decidable obligations becomes a deterministic gate rather than a reminder. Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required for the capability. -->
+<!-- figure: assets/context-delivery-stack.svg | The context-delivery composition. Engineering knowledge — models, rules, decisions — splits into a STANDING POLICY that is always seen and a TASK SLICE retrieved as needed; both feed the actor's context, which drives the action. A dashed POINT-OF-ACTION attachment reasserts important obligations at the moment of action, and for critical decidable obligations becomes a deterministic gate rather than a reminder. Solid path: the essential composition. Dashed attachment: a useful enhancement, not required for the capability. -->
 
 ## Constituent Moves
 

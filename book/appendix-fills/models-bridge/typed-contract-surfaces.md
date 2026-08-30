@@ -77,7 +77,7 @@ def is_fuzz_oracle(surface, output_point: str) -> bool:
   marker, or reshaping output reddens the gate at the edit, friction exactly where the cost of silence was
   highest.
 - **The surface is one more thing to keep true** — a contract model that stops matching its producer gives
-  false confidence, so the reconciliation gate is load-bearing; a surface no check reconciles is worse than
+  false confidence, so the reconciliation gate is essential; a surface no check reconciles is worse than
   none, because it looks authoritative.
 - **Three boundaries, one genre, but distinct instances** — an API model, a wire schema, and a CLI-output
   spec share the pattern yet differ in what "the far side" is; folding them into one artifact would blur

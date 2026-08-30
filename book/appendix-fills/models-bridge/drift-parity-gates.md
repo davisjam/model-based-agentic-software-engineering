@@ -49,8 +49,8 @@ When both hold the build proceeds; when either side diverges the build is blocke
 ### Sample Code
 
 The gate is a set comparison run in both directions. Read the model into a set of expected keys,
-enumerate reality into a set of actual keys, and fail if either set has a member the other lacks. The
-two directions are the whole point: one direction alone lets the *other* side drift undetected.
+enumerate reality into a set of actual keys, and fail if either set has a member the other lacks. Both
+directions matter: one direction alone lets the *other* side drift undetected.
 
 ```python
 import sys

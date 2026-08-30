@@ -15,7 +15,7 @@ Reach for it when:
 ## The Composition
 
 <!-- label: governance-conversion-stack -->
-<!-- figure: assets/governance-conversion-stack.svg | The governance-conversion composition, a loop. The CONTROL MACHINERY — rules, gates, models, sensors — is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE MACHINERY folds it in; a solid feedback edge returns to the machinery for the next iteration. The four moves form the load-bearing loop. -->
+<!-- figure: assets/governance-conversion-stack.svg | The governance-conversion composition, a loop. The CONTROL MACHINERY — rules, gates, models, sensors — is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE MACHINERY folds it in; a solid feedback edge returns to the machinery for the next iteration. The four moves form the core loop. -->
 
 ## Constituent Moves
 
