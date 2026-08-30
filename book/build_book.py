@@ -443,11 +443,19 @@ def _collect_glossary(chapters: list[dict]) -> None:
 # Part 5 is The Evidence, Part 6 is The Theory, Part 7 is The Profession — the substantive argument +
 # case + theory + closing chapters), true back matter (the top-level Conclusion) is part 8. Appendix
 # parts follow.
+# The Interlude ("One Problem, Many Models") is unnumbered MATTER that sorts BETWEEN Part 3 (Alignment)
+# and Part 4 (The MAGE Method) — hence the float part number 3.5, which orders correctly in the
+# `(part, chapter)` sort without colliding with any numbered Part. Its single source file carries no
+# `N.M-` chapter prefix (that regex would misparse "3.5-…" as part 3 chapter 5), so discovery
+# special-cases it below rather than routing it through `_PART_CHAP_RE`.
+_INTERLUDE_PART = 3.5
+
 _PART_DIRS = {
     0: "frontmatter",
     1: "part1",
     2: "part2",
     3: "part3",
+    _INTERLUDE_PART: "interlude",
     4: "part4",
     5: "part5",
     6: "part6",
@@ -460,7 +468,7 @@ _PART_DIRS = {
 # The parts rendered as UNNUMBERED matter (no "Chapter N" kicker, own TOC/bookmark group): front matter (0)
 # and the top-level Conclusion (8). The synthetic post-appendix back matter sets `is_matter` on its own
 # records (its part number is dynamic — above the appendices), so it need not be listed here.
-_MATTER_PARTS = frozenset({0, 8})
+_MATTER_PARTS = frozenset({0, _INTERLUDE_PART, 8})
 
 # Part number → its display title (mirrors the `part-title` metadata; kept here so a part with no
 # chapters still names correctly, and so the TOC/index label is authoritative from one place).
@@ -469,6 +477,7 @@ _PART_TITLES = {
     1: "The New Engineering Problem",
     2: "Modeling",
     3: "Alignment",
+    _INTERLUDE_PART: "Interlude",
     4: "The MAGE Method",
     5: "The Evidence",
     6: "The Theory",
@@ -1068,6 +1077,11 @@ def _discover_chapters(metrics: dict[str, str]) -> list[dict]:
         if not d.is_dir():
             continue
         for p in sorted(d.glob("*.md")):
+            if part == _INTERLUDE_PART:
+                # The interlude is a single unnumbered matter document with no `N.M-` prefix; parse it
+                # directly as chapter 1 rather than through `_PART_CHAP_RE` (which would misread it).
+                found.append(parse_chapter(p, _INTERLUDE_PART, 1, metrics))
+                continue
             if p.stem == _PART_INTRO_STEM:
                 # A numbered Part's landing page. Front matter (0) and the top-level Conclusion (8 — matter)
                 # are not numbered Parts, so they carry no landing page even if a stray intro file appears.
@@ -6872,6 +6886,8 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
         part = ch.part  # type: ignore[attr-defined]
         if part == 0:
             return "FrontMatter"
+        if part == _INTERLUDE_PART:
+            return "Interlude"   # unnumbered matter between Parts 3 and 4 → its own mage-book-Interlude.pdf
         if 1 <= part <= 7:
             return f"Part{part}"
         if part == 8:
@@ -6943,13 +6959,17 @@ def build_pdf_split() -> int:
     print(f"\n== Per-section split PDFs ({len(sections)} sections; review aid, no whole-book gate) ==")
     produced: "list[tuple[str, int]]" = []
     failures: "list[str]" = []
-    for suffix, slugs in sections:
-        pdf_out = HERE / f"{base}-{suffix}.pdf"
+    # `sections` is already in whole-book reading order (front matter → Parts → Interlude → Conclusion →
+    # appendices). Stamp each filename with a zero-padded reading-order index so an alphabetical
+    # filesystem sort (macOS Finder, `ls`) reproduces the book's order: mage-book-00-FrontMatter.pdf,
+    # …-04-Interlude.pdf, …-05-Part4.pdf, … . Two digits cover the ~20 sections without a width overflow.
+    for idx, (suffix, slugs) in enumerate(sections):
+        pdf_out = HERE / f"{base}-{idx:02d}-{suffix}.pdf"
         if not slugs:
             print(f"WARNING: section {suffix} has no chapters — skipping (no PDF emitted).", file=sys.stderr)
             continue
         typ = book_typst.emit_document(slugs, root=ROOT, with_frontmatter=True, split_section=True)
-        typ_src = typ_dir / f"{base}-{suffix}.typ"
+        typ_src = typ_dir / f"{base}-{idx:02d}-{suffix}.typ"
         typ_src.write_text(typ, encoding="utf-8")
         cmd = [typst, "compile", "--input", f"last_modified={last_modified}",
                "--root", str(ROOT), "--font-path", str(HERE / "fonts"), str(typ_src), str(pdf_out)]

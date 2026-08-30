@@ -58,8 +58,9 @@ def _load_model() -> dict:
 
 
 def _part_nums() -> "list[int]":
-    """The numbered Parts in order, from the book's Part-sequence SSOT (Part 0 front matter excluded)."""
-    return [n for n in sorted(bbh._PART_TITLES) if n != 0 and n <= 7]
+    """The numbered Parts in order, from the book's Part-sequence SSOT (front matter and unnumbered
+    matter — e.g. the Interlude between Parts 3 and 4 — excluded; only the numbered Parts are stations)."""
+    return [n for n in sorted(bbh._PART_TITLES) if n != 0 and n <= 7 and n not in bbh._MATTER_PARTS]
 
 
 def _esc(s: str) -> str:

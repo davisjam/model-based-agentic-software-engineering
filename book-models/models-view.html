@@ -66,12 +66,12 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>36</b> chapters · <b>200</b> sections · <b>68</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>37</b> chapters · <b>214</b> sections · <b>68</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
 </section>
-<nav class="toc" aria-label="Modules"><b>Modules:</b> <a href="#part-0">Front Matter</a> · <a href="#part-1">Module 1</a> · <a href="#part-2">Module 2</a> · <a href="#part-3">Module 3</a> · <a href="#part-4">Module 4</a> · <a href="#part-5">Module 5</a> · <a href="#part-6">Module 6</a> · <a href="#part-7">Module 7</a> · <a href="#part-8">Module 8</a></nav>
+<nav class="toc" aria-label="Modules"><b>Modules:</b> <a href="#part-0">Front Matter</a> · <a href="#part-1">Module 1</a> · <a href="#part-2">Module 2</a> · <a href="#part-3">Module 3</a> · <a href="#part-3.5">Module 3.5</a> · <a href="#part-4">Module 4</a> · <a href="#part-5">Module 5</a> · <a href="#part-6">Module 6</a> · <a href="#part-7">Module 7</a> · <a href="#part-8">Module 8</a></nav>
 <section class="part" id="part-0">
 <h2>Front Matter</h2>
 <div class="chapter">
@@ -428,6 +428,68 @@
 <div class="section s2" id="sec-3-5-when-guardrails-collide--add-reconcile-and-retire-controls">
 <div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Add, Reconcile, and Retire Controls</a></div>
 <p class="topic">Governance conversion and coverage auditing provide complementary pressures.</p>
+</div>
+</div>
+</section>
+<section class="part" id="part-3.5">
+<h2>Module 3.5 — Part 3.5</h2>
+<div class="chapter">
+<h3 id="ch-3-5-one-problem-many-models"><span class="tier-kick">Lesson</span><a href="../book/3.5-one-problem-many-models.html" class="ch-link">3.5-one-problem-many-models</a> <span class="ch-slug">3.5-one-problem-many-models</span></h3>
+<div class="section s2" id="sec-3-5-one-problem-many-models--i-one-document-one-worker">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">I. One Document, One Worker</a></div>
+<p class="topic">The original remediation architecture treated a document as one unit of work.</p>
+</div>
+<div class="section s2" id="sec-3-5-one-problem-many-models--ii-pages-as-the-unit-of-scale">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">II. Pages as the Unit of Scale</a></div>
+<p class="topic">DocAble introduced ChunkWorker, which divided a document into page ranges.</p>
+</div>
+<div class="section s2" id="sec-3-5-one-problem-many-models--iii-a-new-class-of-input">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">III. A New Class of Input</a></div>
+<p class="topic">A 250 MB file does not imply that remediation needs 250 MB of document content in memory.</p>
+</div>
+<div class="section s2" id="sec-3-5-one-problem-many-models--iv-remove-media-from-the-working-set">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">IV. Remove Media from the Working Set</a></div>
+<p class="topic">Skeletonization separates document structure from large media before remediation.</p>
+</div>
+<div class="section s2" id="sec-3-5-one-problem-many-models--v-once-memory-is-solved-why-are-we-chunking">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">V. Once Memory Is Solved, Why Are We Chunking?</a></div>
+<p class="topic">Page chunking had served two roles at once: an execution strategy and a memory-management strategy.</p>
+</div>
+<div class="section s2" id="sec-3-5-one-problem-many-models--vi-analyze-before-you-build">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">VI. Analyze Before You Build</a></div>
+<p class="topic">A remediation graph is executable structure, but it is also an object of analysis.</p>
+</div>
+<div class="section s3" id="sec-3-5-one-problem-many-models--dependencies-can-be-redesigned">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">Dependencies can be redesigned</a></div>
+<p class="topic">The same analysis exposed a problem in contextual image description.</p>
+</div>
+<div class="section s3" id="sec-3-5-one-problem-many-models--predicting-latency">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">Predicting latency</a></div>
+<p class="topic">The same graph supports a first-order latency model.</p>
+</div>
+<div class="section s3" id="sec-3-5-one-problem-many-models--predicting-the-cost-of-a-design-change">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">Predicting the cost of a design change</a></div>
+<p class="topic">Models can also answer questions about designs that do not exist yet.</p>
+</div>
+<div class="section s3" id="sec-3-5-one-problem-many-models--use-prediction-error-as-evidence">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">Use prediction error as evidence</a></div>
+<p class="topic">Implementation eventually supplies measurements, and the useful comparison is not simply whether the result was fast.</p>
+</div>
+<div class="section s2" id="sec-3-5-one-problem-many-models--vii-the-resulting-model-family">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">VII. The Resulting Model Family</a></div>
+<p class="topic">The large-file requirement did not produce one model.</p>
+</div>
+<div class="section s3" id="sec-3-5-one-problem-many-models--from-examples-to-a-bound">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">From examples to a bound</a></div>
+<p class="topic">The memory story shows the progression clearly:</p>
+</div>
+<div class="section s3" id="sec-3-5-one-problem-many-models--three-days">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">Three days</a></div>
+<p class="topic">Laid out this way, the sequence looks like a substantial architecture project.</p>
+</div>
+<div class="section s3" id="sec-3-5-one-problem-many-models--finding-the-models">
+<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">Finding the models</a></div>
+<p class="topic">Part IV asks engineers to find the models their work needs.</p>
 </div>
 </div>
 </section>

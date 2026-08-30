@@ -1985,11 +1985,19 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
         return _appendices_divider_typst(ch)
     part_titles = bb._PART_TITLES
     label = ""
-    is_numbered = part in part_titles and part <= 7
+    # Matter parts (front matter, the Interlude at 3.5, the top-level Conclusion, the synthetic back matter)
+    # are NOT numbered Parts even when their number is ≤ 7 — they take the simple single-page divider with no
+    # orientation SPREAD / subway map (which the interlude has no station on).
+    is_numbered = (part in part_titles and part <= 7
+                   and part not in bb._MATTER_PARTS and not getattr(ch, "is_matter", False))
     if part == 8:
         # The top-level Conclusion (matter). A bare title heading (no "Part N" kicker, no nav label) — the
         # bookmark PARENT under which "The Part That Stays Yours" (level-2) nests.
         kicker, title = "", part_titles.get(8, "Conclusion")
+    elif part == bb._INTERLUDE_PART:
+        # The Interlude (matter, between Parts 3 and 4). A bare "Interlude" divider — the bookmark PARENT
+        # under which "One Problem, Many Models" (level-2) nests. Mirrors the Conclusion's bare-title form.
+        kicker, title = "", part_titles.get(bb._INTERLUDE_PART, "Interlude")
     elif getattr(ch, "is_matter", False):
         # The synthetic post-appendix back matter (Colophon, then About-the-Author). One bare "Back Matter"
         # divider heads both — the terminal book-object bookmark parent, after the appendices.

@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Hand-authored SVG (label: book-map). frontmatter-figures-260820 pass: the "call and response" metaphor
      is retired in favour of a plain "question / argument / answer" framing. A single clean descent through
-     the six Parts, from the Preface's opening question to the Conclusion's answer + its converse, with two
-     DOTTED branches hanging the appendix Parts off the argument (Part IV to Practice, Part V to Evidence),
+     the seven Parts, from the Preface's opening question to the Conclusion's answer + its converse, with the
+     unnumbered Interlude ("One Problem, Many Models") seated in the descent between Part III and Part IV, and
+     two DOTTED branches hanging the appendix Parts off the argument (Part IV to Practice, Part V to Evidence),
      mirroring the two short reading paths. FONT NOTE: the viewBox width is held to 920 so every label
      normalizes into the figure font band (abs x 1000/920 lands in 16-28px) and renders near body size in the
-     PDF column; the canvas is kept short (660) so the whole section still fits one page. Palette: Umber
-     Monograph tokens per Part; appendix destinations muted #78716c with a dashed border. -->
+     PDF column. Palette: Umber Monograph tokens per Part; the Interlude uses the muted matter palette
+     (Preface/Conclusion); appendix destinations muted #78716c with a dashed border. -->
 <!-- semantic-families: agent, governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 730" width="920" height="730"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 800" width="920" height="800"
      role="group" aria-labelledby="bmTitle bmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bmTitle">The book's argument — a question posed in the Preface, answered in the Conclusion, across seven Parts, with the two appendix Parts branching off</title>
+  <title id="bmTitle">The book's argument — a question posed in the Preface, answered in the Conclusion, across seven Parts and an Interlude, with the two appendix Parts branching off</title>
   <desc id="bmDesc">A single descent through the book's argument. The Preface poses the opening question: how
     do we safely grant autonomy to commodity intelligence? It leads to Part I, The New Engineering Problem —
     changed economics. Then Part II, Modeling — make knowledge and intent explicit. Then Part III, Alignment —
-    give obligations authority. Then Part IV, The MAGE Method — model, align, work, convert; a dotted branch
+    give obligations authority. Then the Interlude, One Problem, Many Models — follow one problem through
+    successive models. Then Part IV, The MAGE Method — model, align, work, convert; a dotted branch
     runs to Appendix Part I, Practice (use and extend). Then Part V, The Evidence — depth and breadth; a
     dotted branch runs to Appendix Part II, Evidence (inspect the empirical record). Then Part VI, The
     Theory — theory, predictions, scope conditions, and a research agenda. Then Part VII, The Profession —
@@ -32,7 +34,7 @@
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="920" height="730" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="920" height="800" fill="#fdfcf9"/>
 
   <!-- top framing kicker -->
   <text x="244" y="26" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e"
@@ -63,45 +65,51 @@
   <text x="244" y="313" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">give obligations authority</text>
   <line x1="244" y1="324" x2="244" y2="338" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
-  <!-- PART IV — The MAGE Method (neutral: joins the two) -->
-  <rect id="part-4" x="24" y="338" width="440" height="56" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="244" y="363" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
-  <text x="244" y="383" text-anchor="middle" font-size="18.4" font-weight="600" fill="#1c1917">model · align · work · convert</text>
+  <!-- INTERLUDE — One Problem, Many Models (unnumbered matter, seated in the descent) -->
+  <rect id="interlude" x="24" y="338" width="440" height="56" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="244" y="363" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Interlude · One Problem, Many Models</text>
+  <text x="244" y="383" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e">follow one problem through successive models</text>
   <line x1="244" y1="394" x2="244" y2="408" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
-  <!-- PART IV to Appendix Part I (DOTTED branch — related destination, not a step) -->
-  <line x1="464" y1="366" x2="580" y2="366" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
-  <rect id="appendix-1" x="580" y="338" width="320" height="56" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.8" stroke-dasharray="5 3"/>
-  <text x="740" y="363" text-anchor="middle" font-size="18.4" font-weight="700" fill="#44403c">Appendix Part I · Practice</text>
-  <text x="740" y="383" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">use + extend</text>
-
-  <!-- PART V — The Evidence (fleet blue) -->
-  <rect id="part-5" x="24" y="408" width="440" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="244" y="433" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
-  <text x="244" y="453" text-anchor="middle" font-size="18.4" font-weight="600" fill="#2f5169">depth + breadth</text>
+  <!-- PART IV — The MAGE Method (neutral: joins the two) -->
+  <rect id="part-4" x="24" y="408" width="440" height="56" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="244" y="433" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
+  <text x="244" y="453" text-anchor="middle" font-size="18.4" font-weight="600" fill="#1c1917">model · align · work · convert</text>
   <line x1="244" y1="464" x2="244" y2="478" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
-  <!-- PART V to Appendix Part II (DOTTED branch) -->
+  <!-- PART IV to Appendix Part I (DOTTED branch — related destination, not a step) -->
   <line x1="464" y1="436" x2="580" y2="436" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
-  <rect id="appendix-2" x="580" y="408" width="320" height="56" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.8" stroke-dasharray="5 3"/>
-  <text x="740" y="433" text-anchor="middle" font-size="18.4" font-weight="700" fill="#44403c">Appendix Part II · Evidence</text>
-  <text x="740" y="453" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">inspect the empirical record</text>
+  <rect id="appendix-1" x="580" y="408" width="320" height="56" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.8" stroke-dasharray="5 3"/>
+  <text x="740" y="433" text-anchor="middle" font-size="18.4" font-weight="700" fill="#44403c">Appendix Part I · Practice</text>
+  <text x="740" y="453" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">use + extend</text>
 
-  <!-- PART VI — The Theory (purple) -->
-  <rect id="part-6" x="24" y="478" width="440" height="56" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
-  <text x="244" y="503" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Part VI · The Theory</text>
-  <text x="244" y="523" text-anchor="middle" font-size="18.4" font-style="italic" fill="#5b4a72">theory · predictions · scope · agenda</text>
+  <!-- PART V — The Evidence (fleet blue) -->
+  <rect id="part-5" x="24" y="478" width="440" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="244" y="503" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
+  <text x="244" y="523" text-anchor="middle" font-size="18.4" font-weight="600" fill="#2f5169">depth + breadth</text>
   <line x1="244" y1="534" x2="244" y2="548" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
-  <!-- PART VII — The Profession (deeper purple) -->
-  <rect id="part-7" x="24" y="548" width="440" height="56" rx="8" fill="#e8e0f2" stroke="#4a3d5e" stroke-width="2.4"/>
-  <text x="244" y="573" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Part VII · The Profession</text>
-  <text x="244" y="593" text-anchor="middle" font-size="18.4" font-style="italic" fill="#4a3d5e">software work · tradition · engineer</text>
+  <!-- PART V to Appendix Part II (DOTTED branch) -->
+  <line x1="464" y1="506" x2="580" y2="506" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
+  <rect id="appendix-2" x="580" y="478" width="320" height="56" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.8" stroke-dasharray="5 3"/>
+  <text x="740" y="503" text-anchor="middle" font-size="18.4" font-weight="700" fill="#44403c">Appendix Part II · Evidence</text>
+  <text x="740" y="523" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">inspect the empirical record</text>
+
+  <!-- PART VI — The Theory (purple) -->
+  <rect id="part-6" x="24" y="548" width="440" height="56" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
+  <text x="244" y="573" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Part VI · The Theory</text>
+  <text x="244" y="593" text-anchor="middle" font-size="18.4" font-style="italic" fill="#5b4a72">theory · predictions · scope · agenda</text>
   <line x1="244" y1="604" x2="244" y2="618" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
+  <!-- PART VII — The Profession (deeper purple) -->
+  <rect id="part-7" x="24" y="618" width="440" height="56" rx="8" fill="#e8e0f2" stroke="#4a3d5e" stroke-width="2.4"/>
+  <text x="244" y="643" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Part VII · The Profession</text>
+  <text x="244" y="663" text-anchor="middle" font-size="18.4" font-style="italic" fill="#4a3d5e">software work · tradition · engineer</text>
+  <line x1="244" y1="674" x2="244" y2="688" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+
   <!-- CONCLUSION — the answer + its converse (unnumbered matter); the argument ends here -->
-  <rect id="conclusion" x="24" y="618" width="440" height="76" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
-  <text x="244" y="646" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
-  <text x="244" y="668" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
-  <text x="244" y="687" text-anchor="middle" font-size="18.4" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" fill="#9a3f12">RESPONSIBILITY</tspan></text>
+  <rect id="conclusion" x="24" y="688" width="440" height="76" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="244" y="716" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
+  <text x="244" y="738" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
+  <text x="244" y="757" text-anchor="middle" font-size="18.4" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" fill="#9a3f12">RESPONSIBILITY</tspan></text>
 </svg>
