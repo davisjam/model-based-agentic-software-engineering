@@ -226,32 +226,6 @@
       ]
     },
     {
-      "slug": "why-mage-follows-from-the-machine",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "both"
-      },
-      "closing": {
-        "kind": "synthesis"
-      },
-      "note": "R42 shrink to synthesis-only (~2pp). Reinforced-concrete / pairing / 'Not a faster programmer' / observable-loop derivation MOVED to 1.3. Recalls the two properties in one paragraph, then NAMES Problem A (representation -> Part II Modeling) and Problem B (authority -> Part III Alignment) as three H2 sections, closing on one composition paragraph. THEORY CHANGE: the two problems are related but INDEPENDENT -- MAGE teaches Modeling first as a methodological choice, not because Alignment is impossible without it. No re-derivation.",
-      "opening_anchor": "Commodity intelligence changes the economics of implementation without abolishing the",
-      "closing_anchor": "it does not remove the decisions themselves.",
-      "delivers": {
-        "concepts": [],
-        "artifacts": [],
-        "artifact_would_help": false
-      },
-      "exempt": null,
-      "spine_advances": [
-        "modeling-principle",
-        "alignment-principle",
-        "principles-treat-the-causes"
-      ]
-    },
-    {
       "slug": "context-is-the-first-modeling-problem",
       "opening": {
         "failure_question": "explicit",
@@ -274,6 +248,38 @@
           "capability-ladder"
         ],
         "artifacts": [],
+        "artifact_would_help": false
+      },
+      "exempt": null,
+      "spine_advances": [
+        "modeling-principle"
+      ]
+    },
+    {
+      "slug": "modeling-structure-and-ownership",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "note": "One-model-class-per-chapter reconstruction: this chapter is now the STRUCTURAL example (label carried forward; filename -> 2.2-structural.md). Question (where is document mutation supposed to occur?) + answer (one sanctioned seam: remediation logic operates through a structured document model, realized through the format implementation). Modeling-Principle link explicit — the model names the boundary, Part III gives it authority. Closes transitioning to the behavioral chapter (adding time).",
+      "opening_anchor": "A structural model suppresses behavior to expose components, boundaries, and relationships.",
+      "closing_anchor": "the orderings it is allowed to move through.",
+      "delivers": {
+        "concepts": [
+          "model-drift"
+        ],
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the document-mutation model and the structural-reduction figure",
+            "anchor": "document-mutation-model"
+          }
+        ],
         "artifact_would_help": false
       },
       "exempt": null,
@@ -1116,6 +1122,32 @@
       "spine_advances": []
     },
     {
+      "slug": "why-mage-follows-from-the-machine",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "both"
+      },
+      "closing": {
+        "kind": "synthesis"
+      },
+      "note": "R42 shrink to synthesis-only (~2pp). Reinforced-concrete / pairing / 'Not a faster programmer' / observable-loop derivation MOVED to 1.3. Recalls the two properties in one paragraph, then NAMES Problem A (representation -> Part II Modeling) and Problem B (authority -> Part III Alignment) as three H2 sections, closing on one composition paragraph. THEORY CHANGE: the two problems are related but INDEPENDENT -- MAGE teaches Modeling first as a methodological choice, not because Alignment is impossible without it. No re-derivation.",
+      "opening_anchor": "Commodity intelligence changes the economics of implementation without abolishing the",
+      "closing_anchor": "it does not remove the decisions themselves.",
+      "delivers": {
+        "concepts": [],
+        "artifacts": [],
+        "artifact_would_help": false
+      },
+      "exempt": null,
+      "spine_advances": [
+        "modeling-principle",
+        "alignment-principle",
+        "principles-treat-the-causes"
+      ]
+    },
+    {
       "slug": "lifecycles-and-runbooks",
       "opening": {
         "failure_question": "explicit",
@@ -1179,38 +1211,6 @@
       "spine_advances": [
         "modeling-principle",
         "alignment-principle"
-      ]
-    },
-    {
-      "slug": "modeling-structure-and-ownership",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "note": "One-model-class-per-chapter reconstruction: this chapter is now the STRUCTURAL example (label carried forward; filename -> 2.2-structural.md). Question (where is document mutation supposed to occur?) + answer (one sanctioned seam: remediation logic operates through a structured document model, realized through the format implementation). Modeling-Principle link explicit — the model names the boundary, Part III gives it authority. Closes transitioning to the behavioral chapter (adding time).",
-      "opening_anchor": "A structural model suppresses behavior to expose components, boundaries, and relationships.",
-      "closing_anchor": "the orderings it is allowed to move through.",
-      "delivers": {
-        "concepts": [
-          "model-drift"
-        ],
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the document-mutation model and the structural-reduction figure",
-            "anchor": "document-mutation-model"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "exempt": null,
-      "spine_advances": [
-        "modeling-principle"
       ]
     },
     {
