@@ -858,6 +858,16 @@ def check_big_ideas() -> list[str]:
     # concept-field loop and the MODEL->SITE projection below never treat it as a Big-Idea slot.
     recs.pop("core_question", None)
     problems: list[str] = []
+    # The landing PROJECTS its six claim headings from the book's authoritative prose (0.1); assert the
+    # book still yields exactly the number of claims the landing declares, so a claim added/removed in the
+    # book cannot silently leave the landing short or stale.
+    book_heads = _book_argues_claim_headings()
+    n_claim_recs = len([s for s in raw.get("_order", []) if s in recs])
+    if len(book_heads) != n_claim_recs:
+        problems.append(f"claims: parsed {len(book_heads)} claim heading(s) from the book's 'What This "
+                        f"Book Argues' (0.1) but the landing declares {n_claim_recs} claim record(s) in "
+                        f"_order — the landing projects its headings from the book, so the counts must "
+                        f"match (did a claim get added or removed in 0.1?)")
     for slug in raw.get("_order", []):
         if slug not in recs:
             problems.append(f"_order references {slug!r} with no record")
@@ -875,9 +885,12 @@ def check_big_ideas() -> list[str]:
         exh = (ex.get("href") or "").split("#")[0]
         if exh and not os.path.exists(os.path.join(ROOT, exh)):
             problems.append(f"claims: {slug!r} explore.href {ex.get('href')!r} does not resolve to real book material")
-        n = len((rec.get("claim") or "").split())
+        o = rec.get("order")
+        claim_text = (book_heads[o - 1] if isinstance(o, int) and 1 <= o <= len(book_heads)
+                      else (rec.get("claim") or ""))
+        n = len(claim_text.split())
         if n > cap:
-            problems.append(f"claims: {slug!r} claim heading is {n} words (cap {cap}): {rec.get('claim')!r}")
+            problems.append(f"claims: {slug!r} claim heading is {n} words (cap {cap}): {claim_text!r}")
     # (d) MODEL→SITE via the shared helper — every claim id must project onto the built landing.
     projected = {k: v for k, v in recs.items() if k != "gateway"}
     for slug, rid in projection_drift(projected, _landing_id_scan(), lambda s, r: r.get("id", "")):
@@ -2625,10 +2638,39 @@ def _load_big_ideas() -> dict:
     return json.load(open(path, encoding="utf-8"))
 
 
+def _book_argues_claim_headings() -> list[str]:
+    """The six 'What This Book Argues' claim HEADINGS, parsed from the authoritative book prose
+    (book/frontmatter/0.1-what-this-book-argues.md, the `N. **heading**` bold leads) in claim order.
+    The landing PROJECTS these so its claim text is the book's exact prose — one source, no hand-copied
+    duplicate to drift (book prose is authoritative; the site is a projection of it). Callers that need
+    parity should fail-loud when this does not return exactly six (a book-format change must not silently
+    fall back to stale landing text)."""
+    path = os.path.join(ROOT, "book", "frontmatter", "0.1-what-this-book-argues.md")
+    heads: dict[int, str] = {}
+    if os.path.isfile(path):
+        for ln in open(path, encoding="utf-8"):
+            m = re.match(r"\s*(\d+)\.\s+\*\*(.+?)\*\*", ln)
+            if m:
+                heads[int(m.group(1))] = m.group(2).strip()
+    return [heads[i] for i in sorted(heads)]
+
+
 def _big_ideas_ordered() -> list[dict]:
-    """The six CLAIM records in `_order`, each tagged with its slug (`_slug`)."""
+    """The six CLAIM records in `_order`, each tagged with its slug (`_slug`) and its `claim` heading
+    PROJECTED from the book's authoritative claim prose (0.1) by claim `order`, so the landing renders the
+    book's exact heading and cannot drift from it."""
     raw = _load_big_ideas()
-    return [raw[k] | {"_slug": k} for k in raw.get("_order", []) if k in raw]
+    heads = _book_argues_claim_headings()
+    out: list[dict] = []
+    for k in raw.get("_order", []):
+        if k not in raw:
+            continue
+        rec = raw[k] | {"_slug": k}
+        o = rec.get("order")
+        if isinstance(o, int) and 1 <= o <= len(heads):
+            rec["claim"] = heads[o - 1]
+        out.append(rec)
+    return out
 
 
 def _v3_onepage_figure() -> str:
