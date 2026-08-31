@@ -39,8 +39,11 @@ def _readings_section(readings: dict) -> str:
     if not before and not groups and not optional:
         return ""
     out = ["", "## Readings", ""]
+    # A bold label needs a BLANK LINE before its bullet list, or Python-Markdown folds the `- item` lines
+    # into the label's paragraph (readings crammed onto one line instead of one bullet each).
     if before:
         out.append("**Before class**")
+        out.append("")
         out += [f"- {r}" for r in before]
         out.append("")
     # `groups` renders each named subheading in the SAME grammar as before/optional — a bold label followed
@@ -52,6 +55,7 @@ def _readings_section(readings: dict) -> str:
         note = (g.get("note") or "").strip()
         if heading:
             out.append(f"**{heading}**")
+            out.append("")
         out += [f"- {r}" for r in items]
         out.append("")
         if note:
@@ -59,6 +63,7 @@ def _readings_section(readings: dict) -> str:
             out.append("")
     if optional:
         out.append("**Optional / further reading**")
+        out.append("")
         out += [f"- {r}" for r in optional]
         out.append("")
     return "\n".join(out)
