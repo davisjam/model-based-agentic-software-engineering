@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1164,
+    "total_sites": 1165,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 815,
+      "book-web": 816,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 13,
@@ -177,7 +177,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 7
+            "occ": 10
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -1217,7 +1217,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 75
+            "occ": 85
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -1273,7 +1273,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 279
+            "occ": 283
           },
           {
             "file": "book/index.html",
@@ -1819,7 +1819,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 10
+            "occ": 11
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -2425,7 +2425,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 16
+            "occ": 23
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -3530,6 +3530,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-field-guide.html",
+            "occ": 1
+          },
+          {
             "file": "book/book-index.html",
             "occ": 1
           },
@@ -3545,7 +3549,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 11
+            "occ": 12
           }
         ]
       },

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HAND-AUTHORED one-off (Field Guide card — Uber) — NOT projector output; edit by hand and keep this header. -->
+<!-- Field-guide team card: Uber's entry door (factory economics) -> MAGE landing (Governed Engineering Environment). label: field-guide-uber. Reference/nav card art, not a role-coloured figure. -->
+<!-- semantic-families: neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Uber — factory economics to the Governed Engineering Environment">
+  <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
+
+  <!-- header -->
+  <text x="48" y="44" font-size="20" fill="#57534e">Field Guide · card</text>
+  <text x="952" y="44" text-anchor="end" font-size="22" font-weight="bold" fill="#1c1917">Uber</text>
+  <text x="952" y="68" text-anchor="end" font-size="20" font-style="italic" fill="#57534e">Ride-hailing + logistics platform · agentic software factory at organizational scale</text>
+  <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
+
+  <!-- ===== edges (drawn UNDER the nodes; node fills cap the ends) ===== -->
+  <!-- edge: door -> hub -->
+  <line x1="151" y1="205" x2="317" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: hub -> lever-1..5 -->
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M330,192 L330,150 L594,150"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M330,192 L330,178 L594,178"/>
+  <line x1="330" y1="206" x2="594" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M330,218 L330,234 L594,234"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M330,218 L330,262 L594,262"/>
+  <!-- edge: levers -> landing -->
+  <line x1="606" y1="206" x2="760" y2="206" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- ===== nodes (opaque fills cap the edge ends) ===== -->
+  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
+  <circle cx="330" cy="205" r="13" fill="#1c1917"/>
+  <circle cx="600" cy="150" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="600" cy="178" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="600" cy="206" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="600" cy="234" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="600" cy="262" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+
+  <!-- ===== labels ===== -->
+  <text x="140" y="150" text-anchor="middle" font-size="20" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
+  <text x="140" y="252" text-anchor="middle" font-size="20" fill="#57534e">Factory</text>
+  <text x="140" y="272" text-anchor="middle" font-size="20" fill="#57534e">economics</text>
+  <text x="330" y="252" text-anchor="middle" font-size="23" fill="#78716c">the engineered environment</text>
+  <text x="600" y="130" text-anchor="middle" font-size="23" fill="#78716c">benchmarks · routing · context · skills · gates</text>
+  <text x="860" y="150" text-anchor="middle" font-size="20" letter-spacing="1" fill="#78716c">LANDS ON</text>
+  <text x="860" y="200" text-anchor="middle" font-size="16.5" font-weight="bold" fill="#1c1917">Governed Engineering</text>
+  <text x="860" y="220" text-anchor="middle" font-size="16.5" font-weight="bold" fill="#1c1917">Environment</text>
+
+  <!-- takeaway -->
+  <line x1="40" y1="368" x2="960" y2="368" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="500" y="404" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">When code is abundant, the durable engineering object is the environment around the reasoner.</text>
+</svg>
