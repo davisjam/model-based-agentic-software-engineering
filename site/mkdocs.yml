@@ -24,8 +24,12 @@ exclude_docs: |
 
 # The home page is reachable via the navbar title/logo; it does not need a second
 # redundant entry at the top of the sidebar. Keep it built + served, just out of the nav.
+# The two redirect stubs (former Assessment / Oral Exams URLs) are built + served so old
+# inbound links resolve, but they meta-refresh to the new /assessment/ pages and stay out of nav.
 not_in_nav: |
   /index.md
+  /oral-exams.md
+  /project/assessment.md
 
 theme:
   name: material

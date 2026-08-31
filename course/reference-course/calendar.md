@@ -20,8 +20,8 @@ One demonstrated schedule: how the reusable curriculum maps onto a 16-week semes
 | Week 2 | [Software Process](../lectures/act-1-foundations/02-software-process.md) |
 | Week 3 | [Software Engineering Teamwork](../lectures/act-1-foundations/03-software-engineering-teamwork.md) |
 | Weeks 4–15 | Later acts — published as materials land (see the Syllabus for the full outline) |
-| Week 9 | Oral exam ([Oral Exams](../oral-exams.md)) |
-| Week 16 | Oral exam ([Oral Exams](../oral-exams.md)) |
+| Week 9 | Oral exam ([Oral Exams](../assessment/oral-exams.md)) |
+| Week 16 | Oral exam ([Oral Exams](../assessment/oral-exams.md)) |
 
 The topic sequence follows the curriculum's intellectual structure (Acts → modules); the week numbers are specific to this Purdue instantiation and will differ for other adoptions.
 

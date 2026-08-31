@@ -14,7 +14,7 @@ parallel copy of any material. Edit here; the site follows.
 The site separates the **reusable curriculum** from **one demonstrated way to teach it**:
 
 - **Curriculum** — the materials and their *intellectual* structure, independent of any calendar:
-  `lectures/` (organized **Act → module**), `project/`, and `oral-exams.md`. A "module" is the reusable
+  `lectures/` (organized **Act → module**), `project/`, and `assessment/`. A "module" is the reusable
   instructional unit — not a "week." An adopter takes the modules they need, in whatever order and schedule
   suits their course.
 - **Reference course** — `reference-course/`: the specific Purdue Fall-2026 instantiation (ECE 30861). Its
@@ -42,8 +42,8 @@ course/
       02-software-process.md
       03-software-engineering-teamwork.md
       materials/                 # the module decks
-  project/                       # Overview, phase-*.md, candidate-projects.md, assessment.md
-  oral-exams.md
+  project/                       # Overview, phase-*.md, candidate-projects.md
+  assessment/                    # project-assessment.md, oral-exams.md (Assessment section)
   stylesheets/purdue.css         # Purdue palette (extra_css)
   js/header-title-link.js        # header title → home link
   assets/wizard-hat.svg          # favicon (the wizard-hat identity)

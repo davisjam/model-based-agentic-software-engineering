@@ -14,7 +14,7 @@ status: ready
 
 The reference course is **one demonstrated way** to schedule and teach the MAGE curriculum: ECE 30861 — Software Engineering, taught to Computer Engineering students at Purdue University in Fall 2026. It provides one complete semester-long realization of the MAGE teaching materials — the syllabus, lectures, oral exams, and semester project.
 
-The reusable materials — the [Lectures](../lectures/index.md), the [Semester Project](../project/index.md), and the [Oral Exams](../oral-exams.md) — are organized by their intellectual structure, independent of any calendar. This page maps them onto an actual 16-week semester.
+The reusable materials — the [Lectures](../lectures/index.md), the [Semester Project](../project/index.md), and **Assessment** ([project assessment](../assessment/project-assessment.md) and [oral exams](../assessment/oral-exams.md)) — are organized by their intellectual structure, independent of any calendar. This page maps them onto an actual 16-week semester.
 
 - **[Syllabus](syllabus.md)** — the authoritative course document: outcomes, policies, grading, and the full outline.
 - **[Calendar](calendar.md)** — the week-by-week mapping of the curriculum onto the Purdue Fall 2026 schedule.

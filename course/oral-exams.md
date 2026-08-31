@@ -1,14 +1,6 @@
 ---
 title: Oral Exams
-week:
-mage_readings: []
-objectives: []
-instructor_materials: []
-student_materials: []
-assignments: []
-instructor_notes: ""
-status: placeholder
 ---
+<meta http-equiv="refresh" content="0; url=../assessment/oral-exams/">
 
-The reference course assesses individual understanding through **oral exams** rather than written exercises. Materials — prompts, format, and expectations — will be published here.
-
+This page has moved to [Oral Exams](assessment/oral-exams.md).
