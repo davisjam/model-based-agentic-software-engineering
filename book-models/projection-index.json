@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1165,
+    "total_sites": 1166,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 816,
+      "book-web": 817,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 13,
@@ -19,6 +19,10 @@
     "agent": {
       "book": {
         "book-web": [
+          {
+            "file": "book/0.2-what-this-book-argues.html",
+            "occ": 2
+          },
           {
             "file": "book/0.4-the-books-language.html",
             "occ": 14
@@ -223,7 +227,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 50
+            "occ": 51
           }
         ]
       },
@@ -845,7 +849,7 @@
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
-            "occ": 35
+            "occ": 37
           },
           {
             "file": "book/0.3-the-mage-method-at-a-glance.html",
@@ -2053,7 +2057,7 @@
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
-            "occ": 8
+            "occ": 7
           },
           {
             "file": "book/0.3-the-mage-method-at-a-glance.html",
