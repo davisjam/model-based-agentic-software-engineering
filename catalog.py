@@ -2944,7 +2944,7 @@ def _landing_closing() -> str:
         ("The construction kit", "constructing-the-gee.html",
          "the architecture: 9 capabilities · 25 canonical mechanisms · 8 compositions"),
         ("Industry case studies", "industry-case-studies.html",
-         "six industrial systems, read through MAGE"),
+         "eight industrial systems, read through MAGE"),
         ("Full catalogue", "catalogue-views.html", "every mechanism, by role · model · enforcement"),
         ("Book", "book/index.html", "the full treatment of the method"),
         ("Teach with MAGE", "teach/index.html", "learning materials — a course companion for instructors"),
@@ -3247,9 +3247,9 @@ def _ic_index_body(cases: "list[dict]", hedge: str) -> str:
             f'<span class="ic-blurb">{blurb}</span>'
             f'<span class="ic-more">Read the reconstruction →</span></a>')
     p.append('<div class="ic-cards">\n  ' + "\n  ".join(cards) + "\n</div>")
-    # The comparative page reads all six at once — the pillar-index inbound edge the orphan gate needs.
-    p.append("<h2>Across all six</h2>")
-    p.append("<p>One page reads the six side by side. The "
+    # The comparative page reads all eight at once — the pillar-index inbound edge the orphan gate needs.
+    p.append("<h2>Across all eight</h2>")
+    p.append("<p>One page reads the eight side by side. The "
              f'<a href="{_attr(_COMPARATIVE_PAGE)}">comparative analysis</a> projects the book’s '
              "Chapter 6 matrices to the web — the correspondence matrix, the modeling-ceiling ladder, "
              "and the convergence tables — from the same model the print edition builds, so the two "
@@ -3264,7 +3264,7 @@ def _comparative_body() -> str:
     render_convergence_md / render_convergence_key_md), so the page cannot diverge from the book (the
     ratified F-comparative exact-reuse decision). Every reader-facing SENTENCE is a hand-authored literal
     or a verbatim authored string read from the model (the distinctive headline + hedge + statements); no
-    sentence is machine-composed from slug lists. The six-company placement map is the hero. Exactly one
+    sentence is machine-composed from slug lists. The seven-kind placement map is the hero. Exactly one
     `<h1>`; a `<!-- comparative-analysis: -->` trace marker leads the body (the pillar-page analogue)."""
     import industry_cases_model as icm  # noqa: E402 — the Ch6 render functions, on sys.path since module load
     model = icm.derive_model()
@@ -3311,7 +3311,7 @@ def _comparative_body() -> str:
               "book reads the rung a source reaches, not a grade.")
     md.append(icm.render_modeling_ceiling_md(model))
     md.append("## What every system establishes")
-    md.append("These patterns recur across all six. Each was engineered independently, for one company’s "
+    md.append("These patterns recur across all eight. Each was engineered independently, for one company’s "
               "own reasons, yet every source lands on it. Convergence this broad is the evidence that a "
               "pattern is structural rather than a house style.")
     md.append(icm.render_convergence_md("universal", model))
@@ -3554,7 +3554,7 @@ def reconstruction_site_findings() -> "list[str]":
       (c) PAGE PRESENT + TRACE — when the index is built, every authored case has a rendered
           `industry-case-<id>.html` carrying its `<!-- industry-case: <id> -->` trace marker.
       (d) INDEX LINKAGE — when the index is built, it links every authored case's page (the inbound edge the
-          orphan gate needs for all six children).
+          orphan gate needs for all eight children).
     Returns a list of finding strings (empty = clean)."""
     raw = _ic_declared()
     labels = set((c.get("id", "") for c in raw.get("construct_universe", {}).get("columns", [])))
@@ -4480,7 +4480,7 @@ def cmd_build(_args) -> int:
     # Industry-case-studies pillar — a projection of book-models/industry_cases_declared.json. The index +
     # one per-case page per AUTHORED case are written directly (like index.html / catalogue-views.html), not
     # from a `.md`: projected structure around hand-authored record prose (rule: no machine-composed prose).
-    # The index links each child (the orphan-gate inbound edge for all six); the landing closing links the
+    # The index links each child (the orphan-gate inbound edge for all eight); the landing closing links the
     # index. Same "site is a projection, can't drift" discipline the reconstruction_site_findings gate holds.
     ic_raw = _ic_declared()
     ic_labels = _ic_construct_labels()
