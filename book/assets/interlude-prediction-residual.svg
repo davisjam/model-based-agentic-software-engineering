@@ -51,14 +51,16 @@
   <!-- (b) modeling loop -->
   <text x="490" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) The modeling loop</text>
   <g text-anchor="middle" font-size="15" fill="#1c1917">
-    <rect x="536" y="70" width="130" height="42" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/><text x="601" y="96">model</text>
-    <rect x="722" y="70" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="787" y="96">predict</text>
-    <rect x="722" y="188" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="787" y="214">implement</text>
-    <rect x="536" y="188" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="601" y="214">measure</text>
+    <rect x="560" y="56" width="130" height="42" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/><text x="625" y="82">model</text>
+    <rect x="740" y="56" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="805" y="82">predict</text>
+    <rect x="740" y="140" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="805" y="166">implement</text>
+    <rect x="560" y="140" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="625" y="166">measure</text>
+    <rect x="550" y="228" width="150" height="42" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/><text x="625" y="254">explain residual</text>
   </g>
-  <line x1="666" y1="91" x2="722" y2="91" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
-  <line x1="787" y1="112" x2="787" y2="188" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
-  <line x1="722" y1="209" x2="666" y2="209" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
-  <line x1="601" y1="188" x2="601" y2="112" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
-  <text x="601" y="156" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">explain residual</text>
+  <line x1="690" y1="77" x2="740" y2="77" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
+  <line x1="805" y1="98" x2="805" y2="140" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
+  <line x1="740" y1="161" x2="690" y2="161" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
+  <line x1="625" y1="182" x2="625" y2="228" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
+  <polyline points="550,249 512,249 512,77 560,77" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#pr-ah)"/>
+  <text x="500" y="165" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12" transform="rotate(-90 500 165)">refine model</text>
 </svg>

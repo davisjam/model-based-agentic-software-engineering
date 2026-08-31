@@ -843,9 +843,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="530" y="290" width="120" height="52" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
   <text x="590" y="321" text-anchor="middle" font-size="18.4" fill="#1c1917">output</text>
 
-  <text x="684" y="312" font-size="16" font-style="italic" fill="#78716c">each worker holds a</text>
-  <text x="684" y="332" font-size="16" font-style="italic" fill="#78716c">smaller page range</text>
-</svg><figcaption data-short="Evolution of the execution unit"><span class="fig-label">Figure 3.5.1-1.</span> <em>Evolution of the execution unit.</em> (a) Whole-document execution kept the artifact's working state, and its media, resident in one long-running worker, which sourced GenAI requests from that memory. (b) Page chunking divided that state across smaller workers, lowering per-worker memory without changing how document media is represented.</figcaption></figure>
+  <text x="684" y="312" font-size="16" font-style="italic" fill="#78716c">each worker holds less</text>
+  <text x="684" y="332" font-size="16" font-style="italic" fill="#78716c">document state</text>
+</svg><figcaption data-short="Two execution units for document remediation"><span class="fig-label">Figure 3.5.1-1.</span> <em>Two execution units for document remediation.</em> (a) Whole-document execution keeps the artifact's working state and media resident in one long-running worker. (b) Page-chunked execution divides the document across workers, reducing the working state and memory required by any one worker.</figcaption></figure>
 <p>The document therefore served as both the user's artifact and the worker's in-memory unit of computation. Media needed by GenAI operations was read from that resident representation and sent to the model as needed.</p>
 <p>For the small presentations used to develop the system, this worked well. The architecture was simple, and the document was a natural boundary: a user submitted a document and expected a document back. Nothing in the observed workload justified another unit of execution.</p>
 <p>Experience eventually expanded the workload. Real teaching presentations carried more slides, images, and other media, and handling the whole document in one process began to put enough pressure on worker memory that the execution unit needed to shrink.</p>
@@ -939,19 +939,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="858" y="163" text-anchor="middle" font-size="12.5" fill="#1c1917">media</text>
   <polyline points="788,157 820,157" fill="none" stroke="#78716c" stroke-width="1.6" stroke-dasharray="2 3" marker-end="url(#f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
 
-  <!-- stream on demand to GenAI -->
-  <line x1="858" y1="182" x2="858" y2="250" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
-  <text x="872" y="214" font-size="13" font-style="italic" fill="#78716c">stream</text>
-  <text x="872" y="230" font-size="13" font-style="italic" fill="#78716c">on demand</text>
+  <!-- one clean directional path: external media streams to GenAI on demand -->
   <rect x="560" y="250" width="200" height="46" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="660" y="278" text-anchor="middle" font-size="16" fill="#1c1917">GenAI service</text>
-  <polyline points="820,273 760,273" fill="none" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
+  <polyline points="858,182 858,273 760,273" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#f-interlude-storage-vs-reasoning-sr-ah)"/>
+  <text x="806" y="266" text-anchor="middle" font-size="13" font-style="italic" fill="#2f5169">stream on demand</text>
 
   <text x="681" y="330" text-anchor="middle" font-size="14.5" font-style="italic" fill="#78716c">media bypasses persistent worker residency</text>
-</svg><figcaption data-short="Chunked residency versus skeletonized residency"><span class="fig-label">Figure 3.5.1-2.</span> <em>Chunked residency versus skeletonized residency.</em> (a) Page chunking limits how much document state and associated media a worker holds at once, but media remains part of the worker's resident representation. (b) Skeletonization keeps only document structure and media references resident; individual media objects stream from external storage to the consumer on demand, so total media size no longer determines persistent worker memory.</figcaption></figure>
+</svg><figcaption data-short="Chunked residency versus skeletonized residency"><span class="fig-label">Figure 3.5.1-2.</span> <em>Chunked residency versus skeletonized residency.</em> (a) Page chunking limits how much document state and associated media a worker holds at once, but media remains part of the worker's resident representation. (b) Skeletonization keeps only document structure and media references resident. Individual media objects stream from external storage to the consumer on demand, so total media size no longer determines persistent worker memory.</figcaption></figure>
 <p>So the architecture carried an implicit scaling relation: total media size drove resident worker state, and resident state drove the risk of running out of memory. Chunking reduced how much of the document met this relation at one time, but it did not remove the relation. On the observed workload that made no difference; the new file made it decisive.</p>
 <p>A residency model made the alternative visible (panel b): the structural pipeline could operate on a lightweight representation while media lived in object storage, and operations that needed media could reach it by reference.</p>
-<p>The 250 MB requirement had therefore exposed a representation problem: storage size and reasoning state had been allowed to scale together, even though most remediation operations needed only the structural portion.</p>
+<p>The 250 MB requirement had therefore exposed a representation problem, not merely a large input.</p>
 <h2>IV. Remove Media from the Working Set</h2>
 <p>The memory problem came from coupling document structure to media residency: total media size increased the worker's persistent working set even though most remediation operations needed only the document's structural skeleton. Skeletonization removes that coupling. For OOXML documents, the pipeline streams through the package, moves media into external storage, and leaves stable references in a much smaller structural skeleton.</p>
 <p>Remediation then operates on the skeleton. If a GenAI operation needs an image, the worker follows the reference and streams that media through the network to the GenAI service without first materializing the document's complete media payload in worker memory. Recombination follows the same discipline in reverse. The worker no longer needs memory proportional to total media size.</p>
@@ -1051,12 +1049,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <rect x="766" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="798" y="285">down</text>
   </g>
   <text x="680" y="344" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1f7a4d">groups by causal readiness</text>
-</svg><figcaption data-short="Two partitions of one remediation graph"><span class="fig-label">Figure 3.5.1-3.</span> <em>Two partitions of one remediation graph.</em> The same graph — local semantic work feeding a document-level structure feeding downstream remediation — grouped (a) spatially, by page or artifact location, and (b) causally, by topological frontier. Once media residency no longer forces page-sized workers, the partition becomes an executor's choice rather than part of the remediation model.</figcaption></figure>
+</svg><figcaption data-short="Two partitions of the same remediation graph"><span class="fig-label">Figure 3.5.1-3.</span> <em>Two partitions of the same remediation graph.</em> The graph can be partitioned (a) spatially, by page or artifact location, or (b) causally, by topological frontier. Page partitioning groups work by where content occurs; frontier partitioning groups work by which computations are ready to execute. The remediation graph itself is unchanged.</figcaption></figure>
 <p>ChunkWorker partitions the work spatially; frontier execution partitions it causally. Skeletonization removed the memory pressure that had made page ranges the natural execution boundary, so the two approaches reconcile. Page identity can survive as metadata on graph nodes — useful for locality, debugging, rate limiting, or failure isolation — without remaining the fundamental unit of executable remediation.</p>
 <p>The architecture therefore needs only a clean seam between the remediation graph and its executor: the graph supplies ready work and its dependencies; the executor consumes them. The executor can schedule by frontier now and by page locality later if measurements justify it. There is no need to build a strategy hierarchy merely because two policies are conceivable. The graph/executor seam preserves the degree of freedom without spending it.</p>
 <h2>VI. Analyze Before You Build</h2>
 <p>Representing remediation as a dependency graph does more than provide an execution plan. The graph can be analyzed before an executor — or a proposed architectural change — is implemented. <a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-4">Figure&nbsp;3.5.1-4</a> shows three such analyses.</p>
-<figure id="fig-3-5-1-4" class="book-figure" data-label="interlude-analysis-before-build"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 500"
+<figure id="fig-3-5-1-4" class="book-figure" data-label="interlude-analysis-before-build"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 540"
      role="group" aria-labelledby="f-interlude-analysis-before-build-abTitle f-interlude-analysis-before-build-abDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-interlude-analysis-before-build-abTitle">An explicit dependency model exposes optimization opportunities before implementation</title>
@@ -1076,7 +1074,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="920" height="500" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="920" height="540" fill="#fdfcf9"/>
   <line x1="460" y1="44" x2="460" y2="272" stroke="#e7e2d6" stroke-width="1.5"/>
   <line x1="30" y1="292" x2="890" y2="292" stroke="#e7e2d6" stroke-width="1.5"/>
 
@@ -1115,40 +1113,37 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <rect x="646" y="256" width="48" height="28" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="670" y="275">F</text>
   </g>
 
-  <!-- ===== (c) dependency redesign (full width) ===== -->
-  <text x="30" y="316" font-size="17.5" font-weight="700" fill="#57534e">(c) Dependency redesign</text>
+  <!-- ===== (c) information-dependency redesign (full width, enlarged) ===== -->
+  <text x="30" y="322" font-size="18" font-weight="700" fill="#57534e">(c) Information-dependency redesign</text>
 
-  <!-- before: serial context propagation -->
-  <text x="40" y="344" font-size="14" fill="#9a3f12">Before: serial context propagation</text>
-  <g font-size="12.5" fill="#1c1917" text-anchor="middle">
-    <rect x="30" y="356" width="54" height="30" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/><text x="57" y="376">image 1</text>
-    <rect x="120" y="356" width="54" height="30" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/><text x="147" y="376">alt 1</text>
-    <rect x="210" y="356" width="54" height="30" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/><text x="237" y="376">image 2</text>
-    <rect x="300" y="356" width="54" height="30" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/><text x="327" y="376">alt 2</text>
-    <rect x="390" y="356" width="54" height="30" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/><text x="417" y="376">image 3</text>
-    <rect x="480" y="356" width="54" height="30" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/><text x="507" y="376">alt 3</text>
+  <!-- before: serial context propagation (left) -->
+  <text x="40" y="356" font-size="15" fill="#9a3f12">Before: serial context propagation</text>
+  <g font-size="14.5" fill="#1c1917" text-anchor="middle">
+    <rect x="30" y="372" width="80" height="40" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="70" y="397">image 1</text>
+    <rect x="146" y="372" width="80" height="40" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="186" y="397">alt 1</text>
+    <rect x="262" y="372" width="80" height="40" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="302" y="397">image 2</text>
+    <rect x="378" y="372" width="80" height="40" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="418" y="397">alt 2</text>
   </g>
-  <line x1="84" y1="371" x2="120" y2="371" stroke="#9a3f12" stroke-width="1.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
-  <line x1="174" y1="371" x2="210" y2="371" stroke="#9a3f12" stroke-width="1.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
-  <line x1="264" y1="371" x2="300" y2="371" stroke="#9a3f12" stroke-width="1.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
-  <line x1="354" y1="371" x2="390" y2="371" stroke="#9a3f12" stroke-width="1.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
-  <line x1="444" y1="371" x2="480" y2="371" stroke="#9a3f12" stroke-width="1.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
-  <text x="40" y="410" font-size="13" font-style="italic" fill="#78716c">each operation depends on a previous generated result</text>
+  <line x1="110" y1="392" x2="146" y2="392" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <line x1="226" y1="392" x2="262" y2="392" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <line x1="342" y1="392" x2="378" y2="392" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <text x="474" y="399" font-size="20" fill="#9a3f12">…</text>
+  <text x="40" y="446" font-size="14" font-style="italic" fill="#78716c">each operation depends on a previous generated result</text>
 
-  <!-- after: shared contextual representation -->
-  <text x="600" y="344" font-size="14" fill="#1f7a4d">After: shared contextual representation</text>
-  <rect x="640" y="356" width="200" height="32" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="740" y="377" text-anchor="middle" font-size="13" fill="#1c1917">rendered page context</text>
-  <line x1="700" y1="388" x2="660" y2="424" stroke="#57534e" stroke-width="1.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
-  <line x1="740" y1="388" x2="740" y2="424" stroke="#57534e" stroke-width="1.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
-  <line x1="780" y1="388" x2="820" y2="424" stroke="#57534e" stroke-width="1.6" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
-  <g font-size="12.5" fill="#1c1917" text-anchor="middle">
-    <rect x="632" y="424" width="54" height="30" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/><text x="659" y="444">alt 1</text>
-    <rect x="714" y="424" width="54" height="30" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/><text x="741" y="444">alt 2</text>
-    <rect x="796" y="424" width="54" height="30" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/><text x="823" y="444">alt 3</text>
+  <!-- after: shared contextual representation (right) -->
+  <text x="560" y="356" font-size="15" fill="#1f7a4d">After: shared contextual representation</text>
+  <rect x="600" y="372" width="220" height="38" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="710" y="396" text-anchor="middle" font-size="14.5" fill="#1c1917">rendered page context</text>
+  <line x1="660" y1="410" x2="620" y2="450" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="710" y1="410" x2="710" y2="450" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="760" y1="410" x2="800" y2="450" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-analysis-before-build-ab-ah)"/>
+  <g font-size="14.5" fill="#1c1917" text-anchor="middle">
+    <rect x="580" y="450" width="80" height="40" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="620" y="475">alt 1</text>
+    <rect x="670" y="450" width="80" height="40" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="710" y="475">alt 2</text>
+    <rect x="760" y="450" width="80" height="40" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="800" y="475">alt 3</text>
   </g>
-  <text x="600" y="478" font-size="13" font-style="italic" fill="#78716c">all operations consume the same precomputed context</text>
-</svg><figcaption data-short="Analysis before implementation"><span class="fig-label">Figure 3.5.1-4.</span> <em>Analysis before implementation.</em> (a) In a weighted dependency graph the heaviest chain is the critical path, which sets the latency floor and names an optimization target. (b) Decomposing the dominant node exposes parallel children and shortens the path, discoverable from the model before the split is built. (c) A serial information dependency can be removed by changing the representation supplied to each operation: instead of sibling-to-sibling context propagation, each image consumes one shared precomputed page context, so the alt-text operations run independently.</figcaption></figure>
+  <text x="560" y="514" font-size="14" font-style="italic" fill="#78716c">all operations consume the same precomputed context</text>
+</svg><figcaption data-short="Analysis before implementation"><span class="fig-label">Figure 3.5.1-4.</span> <em>Analysis before implementation.</em> (a) In a weighted dependency graph the heaviest chain is the critical path, which sets the latency floor and names an optimization target. (b) Decomposing the dominant node exposes parallel children and can shorten the path, a possibility visible in the model before the split is built. (c) A serial information dependency can be removed by changing the representation supplied to each operation: instead of sibling-to-sibling context propagation, each image consumes one shared precomputed page context, so the alt-text operations run independently.</figcaption></figure>
 <p>Given the weighted graph in panel (a), the model reports which operations may run concurrently, which must wait, and that adding workers cannot shorten a dependency edge; the heaviest chain from start to finish is the critical path. If one node dominates that path, the model has found an optimization target, and the next question is structural: must it be one node? If its semantics permit decomposition, splitting it can expose parallelism and shorten the path (panel b), discoverable from the model with no implementation of the split. The graph cannot promise the optimization will pay off, since smaller operations may add coordination cost, lose batching efficiency, or contend for another resource; but it names the candidate and the quantities that decide whether it helps.</p>
 <h3>Dependencies can be redesigned</h3>
 <p>The same analysis exposed a problem in contextual image description (panel c). If each image description consumed the description generated for the preceding image, the operations formed a serial SCAN: for N images the dependency depth approaches N, so if each GenAI call takes roughly t, the serial floor grows as about N·t, and more workers cannot remove it. But the requirement is not to generate alt text serially; it is to give each image enough surrounding context to produce an adequate description. Rendering the surrounding pages up front and treating those thumbnails as a shared visual IR supplies that context: each image then consumes bounded neighboring visual context instead of a sibling's generated alt text, the payload grows but the dependency disappears, and the operation stays a parallel MAP. The analysis also clarified the requirement. Good alt text needs sufficient visual context; it does not require serial generation. That context can itself be represented and reused, just as textual document context already is. The model changed the proposed implementation before that implementation existed.</p>
@@ -1193,7 +1188,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="720" y1="85" x2="770" y2="85" stroke="#1c1917" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#f-interlude-latency-floor-lf-ah)"/>
   <text x="460" y="140" text-anchor="middle" font-size="14.5" font-style="italic" fill="#78716c">each level waits for the one before it, so the times add</text>
 </svg><figcaption data-short="The GenAI dependency chain and its latency floor"><span class="fig-label">Figure 3.5.1-5.</span> <em>The GenAI dependency chain and its latency floor.</em> A section summary feeds a document summary feeds alt text; because each level waits for the one before it, their per-call times add to an irreducible floor of 7.6589 s. The vision value is measured; the text-summary value is estimated.</figcaption></figure>
-<p>The 4.1049-second vision value came from measurement; the 1.777-second text-summary value remained estimated. The current in-process design had local concurrency of six, so a 37-image alt-text frontier required seven waves, for a predicted total of about 32.788 s. A distributed frontier executor with modeled cloud concurrency of 64 could execute the 37-wide level in a single wave, but would pay cold-start and round-trip taxes for each graph round — about 11.4589 s under the current estimated parameters.</p>
+<p>The current in-process design had local concurrency of six, so a 37-image alt-text frontier required seven waves, for a predicted total of about 32.788 s. A distributed frontier executor with modeled cloud concurrency of 64 could execute the 37-wide level in a single wave, but would pay cold-start and round-trip taxes for each graph round — about 11.4589 s under the current estimated parameters.</p>
 <p>The model therefore predicted roughly a 2.9× advantage for frontier execution on that workload: the existing design pays about 24.6 seconds in width serialization, while the distributed design trades that for about 3.3 seconds of modeled round overhead. Several cells remain estimated and need staging measurements before any production cutover, but the number is useful before it is perfectly calibrated. It says why the candidate should win, and it says what to measure next.</p>
 <h3>Predicting the cost of a design change</h3>
 <p>Models can also answer questions about designs that do not exist yet. Suppose an engineer proposes another intermediate representation. Adding that IR creates a new fact and perhaps another dependency edge; the critical-path model can insert the proposed node into the DAG and recompute:</p>
@@ -1248,87 +1243,37 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- (b) modeling loop -->
   <text x="490" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) The modeling loop</text>
   <g text-anchor="middle" font-size="15" fill="#1c1917">
-    <rect x="536" y="70" width="130" height="42" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/><text x="601" y="96">model</text>
-    <rect x="722" y="70" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="787" y="96">predict</text>
-    <rect x="722" y="188" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="787" y="214">implement</text>
-    <rect x="536" y="188" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="601" y="214">measure</text>
+    <rect x="560" y="56" width="130" height="42" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/><text x="625" y="82">model</text>
+    <rect x="740" y="56" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="805" y="82">predict</text>
+    <rect x="740" y="140" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="805" y="166">implement</text>
+    <rect x="560" y="140" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="625" y="166">measure</text>
+    <rect x="550" y="228" width="150" height="42" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/><text x="625" y="254">explain residual</text>
   </g>
-  <line x1="666" y1="91" x2="722" y2="91" stroke="#1c1917" stroke-width="2" marker-end="url(#f-interlude-prediction-residual-pr-ah)"/>
-  <line x1="787" y1="112" x2="787" y2="188" stroke="#1c1917" stroke-width="2" marker-end="url(#f-interlude-prediction-residual-pr-ah)"/>
-  <line x1="722" y1="209" x2="666" y2="209" stroke="#1c1917" stroke-width="2" marker-end="url(#f-interlude-prediction-residual-pr-ah)"/>
-  <line x1="601" y1="188" x2="601" y2="112" stroke="#1c1917" stroke-width="2" marker-end="url(#f-interlude-prediction-residual-pr-ah)"/>
-  <text x="601" y="156" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">explain residual</text>
-</svg><figcaption data-short="Using prediction error as evidence"><span class="fig-label">Figure 3.5.1-6.</span> <em>Using prediction error as evidence.</em> (a) The gap between a model's prediction and the observed measurement is a residual, pointing to a wrong parameter, a wrong relation, or a missing mechanism (the numbers are illustrative). (b) The loop it drives: model, predict, implement, measure, explain the residual, refine the model.</figcaption></figure>
+  <line x1="690" y1="77" x2="740" y2="77" stroke="#1c1917" stroke-width="2" marker-end="url(#f-interlude-prediction-residual-pr-ah)"/>
+  <line x1="805" y1="98" x2="805" y2="140" stroke="#1c1917" stroke-width="2" marker-end="url(#f-interlude-prediction-residual-pr-ah)"/>
+  <line x1="740" y1="161" x2="690" y2="161" stroke="#1c1917" stroke-width="2" marker-end="url(#f-interlude-prediction-residual-pr-ah)"/>
+  <line x1="625" y1="182" x2="625" y2="228" stroke="#1c1917" stroke-width="2" marker-end="url(#f-interlude-prediction-residual-pr-ah)"/>
+  <polyline points="550,249 512,249 512,77 560,77" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-interlude-prediction-residual-pr-ah)"/>
+  <text x="500" y="165" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12" transform="rotate(-90 500 165)">refine model</text>
+</svg><figcaption data-short="Using prediction error as evidence"><span class="fig-label">Figure 3.5.1-6.</span> <em>Using prediction error as evidence.</em> (a) The gap between a model's prediction and the observed measurement is a residual, pointing to a wrong parameter, a wrong relation, or a missing mechanism; the numbers are illustrative. (b) Prediction and measurement create a feedback loop: explain the residual, refine the model, and test the revised model against subsequent observations.</figcaption></figure>
 <p>The residual creates an engineering question. The queue overhead may have been underestimated. Two apparently independent nodes may share a serialized resource. Media loading may add a cost the latency model omitted, or the graph itself may be missing a real dependency. A prediction that matches reality provides evidence that the model captures the dominant mechanisms; a miss identifies where the model or system deserves investigation. Modeling thus contributes both before and after implementation: before, it compares designs and exposes optimization targets; after, disagreement between prediction and observation helps find what the model missed.</p>
 <h2>VII. The Resulting Model Family</h2>
 <p>The large-file requirement did not produce one model. It produced a connected family, each member answering a different question. <a class="xref" href="3.5-one-problem-many-models.html#tbl-3-5-1-1">Table&nbsp;3.5.1-1</a> collects them.</p>
 <table id="tbl-3-5-1-1" class="book-table" data-label="interlude-model-family"><caption class="tbl-label-only"><span class="tbl-label">Table 3.5.1-1.</span></caption><thead><tr><th>Model</th><th>Question</th></tr></thead><tbody><tr><td>Media residency</td><td>What must reside in worker memory? How should memory scale with media size?</td></tr><tr><td>Batch execution</td><td>How do batch size and concurrency affect latency, cost, and truncation risk?</td></tr><tr><td>Critical path</td><td>What sets the latency floor? Which nodes are optimization targets?</td></tr><tr><td>Distribution</td><td>Where should ready work execute? What coordination costs does that introduce?</td></tr><tr><td>Remediation graph</td><td>What work exists, and what depends on what?</td></tr><tr><td>Fact / IR catalogue</td><td>Which derived facts feed later computations? How deep is the information-dependency chain?</td></tr><tr><td>Image fidelity</td><td>What representation of media is required, and what does rendering it cost?</td></tr></tbody></table>
 <p>These models take different forms because they answer different questions. Some are typed graphs, some quantitative functions, some declarations of entities and invariants. They stay separate and compose through shared identities and explicit relationships: the remediation graph and fact catalogue supply the static dependency structure; the batch model supplies per-call cost; the critical-path model combines them into latency; the distribution model supplies the execution topology the coordination taxes are charged against; and the media-residency model supplies the independent memory bound that makes the execution design affordable.</p>
-<p><a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-7">Figure&nbsp;3.5.1-7</a> shows how they compose.</p>
-<figure id="fig-3-5-1-7" class="book-figure" data-label="interlude-model-family-composition"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 420"
-     role="group" aria-labelledby="f-interlude-model-family-mfTitle f-interlude-model-family-mfDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-interlude-model-family-mfTitle">The model family composes through shared identities, not in sequence</title>
-  <desc id="f-interlude-model-family-mfDesc">The remediation graph and fact/IR catalogue supply static dependency structure and the
-    batch model supplies per-call cost; together they feed the critical-path model, which produces latency
-    predictions and, with them, a distribution choice. Separately, the media-residency model supplies an
-    independent worker-memory bound that makes the execution design affordable, and the image-fidelity model
-    supplies a visual-IR cost. The models stay distinct and join through shared identities.</desc>
-
-  <defs>
-    <marker id="f-interlude-model-family-mf-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="920" height="420" fill="#fdfcf9"/>
-
-  <g text-anchor="middle" font-size="14.5" fill="#1c1917">
-    <!-- inputs (left) -->
-    <rect x="30" y="60" width="190" height="44" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="125" y="87">remediation graph</text>
-    <rect x="30" y="128" width="190" height="44" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="125" y="155">fact / IR catalogue</text>
-    <rect x="30" y="196" width="190" height="44" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="125" y="223">batch model</text>
-
-    <!-- critical-path model (center) -->
-    <rect x="330" y="128" width="180" height="52" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/><text x="420" y="159" font-weight="700">critical-path model</text>
-
-    <!-- outputs (right) -->
-    <rect x="620" y="90" width="180" height="46" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="710" y="118">latency predictions</text>
-    <rect x="620" y="168" width="180" height="46" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="710" y="196">distribution choice</text>
-
-    <!-- independent contributors (bottom) -->
-    <rect x="30" y="300" width="220" height="44" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/><text x="140" y="327">media-residency model</text>
-    <rect x="360" y="300" width="200" height="44" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="460" y="327">worker-memory bound</text>
-    <rect x="620" y="300" width="180" height="44" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/><text x="710" y="327">image-fidelity model</text>
-  </g>
-
-  <!-- inputs → critical-path -->
-  <line x1="220" y1="82" x2="330" y2="146" stroke="#57534e" stroke-width="1.7" marker-end="url(#f-interlude-model-family-mf-ah)"/>
-  <line x1="220" y1="150" x2="330" y2="152" stroke="#57534e" stroke-width="1.7" marker-end="url(#f-interlude-model-family-mf-ah)"/>
-  <line x1="220" y1="218" x2="330" y2="162" stroke="#57534e" stroke-width="1.7" marker-end="url(#f-interlude-model-family-mf-ah)"/>
-  <!-- critical-path → latency → distribution -->
-  <line x1="510" y1="146" x2="620" y2="120" stroke="#57534e" stroke-width="1.7" marker-end="url(#f-interlude-model-family-mf-ah)"/>
-  <line x1="710" y1="136" x2="710" y2="168" stroke="#57534e" stroke-width="1.7" marker-end="url(#f-interlude-model-family-mf-ah)"/>
-  <!-- media-residency → worker-memory bound → (affordability of distribution) -->
-  <line x1="250" y1="322" x2="360" y2="322" stroke="#57534e" stroke-width="1.7" marker-end="url(#f-interlude-model-family-mf-ah)"/>
-  <line x1="560" y1="318" x2="640" y2="214" stroke="#57534e" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#f-interlude-model-family-mf-ah)"/>
-  <text x="600" y="270" font-size="12.5" font-style="italic" fill="#78716c">makes it affordable</text>
-  <!-- image-fidelity → visual-IR cost (its own note) -->
-  <text x="710" y="366" text-anchor="middle" font-size="12.5" font-style="italic" fill="#78716c">→ visual-IR cost</text>
-</svg><figcaption data-short="How the model family composes"><span class="fig-label">Figure 3.5.1-7.</span> <em>How the model family composes.</em> The remediation graph and fact/IR catalogue supply dependency structure and the batch model per-call cost; together they feed the critical-path model, which yields latency predictions and a distribution choice. The media-residency model contributes an independent worker-memory bound that makes the execution design affordable, and the image-fidelity model a visual-IR cost.</figcaption></figure>
 <p>Together they answer questions that would otherwise invite implementation experiments: what happens if we add an IR, where the critical path lies, whether splitting a node exposes useful parallelism, at what frontier width distributed execution beats local execution, how peak memory changes as media grows, and which assumption a measurement would have to violate for a prediction to be wrong. Some answers are structural and some require calibrated measurement; a good model says which is which.</p>
 <h3>From examples to a bound</h3>
 <p>The memory story shows the progression clearly:</p>
 <ol><li>"My simple decks work."</li><li>"My real decks work."</li><li>"Hundreds of documents from several universities work."</li><li>"The 250 MB media-heavy deck does not."</li><li>Model the relationship that failed.</li><li>Remove total media size from the worker-memory equation.</li><li>Enforce the assumptions that the bound requires.</li></ol>
-<p>Steps 1–3 accumulate empirical evidence, and step 4 expands the known input space again. Steps 5–7 do something different: they seek a property over a declared class of inputs. The resulting guarantee is deliberately narrow — within the modeled envelope, total media size does not determine peak worker memory. Other unknowns remain possible; a future artifact may expose another structural dimension or another resource limit, and MAGE offers no reason to pretend otherwise. But if the next 250 MB deck arrives because it carries more media, the architecture should not have to learn this lesson again.</p>
+<p>Steps 1–3 accumulate empirical evidence; step 4 exposes the boundary of that evidence. Steps 5–7 do something different: they seek a property over a declared class of inputs. The resulting guarantee is deliberately narrow — within the modeled envelope, total media size does not determine peak worker memory. Other unknowns remain possible; a future artifact may expose another structural dimension or another resource limit, and MAGE offers no reason to pretend otherwise. But if the next 250 MB deck arrives because it carries more media, the architecture should not have to learn this lesson again.</p>
 <h3>Three days</h3>
 <p>Laid out this way, the sequence looks like a substantial architecture project. It included the large-file requirement, skeletonization and streaming, typed-patch work, the reconsideration of ChunkWorker, the remediation and fact graphs, the chunkless execution design, the quantitative models, the analysis, the implementation, and the corrections when assumptions proved wrong. The elapsed engineering time was about three days, working inside the existing governed engineering environment.</p>
 <p>That timescale changes the economics of modeling. Dependency graphs, performance models, data-flow models, invariants, and intermediate representations are established software-engineering tools, and their cost has long limited how aggressively engineers use them: a model that takes a week to build may describe code that changes the next day, so the rational response is often to model less, implement the candidate, and measure. When the modeling work itself becomes cheap, that calculation shifts. Here the models evolved alongside the implementation fast enough to change decisions before those decisions became code. The critical-path model rejected a serial SCAN before anyone paid to build it and flagged a wide node as an optimization target; the residency model stated the memory property the implementation had to preserve; and the graph revealed that page chunking was one scheduling policy, not the structure of remediation itself.</p>
 <p>Modeling can change what you build before you build it.</p>
 <h3>Finding the models</h3>
 <p>Part IV asks engineers to find the models their work needs. This example shows what that instruction means in practice. Nobody began with a plan to construct seven models. The whole-document architecture worked until larger workloads made memory consequential; page chunking solved that across the workload then observed; a media-heavy document exposed a remaining scaling relationship; modeling residency led to skeletonization; skeletonization removed the memory rationale for page partitioning; the remediation graph then exposed causal structure, and critical-path analysis exposed both latency limits and optimization opportunities. Each model answered a question, and its answer either changed the design or made the next question visible.</p>
-<p>The process is therefore not the linear one — design, then implement, then document with models — but a loop, in which analysis and measurement feed back into the model (<a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-8">Figure&nbsp;3.5.1-8</a>).</p>
-<figure id="fig-3-5-1-8" class="book-figure" data-label="interlude-modeling-cycle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 360"
+<p>The process is therefore not the linear one — design, then implement, then document with models — but a loop, in which analysis and measurement feed back into the model (<a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-7">Figure&nbsp;3.5.1-7</a>).</p>
+<figure id="fig-3-5-1-7" class="book-figure" data-label="interlude-modeling-cycle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 360"
      role="group" aria-labelledby="f-interlude-modeling-cycle-mcTitle f-interlude-modeling-cycle-mcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-interlude-modeling-cycle-mcTitle">Modeling as a loop, not a linear documentation step</title>
@@ -1374,5 +1319,5 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- measurement → refine model (back to model) -->
   <polyline points="600,304 460,304 460,172" fill="none" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#f-interlude-modeling-cycle-mc-ah)"/>
   <text x="474" y="290" font-size="12.5" font-style="italic" fill="#9a3f12">refine model</text>
-</svg><figcaption data-short="Modeling as a loop"><span class="fig-label">Figure 3.5.1-8.</span> <em>Modeling as a loop.</em> (a) Not the linear design → implement → document-with-models. (b) A problem drives a model; analysis yields a prediction and a design; those drive implementation and measurement; measurement refines the model, and the loop continues while the questions justify the cost.</figcaption></figure>
+</svg><figcaption data-short="Modeling as a loop"><span class="fig-label">Figure 3.5.1-7.</span> <em>Modeling as a loop.</em> (a) Not the linear design → implement → document-with-models. (b) A problem drives a model; analysis yields a prediction and a design; those drive implementation and measurement; measurement refines the model, and the loop continues while the questions justify the cost.</figcaption></figure>
 <p>A model need not survive forever. Keep it while the questions it answers justify its cost; some models become durable engineering capital because later decisions keep depending on them, while others settle one question and disappear. The objective is not more models. It is to make consequential reasoning cheap enough to perform before the implementation has already made the decision for you.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="3.5-when-guardrails-collide.html" aria-label="Previous chapter — 17 · When Controls Become a System">« Previous chapter</a></div><span class="chapnav-here" title="One Problem, Many Models">One Problem, Many Models</span><div class="chapnav-fwd"><a href="part-4-intro.html" aria-label="Next chapter — The MAGE Method">Next chapter »</a><a href="part-4-intro.html" aria-label="Next part — Part 4 — The MAGE Method">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

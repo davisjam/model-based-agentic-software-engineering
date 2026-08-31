@@ -83,13 +83,11 @@
   <text x="858" y="163" text-anchor="middle" font-size="12.5" fill="#1c1917">media</text>
   <polyline points="788,157 820,157" fill="none" stroke="#78716c" stroke-width="1.6" stroke-dasharray="2 3" marker-end="url(#sr-ah-muted)"/>
 
-  <!-- stream on demand to GenAI -->
-  <line x1="858" y1="182" x2="858" y2="250" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#sr-ah-muted)"/>
-  <text x="872" y="214" font-size="13" font-style="italic" fill="#78716c">stream</text>
-  <text x="872" y="230" font-size="13" font-style="italic" fill="#78716c">on demand</text>
+  <!-- one clean directional path: external media streams to GenAI on demand -->
   <rect x="560" y="250" width="200" height="46" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="660" y="278" text-anchor="middle" font-size="16" fill="#1c1917">GenAI service</text>
-  <polyline points="820,273 760,273" fill="none" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#sr-ah-muted)"/>
+  <polyline points="858,182 858,273 760,273" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#sr-ah)"/>
+  <text x="806" y="266" text-anchor="middle" font-size="13" font-style="italic" fill="#2f5169">stream on demand</text>
 
   <text x="681" y="330" text-anchor="middle" font-size="14.5" font-style="italic" fill="#78716c">media bypasses persistent worker residency</text>
 </svg>
