@@ -7,6 +7,11 @@ Front-matter shape:
     readings:
       before:
         - "MAGE — Part 1: The new engineering problem"
+      groups:                       # named subheadings, for topics with several readings
+        - heading: "Process models"
+          items:
+            - "Royce (1970), Managing the Development of Large Software Systems"
+          note: "An optional contextual note rendered after this group's list."
       optional:
         - "Boehm, A Spiral Model of Software Development and Enhancement"
 
@@ -29,14 +34,29 @@ _MODULE_RE = re.compile(r"^lectures/act-[^/]+/\d\d-[^/]+\.md$")
 
 def _readings_section(readings: dict) -> str:
     before = readings.get("before") or []
+    groups = readings.get("groups") or []
     optional = readings.get("optional") or []
-    if not before and not optional:
+    if not before and not groups and not optional:
         return ""
     out = ["", "## Readings", ""]
     if before:
         out.append("**Before class**")
         out += [f"- {r}" for r in before]
         out.append("")
+    # `groups` renders each named subheading in the SAME grammar as before/optional — a bold label followed
+    # by its bullet list — so a topic with several readings stays a plain reading list, just longer. An
+    # optional per-group `note` prints as a paragraph after that group's bullets (e.g. a caveat).
+    for g in groups:
+        heading = (g.get("heading") or "").strip()
+        items = g.get("items") or []
+        note = (g.get("note") or "").strip()
+        if heading:
+            out.append(f"**{heading}**")
+        out += [f"- {r}" for r in items]
+        out.append("")
+        if note:
+            out.append(note)
+            out.append("")
     if optional:
         out.append("**Optional / further reading**")
         out += [f"- {r}" for r in optional]
@@ -66,7 +86,11 @@ def _reading_guide(files) -> str:
         fm = _front_matter(f.abs_src_path)
         title = str(fm.get("title") or f.src_uri)
         readings = fm.get("readings") or {}
-        core = " · ".join(readings.get("before") or []) or "—"
+        # Core = before-class readings plus every grouped reading (flattened); additional = optional.
+        core_items = list(readings.get("before") or [])
+        for g in readings.get("groups") or []:
+            core_items += g.get("items") or []
+        core = " · ".join(core_items) or "—"
         add = " · ".join(readings.get("optional") or []) or "—"
         rows.append(f"| {title} | {core} | {add} |")
     if not rows:
