@@ -4,7 +4,7 @@ readings:
   groups:
     - heading: The engineered medium
       items:
-        - '[MAGE §1.1, "The Printer."](https://davisjam.github.io/model-based-agentic-software-engineering/book/1.1-the-printer.html) A contemporary perspective on how commodity intelligence changes the economics of software production. The reading asks what happens to software engineering when implementation becomes abundant relative to engineering judgment, and provides a useful lens for considering why engineering processes change as the underlying productive medium changes.'
+        - '{mage:1.1} A contemporary perspective on how commodity intelligence changes the economics of software production. The reading asks what happens to software engineering when implementation becomes abundant relative to engineering judgment, and provides a useful lens for considering why engineering processes change as the underlying productive medium changes.'
     - heading: Process models
       items:
         - 'Royce (1970), "Managing the Development of Large Software Systems: Concepts and Techniques." Summarizes early efforts and failures to engineer large software systems.'

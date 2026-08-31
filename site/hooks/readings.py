@@ -15,6 +15,10 @@ Front-matter shape:
       optional:
         - "Boehm, A Spiral Model of Software Development and Enhancement"
 
+A reading may cite a MAGE book section with a `{mage:N.M}` token (e.g. `{mage:7.1} Davis, 2026. …`); the
+token expands at build time to `[MAGE §N.M, "<chapter title>."](<book url>)`, with the title and URL read
+from the book source — so a MAGE reference is a reference, never a hand-typed title that can drift.
+
 Two renderings:
 - On any page that declares `readings:`, append a **Readings** section (Before class / Optional).
 - A `<!-- READING-GUIDE -->` marker (on the Calendar) is replaced with an auto-generated
@@ -22,6 +26,9 @@ Two renderings:
   adopter can see what to assign from the book without readings competing with lectures as the backbone.
 """
 from __future__ import annotations
+import functools
+import glob
+import json
 import os
 import re
 
@@ -30,6 +37,56 @@ import yaml  # MkDocs already depends on PyYAML
 _GUIDE_MARKER = "<!-- READING-GUIDE -->"
 #: A lecture module page: course/lectures/act-<name>/NN-<topic>.md (the numbered topic files).
 _MODULE_RE = re.compile(r"^lectures/act-[^/]+/\d\d-[^/]+\.md$")
+
+# ── MAGE book references (SSOT) ──────────────────────────────────────────────────────────────────────
+# A reading cites a MAGE book section as `{mage:7.1}` rather than a hand-typed link. Its title and URL are
+# RESOLVED at build time from the book itself — the chapter's `<!-- chapter-title: -->` marker and its file
+# slug — so a reference can never drift from the book (the "wrong title baked in" bug). The published base
+# URL comes from book-models/repo-metadata.json (pages_url), the same SSOT the book build uses.
+_REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+_BOOK_DIR = os.path.join(_REPO_ROOT, "book")
+_MAGE_TOKEN = re.compile(r"\{mage:(\d+(?:\.\d+)?)\}")
+
+
+@functools.lru_cache(maxsize=1)
+def _book_base_url() -> str:
+    path = os.path.join(_REPO_ROOT, "book-models", "repo-metadata.json")
+    pages = json.load(open(path, encoding="utf-8"))["pages_url"].rstrip("/")
+    return f"{pages}/book/"
+
+
+@functools.lru_cache(maxsize=1)
+def _mage_index() -> dict:
+    """Map a book section number ("7.1") to (chapter_title, page_slug), read from the book source — the
+    single source of truth for both a reference's title and its URL."""
+    idx: dict = {}
+    for f in glob.glob(os.path.join(_BOOK_DIR, "part*", "*.md")):
+        base = os.path.basename(f)
+        m = re.match(r"(\d+(?:\.\d+)?)-(.+)\.md$", base)
+        if not m:
+            continue
+        num, slug = m.group(1), base[:-3]  # filename stem == published HTML slug
+        try:
+            text = open(f, encoding="utf-8").read()
+        except OSError:
+            continue
+        tm = re.search(r"<!--\s*chapter-title:\s*(.+?)\s*-->", text)
+        if tm:
+            idx[num] = (tm.group(1).strip(), slug)
+    return idx
+
+
+def _resolve_mage(text: str) -> str:
+    """Replace every `{mage:N.M}` token with a link to that book section, titled + located from the book."""
+    def repl(m: "re.Match") -> str:
+        num = m.group(1)
+        entry = _mage_index().get(num)
+        if entry is None:
+            raise ValueError(f"readings: unknown MAGE section {{mage:{num}}} — no book/part*/{num}-*.md "
+                             f"carries a chapter-title. Fix the reference or the book.")
+        title, slug = entry
+        return f'[MAGE §{num}, "{title}."]({_book_base_url()}{slug}.html)'
+    return _MAGE_TOKEN.sub(repl, text)
 
 
 def _readings_section(readings: dict) -> str:
@@ -44,7 +101,7 @@ def _readings_section(readings: dict) -> str:
     if before:
         out.append("**Before class**")
         out.append("")
-        out += [f"- {r}" for r in before]
+        out += [f"- {_resolve_mage(r)}" for r in before]
         out.append("")
     # `groups` renders each named subheading in the SAME grammar as before/optional — a bold label followed
     # by its bullet list — so a topic with several readings stays a plain reading list, just longer. An
@@ -56,15 +113,15 @@ def _readings_section(readings: dict) -> str:
         if heading:
             out.append(f"**{heading}**")
             out.append("")
-        out += [f"- {r}" for r in items]
+        out += [f"- {_resolve_mage(r)}" for r in items]
         out.append("")
         if note:
-            out.append(note)
+            out.append(_resolve_mage(note))
             out.append("")
     if optional:
         out.append("**Optional / further reading**")
         out.append("")
-        out += [f"- {r}" for r in optional]
+        out += [f"- {_resolve_mage(r)}" for r in optional]
         out.append("")
     return "\n".join(out)
 
@@ -95,8 +152,8 @@ def _reading_guide(files) -> str:
         core_items = list(readings.get("before") or [])
         for g in readings.get("groups") or []:
             core_items += g.get("items") or []
-        core = " · ".join(core_items) or "—"
-        add = " · ".join(readings.get("optional") or []) or "—"
+        core = " · ".join(_resolve_mage(r) for r in core_items) or "—"
+        add = " · ".join(_resolve_mage(r) for r in readings.get("optional") or []) or "—"
         rows.append(f"| {title} | {core} | {add} |")
     if not rows:
         return "_No readings assigned yet._"
