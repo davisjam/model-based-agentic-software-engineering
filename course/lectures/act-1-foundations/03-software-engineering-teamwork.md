@@ -19,8 +19,10 @@ assignments: []
 instructor_notes: ""
 status: ready
 materials:
-  - title: Lecture slides — software engineering teamwork
+  - title: Lecture slides — Software engineering teamwork
     src: materials/1-3-SoftwareEngineeringTeamwork.pptx
 ---
 
-**Concepts.** Engineering is a team sport. The distinct engineering skills and activities remain important, but GenAI changes the scope over which engineers can exercise them. First, it enables engineers to own larger parts of a system. Second, it increasingly enables single-engineer, full-product experiences—a kind of "shift left" across the entire product.
+**Concepts.** Engineering is a team sport.
+
+The distinct engineering skills and activities remain important, but GenAI changes the scope over which engineers can exercise them. First, it enables engineers to own larger parts of a system. Second, it increasingly enables single-engineer, full-product experiences—a kind of "shift left" across the entire product.

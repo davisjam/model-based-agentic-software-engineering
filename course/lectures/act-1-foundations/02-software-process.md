@@ -26,4 +26,6 @@ materials:
     src: materials/1-2-SEProcessesAndMethodologies.pptx
 ---
 
-**Concepts.** The engineered medium affects the engineering process. Software engineering process models inherited ideas from conventional engineering, then embraced shorter and shorter feedback cycles as the medium became better understood and underlying technologies such as cloud computing made more aspects of software product development commoditized and pay-as-you-go.
+**Concepts.** The engineered medium affects the engineering process.
+
+Software engineering process models inherited ideas from conventional engineering, then embraced shorter and shorter feedback cycles as the medium became better understood and underlying technologies such as cloud computing made more aspects of software product development commoditized and pay-as-you-go.
