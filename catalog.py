@@ -881,14 +881,14 @@ def check_big_ideas() -> list[str]:
     # concept-field loop and the MODEL->SITE projection below never treat it as a Big-Idea slot.
     recs.pop("core_question", None)
     problems: list[str] = []
-    # The landing PROJECTS its six claim headings from the book's authoritative prose (0.1); assert the
+    # The landing PROJECTS its six claim headings from the book's authoritative prose (0.2); assert the
     # book still yields exactly the number of claims the landing declares, so a claim added/removed in the
     # book cannot silently leave the landing short or stale.
     book_heads = _book_argues_claim_headings()
     n_claim_recs = len([s for s in raw.get("_order", []) if s in recs])
     if len(book_heads) != n_claim_recs:
         problems.append(f"claims: parsed {len(book_heads)} claim heading(s) from the book's 'What This "
-                        f"Book Argues' (0.1) but the landing declares {n_claim_recs} claim record(s) in "
+                        f"Book Argues' (0.2) but the landing declares {n_claim_recs} claim record(s) in "
                         f"_order — the landing projects its headings from the book, so the counts must "
                         f"match (did a claim get added or removed in 0.1?)")
     for slug in raw.get("_order", []):
@@ -2663,12 +2663,12 @@ def _load_big_ideas() -> dict:
 
 def _book_argues_claim_headings() -> list[str]:
     """The six 'What This Book Argues' claim HEADINGS, parsed from the authoritative book prose
-    (book/frontmatter/0.1-what-this-book-argues.md, the `N. **heading**` bold leads) in claim order.
+    (book/frontmatter/0.2-what-this-book-argues.md, the `N. **heading**` bold leads) in claim order.
     The landing PROJECTS these so its claim text is the book's exact prose — one source, no hand-copied
     duplicate to drift (book prose is authoritative; the site is a projection of it). Callers that need
     parity should fail-loud when this does not return exactly six (a book-format change must not silently
     fall back to stale landing text)."""
-    path = os.path.join(ROOT, "book", "frontmatter", "0.1-what-this-book-argues.md")
+    path = os.path.join(ROOT, "book", "frontmatter", "0.2-what-this-book-argues.md")
     heads: dict[int, str] = {}
     if os.path.isfile(path):
         for ln in open(path, encoding="utf-8"):

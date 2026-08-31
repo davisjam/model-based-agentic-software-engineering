@@ -836,12 +836,16 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.1-what-this-book-argues.html",
-            "occ": 35
+            "file": "book/0.0-acknowledgments.html",
+            "occ": 20
           },
           {
-            "file": "book/0.2-how-to-read-this-book.html",
+            "file": "book/0.1-how-to-read-this-book.html",
             "occ": 25
+          },
+          {
+            "file": "book/0.2-what-this-book-argues.html",
+            "occ": 35
           },
           {
             "file": "book/0.3-the-mage-method-at-a-glance.html",
@@ -854,10 +858,6 @@
           {
             "file": "book/0.5-preface.html",
             "occ": 66
-          },
-          {
-            "file": "book/0.6-acknowledgments.html",
-            "occ": 21
           },
           {
             "file": "book/1.1-the-printer.html",
@@ -1281,7 +1281,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 32
+            "occ": 33
           },
           {
             "file": "book/part-1-intro.html",
@@ -1438,12 +1438,16 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.1-what-this-book-argues.html",
-            "occ": 4
+            "file": "book/0.0-acknowledgments.html",
+            "occ": 3
           },
           {
-            "file": "book/0.2-how-to-read-this-book.html",
+            "file": "book/0.1-how-to-read-this-book.html",
             "occ": 3
+          },
+          {
+            "file": "book/0.2-what-this-book-argues.html",
+            "occ": 4
           },
           {
             "file": "book/0.3-the-mage-method-at-a-glance.html",
@@ -1456,10 +1460,6 @@
           {
             "file": "book/0.5-preface.html",
             "occ": 5
-          },
-          {
-            "file": "book/0.6-acknowledgments.html",
-            "occ": 3
           },
           {
             "file": "book/1.1-the-printer.html",
@@ -2044,11 +2044,15 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.1-what-this-book-argues.html",
+            "file": "book/0.0-acknowledgments.html",
+            "occ": 6
+          },
+          {
+            "file": "book/0.1-how-to-read-this-book.html",
             "occ": 8
           },
           {
-            "file": "book/0.2-how-to-read-this-book.html",
+            "file": "book/0.2-what-this-book-argues.html",
             "occ": 8
           },
           {
@@ -2062,10 +2066,6 @@
           {
             "file": "book/0.5-preface.html",
             "occ": 17
-          },
-          {
-            "file": "book/0.6-acknowledgments.html",
-            "occ": 6
           },
           {
             "file": "book/1.1-the-printer.html",
@@ -3002,11 +3002,15 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.1-what-this-book-argues.html",
+            "file": "book/0.0-acknowledgments.html",
             "occ": 1
           },
           {
-            "file": "book/0.2-how-to-read-this-book.html",
+            "file": "book/0.1-how-to-read-this-book.html",
+            "occ": 1
+          },
+          {
+            "file": "book/0.2-what-this-book-argues.html",
             "occ": 1
           },
           {
@@ -3019,10 +3023,6 @@
           },
           {
             "file": "book/0.5-preface.html",
-            "occ": 1
-          },
-          {
-            "file": "book/0.6-acknowledgments.html",
             "occ": 1
           },
           {
@@ -3498,7 +3498,7 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.1-what-this-book-argues.html",
+            "file": "book/0.2-what-this-book-argues.html",
             "occ": 1
           },
           {
@@ -3616,12 +3616,16 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.1-what-this-book-argues.html",
-            "occ": 4
+            "file": "book/0.0-acknowledgments.html",
+            "occ": 2
           },
           {
-            "file": "book/0.2-how-to-read-this-book.html",
+            "file": "book/0.1-how-to-read-this-book.html",
             "occ": 3
+          },
+          {
+            "file": "book/0.2-what-this-book-argues.html",
+            "occ": 4
           },
           {
             "file": "book/0.3-the-mage-method-at-a-glance.html",
@@ -3634,10 +3638,6 @@
           {
             "file": "book/0.5-preface.html",
             "occ": 10
-          },
-          {
-            "file": "book/0.6-acknowledgments.html",
-            "occ": 2
           },
           {
             "file": "book/1.1-the-printer.html",
@@ -4146,11 +4146,15 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.1-what-this-book-argues.html",
+            "file": "book/0.0-acknowledgments.html",
             "occ": 1
           },
           {
-            "file": "book/0.2-how-to-read-this-book.html",
+            "file": "book/0.1-how-to-read-this-book.html",
+            "occ": 1
+          },
+          {
+            "file": "book/0.2-what-this-book-argues.html",
             "occ": 1
           },
           {
@@ -4163,10 +4167,6 @@
           },
           {
             "file": "book/0.5-preface.html",
-            "occ": 1
-          },
-          {
-            "file": "book/0.6-acknowledgments.html",
             "occ": 1
           },
           {

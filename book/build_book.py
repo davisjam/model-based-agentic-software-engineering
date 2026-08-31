@@ -473,7 +473,7 @@ _MATTER_PARTS = frozenset({0, _INTERLUDE_PART, 8})
 # Part number → its display title (mirrors the `part-title` metadata; kept here so a part with no
 # chapters still names correctly, and so the TOC/index label is authoritative from one place).
 _PART_TITLES = {
-    0: "Front Matter",
+    0: "Orientation and Reference",
     1: "The New Engineering Problem",
     2: "Modeling",
     3: "Alignment",
@@ -2877,6 +2877,10 @@ def _part_label(c: dict) -> str:
     themselves; numbered Parts get 'Part N — Title'."""
     if c.get("is_appendix") or c.get("is_appendix_divider"):
         return c["part_title"]
+    # Front matter is a matter part (no chapter kicker, no print divider), but it is presented as the
+    # book's numbered Part 0 — Orientation and Reference; the TOC/index label carries the "Part 0 —" prefix.
+    if c["part"] == 0:
+        return f'Part 0 — {c["part_title"]}'
     if c["part"] in _MATTER_PARTS or c.get("is_matter"):
         return c["part_title"]
     return f'Part {c["part"]} — {c["part_title"]}'

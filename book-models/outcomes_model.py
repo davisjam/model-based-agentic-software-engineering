@@ -97,7 +97,7 @@ _TIER_OF_GRANULARITY = {"book": "program", "part": "module", "chapter": "lesson"
 #: SSOT the running-heads/openers render from) — a rule-#33 parity lint holds the two in step
 #: (check_part_title_parity, AUDIT-ONLY-first).
 PART_TITLES = {
-    0: "Front Matter",
+    0: "Orientation and Reference",
     1: "The New Engineering Problem",
     2: "Modeling",
     3: "Alignment",
