@@ -1,19 +1,10 @@
 <!-- part-foreshadows: modeling-principle, mage-becomes-practical -->
 
-Software engineering has always relied on abstraction. Large systems exceed what any engineer can
-reason about directly, so we work through architectures, interfaces, schemas, requirements, state
-machines, dependency graphs, and other purposeful reductions. Explicit models have nevertheless
-remained secondary in much code-centric software practice because keeping another representation
-synchronized with a fast-moving system costs work. Commodity intelligence changes that economics. Deriving,
-reconciling, regenerating, and querying structured representations are repeated tasks an agent fleet
-can often perform cheaply.
+Software engineering has always relied on abstraction. Large systems exceed what any engineer can reason about directly, so engineers understand their architecture through purposeful views: components and interfaces, schemas, requirements, state machines, dependency graphs, deployment structures, quantitative models, and others. Each view preserves the relationships needed for a particular engineering question while suppressing details that question does not need.
 
-Agents did not create
-software engineering's reasoning problem. Scale did. The change is that
-implementation can now move much faster than engineers can direct it. A human team may reconstruct
-architecture, ownership, policy, and lifecycle once. An agent fleet may reconstruct them again for every
-task and fresh reasoning state. MAGE uses models to make reusable engineering knowledge durable by
-preserving the relationships relevant to a question and suppressing the rest.
+Explicit models have nevertheless remained secondary in much code-centric software practice because keeping another representation synchronized with a fast-moving system costs work. Commodity intelligence changes that economics. Deriving, reconciling, regenerating, and querying structured representations are repeated tasks an agent fleet can often perform cheaply. MAGE changes the economics of carrying these views explicitly.
+
+Agents did not create software engineering's reasoning problem. Scale did. The change is that implementation can now move much faster than engineers can direct it. A human team may reconstruct the relevant architectural, ownership, policy, and lifecycle relationships once. An agent fleet may otherwise reconstruct them again for every task and fresh reasoning state. MAGE uses models to make that reusable engineering knowledge durable by preserving the relationships relevant to a question and suppressing the rest.
 
 This also begins the answer to the probabilistic problem from Part I. A reasoner asked to recover a
 consequential relation from raw implementation must infer it. A representation can make the relation
@@ -55,6 +46,8 @@ The same system element can appear differently in several models. A worker may b
 in a lifecycle, an owner of work, or a measured resource, depending on the engineering question. None of
 those representations is the worker itself.
 
+Nor is any one of them "the architecture." Architectural reasoning may require several such views at once. A consequential design decision may depend on structure, behavior, ownership, policy, resource bounds, or several of them together.
+
 <!-- point: part-2-moves-through-five-model-classes | Part II moves through six classes of model, not a taxonomy to memorize. | terms: model-zoo, model-classes -->
 The examples ahead fall into six broad classes that the rest of the book will reuse:
 
@@ -68,7 +61,7 @@ The examples ahead fall into six broad classes that the rest of the book will re
 <!-- point: there-is-no-model-of-the-system-only-purposeful-reductions | There is no model of the system, only purposeful reductions that each answer one question. | terms: model-as-map, scope-of-modeling, map-and-territory -->
 These six classes organize recurring engineering questions rather than partitioning systems. They
 overlap, and they are not exhaustive. There is no single "model of the system": each model is a
-purposeful reduction chosen for a question.
+purposeful reduction chosen for a question, and several such reductions may be needed to reason about one architectural decision.
 
 <!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Each chapter begins with a familiar representation, its properties and analyses, then specializes it to DocAble; four terms stay distinct — property, invariant, analysis, authority — with authority reserved for Part III. | terms: model-classes, modeling-principle, alignment-principle -->
 Each chapter begins with a familiar engineering representation, the properties it makes expressible, and
