@@ -149,7 +149,7 @@
             {
               "slug": "mage-accepts-the-lesson-changes-the-level",
               "text": "External representation, memory, and tools have long improved machine reasoning; MAGE changes the engineering object: the engineered environment through which autonomous work proceeds over time.",
-              "block_index": 28
+              "block_index": 29
             }
           ]
         },
@@ -159,32 +159,32 @@
           "heading_text": "Suspect the Setup First",
           "topic_sentence": "The Printer suggests a useful diagnostic rule: suspect the engineered setup before inferring a machine limit.",
           "id_source": "explicit",
-          "block_index": 30,
+          "block_index": 31,
           "points": [
             {
               "slug": "suspect-the-engineered-setup-before-a-machine-limit",
               "text": "The Printer suggests a diagnostic rule: suspect the engineered setup before inferring a machine limit.",
-              "block_index": 32
+              "block_index": 33
             },
             {
               "slug": "a-failed-part-has-several-diagnoses",
               "text": "A failed part can reveal several different problems.",
-              "block_index": 34
+              "block_index": 35
             },
             {
               "slug": "inferred-completion-is-not-explicit",
               "text": "Inferred completion is not an explicit specification.",
-              "block_index": 36
+              "block_index": 37
             },
             {
               "slug": "inspect-what-the-engineer-controlled-first",
               "text": "When an agent produces the wrong result, inspect first what the engineer controlled — instructions, representation, task boundary, tools, evidence; failed output alone does not establish that the foundation model lacks the capability.",
-              "block_index": 38
+              "block_index": 39
             },
             {
               "slug": "velocity-amplifies-sound-and-bad-engineering-alike",
               "text": "Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike.",
-              "block_index": 40
+              "block_index": 41
             }
           ]
         }
