@@ -971,23 +971,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>None of this proves that arbitrary documents can never exhaust memory. A document could expose another scaling dimension: pathological structure, an individual object beyond the supported bound, excessive concurrency, or something not yet modeled. It closes a narrower class: within the modeled envelope, total media size no longer determines worker memory.</p>
 <h2>V. Once Memory Is Solved, Why Are We Chunking?</h2>
 <p>Page chunking had served two roles at once: it partitioned execution and bounded each worker's memory. Skeletonization largely removed the memory requirement. That left a separate question: what should determine the unit of execution?</p>
-<p>A page tells us where content occurs, not which computations depend on which others. DocAble already represented remediation as a dependency graph. Some operations can run from the source document alone. Others consume intermediate semantic structures produced by earlier work: local interpretations may feed a document-level representation, which in turn supplies context to downstream remediation. <a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-3">Figure&nbsp;3.5.1-3</a> shows this dependency graph and the two ways it can be partitioned.</p>
-<p>The graph explains the ordering. Independent semantic work can run together; a consumer waits only when it needs information produced upstream. Pages do not create those dependencies. Information does.</p>
-<p>Expressed as a directed acyclic graph, the ready work forms a frontier: the nodes with no unmet dependency, which advance together as a wave.<sup class="note-ref"><a href="#note-3-5-one-problem-many-models-fn-topo-dag" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-3-5-one-problem-many-models-fn-topo-dag"><span class="cn-mark">*</span> This is ordinary topological traversal of a directed acyclic graph, familiar from compilers, build systems, and dependency schedulers.</span> A worker executes ready graph nodes, materializes their outputs, derives the next ready frontier, and passes execution forward. That reframes ChunkWorker itself: the page-oriented and frontier-oriented designs are not different remediation graphs but two partitions of the same graph.</p>
-<figure id="fig-3-5-1-3" class="book-figure" data-label="interlude-graph-two-partitions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 380"
+<p>A page tells us where content occurs, not which computations depend on which others. DocAble already represented remediation as a dependency graph. Consider alt-text generation as a concrete example. Each page can first be analyzed independently. Those analyses feed an operation that builds shared document context. Once that context exists, the GenAI queries that generate alt text for individual images become ready to execute independently. The actions and their information dependencies form a remediation graph; the currently executable actions form its frontier.</p>
+<p>The same graph admits different execution policies. <a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-3">Figure&nbsp;3.5.1-3</a> shows the distinction.</p>
+<figure id="fig-3-5-1-3" class="book-figure" data-label="interlude-graph-two-partitions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 424"
      role="group" aria-labelledby="f-interlude-graph-two-partitions-tpTitle f-interlude-graph-two-partitions-tpDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-interlude-graph-two-partitions-tpTitle">Page-oriented execution and frontier execution over the same remediation graph</title>
-  <desc id="f-interlude-graph-two-partitions-tpDesc">Two panels. (a) Page-oriented execution draws the seven-node remediation graph — three
-    local semantic-work nodes feeding a document-level node feeding three downstream nodes — with three page
-    boxes, each grouping a local node and a downstream node from different dependency levels, so a page slice
-    contains work that is not all ready at the same time. (b) Frontier execution shows three sequential ready
-    sets: first the three local nodes dispatch together as one wave; when they complete, their outputs
-    satisfy dependencies and expose the document node; when it completes it exposes the three downstream
-    nodes. Arrows between the snapshots read: complete, materialize outputs, derive the next ready set.</desc>
+  <title id="f-interlude-graph-two-partitions-tpTitle">Two execution policies over one remediation graph of actions</title>
+  <desc id="f-interlude-graph-two-partitions-tpDesc">One graph of actions — analyze page 1, 2, and 3; build document context; and GenAI query
+    for image 1, 2, and 3 — with information dependencies among them: each page analysis feeds the document
+    context, which feeds each GenAI query. (a) Page-oriented execution groups the actions into three page
+    columns by where their artifacts occur, so a page owns both an upstream analysis and a downstream query,
+    and the shared document-context action spans all pages. (b) Frontier execution groups the same actions by
+    when they are ready: the three page analyses run together, their results build the document context, and
+    that context makes the three GenAI queries ready at once. Same work and dependencies; different boundary.</desc>
 
   <defs>
-    <marker id="f-interlude-graph-two-partitions-tp-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <marker id="f-interlude-graph-two-partitions-tp-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
     <marker id="f-interlude-graph-two-partitions-tp-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
@@ -995,88 +994,95 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="920" height="380" fill="#fdfcf9"/>
-  <line x1="460" y1="44" x2="460" y2="360" stroke="#e7e2d6" stroke-width="1.5"/>
+  <rect x="0" y="0" width="940" height="424" fill="#fdfcf9"/>
+  <line x1="470" y1="44" x2="470" y2="410" stroke="#e7e2d6" stroke-width="1.5"/>
 
   <!-- ===== Panel (a): page-oriented execution ===== -->
-  <text x="30" y="30" font-size="18" font-weight="700" fill="#57534e">(a) Page-oriented execution</text>
+  <text x="26" y="28" font-size="17" font-weight="700" fill="#57534e">(a) Page-oriented execution</text>
 
-  <!-- page-affinity boxes: each spans a local (frontier 1) and a down (frontier 3) node — different levels -->
-  <rect x="44" y="52" width="96" height="256" rx="10" fill="#faf1e6" opacity="0.7"/>
-  <rect x="162" y="52" width="96" height="256" rx="10" fill="#f0e7d8" opacity="0.7"/>
-  <rect x="280" y="52" width="96" height="256" rx="10" fill="#faf1e6" opacity="0.7"/>
-
-  <!-- edges -->
-  <g stroke="#57534e" stroke-width="1.8">
-    <line x1="92" y1="104" x2="210" y2="160" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-    <line x1="210" y1="104" x2="210" y2="160" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-    <line x1="328" y1="104" x2="210" y2="160" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-    <line x1="210" y1="204" x2="92" y2="260" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-    <line x1="210" y1="204" x2="210" y2="260" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-    <line x1="210" y1="204" x2="328" y2="260" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  <!-- page columns (group by where it occurs) -->
+  <rect x="32"  y="48" width="118" height="344" rx="10" fill="#faf1e6" opacity="0.7"/>
+  <rect x="160" y="48" width="118" height="344" rx="10" fill="#f0e7d8" opacity="0.7"/>
+  <rect x="288" y="48" width="118" height="344" rx="10" fill="#faf1e6" opacity="0.7"/>
+  <g font-size="13" font-weight="700" fill="#9a3f12" text-anchor="middle">
+    <text x="91"  y="68">PAGE 1</text>
+    <text x="219" y="68">PAGE 2</text>
+    <text x="347" y="68">PAGE 3</text>
   </g>
 
-  <!-- nodes -->
-  <g font-size="14" fill="#1c1917" text-anchor="middle">
-    <rect x="60" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="92" y="89">local</text>
-    <rect x="178" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="210" y="89">local</text>
-    <rect x="296" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="328" y="89">local</text>
-    <rect x="170" y="160" width="80" height="44" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/><text x="210" y="186">document</text>
-    <rect x="60" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="92" y="285">down</text>
-    <rect x="178" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="210" y="285">down</text>
-    <rect x="296" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="328" y="285">down</text>
-  </g>
-  <g font-size="12.5" font-weight="700" fill="#9a3f12" text-anchor="middle">
-    <text x="92" y="326">Page 1</text>
-    <text x="210" y="326">Page 2</text>
-    <text x="328" y="326">Page 3</text>
-  </g>
-  <text x="210" y="350" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">one page slice spans several dependency levels</text>
-
-  <!-- ===== Panel (b): frontier execution — three sequential ready sets ===== -->
-  <text x="500" y="30" font-size="18" font-weight="700" fill="#57534e">(b) Frontier execution</text>
-
-  <!-- snapshot 1: ready = {local, local, local} -->
-  <rect x="535" y="52" width="210" height="64" rx="10" fill="#e3f0e7" opacity="0.55" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="545" y="71" font-size="12.5" font-weight="700" fill="#1f7a4d">ready set</text>
-  <g font-size="13" fill="#1c1917" text-anchor="middle">
-    <rect x="543" y="80" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="569" y="99">local</text>
-    <rect x="601" y="80" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="627" y="99">local</text>
-    <rect x="659" y="80" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="685" y="99">local</text>
+  <!-- edges: analyze -> build context -> query -->
+  <g stroke="#57534e" stroke-width="1.7">
+    <line x1="91"  y1="126" x2="150" y2="192" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+    <line x1="219" y1="126" x2="219" y2="192" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+    <line x1="347" y1="126" x2="290" y2="192" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+    <line x1="150" y1="236" x2="91"  y2="302" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+    <line x1="219" y1="236" x2="219" y2="302" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+    <line x1="290" y1="236" x2="347" y2="302" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
   </g>
 
-  <line x1="640" y1="118" x2="640" y2="152" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-interlude-graph-two-partitions-tp-rust)"/>
-  <g font-size="12" font-style="italic" fill="#57534e">
-    <text x="752" y="130">complete → outputs</text>
-    <text x="752" y="147">→ next ready set</text>
+  <!-- action nodes: analyze page N -->
+  <g font-size="12.5" fill="#1c1917" text-anchor="middle">
+    <rect x="44"  y="82" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="91"  y="101">analyze</text><text x="91"  y="118">page 1</text>
+    <rect x="172" y="82" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="219" y="101">analyze</text><text x="219" y="118">page 2</text>
+    <rect x="300" y="82" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="347" y="101">analyze</text><text x="347" y="118">page 3</text>
   </g>
 
-  <!-- snapshot 2: ready = {document} -->
-  <rect x="535" y="156" width="210" height="64" rx="10" fill="#e3f0e7" opacity="0.55" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="545" y="175" font-size="12.5" font-weight="700" fill="#1f7a4d">ready set</text>
-  <g font-size="13" fill="#1c1917" text-anchor="middle">
-    <rect x="600" y="184" width="80" height="28" rx="5" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/><text x="640" y="203">document</text>
+  <!-- shared action: build document context (spans all pages) -->
+  <rect x="44" y="192" width="362" height="44" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="225" y="219" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">build document context</text>
+
+  <!-- action nodes: GenAI query image N -->
+  <g font-size="12" fill="#1c1917" text-anchor="middle">
+    <rect x="44"  y="302" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="91"  y="320">GenAI query</text><text x="91"  y="337">image 1</text>
+    <rect x="172" y="302" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="219" y="320">GenAI query</text><text x="219" y="337">image 2</text>
+    <rect x="300" y="302" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="347" y="320">GenAI query</text><text x="347" y="337">image 3</text>
   </g>
 
-  <line x1="640" y1="222" x2="640" y2="256" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-interlude-graph-two-partitions-tp-rust)"/>
-  <g font-size="12" font-style="italic" fill="#57534e">
-    <text x="752" y="234">complete → outputs</text>
-    <text x="752" y="251">→ next ready set</text>
+  <text x="225" y="412" text-anchor="middle" font-size="13.5" font-style="italic" fill="#9a3f12">group work by where it occurs</text>
+
+  <!-- ===== Panel (b): frontier execution ===== -->
+  <text x="490" y="28" font-size="17" font-weight="700" fill="#57534e">(b) Frontier execution</text>
+
+  <!-- ready frontier 1: the three page analyses -->
+  <rect x="498" y="52" width="414" height="70" rx="10" fill="#e3f0e7" opacity="0.5" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="508" y="70" font-size="12" font-weight="700" fill="#1f7a4d">READY FRONTIER 1</text>
+  <g font-size="12" fill="#1c1917" text-anchor="middle">
+    <rect x="510" y="78" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="572" y="95">analyze</text><text x="572" y="110">page 1</text>
+    <rect x="648" y="78" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="710" y="95">analyze</text><text x="710" y="110">page 2</text>
+    <rect x="786" y="78" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="848" y="95">analyze</text><text x="848" y="110">page 3</text>
   </g>
 
-  <!-- snapshot 3: ready = {down, down, down} -->
-  <rect x="535" y="260" width="210" height="64" rx="10" fill="#e3f0e7" opacity="0.55" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="545" y="279" font-size="12.5" font-weight="700" fill="#1f7a4d">ready set</text>
-  <g font-size="13" fill="#1c1917" text-anchor="middle">
-    <rect x="543" y="288" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="569" y="307">down</text>
-    <rect x="601" y="288" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="627" y="307">down</text>
-    <rect x="659" y="288" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="685" y="307">down</text>
+  <line x1="705" y1="122" x2="705" y2="150" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-interlude-graph-two-partitions-tp-rust)"/>
+  <text x="718" y="140" font-size="11.5" font-style="italic" fill="#57534e">page-analysis results</text>
+
+  <!-- ready frontier 2: build document context -->
+  <rect x="498" y="154" width="414" height="70" rx="10" fill="#e3f0e7" opacity="0.5" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="508" y="172" font-size="12" font-weight="700" fill="#1f7a4d">READY FRONTIER 2</text>
+  <rect x="608" y="180" width="194" height="38" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <text x="705" y="204" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169">build document context</text>
+
+  <line x1="705" y1="224" x2="705" y2="252" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-interlude-graph-two-partitions-tp-rust)"/>
+  <text x="718" y="242" font-size="11.5" font-style="italic" fill="#57534e">document context</text>
+
+  <!-- ready frontier 3: the three GenAI queries -->
+  <rect x="498" y="256" width="414" height="70" rx="10" fill="#e3f0e7" opacity="0.5" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="508" y="274" font-size="12" font-weight="700" fill="#1f7a4d">READY FRONTIER 3</text>
+  <g font-size="11.5" fill="#1c1917" text-anchor="middle">
+    <rect x="510" y="282" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="572" y="299">GenAI query</text><text x="572" y="314">image 1</text>
+    <rect x="648" y="282" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="710" y="299">GenAI query</text><text x="710" y="314">image 2</text>
+    <rect x="786" y="282" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="848" y="299">GenAI query</text><text x="848" y="314">image 3</text>
   </g>
 
-  <text x="640" y="350" text-anchor="middle" font-size="14" font-style="italic" fill="#1f7a4d">dispatch the currently ready nodes, wave by wave</text>
-</svg><figcaption data-short="Two execution policies over the same remediation graph"><span class="fig-label">Figure 3.5.1-3.</span> <em>Two execution policies over the same remediation graph.</em> (a) Page-oriented execution assigns graph nodes according to where their artifacts occur, so one partition may contain computations from several dependency levels. (b) Frontier execution repeatedly dispatches the currently ready nodes: when one frontier completes, its outputs satisfy dependencies and expose the next. The remediation graph is identical; only the execution partition changes.</figcaption></figure>
-<p>ChunkWorker partitions the work spatially; frontier execution partitions it causally. Skeletonization removed the memory pressure that had made page ranges the natural execution boundary, so the two approaches reconcile. Page identity can survive as metadata on graph nodes — useful for locality, debugging, rate limiting, or failure isolation — without remaining the fundamental unit of executable remediation.</p>
-<p>The architecture therefore needs only a clean seam between the remediation graph and its executor: the graph supplies ready work and its dependencies; the executor consumes them. The executor can schedule by frontier now and by page locality later if measurements justify it. There is no need to build a strategy hierarchy merely because two policies are conceivable. The graph/executor seam preserves the degree of freedom without spending it.</p>
+  <line x1="705" y1="326" x2="705" y2="352" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-interlude-graph-two-partitions-tp-rust)"/>
+  <text x="718" y="342" font-size="11.5" font-style="italic" fill="#57534e">alt-text results</text>
+
+  <text x="705" y="374" text-anchor="middle" font-size="13.5" font-style="italic" fill="#1f7a4d">group work by when it is ready</text>
+  <text x="705" y="398" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="0.5" fill="#57534e">SAME WORK · SAME DEPENDENCIES · DIFFERENT EXECUTION BOUNDARY</text>
+</svg><figcaption data-short="Two execution policies over the same remediation graph"><span class="fig-label">Figure 3.5.1-3.</span> <em>Two execution policies over the same remediation graph.</em> The graph contains actions—page analysis, construction of document context, and GenAI queries—and information dependencies among them. (a) Page-oriented execution groups actions according to where their artifacts occur, so a page partition can span several dependency levels. (b) Frontier execution groups actions according to when they are ready: page analyses execute first, their results enable construction of document context, and that context enables independent GenAI queries for alt text. The work and its dependencies are unchanged; only the execution boundary changes.</figcaption></figure>
+<p>The graph explains the ordering. Independent work can run together; a consumer waits only for information it actually needs from upstream. Pages do not create those dependencies. Information does. Expressed as a directed acyclic graph, the work currently ready to execute forms a frontier: the nodes with no unmet dependencies. A worker executes that frontier, materializes its outputs, and thereby exposes the next frontier.<sup class="note-ref"><a href="#note-3-5-one-problem-many-models-fn-topo-dag" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-3-5-one-problem-many-models-fn-topo-dag"><span class="cn-mark">*</span> This is ordinary topological traversal of a directed acyclic graph, familiar from compilers, build systems, and dependency schedulers.</span></p>
+<p>This reframes ChunkWorker. Page-oriented and frontier-oriented execution are not different remediation graphs. They are different ways of partitioning the same graph. Page execution groups work by where it occurs; frontier execution groups work by when it is ready.</p>
+<p>Skeletonization removed the memory pressure that had made page ranges the natural execution boundary, so page identity no longer needs to determine execution. It can survive as metadata on graph nodes—useful for locality, debugging, rate limiting, or failure isolation—without remaining the fundamental unit of executable remediation.</p>
+<p>The architecture therefore needs only a clean seam between the remediation graph and its executor: the graph supplies ready work and its dependencies; the executor consumes them. The executor can schedule by frontier now and exploit page locality later if measurements justify it. There is no need to build a strategy hierarchy merely because two policies are conceivable. The graph/executor seam preserves the degree of freedom without spending it.</p>
 <h2>VI. Analyze Before You Build</h2>
 <p>Representing remediation as a dependency graph does more than provide an execution plan. The graph can be analyzed before an executor — or a proposed architectural change — is implemented. <a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-4">Figure&nbsp;3.5.1-4</a> shows three such analyses.</p>
 <figure id="fig-3-5-1-4" class="book-figure" data-label="interlude-analysis-before-build"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 540"

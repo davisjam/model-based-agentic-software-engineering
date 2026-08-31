@@ -2207,7 +2207,7 @@
           "heading_text": "VI. Analyze Before You Build",
           "topic_sentence": "Representing remediation as a dependency graph does more than provide an execution plan.",
           "id_source": "derived",
-          "block_index": 49,
+          "block_index": 50,
           "points": []
         },
         {
@@ -2216,7 +2216,7 @@
           "heading_text": "Dependencies can be redesigned",
           "topic_sentence": "The same analysis exposed a problem in contextual image description (panel c).",
           "id_source": "derived",
-          "block_index": 53,
+          "block_index": 54,
           "points": []
         },
         {
@@ -2225,7 +2225,7 @@
           "heading_text": "Predicting latency",
           "topic_sentence": "The same graph supports a first-order latency model.",
           "id_source": "derived",
-          "block_index": 55,
+          "block_index": 56,
           "points": []
         },
         {
@@ -2234,7 +2234,7 @@
           "heading_text": "Predicting the cost of a design change",
           "topic_sentence": "Models can also answer questions about designs that do not exist yet.",
           "id_source": "derived",
-          "block_index": 62,
+          "block_index": 63,
           "points": []
         },
         {
@@ -2243,7 +2243,7 @@
           "heading_text": "Use prediction error as evidence",
           "topic_sentence": "Implementation eventually supplies measurements, and the useful comparison is not simply whether the result was fast.",
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 67,
           "points": []
         },
         {
@@ -2252,7 +2252,7 @@
           "heading_text": "VII. The Resulting Model Family",
           "topic_sentence": "The large-file requirement did not produce one model.",
           "id_source": "derived",
-          "block_index": 70,
+          "block_index": 71,
           "points": []
         },
         {
@@ -2261,7 +2261,7 @@
           "heading_text": "From examples to a bound",
           "topic_sentence": "The memory story shows the progression clearly:",
           "id_source": "derived",
-          "block_index": 75,
+          "block_index": 76,
           "points": []
         },
         {
@@ -2270,7 +2270,7 @@
           "heading_text": "Three days",
           "topic_sentence": "Laid out this way, the sequence looks like a substantial architecture project.",
           "id_source": "derived",
-          "block_index": 79,
+          "block_index": 80,
           "points": []
         },
         {
@@ -2279,7 +2279,7 @@
           "heading_text": "Finding the models",
           "topic_sentence": "Part IV asks engineers to find the models their work needs.",
           "id_source": "derived",
-          "block_index": 82,
+          "block_index": 83,
           "points": []
         }
       ],

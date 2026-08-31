@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: interlude-graph-two-partitions). Two EXECUTION POLICIES over one remediation
-     graph. (a) Page-oriented execution: the same seven-node DAG (three local -> document -> three down)
-     with page-affinity boxes drawn around nodes from DIFFERENT causal levels, so one page slice contains
-     work that is not all ready at once. (b) Frontier execution: three sequential READY-SET snapshots — the
-     ready set {local,local,local} dispatches as one wave; on completion its outputs satisfy dependencies
-     and expose {document}; that completes and exposes {down,down,down}. The arrows between snapshots carry
-     the executor step (complete -> materialize outputs -> derive next ready set), so "frontier" reads as a
-     changing ready set, not a static topological band. Same graph; only the partition changes. -->
-<!-- semantic-families: modeling, governance -->
+<!-- Hand-authored SVG (label: interlude-graph-two-partitions). ONE remediation graph of ACTIONS drawn twice.
+     Actions (verbs, cream boxes): analyze page N -> build document context -> GenAI query: image N. Edges are
+     information dependencies. Facts flowing between actions (page-analysis results, document context,
+     alt-text results) are italic labels, NOT boxes. (a) Page-oriented execution groups the SAME actions by
+     WHERE their artifacts occur — a page column owns analyze-page-N and GenAI-query-image-N, two non-adjacent
+     causal levels, while build-document-context is shared and spans all pages. (b) Frontier execution groups
+     the same actions by WHEN they are ready: the three page analyses, then the single context build, then the
+     three independent GenAI queries. Same work, same dependencies, different execution boundary. -->
+<!-- semantic-families: modeling, governance, neutral -->
 <!-- edge-grammar: keep-angles -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 380" width="920" height="380"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 424" width="940" height="424"
      role="group" aria-labelledby="tpTitle tpDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="tpTitle">Page-oriented execution and frontier execution over the same remediation graph</title>
-  <desc id="tpDesc">Two panels. (a) Page-oriented execution draws the seven-node remediation graph — three
-    local semantic-work nodes feeding a document-level node feeding three downstream nodes — with three page
-    boxes, each grouping a local node and a downstream node from different dependency levels, so a page slice
-    contains work that is not all ready at the same time. (b) Frontier execution shows three sequential ready
-    sets: first the three local nodes dispatch together as one wave; when they complete, their outputs
-    satisfy dependencies and expose the document node; when it completes it exposes the three downstream
-    nodes. Arrows between the snapshots read: complete, materialize outputs, derive the next ready set.</desc>
+  <title id="tpTitle">Two execution policies over one remediation graph of actions</title>
+  <desc id="tpDesc">One graph of actions — analyze page 1, 2, and 3; build document context; and GenAI query
+    for image 1, 2, and 3 — with information dependencies among them: each page analysis feeds the document
+    context, which feeds each GenAI query. (a) Page-oriented execution groups the actions into three page
+    columns by where their artifacts occur, so a page owns both an upstream analysis and a downstream query,
+    and the shared document-context action spans all pages. (b) Frontier execution groups the same actions by
+    when they are ready: the three page analyses run together, their results build the document context, and
+    that context makes the three GenAI queries ready at once. Same work and dependencies; different boundary.</desc>
 
   <defs>
-    <marker id="tp-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <marker id="tp-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
     <marker id="tp-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
@@ -30,83 +30,88 @@
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="920" height="380" fill="#fdfcf9"/>
-  <line x1="460" y1="44" x2="460" y2="360" stroke="#e7e2d6" stroke-width="1.5"/>
+  <rect x="0" y="0" width="940" height="424" fill="#fdfcf9"/>
+  <line x1="470" y1="44" x2="470" y2="410" stroke="#e7e2d6" stroke-width="1.5"/>
 
   <!-- ===== Panel (a): page-oriented execution ===== -->
-  <text x="30" y="30" font-size="18" font-weight="700" fill="#57534e">(a) Page-oriented execution</text>
+  <text x="26" y="28" font-size="17" font-weight="700" fill="#57534e">(a) Page-oriented execution</text>
 
-  <!-- page-affinity boxes: each spans a local (frontier 1) and a down (frontier 3) node — different levels -->
-  <rect x="44" y="52" width="96" height="256" rx="10" fill="#faf1e6" opacity="0.7"/>
-  <rect x="162" y="52" width="96" height="256" rx="10" fill="#f0e7d8" opacity="0.7"/>
-  <rect x="280" y="52" width="96" height="256" rx="10" fill="#faf1e6" opacity="0.7"/>
-
-  <!-- edges -->
-  <g stroke="#57534e" stroke-width="1.8">
-    <line x1="92" y1="104" x2="210" y2="160" marker-end="url(#tp-ah)"/>
-    <line x1="210" y1="104" x2="210" y2="160" marker-end="url(#tp-ah)"/>
-    <line x1="328" y1="104" x2="210" y2="160" marker-end="url(#tp-ah)"/>
-    <line x1="210" y1="204" x2="92" y2="260" marker-end="url(#tp-ah)"/>
-    <line x1="210" y1="204" x2="210" y2="260" marker-end="url(#tp-ah)"/>
-    <line x1="210" y1="204" x2="328" y2="260" marker-end="url(#tp-ah)"/>
+  <!-- page columns (group by where it occurs) -->
+  <rect x="32"  y="48" width="118" height="344" rx="10" fill="#faf1e6" opacity="0.7"/>
+  <rect x="160" y="48" width="118" height="344" rx="10" fill="#f0e7d8" opacity="0.7"/>
+  <rect x="288" y="48" width="118" height="344" rx="10" fill="#faf1e6" opacity="0.7"/>
+  <g font-size="13" font-weight="700" fill="#9a3f12" text-anchor="middle">
+    <text x="91"  y="68">PAGE 1</text>
+    <text x="219" y="68">PAGE 2</text>
+    <text x="347" y="68">PAGE 3</text>
   </g>
 
-  <!-- nodes -->
-  <g font-size="14" fill="#1c1917" text-anchor="middle">
-    <rect x="60" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="92" y="89">local</text>
-    <rect x="178" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="210" y="89">local</text>
-    <rect x="296" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="328" y="89">local</text>
-    <rect x="170" y="160" width="80" height="44" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/><text x="210" y="186">document</text>
-    <rect x="60" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="92" y="285">down</text>
-    <rect x="178" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="210" y="285">down</text>
-    <rect x="296" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="328" y="285">down</text>
-  </g>
-  <g font-size="12.5" font-weight="700" fill="#9a3f12" text-anchor="middle">
-    <text x="92" y="326">Page 1</text>
-    <text x="210" y="326">Page 2</text>
-    <text x="328" y="326">Page 3</text>
-  </g>
-  <text x="210" y="350" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">one page slice spans several dependency levels</text>
-
-  <!-- ===== Panel (b): frontier execution — three sequential ready sets ===== -->
-  <text x="500" y="30" font-size="18" font-weight="700" fill="#57534e">(b) Frontier execution</text>
-
-  <!-- snapshot 1: ready = {local, local, local} -->
-  <rect x="535" y="52" width="210" height="64" rx="10" fill="#e3f0e7" opacity="0.55" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="545" y="71" font-size="12.5" font-weight="700" fill="#1f7a4d">ready set</text>
-  <g font-size="13" fill="#1c1917" text-anchor="middle">
-    <rect x="543" y="80" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="569" y="99">local</text>
-    <rect x="601" y="80" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="627" y="99">local</text>
-    <rect x="659" y="80" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="685" y="99">local</text>
+  <!-- edges: analyze -> build context -> query -->
+  <g stroke="#57534e" stroke-width="1.7">
+    <line x1="91"  y1="126" x2="150" y2="192" marker-end="url(#tp-ah)"/>
+    <line x1="219" y1="126" x2="219" y2="192" marker-end="url(#tp-ah)"/>
+    <line x1="347" y1="126" x2="290" y2="192" marker-end="url(#tp-ah)"/>
+    <line x1="150" y1="236" x2="91"  y2="302" marker-end="url(#tp-ah)"/>
+    <line x1="219" y1="236" x2="219" y2="302" marker-end="url(#tp-ah)"/>
+    <line x1="290" y1="236" x2="347" y2="302" marker-end="url(#tp-ah)"/>
   </g>
 
-  <line x1="640" y1="118" x2="640" y2="152" stroke="#9a3f12" stroke-width="2" marker-end="url(#tp-rust)"/>
-  <g font-size="12" font-style="italic" fill="#57534e">
-    <text x="752" y="130">complete → outputs</text>
-    <text x="752" y="147">→ next ready set</text>
+  <!-- action nodes: analyze page N -->
+  <g font-size="12.5" fill="#1c1917" text-anchor="middle">
+    <rect x="44"  y="82" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="91"  y="101">analyze</text><text x="91"  y="118">page 1</text>
+    <rect x="172" y="82" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="219" y="101">analyze</text><text x="219" y="118">page 2</text>
+    <rect x="300" y="82" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="347" y="101">analyze</text><text x="347" y="118">page 3</text>
   </g>
 
-  <!-- snapshot 2: ready = {document} -->
-  <rect x="535" y="156" width="210" height="64" rx="10" fill="#e3f0e7" opacity="0.55" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="545" y="175" font-size="12.5" font-weight="700" fill="#1f7a4d">ready set</text>
-  <g font-size="13" fill="#1c1917" text-anchor="middle">
-    <rect x="600" y="184" width="80" height="28" rx="5" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/><text x="640" y="203">document</text>
+  <!-- shared action: build document context (spans all pages) -->
+  <rect x="44" y="192" width="362" height="44" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="225" y="219" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">build document context</text>
+
+  <!-- action nodes: GenAI query image N -->
+  <g font-size="12" fill="#1c1917" text-anchor="middle">
+    <rect x="44"  y="302" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="91"  y="320">GenAI query</text><text x="91"  y="337">image 1</text>
+    <rect x="172" y="302" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="219" y="320">GenAI query</text><text x="219" y="337">image 2</text>
+    <rect x="300" y="302" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="347" y="320">GenAI query</text><text x="347" y="337">image 3</text>
   </g>
 
-  <line x1="640" y1="222" x2="640" y2="256" stroke="#9a3f12" stroke-width="2" marker-end="url(#tp-rust)"/>
-  <g font-size="12" font-style="italic" fill="#57534e">
-    <text x="752" y="234">complete → outputs</text>
-    <text x="752" y="251">→ next ready set</text>
+  <text x="225" y="412" text-anchor="middle" font-size="13.5" font-style="italic" fill="#9a3f12">group work by where it occurs</text>
+
+  <!-- ===== Panel (b): frontier execution ===== -->
+  <text x="490" y="28" font-size="17" font-weight="700" fill="#57534e">(b) Frontier execution</text>
+
+  <!-- ready frontier 1: the three page analyses -->
+  <rect x="498" y="52" width="414" height="70" rx="10" fill="#e3f0e7" opacity="0.5" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="508" y="70" font-size="12" font-weight="700" fill="#1f7a4d">READY FRONTIER 1</text>
+  <g font-size="12" fill="#1c1917" text-anchor="middle">
+    <rect x="510" y="78" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="572" y="95">analyze</text><text x="572" y="110">page 1</text>
+    <rect x="648" y="78" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="710" y="95">analyze</text><text x="710" y="110">page 2</text>
+    <rect x="786" y="78" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="848" y="95">analyze</text><text x="848" y="110">page 3</text>
   </g>
 
-  <!-- snapshot 3: ready = {down, down, down} -->
-  <rect x="535" y="260" width="210" height="64" rx="10" fill="#e3f0e7" opacity="0.55" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="545" y="279" font-size="12.5" font-weight="700" fill="#1f7a4d">ready set</text>
-  <g font-size="13" fill="#1c1917" text-anchor="middle">
-    <rect x="543" y="288" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="569" y="307">down</text>
-    <rect x="601" y="288" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="627" y="307">down</text>
-    <rect x="659" y="288" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="685" y="307">down</text>
+  <line x1="705" y1="122" x2="705" y2="150" stroke="#9a3f12" stroke-width="2" marker-end="url(#tp-rust)"/>
+  <text x="718" y="140" font-size="11.5" font-style="italic" fill="#57534e">page-analysis results</text>
+
+  <!-- ready frontier 2: build document context -->
+  <rect x="498" y="154" width="414" height="70" rx="10" fill="#e3f0e7" opacity="0.5" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="508" y="172" font-size="12" font-weight="700" fill="#1f7a4d">READY FRONTIER 2</text>
+  <rect x="608" y="180" width="194" height="38" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <text x="705" y="204" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169">build document context</text>
+
+  <line x1="705" y1="224" x2="705" y2="252" stroke="#9a3f12" stroke-width="2" marker-end="url(#tp-rust)"/>
+  <text x="718" y="242" font-size="11.5" font-style="italic" fill="#57534e">document context</text>
+
+  <!-- ready frontier 3: the three GenAI queries -->
+  <rect x="498" y="256" width="414" height="70" rx="10" fill="#e3f0e7" opacity="0.5" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="508" y="274" font-size="12" font-weight="700" fill="#1f7a4d">READY FRONTIER 3</text>
+  <g font-size="11.5" fill="#1c1917" text-anchor="middle">
+    <rect x="510" y="282" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="572" y="299">GenAI query</text><text x="572" y="314">image 1</text>
+    <rect x="648" y="282" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="710" y="299">GenAI query</text><text x="710" y="314">image 2</text>
+    <rect x="786" y="282" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="848" y="299">GenAI query</text><text x="848" y="314">image 3</text>
   </g>
 
-  <text x="640" y="350" text-anchor="middle" font-size="14" font-style="italic" fill="#1f7a4d">dispatch the currently ready nodes, wave by wave</text>
+  <line x1="705" y1="326" x2="705" y2="352" stroke="#9a3f12" stroke-width="2" marker-end="url(#tp-rust)"/>
+  <text x="718" y="342" font-size="11.5" font-style="italic" fill="#57534e">alt-text results</text>
+
+  <text x="705" y="374" text-anchor="middle" font-size="13.5" font-style="italic" fill="#1f7a4d">group work by when it is ready</text>
+  <text x="705" y="398" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="0.5" fill="#57534e">SAME WORK · SAME DEPENDENCIES · DIFFERENT EXECUTION BOUNDARY</text>
 </svg>
