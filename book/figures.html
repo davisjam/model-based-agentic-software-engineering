@@ -1572,12 +1572,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="DocAble from the user&#x27;s view"><span class="fig-label">Figure 1.2-1.</span> <em>DocAble from the user's view.</em> An inaccessible document goes in; a remediated document and evidence of consequential changes come back. Internal structure is omitted because it is not yet relevant.</figcaption></figure><p class="gallery-source">From <a href="1.2-mage-by-example.html#fig-1-2-1">2 · MAGE by Example: Summary of the DocAble Case</a></p></section><hr><section class="gallery-item"><figure id="fig-1-2-2-fig-1-2-2" class="book-figure" data-label="one-docable-job"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 700"
      role="img" aria-labelledby="fig-1-2-2-f-one-docable-job-ojTitle fig-1-2-2-f-one-docable-job-ojDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-1-2-2-f-one-docable-job-ojTitle">One DocAble job, as territory rather than model</title>
-  <desc id="fig-1-2-2-f-one-docable-job-ojDesc">A submitted document becomes a job. The job splits into chunks so several workers
-    process it concurrently. Workers claim work and call specialized services — generation, render, OCR,
-    and document/format machinery — when remediation needs those capabilities. Repaired pieces are merged
-    and reassembled, the result is validated, and the system returns both the remediated document and the
-    evidence describing consequential changes. This is territory, not a model of DocAble's architecture.</desc>
+  <title id="fig-1-2-2-f-one-docable-job-ojTitle">Processing one document in DocAble</title>
+  <desc id="fig-1-2-2-f-one-docable-job-ojDesc">A user submits a document (drawn as a document artifact), which creates a job that tracks
+    its processing. The work splits into chunks so several workers process it concurrently. Workers claim
+    work and call specialized services — generation, render, OCR, and document/format machinery — when
+    remediation needs those capabilities. Repaired pieces are merged and reassembled, the result is
+    validated, and the system returns both the remediated document (again a document artifact) and the
+    evidence describing consequential changes. Document artifacts are drawn with a folded corner; the job,
+    workers, and services are control boxes.</desc>
 
   <defs>
     <marker id="fig-1-2-2-f-one-docable-job-oj-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
@@ -1586,15 +1588,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <!-- two-line header -->
-  <text x="380" y="24" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="1.5" fill="#1c1917">ONE DOCABLE JOB</text>
-  <text x="380" y="44" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">territory, not model</text>
+  <!-- header -->
+  <text x="380" y="30" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="1.5" fill="#1c1917">ONE DOCABLE JOB</text>
 
-  <!-- upload -->
-  <rect id="fig-1-2-2-f-one-docable-job-upload" x="280" y="58" width="200" height="46" rx="23" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="380" y="86" text-anchor="middle" font-size="16" fill="#1c1917">user uploads document</text>
-  <!-- edge: upload -> job -->
+  <!-- uploaded document (ARTIFACT: white fill + folded corner) -->
+  <path id="fig-1-2-2-f-one-docable-job-upload" d="M300,58 h150 l30,30 v16 h-180 z" fill="#ffffff" stroke="#57534e" stroke-width="2"/>
+  <path d="M450,58 l30,30 h-30 z" fill="#efeae0" stroke="#57534e" stroke-width="2"/>
+  <text x="382" y="86" text-anchor="middle" font-size="16" fill="#1c1917">user uploads a document</text>
+  <!-- edge: document -> job (creates) -->
   <line x1="380" y1="104" x2="380" y2="126" stroke="#57534e" stroke-width="2" marker-end="url(#fig-1-2-2-f-one-docable-job-oj-k)"/>
+  <text x="392" y="120" font-size="15.2" font-style="italic" fill="#57534e">creates a job</text>
 
   <!-- job -->
   <rect id="fig-1-2-2-f-one-docable-job-job" x="315" y="128" width="130" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
@@ -1659,11 +1662,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <!-- edge: validate -> evidence -->
     <path d="M422.5,594 L422.5,640"/>
   </g>
-  <rect id="fig-1-2-2-f-one-docable-job-remediated" x="90" y="642" width="270" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="225" y="670" text-anchor="middle" font-size="15.5" fill="#1c1917">remediated document</text>
+  <path id="fig-1-2-2-f-one-docable-job-remediated" d="M90,642 h240 l30,30 v16 h-270 z" fill="#ffffff" stroke="#57534e" stroke-width="2"/>
+  <path d="M330,642 l30,30 h-30 z" fill="#efeae0" stroke="#57534e" stroke-width="2"/>
+  <text x="222" y="672" text-anchor="middle" font-size="15.5" fill="#1c1917">remediated document</text>
   <rect id="fig-1-2-2-f-one-docable-job-evidence" x="400" y="642" width="270" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="535" y="670" text-anchor="middle" font-size="15.5" fill="#1c1917">evidence</text>
-</svg><figcaption data-short="One DocAble job—the territory later models describe"><span class="fig-label">Figure 1.2-2.</span> <em>One DocAble job—the territory later models describe.</em> A document becomes a job, may be divided into chunks, is processed by workers using specialized services—generation, rendering, optical character recognition (OCR), and document-format processing—then reassembled, validated, and returned with evidence. Parts II and III will represent selected pieces of this territory differently depending on the engineering question.</figcaption></figure><p class="gallery-source">From <a href="1.2-mage-by-example.html#fig-1-2-2">2 · MAGE by Example: Summary of the DocAble Case</a></p></section><hr><section class="gallery-item"><figure id="fig-1-3-1-fig-1-3-1" class="book-figure" data-label="agentic-substrate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"
+</svg><figcaption data-short="Processing one document in DocAble"><span class="fig-label">Figure 1.2-2.</span> <em>Processing one document in DocAble.</em> A user submits a document, creating a job that tracks its processing. The work may be divided into chunks and processed by workers using specialized services for generation, rendering, optical character recognition (OCR), and document-format processing. The resulting changes are reassembled and validated, and the remediated document is returned with evidence.</figcaption></figure><p class="gallery-source">From <a href="1.2-mage-by-example.html#fig-1-2-2">2 · MAGE by Example: Summary of the DocAble Case</a></p></section><hr><section class="gallery-item"><figure id="fig-1-3-1-fig-1-3-1" class="book-figure" data-label="agentic-substrate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"
      role="img" aria-labelledby="fig-1-3-1-f-agentic-substrate-asTitle fig-1-3-1-f-agentic-substrate-asDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-1-3-1-f-agentic-substrate-asTitle">Agentic machinery and environment</title>

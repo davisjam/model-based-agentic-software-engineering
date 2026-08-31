@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Fig 1.2-2 REDRAW (part1-copyedit-260815; folds over book/assets/one-docable-job.svg).
-     "One DocAble job" as TERRITORY, not model. The path a document travels: upload -> job -> split into
-     chunks -> workers claim work -> specialized services -> repaired pieces -> merge -> validate ->
-     {remediated document, evidence}. Deliberately the WHOLE territory palette (gray #57534e / cream
-     #f6f4ef / ink #1c1917), NOT the blue model palette: Parts II and III redraw selected pieces of THIS
-     path as different models. Short arrow labels only ("split for parallel work", "call specialized
-     services") — no full sentences. Hand-authored (a pipeline with two fan-out rows, not a flowchart). -->
+<!-- Fig 1.2-2 (book/assets/one-docable-job.svg). "One DocAble job": the path one document travels — a user
+     uploads a document (an ARTIFACT, drawn white with a folded corner), which CREATES a job (a control box)
+     -> split into chunks -> workers claim work -> specialized services -> repaired pieces -> merge ->
+     validate -> {remediated document (artifact), evidence}. The ontology is deliberate: document-shaped
+     icons denote artifacts/data; rounded cream boxes denote processing/control (job, workers, services).
+     The document does NOT turn into the job. Neutral palette (gray #57534e / cream #f6f4ef / ink #1c1917),
+     NOT the blue model palette: Parts II and III redraw selected pieces of this path as different models.
+     Short arrow labels only. Hand-authored (a pipeline with two fan-out rows, not a flowchart). -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 700" width="760" height="700"
      role="img" aria-labelledby="ojTitle ojDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ojTitle">One DocAble job, as territory rather than model</title>
-  <desc id="ojDesc">A submitted document becomes a job. The job splits into chunks so several workers
-    process it concurrently. Workers claim work and call specialized services — generation, render, OCR,
-    and document/format machinery — when remediation needs those capabilities. Repaired pieces are merged
-    and reassembled, the result is validated, and the system returns both the remediated document and the
-    evidence describing consequential changes. This is territory, not a model of DocAble's architecture.</desc>
+  <title id="ojTitle">Processing one document in DocAble</title>
+  <desc id="ojDesc">A user submits a document (drawn as a document artifact), which creates a job that tracks
+    its processing. The work splits into chunks so several workers process it concurrently. Workers claim
+    work and call specialized services — generation, render, OCR, and document/format machinery — when
+    remediation needs those capabilities. Repaired pieces are merged and reassembled, the result is
+    validated, and the system returns both the remediated document (again a document artifact) and the
+    evidence describing consequential changes. Document artifacts are drawn with a folded corner; the job,
+    workers, and services are control boxes.</desc>
 
   <defs>
     <marker id="oj-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
@@ -23,15 +26,16 @@
     </marker>
   </defs>
 
-  <!-- two-line header -->
-  <text x="380" y="24" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="1.5" fill="#1c1917">ONE DOCABLE JOB</text>
-  <text x="380" y="44" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">territory, not model</text>
+  <!-- header -->
+  <text x="380" y="30" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="1.5" fill="#1c1917">ONE DOCABLE JOB</text>
 
-  <!-- upload -->
-  <rect id="upload" x="280" y="58" width="200" height="46" rx="23" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="380" y="86" text-anchor="middle" font-size="16" fill="#1c1917">user uploads document</text>
-  <!-- edge: upload -> job -->
+  <!-- uploaded document (ARTIFACT: white fill + folded corner) -->
+  <path id="upload" d="M300,58 h150 l30,30 v16 h-180 z" fill="#ffffff" stroke="#57534e" stroke-width="2"/>
+  <path d="M450,58 l30,30 h-30 z" fill="#efeae0" stroke="#57534e" stroke-width="2"/>
+  <text x="382" y="86" text-anchor="middle" font-size="16" fill="#1c1917">user uploads a document</text>
+  <!-- edge: document -> job (creates) -->
   <line x1="380" y1="104" x2="380" y2="126" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <text x="392" y="120" font-size="15.2" font-style="italic" fill="#57534e">creates a job</text>
 
   <!-- job -->
   <rect id="job" x="315" y="128" width="130" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
@@ -96,8 +100,9 @@
     <!-- edge: validate -> evidence -->
     <path d="M422.5,594 L422.5,640"/>
   </g>
-  <rect id="remediated" x="90" y="642" width="270" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="225" y="670" text-anchor="middle" font-size="15.5" fill="#1c1917">remediated document</text>
+  <path id="remediated" d="M90,642 h240 l30,30 v16 h-270 z" fill="#ffffff" stroke="#57534e" stroke-width="2"/>
+  <path d="M330,642 l30,30 h-30 z" fill="#efeae0" stroke="#57534e" stroke-width="2"/>
+  <text x="222" y="672" text-anchor="middle" font-size="15.5" fill="#1c1917">remediated document</text>
   <rect id="evidence" x="400" y="642" width="270" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="535" y="670" text-anchor="middle" font-size="15.5" fill="#1c1917">evidence</text>
 </svg>
