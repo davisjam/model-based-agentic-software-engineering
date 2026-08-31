@@ -6,6 +6,7 @@
   "overrides": [
     { "heading": "self-communicate", "reason": "Bare skill-package identifier used as a section heading in the skill-recipe appendix. The package is a lowercase code identifier (referenced lowercase in body prose and the `terms:` metadata tags); preserve the authored identifier casing rather than title-case a code name." },
     { "heading": "self-governance", "reason": "Bare skill-package identifier used as a section heading; lowercase code identifier per body prose and `terms:` tags — preserve authored casing." },
-    { "heading": "self-operate", "reason": "Bare skill-package identifier used as a section heading; lowercase code identifier per body prose and `terms:` tags — preserve authored casing." }
+    { "heading": "self-operate", "reason": "Bare skill-package identifier used as a section heading; lowercase code identifier per body prose and `terms:` tags — preserve authored casing." },
+    { "heading": "The Canonical Move: From Observability to Provenance", "reason": "Chicago capitalizes the first word of a subtitle after a colon regardless of part of speech; 'From' is the subtitle-initial word, which the stop-word rule cannot express." }
   ]
 }

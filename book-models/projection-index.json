@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1164,
+    "total_sites": 1163,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 815,
+      "book-web": 814,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 13,
@@ -41,11 +41,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 6
-          },
-          {
-            "file": "book/2.7-provenance.html",
-            "occ": 2
+            "occ": 7
           },
           {
             "file": "book/2.8-system-knowledge.html",
@@ -205,7 +201,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 46
+            "occ": 44
           },
           {
             "file": "book/list-of-figures.html",
@@ -223,7 +219,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 50
+            "occ": 49
           }
         ]
       },
@@ -877,7 +873,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 85
+            "occ": 97
           },
           {
             "file": "book/2.2-structural.html",
@@ -901,7 +897,7 @@
           },
           {
             "file": "book/2.7-provenance.html",
-            "occ": 21
+            "occ": 26
           },
           {
             "file": "book/2.8-system-knowledge.html",
@@ -1273,7 +1269,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 279
+            "occ": 281
           },
           {
             "file": "book/index.html",
@@ -2085,7 +2081,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 66
+            "occ": 67
           },
           {
             "file": "book/2.2-structural.html",
@@ -2109,7 +2105,7 @@
           },
           {
             "file": "book/2.7-provenance.html",
-            "occ": 36
+            "occ": 34
           },
           {
             "file": "book/2.8-system-knowledge.html",
@@ -2469,7 +2465,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 13
+            "occ": 11
           },
           {
             "file": "book/book-index.html",
@@ -2481,7 +2477,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 419
+            "occ": 421
           },
           {
             "file": "book/index.html",
@@ -2903,7 +2899,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 34
+            "occ": 33
           },
           {
             "file": "catalogue-figure.html",
@@ -4207,7 +4203,7 @@
           },
           {
             "file": "book/2.7-provenance.html",
-            "occ": 6
+            "occ": 8
           },
           {
             "file": "book/2.8-system-knowledge.html",
@@ -4821,7 +4817,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 5
+            "occ": 6
           },
           {
             "file": "constructing-the-gee.html",

@@ -7,7 +7,7 @@
     "derived_ids": 200,
     "missing_topic_sentence": 2,
     "sections_drained": 129,
-    "paragraph_points": 508
+    "paragraph_points": 513
   },
   "chapters": [
     {
@@ -691,34 +691,39 @@
               "block_index": 86
             },
             {
+              "slug": "reuse-the-established-repertoire-choosing-is-judgment",
+              "text": "This Part illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment.",
+              "block_index": 89
+            },
+            {
               "slug": "the-classes-are-views-not-boxes",
               "text": "The classes classify questions, not data structures; one represented fact can answer several. The lease is Ownership, Behavioral, and Measurement at once.",
-              "block_index": 91
+              "block_index": 95
             },
             {
               "slug": "system-knowledge-is-substrate-not-a-seventh-class",
               "text": "System knowledge is the connected substrate where the six classes meet, not a seventh peer class.",
-              "block_index": 94
+              "block_index": 98
             },
             {
               "slug": "tolerance-is-not-a-seventh-class",
               "text": "The classes name the engineering question; tolerance names the variation that question permits, not a seventh class.",
-              "block_index": 96
+              "block_index": 100
             },
             {
               "slug": "purpose-comes-first-representation-follows",
               "text": "The model class names the engineering question; the representation form is a separate choice, so purpose comes first and representation follows.",
-              "block_index": 98
+              "block_index": 102
             },
             {
               "slug": "the-chapters-ahead-apply-the-repertoire-to-six-docable-models",
               "text": "The chapters ahead apply this repertoire to six production models from DocAble; the final chapter asks how such representations connect through shared identity without collapsing into one universal graph.",
-              "block_index": 100
+              "block_index": 104
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
               "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment gives selected properties consequence.",
-              "block_index": 102
+              "block_index": 106
             }
           ]
         }
@@ -1126,27 +1131,27 @@
       "part": 2,
       "sections": [
         {
-          "section_id": "the-canonical-move-provenance-attribution-and-derivation",
+          "section_id": "the-canonical-move-from-observability-to-provenance",
           "level": 2,
-          "heading_text": "The Canonical Move: Provenance, Attribution, and Derivation",
-          "topic_sentence": "Provenance is built on the most general representational primitive there is: a relation over stable identities.",
+          "heading_text": "The Canonical Move: From Observability to Provenance",
+          "topic_sentence": "The canonical move is to turn selected observations into structured history.",
           "id_source": "derived",
-          "block_index": 1,
+          "block_index": 6,
           "points": [
             {
-              "slug": "provenance-is-built-on-relations-over-stable-identities",
-              "text": "Provenance is built on the most general representational primitive — a relation over stable identities; tuples, entity-relation records, and triples all express that one entity stands in a relation to another, and RDF generalizes the form.",
-              "block_index": 2
-            },
-            {
-              "slug": "the-established-provenance-vocabulary-distinguishes-entities-activities-agents",
-              "text": "The established vocabulary distinguishes entities, the activities that act on them, and the agents responsible, connected by typed produced-by, derived-from, and attributed-to edges carrying evidence — a purposeful reduction of history.",
-              "block_index": 4
-            },
-            {
-              "slug": "provenance-makes-lineage-attribution-and-audit-into-traversals",
-              "text": "Once history is a typed graph, an attributable producer for every artifact, traceable derivation, and evidence bound to each operation become expressible, and lineage, root-cause, and audit become traversals rather than log-grepping.",
+              "slug": "the-canonical-move-turns-selected-observations-into-structured-history",
+              "text": "The canonical move turns selected observations into structured history; an execution exposes far more than a question needs — calls, retries, intermediate values, requests, model invocations — and a sufficiently detailed trace may capture much of it, but a provenance model deliberately keeps less.",
               "block_index": 7
+            },
+            {
+              "slug": "what-makes-it-provenance-is-the-meaning-of-the-history-not-the-notation",
+              "text": "The model gives consequential entities and operations stable identities and records the relationships needed to reconstruct what happened; what makes it provenance is the meaning of the recorded history, not a particular graph notation or data format.",
+              "block_index": 9
+            },
+            {
+              "slug": "provenance-turns-lineage-and-audit-into-queries-over-selected-history",
+              "text": "Once history is selected and structured, lineage, forward impact, root-cause, and audit reconstruction become queries over that history rather than searching and interpreting logs.",
+              "block_index": 12
             }
           ]
         },
@@ -1154,59 +1159,80 @@
           "section_id": "docable-attribution",
           "level": 2,
           "heading_text": "DocAble: Attribution",
-          "topic_sentence": "When an autonomous system changes a user's artifact, completion is not the only fact worth preserving.",
+          "topic_sentence": "For DocAble, the consequential history is the history of changes to the user's document.",
           "id_source": "derived",
-          "block_index": 9,
+          "block_index": 14,
           "points": [
             {
               "slug": "a-provenance-model-selects-events-that-matter-to-explanation-not-a-full-trace",
               "text": "The attribution model records the events that matter to engineering explanation and audit — target, mutation, responsible pass, evidence — not a trace of every function call.",
-              "block_index": 13
+              "block_index": 19
             },
             {
               "slug": "record-once-derive-the-explanations",
-              "text": "A human-facing explanation is derived from the structured action record rather than maintained as a second, independently-written account.",
-              "block_index": 16
+              "text": "A human-facing explanation is derived from the same structured history rather than maintained as a second, independently-written account; record the consequential action once, then derive the audit, debugging, or changelog view from it.",
+              "block_index": 22
             },
             {
               "slug": "event-grain-is-part-of-the-provenance-model",
-              "text": "Choosing the event grain is part of the model — too coarse collapses distinct changes into \"document modified,\" too fine reproduces an execution trace; the useful grain answers what changed, why, and whether it can be reproduced.",
-              "block_index": 18
+              "text": "Choosing the event grain is part of the modeling decision — too coarse collapses distinct changes into an opaque \"document modified\" event, too fine becomes another execution trace later reasoning must reconstruct into meaning.",
+              "block_index": 24
+            },
+            {
+              "slug": "docable-grain-is-the-consequential-mutation",
+              "text": "For DocAble the useful grain is the consequential mutation, and the record answers what changed, what operation changed it, what evidence was retained, and what explanation can be derived from that history.",
+              "block_index": 26
             }
           ]
         },
         {
-          "section_id": "record-replay-and-explanation",
+          "section_id": "when-provenance-becomes-executable",
           "level": 2,
-          "heading_text": "Record, Replay, and Explanation",
-          "topic_sentence": "DocAble's edit record has an unusual property for a provenance model: it runs.",
+          "heading_text": "When Provenance Becomes Executable",
+          "topic_sentence": "DocAble's edit record supports one additional capability: the recorded history can be replayed.",
           "id_source": "derived",
-          "block_index": 20,
+          "block_index": 28,
           "points": [
             {
               "slug": "a-typed-edit-record-replays-deterministically",
-              "text": "DocAble's edit record runs — the PDF path records mutations as typed edit values in a per-session log, and a replay engine applies the same sequence deterministically, so the record can both explain and reproduce the remediation.",
-              "block_index": 21
+              "text": "DocAble's edit record supports one additional capability — the recorded history can be replayed; the PDF path records mutations as typed edit values in a per-session log, and a replay engine applies the same sequence deterministically, so one representation both explains and reproduces the resulting mutations.",
+              "block_index": 29
             },
             {
-              "slug": "an-executable-record-is-not-the-implementation",
-              "text": "Executability does not make the record a complete behavioral model; it still omits the reasoning, analyses, control decisions, and retries that produced the edits, so it says which mutations happened, not why the system chose them.",
-              "block_index": 23
+              "slug": "replay-is-not-what-makes-it-provenance",
+              "text": "Replay is not what makes the record a provenance model but an additional capability enabled by this representation; the record remains a purposeful reduction of execution, omitting the reasoning, analyses, control decisions, and retries that produced the edits.",
+              "block_index": 31
             },
             {
               "slug": "record-and-replay-separate-three-questions",
-              "text": "The computation graph asks what may compose, the provenance record says which mutations did occur, and replay asks whether that history can be reproduced — three separate questions, no one representation subsuming the others.",
-              "block_index": 25
+              "text": "The computation graph asks what may compose, the provenance record says which mutations did occur in this run, and replay asks whether that history can be reproduced — three separate questions, no one representation subsuming the others.",
+              "block_index": 33
             },
             {
               "slug": "provenance-boundary-model-records-a-lint-guarantees-every-mutator-stamps",
-              "text": "The model records attribution per mutation; whether every consequential operation actually stamps is a presence check the environment enforces, and even then the stamp's semantic accuracy is the author's — Part II models the evidence, Part III gives the obligation authority.",
-              "block_index": 28
+              "text": "The model records attribution per mutation; a structural check can establish that every mutator leaves an attribution record but not that the semantic account inside it is correct — Part II models the evidence, Part III gives the obligation authority.",
+              "block_index": 36
             }
           ]
         }
       ],
-      "preamble_points": []
+      "preamble_points": [
+        {
+          "slug": "provenance-looks-backward-at-a-realized-execution",
+          "text": "The other families describe what a system is or may do; provenance looks backward at a realized execution — what did the system actually do, and what evidence did it retain?",
+          "block_index": 0
+        },
+        {
+          "slug": "engineers-already-make-running-systems-observable",
+          "text": "Engineers already make running systems observable — a log records selected events, a trace connects events across an execution, metrics summarize, and audit records preserve actions — exposing an enormous amount of runtime history.",
+          "block_index": 2
+        },
+        {
+          "slug": "observable-history-is-not-automatically-useful-a-provenance-model-selects-it",
+          "text": "Observable history is not automatically useful engineering knowledge; a system may emit millions of events yet leave a consequential question — what changed this artifact, which operation changed it, what evidence supports the account — hard to answer, so a provenance model selects and structures the history that answers it.",
+          "block_index": 4
+        }
+      ]
     },
     {
       "slug": "2.8-system-knowledge",

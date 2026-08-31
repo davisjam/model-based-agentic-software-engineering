@@ -90,7 +90,7 @@ Self-governance is not a third MAGE activity; it applies Modeling and Alignment 
 The loop's questions are independent, so each becomes its own facet. Each of six directories answers one
 question; the router identifies the question and directs the agent to the corresponding facet.
 
-- **`modeling/`** — Which representation would help, and how should it be improved? Carries the six model families and modeling moves.
+- **`modeling/`** — Which representation would help, and how should it be improved? Carries the six model families, modeling moves, and a repertoire of established modeling techniques and their tradeoffs.
 - **`practice/`** — What situation is this, and how much intervention is warranted?
 - **`system/`** — What is true of this system? Retrieves concrete models through a provider contract and records their epistemic status.
 - **`skills/`** — Which available capability performs the chosen move?

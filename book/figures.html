@@ -666,7 +666,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="2.4-ownership.html">8&nbsp; Ownership Models: Who Controls What, and When?</a></li>
 <li><a class="" href="2.5-decision.html">9&nbsp; Decision Models: What Is Allowed?</a></li>
 <li><a class="" href="2.6-measurement.html">10&nbsp; Measurement Models: How Much, and Against What Bound?</a></li>
-<li><a class="" href="2.7-provenance.html">11&nbsp; Provenance Models: What Happened, and What Evidence Records It?</a></li>
+<li><a class="" href="2.7-provenance.html">11&nbsp; Provenance Models: What Did the System Do, and What Did We Observe?</a></li>
 <li><a class="" href="2.8-system-knowledge.html">12&nbsp; System Knowledge: Connecting the Models</a></li>
 <li class="part">Part 3 — Alignment</li>
 <li><a class="" href="part-3-intro.html">Alignment</a></li>
@@ -3192,45 +3192,51 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- footer: protect the point -->
   <text x="480" y="348" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">The model defines the quantity and bound; Alignment decides whether to observe, adapt, degrade, or gate.</text>
 </svg><figcaption data-short="Modeling and authority are separate decisions"><span class="fig-label">Figure 2.6-4.</span> <em>Modeling and authority are separate decisions.</em> The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, used to trigger graceful degradation, or given gating authority.</figcaption></figure><p class="gallery-source">From <a href="2.6-measurement.html#fig-2-6-4">10 · Measurement Models: How Much, and Against What Bound?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-7-1-fig-2-7-1" class="book-figure" data-label="canonical-provenance"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" role="img" aria-labelledby="fig-2-7-1-f-canonical-provenance-canonical-provenanceT fig-2-7-1-f-canonical-provenance-canonical-provenanceD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-7-1-f-canonical-provenance-canonical-provenanceT">Canonical provenance model: general relations specialized to derivation and attribution</title>
-  <desc id="fig-2-7-1-f-canonical-provenance-canonical-provenanceD">A provenance opener. A general entity-relation-entity row (tuples, triples, RDF) specializes downward into a provenance graph: an artifact is derivedFrom a source and producedBy an activity, which is attributedTo an agent. Caption: Question, Semantics, Typical analysis. Neutral ground marks the provenance family.</desc>
+  <title id="fig-2-7-1-f-canonical-provenance-canonical-provenanceT">From observability to provenance: retaining the consequential history</title>
+  <desc id="fig-2-7-1-f-canonical-provenance-canonical-provenanceD">Two stacked panels. An upper panel, Observable execution, holds logs, traces, events, and metrics and exposes far more of a run than an engineering question needs. A downward arrow labeled "retain consequential history" leads to a lower panel, Provenance model, holding a chain from source to operation to artifact, with the operation also linked to its responsible component and the retained evidence. Below the panels: Question, Semantics, and Typical analysis.</desc>
   <defs>
-    <marker id="fig-2-7-1-f-canonical-provenance-ah-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
     <marker id="fig-2-7-1-f-canonical-provenance-ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
-    <marker id="fig-2-7-1-f-canonical-provenance-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
-    <marker id="fig-2-7-1-f-canonical-provenance-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
-    <marker id="fig-2-7-1-f-canonical-provenance-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
   </defs>
   <rect x="0" y="0" width="1040" height="640" fill="#fdfcf9"/>
-  <text x="520" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Provenance model — what happened, and what records it?</text>
-  <rect x="250" y="110" width="150" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="325" y="144" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">entity</text>
-  <rect x="520" y="110" width="150" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="595" y="144" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">entity</text>
-  <line x1="400" y1="137" x2="518" y2="137" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-7-1-f-canonical-provenance-ah-muted)"/>
-  <text x="459" y="127" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">relation</text>
-  <text x="985" y="141" text-anchor="end" font-size="19" font-style="italic" fill="#57534e">(general: tuples / triples / RDF)</text>
-  <line x1="520" y1="168" x2="520" y2="202" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-2-7-1-f-canonical-provenance-ah-muted)"/>
-  <text x="548" y="190" text-anchor="start" font-size="19" font-style="italic" fill="#57534e">specialize to</text>
-  <rect x="110" y="300" width="160" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="190" y="337" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">artifact</text>
-  <rect x="430" y="214" width="150" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="505" y="249" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">source</text>
-  <rect x="430" y="380" width="170" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="515" y="415" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">activity</text>
-  <rect x="760" y="380" width="150" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="835" y="415" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">agent</text>
-  <path d="M270,312 L350,312 L350,242 L428,242" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#fig-2-7-1-f-canonical-provenance-ah-muted)"/>
-  <text x="356" y="232" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">derivedFrom</text>
-  <path d="M270,348 L350,348 L350,408 L428,408" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#fig-2-7-1-f-canonical-provenance-ah-muted)"/>
-  <text x="356" y="398" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">producedBy</text>
-  <line x1="600" y1="408" x2="758" y2="408" stroke="#57534e" stroke-width="2.6" marker-end="url(#fig-2-7-1-f-canonical-provenance-ah-muted)"/>
-  <text x="679" y="398" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">attributedTo</text>
-  <text x="26" y="474" font-size="21" fill="#1c1917"><tspan font-weight="700">Question:</tspan> What happened, and what evidence records it?</text>
-  <text x="26" y="505" font-size="21" fill="#1c1917"><tspan font-weight="700">Semantics:</tspan> typed attribution &amp; derivation edges (producedBy, derivedFrom,</text>
-  <text x="44" y="532" font-size="21" fill="#1c1917">attributedTo) over stable identities — a reduction of history.</text>
-  <text x="26" y="563" font-size="21" fill="#1c1917"><tspan font-weight="700">Typical analysis:</tspan> backward lineage, forward impact, audit reconstruction.</text>
-</svg><figcaption data-short="The provenance move"><span class="fig-label">Figure 2.7-1.</span> <em>The provenance move: typed relations over stable identities.</em> A general entity-relation form specializes to derivation and attribution edges over entities, activities, and agents; its analyses are traversals — backward lineage, forward impact, and audit reconstruction.</figcaption></figure><p class="gallery-source">From <a href="2.7-provenance.html#fig-2-7-1">11 · Provenance Models: What Happened, and What Evidence Records It?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-7-2-fig-2-7-2" class="book-figure" data-label="attribution-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400"
+  <text x="520" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">From observability to provenance</text>
+
+  <!-- Observable execution band -->
+  <rect x="90" y="88" width="860" height="82" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="112" y="120" font-size="20" font-weight="700" letter-spacing="1.5" fill="#1c1917">OBSERVABLE EXECUTION</text>
+  <text x="112" y="150" font-size="21" fill="#57534e">logs · traces · events · metrics</text>
+  <text x="928" y="134" text-anchor="end" font-size="18" font-style="italic" fill="#57534e">exposes far more than a question needs</text>
+
+  <!-- reduction arrow -->
+  <line x1="520" y1="170" x2="520" y2="246" stroke="#57534e" stroke-width="2.6" marker-end="url(#fig-2-7-1-f-canonical-provenance-ah-muted)"/>
+  <text x="548" y="214" text-anchor="start" font-size="20" font-style="italic" fill="#57534e">retain consequential history</text>
+
+  <!-- Provenance model panel -->
+  <rect x="200" y="250" width="640" height="250" rx="12" fill="#faf8f4" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 5"/>
+  <text x="520" y="286" text-anchor="middle" font-size="19" font-weight="700" letter-spacing="1.5" fill="#1c1917">PROVENANCE MODEL</text>
+
+  <!-- chain: source -> operation -> artifact -->
+  <rect x="250" y="308" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="320" y="340" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">source</text>
+  <rect x="452" y="308" width="156" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="530" y="340" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">operation</text>
+  <rect x="670" y="308" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="740" y="340" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">artifact</text>
+  <line x1="390" y1="333" x2="450" y2="333" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-2-7-1-f-canonical-provenance-ah-muted)"/>
+  <line x1="608" y1="333" x2="668" y2="333" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-2-7-1-f-canonical-provenance-ah-muted)"/>
+
+  <!-- operation carries responsible component + retained evidence -->
+  <rect x="300" y="430" width="220" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="410" y="461" text-anchor="middle" font-size="19" fill="#1c1917">responsible component</text>
+  <rect x="560" y="430" width="200" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="660" y="461" text-anchor="middle" font-size="19" fill="#1c1917">retained evidence</text>
+  <path d="M510,358 L510,404 L440,404 L440,428" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-2-7-1-f-canonical-provenance-ah-muted)"/>
+  <path d="M552,358 L552,404 L640,404 L640,428" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-2-7-1-f-canonical-provenance-ah-muted)"/>
+
+  <!-- caption -->
+  <text x="30" y="540" font-size="20" fill="#1c1917"><tspan font-weight="700">Question:</tspan> What happened, and what evidence records it?</text>
+  <text x="30" y="570" font-size="20" fill="#1c1917"><tspan font-weight="700">Semantics:</tspan> consequential entities and operations connected through recorded history and attribution.</text>
+  <text x="30" y="600" font-size="20" fill="#1c1917"><tspan font-weight="700">Typical analysis:</tspan> backward lineage, forward impact, root-cause tracing, audit reconstruction.</text>
+</svg><figcaption data-short="From observability to provenance"><span class="fig-label">Figure 2.7-1.</span> <em>From observability to provenance.</em> Logs, traces, and other runtime observations can expose far more of an execution than an engineering question needs. A provenance model retains the consequential entities, operations, relationships, and evidence needed to reconstruct selected history.</figcaption></figure><p class="gallery-source">From <a href="2.7-provenance.html#fig-2-7-1">11 · Provenance Models: What Did the System Do, and What Did We Observe?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-7-2-fig-2-7-2" class="book-figure" data-label="attribution-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400"
      role="img" aria-labelledby="fig-2-7-2-f-attribution-model-atTitle fig-2-7-2-f-attribution-model-atDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-7-2-f-attribution-model-atTitle">DocAble's attribution provenance model: a run of operations, each with recorded fields</title>
@@ -3285,7 +3291,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- footer: protect the point -->
   <text x="350" y="356" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">The structured record carries the provenance model; audit, debugging,</text>
   <text x="350" y="376" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">and changelog are derived from it, not maintained apart.</text>
-</svg><figcaption data-short="Attribution provenance model"><span class="fig-label">Figure 2.7-2.</span> <em>Attribution provenance model.</em> A run contains consequential operations; each operation records its target, mutation, responsible pass, and retained evidence. Audit and explanation can be derived from this shared history.</figcaption></figure><p class="gallery-source">From <a href="2.7-provenance.html#fig-2-7-2">11 · Provenance Models: What Happened, and What Evidence Records It?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-7-3-fig-2-7-3" class="book-figure" data-label="two-reductions-static-realized"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540"
+</svg><figcaption data-short="Attribution provenance model"><span class="fig-label">Figure 2.7-2.</span> <em>Attribution provenance model.</em> A run contains consequential operations; each operation records its target, mutation, responsible pass, and retained evidence. Audit and explanation can be derived from this shared history.</figcaption></figure><p class="gallery-source">From <a href="2.7-provenance.html#fig-2-7-2">11 · Provenance Models: What Did the System Do, and What Did We Observe?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-7-3-fig-2-7-3" class="book-figure" data-label="two-reductions-static-realized"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540"
      role="img" aria-labelledby="fig-2-7-3-f-two-reductions-static-realized-trTitle fig-2-7-3-f-two-reductions-static-realized-trDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-7-3-f-two-reductions-static-realized-trTitle">Computation structure versus realized history</title>
   <desc id="fig-2-7-3-f-two-reductions-static-realized-trDesc">Two reductions of the same remediation system, side by side. Left: the static computation graph — named passes joined by a typed data edge and a typed control gate, modeling what computations may compose. Right: one session's edit record — a run that emits a sequence of typed PdfEdit operations, recording what mutations did occur. A dashed link between them marks that they are not joined today; a shared computation identity would join them, and the join is added when a question needs it.</desc>
@@ -3333,7 +3339,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="492" y="282" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">not joined today</text>
   <text x="247" y="498" text-anchor="middle" font-size="20" font-weight="600" fill="#155c38">static structure</text>
   <text x="742" y="498" text-anchor="middle" font-size="20" font-weight="600" fill="#2f5169">realized history</text>
-</svg><figcaption data-short="Computation structure versus realized history"><span class="fig-label">Figure 2.7-3.</span> <em>Computation structure versus realized history.</em> The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They remain separate reductions today. A shared computation identity could join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one.</figcaption></figure><p class="gallery-source">From <a href="2.7-provenance.html#fig-2-7-3">11 · Provenance Models: What Happened, and What Evidence Records It?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-1-fig-2-8-1" class="book-figure" data-label="modeling-substrate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 580"
+</svg><figcaption data-short="Computation structure versus realized history"><span class="fig-label">Figure 2.7-3.</span> <em>Computation structure versus realized history.</em> The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They remain separate reductions today. A shared computation identity could join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one.</figcaption></figure><p class="gallery-source">From <a href="2.7-provenance.html#fig-2-7-3">11 · Provenance Models: What Did the System Do, and What Did We Observe?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-1-fig-2-8-1" class="book-figure" data-label="modeling-substrate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 580"
      role="img" aria-labelledby="fig-2-8-1-f-modeling-substrate-mbTitle fig-2-8-1-f-modeling-substrate-mbDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-8-1-f-modeling-substrate-mbTitle">Heterogeneous models arranged as peers around shared identities</title>
