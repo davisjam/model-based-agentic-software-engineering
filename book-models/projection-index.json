@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1163,
+    "total_sites": 1164,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 814,
+      "book-web": 815,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 13,
@@ -62,6 +62,10 @@
           {
             "file": "book/3.4-governance-conversion.html",
             "occ": 3
+          },
+          {
+            "file": "book/3.5-one-problem-many-models.html",
+            "occ": 1
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
@@ -219,7 +223,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 49
+            "occ": 50
           }
         ]
       },
@@ -2129,7 +2133,7 @@
           },
           {
             "file": "book/3.5-one-problem-many-models.html",
-            "occ": 61
+            "occ": 60
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
@@ -2477,7 +2481,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 420
+            "occ": 419
           },
           {
             "file": "book/index.html",

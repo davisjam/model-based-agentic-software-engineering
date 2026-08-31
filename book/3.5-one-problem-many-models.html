@@ -855,6 +855,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Each worker now handled only part of the document, and multiple chunks could run concurrently. More importantly, chunking reduced the memory required by an individual worker. Memory affects both infrastructure cost and cold-start behavior, so a smaller worker was useful even for documents that did not strictly require chunking to fit.</p>
 <p>Chunking worked across a much broader workload: ordinary teaching presentations and hundreds of documents from multiple universities. Page ranges gave each ChunkWorker a practical bound on its working state, and experience provided no reason to replace that design merely because another architecture was possible.</p>
 <p>This architecture accommodated the inputs encountered so far. The page boundary gradually became part of how DocAble was understood: a document was divided into chunks because chunks were how large documents were processed. A roughly 250 MB media-heavy presentation eventually exceeded that operating regime.</p>
+<p>Page boundaries were not the smallest possible partition. A sufficiently large slide could itself be divided into regions, shapes, media objects, or individual remediation operations. That would reduce the working set further. But finer partitions also impose costs: more coordination, more reconstruction, and less surrounding context available to each operation. Eventually the partition begins to cut across the semantic relationships needed to reason about the artifact.</p>
+<p>This is the reasoning-horizon problem from Part I in architectural form. An agent can reason only over the information made available to it. Shrinking an execution unit may reduce its resource requirements while simultaneously shrinking the semantic context within which a judgment is made. Page chunking therefore had no hard scaling wall. It had an increasingly unattractive tradeoff: continue subdividing the artifact and pay both systems overhead and semantic loss, or reconsider why so much of the artifact had to reside in the worker at all.</p>
+<p>The 250 MB presentation made the second question worth asking.</p>
 <h2>III. A New Class of Input</h2>
 <p>A 250 MB PowerPoint file does not imply that remediation needs 250 MB of document content resident in memory.</p>
 <p>Modern Office documents use Office Open XML (OOXML). A <code>.pptx</code>, <code>.docx</code>, or <code>.xlsx</code> file is a package containing many parts. Much of its semantic structure is XML: text, slides, relationships, identifiers, and references among objects. Large binary assets such as images and other media live alongside those XML parts inside the package.</p>
@@ -947,7 +950,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="681" y="330" text-anchor="middle" font-size="14.5" font-style="italic" fill="#78716c">media bypasses persistent worker residency</text>
 </svg><figcaption data-short="Chunked residency versus skeletonized residency"><span class="fig-label">Figure 3.5.1-2.</span> <em>Chunked residency versus skeletonized residency.</em> (a) Page chunking limits how much document state and associated media a worker holds at once, but media remains part of the worker's resident representation. (b) Skeletonization keeps only document structure and media references resident. Individual media objects stream from external storage to the consumer on demand, so total media size no longer determines persistent worker memory.</figcaption></figure>
-<p>So the architecture carried an implicit scaling relation: total media size drove resident worker state, and resident state drove the risk of running out of memory. Chunking reduced how much of the document met this relation at one time, but it did not remove the relation. On the observed workload that made no difference; the new file made it decisive.</p>
+<p>So the architecture carried an implicit scaling relation: total media size drove resident worker state, and resident state drove the risk of running out of memory. Finer chunking could continue reducing how much of the document met this relation at one time, but it could not remove the relation itself—and increasingly fine partitions would introduce coordination costs and erode the semantic context available to remediation. On the observed workload that made no difference; the new file made it decisive.</p>
 <p>A residency model made the alternative visible (panel b): the structural pipeline could operate on a lightweight representation while media lived in object storage, and operations that needed media could reach it by reference.</p>
 <p>The 250 MB requirement had therefore exposed a representation problem, not merely a large input.</p>
 <h2>IV. Remove Media from the Working Set</h2>
@@ -971,41 +974,47 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A page tells us where content occurs, not which computations depend on which others. DocAble already represented remediation as a dependency graph. Some operations can run from the source document alone. Others consume intermediate semantic structures produced by earlier work: local interpretations may feed a document-level representation, which in turn supplies context to downstream remediation. <a class="xref" href="3.5-one-problem-many-models.html#fig-3-5-1-3">Figure&nbsp;3.5.1-3</a> shows this dependency graph and the two ways it can be partitioned.</p>
 <p>The graph explains the ordering. Independent semantic work can run together; a consumer waits only when it needs information produced upstream. Pages do not create those dependencies. Information does.</p>
 <p>Expressed as a directed acyclic graph, the ready work forms a frontier: the nodes with no unmet dependency, which advance together as a wave.<sup class="note-ref"><a href="#note-3-5-one-problem-many-models-fn-topo-dag" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-3-5-one-problem-many-models-fn-topo-dag"><span class="cn-mark">*</span> This is ordinary topological traversal of a directed acyclic graph, familiar from compilers, build systems, and dependency schedulers. I once answered essentially this question in an interview for a position at Google in 2017; the pattern came back to mind here.</span> A worker executes ready graph nodes, materializes their outputs, derives the next ready frontier, and passes execution forward. That reframes ChunkWorker itself: the page-oriented and frontier-oriented designs are not different remediation graphs but two partitions of the same graph.</p>
-<figure id="fig-3-5-1-3" class="book-figure" data-label="interlude-graph-two-partitions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400"
+<figure id="fig-3-5-1-3" class="book-figure" data-label="interlude-graph-two-partitions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 380"
      role="group" aria-labelledby="f-interlude-graph-two-partitions-tpTitle f-interlude-graph-two-partitions-tpDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-interlude-graph-two-partitions-tpTitle">Page chunking and frontier execution partition the same remediation graph</title>
-  <desc id="f-interlude-graph-two-partitions-tpDesc">The same seven-node remediation graph appears in both panels with identical node
-    positions: three local semantic-work nodes feed a document-level node, which feeds three downstream
-    remediation nodes. (a) Spatial partition: nodes are grouped into vertical page groups by artifact
-    location, cutting across the causal levels. (b) Causal partition: the same nodes are grouped into three
-    horizontal topological frontiers by readiness. Once media residency no longer forces page-sized workers,
-    the partition becomes an executor choice rather than part of the remediation model.</desc>
+  <title id="f-interlude-graph-two-partitions-tpTitle">Page-oriented execution and frontier execution over the same remediation graph</title>
+  <desc id="f-interlude-graph-two-partitions-tpDesc">Two panels. (a) Page-oriented execution draws the seven-node remediation graph — three
+    local semantic-work nodes feeding a document-level node feeding three downstream nodes — with three page
+    boxes, each grouping a local node and a downstream node from different dependency levels, so a page slice
+    contains work that is not all ready at the same time. (b) Frontier execution shows three sequential ready
+    sets: first the three local nodes dispatch together as one wave; when they complete, their outputs
+    satisfy dependencies and expose the document node; when it completes it exposes the three downstream
+    nodes. Arrows between the snapshots read: complete, materialize outputs, derive the next ready set.</desc>
 
   <defs>
     <marker id="f-interlude-graph-two-partitions-tp-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
+    <marker id="f-interlude-graph-two-partitions-tp-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
   </defs>
 
-  <rect x="0" y="0" width="920" height="400" fill="#fdfcf9"/>
-  <line x1="460" y1="44" x2="460" y2="372" stroke="#e7e2d6" stroke-width="1.5"/>
+  <rect x="0" y="0" width="920" height="380" fill="#fdfcf9"/>
+  <line x1="460" y1="44" x2="460" y2="360" stroke="#e7e2d6" stroke-width="1.5"/>
 
-  <!-- ===== Panel (a): spatial / page partition ===== -->
-  <text x="30" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Spatial partition (by page)</text>
+  <!-- ===== Panel (a): page-oriented execution ===== -->
+  <text x="30" y="30" font-size="18" font-weight="700" fill="#57534e">(a) Page-oriented execution</text>
 
-  <!-- page group shading (vertical columns, behind nodes) -->
-  <rect x="44" y="52" width="96" height="268" rx="10" fill="#faf1e6" opacity="0.7"/>
-  <rect x="162" y="52" width="96" height="268" rx="10" fill="#f0e7d8" opacity="0.7"/>
-  <rect x="280" y="52" width="96" height="268" rx="10" fill="#faf1e6" opacity="0.7"/>
+  <!-- page-affinity boxes: each spans a local (frontier 1) and a down (frontier 3) node — different levels -->
+  <rect x="44" y="52" width="96" height="256" rx="10" fill="#faf1e6" opacity="0.7"/>
+  <rect x="162" y="52" width="96" height="256" rx="10" fill="#f0e7d8" opacity="0.7"/>
+  <rect x="280" y="52" width="96" height="256" rx="10" fill="#faf1e6" opacity="0.7"/>
 
   <!-- edges -->
-  <line x1="92" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="210" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="328" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="210" y1="204" x2="92" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="210" y1="204" x2="210" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="210" y1="204" x2="328" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  <g stroke="#57534e" stroke-width="1.8">
+    <line x1="92" y1="104" x2="210" y2="160" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+    <line x1="210" y1="104" x2="210" y2="160" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+    <line x1="328" y1="104" x2="210" y2="160" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+    <line x1="210" y1="204" x2="92" y2="260" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+    <line x1="210" y1="204" x2="210" y2="260" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+    <line x1="210" y1="204" x2="328" y2="260" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
+  </g>
 
   <!-- nodes -->
   <g font-size="14" fill="#1c1917" text-anchor="middle">
@@ -1017,39 +1026,55 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <rect x="178" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="210" y="285">down</text>
     <rect x="296" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="328" y="285">down</text>
   </g>
-  <text x="210" y="344" text-anchor="middle" font-size="14.5" font-style="italic" fill="#9a3f12">groups by artifact location</text>
-
-  <!-- ===== Panel (b): causal / frontier partition ===== -->
-  <text x="500" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) Causal partition (by frontier)</text>
-
-  <!-- frontier band shading (horizontal rows, behind nodes) -->
-  <rect x="500" y="58" width="392" height="52" rx="10" fill="#e3f0e7" opacity="0.7"/>
-  <rect x="500" y="154" width="392" height="56" rx="10" fill="#e3f0e7" opacity="0.7"/>
-  <rect x="500" y="254" width="392" height="52" rx="10" fill="#e3f0e7" opacity="0.7"/>
-  <text x="884" y="88" text-anchor="end" font-size="12.5" fill="#1f7a4d">frontier 1</text>
-  <text x="884" y="186" text-anchor="end" font-size="12.5" fill="#1f7a4d">frontier 2</text>
-  <text x="884" y="284" text-anchor="end" font-size="12.5" fill="#1f7a4d">frontier 3</text>
-
-  <!-- edges -->
-  <line x1="562" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="680" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="798" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="680" y1="204" x2="562" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="680" y1="204" x2="680" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="680" y1="204" x2="798" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-interlude-graph-two-partitions-tp-ah)"/>
-
-  <!-- nodes -->
-  <g font-size="14" fill="#1c1917" text-anchor="middle">
-    <rect x="530" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="562" y="89">local</text>
-    <rect x="648" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="680" y="89">local</text>
-    <rect x="766" y="64" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="798" y="89">local</text>
-    <rect x="640" y="160" width="80" height="44" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/><text x="680" y="186">document</text>
-    <rect x="530" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="562" y="285">down</text>
-    <rect x="648" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="680" y="285">down</text>
-    <rect x="766" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="798" y="285">down</text>
+  <g font-size="12.5" font-weight="700" fill="#9a3f12" text-anchor="middle">
+    <text x="92" y="326">Page 1</text>
+    <text x="210" y="326">Page 2</text>
+    <text x="328" y="326">Page 3</text>
   </g>
-  <text x="680" y="344" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1f7a4d">groups by causal readiness</text>
-</svg><figcaption data-short="Two partitions of the same remediation graph"><span class="fig-label">Figure 3.5.1-3.</span> <em>Two partitions of the same remediation graph.</em> The graph can be partitioned (a) spatially, by page or artifact location, or (b) causally, by topological frontier. Page partitioning groups work by where content occurs; frontier partitioning groups work by which computations are ready to execute. The remediation graph itself is unchanged.</figcaption></figure>
+  <text x="210" y="350" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">one page slice spans several dependency levels</text>
+
+  <!-- ===== Panel (b): frontier execution — three sequential ready sets ===== -->
+  <text x="500" y="30" font-size="18" font-weight="700" fill="#57534e">(b) Frontier execution</text>
+
+  <!-- snapshot 1: ready = {local, local, local} -->
+  <rect x="535" y="52" width="210" height="64" rx="10" fill="#e3f0e7" opacity="0.55" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="545" y="71" font-size="12.5" font-weight="700" fill="#1f7a4d">ready set</text>
+  <g font-size="13" fill="#1c1917" text-anchor="middle">
+    <rect x="543" y="80" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="569" y="99">local</text>
+    <rect x="601" y="80" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="627" y="99">local</text>
+    <rect x="659" y="80" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="685" y="99">local</text>
+  </g>
+
+  <line x1="640" y1="118" x2="640" y2="152" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-interlude-graph-two-partitions-tp-rust)"/>
+  <g font-size="12" font-style="italic" fill="#57534e">
+    <text x="752" y="130">complete → outputs</text>
+    <text x="752" y="147">→ next ready set</text>
+  </g>
+
+  <!-- snapshot 2: ready = {document} -->
+  <rect x="535" y="156" width="210" height="64" rx="10" fill="#e3f0e7" opacity="0.55" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="545" y="175" font-size="12.5" font-weight="700" fill="#1f7a4d">ready set</text>
+  <g font-size="13" fill="#1c1917" text-anchor="middle">
+    <rect x="600" y="184" width="80" height="28" rx="5" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/><text x="640" y="203">document</text>
+  </g>
+
+  <line x1="640" y1="222" x2="640" y2="256" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-interlude-graph-two-partitions-tp-rust)"/>
+  <g font-size="12" font-style="italic" fill="#57534e">
+    <text x="752" y="234">complete → outputs</text>
+    <text x="752" y="251">→ next ready set</text>
+  </g>
+
+  <!-- snapshot 3: ready = {down, down, down} -->
+  <rect x="535" y="260" width="210" height="64" rx="10" fill="#e3f0e7" opacity="0.55" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="545" y="279" font-size="12.5" font-weight="700" fill="#1f7a4d">ready set</text>
+  <g font-size="13" fill="#1c1917" text-anchor="middle">
+    <rect x="543" y="288" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="569" y="307">down</text>
+    <rect x="601" y="288" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="627" y="307">down</text>
+    <rect x="659" y="288" width="52" height="28" rx="5" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="685" y="307">down</text>
+  </g>
+
+  <text x="640" y="350" text-anchor="middle" font-size="14" font-style="italic" fill="#1f7a4d">dispatch the currently ready nodes, wave by wave</text>
+</svg><figcaption data-short="Two execution policies over the same remediation graph"><span class="fig-label">Figure 3.5.1-3.</span> <em>Two execution policies over the same remediation graph.</em> (a) Page-oriented execution assigns graph nodes according to where their artifacts occur, so one partition may contain computations from several dependency levels. (b) Frontier execution repeatedly dispatches the currently ready nodes: when one frontier completes, its outputs satisfy dependencies and expose the next. The remediation graph is identical; only the execution partition changes.</figcaption></figure>
 <p>ChunkWorker partitions the work spatially; frontier execution partitions it causally. Skeletonization removed the memory pressure that had made page ranges the natural execution boundary, so the two approaches reconcile. Page identity can survive as metadata on graph nodes — useful for locality, debugging, rate limiting, or failure isolation — without remaining the fundamental unit of executable remediation.</p>
 <p>The architecture therefore needs only a clean seam between the remediation graph and its executor: the graph supplies ready work and its dependencies; the executor consumes them. The executor can schedule by frontier now and by page locality later if measurements justify it. There is no need to build a strategy hierarchy merely because two policies are conceivable. The graph/executor seam preserves the degree of freedom without spending it.</p>
 <h2>VI. Analyze Before You Build</h2>
@@ -1189,6 +1214,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="460" y="140" text-anchor="middle" font-size="14.5" font-style="italic" fill="#78716c">each level waits for the one before it, so the times add</text>
 </svg><figcaption data-short="The GenAI dependency chain and its latency floor"><span class="fig-label">Figure 3.5.1-5.</span> <em>The GenAI dependency chain and its latency floor.</em> A section summary feeds a document summary feeds alt text; because each level waits for the one before it, their per-call times add to an irreducible floor of 7.6589 s. The vision value is measured; the text-summary value is estimated.</figcaption></figure>
 <p>The current in-process design had local concurrency of six, so a 37-image alt-text frontier required seven waves, for a predicted total of about 32.788 s. A distributed frontier executor with modeled cloud concurrency of 64 could execute the 37-wide level in a single wave, but would pay cold-start and round-trip taxes for each graph round — about 11.4589 s under the current estimated parameters.</p>
+<p>The local concurrency limit of six was not merely a scheduler setting. In the ChunkWorker architecture, each concurrent worker opened and manipulated its own format-native document state, including associated media objects. Increasing concurrency therefore multiplied pressure on CPU and, especially, the machine's working memory. The concurrency cap kept that aggregate resource demand within the practical operating envelope of the host.</p>
+<p>Skeletonization changes that constraint as well. Once workers retain the structural skeleton while media streams on demand, concurrency no longer multiplies the same large resident media state. The frontier executor can therefore exploit graph width without requiring every concurrent operation to carry a page chunk's format-native working set.</p>
 <p>The model therefore predicted roughly a 2.9× advantage for frontier execution on that workload: the existing design pays about 24.6 seconds in width serialization, while the distributed design trades that for about 3.3 seconds of modeled round overhead. Several cells remain estimated and need staging measurements before any production cutover, but the number is useful before it is perfectly calibrated. It says why the candidate should win, and it says what to measure next.</p>
 <h3>Predicting the cost of a design change</h3>
 <p>Models can also answer questions about designs that do not exist yet. Suppose an engineer proposes another intermediate representation. Adding that IR creates a new fact and perhaps another dependency edge; the critical-path model can insert the proposed node into the DAG and recompute:</p>
