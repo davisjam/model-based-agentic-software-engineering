@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: interlude-model-family). How the model family composes through shared
+     identities rather than in sequence: the remediation graph, fact/IR catalogue, and batch model feed the
+     critical-path model, which yields latency predictions and a distribution choice; the media-residency
+     model contributes an independent worker-memory bound and the image-fidelity model a visual-IR cost.
+     viewBox 920 for the figure font band. -->
+<!-- semantic-families: modeling, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 420" width="920" height="420"
+     role="group" aria-labelledby="mfTitle mfDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="mfTitle">The model family composes through shared identities, not in sequence</title>
+  <desc id="mfDesc">The remediation graph and fact/IR catalogue supply static dependency structure and the
+    batch model supplies per-call cost; together they feed the critical-path model, which produces latency
+    predictions and, with them, a distribution choice. Separately, the media-residency model supplies an
+    independent worker-memory bound that makes the execution design affordable, and the image-fidelity model
+    supplies a visual-IR cost. The models stay distinct and join through shared identities.</desc>
+
+  <defs>
+    <marker id="mf-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="420" fill="#fdfcf9"/>
+
+  <g text-anchor="middle" font-size="14.5" fill="#1c1917">
+    <!-- inputs (left) -->
+    <rect x="30" y="60" width="190" height="44" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="125" y="87">remediation graph</text>
+    <rect x="30" y="128" width="190" height="44" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="125" y="155">fact / IR catalogue</text>
+    <rect x="30" y="196" width="190" height="44" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="125" y="223">batch model</text>
+
+    <!-- critical-path model (center) -->
+    <rect x="330" y="128" width="180" height="52" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/><text x="420" y="159" font-weight="700">critical-path model</text>
+
+    <!-- outputs (right) -->
+    <rect x="620" y="90" width="180" height="46" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="710" y="118">latency predictions</text>
+    <rect x="620" y="168" width="180" height="46" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="710" y="196">distribution choice</text>
+
+    <!-- independent contributors (bottom) -->
+    <rect x="30" y="300" width="220" height="44" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/><text x="140" y="327">media-residency model</text>
+    <rect x="360" y="300" width="200" height="44" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="460" y="327">worker-memory bound</text>
+    <rect x="620" y="300" width="180" height="44" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/><text x="710" y="327">image-fidelity model</text>
+  </g>
+
+  <!-- inputs → critical-path -->
+  <line x1="220" y1="82" x2="330" y2="146" stroke="#57534e" stroke-width="1.7" marker-end="url(#mf-ah)"/>
+  <line x1="220" y1="150" x2="330" y2="152" stroke="#57534e" stroke-width="1.7" marker-end="url(#mf-ah)"/>
+  <line x1="220" y1="218" x2="330" y2="162" stroke="#57534e" stroke-width="1.7" marker-end="url(#mf-ah)"/>
+  <!-- critical-path → latency → distribution -->
+  <line x1="510" y1="146" x2="620" y2="120" stroke="#57534e" stroke-width="1.7" marker-end="url(#mf-ah)"/>
+  <line x1="710" y1="136" x2="710" y2="168" stroke="#57534e" stroke-width="1.7" marker-end="url(#mf-ah)"/>
+  <!-- media-residency → worker-memory bound → (affordability of distribution) -->
+  <line x1="250" y1="322" x2="360" y2="322" stroke="#57534e" stroke-width="1.7" marker-end="url(#mf-ah)"/>
+  <line x1="560" y1="318" x2="640" y2="214" stroke="#57534e" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#mf-ah)"/>
+  <text x="600" y="270" font-size="12.5" font-style="italic" fill="#78716c">makes it affordable</text>
+  <!-- image-fidelity → visual-IR cost (its own note) -->
+  <text x="710" y="366" text-anchor="middle" font-size="12.5" font-style="italic" fill="#78716c">→ visual-IR cost</text>
+</svg>

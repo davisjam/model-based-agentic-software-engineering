@@ -780,7 +780,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 137 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-2-1-fig-0-2-1" class="book-figure" data-label="book-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 800"
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 140 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-2-1-fig-0-2-1" class="book-figure" data-label="book-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 800"
      role="group" aria-labelledby="fig-0-2-1-f-book-map-bmTitle fig-0-2-1-f-book-map-bmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-0-2-1-f-book-map-bmTitle">The book's argument — a question posed in the Preface, answered in the Conclusion, across seven Parts and an Interlude, with the two appendix Parts branching off</title>
@@ -4741,16 +4741,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="684" y="312" font-size="16" font-style="italic" fill="#78716c">each worker holds a</text>
   <text x="684" y="332" font-size="16" font-style="italic" fill="#78716c">smaller page range</text>
-</svg><figcaption data-short="Evolution of the execution unit"><span class="fig-label">Figure 3.5.1-1.</span> <em>Evolution of the execution unit.</em> (a) Whole-document execution kept the artifact's working state, and its media, resident in one long-running worker, which sourced GenAI requests from that memory. (b) Page chunking divided that state across smaller workers, lowering per-worker memory without changing how document media is represented.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-1">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-2-fig-3-5-1-2" class="book-figure" data-label="interlude-storage-vs-reasoning"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470"
+</svg><figcaption data-short="Evolution of the execution unit"><span class="fig-label">Figure 3.5.1-1.</span> <em>Evolution of the execution unit.</em> (a) Whole-document execution kept the artifact's working state, and its media, resident in one long-running worker, which sourced GenAI requests from that memory. (b) Page chunking divided that state across smaller workers, lowering per-worker memory without changing how document media is represented.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-1">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-2-fig-3-5-1-2" class="book-figure" data-label="interlude-storage-vs-reasoning"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 440"
      role="group" aria-labelledby="fig-3-5-1-2-f-interlude-storage-vs-reasoning-srTitle fig-3-5-1-2-f-interlude-storage-vs-reasoning-srDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-3-5-1-2-f-interlude-storage-vs-reasoning-srTitle">Skeletonization separates the storage representation from the reasoning representation</title>
-  <desc id="fig-3-5-1-2-f-interlude-storage-vs-reasoning-srDesc">Two panels. (a) Format-native representation: an OOXML package holds a small block of
-    structural XML and a large block of binary media; both are loaded into the in-memory document
-    representation and therefore into worker memory, so total media size scales worker residency. (b)
-    Skeletonized representation: streaming separation keeps the small structural skeleton and stable
-    references in the worker, while the large media block stays in external storage and streams to the GenAI
-    service only when an operation requires it. Total media size leaves the worker-memory scaling relation.</desc>
+  <title id="fig-3-5-1-2-f-interlude-storage-vs-reasoning-srTitle">Chunked residency versus skeletonized residency</title>
+  <desc id="fig-3-5-1-2-f-interlude-storage-vs-reasoning-srDesc">Two panels. (a) Chunked, format-native representation: an OOXML document is split into
+    page chunks, and each of several workers holds its chunk's structural state together with the media for
+    that chunk, so media remains part of the worker's resident representation. (b) Skeletonized
+    representation: the OOXML document becomes a structural skeleton plus media references held by the
+    worker, while media stays in an external store and individual media objects stream to the GenAI service
+    on demand. Total media size no longer determines persistent worker memory.</desc>
 
   <defs>
     <marker id="fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -4761,126 +4761,77 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="920" height="470" fill="#fdfcf9"/>
-  <line x1="460" y1="40" x2="460" y2="450" stroke="#e7e2d6" stroke-width="1.5"/>
+  <rect x="0" y="0" width="920" height="440" fill="#fdfcf9"/>
+  <line x1="460" y1="42" x2="460" y2="420" stroke="#e7e2d6" stroke-width="1.5"/>
 
-  <!-- Panel (a) — format-native -->
-  <text x="30" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Format-native representation</text>
+  <!-- legend -->
+  <rect x="30" y="404" width="16" height="16" rx="3" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.4"/>
+  <text x="52" y="417" font-size="14" fill="#44403c">structure</text>
+  <rect x="150" y="404" width="16" height="16" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.4"/>
+  <text x="172" y="417" font-size="14" fill="#44403c">media</text>
 
-  <rect x="60" y="46" width="340" height="96" rx="8" fill="#fbf9f4" stroke="#1c1917" stroke-width="2.2"/>
-  <text x="230" y="68" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">OOXML package</text>
-  <rect x="76" y="80" width="96" height="46" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-  <text x="124" y="101" text-anchor="middle" font-size="14.5" fill="#1c1917">structural</text>
-  <text x="124" y="117" text-anchor="middle" font-size="14.5" fill="#1c1917">XML</text>
-  <rect x="188" y="80" width="196" height="46" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
-  <text x="286" y="107" text-anchor="middle" font-size="14.5" fill="#1c1917">binary media (large)</text>
+  <!-- ===== Panel (a): chunked, format-native ===== -->
+  <text x="30" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Chunked, format-native</text>
 
-  <line x1="230" y1="142" x2="230" y2="176" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah)"/>
-  <rect x="90" y="176" width="280" height="44" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
-  <text x="230" y="203" text-anchor="middle" font-size="16.5" fill="#1c1917">in-memory document representation</text>
+  <rect x="150" y="46" width="170" height="42" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="235" y="72" text-anchor="middle" font-size="16" fill="#1c1917">OOXML document</text>
+  <line x1="235" y1="88" x2="235" y2="104" stroke="#1c1917" stroke-width="2"/>
+  <line x1="105" y1="104" x2="365" y2="104" stroke="#1c1917" stroke-width="1.8"/>
 
-  <line x1="230" y1="220" x2="230" y2="254" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah)"/>
-  <rect x="90" y="254" width="280" height="150" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="230" y="278" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">worker residency</text>
-  <rect x="112" y="292" width="100" height="96" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="162" y="344" text-anchor="middle" font-size="14" fill="#1c1917">structure</text>
-  <rect x="228" y="292" width="120" height="96" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/>
-  <text x="288" y="344" text-anchor="middle" font-size="14" fill="#1c1917">media</text>
-  <text x="230" y="424" text-anchor="middle" font-size="15" font-style="italic" fill="#78716c">media size scales worker memory</text>
+  <!-- three page-chunk workers, each holding structure + media -->
+  <g font-size="13.5" fill="#1c1917" text-anchor="middle">
+    <rect x="44" y="116" width="122" height="72" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2"/>
+    <text x="105" y="134" font-size="12.5" fill="#57534e">worker · pages 1–10</text>
+    <rect x="54" y="142" width="46" height="36" rx="5" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.4"/><text x="77" y="164" font-size="12">struct</text>
+    <rect x="108" y="142" width="48" height="36" rx="5" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.4"/><text x="132" y="164" font-size="12">media</text>
 
-  <!-- Panel (b) — skeletonized -->
-  <text x="490" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) Skeletonized representation</text>
+    <rect x="174" y="116" width="122" height="72" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2"/>
+    <text x="235" y="134" font-size="12.5" fill="#57534e">worker · pages 11–20</text>
+    <rect x="184" y="142" width="46" height="36" rx="5" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.4"/><text x="207" y="164" font-size="12">struct</text>
+    <rect x="238" y="142" width="48" height="36" rx="5" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.4"/><text x="262" y="164" font-size="12">media</text>
 
-  <rect x="520" y="46" width="340" height="60" rx="8" fill="#fbf9f4" stroke="#1c1917" stroke-width="2.2"/>
-  <text x="690" y="72" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">OOXML package</text>
-  <text x="690" y="93" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">streaming separation</text>
+    <rect x="304" y="116" width="122" height="72" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2"/>
+    <text x="365" y="134" font-size="12.5" fill="#57534e">worker · pages 21–30</text>
+    <rect x="314" y="142" width="46" height="36" rx="5" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.4"/><text x="337" y="164" font-size="12">struct</text>
+    <rect x="368" y="142" width="48" height="36" rx="5" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.4"/><text x="392" y="164" font-size="12">media</text>
+  </g>
+  <line x1="105" y1="104" x2="105" y2="116" stroke="#1c1917" stroke-width="1.8" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah)"/>
+  <line x1="235" y1="104" x2="235" y2="116" stroke="#1c1917" stroke-width="1.8" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah)"/>
+  <line x1="365" y1="104" x2="365" y2="116" stroke="#1c1917" stroke-width="1.8" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah)"/>
+  <text x="235" y="214" text-anchor="middle" font-size="14.5" font-style="italic" fill="#9a3f12">each chunk still carries its media in the worker</text>
 
-  <line x1="620" y1="106" x2="620" y2="140" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah)"/>
-  <rect x="500" y="140" width="240" height="70" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="620" y="166" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">worker</text>
-  <text x="620" y="189" text-anchor="middle" font-size="14.5" fill="#44403c">structural skeleton + references</text>
+  <!-- ===== Panel (b): skeletonized ===== -->
+  <text x="490" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) Skeletonized</text>
 
-  <!-- media stays external -->
-  <line x1="760" y1="76" x2="800" y2="76" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
-  <rect x="800" y="140" width="96" height="70" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="848" y="170" text-anchor="middle" font-size="14.5" fill="#1c1917">external</text>
-  <text x="848" y="188" text-anchor="middle" font-size="14.5" fill="#1c1917">media</text>
-  <!-- reference from worker to external media (orthogonal elbow) -->
-  <polyline points="740,175 800,175" fill="none" stroke="#78716c" stroke-width="1.8" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
-  <text x="770" y="168" text-anchor="middle" font-size="13" fill="#78716c">ref</text>
+  <rect x="596" y="46" width="170" height="42" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="681" y="72" text-anchor="middle" font-size="16" fill="#1c1917">OOXML document</text>
+  <line x1="681" y1="88" x2="681" y2="116" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah)"/>
 
-  <line x1="848" y1="210" x2="848" y2="300" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
-  <text x="864" y="258" font-size="13.5" font-style="italic" fill="#78716c">stream</text>
-  <text x="864" y="274" font-size="13.5" font-style="italic" fill="#78716c">on demand</text>
-  <rect x="520" y="300" width="200" height="52" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="620" y="331" text-anchor="middle" font-size="16.5" fill="#1c1917">GenAI service</text>
-  <polyline points="800,326 720,326" fill="none" stroke="#78716c" stroke-width="1.8" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
+  <rect x="560" y="116" width="242" height="66" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2"/>
+  <text x="681" y="134" font-size="12.5" fill="#57534e" text-anchor="middle">worker</text>
+  <rect x="574" y="142" width="110" height="30" rx="5" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.4"/><text x="629" y="162" font-size="12.5" fill="#1c1917" text-anchor="middle">structural skeleton</text>
+  <rect x="692" y="142" width="96" height="30" rx="5" fill="#f6f4ef" stroke="#57534e" stroke-width="1.4"/><text x="740" y="162" font-size="12.5" fill="#1c1917" text-anchor="middle">media refs</text>
 
-  <text x="620" y="392" text-anchor="middle" font-size="15" font-style="italic" fill="#78716c">large media bypasses persistent worker residency</text>
-</svg><figcaption data-short="Storage representation versus reasoning representation"><span class="fig-label">Figure 3.5.1-2.</span> <em>Storage representation versus reasoning representation.</em> (a) The format-native representation loads both the small structural XML and the large binary media into the worker, so total media size scales worker memory. (b) Skeletonization keeps only the structural skeleton and references in the worker; the media stays in external storage and streams to the GenAI service on demand, leaving worker memory independent of total media size.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-2">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-3-fig-3-5-1-3" class="book-figure" data-label="interlude-bound-vs-accommodation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400"
-     role="group" aria-labelledby="fig-3-5-1-3-f-interlude-bound-vs-accommodation-bvTitle fig-3-5-1-3-f-interlude-bound-vs-accommodation-bvDesc"
+  <!-- external media store -->
+  <rect x="820" y="116" width="76" height="66" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="858" y="146" text-anchor="middle" font-size="12.5" fill="#1c1917">external</text>
+  <text x="858" y="163" text-anchor="middle" font-size="12.5" fill="#1c1917">media</text>
+  <polyline points="788,157 820,157" fill="none" stroke="#78716c" stroke-width="1.6" stroke-dasharray="2 3" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
+
+  <!-- stream on demand to GenAI -->
+  <line x1="858" y1="182" x2="858" y2="250" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
+  <text x="872" y="214" font-size="13" font-style="italic" fill="#78716c">stream</text>
+  <text x="872" y="230" font-size="13" font-style="italic" fill="#78716c">on demand</text>
+  <rect x="560" y="250" width="200" height="46" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="660" y="278" text-anchor="middle" font-size="16" fill="#1c1917">GenAI service</text>
+  <polyline points="820,273 760,273" fill="none" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#fig-3-5-1-2-f-interlude-storage-vs-reasoning-sr-ah-muted)"/>
+
+  <text x="681" y="330" text-anchor="middle" font-size="14.5" font-style="italic" fill="#78716c">media bypasses persistent worker residency</text>
+</svg><figcaption data-short="Chunked residency versus skeletonized residency"><span class="fig-label">Figure 3.5.1-2.</span> <em>Chunked residency versus skeletonized residency.</em> (a) Page chunking limits how much document state and associated media a worker holds at once, but media remains part of the worker's resident representation. (b) Skeletonization keeps only document structure and media references resident; individual media objects stream from external storage to the consumer on demand, so total media size no longer determines persistent worker memory.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-2">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-3-fig-3-5-1-3" class="book-figure" data-label="interlude-graph-two-partitions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400"
+     role="group" aria-labelledby="fig-3-5-1-3-f-interlude-graph-two-partitions-tpTitle fig-3-5-1-3-f-interlude-graph-two-partitions-tpDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-3-5-1-3-f-interlude-bound-vs-accommodation-bvTitle">Empirical accommodation expands a region; a structural bound closes a class</title>
-  <desc id="fig-3-5-1-3-f-interlude-bound-vs-accommodation-bvDesc">Two panels. (a) Empirical expansion: along an axis of input size and complexity, observed
-    successes grow from small decks to ordinary decks to hundreds of university documents, then the 250 MB
-    media-heavy deck falls outside the observed region and fails. (b) The modeled property: with total media
-    size on the x-axis and peak worker resident memory on the y-axis, the format-native architecture rises
-    with media size while the skeletonized design stays flat within the declared operating envelope. The
-    empirical curve widens the region known to work; the structural bound removes media size from the
-    scaling relation.</desc>
-
-  <defs>
-    <marker id="fig-3-5-1-3-f-interlude-bound-vs-accommodation-bv-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="920" height="400" fill="#fdfcf9"/>
-  <line x1="460" y1="40" x2="460" y2="380" stroke="#e7e2d6" stroke-width="1.5"/>
-
-  <!-- Panel (a) — empirical expansion -->
-  <text x="30" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Empirical accommodation</text>
-
-  <!-- axis -->
-  <line x1="56" y1="300" x2="410" y2="300" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-3-f-interlude-bound-vs-accommodation-bv-ah)"/>
-  <text x="233" y="330" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">input size / complexity →</text>
-
-  <!-- observed successes (green ticks) -->
-  <circle cx="96" cy="300" r="6" fill="#1f7a4d"/>
-  <text x="96" y="284" text-anchor="middle" font-size="14" fill="#1c1917">small</text>
-  <circle cx="176" cy="300" r="6" fill="#1f7a4d"/>
-  <text x="176" y="284" text-anchor="middle" font-size="14" fill="#1c1917">ordinary</text>
-  <circle cx="276" cy="300" r="6" fill="#1f7a4d"/>
-  <text x="276" y="278" text-anchor="middle" font-size="14" fill="#1c1917">hundreds of</text>
-  <text x="276" y="262" text-anchor="middle" font-size="14" fill="#1c1917">documents</text>
-  <!-- 250 MB failure (rust X) -->
-  <text x="386" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">✕</text>
-  <text x="386" y="278" text-anchor="middle" font-size="14" fill="#9a3f12">250 MB</text>
-  <!-- observed region bracket -->
-  <path d="M84,318 L84,330 L300,330 L300,318" fill="none" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="192" y="348" text-anchor="middle" font-size="14" font-style="italic" fill="#1f7a4d">region observed to work</text>
-
-  <!-- Panel (b) — modeled property -->
-  <text x="490" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) Modeled property</text>
-
-  <!-- axes -->
-  <line x1="536" y1="90" x2="536" y2="320" stroke="#1c1917" stroke-width="2"/>
-  <line x1="536" y1="320" x2="892" y2="320" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-3-f-interlude-bound-vs-accommodation-bv-ah)"/>
-  <text x="714" y="352" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">total media size →</text>
-  <text x="516" y="205" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e" transform="rotate(-90 516 205)">peak worker RSS</text>
-
-  <!-- format-native: rising line (plotted data) -->
-  <line x1="536" y1="300" x2="872" y2="110" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="770" y="128" font-size="14.5" fill="#9a3f12">format-native (rises)</text>
-
-  <!-- skeletonized: flat line within envelope -->
-  <line x1="536" y1="276" x2="872" y2="276" stroke="#2f5169" stroke-width="2.6" stroke-dasharray="7 4"/>
-  <text x="612" y="266" font-size="14.5" fill="#2f5169">skeletonized (flat, within envelope)</text>
-</svg><figcaption data-short="Empirical accommodation versus a structural bound"><span class="fig-label">Figure 3.5.1-3.</span> <em>Empirical accommodation versus a structural bound.</em> (a) Each observed success widens the region known to work, until the 250 MB deck falls outside it. (b) The residency model bounds the shape of the relation instead: peak worker memory rises with media size under the format-native design but stays flat, within the declared envelope, under skeletonization.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-3">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-4-fig-3-5-1-4" class="book-figure" data-label="interlude-graph-two-partitions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400"
-     role="group" aria-labelledby="fig-3-5-1-4-f-interlude-graph-two-partitions-tpTitle fig-3-5-1-4-f-interlude-graph-two-partitions-tpDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-3-5-1-4-f-interlude-graph-two-partitions-tpTitle">Page chunking and frontier execution partition the same remediation graph</title>
-  <desc id="fig-3-5-1-4-f-interlude-graph-two-partitions-tpDesc">The same seven-node remediation graph appears in both panels with identical node
+  <title id="fig-3-5-1-3-f-interlude-graph-two-partitions-tpTitle">Page chunking and frontier execution partition the same remediation graph</title>
+  <desc id="fig-3-5-1-3-f-interlude-graph-two-partitions-tpDesc">The same seven-node remediation graph appears in both panels with identical node
     positions: three local semantic-work nodes feed a document-level node, which feeds three downstream
     remediation nodes. (a) Spatial partition: nodes are grouped into vertical page groups by artifact
     location, cutting across the causal levels. (b) Causal partition: the same nodes are grouped into three
@@ -4888,7 +4839,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     the partition becomes an executor choice rather than part of the remediation model.</desc>
 
   <defs>
-    <marker id="fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <marker id="fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
   </defs>
@@ -4905,12 +4856,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="280" y="52" width="96" height="268" rx="10" fill="#faf1e6" opacity="0.7"/>
 
   <!-- edges -->
-  <line x1="92" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="210" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="328" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="210" y1="204" x2="92" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="210" y1="204" x2="210" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="210" y1="204" x2="328" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="92" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="210" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="328" y1="104" x2="210" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="210" y1="204" x2="92" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="210" y1="204" x2="210" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="210" y1="204" x2="328" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah)"/>
 
   <!-- nodes -->
   <g font-size="14" fill="#1c1917" text-anchor="middle">
@@ -4936,12 +4887,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="884" y="284" text-anchor="end" font-size="12.5" fill="#1f7a4d">frontier 3</text>
 
   <!-- edges -->
-  <line x1="562" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="680" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="798" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="680" y1="204" x2="562" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="680" y1="204" x2="680" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah)"/>
-  <line x1="680" y1="204" x2="798" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="562" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="680" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="798" y1="104" x2="680" y2="160" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="680" y1="204" x2="562" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="680" y1="204" x2="680" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah)"/>
+  <line x1="680" y1="204" x2="798" y2="260" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-3-f-interlude-graph-two-partitions-tp-ah)"/>
 
   <!-- nodes -->
   <g font-size="14" fill="#1c1917" text-anchor="middle">
@@ -4954,92 +4905,290 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <rect x="766" y="260" width="64" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="798" y="285">down</text>
   </g>
   <text x="680" y="344" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1f7a4d">groups by causal readiness</text>
-</svg><figcaption data-short="Two partitions of one remediation graph"><span class="fig-label">Figure 3.5.1-4.</span> <em>Two partitions of one remediation graph.</em> The same graph — local semantic work feeding a document-level structure feeding downstream remediation — grouped (a) spatially, by page or artifact location, and (b) causally, by topological frontier. Once media residency no longer forces page-sized workers, the partition becomes an executor's choice rather than part of the remediation model.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-4">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-5-fig-3-5-1-5" class="book-figure" data-label="interlude-analysis-before-build"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 380"
-     role="group" aria-labelledby="fig-3-5-1-5-f-interlude-analysis-before-build-abTitle fig-3-5-1-5-f-interlude-analysis-before-build-abDesc"
+</svg><figcaption data-short="Two partitions of one remediation graph"><span class="fig-label">Figure 3.5.1-3.</span> <em>Two partitions of one remediation graph.</em> The same graph — local semantic work feeding a document-level structure feeding downstream remediation — grouped (a) spatially, by page or artifact location, and (b) causally, by topological frontier. Once media residency no longer forces page-sized workers, the partition becomes an executor's choice rather than part of the remediation model.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-3">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-4-fig-3-5-1-4" class="book-figure" data-label="interlude-analysis-before-build"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 500"
+     role="group" aria-labelledby="fig-3-5-1-4-f-interlude-analysis-before-build-abTitle fig-3-5-1-4-f-interlude-analysis-before-build-abDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-3-5-1-5-f-interlude-analysis-before-build-abTitle">An explicit dependency model exposes optimization opportunities before implementation</title>
-  <desc id="fig-3-5-1-5-f-interlude-analysis-before-build-abDesc">Three panels. (a) Critical path: in a weighted dependency graph, the heaviest chain from
+  <title id="fig-3-5-1-4-f-interlude-analysis-before-build-abTitle">An explicit dependency model exposes optimization opportunities before implementation</title>
+  <desc id="fig-3-5-1-4-f-interlude-analysis-before-build-abDesc">Three panels. (a) Critical path: in a weighted dependency graph, the heaviest chain from
     top to bottom is the critical path and sets the latency floor. (b) Node split: decomposing the dominant
-    node into parallel children shortens the critical path, discoverable from the model before implementing
-    the split. (c) Dependency redesign: a serial information dependency among alt-text operations (a SCAN)
-    becomes a parallel MAP when each operation instead consumes a shared intermediate representation. Whether
-    a predicted gain survives implementation is then an empirical question.</desc>
+    node into parallel children shortens the critical path, discoverable from the model before the split is
+    built. (c) Dependency redesign: before, each alt-text operation depends on the description generated for
+    the preceding image, a serial chain of image then alt text then image then alt text; after, every image
+    instead consumes one shared precomputed page context, so the alt-text operations run independently.</desc>
 
   <defs>
-    <marker id="fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <marker id="fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
-    <marker id="fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah-crit" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <marker id="fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah-crit" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="920" height="380" fill="#fdfcf9"/>
-  <line x1="310" y1="44" x2="310" y2="352" stroke="#e7e2d6" stroke-width="1.5"/>
-  <line x1="620" y1="44" x2="620" y2="352" stroke="#e7e2d6" stroke-width="1.5"/>
+  <rect x="0" y="0" width="920" height="500" fill="#fdfcf9"/>
+  <line x1="460" y1="44" x2="460" y2="272" stroke="#e7e2d6" stroke-width="1.5"/>
+  <line x1="30" y1="292" x2="890" y2="292" stroke="#e7e2d6" stroke-width="1.5"/>
 
   <!-- ===== (a) critical path ===== -->
   <text x="20" y="30" font-size="17.5" font-weight="700" fill="#57534e">(a) Critical path</text>
-  <!-- critical edges (rust) A->B->D->F -->
-  <line x1="150" y1="84" x2="96" y2="128" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah-crit)"/>
-  <line x1="96" y1="176" x2="96" y2="212" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah-crit)"/>
-  <line x1="96" y1="260" x2="150" y2="300" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah-crit)"/>
-  <!-- side edges (muted) A->C->E->F -->
-  <line x1="150" y1="84" x2="214" y2="128" stroke="#57534e" stroke-width="1.6" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
-  <line x1="214" y1="176" x2="214" y2="212" stroke="#57534e" stroke-width="1.6" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
-  <line x1="214" y1="260" x2="150" y2="300" stroke="#57534e" stroke-width="1.6" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="180" y1="88" x2="120" y2="122" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <line x1="120" y1="170" x2="120" y2="200" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <line x1="120" y1="240" x2="180" y2="256" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <line x1="200" y1="88" x2="250" y2="122" stroke="#57534e" stroke-width="1.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="250" y1="162" x2="250" y2="200" stroke="#57534e" stroke-width="1.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="250" y1="240" x2="200" y2="256" stroke="#57534e" stroke-width="1.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
   <g font-size="14" fill="#1c1917" text-anchor="middle">
-    <rect x="126" y="60" width="48" height="30" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="150" y="80">A</text>
-    <rect x="60" y="128" width="72" height="48" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/><text x="96" y="157">B (heavy)</text>
-    <rect x="190" y="132" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="214" y="157">C</text>
-    <rect x="72" y="212" width="48" height="40" rx="6" fill="#fff" stroke="#9a3f12" stroke-width="1.8"/><text x="96" y="237">D</text>
-    <rect x="190" y="212" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="214" y="237">E</text>
-    <rect x="126" y="300" width="48" height="30" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="150" y="320">F</text>
+    <rect x="166" y="60" width="48" height="28" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="190" y="79">A</text>
+    <rect x="84" y="122" width="76" height="48" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/><text x="122" y="151">B (heavy)</text>
+    <rect x="226" y="124" width="48" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="250" y="148">C</text>
+    <rect x="96" y="200" width="48" height="40" rx="6" fill="#fff" stroke="#9a3f12" stroke-width="1.8"/><text x="120" y="225">D</text>
+    <rect x="226" y="200" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="250" y="225">E</text>
+    <rect x="166" y="256" width="48" height="28" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="190" y="275">F</text>
   </g>
 
   <!-- ===== (b) node split ===== -->
-  <text x="330" y="30" font-size="17.5" font-weight="700" fill="#57534e">(b) Node split</text>
-  <line x1="465" y1="84" x2="405" y2="128" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
-  <line x1="465" y1="84" x2="465" y2="128" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
-  <line x1="465" y1="84" x2="525" y2="128" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
-  <line x1="405" y1="160" x2="465" y2="212" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
-  <line x1="465" y1="160" x2="465" y2="212" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
-  <line x1="525" y1="160" x2="465" y2="212" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
-  <line x1="465" y1="252" x2="465" y2="300" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
+  <text x="480" y="30" font-size="17.5" font-weight="700" fill="#57534e">(b) Node split</text>
+  <line x1="650" y1="88" x2="590" y2="122" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="670" y1="88" x2="670" y2="122" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="690" y1="88" x2="750" y2="122" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="590" y1="154" x2="660" y2="200" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="670" y1="154" x2="670" y2="200" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="750" y1="154" x2="680" y2="200" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="670" y1="240" x2="670" y2="256" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
   <g font-size="14" fill="#1c1917" text-anchor="middle">
-    <rect x="441" y="60" width="48" height="30" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="465" y="80">A</text>
-    <rect x="378" y="128" width="54" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="405" y="149">B1</text>
-    <rect x="438" y="128" width="54" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="465" y="149">B2</text>
-    <rect x="498" y="128" width="54" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="525" y="149">B3</text>
-    <rect x="441" y="212" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="465" y="237">D</text>
-    <rect x="441" y="300" width="48" height="30" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="465" y="320">F</text>
+    <rect x="646" y="60" width="48" height="28" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="670" y="79">A</text>
+    <rect x="562" y="122" width="56" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="590" y="143">B1</text>
+    <rect x="642" y="122" width="56" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="670" y="143">B2</text>
+    <rect x="722" y="122" width="56" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="750" y="143">B3</text>
+    <rect x="646" y="200" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="670" y="225">D</text>
+    <rect x="646" y="256" width="48" height="28" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="670" y="275">F</text>
   </g>
-  <text x="465" y="352" text-anchor="middle" font-size="13.5" font-style="italic" fill="#1f7a4d">parallel children shorten the path</text>
 
-  <!-- ===== (c) dependency redesign ===== -->
-  <text x="640" y="30" font-size="17.5" font-weight="700" fill="#57534e">(c) Dependency redesign</text>
-  <!-- serial SCAN -->
-  <text x="640" y="78" font-size="13.5" fill="#9a3f12">serial SCAN</text>
-  <g font-size="13" fill="#1c1917" text-anchor="middle">
-    <rect x="640" y="88" width="52" height="32" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="666" y="109">alt 1</text>
-    <rect x="726" y="88" width="52" height="32" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="752" y="109">alt 2</text>
-    <rect x="812" y="88" width="52" height="32" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="838" y="109">alt 3</text>
+  <!-- ===== (c) dependency redesign (full width) ===== -->
+  <text x="30" y="316" font-size="17.5" font-weight="700" fill="#57534e">(c) Dependency redesign</text>
+
+  <!-- before: serial context propagation -->
+  <text x="40" y="344" font-size="14" fill="#9a3f12">Before: serial context propagation</text>
+  <g font-size="12.5" fill="#1c1917" text-anchor="middle">
+    <rect x="30" y="356" width="54" height="30" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/><text x="57" y="376">image 1</text>
+    <rect x="120" y="356" width="54" height="30" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/><text x="147" y="376">alt 1</text>
+    <rect x="210" y="356" width="54" height="30" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/><text x="237" y="376">image 2</text>
+    <rect x="300" y="356" width="54" height="30" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/><text x="327" y="376">alt 2</text>
+    <rect x="390" y="356" width="54" height="30" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/><text x="417" y="376">image 3</text>
+    <rect x="480" y="356" width="54" height="30" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/><text x="507" y="376">alt 3</text>
   </g>
-  <line x1="692" y1="104" x2="726" y2="104" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah-crit)"/>
-  <line x1="778" y1="104" x2="812" y2="104" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah-crit)"/>
-  <!-- shared IR → parallel MAP -->
-  <text x="640" y="196" font-size="13.5" fill="#1f7a4d">parallel MAP</text>
-  <rect x="702" y="206" width="96" height="34" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="750" y="228" text-anchor="middle" font-size="13" fill="#1c1917">shared IR</text>
-  <line x1="726" y1="240" x2="678" y2="286" stroke="#57534e" stroke-width="1.7" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
-  <line x1="750" y1="240" x2="750" y2="286" stroke="#57534e" stroke-width="1.7" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
-  <line x1="774" y1="240" x2="822" y2="286" stroke="#57534e" stroke-width="1.7" marker-end="url(#fig-3-5-1-5-f-interlude-analysis-before-build-ab-ah)"/>
-  <g font-size="13" fill="#1c1917" text-anchor="middle">
-    <rect x="640" y="286" width="52" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="666" y="307">alt 1</text>
-    <rect x="724" y="286" width="52" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="750" y="307">alt 2</text>
-    <rect x="808" y="286" width="52" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="834" y="307">alt 3</text>
+  <line x1="84" y1="371" x2="120" y2="371" stroke="#9a3f12" stroke-width="1.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <line x1="174" y1="371" x2="210" y2="371" stroke="#9a3f12" stroke-width="1.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <line x1="264" y1="371" x2="300" y2="371" stroke="#9a3f12" stroke-width="1.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <line x1="354" y1="371" x2="390" y2="371" stroke="#9a3f12" stroke-width="1.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <line x1="444" y1="371" x2="480" y2="371" stroke="#9a3f12" stroke-width="1.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah-crit)"/>
+  <text x="40" y="410" font-size="13" font-style="italic" fill="#78716c">each operation depends on a previous generated result</text>
+
+  <!-- after: shared contextual representation -->
+  <text x="600" y="344" font-size="14" fill="#1f7a4d">After: shared contextual representation</text>
+  <rect x="640" y="356" width="200" height="32" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="740" y="377" text-anchor="middle" font-size="13" fill="#1c1917">rendered page context</text>
+  <line x1="700" y1="388" x2="660" y2="424" stroke="#57534e" stroke-width="1.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="740" y1="388" x2="740" y2="424" stroke="#57534e" stroke-width="1.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
+  <line x1="780" y1="388" x2="820" y2="424" stroke="#57534e" stroke-width="1.6" marker-end="url(#fig-3-5-1-4-f-interlude-analysis-before-build-ab-ah)"/>
+  <g font-size="12.5" fill="#1c1917" text-anchor="middle">
+    <rect x="632" y="424" width="54" height="30" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/><text x="659" y="444">alt 1</text>
+    <rect x="714" y="424" width="54" height="30" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/><text x="741" y="444">alt 2</text>
+    <rect x="796" y="424" width="54" height="30" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/><text x="823" y="444">alt 3</text>
   </g>
-</svg><figcaption data-short="Analysis before implementation"><span class="fig-label">Figure 3.5.1-5.</span> <em>Analysis before implementation.</em> (a) In a weighted dependency graph the heaviest chain is the critical path, which sets the latency floor and names an optimization target. (b) Decomposing the dominant node exposes parallel children and shortens the path, discoverable from the model before the split is built. (c) A serial information dependency (a SCAN) becomes a parallel MAP when each operation consumes a shared intermediate representation instead of its predecessor's output.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-5">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-4-1-1-fig-4-1-1" class="book-figure" data-label="precision-follows-knowledge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 300"
+  <text x="600" y="478" font-size="13" font-style="italic" fill="#78716c">all operations consume the same precomputed context</text>
+</svg><figcaption data-short="Analysis before implementation"><span class="fig-label">Figure 3.5.1-4.</span> <em>Analysis before implementation.</em> (a) In a weighted dependency graph the heaviest chain is the critical path, which sets the latency floor and names an optimization target. (b) Decomposing the dominant node exposes parallel children and shortens the path, discoverable from the model before the split is built. (c) A serial information dependency can be removed by changing the representation supplied to each operation: instead of sibling-to-sibling context propagation, each image consumes one shared precomputed page context, so the alt-text operations run independently.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-4">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-5-fig-3-5-1-5" class="book-figure" data-label="interlude-latency-floor"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 170"
+     role="group" aria-labelledby="fig-3-5-1-5-f-interlude-latency-floor-lfTitle fig-3-5-1-5-f-interlude-latency-floor-lfDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-3-5-1-5-f-interlude-latency-floor-lfTitle">The GenAI dependency chain and its irreducible latency floor</title>
+  <desc id="fig-3-5-1-5-f-interlude-latency-floor-lfDesc">Three dependent GenAI levels in series: a section summary at 1.777 seconds feeds a
+    document summary at 1.777 seconds, which feeds alt text at 4.1049 seconds. Because each level must
+    complete before the next begins, their times add to an irreducible floor of 7.6589 seconds. The vision
+    value is measured; the text-summary value is estimated.</desc>
+
+  <defs>
+    <marker id="fig-3-5-1-5-f-interlude-latency-floor-lf-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="170" fill="#fdfcf9"/>
+
+  <g text-anchor="middle">
+    <rect x="40" y="56" width="180" height="58" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="130" y="82" font-size="17" fill="#1c1917">section summary</text>
+    <text x="130" y="103" font-size="15" fill="#2f5169">1.777 s</text>
+
+    <rect x="300" y="56" width="190" height="58" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="395" y="82" font-size="17" fill="#1c1917">document summary</text>
+    <text x="395" y="103" font-size="15" fill="#2f5169">1.777 s</text>
+
+    <rect x="570" y="56" width="150" height="58" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="645" y="82" font-size="17" fill="#1c1917">alt text</text>
+    <text x="645" y="103" font-size="15" fill="#2f5169">4.1049 s (measured)</text>
+
+    <rect x="770" y="56" width="120" height="58" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.2"/>
+    <text x="830" y="80" font-size="15" fill="#57534e">floor</text>
+    <text x="830" y="102" font-size="17" font-weight="700" fill="#1c1917">7.6589 s</text>
+  </g>
+  <line x1="220" y1="85" x2="300" y2="85" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-3-5-1-5-f-interlude-latency-floor-lf-ah)"/>
+  <line x1="490" y1="85" x2="570" y2="85" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-3-5-1-5-f-interlude-latency-floor-lf-ah)"/>
+  <line x1="720" y1="85" x2="770" y2="85" stroke="#1c1917" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#fig-3-5-1-5-f-interlude-latency-floor-lf-ah)"/>
+  <text x="460" y="140" text-anchor="middle" font-size="14.5" font-style="italic" fill="#78716c">each level waits for the one before it, so the times add</text>
+</svg><figcaption data-short="The GenAI dependency chain and its latency floor"><span class="fig-label">Figure 3.5.1-5.</span> <em>The GenAI dependency chain and its latency floor.</em> A section summary feeds a document summary feeds alt text; because each level waits for the one before it, their per-call times add to an irreducible floor of 7.6589 s. The vision value is measured; the text-summary value is estimated.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-5">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-6-fig-3-5-1-6" class="book-figure" data-label="interlude-prediction-residual"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 340"
+     role="group" aria-labelledby="fig-3-5-1-6-f-interlude-prediction-residual-prTitle fig-3-5-1-6-f-interlude-prediction-residual-prDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-3-5-1-6-f-interlude-prediction-residual-prTitle">A residual turns prediction error into an engineering question</title>
+  <desc id="fig-3-5-1-6-f-interlude-prediction-residual-prDesc">Two panels. (a) A model predicts 11.5 seconds; the implemented system is observed at 17.8
+    seconds; the difference is a residual that points to one of three causes — a wrong parameter, a wrong
+    relation between quantities, or a mechanism missing from the model. (The numbers are illustrative.) (b)
+    The loop this drives: model, predict, implement, measure, then explain the residual and refine the
+    model. Modeling therefore contributes both before implementation and after it.</desc>
+
+  <defs>
+    <marker id="fig-3-5-1-6-f-interlude-prediction-residual-pr-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="340" fill="#fdfcf9"/>
+  <line x1="460" y1="40" x2="460" y2="320" stroke="#e7e2d6" stroke-width="1.5"/>
+
+  <!-- (a) residual -->
+  <text x="30" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Prediction versus observation</text>
+  <g text-anchor="middle">
+    <rect x="140" y="46" width="180" height="44" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="230" y="73" font-size="16" fill="#1c1917">model predicts 11.5 s</text>
+    <rect x="140" y="120" width="180" height="44" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
+    <text x="230" y="147" font-size="16" fill="#1c1917">observed 17.8 s</text>
+    <rect x="150" y="194" width="160" height="40" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+    <text x="230" y="219" font-size="16" fill="#1c1917">residual</text>
+  </g>
+  <line x1="230" y1="90" x2="230" y2="120" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-6-f-interlude-prediction-residual-pr-ah)"/>
+  <text x="248" y="110" font-size="13" fill="#78716c">compare</text>
+  <line x1="230" y1="164" x2="230" y2="194" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-6-f-interlude-prediction-residual-pr-ah)"/>
+  <!-- three causes -->
+  <line x1="230" y1="234" x2="230" y2="250" stroke="#1c1917" stroke-width="1.6"/>
+  <line x1="110" y1="250" x2="350" y2="250" stroke="#1c1917" stroke-width="1.6"/>
+  <line x1="110" y1="250" x2="110" y2="266" stroke="#1c1917" stroke-width="1.6" marker-end="url(#fig-3-5-1-6-f-interlude-prediction-residual-pr-ah)"/>
+  <line x1="230" y1="250" x2="230" y2="266" stroke="#1c1917" stroke-width="1.6" marker-end="url(#fig-3-5-1-6-f-interlude-prediction-residual-pr-ah)"/>
+  <line x1="350" y1="250" x2="350" y2="266" stroke="#1c1917" stroke-width="1.6" marker-end="url(#fig-3-5-1-6-f-interlude-prediction-residual-pr-ah)"/>
+  <g text-anchor="middle" font-size="13" fill="#1c1917">
+    <text x="110" y="284">wrong</text><text x="110" y="300">parameter</text>
+    <text x="230" y="284">wrong</text><text x="230" y="300">relation</text>
+    <text x="350" y="284">missing</text><text x="350" y="300">mechanism</text>
+  </g>
+
+  <!-- (b) modeling loop -->
+  <text x="490" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) The modeling loop</text>
+  <g text-anchor="middle" font-size="15" fill="#1c1917">
+    <rect x="536" y="70" width="130" height="42" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/><text x="601" y="96">model</text>
+    <rect x="722" y="70" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="787" y="96">predict</text>
+    <rect x="722" y="188" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="787" y="214">implement</text>
+    <rect x="536" y="188" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="601" y="214">measure</text>
+  </g>
+  <line x1="666" y1="91" x2="722" y2="91" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-6-f-interlude-prediction-residual-pr-ah)"/>
+  <line x1="787" y1="112" x2="787" y2="188" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-6-f-interlude-prediction-residual-pr-ah)"/>
+  <line x1="722" y1="209" x2="666" y2="209" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-6-f-interlude-prediction-residual-pr-ah)"/>
+  <line x1="601" y1="188" x2="601" y2="112" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-6-f-interlude-prediction-residual-pr-ah)"/>
+  <text x="601" y="156" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">explain residual</text>
+</svg><figcaption data-short="Using prediction error as evidence"><span class="fig-label">Figure 3.5.1-6.</span> <em>Using prediction error as evidence.</em> (a) The gap between a model's prediction and the observed measurement is a residual, pointing to a wrong parameter, a wrong relation, or a missing mechanism (the numbers are illustrative). (b) The loop it drives: model, predict, implement, measure, explain the residual, refine the model.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-6">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-7-fig-3-5-1-7" class="book-figure" data-label="interlude-model-family-composition"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 420"
+     role="group" aria-labelledby="fig-3-5-1-7-f-interlude-model-family-mfTitle fig-3-5-1-7-f-interlude-model-family-mfDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-3-5-1-7-f-interlude-model-family-mfTitle">The model family composes through shared identities, not in sequence</title>
+  <desc id="fig-3-5-1-7-f-interlude-model-family-mfDesc">The remediation graph and fact/IR catalogue supply static dependency structure and the
+    batch model supplies per-call cost; together they feed the critical-path model, which produces latency
+    predictions and, with them, a distribution choice. Separately, the media-residency model supplies an
+    independent worker-memory bound that makes the execution design affordable, and the image-fidelity model
+    supplies a visual-IR cost. The models stay distinct and join through shared identities.</desc>
+
+  <defs>
+    <marker id="fig-3-5-1-7-f-interlude-model-family-mf-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="420" fill="#fdfcf9"/>
+
+  <g text-anchor="middle" font-size="14.5" fill="#1c1917">
+    <!-- inputs (left) -->
+    <rect x="30" y="60" width="190" height="44" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="125" y="87">remediation graph</text>
+    <rect x="30" y="128" width="190" height="44" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="125" y="155">fact / IR catalogue</text>
+    <rect x="30" y="196" width="190" height="44" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="125" y="223">batch model</text>
+
+    <!-- critical-path model (center) -->
+    <rect x="330" y="128" width="180" height="52" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/><text x="420" y="159" font-weight="700">critical-path model</text>
+
+    <!-- outputs (right) -->
+    <rect x="620" y="90" width="180" height="46" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="710" y="118">latency predictions</text>
+    <rect x="620" y="168" width="180" height="46" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="710" y="196">distribution choice</text>
+
+    <!-- independent contributors (bottom) -->
+    <rect x="30" y="300" width="220" height="44" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/><text x="140" y="327">media-residency model</text>
+    <rect x="360" y="300" width="200" height="44" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="460" y="327">worker-memory bound</text>
+    <rect x="620" y="300" width="180" height="44" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/><text x="710" y="327">image-fidelity model</text>
+  </g>
+
+  <!-- inputs → critical-path -->
+  <line x1="220" y1="82" x2="330" y2="146" stroke="#57534e" stroke-width="1.7" marker-end="url(#fig-3-5-1-7-f-interlude-model-family-mf-ah)"/>
+  <line x1="220" y1="150" x2="330" y2="152" stroke="#57534e" stroke-width="1.7" marker-end="url(#fig-3-5-1-7-f-interlude-model-family-mf-ah)"/>
+  <line x1="220" y1="218" x2="330" y2="162" stroke="#57534e" stroke-width="1.7" marker-end="url(#fig-3-5-1-7-f-interlude-model-family-mf-ah)"/>
+  <!-- critical-path → latency → distribution -->
+  <line x1="510" y1="146" x2="620" y2="120" stroke="#57534e" stroke-width="1.7" marker-end="url(#fig-3-5-1-7-f-interlude-model-family-mf-ah)"/>
+  <line x1="710" y1="136" x2="710" y2="168" stroke="#57534e" stroke-width="1.7" marker-end="url(#fig-3-5-1-7-f-interlude-model-family-mf-ah)"/>
+  <!-- media-residency → worker-memory bound → (affordability of distribution) -->
+  <line x1="250" y1="322" x2="360" y2="322" stroke="#57534e" stroke-width="1.7" marker-end="url(#fig-3-5-1-7-f-interlude-model-family-mf-ah)"/>
+  <line x1="560" y1="318" x2="640" y2="214" stroke="#57534e" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#fig-3-5-1-7-f-interlude-model-family-mf-ah)"/>
+  <text x="600" y="270" font-size="12.5" font-style="italic" fill="#78716c">makes it affordable</text>
+  <!-- image-fidelity → visual-IR cost (its own note) -->
+  <text x="710" y="366" text-anchor="middle" font-size="12.5" font-style="italic" fill="#78716c">→ visual-IR cost</text>
+</svg><figcaption data-short="How the model family composes"><span class="fig-label">Figure 3.5.1-7.</span> <em>How the model family composes.</em> The remediation graph and fact/IR catalogue supply dependency structure and the batch model per-call cost; together they feed the critical-path model, which yields latency predictions and a distribution choice. The media-residency model contributes an independent worker-memory bound that makes the execution design affordable, and the image-fidelity model a visual-IR cost.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-7">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-8-fig-3-5-1-8" class="book-figure" data-label="interlude-modeling-cycle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 360"
+     role="group" aria-labelledby="fig-3-5-1-8-f-interlude-modeling-cycle-mcTitle fig-3-5-1-8-f-interlude-modeling-cycle-mcDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-3-5-1-8-f-interlude-modeling-cycle-mcTitle">Modeling as a loop, not a linear documentation step</title>
+  <desc id="fig-3-5-1-8-f-interlude-modeling-cycle-mcDesc">Two panels. (a) The process is not linear — design, then implement, then document with
+    models. (b) It can be a loop: a problem drives a model; analyzing the model yields a prediction and a
+    design; those drive implementation and then measurement; measurement refines the model, and the loop
+    continues while the questions justify the cost.</desc>
+
+  <defs>
+    <marker id="fig-3-5-1-8-f-interlude-modeling-cycle-mc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="360" fill="#fdfcf9"/>
+  <line x1="330" y1="40" x2="330" y2="330" stroke="#e7e2d6" stroke-width="1.5"/>
+
+  <!-- (a) linear (not this) -->
+  <text x="30" y="30" font-size="17.5" font-weight="700" fill="#57534e">(a) Not this</text>
+  <g text-anchor="middle" font-size="14.5" fill="#78716c">
+    <rect x="90" y="60" width="150" height="40" rx="8" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.8"/><text x="165" y="85">design</text>
+    <rect x="90" y="140" width="150" height="40" rx="8" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.8"/><text x="165" y="165">implement</text>
+    <rect x="70" y="220" width="190" height="46" rx="8" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.8"/><text x="165" y="242">document</text><text x="165" y="259">with models</text>
+  </g>
+  <line x1="165" y1="100" x2="165" y2="140" stroke="#a8a29e" stroke-width="1.8" marker-end="url(#fig-3-5-1-8-f-interlude-modeling-cycle-mc-ah)"/>
+  <line x1="165" y1="180" x2="165" y2="220" stroke="#a8a29e" stroke-width="1.8" marker-end="url(#fig-3-5-1-8-f-interlude-modeling-cycle-mc-ah)"/>
+
+  <!-- (b) the loop -->
+  <text x="360" y="30" font-size="17.5" font-weight="700" fill="#57534e">(b) A modeling loop</text>
+  <g text-anchor="middle" font-size="14.5" fill="#1c1917">
+    <rect x="400" y="56" width="120" height="40" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="460" y="81">problem</text>
+    <rect x="400" y="132" width="120" height="40" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/><text x="460" y="157">model</text>
+    <rect x="400" y="208" width="120" height="40" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="460" y="233">analyze</text>
+    <rect x="600" y="132" width="140" height="40" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="670" y="157">prediction / design</text>
+    <rect x="600" y="208" width="140" height="40" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="670" y="233">implementation</text>
+    <rect x="600" y="284" width="140" height="40" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="670" y="309">measurement</text>
+  </g>
+  <line x1="460" y1="96" x2="460" y2="132" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-8-f-interlude-modeling-cycle-mc-ah)"/>
+  <line x1="460" y1="172" x2="460" y2="208" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-8-f-interlude-modeling-cycle-mc-ah)"/>
+  <line x1="520" y1="228" x2="600" y2="228" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-8-f-interlude-modeling-cycle-mc-ah)"/>
+  <line x1="670" y1="208" x2="670" y2="172" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-8-f-interlude-modeling-cycle-mc-ah)"/>
+  <line x1="670" y1="248" x2="670" y2="284" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-3-5-1-8-f-interlude-modeling-cycle-mc-ah)"/>
+  <!-- measurement → refine model (back to model) -->
+  <polyline points="600,304 460,304 460,172" fill="none" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#fig-3-5-1-8-f-interlude-modeling-cycle-mc-ah)"/>
+  <text x="474" y="290" font-size="12.5" font-style="italic" fill="#9a3f12">refine model</text>
+</svg><figcaption data-short="Modeling as a loop"><span class="fig-label">Figure 3.5.1-8.</span> <em>Modeling as a loop.</em> (a) Not the linear design → implement → document-with-models. (b) A problem drives a model; analysis yields a prediction and a design; those drive implementation and measurement; measurement refines the model, and the loop continues while the questions justify the cost.</figcaption></figure><p class="gallery-source">From <a href="3.5-one-problem-many-models.html#fig-3-5-1-8">One Problem, Many Models</a></p></section><hr><section class="gallery-item"><figure id="fig-4-1-1-fig-4-1-1" class="book-figure" data-label="precision-follows-knowledge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 300"
      role="group" aria-labelledby="fig-4-1-1-f-precision-follows-knowledge-pfkTitle fig-4-1-1-f-precision-follows-knowledge-pfkDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-4-1-1-f-precision-follows-knowledge-pfkTitle">Precision follows knowledge: the continuum from an uncertain need to an authoritative mechanism</title>

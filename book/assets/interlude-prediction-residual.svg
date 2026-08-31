@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: interlude-prediction-residual). (a) A residual is the gap between a model's
+     prediction and the observed measurement; it points to a wrong parameter, a wrong relation, or a missing
+     mechanism. (b) The modeling loop that follows: model, predict, implement, measure, explain the residual,
+     and refine the model. viewBox 920 for the figure font band. Illustrative numbers. -->
+<!-- semantic-families: modeling, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 340" width="920" height="340"
+     role="group" aria-labelledby="prTitle prDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="prTitle">A residual turns prediction error into an engineering question</title>
+  <desc id="prDesc">Two panels. (a) A model predicts 11.5 seconds; the implemented system is observed at 17.8
+    seconds; the difference is a residual that points to one of three causes — a wrong parameter, a wrong
+    relation between quantities, or a mechanism missing from the model. (The numbers are illustrative.) (b)
+    The loop this drives: model, predict, implement, measure, then explain the residual and refine the
+    model. Modeling therefore contributes both before implementation and after it.</desc>
+
+  <defs>
+    <marker id="pr-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="340" fill="#fdfcf9"/>
+  <line x1="460" y1="40" x2="460" y2="320" stroke="#e7e2d6" stroke-width="1.5"/>
+
+  <!-- (a) residual -->
+  <text x="30" y="30" font-size="18.4" font-weight="700" fill="#57534e">(a) Prediction versus observation</text>
+  <g text-anchor="middle">
+    <rect x="140" y="46" width="180" height="44" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="230" y="73" font-size="16" fill="#1c1917">model predicts 11.5 s</text>
+    <rect x="140" y="120" width="180" height="44" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
+    <text x="230" y="147" font-size="16" fill="#1c1917">observed 17.8 s</text>
+    <rect x="150" y="194" width="160" height="40" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+    <text x="230" y="219" font-size="16" fill="#1c1917">residual</text>
+  </g>
+  <line x1="230" y1="90" x2="230" y2="120" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
+  <text x="248" y="110" font-size="13" fill="#78716c">compare</text>
+  <line x1="230" y1="164" x2="230" y2="194" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
+  <!-- three causes -->
+  <line x1="230" y1="234" x2="230" y2="250" stroke="#1c1917" stroke-width="1.6"/>
+  <line x1="110" y1="250" x2="350" y2="250" stroke="#1c1917" stroke-width="1.6"/>
+  <line x1="110" y1="250" x2="110" y2="266" stroke="#1c1917" stroke-width="1.6" marker-end="url(#pr-ah)"/>
+  <line x1="230" y1="250" x2="230" y2="266" stroke="#1c1917" stroke-width="1.6" marker-end="url(#pr-ah)"/>
+  <line x1="350" y1="250" x2="350" y2="266" stroke="#1c1917" stroke-width="1.6" marker-end="url(#pr-ah)"/>
+  <g text-anchor="middle" font-size="13" fill="#1c1917">
+    <text x="110" y="284">wrong</text><text x="110" y="300">parameter</text>
+    <text x="230" y="284">wrong</text><text x="230" y="300">relation</text>
+    <text x="350" y="284">missing</text><text x="350" y="300">mechanism</text>
+  </g>
+
+  <!-- (b) modeling loop -->
+  <text x="490" y="30" font-size="18.4" font-weight="700" fill="#57534e">(b) The modeling loop</text>
+  <g text-anchor="middle" font-size="15" fill="#1c1917">
+    <rect x="536" y="70" width="130" height="42" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/><text x="601" y="96">model</text>
+    <rect x="722" y="70" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="787" y="96">predict</text>
+    <rect x="722" y="188" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="787" y="214">implement</text>
+    <rect x="536" y="188" width="130" height="42" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="601" y="214">measure</text>
+  </g>
+  <line x1="666" y1="91" x2="722" y2="91" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
+  <line x1="787" y1="112" x2="787" y2="188" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
+  <line x1="722" y1="209" x2="666" y2="209" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
+  <line x1="601" y1="188" x2="601" y2="112" stroke="#1c1917" stroke-width="2" marker-end="url(#pr-ah)"/>
+  <text x="601" y="156" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">explain residual</text>
+</svg>

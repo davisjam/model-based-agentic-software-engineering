@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: interlude-modeling-cycle). (a) The process is not the linear design → implement
+     → document-with-models. (b) It can instead be a loop: a problem drives a model, whose analysis yields
+     predictions and a design, which drive implementation and measurement, which refine the model. viewBox 920
+     for the figure font band. -->
+<!-- semantic-families: modeling, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 360" width="920" height="360"
+     role="group" aria-labelledby="mcTitle mcDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="mcTitle">Modeling as a loop, not a linear documentation step</title>
+  <desc id="mcDesc">Two panels. (a) The process is not linear — design, then implement, then document with
+    models. (b) It can be a loop: a problem drives a model; analyzing the model yields a prediction and a
+    design; those drive implementation and then measurement; measurement refines the model, and the loop
+    continues while the questions justify the cost.</desc>
+
+  <defs>
+    <marker id="mc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="360" fill="#fdfcf9"/>
+  <line x1="330" y1="40" x2="330" y2="330" stroke="#e7e2d6" stroke-width="1.5"/>
+
+  <!-- (a) linear (not this) -->
+  <text x="30" y="30" font-size="17.5" font-weight="700" fill="#57534e">(a) Not this</text>
+  <g text-anchor="middle" font-size="14.5" fill="#78716c">
+    <rect x="90" y="60" width="150" height="40" rx="8" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.8"/><text x="165" y="85">design</text>
+    <rect x="90" y="140" width="150" height="40" rx="8" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.8"/><text x="165" y="165">implement</text>
+    <rect x="70" y="220" width="190" height="46" rx="8" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.8"/><text x="165" y="242">document</text><text x="165" y="259">with models</text>
+  </g>
+  <line x1="165" y1="100" x2="165" y2="140" stroke="#a8a29e" stroke-width="1.8" marker-end="url(#mc-ah)"/>
+  <line x1="165" y1="180" x2="165" y2="220" stroke="#a8a29e" stroke-width="1.8" marker-end="url(#mc-ah)"/>
+
+  <!-- (b) the loop -->
+  <text x="360" y="30" font-size="17.5" font-weight="700" fill="#57534e">(b) A modeling loop</text>
+  <g text-anchor="middle" font-size="14.5" fill="#1c1917">
+    <rect x="400" y="56" width="120" height="40" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="460" y="81">problem</text>
+    <rect x="400" y="132" width="120" height="40" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/><text x="460" y="157">model</text>
+    <rect x="400" y="208" width="120" height="40" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="460" y="233">analyze</text>
+    <rect x="600" y="132" width="140" height="40" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="670" y="157">prediction / design</text>
+    <rect x="600" y="208" width="140" height="40" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="670" y="233">implementation</text>
+    <rect x="600" y="284" width="140" height="40" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="670" y="309">measurement</text>
+  </g>
+  <line x1="460" y1="96" x2="460" y2="132" stroke="#57534e" stroke-width="1.8" marker-end="url(#mc-ah)"/>
+  <line x1="460" y1="172" x2="460" y2="208" stroke="#57534e" stroke-width="1.8" marker-end="url(#mc-ah)"/>
+  <line x1="520" y1="228" x2="600" y2="228" stroke="#57534e" stroke-width="1.8" marker-end="url(#mc-ah)"/>
+  <line x1="670" y1="208" x2="670" y2="172" stroke="#57534e" stroke-width="1.8" marker-end="url(#mc-ah)"/>
+  <line x1="670" y1="248" x2="670" y2="284" stroke="#57534e" stroke-width="1.8" marker-end="url(#mc-ah)"/>
+  <!-- measurement → refine model (back to model) -->
+  <polyline points="600,304 460,304 460,172" fill="none" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#mc-ah)"/>
+  <text x="474" y="290" font-size="12.5" font-style="italic" fill="#9a3f12">refine model</text>
+</svg>
