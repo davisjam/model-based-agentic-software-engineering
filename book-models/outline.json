@@ -63,7 +63,7 @@
           "heading_text": "Where the theory came from",
           "topic_sentence": "This book began with one hard engineering problem that emerged over months of building a real production system.",
           "id_source": "derived",
-          "block_index": 20,
+          "block_index": 21,
           "points": []
         },
         {
@@ -72,7 +72,7 @@
           "heading_text": "The new bottleneck",
           "topic_sentence": "Agents can produce changes much faster than the surrounding environment can understand or govern them.",
           "id_source": "derived",
-          "block_index": 23,
+          "block_index": 24,
           "points": []
         },
         {
@@ -81,7 +81,7 @@
           "heading_text": "The originating system",
           "topic_sentence": "This book began with DocAble, a production service for remediating inaccessible documents.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 31,
           "points": []
         },
         {
@@ -90,7 +90,7 @@
           "heading_text": "Evidence and scope",
           "topic_sentence": "MAGE draws on two kinds of evidence.",
           "id_source": "derived",
-          "block_index": 36,
+          "block_index": 37,
           "points": []
         },
         {
@@ -99,7 +99,7 @@
           "heading_text": "What the method turned out to be",
           "topic_sentence": "Two principles organize MAGE:",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 39,
           "points": []
         },
         {
@@ -108,7 +108,7 @@
           "heading_text": "Who this book is for",
           "topic_sentence": "This book is for software engineers who suspect the ground has moved and want to know where to stand.",
           "id_source": "derived",
-          "block_index": 45,
+          "block_index": 46,
           "points": []
         }
       ],
@@ -470,17 +470,17 @@
           "heading_text": "Authority Outside the Producing Run",
           "topic_sentence": "Software engineering offers another move.",
           "id_source": "derived",
-          "block_index": 50,
+          "block_index": 51,
           "points": [
             {
               "slug": "software-engineering-can-make-an-obligation-explicit-and-enforce-it-outside-the-run",
               "text": "For selected obligations the environment can make the required property explicit and enforce it independently of the producing run — represent an architectural restriction and reject changes that violate it — so the judgment that established the obligation is reused across later implementation.",
-              "block_index": 51
+              "block_index": 52
             },
             {
               "slug": "agentic-work-provides-identifiable-interfaces-where-authority-can-act",
               "text": "Consequential work reaches the system through identifiable interfaces — inputs, tool calls, edits, outputs, lifecycle transitions — where a sandbox, hook, or test can act without a rich model, and explicit representations extend the semantic reach of those same control points.",
-              "block_index": 53
+              "block_index": 54
             }
           ]
         }
@@ -4501,7 +4501,7 @@
           "heading_text": "Engineering Routing",
           "topic_sentence": "This parameterization suggests a further implication for automated software engineering.",
           "id_source": "derived",
-          "block_index": 22,
+          "block_index": 23,
           "points": []
         },
         {
@@ -4510,7 +4510,7 @@
           "heading_text": "Representation Selection, Induction, and Innovation",
           "topic_sentence": "Part II offered six useful classes of engineering model, not a proof that those classes are necessary, sufficient, or minimal.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 35,
           "points": []
         },
         {
@@ -4519,7 +4519,7 @@
           "heading_text": "Experimental Designs",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 42,
+          "block_index": 43,
           "points": []
         },
         {
@@ -4528,7 +4528,7 @@
           "heading_text": "Separating Modeling from Alignment",
           "topic_sentence": "One particularly clean factorial design can separate Modeling from Alignment.",
           "id_source": "derived",
-          "block_index": 43,
+          "block_index": 44,
           "points": []
         },
         {
@@ -4537,7 +4537,7 @@
           "heading_text": "Multi-project longitudinal design",
           "topic_sentence": "This design should vary or observe engineered-environment quality while tracking durable throughput, defect escape, and human-attention burden over weeks or months.",
           "id_source": "derived",
-          "block_index": 45,
+          "block_index": 46,
           "points": []
         },
         {
@@ -4546,7 +4546,7 @@
           "heading_text": "Subsystem-level design",
           "topic_sentence": "It should compare engineering surfaces that differ in representation and governance while holding as much surrounding repository context constant as possible.",
           "id_source": "derived",
-          "block_index": 48,
+          "block_index": 49,
           "points": []
         },
         {
@@ -4555,7 +4555,7 @@
           "heading_text": "Event-centered longitudinal design",
           "topic_sentence": "It should follow one failure class through its whole life: first occurrence, repeat exposure, structural recognition, local repair, any durable conversion, propagation to later work, later recurrence, and eventual maintenance or retirement of the resulting asset.",
           "id_source": "derived",
-          "block_index": 50,
+          "block_index": 51,
           "points": []
         },
         {
@@ -4564,7 +4564,7 @@
           "heading_text": "What the designs still need",
           "topic_sentence": "All three designs require credible measures of durable throughput, human-attention burden, environment quality, and engineering-capital return.",
           "id_source": "derived",
-          "block_index": 52,
+          "block_index": 53,
           "points": []
         }
       ],
@@ -4789,7 +4789,7 @@
           "heading_text": "Sign-Off Moves Toward Models and Evidence",
           "topic_sentence": "Imagine an agentic system in which the fleet constructs most of the implementation, maintains selected engineering representations, runs validators, and assembles evidence for the claims the design is supposed to satisfy.",
           "id_source": "derived",
-          "block_index": 14,
+          "block_index": 21,
           "points": []
         },
         {
@@ -4798,7 +4798,7 @@
           "heading_text": "From Full-Stack to Full-System Engineering",
           "topic_sentence": "Software has used full-stack engineer to describe someone able to work across multiple implementation layers: interface, application logic, data, infrastructure, and deployment.",
           "id_source": "derived",
-          "block_index": 24,
+          "block_index": 31,
           "points": []
         },
         {
@@ -4807,7 +4807,7 @@
           "heading_text": "What Should We Teach?",
           "topic_sentence": "If engineers increasingly review systems through representations and evidence rather than reconstructing every property from implementation, education should shift accordingly.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 37,
           "points": []
         },
         {
@@ -4816,7 +4816,7 @@
           "heading_text": "The curriculum remains recognizable",
           "topic_sentence": "Most of the foundations remain.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 39,
           "points": []
         },
         {
@@ -4825,7 +4825,7 @@
           "heading_text": "Shift the emphasis",
           "topic_sentence": "Less educational effort may need to go toward producing routine implementation by hand, and more toward selecting abstractions, specifying properties, measuring systems, validating claims, reasoning about quality attributes, and governing autonomous work.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 42,
           "points": []
         },
         {
@@ -4834,7 +4834,7 @@
           "heading_text": "Change what students demonstrate",
           "topic_sentence": "A capstone should therefore demonstrate more than a working artifact.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 45,
           "points": []
         },
         {
@@ -4843,7 +4843,7 @@
           "heading_text": "The Entry-Rung Problem",
           "topic_sentence": "A harder workforce implication is best stated as a risk rather than a forecast.",
           "id_source": "derived",
-          "block_index": 43,
+          "block_index": 50,
           "points": []
         }
       ],
