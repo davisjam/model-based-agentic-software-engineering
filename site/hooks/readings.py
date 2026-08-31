@@ -38,6 +38,15 @@ _GUIDE_MARKER = "<!-- READING-GUIDE -->"
 #: A lecture module page: course/lectures/act-<name>/NN-<topic>.md (the numbered topic files).
 _MODULE_RE = re.compile(r"^lectures/act-[^/]+/\d\d-[^/]+\.md$")
 
+#: Reduce a markdown link to its text. The Reading Guide aggregates module readings onto the Calendar page;
+#: a module-relative link (e.g. a hosted PDF under `materials/`) would not resolve from there, so the
+#: summary table shows plain text and readers follow the live links on the module page itself.
+_MD_LINK_RE = re.compile(r"\[([^\]]+)\]\([^)]+\)")
+
+
+def _strip_links(s: str) -> str:
+    return _MD_LINK_RE.sub(r"\1", s)
+
 # ── MAGE book references (SSOT) ──────────────────────────────────────────────────────────────────────
 # A reading cites a MAGE book section as `{mage:7.1}` rather than a hand-typed link. Its title and URL are
 # RESOLVED at build time from the book itself — the chapter's `<!-- chapter-title: -->` marker and its file
@@ -152,8 +161,8 @@ def _reading_guide(files) -> str:
         core_items = list(readings.get("before") or [])
         for g in readings.get("groups") or []:
             core_items += g.get("items") or []
-        core = " · ".join(_resolve_mage(r) for r in core_items) or "—"
-        add = " · ".join(_resolve_mage(r) for r in readings.get("optional") or []) or "—"
+        core = " · ".join(_strip_links(_resolve_mage(r)) for r in core_items) or "—"
+        add = " · ".join(_strip_links(_resolve_mage(r)) for r in readings.get("optional") or []) or "—"
         rows.append(f"| {title} | {core} | {add} |")
     if not rows:
         return "_No readings assigned yet._"
