@@ -48,6 +48,29 @@ _REPO_NAME = _REPO_META["repo"]
 _REPO_URL = f"https://github.com/{_REPO_OWNER}/{_REPO_NAME}"          # <site>/<owner>/<repo>
 _REPO_ACTIONS_URL = _REPO_META.get("actions_url", f"{_REPO_URL}/actions")
 _SITE_URL = _REPO_META["site_url"]                                    # the author's Pages root
+
+# Industrial-cases roster prose — the SSOT is book-models/industry_cases_declared.json (the same model the
+# industry-case-studies page and the §5.5 chapter read). The landing's "Independent accounts from …" list
+# DERIVES the organization names + order from that roster (declared §1.3 order), so adding or dropping a
+# case updates the landing prose automatically instead of drifting a hand-typed six-name literal.
+_INDUSTRY_ROSTER = json.loads(
+    open(os.path.join(ROOT, "book-models", "industry_cases_declared.json"), encoding="utf-8").read()
+)["roster"]["sites"]
+
+
+def _oxford(items: "list[str]") -> str:
+    """Oxford-comma join: [] -> '', [a] -> 'a', [a,b] -> 'a and b', [a,b,c] -> 'a, b, and c'."""
+    items = list(items)
+    if not items:
+        return ""
+    if len(items) == 1:
+        return items[0]
+    if len(items) == 2:
+        return f"{items[0]} and {items[1]}"
+    return ", ".join(items[:-1]) + ", and " + items[-1]
+
+
+_INDUSTRY_ORGS_PROSE = _oxford([s["organization"] for s in _INDUSTRY_ROSTER])  # e.g. "Cloudflare, …, and GitLab"
 # The MAGE blog post (Medium) — the short-form entry point into the method; linked from the landing nav
 # (top nav-card grid + the closing ways-in) and, in the book web build, from every book page's top chrome.
 _BLOG_URL = "https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45"
@@ -2894,7 +2917,7 @@ def _v3_evidence() -> str:
                    "The originating production system. Its development provides the longitudinal record from which the early MAGE concepts emerged.",
                    [("Explore the originating case", "book/5.1-the-problem-and-the-bar.html")]) + "\n"
         + _v3_card("Industrial cases — breadth", "",
-                   "Independent accounts from Cloudflare, Docker, Shopify, Spotify, Siemens, and Zenseact, reconstructed through the MAGE vocabulary to examine recurring moves, variation, and limits.",
+                   f"Independent accounts from {_INDUSTRY_ORGS_PROSE}, reconstructed through the MAGE vocabulary to examine recurring moves, variation, and limits.",
                    [("Explore the industrial cases", "industry-case-studies.html")]) + "\n"
         '  </div>\n</section>')
 
@@ -3595,7 +3618,7 @@ LANDING_INTRO = """  <!-- ===================== HERO + BIG IDEA 1 ==============
       and methodology</span> for engineering the governed environments in which autonomous intelligence can
       safely create software. Its six big ideas, below, trace the argument from problem to research frontier.</p>
       <p class="m-lead">Developed through one deeply studied production system and interpreted against
-      independent industrial practice from Cloudflare, Docker, Shopify, Spotify, Siemens, and Zenseact.</p>
+      independent industrial practice from Cloudflare, Spotify, Shopify, Docker, Siemens, Zenseact, Uber, and GitLab.</p>
       <p class="m-lead"><a class="hero-cta" href="book/index.html"><strong>The book provides the full
       treatment.</strong></a> &nbsp;·&nbsp; <a class="hero-cta" href="quick-start.html"><strong>QuickStart:
       install the Skills for Claude in your own repo.</strong></a></p>
