@@ -33,6 +33,11 @@
 .md-nav__link--active,
 .md-nav__link:focus,
 .md-nav__link:hover { color: var(--mage-accent); }
+
+/* A section with no index page (e.g. Assessment) renders its title as a non-link <label>, which Material
+   greys (--md-default-fg-color--light). Match it to the index-backed section headers so it reads the same
+   black weight as Reference Course / Lectures / Semester Project. */
+.md-nav__item--section > .md-nav__link[for] { color: var(--md-typeset-a-color); }
 .md-typeset a:hover { color: var(--purdue-gold-deep); }
 
 /* The section-index / tabs active marker in gold. */
