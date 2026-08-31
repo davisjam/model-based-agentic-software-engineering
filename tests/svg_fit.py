@@ -290,19 +290,67 @@ def check_svg_text_fit():
     return PASS, issues  # AUDIT-ONLY: never FAIL
 
 
-# ---- page-fit sensor: a figure taller than the page (AUDIT-ONLY) -------------------------------------
+# ---- page-fit sensor: a figure + its caption taller than the page (BLOCKING) -------------------------
 # The print build sizes each `<!-- figure: -->` image to IMAGE_WIDTH_FRAC of the text measure and applies
-# no height cap, so a pathologically tall viewBox projects past the page bottom and clips (the folio
-# collision the messy-timeline figure hit at 11.6in). This reads each asset's viewBox aspect and flags any
-# whose projected print height exceeds the text page minus a caption budget. Deterministic — a pure function
-# of the viewBox — unlike the glyph-width heuristics above; detect-and-fail beats silent auto-scale for a
-# print book (auto-scaling to fit shrinks the text quietly instead). Promoted to BLOCKING (the tree is
-# drained to 0), so a newly-added too-tall figure fails the gate rather than only reporting.
+# no height cap, so a pathologically tall viewBox — OR a moderately tall one under a LONG caption — projects
+# past the page bottom and clips (the folio collision the messy-timeline figure hit at 11.6in; the
+# economic-synthesis-frontier caption overrun the author caught on p254). This reads each asset's viewBox
+# aspect AND the real caption text from its `<!-- figure: -->` marker, and fails any figure whose projected
+# image height PLUS its estimated caption height overflows the text page. Deterministic — a pure function of
+# the viewBox and the caption string — unlike the glyph-width heuristics above; detect-and-fail beats silent
+# auto-scale for a print book (auto-scaling to fit shrinks the text quietly instead). BLOCKING (the tree is
+# drained to 0), so a newly-added too-tall figure — or an over-long caption under a tall figure — fails the
+# gate rather than only reporting. The earlier model reserved a FLAT 0.5in caption budget; that was blind to
+# the real caption length, which is exactly how the 9-sentence economic-synthesis caption slipped the gate.
 TEXT_WIDTH_IN = 6.3        # book text-measure width (US-Letter) — the figure's 100% reference
-PAGE_HEIGHT_IN = 9.0       # text-area height on the page
+PAGE_HEIGHT_IN = 9.0       # text-area height on the page — the hard "content taller than this clips" limit
 IMAGE_WIDTH_FRAC = 0.85    # a `<!-- figure: -->` renders at image(width: 85%) of the measure
-CAPTION_BUDGET_IN = 0.5    # vertical room a figure must leave below itself for its caption
+CAPTION_BUDGET_IN = 0.5    # fallback caption reserve for an asset whose caption text can't be located
 PAGE_FIT_LIMIT_IN = PAGE_HEIGHT_IN - CAPTION_BUDGET_IN
+
+# Caption-height model: the caption sets across the full text measure at the print caption size. Estimate
+# its rendered height as ceil(chars / chars-per-line) * line-height. Deliberately calibrated so a genuine
+# page overrun (figure + caption > PAGE_HEIGHT_IN) flags while the tallest figures that DO fit stay clear:
+# the model separates the economic-synthesis overrun (~9.6in) from the next-tallest fitting figures (~8.7in)
+# by a comfortable margin. Font metrics, not magic: chars-per-line = measure_pt / (caption_pt * glyph_em).
+CAPTION_PT = 9.0           # print caption size (approx)
+CAPTION_GLYPH_EM = 0.50    # average glyph advance as a fraction of the caption pt (mixed-case sans)
+CAPTION_LEADING = 1.30     # line-height as a multiple of the caption pt
+_CAPTION_CHARS_PER_LINE = (TEXT_WIDTH_IN * 72.0) / (CAPTION_PT * CAPTION_GLYPH_EM)
+_CAPTION_LINE_IN = CAPTION_PT * CAPTION_LEADING / 72.0
+
+# figure marker: `<!-- figure: assets/<name>.svg | <caption ...> -->` (caption may wrap across lines).
+_FIGURE_MARKER_RE = re.compile(r"<!--\s*figure:\s*assets/([^\s|]+)\s*\|\s*(.*?)-->", re.S)
+
+
+def _figure_captions() -> dict[str, str]:
+    """Map each `assets/<name>.svg` basename to its caption text, harvested from every `<!-- figure: -->`
+    marker in the shipped book markdown (drafts under `_design/` are excluded — they never render). The
+    caption is the join key the page-fit gate needs: the SVG file alone cannot know how much prose rides
+    below it on the page."""
+    captions: dict[str, str] = {}
+    book_dir = os.path.join(ROOT, "book")
+    for dirpath, _dirs, files in os.walk(book_dir):
+        if os.sep + "_design" in dirpath + os.sep:
+            continue  # design drafts don't ship — their figures never render
+        for fn in files:
+            if not fn.endswith(".md"):
+                continue
+            try:
+                text = open(os.path.join(dirpath, fn), encoding="utf-8").read()
+            except OSError:
+                continue
+            for asset, caption in _FIGURE_MARKER_RE.findall(text):
+                captions[asset.strip()] = re.sub(r"\s+", " ", caption).strip()
+    return captions
+
+
+def _caption_height_in(caption: str) -> float:
+    """Estimated rendered height (inches) of a caption set across the text measure at the caption size."""
+    if not caption:
+        return 0.0
+    lines = math.ceil(len(caption) / _CAPTION_CHARS_PER_LINE)
+    return lines * _CAPTION_LINE_IN
 
 
 def _viewbox_dims(root: ET.Element) -> tuple[float, float] | None:
@@ -317,16 +365,19 @@ def _viewbox_dims(root: ET.Element) -> tuple[float, float] | None:
 
 
 def check_svg_page_fit():
-    """Scan every `book/assets/*.svg`; flag any whose projected print height overflows the page.
+    """Scan every `book/assets/*.svg`; flag any whose projected image height PLUS its caption overflows the page.
 
-    projected_height = IMAGE_WIDTH_FRAC * TEXT_WIDTH_IN * (viewBox_h / viewBox_w). A figure clearing
-    PAGE_FIT_LIMIT_IN (page height minus a caption budget) will clip on the page. BLOCKING: FAIL on any
-    overflow (deterministic — a pure function of the viewBox; the tree is drained to 0 at promotion).
+    image_height = IMAGE_WIDTH_FRAC * TEXT_WIDTH_IN * (viewBox_h / viewBox_w); caption_height is estimated
+    from the real `<!-- figure: -->` caption text. A figure whose image + caption clears PAGE_HEIGHT_IN clips
+    on the page. When the caption text can't be located, fall back to the flat-budget figure-only check
+    (image > PAGE_FIT_LIMIT_IN). BLOCKING: FAIL on any overflow (deterministic — a pure function of the
+    viewBox and the caption string; the tree is drained to 0 at promotion).
     """
     assets_dir = os.path.join(ROOT, "book", "assets")
     if not os.path.isdir(assets_dir):
         return PASS, ["no book/assets/ dir — nothing to scan"]
 
+    captions = _figure_captions()
     issues: list[str] = []
     for fn in sorted(os.listdir(assets_dir)):
         if not fn.endswith(".svg"):
@@ -341,17 +392,27 @@ def check_svg_page_fit():
         w, h = dims
         if w <= 0:
             continue
-        projected = IMAGE_WIDTH_FRAC * TEXT_WIDTH_IN * (h / w)
-        if projected > PAGE_FIT_LIMIT_IN:
+        image = IMAGE_WIDTH_FRAC * TEXT_WIDTH_IN * (h / w)
+        caption = captions.get(fn)
+        if caption is not None:
+            cap_h = _caption_height_in(caption)
+            total = image + cap_h
+            if total > PAGE_HEIGHT_IN:
+                issues.append(
+                    f"book/assets/{fn}: image {image:.2f}in + caption {cap_h:.2f}in = {total:.2f}in exceeds "
+                    f"page height {PAGE_HEIGHT_IN:.2f}in (viewBox {w:.0f}x{h:.0f}, aspect {h / w:.2f}; caption "
+                    f"{len(caption)} chars) — densify the figure (cut vertical slack, keep the viewBox width so "
+                    f"text stays legible), shorten the caption, or split the figure")
+        elif image > PAGE_FIT_LIMIT_IN:
             issues.append(
-                f"book/assets/{fn}: projected height {projected:.2f}in exceeds page-fit limit "
-                f"{PAGE_FIT_LIMIT_IN:.2f}in (viewBox {w:.0f}x{h:.0f}, aspect {h / w:.2f}) — densify the "
-                f"figure (cut vertical slack, keep the viewBox width so text stays legible) or split it")
+                f"book/assets/{fn}: projected height {image:.2f}in exceeds page-fit limit "
+                f"{PAGE_FIT_LIMIT_IN:.2f}in (viewBox {w:.0f}x{h:.0f}, aspect {h / w:.2f}; no caption located) — "
+                f"densify the figure (cut vertical slack, keep the viewBox width so text stays legible) or split it")
 
     if issues:
-        issues.insert(0, f"{len(issues)} figure(s) taller than the page (limit {PAGE_FIT_LIMIT_IN:.2f}in = "
-                         f"{PAGE_HEIGHT_IN:.1f}in page - {CAPTION_BUDGET_IN:.1f}in caption):")
-    return (FAIL if issues else PASS), issues  # BLOCKING: a figure taller than the page fails the gate
+        issues.insert(0, f"{len(issues)} figure(s) overflow the page ({PAGE_HEIGHT_IN:.1f}in text height, "
+                         f"image + caption):")
+    return (FAIL if issues else PASS), issues  # BLOCKING: figure + caption taller than the page fails the gate
 
 
 # ---- drawing hygiene: the native-construct discipline (arrowheads via <marker>, +x geometry, no

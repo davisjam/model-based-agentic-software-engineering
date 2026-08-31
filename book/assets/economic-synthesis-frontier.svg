@@ -10,7 +10,7 @@
      labelling the middle "MAGE" would define it by opposition to formal methods. Palette: Umber Monograph
      tokens (formal blue #2f5169, governance rust #9a3f12, modeling green #155c38/#e3f0e7, neutral #57534e). -->
 <!-- semantic-families: governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1090" width="720" height="1090"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1048" width="720" height="1048"
      role="img" aria-labelledby="esfTitle esfDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="esfTitle">The expanding economics of explicit engineering: two price frontiers move inward as
@@ -32,7 +32,7 @@
     <marker id="esf-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
 
-  <rect x="0" y="0" width="720" height="1090" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="720" height="1048" fill="#fdfcf9"/>
 
   <!-- ============ TITLE ============ -->
   <text x="340" y="46" text-anchor="middle" font-size="21" font-weight="700" letter-spacing="0.4" fill="#1c1917">THE EXPANDING ECONOMICS OF EXPLICIT ENGINEERING</text>
@@ -85,8 +85,8 @@
   <text x="340" y="970" text-anchor="middle" font-size="16" fill="#1c1917">local human judgment</text>
 
   <!-- ============ LOW end of the assurance axis ============ -->
-  <line x1="340" y1="1030" x2="340" y2="1012" stroke="#57534e" stroke-width="2" marker-end="url(#esf-ink)"/>
-  <text x="340" y="1058" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.5" fill="#57534e">LOW</text>
+  <line x1="340" y1="1016" x2="340" y2="1000" stroke="#57534e" stroke-width="2" marker-end="url(#esf-ink)"/>
+  <text x="340" y="1034" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.5" fill="#57534e">LOW</text>
 
   <!-- ============ side bracket over the two inward frontiers ============ -->
   <path d="M600,312 H628 V858 H600" fill="none" stroke="#9a3f12" stroke-width="1.8"/>
