@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1166,
+    "total_sites": 1167,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 817,
+      "book-web": 818,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 13,
@@ -1005,7 +1005,7 @@
           },
           {
             "file": "book/7.3-education-research-open-problems.html",
-            "occ": 82
+            "occ": 85
           },
           {
             "file": "book/8.1-the-part-that-stays-yours.html",
@@ -1607,7 +1607,7 @@
           },
           {
             "file": "book/7.3-education-research-open-problems.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/8.1-the-part-that-stays-yours.html",
@@ -2213,7 +2213,7 @@
           },
           {
             "file": "book/7.3-education-research-open-problems.html",
-            "occ": 14
+            "occ": 15
           },
           {
             "file": "book/8.1-the-part-that-stays-yours.html",
@@ -4898,6 +4898,10 @@
             "occ": 1
           },
           {
+            "file": "book/7.3-education-research-open-problems.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-e-applying-the-recipe.html",
             "occ": 3
           },
@@ -4913,7 +4917,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 10
+            "occ": 11
           }
         ]
       },
