@@ -86,10 +86,25 @@ readings:
     - "Boehm, *A Spiral Model of Software Development and Enhancement*"
 ---
 
-**Concepts.** feedback · uncertainty · iteration · cost of change
+**Premise.** *A one-sentence thesis for the module, in italics.*
 
-A short framing of the topic goes here.
+A short framing paragraph: what the module is about and why the choice it studies is an engineering choice.
+
+## A model for <the choice this module studies>
+
+This module develops a model for reasoning about that choice … :
+
+- **Named dimension or level.** The claim, then its explanation. (For a module whose axes are questions, lead each bullet with the *italic question* instead of a bold label.)
+
+## GenAI and <the module's system>
+
+How commodity intelligence shifts the module's economics — stated as a genuine, often ambiguous, change rather than a slogan.
 ```
+
+The module-description shape is **not** a matter of taste: it is a schema —
+[`module-schema.json`](module-schema.json) — that the test suite enforces on every
+`status: ready` module page (`tests/course.py`, run at every push and in CI). The block above is the
+schema made concrete; the schema is the source of truth. Change a rule there, not here.
 
 - **Materials** (`materials:`) — teaching materials are a **mix of formats** (PowerPoint, Typst, Markdown);
   the site never renders a deck into a page. Each entry has an editable-source `src` (offered as a download)
@@ -99,7 +114,13 @@ A short framing of the topic goes here.
   PowerPoint via `soffice --convert-to pdf`.)
 - **Readings** (`readings:`) — readings are a **property of the module** they support (`before` /
   `optional`), not a parallel hierarchy. The hook renders a **Readings** section on the page.
-- **Concepts** — a compact `**Concepts.**` line at the top of the body.
+- **Module description** — the body opens with a `**Premise.**` line (a one-sentence thesis, in italics),
+  then a short framing paragraph, a `## A model …` section whose bullets carry the dimensions or levels
+  the module teaches (bold statement lead-ins, or *italic* lead-ins where the axes are questions), and a
+  closing `## GenAI …` section on how commodity intelligence shifts that system. The shape is enforced by
+  [`module-schema.json`](module-schema.json) (see above) — the schema, not this paragraph, is the source
+  of truth. A module still in outline may carry a single compact `**Concepts.** …` line (`status:` below
+  `ready`) until its description is written.
 
 ### The Reading Guide
 

@@ -26,6 +26,20 @@ materials:
     src: materials/1-2-SEProcessesAndMethodologies.pptx
 ---
 
-**Concepts.** The engineered medium affects the engineering process.
+**Premise.** *The engineered medium affects the engineering process.*
 
-Software engineering process models inherited ideas from conventional engineering, then embraced shorter and shorter feedback cycles as the medium became better understood and underlying technologies such as cloud computing made more aspects of software product development commoditized and pay-as-you-go.
+A software process organizes engineering activities: deciding what to build, designing it, implementing it, validating it, and learning from the result. There is no universally correct ordering of these activities. Instead, process is an engineering choice shaped by properties of the system and its environment.
+
+## A model for the process choice
+
+This module develops a simple model for reasoning about that choice along three dimensions:
+
+- *How much can we know before we build?* When requirements and solutions can be established confidently in advance, more work can be planned up front. When building is itself a way of discovering what is needed, shorter feedback cycles become more valuable.
+- *How expensive is change?* Processes inherited from conventional engineering reflect media in which late change can be extraordinarily expensive. Software makes many changes cheaper—but not all changes cheap.
+- *Can partial systems be built, validated, or deliver value?* When useful evidence or value can be obtained incrementally, development can proceed in smaller slices. When the system must substantially exist before it can be meaningfully evaluated, incremental approaches have less leverage.
+
+These dimensions explain much of the movement from plan-driven development toward iterative, incremental, and Agile processes. They also explain why no methodology is universally appropriate: different systems occupy different points in this space.
+
+## The engineered medium
+
+Underlying all three dimensions is the engineered medium. As software platforms, cloud infrastructure, reusable components, and now commodity machine intelligence reduce the cost of producing and changing implementations, the economics of process change with them. GenAI accelerates this shift: implementation may become dramatically cheaper without making requirements, judgment, validation, or consequences correspondingly easier.

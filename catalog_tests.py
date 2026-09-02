@@ -107,6 +107,7 @@ from tests.html import (
     check_no_notation_leak,
     check_summary_no_flow_content,
 )
+from tests.course import check_course_module_schema
 from tests.markdown import check_markdown_anchors, check_markdown_schema, check_render_safety
 from tests.mermaid_lint import check_mermaid_edge_labels
 from tests.skill import (
@@ -152,6 +153,8 @@ CHECKS = [
     Check("deploy: _is_publishable rejects every _design/ path (any ext); publishes real outputs", 1,
           lambda strict: check_deploy_publishable()),
     Check("markdown: schema + md-link existence", 1, lambda strict: check_markdown_schema()),
+    Check("course: module pages conform to module-schema.json (Premise + model list)", 1,
+          lambda strict: check_course_module_schema()),
     Check("markdown: #anchor resolution", 1, lambda strict: check_markdown_anchors()),
     Check("render: XSS neutralization (escape seam + link scheme)", 1, lambda strict: check_render_safety()),
     Check("html: link + anchor resolution", 1, lambda strict: check_html_links()),

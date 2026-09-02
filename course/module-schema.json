@@ -1,0 +1,44 @@
+{
+  "doc": "SSOT for the course module-description model. Read at lint time by tests/course.py, which validates every lecture module page against these rules; the human-facing pointer is course/README.md. MAGE-style: a module's shape is DATA a lint enforces, not prose a reader must remember. Add or tune a rule here and the lint applies it — no code change is needed for a new predicate of an existing rule type.",
+  "applies_to": {
+    "doc": "Lecture module pages only: course/lectures/act-<name>/NN-<topic>.md (a two-digit numeric prefix). Act overviews, the calendar, and project pages are out of scope.",
+    "path_glob": "course/lectures/act-*/[0-9][0-9]-*.md"
+  },
+  "front_matter": {
+    "status_key": "status",
+    "status_enum": ["placeholder", "draft", "ready"],
+    "enforce_body_when_status_in": ["ready"],
+    "doc": "status is always checked against the enum. The body rules below apply in full only to a module whose description is meant to be complete (status: ready); a placeholder/draft is exempt while it is still an outline."
+  },
+  "rules": [
+    {
+      "id": "premise-opens-body",
+      "type": "opening_line_regex",
+      "regex": "^\\*\\*Premise\\.\\*\\*\\s+\\*[^*]+\\*",
+      "message": "A ready module must open with a **Premise.** line whose thesis is a single *italicized* sentence — e.g. `**Premise.** *The engineered medium affects the engineering process.*`"
+    },
+    {
+      "id": "framing-paragraph",
+      "type": "paragraph_before_first_section",
+      "message": "A ready module needs a short framing paragraph between the **Premise.** line and the first `##` section — the description is not a bare premise."
+    },
+    {
+      "id": "sectioned-not-oneliner",
+      "type": "min_sections",
+      "min": 1,
+      "message": "A ready module description is sectioned with `##` headings, not a single one-liner."
+    },
+    {
+      "id": "model-list-with-leadins",
+      "type": "section_list_with_leadins",
+      "min_items": 2,
+      "message": "A ready module must develop its model as a list of >=2 items, each led by a **bold** statement or an *italic* question (the dimensions or levels the module teaches)."
+    },
+    {
+      "id": "no-legacy-concepts-when-ready",
+      "type": "forbidden_line_regex",
+      "regex": "^\\*\\*Concepts\\.\\*\\*",
+      "message": "The one-line `**Concepts.** …` form is the outline placeholder; a `status: ready` module carries a full Premise+model description instead."
+    }
+  ]
+}
