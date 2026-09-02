@@ -1748,7 +1748,7 @@
             {
               "slug": "whichever-validator-supplies-the-judgment-authority-depends-on-the-environment",
               "text": "Whichever validator supplies the judgment, authority still depends on what the environment does with its verdict.",
-              "block_index": 51
+              "block_index": 54
             }
           ]
         },
@@ -1758,22 +1758,22 @@
           "heading_text": "Validators and Gates",
           "topic_sentence": "The other two roles act on evidence and admission.",
           "id_source": "derived",
-          "block_index": 53,
+          "block_index": 56,
           "points": [
             {
               "slug": "a-validator-turns-evidence-into-a-judgment",
               "text": "A validator turns evidence into a judgment.",
-              "block_index": 55
+              "block_index": 58
             },
             {
               "slug": "a-gate-supplies-the-consequence-and-a-gate-is-a-commitment",
               "text": "A gate supplies the consequence — and a gate is a commitment.",
-              "block_index": 59
+              "block_index": 62
             },
             {
               "slug": "cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing",
               "text": "A loop may re-derive evidence at a later admission boundary; the thing asking to pass does not define passing.",
-              "block_index": 65
+              "block_index": 68
             }
           ]
         },
@@ -1783,22 +1783,22 @@
           "heading_text": "One Measurement, Different Authority Decisions",
           "topic_sentence": "The four roles are not stages of maturity.",
           "id_source": "derived",
-          "block_index": 67,
+          "block_index": 70,
           "points": [
             {
               "slug": "the-four-roles-are-not-stages-of-maturity",
               "text": "The four roles are not stages of maturity: one quantitative model can support observation, adaptation, graceful degradation, or hard admission control.",
-              "block_index": 69
+              "block_index": 72
             },
             {
               "slug": "a-quantitative-tolerance-can-expose-margin",
               "text": "A quantitative tolerance can expose margin — the room between the realized value and its bound; two conforming realizations can differ in how much room they keep.",
-              "block_index": 72
+              "block_index": 75
             },
             {
               "slug": "margin-needs-a-meaningful-distance",
               "text": "Margin is computable only where the model supplies a meaningful distance; many software obligations are qualitative and admit none.",
-              "block_index": 74
+              "block_index": 77
             }
           ]
         },
@@ -1808,12 +1808,12 @@
           "heading_text": "Positive and Negative Constraints",
           "topic_sentence": "Constraints are often introduced as prohibitions: this code must not call that library.",
           "id_source": "derived",
-          "block_index": 76,
+          "block_index": 79,
           "points": [
             {
               "slug": "a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one",
               "text": "A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form.",
-              "block_index": 78
+              "block_index": 81
             }
           ]
         },
@@ -1823,27 +1823,27 @@
           "heading_text": "What Counts as a Mechanism",
           "topic_sentence": "Keep **policy**, **guidance**, and **governance mechanism** separate.",
           "id_source": "derived",
-          "block_index": 81,
+          "block_index": 84,
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
               "text": "Keep policy, guidance, and governance mechanism separate; authority begins when something acts.",
-              "block_index": 83
+              "block_index": 86
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
               "text": "The same artifact can play several roles; the model is the representation, the machinery the authority.",
-              "block_index": 85
+              "block_index": 88
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "Implementations bundle roles; name them, don't stretch the terms.",
-              "block_index": 87
+              "block_index": 90
             },
             {
               "slug": "represented-intent-becomes-authoritative-through-one-of-four-roles",
               "text": "Leave-with: intent becomes authority through one of four roles; next, where the mechanisms come from.",
-              "block_index": 92
+              "block_index": 95
             }
           ]
         }
