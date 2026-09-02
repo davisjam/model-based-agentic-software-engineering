@@ -35,9 +35,9 @@
 .md-nav__link:hover { color: var(--mage-accent); }
 
 /* A section with no index page (e.g. Assessment) renders its title as a non-link <label>, which Material
-   greys (--md-default-fg-color--light). Match it to the index-backed section headers so it reads the same
-   black weight as Reference Course / Lectures / Semester Project. */
-.md-nav__item--section > .md-nav__link[for] { color: var(--md-typeset-a-color); }
+   greys (--md-default-fg-color--light). Match it to the index-backed section headers (plain <a>, near-black)
+   so it reads the same black weight as Reference Course / Lectures / Semester Project — NOT the link accent. */
+.md-nav__item--section > .md-nav__link[for] { color: var(--md-default-fg-color); }
 .md-typeset a:hover { color: var(--purdue-gold-deep); }
 
 /* The section-index / tabs active marker in gold. */
@@ -63,3 +63,29 @@
  * carried by the three signals that already work: bold section headings, the
  * accent current-page state, and indentation. */
 .md-nav .md-status { display: none; }
+
+/* ── Header branding + a distinct "MAGE homepage" link ────────────────────
+ * The branding (hat + "Teach with MAGE") is ONE continuous home link back to the course companion. The
+ * logo already links home; header-title-link.js wraps the title text in a home anchor too (.md-header__
+ * brandlink). To make the GAP between them clickable, extend the logo button's own click box rightward
+ * across the ~1.2rem gap with transparent padding, and pull the layout back with a matching negative
+ * margin so the title text does not move — no visual change. The logo sits above the title (z-index:1),
+ * so it wins the hit in the overlap. */
+.md-header__button.md-logo { padding-right: 1.6rem; margin-right: -1rem; }
+.md-header__brandlink { color: inherit; text-decoration: none; }
+
+/* A separate outward link to the MAGE homepage (the book/landing at the site root), named-distinct from
+ * the "Teach with MAGE" branding that returns to this companion's home. Sits at the right of the header. */
+.md-header__mage-home {
+  color: var(--md-primary-bg-color); text-decoration: none;
+  font-weight: 600; font-size: .7rem; white-space: nowrap;
+  margin-left: auto; padding: 0 .6rem; align-self: center;
+}
+.md-header__mage-home:hover { color: var(--purdue-gold); }
+
+/* The desktop sidebar repeats the site name ("Teach with MAGE") as a drawer title — the header already
+ * shows it, so it is wasted ink. Hide the level-0 drawer title on the desktop sidebar only (the mobile
+ * drawer keeps its header). The child combinator targets ONLY the drawer title, never a section heading. */
+@media screen and (min-width: 76.25em) {
+  .md-nav--primary > .md-nav__title { display: none; }
+}
