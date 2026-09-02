@@ -74,6 +74,7 @@ plugins:
 hooks:
   - hooks/materials.py   # render a "Materials" section (links to pptx / typst / pdf) from `materials:` front matter
   - hooks/readings.py    # render per-module "Readings" from `readings:` front matter + the auto-gen Reading Guide
+  - hooks/modules.py     # resolve {module:Title} tokens (e.g. on the Calendar) to links, derived from module front matter
 
 markdown_extensions:
   - admonition

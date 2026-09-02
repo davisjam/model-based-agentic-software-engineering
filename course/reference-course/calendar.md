@@ -10,24 +10,47 @@ instructor_notes: ""
 status: draft
 ---
 
-# Calendar — Purdue Fall 2026
+# Calendar
 
-One demonstrated schedule: how the reusable curriculum maps onto a 16-week semester. The **[Syllabus](syllabus.md)** is authoritative for dates, policies, and the complete outline; this table shows the week-by-week topic sequence.
+This reference course is organized as a 16-week sequence in three acts. The calendar below shows one way to map the curriculum onto a semester. Individual adopters can compress, expand, or reorder modules to fit their courses.
 
-| Purdue week | Topic |
+## Act I — Foundations
+
+*What are the fundamental activities and structures of software engineering?*
+
+| Week | Topic |
 |---|---|
-| Week 1 | [Engineering & GenAI](../lectures/act-1-foundations/01-engineering-and-genai.md) |
-| Week 2 | [Software Process](../lectures/act-1-foundations/02-software-process.md) |
-| Week 3 | [Software Engineering Teamwork](../lectures/act-1-foundations/03-software-engineering-teamwork.md) |
-| Weeks 4–15 | Later acts — published as materials land (see the Syllabus for the full outline) |
-| Week 9 | Oral exam ([Oral Exams](../assessment/oral-exams.md)) |
-| Week 16 | Oral exam ([Oral Exams](../assessment/oral-exams.md)) |
+| 1 | {module:Engineering & GenAI} |
+| 2 | {module:Software Process} |
+| 3 | {module:Requirements & Specification} |
+| 4 | {module:Software Architecture} |
+| 5 | {module:Design Principles + Fundamentals of SWE with GenAI} |
 
-The topic sequence follows the curriculum's intellectual structure (Acts → modules); the week numbers are specific to this Purdue instantiation and will differ for other adoptions.
+## Act II — Building Systems & Governing Changes
 
-## Reading Guide
+*How do we build out our designs and construct an environment in which humans and agents can review and change them safely?*
 
-What to assign from the book if you teach this curriculum. Generated from each module's readings — a reading is a property of the module it supports, so this table stays in sync as modules gain readings.
+| Week | Topic |
+|---|---|
+| 6 | {module:Implementation & Representation} |
+| 7 | {module:Agentic Engineering & Governed Change} |
+| 8 | {module:Validation & Assurance} |
+| 9 | Oral Exam / Synthesis |
 
-<!-- READING-GUIDE -->
+## Act III — Software in the World
 
+*How do software systems operate, survive, and change in real environments?*
+
+| Week | Topic |
+|---|---|
+| 10 | {module:Deployment, Operations & Observability} |
+| 11 | {module:Security & Adversarial Engineering} |
+| 12 | {module:Maintenance & Evolution} |
+| 13 | {module:Engineering Capital & Sustained Evolution} |
+| 14 | {module:Engineering in Practice} |
+| 15 | {module:Professional Judgment, Ethics & Synthesis} |
+| 16 | Oral Exam / Course Synthesis |
+
+The sequence is intentionally adaptable. The acts and modules provide the reusable curriculum structure; exact dates, project milestones, examinations, breaks, and institutional requirements belong to each course offering.
+
+For the complete Purdue Fall 2026 implementation, including project milestones and dates, see the **[Syllabus](syllabus.md)**.
