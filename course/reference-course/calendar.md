@@ -21,7 +21,7 @@ This reference course is organized as a 16-week sequence in three acts. The cale
 | Week | Topic |
 |---|---|
 | 1 | {module:Engineering & GenAI} |
-| 2 | {module:Software Process} |
+| 2 | {module:Software Process} · {module:Software Engineering Teamwork} |
 | 3 | {module:Requirements & Specification} |
 | 4 | {module:Software Architecture} |
 | 5 | {module:Design Principles + Fundamentals of SWE with GenAI} |
