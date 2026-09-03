@@ -883,7 +883,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Not every important judgment should become deterministic. MAGE provides two complementary ways to improve recurring work. One is to improve the conditions under which a reasoner makes a judgment: give it better representations, domain knowledge, examples, procedures, tools, and context so that a satisfactory realization becomes more likely. The other is to give selected obligations authority in the environment, so that the consequence does not depend entirely on the reasoner choosing correctly.</p>
 <p>The distinction is not between two kinds of engineering artifact, but between two effects those artifacts can provide. A model can guide an agent and state properties consumed by a validator. A skill can improve judgment and invoke authoritative controls. Evidence can inform a decision or feed an admission gate. A governed engineering environment composes these roles rather than assigning each artifact permanently to one side.</p>
 <p>Nor is the boundary fixed. A judgment that initially resists authority may become better understood through repeated use, failure, and refinement. Its obligations may become clearer, suitable evidence may become available, or a qualitative distinction may become evaluable with sufficient reliability. At that point, some of what previously depended on judgment can acquire authority in the environment. Other portions may properly remain probabilistic. <a class="xref" href="4.1-the-mage-workflow.html#fig-4-1-2">Figure&nbsp;4.1-2</a> shows the recurring cycle.</p>
-<figure id="fig-4-1-2" class="book-figure" data-label="engineering-recurring-work"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 690"
+<figure id="fig-4-1-2" class="book-figure" data-label="engineering-recurring-work"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 575"
      role="img" aria-labelledby="f-engineering-recurring-work-erwTitle f-engineering-recurring-work-erwDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-engineering-recurring-work-erwTitle">Engineering recurring work: a governed environment both supports reasoning and gives selected obligations authority, and the cycle iterates</title>
@@ -891,8 +891,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     environment supports the reasoner — models, knowledge, examples, procedures, context, skills, tools, evidence — and
     gives selected obligations authority — constraints, validators, permissions, gates, checks. A dashed arrow from
     support to authority marks the recurring move of giving authority where feasible. The governed engineering
-    environment then hosts realization, authoritative mechanisms act on selected obligations, work is realized,
-    outcomes and failures are observed, what pays is preserved, and the cycle iterates.</desc>
+    environment then hosts realization, authoritative mechanisms act on selected obligations, and work is realized. A
+    return edge runs from realized work back to recurring engineering work: its lower portion observes outcomes and
+    failures, and its upper portion improves the environment — the governance conversion of Section 3.4, where recurring
+    judgment can be encoded economically.</desc>
 
   <defs>
     <marker id="f-engineering-recurring-work-erw-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
@@ -965,18 +967,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="360" y="502" width="220" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="470" y="531" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">REALIZED WORK</text>
 
-  <line x1="470" y1="548" x2="470" y2="582" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-engineering-recurring-work-erw-ah)"/>
-  <text x="484" y="570" font-size="15" font-style="italic" fill="#57534e">observe outcomes &amp; failures</text>
-
-  <!-- 9. preserve what pays -->
-  <rect x="320" y="584" width="300" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="470" y="612" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">PRESERVE WHAT PAYS</text>
-  <text x="470" y="636" text-anchor="middle" font-size="15" fill="#57534e">models · skills · controls · tools</text>
-
-  <!-- iterate loop back to the top (right margin) -->
-  <path d="M622 619 L898 619 L898 41 L642 41" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-engineering-recurring-work-erw-ah)"/>
-  <text x="770" y="58" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">iterate</text>
-</svg><figcaption data-short="Engineering recurring work"><span class="fig-label">Figure 4.1-2.</span> <em>Engineering recurring work.</em> A governed engineering environment combines support for probabilistic reasoning with authority over selected obligations; the same models, knowledge, procedures, skills, tools, and evidence may contribute to both. The dashed arrow marks a recurring MAGE move: as judgment becomes better understood, some obligations may become sufficiently clear and evaluable to receive authority. Feasibility may be limited by the obligation, the available evidence, implementation cost, or the consequences of error; residual judgment can properly remain probabilistic.</figcaption></figure>
+  <!-- return edge: realized work -> (observe) -> up -> (improve / governance conversion) -> recurring work -->
+  <path d="M580 525 H1010 V41 H642" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-engineering-recurring-work-erw-ah)"/>
+  <text x="795" y="516" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">observe outcomes and failures</text>
+  <text x="1000" y="414" text-anchor="end" font-size="15" font-style="italic" fill="#57534e">improve the environment;</text>
+  <text x="1000" y="436" text-anchor="end" font-size="15" font-style="italic" fill="#57534e">governance conversion where warranted</text>
+</svg><figcaption data-short="Engineering recurring work"><span class="fig-label">Figure 4.1-2.</span> <em>Engineering recurring work.</em> A governed engineering environment combines support for probabilistic reasoning with authority over selected obligations; the same models, knowledge, procedures, skills, tools, and evidence may contribute to both. The dashed arrow marks a recurring MAGE move: as judgment becomes better understood, some obligations may become sufficiently clear and evaluable to receive authority. The return path observes outcomes and failures and improves the environment; where recurring judgment can be encoded economically, this is the governance conversion developed in Section 3.4.</figcaption></figure>
+<p>The return path includes the governance conversion developed in Section 3.4. When an outcome or failure exposes missing representation, obligation, evidence, evaluation, or consequence, the organization can encode that missing structure so that future work inherits it. Not every observation warrants such conversion: some judgments remain contextual, some failures are not recurring, and some structure costs more than it returns.</p>
 <p>The dashed arrow is an opportunity, not a required progression. MAGE does not assume that engineering knowledge should eventually become deterministic, or even authoritative. Some judgments remain qualitative because the underlying objective is contextual, plural, or difficult to observe independently. Others contain narrower obligations that can receive authority even while the larger judgment remains open. The relevant unit is therefore the obligation, not the task.</p>
 <p><strong>Example — good writing.</strong> Consider the obligation to produce "good writing." A style guide can externalize knowledge about that objective and improve an agent's realization, but there is no single construct called good writing that admits a sound checker. Some narrower obligations nevertheless admit deterministic checks: spelling, grammatical rules, paragraph-length bounds, prohibited terms, or excessive repetition. Others admit useful but probabilistic evaluation: whether a paragraph has an effective topic sentence, whether an introduction summarizes and prepares the material that follows, or whether prose exhibits a desired style such as terse and factual rather than metaphorical. Those evaluators can themselves receive authority where their reliability and consequences make that feasible.</p>
 <p>None establishes that the resulting prose is "good writing." They establish narrower properties that have become sufficiently explicit to evaluate, while the broader judgment remains partly contextual and plural. Repeated experience can move this boundary. A preference first recorded only as prose in a style guide may later become a precise rule; a recurring qualitative criticism may become a probabilistic evaluator with useful measured behavior; some judgments may never justify either. The style guide remains useful throughout because its role is broader than the subset of its knowledge that the environment can enforce.</p>

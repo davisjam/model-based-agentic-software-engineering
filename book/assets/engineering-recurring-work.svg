@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Part IV §4.1.4 figure — engineering-recurring-work.svg. Recurring work is engineered by an environment
-     that BOTH supports probabilistic reasoning (green) AND gives selected obligations authority (rust). The
-     same models/knowledge/skills/tools/evidence can feed either side. The DASHED arrow (support -> authority)
-     is the recurring MAGE move "give authority where feasible": as judgment becomes better understood, some
-     obligations become clear/evaluable enough to receive authority. The cycle: expose judgment -> engineer
-     the environment -> realize -> observe -> preserve what pays -> iterate. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 690" width="940" height="690"
+<!-- Part IV figure 4.1-2 — engineering-recurring-work.svg. Recurring work is engineered by an
+     environment that BOTH supports probabilistic reasoning (green) AND gives selected obligations
+     authority (rust). The same models/knowledge/skills/tools/evidence can feed either side. The DASHED
+     arrow (support -> authority) is the recurring MAGE move "give authority where feasible". The return
+     edge runs from REALIZED WORK back to RECURRING ENGINEERING WORK: its lower portion observes outcomes
+     and failures; its upper portion improves the environment — the governance conversion of Section 3.4,
+     where recurring judgment can be encoded economically. (An earlier draft carried a separate PRESERVE
+     WHAT PAYS node; the durable structure is the RESULT of improving the environment, so that node is
+     dropped and the return edge names the process instead, cross-referencing Figure 3.4-1's taxonomy.)
+     Palette: green #1f7a4d / #e3f0e7 (support), rust #9a3f12 / #faf1e6 (authority), blue #2f5169 / #e7edf3
+     (governed environment), muted #57534e, ink #1c1917. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 575" width="1040" height="575"
      role="img" aria-labelledby="erwTitle erwDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="erwTitle">Engineering recurring work: a governed environment both supports reasoning and gives selected obligations authority, and the cycle iterates</title>
@@ -13,8 +18,10 @@
     environment supports the reasoner — models, knowledge, examples, procedures, context, skills, tools, evidence — and
     gives selected obligations authority — constraints, validators, permissions, gates, checks. A dashed arrow from
     support to authority marks the recurring move of giving authority where feasible. The governed engineering
-    environment then hosts realization, authoritative mechanisms act on selected obligations, work is realized,
-    outcomes and failures are observed, what pays is preserved, and the cycle iterates.</desc>
+    environment then hosts realization, authoritative mechanisms act on selected obligations, and work is realized. A
+    return edge runs from realized work back to recurring engineering work: its lower portion observes outcomes and
+    failures, and its upper portion improves the environment — the governance conversion of Section 3.4, where recurring
+    judgment can be encoded economically.</desc>
 
   <defs>
     <marker id="erw-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
@@ -87,15 +94,9 @@
   <rect x="360" y="502" width="220" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="470" y="531" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">REALIZED WORK</text>
 
-  <line x1="470" y1="548" x2="470" y2="582" stroke="#57534e" stroke-width="2.2" marker-end="url(#erw-ah)"/>
-  <text x="484" y="570" font-size="15" font-style="italic" fill="#57534e">observe outcomes &amp; failures</text>
-
-  <!-- 9. preserve what pays -->
-  <rect x="320" y="584" width="300" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="470" y="612" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">PRESERVE WHAT PAYS</text>
-  <text x="470" y="636" text-anchor="middle" font-size="15" fill="#57534e">models · skills · controls · tools</text>
-
-  <!-- iterate loop back to the top (right margin) -->
-  <path d="M622 619 L898 619 L898 41 L642 41" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#erw-ah)"/>
-  <text x="770" y="58" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">iterate</text>
+  <!-- return edge: realized work -> (observe) -> up -> (improve / governance conversion) -> recurring work -->
+  <path d="M580 525 H1010 V41 H642" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#erw-ah)"/>
+  <text x="795" y="516" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">observe outcomes and failures</text>
+  <text x="1000" y="414" text-anchor="end" font-size="15" font-style="italic" fill="#57534e">improve the environment;</text>
+  <text x="1000" y="436" text-anchor="end" font-size="15" font-style="italic" fill="#57534e">governance conversion where warranted</text>
 </svg>

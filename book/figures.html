@@ -5281,7 +5281,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <path d="M306,159 C306,220 258,220 258,163"/>
   </g>
   <text x="282" y="248" text-anchor="middle" font-size="23.4" font-style="italic" fill="#57534e">problem can change</text>
-</svg><figcaption data-short="Precision follows knowledge — uncertain need → explore → stabilizing claim → represent → govern where justified"><span class="fig-label">Figure 4.1-1.</span> <em>Precision Follows Knowledge.</em> Explore uncertain needs; represent claims as they stabilize; grant authority only when an obligation is stable and consequential enough to justify it.</figcaption></figure><p class="gallery-source">From <a href="4.1-the-mage-workflow.html#fig-4-1-1">18 · The MAGE Workflow</a></p></section><hr><section class="gallery-item"><figure id="fig-4-1-2-fig-4-1-2" class="book-figure" data-label="engineering-recurring-work"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 690"
+</svg><figcaption data-short="Precision follows knowledge — uncertain need → explore → stabilizing claim → represent → govern where justified"><span class="fig-label">Figure 4.1-1.</span> <em>Precision Follows Knowledge.</em> Explore uncertain needs; represent claims as they stabilize; grant authority only when an obligation is stable and consequential enough to justify it.</figcaption></figure><p class="gallery-source">From <a href="4.1-the-mage-workflow.html#fig-4-1-1">18 · The MAGE Workflow</a></p></section><hr><section class="gallery-item"><figure id="fig-4-1-2-fig-4-1-2" class="book-figure" data-label="engineering-recurring-work"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 575"
      role="img" aria-labelledby="fig-4-1-2-f-engineering-recurring-work-erwTitle fig-4-1-2-f-engineering-recurring-work-erwDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-4-1-2-f-engineering-recurring-work-erwTitle">Engineering recurring work: a governed environment both supports reasoning and gives selected obligations authority, and the cycle iterates</title>
@@ -5289,8 +5289,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     environment supports the reasoner — models, knowledge, examples, procedures, context, skills, tools, evidence — and
     gives selected obligations authority — constraints, validators, permissions, gates, checks. A dashed arrow from
     support to authority marks the recurring move of giving authority where feasible. The governed engineering
-    environment then hosts realization, authoritative mechanisms act on selected obligations, work is realized,
-    outcomes and failures are observed, what pays is preserved, and the cycle iterates.</desc>
+    environment then hosts realization, authoritative mechanisms act on selected obligations, and work is realized. A
+    return edge runs from realized work back to recurring engineering work: its lower portion observes outcomes and
+    failures, and its upper portion improves the environment — the governance conversion of Section 3.4, where recurring
+    judgment can be encoded economically.</desc>
 
   <defs>
     <marker id="fig-4-1-2-f-engineering-recurring-work-erw-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
@@ -5363,18 +5365,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="360" y="502" width="220" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="470" y="531" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">REALIZED WORK</text>
 
-  <line x1="470" y1="548" x2="470" y2="582" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-4-1-2-f-engineering-recurring-work-erw-ah)"/>
-  <text x="484" y="570" font-size="15" font-style="italic" fill="#57534e">observe outcomes &amp; failures</text>
-
-  <!-- 9. preserve what pays -->
-  <rect x="320" y="584" width="300" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="470" y="612" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">PRESERVE WHAT PAYS</text>
-  <text x="470" y="636" text-anchor="middle" font-size="15" fill="#57534e">models · skills · controls · tools</text>
-
-  <!-- iterate loop back to the top (right margin) -->
-  <path d="M622 619 L898 619 L898 41 L642 41" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-1-2-f-engineering-recurring-work-erw-ah)"/>
-  <text x="770" y="58" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">iterate</text>
-</svg><figcaption data-short="Engineering recurring work"><span class="fig-label">Figure 4.1-2.</span> <em>Engineering recurring work.</em> A governed engineering environment combines support for probabilistic reasoning with authority over selected obligations; the same models, knowledge, procedures, skills, tools, and evidence may contribute to both. The dashed arrow marks a recurring MAGE move: as judgment becomes better understood, some obligations may become sufficiently clear and evaluable to receive authority. Feasibility may be limited by the obligation, the available evidence, implementation cost, or the consequences of error; residual judgment can properly remain probabilistic.</figcaption></figure><p class="gallery-source">From <a href="4.1-the-mage-workflow.html#fig-4-1-2">18 · The MAGE Workflow</a></p></section><hr><section class="gallery-item"><figure id="fig-4-2-1-fig-4-2-1" class="book-figure" data-label="migration-2x2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620"
+  <!-- return edge: realized work -> (observe) -> up -> (improve / governance conversion) -> recurring work -->
+  <path d="M580 525 H1010 V41 H642" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-1-2-f-engineering-recurring-work-erw-ah)"/>
+  <text x="795" y="516" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">observe outcomes and failures</text>
+  <text x="1000" y="414" text-anchor="end" font-size="15" font-style="italic" fill="#57534e">improve the environment;</text>
+  <text x="1000" y="436" text-anchor="end" font-size="15" font-style="italic" fill="#57534e">governance conversion where warranted</text>
+</svg><figcaption data-short="Engineering recurring work"><span class="fig-label">Figure 4.1-2.</span> <em>Engineering recurring work.</em> A governed engineering environment combines support for probabilistic reasoning with authority over selected obligations; the same models, knowledge, procedures, skills, tools, and evidence may contribute to both. The dashed arrow marks a recurring MAGE move: as judgment becomes better understood, some obligations may become sufficiently clear and evaluable to receive authority. The return path observes outcomes and failures and improves the environment; where recurring judgment can be encoded economically, this is the governance conversion developed in Section 3.4.</figcaption></figure><p class="gallery-source">From <a href="4.1-the-mage-workflow.html#fig-4-1-2">18 · The MAGE Workflow</a></p></section><hr><section class="gallery-item"><figure id="fig-4-2-1-fig-4-2-1" class="book-figure" data-label="migration-2x2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620"
      role="img" aria-labelledby="fig-4-2-1-f-migration-2x2-mgTitle fig-4-2-1-f-migration-2x2-mgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-4-2-1-f-migration-2x2-mgTitle">Two axes of a migration's starting conditions: how much system exists, crossed with how much intent is settled</title>
