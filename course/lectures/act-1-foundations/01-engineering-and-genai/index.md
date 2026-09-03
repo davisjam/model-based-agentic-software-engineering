@@ -15,7 +15,7 @@ instructor_notes: ""
 status: ready
 materials:
   - title: Lecture slides — GenAI as an engineering tool
-    src: materials/1-1-GenAIAsEngineeringTool.pptx
+    src: slides/1-1-GenAIAsEngineeringTool.pptx
 ---
 
 **Premise.** *Commodity intelligence changes the economics of software engineering.* As implementation becomes abundant, engineering does not disappear: its scarce resources become more visible.

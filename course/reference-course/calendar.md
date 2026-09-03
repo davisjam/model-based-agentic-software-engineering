@@ -24,7 +24,7 @@ This reference course uses a 16-week sequence in three acts. The [Syllabus](syll
 | 2 | {module:Software Process} · {module:Software Engineering Teamwork} |
 | 3 | {module:Requirements & Specification} |
 | 4 | {module:Software Architecture} |
-| 5 | {module:Design Principles + Fundamentals of SWE with GenAI} |
+| 5 | {module:Design Principles} · {module:Fundamentals of SWE with GenAI} |
 
 ## Act II — Building Systems & Governing Changes
 

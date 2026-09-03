@@ -1,8 +1,8 @@
 {
   "doc": "SSOT for the course module-description model. Read at lint time by tests/course.py, which validates every lecture module page against these rules; the human-facing pointer is course/README.md. MAGE-style: a module's shape is DATA a lint enforces, not prose a reader must remember. Add or tune a rule here and the lint applies it — no code change is needed for a new predicate of an existing rule type.",
   "applies_to": {
-    "doc": "Lecture module pages only: course/lectures/act-<name>/NN-<topic>.md (a two-digit numeric prefix). Act overviews, the calendar, and project pages are out of scope.",
-    "path_glob": "course/lectures/act-*/[0-9][0-9]-*.md"
+    "doc": "Lecture module pages only: course/lectures/act-<name>/NN-<topic>/index.md — each module is its own directory (holding index.md + slides/ + readings/), so the page is the directory index. Act landing pages (act-<name>/index.md), the calendar, and project pages are out of scope.",
+    "path_glob": "course/lectures/act-*/[0-9][0-9]-*/index.md"
   },
   "front_matter": {
     "status_key": "status",

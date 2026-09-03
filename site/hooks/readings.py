@@ -35,8 +35,9 @@ import re
 import yaml  # MkDocs already depends on PyYAML
 
 _GUIDE_MARKER = "<!-- READING-GUIDE -->"
-#: A lecture module page: course/lectures/act-<name>/NN-<topic>.md (the numbered topic files).
-_MODULE_RE = re.compile(r"^lectures/act-[^/]+/\d\d-[^/]+\.md$")
+#: A lecture module page: course/lectures/act-<name>/NN-<topic>/index.md — each module is its own
+#: directory (holding index.md + slides/ + readings/), so the page is the directory's index.
+_MODULE_RE = re.compile(r"^lectures/act-[^/]+/\d\d-[^/]+/index\.md$")
 
 #: Reduce a markdown link to its text. The Reading Guide aggregates module readings onto the Calendar page;
 #: a module-relative link (e.g. a hosted PDF under `materials/`) would not resolve from there, so the

@@ -18,12 +18,13 @@ The lecture curriculum, organized by its intellectual structure — **Acts** and
 
 *What are the fundamental activities and structures of software engineering?*
 
-- **[Engineering & GenAI](act-1-foundations/01-engineering-and-genai.md)**
-- **[Software Process](act-1-foundations/02-software-process.md)**
-- **[Software Engineering Teamwork](act-1-foundations/03-software-engineering-teamwork.md)**
+- **[Engineering & GenAI](act-1-foundations/01-engineering-and-genai/index.md)**
+- **[Software Process](act-1-foundations/02-software-process/index.md)**
+- **[Software Engineering Teamwork](act-1-foundations/03-software-engineering-teamwork/index.md)**
 - Requirements & Specification
 - Software Architecture
-- Design Principles + Fundamentals of SWE with GenAI
+- Design Principles
+- Fundamentals of SWE with GenAI
 
 ## Act II — Building Systems & Governing Changes
 

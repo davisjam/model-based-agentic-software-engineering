@@ -21,7 +21,7 @@ instructor_notes: ""
 status: ready
 materials:
   - title: Lecture slides — Software engineering teamwork
-    src: materials/1-3-SoftwareEngineeringTeamwork.pptx
+    src: slides/1-3-SoftwareEngineeringTeamwork.pptx
 ---
 
 **Premise.** *A software team is a system for coordinating engineering capability.*

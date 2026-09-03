@@ -68,6 +68,21 @@ site/.venv/bin/mkdocs build --strict -f site/mkdocs.yml -d /tmp/teach   # one-of
 
 ## Authoring a module
 
+Each module is its own **directory** — the filesystem mirrors the curriculum (Act → Module → its
+materials), so a module is a self-contained teaching unit you can lift whole:
+
+```
+lectures/act-1-foundations/
+  index.md                      # the Act landing page
+  02-software-process/
+    index.md                    # the module page
+    slides/                     # editable presentation sources (created when slides arrive)
+    readings/                   # locally distributed readings (created when readings arrive)
+```
+
+Do not create empty `slides/`/`readings/` dirs; add them as materials arrive. `readings/` means "reading
+artifacts we actually distribute" — a module's `index.md` may instead cite externally hosted readings.
+
 A module page carries YAML front matter and a short body. The build hooks (`../site/hooks/`) render the
 Materials and Readings sections from front matter, so keep it filled in:
 
@@ -77,8 +92,8 @@ title: Software Process          # nav label = the topic (no "week")
 status: ready                    # placeholder | draft | ready
 materials:
   - title: Lecture slides
-    src: materials/1-2-SEProcessesAndMethodologies.pptx
-    pdf: materials/1-2-SEProcessesAndMethodologies.pdf   # optional rendered PDF
+    src: slides/1-2-SEProcessesAndMethodologies.pptx
+    pdf: slides/1-2-SEProcessesAndMethodologies.pdf   # optional rendered PDF
 readings:
   before:
     - "[MAGE — Part 1: The new engineering problem](https://.../book/)"
@@ -108,7 +123,7 @@ schema made concrete; the schema is the source of truth. Change a rule there, no
 
 - **Materials** (`materials:`) — teaching materials are a **mix of formats** (PowerPoint, Typst, Markdown);
   the site never renders a deck into a page. Each entry has an editable-source `src` (offered as a download)
-  and an optional rendered `pdf`. Files live in the page's `materials/` subfolder. A referenced file that
+  and an optional rendered `pdf`. Files live in the module's `slides/` subfolder. A referenced file that
   isn't committed yet renders as *"(coming soon)"* — it never breaks the strict build, and the link appears
   once you add the file. (Rendering source → PDF is optional: Typst via the book's `typst compile`;
   PowerPoint via `soffice --convert-to pdf`.)

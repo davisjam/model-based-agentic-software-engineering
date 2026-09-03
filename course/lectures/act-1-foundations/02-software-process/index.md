@@ -11,10 +11,10 @@ readings:
         - 'The Mythical Man-Month, Ch. 11. Covers similar ground to Royce from Brooks''s more informal, essay-like perspective.'
         - '[Beck (1999), "Embracing Change with Extreme Programming."](https://ieeexplore.ieee.org/document/796139) Describes the major practices of XP and its approach to embracing change compared with traditional Waterfall development.'
         - 'The [Agile Manifesto](https://agilemanifesto.org/) and its [Principles](https://agilemanifesto.org/principles.html). Beck, Fowler, Martin, et al., 2001.'
-        - '[The Scrum Guide](materials/scrum-guide-2020.pdf). Schwaber & Sutherland, November 2020. (Source: [redagile.com/scrum-guide](https://www.redagile.com/scrum-guide).)'
+        - '[The Scrum Guide](readings/scrum-guide-2020.pdf). Schwaber & Sutherland, November 2020. (Source: [redagile.com/scrum-guide](https://www.redagile.com/scrum-guide).)'
     - heading: A critical perspective
       items:
-        - '["Extreme Programming Considered Harmful."](materials/extreme-programming-considered-harmful.pdf) Presents an engineering critique of Extreme Programming and reiterates the practices of XP.'
+        - '["Extreme Programming Considered Harmful."](readings/extreme-programming-considered-harmful.pdf) Presents an engineering critique of Extreme Programming and reiterates the practices of XP.'
       note: 'Actual engineering experience with Agile, and XP in particular, has been mixed. They may be suitable for low-assurance systems but inappropriate for high-assurance systems. It is hard to disentangle reports about "Agile" from the attitude of "Continuous Delivery," which can be achieved whether a project is following an incremental or plan-based approach. See the PDF for one person''s perspective based on their engineering experiences. The usual disclaimers about bias and small sample size apply. The "XP considered harmful" paper is not being presented as statistically valid evidence, but rather to expose students to different viewpoints.'
 instructor_materials: []
 student_materials: []
@@ -23,7 +23,7 @@ instructor_notes: ""
 status: ready
 materials:
   - title: Lecture slides — SE processes and methodologies
-    src: materials/1-2-SEProcessesAndMethodologies.pptx
+    src: slides/1-2-SEProcessesAndMethodologies.pptx
 ---
 
 **Premise.** *The engineered medium affects the engineering process.*

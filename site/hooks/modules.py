@@ -13,8 +13,9 @@ import re
 import yaml  # MkDocs already depends on PyYAML
 
 _TOKEN = re.compile(r"\{module:([^}]+)\}")
-#: A lecture module page: course/lectures/act-<name>/NN-<topic>.md (the numbered topic files).
-_MODULE_RE = re.compile(r"^lectures/act-[^/]+/\d\d-[^/]+\.md$")
+#: A lecture module page: course/lectures/act-<name>/NN-<topic>/index.md — each module is its own
+#: directory (holding index.md + slides/ + readings/), so the page is the directory's index.
+_MODULE_RE = re.compile(r"^lectures/act-[^/]+/\d\d-[^/]+/index\.md$")
 
 
 def _front_matter(abs_path: str) -> dict:
