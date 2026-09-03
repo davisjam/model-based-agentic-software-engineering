@@ -3069,7 +3069,7 @@
             {
               "slug": "dont-trust-a-done-claim-re-run-the-gates",
               "text": "A report of \"done\" does not establish that the repository entered the required state; re-evaluate the entry condition at the work-unit boundary.",
-              "block_index": 19
+              "block_index": 18
             }
           ]
         },
@@ -3079,22 +3079,22 @@
           "heading_text": "Attach Reactions to Lifecycle Events",
           "topic_sentence": "A lifecycle model says which states matter.",
           "id_source": "derived",
-          "block_index": 21,
+          "block_index": 20,
           "points": [
             {
               "slug": "a-lifecycle-says-what-states-matter-events-make-the-right-step-arrive",
               "text": "A lifecycle names the states that matter; binding a reaction to a transition makes the right procedure arrive at the right time.",
-              "block_index": 23
+              "block_index": 22
             },
             {
               "slug": "the-firing-can-be-deterministic-while-the-payload-holds-judgment",
               "text": "Binding does not require a mechanical response: the firing can be deterministic while the payload still contains judgment.",
-              "block_index": 26
+              "block_index": 25
             },
             {
               "slug": "wire-known-failures-to-sanctioned-reactions-automate-the-arrival-not-the-decision",
               "text": "Wire known failure events to sanctioned reactions rather than waiting for an operator to notice; the aim is to automate the arrival of the decision procedure, not every decision.",
-              "block_index": 29
+              "block_index": 28
             }
           ]
         },
@@ -3104,32 +3104,32 @@
           "heading_text": "Externalize Operational Judgment",
           "topic_sentence": "A runbook preserves how an experienced engineer reasons through a recurring situation, including which steps are mechanical and which require judgment.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 31,
           "points": [
             {
               "slug": "a-good-runbook-preserves-how-an-engineer-reasons-not-only-the-commands",
               "text": "A good runbook preserves how an experienced engineer reasons through a recurring situation, without pretending every step has one mechanical answer.",
-              "block_index": 34
+              "block_index": 33
             },
             {
               "slug": "type-each-runbook-step-execute-delegate-escalate",
               "text": "Not every runbook step has the same decision structure; type each step Execute, Delegate, or Escalate — the same split the event reactions use.",
-              "block_index": 40
+              "block_index": 39
             },
             {
               "slug": "playbooks-externalize-which-kind-of-reasoning-each-step-requires",
               "text": "A structured operational playbook can serve as a model of engineering practice: it externalizes which kind of reasoning each step requires.",
-              "block_index": 43
+              "block_index": 42
             },
             {
               "slug": "surround-a-judgment-step-with-deterministic-work",
               "text": "Where possible, surround a judgment-laden step with deterministic work: prepare the data mechanically, execute and measure mechanically after the decision, and preserve the rationale separately from the trace — bounding where judgment occurs without pretending to remove it.",
-              "block_index": 47
+              "block_index": 45
             },
             {
               "slug": "the-fence-is-no-docable-idiosyncrasy",
               "text": "Systems that share no code reach for the same fence between the step a machine can decide and the step that needs a mind.",
-              "block_index": 52
+              "block_index": 49
             }
           ]
         },
@@ -3139,32 +3139,32 @@
           "heading_text": "Measure the State That Matters",
           "topic_sentence": "Operational measurement should expose the state the decision actually depends on.",
           "id_source": "derived",
-          "block_index": 65,
+          "block_index": 62,
           "points": [
             {
               "slug": "operational-measurement-should-expose-the-state-the-decision-depends-on",
               "text": "Operational measurement should expose the state the decision actually depends on: measure the pressure, not the worker count; mediate the shared resource; record lifecycle state rather than reconstruct it — and keep measurement separate from authority.",
-              "block_index": 67
+              "block_index": 64
             },
             {
               "slug": "this-is-not-a-demand-for-perfect-observability",
               "text": "This is not a demand for perfect observability; the point is to notice when a proxy drives a consequential decision and the approximation has stopped being good enough.",
-              "block_index": 70
+              "block_index": 67
             },
             {
               "slug": "an-operating-loop-needs-evidence-about-its-own-state",
               "text": "An operating loop needs evidence about its own state; the useful metric is the one that changes the next engineering decision.",
-              "block_index": 75
+              "block_index": 72
             },
             {
               "slug": "ousterhouts-rule-measure-one-level-deeper",
               "text": "Ousterhout's rule: measure one level deeper — one level, not arbitrarily deep — where the deeper cut exposes the decision the surface number hides.",
-              "block_index": 77
+              "block_index": 74
             },
             {
               "slug": "some-evidence-is-mechanically-decidable-other-evidence-is-judgment-laden",
               "text": "Some evidence is mechanically decidable and appropriate for automated admission; other evidence is intentionally judgment-laden and should point a reader toward a decision rather than masquerade as a threshold.",
-              "block_index": 80
+              "block_index": 77
             }
           ]
         },
@@ -3172,14 +3172,14 @@
           "section_id": "one-hard-example-coverage-measured-one-level-deeper",
           "level": 3,
           "heading_text": "One hard example: coverage measured one level deeper",
-          "topic_sentence": "Requirements-based coverage is one example of measuring at the semantic unit that matters.",
+          "topic_sentence": "Requirements-based coverage joins model-to-code traceability with ordinary test coverage: it follows each modeled claim to the code that realizes it, then to the tests that exercise that code, and reports which claims have no exercising evidence.",
           "id_source": "derived",
-          "block_index": 82,
+          "block_index": 79,
           "points": [
             {
               "slug": "requirements-based-coverage-measures-at-the-semantic-unit",
               "text": "Requirements-based coverage measures at the semantic unit that matters: whether each modeled claim has exercising evidence, not whether a line ran.",
-              "block_index": 84
+              "block_index": 81
             }
           ]
         },
@@ -3187,14 +3187,14 @@
           "section_id": "one-judgment-laden-example-doc-derived-tests",
           "level": 3,
           "heading_text": "One judgment-laden example: doc-derived tests",
-          "topic_sentence": "Doc-derived tests mark the other end of the spectrum.",
+          "topic_sentence": "Doc-derived tests are generated from consequential claims in prose documentation and keep a trace back to the source claim.",
           "id_source": "derived",
-          "block_index": 87,
+          "block_index": 83,
           "points": [
             {
               "slug": "a-doc-derived-tests-metric-is-genuinely-soft",
               "text": "A doc-derived test's metric is genuinely soft: whether every consequential prose claim has an adequate test is a judgment, so it should direct review, not drive a threshold.",
-              "block_index": 89
+              "block_index": 85
             }
           ]
         },
@@ -3204,22 +3204,22 @@
           "heading_text": "Let useful models drive machinery",
           "topic_sentence": "An executable model earns more than documentation value when tools consume it directly.",
           "id_source": "derived",
-          "block_index": 92,
+          "block_index": 87,
           "points": [
             {
               "slug": "an-executable-model-becomes-a-query-surface-for-consumers",
               "text": "An executable model earns more than documentation value when tools consume it directly — it becomes a reusable query surface for many consumers.",
-              "block_index": 94
+              "block_index": 89
             },
             {
               "slug": "a-component-distance-grade-supplies-evidence-to-a-validator",
               "text": "A model can scope a mechanism: DocAble grades findings by component-model distance from the change, so a local finding blocks while unrelated debt stays a broader gate's responsibility.",
-              "block_index": 96
+              "block_index": 91
             },
             {
               "slug": "the-grade-is-a-model-read-metric-not-an-authority",
               "text": "The grade is evidence read from the model; the gate carries the authority — read the number one level below the surface, where it names a target instead of a total.",
-              "block_index": 99
+              "block_index": 93
             }
           ]
         },
@@ -3229,22 +3229,22 @@
           "heading_text": "The Operating Rhythm",
           "topic_sentence": "Put the pieces together and operation becomes a recurring rhythm.",
           "id_source": "derived",
-          "block_index": 101,
+          "block_index": 95,
           "points": [
             {
               "slug": "operating-is-one-recurring-rhythm-across-four-forms",
               "text": "Operating MAGE is one recurring rhythm: the lifecycle names healthy progress and failure, events bind the reaction to the transition, the runbook gives each state a sanctioned next move, and metrics tell whether the loop is improving or merely busy.",
-              "block_index": 103
+              "block_index": 97
             },
             {
               "slug": "when-the-loop-stalls-diagnose-the-kind-of-problem-before-adding-machinery",
               "text": "The operating loop will still stall; when it does, resist the reflex to add another mechanism and first diagnose whether the gap is in the searcher, the model, the oracle, or the target.",
-              "block_index": 105
+              "block_index": 99
             },
             {
               "slug": "the-rhythm-names-three-competencies-part-six-develops",
               "text": "Run the rhythm long enough and recurring operation becomes less dependent on memory; the engineer increasingly decides what the environment should know, what it should decide, and what must remain judgment.",
-              "block_index": 110
+              "block_index": 104
             }
           ]
         }

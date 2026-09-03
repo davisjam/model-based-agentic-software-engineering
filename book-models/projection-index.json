@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1167,
+    "total_sites": 1166,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 818,
+      "book-web": 817,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 13,
@@ -85,7 +85,7 @@
           },
           {
             "file": "book/4.4-operating-mage.html",
-            "occ": 13
+            "occ": 11
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
@@ -1982,10 +1982,6 @@
             "occ": 2
           },
           {
-            "file": "book/4.4-operating-mage.html",
-            "occ": 6
-          },
-          {
             "file": "book/5.4-failures-that-became-infrastructure.html",
             "occ": 1
           },
@@ -2005,7 +2001,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 7
+            "occ": 6
           }
         ]
       },
@@ -2157,7 +2153,7 @@
           },
           {
             "file": "book/4.4-operating-mage.html",
-            "occ": 26
+            "occ": 25
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
