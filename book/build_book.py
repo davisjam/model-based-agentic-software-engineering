@@ -2134,6 +2134,9 @@ nav.toc .part {{ font-weight: 700; color: var(--muted); text-transform: uppercas
                  font-size: 12px; margin: 0.7rem 0 0.25rem; }}
 nav.toc a {{ color: var(--ink); text-decoration: none; display: block; padding: 2px 0 2px 1rem; }}
 nav.toc a:hover {{ color: var(--accent); }}
+nav.toc .toc-home {{ display: inline-block; color: var(--accent); text-decoration: none; font-weight: 600;
+                     padding: 0; margin: 0 0 0.5rem; }}
+nav.toc .toc-home:hover {{ text-decoration: underline; }}
 nav.toc a.current {{ color: var(--accent); font-weight: 600; border-left: 2px solid var(--accent);
                      padding-left: calc(1rem - 2px); }}
 header.chap {{ padding: 2.6rem 0 1.2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.6rem; }}
@@ -2865,7 +2868,9 @@ def toc_html(chapters: list[dict], current_slug: str | None) -> str:
         )
     inner = "\n".join(rows)
     return (
-        '<nav class="toc" aria-label="Table of contents"><div class="toc-inner"><details>'
+        '<nav class="toc" aria-label="Table of contents"><div class="toc-inner">'
+        '<a class="toc-home" href="../index.html" aria-label="MAGE homepage">⌂&nbsp; MAGE home</a>'
+        '<details>'
         "<summary>☰&nbsp; Contents</summary>"
         f'<ol>{inner}</ol></details>'
         '</div></nav>'

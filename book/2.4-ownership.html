@@ -87,6 +87,9 @@ nav.toc .part { font-weight: 700; color: var(--muted); text-transform: uppercase
                  font-size: 12px; margin: 0.7rem 0 0.25rem; }
 nav.toc a { color: var(--ink); text-decoration: none; display: block; padding: 2px 0 2px 1rem; }
 nav.toc a:hover { color: var(--accent); }
+nav.toc .toc-home { display: inline-block; color: var(--accent); text-decoration: none; font-weight: 600;
+                     padding: 0; margin: 0 0 0.5rem; }
+nav.toc .toc-home:hover { text-decoration: underline; }
 nav.toc a.current { color: var(--accent); font-weight: 600; border-left: 2px solid var(--accent);
                      padding-left: calc(1rem - 2px); }
 header.chap { padding: 2.6rem 0 1.2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.6rem; }
@@ -644,7 +647,7 @@ section.eng-note, section.eng-note-panel { break-inside: avoid; }
       pager, index, and any text-extraction stay case-exact). Scoped to the appendix `<main>` so book
       chapters are untouched. */
 main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
-</style></head><body><nav class="toc" aria-label="Table of contents"><div class="toc-inner"><details><summary>☰&nbsp; Contents</summary><ol><li class="part">Part 0 — Orientation and Reference</li>
+</style></head><body><nav class="toc" aria-label="Table of contents"><div class="toc-inner"><a class="toc-home" href="../index.html" aria-label="MAGE homepage">⌂&nbsp; MAGE home</a><details><summary>☰&nbsp; Contents</summary><ol><li class="part">Part 0 — Orientation and Reference</li>
 <li><a class="" href="0.0-acknowledgments.html">Acknowledgments</a></li>
 <li><a class="" href="0.1-how-to-read-this-book.html">How to Read This Book</a></li>
 <li><a class="" href="0.2-what-this-book-argues.html">What This Book Argues</a></li>

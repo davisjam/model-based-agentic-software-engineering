@@ -2861,9 +2861,9 @@ def _writings_body() -> str:
 
 
 def _v3_learn() -> str:
-    """The landing Resources section — four PEER artifact classes (Book · Writings · Curriculum · Talks),
-    describing what each resource IS rather than how deeply to consume it. Book and Curriculum link to their
-    existing surfaces; Writings and Talks link to their projected index pages."""
+    """The landing Resources section — four PEER artifact classes (Book · Writings · Teach with MAGE ·
+    Talks), describing what each resource IS rather than how deeply to consume it. Book and Teach with MAGE
+    link to their existing surfaces; Writings and Talks link to their projected index pages."""
     return (
         '<section class="v3-sec" id="resources" aria-labelledby="resources-h">\n'
         '  <h2 id="resources-h" class="sec-h">Resources</h2>\n'
@@ -2876,9 +2876,9 @@ def _v3_learn() -> str:
         + _v3_card("Writings", "",
                    "Papers and shorter articles developing, motivating, and evaluating MAGE.",
                    [("Browse writings", "writings.html")]) + "\n"
-        + _v3_card("Curriculum", "",
+        + _v3_card("Teach with MAGE", "",
                    "Course and modular teaching materials for instructors and students.",
-                   [("Explore curriculum", "teach/index.html")]) + "\n"
+                   [("Open Teach with MAGE", "teach/index.html")]) + "\n"
         + _v3_card("Talks", "",
                    "Slides and supporting materials from presentations about MAGE.",
                    [("Browse talks", "talks.html")]) + "\n"
