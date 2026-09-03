@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1166,
+    "total_sites": 1167,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 817,
+      "book-web": 818,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 13,
@@ -120,6 +120,10 @@
             "occ": 2
           },
           {
+            "file": "book/6.3-scope-conditions.html",
+            "occ": 1
+          },
+          {
             "file": "book/6.4-research-agenda.html",
             "occ": 2
           },
@@ -223,7 +227,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 50
+            "occ": 51
           }
         ]
       },
@@ -985,7 +989,7 @@
           },
           {
             "file": "book/6.3-scope-conditions.html",
-            "occ": 51
+            "occ": 57
           },
           {
             "file": "book/6.4-research-agenda.html",
@@ -1355,7 +1359,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 67
+            "occ": 66
           },
           {
             "file": "catalogue-figure.html",
@@ -2193,7 +2197,7 @@
           },
           {
             "file": "book/6.3-scope-conditions.html",
-            "occ": 20
+            "occ": 16
           },
           {
             "file": "book/6.4-research-agenda.html",
@@ -2481,7 +2485,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 419
+            "occ": 417
           },
           {
             "file": "book/index.html",
@@ -4295,7 +4299,7 @@
           },
           {
             "file": "book/6.3-scope-conditions.html",
-            "occ": 1
+            "occ": 5
           },
           {
             "file": "book/6.4-research-agenda.html",
@@ -4583,7 +4587,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 34
+            "occ": 36
           },
           {
             "file": "book/index.html",

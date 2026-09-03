@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part VI §6.3.2 figure — return-governability.svg. Two dimensions of investment: RETURN to explicit
+     engineering (vertical, low->high) and GOVERNABILITY (horizontal, low->high = representation, evidence,
+     evaluation). Four quadrants: high-return/low-gov -> invest in JUDGMENT (green); high-return/high-gov ->
+     invest in AUTHORITY (rust); low-return/low-gov -> little investment; low-return/high-gov -> selective
+     Modeling + Alignment. Full formalization is the high/high region, not the endpoint of a spectrum. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" width="900" height="720"
+     role="img" aria-labelledby="rgTitle rgDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="rgTitle">Return and governability define two dimensions of engineering investment</title>
+  <desc id="rgDesc">A quadrant chart. The vertical axis is return to explicit engineering, from low at the bottom to
+    high at the top. The horizontal axis is governability — representation, evidence, evaluation — from low on the left
+    to high on the right. Where return is high but governability is low, invest strongly in judgment: models,
+    knowledge, examples, procedures, skills, evidence, structured evaluation. Where both are high, invest strongly in
+    authority: formal models, constraints, validators, gates, proof, synthesis, trustworthy derivation. Where return is
+    low and governability low, little investment is warranted; where return is low but governability high, apply
+    selective Modeling and Alignment. Full formalization occupies the high-return, high-governability region rather
+    than the endpoint of a spectrum.</desc>
+
+  <!-- axes -->
+  <g stroke="#57534e" stroke-width="1.8">
+    <line x1="450" y1="56" x2="450" y2="374"/>
+    <line x1="450" y1="420" x2="450" y2="648"/>
+    <line x1="70" y1="360" x2="830" y2="360"/>
+  </g>
+
+  <!-- vertical axis: RETURN -->
+  <text x="450" y="24" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="0.4" fill="#57534e">RETURN TO EXPLICIT ENGINEERING</text>
+  <text x="450" y="46" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">HIGH</text>
+  <text x="450" y="668" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">LOW</text>
+
+  <!-- horizontal axis: GOVERNABILITY -->
+  <text x="44" y="356" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">LOW</text>
+  <text x="858" y="356" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">HIGH</text>
+  <text x="450" y="392" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="0.4" fill="#57534e">GOVERNABILITY</text>
+  <text x="450" y="414" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">representation · evidence · evaluation</text>
+
+  <!-- TOP-LEFT: high return, low governability -> invest in JUDGMENT (green) -->
+  <text x="250" y="112" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">invest strongly in judgment</text>
+  <g font-size="15" fill="#1c1917" text-anchor="middle">
+    <text x="250" y="148">models · knowledge</text>
+    <text x="250" y="174">examples · procedures</text>
+    <text x="250" y="200">skills · evidence</text>
+    <text x="250" y="226">structured evaluation</text>
+  </g>
+
+  <!-- TOP-RIGHT: high return, high governability -> invest in AUTHORITY (rust) -->
+  <text x="650" y="112" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">invest strongly in authority</text>
+  <g font-size="15" fill="#1c1917" text-anchor="middle">
+    <text x="650" y="148">formal models · constraints</text>
+    <text x="650" y="174">validators · gates</text>
+    <text x="650" y="200">proof · synthesis</text>
+    <text x="650" y="226">trustworthy derivation</text>
+  </g>
+
+  <!-- BOTTOM-LEFT: low return, low governability -->
+  <g font-size="16" fill="#57534e" text-anchor="middle">
+    <text x="250" y="516">little investment</text>
+    <text x="250" y="540">warranted</text>
+  </g>
+
+  <!-- BOTTOM-RIGHT: low return, high governability -->
+  <g font-size="16" fill="#57534e" text-anchor="middle">
+    <text x="650" y="516">selective Modeling</text>
+    <text x="650" y="540">+ Alignment</text>
+  </g>
+</svg>
