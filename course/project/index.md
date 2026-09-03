@@ -13,17 +13,13 @@ materials:
     src: materials/Purdue-ECE-30861-Project_Overview.pptx
 ---
 
-The flagship project (initial instance: **ECE 30861**) walks a team through the full educational arc of engineering under an external obligation:
+The semester project takes a team from an external obligation to a shipped software system:
 
-**ambiguous external obligation → interpretation → scoping/specification → design/build → validation → assurance → shipped system.**
+**obligation → interpretation → specification → design → realization → validation → assurance → shipment**
 
-Teams work in **pods**: teams assigned the same regulation share one specification, implement it independently, and **cross-test** one another's systems. See **[Project Assessment](../assessment/project-assessment.md)**.
+Teams working from the same regulation form a **pod**. They share a specification, implement it independently, and **cross-test** their systems. See **[Project Assessment](../assessment/project-assessment.md)**.
 
-The **project overview slides** (the first-day framing for the ECE 30861 instance) are attached below — the editable PowerPoint source, offered as a download. The written phase guides — Phases 0–6 and candidate projects — are linked in the sidebar.
-
-## Overview
-
-The goal of this project is to give you experience engineering software when the problem itself is not fully specified. This is exactly the kind of problem for which software engineering is needed: there is no complete specification to implement, and coding agents alone cannot determine what should be built.
+The project gives you experience engineering software when the problem itself is not fully specified. This is exactly the kind of problem for which software engineering is needed: there is no complete specification to implement, and coding agents alone cannot determine what should be built.
 
 You will work in teams of 3–5 students (default size is 4).
 
@@ -33,14 +29,14 @@ Teams addressing the same regulation will be grouped into pods. Pods provide opp
 
 Generative AI and software agents are part of the engineering environment for this project. They substantially increase your implementation capacity, placing greater importance on the decisions that guide that capacity. Your team will translate ambiguous real-world obligations into engineering requirements, make and justify tradeoffs, choose appropriate representations and mechanisms, and determine what evidence is sufficient to support confidence in the resulting system.
 
-## Goals and Learning Objectives
+## Project goals
 
-By the end of the project, you should have:
+The project gives students experience:
 
-1. Experience carrying an ambiguous real-world problem through the full engineering process: interpret, scope, design, build, validate, and ship.
-2. Experience working on a software team.
-3. Experience leveraging Generative AI as an engineering tool.
-4. A working prototype with the potential to develop into a real product or business.
+- carrying an ambiguous external obligation through the software engineering lifecycle;
+- working in a software team;
+- using GenAI throughout engineering work; and
+- building and defending a working software system.
 
 ## Phases
 
@@ -53,6 +49,28 @@ The project is organized into seven phases. Phases 0–2 are specified by the in
 - **Phase 4** — Team-defined milestone. Define and complete the next meaningful engineering milestone, incorporating evidence and feedback from your work so far.
 - **Phase 5** — Team-defined milestone. Define and complete your final development milestone, including appropriate automated testing and validation.
 - **Phase 6** — Ship and demonstrate. Deliver the completed prototype, demonstrate what it does, present evidence supporting its quality, and reflect on the engineering decisions that produced it.
+
+## Project schedule
+
+The reference course schedules the project across the semester as follows:
+
+| Week | Project milestone |
+|---|---|
+| 1 | Phase 0: Team formation and regulation selection |
+| 2 | Phase 1: Study & Scoping begins |
+| 3 | Phase 1 due: Requirements, feasible scope, and problem analysis |
+| 4 | Phase 2: Specification & Planning begins |
+| 5 | Phase 2 due: Shared specification, validation targets, and implementation plan |
+| 6 | Phase 3 begins |
+| 8 | Phase 3 due: Milestone delivery and test run |
+| 9 | Phase 4 begins |
+| 10 | Phase 4 due: Milestone delivery and test run |
+| 11 | Phase 5 begins |
+| 13 | Phase 5 due: Milestone delivery and test run |
+| 14 | Phase 6 begins |
+| 16 | Phase 6 due: Final system and documentation |
+
+Phases 3–5 are team-defined. Each team chooses milestones appropriate to its project while following the common delivery cadence.
 
 ## Deliverables and Assessments
 
