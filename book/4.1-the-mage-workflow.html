@@ -880,71 +880,114 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Do not make authority the automatic destination of every piece of guidance. Authority is appropriate when the obligation is sufficiently stable, the mechanism can evaluate it at the right semantic boundary, and the cost of violation justifies the restriction. Guidance remains appropriate where judgment is unsettled or where the cost of mechanization would exceed the failure it prevents.</p>
 <p>"Must never happen" identifies a candidate obligation. Find the property and the boundary where it can be decided, then choose the mechanism appropriate to that property.</p>
 <h2 id="engineer-the-judgment"><span class="sec-num">4.1.4</span> Engineer the Judgment</h2>
-<p>Not every important judgment should become deterministic. MAGE provides two complementary ways to improve recurring work. The first is to improve the conditions under which the judgment is made: give the reasoner better representations, domain knowledge, examples, procedures, tools, and context so that a satisfactory realization becomes more likely. The second is to remove selected outcomes from dependence on that judgment by giving an obligation authority in the environment. A skill may substantially improve how an agent reasons about a decision while leaving the decision probabilistic; a type, constrained interface, permission, deterministic check, or validator-backed gate can make a covered violation unavailable or inadmissible regardless of what the agent decides.</p>
-<p>The distinction matters most when the work itself is qualitative. Whether an explanation is clear, an architecture is comprehensible, a diagnostic hypothesis is plausible, or a design makes the right tradeoff may admit no useful deterministic oracle. Those judgments can still be engineered. The distinctions experts use, the evidence they inspect, the examples they recognize, and the procedures by which they reach a decision can be made explicit and supplied to later reasoners. Modeling and skills can therefore create durable engineering value even when the resulting judgment remains probabilistic.</p>
-<p>Conversely, a qualitative task can contain obligations that do admit authority. Preparing a technical presentation requires judgment about narrative, emphasis, and visual communication, while contrast requirements, file validity, or required metadata may be mechanically checkable. A legal analysis may require interpretation while still permitting deterministic checks that cited authorities exist or quoted passages correspond to their sources. Decompose the problem obligation by obligation, rather than deciding that an entire task is either subjective or deterministic.</p>
-<p>For each recurring judgment, ask two questions: What would help the reasoner make this judgment well? What part of the result should not depend on the reasoner making the judgment well? The first question leads toward better models, context, examples, procedures, tools, and skills. The second leads toward constraints, validators, permissions, gates, and other forms of authority. Human judgment remains appropriate where the obligation is consequential but neither the reasoner nor the environment can decide it adequately. <a class="xref" href="4.1-the-mage-workflow.html#fig-4-1-2">Figure&nbsp;4.1-2</a> sets the two interventions side by side.</p>
-<figure id="fig-4-1-2" class="book-figure" data-label="two-interventions-recurring-judgment"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500"
-     role="img" aria-labelledby="f-two-interventions-recurring-judgment-tiTitle f-two-interventions-recurring-judgment-tiDesc"
+<p>Not every important judgment should become deterministic. MAGE provides two complementary ways to improve recurring work. One is to improve the conditions under which a reasoner makes a judgment: give it better representations, domain knowledge, examples, procedures, tools, and context so that a satisfactory realization becomes more likely. The other is to give selected obligations authority in the environment, so that the consequence does not depend entirely on the reasoner choosing correctly.</p>
+<p>The distinction is not between two kinds of engineering artifact, but between two effects those artifacts can provide. A model can guide an agent and state properties consumed by a validator. A skill can improve judgment and invoke authoritative controls. Evidence can inform a decision or feed an admission gate. A governed engineering environment composes these roles rather than assigning each artifact permanently to one side.</p>
+<p>Nor is the boundary fixed. A judgment that initially resists authority may become better understood through repeated use, failure, and refinement. Its obligations may become clearer, suitable evidence may become available, or a qualitative distinction may become evaluable with sufficient reliability. At that point, some of what previously depended on judgment can acquire authority in the environment. Other portions may properly remain probabilistic. <a class="xref" href="4.1-the-mage-workflow.html#fig-4-1-2">Figure&nbsp;4.1-2</a> shows the recurring cycle.</p>
+<figure id="fig-4-1-2" class="book-figure" data-label="engineering-recurring-work"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 690"
+     role="img" aria-labelledby="f-engineering-recurring-work-erwTitle f-engineering-recurring-work-erwDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-two-interventions-recurring-judgment-tiTitle">Two interventions for a recurring engineering judgment: improve the judgment, or give an obligation authority</title>
-  <desc id="f-two-interventions-recurring-judgment-tiDesc">A recurring engineering judgment forks into two complementary interventions. On the left,
-    improving the judgment supplies models, knowledge, examples, context, procedures, and skills so the reasoner is
-    more likely to produce a satisfactory realization. On the right, giving authority uses constraints, types,
-    permissions, tools, validators, and gates to remove selected outcomes from that reasoning. Both feed the
-    realization; what neither decides remains residual judgment, made by an agent or a human.</desc>
+  <title id="f-engineering-recurring-work-erwTitle">Engineering recurring work: a governed environment both supports reasoning and gives selected obligations authority, and the cycle iterates</title>
+  <desc id="f-engineering-recurring-work-erwDesc">Recurring engineering work exposes a judgment and is handled by engineering the environment. The
+    environment supports the reasoner — models, knowledge, examples, procedures, context, skills, tools, evidence — and
+    gives selected obligations authority — constraints, validators, permissions, gates, checks. A dashed arrow from
+    support to authority marks the recurring move of giving authority where feasible. The governed engineering
+    environment then hosts realization, authoritative mechanisms act on selected obligations, work is realized,
+    outcomes and failures are observed, what pays is preserved, and the cycle iterates.</desc>
 
   <defs>
-    <marker id="f-two-interventions-recurring-judgment-ti-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-engineering-recurring-work-erw-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="f-engineering-recurring-work-erw-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
   </defs>
 
-  <!-- top: the recurring judgment -->
-  <rect x="250" y="34" width="400" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="450" y="68" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">RECURRING ENGINEERING JUDGMENT</text>
+  <!-- 1. recurring engineering work -->
+  <rect x="298" y="18" width="344" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="470" y="47" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">RECURRING ENGINEERING WORK</text>
+
+  <line x1="470" y1="64" x2="470" y2="98" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-engineering-recurring-work-erw-ah)"/>
+  <text x="484" y="86" font-size="15" font-style="italic" fill="#57534e">expose the judgment</text>
+
+  <!-- 3. engineer the environment (hub) -->
+  <rect x="298" y="100" width="344" height="46" rx="9" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="470" y="129" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ENGINEER THE ENVIRONMENT</text>
 
   <!-- fork -->
   <g stroke="#57534e" stroke-width="2" fill="none">
-    <line x1="450" y1="90" x2="450" y2="118"/>
-    <line x1="250" y1="118" x2="650" y2="118"/>
-    <line x1="250" y1="118" x2="250" y2="146"/>
-    <line x1="650" y1="118" x2="650" y2="146"/>
+    <line x1="470" y1="146" x2="470" y2="168"/>
+    <line x1="220" y1="168" x2="720" y2="168"/>
+    <line x1="220" y1="168" x2="220" y2="192"/>
+    <line x1="720" y1="168" x2="720" y2="192"/>
   </g>
 
-  <!-- left column: IMPROVE THE JUDGMENT (green = better conditions for the reasoner) -->
-  <rect x="108" y="148" width="284" height="156" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
-  <text x="250" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">IMPROVE THE JUDGMENT</text>
-  <g font-size="17" fill="#1c1917" text-anchor="middle">
-    <text x="250" y="216">models · knowledge</text>
-    <text x="250" y="246">examples · context</text>
-    <text x="250" y="276">procedures · skills</text>
+  <!-- 4a. support the reasoner (green) -->
+  <rect x="56" y="194" width="328" height="132" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="220" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">SUPPORT THE REASONER</text>
+  <g font-size="15.5" fill="#1c1917" text-anchor="middle">
+    <text x="220" y="252">models · knowledge · examples</text>
+    <text x="220" y="278">procedures · context · skills</text>
+    <text x="220" y="304">tools · evidence</text>
   </g>
 
-  <!-- right column: GIVE AUTHORITY (rust = remove outcomes from the reasoning) -->
-  <rect x="508" y="148" width="284" height="156" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="650" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">GIVE AUTHORITY</text>
-  <g font-size="17" fill="#1c1917" text-anchor="middle">
-    <text x="650" y="216">constraints · types</text>
-    <text x="650" y="246">permissions · tools</text>
-    <text x="650" y="276">validators · gates</text>
+  <!-- 4b. give obligations authority (rust) -->
+  <rect x="556" y="194" width="328" height="132" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="720" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">GIVE OBLIGATIONS AUTHORITY</text>
+  <g font-size="15.5" fill="#1c1917" text-anchor="middle">
+    <text x="720" y="252">constraints · validators</text>
+    <text x="720" y="278">permissions · gates</text>
+    <text x="720" y="304">checks</text>
   </g>
 
-  <!-- converge to realization -->
+  <!-- dashed cross move: give authority where feasible -->
+  <text x="470" y="248" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">give authority</text>
+  <text x="470" y="266" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">where feasible</text>
+  <line x1="386" y1="284" x2="554" y2="284" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#f-engineering-recurring-work-erw-ah-rust)"/>
+
+  <!-- converge -->
   <g stroke="#57534e" stroke-width="2" fill="none">
-    <line x1="250" y1="304" x2="250" y2="332"/>
-    <line x1="650" y1="304" x2="650" y2="332"/>
-    <line x1="250" y1="332" x2="650" y2="332"/>
-    <line x1="450" y1="332" x2="450" y2="360" marker-end="url(#f-two-interventions-recurring-judgment-ti-ah)"/>
+    <line x1="220" y1="326" x2="220" y2="350"/>
+    <line x1="720" y1="326" x2="720" y2="350"/>
+    <line x1="220" y1="350" x2="720" y2="350"/>
+    <line x1="470" y1="350" x2="470" y2="374" marker-end="url(#f-engineering-recurring-work-erw-ah)"/>
   </g>
 
-  <rect x="350" y="372" width="200" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="450" y="404" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">REALIZATION</text>
+  <!-- 6. governed engineering environment (composed) -->
+  <rect x="210" y="376" width="520" height="96" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="470" y="404" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">GOVERNED ENGINEERING ENVIRONMENT</text>
+  <text x="470" y="430" text-anchor="middle" font-size="15" fill="#1c1917">reasoner attempts realization</text>
+  <text x="470" y="454" text-anchor="middle" font-size="15" fill="#1c1917">authoritative mechanisms act on selected obligations</text>
 
-  <!-- residual -->
-  <line x1="450" y1="424" x2="450" y2="450" stroke="#57534e" stroke-width="2" marker-end="url(#f-two-interventions-recurring-judgment-ti-ah)"/>
-  <text x="450" y="474" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">residual judgment — agent or human</text>
-</svg><figcaption data-short="Two interventions for recurring judgment"><span class="fig-label">Figure 4.1-2.</span> <em>Two interventions for recurring judgment.</em> Better representations, knowledge, examples, procedures, and context improve the probability that the reasoner produces a satisfactory realization; authority removes selected outcomes from dependence on that reasoning. The two interventions can coexist within the same task, and are chosen obligation by obligation.</figcaption></figure>
+  <line x1="470" y1="472" x2="470" y2="500" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-engineering-recurring-work-erw-ah)"/>
+
+  <!-- 7. realized work -->
+  <rect x="360" y="502" width="220" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="470" y="531" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">REALIZED WORK</text>
+
+  <line x1="470" y1="548" x2="470" y2="582" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-engineering-recurring-work-erw-ah)"/>
+  <text x="484" y="570" font-size="15" font-style="italic" fill="#57534e">observe outcomes &amp; failures</text>
+
+  <!-- 9. preserve what pays -->
+  <rect x="320" y="584" width="300" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="470" y="612" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">PRESERVE WHAT PAYS</text>
+  <text x="470" y="636" text-anchor="middle" font-size="15" fill="#57534e">models · skills · controls · tools</text>
+
+  <!-- iterate loop back to the top (right margin) -->
+  <path d="M622 619 L898 619 L898 41 L642 41" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-engineering-recurring-work-erw-ah)"/>
+  <text x="770" y="58" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">iterate</text>
+</svg><figcaption data-short="Engineering recurring work"><span class="fig-label">Figure 4.1-2.</span> <em>Engineering recurring work.</em> A governed engineering environment combines support for probabilistic reasoning with authority over selected obligations; the same models, knowledge, procedures, skills, tools, and evidence may contribute to both. The dashed arrow marks a recurring MAGE move: as judgment becomes better understood, some obligations may become sufficiently clear and evaluable to receive authority. Feasibility may be limited by the obligation, the available evidence, implementation cost, or the consequences of error; residual judgment can properly remain probabilistic.</figcaption></figure>
+<p>The dashed arrow is an opportunity, not a required progression. MAGE does not assume that engineering knowledge should eventually become deterministic, or even authoritative. Some judgments remain qualitative because the underlying objective is contextual, plural, or difficult to observe independently. Others contain narrower obligations that can receive authority even while the larger judgment remains open. The relevant unit is therefore the obligation, not the task.</p>
+<p><strong>Example — good writing.</strong> Consider the obligation to produce "good writing." A style guide can externalize knowledge about that objective and improve an agent's realization, but there is no single construct called good writing that admits a sound checker. Some narrower obligations nevertheless admit deterministic checks: spelling, grammatical rules, paragraph-length bounds, prohibited terms, or excessive repetition. Others admit useful but probabilistic evaluation: whether a paragraph has an effective topic sentence, whether an introduction summarizes and prepares the material that follows, or whether prose exhibits a desired style such as terse and factual rather than metaphorical. Those evaluators can themselves receive authority where their reliability and consequences make that feasible.</p>
+<p>None establishes that the resulting prose is "good writing." They establish narrower properties that have become sufficiently explicit to evaluate, while the broader judgment remains partly contextual and plural. Repeated experience can move this boundary. A preference first recorded only as prose in a style guide may later become a precise rule; a recurring qualitative criticism may become a probabilistic evaluator with useful measured behavior; some judgments may never justify either. The style guide remains useful throughout because its role is broader than the subset of its knowledge that the environment can enforce.</p>
+<p><strong>Example — from DocAble evidence to a memory bound.</strong> The DocAble memory example from the Interlude shows the same movement in a quantitative setting. The initial engineering knowledge was empirical: simple presentations worked, real teaching presentations worked, and eventually hundreds of documents from several universities worked. Those observations supported engineering judgment about the architecture's operating range, but they could not establish what would happen for a larger media payload. A roughly 250 MB presentation exposed the boundary of that evidence.</p>
+<p>Modeling the artifact made a stronger obligation feasible. Separating the document's structural skeleton from its media exposed the relation that mattered: persistent worker memory need not scale with total media size. The resulting residency model states a quantitative invariant,</p>
+<div class="book-eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="book-math-display"><mrow><mtext>peak worker RSS</mtext><mo>≤</mo><mi>C</mi></mrow></math></div>
+<p>where, within the declared operating envelope,</p>
+<div class="book-eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="book-math-display"><mrow><mi>C</mi><mo>=</mo><mtext>rolling stream buffer</mtext><mo>+</mo><mtext>structural skeleton</mtext><mo>+</mo><mtext>handles</mtext><mo>+</mo><mtext>remediation working set</mtext></mrow></math></div>
+<p>and C does not grow with total media size. The architecture can enforce the assumptions behind that bound, while measurement checks whether the realized system behaves as the model predicts. What began as judgment supported by examples became a narrower property for which the system could provide substantially stronger evidence and authority.</p>
+<p>The stronger mechanism still does not establish that DocAble "uses memory well," any more than spelling checks establish good writing. It governs a property that became precise enough to state and enforce: within the modeled envelope, total media size does not determine peak worker memory. Other dimensions — pathological structure, an individual object beyond the supported bound, excessive concurrency, or something not yet modeled — remain outside that claim. The progression from examples to a bound therefore illustrates the dashed arrow: modeling can make previously judgment-dependent obligations feasible to give authority.</p>
+<p>These examples also separate authority from determinism. A deterministic checker can remain advisory, while a probabilistic evaluator can receive authority if its error characteristics and the consequence make that appropriate. Deterministic enforcement provides stronger assurance for a covered decidable property; authority determines whether the environment can act on the obligation independently of the producing reasoner. The two dimensions should not be conflated.</p>
 <h2 id="structural-prevention"><span class="sec-num">4.1.5</span> Prefer Structural Prevention</h2>
 <p>Prefer structural prevention when the legitimate action space can be closed. A typed API, a sanctioned mutation seam, a closed verb set, or a forbidden dependency can make an invalid move simply unavailable, and the reviewer need not catch that class of mistake because the governed interface does not offer it. Where prevention would exclude legitimate behavior, or the property only becomes visible after the work runs, preserve the action space and add independent evidence instead.</p>
 <p>Where an invalid state can be made unrepresentable without excluding legitimate behavior, prefer a constraint. A property visible only after execution needs evidence and evaluation.</p>

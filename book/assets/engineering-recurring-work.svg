@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part IV §4.1.4 figure — engineering-recurring-work.svg. Recurring work is engineered by an environment
+     that BOTH supports probabilistic reasoning (green) AND gives selected obligations authority (rust). The
+     same models/knowledge/skills/tools/evidence can feed either side. The DASHED arrow (support -> authority)
+     is the recurring MAGE move "give authority where feasible": as judgment becomes better understood, some
+     obligations become clear/evaluable enough to receive authority. The cycle: expose judgment -> engineer
+     the environment -> realize -> observe -> preserve what pays -> iterate. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 690" width="940" height="690"
+     role="img" aria-labelledby="erwTitle erwDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="erwTitle">Engineering recurring work: a governed environment both supports reasoning and gives selected obligations authority, and the cycle iterates</title>
+  <desc id="erwDesc">Recurring engineering work exposes a judgment and is handled by engineering the environment. The
+    environment supports the reasoner — models, knowledge, examples, procedures, context, skills, tools, evidence — and
+    gives selected obligations authority — constraints, validators, permissions, gates, checks. A dashed arrow from
+    support to authority marks the recurring move of giving authority where feasible. The governed engineering
+    environment then hosts realization, authoritative mechanisms act on selected obligations, work is realized,
+    outcomes and failures are observed, what pays is preserved, and the cycle iterates.</desc>
+
+  <defs>
+    <marker id="erw-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="erw-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- 1. recurring engineering work -->
+  <rect x="298" y="18" width="344" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="470" y="47" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">RECURRING ENGINEERING WORK</text>
+
+  <line x1="470" y1="64" x2="470" y2="98" stroke="#57534e" stroke-width="2.2" marker-end="url(#erw-ah)"/>
+  <text x="484" y="86" font-size="15" font-style="italic" fill="#57534e">expose the judgment</text>
+
+  <!-- 3. engineer the environment (hub) -->
+  <rect x="298" y="100" width="344" height="46" rx="9" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="470" y="129" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ENGINEER THE ENVIRONMENT</text>
+
+  <!-- fork -->
+  <g stroke="#57534e" stroke-width="2" fill="none">
+    <line x1="470" y1="146" x2="470" y2="168"/>
+    <line x1="220" y1="168" x2="720" y2="168"/>
+    <line x1="220" y1="168" x2="220" y2="192"/>
+    <line x1="720" y1="168" x2="720" y2="192"/>
+  </g>
+
+  <!-- 4a. support the reasoner (green) -->
+  <rect x="56" y="194" width="328" height="132" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="220" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">SUPPORT THE REASONER</text>
+  <g font-size="15.5" fill="#1c1917" text-anchor="middle">
+    <text x="220" y="252">models · knowledge · examples</text>
+    <text x="220" y="278">procedures · context · skills</text>
+    <text x="220" y="304">tools · evidence</text>
+  </g>
+
+  <!-- 4b. give obligations authority (rust) -->
+  <rect x="556" y="194" width="328" height="132" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="720" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">GIVE OBLIGATIONS AUTHORITY</text>
+  <g font-size="15.5" fill="#1c1917" text-anchor="middle">
+    <text x="720" y="252">constraints · validators</text>
+    <text x="720" y="278">permissions · gates</text>
+    <text x="720" y="304">checks</text>
+  </g>
+
+  <!-- dashed cross move: give authority where feasible -->
+  <text x="470" y="248" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">give authority</text>
+  <text x="470" y="266" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">where feasible</text>
+  <line x1="386" y1="284" x2="554" y2="284" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#erw-ah-rust)"/>
+
+  <!-- converge -->
+  <g stroke="#57534e" stroke-width="2" fill="none">
+    <line x1="220" y1="326" x2="220" y2="350"/>
+    <line x1="720" y1="326" x2="720" y2="350"/>
+    <line x1="220" y1="350" x2="720" y2="350"/>
+    <line x1="470" y1="350" x2="470" y2="374" marker-end="url(#erw-ah)"/>
+  </g>
+
+  <!-- 6. governed engineering environment (composed) -->
+  <rect x="210" y="376" width="520" height="96" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="470" y="404" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">GOVERNED ENGINEERING ENVIRONMENT</text>
+  <text x="470" y="430" text-anchor="middle" font-size="15" fill="#1c1917">reasoner attempts realization</text>
+  <text x="470" y="454" text-anchor="middle" font-size="15" fill="#1c1917">authoritative mechanisms act on selected obligations</text>
+
+  <line x1="470" y1="472" x2="470" y2="500" stroke="#57534e" stroke-width="2.2" marker-end="url(#erw-ah)"/>
+
+  <!-- 7. realized work -->
+  <rect x="360" y="502" width="220" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="470" y="531" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">REALIZED WORK</text>
+
+  <line x1="470" y1="548" x2="470" y2="582" stroke="#57534e" stroke-width="2.2" marker-end="url(#erw-ah)"/>
+  <text x="484" y="570" font-size="15" font-style="italic" fill="#57534e">observe outcomes &amp; failures</text>
+
+  <!-- 9. preserve what pays -->
+  <rect x="320" y="584" width="300" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="470" y="612" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">PRESERVE WHAT PAYS</text>
+  <text x="470" y="636" text-anchor="middle" font-size="15" fill="#57534e">models · skills · controls · tools</text>
+
+  <!-- iterate loop back to the top (right margin) -->
+  <path d="M622 619 L898 619 L898 41 L642 41" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#erw-ah)"/>
+  <text x="770" y="58" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">iterate</text>
+</svg>

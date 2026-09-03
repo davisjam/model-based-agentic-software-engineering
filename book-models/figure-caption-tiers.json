@@ -649,11 +649,11 @@
       "location": "part4",
       "rationale": "the skill skeleton; supports three-skills (sibling of the anchor)"
     },
-    "assets/two-interventions-recurring-judgment.svg": {
-      "tier": "B",
-      "kind": "decomposition",
+    "assets/engineering-recurring-work.svg": {
+      "tier": "A",
+      "kind": "flow",
       "location": "part4",
-      "rationale": "a recurring judgment forks into improve-the-judgment vs give-authority, converging on realization; supporting figure for 4.1.4"
+      "rationale": "the Part IV synthesis: an environment both supports the reasoner and gives selected obligations authority (dashed = give authority where feasible), and the cycle iterates; anchor figure for 4.1.4"
     },
     "assets/bootstrapping-governed-environment.svg": {
       "tier": "B",

@@ -4,15 +4,15 @@
      SELF-GOVERNANCE SKILL (green = the packaged MAGE procedure) reasons about them; CODING INTELLIGENCE
      (blue = machinery-building) realizes selected decisions; and the GOVERNED ENVIRONMENT (rust = where
      authority acts) results, where guidance improves judgment and authority binds selected consequences. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 470" width="700" height="470"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 440" width="700" height="440"
      role="img" aria-labelledby="bgeTitle bgeDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="bgeTitle">Bootstrapping a governed environment: domain expertise, the self-governance skill, and coding intelligence together produce the governed environment</title>
   <desc id="bgeDesc">A top-to-bottom pipeline of four stages. The domain practitioner supplies the obligations,
     evidence, and residual judgment that matter. The self-governance skill supplies the MAGE procedure — models,
-    boundaries, authority, conversion — for reasoning about them. Coding intelligence realizes selected decisions as
-    machinery: types, hooks, validators, gates, provenance. The result is a governed environment in which guidance
-    improves judgment and authority binds selected consequences.</desc>
+    boundaries, authority, procedure — for reasoning about them. Coding intelligence realizes the resulting models,
+    guidance, and controls: schemas, types, hooks, validators, gates. The result is a governed engineering
+    environment combining reasoning support with authoritative mechanisms.</desc>
 
   <defs>
     <marker id="bge-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
@@ -30,20 +30,19 @@
   <!-- 2. self-governance skill (green = packaged MAGE procedure) -->
   <rect x="120" y="132" width="460" height="72" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
   <text x="350" y="166" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">SELF-GOVERNANCE SKILL</text>
-  <text x="350" y="192" text-anchor="middle" font-size="17" fill="#1c1917">models · boundaries · authority · conversion</text>
+  <text x="350" y="192" text-anchor="middle" font-size="17" fill="#1c1917">models · boundaries · authority · procedure</text>
 
   <line x1="350" y1="204" x2="350" y2="234" stroke="#57534e" stroke-width="2.2" marker-end="url(#bge-ah)"/>
 
   <!-- 3. coding intelligence (blue = machinery-building) -->
   <rect x="120" y="236" width="460" height="72" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="350" y="270" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">CODING INTELLIGENCE</text>
-  <text x="350" y="296" text-anchor="middle" font-size="17" fill="#1c1917">types · hooks · validators · gates · provenance</text>
+  <text x="350" y="296" text-anchor="middle" font-size="17" fill="#1c1917">schemas · types · hooks · validators · gates</text>
 
   <line x1="350" y1="308" x2="350" y2="338" stroke="#57534e" stroke-width="2.2" marker-end="url(#bge-ah)"/>
 
-  <!-- 4. governed environment (rust = where authority acts) -->
-  <rect x="120" y="340" width="460" height="98" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="350" y="372" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">GOVERNED ENVIRONMENT</text>
-  <text x="350" y="398" text-anchor="middle" font-size="17" font-style="italic" fill="#1c1917">guidance improves judgment</text>
-  <text x="350" y="422" text-anchor="middle" font-size="17" font-style="italic" fill="#1c1917">authority binds selected consequences</text>
+  <!-- 4. governed engineering environment (rust = the composed result) -->
+  <rect x="120" y="340" width="460" height="76" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="350" y="374" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">GOVERNED ENGINEERING ENVIRONMENT</text>
+  <text x="350" y="400" text-anchor="middle" font-size="17" font-style="italic" fill="#1c1917">reasoning support + authoritative mechanisms</text>
 </svg>
