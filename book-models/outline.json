@@ -2618,32 +2618,32 @@
           "heading_text": "Migrate One Bounded Surface at a Time",
           "topic_sentence": "The immediate goal is not a complete model of the inherited system.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 61,
           "points": [
             {
               "slug": "the-near-goal-is-a-trusted-map-then-a-bounded-migration",
               "text": "The near goal is not a complete model but a trusted map over the surface that matters now; choose a bounded surface, preserve reversibility, and generalize only what it teaches.",
-              "block_index": 59
+              "block_index": 63
             },
             {
               "slug": "docable-serverless-replatforming-ran-this-shape",
               "text": "DocAble's serverless re-platforming ran a bounded, reversible migration: push plane grew beside poll plane behind a default-off toggle, proved green, took traffic, old cluster archived.",
-              "block_index": 63
+              "block_index": 67
             },
             {
               "slug": "recover-the-representation-in-whichever-direction-the-evidence-supports",
               "text": "Recover the representation top-down or bottom-up; removing accidental complexity can ease either.",
-              "block_index": 65
+              "block_index": 69
             },
             {
               "slug": "a-disagreement-has-the-familiar-three-way-diagnosis",
               "text": "A model-code disagreement has a three-way diagnosis: model, grain, or code.",
-              "block_index": 70
+              "block_index": 74
             },
             {
               "slug": "query-the-migration-blast-radius-before-cutover",
               "text": "For consequential substrate changes, query the migration blast radius before cutover.",
-              "block_index": 76
+              "block_index": 80
             }
           ]
         },
@@ -2653,22 +2653,22 @@
           "heading_text": "Audit → Drain → Promote",
           "topic_sentence": "A valid future invariant is not always a valid present admission rule.",
           "id_source": "derived",
-          "block_index": 78,
+          "block_index": 82,
           "points": [
             {
               "slug": "a-valid-future-invariant-is-not-always-a-valid-present-admission-rule",
               "text": "A valid future invariant may not be a valid present admission rule.",
-              "block_index": 80
+              "block_index": 84
             },
             {
               "slug": "cloudflare-reached-the-same-approved-enforced-order",
               "text": "Cloudflare's public account describes a similar approved→enforced order.",
-              "block_index": 84
+              "block_index": 88
             },
             {
               "slug": "sometimes-you-promote-the-obligation-not-the-instrument",
               "text": "Sometimes you promote the obligation, not the instrument that discovered it: an audit can reveal the property that deserves authority without being the right mechanism to carry it.",
-              "block_index": 87
+              "block_index": 91
             }
           ]
         },
@@ -2678,17 +2678,17 @@
           "heading_text": "Derive, Don't Copy",
           "topic_sentence": "Recovering a model is only the first step.",
           "id_source": "explicit",
-          "block_index": 89,
+          "block_index": 93,
           "points": [
             {
               "slug": "recover-then-derive-dont-copy",
               "text": "Recovering a model is only the first step; if a fact already has a queryable source of truth, derive it rather than copying it, and where neither side owns the other, make their correspondence observable.",
-              "block_index": 91
+              "block_index": 95
             },
             {
               "slug": "hidden-assumptions-deserve-the-same-treatment-make-consequential-ones-queryable",
               "text": "Hidden substrate assumptions deserve the same treatment: represent the consequential ones strongly enough that the blast radius can be queried before the change.",
-              "block_index": 95
+              "block_index": 99
             }
           ]
         },
@@ -2698,22 +2698,22 @@
           "heading_text": "Price the Investment",
           "topic_sentence": "A recurring gap does not automatically deserve machinery.",
           "id_source": "derived",
-          "block_index": 97,
+          "block_index": 101,
           "points": [
             {
               "slug": "price-the-expected-loss-against-the-cost-of-building-and-carrying-the-response",
               "text": "Price the expected future loss against the cost of building and carrying the response.",
-              "block_index": 99
+              "block_index": 103
             },
             {
               "slug": "draw-the-two-factors-as-axes-and-the-judgment-gets-a-shape",
               "text": "Draw cost against frequency and the sizing judgment gets a shape.",
-              "block_index": 101
+              "block_index": 105
             },
             {
               "slug": "price-the-upkeep-capital-depreciates-and-can-be-retired",
               "text": "Price the upkeep — engineering capital depreciates and can be retired.",
-              "block_index": 104
+              "block_index": 108
             }
           ]
         }
@@ -4985,7 +4985,7 @@
           "section_id": "the-entry-rung-problem",
           "level": 2,
           "heading_text": "The Entry-Rung Problem",
-          "topic_sentence": "A harder workforce implication is best stated as a risk rather than a forecast.",
+          "topic_sentence": "The traditional path into software engineering runs through implementation.",
           "id_source": "derived",
           "block_index": 56,
           "points": []
