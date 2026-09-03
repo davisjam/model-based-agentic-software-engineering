@@ -12,14 +12,38 @@ status: ready
 
 # Lectures — the MAGE curriculum
 
-The lecture curriculum, organized by its intellectual structure — **Acts** and their **modules** — independent of any calendar. Each module carries its slides and any associated readings. To adopt the material elsewhere, take the modules you need in whatever order and schedule suit your course; the [Reference Course](../reference-course/index.md) shows one demonstrated way to sequence them.
+The lecture curriculum, organized by its intellectual structure — **Acts** and their **modules** — independent of any calendar. Each module carries its slides and any associated readings. To adopt the material elsewhere, take the modules you need in whatever order and schedule suit your course; the [Reference Course](../reference-course/index.md) shows one demonstrated way to sequence them. Modules are published as their teaching materials are completed.
 
 ## Act I — Foundations
 
-The fundamental activities and structures of software engineering.
+*What are the fundamental activities and structures of software engineering?*
 
 - **[Engineering & GenAI](act-1-foundations/01-engineering-and-genai.md)**
 - **[Software Process](act-1-foundations/02-software-process.md)**
 - **[Software Engineering Teamwork](act-1-foundations/03-software-engineering-teamwork.md)**
+- Requirements & Specification
+- Software Architecture
+- Design Principles + Fundamentals of SWE with GenAI
 
-Later acts are published as their materials land.
+## Act II — Building Systems & Governing Changes
+
+*How do we build our designs and govern changes to them?*
+
+- Implementation & Representation
+- Agentic Engineering & Governed Change
+- Validation & Assurance
+
+*Materials forthcoming.*
+
+## Act III — Software in the World
+
+*How do software systems operate, survive, and change?*
+
+- Deployment, Operations & Observability
+- Security & Adversarial Engineering
+- Maintenance & Evolution
+- Engineering Capital & Sustained Evolution
+- Engineering in Practice
+- Professional Judgment, Ethics & Synthesis
+
+*Materials forthcoming.*
