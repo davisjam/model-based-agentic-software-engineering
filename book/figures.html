@@ -5451,21 +5451,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <desc id="fig-4-2-2-f-representation-authority-raDesc">Two horizontal tracks stacked one above the other. The upper track is
     representation strengthening, left to right: an informal model (prose, wiki, diagram), then a
     structured model (a typed shape a tool can parse), then an executable model (one a tool actually
-    consumes). The lower track is authority attachment, left to right: optional context that is read
-    if useful, then audited correspondence where the join is checked and drift is surfaced, then
-    selected obligations placed under enforcement. The two tracks are independent: a representation
-    can strengthen along the upper track without every claim becoming a gate. A single dashed
-    connector runs down from the executable-representation stage to the under-enforcement stage,
-    marking that authority attaches to selected obligations separately, once the representation is
-    trusted and the obligation warrants it. The old picture that ended a single ladder at
-    gate-enforced collapsed these two dimensions into one; this figure keeps them apart.</desc>
+    consumes). The lower track is consequence, left to right: guidance that is read if useful, then
+    correspondence where the join is checked and drift is surfaced, then selected obligations placed
+    under enforcement. The two tracks are independent: a representation can strengthen along the upper
+    track without every claim becoming a gate. A single dashed connector runs down from the
+    executable-representation stage to the under-enforcement stage, labelled selected obligations
+    acquire authority, marking that authority attaches to selected obligations separately, when
+    enforcement is warranted.</desc>
 
   <defs>
     <marker id="fig-4-2-2-f-representation-authority-ra-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-    <marker id="fig-4-2-2-f-representation-authority-ra-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
     </marker>
   </defs>
 
@@ -5475,12 +5471,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="96" y="96" width="768" height="104" rx="12" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.2"/>
   <text x="112" y="88" font-size="19.2" font-weight="700" fill="#1f7a4d">REPRESENTATION &#8594; stronger, more consumable</text>
 
-  <!-- ===================== BOTTOM LANE — AUTHORITY ===================== -->
+  <!-- ===================== BOTTOM LANE — CONSEQUENCE ===================== -->
   <rect x="96" y="284" width="768" height="104" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="1.2"/>
   <text x="112" y="276" font-size="19.2" font-weight="700" fill="#2f5169">CONSEQUENCE &#8594; how represented claims are used</text>
 
-  <!-- Edges drawn UNDER the chips: each source end runs to the node CENTER, so the chip's opaque
-       fill caps it; each directed end seats on the target's left/top border, head just outside. -->
   <!-- rep arrows -->
   <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#fig-4-2-2-f-representation-authority-ra-ah)">
     <!-- edge: informal -> structured -->
@@ -5497,10 +5491,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <path d="M594,337 L648,337"/>
   </g>
 
-  <!-- ===================== SELECTIVE ATTACHMENT — one dashed vertical, no crossing ===================== -->
+  <!-- ===================== SELECTIVE ATTACHMENT — one dashed vertical + plain label, no crossing ===================== -->
   <!-- edge: executable .. under-enforcement -->
-  <path d="M755,186 L755,298" fill="none" stroke="#b23b3b" stroke-width="2.4"
-        stroke-dasharray="7 5" marker-end="url(#fig-4-2-2-f-representation-authority-ra-ah-red)"/>
+  <path d="M755,186 L755,298" fill="none" stroke="#1c1917" stroke-width="2.4"
+        stroke-dasharray="7 5" marker-end="url(#fig-4-2-2-f-representation-authority-ra-ah)"/>
+  <text x="735" y="236" text-anchor="end" font-size="16" fill="#57534e">selected obligations</text>
+  <text x="735" y="258" text-anchor="end" font-size="16" fill="#57534e">acquire authority</text>
 
   <!-- rep chip 1: informal -->
   <rect id="fig-4-2-2-f-representation-authority-informal" x="118" y="112" width="210" height="74" rx="9" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
@@ -5517,12 +5513,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="755" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Executable</text>
   <text x="755" y="170" text-anchor="middle" font-size="19.2" fill="#57534e">consumed by a tool</text>
 
-  <!-- auth chip 1: optional context -->
+  <!-- auth chip 1: guidance -->
   <rect id="fig-4-2-2-f-representation-authority-guidance" x="118" y="300" width="210" height="74" rx="9" fill="#f6f4ef" stroke="#2f5169" stroke-width="2.2"/>
   <text x="223" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Guidance</text>
   <text x="223" y="358" text-anchor="middle" font-size="19.2" fill="#57534e">read if useful</text>
 
-  <!-- auth chip 2: audited correspondence -->
+  <!-- auth chip 2: correspondence -->
   <rect id="fig-4-2-2-f-representation-authority-correspondence" x="352.17" y="300" width="273.66" height="74" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="489" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Correspondence</text>
   <text x="489" y="358" text-anchor="middle" font-size="19.2" fill="#57534e">join checked &#183; drift surfaced</text>
@@ -5531,14 +5527,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect id="fig-4-2-2-f-representation-authority-under-enforcement" x="624" y="300" width="262" height="74" rx="9" fill="#dbe6ef" stroke="#2f5169" stroke-width="2.6"/>
   <text x="755" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">Under enforcement</text>
   <text x="755" y="358" text-anchor="middle" font-size="19.2" fill="#57534e">selected obligations gated</text>
-  <text x="772" y="234" font-size="19.2" font-style="italic" fill="#b23b3b">authority attaches</text>
-  <text x="772" y="252" font-size="19.2" font-style="italic" fill="#b23b3b">to selected obligations —</text>
-  <text x="772" y="270" font-size="19.2" font-style="italic" fill="#b23b3b">when trusted and warranted</text>
 
   <!-- reading line -->
-  <text x="480" y="430" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">Independent tracks: a representation can strengthen without every claim becoming a gate;</text>
-  <text x="480" y="450" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">only selected obligations acquire authority, and along a separate track.</text>
-</svg><figcaption data-short="Representation and authority strengthen independently"><span class="fig-label">Figure 4.2-2.</span> <em>Representation and authority strengthen independently.</em> A representation may become more structured and executable while authority attaches only to selected obligations once the representation is trustworthy enough and enforcement is warranted.</figcaption></figure><p class="gallery-source">From <a href="4.2-brownfield.html#fig-4-2-2">19 · Migrating to MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-4-2-3-fig-4-2-3" class="book-figure" data-label="discovering-models-migration"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 940"
+  <text x="480" y="430" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">Independent tracks: representation can strengthen without acquiring authority;</text>
+  <text x="480" y="450" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">authority attaches only to selected obligations.</text>
+</svg><figcaption data-short="Representation and authority strengthen independently"><span class="fig-label">Figure 4.2-2.</span> <em>Representation and authority strengthen independently.</em> A representation may become structured or executable without becoming a gate; selected obligations acquire authority only when enforcement is warranted.</figcaption></figure><p class="gallery-source">From <a href="4.2-brownfield.html#fig-4-2-2">19 · Migrating to MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-4-2-3-fig-4-2-3" class="book-figure" data-label="discovering-models-migration"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 940"
      role="img" aria-labelledby="fig-4-2-3-f-discovering-models-migration-dmTitle fig-4-2-3-f-discovering-models-migration-dmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-4-2-3-f-discovering-models-migration-dmTitle">Discovering models during a brownfield migration: weak signals locate work, partitioning separates it, and only repeated shape that earns a name becomes a model</title>
