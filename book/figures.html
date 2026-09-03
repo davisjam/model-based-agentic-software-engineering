@@ -7822,67 +7822,77 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="542" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">REPEATABLE DECISION</text>
 
   <text x="500" y="606" text-anchor="middle" font-size="20" font-weight="700" font-style="italic" fill="#9a3f12">←— determinization frontier —→</text>
-</svg><figcaption data-short="The Determinization Frontier"><span class="fig-label">Figure 6.1-2.</span> <em>The Determinization Frontier.</em> The frontier separates judgment that must be supplied per instance from judgment the environment can carry repeatably. Alignment can directly bind a property already decidable over an action or artifact. Modeling can change the reasoning surface so that a property requiring semantic reconstruction becomes a repeatable predicate that Alignment can bind. Modeling may also reduce realization cost even where Alignment was already possible.</figcaption></figure><p class="gallery-source">From <a href="6.1-toward-a-theory-of-mage.html#fig-6-1-2">28 · A Theory of MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-6-3-1-fig-6-3-1" class="book-figure" data-label="return-governability"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720"
+</svg><figcaption data-short="The Determinization Frontier"><span class="fig-label">Figure 6.1-2.</span> <em>The Determinization Frontier.</em> The frontier separates judgment that must be supplied per instance from judgment the environment can carry repeatably. Alignment can directly bind a property already decidable over an action or artifact. Modeling can change the reasoning surface so that a property requiring semantic reconstruction becomes a repeatable predicate that Alignment can bind. Modeling may also reduce realization cost even where Alignment was already possible.</figcaption></figure><p class="gallery-source">From <a href="6.1-toward-a-theory-of-mage.html#fig-6-1-2">28 · A Theory of MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-6-3-1-fig-6-3-1" class="book-figure" data-label="return-governability"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 880"
      role="img" aria-labelledby="fig-6-3-1-f-return-governability-rgTitle fig-6-3-1-f-return-governability-rgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-6-3-1-f-return-governability-rgTitle">Return and governability define two dimensions of engineering investment</title>
-  <desc id="fig-6-3-1-f-return-governability-rgDesc">A quadrant chart. The vertical axis is return to explicit engineering, from low at the bottom to
-    high at the top. The horizontal axis is governability — representation, evidence, evaluation — from low on the left
-    to high on the right. Where return is high but governability is low, invest strongly in judgment: models,
-    knowledge, examples, procedures, skills, evidence, structured evaluation. Where both are high, invest strongly in
-    authority: formal models, constraints, validators, gates, proof, synthesis, trustworthy derivation. Where return is
-    low and governability low, little investment is warranted; where return is low but governability high, apply
-    selective Modeling and Alignment. Full formalization occupies the high-return, high-governability region rather
-    than the endpoint of a spectrum.</desc>
+  <title id="fig-6-3-1-f-return-governability-rgTitle">Value of explicit engineering versus feasible governability: a 2x2 of engineering investment</title>
+  <desc id="fig-6-3-1-f-return-governability-rgDesc">A two-by-two chart. The vertical axis is the value of making an obligation explicit, from low at the
+    bottom to high at the top. The horizontal axis is feasible governability — representation, evidence, evaluation —
+    from low on the left to high on the right. Upper left, high value and low feasible governability: invest in explicit
+    judgment; the obligation matters but the environment cannot yet decide it reliably, so make the judgment more
+    explicit and repeatable. Upper right, high value and high feasible governability: invest in authority; the obligation
+    can be evaluated reliably enough to carry consequences, so build the machinery that gives it authority. Lower left,
+    low value and low feasible governability: leave judgment informal; it neither warrants explicit engineering nor
+    admits economical governance. Lower right, low value and high feasible governability: mechanize selectively;
+    governability alone does not justify machinery.</desc>
 
-  <!-- axes -->
-  <g stroke="#57534e" stroke-width="1.8">
-    <line x1="450" y1="56" x2="450" y2="374"/>
-    <line x1="450" y1="420" x2="450" y2="648"/>
-    <line x1="70" y1="360" x2="830" y2="360"/>
+  <!-- axis labels -->
+  <text x="540" y="34" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="0.4" fill="#57534e">VALUE OF EXPLICIT ENGINEERING</text>
+  <text x="540" y="60" text-anchor="middle" font-size="13.5" font-weight="700" fill="#78716c">HIGH</text>
+  <text x="540" y="862" text-anchor="middle" font-size="13.5" font-weight="700" fill="#78716c">LOW</text>
+
+  <text x="540" y="450" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="0.4" fill="#57534e">FEASIBLE GOVERNABILITY</text>
+  <text x="540" y="471" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">representation · evidence · evaluation</text>
+  <text x="26" y="461" text-anchor="start" font-size="13.5" font-weight="700" fill="#78716c">LOW</text>
+  <text x="1054" y="461" text-anchor="end" font-size="13.5" font-weight="700" fill="#78716c">HIGH</text>
+
+  <!-- ===================== UPPER-LEFT — high value, low feasible governability ===================== -->
+  <rect x="60" y="74" width="460" height="350" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="86" y="106" text-anchor="start" font-size="13.5" font-style="italic" fill="#78716c">High value · Low feasible governability</text>
+  <text x="86" y="150" text-anchor="start" font-size="21" font-weight="700" fill="#1f7a4d">Invest in explicit judgment</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="86" y="186">The obligation matters, but the environment</text>
+    <text x="86" y="208">cannot yet decide it reliably. Make the judgment</text>
+    <text x="86" y="230">more explicit and repeatable through models,</text>
+    <text x="86" y="252">knowledge, examples, procedures, evidence, and</text>
+    <text x="86" y="274">structured evaluation.</text>
   </g>
 
-  <!-- vertical axis: RETURN -->
-  <text x="450" y="24" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="0.4" fill="#57534e">RETURN TO EXPLICIT ENGINEERING</text>
-  <text x="450" y="46" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">HIGH</text>
-  <text x="450" y="668" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">LOW</text>
-
-  <!-- horizontal axis: GOVERNABILITY -->
-  <text x="44" y="356" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">LOW</text>
-  <text x="858" y="356" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">HIGH</text>
-  <text x="450" y="392" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="0.4" fill="#57534e">GOVERNABILITY</text>
-  <text x="450" y="414" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">representation · evidence · evaluation</text>
-
-  <!-- TOP-LEFT: high return, low governability -> invest in JUDGMENT (green) -->
-  <text x="250" y="112" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">invest strongly in judgment</text>
-  <g font-size="15" fill="#1c1917" text-anchor="middle">
-    <text x="250" y="148">models · knowledge</text>
-    <text x="250" y="174">examples · procedures</text>
-    <text x="250" y="200">skills · evidence</text>
-    <text x="250" y="226">structured evaluation</text>
+  <!-- ===================== UPPER-RIGHT — high value, high feasible governability ===================== -->
+  <rect x="560" y="74" width="460" height="350" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/>
+  <text x="994" y="106" text-anchor="end" font-size="13.5" font-style="italic" fill="#78716c">High value · High feasible governability</text>
+  <text x="586" y="150" text-anchor="start" font-size="21" font-weight="700" fill="#9a3f12">Invest in authority</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="586" y="186">The obligation matters and can be evaluated</text>
+    <text x="586" y="208">reliably enough to carry consequences. Build the</text>
+    <text x="586" y="230">representations, constraints, validators, gates,</text>
+    <text x="586" y="252">proofs, or other machinery needed to give it</text>
+    <text x="586" y="274">authority.</text>
   </g>
 
-  <!-- TOP-RIGHT: high return, high governability -> invest in AUTHORITY (rust) -->
-  <text x="650" y="112" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">invest strongly in authority</text>
-  <g font-size="15" fill="#1c1917" text-anchor="middle">
-    <text x="650" y="148">formal models · constraints</text>
-    <text x="650" y="174">validators · gates</text>
-    <text x="650" y="200">proof · synthesis</text>
-    <text x="650" y="226">trustworthy derivation</text>
+  <!-- ===================== LOWER-LEFT — low value, low feasible governability ===================== -->
+  <rect x="60" y="486" width="460" height="350" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6"/>
+  <text x="86" y="528" text-anchor="start" font-size="21" font-weight="700" fill="#57534e">Leave judgment informal</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="86" y="564">The obligation neither warrants substantial</text>
+    <text x="86" y="586">explicit engineering nor admits economical</text>
+    <text x="86" y="608">governance. Handle it through ordinary situated</text>
+    <text x="86" y="630">judgment rather than building durable structure</text>
+    <text x="86" y="652">around it.</text>
   </g>
+  <text x="86" y="812" text-anchor="start" font-size="13.5" font-style="italic" fill="#78716c">Low value · Low feasible governability</text>
 
-  <!-- BOTTOM-LEFT: low return, low governability -->
-  <g font-size="16" fill="#57534e" text-anchor="middle">
-    <text x="250" y="516">little investment</text>
-    <text x="250" y="540">warranted</text>
+  <!-- ===================== LOWER-RIGHT — low value, high feasible governability ===================== -->
+  <rect x="560" y="486" width="460" height="350" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
+  <text x="586" y="528" text-anchor="start" font-size="21" font-weight="700" fill="#2f5169">Mechanize selectively</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="586" y="564">The obligation is governable, but governability</text>
+    <text x="586" y="586">alone does not justify machinery. Use lightweight</text>
+    <text x="586" y="608">Modeling or Alignment only where the benefit</text>
+    <text x="586" y="630">exceeds its construction and carrying cost.</text>
   </g>
-
-  <!-- BOTTOM-RIGHT: low return, high governability -->
-  <g font-size="16" fill="#57534e" text-anchor="middle">
-    <text x="650" y="516">selective Modeling</text>
-    <text x="650" y="540">+ Alignment</text>
-  </g>
-</svg><figcaption data-short="The expanding economics of explicit engineering"><span class="fig-label">Figure 6.3-1.</span> <em>The expanding economics of explicit engineering.</em> Return and governability jointly shape the appropriate engineering investment. High consequence, recurrence, or repeated reasoning cost can justify substantial explicit structure without making an obligation formally decidable; governability determines how much of that structure can feasibly acquire authority. Full formalization occupies the high-governability, high-return region rather than the endpoint of a common engineering spectrum, and high-return obligations can remain substantially judgmental.</figcaption></figure><p class="gallery-source">From <a href="6.3-scope-conditions.html#fig-6-3-1">30 · Scope Conditions</a></p></section><hr><section class="gallery-item"><figure id="fig-7-1-1-fig-7-1-1" class="book-figure" data-label="where-effort-moves"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
+  <text x="994" y="812" text-anchor="end" font-size="13.5" font-style="italic" fill="#78716c">Low value · High feasible governability</text>
+</svg><figcaption data-short="The economics of explicit engineering"><span class="fig-label">Figure 6.3-1.</span> <em>The economics of explicit engineering.</em> The value of making an obligation explicit determines how much investment it warrants; feasible governability determines how much of that investment can acquire authority. High-value obligations can justify substantial engineering even when they remain judgmental, while highly governable obligations need not be mechanized when little value would result.</figcaption></figure><p class="gallery-source">From <a href="6.3-scope-conditions.html#fig-6-3-1">30 · Scope Conditions</a></p></section><hr><section class="gallery-item"><figure id="fig-7-1-1-fig-7-1-1" class="book-figure" data-label="where-effort-moves"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
      role="group" aria-labelledby="fig-7-1-1-f-where-effort-moves-wemTitle fig-7-1-1-f-where-effort-moves-wemDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-7-1-1-f-where-effort-moves-wemTitle">Where engineering effort moves across the lifecycle</title>

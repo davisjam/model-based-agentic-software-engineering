@@ -803,68 +803,78 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The historic-building and accessibility examples make the same point. An obligation can be important, explicit, and legally binding without having a complete formal test. Engineering can still make the judgment better: make the obligation explicit, mechanize the parts that can be checked, and gather good evidence for the rest. The boundary can also move. Better models and measurements can turn judgments that once required an expert into properties the environment can check; better GenAI may make us willing to entrust increasingly difficult judgments to an artificial expert. Here, expert does not necessarily mean human: it means a reasoner capable of making the judgment well enough for the consequence at stake. The goal is therefore not to eliminate judgment, but to give each obligation the strongest form of evaluation and authority that the available evidence can support.</p></blockquote>
 <p>These examples expose the problem with treating explicit engineering as a ladder whose upper end is full formalization. Full formal methods occupy an important region of the design space: obligations represented with semantics precise enough for machines to derive, search, transform, or verify solutions. Program synthesis, compiler optimization, model-driven engineering, configuration tuning, and formal methods all exploit such representations. Their historical reach has also been economic, because specifications, models, proofs, generators, correspondence machinery, and verification infrastructure cost engineering effort. Commodity intelligence can lower those costs by assisting with specification, invariant discovery, model construction, proof construction, and translation between engineering intent and formal artifacts.</p>
 <p>But full formalization is a region of the design space, not its endpoint. Where governability remains limited, additional consequence can justify more investment without making complete formalization feasible. A design organization may invest heavily in models, precedent, examples, structured critique, evaluation procedures, and expert review. An accessibility system may mechanize dozens of standards-derived obligations while retaining semantic and user-experience judgments that no checker can settle. Greater consequence can justify more engineering in either case; it does not make the underlying obligation more governable. A scientific organization may make provenance, units, workflow, and reproducibility authoritative while leaving scientific interpretation to expert judgment. A bridge project may formally analyze structural obligations while using substantially different evidence and review for its aesthetic relationship to a historic or scenic setting. The right unit remains the obligation or engineering surface, not the industry or artifact.</p>
-<p>The economic question and the governability question therefore define two dimensions of investment. Return asks how much explicit structure the obligation warrants: repeated reasoning cost, consequence, recurrence, and recovery cost can all increase the return. Governability asks how much authority is feasible: whether the obligation can be represented, observed, and evaluated with adequate reliability and acceptable cost. High return does not imply high governability. Where both are high, strong formalization and authoritative mechanisms may pay. Where return is high but governability remains limited, substantial investment can instead improve the representations, knowledge, procedures, evidence, and evaluation through which judgment occurs. <a class="xref" href="6.3-scope-conditions.html#fig-6-3-1">Figure&nbsp;6.3-1</a> sets the two dimensions on one plane.</p>
-<figure id="fig-6-3-1" class="book-figure" data-label="return-governability"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720"
+<p>The economic question and the governability question therefore define two dimensions of investment. The value of explicit engineering asks how much explicit structure the obligation warrants: repeated reasoning cost, consequence, recurrence, and recovery cost can all raise it. Feasible governability asks how much authority is achievable: whether the obligation can be represented, observed, and evaluated with adequate reliability and acceptable cost. High value does not imply high governability. Where both are high, strong formalization and authoritative mechanisms may pay. Where value is high but governability remains limited, substantial investment can instead improve the representations, knowledge, procedures, evidence, and evaluation through which judgment occurs. <a class="xref" href="6.3-scope-conditions.html#fig-6-3-1">Figure&nbsp;6.3-1</a> sets the two dimensions on one plane.</p>
+<figure id="fig-6-3-1" class="book-figure" data-label="return-governability"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 880"
      role="img" aria-labelledby="f-return-governability-rgTitle f-return-governability-rgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-return-governability-rgTitle">Return and governability define two dimensions of engineering investment</title>
-  <desc id="f-return-governability-rgDesc">A quadrant chart. The vertical axis is return to explicit engineering, from low at the bottom to
-    high at the top. The horizontal axis is governability — representation, evidence, evaluation — from low on the left
-    to high on the right. Where return is high but governability is low, invest strongly in judgment: models,
-    knowledge, examples, procedures, skills, evidence, structured evaluation. Where both are high, invest strongly in
-    authority: formal models, constraints, validators, gates, proof, synthesis, trustworthy derivation. Where return is
-    low and governability low, little investment is warranted; where return is low but governability high, apply
-    selective Modeling and Alignment. Full formalization occupies the high-return, high-governability region rather
-    than the endpoint of a spectrum.</desc>
+  <title id="f-return-governability-rgTitle">Value of explicit engineering versus feasible governability: a 2x2 of engineering investment</title>
+  <desc id="f-return-governability-rgDesc">A two-by-two chart. The vertical axis is the value of making an obligation explicit, from low at the
+    bottom to high at the top. The horizontal axis is feasible governability — representation, evidence, evaluation —
+    from low on the left to high on the right. Upper left, high value and low feasible governability: invest in explicit
+    judgment; the obligation matters but the environment cannot yet decide it reliably, so make the judgment more
+    explicit and repeatable. Upper right, high value and high feasible governability: invest in authority; the obligation
+    can be evaluated reliably enough to carry consequences, so build the machinery that gives it authority. Lower left,
+    low value and low feasible governability: leave judgment informal; it neither warrants explicit engineering nor
+    admits economical governance. Lower right, low value and high feasible governability: mechanize selectively;
+    governability alone does not justify machinery.</desc>
 
-  <!-- axes -->
-  <g stroke="#57534e" stroke-width="1.8">
-    <line x1="450" y1="56" x2="450" y2="374"/>
-    <line x1="450" y1="420" x2="450" y2="648"/>
-    <line x1="70" y1="360" x2="830" y2="360"/>
+  <!-- axis labels -->
+  <text x="540" y="34" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="0.4" fill="#57534e">VALUE OF EXPLICIT ENGINEERING</text>
+  <text x="540" y="60" text-anchor="middle" font-size="13.5" font-weight="700" fill="#78716c">HIGH</text>
+  <text x="540" y="862" text-anchor="middle" font-size="13.5" font-weight="700" fill="#78716c">LOW</text>
+
+  <text x="540" y="450" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="0.4" fill="#57534e">FEASIBLE GOVERNABILITY</text>
+  <text x="540" y="471" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">representation · evidence · evaluation</text>
+  <text x="26" y="461" text-anchor="start" font-size="13.5" font-weight="700" fill="#78716c">LOW</text>
+  <text x="1054" y="461" text-anchor="end" font-size="13.5" font-weight="700" fill="#78716c">HIGH</text>
+
+  <!-- ===================== UPPER-LEFT — high value, low feasible governability ===================== -->
+  <rect x="60" y="74" width="460" height="350" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="1.6"/>
+  <text x="86" y="106" text-anchor="start" font-size="13.5" font-style="italic" fill="#78716c">High value · Low feasible governability</text>
+  <text x="86" y="150" text-anchor="start" font-size="21" font-weight="700" fill="#1f7a4d">Invest in explicit judgment</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="86" y="186">The obligation matters, but the environment</text>
+    <text x="86" y="208">cannot yet decide it reliably. Make the judgment</text>
+    <text x="86" y="230">more explicit and repeatable through models,</text>
+    <text x="86" y="252">knowledge, examples, procedures, evidence, and</text>
+    <text x="86" y="274">structured evaluation.</text>
   </g>
 
-  <!-- vertical axis: RETURN -->
-  <text x="450" y="24" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="0.4" fill="#57534e">RETURN TO EXPLICIT ENGINEERING</text>
-  <text x="450" y="46" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">HIGH</text>
-  <text x="450" y="668" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">LOW</text>
-
-  <!-- horizontal axis: GOVERNABILITY -->
-  <text x="44" y="356" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">LOW</text>
-  <text x="858" y="356" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">HIGH</text>
-  <text x="450" y="392" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="0.4" fill="#57534e">GOVERNABILITY</text>
-  <text x="450" y="414" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">representation · evidence · evaluation</text>
-
-  <!-- TOP-LEFT: high return, low governability -> invest in JUDGMENT (green) -->
-  <text x="250" y="112" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">invest strongly in judgment</text>
-  <g font-size="15" fill="#1c1917" text-anchor="middle">
-    <text x="250" y="148">models · knowledge</text>
-    <text x="250" y="174">examples · procedures</text>
-    <text x="250" y="200">skills · evidence</text>
-    <text x="250" y="226">structured evaluation</text>
+  <!-- ===================== UPPER-RIGHT — high value, high feasible governability ===================== -->
+  <rect x="560" y="74" width="460" height="350" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/>
+  <text x="994" y="106" text-anchor="end" font-size="13.5" font-style="italic" fill="#78716c">High value · High feasible governability</text>
+  <text x="586" y="150" text-anchor="start" font-size="21" font-weight="700" fill="#9a3f12">Invest in authority</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="586" y="186">The obligation matters and can be evaluated</text>
+    <text x="586" y="208">reliably enough to carry consequences. Build the</text>
+    <text x="586" y="230">representations, constraints, validators, gates,</text>
+    <text x="586" y="252">proofs, or other machinery needed to give it</text>
+    <text x="586" y="274">authority.</text>
   </g>
 
-  <!-- TOP-RIGHT: high return, high governability -> invest in AUTHORITY (rust) -->
-  <text x="650" y="112" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">invest strongly in authority</text>
-  <g font-size="15" fill="#1c1917" text-anchor="middle">
-    <text x="650" y="148">formal models · constraints</text>
-    <text x="650" y="174">validators · gates</text>
-    <text x="650" y="200">proof · synthesis</text>
-    <text x="650" y="226">trustworthy derivation</text>
+  <!-- ===================== LOWER-LEFT — low value, low feasible governability ===================== -->
+  <rect x="60" y="486" width="460" height="350" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6"/>
+  <text x="86" y="528" text-anchor="start" font-size="21" font-weight="700" fill="#57534e">Leave judgment informal</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="86" y="564">The obligation neither warrants substantial</text>
+    <text x="86" y="586">explicit engineering nor admits economical</text>
+    <text x="86" y="608">governance. Handle it through ordinary situated</text>
+    <text x="86" y="630">judgment rather than building durable structure</text>
+    <text x="86" y="652">around it.</text>
   </g>
+  <text x="86" y="812" text-anchor="start" font-size="13.5" font-style="italic" fill="#78716c">Low value · Low feasible governability</text>
 
-  <!-- BOTTOM-LEFT: low return, low governability -->
-  <g font-size="16" fill="#57534e" text-anchor="middle">
-    <text x="250" y="516">little investment</text>
-    <text x="250" y="540">warranted</text>
+  <!-- ===================== LOWER-RIGHT — low value, high feasible governability ===================== -->
+  <rect x="560" y="486" width="460" height="350" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
+  <text x="586" y="528" text-anchor="start" font-size="21" font-weight="700" fill="#2f5169">Mechanize selectively</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="586" y="564">The obligation is governable, but governability</text>
+    <text x="586" y="586">alone does not justify machinery. Use lightweight</text>
+    <text x="586" y="608">Modeling or Alignment only where the benefit</text>
+    <text x="586" y="630">exceeds its construction and carrying cost.</text>
   </g>
-
-  <!-- BOTTOM-RIGHT: low return, high governability -->
-  <g font-size="16" fill="#57534e" text-anchor="middle">
-    <text x="650" y="516">selective Modeling</text>
-    <text x="650" y="540">+ Alignment</text>
-  </g>
-</svg><figcaption data-short="The expanding economics of explicit engineering"><span class="fig-label">Figure 6.3-1.</span> <em>The expanding economics of explicit engineering.</em> Return and governability jointly shape the appropriate engineering investment. High consequence, recurrence, or repeated reasoning cost can justify substantial explicit structure without making an obligation formally decidable; governability determines how much of that structure can feasibly acquire authority. Full formalization occupies the high-governability, high-return region rather than the endpoint of a common engineering spectrum, and high-return obligations can remain substantially judgmental.</figcaption></figure>
+  <text x="994" y="812" text-anchor="end" font-size="13.5" font-style="italic" fill="#78716c">Low value · High feasible governability</text>
+</svg><figcaption data-short="The economics of explicit engineering"><span class="fig-label">Figure 6.3-1.</span> <em>The economics of explicit engineering.</em> The value of making an obligation explicit determines how much investment it warrants; feasible governability determines how much of that investment can acquire authority. High-value obligations can justify substantial engineering even when they remain judgmental, while highly governable obligations need not be mechanized when little value would result.</figcaption></figure>
 <p>Commodity intelligence can move work through this design space in two different ways. First, it lowers the cost of constructing and maintaining explicit structure. Models, skills, specifications, validators, proofs, and other engineering assets can therefore repay their cost at lower levels of recurrence or consequence. This expands the set of obligations for which explicit engineering pays without changing the nature of the obligation itself.</p>
 <p>Second, better representation, instrumentation, and evaluation can increase governability. An obligation initially expressed only as expert judgment may yield narrower properties that can be evaluated reliably; a property reconstructed semantically from implementation may become a predicate once an appropriate model exposes it directly. Part IV described the practical version of this movement as giving obligations authority where feasible. The determinization frontier describes its strongest case: Modeling changes the representation until a previously reconstructed judgment becomes mechanically decidable, after which Alignment can carry the decision repeatably.</p>
 <p>These movements need not end in the same place. Some questions resist authority because the necessary representation or evidence remains unavailable. Others admit probabilistic evaluation adequate for one consequence but not another. Still others are intrinsically plural or contextual: no amount of cheaper implementation turns good writing, scientific importance, or compatible with the historic character into a single definitive predicate. Explicit engineering still pays when it makes those judgments better represented, better informed, more repeatable, or easier to review.</p>
