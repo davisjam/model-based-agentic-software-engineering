@@ -320,7 +320,8 @@
   .v3-nav { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
             padding:14px 0; border-bottom:1px solid var(--line); margin-bottom:8px; }
   .v3-nav-home { font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:var(--ink);
-                 text-decoration:none; letter-spacing:0.02em; }
+                 text-decoration:none; letter-spacing:0.02em; display:inline-flex; align-items:center; gap:0.35rem; }
+  .v3-nav-hat { flex:0 0 auto; }
   .v3-nav-groups { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
   .v3-nav-item { color:var(--muted); text-decoration:none; font-weight:600; font-size:0.95rem; }
   .v3-nav-item:hover, .v3-nav-item:focus { color:var(--accent); }
@@ -370,6 +371,9 @@
   .v3-cards-3 { grid-template-columns:repeat(3,1fr); }
   .v3-cards-2 { grid-template-columns:repeat(2,1fr); }
   .v3-card { border:1px solid var(--line); border-radius:8px; padding:1.2rem; background:var(--panel); }
+  .v3-card--thumb { display:flex; gap:1rem; align-items:flex-start; }
+  .v3-card-thumb { flex:0 0 92px; width:92px; height:auto; border:1px solid var(--line); border-radius:4px; background:#fff; }
+  .v3-card-content { min-width:0; }
   .v3-cards-sm .v3-card { background:transparent; }
   .v3-card-kick { color:var(--muted); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.05em;
                   font-weight:700; margin:0 0 0.3rem; }
@@ -461,7 +465,7 @@
 <body class="landing">
 <main>
 <nav class="v3-nav" aria-label="Primary">
-  <a class="v3-nav-home" href="index.html">MAGE</a>
+  <a class="v3-nav-home" href="index.html"><svg class="v3-nav-hat" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="var(--accent)" d="M21 22H3v-2h18zm-2-3H5l6.1-16.4q.3-.6.9-.6l6 3h-4.1zM10 7.5l1.04.47L11.5 9l.47-1.03L13 7.5l-1.03-.47L11.5 6l-.46 1.03zm3 7.5-2.06-.93L10 12l-.93 2.07L7 15l2.07.93L10 18l.94-2.07zm.97-3.03L15 11.5l-1.03-.47L13.5 10l-.46 1.03-1.04.47 1.04.47.46 1.03zm2 4L17 15.5l-1.03-.47L15.5 14l-.46 1.03-1.04.47 1.04.47.46 1.03z"/></svg>MAGE</a>
   <div class="v3-nav-groups">
     <a class="v3-nav-item" href="#resources">Resources</a>
     <a class="v3-nav-item" href="#use">Use</a>
@@ -721,19 +725,25 @@
   <h2 id="resources-h" class="sec-h">Resources</h2>
   <p class="sec-lead">MAGE is available as a book, a body of writing, a curriculum, and a series of talks.</p>
   <div class="v3-cards v3-cards-2">
-    <article class="v3-card">
+    <article class="v3-card v3-card--thumb">
+      <img class="v3-card-thumb" src="book/assets/cover.svg" alt="MAGE book cover" loading="lazy">
+      <div class="v3-card-content">
       <h3 class="v3-card-h">Book</h3>
       <p class="v3-card-body">The complete treatment of MAGE, from its motivation and principles through practice, evidence, and implications.</p>
       <p class="v3-card-links"><a href="book/index.html">Read the book &#8594;</a> · <a href="book/mage-book.pdf">Download PDF &#8594;</a></p>
+      </div>
     </article>
-    <article class="v3-card">
+    <article class="v3-card v3-card--thumb">
+      <img class="v3-card-thumb" src="resources/writings/mage-paper-thumb.png" alt="First page of the Model-Based Agentic Software Engineering paper" loading="lazy">
+      <div class="v3-card-content">
       <h3 class="v3-card-h">Writings</h3>
       <p class="v3-card-body">Papers and shorter articles developing, motivating, and evaluating MAGE.</p>
       <p class="v3-card-links"><a href="writings.html">Browse writings &#8594;</a></p>
+      </div>
     </article>
     <article class="v3-card">
       <h3 class="v3-card-h">Teach with MAGE</h3>
-      <p class="v3-card-body">Course and modular teaching materials for instructors and students.</p>
+      <p class="v3-card-body">Course and teaching materials for instructors and students.</p>
       <p class="v3-card-links"><a href="teach/index.html">Open Teach with MAGE &#8594;</a></p>
     </article>
     <article class="v3-card">

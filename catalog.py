@@ -2371,7 +2371,8 @@ LANDING_CSS = """
   .v3-nav { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
             padding:14px 0; border-bottom:1px solid var(--line); margin-bottom:8px; }
   .v3-nav-home { font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:var(--ink);
-                 text-decoration:none; letter-spacing:0.02em; }
+                 text-decoration:none; letter-spacing:0.02em; display:inline-flex; align-items:center; gap:0.35rem; }
+  .v3-nav-hat { flex:0 0 auto; }
   .v3-nav-groups { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
   .v3-nav-item { color:var(--muted); text-decoration:none; font-weight:600; font-size:0.95rem; }
   .v3-nav-item:hover, .v3-nav-item:focus { color:var(--accent); }
@@ -2421,6 +2422,9 @@ LANDING_CSS = """
   .v3-cards-3 { grid-template-columns:repeat(3,1fr); }
   .v3-cards-2 { grid-template-columns:repeat(2,1fr); }
   .v3-card { border:1px solid var(--line); border-radius:8px; padding:1.2rem; background:var(--panel); }
+  .v3-card--thumb { display:flex; gap:1rem; align-items:flex-start; }
+  .v3-card-thumb { flex:0 0 92px; width:92px; height:auto; border:1px solid var(--line); border-radius:4px; background:#fff; }
+  .v3-card-content { min-width:0; }
   .v3-cards-sm .v3-card { background:transparent; }
   .v3-card-kick { color:var(--muted); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.05em;
                   font-weight:700; margin:0 0 0.3rem; }
@@ -2753,7 +2757,10 @@ def _v3_nav() -> str:
         return f'<a class="v3-nav-item" href="{_attr(href)}">{_esc(label)}</a>'
     return (
         '<nav class="v3-nav" aria-label="Primary">\n'
-        '  <a class="v3-nav-home" href="index.html">MAGE</a>\n'
+        '  <a class="v3-nav-home" href="index.html">'
+        '<svg class="v3-nav-hat" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">'
+        '<path fill="var(--accent)" d="M21 22H3v-2h18zm-2-3H5l6.1-16.4q.3-.6.9-.6l6 3h-4.1zM10 7.5l1.04.47L11.5 9l.47-1.03L13 7.5l-1.03-.47L11.5 6l-.46 1.03zm3 7.5-2.06-.93L10 12l-.93 2.07L7 15l2.07.93L10 18l.94-2.07zm.97-3.03L15 11.5l-1.03-.47L13.5 10l-.46 1.03-1.04.47 1.04.47.46 1.03zm2 4L17 15.5l-1.03-.47L15.5 14l-.46 1.03-1.04.47 1.04.47.46 1.03z"/></svg>'
+        'MAGE</a>\n'
         '  <div class="v3-nav-groups">\n'
         f'    {cell("Resources", "#resources")}\n'
         f'    {cell("Use", "#use")}\n'
@@ -2789,16 +2796,24 @@ def _v3_hero() -> str:
         '</header>')
 
 
-def _v3_card(title: str, kicker: str, body: str, links: "list[tuple[str, str]]") -> str:
-    """A section card: optional kicker, title, one paragraph, and one-or-more action links."""
+def _v3_card(title: str, kicker: str, body: str, links: "list[tuple[str, str]]",
+             thumb: "tuple[str, str] | None" = None) -> str:
+    """A section card: optional kicker, title, one paragraph, one-or-more action links, and an optional
+    `thumb` (image src, alt) rendered as a small non-link thumbnail beside the text."""
     ls = " · ".join(f'<a href="{_attr(h)}">{_esc(t)} &#8594;</a>' for t, h in links)
-    return (
-        '    <article class="v3-card">\n'
-        + (f'      <p class="v3-card-kick">{_esc(kicker)}</p>\n' if kicker else "")
+    content = (
+        (f'      <p class="v3-card-kick">{_esc(kicker)}</p>\n' if kicker else "")
         + f'      <h3 class="v3-card-h">{_esc(title)}</h3>\n'
         f'      <p class="v3-card-body">{_esc(body)}</p>\n'
-        f'      <p class="v3-card-links">{ls}</p>\n'
-        '    </article>')
+        f'      <p class="v3-card-links">{ls}</p>\n')
+    if thumb:
+        src, alt = thumb
+        return (
+            '    <article class="v3-card v3-card--thumb">\n'
+            f'      <img class="v3-card-thumb" src="{_attr(src)}" alt="{_attr(alt)}" loading="lazy">\n'
+            f'      <div class="v3-card-content">\n{content}      </div>\n'
+            '    </article>')
+    return '    <article class="v3-card">\n' + content + '    </article>'
 
 
 def _load_resources() -> dict:
@@ -2872,12 +2887,14 @@ def _v3_learn() -> str:
         '  <div class="v3-cards v3-cards-2">\n'
         + _v3_card("Book", "",
                    "The complete treatment of MAGE, from its motivation and principles through practice, evidence, and implications.",
-                   [("Read the book", "book/index.html"), ("Download PDF", _PDF_HREF)]) + "\n"
+                   [("Read the book", "book/index.html"), ("Download PDF", _PDF_HREF)],
+                   thumb=("book/assets/cover.svg", "MAGE book cover")) + "\n"
         + _v3_card("Writings", "",
                    "Papers and shorter articles developing, motivating, and evaluating MAGE.",
-                   [("Browse writings", "writings.html")]) + "\n"
+                   [("Browse writings", "writings.html")],
+                   thumb=("resources/writings/mage-paper-thumb.png", "First page of the Model-Based Agentic Software Engineering paper")) + "\n"
         + _v3_card("Teach with MAGE", "",
-                   "Course and modular teaching materials for instructors and students.",
+                   "Course and teaching materials for instructors and students.",
                    [("Open Teach with MAGE", "teach/index.html")]) + "\n"
         + _v3_card("Talks", "",
                    "Slides and supporting materials from presentations about MAGE.",
