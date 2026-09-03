@@ -783,7 +783,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 18 · The MAGE Workflow — MAGE"><header class="chap"><div class="kicker"><a href="part-4-intro.html" aria-label="Beginning of Part 4 — The MAGE Method">Part 4 — The MAGE Method</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 18</a></div><h1><span class="chap-num">4.1</span> The MAGE Workflow</h1></header><p>MAGE has three recurring moves: <strong>Model, Align, Convert</strong>. Model the engineering knowledge or intent that should survive the current reasoning step. Give stable obligations authority at a boundary where they can actually be evaluated. When work repeatedly exposes missing knowledge, evidence, judgment, or authority, convert the lesson into durable structure. Then run the cycle again. Each pass asks where consequential judgment is still being purchased per realization: what should be made easier to reason about, what should be given authority, and what should deliberately remain open.</p>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 18 · The MAGE Workflow — MAGE"><header class="chap"><div class="kicker"><a href="part-4-intro.html" aria-label="Beginning of Part 4 — The MAGE Method">Part 4 — The MAGE Method</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 18</a></div><h1><span class="chap-num">4.1</span> The MAGE Workflow</h1></header><p>MAGE has three recurring moves: <strong>Model, Align, Convert</strong>. Model the engineering knowledge or intent that should survive the current reasoning step. Give stable obligations authority at a boundary where they can actually be evaluated. When work repeatedly exposes missing knowledge, evidence, judgment, or authority, convert the lesson into durable structure. Then run the cycle again. Each pass asks where consequential judgment is still being purchased per realization: what judgment should be better supported, what should be given authority, and what should deliberately remain open.</p>
 <p>The ordering is methodological. Local controls can act before a rich system model exists. MAGE asks about representation first because explicit models enlarge the engineering questions the environment can answer. Choose the representation that makes the question tractable, then attach authority where the obligation is stable enough and the evidence adequate enough to justify it.</p>
 <blockquote class="box-canonical"><p class="inset-title">The MAGE cycle</p>
 <p>Model the intent. Give stable obligations authority. Convert recurring judgment into durable engineering structure.</p>
@@ -879,11 +879,77 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p id="idx-def-soft-vs-hard-governance">Keep one distinction sharp. <strong>Guidance aims; authority binds consequences.</strong> Here, bind means that the result no longer depends on the agent's cooperation: the environment can deny an action, reject a result, or block admission. A brief, convention, example, or skill can strongly influence an agent, but the agent can still misunderstand or ignore it. A type, permission, or validator-backed gate acts outside that cooperation. A useful diagnostic for any step is to ask: <em>what consequential judgment does this step still trust the agent to make?</em></p>
 <p>Do not make authority the automatic destination of every piece of guidance. Authority is appropriate when the obligation is sufficiently stable, the mechanism can evaluate it at the right semantic boundary, and the cost of violation justifies the restriction. Guidance remains appropriate where judgment is unsettled or where the cost of mechanization would exceed the failure it prevents.</p>
 <p>"Must never happen" identifies a candidate obligation. Find the property and the boundary where it can be decided, then choose the mechanism appropriate to that property.</p>
-<h2 id="structural-prevention"><span class="sec-num">4.1.4</span> Prefer Structural Prevention</h2>
+<h2 id="engineer-the-judgment"><span class="sec-num">4.1.4</span> Engineer the Judgment</h2>
+<p>Not every important judgment should become deterministic. MAGE provides two complementary ways to improve recurring work. The first is to improve the conditions under which the judgment is made: give the reasoner better representations, domain knowledge, examples, procedures, tools, and context so that a satisfactory realization becomes more likely. The second is to remove selected outcomes from dependence on that judgment by giving an obligation authority in the environment. A skill may substantially improve how an agent reasons about a decision while leaving the decision probabilistic; a type, constrained interface, permission, deterministic check, or validator-backed gate can make a covered violation unavailable or inadmissible regardless of what the agent decides.</p>
+<p>The distinction matters most when the work itself is qualitative. Whether an explanation is clear, an architecture is comprehensible, a diagnostic hypothesis is plausible, or a design makes the right tradeoff may admit no useful deterministic oracle. Those judgments can still be engineered. The distinctions experts use, the evidence they inspect, the examples they recognize, and the procedures by which they reach a decision can be made explicit and supplied to later reasoners. Modeling and skills can therefore create durable engineering value even when the resulting judgment remains probabilistic.</p>
+<p>Conversely, a qualitative task can contain obligations that do admit authority. Preparing a technical presentation requires judgment about narrative, emphasis, and visual communication, while contrast requirements, file validity, or required metadata may be mechanically checkable. A legal analysis may require interpretation while still permitting deterministic checks that cited authorities exist or quoted passages correspond to their sources. Decompose the problem obligation by obligation, rather than deciding that an entire task is either subjective or deterministic.</p>
+<p>For each recurring judgment, ask two questions: What would help the reasoner make this judgment well? What part of the result should not depend on the reasoner making the judgment well? The first question leads toward better models, context, examples, procedures, tools, and skills. The second leads toward constraints, validators, permissions, gates, and other forms of authority. Human judgment remains appropriate where the obligation is consequential but neither the reasoner nor the environment can decide it adequately. <a class="xref" href="4.1-the-mage-workflow.html#fig-4-1-2">Figure&nbsp;4.1-2</a> sets the two interventions side by side.</p>
+<figure id="fig-4-1-2" class="book-figure" data-label="two-interventions-recurring-judgment"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500"
+     role="img" aria-labelledby="f-two-interventions-recurring-judgment-tiTitle f-two-interventions-recurring-judgment-tiDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="f-two-interventions-recurring-judgment-tiTitle">Two interventions for a recurring engineering judgment: improve the judgment, or give an obligation authority</title>
+  <desc id="f-two-interventions-recurring-judgment-tiDesc">A recurring engineering judgment forks into two complementary interventions. On the left,
+    improving the judgment supplies models, knowledge, examples, context, procedures, and skills so the reasoner is
+    more likely to produce a satisfactory realization. On the right, giving authority uses constraints, types,
+    permissions, tools, validators, and gates to remove selected outcomes from that reasoning. Both feed the
+    realization; what neither decides remains residual judgment, made by an agent or a human.</desc>
+
+  <defs>
+    <marker id="f-two-interventions-recurring-judgment-ti-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <!-- top: the recurring judgment -->
+  <rect x="250" y="34" width="400" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="450" y="68" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">RECURRING ENGINEERING JUDGMENT</text>
+
+  <!-- fork -->
+  <g stroke="#57534e" stroke-width="2" fill="none">
+    <line x1="450" y1="90" x2="450" y2="118"/>
+    <line x1="250" y1="118" x2="650" y2="118"/>
+    <line x1="250" y1="118" x2="250" y2="146"/>
+    <line x1="650" y1="118" x2="650" y2="146"/>
+  </g>
+
+  <!-- left column: IMPROVE THE JUDGMENT (green = better conditions for the reasoner) -->
+  <rect x="108" y="148" width="284" height="156" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="250" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">IMPROVE THE JUDGMENT</text>
+  <g font-size="17" fill="#1c1917" text-anchor="middle">
+    <text x="250" y="216">models · knowledge</text>
+    <text x="250" y="246">examples · context</text>
+    <text x="250" y="276">procedures · skills</text>
+  </g>
+
+  <!-- right column: GIVE AUTHORITY (rust = remove outcomes from the reasoning) -->
+  <rect x="508" y="148" width="284" height="156" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="650" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">GIVE AUTHORITY</text>
+  <g font-size="17" fill="#1c1917" text-anchor="middle">
+    <text x="650" y="216">constraints · types</text>
+    <text x="650" y="246">permissions · tools</text>
+    <text x="650" y="276">validators · gates</text>
+  </g>
+
+  <!-- converge to realization -->
+  <g stroke="#57534e" stroke-width="2" fill="none">
+    <line x1="250" y1="304" x2="250" y2="332"/>
+    <line x1="650" y1="304" x2="650" y2="332"/>
+    <line x1="250" y1="332" x2="650" y2="332"/>
+    <line x1="450" y1="332" x2="450" y2="360" marker-end="url(#f-two-interventions-recurring-judgment-ti-ah)"/>
+  </g>
+
+  <rect x="350" y="372" width="200" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="450" y="404" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">REALIZATION</text>
+
+  <!-- residual -->
+  <line x1="450" y1="424" x2="450" y2="450" stroke="#57534e" stroke-width="2" marker-end="url(#f-two-interventions-recurring-judgment-ti-ah)"/>
+  <text x="450" y="474" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">residual judgment — agent or human</text>
+</svg><figcaption data-short="Two interventions for recurring judgment"><span class="fig-label">Figure 4.1-2.</span> <em>Two interventions for recurring judgment.</em> Better representations, knowledge, examples, procedures, and context improve the probability that the reasoner produces a satisfactory realization; authority removes selected outcomes from dependence on that reasoning. The two interventions can coexist within the same task, and are chosen obligation by obligation.</figcaption></figure>
+<h2 id="structural-prevention"><span class="sec-num">4.1.5</span> Prefer Structural Prevention</h2>
 <p>Prefer structural prevention when the legitimate action space can be closed. A typed API, a sanctioned mutation seam, a closed verb set, or a forbidden dependency can make an invalid move simply unavailable, and the reviewer need not catch that class of mistake because the governed interface does not offer it. Where prevention would exclude legitimate behavior, or the property only becomes visible after the work runs, preserve the action space and add independent evidence instead.</p>
 <p>Where an invalid state can be made unrepresentable without excluding legitimate behavior, prefer a constraint. A property visible only after execution needs evidence and evaluation.</p>
 <p>DocAble put both sides to work at once. It narrowed document repair to a closed set of bounded, typed edits, routed ordinary document-format mutation through sanctioned structured seams, and rejected direct raw-library access from code outside those seams. It turned recurring review findings into build-failing checks — prevention wherever the action space could be honestly closed. It then validated content preservation as a post-condition on every run, because "the output still says no less than the input" is a property that only becomes legible <em>after</em> the transformation.</p>
-<h2 id="task-sizing"><span class="sec-num">4.1.5</span> Size Work to Reasoning and Assurance</h2>
+<h2 id="task-sizing"><span class="sec-num">4.1.6</span> Size Work to Reasoning and Assurance</h2>
 <p id="idx-def-one-shot-scripting">Not every agent task deserves the full apparatus of governed autonomy. A bounded transformation whose relevant state fits comfortably in one pass, whose output is cheap to inspect or mechanically verify, and whose failure is cheap to reverse can often be delegated directly. Write the contract, let the agent produce the result, check it, and move on.</p>
 <p id="idx-def-supervised-autonomy">Size the task along two axes: reasoning burden and assurance need. The first is <strong>reasoning burden</strong>: how much intermediate state the task must preserve before it can produce a coherent answer. Large systems, cross-cutting changes, and long sequences of dependent decisions push that burden upward. The second is <strong>assurance need</strong>: how costly, irreversible, or difficult to detect a bad result would be. A five-line authorization change may have a short reasoning horizon and still deserve strong validation; a large disposable prototype may tolerate far less.</p>
 <span id="idx-def-transformation"></span><span id="idx-def-compounding-failure-probability"></span><span id="idx-def-sizing-the-leap"></span><p>Size work as a sequence of transformations with explicit inputs, outputs, and checkable boundaries. Make each step large enough to exploit the model's capabilities but small enough that its result can be meaningfully evaluated before the next step compounds it. Better representation can support larger steps because it reduces the state the reasoner must reconstruct; stronger models may support larger steps too. Neither removes the need for an evidence boundary where the consequence warrants one.</p>

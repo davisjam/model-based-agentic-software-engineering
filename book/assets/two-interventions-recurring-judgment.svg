@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part IV §4.1.4 figure — two-interventions-recurring-judgment.svg. A recurring engineering judgment
+     forks into two complementary interventions: IMPROVE THE JUDGMENT (green = better conditions for the
+     reasoner: models, knowledge, examples, context, procedures, skills) and GIVE AUTHORITY (rust = remove
+     selected outcomes from that reasoning: constraints, types, permissions, tools, validators, gates).
+     Both feed the realization; what neither decides is residual judgment (agent or human). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="900" height="500"
+     role="img" aria-labelledby="tiTitle tiDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="tiTitle">Two interventions for a recurring engineering judgment: improve the judgment, or give an obligation authority</title>
+  <desc id="tiDesc">A recurring engineering judgment forks into two complementary interventions. On the left,
+    improving the judgment supplies models, knowledge, examples, context, procedures, and skills so the reasoner is
+    more likely to produce a satisfactory realization. On the right, giving authority uses constraints, types,
+    permissions, tools, validators, and gates to remove selected outcomes from that reasoning. Both feed the
+    realization; what neither decides remains residual judgment, made by an agent or a human.</desc>
+
+  <defs>
+    <marker id="ti-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <!-- top: the recurring judgment -->
+  <rect x="250" y="34" width="400" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="450" y="68" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">RECURRING ENGINEERING JUDGMENT</text>
+
+  <!-- fork -->
+  <g stroke="#57534e" stroke-width="2" fill="none">
+    <line x1="450" y1="90" x2="450" y2="118"/>
+    <line x1="250" y1="118" x2="650" y2="118"/>
+    <line x1="250" y1="118" x2="250" y2="146"/>
+    <line x1="650" y1="118" x2="650" y2="146"/>
+  </g>
+
+  <!-- left column: IMPROVE THE JUDGMENT (green = better conditions for the reasoner) -->
+  <rect x="108" y="148" width="284" height="156" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="250" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">IMPROVE THE JUDGMENT</text>
+  <g font-size="17" fill="#1c1917" text-anchor="middle">
+    <text x="250" y="216">models · knowledge</text>
+    <text x="250" y="246">examples · context</text>
+    <text x="250" y="276">procedures · skills</text>
+  </g>
+
+  <!-- right column: GIVE AUTHORITY (rust = remove outcomes from the reasoning) -->
+  <rect x="508" y="148" width="284" height="156" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="650" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">GIVE AUTHORITY</text>
+  <g font-size="17" fill="#1c1917" text-anchor="middle">
+    <text x="650" y="216">constraints · types</text>
+    <text x="650" y="246">permissions · tools</text>
+    <text x="650" y="276">validators · gates</text>
+  </g>
+
+  <!-- converge to realization -->
+  <g stroke="#57534e" stroke-width="2" fill="none">
+    <line x1="250" y1="304" x2="250" y2="332"/>
+    <line x1="650" y1="304" x2="650" y2="332"/>
+    <line x1="250" y1="332" x2="650" y2="332"/>
+    <line x1="450" y1="332" x2="450" y2="360" marker-end="url(#ti-ah)"/>
+  </g>
+
+  <rect x="350" y="372" width="200" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="450" y="404" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">REALIZATION</text>
+
+  <!-- residual -->
+  <line x1="450" y1="424" x2="450" y2="450" stroke="#57534e" stroke-width="2" marker-end="url(#ti-ah)"/>
+  <text x="450" y="474" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">residual judgment — agent or human</text>
+</svg>
