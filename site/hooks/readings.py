@@ -32,12 +32,9 @@ import json
 import os
 import re
 
-import yaml  # MkDocs already depends on PyYAML
+from _common import MODULE_RE, front_matter
 
 _GUIDE_MARKER = "<!-- READING-GUIDE -->"
-#: A lecture module page: course/lectures/act-<name>/NN-<topic>/index.md — each module is its own
-#: directory (holding index.md + slides/ + readings/), so the page is the directory's index.
-_MODULE_RE = re.compile(r"^lectures/act-[^/]+/\d\d-[^/]+/index\.md$")
 
 #: Reduce a markdown link to its text. The Reading Guide aggregates module readings onto the Calendar page;
 #: a module-relative link (e.g. a hosted PDF under `materials/`) would not resolve from there, so the
@@ -136,26 +133,12 @@ def _readings_section(readings: dict) -> str:
     return "\n".join(out)
 
 
-def _front_matter(abs_path: str) -> dict:
-    try:
-        text = open(abs_path, encoding="utf-8").read()
-    except OSError:
-        return {}
-    m = re.match(r"^---\n(.*?)\n---\n", text, re.S)
-    if not m:
-        return {}
-    try:
-        return yaml.safe_load(m.group(1)) or {}
-    except yaml.YAMLError:
-        return {}
-
-
 def _reading_guide(files) -> str:
     rows = []
     for f in sorted(files, key=lambda x: x.src_uri):
-        if not _MODULE_RE.match(f.src_uri):
+        if not MODULE_RE.match(f.src_uri):
             continue
-        fm = _front_matter(f.abs_src_path)
+        fm = front_matter(f.abs_src_path)
         title = str(fm.get("title") or f.src_uri)
         readings = fm.get("readings") or {}
         # Core = before-class readings plus every grouped reading (flattened); additional = optional.

@@ -10,34 +10,17 @@ from __future__ import annotations
 import os
 import re
 
-import yaml  # MkDocs already depends on PyYAML
+from _common import MODULE_RE, front_matter
 
 _TOKEN = re.compile(r"\{module:([^}]+)\}")
-#: A lecture module page: course/lectures/act-<name>/NN-<topic>/index.md — each module is its own
-#: directory (holding index.md + slides/ + readings/), so the page is the directory's index.
-_MODULE_RE = re.compile(r"^lectures/act-[^/]+/\d\d-[^/]+/index\.md$")
-
-
-def _front_matter(abs_path: str) -> dict:
-    try:
-        text = open(abs_path, encoding="utf-8").read()
-    except OSError:
-        return {}
-    m = re.match(r"^---\n(.*?)\n---\n", text, re.S)
-    if not m:
-        return {}
-    try:
-        return yaml.safe_load(m.group(1)) or {}
-    except yaml.YAMLError:
-        return {}
 
 
 def _module_index(files) -> dict:
     """Map a module page's `title` -> its source uri (the module's own front matter is the SSOT)."""
     idx: dict = {}
     for f in files:
-        if _MODULE_RE.match(f.src_uri):
-            title = str(_front_matter(f.abs_src_path).get("title") or "").strip()
+        if MODULE_RE.match(f.src_uri):
+            title = str(front_matter(f.abs_src_path).get("title") or "").strip()
             if title:
                 idx[title] = f.src_uri
     return idx
