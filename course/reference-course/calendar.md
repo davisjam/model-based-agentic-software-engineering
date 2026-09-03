@@ -12,7 +12,7 @@ status: draft
 
 # Calendar
 
-This reference course is organized as a 16-week sequence in three acts. The calendar below shows one way to map the curriculum onto a semester. Individual adopters can compress, expand, or reorder modules to fit their courses.
+This reference course uses a 16-week sequence in three acts. The [Syllabus](syllabus.md) defines the learning goals and assessment; this page shows one way to sequence the curriculum.
 
 ## Act I — Foundations
 
@@ -28,7 +28,7 @@ This reference course is organized as a 16-week sequence in three acts. The cale
 
 ## Act II — Building Systems & Governing Changes
 
-*How do we build out our designs and construct an environment in which humans and agents can review and change them safely?*
+*How do we build our designs and govern changes to them?*
 
 | Week | Topic |
 |---|---|
@@ -39,7 +39,7 @@ This reference course is organized as a 16-week sequence in three acts. The cale
 
 ## Act III — Software in the World
 
-*How do software systems operate, survive, and change in real environments?*
+*How do software systems operate, survive, and change?*
 
 | Week | Topic |
 |---|---|
@@ -51,6 +51,4 @@ This reference course is organized as a 16-week sequence in three acts. The cale
 | 15 | {module:Professional Judgment, Ethics & Synthesis} |
 | 16 | Oral Exam / Course Synthesis |
 
-The sequence is intentionally adaptable. The acts and modules provide the reusable curriculum structure; exact dates, project milestones, examinations, breaks, and institutional requirements belong to each course offering.
-
-For the complete Purdue Fall 2026 implementation, including project milestones and dates, see the **[Syllabus](syllabus.md)**.
+Adopters can compress, expand, or reorder modules. Dates, project milestones, breaks, and institutional requirements belong to the local course offering.
