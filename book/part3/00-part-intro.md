@@ -1,31 +1,16 @@
 <!-- part-foreshadows: govern-the-environment, alignment-principle, failures-become-machinery -->
 
-Part 2 made engineering knowledge and intent explicit. Those models already provide value: they let
-engineers, agents, and tools reason over properties that would otherwise have to be reconstructed from
-lower-level detail. This Part asks a different question. **Which of those properties express engineering
-obligations the environment should hold, and how should it hold them?**
+Engineering has long sought ways to make intended properties consequential for realized systems. Software architecture provides a particularly clear example. An architecture may specify which components may depend on which others, which interfaces interactions must cross, or which relations are forbidden. A rich architecture-conformance tradition asks whether the realized system respects those intended relations. Software reflexion models compare implementation relations with a high-level architectural model; dependency models, architectural rules, and static analyses likewise make intended relations explicit enough to inspect or check mechanically.[cite: murphy1995reflexion] [cite: sangal2005dependency] [cite: passos2010conformance] Layering is a familiar case, but the intended structure can be a more general graph of components, dependencies, and permitted interactions.
 
-Those models are also objects of analysis. Part II showed how their structure can make properties explicit
-and engineering questions tractable. Alignment now asks a different question: does the realized system
-satisfy the obligations those models express, what evidence can establish that correspondence, and what
-consequence should follow when it does not?
+The same engineering ambition appears elsewhere in software engineering. Type systems exclude inadmissible programs or representations. Access-control mechanisms constrain which actions a principal may perform. Protocol machinery can reject illegal transitions. Validators compare artifacts or behavior with specified properties. Tests establish evidence about expected behavior, while build and deployment gates can make satisfactory evidence a condition of progression. These mechanisms differ greatly in strength, scope, and purpose, but they share an important move: an engineering obligation is represented in a form that some part of the environment can act upon.
 
-Alignment is the move from guidance to authority. Some obligations require no rich system model: a
-permission can forbid network access, a type can rule out an illegal value, a sandbox can make an action
-unavailable. Explicit models extend that reach. Once architecture, ownership, behavior, measurement, or
-policy is represented at the level where the property exists, the environment can govern questions
-that an agent or human would otherwise have to reconstruct from lower-level detail.
+MAGE calls this move Alignment and treats it as the companion to Modeling. Modeling externalizes engineering knowledge: it makes architecture, behavior, ownership, decisions, measurements, policies, and other properties explicit at a level where they can be reasoned about. Alignment asks what happens next. Which of those properties should have authority over realization? Where can that authority act? What evidence is available there? What mechanism should respond when the evidence agrees, or fails to agree, with the obligation? Architecture conformance is therefore one important instance of the broader problem. Alignment extends the question across the engineering obligations made explicit through Modeling.
 
-Part I described consequential judgments that remain on the probabilistic surface of realization. Modeling
-can make some of those judgments easier and cheaper by externalizing the state or relation they require.
-Alignment addresses a different problem: not how efficiently the reasoner reaches an acceptable result, but
-whether an unacceptable result can acquire consequence.
+Commodity intelligence makes this longstanding problem newly important. A generative implementer can produce plausible realizations rapidly and can explore degrees of freedom that human implementers might never have considered. Instructions alone do not determine which of those realizations will appear. If an architectural relation, behavioral invariant, ownership rule, measurement requirement, or policy matters to the system, relying on every future realization to reconstruct and voluntarily preserve it leaves that obligation on the probabilistic surface.
 
-The distinction is not between probabilistic agents and deterministic software. It is between relying on a
-reasoner to honor an obligation and giving that obligation an independent path to consequence. A prompt may
-remind an agent not to cross an architectural boundary. A validator may reject any change that crosses it.
-Both can improve outcomes; only the second makes admission independent of whether the agent remembered the
-rule.
+The alternative is to move selected obligations into the engineered environment itself. Some can be made impossible to violate through representation or interface design. Some can be checked statically. Others become decidable only when an action is attempted, a work unit completes, an artifact is assembled, or the system executes. Sensors can produce evidence; validators can compare that evidence with an obligation; gates can make the result consequential. The mechanisms vary because the properties and boundaries vary. The common objective is to move consequential engineering judgments away from repeated probabilistic reconstruction and into machinery whose behavior can itself be engineered.
+
+This leads to the second principle of MAGE:
 
 <!-- principlebox -->
 <!-- box-family: canonical -->
@@ -35,6 +20,8 @@ rule.
 > constrain actions, produce evidence, evaluate that evidence, and control admission.
 >
 > An obligation becomes authoritative when the environment can act on it.
+
+Alignment does not mean that every preference should become a hard constraint, nor that every property can be made deterministic. Some judgments remain legitimately probabilistic; others are too expensive or too context-dependent to enforce mechanically. The engineering question is instead which obligations merit authority, what form of authority is appropriate, and where in the system that authority can be exercised reliably and economically.
 
 Part II also distinguished tolerances from degrees of freedom. Where a tolerance is explicit, the engineering environment may be able to constrain work to remain within it, observe the realized state, evaluate that state against the obligation, or control whether the result is admitted. The extent to which it can do so depends on what the environment can make legible and evaluate before substantial resources are committed. As engineers, we want to perform cheap analysis before committing resources to realizations that may violate an obligation. The choice of mechanism then depends on the property, the evidence available there, and the authority the obligation warrants. Degrees of freedom require no such machinery merely because engineering has left them open.
 

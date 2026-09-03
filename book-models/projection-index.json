@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1167,
+    "total_sites": 1166,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 818,
+      "book-web": 817,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 13,
@@ -61,7 +61,7 @@
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 9
+            "occ": 11
           },
           {
             "file": "book/3.4-governance-conversion.html",
@@ -218,16 +218,12 @@
           {
             "file": "book/part-2-intro.html",
             "occ": 4
-          },
-          {
-            "file": "book/part-3-intro.html",
-            "occ": 3
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 51
+            "occ": 50
           }
         ]
       },
@@ -881,7 +877,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 97
+            "occ": 108
           },
           {
             "file": "book/2.2-structural.html",
@@ -1265,7 +1261,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 80
+            "occ": 86
           },
           {
             "file": "book/book-index.html",
@@ -1297,7 +1293,7 @@
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 34
+            "occ": 43
           },
           {
             "file": "book/part-4-intro.html",
@@ -1359,7 +1355,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 68
+            "occ": 67
           },
           {
             "file": "catalogue-figure.html",
@@ -2089,7 +2085,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 67
+            "occ": 69
           },
           {
             "file": "book/2.2-structural.html",
@@ -2129,7 +2125,7 @@
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 33
+            "occ": 31
           },
           {
             "file": "book/3.4-governance-conversion.html",
@@ -4045,7 +4041,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 30
+            "occ": 32
           },
           {
             "file": "book/book-index.html",
@@ -4077,7 +4073,7 @@
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 2
+            "occ": 7
           },
           {
             "file": "book/part-4-intro.html",
