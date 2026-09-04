@@ -3872,7 +3872,7 @@ _ADOPTING_GENAI_DIR = HERE / "appendix-adopting-genai"
 _APPENDIX_ADOPTING_GENAI_OPENING_SLUG = "appendix-adopting-genai"
 _ADOPTING_GENAI_PAGES: list[tuple[str, str]] = [
     ("from-assistance-to-delegation",     "From Assistance to Delegation"),
-    ("engineering-the-environment",       "Engineering the Environment Around the Reasoner"),
+    ("engineering-the-environment",       "From Context Engineering to a Governed Environment"),
     ("learning-from-delegated-work",      "Learning from Delegated Work"),
     ("expanding-delegation",              "Expanding Delegation"),
     ("organizational-adoption",           "Organizational Adoption"),

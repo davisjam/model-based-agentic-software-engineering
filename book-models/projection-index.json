@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1216,
+    "total_sites": 1217,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 867,
+      "book-web": 868,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 13,
@@ -197,7 +197,7 @@
           },
           {
             "file": "book/appendix-g-engineering-the-environment.html",
-            "occ": 2
+            "occ": 7
           },
           {
             "file": "book/appendix-g-expanding-delegation.html",
@@ -678,12 +678,16 @@
             "occ": 5
           },
           {
+            "file": "book/appendix-g-engineering-the-environment.html",
+            "occ": 3
+          },
+          {
             "file": "book/book-index.html",
             "occ": 1
           },
           {
             "file": "book/figures.html",
-            "occ": 33
+            "occ": 34
           },
           {
             "file": "book/part-6-intro.html",
@@ -693,7 +697,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 17
+            "occ": 18
           }
         ]
       },
@@ -873,7 +877,7 @@
           },
           {
             "file": "book/0.1-how-to-read-this-book.html",
-            "occ": 26
+            "occ": 28
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
@@ -1005,7 +1009,7 @@
           },
           {
             "file": "book/5.5-mage-in-the-wild.html",
-            "occ": 77
+            "occ": 78
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
@@ -1261,7 +1265,7 @@
           },
           {
             "file": "book/appendix-g-engineering-the-environment.html",
-            "occ": 36
+            "occ": 57
           },
           {
             "file": "book/appendix-g-expanding-delegation.html",
@@ -1333,7 +1337,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 310
+            "occ": 318
           },
           {
             "file": "book/index.html",
@@ -1341,7 +1345,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 35
+            "occ": 36
           },
           {
             "file": "book/part-1-intro.html",
@@ -1891,7 +1895,7 @@
           },
           {
             "file": "book/appendix-g-engineering-the-environment.html",
-            "occ": 4
+            "occ": 11
           },
           {
             "file": "book/appendix-g-expanding-delegation.html",
@@ -1963,7 +1967,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 27
+            "occ": 32
           },
           {
             "file": "book/index.html",
@@ -1971,7 +1975,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/part-1-intro.html",
@@ -2521,7 +2525,7 @@
           },
           {
             "file": "book/appendix-g-engineering-the-environment.html",
-            "occ": 11
+            "occ": 15
           },
           {
             "file": "book/appendix-g-expanding-delegation.html",
@@ -2593,7 +2597,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 418
+            "occ": 420
           },
           {
             "file": "book/index.html",
@@ -4707,7 +4711,7 @@
           },
           {
             "file": "book/appendix-g-engineering-the-environment.html",
-            "occ": 2
+            "occ": 4
           },
           {
             "file": "book/appendix-g-expanding-delegation.html",
