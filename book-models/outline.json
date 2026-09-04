@@ -2455,7 +2455,7 @@
             {
               "slug": "authority-is-not-determinism",
               "text": "Authority is not determinism: a deterministic checker can remain advisory, and a probabilistic evaluator can receive authority; the two dimensions should not be conflated.",
-              "block_index": 77
+              "block_index": 71
             }
           ]
         },
@@ -2465,22 +2465,22 @@
           "heading_text": "Prefer Structural Prevention",
           "topic_sentence": "Prefer structural prevention when the legitimate action space can be closed.",
           "id_source": "explicit",
-          "block_index": 79,
+          "block_index": 73,
           "points": [
             {
               "slug": "prefer-structural-prevention-when-the-action-space-can-honestly-be-closed",
               "text": "Prefer structural prevention when the legitimate action space can be closed; otherwise preserve the action space and add independent evidence.",
-              "block_index": 81
+              "block_index": 75
             },
             {
               "slug": "place-the-strongest-honest-mechanism-where-the-property-permits-it",
               "text": "A property that can be made unrepresentable belongs in a constraint; one visible only after execution needs evidence and evaluation.",
-              "block_index": 83
+              "block_index": 77
             },
             {
               "slug": "docable-used-both-sides-of-the-alignment-principle",
               "text": "DocAble used both sides at once: close the action space where it could, validate independently where a property was only legible after the change.",
-              "block_index": 85
+              "block_index": 79
             }
           ]
         },
@@ -2490,32 +2490,32 @@
           "heading_text": "Size Work to Reasoning and Assurance",
           "topic_sentence": "Not every agent task deserves the full apparatus of governed autonomy.",
           "id_source": "explicit",
-          "block_index": 87,
+          "block_index": 81,
           "points": [
             {
               "slug": "not-every-task-deserves-the-full-apparatus-of-governed-autonomy",
               "text": "Not every task deserves the full apparatus of governed autonomy.",
-              "block_index": 90
+              "block_index": 84
             },
             {
               "slug": "two-things-shorten-the-leash-reasoning-burden-and-assurance-need",
               "text": "Size the task along two axes: reasoning burden and assurance need.",
-              "block_index": 93
+              "block_index": 87
             },
             {
               "slug": "size-work-as-transformations-with-checkable-boundaries",
               "text": "Size work as transformations with explicit inputs, outputs, and checkable boundaries.",
-              "block_index": 98
+              "block_index": 92
             },
             {
               "slug": "docable-sizes-the-leap-to-bounded-typed-edits-the-unit-of-delegation-lines-up-with-a-unit-of-evidence",
               "text": "DocAble sizes the leap to bounded typed edits, so the unit of delegation lines up with a unit of evidence.",
-              "block_index": 100
+              "block_index": 94
             },
             {
               "slug": "task-shape-matters-as-much-as-task-size",
               "text": "Task shape matters as much as task size; a well-sized transformation of the wrong shape still fails.",
-              "block_index": 102
+              "block_index": 96
             }
           ]
         }
@@ -2618,32 +2618,32 @@
           "heading_text": "Migrate One Bounded Surface at a Time",
           "topic_sentence": "The immediate goal is not a complete model of the inherited system.",
           "id_source": "derived",
-          "block_index": 61,
+          "block_index": 58,
           "points": [
             {
               "slug": "the-near-goal-is-a-trusted-map-then-a-bounded-migration",
               "text": "The near goal is not a complete model but a trusted map over the surface that matters now; choose a bounded surface, preserve reversibility, and generalize only what it teaches.",
-              "block_index": 63
+              "block_index": 60
             },
             {
               "slug": "docable-serverless-replatforming-ran-this-shape",
               "text": "DocAble's serverless re-platforming ran a bounded, reversible migration: push plane grew beside poll plane behind a default-off toggle, proved green, took traffic, old cluster archived.",
-              "block_index": 67
+              "block_index": 64
             },
             {
               "slug": "recover-the-representation-in-whichever-direction-the-evidence-supports",
               "text": "Recover the representation top-down or bottom-up; removing accidental complexity can ease either.",
-              "block_index": 69
+              "block_index": 66
             },
             {
               "slug": "a-disagreement-has-the-familiar-three-way-diagnosis",
               "text": "A model-code disagreement has a three-way diagnosis: model, grain, or code.",
-              "block_index": 74
+              "block_index": 71
             },
             {
               "slug": "query-the-migration-blast-radius-before-cutover",
               "text": "For consequential substrate changes, query the migration blast radius before cutover.",
-              "block_index": 80
+              "block_index": 77
             }
           ]
         },
@@ -2653,22 +2653,22 @@
           "heading_text": "Audit → Drain → Promote",
           "topic_sentence": "A valid future invariant is not always a valid present admission rule.",
           "id_source": "derived",
-          "block_index": 82,
+          "block_index": 79,
           "points": [
             {
               "slug": "a-valid-future-invariant-is-not-always-a-valid-present-admission-rule",
               "text": "A valid future invariant may not be a valid present admission rule.",
-              "block_index": 84
+              "block_index": 81
             },
             {
               "slug": "cloudflare-reached-the-same-approved-enforced-order",
               "text": "Cloudflare's public account describes a similar approved→enforced order.",
-              "block_index": 88
+              "block_index": 85
             },
             {
               "slug": "sometimes-you-promote-the-obligation-not-the-instrument",
               "text": "Sometimes you promote the obligation, not the instrument that discovered it: an audit can reveal the property that deserves authority without being the right mechanism to carry it.",
-              "block_index": 91
+              "block_index": 88
             }
           ]
         },
@@ -2678,17 +2678,17 @@
           "heading_text": "Derive, Don't Copy",
           "topic_sentence": "Recovering a model is only the first step.",
           "id_source": "explicit",
-          "block_index": 93,
+          "block_index": 90,
           "points": [
             {
               "slug": "recover-then-derive-dont-copy",
               "text": "Recovering a model is only the first step; if a fact already has a queryable source of truth, derive it rather than copying it, and where neither side owns the other, make their correspondence observable.",
-              "block_index": 95
+              "block_index": 92
             },
             {
               "slug": "hidden-assumptions-deserve-the-same-treatment-make-consequential-ones-queryable",
               "text": "Hidden substrate assumptions deserve the same treatment: represent the consequential ones strongly enough that the blast radius can be queried before the change.",
-              "block_index": 99
+              "block_index": 96
             }
           ]
         },
@@ -2698,22 +2698,22 @@
           "heading_text": "Price the Investment",
           "topic_sentence": "A recurring gap does not automatically deserve machinery.",
           "id_source": "derived",
-          "block_index": 101,
+          "block_index": 98,
           "points": [
             {
               "slug": "price-the-expected-loss-against-the-cost-of-building-and-carrying-the-response",
               "text": "Price the expected future loss against the cost of building and carrying the response.",
-              "block_index": 103
+              "block_index": 100
             },
             {
               "slug": "draw-the-two-factors-as-axes-and-the-judgment-gets-a-shape",
               "text": "Draw cost against frequency and the sizing judgment gets a shape.",
-              "block_index": 105
+              "block_index": 102
             },
             {
               "slug": "price-the-upkeep-capital-depreciates-and-can-be-retired",
               "text": "Price the upkeep — engineering capital depreciates and can be retired.",
-              "block_index": 108
+              "block_index": 105
             }
           ]
         }
@@ -3172,7 +3172,7 @@
           "section_id": "one-hard-example-coverage-measured-one-level-deeper",
           "level": 3,
           "heading_text": "One hard example: coverage measured one level deeper",
-          "topic_sentence": "Requirements-based coverage illustrates how an existing engineering mechanism can become more useful when connected to explicit models.",
+          "topic_sentence": "Requirements-based coverage joins model-to-code traceability with ordinary test coverage: it follows each modeled claim to the code that realizes it, then to the tests that exercise that code, and reports which claims have no exercising evidence.",
           "id_source": "derived",
           "block_index": 79,
           "points": [
@@ -3187,14 +3187,14 @@
           "section_id": "one-judgment-laden-example-doc-derived-tests",
           "level": 3,
           "heading_text": "One judgment-laden example: doc-derived tests",
-          "topic_sentence": "Doc-derived tests mark the opposite end of the spectrum, where the same connection to an explicit source produces evidence whose adequacy stays a matter of judgment.",
+          "topic_sentence": "Doc-derived tests are generated from consequential claims in prose documentation and keep a trace back to the source claim.",
           "id_source": "derived",
-          "block_index": 87,
+          "block_index": 83,
           "points": [
             {
               "slug": "a-doc-derived-tests-metric-is-genuinely-soft",
               "text": "A doc-derived test's metric is genuinely soft: whether every consequential prose claim has an adequate test is a judgment, so it should direct review, not drive a threshold.",
-              "block_index": 89
+              "block_index": 85
             }
           ]
         },
@@ -3204,22 +3204,22 @@
           "heading_text": "Let useful models drive machinery",
           "topic_sentence": "An executable model earns more than documentation value when tools consume it directly.",
           "id_source": "derived",
-          "block_index": 95,
+          "block_index": 87,
           "points": [
             {
               "slug": "an-executable-model-becomes-a-query-surface-for-consumers",
               "text": "An executable model earns more than documentation value when tools consume it directly — it becomes a reusable query surface for many consumers.",
-              "block_index": 97
+              "block_index": 89
             },
             {
               "slug": "a-component-distance-grade-supplies-evidence-to-a-validator",
               "text": "A model can scope a mechanism: DocAble grades findings by component-model distance from the change, so a local finding blocks while unrelated debt stays a broader gate's responsibility.",
-              "block_index": 99
+              "block_index": 91
             },
             {
               "slug": "the-grade-is-a-model-read-metric-not-an-authority",
               "text": "The grade is evidence read from the model; the gate carries the authority — read the number one level below the surface, where it names a target instead of a total.",
-              "block_index": 105
+              "block_index": 93
             }
           ]
         },
@@ -3229,22 +3229,22 @@
           "heading_text": "The Operating Rhythm",
           "topic_sentence": "Put the pieces together and operation becomes a recurring rhythm.",
           "id_source": "derived",
-          "block_index": 107,
+          "block_index": 95,
           "points": [
             {
               "slug": "operating-is-one-recurring-rhythm-across-four-forms",
               "text": "Operating MAGE is one recurring rhythm: the lifecycle names healthy progress and failure, events bind the reaction to the transition, the runbook gives each state a sanctioned next move, and metrics tell whether the loop is improving or merely busy.",
-              "block_index": 109
+              "block_index": 97
             },
             {
               "slug": "when-the-loop-stalls-diagnose-the-kind-of-problem-before-adding-machinery",
               "text": "The operating loop will still stall; when it does, resist the reflex to add another mechanism and first diagnose whether the gap is in the searcher, the model, the oracle, or the target.",
-              "block_index": 111
+              "block_index": 99
             },
             {
               "slug": "the-rhythm-names-three-competencies-part-six-develops",
               "text": "Run the rhythm long enough and recurring operation becomes less dependent on memory; the engineer increasingly decides what the environment should know, what it should decide, and what must remain judgment.",
-              "block_index": 116
+              "block_index": 104
             }
           ]
         }
