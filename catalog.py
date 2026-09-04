@@ -2888,7 +2888,7 @@ def _v3_learn() -> str:
         + _v3_card("Book", "",
                    "The complete treatment of MAGE, from its motivation and principles through practice, evidence, and implications.",
                    [("Read the book", "book/index.html"), ("Download PDF", _PDF_HREF)],
-                   thumb=("book/assets/cover.svg", "MAGE book cover")) + "\n"
+                   thumb=("book/assets/cover-charcoal-thumb.png", "MAGE book cover")) + "\n"
         + _v3_card("Writings", "",
                    "Papers and shorter articles developing, motivating, and evaluating MAGE.",
                    [("Browse writings", "writings.html")],
