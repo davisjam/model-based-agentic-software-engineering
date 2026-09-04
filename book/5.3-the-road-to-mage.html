@@ -770,17 +770,25 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-f-differential-adoption.html">F.7 Differential Adoption</a></li>
 <li><a class="" href="appendix-f-from-local-mage-to-the-product-gee.html">F.8 From Local MAGE to the Product GEE</a></li>
 <li><a class="" href="appendix-f-engineering-capital-across-time-and-space.html">F.9 Engineering Capital Across Time and Space</a></li>
+<li class="part">Appendix G — Adopting GenAI in an Organization</li>
+<li><a class="" href="appendix-adopting-genai.html">Appendix G — Adopting GenAI in an Organization</a></li>
+<li><a class="" href="appendix-g-from-assistance-to-delegation.html">G.1 From Assistance to Delegation</a></li>
+<li><a class="" href="appendix-g-engineering-the-environment.html">G.2 Engineering the Environment Around the Reasoner</a></li>
+<li><a class="" href="appendix-g-learning-from-delegated-work.html">G.3 Learning from Delegated Work</a></li>
+<li><a class="" href="appendix-g-expanding-delegation.html">G.4 Expanding Delegation</a></li>
+<li><a class="" href="appendix-g-organizational-adoption.html">G.5 Organizational Adoption</a></li>
+<li><a class="" href="appendix-g-a-practical-adoption-procedure.html">G.6 A Practical Adoption Procedure</a></li>
 <li class="part">Appendix Part II — Evidence</li>
 <li><a class="" href="appendix-part-2-evidence.html">Appendix Part II — Evidence</a></li>
-<li class="part">Appendix G — Field Guide</li>
-<li><a class="" href="appendix-field-guide.html">Appendix G — Field Guide</a></li>
-<li class="part">Appendix H — Evidence Ledger: The DocAble Case</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Evidence Ledger: The DocAble Case</a></li>
-<li class="part">Appendix I — Crazy Ideas</li>
-<li><a class="" href="appendix-crazy-ideas.html">Appendix I — Crazy Ideas</a></li>
-<li><a class="" href="appendix-i-experimental-substrate.html">I.1 Commodity Intelligence as an Experimental Instrument for Software Engineering</a></li>
-<li><a class="" href="appendix-i-model-induction.html">I.2 Model Induction from Realized Work</a></li>
-<li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
+<li class="part">Appendix H — Field Guide</li>
+<li><a class="" href="appendix-field-guide.html">Appendix H — Field Guide</a></li>
+<li class="part">Appendix I — Evidence Ledger: The DocAble Case</li>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix I — Evidence Ledger: The DocAble Case</a></li>
+<li class="part">Appendix J — Crazy Ideas</li>
+<li><a class="" href="appendix-crazy-ideas.html">Appendix J — Crazy Ideas</a></li>
+<li><a class="" href="appendix-j-experimental-substrate.html">J.1 Commodity Intelligence as an Experimental Instrument for Software Engineering</a></li>
+<li><a class="" href="appendix-j-model-induction.html">J.2 Model Induction from Realized Work</a></li>
+<li><a class="" href="appendix-j-model-based-agentic-engineering-beyond-software.html">J.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 25 · How Delegation Changed — MAGE"><header class="chap"><div class="kicker"><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">Part 5 — The Evidence</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 25</a></div><h1><span class="chap-num">5.3</span> How Delegation Changed</h1></header><blockquote class="box-evidence"><p class="inset-title" id="illustrates">This chapter illustrates</p>
@@ -1083,9 +1091,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <blockquote class="box-inset"><span class="box-badge">SOFTWARE</span><p class="inset-title">Inset — Naming raises the level of design reasoning</p>
 <p>Software engineering has long exploited a milder version of this effect. A shared vocabulary makes recurring structures easier to recognize, reason about, and communicate; naming a design pattern, Gamma and colleagues argued, increases a designer's vocabulary and raises the level at which a design can be discussed <sup class="cite-ref"><a href="#wc-5-3-the-road-to-mage-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> Erich Gamma et al., <em>Design Patterns: Elements of Reusable Object-Oriented Software</em> (Addison-Wesley, 1994).</span>. Models push the same idea further. They supply not just names but structured semantics: once states, transitions, ownership, and temporal obligations have explicit representations, new properties become available to both human reasoning and mechanical analysis. The representations available to an engineer shape the properties that engineer can readily see and state.</p></blockquote>
 <blockquote class="aside-sidenote def-inset"><p><strong>Field note — the map that pointed at a ghost.</strong> One model named a code symbol that was later moved and renamed. Nothing invalidated the reference. The model continued to look authoritative, agents continued to reason from it, and the failure surfaced days later during deployment. That incident forced live trace resolution: model-to-code edges were re-resolved against current symbols so a stale pointer failed at the change that broke it rather than downstream.</p></blockquote>
-<blockquote class="aside-sidenote def-inset"><p><strong>Evidence — a reasoning surface creates a maintenance obligation.</strong> A later audit showed the pointer failure was a class, not a one-off. Re-running closed work against current code found genuine model-to-code drifts that a green definition of done had missed, the prod-blocking pointer among them. Mechanical correspondence checks then turned stale-reference failure into something the environment catches at the change that creates it. <a href="appendix-evidence-ledger.html">Appendix H</a> carries the counts.</p></blockquote>
+<blockquote class="aside-sidenote def-inset"><p><strong>Evidence — a reasoning surface creates a maintenance obligation.</strong> A later audit showed the pointer failure was a class, not a one-off. Re-running closed work against current code found genuine model-to-code drifts that a green definition of done had missed, the prod-blocking pointer among them. Mechanical correspondence checks then turned stale-reference failure into something the environment catches at the change that creates it. <a href="appendix-evidence-ledger.html">Appendix I</a> carries the counts.</p></blockquote>
 <p>Representing and instrumenting previously weakly represented seams also exposed live defects that green tests had not. The useful claim is not that "models find bugs." It is that <strong>forcing an engineering relation into an explicit representation creates new questions the environment can ask</strong>, and in these three cases those questions exposed shipping defects.</p>
-<p>The same instrumentation measured its own reach: a traceability tracer made the remaining unmodeled surface measurable and guided later modeling toward the largest gaps. <a href="appendix-evidence-ledger.html">Appendix H</a> carries the run-by-run series and the discrimination that keeps the number honest.</p>
+<p>The same instrumentation measured its own reach: a traceability tracer made the remaining unmodeled surface measurable and guided later modeling toward the largest gaps. <a href="appendix-evidence-ledger.html">Appendix I</a> carries the run-by-run series and the discrimination that keeps the number honest.</p>
 <blockquote class="aside-sidenote def-inset"><p><strong>What modeling exposed that green tests missed.</strong> Three live defects came into view when previously implicit relations were represented explicitly:</p>
 <ul><li><strong>A cross-runtime exit code</strong> one runtime emitted and the other had never enumerated, so a genuine failure was silently misfiled as a generic error.</li><li><strong>Asymmetric cleanup after redelivery</strong> — a failure path purged a job's database rows and blobs but skipped the queue structures its sibling path always cleaned, leaking chunks on a rare edge.</li><li><strong>A last-write-wins editor race</strong> in which two concurrent saves silently discarded one's work.</li></ul></blockquote>
 <p><a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-5">Figure&nbsp;5.3-5</a> draws the five-rung climb.</p>

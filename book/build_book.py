@@ -3862,6 +3862,23 @@ _PRODUCT_LIFECYCLE_PAGES: list[tuple[str, str]] = [
     ("engineering-capital-across-time-and-space",           "Engineering Capital Across Time and Space"),
 ]
 
+# APPENDIX G — Adopting GenAI in an Organization. A practice appendix: how an organization moves from
+# individual assistance to bounded delegation by engineering the environment around the reasoner
+# (Modeling / Alignment / governance conversion at organizational scale), closing with a 10-step adoption
+# procedure. Front-door _opening.md carries the intro; the first content page (From Assistance to
+# Delegation) carries the new Figure G.1-1 and the reused-figures recap panel. Content-page slugs are
+# `appendix-g-<stem>`. Sits at the end of the A–G "use and extend MAGE" band (after F).
+_ADOPTING_GENAI_DIR = HERE / "appendix-adopting-genai"
+_APPENDIX_ADOPTING_GENAI_OPENING_SLUG = "appendix-adopting-genai"
+_ADOPTING_GENAI_PAGES: list[tuple[str, str]] = [
+    ("from-assistance-to-delegation",     "From Assistance to Delegation"),
+    ("engineering-the-environment",       "Engineering the Environment Around the Reasoner"),
+    ("learning-from-delegated-work",      "Learning from Delegated Work"),
+    ("expanding-delegation",              "Expanding Delegation"),
+    ("organizational-adoption",           "Organizational Adoption"),
+    ("a-practical-adoption-procedure",    "A Practical Adoption Procedure"),
+]
+
 # APPENDIX — Crazy Ideas. A TEMPORARY holding area for material carved out of Part 6 as outside the book's
 # core argument but worth keeping as research-paper seeds (front-door _opening.md carries the editorial-status
 # note; I.1 "Commodity Intelligence as an Experimental Instrument for Software Engineering" from the removed
@@ -4925,8 +4942,9 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
     """The value-ordered appendix (build flag ON), in reading order: **A** MAGE Engineering Stacks ·
     **B** Engineering Moves (hand-authored worked examples — problem → move → two realizations) ·
     **C** Model Reference · **D** Operator's Reference · **E** How to Write a Skill ·
-    **F** Configuring MAGE Across the Product Lifecycle · **G** Field Guide · **H** Evidence Ledger.
-    A–F use and extend MAGE; G–H inspect the evidence behind it. Each Part is routed through the shared hand-authored appendix scaffold, so its
+    **F** Configuring MAGE Across the Product Lifecycle · **G** Adopting GenAI in an Organization ·
+    **H** Field Guide · **I** Evidence Ledger.
+    A–G use and extend MAGE; H–I inspect the evidence behind it. Each Part is routed through the shared hand-authored appendix scaffold, so its
     TOC/pager/index render with no special-casing; figure numbers derive monotonically off each page's
     `<letter>.<i>` locator (`fig_prefix`, D80). The `[appendix: <slug>]` markers resolve to the letters
     automatically — the letter map reads each page's `part_title`. `_appendix_entries` is still read so the
@@ -5024,19 +5042,30 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
         content_dir=_PRODUCT_LIFECYCLE_DIR, pages_source=_PRODUCT_LIFECYCLE_PAGES,
         locator_figs=True, locator_heading=True)
 
-    # ── APPENDIX PART II divider — Evidence. Sits immediately BEFORE Appendix G; a level-1 PDF-bookmark
-    #    parent so G–H nest under it (as A–F nest under the Part I divider). Takes part next_part+6, one below
-    #    Appendix G, so G–H shift up one part number.
+    # ── APPENDIX G — Adopting GenAI in an Organization. Closes the A–G "use and extend MAGE" band: how an
+    #    organization moves from individual assistance to bounded delegation by engineering the environment
+    #    around the reasoner, ending with a practical adoption procedure. G.1 "From Assistance to Delegation"
+    #    is the first content page so the new boundary figure numbers G.1-1.
+    chapters += build_hand_authored_appendix(
+        next_part + 6, letter="G", part_name="Adopting GenAI in an Organization",
+        opening_slug=_APPENDIX_ADOPTING_GENAI_OPENING_SLUG,
+        opening_prose=_load_opening(_ADOPTING_GENAI_DIR / "_opening.md"),
+        content_dir=_ADOPTING_GENAI_DIR, pages_source=_ADOPTING_GENAI_PAGES,
+        locator_figs=True, locator_heading=True)
+
+    # ── APPENDIX PART II divider — Evidence. Sits immediately BEFORE Appendix H; a level-1 PDF-bookmark
+    #    parent so H–I nest under it (as A–G nest under the Part I divider). Takes part next_part+7, one below
+    #    Appendix H, so H–I shift up one part number.
     chapters.append(_appendices_divider_record(
-        next_part + 6, _APPENDICES_PART2_SLUG, _APPENDICES_PART2_TITLE,
+        next_part + 7, _APPENDICES_PART2_SLUG, _APPENDICES_PART2_TITLE,
         _APPENDICES_PART2_SUBTITLE, "appendix-part-2-evidence.md"))
 
-    # ── APPENDIX G — Field Guide (re-lettered from F). The six studied teams as one-page reference cards (a
+    # ── APPENDIX H — Field Guide (re-lettered from G). The six studied teams as one-page reference cards (a
     #    single deck page). A team-first reference ("who was that team again?"), distinct from Section 6.6's
-    #    comparative read. Opens the Evidence Part (G–H): the external industrial reconstructions.
-    chapters += build_field_guide_chapters(part=next_part + 7, letter="G", locator_figs=True)
+    #    comparative read. Opens the Evidence Part (H–I): the external industrial reconstructions.
+    chapters += build_field_guide_chapters(part=next_part + 8, letter="H", locator_figs=True)
 
-    # ── APPENDIX H — Evidence Ledger: The DocAble Case (re-lettered from G). The raw count tables
+    # ── APPENDIX I — Evidence Ledger: The DocAble Case (re-lettered from H). The raw count tables
     #    behind Part V's curves (support-ratio LoC, per-path churn, control-growth counts). Closes the Evidence
     #    Part. Routed through the shared hand-authored appendix builder in SINGLE_DECK mode:
     #    the lone evidence-tables page is inlined under the front-door opening so the appendix reads as
@@ -5045,18 +5074,18 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
     #    rather than splitting the three tables artificially). The Part-V "The Build" chapter links the
     #    front-door via `[appendix: appendix-evidence-ledger]`, the slug single_deck preserves.
     chapters += build_hand_authored_appendix(
-        next_part + 8, letter="H", part_name="Evidence Ledger: The DocAble Case",
+        next_part + 9, letter="I", part_name="Evidence Ledger: The DocAble Case",
         opening_slug=_APPENDIX_EVIDENCE_LEDGER_OPENING_SLUG,
         opening_prose=_load_opening(_EVIDENCE_LEDGER_DIR / "_opening.md"),
         content_dir=_EVIDENCE_LEDGER_DIR, pages_source=_EVIDENCE_LEDGER_PAGES,
         locator_figs=True, single_deck=True)
 
-    # ── APPENDIX I — Crazy Ideas. A TEMPORARY holding area for material carved out of Part 6 (the removed
+    # ── APPENDIX J — Crazy Ideas. A TEMPORARY holding area for material carved out of Part 6 (the removed
     #    §6.3.5 and §6.5.5) as research-paper seeds outside the book's core argument; expected to be cut
     #    before publication. Wired as a normal hand-authored appendix so it stays reachable via the pager.
-    #    Appended LAST so it re-letters no earlier appendix. CI.2 re-homes the relocated model-induction figure.
+    #    Appended LAST so it re-letters no earlier appendix. CJ.2 re-homes the relocated model-induction figure.
     chapters += build_hand_authored_appendix(
-        next_part + 9, letter="I", part_name="Crazy Ideas",
+        next_part + 10, letter="J", part_name="Crazy Ideas",
         opening_slug=_APPENDIX_CRAZY_IDEAS_OPENING_SLUG,
         opening_prose=_load_opening(_CRAZY_IDEAS_DIR / "_opening.md"),
         content_dir=_CRAZY_IDEAS_DIR, pages_source=_CRAZY_IDEAS_PAGES,

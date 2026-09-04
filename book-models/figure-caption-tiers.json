@@ -31,6 +31,18 @@
       "location": "part5",
       "rationale": "the top-to-bottom modeling history — a partial model growing the composition half it lacked, exposing dependency semantics and effect boundedness; anchor caption for the road-to-MAGE progression"
     },
+    "assets/adopting-assistance-to-delegation.svg": {
+      "tier": "A",
+      "kind": "flow",
+      "location": "appendixG",
+      "rationale": "Appendix G figure G.1-1 — the shift from individual assistance to bounded delegation as a changing boundary (responsibilities move into models/evidence/mechanisms), not a maturity ladder; anchor figure for the appendix"
+    },
+    "assets/adopting-figures-recap.svg": {
+      "tier": "B",
+      "kind": "conceptual-framework",
+      "location": "appendixG",
+      "rationale": "Appendix G recap panel — the four earlier figures (value/governability Section 6.3, governance-conversion loop Section 3.4, support-apparatus ratio and effort-redistribution Part V) named and reused rather than re-embedded"
+    },
     "assets/h1-product-lifecycle.svg": {
       "tier": "A",
       "kind": "model-diagram",
