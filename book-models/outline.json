@@ -424,18 +424,18 @@
             },
             {
               "slug": "availability-is-not-a-useful-representation",
-              "text": "Harnesses move the boundary through larger contexts, retrieval, memory, and compaction, but availability is not a useful representation — RULER, Lost in the Middle, and Sourcegraph each show that present state is not equally usable, and raw implementation is an expensive substrate when the question depends on a smaller set of relationships.",
+              "text": "Harnesses move the boundary through larger contexts, retrieval, memory, and compaction, but availability is not a useful representation — usable context falls short of nominal capacity and present state is not equally accessible, and raw implementation is an expensive substrate when the question depends on a smaller set of relationships.",
               "block_index": 26
             },
             {
               "slug": "the-horizon-is-a-locality-problem-for-reasoning-state",
               "text": "The reasoning horizon is a locality problem: systems keep useful state close to the computation that consumes it, and purposeful representations apply the same principle semantically — a dependency graph or state machine answers a question that retrieved source lines merely make available.",
-              "block_index": 28
+              "block_index": 29
             },
             {
               "slug": "the-reasoning-horizon-defined",
               "text": "The reasoning horizon is the boundary beyond which consequential state can no longer be carried in active reasoning and must be reconstructed; larger windows, stronger reasoners, retrieval, and memory move it, and Modeling moves it differently by changing the representation over which reasoning occurs.",
-              "block_index": 30
+              "block_index": 31
             }
           ]
         },
@@ -445,22 +445,22 @@
           "heading_text": "Probabilistic Work Needs External Authority",
           "topic_sentence": "The second problem is not that agents make mistakes while human programmers do not.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 35,
           "points": [
             {
               "slug": "authorship-is-separate-from-assurance",
               "text": "Software engineering has always separated authorship from assurance — we compile instead of trusting a prediction, test instead of accepting an explanation — because the producer's confidence is not enough.",
-              "block_index": 36
+              "block_index": 37
             },
             {
               "slug": "authority-must-reside-outside-the-agent",
               "text": "Commodity intelligence makes that separation more important because implementation is cheap and repeatable; an agent can propose, inspect, explain, and repair, but another judgment from the same substrate does not create authority — the environment must establish what evidence counts.",
-              "block_index": 38
+              "block_index": 39
             },
             {
               "slug": "the-probabilistic-surface-is-the-judgments-still-bought-per-instance",
               "text": "The consequential judgments that still depend on fallible per-instance inference form the probabilistic surface; better models, context, decomposition, harnesses, and iterative loops make those judgments more reliable but leave the obligation dependent on probabilistic judgment each time it arises.",
-              "block_index": 48
+              "block_index": 49
             }
           ]
         },
@@ -470,17 +470,17 @@
           "heading_text": "Authority Outside the Producing Run",
           "topic_sentence": "Software engineering offers another move.",
           "id_source": "derived",
-          "block_index": 51,
+          "block_index": 52,
           "points": [
             {
               "slug": "software-engineering-can-make-an-obligation-explicit-and-enforce-it-outside-the-run",
               "text": "For selected obligations the environment can make the required property explicit and enforce it independently of the producing run — represent an architectural restriction and reject changes that violate it — so the judgment that established the obligation is reused across later implementation.",
-              "block_index": 52
+              "block_index": 53
             },
             {
               "slug": "agentic-work-provides-identifiable-interfaces-where-authority-can-act",
               "text": "Consequential work reaches the system through identifiable interfaces — inputs, tool calls, edits, outputs, lifecycle transitions — where a sandbox, hook, or test can act without a rich model, and explicit representations extend the semantic reach of those same control points.",
-              "block_index": 54
+              "block_index": 55
             }
           ]
         }
@@ -508,27 +508,27 @@
           "heading_text": "Modeling Is a Classical Engineering Move",
           "topic_sentence": "Modeling is not new.",
           "id_source": "derived",
-          "block_index": 11,
+          "block_index": 12,
           "points": [
             {
               "slug": "modeling-is-a-classical-engineering-move-not-a-mage-invention",
               "text": "Modeling is not new: engineering has long used representations that suppress irrelevant detail so a property can be reasoned about directly.",
-              "block_index": 12
+              "block_index": 13
             },
             {
               "slug": "a-model-is-useful-for-what-it-makes-available-not-for-reproducing-the-system",
               "text": "The common move is basic: build a representation in which the property is easier to express, inspect, or analyze than in the realized artifact — useful for what it makes available, not for reproducing the system.",
-              "block_index": 14
+              "block_index": 15
             },
             {
               "slug": "mage-adopts-the-classical-move-under-changed-economics",
               "text": "MAGE adopts this classical move under changed economics: commodity intelligence makes explicit representations cheaper to build and use, and generative implementation makes them more valuable.",
-              "block_index": 16
+              "block_index": 17
             },
             {
               "slug": "a-useful-model-need-not-be-elaborate",
               "text": "A useful model may be three states and two transitions, a list of permitted edges, or a schema joined on identifiers; the question is never how much can we model, but what representation makes this recurring question easier to answer.",
-              "block_index": 22
+              "block_index": 23
             }
           ]
         },
@@ -538,17 +538,17 @@
           "heading_text": "A Model Is a Purposeful Reduction",
           "topic_sentence": "A **model** is a purposeful reduction of a system.",
           "id_source": "derived",
-          "block_index": 24,
+          "block_index": 25,
           "points": [
             {
               "slug": "a-model-is-a-reduction-not-an-approximation",
               "text": "A model is a purposeful reduction; its value is what it leaves out. The engineering question decides what to keep.",
-              "block_index": 26
+              "block_index": 27
             },
             {
               "slug": "reduction-preserves-degrees-of-freedom",
               "text": "Obligations rarely fix one realization; a tolerance bounds permitted variation, a degree of freedom is a choice left open.",
-              "block_index": 31
+              "block_index": 32
             }
           ]
         },
@@ -558,22 +558,22 @@
           "heading_text": "Tolerance and degrees of freedom",
           "topic_sentence": "The suppressed detail has a realization-side consequence.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 33,
           "points": [
             {
               "slug": "software-tolerance-is-often-qualitative",
               "text": "In software a tolerance can be numeric but is often qualitative, because code owes more to discrete mathematics than to continuous media.",
-              "block_index": 34
+              "block_index": 35
             },
             {
               "slug": "obligations-bound-a-region-without-choosing-a-point",
               "text": "Obligations bound the space of acceptable realizations without selecting a point; commodity intelligence makes exercising that freedom cheap, so Modeling names the consequential distinctions and Alignment gives selected boundaries authority.",
-              "block_index": 36
+              "block_index": 37
             },
             {
               "slug": "tacit-obligation-vs-genuinely-free",
               "text": "A tacit obligation can look free; the \"not that\" test reveals a boundary that was never written down.",
-              "block_index": 40
+              "block_index": 41
             }
           ]
         },
@@ -583,32 +583,32 @@
           "heading_text": "Not every unmodeled choice is free",
           "topic_sentence": "This also distinguishes tacit obligations from genuinely free choices.",
           "id_source": "derived",
-          "block_index": 41,
+          "block_index": 42,
           "points": [
             {
               "slug": "unknown-tacit-explicit-free-are-states",
               "text": "Unknown, tacit, explicit, and free are present states of a choice, and they change as the system changes.",
-              "block_index": 43
+              "block_index": 44
             },
             {
               "slug": "modeling-can-precede-complete-specification",
               "text": "Modeling can begin before specification is complete; a reduction can make variation tractable so distinctions can be discovered.",
-              "block_index": 45
+              "block_index": 46
             },
             {
               "slug": "the-question-decides-what-to-keep",
               "text": "Hold the system constant, change the question, and the model changes; there is no single model of the system.",
-              "block_index": 50
+              "block_index": 51
             },
             {
               "slug": "there-is-no-model-of-the-system",
               "text": "There is no model of the system, only purposeful reductions that each answer one question.",
-              "block_index": 53
+              "block_index": 54
             },
             {
               "slug": "a-reduction-first-even-when-executable",
               "text": "A model is a reduction first, even when it runs; executability changes what you can DO with it, not whether it abstracts.",
-              "block_index": 55
+              "block_index": 57
             }
           ]
         },
@@ -618,27 +618,27 @@
           "heading_text": "Structure Makes Representations Machine-Operable",
           "topic_sentence": "Externalizing knowledge saves reconstruction only if a machine can read it back.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 59,
           "points": [
             {
               "slug": "structured-is-the-word-doing-the-work",
               "text": "Structure — an explicit declared shape a machine can read — is what lets a representation be traversed, checked, and joined.",
-              "block_index": 59
+              "block_index": 61
             },
             {
               "slug": "the-simplest-useful-form-is-a-graph",
               "text": "The simplest useful form of externalized knowledge is a graph of engineering entities and their relations; graph names the structure, not the storage.",
-              "block_index": 62
+              "block_index": 64
             },
             {
               "slug": "shape-does-not-distinguish-a-model-semantics-do",
               "text": "Many representations can be read as graphs of entities and relations; shape does not distinguish them, semantics do — a dependency, a transition, an ownership claim, and a permission can all be arrows answering different questions.",
-              "block_index": 65
+              "block_index": 67
             },
             {
               "slug": "industry-already-lives-here",
               "text": "Externalized knowledge representation is the lightest form of Modeling, and most of industry already stands on it.",
-              "block_index": 67
+              "block_index": 69
             }
           ]
         },
@@ -648,22 +648,22 @@
           "heading_text": "Representations Support Accumulating Capabilities",
           "topic_sentence": "Structured representations support different capabilities: externalized knowledge, typed relationships, explicit semantics, stated properties, derivation, generation, traceability, and checking.",
           "id_source": "derived",
-          "block_index": 69,
+          "block_index": 71,
           "points": [
             {
               "slug": "capability-comes-in-rungs",
               "text": "Structured representations support different capabilities — externalized knowledge, typed relationships, semantics, properties, derivation, generation, traceability, checking — acquired as engineers ask more, but not a required sequence or maturity model.",
-              "block_index": 71
+              "block_index": 73
             },
             {
               "slug": "the-consequence-is-selective-modeling",
               "text": "Selective modeling: model facts repeatedly reconstructed and properties repeatedly adjudicated, adding structure when the reduction in recurring engineering work justifies carrying it.",
-              "block_index": 74
+              "block_index": 76
             },
             {
               "slug": "authority-remains-separate",
               "text": "Authority stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Part III asks which should acquire consequence.",
-              "block_index": 76
+              "block_index": 78
             }
           ]
         },
@@ -673,62 +673,62 @@
           "heading_text": "Six Classes of Engineering Question",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 79,
+          "block_index": 81,
           "points": [
             {
               "slug": "the-six-class-ontology-is-useful-not-exhaustive",
               "text": "The classification caveat: six classes organized by the engineering question a model answers, useful rather than exhaustive, and able to overlap.",
-              "block_index": 81
+              "block_index": 83
             },
             {
               "slug": "at-an-abstract-level-each-class-is-a-graph-what-differs-is-what-nodes-and-edges-mean",
               "text": "The six classes differ less in shape than in semantics: each can be understood as a graph of things and relationships, and what changes from class to class is what the nodes and edges mean.",
-              "block_index": 83
+              "block_index": 85
             },
             {
               "slug": "mage-classifies-by-question-because-one-graph-shape-answers-many-questions",
               "text": "MAGE classifies models by engineering question rather than notation because the same graph-shaped representation can answer very different questions depending on its semantics, and one system fact can participate in several views.",
-              "block_index": 85
+              "block_index": 87
             },
             {
               "slug": "the-repertoire-is-larger-than-the-six-classes",
               "text": "A portion of the established repertoire — nine familiar representations read as a set of moves, not a taxonomy of all modeling; MAGE prescribes no new notation, and the repertoire is larger than the six classes the rest of the Part organizes.",
-              "block_index": 87
+              "block_index": 89
             },
             {
               "slug": "reuse-the-established-repertoire-choosing-is-judgment",
               "text": "This Part illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment.",
-              "block_index": 90
+              "block_index": 92
             },
             {
               "slug": "the-classes-are-views-not-boxes",
               "text": "The classes classify questions, not data structures; one represented fact can answer several. The lease is Ownership, Behavioral, and Measurement at once.",
-              "block_index": 96
+              "block_index": 98
             },
             {
               "slug": "system-knowledge-is-substrate-not-a-seventh-class",
               "text": "System knowledge is the connected substrate where the six classes meet, not a seventh peer class.",
-              "block_index": 99
+              "block_index": 101
             },
             {
               "slug": "tolerance-is-not-a-seventh-class",
               "text": "The classes name the engineering question; tolerance names the variation that question permits, not a seventh class.",
-              "block_index": 101
+              "block_index": 103
             },
             {
               "slug": "purpose-comes-first-representation-follows",
               "text": "The model class names the engineering question; the representation form is a separate choice, so purpose comes first and representation follows.",
-              "block_index": 103
+              "block_index": 105
             },
             {
               "slug": "the-chapters-ahead-apply-the-repertoire-to-six-docable-models",
               "text": "The chapters ahead apply this repertoire to six production models from DocAble; the final chapter asks how such representations connect through shared identity without collapsing into one universal graph.",
-              "block_index": 105
+              "block_index": 107
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
               "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment gives selected properties consequence.",
-              "block_index": 107
+              "block_index": 109
             }
           ]
         }
@@ -1693,27 +1693,27 @@
             {
               "slug": "a-sensor-is-only-as-good-as-its-observability",
               "text": "A sensor is only as good as its observability — the semantic gap from the other side.",
-              "block_index": 24
+              "block_index": 25
             },
             {
               "slug": "a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration",
               "text": "A constraint prevents drift within the iteration, costing none.",
-              "block_index": 27
+              "block_index": 28
             },
             {
               "slug": "constraint-and-sensor-echo-control-engineering",
               "text": "Constraint and sensor echo control engineering — analogy, not identity.",
-              "block_index": 32
+              "block_index": 33
             },
             {
               "slug": "human-process-instantiates-the-same-roles-logging-senses-reviewer-validates-approver-gates",
               "text": "Human process instantiates the same roles: logging senses, the reviewer validates, the approver gates.",
-              "block_index": 34
+              "block_index": 35
             },
             {
               "slug": "recovery-is-not-permission",
               "text": "The sharpest instance of the pair is ownership: the lease makes ownership visible and recoverable, the durable compare-and-set supplies the authority. Recovery is not permission.",
-              "block_index": 36
+              "block_index": 37
             }
           ]
         },
@@ -1723,37 +1723,37 @@
           "heading_text": "One Obligation, Several Ways to Hold It",
           "topic_sentence": "A modeled obligation does not imply one particular enforcement technology.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 39,
           "points": [
             {
               "slug": "a-modeled-obligation-does-not-imply-one-enforcement",
               "text": "A modeled obligation does not imply one enforcement technology; ask what kind of property it is.",
-              "block_index": 40
+              "block_index": 41
             },
             {
               "slug": "prefer-the-constraint-when-you-can-exclude-the-state",
               "text": "If an invalid state can be removed from the action space, prefer the constraint.",
-              "block_index": 42
+              "block_index": 43
             },
             {
               "slug": "interleaving-properties-need-a-validator-over-the-state-space",
               "text": "Properties that live across sequences need a validator that reasons over the composed state space.",
-              "block_index": 44
+              "block_index": 45
             },
             {
               "slug": "temporal-obligations-require-another-shape-of-evidence",
               "text": "Temporal obligations require another shape of evidence; a finite trace cannot establish eventuality.",
-              "block_index": 46
+              "block_index": 47
             },
             {
               "slug": "these-are-matches-not-levels-of-sophistication",
               "text": "These are matches between property and mechanism, not levels of sophistication.",
-              "block_index": 48
+              "block_index": 49
             },
             {
               "slug": "whichever-validator-supplies-the-judgment-authority-depends-on-the-environment",
               "text": "Whichever validator supplies the judgment, authority still depends on what the environment does with its verdict.",
-              "block_index": 54
+              "block_index": 55
             }
           ]
         },
@@ -1763,22 +1763,22 @@
           "heading_text": "Validators and Gates",
           "topic_sentence": "The other two roles act on evidence and admission.",
           "id_source": "derived",
-          "block_index": 56,
+          "block_index": 57,
           "points": [
             {
               "slug": "a-validator-turns-evidence-into-a-judgment",
               "text": "A validator turns evidence into a judgment.",
-              "block_index": 58
+              "block_index": 59
             },
             {
               "slug": "a-gate-supplies-the-consequence-and-a-gate-is-a-commitment",
               "text": "A gate supplies the consequence — and a gate is a commitment.",
-              "block_index": 62
+              "block_index": 63
             },
             {
               "slug": "cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing",
               "text": "A loop may re-derive evidence at a later admission boundary; the thing asking to pass does not define passing.",
-              "block_index": 68
+              "block_index": 69
             }
           ]
         },
@@ -1788,22 +1788,22 @@
           "heading_text": "One Measurement, Different Authority Decisions",
           "topic_sentence": "The four roles are not stages of maturity.",
           "id_source": "derived",
-          "block_index": 70,
+          "block_index": 71,
           "points": [
             {
               "slug": "the-four-roles-are-not-stages-of-maturity",
               "text": "The four roles are not stages of maturity: one quantitative model can support observation, adaptation, graceful degradation, or hard admission control.",
-              "block_index": 72
+              "block_index": 73
             },
             {
               "slug": "a-quantitative-tolerance-can-expose-margin",
               "text": "A quantitative tolerance can expose margin — the room between the realized value and its bound; two conforming realizations can differ in how much room they keep.",
-              "block_index": 75
+              "block_index": 76
             },
             {
               "slug": "margin-needs-a-meaningful-distance",
               "text": "Margin is computable only where the model supplies a meaningful distance; many software obligations are qualitative and admit none.",
-              "block_index": 77
+              "block_index": 78
             }
           ]
         },
@@ -1813,12 +1813,12 @@
           "heading_text": "Positive and Negative Constraints",
           "topic_sentence": "Constraints are often introduced as prohibitions: this code must not call that library.",
           "id_source": "derived",
-          "block_index": 79,
+          "block_index": 80,
           "points": [
             {
               "slug": "a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one",
               "text": "A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form.",
-              "block_index": 81
+              "block_index": 82
             }
           ]
         },
@@ -1828,37 +1828,37 @@
           "heading_text": "Provenance-Carried Authority",
           "topic_sentence": "Earlier in this Part, architectural conformance provided one example of making intended relations authoritative.",
           "id_source": "derived",
-          "block_index": 84,
+          "block_index": 85,
           "points": [
             {
               "slug": "provenance-carried-authority-is-the-derivation-path-case-of-conformance",
               "text": "Provenance is useful for a particular architectural-conformance problem: the required relation is the path through which a consequential operation was derived, not merely which components interact.",
-              "block_index": 86
+              "block_index": 87
             },
             {
               "slug": "restrict-a-recognizable-primitive-surface-directly",
               "text": "Where a consequential effect passes through a recognizable primitive, restrict that surface directly — the prohibited interaction has a tractable signature.",
-              "block_index": 88
+              "block_index": 89
             },
             {
               "slug": "some-obligations-have-no-single-forbidden-call",
               "text": "Some obligations have no single forbidden call; a consequential operation is reachable by composing otherwise legitimate APIs into a new path.",
-              "block_index": 90
+              "block_index": 91
             },
             {
               "slug": "provenance-reverses-the-enforcement-problem",
               "text": "Provenance reverses enforcement: require the consequential operation to carry evidence that it passed through the sanctioned abstraction.",
-              "block_index": 93
+              "block_index": 94
             },
             {
               "slug": "choose-provenance-when-derivation-paths-are-numerous-or-compositional",
               "text": "Restrict a small recognizable surface directly; reach for provenance when the obligation concerns how an ordinary operation was derived and its paths are numerous or compositional.",
-              "block_index": 100
+              "block_index": 101
             },
             {
               "slug": "provenance-makes-a-derivation-path-authoritative",
               "text": "Provenance here is not attribution; it makes a derivation path authoritative — producer-side rules check known emitters, the consumer boundary refuses unknown routes.",
-              "block_index": 102
+              "block_index": 103
             }
           ]
         },
@@ -1868,27 +1868,27 @@
           "heading_text": "What Counts as a Mechanism",
           "topic_sentence": "Keep **policy**, **guidance**, and **governance mechanism** separate.",
           "id_source": "derived",
-          "block_index": 108,
+          "block_index": 109,
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
               "text": "Keep policy, guidance, and governance mechanism separate; authority begins when something acts.",
-              "block_index": 110
+              "block_index": 111
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
               "text": "The same artifact can play several roles; the model is the representation, the machinery the authority.",
-              "block_index": 112
+              "block_index": 113
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "Implementations bundle roles; name them, don't stretch the terms.",
-              "block_index": 114
+              "block_index": 115
             },
             {
               "slug": "represented-intent-becomes-authoritative-through-one-of-four-roles",
               "text": "Leave-with: intent becomes authority through one of four roles; next, where the mechanisms come from.",
-              "block_index": 119
+              "block_index": 120
             }
           ]
         }
@@ -2445,17 +2445,17 @@
             {
               "slug": "the-boundary-is-not-fixed-judgment-can-acquire-authority-over-time",
               "text": "The boundary is not fixed: as a judgment becomes better understood, some of what depended on it can acquire authority, while other portions properly remain probabilistic.",
-              "block_index": 56
+              "block_index": 60
             },
             {
               "slug": "the-move-toward-authority-is-an-opportunity-not-a-required-progression",
               "text": "The move toward authority is an opportunity, not a required progression; the relevant unit is the obligation, not the task.",
-              "block_index": 60
+              "block_index": 66
             },
             {
               "slug": "authority-is-not-determinism",
               "text": "Authority is not determinism: a deterministic checker can remain advisory, and a probabilistic evaluator can receive authority; the two dimensions should not be conflated.",
-              "block_index": 71
+              "block_index": 77
             }
           ]
         },
@@ -2465,22 +2465,22 @@
           "heading_text": "Prefer Structural Prevention",
           "topic_sentence": "Prefer structural prevention when the legitimate action space can be closed.",
           "id_source": "explicit",
-          "block_index": 73,
+          "block_index": 79,
           "points": [
             {
               "slug": "prefer-structural-prevention-when-the-action-space-can-honestly-be-closed",
               "text": "Prefer structural prevention when the legitimate action space can be closed; otherwise preserve the action space and add independent evidence.",
-              "block_index": 75
+              "block_index": 81
             },
             {
               "slug": "place-the-strongest-honest-mechanism-where-the-property-permits-it",
               "text": "A property that can be made unrepresentable belongs in a constraint; one visible only after execution needs evidence and evaluation.",
-              "block_index": 77
+              "block_index": 83
             },
             {
               "slug": "docable-used-both-sides-of-the-alignment-principle",
               "text": "DocAble used both sides at once: close the action space where it could, validate independently where a property was only legible after the change.",
-              "block_index": 79
+              "block_index": 85
             }
           ]
         },
@@ -2490,32 +2490,32 @@
           "heading_text": "Size Work to Reasoning and Assurance",
           "topic_sentence": "Not every agent task deserves the full apparatus of governed autonomy.",
           "id_source": "explicit",
-          "block_index": 81,
+          "block_index": 87,
           "points": [
             {
               "slug": "not-every-task-deserves-the-full-apparatus-of-governed-autonomy",
               "text": "Not every task deserves the full apparatus of governed autonomy.",
-              "block_index": 84
+              "block_index": 90
             },
             {
               "slug": "two-things-shorten-the-leash-reasoning-burden-and-assurance-need",
               "text": "Size the task along two axes: reasoning burden and assurance need.",
-              "block_index": 87
+              "block_index": 93
             },
             {
               "slug": "size-work-as-transformations-with-checkable-boundaries",
               "text": "Size work as transformations with explicit inputs, outputs, and checkable boundaries.",
-              "block_index": 92
+              "block_index": 98
             },
             {
               "slug": "docable-sizes-the-leap-to-bounded-typed-edits-the-unit-of-delegation-lines-up-with-a-unit-of-evidence",
               "text": "DocAble sizes the leap to bounded typed edits, so the unit of delegation lines up with a unit of evidence.",
-              "block_index": 94
+              "block_index": 100
             },
             {
               "slug": "task-shape-matters-as-much-as-task-size",
               "text": "Task shape matters as much as task size; a well-sized transformation of the wrong shape still fails.",
-              "block_index": 96
+              "block_index": 102
             }
           ]
         }
