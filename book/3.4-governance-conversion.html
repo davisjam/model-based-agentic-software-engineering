@@ -1013,14 +1013,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The engineered environment evolves with the system it governs.<sup class="note-ref"><a href="#note-3-4-governance-conversion-fn-lehman" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-3-4-governance-conversion-fn-lehman"><span class="cn-mark">*</span> Lehman's work on software evolution made the analogous observation about software itself: software used in a changing real-world environment must continually adapt, and its complexity tends to increase unless effort is spent maintaining or reducing it. MAGE extends that caution to the engineered environment surrounding the software. Models, validators, constraints, and procedures evolve too — and can become liabilities when they no longer fit what they govern. See Lehman &amp; Ramil 2003 <sup class="cite-ref"><a href="#wc-3-4-governance-conversion-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> M. M. Lehman and J. F. Ramil, “Software Evolution—Background, Theory, Practice,” <em>Information Processing Letters</em> 88 (2003): 33–44.</span>.</span> Capital also <strong>depreciates</strong>. A model can drift from the system it represents. A validator can encode an assumption the architecture has outgrown. A sensor can become noisy; a gate can impose more delay than the failure it prevents; a once-important control can survive long after its obligation disappears. Maintenance preserves useful capital; reconciliation repairs assets that no longer match the system; retirement removes assets whose carrying cost now exceeds their return. This is why accumulation cannot be the objective. A governed environment with more mechanisms is not necessarily richer than one with fewer. What matters is the future engineering value those mechanisms continue to produce.</p>
 <p>Debt makes future work pay again for today's expedience; capital lets future work inherit today's judgment. Governance conversion is one way engineering effort stops being consumed once and becomes reusable structure.</p>
 <h2><span class="sec-num">3.4.5</span> Where Authority Stops</h2>
-<p>Not every quality goal should end in authoritative enforcement. A consequential concern may remain unrepresented, require human judgment, be evaluated without authoritative consequence, or be governed. <a class="xref" href="3.4-governance-conversion.html#fig-3-4-3">Figure&nbsp;3.4-3</a> shows the four possible stopping points.</p>
+<p>Not every quality goal should end in authoritative enforcement. A consequential concern may remain unrepresented, require expert judgment, be evaluated without authoritative consequence, or be governed. <a class="xref" href="3.4-governance-conversion.html#fig-3-4-3">Figure&nbsp;3.4-3</a> shows the four possible stopping points.</p>
 <figure id="fig-3-4-3" class="book-figure" data-label="honest-gaps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
      role="img" aria-labelledby="f-residual-decision-tree-hgTitle f-residual-decision-tree-hgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-residual-decision-tree-hgTitle">Where authority stops: three questions place any obligation in one of four states —
     residual, judgment required, evaluated only, or governed</title>
   <desc id="f-residual-decision-tree-hgDesc">A staircase of three questions. First: is the obligation explicit in a form the
-    environment can use? No leads to RESIDUAL — a human or agent must reconstruct it. Yes leads to the
+    environment can use? No leads to RESIDUAL — a reasoner must reconstruct it. Yes leads to the
     second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:
     does authority act on the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but
     un-gated. Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different
@@ -1043,7 +1043,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="300" y="112" text-anchor="middle" font-size="20" font-style="italic" fill="#8a2f2f">no</text>
   <rect id="f-residual-decision-tree-residual" x="41.38" y="152" width="267.25" height="66" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
   <text x="175" y="181" text-anchor="middle" font-size="20" font-weight="800" fill="#8a2f2f">RESIDUAL</text>
-  <text x="175" y="203" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">human must reconstruct it</text>
+  <text x="175" y="203" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">a reasoner must reconstruct it</text>
 
   <!-- Q1 yes -> Q2 -->
   <!-- edge: q1 -> q2 -->

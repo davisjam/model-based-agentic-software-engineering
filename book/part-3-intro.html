@@ -787,24 +787,21 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>MAGE calls this move Alignment and treats it as the companion to Modeling. Modeling externalizes engineering knowledge: it makes architecture, behavior, ownership, decisions, measurements, policies, and other properties explicit at a level where they can be reasoned about. Alignment asks what happens next. Which of those properties should have authority over realization? Where can that authority act? What evidence is available there? What mechanism should respond when the evidence agrees, or fails to agree, with the obligation? Architecture conformance is therefore one important instance of the broader problem. Alignment asks the same kind of question across the engineering obligations made explicit through Modeling.</p>
 <p>Commodity intelligence makes this longstanding problem newly important. A generative implementer can produce plausible realizations rapidly and can explore degrees of freedom that human implementers might never have considered. Instructions alone do not determine which of those realizations will appear. If an architectural relation, behavioral invariant, ownership rule, measurement requirement, or policy matters to the system, relying on every future realization to reconstruct and voluntarily preserve it leaves that obligation on the probabilistic surface.</p>
 <p>MAGE responds by moving selected obligations into the engineered environment itself. Some can be made impossible to violate through representation or interface design. Some can be checked statically. Others become decidable only when an action is attempted, a work unit completes, an artifact is assembled, or the system executes. Sensors can produce evidence; validators can compare that evidence with an obligation; gates can make the result consequential. The mechanisms vary because the properties and boundaries vary. The common objective is to move consequential engineering judgments away from repeated probabilistic reconstruction and into machinery whose behavior can itself be engineered.</p>
-<p>This is the Alignment Principle introduced at the beginning of the Part.</p>
 <blockquote class="box-canonical"><p class="inset-title">Alignment principle</p>
 <p>Give engineering obligations authority by encoding them into mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission.</p>
 <p>An obligation becomes authoritative when the environment can act on it.</p></blockquote>
 <p>Alignment does not mean that every preference should become a hard constraint, nor that every property can be made deterministic. Some judgments remain legitimately probabilistic; others are too expensive or too context-dependent to enforce mechanically. The engineering question is instead which obligations merit authority, what form of authority is appropriate, and where in the system that authority can be exercised reliably and economically.</p>
 <p>This connects directly to a distinction from Part II: tolerances and degrees of freedom. Where a tolerance is explicit, the engineering environment may be able to constrain work to remain within it, observe the realized state, evaluate that state against the obligation, or control whether the result is admitted. The extent to which it can do so depends on what the environment can make legible and evaluate before substantial resources are committed. As engineers, we want to perform cheap analysis before committing resources to realizations that may violate an obligation. The choice of mechanism then depends on the property, the evidence available there, and the authority the obligation warrants. Degrees of freedom require no such machinery merely because engineering has left them open.</p>
-<p>Five questions organize the Part; <a class="xref" href="part-3-intro.html#fig-3-0-1">Figure&nbsp;3.0-1</a> shows their progression.</p>
+<p><a class="xref" href="part-3-intro.html#fig-3-0-1">Figure&nbsp;3.0-1</a> traces the progression from engineering intent to a governed environment.</p>
 <figure id="fig-3-0-1" class="book-figure" data-label="part3-nav-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
      role="group" aria-labelledby="f-part3-nav-arc-naTitle f-part3-nav-arc-naDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-part3-nav-arc-naTitle">Part III as five questions, one per chapter, on a single descending arc</title>
-  <desc id="f-part3-nav-arc-naDesc">Five numbered stations descend a vertical spine, each a chapter of Part III, and each
-    answers a question the one above it raises. Station 3.1, Where Authority Can Act, asks where authority
-    can act. Station 3.2, From Intent to Obligation, asks what it may legitimately enforce. Station 3.3,
-    The Four Mechanism Roles, asks how a mechanism carries authority. Station 3.4, Growing the Governed
-    Environment, asks how the environment acquires new obligations and controls. Station 3.5, Governing the
-    control machinery, asks how accumulated controls are governed as a system. The arc runs from where authority can
-    act down to governing the controls that result.</desc>
+  <title id="f-part3-nav-arc-naTitle">Alignment: how engineering intent becomes authoritative, across the five chapters of Part III</title>
+  <desc id="f-part3-nav-arc-naDesc">Five engineering moves descend a vertical spine, each a chapter of Part III. Locate, 3.1, asks
+    where authority can act. Justify, 3.2, asks what it may legitimately enforce. Mechanize, 3.3, asks how a
+    mechanism carries authority. Learn, 3.4, asks how the environment acquires new obligations and controls.
+    Govern, 3.5, asks how accumulated controls are governed as a system. The arc runs from locating where
+    authority can act down to governing the controls that result.</desc>
 
   <defs>
     <marker id="f-part3-nav-arc-na-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
@@ -813,8 +810,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <rect x="0" y="0" width="1000" height="840" fill="#fdfcf9"/>
-  <text x="500" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Part III — five questions, one per chapter</text>
-  <text x="500" y="76" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Each chapter answers the question raised by the preceding one.</text>
+  <text x="500" y="46" text-anchor="middle" font-size="24" font-weight="700" letter-spacing="0.5" fill="#1c1917">ALIGNMENT: HOW INTENT BECOMES AUTHORITATIVE</text>
+  <text x="500" y="76" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">From engineering intent to governed environment</text>
 
   <!-- spine arrows between the five stations -->
   <g stroke="#9a3f12" stroke-width="2">
@@ -828,24 +825,24 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <line x1="150" y1="645" x2="150" y2="733" marker-end="url(#f-part3-nav-arc-na-arrow)"/>
   </g>
 
-  <!-- 3.1 WHERE -->
+  <!-- 3.1 LOCATE -->
   <circle id="f-part3-nav-arc-s31" cx="150" cy="165" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="150" y="173" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.1</text>
-  <text x="205" y="143" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">WHERE</text>
+  <text x="205" y="143" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">LOCATE</text>
   <text x="205" y="169" font-size="21" font-weight="700" fill="#1c1917">Where can authority act?</text>
   <text x="205" y="195" font-size="20" fill="#57534e">3.1 · Where Authority Can Act</text>
 
-  <!-- 3.2 WHAT -->
+  <!-- 3.2 JUSTIFY -->
   <circle id="f-part3-nav-arc-s32" cx="150" cy="315" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="150" y="323" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.2</text>
-  <text x="205" y="293" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">WHAT</text>
+  <text x="205" y="293" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">JUSTIFY</text>
   <text x="205" y="319" font-size="21" font-weight="700" fill="#1c1917">What may it legitimately enforce?</text>
   <text x="205" y="345" font-size="20" fill="#57534e">3.2 · From Intent to Obligation</text>
 
-  <!-- 3.3 HOW -->
+  <!-- 3.3 MECHANIZE -->
   <circle id="f-part3-nav-arc-s33" cx="150" cy="465" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="150" y="473" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.3</text>
-  <text x="205" y="443" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">HOW</text>
+  <text x="205" y="443" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">MECHANIZE</text>
   <text x="205" y="469" font-size="21" font-weight="700" fill="#1c1917">How does a mechanism carry authority?</text>
   <text x="205" y="495" font-size="20" fill="#57534e">3.3 · The Four Mechanism Roles</text>
 
@@ -862,8 +859,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="205" y="743" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">GOVERN</text>
   <text x="205" y="769" font-size="21" font-weight="700" fill="#1c1917">How are accumulated controls governed as a system?</text>
   <text x="205" y="795" font-size="20" fill="#57534e">3.5 · When Controls Become a System</text>
-</svg><figcaption data-short="Five questions organize Alignment"><span class="fig-label">Figure 3.0-1.</span> <em>Five questions organize Alignment.</em> The Part locates where authority can act, determines what obligation is legitimate, decomposes how mechanisms carry authority, shows how experience adds durable obligations and controls, and finally treats the GEE's accumulated controls as an engineering system.</figcaption></figure>
-<p>Alignment gives selected engineering judgments durable authority in the environment. Constraints narrow what work can do; sensors produce evidence of what it did; validators judge that evidence against an obligation; gates decide what may advance. Some mechanisms can be designed before work begins. Others emerge when a failure exposes something the environment did not represent, observe, evaluate, or control. Those lessons can become durable engineering structure. When later work benefits from that structure, it becomes engineering capital. Once the control machinery becomes consequential, it too becomes an engineering object.</p><section class="works-cited" aria-labelledby="wc-part-3-intro-h"><h2 id="wc-part-3-intro-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-part-3-intro-1">Murphy, Gail C., David Notkin, and Kevin J. Sullivan. “Software Reflexion Models: Bridging the Gap between Source and High-Level Models.” In “Proceedings of the 3rd ACM SIGSOFT Symposium on Foundations of Software Engineering.” Special issue, <em>Proceedings of the 3rd ACM SIGSOFT Symposium on Foundations of Software Engineering</em> (New York), 1995, 18–28. <a href="https://doi.org/10.1145/222124.222136">https://doi.org/10.1145/222124.222136</a>.</li><li id="wc-part-3-intro-2">Sangal, Neeraj, Ev Jordan, Vineet Sinha, and Daniel Jackson. “Using Dependency Models to Manage Complex Software Architecture.” In “Proceedings of the 20th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, And Applications.” Special issue, <em>Proceedings of the 20th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, And Applications</em> (New York), 2005, 167–76. <a href="https://doi.org/10.1145/1094811.1094824">https://doi.org/10.1145/1094811.1094824</a>.</li><li id="wc-part-3-intro-3">Passos, Leonardo, Ricardo Terra, Renato Diniz, Marco Tulio Valente, and Nabor C. Mendonça. “Static Architecture-Conformance Checking: An Illustrative Overview.” <em>IEEE Software</em> 27, no. 5 (2010): 82–89. <a href="https://doi.org/10.1109/MS.2009.117">https://doi.org/10.1109/MS.2009.117</a>.</li></ol></section><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 800"
+</svg><figcaption data-short="How intent becomes authoritative"><span class="fig-label">Figure 3.0-1.</span> <em>How intent becomes authoritative.</em> Authority begins with an obligation at a boundary where the environment can act. Mechanisms give selected obligations consequence; experience reveals additional opportunities for governance; accumulated controls eventually require governance of their own.</figcaption></figure>
+<p>Some mechanisms can be designed before work begins. Others emerge when a failure exposes something the environment did not represent, observe, evaluate, or control. Those lessons can become durable engineering structure, and when later work benefits from that structure it becomes engineering capital. As the mechanisms accumulate, the control machinery itself becomes an engineering object.</p><section class="works-cited" aria-labelledby="wc-part-3-intro-h"><h2 id="wc-part-3-intro-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-part-3-intro-1">Murphy, Gail C., David Notkin, and Kevin J. Sullivan. “Software Reflexion Models: Bridging the Gap between Source and High-Level Models.” In “Proceedings of the 3rd ACM SIGSOFT Symposium on Foundations of Software Engineering.” Special issue, <em>Proceedings of the 3rd ACM SIGSOFT Symposium on Foundations of Software Engineering</em> (New York), 1995, 18–28. <a href="https://doi.org/10.1145/222124.222136">https://doi.org/10.1145/222124.222136</a>.</li><li id="wc-part-3-intro-2">Sangal, Neeraj, Ev Jordan, Vineet Sinha, and Daniel Jackson. “Using Dependency Models to Manage Complex Software Architecture.” In “Proceedings of the 20th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, And Applications.” Special issue, <em>Proceedings of the 20th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, And Applications</em> (New York), 2005, 167–76. <a href="https://doi.org/10.1145/1094811.1094824">https://doi.org/10.1145/1094811.1094824</a>.</li><li id="wc-part-3-intro-3">Passos, Leonardo, Ricardo Terra, Renato Diniz, Marco Tulio Valente, and Nabor C. Mendonça. “Static Architecture-Conformance Checking: An Illustrative Overview.” <em>IEEE Software</em> 27, no. 5 (2010): 82–89. <a href="https://doi.org/10.1109/MS.2009.117">https://doi.org/10.1109/MS.2009.117</a>.</li></ol></section><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 800"
      role="group" aria-labelledby="bmTitle-nav bmDesc-nav"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="bmTitle-nav">The book's argument — a question posed in the Preface, answered in the Conclusion, across seven Parts and an Interlude, with the two appendix Parts branching off</title>

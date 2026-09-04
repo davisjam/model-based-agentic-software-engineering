@@ -15,7 +15,7 @@
   <title id="hgTitle">Where authority stops: three questions place any obligation in one of four states —
     residual, judgment required, evaluated only, or governed</title>
   <desc id="hgDesc">A staircase of three questions. First: is the obligation explicit in a form the
-    environment can use? No leads to RESIDUAL — a human or agent must reconstruct it. Yes leads to the
+    environment can use? No leads to RESIDUAL — a reasoner must reconstruct it. Yes leads to the
     second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:
     does authority act on the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but
     un-gated. Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different
@@ -38,7 +38,7 @@
   <text x="300" y="112" text-anchor="middle" font-size="20" font-style="italic" fill="#8a2f2f">no</text>
   <rect id="residual" x="41.38" y="152" width="267.25" height="66" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
   <text x="175" y="181" text-anchor="middle" font-size="20" font-weight="800" fill="#8a2f2f">RESIDUAL</text>
-  <text x="175" y="203" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">human must reconstruct it</text>
+  <text x="175" y="203" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">a reasoner must reconstruct it</text>
 
   <!-- Q1 yes -> Q2 -->
   <!-- edge: q1 -> q2 -->

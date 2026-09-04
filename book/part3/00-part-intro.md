@@ -8,8 +8,6 @@ Commodity intelligence makes this longstanding problem newly important. A genera
 
 MAGE responds by moving selected obligations into the engineered environment itself. Some can be made impossible to violate through representation or interface design. Some can be checked statically. Others become decidable only when an action is attempted, a work unit completes, an artifact is assembled, or the system executes. Sensors can produce evidence; validators can compare that evidence with an obligation; gates can make the result consequential. The mechanisms vary because the properties and boundaries vary. The common objective is to move consequential engineering judgments away from repeated probabilistic reconstruction and into machinery whose behavior can itself be engineered.
 
-This is the Alignment Principle introduced at the beginning of the Part.
-
 <!-- principlebox -->
 <!-- box-family: canonical -->
 > ### Alignment principle
@@ -23,15 +21,9 @@ Alignment does not mean that every preference should become a hard constraint, n
 
 This connects directly to a distinction from Part II: tolerances and degrees of freedom. Where a tolerance is explicit, the engineering environment may be able to constrain work to remain within it, observe the realized state, evaluate that state against the obligation, or control whether the result is admitted. The extent to which it can do so depends on what the environment can make legible and evaluate before substantial resources are committed. As engineers, we want to perform cheap analysis before committing resources to realizations that may violate an obligation. The choice of mechanism then depends on the property, the evidence available there, and the authority the obligation warrants. Degrees of freedom require no such machinery merely because engineering has left them open.
 
-Five questions organize the Part; [ref:part3-nav-arc] shows their progression.
+[ref:part3-nav-arc] traces the progression from engineering intent to a governed environment.
 
 <!-- label: part3-nav-arc -->
-<!-- figure: assets/part3-nav-arc.svg | *Five questions organize Alignment.* The Part locates where authority can act, determines what obligation is legitimate, decomposes how mechanisms carry authority, shows how experience adds durable obligations and controls, and finally treats the GEE's accumulated controls as an engineering system. -->
+<!-- figure: assets/part3-nav-arc.svg | *How intent becomes authoritative.* Authority begins with an obligation at a boundary where the environment can act. Mechanisms give selected obligations consequence; experience reveals additional opportunities for governance; accumulated controls eventually require governance of their own. -->
 
-Alignment gives selected engineering judgments durable authority in the environment. Constraints narrow what work
-can do; sensors produce evidence of what it did; validators judge that evidence against an obligation;
-gates decide what may advance. Some mechanisms can be designed before work begins. Others emerge when a
-failure exposes something the environment did not represent, observe, evaluate, or control. Those lessons
-can become durable engineering structure. When later work benefits from that structure, it
-becomes engineering capital. Once the control machinery becomes consequential, it too becomes an engineering
-object.
+Some mechanisms can be designed before work begins. Others emerge when a failure exposes something the environment did not represent, observe, evaluate, or control. Those lessons can become durable engineering structure, and when later work benefits from that structure it becomes engineering capital. As the mechanisms accumulate, the control machinery itself becomes an engineering object.
