@@ -2445,17 +2445,17 @@
             {
               "slug": "the-boundary-is-not-fixed-judgment-can-acquire-authority-over-time",
               "text": "The boundary is not fixed: as a judgment becomes better understood, some of what depended on it can acquire authority, while other portions properly remain probabilistic.",
-              "block_index": 60
+              "block_index": 63
             },
             {
               "slug": "the-move-toward-authority-is-an-opportunity-not-a-required-progression",
               "text": "The move toward authority is an opportunity, not a required progression; the relevant unit is the obligation, not the task.",
-              "block_index": 66
+              "block_index": 69
             },
             {
               "slug": "authority-is-not-determinism",
               "text": "Authority is not determinism: a deterministic checker can remain advisory, and a probabilistic evaluator can receive authority; the two dimensions should not be conflated.",
-              "block_index": 77
+              "block_index": 80
             }
           ]
         },
@@ -2465,22 +2465,22 @@
           "heading_text": "Prefer Structural Prevention",
           "topic_sentence": "Prefer structural prevention when the legitimate action space can be closed.",
           "id_source": "explicit",
-          "block_index": 79,
+          "block_index": 82,
           "points": [
             {
               "slug": "prefer-structural-prevention-when-the-action-space-can-honestly-be-closed",
               "text": "Prefer structural prevention when the legitimate action space can be closed; otherwise preserve the action space and add independent evidence.",
-              "block_index": 81
+              "block_index": 84
             },
             {
               "slug": "place-the-strongest-honest-mechanism-where-the-property-permits-it",
               "text": "A property that can be made unrepresentable belongs in a constraint; one visible only after execution needs evidence and evaluation.",
-              "block_index": 83
+              "block_index": 86
             },
             {
               "slug": "docable-used-both-sides-of-the-alignment-principle",
               "text": "DocAble used both sides at once: close the action space where it could, validate independently where a property was only legible after the change.",
-              "block_index": 85
+              "block_index": 88
             }
           ]
         },
@@ -2490,32 +2490,32 @@
           "heading_text": "Size Work to Reasoning and Assurance",
           "topic_sentence": "Not every agent task deserves the full apparatus of governed autonomy.",
           "id_source": "explicit",
-          "block_index": 87,
+          "block_index": 90,
           "points": [
             {
               "slug": "not-every-task-deserves-the-full-apparatus-of-governed-autonomy",
               "text": "Not every task deserves the full apparatus of governed autonomy.",
-              "block_index": 90
+              "block_index": 93
             },
             {
               "slug": "two-things-shorten-the-leash-reasoning-burden-and-assurance-need",
               "text": "Size the task along two axes: reasoning burden and assurance need.",
-              "block_index": 93
+              "block_index": 96
             },
             {
               "slug": "size-work-as-transformations-with-checkable-boundaries",
               "text": "Size work as transformations with explicit inputs, outputs, and checkable boundaries.",
-              "block_index": 98
+              "block_index": 101
             },
             {
               "slug": "docable-sizes-the-leap-to-bounded-typed-edits-the-unit-of-delegation-lines-up-with-a-unit-of-evidence",
               "text": "DocAble sizes the leap to bounded typed edits, so the unit of delegation lines up with a unit of evidence.",
-              "block_index": 100
+              "block_index": 103
             },
             {
               "slug": "task-shape-matters-as-much-as-task-size",
               "text": "Task shape matters as much as task size; a well-sized transformation of the wrong shape still fails.",
-              "block_index": 102
+              "block_index": 105
             }
           ]
         }
@@ -4112,7 +4112,7 @@
             },
             {
               "slug": "build-validation-around-the-producing-systems-actual-failure-modes",
-              "text": "Build validation around the failure modes the producing system actually has: an independent oracle that can falsify the proxy.",
+              "text": "The failure was inadequate representation, not a bad threshold: a cheap judge can be reliable over the wrong representation, so the semantic question moved to a richer representation and judge while regression evidence preserved the failure class.",
               "block_index": 55
             }
           ]
