@@ -3213,7 +3213,7 @@
             },
             {
               "slug": "a-component-distance-grade-supplies-evidence-to-a-validator",
-              "text": "A model can scope a mechanism: DocAble grades findings by component-model distance from the change, so a local finding blocks while unrelated debt stays a broader gate's responsibility.",
+              "text": "A model can scope a mechanism: DocAble uses a finding's relationship to the current change in the component model to decide which admission boundary owns it, so a local finding blocks while unrelated debt stays a broader gate's responsibility.",
               "block_index": 91
             },
             {
