@@ -6,10 +6,11 @@ MAGE calls this move Alignment and treats it as the companion to Modeling. Model
 
 Commodity intelligence makes this longstanding problem newly important. A generative implementer can produce plausible realizations rapidly and can explore degrees of freedom that human implementers might never have considered. Instructions alone do not determine which of those realizations will appear. If an architectural relation, behavioral invariant, ownership rule, measurement requirement, or policy matters to the system, relying on every future realization to reconstruct and voluntarily preserve it leaves that obligation on the probabilistic surface.
 
-MAGE responds by moving selected obligations into the engineered environment itself. Some can be made impossible to violate through representation or interface design. Some can be checked statically. Others become decidable only when an action is attempted, a work unit completes, an artifact is assembled, or the system executes. Sensors can produce evidence; validators can compare that evidence with an obligation; gates can make the result consequential. The mechanisms vary because the properties and boundaries vary. The common objective is to move consequential engineering judgments away from repeated probabilistic reconstruction and into machinery whose behavior can itself be engineered.
+Selected obligations can move into the engineered environment itself. Representation or interface design can make some violations impossible; static checks can detect others. Still others become decidable only when an action is attempted, a work unit completes, an artifact is assembled, or the system executes. Sensors produce evidence, validators compare that evidence with an obligation, and gates can make the result consequential. The appropriate mechanism depends on the property and where the necessary evidence becomes available.
 
 <!-- principlebox -->
 <!-- box-family: canonical -->
+<!-- index-def: alignment-principle -->
 > ### Alignment principle
 >
 > Give engineering obligations authority by encoding them into mechanisms that
@@ -17,13 +18,13 @@ MAGE responds by moving selected obligations into the engineered environment its
 >
 > An obligation becomes authoritative when the environment can act on it.
 
-Alignment does not mean that every preference should become a hard constraint, nor that every property can be made deterministic. Some judgments remain legitimately probabilistic; others are too expensive or too context-dependent to enforce mechanically. The engineering question is instead which obligations merit authority, what form of authority is appropriate, and where in the system that authority can be exercised reliably and economically.
+Not every preference warrants a hard constraint, and not every property can be enforced mechanically. Some judgments remain probabilistic; others are too expensive or context-dependent to mechanize. The engineering question is which obligations merit authority, what form that authority should take, and where it can act.
 
-This connects directly to a distinction from Part II: tolerances and degrees of freedom. Where a tolerance is explicit, the engineering environment may be able to constrain work to remain within it, observe the realized state, evaluate that state against the obligation, or control whether the result is admitted. The extent to which it can do so depends on what the environment can make legible and evaluate before substantial resources are committed. As engineers, we want to perform cheap analysis before committing resources to realizations that may violate an obligation. The choice of mechanism then depends on the property, the evidence available there, and the authority the obligation warrants. Degrees of freedom require no such machinery merely because engineering has left them open.
+Part II's tolerances and degrees of freedom help answer that question. An explicit tolerance may allow the environment to constrain work, observe the realized state, evaluate it against the obligation, or control admission. The mechanism should act where the relevant property becomes legible, preferably before substantial resources have been committed to an unacceptable realization. Degrees of freedom require no such machinery merely because engineering has left them open.
 
 [ref:part3-nav-arc] traces the progression from engineering intent to a governed environment.
 
 <!-- label: part3-nav-arc -->
 <!-- figure: assets/part3-nav-arc.svg | *How intent becomes authoritative.* Authority begins with an obligation at a boundary where the environment can act. Mechanisms give selected obligations consequence; experience reveals additional opportunities for governance; accumulated controls eventually require governance of their own. -->
 
-Some mechanisms can be designed before work begins. Others emerge when a failure exposes something the environment did not represent, observe, evaluate, or control. Those lessons can become durable engineering structure, and when later work benefits from that structure it becomes engineering capital. As the mechanisms accumulate, the control machinery itself becomes an engineering object.
+Some mechanisms can be designed before work begins. Others emerge when a failure exposes something the environment did not represent, observe, evaluate, or control. When those lessons become durable engineering structure, later work can inherit them as engineering capital. As the mechanisms accumulate, the control machinery itself becomes an engineering object.

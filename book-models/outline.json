@@ -7,7 +7,7 @@
     "derived_ids": 203,
     "missing_topic_sentence": 2,
     "sections_drained": 180,
-    "paragraph_points": 790
+    "paragraph_points": 789
   },
   "chapters": [
     {
@@ -1427,27 +1427,27 @@
           "heading_text": "Reasoning Input, Action, Work Unit, and Artifact/Runtime",
           "topic_sentence": "The first location is **reasoning input**: the context, representations, examples, and instructions put in front of the reasoner.",
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 13,
           "points": [
             {
               "slug": "the-first-boundary-is-reasoning-input",
               "text": "The first location is reasoning input: ordinarily guidance, not authority.",
-              "block_index": 17
+              "block_index": 15
             },
             {
               "slug": "the-second-boundary-is-the-action-one-attempted-side-effect",
               "text": "The first authority-bearing boundary is the action: one attempted side effect the harness can inspect or refuse.",
-              "block_index": 25
+              "block_index": 23
             },
             {
               "slug": "the-third-boundary-is-the-work-unit-a-meaningful-unit-of-many-actions",
               "text": "The second authority-bearing boundary is the work unit, where whole-work obligations become legible.",
-              "block_index": 28
+              "block_index": 26
             },
             {
               "slug": "the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible",
               "text": "The third authority-bearing boundary is the artifact or runtime: forbidden state made impossible to express or accept.",
-              "block_index": 31
+              "block_index": 29
             }
           ]
         },
@@ -1457,17 +1457,17 @@
           "heading_text": "Placement and Strength Are Different Decisions",
           "topic_sentence": "The four boundaries do not form a monotonic scale from weak to strong.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 32,
           "points": [
             {
               "slug": "the-four-boundaries-do-not-form-a-monotonic-scale",
               "text": "The four boundaries do not form a monotonic weak-to-strong scale.",
-              "block_index": 36
+              "block_index": 34
             },
             {
-              "slug": "guidance-belongs-on-the-map-but-not-on-the-same-axis-docker-matters",
-              "text": "Guidance can be placed alongside these boundaries but not confused with authority; this is why substantial Alignment can exist with little modeling.",
-              "block_index": 38
+              "slug": "substantial-authority-can-exist-without-rich-models",
+              "text": "Substantial authority can exist without rich models; richer models expand the properties the environment can state and govern.",
+              "block_index": 36
             }
           ]
         },
@@ -1477,27 +1477,27 @@
           "heading_text": "Return Evidence at the Earliest Useful Boundary",
           "topic_sentence": "The boundaries also decide where feedback can return.",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 38,
           "points": [
             {
               "slug": "every-boundary-determines-where-feedback-can-return",
               "text": "Every boundary also determines where feedback can return; earlier evidence means less to reconstruct.",
-              "block_index": 42
+              "block_index": 40
             },
             {
               "slug": "these-mechanisms-do-not-act-independently-deferred-to-3-5",
               "text": "These mechanisms do not act independently; the interplay is its own problem, deferred to §3.5.",
-              "block_index": 46
+              "block_index": 44
             },
             {
               "slug": "the-alignment-principle-stated-whole",
-              "text": "The Alignment Principle, stated whole: give engineering obligations authority by encoding them into mechanisms — constrain, sense, evaluate, admit — which can act directly, models enlarging their reach.",
-              "block_index": 48
+              "text": "The Alignment Principle, stated whole: give engineering obligations authority by encoding them into mechanisms — constrain, sense, evaluate, admit — that can act on the consequence directly.",
+              "block_index": 46
             },
             {
               "slug": "alignment-installed-at-a-boundary-is-easiest-to-see-in-systems-already-running-it",
-              "text": "Authority installed at a boundary is easiest to see in systems already running it.",
-              "block_index": 52
+              "text": "Authority installed at a boundary is easiest to see in systems already using it.",
+              "block_index": 48
             }
           ]
         }
@@ -1515,23 +1515,18 @@
         },
         {
           "slug": "feedback-is-the-third-piece-it-closes-the-loop-without-creating-authority",
-          "text": "Feedback is the third piece: it closes the loop without creating authority.",
+          "text": "Feedback closes the loop by returning evidence; authority resides separately in mechanisms that affect action or acceptance.",
           "block_index": 5
-        },
-        {
-          "slug": "agents-are-steerable-their-outputs-are-not-guaranteed",
-          "text": "Agents are steerable; their outputs are not guaranteed by the instruction that steers them.",
-          "block_index": 7
         },
         {
           "slug": "security-practice-draws-the-same-boundary",
           "text": "Recent agentic-security guidance draws a similar boundary: secure the process that produces the artifact.",
-          "block_index": 10
+          "block_index": 8
         },
         {
           "slug": "authority-can-act-at-several-boundaries-choose-where-the-obligation-is-visible",
           "text": "Authority can act at several boundaries; choose where the obligation is visible and a mechanism can affect the consequence.",
-          "block_index": 12
+          "block_index": 10
         }
       ]
     },
@@ -1575,22 +1570,22 @@
           "heading_text": "The Semantic Gap",
           "topic_sentence": "A second problem is placement.",
           "id_source": "derived",
-          "block_index": 44,
+          "block_index": 43,
           "points": [
             {
               "slug": "an-obligation-can-be-perfectly-stated-and-unenforceable-at-the-boundary-you-check",
               "text": "An obligation can be stated clearly and still be unenforceable at the boundary where you try to check it.",
-              "block_index": 46
+              "block_index": 45
             },
             {
               "slug": "a-deployment-can-pass-every-check-and-still-serve-a-blank-page",
               "text": "A deployment can pass every earlier check and still serve a blank page; the property is legible only once the pieces compose in the served system.",
-              "block_index": 50
+              "block_index": 49
             },
             {
               "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
               "text": "Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work.",
-              "block_index": 52
+              "block_index": 51
             }
           ]
         },
@@ -1600,27 +1595,27 @@
           "heading_text": "The Earliest Decidable Boundary",
           "topic_sentence": "The agent-return check is one instance of a rule that runs under the whole of this Part:",
           "id_source": "derived",
-          "block_index": 58,
+          "block_index": 57,
           "points": [
             {
               "slug": "place-authority-at-the-earliest-boundary-where-the-obligation-is-legible-and-enforceable",
               "text": "The design rule: place authority at the earliest boundary where the obligation is both legible and enforceable.",
-              "block_index": 60
+              "block_index": 59
             },
             {
               "slug": "the-part-two-rhyme-coarsest-representation-earliest-boundary",
               "text": "The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible.",
-              "block_index": 67
+              "block_index": 66
             },
             {
               "slug": "real-boundaries-are-sometimes-approximate-a-roughly-right-hook-beats-the-perfect-one",
               "text": "Real boundaries are sometimes approximate: semantic placement is an engineering trade-off, not a demand for a theoretically perfect hook.",
-              "block_index": 73
+              "block_index": 72
             },
             {
               "slug": "the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does",
               "text": "The chapter has supplied both requirements for authority; the next question is what the mechanism at that boundary actually does.",
-              "block_index": 75
+              "block_index": 74
             }
           ]
         }
@@ -1653,7 +1648,7 @@
         },
         {
           "slug": "those-requirements-produce-the-two-lessons-agreement-not-correctness-and-placement-follows-semantics",
-          "text": "Those requirements produce two lessons: agreement is not correctness, and placement follows semantics.",
+          "text": "Two lessons: agreement is not correctness, and placement must follow the meaning of the obligation.",
           "block_index": 11
         }
       ]
