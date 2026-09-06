@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1255,
+    "total_sites": 1254,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 906,
+      "book-web": 905,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 13,
@@ -49,7 +49,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 7
+            "occ": 5
           },
           {
             "file": "book/2.8-system-knowledge.html",
@@ -250,16 +250,12 @@
           {
             "file": "book/list-of-figures.html",
             "occ": 3
-          },
-          {
-            "file": "book/part-2-intro.html",
-            "occ": 4
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 59
+            "occ": 58
           }
         ]
       },
@@ -925,7 +921,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 133
+            "occ": 137
           },
           {
             "file": "book/2.2-structural.html",
@@ -2233,7 +2229,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 70
+            "occ": 67
           },
           {
             "file": "book/2.2-structural.html",
@@ -2693,7 +2689,7 @@
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 20
+            "occ": 19
           },
           {
             "file": "book/part-3-intro.html",
@@ -4369,7 +4365,7 @@
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/part-3-intro.html",
@@ -4491,7 +4487,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 6
+            "occ": 7
           },
           {
             "file": "book/2.2-structural.html",

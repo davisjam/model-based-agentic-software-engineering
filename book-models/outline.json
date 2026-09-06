@@ -508,21 +508,26 @@
           "heading_text": "Modeling Is a Classical Engineering Move",
           "topic_sentence": "Modeling is not new.",
           "id_source": "derived",
-          "block_index": 12,
+          "block_index": 10,
           "points": [
             {
               "slug": "modeling-is-a-classical-engineering-move-not-a-mage-invention",
               "text": "Modeling is not new: engineering has long used representations that suppress irrelevant detail so a property can be reasoned about directly.",
-              "block_index": 13
+              "block_index": 11
             },
             {
               "slug": "a-model-is-useful-for-what-it-makes-available-not-for-reproducing-the-system",
               "text": "The common move is basic: build a representation in which the property is easier to express, inspect, or analyze than in the realized artifact — useful for what it makes available, not for reproducing the system.",
-              "block_index": 15
+              "block_index": 13
             },
             {
               "slug": "mage-adopts-the-classical-move-under-changed-economics",
               "text": "MAGE adopts this classical move under changed economics: commodity intelligence makes explicit representations cheaper to build and use, and generative implementation makes them more valuable.",
+              "block_index": 15
+            },
+            {
+              "slug": "mbse-readers-find-the-repertoire-familiar-the-concern-is-the-governed-environment",
+              "text": "For MBSE readers the repertoire is familiar; MAGE's concern is what happens when these representations become part of the engineered environment — agents reason through them, knowledge persists across episodes, and selected properties can become objects of Alignment.",
               "block_index": 17
             },
             {
@@ -662,7 +667,7 @@
             },
             {
               "slug": "authority-remains-separate",
-              "text": "Authority stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Part III asks which should acquire consequence.",
+              "text": "Authority stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Part III asks which the engineered environment should enforce.",
               "block_index": 79
             }
           ]
@@ -727,7 +732,7 @@
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
-              "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment gives selected properties consequence.",
+              "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment makes selected properties enforceable.",
               "block_index": 110
             }
           ]
@@ -740,19 +745,14 @@
           "block_index": 1
         },
         {
-          "slug": "rediscovery-is-the-binding-cost-at-system-scale",
-          "text": "Reconstruction from raw artifacts is possible; cost and scale are the problem — past the point where the reasoner can keep the state active, the next agent pays it again.",
-          "block_index": 3
-        },
-        {
           "slug": "the-first-purpose-of-a-model-is-better-context",
           "text": "The first modeling move is simple: externalize engineering knowledge that should not have to be rediscovered.",
-          "block_index": 5
+          "block_index": 3
         },
         {
           "slug": "the-modeling-principle-in-its-weakest-form",
           "text": "The Modeling Principle in its weakest form: externalize engineering knowledge into explicit, structured models to reason through.",
-          "block_index": 7
+          "block_index": 5
         }
       ]
     },
@@ -1128,7 +1128,7 @@
             },
             {
               "slug": "measurement-boundary-modeling-and-authority-are-separate",
-              "text": "The cost-and-capacity model makes spending attributable and demand comparable to an envelope; it does not decide the budget, guarantee the numbers are collected correctly, or attach consequence to crossing a bound — the clearest case in the Part of a model earning its place by exposing a property while leaving authority open.",
+              "text": "The cost-and-capacity model makes spending attributable and demand comparable to an envelope; it does not decide the budget, guarantee the numbers are collected correctly, or enforce the bound — the clearest case in the Part of a model earning its place by exposing a property while leaving authority open.",
               "block_index": 20
             }
           ]
@@ -1398,7 +1398,7 @@
           "points": [
             {
               "slug": "a-model-does-not-govern-by-existing-it-makes-a-property-explicit",
-              "text": "A model does not govern by existing: a structural model names a forbidden dependency without preventing it, a behavioral model an illegal transition without rejecting it, a measurement model a budget without stopping work — Modeling makes the property explicit, not consequential.",
+              "text": "A model does not govern by existing: a structural model names a forbidden dependency without preventing it, a behavioral model an illegal transition without rejecting it, a measurement model a budget without stopping work — Modeling makes the property explicit, it does not enforce it.",
               "block_index": 65
             },
             {
@@ -1408,12 +1408,12 @@
             },
             {
               "slug": "alignment-does-not-require-a-separately-represented-model",
-              "text": "Alignment does not require a separately represented model — some obligations are observable at an action or artifact boundary and can be constrained directly; models extend the range of properties over which such authority can operate.",
+              "text": "Alignment does not require a separately represented model — some obligations are observable at an action or artifact boundary and can be constrained directly; models extend the range of properties the environment can enforce.",
               "block_index": 70
             },
             {
               "slug": "part-iii-asks-which-obligations-the-environment-should-hold",
-              "text": "Part III asks which obligations the environment should hold, where they become decidable, and what evidence and mechanisms are sufficient to give them consequence.",
+              "text": "Part III asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them.",
               "block_index": 73
             },
             {

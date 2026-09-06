@@ -74,7 +74,7 @@
     <rect id="gate" x="835" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
     <text x="884" y="220" fill="#9a3f12">gate</text>
   </g>
-  <text x="715" y="270" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">&#8220;What consequence is justified?&#8221;</text>
+  <text x="715" y="270" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">&#8220;What enforcement is justified?&#8221;</text>
 
   <!-- footer: protect the point -->
   <text x="480" y="348" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">The model defines the quantity and bound; Alignment decides whether to observe, adapt, degrade, or gate.</text>
