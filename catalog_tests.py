@@ -109,6 +109,7 @@ from tests.html import (
     check_no_link_dpub_role_on_nonanchor,
     check_no_notation_leak,
     check_summary_no_flow_content,
+    check_aria_label_on_bare_element,
 )
 from tests.course import check_course_module_schema
 from tests.markdown import check_markdown_anchors, check_markdown_schema, check_render_safety
@@ -164,6 +165,7 @@ CHECKS = [
     Check("html: no duplicate element ids (stdlib twin of T2 no-dup-id)", 1, lambda strict: check_no_duplicate_ids()),
     Check("html: Duality Lab logo single-sourced from /images/logo.svg (no vendored copy)", 1, lambda strict: check_lab_logo_single_sourced()),
     Check("html: no flow content under <summary> (stdlib twin of T2 element-permitted-content)", 1, lambda strict: check_summary_no_flow_content()),
+    Check("html: no aria-label on a bare div/span (stdlib twin of T2 aria-label-misuse)", 1, lambda strict: check_aria_label_on_bare_element()),
     Check("html: no empty <th> (stdlib twin of T2 empty-table-header)", 1, lambda strict: check_no_empty_table_header()),
     Check("html: no book notation leaks (whole-vocabulary; marker / {{token}} / [+emph+])", 1, lambda strict: check_no_notation_leak()),
     # BLOCKING (green at landing): a link-derived DPUB-ARIA role (doc-noteref / doc-biblioref / doc-glossref

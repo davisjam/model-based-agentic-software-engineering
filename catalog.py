@@ -2760,7 +2760,10 @@ def _landing_big_ideas() -> str:
     an optional 'Explore … →' link INTO book material (the book is authoritative for concepts). Each carries
     its model `id` (check_big_ideas asserts it projects). Ends on the compact summary line. website-v3."""
     raw = _load_big_ideas()
-    parts: list[str] = ['<div class="claims-col" aria-label="The six claims of MAGE">']
+    # A named <section> is a `region` landmark that validly carries the aria-label; a plain <div> with
+    # aria-label trips axe's aria-prohibited-attr (a generic div takes no accessible name) — which silently
+    # red-gated every Pages deploy from 260906 until caught.
+    parts: list[str] = ['<section class="claims-col" aria-label="The six claims of MAGE">']
     for rec in _big_ideas_ordered():
         body = "\n".join(f'      <p>{_esc(p)}</p>' for p in rec.get("body", []))
         region = rec.get("figure_region", "")
@@ -2782,7 +2785,7 @@ def _landing_big_ideas() -> str:
     summ = raw.get("_summary_line", "")
     if summ:
         parts.append(f'  <p class="claims-summary">{_esc(summ)}</p>')
-    parts.append('</div>')
+    parts.append('</section>')
     return "\n".join(parts)
 
 

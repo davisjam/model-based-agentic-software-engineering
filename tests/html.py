@@ -517,6 +517,37 @@ def check_summary_no_flow_content():
     return (FAIL if issues else PASS), issues
 
 
+def check_aria_label_on_bare_element():
+    """No `aria-label`/`aria-labelledby` on a bare <div> or <span> (a generic element with no `role`): a
+    generic container exposes no accessible name, so the label is silently dropped — html-validate's
+    `aria-label-misuse` (a T2, CI-only rule). This is the stdlib (Tier-1) twin: it runs locally with no
+    Node, so the class is caught before a push. The two-column 'MAGE in One Page' landing shipped
+    `<div class="claims-col" aria-label=…>` — valid-looking, tier-1-green, but CI-red — which silently
+    red-gated every Pages deploy for hours (260906); a named <section>/<nav> or an explicit `role=` fixes
+    it. Peer of `check_summary_no_flow_content` (the T1 twin of element-permitted-content)."""
+    files = html_files()
+    if not files:
+        return FAIL, ["no built HTML found — run `catalog.py build` first"]
+    tag_re = re.compile(r"<(div|span)\b([^>]*)>", re.I)
+    has_aria = re.compile(r"\baria-label(?:ledby)?\s*=", re.I)
+    has_role = re.compile(r"\brole\s*=", re.I)
+    issues = []
+    for f in files:
+        text = open(f, encoding="utf-8").read()
+        # Real body markup only: strip <style>/<script> (a CSS/JS comment may mention aria-label), HTML
+        # comments, and inline <svg> (SVG shapes legitimately carry aria-label/aria-labelledby as foreign
+        # content — html-validate ignores it too).
+        text = re.sub(r"<(style|script)\b.*?</\1>", "", text, flags=re.S | re.I)
+        text = re.sub(r"<!--.*?-->", "", text, flags=re.S)
+        text = re.sub(r"<svg\b.*?</svg>", "", text, flags=re.S | re.I)
+        for m in tag_re.finditer(text):
+            attrs = m.group(2)
+            if has_aria.search(attrs) and not has_role.search(attrs):
+                issues.append(f"{rel(f)}: <{m.group(1)} …aria-label…> with no role= — a bare "
+                              f"<{m.group(1)}> takes no accessible name; use a named <section>/<nav> or add role=")
+    return (FAIL if issues else PASS), issues
+
+
 # ─────────────────────────── Concept model (concepts.json) — book↔site drift lints ──────────────
 # A typed model of the book's core CONCEPTS and their realizations in the book (an `index-def` anchor)
 # and on the site (a `card-<slug>` on the landing). Keyed by the SAME slug as the `- concept:` registry
