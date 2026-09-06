@@ -398,6 +398,7 @@
   .v3-card { border:1px solid var(--line); border-radius:8px; padding:1.2rem; background:var(--panel); }
   .v3-card--thumb { display:flex; gap:1rem; align-items:flex-start; }
   .v3-card-thumb { flex:0 0 92px; width:92px; height:auto; border:1px solid var(--line); border-radius:4px; background:#fff; }
+  .v3-card-thumb--icon { height:92px; padding:16px; box-sizing:border-box; object-fit:contain; }
   .v3-card-content { min-width:0; }
   .v3-cards-sm .v3-card { background:transparent; }
   .v3-card-kick { color:var(--muted); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.05em;
@@ -769,10 +770,13 @@
       <p class="v3-card-links"><a href="writings.html">Browse writings &#8594;</a></p>
       </div>
     </article>
-    <article class="v3-card">
+    <article class="v3-card v3-card--thumb">
+      <img class="v3-card-thumb v3-card-thumb--icon" src="course/assets/wizard-hat.svg" alt="Wizard-hat icon for Teach with MAGE" loading="lazy">
+      <div class="v3-card-content">
       <h3 class="v3-card-h">Teach with MAGE</h3>
       <p class="v3-card-body">Course and teaching materials for instructors and students.</p>
       <p class="v3-card-links"><a href="teach/index.html">Open Teach with MAGE &#8594;</a></p>
+      </div>
     </article>
     <article class="v3-card">
       <h3 class="v3-card-h">Talks</h3>

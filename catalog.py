@@ -2453,6 +2453,7 @@ LANDING_CSS = """
   .v3-card { border:1px solid var(--line); border-radius:8px; padding:1.2rem; background:var(--panel); }
   .v3-card--thumb { display:flex; gap:1rem; align-items:flex-start; }
   .v3-card-thumb { flex:0 0 92px; width:92px; height:auto; border:1px solid var(--line); border-radius:4px; background:#fff; }
+  .v3-card-thumb--icon { height:92px; padding:16px; box-sizing:border-box; object-fit:contain; }
   .v3-card-content { min-width:0; }
   .v3-cards-sm .v3-card { background:transparent; }
   .v3-card-kick { color:var(--muted); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.05em;
@@ -2837,9 +2838,11 @@ def _v3_hero() -> str:
 
 
 def _v3_card(title: str, kicker: str, body: str, links: "list[tuple[str, str]]",
-             thumb: "tuple[str, str] | None" = None) -> str:
+             thumb: "tuple[str, str] | None" = None, thumb_icon: bool = False) -> str:
     """A section card: optional kicker, title, one paragraph, one-or-more action links, and an optional
-    `thumb` (image src, alt) rendered as a small non-link thumbnail beside the text."""
+    `thumb` (image src, alt) rendered as a small non-link thumbnail beside the text. `thumb_icon` pads and
+    contains the image as a centered glyph rather than a full-bleed thumbnail — for a line-icon (the
+    wizard hat on the Teach card) sitting beside the photographic Book/Writings thumbnails."""
     ls = " · ".join(f'<a href="{_attr(h)}">{_esc(t)} &#8594;</a>' for t, h in links)
     content = (
         (f'      <p class="v3-card-kick">{_esc(kicker)}</p>\n' if kicker else "")
@@ -2848,9 +2851,10 @@ def _v3_card(title: str, kicker: str, body: str, links: "list[tuple[str, str]]",
         f'      <p class="v3-card-links">{ls}</p>\n')
     if thumb:
         src, alt = thumb
+        cls = "v3-card-thumb v3-card-thumb--icon" if thumb_icon else "v3-card-thumb"
         return (
             '    <article class="v3-card v3-card--thumb">\n'
-            f'      <img class="v3-card-thumb" src="{_attr(src)}" alt="{_attr(alt)}" loading="lazy">\n'
+            f'      <img class="{cls}" src="{_attr(src)}" alt="{_attr(alt)}" loading="lazy">\n'
             f'      <div class="v3-card-content">\n{content}      </div>\n'
             '    </article>')
     return '    <article class="v3-card">\n' + content + '    </article>'
@@ -2935,7 +2939,9 @@ def _v3_learn() -> str:
                    thumb=("resources/writings/mage-paper-thumb.png", "First page of the Model-Based Agentic Software Engineering paper")) + "\n"
         + _v3_card("Teach with MAGE", "",
                    "Course and teaching materials for instructors and students.",
-                   [("Open Teach with MAGE", "teach/index.html")]) + "\n"
+                   [("Open Teach with MAGE", "teach/index.html")],
+                   thumb=("course/assets/wizard-hat.svg", "Wizard-hat icon for Teach with MAGE"),
+                   thumb_icon=True) + "\n"
         + _v3_card("Talks", "",
                    "Slides and supporting materials from presentations about MAGE.",
                    [("Browse talks", "talks.html")]) + "\n"
