@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- graph-example figure — from-nodes-to-composition.svg. Fold to book/assets/. Regenerated
-     260823: before/after of the DocAble pass-graph — computations WITHOUT composition (113 registered,
-     only 2 authored relations) -> derive + type -> COMPOSITION made explicit (33 typed relations, a
-     payload-bearing partition of 11 = 10 DATA_FLOW + 1 CROSS_SERVICE, vs 22 CONTROL_GATE). The
-     representation exposed a distinction the implementation already contained; the mutation-kind
-     dimension is deliberately NOT drawn (the prose discovers it next). -->
+     260905: before/after of the DocAble computation model — computations WITHOUT composition (125
+     registered, only 2 authored seed relations) -> derive + type -> COMPOSITION made explicit (57 typed
+     relations: 2 authored seeds + 55 projected; a payload-bearing partition of 33 = 32 DATA_FLOW + 1
+     CROSS_SERVICE, vs 24 CONTROL_GATE). The representation exposed a distinction the implementation
+     already contained; the mutation-kind dimension is deliberately NOT drawn (the prose discovers it next). -->
 <!-- semantic-families: modeling, governance, agent, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 606" width="1000" height="606"
      role="img" aria-labelledby="fncTitle fncDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fncTitle">From computations to composition</title>
-  <desc id="fncDesc">Two panels. Left, computations without composition: a field of faint computation nodes crossed by only two conspicuous hand-authored relations — 113 computations were registered but only two relations were authored. Center: derive and type the relations. Right, composition made explicit: the derived relations split into two semantics — a payload-bearing group of eleven (ten DATA_FLOW and one CROSS_SERVICE) bracketed together, and twenty-two CONTROL_GATE relations. The transformation is two authored edges to thirty-three derived, typed relations to eleven payload plus twenty-two control.</desc>
+  <desc id="fncDesc">Two panels. Left, computations without composition: a field of faint computation nodes crossed by only two conspicuous hand-authored relations — 125 computations are registered but only two relations were authored as seeds. Center: derive and type the relations. Right, composition made explicit: the projected relations split into two semantics — a payload-bearing group of thirty-three (thirty-two DATA_FLOW and one CROSS_SERVICE) bracketed together, and twenty-four CONTROL_GATE relations. The transformation is two authored seeds to fifty-five projected, typed relations to thirty-three payload plus twenty-four control.</desc>
   <defs>
     <marker id="fnc-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/></marker>
     <marker id="fnc-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
@@ -63,9 +63,9 @@
   <text x="242" y="128" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="0.04em" fill="#1c1917">COMPUTATIONS WITHOUT COMPOSITION</text>
   <text x="752" y="128" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="0.04em" fill="#1c1917">COMPOSITION MADE EXPLICIT</text>
   <text x="752" y="154" text-anchor="middle" font-size="12.5" font-weight="700" letter-spacing="0.1em" fill="#57534e">RELATION TYPES</text>
-  <text x="562" y="182" text-anchor="start" font-size="14" font-weight="700" fill="#155c38">PAYLOAD-BEARING  ×11</text>
+  <text x="562" y="182" text-anchor="start" font-size="14" font-weight="700" fill="#155c38">PAYLOAD-BEARING  ×33</text>
   <path fill="none" stroke="#155c38" stroke-width="2" d="M556,202 L550,202 L550,382 L556,382"/>
-  <text x="748" y="214" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">DATA_FLOW  ×10</text>
+  <text x="748" y="214" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">DATA_FLOW  ×32</text>
   <rect x="560" y="226" width="82" height="40" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <rect x="852" y="226" width="96" height="40" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="601.0" y="251" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass A</text>
@@ -79,16 +79,16 @@
   <text x="900.0" y="345" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Service</text>
   <line x1="642" y1="340" x2="852" y2="340" stroke="#2f5169" stroke-width="2.6" marker-end="url(#fnc-ah-blue)"/>
   <text x="748" y="376" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">cross-boundary payload</text>
-  <text x="562" y="410" text-anchor="start" font-size="14" font-weight="700" fill="#9a3f12">CONTROL  ×22</text>
+  <text x="562" y="410" text-anchor="start" font-size="14" font-weight="700" fill="#9a3f12">CONTROL  ×24</text>
   <path fill="none" stroke="#9a3f12" stroke-width="2" d="M556,428 L550,428 L550,512 L556,512"/>
-  <text x="748" y="440" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL_GATE  ×22</text>
+  <text x="748" y="440" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL_GATE  ×24</text>
   <rect x="560" y="452" width="82" height="40" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <rect x="852" y="452" width="96" height="40" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="601.0" y="477" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass A</text>
   <text x="900.0" y="477" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass C</text>
   <line x1="642" y1="472" x2="852" y2="472" stroke="#9a3f12" stroke-width="2.6" stroke-dasharray="9 5" marker-end="url(#fnc-ah-rust)"/>
   <text x="748" y="508" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">ConsumesForControl</text>
-  <text x="242" y="524" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">113 computations</text>
+  <text x="242" y="524" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">125 computations</text>
   <text x="242" y="546" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">2 authored relations</text>
-  <text x="500" y="580" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">2 authored edges  →  33 derived, typed relations  →  11 payload + 22 control</text>
+  <text x="500" y="580" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">2 authored + 55 projected, typed relations  →  33 payload + 24 control</text>
 </svg>

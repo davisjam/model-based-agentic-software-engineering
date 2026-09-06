@@ -1,49 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- graph-example figure — fidelity-vs-authority.svg. Fold to book/assets/. -->
+<!-- graph-example figure — fidelity-vs-authority.svg. Fold to book/assets/. Redrawn 260905:
+     authority and correspondence as two different relations around ONE source of truth. An authoritative
+     computation model is consumed by execution (authority: model -> execution) AND projected/checked into
+     an analytical graph view (correspondence: model / parity-bound declarations -> view). Strong
+     correspondence does not transfer execution authority to the view. -->
 <!-- semantic-families: modeling, governance, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620"
      role="img" aria-labelledby="faTitle faDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="faTitle">Correspondence strength and authority direction are independent</title>
-  <desc id="faDesc">Two independent axes drawn as directed relations. Axis one, correspondence strength: the computation graph moved from a weak, hand-authored correspondence (implementation to a hand-authored graph that can drift) to a strong one (typed declarations projected to a graph and held by a blocking parity check). Axis two, authority direction: implementation stays the source of truth from which the model is derived, unchanged. A counterfactual, not built in DocAble, would reverse that authority by generating execution from the model. Stronger correspondence did not move the authority arrow.</desc>
+  <title id="faTitle">Authority and correspondence are different relations</title>
+  <desc id="faDesc">One authoritative computation model — computations, dependencies, and composition — sits at the top. Two relations run from it. On the left, an authority relation: the model is consumed by the scheduler, so execution follows it. On the right, a correspondence relation: the model, and the parity-bound declarations around it, are projected and checked into an analytical graph view used for analysis and governance. The authority arrow reaches execution; the correspondence arrow reaches the view. Making the view a more faithful correspondence does not transfer execution authority to it.</desc>
   <defs>
     <marker id="fa-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/></marker>
-    <marker id="fa-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="fa-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
     <marker id="fa-ah-gray" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
   </defs>
-  <rect x="40" y="118" width="920" height="212" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <rect x="40" y="360" width="920" height="222" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <!-- edge: fa_impl1 -> fa_g1 -->
-  <line x1="460" y1="180" x2="658" y2="180" stroke="#9a3f12" stroke-width="2.5" stroke-dasharray="9 5" marker-end="url(#fa-ah-rust)"/>
-  <!-- edge: fa_impl2 -> fa_g2 -->
-  <line x1="460" y1="280" x2="658" y2="280" stroke="#1f7a4d" stroke-width="3" marker-end="url(#fa-ah-green)"/>
-  <!-- edge: fa_impl3 -> fa_m3 -->
-  <line x1="460" y1="430" x2="658" y2="430" stroke="#57534e" stroke-width="3" marker-end="url(#fa-ah-gray)"/>
-  <!-- edge: fa_m4 -> fa_e4 -->
-  <line x1="460" y1="540" x2="658" y2="540" stroke="#57534e" stroke-width="2.5" stroke-dasharray="9 5" marker-end="url(#fa-ah-gray)"/>
-  <rect id="fa_impl1" x="250" y="155" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <rect id="fa_g1" x="660" y="155" width="240" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect id="fa_impl2" x="250" y="255" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <rect id="fa_g2" x="660" y="255" width="240" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect id="fa_impl3" x="250" y="405" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <rect id="fa_m3" x="660" y="405" width="240" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect id="fa_m4" x="250" y="515" width="210" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect id="fa_e4" x="660" y="515" width="240" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="500" y="90" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Two independent axes: correspondence strength vs authority direction</text>
-  <text x="60" y="146" text-anchor="start" font-size="20" font-weight="700" fill="#57534e">AXIS 1 · CORRESPONDENCE STRENGTH</text>
-  <text x="60" y="388" text-anchor="start" font-size="20" font-weight="700" fill="#57534e">AXIS 2 · AUTHORITY DIRECTION</text>
-  <text x="355.0" y="185" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">implementation</text>
-  <text x="780.0" y="185" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">hand-authored graph</text>
-  <text x="355.0" y="285" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">typed declarations</text>
-  <text x="780.0" y="285" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">projected graph</text>
-  <text x="355.0" y="435" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">implementation</text>
-  <text x="780.0" y="435" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">computation model</text>
-  <text x="355.0" y="545" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">computation model</text>
-  <text x="780.0" y="545" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">execution</text>
-  <text x="560.0" y="168" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">weak · can drift</text>
-  <text x="560.0" y="268" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">strong · projected</text>
-  <text x="560.0" y="300" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#9a3f12">blocking parity check</text>
-  <text x="560.0" y="418" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">derives — unchanged</text>
-  <text x="560.0" y="528" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">generate execution</text>
-  <text x="560.0" y="560" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">not DocAble today</text>
-  <text x="500" y="610" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Correspondence grew stronger; the authority arrow did not move.</text>
+  <text x="500" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Authority and correspondence are different relations</text>
+  <!-- authority arrow: model -> execution -->
+  <line x1="340" y1="146" x2="340" y2="246" stroke="#1f7a4d" stroke-width="3" marker-end="url(#fa-ah-green)"/>
+  <!-- correspondence arrow: model -> analytical view -->
+  <line x1="680" y1="146" x2="680" y2="246" stroke="#2f5169" stroke-width="3" marker-end="url(#fa-ah-blue)"/>
+  <!-- view -> analysis/governance -->
+  <line x1="680" y1="312" x2="680" y2="356" stroke="#57534e" stroke-width="2" marker-end="url(#fa-ah-gray)"/>
+  <rect x="260" y="80" width="480" height="66" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect x="200" y="250" width="280" height="62" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect x="520" y="250" width="320" height="62" rx="12" fill="#eef1f4" stroke="#2f5169" stroke-width="2"/>
+  <text x="500" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">AUTHORITATIVE COMPUTATION MODEL</text>
+  <text x="500" y="133" text-anchor="middle" font-size="15" font-weight="400" font-style="italic" fill="#57534e">computations · dependencies · composition</text>
+  <text x="325" y="200" text-anchor="end" font-size="15" font-weight="600" font-style="italic" fill="#1f7a4d">consumed by scheduler</text>
+  <text x="695" y="200" text-anchor="start" font-size="15" font-weight="600" font-style="italic" fill="#2f5169">projected / checked</text>
+  <text x="340" y="288" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">EXECUTION</text>
+  <text x="680" y="287" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">ANALYTICAL GRAPH VIEW</text>
+  <text x="680" y="382" text-anchor="middle" font-size="16" font-weight="400" font-style="italic" fill="#57534e">analysis · governance</text>
+  <line x1="60" y1="432" x2="940" y2="432" stroke="#e4e0d8" stroke-width="1.5"/>
+  <text x="60" y="474" text-anchor="start" font-size="17" font-weight="700" fill="#1f7a4d">AUTHORITY</text>
+  <text x="230" y="474" text-anchor="start" font-size="17" font-weight="400" fill="#1c1917">computation model → execution</text>
+  <text x="60" y="510" text-anchor="start" font-size="17" font-weight="700" fill="#2f5169">CORRESPONDENCE</text>
+  <text x="230" y="510" text-anchor="start" font-size="17" font-weight="400" fill="#1c1917">computation model / parity-bound declarations → analytical view</text>
+  <text x="500" y="562" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Strong correspondence does not transfer execution authority to the view.</text>
 </svg>

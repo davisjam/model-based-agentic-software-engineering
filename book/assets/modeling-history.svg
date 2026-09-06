@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- graph-example figure — modeling-history.svg. Fold to book/assets/. -->
 <!-- semantic-families: modeling, governance, neutral, failure -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1180" width="1000" height="1180"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1410" width="1000" height="1410"
      role="img" aria-labelledby="mhTitle mhDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="mhTitle">The modeling history</title>
-  <desc id="mhDesc">A top-to-bottom modeling history. DocAble began with a stable decomposition of remediation computations, so their node projection was meaningful, while their composition stayed implicit — carried by repeated traversal, shared-state reads, direct mutation, and special cases. As that composition accumulated global cost, modeling the relations exposed two previously implicit dimensions, shown as parallel columns: dependency semantics (DATA_FLOW, CONTROL_GATE, CROSS_SERVICE) and effect boundedness (TypedPatchProducer, DirectEditor, ReadOnly). Typed declarations then made the relationships projectable, a projected graph held by a blocking parity check, with residual freedom remaining. The progression runs from a partial model to a richer one, not from no model to model.</desc>
+  <desc id="mhDesc">A top-to-bottom modeling history. DocAble began with a stable decomposition of remediation computations, so their node projection was meaningful, while their composition stayed implicit — carried by repeated traversal, shared-state reads, direct mutation, and special cases. As that composition accumulated global cost, modeling the relations exposed two previously implicit dimensions, shown as parallel columns: dependency semantics (DATA_FLOW, CONTROL_GATE, CROSS_SERVICE) and effect boundedness (TypedPatchProducer, DirectEditor, ReadOnly). Typed declarations then made the relationships projectable, a projected graph held by a blocking parity check. Analysis over that projected structure then motivated a redesign: an authoritative computation model that execution consumes to determine dependency order, with analytical views attaching by stable computation identity. Residual freedom remains. The progression runs from a partial model, to an analyzable one, to a model that participates directly in realization.</desc>
   <defs>
     <marker id="mh-ah-gray" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
   </defs>
@@ -22,8 +22,14 @@
   <path d="M650,645 L650,698" fill="none" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <!-- edge: mh_s5 -> mh_s6 -->
   <line x1="500" y1="774" x2="500" y2="828" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
-  <!-- edge: mh_s6 -> mh_s7 -->
-  <line x1="500" y1="904" x2="500" y2="958" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
+  <!-- edge: mh_s6 -> mh_a -->
+  <line x1="500" y1="904" x2="500" y2="928" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
+  <!-- edge: mh_a -> mh_b -->
+  <line x1="500" y1="1000" x2="500" y2="1024" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
+  <!-- edge: mh_b -> mh_c -->
+  <line x1="500" y1="1096" x2="500" y2="1120" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
+  <!-- edge: mh_c -> mh_s7 -->
+  <line x1="500" y1="1192" x2="500" y2="1216" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <rect id="mh_s1" x="230" y="90" width="540" height="74" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <rect id="mh_s2" x="153.56" y="220" width="692.87" height="74" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <rect id="mh_s3" x="230" y="350" width="540" height="74" rx="12" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
@@ -31,7 +37,10 @@
   <rect id="mh_dr" x="530" y="485" width="320" height="160" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <rect id="mh_s5" x="230" y="700" width="540" height="74" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <rect id="mh_s6" x="171.58" y="830" width="656.85" height="74" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect id="mh_s7" x="230" y="960" width="540" height="74" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2" stroke-dasharray="8 5"/>
+  <rect id="mh_a" x="150" y="934" width="700" height="66" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="mh_b" x="175" y="1030" width="650" height="66" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
+  <rect id="mh_c" x="150" y="1126" width="700" height="66" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="mh_s7" x="230" y="1222" width="540" height="74" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2" stroke-dasharray="8 5"/>
   <text x="500" y="58" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">The modeling history</text>
   <text x="500" y="122" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Stable computations</text>
   <text x="500" y="147" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">pass decomposition — the nodes already project</text>
@@ -53,7 +62,13 @@
   <text x="500" y="757" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">each pass declares its IO facets and its effect kind</text>
   <text x="500" y="862" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Projected graph + blocking parity</text>
   <text x="500" y="887" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#9a3f12">edges projected from the declarations; disagreement fails the build</text>
-  <text x="500" y="992" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Residual freedom remains</text>
-  <text x="500" y="1017" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">not every choice is determinized</text>
-  <text x="500" y="1120" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">From a partial model to a richer one — not from no model to model.</text>
+  <text x="500" y="968" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Analyze composition</text>
+  <text x="500" y="992" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">critical paths · boundedness · latency · coverage</text>
+  <text x="500" y="1064" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Authoritative computation model</text>
+  <text x="500" y="1088" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">execution consumes modeled dependencies</text>
+  <text x="500" y="1160" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Analytical views attach by stable identity</text>
+  <text x="500" y="1184" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">views join without one universal schema</text>
+  <text x="500" y="1254" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Residual freedom remains</text>
+  <text x="500" y="1279" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">not every choice is determinized</text>
+  <text x="500" y="1370" text-anchor="middle" font-size="19" font-weight="600" fill="#1c1917">From a partial model, to an analyzable one, to a model that participates directly in realization.</text>
 </svg>
