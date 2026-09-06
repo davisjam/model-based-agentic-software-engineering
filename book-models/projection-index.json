@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1229,
+    "total_sites": 1255,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 880,
+      "book-web": 906,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 13,
@@ -41,6 +41,10 @@
           },
           {
             "file": "book/1.4-the-new-engineering-problem.html",
+            "occ": 1
+          },
+          {
+            "file": "book/1.5-problem-summary.html",
             "occ": 1
           },
           {
@@ -255,7 +259,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 58
+            "occ": 59
           }
         ]
       },
@@ -662,6 +666,10 @@
             "occ": 1
           },
           {
+            "file": "book/6.5-what-the-theory-claims.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-d-daily-review.html",
             "occ": 1
           },
@@ -697,7 +705,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 18
+            "occ": 19
           }
         ]
       },
@@ -912,6 +920,10 @@
             "occ": 29
           },
           {
+            "file": "book/1.5-problem-summary.html",
+            "occ": 28
+          },
+          {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
             "occ": 133
           },
@@ -1020,6 +1032,10 @@
             "occ": 78
           },
           {
+            "file": "book/5.6-what-the-evidence-supports.html",
+            "occ": 22
+          },
+          {
             "file": "book/6.1-toward-a-theory-of-mage.html",
             "occ": 82
           },
@@ -1033,7 +1049,11 @@
           },
           {
             "file": "book/6.4-research-agenda.html",
-            "occ": 64
+            "occ": 63
+          },
+          {
+            "file": "book/6.5-what-the-theory-claims.html",
+            "occ": 28
           },
           {
             "file": "book/7.1-reorganization-of-se.html",
@@ -1045,7 +1065,11 @@
           },
           {
             "file": "book/7.3-education-research-open-problems.html",
-            "occ": 109
+            "occ": 108
+          },
+          {
+            "file": "book/7.4-what-cannot-be-delegated.html",
+            "occ": 22
           },
           {
             "file": "book/8.1-the-part-that-stays-yours.html",
@@ -1387,7 +1411,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 128
+            "occ": 132
           }
         ]
       },
@@ -1550,6 +1574,10 @@
             "occ": 3
           },
           {
+            "file": "book/1.5-problem-summary.html",
+            "occ": 3
+          },
+          {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
             "occ": 3
           },
@@ -1658,6 +1686,10 @@
             "occ": 7
           },
           {
+            "file": "book/5.6-what-the-evidence-supports.html",
+            "occ": 3
+          },
+          {
             "file": "book/6.1-toward-a-theory-of-mage.html",
             "occ": 9
           },
@@ -1674,6 +1706,10 @@
             "occ": 4
           },
           {
+            "file": "book/6.5-what-the-theory-claims.html",
+            "occ": 5
+          },
+          {
             "file": "book/7.1-reorganization-of-se.html",
             "occ": 4
           },
@@ -1684,6 +1720,10 @@
           {
             "file": "book/7.3-education-research-open-problems.html",
             "occ": 5
+          },
+          {
+            "file": "book/7.4-what-cannot-be-delegated.html",
+            "occ": 3
           },
           {
             "file": "book/8.1-the-part-that-stays-yours.html",
@@ -2025,7 +2065,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 128
+            "occ": 132
           }
         ]
       },
@@ -2188,6 +2228,10 @@
             "occ": 7
           },
           {
+            "file": "book/1.5-problem-summary.html",
+            "occ": 6
+          },
+          {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
             "occ": 70
           },
@@ -2296,6 +2340,10 @@
             "occ": 29
           },
           {
+            "file": "book/5.6-what-the-evidence-supports.html",
+            "occ": 6
+          },
+          {
             "file": "book/6.1-toward-a-theory-of-mage.html",
             "occ": 52
           },
@@ -2312,6 +2360,10 @@
             "occ": 35
           },
           {
+            "file": "book/6.5-what-the-theory-claims.html",
+            "occ": 6
+          },
+          {
             "file": "book/7.1-reorganization-of-se.html",
             "occ": 16
           },
@@ -2322,6 +2374,10 @@
           {
             "file": "book/7.3-education-research-open-problems.html",
             "occ": 16
+          },
+          {
+            "file": "book/7.4-what-cannot-be-delegated.html",
+            "occ": 6
           },
           {
             "file": "book/8.1-the-part-that-stays-yours.html",
@@ -2663,7 +2719,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 128
+            "occ": 132
           }
         ]
       },
@@ -3182,6 +3238,10 @@
             "occ": 1
           },
           {
+            "file": "book/1.5-problem-summary.html",
+            "occ": 1
+          },
+          {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
             "occ": 1
           },
@@ -3290,6 +3350,10 @@
             "occ": 1
           },
           {
+            "file": "book/5.6-what-the-evidence-supports.html",
+            "occ": 1
+          },
+          {
             "file": "book/6.1-toward-a-theory-of-mage.html",
             "occ": 1
           },
@@ -3306,6 +3370,10 @@
             "occ": 1
           },
           {
+            "file": "book/6.5-what-the-theory-claims.html",
+            "occ": 1
+          },
+          {
             "file": "book/7.1-reorganization-of-se.html",
             "occ": 1
           },
@@ -3315,6 +3383,10 @@
           },
           {
             "file": "book/7.3-education-research-open-problems.html",
+            "occ": 1
+          },
+          {
+            "file": "book/7.4-what-cannot-be-delegated.html",
             "occ": 1
           },
           {
@@ -3657,7 +3729,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 128
+            "occ": 132
           }
         ]
       },
@@ -3832,6 +3904,10 @@
             "occ": 2
           },
           {
+            "file": "book/1.5-problem-summary.html",
+            "occ": 2
+          },
+          {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
             "occ": 15
           },
@@ -3940,6 +4016,10 @@
             "occ": 2
           },
           {
+            "file": "book/5.6-what-the-evidence-supports.html",
+            "occ": 2
+          },
+          {
             "file": "book/6.1-toward-a-theory-of-mage.html",
             "occ": 9
           },
@@ -3953,7 +4033,11 @@
           },
           {
             "file": "book/6.4-research-agenda.html",
-            "occ": 16
+            "occ": 15
+          },
+          {
+            "file": "book/6.5-what-the-theory-claims.html",
+            "occ": 5
           },
           {
             "file": "book/7.1-reorganization-of-se.html",
@@ -3965,7 +4049,11 @@
           },
           {
             "file": "book/7.3-education-research-open-problems.html",
-            "occ": 10
+            "occ": 9
+          },
+          {
+            "file": "book/7.4-what-cannot-be-delegated.html",
+            "occ": 3
           },
           {
             "file": "book/8.1-the-part-that-stays-yours.html",
@@ -4307,7 +4395,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 128
+            "occ": 132
           }
         ]
       },
@@ -4395,6 +4483,10 @@
           },
           {
             "file": "book/1.4-the-new-engineering-problem.html",
+            "occ": 1
+          },
+          {
+            "file": "book/1.5-problem-summary.html",
             "occ": 1
           },
           {
@@ -4506,6 +4598,10 @@
             "occ": 2
           },
           {
+            "file": "book/5.6-what-the-evidence-supports.html",
+            "occ": 1
+          },
+          {
             "file": "book/6.1-toward-a-theory-of-mage.html",
             "occ": 5
           },
@@ -4522,6 +4618,10 @@
             "occ": 3
           },
           {
+            "file": "book/6.5-what-the-theory-claims.html",
+            "occ": 1
+          },
+          {
             "file": "book/7.1-reorganization-of-se.html",
             "occ": 3
           },
@@ -4531,6 +4631,10 @@
           },
           {
             "file": "book/7.3-education-research-open-problems.html",
+            "occ": 1
+          },
+          {
+            "file": "book/7.4-what-cannot-be-delegated.html",
             "occ": 1
           },
           {
@@ -4873,7 +4977,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 128
+            "occ": 132
           }
         ]
       },
