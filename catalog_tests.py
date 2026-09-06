@@ -85,8 +85,9 @@ from tests.citations import (
 )
 from tests.common import FAIL, PASS, SKIP, changed_vs_origin
 from tests.deploy import check_deploy_publishable
-from tests.external import check_axe, check_axe_coverage_set, check_claude_validate, check_html_valid
+from tests.external import check_axe, check_axe_coverage_set, check_claude_validate, check_html_valid, check_lab_logo_url
 from tests.html import (
+    check_lab_logo_single_sourced,
     check_book_html_tracking,
     check_book_no_blogpost_link,
     check_no_stash_placeholder_leak,
@@ -161,6 +162,7 @@ CHECKS = [
     Check("render: XSS neutralization (escape seam + link scheme)", 1, lambda strict: check_render_safety()),
     Check("html: link + anchor resolution", 1, lambda strict: check_html_links()),
     Check("html: no duplicate element ids (stdlib twin of T2 no-dup-id)", 1, lambda strict: check_no_duplicate_ids()),
+    Check("html: Duality Lab logo single-sourced from /images/logo.svg (no vendored copy)", 1, lambda strict: check_lab_logo_single_sourced()),
     Check("html: no flow content under <summary> (stdlib twin of T2 element-permitted-content)", 1, lambda strict: check_summary_no_flow_content()),
     Check("html: no empty <th> (stdlib twin of T2 empty-table-header)", 1, lambda strict: check_no_empty_table_header()),
     Check("html: no book notation leaks (whole-vocabulary; marker / {{token}} / [+emph+])", 1, lambda strict: check_no_notation_leak()),
@@ -527,6 +529,7 @@ CHECKS = [
     Check("a11y: axe coverage set is sound (deterministic, one-per-template-family, derived)", 1,
           lambda strict: check_axe_coverage_set(strict)),
     Check("html: validity (html-validate)", 2, check_html_valid, needs_run=_html_changed),
+    Check("external: Duality Lab logo URL returns 200 (davisjam.github.io/images/logo.svg)", 2, check_lab_logo_url),
     Check("html: axe-core accessibility", 2, check_axe, needs_run=_html_changed),
     Check("skill: claude plugin validate", 2, check_claude_validate, needs_run=_plugin_changed),
     # AUDIT-ONLY: a crude average-glyph-ratio estimate (~0.55 em) that over-reads label width by ~30-50%

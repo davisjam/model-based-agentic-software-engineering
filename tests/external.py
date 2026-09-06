@@ -235,6 +235,27 @@ def check_html_valid(strict: bool):
     return (FAIL if strict else SKIP), [f"html-validate did not complete: {out.strip()[:200]}"]
 
 
+def check_lab_logo_url(strict: bool):
+    """The canonical Duality Lab logo lives in a repo this one does not control
+    (davisjam/davisjam.github.io, served at /images/logo.svg) and is referenced here root-absolute rather
+    than vendored. A rename there breaks the image on every MAGE page silently; this is the control that
+    catches it. Network — SKIP when offline, FAIL only under --strict (matches this file's convention).
+    Uses curl (system cert store) rather than urllib to avoid the macOS CERTIFICATE_VERIFY_FAILED trap."""
+    url = "https://davisjam.github.io/images/logo.svg"
+    if not shutil.which("curl"):
+        return (FAIL if strict else SKIP), ["curl not found — cannot verify the logo URL"]
+    try:
+        r = subprocess.run(["curl", "-sS", "-o", os.devnull, "-w", "%{http_code}", url],
+                           capture_output=True, text=True, timeout=15)
+    except subprocess.TimeoutExpired:
+        return (FAIL if strict else SKIP), [f"timed out reaching {url} (offline?)"]
+    if r.returncode != 0:
+        return (FAIL if strict else SKIP), [f"could not reach {url} (offline?): {r.stderr.strip()[:160]}"]
+    code = r.stdout.strip()
+    return (PASS, []) if code == "200" else (FAIL, [f"{url} returned HTTP {code}, expected 200 — the "
+                                                    "single-sourced logo was renamed or removed upstream"])
+
+
 def check_claude_validate(strict: bool):
     """`claude plugin validate` on the plugin dir + the marketplace root. LOCAL-ONLY: the `claude` CLI is
     never invoked in CI (headless runners have no interactive CLI, and CI must not call it) — it SKIPs under

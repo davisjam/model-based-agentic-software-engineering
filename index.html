@@ -322,6 +322,14 @@
   .v3-nav-home { font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:var(--ink);
                  text-decoration:none; letter-spacing:0.02em; display:inline-flex; align-items:center; gap:0.35rem; }
   .v3-nav-hat { flex:0 0 auto; }
+  /* Duality Lab logo — single-sourced from /images/logo.svg on the shared davisjam.github.io Pages
+     origin (root-absolute path resolves across the homepage + this site; no vendored copy — see the
+     no-logo-file control in tests/html.py). If MAGE ever moves to its own domain, switch to the absolute
+     https://davisjam.github.io/images/logo.svg. */
+  .v3-nav-lab { flex:0 0 auto; display:inline-flex; align-items:center; margin-right:14px; }
+  .v3-nav-lab img { display:block; height:38px; width:auto; }
+  .v3-nav-lab--crumb { margin: 0 0 10px; }
+  .v3-nav-lab--crumb img { height: 25px; }
   .v3-nav-groups { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
   .v3-nav-item { color:var(--muted); text-decoration:none; font-weight:600; font-size:0.95rem; }
   .v3-nav-item:hover, .v3-nav-item:focus { color:var(--accent); }
@@ -482,6 +490,7 @@
 <body class="landing">
 <main>
 <nav class="v3-nav" aria-label="Primary">
+  <a class="v3-nav-lab" href="https://davisjam.github.io/"><img src="/images/logo.svg" alt="Duality Lab — James C. Davis" width="116" height="38"></a>
   <a class="v3-nav-home" href="index.html"><svg class="v3-nav-hat" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="var(--accent)" d="M21 22H3v-2h18zm-2-3H5l6.1-16.4q.3-.6.9-.6l6 3h-4.1zM10 7.5l1.04.47L11.5 9l.47-1.03L13 7.5l-1.03-.47L11.5 6l-.46 1.03zm3 7.5-2.06-.93L10 12l-.93 2.07L7 15l2.07.93L10 18l.94-2.07zm.97-3.03L15 11.5l-1.03-.47L13.5 10l-.46 1.03-1.04.47 1.04.47.46 1.03zm2 4L17 15.5l-1.03-.47L15.5 14l-.46 1.03-1.04.47 1.04.47.46 1.03z"/></svg>MAGE</a>
   <div class="v3-nav-groups">
     <a class="v3-nav-item" href="#resources">Resources</a>
