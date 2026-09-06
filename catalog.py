@@ -2431,15 +2431,16 @@ LANDING_CSS = """
   .claim-explore a:hover { text-decoration:underline; }
   .claims-summary { margin:2rem 0 0; padding:1.2rem 1.4rem; background:var(--accent-tint); border-radius:6px;
                     font-weight:600; color:var(--ink); font-size:1.05rem; line-height:1.5; }
-  /* Desktop: the one-page section widens into a two-column info graphic — the claims (given slightly more
-     width for line length) beside a sticky conceptual map that stays in view as the reader works down the
-     claims. Below this breakpoint the body is a single column in DOM order (intro → figure → claims), so
-     the mobile reading sequence is preserved without duplicated markup. Breakpoint set by visual testing:
-     below it the figure would be squeezed under ~490px, so the awkward 1000–1119px range collapses to a
-     single readable column rather than two cramped ones. */
+  /* Desktop: the one-page section widens into a two-column info graphic — the six claims beside a sticky
+     conceptual map that stays in view as the reader works down the claims. The map is a dense diagram, so it
+     takes the WIDER column (and the section spans a wide container) to stay legible; the claims keep a
+     comfortable measure. Below this breakpoint the body is a single column in DOM order (intro → figure →
+     claims), so the mobile reading sequence is preserved without duplicated markup. Breakpoint set by visual
+     testing: below it the figure would be squeezed under ~490px, so the awkward 1000–1119px range collapses
+     to a single readable column rather than two cramped ones. */
   @media (min-width: 1120px) {
-    .onepage { max-width:min(1400px, 100%); }
-    .onepage-body { display:grid; grid-template-columns:minmax(0, 1.06fr) minmax(0, 0.94fr);
+    .onepage { max-width:min(1640px, 100%); }
+    .onepage-body { display:grid; grid-template-columns:minmax(0, 0.95fr) minmax(0, 1.05fr);
                     gap:clamp(2rem, 4vw, 3.6rem); align-items:start; margin-top:2rem; text-align:left; }
     .onepage-body .claims-col { grid-column:1; grid-row:1; max-width:none; margin:0; }
     .onepage-body .onepage-fig { grid-column:2; grid-row:1; position:sticky; top:1.6rem; margin:0;
@@ -2945,7 +2946,7 @@ def _v3_learn() -> str:
         + _v3_card("Teach with MAGE", "",
                    "Course and teaching materials for instructors and students.",
                    [("Open Teach with MAGE", "teach/index.html")],
-                   thumb=("course/assets/wizard-hat.svg", "Wizard-hat icon for Teach with MAGE"),
+                   thumb=("resources/teach/wizard-hat.svg", "Wizard-hat icon for Teach with MAGE"),
                    thumb_icon=True) + "\n"
         + _v3_card("Talks", "",
                    "Slides and supporting materials from presentations about MAGE.",
