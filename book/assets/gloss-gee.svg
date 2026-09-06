@@ -4,14 +4,14 @@
      capital), the obligation it ultimately serves at the TOP. Governance mechanism sits ABOVE the two
      surfaces and branches DOWN to them: it acts on / observes the directly observable work (left) and
      reasons through the explicit model / invariant (right). Those two surfaces are what a mechanism can
-     act on — not intermediate stages an obligation travels through. The mechanism gives authority to the
-     engineering obligation (top). Below, the governed environment presents both surfaces, and engineering
+     act on — not intermediate stages an obligation travels through. The mechanism enforces the
+     engineering obligation (top); an obligation the environment enforces is thereby authoritative. Below, the governed environment presents both surfaces, and engineering
      capital accumulates in that environment. Palette: rust #9a3f12 = obligation/doctrine; blue #2f5169 =
      model/structure; the rest neutral (#57534e / #f6f4ef) as house chrome. Orientation reference. -->
 <!-- semantic-families: neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" role="img"
-     aria-label="A bottom-up accumulation ontology. At the bottom, engineering capital accumulates in the governed engineering environment. That environment presents two surfaces: directly observable work on the left and an explicit model or invariant on the right. Above them the governance mechanism (constraint, sensor, validator, gate) branches down to both surfaces — acting on or observing the observable work, and reasoning through the explicit model. At the top, the mechanism gives authority to the engineering obligation, what must hold.">
+     aria-label="A bottom-up accumulation ontology. At the bottom, engineering capital accumulates in the governed engineering environment. That environment presents two surfaces: directly observable work on the left and an explicit model or invariant on the right. Above them the governance mechanism (constraint, sensor, validator, gate) branches down to both surfaces — acting on or observing the observable work, and reasoning through the explicit model. At the top, the mechanism enforces the engineering obligation, what must hold; an obligation the environment enforces is thereby authoritative.">
   <defs>
     <marker id="gee-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
@@ -24,9 +24,10 @@
   <text x="500" y="102" text-anchor="middle" font-size="20" font-weight="bold" fill="#9a3f12">ENGINEERING OBLIGATION</text>
   <text x="500" y="124" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what must hold</text>
 
-  <!-- edge: gov-mechanism -> obligation, labelled 'gives authority to' (not a bare flow arrow) -->
+  <!-- edge: gov-mechanism -> obligation, labelled 'enforces' (not a bare flow arrow); the caption states
+       that an obligation the environment enforces is thereby authoritative -->
   <path d="M500,212 L500,140" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)"/>
-  <text x="514" y="182" font-size="16" font-style="italic" fill="#78716c">gives authority to</text>
+  <text x="514" y="182" font-size="16" font-style="italic" fill="#78716c">enforces</text>
 
   <!-- ===== the governance mechanism: four coordinate roles, above the two surfaces ===== -->
   <rect id="gov-mechanism" x="270" y="214" width="460" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>

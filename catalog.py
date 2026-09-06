@@ -2947,7 +2947,9 @@ def _v3_learn() -> str:
                    thumb_icon=True) + "\n"
         + _v3_card("Talks", "",
                    "Slides and supporting materials from presentations about MAGE.",
-                   [("Browse talks", "talks.html")]) + "\n"
+                   [("Browse talks", "talks.html")],
+                   thumb=("resources/talks/slideshow.svg", "Slideshow icon for Talks"),
+                   thumb_icon=True) + "\n"
         '  </div>\n</section>')
 
 
