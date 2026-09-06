@@ -43,6 +43,7 @@ from tests.book import (
     check_only_child_headings,
     check_only_child_headings_selftest,
     check_part_opener_traceability,
+    check_typst_emph_semicolon,
     run_book_audit,
 )
 from tests.book_models import (
@@ -201,6 +202,7 @@ CHECKS = [
     Check("html: no HTML-book page links to the companion blog post (book-only; landing link kept)", 1, lambda strict: check_book_no_blogpost_link()),
     Check("html: no served page ships a NUL byte (stashed inline-span leak; the cite-in-note bug)", 1, lambda strict: check_no_stash_placeholder_leak()),
     Check("book: every float introduced by a [ref:] cross-ref (book-float-ref)", 1, lambda strict: check_float_ref_gate()),
+    Check("book: Typst emitter wraps ';' after emphasis so the PDF keeps it (typst-emph-semicolon)", 1, lambda strict: check_typst_emph_semicolon()),
     # BLOCKING (green at landing): no table caption stranded on a page while its body flows to the next (the
     # 260805 Table 7.2-1 report). Runs the rendered-PDF caption-orphan sensor against book/mage-book.pdf when
     # present; SKIPs when no PDF is rendered (gitignored; built by --pdf). The authoritative twin is the

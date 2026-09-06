@@ -220,6 +220,11 @@ def _inline(s: str, stash: list[str]) -> str:
     # 7. Escape everything still plain, then restore the held Typst fragments (repeatedly — a held fragment
     #    may itself contain a placeholder from a later-numbered hold, e.g. a link nested in bold).
     s = _esc(s)
+    # Typst swallows a ';' written immediately after a held `#call[...]` fragment (e.g. `#emph[is];`): it
+    # parses `];` as a code-mode terminator and drops the semicolon (only ';' is affected — '.'/',' survive).
+    # Re-emit that semicolon as a wrapped content literal so it renders. Runs after _esc (so `#[;]` is not
+    # re-escaped) and inside the recursive _inline, so nested spans are covered too. (260905 render-bug fix.)
+    s = re.sub(r"(\x00S\d+\x00);", r"\1#[;]", s)
     while "\x00S" in s:
         s = re.sub(r"\x00S(\d+)\x00", lambda m: stash[int(m.group(1))], s)
     return s

@@ -541,6 +541,30 @@ def check_render_fidelity() -> tuple[list[Finding], dict]:
     return findings, {"pages_scanned": pages, "issues": len(findings)}
 
 
+def check_typst_emph_semicolon() -> "tuple[str, list[str]]":
+    """Regression (260905): Typst swallows a ';' written immediately after a held `#call[...]` fragment —
+    `#emph[x];` / `#strong[x];` render with the semicolon DROPPED in the PDF (it parses `];` as a code-mode
+    terminator), while '.'/',' are unaffected. The book->Typst emitter re-emits that semicolon as a wrapped
+    content literal (`#[;]`). Pin that the projector never produces a bare emphasis-then-semicolon, and that
+    a trailing '.'/',' after emphasis stays literal. Imports the book Typst emitter directly."""
+    import sys as _sys
+    if BOOK not in _sys.path:
+        _sys.path.insert(0, BOOK)
+    import book_typst as _bt  # noqa: E402 — the book's markdown->Typst inline emitter
+    issues: list[str] = []
+    for src in ("the current *is*; next", "a **claim**; more", "an *is*; then a **b**; end"):
+        out = _bt.inline_typst(src)
+        if re.search(r"#(?:emph|strong)\[[^\[\]]*\];", out):
+            issues.append(f"bare emphasis-then-semicolon survived (Typst would drop it): {src!r} -> {out!r}")
+        if "#[;]" not in out:
+            issues.append(f"semicolon not preserved after emphasis: {src!r} -> {out!r}")
+    for src, tail in (("*is*. done", "]."), ("*is*, then", "],")):
+        out = _bt.inline_typst(src)
+        if tail not in out:
+            issues.append(f"trailing {tail[-1]!r} after emphasis unexpectedly altered: {src!r} -> {out!r}")
+    return (FAIL if issues else PASS), issues
+
+
 # ---- rule 10: no hardcoded "Chapter N" in prose (chapter numbers are DERIVED at build) --------------
 
 _HARDCODED_CHAPTER_RE = re.compile(r"\bChapter\s+\d+\b")
