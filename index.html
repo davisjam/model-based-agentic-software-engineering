@@ -348,12 +348,13 @@
   .sec-h { font-family:var(--font-display); font-size:1.5rem; color:var(--ink); margin:0 0 0.5rem; }
   .sec-lead { font-size:1.02rem; line-height:1.55; color:var(--muted); max-width:44rem; margin:0 0 1.2rem; }
 
+  /* MAGE in One Page — heading + intro sit at a readable measure; the body is an info graphic that becomes
+     a two-column region (the six claims beside a sticky conceptual map) at the desktop breakpoint below. */
   .onepage { max-width:56rem; margin:2.8rem auto; text-align:center; }
-  .onepage .sec-lead { margin-left:auto; margin-right:auto; text-align:left; }
+  .onepage .sec-lead { margin-left:auto; margin-right:auto; text-align:left; max-width:44rem; }
   .onepage-fig { margin:1.4rem 0 0; }
   .onepage-fig svg { width:100%; height:auto; max-width:900px; display:block; margin:0 auto; }
-
-  .claims { max-width:44rem; margin:2.8rem auto; }
+  .claims-col { max-width:44rem; margin:2.4rem auto 0; text-align:left; }
   .claim { border-top:1px solid var(--line); padding:1.8rem 0 0.4rem; }
   .claim-kick { color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.06em;
                 font-size:0.82rem; margin:0 0 0.4rem; }
@@ -365,6 +366,22 @@
   .claim-explore a:hover { text-decoration:underline; }
   .claims-summary { margin:2rem 0 0; padding:1.2rem 1.4rem; background:var(--accent-tint); border-radius:6px;
                     font-weight:600; color:var(--ink); font-size:1.05rem; line-height:1.5; }
+  /* Desktop: the one-page section widens into a two-column info graphic — the claims (given slightly more
+     width for line length) beside a sticky conceptual map that stays in view as the reader works down the
+     claims. Below this breakpoint the body is a single column in DOM order (intro → figure → claims), so
+     the mobile reading sequence is preserved without duplicated markup. Breakpoint set by visual testing:
+     below it the figure would be squeezed under ~490px, so the awkward 1000–1119px range collapses to a
+     single readable column rather than two cramped ones. */
+  @media (min-width: 1120px) {
+    .onepage { max-width:min(1400px, 100%); }
+    .onepage-body { display:grid; grid-template-columns:minmax(0, 1.06fr) minmax(0, 0.94fr);
+                    gap:clamp(2rem, 4vw, 3.6rem); align-items:start; margin-top:2rem; text-align:left; }
+    .onepage-body .claims-col { grid-column:1; grid-row:1; max-width:none; margin:0; }
+    .onepage-body .onepage-fig { grid-column:2; grid-row:1; position:sticky; top:1.6rem; margin:0;
+                                 align-self:start; }
+    .onepage-body .onepage-fig svg { max-width:none; }
+    .onepage-body .claim:first-child { border-top:none; padding-top:0.2rem; }
+  }
 
   .v3-sec { max-width:52rem; margin:3rem auto; }
   .v3-cards { display:grid; gap:18px; margin-top:1rem; }
@@ -488,8 +505,9 @@
 <section class="onepage" id="onepage" aria-labelledby="onepage-h">
   <h2 id="onepage-h" class="sec-h">MAGE in One Page</h2>
   <p class="sec-lead">MAGE begins with an old software-engineering problem and a new economic condition. Large systems exceed the reasoning horizon of any one reasoner; commodity intelligence makes implementation cheap and abundant relative to engineering judgment. The result is a new imbalance—and an opportunity to move recurring engineering work into durable structure.</p>
-  <p class="sec-lead">The six claims below walk through the figure and summarize the argument.</p>
-  <figure class="onepage-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1020"
+  <p class="sec-lead">The six claims walk through the figure and summarize the argument.</p>
+  <div class="onepage-body">
+    <figure class="onepage-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1020"
      role="img" aria-labelledby="mage-one-page-mmTitle mage-one-page-mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="mage-one-page-mmTitle">The MAGE method — scale creates the enduring reasoning problem; commodity intelligence changes its economics; Modeling and Alignment turn engineering effort into capital rather than churn.</title>
@@ -660,8 +678,7 @@
   <text x="658" y="606" font-size="20" font-weight="600" fill="#b23b3b">weak authority &#8594;</text>
   <text x="658" y="628" font-size="20" font-weight="600" fill="#b23b3b">repeated adjudication</text>
 </svg></figure>
-</section>
-<section class="claims" aria-label="The six claims of MAGE">
+    <div class="claims-col" aria-label="The six claims of MAGE">
   <article class="claim" id="claim-1">
     <p class="claim-kick">Claim 1</p>
     <div class="claim-body">
@@ -720,6 +737,8 @@
     </div>
   </article>
   <p class="claims-summary">Model what matters. Give obligations authority. Do the governed work. Convert what you learn into structure the next task inherits.</p>
+</div>
+  </div>
 </section>
 <section class="v3-sec" id="resources" aria-labelledby="resources-h">
   <h2 id="resources-h" class="sec-h">Resources</h2>
