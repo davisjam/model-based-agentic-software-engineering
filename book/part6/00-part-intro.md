@@ -4,8 +4,6 @@ under sustained engineering pressure; the industrial reconstructions showed rela
 independently under different constraints. Neither establishes a universal law. Together, they give us
 something worth explaining.
 
-Part VI proposes that explanation.
-
 It begins with a general theory of how agentic capacity interacts with the governed engineering
 environment. The theory treats implementation capacity as an input, not an outcome: the same capacity can
 produce durable progress or merely accelerate churn depending on the representations, evidence,

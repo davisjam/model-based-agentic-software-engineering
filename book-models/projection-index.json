@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1217,
+    "total_sites": 1229,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 868,
+      "book-web": 880,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 13,
@@ -944,6 +944,10 @@
             "occ": 29
           },
           {
+            "file": "book/2.9-modeling-summary.html",
+            "occ": 25
+          },
+          {
             "file": "book/3.1-where-authority-can-act.html",
             "occ": 35
           },
@@ -966,6 +970,10 @@
           {
             "file": "book/3.5-when-guardrails-collide.html",
             "occ": 26
+          },
+          {
+            "file": "book/3.6-alignment-summary.html",
+            "occ": 24
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
@@ -1013,7 +1021,7 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 83
+            "occ": 82
           },
           {
             "file": "book/6.2-what-the-theory-predicts.html",
@@ -1025,7 +1033,7 @@
           },
           {
             "file": "book/6.4-research-agenda.html",
-            "occ": 65
+            "occ": 64
           },
           {
             "file": "book/7.1-reorganization-of-se.html",
@@ -1037,7 +1045,7 @@
           },
           {
             "file": "book/7.3-education-research-open-problems.html",
-            "occ": 110
+            "occ": 109
           },
           {
             "file": "book/8.1-the-part-that-stays-yours.html",
@@ -1379,7 +1387,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 126
+            "occ": 128
           }
         ]
       },
@@ -1574,6 +1582,10 @@
             "occ": 3
           },
           {
+            "file": "book/2.9-modeling-summary.html",
+            "occ": 3
+          },
+          {
             "file": "book/3.1-where-authority-can-act.html",
             "occ": 3
           },
@@ -1595,6 +1607,10 @@
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
+            "occ": 4
+          },
+          {
+            "file": "book/3.6-alignment-summary.html",
             "occ": 4
           },
           {
@@ -2009,7 +2025,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 126
+            "occ": 128
           }
         ]
       },
@@ -2204,6 +2220,10 @@
             "occ": 94
           },
           {
+            "file": "book/2.9-modeling-summary.html",
+            "occ": 11
+          },
+          {
             "file": "book/3.1-where-authority-can-act.html",
             "occ": 13
           },
@@ -2226,6 +2246,10 @@
           {
             "file": "book/3.5-when-guardrails-collide.html",
             "occ": 15
+          },
+          {
+            "file": "book/3.6-alignment-summary.html",
+            "occ": 6
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
@@ -2639,7 +2663,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 126
+            "occ": 128
           }
         ]
       },
@@ -3190,6 +3214,10 @@
             "occ": 1
           },
           {
+            "file": "book/2.9-modeling-summary.html",
+            "occ": 1
+          },
+          {
             "file": "book/3.1-where-authority-can-act.html",
             "occ": 1
           },
@@ -3211,6 +3239,10 @@
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
+            "occ": 1
+          },
+          {
+            "file": "book/3.6-alignment-summary.html",
             "occ": 1
           },
           {
@@ -3625,7 +3657,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 126
+            "occ": 128
           }
         ]
       },
@@ -3832,6 +3864,10 @@
             "occ": 3
           },
           {
+            "file": "book/2.9-modeling-summary.html",
+            "occ": 2
+          },
+          {
             "file": "book/3.1-where-authority-can-act.html",
             "occ": 2
           },
@@ -3853,6 +3889,10 @@
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.6-alignment-summary.html",
             "occ": 2
           },
           {
@@ -3913,7 +3953,7 @@
           },
           {
             "file": "book/6.4-research-agenda.html",
-            "occ": 17
+            "occ": 16
           },
           {
             "file": "book/7.1-reorganization-of-se.html",
@@ -4267,7 +4307,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 126
+            "occ": 128
           }
         ]
       },
@@ -4390,6 +4430,10 @@
             "occ": 11
           },
           {
+            "file": "book/2.9-modeling-summary.html",
+            "occ": 2
+          },
+          {
             "file": "book/3.1-where-authority-can-act.html",
             "occ": 3
           },
@@ -4411,6 +4455,10 @@
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
+            "occ": 1
+          },
+          {
+            "file": "book/3.6-alignment-summary.html",
             "occ": 1
           },
           {
@@ -4825,7 +4873,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 126
+            "occ": 128
           }
         ]
       },

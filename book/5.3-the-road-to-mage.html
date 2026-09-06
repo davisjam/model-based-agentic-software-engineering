@@ -671,6 +671,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="2.6-measurement.html">10&nbsp; Measurement Models: How Much, and Against What Bound?</a></li>
 <li><a class="" href="2.7-provenance.html">11&nbsp; Provenance Models: What Did the System Do, and What Did We Observe?</a></li>
 <li><a class="" href="2.8-system-knowledge.html">12&nbsp; System Knowledge: Connecting the Models</a></li>
+<li><a class="" href="2.9-modeling-summary.html">Summary</a></li>
 <li class="part">Part 3 — Alignment</li>
 <li><a class="" href="part-3-intro.html">Alignment</a></li>
 <li><a class="" href="3.1-where-authority-can-act.html">13&nbsp; Where Authority Can Act</a></li>
@@ -678,6 +679,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="3.3-constraints-sensors-validators-gates.html">15&nbsp; Constraints, Sensors, Validators, and Gates</a></li>
 <li><a class="" href="3.4-governance-conversion.html">16&nbsp; Growing the Governed Environment</a></li>
 <li><a class="" href="3.5-when-guardrails-collide.html">17&nbsp; When Controls Become a System</a></li>
+<li><a class="" href="3.6-alignment-summary.html">Summary</a></li>
 <li class="part">Interlude</li>
 <li><a class="" href="3.5-one-problem-many-models.html">One Problem, Many Models</a></li>
 <li class="part">Part 4 — The MAGE Method</li>
@@ -1013,7 +1015,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="The modeling history"><span class="fig-label">Figure 5.3-3.</span> <em>The modeling history.</em> DocAble acquired a stable decomposition of remediation computations before it acquired an explicit model of their composition. As locally reasonable choices accumulated consequential global cost, modeling exposed dependency semantics and effect boundedness. Typed declarations made those relationships analyzable and checkable; later redesign made explicit composition authoritative for execution, while separate analytical views continued to grow around stable computation identities. The progression is from a partial model to a richer and increasingly consequential one, not from no model to model.</figcaption></figure>
 <p>The final move was to stop maintaining those relationships as another hand-written truth. The pass declarations now carry the typed IO, the graph projects its edges from them, and a blocking parity check fails if the declarations and the projected graph disagree.</p>
 <h3>The model became part of the machinery</h3>
-<p>That was not the final move. The graph had made composition visible enough to analyze, and the analysis changed what we wanted the architecture to do. The same pipeline whose local choices had accumulated global cost could now be treated as explicit dependency structure rather than as an ordering reconstructed from implementation.</p>
+<p>A later redesign went further. The graph had made composition visible enough to analyze, and the analysis changed what we wanted the architecture to do. The same pipeline whose local choices had accumulated global cost could now be treated as explicit dependency structure rather than as an ordering reconstructed from implementation.</p>
 <p>The remediation architecture was subsequently rebuilt around an authoritative computation model. The execution machinery consumes the modeled dependencies to determine what becomes ready and in what order work may proceed. The implementations of the individual computations still realize the work, but composition no longer lives implicitly in their bodies. A representation introduced to understand the pipeline became part of the machinery that runs it.</p>
 <p>The analytical graph did not disappear. It became a view over the modeled computation structure, suitable for questions execution itself does not need to answer: dependency analysis, critical paths, mutation boundedness, latency and cost, test coverage, and the strength of the checks that hold the representation in correspondence. Stable computation identities let those views attach without turning the execution model into one universal schema.</p>
 <p>This was the MAGE move in miniature. Repeated global cost made an implicit relationship consequential; modeling exposed the distinctions that mattered; analysis made a better realization visible; and the resulting representation acquired authority because execution began to consume it.</p>

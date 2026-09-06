@@ -1838,12 +1838,19 @@ def _is_appendix_divider(ch: "ir.Chapter") -> bool:
     return ch.slug in bb._APPENDICES_DIVIDER_SLUGS
 
 
+#: The in-part UNNUMBERED codas — the terminal closings (Part-IV portable-moves; the Part-II/III Summary
+#: sections). Web twin: each record's `is_coda` flag, read from `<!-- coda: true -->`. The IR carries no
+#: flags, so match on the minted slug exactly as `_is_part_page`/`_is_appendix_divider` do. Each sorts last
+#: in its Part by its `N.M-` filename but prints no number. Register a new terminal coda's slug here.
+_CODA_SLUGS = frozenset({
+    "4.6-portable-moves",
+    "2.9-modeling-summary",
+    "3.6-alignment-summary",
+})
+
+
 def _is_coda(ch: "ir.Chapter") -> bool:
-    """The in-part UNNUMBERED coda — the Part-IV portable-moves closing (web twin: the record's `is_coda`
-    flag, read from `<!-- coda: true -->`). The IR carries no flags, so match on the minted slug, exactly as
-    `_is_part_page`/`_is_appendix_divider` do. It sorts last in Part IV by its `4.6-` filename but prints no
-    number."""
-    return ch.slug == "4.6-portable-moves"
+    return ch.slug in _CODA_SLUGS
 
 
 #: Per-Part divider text (title, subtitle), keyed by the minted slug — the PDF twin of the web records'

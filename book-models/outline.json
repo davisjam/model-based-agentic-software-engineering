@@ -7,7 +7,7 @@
     "derived_ids": 204,
     "missing_topic_sentence": 2,
     "sections_drained": 181,
-    "paragraph_points": 796
+    "paragraph_points": 791
   },
   "chapters": [
     {
@@ -3819,7 +3819,7 @@
             },
             {
               "slug": "that-was-not-the-final-move-analysis-changed-the-architecture",
-              "text": "That was not the final move: the graph made composition analyzable, and the analysis changed what we wanted the architecture to do — the pipeline could be treated as explicit dependency structure rather than an ordering reconstructed from implementation.",
+              "text": "A later redesign went further: the graph made composition analyzable, and the analysis changed what we wanted the architecture to do — the pipeline could be treated as explicit dependency structure rather than an ordering reconstructed from implementation.",
               "block_index": 57
             }
           ]
@@ -3828,7 +3828,7 @@
           "section_id": "the-model-became-part-of-the-machinery",
           "level": 3,
           "heading_text": "The model became part of the machinery",
-          "topic_sentence": "That was not the final move.",
+          "topic_sentence": "A later redesign went further.",
           "id_source": "derived",
           "block_index": 58,
           "points": [
@@ -5048,7 +5048,7 @@
             },
             {
               "slug": "modeling-changes-economics-alignment-changes-authority",
-              "text": "Their contributions are separable: Modeling changes the economics of reasoning, Alignment changes the authority of the result.",
+              "text": "Their primary contributions are separable — Modeling and Alignment are different levers.",
               "block_index": 141
             }
           ]
@@ -5165,11 +5165,6 @@
               "slug": "part-v-evidence-is-depth-and-variation-not-effect-sizes",
               "text": "Part V supplied depth and variation, not population effect sizes; the theory is the proposed explanation of it.",
               "block_index": 187
-            },
-            {
-              "slug": "mage-predicts-environment-fit-is-increasingly-consequential",
-              "text": "MAGE predicts abundant implementation makes environment fit increasingly consequential, with value that can depreciate.",
-              "block_index": 189
             }
           ]
         }
@@ -5833,11 +5828,6 @@
               "slug": "theory-may-generalize-beyond-software-engineering",
               "text": "The theory's mechanisms are not code-specific and may generalize to other engineering and knowledge work; testing that is future work.",
               "block_index": 93
-            },
-            {
-              "slug": "mage-is-a-testable-theory-not-a-finished-law",
-              "text": "MAGE is presented as a theory that can be tested, refined, bounded, or rejected, not a finished law.",
-              "block_index": 95
             }
           ]
         }
@@ -5879,27 +5869,27 @@
           "heading_text": "Agents Entered an Implementation-Centered Discipline",
           "topic_sentence": "The first generation of agentic software-engineering research inherited the engineering object already in front of it: a repository and a software-development task.",
           "id_source": "derived",
-          "block_index": 11,
+          "block_index": 10,
           "points": [
             {
               "slug": "agents-inherited-the-implementation-centered-object",
               "text": "The first agentic-SE research inherited the engineering object in front of it — a repository and a task — and asked how to make a stronger reasoner perform it.",
-              "block_index": 12
+              "block_index": 11
             },
             {
               "slug": "repocoder-sweagent-autocoderover-share-an-orientation",
               "text": "RepoCoder, SWE-agent, and AutoCodeRover differ, but they share an orientation: improve the machinery through which an agent acts on the software artifact.",
-              "block_index": 14
+              "block_index": 13
             },
             {
               "slug": "mage-accepts-machinery-and-changes-the-object",
               "text": "MAGE accepts that machinery and changes the engineering object: what durable environment should be engineered around autonomous implementation.",
-              "block_index": 16
+              "block_index": 15
             },
             {
               "slug": "the-difference-is-level-not-opposition",
               "text": "Retrieval, code search, interfaces, tests, and tools belong inside a governed engineering environment — pieces of a larger engineered substrate, not accessories to a coding agent.",
-              "block_index": 18
+              "block_index": 17
             }
           ]
         },
@@ -5909,12 +5899,12 @@
           "heading_text": "The Old Dream, with a New Substrate",
           "topic_sentence": "The dream is older than the present substrate.",
           "id_source": "derived",
-          "block_index": 20,
+          "block_index": 19,
           "points": [
             {
               "slug": "the-old-dream-with-a-new-substrate",
               "text": "The intelligent-programming-partner dream is decades old; commodity intelligence finally lets us run much of it at production scale, where its next-order problems become visible.",
-              "block_index": 21
+              "block_index": 20
             }
           ]
         },
@@ -5924,12 +5914,12 @@
           "heading_text": "Representation Engineering",
           "topic_sentence": "As implementation becomes cheaper, engineers can spend more of their effort on the representations through which humans and machines reason about the system.",
           "id_source": "derived",
-          "block_index": 27,
+          "block_index": 26,
           "points": [
             {
               "slug": "representation-engineering-broader-than-context-engineering",
               "text": "Retrieval asks which existing information to place before a reasoner; representation engineering asks whether the question should be expressed in a different form — only the latter changes the object of subsequent reasoning.",
-              "block_index": 29
+              "block_index": 28
             }
           ]
         },
@@ -5939,7 +5929,7 @@
           "heading_text": "Where Engineering Effort Moves",
           "topic_sentence": "Implementation shifts; responsibility does not.",
           "id_source": "derived",
-          "block_index": 33,
+          "block_index": 32,
           "points": []
         },
         {
@@ -5948,7 +5938,7 @@
           "heading_text": "Review When Implementation Is Abundant",
           "topic_sentence": "Code review does not disappear when agents produce the code.",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 38,
           "points": []
         },
         {
@@ -5957,7 +5947,7 @@
           "heading_text": "The Software Factory Risk",
           "topic_sentence": "The alternative trajectory deserves attention.",
           "id_source": "derived",
-          "block_index": 50,
+          "block_index": 49,
           "points": []
         }
       ],
@@ -6366,21 +6356,6 @@
               "slug": "cheaper-implementation-changes-where-difficulty-lies",
               "text": "Cheaper implementation does not make engineering easy; it changes where the difficulty lies.",
               "block_index": 103
-            },
-            {
-              "slug": "the-enduring-work-decide-represent-preserve-establish-evidence",
-              "text": "The enduring work: decide what must be true, represent it, preserve degrees of freedom, and establish evidence.",
-              "block_index": 105
-            },
-            {
-              "slug": "mage-asks-where-probabilistic-reasoning-is-valuable",
-              "text": "MAGE does not eliminate probabilistic reasoning; it asks where it is valuable and where unnecessary.",
-              "block_index": 107
-            },
-            {
-              "slug": "opportunity-implementation-scales-without-judgment-scaling",
-              "text": "The opportunity is engineering in which implementation scales without human judgment scaling with it.",
-              "block_index": 109
             }
           ]
         }

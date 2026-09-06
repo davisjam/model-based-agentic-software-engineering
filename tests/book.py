@@ -565,6 +565,31 @@ def check_typst_emph_semicolon() -> "tuple[str, list[str]]":
     return (FAIL if issues else PASS), issues
 
 
+def check_coda_web_pdf_parity() -> "tuple[str, list[str]]":
+    """Web/PDF parity for terminal codas (260906). Coda-ness lives in TWO places: the `<!-- coda: true -->`
+    marker the WEB build reads per-chapter, and `book_typst._CODA_SLUGS`, the enumerated slug set the
+    flag-free PDF/Typst path re-derives coda-ness from (the IR carries no flags, exactly as `_is_part_page`/
+    `_is_appendix_divider`). A coda added to the marker but not the set renders UNNUMBERED on the web and
+    NUMBERED in the PDF — a silent divergence (hit when the Part-II/III Summary codas landed). Pin that the
+    two agree both ways so the next terminal section can't drift."""
+    import sys as _sys
+    if BOOK not in _sys.path:
+        _sys.path.insert(0, BOOK)
+    import book_typst as _bt  # noqa: E402 — the print emitter owns the PDF coda slug set
+    import glob
+    marker_slugs = {
+        os.path.splitext(os.path.basename(f))[0]
+        for f in glob.glob(os.path.join(BOOK, "part*", "*.md"))
+        if re.search(r"<!--\s*coda:\s*true\s*-->", open(f, encoding="utf-8").read())
+    }
+    set_slugs = set(_bt._CODA_SLUGS)
+    issues = [f"{s}: has `<!-- coda: true -->` (web unnumbered) but is NOT in book_typst._CODA_SLUGS "
+              f"(the PDF would number it)" for s in sorted(marker_slugs - set_slugs)]
+    issues += [f"{s}: in book_typst._CODA_SLUGS but no part chapter carries `<!-- coda: true -->`"
+               for s in sorted(set_slugs - marker_slugs)]
+    return (FAIL if issues else PASS), issues
+
+
 # ---- rule 10: no hardcoded "Chapter N" in prose (chapter numbers are DERIVED at build) --------------
 
 _HARDCODED_CHAPTER_RE = re.compile(r"\bChapter\s+\d+\b")
