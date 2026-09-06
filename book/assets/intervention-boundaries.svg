@@ -32,8 +32,8 @@
   </defs>
 
   <rect x="0" y="0" width="1000" height="360" fill="#fdfcf9"/>
-  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where authority can act</text>
-  <text x="500" y="68" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Guidance shapes reasoning input; authority binds actions, units of work, and artifacts.</text>
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where obligations can be enforced</text>
+  <text x="500" y="68" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Guidance shapes reasoning input; mechanisms can constrain actions or determine what work and artifacts are accepted.</text>
 
   <!-- ===== GUIDANCE zone (reasoning input, set apart) ===== -->
   <rect x="28" y="92" width="252" height="196" rx="12" fill="#eef2f7" stroke="#2f5169" stroke-width="1.6" stroke-dasharray="6 4"/>
@@ -41,7 +41,7 @@
 
   <!-- ===== AUTHORITY zone (action / work unit / artifact-runtime) ===== -->
   <rect x="292" y="92" width="668" height="196" rx="12" fill="#fbf5ee" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
-  <text x="626" y="115" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="1">AUTHORITY CAN BIND HERE</text>
+  <text x="626" y="115" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="1">ENFORCEMENT CAN OCCUR HERE</text>
 
   <!-- boundary pills -->
   <rect x="56"  y="128" width="196" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -69,7 +69,7 @@
   <text x="830" y="226" text-anchor="middle" font-size="20" fill="#9a3f12">admission &#183; runtime policy</text>
 
   <!-- reasoning input is authoritative only through a consumer -->
-  <text x="154" y="256" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">authoritative only through</text>
+  <text x="154" y="256" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">enforced only through</text>
   <text x="154" y="272" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">a consuming mechanism</text>
 
   <!-- the grain axis: neutral, plain — spans the four boxes; grain increases, strength does not -->

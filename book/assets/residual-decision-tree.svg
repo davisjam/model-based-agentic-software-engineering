@@ -64,8 +64,8 @@
 
   <!-- Q3 -->
   <rect id="q3" x="460" y="274" width="320" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
-  <text x="620" y="299" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Does authority act</text>
-  <text x="620" y="321" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">on the result?</text>
+  <text x="620" y="299" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Does the environment</text>
+  <text x="620" y="321" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">enforce the result?</text>
 
   <!-- Q3 no -> EVALUATED ONLY -->
   <!-- edge: q3 -> evaluated -->
@@ -81,7 +81,7 @@
   <text x="676" y="364" text-anchor="middle" font-size="20" font-style="italic" fill="#2f5137">yes</text>
   <rect id="governed" x="539.95" y="396" width="270.09" height="66" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2.4"/>
   <text x="675" y="425" text-anchor="middle" font-size="20" font-weight="800" fill="#2f5137">GOVERNED</text>
-  <text x="675" y="447" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">authoritative consequence</text>
+  <text x="675" y="447" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">mechanically enforced</text>
 
   <text x="500" y="512" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">design choices, not maturity levels — different obligations stop in different places</text>
 </svg>
