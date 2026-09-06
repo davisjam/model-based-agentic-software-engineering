@@ -56,11 +56,9 @@ def check_html_links():
         base, ap = os.path.dirname(f), os.path.abspath(f)
         for ref in parsed[ap].refs:
             if ref.startswith(("http://", "https://", "mailto:", "data:", "//")):
-                continue
-            if ref == "/images/logo.svg":
-                continue  # Duality Lab logo — single-sourced root-absolute on the shared davisjam.github.io
-                          # Pages origin (absent on disk here by design; its liveness is the Tier-2 network
-                          # control check_lab_logo_url, and the no-vendored-copy control check_lab_logo_single_sourced)
+                continue  # external/absolute refs (incl. the Duality Lab logo's full https:// URL) are not
+                          # resolved on disk here; the logo's liveness is the Tier-2 network control
+                          # check_lab_logo_url and the no-vendored-copy control check_lab_logo_single_sourced
             tgt_rel, _, anchor = ref.partition("#")
             if tgt_rel and os.path.basename(tgt_rel) in _CI_BUILT_ARTIFACTS:
                 continue  # CI-built download artifact — present on the deployed site, not on disk here
@@ -81,24 +79,28 @@ def check_html_links():
 
 
 def check_lab_logo_single_sourced():
-    """The Duality Lab site logo is single-sourced from `/images/logo.svg` on the shared davisjam.github.io
-    Pages origin — never vendored into this repo (a copy would drift the first time the logo is revised, and
-    a stale logo still renders perfectly, so the drift is invisible). Two assertions: (1) no logo asset is
-    tracked here, which makes vendoring UNLANDABLE rather than merely discouraged; (2) the built pages that
-    carry the site header reference `src="/images/logo.svg"` in bulk, so a removed logo or a path rewritten
-    to a relative/vendored one fails. The URL's liveness is the separate Tier-2 network control."""
+    """The Duality Lab site logo is single-sourced from the absolute `https://davisjam.github.io/images/logo.svg`
+    (one file on the personal-site Pages origin) — never vendored into this repo (a copy would drift the first
+    time the logo is revised, and a stale logo still renders perfectly, so the drift is invisible). Absolute
+    (not root-absolute) so it resolves in every serving context; a root-absolute `/images/logo.svg` 404s
+    wherever this site is served in isolation (local preview, file://, a future custom domain). Two
+    assertions: (1) no logo asset is tracked here, which makes vendoring UNLANDABLE rather than merely
+    discouraged; (2) the built pages that carry the site header reference the full URL in bulk, so a removed
+    logo or a path rewritten to a relative/vendored one fails. The URL's liveness is the separate Tier-2
+    network control."""
     import glob
+    _LOGO_URL = "https://davisjam.github.io/images/logo.svg"
     issues: list[str] = []
     for pat in ("*logo*.svg", "*logo*.png"):
         for f in glob.glob(os.path.join(ROOT, "**", pat), recursive=True):
             r = rel(f)
             if any(seg in r for seg in ("node_modules", "/.git/", ".venv", "/site/")):
                 continue
-            issues.append(f"vendored logo asset must not exist: {r} — reference /images/logo.svg instead "
-                          "(single-sourced on the shared Pages origin)")
-    n = sum(1 for f in html_files() if 'src="/images/logo.svg"' in open(f, encoding="utf-8").read())
+            issues.append(f"vendored logo asset must not exist: {r} — reference the absolute {_LOGO_URL} "
+                          "instead (single-sourced on the personal-site Pages origin)")
+    n = sum(1 for f in html_files() if f'src="{_LOGO_URL}"' in open(f, encoding="utf-8").read())
     if n < 90:
-        issues.append(f'only {n} built page(s) reference src="/images/logo.svg" (expected ~106) — the '
+        issues.append(f'only {n} built page(s) reference src="{_LOGO_URL}" (expected ~106) — the '
                       "per-page header logo did not take, or the path was rewritten to a relative/vendored one")
     return (FAIL if issues else PASS), issues
 

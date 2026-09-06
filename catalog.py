@@ -2107,7 +2107,7 @@ def _page(title: str, crumb: str, body: str, subtitle: str = "", rel_root: str =
             f"<title>{_attr(title)}</title>\n{_dtokens.google_fonts_link(rel_root=rel_root)}\n<style>{PAGE_CSS}{FONT_CSS}</style>\n</head>\n<body>\n"
             f"<main>\n"
             f'<a class="v3-nav-lab v3-nav-lab--crumb" href="https://davisjam.github.io/">'
-            f'<img src="/images/logo.svg" alt="Duality Lab — James C. Davis" '
+            f'<img src="https://davisjam.github.io/images/logo.svg" alt="Duality Lab — James C. Davis" '
             f'width="76" height="25"></a>\n'
             f"{crumb}\n{sub}{body}\n{_site_footer(rel_root)}\n</main>\n</body>\n</html>\n")
 
@@ -2377,10 +2377,12 @@ LANDING_CSS = """
   .v3-nav-home { font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:var(--ink);
                  text-decoration:none; letter-spacing:0.02em; display:inline-flex; align-items:center; gap:0.35rem; }
   .v3-nav-hat { flex:0 0 auto; }
-  /* Duality Lab logo — single-sourced from /images/logo.svg on the shared davisjam.github.io Pages
-     origin (root-absolute path resolves across the homepage + this site; no vendored copy — see the
-     no-logo-file control in tests/html.py). If MAGE ever moves to its own domain, switch to the absolute
-     https://davisjam.github.io/images/logo.svg. */
+  /* Duality Lab logo — single-sourced from the absolute https://davisjam.github.io/images/logo.svg (one
+     file on the personal-site Pages origin; no vendored copy — see the no-logo-file control in
+     tests/html.py). Absolute (not root-absolute) so it resolves in EVERY context — local preview, a
+     future MAGE custom domain, even a file:// open — which a root-absolute /images/logo.svg does not
+     (it 404s wherever this site is served in isolation). Cost: a hardcoded host, which breaks only if the
+     personal-site domain moves — the more stable anchor than MAGE's origin. */
   .v3-nav-lab { flex:0 0 auto; display:inline-flex; align-items:center; margin-right:14px; }
   .v3-nav-lab img { display:block; height:38px; width:auto; }
   .v3-nav-lab--crumb { margin: 0 0 10px; }
@@ -2799,7 +2801,7 @@ def _v3_nav() -> str:
     return (
         '<nav class="v3-nav" aria-label="Primary">\n'
         '  <a class="v3-nav-lab" href="https://davisjam.github.io/">'
-        '<img src="/images/logo.svg" alt="Duality Lab — James C. Davis" '
+        '<img src="https://davisjam.github.io/images/logo.svg" alt="Duality Lab — James C. Davis" '
         'width="116" height="38"></a>\n'
         '  <a class="v3-nav-home" href="index.html">'
         '<svg class="v3-nav-hat" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">'
