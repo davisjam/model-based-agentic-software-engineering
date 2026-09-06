@@ -3,24 +3,10 @@ Part VI treated MAGE as a theory: an explanation of how agentic capacity, repres
 engineering capital, and the surrounding environment interact; what that account predicts; where it should
 apply; and how it might be tested.
 
-This final Part asks what follows if the account is substantially right.
-
-The answer is not that software engineering becomes less necessary as implementation becomes cheaper. It is
-that the allocation of engineering work changes. Commodity intelligence can assume more realization,
-analysis, and routine transformation, while the scarce work increasingly concerns intent, abstraction,
-evidence, coordination, judgment, and acceptance. The lifecycle remains recognizable. The distribution of
-human attention across it does not.
-
-This change also places software engineering in a more familiar engineering position. Other engineering
-disciplines have long reasoned through purposeful representations, accumulated evidence around consequential
-claims, constrained realization through external mechanisms, and distinguished productive machinery from
-the professional judgment that authorizes its use. Software has always contained versions of these
-practices. Commodity intelligence changes how broadly they may repay their cost.
-
-The Part therefore moves outward. It first asks how software work reorganizes when implementation is
-abundant. It then locates MAGE within older engineering and computing traditions. Finally, it returns to
-the engineer: what expertise, authority, education, and responsibility mean when autonomous systems can
-increasingly perform the implementation itself.
+This final Part asks what follows if that account is substantially right. It moves outward from the theory
+to the profession: first to the organization of software work under abundant implementation, then to
+MAGE's relationship with older engineering and computing traditions, and finally to the engineer's
+expertise, authority, education, and responsibility.
 
 Delegation changes what engineers do. It does not remove their answerability for what they build.
 
