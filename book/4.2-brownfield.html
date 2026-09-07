@@ -886,11 +886,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A wiki is a useful first path because many organizations already have one and the migration distance is short. Treat it as an <strong>informal model</strong>: a reduced representation people already use to reason about the system, even though its semantics are weak and nothing mechanical guarantees correspondence with the code. Pages supply nodes of a kind, links supply relationships of a kind, and search supplies navigation. That does not make the wiki equivalent to the structured graph Part 2 built. It makes it raw material.</p>
 <p>The first improvement is connection, not replacement. Important claims should point to the code, tests, configuration, or runtime evidence that realizes them; important implementation regions should point back to the pages that explain why they exist.<sup class="note-ref"><a href="#note-4-2-brownfield-2" role="doc-noteref" aria-label="note 2">†</a></sup><span class="editorial-note" id="note-4-2-brownfield-2"><span class="cn-mark">†</span> The earlier Parts develop the stronger form of this join: every model node can point to the implementation it represents, and that implementation can point back to the model node that explains it.</span> The resulting trace is not yet a proof that the prose is true. It is a disciplined join that lets audits and later mechanisms discover when the map and the territory disagree. <a class="xref" href="4.2-brownfield.html#fig-4-2-2">Figure&nbsp;4.2-2</a> draws the two independent ways that join can be strengthened.</p>
 <p>Brownfield representations can be strengthened incrementally from informal descriptions to structured, machine-readable models and, where a consumer justifies the cost, executable models.</p>
-<figure id="fig-4-2-2" class="book-figure" data-label="representation-authority"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
-     role="img" aria-labelledby="f-representation-authority-raTitle f-representation-authority-raDesc"
+<figure id="fig-4-2-2" class="book-figure" data-label="representation-enforcement"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
+     role="img" aria-labelledby="f-representation-enforcement-raTitle f-representation-enforcement-raDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-representation-authority-raTitle">Strengthening representation and enforcement are two independent tracks, not one ladder</title>
-  <desc id="f-representation-authority-raDesc">Two horizontal tracks stacked one above the other. The upper track is
+  <title id="f-representation-enforcement-raTitle">Strengthening representation and enforcement are two independent tracks, not one ladder</title>
+  <desc id="f-representation-enforcement-raDesc">Two horizontal tracks stacked one above the other. The upper track is
     representation strengthening, left to right: an informal model (prose, wiki, diagram), then a
     structured model (a typed shape a tool can parse), then an executable model (one a tool actually
     consumes). The lower track is consequence, left to right: guidance that is read if useful, then
@@ -902,7 +902,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     it is warranted.</desc>
 
   <defs>
-    <marker id="f-representation-authority-ra-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <marker id="f-representation-enforcement-ra-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
   </defs>
@@ -918,7 +918,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="112" y="276" font-size="19.2" font-weight="700" fill="#2f5169">CONSEQUENCE &#8594; how represented claims are used</text>
 
   <!-- rep arrows -->
-  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-representation-authority-ra-ah)">
+  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-representation-enforcement-ra-ah)">
     <!-- edge: informal -> structured -->
     <path d="M328,149 L382,149"/>
     <!-- edge: structured -> executable -->
@@ -926,7 +926,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
 
   <!-- auth arrows -->
-  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-representation-authority-ra-ah)">
+  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-representation-enforcement-ra-ah)">
     <!-- edge: guidance -> correspondence -->
     <path d="M328,337 L382,337"/>
     <!-- edge: correspondence -> under-enforcement -->
@@ -936,37 +936,37 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ===================== SELECTIVE ATTACHMENT — one dashed vertical + plain label, no crossing ===================== -->
   <!-- edge: executable .. under-enforcement -->
   <path d="M755,186 L755,298" fill="none" stroke="#1c1917" stroke-width="2.4"
-        stroke-dasharray="7 5" marker-end="url(#f-representation-authority-ra-ah)"/>
+        stroke-dasharray="7 5" marker-end="url(#f-representation-enforcement-ra-ah)"/>
   <text x="735" y="236" text-anchor="end" font-size="16" fill="#57534e">selected obligations</text>
   <text x="735" y="258" text-anchor="end" font-size="16" fill="#57534e">come under enforcement</text>
 
   <!-- rep chip 1: informal -->
-  <rect id="f-representation-authority-informal" x="118" y="112" width="210" height="74" rx="9" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
+  <rect id="f-representation-enforcement-informal" x="118" y="112" width="210" height="74" rx="9" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
   <text x="223" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Informal</text>
   <text x="223" y="170" text-anchor="middle" font-size="19.2" fill="#57534e">prose &#183; wiki &#183; diagram</text>
 
   <!-- rep chip 2: structured -->
-  <rect id="f-representation-authority-structured" x="347.45" y="112" width="283.1" height="74" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
+  <rect id="f-representation-enforcement-structured" x="347.45" y="112" width="283.1" height="74" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
   <text x="489" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Structured</text>
   <text x="489" y="170" text-anchor="middle" font-size="19.2" fill="#57534e">typed shape a tool can parse</text>
 
   <!-- rep chip 3: executable -->
-  <rect id="f-representation-authority-executable" x="650" y="112" width="210" height="74" rx="9" fill="#cfe6d6" stroke="#1f7a4d" stroke-width="2.6"/>
+  <rect id="f-representation-enforcement-executable" x="650" y="112" width="210" height="74" rx="9" fill="#cfe6d6" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="755" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Executable</text>
   <text x="755" y="170" text-anchor="middle" font-size="19.2" fill="#57534e">consumed by a tool</text>
 
   <!-- auth chip 1: guidance -->
-  <rect id="f-representation-authority-guidance" x="118" y="300" width="210" height="74" rx="9" fill="#f6f4ef" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="f-representation-enforcement-guidance" x="118" y="300" width="210" height="74" rx="9" fill="#f6f4ef" stroke="#2f5169" stroke-width="2.2"/>
   <text x="223" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Guidance</text>
   <text x="223" y="358" text-anchor="middle" font-size="19.2" fill="#57534e">read if useful</text>
 
   <!-- auth chip 2: correspondence -->
-  <rect id="f-representation-authority-correspondence" x="352.17" y="300" width="273.66" height="74" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="f-representation-enforcement-correspondence" x="352.17" y="300" width="273.66" height="74" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="489" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Correspondence</text>
   <text x="489" y="358" text-anchor="middle" font-size="19.2" fill="#57534e">join checked &#183; drift surfaced</text>
 
   <!-- auth chip 3: under enforcement -->
-  <rect id="f-representation-authority-under-enforcement" x="624" y="300" width="262" height="74" rx="9" fill="#dbe6ef" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="f-representation-enforcement-under-enforcement" x="624" y="300" width="262" height="74" rx="9" fill="#dbe6ef" stroke="#2f5169" stroke-width="2.6"/>
   <text x="755" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">Under enforcement</text>
   <text x="755" y="358" text-anchor="middle" font-size="19.2" fill="#57534e">selected obligations gated</text>
 

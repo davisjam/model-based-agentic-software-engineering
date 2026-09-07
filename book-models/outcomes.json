@@ -390,7 +390,7 @@
       "statement": "After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.",
       "bloom": "create",
       "provenance": "declared",
-      "anchor": "Preface 'Who this book is for': recognize when an engineering problem is being paid for repeatedly in reconstruction or human judgment; decide whether a better representation, stronger authority, or both would retire that cost; and design mechanisms suited to your own system rather than copying another organization's process.",
+      "anchor": "Preface 'Who this book is for': recognize when an engineering problem is being paid for repeatedly in reconstruction or human judgment; decide whether a better representation, stronger enforcement, or both would retire that cost; and design mechanisms suited to your own system rather than copying another organization's process.",
       "gap_note": null
     },
     {
@@ -748,7 +748,7 @@
       "statement": "After this chapter, the reader can explain why agreement is not correctness — authority needs an obligation independent of the work being judged — and place a mechanism at the earliest boundary where that obligation is legible and enforceable.",
       "bloom": "understand",
       "provenance": "derived",
-      "anchor": "point: authority-needs-an-independent-obligation-and-a-legible-boundary / a-drift-check-establishes-agreement-not-that-the-correspondence-is-right / place-authority-at-the-earliest-boundary-where-the-obligation-is-legible-and-enforceable",
+      "anchor": "point: enforcement-needs-an-independent-obligation-and-a-legible-boundary / a-drift-check-establishes-agreement-not-that-the-correspondence-is-right / place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable",
       "gap_note": null
     },
     {
@@ -826,7 +826,7 @@
       "statement": "After this chapter, the reader can distinguish guidance from authority, place a mechanism at the intervention boundary where the relevant obligation is legible, and recognize that where a mechanism acts and how much authority it carries are separate decisions.",
       "bloom": "understand",
       "provenance": "derived",
-      "anchor": "point: guidance-influences-behavior-authority-constrains-consequences / authority-can-act-at-several-boundaries-choose-where-the-obligation-is-visible / the-four-boundaries-do-not-form-a-monotonic-scale",
+      "anchor": "point: guidance-influences-behavior-enforcement-constrains-consequences / enforcement-can-act-at-several-boundaries-choose-where-the-obligation-is-visible / the-four-boundaries-do-not-form-a-monotonic-scale",
       "gap_note": null
     },
     {

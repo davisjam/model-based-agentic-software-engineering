@@ -955,20 +955,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">2.6.3</span> Tolerance and Margin</h2>
 <p>A bound is rarely a single line. A budget usually carries a margin; a capacity envelope leaves headroom. Those are the measurement family's version of the tolerance idea from the opening chapter: the model represents not just a target but the band of acceptable variation around it, so that "within tolerance" and "over the line" are both statable. The point is only that a measurement model can carry a margin — not to reopen the degrees-of-freedom discussion the opening chapter already settled.</p>
 <p>The cost-and-capacity model makes spending attributable and demand comparable to an envelope. It does not decide the budget, guarantee the numbers are collected correctly, or enforce the bound. <a class="xref" href="2.6-measurement.html#fig-2-6-4">Figure&nbsp;2.6-4</a> draws that separation: the model defines the quantity and the reference; whether a comparison is merely observed, used to adapt behavior, or enforced by a gate is Alignment's decision. This is the clearest case in the Part of a model that earns its place by exposing a property while leaving every question of enforcement open.</p>
-<figure id="fig-2-6-4" class="book-figure" data-label="modeling-perp-authority"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380"
-     role="img" aria-labelledby="f-modeling-perp-authority-paTitle f-modeling-perp-authority-paDesc"
+<figure id="fig-2-6-4" class="book-figure" data-label="modeling-perp-enforcement"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380"
+     role="img" aria-labelledby="f-modeling-perp-enforcement-paTitle f-modeling-perp-enforcement-paDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-modeling-perp-authority-paTitle">One measurement, different enforcement decisions</title>
-  <desc id="f-modeling-perp-authority-paDesc">Part II, the model, names a quantity and a reference bound and compares them, answering
+  <title id="f-modeling-perp-enforcement-paTitle">One measurement, different enforcement decisions</title>
+  <desc id="f-modeling-perp-enforcement-paDesc">Part II, the model, names a quantity and a reference bound and compares them, answering
     what quantity and bound matter. Part III, the enforcement decision, takes the same model and chooses its
     force: observe, adapt, degrade, or gate. Observe and adapt are shown in gray; degrade and gate, the
     consequential decisions, in rust. Modeling and enforcement are separate moves over one shared model.</desc>
 
   <defs>
-    <marker id="f-modeling-perp-authority-pa-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-modeling-perp-enforcement-pa-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="f-modeling-perp-authority-pa-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-modeling-perp-enforcement-pa-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
   </defs>
@@ -981,18 +981,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ===== LEFT: PART II MODEL ===== -->
   <text x="235" y="82" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1.2" fill="#2f5169">PART II &#183; MODEL</text>
   <!-- edges UNDER the boxes; source ends run to the quantity/bound centers, capped by their fill -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-modeling-perp-authority-pa-b)">
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-modeling-perp-enforcement-pa-b)">
     <!-- edge: quantity -> comparison -->
     <path d="M170,132.7 L219,132.7 L219,157.3 L268,157.3"/>
     <!-- edge: bound -> comparison -->
     <path d="M170,197.3 L219,197.3 L219,172.7 L268,172.7"/>
   </g>
   <g font-size="19.2" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect id="f-modeling-perp-authority-quantity" x="40" y="102" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-modeling-perp-enforcement-quantity" x="40" y="102" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="105" y="131">quantity</text>
-    <rect id="f-modeling-perp-authority-bound" x="40" y="182" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-modeling-perp-enforcement-bound" x="40" y="182" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="105" y="211">bound</text>
-    <rect id="f-modeling-perp-authority-comparison" x="270" y="142" width="150" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+    <rect id="f-modeling-perp-enforcement-comparison" x="270" y="142" width="150" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
     <text x="345" y="171">comparison</text>
   </g>
   <text x="235" y="262" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">&#8220;What quantity and bound matter?&#8221;</text>
@@ -1000,7 +1000,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ===== RIGHT: PART III ENFORCEMENT DECISION ===== -->
   <text x="715" y="82" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1.2" fill="#1c1917">PART III &#183; ENFORCEMENT DECISION</text>
   <!-- fan to four enforcement decisions — one path per branch, all from the same-model centre (715,123) -->
-  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-modeling-perp-authority-pa-k)">
+  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-modeling-perp-enforcement-pa-k)">
     <!-- edge: same-model -> observe -->
     <path d="M620,123 L554,123 L554,190"/>
     <!-- edge: same-model -> adapt -->
@@ -1010,16 +1010,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <!-- edge: same-model -> gate -->
     <path d="M810,130.7 L821.5,130.7 L821.5,206.7 L833,206.7"/>
   </g>
-  <rect id="f-modeling-perp-authority-same-model" x="620" y="100" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="f-modeling-perp-enforcement-same-model" x="620" y="100" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="715" y="129" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">same model</text>
   <g font-size="19.2" font-weight="700" text-anchor="middle">
-    <rect id="f-modeling-perp-authority-observe" x="505" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <rect id="f-modeling-perp-enforcement-observe" x="505" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="554" y="220" fill="#57534e">observe</text>
-    <rect id="f-modeling-perp-authority-adapt" x="615" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <rect id="f-modeling-perp-enforcement-adapt" x="615" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="664" y="220" fill="#57534e">adapt</text>
-    <rect id="f-modeling-perp-authority-degrade" x="725" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+    <rect id="f-modeling-perp-enforcement-degrade" x="725" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
     <text x="774" y="220" fill="#9a3f12">degrade</text>
-    <rect id="f-modeling-perp-authority-gate" x="835" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+    <rect id="f-modeling-perp-enforcement-gate" x="835" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
     <text x="884" y="220" fill="#9a3f12">gate</text>
   </g>
   <text x="715" y="270" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">&#8220;What enforcement is justified?&#8221;</text>

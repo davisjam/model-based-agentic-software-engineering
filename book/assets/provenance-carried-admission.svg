@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Part III §3.3.6 figure — provenance-carried-authority.svg. Left-to-right, SANCTIONED PATH ONLY (the
+<!-- Part III §3.3.6 figure — provenance-carried-admission.svg. Left-to-right, SANCTIONED PATH ONLY (the
      bypasses are deliberately absent: the conceptual move is that the environment does not enumerate them).
      implementation logic -> sanctioned source of operation (rust = the sanctioned abstraction; it issues
      provenance) -> arrow carrying "operation + provenance" -> a vertical consequence boundary that

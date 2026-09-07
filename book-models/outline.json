@@ -453,7 +453,7 @@
               "block_index": 37
             },
             {
-              "slug": "authority-must-reside-outside-the-agent",
+              "slug": "enforcement-must-reside-outside-the-agent",
               "text": "Commodity intelligence makes that separation more important because implementation is cheap and repeatable; an agent can propose, inspect, explain, and repair, but another judgment from the same substrate does not constitute independent evidence — the environment must establish what evidence counts.",
               "block_index": 39
             },
@@ -478,7 +478,7 @@
               "block_index": 53
             },
             {
-              "slug": "agentic-work-provides-identifiable-interfaces-where-authority-can-act",
+              "slug": "agentic-work-provides-identifiable-interfaces-where-enforcement-can-act",
               "text": "Consequential work reaches the system through identifiable interfaces — inputs, tool calls, edits, outputs, lifecycle transitions — where a sandbox, hook, or test can act without a rich model, and explicit representations extend the semantic reach of those same control points.",
               "block_index": 55
             }
@@ -666,7 +666,7 @@
               "block_index": 77
             },
             {
-              "slug": "authority-remains-separate",
+              "slug": "enforcement-remains-separate",
               "text": "Enforcement stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Part III asks which the engineered environment should enforce.",
               "block_index": 79
             }
@@ -1127,7 +1127,7 @@
               "block_index": 18
             },
             {
-              "slug": "measurement-boundary-modeling-and-authority-are-separate",
+              "slug": "measurement-boundary-modeling-and-enforcement-are-separate",
               "text": "The cost-and-capacity model makes spending attributable and demand comparable to an envelope; it does not decide the budget, guarantee the numbers are collected correctly, or enforce the bound — the clearest case in the Part of a model earning its place by exposing a property while leaving enforcement open.",
               "block_index": 20
             }
@@ -1417,7 +1417,7 @@
               "block_index": 73
             },
             {
-              "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-authority-is-a-separate-question",
+              "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-enforcement-is-a-separate-question",
               "text": "Models can provide value before enforcement — reasoning, analysis, composition, traceability — and Part III asks the separate question of enforcement.",
               "block_index": 79
             }
@@ -1480,7 +1480,7 @@
               "block_index": 32
             },
             {
-              "slug": "substantial-authority-can-exist-without-rich-models",
+              "slug": "substantial-enforcement-can-exist-without-rich-models",
               "text": "Substantial enforcement can exist without rich models; richer models expand the properties the environment can state and govern.",
               "block_index": 34
             }
@@ -1524,7 +1524,7 @@
           "block_index": 1
         },
         {
-          "slug": "guidance-influences-behavior-authority-constrains-consequences",
+          "slug": "guidance-influences-behavior-enforcement-constrains-consequences",
           "text": "Guidance influences behavior; enforcement determines what the environment permits or accepts, and feedback returns evidence between them.",
           "block_index": 3
         },
@@ -1534,7 +1534,7 @@
           "block_index": 6
         },
         {
-          "slug": "authority-can-act-at-several-boundaries-choose-where-the-obligation-is-visible",
+          "slug": "enforcement-can-act-at-several-boundaries-choose-where-the-obligation-is-visible",
           "text": "An obligation can be enforced at several boundaries; choose where it is visible and a mechanism can act on it.",
           "block_index": 8
         }
@@ -1608,7 +1608,7 @@
           "block_index": 57,
           "points": [
             {
-              "slug": "place-authority-at-the-earliest-boundary-where-the-obligation-is-legible-and-enforceable",
+              "slug": "place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable",
               "text": "The design rule: place enforcement at the earliest boundary where the obligation is both legible and decidable.",
               "block_index": 59
             },
@@ -1632,7 +1632,7 @@
       ],
       "preamble_points": [
         {
-          "slug": "authority-needs-an-independent-obligation-and-a-legible-boundary",
+          "slug": "enforcement-needs-an-independent-obligation-and-a-legible-boundary",
           "text": "Enforcement needs an obligation independent of the work being judged, and a boundary at which that obligation is legible.",
           "block_index": 1
         },
@@ -1647,7 +1647,7 @@
           "block_index": 5
         },
         {
-          "slug": "traceability-connects-intent-realization-evidence-without-conferring-authority",
+          "slug": "traceability-connects-intent-realization-evidence-without-enforcement",
           "text": "Traceability can relate an obligation, its realization, and its evidence without any mechanism enforcing the obligation — a requirement can trace cleanly to a test whose failure is merely reported, and a permission boundary can enforce firmly without a rich traceability model.",
           "block_index": 7
         },
@@ -1756,7 +1756,7 @@
               "block_index": 49
             },
             {
-              "slug": "whichever-validator-supplies-the-judgment-authority-depends-on-the-environment",
+              "slug": "whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment",
               "text": "Whichever validator supplies the judgment, the consequence still depends on what the environment does with its verdict.",
               "block_index": 55
             }
@@ -1828,7 +1828,7 @@
           ]
         },
         {
-          "section_id": "provenance-carried-authority",
+          "section_id": "provenance-carried-admission",
           "level": 2,
           "heading_text": "Provenance-Carried Admission",
           "topic_sentence": "Earlier in this Part, architectural conformance provided one example of enforcing intended relations.",
@@ -1836,7 +1836,7 @@
           "block_index": 85,
           "points": [
             {
-              "slug": "provenance-carried-authority-is-the-derivation-path-case-of-conformance",
+              "slug": "provenance-carried-admission-is-the-derivation-path-case-of-conformance",
               "text": "Provenance is useful for a particular architectural-conformance problem: the required relation is the path through which a consequential operation was derived, not merely which components interact.",
               "block_index": 87
             },
@@ -1861,7 +1861,7 @@
               "block_index": 101
             },
             {
-              "slug": "provenance-makes-a-derivation-path-authoritative",
+              "slug": "provenance-makes-a-derivation-path-sanctioned",
               "text": "Provenance here is not attribution; it makes a derivation path the sanctioned route to consequence — producer-side rules check known emitters, the consumer boundary refuses unknown routes.",
               "block_index": 103
             }
@@ -1891,7 +1891,7 @@
               "block_index": 115
             },
             {
-              "slug": "represented-intent-becomes-authoritative-through-one-of-four-roles",
+              "slug": "represented-intent-becomes-enforceable-through-one-of-four-roles",
               "text": "Leave-with: intent becomes enforceable through one of four roles; next, where the mechanisms come from.",
               "block_index": 120
             }
@@ -2034,7 +2034,7 @@
               "block_index": 57
             },
             {
-              "slug": "a-governed-obligation-carries-an-authoritative-consequence-appropriate-to-its-risk",
+              "slug": "a-governed-obligation-carries-a-binding-consequence-appropriate-to-its-risk",
               "text": "A governed obligation is enforced in a form appropriate to the engineering decision; the four states are a design space, not a ladder.",
               "block_index": 59
             },
@@ -2049,7 +2049,7 @@
               "block_index": 63
             },
             {
-              "slug": "the-mechanism-that-discovers-need-not-carry-the-authority",
+              "slug": "the-mechanism-that-discovers-need-not-carry-the-enforcement",
               "text": "The mechanism that discovers an obligation need not be the one that ultimately enforces it; Part IV follows that migration.",
               "block_index": 65
             },
@@ -2363,7 +2363,7 @@
               "block_index": 15
             },
             {
-              "slug": "align-places-authority-at-the-earliest-boundary-with-the-semantics-to-decide-it",
+              "slug": "align-places-enforcement-at-the-earliest-boundary-with-the-semantics-to-decide-it",
               "text": "Align places the enforcing mechanism at the earliest boundary that has the semantics to decide it, on evidence independent of the producer.",
               "block_index": 18
             },
@@ -2405,7 +2405,7 @@
           ]
         },
         {
-          "section_id": "guidance-or-authority",
+          "section_id": "guidance-or-enforcement",
           "level": 2,
           "heading_text": "Guidance or Enforcement?",
           "topic_sentence": "Keep one distinction sharp.",
@@ -2413,12 +2413,12 @@
           "block_index": 41,
           "points": [
             {
-              "slug": "guidance-aims-authority-binds",
+              "slug": "guidance-aims-enforcement-binds",
               "text": "Guidance influences behavior; an enforced obligation is one the environment upholds without the agent's cooperation.",
               "block_index": 44
             },
             {
-              "slug": "do-not-make-authority-the-automatic-destination-of-every-guidance",
+              "slug": "do-not-make-enforcement-the-automatic-destination-of-every-guidance",
               "text": "Do not make enforcement the automatic destination of every piece of guidance.",
               "block_index": 46
             },
@@ -2438,7 +2438,7 @@
           "block_index": 50,
           "points": [
             {
-              "slug": "mage-improves-recurring-work-two-ways-support-the-reasoner-or-give-obligations-authority",
+              "slug": "mage-improves-recurring-work-two-ways-support-the-reasoner-or-enforce-obligations",
               "text": "MAGE improves recurring work two ways: improve the conditions under which a reasoner judges, or enforce selected obligations so that satisfying them does not depend entirely on the reasoner.",
               "block_index": 52
             },
@@ -2448,17 +2448,17 @@
               "block_index": 54
             },
             {
-              "slug": "the-boundary-is-not-fixed-judgment-can-acquire-authority-over-time",
+              "slug": "the-boundary-is-not-fixed-judgment-can-acquire-enforcement-over-time",
               "text": "The boundary is not fixed: as a judgment becomes better understood, some of what depended on it can become enforceable, while other portions properly remain probabilistic.",
               "block_index": 63
             },
             {
-              "slug": "the-move-toward-authority-is-an-opportunity-not-a-required-progression",
+              "slug": "the-move-toward-enforcement-is-an-opportunity-not-a-required-progression",
               "text": "The move toward enforcement is an opportunity, not a required progression; the relevant unit is the obligation, not the task.",
               "block_index": 69
             },
             {
-              "slug": "authority-is-not-determinism",
+              "slug": "enforcement-is-not-determinism",
               "text": "Enforcement is not determinism: a deterministic checker can remain advisory, and a probabilistic evaluator can back enforcement; the two dimensions should not be conflated.",
               "block_index": 80
             }
@@ -2551,7 +2551,7 @@
           "block_index": 26,
           "points": [
             {
-              "slug": "begin-with-two-inventories-representation-and-authority",
+              "slug": "begin-with-two-inventories-representation-and-enforcement",
               "text": "Begin with two questions — what the organization already reasons through, and what is already enforced — because representation and enforcement are different things.",
               "block_index": 28
             },
@@ -2979,7 +2979,7 @@
           "block_index": 85,
           "points": [
             {
-              "slug": "part-three-placed-authority-at-the-earliest-legible-boundary",
+              "slug": "part-three-placed-enforcement-at-the-earliest-legible-boundary",
               "text": "Part III gave the placement rule for enforcement: evaluate an obligation at the earliest boundary where it becomes legible and enforceable.",
               "block_index": 87
             },
@@ -3222,7 +3222,7 @@
               "block_index": 91
             },
             {
-              "slug": "the-grade-is-a-model-read-metric-not-an-authority",
+              "slug": "the-grade-is-a-model-read-metric-not-a-gate",
               "text": "The grade is evidence read from the model; the gate carries the consequence — read the number one level below the surface, where it names a target instead of a total.",
               "block_index": 93
             }
@@ -3261,7 +3261,7 @@
           "block_index": 0
         },
         {
-          "slug": "not-all-operating-structure-is-authoritative",
+          "slug": "not-all-operating-structure-is-binding",
           "text": "These structures play different roles — a lifecycle is a model, an event supplies evidence of a transition, a runbook preserves a procedure, a metric supplies measurement evidence — and none is binding merely by existing; constraints, validators, and gates give selected operational obligations consequence.",
           "block_index": 2
         }
@@ -3394,7 +3394,7 @@
               "block_index": 65
             },
             {
-              "slug": "the-skill-makes-operating-procedure-repeatable-not-authoritative",
+              "slug": "the-skill-makes-operating-procedure-repeatable-not-binding",
               "text": "The skill makes operating procedure repeatable; it does not replace the underlying tools or gates.",
               "block_index": 68
             }
@@ -3428,7 +3428,7 @@
           "block_index": 2
         },
         {
-          "slug": "packaging-confers-no-authority-but-a-skill-can-carry-or-invoke-the-machinery",
+          "slug": "packaging-enforces-nothing-but-a-skill-can-carry-or-invoke-the-machinery",
           "text": "Packaging enforces nothing, but the same skill can invoke enforcing mechanisms or carry the models and correctness conditions those mechanisms consume.",
           "block_index": 4
         },
@@ -3968,7 +3968,7 @@
               "block_index": 107
             },
             {
-              "slug": "conformance-check-drift-became-an-alignment-problem",
+              "slug": "conformance-check-drift-became-a-correspondence-problem",
               "text": "A conformance test drifted red for days; the durable response gave the machinery for reasoning over the model machinery for maintaining its connection to the territory.",
               "block_index": 109
             },
@@ -4231,7 +4231,7 @@
               "block_index": 84
             },
             {
-              "slug": "measurement-earns-authority-when-the-number-is-deterministic",
+              "slug": "measurement-earns-a-gate-when-the-number-is-deterministic",
               "text": "The dual case: a deterministic cold-start number DID justify action, feeding a topology model that drove a re-architecture from 4,057 ms to 109 ms.",
               "block_index": 86
             }
@@ -4902,7 +4902,7 @@
               "block_index": 82
             },
             {
-              "slug": "discovery-is-not-authority-a-representation-must-earn-trust",
+              "slug": "discovery-does-not-confer-trust-a-representation-must-earn-it",
               "text": "Discovery does not confer trust: a machine-proposed representation still must earn trust in the relationship it claims.",
               "block_index": 84
             },
@@ -4982,7 +4982,7 @@
               "block_index": 110
             },
             {
-              "slug": "modeling-changes-representation-alignment-gives-authority",
+              "slug": "modeling-changes-representation-alignment-enforces-obligations",
               "text": "Modeling changes the representation reasoned over; Alignment enforces selected obligations; either can help without the other.",
               "block_index": 112
             },
@@ -5042,7 +5042,7 @@
               "block_index": 137
             },
             {
-              "slug": "modeling-changes-economics-alignment-changes-authority",
+              "slug": "modeling-changes-economics-alignment-changes-enforcement",
               "text": "Their primary contributions are separable — Modeling and Alignment are different levers.",
               "block_index": 141
             }
@@ -5538,7 +5538,7 @@
               "block_index": 68
             },
             {
-              "slug": "most-systems-mix-surfaces-which-deserve-authority",
+              "slug": "most-systems-mix-surfaces-which-deserve-enforcement",
               "text": "Most systems mix surfaces; the question is which properties deserve durable representation or enforcement, not whether a project uses MAGE.",
               "block_index": 70
             }
@@ -5607,7 +5607,7 @@
           "points": [
             {
               "slug": "empirical-question-how-the-quantities-vary-and-interact",
-              "text": "The empirical question is how success, cost, and escape vary across task, capability, representation, harness, and alignment, and interact.",
+              "text": "The empirical question is how success, cost, and escape vary across task, capability, representation, harness, and enforcement, and interact.",
               "block_index": 25
             },
             {
@@ -5657,7 +5657,7 @@
             },
             {
               "slug": "an-engineering-router-selects-the-whole-strategy-jointly",
-              "text": "An automated system could jointly select model, representation, harness, alignment, and retry budget under a task assurance bound.",
+              "text": "An automated system could jointly select model, representation, harness, enforcement, and retry budget under a task assurance bound.",
               "block_index": 44
             },
             {

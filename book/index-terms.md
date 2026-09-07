@@ -216,7 +216,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: model-drift | Model drift
 - concept: semantic-gap | The semantic gap
 - concept: intervention-boundary | Intervention boundary
-- concept: guidance-vs-authority | Guidance vs. enforcement
+- concept: guidance-vs-enforcement | Guidance vs. enforcement
 - concept: feedback | Feedback
 - concept: reasoning-input | Reasoning input
 - concept: action-boundary | Action boundary

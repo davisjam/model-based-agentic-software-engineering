@@ -982,29 +982,29 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">3.3.3</span> Validators and Gates</h2>
 <p id="idx-def-validator">The other two roles act on evidence and admission. A <strong>validator</strong> turns evidence into a judgment: does the observed call graph contain only permitted edges, did this journey establish its post-condition, does the provenance record account for every mutation? It reads the evidence a sensor produced — or derives it straight from the artifact — and asks whether it satisfies the obligation. A validator may be deterministic, probabilistic, or human; its verdict carries consequence only through what the environment does with it. A correspondence validator can enforce agreement without making either representation govern execution. DocAble's remediation-graph parity check blocks drift between the projected graph and typed pass declarations even though the executable declarations remain upstream.</p>
 <p id="idx-def-gate">A <strong>gate</strong> supplies that consequence. It decides whether the work may cross a boundary: commit, merge, deploy, execute, close, or draw on a scarce resource. Validation and gating are separate design decisions. A cost ceiling can be measured and evaluated without blocking production; a security invariant may deserve immediate refusal. <strong>Wiring a validator's verdict into a gate is a commitment.</strong> Making an uncertain validator blocking converts its false positives into rejected work or outages.</p>
-<blockquote class="box-inset"><span class="box-badge box-badge-caveat">CAVEAT</span><p class="inset-title" id="inset-authority-conditional">Enforcement is conditional</p>
+<blockquote class="box-inset"><span class="box-badge box-badge-caveat">CAVEAT</span><p class="inset-title" id="inset-enforcement-conditional">Enforcement is conditional</p>
 <p>A mechanism can guarantee only the property it actually governs, under the assumptions on which its evidence and implementation depend. A validator can faithfully enforce the wrong obligation; a model can omit a consequential distinction; a sensor can fail to observe the relevant state. Hard control therefore does not mean "the system is correct." It means that, within a stated scope, acceptance no longer depends on the agent voluntarily satisfying that obligation.</p></blockquote>
 <p>A loop may re-derive evidence at a later admission boundary rather than rely on the producing agent's self-report or on an earlier marker.<sup class="note-ref"><a href="#note-3-3-constraints-sensors-validators-gates-3" role="doc-noteref" aria-label="note 3">‡</a></sup><span class="editorial-note" id="note-3-3-constraints-sensors-validators-gates-3"><span class="cn-mark">‡</span> Re-derivation trades additional computation and latency for stronger assurance that the evidence corresponds to the artifact or state being admitted. Reusing or caching an earlier result can be a sound optimization when the system can establish that the relevant inputs have not changed; the optimization should preserve that correspondence rather than merely assume it.</span> Re-derivation can strengthen independence and freshness: the later mechanism evaluates the artifact or state that is actually being admitted. DocAble's definition-of-done audit takes this approach, recomputing its evidence at close rather than relying on evidence produced earlier in the task. The principle is simpler than the implementation choice: the thing asking to pass does not get to define what counts as having passed.</p>
 <h2><span class="sec-num">3.3.4</span> One Measurement, Different Enforcement Decisions</h2>
 <p>The four roles are not stages of maturity. DocAble's GenAI cost-and-usage model makes the point. Related measurements from the same model can support different enforcement decisions, and <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-3">Figure&nbsp;3.3-3</a> fans them across the roles. Usage is continuously sensed. Capacity signals can adapt request behavior. Exhausting a per-job budget can produce soft completion rather than outright rejection. A hard daily-budget gate exists but is dormant unless configured. One quantitative model can support observation, adaptation, graceful degradation, or hard admission control. The appropriate consequence depends on the obligation attached to the quantity, not on the supposed maturity of the environment.</p>
-<figure id="fig-3-3-3" class="book-figure" data-label="cost-authority-gradient"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
-     role="img" aria-labelledby="f-cost-authority-gradient-cgTitle f-cost-authority-gradient-cgDesc"
+<figure id="fig-3-3-3" class="book-figure" data-label="cost-enforcement-gradient"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
+     role="img" aria-labelledby="f-cost-enforcement-gradient-cgTitle f-cost-enforcement-gradient-cgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-cost-authority-gradient-cgTitle">One measurement, different enforcement decisions: a policy attached to the value selects observe, adapt, or gate</title>
-  <desc id="f-cost-authority-gradient-cgDesc">A single cost and usage model is read through a policy attached to the value. That policy
+  <title id="f-cost-enforcement-gradient-cgTitle">One measurement, different enforcement decisions: a policy attached to the value selects observe, adapt, or gate</title>
+  <desc id="f-cost-enforcement-gradient-cgDesc">A single cost and usage model is read through a policy attached to the value. That policy
     selects one response. Observe reports evidence without consequence. Adapt changes load, throttling and
     then producing soft completion rather than outright rejection. Gate blocks admission and is dormant
     unless configured. The appropriate response follows from the obligation attached to the measurement, not
     from a maturity sequence.</desc>
 
   <defs>
-    <marker id="f-cost-authority-gradient-cg-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-cost-enforcement-gradient-cg-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="f-cost-authority-gradient-cg-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-cost-enforcement-gradient-cg-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="f-cost-authority-gradient-cg-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-cost-enforcement-gradient-cg-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
   </defs>
@@ -1012,45 +1012,45 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- Edges drawn before the nodes they enter so the node fills cap the ends. -->
 
   <!-- edge: model -> policy -->
-  <line x1="480" y1="92" x2="480" y2="116" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#f-cost-authority-gradient-cg-r)"/>
+  <line x1="480" y1="92" x2="480" y2="116" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#f-cost-enforcement-gradient-cg-r)"/>
 
   <!-- fan-out edges to the three responses (one path per branch) -->
   <g fill="none" stroke-width="2.4">
     <!-- edge: policy -> observe -->
-    <path d="M356,170 L356,192 L304,192 L304,214" stroke="#57534e" marker-end="url(#f-cost-authority-gradient-cg-n)"/>
+    <path d="M356,170 L356,192 L304,192 L304,214" stroke="#57534e" marker-end="url(#f-cost-enforcement-gradient-cg-n)"/>
     <!-- edge: policy -> adapt -->
-    <path d="M480,170 L480,214" stroke="#2f5169" marker-end="url(#f-cost-authority-gradient-cg-b)"/>
+    <path d="M480,170 L480,214" stroke="#2f5169" marker-end="url(#f-cost-enforcement-gradient-cg-b)"/>
     <!-- edge: policy -> gate -->
-    <path d="M604,170 L604,192 L656,192 L656,214" stroke="#9a3f12" marker-end="url(#f-cost-authority-gradient-cg-r)"/>
+    <path d="M604,170 L604,192 L656,192 L656,214" stroke="#9a3f12" marker-end="url(#f-cost-enforcement-gradient-cg-r)"/>
   </g>
 
   <!-- edge: adapt -> throttle -->
-  <line x1="480" y1="280" x2="480" y2="314" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-cost-authority-gradient-cg-n)"/>
+  <line x1="480" y1="280" x2="480" y2="314" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-cost-enforcement-gradient-cg-n)"/>
 
   <!-- source model -->
-  <rect id="f-cost-authority-gradient-model" x="330" y="30" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="f-cost-enforcement-gradient-model" x="330" y="30" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="480" y="59" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">COST / USAGE MODEL</text>
   <text x="480" y="81" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">related measured quantities</text>
 
   <!-- the policy that attaches the obligation to the value -->
-  <rect id="f-cost-authority-gradient-policy" x="340" y="118" width="280" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="f-cost-enforcement-gradient-policy" x="340" y="118" width="280" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="480" y="150" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">policy attached to the value</text>
 
   <!-- RESPONSE: observe -->
-  <rect id="f-cost-authority-gradient-observe" x="37.27" y="216" width="315.47" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-cost-enforcement-gradient-observe" x="37.27" y="216" width="315.47" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="195" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">OBSERVE</text>
   <text x="195" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">report evidence, no consequence</text>
 
   <!-- RESPONSE: adapt -> throttle / soft completion -->
-  <rect id="f-cost-authority-gradient-adapt" x="355" y="216" width="250" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="f-cost-enforcement-gradient-adapt" x="355" y="216" width="250" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="480" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">ADAPT</text>
   <text x="480" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">change load</text>
 
-  <rect id="f-cost-authority-gradient-throttle" x="347.45" y="316" width="265.1" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-cost-enforcement-gradient-throttle" x="347.45" y="316" width="265.1" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="347" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">throttle · soft completion</text>
 
   <!-- RESPONSE: gate (with a small dormant annotation, not extra nodes) -->
-  <rect id="f-cost-authority-gradient-gate" x="640" y="216" width="250" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="f-cost-enforcement-gradient-gate" x="640" y="216" width="250" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="765" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">GATE</text>
   <text x="765" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">block admission</text>
   <text x="765" y="306" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">dormant unless configured</text>
@@ -1122,7 +1122,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="40" y1="376" x2="920" y2="376" stroke="#e7e2da" stroke-width="1.4"/>
   <text x="480" y="408" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">Both are source-time rules &#8212; they restrict the admissible implementation space from opposite directions.</text>
 </svg><figcaption data-short="Negative and positive constraints"><span class="fig-label">Figure 3.3-4.</span> <em>Negative and positive constraints.</em> A negative constraint removes a forbidden action; a positive constraint requires a specified action or evidence-producing behavior. Both restrict the admissible implementation space.</figcaption></figure>
-<h2 id="provenance-carried-authority"><span class="sec-num">3.3.6</span> Provenance-Carried Admission</h2>
+<h2 id="provenance-carried-admission"><span class="sec-num">3.3.6</span> Provenance-Carried Admission</h2>
 <p>Earlier in this Part, architectural conformance provided one example of enforcing intended relations. Provenance is useful for a particular version of that problem: the required relation concerns not merely which components interact, but the path through which a consequential operation was derived.</p>
 <p>Some obligations are cheap to enforce by controlling access to a recognizable primitive. Filesystem and network access are examples. The environment can identify the APIs that perform those effects, designate the small portion of the system permitted to use them, and reject other callers with comparatively simple static analysis. The prohibited interaction has a recognizable surface.</p>
 <p>Other architectural obligations do not have such a convenient boundary. Suppose all color decisions must pass through a canonical color model before document mutation. The unwanted alternative is not necessarily a call to one forbidden API. A future implementation may combine otherwise legitimate resolvers, representations, and mutation APIs into a new path that reaches the same consequential operation. Each call can be legal, and the path may not match any bypass anticipated by a source-time rule.</p>
@@ -1131,18 +1131,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The sanctioned abstraction can issue an opaque provenance value that ordinary callers cannot construct. The consequential boundary then admits the operation only when that provenance is present and valid:</p>
 <div class="book-eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="book-math-display"><mrow><mtext>admit</mtext><mo>(</mo><mi>x</mi><mo>)</mo><mo>⇔</mo><mtext>valid</mtext><mo>(</mo><mi>x</mi><mo>)</mo><mo>∧</mo><mtext>sanctionedProvenance</mtext><mo>(</mo><mi>x</mi><mo>)</mo></mrow></math></div>
 <p><a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-5">Figure&nbsp;3.3-5</a> traces the single sanctioned path: an operation reaches consequence only by deriving through the sanctioned abstraction, which supplies the provenance the boundary demands.</p>
-<figure id="fig-3-3-5" class="book-figure" data-label="provenance-carried-authority"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 340"
-     role="img" aria-labelledby="f-provenance-carried-authority-pcaTitle f-provenance-carried-authority-pcaDesc"
+<figure id="fig-3-3-5" class="book-figure" data-label="provenance-carried-admission"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 340"
+     role="img" aria-labelledby="f-provenance-carried-admission-pcaTitle f-provenance-carried-admission-pcaDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-provenance-carried-authority-pcaTitle">Provenance-carried admission: a consequential operation must derive through the sanctioned abstraction, which attaches provenance the boundary requires</title>
-  <desc id="f-provenance-carried-authority-pcaDesc">A left-to-right flow. Implementation logic derives a needed operation through a sanctioned
+  <title id="f-provenance-carried-admission-pcaTitle">Provenance-carried admission: a consequential operation must derive through the sanctioned abstraction, which attaches provenance the boundary requires</title>
+  <desc id="f-provenance-carried-admission-pcaDesc">A left-to-right flow. Implementation logic derives a needed operation through a sanctioned
     abstraction — the sanctioned source of the operation — which attaches provenance to the resulting operation. The
     operation, carrying its provenance, reaches a consequence boundary that requires that provenance before permitting
     the operation to take effect. Alternative implementation paths are not drawn, because the boundary does not
     enumerate them; it admits only operations that carry the sanctioned provenance.</desc>
 
   <defs>
-    <marker id="f-provenance-carried-authority-pca-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-provenance-carried-admission-pca-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
   </defs>
@@ -1160,7 +1160,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="120" y="170" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">logic</text>
 
   <!-- edge: implementation -> sanctioned abstraction -->
-  <line x1="210" y1="150" x2="272" y2="150" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-provenance-carried-authority-pca-ah)"/>
+  <line x1="210" y1="150" x2="272" y2="150" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-provenance-carried-admission-pca-ah)"/>
 
   <!-- sanctioned abstraction (rust = sanctioned derivation) -->
   <rect x="280" y="112" width="260" height="76" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
@@ -1170,7 +1170,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- edge: sanctioned abstraction -> boundary, carrying operation + provenance -->
   <text x="664" y="132" text-anchor="middle" font-size="18" font-style="italic" fill="#1c1917">operation + provenance</text>
-  <line x1="540" y1="150" x2="790" y2="150" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-provenance-carried-authority-pca-ah)"/>
+  <line x1="540" y1="150" x2="790" y2="150" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-provenance-carried-admission-pca-ah)"/>
 
   <!-- consequence boundary (double bar) -->
   <g stroke="#9a3f12" stroke-width="3">
@@ -1180,7 +1180,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="804" y="214" text-anchor="middle" font-size="18" font-style="italic" fill="#9a3f12">requires provenance</text>
 
   <!-- edge: boundary -> consequence -->
-  <line x1="816" y1="150" x2="922" y2="150" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-provenance-carried-authority-pca-ah)"/>
+  <line x1="816" y1="150" x2="922" y2="150" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-provenance-carried-admission-pca-ah)"/>
   <text x="1002" y="156" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CONSEQUENCE</text>
 
   <!-- footer thesis -->

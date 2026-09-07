@@ -396,7 +396,7 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the GenAI cost-and-capacity model plus the measured-quantity and modeling-perp-authority figures",
+            "name": "the GenAI cost-and-capacity model plus the measured-quantity and modeling-perp-enforcement figures",
             "anchor": "genai-cost-capacity-model"
           }
         ],
@@ -488,7 +488,7 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "Renamed 'Where Authority Can Act'. Opens on guidance-vs-authority (Alignment), back-linked to the 1.4 derivation; four intervention boundaries as semantic grains, placement != strength. Closing hands to 3.2 (what deserves authority) — transition.",
+      "note": "Renamed 'Where Authority Can Act'. Opens on guidance-vs-enforcement (Alignment), back-linked to the 1.4 derivation; four intervention boundaries as semantic grains, placement != strength. Closing hands to 3.2 (what deserves authority) — transition.",
       "opening_anchor": "A foundation model produces probabilistic judgments. A harness turns selected judgments into",
       "closing_anchor": "to be true before any surface, model-based or otherwise, deserves binding authority.",
       "delivers": {
