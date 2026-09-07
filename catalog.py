@@ -1117,9 +1117,6 @@ def cmd_validate(_args) -> int:
     for msg in check_leaked_markers():
         print(f"  [marker] {msg}")
         n_issues += 1
-    for msg in check_adoption_sequence():
-        print(f"  [adopt] {msg}")
-        n_issues += 1
     for rel, summ in role_summaries().items():
         if not summ:
             print(f"  [role]  {rel}: missing '<!-- summary: … -->' comment")
@@ -4532,136 +4529,6 @@ def check_leaked_inline_markdown() -> list[str]:
     return sorted(problems)
 
 
-# --- Adoption sequence: ONE source, TWO emitted forms (the quick-start dual-emit). ---
-# The quick-start walks a reader through adopting the catalogue via paste-ready prompts. The prompt
-# sequence is authored ONCE inside a `<!--adoption-source ... -->` block in `quick-start.md`; the build
-# derives BOTH an Auto-mode block (one copy-paste code fence) AND an Interactive-mode section (per-step
-# snippet + explanation + links) from it, so the two forms can never drift. This is the census-token
-# pattern (a build-time markdown precompiler that rewrites tracked prose between sentinel markers) applied
-# to a richer structure. The generated regions live between `<!--adoption-auto-->…<!--/adoption-auto-->`
-# and `<!--adoption-interactive-->…<!--/adoption-interactive-->`.
-_ADOPT_FILE = "quick-start.md"
-_ADOPT_SRC_RE = re.compile(r"<!--adoption-source(.*?)-->", re.DOTALL)
-_ADOPT_AUTO_RE = re.compile(r"(<!--adoption-auto-->)(.*?)(<!--/adoption-auto-->)", re.DOTALL)
-_ADOPT_INT_RE = re.compile(r"(<!--adoption-interactive-->)(.*?)(<!--/adoption-interactive-->)", re.DOTALL)
-_PATH_LABEL = {"A": "Path A", "B": "Path B", "both": "either path"}
-
-
-def _parse_adoption_steps(src_body: str) -> list[dict]:
-    """Parse the `<!--adoption-source-->` body into ordered step records.
-
-    Steps are separated by a line of exactly `===`. Each step is `@KEY: value` fields, with `@PROMPT:`
-    taking every remaining line of the step verbatim (so a prompt keeps its own line breaks). Everything
-    before the FIRST `===` is the format-documentation preamble and is skipped."""
-    steps: list[dict] = []
-    parts = re.split(r"(?m)^===\s*$", src_body)
-    for chunk in parts[1:]:  # drop the preamble (text before the first `===`)
-        lines = chunk.splitlines()
-        step: dict = {"title": "", "path": "both", "explain": "", "links": "", "prompt": ""}
-        prompt_lines: list[str] = []
-        in_prompt = False
-        for ln in lines:
-            if in_prompt:
-                prompt_lines.append(ln)
-                continue
-            m = re.match(r"^\s*@(TITLE|PATH|EXPLAIN|LINKS|PROMPT):\s?(.*)$", ln)
-            if not m:
-                continue
-            key, val = m.group(1).lower(), m.group(2)
-            if key == "prompt":
-                in_prompt = True
-                if val.strip():
-                    prompt_lines.append(val)
-            else:
-                step[key] = val.strip()
-        step["prompt"] = "\n".join(prompt_lines).strip("\n")
-        if step["title"] and step["prompt"]:
-            steps.append(step)
-    return steps
-
-
-def _emit_adoption_auto(steps: list[dict]) -> str:
-    """Auto mode: one fenced code block — every step's prompt, prefixed with a numbered header comment so a
-    reader (and Claude) can see the sequence structure inside the single paste."""
-    body: list[str] = ["Read this whole block, then work through the steps in order. For each step, propose",
-                       "before you write, and wait for my approval.", ""]
-    for i, s in enumerate(steps, 1):
-        body.append(f"# Step {i} — {s['title']}  [{_PATH_LABEL.get(s['path'], s['path'])}]")
-        body.append(s["prompt"])
-        body.append("")
-    fence = "```\n" + "\n".join(body).rstrip("\n") + "\n```"
-    return fence
-
-
-def _emit_adoption_interactive(steps: list[dict]) -> str:
-    """Interactive mode: per-step heading + explanation + verbatim prompt fence + links. Plain markdown, so
-    the existing renderer produces axe-clean HTML (headings, paragraphs, `<pre><code>`, link lists) — no
-    custom widget, no JS."""
-    out: list[str] = []
-    for i, s in enumerate(steps, 1):
-        tag = "" if s["path"] == "both" else f" *({_PATH_LABEL.get(s['path'], s['path'])})*"
-        out.append(f"### Step {i} — {s['title']}{tag}")
-        if s["explain"]:
-            out.append("")
-            out.append(s["explain"])
-        out.append("")
-        out.append("```\n" + s["prompt"] + "\n```")
-        if s["links"]:
-            out.append("")
-            out.append(f"**Read more:** {s['links']}")
-        out.append("")
-    return "\n".join(out).rstrip("\n")
-
-
-def _sync_adoption_sequence() -> None:
-    """Fill the Auto-mode and Interactive-mode regions in `quick-start.md` from the single `adoption-source`
-    block — the dual-emit. Idempotent: rewrites the tracked file only when a region's content changed."""
-    path = os.path.join(ROOT, _ADOPT_FILE)
-    if not os.path.isfile(path):
-        return
-    txt = open(path, encoding="utf-8").read()
-    m = _ADOPT_SRC_RE.search(txt)
-    if not m:
-        return
-    steps = _parse_adoption_steps(m.group(1))
-    if not steps:
-        return
-    auto = _emit_adoption_auto(steps)
-    inter = _emit_adoption_interactive(steps)
-    new = _ADOPT_AUTO_RE.sub(lambda mm: f"{mm.group(1)}\n{auto}\n{mm.group(3)}", txt)
-    new = _ADOPT_INT_RE.sub(lambda mm: f"{mm.group(1)}\n{inter}\n{mm.group(3)}", new)
-    if new != txt:
-        with open(path, "w", encoding="utf-8") as fh:
-            fh.write(new)
-
-
-def check_adoption_sequence() -> list[str]:
-    """Assert the two generated regions carry the current dual-emit (the build fills them; this catches a
-    stale hand-edit between builds, or a source edit that wasn't rebuilt) — twin of `check_census_tokens`."""
-    path = os.path.join(ROOT, _ADOPT_FILE)
-    if not os.path.isfile(path):
-        return []
-    txt = open(path, encoding="utf-8").read()
-    m = _ADOPT_SRC_RE.search(txt)
-    if not m:
-        return [f"{_ADOPT_FILE}: no <!--adoption-source--> block found"]
-    steps = _parse_adoption_steps(m.group(1))
-    if not steps:
-        return [f"{_ADOPT_FILE}: adoption-source parsed to zero steps"]
-    problems: list[str] = []
-    am = _ADOPT_AUTO_RE.search(txt)
-    im = _ADOPT_INT_RE.search(txt)
-    if not am:
-        problems.append(f"{_ADOPT_FILE}: no <!--adoption-auto--> region")
-    elif am.group(2).strip() != _emit_adoption_auto(steps).strip():
-        problems.append(f"{_ADOPT_FILE}: Auto-mode region stale — run `catalog.py build`")
-    if not im:
-        problems.append(f"{_ADOPT_FILE}: no <!--adoption-interactive--> region")
-    elif im.group(2).strip() != _emit_adoption_interactive(steps).strip():
-        problems.append(f"{_ADOPT_FILE}: Interactive-mode region stale — run `catalog.py build`")
-    return problems
-
-
 def check_orphan_pages() -> list[str]:
     """Post-build reachability gate: every built `.html` must have at least one inbound `href`/`src` from
     another built page. A page nothing links to is an orphan — rendered but unreachable (the DEVELOP.html
@@ -4700,7 +4567,6 @@ def cmd_build(_args) -> int:
     entries = all_entries()
     _sync_figure_census(entries)  # keep the static figures' counts equal to the census
     _sync_markdown_census(entries)  # keep the prose census tokens equal to the census (README/INDEX/CLAUDE/bridge)
-    _sync_adoption_sequence()  # dual-emit: fill quick-start's Auto + Interactive regions from the one source block
     _ABBR_MAP = parse_abstractions()
     written = 0
     n_concept = 0
