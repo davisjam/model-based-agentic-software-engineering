@@ -3,13 +3,13 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1254,
+    "total_sites": 1255,
     "by_projection": {
       "book-pdf": 14,
       "book-web": 905,
       "website-catalogue": 219,
       "website-industry-cases": 51,
-      "website-landing": 13,
+      "website-landing": 14,
       "website-misc": 38,
       "website-resources": 6,
       "website-theory": 8
@@ -264,6 +264,12 @@
         ]
       },
       "website": {
+        "website-landing": [
+          {
+            "file": "index.html",
+            "occ": 3
+          }
+        ],
         "website-catalogue": [
           {
             "file": "agent/README.html",
@@ -713,7 +719,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 14
+            "occ": 15
           }
         ],
         "website-catalogue": [
@@ -1419,7 +1425,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 52
+            "occ": 45
           }
         ],
         "website-catalogue": [
@@ -2727,7 +2733,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 6
+            "occ": 4
           }
         ],
         "website-catalogue": [
@@ -3805,7 +3811,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 3
+            "occ": 1
           }
         ],
         "website-misc": [

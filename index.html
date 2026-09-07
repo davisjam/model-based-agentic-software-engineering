@@ -513,8 +513,9 @@
 <header class="v3-hero">
   <p class="v3-eyebrow">How do we safely grant autonomy to commodity intelligence?</p>
   <h1 class="v3-title">Model-Based Agentic Software Engineering</h1>
-  <p class="v3-lead">Model-Based Agentic Software Engineering (MAGE) is an approach to software engineering for environments in which AI agents perform substantial implementation work. It asks what engineering knowledge should be made explicit, which obligations should have authority over autonomous work, and how recurring failures and judgment can be converted into durable engineering structure.</p>
-  <p class="v3-lead">MAGE has two principles and a conversion loop: Modeling makes consequential knowledge and intent explicit; Alignment gives important engineering obligations authority; governance conversion turns recurring failures and judgment into structure that future work can inherit.</p>
+  <p class="v3-lead">Model-Based Agentic Software Engineering (MAGE) is an engineering methodology for environments in which AI agents perform substantial implementation work.</p>
+  <p class="v3-lead">MAGE has two principles that apply throughout the work. Modeling makes important engineering knowledge and intent explicit. Alignment makes important requirements effective by checking the work against them.</p>
+  <p class="v3-lead">MAGE does not assume that engineers get everything right the first time. Software engineering routinely proceeds from incomplete, imprecise, and evolving requirements, and autonomous work exposes gaps that were not apparent in advance. MAGE therefore also emphasizes governance conversion: changing the engineering environment so that future work can inherit what was learned rather than rediscover it.</p>
   <div class="v3-hero-btns">
     <a class="v3-btn v3-btn-primary" href="book/index.html">Read the book</a>
     <a class="v3-btn v3-btn-secondary" href="#onepage">Learn MAGE</a>
@@ -523,8 +524,9 @@
 </header>
 <section class="onepage" id="onepage" aria-labelledby="onepage-h">
   <h2 id="onepage-h" class="sec-h">MAGE in One Page</h2>
-  <p class="sec-lead">MAGE begins with an old software-engineering problem and a new economic condition. Large systems exceed the reasoning horizon of any one reasoner; commodity intelligence makes implementation cheap and abundant relative to engineering judgment. The result is a new imbalance—and an opportunity to move recurring engineering work into durable structure.</p>
-  <p class="sec-lead">The six claims walk through the figure and summarize the argument.</p>
+  <p class="sec-lead">Software engineering has always had to manage more complexity than any one person can hold in mind. AI agents face the same problem, but they change its economics: we can now produce implementation work much faster than we can grow the engineering knowledge and judgment needed to guide it.</p>
+  <p class="sec-lead">MAGE responds by making important knowledge explicit, checking autonomous work against important requirements, and improving the engineering environment as experience reveals what was missing.</p>
+  <p class="sec-lead">The six claims below summarize the argument.</p>
   <div class="onepage-body">
     <figure class="onepage-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1020"
      role="img" aria-labelledby="mage-one-page-mmTitle mage-one-page-mmDesc"
@@ -701,27 +703,24 @@
   <article class="claim" id="claim-1">
     <p class="claim-kick">Claim 1</p>
     <div class="claim-body">
-      <h2 class="claim-h">Commodity intelligence changes the economics of software engineering.</h2>
-      <p>Implementation capacity is becoming abundant relative to engineering judgment. As implementation gets cheaper, the scarce work increasingly lies elsewhere: deciding what to build, representing the system clearly enough to reason about it, producing evidence, and turning requirements into mechanisms the engineering environment can act on.</p>
-      <p>MAGE calls this increasingly cheap and scalable general-purpose machine capability commodity intelligence. The term describes an economic change, not a claim that intelligence is free, unlimited, or sufficient for engineering.</p>
+      <h2 class="claim-h">We can now write a lot more code, but our engineering know-how hasn't grown nearly as fast.</h2>
+      <p>As implementation gets cheaper, deciding what to build, understanding the system, and determining whether the result is acceptable become relatively more important.</p>
       <p class="claim-region">In the figure: Commodity intelligence → New engineering imbalance</p>
     </div>
   </article>
   <article class="claim" id="claim-2">
     <p class="claim-kick">Claim 2</p>
     <div class="claim-body">
-      <h2 class="claim-h">Scale creates a reasoning problem.</h2>
-      <p>The underlying problem is older than AI. Large software systems already exceed the reasoning horizon of individual humans; agents inherit the same problem. Software engineering has always answered scale with abstraction.</p>
-      <p>Commodity intelligence does not eliminate that need. It makes the representations that guide engineering work more important: without them, consequential knowledge must repeatedly be reconstructed from lower-level artifacts.</p>
+      <h2 class="claim-h">Large systems are too complex for any one person or agent to understand in full.</h2>
+      <p>Software engineering deals with scale through abstraction: preserving the information needed for a particular task while leaving unnecessary detail out. Without useful abstractions, humans and agents must repeatedly reconstruct important knowledge from code and other lower-level artifacts.</p>
       <p class="claim-region">In the figure: Scale × finite reasoning → New engineering imbalance</p>
     </div>
   </article>
   <article class="claim" id="claim-3">
     <p class="claim-kick">Claim 3</p>
     <div class="claim-body">
-      <h2 class="claim-h">Modeling makes engineering knowledge and intent explicit.</h2>
-      <p>The Modeling Principle is to make engineering knowledge and intent explicit in purposeful models that preserve what an engineering question needs and leave out what it does not.</p>
-      <p>Models let humans and agents reason about larger properties without repeatedly reconstructing them from code. They also preserve degrees of freedom: making consequential knowledge explicit does not require specifying implementation choices that engineering has reason to leave open.</p>
+      <h2 class="claim-h">Models make important knowledge easier to reason about and reuse.</h2>
+      <p>A model is a concise representation of some aspect of a system, chosen for an engineering purpose. It may be incomplete or approximate, but it must be useful for that purpose. Models let humans and agents reason about important properties without repeatedly reconstructing them from lower-level artifacts.</p>
       <p class="claim-region">In the figure: Modeling — the green region</p>
       <p class="claim-explore"><a href="book/2.1-context-is-the-first-modeling-problem.html">Explore Modeling &#8594;</a></p>
     </div>
@@ -729,39 +728,37 @@
   <article class="claim" id="claim-4">
     <p class="claim-kick">Claim 4</p>
     <div class="claim-body">
-      <h2 class="claim-h">Alignment gives engineering obligations authority.</h2>
-      <p>The Alignment Principle is to give important engineering obligations authority over autonomous work. Constraints restrict what may happen; sensors produce evidence; validators evaluate that evidence; gates decide what may advance.</p>
-      <p>Alignment can act directly on actions and artifacts—a sandbox, test, or permission boundary can enforce a local rule without a comprehensive model of the system. Explicit models extend what the environment can govern by making richer properties available to reasoning and checking.</p>
-      <p class="claim-region">In the figure: Alignment — the orange region → the Governed Engineering Environment</p>
+      <h2 class="claim-h">Important requirements should actually affect the work.</h2>
+      <p>It is not enough to tell an agent what matters. We must also have probabilistic and deterministic means of checking the agent's output against those requirements.</p>
+      <p class="claim-region">In the figure: Alignment — the orange region</p>
       <p class="claim-explore"><a href="book/3.3-constraints-sensors-validators-gates.html">Explore Alignment &#8594;</a></p>
     </div>
   </article>
   <article class="claim" id="claim-5">
     <p class="claim-kick">Claim 5</p>
     <div class="claim-body">
-      <h2 class="claim-h">Governance conversion turns recurring judgment into durable engineering structure.</h2>
-      <p>Autonomous work exposes missing knowledge, weak abstractions, and obligations that the environment cannot yet enforce. Fixing the immediate failure is necessary, but it does not prevent the same engineering work from being paid for again.</p>
-      <p>Governance conversion asks what future work should inherit from the lesson. Encode that knowledge or judgment in a model, packaged procedure, constraint, sensor, validator, gate, or other durable structure. When later work continues to benefit from that structure, it becomes engineering capital.</p>
-      <p class="claim-region">In the figure: the left-hand conversion loop; Engineering Capital vs. Engineering Churn</p>
+      <h2 class="claim-h">Recurring failures should improve the engineering system.</h2>
+      <p>When failures recur or engineers repeatedly supply the same judgment, fixing the immediate result is not enough. Governance conversion changes the engineering environment so that future work can inherit what was learned rather than rediscover it.</p>
+      <p>When those changes continue to save work or prevent failures, they become engineering capital. When the same reconstruction and judgment must instead be repeated, MAGE calls that engineering churn.</p>
+      <p class="claim-region">In the figure: Governance conversion; Engineering Capital vs. Engineering Churn</p>
       <p class="claim-explore"><a href="book/3.4-governance-conversion.html">Explore the MAGE method &#8594;</a></p>
     </div>
   </article>
   <article class="claim" id="claim-6">
     <p class="claim-kick">Claim 6</p>
     <div class="claim-body">
-      <h2 class="claim-h">Engineering work will reorganize around what remains scarce.</h2>
-      <p>As implementation becomes cheaper, more engineering effort moves toward representation, evidence, governance, coordination, and judgment — and agents may perform increasing portions of that work too.</p>
-      <p>The durable boundary is not a particular task or level of abstraction, but responsibility for what matters, what evidence is sufficient, which obligations should have authority, and what tradeoffs are acceptable. MAGE therefore treats the Governed Engineering Environment itself as an important object of engineering.</p>
+      <h2 class="claim-h">When writing code gets easier, more of the hard work moves to figuring out what to build, whether it is right, and how to keep it that way.</h2>
+      <p>Agents may increasingly help with that work too. The enduring engineering responsibility is deciding what matters, what evidence is sufficient, what can be delegated, and what tradeoffs are acceptable.</p>
       <p class="claim-region">In the figure: the whole figure</p>
     </div>
   </article>
-  <p class="claims-summary">Model what matters. Give obligations authority. Do the governed work. Convert what you learn into structure the next task inherits.</p>
+  <p class="claims-summary">Model what matters. Check the work against what matters. Learn from failures. Build what you learn back into the engineering environment.</p>
 </section>
   </div>
 </section>
 <section class="v3-sec" id="resources" aria-labelledby="resources-h">
   <h2 id="resources-h" class="sec-h">Resources</h2>
-  <p class="sec-lead">MAGE is available as a book, a body of writing, a curriculum, and a series of talks.</p>
+  <p class="sec-lead">MAGE is available as a book, research writing, teaching materials, and talks.</p>
   <div class="v3-cards v3-cards-2">
     <article class="v3-card v3-card--thumb">
       <img class="v3-card-thumb" src="book/assets/cover-charcoal-thumb.png" alt="MAGE book cover" loading="lazy">
@@ -775,7 +772,7 @@
       <img class="v3-card-thumb" src="resources/writings/mage-paper-thumb.png" alt="First page of the Model-Based Agentic Software Engineering paper" loading="lazy">
       <div class="v3-card-content">
       <h3 class="v3-card-h">Writings</h3>
-      <p class="v3-card-body">Papers and shorter articles developing, motivating, and evaluating MAGE.</p>
+      <p class="v3-card-body">Papers and shorter articles developing and evaluating MAGE.</p>
       <p class="v3-card-links"><a href="writings.html">Browse writings &#8594;</a></p>
       </div>
     </article>
@@ -799,44 +796,44 @@
 </section>
 <section class="v3-sec" id="use" aria-labelledby="use-h">
   <h2 id="use-h" class="sec-h">Using MAGE</h2>
-  <p class="sec-lead">MAGE is a method rather than a prescribed toolchain. The site provides practical resources for applying its ideas to an existing engineering environment.</p>
+  <p class="sec-lead">MAGE is a methodology, not a prescribed toolchain. These resources provide practical ways to apply it to an existing engineering system.</p>
   <div class="v3-cards v3-cards-3 v3-cards-sm">
     <article class="v3-card">
       <h3 class="v3-card-h">QuickStart</h3>
-      <p class="v3-card-body">Install the MAGE skills and begin identifying recurring reconstruction, judgment, and governance gaps in an existing repository.</p>
+      <p class="v3-card-body">Install the MAGE skills and start identifying knowledge that is repeatedly reconstructed, judgments that are repeatedly made, and requirements that are not reliably checked.</p>
       <p class="v3-card-links"><a href="quick-start.html">Start with MAGE &#8594;</a></p>
     </article>
     <article class="v3-card">
       <h3 class="v3-card-h">The Method</h3>
-      <p class="v3-card-body">Work through the practical cycle: model consequential knowledge, give obligations authority, do the governed work, and convert recurring failures.</p>
+      <p class="v3-card-body">Apply Modeling and Alignment to the work, then use recurring failures and repeated judgment to improve the engineering environment.</p>
       <p class="v3-card-links"><a href="constructing-the-gee.html">Apply the method &#8594;</a></p>
     </article>
     <article class="v3-card">
       <h3 class="v3-card-h">Mechanism Catalogue</h3>
-      <p class="v3-card-body">Browse concrete models, constraints, sensors, validators, gates, and compositions that can be adapted to different engineering systems.</p>
+      <p class="v3-card-body">Browse concrete examples of models, constraints, sensors, validators, gates, and other mechanisms used to guide and check engineering work.</p>
       <p class="v3-card-links"><a href="catalogue-views.html">Browse mechanisms &#8594;</a></p>
     </article>
   </div>
 </section>
 <section class="v3-sec" id="evidence" aria-labelledby="evidence-h">
   <h2 id="evidence-h" class="sec-h">Evidence</h2>
-  <p class="sec-lead">MAGE began with one production system observed in longitudinal depth and was then compared with independently described industrial systems. The originating case provides evidence about mechanism and sequence; the industrial cases provide variation and alternative realizations. These sources motivate and test the theory, but they do not establish universal laws.</p>
+  <p class="sec-lead">MAGE began with one production system studied in depth and was then compared with independently described industrial systems. The originating case shows how the ideas emerged and evolved over time; the industrial cases show other ways similar engineering problems have been addressed.</p>
   <div class="v3-cards v3-cards-2">
     <article class="v3-card">
       <h3 class="v3-card-h">DocAble — depth</h3>
-      <p class="v3-card-body">The originating production system. Its development provides the longitudinal record from which the early MAGE concepts emerged.</p>
+      <p class="v3-card-body">The originating production system and the longitudinal record from which the early MAGE concepts emerged.</p>
       <p class="v3-card-links"><a href="book/5.1-the-problem-and-the-bar.html">Explore the originating case &#8594;</a></p>
     </article>
     <article class="v3-card">
       <h3 class="v3-card-h">Industrial cases — breadth</h3>
-      <p class="v3-card-body">Independent accounts from Cloudflare, Spotify, Shopify, Docker, Siemens, Zenseact, Uber, and GitLab, reconstructed through the MAGE vocabulary to examine recurring moves, variation, and limits.</p>
+      <p class="v3-card-body">Independent accounts from Cloudflare, Spotify, Shopify, Docker, Siemens, Zenseact, Uber, and GitLab, examined through the MAGE framework for recurring patterns, differences, and limits.</p>
       <p class="v3-card-links"><a href="industry-case-studies.html">Explore the industrial cases &#8594;</a></p>
     </article>
   </div>
 </section>
 <section class="v3-sec" id="research" aria-labelledby="research-h">
   <h2 id="research-h" class="sec-h">Research</h2>
-  <p class="sec-lead">MAGE is also a research program. Its claims raise empirical and technical questions about what engineering knowledge should be externalized, which obligations can be made authoritative, how governed environments evolve, and where human judgment remains necessary.</p>
+  <p class="sec-lead">MAGE is also a research program. It raises questions about what engineering knowledge should be made explicit, which requirements can be reliably checked, how engineering environments should improve over time, when those improvements are worth their cost, and where human judgment remains necessary.</p>
   <p class="v3-btn-row">
     <a class="v3-btn v3-btn-secondary" href="theory.html">Read the theory &#8594;</a>
     <a class="v3-btn v3-btn-secondary" href="book/6.4-research-agenda.html">Explore the research agenda &#8594;</a>

@@ -1,7 +1,7 @@
 {
-  "_note": "Landing model — the SSOT for the site landing's conceptual summary. website-v3 (260825): the landing is a CONCISE web-scale summary of the book's argument — the canonical 'MAGE on One Page' figure (book/assets/mage-method.svg) plus the SIX CLAIMS from the book's front matter (0.1 What This Book Argues). The BOOK is authoritative for the concepts; the landing links into book material for depth (esp. Modeling and Alignment) rather than maintaining a parallel website treatment. The former nine-concept model + its standalone concept-<slug>.html pages + their two-tier machinery were RETIRED here (route (a), 260825) — do not reintroduce a parallel concept system. The kept invariant: every `book_home` (and every claim's optional `explore.href`) resolves to real book material on disk (book ⊇ site), checked by check_big_ideas() in catalog.py validate; the claim heading stays within the word cap; and each claim's `id` projects onto the built landing. core_question is the umbrella (hero eyebrow + Preface parity), checked audit-only by _core_question_audit(). CLAIM HEADINGS ARE PROJECTED, NOT STORED: the landing renders each claim's heading from the book's authoritative prose (book/frontmatter/0.1-what-this-book-argues.md, the six `N. **heading**` leads) via catalog.py `_book_argues_claim_headings()`, matched by `order`; do NOT re-add a `claim` field here (book prose is the single source, so the heading cannot drift). The web-concise `body[]` stays landing-authored.",
+  "_note": "Landing model — the SSOT for the site landing's conceptual summary. The landing is a PLAIN-LANGUAGE translation of the book's argument for a first-time visitor: the canonical 'MAGE in One Page' figure (book/assets/mage-method.svg) plus the SIX CLAIMS. website-v3 (260825) retired the nine-concept model + its standalone concept-<slug>.html pages — do not reintroduce a parallel concept system. DUAL CLAIM HEADINGS (260906): the book owns its FORMAL claim headings (book/frontmatter/0.2-what-this-book-argues.md, the `N. **heading**` leads); the landing STORES its own PLAIN-LANGUAGE heading in each record's `claim` field and renders THAT. The two versions are intentionally different — the book owns the formal vocabulary; the landing owns the ideas. check_big_ideas() still asserts book ⊇ site structurally (the book yields the same NUMBER of claims the landing declares) and that each landing `claim` is within `_word_cap`; it no longer requires the landing heading to match the book's. Kept invariants: every `book_home` (and every claim's optional `explore.href`) resolves to real book material on disk; each claim's `id` projects onto the built landing. The web-concise `body[]` stays landing-authored. core_question is the hero eyebrow + Preface parity, checked audit-only by _core_question_audit().",
 
-  "_word_cap": 14,
+  "_word_cap": 30,
   "_order": ["claim-1", "claim-2", "claim-3", "claim-4", "claim-5", "claim-6"],
 
   "_argument_big_ideas_note": "The book's INTERNAL argument-vocabulary slugs — a decoupled join registry, NOT rendered on the landing. website-v3 (260825) retired the nine-concept LANDING model (rich records + standalone concept-<slug>.html pages), but these nine slugs remain the book's argument-spine / claims join keys: argument_spine_model.py (AS3/AS4 reconciliation), claims_model.py (`big-idea:` relates_to resolution), and lint_part_opener_traceability.py all resolve big-idea references against THIS list (not `_order`, which is the six landing claims). The book is authoritative for its own concept vocabulary; the landing is a separate six-claim projection. Keep this set exactly equal to the slugs the argument spine reconciles against (AS4 reverse-completeness requires each to be covered by a spine claim).",
@@ -11,9 +11,9 @@
     "id": "claim-1",
     "order": 1,
     "kicker": "Claim 1",
+    "claim": "We can now write a lot more code, but our engineering know-how hasn't grown nearly as fast.",
     "body": [
-      "Implementation capacity is becoming abundant relative to engineering judgment. As implementation gets cheaper, the scarce work increasingly lies elsewhere: deciding what to build, representing the system clearly enough to reason about it, producing evidence, and turning requirements into mechanisms the engineering environment can act on.",
-      "MAGE calls this increasingly cheap and scalable general-purpose machine capability commodity intelligence. The term describes an economic change, not a claim that intelligence is free, unlimited, or sufficient for engineering."
+      "As implementation gets cheaper, deciding what to build, understanding the system, and determining whether the result is acceptable become relatively more important."
     ],
     "book_home": "why-mage-follows-from-the-machine",
     "figure_region": "Commodity intelligence → New engineering imbalance",
@@ -24,9 +24,9 @@
     "id": "claim-2",
     "order": 2,
     "kicker": "Claim 2",
+    "claim": "Large systems are too complex for any one person or agent to understand in full.",
     "body": [
-      "The underlying problem is older than AI. Large software systems already exceed the reasoning horizon of individual humans; agents inherit the same problem. Software engineering has always answered scale with abstraction.",
-      "Commodity intelligence does not eliminate that need. It makes the representations that guide engineering work more important: without them, consequential knowledge must repeatedly be reconstructed from lower-level artifacts."
+      "Software engineering deals with scale through abstraction: preserving the information needed for a particular task while leaving unnecessary detail out. Without useful abstractions, humans and agents must repeatedly reconstruct important knowledge from code and other lower-level artifacts."
     ],
     "book_home": "the-printer",
     "figure_region": "Scale × finite reasoning → New engineering imbalance",
@@ -37,9 +37,9 @@
     "id": "claim-3",
     "order": 3,
     "kicker": "Claim 3",
+    "claim": "Models make important knowledge easier to reason about and reuse.",
     "body": [
-      "The Modeling Principle is to make engineering knowledge and intent explicit in purposeful models that preserve what an engineering question needs and leave out what it does not.",
-      "Models let humans and agents reason about larger properties without repeatedly reconstructing them from code. They also preserve degrees of freedom: making consequential knowledge explicit does not require specifying implementation choices that engineering has reason to leave open."
+      "A model is a concise representation of some aspect of a system, chosen for an engineering purpose. It may be incomplete or approximate, but it must be useful for that purpose. Models let humans and agents reason about important properties without repeatedly reconstructing them from lower-level artifacts."
     ],
     "book_home": "context-is-the-first-modeling-problem",
     "figure_region": "Modeling — the green region",
@@ -50,12 +50,12 @@
     "id": "claim-4",
     "order": 4,
     "kicker": "Claim 4",
+    "claim": "Important requirements should actually affect the work.",
     "body": [
-      "The Alignment Principle is to give important engineering obligations authority over autonomous work. Constraints restrict what may happen; sensors produce evidence; validators evaluate that evidence; gates decide what may advance.",
-      "Alignment can act directly on actions and artifacts—a sandbox, test, or permission boundary can enforce a local rule without a comprehensive model of the system. Explicit models extend what the environment can govern by making richer properties available to reasoning and checking."
+      "It is not enough to tell an agent what matters. We must also have probabilistic and deterministic means of checking the agent's output against those requirements."
     ],
     "book_home": "constraints-sensors-validators-gates",
-    "figure_region": "Alignment — the orange region → the Governed Engineering Environment",
+    "figure_region": "Alignment — the orange region",
     "explore": {"label": "Explore Alignment", "href": "book/3.3-constraints-sensors-validators-gates.html"}
   },
 
@@ -63,12 +63,13 @@
     "id": "claim-5",
     "order": 5,
     "kicker": "Claim 5",
+    "claim": "Recurring failures should improve the engineering system.",
     "body": [
-      "Autonomous work exposes missing knowledge, weak abstractions, and obligations that the environment cannot yet enforce. Fixing the immediate failure is necessary, but it does not prevent the same engineering work from being paid for again.",
-      "Governance conversion asks what future work should inherit from the lesson. Encode that knowledge or judgment in a model, packaged procedure, constraint, sensor, validator, gate, or other durable structure. When later work continues to benefit from that structure, it becomes engineering capital."
+      "When failures recur or engineers repeatedly supply the same judgment, fixing the immediate result is not enough. Governance conversion changes the engineering environment so that future work can inherit what was learned rather than rediscover it.",
+      "When those changes continue to save work or prevent failures, they become engineering capital. When the same reconstruction and judgment must instead be repeated, MAGE calls that engineering churn."
     ],
     "book_home": "governance-conversion",
-    "figure_region": "the left-hand conversion loop; Engineering Capital vs. Engineering Churn",
+    "figure_region": "Governance conversion; Engineering Capital vs. Engineering Churn",
     "explore": {"label": "Explore the MAGE method", "href": "book/3.4-governance-conversion.html"}
   },
 
@@ -76,16 +77,16 @@
     "id": "claim-6",
     "order": 6,
     "kicker": "Claim 6",
+    "claim": "When writing code gets easier, more of the hard work moves to figuring out what to build, whether it is right, and how to keep it that way.",
     "body": [
-      "As implementation becomes cheaper, more engineering effort moves toward representation, evidence, governance, coordination, and judgment \u2014 and agents may perform increasing portions of that work too.",
-      "The durable boundary is not a particular task or level of abstraction, but responsibility for what matters, what evidence is sufficient, which obligations should have authority, and what tradeoffs are acceptable. MAGE therefore treats the Governed Engineering Environment itself as an important object of engineering."
+      "Agents may increasingly help with that work too. The enduring engineering responsibility is deciding what matters, what evidence is sufficient, what can be delegated, and what tradeoffs are acceptable."
     ],
     "book_home": "reorganization-of-se",
     "figure_region": "the whole figure",
     "explore": null
   },
 
-  "_summary_line": "Model what matters. Give obligations authority. Do the governed work. Convert what you learn into structure the next task inherits.",
+  "_summary_line": "Model what matters. Check the work against what matters. Learn from failures. Build what you learn back into the engineering environment.",
 
   "core_question": {
     "id": "core-question",

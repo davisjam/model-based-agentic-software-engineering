@@ -864,7 +864,8 @@ def check_big_ideas() -> list[str]:
       (b) FIGURE — `figure` exists under book/assets/. Every asset's palette conformance is enforced
           separately + audit-only by the design-token drift lint, so a real asset is palette-governed;
           this check does not re-gate palette (it would redden validate on the existing audit-only drift).
-      (c) WORD CAP — `claim` is within the model's declared `_word_cap`.
+      (c) WORD CAP — the landing's STORED plain-language `claim` heading is within `_word_cap` (dual-heading
+          model, 260906: the landing renders its own plain restatement, not the book's formal heading).
       (d) MODEL→SITE — when index.html is present, each SIX-idea record's `id` resolves to an id on the
           built landing (via the shared `projection_drift`). The `gateway` record is EXCLUDED: the landing
           closes on the conclusion + three ways-in buttons and no longer renders the F1-gateway band, so
@@ -881,9 +882,9 @@ def check_big_ideas() -> list[str]:
     # concept-field loop and the MODEL->SITE projection below never treat it as a Big-Idea slot.
     recs.pop("core_question", None)
     problems: list[str] = []
-    # The landing PROJECTS its six claim headings from the book's authoritative prose (0.2); assert the
-    # book still yields exactly the number of claims the landing declares, so a claim added/removed in the
-    # book cannot silently leave the landing short or stale.
+    # Dual-heading model (260906): the landing renders its OWN stored plain-language headings, but the book
+    # must still yield the same NUMBER of claims the landing declares (book ⊇ site structurally), so a claim
+    # added/removed in the book cannot silently leave the landing short or stale.
     book_heads = _book_argues_claim_headings()
     n_claim_recs = len([s for s in raw.get("_order", []) if s in recs])
     if len(book_heads) != n_claim_recs:
@@ -908,9 +909,9 @@ def check_big_ideas() -> list[str]:
         exh = (ex.get("href") or "").split("#")[0]
         if exh and not os.path.exists(os.path.join(ROOT, exh)):
             problems.append(f"claims: {slug!r} explore.href {ex.get('href')!r} does not resolve to real book material")
-        o = rec.get("order")
-        claim_text = (book_heads[o - 1] if isinstance(o, int) and 1 <= o <= len(book_heads)
-                      else (rec.get("claim") or ""))
+        # Word cap applies to the landing's STORED plain-language heading (dual-heading model), not the
+        # book's formal heading — the landing no longer renders the book's version.
+        claim_text = rec.get("claim") or ""
         n = len(claim_text.split())
         if n > cap:
             problems.append(f"claims: {slug!r} claim heading is {n} words (cap {cap}): {claim_text!r}")
@@ -2705,12 +2706,11 @@ def _load_big_ideas() -> dict:
 
 
 def _book_argues_claim_headings() -> list[str]:
-    """The six 'What This Book Argues' claim HEADINGS, parsed from the authoritative book prose
-    (book/frontmatter/0.2-what-this-book-argues.md, the `N. **heading**` bold leads) in claim order.
-    The landing PROJECTS these so its claim text is the book's exact prose — one source, no hand-copied
-    duplicate to drift (book prose is authoritative; the site is a projection of it). Callers that need
-    parity should fail-loud when this does not return exactly six (a book-format change must not silently
-    fall back to stale landing text)."""
+    """The 'What This Book Argues' claim HEADINGS, parsed from the authoritative book prose
+    (book/frontmatter/0.2-what-this-book-argues.md, the `N. **heading**` bold leads) in claim order. Under
+    the dual-heading model (260906) the landing NO LONGER projects these — it renders its own stored
+    plain-language headings — so this feeds only check_big_ideas's COUNT-PARITY assertion (book ⊇ site: the
+    book must yield the same number of claims the landing declares). A structural count, not rendered text."""
     path = os.path.join(ROOT, "book", "frontmatter", "0.2-what-this-book-argues.md")
     heads: dict[int, str] = {}
     if os.path.isfile(path):
@@ -2722,20 +2722,16 @@ def _book_argues_claim_headings() -> list[str]:
 
 
 def _big_ideas_ordered() -> list[dict]:
-    """The six CLAIM records in `_order`, each tagged with its slug (`_slug`) and its `claim` heading
-    PROJECTED from the book's authoritative claim prose (0.1) by claim `order`, so the landing renders the
-    book's exact heading and cannot drift from it."""
+    """The six CLAIM records in `_order`, each tagged with its slug (`_slug`). Each record's `claim` is the
+    landing's own PLAIN-LANGUAGE heading, STORED in landing-big-ideas.json (dual-heading model, 260906): the
+    book owns its formal claim headings (0.2); the landing owns a plain restatement for a first-time visitor.
+    The two are intentionally different, so the heading is read from the model — not projected from the book."""
     raw = _load_big_ideas()
-    heads = _book_argues_claim_headings()
     out: list[dict] = []
     for k in raw.get("_order", []):
         if k not in raw:
             continue
-        rec = raw[k] | {"_slug": k}
-        o = rec.get("order")
-        if isinstance(o, int) and 1 <= o <= len(heads):
-            rec["claim"] = heads[o - 1]
-        out.append(rec)
+        out.append(raw[k] | {"_slug": k})
     return out
 
 
@@ -2751,11 +2747,14 @@ def _v3_onepage_figure() -> str:
     return (
         '<section class="onepage" id="onepage" aria-labelledby="onepage-h">\n'
         '  <h2 id="onepage-h" class="sec-h">MAGE in One Page</h2>\n'
-        '  <p class="sec-lead">MAGE begins with an old software-engineering problem and a new economic '
-        'condition. Large systems exceed the reasoning horizon of any one reasoner; commodity intelligence '
-        'makes implementation cheap and abundant relative to engineering judgment. The result is a new '
-        'imbalance—and an opportunity to move recurring engineering work into durable structure.</p>\n'
-        '  <p class="sec-lead">The six claims walk through the figure and summarize the argument.</p>\n'
+        '  <p class="sec-lead">Software engineering has always had to manage more complexity than any one '
+        'person can hold in mind. AI agents face the same problem, but they change its economics: we can now '
+        'produce implementation work much faster than we can grow the engineering knowledge and judgment '
+        'needed to guide it.</p>\n'
+        '  <p class="sec-lead">MAGE responds by making important knowledge explicit, checking autonomous work '
+        'against important requirements, and improving the engineering environment as experience reveals '
+        'what was missing.</p>\n'
+        '  <p class="sec-lead">The six claims below summarize the argument.</p>\n'
         '  <div class="onepage-body">\n'
         f'    <figure class="onepage-fig">{svg}</figure>\n'
         f'    {claims}\n'
@@ -2765,9 +2764,10 @@ def _v3_onepage_figure() -> str:
 
 def _landing_big_ideas() -> str:
     """The six CLAIMS as a vertically flowing NUMBERED sequence (not equal cards) — each an eyebrow
-    ('Claim N'), the book's exact claim heading, 1–2 explanatory paragraphs, a light figure-region cue, and
-    an optional 'Explore … →' link INTO book material (the book is authoritative for concepts). Each carries
-    its model `id` (check_big_ideas asserts it projects). Ends on the compact summary line. website-v3."""
+    ('Claim N'), the landing's own plain-language heading (stored in the model), 1–2 explanatory paragraphs,
+    a light figure-region cue, and an optional 'Explore … →' link INTO book material (the book is
+    authoritative for concepts). Each carries its model `id` (check_big_ideas asserts it projects). Ends on
+    the compact summary line. website-v3."""
     raw = _load_big_ideas()
     # A named <section> is a `region` landmark that validly carries the aria-label; a plain <div> with
     # aria-label trips axe's aria-prohibited-attr (a generic div takes no accessible name) — which silently
@@ -2825,22 +2825,24 @@ def _v3_nav() -> str:
 
 
 def _v3_hero() -> str:
-    """The hero: the eyebrow question (core_question), the title, a descriptive lead (two paragraphs that
-    DEFINE MAGE without arguing), and three buttons. Evidence is deliberately not in the definition."""
+    """The hero: the eyebrow question (core_question), the title, a descriptive lead (three paragraphs —
+    what MAGE is, its two principles, and governance conversion — in plain language, not book vocabulary),
+    and three buttons. Evidence is deliberately not in the definition."""
     q = (_load_big_ideas().get("core_question") or {}).get("question", "")
     return (
         '<header class="v3-hero">\n'
         f'  <p class="v3-eyebrow">{_esc(q)}</p>\n'
         '  <h1 class="v3-title">Model-Based Agentic Software Engineering</h1>\n'
-        '  <p class="v3-lead">Model-Based Agentic Software Engineering (MAGE) is an approach to software '
-        'engineering for environments in which AI agents perform substantial implementation work. It asks '
-        'what engineering knowledge should be made explicit, which obligations should have authority over '
-        'autonomous work, and how recurring failures and judgment can be converted into durable engineering '
-        'structure.</p>\n'
-        '  <p class="v3-lead">MAGE has two principles and a conversion loop: Modeling makes consequential '
-        'knowledge and intent explicit; Alignment gives important engineering obligations authority; '
-        'governance conversion turns recurring failures and judgment into structure that future work can '
-        'inherit.</p>\n'
+        '  <p class="v3-lead">Model-Based Agentic Software Engineering (MAGE) is an engineering methodology '
+        'for environments in which AI agents perform substantial implementation work.</p>\n'
+        '  <p class="v3-lead">MAGE has two principles that apply throughout the work. Modeling makes '
+        'important engineering knowledge and intent explicit. Alignment makes important requirements '
+        'effective by checking the work against them.</p>\n'
+        '  <p class="v3-lead">MAGE does not assume that engineers get everything right the first time. '
+        'Software engineering routinely proceeds from incomplete, imprecise, and evolving requirements, and '
+        'autonomous work exposes gaps that were not apparent in advance. MAGE therefore also emphasizes '
+        'governance conversion: changing the engineering environment so that future work can inherit what '
+        'was learned rather than rediscover it.</p>\n'
         '  <div class="v3-hero-btns">\n'
         '    <a class="v3-btn v3-btn-primary" href="book/index.html">Read the book</a>\n'
         '    <a class="v3-btn v3-btn-secondary" href="#onepage">Learn MAGE</a>\n'
@@ -2938,15 +2940,15 @@ def _v3_learn() -> str:
     return (
         '<section class="v3-sec" id="resources" aria-labelledby="resources-h">\n'
         '  <h2 id="resources-h" class="sec-h">Resources</h2>\n'
-        '  <p class="sec-lead">MAGE is available as a book, a body of writing, a curriculum, and a series '
-        'of talks.</p>\n'
+        '  <p class="sec-lead">MAGE is available as a book, research writing, teaching materials, and '
+        'talks.</p>\n'
         '  <div class="v3-cards v3-cards-2">\n'
         + _v3_card("Book", "",
                    "The complete treatment of MAGE, from its motivation and principles through practice, evidence, and implications.",
                    [("Read the book", "book/index.html"), ("Download PDF", _PDF_HREF)],
                    thumb=("book/assets/cover-charcoal-thumb.png", "MAGE book cover")) + "\n"
         + _v3_card("Writings", "",
-                   "Papers and shorter articles developing, motivating, and evaluating MAGE.",
+                   "Papers and shorter articles developing and evaluating MAGE.",
                    [("Browse writings", "writings.html")],
                    thumb=("resources/writings/mage-paper-thumb.png", "First page of the Model-Based Agentic Software Engineering paper")) + "\n"
         + _v3_card("Teach with MAGE", "",
@@ -2966,17 +2968,17 @@ def _v3_use() -> str:
     return (
         '<section class="v3-sec" id="use" aria-labelledby="use-h">\n'
         '  <h2 id="use-h" class="sec-h">Using MAGE</h2>\n'
-        '  <p class="sec-lead">MAGE is a method rather than a prescribed toolchain. The site provides '
-        'practical resources for applying its ideas to an existing engineering environment.</p>\n'
+        '  <p class="sec-lead">MAGE is a methodology, not a prescribed toolchain. These resources provide '
+        'practical ways to apply it to an existing engineering system.</p>\n'
         '  <div class="v3-cards v3-cards-3 v3-cards-sm">\n'
         + _v3_card("QuickStart", "",
-                   "Install the MAGE skills and begin identifying recurring reconstruction, judgment, and governance gaps in an existing repository.",
+                   "Install the MAGE skills and start identifying knowledge that is repeatedly reconstructed, judgments that are repeatedly made, and requirements that are not reliably checked.",
                    [("Start with MAGE", "quick-start.html")]) + "\n"
         + _v3_card("The Method", "",
-                   "Work through the practical cycle: model consequential knowledge, give obligations authority, do the governed work, and convert recurring failures.",
+                   "Apply Modeling and Alignment to the work, then use recurring failures and repeated judgment to improve the engineering environment.",
                    [("Apply the method", "constructing-the-gee.html")]) + "\n"
         + _v3_card("Mechanism Catalogue", "",
-                   "Browse concrete models, constraints, sensors, validators, gates, and compositions that can be adapted to different engineering systems.",
+                   "Browse concrete examples of models, constraints, sensors, validators, gates, and other mechanisms used to guide and check engineering work.",
                    [("Browse mechanisms", "catalogue-views.html")]) + "\n"
         '  </div>\n</section>')
 
@@ -2985,16 +2987,16 @@ def _v3_evidence() -> str:
     return (
         '<section class="v3-sec" id="evidence" aria-labelledby="evidence-h">\n'
         '  <h2 id="evidence-h" class="sec-h">Evidence</h2>\n'
-        '  <p class="sec-lead">MAGE began with one production system observed in longitudinal depth and was '
-        'then compared with independently described industrial systems. The originating case provides '
-        'evidence about mechanism and sequence; the industrial cases provide variation and alternative '
-        'realizations. These sources motivate and test the theory, but they do not establish universal laws.</p>\n'
+        '  <p class="sec-lead">MAGE began with one production system studied in depth and was then compared '
+        'with independently described industrial systems. The originating case shows how the ideas emerged '
+        'and evolved over time; the industrial cases show other ways similar engineering problems have been '
+        'addressed.</p>\n'
         '  <div class="v3-cards v3-cards-2">\n'
         + _v3_card("DocAble — depth", "",
-                   "The originating production system. Its development provides the longitudinal record from which the early MAGE concepts emerged.",
+                   "The originating production system and the longitudinal record from which the early MAGE concepts emerged.",
                    [("Explore the originating case", "book/5.1-the-problem-and-the-bar.html")]) + "\n"
         + _v3_card("Industrial cases — breadth", "",
-                   f"Independent accounts from {_INDUSTRY_ORGS_PROSE}, reconstructed through the MAGE vocabulary to examine recurring moves, variation, and limits.",
+                   f"Independent accounts from {_INDUSTRY_ORGS_PROSE}, examined through the MAGE framework for recurring patterns, differences, and limits.",
                    [("Explore the industrial cases", "industry-case-studies.html")]) + "\n"
         '  </div>\n</section>')
 
@@ -3003,9 +3005,10 @@ def _v3_research() -> str:
     return (
         '<section class="v3-sec" id="research" aria-labelledby="research-h">\n'
         '  <h2 id="research-h" class="sec-h">Research</h2>\n'
-        '  <p class="sec-lead">MAGE is also a research program. Its claims raise empirical and technical '
-        'questions about what engineering knowledge should be externalized, which obligations can be made '
-        'authoritative, how governed environments evolve, and where human judgment remains necessary.</p>\n'
+        '  <p class="sec-lead">MAGE is also a research program. It raises questions about what engineering '
+        'knowledge should be made explicit, which requirements can be reliably checked, how engineering '
+        'environments should improve over time, when those improvements are worth their cost, and where '
+        'human judgment remains necessary.</p>\n'
         '  <p class="v3-btn-row">\n'
         '    <a class="v3-btn v3-btn-secondary" href="theory.html">Read the theory &#8594;</a>\n'
         '    <a class="v3-btn v3-btn-secondary" href="book/6.4-research-agenda.html">Explore the research agenda &#8594;</a>\n'
