@@ -479,7 +479,7 @@
             },
             {
               "slug": "agentic-work-provides-identifiable-interfaces-where-enforcement-can-act",
-              "text": "Consequential work reaches the system through identifiable interfaces — inputs, tool calls, edits, outputs, lifecycle transitions — where a sandbox, hook, or test can act without a rich model, and explicit representations extend the semantic reach of those same control points.",
+              "text": "Important changes reach the system through identifiable interfaces — inputs, tool calls, edits, outputs, lifecycle transitions — where a sandbox, hook, or test can act without a rich model, and explicit representations extend the semantic reach of those same control points.",
               "block_index": 55
             }
           ]
@@ -1506,7 +1506,7 @@
             },
             {
               "slug": "the-alignment-principle-stated-whole",
-              "text": "The Alignment Principle, stated whole: make engineering obligations effective by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them.",
+              "text": "The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them.",
               "block_index": 44
             },
             {
@@ -1535,7 +1535,7 @@
         },
         {
           "slug": "enforcement-can-act-at-several-boundaries-choose-where-the-obligation-is-visible",
-          "text": "An obligation can be enforced at several boundaries; choose where it is visible and a mechanism can act on it.",
+          "text": "An obligation can be enforced at several boundaries; choose where it is visible and a mechanism can enforce it.",
           "block_index": 8
         }
       ]
@@ -1643,7 +1643,7 @@
         },
         {
           "slug": "software-engineering-has-a-traceability-heritage-alignment-builds-on",
-          "text": "Software engineering already connects intent to realization through requirements, traceability, verification, and acceptance; Alignment builds on that tradition but adds a further question — what consequence should follow from the evidence?",
+          "text": "Software engineering already connects intent to realization through requirements, traceability, verification, and acceptance; Alignment builds on that tradition but adds a further question — should the resulting judgment merely inform the work, or should the environment enforce it?",
           "block_index": 5
         },
         {
@@ -1682,7 +1682,7 @@
             },
             {
               "slug": "a-soft-instruction-becomes-alignment-only-when-the-environment-can-act-on-it",
-              "text": "An instruction binds only when a mechanism in the environment acts on it.",
+              "text": "An instruction is enforced only when a mechanism in the environment acts on it.",
               "block_index": 15
             },
             {
@@ -1757,7 +1757,7 @@
             },
             {
               "slug": "whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment",
-              "text": "Whichever validator supplies the judgment, the consequence still depends on what the environment does with its verdict.",
+              "text": "Whichever validator supplies the judgment, the enforcement still depends on what the environment does with its verdict.",
               "block_index": 55
             }
           ]
@@ -1777,7 +1777,7 @@
             },
             {
               "slug": "a-gate-supplies-the-consequence-and-a-gate-is-a-commitment",
-              "text": "A gate supplies the consequence — and a gate is a commitment.",
+              "text": "A gate enforces the verdict — and a gate is a commitment.",
               "block_index": 63
             },
             {
@@ -1837,7 +1837,7 @@
           "points": [
             {
               "slug": "provenance-carried-admission-is-the-derivation-path-case-of-conformance",
-              "text": "Provenance is useful for a particular architectural-conformance problem: the required relation is the path through which a consequential operation was derived, not merely which components interact.",
+              "text": "Provenance is useful for a particular architectural-conformance problem: the required relation is the path through which a protected operation was derived, not merely which components interact.",
               "block_index": 87
             },
             {
@@ -1847,12 +1847,12 @@
             },
             {
               "slug": "some-obligations-have-no-single-forbidden-call",
-              "text": "Some obligations have no single forbidden call; a consequential operation is reachable by composing otherwise legitimate APIs into a new path.",
+              "text": "Some obligations have no single forbidden call; a protected operation is reachable by composing otherwise legitimate APIs into a new path.",
               "block_index": 91
             },
             {
               "slug": "provenance-reverses-the-enforcement-problem",
-              "text": "Provenance reverses enforcement: require the consequential operation to carry evidence that it passed through the sanctioned abstraction.",
+              "text": "Provenance reverses enforcement: require the protected operation to carry evidence that it passed through the sanctioned abstraction.",
               "block_index": 94
             },
             {
@@ -1862,7 +1862,7 @@
             },
             {
               "slug": "provenance-makes-a-derivation-path-sanctioned",
-              "text": "Provenance here is not attribution; it makes a derivation path the sanctioned route to consequence — producer-side rules check known emitters, the consumer boundary refuses unknown routes.",
+              "text": "Provenance here is not attribution; it makes a derivation path the sanctioned route to admission — producer-side rules check known emitters, the consumer boundary refuses unknown routes.",
               "block_index": 103
             }
           ]
@@ -1945,7 +1945,7 @@
             },
             {
               "slug": "the-conversion-lands-in-one-of-five-places",
-              "text": "The conversion lands in one of five places: model, invariant, sensor, validator, or consequence.",
+              "text": "The conversion lands in one of five places: model, invariant, sensor, validator, or enforcement.",
               "block_index": 20
             },
             {
@@ -1956,9 +1956,9 @@
           ]
         },
         {
-          "section_id": "correct-judgment-without-consequence",
+          "section_id": "correct-judgment-without-enforcement",
           "level": 2,
-          "heading_text": "Correct Judgment Without Consequence",
+          "heading_text": "Correct Judgment Without Enforcement",
           "topic_sentence": "A merge automation drained a backlog of agent worktrees into the mainline each tick.",
           "id_source": "derived",
           "block_index": 27,
@@ -2197,7 +2197,7 @@
         },
         {
           "slug": "alignment-turned-on-itself-a-model-of-the-controls-made-binding-on-the-controls",
-          "text": "Alignment turned on itself: a model of the controls, made binding on the controls.",
+          "text": "Alignment turned on itself: a model of the controls, enforced on the controls.",
           "block_index": 4
         }
       ]

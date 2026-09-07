@@ -62,7 +62,7 @@
   <!-- RESPONSE: observe -->
   <rect id="observe" x="37.27" y="216" width="315.47" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="195" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">OBSERVE</text>
-  <text x="195" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">report evidence, no consequence</text>
+  <text x="195" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">report evidence only</text>
 
   <!-- RESPONSE: adapt -> throttle / soft completion -->
   <rect id="adapt" x="355" y="216" width="250" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>

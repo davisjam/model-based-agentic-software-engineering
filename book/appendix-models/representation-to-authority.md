@@ -23,7 +23,7 @@ deterministic gate. The handoff from Modeling to Alignment is:
 
 ```
         MODELING                         ALIGNMENT
-  make knowledge explicit   →   make selected obligations effective
+  make knowledge explicit   →   make selected obligations enforceable
 
    represented obligation      →   enforcing mechanism
     "what is / ought?"            "must this hold?"

@@ -8,7 +8,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 340" width="1100" height="340"
      role="img" aria-labelledby="pcaTitle pcaDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="pcaTitle">Provenance-carried admission: a consequential operation must derive through the sanctioned abstraction, which attaches provenance the boundary requires</title>
+  <title id="pcaTitle">Provenance-carried admission: a protected operation must derive through the sanctioned abstraction, which attaches provenance the boundary requires</title>
   <desc id="pcaDesc">A left-to-right flow. Implementation logic derives a needed operation through a sanctioned
     abstraction — the sanctioned source of the operation — which attaches provenance to the resulting operation. The
     operation, carrying its provenance, reaches a consequence boundary that requires that provenance before permitting
@@ -25,7 +25,7 @@
   <g font-size="16" font-weight="700" letter-spacing="0.5" fill="#9a3f12" text-anchor="middle">
     <text x="120" y="66">IMPLEMENTATION</text>
     <text x="410" y="66">SANCTIONED ABSTRACTION</text>
-    <text x="850" y="66">CONSEQUENCE BOUNDARY</text>
+    <text x="850" y="66">ADMISSION BOUNDARY</text>
   </g>
 
   <!-- implementation logic (gray, ordinary) -->
@@ -55,7 +55,8 @@
 
   <!-- edge: boundary -> consequence -->
   <line x1="816" y1="150" x2="922" y2="150" stroke="#57534e" stroke-width="2.4" marker-end="url(#pca-ah)"/>
-  <text x="1002" y="156" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CONSEQUENCE</text>
+  <text x="1002" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ADMITTED</text>
+  <text x="1002" y="170" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">OPERATION</text>
 
   <!-- footer thesis -->
   <line x1="40" y1="266" x2="1060" y2="266" stroke="#e7e2da" stroke-width="1.4"/>

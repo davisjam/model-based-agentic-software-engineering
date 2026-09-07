@@ -12,7 +12,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" width="960" height="720"
      role="img" aria-labelledby="jcTitle jcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="jcTitle">Correct judgment without consequence: the audit detected the danger and judged it unsafe, but the link from verdict to consequence was severed, so the operation proceeded and content was lost</title>
+  <title id="jcTitle">Correct judgment without enforcement: the audit detected the danger and judged it unsafe, but the link from verdict to enforcement was severed, so the operation proceeded and content was lost</title>
   <desc id="jcDesc">A vertical cascade. A dangerous auto-resolution fallback exists. A sensor detects it and a
     validator judges it unsafe — sensing and evaluation both work. But the link from that verdict to any
     binding consequence is severed; the only thing emitted at the break is a warning. So the operation
@@ -69,11 +69,10 @@
   <!-- WARNING ONLY — the only thing emitted at the cut (side, dashed rust) -->
   <rect x="49.8" y="386" width="252.4" height="56" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="7 5"/>
   <text x="176" y="410" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">WARNING ONLY</text>
-  <text x="176" y="429" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">logged — no consequence</text>
+  <text x="176" y="429" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">logged — not enforced</text>
   <line x1="260" y1="414" x2="366" y2="414" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4"/>
   <!-- centerpiece label -->
-  <text x="452" y="404" font-size="19.2" font-weight="800" fill="#9a3f12">no binding consequence</text>
-  <text x="452" y="426" font-size="19.2" font-style="italic" fill="#9a3f12">the verdict never reaches a consequence</text>
+  <text x="452" y="415" font-size="19.2" font-weight="800" fill="#9a3f12">no mechanism enforces the verdict</text>
   <!-- lower stub into the operation, arrowed -->
   <line x1="400" y1="440" x2="400" y2="472" stroke="#9a3f12" stroke-width="3.2" marker-end="url(#jc-r)"/>
 

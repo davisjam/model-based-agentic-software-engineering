@@ -7,14 +7,14 @@
 <!-- semantic-families: modeling, governance, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620"
      role="img" aria-labelledby="faTitle faDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="faTitle">Authority and correspondence are different relations</title>
+  <title id="faTitle">Governing role and correspondence are different relations</title>
   <desc id="faDesc">One authoritative computation model — computations, dependencies, and composition — sits at the top. Two relations run from it. On the left, an authority relation: the model is consumed by the scheduler, so execution follows it. On the right, a correspondence relation: the model, and the parity-bound declarations around it, are projected and checked into an analytical graph view used for analysis and governance. The authority arrow reaches execution; the correspondence arrow reaches the view. Making the view a more faithful correspondence does not transfer execution authority to it.</desc>
   <defs>
     <marker id="fa-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/></marker>
     <marker id="fa-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
     <marker id="fa-ah-gray" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
   </defs>
-  <text x="500" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Authority and correspondence are different relations</text>
+  <text x="500" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Governing role and correspondence are different relations</text>
   <!-- authority arrow: model -> execution -->
   <line x1="340" y1="146" x2="340" y2="246" stroke="#1f7a4d" stroke-width="3" marker-end="url(#fa-ah-green)"/>
   <!-- correspondence arrow: model -> analytical view -->
@@ -24,7 +24,7 @@
   <rect x="260" y="80" width="480" height="66" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <rect x="200" y="250" width="280" height="62" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <rect x="520" y="250" width="320" height="62" rx="12" fill="#eef1f4" stroke="#2f5169" stroke-width="2"/>
-  <text x="500" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">AUTHORITATIVE COMPUTATION MODEL</text>
+  <text x="500" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">GOVERNING COMPUTATION MODEL</text>
   <text x="500" y="133" text-anchor="middle" font-size="15" font-weight="400" font-style="italic" fill="#57534e">computations · dependencies · composition</text>
   <text x="325" y="200" text-anchor="end" font-size="15" font-weight="600" font-style="italic" fill="#1f7a4d">consumed by scheduler</text>
   <text x="695" y="200" text-anchor="start" font-size="15" font-weight="600" font-style="italic" fill="#2f5169">projected / checked</text>
@@ -32,9 +32,9 @@
   <text x="680" y="287" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">ANALYTICAL GRAPH VIEW</text>
   <text x="680" y="382" text-anchor="middle" font-size="16" font-weight="400" font-style="italic" fill="#57534e">analysis · governance</text>
   <line x1="60" y1="432" x2="940" y2="432" stroke="#e4e0d8" stroke-width="1.5"/>
-  <text x="60" y="474" text-anchor="start" font-size="17" font-weight="700" fill="#1f7a4d">AUTHORITY</text>
+  <text x="60" y="474" text-anchor="start" font-size="17" font-weight="700" fill="#1f7a4d">GOVERNING ROLE</text>
   <text x="230" y="474" text-anchor="start" font-size="17" font-weight="400" fill="#1c1917">computation model → execution</text>
   <text x="60" y="510" text-anchor="start" font-size="17" font-weight="700" fill="#2f5169">CORRESPONDENCE</text>
   <text x="230" y="510" text-anchor="start" font-size="17" font-weight="400" fill="#1c1917">computation model / parity-bound declarations → analytical view</text>
-  <text x="500" y="562" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Strong correspondence does not transfer execution authority to the view.</text>
+  <text x="500" y="562" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Strong correspondence does not make the analytical view govern execution.</text>
 </svg>
