@@ -16,8 +16,21 @@ drawing leg specializes the same stance as *use the native construct, not stitch
 
 The value is **consistency, not correctness** — pick one word for a concept and say it everywhere. Say
 "gating," not "quality checkpoint." Say "strangler fig," not "gradual replacement." A reader who has met the
-term once recognizes it on sight; a reader who hasn't can follow the reference link and learn it. Two rules
-govern every row:
+term once recognizes it on sight; a reader who hasn't can follow the reference link and learn it.
+
+A term of art must earn its place. Prefer an established term when it carries a distinction, constraint, or
+concept that would otherwise require explanation. Do not prefer jargon merely because a named term exists.
+If ordinary engineering language preserves the meaning, use the ordinary language. In particular,
+distinguish the name of a concept from the language used to describe what happens: *authority* may name a
+property of an obligation while *the gate rejects the change* describes the mechanism. Do not force the
+conceptual noun into sentences where a concrete verb is clearer.
+
+Do not let one umbrella term erase useful distinctions. If a word can refer variously to a system,
+codebase, repository, governed surface, or engineering environment, choose the specific referent instead.
+Stable vocabulary improves precision only when the vocabulary itself preserves the distinctions the
+argument needs.
+
+Two rules govern every row:
 
 - **Name the established term, then link it.** When you reach for a structural idea, name the recognized
   pattern (Circuit breaker, Bulkhead, Backpressure) and give the anchor link — do not invent a fresh

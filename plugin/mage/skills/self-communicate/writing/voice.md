@@ -118,10 +118,20 @@ that don't.
   not persuading; it is *informing*, and there the flourish is noise. Match the ornament to the register: a
   touch of it in a Motivation that genuinely persuades, none of it in a reference definition. Even in the
   contexts that earn it, one flourish that lands beats three that decorate.
-- **The plain word beats the ornamental one when it carries the idea.** This is the "plain diction carrying
-  technical weight" characteristic, stated as a rule: reach for the common word ("pickle", "silver bullet")
-  when it will carry the idea, and the exact technical term only when the plain word won't. An inflated word
-  doing a plain word's job is the failure this catches.
+- **The plain word beats the ornamental or unnecessarily specialized one when it carries the idea.** This
+  is the "plain diction carrying technical weight" characteristic, stated as a rule: reach for the common
+  word ("pickle", "silver bullet") when it will carry the idea, and the exact technical term only when the
+  plain word won't. An inflated word doing a plain word's job is the failure this catches. This includes
+  established jargon from neighboring communities: familiarity somewhere does not make a term preferable
+  here. If *system*, *codebase*, or *governed surface* says precisely what you mean, do not write *estate*
+  merely because *application estate* is established terminology.
+- **Prefer the concrete mechanism to an abstract paraphrase.** Plain prose is not merely simpler
+  vocabulary; it says directly what happens. Prefer "the gate rejects the change" to "the verdict acquires
+  consequence," "the environment can enforce the obligation" to "the obligation receives authoritative
+  consequence," and "the validator checks the result" to "the mechanism exercises authority over the
+  artifact." Abstract nouns are useful when the abstraction itself is the subject. Do not turn them into
+  actors when the actual actor or operation can be named. If the reader can ask *what actually happens?*,
+  answer that question in the sentence.
 - **Economy of examples.** Prefer the smallest example that demonstrates the point. Across a chapter, vary
   the examples so the reader sees the abstraction recurring across different engineering domains rather than
   repeatedly through one implementation. This is the word-economy rule one level up: as the sentence rule

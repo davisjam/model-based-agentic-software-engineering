@@ -82,6 +82,14 @@ back to the engineering register.
 - **Register drift — jargon where a plain word would carry it.** **Detect:** an inflated or abstract word
   doing a job a common word does better. **Fix:** reach for the plain word ("pickle", "silver bullet")
   when it carries the idea, and the exact technical term only when the plain word won't.
+- **Abstract paraphrase of a concrete operation.** **Detect:** the prose describes a concrete engineering
+  action through abstract nouns, nominalizations, or metaphor when it could name the actor and operation
+  directly. Common signals include abstractions made grammatical actors (*authority binds*, *evidence
+  acquires consequence*, *the mechanism carries authority*) and vague verbs such as *make effective*,
+  *operationalize*, *instantiate*, or *realize* where a more exact verb is available. **Fix:** ask *what
+  actually happens?* Name the actor and use that verb: the permission forbids, the validator checks, the
+  test produces evidence, the gate rejects, the environment enforces. Keep the abstraction only when the
+  abstraction itself is what the passage is reasoning about.
 - **Missing direct address where it would help.** **Detect:** instructional prose that lectures past the
   reader when a "you" would land it. **Fix:** address the reader once, at the point that matters ("You'll
   hit this the first time two agents share a worktree"). Keep it occasional — constant second-person turns
@@ -332,6 +340,11 @@ until the interpretability break is fixed.
    plus the **bespoke-SVG-where-Mermaid-would-do** finding from Pass 5. Real but lower-stakes; batch them.
 
 Within a tier, order by how much the fix improves the passage, not by reading order.
+
+**Final precision check.** Could any sentence become both more precise and easier to read by replacing an
+abstract formulation with the concrete actor, object, and operation? If so, that is a Pass-2 fix — name the
+actor and its operation (*the gate rejects*, *the validator checks*), and keep the abstraction only where
+the abstraction itself is the subject.
 
 ## Output format — the audit report
 

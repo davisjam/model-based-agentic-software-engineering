@@ -52,10 +52,15 @@ the idea; strip anything that does not carry it.** Three touchstones name the di
 The stance specializes per representation, and each specialization lives in its own resource rather than
 being restated here:
 
-- **In prose** — economy of words; no fluffy adjectives. Reserve flowery, ornamental language for the
-  contexts that earn it (a blog post, a keynote) and use it sparingly even there. Repo prose — a reference,
-  a runbook, a design doc — is plain. This extends the existing "cut qualifiers / describe don't sell"
-  discipline; see [`writing/voice.md`](writing/voice.md) (§"Economy — less is more").
+- **In prose** — economy of words and economy of abstraction. Prefer the plainest language that states the
+  engineering fact precisely. Name the actor and say what it does: a gate rejects a change; a validator
+  checks an obligation; a permission prevents an action. Do not replace a concrete mechanism with an
+  abstract noun merely because the abstraction is technically defensible. Use terms of art when they carry
+  meaning that ordinary language would lose; otherwise use ordinary engineering prose. Reserve flowery or
+  self-conscious language for contexts that earn it, and use it sparingly even there. The governing
+  distinction: **do not simplify away technical meaning — simplify the language carrying it.** This extends
+  the existing "cut qualifiers / describe don't sell" discipline; see
+  [`writing/voice.md`](writing/voice.md) (§"Economy — less is more").
 - **In drawing** — the simplest representation that carries the idea. Do not elaborate a diagram if a
   simpler one would read; strip ornament. See [`drawing/diagrams.md`](drawing/diagrams.md) (§"Less is more —
   the simplest form that carries the idea").
