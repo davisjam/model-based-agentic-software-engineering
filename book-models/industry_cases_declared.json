@@ -958,7 +958,7 @@
         "trust-boundaries-run-in-both-directions",
         "environment-can-precede-the-workforce"
       ],
-      "mage_explains_implicit": "MAGE reads GitLab's durable layer as a Governed Engineering Environment stated explicitly: keep the reasoner replaceable and the trust layer permanent, externalize relationships into a queryable graph, and give obligations authority around the agent rather than inside its prompt.",
+      "mage_explains_implicit": "MAGE reads GitLab's durable layer as a Governed Engineering Environment stated explicitly: keep the reasoner replaceable and the trust layer permanent, externalize relationships into a queryable graph, and enforce obligations around the agent rather than inside its prompt.",
       "limitations": "A vendor-aligned architectural vision rather than an independent measured study; strong on context, provenance, and authority, but the public account describes a knowledge/provenance/causal graph plus external governance, with no executable behavioral, scenario, or invariant model, and no model<->implementation correspondence check, as a primary reasoning surface. It remains within the software-first modeling tier used in this comparison.",
       "candidate_insertions": [
         "governed-environment",

@@ -11,7 +11,7 @@
     that plans for the host. The three sibling views then converge, along dashed arrows, on a joined view
     labelled not a mega-model. Every join edge is dashed: these are derived correspondences across views, and no
     fact is copied into a single stored model. No heavy boundary appears — composition is correspondence, not
-    authority. Legend as in Figure C-1; dash and weight carry the meaning without colour.</desc>
+    enforcement. Legend as in Figure C-1; dash and weight carry the meaning without colour.</desc>
 
   <defs>
     <marker id="g7-dash" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
@@ -59,7 +59,7 @@
   <line x1="360" y1="338" x2="360" y2="484" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
   <line x1="590" y1="338" x2="422" y2="484" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
 
-  <!-- JOINED VIEW (composite representation — heavier umber border, NO authority) -->
+  <!-- JOINED VIEW (composite representation — heavier umber border, NO enforcement) -->
   <rect id="joined" x="248" y="486" width="224" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2.8"/>
   <text x="360" y="514" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">JOINED VIEW</text>
   <text x="360" y="536" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">not a mega-model</text>

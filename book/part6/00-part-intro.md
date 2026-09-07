@@ -7,7 +7,7 @@ something worth explaining.
 It begins with a general theory of how agentic capacity interacts with the governed engineering
 environment. The theory treats implementation capacity as an input, not an outcome: the same capacity can
 produce durable progress or merely accelerate churn depending on the representations, evidence,
-constraints, and authority through which it acts. Engineering pressure exposes mismatches; diagnosis and
+constraints, and controls through which it acts. Engineering pressure exposes mismatches; diagnosis and
 adaptation can convert what engineers learn into structure that later work inherits.
 
 We state the theory and its principal predictions first, deliberately in general form. Only afterward do we
@@ -28,7 +28,7 @@ precise enough to be wrong.
 >
 > Agentic capacity does not by itself produce engineering progress. It acts through the engineered
 > environment surrounding the work. Modeling changes the representations through which consequential
-> reasoning occurs; Alignment gives selected obligations authority independent of the producing reasoner.
+> reasoning occurs; Alignment enforces selected obligations independently of the producing reasoner.
 >
 > Together, these structures shape how much autonomous capacity becomes durable progress, how much failure
 > escapes, and how much human judgment must still be purchased along the way.

@@ -499,8 +499,7 @@
           "work-unit-boundary",
           "artifact-runtime-boundary",
           "intervention-boundary",
-          "engineered-agent-loop",
-          "alignment-principle"
+          "engineered-agent-loop"
         ],
         "artifacts": [
           {
@@ -699,7 +698,7 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the MAGE cycle (model the intent, give stable obligations authority, convert recurring judgment, repeat)",
+            "name": "the MAGE cycle (model the intent, enforce stable obligations, convert recurring judgment, repeat)",
             "anchor": null
           }
         ],

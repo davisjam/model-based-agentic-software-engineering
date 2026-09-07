@@ -732,7 +732,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Enforce Where the Property Becomes Legible</a></li>
 <li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
 <li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
 <li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
@@ -746,7 +746,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-c-measurement.html">C.4 Measurement</a></li>
 <li><a class="" href="appendix-c-documentation-and-provenance.html">C.5 Documentation and Provenance</a></li>
 <li><a class="" href="appendix-c-joining-views.html">C.6 Joining Views Around a Scenario</a></li>
-<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Authority</a></li>
+<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Enforcement</a></li>
 <li class="part">Appendix D — Operator&#x27;s Reference</li>
 <li><a class="" href="appendix-operators-reference.html">Appendix D — Operator's Reference</a></li>
 <li><a class="" href="appendix-d-operators-dashboard.html">D.1 The Operator's Dashboard</a></li>
@@ -809,11 +809,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Structural</strong> — what parts exist, and which may depend on which.</li><li><strong>Behavioral</strong> — what states a thing occupies, and how it moves between them.</li><li><strong>Ownership</strong> — who controls a unit of work, and for how long.</li><li><strong>Decision</strong> — what is allowed, or which alternative should be selected.</li><li><strong>Measurement</strong> — what quantities the system holds, and against what bound.</li><li><strong>Provenance</strong> — what happened to an artifact, and what evidence records it.</li></ul>
 <p>These classes organize recurring engineering questions rather than partitioning systems. They overlap, and they are not exhaustive. The same worker may appear as a component in one model, an actor in a lifecycle in another, and the owner of work in a third. Architectural reasoning may traverse several such views at once.</p>
 <p>DocAble is the running example—the production accessibility service introduced in Part I. A document enters, remediation is distributed across workers and services, the result is validated, and a corrected document returns with a record of what changed. The real system is far more complicated than any representation ahead. That is the point. Each model keeps only the relationships its question needs.</p>
-<p>Each chapter begins with a familiar engineering representation, the properties it makes expressible, and the analyses it supports, then specializes that representation to DocAble. Four terms stay distinct throughout the Part. A <strong>property</strong> is a claim that can be expressed over a model. An <strong>invariant</strong> is a property required to hold over a declared domain. An <strong>analysis</strong> or check produces evidence about a property. Whether the engineered environment enforces the resulting obligation is a separate question of <strong>authority</strong>, taken up in Part III.</p>
+<p>Each chapter begins with a familiar engineering representation, the properties it makes expressible, and the analyses it supports, then specializes that representation to DocAble. Four terms stay distinct throughout the Part. A <strong>property</strong> is a claim that can be expressed over a model. An <strong>invariant</strong> is a property required to hold over a declared domain. An <strong>analysis</strong> or check produces evidence about a property. Whether the engineered environment enforces the resulting obligation is a separate question of <strong>enforcement</strong>, taken up in Part III.</p>
 <blockquote class="box-inset"><p class="inset-title">Four questions for every model</p>
 <p>Every model section ahead opens on the same four lines:</p>
 <ul><li><strong>Engineering question</strong> — what am I trying to know or decide?</li><li><strong>Model</strong> — what representation makes the question tractable?</li><li><strong>Property</strong> — what can I now state precisely?</li><li><strong>Quality attribute</strong> — what engineering concern does that property serve?</li></ul></blockquote>
-<p>Part III adds a fifth question: <strong>what gives the property authority?</strong> Modeling makes properties explicit; Alignment makes selected obligations enforceable.</p>
+<p>Part III adds a fifth question: <strong>what enforces the property?</strong> Modeling makes properties explicit; Alignment makes selected obligations enforceable.</p>
 <p>The final chapter, <a href="2.8-system-knowledge.html">System Knowledge</a>, shows how the six models connect without becoming a seventh model.</p><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 800"
      role="group" aria-labelledby="bmTitle-nav bmDesc-nav"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -821,7 +821,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <desc id="bmDesc-nav">A single descent through the book's argument. The Preface poses the opening question: how
     do we safely grant autonomy to commodity intelligence? It leads to Part I, The New Engineering Problem —
     changed economics. Then Part II, Modeling — make knowledge and intent explicit. Then Part III, Alignment —
-    give obligations authority. Then the Interlude, One Problem, Many Models — follow one problem through
+    enforce selected obligations. Then the Interlude, One Problem, Many Models — follow one problem through
     successive models. Then Part IV, The MAGE Method — model, align, work, convert; a dotted branch
     runs to Appendix Part I, Practice (use and extend). Then Part V, The Evidence — depth and breadth; a
     dotted branch runs to Appendix Part II, Evidence (inspect the empirical record). Then Part VI, The
@@ -867,7 +867,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- PART III — Alignment (rust) -->
   <rect id="part-3" x="24" y="268" width="440" height="56" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="244" y="293" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Part III · Alignment</text>
-  <text x="244" y="313" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">give obligations authority</text>
+  <text x="244" y="313" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">enforce selected obligations</text>
   <line x1="244" y1="324" x2="244" y2="338" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah-nav)"/>
 
   <!-- INTERLUDE — One Problem, Many Models (unnumbered matter, seated in the descent) -->

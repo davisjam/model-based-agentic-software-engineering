@@ -355,7 +355,7 @@
         "concept:alignment-principle"
       ],
       "provenance": "stated",
-      "anchor": "Preface 'What the method turned out to be': the two principles solve different problems but are not independent — each rests on the same underlying conception of acceptable realization, which Modeling externalizes and Alignment gives authority.",
+      "anchor": "Preface 'What the method turned out to be': the two principles solve different problems but are not independent — each rests on the same underlying conception of acceptable realization, which Modeling externalizes and Alignment enforces.",
       "word_count": 18
     },
     {
@@ -481,19 +481,19 @@
     {
       "id": "three-not-knowings",
       "kind": "scope-boundary",
-      "statement": "Churn's recurring causes are weak representation (knowledge rediscovered) and weak authority (obligations re-inspected).",
+      "statement": "Churn's recurring causes are weak representation (knowledge rediscovered) and weak enforcement (obligations re-inspected).",
       "distinguishes": [],
       "home": "the-new-bottleneck",
       "asserted_at": [
         "the-new-bottleneck"
       ],
-      "contradicted_by": "Enumerating a fixed count of churn causes unrelated to weak representation or weak authority.",
+      "contradicted_by": "Enumerating a fixed count of churn causes unrelated to weak representation or weak enforcement.",
       "watch_phrases": [],
       "relates_to": [
         "big-idea:churn"
       ],
       "provenance": "stated",
-      "anchor": "Preface 'What changed': churn is what happens when knowledge or obligations must be paid for again — weak representation forces rediscovery, weak authority forces repeated inspection.",
+      "anchor": "Preface 'What changed': churn is what happens when knowledge or obligations must be paid for again — weak representation forces rediscovery, weak enforcement forces repeated inspection.",
       "word_count": 13
     }
   ]

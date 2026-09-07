@@ -15,10 +15,10 @@
     "thin_claims_front_loaded": 0,
     "overmapped_claims": 3,
     "claims_exempt": 5,
-    "claims_stale": 0,
+    "claims_stale": 3,
     "quantifiable_claims": 9,
     "reality_claims": 10,
-    "max_statement_words": 45
+    "max_statement_words": 44
   },
   "taxonomy": {
     "word_cap": 32,
@@ -295,7 +295,7 @@
     {
       "id": "alignment-principle",
       "order": 8,
-      "statement": "Give engineering obligations authority through mechanisms embedded in the environment — constrain, sense, validate, gate. Alignment can act directly on actions and artifacts; explicit models enlarge the set of properties those mechanisms can state and check.",
+      "statement": "Make engineering obligations effective through mechanisms embedded in the environment — constrain, sense, validate, gate. Alignment can act directly on actions and artifacts; explicit models enlarge the set of properties those mechanisms can state and check.",
       "seeds": [
         5
       ],
@@ -315,7 +315,7 @@
       "reality_claim": true,
       "measurand": "drift-detection signal quality and reconciliation labor for models and implementation",
       "word_count": 36,
-      "statement_hash": "5a24063f0dc6",
+      "statement_hash": "e33f8c81d703",
       "advanced_by": [
         "0.5-preface",
         "1.3-the-agentic-substrate",
@@ -333,12 +333,12 @@
       "body_depth": 10,
       "front_loaded": false,
       "overmapped": true,
-      "fresh": true
+      "fresh": false
     },
     {
       "id": "principles-treat-the-causes",
       "order": 9,
-      "statement": "The principles are distinct and address different problems: Modeling makes consequential knowledge explicit; Alignment gives obligations authority. Every meaningful Alignment mechanism rests on some conception of acceptable realization — tacit, locally encoded, or externalized as a separately represented model — which MAGE externalizes when consequential.",
+      "statement": "The principles are distinct and address different problems: Modeling makes consequential knowledge explicit; Alignment enforces obligations. Every meaningful Alignment mechanism rests on some conception of acceptable realization — tacit, locally encoded, or externalized as a separately represented model — which MAGE externalizes when consequential.",
       "seeds": [
         4,
         5
@@ -354,8 +354,8 @@
       "quantifiable": false,
       "reality_claim": false,
       "measurand": "",
-      "word_count": 45,
-      "statement_hash": "218601e7dcb9",
+      "word_count": 44,
+      "statement_hash": "34ec5613519e",
       "advanced_by": [
         "0.5-preface",
         "why-mage-follows-from-the-machine"
@@ -363,12 +363,12 @@
       "body_depth": 1,
       "front_loaded": false,
       "overmapped": false,
-      "fresh": true
+      "fresh": false
     },
     {
       "id": "failures-become-machinery",
       "order": 10,
-      "statement": "Velocity surfaces the unforeseeable failure; the recurring engineering task is to convert selected recurrences into durable engineering capital — machinery where authority is justified, a model, decision rule, or measurement where it is not.",
+      "statement": "Velocity surfaces the unforeseeable failure; the recurring engineering task is to convert selected recurrences into durable engineering capital — machinery where enforcement is justified, a model, decision rule, or measurement where it is not.",
       "seeds": [
         6,
         7
@@ -387,7 +387,7 @@
       "reality_claim": true,
       "measurand": "recurrences converted to durable controls; real bugs caught by the model and lint loop",
       "word_count": 34,
-      "statement_hash": "820575f71f58",
+      "statement_hash": "9298034220ff",
       "advanced_by": [
         "0.5-preface",
         "1.2-mage-by-example",
@@ -400,7 +400,7 @@
       "body_depth": 5,
       "front_loaded": false,
       "overmapped": false,
-      "fresh": true
+      "fresh": false
     },
     {
       "id": "sync-cost-reduced",

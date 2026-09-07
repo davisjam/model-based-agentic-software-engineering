@@ -732,7 +732,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Enforce Where the Property Becomes Legible</a></li>
 <li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
 <li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
 <li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
@@ -746,7 +746,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-c-measurement.html">C.4 Measurement</a></li>
 <li><a class="" href="appendix-c-documentation-and-provenance.html">C.5 Documentation and Provenance</a></li>
 <li><a class="" href="appendix-c-joining-views.html">C.6 Joining Views Around a Scenario</a></li>
-<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Authority</a></li>
+<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Enforcement</a></li>
 <li class="part">Appendix D — Operator&#x27;s Reference</li>
 <li><a class="" href="appendix-operators-reference.html">Appendix D — Operator's Reference</a></li>
 <li><a class="" href="appendix-d-operators-dashboard.html">D.1 The Operator's Dashboard</a></li>
@@ -903,7 +903,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="340" y="384" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The load-bearing fact is the edge that does not exist.</text>
   <text x="340" y="408" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">The fallback artifact must become durable before database state may refer to it.</text>
 </svg><figcaption data-short="Recovery-ordering model"><span class="fig-label">Figure 2.3-2.</span> <em>Recovery-ordering model.</em> The fallback artifact must become durable before database state may refer to it. The load-bearing fact is the absent transition from FALLBACK_STAGED directly to DB_UPDATED.</figcaption></figure>
-<p>Stated over the model, the property is a reachability claim: <code>DB_UPDATED</code> is reachable only through <code>FALLBACK_UPLOADED</code>. That is a property the model <em>exposes</em> and makes checkable — one can search the transition system for any path into <code>DB_UPDATED</code> that skips durable publication. Whether the running recovery path is <em>held</em> to the ordering — whether a transition table refuses the short-circuit step — is a question of authority, and it belongs to Part III. The two layers stay separate here: the model exposes the ordering; a mechanism enforces it. This obligation is a <strong>hard</strong> one — the machinery refuses the violation rather than merely reporting it — but the refusal is Part III's subject, not the model's.</p>
+<p>Stated over the model, the property is a reachability claim: <code>DB_UPDATED</code> is reachable only through <code>FALLBACK_UPLOADED</code>. That is a property the model <em>exposes</em> and makes checkable — one can search the transition system for any path into <code>DB_UPDATED</code> that skips durable publication. Whether the running recovery path is <em>held</em> to the ordering — whether a transition table refuses the short-circuit step — is a question of enforcement, and it belongs to Part III. The two layers stay separate here: the model exposes the ordering; a mechanism enforces it. This obligation is a <strong>hard</strong> one — the machinery refuses the violation rather than merely reporting it — but the refusal is Part III's subject, not the model's.</p>
 <h2><span class="sec-num">2.3.3</span> What the Model Makes Checkable</h2>
 <p>The recovery model answers a safety question — can a bad state be reached? — and one counterexample would settle it. Not every behavioral obligation has that shape. "Every job eventually reaches a terminal state" is a liveness claim: no successful run proves the system can never stall, so the obligation ranges over infinite executions rather than reachable states, and it needs a different checker. <a class="xref" href="2.3-behavioral.html#fig-2-3-3">Figure&nbsp;2.3-3</a> places the three classes side by side.</p>
 <figure id="fig-2-3-3" class="book-figure" data-label="behavioral-property-classes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"

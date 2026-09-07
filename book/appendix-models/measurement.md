@@ -27,17 +27,17 @@ The disposition stays separate from the measured bound; its mode records whether
 report-only, warning-producing, or admission-blocking. Measurability alone does not justify
 enforcement.
 
-[ref:fig-g5-measurement-authority] separates the measurement from the authority that may or may not
+[ref:fig-g5-measurement-authority] separates the measurement from the enforcement that may or may not
 attach to it.
 
 <!-- label: fig-g5-measurement-authority -->
-<!-- figure: assets/appendix-g-5-measurement-authority.svg | *Measurement does not imply authority.* A sensor produces an observed measurement, which is compared with a declared bound. The result remains report-only unless the evidence warrants warning or admission authority. -->
+<!-- figure: assets/appendix-g-5-measurement-authority.svg | *Measurement does not imply enforcement.* A sensor produces an observed measurement, which is compared with a declared bound. The result remains report-only unless the evidence warrants a warning or an admission gate. -->
 
 **Property.** A measurement model can state that request latency remains below a declared bound for
 a defined request class, queue depth below a declared ceiling, or processing cost within a specified
 envelope. Scope, statistic, and aggregation window are part of the property; a threshold without them
 is underspecified.
 
-**Authority and correspondence.** Sensors supply observations; the model supplies their scope,
+**Enforcement and correspondence.** Sensors supply observations; the model supplies their scope,
 interpretation, and declared bounds. Measurements remain observations unless the evidence warrants
-warning or gate authority.
+a warning or a gate.

@@ -8,7 +8,7 @@ artifacts derive. These are distinct correspondence relations.
 Read four things together:
 
 - **Correspondence.** Does the claimed relation still hold? Descriptive models should still
-  match observed reality; intent-bearing models should still be satisfied where authority
+  match observed reality; intent-bearing models should still be satisfied where enforcement
   applies; generated artifacts should still derive from their declared source.
 - **Coverage and relevance.** Does the representation cover the engineering surface for which
   it is being relied upon? Missing coverage may be legitimate when implementation lies below

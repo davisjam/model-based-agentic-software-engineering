@@ -34,6 +34,6 @@ maintaining an independent copy.
 - **Generated documentation reflects the current structured facts** from which it is derived.
 - **References in generated documentation resolve to existing identities.**
 
-**Authority and correspondence.** Structured provenance can be validated mechanically, and generated
+**Enforcement and correspondence.** Structured provenance can be validated mechanically, and generated
 documentation can be re-derived from its source facts. Free prose generally cannot be checked for
 semantic equivalence by the same machinery and therefore remains subject to human review.

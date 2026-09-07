@@ -7,7 +7,7 @@ the inside and from the beginning lets us reconstruct what a finished architectu
 pressures appeared, what response followed, what survived, and what had to be revised again.
 
 The clean method arrived last. As the system grew, missing representation became expensive in some
-places; missing authority became dangerous in others; repeated operational surprises exposed
+places; missing enforcement became dangerous in others; repeated operational surprises exposed
 properties nobody had modeled at all. Some obligations were encoded before failure. Some models
 arose from clean design choices and simply held. Others were forged in incidents and hardened
 through recurrence. Part V preserves those differences rather than forcing every event through the

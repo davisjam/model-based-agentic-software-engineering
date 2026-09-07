@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Hand-authored SVG (not Mermaid): the precision-follows-knowledge continuum — a single
-     horizontal row of five stages from an uncertain need to an aligned, authoritative
-     mechanism, with a dashed return arrow showing that exploration can revise the need
+     horizontal row of five stages from an uncertain need to an aligned, enforced
+     obligation, with a dashed return arrow showing that exploration can revise the need
      itself. Deliberately minimal and monochrome: this is a conceptual continuum, not a
      role-coloured constraint/sensor/validator/gate diagram, so every node shares one ink
      (near-black stroke/header text, muted-gray descriptor text) rather than per-role color.
@@ -13,7 +13,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 300" width="1300" height="300"
      role="group" aria-labelledby="pfkTitle pfkDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="pfkTitle">Precision follows knowledge: the continuum from an uncertain need to an authoritative mechanism</title>
+  <title id="pfkTitle">Precision follows knowledge: the continuum from an uncertain need to an enforced obligation</title>
   <desc id="pfkDesc">Five stages in a horizontal row, connected left to right by arrows. An
     uncertain need — a customer signal or a hypothesis — leads to explore, where prototypes
     are built, observed, and measured. What explore learns becomes a stabilizing claim: a
@@ -22,8 +22,8 @@
     return arrow curves from explore back to uncertain need, labeled "problem can change":
     exploration can reveal that the original need itself was framed wrong, not only that the
     proposed answer was wrong. Precision is earned as knowledge stabilizes, not assumed at
-    the start — only obligations stable enough to govern acquire authoritative mechanisms;
-    nothing earlier on the continuum is asked to carry that authority before it has earned
+    the start — only obligations stable enough to govern acquire enforcement mechanisms;
+    nothing earlier on the continuum is put under enforcement before the claim has earned
     it.</desc>
 
   <defs>

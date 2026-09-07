@@ -2,14 +2,14 @@
 <!-- Hand-authored SVG (label: model-ladder). THE ONE canonical Representation Capability Ladder — 8 rungs,
      drawn as a vertical column with a SINGLE representational gradient (pale green at the bottom -> deeper
      governed green at the top = a richer representation). This is a REPRESENTATION-ONLY ladder: it orders
-     representational capabilities and says nothing about authority. There is no "stronger control" axis, no
+     representational capabilities and says nothing about enforcement. There is no "stronger control" axis, no
      "the turn", and no Modeling-vs-Alignment lobe split — those were retired because Modeling and Alignment
      are orthogonal, not two ends of one ladder. Bottom to top: context selection -> externalized knowledge
      -> structured relationships -> system semantics -> explicit properties (invariants) -> model-derived
      analysis -> traceability -> mechanically maintained correspondence. Two upward-widening side
      annotations name what grows as you climb: a larger reasoning reach, and more properties available to
-     analysis and governance. Docker sits BESIDE a low rung as the counterexample — strong local authority,
-     low on this ladder — which proves authority is a separate axis. Palette: Umber Monograph tokens
+     analysis and governance. Docker sits BESIDE a low rung as the counterexample — strong local controls,
+     low on this ladder — which proves enforcement is a separate axis. Palette: Umber Monograph tokens
      (modeling green #1f7a4d stroke + #155c38 rung numbers + a pale->deep green fill ramp; governance rust
      #9a3f12 + tint #faf1e6 only on the off-ladder Docker counterexample; ink #1c1917 names; muted #57534e
      descriptions + captions; paper #fdfcf9). Fonts in the 12-26 band at the 1000px reference. -->
@@ -29,10 +29,10 @@
     generate, predict, and verify from the model. Rung seven, Traceability — join model elements
     bidirectionally to the implementation, and back. Rung eight, Mechanically maintained correspondence —
     the environment refuses to let model and territory silently diverge. The ladder is purely
-    representational: climbing it does not make an organization more mature, and it carries no authority
+    representational: climbing it does not make an organization more mature, and it carries no enforcement
     axis. Two upward-widening annotations on the right name what a richer representation buys — a larger
-    reasoning reach, and more properties available to analysis and governance. Authority is a separate axis:
-    Docker sits beside a low rung as a counterexample, with strong local authority yet low representational
+    reasoning reach, and more properties available to analysis and governance. Enforcement is a separate axis:
+    Docker sits beside a low rung as a counterexample, with strong local controls yet low representational
     capability. Higher rungs make more engineering questions tractable; they do not imply every system
     should climb every rung.</desc>
 
@@ -122,7 +122,7 @@
   <rect x="700" y="558" width="298" height="78" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="720" y="584" font-size="20" font-weight="700" fill="#9a3f12">Docker</text>
   <text x="802" y="584" font-size="20" font-style="italic" fill="#9a3f12">a counterexample</text>
-  <text x="720" y="608" font-size="20" fill="#57534e">strong local authority,</text>
+  <text x="720" y="608" font-size="20" fill="#57534e">strong local controls,</text>
   <text x="720" y="628" font-size="20" fill="#57534e">low on this ladder</text>
 
   <!-- captions: the gradient's meaning (replaces the removed banners) + the maturity-model guard -->

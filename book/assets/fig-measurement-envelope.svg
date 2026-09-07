@@ -14,7 +14,7 @@
     work, merge, deliver, about twenty-four seconds — is what the deploy smoke measures, drawn with solid
     arrows. From it a predicted per-chunk worst case is derived, drawn with a dashed border and reached by a
     dashed arrow. The six-hundred-second job budget is the obligation the system promises to hold. The
-    envelope reads observed at most predicted at most budget. These are authoritative mechanisms: a sensor
+    envelope reads observed at most predicted at most budget. These are enforcement mechanisms: a sensor
     measures the run and an admission gate refuses work that would breach the bound before it starts.</desc>
 
   <defs>

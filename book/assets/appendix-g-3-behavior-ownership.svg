@@ -67,7 +67,7 @@
   <text x="360" y="264" text-anchor="middle" font-size="15" font-weight="700" fill="#8a2f2f">lease_owner = W17</text>
   <text x="360" y="288" text-anchor="middle" font-size="15" font-weight="700" fill="#8a2f2f">lease_until = t</text>
 
-  <!-- authorizes action -> worker (HEAVY authority + gate glyph) -->
+  <!-- authorizes action -> worker (HEAVY enforcement + gate glyph) -->
   <!-- edge: overlay -> worker -->
   <line x1="452" y1="269" x2="560" y2="269" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#g3-auth)"/>
   <text x="512" y="230" text-anchor="middle" font-size="15" font-style="italic" fill="#b23b3b">authorizes action</text>

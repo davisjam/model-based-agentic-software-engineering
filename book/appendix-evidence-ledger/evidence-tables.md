@@ -220,9 +220,9 @@ development-cost figure is an order-of-magnitude direct-cost estimate, not audit
 
 <!-- FUTURE: Expand the ≈$20,000 estimate into its actual arithmetic once the underlying values are recovered. Attach provenance to the $3–$40/page vendor range. Break the ≈$60,000 direct-development estimate into salary, model/API, cloud, and other direct costs if those records are available. Add paired institutional-checker outcomes if available, and keep the resulting claim narrow — checker improvement is evidence about checker-detectable accessibility properties, not the complete experience of a disabled user. -->
 
-## G.7 Measurement Without Authority {#measurement-seed}
+## G.7 Measurement Without Enforcement {#measurement-seed}
 
-A measurement can be useful before it deserves authority.
+A measurement can be useful before it deserves enforcement.
 
 ### G.7.1 Provisional Cost-and-Time Model
 
@@ -248,7 +248,7 @@ representing the longest cold-start path and motivated an architectural change. 
 was 109 ms. The sequence is **request-level measurement (4,057 ms) → cold-start topology model →
 architectural change → 109 ms warm floor**.
 
-The contrast does not imply that every measured quantity should eventually become a gate. Authority
+The contrast does not imply that every measured quantity should eventually become a gate. Enforcement
 requires evidence adequate to the decision being made. The provisional cost model remained report-only;
 the stable, structurally interpretable cold-start observation justified architectural action.
 

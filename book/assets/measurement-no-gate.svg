@@ -2,9 +2,9 @@
 <!-- Hand-authored SVG (label: measurement-no-gate). Part V HISTORY figure for chapter 5.4 (measurement, the story that stops before the gate).
      GENRE: an engineering history, not a system model (figures.md §"History figures are a distinct genre").
      ONE JOB: a model can be deliberately left unbound — modeled, observed, reported, not enforced. A vertical
-     chain: timeout -> measurement -> model -> evidence -> report, then a DEFERRED authority node drawn as a ghost.
+     chain: timeout -> measurement -> model -> evidence -> report, then a DEFERRED enforcement node drawn as a ghost.
      The tail MODEL -> EVIDENCE -> REPORT is the deliberate visual rhyme with Part III's ungated measurement
-     (figures brief section 10); the terminal authority node is drawn in the derived/not-yet
+     (figures brief section 10); the terminal enforcement node is drawn in the derived/not-yet
      idiom — a dashed muted box prefixed with a question mark and bracketed "no gate yet — deferred" — so
      the picture shows the model reaching a would-be gate that was consciously not switched on. Shared house
      grammar: entity box (fill #f6f4ef, stroke #2b2825); solid arrow = actual step; DASHED muted stroke =
@@ -21,7 +21,7 @@
   <desc id="mngDesc">An engineering history, not a system model. A vertical chain. A silent hang and a bare
     timeout, which spoke only after the budget was spent, forced a measurement, then a per-chunk cost model,
     whose evidence lets the environment report a would-be breach. The chain ends at report — and then an
-    authority node drawn as a ghost: a dashed box prefixed with a question mark and marked no gate yet,
+    enforcement node drawn as a ghost: a dashed box prefixed with a question mark and marked no gate yet,
     deliberately deferred. The model reports a predicted breach but does not refuse the work. The tail model,
     evidence, report rhymes with Part III's ungated measurement. The lesson: a model can be left unbound on
     purpose — modeled and observed, reported, not yet enforced.</desc>
@@ -80,7 +80,7 @@
 
   <!-- 6: authority — deferred, drawn as a ghost (dashed muted = not-yet-actual) -->
   <rect id="authority" x="100" y="490" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4"/>
-  <text x="200" y="518" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">? authority</text>
+  <text x="200" y="518" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">? enforcement</text>
   <text x="330" y="515" font-size="13" fill="#57534e">[ no gate yet &#8212; deliberately deferred ]</text>
 
   <!-- question glyph beside the deferred transition -->

@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Hand-authored SVG (label: intervention-boundaries). Fig 3.1-1. Four boundaries at which engineering
      work can be intervened on — reasoning input, action, work unit, artifact / runtime — ordered by
-     increasing SEMANTIC GRAIN, NOT by increasing strength of authority (deliberately no blue->rust
+     increasing SEMANTIC GRAIN, NOT by increasing strength of enforcement (deliberately no blue->rust
      hardness ramp).
      v7 (part3-v7-260814): the GUIDANCE zone (reasoning input) is now VISUALLY SEPARATED from the
-     AUTHORITY-binding boundaries — a distinct zone box set apart by a gap, so reasoning input reads as
-     guidance, not authority. No continuous authority line runs over reasoning input; its note reads
-     "authoritative only through a consuming mechanism". The "semantic grain ->" axis spans the four
+     ENFORCEMENT-binding boundaries — a distinct zone box set apart by a gap, so reasoning input reads as
+     guidance, not enforcement. No continuous enforcement line runs over reasoning input; its note reads
+     "enforced only through a consuming mechanism". The "semantic grain ->" axis spans the four
      boxes. Palette: agent #2f5169 + tint #e7edf3 (reasoning input / guidance zone), governance #9a3f12 +
-     tint #faf1e6 (action / work unit / artifact-runtime / authority zone), neutral #57534e (grain axis,
+     tint #faf1e6 (action / work unit / artifact-runtime / enforcement zone), neutral #57534e (grain axis,
      notes), ink #1c1917 names, paper #fdfcf9. Fonts in the 12-26 band at the 1000px reference. -->
 <!-- semantic-families: agent, governance, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" width="1000" height="360"
      role="group" aria-labelledby="ibTitle ibDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ibTitle">Four intervention boundaries: a guidance zone set apart from where authority can bind</title>
+  <title id="ibTitle">Four intervention boundaries: a guidance zone set apart from where enforcement can occur</title>
   <desc id="ibDesc">Four boundaries sit in a row, ordered left to right by increasing semantic grain, not by
-    increasing strength of authority. The leftmost, reasoning input, sits alone in a separate GUIDANCE zone,
-    drawn agent-blue: prompts, briefs, engineering models, and examples shape reasoning input, and are authoritative
+    increasing strength of enforcement. The leftmost, reasoning input, sits alone in a separate GUIDANCE zone,
+    drawn agent-blue: prompts, briefs, engineering models, and examples shape reasoning input, and are enforced
     only through a consuming mechanism. The other three — action, work unit, and artifact or runtime — sit
-    together in a zone labeled AUTHORITY CAN BIND HERE, drawn governance-rust: at the action boundary through
+    together in a zone labeled ENFORCEMENT CAN OCCUR HERE, drawn governance-rust: at the action boundary through
     permissions, hooks, and tools; at the work-unit boundary through a task, a pull request, a build, a
     deployment candidate; at the artifact or runtime boundary through types, API seams, admission, and
     runtime policy. Place a mechanism at the earliest boundary where the obligation is legible and the
@@ -39,7 +39,7 @@
   <rect x="28" y="92" width="252" height="196" rx="12" fill="#eef2f7" stroke="#2f5169" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="154" y="115" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169" letter-spacing="1">GUIDANCE</text>
 
-  <!-- ===== AUTHORITY zone (action / work unit / artifact-runtime) ===== -->
+  <!-- ===== ENFORCEMENT zone (action / work unit / artifact-runtime) ===== -->
   <rect x="292" y="92" width="668" height="196" rx="12" fill="#fbf5ee" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="626" y="115" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="1">ENFORCEMENT CAN OCCUR HERE</text>
 
@@ -68,7 +68,7 @@
   <text x="830" y="208" text-anchor="middle" font-size="20" fill="#9a3f12">types &#183; API seams</text>
   <text x="830" y="226" text-anchor="middle" font-size="20" fill="#9a3f12">admission &#183; runtime policy</text>
 
-  <!-- reasoning input is authoritative only through a consumer -->
+  <!-- reasoning input is enforced only through a consumer -->
   <text x="154" y="256" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">enforced only through</text>
   <text x="154" y="272" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">a consuming mechanism</text>
 

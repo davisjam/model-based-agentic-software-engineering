@@ -62,7 +62,7 @@
   <text x="228" y="168" font-size="14.4" font-style="italic" fill="#57534e">owns</text>
   <text x="472" y="168" font-size="14.4" font-style="italic" fill="#57534e">permits</text>
   <text x="365" y="230" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">sanctioned seam</text>
-  <!-- gate glyph: two heavy red bars = the guarded door (authority) -->
+  <!-- gate glyph: two heavy red bars = the guarded door (enforcement) -->
   <g stroke="#b23b3b" stroke-width="3.6">
     <line x1="357" y1="230" x2="357" y2="254"/>
     <line x1="369" y1="230" x2="369" y2="254"/>
@@ -80,5 +80,5 @@
   <text x="590" y="300" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">reverse-map</text>
   <text x="590" y="316" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">the tree</text>
 
-  <text x="40" y="502" font-size="14.4" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Gate glyph = a guarded door (authority); X = a forbidden crossing with no door.</text>
+  <text x="40" y="502" font-size="14.4" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Gate glyph = a guarded door (enforcement); X = a forbidden crossing with no door.</text>
 </svg>

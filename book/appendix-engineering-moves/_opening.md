@@ -13,4 +13,4 @@ Appendix A shows how mechanisms compose into engineering capabilities. This appe
 [ref:fig-moves-overview] maps each recurring problem to its corresponding engineering move.
 
 <!-- label: fig-moves-overview -->
-<!-- figure: assets/moves-overview-cheatsheet.svg | *Ten recurring engineering problems and the moves that address them.* The moves apply the method developed in Parts II–IV: model knowledge people repeatedly reconstruct, give decidable obligations authority, and make recurring judgment durable when doing so is worth the cost. -->
+<!-- figure: assets/moves-overview-cheatsheet.svg | *Ten recurring engineering problems and the moves that address them.* The moves apply the method developed in Parts II–IV: model knowledge people repeatedly reconstruct, enforce decidable obligations, and make recurring judgment durable when doing so is worth the cost. -->

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Hand-authored SVG (label: metric-spectrum). R45c REFRAME — from authority-hardness (hard→soft
      "a machine can block on the hard end") to EVIDENCE-DECIDABILITY. The axis now runs
-     machine-decidable evidence ←→ judgment-dependent evidence. Authority is NOT on this axis: it
+     machine-decidable evidence ←→ judgment-dependent evidence. Enforcement is NOT on this axis: it
      belongs to the validator or gate that consumes the evidence, not to the number itself. Palette:
      Umber Monograph tokens (fleet #2f5169 machine-decidable, accent #9a3f12 flagship deeper cut,
      muted #57534e judgment-dependent). -->
@@ -9,12 +9,12 @@
      role="group" aria-labelledby="msTitle msDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="msTitle">Evidence and judgment: measurements by how far a machine can decide them</title>
-  <desc id="msDesc">Four measurements laid on a left-to-right axis of decidability, not authority. On
+  <desc id="msDesc">Four measurements laid on a left-to-right axis of decidability, not enforcement strength. On
     the machine-decidable end sit cold-start latency and the component-distance grade, evidence a
     validator can evaluate the same way every time. In the middle sits the flagship deeper cut,
     model-claim coverage, which names the untested invariant. On the judgment-dependent end sits
     doc-derived-test pinning, which identifies where a person must still interpret meaning. A banner
-    states the axis rule: authority belongs to the validator or gate that consumes the evidence, not
+    states the axis rule: enforcement belongs to the validator or gate that consumes the evidence, not
     to the number itself.</desc>
 
   <defs>
@@ -68,5 +68,5 @@
   <text x="1160" y="356" text-anchor="end" font-size="24" font-style="italic" fill="#57534e">a person must still interpret it</text>
 
   <!-- the axis rule banner -->
-  <text x="600" y="398" text-anchor="middle" font-size="21.6" font-weight="700" fill="#9a3f12">Authority belongs to the validator or gate that consumes the evidence — not to the number.</text>
+  <text x="600" y="398" text-anchor="middle" font-size="21.6" font-weight="700" fill="#9a3f12">Enforcement belongs to the validator or gate that consumes the evidence — not to the number.</text>
 </svg>

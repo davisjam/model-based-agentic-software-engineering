@@ -63,7 +63,7 @@ audit result must block delivery, the audit belongs in a gate.
 ### Problem
 
 An agent can have excellent tools and still engineer badly. It runs the tests, calls the formatter,
-queries the repository — and still models the wrong thing, gives authority to a fact that should stay
+queries the repository — and still models the wrong thing, makes binding a fact that should stay
 advisory, or freezes a one-off mistake into a permanent rule. The missing capability is not another tool.
 It is the engineering method itself: knowing *what to model, what must hold, and which judgment is worth
 making durable.*
@@ -102,12 +102,12 @@ question; the router identifies the question and directs the agent to the corres
 <!-- index-def: governance-target-product -->
 
 The facets answer independent questions: recognizing the situation does not select the model, choosing a
-move does not determine its authority, and knowing the method does not supply system facts. Load only the
+move does not determine its enforcement, and knowing the method does not supply system facts. Load only the
 facet the current question requires.
 
 ### Governing Principle
 
-*Apply MAGE to the work itself: model what must be understood, give authority to what must hold, and
+*Apply MAGE to the work itself: model what must be understood, enforce what must hold, and
 convert recurring judgment into durable engineering structure.* Five operating rules follow:
 
 - **Model before guessing.** Reach concrete system truth through a provider; do not reconstruct it from
@@ -191,7 +191,7 @@ implementation.
 ### Governing Principle
 
 Establish the healthy state first, then classify deviations from it. Route each symptom to a lifecycle and
-run the corresponding procedure. When diagnosis reveals that a model, mechanism, or authority should change,
+run the corresponding procedure. When diagnosis reveals that a model, mechanism, or enforcement should change,
 hand that engineering decision to self-governance. Automate deterministic steps; prepare irreducible
 judgments for escalation.
 

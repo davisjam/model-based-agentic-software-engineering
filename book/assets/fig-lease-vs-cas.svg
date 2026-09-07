@@ -13,7 +13,7 @@
     only: it says the consumer currently holds this delivery. A separate compare-and-set provides the
     at-most-once claim: it says the consumer is the one allowed the side effect. The claim branches two
     ways — the winner performs the effect, and the loser acknowledges without repeating it. Exactly-once
-    rests on the claim, not the lease; these are authoritative mechanisms, the lease for liveness and the
+    rests on the claim, not the lease; these are enforcement mechanisms, the lease for liveness and the
     compare-and-set for correctness.</desc>
 
   <defs>

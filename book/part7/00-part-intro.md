@@ -1,5 +1,5 @@
 <!-- part-foreshadows: seat-moves, govern-the-environment, mage-becomes-practical -->
-Part VI treated MAGE as a theory: an explanation of how agentic capacity, representation, authority,
+Part VI treated MAGE as a theory: an explanation of how agentic capacity, representation, enforcement,
 engineering capital, and the surrounding environment interact; what that account predicts; where it should
 apply; and how it might be tested.
 

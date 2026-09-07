@@ -2,16 +2,16 @@
 
 Parts II and III developed Modeling and Alignment separately. This Part runs them together as a
 method. Modeling supplied a repertoire of representations for making different engineering questions
-tractable; Alignment supplied the mechanisms through which selected obligations can acquire authority. In
+tractable; Alignment supplied the mechanisms through which selected obligations are enforced. In
 practice, engineers choose and connect these moves as the work demands. MAGE begins by asking what should
-be made explicit, places authority where stable obligations become legible and enforceable, and converts
+be made explicit, places enforcement where stable obligations become legible and enforceable, and converts
 recurring judgment into durable engineering structure.
 
 <!-- principlebox -->
 <!-- box-family: canonical -->
 > ### The MAGE cycle
 >
-> Model the intent. Give stable obligations authority. Convert recurring judgment into durable engineering structure.
+> Model the intent. Enforce stable obligations. Convert recurring judgment into durable engineering structure.
 >
 > **Repeat.**
 

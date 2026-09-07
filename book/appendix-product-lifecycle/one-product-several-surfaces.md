@@ -11,7 +11,7 @@ The representations differ along five dimensions.
 
 3. **Claimed correspondence.** Age alone does not establish model drift. A 2022 ticket can remain a faithful representation of the intent governing a 2022 change without describing the product in 2026. MAGE rejects “keep the model equal to the code” as a universal synchronization rule because different models claim different relations to the realized system.
 
-4. **Authority.** Representation does not imply authority. A discovery hypothesis may deserve preservation without enforcement; an accepted security invariant may deserve both.
+4. **Enforcement.** Representation does not imply enforcement. A discovery hypothesis may deserve preservation without enforcement; an accepted security invariant may deserve both.
 
 5. **Reasoning posture.** Some representations support semantic or situational judgment; others expose stable properties that can become deterministic procedures or predicates. The appropriate mix depends on cost and consequence.
 

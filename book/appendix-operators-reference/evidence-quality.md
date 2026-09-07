@@ -10,8 +10,8 @@ For each claim, ask four questions:
 - **Claim.** What exactly is being asserted, and over what scope?
 - **Evidence.** What observation, measurement, proof, test, or other artifact bears on that claim?
 - **Evaluation.** What procedure interprets the evidence, and what can that procedure miss?
-- **Authority.** What consequence should the result have? Evidence may inform a human, produce a warning, or
-  justify a blocking gate; evidentiary strength and enforcement authority remain separate decisions.
+- **Consequence.** What consequence should the result have? Evidence may inform a human, produce a warning, or
+  justify a blocking gate; evidentiary strength and enforcement remain separate decisions.
 
 ```
   EVIDENCE QUALITY                            "What justifies this claim?"
@@ -22,14 +22,14 @@ For each claim, ask four questions:
     ↓  how is it interpreted?
   EVALUATION
     ↓  what does the result deserve?
-  AUTHORITY
+  CONSEQUENCE
     advisory · warning · validator result · gate · human decision
   ──────────────────────────────────────────────────────────────────────
   No backing      →  unsupported claim
   Weak backing    →  state the limit
-  Strong backing  →  still choose authority deliberately
+  Strong backing  →  still choose the consequence deliberately
 ```
 
 The critical failure is claiming more confidence than the evidence supports when the claim matters.
 Preserve evidence provenance, state limitations explicitly, and distinguish what the evidence establishes
-from the authority the organization chooses to attach.
+from the consequence the organization chooses to attach.

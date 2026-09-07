@@ -14,7 +14,7 @@ Discovery also exposes the distinction among unknown, tacit, and free. An appare
 
 - *Characteristic models.* Needs, hypotheses, experiment results, product decisions, provisional and accepted requirements.
 - *Lifetime.* Mostly episode- and product-lived; decisions and requirements may outlive the investigations that produced them.
-- *Alignment posture.* Light. Preserve provenance and decision status; avoid prematurely giving hypotheses mechanical authority.
+- *Alignment posture.* Light. Preserve provenance and decision status; avoid prematurely making hypotheses binding.
 - *Role of autonomous reasoning.* Synthesis, retrieval, comparison, ambiguity, and reasoning across competing evidence.
 - *Determinization opportunity.* Limited while the underlying product question remains genuinely unsettled. Stable process obligations may still be mechanized.
 - *Degrees of freedom.* Product choices that stakeholders have genuinely left open.

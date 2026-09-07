@@ -732,7 +732,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Enforce Where the Property Becomes Legible</a></li>
 <li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
 <li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
 <li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
@@ -746,7 +746,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-c-measurement.html">C.4 Measurement</a></li>
 <li><a class="" href="appendix-c-documentation-and-provenance.html">C.5 Documentation and Provenance</a></li>
 <li><a class="" href="appendix-c-joining-views.html">C.6 Joining Views Around a Scenario</a></li>
-<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Authority</a></li>
+<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Enforcement</a></li>
 <li class="part">Appendix D — Operator&#x27;s Reference</li>
 <li><a class="" href="appendix-operators-reference.html">Appendix D — Operator's Reference</a></li>
 <li><a class="" href="appendix-d-operators-dashboard.html">D.1 The Operator's Dashboard</a></li>
@@ -879,7 +879,7 @@ Seam
   <text x="228" y="168" font-size="14.4" font-style="italic" fill="#57534e">owns</text>
   <text x="472" y="168" font-size="14.4" font-style="italic" fill="#57534e">permits</text>
   <text x="365" y="230" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">sanctioned seam</text>
-  <!-- gate glyph: two heavy red bars = the guarded door (authority) -->
+  <!-- gate glyph: two heavy red bars = the guarded door (enforcement) -->
   <g stroke="#b23b3b" stroke-width="3.6">
     <line x1="357" y1="230" x2="357" y2="254"/>
     <line x1="369" y1="230" x2="369" y2="254"/>
@@ -897,12 +897,12 @@ Seam
   <text x="590" y="300" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">reverse-map</text>
   <text x="590" y="316" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">the tree</text>
 
-  <text x="40" y="502" font-size="14.4" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Gate glyph = a guarded door (authority); X = a forbidden crossing with no door.</text>
+  <text x="40" y="502" font-size="14.4" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Gate glyph = a guarded door (enforcement); X = a forbidden crossing with no door.</text>
 </svg><figcaption data-short="Structure and boundaries"><span class="fig-label">Figure C.1-1.</span> <em>Structure and boundaries.</em> Authored ownership and permitted seams are reconciled with the observed repository tree. Sanctioned crossings pass through declared doors; forbidden direct access raises a finding.</figcaption></figure>
 <p><strong>Property.</strong> Representative properties, each with the source that decides it:</p>
 <table id="tbl-C-1-1" class="book-table"><caption data-short="Component-zone properties"><span class="tbl-label">Table C.1-1.</span> Representative properties of the component-and-zone model, and the fact source each draws on.</caption><thead><tr><th>Property</th><th>Fact source</th></tr></thead><tbody><tr><td>Every in-scope source directory belongs to exactly one component</td><td>Authored ownership joined to the observed tree</td></tr><tr><td>Every component's declared directory exists</td><td>Repository</td></tr><tr><td>Boundary crossings use sanctioned seams</td><td>Authored model</td></tr><tr><td>Powerful mutation surfaces are reachable only through declared doors</td><td>Authored model plus observed dependency</td></tr></tbody></table>
 <p>Directory existence can be derived from the repository; ownership and permitted boundaries are authored architectural decisions.</p>
-<p><strong>Authority and correspondence.</strong> The repository tree is mapped back to the component catalog. A directory with no owner, multiple owners, or an observed dependency crossing an undeclared boundary becomes a correspondence finding. Where reconciliation depends on source locations, anchor references to resolvable symbols rather than line numbers so the correspondence can be re-derived after edits. The finding may remain advisory or feed a lint, build failure, or admission gate.</p>
+<p><strong>Enforcement and correspondence.</strong> The repository tree is mapped back to the component catalog. A directory with no owner, multiple owners, or an observed dependency crossing an undeclared boundary becomes a correspondence finding. Where reconciliation depends on source locations, anchor references to resolvable symbols rather than line numbers so the correspondence can be re-derived after edits. The finding may remain advisory or feed a lint, build failure, or admission gate.</p>
 <h2><span class="sec-num">C.1.2</span> Service Flow</h2>
 <p><strong>Engineering question.</strong> Which service may call or reach which service or resource, and under what policy?</p>
 <p><strong>Representation.</strong></p>
@@ -919,7 +919,7 @@ Flow
     auth_posture</code></pre>
 <p>The central object is the declared edge. Each permitted service-to-service or service-to-resource relation records both reachability and its authentication posture; an observed edge with no declaration is a mismatch.</p>
 <p><strong>Property.</strong> Only declared service-to-service and service-to-resource relationships are permitted, each with its declared authentication posture. The same graph carries both connectivity and access policy.</p>
-<p><strong>Authority and correspondence.</strong> The declared graph supplies the <em>ought</em>. Static call sites, generated configuration, deployment wiring, and runtime observation each supply part of the <em>is</em>. A correspondence check asks whether each observed edge is declared and, where it matters, whether each declared edge still exists.</p>
+<p><strong>Enforcement and correspondence.</strong> The declared graph supplies the <em>ought</em>. Static call sites, generated configuration, deployment wiring, and runtime observation each supply part of the <em>is</em>. A correspondence check asks whether each observed edge is declared and, where it matters, whether each declared edge still exists.</p>
 <p>The same representation pattern applies to firewall policy, service-mesh authorization, network policy, and cloud access control: the representation declares permitted relations while the enforcement mechanism varies by substrate.</p>
 <h2><span class="sec-num">C.1.3</span> Two Simpler Structural Forms</h2>
 <p>Two simpler forms use the same pattern: reconcile observed facts or edges against a declared set.</p>

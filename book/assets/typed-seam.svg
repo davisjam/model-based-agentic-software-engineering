@@ -16,7 +16,7 @@
   <desc id="tsDesc">Ordinary remediation passes reach a format model, and only the format model reaches
     the underlying format library. The model is the single sanctioned door. A direct path from the
     remediation passes to the format library, drawn below the row, is struck through with an X and marked
-    forbidden. These are authoritative mechanisms: routing every access through one typed seam is the only
+    forbidden. This boundary is enforced: routing every access through one typed seam is the only
     permitted way to touch the powerful library.</desc>
 
   <defs>

@@ -42,13 +42,13 @@ enters, remediation is distributed across workers and services, the result is va
 document returns with a record of what changed. The real system is far more complicated than any
 representation ahead. That is the point. Each model keeps only the relationships its question needs.
 
-<!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Each chapter begins with a familiar representation, its properties and analyses, then specializes it to DocAble; four terms stay distinct — property, invariant, analysis, authority — with authority reserved for Part III. | terms: model-classes, modeling-principle, alignment-principle -->
+<!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Each chapter begins with a familiar representation, its properties and analyses, then specializes it to DocAble; four terms stay distinct — property, invariant, analysis, enforcement — with enforcement reserved for Part III. | terms: model-classes, modeling-principle, alignment-principle -->
 Each chapter begins with a familiar engineering representation, the properties it makes expressible, and
 the analyses it supports, then specializes that representation to DocAble. Four terms stay distinct
 throughout the Part. A **property** is a claim that can be expressed over a model. An **invariant** is a
 property required to hold over a declared domain. An **analysis** or check produces evidence about a
 property. Whether the engineered environment enforces the resulting obligation is a separate question of
-**authority**, taken up in Part III.
+**enforcement**, taken up in Part III.
 
 <!-- box-family: inset -->
 > #### Four questions for every model
@@ -60,7 +60,7 @@ property. Whether the engineered environment enforces the resulting obligation i
 > - **Property** — what can I now state precisely?
 > - **Quality attribute** — what engineering concern does that property serve?
 
-Part III adds a fifth question: **what gives the property authority?** Modeling makes properties
+Part III adds a fifth question: **what enforces the property?** Modeling makes properties
 explicit; Alignment makes selected obligations enforceable.
 
 <!-- point: the-final-chapter-connects-the-six-without-a-seventh-model | The final chapter shows how the six models connect through shared identity without becoming a seventh model. | terms: model-zoo, scope-of-modeling, modeling-principle -->

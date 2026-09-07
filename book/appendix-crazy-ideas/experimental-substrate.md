@@ -1,12 +1,12 @@
 Commodity intelligence may create an unusual empirical opportunity for software-engineering research. Studies of human engineering practice contend with substantial variation in experience, familiarity, reasoning style, and local practice. Agentic systems remain stochastic and evolve across releases, but more of the reasoning substrate can be held approximately fixed: model version, repository state, tool surface, prompt, sampling procedure, task family, and engineered environment.
 
-Repeated trials can therefore estimate stochastic variation while one representation, mechanism, or authority policy changes. Some system-scale questions become more directly interventional: not only *do teams using practice X report better outcomes?*, but *what changes when representation A is replaced by representation B, or admission policy A by policy B, under otherwise matched conditions?*[^ci-productivity]
+Repeated trials can therefore estimate stochastic variation while one representation, mechanism, or admission policy changes. Some system-scale questions become more directly interventional: not only *do teams using practice X report better outcomes?*, but *what changes when representation A is replaced by representation B, or admission policy A by policy B, under otherwise matched conditions?*[^ci-productivity]
 
 This suggests an experimental science in which the engineered environment itself becomes an independent variable. Cross reasoning engines with environments. Hold the task family fixed while changing the available models. Add or remove a validator. Vary correspondence strength. Compare thin and richly represented repositories. Measure durable throughput, reconstruction effort, defect escape, human intervention, and the distribution of engineering work.
 
 The opportunity is broader than MAGE. MAGE supplies one theory about which environmental variables should matter; other architectures should supply competing theories. The methodological conjecture is that commodity reasoners make some previously organizationally confounded software-engineering questions experimentally tractable enough for stronger causal study.
 
-The methodological opportunity is not merely repeatability. It is factorization. Human-subject studies of software engineering often struggle because practitioner skill, local familiarity, tool use, organizational practice, and problem-solving strategy move together. A commodity reasoner does not eliminate those confounds, but it can make more of them explicit experimental factors. Reasoning engine, environment, task, representation, tool surface, authority policy, and sampling procedure can be crossed rather than allowed to vary silently together.
+The methodological opportunity is not merely repeatability. It is factorization. Human-subject studies of software engineering often struggle because practitioner skill, local familiarity, tool use, organizational practice, and problem-solving strategy move together. A commodity reasoner does not eliminate those confounds, but it can make more of them explicit experimental factors. Reasoning engine, environment, task, representation, tool surface, enforcement policy, and sampling procedure can be crossed rather than allowed to vary silently together.
 
 That creates a research program around the environment–reasoner interaction. Does a richer environment substitute for raw model capability, allowing weaker reasoners to close the gap? Does it complement capability, so stronger reasoners benefit disproportionately from better representations and mechanisms? Are there environments that help one model family and hinder another? At what point does environmental structure cease to reduce reasoning cost and instead become another context and maintenance burden?
 
@@ -23,7 +23,7 @@ The design also creates threats that should be made explicit. Foundation models 
 * How much productive capability is attributable to the engineered environment rather than the reasoning engine?
 * When do environment quality and model capability substitute for one another, and when are they complementary?
 * Which environmental interventions persist as durable gains rather than moving effort downstream?
-* How do representation fidelity, authority, and evidence independently affect agentic performance?
+* How do representation fidelity, enforcement, and evidence independently affect agentic performance?
 * What experimental controls are sufficient for causal claims when the reasoner itself remains stochastic and versioned?
 
 **Possible paper seed:** *Software Engineering With a Standardized Reasoner: Commodity Intelligence as an Experimental Instrument.*

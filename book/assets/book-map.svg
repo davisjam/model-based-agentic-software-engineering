@@ -16,7 +16,7 @@
   <desc id="bmDesc">A single descent through the book's argument. The Preface poses the opening question: how
     do we safely grant autonomy to commodity intelligence? It leads to Part I, The New Engineering Problem —
     changed economics. Then Part II, Modeling — make knowledge and intent explicit. Then Part III, Alignment —
-    give obligations authority. Then the Interlude, One Problem, Many Models — follow one problem through
+    enforce selected obligations. Then the Interlude, One Problem, Many Models — follow one problem through
     successive models. Then Part IV, The MAGE Method — model, align, work, convert; a dotted branch
     runs to Appendix Part I, Practice (use and extend). Then Part V, The Evidence — depth and breadth; a
     dotted branch runs to Appendix Part II, Evidence (inspect the empirical record). Then Part VI, The
@@ -62,7 +62,7 @@
   <!-- PART III — Alignment (rust) -->
   <rect id="part-3" x="24" y="268" width="440" height="56" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="244" y="293" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Part III · Alignment</text>
-  <text x="244" y="313" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">give obligations authority</text>
+  <text x="244" y="313" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">enforce selected obligations</text>
   <line x1="244" y1="324" x2="244" y2="338" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
   <!-- INTERLUDE — One Problem, Many Models (unnumbered matter, seated in the descent) -->

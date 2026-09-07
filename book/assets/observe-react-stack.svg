@@ -4,11 +4,11 @@
      role="img" aria-labelledby="orTitle orDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="orTitle">The Observe-React stack: WATCH to RESPOND is the load-bearing path; heartbeats and
-    blocking authority are dashed enhancements</title>
+    blocking are dashed enhancements</title>
   <desc id="orDesc">An operating model states expected state. The solid load-bearing path runs WATCH — which
     observes the runtime — to RESPOND, which recovers from an observed divergence. Two enhancements attach as
     dashed, open-arrowed strengtheners, not required for the capability. BEAT adds a liveness heartbeat
-    alongside the watch-respond path. BLOCK adds authority to prevent unsafe progress. This figure is the
+    alongside the watch-respond path. BLOCK adds the power to prevent unsafe progress. This figure is the
     canonical example of the shared notation: the load-bearing composition is a solid, heavy, filled-arrow
     path; enhancements are light, dashed, open-arrow attachments that read as optional even in grayscale.</desc>
 
@@ -75,6 +75,6 @@
   <text x="572" y="457" font-size="15.2" fill="#57534e">enhancement (not required)</text>
 
   <!-- caption -->
-  <text x="380" y="524" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">WATCH &#8594; RESPOND is the load-bearing path. Heartbeats and blocking authority</text>
+  <text x="380" y="524" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">WATCH &#8594; RESPOND is the load-bearing path. Heartbeats and blocking</text>
   <text x="380" y="546" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">strengthen it where the failure class requires them.</text>
 </svg>

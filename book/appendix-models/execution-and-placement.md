@@ -20,6 +20,6 @@ it.
 
 **Property.** A host's concurrency ceiling belongs to scheduling policy, not to the deployment graph.
 
-**Authority and correspondence.** Deployment configuration reconciles against the topology; scheduler
+**Enforcement and correspondence.** Deployment configuration reconciles against the topology; scheduler
 behavior reconciles against the host execution policy. Either finding may remain advisory or feed a
 deployment or scheduler gate.

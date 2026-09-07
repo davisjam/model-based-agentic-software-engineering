@@ -3,7 +3,7 @@
      book/assets/judgment-without-consequence.svg).
      v7 edit (3.4-2): make the BROKEN verdict -> consequence link the visual CENTERPIECE. The sensing and
      the evaluation both work (blue #2f5169 = the model's correct judgment): a sensor/audit detects the
-     dangerous fallback and a validator judges it UNSAFE. But nothing authoritative acts on that verdict —
+     dangerous fallback and a validator judges it UNSAFE. But no enforcement acts on that verdict —
      the link from verdict to consequence is SEVERED (a conspicuous rust break, the only thing emitted at
      the cut being a WARNING). So the operation proceeds and content is lost. The durable repair removed
      the unsafe capability rather than making the warning louder (footer). Grammar: gray = ordinary flow;
@@ -15,8 +15,8 @@
   <title id="jcTitle">Correct judgment without consequence: the audit detected the danger and judged it unsafe, but the link from verdict to consequence was severed, so the operation proceeded and content was lost</title>
   <desc id="jcDesc">A vertical cascade. A dangerous auto-resolution fallback exists. A sensor detects it and a
     validator judges it unsafe — sensing and evaluation both work. But the link from that verdict to any
-    authoritative consequence is severed; the only thing emitted at the break is a warning. So the operation
-    proceeds anyway and content is lost. Evidence existed and the judgment was correct; no authoritative
+    binding consequence is severed; the only thing emitted at the break is a warning. So the operation
+    proceeds anyway and content is lost. Evidence existed and the judgment was correct; no enforcement
     mechanism acted on the verdict. The durable repair removed the capability rather than making the warning
     louder.</desc>
 
@@ -72,7 +72,7 @@
   <text x="176" y="429" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">logged — no consequence</text>
   <line x1="260" y1="414" x2="366" y2="414" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4"/>
   <!-- centerpiece label -->
-  <text x="452" y="404" font-size="19.2" font-weight="800" fill="#9a3f12">no authoritative consequence</text>
+  <text x="452" y="404" font-size="19.2" font-weight="800" fill="#9a3f12">no binding consequence</text>
   <text x="452" y="426" font-size="19.2" font-style="italic" fill="#9a3f12">the verdict never reaches a consequence</text>
   <!-- lower stub into the operation, arrowed -->
   <line x1="400" y1="440" x2="400" y2="472" stroke="#9a3f12" stroke-width="3.2" marker-end="url(#jc-r)"/>

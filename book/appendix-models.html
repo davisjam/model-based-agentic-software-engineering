@@ -732,7 +732,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Enforce Where the Property Becomes Legible</a></li>
 <li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
 <li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
 <li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
@@ -746,7 +746,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-c-measurement.html">C.4 Measurement</a></li>
 <li><a class="" href="appendix-c-documentation-and-provenance.html">C.5 Documentation and Provenance</a></li>
 <li><a class="" href="appendix-c-joining-views.html">C.6 Joining Views Around a Scenario</a></li>
-<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Authority</a></li>
+<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Enforcement</a></li>
 <li class="part">Appendix D — Operator&#x27;s Reference</li>
 <li><a class="" href="appendix-operators-reference.html">Appendix D — Operator's Reference</a></li>
 <li><a class="" href="appendix-d-operators-dashboard.html">D.1 The Operator's Dashboard</a></li>
@@ -799,10 +799,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix C — Model Reference — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">Appendix C — Model Reference</a></div><h1>Appendix C — Model Reference</h1></header><p>Parts II–IV introduce only the model detail needed for the engineering argument. This appendix collects the principal schemas, invariants, derivation directions, and correspondence machinery for those models.</p>
 <p>Each model begins with an engineering question and uses the smallest representation that makes the relevant property explicit. The forms here are reference patterns, not a required inventory.</p>
-<p>The appendix serves as both a reference and a pattern book: the representations are specific enough to expose their engineering properties but general enough to adapt to other systems. Each section also separates what the model represents from the machinery that may later give selected declarations authority.</p>
+<p>The appendix serves as both a reference and a pattern book: the representations are specific enough to expose their engineering properties but general enough to adapt to other systems. Each section also separates what the model represents from the machinery that may later enforce selected declarations.</p>
 <p><strong>Each section answers the same four questions:</strong></p>
-<ul><li><strong>Engineering question</strong> — what must the engineer be able to know?</li><li><strong>Representation</strong> — what entities and relations make that question answerable?</li><li><strong>Property</strong> — what can now be stated precisely?</li><li><strong>Authority and correspondence</strong> — which facts are authored, which are observed or derived, and how is disagreement detected?</li></ul>
-<p>Correspondence alone does not establish correctness. A descriptive model can accurately describe an undesirable system; a normative model supplies authored intent against which the implementation can be checked. Part III supplies the mechanisms that can give selected declarations authority.</p>
+<ul><li><strong>Engineering question</strong> — what must the engineer be able to know?</li><li><strong>Representation</strong> — what entities and relations make that question answerable?</li><li><strong>Property</strong> — what can now be stated precisely?</li><li><strong>Enforcement and correspondence</strong> — which facts are authored, which are observed or derived, and how is disagreement detected?</li></ul>
+<p>Correspondence alone does not establish correctness. A descriptive model can accurately describe an undesirable system; a normative model supplies authored intent against which the implementation can be checked. Part III supplies the mechanisms that can enforce selected declarations.</p>
 <p><a class="xref" href="appendix-models.html#fig-C-1">Figure&nbsp;C-1</a> establishes the pattern specialized by the later figures.</p>
 <figure id="fig-C-1" class="book-figure" data-label="fig-g1-executable-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 800"
      role="img" aria-labelledby="f-appendix-g-1-executable-model-g1Title f-appendix-g-1-executable-model-g1Desc"
@@ -813,10 +813,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     declares or generates code, config, runtime, and artifacts, shown along a solid arrow. Those artifacts are
     observed or re-derived back into a correspondence check, shown along a dashed arrow. The check asks whether
     the authored and derived facts disagree. A no leaves the model advisory and report-only. A yes flows along a
-    heavy bordered authority arrow, crossed by a gate glyph, into a finding or gate where warranted. A shared
+    heavy bordered enforcement arrow, crossed by a gate glyph, into a finding or gate where warranted. A shared
     legend below fixes the vocabulary for every G figure: solid arrows are declared relations, dashed arrows are
     derived or observed correspondence, and a heavy boundary with a gate glyph marks the only place real
-    authority sits. Not every model traverses every edge; a useful representation may remain advisory.</desc>
+    enforcement sits. Not every model traverses every edge; a useful representation may remain advisory.</desc>
 
   <defs>
     <marker id="f-appendix-g-1-executable-model-g1-solid" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
@@ -880,7 +880,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="360" y1="394" x2="360" y2="422" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-1-executable-model-g1-solid)"/>
   <text x="360" y="438" text-anchor="middle" font-size="14.4" font-weight="700" fill="#1c1917">disagreement?</text>
 
-  <!-- NO leg: advisory / report-only (plain, no authority) — hand-routed as an orthogonal elbow (exit the
+  <!-- NO leg: advisory / report-only (plain, no enforcement) — hand-routed as an orthogonal elbow (exit the
        disagreement hub left, drop into advisory's top border) so the head seats perpendicular, not skimming. -->
   <path d="M305,436 L185,436 L185,482" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#f-appendix-g-1-executable-model-g1-solid)"/>
   <text x="243" y="430" text-anchor="middle" font-size="14.4" font-weight="700" fill="#57534e">no</text>
@@ -888,13 +888,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="185" y="506" text-anchor="middle" font-size="14.4" font-weight="700" fill="#1c1917">advisory · report-only</text>
   <text x="185" y="523" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">informs the engineer</text>
 
-  <!-- YES leg: finding / gate where warranted (HEAVY authority + gate glyph) — hand-routed as an orthogonal
+  <!-- YES leg: finding / gate where warranted (HEAVY enforcement + gate glyph) — hand-routed as an orthogonal
        elbow (exit the disagreement hub right, drop into finding/gate's top border). Orthogonal routing seats
        the CHECKED gate glyph SQUARE by construction: on the vertical shaft the two bars run horizontal,
        perpendicular to their local segment (matching the legend's CHECKED row), not tilted along a diagonal. -->
   <path d="M415,436 L540,436 L540,482" fill="none" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#f-appendix-g-1-executable-model-g1-auth)"/>
   <text x="478" y="430" text-anchor="middle" font-size="14.4" font-weight="700" fill="#b23b3b">yes</text>
-  <!-- gate glyph: two heavy bars ACROSS the authority arrow's vertical shaft (horizontal = perpendicular) -->
+  <!-- gate glyph: two heavy bars ACROSS the enforcement arrow's vertical shaft (horizontal = perpendicular) -->
   <g stroke="#b23b3b" stroke-width="3.4">
     <line x1="531" y1="457" x2="549" y2="457"/>
     <line x1="531" y1="465" x2="549" y2="465"/>
@@ -919,14 +919,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="186" y="689" font-size="14.4" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED · OBSERVED</text>
   <text x="186" y="706" font-size="14.4" fill="#1c1917">dashed arrow = derived / observed correspondence</text>
 
-  <!-- heavy = authority -->
+  <!-- heavy = enforcement -->
   <line x1="90" y1="732" x2="170" y2="732" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#f-appendix-g-1-executable-model-g1-auth)"/>
   <g stroke="#b23b3b" stroke-width="3.4">
     <line x1="122" y1="724" x2="122" y2="740"/>
     <line x1="132" y1="724" x2="132" y2="740"/>
   </g>
   <text x="186" y="729" font-size="14.4" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED</text>
-  <text x="186" y="746" font-size="14.4" fill="#1c1917">heavy boundary + gate glyph = real authority (can block)</text>
+  <text x="186" y="746" font-size="14.4" fill="#1c1917">heavy boundary + gate glyph = real enforcement (can block)</text>
 
   <text x="80" y="768" font-size="14.4" font-style="italic" fill="#57534e">Boxes denote representations. Meaning is encoded by line style, weight, and glyph — not color.</text>
-</svg><figcaption data-short="The executable-model pattern"><span class="fig-label">Figure C-1.</span> <em>The executable-model pattern.</em> An engineering question selects a representation containing authored, derived, or observed facts. Correspondence machinery compares represented facts with implementation or runtime evidence. Disagreement may remain advisory or, where the obligation has authority, feed a deterministic gate.</figcaption></figure><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-b-make-dependencies-queryable.html" aria-label="Previous chapter — B.10 Make Hidden Dependencies Queryable">« Previous chapter</a></div><span class="chapnav-here" title="Appendix C — Model Reference">Appendix C — Model Reference</span><div class="chapnav-fwd"><a href="appendix-c-structure-and-boundaries.html" aria-label="Next chapter — C.1 Structure and Boundaries">Next chapter »</a><a href="appendix-operators-reference.html" aria-label="Next part — Appendix D — Operator&#x27;s Reference">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+</svg><figcaption data-short="The executable-model pattern"><span class="fig-label">Figure C-1.</span> <em>The executable-model pattern.</em> An engineering question selects a representation containing authored, derived, or observed facts. Correspondence machinery compares represented facts with implementation or runtime evidence. Disagreement may remain advisory or, where the obligation is enforced, feed a deterministic gate.</figcaption></figure><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-b-make-dependencies-queryable.html" aria-label="Previous chapter — B.10 Make Hidden Dependencies Queryable">« Previous chapter</a></div><span class="chapnav-here" title="Appendix C — Model Reference">Appendix C — Model Reference</span><div class="chapnav-fwd"><a href="appendix-c-structure-and-boundaries.html" aria-label="Next chapter — C.1 Structure and Boundaries">Next chapter »</a><a href="appendix-operators-reference.html" aria-label="Next part — Appendix D — Operator&#x27;s Reference">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

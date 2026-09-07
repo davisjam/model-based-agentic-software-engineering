@@ -732,7 +732,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Enforce Where the Property Becomes Legible</a></li>
 <li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
 <li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
 <li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
@@ -746,7 +746,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-c-measurement.html">C.4 Measurement</a></li>
 <li><a class="" href="appendix-c-documentation-and-provenance.html">C.5 Documentation and Provenance</a></li>
 <li><a class="" href="appendix-c-joining-views.html">C.6 Joining Views Around a Scenario</a></li>
-<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Authority</a></li>
+<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Enforcement</a></li>
 <li class="part">Appendix D — Operator&#x27;s Reference</li>
 <li><a class="" href="appendix-operators-reference.html">Appendix D — Operator's Reference</a></li>
 <li><a class="" href="appendix-d-operators-dashboard.html">D.1 The Operator's Dashboard</a></li>
@@ -800,7 +800,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix I — Evidence Ledger: The DocAble Case — MAGE"><header class="chap"><div class="kicker"><a href="appendix-evidence-ledger.html" aria-label="Beginning of Appendix I — Evidence Ledger: The DocAble Case">Appendix I — Evidence Ledger: The DocAble Case</a></div><h1>Appendix I — Evidence Ledger: The DocAble Case</h1></header><h2>G.1 How to Read This Ledger</h2>
 <p>Part V presents the DocAble case over time. This appendix carries the quantitative and repository-level receipts behind its numerical claims.</p>
 <p>Each section gives the measurement, its source or counting procedure, the observation window where one applies, the resulting values, and the main limit on interpretation. Unless stated otherwise, these are within-case descriptive measurements. They do not establish causal effects, comparative productivity, or portable target values.</p>
-<p>The measurements fall into six groups: build scale and repository motion; model correspondence and drift; model coverage; representation and navigation cost; development and processing costs; and the relationship between measurement and authority.</p>
+<p>The measurements fall into six groups: build scale and repository motion; model correspondence and drift; model coverage; representation and navigation cost; development and processing costs; and the relationship between measurement and enforcement.</p>
 <p>The ledger exists for traceability. A number summarized in Part V should be recoverable here, together with the assumptions that bound it.</p>
 <h2>G.2 Build Scale and Repository Motion</h2>
 <h3 id="velocity">G.2.1 Weekly Commit Volume</h3>
@@ -2269,8 +2269,8 @@ z
 <table id="tbl-I-8" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table I-8.</span></caption><thead><tr><th>Quantity</th><th>Observed or estimated value</th><th>Basis</th></tr></thead><tbody><tr><td>Accessibility-checker findings in a representative deck</td><td>42</td><td>One graduate instructional deck evaluated with the built-in accessibility checker</td></tr><tr><td>Manual remediation, one teaching load</td><td>≈ $20,000 estimated faculty labor</td><td>Findings/deck × minutes/finding × decks/course × loaded hourly rate</td></tr><tr><td>Vendor remediation</td><td>$3–$40 / page</td><td>Market range collected during the study; not staffed for graduate-level subject annotation</td></tr><tr><td>Automated processing, one representative deck</td><td>≈ 1 minute; ≈ $1 direct processing cost</td><td>Warm-start service near the end of the study period</td></tr><tr><td>Direct development cost</td><td>≈ $60,000</td><td>Roughly 20-week study; majority salary</td></tr></tbody></table>
 <p>The manual-remediation estimate and automated-processing figure use different units and cost categories. One estimates faculty labor across a teaching load; the other records direct processing cost for one representative deck. They indicate scale but are not a controlled cost comparison.</p>
 <p>The vendor range is a market observation, not a quality-adjusted comparison with DocAble. The development-cost figure is an order-of-magnitude direct-cost estimate, not audited project accounting.</p>
-<h2 id="measurement-seed">G.7 Measurement Without Authority</h2>
-<p>A measurement can be useful before it deserves authority.</p>
+<h2 id="measurement-seed">G.7 Measurement Without Enforcement</h2>
+<p>A measurement can be useful before it deserves enforcement.</p>
 <h3>G.7.1 Provisional Cost-and-Time Model</h3>
 <p>A per-chunk worst-case cost-and-time estimate was recorded as a timestamped provisional model rather than embedded as a permanent code constant.</p>
 <p>Current instrumentation can report when an operation would exceed the provisional budget. Production admission does not depend on that estimate, because the observation base is not yet strong enough to justify a blocking threshold.</p>
@@ -2278,7 +2278,7 @@ z
 <h3>G.7.2 Cold-Start Contrast Case</h3>
 <p>The contrasting case did justify an engineering decision.</p>
 <p>The measured request-level cold-start value was 4,057 ms. That observation fed a topology model representing the longest cold-start path and motivated an architectural change. The resulting warm floor was 109 ms. The sequence is <strong>request-level measurement (4,057 ms) → cold-start topology model → architectural change → 109 ms warm floor</strong>.</p>
-<p>The contrast does not imply that every measured quantity should eventually become a gate. Authority requires evidence adequate to the decision being made. The provisional cost model remained report-only; the stable, structurally interpretable cold-start observation justified architectural action.</p>
+<p>The contrast does not imply that every measured quantity should eventually become a gate. Enforcement requires evidence adequate to the decision being made. The provisional cost model remained report-only; the stable, structurally interpretable cold-start observation justified architectural action.</p>
 <h2 id="does-not-measure">G.8 What This Ledger Does Not Measure</h2>
 <p>Most quantities in this appendix are activity, structural, or within-case mechanism measures:</p>
 <ul><li>commits and line motion;</li><li>source distribution;</li><li>control counts;</li><li>model coverage;</li><li>correspondence catches and reopens;</li><li>exploratory navigation cost;</li><li>selected financial and runtime observations.</li></ul>

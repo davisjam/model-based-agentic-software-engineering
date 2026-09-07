@@ -18,5 +18,5 @@ Engineering need not eliminate realization freedom. Governing models determine s
 - *Role of autonomous reasoning.* Reasoning across interacting semantic constraints and realizing changes where governing obligations are explicit but implementation remains underdetermined.
 - *Determinization opportunity.* High where modeling exposes stable properties that deterministic machinery can evaluate or realize.
 - *Degrees of freedom.* Implementation choices left open after the governing obligations for the realization are accounted for.
-- *Smallest useful adoption.* Externalize one repeatedly reconstructed or consequential system property, connect it to the surrounding lifecycle knowledge it depends on, and give stable obligations over it proportionate evidence and authority.
+- *Smallest useful adoption.* Externalize one repeatedly reconstructed or consequential system property, connect it to the surrounding lifecycle knowledge it depends on, and give stable obligations over it proportionate evidence and enforcement.
 - *Lifecycle connections.* Product decisions and requirements from Discovery; change intent from Product Management; operational topology and evidence from Operations; assurance obligations and evidence requirements across the surface.

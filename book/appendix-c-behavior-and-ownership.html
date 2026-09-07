@@ -732,7 +732,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Enforce Where the Property Becomes Legible</a></li>
 <li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
 <li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
 <li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
@@ -746,7 +746,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-c-measurement.html">C.4 Measurement</a></li>
 <li><a class="" href="appendix-c-documentation-and-provenance.html">C.5 Documentation and Provenance</a></li>
 <li><a class="" href="appendix-c-joining-views.html">C.6 Joining Views Around a Scenario</a></li>
-<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Authority</a></li>
+<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Enforcement</a></li>
 <li class="part">Appendix D — Operator&#x27;s Reference</li>
 <li><a class="" href="appendix-operators-reference.html">Appendix D — Operator's Reference</a></li>
 <li><a class="" href="appendix-d-operators-dashboard.html">D.1 The Operator's Dashboard</a></li>
@@ -803,7 +803,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Representation.</strong> A minimal job lifecycle moves an item from <code>FREE</code> to <code>LEASED</code> on claim, from <code>LEASED</code> to <code>DONE</code> on completion, and from <code>LEASED</code> back to <code>FREE</code> on expiry or release. <code>DONE</code> is terminal.</p>
 <p><strong>Property.</strong> The invariants sort into safety and liveness:</p>
 <table id="tbl-C-2-1" class="book-table"><caption data-short="Lifecycle invariants"><span class="tbl-label">Table C.2-1.</span> Representative lifecycle invariants, by kind.</caption><thead><tr><th>Invariant</th><th>Kind</th></tr></thead><tbody><tr><td>Only declared transitions occur</td><td>Safety</td></tr><tr><td>Terminal states do not re-enter processing</td><td>Safety</td></tr><tr><td>A claimed job eventually completes or returns to an available state, under stated assumptions</td><td>Liveness</td></tr></tbody></table>
-<p><strong>Authority and correspondence.</strong> Transition operations or checks can mediate actual state changes against the declared transition relation. Any implemented transition absent from that relation becomes a finding. Where two lifecycles interact, represent their cross-machine transitions explicitly rather than leaving those relationships implicit in code.</p>
+<p><strong>Enforcement and correspondence.</strong> Transition operations or checks can mediate actual state changes against the declared transition relation. Any implemented transition absent from that relation becomes a finding. Where two lifecycles interact, represent their cross-machine transitions explicitly rather than leaving those relationships implicit in code.</p>
 <h2><span class="sec-num">C.2.2</span> Ownership and Lease</h2>
 <p>Concurrency adds ownership and lease state to the lifecycle. The resulting model must represent not only which transitions are legal, but which actor may perform them now.</p>
 <p><strong>Engineering question.</strong> Who may act on this work item now, and what stays true if workers overlap, fail, or retry?</p>
@@ -875,7 +875,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="360" y="264" text-anchor="middle" font-size="15" font-weight="700" fill="#8a2f2f">lease_owner = W17</text>
   <text x="360" y="288" text-anchor="middle" font-size="15" font-weight="700" fill="#8a2f2f">lease_until = t</text>
 
-  <!-- authorizes action -> worker (HEAVY authority + gate glyph) -->
+  <!-- authorizes action -> worker (HEAVY enforcement + gate glyph) -->
   <!-- edge: overlay -> worker -->
   <line x1="452" y1="269" x2="560" y2="269" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#f-appendix-g-3-behavior-ownership-g3-auth)"/>
   <text x="512" y="230" text-anchor="middle" font-size="15" font-style="italic" fill="#b23b3b">authorizes action</text>
@@ -896,5 +896,5 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="Behavior plus ownership"><span class="fig-label">Figure C.2-1.</span> <em>Behavior plus ownership.</em> The lifecycle FREE → LEASED → DONE is combined with a lease that records the current owner and expiry. The ownership invariant requires exactly one valid owner while LEASED and no active owner while FREE.</figcaption></figure>
 <p><strong>Property.</strong> Representative invariants:</p>
 <ul><li><strong>A leased item has a valid owner</strong>, and a free item has none.</li><li><strong>Ownership changes through the declared acquisition and release mechanism</strong>, not by ad hoc mutation.</li><li><strong>Terminal work cannot be reclaimed.</strong></li><li><strong>Where ordering is required, observed acquisition order respects the declared order.</strong></li></ul>
-<p><strong>Authority and correspondence.</strong> Some ownership facts are runtime facts and must be observed. The ownership protocol itself is authored intent. Atomic operations, leases, compare-and-swap, transition primitives, and admission checks can make selected invariants enforceable.</p>
+<p><strong>Enforcement and correspondence.</strong> Some ownership facts are runtime facts and must be observed. The ownership protocol itself is authored intent. Atomic operations, leases, compare-and-swap, transition primitives, and admission checks can make selected invariants enforceable.</p>
 <p>Concurrency limits and ownership answer different questions. A semaphore or mediator constrains how many actors may execute; single-writer ownership identifies which actor may mutate. They require distinct representations because they govern different properties.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">« Beginning of part</a><a href="appendix-c-structure-and-boundaries.html" aria-label="Previous chapter — C.1 Structure and Boundaries">« Previous chapter</a></div><span class="chapnav-here" title="C.2 Behavior and Ownership">C.2 Behavior and Ownership</span><div class="chapnav-fwd"><a href="appendix-c-execution-and-placement.html" aria-label="Next chapter — C.3 Execution and Placement">Next chapter »</a><a href="appendix-operators-reference.html" aria-label="Next part — Appendix D — Operator&#x27;s Reference">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Figure 2.6 concept (part2-v8-260814 re-author; folds to book/assets/).
      REVISION per v8 editor guidance (2.6-3): harmonize EXACTLY with revised Part III. Title/footer "One
-     Measurement, Different Authority Decisions". Part-II side is the MODEL ("what quantity and bound
-     matter?"); Part-III side is the AUTHORITY DECISION over the SAME model — observe, adapt, degrade,
+     Measurement, Different Enforcement Decisions". Part-II side is the MODEL ("what quantity and bound
+     matter?"); Part-III side is the ENFORCEMENT DECISION over the SAME model — observe, adapt, degrade,
      gate. The DocAble armed/dormant configuration detail is REMOVED (not a general model concept).
      Grammar: blue #2f5169 = the shared measurement model; gray #57534e = observe/adapt (report/steer);
      rust #9a3f12 = degrade/gate (the consequential decisions). Hand-authored (two design-move panels
@@ -10,11 +10,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="960" height="380"
      role="img" aria-labelledby="paTitle paDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="paTitle">One measurement, different authority decisions</title>
+  <title id="paTitle">One measurement, different enforcement decisions</title>
   <desc id="paDesc">Part II, the model, names a quantity and a reference bound and compares them, answering
-    what quantity and bound matter. Part III, the authority decision, takes the same model and chooses its
+    what quantity and bound matter. Part III, the enforcement decision, takes the same model and chooses its
     force: observe, adapt, degrade, or gate. Observe and adapt are shown in gray; degrade and gate, the
-    consequential decisions, in rust. Modeling and authority are separate moves over one shared model.</desc>
+    consequential decisions, in rust. Modeling and enforcement are separate moves over one shared model.</desc>
 
   <defs>
     <marker id="pa-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
@@ -25,7 +25,7 @@
     </marker>
   </defs>
 
-  <text x="480" y="34" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">One Measurement, Different Authority Decisions</text>
+  <text x="480" y="34" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">One Measurement, Different Enforcement Decisions</text>
 
   <!-- divider -->
   <line x1="475" y1="66" x2="475" y2="300" stroke="#d9d3c8" stroke-width="1.6"/>
@@ -49,9 +49,9 @@
   </g>
   <text x="235" y="262" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">&#8220;What quantity and bound matter?&#8221;</text>
 
-  <!-- ===== RIGHT: PART III AUTHORITY DECISION ===== -->
-  <text x="715" y="82" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1.2" fill="#1c1917">PART III &#183; AUTHORITY DECISION</text>
-  <!-- fan to four authority decisions — one path per branch, all from the same-model centre (715,123) -->
+  <!-- ===== RIGHT: PART III ENFORCEMENT DECISION ===== -->
+  <text x="715" y="82" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1.2" fill="#1c1917">PART III &#183; ENFORCEMENT DECISION</text>
+  <!-- fan to four enforcement decisions — one path per branch, all from the same-model centre (715,123) -->
   <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#pa-k)">
     <!-- edge: same-model -> observe -->
     <path d="M620,123 L554,123 L554,190"/>

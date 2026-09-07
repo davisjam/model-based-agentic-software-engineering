@@ -1,16 +1,16 @@
 *Can I trust this release?*
 
-A release is ready when every obligation assigned blocking authority has current supporting evidence and
+A release is ready when every obligation assigned a blocking gate has current supporting evidence and
 every blocking gate passes. The checklist gathers those obligations at release time; it does not create new
 ones.
 
 The specific checks depend on the system. A model-based obligation requires current correspondence only when
 the release relies on that model; a locally enforced property may require no system model. The general rule
-is obligation → evidence → authority.
+is obligation → evidence → enforcement.
 
 ### The preflight
 
-Instantiate the checklist for each release. List the obligations carrying blocking authority, confirm that
+Instantiate the checklist for each release. List the obligations carrying blocking enforcement, confirm that
 each has current evidence, and confirm that every blocking gate passes.
 
 ```

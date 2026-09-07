@@ -7,7 +7,7 @@ Engineering capital matters when an investment made in one place changes the eco
 
 ## Across Time: Capital Across the Product Lifecycle
 
-Engineering capital does not appreciate by eliminating every future choice. A useful model fixes what later work should not have to rediscover while leaving irrelevant choices open. Over-specification creates carrying cost and can make later change more expensive. The valuable asset is therefore not maximal explicitness, but durable knowledge and authority over matters consequential enough to justify their cost.
+Engineering capital does not appreciate by eliminating every future choice. A useful model fixes what later work should not have to rediscover while leaving irrelevant choices open. Over-specification creates carrying cost and can make later change more expensive. The valuable asset is therefore not maximal explicitness, but durable knowledge and durable controls over matters consequential enough to justify their cost.
 
 Engineering capital can also gain new uses. An architectural model built to reduce reconstruction may later support incident diagnosis; maintenance traceability may support Assurance; an operational failure may produce an invariant useful to both Engineering and compliance. The value of the capital is therefore not the amount of structure accumulated, but the future work it changes.
 

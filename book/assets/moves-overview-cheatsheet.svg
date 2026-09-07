@@ -7,12 +7,12 @@
   <desc id="ovDesc">A two-column cheat sheet. The left column names a recurring engineering cost; the right
     column names the transferable move that addresses it. Many truths disagree — make one authoritative.
     Copies drift from authority — derive, don't copy. Model and reality diverge — check correspondence.
-    Assurance has invisible holes — derive the obligation set. Checks are too early or too late — put authority
+    Assurance has invisible holes — derive the obligation set. Checks are too early or too late — put enforcement
     where the property is legible. Actions evade governance — close the action surface. Rules exist but aren't
     present at the decision — deliver knowledge where the decision occurs. Why gets lost after the change — carry
     cause with consequence. Operators reconstruct the same procedure — externalize the judgment. Changes have
     hidden dependents — make dependencies queryable. These are not ten additions to the method; they are recurring
-    realizations of one idea — improve the representation, put authority where obligations are decidable, and make
+    realizations of one idea — improve the representation, enforce obligations where they are decidable, and make
     useful judgment durable.</desc>
 
   <defs>
@@ -80,7 +80,7 @@
     <!-- edge: p5 -> m5 -->
     <line x1="472" y1="366" x2="522" y2="366" stroke="#9a3f12" stroke-width="2" marker-end="url(#ov-ah)"/>
     <rect id="m5" x="524" y="346" width="428" height="40" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.2"/>
-    <text x="540" y="372" font-weight="700" fill="#9a3f12">PUT AUTHORITY WHERE LEGIBLE</text>
+    <text x="540" y="372" font-weight="700" fill="#9a3f12">PUT ENFORCEMENT WHERE LEGIBLE</text>
 
     <!-- row 6 -->
     <rect x="52"  y="396" width="40" height="40" rx="6" fill="#f6f4ef" stroke="#57534e" stroke-width="1"/>

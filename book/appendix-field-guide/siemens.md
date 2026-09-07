@@ -18,6 +18,6 @@ SysML and CAD models, simulation, virtual ECUs, and bill-of-materials structures
 <!-- label: field-guide-siemens -->
 <!-- figure: assets/field-guide-siemens.svg | *Siemens projected onto MAGE.* Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model↔code admission. -->
 
-**MAGE reading.** Siemens shows the strong end of Modeling in established engineering practice: engineers reason through persistent semantic representations and treat implementation as downstream realization. MAGE did not invent model-first engineering; its contribution is to bring that engineering instinct into agentic software engineering and connect representation explicitly to the authority surfaces of the governed environment.
+**MAGE reading.** Siemens shows the strong end of Modeling in established engineering practice: engineers reason through persistent semantic representations and treat implementation as downstream realization. MAGE did not invent model-first engineering; its contribution is to bring that engineering instinct into agentic software engineering and connect representation explicitly to the enforcement surfaces of the governed environment.
 
 **Interpretive boundary.** The missing model↔code admission gate means not established, not absent.

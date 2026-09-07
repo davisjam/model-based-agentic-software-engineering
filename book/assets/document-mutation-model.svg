@@ -3,7 +3,7 @@
      DocAble's document-mutation model: remediation logic operates THROUGH a structured document model
      (the sanctioned seam) which is realized THROUGH a format-specific implementation, down to the concrete
      formats. The model marks WHERE mutation is supposed to occur; it does not, by itself, prevent crossing
-     the seam (Part III gives the declared relationship authority). Grammar: blue #2f5169 = the model + the
+     the seam (Part III decides enforcement of the declared relation). Grammar: blue #2f5169 = the model + the
      seam it names; gray #57534e = the format-specific implementation and concrete formats (territory the
      model reduces). Hand-authored (a labeled vertical seam, not a flowchart). -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 438" width="640" height="438"

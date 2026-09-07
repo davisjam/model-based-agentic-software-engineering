@@ -7,9 +7,9 @@
        GREEN (#1f7a4d) = accumulated environment — the growing left-edge gauge + the "environment" line
        RED  (#b23b3b)  = residual human burden  — a single narrowing right-edge trajectory (no per-row bars)
      The staircase geometry itself carries "delegation climbs" (no separate blue arrow). The green left-edge
-     bars thicken as the climb proceeds (representation + authority accumulate); the red right-edge wedge
+     bars thicken as the climb proceeds (representation + enforcement accumulate); the red right-edge wedge
      narrows to a sliver (human tactical burden shrinks but never vanishes). A miss in representation or
-     authority can push work back down.
+     enforcement can push work back down.
      Palette: Umber Monograph tokens, all on design_tokens.svg_palette() allow-list — fleet/agent #2f5169
      (delegated), governed/modeling #1f7a4d (environment), churn/failure #b23b3b + fill #fbeaea (human
      remainder), governed-fill #e3f0e7 (environment wash), ink #1c1917, muted #57534e, rule #e4e0d8.
@@ -21,7 +21,7 @@
   <desc id="dsDesc">A true staircase of five steps ascending from bottom-left to top-right. Step one at the
     bottom is Co-coder; step five at the summit is Architect. Each step card names a stage and shows, in
     blue, what is now delegated, and in green, what the engineered environment now carries. Along the
-    left edge a green gauge thickens as the climb proceeds — representation and authority accumulate.
+    left edge a green gauge thickens as the climb proceeds — representation and enforcement accumulate.
     Along the right edge a red trajectory narrows from wide at the base to a sliver at the summit: the
     residual human focus moves from reading every diff at the bottom to system-level strategy and residual
     semantic judgment at the top — the tactical burden shrinks but never reaches zero. Step one Co-coder:
@@ -34,7 +34,7 @@
     environment carries named zones and boundary rules; the human holds the system map and strategy. Step
     five Architect: delegated is model-guided work across the whole system; the environment carries explicit
     models, traceability, and controls; the human is left with residual semantics and strategy. A failure in
-    representation or authority can push work back down the staircase.</desc>
+    representation or enforcement can push work back down the staircase.</desc>
 
   <defs>
     <marker id="ds-up" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
@@ -55,8 +55,8 @@
        Wide at the summit (most accumulated), thin at the base. Light backdrop, low visual weight. -->
   <polygon points="40,58 360,58 360,178 280,178 280,316 200,316 200,454 120,454 120,592 40,592"
            fill="#e3f0e7" opacity="0.55"/>
-  <text x="52" y="88" font-size="24" font-weight="700" fill="#1f7a4d">environment accumulates</text>
-  <text x="52" y="107" font-size="24" fill="#1f7a4d">representation + authority</text>
+  <text x="52" y="88" font-size="20" font-weight="700" fill="#1f7a4d">environment accumulates</text>
+  <text x="52" y="107" font-size="20" fill="#1f7a4d">representation + enforcement</text>
 
   <!-- ===================== RED residual-human wedge (right edge) — one narrowing trajectory ===================== -->
   <!-- A single wedge: wide at the base (human carries everything), a sliver at the summit. NOT a per-row bar. -->
@@ -94,7 +94,7 @@
   <rect x="120" y="472" width="810" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
   <rect x="118" y="472" width="10" height="120" rx="4" fill="#1f7a4d"/>
   <text x="144" y="503" font-size="27" font-weight="700" fill="#1c1917">2 · QA</text>
-  <text x="144" y="530" font-size="27" font-style="italic" fill="#57534e">evaluation delegated before authority</text>
+  <text x="144" y="530" font-size="27" font-style="italic" fill="#57534e">evaluation delegated before enforcement</text>
   <text x="144" y="557" font-size="27" fill="#2f5169" font-weight="600">delegated — generation + a second agent's audit</text>
   <text x="144" y="584" font-size="27" fill="#1f7a4d" font-weight="600">environment — a probabilistic reviewer (episodic, advisory)</text>
   <text x="1000" y="532" font-size="27" fill="#b23b3b" font-weight="600">adjudicate findings</text>

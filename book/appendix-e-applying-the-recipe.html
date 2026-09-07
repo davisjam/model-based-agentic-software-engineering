@@ -732,7 +732,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Enforce Where the Property Becomes Legible</a></li>
 <li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
 <li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
 <li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
@@ -746,7 +746,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-c-measurement.html">C.4 Measurement</a></li>
 <li><a class="" href="appendix-c-documentation-and-provenance.html">C.5 Documentation and Provenance</a></li>
 <li><a class="" href="appendix-c-joining-views.html">C.6 Joining Views Around a Scenario</a></li>
-<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Authority</a></li>
+<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Enforcement</a></li>
 <li class="part">Appendix D — Operator&#x27;s Reference</li>
 <li><a class="" href="appendix-operators-reference.html">Appendix D — Operator's Reference</a></li>
 <li><a class="" href="appendix-d-operators-dashboard.html">D.1 The Operator's Dashboard</a></li>
@@ -819,7 +819,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Rhetoric-as-craft turns a collection of style rules into a model. Separate facets can then load independently and be reused by other skills. The skill remains soft; where an audit result must block delivery, the audit belongs in a gate.</p>
 <h2><span class="sec-num">E.2.2</span> self-governance</h2>
 <h3>Problem</h3>
-<p>An agent can have excellent tools and still engineer badly. It runs the tests, calls the formatter, queries the repository — and still models the wrong thing, gives authority to a fact that should stay advisory, or freezes a one-off mistake into a permanent rule. The missing capability is not another tool. It is the engineering method itself: knowing <em>what to model, what must hold, and which judgment is worth making durable.</em></p>
+<p>An agent can have excellent tools and still engineer badly. It runs the tests, calls the formatter, queries the repository — and still models the wrong thing, makes binding a fact that should stay advisory, or freezes a one-off mistake into a permanent rule. The missing capability is not another tool. It is the engineering method itself: knowing <em>what to model, what must hold, and which judgment is worth making durable.</em></p>
 <p>Self-governance packages that method as a skill. It teaches the agent to recognize the situation, choose a Modeling or Alignment move, act through the governed environment, and decide what should persist. The skill carries the method, not the codebase's facts. Concrete system knowledge—what the codebase intends, contains, and guarantees—must come from model providers rather than the skill's memory.</p>
 <h3>Fundamental Model</h3>
 <p><strong>The MAGE engineering loop.</strong> Everything in the skill supports one cycle, run whenever the agent engineers:</p>
@@ -828,9 +828,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h3>Orthogonal Models</h3>
 <p>The loop's questions are independent, so each becomes its own facet. Each of six directories answers one question; the router identifies the question and directs the agent to the corresponding facet.</p>
 <ul><li><strong><code>modeling/</code></strong> — Which representation would help, and how should it be improved? Carries the six model families, modeling moves, and a repertoire of established modeling techniques and their tradeoffs.</li><li><strong><code>practice/</code></strong> — What situation is this, and how much intervention is warranted?</li><li><strong><code>system/</code></strong> — What is true of this system? Retrieves concrete models through a provider contract and records their epistemic status.</li><li><strong><code>skills/</code></strong> — Which available capability performs the chosen move?</li><li><strong><code>alignment/</code></strong> — What should remain true without repeated human checking? Carries the mechanism repertoire and census.</li><li><strong><code>learning/</code></strong> — What should persist from this episode? Carries governance conversion and recurring failure analysis.</li></ul>
-<span id="idx-def-governance-target-agent"></span><span id="idx-def-governance-target-product"></span><span id="idx-def-governance-target-models-bridge"></span><p>The facets answer independent questions: recognizing the situation does not select the model, choosing a move does not determine its authority, and knowing the method does not supply system facts. Load only the facet the current question requires.</p>
+<span id="idx-def-governance-target-agent"></span><span id="idx-def-governance-target-product"></span><span id="idx-def-governance-target-models-bridge"></span><p>The facets answer independent questions: recognizing the situation does not select the model, choosing a move does not determine its enforcement, and knowing the method does not supply system facts. Load only the facet the current question requires.</p>
 <h3>Governing Principle</h3>
-<p><em>Apply MAGE to the work itself: model what must be understood, give authority to what must hold, and convert recurring judgment into durable engineering structure.</em> Five operating rules follow:</p>
+<p><em>Apply MAGE to the work itself: model what must be understood, enforce what must hold, and convert recurring judgment into durable engineering structure.</em> Five operating rules follow:</p>
 <ul><li><strong>Model before guessing.</strong> Reach concrete system truth through a provider; do not reconstruct it from memory or raise confidence by rhetoric.</li><li><strong>Ask what should become machinery.</strong> At every failure, ask whether the lesson deserves durable structure—and default to no. Most failures should not become new governance.</li><li><strong>Method before tool.</strong> Choose the move the situation calls for, then the capability that performs it, not a capability because it is at hand.</li><li><strong>Right-size the fix.</strong> Prefer the smallest sound change that closes the class; propose a larger intervention rather than implementing it reflexively. Prevention by construction beats detection where the action space can honestly close.</li><li><strong>Escalate judgment, not difficulty.</strong> Escalate when authority or consequence requires a human decision, not merely because the problem is hard.</li></ul>
 <p><strong>Self-governance is not self-certification.</strong> The agent may select, model, propose, and check, but its belief that the work is correct is not evidence that it is. A skill is soft: it guides a probabilistic agent but cannot block. Hard mechanisms may be proposed or scaffolded by the skill, but enforcement must come from the harness or another external mechanism. The deciding evidence comes from a mechanism that sits outside the reasoning which produced the change.</p>
 <h3>Layout</h3>
@@ -860,7 +860,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>These answer three independent questions: where the problem belongs, what response it requires, and when that response should trigger.</p>
 <p>Supporting resources: build and handoff templates (<code>templates/</code>) — used when operating work crosses into implementation.</p>
 <h3>Governing Principle</h3>
-<p>Establish the healthy state first, then classify deviations from it. Route each symptom to a lifecycle and run the corresponding procedure. When diagnosis reveals that a model, mechanism, or authority should change, hand that engineering decision to self-governance. Automate deterministic steps; prepare irreducible judgments for escalation.</p>
+<p>Establish the healthy state first, then classify deviations from it. Route each symptom to a lifecycle and run the corresponding procedure. When diagnosis reveals that a model, mechanism, or enforcement should change, hand that engineering decision to self-governance. Automate deterministic steps; prepare irreducible judgments for escalation.</p>
 <h3>Layout</h3>
 <pre><code>self-operations/
   SKILL.md

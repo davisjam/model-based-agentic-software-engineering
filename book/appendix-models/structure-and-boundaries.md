@@ -46,7 +46,7 @@ Seam
 Directory existence can be derived from the repository; ownership and permitted boundaries are
 authored architectural decisions.
 
-**Authority and correspondence.** The repository tree is mapped back to the component catalog. A
+**Enforcement and correspondence.** The repository tree is mapped back to the component catalog. A
 directory with no owner, multiple owners, or an observed dependency crossing an undeclared boundary
 becomes a correspondence finding. Where reconciliation depends on source locations, anchor references
 to resolvable symbols rather than line numbers so the correspondence can be re-derived after edits.
@@ -80,7 +80,7 @@ declaration is a mismatch.
 **Property.** Only declared service-to-service and service-to-resource relationships are permitted,
 each with its declared authentication posture. The same graph carries both connectivity and access policy.
 
-**Authority and correspondence.** The declared graph supplies the *ought*. Static call sites,
+**Enforcement and correspondence.** The declared graph supplies the *ought*. Static call sites,
 generated configuration, deployment wiring, and runtime observation each supply part of the *is*. A
 correspondence check asks whether each observed edge is declared and, where it
 matters, whether each declared edge still exists.

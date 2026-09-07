@@ -732,7 +732,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Enforce Where the Property Becomes Legible</a></li>
 <li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
 <li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
 <li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
@@ -746,7 +746,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-c-measurement.html">C.4 Measurement</a></li>
 <li><a class="" href="appendix-c-documentation-and-provenance.html">C.5 Documentation and Provenance</a></li>
 <li><a class="" href="appendix-c-joining-views.html">C.6 Joining Views Around a Scenario</a></li>
-<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Authority</a></li>
+<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Enforcement</a></li>
 <li class="part">Appendix D — Operator&#x27;s Reference</li>
 <li><a class="" href="appendix-operators-reference.html">Appendix D — Operator's Reference</a></li>
 <li><a class="" href="appendix-d-operators-dashboard.html">D.1 The Operator's Dashboard</a></li>
@@ -807,11 +807,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <span id="idx-def-ex-ante-governance"></span><span id="idx-def-specification-driven-development"></span><p>Start with obligations you can state before the work begins and that are consequential, recurrent, or reusable enough to make durable. A required output shape may become a schema; a forbidden dependency may become an architectural relation plus a validator; a service boundary may become a permission or narrow API; a legal lifecycle may become a closed transition table. Encode recurring obligations when the environment can carry them more cheaply and reliably than repeated judgment.</p>
 <p>Part IV turns this into a method for starting and migrating systems; here the distinction is simply that these obligations are known before failure forces the issue.</p>
 <h2><span class="sec-num">3.4.2</span> Ex Post: Convert What the Work Teaches</h2>
-<p id="idx-def-ex-post-governance">The harder half begins when the system surprises you. A failure may reveal a recurring failure mode: the environment lacks a representation, an obligation was never stated, the relevant evidence is not observable, a validator is too weak, or a judgment exists but carries no authority. <strong>Do not assume every failure calls for another gate. Diagnose what was missing.</strong></p>
+<p id="idx-def-ex-post-governance">The harder half begins when the system surprises you. A failure may reveal a recurring failure mode: the environment lacks a representation, an obligation was never stated, the relevant evidence is not observable, a validator is too weak, or a judgment exists but carries no consequence. <strong>Do not assume every failure calls for another gate. Diagnose what was missing.</strong></p>
 <p>The conversion can therefore land in several places:</p>
 <ol><li><strong>Missing representation / semantics → improve the model.</strong> Make the fact or relation durable at the abstraction where the question becomes answerable.</li><li><strong>Missing obligation or tolerance → state the governing boundary.</strong> A failure may show that variation treated as free was not actually acceptable. Make the invariant, policy, bound, or permitted set explicit enough for future work to reason against it.</li><li><strong>Missing evidence → add a sensor or trace.</strong> Make the relevant state observable.</li><li><strong>Missing evaluation → strengthen the validator.</strong> Turn evidence into a repeatable judgment.</li><li><strong>Missing consequence → add or strengthen a constraint or gate.</strong> Make the verdict matter.</li></ol>
 <p>Viewed from Part I, these interventions do different things to the probabilistic surface. Better representation can make a satisfactory realization cheaper to find by reducing reconstruction or exposing the property more directly. Better evidence can make the realized state more legible. A repeatable validator can carry an evaluation independently of the producer, and a constraint or gate can enforce that verdict. Governance conversion is therefore not simply the accumulation of checks; it is the selective transfer of recurring engineering judgment from per-instance reasoning into durable structure.</p>
-<p>This is why Modeling and Alignment form a feedback loop in practice. A failure can expose knowledge that remained implicit, or reveal that a choice treated as a degree of freedom actually carried a tacit obligation or tolerance. Modeling can make that distinction explicit; Alignment can then give the resulting obligation appropriate evidence and authority. The environment improves when recurring reconstruction or judgment moves into durable structure that later work can inherit. <a class="xref" href="3.4-governance-conversion.html#fig-3-4-1">Figure&nbsp;3.4-1</a> draws the diagnosis.</p>
+<p>This is why Modeling and Alignment form a feedback loop in practice. A failure can expose knowledge that remained implicit, or reveal that a choice treated as a degree of freedom actually carried a tacit obligation or tolerance. Modeling can make that distinction explicit; Alignment can then give the resulting obligation appropriate evidence and enforcement. The environment improves when recurring reconstruction or judgment moves into durable structure that later work can inherit. <a class="xref" href="3.4-governance-conversion.html#fig-3-4-1">Figure&nbsp;3.4-1</a> draws the diagnosis.</p>
 <figure id="fig-3-4-1" class="book-figure" data-label="governance-conversion-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740"
      role="img" aria-labelledby="f-governance-conversion-gcTitle f-governance-conversion-gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -941,8 +941,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <title id="f-judgment-without-consequence-jcTitle">Correct judgment without consequence: the audit detected the danger and judged it unsafe, but the link from verdict to consequence was severed, so the operation proceeded and content was lost</title>
   <desc id="f-judgment-without-consequence-jcDesc">A vertical cascade. A dangerous auto-resolution fallback exists. A sensor detects it and a
     validator judges it unsafe — sensing and evaluation both work. But the link from that verdict to any
-    authoritative consequence is severed; the only thing emitted at the break is a warning. So the operation
-    proceeds anyway and content is lost. Evidence existed and the judgment was correct; no authoritative
+    binding consequence is severed; the only thing emitted at the break is a warning. So the operation
+    proceeds anyway and content is lost. Evidence existed and the judgment was correct; no enforcement
     mechanism acted on the verdict. The durable repair removed the capability rather than making the warning
     louder.</desc>
 
@@ -998,7 +998,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="176" y="429" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">logged — no consequence</text>
   <line x1="260" y1="414" x2="366" y2="414" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4"/>
   <!-- centerpiece label -->
-  <text x="452" y="404" font-size="19.2" font-weight="800" fill="#9a3f12">no authoritative consequence</text>
+  <text x="452" y="404" font-size="19.2" font-weight="800" fill="#9a3f12">no binding consequence</text>
   <text x="452" y="426" font-size="19.2" font-style="italic" fill="#9a3f12">the verdict never reaches a consequence</text>
   <!-- lower stub into the operation, arrowed -->
   <line x1="400" y1="440" x2="400" y2="472" stroke="#9a3f12" stroke-width="3.2" marker-end="url(#f-judgment-without-consequence-jc-r)"/>
@@ -1018,7 +1018,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="40" y1="668" x2="920" y2="668" stroke="#e7e2da" stroke-width="1.4"/>
   <text x="60" y="694" font-size="19.2" font-weight="700" fill="#155c38">Durable repair &#8212; remove the unsafe capability; escalate an ambiguous merge to a human.</text>
   <text x="60" y="714" font-size="19.2" font-style="italic" fill="#57534e">The fix removed a capability the environment should never have offered &#8212; not a louder warning.</text>
-</svg><figcaption data-short="Correct judgment without consequence"><span class="fig-label">Figure 3.4-2.</span> <em>Correct judgment without consequence.</em> The system observed the dangerous condition and evaluated it correctly, but no authoritative mechanism acted on the verdict. The durable repair removed the unsafe capability rather than making the warning louder.</figcaption></figure>
+</svg><figcaption data-short="Correct judgment without consequence"><span class="fig-label">Figure 3.4-2.</span> <em>Correct judgment without consequence.</em> The system observed the dangerous condition and evaluated it correctly, but no enforcing mechanism acted on the verdict. The durable repair removed the unsafe capability rather than making the warning louder.</figcaption></figure>
 <p>The failure was not missing evidence. The system had evidence. Nor was evaluation missing: the audit correctly identified the danger. What it lacked was consequence. The warning described a condition the environment still permitted.</p>
 <p>The durable repair did not make the warning louder. It removed the dangerous auto-resolution fallback and escalated ambiguous merges to a human instead. <strong>Governance conversion can add a mechanism. It can also delete a capability the environment should never have offered.</strong> Where a warning marks a known-dangerous condition intended to become binding, its temporary status should be explicit, with an owner and resolution condition.</p>
 <h2><span class="sec-num">3.4.4</span> Engineering Capital</h2>
@@ -1031,12 +1031,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <figure id="fig-3-4-3" class="book-figure" data-label="honest-gaps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
      role="img" aria-labelledby="f-residual-decision-tree-hgTitle f-residual-decision-tree-hgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-residual-decision-tree-hgTitle">Where authority stops: three questions place any obligation in one of four states —
+  <title id="f-residual-decision-tree-hgTitle">Where enforcement stops: three questions place any obligation in one of four states —
     residual, judgment required, evaluated only, or governed</title>
   <desc id="f-residual-decision-tree-hgDesc">A staircase of three questions. First: is the obligation explicit in a form the
     environment can use? No leads to RESIDUAL — a reasoner must reconstruct it. Yes leads to the
     second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:
-    does authority act on the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but
+    does the environment enforce the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but
     un-gated. Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different
     obligations stop in different places.</desc>
 
@@ -1110,5 +1110,5 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Governed.</strong> The environment enforces the obligation in a form appropriate to the engineering decision: an action may be constrained, a violation refused, or admission made dependent on the verdict.</p>
 <p>The same restraint applies to tolerance. Making an acceptable boundary explicit does not imply that the environment should tighten it, or even enforce it mechanically. A broad tolerance may be the correct engineering decision, and variation inside it remains legitimate realization freedom. Stronger Alignment means more dependable enforcement of the obligation engineering actually chose, not progressively narrowing the acceptable realization space.</p>
 <p>DocAble contains examples of each non-governed stopping point, each for a different reason. Some cost controls are deliberately non-binding because imposing a hard daily budget remains a policy choice. DocAble measures governance conversion but does not target a required rate, because doing so would invite gaming. Some accessibility judgments remain outside deterministic enforcement because the available representation does not contain enough semantics to evaluate them reliably. <strong>Non-enforcement is sometimes the engineered result.</strong></p>
-<p>The mechanism that discovers an obligation need not be the mechanism that ultimately carries its authority. DocAble's primitive-density lint remained an audit signal because high density was only a smell. The migration it provoked produced more specific types, boundaries, and drift controls whose predicates could justify stronger consequences. Part IV follows that migration in detail.</p>
+<p>The mechanism that discovers an obligation need not be the mechanism that ultimately enforces it. DocAble's primitive-density lint remained an audit signal because high density was only a smell. The migration it provoked produced more specific types, boundaries, and drift controls whose predicates could justify stronger consequences. Part IV follows that migration in detail.</p>
 <p>Different obligations should stop in different places. Governance conversion closes recurring gaps when doing so is worth the cost. It also creates the next problem: the environment now contains an expanding portfolio of controls, and those controls can themselves become inconsistent, redundant, or orphaned.</p><section class="works-cited" aria-labelledby="wc-3-4-governance-conversion-h"><h2 id="wc-3-4-governance-conversion-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-3-4-governance-conversion-1">Lehman, M. M., and J. F. Ramil. “Software Evolution—Background, Theory, Practice.” <em>Information Processing Letters</em> 88 (2003): 33–44.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-3-intro.html" aria-label="Beginning of Part 3 — Alignment">« Beginning of part</a><a href="3.3-constraints-sensors-validators-gates.html" aria-label="Previous chapter — 15 · Constraints, Sensors, Validators, and Gates">« Previous chapter</a></div><span class="chapnav-here" title="16 · Growing the Governed Environment">16 · Growing the Governed Environment</span><div class="chapnav-fwd"><a href="3.5-when-guardrails-collide.html" aria-label="Next chapter — 17 · When Controls Become a System">Next chapter »</a><a href="3.5-one-problem-many-models.html" aria-label="Next part — Interlude">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

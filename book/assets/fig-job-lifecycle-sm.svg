@@ -14,7 +14,7 @@
     and DISPATCH, then WAITING, then MERGING, then FINALIZING, then COMPLETED. Every active state also
     routes to a single terminal state, FAILED, drawn to the right. FAILED has no edge back into processing:
     a failed job surfaces, it does not quietly re-enter the pipeline. The legal transitions are an
-    authoritative mechanism — one guarded operator is the only writer of state, and it refuses any edge the
+    enforcement mechanism — one guarded operator is the only writer of state, and it refuses any edge the
     table does not list. Failure is a dead end, not a detour.</desc>
 
   <defs>

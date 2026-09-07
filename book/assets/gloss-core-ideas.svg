@@ -66,8 +66,8 @@
   <!-- Alignment Principle (rust) -->
   <rect id="alignment" x="590" y="296" width="280" height="82" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="730" y="330" text-anchor="middle" font-size="19.6" font-weight="700" fill="#9a3f12">Alignment Principle</text>
-  <text x="730" y="353" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">give obligations</text>
-  <text x="730" y="369" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">authority</text>
+  <text x="730" y="353" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">enforce selected</text>
+  <text x="730" y="369" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">obligations</text>
 
   <!-- Modeling EXPANDS (not enables) Alignment -->
   <!-- edge: modeling -> alignment -->

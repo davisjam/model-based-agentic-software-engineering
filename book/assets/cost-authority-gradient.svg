@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Part III 3.3.3 figure — cost-authority-gradient.svg (draft; folds to book/assets/).
-     One measurement, different authority decisions. A single COST / USAGE MODEL (blue #2f5169 — it is a
+     One measurement, different enforcement decisions. A single COST / USAGE MODEL (blue #2f5169 — it is a
      model) is read through a POLICY attached to the value (rust — the obligation), and that policy selects
      one response: OBSERVE (report evidence, neutral gray), ADAPT (change load -> throttle / soft
      completion), or GATE (block admission -> rust). The appropriate response follows from the obligation
@@ -13,7 +13,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470"
      role="img" aria-labelledby="cgTitle cgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="cgTitle">One measurement, different authority decisions: a policy attached to the value selects observe, adapt, or gate</title>
+  <title id="cgTitle">One measurement, different enforcement decisions: a policy attached to the value selects observe, adapt, or gate</title>
   <desc id="cgDesc">A single cost and usage model is read through a policy attached to the value. That policy
     selects one response. Observe reports evidence without consequence. Adapt changes load, throttling and
     then producing soft completion rather than outright rejection. Gate blocks admission and is dormant

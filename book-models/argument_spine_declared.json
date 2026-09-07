@@ -142,7 +142,7 @@
     {
       "id": "alignment-principle",
       "order": 8,
-      "statement": "Give engineering obligations authority through mechanisms embedded in the environment — constrain, sense, validate, gate. Alignment can act directly on actions and artifacts; explicit models enlarge the set of properties those mechanisms can state and check.",
+      "statement": "Make engineering obligations effective through mechanisms embedded in the environment — constrain, sense, validate, gate. Alignment can act directly on actions and artifacts; explicit models enlarge the set of properties those mechanisms can state and check.",
       "seeds": [
         5
       ],
@@ -164,7 +164,7 @@
     {
       "id": "principles-treat-the-causes",
       "order": 9,
-      "statement": "The principles are distinct and address different problems: Modeling makes consequential knowledge explicit; Alignment gives obligations authority. Every meaningful Alignment mechanism rests on some conception of acceptable realization — tacit, locally encoded, or externalized as a separately represented model — which MAGE externalizes when consequential.",
+      "statement": "The principles are distinct and address different problems: Modeling makes consequential knowledge explicit; Alignment enforces obligations. Every meaningful Alignment mechanism rests on some conception of acceptable realization — tacit, locally encoded, or externalized as a separately represented model — which MAGE externalizes when consequential.",
       "seeds": [
         4,
         5
@@ -182,7 +182,7 @@
     {
       "id": "failures-become-machinery",
       "order": 10,
-      "statement": "Velocity surfaces the unforeseeable failure; the recurring engineering task is to convert selected recurrences into durable engineering capital — machinery where authority is justified, a model, decision rule, or measurement where it is not.",
+      "statement": "Velocity surfaces the unforeseeable failure; the recurring engineering task is to convert selected recurrences into durable engineering capital — machinery where enforcement is justified, a model, decision rule, or measurement where it is not.",
       "seeds": [
         6,
         7

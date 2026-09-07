@@ -6,7 +6,7 @@
      govern" (inherited representations can be wrong and inherited controls already exist, so the
      system is reconciled, not only recovered). The right (settled) column is shaded a step stronger
      than the left, but the reading is per-OBLIGATION, not project-wide: the more settled a
-     PARTICULAR obligation, the more authority it can safely receive — so a security, legal, or
+     PARTICULAR obligation, the more enforcement it can safely receive — so a security, legal, or
      safety constraint may be settled even inside an otherwise exploratory product. A pure grid — no
      curved connectors — so the C6 text-overlap and C7 stroke-cross-through gates have nothing to
      trip on. Accent #2f5169, source-red #b23b3b, cream #f6f4ef, panel #e7edf3, ink #1c1917,
@@ -26,10 +26,10 @@
     latent models and controls, reconcile them with the code, and put settled obligations under
     enforcement. The settled column is shaded more strongly than the uncertain column, but the
     reading is per-obligation rather than project-wide: the more settled a particular obligation,
-    the more authority it can safely receive, so a security, legal, or safety constraint may be
+    the more enforcement it can safely receive, so a security, legal, or safety constraint may be
     settled and enforced even inside an otherwise exploratory product. How much system exists fixes
     the representation and controls you inherit; how settled a given obligation is fixes how much of
-    it can safely be made explicit and authoritative.</desc>
+    it can safely be made explicit and enforced.</desc>
 
   <text x="460" y="48" text-anchor="middle" font-size="23.92" font-weight="700" fill="#1c1917">Two axes fix where a migration starts</text>
 
@@ -52,7 +52,7 @@
     <rect x="268" y="188" width="294" height="196" rx="8"/>
     <rect x="268" y="400" width="294" height="196" rx="8"/>
   </g>
-  <!-- right (settled) column: stronger fill — more-settled obligations can safely carry more authority -->
+  <!-- right (settled) column: stronger fill — more-settled obligations can safely carry more enforcement -->
   <g fill="#e7edf3" stroke="#2f5169" stroke-width="2">
     <rect x="568" y="188" width="294" height="196" rx="8"/>
     <rect x="568" y="400" width="294" height="196" rx="8"/>

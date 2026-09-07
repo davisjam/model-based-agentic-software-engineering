@@ -497,7 +497,7 @@ _PART_OPENER_QUESTION_LABEL = "Question this Part answers"
 _PART_OPENER_QUESTIONS = {
     1: "What becomes the engineering problem when implementation becomes abundant?",
     2: "How do I identify useful models?",
-    3: "How do I give engineering obligations authority in my environment?",
+    3: "How do I make engineering obligations enforceable in my environment?",
     4: "How do I practice MAGE?",
     5: "What evidence supports MAGE?",
     6: "How does MAGE work, what should follow if the account is right, and where should we expect it to apply?",
@@ -3817,7 +3817,7 @@ _MODEL_PAGES: list[tuple[str, str]] = [
     ("measurement",                   "Measurement"),
     ("documentation-and-provenance",  "Documentation and Provenance"),
     ("joining-views",                 "Joining Views Around a Scenario"),
-    ("representation-to-authority",   "From Representation to Authority"),
+    ("representation-to-authority",   "From Representation to Enforcement"),
 ]
 
 # APPENDIX B — Engineering Moves. Hand-authored worked examples: one page per recurring engineering
@@ -3832,7 +3832,7 @@ _ENGINEERING_MOVES_PAGES: list[tuple[str, str]] = [
     ("derive-dont-copy",              "Derive; Don't Copy"),
     ("check-correspondence",          "Keep Representation and Reality in Correspondence"),
     ("derive-the-obligation-set",     "Derive What Must Be Assured"),
-    ("put-authority-where-legible",   "Put Authority Where the Property Becomes Legible"),
+    ("put-authority-where-legible",   "Enforce Where the Property Becomes Legible"),
     ("close-the-action-surface",      "Close the Action Surface"),
     ("deliver-knowledge-at-decision", "Deliver Knowledge Where the Decision Occurs"),
     ("carry-cause-with-consequence",  "Make Cause Travel with Consequence"),

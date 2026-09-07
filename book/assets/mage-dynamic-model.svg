@@ -28,7 +28,7 @@
     surfaces as governance pressure: churn, recurring failure, escaped defect, repeated
     intervention, and control friction. Loop 2, the red pressure-or-discovery loop, carries
     governance pressure into structural diagnosis, which asks whether a failure is a local
-    defect, a missing representation, weak authority, or a stale mechanism. Loop 3, the green
+    defect, a missing representation, weak enforcement, or a stale mechanism. Loop 3, the green
     governance-adaptation loop, carries a structural diagnosis into governance adaptation —
     represent, constrain, validate, strengthen, reconcile, retire — and its return arrow reshapes the
     environment E as a new, better E for the next round. Loop 4, the purple
@@ -188,7 +188,7 @@
   <!-- Structural diagnosis -->
   <rect id="structural-diagnosis" x="98.03" y="805" width="623.93" height="80" rx="9" fill="#fdfcf9" stroke="#57534e" stroke-width="2.2"/>
   <text x="410" y="840" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Structural diagnosis</text>
-  <text x="410" y="866" text-anchor="middle" font-size="17.6" font-style="italic" fill="#57534e">local defect &#183; missing representation &#183; weak authority &#183; stale mechanism?</text>
+  <text x="410" y="866" text-anchor="middle" font-size="17.6" font-style="italic" fill="#57534e">local defect &#183; missing representation &#183; weak enforcement &#183; stale mechanism?</text>
 
   <!-- Governance adaptation -->
   <rect id="governance-adaptation" x="150" y="925" width="520" height="95" rx="9" fill="#fdfcf9" stroke="#1f7a4d" stroke-width="2.4"/>

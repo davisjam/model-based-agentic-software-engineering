@@ -9,10 +9,10 @@
     declares or generates code, config, runtime, and artifacts, shown along a solid arrow. Those artifacts are
     observed or re-derived back into a correspondence check, shown along a dashed arrow. The check asks whether
     the authored and derived facts disagree. A no leaves the model advisory and report-only. A yes flows along a
-    heavy bordered authority arrow, crossed by a gate glyph, into a finding or gate where warranted. A shared
+    heavy bordered enforcement arrow, crossed by a gate glyph, into a finding or gate where warranted. A shared
     legend below fixes the vocabulary for every G figure: solid arrows are declared relations, dashed arrows are
     derived or observed correspondence, and a heavy boundary with a gate glyph marks the only place real
-    authority sits. Not every model traverses every edge; a useful representation may remain advisory.</desc>
+    enforcement sits. Not every model traverses every edge; a useful representation may remain advisory.</desc>
 
   <defs>
     <marker id="g1-solid" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
@@ -76,7 +76,7 @@
   <line x1="360" y1="394" x2="360" y2="422" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
   <text x="360" y="438" text-anchor="middle" font-size="14.4" font-weight="700" fill="#1c1917">disagreement?</text>
 
-  <!-- NO leg: advisory / report-only (plain, no authority) — hand-routed as an orthogonal elbow (exit the
+  <!-- NO leg: advisory / report-only (plain, no enforcement) — hand-routed as an orthogonal elbow (exit the
        disagreement hub left, drop into advisory's top border) so the head seats perpendicular, not skimming. -->
   <path d="M305,436 L185,436 L185,482" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#g1-solid)"/>
   <text x="243" y="430" text-anchor="middle" font-size="14.4" font-weight="700" fill="#57534e">no</text>
@@ -84,13 +84,13 @@
   <text x="185" y="506" text-anchor="middle" font-size="14.4" font-weight="700" fill="#1c1917">advisory · report-only</text>
   <text x="185" y="523" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">informs the engineer</text>
 
-  <!-- YES leg: finding / gate where warranted (HEAVY authority + gate glyph) — hand-routed as an orthogonal
+  <!-- YES leg: finding / gate where warranted (HEAVY enforcement + gate glyph) — hand-routed as an orthogonal
        elbow (exit the disagreement hub right, drop into finding/gate's top border). Orthogonal routing seats
        the CHECKED gate glyph SQUARE by construction: on the vertical shaft the two bars run horizontal,
        perpendicular to their local segment (matching the legend's CHECKED row), not tilted along a diagonal. -->
   <path d="M415,436 L540,436 L540,482" fill="none" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#g1-auth)"/>
   <text x="478" y="430" text-anchor="middle" font-size="14.4" font-weight="700" fill="#b23b3b">yes</text>
-  <!-- gate glyph: two heavy bars ACROSS the authority arrow's vertical shaft (horizontal = perpendicular) -->
+  <!-- gate glyph: two heavy bars ACROSS the enforcement arrow's vertical shaft (horizontal = perpendicular) -->
   <g stroke="#b23b3b" stroke-width="3.4">
     <line x1="531" y1="457" x2="549" y2="457"/>
     <line x1="531" y1="465" x2="549" y2="465"/>
@@ -115,14 +115,14 @@
   <text x="186" y="689" font-size="14.4" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED · OBSERVED</text>
   <text x="186" y="706" font-size="14.4" fill="#1c1917">dashed arrow = derived / observed correspondence</text>
 
-  <!-- heavy = authority -->
+  <!-- heavy = enforcement -->
   <line x1="90" y1="732" x2="170" y2="732" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#g1-auth)"/>
   <g stroke="#b23b3b" stroke-width="3.4">
     <line x1="122" y1="724" x2="122" y2="740"/>
     <line x1="132" y1="724" x2="132" y2="740"/>
   </g>
   <text x="186" y="729" font-size="14.4" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED</text>
-  <text x="186" y="746" font-size="14.4" fill="#1c1917">heavy boundary + gate glyph = real authority (can block)</text>
+  <text x="186" y="746" font-size="14.4" fill="#1c1917">heavy boundary + gate glyph = real enforcement (can block)</text>
 
   <text x="80" y="768" font-size="14.4" font-style="italic" fill="#57534e">Boxes denote representations. Meaning is encoded by line style, weight, and glyph — not color.</text>
 </svg>

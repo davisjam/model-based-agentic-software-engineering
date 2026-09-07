@@ -18,7 +18,7 @@ terminal.
 | Terminal states do not re-enter processing | Safety |
 | A claimed job eventually completes or returns to an available state, under stated assumptions | Liveness |
 
-**Authority and correspondence.** Transition operations or checks can mediate actual state changes
+**Enforcement and correspondence.** Transition operations or checks can mediate actual state changes
 against the declared transition relation. Any implemented transition absent from that relation
 becomes a finding. Where two lifecycles interact, represent their cross-machine transitions explicitly rather than leaving those relationships implicit in code.
 
@@ -43,7 +43,7 @@ fail, or retry?
 - **Terminal work cannot be reclaimed.**
 - **Where ordering is required, observed acquisition order respects the declared order.**
 
-**Authority and correspondence.** Some ownership facts are runtime facts and must be observed. The
+**Enforcement and correspondence.** Some ownership facts are runtime facts and must be observed. The
 ownership protocol itself is authored intent. Atomic operations, leases, compare-and-swap, transition
 primitives, and admission checks can make selected invariants enforceable.
 

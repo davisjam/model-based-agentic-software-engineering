@@ -8784,22 +8784,12 @@
         }
       ]
     },
-    "section-id:authority-follows-competence": {
+    "section-id:authority-follows-competence-and-responsibility": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
-          "element": "7.3-education-research-open-problems::authority-follows-competence",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:authority-outside-the-producing-run": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.3-the-agentic-substrate::authority-outside-the-producing-run",
+          "element": "7.3-education-research-open-problems::authority-follows-competence-and-responsibility",
           "role": "section-anchor"
         }
       ]
@@ -9040,6 +9030,16 @@
         {
           "view": "outline",
           "element": "5.5-mage-in-the-wild::eight-entry-points",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:enforcement-outside-the-producing-run": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.3-the-agentic-substrate::enforcement-outside-the-producing-run",
           "role": "section-anchor"
         }
       ]
@@ -9629,12 +9629,12 @@
         }
       ]
     },
-    "section-id:one-measurement-different-authority-decisions": {
+    "section-id:one-measurement-different-enforcement-decisions": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-constraints-sensors-validators-gates::one-measurement-different-authority-decisions",
+          "element": "3.3-constraints-sensors-validators-gates::one-measurement-different-enforcement-decisions",
           "role": "section-anchor"
         }
       ]
@@ -9784,12 +9784,12 @@
         }
       ]
     },
-    "section-id:probabilistic-work-needs-external-authority": {
+    "section-id:probabilistic-work-needs-external-enforcement": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
-          "element": "1.3-the-agentic-substrate::probabilistic-work-needs-external-authority",
+          "element": "1.3-the-agentic-substrate::probabilistic-work-needs-external-enforcement",
           "role": "section-anchor"
         }
       ]

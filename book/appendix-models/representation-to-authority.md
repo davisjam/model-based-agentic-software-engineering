@@ -1,12 +1,12 @@
 Modeling and Alignment are distinct activities. A model may reduce reconstruction, expose
 dependencies, preserve intent, or support prediction while remaining advisory. Alignment begins when
-a represented obligation receives authority through a deterministic mechanism.
+a represented obligation is enforced by a deterministic mechanism.
 
 Table C.7-1 maps each representation to the obligation it exposes, a correspondence mechanism that
-can evaluate it, and the authority that may attach.
+can evaluate it, and the enforcement that may attach.
 
-<!-- table: From representation to possible authority. Each row identifies a represented obligation, a correspondence mechanism that can evaluate it, and the authority that may attach. [short: Representation to authority receipt] -->
-| Representation | Obligation exposed | Correspondence mechanism | Possible authoritative mechanism |
+<!-- table: From representation to possible enforcement. Each row identifies a represented obligation, a correspondence mechanism that can evaluate it, and the enforcement that may attach. [short: Representation to enforcement receipt] -->
+| Representation | Obligation exposed | Correspondence mechanism | Possible enforcing mechanism |
 |---|---|---|---|
 | Component / zone | Each surface has one owner; boundaries use sanctioned seams | Reverse-map the tree and dependency edges | Boundary lint or admission gate |
 | Service flow | Only declared service and resource edges are legal | Call and configuration parity | Policy or build gate |
@@ -23,12 +23,12 @@ deterministic gate. The handoff from Modeling to Alignment is:
 
 ```
         MODELING                         ALIGNMENT
-  make knowledge explicit   →   give selected obligations authority
+  make knowledge explicit   →   make selected obligations effective
 
-   represented obligation      →   authoritative mechanism
+   represented obligation      →   enforcing mechanism
     "what is / ought?"            "must this hold?"
 ```
 
 Models create surfaces on which Alignment can act. Alignment determines which represented obligations
-deserve authority, where the relevant evidence can be observed, and which deterministic mechanism
+deserve enforcement, where the relevant evidence can be observed, and which deterministic mechanism
 should enforce them.

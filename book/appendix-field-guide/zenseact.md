@@ -16,8 +16,8 @@ Zenseact also illustrates *selective context*. Routing machinery selects task-re
 #### Recto — MAGE Interpretation
 
 <!-- label: field-guide-zenseact -->
-<!-- figure: assets/field-guide-zenseact.svg | *Zenseact projected onto MAGE.* Shared mechanisms centralize while domain knowledge and judgment remain distributed — a concrete organizational answer to scaling both context and authority. -->
+<!-- figure: assets/field-guide-zenseact.svg | *Zenseact projected onto MAGE.* Shared mechanisms centralize while domain knowledge and judgment remain distributed — a concrete organizational answer to scaling both context and enforcement. -->
 
-**MAGE reading.** Zenseact combines Modeling and Alignment organizationally. Externalized domain knowledge and selective context help finite reasoners see what a task requires; shared authentication, execution, and safety machinery place common authority in one substrate. The organization does not centralize the judgment itself — domain teams keep the expertise that defines their agents and tools. The result is an organizational realization of the Governed Engineering Environment: common mechanisms without a central knowledge bottleneck.
+**MAGE reading.** Zenseact combines Modeling and Alignment organizationally. Externalized domain knowledge and selective context help finite reasoners see what a task requires; shared authentication, execution, and safety machinery place common enforcement in one substrate. The organization does not centralize the judgment itself — domain teams keep the expertise that defines their agents and tools. The result is an organizational realization of the Governed Engineering Environment: common mechanisms without a central knowledge bottleneck.
 
 **Interpretive boundary.** The platform/domain split illustrates the Governed Engineering Environment; the evidence does not establish a closed governance-conversion loop or complete Modeling and Alignment.

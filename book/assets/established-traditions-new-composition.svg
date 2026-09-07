@@ -4,7 +4,7 @@
      PL/compilers types + constrained IRs; formal methods specs + verification; systems/safety boundaries +
      control). RIGHT — AI traditions (knowledge representation; memory + planning state; structured reasoning;
      tools + interfaces). BOTH feed the MAGE boundary (not engineering→Modeling, AI→GEE — both feed the
-     composition). Inside MAGE: Modeling (make knowledge explicit) + Alignment (give obligations authority)
+     composition). Inside MAGE: Modeling (make knowledge explicit) + Alignment (enforce selected obligations)
      meet in the Governed Engineering Environment. Then governance conversion carries recurring judgment out
      of the boundary into ENGINEERING CAPITAL (astride the lower boundary — a consequence of the method, not
      an input), inherited by subsequent work toward TRUSTWORTHY AUTONOMY (outside the boundary — the intended
@@ -27,8 +27,8 @@
     and compilers (types and constrained intermediate representations); formal methods (specifications and
     verification); systems and safety engineering (boundaries and control). On the right, AI traditions:
     knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both
-    columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment gives
-    obligations authority; the two meet in the Governed Engineering Environment. Governance conversion carries
+    columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces
+    selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries
     recurring judgment downward, out of the boundary, into engineering capital — durable structure inherited
     by subsequent work — toward trustworthy autonomy, the intended outcome outside the boundary. New
     economics under commodity intelligence drive the new composition; the provenance of the parts is old.</desc>
@@ -97,11 +97,11 @@
   <text x="322" y="353" text-anchor="middle" font-size="20" fill="#57534e">make knowledge explicit</text>
   <rect id="alignment" x="532" y="304" width="292" height="66" rx="9" fill="#fff" stroke="#c4a894" stroke-width="1.6"/>
   <text x="678" y="332" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Alignment</text>
-  <text x="678" y="353" text-anchor="middle" font-size="20" fill="#57534e">give obligations authority</text>
+  <text x="678" y="353" text-anchor="middle" font-size="20" fill="#57534e">enforce selected obligations</text>
 
   <rect id="gee" x="200" y="456" width="600" height="140" rx="11" fill="#e9f2ec" stroke="#155c38" stroke-width="2.2"/>
   <text x="500" y="492" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Governed Engineering Environment</text>
-  <text x="500" y="522" text-anchor="middle" font-size="20" fill="#44403c">representations · evidence · constraints · authority</text>
+  <text x="500" y="522" text-anchor="middle" font-size="20" fill="#44403c">representations · evidence · constraints · controls</text>
   <text x="500" y="560" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">where both traditions meet — a first-class engineered object</text>
 
   <!-- governance conversion carries recurring judgment OUT of the boundary into engineering capital -->

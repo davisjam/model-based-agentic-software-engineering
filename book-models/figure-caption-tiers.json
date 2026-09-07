@@ -491,7 +491,7 @@
       "tier": "B",
       "kind": "comparison-framework",
       "location": "part1",
-      "rationale": "finite state -> representation problem -> Modeling; probabilistic work -> authority problem -> Alignment; Part 1's closing derivation figure (260815 copyedit)"
+      "rationale": "finite state -> representation problem -> Modeling; probabilistic work -> enforcement problem -> Alignment; Part 1's closing derivation figure (260815 copyedit)"
     },
     "assets/sdlc-to-selc.svg": {
       "tier": "B",
@@ -671,7 +671,7 @@
       "tier": "A",
       "kind": "flow",
       "location": "part4",
-      "rationale": "the Part IV synthesis: an environment both supports the reasoner and gives selected obligations authority (dashed = give authority where feasible), and the cycle iterates; anchor figure for 4.1.4"
+      "rationale": "the Part IV synthesis: an environment both supports the reasoner and enforces selected obligations (dashed = enforce where feasible), and the cycle iterates; anchor figure for 4.1.4"
     },
     "assets/bootstrapping-governed-environment.svg": {
       "tier": "B",

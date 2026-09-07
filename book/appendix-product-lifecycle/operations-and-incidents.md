@@ -13,7 +13,7 @@ Finding the class is only half the job. Governance conversion determines whether
 <!-- label: fig-h-incident -->
 <!-- figure: assets/h5-incident-to-governance.svg | *From incident repair to governance conversion.* An incident provides evidence about the realized system. Traceability connects the failure to the models and obligations it realizes; relationships within those models can expose other instances of the same engineering condition even when their implementations differ. Repair can then address the class rather than only the observed instance, while governance conversion preserves the lesson in models or mechanisms that future work inherits. -->
 
-Not every incident generalizes, and repairing defect classes is not new. Root-cause analysis, defect prevention, static analysis, and related practices have long sought broader corrective action. MAGE adds an explicit representational substrate for finding analogous conditions and places to encode the resulting lesson when it can responsibly acquire authority.
+Not every incident generalizes, and repairing defect classes is not new. Root-cause analysis, defect prevention, static analysis, and related practices have long sought broader corrective action. MAGE adds an explicit representational substrate for finding analogous conditions and places to encode the resulting lesson when it can responsibly be enforced.
 
 Operations grows engineering capital when what one incident teaches changes what later engineering inherits.
 

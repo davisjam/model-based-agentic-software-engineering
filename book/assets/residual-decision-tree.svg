@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Figure 3.4-3 "Where Authority Stops" (v7 draft; folds to book/assets/residual-decision-tree.svg;
+<!-- Figure 3.4-3 "Where Enforcement Stops" (v7 draft; folds to book/assets/residual-decision-tree.svg;
      label kept stable: honest-gaps ref -> this asset).
      v7 THEORY-CARRYING edit (3.4-3):
        - leaf "OBSERVED ONLY" -> "EVALUATED ONLY": the state produces AND evaluates evidence — more than
-         observation; only the authoritative consequence is absent.
+         observation; only the binding consequence is absent.
        - decision criterion Q2 drops "mechanically": "Can it be mechanically evaluated adequately?" ->
          "Can it be evaluated adequately?" The text allows deterministic, probabilistic, OR human
          validators; what matters is the ADEQUACY of the available evaluator, not that it is mechanical.
@@ -12,12 +12,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560"
      role="img" aria-labelledby="hgTitle hgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="hgTitle">Where authority stops: three questions place any obligation in one of four states —
+  <title id="hgTitle">Where enforcement stops: three questions place any obligation in one of four states —
     residual, judgment required, evaluated only, or governed</title>
   <desc id="hgDesc">A staircase of three questions. First: is the obligation explicit in a form the
     environment can use? No leads to RESIDUAL — a reasoner must reconstruct it. Yes leads to the
     second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:
-    does authority act on the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but
+    does the environment enforce the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but
     un-gated. Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different
     obligations stop in different places.</desc>
 

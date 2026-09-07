@@ -732,7 +732,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Enforce Where the Property Becomes Legible</a></li>
 <li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
 <li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
 <li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
@@ -746,7 +746,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-c-measurement.html">C.4 Measurement</a></li>
 <li><a class="" href="appendix-c-documentation-and-provenance.html">C.5 Documentation and Provenance</a></li>
 <li><a class="" href="appendix-c-joining-views.html">C.6 Joining Views Around a Scenario</a></li>
-<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Authority</a></li>
+<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Enforcement</a></li>
 <li class="part">Appendix D — Operator&#x27;s Reference</li>
 <li><a class="" href="appendix-operators-reference.html">Appendix D — Operator's Reference</a></li>
 <li><a class="" href="appendix-d-operators-dashboard.html">D.1 The Operator's Dashboard</a></li>
@@ -1022,7 +1022,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A later redesign went further. The graph had made composition visible enough to analyze, and the analysis changed what we wanted the architecture to do. The same pipeline whose local choices had accumulated global cost could now be treated as explicit dependency structure rather than as an ordering reconstructed from implementation.</p>
 <p>The remediation architecture was subsequently rebuilt around an authoritative computation model. The execution machinery consumes the modeled dependencies to determine what becomes ready and in what order work may proceed. The implementations of the individual computations still realize the work, but composition no longer lives implicitly in their bodies. A representation introduced to understand the pipeline became part of the machinery that runs it.</p>
 <p>The analytical graph did not disappear. It became a view over the modeled computation structure, suitable for questions execution itself does not need to answer: dependency analysis, critical paths, mutation boundedness, latency and cost, test coverage, and the strength of the checks that hold the representation in correspondence. Stable computation identities let those views attach without turning the execution model into one universal schema.</p>
-<p>This was the MAGE move in miniature. Repeated global cost made an implicit relationship consequential; modeling exposed the distinctions that mattered; analysis made a better realization visible; and the resulting representation acquired authority because execution began to consume it.</p>
+<p>This was the MAGE move in miniature. Repeated global cost made an implicit relationship consequential; modeling exposed the distinctions that mattered; analysis made a better realization visible; and the resulting representation began to govern execution because execution began to consume it.</p>
 <h3>Freedom can be exploratory</h3>
 <p>The episode changed how I think about degrees of freedom. Leaving a choice open is often economically sensible: if several realizations satisfy every known obligation, pinning one of them spends effort and can make later change harder. But freedom can also be exploratory. Early in a design the engineer may not yet know which choices are consequential enough to constrain, and variation is what supplies the evidence.</p>
 <p>Early freedom had been useful because the right composition model was not yet known. Once variation began producing recurring global cost, that freedom was no longer buying the same flexibility. The computation graph then helped expose which distinctions had become consequential enough to represent explicitly and which choices could remain open.</p>
@@ -1030,7 +1030,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The first place those two representations deliberately touch is testing. The typed IO says where a per-node test begins, and deterministic replay removes model variance from the realized side. We could compose them for that question only because we had kept them orthogonal until a question needed them joined, rather than fusing them early.</p>
 <p>The point of modeling was never to drive every degree of freedom to zero. It was to know where the freedom is.</p>
 <p><strong>The format seam.</strong> An early path used a convenient scripting-language library to slice a document. The operation worked visually and silently destroyed the internal tag structure carrying the accessibility the product existed to add. The failure exposed two missing things: an architectural decision — one canonical implementation should own mutation of that format — and an environmental mechanism capable of preventing other paths from bypassing it.</p>
-<p>The response came in layers, and <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-4">Figure&nbsp;5.3-4</a> draws the climb. A policy named the canonical library. A typed format model and API concentrated mutation through one seam. A build-time check refused raw access from elsewhere. Then the check itself failed: a stale repository root caused real findings to be reported as green. That second-order incident forced the gate to be hardened too. The finished structural model describes the seam; the incident history explains how it acquired that shape. <strong>The model stated the boundary; the API and check gave selected obligations over that boundary authority by enforcing them. The enforcement machinery itself still had to be maintained.</strong></p>
+<p>The response came in layers, and <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-4">Figure&nbsp;5.3-4</a> draws the climb. A policy named the canonical library. A typed format model and API concentrated mutation through one seam. A build-time check refused raw access from elsewhere. Then the check itself failed: a stale repository root caused real findings to be reported as green. That second-order incident forced the gate to be hardened too. The finished structural model describes the seam; the incident history explains how it acquired that shape. <strong>The model stated the boundary; the API and check enforced selected obligations over that boundary. The enforcement machinery itself still had to be maintained.</strong></p>
 <figure id="fig-5-3-4" class="book-figure" data-label="pdf-seam"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600"
      role="group" aria-labelledby="f-pdf-seam-layers-pslTitle f-pdf-seam-layers-pslDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -1040,7 +1040,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     structure — a failure the eye cannot catch. Each response added a layer: a library policy naming one
     canonical library per format; a typed seam all mutation must pass through; a build-time ban on raw
     access; and finally the gate's own integrity, after the ban check itself was caught mis-reporting. The
-    lesson: authority over a seam is maintained in layers, not granted once, and even the enforcement earns
+    lesson: enforcement of a seam is maintained in layers, not granted once, and even the gate earns
     its own scrutiny.</desc>
 
   <defs>
@@ -1090,7 +1090,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="200" y="436" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">build-time ban</text>
   <text x="330" y="435" font-size="13" font-style="italic" fill="#57534e">enforced, not remembered</text>
 
-  <!-- 6: gate integrity (the enforcement itself under scrutiny) — heavy stroke = authority -->
+  <!-- 6: gate integrity (the enforcement itself under scrutiny) — heavy stroke = enforcement -->
   <rect id="f-pdf-seam-layers-gate-integrity" x="95" y="486" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2.4"/>
   <text x="200" y="514" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">gate integrity</text>
   <text x="330" y="513" font-size="13" font-style="italic" fill="#57534e">the check itself was caught mis-reporting</text>
@@ -1105,7 +1105,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Co-coder — direct human inspection carried everything.</strong> The first system was small enough that I read the agent's changes, judged them, and merged them. The human supplied both the system context and the admission decision. That worked while the volume stayed inside one person's attention. It failed as an operating model once generation outran review.</p>
 <p><strong>QA — evaluation was delegated before authority was.</strong> I began dispatching a second agent to audit another agent's work. That removed some reading from my hands but did not make the result authoritative: the audit ran episodically, produced probabilistic findings, and still depended on someone to decide what followed. Its value was diagnostic. Repeated decidable findings revealed questions that no longer needed a language model at all.</p>
 <p><strong>Review lead — reviewers specialized by concern, while decidable findings dropped into machinery.</strong> One generalist audit over a growing codebase produced too much undifferentiated advice, so review split by concern and by region. Architecture, security, duplication, and naming could be judged in the context where they mattered. When a finding turned out to be mechanically decidable, it became a deterministic check; the probabilistic reviewers retained the questions those checks could not settle.</p>
-<p><strong>Tech lead — representation made reasoning local.</strong> Specialized reviewers were still finite reasoners confronting an expanding repository. Named zones externalized ownership and architectural boundaries so an agent could reason inside one region without first recovering the whole system. Boundary checks constrained some cross-zone edits. This stage combined the two principles explicitly: the zone model reduced reconstruction; selected obligations expressed over that model received authority.</p>
+<p><strong>Tech lead — representation made reasoning local.</strong> Specialized reviewers were still finite reasoners confronting an expanding repository. Named zones externalized ownership and architectural boundaries so an agent could reason inside one region without first recovering the whole system. Boundary checks constrained some cross-zone edits. This stage combined the two principles explicitly: the zone model reduced reconstruction; selected obligations expressed over that model were enforced.</p>
 <p><strong>Architect — explicit models carried system-level knowledge.</strong> By the final rung I rarely read implementation directly. Architectural, behavioral, ownership, and other models supplied the system views I needed for planning and review; agents used the same representations to localize changes. This did not make the models true by declaration. Model drift became its own failure class, which is why traceability and correspondence checks eventually became part of the environment. When the cost of restructuring collapses, the economics invert — a cross-format migration that touched fifty-eight files and rewrote five thousand lines took about five hours of agent time over a dinner break, and postponing the right shape becomes the expensive choice. The hard part was never touching fifty-eight files; it was knowing that fifty-eight files should be touched.</p>
 <h3>What explicit models made checkable</h3>
 <p>Explicit models changed not only what the system recorded, but what questions we could ask of it. A lifecycle model made illegal transitions explicit. An ownership model reduced a concurrency protocol to the states and interleavings needed to ask whether two workers could hold the same claim or whether a stale holder could clear a newer lease. A small, purpose-built Python model checker could then exhaustively explore that finite abstract state space and check the ownership invariants.</p>
@@ -1130,7 +1130,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <desc id="f-mage-staircase-dsDesc">A true staircase of five steps ascending from bottom-left to top-right. Step one at the
     bottom is Co-coder; step five at the summit is Architect. Each step card names a stage and shows, in
     blue, what is now delegated, and in green, what the engineered environment now carries. Along the
-    left edge a green gauge thickens as the climb proceeds — representation and authority accumulate.
+    left edge a green gauge thickens as the climb proceeds — representation and enforcement accumulate.
     Along the right edge a red trajectory narrows from wide at the base to a sliver at the summit: the
     residual human focus moves from reading every diff at the bottom to system-level strategy and residual
     semantic judgment at the top — the tactical burden shrinks but never reaches zero. Step one Co-coder:
@@ -1143,7 +1143,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     environment carries named zones and boundary rules; the human holds the system map and strategy. Step
     five Architect: delegated is model-guided work across the whole system; the environment carries explicit
     models, traceability, and controls; the human is left with residual semantics and strategy. A failure in
-    representation or authority can push work back down the staircase.</desc>
+    representation or enforcement can push work back down the staircase.</desc>
 
   <defs>
     <marker id="f-mage-staircase-ds-up" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
@@ -1164,8 +1164,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
        Wide at the summit (most accumulated), thin at the base. Light backdrop, low visual weight. -->
   <polygon points="40,58 360,58 360,178 280,178 280,316 200,316 200,454 120,454 120,592 40,592"
            fill="#e3f0e7" opacity="0.55"/>
-  <text x="52" y="88" font-size="24" font-weight="700" fill="#1f7a4d">environment accumulates</text>
-  <text x="52" y="107" font-size="24" fill="#1f7a4d">representation + authority</text>
+  <text x="52" y="88" font-size="20" font-weight="700" fill="#1f7a4d">environment accumulates</text>
+  <text x="52" y="107" font-size="20" fill="#1f7a4d">representation + enforcement</text>
 
   <!-- ===================== RED residual-human wedge (right edge) — one narrowing trajectory ===================== -->
   <!-- A single wedge: wide at the base (human carries everything), a sliver at the summit. NOT a per-row bar. -->
@@ -1203,7 +1203,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="120" y="472" width="810" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
   <rect x="118" y="472" width="10" height="120" rx="4" fill="#1f7a4d"/>
   <text x="144" y="503" font-size="27" font-weight="700" fill="#1c1917">2 · QA</text>
-  <text x="144" y="530" font-size="27" font-style="italic" fill="#57534e">evaluation delegated before authority</text>
+  <text x="144" y="530" font-size="27" font-style="italic" fill="#57534e">evaluation delegated before enforcement</text>
   <text x="144" y="557" font-size="27" fill="#2f5169" font-weight="600">delegated — generation + a second agent's audit</text>
   <text x="144" y="584" font-size="27" fill="#1f7a4d" font-weight="600">environment — a probabilistic reviewer (episodic, advisory)</text>
   <text x="1000" y="532" font-size="27" fill="#b23b3b" font-weight="600">adjudicate findings</text>
@@ -1225,5 +1225,5 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="40" y1="770" x2="928" y2="770" stroke="#2f5169" stroke-width="1.8" marker-end="url(#f-mage-staircase-ds-right)"/>
   <text x="40" y="794" font-size="27" font-weight="600" fill="#57534e">more work carried by the engineered environment</text>
   <text x="928" y="794" text-anchor="end" font-size="27" font-weight="700" fill="#2f5169">delegation climbs</text>
-</svg><figcaption data-short="The Delegation Staircase"><span class="fig-label">Figure 5.3-5.</span> <em>The Delegation Staircase.</em> As explicit representation and environmental authority accumulated, larger units of engineering work could be delegated. Representation moved system knowledge out of one person's head; enforcement moved repeatable admission decisions out of direct review. Human work moved from reading every diff toward system-level strategy and the residual semantic judgment the environment could not yet decide. A failure in either representation or enforcement could move work back down the staircase.</figcaption></figure>
+</svg><figcaption data-short="The Delegation Staircase"><span class="fig-label">Figure 5.3-5.</span> <em>The Delegation Staircase.</em> As explicit representation and environmental enforcement accumulated, larger units of engineering work could be delegated. Representation moved system knowledge out of one person's head; enforcement moved repeatable admission decisions out of direct review. Human work moved from reading every diff toward system-level strategy and the residual semantic judgment the environment could not yet decide. A failure in either representation or enforcement could move work back down the staircase.</figcaption></figure>
 <p>Delegation increased as the environment took over work I had previously carried in direct review: models carried system knowledge, while mechanisms carried repeatable admission decisions. A weak model pulled me back into reconstructing the map; weak evidence or controls pulled me back into inspecting outcomes. Human judgment stayed at the unresolved edge. Parts II–IV present the clean method that can now be taught directly; this case shows why those pieces exist and why they did not arrive as one package. The next chapter reconstructs the incidents that moved that edge.</p><section class="works-cited" aria-labelledby="wc-5-3-the-road-to-mage-h"><h2 id="wc-5-3-the-road-to-mage-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-5-3-the-road-to-mage-1">Ringer, Talia, Karl Palmskog, Ilya Sergey, Milos Gligoric, and Zachary Tatlock. “QED at Large: A Survey of Engineering of Formally Verified Software.” <em>Foundations and Trends in Programming Languages</em> 5, nos. 2–3 (2019): 102–281. <a href="https://arxiv.org/abs/2003.06458">https://arxiv.org/abs/2003.06458</a>.</li><li id="wc-5-3-the-road-to-mage-2">Gamma, Erich, Richard Helm, Ralph Johnson, and John Vlissides. <em>Design Patterns: Elements of Reusable Object-Oriented Software</em>. Addison-Wesley, 1994.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">« Beginning of part</a><a href="5.2-the-build.html" aria-label="Previous chapter — 24 · Building DocAble">« Previous chapter</a></div><span class="chapnav-here" title="25 · How Delegation Changed">25 · How Delegation Changed</span><div class="chapnav-fwd"><a href="5.4-failures-that-became-infrastructure.html" aria-label="Next chapter — 26 · From Failure to Engineering Capital">Next chapter »</a><a href="part-6-intro.html" aria-label="Next part — Part 6 — The Theory">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

@@ -3,8 +3,8 @@
   "_counts": {
     "chapters": 37,
     "sections": 219,
-    "explicit_ids": 15,
-    "derived_ids": 204,
+    "explicit_ids": 16,
+    "derived_ids": 203,
     "missing_topic_sentence": 2,
     "sections_drained": 181,
     "paragraph_points": 789
@@ -29,16 +29,16 @@
           "heading_text": "Software agents",
           "topic_sentence": "The agents, foundation models, harnesses, and operating limits involved in autonomous software work.",
           "id_source": "derived",
-          "block_index": 21,
+          "block_index": 22,
           "points": []
         },
         {
           "section_id": "the-governed-engineering-environment",
           "level": 2,
           "heading_text": "The Governed Engineering Environment",
-          "topic_sentence": "The environment that gives engineering obligations durable authority.",
+          "topic_sentence": "The environment that durably enforces engineering obligations.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 33,
           "points": []
         }
       ],
@@ -138,7 +138,7 @@
             },
             {
               "slug": "mage-is-about-that-environment",
-              "text": "MAGE is principally about that environment; the method lies in the representations agents and engineers reason through, the mechanisms through which obligations acquire authority, and the judgment that decides what should become durable engineering structure.",
+              "text": "MAGE is principally about that environment; the method lies in the representations agents and engineers reason through, the mechanisms that enforce obligations, and the judgment that decides what should become durable engineering structure.",
               "block_index": 20
             },
             {
@@ -336,7 +336,7 @@
           "points": [
             {
               "slug": "docable-shown-at-method-resolution",
-              "text": "DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires; Part II asks which representations make properties tractable, Part III how intent becomes authoritative.",
+              "text": "DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires; Part II asks which representations make properties tractable, Part III how intent comes to bind the work.",
               "block_index": 48
             },
             {
@@ -440,9 +440,9 @@
           ]
         },
         {
-          "section_id": "probabilistic-work-needs-external-authority",
+          "section_id": "probabilistic-work-needs-external-enforcement",
           "level": 2,
-          "heading_text": "Probabilistic Work Needs External Authority",
+          "heading_text": "Probabilistic Work Needs External Enforcement",
           "topic_sentence": "The second problem is not that agents make mistakes while human programmers do not.",
           "id_source": "derived",
           "block_index": 35,
@@ -454,7 +454,7 @@
             },
             {
               "slug": "authority-must-reside-outside-the-agent",
-              "text": "Commodity intelligence makes that separation more important because implementation is cheap and repeatable; an agent can propose, inspect, explain, and repair, but another judgment from the same substrate does not create authority — the environment must establish what evidence counts.",
+              "text": "Commodity intelligence makes that separation more important because implementation is cheap and repeatable; an agent can propose, inspect, explain, and repair, but another judgment from the same substrate does not constitute independent evidence — the environment must establish what evidence counts.",
               "block_index": 39
             },
             {
@@ -465,9 +465,9 @@
           ]
         },
         {
-          "section_id": "authority-outside-the-producing-run",
+          "section_id": "enforcement-outside-the-producing-run",
           "level": 2,
-          "heading_text": "Authority Outside the Producing Run",
+          "heading_text": "Enforcement Outside the Producing Run",
           "topic_sentence": "Software engineering offers another move.",
           "id_source": "derived",
           "block_index": 52,
@@ -572,7 +572,7 @@
             },
             {
               "slug": "obligations-bound-a-region-without-choosing-a-point",
-              "text": "Obligations bound the space of acceptable realizations without selecting a point; commodity intelligence makes exercising that freedom cheap, so Modeling names the consequential distinctions and Alignment gives selected boundaries authority.",
+              "text": "Obligations bound the space of acceptable realizations without selecting a point; commodity intelligence makes exercising that freedom cheap, so Modeling names the consequential distinctions and Alignment enforces selected boundaries.",
               "block_index": 38
             },
             {
@@ -667,7 +667,7 @@
             },
             {
               "slug": "authority-remains-separate",
-              "text": "Authority stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Part III asks which the engineered environment should enforce.",
+              "text": "Enforcement stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Part III asks which the engineered environment should enforce.",
               "block_index": 79
             }
           ]
@@ -805,7 +805,7 @@
             },
             {
               "slug": "a-model-precedes-the-constraint-that-protects-it",
-              "text": "The model states the boundary as a path property — every ordinary mutation route crosses the seam — and exposes it to checking; a static control that flags a bypass is the Part III authority.",
+              "text": "The model states the boundary as a path property — every ordinary mutation route crosses the seam — and exposes it to checking; a static control that flags a bypass is the Part III enforcement.",
               "block_index": 18
             },
             {
@@ -897,7 +897,7 @@
             },
             {
               "slug": "the-model-exposes-the-ordering-a-transition-table-holds-it",
-              "text": "Over the model the obligation is a reachability property — DB_UPDATED is reachable only through FALLBACK_UPLOADED — that the model exposes and a checker can search; whether a transition table refuses the short-circuit is a Part III question of authority.",
+              "text": "Over the model the obligation is a reachability property — DB_UPDATED is reachable only through FALLBACK_UPLOADED — that the model exposes and a checker can search; whether a transition table refuses the short-circuit is a Part III question of enforcement.",
               "block_index": 17
             }
           ]
@@ -979,7 +979,7 @@
             },
             {
               "slug": "the-model-exposes-the-question-a-compare-and-set-holds-the-line",
-              "text": "The generation makes \"is this release applicable to the current claim?\" decidable — the property the model exposes; whether a release path compares generations and rejects the stale one is the Part III authority, verified separately by exhaustive interleaving search.",
+              "text": "The generation makes \"is this release applicable to the current claim?\" decidable — the property the model exposes; whether a release path compares generations and rejects the stale one is the Part III enforcement, verified separately by exhaustive interleaving search.",
               "block_index": 19
             }
           ]
@@ -1128,7 +1128,7 @@
             },
             {
               "slug": "measurement-boundary-modeling-and-authority-are-separate",
-              "text": "The cost-and-capacity model makes spending attributable and demand comparable to an envelope; it does not decide the budget, guarantee the numbers are collected correctly, or enforce the bound — the clearest case in the Part of a model earning its place by exposing a property while leaving authority open.",
+              "text": "The cost-and-capacity model makes spending attributable and demand comparable to an envelope; it does not decide the budget, guarantee the numbers are collected correctly, or enforce the bound — the clearest case in the Part of a model earning its place by exposing a property while leaving enforcement open.",
               "block_index": 20
             }
           ]
@@ -1220,7 +1220,7 @@
             },
             {
               "slug": "provenance-boundary-model-records-a-lint-guarantees-every-mutator-stamps",
-              "text": "The model records attribution per mutation; a structural check can establish that every mutator leaves an attribution record but not that the semantic account inside it is correct — Part II models the evidence, Part III gives the obligation authority.",
+              "text": "The model records attribution per mutation; a structural check can establish that every mutator leaves an attribution record but not that the semantic account inside it is correct — Part II models the evidence, Part III enforces the obligation.",
               "block_index": 36
             }
           ]
@@ -1418,7 +1418,7 @@
             },
             {
               "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-authority-is-a-separate-question",
-              "text": "Models can provide value before enforcement — reasoning, analysis, composition, traceability — and Part III asks the separate question of authority.",
+              "text": "Models can provide value before enforcement — reasoning, analysis, composition, traceability — and Part III asks the separate question of enforcement.",
               "block_index": 79
             }
           ]
@@ -1446,7 +1446,7 @@
           "points": [
             {
               "slug": "the-first-boundary-is-reasoning-input",
-              "text": "The first location is reasoning input: ordinarily guidance, not authority.",
+              "text": "The first location is reasoning input: ordinarily guidance, not enforcement.",
               "block_index": 13
             },
             {
@@ -1506,12 +1506,12 @@
             },
             {
               "slug": "the-alignment-principle-stated-whole",
-              "text": "The Alignment Principle, stated whole: give engineering obligations authority by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them.",
+              "text": "The Alignment Principle, stated whole: make engineering obligations effective by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them.",
               "block_index": 44
             },
             {
               "slug": "alignment-installed-at-a-boundary-is-easiest-to-see-in-systems-already-running-it",
-              "text": "Authority installed at a boundary is easiest to see in systems already using it.",
+              "text": "Enforcement installed at a boundary is easiest to see in systems already using it.",
               "block_index": 46
             }
           ]
@@ -1525,7 +1525,7 @@
         },
         {
           "slug": "guidance-influences-behavior-authority-constrains-consequences",
-          "text": "Guidance influences behavior; authority determines what the environment permits or accepts, and feedback returns evidence between them.",
+          "text": "Guidance influences behavior; enforcement determines what the environment permits or accepts, and feedback returns evidence between them.",
           "block_index": 3
         },
         {
@@ -1609,7 +1609,7 @@
           "points": [
             {
               "slug": "place-authority-at-the-earliest-boundary-where-the-obligation-is-legible-and-enforceable",
-              "text": "The design rule: place authority at the earliest boundary where the obligation is both legible and enforceable.",
+              "text": "The design rule: place enforcement at the earliest boundary where the obligation is both legible and decidable.",
               "block_index": 59
             },
             {
@@ -1624,7 +1624,7 @@
             },
             {
               "slug": "the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does",
-              "text": "The chapter has supplied both requirements for authority; the next question is what the mechanism at that boundary actually does.",
+              "text": "The chapter has supplied both requirements for enforcement; the next question is what the mechanism at that boundary actually does.",
               "block_index": 74
             }
           ]
@@ -1633,7 +1633,7 @@
       "preamble_points": [
         {
           "slug": "authority-needs-an-independent-obligation-and-a-legible-boundary",
-          "text": "Authority needs an obligation independent of the work being judged, and a boundary at which that obligation is legible.",
+          "text": "Enforcement needs an obligation independent of the work being judged, and a boundary at which that obligation is legible.",
           "block_index": 1
         },
         {
@@ -1648,7 +1648,7 @@
         },
         {
           "slug": "traceability-connects-intent-realization-evidence-without-conferring-authority",
-          "text": "Traceability can relate an obligation, its realization, and its evidence without making the obligation authoritative — a requirement can trace cleanly to a test whose failure is merely reported, and a permission boundary can carry authority without a rich traceability model.",
+          "text": "Traceability can relate an obligation, its realization, and its evidence without any mechanism enforcing the obligation — a requirement can trace cleanly to a test whose failure is merely reported, and a permission boundary can enforce firmly without a rich traceability model.",
           "block_index": 7
         },
         {
@@ -1682,7 +1682,7 @@
             },
             {
               "slug": "a-soft-instruction-becomes-alignment-only-when-the-environment-can-act-on-it",
-              "text": "An instruction carries authority only when a mechanism in the environment acts on it.",
+              "text": "An instruction binds only when a mechanism in the environment acts on it.",
               "block_index": 15
             },
             {
@@ -1717,7 +1717,7 @@
             },
             {
               "slug": "recovery-is-not-permission",
-              "text": "The sharpest instance of the pair is ownership: the lease makes ownership visible and recoverable, the durable compare-and-set supplies the authority. Recovery is not permission.",
+              "text": "The sharpest instance of the pair is ownership: the lease makes ownership visible and recoverable, the durable compare-and-set supplies the constraint. Recovery is not permission.",
               "block_index": 37
             }
           ]
@@ -1757,7 +1757,7 @@
             },
             {
               "slug": "whichever-validator-supplies-the-judgment-authority-depends-on-the-environment",
-              "text": "Whichever validator supplies the judgment, authority still depends on what the environment does with its verdict.",
+              "text": "Whichever validator supplies the judgment, the consequence still depends on what the environment does with its verdict.",
               "block_index": 55
             }
           ]
@@ -1788,9 +1788,9 @@
           ]
         },
         {
-          "section_id": "one-measurement-different-authority-decisions",
+          "section_id": "one-measurement-different-enforcement-decisions",
           "level": 2,
-          "heading_text": "One Measurement, Different Authority Decisions",
+          "heading_text": "One Measurement, Different Enforcement Decisions",
           "topic_sentence": "The four roles are not stages of maturity.",
           "id_source": "derived",
           "block_index": 71,
@@ -1830,9 +1830,9 @@
         {
           "section_id": "provenance-carried-authority",
           "level": 2,
-          "heading_text": "Provenance-Carried Authority",
-          "topic_sentence": "Earlier in this Part, architectural conformance provided one example of making intended relations authoritative.",
-          "id_source": "derived",
+          "heading_text": "Provenance-Carried Admission",
+          "topic_sentence": "Earlier in this Part, architectural conformance provided one example of enforcing intended relations.",
+          "id_source": "explicit",
           "block_index": 85,
           "points": [
             {
@@ -1862,7 +1862,7 @@
             },
             {
               "slug": "provenance-makes-a-derivation-path-authoritative",
-              "text": "Provenance here is not attribution; it makes a derivation path authoritative — producer-side rules check known emitters, the consumer boundary refuses unknown routes.",
+              "text": "Provenance here is not attribution; it makes a derivation path the sanctioned route to consequence — producer-side rules check known emitters, the consumer boundary refuses unknown routes.",
               "block_index": 103
             }
           ]
@@ -1877,12 +1877,12 @@
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
-              "text": "Keep policy, guidance, and governance mechanism separate; authority begins when something acts.",
+              "text": "Keep policy, guidance, and governance mechanism separate; enforcement begins when something acts.",
               "block_index": 111
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
-              "text": "The same artifact can play several roles; the model is the representation, the machinery the authority.",
+              "text": "The same artifact can play several roles; the model is the representation, the machinery the enforcement.",
               "block_index": 113
             },
             {
@@ -1892,7 +1892,7 @@
             },
             {
               "slug": "represented-intent-becomes-authoritative-through-one-of-four-roles",
-              "text": "Leave-with: intent becomes authority through one of four roles; next, where the mechanisms come from.",
+              "text": "Leave-with: intent becomes enforceable through one of four roles; next, where the mechanisms come from.",
               "block_index": 120
             }
           ]
@@ -1945,7 +1945,7 @@
             },
             {
               "slug": "the-conversion-lands-in-one-of-five-places",
-              "text": "The conversion lands in one of five places: model, invariant, sensor, validator, or authority.",
+              "text": "The conversion lands in one of five places: model, invariant, sensor, validator, or consequence.",
               "block_index": 20
             },
             {
@@ -2050,7 +2050,7 @@
             },
             {
               "slug": "the-mechanism-that-discovers-need-not-carry-the-authority",
-              "text": "The mechanism that discovers an obligation need not be the one that carries its authority; Part IV follows that migration.",
+              "text": "The mechanism that discovers an obligation need not be the one that ultimately enforces it; Part IV follows that migration.",
               "block_index": 65
             },
             {
@@ -2077,13 +2077,13 @@
           "section_id": "catalogue-the-controls",
           "level": 2,
           "heading_text": "Catalogue the Controls",
-          "topic_sentence": "Start by giving each control a stable identity: the event or boundary at which it acts, the resources it reads or changes, the obligation or failure class that justifies it, and its authority role or roles.",
+          "topic_sentence": "Start by giving each control a stable identity: the event or boundary at which it acts, the resources it reads or changes, the obligation or failure class that justifies it, and its governance role or roles.",
           "id_source": "derived",
           "block_index": 6,
           "points": [
             {
               "slug": "the-catalogue-gives-each-control-a-stable-identity",
-              "text": "Catalogue each control: a stable identity, the boundary it acts at, the resources it touches, the obligation it serves, and its authority role.",
+              "text": "Catalogue each control: a stable identity, the boundary it acts at, the resources it touches, the obligation it serves, and its governance role.",
               "block_index": 8
             },
             {
@@ -2364,7 +2364,7 @@
             },
             {
               "slug": "align-places-authority-at-the-earliest-boundary-with-the-semantics-to-decide-it",
-              "text": "Align places authority at the earliest boundary that has the semantics to decide it, on evidence independent of the producer.",
+              "text": "Align places the enforcing mechanism at the earliest boundary that has the semantics to decide it, on evidence independent of the producer.",
               "block_index": 18
             },
             {
@@ -2407,19 +2407,19 @@
         {
           "section_id": "guidance-or-authority",
           "level": 2,
-          "heading_text": "Guidance or Authority?",
+          "heading_text": "Guidance or Enforcement?",
           "topic_sentence": "Keep one distinction sharp.",
           "id_source": "explicit",
           "block_index": 41,
           "points": [
             {
               "slug": "guidance-aims-authority-binds",
-              "text": "Guidance influences behavior; an authoritative obligation is one the environment can enforce.",
+              "text": "Guidance influences behavior; an enforced obligation is one the environment upholds without the agent's cooperation.",
               "block_index": 44
             },
             {
               "slug": "do-not-make-authority-the-automatic-destination-of-every-guidance",
-              "text": "Do not make authority the automatic destination of every piece of guidance.",
+              "text": "Do not make enforcement the automatic destination of every piece of guidance.",
               "block_index": 46
             },
             {
@@ -2439,7 +2439,7 @@
           "points": [
             {
               "slug": "mage-improves-recurring-work-two-ways-support-the-reasoner-or-give-obligations-authority",
-              "text": "MAGE improves recurring work two ways: improve the conditions under which a reasoner judges, or give selected obligations authority so that satisfying them does not depend entirely on the reasoner.",
+              "text": "MAGE improves recurring work two ways: improve the conditions under which a reasoner judges, or enforce selected obligations so that satisfying them does not depend entirely on the reasoner.",
               "block_index": 52
             },
             {
@@ -2449,17 +2449,17 @@
             },
             {
               "slug": "the-boundary-is-not-fixed-judgment-can-acquire-authority-over-time",
-              "text": "The boundary is not fixed: as a judgment becomes better understood, some of what depended on it can acquire authority, while other portions properly remain probabilistic.",
+              "text": "The boundary is not fixed: as a judgment becomes better understood, some of what depended on it can become enforceable, while other portions properly remain probabilistic.",
               "block_index": 63
             },
             {
               "slug": "the-move-toward-authority-is-an-opportunity-not-a-required-progression",
-              "text": "The move toward authority is an opportunity, not a required progression; the relevant unit is the obligation, not the task.",
+              "text": "The move toward enforcement is an opportunity, not a required progression; the relevant unit is the obligation, not the task.",
               "block_index": 69
             },
             {
               "slug": "authority-is-not-determinism",
-              "text": "Authority is not determinism: a deterministic checker can remain advisory, and a probabilistic evaluator can receive authority; the two dimensions should not be conflated.",
+              "text": "Enforcement is not determinism: a deterministic checker can remain advisory, and a probabilistic evaluator can back enforcement; the two dimensions should not be conflated.",
               "block_index": 80
             }
           ]
@@ -2546,13 +2546,13 @@
           "section_id": "start-with-what-you-already-have",
           "level": 2,
           "heading_text": "Start with What You Already Have",
-          "topic_sentence": "Begin with two questions, because representation and authority are different things.",
+          "topic_sentence": "Begin with two questions, because representation and enforcement are different things.",
           "id_source": "derived",
           "block_index": 26,
           "points": [
             {
               "slug": "begin-with-two-inventories-representation-and-authority",
-              "text": "Begin with two questions — what the organization already reasons through, and what already has authority — because representation and authority are different things.",
+              "text": "Begin with two questions — what the organization already reasons through, and what is already enforced — because representation and enforcement are different things.",
               "block_index": 28
             },
             {
@@ -2672,7 +2672,7 @@
             },
             {
               "slug": "sometimes-you-promote-the-obligation-not-the-instrument",
-              "text": "Sometimes you promote the obligation, not the instrument that discovered it: an audit can reveal the property that deserves authority without being the right mechanism to carry it.",
+              "text": "Sometimes you promote the obligation, not the instrument that discovered it: an audit can reveal the property that deserves enforcement without being the right mechanism to carry it.",
               "block_index": 88
             }
           ]
@@ -2741,7 +2741,7 @@
         },
         {
           "slug": "settledness-does-not-determine-whether-an-obligation-requires-judgment",
-          "text": "Settledness is not the same as decidability: a stable objective can still lack a deterministic oracle, and exploratory work can contain settled sub-obligations that deserve authority.",
+          "text": "Settledness is not the same as decidability: a stable objective can still lack a deterministic oracle, and exploratory work can contain settled sub-obligations that deserve enforcement.",
           "block_index": 12
         },
         {
@@ -2960,7 +2960,7 @@
           "points": [
             {
               "slug": "validation-does-not-imply-blocking",
-              "text": "Validation may report or gate; authority is a separate design decision from evidence quality.",
+              "text": "Validation may report or gate; enforcement is a separate design decision from evidence quality.",
               "block_index": 81
             },
             {
@@ -2974,13 +2974,13 @@
           "section_id": "two-boundaries",
           "level": 2,
           "heading_text": "Two Boundaries for Evidence",
-          "topic_sentence": "Part III gave a placement rule for authority: **evaluate an obligation at the earliest boundary where it becomes legible and enforceable.** That catches a problem close to its cause.",
+          "topic_sentence": "Part III gave a placement rule for enforcement: **evaluate an obligation at the earliest boundary where it becomes legible and enforceable.** That catches a problem close to its cause.",
           "id_source": "explicit",
           "block_index": 85,
           "points": [
             {
               "slug": "part-three-placed-authority-at-the-earliest-legible-boundary",
-              "text": "Part III gave the placement rule for authority: evaluate an obligation at the earliest boundary where it becomes legible and enforceable.",
+              "text": "Part III gave the placement rule for enforcement: evaluate an obligation at the earliest boundary where it becomes legible and enforceable.",
               "block_index": 87
             },
             {
@@ -3148,7 +3148,7 @@
           "points": [
             {
               "slug": "operational-measurement-should-expose-the-state-the-decision-depends-on",
-              "text": "Operational measurement should expose the state the decision actually depends on: measure the pressure, not the worker count; mediate the shared resource; record lifecycle state rather than reconstruct it — and keep measurement separate from authority.",
+              "text": "Operational measurement should expose the state the decision actually depends on: measure the pressure, not the worker count; mediate the shared resource; record lifecycle state rather than reconstruct it — and keep measurement separate from enforcement.",
               "block_index": 64
             },
             {
@@ -3223,7 +3223,7 @@
             },
             {
               "slug": "the-grade-is-a-model-read-metric-not-an-authority",
-              "text": "The grade is evidence read from the model; the gate carries the authority — read the number one level below the surface, where it names a target instead of a total.",
+              "text": "The grade is evidence read from the model; the gate carries the consequence — read the number one level below the surface, where it names a target instead of a total.",
               "block_index": 93
             }
           ]
@@ -3262,7 +3262,7 @@
         },
         {
           "slug": "not-all-operating-structure-is-authoritative",
-          "text": "These structures play different roles — a lifecycle is a model, an event supplies evidence of a transition, a runbook preserves a procedure, a metric supplies measurement evidence — and none is authoritative merely by existing; constraints, validators, and gates give selected operational obligations consequence.",
+          "text": "These structures play different roles — a lifecycle is a model, an event supplies evidence of a transition, a runbook preserves a procedure, a metric supplies measurement evidence — and none is binding merely by existing; constraints, validators, and gates give selected operational obligations consequence.",
           "block_index": 2
         }
       ]
@@ -3346,7 +3346,7 @@
           "points": [
             {
               "slug": "self-governance-packages-the-mage-method-itself",
-              "text": "Self-governance packages the MAGE method itself: it helps an agent ask the recurring questions of what to represent, whether the representation still corresponds, what evidence exists, what deserves authority, how to introduce a mechanism, and what has stopped earning its upkeep.",
+              "text": "Self-governance packages the MAGE method itself: it helps an agent ask the recurring questions of what to represent, whether the representation still corresponds, what evidence exists, what deserves enforcement, how to introduce a mechanism, and what has stopped earning its upkeep.",
               "block_index": 39
             },
             {
@@ -3429,7 +3429,7 @@
         },
         {
           "slug": "packaging-confers-no-authority-but-a-skill-can-carry-or-invoke-the-machinery",
-          "text": "Packaging confers no authority, but the same skill can invoke authoritative mechanisms or carry the models and correctness conditions those mechanisms consume.",
+          "text": "Packaging enforces nothing, but the same skill can invoke enforcing mechanisms or carry the models and correctness conditions those mechanisms consume.",
           "block_index": 4
         },
         {
@@ -3439,7 +3439,7 @@
         },
         {
           "slug": "a-skill-is-not-confined-to-one-side-of-the-division",
-          "text": "A skill is not confined to one side of the improve-judgment / give-authority division; it can support a reasoner and also carry or invoke the machinery through which selected obligations acquire authority.",
+          "text": "A skill is not confined to one side of the improve-judgment / enforce-obligations division; it can support a reasoner and also carry or invoke the machinery through which selected obligations are enforced.",
           "block_index": 8
         }
       ]
@@ -3625,7 +3625,7 @@
           "section_id": "where-engineering-judgment-went",
           "level": 2,
           "heading_text": "Where Engineering Judgment Went",
-          "topic_sentence": "The feature list is less revealing than where engineering judgment went: defining what *accessible* meant operationally; discovering abstractions for unfamiliar formats and workflows; distinguishing local defects from missing representation or authority; building independent evidence; coordinating the fleet; and operating failures that crossed code, infrastructure, and deployment boundaries.",
+          "topic_sentence": "The feature list is less revealing than where engineering judgment went: defining what *accessible* meant operationally; discovering abstractions for unfamiliar formats and workflows; distinguishing local defects from missing representation or enforcement; building independent evidence; coordinating the fleet; and operating failures that crossed code, infrastructure, and deployment boundaries.",
           "id_source": "derived",
           "block_index": 43,
           "points": [
@@ -3839,7 +3839,7 @@
             },
             {
               "slug": "this-was-the-mage-move-in-miniature",
-              "text": "The MAGE move in miniature: repeated global cost made an implicit relationship consequential, modeling exposed the distinctions, analysis made a better realization visible, and the representation acquired authority because execution began to consume it.",
+              "text": "The MAGE move in miniature: repeated global cost made an implicit relationship consequential, modeling exposed the distinctions, analysis made a better realization visible, and the resulting representation began to govern execution because execution consumed it.",
               "block_index": 64
             },
             {
@@ -3884,7 +3884,7 @@
             },
             {
               "slug": "the-format-seam-hardened-in-layers",
-              "text": "The response came in layers, and the sharpest was the enforcement itself mis-reporting green; the model stated the boundary, the API and check gave it authority, and the authority still had to be maintained.",
+              "text": "The response came in layers, and the sharpest was the enforcement itself mis-reporting green; the model stated the boundary, the API and check enforced it, and the enforcement itself had to be maintained.",
               "block_index": 79
             },
             {
@@ -3934,7 +3934,7 @@
             },
             {
               "slug": "rung-tech-lead",
-              "text": "Representation made reasoning local; named zones externalized ownership so an agent could reason inside one region, and selected rules over the zone model received authority.",
+              "text": "Representation made reasoning local; named zones externalized ownership so an agent could reason inside one region, and selected rules over the zone model were enforced.",
               "block_index": 98
             },
             {
@@ -3999,7 +3999,7 @@
             },
             {
               "slug": "delegation-depends-on-what-the-environment-can-carry",
-              "text": "Delegation increased as the environment absorbed system knowledge (representation) and repeatable admission (authority); a weak model or weak controls pulled the operator back into tactical work; human judgment stayed at the unresolved edge.",
+              "text": "Delegation increased as the environment absorbed system knowledge (representation) and repeatable admission (enforcement); a weak model or weak controls pulled the operator back into tactical work; human judgment stayed at the unresolved edge.",
               "block_index": 129
             }
           ]
@@ -4202,7 +4202,7 @@
             },
             {
               "slug": "audit-drain-promote-is-the-reusable-move",
-              "text": "Representation made the obligation observable; migration made it feasible; gating made it authoritative.",
+              "text": "Representation made the obligation observable; migration made it feasible; gating made it blocking.",
               "block_index": 75
             }
           ]
@@ -4232,7 +4232,7 @@
             },
             {
               "slug": "measurement-earns-authority-when-the-number-is-deterministic",
-              "text": "The dual case: a deterministic cold-start number DID earn authority, feeding a topology model that drove a re-architecture from 4,057 ms to 109 ms.",
+              "text": "The dual case: a deterministic cold-start number DID justify action, feeding a topology model that drove a re-architecture from 4,057 ms to 109 ms.",
               "block_index": 86
             }
           ]
@@ -4600,7 +4600,7 @@
             },
             {
               "slug": "reconstructions-occupy-different-parts-of-the-design-space",
-              "text": "The reconstructions occupy different parts of this design space — different allocations of reasoning, cost, evidence, and authority.",
+              "text": "The reconstructions occupy different parts of this design space — different allocations of reasoning, cost, evidence, and enforcement.",
               "block_index": 111
             },
             {
@@ -4903,7 +4903,7 @@
             },
             {
               "slug": "discovery-is-not-authority-a-representation-must-earn-trust",
-              "text": "Discovery is not authority: a machine-proposed representation still must earn trust in the relationship it claims.",
+              "text": "Discovery does not confer trust: a machine-proposed representation still must earn trust in the relationship it claims.",
               "block_index": 84
             },
             {
@@ -4983,7 +4983,7 @@
             },
             {
               "slug": "modeling-changes-representation-alignment-gives-authority",
-              "text": "Modeling changes the representation reasoned over; Alignment gives selected obligations authority; either can help without the other.",
+              "text": "Modeling changes the representation reasoned over; Alignment enforces selected obligations; either can help without the other.",
               "block_index": 112
             },
             {
@@ -5182,7 +5182,7 @@
         },
         {
           "slug": "two-limitations-two-responses-broader-repertoire",
-          "text": "Two limitations (finite horizon, residual risk) drew two responses (representation, authority) and a broader Part V repertoire.",
+          "text": "Two limitations (finite horizon, residual risk) drew two responses (representation, enforcement) and a broader Part V repertoire.",
           "block_index": 8
         },
         {
@@ -5539,7 +5539,7 @@
             },
             {
               "slug": "most-systems-mix-surfaces-which-deserve-authority",
-              "text": "Most systems mix surfaces; the question is which properties deserve durable representation or authority, not whether a project uses MAGE.",
+              "text": "Most systems mix surfaces; the question is which properties deserve durable representation or enforcement, not whether a project uses MAGE.",
               "block_index": 70
             }
           ]
@@ -5617,7 +5617,7 @@
             },
             {
               "slug": "objective-is-a-map-of-conditions-not-one-coefficient",
-              "text": "The objective is a map of when capability, representation, iteration, and authority substitute or complement, not one coefficient.",
+              "text": "The objective is a map of when capability, representation, iteration, and enforcement substitute or complement, not one coefficient.",
               "block_index": 29
             },
             {
@@ -6050,9 +6050,9 @@
       "part": 7,
       "sections": [
         {
-          "section_id": "authority-follows-competence",
+          "section_id": "authority-follows-competence-and-responsibility",
           "level": 2,
-          "heading_text": "Authority Follows Competence",
+          "heading_text": "Authority Follows Competence and Responsibility",
           "topic_sentence": "MAGE increases both the leverage of engineering knowledge and the consequences of getting it wrong.",
           "id_source": "derived",
           "block_index": 3,

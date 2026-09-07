@@ -5,7 +5,7 @@
      ending with the enforcement itself under scrutiny. A single vertical chain: convenient call -> silent
      corruption -> library policy -> typed seam -> build-time ban -> gate integrity. Right-side muted
      annotations name the principle each layer added; the corruption beat is annotated in the negative
-     accent. The terminal node (the gate that itself failed) carries the heavy stroke that marks authority
+     accent. The terminal node (the gate that itself failed) carries the heavy stroke that marks the enforcement
      under scrutiny. Shared house grammar: entity box (fill #f6f4ef, stroke #2b2825); solid arrow = the next
      step it forced; muted bracket text = the principle added. Palette: page #fdfcf9, ink #1c1917/#2b2825,
      muted #57534e, accent-negative #b23b3b, box fill #f6f4ef.
@@ -21,7 +21,7 @@
     structure — a failure the eye cannot catch. Each response added a layer: a library policy naming one
     canonical library per format; a typed seam all mutation must pass through; a build-time ban on raw
     access; and finally the gate's own integrity, after the ban check itself was caught mis-reporting. The
-    lesson: authority over a seam is maintained in layers, not granted once, and even the enforcement earns
+    lesson: enforcement of a seam is maintained in layers, not granted once, and even the gate earns
     its own scrutiny.</desc>
 
   <defs>
@@ -71,7 +71,7 @@
   <text x="200" y="436" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">build-time ban</text>
   <text x="330" y="435" font-size="13" font-style="italic" fill="#57534e">enforced, not remembered</text>
 
-  <!-- 6: gate integrity (the enforcement itself under scrutiny) — heavy stroke = authority -->
+  <!-- 6: gate integrity (the enforcement itself under scrutiny) — heavy stroke = enforcement -->
   <rect id="gate-integrity" x="95" y="486" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2.4"/>
   <text x="200" y="514" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">gate integrity</text>
   <text x="330" y="513" font-size="13" font-style="italic" fill="#57534e">the check itself was caught mis-reporting</text>

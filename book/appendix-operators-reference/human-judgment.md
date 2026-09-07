@@ -17,7 +17,7 @@ Ask two questions:
   Novel intent / architecture     expected human work
   Semantic validation             often intentional
   Repeated reconstruction         investigate externalization
-  Routine adjudication            investigate authority
+  Routine adjudication            investigate enforcement
   Recurring emergency             diagnose the class
   ───────────────────────────────────────────────────────────────────────────
   Repeated ≠ automate automatically.

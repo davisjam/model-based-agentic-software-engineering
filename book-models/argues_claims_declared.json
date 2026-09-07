@@ -12,7 +12,7 @@
   "cheap-code-costly-judgment": {
     "id": "argues-cheap-code-costly-judgment",
     "order": 1,
-    "statement": "Commodity intelligence changes the economics of software engineering. Implementation capacity is becoming abundant relative to engineering judgment. As that constraint loosens, engineering effort shifts toward what remains scarce: deciding what should be built, representing the system well enough to reason about it, producing evidence, and giving consequential intent authority."
+    "statement": "Commodity intelligence changes the economics of software engineering. Implementation capacity is becoming abundant relative to engineering judgment. As that constraint loosens, engineering effort shifts toward what remains scarce: deciding what should be built, representing the system well enough to reason about it, producing evidence, and enforcing consequential intent."
   },
   "se-is-long-horizon-reasoning": {
     "id": "argues-se-is-long-horizon-reasoning",
@@ -27,7 +27,7 @@
   "reliability-from-environment": {
     "id": "argues-reliability-from-environment",
     "order": 4,
-    "statement": "The Alignment Principle. Give engineering obligations authority through constraints, sensors, validators, and gates embedded in the engineering environment. Alignment does not require a comprehensive model of the system: a sandbox, a test, or a permission boundary can already hold a local rule. Explicit models expand what can be stated and checked deterministically; where the necessary abstraction is absent, human judgment often fills the gap."
+    "statement": "The Alignment Principle. Make engineering obligations effective through constraints, sensors, validators, and gates embedded in the engineering environment. Alignment does not require a comprehensive model of the system: a sandbox, a test, or a permission boundary can already hold a local rule. Explicit models expand what can be stated and checked deterministically; where the necessary abstraction is absent, human judgment often fills the gap."
   },
   "every-failure-becomes-infrastructure": {
     "id": "argues-every-failure-becomes-infrastructure",

@@ -6,7 +6,7 @@
     "landed": 14,
     "planned": 0,
     "citations_total": 41,
-    "citations_pending_bib": 3,
+    "citations_pending_bib": 2,
     "distinct_theses": 11
   },
   "taxonomy": {
@@ -319,7 +319,7 @@
           ],
           "relation": "situates",
           "illustrates_pattern": "",
-          "resolves_bib": false,
+          "resolves_bib": true,
           "backs_resolve": true
         }
       ],

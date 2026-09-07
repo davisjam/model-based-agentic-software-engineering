@@ -15,7 +15,7 @@
     one public node, the web service; the web service reaches the document editor; the document editor
     reaches the worker; and the worker reaches three services it is cleared to call — render, OCR, and
     generation. Only these declared edges are drawn. Every service connection not drawn is forbidden, shown
-    by a struck-out example edge at the foot. Connectivity is an authoritative mechanism: an allow-list the
+    by a struck-out example edge at the foot. Connectivity is enforced: an allow-list the
     build reconciles against the running system, not a property that emerges from whatever code calls what.</desc>
 
   <defs>
