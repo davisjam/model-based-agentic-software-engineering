@@ -68,7 +68,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 - _elaborates (owned by the program):_ (create) After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human's head.
 - _elaborates (owned by models-and-the-semantic-gap):_ (understand) After this chapter, the reader can explain why agreement is not correctness — authority needs an obligation independent of the work being judged — and place a mechanism at the earliest boundary where that obligation is legible and enforceable.
 
-### Lesson 3.1-where-authority-can-act
+### Lesson 3.1-where-obligations-can-be-enforced
 
 
 ### Lesson 3.2-models-and-the-semantic-gap
