@@ -13,7 +13,7 @@ deterministically, whether or not anyone remembered it.
 | Model | — |
 | Enforcement | **Soft·Hard** — the *firing* is hard (the runtime guarantees the hook runs at the event); the *payload* is either a hard **block** that denies the action or **soft guidance** injected back into the agent's context |
 
-*Its place in the environment — the **canonical mechanism** for **MANAGE · Manage work, state, and resources**. The variants and known uses that fold under it are gathered on the [construction-kit page](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-manage).*
+*Its place in the environment — the **canonical mechanism** for **MANAGE · Manage work, state, and resources**.*
 
 ## Motivation — the failure it kills
 

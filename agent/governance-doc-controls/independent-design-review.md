@@ -17,8 +17,7 @@ written).
 
 *Its place in the environment — a **variant / known-use** of **Validated Dispatch**, under **ADMIT ·
 Admit or reject changes**: the pre-implementation bookend to the close-time
-[Epic Definition-of-Done](epic-definition-of-done.md). Preserved here for its technical texture; the
-[construction kit](../../constructing-the-gee.md#cap-admit) shows how it folds.*
+[Epic Definition-of-Done](epic-definition-of-done.md). Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

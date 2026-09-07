@@ -12,7 +12,7 @@ queue's atomicity and schema invariants live in exactly one lint-enforced place.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *blocking* — the sole-seam lint bans raw Redis outside the dispatch module |
 
-*Its place in the environment — a **variant / known-use** of **One Door Enforced**, under **CONSTRAIN · Constrain where and how agents act**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-constrain) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **One Door Enforced**, under **CONSTRAIN · Constrain where and how agents act**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

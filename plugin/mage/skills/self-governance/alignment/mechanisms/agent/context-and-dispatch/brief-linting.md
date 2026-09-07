@@ -12,7 +12,7 @@ any brief missing the markers that make the agent's work safe and well-scoped.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *blocking* — exit 1 refuses the launch · bypass `ADA_TOOL_BYPASS_AGENT_FENCE=1` (human-only, audit-logged) |
 
-*Its place in the environment — the **canonical mechanism** for **ADMIT · Admit or reject changes**. The variants and known uses that fold under it are gathered on the [construction-kit page](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-admit).*
+*Its place in the environment — the **canonical mechanism** for **ADMIT · Admit or reject changes**.*
 
 ## Motivation — the failure it kills
 

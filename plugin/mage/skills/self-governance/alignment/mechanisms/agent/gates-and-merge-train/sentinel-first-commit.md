@@ -13,7 +13,7 @@ that can never land.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *blocking* — aborts the run on a failed substrate assertion |
 
-*Its place in the environment — a **variant / known-use** of **Staged Admission Gates**, under **ADMIT · Admit or reject changes**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-admit) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Staged Admission Gates**, under **ADMIT · Admit or reject changes**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

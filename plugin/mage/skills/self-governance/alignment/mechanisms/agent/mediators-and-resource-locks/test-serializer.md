@@ -13,7 +13,7 @@ each other's test runs.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *blocking* — exclusive flock, N=1; the enforcer refuses a raw `dotnet test` from an agent-worktree CWD · bypass `ADA_TOOL_TEST_BYPASS_MEDIATOR=1` |
 
-*Its place in the environment — the **canonical mechanism** for **MANAGE · Manage work, state, and resources**. The variants and known uses that fold under it are gathered on the [construction-kit page](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-manage).*
+*Its place in the environment — the **canonical mechanism** for **MANAGE · Manage work, state, and resources**.*
 
 ## Motivation — the failure it kills
 

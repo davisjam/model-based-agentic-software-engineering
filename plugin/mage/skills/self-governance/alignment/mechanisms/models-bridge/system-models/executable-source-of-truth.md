@@ -19,7 +19,7 @@ operable by a context-bounded agent.
 > read it to reason; the codebase is governed from it, and a limited slice (config, docs, IPC contracts) is generated from it too. The other bridge entries are its
 > models and mechanisms.
 
-*Its place in the environment — the **canonical mechanism** for **KNOW · Maintain authoritative system knowledge**. The variants and known uses that fold under it are gathered on the [construction-kit page](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-know).*
+*Its place in the environment — the **canonical mechanism** for **KNOW · Maintain authoritative system knowledge**.*
 
 ## Motivation — the failure it kills
 

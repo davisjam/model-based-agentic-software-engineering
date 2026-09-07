@@ -14,7 +14,7 @@ fact, not a guess.
 | Enforcement | **Hard** (deterministic) — a structured model *held true* by its reverse-mapping test + boundary lints (the drift gate is the counted sensor) |
 | Derivation | `model-from-code` — induced from the code, reconciled at build |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

@@ -14,7 +14,7 @@ run this, and how many at once" becomes declared and enforceable.
 | Enforcement | **Hard** (deterministic) — typed contracts *held true* by the mediator enforcers + a registry-coverage lint |
 | Derivation | `model-from-code` — induced from the code, reconciled at build |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

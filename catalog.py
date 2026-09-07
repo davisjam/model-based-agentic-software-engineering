@@ -1758,12 +1758,10 @@ NAV_GRID = (
     '<nav class="nav-grid" aria-label="Primary">'
     '<a class="ng-cell" href="theory.html">'
     '<span class="ng-t">Theory</span><span class="ng-s">the dynamics of MAGE</span></a>'
-    '<a class="ng-cell" href="constructing-the-gee.html">'
-    '<span class="ng-t">Method</span><span class="ng-s">build the governed environment</span></a>'
+    '<a class="ng-cell" href="apply-mage.html">'
+    '<span class="ng-t">Apply MAGE</span><span class="ng-s">put the method to work</span></a>'
     '<a class="ng-cell" href="industry-case-studies.html">'
     '<span class="ng-t">Industry case studies</span><span class="ng-s">six systems, read through MAGE</span></a>'
-    '<a class="ng-cell" href="catalogue-views.html">'
-    '<span class="ng-t">Mechanisms</span><span class="ng-s">the full catalogue, by model</span></a>'
     '<a class="ng-cell ng-book" href="book/index.html">'
     '<span class="ng-t">Book</span><span class="ng-s">read the web book</span></a>'
     f'<a class="ng-cell" href="{_REPO_URL}">'
@@ -2970,16 +2968,13 @@ def _v3_use() -> str:
         '  <h2 id="use-h" class="sec-h">Using MAGE</h2>\n'
         '  <p class="sec-lead">MAGE is a methodology, not a prescribed toolchain. These resources provide '
         'practical ways to apply it to an existing engineering system.</p>\n'
-        '  <div class="v3-cards v3-cards-3 v3-cards-sm">\n'
+        '  <div class="v3-cards v3-cards-2 v3-cards-sm">\n'
         + _v3_card("QuickStart", "",
                    "Install the MAGE skills and start identifying knowledge that is repeatedly reconstructed, judgments that are repeatedly made, and requirements that are not reliably checked.",
                    [("Start with MAGE", "quick-start.html")]) + "\n"
         + _v3_card("The Method", "",
                    "Apply Modeling and Alignment to the work, then use recurring failures and repeated judgment to improve the engineering environment.",
-                   [("Apply the method", "constructing-the-gee.html")]) + "\n"
-        + _v3_card("Mechanism Catalogue", "",
-                   "Browse concrete examples of models, constraints, sensors, validators, gates, and other mechanisms used to guide and check engineering work.",
-                   [("Browse mechanisms", "catalogue-views.html")]) + "\n"
+                   [("Apply the method", "apply-mage.html")]) + "\n"
         '  </div>\n</section>')
 
 
@@ -3021,11 +3016,10 @@ def _landing_closing() -> str:
     after Big Idea 6; it replaces the old F1-gateway band, so the reader leaves on the conclusion and a
     choice of entry rather than a mid-page gateway."""
     ways = [
-        ("The construction kit", "constructing-the-gee.html",
-         "the architecture: 9 capabilities · 25 canonical mechanisms · 8 compositions"),
+        ("Apply the MAGE Method", "apply-mage.html",
+         "the method applied to your system — three practical questions"),
         ("Industry case studies", "industry-case-studies.html",
          "eight industrial systems, read through MAGE"),
-        ("Full catalogue", "catalogue-views.html", "every mechanism, by role · model · enforcement"),
         ("Book", "book/index.html", "the full treatment of the method"),
         ("Teach with MAGE", "teach/index.html", "learning materials — a course companion for instructors"),
         ("Claude quickstart", "quick-start.html", "install the skills in your repo"),
@@ -3041,7 +3035,7 @@ def _landing_closing() -> str:
         'under which fast code can be trusted — the machine can search faster than any of us, but it cannot '
         'tell us what is worth searching for. So start with one recurring failure your agents keep handing '
         'you, and convert it: one type, one lint, one gate. The theory and methodology grow from there; below '
-        'are seven ways in.</p>\n'
+        'are six ways in.</p>\n'
         f'  <div class="close-ways">\n    {buttons}\n  </div>\n'
         '</section>')
 
@@ -3429,6 +3423,88 @@ def _theory_svg_figure(asset: str, ns: str, caption: str = "") -> str:
         return ""
     cap = f"<figcaption>{_inline(caption)}</figcaption>" if caption else ""
     return f'<figure class="cc-body-fig">{svg}{cap}</figure>'
+
+
+_APPLY_PAGE = "apply-mage.html"
+
+
+def _apply_body() -> str:
+    """The 'Apply the MAGE Method' page — a concise, figure-led practical summary of the method (NOT a second
+    copy of Part 4). Three questions, three shared-source book figures: what do I do (Fig 4.1-2), where do I
+    start (Fig 4.2-1), and what changes as I delegate more (Fig G.1-1). It ends on pointers into Part 4 and
+    Appendix G — no mechanism-catalogue exposition (the catalogue is no longer advertised). Exactly one
+    <h1>. website-v3 (260906): replaces the old 'Constructing the GEE' catalogue page."""
+    p: "list[str]" = []
+    p.append("<h1>Apply the MAGE Method</h1>")
+    p.append(render_md(
+        "This page is a concise guide to applying MAGE. It summarizes the practical argument rather than "
+        "reproducing it: Part 4 of the book develops the method in full, and Appendix G develops "
+        "organizational adoption.\n\n"
+        "[Read Part 4: The MAGE Method →](book/4.1-the-mage-workflow.html) · "
+        "[Read Appendix G: Adopting GenAI in an Organization →](book/appendix-adopting-genai.html)"))
+    p.append(render_md(
+        "## Engineer the environment, not just the realization\n\n"
+        "MAGE starts from a practical observation: giving an agent a better prompt is not the only way to "
+        "improve its work. We can also improve the engineering environment in which the work happens."))
+    p.append(_theory_svg_figure(
+        "engineering-recurring-work.svg", "apply-recurring",
+        "*Engineering recurring work.* Support the reasoner and independently check important obligations; "
+        "observe what the work reveals, and convert recurring lessons back into the environment."))
+    p.append(render_md(
+        "There are two complementary moves. **Modeling** improves what the reasoner has to work with: the "
+        "system structure, intent, knowledge, procedures, context, and evidence relevant to the task. "
+        "**Alignment** checks important requirements independently of the agent where appropriate, rather "
+        "than relying only on the agent to remember, interpret, and satisfy them.\n\n"
+        "Then do the work and observe what happens. Repeated failures and recurring human judgments reveal "
+        "what the environment is still missing. When the expected future benefit justifies the cost, "
+        "**governance conversion** changes the environment so that later work can inherit what earlier work "
+        "learned.\n\n"
+        "The result is an iterative engineering process, not an attempt to specify everything correctly in "
+        "advance.\n\n"
+        "[Read the full method in Part 4 →](book/4.1-the-mage-workflow.html)"))
+    p.append(render_md(
+        "## Start where you are\n\n"
+        "There is no single MAGE starting point. Where to begin depends on two questions: how much of the "
+        "system already exists, and how settled is the relevant intent?"))
+    p.append(_theory_svg_figure(
+        "migration-2x2.svg", "apply-start",
+        "*Where to start.* How much of the system already exists, and how settled the relevant intent is, "
+        "determine where to begin."))
+    p.append(render_md(
+        "If little exists and the intent is uncertain, explore. If little exists but important requirements "
+        "are already settled, model early. If a substantial system already exists, recover the knowledge and "
+        "structure already embedded in it; then either continue exploring unsettled questions or reconcile "
+        "and govern the parts that are already understood.\n\n"
+        "Most real systems contain a mixture of these conditions. Apply the method to the engineering problem "
+        "in front of you rather than trying to classify the whole project as being at one MAGE “stage.”"))
+    p.append(render_md(
+        "## Expand delegation as the environment improves\n\n"
+        "AI assistance is comparatively easy because the worker remains around the agent. The worker supplies "
+        "missing context, notices mistakes, makes intermediate judgments, and decides whether the result is "
+        "acceptable.\n\n"
+        "Delegation changes that arrangement."))
+    p.append(_theory_svg_figure(
+        "adopting-assistance-to-delegation.svg", "apply-delegation",
+        "*From assistance to bounded delegation.* Responsibilities the worker supplied move into the "
+        "environment as the delegated boundary expands — a shifting boundary, not a ladder of levels."))
+    p.append(render_md(
+        "As the worker steps farther out of the immediate task, the responsibilities they supplied do not "
+        "disappear. They must either remain with an appropriate expert or move into the engineering "
+        "environment: into models, evidence, procedures, checks, constraints, and other structures that can "
+        "support and govern the delegated work.\n\n"
+        "The goal is therefore not to move an organization through fixed “levels of autonomy.” Expand the "
+        "delegated boundary where the surrounding engineering provides an adequate basis for doing so. "
+        "Different systems—and different requirements within the same system—can support different amounts "
+        "of delegation.\n\n"
+        "## Go deeper\n\n"
+        "**The MAGE Method — Part 4.** The complete treatment of the practical method: choosing work units, "
+        "modeling, alignment, governance conversion, brownfield migration, validation, operations, and "
+        "reusable skills. [Read Part 4 →](book/4.1-the-mage-workflow.html)\n\n"
+        "**Adopting GenAI in an Organization — Appendix G.** Guidance for moving from individual assistance "
+        "toward bounded delegation: identifying the functions people currently supply, deciding which "
+        "responsibilities can move into the engineering environment, and expanding delegation where the "
+        "resulting basis is adequate. [Read Appendix G →](book/appendix-adopting-genai.html)"))
+    return "\n".join(p)
 
 
 def _theory_body() -> str:
@@ -4141,8 +4217,7 @@ def _sync_figure_census(entries: list[Entry]) -> None:
 # A hand-typed count in README/INDEX/CLAUDE/models-bridge drifts on every add (the '53 mechanisms' rot).
 # A token `<!--census:KEY-->VALUE<!--/census-->` (an HTML comment, invisible on GitHub) is filled from
 # `_stats` by the build precompiler, so the count is DERIVED, not maintained. `:word` fills the number-word.
-_MD_CENSUS_FILES = ("README.md", "INDEX.md", "CLAUDE.md", os.path.join("models-bridge", "README.md"),
-                    "constructing-the-gee.md")
+_MD_CENSUS_FILES = ("README.md", "INDEX.md", "CLAUDE.md", os.path.join("models-bridge", "README.md"))
 _CENSUS_TOKEN = re.compile(r"(<!--census:([a-z_]+)(:word|:Word)?-->)(.*?)(<!--/census-->)", re.DOTALL)
 _NUM_WORDS = ("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
               "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",
@@ -4479,9 +4554,13 @@ def check_orphan_pages() -> list[str]:
             if tgt.startswith(("http://", "https://")):
                 continue
             referenced.add(os.path.normpath(os.path.join(base, tgt)))
-    root_index = os.path.normpath(os.path.join(ROOT, "index.html"))
+    # index.html is the entry point; catalogue-views.html is intentionally BUILT-BUT-UNLINKED (260906: the
+    # mechanism catalogue is no longer advertised in public nav, but the page still supplies every mechanism
+    # entry's inbound edge for this gate, so it must stay built). Both are orphan-exempt.
+    exempt = {os.path.normpath(os.path.join(ROOT, "index.html")),
+              os.path.normpath(os.path.join(ROOT, "catalogue-views.html"))}
     orphans = [os.path.relpath(p, ROOT) for p in pages
-               if os.path.normpath(p) != root_index and os.path.normpath(p) not in referenced]
+               if os.path.normpath(p) not in exempt and os.path.normpath(p) not in referenced]
     return sorted(orphans)
 
 
@@ -4586,6 +4665,13 @@ def cmd_build(_args) -> int:
                    _crumb("", [("The theory of MAGE", "")]),
                    _theory_body(), rel_root="")
     open(os.path.join(ROOT, _THEORY_PAGE), "w", encoding="utf-8").write(theory)
+    # The 'Apply the MAGE Method' page — a concise figure-led practical summary (replaces the retired
+    # 'Constructing the GEE' catalogue page). Reachable from the primary nav's "Apply MAGE" cell, the
+    # landing 'Using MAGE' Method card, and the landing closing (its orphan-gate inbound edges).
+    apply_page = _page("Apply the MAGE Method",
+                       _crumb("", [("Apply the MAGE Method", "")]),
+                       _apply_body(), rel_root="")
+    open(os.path.join(ROOT, _APPLY_PAGE), "w", encoding="utf-8").write(apply_page)
     # The two projected Resource pages — Talks + Writings (book-models/resources.json). Each is reachable
     # from the landing Resources section's 'Browse talks' / 'Browse writings' card (the orphan-gate inbound
     # edge); each links its assets under resources/. Book + Curriculum are existing surfaces, not projected.

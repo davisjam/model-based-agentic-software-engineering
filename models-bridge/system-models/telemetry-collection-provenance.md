@@ -17,7 +17,7 @@ of origin, landing sink, and per-environment coverage across the telemetry strea
 | Enforcement | **Hard** (deterministic) — each stream's origin, landing, and per-environment coverage are declared and reconciled against the real emit and collection sites; a stream emitted but not collected in a declared-covered environment is a build finding |
 | Derivation | `model-from-code` — the provenance record is reconciled against the real emit and collection sites |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

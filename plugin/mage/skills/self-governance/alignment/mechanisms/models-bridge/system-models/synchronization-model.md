@@ -14,7 +14,7 @@ concurrency contracts are declared and checkable, not tribal.
 | Enforcement | **Hard** (deterministic) — a structured model *held true* by the lock-coverage lint (every `fcntl.flock` site must be declared or annotated) |
 | Derivation | `model-from-code` — induced from the code, reconciled at build |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

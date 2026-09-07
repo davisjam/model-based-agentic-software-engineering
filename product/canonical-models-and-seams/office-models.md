@@ -15,7 +15,7 @@ as [pdf-model](pdf-model.md), on a second object model (our instance: `{Slides,D
 | Enforcement | **Hard** (deterministic) · *blocking* — the two lints fail the build on raw OpenXml / raw-XML string-match; the structured models are *construction*, the lints are the counted sensors |
 | Derivation | `model-from-code` — induced from the code, reconciled at build |
 
-*Its place in the environment — a **variant / known-use** of **One Door Enforced**, under **CONSTRAIN · Constrain where and how agents act**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-constrain) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **One Door Enforced**, under **CONSTRAIN · Constrain where and how agents act**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

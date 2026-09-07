@@ -13,7 +13,7 @@ of guessing from filesystem timestamps.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *signal/record* — every lifecycle tool dual-writes; destructive-op gates query it before acting |
 
-*Its place in the environment — the **canonical mechanism** for **MANAGE · Manage work, state, and resources**. The variants and known uses that fold under it are gathered on the [construction-kit page](../../constructing-the-gee.md#cap-manage).*
+*Its place in the environment — the **canonical mechanism** for **MANAGE · Manage work, state, and resources**.*
 
 ## Motivation — the failure it kills
 

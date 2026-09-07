@@ -13,7 +13,7 @@ at the right price per decision.
 | Model | — |
 | Enforcement | **Hard** (deterministic) — a repeatable regression body; the full tier gates deploy |
 
-*Its place in the environment — a **variant / known-use** of **Staged Admission Gates**, under **ADMIT · Admit or reject changes**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-admit) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Staged Admission Gates**, under **ADMIT · Admit or reject changes**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

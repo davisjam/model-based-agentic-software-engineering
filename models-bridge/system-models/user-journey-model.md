@@ -17,7 +17,7 @@ dialect).
 | Enforcement | **Hard** (deterministic) — a typed source-of-truth held true by a call-site drift lint (declared deps ↔ real call sites) plus two-way endpoint-coverage audits; the lints land audit-only, then promote to blocking |
 | Derivation | `model-from-code` — induced from the code, reconciled at build |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

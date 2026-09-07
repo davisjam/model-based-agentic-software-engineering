@@ -14,7 +14,7 @@ rather than parsing raw files, and the tool itself documents how the models load
 | Enforcement | **Soft** (probabilistic) — the canonical *read convenience* agents/orchestration use; it emits structured `--json` (deterministic) but doesn't block raw reads |
 | Governs | `all-models` — one canonical query API over every model |
 
-*Its place in the environment — a **variant / known-use** of **Read the Model, Don't Copy It**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Read the Model, Don't Copy It**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

@@ -18,7 +18,7 @@ first-class modeled node).
 | Enforcement | **Hard** (deterministic) — a typed source-of-truth held true by a drift gate (its declared states + facet-nodes reconciled against the live registry), each invariant's checker tier *derived* from its temporal shape, lands audit-only then blocking |
 | Derivation | `model-from-code` — induced from the code, reconciled at build |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

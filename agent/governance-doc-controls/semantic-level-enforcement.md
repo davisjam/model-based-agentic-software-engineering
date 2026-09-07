@@ -15,7 +15,7 @@ multi-commit task, never at a per-commit hook where the model is legitimately mi
 | Enforcement | **Soft** — a design-time placement judgment made when a mechanism is built or reviewed; it aims where a mechanism lands, it does not itself block |
 | Governs | `all-models` — placed at the granularity where a model's property is legible |
 
-*Its place in the environment — **lifted to a principle** (P8, Enforce at the right semantic level): the placement judgment that explains where every other mechanism sits. See the [construction kit](../../constructing-the-gee.md#principles).*
+*Its place in the environment — **lifted to a principle** (P8, Enforce at the right semantic level): the placement judgment that explains where every other mechanism sits.*
 
 ## Motivation — the failure it kills
 

@@ -13,7 +13,7 @@ their own.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *blocking* — fails when the asserted relation between sources is violated |
 
-*Its place in the environment — a **variant / known-use** of **Drift / Parity Gate**, under **SYNC · Keep representations equal to reality**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-sync) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Drift / Parity Gate**, under **SYNC · Keep representations equal to reality**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

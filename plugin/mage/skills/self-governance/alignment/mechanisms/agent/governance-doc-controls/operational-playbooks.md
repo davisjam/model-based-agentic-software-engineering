@@ -14,7 +14,7 @@ recovery) get a consistent, pre-reasoned, incident-tested response.
 | Model | — |
 | Enforcement | **Soft** (probabilistic) — a playbook *aims* the response; it informs, it does not block. Its value is that the correct steps are written down and discoverable at the moment they're needed. |
 
-*Its place in the environment — the **canonical mechanism** for **GOVERN · Govern the control machinery itself**. The variants and known uses that fold under it are gathered on the [construction-kit page](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-govern).*
+*Its place in the environment — the **canonical mechanism** for **GOVERN · Govern the control machinery itself**.*
 
 ## Motivation — the failure it kills
 

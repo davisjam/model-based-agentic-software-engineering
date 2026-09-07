@@ -18,7 +18,7 @@ nesting order).
 | Enforcement | **Hard** (deterministic) — the budgets live in one declared surface and a property test proves the nesting order (each inner budget strictly less than its container) holds across every declared pair |
 | Derivation | `model-from-code` — the surface mirrors the scattered authoritative constants, reconciled against them |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

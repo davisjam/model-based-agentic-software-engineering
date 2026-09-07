@@ -18,7 +18,7 @@ first-class element).
 | Enforcement | **Hard** (deterministic) — a typed projection *held true* against the concurrency structure it views; a declared racing edge with no guarding lock, or a lock guarding no declared edge, is a build finding |
 | Derivation | `model-from-code` — projected from the concurrency structure and reconciled against the real concurrent processes |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

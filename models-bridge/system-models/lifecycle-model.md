@@ -19,7 +19,7 @@ predicate, projected into an operator skill).
 | Enforcement | **Hard** (deterministic) — each lifecycle's healthy predicate is machine-checkable against the live substrate, and the operator runbook is generated from the model so prose can't drift from the map |
 | Derivation | `model-to-code` — the operator runbook / skill is generated from the typed lifecycle map |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

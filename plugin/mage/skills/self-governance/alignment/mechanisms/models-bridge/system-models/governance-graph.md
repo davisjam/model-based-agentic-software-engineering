@@ -15,7 +15,7 @@ is caught by construction, not at the moment they trip each other in production.
 | Enforcement | **Soft·Hard** — a soft-constraint model (the query surface an operator *chooses* to run) shipped with hard sensors: a consistency check that flags mechanically-decidable conflicts, and a drift lint that holds the graph equal to the wired mechanisms |
 | Derivation | `model-from-code` — induced from the code, reconciled at build |
 
-*Its place in the environment — the **canonical mechanism** for **GOVERN · Govern the control machinery itself**. The variants and known uses that fold under it are gathered on the [construction-kit page](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-govern).*
+*Its place in the environment — the **canonical mechanism** for **GOVERN · Govern the control machinery itself**.*
 
 ## Motivation — the failure it kills
 

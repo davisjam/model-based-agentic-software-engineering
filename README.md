@@ -113,9 +113,6 @@ can't name the failure a mechanism prevents in *your* system, you might not need
 
 ## Read the catalogue
 
-- **[Constructing the Governed Engineering Environment](constructing-the-gee.md)** — the architecture
-  behind the census: 8 principles, 9 capabilities, 24 canonical mechanisms, 8 compositions, and the
-  variants and known uses that fold under them. Read this first for the shape of the whole.
 - **[The catalogue — interactive web view](https://davisjam.github.io/model-based-agentic-software-engineering/)** —
   the best way to read it: the governance map, a clickable census, and a full writeup per mechanism.
 - **[The paper](https://arxiv.org/pdf/2607.01087)** — *Cheap Code, Costly Judgment: A Case Study on

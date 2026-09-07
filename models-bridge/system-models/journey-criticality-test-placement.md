@@ -16,7 +16,7 @@ derives each journey-part's `local` vs `staging` tier, guarded by a coverage-flo
 | Enforcement | **Soft·Hard** — the structured model *aims* placement (soft: it computes the tier, a human still authors the test); a coverage-floor lint *holds* the invariant (hard: a major part with no local test fails) |
 | Governs | `user-journey-model` — a journey's criticality derives its test tier |
 
-*Its place in the environment — a **variant / known-use** of **Model-Derived Assurance Coverage**, under **COMPLETE · Establish completion on re-derived evidence**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-complete) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Model-Derived Assurance Coverage**, under **COMPLETE · Establish completion on re-derived evidence**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

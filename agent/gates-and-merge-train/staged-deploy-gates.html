@@ -220,7 +220,7 @@
 <h1>Staged deploy gates (canary → smoke → promote)</h1>
 <p><strong>Intent</strong> — A deploy pipeline that escalates <strong>canary → smoke → promote</strong>, blocking promotion to production until each cheaper stage passes on a traffic-free revision, so a bad build is caught before users see it, not after.</p>
 <table><tbody><tr><td>Summary</td><td>Canary → smoke → promote; gate before users see it.</td></tr><tr><td>Target</td><td>Agent · <strong>Gates &amp; merge-train</strong></td></tr><tr><td>Form</td><td><code>quality-gate</code></td></tr><tr><td>Move</td><td><code>sensor</code> — detects the error after the fact</td></tr><tr><td>Model</td><td>—</td></tr><tr><td>Enforcement</td><td><strong>Hard</strong> (deterministic) · <em>blocking</em> — promotion is refused until the smoke stage passes</td></tr></tbody></table>
-<p><em>Its place in the environment — the <strong>canonical mechanism</strong> for <strong>ADMIT · Admit or reject changes</strong>. The variants and known uses that fold under it are gathered on the <a href="../../constructing-the-gee.html#cap-admit">construction-kit page</a>.</em></p>
+<p><em>Its place in the environment — the <strong>canonical mechanism</strong> for <strong>ADMIT · Admit or reject changes</strong>.</em></p>
 <h2>Motivation — the failure it kills</h2>
 <p>Shipping a build straight to production means a regression lands on users; the failure <em>is</em> the incident. This is standard practice everywhere, but it matters far more at agentic velocity, precisely because deploys are frequent and agent-initiated: the more often you ship, the more often an un-gated bad build reaches users.</p>
 <h2>Why it's not just "deploy and roll back if it breaks"</h2>

@@ -14,7 +14,7 @@ sole surface by a ban-lint, and an append-only OOXML attribution registry).
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *audit record* — the [F10 wiring lint](f10-wiring-lint.md) makes it BLOCKING that every verb stamps |
 
-*Its place in the environment — the **canonical mechanism** for **PROVENANCE · Track provenance and trace causes**. The variants and known uses that fold under it are gathered on the [construction-kit page](../../constructing-the-gee.md#cap-provenance).*
+*Its place in the environment — the **canonical mechanism** for **PROVENANCE · Track provenance and trace causes**.*
 
 ## Motivation — the failure it kills
 

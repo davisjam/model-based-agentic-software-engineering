@@ -11,13 +11,9 @@ cross-cuts (see [README](README.md)). Families **1–5** = the **agent** role
 the two); families **7–11** = the **product** role (the shipped artifact). All <!--census:controls-->85<!--/census--> entries are fully
 written (**✅**).
 
-**Read this as a construction kit.** The census below lists every mechanism by role and family. For the
-architecture *behind* the list — what the environment must be able to do, and which mechanisms give it
-those capabilities — start at **[Constructing the Governed Engineering Environment](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html)**.
-The case produced <!--census:controls-->85<!--/census--> concrete mechanisms; comparative analysis reduced
-them to **24 canonical mechanisms under 9 capabilities**, with the remainder retained as variants and
-known uses. That page groups every entry under its capability and names the eight compositions that are
-strong together.
+The census below lists every mechanism by role and family. The case produced
+<!--census:controls-->85<!--/census--> concrete mechanisms; comparative analysis reduced them to
+**24 canonical mechanisms under 9 capabilities**, with the remainder retained as variants and known uses.
 
 **`Enf.` = soft/hard** (see README *Two independent axes: move and form*): **`Hard`** = deterministic
 (blocking / audit / signal); **`Soft`** = probabilistic (influences, cannot block); **`Soft·Hard`** =

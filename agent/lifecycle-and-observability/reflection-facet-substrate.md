@@ -16,7 +16,7 @@ knowledge-routing, structural-drift, operations).
 | Model | — |
 | Enforcement | **Soft·Hard** — the reflections are *soft* (they aim the operator, default-silent, never block); the substrate is held *hard* — a closed-surface lint on every facet, a pointer-resolve lint on each facet's policy material, the ≤1-per-window budget gate, and per-firing telemetry on a measured leash |
 
-*Its place in the environment — a **variant / known-use** of **Point-of-Action Policy Delivery**, under **MANAGE · Manage work, state, and resources**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-manage) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Point-of-Action Policy Delivery**, under **MANAGE · Manage work, state, and resources**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

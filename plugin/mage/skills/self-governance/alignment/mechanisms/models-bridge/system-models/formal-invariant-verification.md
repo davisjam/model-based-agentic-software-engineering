@@ -17,7 +17,7 @@ a model checker plus a bounded-BFS "simworld").
 | Enforcement | **Hard** (deterministic) — an exhaustive model-check (state-space BFS / a temporal model checker) proves the invariant or emits a counterexample trace; a lint asserts the temporal form matches the routed checker |
 | Governs | `all-models` — every model invariant earns a temporal form and a checker |
 
-*Its place in the environment — a **variant / known-use** of **Model-Derived Assurance Coverage**, under **COMPLETE · Establish completion on re-derived evidence**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-complete) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Model-Derived Assurance Coverage**, under **COMPLETE · Establish completion on re-derived evidence**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

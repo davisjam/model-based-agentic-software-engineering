@@ -18,7 +18,7 @@ fuzz oracle).
 | Enforcement | **Hard** (deterministic) — each contract is a typed surface reconciled against its real producer and consumer; a handler whose shape diverges from the declared endpoint, or output that violates the declared spec, is a build finding |
 | Derivation | `model-from-code` — the contract surface is reconciled against the live producer and consumer sites |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

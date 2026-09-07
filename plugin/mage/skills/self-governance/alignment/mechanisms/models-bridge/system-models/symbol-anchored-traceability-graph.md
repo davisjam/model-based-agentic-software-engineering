@@ -16,7 +16,7 @@ defend; snapshotted ones drift.**
 | Enforcement | **Hard** (deterministic) — a derived meta-lint re-resolves every edge's anchor and reddens on a broken one; runs at DoD/audit cadence because symbol resolution is costly. Lands audit-only, then promotes to blocking |
 | Derivation | `both` — some fields generated to code, others reconciled from it |
 
-*Its place in the environment — the **canonical mechanism** for **SYNC · Keep representations equal to reality**. The variants and known uses that fold under it are gathered on the [construction-kit page](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-sync).*
+*Its place in the environment — the **canonical mechanism** for **SYNC · Keep representations equal to reality**.*
 
 ## Motivation — the failure it kills
 

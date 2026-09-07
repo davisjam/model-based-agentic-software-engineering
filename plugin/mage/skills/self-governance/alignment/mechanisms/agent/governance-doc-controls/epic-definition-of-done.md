@@ -13,7 +13,7 @@ close on stale or rotted assertions.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *blocking close* — reachability/patch-id checks must pass, or a logged `--override` is required |
 
-*Its place in the environment — the **canonical mechanism** for **COMPLETE · Establish completion on re-derived evidence**. The variants and known uses that fold under it are gathered on the [construction-kit page](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-complete).*
+*Its place in the environment — the **canonical mechanism** for **COMPLETE · Establish completion on re-derived evidence**.*
 
 ## Motivation — the failure it kills
 

@@ -13,7 +13,7 @@ wiring, so a new mutator cannot land producing unattributable mutations.
 | Enforcement | **Hard** (deterministic) · *blocking* — scans every mutator verb; fails the build on an unwired one (0 open gaps) |
 | Governs | `pdf-model` · `office-models` — every mutator verb in the document models is stamped |
 
-*Its place in the environment — a **variant / known-use** of **Caused-By Provenance**, under **PROVENANCE · Track provenance and trace causes**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-provenance) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Caused-By Provenance**, under **PROVENANCE · Track provenance and trace causes**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

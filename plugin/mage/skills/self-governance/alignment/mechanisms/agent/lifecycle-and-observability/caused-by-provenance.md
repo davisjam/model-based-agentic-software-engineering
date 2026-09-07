@@ -17,7 +17,7 @@ pre-commit hook).
 | Model | — |
 | Enforcement | **Hard** (deterministic) — the pre-commit hook asserts the typed field is present and names a taxonomy value. Soft·Hard split: the taxonomy *value* is the agent's choice (soft); its *presence* is gated (hard); the `_proxy` suffix on an inferred cause is the honesty-by-construction half |
 
-*Its place in the environment — a **variant / known-use** of **Caused-By Provenance**, under **PROVENANCE · Track provenance and trace causes**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-provenance) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Caused-By Provenance**, under **PROVENANCE · Track provenance and trace causes**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

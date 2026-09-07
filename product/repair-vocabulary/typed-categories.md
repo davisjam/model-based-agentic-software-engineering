@@ -12,7 +12,7 @@ closed, enumerable set that the compiler and lints can check for exhaustive hand
 | Model | — |
 | Enforcement | **Hard** (deterministic) — a typed closed set; the compiler + exhaustiveness checks enforce it |
 
-*Its place in the environment — a **variant / known-use** of **Closed Action Vocabulary**, under **CONSTRAIN · Constrain where and how agents act**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-constrain) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Closed Action Vocabulary**, under **CONSTRAIN · Constrain where and how agents act**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

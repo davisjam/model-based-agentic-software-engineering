@@ -17,7 +17,7 @@ inline metadata blocks on the numbered project rules, extracted into a typed rul
 | Enforcement | **Hard** (deterministic) — each rule's metadata block is structured and extractable, and the derived registry is reconciled against the document so a rule without a well-formed block, or a block citing a missing enforcer, is a build finding |
 | Derivation | `model-from-code` — the registry is extracted from the inline metadata blocks in the governance document |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

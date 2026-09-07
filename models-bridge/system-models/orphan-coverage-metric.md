@@ -19,8 +19,7 @@ subsystem's code and ranks the orphan clusters that should be modeled or control
 
 *Its place in the environment — a **variant / known-use** of **Governance Graph**, under **GOVERN · Govern
 the control machinery itself**: the inverse-direction counterpart to the
-[control-coverage census](control-coverage-census.md). Preserved here for its technical texture; the
-[construction kit](../../constructing-the-gee.md#cap-govern) shows how it folds.*
+[control-coverage census](control-coverage-census.md). Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

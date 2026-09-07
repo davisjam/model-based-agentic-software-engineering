@@ -13,7 +13,7 @@ the failing seed.
 | Model | — |
 | Enforcement | **Hard** (deterministic) — a repeatable campaign body; coverage tracked against a baseline |
 
-*Its place in the environment — the **canonical mechanism** for **COMPLETE · Establish completion on re-derived evidence**. The variants and known uses that fold under it are gathered on the [construction-kit page](../../constructing-the-gee.md#cap-complete).*
+*Its place in the environment — the **canonical mechanism** for **COMPLETE · Establish completion on re-derived evidence**.*
 
 ## Motivation — the failure it kills
 

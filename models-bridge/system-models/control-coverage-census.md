@@ -17,7 +17,7 @@ product — projected read-only by a per-target coverage roll-up).
 | Enforcement | **Soft·Hard** — the per-target roll-up is instrument-only (it aims the next control, never blocks); a hard self-guard derives each target from the control's anchor and fails loud on one it cannot place, so the map cannot silently mis-credit |
 | Governs | `governance-graph` — it reads the mechanism-interaction model's control node-set and rolls it up per governance target |
 
-*Its place in the environment — a **variant / known-use** of **Governance Graph**, under **GOVERN · Govern the control machinery itself**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-govern) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Governance Graph**, under **GOVERN · Govern the control machinery itself**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

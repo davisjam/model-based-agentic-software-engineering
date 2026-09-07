@@ -13,7 +13,7 @@ stamped, validated, and policy-checked (our instance: the document models' `Prim
 | Model | — |
 | Enforcement | **Hard** (deterministic) — typed verbs; the [F10 lint](../provenance-and-attribution/f10-wiring-lint.md) + validators cover them |
 
-*Its place in the environment — the **canonical mechanism** for **CONSTRAIN · Constrain where and how agents act**. The variants and known uses that fold under it are gathered on the [construction-kit page](../../constructing-the-gee.md#cap-constrain).*
+*Its place in the environment — the **canonical mechanism** for **CONSTRAIN · Constrain where and how agents act**.*
 
 ## Motivation — the failure it kills
 

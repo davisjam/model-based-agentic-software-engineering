@@ -13,7 +13,7 @@ triggered by many agents at once.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *blocking* — flock at entry (hard cap 1800s); the role-enforcement gate refuses `sonnet-active` · bypass `ADA_TOOL_LINT_ALL_NO_MUTEX=1` |
 
-*Its place in the environment — a **variant / known-use** of **Mediated Resource Admission**, under **MANAGE · Manage work, state, and resources**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-manage) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Mediated Resource Admission**, under **MANAGE · Manage work, state, and resources**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

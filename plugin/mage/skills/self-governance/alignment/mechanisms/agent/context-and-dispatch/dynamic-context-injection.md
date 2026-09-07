@@ -16,7 +16,7 @@ files* (lints, conventions, component boundaries, tests) and inject that subset 
 > **★ Flagship entry.** This is the canonical example of the "why it's not just the naive
 > alternative" move that the whole catalogue is built around.
 
-*Its place in the environment — a **variant / known-use** of **Point-of-Action Policy Delivery**, under **MANAGE · Manage work, state, and resources**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-manage) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Point-of-Action Policy Delivery**, under **MANAGE · Manage work, state, and resources**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

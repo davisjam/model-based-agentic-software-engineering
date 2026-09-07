@@ -12,7 +12,7 @@ stale-worker sweep, so a *hung* deploy or worker is distinguishable from a merel
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *signal* — emitted every 30 s; non-blocking (the concurrency guard beside it is blocking) |
 
-*Its place in the environment — a **variant / known-use** of **Fleet Observability Surface**, under **MANAGE · Manage work, state, and resources**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-manage) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Fleet Observability Surface**, under **MANAGE · Manage work, state, and resources**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

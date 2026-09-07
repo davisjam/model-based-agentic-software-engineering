@@ -20,7 +20,7 @@ other mechanism cannot silently rot.
 > a mechanism" move: a rule written here is enforced on every subsequent agent boot without
 > re-inspection. It is both a member of the catalog and its delivery vehicle.
 
-*Its place in the environment — the **canonical mechanism** for **GOVERN · Govern the control machinery itself**. The variants and known uses that fold under it are gathered on the [construction-kit page](../../constructing-the-gee.md#cap-govern).*
+*Its place in the environment — the **canonical mechanism** for **GOVERN · Govern the control machinery itself**.*
 
 ## Motivation — the failure it kills
 

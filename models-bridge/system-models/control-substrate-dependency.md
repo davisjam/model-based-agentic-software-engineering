@@ -17,7 +17,7 @@ topology to print exactly which lints a migration puts in scope).
 | Enforcement | **Hard** (deterministic) — a declaration lint requires every substrate-reading control to declare its assumption; the blast-radius table is computed from those declarations. Lands audit-only, then promotes to blocking |
 | Derivation | `model-from-code` — induced from the code, reconciled at build |
 
-*Its place in the environment — the **canonical mechanism** for **GOVERN · Govern the control machinery itself**. The variants and known uses that fold under it are gathered on the [construction-kit page](../../constructing-the-gee.md#cap-govern).*
+*Its place in the environment — the **canonical mechanism** for **GOVERN · Govern the control machinery itself**.*
 
 ## Motivation — the failure it kills
 

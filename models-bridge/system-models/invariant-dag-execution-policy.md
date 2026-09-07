@@ -18,7 +18,7 @@ budget)` profile).
 | Enforcement | **Soft·Hard** — the per-host profile *aims* the execution plan (soft: it computes concurrency and budget policy, an operator still sets the values); two lints *hold* the separation (hard: a load edge in the DAG, or a per-environment edge divergence, is a finding) |
 | Governs | `all-models` — the correctness DAG over every model's build obligations |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

@@ -14,7 +14,7 @@ NetworkPolicy, and API docs are *generated from* and validated against.
 | Enforcement | **Hard** (deterministic) — a structured model *held true* by bidirectional parity gates (tree↔yaml, handler↔spec, call-graph↔model) |
 | Derivation | `both` — some fields generated to code, others reconciled from it |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

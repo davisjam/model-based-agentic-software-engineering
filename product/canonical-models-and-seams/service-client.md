@@ -13,7 +13,7 @@ service is banned.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *blocking* — the sole-seam lint bans direct cross-service `requests.post`; the `BinaryIO` type makes the bug unrepresentable |
 
-*Its place in the environment — a **variant / known-use** of **One Door Enforced**, under **CONSTRAIN · Constrain where and how agents act**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-constrain) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **One Door Enforced**, under **CONSTRAIN · Constrain where and how agents act**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

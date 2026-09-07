@@ -13,7 +13,7 @@ stale, or be hand-edited where they will be overwritten.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *blocking* — a doc missing its index entry or provenance header fails the lint |
 
-*Its place in the environment — a **variant / known-use** of **Drift / Parity Gate**, under **SYNC · Keep representations equal to reality**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-sync) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Drift / Parity Gate**, under **SYNC · Keep representations equal to reality**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

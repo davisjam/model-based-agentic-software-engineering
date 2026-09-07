@@ -14,7 +14,7 @@ artifact *drives* the work instead of being written after the fact.
 | Model | — |
 | Enforcement | **Soft·Hard** — the template is soft guidance on the doc's shape, held by a hard counterpart: a stub scaffold materializes the sections and lints/gates assert the required ones (registration, DoD criteria, an observability block for topic-emitting designs). |
 
-*Its place in the environment — a **variant / known-use** of **Validated Dispatch**, under **ADMIT · Admit or reject changes**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-admit) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Validated Dispatch**, under **ADMIT · Admit or reject changes**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

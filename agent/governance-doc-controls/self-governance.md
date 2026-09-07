@@ -11,7 +11,7 @@
 | Model | — |
 | Enforcement | **Soft·Hard** — the skill *aims* (it recommends and scaffolds the control, it cannot install or block); the hook that fires it is a hard, deterministic runtime binding (the reflection runs whether or not anyone remembers) |
 
-*Its place in the environment — the generative engine behind **Encoded Operational Judgment** and the **Governed Knowledge Base**, under **GOVERN · Govern the control machinery itself**; the [construction kit](../../constructing-the-gee.md#cap-govern) shows how it folds.*
+*Its place in the environment — the generative engine behind **Encoded Operational Judgment** and the **Governed Knowledge Base**, under **GOVERN · Govern the control machinery itself**.*
 
 ## Motivation — the failure it kills
 

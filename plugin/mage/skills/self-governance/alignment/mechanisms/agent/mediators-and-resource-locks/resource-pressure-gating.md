@@ -16,7 +16,7 @@ and sheds heavy compute at the mediators).
 | Model | — |
 | Enforcement | **Hard** (deterministic) — a pre-dispatch gate refuses/defers heavy work and the compute mediators shed it under RED pressure; the same signal is callable for advisory decisions |
 
-*Its place in the environment — the **canonical mechanism** for **MANAGE · Manage work, state, and resources**. The variants and known uses that fold under it are gathered on the [construction-kit page](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-manage).*
+*Its place in the environment — the **canonical mechanism** for **MANAGE · Manage work, state, and resources**.*
 
 ## Motivation — the failure it kills
 

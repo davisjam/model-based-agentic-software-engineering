@@ -15,7 +15,7 @@ sessions instead of drifting into silent breakage.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *signal* — emission is mechanical; the bus itself does not block (the derived alerts gate does) |
 
-*Its place in the environment — the **canonical mechanism** for **MANAGE · Manage work, state, and resources**. The variants and known uses that fold under it are gathered on the [construction-kit page](../../constructing-the-gee.md#cap-manage).*
+*Its place in the environment — the **canonical mechanism** for **MANAGE · Manage work, state, and resources**.*
 
 ## Motivation — the failure it kills
 

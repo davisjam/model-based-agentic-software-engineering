@@ -16,7 +16,7 @@ model's nodes at function granularity).
 | Enforcement | **Soft·Hard** — a per-node coverage map that *surfaces* untested nodes (a backlog); promotable to a gate that *requires* a covering test for critical nodes |
 | Governs | `all-models` — test coverage is projected onto every model's nodes |
 
-*Its place in the environment — a **variant / known-use** of **Model-Derived Assurance Coverage**, under **COMPLETE · Establish completion on re-derived evidence**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-complete) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Model-Derived Assurance Coverage**, under **COMPLETE · Establish completion on re-derived evidence**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

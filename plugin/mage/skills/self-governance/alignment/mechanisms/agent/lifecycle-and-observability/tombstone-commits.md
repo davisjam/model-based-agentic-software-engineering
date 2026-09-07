@@ -13,7 +13,7 @@ reclaimable instead of guessing.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *audit record* — a durable close record that the cleanup gate reads before reclaiming |
 
-*Its place in the environment — a **variant / known-use** of **Authoritative Lifecycle State**, under **MANAGE · Manage work, state, and resources**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-manage) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Authoritative Lifecycle State**, under **MANAGE · Manage work, state, and resources**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

@@ -17,7 +17,7 @@ incomplete).
 | Enforcement | **Hard** (deterministic) — the manifest declares each role-and-plane's required set, and an admission check refuses to start a process whose environment omits any required entry |
 | Derivation | `model-from-code` — the required set is reconciled against what each role's code actually reads |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

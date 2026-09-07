@@ -15,7 +15,7 @@ instances: one walker for the PDF structure tree, one for the checking pass, one
 | Enforcement | **Hard** (deterministic) · *blocking* — routed via the model ban-lints; raw recursion / regex-into-tree is banned alongside raw library access |
 | Derivation | `model-from-code` — induced from the code, reconciled at build |
 
-*Its place in the environment — a **variant / known-use** of **One Door Enforced**, under **CONSTRAIN · Constrain where and how agents act**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-constrain) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **One Door Enforced**, under **CONSTRAIN · Constrain where and how agents act**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

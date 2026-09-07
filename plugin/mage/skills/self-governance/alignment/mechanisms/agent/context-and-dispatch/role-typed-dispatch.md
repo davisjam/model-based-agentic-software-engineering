@@ -13,7 +13,7 @@ those choices are policy-by-type, not a per-dispatch judgment call.
 | Model | — |
 | Enforcement | **Hard** (deterministic) · *blocking at each gated op* — enforcers refuse calls whose role doesn't match (e.g. `lint-all` refuses `sonnet-active`) · human bypass `ADA_TOOL_BYPASS_ORCHESTRATOR_CHECK=1` (audit-logged) |
 
-*Its place in the environment — a **variant / known-use** of **Closed Action Vocabulary**, under **CONSTRAIN · Constrain where and how agents act**. Preserved here for its technical texture; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-constrain) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Closed Action Vocabulary**, under **CONSTRAIN · Constrain where and how agents act**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 

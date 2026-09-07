@@ -14,7 +14,7 @@ reality** (every model row ↔ a real thing on disk, and every real thing ↔ a 
 | Enforcement | **Hard** (deterministic) · *blocking* — a model that diverges from reality fails the build |
 | Governs | `all-models` — every model is held bidirectionally true to reality |
 
-*Its place in the environment — the **canonical mechanism** for **SYNC · Keep representations equal to reality**. The variants and known uses that fold under it are gathered on the [construction-kit page](../../constructing-the-gee.md#cap-sync).*
+*Its place in the environment — the **canonical mechanism** for **SYNC · Keep representations equal to reality**.*
 
 ## Motivation — the failure it kills
 

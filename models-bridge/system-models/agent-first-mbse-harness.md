@@ -16,7 +16,7 @@ five recurring disciplines, not a SysML tool).
 | Enforcement | **Hard** (deterministic) — the harness *is* construction (typed records); the counted sensors are the per-view drift lints that fail the build when a stored value or a model row diverges from the code |
 | Governs | `all-models` — every structured model is built on this harness |
 
-*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-know) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Executable Source of Truth**, under **KNOW · Maintain authoritative system knowledge**. Preserved here for its technical texture.*
 
 ## Motivation — the failure it kills
 
