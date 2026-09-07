@@ -3,14 +3,14 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 1248,
+    "total_sites": 1247,
     "by_projection": {
       "book-pdf": 14,
       "book-web": 905,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
-      "website-misc": 31,
+      "website-misc": 30,
       "website-resources": 6,
       "website-theory": 8
     }
@@ -571,7 +571,7 @@
           },
           {
             "file": "quick-start.html",
-            "occ": 31
+            "occ": 4
           }
         ],
         "website-theory": [
@@ -1237,7 +1237,7 @@
           },
           {
             "file": "book/appendix-e-applying-the-recipe.html",
-            "occ": 40
+            "occ": 39
           },
           {
             "file": "book/appendix-e-theory.html",
@@ -1365,7 +1365,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 318
+            "occ": 317
           },
           {
             "file": "book/index.html",
@@ -1459,7 +1459,7 @@
           },
           {
             "file": "quick-start.html",
-            "occ": 10
+            "occ": 26
           }
         ],
         "website-theory": [
@@ -3089,7 +3089,7 @@
           },
           {
             "file": "quick-start.html",
-            "occ": 7
+            "occ": 2
           }
         ],
         "website-theory": [
@@ -4396,10 +4396,6 @@
           {
             "file": "development-workflow.html",
             "occ": 1
-          },
-          {
-            "file": "quick-start.html",
-            "occ": 1
           }
         ],
         "website-theory": [
@@ -5221,7 +5217,7 @@
           },
           {
             "file": "book/appendix-e-applying-the-recipe.html",
-            "occ": 3
+            "occ": 5
           },
           {
             "file": "book/appendix-f-from-local-mage-to-the-product-gee.html",
@@ -5233,7 +5229,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 7
+            "occ": 9
           }
         ],
         "book-pdf": [

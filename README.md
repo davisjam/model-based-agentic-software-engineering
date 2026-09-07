@@ -117,7 +117,7 @@ can't name the failure a mechanism prevents in *your* system, you might not need
   the best way to read it: the governance map, a clickable census, and a full writeup per mechanism.
 - **[The paper](https://arxiv.org/pdf/2607.01087)** — *Cheap Code, Costly Judgment: A Case Study on
   Governable Agentic Software Engineering*: the theory, evidence, and testable propositions.
-- **[Quick start](quick-start.md)** — adopt these in your own repo.
+- **[Quick start](quick-start.html)** — adopt these in your own repo.
 - **The live system** these mechanisms govern: **DocAble** ([scholaccess.com](https://scholaccess.com)).
 
 ## The three skills
@@ -138,7 +138,7 @@ The catalogue also ships as **three partner Claude skills** (one plugin, `mage`)
 
 They partner: **operate routes a break to its fix; when a failure recurs, it hands the class to
 self-governance to convert into a mechanism; and self-communicate writes the result up in the shared
-register.** Install all three from the [quick start](quick-start.md).
+register.** Install all three from the [quick start](quick-start.html).
 
 Govern and operate are **two lenses on one substrate, not competitors.** self-governance is the *census of
 mechanisms* and the engine that mints new ones: the **design-time** view (what mechanisms exist, which you're
@@ -157,11 +157,11 @@ that's the pretty version, with the governance map, a clickable census, and a fu
 mechanism. This raw repo is what you **hand to your coding agent**: vendor it (or the
 [starter `CLAUDE.md`](downloads/CLAUDE-starter.md)) into your project, point your agent at it, and ask it
 to produce a plan to adopt / adapt / apply the mechanisms in your context. See the
-[quick start](quick-start.md).
+[quick start](quick-start.html).
 
 **Already have a `CLAUDE.md`?** Don't start fresh: fold the *method* (the AI-First Engineering stance in
 [`downloads/CLAUDE-starter.md`](downloads/CLAUDE-starter.md)) into your existing doc, adopt / adapt / skip
-per principle. The [quick start](quick-start.md) has ready prompts for before *or* after you install the
+per principle. The [quick start](quick-start.html) has ready prompts for before *or* after you install the
 skill.
 
 The source is organized by role ([`agent/`](agent/) · [`models-bridge/`](models-bridge/) ·

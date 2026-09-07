@@ -59,8 +59,8 @@
   <line x1="300" y1="324" x2="300" y2="367" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
   <!-- decision diamond -->
-  <polygon points="300,368 372,424 300,480 228,424" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
-  <text x="300" y="429" text-anchor="middle" font-size="16.4" font-weight="700" fill="#7a5c12">disagreement?</text>
+  <polygon points="300,368 372,424 300,480 228,424" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="300" y="429" text-anchor="middle" font-size="16.4" font-weight="700" fill="#9a3f12">disagreement?</text>
 
   <!-- decision -> GATE (solid) -->
   <path d="M258,452 C224,478 204.9,471.4 200,501" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>

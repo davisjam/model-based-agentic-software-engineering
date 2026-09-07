@@ -3425,6 +3425,137 @@ def _theory_svg_figure(asset: str, ns: str, caption: str = "") -> str:
     return f'<figure class="cc-body-fig">{svg}{cap}</figure>'
 
 
+_QUICKSTART_PAGE = "quick-start.html"
+
+
+def _quickstart_body() -> str:
+    """The 'Quick start' page — organized around the THREE MAGE skills (self-governance / self-operate /
+    self-communicate) acting on one governed engineering environment, not the mechanism catalogue and not
+    an adoption ceremony. website-v3 (260906): replaces the Path A / Path B + adoption-sequence page.
+    Generated (not markdown) so the book's Figure E.2-1 (assets/figure-composition.svg) inlines. One <h1>."""
+    p: "list[str]" = []
+    p.append("<h1>Quick start — put MAGE to work in your repository</h1>")
+    p.append(render_md(
+        "MAGE is an engineering methodology, not a framework or toolchain. You apply its principles to the "
+        "system you already have: make important engineering knowledge explicit, check work against "
+        "important requirements, and improve the engineering environment as experience reveals what was "
+        "missing.\n\n"
+        "The MAGE skills help an agent participate in that work. They divide the work into three "
+        "complementary responsibilities:\n\n"
+        "- **Self-Governance** engineers and improves the environment. It helps identify recurring failures, "
+        "repeated engineering judgment, missing knowledge, and weak controls, then turn what is learned into "
+        "durable improvements.\n"
+        "- **Self-Operate** runs operational lifecycles within that environment. It helps operate recurring "
+        "processes, respond to failures, and return evidence about deficiencies that may warrant improvement.\n"
+        "- **Self-Communicate** helps articulate the system to others. It supports clear technical "
+        "explanation through terminology, prose, rhetoric, diagrams, and other forms of communication. Some "
+        "of the resulting artifacts may themselves become canonical parts of the engineering environment."))
+    p.append(_theory_svg_figure(
+        "figure-composition.svg", "qs-skills",
+        "Three complementary skills act around one governed engineering environment. Self-Governance "
+        "improves the environment; Self-Operate runs operational lifecycles within it and returns evidence "
+        "about deficiencies; Self-Communicate articulates the system to others and contributes canonical "
+        "documentation to the environment."))
+    p.append(render_md(
+        "The skills are complementary rather than sequential. Self-Governance may improve structures that "
+        "Self-Operate later relies on; Self-Operate may reveal deficiencies that call for further governance "
+        "conversion. Self-Communicate helps people understand the system and its engineering structures, and "
+        "may contribute durable artifacts where that communication itself belongs in the environment.\n\n"
+        "## Install the MAGE skills\n\n"
+        "The MAGE plugin installs all three skills:\n\n"
+        "```\n"
+        "/plugin marketplace add davisjam/agent-governance-mechanisms\n"
+        "/plugin install mage@agent-governance-mechanisms\n"
+        "```\n\n"
+        "Start a new Claude Code session after installation.\n\n"
+        "The skills are source-visible and MIT-licensed. They can inspect your repository and propose "
+        "changes; consequential writes remain subject to your approval.\n\n"
+        "If you cannot install a third-party plugin, the skill sources can also be read and adapted "
+        "directly. You do not need a particular agent platform to apply the MAGE method."))
+    p.append(render_md(
+        "## Self-Governance — improve the engineering environment\n\n"
+        "Reach for Self-Governance when the same failure keeps recurring, engineers repeatedly supply the "
+        "same judgment, important system knowledge must repeatedly be reconstructed, or an important "
+        "requirement is not reliably checked.\n\n"
+        "A useful first step is an audit:\n\n"
+        "```\n"
+        "self-governance: audit this repository for places where important knowledge is\n"
+        "repeatedly reconstructed, engineering judgment is repeatedly supplied, failures\n"
+        "recur, or important requirements are not reliably checked.\n"
+        "Prioritize the opportunities by expected benefit and cost. Tell me what you\n"
+        "would improve first and why. Advise only; change nothing.\n"
+        "```\n\n"
+        "An audit is not a demand to add controls everywhere. MAGE treats durable engineering structure as "
+        "an investment. A proposed improvement should address a real or anticipated engineering cost and "
+        "justify the burden of creating and maintaining it.\n\n"
+        "When you already have a recurring failure in hand, start there instead:\n\n"
+        "```\n"
+        "self-governance: examine this recurring failure and determine what the\n"
+        "engineering environment is missing. Propose a durable change that would prevent\n"
+        "the failure, detect it earlier, or reduce the judgment required when it occurs.\n"
+        "Show me the proposed change and its expected cost before modifying anything.\n"
+        "```\n\n"
+        "The appropriate response might be a model, validator, constraint, safer interface, procedure, or "
+        "another change to the environment. The point is not to select an item from a catalogue. It is to "
+        "determine what this engineering system should learn from the failure."))
+    p.append(render_md(
+        "## Self-Operate — run the operational lifecycles\n\n"
+        "Reach for Self-Operate when the problem is not primarily changing the engineering environment but "
+        "running something within it: deployment, queues, scheduled work, agent fleets, session boundaries, "
+        "recovery procedures, or another recurring operational lifecycle.\n\n"
+        "For example:\n\n"
+        "```\n"
+        "self-operate: examine how this repository runs and recovers this lifecycle.\n"
+        "Identify the operational states, evidence, known failure conditions, and\n"
+        "recovery procedures already present.\n"
+        "Tell me what is explicit, what is being reconstructed during operation, and\n"
+        "what would make this lifecycle safer and easier to operate. Propose before\n"
+        "changing anything.\n"
+        "```\n\n"
+        "Self-Operate should use the engineering environment rather than reconstruct it on every run. When "
+        "operation reveals a recurring deficiency in that environment, the evidence can feed back into "
+        "Self-Governance.\n\n"
+        "That feedback is important: operation produces evidence for engineering."))
+    p.append(render_md(
+        "## Self-Communicate — articulate the system to others\n\n"
+        "Reach for Self-Communicate when someone needs to understand the system: its architecture, behavior, "
+        "rationale, terminology, operation, or another engineering concern.\n\n"
+        "Self-Communicate works on the problem of explanation. It can help choose the right form, establish "
+        "consistent terminology, write precise engineering prose, construct diagrams, and audit whether an "
+        "explanation actually communicates what its audience needs.\n\n"
+        "For example:\n\n"
+        "```\n"
+        "self-communicate: help me explain this system to an engineer who needs to work\n"
+        "with it. Inspect the relevant code and existing engineering material first.\n"
+        "Determine what the audience needs to understand, propose an appropriate\n"
+        "combination of prose and diagrams, and identify terminology that must remain\n"
+        "consistent. Show me the proposed structure before drafting it.\n"
+        "```\n\n"
+        "Some communication is transient: an explanation for a particular discussion, review, or "
+        "presentation. Other communication becomes part of the system's durable engineering knowledge. A "
+        "confirmed architecture description, house lexicon, diagram, or other explanatory artifact may "
+        "therefore become a canonical part of the engineering environment.\n\n"
+        "The distinction is purpose, not file type. Self-Communicate helps articulate the system; it does "
+        "not own every document merely because that document contains prose."))
+    p.append(render_md(
+        "## Start with work you are already paying for\n\n"
+        "You do not need to install a large collection of artifacts or redesign the repository before MAGE "
+        "becomes useful. Start where the engineering cost is already visible.\n\n"
+        "- A failure keeps recurring? Use Self-Governance to ask what the environment should learn from it.\n"
+        "- An operational lifecycle repeatedly requires reconstruction or intervention? Use Self-Operate to "
+        "make the lifecycle explicit and run it against the engineering environment.\n"
+        "- Someone cannot understand an important part of the system reliably? Use Self-Communicate to "
+        "articulate it clearly—and, when that explanation has enduring value, preserve the resulting "
+        "artifact.\n\n"
+        "The skills can lead into one another. Operation exposes deficiencies. Governance changes the "
+        "environment. Communication makes important aspects of the system intelligible to the people who "
+        "must understand them.\n\n"
+        "MAGE is successful when those improvements earn their keep, not when a repository accumulates the "
+        "largest possible collection of controls or artifacts.\n\n"
+        "[Read the MAGE method →](apply-mage.html)"))
+    return "\n".join(p)
+
+
 _APPLY_PAGE = "apply-mage.html"
 
 
@@ -4672,6 +4803,12 @@ def cmd_build(_args) -> int:
                        _crumb("", [("Apply the MAGE Method", "")]),
                        _apply_body(), rel_root="")
     open(os.path.join(ROOT, _APPLY_PAGE), "w", encoding="utf-8").write(apply_page)
+    # The Quick start page — organized around the three MAGE skills + the revised Figure E.2-1 (generated
+    # so the figure inlines). Replaces the retired Path A/B + adoption-sequence markdown page. Reachable
+    # from the hero 'Try MAGE' button, the 'Using MAGE' QuickStart card, the hero-cta, and the landing
+    # closing (its orphan-gate inbound edges).
+    quickstart = _page("Quick start", _crumb("", [("Quick start", "")]), _quickstart_body(), rel_root="")
+    open(os.path.join(ROOT, _QUICKSTART_PAGE), "w", encoding="utf-8").write(quickstart)
     # The two projected Resource pages — Talks + Writings (book-models/resources.json). Each is reachable
     # from the landing Resources section's 'Browse talks' / 'Browse writings' card (the orphan-gate inbound
     # edge); each links its assets under resources/. Book + Curriculum are existing surfaces, not projected.

@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Quick start — walk Claude through adopting these mechanisms</title>
+<title>Quick start</title>
 <style>@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('book/fonts/SourceSerif4/SourceSerif4-Regular.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-stretch:normal;font-display:swap;src:url('book/fonts/SourceSerif4/SourceSerif4-Semibold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('book/fonts/SourceSerif4/SourceSerif4-Bold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('book/fonts/SourceSerif4/SourceSerif4-It.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-stretch:normal;font-display:swap;src:url('book/fonts/SourceSerif4/SourceSerif4-SemiboldIt.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('book/fonts/SourceSerif4/SourceSerif4-BoldIt.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('book/fonts/SourceSans3/SourceSans3-Regular.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('book/fonts/SourceSans3/SourceSans3-Bold.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('book/fonts/SourceSans3/SourceSans3-It.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('book/fonts/SourceSans3/SourceSans3-BoldIt.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-stretch:normal;font-display:swap;src:url('book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}</style>
 <style>
   /* Legacy var aliases → design tokens: --line/--link predate the token model and are referenced across
@@ -215,163 +215,153 @@
 <body>
 <main>
 <a class="v3-nav-lab v3-nav-lab--crumb" href="https://davisjam.github.io/"><img src="https://davisjam.github.io/images/logo.svg" alt="Duality Lab — James C. Davis" width="76" height="25"></a>
-<nav class="crumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Quick start — walk Claude through adopting these mechanisms</nav>
-<h1>Quick start — walk Claude through adopting these mechanisms</h1>
-<p>Governance-centric agentic software engineering is a <strong>methodology</strong>: you adapt these patterns to your stack, your agents, and your failure modes. It is not a framework you drop in unchanged. The self-* skills aid the mindset. You install and run them, but they carry a stance to apply, not a black box to adopt.</p>
-<p>Claude reads the catalogue and turns it on your own repo. This page hands you the whole adoption sequence as <strong>paste-ready prompts</strong> — each asks Claude to examine a shipped starter and adapt it to your repo. You run the same sequence one of two ways:</p>
-<ul><li><strong>Auto mode</strong> — paste one block. Claude runs the sequence end to end, pausing for your approval at each write.</li><li><strong>Interactive mode</strong> — walk it step by step. Each prompt pairs with what it does and where to read more.</li></ul>
-<p>You also choose how to <em>bring</em> the mechanisms in, a choice orthogonal to the two run modes:</p>
-<ul><li><strong>Skill (Path A)</strong> — installable, auto-triggers, runs the loop for you.</li><li><strong>DIY (Path B)</strong> — read the patterns and adapt them by hand. Take this route when you can't run a plugin.</li></ul>
-<p>The prompts below mark <strong>(Path A)</strong> or <strong>(Path B)</strong> where the two diverge. Do step 0 first; the rest is the same sequence either way.</p>
-<h2>Step 0 — bring the mechanisms in</h2>
-<p><strong>Path A — install the skill (batteries included).</strong> The whole loop installs as a Claude skill that auto-triggers — no prompt to paste. Know what you install: a <strong>third-party plugin that reads your repo and, on your approval, writes it</strong>. It is source-visible, MIT-licensed, and does no network I/O; <em>audit</em> only advises, and <em>interpret-failure</em> acts only on your greenlight. In Claude Code:</p>
+<nav class="crumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Quick start</nav>
+<h1>Quick start — put MAGE to work in your repository</h1>
+<p>MAGE is an engineering methodology, not a framework or toolchain. You apply its principles to the system you already have: make important engineering knowledge explicit, check work against important requirements, and improve the engineering environment as experience reveals what was missing.</p>
+<p>The MAGE skills help an agent participate in that work. They divide the work into three complementary responsibilities:</p>
+<ul><li><strong>Self-Governance</strong> engineers and improves the environment. It helps identify recurring failures, repeated engineering judgment, missing knowledge, and weak controls, then turn what is learned into durable improvements.</li><li><strong>Self-Operate</strong> runs operational lifecycles within that environment. It helps operate recurring processes, respond to failures, and return evidence about deficiencies that may warrant improvement.</li><li><strong>Self-Communicate</strong> helps articulate the system to others. It supports clear technical explanation through terminology, prose, rhetoric, diagrams, and other forms of communication. Some of the resulting artifacts may themselves become canonical parts of the engineering environment.</li></ul>
+<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660"
+     role="img" aria-labelledby="qs-skills-scTitle qs-skills-scDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="qs-skills-scTitle">Three complementary skills acting around one governed engineering environment</title>
+  <desc id="qs-skills-scDesc">A central box, the governed engineering environment (GEE), sits at the centre. The
+    principal loop reads first: above it, self-governance improves the environment, an arrow points down into
+    the GEE labelled "improves"; the GEE then hosts self-operate below it, an arrow points down into
+    self-operate labelled "operates within"; and a thin dashed return arrow runs up the right side from
+    self-operate back to self-governance, labelled "evidence — reveals deficiencies," closing the loop so
+    that operation exposing a weakness re-enters governance. On the left, self-communicate has two edges: an
+    inward arrow into the GEE labelled "contributes canonical documentation," because some explanatory
+    artifacts become durable parts of the environment, and an outward arrow down to a people node labelled
+    "articulates the system," its broader function of making the system intelligible to others. The three
+    skills are complementary and their relationships to the environment differ by design.</desc>
+
+  <defs>
+    <marker id="qs-skills-scArrowRust" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="8.5" refY="5"
+            orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="qs-skills-scArrowBlue" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="8.5" refY="5"
+            orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="qs-skills-scArrowGray" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="8.5" refY="5"
+            orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="660" fill="#fdfcf9"/>
+
+  <!-- ============ self-governance (governance rust) — engineers/improves the environment ============ -->
+  <rect id="qs-skills-self-governance" x="430" y="48" width="340" height="84" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="600" y="86" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">Self-Governance</text>
+  <text x="600" y="113" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">engineers &amp; improves the environment</text>
+
+  <!-- ============ GEE (modeling green) — the one central environment ============ -->
+  <rect id="qs-skills-gee" x="430" y="270" width="340" height="120" rx="16" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="3.2"/>
+  <text x="600" y="316" text-anchor="middle" font-size="22" font-weight="700" fill="#1f7a4d">Governed Engineering</text>
+  <text x="600" y="344" text-anchor="middle" font-size="22" font-weight="700" fill="#1f7a4d">Environment</text>
+  <text x="600" y="370" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the GEE</text>
+
+  <!-- ============ self-operate (agent blue) — runs operational lifecycles within the GEE ============ -->
+  <rect id="qs-skills-self-operate" x="430" y="532" width="340" height="84" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="600" y="570" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">Self-Operate</text>
+  <text x="600" y="597" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">runs operational lifecycles</text>
+
+  <!-- ============ self-communicate (neutral) — articulates the system; two edges ============ -->
+  <rect id="qs-skills-self-communicate" x="40" y="300" width="224" height="100" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="152" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">Self-Communicate</text>
+  <text x="152" y="360" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">articulates the system</text>
+  <text x="152" y="382" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">to others</text>
+
+  <!-- ============ people / audience (neutral, external — dashed border) ============ -->
+  <rect id="qs-skills-people" x="40" y="470" width="224" height="72" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8" stroke-dasharray="4 5"/>
+  <text x="152" y="504" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">People</text>
+  <text x="152" y="526" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">engineers &amp; readers</text>
+
+  <!-- ================= PRIMARY LOOP edges (read first) ================= -->
+
+  <!-- SG -> GEE : improves (down, rust, bold) -->
+  <!-- edge: self-governance -> gee -->
+  <line x1="600" y1="132" x2="600" y2="268" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#qs-skills-scArrowRust)"/>
+  <text x="616" y="206" text-anchor="start" font-size="20" font-weight="700" fill="#9a3f12">improves</text>
+
+  <!-- GEE -> SO : operates within (down, blue, bold) -->
+  <!-- edge: gee -> self-operate -->
+  <line x1="600" y1="390" x2="600" y2="530" stroke="#2f5169" stroke-width="2.6" marker-end="url(#qs-skills-scArrowBlue)"/>
+  <text x="616" y="466" text-anchor="start" font-size="18" font-weight="700" fill="#2f5169">operates within</text>
+
+  <!-- SO -> SG : evidence return (thin dashed gray, secondary; closes the loop up the right side) -->
+  <!-- edge: self-operate .. self-governance -->
+  <path d="M770 574 H826 V90 H772" fill="none" stroke="#57534e" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#qs-skills-scArrowGray)"/>
+  <text x="834" y="320" text-anchor="start" font-size="16" font-weight="700" fill="#57534e">evidence</text>
+  <text x="834" y="340" text-anchor="start" font-size="16" fill="#57534e">reveals deficiencies</text>
+
+  <!-- ================= SECONDARY: self-communicate's two edges ================= -->
+
+  <!-- SC -> GEE : contributes canonical documentation (inward) -->
+  <!-- edge: self-communicate -> gee -->
+  <line x1="264" y1="362" x2="428" y2="362" stroke="#57534e" stroke-width="2.4" marker-end="url(#qs-skills-scArrowGray)"/>
+  <text x="347" y="308" text-anchor="middle" font-size="16" fill="#57534e">contributes</text>
+  <text x="347" y="326" text-anchor="middle" font-size="16" fill="#57534e">canonical</text>
+  <text x="347" y="344" text-anchor="middle" font-size="16" fill="#57534e">documentation</text>
+
+  <!-- SC -> People : articulates the system (outward) -->
+  <!-- edge: self-communicate -> people -->
+  <line x1="152" y1="400" x2="152" y2="470" stroke="#57534e" stroke-width="2.2" marker-end="url(#qs-skills-scArrowGray)"/>
+  <text x="172" y="440" text-anchor="start" font-size="16" fill="#57534e">articulates the system</text>
+</svg><figcaption>Three complementary skills act around one governed engineering environment. Self-Governance improves the environment; Self-Operate runs operational lifecycles within it and returns evidence about deficiencies; Self-Communicate articulates the system to others and contributes canonical documentation to the environment.</figcaption></figure>
+<p>The skills are complementary rather than sequential. Self-Governance may improve structures that Self-Operate later relies on; Self-Operate may reveal deficiencies that call for further governance conversion. Self-Communicate helps people understand the system and its engineering structures, and may contribute durable artifacts where that communication itself belongs in the environment.</p>
+<h2>Install the MAGE skills</h2>
+<p>The MAGE plugin installs all three skills:</p>
 <pre tabindex="0"><code>/plugin marketplace add davisjam/agent-governance-mechanisms
 /plugin install mage@agent-governance-mechanisms</code></pre>
-<p>The <code>mage</code> plugin ships <strong>three partner skills</strong>: <strong>self-governance</strong> (<em>harden</em> — audit for missing guardrails, or convert a recurring failure into a durable mechanism), <strong>self-operations</strong> (<em>operate</em> — run the agent-fleet substrate day-to-day), and <strong>self-communicate</strong> (<em>communicate</em> — write and diagram engineer-facing docs well: the rhetoric toolkit, the Diátaxis register, a house lexicon, and a prose-plus-diagram audit). All three install with the one plugin; start a new session and they load. Pull a later release with <code>/plugin marketplace update agent-governance-mechanisms</code>. No marketplace? Vendor the folder: copy <code>plugin/mage/skills/</code> into <code>~/.claude/skills/</code> (all projects) or <code>.claude/skills/</code> (one repo), then start a fresh session.</p>
-<p><strong>Path B — DIY (installs nothing).</strong> The conservative choice, for a company or anyone who can't run a third-party plugin. Nothing runs in your agent loop that you didn't write. Vendor a copy of the catalogue into your repo (or hand your agent the URL), and have your coding agent read the <a href="README.html"><code>README</code></a>, the <a href="INDEX.html"><code>INDEX</code></a>, and the role folders (<a href="agent/README.html"><code>agent/</code></a> · <a href="models-bridge/README.html"><code>models-bridge/</code></a> · <a href="product/README.html"><code>product/</code></a>) before you start the sequence.</p>
-<p>The two paths are <strong>not exclusive</strong>: install the skill on a personal project, and go DIY org-wide.</p>
-<h2>Run the sequence — Auto mode</h2>
-<p>Paste this once. Claude runs the whole adoption sequence, pausing for your approval before each write. Replace the <code>(Path A)</code> / <code>(Path B)</code> forks with the line that matches how you brought the mechanisms in (Step 0).</p>
-<pre tabindex="0"><code>Read this whole block, then work through the steps in order. For each step, propose
-before you write, and wait for my approval.
-
-# Step 1 — Fold the method into your CLAUDE.md  [either path]
-Read the AI-First Engineering Method in downloads/CLAUDE-starter.md (Part A) and my existing
-CLAUDE.md (or create one if I have none). Propose edits that fold the method into my doc —
-adopt / adapt / skip per principle, preserving my current rules. For the rule index, apply the
-"earns a spot" test from the claude-md-rule-index mechanism: regression-preventing,
-non-derivable-from-local-code, non-local. Show me a diff before writing anything.
-
-# Step 2 — Survey the repo for missing guardrails  [either path]
-(Path A) self-governance: run audit mode against my repo. Survey it against the catalogue and produce a
-prioritized adopt / adapt / skip plan — highest-leverage, lowest-cost first — and name the one mechanism
-you'd build first. Advise only; change nothing.
-(Path B) Read the governance-mechanisms catalogue (README, INDEX, and the agent/ models-bridge/ product/
-role folders). For each mechanism, judge whether my repo needs it, already has it, or would benefit.
-Produce a prioritized adopt / adapt / skip plan, start with the highest-leverage lowest-cost mechanisms,
-and tell me the one you'd build first. Advise only; change nothing.
-
-# Step 3 — Adopt the model-based-engineering kit  [either path]
-Read the model-based-engineering starter kit in downloads/system-models-starter-kit.md and the
-executable-source-of-truth mechanism under models-bridge/. Then look at my repo — its services,
-state machines, cross-service seams, and deploy topology. Tell me which model views (state-machine,
-component/zone, service-flow, deployment-topology) would earn their keep for MY system and which to
-skip. For the ones worth it, draft the first view from the matching scaffold, citing real files.
-State your assumptions so I correct rather than supply, and confirm the model before you emit anything.
-
-# Step 4 — Adapt the agent-brief validator  [either path]
-Read the agent-brief starter in downloads/agent-brief-starter.md and the brief-linting mechanism under
-agent/context-and-dispatch/. Look at how I dispatch agents today — what a brief contains, where it lives,
-what a bad one looks like. Adapt the brief template to my fields, then draft a brief-linting check that
-refuses to launch a brief missing the required markers. Show me the template and the check before writing.
-
-# Step 5 — Wire the operator-loop hooks (reflection + banking)  [Path A]
-(Path A) self-operations: read your SKILL.md and the shipped hook library (the reflection, memory-routing,
-and banking hooks behind the typed hook substrate). Inspect my repo — how agents run, where a turn ends,
-where context is banked. Propose which operator-loop hooks are worth wiring for me, adapt the shipped hook
-library and its settings snippet to my repo, and show me the wiring before enabling anything.
-
-# Step 6 — Adopt the Epic / design-doc / handoff templates  [either path]
-Read the Epic template (downloads/EPIC-TEMPLATE-starter.md), the design-doc template
-(downloads/design-doc-template-starter.md), and the handoff scaffold (downloads/emit-handoff-starter.py),
-plus the epic-and-design-templates mechanism under agent/governance-doc-controls/. Compare against how I
-plan and track multi-step work today. Adapt the three artifacts to my repo — keep the required sections
-and the Definition-of-Done — and wire the handoff generator to my session-boundary. Show me the drafts first.
-
-# Step 7 — Adopt an operational playbook for one substrate  [Path B]
-Read the operational-playbook starter (downloads/op-playbook-starter.md) and the operational-playbooks
-mechanism under agent/governance-doc-controls/. Pick the substrate in my repo that breaks most often (deploy,
-the queue, the host VM, cron — your call, tell me why). Draft a situation-keyed playbook for it: per failure,
-the symptom, the cause, and the fix, citing real files. Show me the draft before writing it.
-
-# Step 8 — Bootstrap your house lexicon, then write and audit prose with the skill  [either path]
-(Path A) self-communicate: bootstrap my house lexicon — walk my codebase (sample my house-rules doc, a
-handful of design docs, and my typed enums / registries / schema constants), extract every term I use with a
-specific meaning more than once, classify each as portable (link the established name) or house (note the
-concept it renames), and draft the lexicon table. Confirm the terms with me before you commit them. Then,
-when I write a mechanism description, a design doc, a runbook, or a handoff, apply the engineering register and
-run the audit procedure over the draft and show me the fixes.
-(Path B) Read the self-communicate skill resources (its SKILL.md plus the writing/lexicon.md, writing/engineering.md,
-writing/rhetoric.md, writing/voice.md, writing/audit.md, and drawing/diagrams.md files under the skills/self-communicate folder).
-Bootstrap my house lexicon by walking my codebase per the lexicon's bootstrap recipe, confirm the terms with
-me, then use the engineering register to write my docs and the audit procedure to grade them.</code></pre>
-<h2>Run the sequence — Interactive mode</h2>
-<p>Walk it one step at a time. Each step pairs its prompt with what it does and where to read more. <code>(Path A)</code> / <code>(Path B)</code> tags mark the steps that differ by how you installed; unmarked steps are the same either way.</p>
-<h3>Step 1 — Fold the method into your CLAUDE.md</h3>
-<p>The mechanisms are the <em>what</em>; the method is the <em>how</em> — the AI-First Engineering stance plus the rule-index discipline that decides what earns a spot in a governance doc. Put it in your own house-rules file so it shapes how your agents reason on every boot, not only when a skill fires. Already have a <code>CLAUDE.md</code>? Integrate; don't start fresh.</p>
-<pre tabindex="0"><code>Read the AI-First Engineering Method in downloads/CLAUDE-starter.md (Part A) and my existing
-CLAUDE.md (or create one if I have none). Propose edits that fold the method into my doc —
-adopt / adapt / skip per principle, preserving my current rules. For the rule index, apply the
-"earns a spot" test from the claude-md-rule-index mechanism: regression-preventing,
-non-derivable-from-local-code, non-local. Show me a diff before writing anything.</code></pre>
-<p><strong>Read more:</strong> <a href="downloads/CLAUDE-starter.md">CLAUDE-starter (the method)</a> · <a href="agent/governance-doc-controls/claude-md-rule-index.html">claude-md-rule-index</a></p>
-<h3>Step 2 — Survey the repo for missing guardrails</h3>
-<p>Before adopting any single mechanism, get the map: which mechanisms your repo needs, already has, or would benefit from. Path A runs this as the skill's <strong>audit</strong> mode (advises, changes nothing). Path B asks the same of a plain agent pointed at the catalogue.</p>
-<pre tabindex="0"><code>(Path A) self-governance: run audit mode against my repo. Survey it against the catalogue and produce a
-prioritized adopt / adapt / skip plan — highest-leverage, lowest-cost first — and name the one mechanism
-you'd build first. Advise only; change nothing.
-(Path B) Read the governance-mechanisms catalogue (README, INDEX, and the agent/ models-bridge/ product/
-role folders). For each mechanism, judge whether my repo needs it, already has it, or would benefit.
-Produce a prioritized adopt / adapt / skip plan, start with the highest-leverage lowest-cost mechanisms,
-and tell me the one you'd build first. Advise only; change nothing.</code></pre>
-<p><strong>Read more:</strong> <a href="INDEX.html">INDEX (the census)</a> · <a href="catalogue-views.html">catalogue views</a></p>
-<h3>Step 3 — Adopt the model-based-engineering kit</h3>
-<p>The scaling unlock for agents that keep breaking things that "looked unrelated": model your system as typed data that tools read on every run — a state-machine view, a component/zone view, a service-flow view, a deployment-topology view. The starter kit ships fill-in scaffolds for each; the mechanism entry explains why an <em>executable</em> model that governs the code beats prose that drifts.</p>
-<pre tabindex="0"><code>Read the model-based-engineering starter kit in downloads/system-models-starter-kit.md and the
-executable-source-of-truth mechanism under models-bridge/. Then look at my repo — its services,
-state machines, cross-service seams, and deploy topology. Tell me which model views (state-machine,
-component/zone, service-flow, deployment-topology) would earn their keep for MY system and which to
-skip. For the ones worth it, draft the first view from the matching scaffold, citing real files.
-State your assumptions so I correct rather than supply, and confirm the model before you emit anything.</code></pre>
-<p><strong>Read more:</strong> <a href="downloads/system-models-starter-kit.md">system-models starter kit</a> · <a href="models-bridge/system-models/executable-source-of-truth.html">executable source of truth</a> · <a href="models-bridge/README.html">models-bridge role</a></p>
-<h3>Step 4 — Adapt the agent-brief validator</h3>
-<p>If you run more than one agent at a time, a brief-linting gate pays off immediately: it statically checks a task brief <em>before</em> the agent spawns and refuses to launch a malformed one. Start from the brief template, then adapt the genre-aware validator to the fields your dispatch actually uses.</p>
-<pre tabindex="0"><code>Read the agent-brief starter in downloads/agent-brief-starter.md and the brief-linting mechanism under
-agent/context-and-dispatch/. Look at how I dispatch agents today — what a brief contains, where it lives,
-what a bad one looks like. Adapt the brief template to my fields, then draft a brief-linting check that
-refuses to launch a brief missing the required markers. Show me the template and the check before writing.</code></pre>
-<p><strong>Read more:</strong> <a href="downloads/agent-brief-starter.md">agent-brief starter</a> · <a href="agent/context-and-dispatch/brief-linting.html">brief-linting</a> · <a href="agent/context-and-dispatch/role-typed-dispatch.html">role-typed dispatch</a></p>
-<h3>Step 5 — Wire the operator-loop hooks (reflection + banking) <em>(Path A)</em></h3>
-<p>The self-operations skill ships a runnable hook library: a turn-end reflection nudge, a memory-routing nudge, and a context-banking check, all gated behind one typed hook substrate so they fire on tempo instead of every turn. Have the skill inspect your runtime and propose which hooks are worth wiring, then adapt the shipped library to your repo.</p>
-<pre tabindex="0"><code>(Path A) self-operations: read your SKILL.md and the shipped hook library (the reflection, memory-routing,
-and banking hooks behind the typed hook substrate). Inspect my repo — how agents run, where a turn ends,
-where context is banked. Propose which operator-loop hooks are worth wiring for me, adapt the shipped hook
-library and its settings snippet to my repo, and show me the wiring before enabling anything.</code></pre>
-<p><strong>Read more:</strong> <a href="downloads/self-operations-starter.md">self-operations starter</a> · <a href="agent/lifecycle-and-observability/lifecycle-hooks.html">lifecycle hooks</a> · <a href="agent/lifecycle-and-observability/reflection-facet-substrate.html">reflection-facet substrate</a></p>
-<h3>Step 6 — Adopt the Epic / design-doc / handoff templates</h3>
-<p>The three planning artifacts an orchestrator authors — the Epic (the effort, with its Definition-of-Done), the design doc (the plan), and the machine-generated handoff (the context carried across sessions). Adopt the templates so your plans <em>drive</em> the work instead of being written after the fact.</p>
-<pre tabindex="0"><code>Read the Epic template (downloads/EPIC-TEMPLATE-starter.md), the design-doc template
-(downloads/design-doc-template-starter.md), and the handoff scaffold (downloads/emit-handoff-starter.py),
-plus the epic-and-design-templates mechanism under agent/governance-doc-controls/. Compare against how I
-plan and track multi-step work today. Adapt the three artifacts to my repo — keep the required sections
-and the Definition-of-Done — and wire the handoff generator to my session-boundary. Show me the drafts first.</code></pre>
-<p><strong>Read more:</strong> <a href="downloads/EPIC-TEMPLATE-starter.md">Epic template</a> · <a href="downloads/design-doc-template-starter.md">design-doc template</a> · <a href="downloads/emit-handoff-starter.py">handoff generator</a> · <a href="agent/governance-doc-controls/epic-and-design-templates.html">epic-and-design-templates</a></p>
-<h3>Step 7 — Adopt an operational playbook for one substrate <em>(Path B)</em></h3>
-<p>A playbook is a situation-keyed operating manual for a substrate: for each thing that can go wrong, the symptom, the cause, and the fix. Start with the substrate that breaks most, and let the operator-runbook discipline turn tribal knowledge into a doc your agent can follow.</p>
-<pre tabindex="0"><code>Read the operational-playbook starter (downloads/op-playbook-starter.md) and the operational-playbooks
-mechanism under agent/governance-doc-controls/. Pick the substrate in my repo that breaks most often (deploy,
-the queue, the host VM, cron — your call, tell me why). Draft a situation-keyed playbook for it: per failure,
-the symptom, the cause, and the fix, citing real files. Show me the draft before writing it.</code></pre>
-<p><strong>Read more:</strong> <a href="downloads/op-playbook-starter.md">op-playbook starter</a> · <a href="agent/governance-doc-controls/operational-playbooks.html">operational playbooks</a> · <a href="agent/governance-doc-controls/operator-runbook-skill.html">operator-runbook skill</a></p>
-<h3>Step 8 — Bootstrap your house lexicon, then write and audit prose with the skill</h3>
-<p>The mechanisms, design docs, runbooks, and handoffs you adopt above are all <em>prose</em> — and prose an engineer or agent must read cleanly. The self-communicate skill supplies the craft: a house lexicon (so a term means the same thing everywhere), the Diátaxis register (so a doc has the right shape), and an audit that grades a passage and emits fixes. Bootstrap the lexicon first by walking your codebase and confirming the terms with the maintainer; then write and audit prose against the skill.</p>
-<pre tabindex="0"><code>(Path A) self-communicate: bootstrap my house lexicon — walk my codebase (sample my house-rules doc, a
-handful of design docs, and my typed enums / registries / schema constants), extract every term I use with a
-specific meaning more than once, classify each as portable (link the established name) or house (note the
-concept it renames), and draft the lexicon table. Confirm the terms with me before you commit them. Then,
-when I write a mechanism description, a design doc, a runbook, or a handoff, apply the engineering register and
-run the audit procedure over the draft and show me the fixes.
-(Path B) Read the self-communicate skill resources (its SKILL.md plus the writing/lexicon.md, writing/engineering.md,
-writing/rhetoric.md, writing/voice.md, writing/audit.md, and drawing/diagrams.md files under the skills/self-communicate folder).
-Bootstrap my house lexicon by walking my codebase per the lexicon's bootstrap recipe, confirm the terms with
-me, then use the engineering register to write my docs and the audit procedure to grade them.</code></pre>
-<h2>Which path?</h2>
-<table><thead><tr><th>Aspect</th><th>Path A — self-governance skill</th><th>Path B — catalogue (DIY)</th></tr></thead><tbody><tr><td><strong>Installs</strong></td><td>a Claude plugin</td><td>nothing</td></tr><tr><td><strong>Runs in your loop</strong></td><td>the skill (gated; greenlight to write)</td><td>only what you write</td></tr><tr><td><strong>Effort</strong></td><td>auto-triggers, runs the loop</td><td>adapt by hand</td></tr><tr><td><strong>Best for</strong></td><td>individuals / teams who want it automated</td><td>companies, the security-conservative, full control</td></tr></tbody></table>
-<h2>What to reach for first</h2>
-<ul><li><strong>Running more than one agent at a time?</strong> Start with the <strong>agent</strong> role. A <a href="agent/context-and-dispatch/brief-linting.html">brief-linting</a> gate and a <a href="agent/gates-and-merge-train/pre-commit-hook.html">pre-commit hook</a> pay off immediately.</li><li><strong>Agents keep breaking things that "looked unrelated"?</strong> Reach for the <strong>models-bridge</strong> role. A typed <a href="models-bridge/system-models/executable-source-of-truth.html">executable source of truth</a> that agents read and that governs the codebase is the scaling unlock.</li><li><strong>Shipping a user-facing artifact?</strong> Reach for the <strong>product</strong> role. A <a href="product/validation-and-conformance/content-validator.html">content validator</a> and a closed <a href="product/repair-vocabulary/remediation-verbs.html">repair vocabulary</a> bound what the agent can get wrong.</li></ul>
-<h2>The mindset</h2>
-<p>Every mechanism is written as <em>the failure it kills</em> and <em>why it is not just the cheaper thing everyone already does</em>. Keep that framing when you adapt one. Name the failure in <strong>your</strong> system — one you've hit, or one you can see coming — then borrow the mechanism. A mechanism you can't attach to any failure, real or anticipated, is one you don't need yet.</p>
-<p>For one engineer's experience with this method, see the <a href="https://arxiv.org/pdf/2607.01087">paper</a>.</p>
+<p>Start a new Claude Code session after installation.</p>
+<p>The skills are source-visible and MIT-licensed. They can inspect your repository and propose changes; consequential writes remain subject to your approval.</p>
+<p>If you cannot install a third-party plugin, the skill sources can also be read and adapted directly. You do not need a particular agent platform to apply the MAGE method.</p>
+<h2>Self-Governance — improve the engineering environment</h2>
+<p>Reach for Self-Governance when the same failure keeps recurring, engineers repeatedly supply the same judgment, important system knowledge must repeatedly be reconstructed, or an important requirement is not reliably checked.</p>
+<p>A useful first step is an audit:</p>
+<pre tabindex="0"><code>self-governance: audit this repository for places where important knowledge is
+repeatedly reconstructed, engineering judgment is repeatedly supplied, failures
+recur, or important requirements are not reliably checked.
+Prioritize the opportunities by expected benefit and cost. Tell me what you
+would improve first and why. Advise only; change nothing.</code></pre>
+<p>An audit is not a demand to add controls everywhere. MAGE treats durable engineering structure as an investment. A proposed improvement should address a real or anticipated engineering cost and justify the burden of creating and maintaining it.</p>
+<p>When you already have a recurring failure in hand, start there instead:</p>
+<pre tabindex="0"><code>self-governance: examine this recurring failure and determine what the
+engineering environment is missing. Propose a durable change that would prevent
+the failure, detect it earlier, or reduce the judgment required when it occurs.
+Show me the proposed change and its expected cost before modifying anything.</code></pre>
+<p>The appropriate response might be a model, validator, constraint, safer interface, procedure, or another change to the environment. The point is not to select an item from a catalogue. It is to determine what this engineering system should learn from the failure.</p>
+<h2>Self-Operate — run the operational lifecycles</h2>
+<p>Reach for Self-Operate when the problem is not primarily changing the engineering environment but running something within it: deployment, queues, scheduled work, agent fleets, session boundaries, recovery procedures, or another recurring operational lifecycle.</p>
+<p>For example:</p>
+<pre tabindex="0"><code>self-operate: examine how this repository runs and recovers this lifecycle.
+Identify the operational states, evidence, known failure conditions, and
+recovery procedures already present.
+Tell me what is explicit, what is being reconstructed during operation, and
+what would make this lifecycle safer and easier to operate. Propose before
+changing anything.</code></pre>
+<p>Self-Operate should use the engineering environment rather than reconstruct it on every run. When operation reveals a recurring deficiency in that environment, the evidence can feed back into Self-Governance.</p>
+<p>That feedback is important: operation produces evidence for engineering.</p>
+<h2>Self-Communicate — articulate the system to others</h2>
+<p>Reach for Self-Communicate when someone needs to understand the system: its architecture, behavior, rationale, terminology, operation, or another engineering concern.</p>
+<p>Self-Communicate works on the problem of explanation. It can help choose the right form, establish consistent terminology, write precise engineering prose, construct diagrams, and audit whether an explanation actually communicates what its audience needs.</p>
+<p>For example:</p>
+<pre tabindex="0"><code>self-communicate: help me explain this system to an engineer who needs to work
+with it. Inspect the relevant code and existing engineering material first.
+Determine what the audience needs to understand, propose an appropriate
+combination of prose and diagrams, and identify terminology that must remain
+consistent. Show me the proposed structure before drafting it.</code></pre>
+<p>Some communication is transient: an explanation for a particular discussion, review, or presentation. Other communication becomes part of the system's durable engineering knowledge. A confirmed architecture description, house lexicon, diagram, or other explanatory artifact may therefore become a canonical part of the engineering environment.</p>
+<p>The distinction is purpose, not file type. Self-Communicate helps articulate the system; it does not own every document merely because that document contains prose.</p>
+<h2>Start with work you are already paying for</h2>
+<p>You do not need to install a large collection of artifacts or redesign the repository before MAGE becomes useful. Start where the engineering cost is already visible.</p>
+<ul><li>A failure keeps recurring? Use Self-Governance to ask what the environment should learn from it.</li><li>An operational lifecycle repeatedly requires reconstruction or intervention? Use Self-Operate to make the lifecycle explicit and run it against the engineering environment.</li><li>Someone cannot understand an important part of the system reliably? Use Self-Communicate to articulate it clearly—and, when that explanation has enduring value, preserve the resulting artifact.</li></ul>
+<p>The skills can lead into one another. Operation exposes deficiencies. Governance changes the environment. Communication makes important aspects of the system intelligible to the people who must understand them.</p>
+<p>MAGE is successful when those improvements earn their keep, not when a repository accumulates the largest possible collection of controls or artifacts.</p>
+<p><a href="apply-mage.html">Read the MAGE method →</a></p>
 <footer class="site-foot"><span class="foot-line foot-copy">© <a href="https://davisjam.github.io">James C. Davis</a>, 2026–present &nbsp;·&nbsp; Assistant Professor, ECE @ Purdue</span><span class="foot-line foot-links"><a class="gh" href="https://github.com/davisjam/model-based-agentic-software-engineering"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" style="vertical-align:-2px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> model-based-agentic-software-engineering</a>&nbsp;·&nbsp; <a class="book-foot" href="book/index.html">Read the book →</a>&nbsp;·&nbsp; <a class="book-foot" href="book/mage-book.pdf"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;fill:currentColor"><path d="M4 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V4.5L9.5 0H4zm5 1.5L12.5 5H9V1.5zM4.9 8.2h1c.5 0 .9.4.9.9s-.4.9-.9.9h-.4v1.1h-.6V8.2zm.6.5v.8h.3c.2 0 .3-.1.3-.4s-.1-.4-.3-.4h-.3zm2 .0h.9c.6 0 1 .5 1 1.4s-.4 1.5-1 1.5h-.9V8.7zm.6.5v1.8h.2c.3 0 .5-.3.5-.9s-.2-.9-.5-.9h-.2zm2.3-.5h1.7v.5h-1.1v.6h1v.5h-1v1.2h-.6V8.7z"></path></svg> PDF</a></span><span class="foot-line foot-nsf">This work was supported by the U.S. National Science Foundation under grants #2541917 and #2452533.</span></footer>
 </main>
 </body>

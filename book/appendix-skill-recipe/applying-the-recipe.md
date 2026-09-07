@@ -219,7 +219,7 @@ self-governance changes it, self-operate runs it and returns evidence, and self-
 representations.
 
 <!-- label: fig-skill-composition -->
-<!-- figure: assets/figure-composition.svg | Three orthogonal skills act on one governed engineering environment. Self-governance improves it; self-operate runs it and returns evidence; self-communicate governs the representations both produce. -->
+<!-- figure: assets/figure-composition.svg | *Three complementary skills act around one governed engineering environment.* Self-Governance improves the environment; Self-Operate runs operational lifecycles within it and returns evidence about deficiencies; Self-Communicate articulates the system to others and contributes canonical documentation to the environment. -->
 
 Orthogonality does not require isolation. Each skill has one reason to change—communication, engineering
 judgment, or operation—and explicit interfaces connect them. Self-governance produces models and
