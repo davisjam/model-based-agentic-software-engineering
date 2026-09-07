@@ -188,7 +188,10 @@
 
   /* ---- HERO band: a prose-led lead that flows straight into the Big Idea 1 churn flowchart ---- */
   .hero-band { margin:8px 0 6px; }
-  .hero-lead { max-width:1000px; margin:0 auto; text-align:center; }
+  /* Content width — one shared max across hero / sections / one-page so the page is a CONSISTENT width
+     throughout, not narrow above-and-below a wide middle. Prose stays readable via inner caps
+     (.m-lead 82ch, .sec-lead 44rem); the card grids and the one-page figure use the extra width. */
+  .hero-lead { max-width:min(1680px, 100%); margin:0 auto; text-align:center; }
   .hero-lead .book-h1 { margin-top:0; }
   .hero-lead .book-sub { margin-left:auto; margin-right:auto; }
   /* A wider, larger lead paragraph — a comfortable reading measure that better matches the full-width
@@ -397,7 +400,7 @@
     .onepage-body .claim:first-child { border-top:none; padding-top:0.2rem; }
   }
 
-  .v3-sec { max-width:52rem; margin:3rem auto; }
+  .v3-sec { max-width:min(1680px, 100%); margin:3rem auto; }
   .v3-cards { display:grid; gap:18px; margin-top:1rem; }
   .v3-cards-3 { grid-template-columns:repeat(3,1fr); }
   .v3-cards-2 { grid-template-columns:repeat(2,1fr); }
@@ -497,7 +500,7 @@
 <body class="landing">
 <main>
 <nav class="v3-nav" aria-label="Primary">
-  <a class="v3-nav-lab" href="https://davisjam.github.io/"><img src="https://davisjam.github.io/images/logo.svg" alt="Duality Lab — James C. Davis" width="116" height="38"></a>
+  <a class="v3-nav-lab" href="https://davisjam.github.io/"><img src="https://davisjam.github.io/images/logo.svg" alt="Duality Lab — James C. Davis" width="150" height="49"></a>
   <a class="v3-nav-home" href="index.html"><svg class="v3-nav-hat" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="var(--accent)" d="M21 22H3v-2h18zm-2-3H5l6.1-16.4q.3-.6.9-.6l6 3h-4.1zM10 7.5l1.04.47L11.5 9l.47-1.03L13 7.5l-1.03-.47L11.5 6l-.46 1.03zm3 7.5-2.06-.93L10 12l-.93 2.07L7 15l2.07.93L10 18l.94-2.07zm.97-3.03L15 11.5l-1.03-.47L13.5 10l-.46 1.03-1.04.47 1.04.47.46 1.03zm2 4L17 15.5l-1.03-.47L15.5 14l-.46 1.03-1.04.47 1.04.47.46 1.03z"/></svg>MAGE</a>
   <div class="v3-nav-groups">
     <a class="v3-nav-item" href="#resources">Resources</a>
