@@ -5873,7 +5873,7 @@
             },
             {
               "slug": "repocoder-sweagent-autocoderover-share-an-orientation",
-              "text": "RepoCoder, SWE-agent, and AutoCodeRover differ, but they share an orientation: improve the machinery through which an agent acts on the software artifact.",
+              "text": "RepoCoder, SWE-agent, and AutoCodeRover differ, but they share an orientation: improve the machinery an agent uses to act on the software artifact.",
               "block_index": 13
             },
             {
@@ -5892,7 +5892,7 @@
           "section_id": "the-old-dream-with-a-new-substrate",
           "level": 2,
           "heading_text": "The Old Dream, with a New Substrate",
-          "topic_sentence": "The dream is older than the present substrate.",
+          "topic_sentence": "The ambition is older than the present substrate.",
           "id_source": "derived",
           "block_index": 19,
           "points": [
@@ -5940,7 +5940,7 @@
           "section_id": "the-software-factory-risk",
           "level": 2,
           "heading_text": "The Software Factory Risk",
-          "topic_sentence": "The alternative trajectory deserves attention.",
+          "topic_sentence": "There is another possible trajectory.",
           "id_source": "derived",
           "block_index": 49,
           "points": []
@@ -6185,22 +6185,22 @@
             {
               "slug": "object-of-review-moves-accountability-does-not",
               "text": "The object of review moves to models and evidence; accountability does not move.",
-              "block_index": 54
+              "block_index": 53
             },
             {
               "slug": "early-evidence-supervisory-engineering-work",
               "text": "Early evidence describes supervisory engineering work; MAGE would give that supervision better reasoning surfaces.",
-              "block_index": 56
+              "block_index": 55
             },
             {
               "slug": "answerability-requires-competence-and-a-path-to-change",
               "text": "Real answerability requires competence and a path to change the environment, or responsibility becomes nominal.",
-              "block_index": 58
+              "block_index": 57
             },
             {
               "slug": "models-remain-objects-of-engineering-fidelity-maintained",
               "text": "Models remain objects of engineering: their fidelity to the system must be maintained and evidenced, not assumed.",
-              "block_index": 60
+              "block_index": 59
             }
           ]
         },
@@ -6210,37 +6210,37 @@
           "heading_text": "From Full-Stack to Full-System Engineering",
           "topic_sentence": "Software has used full-stack engineer to describe someone able to work across multiple implementation layers: interface, application logic, data, infrastructure, and deployment.",
           "id_source": "derived",
-          "block_index": 62,
+          "block_index": 61,
           "points": [
             {
               "slug": "commodity-intelligence-eases-full-stack-breadth",
               "text": "Commodity intelligence can make full-stack breadth across implementation layers easier to obtain.",
-              "block_index": 63
+              "block_index": 62
             },
             {
               "slug": "engineer-must-reason-across-full-system-and-lifecycle",
               "text": "MAGE requires reasoning across the full system and its lifecycle, not merely the implementation stack.",
-              "block_index": 65
+              "block_index": 64
             },
             {
               "slug": "docable-required-breadth-across-interacting-domains",
               "text": "Building DocAble required breadth across many interacting domains; no single concern defined the system.",
-              "block_index": 67
+              "block_index": 66
             },
             {
               "slug": "cheap-implementation-enables-judgment-developing-hyper-exploration",
               "text": "Cheap implementation enables hyper-exploration that develops engineering judgment rather than deskilling the engineer.",
-              "block_index": 69
+              "block_index": 68
             },
             {
               "slug": "consequential-judgment-follows-a-property-across-the-lifecycle",
               "text": "Consequential judgment often requires following a property across the whole lifecycle, not just implementation.",
-              "block_index": 71
+              "block_index": 70
             },
             {
               "slug": "trajectory-from-full-stack-to-full-system",
               "text": "The professional trajectory runs from full-stack toward full-system engineering, the scarcer competence.",
-              "block_index": 73
+              "block_index": 72
             }
           ]
         },
@@ -6250,12 +6250,12 @@
           "heading_text": "What Should We Teach?",
           "topic_sentence": "If engineers increasingly review systems through representations and evidence rather than reconstructing every property from implementation, education should shift accordingly.",
           "id_source": "derived",
-          "block_index": 75,
+          "block_index": 74,
           "points": [
             {
               "slug": "education-should-shift-toward-representations-and-evidence",
               "text": "If review shifts to representations and evidence, education should shift accordingly.",
-              "block_index": 76
+              "block_index": 75
             }
           ]
         },
@@ -6265,17 +6265,17 @@
           "heading_text": "The curriculum remains recognizable",
           "topic_sentence": "Most of the foundations remain.",
           "id_source": "derived",
-          "block_index": 78,
+          "block_index": 77,
           "points": [
             {
               "slug": "curriculum-foundations-remain-recognizable",
               "text": "The curriculum stays recognizable; commodity intelligence does not wholesale-replace the foundations.",
-              "block_index": 79
+              "block_index": 78
             },
             {
               "slug": "what-changes-is-the-allocation-of-attention",
               "text": "What changes is the allocation of attention toward the competencies that remain scarce.",
-              "block_index": 81
+              "block_index": 80
             }
           ]
         },
@@ -6285,17 +6285,17 @@
           "heading_text": "Shift the emphasis",
           "topic_sentence": "Less educational effort may need to go toward producing routine implementation by hand, and more toward selecting abstractions, specifying properties, measuring systems, validating claims, reasoning about quality attributes, and governing autonomous work.",
           "id_source": "derived",
-          "block_index": 83,
+          "block_index": 82,
           "points": [
             {
               "slug": "shift-emphasis-to-abstractions-specification-validation",
               "text": "Shift educational emphasis toward abstractions, specification, validation, modeling, and formal methods.",
-              "block_index": 84
+              "block_index": 83
             },
             {
               "slug": "coordination-becomes-a-technical-concern-at-individual-scale",
               "text": "Coordination becomes a technical concern at individual scale under agentic implementation capacity.",
-              "block_index": 86
+              "block_index": 85
             }
           ]
         },
@@ -6305,22 +6305,22 @@
           "heading_text": "Change what students demonstrate",
           "topic_sentence": "A capstone should therefore demonstrate more than a working artifact.",
           "id_source": "derived",
-          "block_index": 88,
+          "block_index": 87,
           "points": [
             {
               "slug": "capstone-should-carry-the-engineering-case",
               "text": "A capstone should carry the engineering case, not only a working artifact.",
-              "block_index": 89
+              "block_index": 88
             },
             {
               "slug": "program-objectives-change-little-practice-changes",
               "text": "Program objectives change little; how students practice and demonstrate the capabilities changes.",
-              "block_index": 91
+              "block_index": 90
             },
             {
               "slug": "teach-durable-principles-beneath-the-agent-interface",
               "text": "Teach the durable principles beneath the fast-changing agent interface, not the interface itself.",
-              "block_index": 93
+              "block_index": 92
             }
           ]
         },
@@ -6330,22 +6330,22 @@
           "heading_text": "The Entry-Rung Problem",
           "topic_sentence": "The traditional path into software engineering runs through implementation.",
           "id_source": "derived",
-          "block_index": 96,
+          "block_index": 95,
           "points": [
             {
               "slug": "genai-erodes-the-implementation-apprenticeship",
               "text": "GenAI erodes the implementation apprenticeship through which the profession trained senior engineers.",
-              "block_index": 97
+              "block_index": 96
             },
             {
               "slug": "entry-rung-problem-acquiring-judgment-without-implementation-work",
               "text": "The entry-rung problem: how to acquire engineering judgment when routine implementation is abundant.",
-              "block_index": 99
+              "block_index": 98
             },
             {
               "slug": "profession-reorganizes-around-responsibility-for-the-whole",
               "text": "The profession reorganizes around responsibility for the engineered whole, not the residual machine-poor tasks.",
-              "block_index": 101
+              "block_index": 100
             }
           ]
         }

@@ -4,7 +4,7 @@ engineering capital, and the surrounding environment interact; what that account
 apply; and how it might be tested.
 
 This final Part asks what follows if that account is substantially right. It moves outward from the theory
-to the profession: first to the organization of software work under abundant implementation, then to
+to the profession: first to how abundant implementation reorganizes software work, then to
 MAGE's relationship with older engineering and computing traditions, and finally to the engineer's
 expertise, authority, education, and responsibility.
 
@@ -16,7 +16,7 @@ Delegation changes what engineers do. It does not remove their answerability for
 >
 > When implementation becomes abundant, software engineering does not disappear. Its scarce work moves.
 > Engineers spend proportionally less effort producing routine realization and more deciding what must be
-> true, choosing the representations through which consequential properties can be understood, establishing
+> true, choosing representations that make consequential properties understandable, establishing
 > evidence, allocating authority, coordinating autonomous work, and accepting responsibility for the
 > resulting system.
 
