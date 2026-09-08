@@ -7,7 +7,7 @@
     "derived_ids": 203,
     "missing_topic_sentence": 2,
     "sections_drained": 181,
-    "paragraph_points": 789
+    "paragraph_points": 790
   },
   "chapters": [
     {
@@ -445,22 +445,22 @@
           "heading_text": "Probabilistic Work Needs External Enforcement",
           "topic_sentence": "The second problem is not that agents make mistakes while human programmers do not.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 38,
           "points": [
             {
               "slug": "authorship-is-separate-from-assurance",
               "text": "Software engineering has always separated authorship from assurance — we compile instead of trusting a prediction, test instead of accepting an explanation — because the producer's confidence is not enough.",
-              "block_index": 37
+              "block_index": 40
             },
             {
               "slug": "enforcement-must-reside-outside-the-agent",
               "text": "Commodity intelligence makes that separation more important because implementation is cheap and repeatable; an agent can propose, inspect, explain, and repair, but another judgment from the same substrate does not constitute independent evidence — the environment must establish what evidence counts.",
-              "block_index": 39
+              "block_index": 42
             },
             {
               "slug": "the-probabilistic-surface-is-the-judgments-still-bought-per-instance",
               "text": "The consequential judgments that still depend on fallible per-instance inference form the probabilistic surface; better models, context, decomposition, harnesses, and iterative loops make those judgments more reliable but leave the obligation dependent on probabilistic judgment each time it arises.",
-              "block_index": 49
+              "block_index": 52
             }
           ]
         },
@@ -470,17 +470,17 @@
           "heading_text": "Enforcement Outside the Producing Run",
           "topic_sentence": "Software engineering offers another move.",
           "id_source": "derived",
-          "block_index": 52,
+          "block_index": 55,
           "points": [
             {
               "slug": "software-engineering-can-make-an-obligation-explicit-and-enforce-it-outside-the-run",
               "text": "For selected obligations the environment can make the required property explicit and enforce it independently of the producing run — represent an architectural restriction and reject changes that violate it — so the judgment that established the obligation is reused across later implementation.",
-              "block_index": 53
+              "block_index": 56
             },
             {
               "slug": "agentic-work-provides-identifiable-interfaces-where-enforcement-can-act",
               "text": "Important changes reach the system through identifiable interfaces — inputs, tool calls, edits, outputs, lifecycle transitions — where a sandbox, hook, or test can act without a rich model, and explicit representations extend the semantic reach of those same control points.",
-              "block_index": 55
+              "block_index": 58
             }
           ]
         }
@@ -508,32 +508,32 @@
           "heading_text": "Modeling Is a Classical Engineering Move",
           "topic_sentence": "Modeling is not new.",
           "id_source": "derived",
-          "block_index": 10,
+          "block_index": 13,
           "points": [
             {
               "slug": "modeling-is-a-classical-engineering-move-not-a-mage-invention",
               "text": "Modeling is not new: engineering has long used representations that suppress irrelevant detail so a property can be reasoned about directly.",
-              "block_index": 11
+              "block_index": 14
             },
             {
               "slug": "a-model-is-useful-for-what-it-makes-available-not-for-reproducing-the-system",
               "text": "The common move is basic: build a representation in which the property is easier to express, inspect, or analyze than in the realized artifact — useful for what it makes available, not for reproducing the system.",
-              "block_index": 13
+              "block_index": 16
             },
             {
               "slug": "mage-adopts-the-classical-move-under-changed-economics",
               "text": "MAGE adopts this classical move under changed economics: commodity intelligence makes explicit representations cheaper to build and use, and generative implementation makes them more valuable.",
-              "block_index": 15
+              "block_index": 18
             },
             {
               "slug": "mbse-readers-find-the-repertoire-familiar-the-concern-is-the-governed-environment",
               "text": "For MBSE readers the repertoire is familiar; MAGE's concern is what happens when these representations become part of the engineered environment — agents reason through them, knowledge persists across episodes, and selected properties can become objects of Alignment.",
-              "block_index": 17
+              "block_index": 20
             },
             {
               "slug": "a-useful-model-need-not-be-elaborate",
               "text": "A useful model may be three states and two transitions, a list of permitted edges, or a schema joined on identifiers; the question is never how much can we model, but what representation makes this recurring question easier to answer.",
-              "block_index": 24
+              "block_index": 27
             }
           ]
         },
@@ -543,17 +543,17 @@
           "heading_text": "A Model Is a Purposeful Reduction",
           "topic_sentence": "A **model** is a purposeful reduction of a system.",
           "id_source": "derived",
-          "block_index": 26,
+          "block_index": 29,
           "points": [
             {
               "slug": "a-model-is-a-reduction-not-an-approximation",
               "text": "A model is a purposeful reduction; its value is what it leaves out. The engineering question decides what to keep.",
-              "block_index": 28
+              "block_index": 31
             },
             {
               "slug": "reduction-preserves-degrees-of-freedom",
               "text": "Obligations rarely fix one realization; a tolerance bounds permitted variation, a degree of freedom is a choice left open.",
-              "block_index": 33
+              "block_index": 36
             }
           ]
         },
@@ -563,22 +563,22 @@
           "heading_text": "Tolerance and degrees of freedom",
           "topic_sentence": "The suppressed detail has a realization-side consequence.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 37,
           "points": [
             {
               "slug": "software-tolerance-is-often-qualitative",
               "text": "In software a tolerance can be numeric but is often qualitative, because code owes more to discrete mathematics than to continuous media.",
-              "block_index": 36
+              "block_index": 39
             },
             {
               "slug": "obligations-bound-a-region-without-choosing-a-point",
               "text": "Obligations bound the space of acceptable realizations without selecting a point; commodity intelligence makes exercising that freedom cheap, so Modeling names the consequential distinctions and Alignment enforces selected boundaries.",
-              "block_index": 38
+              "block_index": 41
             },
             {
               "slug": "tacit-obligation-vs-genuinely-free",
               "text": "A tacit obligation can look free; the \"not that\" test reveals a boundary that was never written down.",
-              "block_index": 42
+              "block_index": 45
             }
           ]
         },
@@ -588,32 +588,32 @@
           "heading_text": "Not every unmodeled choice is free",
           "topic_sentence": "This also distinguishes tacit obligations from genuinely free choices.",
           "id_source": "derived",
-          "block_index": 43,
+          "block_index": 46,
           "points": [
             {
               "slug": "unknown-tacit-explicit-free-are-states",
               "text": "Unknown, tacit, explicit, and free are present states of a choice, and they change as the system changes.",
-              "block_index": 45
+              "block_index": 48
             },
             {
               "slug": "modeling-can-precede-complete-specification",
               "text": "Modeling can begin before specification is complete; a reduction can make variation tractable so distinctions can be discovered.",
-              "block_index": 47
+              "block_index": 50
             },
             {
               "slug": "the-question-decides-what-to-keep",
               "text": "Hold the system constant, change the question, and the model changes; there is no single model of the system.",
-              "block_index": 52
+              "block_index": 55
             },
             {
               "slug": "there-is-no-model-of-the-system",
               "text": "There is no model of the system, only purposeful reductions that each answer one question.",
-              "block_index": 55
+              "block_index": 58
             },
             {
               "slug": "a-reduction-first-even-when-executable",
               "text": "A model is a reduction first, even when it runs; executability changes what you can DO with it, not whether it abstracts.",
-              "block_index": 58
+              "block_index": 61
             }
           ]
         },
@@ -623,27 +623,27 @@
           "heading_text": "Structure Makes Representations Machine-Operable",
           "topic_sentence": "Externalizing knowledge saves reconstruction only if a machine can read it back.",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 63,
           "points": [
             {
               "slug": "structured-is-the-word-doing-the-work",
               "text": "Structure — an explicit declared shape a machine can read — is what lets a representation be traversed, checked, and joined.",
-              "block_index": 62
+              "block_index": 65
             },
             {
               "slug": "the-simplest-useful-form-is-a-graph",
               "text": "The simplest useful form of externalized knowledge is a graph of engineering entities and their relations; graph names the structure, not the storage.",
-              "block_index": 65
+              "block_index": 68
             },
             {
               "slug": "shape-does-not-distinguish-a-model-semantics-do",
               "text": "Many representations can be read as graphs of entities and relations; shape does not distinguish them, semantics do — a dependency, a transition, an ownership claim, and a permission can all be arrows answering different questions.",
-              "block_index": 68
+              "block_index": 71
             },
             {
               "slug": "industry-already-lives-here",
               "text": "Externalized knowledge representation is the lightest form of Modeling, and most of industry already stands on it.",
-              "block_index": 70
+              "block_index": 73
             }
           ]
         },
@@ -653,22 +653,22 @@
           "heading_text": "Representations Support Accumulating Capabilities",
           "topic_sentence": "Structured representations support different capabilities: externalized knowledge, typed relationships, explicit semantics, stated properties, derivation, generation, traceability, and checking.",
           "id_source": "derived",
-          "block_index": 72,
+          "block_index": 75,
           "points": [
             {
               "slug": "capability-comes-in-rungs",
               "text": "Structured representations support different capabilities — externalized knowledge, typed relationships, semantics, properties, derivation, generation, traceability, checking — acquired as engineers ask more, but not a required sequence or maturity model.",
-              "block_index": 74
+              "block_index": 77
             },
             {
               "slug": "the-consequence-is-selective-modeling",
               "text": "Selective modeling: model facts repeatedly reconstructed and properties repeatedly adjudicated, adding structure when the reduction in recurring engineering work justifies carrying it.",
-              "block_index": 77
+              "block_index": 80
             },
             {
               "slug": "enforcement-remains-separate",
               "text": "Enforcement stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Part III asks which the engineered environment should enforce.",
-              "block_index": 79
+              "block_index": 82
             }
           ]
         },
@@ -678,62 +678,62 @@
           "heading_text": "Six Classes of Engineering Question",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 82,
+          "block_index": 88,
           "points": [
             {
               "slug": "the-six-class-ontology-is-useful-not-exhaustive",
               "text": "The classification caveat: six classes organized by the engineering question a model answers, useful rather than exhaustive, and able to overlap.",
-              "block_index": 84
+              "block_index": 90
             },
             {
               "slug": "at-an-abstract-level-each-class-is-a-graph-what-differs-is-what-nodes-and-edges-mean",
               "text": "The six classes differ less in shape than in semantics: each can be understood as a graph of things and relationships, and what changes from class to class is what the nodes and edges mean.",
-              "block_index": 86
+              "block_index": 92
             },
             {
               "slug": "mage-classifies-by-question-because-one-graph-shape-answers-many-questions",
               "text": "MAGE classifies models by engineering question rather than notation because the same graph-shaped representation can answer very different questions depending on its semantics, and one system fact can participate in several views.",
-              "block_index": 88
+              "block_index": 94
             },
             {
               "slug": "the-repertoire-is-larger-than-the-six-classes",
               "text": "A portion of the established repertoire — nine familiar representations read as a set of moves, not a taxonomy of all modeling; MAGE prescribes no new notation, and the repertoire is larger than the six classes the rest of the Part organizes.",
-              "block_index": 90
+              "block_index": 96
             },
             {
               "slug": "reuse-the-established-repertoire-choosing-is-judgment",
               "text": "This Part illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment.",
-              "block_index": 93
+              "block_index": 99
             },
             {
               "slug": "the-classes-are-views-not-boxes",
               "text": "The classes classify questions, not data structures; one represented fact can answer several. The lease is Ownership, Behavioral, and Measurement at once.",
-              "block_index": 99
+              "block_index": 105
             },
             {
               "slug": "system-knowledge-is-substrate-not-a-seventh-class",
               "text": "System knowledge is the connected substrate where the six classes meet, not a seventh peer class.",
-              "block_index": 102
+              "block_index": 108
             },
             {
               "slug": "tolerance-is-not-a-seventh-class",
               "text": "The classes name the engineering question; tolerance names the variation that question permits, not a seventh class.",
-              "block_index": 104
+              "block_index": 110
             },
             {
               "slug": "purpose-comes-first-representation-follows",
               "text": "The model class names the engineering question; the representation form is a separate choice, so purpose comes first and representation follows.",
-              "block_index": 106
+              "block_index": 112
             },
             {
               "slug": "the-chapters-ahead-apply-the-repertoire-to-six-docable-models",
               "text": "The chapters ahead apply this repertoire to six production models from DocAble; the final chapter asks how such representations connect through shared identity without collapsing into one universal graph.",
-              "block_index": 108
+              "block_index": 114
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
               "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment makes selected properties enforceable.",
-              "block_index": 110
+              "block_index": 116
             }
           ]
         }
@@ -1457,12 +1457,12 @@
             {
               "slug": "the-third-boundary-is-the-work-unit-a-meaningful-unit-of-many-actions",
               "text": "The second enforcement boundary is the work unit, where whole-work obligations become legible.",
-              "block_index": 24
+              "block_index": 27
             },
             {
               "slug": "the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible",
               "text": "The third enforcement boundary is the artifact or runtime: forbidden state made impossible to express or accept.",
-              "block_index": 27
+              "block_index": 30
             }
           ]
         },
@@ -1472,17 +1472,17 @@
           "heading_text": "Placement and Strength Are Different Decisions",
           "topic_sentence": "The four boundaries do not form a monotonic scale from weak to strong.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 33,
           "points": [
             {
               "slug": "the-four-boundaries-do-not-form-a-monotonic-scale",
               "text": "The four boundaries do not form a monotonic weak-to-strong scale.",
-              "block_index": 32
+              "block_index": 35
             },
             {
               "slug": "substantial-enforcement-can-exist-without-rich-models",
               "text": "Substantial enforcement can exist without rich models; richer models expand the properties the environment can state and govern.",
-              "block_index": 34
+              "block_index": 37
             }
           ]
         },
@@ -1492,27 +1492,27 @@
           "heading_text": "Return Evidence at the Earliest Useful Boundary",
           "topic_sentence": "The boundaries also decide where feedback can return.",
           "id_source": "derived",
-          "block_index": 36,
+          "block_index": 39,
           "points": [
             {
               "slug": "every-boundary-determines-where-feedback-can-return",
               "text": "Every boundary also determines where feedback can return; earlier evidence means less to reconstruct.",
-              "block_index": 38
+              "block_index": 41
             },
             {
               "slug": "these-mechanisms-do-not-act-independently-deferred-to-3-5",
               "text": "These mechanisms do not act independently; the interplay is its own problem, deferred to §3.5.",
-              "block_index": 42
+              "block_index": 45
             },
             {
               "slug": "the-alignment-principle-stated-whole",
               "text": "The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them.",
-              "block_index": 44
+              "block_index": 47
             },
             {
               "slug": "alignment-installed-at-a-boundary-is-easiest-to-see-in-systems-already-running-it",
               "text": "Enforcement installed at a boundary is easiest to see in systems already using it.",
-              "block_index": 46
+              "block_index": 49
             }
           ]
         }
@@ -3084,22 +3084,22 @@
           "heading_text": "Attach Reactions to Lifecycle Events",
           "topic_sentence": "A lifecycle model says which states matter.",
           "id_source": "derived",
-          "block_index": 20,
+          "block_index": 23,
           "points": [
             {
               "slug": "a-lifecycle-says-what-states-matter-events-make-the-right-step-arrive",
               "text": "A lifecycle names the states that matter; binding a reaction to a transition makes the right procedure arrive at the right time.",
-              "block_index": 22
+              "block_index": 25
             },
             {
               "slug": "the-firing-can-be-deterministic-while-the-payload-holds-judgment",
               "text": "Binding does not require a mechanical response: the firing can be deterministic while the payload still contains judgment.",
-              "block_index": 25
+              "block_index": 28
             },
             {
               "slug": "wire-known-failures-to-sanctioned-reactions-automate-the-arrival-not-the-decision",
               "text": "Wire known failure events to sanctioned reactions rather than waiting for an operator to notice; the aim is to automate the arrival of the decision procedure, not every decision.",
-              "block_index": 28
+              "block_index": 31
             }
           ]
         },
@@ -3109,32 +3109,32 @@
           "heading_text": "Externalize Operational Judgment",
           "topic_sentence": "A runbook preserves how an experienced engineer reasons through a recurring situation, including which steps are mechanical and which require judgment.",
           "id_source": "derived",
-          "block_index": 31,
+          "block_index": 34,
           "points": [
             {
               "slug": "a-good-runbook-preserves-how-an-engineer-reasons-not-only-the-commands",
               "text": "A good runbook preserves how an experienced engineer reasons through a recurring situation, without pretending every step has one mechanical answer.",
-              "block_index": 33
+              "block_index": 36
             },
             {
               "slug": "type-each-runbook-step-execute-delegate-escalate",
               "text": "Not every runbook step has the same decision structure; type each step Execute, Delegate, or Escalate — the same split the event reactions use.",
-              "block_index": 39
+              "block_index": 42
             },
             {
               "slug": "playbooks-externalize-which-kind-of-reasoning-each-step-requires",
               "text": "A structured operational playbook can serve as a model of engineering practice: it externalizes which kind of reasoning each step requires.",
-              "block_index": 42
+              "block_index": 45
             },
             {
               "slug": "surround-a-judgment-step-with-deterministic-work",
               "text": "Where possible, surround a judgment-laden step with deterministic work: prepare the data mechanically, execute and measure mechanically after the decision, and preserve the rationale separately from the trace — bounding where judgment occurs without pretending to remove it.",
-              "block_index": 45
+              "block_index": 48
             },
             {
               "slug": "the-fence-is-no-docable-idiosyncrasy",
               "text": "Systems that share no code reach for the same fence between the step a machine can decide and the step that needs a mind.",
-              "block_index": 49
+              "block_index": 52
             }
           ]
         },
@@ -3144,32 +3144,32 @@
           "heading_text": "Measure the State That Matters",
           "topic_sentence": "Operational measurement should expose the state the decision actually depends on.",
           "id_source": "derived",
-          "block_index": 62,
+          "block_index": 65,
           "points": [
             {
               "slug": "operational-measurement-should-expose-the-state-the-decision-depends-on",
               "text": "Operational measurement should expose the state the decision actually depends on: measure the pressure, not the worker count; mediate the shared resource; record lifecycle state rather than reconstruct it — and keep measurement separate from enforcement.",
-              "block_index": 64
+              "block_index": 67
             },
             {
               "slug": "this-is-not-a-demand-for-perfect-observability",
               "text": "This is not a demand for perfect observability; the point is to notice when a proxy drives a consequential decision and the approximation has stopped being good enough.",
-              "block_index": 67
+              "block_index": 70
             },
             {
               "slug": "an-operating-loop-needs-evidence-about-its-own-state",
               "text": "An operating loop needs evidence about its own state; the useful metric is the one that changes the next engineering decision.",
-              "block_index": 72
+              "block_index": 75
             },
             {
               "slug": "ousterhouts-rule-measure-one-level-deeper",
               "text": "Ousterhout's rule: measure one level deeper — one level, not arbitrarily deep — where the deeper cut exposes the decision the surface number hides.",
-              "block_index": 74
+              "block_index": 77
             },
             {
               "slug": "some-evidence-is-mechanically-decidable-other-evidence-is-judgment-laden",
               "text": "Some evidence is mechanically decidable and appropriate for automated admission; other evidence is intentionally judgment-laden and should point a reader toward a decision rather than masquerade as a threshold.",
-              "block_index": 77
+              "block_index": 80
             }
           ]
         },
@@ -3179,12 +3179,12 @@
           "heading_text": "One hard example: coverage measured one level deeper",
           "topic_sentence": "Requirements-based coverage joins model-to-code traceability with ordinary test coverage: it follows each modeled claim to the code that realizes it, then to the tests that exercise that code, and reports which claims have no exercising evidence.",
           "id_source": "derived",
-          "block_index": 79,
+          "block_index": 82,
           "points": [
             {
               "slug": "requirements-based-coverage-measures-at-the-semantic-unit",
               "text": "Requirements-based coverage measures at the semantic unit that matters: whether each modeled claim has exercising evidence, not whether a line ran.",
-              "block_index": 81
+              "block_index": 84
             }
           ]
         },
@@ -3194,12 +3194,12 @@
           "heading_text": "One judgment-laden example: doc-derived tests",
           "topic_sentence": "Doc-derived tests are generated from consequential claims in prose documentation and keep a trace back to the source claim.",
           "id_source": "derived",
-          "block_index": 83,
+          "block_index": 86,
           "points": [
             {
               "slug": "a-doc-derived-tests-metric-is-genuinely-soft",
               "text": "A doc-derived test's metric is genuinely soft: whether every consequential prose claim has an adequate test is a judgment, so it should direct review, not drive a threshold.",
-              "block_index": 85
+              "block_index": 88
             }
           ]
         },
@@ -3209,22 +3209,22 @@
           "heading_text": "Let useful models drive machinery",
           "topic_sentence": "An executable model earns more than documentation value when tools consume it directly.",
           "id_source": "derived",
-          "block_index": 87,
+          "block_index": 90,
           "points": [
             {
               "slug": "an-executable-model-becomes-a-query-surface-for-consumers",
               "text": "An executable model earns more than documentation value when tools consume it directly — it becomes a reusable query surface for many consumers.",
-              "block_index": 89
+              "block_index": 92
             },
             {
               "slug": "a-component-distance-grade-supplies-evidence-to-a-validator",
               "text": "A model can scope a mechanism: DocAble uses a finding's relationship to the current change in the component model to decide which admission boundary owns it, so a local finding blocks while unrelated debt stays a broader gate's responsibility.",
-              "block_index": 91
+              "block_index": 94
             },
             {
               "slug": "the-grade-is-a-model-read-metric-not-a-gate",
               "text": "The grade is evidence read from the model; the gate carries the consequence — read the number one level below the surface, where it names a target instead of a total.",
-              "block_index": 93
+              "block_index": 96
             }
           ]
         },
@@ -3234,22 +3234,22 @@
           "heading_text": "The Operating Rhythm",
           "topic_sentence": "Put the pieces together and operation becomes a recurring rhythm.",
           "id_source": "derived",
-          "block_index": 95,
+          "block_index": 98,
           "points": [
             {
               "slug": "operating-is-one-recurring-rhythm-across-four-forms",
               "text": "Operating MAGE is one recurring rhythm: the lifecycle names healthy progress and failure, events bind the reaction to the transition, the runbook gives each state a sanctioned next move, and metrics tell whether the loop is improving or merely busy.",
-              "block_index": 97
+              "block_index": 100
             },
             {
               "slug": "when-the-loop-stalls-diagnose-the-kind-of-problem-before-adding-machinery",
               "text": "The operating loop will still stall; when it does, resist the reflex to add another mechanism and first diagnose whether the gap is in the searcher, the model, the oracle, or the target.",
-              "block_index": 99
+              "block_index": 102
             },
             {
               "slug": "the-rhythm-names-three-competencies-part-six-develops",
               "text": "Run the rhythm long enough and recurring operation becomes less dependent on memory; the engineer increasingly decides what the environment should know, what it should decide, and what must remain judgment.",
-              "block_index": 104
+              "block_index": 107
             }
           ]
         }
@@ -4331,32 +4331,32 @@
           "heading_text": "Eight Entry Points",
           "topic_sentence": "The organizations begin with different problems.",
           "id_source": "derived",
-          "block_index": 4,
+          "block_index": 6,
           "points": [
             {
               "slug": "the-eight-organizations-begin-with-different-problems",
               "text": "The eight organizations begin from different problems and invest in different parts of the engineered environment.",
-              "block_index": 5
+              "block_index": 7
             },
             {
               "slug": "cloudflare-policy-first-models-obligations-not-the-software",
               "text": "Cloudflare externalizes policy into checkable requirements but models obligations, not an executable model of the software.",
-              "block_index": 8
+              "block_index": 10
             },
             {
               "slug": "uber-and-gitlab-build-a-durable-environment-around-a-replaceable-reasoner",
               "text": "Uber and GitLab both build a durable environment around a replaceable reasoner, from economics and trust respectively.",
-              "block_index": 10
+              "block_index": 12
             },
             {
               "slug": "uber-treats-the-surrounding-environment-as-an-object-of-engineering",
               "text": "Uber treats the surrounding environment as an object of engineering: benchmarks, model selection, compiled context, reusable skills, cost-per-outcome.",
-              "block_index": 12
+              "block_index": 14
             },
             {
               "slug": "mage-like-but-graph-based-strengthens-the-modeling-ceiling",
               "text": "Uber and GitLab are MAGE-like but keep a context graph, not executable behavioral models, strengthening the modeling ceiling.",
-              "block_index": 14
+              "block_index": 16
             }
           ]
         },
@@ -4366,22 +4366,22 @@
           "heading_text": "The Shared Baseline",
           "topic_sentence": "Across the eight sources, four moves recur strongly enough to form a shared baseline.",
           "id_source": "derived",
-          "block_index": 16,
+          "block_index": 18,
           "points": [
             {
               "slug": "four-moves-form-a-shared-baseline",
               "text": "Four moves form a shared baseline: externalized knowledge, bounded action, generation separated from evidence, human decisions.",
-              "block_index": 17
+              "block_index": 19
             },
             {
               "slug": "uber-adds-a-fifth-move-the-environment-is-continuously-optimized",
               "text": "Uber adds a fifth move: the environment itself is continuously measured and optimized as an engineering variable.",
-              "block_index": 19
+              "block_index": 21
             },
             {
               "slug": "safe-autonomy-from-context-bounds-evidence-and-limited-authority",
               "text": "Safe autonomy rests on legible context, bounded action, independent evidence, and explicit limits on machine authority — not an infallible reasoner.",
-              "block_index": 21
+              "block_index": 23
             }
           ]
         },
@@ -4391,22 +4391,22 @@
           "heading_text": "Where the Reconstructions Differ",
           "topic_sentence": "The differences are as informative as the commonalities.",
           "id_source": "derived",
-          "block_index": 23,
+          "block_index": 25,
           "points": [
             {
               "slug": "the-differences-are-as-informative-as-the-commonalities",
               "text": "The organizations differ in admission automation, knowledge routing, adaptation, and how explicitly they model the governed system.",
-              "block_index": 24
+              "block_index": 26
             },
             {
               "slug": "no-ordering-follows-comparison-exposes-choices-not-a-winner",
               "text": "No ordering follows from the differences; the comparison exposes design choices and boundaries, not a winner.",
-              "block_index": 26
+              "block_index": 28
             },
             {
               "slug": "systems-differ-in-where-they-leave-trust-not-maturity-levels",
               "text": "Systems differ in where they leave trust — context, persistence, machine-actionable structure, independent consequence — not maturity levels.",
-              "block_index": 28
+              "block_index": 30
             }
           ]
         },
@@ -4416,27 +4416,27 @@
           "heading_text": "The Modeling Ceiling",
           "topic_sentence": "One difference is stark.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 32,
           "points": [
             {
               "slug": "software-first-accounts-model-knowledge-not-behavior",
               "text": "The software-first accounts publicly show knowledge and governance representations, not behavioral, process, scenario, or invariant models.",
-              "block_index": 31
+              "block_index": 33
             },
             {
               "slug": "gitlab-context-graph-preserves-context-not-behavioral-models",
               "text": "GitLab's context graph preserves engineering context and control relationships, not an executable model of behavior.",
-              "block_index": 33
+              "block_index": 35
             },
             {
               "slug": "siemens-model-first-tradition-crosses-the-boundary",
               "text": "Siemens crosses the boundary from a model-first tradition; the strong Modeling end has precedent but is unusual in software-first agent systems.",
-              "block_index": 35
+              "block_index": 37
             },
             {
               "slug": "docable-checks-selected-model-implementation-relations",
               "text": "DocAble goes further, mechanically checking selected model-implementation relations, though not general correspondence at known cost.",
-              "block_index": 37
+              "block_index": 39
             }
           ]
         },
@@ -4446,27 +4446,27 @@
           "heading_text": "Engineering Capital at Organizational Scale",
           "topic_sentence": "The industrial reconstructions show something the single-engineer origin cannot: how these moves operate across an organization.",
           "id_source": "derived",
-          "block_index": 41,
+          "block_index": 43,
           "points": [
             {
               "slug": "reconstructions-show-four-organizational-moves",
               "text": "The reconstructions show four organizational moves the single-engineer origin cannot: centralize mechanisms, move judgment upstream, share private learning, grow the governance unit.",
-              "block_index": 42
+              "block_index": 44
             },
             {
               "slug": "uber-packages-recurring-workflows-as-reusable-skills",
               "text": "Uber makes conversion literal: recurring tool workflows become reusable skills and executable code, cutting token use sharply.",
-              "block_index": 44
+              "block_index": 46
             },
             {
               "slug": "gitlab-converts-incidents-into-durable-structure",
               "text": "GitLab converts failures, incidents, and requirements into tests, policies, constraints, and validation that later work inherits.",
-              "block_index": 46
+              "block_index": 48
             },
             {
               "slug": "the-common-structure-is-leverage-organizational-capital",
               "text": "The common structure is leverage: a scarce judgment placed where the environment carries it forward is the organizational face of engineering capital.",
-              "block_index": 48
+              "block_index": 50
             }
           ]
         },
@@ -4476,17 +4476,17 @@
           "heading_text": "They Converged on a Problem",
           "topic_sentence": "The eight organizations do not converge on one stack, one degree of autonomy, or one modeling discipline.",
           "id_source": "derived",
-          "block_index": 50,
+          "block_index": 52,
           "points": [
             {
               "slug": "they-converge-on-a-problem-not-a-stack",
               "text": "The eight converge not on one stack or autonomy level but on a problem: useful abundant intelligence without proportional human vigilance.",
-              "block_index": 51
+              "block_index": 53
             },
             {
               "slug": "comparison-shows-the-grammar-recurs-not-causation",
               "text": "The comparison does not prove causation; it shows the same engineering grammar emerging independently under different constraints.",
-              "block_index": 53
+              "block_index": 55
             }
           ]
         },
@@ -4496,17 +4496,17 @@
           "heading_text": "Four Views of Repeated Judgment",
           "topic_sentence": "The approaches these organizations use can work.",
           "id_source": "derived",
-          "block_index": 55,
+          "block_index": 57,
           "points": [
             {
               "slug": "the-approaches-can-work-nothing-argues-otherwise",
               "text": "Better models, prompts, context, and independent evaluation can work; nothing in the evidence argues otherwise.",
-              "block_index": 56
+              "block_index": 58
             },
             {
               "slug": "difficulty-appears-with-scale-and-time",
               "text": "The difficulty appears with scale and time: an obligation must survive repeated changes, each a fresh probabilistic exposure.",
-              "block_index": 58
+              "block_index": 60
             }
           ]
         },
@@ -4516,27 +4516,27 @@
           "heading_text": "View 1 — Repeated Exposure",
           "topic_sentence": "Part I introduced a deliberately simple model for consequential probabilistic judgment.",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 62,
           "points": [
             {
               "slug": "view1-repeated-exposure-across-time",
               "text": "View 1: applied across time, an obligation's survival is the product of per-exposure success probabilities.",
-              "block_index": 61
+              "block_index": 63
             },
             {
               "slug": "the-exposure-equation-is-structural-not-fitted",
               "text": "The exposure equation is structural, not fitted: reliability depends on each judgment and on how often it must be remade.",
-              "block_index": 66
+              "block_index": 68
             },
             {
               "slug": "high-per-exposure-reliability-erodes-under-repetition",
               "text": "Even high per-exposure reliability erodes under repetition when satisfaction stays dependent on per-instance inference.",
-              "block_index": 68
+              "block_index": 70
             },
             {
               "slug": "two-dimensions-of-scale-larger-and-longer-lived",
               "text": "Two dimensions of scale: a larger system places more obligations in play; a longer-lived one re-exposes them more often.",
-              "block_index": 72
+              "block_index": 74
             }
           ]
         },
@@ -4546,27 +4546,27 @@
           "heading_text": "View 2 — Retry Purchases Another Chance",
           "topic_sentence": "The first view treats each exposure as one judgment.",
           "id_source": "derived",
-          "block_index": 74,
+          "block_index": 76,
           "points": [
             {
               "slug": "view2-retry-purchases-additional-chances",
               "text": "View 2: a retry loop does not make the reasoner deterministic; it purchases additional chances at an acceptable realization.",
-              "block_index": 75
+              "block_index": 77
             },
             {
               "slug": "long-loops-purchase-reliability-with-inference",
               "text": "Long loops work by purchasing reliability with additional inference, realization, validation, latency, and sometimes attention.",
-              "block_index": 85
+              "block_index": 87
             },
             {
               "slug": "example-same-reliability-different-reasoning-purchased",
               "text": "A better reasoning surface reaches the same eventual reliability while purchasing far less reasoning to obtain it.",
-              "block_index": 87
+              "block_index": 89
             },
             {
               "slug": "reliability-and-reasoning-cost-are-separate-axes",
               "text": "View 2 adds what View 1 cannot: reliability and reasoning cost are separate axes.",
-              "block_index": 93
+              "block_index": 95
             }
           ]
         },
@@ -4576,52 +4576,52 @@
           "heading_text": "View 3 — Engineering Can Act at Different Places",
           "topic_sentence": "Retry is only one intervention.",
           "id_source": "derived",
-          "block_index": 95,
+          "block_index": 97,
           "points": [
             {
               "slug": "view3-engineering-can-act-at-several-places",
               "text": "View 3: engineering can act at several places, not only retry.",
-              "block_index": 96
+              "block_index": 98
             },
             {
               "slug": "four-levers-p-c-attempts-gate-or-determinize",
               "text": "Four levers: raise per-attempt success, lower cost, purchase attempts, gate covered failure, or stop requiring the judgment.",
-              "block_index": 98
+              "block_index": 100
             },
             {
               "slug": "example-reducing-exposures-vs-improving-reliability",
               "text": "Reducing the number of exposures can match or beat improving per-exposure reliability, and the two combine.",
-              "block_index": 100
+              "block_index": 102
             },
             {
               "slug": "four-interventions-mage-uses-all-where-appropriate",
               "text": "Improve the odds, purchase an attempt, catch a bad realization, or stop requiring the judgment — MAGE uses all four.",
-              "block_index": 109
+              "block_index": 111
             },
             {
               "slug": "reconstructions-occupy-different-parts-of-the-design-space",
               "text": "The reconstructions occupy different parts of this design space — different allocations of reasoning, cost, evidence, and enforcement.",
-              "block_index": 111
+              "block_index": 113
             },
             {
               "slug": "a-stronger-environment-changes-what-is-verifiable",
               "text": "A stronger environment can change what is verifiable, making verification capability itself an engineering variable.",
-              "block_index": 113
+              "block_index": 115
             },
             {
               "slug": "verifiable-set-is-what-the-environment-can-verify-independently",
               "text": "The verifiable set is the obligations the environment can verify independently of the producer; improving the environment enlarges it.",
-              "block_index": 115
+              "block_index": 117
             },
             {
               "slug": "moving-an-obligation-into-the-verifiable-set-removes-producer-dependence",
               "text": "An obligation moved into the verifiable set no longer depends on the producer; better engineering moves the verification boundary.",
-              "block_index": 118
+              "block_index": 120
             },
             {
               "slug": "reconstructions-expand-verification-around-a-human-derived-environment",
               "text": "The reconstructions mostly expand verification around a human-derived environment; the two strategies compose (raise success, enlarge the verifiable set).",
-              "block_index": 120
+              "block_index": 122
             }
           ]
         },
@@ -4631,27 +4631,27 @@
           "heading_text": "View 4 — One Judgment Can Acquire Durable Reach",
           "topic_sentence": "The preceding views still treat engineering largely as a sequence of realizations.",
           "id_source": "derived",
-          "block_index": 122,
+          "block_index": 124,
           "points": [
             {
               "slug": "view4-a-judgment-today-changes-what-later-work-repurchases",
               "text": "View 4: an engineering judgment made today can change what later realizations must purchase again.",
-              "block_index": 123
+              "block_index": 125
             },
             {
               "slug": "docable-conversions-turned-recurring-work-into-inheritable-assets",
               "text": "DocAble's conversions turned recurring work — seams, checks, lifecycle models, provenance — into assets later work inherits.",
-              "block_index": 125
+              "block_index": 127
             },
             {
               "slug": "the-connection-to-engineering-capital",
               "text": "This is the connection to engineering capital: the original judgment's value extends across later work rather than being repurchased.",
-              "block_index": 128
+              "block_index": 130
             },
             {
               "slug": "conversion-value-grows-with-recurrence-but-so-do-carrying-costs",
               "text": "Conversion value grows with recurrence, but so do carrying costs; the question is which judgments are worth carrying forward.",
-              "block_index": 130
+              "block_index": 132
             }
           ]
         },
@@ -4661,27 +4661,27 @@
           "heading_text": "What These Views Leave Out",
           "topic_sentence": "These models are deliberately simple.",
           "id_source": "derived",
-          "block_index": 132,
+          "block_index": 134,
           "points": [
             {
               "slug": "the-views-hold-fixed-what-sustained-engineering-violates",
               "text": "The four views are deliberately simple, holding fixed two things sustained engineering violates.",
-              "block_index": 133
+              "block_index": 135
             },
             {
               "slug": "omission-one-the-environment-changes-the-reasoning-required",
               "text": "First omission: the environment can change the reasoning an attempt requires, raising success or cutting cost.",
-              "block_index": 135
+              "block_index": 137
             },
             {
               "slug": "omission-two-successive-realizations-are-not-independent",
               "text": "Second omission: successive realizations are not independent; each alters the environment inherited by later work.",
-              "block_index": 137
+              "block_index": 139
             },
             {
               "slug": "part-vi-develops-a-theory-around-these-interactions",
               "text": "Part VI develops a theory around these interactions; MAGE changes the reasoning each change requires and what later work inherits.",
-              "block_index": 139
+              "block_index": 141
             }
           ]
         }
@@ -4693,9 +4693,14 @@
           "block_index": 0
         },
         {
+          "slug": "earlier-insets-mapped-mage-to-mechanisms-here-the-direction-reverses",
+          "text": "Earlier Parts mapped MAGE's abstractions onto harness mechanisms; here the direction reverses — read each observable mechanism by the engineering function it performs.",
+          "block_index": 2
+        },
+        {
           "slug": "agents-scale-familiar-practices-may-not-ease-understanding",
           "text": "These organizations scale familiar practices, which can raise productivity without making systems easier for engineers to understand.",
-          "block_index": 2
+          "block_index": 4
         }
       ]
     },
