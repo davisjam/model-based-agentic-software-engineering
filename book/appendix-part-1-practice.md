@@ -9,7 +9,7 @@ This part turns from the argument to its use. The appendices that follow provide
 | I've seen this problem before. What engineering move might travel? | [appendix: appendix-b-engineering-moves] — Engineering Moves |
 | What exactly does one of the book's teaching models contain or guarantee? | [appendix: appendix-models] — Model Reference |
 | What should I inspect or do while operating a governed engineering environment? | [appendix: appendix-operators-reference] — Operator's Reference |
-| How do I externalize a body of engineering judgment as a mastery-skill? | [appendix: appendix-skill-recipe] — How to Write a Skill |
+| How do I package reusable engineering procedure or judgment as a skill? | [appendix: appendix-skill-recipe] — How to Write a Skill |
 | How does MAGE's adoption change across a product's lifecycle surfaces? | [appendix: appendix-product-lifecycle] — Configuring MAGE Across the Product Lifecycle |
 | How does an organization actually adopt GenAI — from assistance to bounded delegation? | [appendix: appendix-adopting-genai] — Adopting GenAI in an Organization |
 

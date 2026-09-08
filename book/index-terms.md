@@ -473,6 +473,8 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - term: dogfooding | local
 - term: field-report | local
 - term: mastery-skill | local
+- term: process-skill | local
+- term: tool-skill | local
 - term: reflection-hook | local
 - term: orthogonal-models | section
 - term: team-dimension | local

@@ -1,6 +1,9 @@
-<!-- point: the-recipe-runs-the-same-on-three-independent-domains | The recipe runs the same on three orthogonal domains. | terms: self-communicate, self-governance, self-operate -->
-This chapter applies the recipe to self-communicate, self-governance, and self-operate. Self-governance is the **recursive case**: it models the MAGE
-method itself. Self-operate tests the method against a less obviously modelable domain: operations.
+<!-- point: two-recipes-applied-to-three-skills-with-different-roles | Two recipes applied to three skills with different roles. | terms: self-communicate, self-governance, self-operate, process-skill -->
+This chapter applies the two recipes to three skills with different roles. self-communicate and
+self-governance are mastery-skills: their primary value is reusable expertise for work that continues to
+require substantial judgment. self-operate is a process-skill: its primary value is the recurring
+operational lifecycle it preserves. Together they show both why the distinction matters and why it is not
+absolute: mastery can prescribe procedures, and a process can contain judgment.
 
 ## self-communicate
 
@@ -54,9 +57,10 @@ One directory per concern, one file per facet — the tree *is* the orthogonal-m
 
 ### Lesson
 
-Rhetoric-as-craft turns a collection of style rules into a model. Separate facets can then load
-independently and be reused by other skills. The skill remains soft; where an
-audit result must block delivery, the audit belongs in a gate.
+self-communicate is a mastery-skill. Rhetoric-as-craft turns a collection of style rules into a model
+through which the agent can exercise communication judgment. Separate facets can then load independently and
+be reused by other skills. The skill remains soft; where an audit result must block delivery, the audit
+belongs in a gate.
 
 ## self-governance
 
@@ -68,10 +72,11 @@ advisory, or freezes a one-off mistake into a permanent rule. The missing capabi
 It is the engineering method itself: knowing *what to model, what must hold, and which judgment is worth
 making durable.*
 
-Self-governance packages that method as a skill. It teaches the agent to recognize the situation, choose a
+Self-governance packages that method as a mastery-skill. It teaches the agent to recognize the situation, choose a
 Modeling or Alignment move, act through the governed environment, and decide what should persist. The skill
 carries the method, not the codebase's facts. Concrete system knowledge—what the codebase intends, contains,
-and guarantees—must come from model providers rather than the skill's memory.
+and guarantees—must come from model providers rather than the skill's memory. Mastery of the method and
+knowledge of the engineered object are separate things.
 
 ### Fundamental Model
 
@@ -79,7 +84,7 @@ and guarantees—must come from model providers rather than the skill's memory.
 
 - **Recognize.** What situation am I facing?
 - **Model or align.** What must be understood? What must hold?
-- **Choose the move and capability.** What engineering move fits, and which skill performs it?
+- **Choose the move and capability.** What engineering move fits, and which capability performs it?
 - **Act through the GEE.** The skill proposes; the environment supplies consequence.
 - **Learn.** What did the evidence show, and should any lesson become durable?
 
@@ -123,10 +128,10 @@ convert recurring judgment into durable engineering structure.* Five operating r
   not merely because the problem is hard.
 
 **Self-governance is not self-certification.** The agent may select, model,
-propose, and check, but its belief that the work is correct is not evidence that it is. A skill is soft: it
-guides a probabilistic agent but cannot block. Hard mechanisms may be proposed or scaffolded by the skill,
-but enforcement must come from the harness or another external mechanism. The deciding evidence comes
-from a mechanism that sits outside the reasoning which produced the change.
+propose, and check, but its belief that the work is correct is not evidence that it is. A mastery-skill
+guides a probabilistic agent; it cannot by itself prevent unacceptable work. The skill may propose,
+scaffold, or invoke constraints, validators, gates, and other mechanisms, but enforcement must come from the
+environment. Deciding evidence must not consist merely of the producing reasoner endorsing its own result.
 
 ### Layout
 
@@ -149,7 +154,7 @@ prevent-versus-detect now sits one level below the loop.
 
 ### Lesson
 
-Self-governance models the MAGE method itself. Its fundamental model is therefore the engineering loop, not a taxonomy of mechanisms.
+self-governance is a mastery-skill whose subject is the MAGE method itself. Its fundamental model is therefore the engineering loop, not a taxonomy of mechanisms.
 
 The Modeling–Alignment boundary matters especially here: self-governance can propose and scaffold a
 constraint, validator, or gate, but the resulting mechanism — not the skill's judgment — must supply the
@@ -159,40 +164,43 @@ It also composes with the other skills: self-governance designs models and mecha
 
 ## self-operate
 
-<!-- point: operations-factors-the-same-way-as-the-others | Operations, the least modelable domain, factors the same way. | terms: self-operate, lifecycle -->
+<!-- point: self-operate-packages-recurring-operations-as-a-process-skill | self-operate packages recurring operational work as a process-skill. | terms: self-operate, process-skill, lifecycle -->
 
 ### Problem
 
 Operating an agent-fleet repository involves recurring but heterogeneous tasks — dispatch and recover
 agents, keep the mainline deployable, reclaim disk, weather colima and host-tool trouble, watch cron
-health, RCA an ambiguous signal. Without a model, each failure must be diagnosed almost from scratch. The skill provides
-a lifecycle map that routes symptoms to classes and typed runbooks that make responses repeatable.
+health, RCA an ambiguous signal. Without a model, each failure must be diagnosed almost from scratch.
+self-operate packages this recurring work as a process-skill: a lifecycle map routes symptoms to classes,
+and typed runbooks make the corresponding responses repeatable.
 
 ### Fundamental Model
 
 **The engineering lifecycles.** A fleet repo runs the same few: manage-agents, manage-context,
 manage-git-repo, manage-deploy, manage-dev-env, plus cron and govern-your-own-loop. Every symptom belongs
-to one lifecycle, so every break routes to a *class* instead of being met cold. The lifecycle map is the
-fundamental model: it turns operational sprawl into a small set of recurring classes.
+to one lifecycle, so every break routes to a *class* instead of being met cold. The lifecycle map gives the
+process its state and routing structure: it turns operational sprawl into a small set of recurring classes.
 
-### Orthogonal Models
+### Process Structure
+
+Three structures organize the process:
 
 - **Lifecycle map / symptom catalog** — identifies which operational lifecycle owns the problem.
 - **Typed runbooks** (`examples/runbook-*.md`) — specify what to do, distinguishing runnable,
   judgment-automatable, and judgment-irreducible steps.
-- **Hooks** (`hooks/`) — decide when a known reaction should fire automatically.
+- **Hooks** (`hooks/`) — determine when a known reaction should fire automatically.
 
-These answer three independent questions: where the problem belongs, what response it requires, and when
-that response should trigger.
+These answer three different process questions: where am I, what should happen next, and when should that
+response trigger?
 
-Supporting resources: build and handoff templates (`templates/`) — used when operating work crosses into
-implementation.
+Supporting resources include build and handoff templates (`templates/`) for cases where operational work
+crosses into implementation.
 
 ### Governing Principle
 
 Establish the healthy state first, then classify deviations from it. Route each symptom to a lifecycle and
-run the corresponding procedure. When diagnosis reveals that a model, mechanism, or enforcement should change,
-hand that engineering decision to self-governance. Automate deterministic steps; prepare irreducible
+run the corresponding procedure. When diagnosis reveals that a model, mechanism, or obligation should change,
+return that engineering decision to self-governance. Automate deterministic steps; prepare irreducible
 judgments for escalation.
 
 ### Layout
@@ -209,19 +217,22 @@ self-operations/
 
 ### Lesson
 
-The lifecycle model turns incident response into routing: identify the affected lifecycle, select the
-corresponding runbook, and determine which steps can be automated. Typed runbooks distinguish runnable steps
-from automatable and irreducible judgment. Self-governance changes models and mechanisms; self-operate runs
-them and returns evidence; self-communicate governs their representations.
+self-operate is a process-skill. Its reusable asset is the operating lifecycle: identify the affected
+lifecycle, select the corresponding runbook, and determine which steps can be executed, delegated, or
+escalated. Typed runbooks distinguish directly runnable steps from those requiring automatable or
+irreducible judgment. The process therefore contains judgment without becoming a mastery-skill; its primary
+purpose is to preserve and run the operating procedure. Self-governance changes models and mechanisms;
+self-operate runs them and returns evidence; self-communicate governs their representations.
 
-[ref:fig-skill-composition] shows the three skills acting on one governed engineering environment:
-self-governance changes it, self-operate runs it and returns evidence, and self-communicate governs its
-representations.
+[ref:fig-skill-composition] shows two kinds of skill acting on one governed engineering environment:
+mastery-skills shape how the fleet reasons about communication and engineering, while a process-skill runs
+the operational lifecycles through which the environment is used.
 
 <!-- label: fig-skill-composition -->
 <!-- figure: assets/figure-composition.svg | *Three complementary skills act around one governed engineering environment.* Self-Governance improves the environment; Self-Operate runs operational lifecycles within it and returns evidence about deficiencies; Self-Communicate articulates the system to others and contributes canonical documentation to the environment. -->
 
-Orthogonality does not require isolation. Each skill has one reason to change—communication, engineering
-judgment, or operation—and explicit interfaces connect them. Self-governance produces models and
-mechanisms that self-operate uses; self-operate returns evidence; self-communicate
-governs their representations.
+The distinction is one of primary role, not isolation. Each skill has one reason to change:
+self-communicate changes when the organization's communication mastery changes; self-governance changes when
+its engineering method changes; self-operate changes when its operating process changes. Explicit interfaces
+connect them. Self-governance produces models and mechanisms that self-operate uses; self-operate returns
+evidence; self-communicate governs their representations.

@@ -1,6 +1,8 @@
-<!-- point: a-good-mastery-skill-turns-on-one-base-model | A good mastery-skill turns on one base model, layered and tied. | terms: mastery-skill, skill-soft-control -->
-A good mastery-skill has a recognizable structure. This chapter gives a three-step method for building one
-and the failure modes to test before shipping.
+<!-- point: different-skill-kinds-require-different-structures | Different skill kinds require different structures; two get recipes. | terms: process-skill, mastery-skill, skill-soft-control -->
+Skills of different kinds require different structures. Tool-skills mostly package capability-specific
+guidance. Process-skills preserve recurring ways of working. Mastery-skills preserve reusable models and
+judgment. This chapter gives construction methods for the latter two and a common set of failure modes to
+test before shipping.
 
 ## Anatomy
 
@@ -23,14 +25,46 @@ resources.
 > the skill should contain and how to structure it.
 > *(Source: Anthropic, "Skill authoring best practices.")*
 
-<!-- point: the-recipe-targets-mastery-skills-not-tool-skills | The recipe targets the mastery-skill, not the tool-skill. | terms: mastery-skill, skill-soft-control -->
-A **tool-skill** packages a capability the agent *invokes*; a **mastery-skill** packages judgment the agent
-reasons *through*. Tool-skills need little beyond reliable invocation — scope each to one capability, make
-its triggering conditions concrete, specify fragile operations precisely, and prefer deterministic scripts
-where generated procedures would drift. When a mastery-skill needs a tool interface,
-factor that interface into its own tool-skill and reference it.
+<!-- point: three-skill-types-place-different-demands-on-structure | The three skill types place different demands on structure. | terms: tool-skill, process-skill, mastery-skill -->
+The three skill types place different demands on this structure. A tool-skill teaches use of a capability:
+scope it to one capability, make its triggering conditions concrete, specify fragile operations precisely,
+and prefer deterministic scripts where generated procedures would drift. A process-skill needs to make the
+recurring workflow, its state, and its decision points clear. A mastery-skill needs to expose the models and
+distinctions through which the agent should reason. When a process- or mastery-skill depends on a
+specialized tool, factor the tool-specific guidance into its own tool-skill and refer to it.
 
-## From Domain Knowledge to Model
+## Process-Skills: from Recurring Work to Procedure
+
+<!-- point: a-process-skill-begins-with-a-recurring-unit-of-work | A process-skill keeps a recurring procedure from reconstruction. | terms: process-skill -->
+A process-skill begins with a recurring unit of work rather than a domain model. Its purpose is to keep a
+useful procedure from being reconstructed differently on every invocation.
+
+<!-- point: build-a-process-skill-in-three-steps-state-decisions-transitions | Build a process-skill: identify state, type decisions, package transitions. | terms: process-skill, lifecycle -->
+Build a process-skill in three steps.
+
+- **Step 1 — Identify the recurring process and its state.** Define the unit of work being repeated and the
+  states through which it can move. Establish what a healthy or completed state looks like before cataloging
+  failures and exceptions.
+- **Step 2 — Type the decisions within the process.** Some steps are mechanically determined and should be
+  executed directly where practical. Others require bounded judgment that an agent can exercise given the
+  right state and criteria. Still others require human judgment because responsibility, consequence, or
+  missing evidence prevents delegation. Make those distinctions explicit rather than representing every step
+  as undifferentiated prose.
+- **Step 3 — Package the procedure and its transitions.** Give the agent enough information to determine
+  where it is in the process, which procedure applies, what evidence each step produces, and what state
+  follows. Use executable operations for deterministic steps where practical; reserve instructions for
+  choices that actually require reasoning.
+
+This construction mirrors the Execute / Delegate / Escalate distinction from
+[Operating MAGE](4.4-operating-mage.html). A process-skill does not turn every process into automation. It
+makes the process explicit enough that each part can be handled by the appropriate mechanism or reasoner.
+
+<!-- point: the-discriminator-is-which-asset-survives-improved-judgment | The discriminator: which asset survives if individual judgments improve. | terms: process-skill, mastery-skill -->
+A useful test is whether the skill's primary asset survives if the individual judgments within it improve.
+If the enduring value is the sequence, state, routing, and handoffs, it is probably a process-skill. If the
+enduring value is the expertise used to decide what should happen, it is probably a mastery-skill.
+
+## Mastery-Skills: from Domain Knowledge to Model
 
 <!-- point: build-a-mastery-skill-in-three-layers-top-idea-first | Build a mastery-skill in three layers, top idea first. | terms: mastery-skill, orthogonal-models -->
 Build a mastery-skill in three steps.
@@ -56,22 +90,26 @@ Orthogonal skills can also compose. Give each skill one reason to change, then u
 
 ## Failure Modes
 
-A mastery-skill can fail in several predictable ways.
+Skills can fail in several predictable ways.
 
 - **The description is vague.** The skill exists but does not trigger when needed. Put concrete task cues,
   formats, tools, or other recognizable triggers in the description.
-- **`SKILL.md` becomes a manual.** Exhaustive reference material consumes context and obscures the governing
-  model. Keep the top-level file focused and move detail into resources.
-- **There is no fundamental model.** The skill becomes a collection of locally useful tips with no coherent
-  way to reason across them. Return to Step 1.
-- **The facets overlap.** Multiple resources partially encode the same concern, forcing the agent to
-  reconcile them. Merge them or redraw the boundary along an independent axis.
-- **Soft guidance is presented as hard enforcement.** A skill can guide an agent toward a behavior; it
-  cannot guarantee that behavior. If a rule must hold independently of agent cooperation, implement a hard
-  mechanism such as a lint, gate, type, or architectural constraint. The skill can explain and invoke that
-  mechanism, but it should not claim to replace it.
-- **The skill costs more to maintain than it saves.** Skills and hooks themselves require maintenance. Add
-  skills and hooks only when recurrence or consequence justifies their upkeep.
+- **`SKILL.md` becomes a manual.** Exhaustive reference material consumes context and obscures the structure
+  that should guide the work. Keep the top-level file focused and move detail into resources.
+- **A process-skill has no explicit process.** The skill becomes a collection of procedures and exceptions
+  without a clear lifecycle, state, or routing rule. Make the recurring unit of work and its transitions
+  explicit.
+- **A mastery-skill has no fundamental model.** The skill becomes a collection of locally useful tips with
+  no coherent way to reason across them. Return to the fundamental model.
+- **The decomposition overlaps.** Multiple resources partially encode the same concern, forcing the agent to
+  reconcile them. For a process-skill, redraw the lifecycle or responsibility boundaries; for a
+  mastery-skill, merge overlapping facets or redraw them along independent axes.
+- **Soft guidance is presented as enforcement.** A skill can guide an agent toward a behavior; it
+  cannot guarantee that behavior. If a rule must hold independently of agent cooperation, implement a
+  mechanism such as a lint, gate, type, or architectural constraint. The skill can explain or invoke that
+  mechanism, but it does not replace it.
+- **The skill costs more to maintain than it saves.** Skills require maintenance like other engineering
+  assets. Add one when recurrence or consequence justifies its upkeep.
 
 <!-- point: a-passive-skill-fires-only-when-a-hook-fires-it | A passive skill fires only when a hook fires it. | terms: skill-soft-control, reflection-hook -->
 A skill that never loads has no effect. Where a recurring event should reliably invoke it, pair the skill
@@ -80,12 +118,13 @@ The hook makes invocation more reliable; the skill still supplies guidance rathe
 
 Before shipping:
 
-- [ ] The skill has been classified as a tool-skill or a mastery-skill.
+- [ ] The skill has been classified by its primary role: tool, process, or mastery.
 - [ ] Its description names concrete triggering conditions and follows the platform's current discovery requirements.
 - [ ] The top-level file contains the governing structure rather than bulk reference material.
 - [ ] Detailed resources are loaded progressively.
 - [ ] Instruction specificity matches task fragility.
-- [ ] Deterministic, repeated operations are implemented deterministically where practical.
+- [ ] Deterministic repeated operations are implemented deterministically where practical.
+- [ ] For a process-skill, the recurring process, relevant state, transitions, and decision points are explicit.
 - [ ] For a mastery-skill, the fundamental model, orthogonal facets, and governing principle are explicit.
 - [ ] Recurring invocation is supported by a trigger or hook where appropriate.
 - [ ] Nothing is described as enforced when the skill can only guide.
