@@ -147,6 +147,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ### Lesson 6.4-research-agenda
 
+  - **[DERIVED]** (analyze) After this section, the reader can compare engineering surfaces that differ in representation and governance …. — _anchor: ts: Compare engineering surfaces that differ in representation and governance while holding as_
 
 ## Module 7 — The Profession
 
