@@ -4,8 +4,8 @@
      engineered environment.
        FOUNDATION MODEL (blue = model palette) — semantic reasoning, probabilistic output, bounded
                         working state, cheap repeated reasoning.
-       AGENTIC HARNESS  (gray = neutral machinery) — tool-mediated action, interposition, lifecycle
-                        visibility, parallel execution.
+       AGENTIC HARNESS  (gray = neutral machinery) — tool-mediated action, context management,
+                        interposition, parallel execution.
      Both feed AGENT (blue), which acts on the ENGINEERED ENVIRONMENT (green = the engineered lever).
      Grayscale-survivable: every attribute labelled; the two-column convergence and the top-to-bottom
      order carry the meaning; hue only reinforces which family a column belongs to. -->
@@ -15,7 +15,7 @@
   <title id="asTitle">Agentic machinery and environment</title>
   <desc id="asDesc">Two columns supply the agent. The foundation model contributes semantic reasoning,
     probabilistic output, a bounded working state, and cheap repeated reasoning. The agentic harness
-    contributes tool-mediated action, interposition, lifecycle visibility, and parallel execution. Both
+    contributes tool-mediated action, context management, interposition, and parallel execution. Both
     converge on the agent, a tool-using reasoner, which in turn acts on the engineered environment —
     the models, obligations, evidence, and controls the engineer builds.</desc>
 
@@ -55,8 +55,8 @@
     <rect x="558" y="260" width="364" height="42" rx="8"/>
   </g>
   <text x="740" y="143" text-anchor="middle" font-size="20" fill="#1c1917">tool-mediated action</text>
-  <text x="740" y="191" text-anchor="middle" font-size="20" fill="#1c1917">interposition</text>
-  <text x="740" y="239" text-anchor="middle" font-size="20" fill="#1c1917">lifecycle visibility</text>
+  <text x="740" y="191" text-anchor="middle" font-size="20" fill="#1c1917">context management</text>
+  <text x="740" y="239" text-anchor="middle" font-size="20" fill="#1c1917">interposition</text>
   <text x="740" y="287" text-anchor="middle" font-size="20" fill="#1c1917">parallel execution</text>
 
   <!-- ===== ENGINEERED ENVIRONMENT container (green) — ENCLOSES the agent; drawn FIRST so it sits behind
