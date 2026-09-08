@@ -177,8 +177,8 @@ and typed runbooks make the corresponding responses repeatable.
 ### Fundamental Model
 
 **The engineering lifecycles.** A fleet repo runs the same few: manage-agents, manage-context,
-manage-git-repo, manage-deploy, manage-dev-env, plus cron and govern-your-own-loop. Every symptom belongs
-to one lifecycle, so every break routes to a *class* instead of being met cold. The lifecycle map gives the
+manage-git-repo, manage-deploy, manage-dev-env, plus cron and govern-your-own-loop. Each operational
+symptom is routed to a lifecycle, so every break meets a *class* instead of being met cold. The lifecycle map gives the
 process its state and routing structure: it turns operational sprawl into a small set of recurring classes.
 
 ### Process Structure
