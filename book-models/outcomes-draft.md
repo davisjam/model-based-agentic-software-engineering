@@ -16,7 +16,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ## Program — across the whole book
 
 - **[DECLARED]** (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. _(primary: the program · elaborated by: Module 2, Module 4)_ — _anchor: Preface 'Who this book is for': recognize when an engineering problem is being paid for repeatedly in reconstruction or human judgment; decide whether a better representation, stronger enforcement, or both would retire that cost; and design mechanisms suited to your own system rather than copying another organization's process._
-- **[DECLARED]** (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. _(primary: the program · elaborated by: prevention-and-observation, from-soft-to-hard)_ — _anchor: The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (from-soft-to-hard, in the MAGE Workflow chapter — re-homed in round-6)._
+- **[DECLARED]** (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. _(primary: the program · elaborated by: prevention-and-observation, guidance-or-enforcement)_ — _anchor: The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (guidance-or-enforcement, in the MAGE Workflow chapter — re-homed in round-6)._
 - **[DECLARED]** (create) After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human's head. _(primary: the program · elaborated by: Module 3, agreement-is-not-correctness)_ — _anchor: The Modeling Principle, developed across Part 3 (the executable 4+1 zoo)._
 
 ## Module 1 — The New Engineering Problem
@@ -25,6 +25,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ### Lesson 1.1-the-printer
 
+  - **[DERIVED]** (understand) After this section, the reader can explain why an agent, like a 3D printer, needs the detailed build instructions and not merely a picture of the desired result. — _anchor: point: modeling-and-alignment-supply-the-instruction-package (The Printer, 'The Engineering Object' — intent is not fabrication instructions; a photograph does not specify the build)._
   - **[DERIVED]** (apply) After this section, the reader can adopt the posture that an agent is a printer, not a stapler — so when it produces the wrong thing, the first suspect is the instructions, and the models can build anything one can explain. — _anchor: point: agent-is-a-printer-not-a-stapler-so-suspect-the-instructions / models-can-build-anything-you-can-explain_
 
 ### Lesson 1.2-mage-by-example
@@ -79,10 +80,11 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 3.3-constraints-sensors-validators-gates
 
   - _elaborates (owned by the program):_ (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for.
-  - _elaborates (owned by from-soft-to-hard):_ (analyze) After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds.
+  - _elaborates (owned by guidance-or-enforcement):_ (analyze) After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds.
 
 ### Lesson 3.4-governance-conversion
 
+  - **[DERIVED]** (know) After this section, the reader can identify the residual — goals that are neither preventable nor detectable because the failure is an absence nobody specified — explain why it sets the throughput ceiling and is the complement of the two moves rather than a third axis value, and see how authoring the missing spec pulls a goal out of it. _(primary: where-enforcement-stops · elaborated by: reorganization-of-se)_ — _anchor: point: the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use / three-different-reasons-non-enforcement-is-sometimes-the-engineered-result (3.4 Governance Conversion, 'Where Enforcement Stops')._
 
 ### Lesson 3.5-when-guardrails-collide
 
@@ -100,18 +102,35 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ### Lesson 4.1-the-mage-workflow
 
+  - **[DERIVED]** (analyze) After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds. _(primary: guidance-or-enforcement · elaborated by: prevention-and-observation)_ — _anchor: point: guidance-aims-enforcement-binds (4.1 the MAGE Workflow, 'Guidance or Enforcement?' — guidance aims, enforcement binds)._
+  - _elaborates (owned by the program):_ (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for.
+  - **[DERIVED]** (understand) After this section, the reader can distinguish one-shot scripting from supervised autonomy and name what each supplies to the agent. — _anchor: point: not-every-task-deserves-the-full-apparatus-of-governed-autonomy / two-things-shorten-the-leash-reasoning-burden-and-assurance-need (re-homed to 'Size Work to Reasoning and Assurance' in 4.1 the MAGE Workflow; one-shot-scripting vs supervised-autonomy)._
+  - **[DERIVED]** (evaluate) After this section, the reader can size a transformation's leap to its model and its guarantee. — _anchor: point: size-work-as-transformations-with-checkable-boundaries / docable-sizes-the-leap-to-bounded-typed-edits-the-unit-of-delegation-lines-up-with-a-unit-of-evidence (4.1 'Size Work to Reasoning and Assurance'; sizing-the-leap)._
 
 ### Lesson 4.2-brownfield
 
 
 ### Lesson 4.3-validating-change
 
+  - **[DERIVED]** (apply) After this section, the reader can apply the one move behind property testing, fuzzing, and fuzz-MBSE: a generator hunting a counterexample to a stated model. — _anchor: point: let-the-claim-choose-the-search / fix-the-stable-obligation-not-the-seed (4.3 Validating Change, 'Generate Falsifying Evidence' — property / fuzz / TLA+ all hunt a counterexample to a stated model)._
+  - **[DERIVED]** (evaluate) After this section, the reader can choose which validation strategy to reach for by the specification it attacks. — _anchor: point: let-the-claim-choose-the-search / the-three-cases-make-the-rule-concrete (4.3 'Generate Falsifying Evidence' — the shape of the property chooses the strategy)._
 
 ### Lesson 4.4-operating-mage
 
+- **[DERIVED]** (create) After this chapter, the reader can author a lifecycle and its runbook, giving the deterministic parts a tight algorithm and the judgment parts the roughest one that still fits. — _anchor: point: a-lifecycle-is-the-healthy-path-then-a-failure-map / type-each-runbook-step-execute-delegate-escalate (Operating MAGE, ch. 4.4 — lifecycles + externalized-judgment runbooks)._
+- **[DERIVED]** (create) After this chapter, the reader can design a metric that measures one level deeper — turning a number that reports into one that drives a decision — and place it on the hard-to-soft spectrum, feeding a hard number into a structured model the metric tool then consumes. _(primary: 4.4 · elaborated by: generative-validation)_ — _anchor: point: ousterhouts-rule-measure-one-level-deeper / some-evidence-is-mechanically-decidable-other-evidence-is-judgment-laden (Operating MAGE, ch. 4.4 — 'Measure the State That Matters' + its hard/soft examples)._
+  - **[DERIVED]** (analyze) After this section, the reader can map a lifecycle — the healthy path of a recurring activity plus, from each node, its failure states and the action for each — as a failure-mode-and-effects grid, and encode the way out and the prohibition an agent cannot supply on its own. — _anchor: point: a-lifecycle-is-the-healthy-path-then-a-failure-map / fmea-supplies-the-enumerate-failures-instinct / pair-every-prohibition-with-a-recovery-path (4.4 'Model the Lifecycle')._
+  - **[DERIVED]** (apply) After this section, the reader can apply the roughest-algorithm-that-still-fits rule to a judgment step — giving a well-constrained decision an algorithm, an open-ended one only hints, a measurement a rubric, and a delegated task a pre-canned brief. — _anchor: point: type-each-runbook-step-execute-delegate-escalate / surround-a-judgment-step-with-deterministic-work (4.4 'Externalize Operational Judgment' — the roughest-algorithm framing folded into the Execute/Delegate/Escalate step typing)._
+  - **[DERIVED]** (create) After this section, the reader can author a runbook that separates deterministic steps from judgment ones — giving the deterministic parts an executable tool that also yields a reusable trace, and the judgment parts a rubric or the roughest algorithm that still fits, up to a pre-canned brief for delegation. — _anchor: point: type-each-runbook-step-execute-delegate-escalate / surround-a-judgment-step-with-deterministic-work (4.4 'Externalize Operational Judgment')._
+  - **[DERIVED]** (apply) After this section, the reader can apply Ousterhout's rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried. _(primary: measure-the-state-that-matters · elaborated by: one-hard-example-coverage-measured-one-level-deeper)_ — _anchor: point: ousterhouts-rule-measure-one-level-deeper / some-evidence-is-mechanically-decidable-other-evidence-is-judgment-laden (4.4 'Measure the State That Matters')._
+  - **[DERIVED]** (apply) After this section, the reader can compute coverage measured one level deeper — joining a traceability graph's claim-to-anchor edges with the coverage oracle so the metric counts model claims instead of lines, names an unexercised invariant instead of a percentage, and reports an honest exercised/unmeasurable/out-of-surface breakdown. — _anchor: point: requirements-based-coverage-measures-at-the-semantic-unit (4.4 'One hard example: coverage measured one level deeper')._
+  - _elaborates (owned by measure-the-state-that-matters):_ (apply) After this section, the reader can apply Ousterhout's rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried.
+  - **[DERIVED]** (analyze) After this section, the reader can classify a soft metric — a doc-derived test's coverage-of-doc-claims — as one that aims a reader rather than deciding, recognize why its softness is inseparable from a readiness judgment about the seam, and see why wiring it to a blocking gate manufactures hollow tests. — _anchor: point: a-doc-derived-tests-metric-is-genuinely-soft (4.4 'One judgment-laden example: doc-derived tests')._
+  - **[DERIVED]** (understand) After this section, the reader can explain why the MBSE models are consumed at runtime to produce the metrics — the cold-start numbers and the coverage graph both read at check time — so a component-distance grade read from the model drives a pre-commit gate three ways, the model being the machinery rather than a picture of it. _(primary: let-useful-models-drive-machinery · elaborated by: when-guardrails-collide)_ — _anchor: point: an-executable-model-becomes-a-query-surface-for-consumers / the-grade-is-a-model-read-metric-not-a-gate (4.4 'Let useful models drive machinery')._
 
 ### Lesson 4.5-packaging-the-method-as-skills
 
+  - **[DERIVED]** (apply) After this section, the reader can use the self-governance signal — a bad thing happened twice — to mint a control instead of re-patching the instance. — _anchor: point: self-governance-packages-the-mage-method-itself / the-skill-can-query-the-governance-catalogue (4.5 'Self-Governance: Engineering the Environment')._
 
 ## Module 5 — The Evidence
 

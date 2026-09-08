@@ -251,7 +251,12 @@ def build_index() -> "dict[str, dict]":
     # both so `deps <section>` answers "edit this unit → which claims are asserted / homed here?" — the claims
     # analogue of the outcomes coverage join (DESIGN §4.1 RI). Keyed by the SITE symbol, like an outcome unit.
     for cl in clm.derive_model().claims:
-        _add(index, cl.home, universe.unit_kind(cl.home),
+        # `home` and `asserted_at` share one unit grammar (section-id | chapter | part | book | point:<slug>),
+        # so both must strip the `point:` prefix and key kind="point" — otherwise a claim homed on a point
+        # is misread as a bogus section-id `point:<slug>` and reported as a false-positive DANGLING.
+        home_kind = "point" if cl.home.startswith("point:") else universe.unit_kind(cl.home)
+        home_symbol = cl.home.removeprefix("point:") if cl.home.startswith("point:") else cl.home
+        _add(index, home_symbol, home_kind,
              Dependent(view="claims", element=cl.id, role="claim-home"))
         for site in cl.asserted_at:
             if site == cl.home:
