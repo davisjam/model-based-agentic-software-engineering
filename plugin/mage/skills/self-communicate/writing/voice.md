@@ -45,7 +45,10 @@ third-party) — how a claim is framed and scoped, how a system is described, ho
 - **Plain diction carrying technical weight.** Everyday words ("pickle", "elbow scratch", "silver bullet",
   "just-so story") sit next to precise technical terms (BMC, loop unwinding, StructTreeRoot) with no
   register clash and no condescension. He reaches for the common word when it will carry the idea, and
-  the exact word when it won't.
+  the exact word when it won't. He does not paraphrase a precise technical or disciplinary concept into
+  everyday language merely to make the prose sound plainer: "engineering object," "unit of analysis," and
+  "defect escape" carry distinctions that "what we engineer," "what we look at," and "bugs that get through"
+  do not. Plain prose removes needless difficulty; it does not remove useful abstraction.
 - **Concrete anchor before abstract claim.** A specific number, a named event, a worked example arrives
   *before* the generalization it supports — 72 minutes, 20 lines of code, the CrowdStrike outage, the
   Ship of Theseus. The abstraction is earned by the instance, never floated on its own.
@@ -588,19 +591,26 @@ Two more transformations from the author's own edits, same conservative posture 
 
 ## House-style calibration — the register pass: introduce the noun once, then use plain verbs (260819)
 
-10. **Introduce the technical noun once. Then explain it with ordinary verbs.** The front matter's failure
-    mode is register drift: stacking the canonical nouns (*consequential, externalize, representation,
-    realization, authority, semantic, tractable, reconstruct, mechanism, durable, governance, instantiate,
-    methodological, lineage, empirical, reflexive*) into a single dense clause, so the reader meets several
-    abstractions at once. The fix is a **register pass, not a conceptual pass**: keep the structure, the
-    claims, and the MAGE vocabulary; simplify the surrounding sentences so the reader learns one new idea at
-    a time. Name the technical noun the first time it is taught, then carry the sentence on plain verbs.
+10. **Keep the precise noun; make the rest of the sentence earn its abstraction.** Introduce a technical or
+    disciplinary noun when it names the concept precisely. Then explain what it does with ordinary verbs.
+    The failure mode is not abstraction itself but stacked, disposable abstraction: several abstract nouns
+    carrying relationships that ordinary syntax could state more directly. Stacking the canonical nouns
+    (*consequential, externalize, representation, realization, authority, semantic, tractable, reconstruct,
+    mechanism, durable, governance, instantiate, methodological, lineage, empirical, reflexive*) into a
+    single dense clause makes the reader meet several abstractions at once.
+
+    This is a **register pass, not a conceptual pass**: preserve canonical MAGE vocabulary, established
+    technical vocabulary, and disciplinary abstractions that identify the right object, relation, or level
+    of analysis — then simplify the language around them so the reader learns one new idea at a time.
     - *Before:* "Alignment operationalizes consequential obligations through authoritative admission mechanisms."
       *After:* "Alignment gives obligations authority. A gate can then block work that violates them."
-    - **The audit move:** search the front matter for each word in the list above and ask at every site —
-      *is this the technical term being taught here, or merely the fancy word I happened to use?* If the
-      latter, simplify it; if it is the canonical term at its teaching site, keep it. Do **not** strip the
-      vocabulary mechanically — many of these are the terms the book exists to define.
+    - **The audit move:** for each abstract term, ask two questions. (1) Does this noun name a concept,
+      object, relation, or distinction that the argument needs? If yes, keep it — even if an everyday
+      paraphrase exists. (2) Is this abstraction merely carrying the sentence from one real concept to
+      another? If yes, look for a plain verb or simpler construction. Do not optimize for elementary
+      vocabulary: "engineering object" may be better than "what we engineer"; "unit of analysis" may be
+      better than "what we look at." The test is precision without needless difficulty, not whether a
+      first-time reader could have chosen every word.
     - **Calibrate the front matter to Part I.** Part I already uses the plain form far more often; the front
       matter should sound like Part I, not more academic than it.
 

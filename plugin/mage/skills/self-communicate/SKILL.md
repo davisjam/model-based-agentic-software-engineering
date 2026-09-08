@@ -53,7 +53,9 @@ The stance specializes per representation, and each specialization lives in its 
 being restated here:
 
 - **In prose** — economy of words and economy of abstraction. Prefer the plainest language that states the
-  engineering fact precisely. Name the actor and say what it does: a gate rejects a change; a validator
+  engineering fact with its full technical precision. Plain does not mean colloquial, concrete, or
+  elementary; a precise disciplinary abstraction may be the plainest correct way to state the idea. Name
+  the actor and say what it does: a gate rejects a change; a validator
   checks an obligation; a permission prevents an action. Do not replace a concrete mechanism with an
   abstract noun merely because the abstraction is technically defensible. Use terms of art when they carry
   meaning that ordinary language would lose; otherwise use ordinary engineering prose. Reserve flowery or
