@@ -349,6 +349,14 @@ MARKER_KEYWORDS = (
     #   held to one page (non-breakable), for a long deep-dive box. INERT in HTML (no pagination), consumed +
     #   stripped like inset-domain so it never leaks. Applied by the print emitter (book_typst.py).
     "inset-size",
+    # `<!-- box-weight: aside|callout|deep-dive -->` — the READING-WEIGHT axis (typography pilot 260908),
+    #   independent of BOTH the visual `box-family` and the semantic `inset-domain` badge: family/badge say
+    #   what KIND of material the box holds; the weight says how heavily to weight it in the reading path,
+    #   legible before reading a word (aside = narrow + outside-edge + prose wraps alongside; callout =
+    #   full-width contained secondary; deep-dive = full-width sectional excursion with a DEEP DIVE label).
+    #   Armed for the NEXT blockquote, consumed + stripped like box-family. Where a box carries both
+    #   `inset-size: small` and a box-weight, the WEIGHT treatment wins (print emitter, book_typst.py).
+    "box-weight",
     # `<!-- table-landscape -->` — a Typst-only per-table directive: the Typst emitter drops the NEXT table
     #   onto a flipped/landscape page (a wide matrix that cramps in portrait). INERT in HTML (the pipe table
     #   renders through the ordinary table path; web width relies on CSS overflow), like note-spread: consumed
@@ -1436,6 +1444,7 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
     pending_principlebox: list[bool] = []      # a `<!-- principlebox -->` marker armed for the next blockquote (part-opener box)
     pending_boxfamily: list[str] = []       # a `<!-- box-family: X -->` marker armed for the next blockquote (four-family grammar)
     pending_insetdomain: list[str] = []     # a `<!-- inset-domain: TAG -->` marker armed for the next inset (provenance badge)
+    pending_boxweight: list[str] = []       # a `<!-- box-weight: W -->` marker armed for the next blockquote (reading-weight axis)
     pending_onepager: list[bool] = []       # a `<!-- case-onepager -->` marker armed for the next table (card)
     pending_convergence_key: list[bool] = []  # a `<!-- convergence-spread-key -->` marker → next table is the slim key
     spread_state: list[dict] = []           # open convergence spread(s): {start, split} indices into `out`
@@ -1576,6 +1585,11 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
             if inner.startswith("inset-size:"):
                 # `<!-- inset-size: small -->` — a Typst-only directive (small-font, one-page inset). Consumed +
                 # stripped here so it never leaks into HTML; the print emitter (book_typst.py) applies it.
+                return True
+            if inner.startswith("box-weight:"):
+                # `<!-- box-weight: aside|callout|deep-dive -->` — arms the reading-weight treatment for the
+                # NEXT blockquote (orthogonal to box-family/inset-domain). Consumed + stripped like its siblings.
+                pending_boxweight.append(inner[len("box-weight:"):-len("-->")].strip())
                 return True
             if inner.startswith("case-onepager"):
                 # `<!-- case-onepager -->` — arms the NEXT table as a per-case one-pager CARD (a light
@@ -1722,6 +1736,8 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
         pending_boxfamily.clear()
         insetdomain_armed = pending_insetdomain[0] if pending_insetdomain else None
         pending_insetdomain.clear()
+        boxweight_armed = pending_boxweight[0] if pending_boxweight else None
+        pending_boxweight.clear()
         stripped = block.strip()
         # ── The A-flip: one classifier, one renderer per node kind. ────────────────────────────────
         # Classification is single-sourced through the typed IR (`book_ir.classify_render_block`, which
@@ -1758,7 +1774,8 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
         if kind is _ir.BlockKind.BLOCKQUOTE:
             _emit(_render_blockquote(block, is_def=def_armed, is_pullquote=pullquote_armed,
                                      is_principlebox=principlebox_armed,
-                                     box_family=boxfamily_armed, inset_domain=insetdomain_armed))
+                                     box_family=boxfamily_armed, inset_domain=insetdomain_armed,
+                                     box_weight=boxweight_armed))
             continue
         # Gap-marker callouts (`[FILL IN: …]` / `[MORE CHAPTERS FOLLOW: …]`) — the IR classifies these as
         # PARA (they are prose-shaped), so the renderer keeps the shape test for them just ahead of prose.
@@ -2014,9 +2031,15 @@ def _render_heading(block: str, section_no: str | None = None) -> str:
     return f"<h1{anc}>{inline(txt)}</h1>"
 
 
+# The closed reading-weight vocabulary (`<!-- box-weight: … -->`): the ONE list both projections validate
+# against (book_typst.py imports it), so an unknown weight fails the build loudly instead of silently
+# rendering as an unweighted box.
+BOX_WEIGHTS = ("aside", "callout", "deep-dive")
+
+
 def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = False,
                        is_principlebox: bool = False, box_family: "str | None" = None,
-                       inset_domain: "str | None" = None) -> str:
+                       inset_domain: "str | None" = None, box_weight: "str | None" = None) -> str:
     """A blockquote (every line starts with `>`) → a classified `<blockquote>`. Its inner content is itself
     markdown (heading + prose + a `> ```mermaid ``` fence), rendered recursively; an inner heading is demoted
     to a styled `inset-title` paragraph (no document-outline break). An explicit `<!-- box-family: X -->`
@@ -2038,6 +2061,17 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
     # the rendered label (the id/anchor on the <p> is untouched, so intra-book links still resolve). This
     # also moots any "insets out of numeric order" reading — the reader never sees a number.
     inner_html = re.sub(r'(<p class="inset-title"[^>]*>)\s*Inset\s+I\d+\s*—\s*', r'\1', inner_html)
+    # READING-WEIGHT axis (`box-weight` marker) — a CLASS the weight CSS keys off, composed onto whatever
+    # family/inferred class the box already carries (two independent axes: kind × weight). deep-dive adds
+    # the structural DEEP DIVE label and drops a redundant "Deep dive — " title prefix (renderer-level
+    # display transform, like the "Inset I<N> —" strip above — the source title is untouched).
+    if box_weight and box_weight not in BOX_WEIGHTS:
+        raise SystemExit(f"unknown box-weight {box_weight!r} — expected one of {BOX_WEIGHTS}")
+    weight_cls = f" bw-{box_weight}" if box_weight else ""
+    weight_label = ""
+    if box_weight == "deep-dive":
+        inner_html = re.sub(r'(<p class="inset-title"[^>]*>)\s*Deep dive\s*—\s*', r'\1', inner_html)
+        weight_label = '<span class="bw-label">DEEP DIVE</span>'
     if box_family:
         # The explicit four-family grammar (box-grammar-IMPL-260823) — outranks the shape inference below.
         furniture = ""
@@ -2046,7 +2080,7 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
             furniture = f'<span class="box-badge{_cav}">{html.escape(inset_domain)}</span>'
         elif box_family == "model-card":
             furniture = '<span class="box-corner">MODEL CARD</span>'
-        return f'<blockquote class="box-{box_family}">{furniture}{inner_html}</blockquote>'
+        return f'<blockquote class="box-{box_family}{weight_cls}">{furniture}{weight_label}{inner_html}</blockquote>'
     if is_pullquote:
         klass = "pull-quote"
     elif is_principlebox:
@@ -2061,7 +2095,7 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
         klass = "aside-sidenote def-inset"
     else:
         klass = "aside-sidenote"
-    return f'<blockquote class="{klass}">{inner_html}</blockquote>'
+    return f'<blockquote class="{klass}{weight_cls}">{weight_label}{inner_html}</blockquote>'
 
 
 def _render_unordered_list(block: str) -> str:
@@ -2428,6 +2462,37 @@ blockquote.box-evidence em {{ font-style: italic; }}
 blockquote.box-evidence .inset-title {{ font-style: normal; font-weight: 700; color: var(--diagram-fleet);
   font-size: 1rem; margin: 0 0 0.5rem; }}
 blockquote.box-evidence .inset-title::before {{ content: none; }}
+/* ── READING-WEIGHT AXIS (box-weight marker; typography pilot 260908) ───────────────────────────────
+   Orthogonal to the four-family grammar and the provenance badge: the family/badge say what KIND of
+   material a box holds; the weight says how heavily to weight it in the reading path, legible before
+   reading a word. Geometry carries the signal more than color does: aside = narrow + wrapped + smaller;
+   callout = full-width + contained + secondary; deep-dive = full-width + sectional + sustained. The
+   `bw-*` classes compose onto the family class (`box-inset bw-aside`), so an unmarked box renders
+   exactly as before. These rules sit AFTER the family rules on purpose — equal specificity, later wins. */
+/* ASIDE — a compact optional bridge the reader may skip: floated to the outside (right) edge at 65% of
+   the measure, body ~1pt down + tighter leading, the main prose wrapping alongside. Collapses to an
+   in-column box on a narrow screen (a float needs a wide measure to leave a readable wrap column). */
+blockquote.bw-aside {{ font-size: 15.5px; line-height: 1.5; padding: 0.8rem 1.1rem; }}
+blockquote.bw-aside .inset-title {{ font-size: 0.92rem; }}
+blockquote.bw-aside p {{ line-height: 1.5; }}
+@media (min-width: 60rem) {{
+  blockquote.bw-aside {{ float: right; clear: right; width: 65%; margin: 0.4rem 0 1rem 1.4rem; }}
+}}
+/* A section heading immediately after an aside clears the float — a `##`/`###` head squeezed into the
+   35% wrap column reads wrong. Adjacent-sibling only, so gutter sidenotes elsewhere keep their layout. */
+blockquote.bw-aside + h2, blockquote.bw-aside + h3 {{ clear: right; }}
+/* CALLOUT — substantial secondary material (a mini-essay, sometimes code): full width, body ~0.75pt
+   down, the light tint + understated border the box-inset base already supplies, MORE interior padding
+   than an aside, no wraparound. */
+blockquote.bw-callout {{ font-size: 16px; padding: 1.25rem 1.5rem; }}
+/* DEEP DIVE — an intentional excursion one abstraction layer down, read as a mini-section: full width,
+   a STRONG top rule + a structural DEEP DIVE label instead of a tight 4-sided box, a faint full-width
+   wash, generous vertical air, body only ~0.5pt down (meant to be READ, not skimmed). */
+blockquote.bw-deep-dive {{ background: var(--panel); border: none; border-top: 3px solid var(--accent);
+  border-radius: 0; padding: 1.1rem 1.3rem 1.2rem; margin: 2.4rem 0; font-size: 16.5px; }}
+blockquote.bw-deep-dive .bw-label {{ display: block; font-family: var(--font-body); font-size: 0.68rem;
+  font-weight: 700; letter-spacing: 0.14em; color: var(--accent); margin: 0 0 0.55rem; }}
+blockquote.bw-deep-dive .inset-title {{ font-size: 1.05rem; }}
 /* CODE INSET — a fenced code listing lifted into a titled box: "here is a real artifact from the system."
    It shares the concept-inset's amber header-band label typography (the sidebar HEADER, `p.inset-title`,
    demoted so no heading-order break), but its body is a monospace listing, not roman prose. The header

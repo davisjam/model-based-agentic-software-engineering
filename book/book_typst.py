@@ -536,9 +536,26 @@ _MARGIN_NOTE_MAX_WORDS = 85
 # selector.) Mirrors `blockquote.def-inset`/`.def-box` typography in the web stylesheet.
 _DEFN_ITALIC_PRELUDE = '#show strong: set text(style: "normal")\n  #set text(style: "italic")\n  '
 
+def _weight_call(box_weight: str, content: str, aside_wrapped: "str | None") -> str:
+    """Emit the call to ONE of the three reusable reading-weight preamble functions (`weight-aside` /
+    `weight-callout` / `weight-deepdive` — the single tuning point per weight). `content` is the box's
+    already-rendered Typst body; `aside_wrapped` is the rendered following-prose the aside wraps beside
+    (None → the aside's narrow right-aligned fallback). Unknown weights fail the build loudly — the
+    vocabulary is the closed `build_book.BOX_WEIGHTS` tuple, shared with the web projection."""
+    if box_weight not in bb.BOX_WEIGHTS:
+        raise SystemExit(f"unknown box-weight {box_weight!r} — expected one of {bb.BOX_WEIGHTS}")
+    if box_weight == "aside":
+        if aside_wrapped:
+            return f"#weight-aside([\n  {content}\n], wrapped: [\n{_indent(aside_wrapped)}\n])"
+        return f"#weight-aside([\n  {content}\n])"
+    fn = "weight-callout" if box_weight == "callout" else "weight-deepdive"
+    return f"#{fn}([\n  {content}\n])"
+
+
 def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = False,
                        is_principlebox: bool = False, box_family: str | None = None,
-                       inset_domain: str | None = None, inset_size: str | None = None) -> str:
+                       inset_domain: str | None = None, inset_size: str | None = None,
+                       box_weight: str | None = None, aside_wrapped: str | None = None) -> str:
     """A `>`-prefixed blockquote → a Typst block. An explicit `<!-- pullquote -->` marker (`is_pullquote`)
     becomes a label-less pull-quote — large centered italic display type, a thin accent rule above and below,
     NO fill (checked first, since an author declaration outranks lead-text-shape inference). An explicit
@@ -553,6 +570,10 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
     inner_md = "\n".join(bb._strip_blockquote_prefix(ln) for ln in raw.splitlines())
     inner = _render_markdown_body(inner_md, _EmitCtx.inert())
     stripped = inner_md.strip()
+    if box_weight and (is_principlebox or box_family in ("canonical", "evidence")):
+        # Fail loud rather than silently dropping the weight — the pilot defines weight treatments for the
+        # inset/model-card families and family-less boxes; extend here when a canonical/evidence box needs one.
+        raise SystemExit(f"box-weight {box_weight!r} is not defined for box-family {box_family!r} yet")
     if is_principlebox or box_family == "canonical":
         # CANONICAL (box-grammar-IMPL-260823) — MAGE doctrine: a full 4-side RUST frame. A leading `### TITLE`
         # line becomes a centered UPPERCASE title-bar (source keeps natural case; the renderer applies caps).
@@ -585,6 +606,11 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
             title = re.sub(r"^\s*#+\s*", "", lines[0]).strip()
             title = bb._HEADING_ANCHOR_RE.sub("", title)  # strip a trailing {#anchor} so it never prints in the box title
             body_md = "\n".join(lines[1:]).strip()
+        if box_weight == "deep-dive" and title:
+            # The structural DEEP DIVE label (emitted by `weight-deepdive`) supersedes a "Deep dive — "
+            # title prefix — strip it from the DISPLAYED title only (the source heading is untouched, so
+            # its anchor and the web/print titles stay derivable from one authored string).
+            title = re.sub(r"^Deep dive\s*—\s*", "", title, flags=re.I)
         body = _render_markdown_body(body_md, _EmitCtx.inert())
         if box_family == "model-card":
             fill, rule = "dt.panel", "dt.rule"
@@ -607,6 +633,11 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
                 header = f'{title_txt}\n  #v(5pt)\n  '
         elif corner:
             header = f'#align(right)[{corner}]\n  #v(3pt)\n  '
+        if box_weight:
+            # READING-WEIGHT axis: the weight function OWNS geometry, font step, and breakability — it
+            # replaces the default inset block AND outranks `inset-size: small` (the weight IS the
+            # size/pagination policy; a deep-dive is breakable by design, an aside one-page by design).
+            return _weight_call(box_weight, f"{header}{_indent(body).lstrip()}", aside_wrapped)
         if inset_size == "small":
             # A long deep-dive inset held to ONE page: shrink the body font + tighten leading, and make the
             # whole box non-breakable so Typst floats it to a page where it fits. The header/title keep normal
@@ -622,6 +653,10 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
         # EVIDENCE / navigation — the author's observation or a coverage device, not doctrine: a cool blue box.
         return (f'#block(fill: dt.diagram-fleet-fill, stroke: (left: dt.border-box-rule + dt.diagram-fleet), '
                 f"inset: 12pt, radius: 4pt, width: 100%)[\n{_indent(inner)}\n]")
+    if box_weight:
+        # A weight on a FAMILY-LESS box: weight the plain rendered body (the titled inset/model-card
+        # header machinery was handled in its branch above).
+        return _weight_call(box_weight, _indent(inner).lstrip(), aside_wrapped)
     if is_pullquote:
         # An explicit-marker pull-quote — mirrors the web `.pull-quote` CSS token-for-token: display serif,
         # italic, thesis-title size, umber hairline rule top+bottom, centered, NO fill (absence of a fill is
@@ -828,6 +863,7 @@ class _EmitCtx:
         self.pending_boxfamily: str | None = None   # a `<!-- box-family: X -->` marker armed for the next block
         self.pending_insetdomain: str | None = None  # a `<!-- inset-domain: TAG -->` marker armed for the next inset
         self.pending_insetsize: str | None = None    # a `<!-- inset-size: small -->` marker (Typst-only: small font + keep-together)
+        self.pending_boxweight: str | None = None    # a `<!-- box-weight: W -->` marker armed for the next blockquote (reading-weight axis)
 
     @classmethod
     def inert(cls) -> "_EmitCtx":
@@ -841,6 +877,7 @@ class _EmitCtx:
         c.pending_boxfamily = None
         c.pending_insetdomain = None
         c.pending_insetsize = None
+        c.pending_boxweight = None
         return c
 
 
@@ -860,7 +897,8 @@ _POINT_RE = re.compile(r"^<!--\s*point:\s*(?P<slug>[a-z0-9-]+)\s*\|\s*(?P<text>.
 def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = False,
                  is_pullquote: bool = False, is_principlebox: bool = False,
                  section_no: str | None = None, box_family: str | None = None,
-                 inset_domain: str | None = None, inset_size: str | None = None) -> str:
+                 inset_domain: str | None = None, inset_size: str | None = None,
+                 box_weight: str | None = None) -> str:
     """Render ONE IR block to Typst markup — the sibling to `Block.render_html()`, reusing the SAME
     `book_ir.BlockKind` taxonomy and `classify_render_block` classification (the blocks arrive already
     classified from the IR parse). `caption_md` is the folded mermaid caption when the driving walk detects a
@@ -883,7 +921,8 @@ def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = F
     if k is K.BLOCKQUOTE:
         return _render_blockquote(block.raw, is_def=is_def, is_pullquote=is_pullquote,
                                   is_principlebox=is_principlebox, box_family=box_family,
-                                  inset_domain=inset_domain, inset_size=inset_size)
+                                  inset_domain=inset_domain, inset_size=inset_size,
+                                  box_weight=box_weight)
     if k is K.TABLE:
         return _render_table(block)
     if k is K.FIGURE:
@@ -959,6 +998,8 @@ def _peel_metadata_marker(line: str, ctx: _EmitCtx) -> "str | None":
             ctx.pending_insetdomain = (mline.group(2) or "").strip()  # arm the inset provenance badge
         if mline.group(1).lower() == "inset-size":
             ctx.pending_insetsize = (mline.group(2) or "").strip()   # arm the small-font keep-together inset
+        if mline.group(1).lower() == "box-weight":
+            ctx.pending_boxweight = (mline.group(2) or "").strip()   # arm the reading-weight treatment
         return ""                                        # a consumed notation marker with no print output
     return None
 
@@ -1448,6 +1489,8 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         ctx.pending_insetdomain = None
         inset_size = ctx.pending_insetsize
         ctx.pending_insetsize = None
+        box_weight = ctx.pending_boxweight
+        ctx.pending_boxweight = None
         # A top-level `## ` section heading advances the per-chapter counter → `part.chapter.N` (mirrors the
         # web build's `section_no`; `###`/`####` subsections do not advance it). Only when the chapter is numbered.
         sec = None
@@ -1459,10 +1502,51 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         # ordered list is rerouted; every other numbered list in the book renders through _render_ordered_list.
         if bb._stem_to_label(chapter.slug) == bb._WHAT_THIS_BOOK_ARGUES_LABEL and b.kind is ir.BlockKind.ORDERED_LIST:
             frag = _render_argues_claims(b.raw)
+        elif b.kind is ir.BlockKind.BLOCKQUOTE and box_weight == "aside":
+            # READING-WEIGHT aside: gather the immediately-following plain paragraph(s) as the
+            # wrap-alongside content — the main prose flows beside the narrow outside-edge box (the
+            # `weight-aside` preamble function drives the vendored side-float wrap). Gather until the wrapped prose roughly
+            # matches the box's OWN length (the "N words following ≥ N words in the box" rule), so a tall
+            # aside is filled beside body text rather than overhanging; capped at 10 paras for safety. A
+            # heading / float / directive / footnote-definition block ends the gather; with nothing to
+            # wrap, the aside renders as a narrow right-aligned block (the fallback inside `weight-aside`).
+            box_words = len(b.raw.replace(">", " ").replace("#", " ").split())
+            wrapped_paras: list[str] = []
+            wrapped_words = 0
+            _WRAP_STOP = {ir.BlockKind.HEADING, ir.BlockKind.BLOCKQUOTE, ir.BlockKind.LIST,
+                          ir.BlockKind.ORDERED_LIST, ir.BlockKind.FIGURE, ir.BlockKind.TABLE,
+                          ir.BlockKind.MERMAID, ir.BlockKind.CODE, ir.BlockKind.CODE_INSET, ir.BlockKind.EQ}
+            j = i + 1
+            while j < len(blocks) and wrapped_words < box_words and len(wrapped_paras) < 10:
+                bj = blocks[j]
+                if bj.kind in _WRAP_STOP:
+                    break
+                if bj.kind is ir.BlockKind.PARA:
+                    if j in skip or j in fn_strip:
+                        j += 1
+                        continue
+                    pf = _render_paragraph(bj.raw)
+                    if not pf:
+                        break
+                    wrapped_paras.append(pf)
+                    wrapped_words += len(bj.raw.split())
+                    skip.add(j)
+                    j += 1
+                    continue
+                # An inert marker block (point / index-def / section-terms → #metadata anchor, renders no
+                # visible structure) sits between the box and its following paragraphs. Step OVER it to reach
+                # the paragraphs, but leave it UNSKIPPED so the main flow still emits its metadata anchor.
+                j += 1
+            frag = _render_blockquote(b.raw, is_def=is_def, is_pullquote=is_pullquote,
+                                      is_principlebox=is_principlebox, box_family=box_family,
+                                      inset_domain=inset_domain, inset_size=inset_size,
+                                      box_weight="aside",
+                                      aside_wrapped="\n\n".join(wrapped_paras) if wrapped_paras else None)
         else:
             frag = render_typst(b, caption_md, is_def=is_def, is_pullquote=is_pullquote,
                                 is_principlebox=is_principlebox, section_no=sec,
-                                box_family=box_family, inset_domain=inset_domain, inset_size=inset_size)
+                                box_family=box_family, inset_domain=inset_domain, inset_size=inset_size,
+                                box_weight=box_weight)
         # D71(a) keep-with-next: a paragraph that immediately introduces a figure/table/diagram sticks to it,
         # so the introducing sentence ("… in Table 4.2-1.", "… shown below.") is never split from its float
         # across a page break. Systematic — every paragraph that directly precedes a float, not one-off.
@@ -1634,6 +1718,150 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
     else { scale(x: size.width / nat * 100%, y: size.width / nat * 100%, reflow: true, probe) }
   })
 }
+
+// ── Reading-weight axis (box-weight marker; typography pilot 260908). ONE reusable function per weight —
+//    the single tuning point for that weight's geometry, font step, and breakability. Orthogonal to the
+//    box-family grammar: family/badge say what KIND of material, the weight says how heavily to read it.
+//    Font steps are set against the 12pt body: aside −1pt, callout −0.75pt, deep-dive −0.5pt.
+//
+// Side-float wrap ISOLATION POINT — VENDORED from @preview/wrap-it:0.1.1 (MIT), adapted; the `_wr-*`
+// functions below and the single `_wr-wrap-right` call inside `weight-aside` are the ONLY touch-points.
+// WHY vendored, not imported: wrap-it finds its split point by MEASURING chunks of the wrapped content,
+// and measuring content that carries introspective elements (#cite / #footnote / #ref) destabilises
+// Typst's locator ("citation could not be located — caused by measurement"): in a cite-bearing chapter
+// the compile hard-fails, or the split silently degenerates and NOTHING wraps beside the box. The fix
+// is the same proxy the Tufte sidenote measure-gate uses (below): every `_wr-*` measurement first
+// REPLACES cite/footnote/ref with geometric stand-ins (`_wr-neutral`), while the RENDERED chunks keep
+// the live elements, so citations still resolve and number correctly. That neutralisation must live
+// inside the measurement path, which the package does not expose — hence the vendored copy. Bonus:
+// removes the one network-fetched package (a fresh clone now compiles fully offline). When Typst grows
+// a native side-float, rewrite the body of `weight-aside`; no caller changes.
+#let _wr-styled = text(red)[x].func()
+#let _wr-neutral(body) = {
+  show cite: _ => text(size: 0.7em)[[?]]
+  show footnote: _ => text(size: 0.7em)[[?]]
+  show ref: _ => [[?]]
+  body
+}
+// The two-cell grid both measured (via `_wr-neutral`) and rendered: wrapped strip left, fixed box right.
+// Columns are PINNED (1fr + auto), unlike upstream wrap-it's (auto, auto): an auto text column sizes to
+// the chunk's natural width and pushes the fixed box past the right margin (the margin-bleed sensor
+// caught exactly that on the pilot pages). `1fr` holds the strip to measure − box − gutter.
+#let _wr-gridded(fixed, to-wrap) = box(width: 100%, grid(to-wrap, fixed, columns: (1fr, auto), column-gutter: 14pt))
+#let _wr-chunk(words, end, start: 0) = if end < 0 { words.join(" ") } else {
+  words.slice(start, end).join(" ")
+}
+#let _wr-wrap-index(hf, words, goal) = {
+  for index in range(1, words.len()) {
+    if hf(_wr-chunk(words, index)) > goal { return index - 1 }
+  }
+  return -1
+}
+#let _wr-rewrap(element, new-content) = {
+  let fields = element.fields()
+  for key in ("body", "text", "children", "child") {
+    if key in fields { let _ = fields.remove(key) }
+  }
+  let positional = (new-content,)
+  if "styles" in fields { positional.push(fields.remove("styles")) }
+  element.func()(..fields, ..positional)
+}
+#let _wr-split-text(body, hf, goal) = {
+  let words = body.text.split(" ")
+  let wi = _wr-wrap-index(hf, words, goal)
+  if wi > 0 {
+    (
+      wrapped: context {
+        _wr-rewrap(body, _wr-chunk(words, wi))
+        linebreak(justify: par.justify)
+      },
+      rest: _wr-rewrap(body, _wr-chunk(words, words.len(), start: wi)),
+    )
+  } else { (wrapped: none, rest: body) }
+}
+#let _wr-split-children(body, hf, goal, splitter) = {
+  let children = body.children
+  for (ii, child) in children.enumerate() {
+    let prev = children.slice(0, ii).join()
+    let chf(c) = hf((prev, c).join())
+    if chf(child) <= goal { continue }
+    let split = splitter(child, chf, goal)
+    let new-children = (..children.slice(0, ii), split.wrapped)
+    let new-rest = children.slice(ii + 1)
+    if split.rest != none { new-rest.insert(0, split.rest) }
+    return (wrapped: _wr-rewrap(body, new-children), rest: _wr-rewrap(body, new-rest))
+  }
+  panic("unreachable: called only when the sequence overflows the goal height")
+}
+#let _wr-split-body(body, hf, goal, splitter) = {
+  let splittable = (strong, emph, underline, overline, highlight, list.item, _wr-styled)
+  let inner = body.at("body", default: body.at("child", default: none))
+  if body.func() in splittable {
+    let bhf(c) = hf(_wr-rewrap(body, c))
+    let result = splitter(inner, bhf, goal)
+    if result.wrapped != none {
+      return (wrapped: _wr-rewrap(body, result.wrapped), rest: _wr-rewrap(body, result.rest))
+    }
+  }
+  (wrapped: none, rest: body)   // unsplittable shape (cite, image, …) → the whole element flows below
+}
+#let _wr-splitter(body, hf, goal) = {
+  if hf(body) <= goal { return (wrapped: body, rest: none) }
+  let b = if type(body) == str { text(body) } else { body }
+  if b.has("text") { _wr-split-text(b, hf, goal) }
+  else if b.has("body") or b.has("child") { _wr-split-body(b, hf, goal, _wr-splitter) }
+  else if b.has("children") { _wr-split-children(b, hf, goal, _wr-splitter) }
+  else { (wrapped: none, rest: b) }
+}
+#let _wr-wrap-right(fixed, to-wrap) = layout(size => {
+  let hf(chunk) = measure(box(width: size.width, _wr-neutral(_wr-gridded(fixed, chunk)))).height
+  let goal = hf([]) + measure(v(1em)).height
+  let result = _wr-splitter(to-wrap, hf, goal)
+  _wr-gridded(fixed, if result.wrapped == none { [] } else { result.wrapped })
+  result.rest
+})
+// ASIDE — a compact optional bridge the reader can skip: a NARROW box (~65% of the 6.25in text measure)
+// on the outside (right) edge, body −1pt + tighter leading, held to one page, main prose wrapping
+// alongside. Consistently right-aligned (recto-outside); page-parity querying was judged too fragile for
+// a verso flip. `wrapped: none` → the graceful fallback: the same narrow box, right-aligned, no wrap.
+#let _bw-aside-width = 4.05in
+#let _bw-aside-box(body) = block(
+  fill: dt.panel, stroke: (left: dt.border-box-rule + dt.muted),
+  inset: 10pt, radius: 3pt, width: _bw-aside-width, breakable: false)[
+  // Reset the alignment cascade: the placing `align(right, …)` would otherwise leak into the box's
+  // paragraphs (right-aligned last lines). The box CONTENT reads as ordinary left-set justified prose.
+  #set align(left)
+  #set text(size: 11pt)
+  #set par(leading: 0.55em)
+  #body
+]
+#let weight-aside(body, wrapped: none) = if wrapped == none {
+  align(right, _bw-aside-box(body))
+} else {
+  _wr-wrap-right(_bw-aside-box(body), wrapped)
+}
+// CALLOUT — substantial secondary material: full width, body −0.75pt, a light tint + understated
+// hairline border, MORE interior inset than an aside, breakable across pages.
+#let weight-callout(body) = block(
+  fill: dt.panel, stroke: dt.border-hairline + dt.rule,
+  inset: 16pt, radius: 4pt, width: 100%, breakable: true)[
+  #set text(size: 11.25pt)
+  #body
+]
+// DEEP DIVE — an intentional excursion one abstraction layer down, read as a mini-section: full width,
+// a STRONG accent top rule + a structural DEEP DIVE label (not merely a category badge), no fill and no
+// 4-sided frame, generous vertical air, body only −0.5pt, freely breakable. A closing hairline marks the
+// return to the main line.
+#let weight-deepdive(body) = block(width: 100%, breakable: true, above: 2em, below: 2em)[
+  #line(length: 100%, stroke: 1.2pt + dt.accent)
+  #v(4pt)
+  #text(font: dt.font-body, size: dt.fs-micro, weight: 700, tracking: 0.12em, fill: dt.accent)[DEEP DIVE]
+  #v(10pt)
+  #set text(size: 11.5pt)
+  #body
+  #v(4pt)
+  #line(length: 100%, stroke: dt.border-hairline + dt.rule)
+]
 
 // ── Tufte margin notes (custom; offline — no @preview package, so a fresh clone compiles with no
 //    network). Short editorial [note: …] marks and em-led `> *Title.* …` asides render as right-margin

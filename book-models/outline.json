@@ -5,7 +5,7 @@
     "sections": 219,
     "explicit_ids": 16,
     "derived_ids": 203,
-    "missing_topic_sentence": 2,
+    "missing_topic_sentence": 3,
     "sections_drained": 181,
     "paragraph_points": 790
   },
@@ -621,29 +621,29 @@
           "section_id": "structure-makes-representations-machine-operable",
           "level": 2,
           "heading_text": "Structure Makes Representations Machine-Operable",
-          "topic_sentence": "Externalizing knowledge saves reconstruction only if a machine can read it back.",
+          "topic_sentence": null,
           "id_source": "derived",
           "block_index": 64,
           "points": [
             {
               "slug": "structured-is-the-word-doing-the-work",
               "text": "Structure — an explicit declared shape a machine can read — is what lets a representation be traversed, checked, and joined.",
-              "block_index": 66
+              "block_index": 70
             },
             {
               "slug": "the-simplest-useful-form-is-a-graph",
               "text": "The simplest useful form of externalized knowledge is a graph of engineering entities and their relations; graph names the structure, not the storage.",
-              "block_index": 69
+              "block_index": 73
             },
             {
               "slug": "shape-does-not-distinguish-a-model-semantics-do",
               "text": "Many representations can be read as graphs of entities and relations; shape does not distinguish them, semantics do — a dependency, a transition, an ownership claim, and a permission can all be arrows answering different questions.",
-              "block_index": 72
+              "block_index": 76
             },
             {
               "slug": "industry-already-lives-here",
               "text": "Externalized knowledge representation is the lightest form of Modeling, and most of industry already stands on it.",
-              "block_index": 74
+              "block_index": 78
             }
           ]
         },
@@ -653,22 +653,22 @@
           "heading_text": "Representations Support Accumulating Capabilities",
           "topic_sentence": "Structured representations support different capabilities: externalized knowledge, typed relationships, explicit semantics, stated properties, derivation, generation, traceability, and checking.",
           "id_source": "derived",
-          "block_index": 76,
+          "block_index": 80,
           "points": [
             {
               "slug": "capability-comes-in-rungs",
               "text": "Structured representations support different capabilities — externalized knowledge, typed relationships, semantics, properties, derivation, generation, traceability, checking — acquired as engineers ask more, but not a required sequence or maturity model.",
-              "block_index": 78
+              "block_index": 82
             },
             {
               "slug": "the-consequence-is-selective-modeling",
               "text": "Selective modeling: model facts repeatedly reconstructed and properties repeatedly adjudicated, adding structure when the reduction in recurring engineering work justifies carrying it.",
-              "block_index": 81
+              "block_index": 85
             },
             {
               "slug": "enforcement-remains-separate",
               "text": "Enforcement stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Part III asks which the engineered environment should enforce.",
-              "block_index": 83
+              "block_index": 87
             }
           ]
         },
@@ -747,12 +747,12 @@
         {
           "slug": "the-first-purpose-of-a-model-is-better-context",
           "text": "The first modeling move is simple: externalize engineering knowledge that should not have to be rediscovered.",
-          "block_index": 3
+          "block_index": 7
         },
         {
           "slug": "the-modeling-principle-in-its-weakest-form",
           "text": "The Modeling Principle in its weakest form: externalize engineering knowledge into explicit, structured models to reason through.",
-          "block_index": 5
+          "block_index": 9
         }
       ]
     },
@@ -2563,12 +2563,12 @@
             {
               "slug": "the-first-improvement-is-connection-not-replacement",
               "text": "The first improvement is connection, not replacement.",
-              "block_index": 32
+              "block_index": 35
             },
             {
               "slug": "representations-strengthen-incrementally-informal-to-executable",
               "text": "Brownfield representations strengthen incrementally: informal to structured to executable where a consumer justifies the cost.",
-              "block_index": 34
+              "block_index": 37
             }
           ]
         },
@@ -2578,27 +2578,27 @@
           "heading_text": "Finding Models in the Implementation",
           "topic_sentence": "Brownfield models need not begin with an engineer inventing the right abstraction in advance.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 40,
           "points": [
             {
               "slug": "brownfield-models-emerge-from-repeated-structure-but-detectors-give-evidence-not-conclusions",
               "text": "Existing implementation contains repeated structure that points toward unnamed models, but detector findings are evidence, not conclusions; judgment decides whether repetition carries a shared meaning worth representing.",
-              "block_index": 38
+              "block_index": 41
             },
             {
               "slug": "primitive-density-is-the-weak-signal-the-detector-produces",
               "text": "The detector is a tool; primitive density is the deliberately weak signal it produces — hundreds of findings without a claim that hundreds of models are missing.",
-              "block_index": 40
+              "block_index": 43
             },
             {
               "slug": "repetition-must-be-read-in-architectural-context",
               "text": "Repetition alone is not enough; the same shape means different things at an external boundary and in internal domain code — the question is what explains the repetition.",
-              "block_index": 43
+              "block_index": 46
             },
             {
               "slug": "weak-signals-partition-then-name-the-model",
               "text": "Surface repeated structure, partition by architectural role and cause, compare instances, name a concept only when it earns one, then migrate consumers and enforce the narrower relationships.",
-              "block_index": 45
+              "block_index": 48
             }
           ]
         },
@@ -2608,12 +2608,12 @@
           "heading_text": "Reconcile the Map, Then Promote Obligations",
           "topic_sentence": "Begin with audit.",
           "id_source": "derived",
-          "block_index": 53,
+          "block_index": 56,
           "points": [
             {
               "slug": "begin-with-audit-then-reconcile-then-promote-only-once-trustworthy",
               "text": "Begin with audit; repair disagreements through ordinary work; promote obligations only once the representation is trustworthy for its consumer.",
-              "block_index": 55
+              "block_index": 58
             }
           ]
         },
@@ -2623,32 +2623,32 @@
           "heading_text": "Migrate One Bounded Surface at a Time",
           "topic_sentence": "The immediate goal is not a complete model of the inherited system.",
           "id_source": "derived",
-          "block_index": 58,
+          "block_index": 61,
           "points": [
             {
               "slug": "the-near-goal-is-a-trusted-map-then-a-bounded-migration",
               "text": "The near goal is not a complete model but a trusted map over the surface that matters now; choose a bounded surface, preserve reversibility, and generalize only what it teaches.",
-              "block_index": 60
+              "block_index": 63
             },
             {
               "slug": "docable-serverless-replatforming-ran-this-shape",
               "text": "DocAble's serverless re-platforming ran a bounded, reversible migration: push plane grew beside poll plane behind a default-off toggle, proved green, took traffic, old cluster archived.",
-              "block_index": 64
+              "block_index": 67
             },
             {
               "slug": "recover-the-representation-in-whichever-direction-the-evidence-supports",
               "text": "Recover the representation top-down or bottom-up; removing accidental complexity can ease either.",
-              "block_index": 66
+              "block_index": 69
             },
             {
               "slug": "a-disagreement-has-the-familiar-three-way-diagnosis",
               "text": "A model-code disagreement has a three-way diagnosis: model, grain, or code.",
-              "block_index": 71
+              "block_index": 74
             },
             {
               "slug": "query-the-migration-blast-radius-before-cutover",
               "text": "For consequential substrate changes, query the migration blast radius before cutover.",
-              "block_index": 77
+              "block_index": 80
             }
           ]
         },
@@ -2658,22 +2658,22 @@
           "heading_text": "Audit → Drain → Promote",
           "topic_sentence": "A valid future invariant is not always a valid present admission rule.",
           "id_source": "derived",
-          "block_index": 79,
+          "block_index": 82,
           "points": [
             {
               "slug": "a-valid-future-invariant-is-not-always-a-valid-present-admission-rule",
               "text": "A valid future invariant may not be a valid present admission rule.",
-              "block_index": 81
+              "block_index": 84
             },
             {
               "slug": "cloudflare-reached-the-same-approved-enforced-order",
               "text": "Cloudflare's public account describes a similar approved→enforced order.",
-              "block_index": 85
+              "block_index": 88
             },
             {
               "slug": "sometimes-you-promote-the-obligation-not-the-instrument",
               "text": "Sometimes you promote the obligation, not the instrument that discovered it: an audit can reveal the property that deserves enforcement without being the right mechanism to carry it.",
-              "block_index": 88
+              "block_index": 91
             }
           ]
         },
@@ -2683,17 +2683,17 @@
           "heading_text": "Derive, Don't Copy",
           "topic_sentence": "Recovering a model is only the first step.",
           "id_source": "explicit",
-          "block_index": 90,
+          "block_index": 93,
           "points": [
             {
               "slug": "recover-then-derive-dont-copy",
               "text": "Recovering a model is only the first step; if a fact already has a queryable source of truth, derive it rather than copying it, and where neither side owns the other, make their correspondence observable.",
-              "block_index": 92
+              "block_index": 95
             },
             {
               "slug": "hidden-assumptions-deserve-the-same-treatment-make-consequential-ones-queryable",
               "text": "Hidden substrate assumptions deserve the same treatment: represent the consequential ones strongly enough that the blast radius can be queried before the change.",
-              "block_index": 96
+              "block_index": 99
             }
           ]
         },
@@ -2703,22 +2703,22 @@
           "heading_text": "Price the Investment",
           "topic_sentence": "A recurring gap does not automatically deserve machinery.",
           "id_source": "derived",
-          "block_index": 98,
+          "block_index": 101,
           "points": [
             {
               "slug": "price-the-expected-loss-against-the-cost-of-building-and-carrying-the-response",
               "text": "Price the expected future loss against the cost of building and carrying the response.",
-              "block_index": 100
+              "block_index": 103
             },
             {
               "slug": "draw-the-two-factors-as-axes-and-the-judgment-gets-a-shape",
               "text": "Draw cost against frequency and the sizing judgment gets a shape.",
-              "block_index": 102
+              "block_index": 105
             },
             {
               "slug": "price-the-upkeep-capital-depreciates-and-can-be-retired",
               "text": "Price the upkeep — engineering capital depreciates and can be retired.",
-              "block_index": 105
+              "block_index": 108
             }
           ]
         }
@@ -3433,8 +3433,8 @@
           "block_index": 4
         },
         {
-          "slug": "tool-skill-packages-a-procedure-around-an-interface-mastery-skill-packages-a-domain-decision-procedure",
-          "text": "Two forms recur: a tool skill packages a procedure around one interface; a mastery skill packages domain knowledge and a repeatable decision procedure for a class of work.",
+          "slug": "three-skill-roles-tool-teaches-use-process-preserves-working-mastery-reasoning",
+          "text": "Three roles recur: a tool-skill teaches capability use, a process-skill preserves a way of working, a mastery-skill a way of reasoning.",
           "block_index": 6
         },
         {
