@@ -19,7 +19,8 @@ Act I establishes the fundamental activities and structures of software engineer
 - **[Engineering & GenAI](01-engineering-and-genai/index.md)**
 - **[Software Process](02-software-process/index.md)**
 - **[Software Engineering Teamwork](03-software-engineering-teamwork/index.md)**
-- Requirements & Specification
+- **[Requirements Engineering](04-requirements/index.md)**
+- **[Specification](05-specification/index.md)**
 - Software Architecture
 - Design Principles
 - Fundamentals of SWE with GenAI

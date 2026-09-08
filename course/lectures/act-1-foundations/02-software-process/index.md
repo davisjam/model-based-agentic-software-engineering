@@ -14,8 +14,7 @@ readings:
         - '[The Scrum Guide](readings/scrum-guide-2020.pdf). Schwaber & Sutherland, November 2020. (Source: [redagile.com/scrum-guide](https://www.redagile.com/scrum-guide).)'
     - heading: A critical perspective
       items:
-        - '["Extreme Programming Considered Harmful."](readings/extreme-programming-considered-harmful.pdf) Presents an engineering critique of Extreme Programming and reiterates the practices of XP.'
-      note: 'Actual engineering experience with Agile, and XP in particular, has been mixed. They may be suitable for low-assurance systems but inappropriate for high-assurance systems. It is hard to disentangle reports about "Agile" from the attitude of "Continuous Delivery," which can be achieved whether a project is following an incremental or plan-based approach. See the PDF for one person''s perspective based on their engineering experiences. The usual disclaimers about bias and small sample size apply. The "XP considered harmful" paper is not being presented as statistically valid evidence, but rather to expose students to different viewpoints.'
+        - '["Extreme Programming Considered Harmful."](readings/extreme-programming-considered-harmful.pdf) An engineering critique of Extreme Programming based on the author''s experience. Read as a practitioner perspective rather than as systematic empirical evidence.'
 instructor_materials: []
 student_materials: []
 assignments: []

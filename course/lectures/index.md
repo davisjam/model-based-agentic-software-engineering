@@ -21,7 +21,8 @@ The lecture curriculum, organized by its intellectual structure — **Acts** and
 - **[Engineering & GenAI](act-1-foundations/01-engineering-and-genai/index.md)**
 - **[Software Process](act-1-foundations/02-software-process/index.md)**
 - **[Software Engineering Teamwork](act-1-foundations/03-software-engineering-teamwork/index.md)**
-- Requirements & Specification
+- **[Requirements Engineering](act-1-foundations/04-requirements/index.md)**
+- **[Specification](act-1-foundations/05-specification/index.md)**
 - Software Architecture
 - Design Principles
 - Fundamentals of SWE with GenAI
