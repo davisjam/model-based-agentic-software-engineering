@@ -1,0 +1,9 @@
+# Dependencies for the `book/build_book.py --pdf` gate's image-based sensor(s).
+#
+# The base book build (`catalog.py validate` / `build`) stays stdlib-only and clone-and-run. The `--pdf`
+# path is a heavier, opt-in build that ALREADY requires external tools (Typst to compile, poppler for
+# pdftotext/pdftoppm). The inset-wrap sensor (book/check_inset_wrap.py) rasterizes the reading-weight
+# aside pages and measures whether prose actually wraps down the box's outside strip — a geometry check
+# no text/schema gate can do — which needs:
+pillow>=10   # PIL.Image: rasterized-page pixel analysis (panel-fill box detection + left-strip ink coverage)
+numpy>=1.26  # vectorized pixel-band math backing the coverage measurement

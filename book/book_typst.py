@@ -1824,7 +1824,7 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 // on the outside (right) edge, body −1pt + tighter leading, held to one page, main prose wrapping
 // alongside. Consistently right-aligned (recto-outside); page-parity querying was judged too fragile for
 // a verso flip. `wrapped: none` → the graceful fallback: the same narrow box, right-aligned, no wrap.
-#let _bw-aside-width = 4.05in
+#let _bw-aside-width = 3.75in
 #let _bw-aside-box(body) = block(
   fill: dt.panel, stroke: (left: dt.border-box-rule + dt.muted),
   inset: 10pt, radius: 3pt, width: _bw-aside-width, breakable: false)[

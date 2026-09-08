@@ -2476,7 +2476,7 @@ blockquote.bw-aside {{ font-size: 15.5px; line-height: 1.5; padding: 0.8rem 1.1r
 blockquote.bw-aside .inset-title {{ font-size: 0.92rem; }}
 blockquote.bw-aside p {{ line-height: 1.5; }}
 @media (min-width: 60rem) {{
-  blockquote.bw-aside {{ float: right; clear: right; width: 65%; margin: 0.4rem 0 1rem 1.4rem; }}
+  blockquote.bw-aside {{ float: right; clear: right; width: 60%; margin: 0.4rem 0 1rem 1.4rem; }}
 }}
 /* A section heading immediately after an aside clears the float — a `##`/`###` head squeezed into the
    35% wrap column reads wrong. Adjacent-sibling only, so gutter sidenotes elsewhere keep their layout. */
@@ -6780,6 +6780,28 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
               f"(the last entry is not on the Contents page p{_toc_idx}). Tighten entry spacing or the "
               "Contents-page margin in book_typst so it fits one page.", file=sys.stderr)
         problems.append("Contents table of contents spilled past one page")
+
+    # INSET-WRAP sensor: every reading-weight ASIDE must actually wrap body text down its outside strip.
+    # The wrap-it splitter can silently fall back to a blank strip (a #cite inside the wrapped prose
+    # destabilizing Typst's measurement was one cause) — no schema / console / text gate sees this; only
+    # page GEOMETRY does. BLOCKING. Implemented in book/check_inset_wrap.py (rasterizes the aside pages via
+    # pdftoppm + PIL/numpy and measures left-strip prose coverage). The --pdf path already depends on Typst +
+    # poppler; pillow + numpy are declared in book/requirements-pdf.txt and installed in the CI PDF step.
+    try:
+        import check_inset_wrap as _ciw
+        _wrap_fails = _ciw.check(str(pdf_path))
+    except ImportError as _e:
+        print(f"PDF INSET-WRAP SENSOR: BLOCKING FAIL — sensor unavailable ({_e}); the --pdf gate needs "
+              f"pillow + numpy (book/requirements-pdf.txt). Install them to run this gate.", file=sys.stderr)
+        problems.append("inset-wrap sensor unavailable — pillow/numpy not installed (book/requirements-pdf.txt)")
+    else:
+        if _wrap_fails:
+            listing = ", ".join(f"p{f['page']} {f['title'][:28]!r} ({f['coverage']:.0%})" for f in _wrap_fails[:8])
+            print(f"PDF INSET-WRAP SENSOR: BLOCKING FAIL — {len(_wrap_fails)} aside(s) render a blank outside "
+                  f"strip instead of wrapping prose: {listing}.", file=sys.stderr)
+            problems.append(f"inset-wrap: {len(_wrap_fails)} aside(s) not wrapping alongside their box — {listing}")
+        else:
+            print("PDF INSET-WRAP SENSOR: BLOCKING PASS — every reading-weight aside wraps prose alongside it.")
 
     if problems:
         print(f"PDF CONTENT-INTEGRITY FAILURES ({len(problems)}):", file=sys.stderr)
