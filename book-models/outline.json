@@ -508,32 +508,32 @@
           "heading_text": "Modeling Is a Classical Engineering Move",
           "topic_sentence": "Modeling is not new.",
           "id_source": "derived",
-          "block_index": 13,
+          "block_index": 14,
           "points": [
             {
               "slug": "modeling-is-a-classical-engineering-move-not-a-mage-invention",
               "text": "Modeling is not new: engineering has long used representations that suppress irrelevant detail so a property can be reasoned about directly.",
-              "block_index": 14
+              "block_index": 15
             },
             {
               "slug": "a-model-is-useful-for-what-it-makes-available-not-for-reproducing-the-system",
               "text": "The common move is basic: build a representation in which the property is easier to express, inspect, or analyze than in the realized artifact — useful for what it makes available, not for reproducing the system.",
-              "block_index": 16
+              "block_index": 17
             },
             {
               "slug": "mage-adopts-the-classical-move-under-changed-economics",
               "text": "MAGE adopts this classical move under changed economics: commodity intelligence makes explicit representations cheaper to build and use, and generative implementation makes them more valuable.",
-              "block_index": 18
+              "block_index": 19
             },
             {
               "slug": "mbse-readers-find-the-repertoire-familiar-the-concern-is-the-governed-environment",
               "text": "For MBSE readers the repertoire is familiar; MAGE's concern is what happens when these representations become part of the engineered environment — agents reason through them, knowledge persists across episodes, and selected properties can become objects of Alignment.",
-              "block_index": 20
+              "block_index": 21
             },
             {
               "slug": "a-useful-model-need-not-be-elaborate",
               "text": "A useful model may be three states and two transitions, a list of permitted edges, or a schema joined on identifiers; the question is never how much can we model, but what representation makes this recurring question easier to answer.",
-              "block_index": 27
+              "block_index": 28
             }
           ]
         },
@@ -543,17 +543,17 @@
           "heading_text": "A Model Is a Purposeful Reduction",
           "topic_sentence": "A **model** is a purposeful reduction of a system.",
           "id_source": "derived",
-          "block_index": 29,
+          "block_index": 30,
           "points": [
             {
               "slug": "a-model-is-a-reduction-not-an-approximation",
               "text": "A model is a purposeful reduction; its value is what it leaves out. The engineering question decides what to keep.",
-              "block_index": 31
+              "block_index": 32
             },
             {
               "slug": "reduction-preserves-degrees-of-freedom",
               "text": "Obligations rarely fix one realization; a tolerance bounds permitted variation, a degree of freedom is a choice left open.",
-              "block_index": 36
+              "block_index": 37
             }
           ]
         },
@@ -563,22 +563,22 @@
           "heading_text": "Tolerance and degrees of freedom",
           "topic_sentence": "The suppressed detail has a realization-side consequence.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 38,
           "points": [
             {
               "slug": "software-tolerance-is-often-qualitative",
               "text": "In software a tolerance can be numeric but is often qualitative, because code owes more to discrete mathematics than to continuous media.",
-              "block_index": 39
+              "block_index": 40
             },
             {
               "slug": "obligations-bound-a-region-without-choosing-a-point",
               "text": "Obligations bound the space of acceptable realizations without selecting a point; commodity intelligence makes exercising that freedom cheap, so Modeling names the consequential distinctions and Alignment enforces selected boundaries.",
-              "block_index": 41
+              "block_index": 42
             },
             {
               "slug": "tacit-obligation-vs-genuinely-free",
               "text": "A tacit obligation can look free; the \"not that\" test reveals a boundary that was never written down.",
-              "block_index": 45
+              "block_index": 46
             }
           ]
         },
@@ -588,32 +588,32 @@
           "heading_text": "Not every unmodeled choice is free",
           "topic_sentence": "This also distinguishes tacit obligations from genuinely free choices.",
           "id_source": "derived",
-          "block_index": 46,
+          "block_index": 47,
           "points": [
             {
               "slug": "unknown-tacit-explicit-free-are-states",
               "text": "Unknown, tacit, explicit, and free are present states of a choice, and they change as the system changes.",
-              "block_index": 48
+              "block_index": 49
             },
             {
               "slug": "modeling-can-precede-complete-specification",
               "text": "Modeling can begin before specification is complete; a reduction can make variation tractable so distinctions can be discovered.",
-              "block_index": 50
+              "block_index": 51
             },
             {
               "slug": "the-question-decides-what-to-keep",
               "text": "Hold the system constant, change the question, and the model changes; there is no single model of the system.",
-              "block_index": 55
+              "block_index": 56
             },
             {
               "slug": "there-is-no-model-of-the-system",
               "text": "There is no model of the system, only purposeful reductions that each answer one question.",
-              "block_index": 58
+              "block_index": 59
             },
             {
               "slug": "a-reduction-first-even-when-executable",
               "text": "A model is a reduction first, even when it runs; executability changes what you can DO with it, not whether it abstracts.",
-              "block_index": 61
+              "block_index": 62
             }
           ]
         },
@@ -623,27 +623,27 @@
           "heading_text": "Structure Makes Representations Machine-Operable",
           "topic_sentence": "Externalizing knowledge saves reconstruction only if a machine can read it back.",
           "id_source": "derived",
-          "block_index": 63,
+          "block_index": 64,
           "points": [
             {
               "slug": "structured-is-the-word-doing-the-work",
               "text": "Structure — an explicit declared shape a machine can read — is what lets a representation be traversed, checked, and joined.",
-              "block_index": 65
+              "block_index": 66
             },
             {
               "slug": "the-simplest-useful-form-is-a-graph",
               "text": "The simplest useful form of externalized knowledge is a graph of engineering entities and their relations; graph names the structure, not the storage.",
-              "block_index": 68
+              "block_index": 69
             },
             {
               "slug": "shape-does-not-distinguish-a-model-semantics-do",
               "text": "Many representations can be read as graphs of entities and relations; shape does not distinguish them, semantics do — a dependency, a transition, an ownership claim, and a permission can all be arrows answering different questions.",
-              "block_index": 71
+              "block_index": 72
             },
             {
               "slug": "industry-already-lives-here",
               "text": "Externalized knowledge representation is the lightest form of Modeling, and most of industry already stands on it.",
-              "block_index": 73
+              "block_index": 74
             }
           ]
         },
@@ -653,22 +653,22 @@
           "heading_text": "Representations Support Accumulating Capabilities",
           "topic_sentence": "Structured representations support different capabilities: externalized knowledge, typed relationships, explicit semantics, stated properties, derivation, generation, traceability, and checking.",
           "id_source": "derived",
-          "block_index": 75,
+          "block_index": 76,
           "points": [
             {
               "slug": "capability-comes-in-rungs",
               "text": "Structured representations support different capabilities — externalized knowledge, typed relationships, semantics, properties, derivation, generation, traceability, checking — acquired as engineers ask more, but not a required sequence or maturity model.",
-              "block_index": 77
+              "block_index": 78
             },
             {
               "slug": "the-consequence-is-selective-modeling",
               "text": "Selective modeling: model facts repeatedly reconstructed and properties repeatedly adjudicated, adding structure when the reduction in recurring engineering work justifies carrying it.",
-              "block_index": 80
+              "block_index": 81
             },
             {
               "slug": "enforcement-remains-separate",
               "text": "Enforcement stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Part III asks which the engineered environment should enforce.",
-              "block_index": 82
+              "block_index": 83
             }
           ]
         },
@@ -678,62 +678,62 @@
           "heading_text": "Six Classes of Engineering Question",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 88,
+          "block_index": 90,
           "points": [
             {
               "slug": "the-six-class-ontology-is-useful-not-exhaustive",
               "text": "The classification caveat: six classes organized by the engineering question a model answers, useful rather than exhaustive, and able to overlap.",
-              "block_index": 90
+              "block_index": 92
             },
             {
               "slug": "at-an-abstract-level-each-class-is-a-graph-what-differs-is-what-nodes-and-edges-mean",
               "text": "The six classes differ less in shape than in semantics: each can be understood as a graph of things and relationships, and what changes from class to class is what the nodes and edges mean.",
-              "block_index": 92
+              "block_index": 94
             },
             {
               "slug": "mage-classifies-by-question-because-one-graph-shape-answers-many-questions",
               "text": "MAGE classifies models by engineering question rather than notation because the same graph-shaped representation can answer very different questions depending on its semantics, and one system fact can participate in several views.",
-              "block_index": 94
+              "block_index": 96
             },
             {
               "slug": "the-repertoire-is-larger-than-the-six-classes",
               "text": "A portion of the established repertoire — nine familiar representations read as a set of moves, not a taxonomy of all modeling; MAGE prescribes no new notation, and the repertoire is larger than the six classes the rest of the Part organizes.",
-              "block_index": 96
+              "block_index": 98
             },
             {
               "slug": "reuse-the-established-repertoire-choosing-is-judgment",
               "text": "This Part illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment.",
-              "block_index": 99
+              "block_index": 101
             },
             {
               "slug": "the-classes-are-views-not-boxes",
               "text": "The classes classify questions, not data structures; one represented fact can answer several. The lease is Ownership, Behavioral, and Measurement at once.",
-              "block_index": 105
+              "block_index": 107
             },
             {
               "slug": "system-knowledge-is-substrate-not-a-seventh-class",
               "text": "System knowledge is the connected substrate where the six classes meet, not a seventh peer class.",
-              "block_index": 108
+              "block_index": 110
             },
             {
               "slug": "tolerance-is-not-a-seventh-class",
               "text": "The classes name the engineering question; tolerance names the variation that question permits, not a seventh class.",
-              "block_index": 110
+              "block_index": 112
             },
             {
               "slug": "purpose-comes-first-representation-follows",
               "text": "The model class names the engineering question; the representation form is a separate choice, so purpose comes first and representation follows.",
-              "block_index": 112
+              "block_index": 114
             },
             {
               "slug": "the-chapters-ahead-apply-the-repertoire-to-six-docable-models",
               "text": "The chapters ahead apply this repertoire to six production models from DocAble; the final chapter asks how such representations connect through shared identity without collapsing into one universal graph.",
-              "block_index": 114
+              "block_index": 116
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
               "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment makes selected properties enforceable.",
-              "block_index": 116
+              "block_index": 118
             }
           ]
         }
@@ -1379,12 +1379,12 @@
             {
               "slug": "no-synchronization-mechanism-proves-semantic-correctness",
               "text": "Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture.",
-              "block_index": 59
+              "block_index": 60
             },
             {
               "slug": "the-narrow-guarantee-is-the-boundary-part-iii-begins-at",
               "text": "The bounded guarantee — decide the decidable over the claimed surface — is the boundary Part III opens on, where agreement is distinguished from correctness.",
-              "block_index": 62
+              "block_index": 63
             }
           ]
         },
@@ -1394,32 +1394,32 @@
           "heading_text": "Modeling Makes Properties Available to Engineering",
           "topic_sentence": "A model does not govern the system merely by existing.",
           "id_source": "derived",
-          "block_index": 64,
+          "block_index": 65,
           "points": [
             {
               "slug": "a-model-does-not-govern-by-existing-it-makes-a-property-explicit",
               "text": "A model does not govern by existing: a structural model names a forbidden dependency without preventing it, a behavioral model an illegal transition without rejecting it, a measurement model a budget without stopping work — Modeling makes the property explicit, it does not enforce it.",
-              "block_index": 65
+              "block_index": 66
             },
             {
               "slug": "the-important-change-is-semantic-reach",
               "text": "Local syntactic obligations need little modeling; architectural boundaries, temporal obligations, distributed ownership, provenance, and end-to-end policy need enough representation to expose the relevant relationships, which Modeling makes available to analysis and governance.",
-              "block_index": 67
+              "block_index": 68
             },
             {
               "slug": "alignment-does-not-require-a-separately-represented-model",
               "text": "Alignment does not require a separately represented model — some obligations are observable at an action or artifact boundary and can be constrained directly; models extend the range of properties the environment can enforce.",
-              "block_index": 70
+              "block_index": 71
             },
             {
               "slug": "part-iii-asks-which-obligations-the-environment-should-hold",
               "text": "Part III asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them.",
-              "block_index": 73
+              "block_index": 74
             },
             {
               "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-enforcement-is-a-separate-question",
               "text": "Models can provide value before enforcement — reasoning, analysis, composition, traceability — and Part III asks the separate question of enforcement.",
-              "block_index": 79
+              "block_index": 81
             }
           ]
         }

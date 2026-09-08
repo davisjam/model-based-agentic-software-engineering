@@ -381,6 +381,37 @@ blockquote.box-evidence em { font-style: italic; }
 blockquote.box-evidence .inset-title { font-style: normal; font-weight: 700; color: var(--diagram-fleet);
   font-size: 1rem; margin: 0 0 0.5rem; }
 blockquote.box-evidence .inset-title::before { content: none; }
+/* ── READING-WEIGHT AXIS (box-weight marker; typography pilot 260908) ───────────────────────────────
+   Orthogonal to the four-family grammar and the provenance badge: the family/badge say what KIND of
+   material a box holds; the weight says how heavily to weight it in the reading path, legible before
+   reading a word. Geometry carries the signal more than color does: aside = narrow + wrapped + smaller;
+   callout = full-width + contained + secondary; deep-dive = full-width + sectional + sustained. The
+   `bw-*` classes compose onto the family class (`box-inset bw-aside`), so an unmarked box renders
+   exactly as before. These rules sit AFTER the family rules on purpose — equal specificity, later wins. */
+/* ASIDE — a compact optional bridge the reader may skip: floated to the outside (right) edge at 65% of
+   the measure, body ~1pt down + tighter leading, the main prose wrapping alongside. Collapses to an
+   in-column box on a narrow screen (a float needs a wide measure to leave a readable wrap column). */
+blockquote.bw-aside { font-size: 15.5px; line-height: 1.5; padding: 0.8rem 1.1rem; }
+blockquote.bw-aside .inset-title { font-size: 0.92rem; }
+blockquote.bw-aside p { line-height: 1.5; }
+@media (min-width: 60rem) {
+  blockquote.bw-aside { float: right; clear: right; width: 65%; margin: 0.4rem 0 1rem 1.4rem; }
+}
+/* A section heading immediately after an aside clears the float — a `##`/`###` head squeezed into the
+   35% wrap column reads wrong. Adjacent-sibling only, so gutter sidenotes elsewhere keep their layout. */
+blockquote.bw-aside + h2, blockquote.bw-aside + h3 { clear: right; }
+/* CALLOUT — substantial secondary material (a mini-essay, sometimes code): full width, body ~0.75pt
+   down, the light tint + understated border the box-inset base already supplies, MORE interior padding
+   than an aside, no wraparound. */
+blockquote.bw-callout { font-size: 16px; padding: 1.25rem 1.5rem; }
+/* DEEP DIVE — an intentional excursion one abstraction layer down, read as a mini-section: full width,
+   a STRONG top rule + a structural DEEP DIVE label instead of a tight 4-sided box, a faint full-width
+   wash, generous vertical air, body only ~0.5pt down (meant to be READ, not skimmed). */
+blockquote.bw-deep-dive { background: var(--panel); border: none; border-top: 3px solid var(--accent);
+  border-radius: 0; padding: 1.1rem 1.3rem 1.2rem; margin: 2.4rem 0; font-size: 16.5px; }
+blockquote.bw-deep-dive .bw-label { display: block; font-family: var(--font-body); font-size: 0.68rem;
+  font-weight: 700; letter-spacing: 0.14em; color: var(--accent); margin: 0 0 0.55rem; }
+blockquote.bw-deep-dive .inset-title { font-size: 1.05rem; }
 /* CODE INSET — a fenced code listing lifted into a titled box: "here is a real artifact from the system."
    It shares the concept-inset's amber header-band label typography (the sidebar HEADER, `p.inset-title`,
    demoted so no heading-order break), but its body is a monospace listing, not roman prose. The header
@@ -1119,7 +1150,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- summary line removed 260820 (figure-min-font wave): duplicated the md caption and overflowed the viewBox when bumped to floor size — the caption carries it. -->
 
 </svg><figcaption data-short="Checked predicates over a structured model"><span class="fig-label">Figure 2.8-5.</span> <em>Checked predicates over a structured model.</em> A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.</figcaption></figure>
-<blockquote id="idx-def-invariant" class="box-inset"><span class="box-badge">FORMAL METHODS</span><p class="inset-title" id="inset-invariant">Inset — What is an invariant?</p>
+<blockquote id="idx-def-invariant" class="box-inset bw-callout"><span class="box-badge">FORMAL METHODS</span><p class="inset-title" id="inset-invariant">Inset — What is an invariant?</p>
 <p>An <strong>invariant</strong> is a property required to hold over a declared domain of states, structures, or observations. In a behavioral state machine, the invariant may be a predicate that must hold in every reachable state; in a structural model, it may require every observed dependency to belong to a declared set; in a measurement model, it may require a quantity to remain within a hard capacity bound. State both the property <em>and</em> the domain the checker claims to establish it over.</p>
 <p>Take a behavioral illustration. A job carries two fields at once — a <code>status</code> of <code>free</code>, <code>leased</code>, or <code>done</code>, and a <code>lease_owner</code> that names the holding worker or is empty. Different steps write the two fields, so they <em>can</em> fall out of agreement, which is exactly why you write the invariant down. "A job is leased if and only if it has an owner" is a predicate over the pair: <code>(status == "leased") == (lease_owner is not None)</code>. A <code>free</code> status with a lingering <code>lease_owner</code> is a stale lease; a <code>leased</code> status with no owner is a lost lease. Separating the two writes can make either inconsistent state reachable, and both break the predicate. The predicate becomes mechanically meaningful when a checker evaluates it over the declared reachable state space:</p>
 <pre><code>STATES = product({"free", "leased", "done"}, {None, "worker-1", "worker-2"})
@@ -1136,7 +1167,7 @@ assert all(invariant(s) for s in reachable_states())  # check every reachable st
 <p>Alignment does not therefore require a separately represented model. Some obligations are already observable at an action or artifact boundary and can be constrained directly. Models extend the range of properties the environment can enforce.</p>
 <p>The result is not architecture replaced by models, but architecture made available through them. Different questions call for different views; shared identity lets engineers cross those views when a decision spans them; analysis can change the design; and executable representations can sometimes realize or constrain that design directly. None of this requires one complete model of the system.</p>
 <p>Part III asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them.</p>
-<blockquote class="box-inset"><span class="box-badge">AI</span><p class="inset-title" id="inset-beneath-commodity-intelligence">Deep dive — Beneath commodity intelligence: why structure helps</p>
+<blockquote class="box-inset bw-deep-dive"><span class="box-badge">AI</span><span class="bw-label">DEEP DIVE</span><p class="inset-title" id="inset-beneath-commodity-intelligence">Beneath commodity intelligence: why structure helps</p>
 <p>MAGE deliberately treats intelligence as a commodity. The method should not depend on a particular neural architecture, training recipe, or context-window size. Still, the language-model systems available in 2026 offer a useful view one level below that abstraction. They suggest why engineering the structure around an intelligent agent can matter as much as improving the intelligence itself.</p>
 <p>Access to state is not the same as reasoning over state. Modern language models can accept large contexts, but their ability to use those contexts depends on the reasoning the task requires. OOLONG, for example, was designed to require semantic processing and aggregation across much of a long input rather than retrieval of a few relevant passages. Frontier models degrade substantially on these tasks even when the input fits within their nominal context windows <sup class="cite-ref"><a href="#wc-2-8-system-knowledge-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Amanda Bertsch et al., “Oolong: Evaluating Long Context Reasoning and Aggregation Capabilities,” 2025, <a href="https://arxiv.org/abs/2511.02817">https://arxiv.org/abs/2511.02817</a>.</span>. Recursive Language Models (RLMs) make the distinction especially clear. Instead of placing a long input directly into the model's context, an RLM keeps it in an external environment that the model can inspect programmatically, decompose, and pass in pieces to recursive model calls. On several long-context tasks, this restructuring substantially improves performance, including on inputs far beyond the underlying model's context window <sup class="cite-ref"><a href="#wc-2-8-system-knowledge-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> Alex L. Zhang et al., “Recursive Language Models,” 2025, <a href="https://arxiv.org/abs/2512.24601">https://arxiv.org/abs/2512.24601</a>.</span>.</p>
 <p>This belongs to a broader shift from treating a language model as a function that produces an answer toward treating it as a reasoner operating within an environment. ReAct interleaves reasoning with actions that obtain new observations from an external environment <sup class="cite-ref"><a href="#wc-2-8-system-knowledge-3" aria-label="citation 3">3</a></sup><span class="cite-note"><span class="cn-mark">3.</span> Shunyu Yao et al., “React: Synergizing Reasoning and Acting in Language Models,” in “International Conference on Learning Representations,” special issue, <em>International Conference on Learning Representations</em>, 2023.</span>; CodeAct extends this idea by allowing executable code to serve as an expressive action language <sup class="cite-ref"><a href="#wc-2-8-system-knowledge-4" aria-label="citation 4">4</a></sup><span class="cite-note"><span class="cn-mark">4.</span> Xingyao Wang et al., “Executable Code Actions Elicit Better LLM Agents,” in “Proceedings of the 41st International Conference on Machine Learning,” special issue, <em>Proceedings of the 41st International Conference on Machine Learning</em>, Proceedings of Machine Learning Research, vol. 235 (2024): 50208–32.</span>. RLMs go further by making context management and decomposition themselves part of the interaction with the environment. The common lesson is not that any particular harness is universally correct. It is that the structure through which intelligence encounters a problem changes what that intelligence can effectively do.</p>

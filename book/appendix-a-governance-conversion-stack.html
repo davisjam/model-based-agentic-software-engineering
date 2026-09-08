@@ -381,6 +381,37 @@ blockquote.box-evidence em { font-style: italic; }
 blockquote.box-evidence .inset-title { font-style: normal; font-weight: 700; color: var(--diagram-fleet);
   font-size: 1rem; margin: 0 0 0.5rem; }
 blockquote.box-evidence .inset-title::before { content: none; }
+/* ── READING-WEIGHT AXIS (box-weight marker; typography pilot 260908) ───────────────────────────────
+   Orthogonal to the four-family grammar and the provenance badge: the family/badge say what KIND of
+   material a box holds; the weight says how heavily to weight it in the reading path, legible before
+   reading a word. Geometry carries the signal more than color does: aside = narrow + wrapped + smaller;
+   callout = full-width + contained + secondary; deep-dive = full-width + sectional + sustained. The
+   `bw-*` classes compose onto the family class (`box-inset bw-aside`), so an unmarked box renders
+   exactly as before. These rules sit AFTER the family rules on purpose — equal specificity, later wins. */
+/* ASIDE — a compact optional bridge the reader may skip: floated to the outside (right) edge at 65% of
+   the measure, body ~1pt down + tighter leading, the main prose wrapping alongside. Collapses to an
+   in-column box on a narrow screen (a float needs a wide measure to leave a readable wrap column). */
+blockquote.bw-aside { font-size: 15.5px; line-height: 1.5; padding: 0.8rem 1.1rem; }
+blockquote.bw-aside .inset-title { font-size: 0.92rem; }
+blockquote.bw-aside p { line-height: 1.5; }
+@media (min-width: 60rem) {
+  blockquote.bw-aside { float: right; clear: right; width: 65%; margin: 0.4rem 0 1rem 1.4rem; }
+}
+/* A section heading immediately after an aside clears the float — a `##`/`###` head squeezed into the
+   35% wrap column reads wrong. Adjacent-sibling only, so gutter sidenotes elsewhere keep their layout. */
+blockquote.bw-aside + h2, blockquote.bw-aside + h3 { clear: right; }
+/* CALLOUT — substantial secondary material (a mini-essay, sometimes code): full width, body ~0.75pt
+   down, the light tint + understated border the box-inset base already supplies, MORE interior padding
+   than an aside, no wraparound. */
+blockquote.bw-callout { font-size: 16px; padding: 1.25rem 1.5rem; }
+/* DEEP DIVE — an intentional excursion one abstraction layer down, read as a mini-section: full width,
+   a STRONG top rule + a structural DEEP DIVE label instead of a tight 4-sided box, a faint full-width
+   wash, generous vertical air, body only ~0.5pt down (meant to be READ, not skimmed). */
+blockquote.bw-deep-dive { background: var(--panel); border: none; border-top: 3px solid var(--accent);
+  border-radius: 0; padding: 1.1rem 1.3rem 1.2rem; margin: 2.4rem 0; font-size: 16.5px; }
+blockquote.bw-deep-dive .bw-label { display: block; font-family: var(--font-body); font-size: 0.68rem;
+  font-weight: 700; letter-spacing: 0.14em; color: var(--accent); margin: 0 0 0.55rem; }
+blockquote.bw-deep-dive .inset-title { font-size: 1.05rem; }
 /* CODE INSET — a fenced code listing lifted into a titled box: "here is a real artifact from the system."
    It shares the concept-inset's amber header-band label typography (the sidebar HEADER, `p.inset-title`,
    demoted so no heading-order break), but its body is a monospace listing, not roman prose. The header
