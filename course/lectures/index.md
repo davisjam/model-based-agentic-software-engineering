@@ -12,7 +12,11 @@ status: ready
 
 # Lectures — the MAGE curriculum
 
-The lecture curriculum, organized by its intellectual structure — **Acts** and their **modules** — independent of any calendar. Each module carries its slides and any associated readings. To adopt the material elsewhere, take the modules you need in whatever order and schedule suit your course; the [Reference Course](../reference-course/index.md) shows one demonstrated way to sequence them. Modules are published as their teaching materials are completed.
+The lecture curriculum is organized into three acts, corresponding to major stages of the semester project. Act I develops the foundations students need to define and specify what they will build, and concludes as teams complete the requirements and specification stage of the project. Acts II and III follow the project from building and governing the system to operating, evolving, and reasoning about software in the world.
+
+Each module includes slides and associated readings. The **[example calendar](../reference-course/calendar.md)** shows how the lectures and project were coordinated in a 16-week course at Purdue.
+
+Modules are published as their teaching materials are completed.
 
 ## Act I — Foundations
 
