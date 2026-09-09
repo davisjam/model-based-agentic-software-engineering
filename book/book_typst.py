@@ -645,6 +645,16 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
             # READING-WEIGHT axis: the weight function OWNS geometry, font step, and breakability — it
             # replaces the default inset block AND outranks `inset-size: small` (the weight IS the
             # size/pagination policy; a deep-dive is breakable by design, an aside one-page by design).
+            if box_weight == "aside" and header:
+                # STUB GUARD (260909): the aside box is BREAKABLE (it splits across page seams in
+                # lockstep with its wrap strip), so a unit starting a few lines above the page bottom
+                # would strand the title header alone as a 2-line stub. The header CLAIMS phantom
+                # space below itself inside an unbreakable group and gives it back — it only stays on
+                # a fragment with ≥ 0.8in of following room, else the break falls BEFORE it (the box
+                # opens on the next page while the strip prose fills the bottom). Deterministic — the
+                # same no-context reserve trick as `section-open` (see its CONVERGENCE note).
+                header = ("#block(breakable: false)[\n  " + header.rstrip() + "\n  #v(0.8in)\n]\n"
+                          "  #v(-0.8in)\n  ")
             return _weight_call(box_weight, f"{header}{_indent(body).lstrip()}", aside_wrapped)
         if inset_size == "small":
             # A long deep-dive inset: shrink the body font + tighten leading. Pagination is delegated to
@@ -1314,16 +1324,200 @@ _FLOAT_KINDS = frozenset({ir.BlockKind.FIGURE, ir.BlockKind.TABLE, ir.BlockKind.
 #: glued while releasing full paragraphs from the chain.
 _STICKY_LEADIN_MAX_WORDS = 45
 
+_INSET_TITLE_RE = re.compile(r"^>\s*#+\s*Inset\s+—")
+
+
+def _is_inset_titled(raw: str) -> bool:
+    """A blockquote whose leading heading is an `Inset — …` box — the class the 260909 author ruling
+    binds to the wrapped-aside treatment in the print projection: smaller-font, two-column wrapped,
+    within the text block, splitting across page boundaries when tall. Applies REGARDLESS of a declared
+    `box-weight`/`inset-size` (a callout/small declaration still means full-width in the web projection;
+    the PDF renders the class uniformly). Deep dives ("Deep dive — …") and model cards keep their own
+    treatments — the title prefix is the discriminator."""
+    return bool(_INSET_TITLE_RE.match(raw.lstrip()))
+
 # Monotonic sequence for the aside / one-page-inset position-anchor labels (see `_weight_call`). Never
 # reset: labels only need uniqueness WITHIN one emitted document, and a fresh emission keeps counting.
 _WR_ANCHOR_SEQ = itertools.count(1)
 
-# Extra words the reading-weight-aside gather takes BEYOND the box's own length — roughly one page of body
-# prose at the full measure. This surplus feeds `_wr-wrap-right`'s pre-fill path (move the object, not the
-# prose): when the aside box cannot fit in the space left on the current page, leading wrap-content fills
-# that space at full measure and the box wraps the remainder on the next page. See the gather comment in
-# `render_chapter`.
-_ASIDE_PREFILL_WORDS = 500
+# ── ≤1-inset-per-page spacing (author rule 260909): no body page may carry two inset boxes. ──────────
+# MECHANISM half — a deterministic EMITTER pre-pass, deliberately NOT a Typst position query: the house
+# convergence doctrine (see `section-open`) bans query-page-then-conditional-pagebreak guards (period-2
+# oscillation under Typst's five-iteration cap), and a pagebreak deferral would strand the abandoned
+# page-tail anyway. Instead, when two insets sit too close in the SOURCE (the only way two land on one
+# page), the second inset MOVES DOWN the block list past following same-section prose — the prose fills
+# the page at full measure exactly as if the author had written it earlier, no hole, and the inset opens
+# in later flow. Pure word arithmetic on the IR: position-independent, stable under relayout.
+# GUARANTEE half — the emitter cannot see page geometry, so the hard line is the BLOCKING solo-inset
+# sensor (`check_inset_wrap.check_solo`, wired into the --pdf gate): any page still carrying two boxes
+# fails the build, and the threshold below gets retuned.
+#: Minimum UNCLAIMED full-measure words between one inset unit and the next before the spacing pass
+#: defers the second. Small on purpose: it fires only for near-back-to-back authoring (the observed
+#: collision had ~35 words of separation; every legitimately-separated pair in the book has 200+).
+_INSET_MIN_SEP_WORDS = 120
+#: Words of following prose the deferred inset KEEPS for its wrap strip (the rest becomes page fill).
+#: Calibrated against the sensor's ink-row metric, not line arithmetic: a 78-word strip on a 253-word
+#: box measured 34% coverage (260909), so wrap ≈ 0.45× box words lands ≈ 50% — the 0.45 sensor bar
+#: plus real margin. The floor guards tiny boxes.
+_INSET_WRAP_RESERVE_FRAC = 0.45
+_INSET_WRAP_RESERVE_MIN = 60
+#: How many section headings the deferral may cross hunting for a section whose prose can fund the
+#: wrap. Two is the observed need (3.1: the adjacent section is exactly at the sensor bar); a box
+#: pushed further than two sections detaches too far from its authored context — leave it and let
+#: the solo sensor surface the conflict to a human instead.
+_INSET_MAX_HEADING_CROSS = 2
+
+_SPACING_PROSE = frozenset({ir.BlockKind.PARA, ir.BlockKind.LIST, ir.BlockKind.ORDERED_LIST})
+
+
+def _space_inset_blocks(blocks: "list[Block_t]") -> "tuple[list[Block_t], set[int]]":
+    """The ≤1-inset-per-page spacing pre-pass (see the doctrine comment above). Walks consecutive
+    inset-titled blockquotes; when the prose the FIRST inset leaves unclaimed between them falls under
+    `_INSET_MIN_SEP_WORDS`, the second inset (plus its attached marker-directive run) moves down past
+    the section's following prose, KEEPING a tail reserve for its own wrap strip. Returns the reordered
+    list plus `pull_locked`: indices (in the new order) of the prose spent as page fill — the wrap
+    gather and look-back must not reclaim them, or the pull would undo the separation. Never crosses a
+    heading, table, code block, or another blockquote: an inset stays in its own section."""
+    out = list(blocks)
+    locked: set[int] = set()
+    _STOP = {ir.BlockKind.HEADING, ir.BlockKind.BLOCKQUOTE, ir.BlockKind.TABLE,
+             ir.BlockKind.CODE, ir.BlockKind.CODE_INSET}
+    _GATHER_STOP = {ir.BlockKind.HEADING, ir.BlockKind.BLOCKQUOTE, ir.BlockKind.TABLE,
+                    ir.BlockKind.CODE, ir.BlockKind.CODE_INSET, ir.BlockKind.EQ}
+
+    def _box_words(b: "Block_t") -> int:
+        return len(b.raw.replace(">", " ").replace("#", " ").split())
+
+    def _unclaimed_between(a: int, b: int) -> int:
+        """Prose words between inset a and inset b that a's forward wrap-gather will NOT claim —
+        mirrors the render-time gather loop (same budget, same stop kinds, same 14-para cap)."""
+        budget = _box_words(out[a]) + _ASIDE_PREFILL_WORDS
+        claimed = paras = 0
+        unclaimed = 0
+        gathering = True
+        for j in range(a + 1, b):
+            bj = out[j]
+            if bj.kind not in _SPACING_PROSE:
+                if gathering and bj.kind in _GATHER_STOP:
+                    gathering = False
+                continue
+            w = len(bj.raw.split())
+            if gathering and j in locked:
+                gathering = False
+            if gathering and claimed < budget and paras < 14:
+                claimed += w
+                paras += 1
+            else:
+                unclaimed += w
+        return unclaimed
+
+    i = 0
+    while i < len(out):
+        if not (out[i].kind is ir.BlockKind.BLOCKQUOTE and _is_inset_titled(out[i].raw)):
+            i += 1
+            continue
+        # Find the next inset in the same chapter walk.
+        nxt = None
+        for j in range(i + 1, len(out)):
+            if out[j].kind is ir.BlockKind.BLOCKQUOTE and _is_inset_titled(out[j].raw):
+                nxt = j
+                break
+        if nxt is None:
+            break
+        if _unclaimed_between(i, nxt) >= _INSET_MIN_SEP_WORDS:
+            i = nxt
+            continue
+        # DEFER inset `nxt`. Collect the same-section prose after it up to the first stop block.
+        stop = len(out)
+        for j in range(nxt + 1, len(out)):
+            if out[j].kind in _STOP:
+                stop = j
+                break
+        prose_idx = [j for j in range(nxt + 1, stop)
+                     if out[j].kind in _SPACING_PROSE and out[j].raw.strip()]
+        reserve_need = max(_INSET_WRAP_RESERVE_MIN,
+                           int(_INSET_WRAP_RESERVE_FRAC * _box_words(out[nxt])))
+        # Destination, three plans in preference order:
+        #   (1) IN-SECTION — reserve the TAIL of the section's remaining prose for the wrap strip
+        #       (the leading remainder becomes page fill). Only when the tail actually funds the wrap.
+        #   (2) CROSS-HEADINGS (≤ _INSET_MAX_HEADING_CROSS) — a thin section tail cannot both fill
+        #       the page and cover the box (the 3.1 'Hooks and Permissions' case: 78 remaining words
+        #       vs a 253-word box → a 34% strip, and the next section's 103 words project to 44.9% —
+        #       exactly the sensor bar). Walk forward one heading at a time and land the unit just
+        #       after the FIRST heading whose section prose funds the reserve: every paragraph keeps
+        #       its own section; only the box renders under a later heading ("float it to where body
+        #       text exists" — the same author ruling the wrap gather already leans on).
+        #   (3) BEST-EFFORT IN-SECTION — the floor-level reserve, when neither is possible; the solo
+        #       sensor arbitrates whether it sufficed.
+        dest = None
+        fill: "list[int]" = list(prose_idx)
+        reserved = 0
+        while fill and reserved < reserve_need:
+            reserved += len(out[fill[-1]].raw.split())
+            fill.pop()
+        if fill and reserved >= reserve_need:
+            dest = fill[-1] + 1                   # (1) insert directly after the last fill block
+        elif prose_idx:
+            scan = stop
+            crossed = 0
+            while (dest is None and crossed < _INSET_MAX_HEADING_CROSS and scan < len(out)
+                   and out[scan].kind is ir.BlockKind.HEADING):
+                crossed += 1
+                nxt_stop = len(out)
+                for j in range(scan + 1, len(out)):
+                    if out[j].kind in _STOP:
+                        nxt_stop = j
+                        break
+                prose1 = sum(len(out[j].raw.split()) for j in range(scan + 1, nxt_stop)
+                             if out[j].kind in _SPACING_PROSE)
+                if prose1 >= reserve_need:
+                    dest = scan + 1               # (2) just after the heading; its prose wraps the box
+                else:
+                    scan = nxt_stop
+        if dest is None:
+            fill, reserved = list(prose_idx), 0
+            while fill and reserved < reserve_need:
+                if len(fill) == 1 and reserved >= _INSET_WRAP_RESERVE_MIN:
+                    break                         # (3) a partial reserve beats emptying the fill
+                reserved += len(out[fill[-1]].raw.split())
+                fill.pop()
+            if not fill:
+                i = nxt      # nothing to fill with — leave in place; the solo sensor arbitrates
+                continue
+            dest = fill[-1] + 1
+        # The inset's attached marker run: contiguous DIRECTIVE blocks immediately before it
+        # (box-family / inset-domain / box-weight / index-def) move with the box.
+        first = nxt
+        while first > 0 and out[first - 1].kind is ir.BlockKind.DIRECTIVE:
+            first -= 1
+        unit = out[first:nxt + 1]
+        moved_over = [j for j in range(nxt + 1, dest)]
+        out[first:nxt + 1] = []                   # remove the unit …
+        dest -= len(unit)                         # … which shifts the destination left
+        out[dest:dest] = unit
+        # Re-lock: previously locked indices shift like any other; recompute positions.
+        shifted: set[int] = set()
+        for k in locked:
+            if k < first or k >= dest + len(unit):
+                shifted.add(k)
+            elif first <= k:                      # sat between old and new position — moved left
+                shifted.add(k - len(unit))
+        locked = shifted
+        # Lock the fill prose (now at indices shifted left by the unit's length).
+        for j in moved_over:
+            if out[j - len(unit)].kind in _SPACING_PROSE:
+                locked.add(j - len(unit))
+        i = dest + len(unit) - 1                  # continue from the moved inset
+    return out, locked
+
+# Extra words the reading-weight-aside gather takes BEYOND the box's own length. The strip only needs
+# enough prose to cover the box's height (`_wr-wrap-right` splits to the box height and returns the rest
+# to the full measure after the grid — a narrow strip at body size needs ~0.6× the box's words per unit
+# height, plus headroom for wordless box height: header, badge, a table or code block). The retired
+# pre-fill ladder wanted a page of SURPLUS (+500) here; under the breakable-grid form that surplus is
+# pure over-claim — a greedy aside swallowed every paragraph between itself and the NEXT aside into its
+# `skip` set and starved that aside's gather down to a blank strip (the p160 'Example, property' class).
+_ASIDE_PREFILL_WORDS = 60
 
 
 def _note_spread_info(blocks: "list[Block_t]") -> "tuple[int | None, int | None]":
@@ -1438,7 +1632,9 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         if numbered and chapter.chapter >= 2:
             head = f"#section-open[\n{head}\n]"
         out = [head, ""]
-    blocks = chapter.blocks
+    # ≤1-inset-per-page spacing pre-pass (must run FIRST — every index-keyed map below reads the
+    # final order). `pull_locked` holds the fill-prose indices the wrap gathers must not reclaim.
+    blocks, pull_locked = _space_inset_blocks(chapter.blocks)
     # Footnote pre-pass: pull `[^label]: …` DEFINITION lines out of the flow (they must not render as body
     # paragraphs) and collect them for `_inline`'s `[^label]` handler — the Typst twin of md_to_html's
     # `collect_footnote_defs` strip, sharing the SAME parser (bb.collect_footnote_defs) so the two projections
@@ -1476,6 +1672,12 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         return (num_setup + "\n"
                 + _render_note_spread(blocks, spread_n, fold_i, name=chapter.slug, title_frag=title_line))
     skip: set[int] = set()
+    # Block-index → out-index of the fragment it emitted (recorded at append time). The aside look-back
+    # pull uses it to locate a preceding paragraph's fragment EXACTLY — tail-scanning with pattern
+    # skips broke as soon as an inline figure or box sat between the paragraph and the aside (the
+    # p83/p104/p153/p161 blank-strip class). Kept exact across pops: every pop decrements the stored
+    # indices above it.
+    emitted_at: dict[int, int] = {}
     section_no = 0                     # per-chapter `## ` counter (advanced only when the chapter is numbered)
     pending_landscape = False          # a `<!-- table-landscape -->` marker armed for the next TABLE block
     pending_onepager = False           # a `<!-- case-onepager -->` marker armed for the next TABLE block
@@ -1660,35 +1862,45 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         # ordered list is rerouted; every other numbered list in the book renders through _render_ordered_list.
         if bb._stem_to_label(chapter.slug) == bb._WHAT_THIS_BOOK_ARGUES_LABEL and b.kind is ir.BlockKind.ORDERED_LIST:
             frag = _render_argues_claims(b.raw)
-        elif b.kind is ir.BlockKind.BLOCKQUOTE and box_weight == "aside":
+        elif b.kind is ir.BlockKind.BLOCKQUOTE and (box_weight == "aside" or _is_inset_titled(b.raw)):
             # READING-WEIGHT aside: gather the immediately-following plain paragraph(s) as the
             # wrap-alongside content — the main prose flows beside the narrow outside-edge box (the
             # `weight-aside` preamble function drives the vendored side-float wrap). The gather budget is
-            # the box's OWN length (the "N words following ≥ N words in the box" rule) PLUS a page-fill
-            # margin: `_wr-wrap-right` only wraps enough to match the box height (extra flows after the
-            # grid at full measure, rendered exactly as if left in the main walk), and the surplus is what
-            # its PRE-FILL path uses to fill the current page when the box must move to the next one (the
-            # move-the-object-not-the-prose rule) — without the surplus, pre-filling would starve the wrap
-            # strip and blank the page beside the box. Capped at 14 paras for safety. A heading / float /
-            # directive / footnote-definition block ends the gather; with nothing to wrap, the aside
-            # renders as a narrow right-aligned block (the fallback inside `weight-aside`).
+            # the box's OWN length (the "N words following ≥ N words in the box" rule) plus a small
+            # cushion: `_wr-wrap-right` wraps only enough to match the box height (extra flows after the
+            # grid at full measure, rendered exactly as if left in the main walk), so over-claiming buys
+            # nothing and COSTS the next aside its look-back pool (claimed paragraphs join `skip`).
+            # Capped at 14 paras for safety. A heading / footnote-definition / stop-kind block ends the
+            # gather; with nothing to wrap, the aside renders as a narrow right-aligned block (the
+            # fallback inside `weight-aside`) — a shape the inset-wrap sensor rejects, so a starved
+            # gather surfaces at build time rather than shipping a blank strip.
             box_words = len(b.raw.replace(">", " ").replace("#", " ").split())
             gather_budget = box_words + _ASIDE_PREFILL_WORDS
             wrapped_paras: list[str] = []
             wrapped_words = 0
-            _WRAP_STOP = {ir.BlockKind.HEADING, ir.BlockKind.BLOCKQUOTE, ir.BlockKind.LIST,
-                          ir.BlockKind.ORDERED_LIST, ir.BlockKind.FIGURE, ir.BlockKind.TABLE,
-                          ir.BlockKind.MERMAID, ir.BlockKind.CODE, ir.BlockKind.CODE_INSET, ir.BlockKind.EQ}
+            # Lists gather too (260909): a bullet list is flowable prose-like content and several
+            # insets are list-bounded — excluding lists starved their wrap strips. FIGURES/MERMAIDS do
+            # not stop the gather either: they are stepped OVER (emitted in their own flow position,
+            # never wrapped into the strip) — paragraph order is preserved; only the box and the
+            # figure interleave differently, which the author sanctioned ("float it to where body
+            # text exists").
+            _WRAP_STOP = {ir.BlockKind.HEADING, ir.BlockKind.BLOCKQUOTE, ir.BlockKind.TABLE,
+                          ir.BlockKind.CODE, ir.BlockKind.CODE_INSET, ir.BlockKind.EQ}
+            _WRAP_RENDER = {ir.BlockKind.PARA: _render_paragraph,
+                            ir.BlockKind.LIST: _render_unordered_list,
+                            ir.BlockKind.ORDERED_LIST: _render_ordered_list}
             j = i + 1
             while j < len(blocks) and wrapped_words < gather_budget and len(wrapped_paras) < 14:
                 bj = blocks[j]
                 if bj.kind in _WRAP_STOP:
                     break
-                if bj.kind is ir.BlockKind.PARA:
+                if j in pull_locked:
+                    break    # spacing-pass fill prose — claiming it would undo the inset separation
+                if bj.kind in _WRAP_RENDER:
                     if j in skip or j in fn_strip:
                         j += 1
                         continue
-                    pf = _render_paragraph(bj.raw)
+                    pf = _WRAP_RENDER[bj.kind](bj.raw)
                     if not pf:
                         break
                     wrapped_paras.append(pf)
@@ -1700,6 +1912,65 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
                 # visible structure) sits between the box and its following paragraphs. Step OVER it to reach
                 # the paragraphs, but leave it UNSKIPPED so the main flow still emits its metadata anchor.
                 j += 1
+            # LOOK-BACK top-up (260909): an inset that ends a section (followed by a figure / heading /
+            # list) gathers little or nothing forward, which used to leave the box towering over a BLANK
+            # wrap strip. When the forward gather cannot cover the box, pull the immediately-PRECEDING
+            # plain paragraphs (contiguous, same section — the walk stops at any non-paragraph) back out
+            # of the emitted stream and wrap them beside the box instead: the box effectively floats up
+            # to where body text exists. Fragments are matched by re-render equality — any paragraph a
+            # prior unit annotated (an anchor pin) fails the match and safely stops the pull. Paragraphs
+            # carrying footnote refs are never re-rendered (the footnote emitter is stateful; a probe
+            # render would corrupt its dedup map) — they also stop the pull.
+            if wrapped_words < int(0.8 * box_words):
+                # Obstacle blocks the pull steps OVER (their emitted fragments keep their flow
+                # positions; the pulled prose renders after them, in the strip): inert directives,
+                # figures/diagrams — floated OR inline (the p83/p104/p161 blank-strip class: an inline
+                # figure right above the aside stopped the old pull dead; the author ruling "float the
+                # box to where body text exists" covers both interleaves) — and other boxes
+                # (blockquotes — the p153 class, an aside preceded by an evidence box). Prose ORDER is
+                # preserved; only the box/figure/box interleave changes. The pull still STOPS at a
+                # heading (section boundary), a table/code/eq block, any block another unit already
+                # claimed (skip — a caption, an earlier aside's strip), or a footnote-bearing
+                # paragraph (the footnote emitter is stateful; a probe re-render would corrupt its
+                # dedup map).
+                _PULL_OVER = {ir.BlockKind.DIRECTIVE, ir.BlockKind.FIGURE, ir.BlockKind.MERMAID,
+                              ir.BlockKind.BLOCKQUOTE}
+                pulled: list[str] = []
+                jb = i - 1
+                while jb >= 0 and wrapped_words < gather_budget:
+                    bj2 = blocks[jb]
+                    if jb in skip or jb in pull_locked:
+                        break    # claimed by another unit / spacing-pass fill — never reclaim
+                    if bj2.kind in _PULL_OVER:
+                        jb -= 1
+                        continue
+                    if bj2.kind not in _WRAP_RENDER:
+                        break
+                    raw_j = fn_strip.get(jb, bj2.raw)
+                    if not raw_j.strip():
+                        jb -= 1
+                        continue
+                    if "[^" in raw_j:
+                        break
+                    pf_j = _WRAP_RENDER[bj2.kind](raw_j)
+                    if not pf_j:
+                        break
+                    # The block's emitted fragment, located exactly (index recorded at append time).
+                    # Re-render equality re-verifies it: a fragment a later step rewrote (a sticky
+                    # keep-with-next wrap, an appended anchor pin) fails the match and safely stops
+                    # the pull — a glued lead-in stays with its float.
+                    k = emitted_at.get(jb, -1)
+                    if not (0 <= k < len(out)) or out[k] != pf_j:
+                        break
+                    out.pop(k)
+                    del emitted_at[jb]
+                    for _bk in emitted_at:
+                        if emitted_at[_bk] > k:
+                            emitted_at[_bk] -= 1
+                    pulled.insert(0, pf_j)
+                    wrapped_words += len(raw_j.split())
+                    jb -= 1
+                wrapped_paras = pulled + wrapped_paras
             frag = _render_blockquote(b.raw, is_def=is_def, is_pullquote=is_pullquote,
                                       is_principlebox=is_principlebox, box_family=box_family,
                                       inset_domain=inset_domain, inset_size=inset_size,
@@ -1753,6 +2024,7 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
                     frag = _rest
                     break
         if frag:
+            emitted_at[i] = len(out)
             out.append(frag)
     # The Part-nav chip strip now closes the orientation VERSO (built in `_part_divider_typst`), not the recto
     # intro-prose chapter — so a Part page's `render_chapter` contributes ONLY the intro prose that leads the
@@ -1966,7 +2238,10 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 // Columns are PINNED (1fr + auto), unlike upstream wrap-it's (auto, auto): an auto text column sizes to
 // the chunk's natural width and pushes the fixed box past the right margin (the margin-bleed sensor
 // caught exactly that on the pilot pages). `1fr` holds the strip to measure − box − gutter.
-#let _wr-gridded(fixed, to-wrap) = box(width: 100%, grid(to-wrap, fixed, columns: (1fr, auto), column-gutter: 14pt))
+// BREAKABLE (260909): Typst breaks the row's cells across the page boundary in lockstep — strip and
+// box both fill the page and both continue on the next — so a tall unit flows instead of moving whole.
+#let _wr-gridded(fixed, to-wrap) = block(breakable: true, width: 100%, above: 0.9em, below: 0.9em,
+  grid(to-wrap, fixed, columns: (1fr, auto), column-gutter: 14pt))
 #let _wr-chunk(words, end, start: 0) = if end < 0 { words.join(" ") } else {
   words.slice(start, end).join(" ")
 }
@@ -2032,148 +2307,41 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
   else if b.has("children") { _wr-split-children(b, hf, goal, _wr-splitter) }
   else { (wrapped: none, rest: b) }
 }
-// Page-break policy (pagination-whitespace fix): each gridded unit is UNBREAKABLE, so when the aside +
-// its wrap does not fit in the space left on the current page, Typst would move the whole unit forward —
-// abandoning up to a page of usable space (the original p45/p46 failure: one opening paragraph, then
-// blank). The governing rule: when a following OBJECT cannot fit, adapt the object, NOT otherwise-
-// breakable preceding body text. Two instruments, by box size:
-//   - PRE-FILL (moderate boxes): fill the current page with leading wrap-content at full measure, then
-//     wrap the remainder beside the whole box when it opens the next page. A coverage ladder keeps the
-//     inset-wrap invariant (check_inset_wrap.py): the prefill goal steps down until the remainder still
-//     covers most of the box's height in the wrap strip.
-//   - SPLIT (cause #2, 260909 author ruling "insets stay inset and wrapped; splitting across pages is
-//     fine"): the BOX ITSELF breaks at the page boundary — part 1 renders as a gridded unit sized to
-//     the space remaining on the anchor page (strip prose wrapped alongside), part 2 opens the next
-//     page as a second gridded unit with the wrap continuing alongside, overflow prose after. Fires
-//     when pre-fill cannot help: a near-page-tall box, no pre-fillable paragraphs, or a ladder result
-//     that still strands a third+ of the page.
-#let _WR-MIN-PREFILL = 0.9in    // less remaining space than ~4 lines is not worth pre-filling/splitting
-#let _WR-PREFILL-PAD = 0.3in    // cushion under the measured fill goal so the prefill never overshoots
+// Page-break policy (pagination-whitespace fix, FINAL FORM 260909): the gridded unit — wrap strip
+// left, aside box right — is BREAKABLE. Typst 0.15 breaks a grid row's cells across the page boundary
+// in LOCKSTEP: both columns fill to the page bottom and both continue on the next page, the box's
+// fill and left rule carrying across the seam (verified in isolation and in the book). So an aside
+// too tall for the space left on its page no longer moves, pre-fills, or slices — it simply starts
+// where the flow stands and breaks wherever the page ends, footnote blocks and all, because the BREAK
+// DECISION IS TYPST'S OWN LAYOUT, not a measured guess. No anchor query, no remaining-space input, no
+// oscillation surface: the only measurement left is the box's own height, which sizes how much strip
+// prose wraps beside it (position-independent by construction). This retired the pre-fill ladder and
+// the page-sized slicer, whose anchor-based `avail` could not see footnote areas and slipped
+// (the 65%-blank cascade).
+#let _bw-aside-width = 3.75in   // the aside box column (~60% of the 6.25in text measure)
+// GEOMETRY GUARD (260909): the box column CLAMPS to the layout container so the gridded unit can never
+// exceed the measure — a fixed-width `auto` grid column wider than its container would overflow the
+// right margin (the escape the extended overflow sensor now also catches). The wrap strip keeps at
+// least this width; in the standard 6.25in measure the clamp never bites (6.25 − 3.75 = 2.5in > min).
+#let _WR-MIN-STRIP-W = 1.75in
 // NOTE: no nested `context {}` here — `layout`'s closure already runs with context (its `measure` calls
 // depend on it), and an extra context layer makes the cites/footnotes rendered inside flicker across
 // layout iterations (see `section-break-guard`'s CONVERGENCE note, rule (b)).
-#let _wr-wrap-right(body, to-wrap, anchor: none, boxer: (b) => b) = layout(size => {
-  let fixed = boxer(body)
+// `anchor` is accepted for call-site compatibility (the emitter pins a zero-size label ahead of the
+// unit); the breakable form no longer reads it.
+#let _wr-wrap-right(body, to-wrap, anchor: none, boxer: (b, w) => b) = layout(size => {
+  // Clamp the box column to the container (see _WR-MIN-STRIP-W).
+  let bxw = calc.min(_bw-aside-width, size.width - _WR-MIN-STRIP-W)
+  let fixed = boxer(body, bxw)
+  // Every measurement goes through `_wr-neutral` — measuring LIVE cite/footnote/ref content breaks
+  // Typst's citation locator ("citation could not be located — caused by measurement"). The strip is
+  // split to the box's height + 1em (the same goal formula as always): the wrap covers the box, the
+  // remainder returns to the full measure after the grid.
   let hf(chunk) = measure(box(width: size.width, _wr-neutral(_wr-gridded(fixed, chunk)))).height
   let goal = hf([]) + measure(v(1em)).height
-  let emit(content) = {
-    let result = _wr-splitter(content, hf, goal)
-    _wr-gridded(fixed, if result.wrapped == none { [] } else { result.wrapped })
-    result.rest
-  }
-  // Every measurement below goes through `_wr-neutral` — measuring LIVE cite/footnote/ref content
-  // breaks Typst's citation locator ("citation could not be located — caused by measurement").
-  let fixdim = measure(_wr-neutral(fixed))
-  let boxh = fixdim.height
-  let region = page.height - 2in
-  // The space to fill is on the ANCHOR's page (the flow position just before this unit), NOT at
-  // `here()`: when the box does not fit, this whole layout element moves to the next page, so its own
-  // position always reports a full fresh page — a stable-but-wrong "fits" fixpoint that would disable
-  // the pre-fill. The anchor is zero-size flow content BEFORE the unit; it never moves with it.
-  let avail = {
-    let hits = if anchor != none { query(anchor) } else { () }
-    if hits.len() > 0 { page.height - 1in - hits.first().location().position().y }
-    else { page.height - 1in - here().position().y }
-  }
-  // BOX SPLIT (cause #2): break the box itself at the page boundary and keep wrapping on both pages.
-  // Part 1 = the leading slice of the box body whose BOXED height fits the anchor page's remaining
-  // space; its strip prose is split to part 1's height (same goal formula as `emit`). Part 2 = the
-  // rest of the box body as a second gridded unit opening the next page (an unbreakable line taller
-  // than the slack left after part 1 — Typst carries it over; no explicit pagebreak, which would be
-  // position feedback), with the remaining wrap alongside and overflow prose after.
-  // CONVERGENCE: the split goal derives from `avail` (the pre-emitted anchor — the same input the
-  // pre-fill ladder already converges on; the unit's own rendered form never moves its anchor) and
-  // from neutral-measured box-slice heights. The box split is word-granular; that is safe here
-  // because the RENDERED halves carry no located content — aside bodies are plain prose by
-  // convention (no cites/footnotes; both current wrapped asides verified clean). An aside body that
-  // gains a citation near a split boundary may flicker across layout iterations — the compile then
-  // fails loud ("citation could not be located") and the fix is editorial, not structural.
-  let split-emit() = {
-    let bh(chunk) = measure(_wr-neutral(boxer(chunk))).height
-    let bres = _wr-splitter(body, bh, avail - _WR-PREFILL-PAD)
-    if bres.wrapped == none or bres.rest == none {
-      emit(to-wrap)                    // body would not split (one indivisible chunk) — move whole
-    } else {
-      let fixed1 = boxer(bres.wrapped)
-      let hf1(chunk) = measure(box(width: size.width, _wr-neutral(_wr-gridded(fixed1, chunk)))).height
-      let r1 = _wr-splitter(to-wrap, hf1, hf1([]) + measure(v(1em)).height)
-      _wr-gridded(fixed1, if r1.wrapped == none { [] } else { r1.wrapped })
-      parbreak()
-      let fixed2 = boxer(bres.rest)
-      let hf2(chunk) = measure(box(width: size.width, _wr-neutral(_wr-gridded(fixed2, chunk)))).height
-      let r2 = _wr-splitter(if r1.rest == none { [] } else { r1.rest },
-                            hf2, hf2([]) + measure(v(1em)).height)
-      _wr-gridded(fixed2, if r2.wrapped == none { [] } else { r2.wrapped })
-      r2.rest
-    }
-  }
-  // CONVERGENCE: the prefill is PARAGRAPH-granular on purpose. A word-granular split point moves with
-  // every point of layout jitter while the document settles, so cites/footnotes flicker between the
-  // prefill and the wrap across iterations and the compile never stabilizes. A whole paragraph flips
-  // only when the jitter exceeds its full height, so the decision reaches a fixpoint.
-  let paras = if to-wrap.has("children") {
-    let groups = ()
-    let cur = ()
-    for c in to-wrap.children {
-      if c.func() == parbreak {
-        if cur.len() > 0 { groups.push(cur.join()) }
-        cur = ()
-      } else {
-        cur.push(c)
-      }
-    }
-    if cur.len() > 0 { groups.push(cur.join()) }
-    groups
-  } else { (to-wrap,) }
-  if boxh <= avail or avail < _WR-MIN-PREFILL {
-    // Fits — or less than ~4 lines remain (moving whole abandons under an inch; a 4-line box
-    // continuation stub would be uglier than the gap).
-    emit(to-wrap)
-  } else if boxh > 0.85 * region or paras.len() < 2 {
-    // A near-page-tall box (> 0.85 region) can never be hosted whole mid-flow: the unbreakable grid
-    // only fits when it starts within (region - boxh) of a page top, so ANY mid-page placement
-    // strands the space above it and no pre-fill amount saves it (the 2.1 aside) — that leg keys on
-    // boxh ALONE, fully position-independent. The second leg: nothing to pre-fill with, and moving
-    // whole would abandon `avail`. Both: break the box at the boundary and keep wrapping.
-    split-emit()
-  } else {
-    let hff(chunk) = measure(box(width: size.width, _wr-neutral(chunk))).height
-    let stripw = size.width - fixdim.width - 14pt
-    // Take the most leading WHOLE paragraphs that fit the remaining space …
-    let k = 0
-    let used = 0pt
-    while k < paras.len() - 1 {
-      let h = hff(paras.at(k)) + measure(v(0.9em)).height
-      if used + h > avail - _WR-PREFILL-PAD { break }
-      used += h
-      k += 1
-    }
-    // … then step back until the remainder still covers most of the box height in the wrap strip.
-    while k > 0 {
-      let rest = paras.slice(k).join(parbreak())
-      if measure(box(width: stripw, _wr-neutral(rest))).height >= 0.6 * boxh { break }
-      k -= 1
-    }
-    // LEFTOVER check (cause #2): the step-back may have shrunk the pre-fill (or killed it, k = 0)
-    // to preserve wrap coverage — but a pre-fill that leaves a third+ of the page unfilled trades
-    // one blank for another. Recompute the space the final k actually fills; when the unfilled
-    // remainder is large, break the box at the boundary instead. Same measurement inputs as the
-    // ladder itself, so no new convergence surface.
-    let usedk = if k == 0 { 0pt } else {
-      paras.slice(0, k).fold(0pt, (acc, p) => acc + hff(p) + measure(v(0.9em)).height)
-    }
-    if avail - usedk > 0.33 * region {
-      split-emit()
-    } else if k == 0 {
-      emit(to-wrap)
-    } else {
-      paras.slice(0, k).join(parbreak())
-      // Terminate the prefill's last paragraph BEFORE the grid: `_wr-gridded` is an inline box, and
-      // without this break it would continue that paragraph — justify-stretching its final line.
-      parbreak()
-      emit(paras.slice(k).join(parbreak()))
-    }
-  }
+  let result = _wr-splitter(to-wrap, hf, goal)
+  _wr-gridded(fixed, if result.wrapped == none { [] } else { result.wrapped })
+  result.rest
 })
 // ASIDE — a compact optional bridge the reader can skip: a NARROW box (~65% of the 6.25in text measure)
 // on the outside (right) edge, body −1pt + tighter leading, main prose wrapping alongside. A box taller
@@ -2181,10 +2349,9 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 // (see the split path in `_wr-wrap-right`). Consistently right-aligned (recto-outside); page-parity
 // querying was judged too fragile for a verso flip. `wrapped: none` → the graceful fallback: the same
 // narrow box, right-aligned, no wrap.
-#let _bw-aside-width = 3.75in
-#let _bw-aside-box(body) = block(
+#let _bw-aside-box(body, width: _bw-aside-width, breakable: false) = block(
   fill: dt.panel, stroke: (left: dt.border-box-rule + dt.muted),
-  inset: 10pt, radius: 3pt, width: _bw-aside-width, breakable: false)[
+  inset: 10pt, radius: 3pt, width: width, breakable: breakable)[
   // Reset the alignment cascade: the placing `align(right, …)` would otherwise leak into the box's
   // paragraphs (right-aligned last lines). The box CONTENT reads as ordinary left-set justified prose.
   #set align(left)
@@ -2193,11 +2360,14 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
   #body
 ]
 #let weight-aside(body, wrapped: none, anchor: none) = if wrapped == none {
-  align(right, _bw-aside-box(body))
+  // No-wrap fallback: same narrow box, right-aligned — BREAKABLE (260909), because a chapter-tail
+  // inset with nothing to wrap can still be taller than a page; an unbreakable one would overflow.
+  align(right, _bw-aside-box(body, breakable: true))
 } else {
-  // Pass the raw body + the boxer (not a pre-boxed fixed): the split path re-boxes each half of the
-  // body separately, so the box styling must be applicable per-part.
-  _wr-wrap-right(body, wrapped, anchor: anchor, boxer: _bw-aside-box)
+  // The boxer receives the container-clamped width; BREAKABLE so the box cell splits across the page
+  // seam in lockstep with the wrap strip (see _wr-gridded).
+  _wr-wrap-right(body, wrapped, anchor: anchor,
+                 boxer: (b, w) => _bw-aside-box(b, width: w, breakable: true))
 }
 // ONE-PAGE INSET (`inset-size: small`) — pagination policy for the shrunken full-width inset box. Held
 // WHOLE by default (a compact box floats to a page where it fits, the readable case). But an unbreakable

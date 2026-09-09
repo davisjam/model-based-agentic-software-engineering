@@ -6427,6 +6427,11 @@ _DISPLAY_TYPE_HEIGHT_PT = 24.0
 # the whole book is 3.6pt. A too-wide table's cell text bleeds far further (10pt+). 6pt sits in the clean gap:
 # above every legitimate microtypographic overhang, below any real overflow.
 _MARGIN_BLEED_TOL_PT = 6.0
+_BODY_TEXT_LEFT_PT = 1.125 * _PT_PER_IN         # 81 — portrait text box left edge (mirrors the right edge)
+# Margin notes render at the 8.5pt note face (word boxes ≤ ~9.5pt tall — same signature the blank-page
+# sensor uses to exclude note words). Anything TALLER sitting right of the text column is body-size text
+# escaped past the measure, not a note.
+_NOTE_FACE_MAX_H_PT = 9.5
 
 _BBOX_PAGE_RE = re.compile(r'<page width="([\d.]+)" height="[\d.]+">(.*?)</page>', re.S)
 _BBOX_WORD_RE = re.compile(
@@ -6458,12 +6463,29 @@ def _pdf_margin_bleed(pdf_path: pathlib.Path) -> list[tuple[int, str, float, flo
             elif xmin < _BODY_TEXT_RIGHT_PT:
                 # text-column word — flag if it crosses the (narrow) text edge
                 edge = _BODY_TEXT_RIGHT_PT
-            else:
-                # margin-note word — exempt from the text edge, but hold to the physical page edge
+            elif ymax - ymin <= _NOTE_FACE_MAX_H_PT:
+                # margin-note word (note-face height, right of the text column) — exempt from the text
+                # edge, but hold to the physical page edge
                 edge = page_w - _BODY_OUTER_TRIM_PT
+            else:
+                # BODY-SIZED text right of the text column is NOT a margin note — it is escaped content
+                # (an inset column or block pushed past the measure). Before 260909 such words
+                # masqueraded as margin notes and were held only to the page edge — the gap that let an
+                # inset column run into the right margin without failing the gate. Held to the text edge.
+                edge = _BODY_TEXT_RIGHT_PT
             if xmax > edge + _MARGIN_BLEED_TOL_PT:
                 text = html.unescape(wm.group(5)).strip()
                 bleeds.append((pno, text, round(xmax, 1), round(edge, 1)))
+        # LEFT-EDGE leg (260909): no reader text may start left of the text block on an ordinary portrait
+        # body page. Part-divider / opener pages set their own wider display layout (small apparatus labels
+        # at ~57pt), so a page carrying DISPLAY-height type is exempt from this leg, as are landscape pages.
+        if not is_landscape:
+            words = [(float(wm.group(1)), float(wm.group(2)), float(wm.group(3)), float(wm.group(4)),
+                      html.unescape(wm.group(5)).strip()) for wm in _BBOX_WORD_RE.finditer(pm.group(2))]
+            if not any((y1 - y0) > _DISPLAY_TYPE_HEIGHT_PT for _, y0, _, y1, _ in words):
+                for x0, y0, x1, y1, text in words:
+                    if x0 < _BODY_TEXT_LEFT_PT - _MARGIN_BLEED_TOL_PT:
+                        bleeds.append((pno, text, round(x0, 1), round(_BODY_TEXT_LEFT_PT, 1)))
     return bleeds
 
 
@@ -6803,6 +6825,28 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
         else:
             print("PDF INSET-WRAP SENSOR: BLOCKING PASS — every reading-weight aside wraps prose alongside it.")
 
+    # SOLO-INSET sensor: no body page may carry TWO inset boxes (author rule 260909 — two wrapped asides
+    # stacked on one page). The emitter half is `book_typst._space_inset_blocks` (deterministic source-word
+    # spacing — it cannot see page geometry); this sensor is the page-level guarantee. Detects both two box
+    # TITLES on one page and two distinct tall right-floated fill bands (a split box's continuation plus a
+    # second box opening). BLOCKING. Same pillow/numpy + poppler posture as the inset-wrap sensor above.
+    try:
+        import check_inset_wrap as _ciw2
+        _solo_fails = _ciw2.check_solo(str(pdf_path))
+    except ImportError as _e:
+        print(f"PDF SOLO-INSET SENSOR: BLOCKING FAIL — sensor unavailable ({_e}); the --pdf gate needs "
+              f"pillow + numpy (book/requirements-pdf.txt). Install them to run this gate.", file=sys.stderr)
+        problems.append("solo-inset sensor unavailable — pillow/numpy not installed (book/requirements-pdf.txt)")
+    else:
+        if _solo_fails:
+            listing = ", ".join(f"p{f['page']} ({f['count']} boxes via {f['how']}: "
+                                f"{'; '.join(t[:24] for t in f['titles'])})" for f in _solo_fails[:6])
+            print(f"PDF SOLO-INSET SENSOR: BLOCKING FAIL — {len(_solo_fails)} page(s) carry more than one "
+                  f"inset box: {listing}.", file=sys.stderr)
+            problems.append(f"solo-inset: {len(_solo_fails)} page(s) with 2+ inset boxes — {listing}")
+        else:
+            print("PDF SOLO-INSET SENSOR: BLOCKING PASS — no body page carries more than one inset box.")
+
     # BLANK-PAGE RATCHET: no page may be left mostly blank by a NEW pagination failure (a forced break
     # abandoning a page, or an unbreakable downstream object dragging its whole block over). The sensor
     # (book/check_blank_pages.py) still flags a standing residue of known blanks — the committed baseline
@@ -6900,6 +6944,21 @@ def _book_last_modified() -> str:
     return datetime.date.today().isoformat()
 
 
+def _typst_repro_env(last_modified: str) -> "dict[str, str]":
+    """Environment for `typst compile` with a PINNED creation timestamp (SOURCE_DATE_EPOCH, the
+    reproducible-builds convention Typst honors): two clean builds of the same source yield
+    byte-identical PDFs. Without it Typst stamps wall-clock CreationDate/ModDate SECONDS into the
+    document metadata — the only bytes that differed between back-to-back builds (measured 260909;
+    the layout itself is deterministic). Pinned to midnight UTC of the last content-commit date,
+    the same date the cover footer prints."""
+    import datetime
+    d = datetime.date.fromisoformat(last_modified)
+    epoch = int(datetime.datetime(d.year, d.month, d.day, tzinfo=datetime.timezone.utc).timestamp())
+    env = dict(os.environ)
+    env["SOURCE_DATE_EPOCH"] = str(epoch)
+    return env
+
+
 def build_pdf() -> int:
     """`--pdf`: render the production print edition to `book/mage-book.pdf` via the print-native Typst
     path — emit the WHOLE-BOOK Typst source from the typed book IR, then `typst compile` it to PDF. Gates
@@ -6956,7 +7015,7 @@ def build_pdf() -> int:
     cmd = [typst, "compile", "--input", f"last_modified={last_modified}",
            "--root", str(ROOT), "--font-path", str(HERE / "fonts"), str(typ_src), str(pdf_out)]
     print("PDF compile plan:\n  " + " ".join(f'"{a}"' if " " in a else a for a in cmd))
-    r = subprocess.run(cmd, capture_output=True, text=True)
+    r = subprocess.run(cmd, capture_output=True, text=True, env=_typst_repro_env(last_modified))
     if r.stdout.strip():
         print(r.stdout.strip())
     if r.returncode != 0 or not pdf_out.is_file():
@@ -6981,8 +7040,11 @@ def build_pdf() -> int:
     if qpdf:
         opt_tmp = pdf_out.with_suffix(".opt.pdf")
         qr = subprocess.run(
+            # --deterministic-id: derive the trailer /ID from file CONTENT, not wall-clock+random —
+            # with Typst's creation date pinned via SOURCE_DATE_EPOCH this makes two clean builds of
+            # the same source byte-identical (the reproducibility gate).
             [qpdf, "--object-streams=generate", "--compress-streams=y", "--recompress-flate",
-             "--compression-level=9", str(pdf_out), str(opt_tmp)],
+             "--compression-level=9", "--deterministic-id", str(pdf_out), str(opt_tmp)],
             capture_output=True, text=True)
         # qpdf exit 0 = clean, 3 = warnings (still wrote a valid file); accept both.
         if qr.returncode in (0, 3) and opt_tmp.is_file():
@@ -7132,7 +7194,7 @@ def build_pdf_split() -> int:
         typ_src.write_text(typ, encoding="utf-8")
         cmd = [typst, "compile", "--input", f"last_modified={last_modified}",
                "--root", str(ROOT), "--font-path", str(HERE / "fonts"), str(typ_src), str(pdf_out)]
-        r = subprocess.run(cmd, capture_output=True, text=True)
+        r = subprocess.run(cmd, capture_output=True, text=True, env=_typst_repro_env(last_modified))
         if r.returncode != 0 or not pdf_out.is_file():
             print(f"ERROR: section {suffix} Typst compile failed (rc={r.returncode}).\n{r.stderr}",
                   file=sys.stderr)

@@ -53,8 +53,8 @@ def _candidate_pages(pdf: str) -> list[dict]:
     return hits
 
 
-def _wrap_coverage(pdf: str, page: int, dpi: int) -> "tuple[float, dict] | None":
-    """Rasterize one page; find the aside's filled box + measure left-strip ink coverage."""
+def _page_gray(pdf: str, page: int, dpi: int):
+    """Rasterize one page to a grayscale numpy array (None when pdftoppm produced nothing)."""
     import numpy as np
     from PIL import Image
     with tempfile.TemporaryDirectory() as td:
@@ -64,28 +64,72 @@ def _wrap_coverage(pdf: str, page: int, dpi: int) -> "tuple[float, dict] | None"
         pngs = [f for f in os.listdir(td) if f.endswith(".png")]
         if not pngs:
             return None
-        im = np.asarray(Image.open(f"{td}/{pngs[0]}").convert("L"))
+        return np.asarray(Image.open(f"{td}/{pngs[0]}").convert("L"))
+
+
+def _aside_fill_runs(im) -> "tuple[int | None, list[tuple[int, int, int]]]":
+    """Find every RIGHT-FLOATED panel-fill band on a rasterized page. Returns (text_margin,
+    [(top_px, bot_px, left_px), …]). Fill rows are clustered into CONTIGUOUS runs (bridging small
+    internal gaps — the header/badge line); a run whose fill starts near the text margin is dropped
+    (a full-width callout/deep-dive or a tinted figure, not an aside box). A single min..max band
+    would merge UNRELATED filled elements into one page-tall pseudo-box (260909 bug: every aside
+    sharing a page with a tinted diagram measured ~25% and false-failed)."""
+    import numpy as np
     H, W = im.shape
     fill = (im >= 235) & (im <= 249)     # panel tint (excludes white ~252 and text ~26)
     text = im < 120
     tcols = np.where(text.sum(axis=0) > 0)[0]
     if not len(tcols):
-        return None
+        return None, []
     text_margin = int(tcols.min())
-    # Box = the tallest right-side fill band. Rows whose fill run is substantial:
     rowfill = fill.sum(axis=1)
     rows = np.where(rowfill > W * 0.10)[0]
     if not len(rows):
-        return 0.0, {"reason": "no filled box found"}
-    # contiguous band containing the largest run
-    bt, bb = int(rows.min()), int(rows.max())
-    band = fill[bt:bb + 1]
-    bcols = np.where(band.sum(axis=0) > (bb - bt) * 0.15)[0]
-    if not len(bcols):
-        return 0.0, {"reason": "no box columns"}
-    box_left = int(bcols.min())
-    if box_left - text_margin < W * 0.15:
-        return None  # full-width box (callout/deep-dive), not a right-floated aside
+        return text_margin, []
+    runs: "list[tuple[int, int]]" = []
+    start = prev = int(rows[0])
+    for r in rows[1:]:
+        r = int(r)
+        if r - prev <= 12:
+            prev = r
+            continue
+        runs.append((start, prev))
+        start = prev = r
+    runs.append((start, prev))
+    floated: "list[tuple[int, int, int]]" = []
+    for rt, rb in runs:
+        if rb - rt < 10:
+            continue
+        band_r = fill[rt:rb + 1]
+        bcols_r = np.where(band_r.sum(axis=0) > (rb - rt) * 0.15)[0]
+        if not len(bcols_r):
+            continue
+        bl = int(bcols_r.min())
+        if bl - text_margin < W * 0.15:
+            continue  # full-width fill (callout/deep-dive/figure tint), not a right-floated aside
+        floated.append((rt, rb, bl))
+    return text_margin, floated
+
+
+def _wrap_coverage(pdf: str, page: int, dpi: int) -> "tuple[float, dict] | None":
+    """Rasterize one page; find the aside's filled box + measure left-strip ink coverage."""
+    import numpy as np
+    im = _page_gray(pdf, page, dpi)
+    if im is None:
+        return None
+    H, W = im.shape
+    text = im < 120
+    text_margin, floated = _aside_fill_runs(im)
+    if text_margin is None:
+        return None
+    if not floated:
+        # Distinguish "no fill at all" (report 0.0) from "only full-width fill" (not an aside page).
+        fillrows = ((im >= 235) & (im <= 249)).sum(axis=1)
+        if not len(np.where(fillrows > W * 0.10)[0]):
+            return 0.0, {"reason": "no filled box found"}
+        return None  # no right-floated filled box on this page
+    # The aside box = the tallest right-floated run.
+    bt, bb, box_left = max(floated, key=lambda r: r[1] - r[0])
     strip = text[bt:bb + 1, text_margin:box_left - 4]
     span = max(1, bb - bt)
     rows_with_ink = int((strip.sum(axis=1) > 3).sum())
@@ -93,6 +137,46 @@ def _wrap_coverage(pdf: str, page: int, dpi: int) -> "tuple[float, dict] | None"
     return cov, {"box_top_px": bt, "box_bot_px": bb, "box_left_frac": round(box_left / W, 2),
                  "strip_px": [text_margin, box_left - 4], "rows_with_ink": rows_with_ink,
                  "box_span_px": span}
+
+
+#: Minimum height (inches) a right-floated fill run must have before the solo sensor counts it as an
+#: inset box. Well under the smallest real aside (~2in) and well over a tinted diagram node, the other
+#: thing that can produce a right-side fill run on an inset page.
+_SOLO_MIN_BOX_IN = 1.2
+#: A box run must start right of this fraction of the page width to count (aside boxes open at ~0.43
+#: of the page; diagram tints and full-width panels sit left of it).
+_SOLO_MIN_LEFT_FRAC = 0.40
+
+
+def check_solo(pdf: str, dpi: int = 110) -> list[dict]:
+    """≤1-inset-per-page sensor: no body page may carry TWO inset boxes (author rule 260909 — two
+    wrapped asides stacked on one page). Two detections, belt and suspenders, on candidate pages only:
+      (a) TITLES — two 'Inset —' box titles on one page (each box renders its title exactly once, in
+          its unbreakable header, so two titles = two boxes opening on the page);
+      (b) FILL RUNS — two distinct tall right-floated panel bands (catches a page holding a SPLIT
+          box's continuation plus a second box opening, where only one title is visible).
+    The emitter half is `book_typst._space_inset_blocks` (source-word spacing, position-independent);
+    this sensor is the page-geometry guarantee the emitter cannot give."""
+    by_page: dict[int, list[str]] = {}
+    for cand in _candidate_pages(pdf):
+        by_page.setdefault(cand["page"], []).append(cand["title"])
+    fails: list[dict] = []
+    for pg in sorted(by_page):
+        titles = by_page[pg]
+        if len(titles) >= 2:
+            fails.append({"page": pg, "count": len(titles), "how": "titles", "titles": titles})
+            continue
+        im = _page_gray(pdf, pg, dpi)
+        if im is None:
+            continue
+        W = im.shape[1]
+        _, floated = _aside_fill_runs(im)
+        boxes = [r for r in floated
+                 if (r[1] - r[0]) >= _SOLO_MIN_BOX_IN * dpi and r[2] >= _SOLO_MIN_LEFT_FRAC * W]
+        if len(boxes) >= 2:
+            fails.append({"page": pg, "count": len(boxes), "how": "fill-runs", "titles": titles,
+                          "runs_px": [(r[0], r[1]) for r in boxes]})
+    return fails
 
 
 def check(pdf: str, min_coverage: float = 0.45, dpi: int = 110) -> list[dict]:
