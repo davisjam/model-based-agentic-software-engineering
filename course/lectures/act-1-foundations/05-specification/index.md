@@ -7,10 +7,10 @@ readings:
         - '["Four Dark Corners of Requirements Engineering."](https://doi.org/10.1145/237432.237434) Zave and Jackson, 1997. A classic treatment of the relationships among requirements, environmental assumptions, specifications, and implementations. Pay particular attention to the distinction between what we require of the world and what we specify of the machine. Full citation: Pamela Zave and Michael Jackson, "Four Dark Corners of Requirements Engineering," *ACM Transactions on Software Engineering and Methodology* 6, no. 1 (1997): 1–30.'
     - heading: Specifications in practice
       items:
-        - '["Software Requirements for the A-7E Aircraft."](readings/software-requirements-for-the-a7e-aircraft.pdf) Alspaugh, Faulk, Britton, Parker, Parnas, and Shore, 1992. A substantial real software requirements specification — the Software Cost Reduction (SCR) method applied to a real-time embedded avionics system. Skim rather than reading linearly: look at the different representational forms (natural language, tables, timing constraints, mode/subset structure, and descriptions of expected change) and ask why each form is used where it is. Full citation: Thomas A. Alspaugh, Stuart R. Faulk, Kathryn Heninger Britton, R. Alan Parker, David L. Parnas, and John E. Shore, "Software Requirements for the A-7E Aircraft," NRL/FR/5530-92-9194 (Washington, DC: Naval Research Laboratory, 1992).'
+        - '["Software Requirements for the A-7E Aircraft."](readings/software-requirements-for-the-a7e-aircraft.pdf) Alspaugh, Faulk, Britton, Parker, Parnas, and Shore, 1992. A substantial real software requirements specification. Skim rather than reading linearly. Pay particular attention to how the document specifies externally visible behavior without unnecessarily prescribing implementation, its requirements for useful functional subsets, its treatment of expected changes, and the different representations used to make different obligations explicit. Full citation: Thomas A. Alspaugh, Stuart R. Faulk, Kathryn Heninger Britton, R. Alan Parker, David L. Parnas, and John E. Shore, "Software Requirements for the A-7E Aircraft," NRL/FR/5530-92-9194 (Washington, DC: Naval Research Laboratory, 1992).'
     - heading: Modeling and representation
       items:
-        - '[MAGE, Part II — Introduction](https://davisjam.github.io/model-based-agentic-software-engineering/book/part-2-intro.html) and {mage:2.1}. Davis, 2026. Read the Part II introduction and §2.1 together as one reading. The introduction frames modeling: why large systems are understood through purposeful views, and why commodity intelligence changes the economics that once kept explicit models secondary in code-centric practice. §2.1 then introduces models as purposeful reductions — representations chosen to make particular engineering questions tractable — develops the distinction between consequential obligations and realization degrees of freedom, and asks what should be represented explicitly rather than left to repeated reconstruction.'
+        - '[MAGE, Part II — Introduction](https://davisjam.github.io/model-based-agentic-software-engineering/book/part-2-intro.html) and {mage:2.1}. Davis, 2026. Read the Part II introduction and §2.1 together as one reading. The introduction frames modeling: why large systems are understood through purposeful views, and why commodity intelligence changes the economics that once kept explicit models secondary in code-centric practice. §2.1 then introduces models as purposeful reductions — representations chosen to make particular engineering questions tractable — and develops properties, invariants, acceptable realization spaces, and degrees of freedom as tools for reasoning about what should be constrained and what should remain open.'
 instructor_materials: []
 student_materials: []
 assignments: []
@@ -19,50 +19,60 @@ status: ready
 materials: []
 ---
 
-**Premise.** *Requirements tell us what matters; specification makes enough of that intent explicit to build, reason about, and evaluate a system — and the boundary between the two is not clean.*
+**Premise.** *Requirements describe what must be true. A specification makes those requirements actionable by constraining what an acceptable realization may do — without unnecessarily deciding how it must be built.*
 
-Requirements engineering asks what the system should accomplish and what obligations it should satisfy. Specification turns those obligations into representations precise enough to support engineering work.
+Requirements rarely determine a unique implementation. Many different realizations may satisfy the same stated requirement, while other apparently reasonable realizations violate distinctions that stakeholders care about. Specification makes those consequential boundaries explicit.
 
-But stated requirements are never complete. They leave assumptions unstated, terms underspecified, and implementation choices apparently open. Some of those choices are genuine degrees of freedom: the customer does not care how they are resolved. Others conceal tacit requirements: choices that appear free until an implementation violates something the customer actually needed.
+This does not mean specifying everything. Some implementation choices are genuine degrees of freedom: alternatives we are willing to accept. Others are unknown or conceal tacit requirements. Good specification therefore requires judgment about both what to constrain and what deliberately to leave open.
 
-Specification therefore does more than record requirements already discovered. Trying to specify a system is itself a way of discovering requirements.
+## From requirements to acceptable realizations
 
-## From requirements to specifications — and sometimes back again
+Requirements and specifications describe different things. A requirement expresses a desired property of the world; a specification constrains the machine we will build. Following Zave and Jackson, domain assumptions connect the two: under appropriate assumptions about the environment, satisfying the machine specification should produce the required effect in the world.
 
-A requirement rarely determines a complete implementation. "Search results should return quickly," "users must be able to withdraw consent," and "the system must recover safely after failure" all express consequential intent while leaving substantial questions unanswered.
+That distinction matters because a requirement such as "users are warned before illness affects their day" does not yet tell an implementor enough to determine acceptable machine behavior. How is illness inferred? When is an advisory emitted? What information is available at the machine boundary? Different answers may produce substantially different products while satisfying the original sentence.
 
-Specification forces us to confront those gaps. What counts as quickly? Which users and operations are covered? What happens to previously collected data after consent is withdrawn? What states may the system enter after failure?
+A specification therefore establishes a boundary around acceptable realizations. It need not select one implementation. The objective is to make consequential distinctions explicit while preserving choices whose alternatives are genuinely acceptable.
 
-Some answers simply choose among acceptable alternatives — genuine degrees of freedom. Others expose facts that matter to stakeholders but were never stated; these are not really free choices at all, but missing or tacit requirements. Requirements, specification, and the assumptions they expose therefore form a loop: **requirements → specification → exposed assumptions and choices → requirements.**
+## Case study: the A-7E specification
 
-The objective is not to eliminate every degree of freedom. It is to determine which distinctions matter, make those explicit, and deliberately leave the rest open.
+Alspaugh et al.'s *Software Requirements for the A-7E Aircraft* shows what this looks like in a substantial real system. The specification does not rely on one universal notation. It combines prose, defined data, mode-transition tables, timing constraints, descriptions of required subsets, and explicit discussion of expected changes.
 
-## Choosing a representation
+Three features are especially instructive.
 
-There is no single correct form for a software specification. Different forms expose different obligations:
+First, the specification constrains detailed externally visible behavior without prescribing the code that produces it. Modes, conditions, events, and required responses make behavioral cases inspectable while leaving realization choices open.
 
-- **Natural language** is flexible and broadly understandable, but can leave ambiguity.
-- **Tables and structured templates** can expose cases and alternatives.
-- **Schemas and interface definitions** make structural obligations explicit.
-- **State machines** expose legal behavior.
-- **Formal specifications** can make selected properties precise enough for mathematical or mechanical analysis.
+Second, the specification requires the system to support useful subsets. Functionality can be added or removed while preserving the retained subset, ruling out realizations whose behavior is correct only when the complete system is assembled. A specification-level obligation can therefore have architectural consequences without prescribing one architecture.
 
-A useful representation is a purposeful reduction: it preserves the distinctions needed for an engineering question and suppresses details that do not matter to that question. Different questions about the same system may therefore require different representations; MAGE calls the choices deliberately left open *degrees of freedom*.
+Third, the document distinguishes assumptions designers may treat as stable from changes they should anticipate. Expected change is itself engineering information: two implementations that behave identically today may differ substantially in how well they accommodate tomorrow's expected changes.
 
-The difficulty is that we do not always know in advance which distinctions matter. Modeling may reveal that something treated as a free implementation choice affects customer value, usability, safety, compatibility, regulation, or some other obligation. When that happens, the answer is not merely to make the specification more detailed — we have learned something new about the requirements. More detail is therefore not automatically a better specification: the goal is sufficient precision to preserve consequential intent while avoiding unnecessary constraints on realization.
+## From case to principle: one system, many views
 
-## Specifications describe a world, not just software
+The heterogeneous representations in the A-7E specification illustrate a more general modeling principle: a model is a purposeful view. It preserves the distinctions needed to answer an engineering question and suppresses details that do not matter to that question.
 
-Software does not operate in isolation. Many requirements concern relationships between the software and its environment: what users do, what information arrives, what assumptions hold, and what effects the system should produce in the world.
+Different questions about the same system therefore call for different representations. A state model can expose legal states and transitions. An activity or sequence model can expose required ordering. A table can expose combinations of cases, values, and bounds. A schema can constrain the shape of information crossing the machine boundary.
 
-This makes it important to distinguish requirements about the environment from specifications of the machine we will build. A machine specification is useful only insofar as, under appropriate assumptions about its environment, satisfying it helps produce the required effects.
+The pattern is: engineering question → representation → property → analysis or check.
 
-This distinction also exposes a common failure: specifying software precisely without establishing that the specified software would actually satisfy the underlying requirement.
+A property is a claim expressible over the model. An invariant is a property required to hold over its declared domain. A representation does not create the obligation; it gives engineers a vocabulary in which the obligation can be stated, examined, and sometimes checked.
 
-## Correspondence and change
+No single representation needs to say everything. The same system may have several peer views connected through shared concepts. Hold the system constant, change the engineering question, and the useful model may change with it.
 
-A specification can be excellent and still become wrong.
+## Specification and degrees of freedom
 
-Requirements change, implementations change, assumptions change, and representations drift apart. Engineering therefore needs some account of correspondence: which requirement a specification realizes, which implementation realizes a specification, and whether those relationships still hold.
+Every additional obligation rules out some possible realizations. More specification is therefore not automatically better specification: narrowing the acceptable space is valuable only when the eliminated alternatives matter.
 
-Depending on the representation, correspondence may be maintained through traceability, validation, derivation, generation, tests, or other checks. Precision makes more questions checkable; it does not by itself guarantee that the specification is correct or that the implementation follows it.
+An unconstrained choice can have three importantly different meanings:
+
+- **Unknown** — we do not yet understand the consequences well enough to decide.
+- **Tacit** — a consequential boundary exists, but it has not been made explicit.
+- **Free** — the alternatives are genuinely acceptable.
+
+Only the third is a deliberate degree of freedom. A useful diagnostic for tacit requirements is the reaction "not that." If an apparently permitted realization provokes that response, some consequential boundary existed outside the specification.
+
+Software's changeability makes this distinction especially important. Many software choices can remain inexpensive to revisit after an initial realization, so premature constraint can destroy useful optionality. Overspecification converts cheap future choices into expensive present commitments. Conversely, implementation and use can expose distinctions that were not previously understood: build, observe, learn, and then constrain the choice if the difference proves consequential.
+
+The practical rule is:
+
+- **Constrain** when alternatives differ consequentially.
+- **Leave open** when the alternatives are genuinely acceptable.
+- **Explore** when you do not yet know which is true.
