@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Sleep Advisor logo: a crescent moon over a sleep-rhythm waveform with one flagged departure">
+  <defs>
+    <linearGradient id="sa-night" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#232152"/>
+      <stop offset="0.55" stop-color="#2c2a5e"/>
+      <stop offset="1" stop-color="#3c2c54"/>
+    </linearGradient>
+    <linearGradient id="sa-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6d585"/>
+      <stop offset="1" stop-color="#d5983a"/>
+    </linearGradient>
+    <radialGradient id="sa-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f6d585" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#f6d585" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="sa-crescent">
+      <rect width="512" height="512" fill="black"/>
+      <circle cx="322" cy="168" r="84" fill="white"/>
+      <circle cx="356" cy="146" r="74" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- app-icon tile -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#sa-night)"/>
+
+  <!-- scattered stars -->
+  <g fill="#f6d585">
+    <circle cx="132" cy="132" r="4" opacity="0.95"/>
+    <circle cx="186" cy="98" r="2.6" opacity="0.8"/>
+    <circle cx="110" cy="196" r="2.6" opacity="0.7"/>
+    <circle cx="216" cy="150" r="2" opacity="0.6"/>
+    <circle cx="412" cy="238" r="3" opacity="0.75"/>
+  </g>
+
+  <!-- moon glow + crescent -->
+  <circle cx="316" cy="172" r="120" fill="url(#sa-glow)"/>
+  <rect width="512" height="512" fill="url(#sa-gold)" mask="url(#sa-crescent)"/>
+
+  <!-- sleep rhythm: a steady normal pattern with one raised departure, flagged -->
+  <path d="M 92 356
+           C 120 356 124 332 152 332
+           C 180 332 184 356 212 356
+           C 240 356 244 332 272 332
+           C 296 332 300 300 326 286
+           C 344 276 352 356 384 356
+           C 404 356 404 356 420 356"
+        fill="none" stroke="url(#sa-gold)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- the flagged departure -->
+  <circle cx="326" cy="286" r="26" fill="none" stroke="#ffffff" stroke-width="3.5" opacity="0.45"/>
+  <circle cx="326" cy="286" r="11" fill="#ffffff"/>
+</svg>
