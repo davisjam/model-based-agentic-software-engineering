@@ -21,4 +21,4 @@ The materials are:
 * **[Lectures](lectures/index.md):** materials for teaching the major topics of an undergraduate software engineering course.
 * **[Semester Project](project/index.md):** a substantial team project through which students practice software engineering across the lifecycle.
 * **Assessment:** materials for assessing both **[project work](assessment/project-assessment.md)** and individual understanding, including **[oral exams](assessment/oral-exams.md)**.
-* **[Example calendar and syllabus](reference-course/index.md):** one way to arrange the materials into a semester, based on ECE 30861 — Software Engineering at Purdue University in Fall 2026.
+* **[Example course](reference-course/index.md):** the Purdue Fall-2026 offering (ECE 30861 — Software Engineering) in which these materials are being taught, with its syllabus and calendar.

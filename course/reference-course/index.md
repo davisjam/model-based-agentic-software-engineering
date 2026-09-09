@@ -1,5 +1,5 @@
 ---
-title: Reference Course
+title: Example course
 week:
 mage_readings: []
 objectives: []
@@ -12,12 +12,9 @@ status: ready
 
 # ECE 30861 — Purdue, Fall 2026
 
-The reference course is **one demonstrated realization** of the MAGE curriculum: ECE 30861 — Software Engineering, taught to Computer Engineering students at Purdue University in Fall 2026. It provides a complete semester-long course: lectures, syllabus, assessments, and a substantial team project.
+ECE 30861 — Software Engineering is the course in which these materials are being taught at Purdue University in Fall 2026. The course combines the lectures, semester project, and assessments into a 16-week course for Computer Engineering students.
 
-The reusable materials — the [Lectures](../lectures/index.md), the [Semester Project](../project/index.md), and **Assessment** ([project assessment](../assessment/project-assessment.md) and [oral exams](../assessment/oral-exams.md)) — are organized by their intellectual structure, independent of any calendar. This page maps them onto an actual 16-week semester.
-
-- **[Syllabus](syllabus.md)** — the authoritative course document: outcomes, policies, grading, and the full outline.
-- **[Calendar](calendar.md)** — the week-by-week mapping of the curriculum onto the Purdue Fall 2026 schedule.
+The **[Syllabus](syllabus.md)** gives the course outcomes, policies, grading, and full outline. The **[Calendar](calendar.md)** shows how the lectures, project, and assessments are scheduled across the semester.
 
 ## Teaching goal
 
@@ -25,7 +22,7 @@ The course is organized around **engineering judgment**: students should learn n
 
 Accordingly, the lectures emphasize the engineering problems that practices solve, the conditions under which they work, and the tradeoffs among alternatives. Process models, teamwork structures, requirements, architecture, testing, assurance, and other topics are taught as choices made in response to properties of the system and its environment, rather than primarily as a catalog of established techniques.
 
-GenAI makes this emphasis especially important. As implementation becomes cheaper, the ability to identify obligations, choose representations and controls, evaluate evidence, and exercise engineering judgment becomes a larger part of the engineer's contribution. MAGE provides one framework for reasoning about that shift, but the course's emphasis on judgment does not depend on accepting the MAGE framework — the reference materials are designed to be usable by an instructor who does not adopt MAGE.
+GenAI makes this emphasis especially important. As implementation becomes cheaper, the ability to identify obligations, choose representations and controls, evaluate evidence, and exercise engineering judgment becomes a larger part of the engineer's contribution. MAGE provides one framework for reasoning about that shift, but the course's emphasis on judgment does not depend on accepting the MAGE framework. The materials are designed to be useful to instructors who do not adopt MAGE.
 
 ## Intended audience
 

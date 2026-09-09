@@ -17,7 +17,7 @@ The site separates the **reusable curriculum** from **one demonstrated way to te
   `lectures/` (organized **Act → module**), `project/`, and `assessment/`. A "module" is the reusable
   instructional unit — not a "week." An adopter takes the modules they need, in whatever order and schedule
   suits their course.
-- **Reference course** — `reference-course/`: the specific Purdue Fall-2026 instantiation (ECE 30861). Its
+- **Example course** — `reference-course/`: the specific Purdue Fall-2026 instantiation (ECE 30861). Its
   `calendar.md` maps the curriculum onto a real 16-week semester; `syllabus.md` is the authoritative course
   document.
 
