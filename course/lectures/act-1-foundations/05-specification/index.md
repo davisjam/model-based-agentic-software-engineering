@@ -16,7 +16,9 @@ student_materials: []
 assignments: []
 instructor_notes: ""
 status: ready
-materials: []
+materials:
+  - title: Lecture slides — Specification
+    src: slides/1-5-Specification.pptx
 ---
 
 **Premise.** *Requirements describe what must be true. A specification makes those requirements actionable by constraining what an acceptable realization may do — without unnecessarily deciding how it must be built.*
