@@ -6291,50 +6291,50 @@
               "slug": "many-professionals-succeed-without-formal-se-education",
               "text": "Many successful professionals learned software outside formal education.",
               "block_index": 84
-            },
-            {
-              "slug": "alignment-principle-intuition-is-discoverable-through-practice",
-              "text": "The Alignment Principle's basic intuition is discoverable through practice.",
-              "block_index": 86
-            },
-            {
-              "slug": "modeling-rests-on-durable-representational-knowledge",
-              "text": "Modeling rests on durable knowledge about representations.",
-              "block_index": 88
-            },
-            {
-              "slug": "expertise-is-knowing-what-representations-can-guarantee",
-              "text": "Expertise means knowing what guarantees each representation supports.",
-              "block_index": 90
-            },
-            {
-              "slug": "representational-knowledge-underlies-the-modeling-principle",
-              "text": "Accumulated representational knowledge is the Modeling Principle's deeper foundation.",
-              "block_index": 92
-            },
-            {
-              "slug": "delegation-makes-representational-knowledge-more-consequential",
-              "text": "Delegation makes non-rediscoverable representational knowledge more consequential.",
-              "block_index": 94
             }
           ]
         },
         {
-          "section_id": "the-curriculum-remains-recognizable",
+          "section_id": "what-shouldn-t-software-engineers-have-to-figure-out-for-themselves",
           "level": 3,
-          "heading_text": "The curriculum remains recognizable",
-          "topic_sentence": "Most of the foundations remain.",
+          "heading_text": "What shouldn't software engineers have to figure out for themselves?",
+          "topic_sentence": "I would concede some of this ground.",
           "id_source": "derived",
-          "block_index": 96,
+          "block_index": 86,
           "points": [
             {
-              "slug": "curriculum-foundations-remain-recognizable",
-              "text": "The curriculum stays recognizable; commodity intelligence does not wholesale-replace the foundations.",
+              "slug": "alignment-principle-intuition-is-discoverable-through-practice",
+              "text": "The Alignment Principle's basic intuition is discoverable through practice.",
+              "block_index": 87
+            },
+            {
+              "slug": "concession-stops-at-the-foundations-of-computing",
+              "text": "The concession does not extend to computing's accumulated foundations.",
+              "block_index": 89
+            },
+            {
+              "slug": "expertise-is-understanding-abstractions-guarantees-and-limits",
+              "text": "Expertise means understanding abstractions, their guarantees, and their limits.",
+              "block_index": 91
+            },
+            {
+              "slug": "mage-rests-on-the-foundations-rather-than-replacing-them",
+              "text": "MAGE rests on these foundations rather than replacing them.",
+              "block_index": 93
+            },
+            {
+              "slug": "delegation-makes-foundations-more-consequential",
+              "text": "Delegating realization makes the technical foundations more consequential.",
+              "block_index": 95
+            },
+            {
+              "slug": "curriculum-remains-substantially-recognizable",
+              "text": "The curriculum remains substantially recognizable.",
               "block_index": 97
             },
             {
               "slug": "what-changes-is-the-allocation-of-attention",
-              "text": "What changes is the allocation of attention toward the competencies that remain scarce.",
+              "text": "What changes is the allocation of attention.",
               "block_index": 99
             }
           ]

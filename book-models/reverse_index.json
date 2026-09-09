@@ -1404,7 +1404,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "7.3-education-research-open-problems::block-86",
+          "element": "7.3-education-research-open-problems::block-87",
           "role": "paragraph-point"
         }
       ]
@@ -2099,6 +2099,16 @@
         }
       ]
     },
+    "point:concession-stops-at-the-foundations-of-computing": {
+      "kind": "point",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "7.3-education-research-open-problems::block-89",
+          "role": "paragraph-point"
+        }
+      ]
+    },
     "point:conformance-check-drift-became-a-correspondence-problem": {
       "kind": "point",
       "dependents": [
@@ -2339,7 +2349,7 @@
         }
       ]
     },
-    "point:curriculum-foundations-remain-recognizable": {
+    "point:curriculum-remains-substantially-recognizable": {
       "kind": "point",
       "dependents": [
         {
@@ -2449,12 +2459,12 @@
         }
       ]
     },
-    "point:delegation-makes-representational-knowledge-more-consequential": {
+    "point:delegation-makes-foundations-more-consequential": {
       "kind": "point",
       "dependents": [
         {
           "view": "outline",
-          "element": "7.3-education-research-open-problems::block-94",
+          "element": "7.3-education-research-open-problems::block-95",
           "role": "paragraph-point"
         }
       ]
@@ -3264,12 +3274,12 @@
         }
       ]
     },
-    "point:expertise-is-knowing-what-representations-can-guarantee": {
+    "point:expertise-is-understanding-abstractions-guarantees-and-limits": {
       "kind": "point",
       "dependents": [
         {
           "view": "outline",
-          "element": "7.3-education-research-open-problems::block-90",
+          "element": "7.3-education-research-open-problems::block-91",
           "role": "paragraph-point"
         }
       ]
@@ -4214,6 +4224,16 @@
         }
       ]
     },
+    "point:mage-rests-on-the-foundations-rather-than-replacing-them": {
+      "kind": "point",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "7.3-education-research-open-problems::block-93",
+          "role": "paragraph-point"
+        }
+      ]
+    },
     "point:mage-was-not-designed-as-an-org-chart": {
       "kind": "point",
       "dependents": [
@@ -4560,16 +4580,6 @@
         {
           "view": "outline",
           "element": "6.1-toward-a-theory-of-mage::block-121",
-          "role": "paragraph-point"
-        }
-      ]
-    },
-    "point:modeling-rests-on-durable-representational-knowledge": {
-      "kind": "point",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "7.3-education-research-open-problems::block-88",
           "role": "paragraph-point"
         }
       ]
@@ -5805,16 +5815,6 @@
         {
           "view": "outline",
           "element": "6.4-research-agenda::block-58",
-          "role": "paragraph-point"
-        }
-      ]
-    },
-    "point:representational-knowledge-underlies-the-modeling-principle": {
-      "kind": "point",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "7.3-education-research-open-problems::block-92",
           "role": "paragraph-point"
         }
       ]
@@ -10294,16 +10294,6 @@
         }
       ]
     },
-    "section-id:the-curriculum-remains-recognizable": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "7.3-education-research-open-problems::the-curriculum-remains-recognizable",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:the-decision-left-open": {
       "kind": "section-id",
       "dependents": [
@@ -10965,6 +10955,16 @@
         {
           "view": "outline",
           "element": "7.3-education-research-open-problems::what-should-we-teach",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:what-shouldn-t-software-engineers-have-to-figure-out-for-themselves": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "7.3-education-research-open-problems::what-shouldn-t-software-engineers-have-to-figure-out-for-themselves",
           "role": "section-anchor"
         }
       ]
