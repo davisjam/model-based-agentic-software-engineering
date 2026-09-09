@@ -2459,6 +2459,7 @@ LANDING_CSS = """
   .v3-card--thumb { display:flex; gap:1rem; align-items:flex-start; }
   .v3-card-thumb { flex:0 0 92px; width:92px; height:auto; border:1px solid var(--line); border-radius:4px; background:#fff; }
   .v3-card-thumb--icon { height:92px; padding:16px; box-sizing:border-box; object-fit:contain; }
+  .v3-card-thumb-link { display:contents; }
   .v3-card-content { min-width:0; }
   .v3-cards-sm .v3-card { background:transparent; }
   .v3-card-kick { color:var(--muted); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.05em;
@@ -2861,9 +2862,14 @@ def _v3_card(title: str, kicker: str, body: str, links: "list[tuple[str, str]]",
     if thumb:
         src, alt = thumb
         cls = "v3-card-thumb v3-card-thumb--icon" if thumb_icon else "v3-card-thumb"
+        img = f'<img class="{cls}" src="{_attr(src)}" alt="{_attr(alt)}" loading="lazy">'
+        # The thumb links to the card's primary destination (the first action link), so the
+        # icon/cover is clickable, not only the text link. display:contents keeps flex layout.
+        thumb_html = (f'<a class="v3-card-thumb-link" href="{_attr(links[0][1])}">{img}</a>'
+                      if links else img)
         return (
             '    <article class="v3-card v3-card--thumb">\n'
-            f'      <img class="{cls}" src="{_attr(src)}" alt="{_attr(alt)}" loading="lazy">\n'
+            f'      {thumb_html}\n'
             f'      <div class="v3-card-content">\n{content}      </div>\n'
             '    </article>')
     return '    <article class="v3-card">\n' + content + '    </article>'
