@@ -773,13 +773,119 @@ def _render_table(block: Block_t) -> str:
 # both projections (Typst PDF here, HTML in `build_book.py`) and the two stay in lockstep.
 _WIDE_FIGURES = {"assets/research-arc.svg"}
 
+# ── Tall-figure FLOAT policy (pagination-whitespace fix, cause #3). A figure + caption is ATOMIC (a
+#    diagram is never split across pages), so an in-flow figure taller than the space left on its page
+#    drags to the next page and abandons that space — with a sticky lead-in paragraph glued above it,
+#    the whole heading→intro→figure chain drags (the p30 / Appendix-A "Composition" failure). A figure
+#    taller than `_TALL_FIGURE_MIN_FRAC` of the text region therefore renders `placement: auto` (a page
+#    FLOAT): Typst places it at the top/bottom of this or the next page and BACK-FILLS the abandoned
+#    space with the following prose. Small mid-page figures stay in-flow — floating everything would
+#    detach every diagram from its narrative. The lead-in paragraph's keep-with-next sticky is DROPPED
+#    for exactly the figures that take the float path (a sticky to a float is meaningless and would
+#    re-strand the lead-in). CONVERGENCE: the decision is made HERE in Python from the SVG's own
+#    declared dimensions — a position-independent input, no runtime measure(), so the layout cannot
+#    oscillate on it (see the `section-open` convergence note).
+_TEXT_MEASURE_IN = 5.75            # body text measure, inches (see the margin-note _MN-DX derivation)
+_TEXT_REGION_IN = 9.0              # text region height: 72pt top margin → 720pt safe bottom
+# Image display height above this fraction of the region → float. Calibrated against the blank-page
+# sensor's failure class, not aesthetics: the dragging unit is figure + caption + lead-in paragraph
+# (~0.10 of the region together), and a page flags at >= 0.5-region blank — so a figure above ~0.40
+# can strand a flaggable blank, while a figure below it cannot even with its chain. Measured on the
+# 260909 corpus: the 0.55 pilot left exactly the 0.40-0.52 band flagged (five Appendix-A composition
+# diagrams, the modeling-repertoire / two-views / measurement figures); 0.40 covers the class. Small
+# mid-page figures (about two-thirds of the book's 147) stay in-flow.
+_TALL_FIGURE_MIN_FRAC = 0.40
 
-def _render_figure(block: Block_t, width: str = "94%", bare: bool = False) -> str:
+_SVG_VIEWBOX_RE = re.compile(rb'viewBox\s*=\s*["\']\s*[\d.eE+-]+[\s,]+[\d.eE+-]+[\s,]+([\d.eE+-]+)[\s,]+([\d.eE+-]+)')
+_SVG_WH_RE = re.compile(rb'<svg[^>]*?\bwidth\s*=\s*["\']([\d.]+)[a-z%]*["\'][^>]*?\bheight\s*=\s*["\']([\d.]+)[a-z%]*["\']', re.S)
+
+
+def _svg_aspect(path: pathlib.Path) -> "float | None":
+    """height/width of the SVG's own declared box (viewBox preferred, width/height attrs fallback).
+    None for a non-SVG or an undeclarative root — the caller then keeps the figure in-flow (safe)."""
+    if path.suffix.lower() != ".svg":
+        return None
+    try:
+        head = path.read_bytes()[:4096]
+    except OSError:
+        return None
+    m = _SVG_VIEWBOX_RE.search(head)
+    if m:
+        w, h = float(m.group(1)), float(m.group(2))
+        return h / w if w > 0 else None
+    m = _SVG_WH_RE.search(head)
+    if m:
+        w, h = float(m.group(1)), float(m.group(2))
+        return h / w if w > 0 else None
+    return None
+
+
+def _figure_display_height_in(asset: pathlib.Path, width_str: str) -> "float | None":
+    """The image's natural display height at its emitted width (e.g. "94%" of the text measure), in
+    inches. Static inputs only: the asset's declared aspect + the emitted width fraction."""
+    aspect = _svg_aspect(asset)
+    if aspect is None:
+        return None
+    try:
+        frac = float(width_str.rstrip("%")) / 100.0
+    except ValueError:
+        return None
+    return frac * _TEXT_MEASURE_IN * aspect
+
+
+def _figure_is_tall(asset: pathlib.Path, width_str: str) -> bool:
+    """Does this image render taller than the float threshold?"""
+    display_h_in = _figure_display_height_in(asset, width_str)
+    return display_h_in is not None and display_h_in > _TALL_FIGURE_MIN_FRAC * _TEXT_REGION_IN
+
+
+def _float_image_height_cap_in(asset: pathlib.Path, width_str: str,
+                               caption_md: "str | None") -> "float | None":
+    """A FLOATED figure + its caption must fit ONE page — placement: auto does not clamp the way an
+    in-flow image does, so a stack taller than the text region runs its caption into the folio band
+    (the F.5-1 page-number overprint). Cap the image height so image + estimated caption + float
+    clearance fits the region; the emitter adds `height: …, fit: "contain"` only when the natural
+    height exceeds the cap. Static inputs (declared aspect + caption character count), so the
+    decision cannot oscillate. Returns the cap in inches, or None when no cap is needed."""
+    display_h_in = _figure_display_height_in(asset, width_str)
+    if display_h_in is None:
+        return None
+    n_chars = len(" ".join(caption_md.split())) if caption_md else 0
+    # ~95 chars per 0.9em caption line at the full measure; ~0.18in per line; ~0.35in figure gap + air.
+    caption_est_in = (0 if not n_chars else (n_chars // 95 + 1) * 0.18) + 0.35
+    cap = _TEXT_REGION_IN - caption_est_in
+    return cap if display_h_in > cap else None
+
+
+def _block_takes_float_path(block: Block_t) -> bool:
+    """Shared predicate: will this FIGURE / MERMAID block render `placement: auto`? Used by the block
+    emitters (to add the placement) AND the lead-in sticky site (to drop the keep-with-next), so the
+    two decisions cannot drift. TABLE never floats (tables are breakable, not atomic)."""
+    if block.kind is ir.BlockKind.FIGURE:
+        spec = block.raw[len("<!--"):-len("-->")].strip()[len("figure:"):].strip()
+        rel = spec.split("|", 1)[0].strip()
+        width = "100%" if rel in _WIDE_FIGURES else "94%"
+        asset = HERE / rel
+        return asset.is_file() and _figure_is_tall(asset, width)
+    if block.kind is ir.BlockKind.MERMAID:
+        _lang, inner = _fence_body(block.raw)
+        try:
+            p = _mermaid_svg_path(inner)
+        except SystemExit:
+            return False               # missing cache fails loud later, at render time
+        return _figure_is_tall(p, "78%")
+    return False
+
+
+def _render_figure(block: Block_t, width: str = "94%", bare: bool = False,
+                   allow_float: bool = False) -> str:
     """A `<!-- figure: path | caption -->` → `#figure(image(path), caption: […])`, numbered + labelled.
     `width` sizes the image (default 85% of the measure; a `_WIDE_FIGURES` member renders at 100%; the
     wrapped author portrait passes a small width so it sits beside the bio, see `render_chapter`).
     `bare=True` renders just the image — no `#figure` wrapper, so no "Figure N" number and no caption —
-    for a plain picture like the author portrait."""
+    for a plain picture like the author portrait. `allow_float=True` (top-level chapter flow only —
+    a float inside a framed apparatus / landscape wrap would be an error) arms the tall-figure float
+    policy: see `_TALL_FIGURE_MIN_FRAC`."""
     spec = block.raw[len("<!--"):-len("-->")].strip()[len("figure:"):].strip()
     rel = spec.split("|", 1)[0].strip()
     if rel in _WIDE_FIGURES and not bare:
@@ -787,23 +893,37 @@ def _render_figure(block: Block_t, width: str = "94%", bare: bool = False) -> st
     asset = HERE / rel
     if not asset.is_file():
         raise SystemExit(f"figure directive: asset not found: {asset}")
-    img = f'image("{_root_rel(asset, _EmitCtx.root)}", width: {width})'
     if bare:
-        return f"#{img}"
+        return f'#image("{_root_rel(asset, _EmitCtx.root)}", width: {width})'
     caption = _caption_block(block.caption)
     label = f" <{block.label}>" if block.label else ""
-    return f"#figure(\n  {img},{caption}\n){label}"
+    floated = allow_float and _block_takes_float_path(block)
+    placement = "\n  placement: auto," if floated else ""
+    size_args = f"width: {width}"
+    if floated:
+        cap = _float_image_height_cap_in(asset, width, block.caption)
+        if cap is not None:
+            size_args = f'width: {width}, height: {cap:.2f}in, fit: "contain"'
+    img = f'image("{_root_rel(asset, _EmitCtx.root)}", {size_args})'
+    return f"#figure(\n  {img},{placement}{caption}\n){label}"
 
 
-def _render_mermaid(block: Block_t, caption_md: str | None) -> str:
+def _render_mermaid(block: Block_t, caption_md: str | None, allow_float: bool = False) -> str:
     """A standalone ```mermaid fence → `#figure(image(<cached SVG>), caption)`, numbered + labelled. The SVG
     is the one the HTML build already rendered/cached — we include it, we do not re-render."""
     _lang, inner = _fence_body(block.raw)
     p = _mermaid_svg_path(inner)
     caption = _caption_block(caption_md)
     label = f" <{block.label}>" if block.label else ""
-    img = f'image("{_root_rel(p, _EmitCtx.root)}", width: 78%)'
-    return f"#figure(\n  {img},{caption}\n){label}"
+    floated = allow_float and _block_takes_float_path(block)
+    placement = "\n  placement: auto," if floated else ""
+    size_args = "width: 78%"
+    if floated:
+        cap = _float_image_height_cap_in(p, "78%", caption_md)
+        if cap is not None:
+            size_args = f'width: 78%, height: {cap:.2f}in, fit: "contain"'
+    img = f'image("{_root_rel(p, _EmitCtx.root)}", {size_args})'
+    return f"#figure(\n  {img},{placement}{caption}\n){label}"
 
 
 def _render_eq(raw: str) -> str:
@@ -908,7 +1028,7 @@ def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = F
                  is_pullquote: bool = False, is_principlebox: bool = False,
                  section_no: str | None = None, box_family: str | None = None,
                  inset_domain: str | None = None, inset_size: str | None = None,
-                 box_weight: str | None = None) -> str:
+                 box_weight: str | None = None, allow_float: bool = False) -> str:
     """Render ONE IR block to Typst markup — the sibling to `Block.render_html()`, reusing the SAME
     `book_ir.BlockKind` taxonomy and `classify_render_block` classification (the blocks arrive already
     classified from the IR parse). `caption_md` is the folded mermaid caption when the driving walk detects a
@@ -936,9 +1056,9 @@ def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = F
     if k is K.TABLE:
         return _render_table(block)
     if k is K.FIGURE:
-        return _render_figure(block)
+        return _render_figure(block, allow_float=allow_float)
     if k is K.MERMAID:
-        return _render_mermaid(block, caption_md)
+        return _render_mermaid(block, caption_md, allow_float=allow_float)
     if k is K.EQ:
         return _render_eq(block.raw)
     if k in (K.DIRECTIVE, K.OTHER):
@@ -1189,6 +1309,11 @@ def _frame_apparatus_typst(body: str, breakable: bool = False) -> str:
 # The float block kinds a preceding intro paragraph binds to (D71a keep-with-next).
 _FLOAT_KINDS = frozenset({ir.BlockKind.FIGURE, ir.BlockKind.TABLE, ir.BlockKind.MERMAID})
 
+#: A lead-in paragraph longer than this many words (~3 rendered lines) does NOT stick to its float —
+#: see the D71(a) exception (b) at the sticky site. ~45 words keeps the "as Figure N shows:" sentence
+#: glued while releasing full paragraphs from the chain.
+_STICKY_LEADIN_MAX_WORDS = 45
+
 # Monotonic sequence for the aside / one-page-inset position-anchor labels (see `_weight_call`). Never
 # reset: labels only need uniqueness WITHIN one emitted document, and a fresh emission keeps counting.
 _WR_ANCHOR_SEQ = itertools.count(1)
@@ -1355,6 +1480,12 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     pending_landscape = False          # a `<!-- table-landscape -->` marker armed for the next TABLE block
     pending_onepager = False           # a `<!-- case-onepager -->` marker armed for the next TABLE block
     _title_norm = chapter.title.strip().lower()
+    # Tall-figure floats (cause #3) are armed only for chapters whose rendered body stays at the top
+    # flow level. An apparatus chapter is later wrapped in a framed block / flipped page by
+    # `emit_document`, and a Typst float inside a container is a compile error — those keep every
+    # figure in-flow.
+    floats_ok = (not _matches_apparatus_title(_title_norm, _APPARATUS_ONEPAGER_TITLES)
+                 and not _matches_apparatus_title(_title_norm, _APPARATUS_LANDSCAPE_TITLES))
     for i, b in enumerate(blocks):
         if i in skip:
             continue
@@ -1578,12 +1709,22 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
             frag = render_typst(b, caption_md, is_def=is_def, is_pullquote=is_pullquote,
                                 is_principlebox=is_principlebox, section_no=sec,
                                 box_family=box_family, inset_domain=inset_domain, inset_size=inset_size,
-                                box_weight=box_weight)
+                                box_weight=box_weight, allow_float=floats_ok)
         # D71(a) keep-with-next: a paragraph that immediately introduces a figure/table/diagram sticks to it,
         # so the introducing sentence ("… in Table 4.2-1.", "… shown below.") is never split from its float
         # across a page break. Systematic — every paragraph that directly precedes a float, not one-off.
+        # TWO exceptions (cause #3, pagination-whitespace fix):
+        #   (a) a figure taking the tall-figure FLOAT path — the float detaches from the flow by design
+        #       (prose back-fills the space), so a sticky to it would re-strand the lead-in against an
+        #       object that is no longer there;
+        #   (b) a LONG lead-in paragraph — the rule exists for the short introducing SENTENCE; gluing a
+        #       full paragraph to an atomic figure builds a paragraph+figure(+section-open) chain taller
+        #       than the space most pages have left, and the whole chain drags (the 3.5.2 p119 case).
+        #       Static word-count input, so the decision cannot oscillate.
         if (frag and b.kind is ir.BlockKind.PARA and i + 1 < len(blocks)
-                and (i + 1) not in skip and blocks[i + 1].kind in _FLOAT_KINDS):
+                and (i + 1) not in skip and blocks[i + 1].kind in _FLOAT_KINDS
+                and len(b.raw.split()) <= _STICKY_LEADIN_MAX_WORDS
+                and not (floats_ok and _block_takes_float_path(blocks[i + 1]))):
             frag = f"#block(sticky: true)[{frag}]"
         # A `<!-- table-landscape -->` marker preceding this TABLE drops it alone onto a flipped page.
         if frag and pending_landscape and b.kind is ir.BlockKind.TABLE:
@@ -1891,21 +2032,28 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
   else if b.has("children") { _wr-split-children(b, hf, goal, _wr-splitter) }
   else { (wrapped: none, rest: b) }
 }
-// Page-break policy (pagination-whitespace fix): the gridded box is UNBREAKABLE, so when the aside + its
-// wrap does not fit in the space left on the current page, Typst moves the whole unit forward — abandoning
-// up to a page of usable space (the p45/p46 failure: one opening paragraph, then blank). The governing rule:
-// when a following OBJECT cannot fit, move the object, NOT otherwise-breakable preceding body text. So when
-// the box cannot fit in the remaining space, the unit PRE-FILLS the current page with leading wrap-content
-// at full measure (ordinary prose, breaks naturally), and the box wraps the REMAINDER when it opens the next
-// page. A coverage ladder keeps the inset-wrap invariant (check_inset_wrap.py): the prefill goal steps down
-// until the remainder still covers most of the box's height in the wrap strip; if no step preserves the
-// wrap, the unit falls back to moving whole (a small remaining gap beats a blank strip beside the box).
-#let _WR-MIN-PREFILL = 0.9in    // less remaining space than ~4 lines is not worth pre-filling
+// Page-break policy (pagination-whitespace fix): each gridded unit is UNBREAKABLE, so when the aside +
+// its wrap does not fit in the space left on the current page, Typst would move the whole unit forward —
+// abandoning up to a page of usable space (the original p45/p46 failure: one opening paragraph, then
+// blank). The governing rule: when a following OBJECT cannot fit, adapt the object, NOT otherwise-
+// breakable preceding body text. Two instruments, by box size:
+//   - PRE-FILL (moderate boxes): fill the current page with leading wrap-content at full measure, then
+//     wrap the remainder beside the whole box when it opens the next page. A coverage ladder keeps the
+//     inset-wrap invariant (check_inset_wrap.py): the prefill goal steps down until the remainder still
+//     covers most of the box's height in the wrap strip.
+//   - SPLIT (cause #2, 260909 author ruling "insets stay inset and wrapped; splitting across pages is
+//     fine"): the BOX ITSELF breaks at the page boundary — part 1 renders as a gridded unit sized to
+//     the space remaining on the anchor page (strip prose wrapped alongside), part 2 opens the next
+//     page as a second gridded unit with the wrap continuing alongside, overflow prose after. Fires
+//     when pre-fill cannot help: a near-page-tall box, no pre-fillable paragraphs, or a ladder result
+//     that still strands a third+ of the page.
+#let _WR-MIN-PREFILL = 0.9in    // less remaining space than ~4 lines is not worth pre-filling/splitting
 #let _WR-PREFILL-PAD = 0.3in    // cushion under the measured fill goal so the prefill never overshoots
 // NOTE: no nested `context {}` here — `layout`'s closure already runs with context (its `measure` calls
 // depend on it), and an extra context layer makes the cites/footnotes rendered inside flicker across
 // layout iterations (see `section-break-guard`'s CONVERGENCE note, rule (b)).
-#let _wr-wrap-right(fixed, to-wrap, anchor: none) = layout(size => {
+#let _wr-wrap-right(body, to-wrap, anchor: none, boxer: (b) => b) = layout(size => {
+  let fixed = boxer(body)
   let hf(chunk) = measure(box(width: size.width, _wr-neutral(_wr-gridded(fixed, chunk)))).height
   let goal = hf([]) + measure(v(1em)).height
   let emit(content) = {
@@ -1917,6 +2065,7 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
   // breaks Typst's citation locator ("citation could not be located — caused by measurement").
   let fixdim = measure(_wr-neutral(fixed))
   let boxh = fixdim.height
+  let region = page.height - 2in
   // The space to fill is on the ANCHOR's page (the flow position just before this unit), NOT at
   // `here()`: when the box does not fit, this whole layout element moves to the next page, so its own
   // position always reports a full fresh page — a stable-but-wrong "fits" fixpoint that would disable
@@ -1925,6 +2074,38 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
     let hits = if anchor != none { query(anchor) } else { () }
     if hits.len() > 0 { page.height - 1in - hits.first().location().position().y }
     else { page.height - 1in - here().position().y }
+  }
+  // BOX SPLIT (cause #2): break the box itself at the page boundary and keep wrapping on both pages.
+  // Part 1 = the leading slice of the box body whose BOXED height fits the anchor page's remaining
+  // space; its strip prose is split to part 1's height (same goal formula as `emit`). Part 2 = the
+  // rest of the box body as a second gridded unit opening the next page (an unbreakable line taller
+  // than the slack left after part 1 — Typst carries it over; no explicit pagebreak, which would be
+  // position feedback), with the remaining wrap alongside and overflow prose after.
+  // CONVERGENCE: the split goal derives from `avail` (the pre-emitted anchor — the same input the
+  // pre-fill ladder already converges on; the unit's own rendered form never moves its anchor) and
+  // from neutral-measured box-slice heights. The box split is word-granular; that is safe here
+  // because the RENDERED halves carry no located content — aside bodies are plain prose by
+  // convention (no cites/footnotes; both current wrapped asides verified clean). An aside body that
+  // gains a citation near a split boundary may flicker across layout iterations — the compile then
+  // fails loud ("citation could not be located") and the fix is editorial, not structural.
+  let split-emit() = {
+    let bh(chunk) = measure(_wr-neutral(boxer(chunk))).height
+    let bres = _wr-splitter(body, bh, avail - _WR-PREFILL-PAD)
+    if bres.wrapped == none or bres.rest == none {
+      emit(to-wrap)                    // body would not split (one indivisible chunk) — move whole
+    } else {
+      let fixed1 = boxer(bres.wrapped)
+      let hf1(chunk) = measure(box(width: size.width, _wr-neutral(_wr-gridded(fixed1, chunk)))).height
+      let r1 = _wr-splitter(to-wrap, hf1, hf1([]) + measure(v(1em)).height)
+      _wr-gridded(fixed1, if r1.wrapped == none { [] } else { r1.wrapped })
+      parbreak()
+      let fixed2 = boxer(bres.rest)
+      let hf2(chunk) = measure(box(width: size.width, _wr-neutral(_wr-gridded(fixed2, chunk)))).height
+      let r2 = _wr-splitter(if r1.rest == none { [] } else { r1.rest },
+                            hf2, hf2([]) + measure(v(1em)).height)
+      _wr-gridded(fixed2, if r2.wrapped == none { [] } else { r2.wrapped })
+      r2.rest
+    }
   }
   // CONVERGENCE: the prefill is PARAGRAPH-granular on purpose. A word-granular split point moves with
   // every point of layout jitter while the document settles, so cites/footnotes flicker between the
@@ -1944,8 +2125,17 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
     if cur.len() > 0 { groups.push(cur.join()) }
     groups
   } else { (to-wrap,) }
-  if boxh <= avail or avail < _WR-MIN-PREFILL or paras.len() < 2 {
+  if boxh <= avail or avail < _WR-MIN-PREFILL {
+    // Fits — or less than ~4 lines remain (moving whole abandons under an inch; a 4-line box
+    // continuation stub would be uglier than the gap).
     emit(to-wrap)
+  } else if boxh > 0.85 * region or paras.len() < 2 {
+    // A near-page-tall box (> 0.85 region) can never be hosted whole mid-flow: the unbreakable grid
+    // only fits when it starts within (region - boxh) of a page top, so ANY mid-page placement
+    // strands the space above it and no pre-fill amount saves it (the 2.1 aside) — that leg keys on
+    // boxh ALONE, fully position-independent. The second leg: nothing to pre-fill with, and moving
+    // whole would abandon `avail`. Both: break the box at the boundary and keep wrapping.
+    split-emit()
   } else {
     let hff(chunk) = measure(box(width: size.width, _wr-neutral(chunk))).height
     let stripw = size.width - fixdim.width - 14pt
@@ -1964,7 +2154,17 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
       if measure(box(width: stripw, _wr-neutral(rest))).height >= 0.6 * boxh { break }
       k -= 1
     }
-    if k == 0 {
+    // LEFTOVER check (cause #2): the step-back may have shrunk the pre-fill (or killed it, k = 0)
+    // to preserve wrap coverage — but a pre-fill that leaves a third+ of the page unfilled trades
+    // one blank for another. Recompute the space the final k actually fills; when the unfilled
+    // remainder is large, break the box at the boundary instead. Same measurement inputs as the
+    // ladder itself, so no new convergence surface.
+    let usedk = if k == 0 { 0pt } else {
+      paras.slice(0, k).fold(0pt, (acc, p) => acc + hff(p) + measure(v(0.9em)).height)
+    }
+    if avail - usedk > 0.33 * region {
+      split-emit()
+    } else if k == 0 {
       emit(to-wrap)
     } else {
       paras.slice(0, k).join(parbreak())
@@ -1976,9 +2176,11 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
   }
 })
 // ASIDE — a compact optional bridge the reader can skip: a NARROW box (~65% of the 6.25in text measure)
-// on the outside (right) edge, body −1pt + tighter leading, held to one page, main prose wrapping
-// alongside. Consistently right-aligned (recto-outside); page-parity querying was judged too fragile for
-// a verso flip. `wrapped: none` → the graceful fallback: the same narrow box, right-aligned, no wrap.
+// on the outside (right) edge, body −1pt + tighter leading, main prose wrapping alongside. A box taller
+// than the space remaining on its page SPLITS at the boundary and continues as a second wrapped unit
+// (see the split path in `_wr-wrap-right`). Consistently right-aligned (recto-outside); page-parity
+// querying was judged too fragile for a verso flip. `wrapped: none` → the graceful fallback: the same
+// narrow box, right-aligned, no wrap.
 #let _bw-aside-width = 3.75in
 #let _bw-aside-box(body) = block(
   fill: dt.panel, stroke: (left: dt.border-box-rule + dt.muted),
@@ -1993,7 +2195,9 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 #let weight-aside(body, wrapped: none, anchor: none) = if wrapped == none {
   align(right, _bw-aside-box(body))
 } else {
-  _wr-wrap-right(_bw-aside-box(body), wrapped, anchor: anchor)
+  // Pass the raw body + the boxer (not a pre-boxed fixed): the split path re-boxes each half of the
+  // body separately, so the box styling must be applicable per-part.
+  _wr-wrap-right(body, wrapped, anchor: anchor, boxer: _bw-aside-box)
 }
 // ONE-PAGE INSET (`inset-size: small`) — pagination policy for the shrunken full-width inset box. Held
 // WHOLE by default (a compact box floats to a page where it fits, the readable case). But an unbreakable
