@@ -6803,6 +6803,38 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
         else:
             print("PDF INSET-WRAP SENSOR: BLOCKING PASS — every reading-weight aside wraps prose alongside it.")
 
+    # BLANK-PAGE RATCHET: no page may be left mostly blank by a NEW pagination failure (a forced break
+    # abandoning a page, or an unbreakable downstream object dragging its whole block over). The sensor
+    # (book/check_blank_pages.py) still flags a standing residue of known blanks — the committed baseline
+    # `book/blank-page-baseline.json` records their fingerprints (keyed by the NEXT page's opening text,
+    # not the page number, so content drift does not churn it) — so the gate BLOCKS only on a REGRESSION:
+    # a flagged page whose fingerprint is not in the baseline. Drain the baseline as the remaining causes
+    # are fixed (re-record via --write-baseline); the plain invocation stays the human diagnostic.
+    # BLOCKING. Same pillow/numpy + poppler posture as the inset-wrap sensor above.
+    try:
+        import check_blank_pages as _cbp
+        _bp_res = _cbp.ratchet(str(pdf_path))
+    except ImportError as _e:
+        print(f"PDF BLANK-PAGE RATCHET: BLOCKING FAIL — sensor unavailable ({_e}); the --pdf gate needs "
+              f"pillow + numpy (book/requirements-pdf.txt). Install them to run this gate.", file=sys.stderr)
+        problems.append("blank-page ratchet unavailable — pillow/numpy not installed (book/requirements-pdf.txt)")
+    else:
+        if _bp_res is None:
+            print(f"PDF BLANK-PAGE RATCHET: BLOCKING FAIL — baseline missing ({_cbp.BASELINE_PATH}); "
+                  f"record it: python3 book/check_blank_pages.py {pdf_path} --write-baseline", file=sys.stderr)
+            problems.append("blank-page ratchet baseline missing (book/blank-page-baseline.json)")
+        else:
+            _bp_new, _bp_resolved = _bp_res
+            if _bp_new:
+                listing = ", ".join(f"p{f['page']} ({f['blank_frac']:.0%} blank, next: "
+                                    f"{f['next_page_starts'][:40]!r})" for f in _bp_new[:6])
+                print(f"PDF BLANK-PAGE RATCHET: BLOCKING FAIL — {len(_bp_new)} NEW mostly-blank page(s) "
+                      f"beyond the baseline: {listing}.", file=sys.stderr)
+                problems.append(f"blank-page ratchet: {len(_bp_new)} new mostly-blank page(s) — {listing}")
+            else:
+                print(f"PDF BLANK-PAGE RATCHET: BLOCKING PASS — no new mostly-blank page beyond the "
+                      f"baseline ({len(_cbp.load_baseline() or [])} standing, {len(_bp_resolved)} resolved).")
+
     if problems:
         print(f"PDF CONTENT-INTEGRITY FAILURES ({len(problems)}):", file=sys.stderr)
         for p in problems:

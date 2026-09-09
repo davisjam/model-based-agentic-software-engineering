@@ -39,6 +39,7 @@ from __future__ import annotations
 import dataclasses
 import hashlib
 import html as _htmlmod
+import itertools
 import json
 import pathlib
 import re
@@ -540,13 +541,20 @@ def _weight_call(box_weight: str, content: str, aside_wrapped: "str | None") -> 
     """Emit the call to ONE of the three reusable reading-weight preamble functions (`weight-aside` /
     `weight-callout` / `weight-deepdive` — the single tuning point per weight). `content` is the box's
     already-rendered Typst body; `aside_wrapped` is the rendered following-prose the aside wraps beside
-    (None → the aside's narrow right-aligned fallback). Unknown weights fail the build loudly — the
-    vocabulary is the closed `build_book.BOX_WEIGHTS` tuple, shared with the web projection."""
+    (None → the aside's narrow right-aligned fallback). A wrapped aside also gets a POSITION ANCHOR: a
+    zero-size metadata label emitted just before the call, which `_wr-wrap-right` queries to learn how
+    much of the CURRENT page the unit was asked to fill — its own `here()` is useless for that, because
+    when the box does not fit, the whole layout element moves to the next page and would observe a full
+    page (the stable-but-wrong fixpoint that disabled the pre-fill). Unknown weights fail the build
+    loudly — the vocabulary is the closed `build_book.BOX_WEIGHTS` tuple, shared with the web projection."""
     if box_weight not in bb.BOX_WEIGHTS:
         raise SystemExit(f"unknown box-weight {box_weight!r} — expected one of {bb.BOX_WEIGHTS}")
     if box_weight == "aside":
         if aside_wrapped:
-            return f"#weight-aside([\n  {content}\n], wrapped: [\n{_indent(aside_wrapped)}\n])"
+            anchor = f"wr-aside-{next(_WR_ANCHOR_SEQ)}"
+            return (f"#metadata(none) <{anchor}>\n"
+                    f"#weight-aside([\n  {content}\n], wrapped: [\n{_indent(aside_wrapped)}\n], "
+                    f"anchor: <{anchor}>)")
         return f"#weight-aside([\n  {content}\n])"
     fn = "weight-callout" if box_weight == "callout" else "weight-deepdive"
     return f"#{fn}([\n  {content}\n])"
@@ -639,16 +647,18 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
             # size/pagination policy; a deep-dive is breakable by design, an aside one-page by design).
             return _weight_call(box_weight, f"{header}{_indent(body).lstrip()}", aside_wrapped)
         if inset_size == "small":
-            # A long deep-dive inset held to ONE page: shrink the body font + tighten leading, and make the
-            # whole box non-breakable so Typst floats it to a page where it fits. The header/title keep normal
-            # size (the `#set` applies only to the body that follows it inside the block scope).
+            # A long deep-dive inset: shrink the body font + tighten leading. Pagination is delegated to
+            # `inset-onepage` (preamble): kept to ONE page when moving it whole abandons little, but made
+            # BREAKABLE when keeping it whole would strand a third of a page or more of usable space above
+            # it (the move-the-object-not-the-prose rule — a page-tall unbreakable box otherwise leaves the
+            # preceding page mostly blank). The header/title keep normal size (the `#set` applies only to
+            # the body that follows it inside the block scope).
             body_wrapped = f"#set text(size: 8.5pt)\n  #set par(leading: 0.5em)\n  {_indent(body).lstrip()}"
-            brk = ", breakable: false"
-        else:
-            body_wrapped = _indent(body).lstrip()
-            brk = ""
+            anchor = f"wr-inset-{next(_WR_ANCHOR_SEQ)}"
+            return (f"#metadata(none) <{anchor}>\n"
+                    f'#inset-onepage({fill}, {rule}, <{anchor}>)[\n  {header}{body_wrapped}\n]')
         return (f'#block(fill: {fill}, stroke: (left: dt.border-box-rule + {rule}), '
-                f"inset: 12pt, radius: 4pt, width: 100%{brk})[\n  {header}{body_wrapped}\n]")
+                f"inset: 12pt, radius: 4pt, width: 100%)[\n  {header}{_indent(body).lstrip()}\n]")
     if box_family == "evidence":
         # EVIDENCE / navigation — the author's observation or a coverage device, not doctrine: a cool blue box.
         return (f'#block(fill: dt.diagram-fleet-fill, stroke: (left: dt.border-box-rule + dt.diagram-fleet), '
@@ -1179,6 +1189,17 @@ def _frame_apparatus_typst(body: str, breakable: bool = False) -> str:
 # The float block kinds a preceding intro paragraph binds to (D71a keep-with-next).
 _FLOAT_KINDS = frozenset({ir.BlockKind.FIGURE, ir.BlockKind.TABLE, ir.BlockKind.MERMAID})
 
+# Monotonic sequence for the aside / one-page-inset position-anchor labels (see `_weight_call`). Never
+# reset: labels only need uniqueness WITHIN one emitted document, and a fresh emission keeps counting.
+_WR_ANCHOR_SEQ = itertools.count(1)
+
+# Extra words the reading-weight-aside gather takes BEYOND the box's own length — roughly one page of body
+# prose at the full measure. This surplus feeds `_wr-wrap-right`'s pre-fill path (move the object, not the
+# prose): when the aside box cannot fit in the space left on the current page, leading wrap-content fills
+# that space at full measure and the box wraps the remainder on the next page. See the gather comment in
+# `render_chapter`.
+_ASIDE_PREFILL_WORDS = 500
+
 
 def _note_spread_info(blocks: "list[Block_t]") -> "tuple[int | None, int | None]":
     """Scan a note's blocks for the keep-together declaration. Returns `(spread, fold_index)`: `spread` is the
@@ -1245,13 +1266,10 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     is_part_page = _is_part_page(chapter)
     is_appendix_divider = _is_appendix_divider(chapter)
     # Front matter (0), the top-level Conclusion (7), and the synthetic back matter (dynamic part, flagged
-    # `is_matter` on the record) are UNNUMBERED matter.
-    is_matter = chapter.part in bb._MATTER_PARTS or getattr(chapter, "is_matter", False)
-    # A Part landing page (chapter-0 synthetic record) is unnumbered — like matter and the appendix, it never
-    # prints an `N.0`. Suppressing on `is_part_page` keeps the number off the Part opener; the appendices
-    # mode-marker is likewise unnumbered.
-    numbered = (not is_matter and not is_appendix and not is_part_page
-                and not is_appendix_divider and not _is_coda(chapter))
+    # `is_matter` on the record) are UNNUMBERED matter. A Part landing page (chapter-0 synthetic record) is
+    # likewise unnumbered — it never prints an `N.0` — as is the appendices mode-marker. The predicate is
+    # shared with `emit_document`'s section-flow decision (see `_is_numbered_body`).
+    numbered = _is_numbered_body(chapter)
     chap_num = f"{chapter.part}.{chapter.chapter}" if numbered else None
     # Appendix content pages number their `## ` sections off their reader-facing locator (`fig_prefix`
     # like "H.9" → H.9.1), matching the web build; the chapter title's own locator is unaffected. Front-door
@@ -1285,7 +1303,16 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         out = [title_line, ""]
     else:
         _toc_text = f"{chap_num} {chapter.title}" if chap_num else chapter.title
-        out = [_toc_marker("chapter", _toc_text) + "\n" + title_line, ""]
+        head = _toc_marker("chapter", _toc_text) + "\n" + title_line
+        # A CONTINUING major numbered section (N.M, M >= 2) no longer forces a page break (see
+        # `emit_document`); its heading grammar is instead a structural RULE above the title — applied
+        # unconditionally (even when the section naturally lands at a page top), so the rule reads as part
+        # of the heading, not as a leftover of the page position. `section-open` (preamble) draws the rule,
+        # keeps rule+heading sticky to the opening prose, and holds a widow guard: if fewer than ~4 opening
+        # lines would fit under the heading, the whole group moves to the next page.
+        if numbered and chapter.chapter >= 2:
+            head = f"#section-open[\n{head}\n]"
+        out = [head, ""]
     blocks = chapter.blocks
     # Footnote pre-pass: pull `[^label]: …` DEFINITION lines out of the flow (they must not render as body
     # paragraphs) and collect them for `_inline`'s `[^label]` handler — the Typst twin of md_to_html's
@@ -1505,19 +1532,24 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         elif b.kind is ir.BlockKind.BLOCKQUOTE and box_weight == "aside":
             # READING-WEIGHT aside: gather the immediately-following plain paragraph(s) as the
             # wrap-alongside content — the main prose flows beside the narrow outside-edge box (the
-            # `weight-aside` preamble function drives the vendored side-float wrap). Gather until the wrapped prose roughly
-            # matches the box's OWN length (the "N words following ≥ N words in the box" rule), so a tall
-            # aside is filled beside body text rather than overhanging; capped at 10 paras for safety. A
-            # heading / float / directive / footnote-definition block ends the gather; with nothing to
-            # wrap, the aside renders as a narrow right-aligned block (the fallback inside `weight-aside`).
+            # `weight-aside` preamble function drives the vendored side-float wrap). The gather budget is
+            # the box's OWN length (the "N words following ≥ N words in the box" rule) PLUS a page-fill
+            # margin: `_wr-wrap-right` only wraps enough to match the box height (extra flows after the
+            # grid at full measure, rendered exactly as if left in the main walk), and the surplus is what
+            # its PRE-FILL path uses to fill the current page when the box must move to the next one (the
+            # move-the-object-not-the-prose rule) — without the surplus, pre-filling would starve the wrap
+            # strip and blank the page beside the box. Capped at 14 paras for safety. A heading / float /
+            # directive / footnote-definition block ends the gather; with nothing to wrap, the aside
+            # renders as a narrow right-aligned block (the fallback inside `weight-aside`).
             box_words = len(b.raw.replace(">", " ").replace("#", " ").split())
+            gather_budget = box_words + _ASIDE_PREFILL_WORDS
             wrapped_paras: list[str] = []
             wrapped_words = 0
             _WRAP_STOP = {ir.BlockKind.HEADING, ir.BlockKind.BLOCKQUOTE, ir.BlockKind.LIST,
                           ir.BlockKind.ORDERED_LIST, ir.BlockKind.FIGURE, ir.BlockKind.TABLE,
                           ir.BlockKind.MERMAID, ir.BlockKind.CODE, ir.BlockKind.CODE_INSET, ir.BlockKind.EQ}
             j = i + 1
-            while j < len(blocks) and wrapped_words < box_words and len(wrapped_paras) < 10:
+            while j < len(blocks) and wrapped_words < gather_budget and len(wrapped_paras) < 14:
                 bj = blocks[j]
                 if bj.kind in _WRAP_STOP:
                     break
@@ -1561,6 +1593,24 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         if frag and pending_onepager and b.kind is ir.BlockKind.TABLE:
             frag = _onepager_card_typst(frag)
             pending_onepager = False
+        # PIN a `<wr-*>` position anchor (an aside's / one-page inset's fill-the-page decision input) to
+        # the END of the PRECEDING content. A standalone zero-size `#metadata` paragraph does NOT anchor:
+        # pagination carries it onto the next page with the unit it precedes, so the unit observes a full
+        # fresh page and never pre-fills (the stable-but-wrong fixpoint). Nor does a TRAILING inline
+        # metadata — with nothing after it in the line it also rides forward (measured empirically). The
+        # trailing `#box()` (an empty zero-size inline item) is what pins the label to the paragraph's
+        # last line, where it reports the true fill origin. When the preceding fragment is not a plain
+        # paragraph (a block/figure), the append degrades harmlessly to the standalone-metadata behavior
+        # (its own zero-size paragraph — the fallback, never a syntax error, since the appended run is
+        # complete markup after any complete fragment).
+        if frag and frag.startswith("#metadata(none) <wr-"):
+            _nl = frag.index("\n")
+            _anchor_line, _rest = frag[:_nl], frag[_nl + 1:]
+            for _pi in range(len(out) - 1, -1, -1):
+                if out[_pi] and not out[_pi].lstrip().startswith("#metadata"):
+                    out[_pi] = out[_pi] + " " + _anchor_line + "#box()"
+                    frag = _rest
+                    break
         if frag:
             out.append(frag)
     # The Part-nav chip strip now closes the orientation VERSO (built in `_part_divider_typst`), not the recto
@@ -1628,6 +1678,34 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 // More air ABOVE a heading than below (2.0em / 0.75em) — the calmer rhythm sets each section off from the
 // prose above it while keeping the heading tied to its own body.
 #show heading: set block(above: 2.0em, below: 0.75em, sticky: true)
+// ── Section-open grammar (pagination-whitespace fix). A CONTINUING major numbered section (N.M, M ≥ 2)
+//    no longer forces a page break; it opens in-flow with a structural RULE above its heading — generous
+//    air above the rule, a smaller gap below it, so the visual group reads rule → heading → opening text.
+//    The rule is part of the heading grammar: it renders even when the section naturally lands at a page
+//    top. Two guards: (a) rule + heading are ONE unbreakable sticky block, so the rule can never strand at
+//    a page bottom; (b) a WIDOW guard — if fewer than ~4 opening lines would fit below the heading on this
+//    page (_so-min-fit budgets the group's own air + rule + a two-line heading + 4 body lines), the whole
+//    group breaks to the next page, where the weak pagebreak + collapsing block-above land it flush at the
+//    top. The build-time blank-page sensor (book/check_blank_pages.py) is the belt to these suspenders.
+// The widow guard is DETERMINISTIC on purpose — no `context`, no position query. A guard that reads page
+// position to decide a conditional `pagebreak` never let this document converge (Typst caps layout at five
+// iterations; the observed failure was a period-2 oscillation with flickering `<tocmark>` queries and
+// "citation could not be located" across the whole book). Instead the unbreakable block CLAIMS phantom
+// space (`v(_so-reserve)`) below the heading, and the negative `below` spacing gives it back: the block
+// therefore only stays on a page that still has >= ~3.5 body lines of room under the heading — otherwise
+// Typst's ordinary block-breaking moves the whole rule + heading group to the next page. Pure geometry,
+// stable under relayout.
+#let _so-reserve = 0.9in
+#let section-open(body) = block(width: 100%, sticky: true, breakable: false,
+                                above: 2.6em, below: -_so-reserve + 0.75em, {
+  line(length: 100%, stroke: 1.6pt + dt.ink)
+  v(0.65em)
+  {
+    show heading: set block(above: 0em, below: 0em)
+    body
+  }
+  v(_so-reserve)
+})
 #set figure(gap: 0.6em)
 // D71(b) — more air between body text and a figure/table than the 0.9em paragraph spacing, so a float
 // reads as set apart from the prose above and below it (systematic, every figure/table).
@@ -1813,12 +1891,89 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
   else if b.has("children") { _wr-split-children(b, hf, goal, _wr-splitter) }
   else { (wrapped: none, rest: b) }
 }
-#let _wr-wrap-right(fixed, to-wrap) = layout(size => {
+// Page-break policy (pagination-whitespace fix): the gridded box is UNBREAKABLE, so when the aside + its
+// wrap does not fit in the space left on the current page, Typst moves the whole unit forward — abandoning
+// up to a page of usable space (the p45/p46 failure: one opening paragraph, then blank). The governing rule:
+// when a following OBJECT cannot fit, move the object, NOT otherwise-breakable preceding body text. So when
+// the box cannot fit in the remaining space, the unit PRE-FILLS the current page with leading wrap-content
+// at full measure (ordinary prose, breaks naturally), and the box wraps the REMAINDER when it opens the next
+// page. A coverage ladder keeps the inset-wrap invariant (check_inset_wrap.py): the prefill goal steps down
+// until the remainder still covers most of the box's height in the wrap strip; if no step preserves the
+// wrap, the unit falls back to moving whole (a small remaining gap beats a blank strip beside the box).
+#let _WR-MIN-PREFILL = 0.9in    // less remaining space than ~4 lines is not worth pre-filling
+#let _WR-PREFILL-PAD = 0.3in    // cushion under the measured fill goal so the prefill never overshoots
+// NOTE: no nested `context {}` here — `layout`'s closure already runs with context (its `measure` calls
+// depend on it), and an extra context layer makes the cites/footnotes rendered inside flicker across
+// layout iterations (see `section-break-guard`'s CONVERGENCE note, rule (b)).
+#let _wr-wrap-right(fixed, to-wrap, anchor: none) = layout(size => {
   let hf(chunk) = measure(box(width: size.width, _wr-neutral(_wr-gridded(fixed, chunk)))).height
   let goal = hf([]) + measure(v(1em)).height
-  let result = _wr-splitter(to-wrap, hf, goal)
-  _wr-gridded(fixed, if result.wrapped == none { [] } else { result.wrapped })
-  result.rest
+  let emit(content) = {
+    let result = _wr-splitter(content, hf, goal)
+    _wr-gridded(fixed, if result.wrapped == none { [] } else { result.wrapped })
+    result.rest
+  }
+  // Every measurement below goes through `_wr-neutral` — measuring LIVE cite/footnote/ref content
+  // breaks Typst's citation locator ("citation could not be located — caused by measurement").
+  let fixdim = measure(_wr-neutral(fixed))
+  let boxh = fixdim.height
+  // The space to fill is on the ANCHOR's page (the flow position just before this unit), NOT at
+  // `here()`: when the box does not fit, this whole layout element moves to the next page, so its own
+  // position always reports a full fresh page — a stable-but-wrong "fits" fixpoint that would disable
+  // the pre-fill. The anchor is zero-size flow content BEFORE the unit; it never moves with it.
+  let avail = {
+    let hits = if anchor != none { query(anchor) } else { () }
+    if hits.len() > 0 { page.height - 1in - hits.first().location().position().y }
+    else { page.height - 1in - here().position().y }
+  }
+  // CONVERGENCE: the prefill is PARAGRAPH-granular on purpose. A word-granular split point moves with
+  // every point of layout jitter while the document settles, so cites/footnotes flicker between the
+  // prefill and the wrap across iterations and the compile never stabilizes. A whole paragraph flips
+  // only when the jitter exceeds its full height, so the decision reaches a fixpoint.
+  let paras = if to-wrap.has("children") {
+    let groups = ()
+    let cur = ()
+    for c in to-wrap.children {
+      if c.func() == parbreak {
+        if cur.len() > 0 { groups.push(cur.join()) }
+        cur = ()
+      } else {
+        cur.push(c)
+      }
+    }
+    if cur.len() > 0 { groups.push(cur.join()) }
+    groups
+  } else { (to-wrap,) }
+  if boxh <= avail or avail < _WR-MIN-PREFILL or paras.len() < 2 {
+    emit(to-wrap)
+  } else {
+    let hff(chunk) = measure(box(width: size.width, _wr-neutral(chunk))).height
+    let stripw = size.width - fixdim.width - 14pt
+    // Take the most leading WHOLE paragraphs that fit the remaining space …
+    let k = 0
+    let used = 0pt
+    while k < paras.len() - 1 {
+      let h = hff(paras.at(k)) + measure(v(0.9em)).height
+      if used + h > avail - _WR-PREFILL-PAD { break }
+      used += h
+      k += 1
+    }
+    // … then step back until the remainder still covers most of the box height in the wrap strip.
+    while k > 0 {
+      let rest = paras.slice(k).join(parbreak())
+      if measure(box(width: stripw, _wr-neutral(rest))).height >= 0.6 * boxh { break }
+      k -= 1
+    }
+    if k == 0 {
+      emit(to-wrap)
+    } else {
+      paras.slice(0, k).join(parbreak())
+      // Terminate the prefill's last paragraph BEFORE the grid: `_wr-gridded` is an inline box, and
+      // without this break it would continue that paragraph — justify-stretching its final line.
+      parbreak()
+      emit(paras.slice(k).join(parbreak()))
+    }
+  }
 })
 // ASIDE — a compact optional bridge the reader can skip: a NARROW box (~65% of the 6.25in text measure)
 // on the outside (right) edge, body −1pt + tighter leading, held to one page, main prose wrapping
@@ -1835,11 +1990,33 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
   #set par(leading: 0.55em)
   #body
 ]
-#let weight-aside(body, wrapped: none) = if wrapped == none {
+#let weight-aside(body, wrapped: none, anchor: none) = if wrapped == none {
   align(right, _bw-aside-box(body))
 } else {
-  _wr-wrap-right(_bw-aside-box(body), wrapped)
+  _wr-wrap-right(_bw-aside-box(body), wrapped, anchor: anchor)
 }
+// ONE-PAGE INSET (`inset-size: small`) — pagination policy for the shrunken full-width inset box. Held
+// WHOLE by default (a compact box floats to a page where it fits, the readable case). But an unbreakable
+// box that is TALLER than the space left on its page abandons that space — up to a whole page — so when
+// keeping it whole would strand a third of a page or more (or the box cannot fit ANY page whole), it
+// renders BREAKABLE instead: it fills the current page and flows on (move the OBJECT'S convenience, not
+// the prose). Deterministic inputs only — the box's own measured height (via `_wr-neutral`, so live
+// cites/footnotes are never measured) and its own start position, which the breakable choice does not
+// move — so layout converges (see the CONVERGENCE note at `section-open`).
+#let inset-onepage(fillc, rulec, anchor, body) = layout(size => {
+  let h = measure(box(width: size.width, _wr-neutral(body))).height
+  let region = page.height - 2in
+  // avail from the pre-emitted ANCHOR, not here() — same stable-but-wrong-fixpoint trap as
+  // `_wr-wrap-right`: an unbreakable box that moved to the next page reports a full fresh page.
+  let avail = {
+    let hits = query(anchor)
+    if hits.len() > 0 { region - (hits.first().location().position().y - 1in) }
+    else { region - (here().position().y - 1in) }
+  }
+  let brk = (h > avail and avail > 0.33 * region) or h > region
+  block(fill: fillc, stroke: (left: dt.border-box-rule + rulec),
+        inset: 12pt, radius: 4pt, width: 100%, breakable: brk, body)
+})
 // CALLOUT — substantial secondary material: full width, body −0.75pt, a light tint + understated
 // hairline border, MORE interior inset than an aside, breakable across pages.
 #let weight-callout(body) = block(
@@ -2083,6 +2260,17 @@ _CODA_SLUGS = frozenset({
 
 def _is_coda(ch: "ir.Chapter") -> bool:
     return ch.slug in _CODA_SLUGS
+
+
+def _is_numbered_body(ch: "ir.Chapter") -> bool:
+    """A NUMBERED body section — a chapter record that prints its `part.chapter` locator (the body Parts'
+    N.M files; not matter, appendix, Part landing, appendix divider, or coda). Shared by `render_chapter`
+    (the `numbered` flag) and `emit_document` (the section-flow decision: a numbered section whose
+    predecessor is a numbered section of the SAME part continues on the page instead of forcing a break),
+    so the two cannot drift."""
+    is_matter = ch.part in bb._MATTER_PARTS or getattr(ch, "is_matter", False)
+    return (not is_matter and not ch.slug.startswith("appendix") and not _is_part_page(ch)
+            and not _is_appendix_divider(ch) and not _is_coda(ch))
 
 
 #: Per-Part divider text (title, subtitle), keyed by the minted slug — the PDF twin of the web records'
@@ -2448,6 +2636,7 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
         )
     seen_parts: set[int] = set()
     current_division: str | None = None
+    prev_ch: "ir.Chapter | None" = None      # last chapter actually emitted — the section-flow predecessor
     for n, slug in enumerate(slugs):
         if slug not in by_slug:
             raise SystemExit(f"unknown chapter slug: {slug} (have {sorted(by_slug)[:5]}…)")
@@ -2466,6 +2655,13 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
         # A landscape apparatus is wrapped in `#page(flipped: true)[…]`, which starts its own fresh page, so
         # the usual preceding `#pagebreak()` would strand a blank portrait page — suppress it for that case.
         is_landscape = _matches_apparatus_title(_title_norm, _APPARATUS_LANDSCAPE_TITLES)
+        # Section FLOW (pagination-whitespace fix): a continuing numbered section — a numbered body chapter
+        # whose predecessor is a numbered body chapter of the SAME part — gets NO forced page break; it
+        # continues on the current page under its `section-open` rule (see `render_chapter`). Everything
+        # else keeps its fresh page: Part openers (divider), each part's first section, matter, codas,
+        # appendices, and the apparatus.
+        flows = (prev_ch is not None and _is_numbered_body(prev_ch) and _is_numbered_body(ch)
+                 and prev_ch.part == ch.part)
         if with_frontmatter and ch.part not in seen_parts:
             seen_parts.add(ch.part)
             divider = _part_divider_typst(ch.part, ch)
@@ -2473,7 +2669,7 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
                 parts.append(divider)
             elif n and not is_landscape:
                 parts.append("#pagebreak()")
-        elif n and not is_landscape:
+        elif n and not is_landscape and not flows:
             parts.append("#pagebreak()")
         rendered = render_chapter(ch, ctx)
         if _matches_apparatus_title(_title_norm, _APPARATUS_ONEPAGER_TITLES):
@@ -2490,6 +2686,7 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
             # overflow flows rather than clips, but at this size the dashboard lands on the single page.
             rendered = _landscape_wrap_typst(rendered)
         parts.append(rendered)
+        prev_ch = ch
     # End-of-book Bibliography — Chicago notes, rendered by Typst from the SAME references.bib that
     # generated citations.json, so the PDF's reference strings equal the web book's by construction
     # (CITE-PARITY / BIB-5). Emitted only when the book actually cites something (an empty #bibliography is
