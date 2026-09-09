@@ -65,7 +65,7 @@ Look for existing:
 - Research prototypes
 - APIs, libraries, and platforms that could form part of a solution
 
-For important existing solutions, identify what they do well, what they leave unresolved, and whether your project should build on them, integrate with them, or take a different approach (e.g., ignore them and build your own anyway because it's interesting).
+For important existing solutions, identify what they do well, what they leave unresolved, and whether your project should build on them, integrate with them, or pursue a different approach. Reimplementing an existing capability may also be reasonable when doing so serves the project's learning or engineering goals. In engineering practice, this strategy is also common when the cost of an existing solution leaves important users, applications, or opportunities underserved.
 
 The existence of an existing product does not disqualify a project. Software engineering routinely involves deciding what to build, buy, reuse, or integrate.
 
