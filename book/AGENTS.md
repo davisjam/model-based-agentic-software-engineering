@@ -131,10 +131,12 @@ so they stay invisible if the markdown is read raw.
   fence renders as a live diagram (Mermaid runtime is loaded only on pages that need it — the appendix).
   Inline: `**bold**`, `*italic*`, `[text](url)`, and `[[slug|text]]` abstraction citations (link into the
   catalogue's glossary).
-- **Blockquote placement is DECLARED, never inferred.** A plain `>` blockquote with no marker and no
-  recognized lead (`**Term.**`, `**The … Thesis.**`, a `###` title, an em-led `*A footnote on …*` aside)
-  FAILS the build (the blockquote-placement gate; `book/lint_blockquote_placement.py`) — in HTML it would
-  silently float to the right rail while the PDF sets it in-column. Arm every quote with its routing:
+- **Blockquote placement is DECLARED, never inferred.** A `>` blockquote with no marker and no
+  recognized lead (`**Term.**`, `**The … Thesis.**`, a `###` title) FAILS the build (the
+  blockquote-placement gate; `book/lint_blockquote_placement.py`) — in HTML it would silently float to
+  the right rail while the PDF sets it in-column. An em-led `*A footnote on …*` aside is NOT exempt:
+  the em-lead convention is no longer an accepted declaration, so an unarmed em-led quote fails the same
+  gate — every rail sidenote carries an explicit `<!-- sidenote -->`. Arm every quote with its routing:
   `<!-- inline-quote -->` / `<!-- epigraph -->` for the main reading column, `<!-- sidenote -->` for a
   deliberate right-rail aside, on the line directly above the `>` block.
 

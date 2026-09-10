@@ -7,14 +7,16 @@ in-column. A quote the surrounding prose grammatically depends on ("shifts from 
 then breaks mid-sentence on wide viewports: the argument's clause floats away as marginalia. Nine such
 argument quotes shipped rail-floated before this gate existed.
 
-THE PRINCIPLE.  Nothing lands in the right rail by inference — every rail-bound blockquote must be
-EXPLICITLY declared. An author arms each quote with the routing it means:
+THE PRINCIPLE (STRICT — author-ratified).  Nothing lands in the right rail by inference — every
+rail-bound blockquote must be EXPLICITLY declared. An author arms each quote with the routing it means:
 
   `<!-- inline-quote -->` / `<!-- epigraph -->`  — the MAIN reading column (part of the argument);
   `<!-- sidenote -->`                            — a DECLARED right-rail aside;
   a recognized lead — `**Term.**` (def-inset), `**The … Thesis.**` (thesis-box), a `### title`
-  (concept-inset), or an em-led `*A footnote on …*` aside — is an explicit authored signal and passes;
-  the box grammar (`box-family`, `pullquote`, `principlebox`) likewise.
+  (concept-inset) — is an explicit authored signal and passes; the box grammar (`box-family`,
+  `pullquote`, `principlebox`) likewise. An em-led `*A footnote on …*` aside is NOT an accepted
+  declaration: unarmed, it takes the same implicit fallback as a plain quote and is flagged — a rail
+  aside always carries `<!-- sidenote -->`.
 
 SINGLE SOURCE OF TRUTH.  This lint re-implements NONE of that classification. The renderer's own
 `_render_blockquote` (build_book.py) stamps its implicit-fallback path with the `quote-implicit` class;
@@ -28,9 +30,10 @@ Parts, interlude, conclusion, appendices, back matter). `_design/**`, `transcrip
 READMEs are never rendered, so they are out of scope by construction.
 
 Run `python3 book/lint_blockquote_placement.py` (audit report, exit 0; `--strict` exits 1 on findings —
-mirroring `book-models/lint_stray_comments.py`). `--census` additionally reports the em-lead census: how
-many rail sidenotes still rely on the em-lead convention rather than an explicit `<!-- sidenote -->`
-(the count a future promote-to-explicit pass would need to re-mark).
+mirroring `book-models/lint_stray_comments.py`). `--census` additionally reports the em-lead census:
+how many rail sidenotes render the LEGACY bare `aside-sidenote` class. Under the strict rule no
+renderer path emits it (declared rails carry `sidenote-declared`, def leads `def-inset`, the implicit
+fallback `quote-implicit`), so the census is a regression tripwire that should always read 0.
 """
 from __future__ import annotations
 
@@ -46,8 +49,9 @@ _HERE = os.path.dirname(os.path.abspath(__file__))
 #: opens with `aside-sidenote quote-implicit`; a `bw-*` reading-weight class may follow.
 _IMPLICIT_RE = re.compile(
     r'<blockquote class="aside-sidenote quote-implicit[^"]*">(?P<body>.*?)</blockquote>', re.S)
-#: The em-lead-convention rail sidenote: the EXACT bare class (declared `sidenote-declared`, `def-inset`,
-#: and the implicit sentinel all carry a second class, so the bare form is exactly the em-led survivors).
+#: The LEGACY bare rail class (declared `sidenote-declared`, `def-inset`, and the implicit sentinel all
+#: carry a second class). Under the strict rule no renderer path emits the bare form — the census over
+#: it is a should-always-be-0 regression tripwire.
 _EM_LEAD_RAIL_RE = re.compile(r'<blockquote class="aside-sidenote">')
 _TAG_RE = re.compile(r"<[^>]+>")
 
@@ -113,9 +117,9 @@ def findings(pages: "list[str] | None" = None) -> "list[str]":
 
 
 def em_lead_census(pages: "list[str] | None" = None) -> int:
-    """How many rail sidenotes still ride the em-lead convention (bare `aside-sidenote` class) rather
-    than an explicit `<!-- sidenote -->` declaration — the re-mark count should the author later require
-    explicit declaration for the em-lead family too."""
+    """Count of LEGACY bare-`aside-sidenote` rail quotes in the built pages. The strict rule removed
+    the em-lead exemption, so no renderer path emits the bare class anymore — a non-zero count means a
+    renderer regression re-opened an implicit rail route."""
     n = 0
     for path in (pages if pages is not None else _page_files()):
         with open(path, encoding="utf-8") as fh:
@@ -133,8 +137,8 @@ def main() -> int:
     for f in fs:
         print(f"blockquote-placement: {f}")
     if args.census:
-        print(f"blockquote-placement: em-lead census — {em_lead_census()} rail sidenote(s) still ride "
-              f"the em-lead convention (no explicit <!-- sidenote --> declaration)")
+        print(f"blockquote-placement: em-lead census — {em_lead_census()} legacy bare aside-sidenote "
+              f"rail quote(s) (regression tripwire; the strict rule emits none — expect 0)")
     print(f"blockquote-placement: {len(fs)} finding(s)")
     return 1 if (fs and args.strict) else 0
 

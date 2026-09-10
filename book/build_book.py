@@ -1406,16 +1406,11 @@ _IS_DEF_LEAD_RE = re.compile(r"^\s*<p>\s*<strong>", re.S)
 # in a period (`> **Churn.** …`, `> **Lint.** …`), authored into `<p><strong>Churn.</strong> …`. It carries
 # a `def-inset` modifier so its definition body italicises while the bold Term stays upright. The trailing
 # period inside the bold is the discriminator: it tells a `**Term.**` glossary/aside label apart from an
-# em-led footnote (`> *A footnote…*`, no <strong> lead) and a plain sidenote (no bold lead), both of which
-# keep their as-authored rendering. Theses and core-term def-boxes are classified earlier, so never reach it.
+# em-led footnote (`> *A footnote…*`, no <strong> lead) and a plain sidenote (no bold lead) — BOTH of
+# which, unarmed, now take the implicit `quote-implicit` fallback the blockquote-placement lint flags
+# (author ratified the strict rule: em-lead is NOT an accepted rail declaration; only an explicit
+# `<!-- sidenote -->` is). Theses and core-term def-boxes are classified earlier, so never reach it.
 _IS_DEFN_SIDENOTE_LEAD_RE = re.compile(r"^\s*<p>\s*<strong>[^<]*\.\s*</strong>", re.S)
-
-# An EM-LED aside (`> *A footnote on …* …`) — the italic-lead authoring convention for a footnote-style
-# rail sidenote. Recognized as a DECLARED lead (the italic phrase is the author's signal), so it keeps the
-# `aside-sidenote` rendering; only a blockquote with NO recognized lead and NO marker falls to the
-# `quote-implicit` fallback the blockquote-placement lint gates. Matched on the rendered inner HTML,
-# mirroring the lead regexes above.
-_IS_EM_LEAD_RE = re.compile(r"^\s*<p>\s*<em>", re.S)
 
 
 _BOOK_IR_MOD = None  # cached `book_ir` module handle (lazy — book_ir imports THIS module as its tokenizer SSOT)
@@ -2110,10 +2105,10 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
     `thesis-box` panel, checked BEFORE the concept-inset title test so a TITLED part-opener box (whose
     `### TITLE` demotes to an `inset-title`) is not mis-read as a concept-inset; a demoted label →
     `concept-inset`; a `**The … Thesis.**` lead → `thesis-box`; a `**Term.**` lead armed by a core-term
-    `index-def` (`is_def`) → the blue `def-box`; an em-led aside (`> *A footnote on …*`) → the light
-    `aside-sidenote` (the italic lead is a recognized authoring signal); else the IMPLICIT fallback
-    `aside-sidenote quote-implicit`, which the blockquote-placement lint flags as an error — nothing lands
-    in the rail undeclared."""
+    `index-def` (`is_def`) → the blue `def-box`; a non-core `**Term.**` bold-period lead → the light
+    `aside-sidenote def-inset`; else the IMPLICIT fallback `aside-sidenote quote-implicit` — including an
+    UNARMED em-led aside (`> *A footnote on …*`; the em-lead convention is not an accepted declaration) —
+    which the blockquote-placement lint flags as an error: nothing lands in the rail undeclared."""
     inner_md = "\n".join(_strip_blockquote_prefix(ln) for ln in block.splitlines())
     inner_html = md_to_html(inner_md)
     inner_html = re.sub(r"<h[1-6]([^>]*)>(.*?)</h[1-6]>", r'<p class="inset-title"\1>\2</p>', inner_html, flags=re.S)
@@ -2167,17 +2162,15 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
         klass = "def-box"
     elif _IS_DEFN_SIDENOTE_LEAD_RE.search(inner_html):
         klass = "aside-sidenote def-inset"
-    elif _IS_EM_LEAD_RE.search(inner_html):
-        # The em-led footnote/aside convention (`> *A footnote on …*`) — the italic lead is the author's
-        # recognized signal, so the quote keeps its rail rendering unchanged.
-        klass = "aside-sidenote"
     else:
-        # The IMPLICIT plain fallback: no marker, no recognized lead. Nothing should land in the right
-        # rail by inference alone — the `quote-implicit` class marks this path in the built HTML so the
-        # blockquote-placement lint (book-models/lint_blockquote_placement.py, which reads THIS renderer's
-        # output) can flag it; the author must arm the quote (`inline-quote`/`epigraph` for the reading
-        # column, `sidenote` for the rail). CSS keys only on `.aside-sidenote`, so a residual site renders
-        # exactly as before while the lint is red on it.
+        # The IMPLICIT fallback: no marker, no recognized lead. This includes an UNARMED em-led aside
+        # (`> *A footnote on …*`) — the author ratified the STRICT rule: the em-lead convention is not
+        # an accepted rail declaration, so nothing lands in the right rail by inference of any kind.
+        # The `quote-implicit` class marks this path in the built HTML so the blockquote-placement lint
+        # (book/lint_blockquote_placement.py, which reads THIS renderer's output) can flag it; the author
+        # must arm the quote (`inline-quote`/`epigraph` for the reading column, `sidenote` for the rail).
+        # CSS keys only on `.aside-sidenote`, so a residual site renders exactly as before while the
+        # lint is red on it.
         klass = "aside-sidenote quote-implicit"
     return f'<blockquote class="{klass}{weight_cls}">{weight_label}{inner_html}</blockquote>'
 
