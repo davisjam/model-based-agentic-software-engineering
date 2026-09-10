@@ -4,10 +4,12 @@ The seven preceding stacks are examples. The reusable method is how to compose o
 
 Prefer
 
+<!-- inline-quote -->
 > Every consequential mutation is reconstructable.
 
 over
 
+<!-- inline-quote -->
 > We need provenance logging.
 
 The first states the engineering result. The second has already chosen a mechanism, before you know whether
@@ -52,6 +54,7 @@ A completeness check is meaningful only after the population to be accounted for
 
 For each mechanism, ask:
 
+<!-- inline-quote -->
 > If I remove this, is the capability claim still valid?
 
 If yes, the mechanism may still be valuable, but it is not load-bearing. The diagrams represent this distinction with solid paths and dashed attachments.

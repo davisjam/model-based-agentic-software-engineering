@@ -83,13 +83,12 @@ Each chapter carries two HTML-comment fields, read by the build:
 The leading `# …` H1 is **dropped on render** (the header comes from metadata), so keep or change it
 freely. Front and back matter render without a "Chapter N" kicker.
 
-### Per-Part epigraphs
+### Epigraphs
 
-The first chapter of each **numbered** Part opens with an epigraph. These are not in the markdown — they
-live in `_PART_EPIGRAPHS` in `build_book.py`, one `(quote, attribution)` pair per Part. The Macbeth
-(Part 2) and Ecclesiastes (Part 5) quotations are verbatim from the source memoir; the Part 1, Part 3, and
-Part 4 (the George Box "all models are wrong" line for the Model Zoo) openers are editor-swappable
-candidates.
+The per-Part opener epigraphs were removed (author's call) — `_PART_EPIGRAPHS` in `build_book.py` is
+the empty mechanism, kept should they ever return. The book's one epigraph is the Conclusion's Tennyson
+(*Ulysses*) opener, authored inline in `conclusion/8.1-the-part-that-stays-yours.md` and pinned to the
+main column by the `<!-- epigraph -->` marker.
 
 ### Copyright footer
 
@@ -132,6 +131,12 @@ so they stay invisible if the markdown is read raw.
   fence renders as a live diagram (Mermaid runtime is loaded only on pages that need it — the appendix).
   Inline: `**bold**`, `*italic*`, `[text](url)`, and `[[slug|text]]` abstraction citations (link into the
   catalogue's glossary).
+- **Blockquote placement is DECLARED, never inferred.** A plain `>` blockquote with no marker and no
+  recognized lead (`**Term.**`, `**The … Thesis.**`, a `###` title, an em-led `*A footnote on …*` aside)
+  FAILS the build (the blockquote-placement gate; `book/lint_blockquote_placement.py`) — in HTML it would
+  silently float to the right rail while the PDF sets it in-column. Arm every quote with its routing:
+  `<!-- inline-quote -->` / `<!-- epigraph -->` for the main reading column, `<!-- sidenote -->` for a
+  deliberate right-rail aside, on the line directly above the `>` block.
 
 ### The figure register — hand-SVG for the book proper, Mermaid for the appendix
 

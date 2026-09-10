@@ -21,8 +21,9 @@ flat `<slug>.html` per chapter (Part/Chapter TOC nav on top, prev/next at the bo
 an `index.html` landing page, and — appended after the back matter — a Gang-of-Four
 appendix projected from the sibling catalogue entries.
 
-Front matter (part 0) and back matter (part 6) render without a "Chapter N" kicker; the
-first chapter of each numbered Part opens with a verbatim epigraph. Chapter prose may
+Front matter (part 0) and back matter (part 6) render without a "Chapter N" kicker. The
+book's one epigraph is the Conclusion's authored Tennyson opener (the `<!-- epigraph -->`
+marker); the per-Part opener epigraphs were removed. Chapter prose may
 reference the shared metrics file (`data/metrics.json`) through `{{token}}` placeholders,
 substituted at build time so the headline numbers live in one place.
 """
@@ -61,6 +62,7 @@ sys.path.insert(0, str(ROOT / "book-models"))
 import design_tokens as _dtokens  # noqa: E402 — the design-token projector (stdlib-only)
 from svg_id_namespace import namespace_svg_ids  # noqa: E402 — shared inlined-SVG id-namespacer
 import bookmath  # noqa: E402 — LaTeX-subset → MathML (web) / Typst (print); stdlib-only, fail-loud
+import lint_blockquote_placement as _bq_lint  # noqa: E402 — the blockquote-placement gate (reads the renderer's own `quote-implicit` sentinel; stdlib-only)
 
 _TOKENS = _dtokens.load()
 CSS_ROOT_BLOCK = _dtokens.css_root_block(_TOKENS)
@@ -344,6 +346,13 @@ MARKER_KEYWORDS = (
     #   it into the right rail. For a quote that is part of the argument, not marginalia (founding use:
     #   the Conclusion's central question). Inert in Typst like `epigraph` — print already sets it in-column.
     "inline-quote",
+    # `<!-- sidenote -->` — arms the NEXT blockquote as a DECLARED right-rail sidenote (`aside-sidenote`).
+    #   The rail-placement principle: nothing floats to the rail by implicit inference — a plain blockquote
+    #   with no recognized lead is an ERROR (the `quote-implicit` fallback, gated by the
+    #   blockquote-placement lint), so an author who WANTS the rail declares it with this marker. Founding
+    #   uses: the two Part-III "A footnote on …" asides. Inert in Typst like `epigraph` — print sets every
+    #   blockquote in-column, so rail placement is a web-only routing.
+    "sidenote",
     # `<!-- principlebox -->` — arms the NEXT blockquote as a part-opener THESIS box: the green
     #   `thesis-box` panel with a full 4-side frame and, when the block leads with a `### TITLE`
     #   heading, a centered ALLCAPS title-bar reusing the green thesis tokens. Mirrors `pullquote`
@@ -523,16 +532,12 @@ _PART_OPENER_QUESTIONS = {
     7: "What follows for software engineering—and for the engineer?",
 }
 
-# Per-Part epigraph rendered at the opener of the first chapter in each numbered Part. Each is a
-# (quote, attribution) pair. The Macbeth line is verbatim from the source memoir; the Context and
-# Governed-Environment openers use a regulatory line and the book's own thesis, and the Putting-It-
-# to-Work opener the working method of that part (candidates a human editor may swap). The
-# Ecclesiastes line that once opened Part 5 now lands only in the conclusion, where it sets up the
-# closing "machines search, not wisdom" — kept to one appearance to avoid the reader meeting it twice.
-# The book carries its epigraphs inline — the top-level Conclusion opens on a Tennyson quote, placed
-# inline in its main column by the authored `<!-- epigraph -->` marker (see MARKER_KEYWORDS /
-# `.chapter-epigraph`), not through this map. The per-Part opener epigraphs were removed (author's
-# call); this map stays empty so `_epigraph_html` is a no-op for every Part.
+# Per-Part epigraph map — EMPTY by author's call: the per-Part opener epigraphs (once (quote,
+# attribution) pairs rendered at each numbered Part's first chapter) were removed, so `_epigraph_html`
+# is a no-op for every Part. The book's ONE epigraph is authored inline: the top-level Conclusion opens
+# on a Tennyson quote (*Ulysses*, "Though much is taken, much abides"), placed in its main column by the
+# `<!-- epigraph -->` marker (see MARKER_KEYWORDS / `.chapter-epigraph`), not through this map. The map
+# and `_epigraph_html` stay as the mechanism should per-Part epigraphs ever return.
 _PART_EPIGRAPHS: dict[int, tuple[str, str]] = {}
 
 _PART_CHAP_RE = re.compile(r"^(\d+)\.(\d+)-")
@@ -1405,6 +1410,13 @@ _IS_DEF_LEAD_RE = re.compile(r"^\s*<p>\s*<strong>", re.S)
 # keep their as-authored rendering. Theses and core-term def-boxes are classified earlier, so never reach it.
 _IS_DEFN_SIDENOTE_LEAD_RE = re.compile(r"^\s*<p>\s*<strong>[^<]*\.\s*</strong>", re.S)
 
+# An EM-LED aside (`> *A footnote on …* …`) — the italic-lead authoring convention for a footnote-style
+# rail sidenote. Recognized as a DECLARED lead (the italic phrase is the author's signal), so it keeps the
+# `aside-sidenote` rendering; only a blockquote with NO recognized lead and NO marker falls to the
+# `quote-implicit` fallback the blockquote-placement lint gates. Matched on the rendered inner HTML,
+# mirroring the lead regexes above.
+_IS_EM_LEAD_RE = re.compile(r"^\s*<p>\s*<em>", re.S)
+
 
 _BOOK_IR_MOD = None  # cached `book_ir` module handle (lazy — book_ir imports THIS module as its tokenizer SSOT)
 
@@ -1455,6 +1467,7 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
     pending_pullquote: list[bool] = []      # a `<!-- pullquote -->` marker armed for the next blockquote
     pending_epigraph: list[bool] = []       # an `<!-- epigraph -->` marker armed for the next blockquote (inline chapter epigraph)
     pending_inlinequote: list[bool] = []    # an `<!-- inline-quote -->` marker armed for the next blockquote (main-column quote)
+    pending_sidenote: list[bool] = []       # a `<!-- sidenote -->` marker armed for the next blockquote (declared right-rail aside)
     pending_principlebox: list[bool] = []      # a `<!-- principlebox -->` marker armed for the next blockquote (part-opener box)
     pending_boxfamily: list[str] = []       # a `<!-- box-family: X -->` marker armed for the next blockquote (four-family grammar)
     pending_insetdomain: list[str] = []     # a `<!-- inset-domain: TAG -->` marker armed for the next inset (provenance badge)
@@ -1595,6 +1608,12 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
                 # `<!-- inline-quote -->` — pins the NEXT blockquote to the MAIN reading column (an
                 # ordinary inline quotation, never the right-rail sidenote). Consumed like `epigraph`.
                 pending_inlinequote.append(True)
+                return True
+            if s == "<!-- sidenote -->":
+                # `<!-- sidenote -->` — DECLARES the NEXT blockquote as a right-rail sidenote. The rail is
+                # never reached by implicit inference (the blockquote-placement lint gates the plain
+                # fallback); this marker is how an author asks for it. Consumed like its siblings.
+                pending_sidenote.append(True)
                 return True
             if inner.startswith("box-family:"):
                 # `<!-- box-family: X -->` — arms the four-family visual treatment for the NEXT blockquote.
@@ -1759,6 +1778,8 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
         pending_epigraph.clear()
         inlinequote_armed = bool(pending_inlinequote)
         pending_inlinequote.clear()
+        sidenote_armed = bool(pending_sidenote)
+        pending_sidenote.clear()
         principlebox_armed = bool(pending_principlebox)
         pending_principlebox.clear()
         boxfamily_armed = pending_boxfamily[0] if pending_boxfamily else None
@@ -1804,6 +1825,7 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
             _emit(_render_blockquote(block, is_def=def_armed, is_pullquote=pullquote_armed,
                                      is_principlebox=principlebox_armed,
                                      is_epigraph=epigraph_armed, is_inline_quote=inlinequote_armed,
+                                     is_sidenote=sidenote_armed,
                                      box_family=boxfamily_armed, inset_domain=insetdomain_armed,
                                      box_weight=boxweight_armed))
             continue
@@ -2069,7 +2091,8 @@ BOX_WEIGHTS = ("aside", "callout", "deep-dive")
 
 def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = False,
                        is_principlebox: bool = False, is_epigraph: bool = False,
-                       is_inline_quote: bool = False, box_family: "str | None" = None,
+                       is_inline_quote: bool = False, is_sidenote: bool = False,
+                       box_family: "str | None" = None,
                        inset_domain: "str | None" = None, box_weight: "str | None" = None) -> str:
     """A blockquote (every line starts with `>`) → a classified `<blockquote>`. Its inner content is itself
     markdown (heading + prose + a `> ```mermaid ``` fence), rendered recursively; an inner heading is demoted
@@ -2080,13 +2103,17 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
     corner on model cards. Absent a family marker, the class is picked by shape: an explicit `<!-- epigraph -->`
     (`is_epigraph` → the inline `chapter-epigraph`) or `<!-- inline-quote -->` (`is_inline_quote` → the
     main-column `quote-inline`) marker is checked first — each pins the quote to the reading column so the
-    plain-blockquote sidenote inference below can never rail-float it; then an explicit `<!-- pullquote -->`
+    plain-blockquote sidenote inference below can never rail-float it; an explicit `<!-- sidenote -->`
+    (`is_sidenote` → `aside-sidenote sidenote-declared`) declares the rail; then an explicit `<!-- pullquote -->`
     marker (`is_pullquote`) → the label-less `pull-quote` (an author declaration outranks
     lead-text inference); an explicit `<!-- principlebox -->` marker (`is_principlebox`) → the green
     `thesis-box` panel, checked BEFORE the concept-inset title test so a TITLED part-opener box (whose
     `### TITLE` demotes to an `inset-title`) is not mis-read as a concept-inset; a demoted label →
     `concept-inset`; a `**The … Thesis.**` lead → `thesis-box`; a `**Term.**` lead armed by a core-term
-    `index-def` (`is_def`) → the blue `def-box`; else a light `aside-sidenote`."""
+    `index-def` (`is_def`) → the blue `def-box`; an em-led aside (`> *A footnote on …*`) → the light
+    `aside-sidenote` (the italic lead is a recognized authoring signal); else the IMPLICIT fallback
+    `aside-sidenote quote-implicit`, which the blockquote-placement lint flags as an error — nothing lands
+    in the rail undeclared."""
     inner_md = "\n".join(_strip_blockquote_prefix(ln) for ln in block.splitlines())
     inner_html = md_to_html(inner_md)
     inner_html = re.sub(r"<h[1-6]([^>]*)>(.*?)</h[1-6]>", r'<p class="inset-title"\1>\2</p>', inner_html, flags=re.S)
@@ -2123,6 +2150,11 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
         # An author-declared main-column quote (`<!-- inline-quote -->`) — the base blockquote look,
         # pinned to the reading column; the class names the routing (no dedicated CSS).
         klass = "quote-inline"
+    elif is_sidenote:
+        # An author-DECLARED right-rail sidenote (`<!-- sidenote -->`) — the same `aside-sidenote`
+        # rendering the rail always used, but reached by declaration, not inference. The extra
+        # `sidenote-declared` class names the routing (no dedicated CSS keys off it).
+        klass = "aside-sidenote sidenote-declared"
     elif is_pullquote:
         klass = "pull-quote"
     elif is_principlebox:
@@ -2135,8 +2167,18 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
         klass = "def-box"
     elif _IS_DEFN_SIDENOTE_LEAD_RE.search(inner_html):
         klass = "aside-sidenote def-inset"
-    else:
+    elif _IS_EM_LEAD_RE.search(inner_html):
+        # The em-led footnote/aside convention (`> *A footnote on …*`) — the italic lead is the author's
+        # recognized signal, so the quote keeps its rail rendering unchanged.
         klass = "aside-sidenote"
+    else:
+        # The IMPLICIT plain fallback: no marker, no recognized lead. Nothing should land in the right
+        # rail by inference alone — the `quote-implicit` class marks this path in the built HTML so the
+        # blockquote-placement lint (book-models/lint_blockquote_placement.py, which reads THIS renderer's
+        # output) can flag it; the author must arm the quote (`inline-quote`/`epigraph` for the reading
+        # column, `sidenote` for the rail). CSS keys only on `.aside-sidenote`, so a residual site renders
+        # exactly as before while the lint is red on it.
+        klass = "aside-sidenote quote-implicit"
     return f'<blockquote class="{klass}{weight_cls}">{weight_label}{inner_html}</blockquote>'
 
 
@@ -7355,6 +7397,7 @@ def build() -> int:
 
     # Per-chapter pages. Float numbers are CHAPTER-RELATIVE ("Figure 1.3-1"): the counters reset to 1 at
     # each chapter, keyed to the chapter's <part>.<chapter> id, matching the label map _collect_floats built.
+    written_chapter_pages: list[str] = []   # the pages the blockquote-placement gate scans after the loop
     for i, c in enumerate(chapters):
         if c.get("is_part_page"):
             num_label = f'Part {c["part"]}'
@@ -7454,6 +7497,7 @@ def build() -> int:
                  appendices_divider=c.get("is_appendix_divider", False)),
             encoding="utf-8",
         )
+        written_chapter_pages.append(str(out))
 
     # Index / landing page.
     idx_rows = []
@@ -7534,6 +7578,22 @@ def build() -> int:
     (HERE / f"{_BIBLIOGRAPHY_SLUG}.html").write_text(
         build_bibliography_page(chapters, chapters[-1]["slug"]), encoding="utf-8")
     fig_count = sum(1 for e in float_entries if e["kind"] == "fig")
+
+    # BLOCKQUOTE-PLACEMENT GATE (BLOCKING). Nothing lands in the right rail by implicit inference: the
+    # renderer stamps its plain-fallback path with the `quote-implicit` class (see `_render_blockquote`),
+    # and this gate scans the pages just written for that sentinel — the lint reads the renderer's own
+    # decision, so the two cannot drift. A finding means an un-armed plain blockquote would rail-float in
+    # HTML while the print projection sets it in-column; the author arms it (`<!-- inline-quote -->` /
+    # `<!-- epigraph -->` for the reading column, `<!-- sidenote -->` for the rail). Standalone audit +
+    # em-lead census: `python3 book/lint_blockquote_placement.py [--census]`.
+    _bq_findings = _bq_lint.findings(pages=written_chapter_pages)
+    if _bq_findings:
+        for _f in _bq_findings:
+            print(f"BLOCKQUOTE-PLACEMENT GATE: {_f}", file=sys.stderr)
+        print(f"BLOCKQUOTE-PLACEMENT GATE: BLOCKING FAIL — {len(_bq_findings)} implicit plain "
+              f"blockquote(s) would rail-float; arm each with its intended routing marker.",
+              file=sys.stderr)
+        return 1
 
     print(f"built {len(chapters)} chapter pages + index.html + {BOOK_INDEX_SLUG}.html + "
           f"{_FIGURES_GALLERY_SLUG}.html ({fig_count} figures)")

@@ -840,9 +840,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · A.8 Composing a Stack — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>A.8 Composing a Stack</h1></header><p>The seven preceding stacks are examples. The reusable method is how to compose one. Start from the capability, not the mechanisms.</p>
 <h2><span class="sec-num">A.8.1</span> 1. Name the Capability</h2>
 <p>Prefer</p>
-<blockquote class="aside-sidenote"><p>Every consequential mutation is reconstructable.</p></blockquote>
+<blockquote class="quote-inline"><p>Every consequential mutation is reconstructable.</p></blockquote>
 <p>over</p>
-<blockquote class="aside-sidenote"><p>We need provenance logging.</p></blockquote>
+<blockquote class="quote-inline"><p>We need provenance logging.</p></blockquote>
 <p>The first states the engineering result. The second has already chosen a mechanism, before you know whether it is the right one or the only one.</p>
 <h2><span class="sec-num">A.8.2</span> 2. Enumerate the Failure Classes</h2>
 <p>Ask what would make the capability claim false. For reconstructable mutation:</p>
@@ -858,7 +858,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A completeness check is meaningful only after the population to be accounted for has been defined. A list of mechanisms becomes a stack when their guarantees depend on one another.</p>
 <h2><span class="sec-num">A.8.5</span> 5. Separate the Load-Bearing Path from the Enhancements</h2>
 <p>For each mechanism, ask:</p>
-<blockquote class="aside-sidenote"><p>If I remove this, is the capability claim still valid?</p></blockquote>
+<blockquote class="quote-inline"><p>If I remove this, is the capability claim still valid?</p></blockquote>
 <p>If yes, the mechanism may still be valuable, but it is not load-bearing. The diagrams represent this distinction with solid paths and dashed attachments.</p>
 <h2><span class="sec-num">A.8.6</span> 6. Match the Substrate</h2>
 <p>Do not reproduce a reference stack mechanically. A database, an embedded controller, a compiler, a SaaS application, and a research codebase each expose different observable facts and different deterministic seams. Preserve the guarantees; let the substrate decide the mechanisms.</p>

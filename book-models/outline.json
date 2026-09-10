@@ -688,52 +688,52 @@
             {
               "slug": "at-an-abstract-level-each-class-is-a-graph-what-differs-is-what-nodes-and-edges-mean",
               "text": "The six classes differ less in shape than in semantics: each can be understood as a graph of things and relationships, and what changes from class to class is what the nodes and edges mean.",
-              "block_index": 94
+              "block_index": 95
             },
             {
               "slug": "mage-classifies-by-question-because-one-graph-shape-answers-many-questions",
               "text": "MAGE classifies models by engineering question rather than notation because the same graph-shaped representation can answer very different questions depending on its semantics, and one system fact can participate in several views.",
-              "block_index": 96
+              "block_index": 97
             },
             {
               "slug": "the-repertoire-is-larger-than-the-six-classes",
               "text": "A portion of the established repertoire — nine familiar representations read as a set of moves, not a taxonomy of all modeling; MAGE prescribes no new notation, and the repertoire is larger than the six classes the rest of the Part organizes.",
-              "block_index": 98
+              "block_index": 99
             },
             {
               "slug": "reuse-the-established-repertoire-choosing-is-judgment",
               "text": "This Part illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment.",
-              "block_index": 101
+              "block_index": 102
             },
             {
               "slug": "the-classes-are-views-not-boxes",
               "text": "The classes classify questions, not data structures; one represented fact can answer several. The lease is Ownership, Behavioral, and Measurement at once.",
-              "block_index": 107
+              "block_index": 108
             },
             {
               "slug": "system-knowledge-is-substrate-not-a-seventh-class",
               "text": "System knowledge is the connected substrate where the six classes meet, not a seventh peer class.",
-              "block_index": 110
+              "block_index": 111
             },
             {
               "slug": "tolerance-is-not-a-seventh-class",
               "text": "The classes name the engineering question; tolerance names the variation that question permits, not a seventh class.",
-              "block_index": 112
+              "block_index": 113
             },
             {
               "slug": "purpose-comes-first-representation-follows",
               "text": "The model class names the engineering question; the representation form is a separate choice, so purpose comes first and representation follows.",
-              "block_index": 114
+              "block_index": 115
             },
             {
               "slug": "the-chapters-ahead-apply-the-repertoire-to-six-docable-models",
               "text": "The chapters ahead apply this repertoire to six production models from DocAble; the final chapter asks how such representations connect through shared identity without collapsing into one universal graph.",
-              "block_index": 116
+              "block_index": 117
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
               "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment makes selected properties enforceable.",
-              "block_index": 118
+              "block_index": 119
             }
           ]
         }
@@ -1590,12 +1590,12 @@
             {
               "slug": "a-deployment-can-pass-every-check-and-still-serve-a-blank-page",
               "text": "A deployment can pass every earlier check and still serve a blank page; the property is legible only once the pieces compose in the served system.",
-              "block_index": 49
+              "block_index": 50
             },
             {
               "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
               "text": "Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work.",
-              "block_index": 51
+              "block_index": 52
             }
           ]
         },
@@ -1605,27 +1605,27 @@
           "heading_text": "The Earliest Decidable Boundary",
           "topic_sentence": "The agent-return check is one instance of a rule that runs under the whole of this Part:",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 58,
           "points": [
             {
               "slug": "place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable",
               "text": "The design rule: place enforcement at the earliest boundary where the obligation is both legible and decidable.",
-              "block_index": 59
+              "block_index": 60
             },
             {
               "slug": "the-part-two-rhyme-coarsest-representation-earliest-boundary",
               "text": "The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible.",
-              "block_index": 66
+              "block_index": 67
             },
             {
               "slug": "real-boundaries-are-sometimes-approximate-a-roughly-right-hook-beats-the-perfect-one",
               "text": "Real boundaries are sometimes approximate: semantic placement is an engineering trade-off, not a demand for a theoretically perfect hook.",
-              "block_index": 72
+              "block_index": 74
             },
             {
               "slug": "the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does",
               "text": "The chapter has supplied both requirements for enforcement; the next question is what the mechanism at that boundary actually does.",
-              "block_index": 74
+              "block_index": 76
             }
           ]
         }
@@ -1713,12 +1713,12 @@
             {
               "slug": "human-process-instantiates-the-same-roles-logging-senses-reviewer-validates-approver-gates",
               "text": "Human process instantiates the same roles: logging senses, the reviewer validates, the approver gates.",
-              "block_index": 35
+              "block_index": 36
             },
             {
               "slug": "recovery-is-not-permission",
               "text": "The sharpest instance of the pair is ownership: the lease makes ownership visible and recoverable, the durable compare-and-set supplies the constraint. Recovery is not permission.",
-              "block_index": 37
+              "block_index": 38
             }
           ]
         },
@@ -1728,37 +1728,37 @@
           "heading_text": "One Obligation, Several Ways to Hold It",
           "topic_sentence": "A modeled obligation does not imply one particular enforcement technology.",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 40,
           "points": [
             {
               "slug": "a-modeled-obligation-does-not-imply-one-enforcement",
               "text": "A modeled obligation does not imply one enforcement technology; ask what kind of property it is.",
-              "block_index": 41
+              "block_index": 42
             },
             {
               "slug": "prefer-the-constraint-when-you-can-exclude-the-state",
               "text": "If an invalid state can be removed from the action space, prefer the constraint.",
-              "block_index": 43
+              "block_index": 44
             },
             {
               "slug": "interleaving-properties-need-a-validator-over-the-state-space",
               "text": "Properties that live across sequences need a validator that reasons over the composed state space.",
-              "block_index": 45
+              "block_index": 46
             },
             {
               "slug": "temporal-obligations-require-another-shape-of-evidence",
               "text": "Temporal obligations require another shape of evidence; a finite trace cannot establish eventuality.",
-              "block_index": 47
+              "block_index": 48
             },
             {
               "slug": "these-are-matches-not-levels-of-sophistication",
               "text": "These are matches between property and mechanism, not levels of sophistication.",
-              "block_index": 49
+              "block_index": 50
             },
             {
               "slug": "whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment",
               "text": "Whichever validator supplies the judgment, the enforcement still depends on what the environment does with its verdict.",
-              "block_index": 55
+              "block_index": 56
             }
           ]
         },
@@ -1768,22 +1768,22 @@
           "heading_text": "Validators and Gates",
           "topic_sentence": "The other two roles act on evidence and admission.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 58,
           "points": [
             {
               "slug": "a-validator-turns-evidence-into-a-judgment",
               "text": "A validator turns evidence into a judgment.",
-              "block_index": 59
+              "block_index": 60
             },
             {
               "slug": "a-gate-supplies-the-consequence-and-a-gate-is-a-commitment",
               "text": "A gate enforces the verdict — and a gate is a commitment.",
-              "block_index": 63
+              "block_index": 64
             },
             {
               "slug": "cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing",
               "text": "A loop may re-derive evidence at a later admission boundary; the thing asking to pass does not define passing.",
-              "block_index": 69
+              "block_index": 70
             }
           ]
         },
@@ -1793,22 +1793,22 @@
           "heading_text": "One Measurement, Different Enforcement Decisions",
           "topic_sentence": "The four roles are not stages of maturity.",
           "id_source": "derived",
-          "block_index": 71,
+          "block_index": 72,
           "points": [
             {
               "slug": "the-four-roles-are-not-stages-of-maturity",
               "text": "The four roles are not stages of maturity: one quantitative model can support observation, adaptation, graceful degradation, or hard admission control.",
-              "block_index": 73
+              "block_index": 74
             },
             {
               "slug": "a-quantitative-tolerance-can-expose-margin",
               "text": "A quantitative tolerance can expose margin — the room between the realized value and its bound; two conforming realizations can differ in how much room they keep.",
-              "block_index": 76
+              "block_index": 77
             },
             {
               "slug": "margin-needs-a-meaningful-distance",
               "text": "Margin is computable only where the model supplies a meaningful distance; many software obligations are qualitative and admit none.",
-              "block_index": 78
+              "block_index": 79
             }
           ]
         },
@@ -1818,12 +1818,12 @@
           "heading_text": "Positive and Negative Constraints",
           "topic_sentence": "Constraints are often introduced as prohibitions: this code must not call that library.",
           "id_source": "derived",
-          "block_index": 80,
+          "block_index": 81,
           "points": [
             {
               "slug": "a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one",
               "text": "A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form.",
-              "block_index": 82
+              "block_index": 83
             }
           ]
         },
@@ -1833,37 +1833,37 @@
           "heading_text": "Provenance-Carried Admission",
           "topic_sentence": "Earlier in this Part, architectural conformance provided one example of enforcing intended relations.",
           "id_source": "explicit",
-          "block_index": 85,
+          "block_index": 86,
           "points": [
             {
               "slug": "provenance-carried-admission-is-the-derivation-path-case-of-conformance",
               "text": "Provenance is useful for a particular architectural-conformance problem: the required relation is the path through which a protected operation was derived, not merely which components interact.",
-              "block_index": 87
+              "block_index": 88
             },
             {
               "slug": "restrict-a-recognizable-primitive-surface-directly",
               "text": "Where a consequential effect passes through a recognizable primitive, restrict that surface directly — the prohibited interaction has a tractable signature.",
-              "block_index": 89
+              "block_index": 90
             },
             {
               "slug": "some-obligations-have-no-single-forbidden-call",
               "text": "Some obligations have no single forbidden call; a protected operation is reachable by composing otherwise legitimate APIs into a new path.",
-              "block_index": 91
+              "block_index": 92
             },
             {
               "slug": "provenance-reverses-the-enforcement-problem",
               "text": "Provenance reverses enforcement: require the protected operation to carry evidence that it passed through the sanctioned abstraction.",
-              "block_index": 94
+              "block_index": 95
             },
             {
               "slug": "choose-provenance-when-derivation-paths-are-numerous-or-compositional",
               "text": "Restrict a small recognizable surface directly; reach for provenance when the obligation concerns how an ordinary operation was derived and its paths are numerous or compositional.",
-              "block_index": 101
+              "block_index": 102
             },
             {
               "slug": "provenance-makes-a-derivation-path-sanctioned",
               "text": "Provenance here is not attribution; it makes a derivation path the sanctioned route to admission — producer-side rules check known emitters, the consumer boundary refuses unknown routes.",
-              "block_index": 103
+              "block_index": 104
             }
           ]
         },
@@ -1873,27 +1873,27 @@
           "heading_text": "What Counts as a Mechanism",
           "topic_sentence": "Keep **policy**, **guidance**, and **governance mechanism** separate.",
           "id_source": "derived",
-          "block_index": 109,
+          "block_index": 110,
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
               "text": "Keep policy, guidance, and governance mechanism separate; enforcement begins when something acts.",
-              "block_index": 111
+              "block_index": 112
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
               "text": "The same artifact can play several roles; the model is the representation, the machinery the enforcement.",
-              "block_index": 113
+              "block_index": 114
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "Implementations bundle roles; name them, don't stretch the terms.",
-              "block_index": 115
+              "block_index": 116
             },
             {
               "slug": "represented-intent-becomes-enforceable-through-one-of-four-roles",
               "text": "Leave-with: intent becomes enforceable through one of four roles; next, where the mechanisms come from.",
-              "block_index": 120
+              "block_index": 121
             }
           ]
         }
@@ -6190,22 +6190,22 @@
             {
               "slug": "object-of-review-moves-accountability-does-not",
               "text": "The object of review moves to models and evidence; accountability does not move.",
-              "block_index": 53
+              "block_index": 54
             },
             {
               "slug": "early-evidence-supervisory-engineering-work",
               "text": "Early evidence describes supervisory engineering work; MAGE would give that supervision better reasoning surfaces.",
-              "block_index": 55
+              "block_index": 56
             },
             {
               "slug": "answerability-requires-competence-and-a-path-to-change",
               "text": "Real answerability requires competence and a path to change the environment, or responsibility becomes nominal.",
-              "block_index": 57
+              "block_index": 58
             },
             {
               "slug": "models-remain-objects-of-engineering-fidelity-maintained",
               "text": "Models remain objects of engineering: their fidelity to the system must be maintained and evidenced, not assumed.",
-              "block_index": 59
+              "block_index": 60
             }
           ]
         },
@@ -6215,37 +6215,37 @@
           "heading_text": "From Full-Stack to Full-System Engineering",
           "topic_sentence": "Software has used full-stack engineer to describe someone able to work across multiple implementation layers: interface, application logic, data, infrastructure, and deployment.",
           "id_source": "derived",
-          "block_index": 61,
+          "block_index": 62,
           "points": [
             {
               "slug": "commodity-intelligence-eases-full-stack-breadth",
               "text": "Commodity intelligence can make full-stack breadth across implementation layers easier to obtain.",
-              "block_index": 62
+              "block_index": 63
             },
             {
               "slug": "engineer-must-reason-across-full-system-and-lifecycle",
               "text": "MAGE requires reasoning across the full system and its lifecycle, not merely the implementation stack.",
-              "block_index": 64
+              "block_index": 65
             },
             {
               "slug": "docable-required-breadth-across-interacting-domains",
               "text": "Building DocAble required breadth across many interacting domains; no single concern defined the system.",
-              "block_index": 66
+              "block_index": 67
             },
             {
               "slug": "cheap-implementation-enables-judgment-developing-hyper-exploration",
               "text": "Cheap implementation enables hyper-exploration that develops engineering judgment rather than deskilling the engineer.",
-              "block_index": 68
+              "block_index": 69
             },
             {
               "slug": "consequential-judgment-follows-a-property-across-the-lifecycle",
               "text": "Consequential judgment often requires following a property across the whole lifecycle, not just implementation.",
-              "block_index": 70
+              "block_index": 71
             },
             {
               "slug": "trajectory-from-full-stack-to-full-system",
               "text": "The professional trajectory runs from full-stack toward full-system engineering, the scarcer competence.",
-              "block_index": 72
+              "block_index": 73
             }
           ]
         },
@@ -6255,12 +6255,12 @@
           "heading_text": "What Should We Teach?",
           "topic_sentence": "If engineers increasingly review systems through representations and evidence rather than reconstructing every property from implementation, education should shift accordingly.",
           "id_source": "derived",
-          "block_index": 74,
+          "block_index": 75,
           "points": [
             {
               "slug": "education-should-shift-toward-representations-and-evidence",
               "text": "If review shifts to representations and evidence, education should shift accordingly.",
-              "block_index": 75
+              "block_index": 76
             }
           ]
         },
@@ -6270,27 +6270,27 @@
           "heading_text": "Is there software engineering knowledge you cannot just figure out for yourself?",
           "topic_sentence": "The question for software engineering education is whether there is important software engineering knowledge that practitioners cannot reasonably be expected to figure out for themselves, or whether software engineering is distinct among the engineering disciplines in being predicated on adaptability more than specific expertise.",
           "id_source": "derived",
-          "block_index": 77,
+          "block_index": 78,
           "points": [
             {
               "slug": "does-se-have-durable-knowledge-or-only-adaptability",
               "text": "Perhaps software engineering is adaptability, not durable technical knowledge.",
-              "block_index": 78
+              "block_index": 79
             },
             {
               "slug": "mature-disciplines-accumulate-non-rediscoverable-knowledge",
               "text": "Mature engineering disciplines accumulate knowledge practitioners cannot rediscover alone.",
-              "block_index": 80
+              "block_index": 81
             },
             {
               "slug": "the-skeptical-case-is-stronger-in-software",
               "text": "Much software-engineering wisdom is learnable through experience alone.",
-              "block_index": 82
+              "block_index": 83
             },
             {
               "slug": "many-professionals-succeed-without-formal-se-education",
               "text": "Many successful professionals learned software outside formal education.",
-              "block_index": 84
+              "block_index": 85
             }
           ]
         },
@@ -6300,42 +6300,42 @@
           "heading_text": "What shouldn't software engineers have to figure out for themselves?",
           "topic_sentence": "I would concede some of this ground.",
           "id_source": "derived",
-          "block_index": 86,
+          "block_index": 87,
           "points": [
             {
               "slug": "alignment-principle-intuition-is-discoverable-through-practice",
               "text": "The Alignment Principle's basic intuition is discoverable through practice.",
-              "block_index": 87
+              "block_index": 88
             },
             {
               "slug": "concession-stops-at-the-foundations-of-computing",
               "text": "The concession does not extend to computing's accumulated foundations.",
-              "block_index": 89
+              "block_index": 90
             },
             {
               "slug": "expertise-is-understanding-abstractions-guarantees-and-limits",
               "text": "Expertise means understanding abstractions, their guarantees, and their limits.",
-              "block_index": 91
+              "block_index": 92
             },
             {
               "slug": "mage-rests-on-the-foundations-rather-than-replacing-them",
               "text": "MAGE rests on these foundations rather than replacing them.",
-              "block_index": 93
+              "block_index": 94
             },
             {
               "slug": "delegation-makes-foundations-more-consequential",
               "text": "Delegating realization makes the technical foundations more consequential.",
-              "block_index": 95
+              "block_index": 96
             },
             {
               "slug": "curriculum-remains-substantially-recognizable",
               "text": "The curriculum remains substantially recognizable.",
-              "block_index": 97
+              "block_index": 98
             },
             {
               "slug": "what-changes-is-the-allocation-of-attention",
               "text": "What changes is the allocation of attention.",
-              "block_index": 99
+              "block_index": 100
             }
           ]
         },
@@ -6345,17 +6345,17 @@
           "heading_text": "Shift the emphasis",
           "topic_sentence": "Less educational effort may need to go toward producing routine implementation by hand, and more toward selecting abstractions, specifying properties, measuring systems, validating claims, reasoning about quality attributes, and governing autonomous work.",
           "id_source": "derived",
-          "block_index": 101,
+          "block_index": 102,
           "points": [
             {
               "slug": "shift-emphasis-to-abstractions-specification-validation",
               "text": "Shift educational emphasis toward abstractions, specification, validation, modeling, and formal methods.",
-              "block_index": 102
+              "block_index": 103
             },
             {
               "slug": "coordination-becomes-a-technical-concern-at-individual-scale",
               "text": "Coordination becomes a technical concern at individual scale under agentic implementation capacity.",
-              "block_index": 104
+              "block_index": 105
             }
           ]
         },
@@ -6365,22 +6365,22 @@
           "heading_text": "Change what students demonstrate",
           "topic_sentence": "A capstone should therefore demonstrate more than a working artifact.",
           "id_source": "derived",
-          "block_index": 106,
+          "block_index": 107,
           "points": [
             {
               "slug": "capstone-should-carry-the-engineering-case",
               "text": "A capstone should carry the engineering case, not only a working artifact.",
-              "block_index": 107
+              "block_index": 108
             },
             {
               "slug": "program-objectives-change-little-practice-changes",
               "text": "Program objectives change little; how students practice and demonstrate the capabilities changes.",
-              "block_index": 109
+              "block_index": 110
             },
             {
               "slug": "teach-durable-principles-beneath-the-agent-interface",
               "text": "Teach the durable principles beneath the fast-changing agent interface, not the interface itself.",
-              "block_index": 111
+              "block_index": 112
             }
           ]
         },
@@ -6390,22 +6390,22 @@
           "heading_text": "The Entry-Rung Problem",
           "topic_sentence": "The traditional path into software engineering runs through implementation.",
           "id_source": "derived",
-          "block_index": 114,
+          "block_index": 115,
           "points": [
             {
               "slug": "genai-erodes-the-implementation-apprenticeship",
               "text": "GenAI erodes the implementation apprenticeship through which the profession trained senior engineers.",
-              "block_index": 115
+              "block_index": 116
             },
             {
               "slug": "entry-rung-problem-acquiring-judgment-without-implementation-work",
               "text": "The entry-rung problem: how to acquire engineering judgment when routine implementation is abundant.",
-              "block_index": 117
+              "block_index": 118
             },
             {
               "slug": "profession-reorganizes-around-responsibility-for-the-whole",
               "text": "The profession reorganizes around responsibility for the engineered whole, not the residual machine-poor tasks.",
-              "block_index": 119
+              "block_index": 120
             }
           ]
         }

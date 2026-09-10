@@ -67,10 +67,10 @@ catalogue), and render after Part 6 / Part 7.
   them from prose with `{{token}}`; the build substitutes them and **fails loud** on an unknown token.
   Edit the number in the JSON, never in the prose. A later pass refreshes the repo-derived figures
   from history-mining; the cost-model and policy figures are the book's canonical estimates.
-- **Epigraphs.** The first chapter of each numbered Part opens with an epigraph, defined in
-  `_PART_EPIGRAPHS` in `build_book.py`. The Macbeth (Part 2) and Ecclesiastes (Part 4) quotations
-  are verbatim from the source memoir; the Context and Governed-Environment openers are candidates a
-  human editor may swap.
+- **Epigraphs.** The per-Part opener epigraphs were removed (author's call) — `_PART_EPIGRAPHS` in
+  `build_book.py` stays as the empty mechanism. The book's one epigraph is the Conclusion's Tennyson
+  (*Ulysses*) opener, authored inline in `conclusion/8.1-the-part-that-stays-yours.md` and pinned to
+  the main column by the `<!-- epigraph -->` marker.
 - **Figures.** Insert a figure with a directive comment: `<!-- figure: assets/<file> | <caption> -->`.
   An `.svg` is inlined (its own `<title>`/`<desc>`/`aria-*` survive); any other extension is wrapped in
   `<img>`. A missing asset fails the build.

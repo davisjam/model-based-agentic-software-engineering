@@ -3,8 +3,6 @@
 
 # Colophon — Dogfooding MAGE
 
-> *A colophon is the note a book keeps about its own making — traditionally set near the end, where the typeface, the press, and the hands that set the type are recorded.*
-
 In a typical colophon, I would tell you about the font. The book was set in Source Serif, with Source Sans for headings. Tradition satisfied.
 
 This book was built and revised using some of the same engineering ideas it describes.

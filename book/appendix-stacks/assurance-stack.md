@@ -6,10 +6,12 @@
 
 Reach for it when the important question shifts from
 
+<!-- inline-quote -->
 > Did the tests pass?
 
 to
 
+<!-- inline-quote -->
 > Have we named the relevant obligations, discharged each one appropriately, and shown the population is
 > covered?
 

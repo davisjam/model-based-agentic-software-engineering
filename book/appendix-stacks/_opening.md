@@ -13,6 +13,7 @@ provide the same capability with fewer, different, or stronger mechanisms.
 
 Start with the capability:
 
+<!-- inline-quote -->
 > What must the environment be able to do, and which guarantees are required to make that claim true?
 
 The seven stacks that follow answer that question for recurring engineering concerns.
