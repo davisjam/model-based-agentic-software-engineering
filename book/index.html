@@ -108,6 +108,16 @@ header.chap h1 .chap-num { color: var(--muted); font-weight: 600; font-variant-n
                   color: var(--muted); font-style: italic; }
 .part-epigraph .attr { display: block; margin-top: 0.5rem; font-style: normal; font-size: 14px;
                         color: var(--muted); }
+/* INLINE CHAPTER EPIGRAPH (a blockquote armed by the `epigraph` marker) — a visually-modest opener quote in the
+   MAIN column (never the sidenote rail): italic quotation on the part-epigraph geometry (no panel fill),
+   with the attribution paragraph (the blockquote's LAST <p>, authored with an em-dash lead) set beneath
+   in upright small type, mirroring `.part-epigraph .attr`. */
+blockquote.chapter-epigraph { background: transparent; max-width: 34rem; margin: 1.6rem 0 2rem;
+                               padding: 0.2rem 0 0.2rem 1.1rem; border-left: 3px solid var(--rule);
+                               color: var(--muted); font-style: italic; }
+blockquote.chapter-epigraph p { margin: 0; }
+blockquote.chapter-epigraph p:last-child:not(:only-child) { margin-top: 0.5rem; font-style: normal;
+                                                             font-size: 14px; }
 /* APPARATUS ONE-PAGER — a front-matter reference apparatus (how-to-read) framed as one distinct, offset
    item so it does not read as a continuation of the preceding chapter. A hairline box on a tinted panel
    with an accent top-rule (the "this is an apparatus, not running prose" marker) and a top/bottom margin
@@ -752,9 +762,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a href="7.2-software-rejoins-engineering.html"><span class="cnum">33</span>MAGE in the Engineering Tradition</a></li>
 <li><a href="7.3-education-research-open-problems.html"><span class="cnum">34</span>The Engineer</a></li>
 <li><a href="7.4-what-cannot-be-delegated.html"><span class="cnum"> •</span>What Cannot Be Delegated?</a></li>
-</ol><div class="part">Conclusion</div>
+</ol>
 <ol>
-<li><a href="8.1-the-part-that-stays-yours.html"><span class="cnum"> •</span>The Part That Stays Yours</a></li>
+<li><a href="8.1-the-part-that-stays-yours.html"><span class="cnum"> •</span>Conclusion</a></li>
 </ol><div class="part">Appendix Part I — Practice</div>
 <ol>
 <li><a href="appendix-part-1-practice.html"><span class="cnum"> •</span>Appendix Part I — Practice</a></li>

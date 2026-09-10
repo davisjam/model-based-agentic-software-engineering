@@ -333,6 +333,17 @@ MARKER_KEYWORDS = (
     # `<!-- pullquote -->` — arms the NEXT blockquote as a label-less pull-quote (large centered
     #   emphasis, no fill/border box). [INFRA-1], part6-apply-SPEC-260807.md §C-1/§F.
     "pullquote",
+    # `<!-- epigraph -->` — arms the NEXT blockquote as an INLINE chapter epigraph: a visually-modest
+    #   italic quotation in the MAIN column with its attribution line beneath (the blockquote's last
+    #   paragraph, authored with an em-dash lead) — never the right-rail sidenote the plain-blockquote
+    #   inference would produce. Founding use: the Conclusion's Tennyson opener. The Typst emitter
+    #   consumes the marker as an inert directive; its plain in-column `#quote` was already correct.
+    "epigraph",
+    # `<!-- inline-quote -->` — pins the NEXT blockquote to the MAIN reading column as an ordinary
+    #   inline quotation (the base blockquote look), overriding the sidenote inference that would float
+    #   it into the right rail. For a quote that is part of the argument, not marginalia (founding use:
+    #   the Conclusion's central question). Inert in Typst like `epigraph` — print already sets it in-column.
+    "inline-quote",
     # `<!-- principlebox -->` — arms the NEXT blockquote as a part-opener THESIS box: the green
     #   `thesis-box` panel with a full 4-side frame and, when the block leads with a `### TITLE`
     #   heading, a centered ALLCAPS title-bar reusing the green thesis tokens. Mirrors `pullquote`
@@ -490,7 +501,7 @@ _PART_TITLES = {
     5: "The Evidence",
     6: "The Theory",
     7: "The Profession",
-    8: "Conclusion",   # the top-level Conclusion's part title — the divider/kicker line above "The Part That Stays Yours"
+    8: "Conclusion",   # the top-level Conclusion — its sole page is titled "Conclusion" too (subtitle dropped 260909), so the header/TOC/divider dedup branches suppress the double print
 }
 
 # The DO-ladder question each numbered Part answers — printed on the Part-opener orientation verso (the
@@ -518,9 +529,10 @@ _PART_OPENER_QUESTIONS = {
 # to-Work opener the working method of that part (candidates a human editor may swap). The
 # Ecclesiastes line that once opened Part 5 now lands only in the conclusion, where it sets up the
 # closing "machines search, not wisdom" — kept to one appearance to avoid the reader meeting it twice.
-# The book carries its epigraphs inline — the top-level Conclusion opens on a Tennyson / Ecclesiastes
-# pair, placed inline there. The per-Part opener epigraphs were removed (author's call); this map stays empty so
-# `_epigraph_html` is a no-op for every Part.
+# The book carries its epigraphs inline — the top-level Conclusion opens on a Tennyson quote, placed
+# inline in its main column by the authored `<!-- epigraph -->` marker (see MARKER_KEYWORDS /
+# `.chapter-epigraph`), not through this map. The per-Part opener epigraphs were removed (author's
+# call); this map stays empty so `_epigraph_html` is a no-op for every Part.
 _PART_EPIGRAPHS: dict[int, tuple[str, str]] = {}
 
 _PART_CHAP_RE = re.compile(r"^(\d+)\.(\d+)-")
@@ -1441,6 +1453,8 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
     pending_label: list[str] = []           # a `<!-- label: … -->` cross-ref key armed for the next float
     pending_def: list[str] = []             # a core-term `index-def` armed for the next block (→ def-box)
     pending_pullquote: list[bool] = []      # a `<!-- pullquote -->` marker armed for the next blockquote
+    pending_epigraph: list[bool] = []       # an `<!-- epigraph -->` marker armed for the next blockquote (inline chapter epigraph)
+    pending_inlinequote: list[bool] = []    # an `<!-- inline-quote -->` marker armed for the next blockquote (main-column quote)
     pending_principlebox: list[bool] = []      # a `<!-- principlebox -->` marker armed for the next blockquote (part-opener box)
     pending_boxfamily: list[str] = []       # a `<!-- box-family: X -->` marker armed for the next blockquote (four-family grammar)
     pending_insetdomain: list[str] = []     # a `<!-- inset-domain: TAG -->` marker armed for the next inset (provenance badge)
@@ -1570,6 +1584,17 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
                 # here so the marker never reaches reader-visible output (mirrors the `pullquote` arming
                 # just above, same dispatch family). Full-string match — the bare no-arg idiom.
                 pending_principlebox.append(True)
+                return True
+            if s == "<!-- epigraph -->":
+                # `<!-- epigraph -->` — arms the NEXT blockquote as an INLINE chapter epigraph (main
+                # column, `.chapter-epigraph`), overriding the plain-blockquote sidenote inference.
+                # Consumed here like its `pullquote` sibling so the marker never leaks.
+                pending_epigraph.append(True)
+                return True
+            if s == "<!-- inline-quote -->":
+                # `<!-- inline-quote -->` — pins the NEXT blockquote to the MAIN reading column (an
+                # ordinary inline quotation, never the right-rail sidenote). Consumed like `epigraph`.
+                pending_inlinequote.append(True)
                 return True
             if inner.startswith("box-family:"):
                 # `<!-- box-family: X -->` — arms the four-family visual treatment for the NEXT blockquote.
@@ -1730,6 +1755,10 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
         pending_def.clear()
         pullquote_armed = bool(pending_pullquote)
         pending_pullquote.clear()
+        epigraph_armed = bool(pending_epigraph)
+        pending_epigraph.clear()
+        inlinequote_armed = bool(pending_inlinequote)
+        pending_inlinequote.clear()
         principlebox_armed = bool(pending_principlebox)
         pending_principlebox.clear()
         boxfamily_armed = pending_boxfamily[0] if pending_boxfamily else None
@@ -1774,6 +1803,7 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
         if kind is _ir.BlockKind.BLOCKQUOTE:
             _emit(_render_blockquote(block, is_def=def_armed, is_pullquote=pullquote_armed,
                                      is_principlebox=principlebox_armed,
+                                     is_epigraph=epigraph_armed, is_inline_quote=inlinequote_armed,
                                      box_family=boxfamily_armed, inset_domain=insetdomain_armed,
                                      box_weight=boxweight_armed))
             continue
@@ -2038,7 +2068,8 @@ BOX_WEIGHTS = ("aside", "callout", "deep-dive")
 
 
 def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = False,
-                       is_principlebox: bool = False, box_family: "str | None" = None,
+                       is_principlebox: bool = False, is_epigraph: bool = False,
+                       is_inline_quote: bool = False, box_family: "str | None" = None,
                        inset_domain: "str | None" = None, box_weight: "str | None" = None) -> str:
     """A blockquote (every line starts with `>`) → a classified `<blockquote>`. Its inner content is itself
     markdown (heading + prose + a `> ```mermaid ``` fence), rendered recursively; an inner heading is demoted
@@ -2046,8 +2077,11 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
     marker (`box_family` ∈ {canonical, inset, model-card, evidence}) OUTRANKS all shape inference: it forces
     the `box-<family>` class of the four-family visual grammar (box-grammar-IMPL-260823), with an
     `inset-domain` provenance badge on insets (a `CAVEAT` badge for the §6.5 conjecture box) and a MODEL CARD
-    corner on model cards. Absent a family marker, the class is picked by shape: an explicit `<!-- pullquote -->`
-    marker (`is_pullquote`) → the label-less `pull-quote` (checked first — an author declaration outranks
+    corner on model cards. Absent a family marker, the class is picked by shape: an explicit `<!-- epigraph -->`
+    (`is_epigraph` → the inline `chapter-epigraph`) or `<!-- inline-quote -->` (`is_inline_quote` → the
+    main-column `quote-inline`) marker is checked first — each pins the quote to the reading column so the
+    plain-blockquote sidenote inference below can never rail-float it; then an explicit `<!-- pullquote -->`
+    marker (`is_pullquote`) → the label-less `pull-quote` (an author declaration outranks
     lead-text inference); an explicit `<!-- principlebox -->` marker (`is_principlebox`) → the green
     `thesis-box` panel, checked BEFORE the concept-inset title test so a TITLED part-opener box (whose
     `### TITLE` demotes to an `inset-title`) is not mis-read as a concept-inset; a demoted label →
@@ -2081,7 +2115,15 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
         elif box_family == "model-card":
             furniture = '<span class="box-corner">MODEL CARD</span>'
         return f'<blockquote class="box-{box_family}{weight_cls}">{furniture}{weight_label}{inner_html}</blockquote>'
-    if is_pullquote:
+    if is_epigraph:
+        # An author-declared INLINE chapter epigraph (`<!-- epigraph -->`) — main column, italic
+        # quotation with the attribution paragraph beneath; never the sidenote rail.
+        klass = "chapter-epigraph"
+    elif is_inline_quote:
+        # An author-declared main-column quote (`<!-- inline-quote -->`) — the base blockquote look,
+        # pinned to the reading column; the class names the routing (no dedicated CSS).
+        klass = "quote-inline"
+    elif is_pullquote:
         klass = "pull-quote"
     elif is_principlebox:
         klass = "thesis-box"
@@ -2189,6 +2231,16 @@ header.chap h1 .chap-num {{ color: var(--muted); font-weight: 600; font-variant-
                   color: var(--muted); font-style: italic; }}
 .part-epigraph .attr {{ display: block; margin-top: 0.5rem; font-style: normal; font-size: 14px;
                         color: var(--muted); }}
+/* INLINE CHAPTER EPIGRAPH (a blockquote armed by the `epigraph` marker) — a visually-modest opener quote in the
+   MAIN column (never the sidenote rail): italic quotation on the part-epigraph geometry (no panel fill),
+   with the attribution paragraph (the blockquote's LAST <p>, authored with an em-dash lead) set beneath
+   in upright small type, mirroring `.part-epigraph .attr`. */
+blockquote.chapter-epigraph {{ background: transparent; max-width: 34rem; margin: 1.6rem 0 2rem;
+                               padding: 0.2rem 0 0.2rem 1.1rem; border-left: 3px solid var(--rule);
+                               color: var(--muted); font-style: italic; }}
+blockquote.chapter-epigraph p {{ margin: 0; }}
+blockquote.chapter-epigraph p:last-child:not(:only-child) {{ margin-top: 0.5rem; font-style: normal;
+                                                             font-size: 14px; }}
 /* APPARATUS ONE-PAGER — a front-matter reference apparatus (how-to-read) framed as one distinct, offset
    item so it does not read as a continuation of the preceding chapter. A hairline box on a tinted panel
    with an accent top-rule (the "this is an apparatus, not running prose" marker) and a top/bottom margin
@@ -2924,7 +2976,11 @@ def toc_html(chapters: list[dict], current_slug: str | None) -> str:
     last_part = None
     for c in chapters:
         if c["part"] != last_part:
-            rows.append(f'<li class="part">{html.escape(_part_label(c))}</li>')
+            # A matter part whose sole page carries the part's own name (the Conclusion) — the group
+            # row would duplicate the chapter link directly beneath it; skip the row, keep the link
+            # (the link is what the reachability gate counts).
+            if not (c.get("is_matter") and _part_label(c) == c["chapter_title"]):
+                rows.append(f'<li class="part">{html.escape(_part_label(c))}</li>')
             last_part = c["part"]
         cls = "current" if c["slug"] == current_slug else ""
         rows.append(
@@ -2979,6 +3035,11 @@ def _kicker_html(chapters: list[dict], idx: int, num_label: str) -> str:
         f'aria-label="Beginning of {html.escape(_part_label(c), quote=True)}">{part_text}</a>'
     )
     if c.get("is_appendix") or c.get("is_matter"):
+        # A matter page whose title IS its part label (the top-level Conclusion, whose sole page is
+        # titled "Conclusion") would print the same word as eyebrow and H1; drop the kicker (the
+        # header omits an empty kicker div) and let the title stand alone.
+        if c.get("is_matter") and _part_label(c) == c["chapter_title"]:
+            return ""
         return part_link
     # Numbered chapter — the second half links to the whole-book Contents (chapter list).
     chap_link = (
@@ -7318,8 +7379,11 @@ def build() -> int:
                     else f'{c["part"]}.{c["chapter"]}')
         chap_num_html = f'<span class="chap-num">{html.escape(chap_num)}</span> ' if chap_num else ""
         header = (
-            f'<header class="chap"><div class="kicker">{kicker}</div>'
-            f'<h1>{chap_num_html}{inline(c["chapter_title"])}</h1>'
+            '<header class="chap">'
+            # An empty kicker (a matter page whose title is its part label — the Conclusion) drops the
+            # eyebrow div entirely rather than shipping an empty landmark above the H1.
+            + (f'<div class="kicker">{kicker}</div>' if kicker else "")
+            + f'<h1>{chap_num_html}{inline(c["chapter_title"])}</h1>'
             + (_epigraph_html(c["part"]) if c.get("show_epigraph") else "")
             + '</header>'
         )
@@ -7396,7 +7460,12 @@ def build() -> int:
     last_part = None
     for c in chapters:
         if c["part"] != last_part:
-            idx_rows.append(f'<div class="part">{html.escape(_part_label(c))}</div>')
+            # Same dedup as `toc_html`: a matter part whose sole page carries the part's own name (the
+            # Conclusion) skips the group header — the entry beneath already says it. The (possibly
+            # empty) header string still occupies a row so the `</ol>` splice below stays positional.
+            _hdr = ("" if (c.get("is_matter") and _part_label(c) == c["chapter_title"])
+                    else f'<div class="part">{html.escape(_part_label(c))}</div>')
+            idx_rows.append(_hdr)
             idx_rows.append("<ol>")
             if last_part is not None:
                 idx_rows[-2] = "</ol>" + idx_rows[-2]

@@ -1616,7 +1616,16 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     # entry comes from the divider) and EVERY appendix content page (an appendix's A/B letter divider is the
     # Contents entry; its front-door duplicate title and its A.1/A.2 sections are the "sections" the Contents
     # deliberately omits — depth = parts + chapters only).
-    if is_part_page or is_appendix_divider:
+    # A matter chapter whose own title duplicates the part-divider heading directly above it (the
+    # top-level Conclusion, retitled bare "Conclusion" — subtitle dropped 260909): the divider already
+    # displays the title on the same page, so the level-2 chapter heading and its Contents marker would
+    # print it twice. Render neither — the divider IS the title (mirrors the Part-landing-page shape).
+    # Part 0 emits no divider, so front matter never takes this branch; the synthetic back matter's
+    # part is outside _PART_TITLES, so `.get` returns None and its chapters keep their headings.
+    title_dup_of_divider = (chapter.part != 0
+                            and (chapter.part in bb._MATTER_PARTS or getattr(chapter, "is_matter", False))
+                            and chapter.title == bb._PART_TITLES.get(chapter.part))
+    if is_part_page or is_appendix_divider or title_dup_of_divider:
         out: list[str] = []
     elif is_appendix:
         out = [title_line, ""]
@@ -2797,8 +2806,9 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     is_numbered = (part in part_titles and part <= 7
                    and part not in bb._MATTER_PARTS and not getattr(ch, "is_matter", False))
     if part == 8:
-        # The top-level Conclusion (matter). A bare title heading (no "Part N" kicker, no nav label) — the
-        # bookmark PARENT under which "The Part That Stays Yours" (level-2) nests.
+        # The top-level Conclusion (matter). A bare title heading (no "Part N" kicker, no nav label). Its
+        # sole page is itself titled "Conclusion" (subtitle dropped 260909), so `render_chapter` suppresses
+        # the level-2 chapter heading — this divider heading is the one printed "Conclusion".
         kicker, title = "", part_titles.get(8, "Conclusion")
     elif part == bb._INTERLUDE_PART:
         # The Interlude (matter, between Parts 3 and 4). A bare "Interlude" divider — the bookmark PARENT

@@ -108,6 +108,16 @@ header.chap h1 .chap-num { color: var(--muted); font-weight: 600; font-variant-n
                   color: var(--muted); font-style: italic; }
 .part-epigraph .attr { display: block; margin-top: 0.5rem; font-style: normal; font-size: 14px;
                         color: var(--muted); }
+/* INLINE CHAPTER EPIGRAPH (a blockquote armed by the `epigraph` marker) — a visually-modest opener quote in the
+   MAIN column (never the sidenote rail): italic quotation on the part-epigraph geometry (no panel fill),
+   with the attribution paragraph (the blockquote's LAST <p>, authored with an em-dash lead) set beneath
+   in upright small type, mirroring `.part-epigraph .attr`. */
+blockquote.chapter-epigraph { background: transparent; max-width: 34rem; margin: 1.6rem 0 2rem;
+                               padding: 0.2rem 0 0.2rem 1.1rem; border-left: 3px solid var(--rule);
+                               color: var(--muted); font-style: italic; }
+blockquote.chapter-epigraph p { margin: 0; }
+blockquote.chapter-epigraph p:last-child:not(:only-child) { margin-top: 0.5rem; font-style: normal;
+                                                             font-size: 14px; }
 /* APPARATUS ONE-PAGER — a front-matter reference apparatus (how-to-read) framed as one distinct, offset
    item so it does not read as a continuation of the preceding chapter. A hairline box on a tinted panel
    with an accent top-rule (the "this is an apparatus, not running prose" marker) and a top/bottom margin
@@ -743,8 +753,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="7.2-software-rejoins-engineering.html">33&nbsp; MAGE in the Engineering Tradition</a></li>
 <li><a class="" href="7.3-education-research-open-problems.html">34&nbsp; The Engineer</a></li>
 <li><a class="" href="7.4-what-cannot-be-delegated.html">What Cannot Be Delegated?</a></li>
-<li class="part">Conclusion</li>
-<li><a class="" href="8.1-the-part-that-stays-yours.html">The Part That Stays Yours</a></li>
+<li><a class="" href="8.1-the-part-that-stays-yours.html">Conclusion</a></li>
 <li class="part">Appendix Part I — Practice</li>
 <li><a class="" href="appendix-part-1-practice.html">Appendix Part I — Practice</a></li>
 <li class="part">Appendix A — MAGE Engineering Stacks</li>
@@ -915,7 +924,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><span class="idx-term">Gate</span> <span class="idx-refs"><a href="3.3-constraints-sensors-validators-gates.html">Ch. 15</a>, <a href="5.4-failures-that-became-infrastructure.html">Ch. 26</a>, <a href="0.1-how-to-read-this-book.html">How to Read This Book</a>, <a href="0.4-the-books-language.html">Glossary</a></span></li>
 <li><span class="idx-term">Gating</span> <span class="idx-refs"><a href="3.2-models-and-the-semantic-gap.html">Ch. 14</a>, <a href="3.3-constraints-sensors-validators-gates.html">Ch. 15</a>, <a href="4.1-the-mage-workflow.html">Ch. 18</a>, <a href="4.2-brownfield.html">Ch. 19</a></span></li>
 <li class="idx-concept"><span class="idx-term">Generative validation</span><span class="idx-subs"><span class="idx-sub"><span class="idx-sub-lead">definition of:</span> <a href="4.3-validating-change.html#idx-def-generative-validation">Ch. 20</a></span></span></li>
-<li class="idx-concept"><span class="idx-term">Governance as design patterns</span><span class="idx-subs"><span class="idx-sub"><span class="idx-sub-lead">definition of:</span> <a href="8.1-the-part-that-stays-yours.html#idx-def-governance-as-design-patterns">The Part That Stays Yours</a></span></span></li>
+<li class="idx-concept"><span class="idx-term">Governance as design patterns</span><span class="idx-subs"><span class="idx-sub"><span class="idx-sub-lead">definition of:</span> <a href="8.1-the-part-that-stays-yours.html#idx-def-governance-as-design-patterns">Conclusion</a></span></span></li>
 <li class="idx-concept"><span class="idx-term">Governance conversion</span><span class="idx-subs"><span class="idx-sub"><span class="idx-sub-lead">definition of:</span> <a href="3.4-governance-conversion.html#idx-def-governance-conversion">Ch. 16</a></span><span class="idx-sub"><span class="idx-sub-lead">examples of:</span> <a href="4.1-the-mage-workflow.html#idx-ex-governance-conversion-1">Ch. 18</a></span></span></li>
 <li class="idx-concept"><span class="idx-term">Governance mechanism</span><span class="idx-subs"><span class="idx-sub"><span class="idx-sub-lead">definition of:</span> <a href="3.3-constraints-sensors-validators-gates.html#idx-def-governance-mechanism">Ch. 15</a></span></span></li>
 <li class="idx-concept"><span class="idx-term">Governance package</span><span class="idx-subs"><span class="idx-sub"><span class="idx-sub-lead">definition of:</span> <a href="3.3-constraints-sensors-validators-gates.html#idx-def-governance-package">Ch. 15</a></span></span></li>
