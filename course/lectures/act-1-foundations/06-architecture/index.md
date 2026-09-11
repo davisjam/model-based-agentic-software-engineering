@@ -23,7 +23,7 @@ status: draft
 materials: []
 ---
 
-**Premise.** *The purpose of architecture is to organize a system so that the many competing obligations of its specification can be realized together. When multiple approaches to a system are possible, engineers must consider their alternatives and assess their consequences analytically.*
+**Premise.** *The purpose of architecture is to organize a system so that the many competing obligations of its specification can be realized together. When multiple organizations satisfy the specification, engineers must compare the alternatives, analyze their consequences, and decide which tradeoffs are appropriate.*
 
 A specification tells us what an acceptable realization must accomplish, but it deliberately leaves many choices about the system's organization open. Those choices matter because obligations such as performance, security, reliability, and expected change can interact: an organization that serves one property well may make another harder to achieve.
 
