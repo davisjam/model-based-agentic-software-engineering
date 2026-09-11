@@ -10,11 +10,11 @@ instructor_notes: ""
 status: ready
 ---
 
-Engineering is understood here as the discipline of designing under goals, constraints, and trade-offs by reasoning about what a proposed solution may do, what it must do, and what evidence supports those beliefs. Software engineering applies that discipline to software systems.
+Engineering is the discipline of making consequential decisions under goals, constraints, trade-offs, and uncertainty. Software engineering applies that discipline to software systems: understanding what a system must accomplish, choosing among possible realizations, and developing evidence that the resulting system will do what we expect.
 
-Most universities offer coursework in software engineering. Most of those courses, however, have not yet been updated for a world in which students and practicing engineers routinely work with GenAI. The fundamentals remain important, but the capabilities available to engineers—and therefore how those fundamentals are practiced—are changing.
+GenAI gives software engineers remarkable new capabilities for exploring alternatives, constructing systems, analyzing them, and gathering evidence about their behavior. These capabilities create new opportunities for teaching the enduring foundations of software engineering through the decisions engineers actually make: what to build, how to specify it, how to organize and design it, how to determine whether it works, and how to evolve it responsibly.
 
-This website provides reusable materials for teaching software engineering using MAGE (Model-Based Agentic Software Engineering). The materials teach the fundamentals while acknowledging and making use of GenAI capabilities. MAGE itself is developed in full in the **[textbook](https://davisjam.github.io/model-based-agentic-software-engineering/book/)**.
+Teach with MAGE provides reusable materials for teaching software engineering from this perspective. The lectures, semester project, and assessments combine established software engineering foundations with contemporary GenAI-enabled practice. The underlying approach—MAGE (Model-Based Agentic Software Engineering)—is developed in full in the **[textbook](https://davisjam.github.io/model-based-agentic-software-engineering/book/)**.
 
 The materials are:
 
