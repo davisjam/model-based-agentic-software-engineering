@@ -8,17 +8,17 @@ to the profession: first to how abundant implementation reorganizes software wor
 MAGE's relationship with older engineering and computing traditions, and finally to the engineer's
 expertise, authority, education, and responsibility.
 
-Delegation changes what engineers do. It does not remove their answerability for what they build.
+Delegation changes what engineers do and how they exercise control. It does not remove their responsibility for what they build.
 
 <!-- principlebox -->
 <!-- box-family: canonical -->
 > ### The synthesis
 >
 > When implementation becomes abundant, software engineering does not disappear. Its scarce work moves.
-> Engineers spend proportionally less effort producing routine realization and more deciding what must be
-> true, choosing representations that make consequential properties understandable, establishing
-> evidence, allocating authority, coordinating autonomous work, and accepting responsibility for the
-> resulting system.
+> Engineers can delegate more realization while remaining responsible for the resulting system. Their
+> work increasingly centers on retaining informed control: deciding what must be true, choosing
+> representations that make consequential properties understandable, establishing evidence, allocating
+> authority, coordinating autonomous work, and accepting consequential tradeoffs.
 
 **Carrying forward:** Theory of MAGE · Governed Engineering Environment · Engineering capital · Modeling ·
 Alignment · Degrees of freedom

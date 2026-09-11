@@ -17,7 +17,9 @@ enforcing consequential engineering decisions across many changes.
 >
 > Engineering effort concentrates around what limits reliable production. As implementation
 > capacity becomes cheaper and more abundant, judgment, representation, evidence, and enforcement
-> become relatively scarcer. Engineering effort moves with the constraint.
+> become relatively scarcer. Engineers can delegate more realization work, but remain responsible
+> for retaining sufficient control over the resulting system. Engineering effort moves with the
+> constraint.
 
 Abundance does not make implementation unimportant; it changes where additional engineering effort
 earns the greatest return. A factory with unlimited machine capacity and one inspector has not

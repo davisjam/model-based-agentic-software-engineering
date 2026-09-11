@@ -54,7 +54,7 @@
           "heading_text": "Why MAGE? Why Models?",
           "topic_sentence": "One way to understand MAGE—Model-Based Agentic Software Engineering—is as a classical software-engineering move: **add a level of indirection.**[^indirection]",
           "id_source": "derived",
-          "block_index": 9,
+          "block_index": 10,
           "points": []
         },
         {
@@ -63,7 +63,7 @@
           "heading_text": "Where the theory came from",
           "topic_sentence": "This book began with one hard engineering problem that emerged over months of building a real production system.",
           "id_source": "derived",
-          "block_index": 22,
+          "block_index": 23,
           "points": []
         },
         {
@@ -72,7 +72,7 @@
           "heading_text": "The new bottleneck",
           "topic_sentence": "Agents can produce changes much faster than the surrounding environment can understand or govern them.",
           "id_source": "derived",
-          "block_index": 25,
+          "block_index": 26,
           "points": []
         },
         {
@@ -81,7 +81,7 @@
           "heading_text": "The originating system",
           "topic_sentence": "This book began with DocAble, a production service for remediating inaccessible documents.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 33,
           "points": []
         },
         {
@@ -90,7 +90,7 @@
           "heading_text": "Evidence and scope",
           "topic_sentence": "MAGE draws on two kinds of evidence.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 39,
           "points": []
         },
         {
@@ -99,7 +99,7 @@
           "heading_text": "What the method turned out to be",
           "topic_sentence": "Two principles organize MAGE:",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 41,
           "points": []
         },
         {
@@ -108,7 +108,7 @@
           "heading_text": "Who this book is for",
           "topic_sentence": "This book is for software engineers who suspect the ground has moved and want to know where to stand.",
           "id_source": "derived",
-          "block_index": 47,
+          "block_index": 48,
           "points": []
         }
       ],
@@ -124,32 +124,32 @@
           "heading_text": "The Engineering Object",
           "topic_sentence": "Agent products and foundation models will continue to change.[note: Engineering predates machine learning in its use of models as purposeful representations of systems.",
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 16,
           "points": [
             {
               "slug": "the-agent-is-not-the-engineering-object",
               "text": "Foundation models and agent products keep changing; the durable engineering problem begins when an agent works autonomously where \"it usually works\" is not an acceptable standard.",
-              "block_index": 16
+              "block_index": 17
             },
             {
               "slug": "the-object-of-engineering-expands-beyond-implementation",
               "text": "The object of engineering expands beyond the implementation to the environment through which autonomous work proceeds: what the agent can know, what it may do, what evidence it must produce, and which obligations the environment will enforce.",
-              "block_index": 18
+              "block_index": 19
             },
             {
               "slug": "mage-is-about-that-environment",
               "text": "MAGE is principally about that environment; the method lies in the representations agents and engineers reason through, the mechanisms that enforce obligations, and the judgment that decides what should become durable engineering structure.",
-              "block_index": 20
+              "block_index": 21
             },
             {
               "slug": "modeling-and-alignment-supply-the-instruction-package",
               "text": "Modeling and Alignment supply the printer's missing instruction halves.",
-              "block_index": 22
+              "block_index": 23
             },
             {
               "slug": "mage-accepts-the-lesson-changes-the-level",
               "text": "External representation, memory, and tools have long improved machine reasoning; MAGE changes the engineering object: the engineered environment through which autonomous work proceeds over time.",
-              "block_index": 29
+              "block_index": 30
             }
           ]
         },
@@ -159,32 +159,32 @@
           "heading_text": "Suspect the Setup First",
           "topic_sentence": "The Printer suggests a useful diagnostic rule: suspect the engineered setup before inferring a machine limit.",
           "id_source": "explicit",
-          "block_index": 31,
+          "block_index": 32,
           "points": [
             {
               "slug": "suspect-the-engineered-setup-before-a-machine-limit",
               "text": "The Printer suggests a diagnostic rule: suspect the engineered setup before inferring a machine limit.",
-              "block_index": 33
+              "block_index": 34
             },
             {
               "slug": "a-failed-part-has-several-diagnoses",
               "text": "A failed part can reveal several different problems.",
-              "block_index": 35
+              "block_index": 36
             },
             {
               "slug": "inferred-completion-is-not-explicit",
               "text": "Inferred completion is not an explicit specification.",
-              "block_index": 37
+              "block_index": 38
             },
             {
               "slug": "inspect-what-the-engineer-controlled-first",
               "text": "When an agent produces the wrong result, inspect first what the engineer controlled — instructions, representation, task boundary, tools, evidence; failed output alone does not establish that the foundation model lacks the capability.",
-              "block_index": 39
+              "block_index": 40
             },
             {
               "slug": "velocity-amplifies-sound-and-bad-engineering-alike",
               "text": "Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike.",
-              "block_index": 41
+              "block_index": 42
             }
           ]
         }
@@ -213,12 +213,12 @@
         {
           "slug": "leverage-moves-into-the-environment",
           "text": "As implementation becomes abundant, engineering leverage moves toward the instructions, representations, constraints, evidence, and infrastructure that shape autonomous work.",
-          "block_index": 10
+          "block_index": 11
         },
         {
           "slug": "gee-is-the-engineered-instruction-set",
           "text": "The governed environment is the printer's engineered instruction set.",
-          "block_index": 12
+          "block_index": 13
         }
       ]
     },
@@ -5632,7 +5632,7 @@
             },
             {
               "slug": "representation-has-oversight-value-beyond-realization",
-              "text": "These experiments measure representation's value to realization; it may still matter for oversight even when capability grows.",
+              "text": "These experiments measure representation's value to realization; it may still matter for engineering control even when capability grows.",
               "block_index": 34
             }
           ]
@@ -5972,7 +5972,7 @@
           "heading_text": "Model-First Engineering",
           "topic_sentence": "The Siemens reconstruction illustrates what this looks like in a model-first engineering culture.",
           "id_source": "derived",
-          "block_index": 5,
+          "block_index": 6,
           "points": []
         },
         {
@@ -5981,7 +5981,7 @@
           "heading_text": "Why Software Came Late to Model-First Engineering",
           "topic_sentence": "Software's economics differed from those of older engineering disciplines.",
           "id_source": "derived",
-          "block_index": 9,
+          "block_index": 10,
           "points": []
         },
         {
@@ -5990,27 +5990,27 @@
           "heading_text": "The Language of Engineering",
           "topic_sentence": "Models are the language of engineering.",
           "id_source": "derived",
-          "block_index": 16,
+          "block_index": 17,
           "points": [
             {
               "slug": "software-has-a-complicated-relationship-with-that-separation",
               "text": "Code is unusually expressive, precise, executable, and cheap to change, so implementation itself could carry much of the design; but the same malleability lets architecture, intent, constraints, and operational knowledge stay implicit in an artifact whose structure is continually changing.",
-              "block_index": 19
+              "block_index": 20
             },
             {
               "slug": "software-repeatedly-develops-disciplines-that-recover-or-maintain-structure",
               "text": "Requirements engineering, architecture, type systems and IRs, formal methods, and model-driven approaches all share one move — represent the property at a level where it can be reasoned about.",
-              "block_index": 21
+              "block_index": 22
             },
             {
               "slug": "mage-makes-greater-use-of-that-move-because-the-economics-changed",
               "text": "When implementation was expensive, another representation had to justify its synchronization cost; when implementation is cheap and agents can construct, reconcile, query, and maintain representations, moving engineering knowledge out of the implementation becomes economical.",
-              "block_index": 23
+              "block_index": 24
             },
             {
               "slug": "the-separation-is-not-absolute",
               "text": "Implementation remains an important source of truth and not every representation need become authoritative; the point is that code need no longer simultaneously be the realization, the repository of system knowledge, and the surface over which reasoning occurs.",
-              "block_index": 25
+              "block_index": 26
             }
           ]
         },
@@ -6020,7 +6020,7 @@
           "heading_text": "What Happened to the Cost?",
           "topic_sentence": "Software models have always faced an economic test: the reasoning or assurance they provide must repay the cost of constructing and maintaining them.",
           "id_source": "derived",
-          "block_index": 28,
+          "block_index": 29,
           "points": []
         },
         {
@@ -6029,12 +6029,12 @@
           "heading_text": "What MAGE Claims Is New",
           "topic_sentence": "MAGE does not claim to have discovered models, constraints, verification, external memory, structured reasoning, or autonomous software agents.",
           "id_source": "derived",
-          "block_index": 31,
+          "block_index": 32,
           "points": [
             {
               "slug": "what-mage-claims-is-new",
               "text": "MAGE does not claim to have discovered the components; its claim is architectural and disciplinary — redesign the environment when autonomous implementation becomes a primary productive substrate.",
-              "block_index": 32
+              "block_index": 33
             }
           ]
         },
@@ -6044,7 +6044,7 @@
           "heading_text": "Beyond Software Engineering",
           "topic_sentence": "MAGE was developed and studied in software engineering, so that is where this book's evidence lies.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 35,
           "points": []
         }
       ],
@@ -6413,7 +6413,7 @@
       "preamble_points": [
         {
           "slug": "engineers-work-is-responsibility-for-meaning",
-          "text": "The engineer's work is responsibility for what the system should mean, not the tasks machines do poorly.",
+          "text": "The engineer's work is retaining informed control and responsibility for what the system should mean, not the tasks machines do poorly.",
           "block_index": 1
         }
       ]
