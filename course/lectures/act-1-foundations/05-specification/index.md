@@ -41,11 +41,9 @@ Alspaugh et al.'s *Software Requirements for the A-7E Aircraft* shows what this 
 
 Three features are especially instructive.
 
-First, the specification constrains detailed externally visible behavior without prescribing the code that produces it. Modes, conditions, events, and required responses make behavioral cases inspectable while leaving realization choices open.
-
-Second, the specification requires the system to support useful subsets. Functionality can be added or removed while preserving the retained subset, ruling out realizations whose behavior is correct only when the complete system is assembled. A specification-level obligation can therefore have architectural consequences without prescribing one architecture.
-
-Third, the document distinguishes assumptions designers may treat as stable from changes they should anticipate. Expected change is itself engineering information: two implementations that behave identically today may differ substantially in how well they accommodate tomorrow's expected changes.
+1. The specification constrains detailed externally visible behavior without prescribing the code that produces it. Modes, conditions, events, and required responses make behavioral cases inspectable while leaving realization choices open.
+2. The specification requires the system to support useful subsets. Functionality can be added or removed while preserving the retained subset, ruling out realizations whose behavior is correct only when the complete system is assembled. A specification-level obligation can therefore have architectural consequences without prescribing one architecture.
+3. The document distinguishes assumptions designers may treat as stable from changes they should anticipate. Expected change is itself engineering information: two implementations that behave identically today may differ substantially in how well they accommodate tomorrow's expected changes.
 
 ## From case to principle: one system, many views
 
