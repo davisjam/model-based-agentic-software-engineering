@@ -30,6 +30,22 @@ like isolated pages of a report.
 -   Prefer concrete cases before or alongside abstraction. Return from
     the case to the principle explicitly.
 
+## House typography and punctuation
+
+Audience-facing slide text should read as presentation language rather than
+document prose.
+
+-   Do not end slide titles with periods. Titles are headings, claims,
+    questions, or orientation labels rather than prose paragraphs.
+-   Avoid em dashes in audience-facing slide text. Prefer a colon, comma,
+    parentheses, a line break, or a rewritten sentence according to the
+    relationship being expressed.
+-   Keep ordinary slide titles to one line. Rewrite rather than shrinking the
+    title to preserve wording.
+-   Apply punctuation consistently across comparable labels, headings, and
+    annotations. Do not let mechanically generated punctuation create visual
+    noise.
+
 # Presentation modes
 
 The supported presentation types are **lecture** and **research talk** (with lecture free to
@@ -113,6 +129,35 @@ information structure on every slide.
     supplies a concrete analogy, case, object, or narrative anchor.
 -   Prefer diagrams that expose relationships, boundaries, flows,
     hierarchy, or constraints.
+
+## Technical connectors
+
+In box-and-arrow technical diagrams, connectors are semantic objects. Their
+geometry, endpoints, direction, and visual weight should make the represented
+relationship unambiguous.
+
+-   Prefer orthogonal, right-angle connectors between rectangular components.
+    Use diagonal connectors only when the geometry itself carries meaning or an
+    orthogonal route would materially reduce clarity.
+-   Attach connectors exactly to the boundaries or native connection points of
+    the objects they relate. Do not leave arrow endpoints floating near a box.
+-   Prefer native PowerPoint connectors over independent line shapes so
+    relationships remain attached when objects move.
+-   Route connectors deliberately. Avoid crossing boxes, labels, or other
+    connectors when a clean route is available.
+-   Use sufficiently heavy connector strokes and arrowheads to remain clearly
+    visible under lecture-hall projection. Hairline arrows are not part of the
+    house style.
+-   Arrow direction must encode a real semantic relationship such as flow,
+    dependency, invocation, implementation, or control. Do not use arrows as
+    decorative glue.
+-   Keep comparable connectors visually consistent in stroke weight, arrowhead
+    size, and routing grammar.
+
+Architecture and dependency diagrams should therefore tend toward the visual
+grammar of engineering schematics rather than loosely connected infographic
+boxes.
+
 -   When showing evidence, annotate the evidence directly so the
     audience knows what to inspect.
 -   When a slide is intentionally dense, establish a clear visual path
@@ -183,6 +228,17 @@ Make simultaneous changes occur on the same click when they represent one
 conceptual transition — the new object appears while the previous object
 becomes transparent, for example. Do not force the speaker through multiple
 clicks for what the audience should perceive as one move.
+
+Animate conceptual units rather than individual drawing primitives. If several
+objects together constitute one new idea, reveal them on the same click.
+For comparison slides, a useful default sequence is:
+
+1.  establish the problem and first alternative;
+2.  reveal the second alternative;
+3.  expose the consequential difference or tradeoff.
+
+Do not reveal the conclusion before the audience has had the opportunity to
+inspect the alternatives that support it.
 
 Avoid gratuitous motion: elaborate transitions, spins, zooms, bouncing,
 3-D effects, and animation whose only purpose is novelty. Movement should

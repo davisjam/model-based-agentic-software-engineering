@@ -129,6 +129,40 @@ A useful transition answers, explicitly or implicitly:
 
 > Why are we talking about this next?
 
+### Section dividers should form a compressed argument
+
+When visible section dividers are used, read only their titles and
+commentaries in sequence. They should provide a coherent account of the
+talk's intellectual progression.
+
+A section divider should normally make clear both:
+
+1. the question, claim, or intellectual job of the movement beginning now;
+2. why that movement follows from what the audience has already established.
+
+Prefer a sequence such as:
+
+    What is X?
+    How do we choose among X?
+    Where do the alternatives come from?
+    How much can we know before acting?
+
+over a mixture such as:
+
+    What is X?
+    Choosing X
+    Patterns
+    Analysis
+
+The first sequence exposes the reasoning that connects the movements. The
+second merely names topics.
+
+A conceptual opener is not automatically the first section. An opening slide
+may establish the premise or problem that motivates the entire talk before
+the first named movement begins. When using numbered visible sections, verify
+that the audience actually encounters Section 1 before Section 2 and that the
+opener has not accidentally been asked to serve both roles.
+
 ## Treat repeated slides as representations, not pages
 
 Slides need not be unique pages in the document sense.
@@ -353,6 +387,9 @@ Does the visual sequence realize the talk's movements?
 
 Read only the slide titles.
 Is there an intelligible progression of questions and claims?
+Then perform the same test using only visible section-divider titles and
+commentaries. Do those dividers form a compressed version of the talk's
+reasoning, or merely a list of topics?
 
 Not every title must be an assertion, but a deck whose titles read only "Background / Method / Results / Discussion" is hiding most of its argument.
 

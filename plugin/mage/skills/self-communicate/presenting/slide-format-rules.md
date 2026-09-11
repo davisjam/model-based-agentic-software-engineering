@@ -33,6 +33,19 @@ defensible reason to depart from the rule.
 -   Avoid using typography alone to encode an essential semantic
     distinction.
 
+## Diagram typography
+
+-   Text inside diagrams is subject to the same 20 pt audience-text floor as
+    other audience-facing text.
+-   Treat 20 pt as especially undesirable for important diagram labels,
+    questions, and decision nodes. Increase important labels substantially
+    above the floor when space permits.
+-   Comparable labels must use consistent typography. Axis labels, peer
+    component labels, alternative headings, and repeated annotations should
+    not drift in font size, weight, or style.
+-   Do not shrink text to fit a decision diamond, process box, or other diagram
+    shape. Enlarge the shape or shorten the wording.
+
 # Titles
 
 A title should tell the audience what intellectual work the slide is
@@ -60,6 +73,14 @@ doing.
     accessibility and navigation. The structural title may be visually
     hidden when the design genuinely requires it, but it should not be
     omitted.
+
+## Title punctuation
+
+-   Do not end an ordinary slide title with a period.
+-   Avoid em dashes in audience-facing slide text. Rewrite using punctuation or
+    sentence structure appropriate to the relationship.
+-   Do not alter punctuation inside quotations, code, requirements, citations,
+    or other material being reproduced verbatim.
 
 # Layout and visual hierarchy
 
@@ -161,6 +182,30 @@ appropriately remain on the slide.
 -   When a figure evolves across slides, preserve the established visual
     frame and modify or highlight the changed portion where practical.
 
+## Connector geometry and attachment
+
+For technical box-and-arrow diagrams:
+
+-   Connectors must terminate on the objects they connect. Floating endpoints
+    are defects.
+-   Prefer native connectors attached to shape connection points rather than
+    independent line objects.
+-   Prefer orthogonal, right-angle routing between rectangular components.
+-   Use diagonal routing only when it carries meaning or clearly improves the
+    representation.
+-   Route connectors around labels and objects rather than through them.
+-   Arrowheads must terminate cleanly at the destination object and must be
+    large enough to remain perceptible at presentation distance.
+-   Connector strokes must be visibly substantial under projection. Do not use
+    hairline strokes for meaningful relationships.
+-   Comparable connectors within a diagram should use consistent stroke weight
+    and arrowhead scale.
+-   Dependency arrows, flow arrows, control arrows, and other directed
+    relationships must point in the semantically correct direction.
+
+When editing an existing diagram, redraw a poorly routed connector rather than
+merely nudging an independent line until it appears approximately attached.
+
 # Quantitative material
 
 -   Use a chart when the quantitative **pattern** matters.
@@ -239,6 +284,20 @@ Audit:
 -   When animation is essential to understanding change or sequence,
     provide a static representation or equivalent that survives
     distribution.
+
+## Conceptual build granularity
+
+A build should correspond to a conceptual change in what the audience is being
+asked to understand.
+
+-   Reveal related objects together when they form one conceptual unit.
+-   Do not require multiple clicks merely because a conceptual unit was
+    constructed from multiple PowerPoint objects.
+-   On comparison slides, normally establish the alternatives before revealing
+    the synthesized tradeoff or conclusion.
+-   When the final artifact is a complete diagram or table, prefer
+    reveal-by-masking when that preserves alignment, editability, and the final
+    static representation better than constructing the artifact incrementally.
 
 ## Speaker-note realization
 
@@ -597,6 +656,10 @@ whole.
     orientation rather than merely a topic?
 -   Does every slide have a meaningful structural title?
 -   Has any content been shrunk merely to make it fit?
+-   Does any ordinary slide title end with a period?
+-   Does audience-facing slide text contain an unnecessary em dash that should
+    be rewritten?
+-   Do comparable diagram labels use consistent typography?
 
 ## Content and hierarchy
 
@@ -616,6 +679,14 @@ whole.
 -   Is the representation visually honest?
 -   Does every meaningful visual have useful alt text?
 -   Are decorative visuals marked decorative?
+-   Do all meaningful connectors actually attach to their source and destination
+    objects?
+-   Could any diagonal box-to-box connector be routed more clearly as an
+    orthogonal connector?
+-   Are connector strokes and arrowheads heavy enough for projection?
+-   Does every directed arrow point in the semantically correct direction?
+-   Do connector routes avoid unnecessary collisions with labels, boxes, and
+    other connectors?
 
 ## Accessibility
 

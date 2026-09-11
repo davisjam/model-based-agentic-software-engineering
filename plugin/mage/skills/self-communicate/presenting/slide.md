@@ -191,6 +191,27 @@ Use the representation that naturally carries the content.
 Do not draw merely because slides are visual.
 Do not bullet-list a relationship whose important property is spatial, causal, temporal, or quantitative.
 
+## Comparisons should expose the choice
+
+When a slide teaches an alternative, pattern, design, or mechanism whose value
+depends on what it is being compared with, show the meaningful alternative.
+
+Prefer:
+
+    recurring problem → alternative A / alternative B → consequences → tradeoff
+
+over:
+
+    named pattern → diagram → list of advantages and disadvantages
+
+The comparison should make visible why a reasonable engineer might choose
+either alternative. Do not present a catalogue of named solutions when the
+learning objective is engineering judgment among them.
+
+Keep alternatives visually comparable. Do not use layout, color, checkmarks,
+or other emphasis to imply that one alternative is preferred unless the
+argument actually establishes that preference.
+
 ## Preserve information integrity
 
 Tufte's work provides the discipline for technical evidence.
