@@ -140,6 +140,10 @@ class Check(NamedTuple):
     audit_only: bool = False  # True => reports candidates but never contributes to the fail count (a
     #                            heuristic still being tuned; promote to a real gate once its FP rate is
     #                            low enough). Kept out of the "N real checks" total in the plan/summary.
+    pre_push: bool = False  # True => a CHEAP Tier-2 external (html-validate) that ALSO runs in the
+    #                          --tier1 pre-push gate, skip-if-absent — so a render bug producing invalid
+    #                          HTML is caught locally, not only in CI's --full. The expensive passes
+    #                          (axe's ~88s browser run, claude plugin validate) stay CI-only.
 
 
 def _html_changed(changed: frozenset[str]) -> bool:
@@ -530,7 +534,7 @@ CHECKS = [
     # publish scans, even on a browser-less runner where the axe pass itself SKIPs. See tests/external.py.
     Check("a11y: axe coverage set is sound (deterministic, one-per-template-family, derived)", 1,
           lambda strict: check_axe_coverage_set(strict)),
-    Check("html: validity (html-validate)", 2, check_html_valid, needs_run=_html_changed),
+    Check("html: validity (html-validate)", 2, check_html_valid, needs_run=_html_changed, pre_push=True),
     Check("external: Duality Lab logo URL returns 200 (davisjam.github.io/images/logo.svg)", 2, check_lab_logo_url),
     Check("html: axe-core accessibility", 2, check_axe, needs_run=_html_changed),
     Check("skill: claude plugin validate", 2, check_claude_validate, needs_run=_plugin_changed),
@@ -603,7 +607,8 @@ def main() -> int:
                     "authoritative pass. CI MUST use this: post-push, HEAD == origin/main, so incremental "
                     "gating would skip everything. Local predeploy stays incremental and trusts CI's green.")
     ap.add_argument("--tier1", action="store_true", help="run ALL Tier-1 deterministic checks (force, not "
-                    "incremental) and SKIP the slow Tier-2 external passes — the fast pre-push gate")
+                    "incremental) plus the cheap pre_push externals (html-validate, skip-if-absent), and "
+                    "SKIP the slow Tier-2 passes (axe, plugin validate) — the fast pre-push gate")
     ap.add_argument("--book-audit", action="store_true", help="run the AUDIT-ONLY book structural report "
                     "(visual-per-chapter, section-length, principle-woven, figure hygiene, placeholders) and "
                     "exit 0 — never contributes to the fail count. Disjoint from the pass/fail CHECKS.")
@@ -645,10 +650,13 @@ def main() -> int:
         if c.tier == 1:
             _emit(c)
     tier2 = [c for c in CHECKS if c.tier == 2]
-    if args.tier1:  # fast pre-push gate: run every Tier-1 check, skip the slow external passes entirely
+    if args.tier1:  # fast pre-push gate: every Tier-1 check + the cheap pre_push externals; skip the slow passes
         for c in tier2:
-            print(f"  [skip] (T{c.tier}) {c.label} — skipped: --tier1 gate (Tier-2 runs in CI's --full)")
-        skipped += len(tier2)
+            if c.pre_push:  # cheap external (html-validate): run it locally, skip-if-absent
+                _emit(c)
+            else:
+                print(f"  [skip] (T{c.tier}) {c.label} — skipped: --tier1 gate (Tier-2 runs in CI's --full)")
+                skipped += 1
     elif failed:  # fail-fast: skip the expensive external passes if a cheap check already failed
         for c in tier2:
             print(f"  [skip] (T{c.tier}) {c.label} — skipped: fix the failed Tier-1 check(s) first")
