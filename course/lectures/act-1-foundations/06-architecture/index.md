@@ -20,7 +20,9 @@ student_materials: []
 assignments: []
 instructor_notes: ""
 status: draft
-materials: []
+materials:
+  - title: Lecture slides — Software Architecture
+    src: 1-6-Architecture.pptx
 ---
 
 **Premise.** *The purpose of architecture is to organize a system so that the many competing obligations of its specification can be realized together. When multiple organizations satisfy the specification, engineers must compare the alternatives, analyze their consequences, and decide which tradeoffs are appropriate.*
