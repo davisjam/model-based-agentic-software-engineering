@@ -38,9 +38,9 @@ Students apply these ideas throughout a semester-long team project. Generative A
 
 ## Teaching goal
 
-The course emphasizes **engineering judgment**: students learn not only software engineering practices, but how to decide which practices fit a system and why.
+The course emphasizes **engineering control and judgment**: students learn not only software engineering practices, but how to understand and direct a complex software system, evaluate the evidence for its behavior, and decide which engineering practices and tradeoffs fit the system and why.
 
-Topics are therefore organized around engineering problems, tradeoffs, and evidence rather than as a catalog of techniques. GenAI increases the importance of this judgment by making implementation easier to delegate.
+Topics are therefore organized around engineering problems, tradeoffs, and evidence rather than as a catalog of techniques. GenAI makes this emphasis especially important because substantial implementation work can be delegated while responsibility for the resulting system cannot.
 
 MAGE provides one framework for reasoning about this shift. The course does not require adopting the MAGE framework.
 
@@ -87,7 +87,7 @@ The course uses three forms of assessment:
 - **Oral Exams:** individual explanation and defense of engineering decisions.
 - **In-class Activities:** formative practice with course concepts.
 
-The oral exams complement the team project by assessing individual understanding and judgment.
+The oral exams complement the team project by assessing each student's individual command of the system and the engineering judgment behind it.
 
 ## Reference grading scheme
 
@@ -107,7 +107,7 @@ Students remain responsible for:
 
 - the systems they submit;
 - the engineering decisions embodied in them; and
-- explaining and defending their work.
+- demonstrating sufficient command of those systems to explain, evaluate, and defend their engineering work.
 
 Delegating work to an agent does not delegate responsibility.
 
