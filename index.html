@@ -360,6 +360,10 @@
 
   .sec-h { font-family:var(--font-display); font-size:1.5rem; color:var(--ink); margin:0 0 0.5rem; }
   .sec-lead { font-size:1.02rem; line-height:1.55; color:var(--muted); max-width:44rem; margin:0 0 1.2rem; }
+  ol.v3-books { max-width:44rem; margin:0 0 1.4rem 1.2rem; padding:0; line-height:1.55; }
+  ol.v3-books li { margin:0 0 .5rem; }
+  ol.v3-books a { color:var(--accent); text-decoration:none; font-weight:600; }
+  ol.v3-books a:hover { text-decoration:underline; }
 
   /* MAGE in One Page — heading + intro sit at a readable measure; the body is an info graphic that becomes
      a two-column region (the six claims beside a sticky conceptual map) at the desktop breakpoint below. */
@@ -518,7 +522,7 @@
   <p class="v3-lead">MAGE has two principles that apply throughout the work. Modeling makes important engineering knowledge and intent explicit. Alignment makes important requirements effective by checking the work against them.</p>
   <p class="v3-lead">MAGE does not assume that engineers get everything right the first time. Software engineering routinely proceeds from incomplete, imprecise, and evolving requirements, and autonomous work exposes gaps that were not apparent in advance. MAGE therefore also emphasizes governance conversion: changing the engineering environment so that future work can inherit what was learned rather than rediscover it.</p>
   <div class="v3-hero-btns">
-    <a class="v3-btn v3-btn-primary" href="book/index.html">Read the book</a>
+    <a class="v3-btn v3-btn-primary" href="book/mage-book/index.html">Read the book</a>
     <a class="v3-btn v3-btn-secondary" href="#onepage">Learn MAGE</a>
     <a class="v3-btn v3-btn-text" href="quick-start.html">Try MAGE &#8594;</a>
   </div>
@@ -723,7 +727,7 @@
       <h2 class="claim-h">Models make important knowledge easier to reason about and reuse.</h2>
       <p>A model is a concise representation of some aspect of a system, chosen for an engineering purpose. It may be incomplete or approximate, but it must be useful for that purpose. Models let humans and agents reason about important properties without repeatedly reconstructing them from lower-level artifacts.</p>
       <p class="claim-region">In the figure: Modeling — the green region</p>
-      <p class="claim-explore"><a href="book/2.1-context-is-the-first-modeling-problem.html">Explore Modeling &#8594;</a></p>
+      <p class="claim-explore"><a href="book/mage-book/2.1-context-is-the-first-modeling-problem.html">Explore Modeling &#8594;</a></p>
     </div>
   </article>
   <article class="claim" id="claim-4">
@@ -732,7 +736,7 @@
       <h2 class="claim-h">Important requirements should actually affect the work.</h2>
       <p>It is not enough to tell an agent what matters. We must also have probabilistic and deterministic means of checking the agent's output against those requirements.</p>
       <p class="claim-region">In the figure: Alignment — the orange region</p>
-      <p class="claim-explore"><a href="book/3.3-constraints-sensors-validators-gates.html">Explore Alignment &#8594;</a></p>
+      <p class="claim-explore"><a href="book/mage-book/3.3-constraints-sensors-validators-gates.html">Explore Alignment &#8594;</a></p>
     </div>
   </article>
   <article class="claim" id="claim-5">
@@ -742,7 +746,7 @@
       <p>When failures recur or engineers repeatedly supply the same judgment, fixing the immediate result is not enough. Governance conversion changes the engineering environment so that future work can inherit what was learned rather than rediscover it.</p>
       <p>When those changes continue to save work or prevent failures, they become engineering capital. When the same reconstruction and judgment must instead be repeated, MAGE calls that engineering churn.</p>
       <p class="claim-region">In the figure: Governance conversion; Engineering Capital vs. Engineering Churn</p>
-      <p class="claim-explore"><a href="book/3.4-governance-conversion.html">Explore the MAGE method &#8594;</a></p>
+      <p class="claim-explore"><a href="book/mage-book/3.4-governance-conversion.html">Explore the MAGE method &#8594;</a></p>
     </div>
   </article>
   <article class="claim" id="claim-6">
@@ -760,13 +764,18 @@
 <section class="v3-sec" id="resources" aria-labelledby="resources-h">
   <h2 id="resources-h" class="sec-h">Resources</h2>
   <p class="sec-lead">MAGE is available as a book, research writing, teaching materials, and talks.</p>
+  <p class="sec-lead">Two books anchor the method:</p>
+  <ol class="v3-books">
+    <li><a href="book/mage-book/index.html"><strong>MAGE</strong></a> — a theory of engineering in the age of commodity intelligence.</li>
+    <li><a href="book/se-handbook/software-engineering-handbook.pdf"><strong>The Software Engineering Handbook</strong></a> — an interpretation of software engineering as judgment and decision-making, equipping engineers to apply the MAGE theory.</li>
+  </ol>
   <div class="v3-cards v3-cards-2">
     <article class="v3-card v3-card--thumb">
-      <a class="v3-card-thumb-link" href="book/index.html"><img class="v3-card-thumb" src="book/assets/cover-charcoal-thumb.png" alt="MAGE book cover" loading="lazy"></a>
+      <a class="v3-card-thumb-link" href="book/mage-book/index.html"><img class="v3-card-thumb" src="book/assets/cover-charcoal-thumb.png" alt="MAGE book cover" loading="lazy"></a>
       <div class="v3-card-content">
       <h3 class="v3-card-h">Book</h3>
       <p class="v3-card-body">The complete treatment of MAGE, from its motivation and principles through practice, evidence, and implications.</p>
-      <p class="v3-card-links"><a href="book/index.html">Read the book &#8594;</a> · <a href="book/mage-book.pdf">Download PDF &#8594;</a></p>
+      <p class="v3-card-links"><a href="book/mage-book/index.html">Read the book &#8594;</a> · <a href="book/mage-book/mage-book.pdf">Download PDF &#8594;</a></p>
       </div>
     </article>
     <article class="v3-card v3-card--thumb">
@@ -818,7 +827,7 @@
     <article class="v3-card">
       <h3 class="v3-card-h">DocAble — depth</h3>
       <p class="v3-card-body">The originating production system and the longitudinal record from which the early MAGE concepts emerged.</p>
-      <p class="v3-card-links"><a href="book/5.1-the-problem-and-the-bar.html">Explore the originating case &#8594;</a></p>
+      <p class="v3-card-links"><a href="book/mage-book/5.1-the-problem-and-the-bar.html">Explore the originating case &#8594;</a></p>
     </article>
     <article class="v3-card">
       <h3 class="v3-card-h">Industrial cases — breadth</h3>
@@ -832,10 +841,10 @@
   <p class="sec-lead">MAGE is also a research program. It raises questions about what engineering knowledge should be made explicit, which requirements can be reliably checked, how engineering environments should improve over time, when those improvements are worth their cost, and where human judgment remains necessary.</p>
   <p class="v3-btn-row">
     <a class="v3-btn v3-btn-secondary" href="theory.html">Read the theory &#8594;</a>
-    <a class="v3-btn v3-btn-secondary" href="book/6.4-research-agenda.html">Explore the research agenda &#8594;</a>
+    <a class="v3-btn v3-btn-secondary" href="book/mage-book/6.4-research-agenda.html">Explore the research agenda &#8594;</a>
   </p>
 </section>
-<footer class="site-foot"><span class="foot-line foot-copy">© <a href="https://davisjam.github.io">James C. Davis</a>, 2026–present &nbsp;·&nbsp; Assistant Professor, ECE @ Purdue</span><span class="foot-line foot-links"><a class="gh" href="https://github.com/davisjam/model-based-agentic-software-engineering"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" style="vertical-align:-2px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> model-based-agentic-software-engineering</a>&nbsp;·&nbsp; <a class="book-foot" href="book/index.html">Read the book →</a>&nbsp;·&nbsp; <a class="book-foot" href="book/mage-book.pdf"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;fill:currentColor"><path d="M4 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V4.5L9.5 0H4zm5 1.5L12.5 5H9V1.5zM4.9 8.2h1c.5 0 .9.4.9.9s-.4.9-.9.9h-.4v1.1h-.6V8.2zm.6.5v.8h.3c.2 0 .3-.1.3-.4s-.1-.4-.3-.4h-.3zm2 .0h.9c.6 0 1 .5 1 1.4s-.4 1.5-1 1.5h-.9V8.7zm.6.5v1.8h.2c.3 0 .5-.3.5-.9s-.2-.9-.5-.9h-.2zm2.3-.5h1.7v.5h-1.1v.6h1v.5h-1v1.2h-.6V8.7z"></path></svg> PDF</a></span><span class="foot-line foot-nsf">This work was supported by the U.S. National Science Foundation under grants #2541917 and #2452533.</span></footer>
+<footer class="site-foot"><span class="foot-line foot-copy">© <a href="https://davisjam.github.io">James C. Davis</a>, 2026–present &nbsp;·&nbsp; Assistant Professor, ECE @ Purdue</span><span class="foot-line foot-links"><a class="gh" href="https://github.com/davisjam/model-based-agentic-software-engineering"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" style="vertical-align:-2px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> model-based-agentic-software-engineering</a>&nbsp;·&nbsp; <a class="book-foot" href="book/mage-book/index.html">Read the book →</a>&nbsp;·&nbsp; <a class="book-foot" href="book/mage-book/mage-book.pdf"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;fill:currentColor"><path d="M4 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V4.5L9.5 0H4zm5 1.5L12.5 5H9V1.5zM4.9 8.2h1c.5 0 .9.4.9.9s-.4.9-.9.9h-.4v1.1h-.6V8.2zm.6.5v.8h.3c.2 0 .3-.1.3-.4s-.1-.4-.3-.4h-.3zm2 .0h.9c.6 0 1 .5 1 1.4s-.4 1.5-1 1.5h-.9V8.7zm.6.5v1.8h.2c.3 0 .5-.3.5-.9s-.2-.9-.5-.9h-.2zm2.3-.5h1.7v.5h-1.1v.6h1v.5h-1v1.2h-.6V8.7z"></path></svg> PDF</a></span><span class="foot-line foot-nsf">This work was supported by the U.S. National Science Foundation under grants #2541917 and #2452533.</span></footer>
 </main>
 </body>
 </html>

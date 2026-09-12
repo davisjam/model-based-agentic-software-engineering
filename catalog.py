@@ -37,7 +37,17 @@ FONTS_LINK = _dtokens.google_fonts_link()
 # Single source of truth for the book's cover identity (title/subtitle/kicker/author). Also read by
 # book/build_book.py (print cover + web front page) — edit book/book-manifest.json once, all follow.
 BOOK_MANIFEST = json.loads(open(os.path.join(ROOT, "book", "book-manifest.json"), encoding="utf-8").read())
-_PDF_HREF = "book/" + BOOK_MANIFEST["pdf_filename"]  # root-relative href to the published PDF (single source: the manifest)
+_PDF_HREF = "book/mage-book/" + BOOK_MANIFEST["pdf_filename"]  # root-relative href to the published PDF under the MAGE book folder (single source: the manifest)
+_HANDBOOK_PDF = "software-engineering-handbook.pdf"  # supplementary handbook PDF basename, published at book/se-handbook/ (CI-rendered from the handbook/ manuscript)
+
+
+def _book_build_path(href: str) -> str:
+    """Map a PUBLISHED book href (`book/mage-book/<slug>.html`) back to its on-disk BUILD location
+    (`book/<slug>.html`) for existence checks. The book HTML edition is built flat under `book/` by
+    `book/build_book.py`; it is relocated into `book/mage-book/` only inside the published `_site` artifact
+    (tools/publish_book_layout.py). So a gate that verifies a chapter EXISTS must look where the build wrote
+    it, not where it will be served."""
+    return href.replace("book/mage-book/", "book/", 1)
 
 # Repo-metadata SSOT — owner/repo/URLs read once from book-models/repo-metadata.json (stdlib-read, the
 # design-tokens.json pattern). The GitHub repo link in the chrome (footer, top nav, landing nav grid) and
@@ -900,14 +910,14 @@ def check_big_ideas() -> list[str]:
         # built-HTML href, then assert that page exists on disk (a chapter renumber updates the link, so
         # this reddens only on a genuinely dangling label).
         bh = _chapter_href(rec.get("book_home") or "").split("#")[0]
-        if not bh or not os.path.exists(os.path.join(ROOT, bh)):
+        if not bh or not os.path.exists(os.path.join(ROOT, _book_build_path(bh))):
             problems.append(f"big-ideas: {slug!r} book_home {rec.get('book_home')!r} does not resolve "
                             f"to a real chapter/page on disk")
         # website-v3: claims carry no per-claim figure (the single canonical mage-method.svg figure is
         # shared). The kept invariant is that any `explore` link resolves to real book material (book ⊇ site).
         ex = rec.get("explore") or {}
         exh = (ex.get("href") or "").split("#")[0]
-        if exh and not os.path.exists(os.path.join(ROOT, exh)):
+        if exh and not os.path.exists(os.path.join(ROOT, _book_build_path(exh))):
             problems.append(f"claims: {slug!r} explore.href {ex.get('href')!r} does not resolve to real book material")
         # Word cap applies to the landing's STORED plain-language heading (dual-heading model), not the
         # book's formal heading — the landing no longer renders the book's version.
@@ -1735,7 +1745,7 @@ SITE_FOOTER = (f'<footer class="site-foot">'
                f'2026–present &nbsp;·&nbsp; Assistant Professor, ECE @ Purdue</span>'
                f'<span class="foot-line foot-links">'
                f'<a class="gh" href="{_REPO_URL}">{GITHUB_SVG} {_REPO_NAME}</a>'
-               f'&nbsp;·&nbsp; <a class="book-foot" href="{{book_prefix}}book/index.html">'
+               f'&nbsp;·&nbsp; <a class="book-foot" href="{{book_prefix}}book/mage-book/index.html">'
                f'Read the book →</a>'
                f'&nbsp;·&nbsp; <a class="book-foot" href="{{book_prefix}}{_PDF_HREF}">'
                f'{PDF_SVG} PDF</a></span>'
@@ -1759,7 +1769,7 @@ NAV_GRID = (
     '<span class="ng-t">Apply MAGE</span><span class="ng-s">put the method to work</span></a>'
     '<a class="ng-cell" href="industry-case-studies.html">'
     '<span class="ng-t">Industry case studies</span><span class="ng-s">six systems, read through MAGE</span></a>'
-    '<a class="ng-cell ng-book" href="book/index.html">'
+    '<a class="ng-cell ng-book" href="book/mage-book/index.html">'
     '<span class="ng-t">Book</span><span class="ng-s">read the web book</span></a>'
     f'<a class="ng-cell" href="{_REPO_URL}">'
     f'<span class="ng-t">{GITHUB_SVG} GitHub</span><span class="ng-s">the source repository</span></a>'
@@ -2090,7 +2100,7 @@ def render_md(md: str) -> str:
 
 
 def _site_footer(rel_root: str = "") -> str:
-    """The shared page footer with a book link, its `book/index.html` href resolved for the page's depth
+    """The shared page footer with a book link, its `book/mage-book/index.html` href resolved for the page's depth
     (rel_root is the `../`-string from the page back to the catalogue root)."""
     return SITE_FOOTER.replace("{book_prefix}", rel_root)
 
@@ -2411,6 +2421,10 @@ LANDING_CSS = """
 
   .sec-h { font-family:var(--font-display); font-size:1.5rem; color:var(--ink); margin:0 0 0.5rem; }
   .sec-lead { font-size:1.02rem; line-height:1.55; color:var(--muted); max-width:44rem; margin:0 0 1.2rem; }
+  ol.v3-books { max-width:44rem; margin:0 0 1.4rem 1.2rem; padding:0; line-height:1.55; }
+  ol.v3-books li { margin:0 0 .5rem; }
+  ol.v3-books a { color:var(--accent); text-decoration:none; font-weight:600; }
+  ol.v3-books a:hover { text-decoration:underline; }
 
   /* MAGE in One Page — heading + intro sit at a readable measure; the body is an info graphic that becomes
      a two-column region (the six claims beside a sticky conceptual map) at the desktop breakpoint below. */
@@ -2553,7 +2567,7 @@ def _chapter_href(book_home: str) -> str:
     if _CHAPTER_IDENTITY_HREF is None:
         p = os.path.join(ROOT, "book-models", "chapter_identity_declared.json")
         decl = json.load(open(p, encoding="utf-8"))
-        _CHAPTER_IDENTITY_HREF = {c["label"]: "book/" + os.path.basename(c["filename"])[:-3] + ".html"
+        _CHAPTER_IDENTITY_HREF = {c["label"]: "book/mage-book/" + os.path.basename(c["filename"])[:-3] + ".html"
                                   for c in decl.get("chapters", [])}
     label, sep, anchor = book_home.partition("#")
     href = _CHAPTER_IDENTITY_HREF.get(label)
@@ -2655,9 +2669,9 @@ def _landing_outcomes() -> str:
 
     def _row(o: dict, label: str, sub: str = "") -> str:
         oid = o["outcome_id"]
-        # _book_home_map stores a chapter LABEL per part now (book -> book/index.html stays a URL); resolve
+        # _book_home_map stores a chapter LABEL per part now (book -> book/mage-book/index.html stays a URL); resolve
         # the label to its built-HTML href at build. _chapter_href passes a non-label value through.
-        home = _chapter_href(home_map.get(o.get("primary_unit", ""), "book/index.html"))
+        home = _chapter_href(home_map.get(o.get("primary_unit", ""), "book/mage-book/index.html"))
         sub_html = f"<small>{_esc(sub)}</small>" if sub else ""
         return (
             f'<li id="{_outcome_row_id(oid)}" class="oc-row">'
@@ -2840,7 +2854,7 @@ def _v3_hero() -> str:
         'governance conversion: changing the engineering environment so that future work can inherit what '
         'was learned rather than rediscover it.</p>\n'
         '  <div class="v3-hero-btns">\n'
-        '    <a class="v3-btn v3-btn-primary" href="book/index.html">Read the book</a>\n'
+        '    <a class="v3-btn v3-btn-primary" href="book/mage-book/index.html">Read the book</a>\n'
         '    <a class="v3-btn v3-btn-secondary" href="#onepage">Learn MAGE</a>\n'
         '    <a class="v3-btn v3-btn-text" href="quick-start.html">Try MAGE &#8594;</a>\n'
         '  </div>\n'
@@ -2943,10 +2957,18 @@ def _v3_learn() -> str:
         '  <h2 id="resources-h" class="sec-h">Resources</h2>\n'
         '  <p class="sec-lead">MAGE is available as a book, research writing, teaching materials, and '
         'talks.</p>\n'
+        '  <p class="sec-lead">Two books anchor the method:</p>\n'
+        '  <ol class="v3-books">\n'
+        '    <li><a href="book/mage-book/index.html"><strong>MAGE</strong></a> — a theory of engineering '
+        'in the age of commodity intelligence.</li>\n'
+        f'    <li><a href="book/se-handbook/{_HANDBOOK_PDF}"><strong>The Software Engineering Handbook'
+        '</strong></a> — an interpretation of software engineering as judgment and decision-making, '
+        'equipping engineers to apply the MAGE theory.</li>\n'
+        '  </ol>\n'
         '  <div class="v3-cards v3-cards-2">\n'
         + _v3_card("Book", "",
                    "The complete treatment of MAGE, from its motivation and principles through practice, evidence, and implications.",
-                   [("Read the book", "book/index.html"), ("Download PDF", _PDF_HREF)],
+                   [("Read the book", "book/mage-book/index.html"), ("Download PDF", _PDF_HREF)],
                    thumb=("book/assets/cover-charcoal-thumb.png", "MAGE book cover")) + "\n"
         + _v3_card("Writings", "",
                    "Papers and shorter articles developing and evaluating MAGE.",
@@ -2992,7 +3014,7 @@ def _v3_evidence() -> str:
         '  <div class="v3-cards v3-cards-2">\n'
         + _v3_card("DocAble — depth", "",
                    "The originating production system and the longitudinal record from which the early MAGE concepts emerged.",
-                   [("Explore the originating case", "book/5.1-the-problem-and-the-bar.html")]) + "\n"
+                   [("Explore the originating case", "book/mage-book/5.1-the-problem-and-the-bar.html")]) + "\n"
         + _v3_card("Industrial cases — breadth", "",
                    f"Independent accounts from {_INDUSTRY_ORGS_PROSE}, examined through the MAGE framework for recurring patterns, differences, and limits.",
                    [("Explore the industrial cases", "industry-case-studies.html")]) + "\n"
@@ -3009,7 +3031,7 @@ def _v3_research() -> str:
         'human judgment remains necessary.</p>\n'
         '  <p class="v3-btn-row">\n'
         '    <a class="v3-btn v3-btn-secondary" href="theory.html">Read the theory &#8594;</a>\n'
-        '    <a class="v3-btn v3-btn-secondary" href="book/6.4-research-agenda.html">Explore the research agenda &#8594;</a>\n'
+        '    <a class="v3-btn v3-btn-secondary" href="book/mage-book/6.4-research-agenda.html">Explore the research agenda &#8594;</a>\n'
         '  </p>\n</section>')
 
 
@@ -3023,7 +3045,7 @@ def _landing_closing() -> str:
          "the method applied to your system — three practical questions"),
         ("Industry case studies", "industry-case-studies.html",
          "eight industrial systems, read through MAGE"),
-        ("Book", "book/index.html", "the full treatment of the method"),
+        ("Book", "book/mage-book/index.html", "the full treatment of the method"),
         ("Teach with MAGE", "teach/index.html", "learning materials — a course companion for instructors"),
         ("Claude quickstart", "quick-start.html", "install the skills in your repo"),
         ("Read the MAGE blog post", _BLOG_URL, "the short version, on Medium"),
@@ -3071,11 +3093,11 @@ def _landing_demoted_ideas() -> str:
 # concepts land on the pair cells above; these five are the alignment/modeling vocabulary). Each renders
 # as an anchored link in the back-matter reference strip → its book home. (title, id, book_home)
 _DEEP_CONCEPTS = [
-    ("Models as the universal language", "card-universal-language", "book/6.0-implications-for-se.html"),
-    ("Constraint", "card-constraint", "book/2.3-the-governed-environment.html"),
-    ("Sensor", "card-sensor", "book/2.3-the-governed-environment.html"),
-    ("The residual", "card-residual", "book/2.3-the-governed-environment.html"),
-    ("Generative validation", "card-generate-to-falsify", "book/4.6-generative-validation.html"),
+    ("Models as the universal language", "card-universal-language", "book/mage-book/6.0-implications-for-se.html"),
+    ("Constraint", "card-constraint", "book/mage-book/2.3-the-governed-environment.html"),
+    ("Sensor", "card-sensor", "book/mage-book/2.3-the-governed-environment.html"),
+    ("The residual", "card-residual", "book/mage-book/2.3-the-governed-environment.html"),
+    ("Generative validation", "card-generate-to-falsify", "book/mage-book/4.6-generative-validation.html"),
 ]
 
 
@@ -3574,8 +3596,8 @@ def _apply_body() -> str:
         "This page is a concise guide to applying MAGE. It summarizes the practical argument rather than "
         "reproducing it: Part 4 of the book develops the method in full, and Appendix G develops "
         "organizational adoption.\n\n"
-        "[Read Part 4: The MAGE Method →](book/4.1-the-mage-workflow.html) · "
-        "[Read Appendix G: Adopting GenAI in an Organization →](book/appendix-adopting-genai.html)"))
+        "[Read Part 4: The MAGE Method →](book/mage-book/4.1-the-mage-workflow.html) · "
+        "[Read Appendix G: Adopting GenAI in an Organization →](book/mage-book/appendix-adopting-genai.html)"))
     p.append(render_md(
         "## Engineer the environment, not just the realization\n\n"
         "MAGE starts from a practical observation: giving an agent a better prompt is not the only way to "
@@ -3595,7 +3617,7 @@ def _apply_body() -> str:
         "learned.\n\n"
         "The result is an iterative engineering process, not an attempt to specify everything correctly in "
         "advance.\n\n"
-        "[Read the full method in Part 4 →](book/4.1-the-mage-workflow.html)"))
+        "[Read the full method in Part 4 →](book/mage-book/4.1-the-mage-workflow.html)"))
     p.append(render_md(
         "## Start where you are\n\n"
         "There is no single MAGE starting point. Where to begin depends on two questions: how much of the "
@@ -3633,11 +3655,11 @@ def _apply_body() -> str:
         "## Go deeper\n\n"
         "**The MAGE Method — Part 4.** The complete treatment of the practical method: choosing work units, "
         "modeling, alignment, governance conversion, brownfield migration, validation, operations, and "
-        "reusable skills. [Read Part 4 →](book/4.1-the-mage-workflow.html)\n\n"
+        "reusable skills. [Read Part 4 →](book/mage-book/4.1-the-mage-workflow.html)\n\n"
         "**Adopting GenAI in an Organization — Appendix G.** Guidance for moving from individual assistance "
         "toward bounded delegation: identifying the functions people currently supply, deciding which "
         "responsibilities can move into the engineering environment, and expanding delegation where the "
-        "resulting basis is adequate. [Read Appendix G →](book/appendix-adopting-genai.html)"))
+        "resulting basis is adequate. [Read Appendix G →](book/mage-book/appendix-adopting-genai.html)"))
     return "\n".join(p)
 
 
@@ -3909,7 +3931,7 @@ LANDING_INTRO = """  <!-- ===================== HERO + BIG IDEA 1 ==============
       safely create software. Its six big ideas, below, trace the argument from problem to research frontier.</p>
       <p class="m-lead">Developed through one deeply studied production system and interpreted against
       independent industrial practice from Cloudflare, Spotify, Shopify, Docker, Siemens, Zenseact, Uber, and GitLab.</p>
-      <p class="m-lead"><a class="hero-cta" href="book/index.html"><strong>The book provides the full
+      <p class="m-lead"><a class="hero-cta" href="book/mage-book/index.html"><strong>The book provides the full
       treatment.</strong></a> &nbsp;·&nbsp; <a class="hero-cta" href="quick-start.html"><strong>QuickStart:
       install the Skills for Claude in your own repo.</strong></a></p>
     </div>

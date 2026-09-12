@@ -33,7 +33,19 @@ class _Refs(HTMLParser):
 
 # Artifacts built by the Pages CI (gitignored locally, present on the deployed site) — a link to one
 # is valid on the live site, but its target does not exist at check-time, so don't flag it as missing.
-_CI_BUILT_ARTIFACTS = ("mage-book.pdf",)
+_CI_BUILT_ARTIFACTS = ("mage-book.pdf", "software-engineering-handbook.pdf")
+#: The MAGE book HTML edition is built FLAT under `book/` by `book/build_book.py`, then RELOCATED into
+#: `book/mage-book/` inside the published `_site` artifact (tools/publish_book_layout.py) — GitHub Pages has
+#: no server redirects, so the canonical served path is `/book/mage-book/<slug>.html`. Referrers therefore
+#: link the published path, but on disk the page lives one level up. Map the published prefix back to the
+#: build location so the gate still VERIFIES the page exists (stronger than skipping it).
+_BOOK_PUBLISH_PREFIX = "book/mage-book/"
+_BOOK_BUILD_PREFIX = "book/"
+
+
+def _to_build_location(tgt_rel: str) -> str:
+    """Rewrite a relocated book href (…/book/mage-book/<slug>.html) to where the build wrote it (…/book/<slug>.html)."""
+    return tgt_rel.replace(_BOOK_PUBLISH_PREFIX, _BOOK_BUILD_PREFIX, 1)
 #: Path PREFIXES for subtrees built by a SEPARATE CI step and assembled into the deployed site, absent from
 #: the stdlib `catalog.py build` on disk. `teach/` is the MkDocs-rendered Teach-with-MAGE course companion
 #: (built into `_site/teach` by the Pages workflow's mkdocs step). A link into such a subtree is live on the
@@ -68,7 +80,7 @@ def check_html_links():
                 if anchor and anchor not in parsed[ap].ids:
                     issues.append(f"{rel(f)} -> #{anchor} (no such id in page)")
                 continue
-            tgt = os.path.abspath(os.path.join(base, tgt_rel))
+            tgt = os.path.abspath(os.path.join(base, _to_build_location(tgt_rel)))
             if not os.path.exists(tgt):
                 issues.append(f"{rel(f)} -> {ref} (missing target)")
             elif anchor and tgt in parsed and parsed[tgt].ids and anchor not in parsed[tgt].ids:

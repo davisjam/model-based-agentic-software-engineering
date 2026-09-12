@@ -136,17 +136,6 @@ jobs:
           mkdir -p _site/se-handbook
           cp handbook/dist/software-engineering-handbook.pdf _site/se-handbook/software-engineering-handbook.pdf
           test -f _site/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: handbook PDF missing from site artifact"; exit 1; }
-      # ── MAGE book under /mage-book/ (ADDITIVE alias) ─────────────────────────────────────────────
-      # The MAGE book PDF already ships at /book/mage-book.pdf (rendered above, rsync'd into _site/book/
-      # by the assemble step). Publish a SECOND copy under /mage-book/ so the book is reachable under its
-      # own named subfolder, matching the /se-handbook/ layout — WITHOUT moving or breaking the many links
-      # that point at /book/* (the HTML pages and /book/mage-book.pdf stay exactly where they are).
-      # book/mage-book.pdf was produced by the "Render book PDF" step above, so it exists here.
-      - name: Publish MAGE book PDF under /mage-book/ (additive alias; /book/mage-book.pdf unchanged)
-        run: |
-          mkdir -p _site/mage-book
-          cp book/mage-book.pdf _site/mage-book/mage-book.pdf
-          test -f _site/mage-book/mage-book.pdf || { echo "ERROR: mage-book PDF missing from _site/mage-book"; exit 1; }
       # ── Responsive-layout gate (deploy-blocking) ────────────────────────────────────────────────
       # Assert the landing `.masonry` region renders a structurally different layout at wide vs phone
       # width (>= 3 columns at 2560px, exactly 1 column at 390px) — the author's success metric made
@@ -176,17 +165,28 @@ jobs:
           # bare `_site/teach` would land in site/_site/teach — which the assemble step's --exclude='site'
           # then drops. $GITHUB_WORKSPACE is the repo root, so /teach ships at _site/teach.
           python3 -m mkdocs build --strict -f site/mkdocs.yml -d "$GITHUB_WORKSPACE/_site/teach"
-      - name: Assemble site artifact (exclude .git / node_modules / .github / raw course+site+handbook sources; KEEP book/mage-book.pdf + _site/teach + _site/se-handbook + _site/mage-book)
+      - name: Assemble site artifact (exclude .git / node_modules / .github / raw course+site+handbook sources; KEEP book/mage-book.pdf + _site/teach + _site/se-handbook)
         run: |
           mkdir -p _site
           # `handbook` excludes the raw manuscript SOURCE (parity with course+site); the rendered handbook
-          # PDF was already copied into _site/se-handbook above and the additive MAGE-book alias into
-          # _site/mage-book — rsync (no --delete) leaves both untouched.
+          # PDF was already copied into _site/se-handbook above — rsync (no --delete) leaves it untouched.
           rsync -a --exclude='.git' --exclude='node_modules' --exclude='.github' \
                 --exclude='__pycache__' --exclude='_site' --exclude='book/_print' \
                 --exclude='book/_typst' --exclude='course' --exclude='site' --exclude='handbook' ./ _site/
           PDF="book/$(python3 -c "import json; print(json.load(open('book/book-manifest.json'))['pdf_filename'])")"
           test -f "_site/$PDF" || { echo "ERROR: $PDF missing from site artifact"; exit 1; }
+      # ── Relocate the book + handbook into their /book/<name>/ homes (with redirect stubs) ─────────
+      # GitHub Pages has no server redirects, so the flat book pages assembled at _site/book/<slug>.html are
+      # moved one level deeper into _site/book/mage-book/ (their root-relative refs rewritten), the whole-book
+      # PDF and the handbook PDF are copied into _site/book/mage-book/ and _site/book/se-handbook/, and a
+      # static meta-refresh stub is left at every old page URL so external links never 404. Stdlib-only; runs
+      # AFTER assemble so it operates on the fully-populated _site tree.
+      - name: Relocate book + handbook to /book/mage-book/ + /book/se-handbook/ (redirect stubs at old paths)
+        run: |
+          python3 tools/publish_book_layout.py _site
+          test -f _site/book/mage-book/mage-book.pdf || { echo "ERROR: relocated book PDF missing"; exit 1; }
+          test -f _site/book/mage-book/index.html || { echo "ERROR: relocated book index missing"; exit 1; }
+          test -f _site/book/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: relocated handbook PDF missing"; exit 1; }
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:

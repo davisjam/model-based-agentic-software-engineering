@@ -984,8 +984,8 @@ def _chapter_head_meta(chapter: dict, cited_keys: list[str]) -> str:
         meta("citation_author", _BOOK_MANIFEST["author"]),
         meta("citation_book_title", _BOOK_MANIFEST["title"]),
         meta("citation_publication_date", _PUB_YEAR),
-        meta("citation_fulltext_html_url", f"{_PAGES_URL}/book/{chapter['slug']}.html"),
-        meta("citation_pdf_url", f"{_PAGES_URL}/book/{_PDF_FILENAME}"),
+        meta("citation_fulltext_html_url", f"{_PAGES_URL}/book/mage-book/{chapter['slug']}.html"),
+        meta("citation_pdf_url", f"{_PAGES_URL}/book/mage-book/{_PDF_FILENAME}"),
     ]
     tags += [meta("citation_reference", _highwire_reference(_CITATIONS[k]["csl"])) for k in cited_keys]
     return "".join(tags)

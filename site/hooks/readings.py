@@ -59,7 +59,7 @@ _MAGE_TOKEN = re.compile(r"\{mage:(\d+(?:\.\d+)?)\}")
 def _book_base_url() -> str:
     path = os.path.join(_REPO_ROOT, "book-models", "repo-metadata.json")
     pages = json.load(open(path, encoding="utf-8"))["pages_url"].rstrip("/")
-    return f"{pages}/book/"
+    return f"{pages}/book/mage-book/"
 
 
 @functools.lru_cache(maxsize=1)
