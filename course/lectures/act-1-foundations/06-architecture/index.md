@@ -25,11 +25,13 @@ materials:
     src: 1-6-Architecture.pptx
 ---
 
-**Premise.** *The purpose of architecture is to organize a system so that the many competing obligations of its specification can be realized together. When multiple organizations satisfy the specification, engineers must compare the alternatives, analyze their consequences, and decide which tradeoffs are appropriate.*
+**Premise.** *The purpose of architecture is to organize a system so that the many competing obligations of its specification can be realized together. Architecture establishes a strategy for realizing those obligations: it identifies consequential parts, assigns responsibilities, establishes boundaries and interfaces, and constrains how the parts may interact. When multiple organizations satisfy the specification, engineers must compare the alternatives, analyze their consequences, and decide which tradeoffs are appropriate.*
 
 A specification tells us what an acceptable realization must accomplish, but it deliberately leaves many choices about the system's organization open. Those choices matter because obligations such as performance, security, reliability, and expected change can interact: an organization that serves one property well may make another harder to achieve.
 
-Architecture is where engineers make those obligations coexist. It identifies the consequential parts of a system, assigns responsibilities, establishes boundaries and interfaces, and constrains how the parts may interact. These choices affect which system properties are easier to achieve, which changes can remain local, and which properties engineers can analyze before the complete system exists.
+Architecture is where engineers make those obligations coexist. Its choices create affordances and constraints for the engineering work that follows. A boundary may make a change easier to isolate while making coordination harder. A communication rule may improve failure isolation while weakening consistency. An architectural decision therefore does more than describe a system: it changes the space of designs available to its parts.
+
+The distinction between architecture and design is recursive rather than absolute. A system architecture establishes the strategy within which its subsystems are designed. A sufficiently substantial subsystem may in turn have an architecture that establishes strategy for its own internal parts. Architecture and design therefore use many of the same engineering ideas and even the same kinds of models, but at different scopes. A useful architectural view is deliberately coarse: it preserves the organizational facts needed for consequential system-wide decisions while suppressing details that can be decided within the resulting parts.
 
 ## From specification to one system
 
@@ -39,7 +41,7 @@ Architecture must bring those obligations back together in one coherent realizat
 
 ## The questions architecture must answer
 
-An architecture makes consequential choices about the organization of a system. Four questions are particularly important:
+An architecture makes consequential choices that should constrain the engineering work below it. Four questions are particularly important:
 
 1. **What are the major parts, and what is each responsible for?** Decomposition makes local reasoning possible. A useful part has a responsibility that can be understood without reconstructing the entire system.
 2. **Where should the boundaries go?** Boundaries determine what must be reasoned about together and what can vary independently. Things may belong together because they change together, must remain consistent together, execute together, fail together, scale together, or must be secured together. These considerations can conflict, so there is rarely one mechanically correct decomposition.
@@ -47,6 +49,8 @@ An architecture makes consequential choices about the organization of a system. 
 4. **What properties must the organization support?** Architectural choices must ultimately be justified by engineering obligations. Performance may favor one organization while modifiability, availability, security, or expected evolution favors another. The central question is therefore not whether an architecture follows a familiar pattern, but whether its structure helps the system satisfy the properties that matter.
 
 A useful summary question is: *Where should we draw boundaries so that the interactions and changes we expect are easy, while the interactions and changes we do not want are difficult?*
+
+These questions recur at smaller scales. A subsystem may itself contain parts, boundaries, interaction rules, and properties that its organization must support. What makes a decision architectural is therefore not that it uses a particular diagram or occurs at a fixed level of abstraction. It is that the decision establishes consequential structure within which further engineering decisions will be made.
 
 ## Architectural patterns provide alternatives
 
@@ -72,3 +76,13 @@ Architectural claims can be supported at different levels. A pattern may provide
 The point is not that an architectural model predicts the finished system perfectly. Its conclusions are only as good as the representation and assumptions on which they depend. Rather, architectural models give engineers an opportunity to turn some consequential choices from matters of judgment alone into questions that can be examined before committing to an implementation.
 
 Analysis itself has a cost. The useful question is whether resolving an uncertainty could change the architectural decision enough to justify that cost. Models, prototypes, and measurements are therefore ways of buying information about a consequential choice. As the cost of producing that evidence falls, perhaps as the result of Generative AI, more architectural questions become worth investigating. The more faithfully the architectural model captures the property we care about, the less we have to bet.
+
+## From architecture to design
+
+Architecture deliberately does not decide everything. Once engineers have chosen the consequential organization of a system, each part must still realize the responsibility assigned to it. State must be represented, operations coordinated, failures handled, resources owned, algorithms selected, and internal collaborators organized. Some of these choices may already be constrained by the architecture or by conventions that apply throughout the engineering environment; others remain deliberately open.
+
+This is the transition from strategy to tactics. Architecture establishes a strategy by creating responsibilities, affordances, and constraints. Design works within that strategy to make the parts actually work.
+
+The relationship is recursive. A subsystem that appears as one box in a system architecture may require its own architecture before its internal parts can be designed. Conversely, detailed design may reveal that an apparently local choice is not local at all: perhaps every available implementation violates a system property, conflicts with another component, or requires a decision to be made consistently across the system. In that case, design has exposed an architectural question.
+
+Architecture constrains the available tactics. Design tests whether the strategy is workable.
