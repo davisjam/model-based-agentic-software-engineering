@@ -31,7 +31,7 @@ A specification tells us what an acceptable realization must accomplish, but it 
 
 Architecture is where engineers make those obligations coexist. Its choices create affordances and constraints for the engineering work that follows. A boundary may make a change easier to isolate while making coordination harder. A communication rule may improve failure isolation while weakening consistency. An architectural decision therefore does more than describe a system: it changes the space of designs available to its parts.
 
-The distinction between architecture and design is recursive rather than absolute. A system architecture establishes the strategy within which its subsystems are designed. A sufficiently substantial subsystem may in turn have an architecture that establishes strategy for its own internal parts. Architecture and design therefore use many of the same engineering ideas and even the same kinds of models, but at different scopes. A useful architectural view is deliberately coarse: it preserves the organizational facts needed for consequential system-wide decisions while suppressing details that can be decided within the resulting parts.
+The distinction between architecture and design is recursive rather than absolute. A system architecture establishes strategy for the design of its parts. A sufficiently substantial subsystem will in turn need an architecture that establishes strategy for its own internal parts. Architecture therefore does not occupy one fixed level of a system hierarchy. It deliberately reasons about coarse-grained parts whose internals can, for the current engineering question, be treated as units.
 
 ## From specification to one system
 
@@ -50,7 +50,7 @@ An architecture makes consequential choices that should constrain the engineerin
 
 A useful summary question is: *Where should we draw boundaries so that the interactions and changes we expect are easy, while the interactions and changes we do not want are difficult?*
 
-These questions recur at smaller scales. A subsystem may itself contain parts, boundaries, interaction rules, and properties that its organization must support. What makes a decision architectural is therefore not that it uses a particular diagram or occurs at a fixed level of abstraction. It is that the decision establishes consequential structure within which further engineering decisions will be made.
+These questions can recur at smaller scales. What makes a decision architectural is not a particular notation or a fixed level of abstraction. It is that the decision establishes consequential organization within which further engineering decisions will be made. Architecture treats its major parts as units; design determines how those parts realize their responsibilities.
 
 ## Architectural patterns provide alternatives
 
@@ -79,10 +79,10 @@ Analysis itself has a cost. The useful question is whether resolving an uncertai
 
 ## From architecture to design
 
-Architecture deliberately does not decide everything. Once engineers have chosen the consequential organization of a system, each part must still realize the responsibility assigned to it. State must be represented, operations coordinated, failures handled, resources owned, algorithms selected, and internal collaborators organized. Some of these choices may already be constrained by the architecture or by conventions that apply throughout the engineering environment; others remain deliberately open.
+Architecture deliberately does not decide everything. Once engineers have chosen the consequential organization of a system, each part must still realize the responsibility assigned to it. Some choices are constrained by the architecture. Others may already be settled by conventions and mechanisms that apply throughout the engineering environment. Still others remain deliberately open.
 
 This is the transition from strategy to tactics. Architecture establishes a strategy by creating responsibilities, affordances, and constraints. Design works within that strategy to make the parts actually work.
 
-The relationship is recursive. A subsystem that appears as one box in a system architecture may require its own architecture before its internal parts can be designed. Conversely, detailed design may reveal that an apparently local choice is not local at all: perhaps every available implementation violates a system property, conflicts with another component, or requires a decision to be made consistently across the system. In that case, design has exposed an architectural question.
+The relationship is recursive. A subsystem that appears as one part in a system architecture will itself require architectural decisions if it remains too large to reason about directly. Conversely, detailed design may reveal that an apparently local choice has consequences beyond the part: perhaps available implementations conflict with another component, frustrate a required system property, or require a decision to be made consistently across the system. In that case, design has exposed an architectural question.
 
 Architecture constrains the available tactics. Design tests whether the strategy is workable.
