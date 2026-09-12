@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """pre-commit: keep the generated site + derived-view models in sync, and block the cheap deploy-scope gates.
 
-Three jobs, all cheap enough to run on every commit:
+Four jobs, all cheap enough to run on every commit:
+  0. Validate any STAGED .pptx deck (OPC part coverage stdlib-always; OOXML schema via OpenXmlValidator
+     when .NET resolves, skip-if-absent) — blocks the PowerPoint needs-repair corruption class at commit.
   1. Regenerate the HTML site from the .md sources and stage it (GitHub Pages serves the committed .html,
      so it must stay in sync with the .md it is rendered from).
   2. Regenerate + stage the book's DERIVED-VIEW model JSONs (outline / outcomes / reverse_index) — pure
@@ -25,6 +27,18 @@ def _catalog(*args: str) -> None:
     if r.returncode:
         sys.exit(r.returncode)
 
+
+# STAGED-DECK VALIDITY GATE: any staged *.pptx is validated as its STAGED BLOB (`git show :<path>`,
+# not the dirty worktree) by tools/pptx_validate.py — stdlib OPC part-coverage always, plus the genuine
+# OOXML schema validator (OpenXmlValidator, .NET) when the toolchain resolves, skip-if-absent (the
+# html-validate promotion posture). Two PowerPoint needs-repair corruptions shipped past python-pptx +
+# LibreOffice + stdlib scans; this blocks that class at commit. No staged .pptx => instant no-op.
+_deck_gate = subprocess.run([sys.executable, os.path.join("tools", "pptx_validate.py"), "--staged"],
+                            cwd=ROOT)
+if _deck_gate.returncode:
+    print("pre-commit: staged .pptx BLOCKED — OOXML/OPC validity findings above "
+          "(tools/pptx_validate.py; PowerPoint would report the deck as needing repair).")
+    sys.exit(1)
 
 _catalog("validate")   # refuse to build/commit an invalid schema
 _catalog("build")      # render .md -> .html + regenerate the landing census + the skill bundle

@@ -126,7 +126,9 @@ schema made concrete; the schema is the source of truth. Change a rule there, no
   and an optional rendered `pdf`. Files live in the module's `slides/` subfolder. A referenced file that
   isn't committed yet renders as *"(coming soon)"* — it never breaks the strict build, and the link appears
   once you add the file. (Rendering source → PDF is optional: Typst via the book's `typst compile`;
-  PowerPoint via `soffice --convert-to pdf`.)
+  PowerPoint via `soffice --convert-to pdf`.) Committed `.pptx` are validated at commit time — OOXML
+  schema (OpenXmlValidator) + OPC part coverage via `tools/pptx_validate.py` — so a deck PowerPoint
+  would report as *needing repair* is refused by the pre-commit hook.
 - **Readings** (`readings:`) — readings are a **property of the module** they support (`before` /
   `optional`), not a parallel hierarchy. The hook renders a **Readings** section on the page.
 - **Module description** — the body opens with a `**Premise.**` line (a one-sentence thesis, in italics),

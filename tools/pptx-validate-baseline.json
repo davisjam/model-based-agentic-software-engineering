@@ -1,0 +1,17 @@
+{
+  "_comment": "Grandfathered OOXML schema findings for tools/pptx_validate.py — pre-existing violations in decks PowerPoint itself authored and opens cleanly. Matched on (path, id, part); any finding NOT listed here fails the gate. Drain to zero to retire this file. Both entries below are the same known PowerPoint-emitted SmartArt quirk: an <a:ext> (drawingml/main namespace) child inside <dgm:extLst>, where the schema expects <dgm:ext> (drawingml/diagram namespace). PowerPoint accepts it; OpenXmlValidator's strict schema does not.",
+  "grandfathered": [
+    {
+      "path": "resources/talks/Davis-IBM-Summer2026.pptx",
+      "id": "Sch_InvalidElementContentExpectingComplex",
+      "part": "/ppt/diagrams/layout1.xml",
+      "note": "PowerPoint-authored SmartArt layout: a:ext in dgm:extLst (audited 260911; deck opens clean in PowerPoint)"
+    },
+    {
+      "path": "resources/talks/Davis-USSpaceForce-Brainday-Fall2026.pptx",
+      "id": "Sch_InvalidElementContentExpectingComplex",
+      "part": "/ppt/diagrams/layout1.xml",
+      "note": "PowerPoint-authored SmartArt layout: a:ext in dgm:extLst (audited 260911; deck opens clean in PowerPoint)"
+    }
+  ]
+}

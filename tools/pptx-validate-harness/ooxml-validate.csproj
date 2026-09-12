@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- OOXML schema-validation harness for tools/pptx_validate.py. Targets net8.0 with
+       RollForward=LatestMajor so one build runs on any installed .NET 8+ runtime; the
+       driver treats a missing/unbuildable toolchain as SKIP (html-validate posture). -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RollForward>LatestMajor</RollForward>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Same version the DocAble parent pins; restores from the local NuGet cache offline. -->
+    <PackageReference Include="DocumentFormat.OpenXml" Version="3.4.1" />
+  </ItemGroup>
+</Project>

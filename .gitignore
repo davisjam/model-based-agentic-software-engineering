@@ -103,3 +103,8 @@ book/d2-pilot/*.html
 /site/.venv/
 ~$*
 Reference-GITIGNORE/
+
+# .NET build output of the pptx-validity harness (tools/pptx_validate.py builds it on demand;
+# skip-if-absent when no .NET toolchain — never committed)
+tools/pptx-validate-harness/bin/
+tools/pptx-validate-harness/obj/
