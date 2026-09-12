@@ -101,6 +101,29 @@ make clean      # remove all generated artifacts
 
 Equivalent scripts: `python3 scripts/lint.py`, `python3 scripts/build.py {pdf|web|all}`.
 
+### Local preview of BOTH books, under their published subfolders
+
+The deployed Pages site publishes each book under its own named subfolder — the MAGE book PDF at
+`/mage-book/mage-book.pdf` and this handbook at `/se-handbook/software-engineering-handbook.pdf`. To
+mirror that layout locally (render both books and see each where the site serves it), run the
+repo-root script:
+
+```
+python3 scripts/render-books-local.py     # from the catalogue repo root
+```
+
+It renders the MAGE book via `book/build_book.py --pdf` and this handbook via `make -C handbook book`,
+then copies each PDF into a gitignored preview tree:
+
+```
+_local-books/mage-book/mage-book.pdf
+_local-books/se-handbook/software-engineering-handbook.pdf
+```
+
+The script is stdlib-only and shells out to each book's own toolchain — it does not import the
+handbook or catalogue build machinery. It needs this handbook's toolchain (Pandoc + Typst + PyYAML,
+above) plus the MAGE book's `--pdf` deps on PATH.
+
 ## Reproducibility — pinned toolchain
 
 The build is developed and verified against these exact versions:

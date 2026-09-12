@@ -122,19 +122,31 @@ jobs:
       # LINTS the manuscript first and aborts on any error (never degrades silently), then renders
       # handbook/dist/software-engineering-handbook.pdf via the Pandoc→AST→Typst pipeline. Pandoc + Typst
       # are both installed above; the handbook's bibliography ships in-tree. Copy ONLY the rendered PDF
-      # into _site/handbook/ so it serves at /handbook/software-engineering-handbook.pdf — the raw handbook/
-      # manuscript is excluded from the artifact below (parity with course/site). Fatal on a missing PDF,
-      # mirroring the book-PDF assembly assertion.
-      - name: Render supplementary handbook PDF (Pandoc → Typst) + copy into _site
+      # into _site/se-handbook/ so it serves at /se-handbook/software-engineering-handbook.pdf — the raw
+      # handbook/ manuscript is excluded from the artifact below (parity with course/site). Fatal on a
+      # missing PDF, mirroring the book-PDF assembly assertion. (The published subfolder is `se-handbook`;
+      # the source tree keeps its `handbook/` name.)
+      - name: Render supplementary handbook PDF (Pandoc → Typst) + copy into _site/se-handbook
         run: |
           # The handbook build/lint scripts parse book.yaml with PyYAML (the only third-party Python dep on
           # the PDF path; Pandoc + Typst are external CLIs, installed above). catalog.py itself stays
           # stdlib-only, so nothing has installed PyYAML yet — install it here, pinned to the README's v6.
           python3 -m pip install "pyyaml>=6,<7"
           make -C handbook book
-          mkdir -p _site/handbook
-          cp handbook/dist/software-engineering-handbook.pdf _site/handbook/software-engineering-handbook.pdf
-          test -f _site/handbook/software-engineering-handbook.pdf || { echo "ERROR: handbook PDF missing from site artifact"; exit 1; }
+          mkdir -p _site/se-handbook
+          cp handbook/dist/software-engineering-handbook.pdf _site/se-handbook/software-engineering-handbook.pdf
+          test -f _site/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: handbook PDF missing from site artifact"; exit 1; }
+      # ── MAGE book under /mage-book/ (ADDITIVE alias) ─────────────────────────────────────────────
+      # The MAGE book PDF already ships at /book/mage-book.pdf (rendered above, rsync'd into _site/book/
+      # by the assemble step). Publish a SECOND copy under /mage-book/ so the book is reachable under its
+      # own named subfolder, matching the /se-handbook/ layout — WITHOUT moving or breaking the many links
+      # that point at /book/* (the HTML pages and /book/mage-book.pdf stay exactly where they are).
+      # book/mage-book.pdf was produced by the "Render book PDF" step above, so it exists here.
+      - name: Publish MAGE book PDF under /mage-book/ (additive alias; /book/mage-book.pdf unchanged)
+        run: |
+          mkdir -p _site/mage-book
+          cp book/mage-book.pdf _site/mage-book/mage-book.pdf
+          test -f _site/mage-book/mage-book.pdf || { echo "ERROR: mage-book PDF missing from _site/mage-book"; exit 1; }
       # ── Responsive-layout gate (deploy-blocking) ────────────────────────────────────────────────
       # Assert the landing `.masonry` region renders a structurally different layout at wide vs phone
       # width (>= 3 columns at 2560px, exactly 1 column at 390px) — the author's success metric made
@@ -164,11 +176,12 @@ jobs:
           # bare `_site/teach` would land in site/_site/teach — which the assemble step's --exclude='site'
           # then drops. $GITHUB_WORKSPACE is the repo root, so /teach ships at _site/teach.
           python3 -m mkdocs build --strict -f site/mkdocs.yml -d "$GITHUB_WORKSPACE/_site/teach"
-      - name: Assemble site artifact (exclude .git / node_modules / .github / raw course+site+handbook sources; KEEP book/mage-book.pdf + _site/teach + _site/handbook)
+      - name: Assemble site artifact (exclude .git / node_modules / .github / raw course+site+handbook sources; KEEP book/mage-book.pdf + _site/teach + _site/se-handbook + _site/mage-book)
         run: |
           mkdir -p _site
           # `handbook` excludes the raw manuscript SOURCE (parity with course+site); the rendered handbook
-          # PDF was already copied into _site/handbook above and rsync (no --delete) leaves it untouched.
+          # PDF was already copied into _site/se-handbook above and the additive MAGE-book alias into
+          # _site/mage-book — rsync (no --delete) leaves both untouched.
           rsync -a --exclude='.git' --exclude='node_modules' --exclude='.github' \
                 --exclude='__pycache__' --exclude='_site' --exclude='book/_print' \
                 --exclude='book/_typst' --exclude='course' --exclude='site' --exclude='handbook' ./ _site/

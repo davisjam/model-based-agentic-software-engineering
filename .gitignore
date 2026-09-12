@@ -104,6 +104,10 @@ book/d2-pilot/*.html
 ~$*
 Reference-GITIGNORE/
 
+# Local two-book preview tree (scripts/render-books-local.py): rendered PDFs mirroring the deployed
+# /mage-book/ + /se-handbook/ layout. Created on demand, never committed — same posture as the PDFs.
+/_local-books/
+
 # .NET build output of the pptx-validity harness (tools/pptx_validate.py builds it on demand;
 # skip-if-absent when no .NET toolchain — never committed)
 tools/pptx-validate-harness/bin/
