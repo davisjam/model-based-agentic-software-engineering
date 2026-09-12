@@ -58,6 +58,11 @@ REQUIRED_FRONTMATTER_META = {"id", "title", "kind"}
 # chapter's opening, by the chapter's short title, in both renderers.
 CROSSREF_PREFIXES = {"sec", "fig", "tbl", "def", "decision", "tradeoff", "ex", "example", "case", "note", "key", "ch"}
 
+# Heading ids the chapter-ending convention mandates in EVERY chapter, so their book-wide repetition is
+# sanctioned rather than a duplicate-id collision. `summary` is pandoc's auto-id for the required
+# `## Summary` H2; it is never a cross-reference target (cross-refs use the prefixes above).
+REPEATED_HEADING_IDS = {"summary"}
+
 
 def die(msg: str) -> None:
     sys.stderr.write(f"error: {msg}\n")

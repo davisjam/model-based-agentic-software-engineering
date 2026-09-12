@@ -357,8 +357,13 @@ def main() -> int:
     if seq_orders != sorted(seq_orders) or len(set(seq_orders)) != len(seq_orders):
         rep.err("book.yaml", f"chapter 'order' values must be strictly increasing in build order; got {seq_orders}")
 
-    # duplicate ids (book-wide)
+    # duplicate ids (book-wide). The chapter-ending convention mandates a `## Summary` H2 in every
+    # chapter, and pandoc auto-assigns that heading the id `summary`; the repeat is sanctioned, not a
+    # collision. It is never a cross-reference target — cross-refs resolve through the `sec-`/`ch-`
+    # prefixes — so exempt it here, mirroring the special-case in check_chapter_ending.
     for ident, where in all_ids.items():
+        if ident in C.REPEATED_HEADING_IDS:
+            continue
         if len(where) > 1:
             rep.err("book", f"duplicate id '{ident}' defined in: {', '.join(where)}")
 
