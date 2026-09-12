@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" font-family="'Source Sans 3', Helvetica, sans-serif" role="img">
+  <title>From individual capability to team capability</title>
+  <!-- Umber Monograph palette: ink #1c1917, paper #fdfcf9, accent #9a3f12, rule #e4e0d8, panel #f6f4ef -->
+  <rect x="0" y="0" width="720" height="300" fill="#fdfcf9"/>
+
+  <!-- Stage 1: individual capability -->
+  <rect x="20" y="118" width="150" height="64" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="95" y="145" text-anchor="middle" font-size="15" fill="#1c1917">Individual</text>
+  <text x="95" y="165" text-anchor="middle" font-size="15" fill="#1c1917">capability</text>
+
+  <!-- arrow 1 -->
+  <line x1="178" y1="150" x2="228" y2="150" stroke="#9a3f12" stroke-width="2"/>
+  <polygon points="228,150 218,145 218,155" fill="#9a3f12"/>
+  <text x="203" y="136" text-anchor="middle" font-size="12" fill="#57534e" font-style="italic">interactions</text>
+
+  <!-- Stage 2: team-level properties -->
+  <rect x="238" y="40" width="180" height="52" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="328" y="72" text-anchor="middle" font-size="15" fill="#1c1917">Shared context</text>
+  <rect x="238" y="124" width="180" height="52" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="328" y="156" text-anchor="middle" font-size="15" fill="#1c1917">Trust</text>
+  <rect x="238" y="208" width="180" height="52" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="328" y="240" text-anchor="middle" font-size="15" fill="#1c1917">Coordination</text>
+
+  <!-- arrows from properties to team capability -->
+  <line x1="426" y1="66" x2="520" y2="138" stroke="#9a3f12" stroke-width="2"/>
+  <polygon points="520,138 509,135 515,127" fill="#9a3f12"/>
+  <line x1="426" y1="150" x2="520" y2="150" stroke="#9a3f12" stroke-width="2"/>
+  <polygon points="520,150 510,145 510,155" fill="#9a3f12"/>
+  <line x1="426" y1="234" x2="520" y2="162" stroke="#9a3f12" stroke-width="2"/>
+  <polygon points="520,162 515,173 509,165" fill="#9a3f12"/>
+
+  <!-- Stage 3: team capability -->
+  <rect x="530" y="118" width="160" height="64" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="610" y="145" text-anchor="middle" font-size="15" fill="#1c1917">Team</text>
+  <text x="610" y="165" text-anchor="middle" font-size="15" fill="#1c1917">capability</text>
+</svg>
