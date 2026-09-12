@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" font-family="'Source Sans 3', Helvetica, sans-serif" role="img">
+  <title>A specification bounds a realization space</title>
+  <!-- Umber Monograph palette: ink #1c1917, paper #fdfcf9, accent #9a3f12, rule #e4e0d8, panel #f6f4ef -->
+  <rect x="0" y="0" width="720" height="320" fill="#fdfcf9"/>
+
+  <!-- Outer region: all possible realizations -->
+  <rect x="40" y="36" width="640" height="248" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="64" y="66" font-size="15" fill="#57534e" letter-spacing="1.5">REALIZATIONS</text>
+
+  <!-- Inner region: the acceptable realizations -->
+  <ellipse cx="300" cy="180" rx="170" ry="88" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="300" y="122" text-anchor="middle" font-size="14" fill="#9a3f12" letter-spacing="1.5">ACCEPTABLE</text>
+
+  <!-- Acceptable realizations A, B, C -->
+  <circle cx="232" cy="182" r="6" fill="#1c1917"/>
+  <text x="232" y="210" text-anchor="middle" font-size="15" fill="#1c1917">A</text>
+  <circle cx="308" cy="158" r="6" fill="#1c1917"/>
+  <text x="308" y="186" text-anchor="middle" font-size="15" fill="#1c1917">B</text>
+  <circle cx="376" cy="196" r="6" fill="#1c1917"/>
+  <text x="376" y="224" text-anchor="middle" font-size="15" fill="#1c1917">C</text>
+
+  <!-- Realization D: outside the acceptable region -->
+  <circle cx="584" cy="120" r="6" fill="#9a3f12"/>
+  <text x="584" y="148" text-anchor="middle" font-size="15" fill="#1c1917">D</text>
+  <text x="584" y="170" text-anchor="middle" font-size="12" fill="#57534e" font-style="italic">not acceptable</text>
+</svg>
