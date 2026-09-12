@@ -68,6 +68,18 @@ jobs:
           mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
           sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
           typst --version
+      # Pandoc backs the supplementary Software Engineering Handbook render (further down): the handbook's
+      # manuscript is read + AST-transformed + citeproc'd by Pandoc, then projected to Typst for the PDF.
+      # Install the pinned release the same clone-and-run-safe way as Typst above (download the pinned
+      # tarball, extract the runnable binary, put it on PATH) — NOT an unpinned `apt-get install pandoc`,
+      # whose version floats and can silently change the AST the Lua filters see.
+      - name: Install Pandoc (pinned release; backs the supplementary handbook render)
+        run: |
+          PANDOC_VERSION=3.9.0.2
+          curl -fsSL "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz" -o /tmp/pandoc.tar.gz
+          mkdir -p /tmp/pandoc && tar -xzf /tmp/pandoc.tar.gz -C /tmp/pandoc --strip-components=1
+          sudo install -m 0755 /tmp/pandoc/bin/pandoc /usr/local/bin/pandoc
+          pandoc --version
       # Render the Chicago citation strings ONCE from references.bib (the SSOT) → book/data/citations.json,
       # which BOTH the HTML build (catalog.py build) and the PDF consume. Runs BEFORE the build that reads it,
       # the same "regenerate from source in CI" discipline the mermaid SVGs and the committed HTML follow. The
@@ -105,6 +117,20 @@ jobs:
           # installed above. catalog.py itself stays stdlib-only — these deps are for the --pdf path only.
           python3 -m pip install -r book/requirements-pdf.txt
           python3 book/build_book.py --pdf --no-split
+      # ── Supplementary Software Engineering Handbook PDF (Pandoc → AST → Typst) ───────────────────
+      # A CI-generated, Pages-published artifact (like the book PDF above; not committed). `make book`
+      # LINTS the manuscript first and aborts on any error (never degrades silently), then renders
+      # handbook/dist/software-engineering-handbook.pdf via the Pandoc→AST→Typst pipeline. Pandoc + Typst
+      # are both installed above; the handbook's bibliography ships in-tree. Copy ONLY the rendered PDF
+      # into _site/handbook/ so it serves at /handbook/software-engineering-handbook.pdf — the raw handbook/
+      # manuscript is excluded from the artifact below (parity with course/site). Fatal on a missing PDF,
+      # mirroring the book-PDF assembly assertion.
+      - name: Render supplementary handbook PDF (Pandoc → Typst) + copy into _site
+        run: |
+          make -C handbook book
+          mkdir -p _site/handbook
+          cp handbook/dist/software-engineering-handbook.pdf _site/handbook/software-engineering-handbook.pdf
+          test -f _site/handbook/software-engineering-handbook.pdf || { echo "ERROR: handbook PDF missing from site artifact"; exit 1; }
       # ── Responsive-layout gate (deploy-blocking) ────────────────────────────────────────────────
       # Assert the landing `.masonry` region renders a structurally different layout at wide vs phone
       # width (>= 3 columns at 2560px, exactly 1 column at 390px) — the author's success metric made
@@ -134,12 +160,14 @@ jobs:
           # bare `_site/teach` would land in site/_site/teach — which the assemble step's --exclude='site'
           # then drops. $GITHUB_WORKSPACE is the repo root, so /teach ships at _site/teach.
           python3 -m mkdocs build --strict -f site/mkdocs.yml -d "$GITHUB_WORKSPACE/_site/teach"
-      - name: Assemble site artifact (exclude .git / node_modules / .github / raw course+site sources; KEEP book/mage-book.pdf + _site/teach)
+      - name: Assemble site artifact (exclude .git / node_modules / .github / raw course+site+handbook sources; KEEP book/mage-book.pdf + _site/teach + _site/handbook)
         run: |
           mkdir -p _site
+          # `handbook` excludes the raw manuscript SOURCE (parity with course+site); the rendered handbook
+          # PDF was already copied into _site/handbook above and rsync (no --delete) leaves it untouched.
           rsync -a --exclude='.git' --exclude='node_modules' --exclude='.github' \
                 --exclude='__pycache__' --exclude='_site' --exclude='book/_print' \
-                --exclude='book/_typst' --exclude='course' --exclude='site' ./ _site/
+                --exclude='book/_typst' --exclude='course' --exclude='site' --exclude='handbook' ./ _site/
           PDF="book/$(python3 -c "import json; print(json.load(open('book/book-manifest.json'))['pdf_filename'])")"
           test -f "_site/$PDF" || { echo "ERROR: $PDF missing from site artifact"; exit 1; }
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5

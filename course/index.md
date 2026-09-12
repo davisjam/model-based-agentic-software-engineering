@@ -22,3 +22,5 @@ The materials are:
 * **[Semester Project](project/index.md):** a substantial team project through which students practice software engineering across the lifecycle.
 * **[Assessment](assessment/index.md):** materials for assessing both the systems students produce and their individual command of those systems, including oral exams.
 * **[Example course](reference-course/index.md):** the Purdue Fall-2026 offering (ECE 30861 — Software Engineering) in which these materials are being taught, with its syllabus and calendar.
+
+A supplementary **[Software Engineering Handbook](https://davisjam.github.io/model-based-agentic-software-engineering/handbook/software-engineering-handbook.pdf)** is in early development: a concise, reference-style companion to the materials above. It is an early prototype—one chapter is available so far—and will grow over time.
