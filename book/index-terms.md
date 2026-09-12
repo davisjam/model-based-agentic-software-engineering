@@ -149,7 +149,7 @@ chapter (filled as chapters settle; the generator still scans all chapters for s
 
 ## Concept registry
 
-The curated concept index (book/AGENTS.md §6). Each `- concept: <slug> | <Display Name>` line registers a
+The curated concept index (book/BUILD.md §6). Each `- concept: <slug> | <Display Name>` line registers a
 concept the book can annotate with an inline `<!-- index-def: <slug> -->` at its defining paragraph and
 `<!-- index-example: <slug> -->` at its example paragraphs. The build harvests those tags into a curated
 index entry (`definition of:` / `examples of:`) and suppresses the plain occurrence entry for the same
