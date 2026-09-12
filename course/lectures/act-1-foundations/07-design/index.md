@@ -7,7 +7,9 @@ student_materials: []
 assignments: []
 instructor_notes: ""
 status: draft
-materials: []
+materials:
+  - title: Lecture slides — Software Design
+    src: 1-7-Design.pptx
 ---
 
 **Premise.** *Architecture establishes a strategy for organizing a system. Design determines how its parts will actually work within the responsibilities, affordances, and constraints that strategy creates. Designers progressively resolve the choices needed to turn those parts into implementations, while recognizing when an apparently local choice has consequences that require reconsidering the architecture.*
