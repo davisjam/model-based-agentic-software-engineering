@@ -22,4 +22,10 @@ bibliography:
 # per-chapter `order:` metadata must agree with it (the linter checks this). Reordering the book is
 # a change to this list, not a renumbering of prose — cross-references resolve by ID, never by number.
 chapters:
+  - chapters/00-software-engineering.md
+  - chapters/01-process.md
+  - chapters/02-teamwork.md
+  - chapters/03-requirements.md
+  - chapters/04-specification.md
   - chapters/05-architecture.md
+  - chapters/06-design.md

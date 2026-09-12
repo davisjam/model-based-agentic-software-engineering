@@ -249,6 +249,11 @@ def main() -> int:
         scan.scan_blocks(ast.get("blocks", []))
         scans.append((name, scan, meta))
 
+        # Each chapter is itself a cross-reference target: `@ch-<id>` resolves to the chapter opening.
+        chap_id = meta.get("id")
+        if chap_id:
+            all_defined_ids.add(f"ch-{chap_id}")
+
         for ident, _kind in scan.ids:
             all_ids.setdefault(ident, []).append(name)
             all_defined_ids.add(ident)

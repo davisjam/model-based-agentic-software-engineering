@@ -46,8 +46,10 @@ KNOWN_BLOCKS = CALLOUT_BLOCKS | STRUCTURAL_BLOCKS | ESCAPE_BLOCKS
 ALLOWED_STATUS = {"outline", "draft", "review", "stable"}
 REQUIRED_META = {"id", "title", "short_title", "order", "status", "description"}
 
-# Cross-reference prefixes (keep in sync with filters/crossrefs.lua CROSSREF_PREFIX).
-CROSSREF_PREFIXES = {"sec", "fig", "tbl", "def", "decision", "tradeoff", "ex", "example", "case", "note", "key"}
+# Cross-reference prefixes (keep in sync with filters/crossrefs.lua CROSSREF_PREFIX). `ch` is the
+# chapter-level cross-reference (@ch-<chapter-id>) used to link across chapters; it resolves to the
+# chapter's opening, by the chapter's short title, in both renderers.
+CROSSREF_PREFIXES = {"sec", "fig", "tbl", "def", "decision", "tradeoff", "ex", "example", "case", "note", "key", "ch"}
 
 
 def die(msg: str) -> None:

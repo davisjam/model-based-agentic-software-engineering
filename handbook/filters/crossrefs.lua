@@ -16,13 +16,33 @@ Section references render by the section's title in both outputs — no hard-cod
 local CROSSREF_PREFIX = {
   sec = true, fig = true, tbl = true, def = true, decision = true,
   tradeoff = true, ex = true, example = true, ["case"] = true, note = true, key = true,
+  ch = true,
 }
 
 local function ref_prefix(id)
   return id:match("^(%a+)%-")
 end
 
+-- The book-level chapter directory, injected by build.py via --metadata-file so a single chapter's
+-- Pandoc run can resolve a cross-reference to another chapter. Maps a chapter id to its short title
+-- (the inline link text) and its generated web stem (the link target on the web).
+local function chapter_directory(doc)
+  local dir = {}
+  local meta = doc.meta["handbook_chapters"]
+  if not meta then return dir end
+  for _, entry in ipairs(meta) do
+    local id = pandoc.utils.stringify(entry.id)
+    dir[id] = {
+      short = pandoc.utils.stringify(entry.short),
+      stem = pandoc.utils.stringify(entry.stem),
+    }
+  end
+  return dir
+end
+
 function Pandoc(doc)
+  local chap = chapter_directory(doc)
+
   -- Pass 1: collect float numbers and section titles.
   local fig_number = {}   -- id -> integer (in-chapter figure sequence)
   local tbl_number = {}   -- id -> integer
@@ -76,6 +96,11 @@ function Pandoc(doc)
         if p == "fig" or p == "tbl" then
           return pandoc.RawInline("typst", "@" .. id)
         end
+        if p == "ch" then
+          local cid = id:sub(4)
+          local label = (chap[cid] and chap[cid].short) or cid
+          return pandoc.RawInline("typst", '#link(<chap-' .. cid .. '>)[' .. label .. ']')
+        end
         local label = sec_title[id] or id
         return pandoc.RawInline("typst", '#link(<' .. id .. '>)[#quote[' .. label .. ']]')
       else
@@ -84,6 +109,13 @@ function Pandoc(doc)
           local word = (p == "fig") and "Figure" or "Table"
           local text = n and (word .. " " .. n) or word
           return pandoc.Link(pandoc.Str(text), "#" .. id)
+        end
+        if p == "ch" then
+          local cid = id:sub(4)
+          local entry = chap[cid]
+          local label = (entry and entry.short) or cid
+          local href = (entry and (entry.stem .. ".md")) or ("#" .. id)
+          return pandoc.Link(pandoc.Str(label), href)
         end
         local label = sec_title[id] or id
         return pandoc.Link({ pandoc.Str("“" .. label .. "”") }, "#" .. id)

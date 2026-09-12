@@ -45,6 +45,28 @@ def _chapter_meta(ch) -> dict:
     return C.meta_to_py(C.pandoc_ast(ch).get("meta", {}))
 
 
+def _chapter_directory_args(book: dict) -> list[str]:
+    """Write the book-level chapter directory and return the pandoc args that inject it.
+
+    Each chapter is rendered by its own Pandoc run, so a chapter that cross-references another
+    (`@ch-<id>`) needs the sibling's identity from outside its own source. This projects book.yaml's
+    ordered chapter list into a metadata file — chapter id → short title (inline link text) + web
+    stem (the web link target) — that crossrefs.lua reads to resolve every `@ch-` reference."""
+    C.GENERATED.mkdir(parents=True, exist_ok=True)
+    directory = []
+    for ch in C.chapter_files(book):
+        meta = _chapter_meta(ch)
+        directory.append({
+            "id": meta.get("id", ch.stem),
+            "short": meta.get("short_title", meta.get("title", ch.stem)),
+            "stem": ch.stem,
+        })
+    path = C.GENERATED / "chapter-map.yaml"
+    path.write_text(C.yaml.safe_dump({"handbook_chapters": directory}, allow_unicode=True),
+                    encoding="utf-8")
+    return ["--metadata-file", str(path)]
+
+
 def _run(cmd: list[str]) -> str:
     out = subprocess.run(cmd, capture_output=True, text=True, check=False)
     if out.returncode != 0:
@@ -64,12 +86,13 @@ def build_pdf(book: dict) -> None:
     GEN_TYPST.mkdir(parents=True, exist_ok=True)
     C.DIST.mkdir(parents=True, exist_ok=True)
 
+    chdir_args = _chapter_directory_args(book)
     chapter_typst = []
     for ch in C.chapter_files(book):
         meta = _chapter_meta(ch)
         stem = ch.stem
         cmd = (["pandoc", str(ch), "-f", C.PANDOC_FROM, "-t", "typst"]
-               + COMMON_PRE + _bib_args(book)
+               + chdir_args + COMMON_PRE + _bib_args(book)
                + ["-L", str(C.FILTERS / "figures.lua"),
                   "-L", str(C.FILTERS / "handbook-components.lua"),
                   "-L", str(C.FILTERS / "typst.lua")])
@@ -112,12 +135,13 @@ def build_web(book: dict) -> None:
         shutil.rmtree(GEN_WEB)
     GEN_WEB.mkdir(parents=True, exist_ok=True)
 
+    chdir_args = _chapter_directory_args(book)
     nav_entries = []
     for ch in C.chapter_files(book):
         meta = _chapter_meta(ch)
         stem = ch.stem
         cmd = (["pandoc", str(ch), "-f", C.PANDOC_FROM, "-t", "gfm"]
-               + COMMON_PRE + _bib_args(book)
+               + chdir_args + COMMON_PRE + _bib_args(book)
                + ["-L", str(C.FILTERS / "figures.lua"),
                   "-L", str(C.FILTERS / "handbook-components.lua"),
                   "-L", str(C.FILTERS / "web.lua")])
