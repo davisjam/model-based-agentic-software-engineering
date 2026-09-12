@@ -22,6 +22,8 @@ Sometimes a degree of freedom turns out not to be harmless. Detailed design may 
 
 The Architecture unit described the relationship between architecture and design as strategy and tactics. Architecture establishes consequential organization and thereby constrains the engineering work below it. Design realizes responsibilities within those constraints.
 
+The same relationship appears in physical engineering. A building architecture may determine where a wall stands, how deep it is, and where services may pass through it without specifying the plumbing inside. The plumbing design inherits those choices as constraints. Software architecture similarly leaves many local choices open while determining the space within which those choices can be made.
+
 This relationship is recursive. Architecture deliberately reasons about coarse-grained parts whose internals can temporarily be ignored. Design opens those parts and determines how they work. If an opened part is itself too large to reason about directly, engineers may establish an architecture for that part and design within it again.
 
 The recursion eventually ends. As engineers work downward, they reach objects, functions, data structures, algorithms, or small collaborations whose relevant behavior can be reasoned about directly. Further architectural decomposition would no longer make the engineering problem easier to understand. Design then passes into implementation.
@@ -62,9 +64,9 @@ As in architecture, recurring patterns provide alternatives and experience about
 
 ## When design feeds back
 
-Design is an attempt to realize the strategy established by architecture. Failure to do so is engineering information.
+Design is an attempt to realize the strategy established by architecture. Failure to do so is engineering information. A building architect may leave space inside a wall for plumbing, only for detailed plumbing design to reveal that the required pipes cannot fit within the available depth. The plumbing designer cannot solve that problem merely by trying harder: some inherited constraint must change.
 
-Suppose an architecture assigns authoritative state to different components while a required operation must update that state consistently. Detailed design must explain how the property can actually be achieved. Perhaps a coordination mechanism solves the problem within the existing architecture. Perhaps the requirement can be weakened. But perhaps every plausible design introduces a dependency the architecture was intended to forbid. In that case, the architecture needs to change.
+Software design can expose the same kind of conflict. Suppose an architecture assigns authoritative state to different components while a required operation must update that state consistently. Detailed design must explain how the property can actually be achieved. Perhaps a coordination mechanism solves the problem within the existing architecture. Perhaps the requirement can be weakened. But perhaps every plausible design introduces a dependency the architecture was intended to forbid. In that case, the architecture needs to change.
 
 The same phenomenon occurs when a supposedly local decision repeatedly appears across components. If every designer independently needs to decide how deadlines propagate, how retries behave, or how ownership is represented, the problem may no longer be local. The engineering environment may need a common abstraction, convention, or enforceable rule.
 
