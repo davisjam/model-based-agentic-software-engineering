@@ -46,17 +46,30 @@ local function indent(md)
   return table.concat(lines, "\n")
 end
 
+-- A block's body is re-serialized here by a fresh `pandoc.write`, which does NOT know citeproc ran
+-- earlier in the pipeline: it would re-emit a resolved bibliographic Cite as a native `@key`, and
+-- the typst PDF then fails on a label that has no bibliography. citeproc has already populated each
+-- Cite's `.content` with the formatted citation inlines, so unwrap every Cite to that content before
+-- writing. Cross-reference cites (@fig/@sec) are already RawInlines by this point (crossrefs.lua), so
+-- only real bibliographic cites remain — unwrapping them yields exactly the rendered citation text.
+local function resolve_cites(content)
+  return pandoc.walk_block(pandoc.Div(content), {
+    Cite = function(c) return c.content end,
+  }).content
+end
+
 function Div(el)
   -- READ FURTHER first: a distinct component, rendered as a quiet box (PDF) / quiet admonition (web).
   -- The entries are ordinary paragraphs — one bibliographic citation plus a short "why read this"
   -- sentence — so there are no numbered [1] citations; the renderer supplies the hanging indent.
   for _, c in ipairs(el.classes) do
     if READ_FURTHER[c] then
+      local content = resolve_cites(el.content)
       if FORMAT == "typst" then
-        local body = pandoc.write(pandoc.Pandoc(el.content), "typst"):gsub("%s+$", "")
+        local body = pandoc.write(pandoc.Pandoc(content), "typst"):gsub("%s+$", "")
         return pandoc.RawBlock("typst", "#hb-read-further[\n" .. body .. "\n]")
       else
-        local body = pandoc.write(pandoc.Pandoc(el.content), "gfm"):gsub("%s+$", "")
+        local body = pandoc.write(pandoc.Pandoc(content), "gfm"):gsub("%s+$", "")
         local adm = '!!! read-further "Read Further"\n\n' .. indent(body) .. "\n"
         return pandoc.RawBlock(FORMAT, adm)
       end
@@ -71,9 +84,10 @@ function Div(el)
 
   -- Use the author's explicit title if given; otherwise let the renderer show the kind label alone.
   local title = el.attributes["title"]
+  local content = resolve_cites(el.content)
 
   if FORMAT == "typst" then
-    local body = pandoc.write(pandoc.Pandoc(el.content), "typst"):gsub("%s+$", "")
+    local body = pandoc.write(pandoc.Pandoc(content), "typst"):gsub("%s+$", "")
     local title_arg = title and ('"' .. title:gsub('"', '\\"') .. '"') or "none"
     local t = "#hb-callout(kind: \"" .. kind .. "\", title: " .. title_arg .. ")[\n"
       .. body .. "\n]"
@@ -81,7 +95,7 @@ function Div(el)
     return pandoc.RawBlock("typst", t)
   else
     local qualifier = WEB_QUALIFIER[kind] or kind
-    local body = pandoc.write(pandoc.Pandoc(el.content), "gfm"):gsub("%s+$", "")
+    local body = pandoc.write(pandoc.Pandoc(content), "gfm"):gsub("%s+$", "")
     local heading = title and (' "' .. title:gsub('"', '\\"') .. '"') or (' "' .. titlecase(kind) .. '"')
     local adm = '!!! ' .. qualifier .. heading .. '\n\n' .. indent(body) .. "\n"
     local blocks = {}
