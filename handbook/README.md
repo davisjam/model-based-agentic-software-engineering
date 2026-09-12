@@ -66,6 +66,7 @@ navigation value.
 | `decision` | `::: {.decision #id title="…"}` | ruled, titled callout (umber) | admonition |
 | `tradeoff` | `::: {.tradeoff #id title="…"}` | ruled, titled callout (violet) | admonition |
 | `example`, `case-study`, `key-idea`, `note`, `warning`, `exercise`, `code-example`, `quotation` | `::: {.<kind> #id title="…"}` | ruled callout | admonition |
+| `read_further` | `::: read_further` + 2–4 entry paragraphs | quiet box labelled "READ FURTHER", hanging-indent entries | quiet admonition |
 | `figure` | `::: {.figure #fig-… alt="…"}` + image + caption paragraph | `#figure(...)`, numbered, tagged-PDF `alt` | semantic `<figure>`/`<figcaption>` |
 | citation | `[@key]` (Pandoc + CSL) | Chicago author-date | Chicago author-date |
 | cross-reference | `@fig-…`, `@sec-…` | native Typst ref / titled link | "Figure N" link / titled link |
@@ -79,6 +80,44 @@ Figures keep alt text and caption structurally distinct: `alt` is the accessibil
 `<img>` and on the Typst `image(alt: …)` for tagged-PDF output), the caption paragraph is the visible
 label.
 
+### Chapter-ending convention
+
+Every substantive chapter ends the same way, so the structure is checkable rather than stylistic:
+
+1. **`## Summary`** — an ordinary H2 section in the author's voice. It is prose, *not* a colored box,
+   and it appears in the table of contents exactly as any other H2 does.
+2. **A single `read_further` box** — the curated reader-facing end matter, rendered immediately after
+   the Summary. It holds 2–4 entries, each a normal bibliographic citation plus one short sentence on
+   why it is worth reading. Chicago style: books and reports in italics, articles in quotes, venue in
+   italics — matching the rest of the manuscript. The web edition links a title or DOI when a canonical
+   destination exists; the PDF typesets the title rather than a raw URL. There are no numbered `[1]`
+   citations; the box is deliberately quiet.
+
+Authoring form:
+
+```
+## Summary
+
+…one or two paragraphs of ordinary prose…
+
+::: read_further
+Bass, Clements & Kazman, *Software Architecture in Practice*. The standard treatment of how
+quality attributes drive structural decisions.
+
+Fairbanks, *Just Enough Software Architecture*. A risk-driven method for spending modeling
+effort only where uncertainty could change a decision.
+:::
+```
+
+**Citation policy.** Inline `@`-citations stay — they render as Chicago author-date, backed by
+`bibliography/references.bib`. A chapter never dumps a per-chapter "References"/"Bibliography" section
+at its end; the READ FURTHER box is the curated end matter, not the citation-metadata store. (A
+book-level bibliography, if wanted later, is a separate build-time assembly, not a per-chapter one.)
+
+Front matter, interludes, and appendices are **exempt** from this convention — flag them with a
+chapter-metadata `kind:` other than `chapter` (e.g. `kind: front-matter`), or simply keep them out of
+`book.yaml`'s `chapters:` list. The drift lint below enforces the convention on everything else.
+
 ## Validation
 
 `scripts/lint.py` reads each chapter's AST and fails (exit 1) on any of: missing/invalid chapter
@@ -87,6 +126,12 @@ caption, duplicate IDs, unresolved cross-references, citation keys absent from t
 broken image paths, hard-coded figure/table/section/chapter numbers in prose, raw HTML/Typst used for
 presentation outside a marked escape hatch, and malformed heading hierarchy. The build runs the
 linter first and aborts on any error — it never degrades silently.
+
+It also runs the **chapter-ending drift check** described above: every non-exempt chapter must end
+with a `## Summary` (H2) whose prose is immediately followed by exactly one `read_further` block, and
+must carry no bare `References`/`Bibliography` heading. This check is currently **AUDIT-ONLY** — it
+reports non-compliant chapters to stderr but does not fail `make lint`, so chapters can adopt the
+convention incrementally. A later step promotes it to a hard error once every chapter complies.
 
 ## Build commands
 
@@ -169,8 +214,9 @@ handbook/
 - **`use_directory_urls: false`.** Chosen so raw-HTML `<figure>` image paths resolve without per-page
   depth math. Revisit if the web edition is deployed under a subpath — either switch figures to a
   MkDocs-rewritten Markdown image (via `md_in_html`) or compute the base path.
-- **Bibliography is per-chapter.** With one chapter that is fine; a whole book wants one references
-  section at the end. That is a book-assembly change in `build.py`, not a schema change.
+- **No per-chapter reference dump.** Inline `@`-cites resolve to Chicago author-date, but citeproc's
+  per-chapter reference list is suppressed; the curated READ FURTHER box is the end matter. A single
+  book-level bibliography, if wanted later, is a book-assembly change in `build.py`, not a schema change.
 
 Follow-up phases (do not fold into this slice): migrate remaining chapters into semantic Markdown
 (minimal editorial change), add semantic annotations, refine typography and web presentation, then

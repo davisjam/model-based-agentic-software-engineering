@@ -6,7 +6,7 @@
 // book.typ as `#show: handbook.with(title: ..., ...)`.
 
 #import "typography.typ": palette, font-body, font-display, font-mono
-#import "components.typ": hb-callout, hb-figure
+#import "components.typ": hb-callout, hb-figure, hb-read-further
 
 #let handbook(
   title: "",

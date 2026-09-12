@@ -41,7 +41,10 @@ CALLOUT_BLOCKS = {
 }
 STRUCTURAL_BLOCKS = {"figure", "table"}
 ESCAPE_BLOCKS = {"raw-typst", "raw-html"}
-KNOWN_BLOCKS = CALLOUT_BLOCKS | STRUCTURAL_BLOCKS | ESCAPE_BLOCKS
+# The curated end-of-chapter reading list (keep in sync with handbook-components.lua READ_FURTHER).
+# Both spellings are accepted; `read_further` is canonical.
+READ_FURTHER_BLOCKS = {"read_further", "read-further"}
+KNOWN_BLOCKS = CALLOUT_BLOCKS | STRUCTURAL_BLOCKS | ESCAPE_BLOCKS | READ_FURTHER_BLOCKS
 
 ALLOWED_STATUS = {"outline", "draft", "review", "stable"}
 REQUIRED_META = {"id", "title", "short_title", "order", "status", "description"}

@@ -20,6 +20,11 @@ local CALLOUTS = {
   ["code-example"] = true, quotation = true, ["key-idea"] = true, ["mage-moment"] = true,
 }
 
+-- READ FURTHER: the curated end-of-chapter reading list. Not a callout — it renders as a QUIET box
+-- (no tint, no left rule), a set of hanging-indent bibliographic entries under a small "READ FURTHER"
+-- label. Both spellings accepted; `read_further` is canonical (keep in sync with _common.py).
+local READ_FURTHER = { read_further = true, ["read-further"] = true }
+
 -- Web admonition qualifier per kind (Material built-ins reused where they fit).
 local WEB_QUALIFIER = {
   quotation = "quote", ["code-example"] = "example",
@@ -42,6 +47,22 @@ local function indent(md)
 end
 
 function Div(el)
+  -- READ FURTHER first: a distinct component, rendered as a quiet box (PDF) / quiet admonition (web).
+  -- The entries are ordinary paragraphs — one bibliographic citation plus a short "why read this"
+  -- sentence — so there are no numbered [1] citations; the renderer supplies the hanging indent.
+  for _, c in ipairs(el.classes) do
+    if READ_FURTHER[c] then
+      if FORMAT == "typst" then
+        local body = pandoc.write(pandoc.Pandoc(el.content), "typst"):gsub("%s+$", "")
+        return pandoc.RawBlock("typst", "#hb-read-further[\n" .. body .. "\n]")
+      else
+        local body = pandoc.write(pandoc.Pandoc(el.content), "gfm"):gsub("%s+$", "")
+        local adm = '!!! read-further "Read Further"\n\n' .. indent(body) .. "\n"
+        return pandoc.RawBlock(FORMAT, adm)
+      end
+    end
+  end
+
   local kind = nil
   for _, c in ipairs(el.classes) do
     if CALLOUTS[c] then kind = c; break end

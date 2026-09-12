@@ -21,6 +21,8 @@
   --md-admonition-icon--case-study: var(--hb-icon);
   --md-admonition-icon--key-idea: var(--hb-icon);
   --md-admonition-icon--exercise: var(--hb-icon);
+  /* A small book glyph for the quiet READ FURTHER box. */
+  --md-admonition-icon--read-further: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM7 4h4v8l-2-1.5L7 12V4z"/></svg>');
 }
 
 /* Per-type accent color: border + title tint. The title-rule mixin Material uses keys off the
@@ -51,6 +53,39 @@
 .md-typeset .admonition.exercise { border-color: var(--hb-accent); }
 .md-typeset .exercise > .admonition-title { background-color: color-mix(in srgb, var(--hb-accent) 10%, transparent); }
 .md-typeset .exercise > .admonition-title::before { background-color: var(--hb-accent); }
+
+/* READ FURTHER: the curated end-of-chapter reading list. Rendered as a QUIET admonition — no colored
+ * border, no fill, just a hairline separating it from the Summary prose above, a small tracked label,
+ * and muted hanging-indent entries. It reads as end matter, not as one more colored callout. */
+.md-typeset .admonition.read-further,
+.md-typeset details.read-further {
+  border: none;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  margin-top: 1.6em;
+  padding-top: 0.2em;
+  font-size: 0.85em;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset .read-further > .admonition-title {
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.md-typeset .read-further > .admonition-title::before {
+  background-color: var(--md-default-fg-color--light);
+}
+/* Hanging indent per entry, so a wrapped citation aligns under its own first line. */
+.md-typeset .read-further p {
+  padding-left: 1.4em;
+  text-indent: -1.4em;
+  margin: 0.4em 0;
+}
 
 /* Figures: centered image, muted caption with the renderer-supplied "Figure N." prefix. */
 .handbook-figure { margin: 1.6em auto; text-align: center; }

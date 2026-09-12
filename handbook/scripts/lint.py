@@ -209,6 +209,73 @@ def _find_images(node) -> list:
     return found
 
 
+# ── Chapter-ending convention (drift lint) ─────────────────────────────────────────────────────
+# AUDIT-ONLY: reports non-compliant chapters but never contributes to the exit code, so a chapter that
+# has not yet adopted the convention does not break `make lint`. A later step promotes it to fatal once
+# every chapter complies. The convention: a substantive chapter ends with a `## Summary` (H2) section
+# whose prose is immediately followed by exactly one `read_further` block, and it carries no dumped
+# `References`/`Bibliography` heading. Front matter, interludes, and appendices are EXEMPT — flagged by
+# a `kind:` metadata value other than `chapter` (or by being absent from book.yaml `chapters:`).
+_END_SECTION_HEADINGS = {"references", "bibliography"}
+
+
+def _heading_text(header_node: dict) -> str:
+    return C._stringify(header_node["c"][2])
+
+
+def _is_read_further(block: dict) -> bool:
+    if not isinstance(block, dict) or block.get("t") != "Div":
+        return False
+    classes = block["c"][0][1]
+    return any(cl in C.READ_FURTHER_BLOCKS for cl in classes)
+
+
+def check_chapter_ending(name: str, blocks: list, meta: dict) -> list[str]:
+    """Return AUDIT-ONLY findings for one chapter's ending convention (empty list == compliant)."""
+    kind = (meta.get("kind") or "chapter")
+    if kind != "chapter":
+        return []  # front-matter / interlude / appendix are exempt from the convention
+
+    findings: list[str] = []
+
+    # No bare References/Bibliography section — the reader-facing end matter is the READ FURTHER box.
+    for b in blocks:
+        if isinstance(b, dict) and b.get("t") == "Header":
+            if _heading_text(b).strip().lower() in _END_SECTION_HEADINGS:
+                findings.append(
+                    f"contains a bare '{_heading_text(b)}' heading — remove it; the curated READ "
+                    "FURTHER box is the end matter, not a dumped reference list"
+                )
+
+    rf_idx = [i for i, b in enumerate(blocks) if _is_read_further(b)]
+    if not rf_idx:
+        findings.append("does not end with a `read_further` block")
+        return findings
+    if len(rf_idx) > 1:
+        findings.append(f"has {len(rf_idx)} `read_further` blocks (expected exactly one)")
+    idx = rf_idx[-1]
+    if idx != len(blocks) - 1:
+        findings.append("the `read_further` block is not the last block in the chapter")
+
+    # The section immediately before READ FURTHER must be `## Summary` (H2).
+    preceding = None
+    for b in reversed(blocks[:idx]):
+        if isinstance(b, dict) and b.get("t") == "Header":
+            preceding = b
+            break
+    if preceding is None:
+        findings.append("no `## Summary` heading precedes the `read_further` block")
+    else:
+        level = preceding["c"][0]
+        text = _heading_text(preceding).strip()
+        if level != 2 or text.lower() != "summary":
+            findings.append(
+                f"the section before READ FURTHER is '{text}' (level {level}); "
+                "expected a `## Summary` (H2)"
+            )
+    return findings
+
+
 def main() -> int:
     book = C.load_book()
     rep = Report()
@@ -223,7 +290,7 @@ def main() -> int:
     all_defined_ids: set[str] = set()
     orders: list[tuple[int, str]] = []
 
-    scans: list[tuple[str, ChapterScan, dict]] = []
+    scans: list[tuple[str, ChapterScan, dict, list]] = []
     for ch in chapters:
         name = ch.name
         if not ch.exists():
@@ -245,9 +312,10 @@ def main() -> int:
         except (TypeError, ValueError):
             rep.err(name, f"chapter 'order' must be an integer, got {order_val!r}")
 
+        blocks = ast.get("blocks", [])
         scan = ChapterScan()
-        scan.scan_blocks(ast.get("blocks", []))
-        scans.append((name, scan, meta))
+        scan.scan_blocks(blocks)
+        scans.append((name, scan, meta, blocks))
 
         # Each chapter is itself a cross-reference target: `@ch-<id>` resolves to the chapter opening.
         chap_id = meta.get("id")
@@ -269,7 +337,7 @@ def main() -> int:
             rep.err("book", f"duplicate id '{ident}' defined in: {', '.join(where)}")
 
     # per-chapter checks
-    for name, scan, _meta in scans:
+    for name, scan, _meta, _blocks in scans:
         for cid in scan.crossref_uses:
             if cid not in all_defined_ids:
                 rep.err(name, f"unresolved cross-reference @{cid}")
@@ -297,11 +365,26 @@ def main() -> int:
             if not resolved.exists():
                 rep.err(name, f"broken image path: {src}")
 
+    # Chapter-ending convention — AUDIT-ONLY (reports, never fatal; see check_chapter_ending).
+    drift: list[str] = []
+    for name, _scan, meta, blocks in scans:
+        for f in check_chapter_ending(name, blocks, meta):
+            drift.append(f"{name}: {f}")
+
     if rep.errors:
         sys.stderr.write(f"lint FAILED — {len(rep.errors)} issue(s):\n")
         for e in rep.errors:
             sys.stderr.write(f"  [x] {e}\n")
         return 1
+
+    if drift:
+        sys.stderr.write(
+            f"[audit] chapter-ending convention — {len(drift)} not-yet-compliant "
+            "(non-fatal; will become blocking once all chapters comply):\n"
+        )
+        for d in drift:
+            sys.stderr.write(f"  [ ] {d}\n")
+
     n = len(scans)
     print(f"lint OK — {n} chapter(s) validated, 0 issues")
     return 0

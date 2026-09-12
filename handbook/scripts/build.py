@@ -35,10 +35,14 @@ COMMON_PRE = ["-L", str(C.FILTERS / "crossrefs.lua")]
 
 
 def _bib_args(book: dict) -> list[str]:
+    # Citation policy: inline @-citations render as Chicago author-date (backed by the bib), but a
+    # chapter never dumps a "References"/"Bibliography" list at its end. The reader-facing end matter
+    # is the curated READ FURTHER box (see handbook-components.lua). suppress-bibliography keeps every
+    # inline cite resolved while dropping citeproc's per-chapter reference section.
     bib = C.BIB_DIR / C.pathlib.Path(book["bibliography"]["file"]).name
     csl = C.BIB_DIR / C.pathlib.Path(book["bibliography"]["csl"]).name
     return ["--citeproc", "--bibliography", str(bib), "--csl", str(csl),
-            "-M", "reference-section-title=References"]
+            "-M", "suppress-bibliography=true"]
 
 
 def _chapter_meta(ch) -> dict:
@@ -97,9 +101,6 @@ def build_pdf(book: dict) -> None:
                   "-L", str(C.FILTERS / "handbook-components.lua"),
                   "-L", str(C.FILTERS / "typst.lua")])
         body = _run(cmd)
-        # Per-chapter references should sit UNDER the chapter, not open a new chapter.
-        body = body.replace("#heading(level: 1, numbering: none)[References]",
-                            "#heading(level: 2, numbering: none)[References]")
         title = meta.get("title", stem)
         chap = f"= {title}\n<chap-{meta.get('id', stem)}>\n\n{body}"
         # Kept on disk for inspection (spec §24); book.typ inlines the same content so the
@@ -146,7 +147,6 @@ def build_web(book: dict) -> None:
                   "-L", str(C.FILTERS / "handbook-components.lua"),
                   "-L", str(C.FILTERS / "web.lua")])
         body = _run(cmd)
-        body = body.replace("\n# References\n", "\n## References\n")
         title = meta.get("title", stem)
         page = f"# {title}\n\n{body}\n"
         (GEN_WEB / f"{stem}.md").write_text(page, encoding="utf-8")

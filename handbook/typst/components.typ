@@ -29,6 +29,26 @@
   ]
 }
 
+// READ FURTHER: the curated end-of-chapter reading list. Deliberately QUIET — no tint, no left rule,
+// just a hairline separating it from the Summary prose above, a small tracked label, and muted
+// hanging-indent entries. It carries no numbered citations; each entry is a mini-paragraph (a Chicago
+// citation plus a one-sentence "why read this"). Kept together on one page where it fits.
+#let hb-read-further(body) = {
+  block(
+    width: 100%,
+    above: 1.6em, below: 1.1em,
+    breakable: false,
+  )[
+    #line(length: 100%, stroke: 0.4pt + palette.rule)
+    #v(0.55em, weak: true)
+    #text(font: font-display, weight: 700, size: 8pt, fill: palette.muted, tracking: 0.16em)[READ FURTHER]
+    #v(0.45em, weak: true)
+    #set text(size: 9.5pt, fill: palette.muted)
+    #set par(hanging-indent: 1.2em, first-line-indent: 0em, leading: 0.6em, spacing: 0.55em, justify: true)
+    #body
+  ]
+}
+
 // A figure: the image, a numbered caption. Typst owns the "Figure N" numbering and the label makes
 // it referenceable via @id.
 #let hb-figure(img, caption: none) = {
