@@ -48,6 +48,10 @@ KNOWN_BLOCKS = CALLOUT_BLOCKS | STRUCTURAL_BLOCKS | ESCAPE_BLOCKS | READ_FURTHER
 
 ALLOWED_STATUS = {"outline", "draft", "review", "stable"}
 REQUIRED_META = {"id", "title", "short_title", "order", "status", "description"}
+# Front matter (Preface, etc.) is unnumbered and outside the chapter sequence, so it carries neither
+# `order:` nor a `short_title:`. It still needs a stable `id`, a `title` for the rendered heading, and
+# a `kind:` (which also drives the chapter-ending drift lint's exemption for non-chapter material).
+REQUIRED_FRONTMATTER_META = {"id", "title", "kind"}
 
 # Cross-reference prefixes (keep in sync with filters/crossrefs.lua CROSSREF_PREFIX). `ch` is the
 # chapter-level cross-reference (@ch-<chapter-id>) used to link across chapters; it resolves to the
@@ -67,6 +71,19 @@ def load_book() -> dict:
 
 def chapter_files(book: dict) -> list[pathlib.Path]:
     return [HANDBOOK / rel for rel in book["chapters"]]
+
+
+def frontmatter_entries(book: dict) -> list[dict]:
+    """The book.yaml `frontmatter:` list (Preface, etc.); empty when the book declares none.
+
+    Each entry is a map: `file` (path under the book root) and `views` (the projections it renders
+    into). Returned as-is so callers can filter on `views` — the web projection ignores this list
+    entirely, so front matter never leaks into the web edition."""
+    return list(book.get("frontmatter", []))
+
+
+def frontmatter_files(book: dict) -> list[pathlib.Path]:
+    return [HANDBOOK / e["file"] for e in frontmatter_entries(book)]
 
 
 def pandoc_ast(md_path: pathlib.Path) -> dict:

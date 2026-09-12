@@ -18,6 +18,17 @@ bibliography:
   file: bibliography/references.bib
   csl: bibliography/chicago-author-date.csl
 
+# Front matter — unnumbered material that precedes the chapters (Preface, etc.). Each entry names a
+# file under the book root and the projections (`views:`) it appears in. Front matter is rendered
+# into the ELABORATED handbook edition only, so its entries carry `views: [handbook]`. The web
+# projection walks `chapters:` alone and never reads this list, so front matter is excluded from web
+# by construction; a future web projection that wanted a front-matter page would have to opt in by
+# adding `web` to its `views:`. Front matter is not a chapter — it carries no `order:` and never
+# enters the chapter numbering.
+frontmatter:
+  - file: frontmatter/preface.md
+    views: [handbook]
+
 # Chapter build order. Each entry is a file under chapters/. The order here is authoritative; the
 # per-chapter `order:` metadata must agree with it (the linter checks this). Reordering the book is
 # a change to this list, not a renumbering of prose — cross-references resolve by ID, never by number.

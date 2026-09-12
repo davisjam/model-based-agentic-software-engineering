@@ -326,6 +326,32 @@ def main() -> int:
             all_ids.setdefault(ident, []).append(name)
             all_defined_ids.add(ident)
 
+    # Front matter (Preface, etc.) — validated with a front-matter-appropriate metadata rule (no
+    # chapter `order:`, no `short_title:`), then run through the same structural scans as chapters so
+    # a broken image, unknown semantic block, or raw-presentation escape is caught here too. Front
+    # matter is exempt from the chapter-ending convention (see check_chapter_ending, keyed on `kind`).
+    fm_scans: list[tuple[str, ChapterScan, dict, list]] = []
+    for fm in C.frontmatter_files(book):
+        name = f"frontmatter/{fm.name}"
+        if not fm.exists():
+            rep.err(name, "front-matter file listed in book.yaml does not exist")
+            continue
+        ast = C.pandoc_ast(fm)
+        meta = C.meta_to_py(ast.get("meta", {}))
+        missing = C.REQUIRED_FRONTMATTER_META - set(meta)
+        if missing:
+            rep.err(name, f"missing front-matter metadata: {', '.join(sorted(missing))}")
+        status = meta.get("status")
+        if status and status not in C.ALLOWED_STATUS:
+            rep.err(name, f"invalid status '{status}' (allowed: {', '.join(sorted(C.ALLOWED_STATUS))})")
+        blocks = ast.get("blocks", [])
+        scan = ChapterScan()
+        scan.scan_blocks(blocks)
+        fm_scans.append((name, scan, meta, blocks))
+        for ident, _kind in scan.ids:
+            all_ids.setdefault(ident, []).append(name)
+            all_defined_ids.add(ident)
+
     # chapter ordering: strictly increasing in book.yaml sequence
     seq_orders = [o for o, _ in orders]
     if seq_orders != sorted(seq_orders) or len(set(seq_orders)) != len(seq_orders):
@@ -336,8 +362,8 @@ def main() -> int:
         if len(where) > 1:
             rep.err("book", f"duplicate id '{ident}' defined in: {', '.join(where)}")
 
-    # per-chapter checks
-    for name, scan, _meta, _blocks in scans:
+    # per-file checks (chapters + front matter share the structural invariants)
+    for name, scan, _meta, _blocks in scans + fm_scans:
         for cid in scan.crossref_uses:
             if cid not in all_defined_ids:
                 rep.err(name, f"unresolved cross-reference @{cid}")
@@ -386,7 +412,9 @@ def main() -> int:
             sys.stderr.write(f"  [ ] {d}\n")
 
     n = len(scans)
-    print(f"lint OK — {n} chapter(s) validated, 0 issues")
+    fm = len(fm_scans)
+    fm_note = f" + {fm} front-matter file(s)" if fm else ""
+    print(f"lint OK — {n} chapter(s){fm_note} validated, 0 issues")
     return 0
 
 

@@ -6,13 +6,14 @@
 // book.typ as `#show: handbook.with(title: ..., ...)`.
 
 #import "typography.typ": palette, font-body, font-display, font-mono
-#import "components.typ": hb-callout, hb-figure, hb-read-further
+#import "components.typ": hb-callout, hb-figure, hb-read-further, hb-frontmatter
 
 #let handbook(
   title: "",
   subtitle: "",
   author: "",
   year: "",
+  frontmatter: none,
   body,
 ) = {
   set document(title: title, author: author)
@@ -96,9 +97,18 @@
   ]
   pagebreak()
 
-  // ── Table of contents ───────────────────────────────────────────────────
+  // ── Front matter (roman-numbered, before the contents) ────────────────────
+  // Conventional book order: title page → Preface → Table of Contents → chapters. Front matter is
+  // unnumbered and never enters the outline (it is drawn with hb-frontmatter, not a `heading`), so
+  // the contents list stays chapters-only.
   set page(numbering: "i", header: none)
   counter(page).update(1)
+  if frontmatter != none {
+    frontmatter
+    pagebreak()
+  }
+
+  // ── Table of contents ───────────────────────────────────────────────────
   block[
     #text(font: font-display, size: 18pt, weight: 700)[Contents]
     #v(0.6em)

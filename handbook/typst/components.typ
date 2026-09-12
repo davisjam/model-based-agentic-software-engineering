@@ -5,6 +5,19 @@
 
 #import "typography.typ": palette, font-display, callout-style
 
+// Front matter (Preface, etc.): an UNNUMBERED opening. It deliberately avoids the chapter heading
+// treatment — no "CHAPTER" eyebrow, no chapter counter, no outline entry — because front matter is
+// not Chapter 0. The title is drawn once as a display-face heading over a hairline; the body follows
+// in the normal text style.
+#let hb-frontmatter(title: "", body) = {
+  block(above: 0pt, below: 1.1em)[
+    #text(font: font-display, size: 26pt, weight: 700, fill: palette.ink)[#title]
+    #v(0.2em, weak: true)
+    #line(length: 100%, stroke: 0.8pt + palette.rule)
+  ]
+  body
+}
+
 // A semantic callout: a lightly ruled, titled block. The left rule and tint come from the kind.
 #let hb-callout(kind: "note", title: none, body) = {
   let style = callout-style.at(kind, default: (palette.muted, palette.panel))

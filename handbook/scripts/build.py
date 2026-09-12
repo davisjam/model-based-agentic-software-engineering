@@ -85,12 +85,38 @@ def _gate() -> None:
         C.die("manuscript failed lint; build aborted")
 
 
+def _frontmatter_typst(book: dict, chdir_args: list[str]) -> str:
+    """Render the handbook-view front matter (Preface, etc.) to a Typst content block.
+
+    Front matter is PDF/handbook-only: only entries whose `views:` include `handbook` are rendered,
+    and the web build never reads book.yaml's `frontmatter:` list at all. Each entry becomes an
+    unnumbered `#hb-frontmatter(title: ...)[…]` block; the returned string is inlined as the
+    template's `frontmatter:` argument (empty string → the template renders no front matter)."""
+    blocks = []
+    for entry in book.get("frontmatter", []):
+        if "handbook" not in (entry.get("views") or []):
+            continue
+        fm = C.HANDBOOK / entry["file"]
+        meta = _chapter_meta(fm)
+        cmd = (["pandoc", str(fm), "-f", C.PANDOC_FROM, "-t", "typst"]
+               + chdir_args + COMMON_PRE + _bib_args(book)
+               + ["-L", str(C.FILTERS / "figures.lua"),
+                  "-L", str(C.FILTERS / "handbook-components.lua"),
+                  "-L", str(C.FILTERS / "typst.lua")])
+        body = _run(cmd)
+        title = meta.get("title", fm.stem)
+        blocks.append(f'#hb-frontmatter(title: "{title}")[\n{body}\n]')
+        print(f"  typst  ← {fm.name} (front matter)")
+    return "\n\n".join(blocks)
+
+
 def build_pdf(book: dict) -> None:
     _gate()
     GEN_TYPST.mkdir(parents=True, exist_ok=True)
     C.DIST.mkdir(parents=True, exist_ok=True)
 
     chdir_args = _chapter_directory_args(book)
+    frontmatter_typst = _frontmatter_typst(book, chdir_args)
     chapter_typst = []
     for ch in C.chapter_files(book):
         meta = _chapter_meta(ch)
@@ -118,6 +144,8 @@ def build_pdf(book: dict) -> None:
         f'  subtitle: "{book["subtitle"]}",',
         f'  author: "{book["author"]}",',
         f'  year: "{book["year"]}",',
+        # Front matter is a Typst content argument; `none` when there is no handbook-view front matter.
+        ("  frontmatter: [\n" + frontmatter_typst + "\n  ],") if frontmatter_typst else "  frontmatter: none,",
         ")",
         "",
         "\n\n".join(chapter_typst),
