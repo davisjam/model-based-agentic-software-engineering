@@ -127,6 +127,10 @@ jobs:
       # mirroring the book-PDF assembly assertion.
       - name: Render supplementary handbook PDF (Pandoc → Typst) + copy into _site
         run: |
+          # The handbook build/lint scripts parse book.yaml with PyYAML (the only third-party Python dep on
+          # the PDF path; Pandoc + Typst are external CLIs, installed above). catalog.py itself stays
+          # stdlib-only, so nothing has installed PyYAML yet — install it here, pinned to the README's v6.
+          python3 -m pip install "pyyaml>=6,<7"
           make -C handbook book
           mkdir -p _site/handbook
           cp handbook/dist/software-engineering-handbook.pdf _site/handbook/software-engineering-handbook.pdf
