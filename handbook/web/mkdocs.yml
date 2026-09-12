@@ -1,0 +1,56 @@
+# MkDocs configuration for the Handbook web edition.
+#
+# IMPORTANT: docs_dir points at generated/web — MkDocs reads the GENERATED Markdown, never the
+# canonical manuscript. The semantic Divs of the source have already been transformed into Material
+# admonitions and <figure> elements by the Pandoc web filters (scripts/build.py). Do not point this
+# at chapters/.
+site_name: The Software Engineering Handbook
+site_description: A Judgment and Decision-Making Approach — web edition (vertical-slice prototype).
+
+docs_dir: ../generated/web
+# site_dir is passed explicitly by build.py (-d dist/site); this default is for a bare `mkdocs build`.
+site_dir: ../dist/site
+
+# Pages are served flat at the site root (05-architecture.html, not 05-architecture/index.html) so the
+# <figure> raw-HTML image paths (figures/…) resolve without a per-page depth adjustment. A raw <img>
+# is not rewritten by MkDocs the way a Markdown image is, so a flat layout keeps every asset one hop
+# from every page.
+use_directory_urls: false
+strict: true  # fail the build on a bad internal link or nav reference
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: brown
+      accent: brown
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: brown
+      accent: brown
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+extra_css:
+  - css/handbook.css
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - tables
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.details

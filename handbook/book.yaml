@@ -1,0 +1,25 @@
+# Global book metadata — the single source of truth for information that belongs to the whole book
+# rather than to any one chapter. The PDF front matter and the web site configuration both derive
+# from this file; do not repeat these facts in the Typst template or in mkdocs.yml.
+title: The Software Engineering Handbook
+subtitle: A Judgment and Decision-Making Approach
+author: James C. Davis
+edition: 1
+year: 2026
+language: en-US
+
+outputs:
+  pdf:
+    enabled: true
+  web:
+    enabled: true
+
+bibliography:
+  file: bibliography/references.bib
+  csl: bibliography/chicago-author-date.csl
+
+# Chapter build order. Each entry is a file under chapters/. The order here is authoritative; the
+# per-chapter `order:` metadata must agree with it (the linter checks this). Reordering the book is
+# a change to this list, not a renumbering of prose — cross-references resolve by ID, never by number.
+chapters:
+  - chapters/05-architecture.md

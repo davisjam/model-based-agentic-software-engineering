@@ -1,0 +1,9 @@
+# Generated artifacts — created by scripts/build.py, never hand-edited, never committed.
+# Mirrors how the MAGE book gitignores its rendered PDF: the renderers are reproducible, so the
+# outputs are created on demand, not tracked.
+/generated/
+/dist/
+
+# Python bytecode from the build/lint scripts.
+__pycache__/
+*.pyc

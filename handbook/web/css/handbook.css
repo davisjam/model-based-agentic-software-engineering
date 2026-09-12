@@ -1,0 +1,63 @@
+/* handbook.css — web presentation of the semantic vocabulary and figures.
+ *
+ * The canonical Markdown names meaning; this stylesheet (plus the Material theme) decides what a
+ * definition, a decision, or a tradeoff looks like on the web. It mirrors the Umber-Monograph accent
+ * the PDF uses, so the two editions read as one book. Custom admonition types are registered here;
+ * the Pandoc web filter emits `!!! definition "…"`, and these rules style it.
+ */
+
+:root {
+  --hb-accent: #9a3f12;
+  --hb-def: #1f6fae;
+  --hb-good: #15803d;
+  --hb-inset: #7c6bb0;
+  --hb-case: #2f5169;
+  --hb-warn: #b23b3b;
+  /* One shared glyph for custom admonition types (Material needs an icon var per type). */
+  --hb-icon: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 5h16v2H4zm0 5h10v2H4z"/></svg>');
+  --md-admonition-icon--definition: var(--hb-icon);
+  --md-admonition-icon--decision: var(--hb-icon);
+  --md-admonition-icon--tradeoff: var(--hb-icon);
+  --md-admonition-icon--case-study: var(--hb-icon);
+  --md-admonition-icon--key-idea: var(--hb-icon);
+  --md-admonition-icon--exercise: var(--hb-icon);
+}
+
+/* Per-type accent color: border + title tint. The title-rule mixin Material uses keys off the
+ * border color, so setting --hb-c and the border is enough. */
+.md-typeset .admonition.definition,
+.md-typeset details.definition { border-color: var(--hb-def); }
+.md-typeset .definition > .admonition-title,
+.md-typeset .definition > summary { background-color: color-mix(in srgb, var(--hb-def) 10%, transparent); }
+.md-typeset .definition > .admonition-title::before,
+.md-typeset .definition > summary::before { background-color: var(--hb-def); }
+
+.md-typeset .admonition.decision { border-color: var(--hb-accent); }
+.md-typeset .decision > .admonition-title { background-color: color-mix(in srgb, var(--hb-accent) 10%, transparent); }
+.md-typeset .decision > .admonition-title::before { background-color: var(--hb-accent); }
+
+.md-typeset .admonition.tradeoff { border-color: var(--hb-inset); }
+.md-typeset .tradeoff > .admonition-title { background-color: color-mix(in srgb, var(--hb-inset) 10%, transparent); }
+.md-typeset .tradeoff > .admonition-title::before { background-color: var(--hb-inset); }
+
+.md-typeset .admonition.case-study { border-color: var(--hb-case); }
+.md-typeset .case-study > .admonition-title { background-color: color-mix(in srgb, var(--hb-case) 10%, transparent); }
+.md-typeset .case-study > .admonition-title::before { background-color: var(--hb-case); }
+
+.md-typeset .admonition.key-idea { border-color: var(--hb-good); }
+.md-typeset .key-idea > .admonition-title { background-color: color-mix(in srgb, var(--hb-good) 10%, transparent); }
+.md-typeset .key-idea > .admonition-title::before { background-color: var(--hb-good); }
+
+.md-typeset .admonition.exercise { border-color: var(--hb-accent); }
+.md-typeset .exercise > .admonition-title { background-color: color-mix(in srgb, var(--hb-accent) 10%, transparent); }
+.md-typeset .exercise > .admonition-title::before { background-color: var(--hb-accent); }
+
+/* Figures: centered image, muted caption with the renderer-supplied "Figure N." prefix. */
+.handbook-figure { margin: 1.6em auto; text-align: center; }
+.handbook-figure img { max-width: 100%; height: auto; }
+.handbook-figure figcaption {
+  margin-top: 0.6em;
+  font-size: 0.85em;
+  color: var(--md-default-fg-color--light);
+  text-align: center;
+}
