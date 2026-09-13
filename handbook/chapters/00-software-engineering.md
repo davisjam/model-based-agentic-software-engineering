@@ -17,46 +17,14 @@ objectives:
 **Premise.** *Software is an unusually changeable engineered medium. Software engineering exploits that
 property while keeping consequential change under control.*
 
-Software engineering begins with engineering.
-
-::: {.definition #def-engineering title="Engineering"}
-Engineering is the discipline of exercising informed control over consequential systems and accepting
-responsibility for their outcomes. Engineers need not personally perform every act required to realize
-a system. They must retain sufficient command to understand and direct it, evaluate the evidence for
-its consequential properties, recognize when its assumptions fail, and intervene when necessary. They
-remain answerable for the consequential decisions made under their authority.
-
-— *Model-Based Agentic Software Engineering* [@davis2026mage]
+::: {.definition #def-software title="Software"}
+Software is an engineered medium in which behavior is represented for execution by machines, including
+both conventional instruction-based machines and reasoning machines.
 :::
 
-This definition places judgment and responsibility at the center of engineering rather than
-fabrication. Engineers certainly build things, but building is a means rather than the defining
-activity. An engineer decides what should be built, reasons about alternatives and their consequences,
-determines what evidence is sufficient, and remains responsible when those decisions matter.
-Software engineering applies that responsibility to a peculiar engineered medium.
-
-## Programming over time {#sec-programming-over-time}
-
-A useful starting point comes from *Software Engineering at Google* [@winters2020], which describes
-software engineering as "programming integrated over time." The distinction is not simply that software
-engineers write larger programs. It is that the artifact outlives the act of programming.
-
-Consider a program written to solve a single problem. We decide what it should do, write it, run it,
-obtain the result, and perhaps never touch it again. Programming may be all that is required.
-
-Now extend the life of the artifact. Version 1.0 becomes 1.1, then 2.0 and 3.0. Defects are repaired.
-Security problems emerge. Performance expectations change. New capabilities are added. Old ones become
-unnecessary. The software is moved to new platforms and connected to systems that did not exist when it
-was first written.
-
-Meanwhile, the world around the software changes. Users discover new ways to use it. Engineers join and
-leave the organization. Dependencies evolve. Regulations change. Competitors introduce new
-capabilities. Assumptions that were reasonable when the system was created eventually become false. The
-engineering problem is therefore not merely to produce a correct artifact once. It is to keep an
-artifact useful as both the artifact and its environment change.
-
-That problem is especially important for software because change is not merely something that happens
-to software. The ability to change is one of the principal reasons we use software at all.
+Software may prescribe behavior through explicit instructions, or it may configure and direct machines
+that reason about how to achieve an objective. In either case, engineers use software to make behavior
+executable while retaining the ability to change how that behavior is produced.
 
 ## Software as an engineered medium {#sec-engineered-medium}
 
@@ -112,8 +80,15 @@ represented in software can be revised as needs and circumstances change.
 
 Software engineering is therefore not merely the engineering discipline for producing programs. It is
 increasingly the discipline through which other fields make parts of their own engineered systems
-adaptable. That is a remarkable advantage, and it is also the source of the central engineering
-problem.
+adaptable. We put behavior in software partly because we expect that behavior to change.
+
+But software does not change once. Systems remain in use while requirements, users, dependencies,
+platforms, regulations, and the engineers responsible for them change. Decisions that were sensible
+when a system was created may eventually become constraints, liabilities, or simply mysteries to the
+people maintaining it.
+
+The engineering problem is therefore not merely to produce an acceptable artifact once. It is to keep
+an artifact acceptable as both the artifact and its environment change.
 
 ## Software gives engineers unusual leverage {#sec-leverage}
 
@@ -161,17 +136,31 @@ This creates a tension at the center of software engineering. We want software t
 because changeability is one of its greatest advantages. But we also need important properties to
 survive those changes.
 
+The problem is therefore one of engineering control.
+
+::: {.definition #def-engineering title="Engineering"}
+Engineering is the discipline of exercising informed control over consequential systems and accepting
+responsibility for their outcomes. Engineers need not personally perform every act required to realize
+a system. They must retain sufficient command to understand and direct it, evaluate the evidence for
+its consequential properties, recognize when its assumptions fail, and intervene when necessary. They
+remain answerable for the consequential decisions made under their authority.
+
+— *Model-Based Agentic Software Engineering* [@davis2026mage]
+:::
+
+Software gives engineers an unusually adaptable medium; engineering requires them to retain informed
+control over consequential systems. Software engineering joins these two ideas.
+
 ::: {.definition #def-software-engineering title="Software engineering"}
 Software engineering is the engineering discipline of controlled change in software systems. It creates
 and evolves software while preserving sufficient control over the properties and consequences that
 matter.
 :::
 
-"Controlled" does not mean preventing change. Nor does it mean deciding every detail in advance. Quite
-the opposite: good software engineering often preserves choices deliberately so that they can be made
-later, when more information is available and the cost of commitment is justified. Control means knowing
-which changes are acceptable, which properties must survive them, where freedom is useful, what evidence
-we require, and when a proposed change forces us to reconsider an earlier decision.
+Controlled change does not mean preventing change. Nor does it require engineers to determine every
+detail themselves. Software engineering exploits the freedom the medium provides while maintaining
+sufficient control to determine what should change, what must remain true, what evidence is needed, and
+when an earlier decision or assumption must be reconsidered.
 
 The chapters that follow examine different parts of that problem. Requirements engineering asks what
 outcomes matter enough to become engineering commitments. Specification determines what those
@@ -184,8 +173,9 @@ asks how to organize all of this work.
 
 ## Technology moves the bottleneck {#sec-bottleneck}
 
-The engineered medium itself also changes over time. New technologies make capabilities that were once
-expensive comparatively abundant, and engineering reorganizes around the constraints that remain.
+What engineers must control remains, but the cost of exercising that control changes with technology.
+New technologies make capabilities that were once expensive comparatively abundant, and engineering
+reorganizes around the constraints that remain.
 
 The steam engine made mechanical power available at a scale that human and animal labor could not
 provide. Factories greatly expanded physical production. Integrated circuits made computation
@@ -207,7 +197,7 @@ Engineering has never been defined by personally performing every act required t
 question is whether engineers retain sufficient control to direct the work, judge its consequences,
 evaluate the evidence for the properties that matter, and intervene when necessary.
 
-This is why greater implementation capacity does not make software engineering obsolete. If
+Greater implementation capacity therefore does not make software engineering obsolete. If
 implementation becomes cheaper, deciding what to build, controlling what may change, preserving what
 must remain true, and determining whether the result is acceptable become a larger fraction of the
 engineering problem. The bottleneck moves.
@@ -226,19 +216,22 @@ mean.
 
 ## Summary
 
-Software is an unusual engineered medium: it is highly changeable, copyable, transferable, and
-updateable. These properties explain both its value and its risk. Engineers increasingly use software to
-place adaptable behavior inside systems, and a single software change can propagate across enormous
-deployed populations. Software engineers therefore exercise unusual leverage.
+Software is an engineered medium in which behavior is represented for execution by machines. Its unusual
+changeability, copyability, transferability, and updateability make it valuable precisely because
+engineers can continue to alter behavior after a system has been created. Those same properties give
+individual changes unusual reach and allow mistakes, vulnerabilities, and mistaken assumptions to
+propagate just as readily as improvements.
 
-Software engineering is the discipline of keeping that capacity for change under control. The objective
-is not to prevent change, but to preserve responsibility for consequential outcomes while deciding what
-may change, what must remain true, and what evidence justifies confidence in the result. Technologies
-such as generative AI may change the cost of producing implementations, but they do not remove that
-engineering problem. They move the bottleneck toward the judgments surrounding implementation.
+Engineering requires informed control over consequential systems and responsibility for their outcomes.
+Software engineering combines that responsibility with a medium built for change. Its central problem is
+controlled change: exploiting software's adaptability while preserving sufficient control over the
+properties and consequences that matter.
+
+Technologies such as generative AI can radically reduce the cost of producing implementations, but they
+do not remove this problem. As implementation becomes more abundant, judgment about what to build, what
+may change, what must remain true, and what evidence is sufficient becomes a larger share of the
+engineering work.
 
 ::: read_further
 Davis, James C. [*Model-Based Agentic Software Engineering*](https://davisjam.github.io/model-based-agentic-software-engineering/). 1st ed. 2026. The source of this chapter's definition of engineering; it develops a theory for keeping engineering control as increasingly capable agents perform more of the work of building and changing software.
-
-Winters, Titus, Tom Manshreck, and Hyrum Wright. *Software Engineering at Google: Lessons Learned from Programming Over Time*. Sebastopol, CA: O'Reilly Media, 2020. The origin of "programming integrated over time"; it argues that what distinguishes engineering from programming is the artifact's life across change, and shows how a large organization keeps such change under control.
 :::
