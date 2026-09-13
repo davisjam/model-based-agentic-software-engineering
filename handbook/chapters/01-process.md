@@ -33,9 +33,8 @@ updateable medium. Those properties do more than make software useful. They affe
 engineered.
 
 Imagine constructing a bridge one span at a time, opening each new span to traffic, observing how
-drivers respond, and then using that feedback to decide how to design the next span.
-
-This sounds absurd. But the absurdity is informative.
+drivers respond, and then using that feedback to decide how to design the next span. This sounds
+absurd, and the absurdity is informative.
 
 Bridge engineering certainly includes requirements, design, construction, and validation. The problem is
 not that iteration or feedback are somehow foreign to civil engineering. The problem is that the physical
@@ -60,7 +59,7 @@ particular engineering problem should determine how we organize the work?*
 
 Consider two familiar process families.
 
-In a strongly plan-based process, work is organized primarily by engineering activity. Requirements are
+In a strongly plan-driven process, work is organized primarily by engineering activity. Requirements are
 established across much of the product before substantial design; design precedes much of the
 implementation; implementation precedes final validation and release. Progress between stages normally
 requires some evidence that the preceding work is sufficiently complete.
@@ -71,12 +70,11 @@ process makes relatively large commitments to one kind of engineering work befor
 
 An incremental process partitions the work differently. Instead of moving the whole product through
 requirements, design, implementation, and validation, engineers take a smaller product increment through
-those activities. Then they take another increment through them.
-
-The activities have not disappeared. Their arrangement has changed.
+those activities. Then they take another increment through them. The activities have not
+disappeared; their arrangement has changed.
 
 ::: {.note title="Activity versus increment"}
-A strongly plan-based process partitions work primarily by engineering activity. An incremental process
+A strongly plan-driven process partitions work primarily by engineering activity. An incremental process
 partitions work more strongly by product increment.
 :::
 
@@ -89,7 +87,7 @@ engineering question is why one partitioning of the work makes more sense than a
 
 ## A model for process choice {#sec-model-process-choice}
 
-Plan-based and incremental development give us alternatives, not an answer. Choosing between them requires
+Plan-driven and incremental development give us alternatives, not an answer. Choosing between them requires
 reasoning about the engineering problem.
 
 A useful model begins with three questions:
@@ -103,15 +101,13 @@ different points in this space.
 
 ## Certainty: what can we know before we build? {#sec-certainty}
 
-Planning has value when it lets us act on information we already possess.
+Planning has value when it lets us act on information we already possess. At one extreme, the
+problem is stable and well understood. Important requirements and constraints can be established
+before implementation. Engineers can reason about them, detect conflicts, and design around them
+before committing resources to a realization.
 
-At one extreme, the problem is stable and well understood. Important requirements and constraints can be
-established before implementation. Engineers can reason about them, detect conflicts, and design around
-them before committing resources to a realization.
-
-At the other extreme, some consequential information does not yet exist.
-
-Consider a new consumer application. Engineers can specify that it needs accounts, search, location
+At the other extreme, some consequential information does not yet exist. Consider a new consumer
+application. Engineers can specify that it needs accounts, search, location
 services, or a particular interaction. They may nevertheless be unable to predict which capabilities
 users will actually value, how users will behave, or which apparently minor feature will become
 important. Interviews and analysis can reduce this uncertainty, but some information may emerge only when
@@ -173,13 +169,10 @@ can create still more of them.
 
 ## Decomposability: how much must we build at once? {#sec-decomposability}
 
-The third question concerns partial systems.
-
-A half-completed bridge does not provide half the transportation value of a completed bridge. But many
-software systems can be divided into portions that are meaningful before the entire envisioned system
-exists.
-
-There are actually two different thresholds.
+The third question concerns partial systems. A half-completed bridge does not provide half the
+transportation value of a completed bridge. But many software systems can be divided into portions
+that are meaningful before the entire envisioned system exists, and there are actually two
+different thresholds at which a portion becomes meaningful.
 
 First, a partial system may be validatable. It may not yet provide useful service, but engineers can
 build it, test it, measure it, or place it in a realistic environment. Doing so creates information about
@@ -211,9 +204,8 @@ omission is deliberate.
 
 Suppose a failure could cause serious harm. Does that tell us whether the requirements can be known before
 implementation? No. Does it tell us whether a design decision is cheap to reverse? No. Does it tell us
-whether a partial system can be meaningfully validated? Again, no.
-
-A consequential system can lie anywhere on each of the three dimensions.
+whether a partial system can be meaningfully validated? Again, no. A consequential system can lie
+anywhere on each of the three dimensions.
 
 Consequence instead answers a different engineering question: how much evidence should we demand before
 accepting the system or a change to it?
@@ -304,7 +296,7 @@ appropriate arrangement depends on the problem and on the properties of the engi
 questions are especially useful: how much can we know before building, how expensive will our decisions be
 to change, and how much can we learn from or deliver through a partial system?
 
-These dimensions explain why plan-based and incremental arrangements can both be rational. Consequence of
+These dimensions explain why plan-driven and incremental arrangements can both be rational. Consequence of
 failure is a separate question: it determines how much assurance we require, not by itself how work should
 be partitioned. Engineers can also change the dimensions by investing in knowledge, changeability, and
 decomposability. Process choice therefore asks both what kind of project we have and what kind of project
