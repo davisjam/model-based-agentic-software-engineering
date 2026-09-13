@@ -23,4 +23,4 @@ The materials are:
 * **[Assessment](assessment/index.md):** materials for assessing both the systems students produce and their individual command of those systems, including oral exams.
 * **[Example course](reference-course/index.md):** the Purdue Fall-2026 offering (ECE 30861 — Software Engineering) in which these materials are being taught, with its syllabus and calendar.
 
-A supplementary **[Software Engineering Handbook](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/software-engineering-handbook.pdf)** is in early development: a concise, reference-style companion to the materials above. It is an early draft—the Act I foundational chapters are taking shape—and will grow over time.
+A supplementary **[Software Engineering Handbook](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/software-engineering-handbook.pdf)** is also in development: a concise companion that develops the engineering judgment and decision-making behind these materials. The current draft covers the Act I foundations, with additional chapters to follow.
