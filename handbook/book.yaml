@@ -31,8 +31,31 @@ bibliography:
 # adding `web` to its `views:`. Front matter is not a chapter — it carries no `order:` and never
 # enters the chapter numbering.
 frontmatter:
+  # The Preface explains the book's pedagogical approach (a short handbook about engineering judgment).
+  # The Introduction, distinct from it, gives the reader the conceptual map: the two-Part structure and
+  # why Part I's progression is conceptual rather than a waterfall. Order here is the printed order.
   - file: frontmatter/preface.md
     views: [handbook]
+  - file: frontmatter/introduction.md
+    views: [handbook]
+
+# Part structure — the book's top-level divisions, above chapter level. Part I follows the engineering
+# ACTIVITIES that turn a purpose into a system; Part II (forthcoming) follows the PROPERTIES that cut
+# across those activities. Each Part names its numeral + title, an opener file (a short divider-page
+# paragraph), and the chapter ids it groups (empty for a Part not yet written). A populated Part's
+# divider prints before its first chapter; an empty Part's divider prints last, as a visible placeholder
+# for the intended architecture. Chapter ids are the `id:` field of the files in `chapters:` below.
+parts:
+  - id: part-1
+    numeral: Part I
+    title: From Purpose to System
+    opener: parts/part-1-from-purpose-to-system.md
+    chapters: [software-engineering, process, teamwork, requirements, specification, architecture, design]
+  - id: part-2
+    numeral: Part II
+    title: Making Properties Hold
+    opener: parts/part-2-making-properties-hold.md
+    chapters: []  # forthcoming — the divider is a placeholder that makes the intended architecture visible
 
 # Chapter build order. Each entry is a file under chapters/. The order here is authoritative; the
 # per-chapter `order:` metadata must agree with it (the linter checks this). Reordering the book is

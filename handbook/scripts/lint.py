@@ -290,6 +290,7 @@ def main() -> int:
     chapters = C.chapter_files(book)
     all_ids: dict[str, list[str]] = {}   # id -> [chapter names]
     all_defined_ids: set[str] = set()
+    chapter_ids: set[str] = set()        # raw chapter `id:` values, for the parts cross-check
     orders: list[tuple[int, str]] = []
 
     scans: list[tuple[str, ChapterScan, dict, list]] = []
@@ -323,6 +324,7 @@ def main() -> int:
         chap_id = meta.get("id")
         if chap_id:
             all_defined_ids.add(f"ch-{chap_id}")
+            chapter_ids.add(chap_id)
 
         for ident, _kind in scan.ids:
             all_ids.setdefault(ident, []).append(name)
@@ -353,6 +355,27 @@ def main() -> int:
         for ident, _kind in scan.ids:
             all_ids.setdefault(ident, []).append(name)
             all_defined_ids.add(ident)
+
+    # Part structure — validate the book.yaml `parts:` list against the chapters it groups, so a typo
+    # cannot silently drop a divider or mis-file a chapter. Each Part needs a numeral, a title, and an
+    # opener file that exists; every listed chapter id must be a real chapter, assigned to exactly one
+    # Part. Empty `chapters:` is allowed (a forthcoming Part renders as a placeholder divider).
+    seen_part_chapters: dict[str, str] = {}
+    for i, part in enumerate(book.get("parts", [])):
+        where = f"book.yaml parts[{i}]"
+        for field in ("numeral", "title", "opener"):
+            if not part.get(field):
+                rep.err(where, f"part missing required field '{field}'")
+        opener = part.get("opener")
+        if opener and not (C.HANDBOOK / opener).exists():
+            rep.err(where, f"part opener file does not exist: {opener}")
+        for cid in (part.get("chapters") or []):
+            if cid not in chapter_ids:
+                rep.err(where, f"part references unknown chapter id '{cid}'")
+            elif cid in seen_part_chapters:
+                rep.err(where, f"chapter '{cid}' already assigned to {seen_part_chapters[cid]}")
+            else:
+                seen_part_chapters[cid] = where
 
     # chapter ordering: strictly increasing in book.yaml sequence
     seq_orders = [o for o, _ in orders]

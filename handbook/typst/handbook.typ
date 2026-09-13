@@ -6,7 +6,7 @@
 // book.typ as `#show: handbook.with(title: ..., ...)`.
 
 #import "typography.typ": palette, font-body, font-display, font-mono
-#import "components.typ": hb-callout, hb-figure, hb-read-further, hb-frontmatter
+#import "components.typ": hb-callout, hb-figure, hb-read-further, hb-frontmatter, hb-part
 #import "cover.typ": hb-cover
 
 // Back matter (Conclusion, etc.). Chapters carry a "CHAPTER" eyebrow over their opening; back
@@ -44,16 +44,23 @@
   // Headings: level 1 opens a chapter; level 2/3 are sections within it.
   show heading: set text(font: font-display)
   show heading.where(level: 1): it => {
-    pagebreak(weak: true)
-    block(above: 0pt, below: 1.1em)[
-      #context if not hb-backmatter-mode.get() {
-        text(size: 9pt, tracking: 0.22em, fill: palette.accent, weight: 700)[CHAPTER]
-        v(0.3em, weak: true)
-      }
-      #text(size: 26pt, weight: 700, fill: palette.ink)[#it.body]
-      #v(0.2em, weak: true)
-      #line(length: 100%, stroke: 0.8pt + palette.rule)
-    ]
+    // Structural dividers (Part openers <hb-part>, front-matter titles <hb-fore>) are outlined for the
+    // Contents but drawn separately on the page by hb-part / hb-frontmatter, so render the heading
+    // element itself invisibly — the outline still collects it; nothing prints here.
+    if it.has("label") and (it.label == <hb-part> or it.label == <hb-fore>) {
+      none
+    } else {
+      pagebreak(weak: true)
+      block(above: 0pt, below: 1.1em)[
+        #context if not hb-backmatter-mode.get() {
+          text(size: 9pt, tracking: 0.22em, fill: palette.accent, weight: 700)[CHAPTER]
+          v(0.3em, weak: true)
+        }
+        #text(size: 26pt, weight: 700, fill: palette.ink)[#it.body]
+        #v(0.2em, weak: true)
+        #line(length: 100%, stroke: 0.8pt + palette.rule)
+      ]
+    }
   }
   show heading.where(level: 2): it => {
     set text(size: 15pt, weight: 700, fill: palette.ink)
@@ -129,8 +136,23 @@
     #text(font: font-display, size: 18pt, weight: 700)[Contents]
     #v(0.6em)
   ]
-  show outline.entry.where(level: 1): it => { v(0.4em, weak: true); strong(it) }
-  outline(title: none, indent: 1.2em, depth: 2)
+  // Three tiers: a Part is a flush-left bold division; front matter (Preface, Introduction) is a
+  // flush-left bold entry; a chapter is bold, indented under its Part; a chapter section is indented
+  // deeper. Parts and front matter are detected by the label their hidden heading carries.
+  show outline.entry: it => {
+    let el = it.element
+    let lbl = if el.func() == heading and el.has("label") { el.label } else { none }
+    if lbl == <hb-part> {
+      v(0.9em, weak: true); strong(text(size: 12.5pt, it))
+    } else if lbl == <hb-fore> {
+      v(0.5em, weak: true); strong(it)
+    } else if it.level == 1 {
+      v(0.35em, weak: true); box(inset: (left: 1.1em), strong(it))
+    } else {
+      box(inset: (left: 2.4em), it)
+    }
+  }
+  outline(title: none, depth: 2)
   pagebreak()
 
   // ── Body ─────────────────────────────────────────────────────────────────

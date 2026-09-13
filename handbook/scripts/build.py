@@ -128,6 +128,23 @@ def _frontmatter_typst(book: dict, chdir_args: list[str]) -> str:
     return "\n\n".join(blocks)
 
 
+def _part_typst(part: dict, chdir_args: list[str]) -> str:
+    """Render a Part divider to a Typst `#hb-part(...)` call: the numeral + title come from book.yaml,
+    the opener paragraph from the Part's `opener:` file (through the same Pandoc→Typst path as a
+    chapter). The divider's hidden heading (drawn by hb-part) is what seats the Part in the Contents."""
+    opener = C.HANDBOOK / part["opener"]
+    cmd = (["pandoc", str(opener), "-f", C.PANDOC_FROM, "-t", "typst"]
+           + chdir_args + COMMON_PRE
+           + ["-L", str(C.FILTERS / "figures.lua"),
+              "-L", str(C.FILTERS / "handbook-components.lua"),
+              "-L", str(C.FILTERS / "typst.lua")])
+    body = _run(cmd)
+    numeral = str(part.get("numeral", "")).replace('"', '\\"')
+    title = str(part.get("title", "")).replace('"', '\\"')
+    print(f"  typst  ← {opener.name} (part divider)")
+    return f'#hb-part(numeral: "{numeral}", title: "{title}")[\n{body}\n]'
+
+
 def build_pdf(book: dict) -> None:
     _gate()
     GEN_TYPST.mkdir(parents=True, exist_ok=True)
@@ -135,10 +152,25 @@ def build_pdf(book: dict) -> None:
 
     chdir_args = _chapter_directory_args(book)
     frontmatter_typst = _frontmatter_typst(book, chdir_args)
+
+    # Part dividers interleave with chapters. A populated Part's divider prints before its first
+    # chapter; an empty Part (forthcoming) prints last, as a visible placeholder for the intended
+    # architecture. Map each chapter id to its Part, render every divider once, then emit each on the
+    # first appearance of one of its chapters; flush any never-triggered (empty) Parts at the end.
+    parts = book.get("parts", [])
+    chap_to_part = {cid: i for i, p in enumerate(parts) for cid in (p.get("chapters") or [])}
+    part_typst = [_part_typst(p, chdir_args) for p in parts]
+    emitted_parts: set[int] = set()
+
     chapter_typst = []
     for ch in C.chapter_files(book):
         meta = _chapter_meta(ch)
         stem = ch.stem
+        chid = meta.get("id", stem)
+        pidx = chap_to_part.get(chid)
+        if pidx is not None and pidx not in emitted_parts:
+            chapter_typst.append(part_typst[pidx])
+            emitted_parts.add(pidx)
         cmd = (["pandoc", str(ch), "-f", C.PANDOC_FROM, "-t", "typst"]
                + chdir_args + COMMON_PRE + _bib_args(book)
                + ["-L", str(C.FILTERS / "figures.lua"),
@@ -146,7 +178,7 @@ def build_pdf(book: dict) -> None:
                   "-L", str(C.FILTERS / "typst.lua")])
         body = _run(cmd)
         title = meta.get("title", stem)
-        chap = f"= {title}\n<chap-{meta.get('id', stem)}>\n\n{body}"
+        chap = f"= {title}\n<chap-{chid}>\n\n{body}"
         # Back matter (kind other than `chapter`, e.g. the Conclusion): flip the template into
         # back-matter mode so the opening drops the "CHAPTER" eyebrow. Back matter sits at the end
         # of book.yaml's chapter list, so every subsequent section is back matter too.
@@ -157,6 +189,12 @@ def build_pdf(book: dict) -> None:
         (GEN_TYPST / f"{stem}.typ").write_text(chap, encoding="utf-8")
         chapter_typst.append(chap)
         print(f"  typst  ← {ch.name}")
+
+    # Forthcoming Parts (no chapters yet) print last, in book order — the placeholder divider.
+    for i, part in enumerate(parts):
+        if i not in emitted_parts:
+            chapter_typst.append(part_typst[i])
+            emitted_parts.add(i)
 
     book_typ = "\n".join([
         '#import "/typst/handbook.typ": *',
@@ -196,7 +234,8 @@ def build_web(book: dict) -> None:
     GEN_WEB.mkdir(parents=True, exist_ok=True)
 
     chdir_args = _chapter_directory_args(book)
-    nav_entries = []
+    nav_by_id: dict[str, tuple[str, str]] = {}   # chapter id → (title, href)
+    nav_order: list[str] = []                     # chapter ids in book order
     for ch in C.chapter_files(book):
         meta = _chapter_meta(ch)
         stem = ch.stem
@@ -209,20 +248,39 @@ def build_web(book: dict) -> None:
         title = meta.get("title", stem)
         page = f"# {title}\n\n{body}\n"
         (GEN_WEB / f"{stem}.md").write_text(page, encoding="utf-8")
-        nav_entries.append((title, f"{stem}.md"))
+        cid = meta.get("id", stem)
+        nav_by_id[cid] = (title, f"{stem}.md")
+        nav_order.append(cid)
         print(f"  web    ← {ch.name}")
 
     # Assets the generated Markdown references, copied under the MkDocs docs_dir.
     shutil.copytree(C.FIGURES, GEN_WEB / "figures")
     shutil.copytree(C.WEB_SRC / "css", GEN_WEB / "css")
 
-    # Landing page.
+    # Landing page — grouped by Part so the web edition shows the same two-Part architecture as the
+    # print book. Each populated Part lists its chapters; a forthcoming Part is named and marked. Any
+    # chapter not assigned to a Part (the Conclusion) lists under a trailing "Closing" heading.
     lines = [f"# {book['title']}", "", f"*{book['subtitle']}*", "",
              f"{book['author']} · Edition {book['edition']} · {book['year']}", "",
              "A vertical-slice prototype: one semantic manuscript, rendered to both a typeset PDF and "
-             "this responsive web edition.", "", "## Chapters", ""]
-    for title, href in nav_entries:
-        lines.append(f"- [{title}]({href})")
+             "this responsive web edition.", ""]
+    parts = book.get("parts", [])
+    in_a_part = {cid for p in parts for cid in (p.get("chapters") or [])}
+    for part in parts:
+        lines += ["", f"## {part['numeral']} — {part['title']}", ""]
+        part_chapters = [cid for cid in part.get("chapters") or [] if cid in nav_by_id]
+        if part_chapters:
+            for cid in part_chapters:
+                title, href = nav_by_id[cid]
+                lines.append(f"- [{title}]({href})")
+        else:
+            lines.append("*Forthcoming.*")
+    trailing = [cid for cid in nav_order if cid not in in_a_part]
+    if trailing:
+        lines += ["", "## Closing", ""]
+        for cid in trailing:
+            title, href = nav_by_id[cid]
+            lines.append(f"- [{title}]({href})")
     (GEN_WEB / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     mkdocs = C.GC_ROOT / "site" / ".venv" / "bin" / "mkdocs"
