@@ -9,8 +9,9 @@ description: >
   follows the activities; Part II follows the properties.
 ---
 
-Software engineering presents two complementary kinds of problems. Some concern the work required to
-turn a purpose into a software system: deciding what should be built, determining what must be true of
+Software engineering can be understood from two complementary directions. Some concern the work
+required to turn a purpose into a software system: deciding what should be built, determining what must
+be true of
 it, organizing the system, designing its parts, and gathering evidence that the result is acceptable.
 Others concern properties that must hold across all of that work. A system may need to be secure,
 reliable, performant, observable, maintainable, or satisfy other obligations that cannot be assigned
@@ -32,11 +33,10 @@ Reliability, performance, observability, maintainability, and other consequentia
 similarly. They cut across the engineering activities of Part I, and decisions made in one place can
 determine whether a property holds somewhere else.
 
-These two views belong together. Engineering activities give us places to make decisions; consequential
-properties give many of those decisions their purpose. A requirement matters because something about
-the resulting system must be true. An architectural decision matters because it makes some properties
-easier to achieve and others harder. A design decision matters because it resolves choices while
-inheriting obligations from the system around it. Validation matters because claims about consequential
-properties require evidence. The aim of this book is therefore not to memorize a sequence of activities
-or a list of desirable properties. It is to understand how engineering decisions connect the purposes we
-begin with to the properties of the systems we ultimately build.
+These two views belong together. Engineering activities organize the decisions we make; consequential
+properties give many of those decisions their purpose. Requirements establish what must be true of the
+resulting system. Architecture and design make choices that can make those properties easier or harder
+to achieve, while validation supplies evidence for claims that they hold. The aim of this book is
+therefore not to memorize a sequence of activities or a list of desirable properties. It is to
+understand how engineering decisions connect the purposes we begin with to the properties of the systems
+we ultimately build.
