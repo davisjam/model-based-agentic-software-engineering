@@ -7,6 +7,7 @@
 
 #import "typography.typ": palette, font-body, font-display, font-mono
 #import "components.typ": hb-callout, hb-figure, hb-read-further, hb-frontmatter
+#import "cover.typ": hb-cover
 
 // Back matter (Conclusion, etc.). Chapters carry a "CHAPTER" eyebrow over their opening; back
 // matter is unnumbered closing material, so build.py emits #hb-begin-backmatter() before the first
@@ -20,6 +21,7 @@
   title: "",
   subtitle: "",
   author: "",
+  edition: "1",
   year: "",
   frontmatter: none,
   body,
@@ -88,6 +90,10 @@
       line(length: 100%, stroke: 0.5pt + palette.rule)
     }
   })
+
+  // ── Front cover (page 1: full-bleed, un-numbered, not in the contents) ───
+  // A layered page: cream ground → woven-strand artwork → native typography. See cover.typ.
+  hb-cover(title: title, subtitle: subtitle, author: author, edition: edition, year: year)
 
   // ── Title page ──────────────────────────────────────────────────────────
   set page(header: none, footer: none)

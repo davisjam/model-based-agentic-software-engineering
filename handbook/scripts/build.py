@@ -148,6 +148,7 @@ def build_pdf(book: dict) -> None:
         f'  title: "{book["title"]}",',
         f'  subtitle: "{book["subtitle"]}",',
         f'  author: "{book["author"]}",',
+        f'  edition: "{book["edition"]}",',
         f'  year: "{book["year"]}",',
         # Front matter is a Typst content argument; `none` when there is no handbook-view front matter.
         ("  frontmatter: [\n" + frontmatter_typst + "\n  ],") if frontmatter_typst else "  frontmatter: none,",
