@@ -95,6 +95,19 @@
   // A layered page: cream ground → woven-strand artwork → native typography. See cover.typ.
   hb-cover(title: title, subtitle: subtitle, author: author, edition: edition, year: year)
 
+  // ── Copyright / imprint page (page 2: margined, un-numbered, not in the contents) ──
+  // Mirrors the MAGE book's imprint page: the © line and the edition line on the page ground,
+  // nothing more. Acknowledgments would seat here when the handbook grows them.
+  page(numbering: none, header: none, footer: none)[
+    #v(0.4in)
+    #set par(justify: false, leading: 0.6em, first-line-indent: 0em)
+    #text(size: 11pt, fill: palette.ink)[© #author, #year]
+    #v(0.35em)
+    #text(size: 9.5pt, fill: palette.muted)[Edition #edition · first published #year]
+    #v(0.35em)
+    #text(size: 9.5pt, fill: palette.muted)[All rights reserved.]
+  ]
+
   // ── Title page ──────────────────────────────────────────────────────────
   set page(header: none, footer: none)
   v(2.2in)
