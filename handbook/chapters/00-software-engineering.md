@@ -33,7 +33,6 @@ This definition places judgment and responsibility at the center of engineering 
 fabrication. Engineers certainly build things, but building is a means rather than the defining
 activity. An engineer decides what should be built, reasons about alternatives and their consequences,
 determines what evidence is sufficient, and remains responsible when those decisions matter.
-
 Software engineering applies that responsibility to a peculiar engineered medium.
 
 ## Programming over time {#sec-programming-over-time}
@@ -64,9 +63,8 @@ to software. The ability to change is one of the principal reasons we use softwa
 Every engineering discipline works within the possibilities and limitations of its materials. Concrete
 can carry enormous compressive loads. Steel can provide strength with comparatively small structural
 members. Electronic circuits can process signals at speeds impossible for mechanical mechanisms. The
-properties of the medium shape what engineers can build and how they build it.
-
-Software has several unusual properties.
+properties of the medium shape what engineers can build and how they build it. Software has several
+unusual properties.
 
 **Software is changeable.** Much of a software system can be altered without manufacturing a new
 physical artifact. A behavior represented in code can often be modified, tested, and replaced far more
@@ -148,9 +146,8 @@ assumption just as efficiently.
 
 ## Change creates risk {#sec-change-creates-risk}
 
-A system that is easy to change is also easy to change incorrectly.
-
-A new feature can violate an old requirement. A repair in one component can break an assumption made by
+A system that is easy to change is also easy to change incorrectly. A new feature can violate an
+old requirement. A repair in one component can break an assumption made by
 another. An apparently harmless dependency can undermine a security boundary. A new data representation
 can make old data unreadable. A performance optimization can weaken reliability. A library update can
 alter behavior throughout a system. An engineer solving today's problem can unintentionally destroy a
