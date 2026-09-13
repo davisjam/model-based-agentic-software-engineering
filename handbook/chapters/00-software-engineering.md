@@ -234,4 +234,6 @@ engineering work.
 
 ::: read_further
 Davis, James C. [*Model-Based Agentic Software Engineering*](https://davisjam.github.io/model-based-agentic-software-engineering/). 1st ed. 2026. The source of this chapter's definition of engineering; it develops a theory for keeping engineering control as increasingly capable agents perform more of the work of building and changing software.
+
+Brooks, Frederick P., Jr. ["No Silver Bullet—Essence and Accident in Software Engineering."](https://doi.org/10.1109/MC.1987.1663532) *Computer* 20, no. 4 (1987): 10–19. The classic argument that software's hard part is *essential* — the conceptual work of deciding what to build and keeping it coherent as it changes — while tools attack only *accidental* complexity. It explains why cheaper implementation moves the engineering bottleneck rather than removing it.
 :::
