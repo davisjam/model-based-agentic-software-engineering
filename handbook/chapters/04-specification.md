@@ -27,15 +27,12 @@ acceptable. It need not select one implementation.
 
 Requirements rarely determine a unique implementation. Many different realizations may satisfy the
 same stated requirement, while other apparently reasonable realizations violate distinctions
-stakeholders care about.
-
-A specification therefore does two things at once. It constrains choices that matter, and it leaves
-other choices open.
+stakeholders care about. A specification therefore does two things at once. It constrains choices
+that matter, and it leaves other choices open.
 
 Think of all possible implementations as a realization space. Each obligation rules out some portion
-of that space. What remains is the set of acceptable realizations.
-
-A good specification usually does not identify one point. It establishes a boundary.
+of that space. What remains is the set of acceptable realizations. A good specification usually does
+not identify one point. It establishes a boundary.
 
 ::: {.figure #fig-realization-space alt="A large region labeled Realizations contains a smaller region labeled Acceptable holding three points labeled A, B, and C; a fourth point labeled D lies outside the acceptable region and is marked not acceptable."}
 ![](../figures/specification/realization-space.svg)
@@ -63,47 +60,32 @@ Build B maintains a rolling 30-day baseline and reports significant changes in a
 Build C uses a model incorporating heart-rate data and alerts only when its confidence exceeds a
 specified threshold.
 
-All three can plausibly claim to satisfy R4 as written.
-
-They are not the same product.
-
-A user could notice the difference immediately. The requirement has therefore left open choices that
-may be consequential.
-
-The specification problem is: which differences did we mean to constrain?
+All three can plausibly claim to satisfy R4 as written, yet they are not the same product. A user
+could notice the difference immediately. The requirement has therefore left open choices that may
+be consequential. The specification problem is: which differences did we mean to constrain?
 
 A specification need not choose Build A, B, or C. But it should make explicit the distinctions among
 them that determine whether we would accept the result.
 
 ## Requirements concern the world; specifications constrain the machine {#sec-world-machine}
 
-Requirements and specifications describe different things.
-
-Consider this requirement: Users are warned before illness affects their day.
-
-Its vocabulary belongs to the world: users, illness, and days. A software system cannot directly
-sense "illness affects their day."
-
-Now consider: Emit one advisory within 60 seconds of wake detection.
-
-This statement constrains behavior at the machine's boundary. Its terms refer to phenomena the
-machine can detect or produce.
+Requirements and specifications describe different things. Consider this requirement: Users are
+warned before illness affects their day. Its vocabulary belongs to the world: users, illness, and
+days. A software system cannot directly sense "illness affects their day." Now consider: Emit one
+advisory within 60 seconds of wake detection. This statement constrains behavior at the machine's
+boundary. Its terms refer to phenomena the machine can detect or produce.
 
 Following @zave1997darkcorners, domain assumptions connect these two kinds of
 statements. Under appropriate assumptions about the environment, satisfying the machine
 specification should produce the required effect in the world: Specification + Domain assumptions ⇒
 Requirement.
 
-This relationship exposes two different kinds of failure.
-
-The machine can fail to satisfy its specification. That is a failure of the realization.
-
-But the machine can also satisfy the specification while the requirement fails because a domain
-assumption was incorrect. Perhaps wake detection does not correspond reliably to when the user
-begins their day. Perhaps the observations available to the system are insufficient to infer the
-relevant condition.
-
-Correct software is not sufficient when our assumptions about the world are incorrect.
+This relationship exposes two different kinds of failure. The machine can fail to satisfy its
+specification: a failure of the realization. But the machine can also satisfy the specification
+while the requirement fails because a domain assumption was incorrect. Perhaps wake detection does
+not correspond reliably to when the user begins their day. Perhaps the observations available to
+the system are insufficient to infer the relevant condition. Correct software is not sufficient
+when our assumptions about the world are incorrect.
 
 This is why requirements such as the system follows security best practices can be legitimate
 requirements without yet being adequate specifications. They express an obligation in the world but
@@ -115,18 +97,16 @@ Consider another Sleep Advisor requirement:
 
 > R7. Let the user share a weekly sleep summary with their doctor.
 
-That sentence raises several different kinds of questions.
-
-What must the application actually do? What constitutes a weekly summary? How does the user select
-the recipient? What does successful sharing mean?
+That sentence raises several different kinds of questions. What must the application actually do?
+What constitutes a weekly summary? How does the user select the recipient? What does successful
+sharing mean?
 
 What facts about the environment must be true? Does the doctor have an address or account the
 application can use? What forms of consent are required? What happens if delivery fails?
 
 And what can safely remain unspecified? Perhaps the internal library used to generate the summary is
-irrelevant. Perhaps several transport mechanisms are equally acceptable.
-
-Not every missing fact should be handled in the same way.
+irrelevant. Perhaps several transport mechanisms are equally acceptable. Not every missing fact
+should be handled in the same way.
 
 ::: {.exercise #ex-what-is-missing title="What is missing?"}
 For R7, identify: (1) What behavior must the machine provide? (2) What facts about the domain must
@@ -180,18 +160,15 @@ explicit.
 
 ## A model is a purposeful view {#sec-purposeful-view}
 
-A specification is not a notation.
-
-An obligation can be represented in prose, a table, a diagram, an equation, a schema, a state model,
-or many other forms. The useful representation depends on the engineering question.
+A specification is not a notation. An obligation can be represented in prose, a table, a diagram,
+an equation, a schema, a state model, or many other forms. The useful representation depends on the
+engineering question.
 
 A model is a purposeful view. It preserves the distinctions needed to answer an engineering question
-and suppresses details that do not matter to that question.
-
-A representation that preserved everything would simply be the system itself. It would answer no
-question more cheaply than the system does.
-
-The recurring pattern is: Engineering question → Representation → Property → Analysis or check.
+and suppresses details that do not matter to that question. A representation that preserved
+everything would simply be the system itself; it would answer no question more cheaply than the
+system does. The recurring pattern is: Engineering question → Representation → Property → Analysis
+or check.
 
 ::: {.definition #def-invariant title="Property and invariant"}
 A property is a claim expressible over a model. An invariant is a property required to hold over its
@@ -199,9 +176,8 @@ declared domain.
 :::
 
 A representation does not create the obligation. It gives engineers a vocabulary in which the
-obligation can be stated, examined, and sometimes checked.
-
-Consider three questions about the Sleep Advisor.
+obligation can be stated, examined, and sometimes checked. Consider three questions about the Sleep
+Advisor.
 
 ::: {.table #tbl-spec-views}
 | Engineering question | Useful view | Example property |
@@ -212,24 +188,19 @@ Consider three questions about the Sleep Advisor.
 :::
 
 The system did not change. The engineering question changed, so the useful representation changed.
-
 No single representation needs to say everything. Several peer views can describe the same system
 through shared concepts while exposing different consequential properties.
 
 ## Specification bounds a realization space {#sec-bounds-realization-space}
 
-Every additional obligation eliminates some possible realizations.
-
-Suppose one obligation constrains behavior and another constrains timing. Each rules out some
-programs. The realizations satisfying both lie in the intersection.
-
-That intersection is the acceptable realization space.
+Every additional obligation eliminates some possible realizations. Suppose one obligation
+constrains behavior and another constrains timing. Each rules out some programs. The realizations
+satisfying both lie in the intersection, and that intersection is the acceptable realization space.
 
 This gives specification a cost. Every additional obligation removes choices from the implementor.
 Narrowing the space is valuable when the eliminated alternatives matter. If two alternatives are
-genuinely equivalent for our purposes, forbidding one has spent constraint and bought nothing.
-
-More specification is not automatically better specification.
+genuinely equivalent for our purposes, forbidding one has spent constraint and bought nothing. More
+specification is not automatically better specification.
 
 ::: {.tradeoff #tradeoff-constraint-optionality title="Constraint and optionality"}
 Specification buys control by eliminating alternatives. Constrain a choice when its alternatives
@@ -239,10 +210,8 @@ Overspecification converts cheap future choices into expensive present commitmen
 
 Software's changeability makes this tradeoff particularly important. Many software choices can
 remain inexpensive to revisit after an initial realization. Prematurely fixing them can destroy
-useful optionality.
-
-But an unconstrained choice presents another problem: how do we know that it was deliberately left
-open?
+useful optionality. But an unconstrained choice presents another problem: how do we know that it
+was deliberately left open?
 
 ## Not constrained is not the same as free {#sec-unknown-tacit-free}
 
@@ -264,23 +233,16 @@ A degree of freedom is a choice deliberately left to the implementor because its
 alternatives are acceptable within the bounds the engineering effort has established.
 :::
 
-A useful diagnostic for a tacit requirement is the reaction "not that."
-
-Return to R7: Let the user share a weekly sleep summary with their doctor.
-
-Suppose an attempted email bounces. One implementor reports the failure to the user. Another records
-the failure in a log and reports that the sharing operation succeeded.
-
-Nothing in R7 explicitly forbids the second behavior.
+A useful diagnostic for a tacit requirement is the reaction "not that." Return to R7: Let the user
+share a weekly sleep summary with their doctor. Suppose an attempted email bounces. One implementor
+reports the failure to the user. Another records the failure in a log and reports that the sharing
+operation succeeded. Nothing in R7 explicitly forbids the second behavior.
 
 But if seeing that realization produces the reaction "Obviously not that," then the specification
 omitted a real boundary. Someone already believed that a failed delivery must be visible to the
-user. The obligation existed; it simply remained tacit.
-
-A teammate familiar with the product may reconstruct such missing obligations from shared context. A
-new engineer, contractor, or software agent may not.
-
-"Obviously not that" is evidence of a tacit requirement.
+user. The obligation existed; it simply remained tacit. A teammate familiar with the product may
+reconstruct such missing obligations from shared context. A new engineer, contractor, or software
+agent may not. "Obviously not that" is evidence of a tacit requirement.
 
 ## Constrain, leave open, or explore {#sec-constrain-leave-open-explore}
 
@@ -297,11 +259,8 @@ prose cannot resolve.
 Consider how sensitive the Sleep Advisor should be when identifying illness. Engineers may not yet
 know what tradeoff users will tolerate between false alarms and missed events. Inventing a threshold
 merely because a specification needs a number would convert uncertainty into an arbitrary
-obligation.
-
-The appropriate response may instead be to gather evidence.
-
-A degree of freedom is known freedom. Uncertainty is not.
+obligation. The appropriate response may instead be to gather evidence. A degree of freedom is
+known freedom; uncertainty is not.
 
 ## Software lets specifications learn {#sec-specifications-learn}
 
@@ -317,21 +276,16 @@ Suppose another Sleep Advisor requirement says:
 > R5. Adapt when the user's normal sleep pattern changes.
 
 Engineers might initially specify that a sufficiently persistent shift establishes a new baseline.
-They implement the rule and put the system into use.
-
-The software works as specified for most users. Observation then reveals a problem: long temporary
-disruptions are sometimes mistaken for permanent changes in the user's normal sleep.
-
-The implementation may have done exactly what the specification required.
-
-Use taught us that the boundary was wrong.
+They implement the rule and put the system into use. The software works as specified for most
+users. Observation then reveals a problem: long temporary disruptions are sometimes mistaken for
+permanent changes in the user's normal sleep. The implementation may have done exactly what the
+specification required. Use taught us that the boundary was wrong.
 
 This is the Unknown case. The requirement was known from the beginning: the system should adapt when
 the user's normal changes. What engineers did not yet know was the correct boundary between a
-temporary departure and a new normal.
-
-More detailed specification in advance would not have manufactured that knowledge. Building and
-observing produced evidence that changed the engineering decision.
+temporary departure and a new normal. More detailed specification in advance would not have
+manufactured that knowledge. Building and observing produced evidence that changed the engineering
+decision.
 
 Software's changeability therefore creates an option that is often unavailable, or substantially
 more expensive, in other engineered media. Engineers can sometimes postpone a consequential decision
@@ -339,12 +293,9 @@ until evidence is cheaper to obtain.
 
 But software choices do not remain cheap forever. APIs acquire clients. Data models accumulate data.
 Architectures acquire dependencies. Deployed behavior creates expectations. Assurance and
-certification can make revisions expensive.
-
-A software choice may begin cheap to change and become expensive later.
-
-Specification judgment therefore includes deciding not only what must be settled, but when it must
-be settled.
+certification can make revisions expensive. A software choice may begin cheap to change and become
+expensive later. Specification judgment therefore includes deciding not only what must be settled,
+but when it must be settled.
 
 ::: {.note title="Specification-driven development"}
 When consequential boundaries are already understood, making them explicit before implementation can
@@ -357,18 +308,13 @@ obligations from questions still being explored.
 ## From specification to architecture {#sec-to-architecture}
 
 Requirements told us what we were willing to promise. Specification has now established boundaries
-around the systems we would be willing to accept.
-
-It has not selected one point inside that space.
+around the systems we would be willing to accept. It has not selected one point inside that space.
 
 Several systems may satisfy every specification obligation while differing in their internal
 organization. One may use events while another uses direct calls. One may centralize state while
 another distributes it. One may isolate an expected change behind a boundary while another
-accommodates the same obligation differently.
-
-Those differences are not necessarily omissions in the specification. They may be legitimate
-engineering choices among acceptable realizations.
-
+accommodates the same obligation differently. Those differences are not necessarily omissions in
+the specification. They may be legitimate engineering choices among acceptable realizations.
 @ch-architecture begins when engineers choose how one acceptable realization will be organized.
 
 Requirements asks: what should we promise? Specification asks: which realizations would satisfy that
