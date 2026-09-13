@@ -26,9 +26,8 @@ in minutes.
 These properties give us choices. We can organize work in different ways. We can choose what to
 specify and what to leave open. We can divide a system along different boundaries. We can choose
 among designs with different costs and consequences. We can build first to learn, or reason first
-because changing our minds later will be expensive.
-
-Those choices are why software engineering requires judgment.
+because changing our minds later will be expensive. Those choices are why software engineering
+requires judgment.
 
 ## Making an engineering decision {#sec-making-a-decision}
 
@@ -43,9 +42,7 @@ Then ask: what do I need to know to make this decision?
 Perhaps you need to understand how users actually work. Perhaps you need to know how expensive an
 architectural choice will be to reverse. You may need an estimate, a model, a measurement, a
 prototype, or an experiment. You may need to read the code. You may need to talk to the person who
-operates the system every day.
-
-Gather the information that could change your decision.
+operates the system every day. Gather the information that could change your decision.
 
 But there is a harder problem. You may not know what you need to know.
 
@@ -56,9 +53,7 @@ occurred to you. Your experience may simply not cover the situation you now face
 No technique in this handbook makes that problem disappear. You have to look for gaps in your own
 understanding. Ask questions. Seek out people who know things you do not. Listen when someone
 disagrees with you. Treat an unexplained constraint as something to investigate before treating it
-as a mistake.
-
-This is part of engineering judgment too.
+as a mistake. This is part of engineering judgment too.
 
 Eventually, you have to decide. Engineering rarely provides perfect information, and obtaining more
 information has a cost of its own. Sometimes the right choice is to investigate further. Sometimes
@@ -85,9 +80,8 @@ Requirements elicitation, specification, process models, architectural views, de
 prototypes, tests, reviews, and measurements all help you answer these questions. They are not
 recipes that remove the need for judgment. They help you exercise it.
 
-That is also why this book cannot finish your apprenticeship.
-
-It can show you the questions software engineers have learned to ask and the tools they use to
+That is also why this book cannot finish your apprenticeship. It can show you the questions
+software engineers have learned to ask and the tools they use to
 answer them. Experience will teach you when to ask which question, how much evidence is enough,
 when something feels wrong, and when you need to find someone who knows more than you do.
 

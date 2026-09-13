@@ -57,9 +57,8 @@ particular engineering problem should determine how we organize the work?*
 
 ## Two ways to arrange the same work {#sec-two-ways}
 
-Consider two familiar process families.
-
-In a strongly plan-driven process, work is organized primarily by engineering activity. Requirements are
+Consider two familiar process families. In a strongly plan-driven process, work is organized
+primarily by engineering activity. Requirements are
 established across much of the product before substantial design; design precedes much of the
 implementation; implementation precedes final validation and release. Progress between stages normally
 requires some evidence that the preceding work is sufficiently complete.
@@ -208,9 +207,8 @@ whether a partial system can be meaningfully validated? Again, no. A consequenti
 anywhere on each of the three dimensions.
 
 Consequence instead answers a different engineering question: how much evidence should we demand before
-accepting the system or a change to it?
-
-A low-consequence product might reasonably release an imperfect capability, observe its behavior, and
+accepting the system or a change to it? A low-consequence product might reasonably release an
+imperfect capability, observe its behavior, and
 repair problems afterward. That is not an acceptable strategy when a corresponding failure could injure
 someone. The latter system requires stronger evidence before the change is permitted to affect the world.
 
@@ -227,9 +225,8 @@ evidence must accompany consequential decisions.
 ## The dimensions in practice {#sec-dimensions-in-practice}
 
 Certainty, changeability, and decomposability explain why superficially similar projects can rationally
-use different processes.
-
-Consider a consumer application whose success depends strongly on user preferences. Some important
+use different processes. Consider a consumer application whose success depends strongly on user
+preferences. Some important
 requirements will emerge through use. Many product decisions can be revised comparatively cheaply. Useful
 portions of the product can be released independently. These conditions favor small commitments, active
 feedback, and frequent iteration.

@@ -118,9 +118,8 @@ problem.
 ## Software gives engineers unusual leverage {#sec-leverage}
 
 Software's copyability has another consequence: a single engineering decision can affect an
-extraordinary number of people.
-
-Most physical engineering is constrained by the number of artifacts that can be built or modified. A
+extraordinary number of people. Most physical engineering is constrained by the number of artifacts
+that can be built or modified. A
 civil engineer can make a consequential decision about a bridge, but changing that bridge does not
 automatically change every other bridge in the world. Manufacturing can replicate a physical design at
 scale, but doing so still requires material, production, transportation, and installation for each

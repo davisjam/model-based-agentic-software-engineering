@@ -117,9 +117,8 @@ unanswered question belongs in the specification.
 ## Case study: the A-7E specification {#sec-a7e}
 
 *Software Requirements for the A-7E Aircraft* [@alspaugh1992a7e] provides a substantial example of
-engineers making complicated obligations explicit without prescribing one implementation.
-
-The specification is 472 pages long and uses multiple representations: prose, defined data, tables,
+engineers making complicated obligations explicit without prescribing one implementation. The
+specification is 472 pages long and uses multiple representations: prose, defined data, tables,
 modes, timing constraints, required subsets, and descriptions of expected changes. Its value here is
 not a particular notation. It is the relationship between the engineering question and the
 representation used to answer it.

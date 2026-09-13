@@ -332,7 +332,7 @@ argument: no dependency crosses this boundary. If the dependency model faithfull
 implementation, the structural fact can be inspected directly. A quantitative model can support a
 numerical prediction: the modeled critical path is approximately 120 milliseconds. Finally, a
 running system can provide observed evidence: the measured latency is 118 milliseconds under this
-workload.
+workload. The required strength depends on the consequences of being wrong.
 
 ::: {.key-idea #key-match-evidence title="Match the evidence to the claim"}
 The more faithfully the model captures the property we care about, the less we have to bet. A
@@ -340,19 +340,13 @@ reasoned expectation, structural argument, quantitative prediction, and measurem
 The mistake is presenting one as stronger than it is.
 :::
 
-The required strength depends on the consequences of being wrong.
-
 ## Can an expected change remain local? {#sec-change-local}
 
 Suppose the specification tells us that the illness-detection model is expected to change
-independently.
-
-An initial architecture may allow the user interface, advice generation, and storage logic to
-depend directly on the model's internal representations. Replacing the model then affects several
-parts of the system.
-
-Engineers can instead introduce a model-service boundary and require surrounding components to
-depend only on the stable interface.
+independently. An initial architecture may allow the user interface, advice generation, and storage
+logic to depend directly on the model's internal representations. Replacing the model then affects
+several parts of the system. Engineers can instead introduce a model-service boundary and require
+surrounding components to depend only on the stable interface.
 
 A dependency model can now answer a concrete question: does any dependency cross the intended
 boundary into the model's internals? If not, the model establishes a structural fact about the
@@ -364,13 +358,10 @@ identify where change is expected. Architecture can deliberately create a seam a
 
 ## Can architecture predict performance? {#sec-predict-performance}
 
-Architectural models can sometimes support quantitative claims before implementation.
-
-Suppose a request flows through several components whose expected processing and communication
-costs are known well enough to estimate.
-
-A weighted flow graph can identify the critical path: the sequence of dependent work establishing a
-lower bound on response time.
+Architectural models can sometimes support quantitative claims before implementation. Suppose a
+request flows through several components whose expected processing and communication costs are
+known well enough to estimate. A weighted flow graph can identify the critical path: the sequence
+of dependent work establishing a lower bound on response time.
 
 If the modeled critical path is A → B → F = 120 ms, then decomposing component B into parallel work
 may reduce the modeled bound. The important point is not the particular number. The architectural
