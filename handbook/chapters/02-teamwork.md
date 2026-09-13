@@ -18,16 +18,14 @@ objectives:
 
 Software engineering requires more than assembling capable individuals. As projects grow, engineers
 must divide work, maintain shared context, make compatible decisions, integrate changes, and detect
-when their understanding has diverged.
-
-This creates an apparent puzzle. If interaction among engineers is costly, why use teams at all?
+when their understanding has diverged. This creates an apparent puzzle: if interaction among
+engineers is costly, why use teams at all?
 
 The answer is capability. One engineer has limited time, knowledge, and attention. Different
 engineers contribute different expertise; work can proceed in parallel; people can check one
 another's reasoning; and systems can outlive the individuals who originally built them. Large systems
-also exceed what one person can understand and maintain.
-
-Teams therefore buy capability. Coordination is part of the price.
+also exceed what one person can understand and maintain. Teams therefore buy capability, and
+coordination is part of the price.
 
 ::: {.definition #def-coordination-cost title="Coordination cost"}
 Coordination cost is the communication, dependency, handoff, and integration work that team members
@@ -179,9 +177,8 @@ disappears.
 
 But higher individual throughput can also increase the rate at which the team must absorb changes,
 review decisions, maintain shared context, and integrate work. If the surrounding coordination
-system does not improve, amplified individual capability can simply move the bottleneck outward.
-
-An amplifier amplifies a well-designed coordination system — or overwhelms a bad one.
+system does not improve, amplified individual capability can simply move the bottleneck outward. An
+amplifier amplifies a well-designed coordination system — or overwhelms a bad one.
 
 ::: {.note title="Not all interaction is overhead"}
 Teams are also learning and social systems. Human interaction transfers tacit knowledge, supports
