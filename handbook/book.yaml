@@ -6,6 +6,11 @@ subtitle: A Judgment and Decision-Making Approach
 author: James C. Davis
 edition: 1
 year: 2026
+# Copyright / imprint facts, mirroring the MAGE book's manifest. `copyright_years` is the © range;
+# `first_published` is the date the edition first shipped. The imprint page also prints a "last
+# modified" date, which the build injects at compile time (the last content commit), not from here.
+copyright_years: 2026–present
+first_published: 2026-09-12
 language: en-US
 
 outputs:

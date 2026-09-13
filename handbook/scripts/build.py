@@ -17,6 +17,7 @@ The build LINTS first and aborts on any manuscript error (it never degrades sile
 """
 from __future__ import annotations
 
+import datetime
 import shutil
 import subprocess
 import sys
@@ -78,6 +79,23 @@ def _run(cmd: list[str]) -> str:
     if out.stderr.strip():
         sys.stderr.write(out.stderr)
     return out.stdout
+
+
+def _last_modified(book: dict) -> str:
+    """The handbook's last content-modification date (YYYY-MM-DD) for the imprint page's "last
+    modified" line. Prefers the last git commit that touched the manuscript (chapters + front
+    matter — the real content change, stable across rebuilds of the same source); falls back to the
+    book.yaml `first_published` date when git is unavailable (a shallow export or non-git checkout)."""
+    try:
+        out = subprocess.run(
+            ["git", "log", "-1", "--format=%cd", "--date=short", "--",
+             "handbook/chapters", "handbook/frontmatter"],
+            cwd=str(C.HANDBOOK.parent), capture_output=True, text=True, check=False)
+    except OSError:
+        out = None  # git binary absent — fall through to the manifest fallback
+    if out is not None and out.returncode == 0 and out.stdout.strip():
+        return out.stdout.strip()
+    return str(book.get("first_published", book.get("year", datetime.date.today().isoformat())))
 
 
 def _gate() -> None:
@@ -150,6 +168,8 @@ def build_pdf(book: dict) -> None:
         f'  author: "{book["author"]}",',
         f'  edition: "{book["edition"]}",',
         f'  year: "{book["year"]}",',
+        f'  copyright-years: "{book.get("copyright_years", book["year"])}",',
+        f'  first-published: "{book.get("first_published", book["year"])}",',
         # Front matter is a Typst content argument; `none` when there is no handbook-view front matter.
         ("  frontmatter: [\n" + frontmatter_typst + "\n  ],") if frontmatter_typst else "  frontmatter: none,",
         ")",
@@ -159,7 +179,12 @@ def build_pdf(book: dict) -> None:
     ])
     (GEN_TYPST / "book.typ").write_text(book_typ, encoding="utf-8")
 
+    # The imprint page's "last modified" date: the last commit that touched the handbook content
+    # (chapters + front matter), mirroring the MAGE book's `_book_last_modified`. Falls back to the
+    # book.yaml `first_published` when git is unavailable (a shallow export or non-git checkout), so
+    # the page always prints a date.
     _run(["typst", "compile", str(GEN_TYPST / "book.typ"), str(PDF_OUT),
+          "--input", f"last_modified={_last_modified(book)}",
           "--root", str(C.HANDBOOK), "--font-path", str(C.FONT_PATH)])
     print(f"PDF → {PDF_OUT.relative_to(C.HANDBOOK)}")
 

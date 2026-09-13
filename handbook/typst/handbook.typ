@@ -23,6 +23,8 @@
   author: "",
   edition: "1",
   year: "",
+  copyright-years: "",
+  first-published: "",
   frontmatter: none,
   body,
 ) = {
@@ -96,38 +98,23 @@
   hb-cover(title: title, subtitle: subtitle, author: author, edition: edition, year: year)
 
   // ── Copyright / imprint page (page 2: margined, un-numbered, not in the contents) ──
-  // Mirrors the MAGE book's imprint page: the © line and the edition line on the page ground,
-  // nothing more. Acknowledgments would seat here when the handbook grows them.
+  // Mirrors the MAGE book's imprint page exactly: the © line (author, copyright years) on the page
+  // ground, then the edition line in the "first published … · last modified …" style. The
+  // last-modified date is injected at compile time via `--input last_modified=…` (the book's last
+  // content commit) and falls back to the first-published date when the emitter runs standalone —
+  // the same derivation the MAGE imprint page uses. The cover is the ONLY title lockup; there is no
+  // separate interior title page.
   page(numbering: none, header: none, footer: none)[
+    #let last_modified = sys.inputs.at("last_modified", default: first-published)
     #v(0.4in)
     #set par(justify: false, leading: 0.6em, first-line-indent: 0em)
-    #text(size: 11pt, fill: palette.ink)[© #author, #year]
+    #text(size: 11pt, fill: palette.ink)[© #author, #copyright-years]
     #v(0.35em)
-    #text(size: 9.5pt, fill: palette.muted)[Edition #edition · first published #year]
-    #v(0.35em)
-    #text(size: 9.5pt, fill: palette.muted)[All rights reserved.]
+    #text(size: 9.5pt, fill: palette.muted)[Edition #edition — first published #first-published · last modified #last_modified]
   ]
-
-  // ── Title page ──────────────────────────────────────────────────────────
-  set page(header: none, footer: none)
-  v(2.2in)
-  align(center)[
-    #text(font: font-display, size: 10pt, tracking: 0.34em, fill: palette.accent, weight: 700)[THE SOFTWARE ENGINEERING HANDBOOK]
-    #v(1.0em)
-    #text(font: font-display, size: 30pt, weight: 700, fill: palette.ink)[#title]
-    #v(0.6em)
-    #text(font: font-body, style: "italic", size: 15pt, fill: palette.muted)[#subtitle]
-    #v(1.4em)
-    #line(length: 24%, stroke: 1pt + palette.accent)
-    #v(1.2em)
-    #text(font: font-display, size: 12pt, tracking: 0.2em, fill: palette.ink)[#upper(author)]
-    #v(0.4em)
-    #text(font: font-body, size: 10pt, fill: palette.muted)[Edition 1 · #year]
-  ]
-  pagebreak()
 
   // ── Front matter (roman-numbered, before the contents) ────────────────────
-  // Conventional book order: title page → Preface → Table of Contents → chapters. Front matter is
+  // Conventional book order: cover → imprint → Preface → Table of Contents → chapters. Front matter is
   // unnumbered and never enters the outline (it is drawn with hb-frontmatter, not a `heading`), so
   // the contents list stays chapters-only.
   set page(numbering: "i", header: none)
