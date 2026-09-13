@@ -40,3 +40,7 @@ chapters:
   - chapters/04-specification.md
   - chapters/05-architecture.md
   - chapters/06-design.md
+  # Back matter — the Conclusion renders LAST and unnumbered; insert new chapters ABOVE this line.
+  # Its `kind: conclusion` metadata (not its list position) exempts it from the chapter-ending
+  # convention and drops the chapter heading treatment in the PDF (see scripts/lint.py + build.py).
+  - chapters/99-conclusion.md

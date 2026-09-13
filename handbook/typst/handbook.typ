@@ -8,6 +8,14 @@
 #import "typography.typ": palette, font-body, font-display, font-mono
 #import "components.typ": hb-callout, hb-figure, hb-read-further, hb-frontmatter
 
+// Back matter (Conclusion, etc.). Chapters carry a "CHAPTER" eyebrow over their opening; back
+// matter is unnumbered closing material, so build.py emits #hb-begin-backmatter() before the first
+// back-matter section (every book.yaml chapter whose `kind:` is not `chapter`) and the level-1
+// heading rule drops the eyebrow from that point on. The heading itself is unchanged — back matter
+// still opens on a fresh page and still appears in the table of contents.
+#let hb-backmatter-mode = state("hb-backmatter-mode", false)
+#let hb-begin-backmatter() = hb-backmatter-mode.update(true)
+
 #let handbook(
   title: "",
   subtitle: "",
@@ -34,8 +42,10 @@
   show heading.where(level: 1): it => {
     pagebreak(weak: true)
     block(above: 0pt, below: 1.1em)[
-      #text(size: 9pt, tracking: 0.22em, fill: palette.accent, weight: 700)[CHAPTER]
-      #v(0.3em, weak: true)
+      #context if not hb-backmatter-mode.get() {
+        text(size: 9pt, tracking: 0.22em, fill: palette.accent, weight: 700)[CHAPTER]
+        v(0.3em, weak: true)
+      }
       #text(size: 26pt, weight: 700, fill: palette.ink)[#it.body]
       #v(0.2em, weak: true)
       #line(length: 100%, stroke: 0.8pt + palette.rule)

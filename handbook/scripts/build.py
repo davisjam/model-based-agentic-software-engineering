@@ -129,6 +129,11 @@ def build_pdf(book: dict) -> None:
         body = _run(cmd)
         title = meta.get("title", stem)
         chap = f"= {title}\n<chap-{meta.get('id', stem)}>\n\n{body}"
+        # Back matter (kind other than `chapter`, e.g. the Conclusion): flip the template into
+        # back-matter mode so the opening drops the "CHAPTER" eyebrow. Back matter sits at the end
+        # of book.yaml's chapter list, so every subsequent section is back matter too.
+        if (meta.get("kind") or "chapter") != "chapter":
+            chap = "#hb-begin-backmatter()\n" + chap
         # Kept on disk for inspection (spec §24); book.typ inlines the same content so the
         # template's imports stay in scope for the chapter's #hb-callout / #hb-figure calls.
         (GEN_TYPST / f"{stem}.typ").write_text(chap, encoding="utf-8")
