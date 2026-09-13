@@ -17,6 +17,8 @@ Checks (spec §8):
   * hard-coded figure/table/section/chapter numbers in prose
   * raw HTML / raw Typst used for presentation (outside a marked escape hatch)
   * malformed heading hierarchy
+  * chapter-ending convention: `## Summary` + exactly one `read_further` block ends every
+    substantive chapter; no bare References/Bibliography heading (non-`chapter` kinds exempt)
 
 Usage: python3 scripts/lint.py
 """
@@ -210,12 +212,12 @@ def _find_images(node) -> list:
 
 
 # ── Chapter-ending convention (drift lint) ─────────────────────────────────────────────────────
-# AUDIT-ONLY: reports non-compliant chapters but never contributes to the exit code, so a chapter that
-# has not yet adopted the convention does not break `make lint`. A later step promotes it to fatal once
-# every chapter complies. The convention: a substantive chapter ends with a `## Summary` (H2) section
+# FATAL: contributes to the exit code like every other check (promoted from audit-only once all
+# chapters complied). The convention: a substantive chapter ends with a `## Summary` (H2) section
 # whose prose is immediately followed by exactly one `read_further` block, and it carries no dumped
-# `References`/`Bibliography` heading. Front matter, interludes, and appendices are EXEMPT — flagged by
-# a `kind:` metadata value other than `chapter` (or by being absent from book.yaml `chapters:`).
+# `References`/`Bibliography` heading. Front matter, interludes, back matter (the Conclusion), and
+# appendices are EXEMPT — flagged by a `kind:` metadata value other than `chapter` (or by being
+# absent from book.yaml `chapters:`).
 _END_SECTION_HEADINGS = {"references", "bibliography"}
 
 
@@ -231,7 +233,7 @@ def _is_read_further(block: dict) -> bool:
 
 
 def check_chapter_ending(name: str, blocks: list, meta: dict) -> list[str]:
-    """Return AUDIT-ONLY findings for one chapter's ending convention (empty list == compliant)."""
+    """Return findings for one chapter's ending convention (empty list == compliant)."""
     kind = (meta.get("kind") or "chapter")
     if kind != "chapter":
         return []  # front-matter / interlude / appendix are exempt from the convention
@@ -396,25 +398,16 @@ def main() -> int:
             if not resolved.exists():
                 rep.err(name, f"broken image path: {src}")
 
-    # Chapter-ending convention — AUDIT-ONLY (reports, never fatal; see check_chapter_ending).
-    drift: list[str] = []
+    # Chapter-ending convention — FATAL (see check_chapter_ending; exempt kinds return no findings).
     for name, _scan, meta, blocks in scans:
         for f in check_chapter_ending(name, blocks, meta):
-            drift.append(f"{name}: {f}")
+            rep.err(name, f"chapter-ending convention: {f}")
 
     if rep.errors:
         sys.stderr.write(f"lint FAILED — {len(rep.errors)} issue(s):\n")
         for e in rep.errors:
             sys.stderr.write(f"  [x] {e}\n")
         return 1
-
-    if drift:
-        sys.stderr.write(
-            f"[audit] chapter-ending convention — {len(drift)} not-yet-compliant "
-            "(non-fatal; will become blocking once all chapters comply):\n"
-        )
-        for d in drift:
-            sys.stderr.write(f"  [ ] {d}\n")
 
     n = len(scans)
     fm = len(fm_scans)
