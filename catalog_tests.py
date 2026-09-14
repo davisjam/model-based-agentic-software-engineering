@@ -111,7 +111,7 @@ from tests.html import (
     check_summary_no_flow_content,
     check_aria_label_on_bare_element,
 )
-from tests.course import check_course_module_schema
+from tests.course import check_course_module_schema, check_course_nav_titles
 from tests.markdown import check_markdown_anchors, check_markdown_schema, check_render_safety
 from tests.pptx_validity import check_pptx_opc, check_pptx_schema
 from tests.mermaid_lint import check_mermaid_edge_labels
@@ -170,6 +170,8 @@ CHECKS = [
     Check("markdown: schema + md-link existence", 1, lambda strict: check_markdown_schema()),
     Check("course: module pages conform to module-schema.json (Premise + model list)", 1,
           lambda strict: check_course_module_schema()),
+    Check("course: lecture-module nav labels are capitalized (.pages title present + first word Upper)", 1,
+          lambda strict: check_course_nav_titles()),
     # Committed-deck validity (tools/pptx_validate.py): stdlib OPC part-coverage always; the genuine
     # OOXML schema validator (OpenXmlValidator, needs .NET) runs skip-if-absent via pre_push — the
     # html-validate promotion posture. Two shipped PowerPoint needs-repair corruptions motivated this;

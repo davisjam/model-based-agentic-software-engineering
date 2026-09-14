@@ -17,6 +17,14 @@ import re
 
 from tests.common import FAIL, PASS, ROOT, rel
 
+#: A lecture module directory: a number-prefixed dir with an index.md under a `course/lectures/<act>/`
+#: tree (e.g. `course/lectures/act-1-foundations/07-design/`). awesome-pages turns each into a sidebar
+#: section whose label it takes from the dir's `.pages` `title:`.
+_MODULE_INDEX_GLOB = "course/lectures/*/[0-9]*-*/index.md"
+_PAGES_TITLE_RE = re.compile(r"^title:\s*(.+?)\s*$", re.M)
+#: Strip an optional leading "NN " module-number prefix so we test the first word of the actual label.
+_NUM_PREFIX_RE = re.compile(r"^\d+\s+")
+
 _SCHEMA_PATH = os.path.join(ROOT, "course", "module-schema.json")
 #: A leading bold statement (`**…**`) or a leading italic question/phrase (`*…*`, not `**`). Bold is tried
 #: first because `**bold**` also begins with `*`.
@@ -162,4 +170,38 @@ def check_course_module_schema():
                 continue
             for msg in ev(rule, body, lines):
                 issues.append(f"{r}: [{rule['id']}] {msg}")
+    return (FAIL if issues else PASS), issues
+
+
+def check_course_nav_titles():
+    """Every lecture module directory must carry a `.pages` file whose nav `title:` is capitalized.
+
+    awesome-pages derives a section's sidebar label from its directory's `.pages` `title:`, and falls
+    back to the directory name (lowercased, hyphens → spaces) when the file is absent — which is exactly
+    how `07-design` shipped in the navbar as "07 design" instead of "07 Design". This check requires the
+    `.pages` to exist and its title, after an optional leading "NN " module-number prefix, to begin with
+    an uppercase letter, so a missing file or a lowercase label cannot reach the published nav."""
+    mods = sorted(glob.glob(os.path.join(ROOT, _MODULE_INDEX_GLOB)))
+    if not mods:
+        return FAIL, [f"course nav-titles: no module pages matched {_MODULE_INDEX_GLOB} — glob or tree "
+                      "moved; the check would silently pass over an empty set otherwise"]
+    issues: list[str] = []
+    for idx in mods:
+        d = os.path.dirname(idx)
+        pages = os.path.join(d, ".pages")
+        if not os.path.exists(pages):
+            issues.append(f"{rel(d)}: no `.pages` file — the navbar label falls back to the lowercased "
+                          "directory name (e.g. '07 design'); add `.pages` with a capitalized `title:`")
+            continue
+        m = _PAGES_TITLE_RE.search(open(pages, encoding="utf-8").read())
+        if not m:
+            issues.append(f"{rel(pages)}: no `title:` — awesome-pages will auto-title from the "
+                          "lowercased directory name")
+            continue
+        title = m.group(1).strip().strip("\"'")
+        label = _NUM_PREFIX_RE.sub("", title)
+        first = next((ch for ch in label if ch.isalpha()), "")
+        if first and not first.isupper():
+            issues.append(f"{rel(pages)}: nav title {title!r} is not capitalized — the first word should "
+                          "begin with an uppercase letter (e.g. 'Design', not 'design')")
     return (FAIL if issues else PASS), issues
