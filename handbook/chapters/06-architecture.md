@@ -2,7 +2,7 @@
 id: architecture
 title: Software Architecture
 short_title: Architecture
-order: 5
+order: 6
 status: draft
 description: >
   Architecture organizes one acceptable realization so that its obligations can coexist. Its

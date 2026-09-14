@@ -2,7 +2,7 @@
 id: specification
 title: Specification
 short_title: Specification
-order: 4
+order: 5
 status: draft
 description: >
   A specification makes accepted requirements actionable by bounding what an acceptable realization

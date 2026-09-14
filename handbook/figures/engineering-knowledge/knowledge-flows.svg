@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" font-family="'Source Sans 3', Helvetica, sans-serif" role="img">
+  <title>Where engineering knowledge comes from and where it can go</title>
+  <!-- Umber Monograph palette: ink #1c1917, paper #fdfcf9, accent #9a3f12, rule #e4e0d8, panel #f6f4ef -->
+  <rect x="0" y="0" width="720" height="420" fill="#fdfcf9"/>
+
+  <!-- Sources -->
+  <rect x="20" y="20" width="200" height="64" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="120" y="46" text-anchor="middle" font-size="15" fill="#1c1917">Engineering work</text>
+  <text x="120" y="66" text-anchor="middle" font-size="12" fill="#57534e" font-style="italic">models · experiments · prototypes</text>
+
+  <rect x="260" y="20" width="200" height="64" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="360" y="46" text-anchor="middle" font-size="15" fill="#1c1917">Outside world</text>
+  <text x="360" y="66" text-anchor="middle" font-size="12" fill="#57534e" font-style="italic">users · experts · regulation</text>
+
+  <rect x="500" y="20" width="200" height="64" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="600" y="46" text-anchor="middle" font-size="15" fill="#1c1917">Operation</text>
+  <text x="600" y="66" text-anchor="middle" font-size="12" fill="#57534e" font-style="italic">incidents · telemetry · support</text>
+
+  <!-- Arrows: sources -> observation -->
+  <line x1="120" y1="84" x2="330" y2="148" stroke="#9a3f12" stroke-width="2"/>
+  <polygon points="330,148 319,146 323,137" fill="#9a3f12"/>
+  <line x1="360" y1="84" x2="360" y2="148" stroke="#9a3f12" stroke-width="2"/>
+  <polygon points="360,148 355,138 365,138" fill="#9a3f12"/>
+  <line x1="600" y1="84" x2="390" y2="148" stroke="#9a3f12" stroke-width="2"/>
+  <polygon points="390,148 397,137 401,146" fill="#9a3f12"/>
+
+  <!-- Observation and interpretation -->
+  <rect x="270" y="152" width="180" height="44" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="360" y="180" text-anchor="middle" font-size="15" fill="#1c1917">Observation</text>
+
+  <line x1="360" y1="196" x2="360" y2="232" stroke="#9a3f12" stroke-width="2"/>
+  <polygon points="360,232 355,222 365,222" fill="#9a3f12"/>
+
+  <rect x="270" y="236" width="180" height="44" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="360" y="264" text-anchor="middle" font-size="15" fill="#1c1917">Interpretation</text>
+
+  <!-- Arrows: interpretation -> destinations -->
+  <line x1="330" y1="280" x2="120" y2="336" stroke="#9a3f12" stroke-width="2"/>
+  <polygon points="120,336 128,328 131,338" fill="#9a3f12"/>
+  <line x1="360" y1="280" x2="360" y2="336" stroke="#9a3f12" stroke-width="2"/>
+  <polygon points="360,336 355,326 365,326" fill="#9a3f12"/>
+  <line x1="390" y1="280" x2="600" y2="336" stroke="#9a3f12" stroke-width="2"/>
+  <polygon points="600,336 589,338 592,328" fill="#9a3f12"/>
+
+  <!-- Destinations -->
+  <rect x="20" y="340" width="200" height="64" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="120" y="366" text-anchor="middle" font-size="15" fill="#1c1917">People</text>
+  <text x="120" y="386" text-anchor="middle" font-size="12" fill="#57534e" font-style="italic">tacit · shared through talk</text>
+
+  <rect x="260" y="340" width="200" height="64" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="360" y="366" text-anchor="middle" font-size="15" fill="#1c1917">Representations</text>
+  <text x="360" y="386" text-anchor="middle" font-size="12" fill="#57534e" font-style="italic">docs · models · records</text>
+
+  <rect x="500" y="340" width="200" height="64" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="600" y="366" text-anchor="middle" font-size="15" fill="#1c1917">Environment</text>
+  <text x="600" y="386" text-anchor="middle" font-size="12" fill="#57534e" font-style="italic">conventions · mechanisms · checks</text>
+</svg>

@@ -50,7 +50,7 @@ parts:
     numeral: Part I
     title: From Purpose to System
     opener: parts/part-1-from-purpose-to-system.md
-    chapters: [software-engineering, process, teamwork, requirements, specification, architecture, design]
+    chapters: [software-engineering, process, teamwork, engineering-knowledge, requirements, specification, architecture, design]
   - id: part-2
     numeral: Part II
     title: Making Properties Hold
@@ -64,10 +64,11 @@ chapters:
   - chapters/00-software-engineering.md
   - chapters/01-process.md
   - chapters/02-teamwork.md
-  - chapters/03-requirements.md
-  - chapters/04-specification.md
-  - chapters/05-architecture.md
-  - chapters/06-design.md
+  - chapters/03-engineering-knowledge.md
+  - chapters/04-requirements.md
+  - chapters/05-specification.md
+  - chapters/06-architecture.md
+  - chapters/07-design.md
   # Back matter — the Conclusion renders LAST and unnumbered; insert new chapters ABOVE this line.
   # Its `kind: conclusion` metadata (not its list position) exempts it from the chapter-ending
   # convention and drops the chapter heading treatment in the PDF (see scripts/lint.py + build.py).

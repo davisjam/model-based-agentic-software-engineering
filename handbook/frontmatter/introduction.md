@@ -17,10 +17,11 @@ Others concern properties that must hold across all of that work. A system may n
 reliable, performant, observable, maintainable, or satisfy other obligations that cannot be assigned
 neatly to one engineering activity. This book approaches software engineering from both directions.
 
-Part I, From Purpose to System, takes the first view. It begins with software engineering itself and
-with the processes and teamwork through which engineering work is organized. It then follows the
-decisions that connect purposes in the world to requirements, specifications, architecture, design,
-implementation, and validation. The progression is conceptual rather than procedural. Real projects
+Part I, From Purpose to System, takes the first view. It begins with software engineering itself,
+with the processes and teamwork through which engineering work is organized, and with how the
+knowledge an engineering organization acquires persists beyond the people who first held it. It then
+follows the decisions that connect purposes in the world to requirements, specifications,
+architecture, design, implementation, and validation. The progression is conceptual rather than procedural. Real projects
 arrange these activities differently, perform many of them concurrently, and revisit earlier decisions
 as they learn. Separating the problems nevertheless helps us understand the different judgments they
 require and the information those judgments depend on.

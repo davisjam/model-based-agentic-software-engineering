@@ -2,7 +2,7 @@
 id: design
 title: Software Design
 short_title: Design
-order: 6
+order: 7
 status: draft
 description: >
   Design determines how an architectural part realizes its responsibility within the obligations,

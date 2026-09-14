@@ -11,6 +11,8 @@ It is not an encyclopedia of software-engineering terminology, methods, processe
 
 The organizing idea is **apprenticeship**: the reader should become better able to recognize an engineering problem, determine what matters, gather the information needed to decide, compare plausible alternatives, understand their consequences, and exercise judgment.
 
+**The author supplies the judgment.** Agents may help articulate, challenge, organize, illustrate, and test it, but fluency is not evidence that the judgment is settled. Every major section must identify the engineering decision it teaches and the author's substantive position on how that decision should be understood. If the section could have been generated from a generic software-engineering topic prompt, it is not yet ready. Must be able to say: Where did the author disagree with the obvious account of this topic?
+
 For substantial prose work, use a Fable and have it use the `self-communicate` skill for planning, drafting, and review.
 
 ---
@@ -28,11 +30,12 @@ The chapters form one progression:
 1. **Software / GenAI** — What kind of engineered medium is software, and what changes when implementation becomes cheap?
 2. **Process** — Given that medium, how should engineering work be organized?
 3. **Teamwork** — How does individual capability become coordinated engineering capability?
-4. **Requirements** — What should the engineering effort promise?
-5. **Specification** — Which realizations would satisfy those promises?
-6. **Architecture** — How should one acceptable realization be organized so its obligations can coexist?
-7. **Design** — How should its parts actually realize their responsibilities?
-8. **Conclusion** — How should an engineer approach a consequential decision?
+4. **Engineering Knowledge** — How should what engineers learn persist?
+5. **Requirements** — What should the engineering effort promise?
+6. **Specification** — Which realizations would satisfy those promises?
+7. **Architecture** — How should one acceptable realization be organized so its obligations can coexist?
+8. **Design** — How should its parts actually realize their responsibilities?
+9. **Conclusion** — How should an engineer approach a consequential decision?
 
 Do not let the chapters become seven independent textbook surveys.
 

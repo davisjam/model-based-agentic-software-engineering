@@ -322,8 +322,8 @@ accumulated that dependence accidentally.
 This also reveals a limit of management through staffing alone. Moving knowledge among people can
 make capability more resilient, but consequential knowledge need not remain dependent on a person
 remembering it: documents, models, tests, and tools can carry engineering knowledge beyond the
-person who first held it (@ch-design returns to how consequential discoveries become engineering
-knowledge).
+person who first held it (@ch-engineering-knowledge takes up how consequential discoveries become
+engineering knowledge).
 
 ### GenAI introduces substitutable capability {#sec-genai-substitutable}
 
@@ -489,9 +489,9 @@ it; management allocates, sustains, and develops it.
 
 Some of that capability depends on knowledge that currently resides in particular people. Teams can
 spread knowledge through coordination and mentorship, but consequential engineering knowledge need
-not disappear when those people become unavailable. The chapters ahead take up the artifacts in
-which such knowledge can also reside — requirements, specifications, architectures, and design
-records — beginning with what the engineering effort should promise.
+not disappear when those people become unavailable. The next chapter takes up that problem directly:
+how should what an engineering organization learns persist, in what form, and with how much
+authority?
 
 ::: read_further
 Li, Paul Luo, Amy J. Ko, and Jiamin Zhu. ["What Makes a Great Software Engineer?"](https://doi.org/10.1109/ICSE.2015.335) In *Proceedings of the 37th IEEE/ACM International Conference on Software Engineering (ICSE)*, 700–710. IEEE, 2015. The interview study behind this chapter's account of individual capability; it shows why experienced engineers rate judgment, system understanding, and enabling colleagues alongside implementation skill.
