@@ -6701,7 +6701,9 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
     else:
         print("PDF FOOTNOTE-MARKUP SENSOR: PASS — no raw footnote markup in PDF text.")
 
-    if _BOOK_TITLE not in text:
+    # The cover sets the title as the tracked-caps EXPANSION line of the MAGE lockup (uppercased
+    # glyphs), so the gate accepts either casing of the manifest title.
+    if _BOOK_TITLE not in text and _BOOK_TITLE.upper() not in text:
         problems.append(f"cover title {_BOOK_TITLE!r} not found (cover did not render)")
 
     # Source of truth: the discovered chapters + the projected appendix, in reading order. The PDF gate must

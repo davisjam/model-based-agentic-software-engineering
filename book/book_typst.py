@@ -2495,78 +2495,61 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 
 
 def _cover_typst() -> str:
-    """The cover — a FULL-BLEED charcoal cover: the cover art (`book/assets/cover-charcoal.svg`, portrait
-    8.5:11 so it fills the US-Letter page exactly) bleeds to every page edge on a margin-0 page, and a LIGHT
-    title lockup overlays the upper dark title band in cream. The eyebrow, title, optional subtitle, and
-    author all read from the manifest (single source of truth), so the three cover surfaces (site hero, web
-    book, print) can never disagree on the words.
+    """The cover — a LAYERED LIGHT cover (mirrors `handbook/typst/cover.typ`): a cream page ground
+    sampled from the artwork's own top band, the claymation workshop artwork
+    (`book/assets/cover-artwork.png`, 1024x1536 — the engineer at the control board directing a robot
+    building a truss bridge, the "Quality goals" notebook at hand), and native Typst typography in the
+    artwork's top cream field. All text is live type; nothing textual is rasterized. The art spans the
+    full page width (12.75in tall at 8.5in wide), shifted up so the page trims expendable top cream and
+    a sliver of the bottom edge — every prop (engineer, control board, robot, bridge, notebook) stays.
 
-    The lockup colours draw from the token palette: the display title is the brightest element (dt.paper —
-    cream), the eyebrow + byline a warm cream (dt.accent-tint), so the single warm FOCAL accent stays the
-    red maquette in the art below. The title is sized down from fs-display (39pt, too large for the band) to
-    hold two lines within the near-black title band.
+    MATCHED-PAIR CONTRACT (shared with `handbook/typst/cover.typ`): the two covers set the same
+    typographic system — display serif (Source Serif 4) throughout; one DOMINANT bold caps word (here
+    MAGE, there HANDBOOK) with the rest of the title as a tracked-caps companion line (here the
+    expansion of the acronym, reading below it); an identical author block (short terracotta hairline
+    rule, then the name in tracked caps); all text centered in the top cream field, the artwork's own
+    cream→scene fade doing the compositional work (no panel, box, or gradient behind the type). Change
+    one cover's treatment only in step with the other. No cover furniture: no eyebrow/kicker, edition,
+    dates, marks, or taglines.
 
-    Its own page, no folio. The imprint line + last-modified date do NOT sit on the art — a full-bleed cover
-    has no clean seat for them; they move to the copyright page that follows (see `_copyright_page_typst`)."""
+    The dominant word and the expansion line read from the manifest (`cover_display_title` + `title`),
+    the author from `author` — single source of truth, so the cover surfaces can never disagree on the
+    words. The expansion renders uppercased; the PDF content gate accepts the uppercased projection.
+
+    Its own page, no folio. The imprint line + last-modified date move to the copyright page that
+    follows (see `_copyright_page_typst`)."""
     m = bb._BOOK_MANIFEST
-    title = _esc(m["title"])
-    # The full-bleed cover applies an OPTIONAL soft line-break HINT from the manifest. `cover_title_break_after`
-    # names the substring after which the cover title should break (e.g. "Model-Based" → line 1 "Model-Based",
-    # line 2 "Agentic Software Engineering"). We insert Typst's forced linebreak (` \ `) right after that
-    # substring — AFTER _esc so the backslash is not itself escaped — and only when the substring is actually
-    # found. Absent / empty / not-found ⇒ no forced break, the title auto-wraps. `title` itself stays SSOT
-    # (used verbatim by the site hero and the web book); only the cover consults the hint.
-    title_cover = title
-    break_after = str(m.get("cover_title_break_after", "")).strip()
-    if break_after:
-        break_after_esc = _esc(break_after)
-        idx = title_cover.find(break_after_esc)
-        if idx != -1:
-            cut = idx + len(break_after_esc)
-            title_cover = title_cover[:cut] + r" \ " + title_cover[cut:].lstrip()
+    display_word = _esc(m.get("cover_display_title", "MAGE"))
+    expansion = _esc(m["title"].upper())
     author = _esc(m["author"].upper())
-    kicker = _esc(m.get("kicker", "")).upper()
-    subtitle = _esc(m.get("subtitle", ""))
-    # The cover art embeds as a PRE-RASTERIZED JPEG, not the SVG. The SVG stacks feTurbulence /
-    # feDisplacementMap / blur filters the print engine cannot vectorize, so it would rasterize the whole
-    # page at high DPI (~26 MB embedded). `cover-charcoal.svg` stays the tracked SOURCE; regenerate the JPEG
-    # from it when the art changes with (175 DPI for 8.5x11, quality-88 4:2:0):
-    #   rsvg-convert -w 1487 -h 1925 assets/cover-charcoal.svg -o /tmp/cc.png
-    #   magick /tmp/cc.png -quality 88 -sampling-factor 4:2:0 assets/cover-charcoal.jpg
-    # The title text below stays live Typst (crisp); only the art is a raster.
-    cover_img = _root_rel(HERE / "assets" / "cover-charcoal.jpg", _EmitCtx.root)
-    # The eyebrow renders only when the manifest carries a kicker; the subtitle only when it carries one
-    # (empty string = omitted, per the manifest contract).
-    eyebrow_block = (
-        "        #text(font: dt.font-display, weight: dt.display-weight, size: 11pt, tracking: 0.34em, "
-        f"fill: dt.accent-tint)[{kicker}]\n"
-        "        #v(1.0em)\n"
-    ) if kicker else ""
-    subtitle_block = (
-        "        #v(0.8em)\n"
-        f"        #text(font: dt.font-body, size: 13pt, fill: dt.accent-tint)[{subtitle}]\n"
-    ) if subtitle else ""
+    cover_img = _root_rel(HERE / "assets" / "cover-artwork.png", _EmitCtx.root)
     return (
-        "// FULL-BLEED cover: the charcoal art fills the page (margin 0); the light title lockup overlays the\n"
-        "// upper dark band. The imprint line + date move to the copyright page that follows.\n"
-        '#page(paper: "us-letter", margin: 0pt, numbering: none, header: none, footer: none)[\n'
-        f'  #place(top + left, image("{cover_img}", width: 100%, height: 100%))\n'
-        "  #place(top + center, dy: 42pt)[\n"
-        "    #block(width: 74%)[\n"
-        "      #align(center)[\n"
-        + eyebrow_block +
-        "        #par(justify: false, leading: 0.36em)[\n"
-        "          #text(font: dt.font-display, weight: dt.display-weight, size: 27pt, "
-        f"tracking: -0.02em, fill: dt.paper)[{title_cover}]\n"
-        "        ]\n"
-        + subtitle_block +
-        "        #v(1.3em)\n"
-        "        #line(length: 26%, stroke: 1pt + dt.accent-tint)\n"
-        "        #v(1.1em)\n"
-        f"        #text(font: dt.font-body, size: 12pt, tracking: 0.3em, fill: dt.accent-tint)[{author}]\n"
-        "      ]\n"
+        "// LAYERED LIGHT cover: cream ground (sampled from the art's top band) -> full-width claymation\n"
+        "// artwork, shifted up to trim expendable top cream -> centered live-type lockup in the cream field.\n"
+        "// The imprint line + date move to the copyright page that follows.\n"
+        "#let cover-cream = rgb(\"#FDF8F0\")  // artwork top-band mean\n"
+        "#let cover-ink = rgb(\"#1D2733\")    // deep charcoal-navy (dominant title, author)\n"
+        "#let cover-muted = rgb(\"#5B5346\")  // warm gray-brown (expansion line)\n"
+        "#let cover-accent = rgb(\"#9E4A2F\") // terracotta (author rule)\n"
+        '#page(paper: "us-letter", margin: 0pt, numbering: none, header: none, footer: none, '
+        "fill: cover-cream)[\n"
+        # Art: 8.5in wide -> 12.75in tall; dy -1.25in trims 150px of top cream and lets 60px bleed past
+        # the page bottom (the desk edge below the Quality-goals notebook), keeping the notebook whole.
+        f'  #place(top + left, dy: -1.25in, image("{cover_img}", width: 100%))\n'
+        "  #place(top + center, dy: 0.5in, block(width: 7.5in)[\n"
+        "    #align(center)[\n"
+        "      #text(font: dt.font-display, size: 78pt, weight: 700, tracking: 0.03em, "
+        f"fill: cover-ink)[{display_word}]\n"
+        "      #v(0.16in, weak: true)\n"
+        "      #text(font: dt.font-display, size: 13.5pt, weight: 500, tracking: 0.16em, "
+        f"fill: cover-muted)[{expansion}]\n"
+        "      #v(0.2in, weak: true)\n"
+        "      #line(length: 0.45in, stroke: 1pt + cover-accent)\n"
+        "      #v(0.16in, weak: true)\n"
+        "      #text(font: dt.font-display, size: 11.5pt, weight: 600, tracking: 0.24em, "
+        f"fill: cover-ink)[{author}]\n"
         "    ]\n"
-        "  ]\n"
+        "  ])\n"
         "]"
     )
 

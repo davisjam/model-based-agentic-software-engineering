@@ -101,8 +101,9 @@
   })
 
   // ── Front cover (page 1: full-bleed, un-numbered, not in the contents) ───
-  // A layered page: cream ground → woven-strand artwork → native typography. See cover.typ.
-  hb-cover(title: title, subtitle: subtitle, author: author, edition: edition, year: year)
+  // A layered page: cream ground → claymation workshop artwork → native typography. See cover.typ.
+  // The edition line lives on the imprint page, not the cover (no cover furniture).
+  hb-cover(title: title, subtitle: subtitle, author: author)
 
   // ── Copyright / imprint page (page 2: margined, un-numbered, not in the contents) ──
   // Mirrors the MAGE book's imprint page exactly: the © line (author, copyright years) on the page

@@ -2975,7 +2975,7 @@ def _v3_learn() -> str:
         + _v3_card("MAGE", "",
                    "Engineering reliable software with commodity intelligence: the theory, practice, evidence, and implications.",
                    [("Read the book", "book/mage-book/index.html"), ("Download PDF", _PDF_HREF)],
-                   thumb=("book/assets/cover-charcoal-thumb.png", "MAGE book cover")) + "\n"
+                   thumb=("book/assets/cover-thumb.png", "MAGE book cover")) + "\n"
         + _v3_card("The Software Engineering Handbook", "",
                    "A judgment and decision-making approach to software engineering, from requirements and architecture to management, engineering knowledge, and validation.",
                    [("Read the handbook", handbook_pdf), ("Download PDF", handbook_pdf)],
