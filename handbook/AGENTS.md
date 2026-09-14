@@ -112,7 +112,57 @@ A memorable sentence should usually compress reasoning the paragraph has already
 
 ---
 
-# 5. Begin from engineering problems, not catalogs
+# 5. Course landers teach the model
+
+Each course or lecture lander should give the student a compact conceptual
+model for thinking about the topic before the lecture develops and exercises
+it.
+
+Landers should normally be **750–1,000 words**, with roughly **850–900 words**
+as a natural target. This is long enough to teach the model rather than merely
+name it, but short enough that the lander remains an introduction rather than
+a second textbook chapter.
+
+Each lander should:
+
+1. identify the engineering problem;
+2. expose a compact model for reasoning about it;
+3. explain the model sufficiently for a student to use it;
+4. illustrate the model with at least one concrete example;
+5. identify the judgment the engineer must exercise; and
+6. connect the topic to the assigned readings.
+
+The model is the conceptual centerpiece. Prefer a figure, table, progression,
+decision schema, or other compact representation when one makes the model
+easier to grasp. Do not add a diagram merely to decorate the page.
+
+Use the model and terminology developed in the corresponding Handbook chapter.
+Do not invent a parallel formulation merely to make the lander self-contained.
+When the Handbook contains a stronger model than the existing lander, bring
+that model forward into the lander.
+
+Do not achieve brevity by presenting the model without explanation. A student
+should be able to explain what the parts of the model mean, how they relate,
+and how the model changes an engineering decision after reading the lander.
+
+Likewise, do not turn the lander into a compressed survey of the corresponding
+chapter. Select the ideas needed to establish and use the model; leave fuller
+argument, qualifications, additional examples, and supporting detail to the
+Handbook.
+
+The three teaching artifacts have different jobs:
+
+- **Course lander:** establish the model the student should have in mind.
+- **Lecture:** exercise the model through examples, contrasts, and decisions.
+- **Handbook:** explain, defend, qualify, and extend the model.
+
+Landers may differ in organization and voice when the subject requires it.
+Standardize their intellectual burden, not their headings or paragraph
+structure.
+
+---
+
+# 6. Begin from engineering problems, not catalogs
 
 Methods, patterns, models, and tools should enter because they help answer an engineering question.
 
@@ -136,7 +186,7 @@ Do not label an alternative "best practice" unless the others are genuinely domi
 
 ---
 
-# 6. Tradeoffs must explain mechanisms
+# 7. Tradeoffs must explain mechanisms
 
 Avoid empty tradeoff prose such as:
 
@@ -152,7 +202,7 @@ The reader should be able to transfer the reasoning to a new problem.
 
 ---
 
-# 7. Keep the central distinctions stable
+# 8. Keep the central distinctions stable
 
 ## Software as an expressive medium; engineering as what we do with it
 
@@ -204,7 +254,7 @@ Explain the relationship; do not use the sentence as a substitute for explanatio
 
 ---
 
-# 8. Decisions flow downward; evidence flows upward
+# 9. Decisions flow downward; evidence flows upward
 
 The conceptual progression is:
 
@@ -226,7 +276,7 @@ Treat this feedback as normal engineering learning, not as a failure of the prog
 
 ---
 
-# 9. Connect decisions to the engineered medium where it explains them
+# 10. Connect decisions to the engineered medium where it explains them
 
 The engineered medium is the book's conceptual spine.
 
@@ -246,7 +296,7 @@ Teach the general software-engineering principle otherwise.
 
 ---
 
-# 10. Use examples to carry reasoning
+# 11. Use examples to carry reasoning
 
 Examples should show:
 
@@ -264,7 +314,7 @@ Rotate examples when another domain better demonstrates the abstraction.
 
 ---
 
-# 11. Preserve the semantic components
+# 12. Preserve the semantic components
 
 Use the established box vocabulary consistently:
 
@@ -294,7 +344,7 @@ The corresponding course/lecture lander is authoritative for the candidate readi
 
 ---
 
-# 12. Chapter burdens
+# 13. Chapter burdens
 
 When revising a chapter, preserve its central engineering question.
 
@@ -335,7 +385,7 @@ Distinguish choices to **follow**, **choose**, or **escalate**.
 
 ---
 
-# 13. Authoring workflow
+# 14. Authoring workflow
 
 For substantial chapter work:
 
@@ -372,7 +422,7 @@ Run the `self-communicate` skill, then perform the handbook-specific review belo
 
 ---
 
-# 14. Handbook-specific review
+# 15. Handbook-specific review
 
 ## Argument
 - Does the chapter have one identifiable engineering problem?
@@ -410,7 +460,7 @@ Run the `self-communicate` skill, then perform the handbook-specific review belo
 
 ---
 
-# 15. Final test
+# 16. Final test
 
 For every chapter, ask:
 
