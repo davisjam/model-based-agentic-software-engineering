@@ -28,6 +28,11 @@ concurrency, failure handling, and coordination. Architecture deliberately hid t
 engineers could reason about the larger system without opening every box at once. Design opens the
 box.
 
+Design is therefore less a phase than a class of engineering decisions. A designer identifies which
+choices remain open, generates plausible alternatives, reasons about their consequences, chooses
+among them, and makes consequential decisions inspectable so that later engineers do not have to
+reconstruct the reasoning from the implementation alone.
+
 ::: {.definition #def-design title="Software design"}
 Software design determines how an architectural part realizes its responsibility within the
 obligations, affordances, and constraints it inherits. It operates over the degrees of freedom that
@@ -41,9 +46,9 @@ component may reveal smaller parts. If one of those parts is still too substanti
 directly, engineers may establish an architecture for it and design within that architecture again.
 
 Eventually the recursion ends. Engineers reach objects, functions, data structures, algorithms, or
-small collaborations whose relevant behavior can be reasoned about directly. Further decomposition
-no longer makes the engineering problem easier to understand. At that point, design passes into
-implementation.
+small collaborations whose relevant behavior is small enough to reason about directly. Further
+consequential decomposition would no longer make the engineering problem easier to understand. At
+that point, design passes into implementation.
 
 ## Design does not begin from a blank page {#sec-blank-page}
 
@@ -54,10 +59,14 @@ that certain behavior remain correct under failure. When we open the Advice Serv
 obligations remain. Only its internals become our problem.
 
 A designer therefore inherits decisions from at least three sources. Specification establishes
-what must remain true: correctness, privacy, timing bounds, security obligations, and other
-properties. Architecture establishes strategy: the part's responsibility, interface, boundaries,
-and allowed interactions. The engineering environment establishes recurring decisions that the
-organization has already made.
+what must remain true. Architecture establishes the strategy within which the part must work. The
+engineering environment establishes recurring decisions that engineers should not have to make
+again.
+
+Specification may constrain correctness, privacy, timing, security, or other properties.
+Architecture assigns the part a responsibility, interface, boundaries, and permitted interactions.
+The engineering environment may supply frameworks, shared abstractions, approved mechanisms, coding
+conventions, failure policies, and organization-wide rules.
 
 That third source matters. An organization may already require that persistent state be accessed
 through repositories. Dependencies may be supplied through interfaces. Cross-service calls may
@@ -67,8 +76,9 @@ already have approved mechanisms. These decisions may not appear on the system a
 diagram, but they still constrain local design.
 
 Good engineering environments deliberately answer recurring questions so that every component
-designer does not have to rediscover an answer independently. The implementation space is therefore
-already narrowed before design begins.
+designer does not have to rediscover an answer independently. They convert repeated judgment into
+engineering structure. The implementation space is therefore already narrowed before local design
+begins.
 
 ## Design operates over the remaining degrees of freedom {#sec-degrees-of-freedom}
 
@@ -87,6 +97,11 @@ established mechanism. Choose when the alternatives are genuinely local and sati
 component inherits. Escalate when the consequences escape the component — the decision may belong in
 the engineering environment, the architecture, or the specification.
 :::
+
+This classification is provisional. A choice may look local until detailed work reveals its
+consequences. Conversely, a question that initially appears consequential may turn out to be safely
+governed by an existing mechanism. Design does not merely resolve degrees of freedom; it helps
+discover which freedoms really are local.
 
 Suppose retry behavior is standardized across the system. The component designer should follow the
 standard mechanism rather than invent a local retry policy. Suppose two internal data structures
@@ -109,8 +124,9 @@ architecture works the same way. A boundary, interface, dependency rule, or depl
 creates affordances and constraints for the design inside the part.
 
 This relationship is relative to scope. A subsystem may be tactical relative to the system
-architecture while having an architecture of its own. The useful question is always: which decisions
-are we taking as given, and which are we making within them?
+architecture while having an architecture of its own. Architecture and design are therefore not two
+fixed heights in a hierarchy. The useful scope question is: *which decisions are we taking as given,
+and which decisions are we making within them?*
 
 ## Models of how a part works {#sec-part-models}
 
@@ -134,13 +150,45 @@ model earns its place by the question it settles.
 :::
 
 There is no single artifact that is "the design." Several representations may coexist because they
-answer different questions about the same part.
+answer different questions about the same part. Nor does a particular notation make a
+representation a design model. A state machine, dependency graph, table, sequence, equation, or
+prose description earns its place only when it makes a consequential design question easier to
+answer.
+
+## Making design reasoning inspectable {#sec-inspectable-reasoning}
+
+A consequential design decision should not exist only in the resulting code. By the time an
+implementation exists, an engineer can often see what was built but not why one mechanism was
+chosen over another, which alternatives were rejected, what assumptions supported the decision, or
+what evidence would justify revisiting it.
+
+A design document makes that reasoning inspectable before and after implementation. Its useful
+content follows directly from the decision process in this chapter: context and inherited
+constraints → open question → plausible alternatives → proposed design → model or evidence →
+tradeoffs → unresolved questions. The exact document format matters less than preserving enough of
+the argument for another engineer to evaluate the choice.
+
+::: {.key-idea #key-design-doc-externalizes title="A design document externalizes a decision"}
+A design document is a representation of a consequential decision before that decision disappears
+into code. Record enough context, alternatives, evidence, and rationale that another engineer can
+challenge the choice now and understand it later.
+:::
+
+Review then becomes part of design rather than a ceremonial approval step. Another engineer can
+challenge an assumption, identify an alternative, or notice a consequence that the original
+designer missed before the decision becomes expensive to reverse.
 
 ## Recurring design choices {#sec-recurring-choices}
 
-Some design questions recur often enough that engineers have accumulated familiar alternatives and
-experience about their consequences. As with architectural patterns, the useful knowledge is not the
-name of the pattern. It is the problem, plausible alternatives, and tradeoff.
+Some design questions recur often enough that engineers have accumulated experience about plausible
+solutions and their consequences. This experience appears in conventions, libraries, frameworks,
+design patterns, and the engineering environment itself. The value is not the name attached to a
+solution. It is the accumulated answer to three questions: What recurring problem does this
+structure address? What alternatives exist? What consequences does this one introduce?
+
+A design pattern therefore packages prior engineering experience. It expands the designer's
+candidate set without making the decision for them. Patterns are useful as stored design
+experience, not as a checklist of structures a sophisticated design ought to contain.
 
 ### Who owns the truth? {#sec-owns-truth}
 
@@ -173,7 +221,7 @@ reduce coordination while forcing the surrounding design to tolerate stale or di
 observations. Replication topology does not determine the required semantics. Requirements do.
 
 ::: {.tradeoff #tradeoff-consistency title="Consistency"}
-Stronger observation guarantees buy simpler assumptions for clients by spending coordination. Weaker
+Tighter observation guarantees buy simpler assumptions for clients by spending coordination. Weaker
 guarantees buy autonomy, availability, or latency by requiring the system to tolerate temporary
 disagreement.
 :::
@@ -221,26 +269,47 @@ A direct dependency is not a sign of immature design. An additional abstraction 
 sophisticated. The mechanism should correspond to a plausible source of change or another
 consequential property.
 
+Design patterns often package particular forms of this move. A Facade, for example, introduces a
+stable, simpler interface in front of a more complicated subsystem. That can contain knowledge of
+the subsystem and reduce dependencies on its internals, but it also creates another interface whose
+promises must be maintained. The engineering question is therefore not: should we use Facade? It
+is: what dependency or expected change are we buying isolation from, and is that isolation worth
+the additional structure?
+
 ### How should a responsibility be decomposed? {#sec-decomposition}
 
 A responsibility can often be decomposed in several ways. One design may divide work according to
 processing steps: Step 1 → Step 2 → Step 3. Another may organize the same work around a decision
-expected to change: a stable interface hiding the changing decision.
+expected to change, placing a stable seam around the part likely to vary. Both decompositions can
+produce correct behavior. The design question is what each decomposition makes local.
 
-The second approach reflects a classic information-hiding principle [@parnas1972]: hide the
-decisions most likely to change behind stable seams. A useful decomposition asks: when this
-anticipated change occurs, which design contains it? Good decomposition can improve
-understandability, testability, ownership, failure isolation, and change containment. But every
-seam also adds another relationship to maintain.
+Classical work on information hiding argues that likely sources of change should be hidden behind
+stable interfaces. Meyer [-@meyer1997] develops the broader engineering question: what properties
+make a decomposition useful? Rather than memorizing criteria, use them as tests of a proposed
+design.
+
+- Can a part be understood without reconstructing the whole? A decomposition should support local
+  reasoning.
+- Can an expected change remain local? Decisions likely to vary should not unnecessarily spread
+  through unrelated parts.
+- Can useful parts be reused or recombined? A module whose meaning depends on the entire original
+  context is difficult to compose elsewhere.
+- Can a local failure remain local? Boundaries can sometimes contain faults and prevent one
+  internal problem from corrupting unrelated work.
+
+These tests can point in different directions. Additional decomposition may improve change
+containment while introducing more interfaces, dependencies, and concepts. A seam that isolates no
+plausible source of change may merely make the system harder to understand.
 
 ::: {.tradeoff #tradeoff-decomposition title="Decomposition"}
-More decomposition can localize change and reasoning. Less decomposition can preserve directness and
-reduce coordination among parts. Add a seam when the locality it creates is worth the relationship
-it introduces.
+More decomposition can localize understanding, change, composition, or failure. Less decomposition
+preserves directness and reduces the number of relationships engineers must maintain. When
+comparing decompositions, ask what each decomposition makes local.
 :::
 
-This is why design is not a search for the maximum number of abstractions. It is a search for the
-organization of mechanisms that best fits the forces acting on this part.
+Design is therefore not a search for the maximum number of modules or abstractions. It is a search
+for a decomposition whose locality matches the changes, reasoning, reuse, and failures that matter
+in this part of the system.
 
 ## Every design choice trades one problem for another {#sec-trades-problems}
 
@@ -250,19 +319,39 @@ reduces ambiguity while increasing coordination or latency. Must work happen imm
 work simplifies completion while coupling the caller to latency and failure. How directly should
 parts depend? Directness reduces complexity while increasing exposure to change. How much
 decomposition should we introduce? More seams can localize change while creating more relationships
-to understand. There is rarely a side labeled "good."
+to understand. There is rarely a side labeled "good." The designer's job is to make the tradeoff
+explicit enough that it can be defended.
 
 ::: {.key-idea #key-fit-consequences title="Design fits consequences to the problem"}
 Design is not choosing the conventionally virtuous side of a tradeoff. It is choosing which
 consequences fit the obligations and context of the component being engineered.
 :::
 
+A defensible design can therefore name the inherited constraints, identify the open choice, compare
+serious alternatives, explain the consequences that distinguish them, and show the model or
+evidence supporting the choice. This is the reasoning a useful design document preserves.
+
 ## Design tests whether the strategy is workable {#sec-tests-strategy}
 
 Architecture (@ch-architecture) created the space in which design must operate. Sometimes a
-satisfactory tactic fits inside that space. Sometimes it does not. Return to the building wall. The
-architect provided a service space intended to accommodate plumbing. If the required pipe fits, the
-architecture successfully afforded a workable design.
+satisfactory tactic fits inside that space. Sometimes it does not. Detailed design therefore does
+more than fill in decisions made above it. It produces evidence about whether those decisions were
+workable.
+
+A clean account of engineering can appear to proceed in one direction: requirements →
+specification → architecture → design → implementation. Real design has never worked so neatly.
+Parnas and Clements made this point in 1986 [@parnasclements1986]: implementation reveals
+information that was unavailable earlier, assumptions prove wrong, requirements change, and
+attempted realizations expose weaknesses in prior decisions. Engineers need a rational account of
+the design, but the process by which they discover that design is necessarily iterative.
+
+This is especially natural in software because software is the engineering medium of change. We can
+revise the artifact as construction teaches us more about the problem. The downward progression in
+this book is therefore a way of separating engineering questions, not a claim that engineers learn
+the answers in that order.
+
+Return to the building wall. The architect provided a service space intended to accommodate
+plumbing. If the required pipe fits, the architecture successfully afforded a workable design.
 
 Suppose instead that the required bend cannot fit within the available depth. The plumbing designer
 might search for another route. But if every plausible route fails, the conclusion is not merely
@@ -279,7 +368,8 @@ consistency semantics. There is no satisfactory local answer.
 
 What appeared to be a design freedom has exposed an architectural question. The correct response is
 not to force a clever workaround into the local implementation. It is to escalate the decision. A
-choice can look local until its consequences escape the box.
+choice can look local until its consequences escape the box. A degree of freedom is therefore
+provisional until experience shows that its consequences really do remain local.
 
 ### A local workaround can make the architecture false {#sec-workaround-false}
 
@@ -294,8 +384,9 @@ Earlier, engineers may have used the architectural dependency model to answer: c
 without changing A? The model says yes. The implementation now says no. Architectural degradation
 therefore destroys the predictive value of engineering knowledge. It is not merely untidy code or
 an aesthetic failure. A model that no longer corresponds to the system can support incorrect
-engineering decisions. This can happen on the first day of implementation. It does not require
-decades of accumulated legacy code.
+engineering decisions. Architecture made a property analyzable; the hidden design change has made
+that analysis untrustworthy. This can happen on the first day of implementation. It does not
+require decades of accumulated legacy code.
 
 ### Consequential discoveries must become engineering knowledge {#sec-discovery-knowledge}
 
@@ -315,14 +406,20 @@ Architecture. Missing or changed obligation → Specification.
 
 A workaround should never remain invisible. Remove it if it was a mistake. Model it if it is a
 legitimate exception. Change the rule if repeated exceptions show that the rule itself was wrong.
-Design discovers which apparent freedoms are actually consequential.
+Repeated experience should leave the engineering environment smarter than it found it. Design
+discovers which apparent freedoms are actually consequential and where the resulting knowledge
+belongs.
 
 ## Implementation can become a design probe {#sec-implementation-probe}
 
+Implementation has always produced information about design. What changes with cheaper
+implementation is how deliberately and how often engineers can use it for that purpose.
 @ch-architecture described models, prototypes, and measurements as ways to buy information about
-architectural uncertainty. Implementation itself can serve the same purpose at design scale.
+uncertainty. At design scale, implementation itself can become an information-gathering instrument.
+
 Historically, constructing multiple candidate implementations could be too expensive merely to
-learn from them. Engineers therefore settled many design questions through experience and judgment.
+learn from them. Engineers therefore settled many design questions primarily through prior
+experience, models, and judgment.
 
 When implementation becomes much cheaper, that calculation changes. An engineer can construct two
 candidate data representations and measure them. They can prototype immediate and deferred
@@ -340,21 +437,42 @@ may recognize that they are related. What looked like several local incidents ma
 structural cause.
 
 This does not imply that high velocity automatically produces better design. It creates an
-opportunity. Temporal compression can make related evidence co-visible. That can change the
-question from how do I repair this incident? to what structure keeps producing this class of
-incident? That is a different kind of design reasoning.
+opportunity. Temporal compression can turn incidents into evidence of structure. Related failures
+that would have been separated by weeks may become co-visible. That can change the question from
+how do I repair this incident? to what structure keeps producing this class of incident? That is a
+different kind of design reasoning.
 
-## Cheap implementation changes the economics of design evidence {#sec-evidence-economics}
+## Cheap code can create a firehose of evidence {#sec-evidence-economics}
 
-The effect is therefore both economic and epistemic. Economically, engineers can afford to test
-more alternatives. Prototypes, competing implementations, measurements, and refactorings become
-cheaper evidence. Epistemically, the resulting evidence can arrive densely enough that
-relationships become visible sooner.
+Cheaper implementation changes design reasoning in two ways. The first is economic. Engineers can
+afford to try more alternatives: competing implementations, prototypes, measurements, and
+refactorings become cheaper sources of evidence. The second is epistemic. Changes and failures can
+arrive densely enough that relationships among them become visible sooner.
 
-Neither effect transfers engineering judgment to the implementation tool. The engineer still decides
-what property matters, what evidence is relevant, what tradeoff is acceptable, and what discovery
-should become durable engineering knowledge. Implementation velocity does not merely let us realize
-a design faster. It can let us reason about the design differently.
+At sufficiently high implementation velocity, however, another constraint appears: human attention.
+An engineer cannot inspect every generated change in detail. The scarce work moves upward. Many
+implementations and failures can become a stream of evidence from which an engineer must decide
+what is local, what is structural, and what recurring lesson should become durable engineering
+knowledge.
+
+::: {.mage-moment title="Cheap code, costly judgment"}
+In the *Cheap Code, Costly Judgment* case study, related failures sometimes appeared in dense
+succession rather than being separated across long periods of development. Their proximity helped
+the architect recognize that several local incidents reflected a common architectural weakness. The
+response was not to review and repair every change individually. It was to alter the engineering
+environment: introduce a model, derive new checks from it, and close several related failure
+classes at once.
+
+Cheap code creates a firehose of evidence. Costly judgment determines what it means.
+:::
+
+This does not transfer engineering judgment to the implementation tool. The engineer still decides
+what property matters, what evidence is relevant, whether several failures share a cause, what
+tradeoff is acceptable, and whether a discovery belongs in local design, the engineering
+environment, architecture, or specification.
+
+Implementation velocity therefore does not merely let us realize a design faster. It can let us
+reason about the design differently.
 
 ## From Specification to Implementation {#sec-spec-to-implementation}
 
@@ -367,33 +485,46 @@ If a part remains too large to reason about directly, the relationship recurs. E
 architecture at that scope and design within it. Eventually the work reaches entities whose relevant
 behavior can be reasoned about directly. Then we implement them.
 
-The flow is not only downward. Constraints flow downward from requirements, specification,
-architecture, and the engineering environment. Evidence flows upward from implementation and
-design. Detailed work can expose a bad tactic, an architectural gap, a missing shared mechanism, or
-an obligation that needs reconsideration. That feedback is part of engineering rather than a
-failure of the process.
+The progression describes how engineering decisions depend on one another; it does not prescribe
+the chronological order in which engineers discover them. Constraints and affordances flow downward
+from requirements, specification, architecture, and the engineering environment. Evidence flows
+upward from implementation and design. Detailed work can expose a bad tactic, an architectural gap,
+a missing shared mechanism, or an obligation that needs reconsideration. That feedback is part of
+engineering rather than a failure of the process.
 
+Engineering therefore proceeds downward through constraints and upward through evidence.
 Architecture constrains the available tactics. Design tests whether the strategy is workable.
 
 ## Summary
 
 Architecture gives design a strategy rather than a blank page. A designer inherits specification
-obligations, architectural responsibilities and interaction rules, and decisions already captured in
-the engineering environment. Design operates over the degrees of freedom that remain: follow
-existing mechanisms where the question has already been answered, choose locally where consequences
-remain local, and escalate when an apparent freedom affects larger properties.
+obligations, architectural responsibilities and interaction rules, and recurring decisions already
+captured in the engineering environment. Design operates over the degrees of freedom that remain:
+follow existing mechanisms where the question has already been answered, choose locally where
+consequences remain local, and escalate when an apparent freedom affects larger properties.
 
-Design uses the same modeling discipline as specification and architecture, but at a smaller scope.
-Recurring choices about authority, consistency, timing, indirection, and decomposition are tradeoffs
-rather than universally correct patterns. Detailed design also produces evidence about the decisions
-above it. An apparently local choice can expose an architectural gap or a missing shared rule. As
-implementation becomes cheaper, engineers can use competing implementations and dense feedback as
-additional sources of design evidence.
+Design is decision-making within those inherited constraints. Models make consequential questions
+tractable; design documents make the resulting reasoning inspectable. Recurring choices about
+authority, consistency, timing, indirection, and decomposition are tradeoffs rather than
+universally correct patterns. Patterns contribute accumulated experience about plausible tactics
+and their consequences. A good decomposition makes the right things local: understanding, expected
+change, useful composition, or failure.
+
+Design is also necessarily iterative. Implementation and detailed design reveal information that
+was unavailable earlier, so evidence flows upward even as constraints flow downward. An apparently
+local choice can expose an architectural gap, a missing shared mechanism, or even an obligation
+that needs reconsideration. Generative AI did not create this feedback loop. By making
+implementation cheaper and evidence denser, it can make the loop faster and change what engineers
+are able to notice.
+
+Architecture constrains the available tactics. Design tests whether the strategy is workable.
 
 ::: read_further
-Parnas, David L. ["On the Criteria To Be Used in Decomposing Systems into Modules."](https://doi.org/10.1145/361598.361623) *Communications of the ACM* 15, no. 12 (1972): 1053–58. The classic argument for decomposing systems around information-hiding decisions rather than merely around processing steps.
+Meyer, Bertrand. *Object-Oriented Software Construction*. 2nd ed. Upper Saddle River, NJ: Prentice Hall, 1997. The "Modularity" chapter. Meyer develops criteria for evaluating decomposition, including whether parts can be understood independently, combined usefully, changed locally, and protected from failures elsewhere. Read it as a framework for judging a decomposition, not as an object-oriented recipe. Its enduring question is the one used in this chapter: what does a proposed decomposition make local?
 
-Ousterhout, John. *A Philosophy of Software Design*. 2nd ed. Palo Alto, CA: Yaknyam Press, 2021. A working engineer's treatment of design judgment — deep modules, information hiding in practice, and when a layer of indirection earns its complexity — that develops the decomposition and indirection tradeoffs of this chapter at implementation scale.
+Parnas, David L., and Paul C. Clements. ["A Rational Design Process: How and Why to Fake It."](https://doi.org/10.1109/TSE.1986.6312938) *IEEE Transactions on Software Engineering* SE-12, no. 2 (1986): 251–57. Pay attention to the year: 1986. Parnas and Clements explain why systematic models and documentation are useful even though real design cannot proceed cleanly from requirements to implementation. Implementation reveals information, assumptions fail, and earlier decisions must be revisited. Generative AI did not create this feedback loop; it can make the loop dramatically cheaper and faster.
 
-Kleppmann, Martin. *Designing Data-Intensive Applications*. Sebastopol, CA: O'Reilly Media, 2017. Works the authority, consistency, and immediate-or-deferred questions in depth: replication semantics, retries, idempotence, and ordering as design decisions with explicit mechanisms and failure behavior.
+["Design Docs at Google."](https://www.industrialempathy.com/posts/design-docs-at-google/) A practical account of making consequential design reasoning inspectable before it disappears into implementation. Read it not primarily as a document template, but as an example of externalized engineering judgment: establish the context and constraints, identify alternatives, propose a design, explain consequences and evidence, expose unresolved questions, and make the decision reviewable by other engineers.
+
+Gamma, Erich, Richard Helm, Ralph Johnson, and John Vlissides. *Design Patterns: Elements of Reusable Object-Oriented Software*. Reading, MA: Addison-Wesley, 1994. The introductory and concluding chapters, plus the "Facade" and "Command" patterns. Read for the reasoning behind patterns rather than the names. Ask what recurring problem motivates each added structure, what dependency or decision it changes, what future variation it makes easier to accommodate, and what complexity it introduces in return. Patterns package accumulated design experience; they expand the candidate set without determining which tactic fits a particular system.
 :::
