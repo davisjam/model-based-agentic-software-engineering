@@ -2,11 +2,15 @@
 //
 // Three layers. (1) A cream page ground sampled from the artwork's own upper field, so the raster's
 // soft top edge dissolves into the page instead of reading as a photo boundary. (2) The claymation
-// workshop artwork (assets/cover-artwork.png — the LEFT panel of the three-panel source kept at
-// assets/cover-artwork-3panel-source.png, gutter-trimmed to 501x1024 so no white panel-gutter
-// column survives at the page edge: the engineer measuring "Component A" with calipers beside a
-// row of candidate materials). (3) Native Typst typography in the cream field at the top. All text
-// is live type; nothing textual is rasterized.
+// workshop artwork (assets/cover-artwork.png — the r3 single-scene render, 877x1793, full-width
+// bleed with no panel gutter: the engineer in the rust sweater — intentionally distinct from the
+// MAGE cover's green figure — measuring "Component A" with calipers beside a row of candidate
+// materials). The live asset extends the render's own top cream fade down through the title zone
+// (rows ~470-870, easing out just above the components row) so the lockup sits on clean cream at
+// the crop below — the render's native fade ends too high for any dy to show both cream and the
+// full checklist in the 9.75in window. The untouched render is assets/cover-artwork-source-r3.png.
+// (3) Native Typst typography in the cream field at the top. All text is live type; nothing
+// textual is rasterized.
 //
 // SHARED IMAGE-WINDOW TEMPLATE (one template, two illustrations — identical on both covers; the
 // MAGE twin lives in book/book_typst.py::_cover_typst): a full-width art window, 8.5in x 9.75in,
@@ -39,13 +43,15 @@
 #let cover-muted = rgb("#5B5346") // warm gray-brown (companion caps line)
 #let cover-accent = rgb("#9E4A2F") // terracotta (subtitle, author rule)
 
-// Natural-aspect height of the gutter-trimmed 501x1024 panel at full page width: the art bleeds
-// edge-to-edge left AND right (cover/fill crop — never contain/fit, never stretched). Vertical
-// placement inside the clipped window: dy -5.83in shows raster rows ~344-918 — the cream field for
-// the type, all six candidate components, the calipers + the component under evaluation, the
-// engineer's hands, and the full requirements checklist; the trim spends its loss on top cream and
-// the lower edge of the engineer's hair, past the checklist's last line.
-#let art-h = 8.5in * 1024 / 501
+// Natural-aspect height of the 877x1793 r3 raster at full page width: the art bleeds edge-to-edge
+// left AND right (cover/fill crop — never contain/fit, never stretched). Vertical placement inside
+// the clipped window: dy -5.83in shows raster rows ~602-1608 (103.18 px/in) — the cream-to-table
+// fade for the type, all six candidate components + labels, the Tradeoffs card, the calipers + the
+// component under evaluation, both hands, the mug, and the full requirements checklist through
+// "Low environ impact"; the trim spends its loss on top cream and the lower sweater/hair, past the
+// checklist's last line. Raster still covers the window bottom (row 1608 < 1793), so the page
+// ground below the window reads as the exact 1.25in edition band.
+#let art-h = 8.5in * 1793 / 877
 #let art-dy = -5.83in
 
 #let hb-cover(
