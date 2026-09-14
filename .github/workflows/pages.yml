@@ -173,9 +173,12 @@ jobs:
           mkdir -p _site
           # `handbook` excludes the raw manuscript SOURCE (parity with course+site); the rendered handbook
           # PDF was already copied into _site/se-handbook above — rsync (no --delete) leaves it untouched.
+          # `book/dist` holds LOCAL-ONLY review staples (not emitted in CI; excluded here as defense in
+          # depth so a stray local artifact can never ride into the published site).
           rsync -a --exclude='.git' --exclude='node_modules' --exclude='.github' \
                 --exclude='__pycache__' --exclude='_site' --exclude='book/_print' \
-                --exclude='book/_typst' --exclude='course' --exclude='site' --exclude='handbook' ./ _site/
+                --exclude='book/_typst' --exclude='book/dist' \
+                --exclude='course' --exclude='site' --exclude='handbook' ./ _site/
           PDF="book/$(python3 -c "import json; print(json.load(open('book/book-manifest.json'))['pdf_filename'])")"
           test -f "_site/$PDF" || { echo "ERROR: $PDF missing from site artifact"; exit 1; }
       # ── Relocate the book + handbook into their /book/<name>/ homes (with redirect stubs) ─────────

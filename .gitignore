@@ -62,6 +62,13 @@ book/_design/*-brief*.md
 # book/build_writing_style.py on every build (see build_book.py). A derived build artifact, same posture
 # as mage-book.pdf: created, never committed.
 /book/mage-*-style.md
+# Local-only review staples — single-file concatenated dumps for side-by-side short-vs-long review,
+# emitted by the LOCAL builds only (skipped in CI, excluded from the Pages artifact, never committed).
+# book/build_book.py --pdf emits book/dist/mage-book-stapled.md (the whole book from the PDF's IR);
+# handbook/scripts/build.py emits handbook/dist/course-landers-stapled.md (every course lander) —
+# the handbook one is also covered by handbook/.gitignore's /dist/; listed here for visibility.
+/book/dist/
+/handbook/dist/
 
 # Node build tooling for the PDF render (Puppeteer). package.json + package-lock.json ARE tracked (CI
 # runs `npm ci`); the installed tree is not.
