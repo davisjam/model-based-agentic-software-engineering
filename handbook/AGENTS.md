@@ -136,6 +136,14 @@ The model is the conceptual centerpiece. Prefer a figure, table, progression,
 decision schema, or other compact representation when one makes the model
 easier to grasp. Do not add a diagram merely to decorate the page.
 
+Prefer plain-language questions and distinctions over abstract labels when the
+labels make the model harder to understand. The question may be the model. For
+example, prefer *How much can we know before we build?*, *How expensive is
+change?*, and *Can a partial system produce useful evidence or value?* over
+requiring a new reader to first learn labels such as certainty, changeability,
+and decomposability. Introduce a technical label only after the underlying idea
+is clear, and only when naming it will help later reasoning or communication.
+
 Use the model and terminology developed in the corresponding Handbook chapter.
 Do not invent a parallel formulation merely to make the lander self-contained.
 When the Handbook contains a stronger model than the existing lander, bring
