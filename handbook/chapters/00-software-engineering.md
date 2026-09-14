@@ -20,11 +20,12 @@ exploiting its capacity for change while keeping consequential change under cont
 ::: {.definition #def-software title="Software"}
 Software is an expressive medium in which behavior is represented for execution by machines, including
 through both conventional instruction-based computation and machine reasoning.
-:::
 
-Software may prescribe behavior through explicit instructions, or it may configure and direct machines
-that reason about how to achieve an objective. In either case, engineers use software to make behavior
-executable while retaining the ability to change how that behavior is produced.
+A sorting program represents behavior as instructions that a processor executes. A coding agent
+represents some behavior differently: its software may supply tools, context, constraints, and an
+objective while the agent reasons about which actions to take. Both use software to represent behavior
+that a machine can execute.
+:::
 
 ## The properties of the software medium {#sec-software-medium}
 
@@ -146,6 +147,11 @@ its consequential properties, recognize when its assumptions fail, and intervene
 remain answerable for the consequential decisions made under their authority.
 
 — *Model-Based Agentic Software Engineering* [@davis2026mage]
+
+An engineer responsible for a payment service need not write every component or personally operate
+every server. The engineer must nevertheless be able to direct the system's development, judge whether
+the evidence justifies trusting it, recognize when assumptions about dependencies or operating
+conditions fail, and intervene when necessary.
 :::
 
 Software's unusual capacity for change creates the need for engineering control. The medium makes
@@ -156,6 +162,11 @@ consequences remain subject to informed control and responsibility.
 Software engineering is the engineering discipline of controlled change in software systems. It creates
 and evolves software while preserving sufficient control over the properties and consequences that
 matter.
+
+Suppose the payment service must add a new payment method. Producing code that implements the method is
+only part of the problem. The change must also preserve existing security properties, remain compatible
+with clients and stored data, and provide enough evidence to justify deployment. Software makes the
+behavior changeable; engineering keeps the consequences of that change under control.
 :::
 
 Controlled change does not mean preventing change. Nor does it require engineers to determine every

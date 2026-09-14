@@ -273,6 +273,10 @@ Use the established box vocabulary consistently:
 
 Do not invent new box types casually.
 
+Important definitions should normally be followed immediately by a concrete illustration inside the same `DEFINITION` box. Use a separate paragraph: the first paragraph states the definition precisely; the second gives the smallest concrete instance that makes the abstraction intelligible. The illustration should instantiate the definition, not introduce another concept or begin the surrounding argument.
+
+Prefer **definition → illustration → surrounding consequence or reasoning**. Do not add an illustration mechanically when the definition is already concrete or the immediately preceding context has unmistakably supplied one.
+
 Boxes support the prose; they do not replace it.
 
 Every substantive chapter ends with:
