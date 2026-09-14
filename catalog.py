@@ -1750,7 +1750,7 @@ SITE_FOOTER = (f'<footer class="site-foot">'
                f'&nbsp;·&nbsp; <a class="book-foot" href="{{book_prefix}}{_PDF_HREF}">'
                f'{PDF_SVG} PDF</a></span>'
                f'<span class="foot-line foot-nsf">This work was supported by the U.S. National Science '
-               f'Foundation under grants #2541917 and #2452533.</span></footer>')
+               f'Foundation under grants #2541917, #2452533, and #2343596.</span></footer>')
 
 TOPNAV = (f'<div class="topnav"><a href="{_SITE_URL}">James C. Davis, Purdue University</a>'
           f'<a class="gh" href="{_REPO_URL}">'

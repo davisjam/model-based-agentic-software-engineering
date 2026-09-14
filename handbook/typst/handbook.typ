@@ -119,6 +119,10 @@
     #text(size: 11pt, fill: palette.ink)[© #author, #copyright-years]
     #v(0.35em)
     #text(size: 9.5pt, fill: palette.muted)[Edition #edition — first published #first-published · last modified #last_modified]
+    #v(0.55em)
+    // Funding acknowledgment — mirrors the MAGE book's copyright-page NSF statement (grant list kept
+    // identical across book/frontmatter/0.0-acknowledgments.md, the site footer in catalog.py, and here).
+    #text(size: 9pt, fill: palette.muted)[This work was supported by the U.S. National Science Foundation under grants \#2541917, \#2452533, and \#2343596.]
   ]
 
   // ── Front matter (roman-numbered, before the contents) ────────────────────
