@@ -18,8 +18,8 @@ objectives:
 property while keeping consequential change under control.*
 
 ::: {.definition #def-software title="Software"}
-Software is an engineered medium in which behavior is represented for execution by machines, including
-both conventional instruction-based machines and reasoning machines.
+Software is an expressive medium in which behavior is represented for execution by machines, including
+through both conventional instruction-based computation and machine reasoning.
 :::
 
 Software may prescribe behavior through explicit instructions, or it may configure and direct machines
