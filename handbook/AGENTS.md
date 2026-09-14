@@ -35,7 +35,8 @@ The chapters form one progression:
 6. **Specification** — Which realizations would satisfy those promises?
 7. **Architecture** — How should one acceptable realization be organized so its obligations can coexist?
 8. **Design** — How should its parts actually realize their responsibilities?
-9. **Conclusion** — How should an engineer approach a consequential decision?
+9. **Validation** — What evidence is sufficient to deliver?
+10. **Conclusion** — How should an engineer approach a consequential decision?
 
 Do not let the chapters become seven independent textbook surveys.
 
