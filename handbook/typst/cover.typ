@@ -3,11 +3,20 @@
 // Three layers. (1) A cream page ground sampled from the artwork's own upper field, so the raster's
 // soft top edge dissolves into the page instead of reading as a photo boundary. (2) The claymation
 // workshop artwork (assets/cover-artwork.png — the LEFT panel of the three-panel source kept at
-// assets/cover-artwork-3panel-source.png: the engineer measuring "Component A" with calipers beside
-// a row of candidate materials). The panel is a tall 1:2 portrait, so it spans the full page width
-// and is shifted UP: the page trims the panel's expendable upper cream and a sliver of its lower
-// edge, keeping the cubes, labels, notebook, calipers, and engineer. (3) Native Typst typography in
-// the cream field at the top. All text is live type; nothing textual is rasterized.
+// assets/cover-artwork-3panel-source.png, gutter-trimmed to 501x1024 so no white panel-gutter
+// column survives at the page edge: the engineer measuring "Component A" with calipers beside a
+// row of candidate materials). (3) Native Typst typography in the cream field at the top. All text
+// is live type; nothing textual is rasterized.
+//
+// SHARED IMAGE-WINDOW TEMPLATE (one template, two illustrations — identical on both covers; the
+// MAGE twin lives in book/book_typst.py::_cover_typst): a full-width art window, 8.5in x 9.75in,
+// pinned to the page top and CLIPPED; the artwork keeps its natural aspect at page width and
+// shifts up inside the window to pick the slice that keeps the key content. Below the window the
+// page ground shows as a 1.25in LOWER CREAM BAND — the shared edition band — carrying the
+// FIRST EDITION colophon bottom-left (same face vocabulary as the author line but smaller and
+// quieter; cover-ink, never the rust accent; identical dx 0.6in / dy -0.42in inset on both
+// covers). The internal subjects need not align across covers; the window geometry, band height,
+// colophon inset, and type top margin (0.42in) must.
 //
 // MATCHED-PAIR CONTRACT (shared with the MAGE book's cover, `book/book_typst.py::_cover_typst`):
 // the two covers set the same typographic system — display serif (Source Serif 4) throughout; one
@@ -18,22 +27,26 @@
 // treatment only in step with the other.
 //
 // The artwork carries small incidental prop text (material labels, the notebook); it is artwork —
-// never reproduce or typeset it. No cover furniture: no edition/version, dates, marks, or taglines.
+// never reproduce or typeset it. No cover furniture beyond the shared FIRST EDITION colophon in
+// the lower cream band: no edition NUMBER or year, dates, marks, or taglines.
 
 #import "typography.typ": font-body
 
 // Cover-local palette, sampled from the artwork rather than the interior theme: the page ground
 // must match the raster's cream exactly; ink/muted/accent are the pair's shared cover constants.
 #let cover-cream = rgb("#FBF7F2") // artwork top-band mean
-#let cover-ink = rgb("#1D2733") // deep charcoal-navy (dominant title, author)
+#let cover-ink = rgb("#1D2733") // deep charcoal-navy (dominant title, author, colophon)
 #let cover-muted = rgb("#5B5346") // warm gray-brown (companion caps line)
 #let cover-accent = rgb("#9E4A2F") // terracotta (subtitle, author rule)
 
-// Vertical placement of the 1:2 panel on the 8.5×11 page: at full page width the panel stands 17in
-// tall, so 6in must trim. Nearly all of it comes off the panel's expendable top cream (4.65in); the
-// remaining 1.35in bleeds off the page bottom, trimming only the lower edge of the engineer's hair
-// (seen from above) — every prop stays. The visible cream field above the scene is ~2.3in deep.
-#let art-dy = -4.65in
+// Natural-aspect height of the gutter-trimmed 501x1024 panel at full page width: the art bleeds
+// edge-to-edge left AND right (cover/fill crop — never contain/fit, never stretched). Vertical
+// placement inside the clipped window: dy -5.83in shows raster rows ~344-918 — the cream field for
+// the type, all six candidate components, the calipers + the component under evaluation, the
+// engineer's hands, and the full requirements checklist; the trim spends its loss on top cream and
+// the lower edge of the engineer's hair, past the checklist's last line.
+#let art-h = 8.5in * 1024 / 501
+#let art-dy = -5.83in
 
 #let hb-cover(
   title: "",
@@ -46,13 +59,16 @@
   numbering: none,
   header: none,
   footer: none,
-  // Layer 1: the cream ground (backstop behind the full-bleed art; matches the art's own top band).
+  // Layer 1: the cream ground (backstop behind the art + the lower edition band; matches the
+  // art's own top band).
   fill: cover-cream,
 )[
-  // Layer 2: the artwork, full page width, aspect preserved (never stretched or recolored).
-  // Dimensions are EXPLICIT (8.5in × 17in = the 1:2 panel at page width): with only `width` given,
-  // Typst caps the auto height at the available region and distorts a panel taller than the page.
-  #place(top + left, dy: art-dy, image(artwork, width: 8.5in, height: 17in))
+  // Layer 2: the artwork in the SHARED 8.5in x 9.75in clipped window, aspect preserved (never
+  // stretched or recolored). Dimensions are EXPLICIT: with only `width` given, Typst caps the auto
+  // height at the available region and distorts a panel taller than the page. Below the window the
+  // page ground reads as the 1.25in lower cream edition band.
+  #place(top + left, box(width: 8.5in, height: 9.75in, clip: true,
+    place(top + left, dy: art-dy, image(artwork, width: 8.5in, height: art-h))))
 
   // Layer 3: native typography, centered in the cream field. The lockup: companion caps line →
   // dominant word → subtitle → author block. Live Typst type in the display serif.
@@ -77,4 +93,10 @@
       #text(size: 11.5pt, weight: 600, tracking: 0.24em)[#upper(author)]
     ]
   ])
+
+  // FIRST EDITION colophon — bottom-left of the lower cream band. Same tracked-caps vocabulary as
+  // the author line but smaller and quieter; cover-ink, never the accent. The 8pt/0.22em/dx 0.6in/
+  // dy -0.42in values are the SHARED template constants (mirror book/book_typst.py::_cover_typst).
+  #place(bottom + left, dx: 0.6in, dy: -0.42in, text(size: 8pt, weight: 500, tracking: 0.22em,
+    fill: cover-ink)[FIRST EDITION])
 ]

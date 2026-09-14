@@ -2499,9 +2499,17 @@ def _cover_typst() -> str:
     sampled from the artwork's own top band, the claymation workshop artwork
     (`book/assets/cover-artwork.png`, 1024x1536 — the engineer at the control board directing a robot
     building a truss bridge, the "Quality goals" notebook at hand), and native Typst typography in the
-    artwork's top cream field. All text is live type; nothing textual is rasterized. The art spans the
-    full page width (12.75in tall at 8.5in wide), shifted up so the page trims expendable top cream and
-    a sliver of the bottom edge — every prop (engineer, control board, robot, bridge, notebook) stays.
+    artwork's top cream field. All text is live type; nothing textual is rasterized.
+
+    SHARED IMAGE-WINDOW TEMPLATE (one template, two illustrations — identical on both covers):
+    a full-width art window, 8.5in x 9.75in, pinned to the page top and CLIPPED; the artwork keeps its
+    natural aspect at page width (here 12.75in tall) and shifts up inside the window so the window
+    trims expendable top cream and picks the 9.75in slice that keeps every prop (engineer, control
+    board, robot, bridge, notebook). Below the window the page ground shows as a 1.25in LOWER CREAM
+    BAND — the shared edition band — carrying the `FIRST EDITION` colophon bottom-left (same face
+    vocabulary as the author line but smaller and quieter; cover-ink, never the rust accent; identical
+    dx 0.6in / dy -0.42in inset on both covers). The internal subjects need not align across covers;
+    the window geometry, band height, colophon inset, and type top margin (0.42in) must.
 
     MATCHED-PAIR CONTRACT (shared with `handbook/typst/cover.typ`): the two covers set the same
     typographic system — display serif (Source Serif 4) throughout; one DOMINANT bold caps word (here
@@ -2509,7 +2517,8 @@ def _cover_typst() -> str:
     expansion of the acronym, reading below it); an identical author block (short terracotta hairline
     rule, then the name in tracked caps); all text centered in the top cream field, the artwork's own
     cream→scene fade doing the compositional work (no panel, box, or gradient behind the type). Change
-    one cover's treatment only in step with the other. No cover furniture: no eyebrow/kicker, edition,
+    one cover's treatment only in step with the other. No cover furniture beyond the shared
+    `FIRST EDITION` colophon in the lower cream band: no eyebrow/kicker, edition NUMBER or year,
     dates, marks, or taglines.
 
     The dominant word and the expansion line read from the manifest (`cover_display_title` + `title`),
@@ -2525,18 +2534,21 @@ def _cover_typst() -> str:
     cover_img = _root_rel(HERE / "assets" / "cover-artwork.png", _EmitCtx.root)
     return (
         "// LAYERED LIGHT cover: cream ground (sampled from the art's top band) -> full-width claymation\n"
-        "// artwork, shifted up to trim expendable top cream -> centered live-type lockup in the cream field.\n"
+        "// artwork in the shared 9.75in clipped window -> centered live-type lockup in the cream field\n"
+        "// -> 1.25in lower cream band with the FIRST EDITION colophon (shared template with the Handbook).\n"
         "// The imprint line + date move to the copyright page that follows.\n"
         "#let cover-cream = rgb(\"#FDF8F0\")  // artwork top-band mean\n"
-        "#let cover-ink = rgb(\"#1D2733\")    // deep charcoal-navy (dominant title, author)\n"
+        "#let cover-ink = rgb(\"#1D2733\")    // deep charcoal-navy (dominant title, author, colophon)\n"
         "#let cover-muted = rgb(\"#5B5346\")  // warm gray-brown (expansion line)\n"
         "#let cover-accent = rgb(\"#9E4A2F\") // terracotta (author rule)\n"
         '#page(paper: "us-letter", margin: 0pt, numbering: none, header: none, footer: none, '
         "fill: cover-cream)[\n"
-        # Art: 8.5in wide -> 12.75in tall; dy -1.25in trims 150px of top cream and lets 60px bleed past
-        # the page bottom (the desk edge below the Quality-goals notebook), keeping the notebook whole.
-        f'  #place(top + left, dy: -1.25in, image("{cover_img}", width: 100%))\n'
-        "  #place(top + center, dy: 0.5in, block(width: 7.5in)[\n"
+        # SHARED WINDOW: art at natural aspect (8.5in x 12.75in for the 1024x1536 raster), shifted up
+        # dy -2.125in inside the clipped 9.75in window: trims 256px of expendable top cream, shows
+        # raster rows 256-1431, keeps every prop. Rows below 9.75in are the page-cream edition band.
+        "  #place(top + left, box(width: 8.5in, height: 9.75in, clip: true, "
+        f'place(top + left, dy: -2.125in, image("{cover_img}", width: 8.5in, height: 12.75in))))\n'
+        "  #place(top + center, dy: 0.42in, block(width: 7.5in)[\n"
         "    #align(center)[\n"
         "      #text(font: dt.font-display, size: 78pt, weight: 700, tracking: 0.03em, "
         f"fill: cover-ink)[{display_word}]\n"
@@ -2550,6 +2562,11 @@ def _cover_typst() -> str:
         f"fill: cover-ink)[{author}]\n"
         "    ]\n"
         "  ])\n"
+        # FIRST EDITION colophon — bottom-left of the lower cream band. Same tracked-caps vocabulary
+        # as the author line but smaller and quieter; cover-ink, never the accent. The 8pt/0.22em/
+        # dx 0.6in/dy -0.42in values are the SHARED template constants (mirror handbook/typst/cover.typ).
+        "  #place(bottom + left, dx: 0.6in, dy: -0.42in, text(font: dt.font-display, size: 8pt, "
+        "weight: 500, tracking: 0.22em, fill: cover-ink)[FIRST EDITION])\n"
         "]"
     )
 
