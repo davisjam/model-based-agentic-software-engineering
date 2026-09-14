@@ -2949,41 +2949,46 @@ def _writings_body() -> str:
 
 
 def _v3_learn() -> str:
-    """The landing Resources section — four PEER artifact classes (Book · Writings · Teach with MAGE ·
-    Talks), describing what each resource IS rather than how deeply to consume it. Book and Teach with MAGE
-    link to their existing surfaces; Writings and Talks link to their projected index pages."""
+    """The landing Resources section — the two books lead (MAGE · The Software Engineering Handbook,
+    parallel cards with covers), then Teach with MAGE and a combined Research & talks card. The book
+    cards link their published editions; Research & talks links the projected index pages."""
+    handbook_pdf = f"book/se-handbook/{_HANDBOOK_PDF}"
     return (
         '<section class="v3-sec" id="resources" aria-labelledby="resources-h">\n'
         '  <h2 id="resources-h" class="sec-h">Resources</h2>\n'
-        '  <p class="sec-lead">MAGE is available as a book, research writing, teaching materials, and '
+        '  <p class="sec-lead">MAGE is developed through books, research, teaching materials, and '
         'talks.</p>\n'
-        '  <p class="sec-lead">Two books anchor the method:</p>\n'
+        '  <p class="sec-lead">Two books develop complementary parts of the argument:</p>\n'
         '  <ol class="v3-books">\n'
         '    <li><a href="book/mage-book/index.html"><strong>MAGE</strong></a> — a theory of engineering '
-        'in the age of commodity intelligence.</li>\n'
-        f'    <li><a href="book/se-handbook/{_HANDBOOK_PDF}"><strong>The Software Engineering Handbook'
-        '</strong></a> — an interpretation of software engineering as judgment and decision-making, '
-        'equipping engineers to apply the MAGE theory.</li>\n'
+        'in the age of commodity intelligence. It asks how software engineering changes when '
+        'implementation intelligence becomes abundant.</li>\n'
+        f'    <li><a href="{handbook_pdf}"><strong>The Software Engineering Handbook'
+        '</strong></a> — a judgment and decision-making approach to software engineering. It develops '
+        'the engineering judgment that becomes increasingly important when implementation itself is '
+        'cheap.</li>\n'
         '  </ol>\n'
+        '  <p class="sec-lead">Together, the books address both sides of the transition: MAGE explains '
+        'why the work of software engineering is changing; the Handbook develops the judgment engineers '
+        'need as it changes.</p>\n'
         '  <div class="v3-cards v3-cards-2">\n'
-        + _v3_card("Book", "",
-                   "The complete treatment of MAGE, from its motivation and principles through practice, evidence, and implications.",
+        + _v3_card("MAGE", "",
+                   "Engineering reliable software with commodity intelligence: the theory, practice, evidence, and implications.",
                    [("Read the book", "book/mage-book/index.html"), ("Download PDF", _PDF_HREF)],
                    thumb=("book/assets/cover-charcoal-thumb.png", "MAGE book cover")) + "\n"
-        + _v3_card("Writings", "",
-                   "Papers and shorter articles developing and evaluating MAGE.",
-                   [("Browse writings", "writings.html")],
-                   thumb=("resources/writings/mage-paper-thumb.png", "First page of the Model-Based Agentic Software Engineering paper")) + "\n"
+        + _v3_card("The Software Engineering Handbook", "",
+                   "A judgment and decision-making approach to software engineering, from requirements and architecture to management, engineering knowledge, and validation.",
+                   [("Read the handbook", handbook_pdf), ("Download PDF", handbook_pdf)],
+                   thumb=("book/assets/handbook-cover-thumb.png", "Software Engineering Handbook cover")) + "\n"
         + _v3_card("Teach with MAGE", "",
                    "Course and teaching materials for instructors and students.",
                    [("Open Teach with MAGE", "teach/index.html")],
                    thumb=("resources/teach/wizard-hat.svg", "Wizard-hat icon for Teach with MAGE"),
                    thumb_icon=True) + "\n"
-        + _v3_card("Talks", "",
-                   "Slides and supporting materials from presentations about MAGE.",
-                   [("Browse talks", "talks.html")],
-                   thumb=("resources/talks/slideshow.svg", "Slideshow icon for Talks"),
-                   thumb_icon=True) + "\n"
+        + _v3_card("Research & talks", "",
+                   "Papers, articles, and presentation materials developing, motivating, and evaluating MAGE.",
+                   [("Browse writings", "writings.html"), ("Browse talks", "talks.html")],
+                   thumb=("resources/writings/mage-paper-thumb.png", "First page of the Model-Based Agentic Software Engineering paper")) + "\n"
         '  </div>\n</section>')
 
 

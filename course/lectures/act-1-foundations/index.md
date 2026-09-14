@@ -14,7 +14,7 @@ status: draft
 
 *What are the fundamental activities and structures of software engineering?*
 
-Act I establishes the engineering framework students will use throughout the course. As teams form and move through requirements and specification for the semester project, the lectures introduce software process, teamwork, requirements, specification, architecture, and design. Together, these topics give students a disciplined way to reason about what they are building before and while they begin to build it.
+Act I establishes the engineering framework students will use throughout the course. As teams form and move through requirements and specification for the semester project, the lectures introduce software process, teamwork, requirements, specification, architecture, design, validation, and software engineering with GenAI. Together, these topics give students a disciplined way to reason about what they are building, how they will build it, and what evidence should support their engineering decisions.
 
 GenAI is part of that work from the beginning. Students use it to explore alternatives, prototype, and assist with design and implementation, while learning to distinguish what a generated system may do, what it must do, and what evidence supports those beliefs. By the end of Act I, teams should have both a specified project and a framework for using GenAI within an engineering process rather than as a substitute for one.
 
@@ -23,6 +23,5 @@ GenAI is part of that work from the beginning. Students use it to explore altern
 - **[Software Engineering Teamwork](03-software-engineering-teamwork/index.md)**
 - **[Requirements Engineering](04-requirements/index.md)**
 - **[Specification](05-specification/index.md)**
-- **[Software Architecture](06-architecture/index.md)**
-- Design Principles
-- Fundamentals of SWE with GenAI
+- **[Software Architecture](06-architecture/index.md) · [Software Design](07-design/index.md)**
+- Validation · Software Engineering with GenAI
