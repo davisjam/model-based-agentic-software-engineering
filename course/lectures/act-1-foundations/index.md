@@ -25,5 +25,5 @@ GenAI is part of that work from the beginning. Students use it to explore altern
 - **[Specification](05-specification/index.md)**
 - **[Software Architecture](06-architecture/index.md)**
 - **[Software Design](07-design/index.md)**
-- Validation
+- **[Validation](08-validation/index.md)**
 - Software Engineering with GenAI
