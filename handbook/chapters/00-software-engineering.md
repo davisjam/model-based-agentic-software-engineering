@@ -5,17 +5,17 @@ short_title: Software Engineering
 order: 0
 status: draft
 description: >
-  Software is an unusually changeable engineered medium. Software engineering exploits that
+  Software is an unusually changeable expressive medium. Software engineering exploits that
   changeability while keeping consequential change under control, deciding what may change, what must
   remain true, and what evidence justifies confidence in the result.
 objectives:
   - Define engineering as informed control over consequential systems and responsibility for outcomes.
-  - Explain the properties that make software an unusual engineered medium.
+  - Explain the properties that make software an unusual expressive medium.
   - Explain why changeability creates both leverage and risk, and what "controlled change" means.
 ---
 
-**Premise.** *Software is an unusually changeable engineered medium. Software engineering exploits that
-property while keeping consequential change under control.*
+**Premise.** *Software is an unusually changeable expressive medium. Engineering that medium means
+exploiting its capacity for change while keeping consequential change under control.*
 
 ::: {.definition #def-software title="Software"}
 Software is an expressive medium in which behavior is represented for execution by machines, including
@@ -26,13 +26,13 @@ Software may prescribe behavior through explicit instructions, or it may configu
 that reason about how to achieve an objective. In either case, engineers use software to make behavior
 executable while retaining the ability to change how that behavior is produced.
 
-## Software as an engineered medium {#sec-engineered-medium}
+## The properties of the software medium {#sec-software-medium}
 
 Every engineering discipline works within the possibilities and limitations of its materials. Concrete
 can carry enormous compressive loads. Steel can provide strength with comparatively small structural
 members. Electronic circuits can process signals at speeds impossible for mechanical mechanisms. The
-properties of the medium shape what engineers can build and how they build it. Software has several
-unusual properties.
+properties of the medium shape what engineers can build and how they can build it. Software is a
+different kind of medium, with several unusual properties.
 
 **Software is changeable.** Much of a software system can be altered without manufacturing a new
 physical artifact. A behavior represented in code can often be modified, tested, and replaced far more
@@ -148,8 +148,9 @@ remain answerable for the consequential decisions made under their authority.
 — *Model-Based Agentic Software Engineering* [@davis2026mage]
 :::
 
-Software gives engineers an unusually adaptable medium; engineering requires them to retain informed
-control over consequential systems. Software engineering joins these two ideas.
+Software's unusual capacity for change creates the need for engineering control. The medium makes
+consequential behavior unusually easy to alter and propagate; engineering requires that those
+consequences remain subject to informed control and responsibility.
 
 ::: {.definition #def-software-engineering title="Software engineering"}
 Software engineering is the engineering discipline of controlled change in software systems. It creates
@@ -216,14 +217,14 @@ mean.
 
 ## Summary
 
-Software is an engineered medium in which behavior is represented for execution by machines. Its unusual
+Software is an expressive medium in which behavior is represented for execution by machines. Its unusual
 changeability, copyability, transferability, and updateability make it valuable precisely because
 engineers can continue to alter behavior after a system has been created. Those same properties give
 individual changes unusual reach and allow mistakes, vulnerabilities, and mistaken assumptions to
 propagate just as readily as improvements.
 
 Engineering requires informed control over consequential systems and responsibility for their outcomes.
-Software engineering combines that responsibility with a medium built for change. Its central problem is
+Software engineering applies that responsibility to a medium built for change. Its central problem is
 controlled change: exploiting software's adaptability while preserving sufficient control over the
 properties and consequences that matter.
 

@@ -150,6 +150,10 @@ The reader should be able to transfer the reasoning to a new problem.
 
 # 7. Keep the central distinctions stable
 
+## Software as an expressive medium; engineering as what we do with it
+
+Do not describe software itself as "engineered" or build "engineered" into its definition. Software is an **expressive medium** with intrinsic properties — changeability, copyability, transferability, updateability. **Engineering** is the informed control people exercise over consequential behavior *in* that medium. Chapter 1 must *derive* software engineering from the interaction between the medium's properties and the obligations of engineering, rather than assert "engineered" in the premise, the section headings, or the definition of the medium. After Chapter 1 has established that relationship, later chapters may use "the engineered medium" as shorthand for the medium being subjected to engineering, where the phrasing is unambiguous (e.g., Chapter 2's "The engineered medium shapes the process"). "Engineered systems" and "engineered artifacts" remain fine everywhere — they describe systems and artifacts, not the software medium.
+
 ## Requirements and specification
 
 Requirements describe obligations the engineering effort accepts.
