@@ -64,7 +64,9 @@ jobs:
       - name: Install Typst (pinned release; renders citations + the print-native book PDF)
         run: |
           TYPST_VERSION=v0.15.1
-          curl -fsSL "https://github.com/typst/typst/releases/download/${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o /tmp/typst.tar.xz
+          # --retry + --retry-all-errors: the release-asset CDN occasionally returns a transient 5xx
+          # (e.g. a 504 Gateway Timeout); retry so one flake does not fail the whole deploy.
+          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/typst/typst/releases/download/${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o /tmp/typst.tar.xz
           mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
           sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
           typst --version
@@ -76,7 +78,8 @@ jobs:
       - name: Install Pandoc (pinned release; backs the supplementary handbook render)
         run: |
           PANDOC_VERSION=3.9.0.2
-          curl -fsSL "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz" -o /tmp/pandoc.tar.gz
+          # Same transient-5xx hardening as the Typst download above.
+          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz" -o /tmp/pandoc.tar.gz
           mkdir -p /tmp/pandoc && tar -xzf /tmp/pandoc.tar.gz -C /tmp/pandoc --strip-components=1
           sudo install -m 0755 /tmp/pandoc/bin/pandoc /usr/local/bin/pandoc
           pandoc --version
