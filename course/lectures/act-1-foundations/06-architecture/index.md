@@ -51,6 +51,8 @@ An architecture makes consequential choices that should constrain the engineerin
 
 A useful summary question is: *Where should we draw boundaries so that the interactions and changes we expect are easy, while the interactions and changes we do not want are difficult?*
 
+Architectural boundaries can also become units of engineering ownership, so a decomposition affects not only coupling within the software but the coordination required among the people who build and maintain it.
+
 These questions can recur at smaller scales. What makes a decision architectural is not a particular notation or a fixed level of abstraction. It is that the decision establishes consequential organization within which further engineering decisions will be made. Architecture treats its major parts as units; design determines how those parts realize their responsibilities.
 
 ## Architectural patterns provide alternatives
@@ -70,7 +72,7 @@ The important skill is therefore not recognizing pattern names. For any proposed
 
 ## Architecture makes some system properties analyzable
 
-Architectural choices affect properties such as performance, reliability, security, and modifiability, but recognizing that relationship is only the beginning. A useful architectural model can make the relationship explicit enough to analyze. Which model is useful depends on the question. A dependency model, flow model, and deployment model are different reductions of the same system because they are intended to support different claims. For example, a dependency model can show whether a proposed boundary actually isolates a component from expected changes elsewhere in the system. A data-flow model can expose which components and communication steps lie on a latency-sensitive path. A deployment model can expose which failures can affect multiple parts of the system at once.
+Architectural choices affect properties such as performance, reliability, security, and modifiability, but recognizing that relationship is only the beginning. A useful architectural model can make the relationship explicit enough to analyze. Which model is useful depends on the question. A dependency model, flow model, and deployment model are different reductions of the same system because they are intended to support different claims. An architecture therefore cannot generally be captured by one privileged view. Different views expose different structures and support different kinds of reasoning about the same system. For example, a dependency model can show whether a proposed boundary actually isolates a component from expected changes elsewhere in the system. A data-flow model can expose which components and communication steps lie on a latency-sensitive path. A deployment model can expose which failures can affect multiple parts of the system at once.
 
 Architectural claims can be supported at different levels. A pattern may provide a reasoned expectation based on prior engineering experience: a particular organization should make a change more local. An analytic model can support a stronger structural argument, such as establishing that no dependency crosses a proposed boundary. A quantitative model can go further when the relevant quantities can be represented: service times, communication costs, arrival rates, or failure probabilities can support predictions about latency, capacity, or reliability before the complete system has been implemented. Finally, measurements from an implemented system provide observed evidence about its actual behavior.
 
