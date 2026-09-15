@@ -96,3 +96,11 @@
   color: var(--md-default-fg-color--light);
   text-align: center;
 }
+
+/* Math: rendered to HTML at build time (filters/web.lua Math handler), no client-side JS. Display
+   math sits centered on its own line; inline math flows with the prose. */
+.md-typeset .math.display {
+  display: block;
+  text-align: center;
+  margin: 1.2em 0;
+}
