@@ -1,6 +1,6 @@
 ---
 id: requirements
-title: Requirements Engineering
+title: Requirements
 short_title: Requirements
 order: 4
 status: draft

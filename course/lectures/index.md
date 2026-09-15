@@ -29,7 +29,7 @@ Modules are published as their teaching materials are completed.
 - **[Engineering & GenAI](act-1-foundations/01-engineering-and-genai/index.md)**
 - **[Software Process](act-1-foundations/02-software-process/index.md)**
 - **[Software Engineering Teamwork](act-1-foundations/03-software-engineering-teamwork/index.md)**
-- **[Requirements Engineering](act-1-foundations/04-requirements/index.md)**
+- **[Requirements](act-1-foundations/04-requirements/index.md)**
 - **[Specification](act-1-foundations/05-specification/index.md)**
 - Software Architecture
 - Design Principles

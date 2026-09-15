@@ -1,5 +1,5 @@
 ---
-title: Requirements Engineering
+title: Requirements
 readings:
   groups:
     - heading: Organized textbook treatment
@@ -15,7 +15,7 @@ assignments: []
 instructor_notes: ""
 status: ready
 materials:
-  - title: Lecture slides — Requirements Engineering
+  - title: Lecture slides — Requirements
     src: slides/1-4-RequirementsEngineering.pptx
 ---
 
