@@ -60,7 +60,7 @@ For the cloud worker, a memory model or measurement from a prototype might estab
 
 The point is not to produce a particular kind of Design model. Models, analyses, prototypes, measurements, and implementations are ways of buying information about a choice. Use the evidence that makes the consequential difference among alternatives visible enough to decide.
 
-Cheaper implementation changes these economics. When alternative mechanisms can be prototyped, measured, or discarded inexpensively, engineers can investigate choices that previously would have been settled largely through judgment. Generative AI can therefore make Design faster, but its greater value may be making more Design decisions cheap enough to investigate.
+Cheaper implementation changes these economics. When alternative mechanisms can be prototyped, measured, or discarded inexpensively, engineers can investigate choices that previously would have been settled largely through judgment. Generative AI can therefore accelerate an individual design, but its greater value may lie in making more Design choices cheap enough to investigate.
 
 ## When the choice is not ours
 
