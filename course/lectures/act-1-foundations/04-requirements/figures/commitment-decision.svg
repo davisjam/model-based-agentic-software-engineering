@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: the seven weighing
+     variables ANNOTATE the decision rather than flow into it, and the four outcomes are symmetric peers —
+     an annotated-decision geometry a graph auto-layout would misdraw as a pipeline of flow nodes.
+     Palette, marker, and type follow the book figure vocabulary (book/assets/*.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 486" width="760" height="486"
+     role="img" aria-labelledby="cdTitle cdDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="cdTitle">The commitment decision: a candidate requirement is weighed and resolves to one of
+    four outcomes</title>
+  <desc id="cdDesc">A candidate requirement flows into the central decision, "Should we make this
+    commitment?", which is weighed by value, feasibility, cost, dependencies, risk, opportunity cost, and
+    responsibility. The decision resolves to one of four peer outcomes: accept, revise, learn more, or
+    reject. Accept yields a requirement.</desc>
+
+  <defs>
+    <marker id="cd-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="760" height="486" fill="#fdfcf9"/>
+
+  <!-- candidate requirement -->
+  <rect x="245" y="26" width="270" height="48" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="380" y="56" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">CANDIDATE REQUIREMENT</text>
+
+  <!-- edge: candidate -> decision -->
+  <line x1="380" y1="74" x2="380" y2="104" stroke="#2f5169" stroke-width="2.4" marker-end="url(#cd-ah)"/>
+
+  <!-- the decision, weighed by seven variables -->
+  <rect x="180" y="108" width="400" height="152" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="380" y="140" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">SHOULD WE MAKE</text>
+  <text x="380" y="166" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">THIS COMMITMENT?</text>
+  <text x="380" y="196" text-anchor="middle" font-size="16.4" font-style="italic" fill="#57534e">weighed by</text>
+  <text x="380" y="220" text-anchor="middle" font-size="16.4" font-style="italic" fill="#57534e">value &#183; feasibility &#183; cost &#183; dependencies</text>
+  <text x="380" y="244" text-anchor="middle" font-size="16.4" font-style="italic" fill="#57534e">risk &#183; opportunity cost &#183; responsibility</text>
+
+  <!-- fan: the decision resolves to one of four peer outcomes -->
+  <g stroke="#2f5169" stroke-width="2.4" fill="none">
+    <path d="M380,260 L380,292"/>
+    <path d="M380,292 L119,292 L119,320" marker-end="url(#cd-ah)"/>
+    <path d="M380,292 L293,292 L293,320" marker-end="url(#cd-ah)"/>
+    <path d="M380,292 L467,292 L467,320" marker-end="url(#cd-ah)"/>
+    <path d="M380,292 L641,292 L641,320" marker-end="url(#cd-ah)"/>
+  </g>
+
+  <rect x="44" y="324" width="150" height="52" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="119" y="356" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">ACCEPT</text>
+
+  <rect x="218" y="324" width="150" height="52" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="293" y="356" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">REVISE</text>
+
+  <rect x="392" y="324" width="150" height="52" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="467" y="356" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">LEARN MORE</text>
+
+  <rect x="566" y="324" width="150" height="52" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="641" y="356" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">REJECT</text>
+
+  <!-- edge: accept -> requirement -->
+  <line x1="119" y1="376" x2="119" y2="406" stroke="#2f5169" stroke-width="2.4" marker-end="url(#cd-ah)"/>
+  <rect x="44" y="410" width="150" height="52" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="119" y="442" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">REQUIREMENT</text>
+</svg>
