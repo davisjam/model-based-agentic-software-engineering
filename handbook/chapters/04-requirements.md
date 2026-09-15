@@ -29,7 +29,7 @@ parts of the surrounding domain.
 
 The requirements engineer is therefore not a stenographer. Requirements engineering requires
 interpretation, and engineers are responsible for the interpretations and commitments they make.
-Discovery and commitment therefore inform one another: what appears valuable affects what engineers
+Discovery and commitment inform one another: what appears valuable affects what engineers
 consider promising, while feasibility, cost, risk, and new evidence can change what appears
 valuable.
 
@@ -108,8 +108,8 @@ sentence can discard information needed to interpret the obligation later.
 
 ## Learning what would create value {#sec-discovering}
 
-Discovery moves the effort from what might matter to what appears valuable, and engineers choose
-discovery techniques according to what they do not yet know. Ask when stakeholders can articulate
+Discovery turns the question of what would create value into candidate obligations, and engineers
+choose discovery techniques according to what they do not yet know. Ask when stakeholders can articulate
 the needed information: interviews, surveys, workshops, and similar techniques expose goals,
 preferences, constraints, and disagreements that people can describe. Observe when important
 knowledge is embedded in work practice: observation of users, operational data, existing systems,
