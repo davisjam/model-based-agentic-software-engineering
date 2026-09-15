@@ -16,7 +16,7 @@ The lecture curriculum is organized into three acts, corresponding to major stag
 
 Each module includes slides and associated readings.
 
-The lectures are accompanied by **[The Software Engineering Handbook: A Judgment and Decision-Making Approach](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/software-engineering-handbook.pdf)**, a concise written treatment of the engineering ideas developed in the course. The current draft covers the Act I foundations, with additional chapters in development.
+The lectures are accompanied by **[The Software Engineering Handbook: A Judgment and Decision-Making Approach](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/software-engineering-handbook.pdf)**, a concise written treatment of the engineering ideas developed in the course.
 
 The **[example calendar](../reference-course/calendar.md)** shows how the lectures and project were coordinated in a 16-week course at Purdue.
 
