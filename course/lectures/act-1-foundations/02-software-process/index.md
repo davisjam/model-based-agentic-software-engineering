@@ -1,5 +1,5 @@
 ---
-title: Software Process
+title: Process
 readings:
   groups:
     - heading: The engineered medium

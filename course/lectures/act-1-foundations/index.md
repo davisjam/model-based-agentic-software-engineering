@@ -19,11 +19,11 @@ Act I establishes the engineering framework students will use throughout the cou
 GenAI is part of that work from the beginning. Students use it to explore alternatives, prototype, and assist with design and implementation, while learning to distinguish what a generated system may do, what it must do, and what evidence supports those beliefs. By the end of Act I, teams should have both a specified project and a framework for using GenAI within an engineering process rather than as a substitute for one.
 
 - **[Engineering & GenAI](01-engineering-and-genai/index.md)**
-- **[Software Process](02-software-process/index.md)**
-- **[Software Engineering Teamwork](03-software-engineering-teamwork/index.md)**
+- **[Process](02-software-process/index.md)**
+- **[Teamwork](03-software-engineering-teamwork/index.md)**
 - **[Requirements](04-requirements/index.md)**
 - **[Specification](05-specification/index.md)**
-- **[Software Architecture](06-architecture/index.md)**
-- **[Software Design](07-design/index.md)**
+- **[Architecture](06-architecture/index.md)**
+- **[Design](07-design/index.md)**
 - **[Validation](08-validation/index.md)**
 - Software Engineering with GenAI

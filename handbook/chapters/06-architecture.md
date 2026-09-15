@@ -1,6 +1,6 @@
 ---
 id: architecture
-title: Software Architecture
+title: Architecture
 short_title: Architecture
 order: 6
 status: draft

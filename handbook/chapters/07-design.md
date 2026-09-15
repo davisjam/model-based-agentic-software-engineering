@@ -1,6 +1,6 @@
 ---
 id: design
-title: Software Design
+title: Design
 short_title: Design
 order: 7
 status: draft

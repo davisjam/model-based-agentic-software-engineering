@@ -1,6 +1,6 @@
 ---
 id: process
-title: Software Process
+title: Process
 short_title: Process
 order: 1
 status: draft

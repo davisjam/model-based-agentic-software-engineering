@@ -1,5 +1,5 @@
 ---
-title: Software Engineering Teamwork
+title: Teamwork
 readings:
   groups:
     - heading: Teamwork

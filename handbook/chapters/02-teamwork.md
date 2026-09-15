@@ -1,6 +1,6 @@
 ---
 id: teamwork
-title: Software Engineering Teamwork
+title: Teamwork
 short_title: Teamwork
 order: 2
 status: draft

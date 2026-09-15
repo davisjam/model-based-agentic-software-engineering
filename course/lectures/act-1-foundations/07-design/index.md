@@ -1,5 +1,5 @@
 ---
-title: Software Design
+title: Design
 readings:
   groups:
     - heading: Modularity and decomposition
@@ -18,7 +18,7 @@ assignments: []
 instructor_notes: ""
 status: draft
 materials:
-  - title: Lecture slides — Software Design
+  - title: Lecture slides — Design
     src: 1-7-Design.pptx
 ---
 

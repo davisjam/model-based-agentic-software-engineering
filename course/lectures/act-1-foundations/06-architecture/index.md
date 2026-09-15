@@ -1,5 +1,5 @@
 ---
-title: Software Architecture
+title: Architecture
 readings:
   groups:
     - heading: Architecture and risk
@@ -22,7 +22,7 @@ assignments: []
 instructor_notes: ""
 status: draft
 materials:
-  - title: Lecture slides — Software Architecture
+  - title: Lecture slides — Architecture
     src: 1-6-Architecture.pptx
 ---
 

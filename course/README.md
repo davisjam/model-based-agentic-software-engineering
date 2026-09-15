@@ -88,7 +88,7 @@ Materials and Readings sections from front matter, so keep it filled in:
 
 ```yaml
 ---
-title: Software Process          # nav label = the topic (no "week")
+title: Process                   # nav label = the topic (no "week")
 status: ready                    # placeholder | draft | ready
 materials:
   - title: Lecture slides
