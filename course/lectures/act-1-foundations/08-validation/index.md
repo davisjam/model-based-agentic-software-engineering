@@ -29,28 +29,28 @@ materials:
 
 **Premise.** *Validation asks what evidence is sufficient to deliver a software system into the world.*
 
-Software's updateability changes the economics of validation. Engineers can sometimes deliver before resolving every uncertainty, observe what happens, and repair what they learn: a game can ship with an occasional graphical defect. In that limited sense, *move fast and break things* describes a real engineering strategy.
+Software's updateability changes the economics of validation. Engineers can sometimes deliver before resolving every uncertainty, observe what happens, and repair the failures they discover: a game can ship with an occasional graphical defect. In that limited sense, *move fast and break things* describes a real engineering strategy.
 
 But an update repairs the software, not necessarily the consequences of its previous behavior. It cannot recover money already lost, make disclosed information private again, or reverse a physical injury. As the consequences of being wrong grow more substantial or less reversible, learning through failure becomes more expensive. Validation therefore does not seek maximal confidence before every delivery; it asks what evidence is sufficient for *this* one.
 
 Answering that requires four related judgments:
 
-- *What is at stake?* What would happen if the system were wrong, and how reversible would the consequences be?
-- *What must we establish?* What claims have to be justified before this delivery?
-- *What evidence would bear on those claims?* Which observations, analyses, or checks would materially reduce the relevant uncertainty?
-- *What should we do?* Given the consequences, claims, evidence, and remaining uncertainty, should we deliver, learn more, change something, or refuse?
+- **What is at stake?** What would happen if the system were wrong, and how reversible would the consequences be?
+- **What must we establish?** What claims have to be justified before this delivery?
+- **What evidence would bear on those claims?** Which observations, analyses, or checks would materially reduce the relevant uncertainty?
+- **What should we do?** Given the consequences, claims, evidence, and remaining uncertainty, should we deliver, learn more, change something, or refuse?
 
 The questions structure the judgment rather than script it; evidence can send an engineer backward.
 
 ## What is at stake?
 
-Consider three defects: a game sometimes draws a character incorrectly, a TODO application occasionally loses a task, a medical device can deliver an incorrect dose. They differ in severity, reversibility, and how directly the software produces the harm. The game defect annoys; the lost task destroys information a user depends on; the wrong dose injures directly. Almost any defect connects to severe harm through some causal chain, but causal distance matters: frustrated players sometimes behave badly, yet that does not make a graphical defect safety-critical.
+Consider three defects: a game sometimes draws a character incorrectly, a TODO application occasionally loses a task, a medical device can deliver an incorrect dose. They differ in severity, reversibility, and how directly the software produces the harm. The game defect may annoy a player; the lost task destroys information on which a user depends; the wrong dose can directly injure its user. Almost any defect connects to severe harm through some causal chain, but causal distance matters: frustrated players sometimes behave badly, yet that does not make a graphical defect safety-critical.
 
 Consequence establishes an evidentiary burden; it does not mechanically dictate the decision. Stakeholders and engineers can weigh the same consequence differently, and engineers do not merely execute the risk preferences of whoever controls the project: professional authority includes refusing a delivery the engineer cannot justify. The opposite error is real too: demanding far more assurance than the stakes warrant wastes resources and delays useful software. What is at stake determines how much uncertainty engineers can responsibly carry through delivery.
 
 ## What must we establish?
 
-Validation begins with claims, not techniques. A payment service might need to establish that a payment cannot be charged twice, that unauthorized users cannot initiate payments, and that normal requests complete within an acceptable time. Evidence supporting one claim may say little about another. These claims are not invented at validation time: they inherit from the requirements the effort committed to, the specification that bounded acceptable behavior, and the architecture and design decisions about how the realization satisfies them. Validation asks which of those claims matter to *this* delivery decision, beginning from *what must be true for this delivery to be justified?* — and only then choosing techniques.
+Validation begins with claims, not techniques. A payment service might need to establish that a payment cannot be charged twice, that unauthorized users cannot initiate payments, and that normal requests complete within an acceptable time. Evidence supporting one claim may say little about another. These claims are not invented at validation time: they inherit from the requirements the effort committed to, the specification that bounded acceptable behavior, and the architecture and design decisions about how the realization satisfies them. Validation asks which of those claims matter to *this* delivery decision. Begin with *what must be true for this delivery to be justified?* Only then choose techniques.
 
 ## What evidence would bear on those claims?
 
@@ -81,6 +81,6 @@ Claims, evidence, and remaining uncertainty feed a decision with more than two o
 - **Revisit an upstream decision.** The evidence exposes a problem with a requirement, specification, architecture, or design choice.
 - **Refuse.** No available course makes delivery professionally defensible.
 
-These are not a checklist, and several feed backward. A failed validation need not mean "test more": sometimes the implementation should change, sometimes the architecture is wrong, and sometimes the commitment itself should be reconsidered. The question is never simply *should we deliver?* but *what action follows from what we now know?*
+These are not a checklist, and several feed backward. A failed validation need not mean "test more": sometimes the implementation should change, sometimes the architecture is wrong, and sometimes the commitment itself should be reconsidered. The question is therefore not simply *should we deliver?* but *what action follows from what we now know?*
 
 Evidence also changes after delivery. Monitoring, incidents, measurements, and user reports change the state of knowledge; continuing to deliver is then a new decision under new evidence. Software's updateability, where this argument began, makes post-delivery learning unusually practical — and creates the matching obligation to respond when that learning undermines the justification for delivering at all.
