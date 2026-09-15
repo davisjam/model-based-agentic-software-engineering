@@ -36,7 +36,8 @@ The chapters form one progression:
 7. **Architecture** — How should one acceptable realization be organized so its obligations can coexist?
 8. **Design** — How should its parts actually realize their responsibilities?
 9. **Validation** — What evidence is sufficient to deliver?
-10. **Conclusion** — How should an engineer approach a consequential decision?
+10. **Research and Development** — Which uncertain opportunities deserve engineering effort when we do not yet know what is possible? (Turns the framework outward: choosing the problems, not just deciding within them.)
+11. **Conclusion** — How should an engineer approach a consequential decision?
 
 Do not let the chapters become seven independent textbook surveys.
 
