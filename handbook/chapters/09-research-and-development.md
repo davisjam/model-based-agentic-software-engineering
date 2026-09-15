@@ -87,6 +87,9 @@ whose answer could matter. Papers and patents are valuable ways to communicate, 
 establish what was learned. Products may eventually put that knowledge to work. They are outcomes
 of a successful R&D agenda, not substitutes for one.
 
+Here, hard does not mean technically difficult for its own sake. It means the most potentially
+transformative — for the discipline, the organization, or for you; any and all.
+
 My advice is to choose the hardest important problem you can plausibly make progress on. You will
 sometimes fail. That is part of accepting the asymmetry. You are giving up some probability of
 producing a result in exchange for the possibility of producing a much larger one. You will also
