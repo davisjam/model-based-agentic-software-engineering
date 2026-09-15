@@ -2,7 +2,8 @@
 figures.lua — render semantic figure blocks.
 
 A figure is authored as a fenced Div carrying a stable id, an `alt` attribute (the accessibility
-text), an image, and one or more caption paragraphs:
+text), an image, and one or more caption paragraphs (omittable on an `.unnumbered` figure — a
+captionless one renders as a plain alt-tagged illustration, with no caption element at all):
 
     ::: {.figure #fig-x alt="description of the image for a screen reader"}
     ![](../figures/area/name.svg)
@@ -63,26 +64,33 @@ function Div(el)
   local unnumbered = el.classes:includes("unnumbered")
   local width = el.attributes["width"] or "82%"
 
+  local has_caption = #caption_inlines > 0
+
   if FORMAT == "typst" then
-    local cap = pandoc.write(pandoc.Pandoc({ pandoc.Plain(caption_inlines) }), "typst"):gsub("%s+$", "")
     local parts = {
       "#hb-figure(",
       '  image("' .. typst_src(image.src) .. '", alt: "' .. alt:gsub('"', '\\"') .. '", width: ' .. width .. "),",
-      "  caption: [" .. cap .. "],",
     }
+    if has_caption then
+      local cap = pandoc.write(pandoc.Pandoc({ pandoc.Plain(caption_inlines) }), "typst"):gsub("%s+$", "")
+      table.insert(parts, "  caption: [" .. cap .. "],")
+    end
     if unnumbered then table.insert(parts, "  numbered: false,") end
     table.insert(parts, ")" .. (el.identifier ~= "" and (" <" .. el.identifier .. ">") or ""))
     return pandoc.RawBlock("typst", table.concat(parts, "\n"))
   else
-    local cap_html = pandoc.write(pandoc.Pandoc({ pandoc.Plain(caption_inlines) }), "html"):gsub("%s+$", "")
     local num = (not unnumbered) and el.attributes["data-number"] or nil
     local label = num and ("Figure " .. num .. ". ") or ""
-    local html = table.concat({
+    local lines = {
       '<figure id="' .. el.identifier .. '" class="handbook-figure">',
       '<img src="' .. web_src(image.src) .. '" alt="' .. alt:gsub('"', "&quot;") .. '">',
-      "<figcaption>" .. label .. cap_html .. "</figcaption>",
-      "</figure>",
-    }, "\n")
+    }
+    if has_caption or label ~= "" then
+      local cap_html = pandoc.write(pandoc.Pandoc({ pandoc.Plain(caption_inlines) }), "html"):gsub("%s+$", "")
+      table.insert(lines, "<figcaption>" .. label .. cap_html .. "</figcaption>")
+    end
+    table.insert(lines, "</figure>")
+    local html = table.concat(lines, "\n")
     return pandoc.RawBlock(FORMAT, html)
   end
 end

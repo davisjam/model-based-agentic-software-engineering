@@ -9,7 +9,7 @@ output from a broken manuscript.
 Checks (spec §8):
   * missing / invalid chapter metadata, invalid chapter ordering
   * unknown or malformed semantic blocks
-  * figures without alt text or without a caption
+  * figures without alt text, or numbered figures without a caption (`.unnumbered` may go captionless)
   * duplicate IDs
   * unresolved cross-references
   * citation keys absent from the bibliography
@@ -174,6 +174,7 @@ class ChapterScan:
 
     def _check_figure(self, attr, inner) -> None:
         ident = attr[0]
+        classes = attr[1]
         kv = C.attrs_to_dict(attr[2])
         has_image = False
         caption_blocks = 0
@@ -191,7 +192,10 @@ class ChapterScan:
             self.div_problems.append(f"figure {ident or '(no id)'} has no image")
         if not kv.get("alt", "").strip():
             self.div_problems.append(f"figure {ident or '(no id)'} has no alt text")
-        if caption_blocks == 0:
+        if caption_blocks == 0 and "unnumbered" not in classes:
+            # An `.unnumbered` figure may go captionless: it renders as a plain alt-tagged
+            # illustration (figures.lua omits the caption element entirely). A NUMBERED figure
+            # without a caption would render a dangling "Figure N." label, so it stays an error.
             self.div_problems.append(f"figure {ident or '(no id)'} has no caption")
 
 
