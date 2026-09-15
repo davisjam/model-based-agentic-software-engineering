@@ -421,10 +421,10 @@ available tactics. Design tests whether the strategy is workable.
 
 ::: read_further
 Bass, Len, Paul Clements, and Rick Kazman. *Software Architecture in Practice*. 3rd ed. Boston:
-Addison-Wesley, 2012. The standard treatment of how quality attributes drive structural decisions,
-with methods for analyzing an architecture against the properties it must support.
+Addison-Wesley, 2012. The standard treatment of how quality attributes drive architectural
+decisions.
 
-Fairbanks, George. [*Just Enough Software Architecture: A Risk-Driven Approach*](https://www.georgefairbanks.com/book/). Boulder, CO: Marshall & Brainerd, 2010. Argues for spending architectural modeling effort only where risk could change a decision — the buy-evidence economics this chapter builds on.
+Fairbanks, George. [*Just Enough Software Architecture: A Risk-Driven Approach*](https://www.georgefairbanks.com/book/). Boulder, CO: Marshall & Brainerd, 2010. A risk-driven approach to deciding how much architectural modeling is worth doing.
 
-Kruchten, Philippe. ["The 4+1 View Model of Architecture."](https://doi.org/10.1109/52.469759) *IEEE Software* 12, no. 6 (1995): 42–50. The classic multiple-view account of software architecture. Read it less for the particular taxonomy of views than for the underlying principle: no single representation answers every architectural question; the useful view depends on what engineers need to know.
+Kruchten, Philippe. ["The 4+1 View Model of Architecture."](https://doi.org/10.1109/52.469759) *IEEE Software* 12, no. 6 (1995): 42–50. The classic argument for using multiple architectural views to answer different engineering questions.
 :::

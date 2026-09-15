@@ -307,7 +307,7 @@ deliberately, preserves genuine degrees of freedom, and identifies what must sti
 before further commitments can responsibly be made.
 
 ::: read_further
-Zave, Pamela, and Michael Jackson. ["Four Dark Corners of Requirements Engineering."](https://doi.org/10.1145/237432.237434) *ACM Transactions on Software Engineering and Methodology* 6, no. 1 (1997): 1–30. The classic account of the relationships among requirements, domain assumptions, and specifications — the source of this chapter's environment/machine distinction and of the satisfaction argument *E* ∧ *S* ⇒ *R*, whose terms the engineer must construct by allocating responsibility.
+Zave, Pamela, and Michael Jackson. ["Four Dark Corners of Requirements Engineering."](https://doi.org/10.1145/237432.237434) *ACM Transactions on Software Engineering and Methodology* 6, no. 1 (1997): 1–30. The classic account of the relationships among requirements, domain assumptions, and specifications.
 
-Alspaugh, Thomas A., Stuart R. Faulk, Kathryn Heninger Britton, R. Alan Parker, David L. Parnas, and John E. Shore. *Software Requirements for the A-7E Aircraft*. NRL/FR/5530-92-9194. Washington, DC: Naval Research Laboratory, 1992. A substantial real specification, worth skimming rather than reading linearly: watch how it constrains externally visible behavior without prescribing implementation, uses a different representation for each engineering question, requires useful subsets, and treats expected change as engineering information.
+Alspaugh, Thomas A., Stuart R. Faulk, Kathryn Heninger Britton, R. Alan Parker, David L. Parnas, and John E. Shore. *Software Requirements for the A-7E Aircraft*. NRL/FR/5530-92-9194. Washington, DC: Naval Research Laboratory, 1992. A substantial real specification showing how different representations constrain externally visible behavior without prescribing implementation. Skim it rather than reading linearly.
 :::

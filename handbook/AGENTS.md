@@ -387,6 +387,16 @@ The corresponding course/lecture lander is authoritative for the candidate readi
 
 `READ FURTHER` is not the chapter bibliography.
 
+### Read Further annotations
+
+Keep **Read Further** annotations brief. By default, follow each citation with one short sentence stating what the reader will get from the source.
+
+- Do not routinely explain how the source maps onto the chapter; its placement already supplies that context.
+- Avoid the mechanical pattern "description — connection to this chapter."
+- Prefer simply deleting clauses such as "the idea this chapter builds on," "the evidence behind…," "read it as…," or "this chapter turns…".
+- Add a second sentence only when it gives genuinely useful reading guidance, such as which portion to focus on or how to approach an unusual source.
+- Aim for roughly 12–25 words of annotation when one sentence will do.
+
 ---
 
 # 14. Chapter burdens

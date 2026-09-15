@@ -464,20 +464,15 @@ be reused under a new one.
 ::: read_further
 Winters, Titus, Tom Manshreck, and Hyrum Wright, eds. [*Software Engineering at Google: Lessons
 Learned from Programming Over Time*](https://abseil.io/resources/swe-book). Sebastopol, CA:
-O'Reilly Media, 2020. The "Code Review" chapter (chap. 9) and the testing chapters (chaps. 11–14).
-The former treats review as a way to bring another engineer's knowledge and judgment to a change;
-the latter move from testing strategy through unit tests and test doubles to larger-scale testing.
-Read them as an
-account of how engineers obtain evidence at different scopes: what can each practice tell us, what
-assumptions does that evidence depend on, and what failures remain outside its reach?
+O'Reilly Media, 2020. An account of how engineers obtain evidence at different scopes, from review
+through unit tests to larger-scale testing. Read the "Code Review" chapter (chap. 9) and the
+testing chapters (chaps. 11–14).
 
 Cockx, Jesper. ["An Introduction to Property-Based Testing with
-QuickCheck"](https://jesper.sikanda.be/posts/quickcheck-intro.html) (2020). Ordinary example-based
-tests choose particular inputs and determine what should happen for each one. Property-based
-testing asks the engineer to state properties that should hold across a class of inputs, then
-generates inputs in search of counterexamples. Read for the underlying validation strategy rather
-than the Haskell syntax: what does the engineer still need to specify when test generation becomes
-cheap? For the origin of the technique, see Claessen and Hughes, ["QuickCheck: A Lightweight Tool
+QuickCheck"](https://jesper.sikanda.be/posts/quickcheck-intro.html) (2020). Introduces
+property-based testing: state properties that should hold across a class of inputs, then generate
+inputs in search of counterexamples. The Haskell syntax is incidental; the validation strategy is
+not. For the technique's origin, see Claessen and Hughes, ["QuickCheck: A Lightweight Tool
 for Random Testing of Haskell Programs"](https://doi.org/10.1145/351240.351266) (ICFP 2000); for a
 contemporary application in an agentic setting, see Anthropic, ["Finding bugs across the Python
 ecosystem with Claude and property-based
@@ -485,19 +480,11 @@ testing"](https://www.anthropic.com/research/property-based-testing) (2026).
 
 McKeeman, William M. ["Differential Testing for
 Software."](https://www.cs.tufts.edu/comp/150FP/archive/bill-mckeeman/DifferentailTesting.pdf)
-*Digital Technical Journal* 10, no. 1 (1998): 100–107. Testing is harder when engineers can
-generate inputs but do not know the correct output for each one. McKeeman shows how independently
-developed implementations can serve as partial oracles for one another: run the same input through
-each and investigate disagreements. Read this as a general strategy for obtaining evidence when
-specifying expected answers individually would be prohibitively expensive, not merely as a
-historical testing technique.
+*Digital Technical Journal* 10, no. 1 (1998): 100–107. Introduces differential testing:
+independently developed implementations serve as partial oracles for one another.
 
 Palshikar, Girish Keshav. ["An Introduction to Model
 Checking."](https://webdocs.cs.ualberta.ca/~paullu/C605/EMS-2004-02-12.pdf) *Embedded Systems
-Programming*, February 2004. Model checking makes the relationship among models, properties, and
-evidence unusually explicit: engineers describe relevant system behavior in a formal model, state a
-property, and mechanically search the modeled behaviors for a violation. Read it for both the
-strength and the limitation of the evidence: exhaustive analysis of a model can provide much
-stronger evidence than trying selected executions, but it establishes properties of the model
-engineers actually wrote, under the assumptions that model contains.
+Programming*, February 2004. An accessible introduction to model checking and the evidence
+obtained by exhaustively checking a model.
 :::

@@ -405,29 +405,19 @@ what the system ought to accomplish in the first place.
 
 ::: read_further
 Hutchins, Edwin. ["How a Cockpit Remembers Its Speeds."](https://doi.org/10.1207/s15516709cog1903_1)
-*Cognitive Science* 19, no. 3 (1995): 265–288. The canonical demonstration of *distributed
-cognition*: pilots, procedures, instruments, and representations together accomplish remembering
-that need not reside in any one memory. Read it as an analogy for a software engineering
-organization — ask not only what individual engineers know, but what the larger system of engineers,
-artifacts, tools, and representations makes possible.
+*Cognitive Science* 19, no. 3 (1995): 265–288. The canonical demonstration of distributed cognition
+across people, procedures, instruments, and representations.
 
 Rus, Ioana, and Mikael Lindvall. ["Knowledge Management in Software Engineering."](https://doi.org/10.1109/MS.2002.1003450)
-*IEEE Software* 19, no. 3 (2002): 26–38. Brings the knowledge-management problem directly into
-software engineering: software organizations depend heavily on knowledge held by people and need
-mechanisms for creating, sharing, and preserving it. Compare its account with this chapter's broader
-claim that engineering knowledge may also become part of models, tools, and the engineering
-environment.
+*IEEE Software* 19, no. 3 (2002): 26–38. Introduces knowledge management as a software-engineering
+problem of creating, sharing, and preserving organizational knowledge.
 
 Hansen, Morten T., Nitin Nohria, and Thomas Tierney. ["What's Your Strategy for Managing Knowledge?"](https://hbr.org/1999/03/whats-your-strategy-for-managing-knowledge)
-*Harvard Business Review* 77, no. 2 (1999): 106–116. Contrasts approaches centered on codifying
-knowledge with approaches centered on connecting the people who possess it. The management
-strategies matter less than the underlying tradeoff: some knowledge benefits from explicit
-representation, some depends on human expertise and interaction, and encoding everything would be
-neither practical nor desirable.
+*Harvard Business Review* 77, no. 2 (1999): 106–116. Contrasts codifying knowledge with connecting
+the people who possess it.
 
 Hogan, Aidan, et al. ["Knowledge Graphs."](https://doi.org/10.1145/3447772) *ACM Computing Surveys*
-54, no. 4 (2021), Article 71. A survey of structured representations in which entities and their
-relationships are explicit and processable. Read the introductory material and selected sections on
-representation rather than the entire survey, and consider the contemporary question: what changes
-when both humans and software agents must recover and reason over engineering knowledge?
+54, no. 4 (2021), Article 71. A comprehensive survey of knowledge graphs as explicit, processable
+representations of entities and relationships. Read the introductory material and the sections on
+representation rather than the entire survey.
 :::

@@ -300,9 +300,9 @@ decomposability. Process choice therefore asks both what kind of project we have
 it is worth engineering this into.
 
 ::: read_further
-Sommerville, Ian. *Software Engineering*. 10th ed. Boston: Pearson, 2016. A clear survey of plan-driven and incremental process models that treats them as engineering responses to different problems rather than as competing doctrines.
+Sommerville, Ian. *Software Engineering*. 10th ed. Boston: Pearson, 2016. A clear survey of plan-driven and incremental process models.
 
-Boehm, Barry, and Richard Turner. *Balancing Agility and Discipline: A Guide for the Perplexed*. Boston: Addison-Wesley, 2003. Frames how much up-front discipline versus later adaptation a project needs as a tradeoff driven by the cost of change and the characteristics of the problem — the cost-of-change reasoning this chapter builds on.
+Boehm, Barry, and Richard Turner. *Balancing Agility and Discipline: A Guide for the Perplexed*. Boston: Addison-Wesley, 2003. Frames the balance between up-front discipline and later adaptation as an engineering tradeoff.
 
-Winters, Titus, Tom Manshreck, and Hyrum Wright. *Software Engineering at Google: Lessons Learned from Programming Over Time*. Sebastopol, CA: O'Reilly Media, 2020. Argues that what distinguishes software engineering from programming is the artifact's life across change; the reason a process must plan for revision, feedback, and evolution rather than a single act of construction.
+Winters, Titus, Tom Manshreck, and Hyrum Wright. *Software Engineering at Google: Lessons Learned from Programming Over Time*. Sebastopol, CA: O'Reilly Media, 2020. Treats software engineering as programming integrated over time and change.
 :::
