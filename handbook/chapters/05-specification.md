@@ -78,9 +78,9 @@ desired effects in the world, while a specification constrains behavior the mach
 The two are connected by what engineers assume about the environment. @zave1997darkcorners express
 this relationship compactly. Let *R* denote a requirement about the world, *S* a specification of
 machine behavior at its boundary with that world, and *E* the relevant properties and assumptions
-of the environment. An adequate specification should support the argument
-
-$$E \land S \Rightarrow R$$
+of the environment. An adequate specification should support the argument that, given that the
+assumed environment *E* holds and the machine satisfies specification *S*, requirement *R* must
+follow: $E \land S \Rightarrow R$.
 
 The relationship is important, but the engineering work lies in constructing its terms. A
 requirement does not uniquely determine *E* and *S*. Engineers decide what responsibility may
