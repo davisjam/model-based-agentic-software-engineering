@@ -22,68 +22,54 @@ materials:
     src: 1-7-Design.pptx
 ---
 
-**Premise.** *Architecture establishes a strategy for organizing a system. Design determines how its parts will actually work within the responsibilities, affordances, and constraints that strategy creates. Designers progressively resolve the choices needed to turn those parts into implementations, while recognizing when an apparently local choice has consequences that require reconsidering the architecture.*
+**Premise.** *Design chooses mechanisms by which parts fulfill their responsibilities within inherited constraints.*
 
-Architecture leaves us with parts that have responsibilities and rules for interacting. That does not make those parts implementations. A component responsible for processing work, for example, may still require decisions about its internal decomposition, representation of state, ownership of work, coordination of concurrent operations, handling of failure, algorithms, and dependencies.
+Architecture leaves us with consequential parts, responsibilities, boundaries, interfaces, and rules for interaction. Those decisions deliberately leave open how each part actually works. A service responsible for processing work may still require choices about algorithms, data structures, state representation, caching, concurrency, failure handling, and resource management. Design resolves such choices so that the part can fulfill its responsibility while satisfying the obligations it inherits.
 
-But design is not simply the process of answering everything architecture left unspecified. Software is built inside an engineering environment. Frameworks, shared abstractions, coding conventions, common mechanisms, and organization-wide rules may already answer many questions without each component reconsidering them independently. Other choices are deliberately left open because their consequences are local. Design operates over the degrees of freedom that remain.
+Architecture can recur during this work. Opening a component may reveal that it is itself too large to reason about directly and should be organized into consequential subparts with distinct responsibilities and interactions. That is another architectural problem, now at a smaller scope; the Architecture unit gave us tools for reasoning about it. The distinctive concern of Design begins once the relevant organization is fixed: *How should this part actually work?*
 
-Sometimes a degree of freedom turns out not to be harmless. Detailed design may reveal that a supposedly local choice affects latency, consistency, security, failure isolation, changeability, or another system property. Components may turn out to have incompatible assumptions, or no satisfactory implementation may exist within the constraints the architecture imposed. What appeared to be a design detail has then exposed an architectural gap.
+## What does Design inherit?
 
-## From architecture to design
+A designer does not begin with a blank sheet of paper. At any particular scope, earlier engineering decisions have already reduced the space of possible implementations.
 
-The Architecture unit described the relationship between architecture and design as strategy and tactics. Architecture establishes consequential organization and thereby constrains the engineering work below it. Design realizes responsibilities within those constraints.
+Specification establishes properties that must remain true. Architecture assigns responsibilities and establishes boundaries, interfaces, and interaction rules. The engineering environment supplies frameworks, conventions, shared abstractions, policies, and mechanisms that apply across many parts of the system. Together, these decisions constrain what a designer may sensibly choose.
 
-The same relationship appears in physical engineering. A building architecture may determine where a wall stands, how deep it is, and where services may pass through it without specifying the plumbing inside. The plumbing design inherits those choices as constraints. Software architecture similarly leaves many local choices open while determining the space within which those choices can be made.
+What remains is a set of degrees of freedom: choices that have not yet been fixed. Design begins by deciding what kind of choice each one represents:
 
-This relationship is recursive. Architecture deliberately reasons about coarse-grained parts whose internals can temporarily be ignored. Design opens those parts and determines how they work. If an opened part is itself too large to reason about directly, engineers may establish an architecture for that part and design within it again.
+- **Follow.** An inherited decision already determines or sufficiently constrains the mechanism.
+- **Choose.** Alternative mechanisms remain, and their consequential differences can be resolved within the responsibility being designed.
+- **Escalate.** Choosing a satisfactory mechanism requires reconsidering something the design inherited.
 
-The recursion eventually ends. As engineers work downward, they reach objects, functions, data structures, algorithms, or small collaborations whose relevant behavior can be reasoned about directly. Further architectural decomposition would no longer make the engineering problem easier to understand. Design then passes into implementation.
+Most of the distinctive work of Design lies in **choose**. The engineer knows what responsibility the part must fulfill and the constraints under which it must operate, but several mechanisms could plausibly do the job. Design is the engineering judgment required to choose among them.
 
-Architecture and design therefore do not have separate catalogs of techniques. Both may involve decomposition, interfaces, patterns, state machines, dependency graphs, quantitative models, and other engineering representations. Their role depends on scope and purpose: architecture establishes consequential constraints for the work below it; design realizes responsibilities within the constraints it inherits.
+## Choosing a mechanism
 
-## What does design inherit?
+Suppose an architecture assigns document processing to a service deployed on a cloud worker. The service must satisfy its functional obligations while meeting a system cost goal. The cloud provider's pricing creates a consequential boundary: a worker requiring more than 4 GB of memory must use a more expensive two-core tier, and that additional cost would violate the goal.
 
-A designer does not begin with a blank sheet of paper. At any particular level, several sources have already reduced the space of possible implementations.
+Architecture does not need to determine how the service stays below 4 GB. That is a Design problem. The service might load an entire document into memory, process it through a bounded stream, or maintain a compact intermediate representation. Each mechanism may fulfill the same responsibility while differing in peak memory, latency, implementation complexity, and future changeability. If loading the document requires 6 GB while streaming requires 1 GB, the inherited cost obligation makes that difference consequential.
 
-Specification establishes properties that must remain true. Architecture establishes consequential organization, responsibilities, boundaries, interfaces, and interaction rules. The engineering environment supplies conventions, shared abstractions, frameworks, policies, and mechanisms that apply across many parts of the system.
+Design decisions take many forms. Engineers choose algorithms, data structures, state representations, caching and batching policies, scheduling and concurrency mechanisms, retry strategies, memory lifetimes, and internal control flow. Computer science provides many of the available mechanisms and helps us understand their properties. Design puts those mechanisms into an engineering context: *Which alternative should we use here, given the obligations this part must satisfy?*
 
-What remains is a set of **degrees of freedom**: choices that have not yet been fixed. Not every degree of freedom deserves further engineering attention. Some choices are genuinely local, and allowing engineers to make them locally is valuable. Others should simply follow an established convention. Design judgment matters when a remaining choice has consequential alternatives.
+The answer is rarely determined by one property. An in-memory representation may simplify an algorithm while consuming too much memory. A cache may improve latency while creating invalidation and consistency problems. Asynchronous processing may improve throughput or failure isolation while making ordering and retries harder to reason about. Indirection may isolate an expected change while adding another abstraction that engineers must understand and maintain. Design requires comparing the consequences that matter for the particular system rather than selecting mechanisms because they are familiar or fashionable.
 
-Detailed design can also reveal that a choice was classified incorrectly. A decision that appeared local may affect several components or determine whether a system-level property can be achieved. A failure-handling decision may need to become a codebase-wide convention. A communication decision may need to become an architectural constraint. A newly discovered obligation may even require revisiting the specification.
+## Reason about the consequences
 
-Degrees of freedom are therefore provisional. Design can reveal that an apparent freedom should remain local, be captured as a shared engineering convention, or be elevated into an explicit architectural or specification constraint.
+A Design choice should be supported by enough evidence to distinguish among plausible mechanisms. What evidence is useful depends on what makes the alternatives consequential.
 
-## Models of how the system works
+For the cloud worker, a memory model or measurement from a prototype might establish whether a candidate representation can remain below 4 GB. If latency separates two algorithms, a quantitative model or benchmark may be useful. If concurrent workers could process the same job, a lifecycle or state representation may expose whether the proposed coordination mechanism preserves ownership. If the uncertainty is primarily implementation complexity, building two small alternatives may be cheaper than trying to predict the difference.
 
-Specification used models to make required properties explicit. Architecture used models to reason about consequential system organization. Design continues the same practice at another scale.
+The point is not to produce a particular kind of Design model. Models, analyses, prototypes, measurements, and implementations are ways of buying information about a choice. Use the evidence that makes the consequential difference among alternatives visible enough to decide.
 
-A design model makes some question about how a part works easier to answer than it would be from the implementation alone. If we ask whether two workers can process the same job simultaneously, we may need a model of ownership and lifecycle. If we ask whether an operation can occur before initialization, we may need a behavioral model. If we ask whether changing one collaborator will affect another, we may need a structural dependency model.
+Cheaper implementation changes these economics. When alternative mechanisms can be prototyped, measured, or discarded inexpensively, engineers can investigate choices that previously would have been settled largely through judgment. Generative AI can therefore make Design faster, but its greater value may be making more Design decisions cheap enough to investigate.
 
-The same kinds of models can therefore appear in specification, architecture, and design. A state machine might specify externally observable behavior in one context and describe the internal lifecycle of a component in another. A graph might describe architectural dependencies at one scale and internal ownership at another. The representation does not determine the engineering level; the question and scope do.
+## When the choice is not ours
 
-A useful discipline is to ask four questions: *What engineering question are we trying to answer? What model makes that question tractable? What property does the model allow us to state precisely? What engineering concern does that property serve?*
+Not every apparent degree of freedom should be resolved locally. If the engineering environment already establishes how dependencies are injected, how persistent state is accessed, or how retries behave, a component should normally follow that decision rather than invent another mechanism merely because alternatives exist. Shared mechanisms reduce the number of independent choices the system asks engineers to make.
 
-A model earns its place by the question it settles, not by how much of the implementation it represents. The goal is not to produce one complete picture of how the system works.
+Design can also reveal that an apparent choice must be escalated. Perhaps no plausible mechanism keeps the processing service below its memory limit while satisfying its other obligations. Perhaps the only workable mechanism requires moving authoritative state across a boundary the architecture deliberately established. Detailed reasoning has then produced evidence that an inherited decision should be reconsidered.
 
-## Making design choices
+The destination depends on what was learned. A mechanism repeatedly needed across components may belong in the engineering environment. A conflict involving responsibilities, boundaries, or interactions may reopen Architecture. A newly discovered obligation may reopen Specification. Design does not silently work around these decisions; it exposes when they no longer provide a workable space of mechanisms.
 
-Once the relevant questions are visible, design becomes a process of choosing mechanisms and evaluating their consequences. Recurring questions include how a responsibility should be decomposed internally, where authoritative information and other state should live, how work should be coordinated, how directly parts should depend on one another, and when another level of indirection is worth its cost.
+Specification bounded acceptable behavior. Architecture organized responsibilities and interactions so those obligations could coexist. Design makes each part work by selecting mechanisms that satisfy what it inherits. Sometimes opening a part reveals another architectural problem; more often, the engineer must choose among algorithms, representations, data structures, and other mechanisms whose consequences differ in ways that matter.
 
-Internal decomposition should make consequential properties of the design easier to preserve. A useful decomposition lets engineers understand parts without reconstructing the whole system and contains the effects of decisions that are likely to change. This is the motivation behind information hiding and modularity: stable interfaces can isolate decisions whose representations, algorithms, or mechanisms may evolve. Additional boundaries are not automatically better, however. Every seam introduces relationships and abstractions that engineers must understand and maintain.
-
-These questions rarely have universally correct answers. Indirection can isolate change but add complexity. Shared state can simplify coordination while coupling otherwise independent work. Asynchronous execution can isolate latency and failure while requiring explicit reasoning about ordering, retries, and idempotence. Additional decomposition can make responsibilities easier to reason about while increasing the number of relationships engineers must maintain.
-
-As in architecture, recurring patterns capture experience with problems engineers encounter repeatedly. At design scale, patterns often introduce a particular decomposition, dependency structure, or level of indirection intended to isolate some anticipated source of variation. They provide plausible alternatives and experience about their likely consequences, not a catalog of correct answers. The useful question is not whether a design uses a recognized pattern, but what problem the additional structure solves and whether that benefit justifies its cost.
-
-## When design feeds back
-
-Design is an iterative attempt to realize the strategy established by architecture. Models help engineers reason systematically about a proposed design, but the act of developing and implementing it produces new information. Assumptions prove wrong, alternatives reveal unexpected consequences, and previously hidden constraints become visible. This feedback is not an exception to the design process; it is part of how a design is discovered. A building architect may leave space inside a wall for plumbing, only for detailed plumbing design to reveal that the required pipes cannot fit within the available depth. The plumbing designer cannot solve that problem merely by trying harder: some inherited constraint must change.
-
-Software design can expose the same kind of conflict. Suppose an architecture assigns authoritative state to different components while a required operation must update that state consistently. Detailed design must explain how the property can actually be achieved. Perhaps a coordination mechanism solves the problem within the existing architecture. Perhaps the requirement can be weakened. But perhaps every plausible design introduces a dependency the architecture was intended to forbid. In that case, the architecture needs to change.
-
-The same phenomenon occurs when a supposedly local decision repeatedly appears across components. If every designer independently needs to decide how deadlines propagate, how retries behave, or how ownership is represented, the problem may no longer be local. The engineering environment may need a common abstraction, convention, or enforceable rule.
-
-Design therefore produces two kinds of output. It produces realizations of the responsibilities architecture assigned, but it also produces evidence about whether the inherited constraints and degrees of freedom were chosen correctly.
-
-Faster implementation can make this feedback substantially cheaper. When prototypes, alternative implementations, refactorings, and experiments become inexpensive, engineers can investigate design choices that previously would have been settled largely through judgment. Rapid implementation can also expose related failures close enough together for engineers to recognize that several apparently local problems share one structural cause. Generative AI therefore need not merely make design faster: it can change what engineers are able to learn from design.
+Architecture constrains the available tactics. Design chooses the tactics.
