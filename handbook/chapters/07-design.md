@@ -16,167 +16,162 @@ objectives:
   - Recognize when detailed design has exposed an architectural gap or a missing shared rule, and route the discovery to where it belongs.
 ---
 
-**Premise.** *Architecture establishes a strategy for organizing a system. Design determines how its
-parts will actually work within the responsibilities, affordances, and constraints that strategy
-creates.*
+**Premise.** *Design chooses mechanisms by which parts fulfill their responsibilities within inherited constraints.*
 
-Architecture gave us parts. Each part has a responsibility. It has an interface. The surrounding
-system has rules about how the part may interact with other parts. But a part is not yet an
-implementation. A component responsible for generating advice, for example, may still require
-decisions about its internal decomposition, state, ownership, dependencies, algorithms,
-concurrency, failure handling, and coordination. Architecture deliberately hid those details so
-engineers could reason about the larger system without opening every box at once. Design opens the
-box.
+Architecture establishes consequential parts, assigns responsibilities, and defines important boundaries and interactions.
+These decisions constrain the system without determining how each part works internally.
+A service responsible for processing work may still require choices about algorithms, data structures, state representation, caching, concurrency, failure handling, and resource management.
+Design resolves these choices so that each part can fulfill its assigned responsibility while satisfying the obligations it inherits.
 
-Design is therefore less a phase than a class of engineering decisions. A designer identifies which
-choices remain open, generates plausible alternatives, reasons about their consequences, chooses
-among them, and makes consequential decisions inspectable so that later engineers do not have to
-reconstruct the reasoning from the implementation alone.
+Architecture can recur during design.
+Examining a component may reveal that it is itself too large to reason about directly and should be organized into consequential subparts with distinct responsibilities and interactions.
+This creates another architectural problem at a smaller scope.
+Once the relevant organization is sufficiently established, however, a different judgment remains: *How should this part work?*
+That is the central question of design.
+
+Design is therefore better understood as a class of engineering decisions than as a phase of development.
+A designer identifies consequential choices that remain open, generates plausible mechanisms, reasons about their consequences, and resolves them while recognizing when an apparently local choice belongs elsewhere.
 
 ::: {.definition #def-design title="Software design"}
-Software design determines how an architectural part realizes its responsibility within the
-obligations, affordances, and constraints it inherits. It operates over the degrees of freedom that
-remain, progressively resolving them into mechanisms and implementations while recognizing when an
-apparently local choice has consequences that belong elsewhere.
+Software design chooses mechanisms by which an architectural part fulfills its responsibility within
+the obligations, affordances, and constraints it inherits. It operates over the degrees of freedom
+that remain, progressively resolving them while recognizing when their consequences escape the scope
+of the part.
 :::
 
-This relationship is not simply "architecture is high-level, design is low-level." It is
-recursive. A system may contain a subsystem. Opening the subsystem may reveal components. Opening a
-component may reveal smaller parts. If one of those parts is still too substantial to reason about
-directly, engineers may establish an architecture for it and design within that architecture again.
+This relationship can recur.
+Opening one part may reveal consequential subparts that require their own architectural organization.
+Eventually engineers reach functions, data structures, algorithms, or small collaborations whose relevant behavior can be reasoned about directly.
+At that point, design passes into implementation.
 
-Eventually the recursion ends. Engineers reach objects, functions, data structures, algorithms, or
-small collaborations whose relevant behavior is small enough to reason about directly. Further
-consequential decomposition would no longer make the engineering problem easier to understand. At
-that point, design passes into implementation.
+## What Design inherits
 
-## Design does not begin from a blank page {#sec-blank-page}
+Design does not begin from an unconstrained set of possible implementations.
+Earlier engineering decisions have already reduced that space.
+Specification establishes properties that must remain true.
+Architecture assigns responsibilities and establishes boundaries, interfaces, and interaction rules.
+The engineering environment may supply frameworks, conventions, shared abstractions, policies, and mechanisms that apply across many parts of the system.
 
-Opening an architectural box does not erase the decisions made above it. Suppose the architecture
-gave us an Advice Service. The service has a responsibility and an interface. Specification may
-also require that advice be returned within two seconds, that private data remain protected, or
-that certain behavior remain correct under failure. When we open the Advice Service, those
-obligations remain. Only its internals become our problem.
+The engineering environment can constrain design substantially without appearing on an architectural diagram.
+An organization may standardize dependency injection, persistent-state access, cross-service deadlines, background queues, retries and dead-letter handling, logging, authentication, configuration, serialization, or transaction management.
+These mechanisms represent decisions that local designers ordinarily should not make again.
+A good engineering environment converts recurring judgment into engineering structure, reducing the number of independent choices that must be understood across the system.
 
-A designer therefore inherits decisions from at least three sources. Specification establishes
-what must remain true. Architecture establishes the strategy within which the part must work. The
-engineering environment establishes recurring decisions that engineers should not have to make
-again.
+The choices not already determined are the remaining degrees of freedom.
+For each consequential choice, the designer must determine what kind of choice it is:
 
-Specification may constrain correctness, privacy, timing, security, or other properties.
-Architecture assigns the part a responsibility, interface, boundaries, and permitted interactions.
-The engineering environment may supply frameworks, shared abstractions, approved mechanisms, coding
-conventions, failure policies, and organization-wide rules.
+- **Follow** when an inherited decision already determines or sufficiently constrains the mechanism.
+- **Choose** when several mechanisms remain viable and their consequential differences can be resolved within the responsibility being designed.
+- **Escalate** when no satisfactory mechanism can be selected without reconsidering an inherited decision.
 
-That third source matters. An organization may already require that persistent state be accessed
-through repositories. Dependencies may be supplied through interfaces. Cross-service calls may
-carry deadlines. Background work may use a standard queue with standard retry and dead-letter
-behavior. Logging, authentication, configuration, serialization, or transaction handling may
-already have approved mechanisms. These decisions may not appear on the system architecture
-diagram, but they still constrain local design.
+Architecture establishes consequential organization and thereby constrains the mechanisms available to its parts; design chooses among the mechanisms that remain.
+The distinctive work of design lies primarily in choose.
+The responsibility of the part and the constraints under which it must operate are known, but several mechanisms could plausibly satisfy them.
+The engineering task is to identify which differences among those mechanisms matter and select accordingly.
 
-Good engineering environments deliberately answer recurring questions so that every component
-designer does not have to rediscover an answer independently. They convert repeated judgment into
-engineering structure. The implementation space is therefore already narrowed before local design
-begins.
+## Choosing mechanisms
 
-## Design operates over the remaining degrees of freedom {#sec-degrees-of-freedom}
+Consider a document-processing service deployed on a cloud worker.
+Its architecture assigns responsibility for processing documents to the service, while system requirements constrain operating cost.
+Suppose the cloud provider's pricing makes memory consumption consequential: a worker requiring more than 4 GB of memory must use a more expensive tier, causing the system to exceed its cost target.
 
-@ch-specification introduced degrees of freedom as choices deliberately left open because their
-permitted alternatives remain acceptable. The same idea now applies within an architectural part.
-Specification removes choices inconsistent with the obligations. Architecture removes choices
-inconsistent with the system strategy. The engineering environment removes choices the organization
-has already standardized. What remains is the local design space.
+The architecture need not determine how the service remains below 4 GB.
+Several mechanisms may satisfy the same responsibility.
+The service might load an entire document into memory, process it through a bounded stream, or construct a compact intermediate representation.
+These alternatives differ in peak memory, latency, implementation complexity, and changeability.
+If whole-document processing requires 6 GB while streaming requires 1 GB, the inherited cost constraint makes memory consumption a consequential property of the design.
 
-The useful question is not: what could I possibly build? It is: which consequential choices are
-actually still open? Not every open-looking choice should be treated the same way.
+Design decisions take many forms.
+Engineers select algorithms, data structures, state representations, caching and batching policies, scheduling and concurrency mechanisms, retry strategies, memory lifetimes, and internal control flow.
+Computer science supplies many of these mechanisms and theories for understanding their properties.
+Design concerns their use in a particular engineering context: *Which mechanism should be used here, given the obligations this part must satisfy?*
 
-For each apparent degree of freedom, the engineer must first determine what kind of choice it is:
+A choice is rarely determined by one property.
+An in-memory representation may simplify an algorithm while consuming excessive memory.
+A cache may reduce latency while introducing invalidation and consistency problems.
+Asynchronous processing may improve throughput and failure isolation while complicating ordering and retries.
+Indirection may isolate an expected change while introducing another abstraction that engineers must understand and maintain.
+The relevant comparison therefore depends on the obligations of the particular system rather than on whether a mechanism is generally considered desirable.
 
-- **Follow** when the decision has already been made by the specification, architecture, or engineering environment.
-- **Choose** when meaningful alternatives remain and their consequences are contained within the part being designed.
-- **Escalate** when the consequences escape that scope. The choice belongs to an earlier or broader engineering decision.
+### Recurring Design questions
 
-::: {.decision #decision-follow-choose-escalate title="Follow, choose, or escalate?"}
-Follow when the question has already been answered by the engineering environment. Use the
-established mechanism. Choose when the alternatives are genuinely local and satisfy everything the
-component inherits. Escalate when the consequences escape the component — the decision may belong in
-the engineering environment, the architecture, or the specification.
-:::
+Many design choices recur across systems.
+Prior experience supplies candidate mechanisms and known consequences, but does not determine which mechanism fits the obligations of the part being designed.
+Common questions include:
 
-Escalation names an action, not a fourth engineering layer.
-An escalated choice travels to whichever earlier decision governs it: the eventual destination may be the engineering environment, the architecture, or the specification.
+- **Who owns the truth?** When several representations contain the same information, identify which is authoritative when they disagree. Caches, replicas, and derived views may improve other properties without acquiring authority.
+- **What consistency must copies provide?** Stronger observation guarantees simplify assumptions for clients but usually require more coordination. Weaker guarantees can improve autonomy, availability, or latency while requiring the system to tolerate temporary disagreement.
+- **Must this work happen now?** Synchronous work provides simple completion semantics but places its latency and failures on the caller's critical path. Deferred work can isolate latency and failure while introducing retries, idempotence, ordering, and eventual-completion concerns.
+- **How directly should parts depend on one another?** Indirection can isolate expected change but introduces concepts and relationships that engineers must understand. Ask what consequential change or property the additional seam protects.
+- **What resources does the mechanism consume?** Memory, compute, storage, network traffic, locks, connections, and other finite resources can turn an otherwise local implementation choice into an engineering decision.
+- **What happens when the mechanism fails?** Retries, fallback, partial progress, duplicate execution, cleanup, and recovery may matter as much as the successful path.
 
-This classification is provisional. A choice may look local until detailed work reveals its
-consequences. Conversely, a question that initially appears consequential may turn out to be safely
-governed by an existing mechanism. Design does not merely resolve degrees of freedom; it helps
-discover which freedoms really are local.
+Design patterns, frameworks, and conventions package accumulated answers to recurring questions such as these.
+Their value is not that a named pattern should be used whenever it applies syntactically.
+They expand the candidate set by preserving experience about a recurring problem, plausible mechanisms, and their consequences.
+The designer must still determine whether those consequences fit this system.
 
-Suppose retry behavior is standardized across the system. The component designer should follow the
-standard mechanism rather than invent a local retry policy. Suppose two internal data structures
-both satisfy the component's obligations and nothing outside the component depends on which is
-chosen. That is a local design decision. But suppose choosing synchronous rather than asynchronous
-work determines whether a system-level consistency or failure-isolation property can be satisfied.
-What appeared to be a local degree of freedom is not local after all. Design judgment begins by
-classifying the choice correctly.
+## Evidence for a Design decision
 
-## Architecture is strategy; design is tactics {#sec-strategy-tactics}
+A consequential design choice requires enough evidence to distinguish among plausible mechanisms.
+The appropriate evidence depends on the properties that separate the alternatives.
 
-The relationship between architecture and design is usefully described as strategy and tactics.
-Architecture establishes consequential organization and thereby constrains the tactics available to its parts.
-Design chooses among the mechanisms that remain possible within those constraints.
+For the cloud worker, a memory model or prototype measurement might establish whether a representation remains below 4 GB.
+If latency distinguishes two algorithms, an analytical model or benchmark may be appropriate.
+If concurrent workers can process the same job, a lifecycle or state model may expose whether a coordination mechanism preserves ownership.
+When implementation complexity is the principal uncertainty, implementing small versions of competing alternatives may provide better evidence than attempting to predict their relative costs.
 
-A building architect may determine where a wall stands, how deep it is, where service space exists,
-and what penetrations are allowed. The plumbing designer inherits those decisions. They do not
-prescribe the exact plumbing layout, but they determine which layouts are practical. Software
-architecture works the same way. A boundary, interface, dependency rule, or deployment choice
-creates affordances and constraints for the design inside the part.
+Different choices require different evidence.
+A behavioral model may expose ordering; an ownership or lifecycle model may expose shared state; a dependency model may expose replaceability; a quantitative model may expose latency, memory, or cost.
+The same part can therefore have several useful representations because each removes details irrelevant to a different engineering question.
 
-This relationship is relative to scope. A subsystem may be tactical relative to the system
-architecture while having an architecture of its own. Architecture and design are therefore not two
-fixed heights in a hierarchy. The useful scope question is: *which decisions are we taking as given,
-and which decisions are we making within them?*
-
-## Choosing among design alternatives {#sec-choosing-alternatives}
-
-Once an engineer identifies a genuine design choice, the next question is which alternative to choose.
-A plausible mechanism is not enough.
-The alternatives matter because they have different consequences for the obligations the part inherits: performance, correctness, expected change, failure behavior, resource use, or other properties that matter in the particular system.
-
-The engineer therefore needs evidence about the consequential differences among the alternatives.
-Sometimes code or a prototype provides that evidence directly.
-Sometimes a smaller representation makes the relevant difference easier to reason about.
-The useful representation depends on the engineering question.
-
-Consider again the Advice Service.
-Suppose two plausible designs both satisfy its interface and respect the surrounding architecture.
-If the important difference is whether advice can be returned before validation completes, a behavioral model can expose the ordering of actions.
-If the alternatives differ in how they manage shared working state, an ownership or lifecycle model can expose who owns that state and for how long.
-If they differ in replaceability, a dependency model can expose what must change together.
-If they differ in whether they can meet a two-second response budget, a quantitative model can expose the relevant costs.
-
-The component has not changed across these questions.
-Neither has the inherited responsibility.
-What changes is the consequential design choice under examination and the evidence needed to resolve it.
-The engineer should therefore ask: *What alternatives are we choosing among? What consequential difference matters? What evidence would let us compare them?*
+There is no single artifact that is "the design."
+Models, analyses, prototypes, measurements, and implementations are means of reducing uncertainty about a design choice.
+Use the smallest representation that exposes the consequential difference among the alternatives with sufficient confidence to decide.
 
 ::: {.key-idea #key-representations-serve-decisions title="Representations serve decisions"}
-A model, prototype, measurement, or other representation earns its place by helping resolve an
-engineering decision. Use the smallest representation that exposes the consequential difference
-among the alternatives.
+A representation earns its place by helping resolve an engineering decision. Start with the
+alternatives and the consequential difference among them; then choose the evidence that makes that
+difference tractable.
 :::
 
-There is therefore no single artifact that is "the design."
-Different design decisions may require different evidence, and several representations may coexist because they expose different properties of the same part.
-Nor does a particular notation make a representation architectural or a design artifact.
-Its role depends on the decision being made and the scope at which the engineer is reasoning.
-A state machine, dependency graph, table, sequence, equation, or prose description earns its place only when it makes a consequential design question easier to answer.
+## Making Design reasoning inspectable
 
-## Local decisions, system consequences {#sec-local-system-consequences}
+Consequential reasoning should not disappear into the resulting code.
+An implementation often reveals what was chosen while concealing which alternatives were considered, which assumptions mattered, why the chosen mechanism prevailed, and what evidence would justify revisiting it.
+
+A useful design document preserves enough of that argument for another engineer to inspect it.
+The format can vary, but the substance usually includes:
+
+1. Context and inherited constraints. What responsibility and obligations are already fixed?
+2. Open decision. What consequential degree of freedom remains?
+3. Alternatives. What serious mechanisms could satisfy it?
+4. Consequences. What properties distinguish those alternatives?
+5. Evidence. What model, analysis, prototype, measurement, or experience supports the comparison?
+6. Decision and rationale. What was chosen, and why?
+7. Uncertainty. What assumptions remain, and what evidence should cause the decision to be revisited?
+
+Review then becomes part of design rather than a ceremonial approval step.
+Another engineer can challenge assumptions, identify alternatives, or expose consequences before the choice becomes expensive to reverse.
+
+### Implementation as a Design probe
+
+Implementation can itself provide evidence.
+Engineers have always learned about designs by building them, but constructing several alternatives was often too expensive merely to learn from them.
+Cheaper implementation changes that calculation.
+An engineer can implement two data representations and measure them, prototype synchronous and deferred mechanisms, perform an experimental refactoring, or construct a competing design and discard it after answering the relevant question.
+
+Implementation can therefore become a design probe rather than only the terminal realization of a decision.
+The economic question remains the same as for any other evidence: *Will implementing this alternative reduce enough consequential uncertainty to justify its cost?*
+
+Generative AI expands the set of decisions for which this empirical approach is economical.
+It does not remove the design judgment; it can make more alternatives cheap enough to investigate.
+
+## Local decisions, system consequences
 
 A design can be sound within the responsibility assigned to a part and still contribute to an unsound system.
 Architecture establishes system properties through the organization of responsibilities, boundaries, and interactions.
-Design occurs within those constraints, but the consequences of individually reasonable design choices can accumulate or interact in ways that defeat what the architecture was intended to achieve.
+Design occurs within those constraints, but the consequences of individually reasonable choices can accumulate or interact in ways that defeat what the architecture was intended to achieve.
 **Systems thinking** requires engineers to reason about these aggregate effects rather than evaluating each design choice only within its local scope.
 
 A mickle and a mickle makes a muckle.
@@ -189,307 +184,103 @@ The architectural property concerns the path through the components, not the loc
 The same problem can arise from gaps rather than accumulation.
 Suppose components A and B both handle input on the path to a database.
 The design of A assumes that B is responsible for preventing SQL injection, while the design of B assumes that A has already sanitized its input.
-Each design may appear reasonable when considered locally, yet their composition leaves an obligation unsatisfied.
+Each design may appear reasonable locally, yet their composition leaves an obligation unsatisfied.
 Conversely, both components might perform incompatible forms of sanitization, producing another failure despite each attempting to satisfy the same concern.
 
-Systems thinking therefore asks designers to consider not only whether each mechanism fulfills its local responsibility, but whether the collection of design choices preserves the properties that the architecture sought to control.
-Budgets must compose, responsibilities must remain complete, assumptions made by one part must be discharged by another, and local mechanisms must not undermine properties established at a larger scope.
+Systems thinking therefore asks whether the collection of design choices preserves the properties that the architecture sought to control.
+In particular, designers should ask whether:
 
-This is also a reason Design produces evidence that flows back to Architecture.
-If locally sound mechanisms cannot compose while preserving an architectural property, the problem may not admit another local design choice.
-The allocation of budgets, responsibilities, boundaries, or interactions may itself need to change.
+- **Budgets compose.** Local consumption of latency, memory, cost, error, or another finite budget remains acceptable in aggregate.
+- **Responsibilities cover the obligation.** Something is actually responsible for each required property; assumptions do not leave gaps between parts.
+- **Assumptions compose.** What one part expects of another is actually guaranteed there.
+- **Mechanisms interact safely.** Individually sound choices do not interfere when combined.
+- **Architectural properties remain true.** Local choices preserve the isolation, dependency, security, reliability, or other properties for which the architecture was organized.
 
-## Making design reasoning inspectable {#sec-inspectable-reasoning}
+Local evidence is therefore necessary but not always sufficient.
+Design must sometimes establish not merely that each mechanism works, but that the mechanisms work together.
 
-A consequential design decision should not exist only in the resulting code. By the time an
-implementation exists, an engineer can often see what was built but not why one mechanism was
-chosen over another, which alternatives were rejected, what assumptions supported the decision, or
-what evidence would justify revisiting it.
+## When Design exposes a larger problem
 
-A design document makes that reasoning inspectable before and after implementation. Its useful
-content follows directly from the decision process in this chapter: context and inherited
-constraints → open question → plausible alternatives → proposed design → model or evidence →
-tradeoffs → unresolved questions. The exact document format matters less than preserving enough of
-the argument for another engineer to evaluate the choice.
+Some apparent degrees of freedom should not be resolved locally.
+If the engineering environment already establishes how dependencies are injected, persistent state is accessed, or retries are performed, a component should ordinarily follow that decision.
+Allowing each component to choose independently would increase the number of mechanisms that engineers must understand and the number of interactions the system must accommodate.
 
-::: {.key-idea #key-design-doc-externalizes title="A design document externalizes a decision"}
-A design document is a representation of a consequential decision before that decision disappears
-into code. Record enough context, alternatives, evidence, and rationale that another engineer can
-challenge the choice now and understand it later.
+Design can also establish that an apparent local choice must be escalated.
+Suppose no plausible processing mechanism can remain below the worker's memory limit while satisfying the service's other obligations.
+Alternatively, suppose the only viable mechanism requires moving authoritative state across a boundary established by the architecture.
+In either case, design has produced evidence that the inherited constraints do not admit a satisfactory mechanism.
+
+Detailed design produces evidence about whether inherited decisions are workable.
+An apparent degree of freedom may prove not to be local at all.
+The correct response is not to force a clever workaround into the implementation, but to reconsider the decision whose scope actually contains the consequence.
+
+Escalation can therefore have several destinations:
+
+- **Engineering environment:** the same decision recurs across components and should become a shared convention, abstraction, mechanism, or check.
+- **Architecture:** the conflict concerns responsibilities, boundaries, interactions, system-wide budgets, or another property of consequential organization.
+- **Specification:** detailed work reveals a missing, contradictory, or infeasible obligation.
+
+The distinction matters because a local workaround can make an earlier engineering model false.
+
+### When a local workaround makes the architecture false
+
+Suppose the architecture establishes A → Port → B because engineers need A to remain independent of B's internals.
+During design, an engineer discovers that one feature would be easier if A reached directly into B.
+The feature works and its local tests pass, but the architectural dependency model is now false.
+
+The problem is deeper than untidy code.
+The architecture previously supported an engineering inference: B can be replaced without changing A.
+Once the hidden dependency exists, that inference is no longer trustworthy.
+A local design decision has compromised the predictive value of the system's engineering knowledge.
+
+Architectural degradation is therefore partly an epistemic failure.
+Models are useful because engineers can reason from them without repeatedly reconstructing the implementation.
+When local choices silently violate those models, apparently sound engineering reasoning can produce incorrect conclusions.
+
+A consequential workaround should therefore become visible.
+Remove it if it was a mistake.
+Represent it as an explicit exception if it is justified.
+Change the architectural rule if repeated exceptions show that the rule itself is wrong.
+Local implementation should not silently redefine the system engineers believe they have.
+
+## Cheap implementation changes the evidence
+
+Cheaper implementation can also change what engineers are able to notice.
+Suppose three related failures arise weeks apart.
+Each may appear to be an isolated local problem and be repaired independently.
+If implementation and change occur quickly enough that the same failures arise in dense succession, their relationship may become visible.
+What appeared to be several incidents can become evidence of one structural cause.
+
+High velocity does not guarantee better design.
+It changes the evidence available to the engineer.
+Temporal compression can make recurring structure easier to recognize, while also producing more changes and failures than a person can inspect individually.
+Human attention can therefore become the limiting resource.
+
+At that point, the design problem shifts again.
+Engineers must decide which observations are local, which indicate a shared mechanism or architectural weakness, and which recurring lessons should become durable engineering knowledge.
+Cheap code can create a firehose of evidence; engineering judgment determines what that evidence means.
+
+::: {.mage-moment title="Cheap Code, Costly Judgment"}
+In the Cheap Code, Costly Judgment case study, failures appearing in dense succession helped reveal
+that several local incidents shared an architectural cause. The response was not to repair each
+incident independently, but to change the engineering environment: represent the underlying
+knowledge explicitly, derive checks from it, and prevent a class of related failures.
 :::
-
-Review then becomes part of design rather than a ceremonial approval step. Another engineer can
-challenge an assumption, identify an alternative, or notice a consequence that the original
-designer missed before the decision becomes expensive to reverse.
-
-## Recurring design choices {#sec-recurring-choices}
-
-Some design questions recur often enough that engineers have accumulated experience about plausible
-solutions and their consequences. This experience appears in conventions, libraries, frameworks,
-design patterns, and the engineering environment itself. The value is not the name attached to a
-solution. It is the accumulated answer to three questions: What recurring problem does this
-structure address? What alternatives exist? What consequences does this one introduce?
-
-A design pattern therefore packages prior engineering experience. It expands the designer's
-candidate set without making the decision for them. Patterns are useful as stored design
-experience, not as a checklist of structures a sophisticated design ought to contain.
-
-### Who owns the truth? {#sec-owns-truth}
-
-Many systems contain several representations of the same information. One may be authoritative.
-Another may be derived. Another may be cached or replicated. The key question is: when the
-representations disagree, which one wins? A design that cannot answer this question has not merely
-left implementation detail open. It has left the system's source of truth ambiguous.
-
-::: {.definition #def-authoritative-state title="Authoritative state"}
-Authoritative state is the representation whose value governs when multiple representations
-disagree.
-:::
-
-Other representations can be useful without being authoritative. A cached value may improve latency.
-A derived view may make queries cheaper. A replicated copy may improve availability. But the design
-should make clear whether such representations can originate truth or only reflect it. Authority is
-therefore a design decision about responsibility for state.
-
-### What consistency must copies provide? {#sec-consistency}
-
-Replicated or cached state creates a second question. Suppose one reader must always observe the
-latest completed write. That requirement implies one set of coordination mechanisms. Suppose
-instead that readers may temporarily observe an older value. That permits different mechanisms and
-different failure behavior. The design question is therefore not simply are there replicas? It is:
-what observations must the system permit or forbid when copies disagree?
-
-Tighter consistency can simplify reasoning for clients but require more coordination and increase
-latency or reduce availability under some failures. Looser consistency can improve availability and
-reduce coordination while forcing the surrounding design to tolerate stale or divergent
-observations. Replication topology does not determine the required semantics. Requirements do.
-
-::: {.tradeoff #tradeoff-consistency title="Consistency"}
-Tighter observation guarantees buy simpler assumptions for clients by spending coordination. Weaker
-guarantees buy autonomy, availability, or latency by requiring the system to tolerate temporary
-disagreement.
-:::
-
-### Must this work happen now? {#sec-work-now}
-
-Some work can occur synchronously with a request: request → work → result. The caller waits until
-the work completes. Other work can be deferred: request → queue → acknowledgement, with a worker
-completing the operation later.
-
-Immediate work provides simple completion semantics. When the request returns successfully, the
-result exists. But the caller pays the latency and often inherits failures from everything on the
-critical path.
-
-Deferred work can isolate latency and failure, but the design now has to answer additional
-questions: What happens when processing fails? May the work be retried? Can the same operation
-safely run twice? Does ordering matter? How does the caller learn that deferred work eventually
-failed?
-
-::: {.tradeoff #tradeoff-immediate-deferred title="Immediate or deferred"}
-Immediate work buys immediacy and simple completion semantics. Deferred work buys latency and
-failure isolation. Deferral moves complexity into retries, idempotence, ordering, and eventual
-completion.
-:::
-
-As elsewhere in design, the mechanism does not remove the engineering problem. It moves it.
-
-### How directly should parts depend on one another? {#sec-dependence}
-
-Suppose A needs behavior from B. The simplest design is direct: A → B. Sometimes that is exactly
-right. Alternatively, engineers can insert an interface, adapter, factory, proxy,
-dependency-injection seam, or other indirection: A → I ← B.
-
-Indirection buys isolation. A can depend on an abstraction that changes less frequently than B's
-concrete realization. But indirection also costs something. There are now more concepts, more
-relationships, more code, and more places to look when understanding the system.
-
-::: {.tradeoff #tradeoff-indirection title="Indirection"}
-Indirection buys flexibility by spending complexity. Before adding a seam, ask: what future change
-are we buying isolation from? If the answer is unclear, the indirection may be speculative
-complexity.
-:::
-
-A direct dependency is not a sign of immature design. An additional abstraction is not automatically
-sophisticated. The mechanism should correspond to a plausible source of change or another
-consequential property.
-
-Design patterns often package particular forms of this move. A Facade, for example, introduces a
-stable, simpler interface in front of a more complicated subsystem. That can contain knowledge of
-the subsystem and reduce dependencies on its internals, but it also creates another interface whose
-promises must be maintained. The engineering question is therefore not: should we use Facade? It
-is: what dependency or expected change are we buying isolation from, and is that isolation worth
-the additional structure?
-
-### How should a responsibility be decomposed? {#sec-decomposition}
-
-A responsibility can often be decomposed in several ways. One design may divide work according to
-processing steps: Step 1 → Step 2 → Step 3. Another may organize the same work around a decision
-expected to change, placing a stable seam around the part likely to vary. Both decompositions can
-produce correct behavior. The design question is what each decomposition makes local.
-
-Classical work on information hiding argues that likely sources of change should be hidden behind
-stable interfaces. Meyer [-@meyer1997] develops the broader engineering question: what properties
-make a decomposition useful? Rather than memorizing criteria, use them as tests of a proposed
-design.
-
-- Can a part be understood without reconstructing the whole? A decomposition should support local
-  reasoning.
-- Can an expected change remain local? Decisions likely to vary should not unnecessarily spread
-  through unrelated parts.
-- Can useful parts be reused or recombined? A module whose meaning depends on the entire original
-  context is difficult to compose elsewhere.
-- Can a local failure remain local? Boundaries can sometimes contain faults and prevent one
-  internal problem from corrupting unrelated work.
-
-These tests can point in different directions. Additional decomposition may improve change
-containment while introducing more interfaces, dependencies, and concepts. A seam that isolates no
-plausible source of change may merely make the system harder to understand.
-
-::: {.tradeoff #tradeoff-decomposition title="Decomposition"}
-More decomposition can localize understanding, change, composition, or failure. Less decomposition
-preserves directness and reduces the number of relationships engineers must maintain. When
-comparing decompositions, ask what each decomposition makes local.
-:::
-
-Design is therefore not a search for the maximum number of modules or abstractions. It is a search
-for a decomposition whose locality matches the changes, reasoning, reuse, and failures that matter
-in this part of the system.
-
-## Every design choice trades one problem for another {#sec-trades-problems}
-
-The recurring choices above have the same shape. Who owns truth? Central authority may simplify
-consistency while increasing coordination. How consistent must copies be? Tighter consistency
-reduces ambiguity while increasing coordination or latency. Must work happen immediately? Immediate
-work simplifies completion while coupling the caller to latency and failure. How directly should
-parts depend? Directness reduces complexity while increasing exposure to change. How much
-decomposition should we introduce? More seams can localize change while creating more relationships
-to understand. There is rarely a side labeled "good." The designer's job is to make the tradeoff
-explicit enough that it can be defended.
-
-::: {.key-idea #key-fit-consequences title="Design fits consequences to the problem"}
-Design is not choosing the conventionally virtuous side of a tradeoff. It is choosing which
-consequences fit the obligations and context of the component being engineered.
-:::
-
-A defensible design can therefore name the inherited constraints, identify the open choice, compare
-serious alternatives, explain the consequences that distinguish them, and show the model or
-evidence supporting the choice. This is the reasoning a useful design document preserves.
-
-## When a design choice does not stay local {#sec-not-local}
-
-The classification of a degree of freedom is provisional.
-Engineers often discover its consequences only while trying to resolve it.
-A choice that initially appeared local may recur across components, affect the organization of the system, or reveal an obligation that was never specified.
-
-That discovery is evidence, not a failure of design.
-The engineer should route it to the decision that needs to change:
-
-- A choice already governed by an inherited decision should be **followed**.
-- A genuinely local choice can be **chosen** within the design.
-- A recurring choice that should be shared across components may belong in the engineering environment.
-- A choice whose consequences affect system organization may require an architectural decision.
-- A newly discovered obligation may require revisiting the specification.
-
-The last three cases are forms of escalation.
-Design has discovered that the apparent degree of freedom was not entirely local.
-
-## Implementation can become a design probe {#sec-implementation-probe}
-
-Implementation has always produced information about design. What changes with cheaper
-implementation is how deliberately and how often engineers can use it for that purpose.
-@ch-architecture described models, prototypes, and measurements as ways to buy information about
-uncertainty. At design scale, implementation itself can become an information-gathering instrument.
-
-Historically, constructing multiple candidate implementations could be too expensive merely to
-learn from them. Engineers therefore settled many design questions primarily through prior
-experience, models, and judgment.
-
-When implementation becomes much cheaper, that calculation changes. An engineer can construct two
-candidate data representations and measure them. They can prototype immediate and deferred
-mechanisms. They can perform an experimental refactoring. They can implement a competing design and
-discard it after learning what they needed. Implementation can become a design probe rather than
-only the terminal realization of a decision. The question remains economic: will the evidence produced by implementing this alternative be worth
-more than the implementation costs?
-
-## Velocity can change what engineers notice {#sec-velocity-notice}
-
-Cheap implementation has another effect. Suppose three related design failures arise weeks apart.
-Each appears in its own local context. Each is repaired independently. Now suppose implementation
-and change occur quickly enough that those same failures appear in dense succession. The engineer
-may recognize that they are related. What looked like several local incidents may reveal one
-structural cause.
-
-This does not imply that high velocity automatically produces better design. It creates an
-opportunity. Temporal compression can turn incidents into evidence of structure. Related failures
-that would have been separated by weeks may become co-visible. That can change the question from
-how do I repair this incident? to what structure keeps producing this class of incident? That is a
-different kind of design reasoning.
-
-## Cheap code can create a firehose of evidence {#sec-evidence-economics}
-
-Cheaper implementation changes design reasoning in two ways. The first is economic. Engineers can
-afford to try more alternatives: competing implementations, prototypes, measurements, and
-refactorings become cheaper sources of evidence. The second is epistemic. Changes and failures can
-arrive densely enough that relationships among them become visible sooner.
-
-At sufficiently high implementation velocity, however, another constraint appears: human attention.
-An engineer cannot inspect every generated change in detail. The scarce work moves upward. Many
-implementations and failures can become a stream of evidence from which an engineer must decide
-what is local, what is structural, and what recurring lesson should become durable engineering
-knowledge.
-
-::: {.mage-moment title="Cheap code, costly judgment"}
-In the *Cheap Code, Costly Judgment* case study, related failures sometimes appeared in dense
-succession rather than being separated across long periods of development. Their proximity helped
-the architect recognize that several local incidents reflected a common architectural weakness. The
-response was not to review and repair every change individually. It was to alter the engineering
-environment: introduce a model, derive new checks from it, and close several related failure
-classes at once.
-
-Cheap code creates a firehose of evidence. Costly judgment determines what it means.
-:::
-
-This does not transfer engineering judgment to the implementation tool. The engineer still decides
-what property matters, what evidence is relevant, whether several failures share a cause, what
-tradeoff is acceptable, and whether a discovery belongs in local design, the engineering
-environment, architecture, or specification.
-
-Implementation velocity therefore does not merely let us realize a design faster. It can let us
-reason about the design differently.
-
-## From Specification to Implementation {#sec-spec-to-implementation}
-
-The progression is now complete. Requirements determines what the engineering effort is willing to
-promise. Specification constrains the space of acceptable realizations. Architecture chooses
-consequential organization for one acceptable realization. Design opens the resulting parts and
-determines how they realize their responsibilities.
-
-If a part remains too large to reason about directly, the relationship recurs. Engineers establish
-architecture at that scope and design within it. Eventually the work reaches entities whose relevant
-behavior can be reasoned about directly. Then we implement them.
-
-The progression describes how engineering decisions depend on one another; it does not prescribe
-the chronological order in which engineers discover them. Constraints and affordances flow downward
-from requirements, specification, architecture, and the engineering environment. Evidence flows
-upward from implementation and design. Detailed work can expose a bad tactic, an architectural gap,
-a missing shared mechanism, or an obligation that needs reconsideration. That feedback is part of
-engineering rather than a failure of the process.
-
-Engineering therefore proceeds downward through constraints and upward through evidence.
-Architecture constrains the available tactics. Design tests whether the strategy is workable.
 
 ## Summary
 
-Design resolves consequential choices that remain after specification, architecture, and the engineering environment have constrained a part.
-Begin by identifying the remaining degrees of freedom and classifying them.
-Follow decisions already made.
-Choose among genuinely local alternatives by comparing their consequential differences and gathering sufficient evidence.
-Escalate choices whose consequences escape the part's scope.
+Design chooses mechanisms by which parts fulfill their responsibilities within inherited constraints.
+Specification determines properties that must remain true; Architecture establishes responsibilities, boundaries, and interactions; the engineering environment resolves recurring decisions that should not be made independently.
+Design operates over the degrees of freedom that remain: follow decisions already made, choose among genuinely local mechanisms, and escalate when the consequences escape the part.
 
-Architecture and design are relative to scope.
-Architecture establishes consequential organization; design realizes responsibilities within that organization.
-A design decision may reveal that an apparent local freedom belongs instead in the engineering environment, architecture, or specification.
-As the engineer opens successively smaller boxes, this process recurs until the remaining entities and mechanisms can be reasoned about directly and implemented.
+Choosing requires evidence about consequential differences among alternatives.
+Models, analyses, prototypes, measurements, design documents, reviews, and implementations can all make that reasoning inspectable.
+Systems thinking extends the judgment beyond individual choices: locally sound mechanisms must compose without exhausting shared budgets, leaving obligations uncovered, violating assumptions, or compromising the properties the architecture sought to control.
+
+Engineering therefore proceeds downward through constraints and upward through evidence.
+Detailed design can establish that an inherited strategy works, but it can also expose a missing shared mechanism, an architectural problem, or an obligation that must be reconsidered.
+Cheap implementation increases the evidence available to make these judgments.
+It does not make the judgments for us.
 
 ::: read_further
 Meyer, Bertrand. *Object-Oriented Software Construction*. 2nd ed. Upper Saddle River, NJ: Prentice Hall, 1997. Develops criteria for judging whether a decomposition makes understanding, change, composition, and failure sufficiently local. Focus on the "Modularity" chapter.
