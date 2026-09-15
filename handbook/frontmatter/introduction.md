@@ -25,6 +25,6 @@ These decisions are difficult to appreciate without some engineering experience.
 By the end of the handbook, the reader will have developed more of the judgment needed to
 understand them.
 
-::: {#fig-judgment-machine-world .figure .unnumbered width="88%" alt="Three side-by-side regions. A large box labeled Engineering judgment holds six judgment labels in a grid: Requirements, Specification, Architecture, Design, Validation, and R&D, with no connections among them. A double-headed arrow joins the judgment box to a peer box labeled The machine. Two opposing arrows join The machine to a tinted box labeled The world."}
+::: {#fig-judgment-machine-world .figure .unnumbered width="88%" alt="Under a heading reading Software Engineering, a full-width band names three sustained concerns: Process, Teamwork, and Engineering Knowledge. Below the band, a large box labeled Engineering judgment holds six judgment labels in a grid: Requirements, Specification, Architecture, Design, Validation, and R&D, with no connections among them. A double-headed arrow joins the judgment box to a peer box labeled The machine, and two opposing arrows join The machine to a tinted box labeled The world."}
 ![](../figures/introduction/judgment-machine-world.svg)
 :::
