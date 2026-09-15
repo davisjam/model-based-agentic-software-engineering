@@ -119,6 +119,21 @@ Draw a boundary so that the interactions and changes you expect are easy, while 
 changes you do not want are difficult.
 :::
 
+### What should a boundary make local? {#sec-boundary-local}
+
+Decomposition is valuable when it makes consequential reasoning local.
+Different decompositions can produce the same externally correct behavior while distributing understanding, change, reuse, and failure differently.
+When comparing them, ask:
+
+- **Understanding:** Can a part be understood without reconstructing the whole system?
+- **Change:** Can an expected change remain local rather than spreading through unrelated parts?
+- **Composition:** Can a part be reused or recombined without importing unnecessary context?
+- **Failure:** Can a local failure remain local rather than corrupting unrelated work?
+
+These objectives can conflict.
+Additional decomposition may improve change or failure containment while introducing more interfaces, dependencies, and concepts.
+A useful boundary therefore does not maximize modularity; it makes the properties that matter for this system sufficiently local.
+
 ## Architecture also allocates coordination among people {#sec-coordination}
 
 Architectural boundaries do not affect only software. They also affect how engineering work can be
