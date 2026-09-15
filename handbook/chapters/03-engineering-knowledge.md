@@ -371,8 +371,8 @@ architecture because later engineering should inherit a consequential organizati
 becomes a design convention or shared mechanism because engineers should not repeatedly solve the
 same local problem. Some becomes validation evidence or a continuing check because the organization
 needs grounds for believing that an important claim remains true. Choosing among those destinations
-requires understanding what kind of engineering decision the knowledge should support; the remainder
-of Part I develops those decisions in turn.
+requires understanding what kind of engineering decision the knowledge should support; the remaining
+chapters develop those decisions in turn.
 
 *Learning should sometimes change how future engineering is performed.* An organization that
 repeatedly experiences the same surprise without changing what it remembers, represents, or does has

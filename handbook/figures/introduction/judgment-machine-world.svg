@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" font-family="'Source Sans 3', Helvetica, sans-serif" role="img">
+  <title>Engineering judgments concern a machine that participates in the world</title>
+  <!-- Umber Monograph palette: ink #1c1917, paper #fdfcf9, accent #9a3f12, rule #e4e0d8, panel #f6f4ef, accent-tint #faf1e6 -->
+  <rect x="0" y="0" width="720" height="280" fill="#fdfcf9"/>
+
+  <defs>
+    <marker id="jmw-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- engineering judgment: six judgments in a grid, deliberately unconnected -->
+  <rect x="16" y="48" width="316" height="184" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="174" y="78" text-anchor="middle" font-size="13" font-weight="600" letter-spacing="1.5" fill="#1c1917">ENGINEERING JUDGMENT</text>
+  <g font-size="14" fill="#1c1917" text-anchor="middle">
+    <text x="95" y="122">Requirements</text>
+    <text x="253" y="122">Specification</text>
+    <text x="95" y="156">Architecture</text>
+    <text x="253" y="156">Design</text>
+    <text x="95" y="190">Validation</text>
+    <text x="253" y="190">R&amp;D</text>
+  </g>
+
+  <!-- we make judgments about a machine -->
+  <line x1="338" y1="140" x2="386" y2="140" stroke="#9a3f12" stroke-width="2" marker-start="url(#jmw-arrow)" marker-end="url(#jmw-arrow)"/>
+
+  <rect x="392" y="48" width="136" height="184" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="460" y="145" text-anchor="middle" font-size="13" font-weight="600" letter-spacing="1.5" fill="#1c1917">THE MACHINE</text>
+
+  <!-- the machine acts on the world; the world acts back -->
+  <line x1="534" y1="118" x2="562" y2="118" stroke="#9a3f12" stroke-width="2" marker-end="url(#jmw-arrow)"/>
+  <line x1="562" y1="162" x2="534" y2="162" stroke="#9a3f12" stroke-width="2" marker-end="url(#jmw-arrow)"/>
+
+  <rect x="568" y="48" width="136" height="184" rx="6" fill="#faf1e6" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="636" y="145" text-anchor="middle" font-size="13" font-weight="600" letter-spacing="1.5" fill="#1c1917">THE WORLD</text>
+</svg>

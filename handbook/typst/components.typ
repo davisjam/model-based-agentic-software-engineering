@@ -20,26 +20,6 @@
   body
 }
 
-// A Part divider (Part I, Part II): a full page announcing a top-level division, above chapter level.
-// Like front matter, it carries a hidden outlined heading (label <hb-part>, body "<numeral> — <title>")
-// so the Contents shows one flush-left, bold entry per Part with chapters nested beneath it; the
-// level-1 show-rule renders that heading invisibly and this function draws the visible divider — the
-// numeral large, the title as an italic subtitle over a short accent rule, then the opener paragraph.
-#let hb-part(numeral: "", title: "", body) = {
-  pagebreak(weak: true)
-  [= #numeral — #title <hb-part>]
-  v(2.4in)
-  align(center)[
-    #text(font: font-display, size: 34pt, weight: 700, fill: palette.ink)[#numeral]
-    #v(0.45em, weak: true)
-    #text(font: font-display, size: 17pt, style: "italic", fill: palette.muted)[#title]
-    #v(0.9em, weak: true)
-    #line(length: 16%, stroke: 1pt + palette.accent)
-  ]
-  v(1.6em)
-  block(width: 100%)[#body]
-}
-
 // A semantic callout: a lightly ruled, titled block. The left rule and tint come from the kind.
 #let hb-callout(kind: "note", title: none, body) = {
   let style = callout-style.at(kind, default: (palette.muted, palette.panel))
