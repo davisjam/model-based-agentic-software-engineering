@@ -21,62 +21,71 @@ materials:
 
 **Premise.** *Requirements engineering turns uncertainty about what matters into engineering commitments.*
 
-Software systems are built for purposes in the world. Requirements engineering connects those purposes to decisions about what the system should do and what constraints it must satisfy. This is not simply a matter of asking users what they want. Relevant needs may be implicit, stakeholders may disagree, and obligations may also come from existing systems, operations, contracts, laws, standards, and the surrounding domain.
+Software systems are built for purposes in the world. Before engineers decide how a system should work, they must make two coupled judgments:
 
-This module treats requirements engineering as two coupled problems: discovering what would create value, and deciding what we can responsibly promise. Work on either can change our understanding of the other.
+- **What would create value?** Discover the problems, purposes, needs, and obligations that might justify engineering work.
+- **What can we responsibly promise?** Decide which candidate obligations the engineering effort should accept.
 
-## Discovering what would create value
+Neither judgment is simply a matter of asking users what they want. Needs may be implicit, stakeholders may disagree, and obligations may come from operations, contracts, laws, standards, existing systems, and the surrounding domain. Work on either judgment can change the other. Requirements engineering does not eliminate uncertainty before commitment. It reduces uncertainty enough that a commitment can be defended.
 
-Requirements begin with people: what are they trying to accomplish, what problems matter to them, and under what conditions will the software be used? Engineers learn this from stakeholders and from the environment in which people work.
+## What would create value?
 
-No single technique will fully reveal what people need. Interviews, surveys, and workshops expose what people can articulate. Observation reveals work practices, tacit knowledge, and workarounds people do not think to report. Existing systems and competitors show current capabilities and expectations. Prototypes and experiments let people react to concrete possibilities rather than describe an imagined system in advance.
+Requirements begin with people: what are they trying to accomplish, what problems matter to them, and under what conditions do they act? Engineers also need to understand how people expect the machine to participate in that activity: what they will provide to it, what they expect from it, where it fits into their workflow, and what else in the environment affects whether the result is useful. A requested feature is evidence about these questions, not necessarily the answer. Other obligations may originate in operations, contracts, regulations, standards, or existing systems rather than with users at all.
 
-These activities produce candidate requirements: possible commitments that deserve consideration. Discovery alone does not determine which candidates to accept. A requested feature may have little value, conflict with another need, cost more than it is worth, or be infeasible under the available constraints. Conversely, something important may never have been explicitly requested.
+Different discovery techniques expose different information:
 
-Software's changeability makes building particularly useful as a discovery technique. A prototype or partial implementation can test an assumption, expose a missing need, or give stakeholders something concrete to evaluate. As GenAI reduces the cost of producing such artifacts, engineers can increasingly obtain evidence by building rather than by discussion or prediction. What is learned may confirm a candidate requirement, change it, reveal another, or show the idea should be abandoned.
+- **Ask** when people can articulate what matters.
+- **Observe** when knowledge is embedded in work practices, tacit expectations, or workarounds.
+- **Compare** when existing systems or prior attempts provide evidence about value and alternatives.
+- **Build** when a prototype or experiment can cheaply test an assumption or provoke useful feedback.
 
-## Deciding which commitments to make
+Choosing among them is itself an engineering judgment: *which action will buy the information needed for the next consequential decision?* Software's changeability makes building unusually useful because a partial realization can sometimes reveal information more cheaply than prolonged prediction. As implementation becomes cheaper, including through GenAI, building can become a more attractive requirements technique.
 
-Discovering that something would create value does not mean that engineers should promise it. A customer may want ten valuable capabilities when the project can responsibly deliver five. Choosing one use of engineering resources necessarily forgoes others.
+Discovery produces **candidate requirements**: possible obligations worth considering. It does not establish that those obligations should be accepted.
 
-Several kinds of information can change that decision, though none provides a formula for it.
+## What can we responsibly promise?
 
-- **Value.** What would it contribute to the purposes the system serves?
-- **Feasibility.** Can it be built under the available constraints?
-- **Cost.** What would delivering and keeping it take?
-- **Dependencies.** What else must exist or hold for it to work?
-- **Risk.** What could go wrong in building or having built it?
-- **Opportunity cost.** What else could the same effort accomplish?
-- **Responsibility.** What consequences would accepting this obligation make us responsible for?
+A **candidate requirement** is an obligation under consideration. A **requirement** is an obligation the engineering effort has accepted. The central judgment is therefore: *Should we make this commitment?*
+
+Several considerations bear on that decision:
+
+- **Value.** What would the candidate contribute, and for whom?
+- **Feasibility.** Can it be satisfied under the available constraints?
+- **Cost.** What will making and keeping the commitment require?
+- **Dependencies.** What else must exist or remain true?
+- **Risk.** What could go wrong in building, operating, or relying on it?
+- **Opportunity cost.** What else could the same engineering effort accomplish?
+- **Responsibility.** What consequences would accepting it make us responsible for?
 
 ![A candidate requirement flows into the central decision, "Should we make this commitment?", which is weighed by value, feasibility, cost, dependencies, risk, opportunity cost, and responsibility. The decision resolves to one of four peer outcomes: accept, revise, learn more, or reject. Accept yields a requirement.](figures/commitment-decision.svg)
 
 *All four outcomes are legitimate resolutions; only accept yields a requirement.*
 
-The cost of a commitment includes more than implementation. A feature may require architectural changes, integration with other systems, additional validation, operational support, security controls, maintenance, or compatibility commitments that persist long after its code has been written.
+These considerations structure judgment rather than provide a formula. A valuable capability may be infeasible or too risky; a feasible capability may not justify its cost; two worthwhile candidates may compete for the same resources. Cost includes not only implementation but also integration, validation, operation, support, security, maintenance, and future change. Estimates can therefore change which commitments are worth making, while professional responsibility can rule out commitments whose consequences engineers should not accept.
 
-Estimation informs the commitment decision. Engineers need some understanding of scope to estimate effort, while estimates can change which scope is worth accepting. A customer may reconsider a requirement after learning its likely cost. Engineers may revise it to obtain most of its value more cheaply, or decide that more information is needed first.
+## Accept, revise, learn more, or reject
 
-Professional responsibility also affects the decision. A requested system may be feasible and economically attractive while imposing unacceptable risks on users, workers, or others affected by it. Engineers must therefore consider not only what people value and what can be built, but the consequences of accepting the obligation.
+A commitment decision has four legitimate outcomes:
 
-GenAI changes some of these judgments by reducing implementation and experimentation costs. It does not remove the costs of integration, validation, operation, maintenance, or future change, nor does it decide whether a commitment is worthwhile. A capability that has become cheap to implement may become worth accepting; another may remain a poor commitment because its other consequences dominate its implementation cost.
+- **Accept.** Take responsibility for satisfying the candidate; it becomes a requirement.
+- **Revise.** Change its scope, conditions, or obligation and reconsider it.
+- **Learn more.** Acquire information that could materially change the decision.
+- **Reject.** Decline the commitment under what is known.
 
-## Discovery and commitment interact
+**Learn more** matters because uncertainty is not itself a reason to accept or reject. Ask: *What don't we know? Could knowing it change the decision? What would it cost to find out?* If missing information could change an important decision and can be obtained economically, learning is the engineering decision.
 
-Discovery and commitment are coupled rather than sequential. Attempts to evaluate a commitment often reveal something new about what would create value. An estimate may expose a dependency that changes the proposed requirement. A prototype may show that a requested workflow does not solve the underlying problem. Negotiation may reveal that one stakeholder's requirement conflicts with another's. Engineers may reject one candidate and discover an alternative that achieves the same purpose at lower cost or risk.
+This gives requirements work a stopping condition. Engineers do not need to know everything before accepting a requirement. They need enough evidence that the commitment can be defended given its consequences and the remaining uncertainty.
 
-Sometimes the right decision is to learn more. When uncertainty could change whether a commitment should be accepted, engineers can ask what information is missing and whether obtaining it is worth the cost. They might interview another stakeholder, observe the current workflow, investigate a dependency, improve an estimate, or build a prototype. The resulting evidence feeds back into both discovery and commitment.
+## The judgments remain coupled
 
-A useful working loop is: discover → organize → negotiate → record → learn → repeat.
+Trying to decide what to promise often changes what appears valuable. An estimate may reveal an unexpected dependency; a prototype may show that the original request solves the wrong problem; risk analysis may expose an obligation that remained implicit. That information flows back into discovery, while new evidence about stakeholder needs and the environment flows forward into commitment.
 
-Different software processes run this loop at different tempos. A plan-driven project may establish a substantial set of commitments before implementation begins. An incremental project may revisit them frequently as partial systems produce evidence. Later specification, architecture, design, implementation, validation, and use can also expose information that reopens an earlier requirements decision.
-
-The aim is to learn enough to make commitments that can be justified given what is known.
+The coupling continues after requirements work. Specification, architecture, implementation, validation, operation, and use can all produce evidence that reopens an earlier decision. Requirements are commitments, not claims of perfect foresight.
 
 ## From requirements to specification
 
-Accepting a requirement decides what the engineering effort is willing to promise. The requirement may still leave substantial freedom in what the software actually does.
+Accepting a requirement establishes what the engineering effort is willing to promise in the world. Requirements work should also have established enough understanding of that world to explain the commitment: what stakeholders are trying to accomplish, how they expect to interact with the machine, and what relevant conditions surround that interaction.
 
-For example, a requirement to "warn users before illness affects their day" identifies a desired outcome, but does not establish which observations justify a warning, when the warning should occur, or what behavior counts as satisfying the requirement.
+It does not yet follow exactly what the machine must guarantee. Some responsibility may reasonably remain with users, operators, other systems, or the surrounding environment; other responsibility must belong to the machine itself. Nor has the requirement necessarily settled every consequential distinction among acceptable machine behaviors.
 
-Specification addresses those questions. It makes accepted requirements precise enough to distinguish acceptable from unacceptable realizations while leaving other choices open.
+Requirements asks: *what should we promise?* Specification asks: *what must the machine and its environment provide for us to keep that promise?* Specification takes the accepted commitment and the understanding behind it, then decides where responsibility belongs and which differences among possible realizations must be constrained.

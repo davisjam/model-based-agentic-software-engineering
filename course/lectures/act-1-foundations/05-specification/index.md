@@ -23,7 +23,7 @@ materials:
 
 **Premise.** *Requirements establish what engineers have decided to promise. Specification determines what those commitments require of the machine and its environment, while preserving choices that do not matter.*
 
-Requirements establish commitments but leave many realizations possible. Specification determines what those commitments require of the machine and its environment while preserving choices that do not matter. Because some unresolved distinctions are consequential and some uncertain, specification requires judgment rather than maximal detail.
+Requirements establish commitments grounded in an understanding of what stakeholders need, how they expect to interact with the machine, and the world in which that interaction occurs. They do not yet determine exactly what the machine must guarantee. Specification carries that understanding forward by determining what the commitments require of the machine and its environment while preserving choices that do not matter. Because some unresolved distinctions are consequential and some uncertain, specification requires judgment rather than maximal detail.
 
 Specification makes three judgments:
 
@@ -39,7 +39,7 @@ Together they set the priority. A consequential property that is already well un
 
 ## Where does responsibility belong?
 
-A requirement describes something we want to be true in the world. A machine directly controls only its own behavior. Specification connects the two. Following Zave and Jackson: requirements describe desired properties of the world, environmental assumptions describe what the surrounding world provides, and the machine specification constrains what the machine guarantees at its boundary with that world. The engineering claim is that assumptions and specification together establish the requirement. A program can perfectly satisfy its machine specification and still fail the requirement when a required environmental assumption does not hold.
+A requirement describes something we want to be true in the world. Requirements work gives us an understanding of that world and of how stakeholders expect the machine to participate in it, but the machine directly controls only its own behavior. Specification turns that understanding into an allocation of responsibility. Following Zave and Jackson: requirements describe desired properties of the world, environmental assumptions describe what the surrounding world provides, and the machine specification constrains what the machine guarantees at its boundary with that world. The engineering claim is that assumptions and specification together establish the requirement. A program can perfectly satisfy its machine specification and still fail the requirement when a required environmental assumption does not hold.
 
 The boundary is not simply discovered. Engineers decide where responsibility resides. A system might assume that its input is valid, or it might be required to validate that input itself. Each choice changes what the machine is responsible for doing.
 

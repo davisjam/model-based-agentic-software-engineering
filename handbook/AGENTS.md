@@ -170,7 +170,43 @@ structure.
 
 ---
 
-# 6. Begin from engineering problems, not catalogs
+# 6. Lander typesetting grammar
+
+Landers share one typesetting grammar so the family reads as deliberately
+continuous: **bold** marks the model's named pieces, *italics* marks the
+questions the engineer asks, and roman prose carries the explanation and
+argument. The grammar applies to all landers; the Requirements and
+Specification landers are the reference exemplars.
+
+1. **Bold** the named concepts, alternatives, and decision variables a student
+   should scan for: the section-question names, discovery alternatives
+   (**Ask** / **Observe** / **Compare** / **Build**), **candidate
+   requirement** and **requirement** where they are defined, the commitment
+   considerations (**Value** through **Responsibility**), and the outcomes
+   (**Accept** / **Revise** / **Learn more** / **Reject**).
+2. *Italicize* the questions engineers actually ask themselves — judgment
+   prompts such as *Should we make this commitment?* or *What don't we know?
+   Could knowing it change the decision? What would it cost to find out?*
+3. Do not bold whole explanatory sentences for emphasis. Bold has a semantic
+   job: named concept, decision category, or alternative.
+4. The premise convention is unchanged: `**Premise.** *full premise sentence
+   in italics.*`
+5. Use bullets when enumerating a taxonomy or decision set; each bullet begins
+   with its **bold** category, then concise prose (`- **Ask.** …`). Keep every
+   model list tight — no blank lines between items; a blank line splits the
+   list block and breaks the module-schema gate.
+6. Do not re-bold ordinary terminology once defined. Bold **candidate
+   requirement** at its definition, not at every later mention; bold **Learn
+   more** only when naming the formal outcome.
+7. Headings carry their own emphasis — no bold or italics inside `##`
+   headings.
+8. For a lander-to-lander baton (Requirements → Specification), emphasize
+   through structure and wording, not typography: terms such as
+   "stakeholders", "workflow", "machine", and "environment" stay roman.
+
+---
+
+# 7. Begin from engineering problems, not catalogs
 
 Methods, patterns, models, and tools should enter because they help answer an engineering question.
 
@@ -194,7 +230,7 @@ Do not label an alternative "best practice" unless the others are genuinely domi
 
 ---
 
-# 7. Tradeoffs must explain mechanisms
+# 8. Tradeoffs must explain mechanisms
 
 Avoid empty tradeoff prose such as:
 
@@ -210,7 +246,7 @@ The reader should be able to transfer the reasoning to a new problem.
 
 ---
 
-# 8. Keep the central distinctions stable
+# 9. Keep the central distinctions stable
 
 ## Software as an expressive medium; engineering as what we do with it
 
@@ -262,7 +298,7 @@ Explain the relationship; do not use the sentence as a substitute for explanatio
 
 ---
 
-# 9. Decisions flow downward; evidence flows upward
+# 10. Decisions flow downward; evidence flows upward
 
 The conceptual progression is:
 
@@ -284,7 +320,7 @@ Treat this feedback as normal engineering learning, not as a failure of the prog
 
 ---
 
-# 10. Connect decisions to the engineered medium where it explains them
+# 11. Connect decisions to the engineered medium where it explains them
 
 The engineered medium is the book's conceptual spine.
 
@@ -304,7 +340,7 @@ Teach the general software-engineering principle otherwise.
 
 ---
 
-# 11. Use examples to carry reasoning
+# 12. Use examples to carry reasoning
 
 Examples should show:
 
@@ -322,7 +358,7 @@ Rotate examples when another domain better demonstrates the abstraction.
 
 ---
 
-# 12. Preserve the semantic components
+# 13. Preserve the semantic components
 
 Use the established box vocabulary consistently:
 
@@ -352,7 +388,7 @@ The corresponding course/lecture lander is authoritative for the candidate readi
 
 ---
 
-# 13. Chapter burdens
+# 14. Chapter burdens
 
 When revising a chapter, preserve its central engineering question.
 
@@ -393,7 +429,7 @@ Distinguish choices to **follow**, **choose**, or **escalate**.
 
 ---
 
-# 14. Authoring workflow
+# 15. Authoring workflow
 
 For substantial chapter work:
 
@@ -430,7 +466,7 @@ Run the `self-communicate` skill, then perform the handbook-specific review belo
 
 ---
 
-# 15. Handbook-specific review
+# 16. Handbook-specific review
 
 ## Argument
 - Does the chapter have one identifiable engineering problem?
@@ -468,7 +504,7 @@ Run the `self-communicate` skill, then perform the handbook-specific review belo
 
 ---
 
-# 16. Final test
+# 17. Final test
 
 For every chapter, ask:
 
