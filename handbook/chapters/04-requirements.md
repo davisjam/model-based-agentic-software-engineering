@@ -15,12 +15,12 @@ objectives:
   - Distinguish estimates, budgets, targets, and commitments.
 ---
 
-**Premise.** *Requirements engineering turns uncertainty about what matters into engineering
-commitments.*
+**Premise.** *Requirements engineering addresses two coupled problems: discovering what would
+create value and deciding what we can responsibly promise.*
 
 Software systems are built for purposes in the world. Before engineers can decide how a system
-should work, they must decide what it should accomplish. That is not simply a matter of asking
-people what they want. A user usually describes a solution
+should work, they must decide what would create value and what they can responsibly promise to
+deliver. Neither decision is simply a matter of asking people what they want. A user usually describes a solution
 they can imagine, using the vocabulary of systems they already know. Their request may reveal
 something important without literally describing what should be built. Different stakeholders may
 want different things. Important needs may remain implicit until something violates them.
@@ -28,35 +28,35 @@ Obligations may also come from laws, contracts, existing systems, operations, st
 parts of the surrounding domain.
 
 The requirements engineer is therefore not a stenographer. Requirements engineering requires
-interpretation, and engineers are responsible for the interpretations and commitments they make. The
-work has two coupled problems: discovering what would create value and deciding what we can
-responsibly promise.
+interpretation, and engineers are responsible for the interpretations and commitments they make.
+Discovery and commitment therefore inform one another: what appears valuable affects what engineers
+consider promising, while feasibility, cost, risk, and new evidence can change what appears
+valuable.
 
 ::: {.definition #def-requirements-engineering title="Requirements engineering"}
 Requirements engineering connects the purposes a system serves to decisions about what the system
 should do and what constraints it must satisfy. It discovers candidate obligations, evaluates them,
-and determines which the engineering effort will accept.
+and determines which engineers can responsibly accept as commitments.
 :::
 
-That definition compresses a progression this chapter unpacks. Requirements engineering moves an
-effort through three states: *what might matter* → *what appears valuable* → *what we will
-promise*. Discovery makes the first move, turning a vague sense of purpose into candidate
-obligations. A judgment about commitment makes the second, and it is a genuine engineering decision:
-a candidate can be accepted, revised, investigated further, or rejected. Nor is the movement
-one-way. What engineers learn while deciding (an estimate, a dependency, a stakeholder conflict)
-can reopen discovery and change what appears valuable.
+That definition compresses two coupled judgments this chapter unpacks. Discovery asks what would
+create value and produces candidate obligations. Commitment asks what we can responsibly promise. A
+candidate can be accepted, revised, investigated further, or rejected. Neither judgment is final
+while the other is changing. What engineers learn while deciding—an estimate, a dependency, a
+stakeholder conflict—can change what appears valuable. What engineers learn about value can
+likewise change which commitments are worth investigating.
 
 ::: {.key-idea #key-defensible-commitment title="The standard requirements work must meet"}
 Requirements engineering does not eliminate uncertainty before commitment. It reduces uncertainty
 enough that a commitment can be defended.
 :::
 
-That standard governs everything that follows. Discovery buys the information a defensible
-commitment needs; the commitment decision judges whether enough has been bought.
+That standard governs everything that follows. Discovery buys information a defensible
+commitment needs; commitment judges whether enough has been bought.
 
-## What might matter {#sec-what-might-matter}
+## What would create value {#sec-what-might-matter}
 
-The model begins with the space of things that might matter, and the first task is to map it. A
+The first problem is discovering what would create value. A
 requirement is meaningful relative to some purpose. Requirements connect what a system is for to
 what engineers promise the system will do. Locally, the relationship appears simple: Purpose →
 Requirements → System.
@@ -156,7 +156,7 @@ Organize → Negotiate → Record → Learn → repeat. Every software process p
 loop. What differs is when requirements are established, how much is established at once, and how
 often earlier decisions are revisited.
 
-## From value to commitment {#sec-candidate-to-commitment}
+## What can we responsibly promise? {#sec-candidate-to-commitment}
 
 Discovering that something would be valuable does not automatically make it a requirement.
 
@@ -226,8 +226,8 @@ If nothing we could learn would change the decision, more information is not wor
 with what is known. If a cheap investigation could flip the decision, buying it first is the
 defensible move.
 
-The instruments for learning more are the discovery mechanisms of @sec-discovering, now aimed at a
-specific commitment. Interview another stakeholder when the uncertainty is about value. Observe the
+The same mechanisms used to discover value can now buy information about a specific
+commitment. Interview another stakeholder when the uncertainty is about value. Observe the
 current workflow when the uncertainty is about tacit needs. Investigate a dependency when the
 uncertainty is about feasibility. Improve an estimate when the uncertainty is about cost. Build a
 prototype when nothing short of a concrete artifact will produce the evidence.
@@ -249,8 +249,8 @@ Why does the commitment decision deserve this machinery? Because engineering cap
 and an accepted obligation is long-lived. Accepting one obligation consumes
 resources that could have served another. The cost of a requirement therefore includes not only what
 it takes to satisfy it, but also the value of what the organization gives up by doing so. This is
-opportunity cost. Requirements engineering asks not merely *would this be useful?* but *is this an
-obligation we should accept?*
+opportunity cost. Requirements engineering asks not merely *would this create value?* but *is this
+an obligation we can responsibly accept?*
 
 Accepting also changes the engineering problem itself. The requirement becomes something future
 architecture, design, implementation, validation, operations, and maintenance must preserve.
@@ -309,20 +309,18 @@ Requirements engineering asks: *what should we promise?* Specification — the s
 
 ## Summary
 
-Requirements engineering turns uncertainty about what matters into obligations an engineering effort
-is willing to accept, and this chapter's model is a procedure for making that decision. Begin with
-what might matter: map candidates from every source that holds obligations, not only users and
-customers but also operations, existing systems, contracts, regulations, standards, technology, and
-the surrounding domain. Buy information deliberately: ask when stakeholders can articulate what you need,
-observe when the knowledge is tacit, compare when others have already explored the alternative,
-build when only a concrete artifact will produce a reaction.
+Requirements engineering addresses two coupled problems: discovering what would create value and
+deciding what engineers can responsibly promise. Requirements can arise from users, operations,
+existing systems, contracts, regulations, standards, technology, and the surrounding domain. Asking,
+observing, comparing, prototyping, and experimenting buy different kinds of information about what
+matters.
 
-Then, for each candidate worth deciding, weigh value, feasibility, cost, dependencies, risk,
-opportunity cost, and responsibility, and resolve the decision to one of four outcomes: accept the
-obligation, revise it to keep its value at lower cost or risk, learn more when missing information
-could change the decision and is worth its price, or reject it. Let what you learn flow backward
-into the candidate space, the discovery plan, and earlier commitments. The procedure ends not when
-uncertainty is gone but when the commitment can be defended.
+Discovering value does not create a commitment. Candidate obligations must also be evaluated against
+feasibility, lifecycle cost, opportunity cost, risk, and professional responsibility. That
+evaluation can itself produce new information: an estimate, dependency, conflict, or prototype may
+change what appears valuable or suggest a better alternative. Requirements engineering therefore
+does not eliminate uncertainty before commitment. It reduces uncertainty enough that a commitment
+can be defended.
 
 ::: read_further
 Nuseibeh, Bashar, and Steve Easterbrook. ["Requirements Engineering: A Roadmap."](https://doi.org/10.1145/336512.336523) In *Proceedings of the Conference on The Future of Software Engineering (ICSE '00)*, 35–46. New York: ACM, 2000. A concise map of the field — elicitation, modeling, analysis, negotiation, and evolution — that situates this chapter's discover-then-commit model within the discipline's larger structure.
