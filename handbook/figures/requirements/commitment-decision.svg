@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 390" font-family="'Source Sans 3', Helvetica, sans-serif" role="img">
+  <title>The commitment decision: a candidate requirement resolves to one of four outcomes</title>
+  <!-- Umber Monograph palette: ink #1c1917, paper #fdfcf9, accent #9a3f12, rule #e4e0d8, panel #f6f4ef -->
+  <rect x="0" y="0" width="720" height="390" fill="#fdfcf9"/>
+
+  <defs>
+    <marker id="cd-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- candidate requirement -->
+  <rect x="270" y="16" width="180" height="48" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="360" y="45" text-anchor="middle" font-size="15" fill="#1c1917">Candidate requirement</text>
+
+  <line x1="360" y1="64" x2="360" y2="90" stroke="#9a3f12" stroke-width="2" marker-end="url(#cd-arrow)"/>
+
+  <!-- the decision, annotated by what weighs it -->
+  <rect x="200" y="96" width="320" height="96" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="360" y="128" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">Should we make this commitment?</text>
+  <text x="360" y="154" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">weighed by value &#183; feasibility &#183; cost &#183; dependencies</text>
+  <text x="360" y="172" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">risk &#183; opportunity cost &#183; responsibility</text>
+
+  <!-- fan: four peer outcomes -->
+  <g stroke="#9a3f12" stroke-width="2" fill="none">
+    <path d="M360,192 L360,218"/>
+    <path d="M360,218 L99,218 L99,242" marker-end="url(#cd-arrow)"/>
+    <path d="M360,218 L273,218 L273,242" marker-end="url(#cd-arrow)"/>
+    <path d="M360,218 L447,218 L447,242" marker-end="url(#cd-arrow)"/>
+    <path d="M360,218 L621,218 L621,242" marker-end="url(#cd-arrow)"/>
+  </g>
+
+  <rect x="24" y="246" width="150" height="48" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="99" y="275" text-anchor="middle" font-size="15" fill="#1c1917">Accept</text>
+
+  <rect x="198" y="246" width="150" height="48" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="273" y="275" text-anchor="middle" font-size="15" fill="#1c1917">Revise</text>
+
+  <rect x="372" y="246" width="150" height="48" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="447" y="275" text-anchor="middle" font-size="15" fill="#1c1917">Learn more</text>
+
+  <rect x="546" y="246" width="150" height="48" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="621" y="275" text-anchor="middle" font-size="15" fill="#1c1917">Reject</text>
+
+  <!-- only accept yields a requirement -->
+  <line x1="99" y1="294" x2="99" y2="320" stroke="#9a3f12" stroke-width="2" marker-end="url(#cd-arrow)"/>
+  <rect x="24" y="326" width="150" height="48" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="99" y="355" text-anchor="middle" font-size="15" fill="#1c1917">Requirement</text>
+</svg>
