@@ -29,47 +29,58 @@ materials:
 
 **Premise.** *Validation asks what evidence is sufficient to deliver a software system into the world.*
 
-Software's updateability changes the economics of validation. Engineers can sometimes deliver a system before resolving every uncertainty, observe what happens, and repair what they learn. A game can ship with an occasional graphical defect. An internal tool can be useful despite awkward workflows. A consumer application may need to reach users before its engineers can learn which capabilities people actually value. In these cases, delaying delivery until every known uncertainty has been resolved can cost more than learning from use.
+Software's updateability changes the economics of validation. Engineers can sometimes deliver before resolving every uncertainty, observe what happens, and repair what they learn: a game can ship with an occasional graphical defect. In that limited sense, *move fast and break things* describes a real engineering strategy.
 
-In that limited sense, *move fast and break things* describes a real engineering strategy. It is not always irresponsible to deliver software that might fail. The engineering question is whether discovering the failure after delivery is an acceptable way to learn.
+But an update repairs the software, not necessarily the consequences of its previous behavior. It cannot recover money already lost, make disclosed information private again, or reverse a physical injury. As the consequences of being wrong grow more substantial or less reversible, learning through failure becomes more expensive. Validation therefore does not seek maximal confidence before every delivery; it asks what evidence is sufficient for *this* one.
 
-That qualification matters because software's updateability repairs the software, not necessarily the consequences of its previous behavior. An update can correct a graphical defect after players encounter it. It cannot necessarily recover money already lost, make disclosed information private again, or reverse a physical injury. As the consequences of being wrong become more substantial or less reversible, learning through failure becomes more expensive.
+Answering that requires four related judgments:
 
-Validation therefore does not seek the maximum possible confidence before every delivery. It asks what we need to know before *this* delivery, given what is at stake, what stakeholders need, and what engineers are professionally prepared to stand behind.
+- *What is at stake?* What would happen if the system were wrong, and how reversible would the consequences be?
+- *What must we establish?* What claims have to be justified before this delivery?
+- *What evidence would bear on those claims?* Which observations, analyses, or checks would materially reduce the relevant uncertainty?
+- *What should we do?* Given the consequences, claims, evidence, and remaining uncertainty, should we deliver, learn more, change something, or refuse?
 
-## Consequence and professional judgment
+The questions structure the judgment rather than script it; evidence can send an engineer backward.
 
-Consider three software defects. A game sometimes draws a character incorrectly. A TODO application occasionally loses a task. A medical device can sometimes deliver an incorrect dose.
+## What is at stake?
 
-These defects differ in severity and in how directly the software produces their consequences. The game defect may annoy a player. The TODO application destroys information on which a user may depend. The medical device can directly injure its user. Almost any software defect can be connected to severe harm through a sufficiently long causal chain, but causal distance matters: frustrated players sometimes behave badly, yet that does not make an ordinary graphical defect safety-critical.
+Consider three defects: a game sometimes draws a character incorrectly, a TODO application occasionally loses a task, a medical device can deliver an incorrect dose. They differ in severity, reversibility, and how directly the software produces the harm. The game defect annoys; the lost task destroys information a user depends on; the wrong dose injures directly. Almost any defect connects to severe harm through some causal chain, but causal distance matters: frustrated players sometimes behave badly, yet that does not make a graphical defect safety-critical.
 
-Consequences do not mechanically determine whether delivery is justified. Stakeholders and engineers can understand the same consequence and reach different judgments about what it requires. An organization or regulator may judge a residual risk acceptable while an engineer concludes that the available evidence does not justify delivery.
+Consequence establishes an evidentiary burden; it does not mechanically dictate the decision. Stakeholders and engineers can weigh the same consequence differently, and engineers do not merely execute the risk preferences of whoever controls the project: professional authority includes refusing a delivery the engineer cannot justify. The opposite error is real too: demanding far more assurance than the stakes warrant wastes resources and delays useful software. What is at stake determines how much uncertainty engineers can responsibly carry through delivery.
 
-Engineers therefore exercise professional judgment rather than merely implement the preferences of whoever controls the project. That judgment can fail in either direction. Demanding far more assurance than the consequences and stakeholder needs warrant wastes resources and delays useful software. Demanding less assurance than the consequences warrant can make the engineer willing to deliver work they should not stand behind. Professional authority includes the ability to refuse delivery when the engineer cannot justify it.
+## What must we establish?
 
-## From claims to evidence
+Validation begins with claims, not techniques. A payment service might need to establish that a payment cannot be charged twice, that unauthorized users cannot initiate payments, and that normal requests complete within an acceptable time. Evidence supporting one claim may say little about another. These claims are not invented at validation time: they inherit from the requirements the effort committed to, the specification that bounded acceptable behavior, and the architecture and design decisions about how the realization satisfies them. Validation asks which of those claims matter to *this* delivery decision, beginning from *what must be true for this delivery to be justified?* — and only then choosing techniques.
 
-Validation begins with what engineers need to establish, not with a catalog of testing techniques. A payment service might need to establish that a payment cannot be charged twice, that unauthorized users cannot initiate payments, and that normal requests complete within an acceptable time. Evidence supporting one claim may say little about another.
+## What evidence would bear on those claims?
 
-The engineering problem therefore runs from the claim toward appropriate evidence: claim → possible failure → useful evidence. Different techniques provide different kinds of evidence. The useful question is what each technique can establish, what failures it can expose, and what uncertainty remains.
+Different techniques produce different kinds of evidence, so the reasoning runs from each claim toward the evidence that would bear on it:
 
-- **Review** — other engineers inspect the reasoning or artifact, bringing knowledge and perspectives its author may have missed.
-- **Example-based testing** — exercises selected behaviors against expected results; useful when important cases and their expected outcomes are known.
-- **Property-based testing** — states properties that should hold across a space of inputs and searches that space for counterexamples.
-- **Differential testing** — compares independent implementations or systems when a trustworthy expected result is otherwise difficult to obtain.
-- **Fuzzing** — explores large or unusual input spaces to find behaviors the engineer did not anticipate.
-- **Static analysis** — reasons about possible program behaviors without requiring each behavior to be produced through execution.
-- **Model checking** — checks stated properties over the behaviors represented by a model and produces counterexamples when a property fails.
-- **Operational evidence** — observes what happens after delivery, providing evidence that may confirm or invalidate the assumptions that justified it.
+**claim → possible failure → useful evidence**
 
-Several of these techniques answer the same underlying difficulty, the **oracle problem**: engineers can often generate inputs far more cheaply than they can state the correct output for each one. Property-based testing responds by stating the expected answer as a property. Differential testing lets an independent implementation flag the suspicious case. Model checking states the property over an explicit behavioral model and searches the state space for a violation.
+- **Review.** Bring another engineer's knowledge and perspective to the claim.
+- **Example-based testing.** Check selected behaviors with known expected outcomes.
+- **Property-based testing.** Search an input space for violations of stated properties.
+- **Differential testing.** Compare independent realizations when the expected answer is difficult to state.
+- **Fuzzing.** Explore unusual inputs and behaviors engineers may not have anticipated.
+- **Static analysis.** Reason about possible behavior without executing every path.
+- **Model checking.** Search a behavioral model for violations of stated properties.
+- **Operational evidence.** Observe behavior after delivery when learning in the world is acceptable.
 
-No technique supplies confidence by its name alone. A model checker can exhaustively check a property of the model while leaving an incorrect model untouched. Thousands of generated tests can explore an input space while sharing the same mistaken oracle. A code review can bring independent judgment while still missing behavior that neither reviewer considered. Evidence must be evaluated relative to the claim it supports and the assumptions on which it depends.
+Several of these answer the same underlying difficulty, the **oracle problem**: generating test cases is often far cheaper than stating the correct answer for each one. Property-based testing states the expected answer as a property; differential testing lets an independent implementation flag disagreements; model checking states the property over an explicit model and searches it exhaustively.
 
-## How much evidence is enough?
+Neither a technique's name nor the quantity of evidence it produces establishes its strength. A model checker can exhaustively verify a property of the wrong model; thousands of generated tests can share one mistaken oracle; reviewers can share the author's mistaken assumption. Ask of any evidence: *What uncertainty does this evidence reduce, and what assumptions or failure modes remain?*
 
-Additional evidence has a cost. For low-consequence and reversible decisions, delivering sooner and learning from use may be preferable to eliminating every uncertainty beforehand. As consequences become more substantial, direct, or irreversible, engineers should demand stronger evidence before using the world as the place where failures are discovered.
+## What should we do?
 
-Evidence also changes after delivery. Monitoring, incidents, measurements, experiments, and user reports can reveal consequences that were uncertain or unknown beforehand. Continuing to deliver the same behavior is then a new engineering decision made with different knowledge. Software's updateability makes learning after delivery unusually practical, but it also gives engineers unusual ability to respond once the evidence changes.
+Claims, evidence, and remaining uncertainty feed a decision with more than two outcomes:
 
-The validation decision is therefore not always *deliver* or *do not deliver*. Engineers can gather more evidence, change the system, revisit an earlier requirement or design decision, constrain how the software is delivered, or refuse to deliver it. The objective is sufficient evidence for a defensible decision given what is at stake.
+- **Deliver.** The available evidence justifies accepting the remaining uncertainty.
+- **Gather more evidence.** Additional information could materially change the decision.
+- **Change the system.** Reducing the risk is preferable to gathering more evidence about it.
+- **Revisit an upstream decision.** The evidence exposes a problem with a requirement, specification, architecture, or design choice.
+- **Refuse.** No available course makes delivery professionally defensible.
+
+These are not a checklist, and several feed backward. A failed validation need not mean "test more": sometimes the implementation should change, sometimes the architecture is wrong, and sometimes the commitment itself should be reconsidered. The question is never simply *should we deliver?* but *what action follows from what we now know?*
+
+Evidence also changes after delivery. Monitoring, incidents, measurements, and user reports change the state of knowledge; continuing to deliver is then a new decision under new evidence. Software's updateability, where this argument began, makes post-delivery learning unusually practical — and creates the matching obligation to respond when that learning undermines the justification for delivering at all.
