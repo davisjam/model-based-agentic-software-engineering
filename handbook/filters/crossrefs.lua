@@ -51,7 +51,11 @@ function Pandoc(doc)
 
   doc:walk({
     Div = function(el)
-      if el.classes:includes("figure") and el.identifier ~= "" then
+      -- An `.unnumbered` figure claims no number: it is skipped here, so it never consumes a
+      -- sequence slot and figures.lua finds no `data-number` to prepend (mirrors the PDF, where
+      -- `numbering: none` keeps the figure off the Typst counter).
+      if el.classes:includes("figure") and el.identifier ~= ""
+          and not el.classes:includes("unnumbered") then
         fig_seq = fig_seq + 1
         fig_number[el.identifier] = fig_seq
       elseif el.classes:includes("table") and el.identifier ~= "" then

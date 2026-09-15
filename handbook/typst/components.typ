@@ -65,12 +65,15 @@
 }
 
 // A figure: the image, a numbered caption. Typst owns the "Figure N" numbering and the label makes
-// it referenceable via @id.
-#let hb-figure(img, caption: none) = {
+// it referenceable via @id. `numbered: false` renders an UNNUMBERED figure — a plain muted caption
+// with no "Figure N." supplement (the caption show-rule branches on `numbering: none`) and no claim
+// on the figure counter, so the numbered figures around it keep their sequence.
+#let hb-figure(img, caption: none, numbered: true) = {
   figure(
     img,
     caption: caption,
     kind: image,
     supplement: [Figure],
+    numbering: if numbered { "1" } else { none },
   )
 }

@@ -90,10 +90,13 @@
     text(font: font-mono, size: 9.5pt)[#it],
   )
 
-  // Figure captions.
+  // Figure captions. An unnumbered figure (hb-figure numbered: false => numbering: none) gets the
+  // same muted caption line with no "Figure N." supplement prefix.
   show figure.caption: it => block(width: 90%)[
     #text(size: 9.5pt, fill: palette.muted)[
-      #text(weight: 700, fill: palette.accent)[#it.supplement #context it.counter.display(it.numbering).] #it.body
+      #if it.numbering == none [#it.body] else [
+        #text(weight: 700, fill: palette.accent)[#it.supplement #context it.counter.display(it.numbering).] #it.body
+      ]
     ]
   ]
 

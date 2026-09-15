@@ -16,6 +16,12 @@ runs AFTER citeproc. It emits:
            so Typst owns figure numbering and `@fig-x` references resolve to it.
   * web  : a semantic <figure>/<figcaption> with the id as an anchor and "Figure N." prepended,
            where N is the number crossrefs.lua computed and stashed in `data-number`.
+
+Two per-figure attributes modulate the defaults:
+  * `.unnumbered` — an UNNUMBERED figure: no "Figure N." caption prefix, no claim on the figure
+    counter (crossrefs.lua skips it), no `@fig-x` cross-reference (nothing resolves to a number).
+    For orientation figures whose prose never points at them (the Introduction's).
+  * `width="NN%"` — the rendered width in the PDF as a fraction of the text block (default 82%).
 ]]
 
 local function split_image_and_caption(blocks)
@@ -54,18 +60,22 @@ function Div(el)
     end
   end
 
+  local unnumbered = el.classes:includes("unnumbered")
+  local width = el.attributes["width"] or "82%"
+
   if FORMAT == "typst" then
     local cap = pandoc.write(pandoc.Pandoc({ pandoc.Plain(caption_inlines) }), "typst"):gsub("%s+$", "")
-    local typ = table.concat({
+    local parts = {
       "#hb-figure(",
-      '  image("' .. typst_src(image.src) .. '", alt: "' .. alt:gsub('"', '\\"') .. '", width: 82%),',
+      '  image("' .. typst_src(image.src) .. '", alt: "' .. alt:gsub('"', '\\"') .. '", width: ' .. width .. "),",
       "  caption: [" .. cap .. "],",
-      ")" .. (el.identifier ~= "" and (" <" .. el.identifier .. ">") or ""),
-    }, "\n")
-    return pandoc.RawBlock("typst", typ)
+    }
+    if unnumbered then table.insert(parts, "  numbered: false,") end
+    table.insert(parts, ")" .. (el.identifier ~= "" and (" <" .. el.identifier .. ">") or ""))
+    return pandoc.RawBlock("typst", table.concat(parts, "\n"))
   else
     local cap_html = pandoc.write(pandoc.Pandoc({ pandoc.Plain(caption_inlines) }), "html"):gsub("%s+$", "")
-    local num = el.attributes["data-number"]
+    local num = (not unnumbered) and el.attributes["data-number"] or nil
     local label = num and ("Figure " .. num .. ". ") or ""
     local html = table.concat({
       '<figure id="' .. el.identifier .. '" class="handbook-figure">',
