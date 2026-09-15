@@ -369,6 +369,12 @@ def emit_course_landers_staple() -> None:
 
 def main(argv: list[str]) -> int:
     target = argv[0] if argv else "all"
+    if target == "staple":
+        # Lightweight refresh of the local landers staple ONLY — no chapter build. The pre-push
+        # hook runs this so course-landers-stapled.md stays fresh at push time, the same way
+        # book/build_book.py --pdf keeps the book PDF + book staple fresh (still CI-skipped inside).
+        emit_course_landers_staple()
+        return 0
     book = C.load_book()
     if target in ("pdf", "book"):
         build_pdf(book)
@@ -378,7 +384,7 @@ def main(argv: list[str]) -> int:
         build_pdf(book)
         build_web(book)
     else:
-        C.die(f"unknown target '{target}' (use: pdf | web | all)")
+        C.die(f"unknown target '{target}' (use: pdf | web | all | staple)")
     emit_course_landers_staple()
     return 0
 

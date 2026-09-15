@@ -60,3 +60,11 @@ if _run("catalog_tests.py", "--tier1"):
         "\npre-push: catalog_tests.py --tier1 FAILED — push refused.\n"
         "Fix the failing gate(s) above, or `git push --no-verify` to override (rare).\n")
     sys.exit(1)
+
+# Refresh the LOCAL landers review staple (dist/course-landers-stapled.md) at push time, the way the
+# book PDF + book staple refresh above — so it never goes stale between manual handbook builds. This
+# is a convenience refresh, NOT a gate: it is a gitignored, CI-skipped local review aid, so a failure
+# must never refuse a push (unlike the render/PDF/tier1 gates above).
+print("pre-push: handbook/scripts/build.py staple (refresh local landers review staple — non-gating) …", file=sys.stderr)
+if _run("handbook/scripts/build.py", "staple"):
+    sys.stderr.write("pre-push: staple refresh failed (non-gating — push continues).\n")
