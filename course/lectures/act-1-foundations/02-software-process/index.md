@@ -29,9 +29,9 @@ materials:
 
 A software process organizes engineering activities: deciding what to build, designing it, implementing it, validating it, releasing it, and learning from the result. There is no universally correct ordering of these activities. Instead, process is an engineering choice shaped by properties of the system and its environment.
 
-That distinction matters because the activities themselves are fairly stable. Nearly every serious engineering effort must somehow determine what should be built, work out how to build it, realize the design, and establish whether the result is acceptable. What varies is how we arrange that work. Must requirements be substantially settled before design begins? Can implementation teach us something that changes the requirements? When do we validate? When can users see the system? How much work do we complete before revisiting earlier decisions?
+That distinction matters because the activities themselves are fairly stable. Nearly every serious engineering effort must somehow determine what should be built, work out how to build it, realize the design, and establish whether the result is acceptable. What varies is how we arrange that work. *Must requirements be substantially settled before design begins? Can implementation teach us something that changes the requirements? When do we validate? When can users see the system? How much work do we complete before revisiting earlier decisions?*
 
-Plan-driven and incremental processes give different answers to these questions. Neither eliminates the fundamental engineering activities. They partition and order them differently.
+**Plan-driven** and **incremental** processes give different answers to these questions. Neither eliminates the fundamental engineering activities. They partition and order them differently.
 
 ## A model for the process choice
 
@@ -55,7 +55,7 @@ Software makes this process question especially interesting because software is 
 
 Imagine constructing a bridge one span at a time, opening each span to traffic, and using what we learn from drivers to decide what the next span should look like. The problem is not that civil engineers dislike feedback. The physical artifact makes this particular feedback loop unhelpful: partially constructed bridges provide little of the intended value, and major decisions become extraordinarily expensive to reverse.
 
-Software often changes those economics. But **software being changeable does not mean every software decision is cheap to change**. A prototype may be disposable; a data format may become increasingly difficult to alter as years of stored data accumulate around it. Process choice therefore depends on the particular system, not simply on the fact that it is software.
+Software often changes those economics. But software being changeable does not mean every software decision is cheap to change. A prototype may be disposable; a data format may become increasingly difficult to alter as years of stored data accumulate around it. Process choice therefore depends on the particular system, not simply on the fact that it is software.
 
 Generative AI changes these economics again. If implementation becomes cheaper, building a candidate solution may become a practical way to answer questions that we previously tried to settle through analysis alone. But cheaper implementation does not automatically make requirements more certain, consequential decisions more reversible, or partial systems more informative. Faster building is valuable only when what we build helps us learn.
 
@@ -63,7 +63,7 @@ Generative AI changes these economics again. If implementation becomes cheaper, 
 
 The three dimensions give us a better question than *Which methodology should we use?*
 
-Ask instead: **How much can we know before building, how expensive will our decisions be to change, and how much can we learn from a partial system?**
+Ask instead: *How much can we know before building, how expensive will our decisions be to change, and how much can we learn from a partial system?*
 
 Those answers help determine how to arrange the work. They are not necessarily fixed, either. Engineers can sometimes invest in learning earlier, making decisions easier to reverse, or making systems easier to divide into useful increments. Whether those investments are worthwhile is itself an engineering decision.
 

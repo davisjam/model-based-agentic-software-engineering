@@ -48,7 +48,7 @@ A designer does not begin with a blank sheet of paper. At any particular level, 
 
 Specification establishes properties that must remain true. Architecture establishes consequential organization, responsibilities, boundaries, interfaces, and interaction rules. The engineering environment supplies conventions, shared abstractions, frameworks, policies, and mechanisms that apply across many parts of the system.
 
-What remains is a set of degrees of freedom: choices that have not yet been fixed. Not every degree of freedom deserves further engineering attention. Some choices are genuinely local, and allowing engineers to make them locally is valuable. Others should simply follow an established convention. Design judgment matters when a remaining choice has consequential alternatives.
+What remains is a set of **degrees of freedom**: choices that have not yet been fixed. Not every degree of freedom deserves further engineering attention. Some choices are genuinely local, and allowing engineers to make them locally is valuable. Others should simply follow an established convention. Design judgment matters when a remaining choice has consequential alternatives.
 
 Detailed design can also reveal that a choice was classified incorrectly. A decision that appeared local may affect several components or determine whether a system-level property can be achieved. A failure-handling decision may need to become a codebase-wide convention. A communication decision may need to become an architectural constraint. A newly discovered obligation may even require revisiting the specification.
 
@@ -62,7 +62,7 @@ A design model makes some question about how a part works easier to answer than 
 
 The same kinds of models can therefore appear in specification, architecture, and design. A state machine might specify externally observable behavior in one context and describe the internal lifecycle of a component in another. A graph might describe architectural dependencies at one scale and internal ownership at another. The representation does not determine the engineering level; the question and scope do.
 
-A useful discipline is to ask four questions: What engineering question are we trying to answer? What model makes that question tractable? What property does the model allow us to state precisely? What engineering concern does that property serve?
+A useful discipline is to ask four questions: *What engineering question are we trying to answer? What model makes that question tractable? What property does the model allow us to state precisely? What engineering concern does that property serve?*
 
 A model earns its place by the question it settles, not by how much of the implementation it represents. The goal is not to produce one complete picture of how the system works.
 

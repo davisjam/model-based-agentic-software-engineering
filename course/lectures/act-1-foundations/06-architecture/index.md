@@ -59,16 +59,16 @@ These questions can recur at smaller scales. What makes a decision architectural
 
 Many architectural problems recur, and engineers have developed recurring organizations that offer different ways of addressing them. Components that need to communicate might call one another directly or communicate through events. Computations over related state might pass that state through a pipeline or operate on a shared repository. Dependencies might follow strict layers or deliberately cross them when the abstraction does not provide a needed capability. Domain code might depend directly on infrastructure or define interfaces that infrastructure adapters implement.
 
-Experience with these recurring organizations gives engineers useful expectations about their consequences. A layered organization can provide comprehensible dependency rules but obstruct interactions that naturally cross the layers. A shared repository can simplify consistency while creating a central dependency. Event-based communication can reduce direct coupling while making ordering and end-to-end behavior harder to reason about. Ports and adapters can isolate domain behavior from infrastructure choices while introducing additional interfaces and indirection. None of these consequences makes one organization generally superior to another; they matter according to the properties required of the particular system.
+Experience with these recurring organizations gives engineers useful expectations about their consequences. A **layered organization** can provide comprehensible dependency rules but obstruct interactions that naturally cross the layers. A **shared repository** can simplify consistency while creating a central dependency. **Event-based communication** can reduce direct coupling while making ordering and end-to-end behavior harder to reason about. **Ports and adapters** can isolate domain behavior from infrastructure choices while introducing additional interfaces and indirection. None of these consequences makes one organization generally superior to another; they matter according to the properties required of the particular system.
 
 Architectural patterns are therefore useful in two related ways. They provide plausible alternatives when engineers are deciding how to organize a system, and prior experience provides an initial basis for reasoning about the consequences of those alternatives. That experience does not determine what will happen in a particular system. A pattern may suggest that one organization will improve change isolation or reduce coupling, for example, without establishing how much improvement will result or whether another consequence will matter more.
 
 The important skill is therefore not recognizing pattern names. For any proposed organization, ask:
 
-1. What are the parts, and how may they interact?
-2. What does this organization make easier?
-3. What does it make harder?
-4. What properties can we now analyze?
+1. *What are the parts, and how may they interact?*
+2. *What does this organization make easier?*
+3. *What does it make harder?*
+4. *What properties can we now analyze?*
 
 ## Architecture makes some system properties analyzable
 

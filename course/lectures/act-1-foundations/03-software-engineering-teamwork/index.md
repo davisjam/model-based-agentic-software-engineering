@@ -26,7 +26,7 @@ materials:
 
 **Premise.** *A software team is a system for coordinating engineering capability.*
 
-Software engineering requires more than assembling capable individuals. As projects grow, engineers must divide work, maintain shared context, make compatible decisions, integrate changes, and detect when their understanding has diverged. These interactions create coordination costs: adding engineers adds capability, but also adds communication, dependencies, handoffs, and integration work. This is why engineering organizations do not scale linearly simply by adding people. The engineering problem is therefore not simply how to make individuals productive. It is how to combine, allocate, and develop capability so that the team can accomplish more than its members could separately, without allowing the coordination required to consume the benefit.
+Software engineering requires more than assembling capable individuals. As projects grow, engineers must divide work, maintain shared context, make compatible decisions, integrate changes, and detect when their understanding has diverged. These interactions create **coordination costs**: adding engineers adds capability, but also adds communication, dependencies, handoffs, and integration work. This is why engineering organizations do not scale linearly simply by adding people. The engineering problem is therefore not simply how to make individuals productive. It is how to combine, allocate, and develop capability so that the team can accomplish more than its members could separately, without allowing the coordination required to consume the benefit.
 
 ## A model of teamwork at several levels
 
@@ -39,13 +39,13 @@ This module develops a model for reasoning about teamwork at several levels:
 
 ## Capability also has to be allocated
 
-Coordination asks how several engineers can combine their capabilities effectively. A team faces another problem as well: where should its capability go?
+Coordination asks how several engineers can combine their capabilities effectively. A team faces another problem as well: *where should its capability go?*
 
 Assigning work does more than determine who produces today's artifact. Work also changes the people who perform it. An experienced engineer who handles every database problem may complete each one quickly, but the team can become increasingly dependent on that engineer. Giving some of that work to another engineer may cost more today while developing capability the team will need tomorrow.
 
 This gives us a second question: *What should this work accomplish now, and what should it leave the team able to do next?*
 
-Mentorship, specialization, rotation, and delegation are alternatives for answering that question, not practices that are automatically good. Specialization can make today's work efficient while concentrating knowledge. Rotation can spread knowledge while sacrificing expertise and imposing handoff costs. Pairing can develop capability while consuming the attention of two engineers.
+**Mentorship**, **specialization**, **rotation**, and **delegation** are alternatives for answering that question, not practices that are automatically good. Specialization can make today's work efficient while concentrating knowledge. Rotation can spread knowledge while sacrificing expertise and imposing handoff costs. Pairing can develop capability while consuming the attention of two engineers.
 
 Engineering management is therefore part of the teamwork problem. It allocates, sustains, and develops engineering capability over time. The fastest assignment may be the right one, especially when the immediate consequences are urgent. But when alternatives are available, engineers should also ask what expertise an assignment develops, what scarce capability it consumes, what dependency it creates, and what happens if the person receiving the work later becomes unavailable.
 

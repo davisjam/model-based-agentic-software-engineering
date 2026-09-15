@@ -36,6 +36,6 @@ This module introduces six claims about how GenAI changes software engineering:
 
 ## From the claims to MAGE
 
-These six claims lead to MAGE: Model-Based Agentic Software Engineering. Its working cycle is: model consequential knowledge; enforce important obligations; do the governed work; convert recurring failures and judgment into durable structure; repeat. The goal is not maximum automation. It is to make greater autonomy possible while preserving the engineering decisions and controls that matter.
+These six claims lead to **MAGE**: Model-Based Agentic Software Engineering. Its working cycle is: model consequential knowledge; enforce important obligations; do the governed work; convert recurring failures and judgment into durable structure; repeat. The goal is not maximum automation. It is to make greater autonomy possible while preserving the engineering decisions and controls that matter.
 
 One question recurs throughout the course: *How do we safely grant autonomy to commodity intelligence—and what cannot be delegated?* The lecture develops Modeling, Alignment, and governance conversion from this engineering problem rather than presenting MAGE as a collection of prescribed practices.
