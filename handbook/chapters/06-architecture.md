@@ -156,93 +156,42 @@ and coordination among people.
 
 ## Choosing among acceptable architectures {#sec-choosing}
 
-Several organizations may satisfy the same specification. Architecture therefore presents a
-decision problem: which acceptable organization should we choose, given what we know and what
-matters? Suppose two architectural organizations both satisfy the specification. Architecture A
-offers lower latency and higher availability, but costs more and creates stronger coupling around future
-changes. Architecture B is cheaper and makes changes more local, but has higher latency and lower
-availability. Which is better? There is no answer until we know what matters. This is where
-architectural decision-making begins.
+Satisfying the specification does not determine a unique architecture.
+Several organizations may preserve the required properties while differing in cost, performance, changeability, failure behavior, operational complexity, and the burden they place on engineers.
+Once clearly unacceptable alternatives have been removed, architecture becomes a comparative decision among organizations that could plausibly work.
 
-## Constraints are not objectives {#sec-constraints-not-objectives}
+A useful comparison proceeds in four steps.
 
-The first step is to separate requirements that must be satisfied from properties we would merely
-prefer to improve. Suppose the specification requires a maximum latency of 150 milliseconds. An
-architecture predicting 180 milliseconds is not merely worse on latency. It is outside the
-acceptable realization space. It is not a worse choice; it is not a choice. A required bound is a
-constraint, not an objective to be traded against cost.
+1. **Separate constraints from objectives.**
+   A constraint determines whether an alternative remains admissible.
+   An objective distinguishes among alternatives that remain admissible.
+   A required deployment boundary, regulatory obligation, or compatibility requirement may eliminate an architecture outright; latency, operating cost, or ease of change may instead provide reasons to prefer one acceptable alternative over another.
+   Confusing the two wastes judgment on choices that have already been made.
+2. **Eliminate what does not require judgment.**
+   Some alternatives fail directly against known constraints or are dominated by another alternative on every consequential dimension.
+   Remove them.
+   Engineering judgment is scarce; it should be spent where plausible alternatives remain and their consequences differ in ways that matter.
+3. **Compare genuine tradeoffs.**
+   The remaining alternatives usually make different properties easier to preserve.
+   A boundary that isolates failures may increase communication overhead.
+   Centralizing state may simplify consistency while increasing coupling.
+   Replication may improve availability while making ownership and synchronization harder to reason about.
+   There is no general rule that resolves such choices.
+   The engineer must decide which consequences matter most for this system and which compromises its obligations permit.
+4. **Buy information when uncertainty could change the decision.**
+   An architectural decision need not be made from assumptions that are cheap to test.
+   If two alternatives differ principally in an uncertain property, ask what evidence would distinguish them and whether obtaining it is worth the cost.
+   A prototype, benchmark, dependency analysis, failure experiment, or small implementation may reveal enough to choose.
+   The relevant question is not whether more information would be useful, but whether it could change the architectural decision.
 
-::: {.note title="Constraints are not objectives"}
-A candidate that violates the specification is not a lower-scoring architecture. It is not an
-acceptable architecture.
-:::
-
-This distinction matters because apparently sophisticated decision methods can accidentally trade
-away obligations. A weighted spreadsheet might assign scores for performance, cost, reliability,
-and changeability, multiply by chosen weights, and declare one architecture the winner. The
-arithmetic can create false authority. Where did the weights come from? What does a reliability
-score of "5" mean? Is the distance between 3 and 4 the same as between 4 and 5? Why is poor
-reliability allowed to be compensated by lower cost at the chosen exchange rate?
-
-A spreadsheet does not turn preferences into measurement. Quantification is valuable when the
-quantities are meaningful. Numbers invented to encode judgment do not stop being judgments because
-they have decimal places.
-
-## Eliminate what does not require judgment {#sec-eliminate}
-
-Before comparing genuine tradeoffs, engineers can often eliminate candidates in two principled
-ways.
-
-The first is specification. Any architecture violating a required property leaves the acceptable
-realization space and can be discarded.
-
-The second is dominance. Suppose Architecture D is no better than Architecture A on every relevant
-property and strictly worse on at least one. Then D is dominated by A. There is no need to decide
-how much cost matters relative to latency or how reliability should be weighted. Any preference
-that could justify D would justify A at least as strongly. So D can also be discarded. These steps
-are powerful because neither requires deciding what we prefer.
-
-::: {.decision #decision-eliminate-before-choosing title="Eliminate before choosing"}
-First remove architectures that violate the specification. Then remove architectures dominated by
-another candidate. Only then reason about the genuine tradeoffs that remain.
-:::
-
-## Genuine tradeoffs require judgment {#sec-genuine-tradeoffs}
-
-After invalid and dominated candidates are removed, several architectures may remain. One may offer
-better latency while another offers lower cost. One may improve failure isolation while another
-simplifies consistency. One may preserve future changeability while another reduces present
-complexity. If each candidate is better somewhere and worse somewhere else, no amount of
-mathematics can decide among them without introducing a preference. These are Pareto tradeoffs.
-
-Judgment begins where mechanical elimination ends. It is not what remains when rigorous
-engineering fails; it is the appropriate mechanism when several nondominated alternatives satisfy
-the obligations and differ along properties that cannot all be maximized simultaneously. Nor is it
-arbitrary: the choice can still be argued, reviewed, supported with evidence, and owned by the
-engineers responsible for its consequences. Engineers can ask whose needs matter, which failures
-have serious consequences, which changes are expected, what the organization can operate reliably,
-and which costs are acceptable. But the final
-choice still expresses priorities. Architecture is decision-making under tradeoffs.
-
-## Sometimes the right decision is to buy information {#sec-buy-information}
-
-Uncertainty does not always require an immediate decision. Suppose two architectures remain
-plausible because engineers do not know the expected traffic, failure rate, change frequency, or
-cost of a particular dependency. Engineers do not have to guess. They can buy information through
-models, prototypes, experiments, measurements, or competing partial implementations
-[@fairbanks2010].
+This procedure narrows architectural judgment to the choices that actually require it.
+Constraints remove inadmissible alternatives; dominance removes unnecessary choices; tradeoffs expose the consequential differences among what remains; and targeted evidence reduces uncertainty when that uncertainty matters to the decision.
 
 ::: {.decision #decision-buy-evidence title="Buy evidence?"}
-If resolving an uncertainty could change a consequential architectural decision, evidence may be
-worth purchasing. Do not spend effort obtaining information that cannot change the decision. Do not
-refuse to obtain inexpensive information that could prevent an expensive mistake.
+If resolving an uncertainty could change a consequential architectural decision, evidence may be worth purchasing.
+Do not spend effort obtaining information that cannot change the decision.
+Do not refuse to obtain inexpensive information that could prevent an expensive mistake.
 :::
-
-This is the same economic logic that appeared in @ch-requirements and @ch-specification. Before
-accepting uncertainty, ask whether resolving it could change the decision. If not, further
-analysis has little decision value. If it could, ask whether the information is worth more than it
-costs to obtain. Models, prototypes, experiments, and measurements are different ways of buying
-that information.
 
 ## Patterns provide alternatives and expectations {#sec-patterns}
 
@@ -283,57 +232,35 @@ place by supporting an engineering question. A drawing that cannot support a cla
 Architecture makes some properties analyzable because its consequential structure can be
 represented at the level needed to reason about those properties.
 
-## Architectural claims have different strengths {#sec-claim-strengths}
+## Architectural claims require evidence {#sec-claim-strengths}
 
-A model makes a question tractable; it does not automatically make the answer certain.
-Architectural claims vary in strength according to what the model represents, what assumptions the
-analysis depends on, and what evidence supports those assumptions [@bass-saip]. At one level is a
-reasoned expectation: this pattern should keep the change local. The claim is informed by
-experience but still contains substantial uncertainty. A stronger claim may come from a structural
-argument: no dependency crosses this boundary. If the dependency model faithfully represents the
-implementation, the structural fact can be inspected directly. A quantitative model can support a
-numerical prediction: the modeled critical path is approximately 120 milliseconds. Finally, a
-running system can provide observed evidence: the measured latency is 118 milliseconds under this
-workload. The required strength depends on the consequences of being wrong.
+Choosing an architecture requires making claims about what its organization will accomplish.
+Different claims require different forms and strengths of evidence.
+A box-and-arrow diagram may establish that two responsibilities have been separated, but it does not by itself establish that a future change will remain local, that failures will be contained, or that a latency objective will be met.
+The representation and analysis must expose the property being claimed.
+
+Consider an expected change.
+Suppose an architecture is intended to isolate changes to an external service behind one component.
+The relevant claim is not merely that the diagram contains a boundary.
+It is that a foreseeable change to the service can be absorbed without requiring coordinated changes elsewhere.
+A dependency or responsibility model can make that claim inspectable: identify what knowledge of the external service crosses the boundary, trace which parts depend on it, and ask whether the expected change can remain local.
+If the model shows that assumptions about the service have leaked across the system, the architectural claim is weak regardless of how clean the diagram appears.
+
+Quantitative properties require different evidence.
+If an architectural alternative is intended to satisfy a latency or throughput obligation, engineers need a model that preserves the quantities governing that property.
+A dependency graph with estimated execution and communication costs may expose a critical path; a queueing or capacity model may expose a bottleneck; a prototype may provide measurements where estimates are too uncertain.
+The architecture need not predict the finished system perfectly.
+It must support a sufficiently credible claim that the chosen organization can satisfy the obligation, or reveal what remains uncertain enough to investigate.
+
+The general discipline is the same: state the architectural claim, choose a representation that preserves the information needed to evaluate it, and obtain evidence strong enough for the consequence of being wrong.
+Architecture is not justified by producing models.
+Models are useful when they make the consequences of an organizational choice inspectable.
 
 ::: {.key-idea #key-match-evidence title="Match the evidence to the claim"}
-The more faithfully the model captures the property we care about, the less we have to bet. A
-reasoned expectation, structural argument, quantitative prediction, and measurement are all useful.
+The more faithfully the model captures the property we care about, the less we have to bet.
+A reasoned expectation, structural argument, quantitative prediction, and measurement are all useful.
 The mistake is presenting one as stronger than it is.
 :::
-
-## Can an expected change remain local? {#sec-change-local}
-
-**Question:** If this expected change occurs, how much of the system must know?
-
-Suppose the specification tells us that the illness-detection model is expected to change
-independently. An initial architecture may allow the user interface, advice generation, and storage
-logic to depend directly on the model's internal representations. Replacing the model then affects
-several parts of the system. Engineers can instead introduce a model-service boundary and require
-surrounding components to depend only on the stable interface.
-
-A dependency model can now answer a concrete question: does any dependency cross the intended
-boundary into the model's internals? If not, the model establishes a structural fact about the
-dependency graph. That does not prove that every imaginable future change will remain local. It
-gives strong evidence that the anticipated change has been isolated by the architecture.
-
-This is why the treatment of expected change in @ch-specification mattered. Specification can
-identify where change is expected. Architecture can deliberately create a seam around it.
-
-## Can architecture predict performance? {#sec-predict-performance}
-
-**Question:** Can this organization satisfy the required response-time bound?
-
-Architectural models can sometimes support quantitative claims before implementation. Suppose a
-request flows through several components whose expected processing and communication costs are
-known well enough to estimate. A weighted flow graph can identify the critical path: the sequence
-of dependent work establishing a lower bound on response time.
-
-If the modeled critical path is A → B → F = 120 ms, then decomposing component B into parallel work
-may reduce the modeled bound. The important point is not the particular number. The architectural
-model allows engineers to evaluate a proposed organizational change before implementing it. The
-model has converted part of the architectural decision from intuition into a testable prediction.
-It has not chosen the architecture; it has supplied evidence about one of its consequences.
 
 ## When evidence becomes cheaper {#sec-evidence-cheaper}
 
