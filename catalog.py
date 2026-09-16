@@ -2965,20 +2965,21 @@ def _v3_learn() -> str:
         'in the age of commodity intelligence. It asks how software engineering changes when '
         'implementation intelligence becomes abundant.</li>\n'
         f'    <li><a href="{_HANDBOOK_WEB}"><strong>The Software Engineering Handbook'
-        '</strong></a> — a judgment and decision-making approach to software engineering. It develops '
-        'the engineering judgment that becomes increasingly important when implementation itself is '
-        'cheap.</li>\n'
+        '</strong></a> — a judgment and decision-making approach to software engineering. It makes '
+        'explicit the engineering underneath MAGE: the decisions engineers make about requirements, '
+        'specification, architecture, design, validation, and the other activities of software '
+        'engineering.</li>\n'
         '  </ol>\n'
-        '  <p class="sec-lead">Together, the books address both sides of the transition: MAGE explains '
-        'why the work of software engineering is changing; the Handbook develops the judgment engineers '
-        'need as it changes.</p>\n'
+        '  <p class="sec-lead">MAGE asks what changes when agents can do much of the work. The Handbook '
+        'develops the engineering judgment that engineers need to remain in control over the resulting '
+        'systems.</p>\n'
         '  <div class="v3-cards v3-cards-2">\n'
         + _v3_card("MAGE", "",
                    "Engineering reliable software with commodity intelligence: the theory, practice, evidence, and implications.",
                    [("Read the book", "book/mage-book/index.html"), ("Download PDF", _PDF_HREF)],
                    thumb=("book/assets/cover-thumb.png", "MAGE book cover")) + "\n"
         + _v3_card("The Software Engineering Handbook", "",
-                   "A judgment and decision-making approach to software engineering, from requirements and architecture to management, engineering knowledge, and validation.",
+                   "The engineering judgment underneath MAGE: what engineers decide, why those decisions matter, and how evidence supports them.",
                    [("Read the handbook", _HANDBOOK_WEB), ("Download PDF", handbook_pdf)],
                    thumb=("book/assets/handbook-cover-thumb.png", "Software Engineering Handbook cover")) + "\n"
         + _v3_card("Teach with MAGE", "",
