@@ -55,14 +55,17 @@ def _bib_keys() -> set[str]:
 
 
 def _built_chapter_pages() -> list[str]:
-    """Every built book chapter/appendix HTML page (the pages that carry citation markers + Scholar meta) —
-    the build's own slug discovery minus the generated index/figure/bibliography pages."""
+    """Every emitted book chapter/appendix page body (`book/web/docs/<slug>.md` — the pages that carry
+    citation markers + Scholar meta) — the build's own slug discovery minus the generated
+    index/figure/bibliography pages. Each body is the rendered HTML, so the cite/works-cited markup the
+    BIB gates walk survives verbatim."""
     try:
         slugs = bb.expected_page_slugs() - _GENERATED
     except Exception:  # noqa: BLE001 — discovery needs the tree; a bare checkout returns nothing to scan
         return []
-    return [os.path.join(_BOOK, f"{s}.html") for s in sorted(slugs)
-            if os.path.isfile(os.path.join(_BOOK, f"{s}.html"))]
+    docs = os.path.join(_BOOK, "web", "docs")
+    return [os.path.join(docs, f"{s}.md") for s in sorted(slugs)
+            if os.path.isfile(os.path.join(docs, f"{s}.md"))]
 
 
 def check_cite_resolve():
@@ -240,16 +243,27 @@ _REQUIRED_META = ("citation_title", "citation_author", "citation_book_title",
                   "citation_publication_date", "citation_fulltext_html_url", "citation_pdf_url")
 
 
+_CITATION_HEAD_FM_RE = re.compile(r'(?m)^citation_head: (".*")$')
+
+
 def check_scholar_meta():
-    """BIB-8 (BLOCKING). Every built chapter page's <head> carries the required highwire_press citation_*
-    tags, so Google Scholar can index the book and build its citation graph. Reads the page's <head> and
-    asserts each required tag is present."""
+    """BIB-8 (BLOCKING). Every emitted chapter page carries the required highwire_press citation_* tags
+    in its `citation_head` front matter — the block the shared web-theme `main.html` extrahead renders
+    into the published page's <head> (Scholar reads citation meta from <head> only), so Google Scholar
+    can index the book and build its citation graph. Reads the front matter and asserts each required
+    tag is present."""
+    import json as _json
     issues: list[str] = []
     for f in _built_chapter_pages():
-        html = open(f, encoding="utf-8").read()
-        head = html.split("</head>", 1)[0]
+        text = open(f, encoding="utf-8").read()
+        m = _CITATION_HEAD_FM_RE.search(text.split("\n---\n", 1)[0])
+        if not m:
+            issues.append(f"{rel(f)}: no `citation_head` front matter — the page would publish with no "
+                          f"Scholar meta in <head>")
+            continue
+        head = _json.loads(m.group(1))
         names = set(re.findall(r'<meta name="(citation_[a-z_]+)"', head))
         for req in _REQUIRED_META:
             if req not in names:
-                issues.append(f"{rel(f)}: <head> missing highwire meta {req!r}")
+                issues.append(f"{rel(f)}: citation_head missing highwire meta {req!r}")
     return (FAIL if issues else PASS), issues

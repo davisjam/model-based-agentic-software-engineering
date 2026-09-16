@@ -433,23 +433,14 @@ def build_web(book: dict) -> None:
     # MkDocs' strict link check (markdown links only) does not chase the out-of-tree targets — the
     # PDF and ePub are CI-published next to this page, and ../mage-book/ exists at the published
     # /book/se-handbook/ depth; all three 404 in a bare local dist/site, which is expected.
-    # File-type glyphs on the download buttons: self-contained inline SVG (no external asset /
-    # icon-font — the published site loads nothing off-origin), all-currentColor strokes so each
+    # File-type glyphs on the download buttons: self-contained inline SVG (the glyph is INLINED into
+    # the page — the published site loads nothing off-origin), all-currentColor strokes so each
     # glyph tracks its button's link color in BOTH Material schemes (light + slate). Generic marks,
     # not brand logos: a corner-fold page carrying a small "PDF" wordmark, and the universal
-    # open-book for the ePub. Layout rides the inline style so the markup is self-contained.
-    # Same glyph pair the MAGE home uses (`book/build_book.py` `_DL_ICO_PDF`) — keep in sync.
-    ico_pdf = (
-        '<svg class="dl-ico" viewBox="0 0 16 16" width="1.05em" height="1.05em"'
-        ' style="vertical-align:-0.18em;margin-right:0.45em"'
-        ' aria-hidden="true" focusable="false">'
-        '<path d="M9.4 1.3H4.3a1 1 0 0 0-1 1v11.4a1 1 0 0 0 1 1h7.4a1 1 0 0 0 1-1V4.6Z"'
-        ' fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>'
-        '<path d="M9.4 1.3v3.3h3.3" fill="none" stroke="currentColor" stroke-width="1.3"'
-        ' stroke-linejoin="round"/>'
-        '<text x="8" y="12.1" text-anchor="middle"'
-        ' font-family="ui-sans-serif,system-ui,sans-serif" font-size="4.8" font-weight="700"'
-        ' letter-spacing="-0.1" fill="currentColor">PDF</text></svg>')
+    # open-book for the ePub. The PDF glyph is SHARED with the MAGE book home (`book/build_book.py`
+    # `_DL_ICO_PDF`) via the one tracked family asset — the two homes' glyphs were verbatim twins,
+    # so the asset is the single source and neither can drift. The ePub glyph is this home's own.
+    ico_pdf = (C.GC_ROOT / "web-theme" / "glyphs" / "pdf-file.svg").read_text(encoding="utf-8").strip()
     ico_epub = (
         '<svg class="dl-ico" viewBox="0 0 16 16" width="1.05em" height="1.05em"'
         ' style="vertical-align:-0.18em;margin-right:0.45em"'

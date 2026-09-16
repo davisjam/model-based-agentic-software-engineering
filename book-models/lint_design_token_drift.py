@@ -75,10 +75,12 @@ def _style_regions() -> list[tuple[str, str]]:
     font_css = _extract_paren_concat(cat, "FONT_CSS")
     if font_css is not None:
         regions.append(("catalog.py:FONT_CSS", font_css))
-    book = BOOK_HTML_PY.read_text(encoding="utf-8")
-    book_css = _extract_triple_quoted(book, "CSS")
-    if book_css is not None:
-        regions.append(("build_book.py:CSS", book_css))
+    # The web book's content-plane CSS — the TRACKED hand-owned sheet (frozen from build_book.py's
+    # former inline CSS strings at the C3 swap). Hand rules must color through var(--…) only; the
+    # projected segments (:root block, dark remap) are composed emitter-side from the token SSOT.
+    book_css_path = BOOK_HTML_PY.parent / "web-assets" / "mage-book.css"
+    if book_css_path.is_file():
+        regions.append(("book/web-assets/mage-book.css", book_css_path.read_text(encoding="utf-8")))
     # book_typst.py: the whole module — its color literals live in scattered `_render_*` helpers, and
     # after migration all become dt.… lookups (the runtime-prepended preamble is not in this source).
     regions.append(("book_typst.py", BOOK_TYPST_PY.read_text(encoding="utf-8")))

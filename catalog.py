@@ -43,12 +43,13 @@ _HANDBOOK_WEB = "book/se-handbook/index.html"  # handbook WEB edition index (sel
 
 
 def _book_build_path(href: str) -> str:
-    """Map a PUBLISHED book href (`book/mage-book/<slug>.html`) back to its on-disk BUILD location
-    (`book/<slug>.html`) for existence checks. The book HTML edition is built flat under `book/` by
-    `book/build_book.py`; it is relocated into `book/mage-book/` only inside the published `_site` artifact
-    (tools/publish_book_layout.py). So a gate that verifies a chapter EXISTS must look where the build wrote
-    it, not where it will be served."""
-    return href.replace("book/mage-book/", "book/", 1)
+    """Map a PUBLISHED book href (`book/mage-book/<slug>.html`) to its on-disk BUILD location — the
+    emitted MkDocs body `book/web/docs/<slug>.md` — for existence checks. The book web edition is
+    emitted by `book/book_mkdocs.py` and built into `_site/book/mage-book/` at the SAME stems
+    (`use_directory_urls: false`), so a gate that verifies a chapter EXISTS looks at the emitted body,
+    not the served path."""
+    mapped = href.replace("book/mage-book/", "book/web/docs/", 1)
+    return mapped[:-5] + ".md" if mapped.endswith(".html") else mapped
 
 # Repo-metadata SSOT — owner/repo/URLs read once from book-models/repo-metadata.json (stdlib-read, the
 # design-tokens.json pattern). The GitHub repo link in the chrome (footer, top nav, landing nav grid) and
@@ -4485,19 +4486,21 @@ def check_leaked_markers() -> list[str]:
     `check_census_tokens`, which guards the source counts; this guards the rendered output. Rule-#17 shape:
     a served-page invariant asserted as a mechanical closed-tuple check, not re-inspected by eye."""
     prune = site_prune_dirs()
-    problems: list[str] = []
+    paths: list[str] = []
     for dirpath, dirnames, filenames in os.walk(ROOT):
         dirnames[:] = [d for d in dirnames if d not in prune]
-        for fn in sorted(filenames):
-            if not fn.endswith(".html"):
-                continue
-            path = os.path.join(dirpath, fn)
-            rel = os.path.relpath(path, ROOT)
-            txt = open(path, encoding="utf-8").read()
-            for frag in _LEAKED_MARKER_FRAGMENTS:
-                if frag in txt:
-                    problems.append(f"{rel}: un-rendered marker {frag!r} leaked into the served page "
-                                    f"— render_md must consume it (run `catalog.py build`)")
+        paths.extend(os.path.join(dirpath, fn) for fn in sorted(filenames) if fn.endswith(".html"))
+    # The book's served surface is the emitted body tree (book/web/docs/*.md — raw rendered HTML),
+    # pruned from the walk above by name; scan it explicitly so book coverage survives the C3 swap.
+    paths.extend(_book_emitted_bodies())
+    problems: list[str] = []
+    for path in paths:
+        rel = os.path.relpath(path, ROOT)
+        txt = open(path, encoding="utf-8").read()
+        for frag in _LEAKED_MARKER_FRAGMENTS:
+            if frag in txt:
+                problems.append(f"{rel}: un-rendered marker {frag!r} leaked into the served page "
+                                f"— render_md must consume it (run `catalog.py build`)")
     return sorted(problems)
 
 
@@ -4548,15 +4551,27 @@ class _VisibleProseExtractor(HTMLParser):
             self.chunks.append(data)
 
 
+def _book_emitted_bodies() -> list[str]:
+    """The emitted book page bodies (`book/web/docs/*.md` — each the rendered HTML that ships inside the
+    Material shell). The book's served surface since the C3 publish swap; empty before a build."""
+    docs = os.path.join(ROOT, "book", "web", "docs")
+    if not os.path.isdir(docs):
+        return []
+    return sorted(os.path.join(docs, f) for f in os.listdir(docs) if f.endswith(".md"))
+
+
 def check_leaked_inline_markdown() -> list[str]:
     """Served-page post-condition sensor (book surface): no inline-markdown syntax may survive un-rendered
-    into reader-visible prose. Parse every built `book/*.html`, extract the prose text nodes (skipping code /
-    diagram / head contexts), and flag any `*em*` / `**strong**` / `` `code` `` / `[t](url)` the inline pass
-    should have consumed. A hit means a render path emitted authored text without `inline` / `inline_typst`
-    (the 260804 brick-summary + code-span-title class). Twin of `check_leaked_markers` (build-directive leaks)
-    — this guards inline-markup leaks. Returns one problem string per (file, form, snippet)."""
+    into reader-visible prose. Parse every emitted book page body, extract the prose text nodes (skipping
+    code / diagram / head contexts), and flag any `*em*` / `**strong**` / `` `code` `` / `[t](url)` the
+    inline pass should have consumed. A hit means a render path emitted authored text without `inline` /
+    `inline_typst` (the 260804 brick-summary + code-span-title class). Twin of `check_leaked_markers`
+    (build-directive leaks) — this guards inline-markup leaks. Returns one problem string per
+    (file, form, snippet). NOTE: the interleaved markdown HEADING lines are emitter syntax (rendered by
+    MkDocs), not leaked authored text — their text nodes are entity-escaped by the emitter, so the
+    delimiter patterns cannot match them."""
     problems: list[str] = []
-    for path in sorted(glob.glob(os.path.join(ROOT, "book", "*.html"))):
+    for path in _book_emitted_bodies():
         rel = os.path.relpath(path, ROOT)
         parser = _VisibleProseExtractor()
         parser.feed(open(path, encoding="utf-8").read())
@@ -4757,11 +4772,13 @@ def cmd_build(_args) -> int:
     rc = subprocess.run([sys.executable, os.path.join(ROOT, "bundle_skill.py")], cwd=ROOT).returncode
     if rc != 0:
         print(f"WARNING: skill bundle regeneration failed (rc={rc}) — plugin/ may be stale", file=sys.stderr)
-    # Build the WIP book HTML as part of the same pipeline (so `deploy github` publishes it too). Its
-    # standalone renderer generates the chapters + a GoF-format appendix projected from the catalogue
-    # entries. Subprocess keeps `catalog.py` stdlib-only and avoids importing the book builder. The book
-    # pages are subject to the reachability gate below — the landing links the book index; the book's own
-    # pages link each other — so the book must build BEFORE the gate runs.
+    # Build the book web edition as part of the same pipeline: build_book.py renders every page body and
+    # book_mkdocs.py emits the gitignored book/web/ MkDocs tree (chapters + the GoF-format appendix
+    # projected from the catalogue entries). CI builds that tree into the published /book/mage-book/;
+    # the emit is stdlib, only `mkdocs build` needs the pinned venv. Subprocess keeps `catalog.py`
+    # stdlib-only and avoids importing the book builder. The emitted bodies feed the book-scoped gates
+    # below (leaked markers / inline markdown) and the suite's body checks, so the book must build
+    # BEFORE they run.
     book_builder = os.path.join(ROOT, "book", "build_book.py")
     if os.path.isfile(book_builder):
         rc_book = subprocess.run([sys.executable, book_builder], cwd=os.path.join(ROOT, "book")).returncode
@@ -5214,6 +5231,11 @@ def _is_publishable(path: str) -> bool:
     `book/assets/`), where it still publishes."""
     if "_design" in path.split("/"):
         return False
+    # The retired hand-rolled flat book pages (`book/<slug>.html`, pre-C3): gitignored AND rejected
+    # here as defense in depth — the tracked-HTML discipline ended at the publish swap, so a stray
+    # regenerated flat page must never ride into a publish commit.
+    if re.fullmatch(r"book/[^/]+\.html", path):
+        return False
     root = path.split("/", 1)[0]
     ext = path.rsplit(".", 1)[-1].lower() if "." in path else ""
     return root in _CONTENT_ROOTS and ext in _PUBLISHABLE_EXTS
@@ -5363,11 +5385,46 @@ def cmd_deploy(args) -> int:
             return 1
 
     if args.target == "local":
+        # The MAGE book web edition serves from the MkDocs-built tree at its PUBLISHED path
+        # (/book/mage-book/ ← book/web/site). Building it needs the pinned site/.venv toolchain —
+        # the same posture as the handbook/teach web editions (catalog.py itself stays stdlib-only):
+        # build it when the venv is present, else serve without it and say so.
+        mkdocs = os.path.join(ROOT, "site", ".venv", "bin", "mkdocs")
+        book_site = os.path.join(ROOT, "book", "web", "site")
+        if os.path.exists(mkdocs):
+            print("\n== Building the MAGE book web edition (mkdocs --strict, pinned site/.venv) ==")
+            if subprocess.run([mkdocs, "build", "--strict", "-f",
+                               os.path.join(ROOT, "book", "web", "mkdocs.yml")], cwd=ROOT).returncode:
+                print("ABORT: book web build failed (mkdocs --strict above).")
+                return 1
+        elif not os.path.isdir(book_site):
+            print("\n  (site/.venv absent — /book/mage-book/ will 404 locally; the catalogue site "
+                  "still serves. Create the pinned venv per site/requirements.txt to preview the book.)")
+
+        from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+
+        class _LocalHandler(SimpleHTTPRequestHandler):
+            """The repo tree, plus the published-layout mappings: /book/mage-book/ serves the
+            MkDocs-built book (same URLs as production), and its sibling PDF resolves to the
+            locally-rendered book/mage-book.pdf (the --pdf flag's artifact)."""
+
+            def translate_path(self, path):  # noqa: N802 — stdlib handler API
+                clean = path.split("?", 1)[0].split("#", 1)[0]
+                if clean == "/book/mage-book" or clean == "/book/mage-book/":
+                    clean = "/book/mage-book/index.html"
+                if clean == "/book/mage-book/mage-book.pdf":
+                    return os.path.join(ROOT, "book", "mage-book.pdf")
+                if clean.startswith("/book/mage-book/"):
+                    return os.path.join(book_site, clean[len("/book/mage-book/"):])
+                return super().translate_path(path)
+
         url = f"http://127.0.0.1:{args.port}/"
-        print(f"\n== Serving {url}  (Ctrl-C to stop) ==")
+        print(f"\n== Serving {url}  (book at {url}book/mage-book/; Ctrl-C to stop) ==")
         try:
-            subprocess.run([sys.executable, "-m", "http.server", str(args.port),
-                            "--bind", "127.0.0.1"], cwd=ROOT)
+            _LocalHandler.directory = ROOT
+            with ThreadingHTTPServer(("127.0.0.1", args.port),
+                                     lambda *a, **kw: _LocalHandler(*a, directory=ROOT, **kw)) as httpd:
+                httpd.serve_forever()
         except KeyboardInterrupt:
             print("\nstopped.")
         return 0

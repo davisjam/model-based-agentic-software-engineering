@@ -52,9 +52,12 @@ book/_design/*-brief*.md
 
 # MkDocs projection of the book (Phase C1, parallel-run) — a fully generated tree (docs/ +
 # mkdocs.yml + site/), emitted by book/book_mkdocs.py and built as a NON-published CI check.
-# Same posture as the handbook's generated/web + dist: created, never committed. The hand-rolled
-# book/*.html stays the canonical, published web edition until the C3 publish swap.
+# Same posture as the handbook's generated/web + dist: created, never committed. Since the C3
+# publish swap this IS the web edition (CI builds + publishes it at /book/mage-book/).
 /book/web/
+# The retired hand-rolled flat pages (pre-C3): nothing generates them anymore; ignore any stale
+# local copy so it can never be re-tracked or scanned as a served page.
+/book/*.html
 
 # The rendered book PDF is a CI-GENERATED, Pages-PUBLISHED artifact — NOT committed to git (avoids a
 # multi-MB binary in history). `build_book.py --pdf` regenerates it locally (gitignored preview);

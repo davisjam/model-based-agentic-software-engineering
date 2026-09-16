@@ -1,0 +1,403 @@
+/* mage-book.css — the MAGE book's content plane inside the family Material shell.
+ *
+ * HAND-OWNED source of truth for the book's content-scoped rules (frozen from build_book.py's
+ * former inline CSS/_APPENDIX_V2_CSS strings at the C3 publish swap; the hand-rolled page shell
+ * those strings also styled is retired). book/book_mkdocs.py composes the served sheet from this
+ * file plus the projected segments — the @font-face block, the :root token block, and the dark
+ * scheme remap all come from book-models/design-tokens.json at emit time, so tokens keep ONE home.
+ *
+ * Conventions (hold these when editing):
+ *   - color through var(--…) tokens only — no raw hex/rgb here (lint_design_token_drift gates it);
+ *   - selectors are scoped under .md-typeset (or a class) so book typography never leaks into
+ *     Material chrome; the page wrap is `div.wrap` (Material owns <main>);
+ *   - the two mermaid label sizes (pre.mermaid .nodeLabel / text.messageText) must equal
+ *     design_tokens.mermaid_label_px() — the emitter fail-louds on drift (config==CSS invariant).
+ */
+.md-typeset{ font-family: var(--font-body); font-size: 17px; line-height: 1.65; color: var(--ink); }/* "Calm authority" hierarchy: SEMIBOLD (--display-weight, 600) is the quiet default weight for every
+   heading; only a Part-divider page's title steps up to bold (see `div.wrap.part-page header.chap h1`).
+   Headings organise rather than compete — one bold level, .md-typeset the rest a lighter semibold, `###` subheads
+   quieter still (italic regular, below). Mirrors the PDF show-rules in book_typst.py. */
+h1, .md-typeset h2, .md-typeset h3, .md-typeset h4, header.chap h1{ font-family: var(--font-display); font-weight: var(--display-weight); }div.wrap.part-page header.chap h1{ font-weight: 700; }/* The appendices mode-marker — the reader leaves the argument and enters the reference manual. Distinct
+   from a numbered Part divider: centred, .md-typeset no rule under the title, .md-typeset a subtitle in the accent italic, .md-typeset and the
+   author paragraph set left in a measured column under a hairline. */
+div.wrap.appendices-divider{ text-align: center; }div.wrap.appendices-divider header.chap{ border-bottom: none; padding: 3.6rem 0 0.3rem; margin-bottom: 0; }div.wrap.appendices-divider header.chap .kicker{ color: var(--muted); }div.wrap.appendices-divider header.chap h1{ font-weight: 700; font-size: 2.7rem; letter-spacing: 0.01em; }div.wrap.appendices-divider .appendices-divider-sub{ font-family: var(--font-display); font-style: italic;
+       color: var(--accent); font-size: 1.35rem; margin: 0.15rem 0 1.8rem; }div.wrap.appendices-divider .appendices-divider-body{ text-align: left; max-width: 40rem; margin: 0 auto;
+       border-top: 1px solid var(--rule); padding-top: 1.7rem; }.wrap{ max-width: 52rem; margin: 0 auto; padding: 0 1.4rem 4rem; }nav.toc{ background: var(--panel); border-bottom: 1px solid var(--rule); padding: 0.9rem 1.4rem; font-size: 14px; }nav.toc .toc-inner{ max-width: 52rem; margin: 0 auto; }nav.toc details{ margin: 0; }nav.toc summary{ cursor: pointer; font-weight: 600; color: var(--accent); list-style: none; }nav.toc summary::-webkit-details-marker{ display: none; }nav.toc ol{ list-style: none; padding: 0.6rem 0 0; margin: 0; }nav.toc .part{ font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em;
+                 font-size: 12px; margin: 0.7rem 0 0.25rem; }nav.toc a{ color: var(--ink); text-decoration: none; display: block; padding: 2px 0 2px 1rem; }nav.toc a:hover{ color: var(--accent); }nav.toc .toc-home{ display: inline-block; color: var(--accent); text-decoration: none; font-weight: 600;
+                     padding: 0; margin: 0 0 0.5rem; }nav.toc .toc-home:hover{ text-decoration: underline; }nav.toc a.current{ color: var(--accent); font-weight: 600; border-left: 2px solid var(--accent);
+                     padding-left: calc(1rem - 2px); }header.chap{ padding: 2.6rem 0 1.2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.6rem; }header.chap .kicker{ color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 0.06em;
+                       text-transform: uppercase; }/* The kicker halves are links but must stay understated — inherit the small-caps accent colour, .md-typeset no default
+   underline; reveal the underline only on hover/focus so the affordance is discoverable without shouting. */
+header.chap .kicker a{ color: inherit; text-decoration: none; }header.chap .kicker a:hover, header.chap .kicker a:focus{ text-decoration: underline; }header.chap h1{ font-size: 1.85rem; line-height: 1.18; margin: 0.5rem 0 0; }/* `part.chapter` display number on a body/back-matter chapter title (build-derived from the file path, .md-typeset not authored). Muted + tabular so it reads as a reference locator, .md-typeset not part of the title; display-only, .md-typeset carries no id, .md-typeset so the chapter's anchors, .md-typeset cross-refs, .md-typeset and the index all still resolve. */
+header.chap h1 .chap-num{ color: var(--muted); font-weight: 600; font-variant-numeric: tabular-nums; margin-right: 0.2em; }.part-epigraph{ margin: 1.6rem 0 0; padding: 0.8rem 0 0.2rem 1.1rem; border-left: 3px solid var(--rule);
+                  color: var(--muted); font-style: italic; }.part-epigraph .attr{ display: block; margin-top: 0.5rem; font-style: normal; font-size: 14px;
+                        color: var(--muted); }/* INLINE CHAPTER EPIGRAPH (a blockquote armed by the `epigraph` marker) — a visually-modest opener quote in the
+   MAIN column (never the sidenote rail): italic quotation on the part-epigraph geometry (no panel fill), .md-typeset with the attribution paragraph (the blockquote's LAST <p>, .md-typeset authored with an em-dash lead) set beneath
+   in upright small type, .md-typeset mirroring `.part-epigraph .attr`. */
+blockquote.chapter-epigraph{ background: transparent; max-width: 34rem; margin: 1.6rem 0 2rem;
+                               padding: 0.2rem 0 0.2rem 1.1rem; border-left: 3px solid var(--rule);
+                               color: var(--muted); font-style: italic; }blockquote.chapter-epigraph p{ margin: 0; }blockquote.chapter-epigraph p:last-child:not(:only-child){ margin-top: 0.5rem; font-style: normal;
+                                                             font-size: 14px; }/* APPARATUS ONE-PAGER — a front-matter reference apparatus (how-to-read) framed as one distinct, .md-typeset offset
+   item so it does not read as a continuation of the preceding chapter. A hairline box on a tinted panel
+   with an accent top-rule (the "this is an apparatus, .md-typeset not running prose" marker) and a top/bottom margin
+   that lifts it off the surrounding flow. Header padding is trimmed inside the frame (the box supplies the
+   set-apart, .md-typeset so the header's usual generous top pad is redundant here) and the header's border-bottom rule
+   is dropped in favour of the frame. Every surface knob is a design token, .md-typeset so a print/dark re-skin follows
+   from the token swap-point (see the concept-inset SWAP POINT note) with no rule change here. */
+.apparatus-page{ background: var(--panel); border: 1px solid var(--rule); border-top: 3px solid var(--accent);
+                   border-radius: 8px; padding: 1.4rem 1.9rem 1.9rem; margin: 2.2rem 0; }.apparatus-page header.chap{ padding: 0.4rem 0 1rem; margin-bottom: 1.3rem; }.md-typeset h2{ font-size: 1.26rem; margin: 2.7rem 0 0.55rem; }/* `part.chapter.section` display number stamped on a body-chapter section heading (build-derived, .md-typeset not
+   authored). Muted + tabular so it reads as a reference locator, .md-typeset not part of the title; it is display-only
+   and carries no id, .md-typeset so the heading's own anchor, .md-typeset cross-refs, .md-typeset and the index all still resolve. */
+h2 .sec-num{ color: var(--muted); font-weight: 600; font-variant-numeric: tabular-nums; margin-right: 0.15em; }/* Role kicker on a step heading (`## [role: Architect] …`) — the engineer's climbing title, .md-typeset rendered in
+   the same small-caps accent register as the chapter kicker (`header.chap .kicker`) but inline before the
+   heading text. It rides the accent colour so the ladder reads at a glance down the chapter. */
+h2 .role-kick{ color: var(--accent); font-weight: 700; font-style: italic; font-size: 0.62em; letter-spacing: 0.07em;
+                 text-transform: uppercase; margin-right: 0.5em; vertical-align: 0.12em; }/* `### ` (H3) subheadings render ITALIC, .md-typeset not bold — a quieter sub-level than the bold H1/H2. Overrides the
+   shared `h1, .md-typeset h2, .md-typeset h3, .md-typeset h4` display-weight above (equal specificity, .md-typeset later rule wins); keeps the display face. */
+h3{ font-size: 1.05rem; margin: 1.9rem 0 0.4rem; font-weight: 400; font-style: italic; }.md-typeset h4{ font-size: 0.97rem; margin: 1.4rem 0 0.3rem; color: var(--ink); }.md-typeset p{ margin: 0 0 1rem; }.md-typeset ul{ margin: 0 0 1rem; padding-left: 1.3rem; }.md-typeset ol{ margin: 0 0 1rem; padding-left: 1.5rem; list-style: decimal; }.md-typeset li{ margin: 0.3rem 0; }/* "What This Book Argues" claims list — a page-scoped feature treatment (wrapper class set in the render
+   loop). The six claims get a slightly larger body, .md-typeset more air between them, .md-typeset and accent-coloured bold
+   numerals set into the margin; the prose is otherwise untouched (no boxes, .md-typeset no icons). */
+.argues-page ol{ font-size: 1.06em; line-height: 1.72; padding-left: 2.1rem; margin: 1.7rem 0; }.argues-page ol > li{ margin: 0.62rem 0; padding-left: 0.25rem; }.argues-page ol > li::marker{ color: var(--accent); font-weight: 700; }.md-typeset blockquote{ margin: 1.2rem 0; padding: 0.6rem 1.1rem; border-left: 3px solid var(--rule);
+              color: var(--muted); font-style: italic; background: var(--panel); }/* Plain editorial asides render as Tufte-style sidenotes. On a NARROW screen they collapse to a normal
+   inline blockquote (the default above). On a WIDE screen the media query below floats them into the
+   right gutter — smaller, .md-typeset ragged, .md-typeset unboxed — so the aside sits beside the text it comments on without
+   breaking the reading column. Concept insets (`.concept-inset`, .md-typeset boxed primers) keep the default box. */
+blockquote.aside-sidenote{ background: transparent; }
+@media (min-width: 60rem) {blockquote.aside-sidenote{
+    float: right; clear: right; width: 13rem; margin: 0.3rem -15rem 1rem 0;
+    padding: 0 0 0 0.9rem; border-left: 2px solid var(--box-inset-rule); background: transparent;
+    font-size: 14px; line-height: 1.5; color: var(--muted);
+  }
+}/* CITATIONS & EDITORIAL NOTES (bibliography subsystem). Two visibly-distinct in-text marker families:
+   `[cite:]` → a NUMERIC superscript linked to the chapter's numbered Works Cited; `[note:]` → a SYMBOLIC
+   superscript (* † ‡ § …). Each is followed by a right-gutter note (an inline <span>, .md-typeset valid inside a <p>, .md-typeset styled to reuse the same Tufte gutter geometry as `.aside-sidenote`). The number/symbol sets are
+   disjoint by construction (a check asserts it). */
+sup.cite-ref, sup.note-ref{ line-height: 0; font-size: 0.72em; }sup.cite-ref a{ color: var(--accent); font-weight: 600; text-decoration: none; }sup.cite-ref a:hover{ text-decoration: underline; }sup.note-ref{ padding-left: 0.05em; }sup.note-ref a{ color: var(--muted); font-weight: 600; text-decoration: none; }sup.note-ref a:hover{ text-decoration: underline; }.cite-note, .editorial-note{
+  display: block; margin: 0.3rem 0 1rem; padding: 0 0 0 0.9rem;
+  border-left: 2px solid var(--box-inset-rule); font-size: 14px; line-height: 1.5;
+  color: var(--muted); font-style: normal;
+}.cite-note .cn-mark, .editorial-note .cn-mark{ color: var(--accent); font-weight: 600; margin-right: 0.15em; }.cite-note a, .editorial-note a{ color: var(--accent); word-break: break-word; }
+@media (min-width: 60rem) {.cite-note, .editorial-note{
+    float: right; clear: right; width: 13rem; margin: 0.2rem -15rem 0.9rem 0;
+  }
+}/* Per-chapter Works Cited — a numbered list set off from the body by a top rule; the <ol> numbering
+   equals each entry's id, .md-typeset so citation superscript N links to entry N (the mirror). */
+section.works-cited{ margin: 2.4rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--rule); clear: both; }section.works-cited .wc-h{ font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em;
+                             color: var(--muted); margin: 0 0 0.6rem; }ol.wc-list{ font-size: 15px; line-height: 1.5; }ol.wc-list li{ margin: 0.35rem 0; padding-left: 0.2rem; }ol.wc-list li em, ul.bib-list li em{ font-style: italic; }/* End-of-book Bibliography — a hanging-indent alphabetical list (unnumbered). */
+section.bibliography ul.bib-list{ list-style: none; padding-left: 0; font-size: 15px; line-height: 1.55; }section.bibliography ul.bib-list li{ margin: 0 0 0.7rem; padding-left: 1.4rem; text-indent: -1.4rem; }section.bibliography .bib-empty{ color: var(--muted); font-style: italic; }.md-typeset code{ background: var(--code-bg); padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.9em; }.md-typeset a{ color: var(--accent); }/* Booktabs table style (drawing/tables.md): exactly three horizontal rules — a heavy top rule, .md-typeset a light
+   rule under the header, .md-typeset a heavy bottom rule — and NO vertical rules or cell borders. Whitespace separates
+   columns/rows; rules only group. No zebra striping (row padding does the separating). Numbers
+   right-aligned via `.num`. WHY: vertical rules and boxed cells are chartjunk (Tufte / booktabs). */
+/* Table body sits ~91% of the 17px prose body (15.5px), .md-typeset matching the print edition's ~93% — tables read
+   as compact structured reference, .md-typeset the prose stays the star. Roomier rows (padding 0.7rem vertical, .md-typeset line-height 1.5) keep the denser type from reading cramped (the print `rraystretch ~1.15` twin). */
+table.book-table{ border-collapse: collapse; width: 100%; margin: 1.2rem 0; font-size: 15.5px;
+                    border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }table.book-table th, table.book-table td{ border: none; padding: 0.7rem 0.7rem;
+                                             text-align: left; vertical-align: top; line-height: 1.5; }table.book-table thead th{ background: transparent; font-weight: 600;
+                             border-bottom: 1px solid var(--muted); }table.book-table th.num, table.book-table td.num{ text-align: right; }/* Metadata card (`.meta-card`, .md-typeset the Appendix-B per-note summary box): an UNnumbered key/value reference box.
+   A quiet framed panel, .md-typeset narrower than the text measure, .md-typeset tight rows, .md-typeset the field name in the muted small-caps
+   label style — orientation before the prose, .md-typeset not a content table. */
+table.book-table.meta-card{ width: auto; max-width: 34rem; margin: 0.9rem 0 1.1rem; font-size: 13.5px;
+                              border: 1px solid var(--muted); border-radius: 6px; background: var(--code-bg); }table.book-table.meta-card td{ padding: 0.32rem 0.7rem; line-height: 1.4; }table.book-table.meta-card td:first-child{ font-weight: 600; color: var(--muted);
+                                             white-space: nowrap; width: 1%; }table.book-table.meta-card tr + tr td{ border-top: 1px solid var(--rule, rgba(120,113,108,0.22)); }/* Per-case one-pager card (`.case-onepager`, .md-typeset the "Meet the six" gallery): a light left-ruled panel that sets
+   the projected reconstruction table apart from the body prose, .md-typeset deliberately lighter than the lavender
+   concept-inset (per-case-onepager-DESIGN §5). The inner <table> keeps its booktabs style + numbering. */
+.case-onepager{ border-left: 3px solid var(--accent); padding: 0.1rem 0 0.1rem 1.1rem; margin: 1.3rem 0; }.case-onepager table.book-table{ margin: 0.4rem 0; }.case-onepager table.book-table thead th{ font-size: 1.03em; border-bottom-color: var(--accent); }/* Convergence spread (`.convergence-spread`): the glyph matrix beside its key as ONE field-guide object
+   (tables.md author review) — read left, .md-typeset look right, .md-typeset no page turn. Two columns on a wide viewport (matrix at
+   its natural width, .md-typeset key filling the rest); stacks on narrow screens. Both inner <table>s keep numbering. */
+.convergence-spread{ display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.6rem;
+                       align-items: start; margin: 1.3rem 0; }.convergence-spread .cs-panel{ min-width: 0; overflow-x: auto; }.convergence-spread table.book-table{ margin: 0.4rem 0; }
+@media (max-width: 60rem) {.convergence-spread{ grid-template-columns: 1fr; gap: 0.5rem; } }/* The slim key (`.convergence-key`): the Construct column folded to a small-caps subtitle beneath the pattern
+   name (name over `.pat-construct`), .md-typeset so the key reads as name + definition with the construct as index info. */
+table.book-table.convergence-key .pat-name{ display: block; font-weight: 600; }table.book-table.convergence-key .pat-construct{ display: block; margin-top: 0.1rem;
+    font-variant: small-caps; letter-spacing: 0.02em; font-size: 0.82em; color: var(--muted); }/* Worked-Examples gallery (`.worked-examples`, .md-typeset the GoF "Known Uses" block that closes a significant section):
+   a titled, .md-typeset scannable set of 2-4 mini-cases + an accent-ruled Takeaway naming the shared abstraction. Shares
+   the accent left-rule idiom with `.case-onepager`, .md-typeset but sets the whole block apart as a mode-shift from body
+   prose so a reader reads the shape once and scans on reflex (B3 gallery-format-spec). */
+.worked-examples{ margin: 1.6rem 0; padding: 0.2rem 0 0.2rem 1.1rem;
+    border-left: 3px solid var(--accent); }.worked-examples .wex-title{ margin: 0 0 0.7rem; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }.worked-examples .wex-case{ margin: 0 0 0.7rem; }.worked-examples .wex-case p{ margin: 0; }.worked-examples .wex-src{ font-weight: 700; }/* The Takeaway reads as a DIFFERENT kind of statement than the examples — its own top rule + accent label —
+   so it forces the reader to compare abstractions, .md-typeset not implementations (B3 R4). */
+.worked-examples .wex-takeaway{ margin: 0.9rem 0 0; padding-top: 0.7rem;
+    border-top: 1px solid var(--rule, rgba(120,113,108,0.28)); }.worked-examples .wex-takeaway p{ margin: 0; }.worked-examples .wex-tk-label{ font-weight: 700; font-variant: small-caps; letter-spacing: 0.03em;
+    color: var(--accent); }.md-typeset blockquote table.book-table{ background: transparent; }.md-typeset blockquote .inset-title{ font-style: normal; font-weight: 700; margin: 0 0 0.4rem; }.md-typeset blockquote pre.mermaid{ font-style: normal; }/* Mermaid label DISPLAY size — driven from the SAME design token as the mermaid LAYOUT config
+   (assets/mermaid-config.json, .md-typeset emitted by the token projector). Mermaid sizes each node box at the
+   config font-size; these rules render the text at that identical px, .md-typeset so a label can never overflow the
+   box mermaid drew for it (the config==CSS invariant). Do not hardcode a literal here — it would drift
+   from the config and re-introduce the overflow class. */
+pre.mermaid .nodeLabel, pre.mermaid .label text{ font-size: 18px; }pre.mermaid text.messageText{ font-size: 16px; }/* CONCEPT INSET — a textbook-style primer sidebar (a `> ### Inset N — Title` block). It is NOT a plain
+   quote: it is a deliberately designed aside that teaches a background concept beside the main argument
+   (e.g. "What is an automaton?"). So it drops the base blockquote's grey border + italic run and gets its
+   own visual language: a tinted panel, .md-typeset a strong left accent rule, .md-typeset a labelled header band, .md-typeset and a ROMAN
+   (non-italic) body a reader can actually read at length.
+
+   ── SWAP POINT ─────────────────────────────────────────────────────────────────────────────────────
+   Every knob is a CSS custom property on `.concept-inset`, .md-typeset so this "screen representation of the book" can
+   be re-skinned in ONE place — change these vars to retarget a print stylesheet, .md-typeset a dark theme, .md-typeset or an
+   alternate house style without touching any rule below. Add e.g. a `@media print` or `:root[data-theme=…]`
+   block that only re-declares these variables and the whole sidebar follows. */
+blockquote.concept-inset{
+  --inset-bg: var(--panel);           /* panel fill — warm off-white, distinct from the page's var(--panel) */
+  --inset-accent: var(--box-inset-rule);       /* the lavender left accent rule + ::before square — a BORDER, no contrast rule */
+  --inset-header: var(--ink);       /* header title + strong TEXT ink — near-black, ~13:1 on the lavender band/panel (WCAG-AA). The lavender box-inset-rule stays the accent RULE only; used as text ink it was 4.03:1, under AA. */
+  --inset-header-bg: var(--box-inset-fill);    /* header band fill — a shade deeper than the panel so the label reads */
+  --inset-body: var(--ink);         /* body ink — near-black warm grey, comfortable roman reading colour */
+  --inset-accent-width: 5px;     /* thickness of the left accent rule */
+  --inset-radius: 6px;
+  --inset-pad-x: 1.35rem;
+  --inset-pad-y: 1rem;
+  --inset-max: 34rem;            /* keep the primer to a readable measure, not the full column width */
+
+  background: var(--inset-bg);
+  border: 1px solid var(--rule);
+  border-left: var(--inset-accent-width) solid var(--inset-accent);
+  border-radius: var(--inset-radius);
+  color: var(--inset-body);
+  font-style: normal;            /* KEY: kill the base blockquote italic — a primer reads as roman prose */
+  padding: 0 var(--inset-pad-x) var(--inset-pad-y);
+  margin: 1.7rem 0;
+  max-width: var(--inset-max);
+}/* Header treatment — the "Inset N — Title" label sits in its own tinted band, .md-typeset flush to the panel edges, .md-typeset set in small-caps-ish tracked type so it reads as a sidebar HEADER, .md-typeset not a run-in paragraph. It stays a
+   demoted callout label (`p.inset-title`, .md-typeset not an <hN>) so no heading-order break and its id anchor is
+   preserved. */
+blockquote.concept-inset .inset-title{
+  font-style: normal; font-weight: 700; color: var(--inset-header);
+  background: var(--inset-header-bg);
+  margin: 0 calc(-1 * var(--inset-pad-x)) var(--inset-pad-y);
+  padding: 0.6rem var(--inset-pad-x);
+  border-radius: var(--inset-radius) var(--inset-radius) 0 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.9rem; letter-spacing: 0.02em; line-height: 1.35;
+}blockquote.concept-inset .inset-title::before{
+  content: ""; display: inline-block; width: 0.55rem; height: 0.55rem; margin-right: 0.5rem;
+  background: var(--inset-accent); border-radius: 2px; vertical-align: middle;
+}blockquote.concept-inset p{ margin: 0 0 0.7rem; line-height: 1.6; }blockquote.concept-inset p:last-child{ margin-bottom: 0; }blockquote.concept-inset strong{ color: var(--inset-header); }blockquote.concept-inset em{ font-style: italic; }/* inline emphasis still italicizes inside roman body */
+/* ── FOUR-FAMILY BOX GRAMMAR (box-grammar-IMPL-260823) ──────────────────────────────────────────────
+   Four visual families keyed off an explicit box-family source marker (→ blockquote.box-<family>).
+   The palette is composed from EXISTING role tokens — no new design tokens. Governing contrast: canonical
+   (rust) = remember-this doctrine; inset (neutral + badge) = optional enrichment; model-card (monochrome)
+   = a schematic; evidence (cool blue) = the author's observation, .md-typeset not doctrine. */
+/* CANONICAL — MAGE doctrine, .md-typeset the strongest house treatment: warm rust panel, .md-typeset thick left rule, .md-typeset a centered
+   UPPERCASE title-bar (source keeps natural case; the renderer applies the caps). */
+blockquote.box-canonical{ background: var(--accent-tint); border: 1px solid var(--rule);
+  border-left: 5px solid var(--accent); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }blockquote.box-canonical p{ margin: 0 0 0.6rem; line-height: 1.6; }blockquote.box-canonical p:last-child{ margin-bottom: 0; }blockquote.box-canonical strong{ color: var(--accent); }blockquote.box-canonical em{ font-style: italic; }blockquote.box-canonical .inset-title{
+  text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--accent); background: var(--accent-tint); font-family: var(--font-display);
+  font-size: 0.95rem; line-height: 1.35;
+  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 5px);
+  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--accent); border-radius: 5px 5px 0 0; }blockquote.box-canonical .inset-title::before{ content: none; }/* INSET — a removable pedagogical sidecar: neutral panel + a small upper-right provenance badge naming the
+   idea's genealogy (ENGINEERING, FORMAL METHODS, …); the §6.5 conjecture box carries a CAVEAT badge. */
+blockquote.box-inset{ position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--muted); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }blockquote.box-inset p{ margin: 0 0 0.7rem; line-height: 1.6; }blockquote.box-inset p:last-child{ margin-bottom: 0; }blockquote.box-inset strong{ color: var(--ink); }blockquote.box-inset em{ font-style: italic; }blockquote.box-inset .inset-title{ font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 8rem; }blockquote.box-inset .inset-title::before{ content: none; }.box-badge{ position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: 0.12rem 0.4rem; }.box-badge-caveat{ color: var(--accent); border-color: var(--accent); }/* MODEL CARD — a schematic, .md-typeset monochrome; identical field order per card; a tiny MODEL CARD corner label. */
+blockquote.box-model-card{ position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--rule); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }blockquote.box-model-card p{ margin: 0 0 0.6rem; line-height: 1.55; }blockquote.box-model-card p:last-child{ margin-bottom: 0; }blockquote.box-model-card ul{ margin: 0.3rem 0; }blockquote.box-model-card strong{ color: var(--ink); }blockquote.box-model-card em{ font-style: italic; }blockquote.box-model-card .inset-title{ font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 6rem; }blockquote.box-model-card .inset-title::before{ content: none; }.box-corner{ position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); }/* EVIDENCE / navigation — the author's observation or a coverage device, .md-typeset not doctrine: cool blue-gray. */
+blockquote.box-evidence{ background: var(--diagram-fleet-fill); border: 1px solid var(--rule);
+  border-left: 4px solid var(--diagram-fleet); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }blockquote.box-evidence p{ margin: 0 0 0.6rem; line-height: 1.6; }blockquote.box-evidence p:last-child{ margin-bottom: 0; }blockquote.box-evidence strong{ color: var(--diagram-fleet); }blockquote.box-evidence em{ font-style: italic; }blockquote.box-evidence .inset-title{ font-style: normal; font-weight: 700; color: var(--diagram-fleet);
+  font-size: 1rem; margin: 0 0 0.5rem; }blockquote.box-evidence .inset-title::before{ content: none; }/* ── READING-WEIGHT AXIS (box-weight marker; typography pilot 260908) ───────────────────────────────
+   Orthogonal to the four-family grammar and the provenance badge: the family/badge say what KIND of
+   material a box holds; the weight says how heavily to weight it in the reading path, .md-typeset legible before
+   reading a word. Geometry carries the signal more than color does: aside = narrow + wrapped + smaller;
+   callout = full-width + contained + secondary; deep-dive = full-width + sectional + sustained. The
+   `bw-*` classes compose onto the family class (`box-inset bw-aside`), .md-typeset so an unmarked box renders
+   exactly as before. These rules sit AFTER the family rules on purpose — equal specificity, .md-typeset later wins. */
+/* ASIDE — a compact optional bridge the reader may skip: floated to the outside (right) edge at 65% of
+   the measure, .md-typeset body ~1pt down + tighter leading, .md-typeset the main prose wrapping alongside. Collapses to an
+   in-column box on a narrow screen (a float needs a wide measure to leave a readable wrap column). */
+blockquote.bw-aside{ font-size: 15.5px; line-height: 1.5; padding: 0.8rem 1.1rem; }blockquote.bw-aside .inset-title{ font-size: 0.92rem; }blockquote.bw-aside p{ line-height: 1.5; }
+@media (min-width: 60rem) {blockquote.bw-aside{ float: right; clear: right; width: 60%; margin: 0.4rem 0 1rem 1.4rem; }
+}/* A section heading immediately after an aside clears the float — a `##`/`###` head squeezed into the
+   35% wrap column reads wrong. Adjacent-sibling only, .md-typeset so gutter sidenotes elsewhere keep their layout. */
+blockquote.bw-aside + h2, blockquote.bw-aside + h3{ clear: right; }/* CALLOUT — substantial secondary material (a mini-essay, .md-typeset sometimes code): full width, .md-typeset body ~0.75pt
+   down, .md-typeset the light tint + understated border the box-inset base already supplies, MORE interior padding
+   than an aside, .md-typeset no wraparound. */
+blockquote.bw-callout{ font-size: 16px; padding: 1.25rem 1.5rem; }/* DEEP DIVE — an intentional excursion one abstraction layer down, .md-typeset read as a mini-section: full width, .md-typeset a STRONG top rule + a structural DEEP DIVE label instead of a tight 4-sided box, .md-typeset a faint full-width
+   wash, .md-typeset generous vertical air, .md-typeset body only ~0.5pt down (meant to be READ, .md-typeset not skimmed). */
+blockquote.bw-deep-dive{ background: var(--panel); border: none; border-top: 3px solid var(--accent);
+  border-radius: 0; padding: 1.1rem 1.3rem 1.2rem; margin: 2.4rem 0; font-size: 16.5px; }blockquote.bw-deep-dive .bw-label{ display: block; font-family: var(--font-body); font-size: 0.68rem;
+  font-weight: 700; letter-spacing: 0.14em; color: var(--accent); margin: 0 0 0.55rem; }blockquote.bw-deep-dive .inset-title{ font-size: 1.05rem; }/* CODE INSET — a fenced code listing lifted into a titled box: "here is a real artifact from the system."
+   It shares the concept-inset's amber header-band label typography (the sidebar HEADER, `p.inset-title`, .md-typeset demoted so no heading-order break), .md-typeset but its body is a monospace listing, .md-typeset not roman prose. The header
+   sits flush to the panel edges; the <pre> keeps the page's usual code styling, .md-typeset un-boxed inside the panel
+   so the box's own border is the only frame. */
+figure.code-inset{
+  --inset-bg: var(--panel); --inset-accent: var(--box-inset-rule); --inset-header: var(--ink); --inset-header-bg: var(--box-inset-fill);
+  --inset-radius: 6px; --inset-pad-x: 1.35rem;
+  background: var(--inset-bg); border: 1px solid var(--rule);
+  border-left: 5px solid var(--inset-accent); border-radius: var(--inset-radius);
+  margin: 1.7rem 0; max-width: 40rem; overflow: hidden;
+}figure.code-inset .inset-title{
+  font-family: "Source Sans 3", sans-serif; font-style: normal; font-weight: 700;
+  color: var(--inset-header); background: var(--inset-header-bg);
+  margin: 0; padding: 0.55rem var(--inset-pad-x);
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.9rem; letter-spacing: 0.02em; line-height: 1.35;
+}figure.code-inset .inset-title::before{
+  content: ""; display: inline-block; width: 0.55rem; height: 0.55rem; margin-right: 0.5rem;
+  background: var(--inset-accent); border-radius: 2px; vertical-align: middle;
+}figure.code-inset pre{ margin: 0; padding: 0.9rem var(--inset-pad-x); background: transparent; border: 0; }/* THESIS box — a chapter's load-bearing claim, .md-typeset lifted out of the reading column as a light green panel.
+   Un-italic (a thesis is a statement, .md-typeset not an aside); dark ink var(--ink) on var(--box-thesis-fill) clears WCAG AA (~13.8:1).
+   Taxonomy + spec: book/_design/callout-typography.md. */
+blockquote.thesis-box{ background: var(--box-thesis-fill); border: 1px solid var(--rule); border-left: 4px solid var(--box-thesis-rule);
+                         color: var(--ink); font-style: normal; padding: 1rem 1.3rem; margin: 1.6rem 0;
+                         border-radius: 5px; }blockquote.thesis-box p{ margin: 0 0 0.6rem; }blockquote.thesis-box p:last-child{ margin-bottom: 0; }blockquote.thesis-box strong{ color: var(--box-thesis-rule); }/* Part-opener THESIS box title-bar — a principlebox-marker box whose first line is a demoted "### TITLE"
+   heading (rendered as p.inset-title) shows that title as a centered ALLCAPS bar in the green family, .md-typeset flush
+   to the panel edges (negative margins cancel the 1rem/1.3rem panel padding), .md-typeset a hairline green rule under it.
+   In-prose "The … Thesis." boxes carry no .inset-title, .md-typeset so they are untouched (Fork 6a). */
+blockquote.thesis-box .inset-title{
+  text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--box-thesis-rule); background: var(--box-thesis-fill);
+  font-family: var(--font-display); font-size: 0.95rem; line-height: 1.35;
+  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 4px);
+  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--box-thesis-rule);
+  border-radius: 5px 5px 0 0;
+}blockquote.thesis-box .inset-title::before{ content: none; }/* DEFINITION box — a core-term definition (an index-def marker on a bold-lead Term blockquote), .md-typeset lifted
+   into a blue panel that mirrors the thesis box's shape but carries the definition-azure anchor. Blue on
+   every surface, .md-typeset distinct from the umber chrome accent and the green thesis claim. */
+blockquote.def-box{ background: var(--box-def-fill); border: 1px solid var(--rule);
+                      border-left: var(--border-box-rule) solid var(--box-def-rule);
+                      color: var(--ink); font-style: italic; padding: 1rem 1.3rem; margin: 1.6rem 0;
+                      border-radius: 5px; }blockquote.def-box p{ margin: 0 0 0.6rem; }blockquote.def-box p:last-child{ margin-bottom: 0; }blockquote.def-box strong{ color: var(--box-def-rule); }/* DEFINITION body typography — the definition prose reads in italics (it is an aside on a term), .md-typeset while the
+   bold Term LEAD stays upright (a label, .md-typeset not emphasis). Applies to both the light `> **Term.**` sidenote
+   (`def-inset`) and the boxed core-term definition (`def-box`). Only the FIRST paragraph's leading <strong>
+   is uprighted, .md-typeset so the term label reads as a label; any later inline bold keeps the surrounding italic.
+   Footnotes (em-led), .md-typeset plain sidenotes, .md-typeset primers, .md-typeset and theses are untouched. Taxonomy: _design/callout-typography.md. */
+blockquote.def-inset{ font-style: italic; }blockquote.def-inset > p:first-child > strong:first-child, blockquote.def-box > p:first-child > strong:first-child{ font-style: normal; }/* PULL-QUOTE — a prominent, LABEL-LESS emphasis line (e.g. a chapter/book closing thought). Unlike
+   THESIS/DEFINITION/CONCEPT-INSET it carries NO semantic color-family (no fill, .md-typeset no left accent bar, .md-typeset no radius) — those signal a CATEGORIZED construct (a claim / a term / a primer). A pull-quote is not
+   a category; it differentiates by SIZE and CENTERING alone — the printed-page convention of an
+   enlarged pulled line, .md-typeset bounded by a thin accent rule above and below. Authored via a bare
+   pullquote marker comment glued above a plain blockquote (see callout-typography.md).
+   [INFRA-1], part6-apply-SPEC-260807.md. */
+blockquote.pull-quote{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: var(--fs-thesis-title);
+  line-height: 1.32;
+  color: var(--ink);
+  text-align: center;
+  max-width: 34rem;
+  margin: 2.6rem auto;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}blockquote.pull-quote p{ margin: 0; }blockquote.pull-quote strong{ font-style: normal; }.book-eq{ text-align: center; color: var(--ink); margin: 1.3rem 0; }.book-eq math{ font-size: 1.18em; }.book-eq-boxed math{ font-size: 1.06em; }.book-eq-boxed{ border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
+           display: inline-block; margin: 0.5rem auto; }.book-eq-boxed-wrap{ text-align: center; margin: 1.3rem 0; }math.book-math-inline{ font-size: 1.05em; }figure.book-figure{ margin: 1.8rem 0; text-align: center; }figure.book-figure svg, figure.book-figure img{ max-width: 100%; height: auto; }/* A wide figure breaks out past the reading column for more visual authority. Centered on the column via
+   a half-shift; capped at 96vw so it never forces horizontal scroll on a narrow screen. */
+figure.book-figure--wide{ width: min(64rem, 96vw); margin-left: 50%; transform: translateX(-50%); }figure.book-figure--wide svg, figure.book-figure--wide img{ max-width: 100%; height: auto; }figure.book-figure figcaption{ font-size: 14px; color: var(--muted); margin-top: 0.6rem;
+                                text-align: left; line-height: 1.5; }figure.book-figure figcaption.fig-label-only{ text-align: center; }/* D74 — the author portrait floats left at a capped width so the bio flows around it. It is a PLAIN
+   (unnumbered, .md-typeset uncaptioned) `figure.plain-image.portrait-wrap`, .md-typeset not a `book-figure` float. */
+figure.portrait-wrap{ float: left; width: 190px; max-width: 40%; margin: 0.2rem 1.5rem 0.8rem 0;
+                        text-align: center; }figure.portrait-wrap img{ width: 100%; height: auto; border-radius: 4px; }.fig-label, .tbl-label{ font-weight: 700; color: var(--ink); }.md-typeset table caption{ caption-side: top; text-align: left; font-size: 14px; color: var(--muted);
+                 margin-bottom: 0.45rem; line-height: 1.5; }ul.list-of-floats-links{ list-style: none; padding-left: 0; }ul.list-of-floats-links li{ margin: 0.15rem 0; }/* Front-glossary term linked to its canonical definition site (idx-def anchor). Keeps the bold term's ink
+   colour; a dotted underline marks it as a jump-to-definition without the heavy accent of an inline link. */
+a.gloss-site{ color: inherit; text-decoration: none; border-bottom: 1px dotted var(--muted); }a.gloss-site:hover, a.gloss-site:focus{ color: var(--accent); border-bottom-color: var(--accent); }/* Figures Gallery (figures.html) — every figure verbatim (same rendered fragment the chapters ship), `<hr>`-separated, .md-typeset each followed by a small "from <chapter>" back-link. */
+.gallery-item{ margin: 0; }.gallery-item .book-figure{ margin-top: 0; }.gallery-source{ font-size: 13px; color: var(--muted); text-align: center; margin: 0.5rem 0 0; }.gallery-source a{ color: var(--accent); text-decoration: underline; }.gallery hr{ border: none; border-top: 1px solid var(--rule); margin: 2.4rem 0; }.gallery-group{ margin: 0 0 2.4rem; }.gallery-group > h2{ margin: 2.6rem 0 0.2rem; padding-bottom: 0.3rem; border-bottom: 2px solid var(--rule); }.gallery-group-note{ font-size: 14px; color: var(--muted); margin: 0 0 1.6rem; }.marker{ margin: 1.3rem 0; padding: 0.75rem 1rem; border-radius: 5px; font-size: 15px; }.marker-fill{ background: var(--accent-tint); border: 1px dashed var(--accent); }.marker-more{ background: var(--box-def-fill); border: 1px dashed var(--box-def-rule); }.marker-tag{ display: inline-block; font-weight: 700; font-size: 11px; letter-spacing: 0.05em;
+               padding: 1px 6px; border-radius: 3px; margin-right: 0.5rem; vertical-align: 1px; }.marker-fill .marker-tag{ background: var(--accent); color: var(--paper); }.marker-more .marker-tag{ background: var(--box-def-rule); color: var(--paper); }/* Per-page chapter navigation — one left→right sequence bar (Table of contents « … │ THIS CHAPTER │ … »
+   Index), bottom-only. Mobile-first: stacked column (backward pills → centred name → forward pills);
+   enhanced to a three-zone row at >=60rem so the name stays dead-centre. Tokens only. */
+.chapnav{ display: flex; flex-direction: column; gap: 0.8rem; align-items: stretch;
+            margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--rule); }.chapnav-back, .chapnav-fwd{ display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }.chapnav-here{ text-align: center; font-weight: 600; color: var(--accent); font-size: 18px; padding: 0.2rem 0; }.chapnav a{ font-size: 12px; letter-spacing: 0.03em; text-transform: uppercase; font-weight: 600;
+              color: var(--accent); text-decoration: none; padding: 0.5rem 0.85rem; line-height: 1.1;
+              border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); }.chapnav a:hover{ border-color: var(--accent); background: var(--panel); }
+@media (min-width: 60rem) {.chapnav{ flex-direction: row; align-items: center; }.chapnav-back{ flex: 1; justify-content: flex-end; }.chapnav-fwd{ flex: 1; justify-content: flex-start; }.chapnav a{ white-space: nowrap; }.chapnav-here{ flex: 0 0 auto; max-width: 22rem; overflow: hidden; text-overflow: ellipsis;
+                   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+}/* Part-nav footer on a Part landing page — a pill bar over the seven numbered Parts (current = filled, non-link).
+   Mirrors the .chapnav pill look. */
+/* Interactive book-roadmap nav on a Part landing page (web only). The SVG reuses assets/book-map.svg;
+   each numbered Part is an <a> or the highlighted current node. Tokens only (theme + print safe). */
+.roadmap-nav{ margin-top: 2.6rem; padding-top: 1.4rem; border-top: 1px solid var(--rule);
+               display: flex; justify-content: center; }.roadmap-nav svg{ width: 100%; max-width: 460px; height: auto; }.roadmap-nav a.bm-part-link{ cursor: pointer; }.roadmap-nav a.bm-part-link rect{ transition: stroke-width 80ms ease; }.roadmap-nav a.bm-part-link:hover rect, .roadmap-nav a.bm-part-link:focus-visible rect{ stroke-width: 3.5; }.roadmap-nav a.bm-part-link:focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; }/* Current Part: heavier stroke — NOT color-only (pairs with aria-current + the hidden "current part" text). */
+.roadmap-nav .bm-part.current rect{ stroke-width: 4; }/* Off-screen but reader-available (screen-reader fallback list + the current-Part-in-text cue). */
+.visually-hidden{ position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+                    clip: rect(0 0 0 0); white-space: nowrap; border: 0; }.book-foot{ margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); color: var(--muted);
+              font-size: 13px; text-align: center; }/* index page */
+.book-title{ padding: 3rem 0 0.5rem; }.book-title h1{ font-size: 2.4rem; margin: 0; }.book-title .sub{ color: var(--muted); margin-top: 0.4rem; }.book-download{ margin-top: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }.book-download a{ display: inline-block; font-size: 14px; font-weight: 600; color: var(--accent);
+                    text-decoration: none; padding: 0.45rem 0.9rem; border: 1px solid var(--rule);
+                    border-radius: 6px; background: var(--paper); }.book-download a:hover{ border-color: var(--accent); background: var(--panel); }.idx .part{ font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;
+             font-size: 13px; margin: 2rem 0 0.5rem; }.idx ol{ list-style: none; padding: 0; margin: 0; }.idx li{ margin: 0.35rem 0; }.idx a{ text-decoration: none; }.idx .cnum{ color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 0.5rem; }/* Landing cover: TOC left + cover right on a wide screen; on narrow the row stacks and the cover
+   moves to the TOP at a small size (order: -1), .md-typeset just under the title block. Breakpoint 48rem. */
+.idx-cover{ display: flex; align-items: flex-start; gap: 2.5rem; }.idx-cover .idx{ flex: 1 1 auto; min-width: 0; }.book-cover-side{ flex: 0 0 auto; width: 15rem; max-width: 38%; height: auto; margin-top: 2rem;
+                    border: 1px solid var(--rule); border-radius: 6px; position: sticky; top: 2rem; }
+@media (max-width: 48rem) {.idx-cover{ flex-direction: column; gap: 0; }.book-cover-side{ order: -1; position: static; width: 8.5rem; max-width: 45%;
+                      margin: 1.2rem 0 0.2rem; }
+}/* term index page */
+.idx-terms ul{ list-style: none; padding: 0; margin: 0 0 1rem; }.idx-terms li{ margin: 0.3rem 0; }.idx-terms .idx-term{ font-weight: 600; }.idx-terms .idx-refs{ color: var(--muted); font-size: 14px; }.idx-terms .idx-refs a{ margin-left: 0.15rem; }/* curated concept entry: a definition-of / examples-of sub-block under the concept name */
+.idx-terms li.idx-concept{ margin: 0.55rem 0; }.idx-concept .idx-subs{ display: block; margin: 0.15rem 0 0 1rem; }.idx-concept .idx-sub{ display: block; font-size: 14px; color: var(--muted); line-height: 1.6; }.idx-concept .idx-sub-lead{ color: var(--muted); font-style: italic; margin-right: 0.35rem; }/* Underline the locators so a link is distinguished from the "definition of:" lead text without relying
+   on color alone (axe link-in-text-block). */
+.idx-concept .idx-sub a{ margin-right: 0.4rem; text-decoration: underline; }/* iframe figure embed (the rewired mechanism map) */
+figure.book-figure.catalogue-embed iframe{ width: 100%; height: 600px; border: 1px solid var(--rule);
+                                             border-radius: 6px; background: var(--paper); }/* TOP nav bar — the ☰ Contents disclosure only (the per-page sequence bar lives at the bottom now). */
+nav.toc .toc-inner{ display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+                      gap: 0.7rem 1.4rem; }nav.toc details{ flex: 0 0 auto; }/* When the reader opens the Contents disclosure, .md-typeset let it claim the full row so the chapter list flows at
+   full width under the summary. */
+nav.toc details[open]{ flex: 1 1 100%; }/* 1. Linked constituent legend — beneath a stack's overview figure; role-labelled links to each part's
+      inline subsection on the same page. */
+nav.stack-legend{ margin: 0.6rem auto 1.8rem; padding: 0.8rem 1rem; max-width: 46rem; text-align: left;
+                   border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 6px;
+                   background: var(--panel); }nav.stack-legend ol{ margin: 0; padding-left: 1.4rem; }nav.stack-legend li{ margin: 0.3rem 0; line-height: 1.5; }nav.stack-legend .legend-role{ display: inline-block; font-weight: 700; font-size: 11px; letter-spacing: 0.05em;
+                                color: var(--paper); background: var(--accent); padding: 1px 6px; border-radius: 3px;
+                                margin-right: 0.5rem; vertical-align: 1px; }nav.stack-legend a{ color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }nav.stack-legend a:hover, nav.stack-legend a:focus{ border-bottom-color: var(--accent); }nav.stack-legend .legend-loc{ color: var(--muted); font-variant-numeric: tabular-nums; }/* 2. Keep-together note (HTML best-effort — the hard guarantee is the PDF path). */
+section.eng-note, section.eng-note-panel{ break-inside: avoid; }/* 3. Packed brick grid — a CSS grid whose bricks span 1..N columns as the packer computed; each brick a
+      bordered card (thumbnail slot, .md-typeset linked name, .md-typeset summary, .md-typeset metadata footer). */
+.brick-grid{ display: grid; grid-template-columns: repeat(var(--brick-cols, 2), minmax(0, 1fr));
+              gap: 1rem; margin: 1.4rem 0 2rem; }.brick{ border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); padding: 0.85rem 0.95rem;
+         display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }/* R7 (#1 feedback): the thumbnail slot is TALLER so the diagram/glyph — and therefore its text — renders
+   larger and legible; the summary font DROPS a notch. Bricks stay equal-size (R6): the rebalance applies
+   uniformly to every brick. */
+.brick-fig{ display: flex; align-items: center; justify-content: center; height: 6.75rem; border-radius: 5px;
+             border: 1px dashed var(--rule); background: var(--panel); color: var(--muted); font-size: 12px;
+             letter-spacing: 0.04em; text-transform: uppercase; overflow: hidden; padding: 0.3rem; }.brick-fig svg{ max-width: 100%; max-height: 100%; height: auto; width: auto; }.brick-fig-glyph svg{ max-height: 5.7rem; }/* Technique kicker — a small, .md-typeset muted eyebrow naming the transferable technique above a concrete brick title. */
+.brick-kicker{ margin: 0.1rem 0 -0.1rem; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+                text-transform: uppercase; color: var(--accent); }.brick-name{ margin: 0; font-weight: 700; line-height: 1.25; }.brick-name a{ color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent); }.brick-name a:hover, .brick-name a:focus{ color: var(--accent); }.brick-sum{ margin: 0; font-size: 12.5px; line-height: 1.48; color: var(--ink); }.brick-meta{ margin: 0.1rem 0 0; font-size: 12px; color: var(--muted); letter-spacing: 0.02em; }/* Instance backref — "An instance of: X →"; the domain-specific variant reads louder (accent, heavier). */
+.brick-instance{ margin: 0.05rem 0 0; font-size: 12px; color: var(--muted); line-height: 1.4; }.brick-instance a{ color: inherit; }.brick-instance-domain{ color: var(--accent); font-weight: 600; }/* Advanced-examples line on a technique brick — quiet, .md-typeset sits under the summary. */
+.brick-adv{ margin: 0.05rem 0 0; font-size: 11.5px; color: var(--muted); line-height: 1.4; }/* Engineering-Note ref (flagship only) — a muted footnote under the chip line, .md-typeset never a second chip row. */
+.brick-note-ref{ margin: 0.1rem 0 0; font-size: 11.5px; color: var(--muted); letter-spacing: 0.02em; }
+@media (max-width: 40rem) {.brick-grid{ grid-template-columns: 1fr; }.brick{ grid-column: span 1 !important; } }/* 4. D77 — appendix CHAPTER headings in ALL CAPS, .md-typeset so an appendix page's title reads as clearly distinct
+      from the book's own chapter titles. CSS text-transform only (the DOM text is unchanged, .md-typeset so the TOC, .md-typeset pager, .md-typeset index, .md-typeset and any text-extraction stay case-exact). Scoped to the appendix `<main>` so book
+      chapters are untouched. */
+div.wrap.appendix h1{ text-transform: uppercase; letter-spacing: 0.015em; }
+
+/* ── C1/C2 shim (book_mkdocs.py) — the book components fitted to the family shell ─────────────
+   Q2 measure: Material's default 61rem grid yields a ~37rem content column — too tight for the
+   book's voice. 76rem restores the book's ≈52rem reading measure (C0 spike, VERDICT Q2). */
+.md-grid { max-width: 76rem; }
+/* The page wrap div keeps its CLASSES (the appendix / part-page / divider CSS hooks) but cedes its
+   geometry — Material's grid owns the measure now. */
+.md-typeset div.wrap { max-width: none; margin: 0; padding: 0; }
+/* Q1 sidenote strategy, variant (a), finalized: ONE compact in-column presentation at every width,
+   coexisting with Material's TOC rail. The `.md-typeset`-prefixed selectors out-rank the base
+   sheet's wide-screen gutter floats (whose -15rem right margins would land the notes under the
+   rail), so no media query is needed — float-neutralization + presentation hold everywhere.
+   Colors ride the token vars; the slate remap below restyles them for dark for free. */
+.md-typeset blockquote.aside-sidenote {
+  float: none; clear: none; width: auto; margin: 0.5rem 0 1.1rem;
+  background: transparent; border-left: 2px solid var(--box-inset-rule);
+  padding: 0.1rem 0 0.1rem 0.95rem; font-size: 14px; line-height: 1.55; color: var(--muted);
+}
+.md-typeset .cite-note, .md-typeset .editorial-note {
+  float: none; clear: none; width: auto; max-width: 34rem; margin: 0.45rem 0 0.9rem;
+  background: var(--panel); border-left: 3px solid var(--box-inset-rule);
+  border-radius: 0 6px 6px 0; padding: 0.5rem 1rem 0.5rem 0.95rem;
+  font-size: 13.5px; line-height: 1.55;
+}
+/* A citation marker whose note card DIRECTLY precedes it (emitter-marked `cn-follow`) would render
+   as a one-glyph debris line between two cards — its number already leads the next card. Keep it in
+   the a11y tree and anchor order; remove it from visual flow. */
+.md-typeset sup.cn-follow {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%);
+}
+/* The wide-figure breakout (min(64rem,96vw), half-shift) centers on the VIEWPORT in the hand-rolled
+   shell; inside Material's grid it would ride over the nav/TOC rails. Cap it to the column. */
+.md-typeset figure.book-figure--wide { width: 100%; margin-left: 0; transform: none; }
+/* The lifted bottom sequence bar sits inside .md-typeset now; keep its pills un-underlined. */
+.md-typeset .chapnav a { text-decoration: none; }

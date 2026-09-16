@@ -173,17 +173,18 @@ jobs:
           # bare `_site/teach` would land in site/_site/teach — which the assemble step's --exclude='site'
           # then drops. $GITHUB_WORKSPACE is the repo root, so /teach ships at _site/teach.
           python3 -m mkdocs build --strict -f site/mkdocs.yml -d "$GITHUB_WORKSPACE/_site/teach"
-      # ── MAGE web edition, MkDocs projection (Phase C1: parallel-run, NON-PUBLISHED) ─────────────
-      # book_mkdocs.py projects the same rendered book the canonical build just wrote (catalog.py
-      # build, above) into a MkDocs site consuming the shared web-theme/ shell. This step only
-      # PROVES the emitter end-to-end — emit determinism (emit twice, byte-identical) + a --strict
-      # Material build — and publishes NOTHING: the hand-rolled book/*.html relocated by
-      # publish_book_layout.py below remains the served MAGE web edition until the C3 publish swap.
-      # The generated book/web/ tree is gitignored and excluded from the site artifact (rsync below).
+      # ── MAGE web edition (MkDocs — the PUBLISHED book since the C3 publish swap) ────────────────
+      # book_mkdocs.py runs build_pages() (every content pass) and emits the MkDocs tree consuming the
+      # shared web-theme/ shell; `--check-determinism` emits twice and fails on any byte difference
+      # (the C3 replacement for the retired tracked-HTML + pre-commit force-staging discipline). The
+      # --strict Material build then renders book/web/site — flat `<slug>.html` stems identical to the
+      # retired hand-rolled pages (`use_directory_urls: false`), so every published URL + #anchor is
+      # unchanged. The publish step below (after assemble) copies the built site into
+      # _site/book/mage-book/; the generated book/web/ SOURCE tree stays excluded from the artifact.
       # Toolchain: the same pinned mkdocs+material the teach-site step installed above.
-      - name: MAGE web MkDocs projection — NON-published parallel-run check (emit determinism + strict build)
+      - name: Build MAGE book web edition (emit determinism + mkdocs --strict)
         run: |
-          python3 book/book_mkdocs.py --no-build --check-determinism
+          python3 book/book_mkdocs.py --check-determinism
           python3 -m mkdocs build --strict -f book/web/mkdocs.yml
       - name: Assemble site artifact (exclude .git / node_modules / .github / raw course+site+handbook sources; KEEP book/mage-book.pdf + _site/teach + _site/se-handbook)
         run: |
@@ -192,25 +193,32 @@ jobs:
           # PDF was already copied into _site/se-handbook above — rsync (no --delete) leaves it untouched.
           # `book/dist` holds LOCAL-ONLY review staples (not emitted in CI; excluded here as defense in
           # depth so a stray local artifact can never ride into the published site).
-          # `book/web` is the NON-published MkDocs projection (Phase C1 parallel-run check, above) —
-          # excluded so the generated docs/site trees never ride into the published artifact.
+          # `book/web` is the generated MkDocs SOURCE tree of the MAGE book — excluded here because the
+          # BUILT site (book/web/site) is copied into _site/book/mage-book/ by the publish step below;
+          # the raw docs/ + mkdocs.yml must never ride into the artifact.
           rsync -a --exclude='.git' --exclude='node_modules' --exclude='.github' \
                 --exclude='__pycache__' --exclude='_site' --exclude='book/_print' \
                 --exclude='book/_typst' --exclude='book/dist' --exclude='book/web' \
                 --exclude='course' --exclude='site' --exclude='handbook' ./ _site/
           PDF="book/$(python3 -c "import json; print(json.load(open('book/book-manifest.json'))['pdf_filename'])")"
           test -f "_site/$PDF" || { echo "ERROR: $PDF missing from site artifact"; exit 1; }
-      # ── Relocate the book + handbook into their /book/<name>/ homes (with redirect stubs) ─────────
-      # GitHub Pages has no server redirects, so the flat book pages assembled at _site/book/<slug>.html are
-      # moved one level deeper into _site/book/mage-book/ (their root-relative refs rewritten), the whole-book
-      # PDF and the handbook PDF are copied into _site/book/mage-book/ and _site/book/se-handbook/, and a
-      # static meta-refresh stub is left at every old page URL so external links never 404. Stdlib-only; runs
-      # AFTER assemble so it operates on the fully-populated _site tree.
-      - name: Relocate book + handbook to /book/mage-book/ + /book/se-handbook/ (redirect stubs at old paths)
+      # ── Publish the MAGE book at /book/mage-book/ + finish the /book/ layout ──────────────────────
+      # Copy the MkDocs-built book site (strict-built above) into its published home — flat
+      # `<slug>.html` stems identical to the retired hand-rolled pages, so every pre-swap URL +
+      # #anchor resolves unchanged. Then publish_book_layout.py finishes the layout: a static
+      # meta-refresh stub at every legacy flat _site/book/<slug>.html URL (GitHub Pages has no server
+      # redirects), the whole-book PDF copied in next to the pages, and the handbook PDF + ePub copied
+      # into _site/book/se-handbook/. Stdlib-only; runs AFTER assemble so it operates on the
+      # fully-populated _site tree. The chapter-page test pins URL continuity across the C3 swap.
+      - name: Publish MAGE book (MkDocs site -> /book/mage-book/) + legacy stubs + PDF/ePub homes
         run: |
+          mkdir -p _site/book/mage-book
+          cp -r book/web/site/. _site/book/mage-book/
           python3 tools/publish_book_layout.py _site
           test -f _site/book/mage-book/mage-book.pdf || { echo "ERROR: relocated book PDF missing"; exit 1; }
-          test -f _site/book/mage-book/index.html || { echo "ERROR: relocated book index missing"; exit 1; }
+          test -f _site/book/mage-book/index.html || { echo "ERROR: published book index missing"; exit 1; }
+          test -f _site/book/mage-book/1.1-the-printer.html || { echo "ERROR: published chapter page missing (URL continuity broken)"; exit 1; }
+          test -f _site/book/1.1-the-printer.html || { echo "ERROR: legacy-URL redirect stub missing"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: relocated handbook PDF missing"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.epub || { echo "ERROR: relocated handbook ePub missing"; exit 1; }
       # ── Handbook WEB edition (MkDocs → /book/se-handbook/) ──────────────────────────────────────
@@ -222,7 +230,7 @@ jobs:
       # home NEXT TO the handbook PDF (`cp` merges into the existing dir; the trailing assertion
       # guards the PDF against a clobber). Chapters are then individually linkable at
       # /book/se-handbook/<stem>.html. Runs AFTER publish_book_layout.py so the copy targets the
-      # final published layout and the relocate's flat-page enumeration never sees these files.
+      # final published layout (the book's legacy stubs + PDF homes are already in place).
       - name: Build handbook web site (MkDocs) + publish at _site/book/se-handbook/ (next to the PDF)
         run: |
           python3 handbook/scripts/build.py web

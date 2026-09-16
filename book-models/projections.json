@@ -6,8 +6,8 @@
       "id": "book-web",
       "kind": "book",
       "builder": "book/build_book.py",
-      "globs": ["book/*.html"],
-      "note": "The web book — every chapter, part-opener, appendix, and the assembled index/figures/bibliography pages. Non-recursive: node_modules/ and _print/ under book/ are build scratch, not surfaces."
+      "globs": ["book/web/docs/*.md"],
+      "note": "The web book — every chapter, part-opener, appendix, and the assembled index/figures/bibliography pages, as the emitted MkDocs page bodies (raw rendered HTML; published at /book/mage-book/<stem>.html since the C3 swap). Non-recursive: assets/ under docs/ are copies, not prose surfaces."
     },
     {
       "id": "book-pdf",

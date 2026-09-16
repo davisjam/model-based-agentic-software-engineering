@@ -5,7 +5,10 @@ Four jobs, all cheap enough to run on every commit:
   0. Validate any STAGED .pptx deck (OPC part coverage stdlib-always; OOXML schema via OpenXmlValidator
      when .NET resolves, skip-if-absent) — blocks the PowerPoint needs-repair corruption class at commit.
   1. Regenerate the HTML site from the .md sources and stage it (GitHub Pages serves the committed .html,
-     so it must stay in sync with the .md it is rendered from).
+     so it must stay in sync with the .md it is rendered from). The MAGE book is NOT part of this
+     discipline since the C3 publish swap: its web edition is the emitted, gitignored `book/web/` MkDocs
+     tree (built + published by CI; determinism is CI's emit-twice gate), so no book page is tracked,
+     regenerated-into-the-tree, or force-staged here anymore.
   2. Regenerate + stage the book's DERIVED-VIEW model JSONs (outline / outcomes / reverse_index) — pure
      projections of the book source that otherwise go STALE silently and are caught only at deploy.
   3. BLOCK on the cheap, deterministic deploy-scope check (book-float-ref) so a figure without its intro
@@ -88,6 +91,9 @@ if _render.returncode:
     sys.exit(_render.returncode)
 subprocess.run(["git", "add", "--", "book-models/models-view.html"], cwd=ROOT)
 
+# Stage the regenerated CATALOGUE site pages. The retired hand-rolled book pages (`book/<slug>.html`)
+# are gitignored, so this pathspec cannot resurrect one — the book's web edition lives in the emitted,
+# never-committed `book/web/` tree (the C3 publish swap ended the book's tracked-HTML discipline).
 subprocess.run(["git", "add", "--", "*.html"], cwd=ROOT)
 subprocess.run(["git", "add", "--", "plugin"], cwd=ROOT)  # stage the regenerated skill bundle (plugin/**/*.html is gitignored)
 

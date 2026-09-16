@@ -9,7 +9,7 @@ import sys as _sys
 from html.parser import HTMLParser
 
 import catalog  # the site-projection SSOT — home of the shared model→site projection_drift helper (rule #11)
-from tests.common import FAIL, PASS, ROOT, html_files, rel
+from tests.common import FAIL, PASS, ROOT, book_body_files, html_files, rel
 
 
 class _Refs(HTMLParser):
@@ -34,18 +34,30 @@ class _Refs(HTMLParser):
 # Artifacts built by the Pages CI (gitignored locally, present on the deployed site) — a link to one
 # is valid on the live site, but its target does not exist at check-time, so don't flag it as missing.
 _CI_BUILT_ARTIFACTS = ("mage-book.pdf", "software-engineering-handbook.pdf")
-#: The MAGE book HTML edition is built FLAT under `book/` by `book/build_book.py`, then RELOCATED into
-#: `book/mage-book/` inside the published `_site` artifact (tools/publish_book_layout.py) — GitHub Pages has
-#: no server redirects, so the canonical served path is `/book/mage-book/<slug>.html`. Referrers therefore
-#: link the published path, but on disk the page lives one level up. Map the published prefix back to the
-#: build location so the gate still VERIFIES the page exists (stronger than skipping it).
+#: The MAGE book web edition is EMITTED as `book/web/docs/<slug>.md` bodies (built by MkDocs into the
+#: published `/book/mage-book/<slug>.html` — same stems, `use_directory_urls: false`). Referrers link the
+#: published path (`book/mage-book/<slug>.html`, or the legacy flat `book/<slug>.html` kept alive by the
+#: publish-time redirect stubs); the gate resolves BOTH against the emitted stems + their anchor ids —
+#: stronger than skipping them as a CI-built subtree.
 _BOOK_PUBLISH_PREFIX = "book/mage-book/"
-_BOOK_BUILD_PREFIX = "book/"
+_BOOK_LEGACY_PREFIX = "book/"
 
 
-def _to_build_location(tgt_rel: str) -> str:
-    """Rewrite a relocated book href (…/book/mage-book/<slug>.html) to where the build wrote it (…/book/<slug>.html)."""
-    return tgt_rel.replace(_BOOK_PUBLISH_PREFIX, _BOOK_BUILD_PREFIX, 1)
+def _book_stem_for(tgt_site: str) -> str | None:
+    """The emitted-book stem a site-relative target names, or None when the target is not a book page.
+    Accepts the canonical published prefix (`book/mage-book/<slug>.html`) and the legacy flat form
+    (`book/<slug>.html` — served as a meta-refresh stub on the published site)."""
+    for prefix in (_BOOK_PUBLISH_PREFIX, _BOOK_LEGACY_PREFIX):
+        if tgt_site.startswith(prefix):
+            tail = tgt_site[len(prefix):]
+            if "/" not in tail and tail.endswith(".html"):
+                return tail[:-5]
+    return None
+
+
+#: Markdown attr_list id on an interleaved heading line (`## Title {#the-id}`) — an anchor target the
+#: HTMLParser cannot see (it is markdown, not markup), collected alongside the raw `id="…"` ids.
+_MD_ATTR_ID_RE = re.compile(r"\{#([^}]+)\}")
 #: Path PREFIXES for subtrees built by a SEPARATE CI step and assembled into the deployed site, absent from
 #: the stdlib `catalog.py build` on disk. `teach/` is the MkDocs-rendered Teach-with-MAGE course companion
 #: (built into `_site/teach` by the Pages workflow's mkdocs step); `book/se-handbook/` is the handbook's
@@ -55,17 +67,44 @@ def _to_build_location(tgt_rel: str) -> str:
 _CI_BUILT_PREFIXES = ("teach/", "book/se-handbook/")
 
 
+def _parse_book_bodies() -> dict[str, _Refs]:
+    """`{stem: _Refs}` for every emitted book page body — refs from the raw HTML, ids from BOTH the raw
+    `id="…"` attributes and the interleaved markdown headings' `{#id}` attr blocks."""
+    out: dict[str, _Refs] = {}
+    for f in book_body_files():
+        text = open(f, encoding="utf-8").read()
+        p = _Refs()
+        p.feed(text)
+        p.ids.update(_MD_ATTR_ID_RE.findall(text))
+        out[os.path.splitext(os.path.basename(f))[0]] = p
+    return out
+
+
 def check_html_links():
-    """Every local href/src resolves to a file; #anchors resolve where the target page uses ids."""
+    """Every local href/src resolves to a file; #anchors resolve where the target page uses ids. Covers
+    BOTH surfaces: the catalogue's built .html AND the MAGE book's emitted `book/web/docs/*.md` bodies
+    (the published book pages since the C3 swap). A catalogue link into the book (`book/mage-book/…` or
+    the stub-served legacy `book/…`) resolves against the emitted stems + anchors; a book body's sibling
+    links resolve within the emitted tree."""
     files = html_files()
     if not files:
         return FAIL, ["no built HTML found — run `catalog.py build` first"]
+    book = _parse_book_bodies()
+    issues = []
+    if not book:
+        issues.append("book/web/docs/ empty — the book's emitted tree is missing (run `catalog.py build`)")
     parsed: dict[str, _Refs] = {}
     for f in files:
         p = _Refs()
         p.feed(open(f, encoding="utf-8").read())
         parsed[os.path.abspath(f)] = p
-    issues = []
+
+    def _book_anchor_issue(src_name: str, ref: str, stem: str, anchor: str) -> None:
+        if stem not in book:
+            issues.append(f"{src_name} -> {ref} (no such emitted book page)")
+        elif anchor and book[stem].ids and anchor not in book[stem].ids:
+            issues.append(f"{src_name} -> {ref} (no such anchor in emitted book page)")
+
     for f in files:
         base, ap = os.path.dirname(f), os.path.abspath(f)
         for ref in parsed[ap].refs:
@@ -79,22 +118,62 @@ def check_html_links():
             # Prefix-match the SITE-relative target (normalized against the referring page's dir), not the
             # raw href — `se-handbook/index.html` from a page under book/ is the CI-built
             # book/se-handbook/ subtree even though the raw href never says "book/".
+            tgt_site = ""
             if tgt_rel:
                 tgt_site = os.path.relpath(
-                    os.path.normpath(os.path.join(os.path.dirname(f), tgt_rel)), ROOT)
-                if tgt_site.replace(os.sep, "/").startswith(_CI_BUILT_PREFIXES):
+                    os.path.normpath(os.path.join(os.path.dirname(f), tgt_rel)), ROOT).replace(os.sep, "/")
+                if tgt_site.startswith(_CI_BUILT_PREFIXES):
                     continue  # CI-built subtree (e.g. MkDocs /teach) — live on the deployed site, absent here
             if not tgt_rel:  # in-page anchor
                 if anchor and anchor not in parsed[ap].ids:
                     issues.append(f"{rel(f)} -> #{anchor} (no such id in page)")
                 continue
-            tgt = os.path.abspath(os.path.join(base, _to_build_location(tgt_rel)))
+            stem = _book_stem_for(tgt_site) if book else None
+            if stem is not None:  # a link into the published book — resolve against the emitted tree
+                _book_anchor_issue(rel(f), ref, stem, anchor)
+                continue
+            tgt = os.path.abspath(os.path.join(base, tgt_rel))
             if not os.path.exists(tgt):
                 issues.append(f"{rel(f)} -> {ref} (missing target)")
             elif anchor and tgt in parsed and parsed[tgt].ids and anchor not in parsed[tgt].ids:
                 # only assert the anchor when the target page uses ids at all (avoids false positives
                 # on pages that don't emit heading ids)
                 issues.append(f"{rel(f)} -> {ref} (no such anchor in target)")
+
+    # The book bodies' own refs: sibling pages by stem, copied assets, CI-built artifacts/siblings.
+    docs_dir = os.path.join(ROOT, "book", "web", "docs")
+    for stem in sorted(book):
+        name = f"book/web/docs/{stem}.md"
+        for ref in book[stem].refs:
+            if ref.startswith(("http://", "https://", "mailto:", "data:", "//")):
+                continue
+            tgt_rel, _, anchor = ref.partition("#")
+            if not tgt_rel:  # in-page anchor
+                if anchor and anchor not in book[stem].ids:
+                    issues.append(f"{name} -> #{anchor} (no such id in page)")
+                continue
+            if os.path.basename(tgt_rel) in _CI_BUILT_ARTIFACTS:
+                continue  # the sibling PDF download — CI-rendered next to the published pages
+            if tgt_rel.startswith("se-handbook/"):
+                continue  # the companion handbook — a CI-built publish-time sibling under /book/
+            if tgt_rel.startswith("../"):
+                # A ref that LEAVES the book (e.g. the web-redirect to an online catalogue entry).
+                # The emitter bumps these to the PUBLISHED depth (/book/mage-book/<stem>.html), so
+                # resolve them from that virtual location against the site tree.
+                tgt_site = os.path.normpath(os.path.join("book", "mage-book", tgt_rel)).replace(os.sep, "/")
+                if tgt_site.startswith(_CI_BUILT_PREFIXES):
+                    continue
+                tgt = os.path.abspath(os.path.join(ROOT, tgt_site))
+                if tgt_site.startswith("..") or not os.path.exists(tgt):
+                    issues.append(f"{name} -> {ref} (missing target at published depth)")
+                elif anchor and tgt in parsed and parsed[tgt].ids and anchor not in parsed[tgt].ids:
+                    issues.append(f"{name} -> {ref} (no such anchor in target)")
+                continue
+            if tgt_rel.endswith(".html") and "/" not in tgt_rel:
+                _book_anchor_issue(name, ref, tgt_rel[:-5], anchor)
+                continue
+            if not os.path.exists(os.path.join(docs_dir, tgt_rel)):
+                issues.append(f"{name} -> {ref} (missing target in emitted tree)")
     return (FAIL if issues else PASS), issues
 
 
@@ -125,12 +204,14 @@ def check_lab_logo_single_sourced():
     return (FAIL if issues else PASS), issues
 
 
-def check_book_html_tracking():
-    """Every tracked book/*.html is a page the current build produces (no stale orphans), present and
-    non-empty. Blocks the renumber-orphan class (a chapter renumber leaves the old-numbered HTML tracked
-    with no source) AND the generated-page-orphan class (a page the build writes outside chapter discovery,
-    like the list of floats): the expected set is `build_book.expected_page_slugs()` — the build's OWN
-    single source of truth for every page it writes — so it can't drift from what the build produces."""
+def check_book_emitted_tree():
+    """URL-parity gate over the emitted book tree (the C3 replacement for the retired tracked-HTML
+    gate): the `book/web/docs/<slug>.md` stems equal `build_book.expected_page_slugs()` EXACTLY — the
+    build's OWN single source of truth — every body is non-empty, and the generated `mkdocs.yml` is
+    present. `use_directory_urls: false` + these stems ARE the published `/book/mage-book/<slug>.html`
+    URL set, so this pins that no published URL appears or vanishes without the build knowing it
+    (the renumber-orphan and generated-page-orphan classes, carried across the swap). NO tracked book
+    HTML may reappear — the hand-rolled shell is retired."""
     import subprocess
     import sys as _sys
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -138,56 +219,57 @@ def check_book_html_tracking():
     if book_dir not in _sys.path:
         _sys.path.insert(0, book_dir)
     import build_book as bb  # noqa: E402 — path set above; build's discovery is the source of truth
-    # `expected_page_slugs()` is the build's OWN single source of truth for every page it writes — chapter
-    # + appendix discovery, generated front-matter (the list of floats), the index pages, and the figure
-    # copy. Consuming it (not re-deriving here) is what keeps this test from missing a build-generated page.
-    real = {s + ".html" for s in bb.expected_page_slugs()}
+    expected = bb.expected_page_slugs()
+    emitted_files = book_body_files()
+    if not emitted_files:
+        return FAIL, ["book/web/docs/ empty — run `catalog.py build` (the book build emits the tree)"]
+    emitted = {os.path.splitext(os.path.basename(f))[0] for f in emitted_files}
+    issues = []
+    for o in sorted(emitted - expected):
+        issues.append(f"book/web/docs/{o}.md: emitted but not in expected_page_slugs() (stale orphan — "
+                      f"a published URL the build no longer owns)")
+    for m in sorted(expected - emitted):
+        issues.append(f"book/web/docs/{m}.md: expected but not emitted (a published URL would 404 — "
+                      f"run `catalog.py build`)")
+    for f in emitted_files:
+        if os.path.getsize(f) == 0:
+            issues.append(f"{rel(f)}: emitted but empty")
+    if not os.path.isfile(os.path.join(root, "book", "web", "mkdocs.yml")):
+        issues.append("book/web/mkdocs.yml missing — the emitter did not write the site config")
     tracked_paths = subprocess.run(
         ["git", "ls-files", "book/*.html"], cwd=root, capture_output=True, text=True
     ).stdout.split()
-    tracked = {os.path.basename(p) for p in tracked_paths}
-    issues = []
-    for o in sorted(tracked - real):
-        issues.append(f"book/{o}: tracked but the build does not produce it (stale orphan — git rm it)")
-    for m in sorted(real - tracked):
-        issues.append(f"book/{m}: a build output but not tracked (run `catalog.py build` and commit it)")
     for p in tracked_paths:
-        ap = os.path.join(root, p)
-        if not os.path.exists(ap):
-            issues.append(f"{p}: tracked but missing on disk")
-        elif os.path.getsize(ap) == 0:
-            issues.append(f"{p}: tracked but empty")
+        issues.append(f"{p}: tracked hand-rolled book HTML — retired at the C3 swap; git rm it "
+                      f"(the emitted MkDocs tree is the web edition)")
     return (FAIL if issues else PASS), issues
 
 
 #: The MAGE companion blog post (Medium). It is a deliberate LANDING/site link (the front-page learning
-#: materials organize the ways in), but the HTML BOOK must not send an in-book reader back out to it — the
+#: materials organize the ways in), but the WEB BOOK must not send an in-book reader back out to it — the
 #: book is the authoritative long form. This host substring is the join key the gate below forbids inside
-#: any book/*.html page.
+#: any emitted book page body.
 _BLOG_HOST_IN_BOOK_FORBIDDEN = "davisjam.medium.com"
 
 
 def check_book_no_blogpost_link():
-    """No page of the HTML book links to the companion blog post. The book is the authoritative long form;
+    """No page of the web book links to the companion blog post. The book is the authoritative long form;
     once a reader is inside it, a call-to-action back to the Medium post is confusing (the front-page
-    learning-materials section owns that hand-off now). Scans every built book/*.html for the blog host —
-    a cheap, deterministic substring gate that keeps the link from creeping back into a book template or a
-    chapter. The blog link elsewhere on the site (the landing 'Learn' section) is intentionally NOT in
-    scope here — this gate is book-only."""
-    import glob
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    book_glob = os.path.join(root, "book", "*.html")
+    learning-materials section owns that hand-off now). Scans every emitted book page body for the blog
+    host — a cheap, deterministic substring gate that keeps the link from creeping back into a book
+    template or a chapter. The blog link elsewhere on the site (the landing 'Learn' section) is
+    intentionally NOT in scope here — this gate is book-only."""
     issues = []
-    for f in sorted(glob.glob(book_glob)):
+    for f in book_body_files():
         try:
             text = open(f, encoding="utf-8").read()
         except OSError:
             continue
         if _BLOG_HOST_IN_BOOK_FORBIDDEN in text:
             issues.append(
-                f"book/{os.path.basename(f)}: links to the blog post ({_BLOG_HOST_IN_BOOK_FORBIDDEN}) — "
-                f"the HTML book must not send readers to it (fix the source in book/build_book.py, not the "
-                f"generated HTML)")
+                f"{rel(f)}: links to the blog post ({_BLOG_HOST_IN_BOOK_FORBIDDEN}) — "
+                f"the web book must not send readers to it (fix the source in book/build_book.py, not the "
+                f"emitted body)")
     return (FAIL if issues else PASS), issues
 
 
@@ -199,22 +281,21 @@ def check_no_stash_placeholder_leak():
     cite-in-note bibliography-render bug). A NUL byte is never legitimate in served HTML, so its presence is a
     precise, false-positive-free signal that a stash leaked. Scans every built page."""
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    prune = set()
     issues = []
+    paths = []
     for dirpath, dirnames, filenames in os.walk(root):
         dirnames[:] = [d for d in dirnames if d not in (".git", "node_modules", ".venv", "_print", "_typst")]
-        for fn in sorted(filenames):
-            if not fn.endswith(".html"):
-                continue
-            path = os.path.join(dirpath, fn)
-            try:
-                text = open(path, encoding="utf-8").read()
-            except OSError:
-                continue
-            if "\x00" in text:
-                n = text.count("\x00")
-                issues.append(f"{os.path.relpath(path, root)}: {n} NUL byte(s) — a stashed inline span "
-                              f"(citation/code/emphasis/note) leaked its placeholder (rebuild the book)")
+        paths.extend(os.path.join(dirpath, fn) for fn in sorted(filenames) if fn.endswith(".html"))
+    paths.extend(book_body_files())  # the emitted book bodies ship verbatim — scan them too
+    for path in paths:
+        try:
+            text = open(path, encoding="utf-8").read()
+        except OSError:
+            continue
+        if "\x00" in text:
+            n = text.count("\x00")
+            issues.append(f"{os.path.relpath(path, root)}: {n} NUL byte(s) — a stashed inline span "
+                          f"(citation/code/emphasis/note) leaked its placeholder (rebuild the book)")
     return (FAIL if issues else PASS), issues
 
 
@@ -238,7 +319,7 @@ def check_no_duplicate_ids():
     twin of that CI-only Tier-2 check: it catches a collision LOCALLY, keeping every figure's ids a clean
     unique namespace."""
     from collections import Counter
-    files = html_files()
+    files = html_files() + book_body_files()  # the emitted book bodies are served pages too
     if not files:
         return FAIL, ["no built HTML found — run `catalog.py build` first"]
     issues = []
@@ -282,7 +363,7 @@ def check_no_empty_table_header():
     Tier-2 `empty-table-header`: a comparison table's empty top-left corner cell makes the header row
     unreadable to a screen reader. Deterministic and at EVERY push, where the sampled Tier-2 axe pass would
     catch it only when it happens to sample that page."""
-    files = html_files()
+    files = html_files() + book_body_files()  # the emitted book bodies are served pages too
     if not files:
         return FAIL, ["no built HTML found — run `catalog.py build` first"]
     issues = []
@@ -474,7 +555,7 @@ def check_no_notation_leak():
       (c) a leaked intra-word-emphasis span `[+X+]` — the build converts these to <em>; a survivor is a raw
           notation the reader sees.
     """
-    files = html_files()
+    files = html_files() + book_body_files()  # the emitted book bodies are served pages too
     if not files:
         return FAIL, ["no built HTML found — run `catalog.py build` first"]
     kws = _marker_keywords()
@@ -514,7 +595,7 @@ def check_summary_no_flow_content():
     the stdlib (Tier-1) twin of that rule: it runs locally with no Node, so the class is caught before a
     push. The clickable-card landing shipped `<summary><span…` only after CI flagged `<summary><div…`;
     this closes that gap at Tier 1 (peer of `check_no_duplicate_ids`, the T1 twin of no-dup-id)."""
-    files = html_files()
+    files = html_files() + book_body_files()  # the emitted book bodies are served pages too
     if not files:
         return FAIL, ["no built HTML found — run `catalog.py build` first"]
     flow = ("div", "p", "section", "article", "aside", "header", "footer", "nav",
@@ -547,7 +628,7 @@ def check_aria_label_on_bare_element():
     `<div class="claims-col" aria-label=…>` — valid-looking, tier-1-green, but CI-red — which silently
     red-gated every Pages deploy for hours (260906); a named <section>/<nav> or an explicit `role=` fixes
     it. Peer of `check_summary_no_flow_content` (the T1 twin of element-permitted-content)."""
-    files = html_files()
+    files = html_files() + book_body_files()  # the emitted book bodies are served pages too
     if not files:
         return FAIL, ["no built HTML found — run `catalog.py build` first"]
     tag_re = re.compile(r"<(div|span)\b([^>]*)>", re.I)
@@ -985,7 +1066,7 @@ def check_no_link_dpub_role_on_nonanchor():
     on a non-`<a>` element. Those roles' spec superclass is `link`, so axe's `aria-allowed-role` rejects
     them anywhere but a navigable link — a deterministic Tier-1 twin of that ~88s browser check, guarding
     the note/citation-marker renderers against regressing the class that once blocked a publish."""
-    files = html_files()
+    files = html_files() + book_body_files()  # the emitted book bodies are served pages too
     if not files:
         return FAIL, ["no built HTML found — run `catalog.py build` first"]
     issues: list[str] = []
@@ -1027,7 +1108,7 @@ def check_exactly_one_h1_per_page():
     `<h1>{title}</h1>` header followed by a duplicate hand-authored `# <title>`, or a hand-authored page
     whose section headings were pitched at h1 instead of h2) were drained to 0 by a fix-wave, so this is
     now promoted to BLOCKING and every built page must clear it."""
-    files = html_files()
+    files = html_files() + book_body_files()  # the emitted book bodies are served pages too
     if not files:
         return FAIL, ["no built HTML found — run `catalog.py build` first"]
     issues: list[str] = []

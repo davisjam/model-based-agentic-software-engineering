@@ -60,12 +60,16 @@ _SOURCE_DIR_PREFIXES = ("frontmatter", "part", "interlude", "conclusion", "appen
 
 
 def _page_files() -> "list[str]":
-    """Every built book page: the flat `<slug>.html` set the build writes into `book/`. All of them are
-    generated (the build overwrites each), so scanning the whole flat set is exactly the rendered book;
-    the sentinel class can appear nowhere else."""
+    """Every emitted book page body: the `book/web/docs/<slug>.md` set the MkDocs emitter writes (each
+    body is the rendered HTML, so the sentinel class survives verbatim). All of them are generated (the
+    emitter rebuilds the tree), so scanning the whole set is exactly the rendered book. Empty when the
+    web build has not run yet — the build's own blocking gate passes the pages it just emitted."""
+    docs = os.path.join(_HERE, "web", "docs")
+    if not os.path.isdir(docs):
+        return []
     return sorted(
-        os.path.join(_HERE, f) for f in os.listdir(_HERE)
-        if f.endswith(".html") and os.path.isfile(os.path.join(_HERE, f)))
+        os.path.join(docs, f) for f in os.listdir(docs)
+        if f.endswith(".md") and os.path.isfile(os.path.join(docs, f)))
 
 
 def _source_hit(snippet: str) -> "str | None":

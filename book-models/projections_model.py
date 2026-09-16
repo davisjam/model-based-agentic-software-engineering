@@ -78,9 +78,11 @@ def _glob_to_re(pat: str) -> "re.Pattern[str]":
 # ---- the served-surface universe (reused from catalog, single source of truth) ----------------------
 
 def served_html_surfaces() -> "list[str]":
-    """Every built .html that is part of the served site, as repo-relative paths — reusing
-    `catalog.site_prune_dirs()` so this universe is identical to the orphan gate / axe walk and cannot
-    drift from it. This is the set the completeness gate holds to 'claimed by exactly one projection.'"""
+    """Every built page that is part of the served site, as repo-relative paths: the catalogue's .html
+    (reusing `catalog.site_prune_dirs()` so that half is identical to the orphan gate / axe walk) PLUS
+    the book's emitted `book/web/docs/*.md` page bodies — the book's served surface since the C3
+    publish swap (each body is the rendered HTML that ships at /book/mage-book/<stem>.html). This is
+    the set the completeness gate holds to 'claimed by exactly one projection.'"""
     prune = catalog.site_prune_dirs()
     out: "list[str]" = []
     for dirpath, dirnames, filenames in os.walk(_ROOT):
@@ -88,6 +90,9 @@ def served_html_surfaces() -> "list[str]":
         for fn in filenames:
             if fn.endswith(".html"):
                 out.append(os.path.relpath(os.path.join(dirpath, fn), _ROOT))
+    docs = os.path.join(_ROOT, "book", "web", "docs")
+    if os.path.isdir(docs):
+        out.extend(f"book/web/docs/{fn}" for fn in os.listdir(docs) if fn.endswith(".md"))
     return sorted(out)
 
 

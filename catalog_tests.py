@@ -88,7 +88,7 @@ from tests.deploy import check_deploy_publishable
 from tests.external import check_axe, check_axe_coverage_set, check_claude_validate, check_html_valid, check_lab_logo_url
 from tests.html import (
     check_lab_logo_single_sourced,
-    check_book_html_tracking,
+    check_book_emitted_tree,
     check_book_no_blogpost_link,
     check_no_stash_placeholder_leak,
     check_concepts_book_home,
@@ -224,7 +224,12 @@ CHECKS = [
     # the loop closes for every declared id and this is promoted to blocking. See tests/book.py.
     Check("book: Part-opener foreshadow claims trace to spine + argument anchor + Part chapters (part-opener-traceability)", 1,
           lambda strict: check_part_opener_traceability()),
-    Check("html: book/*.html <-> build outputs (no orphans, present + non-empty)", 1, lambda strict: check_book_html_tracking()),
+    # The C3 replacement for the retired tracked-HTML gate: the emitted book/web/docs stems == the
+    # build's expected_page_slugs() (the published /book/mage-book/ URL set), non-empty, config present,
+    # and NO tracked hand-rolled book HTML reappears. The emit-twice determinism gate runs in CI
+    # (book_mkdocs.py --check-determinism) — the pre-commit force-staging discipline is retired with it.
+    Check("book: emitted web tree == expected page slugs (URL parity; hand-rolled HTML stays retired)", 1,
+          lambda strict: check_book_emitted_tree()),
     Check("html: no HTML-book page links to the companion blog post (book-only; landing link kept)", 1, lambda strict: check_book_no_blogpost_link()),
     Check("html: no served page ships a NUL byte (stashed inline-span leak; the cite-in-note bug)", 1, lambda strict: check_no_stash_placeholder_leak()),
     Check("book: every float introduced by a [ref:] cross-ref (book-float-ref)", 1, lambda strict: check_float_ref_gate()),

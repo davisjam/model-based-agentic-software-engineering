@@ -176,22 +176,31 @@ def _chapter_src_files() -> list[str]:
     return out
 
 
-# A real chapter page is `book/<N>.<M>-<slug>.html` (part chapters + front/back matter number as 0.x / 6.x).
-# Appendix, index, and stack pages also carry `<header class="chap">` but are NOT chapters — exclude them
-# so "a visual per chapter" and the section cap grade only the narrative body, not a reference appendix.
-_CHAPTER_HTML_RE = re.compile(r"^\d+\.\d+-.+\.html$")
+# A real chapter page is the emitted `book/web/docs/<N>.<M>-<slug>.md` body (part chapters + front/back
+# matter number as 0.x / 6.x). Appendix, index, and stack pages also carry `<header class="chap">` but
+# are NOT chapters — exclude them so "a visual per chapter" and the section cap grade only the narrative
+# body, not a reference appendix.
+_CHAPTER_BODY_RE = re.compile(r"^\d+\.\d+-.+\.md$")
+_EMITTED_DOCS = os.path.join(BOOK, "web", "docs")
+
+
+def _emitted_page_files() -> list[str]:
+    """Every emitted book page body (`book/web/docs/*.md`) — the rendered-HTML surface the built-page
+    checks scan since the C3 publish swap (the flat tracked `book/*.html` is retired). Empty when the
+    web build has not emitted yet."""
+    if not os.path.isdir(_EMITTED_DOCS):
+        return []
+    return sorted(os.path.join(_EMITTED_DOCS, f) for f in os.listdir(_EMITTED_DOCS)
+                  if f.endswith(".md"))
 
 
 def _chapter_html_pages() -> list[str]:
-    """Every BUILT narrative chapter page: a top-level `book/<N>.<M>-<slug>.html` carrying
+    """Every emitted narrative chapter page body: `book/web/docs/<N>.<M>-<slug>.md` carrying
     `<header class="chap">`. Appendix / index / stack pages are excluded by the numbered-slug pattern."""
     out: list[str] = []
-    if not os.path.isdir(BOOK):
-        return out
-    for fn in sorted(os.listdir(BOOK)):
-        if not _CHAPTER_HTML_RE.match(fn):
+    for p in _emitted_page_files():
+        if not _CHAPTER_BODY_RE.match(os.path.basename(p)):
             continue
-        p = os.path.join(BOOK, fn)
         try:
             txt = open(p, encoding="utf-8").read()
         except OSError:
@@ -254,9 +263,11 @@ def check_intra_book_links() -> tuple[list[Finding], dict]:
             tgt = os.path.normpath(os.path.join(BOOK, src.strip()))
             if not os.path.exists(tgt):
                 findings.append(Finding(f, "", f"{rel(f)} -> figure source {src.strip()} (missing asset)"))
-    # built-page hrefs/srcs, scoped to book/ (dedup of the site scanner, book-focused)
+    # emitted-body hrefs/srcs, scoped to the book (dedup of the site scanner, book-focused). A sibling
+    # `<stem>.html` link resolves to the emitted `docs/<stem>.md` (the published page it becomes);
+    # anything else (assets/…) resolves under the emitted tree, which copies exactly what the pages
+    # reference.
     for p in _chapter_html_pages():
-        base = os.path.dirname(p)
         src_md = _src_for_html(p)
         body = open(p, encoding="utf-8").read()
         for ref in re.findall(r'(?:href|src)="([^"]+)"', body):
@@ -268,13 +279,24 @@ def check_intra_book_links() -> tuple[list[Finding], dict]:
             # The book PDF (book/mage-book.pdf) is a CI-generated, Pages-published artifact — it is NOT
             # committed and is gitignored, so it legitimately 404s on a local checkout but resolves on the
             # deployed site (same allowance the book landing's Download-PDF link relies on). Don't count
-            # it as a broken link. (The book landing itself dodges this only because it isn't a numbered
-            # chapter page; the preface links it too, and IS a chapter page — hence this explicit skip.)
-            if os.path.basename(tgt_rel) == "mage-book.pdf":
+            # it as a broken link. The companion handbook is a publish-time sibling under /book/, same
+            # allowance.
+            if os.path.basename(tgt_rel) == "mage-book.pdf" or tgt_rel.startswith("se-handbook/"):
                 continue
             checked += 1
-            tgt = os.path.normpath(os.path.join(base, tgt_rel))
-            if not os.path.exists(tgt):
+            if tgt_rel.startswith("../"):
+                # A ref that LEAVES the book: the emitter bumps it to the PUBLISHED depth
+                # (/book/mage-book/<stem>.html), so resolve from that virtual location — the site
+                # root is two levels up, and the target is a tracked site page under the repo root.
+                site_rel = os.path.normpath(os.path.join("book", "mage-book", tgt_rel))
+                if site_rel.startswith("..") or not os.path.exists(os.path.join(ROOT, site_rel)):
+                    findings.append(Finding(src_md, "", f"{rel(p)} -> {ref} (missing target at published depth)"))
+                continue
+            if tgt_rel.endswith(".html") and "/" not in tgt_rel:
+                if not os.path.isfile(os.path.join(_EMITTED_DOCS, tgt_rel[:-5] + ".md")):
+                    findings.append(Finding(src_md, "", f"{rel(p)} -> {ref} (no such emitted page)"))
+                continue
+            if not os.path.exists(os.path.normpath(os.path.join(_EMITTED_DOCS, tgt_rel))):
                 findings.append(Finding(src_md, "", f"{rel(p)} -> {ref} (missing target)"))
     return findings, {"links_checked": checked, "broken": len(findings)}
 
@@ -522,15 +544,14 @@ _TAG_RE = re.compile(r"<[^>]+>")
 
 
 def check_render_fidelity() -> tuple[list[Finding], dict]:
-    """Scan every BUILT `book/*.html` page's <p> bodies for markdown the renderer left un-converted
+    """Scan every emitted book page body's <p> elements for markdown the renderer left un-converted
     (literal `**`, a `- `/`N. ` list swallowed into a paragraph, a stray `` `code` `` or `[text](link)`).
     Reads the built HTML, so it catches a renderer regression the source-only rules can't see. Runs 0 on a
     clean build — a PROMOTE-to-BLOCKING candidate. src=None (the fix is in the renderer or the source md,
     not a suppressible authoring choice), so findings surface but carry no noqa."""
-    import glob
     findings: list[Finding] = []
     pages = 0
-    for f in sorted(glob.glob(os.path.join(BOOK, "*.html"))):
+    for f in _emitted_page_files():
         pages += 1
         html = open(f, encoding="utf-8").read()
         for m in _P_RE.finditer(html):
@@ -636,7 +657,7 @@ _CODE_BLOCK_RE = re.compile(r"<pre><code>(.*?)</code></pre>", re.S)
 
 
 def check_no_raw_mermaid() -> tuple[list[Finding], dict]:
-    """No un-rendered ```mermaid source may ship in ANY built `book/*.html`. Mermaid fences render to a
+    """No un-rendered ```mermaid source may ship in ANY emitted book page body. Mermaid fences render to a
     static inline `<svg>` at build time (`build_book.py: render_mermaid_svg`), so a shipped diagram is
     always an `<svg>` — never `flowchart`/`subgraph`/`-->` SYNTAX text. Web analogue of the PDF
     `verify_pdf` mermaid assert (shares the `MERMAID_SOURCE_MARKERS` tuple).
@@ -647,10 +668,9 @@ def check_no_raw_mermaid() -> tuple[list[Finding], dict]:
       (b) a plain `<pre><code>` code box whose (unescaped) body carries a mermaid SYNTAX marker — a fence
           that wasn't even recognized as mermaid and rendered as raw code.
     src=None: the fix is in the build / the source .md, not a suppressible authoring choice."""
-    import glob
     findings: list[Finding] = []
     pages = 0
-    for f in sorted(glob.glob(os.path.join(BOOK, "*.html"))):
+    for f in _emitted_page_files():
         pages += 1
         raw = open(f, encoding="utf-8").read()
         # (a) a mermaid <pre> that never became an <svg>.

@@ -28,7 +28,9 @@ def check_deploy_publishable():
         ("book/_design/note.md", False),  # already rejected pre-fix (md), still rejected
         # Legit derived build outputs OUTSIDE _design/ must STILL publish.
         ("book/assets/real-figure.svg", True),
-        ("book/foo.html", True),
+        # The retired hand-rolled flat book page (C3): gitignored AND rejected — the web book is the
+        # emitted book/web/ tree (never committed), so a stray flat page must not auto-stage.
+        ("book/foo.html", False),
         ("product/some-family/mechanism.html", True),
         # Non-derived source / unexpected scratch outside _design/ stays unpublishable.
         ("book/chapter.md", False),          # hand-authored source (.md)

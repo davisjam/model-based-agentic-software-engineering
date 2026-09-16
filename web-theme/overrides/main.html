@@ -1,0 +1,20 @@
+{#-
+  MAGE-family main template extension (pinned mkdocs-material 9.7.7; extends the stock base).
+
+  One delta from stock: the `extrahead` block renders a page's Scholar head-meta. The MAGE book
+  emitter (book/book_mkdocs.py) puts each chapter's highwire `citation_*` tags — title, author,
+  publication date, fulltext/PDF URLs, per-chapter references — into the page front matter as ONE
+  pre-rendered HTML string (`citation_head`), and this block emits it verbatim into <head>
+  (Google Scholar reads citation meta from <head> only, so the raw-HTML page BODY cannot carry it).
+
+  Shared by every property via theme.custom_dir; a page without `citation_head` (all Teach and
+  Handbook pages, the book's own landing) renders nothing here.
+-#}
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% if page and page.meta and page.meta.citation_head %}
+    {{ page.meta.citation_head | safe }}
+  {% endif %}
+{% endblock %}

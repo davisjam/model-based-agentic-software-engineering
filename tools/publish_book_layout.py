@@ -1,63 +1,45 @@
 #!/usr/bin/env python3
-"""Relocate the built MAGE book + supplementary handbook into their `/book/<name>/` homes inside the
-published `_site` artifact, and leave HTML meta-refresh stubs at every old path.
+"""Finish the `/book/<name>/` publish layout inside the assembled `_site` artifact: legacy redirect
+stubs for the MAGE book's old flat URLs, plus the PDF / ePub download copies.
 
-WHY a publish-time relocation (not a source/build-path change): the book HTML edition is generated flat as
-`book/<slug>.html` by `book/build_book.py`, with sibling-relative nav between pages and depth-1
-root-relative refs (`href="../index.html"`, `url('../book/fonts/…')`). Moving the *source* would mean
-re-deriving depth across a 7k-line generator and moving 130+ tracked files. Instead this operates on the
-already-assembled `_site` tree: it moves the flat book pages one level deeper into `_site/book/mage-book/`,
-rewrites their root-relative refs by one extra `../`, copies the whole-book PDF and the handbook PDF + ePub into
-their new homes, and writes meta-refresh stubs at the old page URLs so external links never 404. GitHub
-Pages has no server redirects, so a static meta-refresh page IS the redirect mechanism for HTML; a `.pdf`
-URL cannot carry an HTML redirect (wrong content type), so the old PDF path keeps a working copy instead.
+Since the C3 publish swap the MAGE book web edition is the MkDocs-built site the Pages workflow
+copies into `_site/book/mage-book/` BEFORE this runs (`use_directory_urls: false`, so every page is a
+flat `<slug>.html` at the same stem the retired hand-rolled edition served). The pre-relocation era
+also served every page at the flat `_site/book/<slug>.html`; GitHub Pages has no server redirects, so
+this script keeps those old URLs alive by writing a static HTML meta-refresh stub at each — one per
+page of the built book. A `.pdf`/`.epub` URL cannot carry an HTML redirect (wrong content type), so
+the old download paths keep working copies instead:
 
-Runs from `.github/workflows/pages.yml` AFTER the site is assembled, and is exercisable locally against a
+    _site/book/<slug>.html                    meta-refresh stub -> book/mage-book/<slug>.html
+    _site/book/mage-book/mage-book.pdf        copy of _site/book/mage-book.pdf (old path kept)
+    _site/book/se-handbook/<handbook>.{pdf,epub}  copies of _site/se-handbook/* (old paths kept)
+
+The hand-rolled flat pages' move/rewrite branch retired with the C3 swap — nothing generates flat
+book HTML anymore, so there is nothing to move; the stub set now derives from the built book itself
+(the emitted stems ARE the published URL set). Runs from `.github/workflows/pages.yml` AFTER the
+site is assembled AND the MkDocs book site is copied in; exercisable locally against a
 locally-assembled `_site`. Stdlib-only (the repo's clone-and-run posture); no shell.
 
-Target layout produced:
-    _site/book/mage-book/<slug>.html         (was _site/book/<slug>.html)   + meta-refresh stub at old path
-    _site/book/mage-book/mage-book.pdf        (copy of _site/book/mage-book.pdf; old path kept as a copy)
-    _site/book/se-handbook/<handbook>.pdf     (copy of _site/se-handbook/<handbook>.pdf; old path kept)
-
-Exit codes: 0 success; 1 runtime error; 2 expected input missing (the assembled book HTML).
+Exit codes: 0 success; 1 runtime error; 2 expected input missing (the built book at book/mage-book/).
 """
 from __future__ import annotations
 
 import json
 import os
-import re
 import shutil
 import sys
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
 
-# Rewrites applied to a book page as it moves one level deeper (book/<slug>.html -> book/mage-book/<slug>.html):
-#   - root-relative attribute refs gain one `../`   (href="../index.html" -> "../../index.html")
-#   - root-relative CSS url() refs gain one `../`    (url('../book/fonts/…') -> url('../../book/fonts/…'))
-#   - the one bare sibling-asset img ref             (src="assets/…" -> src="../assets/…", assets/ stays put)
-#   - the companion-book ref                         (href="se-handbook/…" -> href="../se-handbook/…";
-#     se-handbook/ ends up the mage-book/ SIBLING under book/, so a page moving one level deeper needs one ../)
-# Sibling page links (index.html, <slug>.html) and the sibling PDF link (mage-book.pdf) need NO rewrite —
-# every book page and the PDF move together into mage-book/, so those stay valid.
-_REWRITE_ATTR_DOTDOT = re.compile(r'((?:href|src)=")\.\./')
-_REWRITE_URL_DOTDOT = re.compile(r"""(url\(['"]?)\.\./""")
-_REWRITE_ATTR_ASSETS = re.compile(r'((?:href|src)=")assets/')
-_REWRITE_ATTR_SE_HANDBOOK = re.compile(r'((?:href|src)=")se-handbook/')
+#: Top-level files of the built MkDocs site that are NOT book pages (never pre-swap URLs, so no
+#: legacy stub): Material's error page. Non-.html siblings (sitemap.xml[.gz]) never match anyway.
+_NON_PAGE_HTML = {"404.html"}
 
 
 def _pages_url() -> str:
     meta = json.loads((open(os.path.join(_ROOT, "book-models", "repo-metadata.json"), encoding="utf-8")).read())
     return meta["pages_url"].rstrip("/")
-
-
-def _rewrite_book_page(html: str) -> str:
-    html = _REWRITE_ATTR_DOTDOT.sub(r"\1../../", html)
-    html = _REWRITE_URL_DOTDOT.sub(r"\1../../", html)
-    html = _REWRITE_ATTR_ASSETS.sub(r"\1../assets/", html)
-    html = _REWRITE_ATTR_SE_HANDBOOK.sub(r"\1../se-handbook/", html)
-    return html
 
 
 def _stub(rel_target: str, canonical_abs: str, title: str) -> str:
@@ -78,37 +60,43 @@ def _stub(rel_target: str, canonical_abs: str, title: str) -> str:
 
 def relocate(site: str) -> int:
     book = os.path.join(site, "book")
-    if not os.path.isdir(book):
-        print(f"ERROR: {book} not found — run this AFTER the site is assembled.", file=sys.stderr)
+    mage = os.path.join(book, "mage-book")
+    if not os.path.isdir(mage):
+        print(f"ERROR: {mage} not found — run this AFTER the assembled site gains the MkDocs-built "
+              f"book (cp book/web/site/. -> _site/book/mage-book/).", file=sys.stderr)
         return 2
     pages_url = _pages_url()
-    mage = os.path.join(book, "mage-book")
-    os.makedirs(mage, exist_ok=True)
 
-    # Flat top-level book pages only (not book/assets, book/fonts, book/data, book/_design — those stay put).
-    page_names = sorted(n for n in os.listdir(book)
-                        if n.endswith(".html") and os.path.isfile(os.path.join(book, n)))
+    # The built book's flat pages (use_directory_urls: false — one <slug>.html per published page).
+    # Subdirs (assets/, fonts/, search/) are site chrome, not pages; 404.html is Material's error page.
+    page_names = sorted(n for n in os.listdir(mage)
+                        if n.endswith(".html") and n not in _NON_PAGE_HTML
+                        and os.path.isfile(os.path.join(mage, n)))
     if not page_names:
-        print(f"ERROR: no book HTML pages found in {book}.", file=sys.stderr)
+        print(f"ERROR: no built book pages found in {mage}.", file=sys.stderr)
         return 2
 
     print("== publish_book_layout plan ==")
     print(f"  site           : {site}")
-    print(f"  book pages     : {len(page_names)} -> book/mage-book/ (+ meta-refresh stub at each old path)")
+    print(f"  legacy stubs   : {len(page_names)} book/<slug>.html -> meta-refresh to book/mage-book/<slug>.html")
     print(f"  book PDF       : book/mage-book.pdf -> book/mage-book/mage-book.pdf (old path kept as copy)")
     print(f"  handbook PDF+ePub : se-handbook/ -> book/se-handbook/ (old paths kept as copies)")
 
-    moved = 0
+    stubbed = 0
     for name in page_names:
-        src = os.path.join(book, name)
-        html = open(src, encoding="utf-8").read()
-        open(os.path.join(mage, name), "w", encoding="utf-8").write(_rewrite_book_page(html))
+        old = os.path.join(book, name)
+        if os.path.exists(old):
+            # Nothing writes flat book HTML anymore; a collision means the assembled tree carries an
+            # unexpected page at a legacy URL — fail loud rather than silently shadow either file.
+            print(f"ERROR: {old} already exists — refusing to overwrite it with a redirect stub.",
+                  file=sys.stderr)
+            return 1
         canonical = f"{pages_url}/book/mage-book/{name}"
-        open(src, "w", encoding="utf-8").write(_stub(f"mage-book/{name}", canonical, name))
-        moved += 1
+        open(old, "w", encoding="utf-8").write(_stub(f"mage-book/{name}", canonical, name))
+        stubbed += 1
 
-    # Whole-book PDF: copy into the new home; keep the old path as a working copy (a .pdf URL cannot carry an
-    # HTML meta-refresh, so a copy — not a stub — is how the old PDF link keeps resolving).
+    # Whole-book PDF: copy into the book's home; keep the old flat path as a working copy (a .pdf URL
+    # cannot carry an HTML meta-refresh, so a copy — not a stub — is how the old PDF link keeps resolving).
     pdf_copies = 0
     old_pdf = os.path.join(book, "mage-book.pdf")
     if os.path.isfile(old_pdf):
@@ -132,11 +120,11 @@ def relocate(site: str) -> int:
         print(f"WARNING: {old_hb_dir} absent — no handbook PDF/ePub to relocate.", file=sys.stderr)
 
     print("== publish_book_layout results ==")
-    print(f"  pages relocated + stubbed : {moved}")
+    print(f"  legacy stubs written      : {stubbed}")
     print(f"  book PDF copies           : {pdf_copies}")
     print(f"  handbook PDF/ePub copies  : {hb_copies}")
-    if moved == 0:
-        print("ERROR: relocated 0 pages.", file=sys.stderr)
+    if stubbed == 0:
+        print("ERROR: wrote 0 stubs.", file=sys.stderr)
         return 1
     return 0
 

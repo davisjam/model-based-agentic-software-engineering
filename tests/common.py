@@ -86,6 +86,21 @@ def html_files() -> list[str]:
     return out
 
 
+def book_body_files() -> list[str]:
+    """Every emitted MAGE-book page body: `book/web/docs/<slug>.md`, each a raw-HTML body fragment
+    (plus interleaved markdown heading lines) that ships verbatim inside the Material shell. Since
+    the C3 publish swap the book has no flat tracked `.html` — the deterministic Tier-1 body checks
+    (notation leak, one-<h1>, dup-ids, link resolution, …) scan THESE, which is exactly the markup
+    the book contributes to the published DOM (Material's own chrome is upstream-owned; the built
+    site needs the pinned venv and is gated by `mkdocs build --strict` in CI). Empty when the web
+    build has not emitted yet — callers that require a built book should treat that as a failure,
+    mirroring the 'no built HTML found' posture."""
+    docs = os.path.join(ROOT, "book", "web", "docs")
+    if not os.path.isdir(docs):
+        return []
+    return sorted(os.path.join(docs, f) for f in os.listdir(docs) if f.endswith(".md"))
+
+
 def free_port() -> int:
     with socket.socket() as s:
         s.bind(("127.0.0.1", 0))
