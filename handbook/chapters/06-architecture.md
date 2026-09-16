@@ -324,19 +324,16 @@ parts are not yet implementations. A component responsible for classification ma
 internal choices about data structures, algorithms, state ownership,
 concurrency, failure handling, caching, dependencies, and other mechanisms.
 
-This is the transition from strategy to tactics. Architecture establishes the strategy by
-constraining the available tactics. @ch-design determines how each part realizes its
-responsibility within those constraints and affordances.
+Architecture organizes responsibilities, boundaries, and interactions, thereby constraining the mechanisms available to each part.
+@ch-design determines how each part realizes its responsibility within those constraints and affordances.
 
-Detailed design may also expose that the strategy cannot work as expected. A supposedly local
+Detailed design may also expose that an inherited architectural decision cannot work as expected. A supposedly local
 choice may prove consequential to latency, consistency, security, failure isolation, or another
 system property. In that case, the right response may be to revisit the architecture rather than
 force a local workaround.
 
 Specification asks: which realizations would we accept? Architecture asks: how should one
 acceptable realization be organized? Design asks: how should each part actually work?
-
-Architecture constrains the available tactics. Design tests whether the strategy is workable.
 
 ## Summary
 
@@ -356,8 +353,9 @@ could change a consequential choice, engineers can buy information through model
 experiments, or measurement. The stronger the evidence, the less of the architectural decision
 remains a bet.
 
-Architecture establishes a strategy without determining every tactic. Architecture constrains the
-available tactics. Design tests whether the strategy is workable.
+Architecture organizes responsibilities and interactions without determining every mechanism.
+Its decisions constrain the mechanisms available to Design.
+Design works within those constraints and can reveal when an architectural decision must be revisited.
 
 ::: read_further
 Bass, Len, Paul Clements, and Rick Kazman. *Software Architecture in Practice*. 3rd ed. Boston:
