@@ -527,9 +527,6 @@ def build_web(book: dict) -> None:
     # composites). Copied under docs_dir so MkDocs ships it and the home page's <img> resolves as a
     # sibling at the published /book/se-handbook/ depth. Cross-repo read like FONT_PATH for the PDF faces.
     shutil.copy2(C.GC_ROOT / "book" / "assets" / "handbook-cover-thumb.png", GEN_WEB / "cover-thumb.png")
-    # Browser-tab favicon: a square crop of the cover's component-block motif (theme.favicon in
-    # web/mkdocs.yml resolves against docs_dir, so the file must land in GEN_WEB).
-    shutil.copy2(C.HANDBOOK / "assets" / "cover-favicon.png", GEN_WEB / "cover-favicon.png")
 
     # Landing page — one flat, numbered contents list: web front matter first (unnumbered), then
     # every chapter in book order (back matter such as the Conclusion unnumbered at the end).

@@ -31,9 +31,6 @@ theme:
   # Book-glyph mark in the family header's brand strip (each property keeps its own mark).
   icon:
     logo: material/book-open-variant
-  # Browser-tab favicon — a square crop of the cover's component-block motif (the drilled block),
-  # cut from assets/cover-artwork.png; build.py copies the file into the generated docs_dir.
-  favicon: cover-favicon.png
   features:
     - navigation.sections
     - navigation.top
