@@ -490,10 +490,11 @@ def _parse_chapter(rec: dict) -> Chapter:
                    is_matter=bool(rec.get("is_matter")), part_title=rec.get("part_title", ""))
 
 
-def parse_book(include_appendices: bool = False, for_print: bool = False) -> Document:
-    """Parse the main-narrative chapters (front / parts 1–5 / back) into the typed IR. Appendices are
-    reference entries with their own float conventions; opt in with `include_appendices=True`. `for_print`
-    selects the print/PDF projection of the appendix (e.g. Appendix E collapses to an online pointer)."""
+def book_records(include_appendices: bool = False, for_print: bool = False) -> "list[dict]":
+    """Assemble the chapter RECORD dicts (the pre-IR page records `build_book` constructs) for the selected
+    projection, in reading order. Factored out of `parse_book` so a projection that needs the raw records —
+    the print back-of-book Index scans `body_md` with the same functions the web index uses — reads the one
+    assembly instead of re-deriving it."""
     metrics = bb._load_metrics()
     chapters = bb._discover_chapters(metrics)
     if include_appendices:
@@ -515,4 +516,16 @@ def parse_book(include_appendices: bool = False, for_print: bool = False) -> Doc
         web_map = bb._web_redirect_map()
         for c in chapters:
             c["body_md"] = bb._resolve_appendix_refs_md(c["body_md"], amap, bare_page, web_map)
+    return chapters
+
+
+def parse_records(chapters: "list[dict]") -> Document:
+    """Parse already-assembled chapter records into the typed IR."""
     return Document([_parse_chapter(c) for c in chapters])
+
+
+def parse_book(include_appendices: bool = False, for_print: bool = False) -> Document:
+    """Parse the main-narrative chapters (front / parts 1–5 / back) into the typed IR. Appendices are
+    reference entries with their own float conventions; opt in with `include_appendices=True`. `for_print`
+    selects the print/PDF projection of the appendix (e.g. Appendix E collapses to an online pointer)."""
+    return parse_records(book_records(include_appendices, for_print))

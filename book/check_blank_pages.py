@@ -163,6 +163,10 @@ def _next_page_excuses(nxt: "_Page | None", opener_squishes: list[str]) -> "str 
         return "next page opens a part's first section (N.1)"
     if nxt.squish.startswith("bibliography"):
         return "next page opens the Bibliography"
+    if nxt.squish.startswith("indexaterm"):
+        # The generated back-of-book Index ("Index / A term index over …") starts fresh by design,
+        # exactly like the Bibliography — the short page before it is not a pagination failure.
+        return "next page opens the Index"
     nsq = nxt.squish
     for t in opener_squishes:
         if not t:

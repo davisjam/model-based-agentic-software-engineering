@@ -1695,6 +1695,11 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         if numbered and chapter.chapter >= 2:
             head = f"#section-open[\n{head}\n]"
         out = [head, ""]
+    # Index page-locator marker — an invisible metadata node at the chapter's opening, so the back-of-book
+    # Index resolves an occurrence reference ("this term appears in §5.2") to the page where that section
+    # begins (see `_book_index_typst`). Every chapter record carries one, keyed by slug; inserted BEFORE the
+    # block loop below appends fragments, so the append-time out-index maps are unshifted.
+    out.insert(0, f"#metadata((slug: {_typst_str(chapter.slug)})) <idxpage>")
     # ≤1-inset-per-page spacing pre-pass (must run FIRST — every index-keyed map below reads the
     # final order). `pull_locked` holds the fill-prose indices the wrap gathers must not reclaim.
     blocks, pull_locked = _space_inset_blocks(chapter.blocks)
@@ -2841,6 +2846,32 @@ def _extract_principlebox_raw(ch: "ir.Chapter") -> "str | None":
     return None
 
 
+def _principlebox_index_metadata(ch: "ir.Chapter") -> "list[str]":
+    """`#metadata` emissions for the index-def / index-example markers interposed between a Part-intro's
+    `<!-- principlebox -->` directive and its blockquote. The recto flow SKIPS that whole unit (the box
+    prints on the orientation verso), which silently dropped these markers — and with them the concept's
+    back-of-book Index locator. Emitting them with the verso box points the Index at the page where the
+    definition actually prints. Markers only — no def-box arming (the thesis box has its own render)."""
+    out: list[str] = []
+    blocks = ch.blocks
+    for i, b in enumerate(blocks):
+        if b.kind is ir.BlockKind.DIRECTIVE:
+            m = ir._MARKER_LINE.match(b.raw.strip())
+            if m and m.group(1).lower() == "principlebox":
+                for nxt in blocks[i + 1:]:
+                    if nxt.kind is not ir.BlockKind.DIRECTIVE:
+                        break
+                    s = nxt.raw.strip()
+                    md = _INDEX_DEF_RE.match(s)
+                    if md:
+                        out.append(_render_index_metadata(md.group(1), "index-def"))
+                    me = _INDEX_EXAMPLE_RE.match(s)
+                    if me:
+                        out.append(_render_index_metadata(me.group(1), "index-example"))
+                break
+    return out
+
+
 def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     """A part-divider before the first chapter of a numbered Part, the back-matter Part, or an appendix Part.
     Only front matter (0) gets no divider — its chapters open the book at the OUTLINE root, so a "Front Matter"
@@ -2951,6 +2982,10 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     )
     tb_raw = _extract_principlebox_raw(ch)
     thesis = _render_blockquote(tb_raw, is_principlebox=True) if tb_raw else ""
+    if thesis:
+        # The unit's interposed index markers print with the box (invisible), so the back-of-book Index
+        # points at the verso where the definition actually appears — see `_principlebox_index_metadata`.
+        thesis = "".join(f"{m}\n" for m in _principlebox_index_metadata(ch)) + thesis
     vocab = _nav_vocab_typst(part)   # Carrying-forward / New-here — the sole local-orientation device
     # The whole orientation block is `breakable: false` so it stays atomic on the verso; the trailing
     # `#pagebreak()` sends the intro prose (rendered by `render_chapter`) to lead the facing recto.
@@ -3010,6 +3045,120 @@ def _list_of_floats_typst() -> str:
     )
 
 
+def _book_index_typst(records: "list[dict]") -> "tuple[str, dict[str, int]]":
+    """The generated back-of-book Index — the print projection of the web build's generated term-index page,
+    computed by the SAME functions on the SAME chapter records (`_harvest_concept_tags` +
+    `build_index_entries`), so the three editions list the same entries. It sits in the back matter before
+    the Bibliography, matching the web back matter's order. Two entry kinds, as on the web:
+
+    - **Curated** — a concept with `index-def` / `index-example` tags. Its locators resolve through the
+      `#metadata` nodes the renderer already emits for every tag (`<meta-index-def-<slug>>` /
+      `<meta-index-example-<slug>>`): `query` finds each node and `counter(page).at(loc)` reads its final
+      page — the same marker/query machinery the Contents (`<tocmark>`) and the print List of Figures
+      (`<lofmark>`) use.
+    - **Occurrence** — a plain term's ranked page list. Each reference names a chapter slug; the per-chapter
+      `<idxpage>` metadata node (see `render_chapter`) resolves it to the page where that section begins.
+
+    Returns `(typst_source, required_markers)` where `required_markers` maps a metadata-marker substring to
+    the minimum number of times it must appear in the assembled document. The caller asserts them, so a
+    renderer change that silently drops a node fails the build loud instead of shipping an index entry with
+    a missing page number."""
+    concept_registry, _maps = bb._harvest_concept_tags(records)
+    entries = bb.build_index_entries(records, concept_registry)
+    required: "dict[str, int]" = {}
+    groups: "dict[str, list[dict]]" = {}
+    for e in entries:
+        first = e["term"][0].upper()
+        groups.setdefault(first if first.isalpha() else "#", []).append(e)
+
+    rows: list[str] = []
+    for letter in sorted(groups):
+        rows.append(f"#idx-letter({_typst_str(letter)})")
+        for e in groups[letter]:
+            term = inline_typst(" ".join(e["term"].split()))
+            if e.get("kind") == "curated":
+                # The def anchor is `idx-def-<slug>` by construction (`_harvest_concept_tags`); recover the
+                # slug from it — the entry model carries anchors, not slugs.
+                slug = e["def"][1][len("idx-def-"):]
+                rows.append(f"#idx-concept([{term}], {_typst_str(slug)})")
+                required[f"<meta-index-def-{slug}>"] = 1
+                if e["examples"]:
+                    required[f"<meta-index-example-{slug}>"] = len(e["examples"])
+            else:
+                slugs = [pg["slug"] for pg in e["refs"]]
+                for s in slugs:
+                    required[f"#metadata((slug: {_typst_str(s)})) <idxpage>"] = 1
+                arr = ", ".join(_typst_str(s) for s in slugs) + ("," if len(slugs) == 1 else "")
+                rows.append(f"#idx-term([{term}], ({arr}))")
+
+    helpers = (
+        "#let idx-pagelinks(ms) = {\n"
+        "  let out = ()\n"
+        "  let seen = ()\n"
+        "  for m in ms {\n"
+        "    let loc = m.location()\n"
+        "    let pg = counter(page).at(loc).first()\n"
+        "    if pg not in seen {\n"
+        "      seen.push(pg)\n"
+        "      out.push(link(loc, str(pg)))\n"
+        "    }\n"
+        "  }\n"
+        "  out\n"
+        "}\n"
+        "#let idx-entry(body) = block(width: 100%, above: 0.14em, below: 0pt)[\n"
+        "  #par(hanging-indent: 0.9em, justify: false)[#body]\n"
+        "]\n"
+        "#let idx-sub(body) = block(width: 100%, above: 0.05em, below: 0pt, inset: (left: 0.9em))[\n"
+        "  #par(hanging-indent: 0.9em, justify: false)[#body]\n"
+        "]\n"
+        "#let idx-concept(term, slug) = context {\n"
+        "  let defs = query(label(\"meta-index-def-\" + slug))\n"
+        "  let exs = query(label(\"meta-index-example-\" + slug))\n"
+        "  idx-entry[#term]\n"
+        "  if defs.len() > 0 { idx-sub[definition of, #idx-pagelinks(defs).join(\", \")] }\n"
+        "  if exs.len() > 0 { idx-sub[examples of, #idx-pagelinks(exs).join(\", \")] }\n"
+        "}\n"
+        # The web entry lists its references in SIGNIFICANCE order (heading hits first); print re-sorts the
+        # resolved pages ASCENDING — a print index's page run reads as ordered, and "103, 9, 14" as a bug.
+        # The reference SET (which pages, capped at four) is the web's, unchanged.
+        "#let idx-term(term, slugs) = context {\n"
+        "  let prs = ()\n"
+        "  for s in slugs {\n"
+        "    let hits = query(<idxpage>).filter(m => m.value.slug == s)\n"
+        "    if hits.len() > 0 {\n"
+        "      let loc = hits.first().location()\n"
+        "      let pg = counter(page).at(loc).first()\n"
+        "      if prs.filter(p => p.pg == pg).len() == 0 { prs.push((pg: pg, loc: loc)) }\n"
+        "    }\n"
+        "  }\n"
+        "  let pl = prs.sorted(key: p => p.pg).map(p => link(p.loc, str(p.pg)))\n"
+        "  if pl.len() > 0 { idx-entry[#term, #pl.join(\", \")] }\n"
+        "}\n"
+        "#let idx-letter(l) = block(width: 100%, above: 0.8em, below: 0.25em, breakable: false)[\n"
+        "  #text(font: dt.font-display, weight: \"bold\", size: 10pt, fill: dt.ink)[#l]\n"
+        "]"
+    )
+    intro = ("A term index over the chapters and the appendix. A curated concept entry leads with the "
+             "paragraph that #emph[defines] it and the paragraphs that #emph[exemplify] it; a plain term "
+             "entry lists the pages where it appears, capped so the index leads with the significant sites.")
+    src = (
+        helpers + "\n\n"
+        # A part-level Contents entry + the level-1 heading (its PDF outline bookmark), the same pair the
+        # Bibliography page carries — the two generated back-matter reference pages read as siblings.
+        + _toc_marker("part", "Index") + "\n"
+        + "= Index\n\n"
+        + intro + "\n\n"
+        + "#[\n"
+        + "#set text(font: dt.font-body, size: 9.5pt, fill: dt.ink)\n"
+        + "#set par(justify: false, leading: 0.5em)\n"
+        + "#columns(2, gutter: 1.8em)[\n"
+        + "\n".join(rows) + "\n"
+        + "]\n"
+        + "]"
+    )
+    return src, required
+
+
 def _book_label_text(doc: "ir.Document") -> "dict[str, str]":
     """key → the descriptive reference string ("Figure <prefix>-N" / "Table <prefix>-N") for every labelled
     float in the book. Numbered exactly as the print projection numbers floats: chapter-relative, image and
@@ -3050,7 +3199,11 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
     global _SPLIT_LABELS, _SPLIT_LABEL_TEXT
     root = root or HERE.parent
     ctx = _EmitCtx(root)
-    doc = ir.parse_book(include_appendices=True, for_print=True)
+    # The record dicts and the IR come from ONE assembly (`book_records`), so the back-of-book Index —
+    # computed from the records with the web build's own index functions — describes exactly the chapters
+    # this document renders.
+    records = ir.book_records(include_appendices=True, for_print=True)
+    doc = ir.parse_records(records)
     by_slug = {c.slug: c for c in doc.chapters}
     if split_section:
         sec = set(slugs)
@@ -3186,6 +3339,15 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
         if with_frontmatter and slug.endswith("preface"):
             parts.append("#pagebreak()")
             parts.append(_list_of_floats_typst())
+    # Back-of-book Index — the print projection of the web build's generated term-index page, seated
+    # before the Bibliography to match the web back matter's order (Index → … → Bibliography). Whole-book
+    # renders only: a split-section subset (which also passes `with_frontmatter`) would query against
+    # markers outside its own pages, and the marker-integrity check below would refuse it.
+    idx_required: "dict[str, int]" = {}
+    if with_frontmatter and not split_section:
+        idx_typ, idx_required = _book_index_typst(records)
+        parts.append("#pagebreak()")
+        parts.append(idx_typ)
     # End-of-book Bibliography — Chicago notes, rendered by Typst from the SAME references.bib that
     # generated citations.json, so the PDF's reference strings equal the web book's by construction
     # (CITE-PARITY / BIB-5). Emitted only when the book actually cites something (an empty #bibliography is
@@ -3197,6 +3359,14 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
             parts.append(_toc_marker("part", "Bibliography"))  # a part-level Contents entry, on the bib page
         parts.append(f'#bibliography({_typst_str(bib_rel)}, style: "nature", title: "Bibliography")')
     result = "\n\n".join(parts) + "\n"
+    # Fail-loud Index integrity: every metadata marker an Index locator resolves through must be in the
+    # emitted document, at least as many times as the web model expects — a renderer change that silently
+    # drops a node would otherwise ship an index entry with a missing page number.
+    missing = [f"{m} ×{n} (found {result.count(m)})"
+               for m, n in idx_required.items() if result.count(m) < n]
+    if missing:
+        raise SystemExit("back-of-book Index: required metadata marker(s) missing from the emitted "
+                         "document:\n  " + "\n  ".join(missing))
     # Clear the split-section context so a later whole-book emission (or the next section) starts clean. An
     # unknown-slug `raise SystemExit` above aborts the whole process, so it needs no reset here.
     _SPLIT_LABELS = None
