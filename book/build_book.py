@@ -2769,6 +2769,17 @@ a.gloss-site:hover, a.gloss-site:focus {{ color: var(--accent); border-bottom-co
 .idx li {{ margin: 0.35rem 0; }}
 .idx a {{ text-decoration: none; }}
 .idx .cnum {{ color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 0.5rem; }}
+/* Landing cover: TOC left + cover right on a wide screen; on narrow the row stacks and the cover
+   moves to the TOP at a small size (order: -1), just under the title block. Breakpoint 48rem. */
+.idx-cover {{ display: flex; align-items: flex-start; gap: 2.5rem; }}
+.idx-cover .idx {{ flex: 1 1 auto; min-width: 0; }}
+.book-cover-side {{ flex: 0 0 auto; width: 15rem; max-width: 38%; height: auto; margin-top: 2rem;
+                    border: 1px solid var(--rule); border-radius: 6px; position: sticky; top: 2rem; }}
+@media (max-width: 48rem) {{
+  .idx-cover {{ flex-direction: column; gap: 0; }}
+  .book-cover-side {{ order: -1; position: static; width: 8.5rem; max-width: 45%;
+                      margin: 1.2rem 0 0.2rem; }}
+}}
 /* term index page */
 .idx-terms ul {{ list-style: none; padding: 0; margin: 0 0 1rem; }}
 .idx-terms li {{ margin: 0.3rem 0; }}
@@ -7592,11 +7603,20 @@ def build() -> int:
         f'{_cover_sub("sub")}'
         # PDF edition — a CI-published artifact at book/mage-book.pdf on the deployed site (a purely-local
         # checkout without the CI render will 404 this; that is expected).
-        f'<div class="book-download"><a href="{_PDF_FILENAME}">Download the PDF edition ↓</a></div>'
+        # Companion cross-link — `se-handbook/` is a sibling subdir at publish time (the relocation step
+        # rewrites it to `../se-handbook/` when this page moves into book/mage-book/; see
+        # tools/publish_book_layout.py). Like the PDF, it 404s on a purely-local checkout; expected.
+        f'<div class="book-download"><a href="{_PDF_FILENAME}">Download the PDF edition ↓</a>'
+        '<a href="se-handbook/index.html">Read the companion book: SE Handbook →</a></div>'
         '</div>'
     )
     foot = f'<div class="book-foot">{html.escape(COPYRIGHT)}</div>'
-    main = title_block + '<div class="idx">' + "\n".join(idx_rows) + "</div>" + foot
+    # The landing TOC + the book's own cover in one responsive row: cover to the RIGHT of the TOC on a
+    # wide screen, moved to the TOP at a small size on narrow/phone (see the `.idx-cover` CSS).
+    cover_img = (f'<img class="book-cover-side" src="assets/cover-thumb.png" '
+                 f'alt="{html.escape(_BOOK_MANIFEST["title"])}">')
+    main = (title_block + '<div class="idx-cover"><div class="idx">' + "\n".join(idx_rows)
+            + "</div>" + cover_img + "</div>" + foot)
     (HERE / "index.html").write_text(
         page("Model-Based Agentic Software Engineering — Contents", "", main), encoding="utf-8"
     )

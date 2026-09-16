@@ -611,6 +611,17 @@ a.gloss-site:hover, a.gloss-site:focus { color: var(--accent); border-bottom-col
 .idx li { margin: 0.35rem 0; }
 .idx a { text-decoration: none; }
 .idx .cnum { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 0.5rem; }
+/* Landing cover: TOC left + cover right on a wide screen; on narrow the row stacks and the cover
+   moves to the TOP at a small size (order: -1), just under the title block. Breakpoint 48rem. */
+.idx-cover { display: flex; align-items: flex-start; gap: 2.5rem; }
+.idx-cover .idx { flex: 1 1 auto; min-width: 0; }
+.book-cover-side { flex: 0 0 auto; width: 15rem; max-width: 38%; height: auto; margin-top: 2rem;
+                    border: 1px solid var(--rule); border-radius: 6px; position: sticky; top: 2rem; }
+@media (max-width: 48rem) {
+  .idx-cover { flex-direction: column; gap: 0; }
+  .book-cover-side { order: -1; position: static; width: 8.5rem; max-width: 45%;
+                      margin: 1.2rem 0 0.2rem; }
+}
 /* term index page */
 .idx-terms ul { list-style: none; padding: 0; margin: 0 0 1rem; }
 .idx-terms li { margin: 0.3rem 0; }
@@ -688,7 +699,7 @@ section.eng-note, section.eng-note-panel { break-inside: avoid; }
       pager, index, and any text-extraction stay case-exact). Scoped to the appendix `<main>` so book
       chapters are untouched. */
 main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
-</style></head><body><main class="wrap" aria-label="Model-Based Agentic Software Engineering — Contents"><div class="book-title"><h1>Model-Based Agentic Software Engineering</h1><div class="book-download"><a href="mage-book.pdf">Download the PDF edition ↓</a></div></div><div class="idx"><div class="part">Part 0 — Orientation and Reference</div>
+</style></head><body><main class="wrap" aria-label="Model-Based Agentic Software Engineering — Contents"><div class="book-title"><h1>Model-Based Agentic Software Engineering</h1><div class="book-download"><a href="mage-book.pdf">Download the PDF edition ↓</a><a href="se-handbook/index.html">Read the companion book: SE Handbook →</a></div></div><div class="idx-cover"><div class="idx"><div class="part">Part 0 — Orientation and Reference</div>
 <ol>
 <li><a href="0.0-acknowledgments.html"><span class="cnum"> •</span>Acknowledgments</a></li>
 <li><a href="0.1-how-to-read-this-book.html"><span class="cnum"> •</span>How to Read This Book</a></li>
@@ -867,4 +878,4 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a href="book-index.html"><span class="cnum"> ★</span>Index (terms)</a></li>
 <li><a href="figures.html"><span class="cnum"> ◫</span>Figures Gallery</a></li>
 <li><a href="bibliography.html"><span class="cnum"> ❧</span>Bibliography</a></li>
-</ol></div><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+</ol></div><img class="book-cover-side" src="assets/cover-thumb.png" alt="Model-Based Agentic Software Engineering"></div><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

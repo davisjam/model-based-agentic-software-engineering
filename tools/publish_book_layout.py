@@ -37,11 +37,14 @@ _ROOT = os.path.dirname(_HERE)
 #   - root-relative attribute refs gain one `../`   (href="../index.html" -> "../../index.html")
 #   - root-relative CSS url() refs gain one `../`    (url('../book/fonts/…') -> url('../../book/fonts/…'))
 #   - the one bare sibling-asset img ref             (src="assets/…" -> src="../assets/…", assets/ stays put)
+#   - the companion-book ref                         (href="se-handbook/…" -> href="../se-handbook/…";
+#     se-handbook/ ends up the mage-book/ SIBLING under book/, so a page moving one level deeper needs one ../)
 # Sibling page links (index.html, <slug>.html) and the sibling PDF link (mage-book.pdf) need NO rewrite —
 # every book page and the PDF move together into mage-book/, so those stay valid.
 _REWRITE_ATTR_DOTDOT = re.compile(r'((?:href|src)=")\.\./')
 _REWRITE_URL_DOTDOT = re.compile(r"""(url\(['"]?)\.\./""")
 _REWRITE_ATTR_ASSETS = re.compile(r'((?:href|src)=")assets/')
+_REWRITE_ATTR_SE_HANDBOOK = re.compile(r'((?:href|src)=")se-handbook/')
 
 
 def _pages_url() -> str:
@@ -53,6 +56,7 @@ def _rewrite_book_page(html: str) -> str:
     html = _REWRITE_ATTR_DOTDOT.sub(r"\1../../", html)
     html = _REWRITE_URL_DOTDOT.sub(r"\1../../", html)
     html = _REWRITE_ATTR_ASSETS.sub(r"\1../assets/", html)
+    html = _REWRITE_ATTR_SE_HANDBOOK.sub(r"\1../se-handbook/", html)
     return html
 
 

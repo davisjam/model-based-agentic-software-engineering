@@ -97,6 +97,34 @@
   text-align: center;
 }
 
+/* ── Home page (index.md only; these classes appear on no chapter page) ─────────────────────────
+ * Top row: two peer button-styled links (PDF edition + the companion MAGE book), matching the MAGE
+ * book's own top-row register. Theme-aware via the Material fg vars. */
+.md-typeset .hb-top-row { display: flex; flex-wrap: wrap; gap: 0.6em; margin: 0.2em 0 0.4em; }
+.md-typeset .hb-top-row a {
+  font-weight: 600; padding: 0.4em 0.9em; border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 6px; color: var(--hb-accent);
+}
+.md-typeset .hb-top-row a:hover { border-color: var(--hb-accent); }
+/* Contents left / cover right on a wide screen; below the breakpoint the row stacks and the cover
+ * moves to the TOP at a small size (order: -1), just under the title block. */
+.md-typeset .hb-home { display: flex; align-items: flex-start; gap: 2em; }
+.md-typeset .hb-home-main { flex: 1 1 auto; min-width: 0; }
+.md-typeset .hb-home-side {
+  flex: 0 0 auto; width: 13.5em; max-width: 38%; margin-top: 1.8em;
+  position: sticky; top: 4rem;
+}
+.md-typeset .hb-home-cover {
+  display: block; width: 100%; height: auto;
+  border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px;
+}
+@media (max-width: 768px) {
+  .md-typeset .hb-home { flex-direction: column; gap: 0; }
+  .md-typeset .hb-home-side {
+    order: -1; position: static; width: 9em; max-width: 45%; margin: 0.6em 0 0.4em;
+  }
+}
+
 /* Math: rendered to HTML at build time (filters/web.lua Math handler), no client-side JS. Display
    math sits centered on its own line; inline math flows with the prose. */
 .md-typeset .math.display {

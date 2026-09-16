@@ -76,8 +76,14 @@ def check_html_links():
             tgt_rel, _, anchor = ref.partition("#")
             if tgt_rel and os.path.basename(tgt_rel) in _CI_BUILT_ARTIFACTS:
                 continue  # CI-built download artifact — present on the deployed site, not on disk here
-            if tgt_rel and tgt_rel.lstrip("./").startswith(_CI_BUILT_PREFIXES):
-                continue  # CI-built subtree (e.g. MkDocs /teach) — live on the deployed site, absent here
+            # Prefix-match the SITE-relative target (normalized against the referring page's dir), not the
+            # raw href — `se-handbook/index.html` from a page under book/ is the CI-built
+            # book/se-handbook/ subtree even though the raw href never says "book/".
+            if tgt_rel:
+                tgt_site = os.path.relpath(
+                    os.path.normpath(os.path.join(os.path.dirname(f), tgt_rel)), ROOT)
+                if tgt_site.replace(os.sep, "/").startswith(_CI_BUILT_PREFIXES):
+                    continue  # CI-built subtree (e.g. MkDocs /teach) — live on the deployed site, absent here
             if not tgt_rel:  # in-page anchor
                 if anchor and anchor not in parsed[ap].ids:
                     issues.append(f"{rel(f)} -> #{anchor} (no such id in page)")

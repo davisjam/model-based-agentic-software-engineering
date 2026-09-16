@@ -248,16 +248,41 @@ def build_web(book: dict) -> None:
     # Assets the generated Markdown references, copied under the MkDocs docs_dir.
     shutil.copytree(C.FIGURES, GEN_WEB / "figures")
     shutil.copytree(C.WEB_SRC / "css", GEN_WEB / "css")
+    # The handbook's rendered COVER (title lockup + artwork — the same thumbnail the catalogue landing's
+    # handbook card uses; assets/cover-artwork.png is only the art-window LAYER the Typst cover
+    # composites). Copied under docs_dir so MkDocs ships it and the home page's <img> resolves as a
+    # sibling at the published /book/se-handbook/ depth. Cross-repo read like FONT_PATH for the PDF faces.
+    shutil.copy2(C.GC_ROOT / "book" / "assets" / "handbook-cover-thumb.png", GEN_WEB / "cover-thumb.png")
 
     # Landing page — one flat, numbered contents list: web front matter first (unnumbered), then
     # every chapter in book order (back matter such as the Conclusion unnumbered at the end).
+    # Above it, the two-link top row (PDF edition + the companion MAGE book), and around the list the
+    # responsive contents+cover row: cover RIGHT of the contents on wide screens, moved to the TOP at
+    # a small size on narrow (see web/css/handbook.css `.hb-home`). The row links are raw HTML so
+    # MkDocs' strict link check (markdown links only) does not chase the out-of-tree targets — the PDF
+    # is CI-published next to this page, and ../mage-book/ exists at the published /book/se-handbook/
+    # depth; both 404 in a bare local dist/site, which is expected.
     lines = [f"# {book['title']}", "", f"*{book['subtitle']}*", "",
              f"{book['author']} · Edition {book['edition']} · {book['year']}", "",
+             '<p class="hb-top-row">'
+             '<a href="software-engineering-handbook.pdf">Download the PDF edition ↓</a> '
+             '<a href="../mage-book/index.html">Read the companion book: MAGE →</a>'
+             "</p>", "",
              "A vertical-slice prototype: one semantic manuscript, rendered to both a typeset PDF and "
              "this responsive web edition.", "",
+             '<div class="hb-home" markdown="1">', "",
+             '<div class="hb-home-main" markdown="1">', "",
              "## Contents", ""]
     for title, href in fm_entries + nav_entries:
         lines.append(f"- [{title}]({href})")
+    # The cover rides its own raw (non-markdown) div so it stays a direct flex child of .hb-home —
+    # a bare <img> line inside a markdown="1" parent gets <p>-wrapped, which would strand the flex
+    # order/width rules on the img instead of the flex item.
+    lines += ["", "</div>", "",
+              '<div class="hb-home-side">',
+              f'<img class="hb-home-cover" src="cover-thumb.png" alt="{book["title"]}">',
+              "</div>", "",
+              "</div>"]
     (GEN_WEB / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     # mkdocs resolution: locally the pinned toolchain lives in the site/ venv (site/requirements.txt
