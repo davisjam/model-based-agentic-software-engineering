@@ -313,7 +313,7 @@ The engineering task is instead to resolve or constrain the consequential Design
 
 When consequential choices remain open, however, the agent must also make those Design decisions.
 Current agents can make choices that are locally plausible but wrong for the system, and even a sound choice remains subject to engineering control: engineers must be able to understand the decision, examine its consequences and evidence, and accept responsibility for it.
-Consequential Design decisions therefore need to become explicit rather than disappearing into generated implementation.
+Consequential Design decisions therefore need to be made explicit rather than left to the agent during implementation.
 Specification, Architecture, Design, and the engineering environment progressively constrain the work until what remains can safely be delegated.
 
 This does not make implementation unskilled or make engineering a rigid sequence.
