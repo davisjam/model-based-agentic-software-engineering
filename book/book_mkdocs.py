@@ -16,10 +16,12 @@ meta, and this emitter projects those records into a Material-shell site:
 
 C0-spike requirements folded in (spike/VERDICT.md, webbook-phaseC0-mage-spike-260916):
   1. chapter headings are interleaved as MARKDOWN `##`/`###` lines (carrying their `{#id}` anchors)
-     between raw-HTML body chunks — Material's right-TOC rail and section-level search anchors
-     populate ONLY from markdown headings; a raw <h2> is invisible to both. Attribute-carrying
-     headings (the spike's 3.3.6 miss) are handled; only TOP-LEVEL headings are lifted (a heading
-     nested in a blockquote / works-cited section / apparatus frame stays raw HTML).
+     between raw-HTML body chunks — Material's section-level search anchors populate ONLY from
+     markdown headings; a raw <h2> is invisible to search. (The right-TOC rail the spike also fed
+     is dropped since the web-polish pass — see the sidenote note below — but search keeps needing
+     the interleave.) Attribute-carrying headings (the spike's 3.3.6 miss) are handled; only
+     TOP-LEVEL headings are lifted (a heading nested in a blockquote / works-cited section /
+     apparatus frame stays raw HTML).
   2. each page body is wrapped in a `<div class="wrap …">` carrying the record's `main_cls` (Material
      supplies <main>; nested mains are invalid HTML). The div is closed/reopened around each
      interleaved markdown heading so every chunk stays balanced and the page-class CSS hooks
@@ -31,7 +33,8 @@ C0-spike requirements folded in (spike/VERDICT.md, webbook-phaseC0-mage-spike-26
   5. URL/anchor parity: emitted stems == `expected_page_slugs()` == the pre-swap published stems
      (asserted at emit time — the C3 URL-continuity guarantee, no redirects needed).
   6. the home page is the book landing's own content (cover beside contents + the PDF-download /
-     companion-SE-Handbook top row).
+     companion-SE-Handbook top row); the cover art is wrapped in a link to the PDF edition
+     (`_link_cover_to_pdf` — a web-only affordance; the print/ePub projections never see it).
   7. per-page Scholar head-meta: each record's `citation_*` tags ride the page front matter
      (`citation_head`) and the shared web-theme `main.html` renders them into `<head>` via its
      `extrahead` block.
@@ -48,9 +51,14 @@ Phase C2 (dark mode + identity CSS, per the C0 spike Q1/Q3 verdicts) lives in th
     only through var(--…), so the whole plane follows the family dark scheme with zero hand hex.
   - LIGHT PLATES: light-baked inlined SVGs sit on a light-paper plate under slate
     (`_dark_extras_css`); the plate is slate-scoped, so light mode is untouched by construction.
-  - IN-COLUMN ASIDES (C0 Q1 variant (a)): sidenotes and cite/editorial notes keep one compact
-    in-column presentation at every width; a citation marker whose note card directly precedes it
-    is emitter-marked `cn-follow` (`_mark_note_followers`) and visually hidden.
+  - MARGIN SIDENOTES (web-polish 260916, superseding the C0 Q1 variant (a) in-column-only call):
+    every page front-matters `hide: [toc]` — the per-page right-TOC rail is DROPPED (author
+    decision 260916) and the freed right margin goes to Tufte-style sidenotes: on a wide viewport
+    the cite/editorial notes float into the margin beside their reference marks; below the margin
+    breakpoint they collapse back to the compact in-column cards (never clipped). A citation
+    marker whose note card directly precedes it is emitter-marked `cn-follow`
+    (`_mark_note_followers`) and visually hidden ONLY in the in-column fallback, where the card
+    breaks the line; in margin mode every mark stays inline.
 
 The content CSS is COMPOSED at emit time (`_compose_css`): the TRACKED, hand-owned
 `book/web-assets/mage-book.css` (frozen at C3 from the former inline strings) plus the projected
@@ -179,12 +187,14 @@ _FOLLOW_SUP_RE = re.compile(r'\s*<sup class="(?:cite-ref|note-ref)')
 
 def _mark_note_followers(inner: str) -> str:
     """Mark every citation/editorial marker whose gutter-note card DIRECTLY precedes it (whitespace
-    only between) with an extra `cn-follow` class. In the in-column aside presentation the notes are
-    display:block cards, so a marker sandwiched between two cards would render as a one-glyph debris
-    line — its own note is the very next block and carries its number. The CSS visually hides
-    `sup.cn-follow` (still in the a11y tree and anchor order); markers with running prose after the
-    preceding note keep their inline place. An adjacent-sibling CSS selector cannot express this
-    (`+` ignores intervening TEXT nodes), hence the emitter-side mark."""
+    only between) with an extra `cn-follow` class. In the NARROW in-column fallback presentation
+    the notes are display:block cards, so a marker sandwiched between two cards would render as a
+    one-glyph debris line — its own note is the very next block and carries its number. The CSS
+    visually hides `sup.cn-follow` below the margin-sidenote breakpoint (still in the a11y tree
+    and anchor order) and restores it in margin mode, where the notes float out of the line and
+    every mark reads inline; markers with running prose after the preceding note keep their inline
+    place at every width. An adjacent-sibling CSS selector cannot express this (`+` ignores
+    intervening TEXT nodes), hence the emitter-side mark."""
     inserts: list[int] = []  # offsets (into the original string) where " cn-follow" is added
     for m in _NOTE_OPEN_RE.finditer(inner):
         depth = 1
@@ -209,6 +219,35 @@ def _mark_note_followers(inner: str) -> str:
     return "".join(out)
 
 
+# In-body figures: every `figure.book-figure` holding an inlined SVG gets a `--fig-natural` CSS
+# custom property carrying the SVG's natural width (its viewBox width — the coordinate space the
+# diagram was laid out in, where mermaid label px == CSS px). The stylesheet sizes the SVG
+# `min(100%, var(--fig-natural))`: a wide diagram fills the reading column, a small one centers at
+# its natural size instead of being upscaled past the size it was designed at. The viewBox is the
+# only width signal these SVGs carry (no width/height attrs), and CSS cannot read it — hence the
+# emitter-side annotation.
+_FIG_SVG_RE = re.compile(
+    r'(?P<fig><figure\b[^>]*class="book-figure[^"]*"[^>]*)>\s*(?=<svg\b)'
+    r'(?P<svg><svg\b(?:"[^"]*"|\'[^\']*\'|[^>])*>)', re.S)
+_VIEWBOX_W_RE = re.compile(r'\bviewBox="[-\d.]+[ ,]+[-\d.]+[ ,]+([\d.]+)[ ,]+[-\d.]+"')
+
+
+def _annotate_figure_widths(inner: str) -> str:
+    """Stamp `style="--fig-natural:<viewBox-width>px"` onto every book-figure that opens with an
+    inlined SVG (raster `<img>` figures and the catalogue-embed iframe pass untouched — `<img>`
+    already has intrinsic dimensions and never upscales)."""
+    def _stamp(m: re.Match[str]) -> str:
+        fig, svg = m.group("fig"), m.group("svg")
+        vb = _VIEWBOX_W_RE.search(svg)
+        if not vb:
+            return m.group(0)  # no viewBox → no natural width to declare; CSS falls back to 100%
+        if 'style="' in fig:
+            raise SystemExit(f"book_mkdocs: figure tag already carries a style attribute — "
+                             f"fold --fig-natural into it: {fig[:120]!r}")
+        return f'{fig} style="--fig-natural:{vb.group(1)}px">{svg}'
+    return _FIG_SVG_RE.sub(_stamp, inner)
+
+
 # Site-root refs in a page body (`href="../models-bridge/…"` — a link that LEAVES the book, e.g. the
 # web-redirect to an online catalogue entry). The bodies are rendered for the book's own directory,
 # one level below the site root; the PUBLISHED pages serve at `/book/mage-book/<slug>.html`, two
@@ -220,16 +259,41 @@ _UPREF_RE = re.compile(r'((?:href|src)=")\.\./')
 
 def _page_md(rec: dict, nav_title: str) -> str:
     """One build_pages() record → the MkDocs page markdown: front matter (nav/tab title + the
-    Scholar `citation_head` block the theme's extrahead renders) + wrap div + interleaved body."""
+    `hide: [toc]` that drops Material's right-TOC rail + the Scholar `citation_head` block the
+    theme's extrahead renders) + wrap div + interleaved body."""
     wrap_open = f'<div class="{rec["main_cls"]}">'
     main = _UPREF_RE.sub(r"\1../../", rec["main"].strip())
-    body = _interleave(_mark_note_followers(main), wrap_open, rec["slug"])
-    fm = [f"title: {json.dumps(nav_title)}"]
+    body = _interleave(_annotate_figure_widths(_mark_note_followers(main)), wrap_open, rec["slug"])
+    # `hide: [toc]` — Material's native per-page switch for the right-TOC rail. The rail is
+    # dropped on every page (author decision 260916: the margin belongs to the Tufte sidenotes,
+    # not an in-chapter TOC); the top nav + in-page headings still give structure, and search
+    # keeps its section anchors from the interleaved markdown headings.
+    fm = [f"title: {json.dumps(nav_title)}", "hide:", "  - toc"]
     if rec.get("head_meta"):
         # One-line JSON string — valid YAML, no block-scalar indentation pitfalls; the shared
         # web-theme main.html renders it verbatim into <head> (Scholar reads meta only from <head>).
         fm.append(f"citation_head: {json.dumps(rec['head_meta'])}")
     return "---\n" + "\n".join(fm) + f"\n---\n\n{wrap_open}\n{body}\n</div>\n"
+
+
+_COVER_IMG_RE = re.compile(r'<img class="book-cover-side"[^>]*>')
+
+
+def _link_cover_to_pdf(main: str) -> str:
+    """Wrap the landing page's cover art in a link to the PDF edition — the same target as the
+    "Download the PDF edition" button (the manifest's `pdf_filename`). Web-only: this emitter is
+    the only consumer of the landing record, so the print/ePub projections are untouched. The
+    anchor carries the accessible label; the stylesheet moves the cover's flex/sticky geometry
+    onto it (`a.book-cover-link`)."""
+    def _wrap(m: re.Match[str]) -> str:
+        return (f'<a class="book-cover-link" href="{build_book._PDF_FILENAME}" '
+                f'title="Download the PDF edition" aria-label="Download the PDF edition">'
+                f'{m.group(0)}</a>')
+    out, n = _COVER_IMG_RE.subn(_wrap, main)
+    if n != 1:
+        raise SystemExit(f"book_mkdocs: expected exactly 1 landing cover image to link to the "
+                         f"PDF, found {n}")
+    return out
 
 
 # ── content CSS: tracked hand-owned sheet + projected token segments ─────────────────────────────
@@ -409,10 +473,11 @@ theme:
   custom_dir: ../../web-theme/overrides
   icon:
     logo: material/book-open-page-variant
+  # No toc.* features: every page front-matters `hide: [toc]` (the right margin belongs to the
+  # Tufte sidenotes, not a per-page TOC rail — author decision 260916).
   features:
     - navigation.sections
     - navigation.top
-    - toc.follow
   # Neutral palette seed only; mage-family.css (projected from book-models/design-tokens.json)
   # overrides both schemes with the family tokens, and mage-book.css carries the book CONTENT
   # plane's slate remap + SVG light plates (Phase C2, projected from the same token SSOT).
@@ -485,6 +550,8 @@ def emit(chapters: list[dict], extras: list[dict],
         bodies[c["slug"]] = _page_md(c, _nav_label(c))
     for e in extras:
         title = build_book._BOOK_MANIFEST["title"] if e["slug"] == "index" else e["nav_title"]
+        if e["slug"] == "index":
+            e = {**e, "main": _link_cover_to_pdf(e["main"])}
         bodies[e["slug"]] = _page_md(e, title)
     for slug, md in bodies.items():
         (docs / f"{slug}.md").write_text(md, encoding="utf-8")

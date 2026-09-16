@@ -58,17 +58,11 @@ h3{ font-size: 1.05rem; margin: 1.9rem 0 0.4rem; font-weight: 400; font-style: i
    loop). The six claims get a slightly larger body, .md-typeset more air between them, .md-typeset and accent-coloured bold
    numerals set into the margin; the prose is otherwise untouched (no boxes, .md-typeset no icons). */
 .argues-page ol{ font-size: 1.06em; line-height: 1.72; padding-left: 2.1rem; margin: 1.7rem 0; }.argues-page ol > li{ margin: 0.62rem 0; padding-left: 0.25rem; }.argues-page ol > li::marker{ color: var(--accent); font-weight: 700; }.md-typeset blockquote{ margin: 1.2rem 0; padding: 0.6rem 1.1rem; border-left: 3px solid var(--rule);
-              color: var(--muted); font-style: italic; background: var(--panel); }/* Plain editorial asides render as Tufte-style sidenotes. On a NARROW screen they collapse to a normal
-   inline blockquote (the default above). On a WIDE screen the media query below floats them into the
-   right gutter — smaller, .md-typeset ragged, .md-typeset unboxed — so the aside sits beside the text it comments on without
-   breaking the reading column. Concept insets (`.concept-inset`, .md-typeset boxed primers) keep the default box. */
-blockquote.aside-sidenote{ background: transparent; }
-@media (min-width: 60rem) {blockquote.aside-sidenote{
-    float: right; clear: right; width: 13rem; margin: 0.3rem -15rem 1rem 0;
-    padding: 0 0 0 0.9rem; border-left: 2px solid var(--box-inset-rule); background: transparent;
-    font-size: 14px; line-height: 1.5; color: var(--muted);
-  }
-}/* CITATIONS & EDITORIAL NOTES (bibliography subsystem). Two visibly-distinct in-text marker families:
+              color: var(--muted); font-style: italic; background: var(--panel); }/* Plain editorial asides (`.aside-sidenote`) are unboxed sidenote material. Their presentation
+   lives in the C1/C2 shim at the end of this sheet: a compact in-column aside on a narrow screen,
+   a Tufte right-margin sidenote on a wide one (the margin the dropped per-page TOC rail freed).
+   Concept insets (`.concept-inset`, boxed primers) keep the default box. */
+blockquote.aside-sidenote{ background: transparent; }/* CITATIONS & EDITORIAL NOTES (bibliography subsystem). Two visibly-distinct in-text marker families:
    `[cite:]` → a NUMERIC superscript linked to the chapter's numbered Works Cited; `[note:]` → a SYMBOLIC
    superscript (* † ‡ § …). Each is followed by a right-gutter note (an inline <span>, .md-typeset valid inside a <p>, .md-typeset styled to reuse the same Tufte gutter geometry as `.aside-sidenote`). The number/symbol sets are
    disjoint by construction (a check asserts it). */
@@ -76,11 +70,9 @@ sup.cite-ref, sup.note-ref{ line-height: 0; font-size: 0.72em; }sup.cite-ref a{ 
   display: block; margin: 0.3rem 0 1rem; padding: 0 0 0 0.9rem;
   border-left: 2px solid var(--box-inset-rule); font-size: 14px; line-height: 1.5;
   color: var(--muted); font-style: normal;
-}.cite-note .cn-mark, .editorial-note .cn-mark{ color: var(--accent); font-weight: 600; margin-right: 0.15em; }.cite-note a, .editorial-note a{ color: var(--accent); word-break: break-word; }
-@media (min-width: 60rem) {.cite-note, .editorial-note{
-    float: right; clear: right; width: 13rem; margin: 0.2rem -15rem 0.9rem 0;
-  }
-}/* Per-chapter Works Cited — a numbered list set off from the body by a top rule; the <ol> numbering
+}.cite-note .cn-mark, .editorial-note .cn-mark{ color: var(--accent); font-weight: 600; margin-right: 0.15em; }.cite-note a, .editorial-note a{ color: var(--accent); word-break: break-word; }/* The wide-screen presentation (Tufte right-margin sidenotes) lives in the C1/C2 shim at the end
+   of this sheet, beside the narrow in-column fallback it collapses to. */
+/* Per-chapter Works Cited — a numbered list set off from the body by a top rule; the <ol> numbering
    equals each entry's id, .md-typeset so citation superscript N links to entry N (the mirror). */
 section.works-cited{ margin: 2.4rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--rule); clear: both; }section.works-cited .wc-h{ font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em;
                              color: var(--muted); margin: 0 0 0.6rem; }ol.wc-list{ font-size: 15px; line-height: 1.5; }ol.wc-list li{ margin: 0.35rem 0; padding-left: 0.2rem; }ol.wc-list li em, ul.bib-list li em{ font-style: italic; }/* End-of-book Bibliography — a hanging-indent alphabetical list (unnumbered). */
@@ -289,10 +281,21 @@ blockquote.pull-quote{
   padding: 1.15rem 0;
   border-top: 1px solid var(--accent);
   border-bottom: 1px solid var(--accent);
-}blockquote.pull-quote p{ margin: 0; }blockquote.pull-quote strong{ font-style: normal; }.book-eq{ text-align: center; color: var(--ink); margin: 1.3rem 0; }.book-eq math{ font-size: 1.18em; }.book-eq-boxed math{ font-size: 1.06em; }.book-eq-boxed{ border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
-           display: inline-block; margin: 0.5rem auto; }.book-eq-boxed-wrap{ text-align: center; margin: 1.3rem 0; }math.book-math-inline{ font-size: 1.05em; }figure.book-figure{ margin: 1.8rem 0; text-align: center; }figure.book-figure svg, figure.book-figure img{ max-width: 100%; height: auto; }/* A wide figure breaks out past the reading column for more visual authority. Centered on the column via
+}blockquote.pull-quote p{ margin: 0; }blockquote.pull-quote strong{ font-style: normal; }.book-eq{ text-align: center; color: var(--ink); margin: 1.3rem 0; overflow-x: auto; }.book-eq math{ font-size: 1.18em; }.book-eq-boxed math{ font-size: 1.06em; }.book-eq-boxed{ border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
+           display: inline-block; margin: 0.5rem auto; }.book-eq-boxed-wrap{ text-align: center; margin: 1.3rem 0; }math.book-math-inline{ font-size: 1.05em; }figure.book-figure{ margin: 1.8rem 0; text-align: center; }/* Inlined figure SVGs carry only a viewBox (no width/height), so without an explicit width the
+   browser default-sizes them well under the reading column. The emitter stamps each figure with
+   `--fig-natural` (the viewBox width — the coordinate space the diagram was laid out in, where a
+   mermaid label's px == CSS px); the SVG fills the column but never upscales past its natural
+   size, so a wide diagram spans the measure while a small glyph centers at the size it was
+   designed at. */
+figure.book-figure svg{ display: block; margin: 0 auto; height: auto;
+                          width: min(100%, var(--fig-natural, 100%)); }figure.book-figure img{ max-width: 100%; height: auto; }/* A wide figure breaks out past the reading column for more visual authority. Centered on the column via
    a half-shift; capped at 96vw so it never forces horizontal scroll on a narrow screen. */
-figure.book-figure--wide{ width: min(64rem, 96vw); margin-left: 50%; transform: translateX(-50%); }figure.book-figure--wide svg, figure.book-figure--wide img{ max-width: 100%; height: auto; }figure.book-figure figcaption{ font-size: 14px; color: var(--muted); margin-top: 0.6rem;
+figure.book-figure--wide{ width: min(64rem, 96vw); margin-left: 50%; transform: translateX(-50%); }figure.book-figure--wide svg, figure.book-figure--wide img{ max-width: 100%; height: auto; }/* The caption sits CENTERED under its figure (a block no wider than the figure itself, auto
+   margins); running caption text stays left-set for multi-line readability, label-only captions
+   center their text too. */
+figure.book-figure figcaption{ font-size: 14px; color: var(--muted); margin: 0.7rem auto 0;
+                                max-width: min(100%, var(--fig-natural, 100%));
                                 text-align: left; line-height: 1.5; }figure.book-figure figcaption.fig-label-only{ text-align: center; }/* D74 — the author portrait floats left at a capped width so the bio flows around it. It is a PLAIN
    (unnumbered, .md-typeset uncaptioned) `figure.plain-image.portrait-wrap`, .md-typeset not a `book-figure` float. */
 figure.portrait-wrap{ float: left; width: 190px; max-width: 40%; margin: 0.2rem 1.5rem 0.8rem 0;
@@ -325,9 +328,15 @@ a.gloss-site{ color: inherit; text-decoration: none; border-bottom: 1px dotted v
                     border-radius: 6px; background: var(--paper); }.book-download a:hover{ border-color: var(--accent); background: var(--panel); }.idx .part{ font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;
              font-size: 13px; margin: 2rem 0 0.5rem; }.idx ol{ list-style: none; padding: 0; margin: 0; }.idx li{ margin: 0.35rem 0; }.idx a{ text-decoration: none; }.idx .cnum{ color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 0.5rem; }/* Landing cover: TOC left + cover right on a wide screen; on narrow the row stacks and the cover
    moves to the TOP at a small size (order: -1), .md-typeset just under the title block. Breakpoint 48rem. */
-.idx-cover{ display: flex; align-items: flex-start; gap: 2.5rem; }.idx-cover .idx{ flex: 1 1 auto; min-width: 0; }.book-cover-side{ flex: 0 0 auto; width: 15rem; max-width: 38%; height: auto; margin-top: 2rem;
-                    border: 1px solid var(--rule); border-radius: 6px; position: sticky; top: 2rem; }
-@media (max-width: 48rem) {.idx-cover{ flex-direction: column; gap: 0; }.book-cover-side{ order: -1; position: static; width: 8.5rem; max-width: 45%;
+.idx-cover{ display: flex; align-items: flex-start; gap: 2.5rem; }.idx-cover .idx{ flex: 1 1 auto; min-width: 0; }/* The cover art is a LINK to the PDF edition (the emitter wraps it in `a.book-cover-link`, the
+   same target as the download button, with the accessible label on the anchor). The anchor owns
+   the flex/sticky geometry the bare image used to carry; the image fills it. Hover/focus tint the
+   frame to the accent so the affordance reads without shouting. */
+a.book-cover-link{ display: block; flex: 0 0 auto; width: 15rem; max-width: 38%; margin-top: 2rem;
+                     position: sticky; top: 2rem; cursor: pointer; border-radius: 6px; }.book-cover-side{ display: block; width: 100%; height: auto;
+                    border: 1px solid var(--rule); border-radius: 6px; }a.book-cover-link:hover .book-cover-side, a.book-cover-link:focus-visible .book-cover-side{
+  border-color: var(--accent); }a.book-cover-link:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 48rem) {.idx-cover{ flex-direction: column; gap: 0; }a.book-cover-link{ order: -1; position: static; width: 8.5rem; max-width: 45%;
                       margin: 1.2rem 0 0.2rem; }
 }/* term index page */
 .idx-terms ul{ list-style: none; padding: 0; margin: 0 0 1rem; }.idx-terms li{ margin: 0.3rem 0; }.idx-terms .idx-term{ font-weight: 600; }.idx-terms .idx-refs{ color: var(--muted); font-size: 14px; }.idx-terms .idx-refs a{ margin-left: 0.15rem; }/* curated concept entry: a definition-of / examples-of sub-block under the concept name */
@@ -367,17 +376,23 @@ section.eng-note, section.eng-note-panel{ break-inside: avoid; }/* 3. Packed bri
 div.wrap.appendix h1{ text-transform: uppercase; letter-spacing: 0.015em; }
 
 /* ── C1/C2 shim (book_mkdocs.py) — the book components fitted to the family shell ─────────────
-   Q2 measure: Material's default 61rem grid yields a ~37rem content column — too tight for the
-   book's voice. 76rem restores the book's ≈52rem reading measure (C0 spike, VERDICT Q2). */
+   Q2 measure: Material's default 61rem grid yields too tight a content column for the book's
+   voice; 76rem gives the grid room for the nav rail + the reading column + the sidenote margin.
+   (In the family shell 1rem is 20px at laptop widths, stepping up on very wide screens.) */
 .md-grid { max-width: 76rem; }
-/* The page wrap div keeps its CLASSES (the appendix / part-page / divider CSS hooks) but cedes its
-   geometry — Material's grid owns the measure now. */
-.md-typeset div.wrap { max-width: none; margin: 0; padding: 0; }
-/* Q1 sidenote strategy, variant (a), finalized: ONE compact in-column presentation at every width,
-   coexisting with Material's TOC rail. The `.md-typeset`-prefixed selectors out-rank the base
-   sheet's wide-screen gutter floats (whose -15rem right margins would land the notes under the
-   rail), so no media query is needed — float-neutralization + presentation hold everywhere.
-   Colors ride the token vars; the slate remap below restyles them for dark for free. */
+/* The reading column (web-polish 260916): the wrap div keeps its CLASSES (the appendix /
+   part-page / divider CSS hooks) and re-caps the measure at 45rem (≈900px — the measure the
+   two-rail layout produced), set LEFT in the content area so the right margin — freed by dropping
+   the per-page TOC rail (`hide: [toc]` in every page's front matter) — belongs to the Tufte
+   sidenotes below. Interleaved section headings render as DIRECT children of .md-typeset,
+   outside the wrap divs; cap them to the same measure. */
+.md-typeset div.wrap { max-width: 45rem; margin: 0; padding: 0; }
+.md-typeset > h2, .md-typeset > h3 { max-width: 45rem; }
+/* Sidenote strategy (web-polish 260916, superseding the C0 Q1 in-column-only call): the compact
+   in-column presentation here is the BASE — every viewport too narrow for a real margin gets it,
+   so a note is never clipped or lost. The wide-screen media blocks at the end of this sheet float
+   the SAME notes into the right margin, Tufte-style. Colors ride the token vars; the slate remap
+   below restyles them for dark for free. */
 .md-typeset blockquote.aside-sidenote {
   float: none; clear: none; width: auto; margin: 0.5rem 0 1.1rem;
   background: transparent; border-left: 2px solid var(--box-inset-rule);
@@ -391,7 +406,8 @@ div.wrap.appendix h1{ text-transform: uppercase; letter-spacing: 0.015em; }
 }
 /* A citation marker whose note card DIRECTLY precedes it (emitter-marked `cn-follow`) would render
    as a one-glyph debris line between two cards — its number already leads the next card. Keep it in
-   the a11y tree and anchor order; remove it from visual flow. */
+   the a11y tree and anchor order; remove it from visual flow. (In-column fallback only: the
+   margin-sidenote mode restores it, since there the note leaves the line.) */
 .md-typeset sup.cn-follow {
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip: rect(0 0 0 0); clip-path: inset(50%);
@@ -401,3 +417,41 @@ div.wrap.appendix h1{ text-transform: uppercase; letter-spacing: 0.015em; }
 .md-typeset figure.book-figure--wide { width: 100%; margin-left: 0; transform: none; }
 /* The lifted bottom sequence bar sits inside .md-typeset now; keep its pills un-underlined. */
 .md-typeset .chapnav a { text-decoration: none; }
+
+/* ── Tufte margin sidenotes (web-polish 260916) ────────────────────────────────────────────────
+   The right margin — freed by dropping the per-page TOC rail — carries the footnotes, citation
+   notes, and plain asides beside their reference marks. Geometry: the reading column is 45rem;
+   at ≥89em the content area (grid minus the nav rail minus the inner margins) exceeds 56.5rem,
+   so a 10.5rem note pulled 12rem past the column edge (1.5rem gutter gap) fits without
+   horizontal overflow. At ≥106em the family shell steps rem up and the margin widens; the note
+   widens with it. clear:right stacks consecutive notes down the margin; the works-cited section
+   and the bottom sequence bar clear the floats. Below 89em none of this applies — the notes keep
+   the in-column presentation above (the collapse fallback; never clipped). */
+@media screen and (min-width: 89em) {
+  .md-typeset .cite-note, .md-typeset .editorial-note, .md-typeset blockquote.aside-sidenote {
+    float: right; clear: right; width: 10.5rem; max-width: none;
+    margin: 0.15rem -12rem 0.9rem 1rem;
+    background: transparent; border-left: none; border-radius: 0; padding: 0;
+    font-size: 13px; line-height: 1.55;
+  }
+  /* A note NESTED inside another note (a footnote whose text itself cites — e.g. the chapter-1
+     capability footnotes) must not re-float: a float-within-a-float would pull it a second
+     12rem past the margin and off the viewport. It stays in flow inside its parent's margin
+     block, set off by a hairline. */
+  .md-typeset :is(.cite-note, .editorial-note, blockquote.aside-sidenote)
+    :is(.cite-note, .editorial-note) {
+    float: none; clear: none; width: auto; margin: 0.35rem 0;
+    padding: 0 0 0 0.6rem; border-left: 2px solid var(--box-inset-rule);
+  }
+  /* In margin mode the note leaves the line, so every reference mark reads inline — restore the
+     marks the in-column fallback visually hides. */
+  .md-typeset sup.cn-follow {
+    position: static; width: auto; height: auto; overflow: visible; clip: auto; clip-path: none;
+  }
+  .md-typeset section.works-cited, .md-typeset .chapnav { clear: both; }
+}
+@media screen and (min-width: 106em) {
+  .md-typeset .cite-note, .md-typeset .editorial-note, .md-typeset blockquote.aside-sidenote {
+    width: 12.5rem; margin-right: -14rem;
+  }
+}
