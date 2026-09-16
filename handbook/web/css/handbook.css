@@ -101,9 +101,29 @@
   margin: 0.4em 0;
 }
 
-/* Figures: centered image, muted caption with the renderer-supplied "Figure N." prefix. */
+/* ── Layout: wider grid, capped prose, breakout figures ─────────────────────────────────────────
+ * The content grid widens past Material's 61rem default so figures gain room; running prose keeps
+ * its measure (~90 chars) via a cap on every content block EXCEPT figures, which alone span the
+ * full content column — the technical-book breakout pattern. Prose and figures share the column's
+ * center axis, so a figure reads as the prose column widening around it, not as an offset block.
+ * Handbook-scoped: this file loads only on the Handbook site; MAGE + Teach keep the default grid.
+ * The cap only binds where the column is wider than the measure, so narrow viewports are unchanged. */
+.md-grid { max-width: 74rem; }
+.md-content__inner.md-typeset > :not(.handbook-figure, .hb-top-row, .hb-home, .hb-colophon, .md-content__button) {
+  max-width: 35rem;
+  margin-inline: auto;
+}
+
+/* Figures: centered image, muted caption with the renderer-supplied "Figure N." prefix.
+ * Material's `figure { width: fit-content }` would shrink-wrap the figure to the image's default
+ * size; span the full content column instead so figures break out past the capped prose. */
+.md-typeset .handbook-figure { width: 100%; }
 .handbook-figure { margin: 1.6em auto; text-align: center; }
 .handbook-figure img { max-width: 100%; height: auto; }
+/* The figure SVGs carry only a viewBox (no width attr), so a browser default-sizes them well below
+ * the column; force them to the full column width — lossless, they are pure vector. Scoped to .svg
+ * so a future raster figure keeps max-width-only behavior (no blurry upscale). */
+.handbook-figure img[src$=".svg"] { width: 100%; }
 .handbook-figure figcaption {
   margin-top: 0.6em;
   font-size: 0.85em;
