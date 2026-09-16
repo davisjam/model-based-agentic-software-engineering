@@ -154,19 +154,6 @@ The format can vary, but the substance usually includes:
 Review then becomes part of design rather than a ceremonial approval step.
 Another engineer can challenge assumptions, identify alternatives, or expose consequences before the choice becomes expensive to reverse.
 
-### Implementation as a Design probe
-
-Implementation can itself provide evidence.
-Engineers have always learned about designs by building them, but constructing several alternatives was often too expensive merely to learn from them.
-Cheaper implementation changes that calculation.
-An engineer can implement two data representations and measure them, prototype synchronous and deferred mechanisms, perform an experimental refactoring, or construct a competing design and discard it after answering the relevant question.
-
-Implementation can therefore become a design probe rather than only the terminal realization of a decision.
-The economic question remains the same as for any other evidence: *Will implementing this alternative reduce enough consequential uncertainty to justify its cost?*
-
-Generative AI expands the set of decisions for which this empirical approach is economical.
-It does not remove the design judgment; it can make more alternatives cheap enough to investigate.
-
 ## Local decisions, system consequences
 
 A design can be sound within the responsibility assigned to a part and still contribute to an unsound system.
@@ -244,6 +231,19 @@ Change the architectural rule if repeated exceptions show that the rule itself i
 Local implementation should not silently redefine the system engineers believe they have.
 
 ## Cheap implementation changes the evidence
+
+Implementation can itself serve as a design probe.
+When implementation is expensive, engineers often must choose among mechanisms using models, prior experience, or small prototypes.
+As implementation becomes cheaper, they can sometimes build multiple plausible mechanisms far enough to observe the consequences that matter.
+Two internal representations can be implemented and measured for memory use; two batching strategies can be exercised under representative load; an immediate and a deferred workflow can be compared against realistic failure conditions.
+The resulting code need not survive.
+Its purpose is to produce evidence for the design decision.
+
+This changes the relationship between Design and Implementation.
+Implementation does not merely follow a completed design decision; it can be one of the instruments used to make that decision.
+The engineer still determines what alternatives deserve comparison, which consequences matter, what evidence would distinguish them, and when the evidence is sufficient to choose.
+Cheap implementation reduces the cost of obtaining some kinds of evidence.
+It does not remove the judgment required to interpret that evidence.
 
 Cheaper implementation can also change what engineers are able to notice.
 Suppose three related failures arise weeks apart.
