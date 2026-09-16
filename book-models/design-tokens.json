@@ -28,7 +28,7 @@
     "diagram-trust-fill": "#eef7f0"
   },
   "palette-dark": {
-    "_note": "Dark-scheme variant set (warm-dark slate, derived from the teach site's slate treatment with the gold links re-tinted to the family rust). Consumed ONLY by css_material_block() for the shared MkDocs shell's [data-md-color-scheme=slate] block — deliberately NOT part of `palette`, so svg_palette() (the hand-SVG membership gate) and css_root_block() are unchanged.",
+    "_note": "Dark-scheme variant set (warm-dark slate, derived from the teach site's slate treatment with the gold links re-tinted to the family rust). Consumed ONLY by css_material_block() (the shared MkDocs shell's [data-md-color-scheme=slate] block) and css_book_dark_block() (the MAGE book content plane's slate remap in the derived mage-book.css) — deliberately NOT part of `palette`, so svg_palette() (the hand-SVG membership gate) and css_root_block() are unchanged. Box/diagram keys are the dark counterparts of the semantic-box anchors the book content CSS colors through (rules lightened to read as strong-text on dark fills; fills hue-tinted near-blacks on the #17130f ground).",
     "paper": "#17130f",
     "panel": "#211a13",
     "rule": "#3a3128",
@@ -38,7 +38,15 @@
     "accent": "#d98a5c",
     "accent-tint": "#2a1d12",
     "link": "#e2a077",
-    "code-bg": "#221b14"
+    "code-bg": "#221b14",
+    "box-thesis-rule": "#52b183",
+    "box-thesis-fill": "#14231b",
+    "box-def-rule": "#5f9fd4",
+    "box-def-fill": "#12202c",
+    "box-inset-rule": "#9d8fd0",
+    "box-inset-fill": "#211c2e",
+    "diagram-fleet": "#7ea6c4",
+    "diagram-fleet-fill": "#161f27"
   },
   "type": {
     "display": {

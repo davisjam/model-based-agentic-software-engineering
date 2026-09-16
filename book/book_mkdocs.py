@@ -39,8 +39,21 @@ C0-spike requirements folded in (spike/VERDICT.md, webbook-phaseC0-mage-spike-26
 
 Identity (DESIGN §7, ratified): rust stays the family accent; MAGE identity = its title +
 Source Serif 4 reading column + component vocabulary + the ≈52rem measure
-(`.md-grid { max-width: 76rem }`). Dark mode is NOT fixed here — that is C2 (slate token remap +
-SVG light plates); in C1 the dark toggle exists and the content plane is expected to break.
+(`.md-grid { max-width: 76rem }`).
+
+Phase C2 (dark mode + identity CSS, per the C0 spike Q1/Q3 verdicts) lives entirely in the derived
+stylesheet + one emitter pass:
+  - DARK reading plane: `design_tokens.css_book_dark_block()` re-declares every book token var from
+    the SSOT's `palette-dark` set under `[data-md-color-scheme="slate"]` — the content CSS colors
+    only through var(--…), so the whole plane (body ink, asides, semantic boxes, apparatus frames,
+    appendix cards, sequence bar) follows the family dark scheme with zero hand-authored hex.
+  - LIGHT PLATES: light-baked inlined SVGs (figures, mermaid, the roadmap nav, brick thumbs) sit on
+    a light-paper plate under slate (`_dark_extras_css`); the plate is slate-scoped, so light mode
+    is untouched by construction.
+  - IN-COLUMN ASIDES (C0 Q1 variant (a)): sidenotes and cite/editorial notes keep one compact
+    in-column presentation at every width, coexisting with Material's TOC rail; a citation marker
+    whose note card directly precedes it is emitter-marked `cn-follow` (`_mark_note_followers`) and
+    visually hidden — it would otherwise render as a one-glyph debris line between note cards.
 
 The content CSS is DERIVED at emit time from `build_book.py`'s inline `CSS` / `_APPENDIX_V2_CSS`
 strings (rescoped under `.md-typeset`), not duplicated into a tracked file — so during the whole
@@ -70,6 +83,7 @@ WEB = HERE / "web"
 
 sys.path.insert(0, str(HERE))
 import build_book  # noqa: E402 — the canonical build; this emitter is a projection over its output
+import design_tokens as _dtokens  # noqa: E402 — resolvable via build_book's book-models sys.path entry
 
 # ── page inventory (mirror of build()'s discovery block; expected_page_slugs() pins parity) ──────
 
@@ -200,6 +214,43 @@ def _interleave(inner: str, wrap_open: str, slug: str) -> str:
     return "".join(out)
 
 
+_NOTE_OPEN_RE = re.compile(r'<span class="(?:cite-note|editorial-note)">')
+_SPAN_TOK_RE = re.compile(r"<span\b[^>]*>|</span>")
+_FOLLOW_SUP_RE = re.compile(r'\s*<sup class="(?:cite-ref|note-ref)')
+
+
+def _mark_note_followers(inner: str) -> str:
+    """Mark every citation/editorial marker whose gutter-note card DIRECTLY precedes it (whitespace
+    only between) with an extra `cn-follow` class. In the in-column aside presentation the notes are
+    display:block cards, so a marker sandwiched between two cards would render as a one-glyph debris
+    line — its own note is the very next block and carries its number. The CSS visually hides
+    `sup.cn-follow` (still in the a11y tree and anchor order); markers with running prose after the
+    preceding note keep their inline place. An adjacent-sibling CSS selector cannot express this
+    (`+` ignores intervening TEXT nodes), hence the emitter-side mark."""
+    inserts: list[int] = []  # offsets (into the original string) where " cn-follow" is added
+    for m in _NOTE_OPEN_RE.finditer(inner):
+        depth = 1
+        close_end = -1
+        for t in _SPAN_TOK_RE.finditer(inner, m.end()):
+            depth += 1 if t.group(0).startswith("<span") else -1
+            if depth == 0:
+                close_end = t.end()
+                break
+        if close_end < 0:
+            raise SystemExit(f"book_mkdocs: unbalanced <span> inside a note at offset {m.start()}")
+        fm = _FOLLOW_SUP_RE.match(inner, close_end)
+        if fm:
+            inserts.append(fm.end())  # right after `cite-ref` / `note-ref` inside the class value
+    out: list[str] = []
+    last = 0
+    for pos in inserts:
+        out.append(inner[last:pos])
+        out.append(" cn-follow")
+        last = pos
+    out.append(inner[last:])
+    return "".join(out)
+
+
 def _page_md(slug: str, title: str) -> str:
     """One tracked book/<slug>.html → the MkDocs page markdown (front-matter title + wrap div +
     interleaved body)."""
@@ -208,33 +259,70 @@ def _page_md(slug: str, title: str) -> str:
         raise SystemExit(f"book_mkdocs: {src} missing — run the canonical web build first")
     classes, inner = _extract_main(src.read_text(encoding="utf-8"), slug)
     wrap_open = f'<div class="{classes}">'
-    body = _interleave(inner.strip(), wrap_open, slug)
+    body = _interleave(_mark_note_followers(inner.strip()), wrap_open, slug)
     return f"---\ntitle: {json.dumps(title)}\n---\n\n{wrap_open}\n{body}\n</div>\n"
 
 
 # ── content CSS, derived from the canonical build's inline strings (no tracked twin to drift) ────
 
 _SHIM_CSS = """
-/* ── C1 shim (book_mkdocs.py) ─────────────────────────────────────────────────────────────────
+/* ── C1/C2 shim (book_mkdocs.py) — the book components fitted to the family shell ─────────────
    Q2 measure: Material's default 61rem grid yields a ~37rem content column — too tight for the
    book's voice. 76rem restores the book's ≈52rem reading measure (C0 spike, VERDICT Q2). */
 .md-grid { max-width: 76rem; }
 /* The page wrap div keeps its CLASSES (the appendix / part-page / divider CSS hooks) but cedes its
    geometry — Material's grid owns the measure now. */
 .md-typeset div.wrap { max-width: none; margin: 0; padding: 0; }
-/* Q1 sidenote strategy, variant (a): in-column asides at every width. Neutralize the wide-screen
-   Tufte gutter float (its -15rem right margin would land the notes under Material's TOC rail);
-   the asides keep their narrow-screen presentation (bordered, smaller, muted). C2 owns the final
-   aside styling. */
-@media (min-width: 60rem) {
-  .md-typeset blockquote.aside-sidenote,
-  .md-typeset .cite-note,
-  .md-typeset .editorial-note {
-    float: none; clear: none; width: auto; margin: 0.4rem 0 1rem;
-  }
+/* Q1 sidenote strategy, variant (a), finalized: ONE compact in-column presentation at every width,
+   coexisting with Material's TOC rail. The `.md-typeset`-prefixed selectors out-rank the base
+   sheet's wide-screen gutter floats (whose -15rem right margins would land the notes under the
+   rail), so no media query is needed — float-neutralization + presentation hold everywhere.
+   Colors ride the token vars; the slate remap below restyles them for dark for free. */
+.md-typeset blockquote.aside-sidenote {
+  float: none; clear: none; width: auto; margin: 0.5rem 0 1.1rem;
+  background: transparent; border-left: 2px solid var(--box-inset-rule);
+  padding: 0.1rem 0 0.1rem 0.95rem; font-size: 14px; line-height: 1.55; color: var(--muted);
 }
+.md-typeset .cite-note, .md-typeset .editorial-note {
+  float: none; clear: none; width: auto; max-width: 34rem; margin: 0.45rem 0 0.9rem;
+  background: var(--panel); border-left: 3px solid var(--box-inset-rule);
+  border-radius: 0 6px 6px 0; padding: 0.5rem 1rem 0.5rem 0.95rem;
+  font-size: 13.5px; line-height: 1.55;
+}
+/* A citation marker whose note card DIRECTLY precedes it (emitter-marked `cn-follow`) would render
+   as a one-glyph debris line between two cards — its number already leads the next card. Keep it in
+   the a11y tree and anchor order; remove it from visual flow. */
+.md-typeset sup.cn-follow {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%);
+}
+/* The wide-figure breakout (min(64rem,96vw), half-shift) centers on the VIEWPORT in the hand-rolled
+   shell; inside Material's grid it would ride over the nav/TOC rails. Cap it to the column. */
+.md-typeset figure.book-figure--wide { width: 100%; margin-left: 0; transform: none; }
 /* The lifted bottom sequence bar sits inside .md-typeset now; keep its pills un-underlined. */
 .md-typeset .chapnav a { text-decoration: none; }
+"""
+
+
+def _dark_extras_css() -> str:
+    """Slate-scoped rules that are NOT plain token remaps: the light plates behind light-baked
+    inlined SVGs (the C0 spike Q3 mitigation). Figures are rendered light-baked once and shared
+    with the print path, so under slate they sit on a light-paper plate instead of being
+    re-colored; the plate ground + hairline are the LIGHT tokens, projected from the SSOT. Scoped
+    to the slate scheme, so light mode is untouched by construction."""
+    paper = build_book._TOKENS.hex_("paper")
+    rule = build_book._TOKENS.hex_("rule")
+    return f"""
+/* ── C2 dark extras (book_mkdocs.py) — light plates for light-baked SVGs (C0 spike Q3) ──────── */
+[data-md-color-scheme="slate"] .md-typeset figure.book-figure svg,
+[data-md-color-scheme="slate"] .md-typeset nav.roadmap-nav svg {{
+  background: {paper}; border-radius: 8px; padding: 0.7rem 0.9rem; box-sizing: border-box;
+}}
+/* Brick thumbnails (the v2 appendix front doors, whenever that flag lands): plate the slot itself
+   and solidify its dashed border; a textual placeholder slot (no SVG) stays on the dark panel. */
+[data-md-color-scheme="slate"] .md-typeset .brick-fig:has(> svg) {{
+  background: {paper}; border: 1px solid {rule}; color: {build_book._TOKENS.hex_("muted")};
+}}
 """
 
 
@@ -259,7 +347,8 @@ def _derive_css() -> str:
     """mage-book.css, derived from the canonical build's own style constants: the self-hosted
     @font-face block (URLs rewritten to the docs-served fonts dir), the token :root + content CSS
     (`body` rule rescoped to `.md-typeset`, bare selectors scoped, `main.wrap` → `div.wrap`), the
-    appendix CSS, and the C1 shim."""
+    appendix CSS, the C1/C2 shim, the projected slate token remap (dark reading plane), and the
+    slate-scoped SVG light plates."""
     fonts = build_book.FONTS_LINK
     m = re.fullmatch(r"\s*<style>(.*)</style>\s*", fonts, re.S)
     if not m:
@@ -288,8 +377,10 @@ def _derive_css() -> str:
     return (
         "/* GENERATED by book/book_mkdocs.py — do not hand-edit (regenerate: python3 "
         "book/book_mkdocs.py).\n   MAGE content plane inside the family Material shell: the "
-        "canonical build's inline CSS, rescoped. */\n"
+        "canonical build's inline CSS, rescoped,\n   plus the projected dark-scheme token remap "
+        "and the slate-only SVG light plates (Phase C2). */\n"
         + fontface + "\n" + css + "\n" + _SHIM_CSS
+        + _dtokens.css_book_dark_block(build_book._TOKENS) + _dark_extras_css()
     )
 
 
@@ -374,7 +465,7 @@ def _mkdocs_yml(nav_yaml: str) -> str:
     MAGE content CSS, and the generated nav. `use_directory_urls: false` + tracked stems = URL
     parity with the hand-rolled pages."""
     return f"""# GENERATED by book/book_mkdocs.py — do not hand-edit (regenerate: python3 book/book_mkdocs.py).
-# The MkDocs projection of the MAGE book (Phase C1, parallel-run, NON-published): the canonical
+# The MkDocs projection of the MAGE book (parallel-run, NON-published): the canonical
 # hand-rolled book/*.html stays the published web edition until the C3 publish swap.
 site_name: {json.dumps(build_book._BOOK_MANIFEST["title"])}
 site_description: {json.dumps(build_book._BOOK_MANIFEST.get("subtitle", "") + " — web edition (MkDocs projection).")}
@@ -399,8 +490,8 @@ theme:
     - navigation.top
     - toc.follow
   # Neutral palette seed only; mage-family.css (projected from book-models/design-tokens.json)
-  # overrides both schemes with the family tokens. NOTE: the book CONTENT plane's dark scheme is
-  # NOT wired yet — that is C2 (slate token remap + SVG light plates, per the C0 spike Q3).
+  # overrides both schemes with the family tokens, and mage-book.css carries the book CONTENT
+  # plane's slate remap + SVG light plates (Phase C2, projected from the same token SSOT).
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
