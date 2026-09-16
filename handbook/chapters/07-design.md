@@ -291,10 +291,24 @@ Rather than repair each incident independently, the engineers changed the engine
 This handbook does not devote a chapter to implementation.
 That differs from many software-engineering texts.
 Sommerville, for example, treats design and implementation together.
-Historically, software engineering never developed a widely accepted division between engineers who make consequential decisions and technicians who realize those decisions in code.
-Programmers have ordinarily done both.
+Historically, programmers have ordinarily both made consequential engineering decisions and realized those decisions in code.
 
-There was good reason for this arrangement.
+Software organizations have nevertheless separated design from implementation before.
+Contracting out software development can place implementation in another organization, while offshoring can place it in another labor market, either within the same firm or through a contractor.
+The growth of offshore software production in the 1990s expanded these arrangements.
+U.S. firms increasingly offshored software services that could be reduced to sufficiently explicit instructions, initially including relatively routine programming and maintenance and later more complex development and design.[^gao-offshoring]
+
+These arrangements remain common, and they can work.
+Their failures are nevertheless instructive.
+When the separation between design and implementation failed, one explanation is that those making the upstream decisions had not removed enough consequential degrees of freedom: implementers still had to make engineering decisions that the specification or design did not capture.
+A second problem is correspondence.
+Even a sufficiently determined design is useful only if there is adequate evidence that the implementation realizes it.
+More recently, firms have selectively brought previously outsourced capabilities back in-house; a 2024 Deloitte survey found that 70 percent of surveyed executives had selectively insourced some previously outsourced scope during the preceding five years.[^deloitte-insourcing]
+
+The lesson is not that outsourcing or offshoring cannot work.
+Delegating implementation requires both sufficient determination of consequential choices before the handoff and a means of assuring correspondence between those decisions and their realization.
+
+There was good reason for programmers ordinarily to perform both roles.
 Producing software required substantial human effort, and the skilled programmer doing that work was also capable of resolving many Design questions encountered along the way.
 It was often economical to leave such choices until implementation rather than represent every decision beforehand.
 Software's changeability made this arrangement still more practical: if a choice proved poor, the implementation could often be revised.
@@ -318,6 +332,10 @@ Programming still requires knowledge of languages, libraries, tools, and executi
 That evidence should flow back to Design, Architecture, Specification, or the engineering environment.
 The goal is to make consequential engineering decisions where their alternatives and consequences can be examined, then use implementation to express and test those decisions reliably and auditably.
 *Model-Based Agentic Software Engineering* develops the practices needed to do this with capable agents.
+
+[^gao-offshoring]: U.S. Government Accountability Office. [*Offshoring: U.S. Semiconductor and Software Industries Increasingly Produce in China and India.*](https://www.gao.gov/products/gao-06-423) GAO-06-423, 2006.
+
+[^deloitte-insourcing]: Deloitte. [*How Much Disruption Can You Take? Global Outsourcing Survey 2024.*](https://www.deloitte.com/us/en/services/consulting/articles/global-outsourcing-survey.html) 2024.
 
 ## Summary
 
