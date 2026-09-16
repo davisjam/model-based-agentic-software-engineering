@@ -7672,6 +7672,13 @@ if __name__ == "__main__":
         if rc == 0 and _pdf_split_enabled(args):
             rc = build_pdf_split() or rc  # section PDFs are additive; a section failure surfaces as nonzero
         raise SystemExit(rc)
+    # `--mkdocs` is the opt-in MkDocs (family web-shell) projection — Phase C1, parallel-run: it runs
+    # the canonical web build (unless `--no-build`), then book_mkdocs.py emits the gitignored
+    # book/web/ tree. The hand-rolled book/*.html stays the canonical, published web edition; the
+    # MkDocs site is a NON-published CI check until the C3 publish swap.
+    if "--mkdocs" in args:
+        import book_mkdocs
+        raise SystemExit(book_mkdocs.main([a for a in args if a != "--mkdocs"]))
     # `--verify-pdf` runs ONLY the content-integrity gate over an existing book/mage-book.pdf (CI reuses it).
     if "--verify-pdf" in args:
         pdf = HERE / _PDF_FILENAME

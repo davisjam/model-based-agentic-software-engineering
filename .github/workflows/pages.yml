@@ -173,6 +173,18 @@ jobs:
           # bare `_site/teach` would land in site/_site/teach — which the assemble step's --exclude='site'
           # then drops. $GITHUB_WORKSPACE is the repo root, so /teach ships at _site/teach.
           python3 -m mkdocs build --strict -f site/mkdocs.yml -d "$GITHUB_WORKSPACE/_site/teach"
+      # ── MAGE web edition, MkDocs projection (Phase C1: parallel-run, NON-PUBLISHED) ─────────────
+      # book_mkdocs.py projects the same rendered book the canonical build just wrote (catalog.py
+      # build, above) into a MkDocs site consuming the shared web-theme/ shell. This step only
+      # PROVES the emitter end-to-end — emit determinism (emit twice, byte-identical) + a --strict
+      # Material build — and publishes NOTHING: the hand-rolled book/*.html relocated by
+      # publish_book_layout.py below remains the served MAGE web edition until the C3 publish swap.
+      # The generated book/web/ tree is gitignored and excluded from the site artifact (rsync below).
+      # Toolchain: the same pinned mkdocs+material the teach-site step installed above.
+      - name: MAGE web MkDocs projection — NON-published parallel-run check (emit determinism + strict build)
+        run: |
+          python3 book/book_mkdocs.py --no-build --check-determinism
+          python3 -m mkdocs build --strict -f book/web/mkdocs.yml
       - name: Assemble site artifact (exclude .git / node_modules / .github / raw course+site+handbook sources; KEEP book/mage-book.pdf + _site/teach + _site/se-handbook)
         run: |
           mkdir -p _site
@@ -180,9 +192,11 @@ jobs:
           # PDF was already copied into _site/se-handbook above — rsync (no --delete) leaves it untouched.
           # `book/dist` holds LOCAL-ONLY review staples (not emitted in CI; excluded here as defense in
           # depth so a stray local artifact can never ride into the published site).
+          # `book/web` is the NON-published MkDocs projection (Phase C1 parallel-run check, above) —
+          # excluded so the generated docs/site trees never ride into the published artifact.
           rsync -a --exclude='.git' --exclude='node_modules' --exclude='.github' \
                 --exclude='__pycache__' --exclude='_site' --exclude='book/_print' \
-                --exclude='book/_typst' --exclude='book/dist' \
+                --exclude='book/_typst' --exclude='book/dist' --exclude='book/web' \
                 --exclude='course' --exclude='site' --exclude='handbook' ./ _site/
           PDF="book/$(python3 -c "import json; print(json.load(open('book/book-manifest.json'))['pdf_filename'])")"
           test -f "_site/$PDF" || { echo "ERROR: $PDF missing from site artifact"; exit 1; }
