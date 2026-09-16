@@ -458,8 +458,13 @@ def build_web(book: dict) -> None:
     # a bare <img> line inside a markdown="1" parent gets <p>-wrapped, which would strand the flex
     # order/width rules on the img instead of the flex item.
     lines += ["", "</div>", "",
+              # The cover art is a LINK to the PDF edition (same target as the top-row download
+              # button, accessible label on the anchor) — the MAGE home's cover-link treatment,
+              # mirrored for family symmetry.
               '<div class="hb-home-side">',
-              f'<img class="hb-home-cover" src="cover-thumb.png" alt="{book["title"]}">',
+              '<a class="hb-home-cover-link" href="software-engineering-handbook.pdf" '
+              'title="Download the PDF edition" aria-label="Download the PDF edition">'
+              f'<img class="hb-home-cover" src="cover-thumb.png" alt="{book["title"]}"></a>',
               "</div>", "",
               "</div>", "",
               # Colophon — the web counterpart of the PDF's imprint page (and the ePub's rights

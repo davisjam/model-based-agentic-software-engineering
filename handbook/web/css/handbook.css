@@ -162,6 +162,12 @@
   display: block; width: 100%; height: auto;
   border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px;
 }
+/* The cover rides a link to the PDF edition (the MAGE home's cover-link treatment, mirrored).
+ * The anchor is a plain block inside .hb-home-side, so the flex/sticky geometry stays put. */
+.md-typeset .hb-home-cover-link { display: block; }
+.md-typeset .hb-home-cover-link:hover .hb-home-cover,
+.md-typeset .hb-home-cover-link:focus-visible .hb-home-cover { border-color: var(--hb-accent); }
+.md-typeset .hb-home-cover-link:focus-visible { outline: 2px solid var(--hb-accent); outline-offset: 3px; }
 @media (max-width: 768px) {
   .md-typeset .hb-home { flex-direction: column; gap: 0; }
   .md-typeset .hb-home-side {

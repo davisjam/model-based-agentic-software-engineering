@@ -114,6 +114,27 @@
 /* Active / hovered nav takes the family accent — the one interactive color everywhere. */
 .md-nav__link--active, .md-nav__link:focus, .md-nav__link:hover { color: var(--md-accent-fg-color); }
 
+/* ── "Read the PDF" — persistent PDF-edition link at the top of the primary rail ────────────────── */
+/* Rendered by overrides/partials/nav.html only when a site declares `extra.pdf_url` (the two book
+ * properties; the teach site sets none, so its rail carries no link). Same quiet-button register as
+ * the homes' download buttons: hairline border, rounded, family accent, glyph inline. */
+/* Sticky within the sidebar scrollwrap, so the link stays visible however deep the reader has
+ * scrolled a long book rail ("persistent" is the point); the solid background plates it over the
+ * items sliding beneath. */
+.md-nav--primary > .md-nav__pdf {
+  display: block; position: sticky; top: 0; z-index: 2;
+  margin: 0 0.6rem 0.6rem 0; padding: 0.3rem 0.55rem;
+  font-size: 0.62rem; font-weight: 700;
+  color: var(--md-accent-fg-color);
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px;
+}
+.md-nav--primary > .md-nav__pdf:hover,
+.md-nav--primary > .md-nav__pdf:focus-visible { border-color: var(--md-accent-fg-color); }
+.md-nav--primary > .md-nav__pdf .dl-ico { width: 1.2em; height: 1.2em; }
+/* Inside the mobile drawer the rail is flush to the drawer edges; give the link side breathing room. */
+@media screen and (max-width: 76.234375em) { .md-nav--primary > .md-nav__pdf { margin: 0.6rem 0.8rem; } }
+
 /* ── Quiet the right rail (current chapter's TOC — secondary, never a competing column) ─────────── */
 .md-nav--secondary .md-nav__title {
   background: transparent; box-shadow: none;

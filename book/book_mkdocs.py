@@ -527,6 +527,10 @@ plugins:
   - search
 
 extra:
+  # PDF edition beside the pages (CI-published, like the landing buttons' target) — the shared
+  # nav partial (web-theme/overrides/partials/nav.html) renders its "Read the PDF" rail link
+  # only when this key is set.
+  pdf_url: {json.dumps(build_book._PDF_FILENAME)}
   family_links:
     - label: MAGE homepage
       url: https://davisjam.github.io/model-based-agentic-software-engineering/

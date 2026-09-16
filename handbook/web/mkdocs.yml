@@ -65,6 +65,10 @@ plugins:
   - search
 
 extra:
+  # PDF edition beside the pages (CI-published, like the home's download button) — the shared nav
+  # partial (web-theme/overrides/partials/nav.html) renders its "Read the PDF" rail link only when
+  # this key is set.
+  pdf_url: software-engineering-handbook.pdf
   # The standard header grid's right-side family nav (rendered by the shared header partial).
   family_links:
     - label: MAGE homepage

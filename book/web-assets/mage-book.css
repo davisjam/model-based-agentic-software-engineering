@@ -326,9 +326,12 @@ a.gloss-site{ color: inherit; text-decoration: none; border-bottom: 1px dotted v
 .visually-hidden{ position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
                     clip: rect(0 0 0 0); white-space: nowrap; border: 0; }.book-foot{ margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); color: var(--muted);
               font-size: 13px; text-align: center; }/* index page */
-.book-title{ padding: 3rem 0 0.5rem; }.book-title h1{ font-size: 2.4rem; margin: 0; }.book-title .sub{ color: var(--muted); margin-top: 0.4rem; }.book-download{ margin-top: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }.book-download a{ display: inline-block; font-size: 14px; font-weight: 600; color: var(--accent);
+.book-title{ padding: 3rem 0 0.5rem; }.book-title h1{ font-size: 2.4rem; margin: 0; }.book-title .sub{ color: var(--muted); margin-top: 0.4rem; font-style: italic; }/* author · edition · year — the family home template's metadata line (the Handbook home's twin) */
+.book-title .book-byline{ color: var(--muted); margin-top: 0.4rem; font-size: 15px; }.book-download{ margin-top: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }.book-download a{ display: inline-block; font-size: 14px; font-weight: 600; color: var(--accent);
                     text-decoration: none; padding: 0.45rem 0.9rem; border: 1px solid var(--rule);
-                    border-radius: 6px; background: var(--paper); }.book-download a:hover{ border-color: var(--accent); background: var(--panel); }.idx .part{ font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;
+                    border-radius: 6px; background: var(--paper); }.book-download a:hover{ border-color: var(--accent); background: var(--panel); }/* "Contents" heading over the landing list (the Handbook home's `## Contents` twin); the first
+   part label beneath it gives up most of its section gap so the heading owns the spacing. */
+.idx h2.idx-contents{ margin: 2.2rem 0 0; }.idx h2.idx-contents + .part{ margin-top: 0.9rem; }.idx .part{ font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;
              font-size: 13px; margin: 2rem 0 0.5rem; }.idx ol{ list-style: none; padding: 0; margin: 0; }.idx li{ margin: 0.35rem 0; }.idx a{ text-decoration: none; }.idx .cnum{ color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 0.5rem; }/* Landing cover: TOC left + cover right on a wide screen; on narrow the row stacks and the cover
    moves to the TOP at a small size (order: -1), .md-typeset just under the title block. Breakpoint 48rem. */
 .idx-cover{ display: flex; align-items: flex-start; gap: 2.5rem; }.idx-cover .idx{ flex: 1 1 auto; min-width: 0; }/* The cover art is a LINK to the PDF edition (the emitter wraps it in `a.book-cover-link`, the

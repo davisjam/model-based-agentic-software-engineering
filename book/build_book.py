@@ -6937,6 +6937,12 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
     title_block = (
         f'<div class="book-title"><h1>{html.escape(_BOOK_MANIFEST["title"])}</h1>'
         f'{_cover_sub("sub")}'
+        # Author · edition · year byline — the family home template's metadata line (the Handbook
+        # home renders the same form from its book.yaml); year derives from first_published so the
+        # manifest states the date once.
+        f'<div class="book-byline">{html.escape(_BOOK_MANIFEST["author"])} · '
+        f'Edition {html.escape(_BOOK_MANIFEST["edition"])} · '
+        f'{html.escape(_BOOK_MANIFEST["first_published"][:4])}</div>'
         # PDF edition — a CI-published artifact at book/mage-book.pdf on the deployed site (a purely-local
         # checkout without the CI render will 404 this; that is expected).
         # Companion cross-link — `se-handbook/` is a sibling subdir at publish time (the relocation step
@@ -6954,7 +6960,10 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
     # wide screen, moved to the TOP at a small size on narrow/phone (see the `.idx-cover` CSS).
     cover_img = (f'<img class="book-cover-side" src="assets/cover-thumb.png" '
                  f'alt="{html.escape(_BOOK_MANIFEST["title"])}">')
-    landing_main = (title_block + '<div class="idx-cover"><div class="idx">' + "\n".join(idx_rows)
+    # "Contents" heading above the list — the family home template's counterpart of the Handbook
+    # home's `## Contents`; the list beneath keeps this book's own sectioned structure.
+    landing_main = (title_block + '<div class="idx-cover"><div class="idx">'
+                    + '<h2 class="idx-contents">Contents</h2>' + "\n".join(idx_rows)
                     + "</div>" + cover_img + "</div>" + foot)
 
     # Book length — auto-computed from the rendered prose of every page (fresh each build, never hardcoded).

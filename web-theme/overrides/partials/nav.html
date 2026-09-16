@@ -1,0 +1,50 @@
+{#-
+  The MAGE-family primary-nav rail — overrides Material's partials/nav.html (pinned
+  mkdocs-material 9.7.7; re-diff against the stock partial on any toolchain bump, like the
+  sibling header.html).
+
+  ONE delta from stock: a persistent "Read the PDF" link pinned at the top of the rail, above
+  the nav tree, so the PDF edition is one click away from every page. It renders ONLY when the
+  property's config declares a PDF edition:
+
+      extra:
+        pdf_url: mage-book.pdf        # page-relative; the `url` filter resolves it per page
+
+  The two book properties set it; the teach site sets none, so its rail is byte-identical to
+  stock. The glyph is the shared family PDF mark (web-theme/glyphs/pdf-file.svg), reached via
+  the .icons symlink so the home-page buttons and this link cannot drift apart. Companion
+  styles: mage-family.css (.md-nav__pdf).
+-#}
+{% import "partials/nav-item.html" as item with context %}
+{% set class = "md-nav md-nav--primary" %}
+{% if "navigation.tabs" in features %}
+  {% set class = class ~ " md-nav--lifted" %}
+{% endif %}
+{% if "toc.integrate" in features %}
+  {% set class = class ~ " md-nav--integrated" %}
+{% endif %}
+<nav class="{{ class }}" aria-label="{{ lang.t('nav') }}" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}" class="md-nav__button md-logo" aria-label="{{ config.site_name }}" data-md-component="logo">
+      {% include "partials/logo.html" %}
+    </a>
+    {{ config.site_name }}
+  </label>
+  {% if config.repo_url %}
+    <div class="md-nav__source">
+      {% include "partials/source.html" %}
+    </div>
+  {% endif %}
+  {% if config.extra.pdf_url %}
+    <a class="md-nav__pdf" href="{{ config.extra.pdf_url | url }}" title="Read the PDF edition" aria-label="Read the PDF edition">
+      {%- include ".icons/pdf-file.svg" -%}
+      Read the PDF&nbsp;&#8595;
+    </a>
+  {% endif %}
+  <ul class="md-nav__list" data-md-scrollfix>
+    {% for nav_item in nav.items %}
+      {% set path = "__nav_" ~ loop.index %}
+      {{ item.render(nav_item, path, 1) }}
+    {% endfor %}
+  </ul>
+</nav>
