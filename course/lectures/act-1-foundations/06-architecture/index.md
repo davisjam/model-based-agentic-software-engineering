@@ -84,7 +84,7 @@ Analysis itself has a cost. The useful question is whether resolving an uncertai
 
 Architecture deliberately does not decide everything. Once engineers have chosen the consequential organization of a system, each part must still realize the responsibility assigned to it. Some choices are constrained by the architecture. Others may already be settled by conventions and mechanisms that apply throughout the engineering environment. Still others remain deliberately open.
 
-This is the transition from strategy to tactics. Architecture establishes a strategy by creating responsibilities, affordances, and constraints. Design works within that strategy to make the parts actually work.
+Architecture organizes responsibilities, boundaries, and interactions without determining the mechanisms by which each part will fulfill its responsibility. Design inherits that organization and chooses among the mechanisms that remain available.
 
 The relationship is recursive. A subsystem that appears as one part in a system architecture will itself require architectural decisions if it remains too large to reason about directly. Conversely, detailed design may reveal that an apparently local choice has consequences beyond the part: perhaps available implementations conflict with another component, frustrate a required system property, or require a decision to be made consistently across the system. In that case, design has exposed an architectural question.
 
