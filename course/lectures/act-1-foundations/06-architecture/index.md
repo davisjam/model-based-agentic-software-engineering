@@ -26,13 +26,13 @@ materials:
     src: 1-6-Architecture.pptx
 ---
 
-**Premise.** *The purpose of architecture is to organize a system so that the many competing obligations of its specification can be realized together. Architecture establishes a strategy for realizing those obligations: it identifies consequential parts, assigns responsibilities, establishes boundaries and interfaces, and constrains how the parts may interact. When multiple organizations satisfy the specification, engineers must compare the alternatives, analyze their consequences, and decide which tradeoffs are appropriate.*
+**Premise.** *The purpose of architecture is to organize a system so that the many competing obligations of its specification can be realized together. Architecture organizes the machine so that its obligations can be realized together: it identifies consequential parts, assigns responsibilities, establishes boundaries and interfaces, and constrains how the parts may interact. When multiple organizations satisfy the specification, engineers must compare the alternatives, analyze their consequences, and decide which tradeoffs are appropriate.*
 
 A specification tells us what an acceptable realization must accomplish, but it deliberately leaves many choices about the system's organization open. Those choices matter because obligations such as performance, security, reliability, and expected change can interact: an organization that serves one property well may make another harder to achieve.
 
 Architecture is where engineers make those obligations coexist. Its choices create affordances and constraints for the engineering work that follows. A boundary may make a change easier to isolate while making coordination harder. A communication rule may improve failure isolation while weakening consistency. An architectural decision therefore does more than describe a system: it changes the space of designs available to its parts.
 
-The distinction between architecture and design is recursive rather than absolute. A system architecture establishes strategy for the design of its parts. A sufficiently substantial subsystem will in turn need an architecture that establishes strategy for its own internal parts. Architecture therefore does not occupy one fixed level of a system hierarchy. It deliberately reasons about coarse-grained parts whose internals can, for the current engineering question, be treated as units.
+The distinction between architecture and design is recursive rather than absolute. A system architecture organizes responsibilities and interactions in ways that constrain the design of its parts. A part may itself require architecture when its internal responsibilities and interactions are consequential enough to organize explicitly. This is often called subsystem design: opening the part reveals another architectural problem at a smaller scope. Architecture therefore does not occupy one fixed level of a system hierarchy. It deliberately reasons about coarse-grained parts whose internals can, for the current engineering question, be treated as units.
 
 ## From specification to one system
 
@@ -87,5 +87,3 @@ Architecture deliberately does not decide everything. Once engineers have chosen
 Architecture organizes responsibilities, boundaries, and interactions without determining the mechanisms by which each part will fulfill its responsibility. Design inherits that organization and chooses among the mechanisms that remain available.
 
 The relationship is recursive. A subsystem that appears as one part in a system architecture will itself require architectural decisions if it remains too large to reason about directly. Conversely, detailed design may reveal that an apparently local choice has consequences beyond the part: perhaps available implementations conflict with another component, frustrate a required system property, or require a decision to be made consistently across the system. In that case, design has exposed an architectural question.
-
-Architecture constrains the available tactics. Design tests whether the strategy is workable.
