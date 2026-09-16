@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """pre-push: BUILD the site AND the PDF, then run the fast deterministic gate — before any push.
 
-Three gates, in order, so a change that would fail CI cannot leave the machine:
+Four gates, in order, so a change that would fail CI cannot leave the machine:
 
   1. `catalog.py build` — the actual markdown->HTML + mermaid render. This catches BUILD failures the
      test suite structurally cannot: a notation marker that doesn't head its block, a bad mermaid fence,
@@ -18,7 +18,13 @@ Three gates, in order, so a change that would fail CI cannot leave the machine:
      gitignored /book/mage-book.pdf refreshes on every push instead of going stale between renders.
      Typst compiles the whole book in a couple of seconds.
 
-  3. `catalog_tests.py --tier1` — the fast, stdlib, deterministic checks: schema, link + anchor
+  3. `handbook/scripts/build.py pdf` — the supplementary Software Engineering Handbook's Typst PDF
+     render (parity with the book PDF). CI renders + publishes it on every push and asserts it
+     fatal-if-missing, so a handbook render failure would fail CI; catch it here instead. This also
+     refreshes the gitignored local review artifacts (the handbook PDF + the landers staple the pdf
+     target emits), so they never go stale between manual handbook builds.
+
+  4. `catalog_tests.py --tier1` — the fast, stdlib, deterministic checks: schema, link + anchor
      resolution, the book/*.html tracking (orphans), the concept-model drift lints (L1/L2/L3), the
      empty-<th> twin, skill bundle integrity. ~seconds.
 
@@ -54,17 +60,22 @@ if _run("book/build_book.py", "--pdf"):
         "(or `git push --no-verify` to override).\n")
     sys.exit(1)
 
+# The supplementary Software Engineering Handbook PDF — parity with the book PDF above. CI
+# (.github/workflows/pages.yml) renders + publishes it on every push and asserts it fatal-if-missing,
+# so a handbook render failure would fail CI; catch it here on the machine instead. `build.py pdf` also
+# refreshes the gitignored local review artifacts (dist/software-engineering-handbook.pdf AND the landers
+# staple, which the pdf target emits), so they never go stale between manual handbook builds — which is
+# why the separate landers-staple refresh that used to live at the end of this hook is now redundant.
+print("pre-push: handbook/scripts/build.py pdf (handbook Typst PDF render — parity with the book PDF) …", file=sys.stderr)
+if _run("handbook/scripts/build.py", "pdf"):
+    sys.stderr.write(
+        "\npre-push: handbook/scripts/build.py pdf FAILED — push refused.\n"
+        "The handbook PDF does not render; fix the error above (or `git push --no-verify` to override).\n")
+    sys.exit(1)
+
 print("pre-push: catalog_tests.py --tier1 (deterministic gate) …", file=sys.stderr)
 if _run("catalog_tests.py", "--tier1"):
     sys.stderr.write(
         "\npre-push: catalog_tests.py --tier1 FAILED — push refused.\n"
         "Fix the failing gate(s) above, or `git push --no-verify` to override (rare).\n")
     sys.exit(1)
-
-# Refresh the LOCAL landers review staple (dist/course-landers-stapled.md) at push time, the way the
-# book PDF + book staple refresh above — so it never goes stale between manual handbook builds. This
-# is a convenience refresh, NOT a gate: it is a gitignored, CI-skipped local review aid, so a failure
-# must never refuse a push (unlike the render/PDF/tier1 gates above).
-print("pre-push: handbook/scripts/build.py staple (refresh local landers review staple — non-gating) …", file=sys.stderr)
-if _run("handbook/scripts/build.py", "staple"):
-    sys.stderr.write("pre-push: staple refresh failed (non-gating — push continues).\n")
