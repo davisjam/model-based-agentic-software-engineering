@@ -7,9 +7,13 @@ id carries a cross-reference prefix (fig/sec/tbl/def/decision/tradeoff/ex/exampl
 rewrites them; every other Cite is left untouched for citeproc to resolve as a real citation.
 
 Numbering is owned by the renderer, never by the prose:
-  * PDF (typst): a figure reference becomes a native Typst `@label`, so Typst numbers it.
+  * PDF (typst): a figure reference becomes a native Typst `@label`, so Typst numbers it with its
+                 book-global counter.
   * Web  (md)  : a figure reference becomes a Markdown link whose text is "Figure N", where N is the
-                 in-chapter sequence computed here; the link target is the figure's stable id.
+                 BOOK-GLOBAL sequence computed here: build.py seeds each file's Pandoc run with the
+                 cumulative numbered-float count of everything preceding it (handbook_fig_offset /
+                 handbook_tbl_offset), so the per-run sequence continues the PDF's global numbering.
+                 The link target is the figure's stable id.
 Section references render by the section's title in both outputs — no hard-coded section numbers.
 ]]
 
@@ -40,14 +44,27 @@ local function chapter_directory(doc)
   return dir
 end
 
+-- The book-global starting offset for a float sequence, injected per file by build.py
+-- (-M handbook_fig_offset=… / handbook_tbl_offset=…). A file rendered in its own Pandoc run would
+-- otherwise restart its sequence at 1; the offset — the numbered-float count of everything
+-- preceding the file in the PDF's document order — makes the run continue the book-global
+-- numbering the Typst PDF uses. Absent (the combined ePub run, which covers the whole book in one
+-- pass), the sequence starts at zero.
+local function meta_offset(doc, key)
+  local v = doc.meta[key]
+  if v == nil then return 0 end
+  return tonumber(pandoc.utils.stringify(v)) or 0
+end
+
 function Pandoc(doc)
   local chap = chapter_directory(doc)
 
   -- Pass 1: collect float numbers and section titles.
-  local fig_number = {}   -- id -> integer (in-chapter figure sequence)
+  local fig_number = {}   -- id -> integer (book-global figure sequence)
   local tbl_number = {}   -- id -> integer
   local sec_title = {}    -- id -> plain-text heading title
-  local fig_seq, tbl_seq = 0, 0
+  local fig_seq = meta_offset(doc, "handbook_fig_offset")
+  local tbl_seq = meta_offset(doc, "handbook_tbl_offset")
 
   doc:walk({
     Div = function(el)
@@ -70,12 +87,9 @@ function Pandoc(doc)
       end
     end,
     Header = function(el)
-      -- A level-1 heading is a chapter boundary in the COMBINED ePub run, so the float sequences
-      -- restart there — keeping "Figure N" per-chapter, as on the web. The single-chapter PDF/web
-      -- runs put no H1 in the body (the renderer adds the chapter title), so this never fires.
-      if el.level == 1 then
-        fig_seq, tbl_seq = 0, 0
-      end
+      -- A level-1 heading is a chapter boundary in the COMBINED ePub run. It does NOT reset the
+      -- float sequences: the book numbers figures and tables with one global counter, matching
+      -- the Typst PDF's scheme, so the combined run just accumulates across chapters.
       if el.identifier ~= "" and el.identifier:match("^sec%-") then
         sec_title[el.identifier] = pandoc.utils.stringify(el.content)
       end

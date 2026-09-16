@@ -90,6 +90,62 @@ def _chapter_directory_args(book: dict) -> list[str]:
     return ["--metadata-file", str(path)]
 
 
+def _numbered_float_counts(md_path) -> tuple[int, int]:
+    """Count one source file's numbered floats, mirroring crossrefs.lua pass 1: a figure Div with
+    an id (an `.unnumbered` figure claims no number), a table Div with an id, and a native
+    captioned Table."""
+    figs = tbls = 0
+
+    def walk(node) -> None:
+        nonlocal figs, tbls
+        if isinstance(node, list):
+            for x in node:
+                walk(x)
+            return
+        if not isinstance(node, dict):
+            return
+        t, c = node.get("t"), node.get("c")
+        if t == "Div":
+            (ident, classes, _), blocks = c
+            if "figure" in classes and ident and "unnumbered" not in classes:
+                figs += 1
+            elif "table" in classes and ident:
+                tbls += 1
+            walk(blocks)
+        elif t == "Table":
+            if c[0][0]:
+                tbls += 1
+            walk(c)
+        elif isinstance(c, list):
+            walk(c)
+
+    walk(C.pandoc_ast(md_path).get("blocks", []))
+    return figs, tbls
+
+
+def _float_offset_args(book: dict) -> dict:
+    """Per-file Pandoc `-M` args seeding crossrefs.lua's float sequences with book-global offsets.
+
+    The Typst PDF numbers figures and tables with one book-global counter across the whole
+    document. The web build renders each file in its own Pandoc run, whose float sequence would
+    restart at 1 — so each run receives the cumulative numbered-float count of everything that
+    precedes its file in the PDF's document order (handbook-view front matter, then chapters).
+    crossrefs.lua reads the two keys and starts its sequences there, keeping caption numbers and
+    body cross-references identical across the three editions. The combined ePub run covers the
+    whole book in one pass and needs no offset."""
+    offsets: dict = {}
+    fig_total = tbl_total = 0
+    handbook_fm = [C.HANDBOOK / e["file"] for e in book.get("frontmatter", [])
+                   if "handbook" in (e.get("views") or [])]
+    for path in handbook_fm + list(C.chapter_files(book)):
+        offsets[path] = ["-M", f"handbook_fig_offset={fig_total}",
+                        "-M", f"handbook_tbl_offset={tbl_total}"]
+        figs, tbls = _numbered_float_counts(path)
+        fig_total += figs
+        tbl_total += tbls
+    return offsets
+
+
 def _run(cmd: list[str]) -> str:
     out = subprocess.run(cmd, capture_output=True, text=True, check=False)
     if out.returncode != 0:
@@ -314,6 +370,9 @@ def build_web(book: dict) -> None:
     GEN_WEB.mkdir(parents=True, exist_ok=True)
 
     chdir_args = _chapter_directory_args(book)
+    # Book-global float numbering: each per-file Pandoc run is seeded with the numbered-float
+    # count of everything before it, so web captions and cross-references match the PDF's numbers.
+    float_args = _float_offset_args(book)
 
     # Front matter that opts into the web view (`views: [handbook, web]` in book.yaml) renders as
     # its own page through the same filter chain as a chapter. The generated stem carries a `0-`
@@ -325,7 +384,7 @@ def build_web(book: dict) -> None:
         fm = C.HANDBOOK / entry["file"]
         meta = _chapter_meta(fm)
         cmd = (["pandoc", str(fm), "-f", C.PANDOC_FROM, "-t", "gfm"]
-               + chdir_args + COMMON_PRE + _bib_args(book)
+               + chdir_args + float_args.get(fm, []) + COMMON_PRE + _bib_args(book)
                + ["-L", str(C.FILTERS / "figures.lua"),
                   "-L", str(C.FILTERS / "handbook-components.lua"),
                   "-L", str(C.FILTERS / "web.lua")])
@@ -343,7 +402,7 @@ def build_web(book: dict) -> None:
         meta = _chapter_meta(ch)
         stem = ch.stem
         cmd = (["pandoc", str(ch), "-f", C.PANDOC_FROM, "-t", "gfm"]
-               + chdir_args + COMMON_PRE + _bib_args(book)
+               + chdir_args + float_args[ch] + COMMON_PRE + _bib_args(book)
                + ["-L", str(C.FILTERS / "figures.lua"),
                   "-L", str(C.FILTERS / "handbook-components.lua"),
                   "-L", str(C.FILTERS / "web.lua")])
