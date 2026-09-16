@@ -71,5 +71,3 @@ Design can also reveal that an apparent choice must be escalated. Perhaps no pla
 The destination depends on what was learned. A mechanism repeatedly needed across components may belong in the engineering environment. A conflict involving responsibilities, boundaries, or interactions may reopen Architecture. A newly discovered obligation may reopen Specification. Design does not silently work around these decisions; it exposes when they no longer provide a workable space of mechanisms.
 
 Specification bounded acceptable behavior. Architecture organized responsibilities and interactions so those obligations could coexist. Design makes each part work by selecting mechanisms that satisfy what it inherits. Sometimes opening a part reveals another architectural problem; more often, the engineer must choose among algorithms, representations, data structures, and other mechanisms whose consequences differ in ways that matter.
-
-Architecture constrains the available tactics. Design chooses the tactics.
