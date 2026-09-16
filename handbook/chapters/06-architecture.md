@@ -73,17 +73,15 @@ they represent change what becomes easy, difficult, visible, or expensive.
 
 ## Architecture creates possibilities and constraints {#sec-possibilities-constraints}
 
-Think about a building. The architect need not specify the exact plumbing fittings inside a wall.
-But the architecture may already determine where the wall goes, how thick it is, where service
-space is available, and which penetrations are permitted. Those choices do not determine the
-plumbing design. They create the space within which the plumbing designer must work.
+Consider a building architect deciding where a wall should stand.
+The architect may determine the wall's position and thickness, the space available for building services, and where penetrations are permitted.
+Those decisions constrain the plumbing without designing it.
+Many plumbing systems may remain possible, but some routes, pipe sizes, and arrangements have become easy, expensive, or impossible because of the architectural decision.
 
-Software architecture does the same thing. A boundary, interface, deployment decision, or
-interaction rule leaves many implementations possible while making some implementations easier,
-harder, or impossible. An interface may make one component replaceable. A process boundary may
-permit independent failure or scaling. A rule forbidding direct access to another component's
-storage may preserve ownership at the cost of additional communication. Architecture creates the
-possibilities and constraints within which later design must work.
+Software architecture works similarly.
+Architecture organizes responsibilities, boundaries, and interactions without determining the mechanisms by which each part will fulfill its responsibility.
+It creates a structured space of possibilities for later Design.
+A good architectural decision makes important system properties tractable while preserving useful freedom where the choice need not yet be made.
 
 ## Where should the boundaries go? {#sec-boundaries}
 
