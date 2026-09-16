@@ -7,8 +7,8 @@ status: draft
 description: >
   Design determines how an architectural part realizes its responsibility within the obligations,
   affordances, and constraints it inherits. It classifies the remaining degrees of freedom — follow,
-  choose, or escalate — works through the recurring design tradeoffs, and produces evidence that
-  tests whether the architecture's strategy is workable.
+  choose, or escalate — works through the recurring design tradeoffs, and produces evidence about
+  whether the inherited architecture is workable.
 objectives:
   - Identify what a design inherits from specification, architecture, and the engineering environment.
   - Classify a remaining degree of freedom as one to follow, choose locally, or escalate.
@@ -300,7 +300,7 @@ Models, analyses, prototypes, measurements, design documents, reviews, and imple
 Systems thinking extends the judgment beyond individual choices: locally sound mechanisms must compose without exhausting shared budgets, leaving obligations uncovered, violating assumptions, or compromising the properties the architecture sought to control.
 
 Engineering therefore proceeds downward through constraints and upward through evidence.
-Detailed design can establish that an inherited strategy works, but it can also expose a missing shared mechanism, an architectural problem, or an obligation that must be reconsidered.
+Detailed design can establish that the inherited architecture works, but it can also expose a missing shared mechanism, an architectural problem, or an obligation that must be reconsidered.
 Cheap implementation increases the evidence available to make these judgments.
 It does not make the judgments for us.
 
@@ -311,5 +311,5 @@ Parnas, David L., and Paul C. Clements. ["A Rational Design Process: How and Why
 
 ["Design Docs at Google."](https://www.industrialempathy.com/posts/design-docs-at-google/) A practical account of making consequential design reasoning inspectable before it disappears into implementation.
 
-Gamma, Erich, Richard Helm, Ralph Johnson, and John Vlissides. *Design Patterns: Elements of Reusable Object-Oriented Software*. Reading, MA: Addison-Wesley, 1994. Patterns package accumulated design experience, expanding the candidate set without determining which tactic fits a particular system. Read the introductory and concluding chapters, plus the "Facade" and "Command" patterns.
+Gamma, Erich, Richard Helm, Ralph Johnson, and John Vlissides. *Design Patterns: Elements of Reusable Object-Oriented Software*. Reading, MA: Addison-Wesley, 1994. Patterns package accumulated design experience, expanding the candidate set without determining which mechanism fits a particular system. Read the introductory and concluding chapters, plus the "Facade" and "Command" patterns.
 :::
