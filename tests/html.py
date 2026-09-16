@@ -33,7 +33,8 @@ class _Refs(HTMLParser):
 
 # Artifacts built by the Pages CI (gitignored locally, present on the deployed site) — a link to one
 # is valid on the live site, but its target does not exist at check-time, so don't flag it as missing.
-_CI_BUILT_ARTIFACTS = ("mage-book.pdf", "software-engineering-handbook.pdf")
+_CI_BUILT_ARTIFACTS = ("mage-book.pdf", "mage-book.epub",
+                       "software-engineering-handbook.pdf", "software-engineering-handbook.epub")
 #: The MAGE book web edition is EMITTED as `book/web/docs/<slug>.md` bodies (built by MkDocs into the
 #: published `/book/mage-book/<slug>.html` — same stems, `use_directory_urls: false`). Referrers link the
 #: published path (`book/mage-book/<slug>.html`, or the legacy flat `book/<slug>.html` kept alive by the

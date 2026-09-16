@@ -276,12 +276,13 @@ def check_intra_book_links() -> tuple[list[Finding], dict]:
             tgt_rel = ref.split("#", 1)[0]
             if not tgt_rel:
                 continue
-            # The book PDF (book/mage-book.pdf) is a CI-generated, Pages-published artifact — it is NOT
-            # committed and is gitignored, so it legitimately 404s on a local checkout but resolves on the
-            # deployed site (same allowance the book landing's Download-PDF link relies on). Don't count
-            # it as a broken link. The companion handbook is a publish-time sibling under /book/, same
-            # allowance.
-            if os.path.basename(tgt_rel) == "mage-book.pdf" or tgt_rel.startswith("se-handbook/"):
+            # The book PDF + ePub (book/mage-book.{pdf,epub}) are CI-generated, Pages-published
+            # artifacts — NOT committed and gitignored, so they legitimately 404 on a local checkout but
+            # resolve on the deployed site (the allowance the landing's download links rely on). Don't
+            # count either as a broken link. The companion handbook is a publish-time sibling under
+            # /book/, same allowance.
+            if (os.path.basename(tgt_rel) in ("mage-book.pdf", "mage-book.epub")
+                    or tgt_rel.startswith("se-handbook/")):
                 continue
             checked += 1
             if tgt_rel.startswith("../"):

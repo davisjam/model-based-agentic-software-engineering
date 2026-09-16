@@ -437,19 +437,11 @@ def build_web(book: dict) -> None:
     # the page — the published site loads nothing off-origin), all-currentColor strokes so each
     # glyph tracks its button's link color in BOTH Material schemes (light + slate). Generic marks,
     # not brand logos: a corner-fold page carrying a small "PDF" wordmark, and the universal
-    # open-book for the ePub. The PDF glyph is SHARED with the MAGE book home (`book/build_book.py`
-    # `_DL_ICO_PDF`) via the one tracked family asset — the two homes' glyphs were verbatim twins,
-    # so the asset is the single source and neither can drift. The ePub glyph is this home's own.
+    # open-book for the ePub. BOTH glyphs are SHARED with the MAGE book home (`book/build_book.py`
+    # `_DL_ICO_PDF` / `_DL_ICO_EPUB`) via the tracked family assets — the two homes' glyphs were
+    # verbatim twins, so the asset is the single source and neither can drift.
     ico_pdf = (C.GC_ROOT / "web-theme" / "glyphs" / "pdf-file.svg").read_text(encoding="utf-8").strip()
-    ico_epub = (
-        '<svg class="dl-ico" viewBox="0 0 16 16" width="1.05em" height="1.05em"'
-        ' style="vertical-align:-0.18em;margin-right:0.45em"'
-        ' aria-hidden="true" focusable="false">'
-        '<path d="M8 3.5C6.9 2.4 5.2 2 3 2a.9.9 0 0 0-.9.9v8.8a.9.9 0 0 0 .9.9'
-        'c2.2 0 3.9.5 5 1.5 1.1-1 2.8-1.5 5-1.5a.9.9 0 0 0 .9-.9V2.9A.9.9 0 0 0 13 2'
-        'c-2.2 0-3.9.4-5 1.5Z" fill="none" stroke="currentColor" stroke-width="1.3"'
-        ' stroke-linejoin="round"/>'
-        '<path d="M8 3.5V14.1" stroke="currentColor" stroke-width="1.3"/></svg>')
+    ico_epub = (C.GC_ROOT / "web-theme" / "glyphs" / "epub-file.svg").read_text(encoding="utf-8").strip()
     lines = [f"# {book['title']}", "", f"*{book['subtitle']}*", "",
              f"{book['author']} · Edition {book['edition']} · {book['year']}", "",
              '<p class="hb-top-row">'

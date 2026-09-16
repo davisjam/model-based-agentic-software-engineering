@@ -1,0 +1,290 @@
+/* epub.css — the MAGE ePub edition's stylesheet (book/book_epub.py embeds it in the container).
+
+   Reflowable-first, modeled on handbook/epub/epub.css: no embedded fonts, no fixed colors, no
+   backgrounds — the reader's theme (light/dark, serif/sans, size) owns presentation. This file only
+   gives the book's component vocabulary (semantic boxes, notes, figures, chapter apparatus) enough
+   structure to read as components, not stray paragraphs. Borders use currentColor so every reader
+   theme keeps contrast. */
+
+/* ── chapter apparatus ─────────────────────────────────────────────────────────────────────── */
+
+header.chap {
+  margin: 0 0 1.6em 0;
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid currentColor;
+}
+header.chap .kicker {
+  font-size: 0.78em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 0.4em;
+}
+header.chap .kicker a {
+  color: inherit;
+  text-decoration: none;
+}
+header.chap h1 {
+  margin: 0.3em 0 0 0;
+}
+header.chap h1 .chap-num,
+h2 .sec-num {
+  opacity: 0.6;
+  margin-right: 0.2em;
+}
+h2 .role-kick {
+  font-style: italic;
+  font-size: 0.65em;
+  letter-spacing: 0.06em;
+  margin-right: 0.4em;
+}
+
+/* Prev/next chapter nav — kept (working spine links), rendered as a quiet ruled-off block. */
+nav.chapnav {
+  margin: 2.2em 0 1em 0;
+  padding-top: 0.8em;
+  border-top: 1px solid currentColor;
+  font-size: 0.85em;
+}
+nav.chapnav a {
+  text-decoration: none;
+  margin-right: 0.9em;
+}
+nav.chapnav .chapnav-here {
+  display: block;
+  margin: 0.3em 0;
+  font-style: italic;
+  opacity: 0.7;
+}
+.book-foot {
+  margin-top: 1.6em;
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+
+/* Off-screen but reader-available (screen-reader fallback lists). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ── figures + tables ──────────────────────────────────────────────────────────────────────── */
+
+figure {
+  margin: 1.5em 0;
+  text-align: center;
+}
+figure svg,
+figure img {
+  max-width: 100%;
+  height: auto;
+}
+figure figcaption {
+  margin-top: 0.5em;
+  font-size: 0.85em;
+  text-align: left;
+}
+.fig-label,
+.tbl-label,
+.tbl-label-only {
+  font-weight: bold;
+}
+nav.roadmap-nav {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid currentColor;
+  text-align: center;
+}
+nav.roadmap-nav svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Booktabs tables: heavy top/bottom rule, light rule under the head. */
+table.book-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2em 0;
+  font-size: 0.9em;
+  border-top: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+}
+table.book-table th,
+table.book-table td {
+  padding: 0.35em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
+table.book-table thead th {
+  border-bottom: 1px solid currentColor;
+}
+
+/* ── the semantic box vocabulary ───────────────────────────────────────────────────────────── */
+
+blockquote {
+  margin: 1.2em 0;
+  padding: 0.2em 0 0.2em 0.9em;
+  border-left: 3px solid currentColor;
+}
+blockquote.concept-inset,
+blockquote.box-inset,
+blockquote.box-canonical,
+blockquote.box-model-card,
+blockquote.box-evidence,
+blockquote.thesis-box,
+blockquote.def-box,
+div.apparatus-page {
+  border: 1px solid currentColor;
+  border-left: 3px solid currentColor;
+  padding: 0.7em 1em;
+  font-size: 0.92em;
+}
+blockquote .inset-title,
+.wex-title {
+  display: block;
+  font-size: 0.85em;
+  font-weight: bold;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin: 0 0 0.5em 0;
+}
+.box-badge,
+.box-corner {
+  font-size: 0.75em;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+}
+blockquote.def-inset {
+  font-style: italic;
+}
+blockquote.pull-quote,
+blockquote.chapter-epigraph,
+.part-epigraph {
+  border-left: 3px solid currentColor;
+  font-style: italic;
+}
+blockquote.bw-deep-dive {
+  border: none;
+  border-top: 3px solid currentColor;
+  padding: 0.8em 0 0.2em 0;
+}
+.worked-examples,
+.case-onepager {
+  margin: 1.5em 0;
+  padding-left: 1em;
+  border-left: 3px solid currentColor;
+}
+.worked-examples .wex-takeaway {
+  margin-top: 0.8em;
+  padding-top: 0.6em;
+  border-top: 1px solid currentColor;
+}
+.wex-tk-label {
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+/* Packed brick grids (appendix front doors) degrade to a stacked list on e-readers. */
+.brick-grid {
+  display: block;
+}
+.brick-grid > * {
+  margin: 0.8em 0;
+}
+
+/* ── notes: citations + editorial asides (in-column cards, as the web edition sets them) ───── */
+
+sup.cite-ref,
+sup.note-ref {
+  line-height: 0;
+  font-size: 0.75em;
+}
+sup.cite-ref a,
+sup.note-ref a {
+  text-decoration: none;
+}
+.cite-note,
+.editorial-note {
+  display: block;
+  margin: 0.9em 0;
+  padding: 0.4em 0 0.4em 0.9em;
+  border-left: 2px solid currentColor;
+  font-size: 0.85em;
+}
+.cite-note .cn-mark,
+.editorial-note .cn-mark {
+  font-weight: bold;
+  margin-right: 0.3em;
+}
+/* A marker whose own note card directly precedes it (the emitter's cn-follow mark): the card
+   carries the number, so the sandwiched marker is hidden from sighted flow (kept for a11y order). */
+sup.cn-follow {
+  display: none;
+}
+blockquote.aside-sidenote {
+  font-size: 0.88em;
+}
+
+/* ── works cited + bibliography + index pages ──────────────────────────────────────────────── */
+
+section.works-cited {
+  margin: 2.2em 0 1em 0;
+  padding-top: 0.8em;
+  border-top: 1px solid currentColor;
+}
+section.works-cited .wc-h {
+  font-size: 0.8em;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+section.works-cited ol,
+section.bibliography ul.bib-list {
+  font-size: 0.88em;
+}
+section.bibliography ul.bib-list {
+  list-style: none;
+  padding-left: 0;
+}
+section.bibliography ul.bib-list li {
+  margin: 0 0 0.6em 0;
+}
+.idx-terms ul {
+  list-style: none;
+  padding-left: 0;
+}
+.idx-terms .idx-term {
+  font-weight: bold;
+}
+.idx-terms .idx-refs,
+.idx-concept .idx-sub {
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+.gallery-source {
+  font-size: 0.85em;
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* ── code + math ───────────────────────────────────────────────────────────────────────────── */
+
+pre {
+  font-size: 0.82em;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  margin: 1.1em 0;
+  padding: 0.6em 0.8em;
+  border: 1px solid currentColor;
+}
+.book-eq,
+.book-math-display {
+  margin: 1.1em 0;
+  text-align: center;
+}

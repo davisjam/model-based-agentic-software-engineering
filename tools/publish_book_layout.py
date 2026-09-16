@@ -12,6 +12,7 @@ the old download paths keep working copies instead:
 
     _site/book/<slug>.html                    meta-refresh stub -> book/mage-book/<slug>.html
     _site/book/mage-book/mage-book.pdf        copy of _site/book/mage-book.pdf (old path kept)
+    _site/book/mage-book/mage-book.epub       copy of _site/book/mage-book.epub (flat path kept)
     _site/book/se-handbook/<handbook>.{pdf,epub}  copies of _site/se-handbook/* (old paths kept)
 
 The hand-rolled flat pages' move/rewrite branch retired with the C3 swap — nothing generates flat
@@ -79,7 +80,7 @@ def relocate(site: str) -> int:
     print("== publish_book_layout plan ==")
     print(f"  site           : {site}")
     print(f"  legacy stubs   : {len(page_names)} book/<slug>.html -> meta-refresh to book/mage-book/<slug>.html")
-    print(f"  book PDF       : book/mage-book.pdf -> book/mage-book/mage-book.pdf (old path kept as copy)")
+    print(f"  book PDF+ePub  : book/mage-book.{{pdf,epub}} -> book/mage-book/ (old paths kept as copies)")
     print(f"  handbook PDF+ePub : se-handbook/ -> book/se-handbook/ (old paths kept as copies)")
 
     stubbed = 0
@@ -95,15 +96,17 @@ def relocate(site: str) -> int:
         open(old, "w", encoding="utf-8").write(_stub(f"mage-book/{name}", canonical, name))
         stubbed += 1
 
-    # Whole-book PDF: copy into the book's home; keep the old flat path as a working copy (a .pdf URL
-    # cannot carry an HTML meta-refresh, so a copy — not a stub — is how the old PDF link keeps resolving).
+    # Whole-book PDF + ePub: copy each into the book's home (where the home page's relative download
+    # links resolve); keep the old flat path as a working copy (a .pdf/.epub URL cannot carry an HTML
+    # meta-refresh, so a copy — not a stub — is how the old download link keeps resolving).
     pdf_copies = 0
-    old_pdf = os.path.join(book, "mage-book.pdf")
-    if os.path.isfile(old_pdf):
-        shutil.copy2(old_pdf, os.path.join(mage, "mage-book.pdf"))
-        pdf_copies += 1
-    else:
-        print(f"WARNING: {old_pdf} absent — no book PDF to relocate.", file=sys.stderr)
+    for edition in ("mage-book.pdf", "mage-book.epub"):
+        old_edition = os.path.join(book, edition)
+        if os.path.isfile(old_edition):
+            shutil.copy2(old_edition, os.path.join(mage, edition))
+            pdf_copies += 1
+        else:
+            print(f"WARNING: {old_edition} absent — no {edition} to relocate.", file=sys.stderr)
 
     # Supplementary handbook editions (PDF + ePub — both binary download artifacts, same posture):
     # canonical home under book/se-handbook/; keep the old top-level copies too.
@@ -121,7 +124,7 @@ def relocate(site: str) -> int:
 
     print("== publish_book_layout results ==")
     print(f"  legacy stubs written      : {stubbed}")
-    print(f"  book PDF copies           : {pdf_copies}")
+    print(f"  book PDF/ePub copies      : {pdf_copies}")
     print(f"  handbook PDF/ePub copies  : {hb_copies}")
     if stubbed == 0:
         print("ERROR: wrote 0 stubs.", file=sys.stderr)

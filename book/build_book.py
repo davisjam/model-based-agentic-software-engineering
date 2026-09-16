@@ -55,6 +55,10 @@ _PDF_FILENAME = _BOOK_MANIFEST["pdf_filename"]  # single source: the manifest
 # (`handbook/scripts/build.py`) via the one tracked family asset — the two homes' glyphs were
 # verbatim twins, so the asset is the single source and neither can drift.
 _DL_ICO_PDF = (HERE.parent / "web-theme" / "glyphs" / "pdf-file.svg").read_text(encoding="utf-8").strip()
+# ePub sibling of the PDF glyph: the universal open-book mark, also a shared family asset (the
+# Handbook home reads the same file), so the two homes' ePub buttons cannot drift either.
+_DL_ICO_EPUB = (HERE.parent / "web-theme" / "glyphs" / "epub-file.svg").read_text(encoding="utf-8").strip()
+_EPUB_FILENAME = _PDF_FILENAME[: -len(".pdf")] + ".epub"  # one stem per manifest; per-edition suffix
 
 
 def _cover_sub(cls: str) -> str:
@@ -6906,6 +6910,9 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
         # rewrites it to `../se-handbook/` when this page moves into book/mage-book/; see
         # tools/publish_book_layout.py). Like the PDF, it 404s on a purely-local checkout; expected.
         f'<div class="book-download"><a href="{_PDF_FILENAME}">{_DL_ICO_PDF}Download the PDF edition ↓</a>'
+        # ePub edition — the reflowable sibling (book/book_epub.py, the 4th IR projection), published
+        # by CI beside the PDF; like the PDF it 404s on a purely-local checkout, which is expected.
+        f'<a href="{_EPUB_FILENAME}">{_DL_ICO_EPUB}Download the ePub edition ↓</a>'
         '<a href="se-handbook/index.html">Read the companion book: SE Handbook →</a></div>'
         '</div>'
     )

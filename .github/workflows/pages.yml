@@ -120,6 +120,16 @@ jobs:
           # installed above. catalog.py itself stays stdlib-only — these deps are for the --pdf path only.
           python3 -m pip install -r book/requirements-pdf.txt
           python3 book/build_book.py --pdf --no-split
+      # ── ePub edition (book_epub.py — the 4th IR projection, EPUB3) ──────────────────────────────
+      # CI-generated, Pages-published beside the PDF (not committed; gitignored like mage-book.pdf).
+      # book_epub.py reuses build_pages()' rendered bodies (no re-render), packs the EPUB3 container,
+      # and renders the TITLED cover from the print edition's own Typst cover page — so it MUST run
+      # after the Typst + requirements-pdf.txt installs above (Typst compiles the cover; Pillow
+      # recompresses it). Runs BEFORE the assemble step below, which rsyncs book/mage-book.epub into
+      # _site/book/mage-book.epub; no validate/test gate reads the .epub (the C3 build-order lesson —
+      # the emit precedes its only consumers, and nothing earlier depends on it).
+      - name: Render book ePub (EPUB3 from the same page records as the web edition)
+        run: python3 book/book_epub.py
       # ── Supplementary Software Engineering Handbook PDF + ePub (Pandoc → AST → Typst / ePub3) ────
       # CI-generated, Pages-published artifacts (like the book PDF above; not committed). `make book`
       # LINTS the manuscript first and aborts on any error (never degrades silently), then renders
@@ -202,12 +212,14 @@ jobs:
                 --exclude='course' --exclude='site' --exclude='handbook' ./ _site/
           PDF="book/$(python3 -c "import json; print(json.load(open('book/book-manifest.json'))['pdf_filename'])")"
           test -f "_site/$PDF" || { echo "ERROR: $PDF missing from site artifact"; exit 1; }
+          EPUB="${PDF%.pdf}.epub"
+          test -f "_site/$EPUB" || { echo "ERROR: $EPUB missing from site artifact"; exit 1; }
       # ── Publish the MAGE book at /book/mage-book/ + finish the /book/ layout ──────────────────────
       # Copy the MkDocs-built book site (strict-built above) into its published home — flat
       # `<slug>.html` stems identical to the retired hand-rolled pages, so every pre-swap URL +
       # #anchor resolves unchanged. Then publish_book_layout.py finishes the layout: a static
       # meta-refresh stub at every legacy flat _site/book/<slug>.html URL (GitHub Pages has no server
-      # redirects), the whole-book PDF copied in next to the pages, and the handbook PDF + ePub copied
+      # redirects), the whole-book PDF + ePub copied in next to the pages, and the handbook PDF + ePub copied
       # into _site/book/se-handbook/. Stdlib-only; runs AFTER assemble so it operates on the
       # fully-populated _site tree. The chapter-page test pins URL continuity across the C3 swap.
       - name: Publish MAGE book (MkDocs site -> /book/mage-book/) + legacy stubs + PDF/ePub homes
@@ -216,6 +228,7 @@ jobs:
           cp -r book/web/site/. _site/book/mage-book/
           python3 tools/publish_book_layout.py _site
           test -f _site/book/mage-book/mage-book.pdf || { echo "ERROR: relocated book PDF missing"; exit 1; }
+          test -f _site/book/mage-book/mage-book.epub || { echo "ERROR: relocated book ePub missing"; exit 1; }
           test -f _site/book/mage-book/index.html || { echo "ERROR: published book index missing"; exit 1; }
           test -f _site/book/mage-book/1.1-the-printer.html || { echo "ERROR: published chapter page missing (URL continuity broken)"; exit 1; }
           test -f _site/book/1.1-the-printer.html || { echo "ERROR: legacy-URL redirect stub missing"; exit 1; }
