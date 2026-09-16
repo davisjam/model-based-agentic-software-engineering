@@ -33,6 +33,10 @@ not_in_nav: |
 
 theme:
   name: material
+  # The shared MAGE-family shell (header partial + mage-family.css) — one theme package, consumed by
+  # every property. Path-relative to THIS file (MkDocs resolves custom_dir against the config file),
+  # so it resolves the same locally and in CI.
+  custom_dir: ../web-theme/overrides
   # Wizard-hat identity (restrained, monochrome; the header icon adapts to light/dark).
   icon:
     logo: material/wizard-hat
@@ -44,9 +48,10 @@ theme:
     - content.action.edit   # "edit this page" → the source under course/
     - toc.follow
   palette:
-    # Purdue scheme (black + Boilermaker Gold on warm cream), harmonized with the main MAGE landing.
-    # The exact colors are set in course/stylesheets/purdue.css (extra_css below); the named `black`
-    # primary is a neutral base the stylesheet overrides. Light/dark toggle for reader preference.
+    # Named palette values are only the neutral seed; mage-family.css (projected from
+    # book-models/design-tokens.json) overrides both schemes with the family tokens — near-black
+    # header, warm paper, rust accent. Teach's one co-brand mark, the Purdue-gold bottom rule,
+    # lives in course/stylesheets/purdue.css. Light/dark toggle for reader preference.
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: black
@@ -60,10 +65,8 @@ theme:
   font: false  # no webfont fetch; use the system stack (privacy + no external request)
 
 extra_css:
-  - stylesheets/purdue.css   # Purdue black + Boilermaker Gold palette (overrides Material's defaults)
-
-extra_javascript:
-  - js/header-title-link.js  # make the header "Teach with MAGE" title link home (logo already does)
+  - assets/stylesheets/mage-family.css  # the shared family shell (served from the theme custom_dir)
+  - stylesheets/purdue.css              # per-property: the Purdue-gold bottom rule (--family-rule-color)
 
 plugins:
   # Search intentionally omitted: at this site's scale the sidebar already exposes the full IA and users
@@ -85,3 +88,8 @@ markdown_extensions:
 
 extra:
   social: []
+  # The standard header grid's right-side family nav (rendered by the shared header partial).
+  # No "Teach with MAGE" self-link — the brand strip already IS the home link.
+  family_links:
+    - label: MAGE homepage
+      url: https://davisjam.github.io/model-based-agentic-software-engineering/

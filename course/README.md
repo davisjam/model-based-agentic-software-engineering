@@ -44,8 +44,7 @@ course/
       materials/                 # the module decks
   project/                       # Overview, phase-*.md, candidate-projects.md
   assessment/                    # project-assessment.md, oral-exams.md (Assessment section)
-  stylesheets/purdue.css         # Purdue palette (extra_css)
-  js/header-title-link.js        # header title → home link
+  stylesheets/purdue.css         # Purdue-gold bottom rule (per-property override on the shared web-theme)
   assets/wizard-hat.svg          # favicon (the wizard-hat identity)
 ```
 

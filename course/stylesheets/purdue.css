@@ -1,91 +1,23 @@
-/* Purdue color scheme for the Teach-with-MAGE course site.
+/* purdue.css — Teach with MAGE's per-property overrides on the shared family shell.
  *
- * Two goals: (1) look like Purdue — Boilermaker Gold + black; (2) harmonize with the main MAGE landing,
- * which is a warm palette (paper #fdfcf9, ink #1c1917, accent burnt-umber #9a3f12). The result: a black
- * header with a Boilermaker-Gold brand rule, warm-cream pages, near-black text, and the landing's warm
- * accent for links so the two surfaces read as one site. Overrides Material's default blue-grey/indigo. */
+ * The shell (near-black header, warm-paper ground, rust accent, nav + typography treatment) comes
+ * from web-theme/overrides/assets/stylesheets/mage-family.css, shared by every MAGE property. This
+ * file carries ONLY what is Teach's own: the Purdue co-brand. Teach keeps its Boilermaker-Gold
+ * bottom rule under the header — set through the family's rule-color token, so it is a one-token
+ * deviation from the family default (rust) and reversible the same way. Everything else the old
+ * Purdue stylesheet set (palette, brand-anchor click box, sidebar quieting) now lives in the
+ * shared shell and was removed here.
+ *
+ * The doubled attribute selector matches the specificity of the generated token block in
+ * mage-family.css; this file loads after it in extra_css, so the token override wins by order. */
 
 :root {
-  --purdue-gold: #ceb888;       /* Boilermaker Gold — the brand signal */
-  --purdue-gold-deep: #8e6f3e;  /* "Aged" — an accessible gold-bronze for hover */
-  --mage-accent: #9a3f12;       /* the main landing's burnt-umber accent (shared for consistency) */
-  --mage-paper: #fdfcf9;        /* warm cream — the landing's page color */
-  --mage-ink: #1c1917;          /* warm near-black — the landing's text color */
+  --purdue-gold: #ceb888;  /* Boilermaker Gold — the brand signal */
 }
 
-/* ── Light scheme (default) ─────────────────────────────────────────────── */
-[data-md-color-scheme="default"] {
-  --md-primary-fg-color: var(--mage-ink);        /* header background: Purdue black */
-  --md-primary-fg-color--light: #57534e;
-  --md-primary-fg-color--dark: #0b0a08;
-  --md-primary-bg-color: var(--mage-paper);      /* header text/icons: cream */
-  --md-primary-bg-color--light: #faf1e6;
-  --md-accent-fg-color: var(--mage-accent);      /* interactive accent (search, active) */
-  --md-default-bg-color: var(--mage-paper);      /* page background: warm cream */
-  --md-typeset-color: var(--mage-ink);
-  --md-typeset-a-color: var(--mage-accent);      /* links: match the landing */
+[data-md-color-scheme="default"][data-md-color-scheme] {
+  --family-rule-color: var(--purdue-gold);
 }
-
-/* Boilermaker-Gold brand rule under the black header. */
-.md-header { border-bottom: 3px solid var(--purdue-gold); }
-
-/* Active / hovered nav and links lean toward the gold-bronze. */
-.md-nav__link--active,
-.md-nav__link:focus,
-.md-nav__link:hover { color: var(--mage-accent); }
-
-/* A section with no index page (e.g. Assessment) renders its title as a non-link <label>, which Material
-   greys (--md-default-fg-color--light). Match it to the index-backed section headers (plain <a>, near-black)
-   so it reads the same black weight as Reference Course / Lectures / Semester Project — NOT the link accent. */
-.md-nav__item--section > .md-nav__link[for] { color: var(--md-default-fg-color); }
-.md-typeset a:hover { color: var(--purdue-gold-deep); }
-
-/* The section-index / tabs active marker in gold. */
-.md-tabs__link--active,
-.md-typeset .headerlink:hover { color: var(--purdue-gold-deep); }
-
-/* ── Dark scheme (slate) — Purdue black + gold on warm-dark ──────────────── */
-[data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #0b0a08;                /* header: deep black */
-  --md-primary-bg-color: var(--purdue-gold);     /* header text/icons: gold */
-  --md-accent-fg-color: var(--purdue-gold);
-  --md-default-bg-color: #17130f;                /* warm near-black page */
-  --md-typeset-color: #ece7df;
-  --md-typeset-a-color: #d9c39a;                 /* links: light gold */
-}
-[data-md-color-scheme="slate"] .md-typeset a:hover { color: var(--purdue-gold); }
-
-/* ── Quiet the sidebar ───────────────────────────────────────────────────
- * The sidebar is a navigation instrument. Material renders a page-status icon
- * (from each page's `status:` front matter) next to nearly every nav item — on
- * so many items it stops signalling and becomes visual noise. Hide it in the
- * nav (the `status:` metadata stays for the bundle tooling). Hierarchy is
- * carried by the three signals that already work: bold section headings, the
- * accent current-page state, and indentation. */
-.md-nav .md-status { display: none; }
-
-/* ── Header branding + a distinct "MAGE homepage" link ────────────────────
- * The branding (hat + "Teach with MAGE") is ONE continuous home link back to the course companion. The
- * logo already links home; header-title-link.js wraps the title text in a home anchor too (.md-header__
- * brandlink). To make the GAP between them clickable, extend the logo button's own click box rightward
- * across the ~1.2rem gap with transparent padding, and pull the layout back with a matching negative
- * margin so the title text does not move — no visual change. The logo sits above the title (z-index:1),
- * so it wins the hit in the overlap. */
-.md-header__button.md-logo { padding-right: 1.6rem; margin-right: -1rem; }
-.md-header__brandlink { color: inherit; text-decoration: none; }
-
-/* A separate outward link to the MAGE homepage (the book/landing at the site root), named-distinct from
- * the "Teach with MAGE" branding that returns to this companion's home. Sits at the right of the header. */
-.md-header__mage-home {
-  color: var(--md-primary-bg-color); text-decoration: none;
-  font-weight: 600; font-size: .7rem; white-space: nowrap;
-  margin-left: auto; padding: 0 .6rem; align-self: center;
-}
-.md-header__mage-home:hover { color: var(--purdue-gold); }
-
-/* The desktop sidebar repeats the site name ("Teach with MAGE") as a drawer title — the header already
- * shows it, so it is wasted ink. Hide the level-0 drawer title on the desktop sidebar only (the mobile
- * drawer keeps its header). The child combinator targets ONLY the drawer title, never a section heading. */
-@media screen and (min-width: 76.25em) {
-  .md-nav--primary > .md-nav__title { display: none; }
+[data-md-color-scheme="slate"][data-md-color-scheme] {
+  --family-rule-color: var(--purdue-gold);
 }
