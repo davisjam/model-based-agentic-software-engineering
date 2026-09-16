@@ -116,7 +116,12 @@ function Div(el)
     if el.identifier ~= "" then t = t .. "\n<" .. el.identifier .. ">" end
     return pandoc.RawBlock("typst", t)
   elseif EPUB then
-    return epub_block("hb-callout hb-" .. kind, title or titlecase(kind), content, el.identifier)
+    -- The reflowable CSS styles every callout kind with the same quiet left rule, so without a
+    -- label a Definition is indistinguishable from a Decision or a Note. Prefix the kind to the
+    -- title line — "Definition · <topic>" — mirroring the PDF's labeled box titles (the web
+    -- edition conveys the same distinction by admonition icon + color).
+    local heading = title and (titlecase(kind) .. " · " .. title) or titlecase(kind)
+    return epub_block("hb-callout hb-" .. kind, heading, content, el.identifier)
   else
     local qualifier = WEB_QUALIFIER[kind] or kind
     local body = pandoc.write(pandoc.Pandoc(content), "gfm"):gsub("%s+$", "")

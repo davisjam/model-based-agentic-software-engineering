@@ -25,6 +25,41 @@ function Header(el)
   return nil
 end
 
+-- Captioned tables (`: caption {#tbl-x}` — Pandoc parses the attribute into the Table's id and
+-- leaves the caption clean). GFM can express neither the caption nor the id: the gfm writer
+-- re-emits the caption as a literal trailing paragraph — "caption {#tbl-x}", raw attribute visible
+-- to readers — and no element carries the id, so a "Table N" cross-reference dangles. Render such
+-- a table to raw HTML instead: <table id="tbl-x"> with a <caption> carrying the "Table N." prefix
+-- from the number crossrefs.lua stashed in `data-number` (mirroring figures.lua's web caption).
+-- The ePub writer handles caption + id natively, so there only the "Table N." prefix is added —
+-- the number the PDF's Typst counter supplies, so the body's "Table 1" reference reads the same.
+function Table(el)
+  local num = el.attributes["data-number"]
+  if num then
+    el.attributes["data-number"] = nil
+    local old = el.caption.long
+    local prefix = pandoc.Inlines({ pandoc.Strong({ pandoc.Str("Table " .. num .. ".") }),
+                                    pandoc.Space() })
+    local newlong = pandoc.Blocks({})
+    if #old > 0 and (old[1].t == "Plain" or old[1].t == "Para") then
+      local ctor = (old[1].t == "Para") and pandoc.Para or pandoc.Plain
+      newlong:insert(ctor(prefix .. old[1].content))
+      for i = 2, #old do newlong:insert(old[i]) end
+    else
+      newlong:insert(pandoc.Plain(prefix))
+      for i = 1, #old do newlong:insert(old[i]) end
+    end
+    el.caption = { long = newlong }
+  end
+  if EPUB then
+    return num and el or nil
+  end
+  if el.identifier == "" and #el.caption.long == 0 then
+    return nil -- an uncaptioned, id-less table survives the gfm path untouched
+  end
+  return pandoc.RawBlock("html", pandoc.write(pandoc.Pandoc({ el }), "html"))
+end
+
 -- Math: Pandoc's gfm writer emits GitHub math syntax (```math fences / $`…`$), which MkDocs
 -- Material shows as literal TeX. Render math to HTML at build time instead: map each TeX token to
 -- its glyph, italicize single-letter identifiers, and FAIL LOUD on a token this table does not

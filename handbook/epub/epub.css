@@ -16,6 +16,14 @@ figcaption {
   font-size: 0.85em;
   text-align: left;
 }
+/* A captioned table's caption ("Table N. …", numbered by the web.lua filter): same quiet
+   treatment as a figure caption, below its table. */
+table caption {
+  caption-side: bottom;
+  margin-top: 0.5em;
+  font-size: 0.85em;
+  text-align: left;
+}
 
 /* The semantic callout vocabulary (definition / decision / tradeoff / …): a quiet left rule and a
    small-caps-style title line, mirroring the print edition's lightly ruled block. */

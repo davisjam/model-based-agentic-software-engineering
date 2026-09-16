@@ -94,6 +94,14 @@ function Pandoc(doc)
         return el
       end
     end,
+    -- A native captioned table (`: caption {#tbl-x}`) gets its number stashed the same way, so the
+    -- web/ePub caption handler in web.lua can prepend "Table N." (the PDF numbers via Typst).
+    Table = function(el)
+      if tbl_number[el.identifier] then
+        el.attributes["data-number"] = tostring(tbl_number[el.identifier])
+        return el
+      end
+    end,
     Cite = function(el)
       if #el.citations ~= 1 then return nil end
       local id = el.citations[1].id

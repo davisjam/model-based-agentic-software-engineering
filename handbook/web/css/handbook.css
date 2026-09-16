@@ -92,8 +92,10 @@
 .md-typeset .read-further > .admonition-title::before {
   background-color: var(--md-default-fg-color--light);
 }
-/* Hanging indent per entry, so a wrapped citation aligns under its own first line. */
-.md-typeset .read-further p {
+/* Hanging indent per entry, so a wrapped citation aligns under its own first line. Scoped off the
+ * admonition title (itself a <p> in this box): the negative indent would pull the title's first
+ * line left under the Material icon, overlapping the glyph with the leading letter. */
+.md-typeset .read-further p:not(.admonition-title) {
   padding-left: 1.4em;
   text-indent: -1.4em;
   margin: 0.4em 0;
@@ -103,6 +105,16 @@
 .handbook-figure { margin: 1.6em auto; text-align: center; }
 .handbook-figure img { max-width: 100%; height: auto; }
 .handbook-figure figcaption {
+  margin-top: 0.6em;
+  font-size: 0.85em;
+  color: var(--md-default-fg-color--light);
+  text-align: center;
+}
+
+/* Captioned tables (filters/web.lua renders these as raw HTML so the id + caption survive GFM):
+ * caption below the table, styled like a figure caption, with the "Table N." prefix in bold. */
+.md-typeset table caption {
+  caption-side: bottom;
   margin-top: 0.6em;
   font-size: 0.85em;
   color: var(--md-default-fg-color--light);
@@ -135,6 +147,16 @@
   .md-typeset .hb-home-side {
     order: -1; position: static; width: 9em; max-width: 45%; margin: 0.6em 0 0.4em;
   }
+}
+
+/* Colophon (landing only): the web counterpart of the PDF imprint page — © line, first-published
+ * date, NSF acknowledgment. Quiet end-matter under a hairline, like the READ FURTHER register. */
+.md-typeset .hb-colophon {
+  margin-top: 2.2em;
+  padding-top: 0.7em;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  font-size: 0.72rem;
+  color: var(--md-default-fg-color--light);
 }
 
 /* Math: rendered to HTML at build time (filters/web.lua Math handler), no client-side JS. Display

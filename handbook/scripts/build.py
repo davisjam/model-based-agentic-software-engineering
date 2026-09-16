@@ -40,10 +40,13 @@ SITE_OUT = C.DIST / "site"
 GEN_TYPST = C.GENERATED / "typst"
 GEN_EPUB = C.GENERATED / "epub"
 GEN_WEB = C.GENERATED / "web"
-# The ePub cover: the full-resolution cover artwork (the art layer the Typst cover composites) —
-# NOT the small web thumbnail, which would pixelate on an e-reader's cover view.
-EPUB_COVER = C.HANDBOOK / "assets" / "cover-artwork.png"
 EPUB_CSS = C.HANDBOOK / "epub" / "epub.css"
+
+# The funding acknowledgment the PDF imprint page prints (typst/handbook.typ). The web landing's
+# colophon and the ePub's rights line carry the same sentence so all three editions acknowledge the
+# support; keep the grant list identical across those sites and the catalogue footer in catalog.py.
+NSF_ACK = ("This work was supported by the U.S. National Science Foundation under grants "
+           "#2541917, #2452533, and #2343596.")
 
 # The filter pipeline. crossrefs runs BEFORE citeproc (it claims @fig/@sec cites); citeproc resolves
 # the real citations; the remaining filters run after, over the resolved AST.
@@ -121,8 +124,8 @@ def _gate() -> None:
 def _frontmatter_typst(book: dict, chdir_args: list[str]) -> str:
     """Render the handbook-view front matter (Preface, etc.) to a Typst content block.
 
-    Front matter is PDF/handbook-only: only entries whose `views:` include `handbook` are rendered,
-    and the web build never reads book.yaml's `frontmatter:` list at all. Each entry becomes an
+    Only entries whose `views:` include `handbook` render here (build_web separately takes the
+    entries whose `views:` include `web`). Each entry becomes an
     unnumbered `#hb-frontmatter(title: ...)[…]` block; the returned string is inlined as the
     template's `frontmatter:` argument (empty string → the template renders no front matter)."""
     blocks = []
@@ -206,6 +209,32 @@ def build_pdf(book: dict) -> None:
     print(f"PDF → {PDF_OUT.relative_to(C.HANDBOOK)}")
 
 
+def _epub_cover_png(book: dict) -> C.pathlib.Path:
+    """Render the TITLED cover — the same layered Typst cover page the PDF opens with — to a PNG
+    for `--epub-cover-image`, so a reader's library shelf shows the title/author lockup.
+
+    The raw art layer (assets/cover-artwork.png) is only what the Typst cover composites the
+    typography ONTO; passing it directly would ship a textless cover. A one-page Typst doc calling
+    `hb-cover` reuses the real cover (artwork + live type) verbatim, so the ePub cover can never
+    drift from the PDF's. 180 ppi on a US-letter page → 1530×1980 px, comfortably above e-reader
+    cover-view resolution without bloating the container."""
+    cover_typ = GEN_EPUB / "cover.typ"
+    cover_png = GEN_EPUB / "cover.png"
+    cover_typ.write_text("\n".join([
+        '#import "/typst/cover.typ": hb-cover',
+        "#hb-cover(",
+        f'  title: "{book["title"]}",',
+        f'  subtitle: "{book["subtitle"]}",',
+        f'  author: "{book["author"]}",',
+        ")",
+        "",
+    ]), encoding="utf-8")
+    _run(["typst", "compile", "--format", "png", "--ppi", "180", str(cover_typ), str(cover_png),
+          "--root", str(C.HANDBOOK), "--font-path", str(C.FONT_PATH)])
+    print(f"  epub   ← cover.png (titled cover, {cover_png.stat().st_size // 1024} KiB)")
+    return cover_png
+
+
 def build_epub(book: dict) -> None:
     """Render the reflowable ePub edition from the same chapter source as the PDF.
 
@@ -258,7 +287,7 @@ def build_epub(book: dict) -> None:
               "-L", str(C.FILTERS / "handbook-components.lua"),
               "-L", str(C.FILTERS / "web.lua"),
               "--resource-path", str(C.CHAPTERS),
-              "--epub-cover-image", str(EPUB_COVER),
+              "--epub-cover-image", str(_epub_cover_png(book)),
               "--css", str(EPUB_CSS),
               "--toc", "--toc-depth=2", "--split-level=1",
               "-M", f"title={book['title']}",
@@ -266,8 +295,13 @@ def build_epub(book: dict) -> None:
               "-M", f"author={book['author']}",
               "-M", f"date={_last_modified(book)}",
               "-M", f"lang={book.get('language', 'en-US')}",
-              "-M", ("rights=Edition {} · © {} {}".format(
-                  book["edition"], book.get("copyright_years", book["year"]), book["author"]))])
+              # The rights metadata doubles as the ePub's colophon: it renders on the generated
+              # title page (and in dc:rights), so it carries the PDF imprint page's facts — the ©
+              # line, the first-published date, and the NSF funding acknowledgment (grant list kept
+              # identical across typst/handbook.typ, the site footer in catalog.py, and here).
+              "-M", ("rights=Edition {} · © {} {} · First published {} · {}".format(
+                  book["edition"], book.get("copyright_years", book["year"]), book["author"],
+                  book.get("first_published", book["year"]), NSF_ACK))])
     _run(cmd)
     size_kb = EPUB_OUT.stat().st_size // 1024
     print(f"EPUB → {EPUB_OUT.relative_to(C.HANDBOOK)} ({len(sections)} sections, {size_kb} KiB)")
@@ -385,7 +419,14 @@ def build_web(book: dict) -> None:
               '<div class="hb-home-side">',
               f'<img class="hb-home-cover" src="cover-thumb.png" alt="{book["title"]}">',
               "</div>", "",
-              "</div>"]
+              "</div>", "",
+              # Colophon — the web counterpart of the PDF's imprint page (and the ePub's rights
+              # line): the © line, the first-published date, and the NSF acknowledgment.
+              '<p class="hb-colophon">'
+              f'© {book["author"]}, {book.get("copyright_years", book["year"])} · '
+              f'Edition {book["edition"]} — first published {book.get("first_published", book["year"])}.'
+              f'<br>{NSF_ACK}'
+              "</p>"]
     (GEN_WEB / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     # Nav: one root section titled with the book — the "book → chapters" left rail. index.md rides

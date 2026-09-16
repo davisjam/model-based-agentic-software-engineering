@@ -82,8 +82,8 @@ def frontmatter_entries(book: dict) -> list[dict]:
     """The book.yaml `frontmatter:` list (Preface, etc.); empty when the book declares none.
 
     Each entry is a map: `file` (path under the book root) and `views` (the projections it renders
-    into). Returned as-is so callers can filter on `views` — the web projection ignores this list
-    entirely, so front matter never leaks into the web edition."""
+    into). Returned as-is so callers can filter on `views` — the PDF/ePub take entries listing
+    `handbook`; the web build takes entries listing `web`."""
     return list(book.get("frontmatter", []))
 
 

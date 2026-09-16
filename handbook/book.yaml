@@ -33,7 +33,7 @@ frontmatter:
   # The Introduction, distinct from it, states the organizing premise: the chapters separate
   # engineering judgments conceptually, not procedurally. Order here is the printed order.
   - file: frontmatter/preface.md
-    views: [handbook]
+    views: [handbook, web]
   - file: frontmatter/introduction.md
     views: [handbook, web]
 
