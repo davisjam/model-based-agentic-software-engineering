@@ -214,14 +214,6 @@ implementation becomes cheaper, deciding what to build, controlling what may cha
 must remain true, and determining whether the result is acceptable become a larger fraction of the
 engineering problem. The bottleneck moves.
 
-::: {.mage-moment}
-Model-Based Agentic Software Engineering develops one theory for maintaining engineering control as
-increasingly capable agents perform more of the work required to realize and change software systems.
-This handbook addresses the underlying software-engineering judgments that such an approach assumes:
-what should be built, what matters enough to constrain, which choices should remain open, what evidence
-is sufficient, and when an engineering decision should be reconsidered.
-:::
-
 The tools will continue to change. So will the systems we build with them. The enduring problem is
 learning how to exploit a medium built for change without surrendering control of what those changes
 mean.

@@ -282,12 +282,9 @@ At that point, the design problem shifts again.
 Engineers must decide which observations are local, which indicate a shared mechanism or architectural weakness, and which recurring lessons should become durable engineering knowledge.
 Cheap code can create a firehose of evidence; engineering judgment determines what that evidence means.
 
-::: {.mage-moment title="Cheap Code, Costly Judgment"}
-In the Cheap Code, Costly Judgment case study, failures appearing in dense succession helped reveal
-that several local incidents shared an architectural cause. The response was not to repair each
-incident independently, but to change the engineering environment: represent the underlying
-knowledge explicitly, derive checks from it, and prevent a class of related failures.
-:::
+The [Cheap Code, Costly Judgment](https://arxiv.org/abs/2607.01087) case study provides one example.
+Failures appearing in dense succession revealed that several local incidents shared an architectural cause.
+Rather than repair each incident independently, the engineers changed the engineering environment: they represented the underlying knowledge explicitly, derived checks from it, and prevented a class of related failures.
 
 ## Coda: Implementation in the GenAI Era {.coda}
 
