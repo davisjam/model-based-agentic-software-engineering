@@ -24,6 +24,17 @@
 // pre-step value — the outline compensates with +1).
 #let hb-chapter = counter("hb-chapter")
 
+// Plain-text projection of simple (text + space) content — enough for a heading body. Used by the
+// coda heading rule to split the "Coda: " prefix off the section title.
+#let hb-plain-text(c) = {
+  if type(c) == str { c }
+  else if c.has("text") { c.text }
+  else if c.has("children") { c.children.map(hb-plain-text).join("") }
+  else if c.has("body") { hb-plain-text(c.body) }
+  else if c == [ ] { " " }
+  else { "" }
+}
+
 #let handbook(
   title: "",
   subtitle: "",
@@ -73,7 +84,21 @@
   }
   show heading.where(level: 2): it => {
     set text(size: 15pt, weight: 700, fill: palette.ink)
-    block(above: 1.3em, below: 0.5em)[#it.body]
+    // A coda heading ("Coda: <title>", labeled <hb-coda> by the typst filter) renders its prefix
+    // as a letter-spaced small-caps label in the chapter-eyebrow face, with the title beneath it
+    // in the ordinary section face. One heading, one outline entry — only the print form splits.
+    if it.has("label") and it.label == <hb-coda> {
+      let full = hb-plain-text(it.body)
+      let cut = full.position(":")
+      block(above: 1.6em, below: 0.5em)[
+        #set par(first-line-indent: 0em)
+        #text(size: 9pt, tracking: 0.22em, fill: palette.accent, weight: 700)[#upper(full.slice(0, cut))]
+        #v(0.35em, weak: true)
+        #full.slice(cut + 1).trim()
+      ]
+    } else {
+      block(above: 1.3em, below: 0.5em)[#it.body]
+    }
   }
   show heading.where(level: 3): it => {
     set text(size: 12pt, weight: 700, fill: palette.muted)

@@ -22,6 +22,18 @@ function Div(el)
   return nil
 end
 
+-- A `.coda` heading gets the stable identifier the print template keys on: pandoc emits the
+-- identifier as the heading's Typst label, and handbook.typ's level-2 show-rule renders the
+-- "Coda: " prefix of an <hb-coda>-labeled heading in the chapter-eyebrow label face. The web
+-- projection keeps the pandoc-derived identifier; this filter runs only on the typst target.
+function Header(el)
+  if el.classes:includes("coda") then
+    el.identifier = "hb-coda"
+    return el
+  end
+  return nil
+end
+
 function RawBlock(el)
   if el.format == "html" then return {} end
   return nil
