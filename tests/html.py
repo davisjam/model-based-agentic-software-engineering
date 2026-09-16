@@ -48,9 +48,11 @@ def _to_build_location(tgt_rel: str) -> str:
     return tgt_rel.replace(_BOOK_PUBLISH_PREFIX, _BOOK_BUILD_PREFIX, 1)
 #: Path PREFIXES for subtrees built by a SEPARATE CI step and assembled into the deployed site, absent from
 #: the stdlib `catalog.py build` on disk. `teach/` is the MkDocs-rendered Teach-with-MAGE course companion
-#: (built into `_site/teach` by the Pages workflow's mkdocs step). A link into such a subtree is live on the
-#: deployed site but has no on-disk target during this build, so the link gate skips it by prefix.
-_CI_BUILT_PREFIXES = ("teach/",)
+#: (built into `_site/teach` by the Pages workflow's mkdocs step); `book/se-handbook/` is the handbook's
+#: MkDocs web edition (handbook/dist/site, copied into `_site/book/se-handbook/` next to the handbook PDF).
+#: A link into such a subtree is live on the deployed site but has no on-disk target during this build, so
+#: the link gate skips it by prefix.
+_CI_BUILT_PREFIXES = ("teach/", "book/se-handbook/")
 
 
 def check_html_links():

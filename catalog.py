@@ -39,6 +39,7 @@ FONTS_LINK = _dtokens.google_fonts_link()
 BOOK_MANIFEST = json.loads(open(os.path.join(ROOT, "book", "book-manifest.json"), encoding="utf-8").read())
 _PDF_HREF = "book/mage-book/" + BOOK_MANIFEST["pdf_filename"]  # root-relative href to the published PDF under the MAGE book folder (single source: the manifest)
 _HANDBOOK_PDF = "software-engineering-handbook.pdf"  # supplementary handbook PDF basename, published at book/se-handbook/ (CI-rendered from the handbook/ manuscript)
+_HANDBOOK_WEB = "book/se-handbook/index.html"  # handbook WEB edition index (self-contained MkDocs site, CI-built + published next to the PDF; chapters at book/se-handbook/<stem>.html)
 
 
 def _book_build_path(href: str) -> str:
@@ -2963,7 +2964,7 @@ def _v3_learn() -> str:
         '    <li><a href="book/mage-book/index.html"><strong>MAGE</strong></a> — a theory of engineering '
         'in the age of commodity intelligence. It asks how software engineering changes when '
         'implementation intelligence becomes abundant.</li>\n'
-        f'    <li><a href="{handbook_pdf}"><strong>The Software Engineering Handbook'
+        f'    <li><a href="{_HANDBOOK_WEB}"><strong>The Software Engineering Handbook'
         '</strong></a> — a judgment and decision-making approach to software engineering. It develops '
         'the engineering judgment that becomes increasingly important when implementation itself is '
         'cheap.</li>\n'
@@ -2978,7 +2979,7 @@ def _v3_learn() -> str:
                    thumb=("book/assets/cover-thumb.png", "MAGE book cover")) + "\n"
         + _v3_card("The Software Engineering Handbook", "",
                    "A judgment and decision-making approach to software engineering, from requirements and architecture to management, engineering knowledge, and validation.",
-                   [("Read the handbook", handbook_pdf), ("Download PDF", handbook_pdf)],
+                   [("Read the handbook", _HANDBOOK_WEB), ("Download PDF", handbook_pdf)],
                    thumb=("book/assets/handbook-cover-thumb.png", "Software Engineering Handbook cover")) + "\n"
         + _v3_card("Teach with MAGE", "",
                    "Course and teaching materials for instructors and students.",

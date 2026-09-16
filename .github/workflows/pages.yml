@@ -128,7 +128,8 @@ jobs:
       # into _site/se-handbook/ so it serves at /se-handbook/software-engineering-handbook.pdf — the raw
       # handbook/ manuscript is excluded from the artifact below (parity with course/site). Fatal on a
       # missing PDF, mirroring the book-PDF assembly assertion. (The published subfolder is `se-handbook`;
-      # the source tree keeps its `handbook/` name.)
+      # the source tree keeps its `handbook/` name.) The handbook WEB edition (MkDocs) is built + published
+      # by its own step further down, AFTER the relocate — see "Build handbook web site".
       - name: Render supplementary handbook PDF (Pandoc → Typst) + copy into _site/se-handbook
         run: |
           # The handbook build/lint scripts parse book.yaml with PyYAML (the only third-party Python dep on
@@ -193,6 +194,23 @@ jobs:
           test -f _site/book/mage-book/mage-book.pdf || { echo "ERROR: relocated book PDF missing"; exit 1; }
           test -f _site/book/mage-book/index.html || { echo "ERROR: relocated book index missing"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: relocated handbook PDF missing"; exit 1; }
+      # ── Handbook WEB edition (MkDocs → /book/se-handbook/) ──────────────────────────────────────
+      # The handbook renders a self-contained MkDocs site (handbook/dist/site — index.html + one page
+      # per chapter with relative stable-stem cross-links like href="07-design.html"), so the whole
+      # tree serves unchanged at any base path. Build it here — mkdocs + the Material theme were
+      # installed by the teach-site step above (site/requirements.txt, the same pinned toolchain);
+      # Pandoc + PyYAML by the handbook PDF step — and copy it into the relocated /book/se-handbook/
+      # home NEXT TO the handbook PDF (`cp` merges into the existing dir; the trailing assertion
+      # guards the PDF against a clobber). Chapters are then individually linkable at
+      # /book/se-handbook/<stem>.html. Runs AFTER publish_book_layout.py so the copy targets the
+      # final published layout and the relocate's flat-page enumeration never sees these files.
+      - name: Build handbook web site (MkDocs) + publish at _site/book/se-handbook/ (next to the PDF)
+        run: |
+          python3 handbook/scripts/build.py web
+          mkdir -p _site/book/se-handbook
+          cp -r handbook/dist/site/. _site/book/se-handbook/
+          test -f _site/book/se-handbook/index.html || { echo "ERROR: handbook web index missing from site artifact"; exit 1; }
+          test -f _site/book/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: handbook PDF missing after web copy"; exit 1; }
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:

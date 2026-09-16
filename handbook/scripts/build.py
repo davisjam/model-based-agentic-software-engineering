@@ -260,9 +260,13 @@ def build_web(book: dict) -> None:
         lines.append(f"- [{title}]({href})")
     (GEN_WEB / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
+    # mkdocs resolution: locally the pinned toolchain lives in the site/ venv (site/requirements.txt
+    # installed into site/.venv); in CI the same pinned requirements are installed into the runner's
+    # Python, so fall back to the running interpreter's mkdocs module when the venv binary is absent.
     mkdocs = C.GC_ROOT / "site" / ".venv" / "bin" / "mkdocs"
-    _run([str(mkdocs), "build", "-f", str(C.WEB_SRC / "mkdocs.yml"),
-          "-d", str(SITE_OUT), "--strict"])
+    mkdocs_cmd = [str(mkdocs)] if mkdocs.is_file() else [sys.executable, "-m", "mkdocs"]
+    _run(mkdocs_cmd + ["build", "-f", str(C.WEB_SRC / "mkdocs.yml"),
+                       "-d", str(SITE_OUT), "--strict"])
     print(f"WEB → {SITE_OUT.relative_to(C.HANDBOOK)}/")
 
 
