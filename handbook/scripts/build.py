@@ -28,12 +28,17 @@ import re
 import shutil
 import subprocess
 import sys
+from typing import NamedTuple
 
 import _common as C
 import lint as linter
 
 PDF_OUT = C.DIST / "software-engineering-handbook.pdf"
 EPUB_OUT = C.DIST / "software-engineering-handbook.epub"
+# Standalone per-unit PDFs (one per front-matter unit, chapter, and back-matter unit), published
+# beside the full PDF so a reader can grab a single chapter. Stems match the web pages'
+# (0-preface … 99-conclusion), so a chapter page's URL predicts its PDF's.
+CHAPTERS_PDF_DIR = C.DIST / "chapters"
 STAPLE_OUT = C.DIST / "course-landers-stapled.md"
 LECTURES = C.GC_ROOT / "course" / "lectures"
 SITE_OUT = C.DIST / "site"
@@ -133,13 +138,21 @@ def _float_offset_args(book: dict) -> dict:
     crossrefs.lua reads the two keys and starts its sequences there, keeping caption numbers and
     body cross-references identical across the three editions. The combined ePub run covers the
     whole book in one pass and needs no offset."""
+    return {path: ["-M", f"handbook_fig_offset={figs}", "-M", f"handbook_tbl_offset={tbls}"]
+            for path, (figs, tbls) in _float_offsets(book).items()}
+
+
+def _float_offsets(book: dict) -> dict:
+    """Per-file (figure, table) counter offsets in the PDF's document order — the cumulative
+    numbered-float count of everything preceding each file. Consumed by the web build (as pandoc
+    `-M` args, above) and by the standalone chapter PDFs (as Typst counter seeds), so caption
+    numbers stay identical across every edition."""
     offsets: dict = {}
     fig_total = tbl_total = 0
     handbook_fm = [C.HANDBOOK / e["file"] for e in book.get("frontmatter", [])
                    if "handbook" in (e.get("views") or [])]
     for path in handbook_fm + list(C.chapter_files(book)):
-        offsets[path] = ["-M", f"handbook_fig_offset={fig_total}",
-                        "-M", f"handbook_tbl_offset={tbl_total}"]
+        offsets[path] = (fig_total, tbl_total)
         figs, tbls = _numbered_float_counts(path)
         fig_total += figs
         tbl_total += tbls
@@ -177,14 +190,14 @@ def _gate() -> None:
         C.die("manuscript failed lint; build aborted")
 
 
-def _frontmatter_typst(book: dict, chdir_args: list[str]) -> str:
-    """Render the handbook-view front matter (Preface, etc.) to a Typst content block.
+def _frontmatter_units(book: dict, chdir_args: list[str]) -> list[tuple[C.pathlib.Path, str, str]]:
+    """Render each handbook-view front-matter unit (Preface, etc.) to its own Typst block.
 
     Only entries whose `views:` include `handbook` render here (build_web separately takes the
     entries whose `views:` include `web`). Each entry becomes an
-    unnumbered `#hb-frontmatter(title: ...)[…]` block; the returned string is inlined as the
-    template's `frontmatter:` argument (empty string → the template renders no front matter)."""
-    blocks = []
+    unnumbered `#hb-frontmatter(title: ...)[…]` block, returned as (source path, title, block) so
+    the full book can concatenate the blocks AND the per-unit PDF build can compile each alone."""
+    units = []
     for entry in book.get("frontmatter", []):
         if "handbook" not in (entry.get("views") or []):
             continue
@@ -197,9 +210,9 @@ def _frontmatter_typst(book: dict, chdir_args: list[str]) -> str:
                   "-L", str(C.FILTERS / "typst.lua")])
         body = _run(cmd)
         title = meta.get("title", fm.stem)
-        blocks.append(f'#hb-frontmatter(title: "{title}")[\n{body}\n]')
+        units.append((fm, title, f'#hb-frontmatter(title: "{title}")[\n{body}\n]'))
         print(f"  typst  ← {fm.name} (front matter)")
-    return "\n\n".join(blocks)
+    return units
 
 
 def build_pdf(book: dict) -> None:
@@ -208,9 +221,21 @@ def build_pdf(book: dict) -> None:
     C.DIST.mkdir(parents=True, exist_ok=True)
 
     chdir_args = _chapter_directory_args(book)
-    frontmatter_typst = _frontmatter_typst(book, chdir_args)
+    fm_units = _frontmatter_units(book, chdir_args)
+    frontmatter_typst = "\n\n".join(block for _, _, block in fm_units)
+
+    # The per-unit worklist for the standalone chapter PDFs. Front-matter stems carry the web
+    # pages' `0-` prefix so a chapter page's URL predicts its PDF's; the float offsets seed each
+    # excerpt's figure/table counters so caption numbers match the full book (and the web edition,
+    # which seeds the same offsets through pandoc metadata).
+    float_offsets = _float_offsets(book)
+    units: list[_Unit] = [
+        _Unit(f"0-{fm.stem}", title, "Front matter of the full book", 0,
+              *float_offsets[fm], block)
+        for fm, title, block in fm_units]
 
     chapter_typst = []
+    chapter_no = 0
     for ch in C.chapter_files(book):
         meta = _chapter_meta(ch)
         stem = ch.stem
@@ -228,6 +253,13 @@ def build_pdf(book: dict) -> None:
         # of book.yaml's chapter list, so every subsequent section is back matter too.
         if (meta.get("kind") or "chapter") != "chapter":
             chap = "#hb-begin-backmatter()\n" + chap
+            kind = (meta.get("kind") or "back matter").replace("-", " ")
+            units.append(_Unit(stem, title, f"{kind.capitalize()} of the full book", 0,
+                               *float_offsets[ch], chap))
+        else:
+            chapter_no += 1
+            units.append(_Unit(stem, title, f"Chapter {chapter_no} of the full book", chapter_no,
+                               *float_offsets[ch], chap))
         # Kept on disk for inspection (spec §24); book.typ inlines the same content so the
         # template's imports stay in scope for the chapter's #hb-callout / #hb-figure calls.
         (GEN_TYPST / f"{stem}.typ").write_text(chap, encoding="utf-8")
@@ -263,6 +295,64 @@ def build_pdf(book: dict) -> None:
           "--input", f"last_modified={_last_modified(book)}",
           "--root", str(C.HANDBOOK), "--font-path", str(C.FONT_PATH)])
     print(f"PDF → {PDF_OUT.relative_to(C.HANDBOOK)}")
+
+    _build_chapter_pdfs(book, units)
+
+
+# A per-unit row of the standalone-chapter-PDF worklist build_pdf assembles.
+class _Unit(NamedTuple):
+    stem: str            # output stem — matches the unit's web page (0-preface … 99-conclusion)
+    title: str
+    excerpt_line: str    # "Chapter N of the full book" / front- or back-matter wording
+    chapter_no: int      # seeds the CHAPTER-N eyebrow; 0 = front/back matter (no eyebrow)
+    fig_offset: int      # book-global float-counter seeds (match the full PDF + web numbering)
+    tbl_offset: int
+    typst: str           # the unit's compiled Typst — the same block the full book concatenates
+
+
+# A cross-chapter reference in a unit's generated Typst: crossrefs.lua emits exactly
+# `#link(<chap-ID>)[Short Title]` (one fixed machine-generated shape, nothing else emits `<chap-`).
+# In the full book the target label exists; in a standalone unit it does not and `typst compile`
+# would fail, so the excerpt build rewrites the link to its plain short-title text.
+_CH_XREF = re.compile(r"#link\(<chap-[\w.-]+>\)\[([^\]]*)\]")
+
+
+def _build_chapter_pdfs(book: dict, units: list[_Unit]) -> None:
+    """Emit a standalone PDF per book unit into dist/chapters/<stem>.pdf.
+
+    Each unit's ALREADY-COMPILED Typst (the same block the full book concatenates — figures,
+    tables, callouts, footnotes intact) is wrapped in the handbook-excerpt template
+    (typst/handbook.typ): the shared page geometry + type styles, opened by a light title page
+    naming the unit, the book, and the unit's place in it. The chapter-number and float-counter
+    seeds keep the eyebrow and every caption number identical to the full book's."""
+    CHAPTERS_PDF_DIR.mkdir(parents=True, exist_ok=True)
+    for u in units:
+        doc = "\n".join([
+            '#import "/typst/handbook.typ": *',
+            '#import "/typst/components.typ": *',
+            "",
+            "#show: handbook-excerpt.with(",
+            f'  title: "{u.title}",',
+            f'  book-title: "{book["title"]}",',
+            f'  subtitle: "{book["subtitle"]}",',
+            f'  author: "{book["author"]}",',
+            f'  edition: "{book["edition"]}",',
+            f'  year: "{book["year"]}",',
+            f'  excerpt-line: "{u.excerpt_line}",',
+            f"  chapter-no: {u.chapter_no},",
+            f"  fig-offset: {u.fig_offset},",
+            f"  tbl-offset: {u.tbl_offset},",
+            ")",
+            "",
+            _CH_XREF.sub(r"\1", u.typst),
+            "",
+        ])
+        src = GEN_TYPST / f"excerpt-{u.stem}.typ"
+        src.write_text(doc, encoding="utf-8")
+        _run(["typst", "compile", str(src), str(CHAPTERS_PDF_DIR / f"{u.stem}.pdf"),
+              "--root", str(C.HANDBOOK), "--font-path", str(C.FONT_PATH)])
+        print(f"  chapter PDF → dist/chapters/{u.stem}.pdf")
+    print(f"chapter PDFs → {CHAPTERS_PDF_DIR.relative_to(C.HANDBOOK)}/ ({len(units)} units)")
 
 
 def _epub_cover_png(book: dict) -> C.pathlib.Path:
@@ -363,6 +453,15 @@ def build_epub(book: dict) -> None:
     print(f"EPUB → {EPUB_OUT.relative_to(C.HANDBOOK)} ({len(sections)} sections, {size_kb} KiB)")
 
 
+def _chapter_dl_html(stem: str) -> str:
+    """The per-chapter "Download this chapter (PDF)" link, as raw HTML (not a Markdown link) so
+    MkDocs' strict link check does not chase the out-of-tree target — chapters/<stem>.pdf is
+    CI-published next to the pages (it 404s in a bare local dist/site, which is expected)."""
+    return (f'<p class="hb-chapter-dl"><a href="chapters/{stem}.pdf" '
+            'title="Download this chapter as a standalone PDF">'
+            "Download this chapter (PDF) ↓</a></p>")
+
+
 def build_web(book: dict) -> None:
     _gate()
     if GEN_WEB.exists():
@@ -390,7 +489,11 @@ def build_web(book: dict) -> None:
                   "-L", str(C.FILTERS / "web.lua")])
         body = _run(cmd)
         title = meta.get("title", fm.stem)
-        (GEN_WEB / f"0-{fm.stem}.md").write_text(f"# {title}\n\n{body}\n", encoding="utf-8")
+        # The per-unit PDF exists only for handbook-view entries (the PDF build's filter), so a
+        # web-only entry gets no download link.
+        dl = _chapter_dl_html(f"0-{fm.stem}") if "handbook" in (entry.get("views") or []) else ""
+        (GEN_WEB / f"0-{fm.stem}.md").write_text(
+            f"# {title}\n\n{dl}\n\n{body}\n", encoding="utf-8")
         fm_entries.append((title, f"0-{fm.stem}.md"))
         print(f"  web    ← {fm.name} (front matter)")
 
@@ -411,7 +514,7 @@ def build_web(book: dict) -> None:
         if (meta.get("kind") or "chapter") == "chapter":
             chapter_no += 1
             title = f"Chapter {chapter_no}: {title}"
-        page = f"# {title}\n\n{body}\n"
+        page = f"# {title}\n\n{_chapter_dl_html(stem)}\n\n{body}\n"
         (GEN_WEB / f"{stem}.md").write_text(page, encoding="utf-8")
         nav_entries.append((title, f"{stem}.md"))
         print(f"  web    ← {ch.name}")
@@ -455,8 +558,19 @@ def build_web(book: dict) -> None:
              '<div class="hb-home" markdown="1">', "",
              '<div class="hb-home-main" markdown="1">', "",
              "## Contents", ""]
+    # Each Contents entry also carries a small "(PDF)" link to its standalone chapter PDF — raw
+    # HTML like the top row, so strict mode does not chase the CI-published target. A web-only
+    # front-matter entry has no per-unit PDF (the PDF build takes handbook-view entries), so its
+    # row stays link-free.
+    pdf_stems = {f"0-{C.pathlib.Path(e['file']).stem}" for e in book.get("frontmatter", [])
+                 if "handbook" in (e.get("views") or [])}
+    pdf_stems |= {ch.stem for ch in C.chapter_files(book)}
     for title, href in fm_entries + nav_entries:
-        lines.append(f"- [{title}]({href})")
+        stem = href[:-3]
+        pdf = (f' <a class="hb-toc-pdf" href="chapters/{stem}.pdf" '
+               'title="Download this chapter as a standalone PDF">(PDF)</a>'
+               if stem in pdf_stems else "")
+        lines.append(f"- [{title}]({href}){pdf}")
     # The cover rides its own raw (non-markdown) div so it stays a direct flex child of .hb-home —
     # a bare <img> line inside a markdown="1" parent gets <p>-wrapped, which would strand the flex
     # order/width rules on the img instead of the flex item.

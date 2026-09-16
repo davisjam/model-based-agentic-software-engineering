@@ -150,6 +150,12 @@
   border-radius: 6px; color: var(--hb-accent);
 }
 .md-typeset .hb-top-row a:hover { border-color: var(--hb-accent); }
+
+/* Per-chapter PDF downloads: the small link under each chapter's title, and the home Contents'
+ * "(PDF)" affordance beside each entry — quiet accents, not buttons. */
+.md-typeset .hb-chapter-dl { margin: -0.4em auto 1.4em; }
+.md-typeset .hb-chapter-dl a { font-size: 0.72rem; font-weight: 600; color: var(--hb-accent); }
+.md-typeset .hb-toc-pdf { font-size: 0.8em; color: var(--hb-accent); white-space: nowrap; }
 /* Contents left / cover right on a wide screen; below the breakpoint the row stacks and the cover
  * moves to the TOP at a small size (order: -1), just under the title block. */
 .md-typeset .hb-home { display: flex; align-items: flex-start; gap: 2em; }

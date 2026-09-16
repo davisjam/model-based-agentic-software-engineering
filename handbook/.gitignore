@@ -3,6 +3,10 @@
 # outputs are created on demand, not tracked.
 /generated/
 /dist/
+# The standalone per-chapter PDFs (dist/chapters/<stem>.pdf) are binaries created in CI + at push
+# time, never committed — already covered by /dist/ above; named here so the pattern survives any
+# future narrowing of that ignore.
+/dist/chapters/*.pdf
 
 # The ePub edition is a binary build artifact wherever it lands (dist/ is already covered above;
 # this guards a stray pandoc -o elsewhere under handbook/) — created in CI + at push time, never committed.

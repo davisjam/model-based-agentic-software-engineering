@@ -147,6 +147,8 @@ jobs:
           # The handbook build/lint scripts parse book.yaml with PyYAML (the only third-party Python dep on
           # the PDF path; Pandoc + Typst are external CLIs, installed above). catalog.py itself stays
           # stdlib-only, so nothing has installed PyYAML yet — install it here, pinned to the README's v6.
+          # `make book` also emits the standalone per-chapter PDFs (handbook/dist/chapters/<stem>.pdf);
+          # the handbook-web step below copies + asserts them into the published /book/se-handbook/chapters/.
           python3 -m pip install "pyyaml>=6,<7"
           make -C handbook book
           mkdir -p _site/se-handbook
@@ -252,6 +254,26 @@ jobs:
           test -f _site/book/se-handbook/index.html || { echo "ERROR: handbook web index missing from site artifact"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: handbook PDF missing after web copy"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.epub || { echo "ERROR: handbook ePub missing after web copy"; exit 1; }
+          # Standalone per-chapter PDFs (emitted by the `make -C handbook book` step above) publish
+          # NEXT TO the pages that link them (each chapter page's "Download this chapter (PDF)"
+          # resolves to chapters/<stem>.pdf). Copied + asserted here — after publish_book_layout.py,
+          # before the artifact upload — so nothing later can rewrite the tree under them. The
+          # assertion derives the expected stem set from book.yaml (never a hand-counted list), so a
+          # new chapter is asserted the moment it enters the book.
+          mkdir -p _site/book/se-handbook/chapters
+          cp handbook/dist/chapters/*.pdf _site/book/se-handbook/chapters/
+          python3 - <<'EOF'
+          import pathlib, yaml
+          book = yaml.safe_load(open("handbook/book.yaml", encoding="utf-8"))
+          stems = ["0-" + pathlib.Path(e["file"]).stem for e in book.get("frontmatter", [])
+                   if "handbook" in (e.get("views") or [])]
+          stems += [pathlib.Path(c).stem for c in book["chapters"]]
+          missing = [s for s in stems
+                     if not pathlib.Path(f"_site/book/se-handbook/chapters/{s}.pdf").is_file()]
+          if missing:
+              raise SystemExit(f"ERROR: handbook chapter PDFs missing from site artifact: {missing}")
+          print(f"all {len(stems)} handbook chapter PDFs published at /book/se-handbook/chapters/")
+          EOF
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:

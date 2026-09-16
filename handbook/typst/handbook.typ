@@ -35,26 +35,22 @@
   else { "" }
 }
 
-#let handbook(
-  title: "",
-  subtitle: "",
-  author: "",
-  edition: "1",
-  year: "",
-  copyright-years: "",
-  first-published: "",
-  frontmatter: none,
-  body,
-) = {
-  set document(title: title, author: author)
-  set page(
-    paper: "us-letter",
-    margin: (top: 1.05in, bottom: 1.05in, inside: 1.3in, outside: 1.1in),
-    fill: palette.paper,
-    numbering: "1",
-    number-align: center,
-    footer-descent: 0.5em,
-  )
+// Shared page geometry — one dict, spread into `set page(..hb-page-setup)` by both the full book
+// and the standalone per-chapter excerpt (handbook-excerpt below), so the two print forms cannot
+// drift on paper, margins, or numbering.
+#let hb-page-setup = (
+  paper: "us-letter",
+  margin: (top: 1.05in, bottom: 1.05in, inside: 1.3in, outside: 1.1in),
+  fill: palette.paper,
+  numbering: "1",
+  number-align: center,
+  footer-descent: 0.5em,
+)
+
+// Shared type + component styles: body face, headings (chapter opening with the CHAPTER eyebrow,
+// coda split, section faces), code, and figure captions. Applied via `show: hb-styles` by both the
+// full template and the excerpt template — the chapter content renders identically in either.
+#let hb-styles(body) = {
   set text(font: font-body, size: 11pt, fill: palette.ink, lang: "en")
   set par(justify: true, leading: 0.72em, first-line-indent: 1.2em, spacing: 0.72em)
   show link: set text(fill: palette.accent)
@@ -124,6 +120,24 @@
       ]
     ]
   ]
+
+  body
+}
+
+#let handbook(
+  title: "",
+  subtitle: "",
+  author: "",
+  edition: "1",
+  year: "",
+  copyright-years: "",
+  first-published: "",
+  frontmatter: none,
+  body,
+) = {
+  set document(title: title, author: author)
+  set page(..hb-page-setup)
+  show: hb-styles
 
   // Running header: the book title, with a hairline rule.
   set page(header: context {
@@ -209,5 +223,57 @@
   // ── Body ─────────────────────────────────────────────────────────────────
   set page(numbering: "1")
   counter(page).update(1)
+  body
+}
+
+// Standalone per-unit excerpt (the per-chapter PDFs build.py emits into dist/chapters/). Same page
+// geometry and type/component styles as the full book via hb-page-setup + hb-styles; instead of the
+// cover / imprint / Contents, it opens with a LIGHT title page — the unit's own title, the book
+// lockup, and an `excerpt-line` ("Chapter N of the full book") — so a loose chapter PDF names its
+// book. `chapter-no` seats the chapter counter so the unit's "CHAPTER N" eyebrow shows the number
+// it carries in the full book (0 = front/back matter: hb-frontmatter draws no eyebrow, and the
+// generated back-matter content flips hb-begin-backmatter() itself).
+#let handbook-excerpt(
+  title: "",
+  book-title: "",
+  subtitle: "",
+  author: "",
+  edition: "1",
+  year: "",
+  excerpt-line: "",
+  chapter-no: 0,
+  fig-offset: 0,
+  tbl-offset: 0,
+  body,
+) = {
+  set document(title: title + " — " + book-title, author: author)
+  set page(..hb-page-setup)
+  show: hb-styles
+
+  // Light title page (un-numbered, not counted): identification, not a cover — no artwork.
+  page(numbering: none, header: none, footer: none)[
+    #v(2.4in)
+    #set par(justify: false, first-line-indent: 0em)
+    #text(font: font-display, size: 30pt, weight: 700, fill: palette.ink)[#title]
+    #v(0.35em)
+    #line(length: 35%, stroke: 1pt + palette.accent)
+    #v(1.0em)
+    #text(font: font-display, size: 14pt, weight: 700, fill: palette.ink)[#book-title]
+    #v(0.15em)
+    #text(size: 11pt, fill: palette.muted, style: "italic")[#subtitle]
+    #v(1.1em)
+    #text(size: 11pt, fill: palette.ink)[#author]
+    #v(0.3em)
+    #text(size: 9.5pt, fill: palette.muted)[#excerpt-line · Edition #edition · #year]
+  ]
+
+  // Content pages number from 1, mirroring the full book's body (which also runs header-free).
+  counter(page).update(1)
+  if chapter-no > 0 { hb-chapter.update(chapter-no - 1) }
+  // Seed the float counters with the count of every numbered float BEFORE this unit in the full
+  // book, so "Figure N" / "Table N" match the full PDF and the web edition (which seeds the same
+  // offsets through pandoc metadata).
+  counter(figure.where(kind: image)).update(fig-offset)
+  counter(figure.where(kind: table)).update(tbl-offset)
   body
 }
