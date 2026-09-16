@@ -1,5 +1,5 @@
 <!-- part-foreshadows: conversions-compound -->
-Part V supplied two views of the evidence. The originating case showed how MAGE's structures emerged
+Chapter 5 supplied two views of the evidence. The originating case showed how MAGE's structures emerged
 under sustained engineering pressure; the industrial reconstructions showed related structures arising
 independently under different constraints. Neither establishes a universal law. Together, they give us
 something worth explaining.
@@ -15,7 +15,7 @@ ask where those predictions should be expected to hold. MAGE costs something to 
 coordinate, and govern, and not every engineering judgment can or should become durable machinery. The
 scope conditions therefore bound the theory rather than precede it.
 
-The Part then turns from claims to inquiry. Its final chapter turns the theory, predictions, and scope
+The chapter then turns from claims to inquiry. Its final section turns the theory, predictions, and scope
 conditions into a research agenda: what to measure, what comparisons could distinguish the proposed
 mechanisms, which quantities remain unknown, and what evidence would strengthen—or weaken—the account.
 

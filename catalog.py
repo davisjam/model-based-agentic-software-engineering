@@ -1476,8 +1476,8 @@ def cmd_validate(_args) -> int:
             print(f"             {f}")
     # CAPABILITY-LADDER MODEL — AUDIT-ONLY (rule #55 first landing). The book's ONE canonical 8-rung
     # Representation Capability Ladder (book-models/capability_ladder_declared.json) is a queryable,
-    # drift-gated model: the TEACHING abstraction the opening figure / new Part 2 / Part 4 adoption path /
-    # Appendix-A stacks / Appendix-E skill rung / Part 6 comparative all project. This band reports the
+    # drift-gated model: the TEACHING abstraction the opening figure / new Chapter 2 / Chapter 4 adoption path /
+    # Appendix-A stacks / Appendix-E skill rung / Chapter 6 comparative all project. This band reports the
     # structural invariants CL1 (rung id + order 1..8 contiguous + non-empty text + closed lean enum) / CL2
     # (the modeling_ceiling_map is a TOTAL 12->8 join to the Part-6 empirical matrix — the ladder TEACHES, the
     # matrix MEASURES, the map keeps them from diverging) / CL3 (the closed anti-CMM guard is present) — but
@@ -2686,7 +2686,7 @@ _BLOOM_ORDER = ["know", "understand", "apply", "analyze", "evaluate", "create"]
 def _landing_outcomes() -> str:
     """The core learning-outcomes view — 'what you'll be able to do' — projected from
     book-models/outcomes.json filtered by book/data/outcomes-site.json's selection, tiered as a
-    Module → Lesson → outcome course structure (Module = Part, Lesson = chapter). The site surfaces two
+    Module → Lesson → outcome course structure (Module = book chapter, Lesson = section). The site surfaces two
     tiers: the whole-book PROGRAM outcomes, then one row per MODULE (each carrying its Part-level outcome
     and a count of the Lessons it contains — the finer Lesson/section outcomes stay book-only). Each row
     renders the outcome's `statement` STRAIGHT FROM the model (no copy), a bloom-verb tag, and a link to
@@ -3625,17 +3625,17 @@ _APPLY_PAGE = "apply-mage.html"
 
 def _apply_body() -> str:
     """The 'Apply the MAGE Method' page — a concise, figure-led practical summary of the method (NOT a second
-    copy of Part 4). Three questions, three shared-source book figures: what do I do (Fig 4.1-2), where do I
-    start (Fig 4.2-1), and what changes as I delegate more (Fig G.1-1). It ends on pointers into Part 4 and
+    copy of Chapter 4). Three questions, three shared-source book figures: what do I do (Fig 4.1-2), where do I
+    start (Fig 4.2-1), and what changes as I delegate more (Fig G.1-1). It ends on pointers into Chapter 4 and
     Appendix G — no mechanism-catalogue exposition (the catalogue is no longer advertised). Exactly one
     <h1>. website-v3 (260906): replaces the old 'Constructing the GEE' catalogue page."""
     p: "list[str]" = []
     p.append("<h1>Apply the MAGE Method</h1>")
     p.append(render_md(
         "This page is a concise guide to applying MAGE. It summarizes the practical argument rather than "
-        "reproducing it: Part 4 of the book develops the method in full, and Appendix G develops "
+        "reproducing it: Chapter 4 of the book develops the method in full, and Appendix G develops "
         "organizational adoption.\n\n"
-        "[Read Part 4: The MAGE Method →](book/mage-book/4.1-the-mage-workflow.html) · "
+        "[Read Chapter 4: The MAGE Method →](book/mage-book/4.1-the-mage-workflow.html) · "
         "[Read Appendix G: Adopting GenAI in an Organization →](book/mage-book/appendix-adopting-genai.html)"))
     p.append(render_md(
         "## Engineer the environment, not just the realization\n\n"
@@ -3656,7 +3656,7 @@ def _apply_body() -> str:
         "learned.\n\n"
         "The result is an iterative engineering process, not an attempt to specify everything correctly in "
         "advance.\n\n"
-        "[Read the full method in Part 4 →](book/mage-book/4.1-the-mage-workflow.html)"))
+        "[Read the full method in Chapter 4 →](book/mage-book/4.1-the-mage-workflow.html)"))
     p.append(render_md(
         "## Start where you are\n\n"
         "There is no single MAGE starting point. Where to begin depends on two questions: how much of the "
@@ -3692,9 +3692,9 @@ def _apply_body() -> str:
         "Different systems—and different requirements within the same system—can support different amounts "
         "of delegation.\n\n"
         "## Go deeper\n\n"
-        "**The MAGE Method — Part 4.** The complete treatment of the practical method: choosing work units, "
+        "**The MAGE Method — Chapter 4.** The complete treatment of the practical method: choosing work units, "
         "modeling, alignment, governance conversion, brownfield migration, validation, operations, and "
-        "reusable skills. [Read Part 4 →](book/mage-book/4.1-the-mage-workflow.html)\n\n"
+        "reusable skills. [Read Chapter 4 →](book/mage-book/4.1-the-mage-workflow.html)\n\n"
         "**Adopting GenAI in an Organization — Appendix G.** Guidance for moving from individual assistance "
         "toward bounded delegation: identifying the functions people currently supply, deciding which "
         "responsibilities can move into the engineering environment, and expanding delegation where the "

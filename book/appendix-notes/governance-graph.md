@@ -35,7 +35,7 @@ A drift lint re-resolves each node's code anchor and reddens when a mechanism is
 This is a *second-order* governance mechanism. Every other mechanism in this appendix governs the product,
 the models, or the fleet; this one governs **the controls themselves** — it models the interactions among
 your guardrails so a collision between two of them is a finding at authoring time, not a surprise in
-production. It is the structural counterpart to the governance-conversion discipline in Part 6: that
+production. It is the structural counterpart to the governance-conversion discipline in Chapter 6: that
 discipline turns a recurring failure into a control; this graph keeps the growing population of controls from
 quietly fighting each other as it grows.
 

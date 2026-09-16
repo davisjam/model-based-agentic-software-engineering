@@ -1,7 +1,7 @@
 <!-- point: different-skill-kinds-require-different-structures | Different skill kinds require different structures; two get recipes. | terms: process-skill, mastery-skill, skill-soft-control -->
 Skills of different kinds require different structures. Tool-skills mostly package capability-specific
 guidance. Process-skills preserve recurring ways of working. Mastery-skills preserve reusable models and
-judgment. This chapter gives construction methods for the latter two and a common set of failure modes to
+judgment. This section gives construction methods for the latter two and a common set of failure modes to
 test before shipping.
 
 ## Anatomy

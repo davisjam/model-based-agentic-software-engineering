@@ -28,6 +28,6 @@ produce changes faster than engineers can specify, understand, validate, and gov
 let later work reuse representations across many acts of implementation; validators and gates can
 likewise reuse selected engineering judgments by evaluating and enforcing them repeatedly. Engineering effort therefore moves toward deciding
 what to represent, what evidence to require, which obligations to enforce, and how the surrounding
-environment should preserve those decisions across later work. This Part asks what follows from that
+environment should preserve those decisions across later work. This chapter asks what follows from that
 shift: what remains hard, which properties of the new substrate matter, and what engineering
 problems they leave us to solve.

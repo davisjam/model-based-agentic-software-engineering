@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Part IV Fig — audit-drain-promote-generalized.svg (draft; folds to book/assets/).
+<!-- Chapter 4 Fig — audit-drain-promote-generalized.svg (draft; folds to book/assets/).
      The generalized form of Audit -> Drain -> Promote. An AUDIT yields FINDINGS that must be
      PARTITIONED before repair. The partition splits three ways: DRAIN (mechanical work, gray),
      REDESIGN (new structure, blue - it produces a model), and ACCEPT / EXEMPT (gray dead-end).

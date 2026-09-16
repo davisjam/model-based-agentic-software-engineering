@@ -1,5 +1,5 @@
 <!-- point: two-recipes-applied-to-three-skills-with-different-roles | Two recipes applied to three skills with different roles. | terms: self-communicate, self-governance, self-operate, process-skill -->
-This chapter applies the two recipes to three skills with different roles. self-communicate and
+This section applies the two recipes to three skills with different roles. self-communicate and
 self-governance are mastery-skills: their primary value is reusable expertise for work that continues to
 require substantial judgment. self-operate is a process-skill: its primary value is the recurring
 operational lifecycle it preserves. Together they show both why the distinction matters and why it is not

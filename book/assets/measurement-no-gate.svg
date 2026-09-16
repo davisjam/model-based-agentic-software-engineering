@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: measurement-no-gate). Part V HISTORY figure for chapter 5.4 (measurement, the story that stops before the gate).
+<!-- Hand-authored SVG (label: measurement-no-gate). Chapter 5 HISTORY figure for chapter 5.4 (measurement, the story that stops before the gate).
      GENRE: an engineering history, not a system model (figures.md §"History figures are a distinct genre").
      ONE JOB: a model can be deliberately left unbound — modeled, observed, reported, not enforced. A vertical
      chain: timeout -> measurement -> model -> evidence -> report, then a DEFERRED enforcement node drawn as a ghost.
-     The tail MODEL -> EVIDENCE -> REPORT is the deliberate visual rhyme with Part III's ungated measurement
+     The tail MODEL -> EVIDENCE -> REPORT is the deliberate visual rhyme with Chapter 3's ungated measurement
      (figures brief section 10); the terminal enforcement node is drawn in the derived/not-yet
      idiom — a dashed muted box prefixed with a question mark and bracketed "no gate yet — deferred" — so
      the picture shows the model reaching a would-be gate that was consciously not switched on. Shared house
@@ -23,7 +23,7 @@
     whose evidence lets the environment report a would-be breach. The chain ends at report — and then an
     enforcement node drawn as a ghost: a dashed box prefixed with a question mark and marked no gate yet,
     deliberately deferred. The model reports a predicted breach but does not refuse the work. The tail model,
-    evidence, report rhymes with Part III's ungated measurement. The lesson: a model can be left unbound on
+    evidence, report rhymes with Chapter 3's ungated measurement. The lesson: a model can be left unbound on
     purpose — modeled and observed, reported, not yet enforced.</desc>
 
   <defs>

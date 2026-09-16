@@ -3,7 +3,7 @@
 ### G.2.1 Weekly Commit Volume {#velocity}
 
 Weekly commit volume rose sharply as the agent fleet expanded, exceeded 1,000 commits per week during
-sustained high-volume periods, and briefly exceeded 3,000. Volume declined through the interval Part V
+sustained high-volume periods, and briefly exceeded 3,000. Volume declined through the interval Chapter 5
 identifies as hardening, then rose again.
 
 During hardening, a larger share of classified commits concerned models, validation, tests, and control
@@ -21,7 +21,7 @@ fell.[^g-vacation] [ref:velocity-curve] plots the weekly series.
 
 Production and support-apparatus source were counted at four dated repository states across the seven
 primary source roots. The counting procedure fails if an expected root is absent. These counts are the
-source for the support-ratio curve in Part V.
+source for the support-ratio curve in Chapter 5.
 
 | Window | Production LoC | Support LoC | Support ratio |
 |---|---:|---:|---:|
@@ -57,7 +57,7 @@ Deletions fall sharply in the later windows, and both paths become strongly net-
 [ref:churn-per-path] plots these counts.
 
 These counts are a repository-motion proxy, not the theoretical concept of churn used elsewhere in the
-book. Generated bundles and vendored trees are included where they occur; Part V's accounting note
+book. Generated bundles and vendored trees are included where they occur; Chapter 5's accounting note
 describes that bounded inflation.
 
 <!-- label: churn-per-path -->
@@ -200,7 +200,7 @@ how much lower-level structure an agent must reconstruct before acting.
 
 ## G.6 Cost and Scale Receipts {#cost-receipt}
 
-These quantities establish orders of magnitude relevant to the Part V discussion. Their units, scopes,
+These quantities establish orders of magnitude relevant to the Chapter 5 discussion. Their units, scopes,
 and cost categories differ; they are not entries in a comparative cost model.
 
 | Quantity | Observed or estimated value | Basis |
@@ -273,5 +273,5 @@ ecosystem; it did not collect those outcomes under a controlled counterfactual. 
 therefore establish what happened within the case and which mechanisms were exercised, not the effects
 another organization should expect from adopting MAGE.
 
-The ledger's narrower purpose is traceability: the quantitative claims in Part V can be inspected
+The ledger's narrower purpose is traceability: the quantitative claims in Chapter 5 can be inspected
 independently of the surrounding argument.

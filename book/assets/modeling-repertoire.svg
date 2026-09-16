@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Part 2 §2.1.5 repertoire spread — hand-authored SVG in the shared visual grammar. Fold to book/assets/. -->
+<!-- Chapter 2 §2.1.5 repertoire spread — hand-authored SVG in the shared visual grammar. Fold to book/assets/. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1816 1568" width="1816" height="1568" role="img" aria-labelledby="modeling-repertoireT modeling-repertoireD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="modeling-repertoireT">The engineering modeling repertoire: nine familiar model forms</title>
   <desc id="modeling-repertoireD">A three-by-three spread of nine familiar modeling forms — component/dependency, finite-state, data-flow, ownership/resource, decision/policy, quantitative, entity/schema, provenance/derivation, and call/control-flow. Each panel shows a small diagram plus a Question, Property, and Analysis line. The same graphical primitives — rounded entities, labeled directed arrows, a struck-through dashed arrow for a forbidden relation, and a bracketed envelope for a bound — recur across panels while the semantics change, and each family carries its own ground colour.</desc>

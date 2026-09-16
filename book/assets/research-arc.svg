@@ -25,7 +25,7 @@
     conversion, engineering capital. Stage three, independent industrial accounts — eight independent industrial
     systems. Stage four, comparative reconstruction — each system reconstructed in MAGE's vocabulary:
     recurring moves, variation, limits. That comparison refines — it does not validate — the theory. Stage
-    five, MAGE theory — the account developed in Part VI. Beneath it a split: the originating case gives
+    five, MAGE theory — the account developed in Chapter 6. Beneath it a split: the originating case gives
     DEPTH (mechanism and sequence); the industrial reconstructions give BREADTH (variation and alternatives);
     together they converge on a stronger basis for theory. The theory stages are green (modeling); the
     evidence and procedure stages and the spine are gray (neutral).</desc>
@@ -81,7 +81,7 @@
   <!-- N5 MAGE theory (modeling, emphasis: the refined theory) -->
   <rect id="mage-theory" x="240" y="458" width="520" height="64" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
   <text x="500" y="486" text-anchor="middle" font-size="21" font-weight="700" fill="#155c38">MAGE theory</text>
-  <text x="500" y="508" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the refined account developed in Part VI</text>
+  <text x="500" y="508" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the refined account developed in Chapter 6</text>
 
   <!-- DEPTH / BREADTH split: what each evidence source contributes.
        Fork encoded as one path per branch, each running mage-theory -> its target; the branches share the

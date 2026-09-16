@@ -1,7 +1,7 @@
 {
-  "_note": "Definitions model — the SSOT for the book's four core-term definitions and their SITE realization. A sibling of concepts.json: same 'structured model the site is a projection of' discipline, scoped to the green-box DEFINITIONS. Each record is the concise green-box definition (`box`) plus the per-aspect elaboration keys the site's Definitions section renders, and the traceability every definition owes: its site realization (`site_home` — the id on the landing), its OWED book home (`book_home_owed` — the planned Part-2 Definitions section, NOT written yet; the projection thesis 'book coverage ⊇ site framings' makes this a tracked debt the drain fills), the source draft it is derived from (`derived_from`), and its cross-links to the lexicon/index-terms registry and to concepts.json. The drift check (`check_definitions_*` in tests/html.py) joins on the slug and asserts: (a) every record's `site_home` resolves to an id on the built landing (site element traces to a model element), and (b) every definition surfaced on the site has a record here (no unbacked site definition). Lands AUDIT-ONLY-first (the repo's blocking-lint landing discipline) while the book home is still owed. `book_home_owed.status` in {owed, drafted, landed}; a definition whose book home is `landed` (an `<!-- index-def: <slug> -->` tagged in a chapter) can promote to a resolved book_home the way concepts.json derives one. Queryable via `catalog.py definitions`.",
+  "_note": "Definitions model — the SSOT for the book's four core-term definitions and their SITE realization. A sibling of concepts.json: same 'structured model the site is a projection of' discipline, scoped to the green-box DEFINITIONS. Each record is the concise green-box definition (`box`) plus the per-aspect elaboration keys the site's Definitions section renders, and the traceability every definition owes: its site realization (`site_home` — the id on the landing), its OWED book home (`book_home_owed` — the planned Chapter-2 Definitions section, NOT written yet; the projection thesis 'book coverage ⊇ site framings' makes this a tracked debt the drain fills), the source draft it is derived from (`derived_from`), and its cross-links to the lexicon/index-terms registry and to concepts.json. The drift check (`check_definitions_*` in tests/html.py) joins on the slug and asserts: (a) every record's `site_home` resolves to an id on the built landing (site element traces to a model element), and (b) every definition surfaced on the site has a record here (no unbacked site definition). Lands AUDIT-ONLY-first (the repo's blocking-lint landing discipline) while the book home is still owed. `book_home_owed.status` in {owed, drafted, landed}; a definition whose book home is `landed` (an `<!-- index-def: <slug> -->` tagged in a chapter) can promote to a resolved book_home the way concepts.json derives one. Queryable via `catalog.py definitions`.",
 
-  "_derivation": "Derived (not hand-copied) from book/transcripts/DEFINITIONS-DRAFT.md — the green-box + per-aspect-elaboration drafts. When that draft or its Part-2 landing changes, regenerate this record set and re-check.",
+  "_derivation": "Derived (not hand-copied) from book/transcripts/DEFINITIONS-DRAFT.md — the green-box + per-aspect-elaboration drafts. When that draft or its Chapter-2 landing changes, regenerate this record set and re-check.",
 
   "_book_home_note": "The four CORE-TERM definitions (model, agent, engineering, software-engineering) are tagged with an index-def in §2.1 (The Agent Stack), so their `book_home_owed.status: landed` and each carries a resolved `book_home` (the `#idx-def-<slug>` anchor on the 2.1 page). The fifth record, `structured`, is the ADJECTIVE rider on the model definition — also index-def-tagged in §2.1 (`book_home_owed.status: landed`, `book_home` → `#idx-def-structured`), rendering as the blue def-box in the web book + PDF. The book home is the definitions' realization; the landing no longer projects them (see `_book_only_note`).",
 
@@ -20,7 +20,7 @@
     "site_home": "N/A",
     "derived_from": "book/transcripts/DEFINITIONS-DRAFT.md#Model",
     "book_home": "the-agent-stack#idx-def-model",
-    "book_home_owed": {"section": "Part 2 — §2.1 The Agent Stack", "status": "landed", "note": "Landed: the definition is tagged with an index-def in §2.1 (The Agent Stack) and renders as the blue def-box in the web book + PDF."},
+    "book_home_owed": {"section": "Chapter 2 — §2.1 The Agent Stack", "status": "landed", "note": "Landed: the definition is tagged with an index-def in §2.1 (The Agent Stack) and renders as the blue def-box in the web book + PDF."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -37,7 +37,7 @@
     "site_home": "N/A",
     "derived_from": "book/transcripts/DEFINITIONS-DRAFT.md#Agent",
     "book_home": "the-agent-stack#idx-def-agent",
-    "book_home_owed": {"section": "Part 2 — §2.1 The Agent Stack", "status": "landed", "note": "Landed: the definition is tagged with an index-def in §2.1 (The Agent Stack) and renders as the blue def-box in the web book + PDF."},
+    "book_home_owed": {"section": "Chapter 2 — §2.1 The Agent Stack", "status": "landed", "note": "Landed: the definition is tagged with an index-def in §2.1 (The Agent Stack) and renders as the blue def-box in the web book + PDF."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -53,7 +53,7 @@
     "site_home": "N/A",
     "derived_from": "book/transcripts/DEFINITIONS-DRAFT.md#Engineering",
     "book_home": "the-agent-stack#idx-def-engineering",
-    "book_home_owed": {"section": "Part 2 — §2.1 The Agent Stack", "status": "landed", "note": "Landed: the definition is tagged with an index-def in §2.1 (The Agent Stack) and renders as the blue def-box in the web book + PDF."},
+    "book_home_owed": {"section": "Chapter 2 — §2.1 The Agent Stack", "status": "landed", "note": "Landed: the definition is tagged with an index-def in §2.1 (The Agent Stack) and renders as the blue def-box in the web book + PDF."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -68,7 +68,7 @@
     "site_home": "N/A",
     "derived_from": "book/transcripts/DEFINITIONS-DRAFT.md#Software-engineering",
     "book_home": "the-agent-stack#idx-def-software-engineering",
-    "book_home_owed": {"section": "Part 2 — §2.1 The Agent Stack", "status": "landed", "note": "Landed: the definition is tagged with an index-def in §2.1 (The Agent Stack) and renders as the blue def-box in the web book + PDF."},
+    "book_home_owed": {"section": "Chapter 2 — §2.1 The Agent Stack", "status": "landed", "note": "Landed: the definition is tagged with an index-def in §2.1 (The Agent Stack) and renders as the blue def-box in the web book + PDF."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -84,7 +84,7 @@
     "site_home": "N/A",
     "derived_from": "book/transcripts/DEFINITIONS-DRAFT.md#Structured",
     "book_home": "the-agent-stack#idx-def-structured",
-    "book_home_owed": {"section": "Part 2 — §2.1 The Agent Stack", "status": "landed", "note": "Landed: the adjective rider on the model definition in §2.1 is tagged with an index-def and renders as the blue def-box in the web book + PDF (the #idx-def-structured anchor). On the landing it reads as the rider on the four definitions, not a fifth peer."},
+    "book_home_owed": {"section": "Chapter 2 — §2.1 The Agent Stack", "status": "landed", "note": "Landed: the adjective rider on the model definition in §2.1 is tagged with an index-def and renders as the blue def-box in the web book + PDF (the #idx-def-structured anchor). On the landing it reads as the rider on the four definitions, not a fifth peer."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -115,7 +115,7 @@
     "site_home": "N/A",
     "derived_from": "book/_design/drafts/compounding-principle-design-260806.md#naming-recommendation",
     "book_home": "the-books-language#idx-def-compounding",
-    "book_home_owed": {"section": "Front Matter — The Book's Language (glossary, core-ideas group)", "status": "landed", "note": "Landed: the compounding green-box in the glossary's core-ideas group carries the index-def tag and renders as the light def-inset. Book-only by design; the formal treatment (the Compounding-Governance proposition + the Bureaucracy-vs-Engineering-capital section) is in Part 6. The compounding site preview folded into the reframed churn/compounding Big-Idea page (concept-churn.html) when Big Idea 1 was reframed to 'Choose Between Churn and Compounding'; the standalone concept-compounding page was removed. No landing Big-Idea card (six stays six)."},
+    "book_home_owed": {"section": "Front Matter — The Book's Language (glossary, core-ideas group)", "status": "landed", "note": "Landed: the compounding green-box in the glossary's core-ideas group carries the index-def tag and renders as the light def-inset. Book-only by design; the formal treatment (the Compounding-Governance proposition + the Bureaucracy-vs-Engineering-capital section) is in Chapter 6. The compounding site preview folded into the reframed churn/compounding Big-Idea page (concept-churn.html) when Big Idea 1 was reframed to 'Choose Between Churn and Compounding'; the standalone concept-compounding page was removed. No landing Big-Idea card (six stays six)."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -131,7 +131,7 @@
     "site_home": "N/A",
     "derived_from": "book/_design/book-editorial-discipline-directive-260802.md#bound-the-governance-mechanism-definition",
     "book_home": "the-governed-environment#idx-def-governance-mechanism",
-    "book_home_owed": {"section": "Part 2 — §2.3 The Governed Environment", "status": "landed", "note": "Landed: the bounded-definition inset in 2.3's 'Four classes, one bounded term' subsection carries the index-def tag. Book-only by design."},
+    "book_home_owed": {"section": "Chapter 2 — §2.3 The Governed Environment", "status": "landed", "note": "Landed: the bounded-definition inset in 2.3's 'Four classes, one bounded term' subsection carries the index-def tag. Book-only by design."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -147,7 +147,7 @@
     "site_home": "N/A",
     "derived_from": "book/_design/book-editorial-discipline-directive-260802.md#the-engineered-agent-loop",
     "book_home": "the-agent-stack#idx-def-engineered-agent-loop",
-    "book_home_owed": {"section": "Part 3 — §3.1 The Agent Stack", "status": "landed", "note": "Landed: the engineered-loop index-def now anchors on §3.1 The Agent Stack's soft/hard/feedback three-kinds paragraph (re-homed from §1.3's orphan loop-def block when R24 restored §1.3's ending). Book-only by design."},
+    "book_home_owed": {"section": "Chapter 3 — §3.1 The Agent Stack", "status": "landed", "note": "Landed: the engineered-loop index-def now anchors on §3.1 The Agent Stack's soft/hard/feedback three-kinds paragraph (re-homed from §1.3's orphan loop-def block when R24 restored §1.3's ending). Book-only by design."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -162,7 +162,7 @@
     "site_home": "N/A",
     "derived_from": "book/part1/1.3-the-agentic-substrate.md#reasoning-horizon",
     "book_home": "reasoning-horizon#idx-def-reasoning-horizon",
-    "book_home_owed": {"section": "Part 1 — §1.3 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, the chapter that develops it (relocated from §1.1 when the Task-Mode fork moved to Part IV §4.1). Book-only by design; the modeling-principle reframe (§1.4) is where the causal chain it names is worked out."},
+    "book_home_owed": {"section": "Chapter 1 — §1.3 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, the chapter that develops it (relocated from §1.1 when the Task-Mode fork moved to Chapter 4 §4.1). Book-only by design; the modeling-principle reframe (§1.4) is where the causal chain it names is worked out."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -177,7 +177,7 @@
     "site_home": "N/A",
     "derived_from": "book/part1/1.3-the-agentic-substrate.md#long-horizon-task",
     "book_home": "reasoning-horizon#idx-def-long-horizon-task",
-    "book_home_owed": {"section": "Part 1 — §1.3 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, its defining chapter, alongside reasoning horizon (relocated from §1.1 when the Task-Mode fork moved to Part IV §4.1). Book-only by design."},
+    "book_home_owed": {"section": "Chapter 1 — §1.3 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, its defining chapter, alongside reasoning horizon (relocated from §1.1 when the Task-Mode fork moved to Chapter 4 §4.1). Book-only by design."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   }

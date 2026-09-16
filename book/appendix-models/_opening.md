@@ -1,4 +1,4 @@
-Parts II–IV introduce only the model detail needed for the engineering argument. This appendix
+Chapters 2–4 introduce only the model detail needed for the engineering argument. This appendix
 collects the principal schemas, invariants, derivation directions, and correspondence machinery
 for those models.
 
@@ -19,7 +19,7 @@ also separates what the model represents from the machinery that may later enfor
 
 Correspondence alone does not establish correctness. A descriptive model can accurately describe an
 undesirable system; a normative model supplies authored intent against which the implementation can
-be checked. Part III supplies the mechanisms that can enforce selected declarations.
+be checked. Chapter 3 supplies the mechanisms that can enforce selected declarations.
 
 [ref:fig-g1-executable-model] establishes the pattern specialized by the later figures.
 

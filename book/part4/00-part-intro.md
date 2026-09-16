@@ -1,6 +1,6 @@
 <!-- part-foreshadows: modeling-principle, alignment-principle, govern-the-environment, failures-become-machinery -->
 
-Parts II and III developed Modeling and Alignment separately. This Part runs them together as a
+Chapters 2 and 3 developed Modeling and Alignment separately. This chapter runs them together as a
 method. Modeling supplied a repertoire of representations for making different engineering questions
 tractable; Alignment supplied the mechanisms through which selected obligations are enforced. In
 practice, engineers choose and connect these moves as the work demands. MAGE begins by asking what should
@@ -20,7 +20,7 @@ evidence the environment already owns. Work exposes what those structures can an
 gaps earn better models; some earn sensors, validators, constraints, or gates; some remain judgment
 because the underlying obligation is still uncertain. Each useful conversion changes what later work
 inherits. Useful durable structure becomes engineering capital when later work benefits from it. That
-capital can drift, depreciate, and cost more to maintain than it returns, so this Part covers operation
+capital can drift, depreciate, and cost more to maintain than it returns, so this chapter covers operation
 and retirement as well as accumulation.
 
 DocAble supplies the deep case. Other organizations appear where they sharpen a move. The question

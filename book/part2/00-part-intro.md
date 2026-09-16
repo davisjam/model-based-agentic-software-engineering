@@ -14,15 +14,15 @@ Explicit models have nevertheless remained secondary in much code-centric softwa
 > Appropriate representations make broader engineering questions tractable and make additional properties
 > available for Alignment.
 
-<!-- point: part-2-asks-what-to-model-and-what-it-reveals | Part II asks one question of every system: what should I model, and what will the model let me know? | terms: modeling-principle, model-as-map, scope-of-modeling -->
+<!-- point: part-2-asks-what-to-model-and-what-it-reveals | Chapter 2 asks one question of every system: what should I model, and what will the model let me know? | terms: modeling-principle, model-as-map, scope-of-modeling -->
 MAGE therefore treats Modeling as an engineering activity in its own right:
 
 **What should I model, and what will the model let me know?**
 
 Which model is useful depends on what the engineer needs to know. A concurrency question may require ownership and lifecycle; an architectural-boundary question may require components and permitted communication edges. Different questions about the same system therefore call for different reductions.
 
-<!-- point: part-2-moves-through-five-model-classes | Part II moves through six classes of model, not a taxonomy to memorize. | terms: model-zoo, model-classes -->
-This Part develops six broad classes of engineering question:
+<!-- point: part-2-moves-through-five-model-classes | Chapter 2 moves through six classes of model, not a taxonomy to memorize. | terms: model-zoo, model-classes -->
+This chapter develops six broad classes of engineering question:
 
 - **Structural** — what parts exist, and which may depend on which.
 - **Behavioral** — what states a thing occupies, and how it moves between them.
@@ -37,18 +37,18 @@ and they are not exhaustive. The same worker may appear as a component in one mo
 lifecycle in another, and the owner of work in a third. Architectural reasoning may traverse several such
 views at once.
 
-DocAble is the running example—the production accessibility service introduced in Part I. A document
+DocAble is the running example—the production accessibility service introduced in Chapter 1. A document
 enters, remediation is distributed across workers and services, the result is validated, and a corrected
 document returns with a record of what changed. The real system is far more complicated than any
 representation ahead. That is the point. Each model keeps only the relationships its question needs.
 
-<!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Each chapter begins with a familiar representation, its properties and analyses, then specializes it to DocAble; four terms stay distinct — property, invariant, analysis, enforcement — with enforcement reserved for Part III. | terms: model-classes, modeling-principle, alignment-principle -->
-Each chapter begins with a familiar engineering representation, the properties it makes expressible, and
+<!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Each section begins with a familiar representation, its properties and analyses, then specializes it to DocAble; four terms stay distinct — property, invariant, analysis, enforcement — with enforcement reserved for Chapter 3. | terms: model-classes, modeling-principle, alignment-principle -->
+Each section begins with a familiar engineering representation, the properties it makes expressible, and
 the analyses it supports, then specializes that representation to DocAble. Four terms stay distinct
-throughout the Part. A **property** is a claim that can be expressed over a model. An **invariant** is a
+throughout the chapter. A **property** is a claim that can be expressed over a model. An **invariant** is a
 property required to hold over a declared domain. An **analysis** or check produces evidence about a
 property. Whether the engineered environment enforces the resulting obligation is a separate question of
-**enforcement**, taken up in Part III.
+**enforcement**, taken up in Chapter 3.
 
 <!-- box-family: inset -->
 > #### Four questions for every model
@@ -60,9 +60,9 @@ property. Whether the engineered environment enforces the resulting obligation i
 > - **Property** — what can I now state precisely?
 > - **Quality attribute** — what engineering concern does that property serve?
 
-Part III adds a fifth question: **what enforces the property?** Modeling makes properties
+Chapter 3 adds a fifth question: **what enforces the property?** Modeling makes properties
 explicit; Alignment makes selected obligations enforceable.
 
-<!-- point: the-final-chapter-connects-the-six-without-a-seventh-model | The final chapter shows how the six models connect through shared identity without becoming a seventh model. | terms: model-zoo, scope-of-modeling, modeling-principle -->
-The final chapter, [System Knowledge](2.8-system-knowledge.html), shows how the six models connect
+<!-- point: the-final-chapter-connects-the-six-without-a-seventh-model | The final section shows how the six models connect through shared identity without becoming a seventh model. | terms: model-zoo, scope-of-modeling, modeling-principle -->
+The final section, [System Knowledge](2.8-system-knowledge.html), shows how the six models connect
 without becoming a seventh model.

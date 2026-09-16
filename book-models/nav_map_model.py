@@ -115,12 +115,12 @@ def render_subway(active_part: int, model: dict) -> str:
     nums = _part_nums()
     labels = [model[str(n)]["subway_label"] for n in nums]
     active_idx = nums.index(active_part)
-    title = bbh._PART_TITLES.get(active_part, f"Part {active_part}")
+    title = bbh._PART_TITLES.get(active_part, f"Chapter {active_part}")
     view_h = 180
     out = _header(f"nav-subway-p{active_part}", view_h)
     out += (f'  <text x="95" y="42" font-size="17" fill="{_MUTED}">Where am I in the book?</text>\n')
     out += (f'  <text x="905" y="42" text-anchor="end" font-size="17" font-weight="bold" '
-            f'fill="{_INK}">Part {active_part} · {_esc(title)}</text>\n')
+            f'fill="{_INK}">Chapter {active_part} · {_esc(title)}</text>\n')
     out += _stations_svg(labels, 100, active_idx)
     out += "</svg>\n"
     return out

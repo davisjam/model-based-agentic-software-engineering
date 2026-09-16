@@ -3,7 +3,7 @@
      DocAble's service-flow model: a declared graph of which services MAY communicate. The Internet reaches
      web; web reaches worker, document editor, and other; worker reaches generation, render, and OCR. An
      edge means the relationship is part of the declared architecture; an absent edge means the model does
-     not declare such a relationship (not that it is physically impossible — that is Part III's question).
+     not declare such a relationship (not that it is physically impossible — that is Chapter 3's question).
      Grammar: blue #2f5169 = declared edges and the services they connect (the decision model); the Internet
      node is gray #57534e as an external entity, not part of the declared internal flow. Hand-authored (a
      declared directed graph, not an auto-laid flowchart). -->

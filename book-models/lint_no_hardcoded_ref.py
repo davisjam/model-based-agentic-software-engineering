@@ -1,18 +1,22 @@
 """LINT `no-hardcoded-ref` — a cross-reference in the narrative names its target SYMBOLICALLY, never by a
 literal number or letter typed into the prose.
 
-The book resolves every cross-reference at build time from a stable id: a Part by `{{part:N}}`, a figure or
-table by `[ref:<label>]`, an appendix by `[appendix:<slug>]`. The rendered letter/number is DERIVED — so a
-renumber (a re-lettering of the appendices, a chapter that moves) updates every reference with no prose
-edit. A letter or number typed straight into a sentence ("see Appendix E", "in Figure 3-1") defeats that:
-it silently rots the moment the target moves. This check flags the literal forms so the author reaches for
-the symbolic marker instead.
+The book resolves every renumber-prone cross-reference at build time from a stable id: a figure or
+table by `[ref:<label>]`, an appendix by `[appendix:<slug>]` (a title-carrying chapter reference may use
+`{{chapter:N}}`). The rendered letter/number is DERIVED — so a renumber (a re-lettering of the
+appendices, a float that moves) updates every reference with no prose edit. A letter or number typed
+straight into a sentence ("see Appendix E", "in Figure 3-1") defeats that: it silently rots the moment
+the target moves. This check flags the literal forms so the author reaches for the symbolic marker
+instead.
+
+NOT flagged: `Chapter <N>` (the 7 top-level units — the former Parts; as stable as the retired literal
+"Part <Roman>" convention was) and `§<N.M>` (the section locator derives from the frozen `<N.M>-slug.md`
+file stems, which URL continuity forbids renaming — a literal §5.2 cannot silently rot without the
+build breaking first).
 
 Flagged literal patterns (in running prose):
   * `Appendix <A-Z>`      → use `[appendix: <page-slug>]`   (resolves to "Appendix <letter>" + link)
-  * `Chapter <N>`         → use a descriptive link to the chapter page
-  * `Figure/Table <N-N>`  → use `[ref: <label>]`            (a chapter-relative float locator)
-  * `§<N>`                → use `[ref: <label>]` or a descriptive link
+  * `Figure/Table <N-N>`  → use `[ref: <label>]`            (a section-relative float locator)
 
 Scope — the authored book prose that ships as narrative: front/back matter, the five parts, and the
 authored appendix content (fills, stacks, the skill recipe). The `book/_design/` design docs are NOT book
@@ -47,16 +51,12 @@ PROSE_DIRS = (
 # Each (name, regex, remedy) is a class of hardcoded reference. `Appendix <L>` matches a lone capital letter
 # (a word boundary after it), so "Appendix Explains…" (a capital word) does NOT trip. `Figure/Table` require
 # a chapter-relative `N-N`/`N.N` locator, so a bare "Figure" in prose is fine — only a typed float NUMBER is
-# a finding. `Chapter <N>` and `§<N>` catch the numeric forms.
+# a finding. (`Chapter <N>` and `§<N.M>` are sanctioned literals — see the module docstring.)
 _PATTERNS: tuple[tuple[str, re.Pattern[str], str], ...] = (
     ("appendix", re.compile(r"\bAppendix\s+[A-Z]\b"),
      "use `[appendix: <page-slug>]` (the letter resolves at build)"),
-    ("chapter", re.compile(r"\bChapter\s+[0-9]+"),
-     "use a descriptive markdown link to the chapter page"),
     ("float", re.compile(r"\b(?:Figure|Table)\s+[0-9]+[.\-][0-9]"),
-     "use `[ref: <label>]` (a chapter-relative float locator)"),
-    ("section", re.compile(r"§\s?[0-9]"),
-     "use `[ref: <label>]` or a descriptive link"),
+     "use `[ref: <label>]` (a section-relative float locator)"),
 )
 
 # `# noqa: no-hardcoded-ref — <reason>` / `<!-- noqa: no-hardcoded-ref — <reason> -->`. A reason token after

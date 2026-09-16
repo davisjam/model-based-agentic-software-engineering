@@ -296,7 +296,7 @@
             },
             {
               "slug": "the-central-modeling-move",
-              "text": "That is the modeling move Part II develops.",
+              "text": "That is the modeling move Chapter 2 develops.",
               "block_index": 29
             }
           ]
@@ -305,13 +305,13 @@
           "section_id": "following-one-job",
           "level": 2,
           "heading_text": "Following One Job",
-          "topic_sentence": "Before Parts II and III examine particular properties of DocAble, [ref:one-docable-job] follows one ordinary job through the system.",
+          "topic_sentence": "Before Chapters 2 and 3 examine particular properties of DocAble, [ref:one-docable-job] follows one ordinary job through the system.",
           "id_source": "derived",
           "block_index": 31,
           "points": [
             {
               "slug": "enough-common-territory-to-locate-the-models",
-              "text": "Before Parts II and III examine particular properties of DocAble, one ordinary job through the system shows what those properties concern.",
+              "text": "Before Chapters 2 and 3 examine particular properties of DocAble, one ordinary job through the system shows what those properties concern.",
               "block_index": 33
             },
             {
@@ -336,17 +336,17 @@
           "points": [
             {
               "slug": "docable-shown-at-method-resolution",
-              "text": "DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires; Part II asks which representations make properties tractable, Part III how intent comes to bind the work.",
+              "text": "DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires; Chapter 2 asks which representations make properties tractable, Chapter 3 how intent comes to bind the work.",
               "block_index": 48
             },
             {
               "slug": "interlude-follows-one-problem",
-              "text": "The interlude after Part III follows one engineering problem in depth — a large presentation exposes a memory problem, then a representation problem, then an execution problem, and successive models reveal each and support design decisions before the implementation is complete.",
+              "text": "The interlude after Chapter 3 follows one engineering problem in depth — a large presentation exposes a memory problem, then a representation problem, then an execution problem, and successive models reveal each and support design decisions before the implementation is complete.",
               "block_index": 50
             },
             {
               "slug": "part-v-examines-the-build-itself",
-              "text": "Part V uses DocAble differently: it examines the build itself — what failed, what those failures revealed, and how recurring judgments became models, controls, and other durable engineering structure.",
+              "text": "Chapter 5 uses DocAble differently: it examines the build itself — what failed, what those failures revealed, and how recurring judgments became models, controls, and other durable engineering structure.",
               "block_index": 52
             },
             {
@@ -365,7 +365,7 @@
       "preamble_points": [
         {
           "slug": "teaser-grounds-the-abstractions",
-          "text": "You will meet DocAble in every chapter; here is just enough to hold it.",
+          "text": "You will meet DocAble in every section; here is just enough to hold it.",
           "block_index": 0
         }
       ]
@@ -667,7 +667,7 @@
             },
             {
               "slug": "enforcement-remains-separate",
-              "text": "Enforcement stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Part III asks which the engineered environment should enforce.",
+              "text": "Enforcement stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Chapter 3 asks which the engineered environment should enforce.",
               "block_index": 87
             }
           ]
@@ -697,12 +697,12 @@
             },
             {
               "slug": "the-repertoire-is-larger-than-the-six-classes",
-              "text": "A portion of the established repertoire — nine familiar representations read as a set of moves, not a taxonomy of all modeling; MAGE prescribes no new notation, and the repertoire is larger than the six classes the rest of the Part organizes.",
+              "text": "A portion of the established repertoire — nine familiar representations read as a set of moves, not a taxonomy of all modeling; MAGE prescribes no new notation, and the repertoire is larger than the six classes the rest of the chapter organizes.",
               "block_index": 99
             },
             {
               "slug": "reuse-the-established-repertoire-choosing-is-judgment",
-              "text": "This Part illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment.",
+              "text": "This chapter illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment.",
               "block_index": 102
             },
             {
@@ -727,7 +727,7 @@
             },
             {
               "slug": "the-chapters-ahead-apply-the-repertoire-to-six-docable-models",
-              "text": "The chapters ahead apply this repertoire to six production models from DocAble; the final chapter asks how such representations connect through shared identity without collapsing into one universal graph.",
+              "text": "The sections ahead apply this repertoire to six production models from DocAble; the final section asks how such representations connect through shared identity without collapsing into one universal graph.",
               "block_index": 117
             },
             {
@@ -785,7 +785,7 @@
             },
             {
               "slug": "derived-structure-and-declared-structure-are-different-claims",
-              "text": "Static analysis can derive the graph from code and engineers can declare it as intent; one describes what the system appears to do, the other what it is supposed to do, and Part III treats the difference.",
+              "text": "Static analysis can derive the graph from code and engineers can declare it as intent; one describes what the system appears to do, the other what it is supposed to do, and Chapter 3 treats the difference.",
               "block_index": 9
             }
           ]
@@ -805,7 +805,7 @@
             },
             {
               "slug": "a-model-precedes-the-constraint-that-protects-it",
-              "text": "The model states the boundary as a path property — every ordinary mutation route crosses the seam — and exposes it to checking; a static control that flags a bypass is the Part III enforcement.",
+              "text": "The model states the boundary as a path property — every ordinary mutation route crosses the seam — and exposes it to checking; a static control that flags a bypass is the Chapter 3 enforcement.",
               "block_index": 18
             },
             {
@@ -897,7 +897,7 @@
             },
             {
               "slug": "the-model-exposes-the-ordering-a-transition-table-holds-it",
-              "text": "Over the model the obligation is a reachability property — DB_UPDATED is reachable only through FALLBACK_UPLOADED — that the model exposes and a checker can search; whether a transition table refuses the short-circuit is a Part III question of enforcement.",
+              "text": "Over the model the obligation is a reachability property — DB_UPDATED is reachable only through FALLBACK_UPLOADED — that the model exposes and a checker can search; whether a transition table refuses the short-circuit is a Chapter 3 question of enforcement.",
               "block_index": 17
             }
           ]
@@ -979,7 +979,7 @@
             },
             {
               "slug": "the-model-exposes-the-question-a-compare-and-set-holds-the-line",
-              "text": "The generation makes \"is this release applicable to the current claim?\" decidable — the property the model exposes; whether a release path compares generations and rejects the stale one is the Part III enforcement, verified separately by exhaustive interleaving search.",
+              "text": "The generation makes \"is this release applicable to the current claim?\" decidable — the property the model exposes; whether a release path compares generations and rejects the stale one is the Chapter 3 enforcement, verified separately by exhaustive interleaving search.",
               "block_index": 19
             }
           ]
@@ -988,7 +988,7 @@
           "section_id": "one-representation-several-questions",
           "level": 2,
           "heading_text": "One Representation, Several Questions",
-          "topic_sentence": "The lease is the Part's clearest case of one representation answering several classes of question.",
+          "topic_sentence": "The lease is the chapter's clearest case of one representation answering several classes of question.",
           "id_source": "derived",
           "block_index": 21,
           "points": [
@@ -1061,7 +1061,7 @@
             },
             {
               "slug": "docable-does-not-reconcile-observed-traffic-so-correspondence-is-the-open-question",
-              "text": "DocAble generates config from the declared graph but does not reconcile observed traffic against it at runtime; that open correspondence is the cleanest illustration in the Part of a model exposing a checkable property without, by itself, establishing correspondence.",
+              "text": "DocAble generates config from the declared graph but does not reconcile observed traffic against it at runtime; that open correspondence is the cleanest illustration in the chapter of a model exposing a checkable property without, by itself, establishing correspondence.",
               "block_index": 19
             }
           ]
@@ -1123,12 +1123,12 @@
           "points": [
             {
               "slug": "a-measurement-model-can-carry-a-margin-not-just-a-target",
-              "text": "A bound is rarely a single line — a budget carries a margin, a capacity envelope leaves headroom — so the model represents the band of acceptable variation, the measurement family's version of the tolerance idea from the opening chapter.",
+              "text": "A bound is rarely a single line — a budget carries a margin, a capacity envelope leaves headroom — so the model represents the band of acceptable variation, the measurement family's version of the tolerance idea from the opening section.",
               "block_index": 18
             },
             {
               "slug": "measurement-boundary-modeling-and-enforcement-are-separate",
-              "text": "The cost-and-capacity model makes spending attributable and demand comparable to an envelope; it does not decide the budget, guarantee the numbers are collected correctly, or enforce the bound — the clearest case in the Part of a model earning its place by exposing a property while leaving enforcement open.",
+              "text": "The cost-and-capacity model makes spending attributable and demand comparable to an envelope; it does not decide the budget, guarantee the numbers are collected correctly, or enforce the bound — the clearest case in the chapter of a model earning its place by exposing a property while leaving enforcement open.",
               "block_index": 20
             }
           ]
@@ -1220,7 +1220,7 @@
             },
             {
               "slug": "provenance-boundary-model-records-a-lint-guarantees-every-mutator-stamps",
-              "text": "The model records attribution per mutation; a structural check can establish that every mutator leaves an attribution record but not that the semantic account inside it is correct — Part II models the evidence, Part III enforces the obligation.",
+              "text": "The model records attribution per mutation; a structural check can establish that every mutator leaves an attribution record but not that the semantic account inside it is correct — Chapter 2 models the evidence, Chapter 3 enforces the obligation.",
               "block_index": 36
             }
           ]
@@ -1383,7 +1383,7 @@
             },
             {
               "slug": "the-narrow-guarantee-is-the-boundary-part-iii-begins-at",
-              "text": "The bounded guarantee — decide the decidable over the claimed surface — is the boundary Part III opens on, where agreement is distinguished from correctness.",
+              "text": "The bounded guarantee — decide the decidable over the claimed surface — is the boundary Chapter 3 opens on, where agreement is distinguished from correctness.",
               "block_index": 63
             }
           ]
@@ -1413,12 +1413,12 @@
             },
             {
               "slug": "part-iii-asks-which-obligations-the-environment-should-hold",
-              "text": "Part III asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them.",
+              "text": "Chapter 3 asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them.",
               "block_index": 74
             },
             {
               "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-enforcement-is-a-separate-question",
-              "text": "Models can provide value before enforcement — reasoning, analysis, composition, traceability — and Part III asks the separate question of enforcement.",
+              "text": "Models can provide value before enforcement — reasoning, analysis, composition, traceability — and Chapter 3 asks the separate question of enforcement.",
               "block_index": 81
             }
           ]
@@ -1603,7 +1603,7 @@
           "section_id": "the-earliest-decidable-boundary",
           "level": 2,
           "heading_text": "The Earliest Decidable Boundary",
-          "topic_sentence": "The agent-return check is one instance of a rule that runs under the whole of this Part:",
+          "topic_sentence": "The agent-return check is one instance of a rule that runs under the whole of this chapter:",
           "id_source": "derived",
           "block_index": 58,
           "points": [
@@ -1624,7 +1624,7 @@
             },
             {
               "slug": "the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does",
-              "text": "The chapter has supplied both requirements for enforcement; the next question is what the mechanism at that boundary actually does.",
+              "text": "The section has supplied both requirements for enforcement; the next question is what the mechanism at that boundary actually does.",
               "block_index": 76
             }
           ]
@@ -1831,7 +1831,7 @@
           "section_id": "provenance-carried-admission",
           "level": 2,
           "heading_text": "Provenance-Carried Admission",
-          "topic_sentence": "Earlier in this Part, architectural conformance provided one example of enforcing intended relations.",
+          "topic_sentence": "Earlier in this chapter, architectural conformance provided one example of enforcing intended relations.",
           "id_source": "explicit",
           "block_index": 86,
           "points": [
@@ -2050,7 +2050,7 @@
             },
             {
               "slug": "the-mechanism-that-discovers-need-not-carry-the-enforcement",
-              "text": "The mechanism that discovers an obligation need not be the one that ultimately enforces it; Part IV follows that migration.",
+              "text": "The mechanism that discovers an obligation need not be the one that ultimately enforces it; Chapter 4 follows that migration.",
               "block_index": 65
             },
             {
@@ -2327,7 +2327,7 @@
           "section_id": "finding-the-models",
           "level": 3,
           "heading_text": "Finding the models",
-          "topic_sentence": "Part IV asks engineers to find the models their work needs.",
+          "topic_sentence": "Chapter 4 asks engineers to find the models their work needs.",
           "id_source": "derived",
           "block_index": 86,
           "points": []
@@ -2974,13 +2974,13 @@
           "section_id": "two-boundaries",
           "level": 2,
           "heading_text": "Two Boundaries for Evidence",
-          "topic_sentence": "Part III gave a placement rule for enforcement: **evaluate an obligation at the earliest boundary where it becomes legible and enforceable.** That catches a problem close to its cause.",
+          "topic_sentence": "Chapter 3 gave a placement rule for enforcement: **evaluate an obligation at the earliest boundary where it becomes legible and enforceable.** That catches a problem close to its cause.",
           "id_source": "explicit",
           "block_index": 85,
           "points": [
             {
               "slug": "part-three-placed-enforcement-at-the-earliest-legible-boundary",
-              "text": "Part III gave the placement rule for enforcement: evaluate an obligation at the earliest boundary where it becomes legible and enforceable.",
+              "text": "Chapter 3 gave the placement rule for enforcement: evaluate an obligation at the earliest boundary where it becomes legible and enforceable.",
               "block_index": 87
             },
             {
@@ -3331,7 +3331,7 @@
             },
             {
               "slug": "context-delivery-changes-what-the-reasoner-can-see-not-what-the-environment-permits",
-              "text": "Context delivery changes what the reasoner can see; it does not, by itself, change what the environment will permit — the bridge back to Part III.",
+              "text": "Context delivery changes what the reasoner can see; it does not, by itself, change what the environment will permit — the bridge back to Chapter 3.",
               "block_index": 35
             }
           ]
@@ -3384,13 +3384,13 @@
           "section_id": "self-operate-running-the-environment",
           "level": 2,
           "heading_text": "Self-Operate: Running the Environment",
-          "topic_sentence": "Self-operate packages the operating loop of the previous chapter.",
+          "topic_sentence": "Self-operate packages the operating loop of the previous section.",
           "id_source": "derived",
           "block_index": 63,
           "points": [
             {
               "slug": "self-operate-packages-the-operating-loop-of-the-previous-chapter",
-              "text": "Self-operate packages the operating loop of the previous chapter: identify the current lifecycle state, retrieve the sanctioned reaction, and execute, delegate, or escalate each step according to who or what can honestly decide it.",
+              "text": "Self-operate packages the operating loop of the previous section: identify the current lifecycle state, retrieve the sanctioned reaction, and execute, delegate, or escalate each step according to who or what can honestly decide it.",
               "block_index": 65
             },
             {
@@ -3540,7 +3540,7 @@
           "section_id": "the-feasibility-probe",
           "level": 2,
           "heading_text": "The Feasibility Probe",
-          "topic_sentence": "The project began in a committee meeting about the very deadline the last chapter described.",
+          "topic_sentence": "The project began in a committee meeting about the very deadline the last section described.",
           "id_source": "derived",
           "block_index": 8,
           "points": [
@@ -3645,7 +3645,7 @@
       "preamble_points": [
         {
           "slug": "the-build-establishes-chronology-and-scale",
-          "text": "The chapter establishes chronology and scale, not causation.",
+          "text": "The section establishes chronology and scale, not causation.",
           "block_index": 2
         },
         {
@@ -4008,7 +4008,7 @@
       "preamble_points": [
         {
           "slug": "chapter-asks-what-changed-in-the-division-of-labor",
-          "text": "The Build gave chronology; this chapter reconstructs the changing division of engineering labor as the environment matured.",
+          "text": "The Build gave chronology; this section reconstructs the changing division of engineering labor as the environment matured.",
           "block_index": 2
         },
         {
@@ -4302,7 +4302,7 @@
             },
             {
               "slug": "part-vi-changes-the-evidentiary-question",
-              "text": "The final chapter changes the evidentiary question, asking how peculiar the recovered compression is to the case that produced it.",
+              "text": "The final section changes the evidentiary question, asking how peculiar the recovered compression is to the case that produced it.",
               "block_index": 106
             }
           ]
@@ -4514,7 +4514,7 @@
           "section_id": "view-1-repeated-exposure",
           "level": 3,
           "heading_text": "View 1 — Repeated Exposure",
-          "topic_sentence": "Part I introduced a deliberately simple model for consequential probabilistic judgment.",
+          "topic_sentence": "Chapter 1 introduced a deliberately simple model for consequential probabilistic judgment.",
           "id_source": "derived",
           "block_index": 62,
           "points": [
@@ -4680,7 +4680,7 @@
             },
             {
               "slug": "part-vi-develops-a-theory-around-these-interactions",
-              "text": "Part VI develops a theory around these interactions; MAGE changes the reasoning each change requires and what later work inherits.",
+              "text": "Chapter 6 develops a theory around these interactions; MAGE changes the reasoning each change requires and what later work inherits.",
               "block_index": 141
             }
           ]
@@ -4689,12 +4689,12 @@
       "preamble_points": [
         {
           "slug": "chapter-asks-whether-docable-structures-recur-elsewhere",
-          "text": "The chapter reads eight public accounts as reconstructions to ask whether DocAble's structures recur independently.",
+          "text": "The section reads eight public accounts as reconstructions to ask whether DocAble's structures recur independently.",
           "block_index": 0
         },
         {
           "slug": "earlier-insets-mapped-mage-to-mechanisms-here-the-direction-reverses",
-          "text": "Earlier Parts mapped MAGE's abstractions onto harness mechanisms; here the direction reverses — read each observable mechanism by the engineering function it performs.",
+          "text": "Earlier chapters mapped MAGE's abstractions onto harness mechanisms; here the direction reverses — read each observable mechanism by the engineering function it performs.",
           "block_index": 2
         },
         {
@@ -5093,7 +5093,7 @@
           "points": [
             {
               "slug": "part-v-model-isolated-exposure-under-fixed-conditions",
-              "text": "Part V's model deliberately isolated repeated probabilistic exposure under fixed conditions.",
+              "text": "Chapter 5's model deliberately isolated repeated probabilistic exposure under fixed conditions.",
               "block_index": 153
             },
             {
@@ -5193,7 +5193,7 @@
             },
             {
               "slug": "part-v-evidence-is-depth-and-variation-not-effect-sizes",
-              "text": "Part V supplied depth and variation, not population effect sizes; the theory is the proposed explanation of it.",
+              "text": "Chapter 5 supplied depth and variation, not population effect sizes; the theory is the proposed explanation of it.",
               "block_index": 196
             }
           ]
@@ -5202,7 +5202,7 @@
       "preamble_points": [
         {
           "slug": "theory-explains-both-part-v-views",
-          "text": "This chapter proposes one explanation for both Part V views: the deep case and the broad variation.",
+          "text": "This section proposes one explanation for both Chapter 5 views: the deep case and the broad variation.",
           "block_index": 0
         },
         {
@@ -5217,12 +5217,12 @@
         },
         {
           "slug": "two-limitations-two-responses-broader-repertoire",
-          "text": "Two limitations (finite horizon, residual risk) drew two responses (representation, enforcement) and a broader Part V set of responses.",
+          "text": "Two limitations (finite horizon, residual risk) drew two responses (representation, enforcement) and a broader Chapter 5 set of responses.",
           "block_index": 8
         },
         {
           "slug": "part-v-model-narrow-theory-widens-the-unit",
-          "text": "Part V's model was deliberately narrow; the theory widens the unit to capacity, environment, adaptation, and payoff.",
+          "text": "Chapter 5's model was deliberately narrow; the theory widens the unit to capacity, environment, adaptation, and payoff.",
           "block_index": 10
         }
       ]
@@ -5424,7 +5424,7 @@
             },
             {
               "slug": "scope-conditions-are-theoretical-not-population-estimates",
-              "text": "These scope conditions are theoretical, informed by Part V, not population estimates.",
+              "text": "These scope conditions are theoretical, informed by Chapter 5, not population estimates.",
               "block_index": 16
             }
           ]
@@ -5449,7 +5449,7 @@
             },
             {
               "slug": "part-iv-shows-the-boundary-moving-both-ways",
-              "text": "Part IV showed the boundary both ways: good writing resists a predicate, while the residency model became a quantitative invariant.",
+              "text": "Chapter 4 showed the boundary both ways: good writing resists a predicate, while the residency model became a quantitative invariant.",
               "block_index": 23
             },
             {
@@ -5721,13 +5721,13 @@
           "section_id": "representation-selection-induction-and-innovation",
           "level": 2,
           "heading_text": "Representation Selection, Induction, and Innovation",
-          "topic_sentence": "Part II offered six useful classes of engineering model, not a proof that those classes are necessary, sufficient, or minimal.",
+          "topic_sentence": "Chapter 2 offered six useful classes of engineering model, not a proof that those classes are necessary, sufficient, or minimal.",
           "id_source": "derived",
           "block_index": 57,
           "points": [
             {
               "slug": "representation-selection-is-a-research-problem",
-              "text": "Part II's six model classes were not proven necessary or minimal; representation selection is itself a research problem.",
+              "text": "Chapter 2's six model classes were not proven necessary or minimal; representation selection is itself a research problem.",
               "block_index": 58
             },
             {
@@ -5865,7 +5865,7 @@
       "preamble_points": [
         {
           "slug": "chapter-turns-remaining-uncertainty-into-a-program-of-work",
-          "text": "This chapter turns the remaining uncertainty into a research program: what to measure and which comparisons distinguish the mechanisms.",
+          "text": "This section turns the remaining uncertainty into a research program: what to measure and which comparisons distinguish the mechanisms.",
           "block_index": 0
         },
         {

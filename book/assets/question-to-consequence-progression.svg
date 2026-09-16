@@ -3,7 +3,7 @@
      consequence." A vertical spine — engineering question -> choose the representation (blue) -> representative
      forms -> choose an analysis appropriate to the property -> interpret the evidence — that then BRANCHES:
      left, the evidence can inform architecture/design (rust); right, it can expose a property whose obligation
-     deserves enforcement (green), handing off to Alignment (Part 3). Grayscale-survivable: every node labelled,
+     deserves enforcement (green), handing off to Alignment (Chapter 3). Grayscale-survivable: every node labelled,
      the spine carries the meaning, hue only reinforces representation (blue) vs design-consequence (rust) vs
      enforcement (green). Boxes first, labels last. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="1000" height="680"
@@ -17,7 +17,7 @@
     representation alone. The path interprets the resulting evidence, then branches: the evidence can inform
     architecture and design — comparing alternatives, revising boundaries, changing dependencies, allocating
     resources — or it can expose a property whose obligation deserves enforcement, which hands off to Alignment
-    in Part 3, or both.</desc>
+    in Chapter 3, or both.</desc>
 
   <defs>
     <marker id="qap-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
@@ -70,5 +70,5 @@
   <text x="260" y="609" text-anchor="middle" font-size="14" fill="#57534e">change dependencies · allocate resources</text>
 
   <text x="750" y="571" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">decide what deserves enforcement</text>
-  <text x="750" y="648" text-anchor="middle" font-size="16" font-style="italic" fill="#155c38">→ Alignment (Part 3)</text>
+  <text x="750" y="648" text-anchor="middle" font-size="16" font-style="italic" fill="#155c38">→ Alignment (Chapter 3)</text>
 </svg>

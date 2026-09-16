@@ -4,26 +4,30 @@
 AUTO-GENERATED OUTPUT: this script emits *.html in this folder; do not hand-edit
 the .html (re-run `python3 build_book.py` to regenerate). Stdlib-only.
 
-The book source is a Part/Chapter filesystem hierarchy — the directory tree encodes
-the ordering so PART.CHAPTER is explicit in the path:
+The book source is a Chapter/section filesystem hierarchy — the directory tree encodes
+the ordering so CHAPTER.SECTION is explicit in the path. (Internally the code still calls
+the top-level unit "part" — the dirs are `book/partN/` and the record field is `part`,
+frozen so no published URL or stem ever moves — but the READER-FACING labels are
+"Chapter N" for the 7 top-level units and "§N.M" for the 41 N.M sections; the former
+Part level and the former global "Chapter {seq}" ordinal are retired.)
 
     book/frontmatter/0.4-preface.md            -> Front matter, order 0.4
-    book/part1/1.1-the-ada-context.md          -> Part 1, Chapter 1
-    book/part1/1.2-the-timeline-and-the-work.md-> Part 1, Chapter 2
-    book/part2/2.1-the-printer.md              -> Part 2, Chapter 1
+    book/part1/1.1-the-ada-context.md          -> Chapter 1, §1.1
+    book/part1/1.2-the-timeline-and-the-work.md-> Chapter 1, §1.2
+    book/part2/2.1-the-printer.md              -> Chapter 2, §2.1
     …
     book/backmatter/5.1-conclusion.md          -> Back matter, order 5.1
 
-The build WALKS this hierarchy, derives the part number and chapter number from each
+The build WALKS this hierarchy, derives the chapter number and section number from each
 file's `part<N>/` dir and `<N>.<M>-slug.md` name, and reads the human-readable
 `<!-- part-title: … --> <!-- chapter-title: … -->` metadata from the file. It emits one
-flat `<slug>.html` per chapter (Part/Chapter TOC nav on top, prev/next at the bottom),
+flat `<slug>.html` per section (Chapter/§section TOC nav on top, prev/next at the bottom),
 an `index.html` landing page, and — appended after the back matter — a Gang-of-Four
 appendix projected from the sibling catalogue entries.
 
-Front matter (part 0) and back matter (part 6) render without a "Chapter N" kicker. The
+Front matter (part 0) and back matter render without a numbered kicker. The
 book's one epigraph is the Conclusion's authored Tennyson opener (the `<!-- epigraph -->`
-marker); the per-Part opener epigraphs were removed. Chapter prose may
+marker); the per-chapter opener epigraphs were removed. Prose may
 reference the shared metrics file (`data/metrics.json`) through `{{token}}` placeholders,
 substituted at build time so the headline numbers live in one place.
 """
@@ -522,7 +526,7 @@ _PART_TITLES = {
 # truth: book_typst.py reads these (imported as `bb`) for the
 # orientation verso AND the PART-OPENER SPREAD sensor greps the same label + strings, so the print divider
 # and its gate cannot disagree on which question a Part carries.
-_PART_OPENER_QUESTION_LABEL = "Question this Part answers"
+_PART_OPENER_QUESTION_LABEL = "Question this Chapter answers"
 _PART_OPENER_QUESTIONS = {
     1: "What becomes the engineering problem when implementation becomes abundant?",
     2: "How do I identify useful models?",
@@ -644,16 +648,20 @@ def _apply_data_claims(md: str, claims: dict[str, dict], chapter_titles: dict[st
 
 
 def _apply_part_refs(md: str) -> str:
-    """Substitute `{{part:N}}` → `Part N (<title>)`, the title read from `_PART_TITLES` at build time. A
-    prose reference to a Part stays in sync with its title: rename the Part once in `_PART_TITLES` and
-    every `{{part:N}}` updates, so a rename can never strand a stale "(The Old Title)". Fails loud on a
-    bad N (a reference to a Part that does not exist)."""
+    """Substitute `{{chapter:N}}` → `Chapter N (<title>)`, the title read from `_PART_TITLES` at build
+    time. A prose reference to a chapter stays in sync with its title: rename the chapter once in
+    `_PART_TITLES` and every `{{chapter:N}}` updates, so a rename can never strand a stale "(The Old
+    Title)". Fails loud on a bad N (a reference to a chapter that does not exist) and on any leftover
+    legacy `{{part:N}}` marker (the Part level was retired — chapters 1-7 are the top-level units)."""
+    if re.search(r"\{\{\s*part:\d+\s*\}\}", md):
+        raise SystemExit("legacy {{part:N}} marker found — the Part level was retired; "
+                         "write {{chapter:N}} instead")
     def repl(m: "re.Match[str]") -> str:
         n = int(m.group(1))
         if n not in _PART_TITLES:
-            raise SystemExit(f"{{{{part:{n}}}}} references a Part not in _PART_TITLES")
-        return f"Part {n} ({_PART_TITLES[n]})"
-    return re.sub(r"\{\{\s*part:(\d+)\s*\}\}", repl, md)
+            raise SystemExit(f"{{{{chapter:{n}}}}} references a chapter not in _PART_TITLES")
+        return f"Chapter {n} ({_PART_TITLES[n]})"
+    return re.sub(r"\{\{\s*chapter:(\d+)\s*\}\}", repl, md)
 
 
 # `{{dt:<key>}}` — derive a design-system NAME from the token SSOT so the colophon's prose (faces, accent)
@@ -2223,10 +2231,13 @@ def _render_paragraph(block: str) -> str:
 
 
 def _chap_ref(c: dict) -> str:
-    """The 'N.M' reference for a numbered chapter, or '' for front/back matter, the appendix, a Part
-    landing page (the Part opener carries no chapter number), and the unnumbered in-part coda."""
+    """The '§N.M' reference for a numbered section, or '' for front/back matter, the appendix, a
+    chapter landing page (the chapter opener carries no section number), and the unnumbered in-chapter
+    coda. The former GLOBAL sequential ordinal (`c["seq"]`, "Chapter 24") is retired: chapters are the
+    7 top-level units; every N.M unit is a §section."""
     return ("" if c.get("is_matter") or c.get("is_appendix") or c.get("is_part_page")
-            or c.get("is_appendix_divider") or c.get("is_coda") else str(c["seq"]))
+            or c.get("is_appendix_divider") or c.get("is_coda")
+            else f'§{c["part"]}.{c["chapter"]}')
 
 
 def _pager_label(c: dict) -> str:
@@ -2241,14 +2252,14 @@ _BIBLIOGRAPHY_SLUG = "bibliography"  # the end-of-book alphabetical bibliography
 
 
 def _chapter_nav(chapters: list[dict], idx: int) -> dict:
-    """The per-page navigation for the chapter at `idx`, as a single left→right sequence:
+    """The per-page navigation for the page at `idx`, as a single left→right sequence:
 
-        Table of contents « Beginning of part « Previous chapter │ THIS CHAPTER │ Next chapter » Next part » Index
+        Table of contents « Beginning of chapter « Previous section │ THIS PAGE │ Next section » Next chapter » Index
 
-    Backward controls fill the left zone, forward controls the right, the current chapter names the centre
+    Backward controls fill the left zone, forward controls the right, the current page names the centre
     (a non-link). An unavailable target is OMITTED, not disabled — Table of contents and Index anchor the
-    zone edges and never drop, so the skeleton stays stable while the inner pills (Beginning-of-part,
-    Prev/Next-chapter, Next-part) come and go. Every page carries a real part number, so the same code path
+    zone edges and never drop, so the skeleton stays stable while the inner pills (Beginning-of-chapter,
+    Prev/Next-section, Next-chapter) come and go. Every page carries a real part number, so the same code path
     covers front-matter, body, back-matter, and appendices with no special-casing.
 
     Returns `{"back": [(label, href, aria)], "name": str, "fwd": [(label, href, aria)]}`.
@@ -2257,25 +2268,25 @@ def _chapter_nav(chapters: list[dict], idx: int) -> dict:
     first_of_part = next((c for c in chapters if c["part"] == cur["part"]), cur)
     back: list[tuple[str, str, str]] = []
     fwd: list[tuple[str, str, str]] = []
-    # 1. Table of contents — always (the structural chapter-list landing).
+    # 1. Table of contents — always (the structural contents landing).
     back.append(("« Table of contents", "index.html", "Table of contents"))
-    # 2. Beginning of part — only when not already on the part's first page (else it would self-link).
+    # 2. Beginning of chapter — only when not already on the chapter's first page (else it would self-link).
     if first_of_part["slug"] != cur["slug"]:
-        back.append(("« Beginning of part", f'{first_of_part["slug"]}.html',
+        back.append(("« Beginning of chapter", f'{first_of_part["slug"]}.html',
                      f'Beginning of {_part_label(cur)}'))
-    # 3. Previous chapter — the strict reading-order predecessor (may cross a part boundary).
+    # 3. Previous section — the strict reading-order predecessor (may cross a chapter boundary).
     if idx > 0:
-        back.append(("« Previous chapter", f'{chapters[idx - 1]["slug"]}.html',
-                     f'Previous chapter — {_pager_label(chapters[idx - 1])}'))
-    # 5. Next chapter — the strict reading-order successor (may cross a part boundary).
+        back.append(("« Previous section", f'{chapters[idx - 1]["slug"]}.html',
+                     f'Previous section — {_pager_label(chapters[idx - 1])}'))
+    # 5. Next section — the strict reading-order successor (may cross a chapter boundary).
     if idx + 1 < len(chapters):
-        fwd.append(("Next chapter »", f'{chapters[idx + 1]["slug"]}.html',
-                    f'Next chapter — {_pager_label(chapters[idx + 1])}'))
-    # 6. Next part — the first later chapter whose part number differs.
+        fwd.append(("Next section »", f'{chapters[idx + 1]["slug"]}.html',
+                    f'Next section — {_pager_label(chapters[idx + 1])}'))
+    # 6. Next chapter — the first later page whose top-level unit ("part" internally) differs.
     nxt_part = next((c for c in chapters[idx + 1:] if c["part"] != cur["part"]), None)
     if nxt_part:
-        fwd.append(("Next part »", f'{nxt_part["slug"]}.html',
-                    f'Next part — {_part_label(nxt_part)}'))
+        fwd.append(("Next chapter »", f'{nxt_part["slug"]}.html',
+                    f'Next chapter — {_part_label(nxt_part)}'))
     # 7. Index — always (the alphabetised term index sits after the appendix).
     fwd.append(("Index »", f"{BOOK_INDEX_SLUG}.html", "Index of terms"))
     return {"back": back, "name": _pager_label(cur), "fwd": fwd}
@@ -2294,7 +2305,7 @@ def _render_chapnav(back: list[tuple[str, str, str]], name: str,
     fwd_html = "".join(pill(*t) for t in fwd)
     name_html = (f'<span class="chapnav-here" title="{html.escape(_plain(name), quote=True)}">'
                  f'{inline(name)}</span>')
-    return (f'<nav class="chapnav" aria-label="Chapter navigation">'
+    return (f'<nav class="chapnav" aria-label="Book navigation">'
             f'<div class="chapnav-back">{back_html}</div>{name_html}'
             f'<div class="chapnav-fwd">{fwd_html}</div></nav>')
 
@@ -2341,12 +2352,12 @@ def _roadmap_nav_html(current_part: int) -> str:
     def decorate(mo: "re.Match[str]") -> str:
         n = int(mo.group("n"))
         inner = mo.group("inner")
-        label = f'Part {n} — {_PART_TITLES.get(n, "")}'
+        label = f'Chapter {n} — {_PART_TITLES.get(n, "")}'
         if n == current_part:
             # Non-link current node: emphasized class + aria-current (cue is stroke-weight + aria + the
             # fallback text — never color alone, per WCAG 1.4.1).
             return (f'<g id="bm-part-{n}" class="bm-part current" role="img" aria-current="page" '
-                    f'aria-label="{html.escape(label + " (current part)", quote=True)}">{inner}</g>')
+                    f'aria-label="{html.escape(label + " (current chapter)", quote=True)}">{inner}</g>')
         return (f'<a href="part-{n}-intro.html" class="bm-part-link" role="link" '
                 f'aria-label="{html.escape(label, quote=True)}">'
                 f'<g id="bm-part-{n}" class="bm-part">{inner}</g></a>')
@@ -2355,44 +2366,44 @@ def _roadmap_nav_html(current_part: int) -> str:
 
     items: list[str] = []
     for n in range(1, 8):
-        label = html.escape(f'Part {n} — {_PART_TITLES.get(n, "")}')
+        label = html.escape(f'Chapter {n} — {_PART_TITLES.get(n, "")}')
         if n == current_part:
-            items.append(f'<li aria-current="page">{label} (current part)</li>')
+            items.append(f'<li aria-current="page">{label} (current chapter)</li>')
         else:
-            items.append(f'<li>{label}: <a href="part-{n}-intro.html">go to Part {n}</a></li>')
+            items.append(f'<li>{label}: <a href="part-{n}-intro.html">go to Chapter {n}</a></li>')
     fallback = '<ul class="visually-hidden roadmap-fallback">' + "".join(items) + "</ul>"
-    return (f'<nav class="roadmap-nav" aria-label="Book roadmap — jump to a part">{svg}{fallback}</nav>')
+    return (f'<nav class="roadmap-nav" aria-label="Book roadmap — jump to a chapter">{svg}{fallback}</nav>')
 
 
 def _part_label(c: dict) -> str:
-    """The heading a Part gets in the TOC / index. Front and back matter and the appendix name
-    themselves; numbered Parts get 'Part N — Title'."""
+    """The heading a top-level unit gets in the TOC / index. Front and back matter and the appendix name
+    themselves; the numbered chapters (1-7, the former Parts) get 'Chapter N — Title'. Front matter
+    (internal part 0) is unnumbered matter — its label is its own title, with no 'Chapter 0' prefix
+    (there are seven chapters; matter carries no number)."""
     if c.get("is_appendix") or c.get("is_appendix_divider"):
         return c["part_title"]
-    # Front matter is a matter part (no chapter kicker, no print divider), but it is presented as the
-    # book's numbered Part 0 — Orientation and Reference; the TOC/index label carries the "Part 0 —" prefix.
     if c["part"] == 0:
-        return f'Part 0 — {c["part_title"]}'
+        return c["part_title"]
     if c["part"] in _MATTER_PARTS or c.get("is_matter"):
         return c["part_title"]
-    return f'Part {c["part"]} — {c["part_title"]}'
+    return f'Chapter {c["part"]} — {c["part_title"]}'
 
 
 def _kicker_html(chapters: list[dict], idx: int, num_label: str) -> str:
-    """The chapter-header kicker with both halves as navigation links: the 'Part N — Title' half jumps to
-    that Part's FIRST chapter (its beginning in reading order); the 'Chapter N.M' half jumps to the book
+    """The page-header kicker with both halves as navigation links: the 'Chapter N — Title' half jumps to
+    that chapter's FIRST page (its beginning in reading order); the '§N.M' half jumps to the book
     Contents. The links keep the kicker's understated small-caps look (accent colour, underline on hover
-    only — see the `.kicker a` CSS). Front/back matter and appendix pages carry only the part half."""
+    only — see the `.kicker a` CSS). Front/back matter and appendix pages carry only the chapter half."""
     c = chapters[idx]
-    # A Part landing page IS the Part opener; its kicker names the Part and links to the whole-book Contents
-    # (there is no earlier page in the Part to jump to). The H1 below already carries the Part title.
+    # A chapter landing page IS the chapter opener; its kicker names the chapter and links to the whole-book
+    # Contents (there is no earlier page in the chapter to jump to). The H1 below already carries the title.
     if c.get("is_part_page"):
-        return (f'<a href="index.html" aria-label="Book contents — jump to the chapter list">'
-                f'Part {c["part"]}</a>')
+        return (f'<a href="index.html" aria-label="Book contents — jump to the table of contents">'
+                f'Chapter {c["part"]}</a>')
     # The appendices mode-marker: a single small-caps kicker naming the reference section, linking to the
     # whole-book Contents (there is no earlier page in its group; the H1 below carries the section title).
     if c.get("is_appendix_divider"):
-        return ('<a href="index.html" aria-label="Book contents — jump to the chapter list">'
+        return ('<a href="index.html" aria-label="Book contents — jump to the table of contents">'
                 'Reference</a>')
     part_first = next((p for p in chapters if p["part"] == c["part"]), c)
     part_text = html.escape(_part_label(c))
@@ -2409,7 +2420,7 @@ def _kicker_html(chapters: list[dict], idx: int, num_label: str) -> str:
         return part_link
     # Numbered chapter — the second half links to the whole-book Contents (chapter list).
     chap_link = (
-        f'<a href="index.html" aria-label="Book contents — jump to the chapter list">'
+        f'<a href="index.html" aria-label="Book contents — jump to the table of contents">'
         f'{html.escape(num_label)}</a>'
     )
     return f'{part_link} &nbsp;::&nbsp; {chap_link}'
@@ -4868,7 +4879,7 @@ def _scan_term_refs(term: str, page_scan: list[_PageScan]) -> list[dict]:
 
 
 def _index_ref_label(pg: dict) -> str:
-    """The short locator shown beside an index term for one page: 'Appendix A', 'Preface', or 'Ch. N'."""
+    """The short locator shown beside an index term for one page: 'Appendix A', 'Preface', or '§N.M'."""
     if pg.get("is_appendix"):
         # Per-pattern titles read 'Appendix A - 1. Brief-linting' → locator 'Appendix A - 1'; a stack page
         # 'Appendix D - 1. The MBSE stack' → 'Appendix D - 1'. A v2 locator-heading page (App-D) reads
@@ -4889,14 +4900,14 @@ def _index_ref_label(pg: dict) -> str:
             return title.split("—")[0].strip()
         return title
     if pg.get("is_part_page"):
-        return f'Part {pg["part"]}'
+        return f'Chapter {pg["part"]}'
     if pg.get("is_appendix_divider"):
         return pg["chapter_title"]
     if pg.get("is_matter"):
         return pg["chapter_title"]
     if pg.get("is_coda"):
-        return pg["chapter_title"]   # the unnumbered coda carries no 'Ch. N' locator (it has no seq)
-    return f'Ch. {pg["seq"]}'
+        return pg["chapter_title"]   # the unnumbered coda carries no '§N.M' locator (it has no number)
+    return f'§{pg["part"]}.{pg["chapter"]}'
 
 
 def _curated_concept_entries(registry: dict[str, dict]) -> list[dict]:
@@ -5108,7 +5119,7 @@ def compute_word_counts(chapters: list[dict]) -> WordCounts:
             body_by_part[part] += wc
 
     body_parts = [((_PART_TITLES.get(p, body_title[p]) if (p in _MATTER_PARTS or body_is_matter[p])
-                    else f"Part {p} — {_PART_TITLES.get(p, '')}"), body_by_part[p])
+                    else f"Chapter {p} — {_PART_TITLES.get(p, '')}"), body_by_part[p])
                   for p in body_part_order]
     body_total = sum(body_by_part.values())
     appendix_letters = [(ltr if ltr == "Appendices divider" else f"Appendix {ltr}", app_by_letter[ltr])
@@ -5793,7 +5804,7 @@ def _pdf_part_opener_spread(pdf_path: pathlib.Path, part_titles: dict[int, str],
     normed_upper = [t.upper() for t in normed]           # for the uppercase apparatus-marker match
     results: list[dict] = []
     for part in range(1, 8):
-        div = norm(f"Part {part}: {part_titles[part]}")  # divider heading, title-case ("Part N: Title" — renderer SSOT)
+        div = norm(f"Chapter {part}: {part_titles[part]}")  # divider heading, title-case ("Chapter N: Title" — renderer SSOT)
         # The verso carries the title heading AND the orientation apparatus; disambiguate on the apparatus so a
         # stray TOC/outline line echoing the heading is never mistaken for the orientation page.
         candidates = [i for i, t in enumerate(normed, 1)
@@ -6072,7 +6083,7 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
     # Every chapter title must appear.
     missing_titles = [c["chapter_title"] for c in full if not _title_present(c["chapter_title"])]
     if missing_titles:
-        problems.append(f"{len(missing_titles)} chapter title(s) missing from PDF: {missing_titles[:5]}")
+        problems.append(f"{len(missing_titles)} section title(s) missing from PDF: {missing_titles[:5]}")
 
     # Every rendered Part title: front matter (0) emits no divider; every other top-level group DOES —
     # the numbered Parts 1–6, the top-level Conclusion (7, matter), the appendix families, and the synthetic
@@ -6089,7 +6100,7 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
         else:
             pt = _PART_TITLES.get(p, "")
         if pt and not _present(pt):
-            problems.append(f"Part title {pt!r} (part {p}) missing from PDF")
+            problems.append(f"Chapter title {pt!r} (top-level unit {p}) missing from PDF")
 
     # Tail: a distinctive word-run from the LAST section's rendered body must appear (not truncated).
     # Extract the run and search the PDF text through the SAME normalization (_norm), so the check does
@@ -6191,20 +6202,20 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
         op = r["opener"]
         where = f"p{op}" if op is not None else "not found"
         if r["ok"]:
-            print(f"  Part {r['part']} spread: PASS — orientation verso {where}, nav apparatus present, "
+            print(f"  Chapter {r['part']} spread: PASS — orientation verso {where}, nav apparatus present, "
                   f"fits one page{', facing parity OK' if _facing else ''}.")
         else:
             legs = [name for name in ("orientation_found", "carries_nav", "fits_one_page", "facing_parity")
                     if not r[name] and (name != "facing_parity" or _facing)]
-            print(f"  Part {r['part']} spread: FAIL — verso {where}; failing leg(s): {', '.join(legs)}.",
+            print(f"  Chapter {r['part']} spread: FAIL — verso {where}; failing leg(s): {', '.join(legs)}.",
                   file=sys.stderr)
     if spread_fails:
-        listing = ", ".join(f"Part {r['part']}" for r in spread_fails)
-        print(f"PDF PART-OPENER SPREAD SENSOR: BLOCKING FAIL — {len(spread_fails)} Part opener spread(s) "
+        listing = ", ".join(f"Chapter {r['part']}" for r in spread_fails)
+        print(f"PDF CHAPTER-OPENER SPREAD SENSOR: BLOCKING FAIL — {len(spread_fails)} chapter opener spread(s) "
               f"not clean: {listing}.", file=sys.stderr)
-        problems.append(f"part-opener spread(s) not clean: {len(spread_fails)} — {listing}")
+        problems.append(f"chapter-opener spread(s) not clean: {len(spread_fails)} — {listing}")
     else:
-        print(f"PDF PART-OPENER SPREAD SENSOR: BLOCKING PASS — all 6 Part opener spreads clean"
+        print(f"PDF CHAPTER-OPENER SPREAD SENSOR: BLOCKING PASS — all 7 chapter opener spreads clean"
               f"{' (incl. facing parity)' if _facing else ''}.")
 
     # CONTENTS ONE-PAGE sensor — the in-document Contents (table of contents) MUST fit ONE page (author
@@ -6399,7 +6410,7 @@ def _emit_book_staple(doc) -> None:
     rule = "=" * 64
     sections: list[str] = []
     for c in doc.chapters:
-        part_label = c.part_title.strip() if c.part_title.strip() else f"Part {c.part}"
+        part_label = c.part_title.strip() if c.part_title.strip() else f"Chapter {c.part}"
         prefix = c.fig_prefix or f"{c.part}.{c.chapter}"
         # Appendix titles already lead with their own locator ("A.1 Model Coherence") — don't repeat it.
         already = c.title.startswith(prefix) or c.title.startswith(f"Appendix {prefix}")
@@ -6559,7 +6570,7 @@ def build_pdf() -> int:
 def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
     """The ONE canonical grouping of the book's ordered chapters into the review sections, keyed off the
     same `part` field the whole-book render iterates:
-      part 0 → FrontMatter · parts 1-6 → Part1…Part6 · part 7 → Conclusion · parts ≥ 8 → Appendices
+      part 0 → FrontMatter · parts 1-7 → Chapter1…Chapter7 · part 8 → Conclusion · parts ≥ 8 → Appendices
     (the appendices front-door divider plus every appendix chapter) · the synthetic matter tail → BackMatter.
     It reuses the IR chapter order, so each
     section is a contiguous slice of the whole-book reading order — there is no second section model that
@@ -6580,7 +6591,7 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
         if part == _INTERLUDE_PART:
             return "Interlude"   # unnumbered matter between Parts 3 and 4 → its own mage-book-Interlude.pdf
         if 1 <= part <= 7:
-            return f"Part{part}"
+            return f"Chapter{part}"
         if part == 8:
             return "Conclusion"   # the top-level Conclusion (matter part 8)
         if getattr(ch, "is_matter", False):
@@ -6778,7 +6789,7 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
     # each chapter, keyed to the chapter's <part>.<chapter> id, matching the label map _collect_floats built.
     for i, c in enumerate(chapters):
         if c.get("is_part_page"):
-            num_label = f'Part {c["part"]}'
+            num_label = f'Chapter {c["part"]}'
         elif c.get("is_appendix_divider"):
             num_label = c["chapter_title"]  # "Appendices" — the reference section's own label
         elif c.get("is_appendix"):
@@ -6786,9 +6797,11 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
         elif c.get("is_matter"):
             num_label = c["chapter_title"]  # "Preface" / "Conclusion"
         elif c.get("is_coda"):
-            num_label = c["chapter_title"]  # the unnumbered coda's kicker is its title, not "Chapter N"
+            num_label = c["chapter_title"]  # the unnumbered coda's kicker is its title, not "§N.M"
         else:
-            num_label = f'Chapter {c["seq"]}'
+            # The §N.M section locator — the former GLOBAL "Chapter {seq}" ordinal (1-41, web/ePub-only)
+            # is retired: chapters are the 7 top-level units, and an N.M unit is a §section.
+            num_label = f'§{c["part"]}.{c["chapter"]}'
         kicker = _kicker_html(chapters, i, num_label)
         # `part.chapter` heading number — numbered body chapters (Parts 1-6) get it; front-matter
         # apparatus (part 0), true back matter (part 7 — about-the-author, colophon), and the appendix
@@ -6798,7 +6811,9 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
         chap_num = (None if c.get("is_matter") or c.get("is_appendix") or c.get("is_part_page")
                     or c.get("is_appendix_divider") or c.get("is_coda")
                     else f'{c["part"]}.{c["chapter"]}')
-        chap_num_html = f'<span class="chap-num">{html.escape(chap_num)}</span> ' if chap_num else ""
+        # Display carries the § section mark ("§5.2"); `section_prefix` below stays the bare "5.2" so
+        # subsection numbers read "5.2.1", not "§5.2.1".
+        chap_num_html = f'<span class="chap-num">§{html.escape(chap_num)}</span> ' if chap_num else ""
         header = (
             '<header class="chap">'
             # An empty kicker (a matter page whose title is its part label — the Conclusion) drops the

@@ -1,9 +1,9 @@
 <!-- part-foreshadows: seat-moves, govern-the-environment, mage-becomes-practical -->
-Part VI treated MAGE as a theory: an explanation of how agentic capacity, representation, enforcement,
+Chapter 6 treated MAGE as a theory: an explanation of how agentic capacity, representation, enforcement,
 engineering capital, and the surrounding environment interact; what that account predicts; where it should
 apply; and how it might be tested.
 
-This final Part asks what follows if that account is substantially right. It moves outward from the theory
+This final chapter asks what follows if that account is substantially right. It moves outward from the theory
 to the profession: first to how abundant implementation reorganizes software work, then to
 MAGE's relationship with older engineering and computing traditions, and finally to the engineer's
 expertise, authority, education, and responsibility.

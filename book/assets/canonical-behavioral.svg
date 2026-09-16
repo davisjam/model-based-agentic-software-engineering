@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Part 2 canonical opener — Behavioral (Fig 2.3-C1). Shared visual grammar; blue family ground. Fold to book/assets/. -->
+<!-- Chapter 2 canonical opener — Behavioral (Fig 2.3-C1). Shared visual grammar; blue family ground. Fold to book/assets/. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" width="1040" height="640" role="img" aria-labelledby="canonical-behavioralT canonical-behavioralD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="canonical-behavioralT">Canonical behavioral model: reduce an implementation to states and transitions</title>
   <desc id="canonical-behavioralD">A behavioral opener. A neutral implementation slab reduces to a state model: IDLE starts RUNNING, which finishes to DONE or fails to FAILED. A struck-through dashed arc marks the forbidden direct IDLE-to-DONE transition (no skipping RUNNING). Caption: Question, Semantics, Typical analysis. Blue ground marks the behavioral family.</desc>

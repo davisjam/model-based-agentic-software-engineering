@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Part III 3.3 figure — constraint-vs-sensor.svg (draft; folds to book/assets/).
+<!-- Chapter 3 3.3 figure — constraint-vs-sensor.svg (draft; folds to book/assets/).
      v7 (part3-v7-260814): reframed as a SELECTION RULE. Top node is the ENGINEERING OBLIGATION (rust —
      the property you must hold). A single decision — "Can the unwanted state be excluded cleanly?" —
      branches: YES -> CONSTRAINT (narrows what may happen); NO -> SENSOR (produces evidence of what

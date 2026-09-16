@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Part VI §6.5 — model-induction-general.svg (draft; folds to book/assets/).
+<!-- Chapter 6 §6.5 — model-induction-general.svg (draft; folds to book/assets/).
      The SAME abstraction move, shown once and instantiated three ways: realized work → repeated
      low-level forms → (weak detectors / retrieval / clustering) candidate regularities → (contextual
      comparison) a candidate abstraction → (engineering judgment adopts / names it) an explicit model / vocabulary →
@@ -7,7 +7,7 @@
      the method that carries each step); the THREE COLUMNS instantiate it in SOFTWARE, KNOWLEDGE WORK,
      and MECHANICAL / CAD. Software is the GROUNDED column (DocAble evidence, solid strokes); knowledge
      work and CAD are GENERALIZATION (inferred — dashed strokes, ribboned "not DocAble evidence"), per
-     the caveat that DocAble establishes the mechanism in software and Part VI argues the move is
+     the caveat that DocAble establishes the mechanism in software and Chapter 6 argues the move is
      available elsewhere. Grammar: gray #57534e = territory / neutral machine-found candidate (the AGENT
      finds repetition, compares, proposes); rust #9a3f12 = the engineer's naming (authority — the
      judgment step, the agent/engineer split); blue #2f5169 = the named model / vocabulary (the payoff);

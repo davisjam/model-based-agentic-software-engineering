@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Part 2 canonical opener — Structural (2.2 small service architecture). Shared visual grammar; rust family ground. Fold to book/assets/. -->
+<!-- Chapter 2 canonical opener — Structural (2.2 small service architecture). Shared visual grammar; rust family ground. Fold to book/assets/. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" width="1040" height="640" role="img" aria-labelledby="canonical-structuralT canonical-structuralD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="canonical-structuralT">Canonical structural model: a small service architecture</title>
   <desc id="canonical-structuralD">A structural opener in the shared grammar. WEB depends on API; API reaches DATABASE and CACHE. A struck-through dashed arrow marks a forbidden bypass from WEB straight to DATABASE around API. Caption: Question, Semantics, Typical analysis. Rust ground marks the structural family.</desc>

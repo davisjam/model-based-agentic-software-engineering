@@ -1641,6 +1641,9 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     # shared with `emit_document`'s section-flow decision (see `_is_numbered_body`).
     numbered = _is_numbered_body(chapter)
     chap_num = f"{chapter.part}.{chapter.chapter}" if numbered else None
+    # DISPLAY locator carries the § section mark ("§5.2" — the N.M units are sections of Chapters 1-7);
+    # `sec_prefix` below stays the bare "5.2" so subsection numbers read "5.2.1", not "§5.2.1".
+    chap_num_disp = f"§{chap_num}" if chap_num else None
     # Appendix content pages number their `## ` sections off their reader-facing locator (`fig_prefix`
     # like "H.9" → H.9.1), matching the web build; the chapter title's own locator is unaffected. Front-door
     # opening pages (bare-letter `fig_prefix`, no ".") stay unnumbered. Separate from `chap_num` so the
@@ -1648,7 +1651,7 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     sec_prefix = chap_num
     if sec_prefix is None and is_appendix and getattr(chapter, "fig_prefix", None) and "." in chapter.fig_prefix:
         sec_prefix = chapter.fig_prefix
-    title_num = f"#text(fill: dt.muted)[{chap_num}] " if chap_num else ""
+    title_num = f"#text(fill: dt.muted)[{chap_num_disp}] " if chap_num_disp else ""
     title_body = f"{title_num}{inline_typst(chapter.title)}"
     # Chapter titles emit at Typst LEVEL-2 (`==`), one below the Part divider's level-1 heading, so the PDF
     # bookmark tree nests the chapter under its Part. The level-2 show-rule (see _PREAMBLE) carries the
@@ -1681,7 +1684,7 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     elif is_appendix:
         out = [title_line, ""]
     else:
-        _toc_text = f"{chap_num} {chapter.title}" if chap_num else chapter.title
+        _toc_text = f"{chap_num_disp} {chapter.title}" if chap_num_disp else chapter.title
         head = _toc_marker("chapter", _toc_text) + "\n" + title_line
         # A CONTINUING major numbered section (N.M, M >= 2) no longer forces a page break (see
         # `emit_document`); its heading grammar is instead a structural RULE above the title — applied
@@ -2879,7 +2882,7 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
         # divider heads both — the terminal book-object bookmark parent, after the appendices.
         kicker, title = "", "Back Matter"
     elif is_numbered:
-        kicker, title = f"Part {part}", part_titles[part]
+        kicker, title = f"Chapter {part}", part_titles[part]
         # The divider is the Part opener, so it carries the `<part-N>` label the Part-nav strip links to
         # (`#link(<part-N>)`). Numbered Parts only — the appendix families are not Part-nav targets.
         label = f" <part-{part}>"

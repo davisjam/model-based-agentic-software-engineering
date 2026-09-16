@@ -5,13 +5,13 @@
      HOW DID IT EMERGE?. Right column, INDUSTRIAL RECONSTRUCTIONS (independent systems) — greater
      variation, selected mechanisms, different constraints, alternative realizations — answers HOW FAR
      DOES IT TRAVEL?. Both converge on ANALYTIC GENERALIZATION (constructs + mechanisms worth explaining),
-     which motivates PART VI · A THEORY OF MAGE. Deliberately modest: no "proof", "validation", or
+     which motivates CHAPTER 6 · A THEORY OF MAGE. Deliberately modest: no "proof", "validation", or
      "generalizability" on the figure (only "analytic generalization" as the named methodological move),
      and a closing caveat line states plainly that neither view supplies causal or population-level
      estimates. Palette: Umber Monograph tokens — the originating case reads modeling-green (#1f7a4d
      stroke / #e3f0e7 fill, the "knowledge/representation" family), the industrial reconstructions read
      agent-blue (#2f5169 stroke / #e7edf3 fill, the "fleet of independent instances" family), and the
-     convergence + Part VI pointer read governance-rust (#9a3f12 / #faf1e6) for the pivot and ink
+     convergence + Chapter 6 pointer read governance-rust (#9a3f12 / #faf1e6) for the pivot and ink
      (#1c1917) for the destination box. Ink titles, muted (#57534e) captions/connectors, rule (#e4e0d8)
      unused here. Fonts in the 14-26 band at the 1000px reference. -->
 <!-- semantic-families: modeling, agent, governance, neutral -->
@@ -25,7 +25,7 @@
     industrial reconstructions, independent systems, offering greater variation, selected mechanisms,
     different constraints, and alternative realizations, which together answer how far it travels.
     The two columns converge on analytic generalization, the constructs and mechanisms worth
-    explaining, which motivates the theoretical account developed in Part VI, A Theory of MAGE.
+    explaining, which motivates the theoretical account developed in Chapter 6, A Theory of MAGE.
     Neither view supplies causal or population-level estimates.</desc>
 
   <defs>
@@ -46,7 +46,7 @@
   <rect x="0" y="0" width="1000" height="820" fill="#fdfcf9"/>
 
   <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Two views of the evidence</text>
-  <text x="500" y="70" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Depth versus breadth — together they motivate the theory in Part VI.</text>
+  <text x="500" y="70" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Depth versus breadth — together they motivate the theory in Chapter 6.</text>
 
   <!-- THE EVIDENCE — a bare text node given a transparent rect anchor so the lint can read its geometry -->
   <rect id="evidence" x="428" y="90" width="144" height="24" fill="none" stroke="none"/>
@@ -74,9 +74,9 @@
   <!-- edge: how-travel -> analytic-gen -->
   <path d="M620,468 L620,554" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#tve-arrow-rust)"/>
 
-  <!-- analytic-gen down to Part VI. The caption "constructs + mechanisms worth explaining" is an on-edge label
+  <!-- analytic-gen down to Chapter 6. The caption "constructs + mechanisms worth explaining" is an on-edge label
        sitting between the two boxes, so the source cannot run up into analytic-gen without crossing it: left
-       straight + unannotated, head seated on the Part VI rim. -->
+       straight + unannotated, head seated on the Chapter 6 rim. -->
   <line x1="500" y1="650" x2="500" y2="690" stroke="#1c1917" stroke-width="2.2" marker-end="url(#tve-arrow-rust)"/>
 
   <!-- ===== NODES ===== -->
@@ -101,9 +101,9 @@
   <rect id="analytic-gen" x="300" y="556" width="400" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="500" y="592" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">ANALYTIC GENERALIZATION</text>
 
-  <!-- PART VI destination -->
+  <!-- CHAPTER 6 destination -->
   <rect id="part-vi" x="260" y="692" width="480" height="64" rx="10" fill="#f3efe7" stroke="#1c1917" stroke-width="2.6"/>
-  <text x="500" y="716" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2" fill="#57534e">PART VI</text>
+  <text x="500" y="716" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2" fill="#57534e">CHAPTER 6</text>
   <text x="500" y="740" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">A THEORY OF MAGE</text>
 
   <!-- ===== descriptive text on top of the edges ===== -->

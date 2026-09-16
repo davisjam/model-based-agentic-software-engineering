@@ -3,7 +3,7 @@
      appendix operationalizes, each named with its home location and a one-line reminder of what it says, so
      the appendix can refer back rather than re-embed and re-caption them. Value x feasible governability
      (Section 6.3), the governance-conversion loop (Section 3.4), the support-apparatus ratio and the
-     redistribution of engineering effort (both Part V). Typographic reference cards — no attempt to redraw
+     redistribution of engineering effort (both Chapter 5). Typographic reference cards — no attempt to redraw
      each figure small. Palette: blue #2f5169, rust #9a3f12, muted #57534e, green #1f7a4d; light tints; ink
      #1c1917; section tags #78716c. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600"
@@ -13,8 +13,8 @@
   <desc id="rcDesc">A two-by-two panel of reference cards. Value versus feasible governability, from Section 6.3:
     choose where to invest, surface by surface. The governance-conversion loop, from Section 3.4: a failure is
     diagnosed, the missing structure is encoded, and later work inherits it. The support-apparatus ratio, from
-    Part V: the environment used to understand and govern realization becomes a substantial engineering product
-    in its own right. Where engineering effort moves, from Part V: a redistribution toward deciding what must be
+    Chapter 5: the environment used to understand and govern realization becomes a substantial engineering product
+    in its own right. Where engineering effort moves, from Chapter 5: a redistribution toward deciding what must be
     true and establishing whether it became true, not the disappearance of implementation.</desc>
 
   <text x="500" y="40" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="0.4" fill="#1c1917">FOUR FIGURES THIS APPENDIX PUTS TO WORK</text>
@@ -43,9 +43,9 @@
     <text x="538" y="284">inherits it.</text>
   </g>
 
-  <!-- LL — support-apparatus ratio (Part V) -->
+  <!-- LL — support-apparatus ratio (Chapter 5) -->
   <rect x="48" y="330" width="440" height="230" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6"/>
-  <text x="74" y="544" text-anchor="start" font-size="12.5" font-weight="700" letter-spacing="0.6" fill="#78716c">PART V</text>
+  <text x="74" y="544" text-anchor="start" font-size="12.5" font-weight="700" letter-spacing="0.6" fill="#78716c">CHAPTER 5</text>
   <text x="74" y="368" font-size="22" font-weight="700" fill="#57534e">Support-apparatus ratio</text>
   <g font-size="15.5" fill="#1c1917">
     <text x="74" y="406">As autonomous realization grows past what one</text>
@@ -55,9 +55,9 @@
     <text x="74" y="502">about where effort accumulates, not a target.</text>
   </g>
 
-  <!-- LR — where engineering effort moves (Part V) -->
+  <!-- LR — where engineering effort moves (Chapter 5) -->
   <rect x="512" y="330" width="440" height="230" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="928" y="544" text-anchor="end" font-size="12.5" font-weight="700" letter-spacing="0.6" fill="#78716c">PART V</text>
+  <text x="928" y="544" text-anchor="end" font-size="12.5" font-weight="700" letter-spacing="0.6" fill="#78716c">CHAPTER 5</text>
   <text x="538" y="368" font-size="22" font-weight="700" fill="#1f7a4d">Where engineering effort moves</text>
   <g font-size="15.5" fill="#1c1917">
     <text x="538" y="406">When realization becomes cheap, effort shifts</text>
