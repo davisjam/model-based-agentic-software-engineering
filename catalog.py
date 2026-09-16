@@ -104,7 +104,9 @@ def _book_title_block() -> str:
 # (only ROLE_DIRS + root-level `.md` render) and `_is_publishable` never auto-stages them, so `docs/` is
 # excluded by construction — this entry makes that explicit for the html-walk family (orphan gate, leak,
 # axe) so a rendered artifact ever dropped under `docs/` can't trip the reachability gate.
-NON_SITE_DIRS = ("plugin", "node_modules", "site", "_site", ".git", "__pycache__", "hooks", "_drafts", "_print", "docs", "_design")
+# web-theme holds the shared MkDocs theme-extension package (Jinja partials + theme CSS) — its .html
+# files are TEMPLATES the MkDocs builds consume, never served pages, so the html scanners skip them.
+NON_SITE_DIRS = ("plugin", "node_modules", "site", "_site", ".git", "__pycache__", "hooks", "_drafts", "_print", "docs", "_design", "web-theme")
 
 
 def gitignored_top_dirs() -> frozenset[str]:
@@ -1151,6 +1153,13 @@ def cmd_validate(_args) -> int:
     if drift:
         print(f"  [tokens] AUDIT-ONLY: {len(drift)} design-token-drift finding(s) — "
               f"run `python3 book-models/lint_design_token_drift.py` (does not gate)")
+    # WEB-THEME TOKEN FRESHNESS — BLOCKING (lands clean; deterministic parity, mirrors check-mermaid).
+    # The shared MkDocs shell's mage-family.css carries a generated block projected from
+    # design-tokens.json; a token edit without a re-emit would silently fork the family palette.
+    if not _dtokens.material_css_is_fresh():
+        print("  [tokens] web-theme/overrides/assets/stylesheets/mage-family.css generated block is "
+              "STALE — run `python3 book-models/design_tokens.py emit-material`")
+        n_issues += 1
     # FIGURE-FAMILY-BUDGET — AUDIT-ONLY. The figure colour-LANGUAGE consistency gate: every house SVG using a
     # role colour (green=modeling / rust=governance / blue=agent / gray=neutral / red=failure, the
     # figure_semantics block in design-tokens.json) must DECLARE its allowed families in a one-line

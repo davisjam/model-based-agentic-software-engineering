@@ -1,0 +1,126 @@
+/* mage-family.css — the shared MAGE-family house style for every MkDocs property
+ * (Teach with MAGE, the Software Engineering Handbook, the MAGE web edition).
+ *
+ * One publishing family, one shell: near-black header with a thin rust rule and a white property
+ * title, warm-paper ground, warm ink, the rust accent for every interactive state, a quiet sidebar
+ * voice, and one warm-dark scheme. Each site's mkdocs.yml points theme.custom_dir at
+ * web-theme/overrides and lists this file in extra_css. Per-property identity lives elsewhere:
+ * the property title, the cover art, the reading-column content typography, and the nav IA.
+ *
+ * The token block below is PROJECTED from book-models/design-tokens.json by
+ * `python3 book-models/design_tokens.py emit-material` — the family accent has ONE home.
+ * Hand-authored rules reference the projected vars only; `catalog.py validate` gates freshness.
+ */
+
+/* BEGIN GENERATED (design_tokens.py emit-material) — do not hand-edit this block. */
+:root {
+  --family-font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --family-font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  --family-lh-body: 1.62;
+  --family-rule-width: 3px;
+  --md-text-font: var(--family-font-body);
+  --md-code-font: var(--family-font-mono);
+}
+[data-md-color-scheme="default"][data-md-color-scheme] {
+  --md-primary-fg-color: #1c1917;
+  --md-primary-fg-color--light: #57534e;
+  --md-primary-fg-color--dark: #1c1917;
+  --md-primary-bg-color: #fdfcf9;
+  --md-primary-bg-color--light: #faf1e6;
+  --md-accent-fg-color: #9a3f12;
+  --md-default-bg-color: #fdfcf9;
+  --md-typeset-color: #1c1917;
+  --md-typeset-a-color: #9a3f12;
+  --md-code-bg-color: #f3efe7;
+  --family-muted: #57534e;
+  --family-panel: #f6f4ef;
+  --family-hairline: #e4e0d8;
+  --family-rule-color: var(--md-accent-fg-color);
+}
+[data-md-color-scheme="slate"][data-md-color-scheme] {
+  --md-primary-fg-color: #0b0a08;
+  --md-primary-fg-color--light: #a69c8f;
+  --md-primary-fg-color--dark: #0b0a08;
+  --md-primary-bg-color: #ece7df;
+  --md-primary-bg-color--light: #2a1d12;
+  --md-accent-fg-color: #d98a5c;
+  --md-default-bg-color: #17130f;
+  --md-typeset-color: #ece7df;
+  --md-typeset-a-color: #e2a077;
+  --md-code-bg-color: #221b14;
+  --family-muted: #a69c8f;
+  --family-panel: #211a13;
+  --family-hairline: #3a3128;
+  --family-rule-color: var(--md-accent-fg-color);
+}
+/* END GENERATED (design_tokens.py emit-material) */
+
+/* ── The standard header: near-black field, thin rust rule, white title ─────────────────────────── */
+.md-header { border-bottom: var(--family-rule-width) solid var(--family-rule-color); }
+
+/* The branding strip (logo + property title) is ONE continuous home link: the overridden header
+ * partial wraps the title in a real anchor (.md-header__brandlink), and the logo button's click box
+ * is extended rightward across the gap with transparent padding (pulled back by a matching negative
+ * margin, so nothing moves visually). */
+.md-header__button.md-logo { padding-right: 1.6rem; margin-right: -1rem; }
+.md-header__brandlink { color: inherit; text-decoration: none; }
+.md-header__brandlink:hover, .md-header__brandlink:focus { color: inherit; opacity: 0.85; }
+
+/* Family nav — the right-side sibling links (rendered by the header partial from each site's
+ * `extra.family_links`). Header-colored, quiet weight; hidden on narrow screens where the header
+ * has room only for the drawer toggle, title, and controls. */
+.md-header__family { display: flex; align-items: center; }
+.md-header__family-link {
+  color: var(--md-primary-bg-color); text-decoration: none;
+  font-weight: 600; font-size: 0.7rem; white-space: nowrap; padding: 0 0.45rem;
+}
+.md-header__family-link:hover, .md-header__family-link:focus { color: var(--md-accent-fg-color); }
+@media screen and (max-width: 59.9844em) { .md-header__family { display: none; } }
+
+/* ── Reading column — the deliberately-typeset voice (shared rhythm; content type stays per-book) ── */
+.md-typeset { line-height: var(--family-lh-body); }
+/* Material's default h1 is light-weight and faded gray — a "generic documentation" tell. The family
+ * sets headings in full ink at a firmer weight with a touch of negative tracking. */
+.md-typeset h1 { color: var(--md-typeset-color); font-weight: 600; letter-spacing: -0.01em; }
+.md-typeset h2 { font-weight: 600; letter-spacing: -0.01em; }
+.md-typeset h3 { font-weight: 600; }
+.md-typeset a:hover { color: color-mix(in srgb, var(--md-typeset-a-color) 75%, var(--md-typeset-color)); }
+
+/* ── Quiet the left rail (the navigation instrument, not a third voice) ─────────────────────────── */
+/* Per-page status icons repeat on nearly every item — noise, not signal. Hierarchy is carried by the
+ * bold section labels, the accent current-page state, and indentation. */
+.md-nav .md-status { display: none; }
+
+/* The desktop sidebar repeats the site name as a drawer title; the header already shows it. Hide the
+ * level-0 drawer title on desktop only (the mobile drawer keeps its header). The child combinator
+ * targets ONLY the drawer title, never a section heading. */
+@media screen and (min-width: 76.25em) { .md-nav--primary > .md-nav__title { display: none; } }
+
+/* A section with no index page renders its title as a non-link <label>, which Material greys. Match
+ * it to the index-backed section labels (near-black) so every section reads the same quiet weight. */
+.md-nav__item--section > .md-nav__link[for] { color: var(--md-default-fg-color); }
+
+/* A section-index label (navigation.indexes) stays quiet bold ink unless it IS the current page —
+ * Material paints it accent whenever any descendant page is active, which for a one-book rail
+ * (book title -> chapters) would mean always-on accent. Hover still answers in accent. */
+.md-nav--primary .md-nav__item--section > .md-nav__container > .md-nav__link { font-weight: 700; }
+.md-nav--primary .md-nav__item--section > .md-nav__container > .md-nav__link:not(.md-nav__link--active) {
+  color: var(--md-default-fg-color);
+}
+.md-nav--primary .md-nav__item--section > .md-nav__container > .md-nav__link:not(.md-nav__link--active):hover {
+  color: var(--md-accent-fg-color);
+}
+
+/* Active / hovered nav takes the family accent — the one interactive color everywhere. */
+.md-nav__link--active, .md-nav__link:focus, .md-nav__link:hover { color: var(--md-accent-fg-color); }
+
+/* ── Quiet the right rail (current chapter's TOC — secondary, never a competing column) ─────────── */
+.md-nav--secondary .md-nav__title {
+  background: transparent; box-shadow: none;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.md-nav--secondary .md-nav__link { color: var(--md-default-fg-color--light); }
+.md-nav--secondary .md-nav__link--active,
+.md-nav--secondary .md-nav__link:focus,
+.md-nav--secondary .md-nav__link:hover { color: var(--md-accent-fg-color); }

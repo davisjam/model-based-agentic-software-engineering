@@ -27,6 +27,19 @@
     "diagram-trust": "#155c38",
     "diagram-trust-fill": "#eef7f0"
   },
+  "palette-dark": {
+    "_note": "Dark-scheme variant set (warm-dark slate, derived from the teach site's slate treatment with the gold links re-tinted to the family rust). Consumed ONLY by css_material_block() for the shared MkDocs shell's [data-md-color-scheme=slate] block — deliberately NOT part of `palette`, so svg_palette() (the hand-SVG membership gate) and css_root_block() are unchanged.",
+    "paper": "#17130f",
+    "panel": "#211a13",
+    "rule": "#3a3128",
+    "muted": "#a69c8f",
+    "ink": "#ece7df",
+    "header": "#0b0a08",
+    "accent": "#d98a5c",
+    "accent-tint": "#2a1d12",
+    "link": "#e2a077",
+    "code-bg": "#221b14"
+  },
   "type": {
     "display": {
       "family": "Source Serif 4",

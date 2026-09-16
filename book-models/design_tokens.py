@@ -7,6 +7,8 @@ decided semantic-box anchors — thesis GREEN, definition BLUE, inset LAVENDER).
 emits each renderer's native form so the three surfaces (site / web book / PDF) cannot diverge:
 
     css_root_block()   -> ":root { --ink:#1c1917; --fs-body:18px; … }"   (site + web book inline this)
+    css_material_block() -> MkDocs-Material scheme vars (light + dark) for web-theme/ (emit-material
+                            rewrites the marked block in mage-family.css; check-material gates freshness)
     typst_preamble()   -> "#let dt = (ink: rgb(\"#1c1917\"), fs-body: 13.5pt, …)" (PDF prepends this)
     mermaid_theme()     -> themeVariables dict for book/assets/mermaid-config.json (emitted artifact)
     svg_palette()       -> frozenset of every sanctioned hex (the hand-drawn-SVG membership set)
@@ -57,6 +59,12 @@ class Tokens:
     @property
     def type(self) -> dict:
         return self.raw["type"]
+
+    @property
+    def palette_dark(self) -> dict:
+        """The dark-scheme variant set (`palette-dark`) — consumed only by css_material_block().
+        Kept OUT of `palette` so svg_palette() and css_root_block() never see the dark hexes."""
+        return {k: v for k, v in self.raw["palette-dark"].items() if not k.startswith("_")}
 
     @property
     def accent_name(self) -> str:
@@ -210,6 +218,108 @@ def google_fonts_link(t: Tokens | None = None, rel_root: str = "") -> str:
             "}"
         )
     return "<style>" + "".join(rules) + "</style>"
+
+
+# ── Material (MkDocs shared-shell) projection ───────────────────────────────────────────────────────
+# The family palette rendered as MkDocs-Material scheme variables, for the shared `web-theme/` package
+# all three MkDocs sites (teach / handbook / MAGE web) consume. Sibling of css_root_block(): same SSOT,
+# different var vocabulary (`--md-*` scheme vars + a small `--family-*` contract the hand-authored shell
+# rules reference). Light scheme maps `palette`; dark scheme maps `palette-dark`. The block is EMITTED
+# in-place between markers in web-theme/overrides/assets/stylesheets/mage-family.css (emit-material) and
+# freshness-gated (check-material / catalog.py validate), mirroring the mermaid-config discipline.
+
+MATERIAL_CSS = HERE.parent / "web-theme" / "overrides" / "assets" / "stylesheets" / "mage-family.css"
+_MATERIAL_BEGIN = "/* BEGIN GENERATED (design_tokens.py emit-material) — do not hand-edit this block. */"
+_MATERIAL_END = "/* END GENERATED (design_tokens.py emit-material) */"
+
+
+def css_material_block(t: Tokens | None = None) -> str:
+    t = t or load()
+    light, dark = t.palette, t.palette_dark
+    lines: list[str] = [
+        _MATERIAL_BEGIN,
+        ":root {",
+        f"  --family-font-body: {t.css_stack('body')};",
+        f"  --family-font-mono: {t.css_stack('mono')};",
+        f"  --family-lh-body: {t.type['line-height']['body']};",
+        f"  --family-rule-width: {t.border('accent-bar')}px;",
+        "  --md-text-font: var(--family-font-body);",
+        "  --md-code-font: var(--family-font-mono);",
+        "}",
+        # Light scheme — the family ground: warm paper, warm ink, rust accent, near-black header.
+        # The attribute selector is DOUBLED on both scheme blocks: Material's palette.css carries
+        # combined [scheme][primary]/[scheme][accent] rules at specificity (0,2,0) (e.g. slate +
+        # primary=black re-colors links indigo), so a single-attribute override loses to them.
+        # Doubling matches that specificity; extra_css loads later, so the family tokens win.
+        '[data-md-color-scheme="default"][data-md-color-scheme] {',
+        f"  --md-primary-fg-color: {light['ink']};",
+        f"  --md-primary-fg-color--light: {light['muted']};",
+        f"  --md-primary-fg-color--dark: {light['ink']};",
+        f"  --md-primary-bg-color: {light['paper']};",
+        f"  --md-primary-bg-color--light: {light['accent-tint']};",
+        f"  --md-accent-fg-color: {light['accent']};",
+        f"  --md-default-bg-color: {light['paper']};",
+        f"  --md-typeset-color: {light['ink']};",
+        f"  --md-typeset-a-color: {light['link']};",
+        f"  --md-code-bg-color: {light['code-bg']};",
+        f"  --family-muted: {light['muted']};",
+        f"  --family-panel: {light['panel']};",
+        f"  --family-hairline: {light['rule']};",
+        "  --family-rule-color: var(--md-accent-fg-color);",
+        "}",
+        # Dark scheme — the warm-dark slate variant (palette-dark).
+        '[data-md-color-scheme="slate"][data-md-color-scheme] {',
+        f"  --md-primary-fg-color: {dark['header']};",
+        f"  --md-primary-fg-color--light: {dark['muted']};",
+        f"  --md-primary-fg-color--dark: {dark['header']};",
+        f"  --md-primary-bg-color: {dark['ink']};",
+        f"  --md-primary-bg-color--light: {dark['accent-tint']};",
+        f"  --md-accent-fg-color: {dark['accent']};",
+        f"  --md-default-bg-color: {dark['paper']};",
+        f"  --md-typeset-color: {dark['ink']};",
+        f"  --md-typeset-a-color: {dark['link']};",
+        f"  --md-code-bg-color: {dark['code-bg']};",
+        f"  --family-muted: {dark['muted']};",
+        f"  --family-panel: {dark['panel']};",
+        f"  --family-hairline: {dark['rule']};",
+        "  --family-rule-color: var(--md-accent-fg-color);",
+        "}",
+        _MATERIAL_END,
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def _material_css_split(text: str) -> tuple[str, str] | None:
+    """(prefix, suffix) around the generated block inclusive of markers, or None if markers absent."""
+    try:
+        start = text.index(_MATERIAL_BEGIN)
+        end = text.index(_MATERIAL_END) + len(_MATERIAL_END)
+    except ValueError:
+        return None
+    return text[:start], text[end:].lstrip("\n")
+
+
+def material_css_is_fresh(t: Tokens | None = None) -> bool:
+    if not MATERIAL_CSS.exists():
+        return False
+    split = _material_css_split(MATERIAL_CSS.read_text(encoding="utf-8"))
+    if split is None:
+        return False
+    prefix, suffix = split
+    want = prefix + css_material_block(t) + "\n" + suffix
+    return MATERIAL_CSS.read_text(encoding="utf-8") == want
+
+
+def emit_material(t: Tokens | None = None) -> str:
+    """Replace the generated block in mage-family.css in-place (hand-authored rules untouched)."""
+    text = MATERIAL_CSS.read_text(encoding="utf-8")
+    split = _material_css_split(text)
+    if split is None:
+        raise SystemExit(f"{MATERIAL_CSS}: generated-block markers missing — cannot emit")
+    prefix, suffix = split
+    out = prefix + css_material_block(t) + "\n" + suffix
+    MATERIAL_CSS.write_text(out, encoding="utf-8")
+    return out
 
 
 # ── Typst projection ────────────────────────────────────────────────────────────────────────────────
@@ -468,12 +578,23 @@ def semantics_table(t: Tokens | None = None) -> str:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("cmd", choices=["css", "typst", "palette", "figure-styles",
-                                    "emit-mermaid", "check-mermaid", "semantics", "check"])
+    ap.add_argument("cmd", choices=["css", "css-material", "typst", "palette", "figure-styles",
+                                    "emit-mermaid", "check-mermaid",
+                                    "emit-material", "check-material", "semantics", "check"])
     args = ap.parse_args(argv)
     t = load()
     if args.cmd == "css":
         sys.stdout.write(css_root_block(t))
+    elif args.cmd == "css-material":
+        sys.stdout.write(css_material_block(t))
+    elif args.cmd == "emit-material":
+        emit_material(t)
+        sys.stdout.write(f"wrote generated block into {MATERIAL_CSS}\n")
+    elif args.cmd == "check-material":
+        if not material_css_is_fresh(t):
+            sys.stderr.write("mage-family.css generated block is STALE — run: design_tokens.py emit-material\n")
+            return 1
+        sys.stdout.write("mage-family.css generated block is fresh\n")
     elif args.cmd == "typst":
         sys.stdout.write(typst_preamble(t))
     elif args.cmd == "palette":
