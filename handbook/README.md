@@ -137,14 +137,15 @@ convention incrementally. A later step promotes it to a hard error once every ch
 
 ```
 make lint      # validate manuscript semantics (no rendering)
-make book      # → dist/software-engineering-handbook.pdf
+make book      # → dist/software-engineering-handbook.{pdf,epub}
+make epub      # → dist/software-engineering-handbook.epub only
 make web       # → dist/site/ (MkDocs)
 make all       # lint + book + web
 make serve      # build the web edition and serve it locally
 make clean      # remove all generated artifacts
 ```
 
-Equivalent scripts: `python3 scripts/lint.py`, `python3 scripts/build.py {pdf|web|all}`.
+Equivalent scripts: `python3 scripts/lint.py`, `python3 scripts/build.py {pdf|epub|web|all}`.
 
 ### Local preview of BOTH books, under their published subfolders
 

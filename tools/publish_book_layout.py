@@ -7,7 +7,7 @@ WHY a publish-time relocation (not a source/build-path change): the book HTML ed
 root-relative refs (`href="../index.html"`, `url('../book/fonts/…')`). Moving the *source* would mean
 re-deriving depth across a 7k-line generator and moving 130+ tracked files. Instead this operates on the
 already-assembled `_site` tree: it moves the flat book pages one level deeper into `_site/book/mage-book/`,
-rewrites their root-relative refs by one extra `../`, copies the whole-book PDF and the handbook PDF into
+rewrites their root-relative refs by one extra `../`, copies the whole-book PDF and the handbook PDF + ePub into
 their new homes, and writes meta-refresh stubs at the old page URLs so external links never 404. GitHub
 Pages has no server redirects, so a static meta-refresh page IS the redirect mechanism for HTML; a `.pdf`
 URL cannot carry an HTML redirect (wrong content type), so the old PDF path keeps a working copy instead.
@@ -96,7 +96,7 @@ def relocate(site: str) -> int:
     print(f"  site           : {site}")
     print(f"  book pages     : {len(page_names)} -> book/mage-book/ (+ meta-refresh stub at each old path)")
     print(f"  book PDF       : book/mage-book.pdf -> book/mage-book/mage-book.pdf (old path kept as copy)")
-    print(f"  handbook PDF   : se-handbook/ -> book/se-handbook/ (old path kept as copy)")
+    print(f"  handbook PDF+ePub : se-handbook/ -> book/se-handbook/ (old paths kept as copies)")
 
     moved = 0
     for name in page_names:
@@ -117,23 +117,24 @@ def relocate(site: str) -> int:
     else:
         print(f"WARNING: {old_pdf} absent — no book PDF to relocate.", file=sys.stderr)
 
-    # Supplementary handbook PDF: canonical home under book/se-handbook/; keep the old top-level copy too.
+    # Supplementary handbook editions (PDF + ePub — both binary download artifacts, same posture):
+    # canonical home under book/se-handbook/; keep the old top-level copies too.
     hb_copies = 0
     old_hb_dir = os.path.join(site, "se-handbook")
     if os.path.isdir(old_hb_dir):
         new_hb_dir = os.path.join(book, "se-handbook")
         os.makedirs(new_hb_dir, exist_ok=True)
         for n in sorted(os.listdir(old_hb_dir)):
-            if n.endswith(".pdf") and os.path.isfile(os.path.join(old_hb_dir, n)):
+            if n.endswith((".pdf", ".epub")) and os.path.isfile(os.path.join(old_hb_dir, n)):
                 shutil.copy2(os.path.join(old_hb_dir, n), os.path.join(new_hb_dir, n))
                 hb_copies += 1
     else:
-        print(f"WARNING: {old_hb_dir} absent — no handbook PDF to relocate.", file=sys.stderr)
+        print(f"WARNING: {old_hb_dir} absent — no handbook PDF/ePub to relocate.", file=sys.stderr)
 
     print("== publish_book_layout results ==")
     print(f"  pages relocated + stubbed : {moved}")
     print(f"  book PDF copies           : {pdf_copies}")
-    print(f"  handbook PDF copies       : {hb_copies}")
+    print(f"  handbook PDF/ePub copies  : {hb_copies}")
     if moved == 0:
         print("ERROR: relocated 0 pages.", file=sys.stderr)
         return 1

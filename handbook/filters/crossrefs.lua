@@ -70,6 +70,12 @@ function Pandoc(doc)
       end
     end,
     Header = function(el)
+      -- A level-1 heading is a chapter boundary in the COMBINED ePub run, so the float sequences
+      -- restart there — keeping "Figure N" per-chapter, as on the web. The single-chapter PDF/web
+      -- runs put no H1 in the body (the renderer adds the chapter title), so this never fires.
+      if el.level == 1 then
+        fig_seq, tbl_seq = 0, 0
+      end
       if el.identifier ~= "" and el.identifier:match("^sec%-") then
         sec_title[el.identifier] = pandoc.utils.stringify(el.content)
       end
@@ -118,7 +124,14 @@ function Pandoc(doc)
           local cid = id:sub(4)
           local entry = chap[cid]
           local label = (entry and entry.short) or cid
-          local href = (entry and (entry.stem .. ".md")) or ("#" .. id)
+          -- ePub: every chapter lives in the one container, anchored by the injected heading's
+          -- `#chap-<id>`; a web-stem link would dangle. Web: the sibling page by its stable stem.
+          local href
+          if FORMAT:match("^epub") then
+            href = "#chap-" .. cid
+          else
+            href = (entry and (entry.stem .. ".md")) or ("#" .. id)
+          end
           return pandoc.Link(pandoc.Str(label), href)
         end
         local label = sec_title[id] or id

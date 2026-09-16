@@ -4,6 +4,10 @@
 /generated/
 /dist/
 
+# The ePub edition is a binary build artifact wherever it lands (dist/ is already covered above;
+# this guards a stray pandoc -o elsewhere under handbook/) — created in CI + at push time, never committed.
+*.epub
+
 # Python bytecode from the build/lint scripts.
 __pycache__/
 *.pyc

@@ -17,6 +17,9 @@ runs AFTER citeproc. It emits:
            so Typst owns figure numbering and `@fig-x` references resolve to it.
   * web  : a semantic <figure>/<figcaption> with the id as an anchor and "Figure N." prepended,
            where N is the number crossrefs.lua computed and stashed in `data-number`.
+  * epub : a NATIVE Pandoc Figure/Image (same caption + alt), never raw HTML — Pandoc's ePub
+           writer collects media into the container only from Image AST nodes, so a raw <img>
+           would ship a dangling reference.
 
 Two per-figure attributes modulate the defaults:
   * `.unnumbered` — an UNNUMBERED figure: no "Figure N." caption prefix, no claim on the figure
@@ -78,6 +81,21 @@ function Div(el)
     if unnumbered then table.insert(parts, "  numbered: false,") end
     table.insert(parts, ")" .. (el.identifier ~= "" and (" <" .. el.identifier .. ">") or ""))
     return pandoc.RawBlock("typst", table.concat(parts, "\n"))
+  elseif FORMAT:match("^epub") then
+    -- The authored `../figures/…` src is kept as-is; build.py's --resource-path resolves it and
+    -- the ePub writer embeds the file. The Image's own caption carries the alt text.
+    local num = (not unnumbered) and el.attributes["data-number"] or nil
+    local img = pandoc.Image({ pandoc.Str(alt) }, image.src)
+    if not (has_caption or num) then
+      return pandoc.Para({ img })
+    end
+    local cap = {}
+    if num then
+      table.insert(cap, pandoc.Strong({ pandoc.Str("Figure " .. num .. ".") }))
+      table.insert(cap, pandoc.Space())
+    end
+    for _, inl in ipairs(caption_inlines) do table.insert(cap, inl) end
+    return pandoc.Figure(pandoc.Plain({ img }), { pandoc.Plain(cap) }, pandoc.Attr(el.identifier))
   else
     local num = (not unnumbered) and el.attributes["data-number"] or nil
     local label = num and ("Figure " .. num .. ". ") or ""

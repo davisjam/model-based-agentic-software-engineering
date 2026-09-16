@@ -120,17 +120,19 @@ jobs:
           # installed above. catalog.py itself stays stdlib-only — these deps are for the --pdf path only.
           python3 -m pip install -r book/requirements-pdf.txt
           python3 book/build_book.py --pdf --no-split
-      # ── Supplementary Software Engineering Handbook PDF (Pandoc → AST → Typst) ───────────────────
-      # A CI-generated, Pages-published artifact (like the book PDF above; not committed). `make book`
+      # ── Supplementary Software Engineering Handbook PDF + ePub (Pandoc → AST → Typst / ePub3) ────
+      # CI-generated, Pages-published artifacts (like the book PDF above; not committed). `make book`
       # LINTS the manuscript first and aborts on any error (never degrades silently), then renders
-      # handbook/dist/software-engineering-handbook.pdf via the Pandoc→AST→Typst pipeline. Pandoc + Typst
-      # are both installed above; the handbook's bibliography ships in-tree. Copy ONLY the rendered PDF
-      # into _site/se-handbook/ so it serves at /se-handbook/software-engineering-handbook.pdf — the raw
-      # handbook/ manuscript is excluded from the artifact below (parity with course/site). Fatal on a
-      # missing PDF, mirroring the book-PDF assembly assertion. (The published subfolder is `se-handbook`;
-      # the source tree keeps its `handbook/` name.) The handbook WEB edition (MkDocs) is built + published
-      # by its own step further down, AFTER the relocate — see "Build handbook web site".
-      - name: Render supplementary handbook PDF (Pandoc → Typst) + copy into _site/se-handbook
+      # handbook/dist/software-engineering-handbook.pdf via the Pandoc→AST→Typst pipeline AND the
+      # reflowable software-engineering-handbook.epub from the same chapter source (the ePub is folded
+      # into the pdf target). Pandoc + Typst are both installed above; the handbook's bibliography ships
+      # in-tree. Copy ONLY the rendered PDF + ePub into _site/se-handbook/ so they serve at
+      # /se-handbook/software-engineering-handbook.{pdf,epub} — the raw handbook/ manuscript is excluded
+      # from the artifact below (parity with course/site). Fatal on a missing PDF or ePub, mirroring the
+      # book-PDF assembly assertion. (The published subfolder is `se-handbook`; the source tree keeps its
+      # `handbook/` name.) The handbook WEB edition (MkDocs) is built + published by its own step further
+      # down, AFTER the relocate — see "Build handbook web site".
+      - name: Render supplementary handbook PDF + ePub (Pandoc → Typst / ePub3) + copy into _site/se-handbook
         run: |
           # The handbook build/lint scripts parse book.yaml with PyYAML (the only third-party Python dep on
           # the PDF path; Pandoc + Typst are external CLIs, installed above). catalog.py itself stays
@@ -139,7 +141,9 @@ jobs:
           make -C handbook book
           mkdir -p _site/se-handbook
           cp handbook/dist/software-engineering-handbook.pdf _site/se-handbook/software-engineering-handbook.pdf
+          cp handbook/dist/software-engineering-handbook.epub _site/se-handbook/software-engineering-handbook.epub
           test -f _site/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: handbook PDF missing from site artifact"; exit 1; }
+          test -f _site/se-handbook/software-engineering-handbook.epub || { echo "ERROR: handbook ePub missing from site artifact"; exit 1; }
       # ── Responsive-layout gate (deploy-blocking) ────────────────────────────────────────────────
       # Assert the landing `.masonry` region renders a structurally different layout at wide vs phone
       # width (>= 3 columns at 2560px, exactly 1 column at 390px) — the author's success metric made
@@ -194,6 +198,7 @@ jobs:
           test -f _site/book/mage-book/mage-book.pdf || { echo "ERROR: relocated book PDF missing"; exit 1; }
           test -f _site/book/mage-book/index.html || { echo "ERROR: relocated book index missing"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: relocated handbook PDF missing"; exit 1; }
+          test -f _site/book/se-handbook/software-engineering-handbook.epub || { echo "ERROR: relocated handbook ePub missing"; exit 1; }
       # ── Handbook WEB edition (MkDocs → /book/se-handbook/) ──────────────────────────────────────
       # The handbook renders a self-contained MkDocs site (handbook/dist/site — index.html + one page
       # per chapter with relative stable-stem cross-links like href="07-design.html"), so the whole
@@ -211,6 +216,7 @@ jobs:
           cp -r handbook/dist/site/. _site/book/se-handbook/
           test -f _site/book/se-handbook/index.html || { echo "ERROR: handbook web index missing from site artifact"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: handbook PDF missing after web copy"; exit 1; }
+          test -f _site/book/se-handbook/software-engineering-handbook.epub || { echo "ERROR: handbook ePub missing after web copy"; exit 1; }
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:

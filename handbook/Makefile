@@ -7,15 +7,18 @@ PY := python3
 SCRIPTS := scripts
 MKDOCS := ../site/.venv/bin/mkdocs
 
-.PHONY: all lint book web serve clean
+.PHONY: all lint book epub web serve clean
 
-all: lint book web            ## lint, then render PDF + web
+all: lint book web            ## lint, then render PDF + ePub + web
 
 lint:                         ## validate manuscript semantics (no rendering)
 	$(PY) $(SCRIPTS)/lint.py
 
-book:                         ## render dist/software-engineering-handbook.pdf
+book:                         ## render dist/software-engineering-handbook.{pdf,epub}
 	$(PY) $(SCRIPTS)/build.py pdf
+
+epub:                         ## render dist/software-engineering-handbook.epub only
+	$(PY) $(SCRIPTS)/build.py epub
 
 web:                          ## build the MkDocs site into dist/site/
 	$(PY) $(SCRIPTS)/build.py web

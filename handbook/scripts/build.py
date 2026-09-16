@@ -2,6 +2,7 @@
 """build.py — render the Handbook from its one semantic source.
 
     chapters/*.md  →  Pandoc AST  →  Handbook Lua filters  →  ┬─ Typst  →  PDF
+                                                              ├─ Pandoc ePub3  →  EPUB
                                                               └─ MkDocs Markdown  →  HTML
 
 There is exactly one editable manuscript. Everything under generated/ and dist/ is an artifact:
@@ -9,9 +10,13 @@ never hand-edited, never committed. The generated Typst and Markdown are kept on
 pipeline stays inspectable — you can read exactly what each renderer received.
 
 Targets:
-    python3 scripts/build.py pdf     # generated/typst/* + dist/software-engineering-handbook.pdf
+    python3 scripts/build.py pdf     # generated/typst,epub/* + dist/software-engineering-handbook.{pdf,epub}
+    python3 scripts/build.py epub    # generated/epub/*  + dist/software-engineering-handbook.epub only
     python3 scripts/build.py web     # generated/web/*   + dist/site/ (MkDocs)
-    python3 scripts/build.py all     # both
+    python3 scripts/build.py all     # all of the above
+
+The ePub rides the `pdf` target (not only `all`) on purpose: the pre-push hook runs `build.py pdf`,
+so the two reader-facing editions regenerate together and the local .epub never goes stale.
 
 The build LINTS first and aborts on any manuscript error (it never degrades silently).
 """
@@ -28,11 +33,17 @@ import _common as C
 import lint as linter
 
 PDF_OUT = C.DIST / "software-engineering-handbook.pdf"
+EPUB_OUT = C.DIST / "software-engineering-handbook.epub"
 STAPLE_OUT = C.DIST / "course-landers-stapled.md"
 LECTURES = C.GC_ROOT / "course" / "lectures"
 SITE_OUT = C.DIST / "site"
 GEN_TYPST = C.GENERATED / "typst"
+GEN_EPUB = C.GENERATED / "epub"
 GEN_WEB = C.GENERATED / "web"
+# The ePub cover: the full-resolution cover artwork (the art layer the Typst cover composites) —
+# NOT the small web thumbnail, which would pixelate on an e-reader's cover view.
+EPUB_COVER = C.HANDBOOK / "assets" / "cover-artwork.png"
+EPUB_CSS = C.HANDBOOK / "epub" / "epub.css"
 
 # The filter pipeline. crossrefs runs BEFORE citeproc (it claims @fig/@sec cites); citeproc resolves
 # the real citations; the remaining filters run after, over the resolved AST.
@@ -195,6 +206,73 @@ def build_pdf(book: dict) -> None:
     print(f"PDF → {PDF_OUT.relative_to(C.HANDBOOK)}")
 
 
+def build_epub(book: dict) -> None:
+    """Render the reflowable ePub edition from the same chapter source as the PDF.
+
+    Pandoc's ePub writer wants the whole book in ONE run (one spine, one Dublin Core metadata
+    block, cross-chapter links resolved inside the container), so this target concatenates the
+    manuscript into generated/epub/book.md and renders that. Each section contributes a level-1
+    heading — the `--split-level=1` chapter-split point — plus its body with the per-file YAML
+    metadata stripped: left in place, the first chapter's `title:`/`description:` would merge
+    into the book's metadata (Pandoc gives leftmost metadata precedence)."""
+    _gate()
+    if GEN_EPUB.exists():
+        shutil.rmtree(GEN_EPUB)
+    GEN_EPUB.mkdir(parents=True, exist_ok=True)
+    C.DIST.mkdir(parents=True, exist_ok=True)
+
+    chdir_args = _chapter_directory_args(book)
+
+    # Front matter that renders in the print edition (`views:` includes `handbook`) belongs in the
+    # ePub too — the ePub is the reflowable sibling of the PDF, not of the web site.
+    sections: list[str] = []
+    for entry in book.get("frontmatter", []):
+        if "handbook" not in (entry.get("views") or []):
+            continue
+        fm = C.HANDBOOK / entry["file"]
+        meta = _chapter_meta(fm)
+        title = meta.get("title", fm.stem)
+        sections.append(f"# {title} {{#chap-{meta.get('id', fm.stem)}}}\n\n{_source_body(fm)}")
+        print(f"  epub   ← {fm.name} (front matter)")
+    chapter_no = 0
+    for ch in C.chapter_files(book):
+        meta = _chapter_meta(ch)
+        title = meta.get("title", ch.stem)
+        # Chapter numbering mirrors the web edition: `kind: chapter` takes the next number; back
+        # matter (the Conclusion) stays unnumbered. The heading id doubles as the `@ch-` anchor.
+        if (meta.get("kind") or "chapter") == "chapter":
+            chapter_no += 1
+            title = f"Chapter {chapter_no}: {title}"
+        sections.append(f"# {title} {{#chap-{meta.get('id', ch.stem)}}}\n\n{_source_body(ch)}")
+        print(f"  epub   ← {ch.name}")
+    combined = GEN_EPUB / "book.md"
+    combined.write_text("\n\n".join(sections) + "\n", encoding="utf-8")
+
+    # Same filter chain as the web build; the filters branch on an epub FORMAT where the web
+    # rendering would not survive the container (figures become native Figure nodes so Pandoc
+    # embeds the image files; callouts become plain semantic HTML instead of MkDocs admonitions).
+    # --resource-path resolves the chapters' authored `../figures/…` image paths.
+    cmd = (["pandoc", str(combined), "-f", C.PANDOC_FROM, "-t", "epub3", "-o", str(EPUB_OUT)]
+           + chdir_args + COMMON_PRE + _bib_args(book)
+           + ["-L", str(C.FILTERS / "figures.lua"),
+              "-L", str(C.FILTERS / "handbook-components.lua"),
+              "-L", str(C.FILTERS / "web.lua"),
+              "--resource-path", str(C.CHAPTERS),
+              "--epub-cover-image", str(EPUB_COVER),
+              "--css", str(EPUB_CSS),
+              "--toc", "--toc-depth=2", "--split-level=1",
+              "-M", f"title={book['title']}",
+              "-M", f"subtitle={book['subtitle']}",
+              "-M", f"author={book['author']}",
+              "-M", f"date={_last_modified(book)}",
+              "-M", f"lang={book.get('language', 'en-US')}",
+              "-M", ("rights=Edition {} · © {} {}".format(
+                  book["edition"], book.get("copyright_years", book["year"]), book["author"]))])
+    _run(cmd)
+    size_kb = EPUB_OUT.stat().st_size // 1024
+    print(f"EPUB → {EPUB_OUT.relative_to(C.HANDBOOK)} ({len(sections)} sections, {size_kb} KiB)")
+
+
 def build_web(book: dict) -> None:
     _gate()
     if GEN_WEB.exists():
@@ -256,16 +334,17 @@ def build_web(book: dict) -> None:
 
     # Landing page — one flat, numbered contents list: web front matter first (unnumbered), then
     # every chapter in book order (back matter such as the Conclusion unnumbered at the end).
-    # Above it, the two-link top row (PDF edition + the companion MAGE book), and around the list the
+    # Above it, the top row (PDF + ePub editions + the companion MAGE book), and around the list the
     # responsive contents+cover row: cover RIGHT of the contents on wide screens, moved to the TOP at
     # a small size on narrow (see web/css/handbook.css `.hb-home`). The row links are raw HTML so
-    # MkDocs' strict link check (markdown links only) does not chase the out-of-tree targets — the PDF
-    # is CI-published next to this page, and ../mage-book/ exists at the published /book/se-handbook/
-    # depth; both 404 in a bare local dist/site, which is expected.
+    # MkDocs' strict link check (markdown links only) does not chase the out-of-tree targets — the
+    # PDF and ePub are CI-published next to this page, and ../mage-book/ exists at the published
+    # /book/se-handbook/ depth; all three 404 in a bare local dist/site, which is expected.
     lines = [f"# {book['title']}", "", f"*{book['subtitle']}*", "",
              f"{book['author']} · Edition {book['edition']} · {book['year']}", "",
              '<p class="hb-top-row">'
              '<a href="software-engineering-handbook.pdf">Download the PDF edition ↓</a> '
+             '<a href="software-engineering-handbook.epub">Download the ePub edition ↓</a> '
              '<a href="../mage-book/index.html">Read the companion book: MAGE →</a>'
              "</p>", "",
              '<div class="hb-home" markdown="1">', "",
@@ -326,9 +405,12 @@ def _yaml_title(path) -> str | None:
     return str(title).strip() if title else None
 
 
-def _lander_body(index_md) -> str:
-    """The lander's markdown body — the source with its leading YAML frontmatter block removed."""
-    text = index_md.read_text(encoding="utf-8")
+def _source_body(md_path) -> str:
+    """A file's markdown body — the source with its leading YAML metadata block removed.
+
+    Shared by the ePub concatenation (chapter YAML must not merge into the book metadata) and the
+    landers staple (lander frontmatter is nav metadata, not review content)."""
+    text = md_path.read_text(encoding="utf-8")
     if text.startswith("---"):
         end = text.find("\n---", 3)
         if end >= 0:
@@ -367,7 +449,7 @@ def emit_course_landers_staple() -> None:
                 f"<!-- source: {source} -->",
                 rule,
                 "",
-                _lander_body(index_md),
+                _source_body(index_md),
             ]))
     preamble = "\n".join([
         "<!-- GENERATED by handbook/scripts/build.py — local review aid; do not edit. -->",
@@ -391,15 +473,21 @@ def main(argv: list[str]) -> int:
         emit_course_landers_staple()
         return 0
     book = C.load_book()
+    # The ePub is FOLDED into the pdf target (not a separate default) so the two reader-facing
+    # editions regenerate together — the pre-push hook's `build.py pdf` keeps both fresh.
     if target in ("pdf", "book"):
         build_pdf(book)
+        build_epub(book)
+    elif target == "epub":
+        build_epub(book)
     elif target == "web":
         build_web(book)
     elif target == "all":
         build_pdf(book)
+        build_epub(book)
         build_web(book)
     else:
-        C.die(f"unknown target '{target}' (use: pdf | web | all | staple)")
+        C.die(f"unknown target '{target}' (use: pdf | epub | web | all | staple)")
     emit_course_landers_staple()
     return 0
 

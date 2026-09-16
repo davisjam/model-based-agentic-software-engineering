@@ -9,6 +9,8 @@ tradeoff. This filter turns each semantic Div into the renderer-specific present
   * web  : a Material admonition `!!! <kind> "Title"` with the body indented four spaces. Custom
            kinds (definition, decision, tradeoff, case-study, key-idea, exercise) are styled by the
            handbook stylesheet; built-in kinds (note, warning, example, quote) use the theme default.
+  * epub : plain semantic HTML — `<div class="hb-callout hb-<kind>">` with a title line, styled by
+           epub/epub.css. Admonition syntax means nothing outside MkDocs, so the ePub never sees it.
 
 `figure` and `table` are handled by figures.lua / the native table path, not here.
 ]]
@@ -46,6 +48,24 @@ local function indent(md)
   return table.concat(lines, "\n")
 end
 
+-- The ePub writer accepts raw blocks in format "html" (never in the writer's own name, "epub3").
+local EPUB = FORMAT:match("^epub") ~= nil
+
+local function html_escape(s)
+  return (s:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"))
+end
+
+-- The ePub rendering of a titled block: a semantic div epub/epub.css styles. Shared by the
+-- callout and READ FURTHER paths.
+local function epub_block(classes, heading, content, identifier)
+  local body = pandoc.write(pandoc.Pandoc(content), "html"):gsub("%s+$", "")
+  local idattr = (identifier ~= "" and identifier ~= nil) and (' id="' .. identifier .. '"') or ""
+  return pandoc.RawBlock("html",
+    "<div" .. idattr .. ' class="' .. classes .. '">\n'
+    .. '<p class="hb-callout-title">' .. html_escape(heading) .. "</p>\n"
+    .. body .. "\n</div>")
+end
+
 -- A block's body is re-serialized here by a fresh `pandoc.write`, which does NOT know citeproc ran
 -- earlier in the pipeline: it would re-emit a resolved bibliographic Cite as a native `@key`, and
 -- the typst PDF then fails on a label that has no bibliography. citeproc has already populated each
@@ -68,6 +88,8 @@ function Div(el)
       if FORMAT == "typst" then
         local body = pandoc.write(pandoc.Pandoc(content), "typst"):gsub("%s+$", "")
         return pandoc.RawBlock("typst", "#hb-read-further[\n" .. body .. "\n]")
+      elseif EPUB then
+        return epub_block("hb-read-further", "Read Further", content, el.identifier)
       else
         local body = pandoc.write(pandoc.Pandoc(content), "gfm"):gsub("%s+$", "")
         local adm = '!!! read-further "Read Further"\n\n' .. indent(body) .. "\n"
@@ -93,6 +115,8 @@ function Div(el)
       .. body .. "\n]"
     if el.identifier ~= "" then t = t .. "\n<" .. el.identifier .. ">" end
     return pandoc.RawBlock("typst", t)
+  elseif EPUB then
+    return epub_block("hb-callout hb-" .. kind, title or titlecase(kind), content, el.identifier)
   else
     local qualifier = WEB_QUALIFIER[kind] or kind
     local body = pandoc.write(pandoc.Pandoc(content), "gfm"):gsub("%s+$", "")
