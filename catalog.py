@@ -42,14 +42,36 @@ _HANDBOOK_PDF = "software-engineering-handbook.pdf"  # supplementary handbook PD
 _HANDBOOK_WEB = "book/se-handbook/index.html"  # handbook WEB edition index (self-contained MkDocs site, CI-built + published next to the PDF; chapters at book/se-handbook/<stem>.html)
 
 
-def _book_build_path(href: str) -> str:
-    """Map a PUBLISHED book href (`book/mage-book/<slug>.html`) to its on-disk BUILD location — the
-    emitted MkDocs body `book/web/docs/<slug>.md` — for existence checks. The book web edition is
-    emitted by `book/book_mkdocs.py` and built into `_site/book/mage-book/` at the SAME stems
-    (`use_directory_urls: false`), so a gate that verifies a chapter EXISTS looks at the emitted body,
-    not the served path."""
-    mapped = href.replace("book/mage-book/", "book/web/docs/", 1)
-    return mapped[:-5] + ".md" if mapped.endswith(".html") else mapped
+_BOOK_PAGE_SLUGS: "set[str] | None" = None
+
+
+def _book_page_slugs() -> "set[str]":
+    """The authoritative published book page-slug set (`/book/mage-book/<slug>.html`), read from the book
+    build's own `expected_page_slugs()` — the same single source of truth the emitter's URL-parity gate
+    pins against. Validate checks a book link against what the build WILL emit, never against the
+    gitignored `book/web/` emit being on disk, so the check is build-order-independent (CI validates a
+    fresh checkout BEFORE `catalog.py build` emits the tree). Deferred import + memo: only the book-link
+    checks pay the chapter-discovery cost."""
+    global _BOOK_PAGE_SLUGS
+    if _BOOK_PAGE_SLUGS is None:
+        book_dir = os.path.join(ROOT, "book")
+        if book_dir not in sys.path:
+            sys.path.insert(0, book_dir)
+        import build_book  # noqa: E402 — deferred; the book build's discovery is the source of truth
+        _BOOK_PAGE_SLUGS = build_book.expected_page_slugs()
+    return _BOOK_PAGE_SLUGS
+
+
+def _book_href_resolves(href: str) -> bool:
+    """TRUE iff a root-relative href resolves to real material. A published book page
+    (`book/mage-book/<slug>.html`) is checked by slug membership in `_book_page_slugs()`; any other
+    href is checked against the tracked file on disk (the catalogue HTML ships in git, so that stat is
+    build-order-safe)."""
+    if href.startswith("book/mage-book/"):
+        stem = href[len("book/mage-book/"):]
+        slug = stem[:-5] if stem.endswith(".html") else stem
+        return slug in _book_page_slugs()
+    return os.path.exists(os.path.join(ROOT, href))
 
 # Repo-metadata SSOT — owner/repo/URLs read once from book-models/repo-metadata.json (stdlib-read, the
 # design-tokens.json pattern). The GitHub repo link in the chrome (footer, top nav, landing nav grid) and
@@ -911,17 +933,17 @@ def check_big_ideas() -> list[str]:
             problems.append(f"_order references {slug!r} with no record")
     for slug, rec in recs.items():
         # book_home stores a number-free identity LABEL now (+ optional #anchor); resolve it to its
-        # built-HTML href, then assert that page exists on disk (a chapter renumber updates the link, so
+        # built-HTML href, then assert the build owns that page (a chapter renumber updates the link, so
         # this reddens only on a genuinely dangling label).
         bh = _chapter_href(rec.get("book_home") or "").split("#")[0]
-        if not bh or not os.path.exists(os.path.join(ROOT, _book_build_path(bh))):
+        if not bh or not _book_href_resolves(bh):
             problems.append(f"big-ideas: {slug!r} book_home {rec.get('book_home')!r} does not resolve "
                             f"to a real chapter/page on disk")
         # website-v3: claims carry no per-claim figure (the single canonical mage-method.svg figure is
         # shared). The kept invariant is that any `explore` link resolves to real book material (book ⊇ site).
         ex = rec.get("explore") or {}
         exh = (ex.get("href") or "").split("#")[0]
-        if exh and not os.path.exists(os.path.join(ROOT, _book_build_path(exh))):
+        if exh and not _book_href_resolves(exh):
             problems.append(f"claims: {slug!r} explore.href {ex.get('href')!r} does not resolve to real book material")
         # Word cap applies to the landing's STORED plain-language heading (dual-heading model), not the
         # book's formal heading — the landing no longer renders the book's version.

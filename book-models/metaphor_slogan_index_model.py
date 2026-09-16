@@ -216,6 +216,14 @@ def freshness_findings() -> "list[str]":
     if stored is None:
         return [f"{os.path.relpath(_ARTIFACT)} missing — run "
                 f"`python3 book-models/metaphor_slogan_index_model.py regenerate`"]
+    # Build-order guard: the fresh scan re-derives from the emitted book-web surface (the gitignored
+    # `book/web/docs/*.md` bodies). In a pre-build checkout — CI runs `catalog.py validate` BEFORE
+    # `catalog.py build` emits that tree — the surface is absent, so a re-derivation is impossible, not
+    # stale: nothing has drifted; the input is missing. Defer to the post-build consumers, which see the
+    # full surface (the suite's freshness check after CI's build step, and the pre-commit hook's
+    # regen-after-build), rather than reporting a false DRIFT.
+    if not _book_web_files():
+        return []
     fresh = to_jsonable()
     if stored.get("index") != fresh["index"] or stored.get("_counts") != fresh["_counts"]:
         return [f"DRIFT: {os.path.relpath(_ARTIFACT)} disagrees with a fresh scan of the built book HTML — "
