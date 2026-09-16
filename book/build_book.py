@@ -48,6 +48,25 @@ HERE = pathlib.Path(__file__).resolve().parent
 _BOOK_MANIFEST = json.loads((HERE / "book-manifest.json").read_text(encoding="utf-8"))
 _PDF_FILENAME = _BOOK_MANIFEST["pdf_filename"]  # single source: the manifest
 
+# File-type glyph on the home page's PDF-download button: self-contained inline SVG (the site
+# loads nothing off-origin), all-currentColor strokes so it tracks the button's link color on the
+# hand-rolled light theme AND — via the MkDocs emitter's extraction of this same home page — the
+# family shell's dark scheme. A generic corner-fold page with a small "PDF" wordmark, not a brand
+# logo. Layout rides an inline style (not the shared CSS constant, which is inlined into EVERY
+# page — a CSS edit would churn all 132 tracked book/*.html for one home-page button). Same glyph
+# the Handbook web home uses (`handbook/scripts/build.py`) — keep in sync.
+_DL_ICO_PDF = (
+    '<svg class="dl-ico" viewBox="0 0 16 16" width="1.05em" height="1.05em"'
+    ' style="vertical-align:-0.18em;margin-right:0.45em"'
+    ' aria-hidden="true" focusable="false">'
+    '<path d="M9.4 1.3H4.3a1 1 0 0 0-1 1v11.4a1 1 0 0 0 1 1h7.4a1 1 0 0 0 1-1V4.6Z"'
+    ' fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>'
+    '<path d="M9.4 1.3v3.3h3.3" fill="none" stroke="currentColor" stroke-width="1.3"'
+    ' stroke-linejoin="round"/>'
+    '<text x="8" y="12.1" text-anchor="middle"'
+    ' font-family="ui-sans-serif,system-ui,sans-serif" font-size="4.8" font-weight="700"'
+    ' letter-spacing="-0.1" fill="currentColor">PDF</text></svg>')
+
 
 def _cover_sub(cls: str) -> str:
     """Optional subtitle div for a cover site, from the manifest; empty when the subtitle is blank."""
@@ -7606,7 +7625,7 @@ def build() -> int:
         # Companion cross-link — `se-handbook/` is a sibling subdir at publish time (the relocation step
         # rewrites it to `../se-handbook/` when this page moves into book/mage-book/; see
         # tools/publish_book_layout.py). Like the PDF, it 404s on a purely-local checkout; expected.
-        f'<div class="book-download"><a href="{_PDF_FILENAME}">Download the PDF edition ↓</a>'
+        f'<div class="book-download"><a href="{_PDF_FILENAME}">{_DL_ICO_PDF}Download the PDF edition ↓</a>'
         '<a href="se-handbook/index.html">Read the companion book: SE Handbook →</a></div>'
         '</div>'
     )

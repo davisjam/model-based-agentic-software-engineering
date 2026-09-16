@@ -340,11 +340,37 @@ def build_web(book: dict) -> None:
     # MkDocs' strict link check (markdown links only) does not chase the out-of-tree targets — the
     # PDF and ePub are CI-published next to this page, and ../mage-book/ exists at the published
     # /book/se-handbook/ depth; all three 404 in a bare local dist/site, which is expected.
+    # File-type glyphs on the download buttons: self-contained inline SVG (no external asset /
+    # icon-font — the published site loads nothing off-origin), all-currentColor strokes so each
+    # glyph tracks its button's link color in BOTH Material schemes (light + slate). Generic marks,
+    # not brand logos: a corner-fold page carrying a small "PDF" wordmark, and the universal
+    # open-book for the ePub. Layout rides the inline style so the markup is self-contained.
+    # Same glyph pair the MAGE home uses (`book/build_book.py` `_DL_ICO_PDF`) — keep in sync.
+    ico_pdf = (
+        '<svg class="dl-ico" viewBox="0 0 16 16" width="1.05em" height="1.05em"'
+        ' style="vertical-align:-0.18em;margin-right:0.45em"'
+        ' aria-hidden="true" focusable="false">'
+        '<path d="M9.4 1.3H4.3a1 1 0 0 0-1 1v11.4a1 1 0 0 0 1 1h7.4a1 1 0 0 0 1-1V4.6Z"'
+        ' fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>'
+        '<path d="M9.4 1.3v3.3h3.3" fill="none" stroke="currentColor" stroke-width="1.3"'
+        ' stroke-linejoin="round"/>'
+        '<text x="8" y="12.1" text-anchor="middle"'
+        ' font-family="ui-sans-serif,system-ui,sans-serif" font-size="4.8" font-weight="700"'
+        ' letter-spacing="-0.1" fill="currentColor">PDF</text></svg>')
+    ico_epub = (
+        '<svg class="dl-ico" viewBox="0 0 16 16" width="1.05em" height="1.05em"'
+        ' style="vertical-align:-0.18em;margin-right:0.45em"'
+        ' aria-hidden="true" focusable="false">'
+        '<path d="M8 3.5C6.9 2.4 5.2 2 3 2a.9.9 0 0 0-.9.9v8.8a.9.9 0 0 0 .9.9'
+        'c2.2 0 3.9.5 5 1.5 1.1-1 2.8-1.5 5-1.5a.9.9 0 0 0 .9-.9V2.9A.9.9 0 0 0 13 2'
+        'c-2.2 0-3.9.4-5 1.5Z" fill="none" stroke="currentColor" stroke-width="1.3"'
+        ' stroke-linejoin="round"/>'
+        '<path d="M8 3.5V14.1" stroke="currentColor" stroke-width="1.3"/></svg>')
     lines = [f"# {book['title']}", "", f"*{book['subtitle']}*", "",
              f"{book['author']} · Edition {book['edition']} · {book['year']}", "",
              '<p class="hb-top-row">'
-             '<a href="software-engineering-handbook.pdf">Download the PDF edition ↓</a> '
-             '<a href="software-engineering-handbook.epub">Download the ePub edition ↓</a> '
+             f'<a href="software-engineering-handbook.pdf">{ico_pdf}Download the PDF edition ↓</a> '
+             f'<a href="software-engineering-handbook.epub">{ico_epub}Download the ePub edition ↓</a> '
              '<a href="../mage-book/index.html">Read the companion book: MAGE →</a>'
              "</p>", "",
              '<div class="hb-home" markdown="1">', "",
