@@ -37,7 +37,9 @@
   <text x="140" y="150" text-anchor="middle" font-size="20" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
   <text x="140" y="252" text-anchor="middle" font-size="20" fill="#57534e">Factory</text>
   <text x="140" y="272" text-anchor="middle" font-size="20" fill="#57534e">economics</text>
-  <text x="330" y="252" text-anchor="middle" font-size="23" fill="#78716c">the engineered environment</text>
+  <!-- hub label centered at x=400 (not the hub's x=330): its half-width would otherwise reach back
+       into the door label's "Factory" extent and the two run together. -->
+  <text x="400" y="252" text-anchor="middle" font-size="23" fill="#78716c">the engineered environment</text>
   <text x="600" y="130" text-anchor="middle" font-size="23" fill="#78716c">benchmarks · routing · context · skills · gates</text>
   <text x="860" y="150" text-anchor="middle" font-size="20" letter-spacing="1" fill="#78716c">LANDS ON</text>
   <text x="860" y="200" text-anchor="middle" font-size="16.5" font-weight="bold" fill="#1c1917">Governed Engineering</text>

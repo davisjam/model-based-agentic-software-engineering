@@ -267,6 +267,19 @@ section.bibliography ul.bib-list li {
   font-size: 0.9em;
   opacity: 0.85;
 }
+/* Mirrors the web mage-book.css index rules: without display:block the term and its
+   references collapse into one inline run ("A chunkdefinition of: Ch. 2"). */
+.idx-concept .idx-subs {
+  display: block;
+  margin: 0.15em 0 0 1em;
+}
+.idx-concept .idx-sub {
+  display: block;
+}
+.idx-concept .idx-sub-lead {
+  font-style: italic;
+  margin-right: 0.35em;
+}
 .gallery-source {
   font-size: 0.85em;
   text-align: center;

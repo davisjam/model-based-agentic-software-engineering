@@ -3617,6 +3617,12 @@ def build_backmatter_chapters(next_part: int) -> list[dict]:
         rec = parse_chapter(HERE / _BACKMATTER_DIR / name, next_part, i + 1, metrics)
         rec["is_matter"] = True
         rec["part_title"] = _BACKMATTER_PART_TITLE
+        # Floats number off the page's VISIBLE identity, not the internal part counter: the synthetic
+        # back-matter part number ("21") appears nowhere on the page, so "Table 21.1-1" reads as an
+        # arbitrary ordinal. "Table Colophon-1" resolves against what the reader can see (the page
+        # title), in every edition — the same visible-locator rule the appendix `fig_prefix` follows.
+        if name == "colophon.md":
+            rec["fig_prefix"] = "Colophon"
         out.append(rec)
     return out
 
@@ -5196,6 +5202,15 @@ def _chapter_id(c: "dict") -> str:
     return f'{c["part"]}.{c["chapter"]}'
 
 
+def _floats_unnumbered(c: "dict") -> bool:
+    """True for a chapter whose floats carry NO number: the appendix Part dividers. Their internal
+    part counter ("9", "17") appears nowhere on the page, so a "Table 17.0-1" label reads as an
+    arbitrary ordinal — the where-to-look tables on those pages keep their captions but drop the
+    number, the id, and their list-of-floats entry (nothing cross-references them). Backmatter pages
+    with a real float instead carry a visible-identity `fig_prefix` (see `build_backmatter_chapters`)."""
+    return bool(c.get("is_appendix_divider"))
+
+
 def _float_id(kind: str, num: str) -> str:
     """The selector-safe id/anchor for a float: `fig-1-3-1` from num `1.3-1`. The DISPLAY label keeps the
     period ("Figure 1.3-1"); the id must not (an HTML id with a `.` is not a valid CSS/querySelector token,
@@ -5379,6 +5394,8 @@ def _collect_floats(chapters: list[dict], page_anchor_maps: dict) -> "tuple[list
     entries: list[dict] = []
     labels: dict[str, dict] = {}
     for c in chapters:
+        if _floats_unnumbered(c):
+            continue  # divider-page floats are unnumbered — no list entry, no [ref:] target
         body = md_to_html(c["body_md"], anchor_map=page_anchor_maps.get(c["slug"]))
         # Chapter-relative: counters reset to 1 at EACH chapter; the label carries the chapter id.
         _number_floats(body, _chapter_id(c), 1, 1, collect=entries, slug=c["slug"], label_sink=labels)
@@ -6808,7 +6825,8 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
                 section_prefix = _fp
         body = md_to_html(c["body_md"], anchor_map=page_anchor_maps.get(c["slug"]),
                           section_prefix=section_prefix)
-        body, _fig_n, _tbl_n = _number_floats(body, _chapter_id(c), 1, 1)
+        if not _floats_unnumbered(c):
+            body, _fig_n, _tbl_n = _number_floats(body, _chapter_id(c), 1, 1)
         body = _resolve_xrefs(body, ref_map, for_print=False)
         if _stem_to_label(c["slug"]) == GLOSSARY_CHAPTER_LABEL:
             body = _link_glossary_sites(body, gloss_link_map)

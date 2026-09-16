@@ -770,7 +770,20 @@ def _render_table(block: Block_t) -> str:
         cells.append(", ".join(f"[{inline_typst(c)}]" for c in row))
     cells.append("table.hline(stroke: 1pt)")
     tbl = f"table(\n    columns: {ncol},{align_arg}\n    " + ",\n    ".join(cells) + "\n  )"
-    caption = _caption_block(block.caption)
+    # Divider-page tables (see `build_book._floats_unnumbered`) keep their caption but carry NO number:
+    # the internal part counter their number would print appears nowhere on the page. `numbering: none`
+    # drops the "Table N" supplement; no counter advance, no list-of-floats marker — matching the web
+    # numbering pass, which skips these chapters.
+    if _LOF["unnumbered"]:
+        caption = _caption_block(block.caption)
+        return f"#figure(\n  fit-table({tbl}),\n  kind: table,\n  numbering: none,{caption}\n)"
+    _LOF["tbl_n"] += 1
+    caption = _caption_block(block.caption, lof_kind="tbl", lof_n=_LOF["tbl_n"])
+    if not caption:
+        # A bare-NUMBERED table (no authored caption): the web/ePub numbering pass still prints its
+        # "Table N." label line, and prose cites that number — so print must too. An EMPTY caption with
+        # a "." separator renders exactly the label ("Table 4.3-1.") and nothing more.
+        caption = "\n  caption: figure.caption(separator: [.], []),"
     label = f" <{block.label}>" if block.label else ""
     # Route the table through `fit-table` (preamble): a table too wide to wrap under the measure is scaled
     # down uniformly so it never overflows the text block; a wrappable one is untouched. The caption sits
@@ -905,7 +918,8 @@ def _render_figure(block: Block_t, width: str = "94%", bare: bool = False,
         raise SystemExit(f"figure directive: asset not found: {asset}")
     if bare:
         return f'#image("{_root_rel(asset, _EmitCtx.root)}", width: {width})'
-    caption = _caption_block(block.caption)
+    _LOF["fig_n"] += 1
+    caption = _caption_block(block.caption, lof_kind="fig", lof_n=_LOF["fig_n"])
     label = f" <{block.label}>" if block.label else ""
     floated = allow_float and _block_takes_float_path(block)
     placement = "\n  placement: auto," if floated else ""
@@ -923,7 +937,8 @@ def _render_mermaid(block: Block_t, caption_md: str | None, allow_float: bool = 
     is the one the HTML build already rendered/cached — we include it, we do not re-render."""
     _lang, inner = _fence_body(block.raw)
     p = _mermaid_svg_path(inner)
-    caption = _caption_block(caption_md)
+    _LOF["fig_n"] += 1
+    caption = _caption_block(caption_md, lof_kind="fig", lof_n=_LOF["fig_n"])
     label = f" <{block.label}>" if block.label else ""
     floated = allow_float and _block_takes_float_path(block)
     placement = "\n  placement: auto," if floated else ""
@@ -961,13 +976,40 @@ def _math_ish(s: str) -> str:
     return re.sub(r"[A-Za-z]{2,}", lambda m: f'"{m.group(0)}"', s)
 
 
-def _caption_block(caption_md: str | None) -> str:
+# ── List-of-Floats state (print "List of Figures and Tables") ─────────────────────────────────────
+# Mirrors the per-chapter Typst counters the `#set figure(numbering: …)` closure drives: `prefix` is the
+# chapter's float prefix (the `<X>` in "<X>-N"), `fig_n`/`tbl_n` advance at EXACTLY the sites that emit a
+# numbered `#figure` (same function, same branch — a bare portrait or meta-card grid advances neither),
+# and reset at each `render_chapter`. Every CAPTIONED float's caption then carries an invisible
+# `#metadata(...) <lofmark>` node (kind + computed number + short form) that the generated front-matter
+# List of Figures and Tables queries for its entries + page numbers — the same marker/query machinery the
+# custom `<tocmark>` Contents uses. Uncaptioned floats emit no marker, so the print list holds the same
+# captioned set the web list of floats shows. `unnumbered` arms the divider-page suppression (see
+# `build_book._floats_unnumbered`): those tables keep their caption but carry no number and no marker.
+_LOF = {"prefix": "", "fig_n": 0, "tbl_n": 0, "unnumbered": False}
+
+
+def _lof_caption_marker(kind: str, n: int, caption_md: str) -> str:
+    """The invisible `<lofmark>` metadata node embedded in a captioned float's caption. Carries the float's
+    computed chapter-relative number and its SHORT form (declared `[short: …]` or first-sentence derived —
+    the same rule the web list uses), pre-rendered to Typst content."""
+    display, short = bb._split_caption_md(" ".join(caption_md.split()))
+    short_md = short or bb._derive_short(display)
+    return ("#metadata((kind: " + _typst_str(kind) + ", num: " + _typst_str(f"{_LOF['prefix']}-{n}")
+            + ", short: [" + inline_typst(short_md) + "])) <lofmark>")
+
+
+def _caption_block(caption_md: str | None, lof_kind: str | None = None, lof_n: int = 0) -> str:
     """The `caption: [...]` argument for a `#figure`, or "" when there is none. Strips a trailing
-    `[short: …]` marker (the list-of-floats short form has no Typst analogue in this spike)."""
+    `[short: …]` marker (the short form travels via the `<lofmark>` metadata node instead — see
+    `_lof_caption_marker`); `lof_kind`/`lof_n` arm that node for the print List of Figures and Tables."""
     if not caption_md:
         return ""
     display, _short = bb._split_caption_md(" ".join(caption_md.split()))
-    return f"\n  caption: [{inline_typst(display)}],"
+    marker = ""
+    if lof_kind and lof_n and _LOF["prefix"] and not _LOF["unnumbered"]:
+        marker = _lof_caption_marker(lof_kind, lof_n, caption_md)
+    return f"\n  caption: [{marker}{inline_typst(display)}],"
 
 
 # ── Metadata (index-def / point) → #metadata + query ───────────────────────────────────────────────
@@ -1239,7 +1281,8 @@ def _render_convergence_key_typst(block: Block_t) -> str:
     cells.append("table.hline(stroke: 1pt)")
     tbl = ("table(\n    columns: 3,\n    align: (left, left, left),\n    "
            + ",\n    ".join(cells) + "\n  )")
-    caption = _caption_block(block.caption)
+    _LOF["tbl_n"] += 1
+    caption = _caption_block(block.caption, lof_kind="tbl", lof_n=_LOF["tbl_n"])
     label = f" <{block.label}>" if block.label else ""
     return f"#figure(\n  fit-table({tbl}),\n  kind: table,{caption}\n){label}"
 
@@ -1566,7 +1609,10 @@ def _float_prefix(chapter: "ir.Chapter", is_appendix: bool) -> str:
     (no `fig_prefix`) keep the numeric `<part>.<chapter>`. This is the M1 fix: the numeric pair rendered as
     "12.x" inside Appendix D because the Typst path recomputed it from `part.chapter` and ignored the locator
     the web build had already derived."""
-    if is_appendix and chapter.fig_prefix:
+    if chapter.fig_prefix:
+        # Any explicit reader-facing locator wins — appendix letters ("D.1") AND the back-matter
+        # visible-identity prefix ("Colophon"), matching the web `_chapter_id`, which honors
+        # `fig_prefix` unconditionally.
         return chapter.fig_prefix
     return f"{chapter.part}.{chapter.chapter}"
 
@@ -1584,6 +1630,11 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     is_appendix = chapter.slug.startswith("appendix")
     is_part_page = _is_part_page(chapter)
     is_appendix_divider = _is_appendix_divider(chapter)
+    # Reset the list-of-floats mirror counters at the chapter boundary — the Python twin of the
+    # `#set figure(numbering: …)` + counter-reset block this function appends (see `_LOF`).
+    _LOF["prefix"] = _float_prefix(chapter, is_appendix)
+    _LOF["fig_n"] = _LOF["tbl_n"] = 0
+    _LOF["unnumbered"] = is_appendix_divider
     # Front matter (0), the top-level Conclusion (7), and the synthetic back matter (dynamic part, flagged
     # `is_matter` on the record) are UNNUMBERED matter. A Part landing page (chapter-0 synthetic record) is
     # likewise unnumbered — it never prints an `N.0` — as is the appendices mode-marker. The predicate is
@@ -2603,7 +2654,16 @@ def _copyright_page_typst(ack_chapter: ir.Chapter, default_mod: str) -> str:
         "  #v(0.35em)\n"
         f"  #text(size: 9.5pt, fill: dt.muted)[{edition_line}]\n"
         "  #v(2.0em)\n"
-        "  #text(font: dt.font-display, weight: \"bold\", size: 13pt, fill: dt.ink)[Acknowledgments]\n"
+        # The relocated Acknowledgments are addressable: the two <tocmark>s seat a FRONT MATTER division +
+        # an "Acknowledgments" entry in the printed Contents (web/ePub list it first, so print must too),
+        # and the REAL level-2 heading — scoped-styled to the imprint page's 13pt display line, so the page
+        # looks unchanged — gives the PDF outline its bookmark. emit_document pre-seeds current_division so
+        # the first front-matter chapter does not emit the division marker twice.
+        f"  {_toc_marker('division', 'FRONT MATTER')}\n"
+        f"  {_toc_marker('chapter', 'Acknowledgments')}\n"
+        "  #[#show heading: set text(font: dt.font-display, weight: \"bold\", size: 13pt, fill: dt.ink)\n"
+        "    #show heading: set block(above: 0em, below: 0em, sticky: false)\n"
+        "    == Acknowledgments]\n"
         "  #v(0.8em)\n"
         "  #set text(size: 10pt, fill: dt.muted)\n"
         f"  {ack_body}\n"
@@ -2907,6 +2967,46 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     return opener + toc_mark + "\n" + verso + "\n#pagebreak()"
 
 
+def _list_of_floats_typst() -> str:
+    """The generated front-matter "List of Figures and Tables" page — the print projection of the web
+    build's generated list-of-figures page (same slot: right after the Preface). Entries come from the
+    `<lofmark>` metadata nodes every captioned float's caption carries (see `_lof_caption_marker`): the
+    same custom marker/query machinery as the `<tocmark>` Contents, so each entry reads its float's final
+    page via `counter(page).at(loc)` and links to it. Only CAPTIONED floats carry a mark, so the print
+    list holds the same float set as the web list. A `<tocmark>` seats the page in the Contents; the
+    level-2 heading gives the PDF outline its bookmark."""
+    entries_fn = (
+        "#let lof-entries(kind, word) = context {\n"
+        "  set text(font: dt.font-body, size: 10pt, fill: dt.ink)\n"
+        "  set par(justify: false, leading: 0.52em)\n"
+        "  for m in query(<lofmark>) {\n"
+        "    let d = m.value\n"
+        "    if d.kind == kind {\n"
+        "      let loc = m.location()\n"
+        "      let pg = counter(page).at(loc).first()\n"
+        "      block(width: 100%, above: 0.34em, below: 0pt, breakable: false)[\n"
+        "        #link(loc)[\n"
+        "          #text(font: dt.font-display, fill: dt.ink)[#word #d.num] — #d.short\n"
+        "          #box(width: 1fr, inset: (x: 0.4em), align(bottom, repeat(gap: 3pt, justify: false)[#text(fill: dt.muted)[.]]))\n"
+        "          #text(fill: dt.ink)[#pg]\n"
+        "        ]\n"
+        "      ]\n"
+        "    }\n"
+        "  }\n"
+        "}"
+    )
+    return (
+        entries_fn + "\n\n"
+        + _toc_marker("chapter", "List of Figures and Tables") + "\n"
+        + "== List of Figures and Tables\n\n"
+        + "The figures and tables of this book, in order, each with the page where it appears.\n\n"
+        + "=== Figures\n\n"
+        + '#lof-entries("fig", "Figure")\n\n'
+        + "=== Tables\n\n"
+        + '#lof-entries("tbl", "Table")'
+    )
+
+
 def _book_label_text(doc: "ir.Document") -> "dict[str, str]":
     """key → the descriptive reference string ("Figure <prefix>-N" / "Table <prefix>-N") for every labelled
     float in the book. Numbered exactly as the print projection numbers floats: chapter-relative, image and
@@ -2959,11 +3059,17 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
     # slug can change without silently un-relocating it. Skipped in the chapter loop below when found, so the
     # PDF states the acknowledgments once (on the copyright page), never twice.
     ack_chapter = next((c for c in doc.chapters if c.title.strip().lower() == "acknowledgments"), None)
+    seen_parts: set[int] = set()
+    current_division: str | None = None
     if with_frontmatter:
         default_mod = _esc(bb._BOOK_MANIFEST.get("last_updated", ""))
         parts.append(_cover_typst())
         if ack_chapter is not None:
             parts.append(_copyright_page_typst(ack_chapter, default_mod))
+            # The copyright page seats the FRONT MATTER division marker + the Acknowledgments Contents
+            # entry (see `_copyright_page_typst`); pre-seed the division so the first part-0 chapter
+            # below does not emit the division header a second time.
+            current_division = "FRONT MATTER"
         # Clickable table of contents. Every Part is a level-1 heading and every chapter a level-2 heading
         # (see `_part_divider_typst` / `_render_heading`), so Typst already emits PDF bookmarks for the whole
         # tree; this prints the in-document Contents (Parts + chapters, depth 2), whose entries are hyperlinks
@@ -2990,8 +3096,11 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
             "  for m in marks {\n"
             "    let d = m.value\n"
             "    let loc = m.location()\n"
+            # Spacing budget: with the Acknowledgments + List-of-Figures entries the Contents runs ~53
+            # rows; the division/part `above` steps below (0.66/0.34em, from 0.8/0.42em) keep the last
+            # entry (Bibliography) above the bottom-margin band while preserving the visual hierarchy.
             "    if d.kind == \"division\" {\n"
-            "      block(width: 100%, above: 0.8em, below: 0.32em, breakable: false)[\n"
+            "      block(width: 100%, above: 0.66em, below: 0.32em, breakable: false)[\n"
             "        #grid(columns: (auto, 1fr), align: horizon, column-gutter: 0.75em,\n"
             "          text(font: dt.font-display, weight: \"bold\", size: 10.5pt, tracking: 0.16em, fill: dt.ink)[#upper(d.text)],\n"
             "          line(length: 100%, stroke: 0.6pt + dt.rule),\n"
@@ -3003,7 +3112,7 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
             "      let indent = if is-part { 0pt } else { 1.4em }\n"
             "      let wt = if is-part { \"bold\" } else { \"regular\" }\n"
             "      let sz = if is-part { 11pt } else { 10pt }\n"
-            "      let above = if is-part { 0.42em } else { 0.12em }\n"
+            "      let above = if is-part { 0.34em } else { 0.1em }\n"
             "      block(width: 100%, above: above, below: 0pt, breakable: false)[\n"
             "        #pad(left: indent)[\n"
             "          #link(loc)[\n"
@@ -3018,8 +3127,6 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
             "}\n"
             "]"
         )
-    seen_parts: set[int] = set()
-    current_division: str | None = None
     prev_ch: "ir.Chapter | None" = None      # last chapter actually emitted — the section-flow predecessor
     for n, slug in enumerate(slugs):
         if slug not in by_slug:
@@ -3071,6 +3178,11 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
             rendered = _landscape_wrap_typst(rendered)
         parts.append(rendered)
         prev_ch = ch
+        # The generated List of Figures and Tables rides right after the Preface — the same front-matter
+        # slot the web build's `_insert_list_of_floats` uses — so the two editions' page orders agree.
+        if with_frontmatter and slug.endswith("preface"):
+            parts.append("#pagebreak()")
+            parts.append(_list_of_floats_typst())
     # End-of-book Bibliography — Chicago notes, rendered by Typst from the SAME references.bib that
     # generated citations.json, so the PDF's reference strings equal the web book's by construction
     # (CITE-PARITY / BIB-5). Emitted only when the book actually cites something (an empty #bibliography is
