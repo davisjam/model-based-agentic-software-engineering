@@ -296,6 +296,27 @@ def _link_cover_to_pdf(main: str) -> str:
     return out
 
 
+# The landing record's companion link is relative (`se-handbook/index.html` — the retired
+# hand-rolled pipeline's relocation step rewrote it at publish time). This MkDocs home lives at
+# /book/mage-book/, where that relative href resolves to a 404, so the emitter swaps in the
+# absolute published handbook URL (the family cross-book pattern: the two books are separate
+# MkDocs builds, so cross-book links are absolute).
+_COMPANION_HREF_RELATIVE = 'href="se-handbook/index.html"'
+_COMPANION_HREF_ABSOLUTE = ('href="https://davisjam.github.io/'
+                            'model-based-agentic-software-engineering/book/se-handbook/index.html"')
+
+
+def _absolutize_companion_link(main: str) -> str:
+    """Rewrite the landing's companion-book link to the absolute handbook URL. Web-only: like
+    `_link_cover_to_pdf`, only this emitter consumes the landing record. Fail loud if the
+    relative href is not found exactly once — the landing markup changed and this rewrite rotted."""
+    n = main.count(_COMPANION_HREF_RELATIVE)
+    if n != 1:
+        raise SystemExit(f"book_mkdocs: expected exactly 1 relative companion-book href "
+                         f"({_COMPANION_HREF_RELATIVE}) on the landing, found {n}")
+    return main.replace(_COMPANION_HREF_RELATIVE, _COMPANION_HREF_ABSOLUTE)
+
+
 # ── content CSS: tracked hand-owned sheet + projected token segments ─────────────────────────────
 
 
@@ -551,7 +572,7 @@ def emit(chapters: list[dict], extras: list[dict],
     for e in extras:
         title = build_book._BOOK_MANIFEST["title"] if e["slug"] == "index" else e["nav_title"]
         if e["slug"] == "index":
-            e = {**e, "main": _link_cover_to_pdf(e["main"])}
+            e = {**e, "main": _absolutize_companion_link(_link_cover_to_pdf(e["main"]))}
         bodies[e["slug"]] = _page_md(e, title)
     for slug, md in bodies.items():
         (docs / f"{slug}.md").write_text(md, encoding="utf-8")

@@ -172,12 +172,15 @@ blockquote.concept-inset .inset-title{
    UPPERCASE title-bar (source keeps natural case; the renderer applies the caps). */
 blockquote.box-canonical{ background: var(--accent-tint); border: 1px solid var(--rule);
   border-left: 5px solid var(--accent); color: var(--ink); font-style: normal;
-  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }blockquote.box-canonical p{ margin: 0 0 0.6rem; line-height: 1.6; }blockquote.box-canonical p:last-child{ margin-bottom: 0; }blockquote.box-canonical strong{ color: var(--accent); }blockquote.box-canonical em{ font-style: italic; }blockquote.box-canonical .inset-title{
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }blockquote.box-canonical p{ margin: 0 0 0.6rem; line-height: 1.6; }blockquote.box-canonical p:last-child{ margin-bottom: 0; }blockquote.box-canonical strong{ color: var(--accent); }blockquote.box-canonical em{ font-style: italic; }/* Title row shares the box's own background (no separate band) so the panel fill + the 5px left
+   accent run continuously from title to body; the header reads as a title through its centered
+   caps + a content-width accent divider, inset from the box edges — no full-bleed seam. */
+blockquote.box-canonical .inset-title{
   text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
-  color: var(--accent); background: var(--accent-tint); font-family: var(--font-display);
+  color: var(--accent); font-family: var(--font-display);
   font-size: 0.95rem; line-height: 1.35;
-  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 5px);
-  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--accent); border-radius: 5px 5px 0 0; }blockquote.box-canonical .inset-title::before{ content: none; }/* INSET — a removable pedagogical sidecar: neutral panel + a small upper-right provenance badge naming the
+  margin: 0 0 0.8rem;
+  padding: 0 0 0.5rem; border-bottom: 1px solid var(--accent); }blockquote.box-canonical .inset-title::before{ content: none; }/* INSET — a removable pedagogical sidecar: neutral panel + a small upper-right provenance badge naming the
    idea's genealogy (ENGINEERING, FORMAL METHODS, …); the §6.5 conjecture box carries a CAVEAT badge. */
 blockquote.box-inset{ position: relative; background: var(--panel); border: 1px solid var(--rule);
   border-left: 4px solid var(--muted); color: var(--ink); font-style: normal;
