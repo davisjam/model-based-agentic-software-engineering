@@ -292,46 +292,35 @@ knowledge explicitly, derive checks from it, and prevent a class of related fail
 ## Coda: Implementation in the GenAI Era {.coda}
 
 This handbook does not devote a chapter to implementation.
-That choice differs from the organization of many software-engineering texts.
+That differs from many software-engineering texts.
 Sommerville, for example, treats design and implementation together.
-The pairing reflects the history of software practice.
-Software engineering never developed a widely accepted division between engineers who make the consequential decisions and a technician class that simply realizes those decisions in code.
+Historically, software engineering never developed a widely accepted division between engineers who make consequential decisions and technicians who realize those decisions in code.
 Programmers have ordinarily done both.
 
 There was good reason for this arrangement.
-Design is a process of successive refinement: consequential degrees of freedom are progressively resolved until what remains can be expressed as executable software.
-But resolving a degree of freedom also costs engineering effort.
-The peculiar economics of software made that tradeoff especially favorable.
-As we saw earlier, software is unusually changeable: unlike many engineered artifacts, an implementation that proves inadequate can often be revised after it has been built.
-Engineers therefore had less reason to resolve every consequential degree of freedom in advance.
-A capable programmer could encounter a choice while writing the code, make a reasonable judgment, and continue; if the choice proved poor, the software could be changed in a later iteration.
-Much software design therefore remained latent in implementation.
-The code became both the realization of earlier decisions and the place where later decisions were made.
+Producing software required substantial human effort, and the skilled programmer doing that work was also capable of resolving many Design questions encountered along the way.
+It was often economical to leave such choices until implementation rather than represent every decision beforehand.
+Software's changeability made this arrangement still more practical: if a choice proved poor, the implementation could often be revised.
+Much design therefore happened during implementation.
+But encountering a decision while programming does not make it an implementation decision.
+If choosing a representation materially affects a memory obligation, or a concurrency mechanism determines whether a correctness property can hold, that choice is Design.
 
-This observation clarifies the boundary developed in this chapter.
-A consequential choice does not become an implementation concern merely because someone encounters it while programming.
-If choosing a representation materially affects a memory obligation, choosing the representation is Design.
-If a concurrency mechanism determines whether a correctness property can hold, selecting that mechanism is Design.
-Implementation may expose these questions and provide evidence about them, but their engineering consequences determine where the decisions belong.
+Generative AI changes this arrangement by separating cheap implementation from engineering judgment.
+An agent can follow a sufficiently determined plan and produce the corresponding code at very low cost.
+I therefore expect implementation to cease being a distinct engineering activity: increasingly, agents will perform it.
+This handbook consequently does not devote a chapter to the now-artisanal craft of implementation itself.
+The engineering task is instead to resolve or constrain the consequential Design decisions well enough that what remains can be delegated reliably and audited afterward.
 
-Generative AI changes the economics of this boundary.
-When producing and revising code becomes cheap, implementation no longer needs to carry as much unresolved engineering judgment merely to avoid the cost of making that judgment explicit beforehand.
-It also changes who exercises that judgment.
-Software engineers can be expected to understand the consequences of their decisions, exercise professional care, and remain accountable for the result.
-An agent offers no comparable basis for trust: it does not take professional responsibility for a decision, and plausible behavior on one task does not establish that it will make the same judgment reliably on the next.
-Delegating consequential degrees of freedom therefore creates a problem of reliability and control.
-Engineers can progressively constrain consequential degrees of freedom through specification, architecture, design, and the engineering environment until implementation is sufficiently determined that an agent can perform it reliably and auditably.
-Local freedom remains: names, idioms, small factorizations, and other choices may safely be left to the implementer when their alternatives do not materially affect the obligations under consideration.
+When consequential choices remain open, however, the agent must also make those Design decisions.
+Current agents can make choices that are locally plausible but wrong for the system, and even a sound choice remains subject to engineering control: engineers must be able to understand the decision, examine its consequences and evidence, and accept responsibility for it.
+Consequential Design decisions therefore need to become explicit rather than disappearing into generated implementation.
+Specification, Architecture, Design, and the engineering environment progressively constrain the work until what remains can safely be delegated.
 
-This does not make implementation unskilled.
-A welder can require substantial training and certification without deciding the loads a structure must bear or where its structural members belong.
-Programming likewise requires knowledge of languages, libraries, tools, idioms, and execution environments.
-The claim here concerns the allocation of engineering judgment: consequential decisions should be made at a level where their alternatives, consequences, and evidence can be represented and examined, rather than remaining implicit in the production of code.
-
-The resulting progression is an aspiration rather than a rigid sequence.
-Implementation will continue to reveal false assumptions, missing constraints, and better alternatives, sending evidence back to Design, Architecture, Specification, or the engineering environment.
-But once the relevant decisions have been made, implementation can increasingly become the auditable expression of those decisions in the executable medium.
-*Model-Based Agentic Software Engineering* develops this position further and considers the models, alignment mechanisms, and engineering practices needed to make such delegation practical.
+This does not make implementation unskilled or make engineering a rigid sequence.
+Programming still requires knowledge of languages, libraries, tools, and execution environments, and implementation will continue to reveal bad assumptions and better alternatives.
+That evidence should flow back to Design, Architecture, Specification, or the engineering environment.
+The goal is to make consequential engineering decisions where their alternatives and consequences can be examined, then use implementation to express and test those decisions reliably and auditably.
+*Model-Based Agentic Software Engineering* develops the practices needed to do this with capable agents.
 
 ## Summary
 
