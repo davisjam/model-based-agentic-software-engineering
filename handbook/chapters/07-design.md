@@ -44,6 +44,23 @@ Opening one part may reveal consequential subparts that require their own archit
 Eventually engineers reach functions, data structures, algorithms, or small collaborations whose relevant behavior can be reasoned about directly.
 At that point, design passes into implementation.
 
+## Working within an architecture
+
+The previous chapter considered the wall from the architect's perspective.
+Now consider it from the plumbing engineer's.
+The building architect has determined where the wall stands, how deep it is, where service space exists, and what penetrations are allowed.
+The plumbing engineer inherits those decisions.
+They constrain the solution without determining it.
+
+Substantial engineering choices remain.
+The plumbing engineer must determine what pipe diameter can supply the upper floors of a sixty-story building, what materials can withstand the required pressures, how pressure zones should be arranged, and where pumps or pressure-reducing valves are needed.
+These choices require calculation, evidence, and judgment.
+Yet they can ordinarily be made without reconsidering where the wall stands.
+
+Software design works similarly.
+Design inherits responsibilities, boundaries, and interactions established by the architecture and chooses mechanisms by which each part fulfills its responsibility: algorithms, data structures, internal representations, caching strategies, concurrency mechanisms, resource-management strategies, and other such means.
+The inherited organization constrains the choice; it does not make the choice.
+
 ## What Design inherits
 
 Design does not begin from an unconstrained set of possible implementations.
@@ -64,7 +81,6 @@ For each consequential choice, the designer must determine what kind of choice i
 - **Choose** when several mechanisms remain viable and their consequential differences can be resolved within the responsibility being designed.
 - **Escalate** when no satisfactory mechanism can be selected without reconsidering an inherited decision.
 
-Architecture establishes consequential organization and thereby constrains the mechanisms available to its parts; design chooses among the mechanisms that remain.
 The distinctive work of design lies primarily in choose.
 The responsibility of the part and the constraints under which it must operate are known, but several mechanisms could plausibly satisfy them.
 The engineering task is to identify which differences among those mechanisms matter and select accordingly.
@@ -157,8 +173,8 @@ Another engineer can challenge assumptions, identify alternatives, or expose con
 ## Local decisions, system consequences
 
 A design can be sound within the responsibility assigned to a part and still contribute to an unsound system.
-Architecture establishes system properties through the organization of responsibilities, boundaries, and interactions.
-Design occurs within those constraints, but the consequences of individually reasonable choices can accumulate or interact in ways that defeat what the architecture was intended to achieve.
+Specification establishes what the machine must guarantee; Architecture organizes responsibilities, boundaries, and interactions so that those obligations can be realized together and their satisfaction can be assessed at the level of the whole machine.
+Design occurs within that organization, but individually reasonable choices can accumulate or interact in ways that cause the resulting machine to violate its specification.
 **Systems thinking** requires engineers to reason about these aggregate effects rather than evaluating each design choice only within its local scope.
 
 A mickle and a mickle makes a muckle.
@@ -169,10 +185,10 @@ The resulting system is not.
 The architectural property concerns the path through the components, not the local acceptability of any one component.
 
 The same problem can arise from gaps rather than accumulation.
-Suppose components A and B both handle input on the path to a database.
-The design of A assumes that B is responsible for preventing SQL injection, while the design of B assumes that A has already sanitized its input.
-Each design may appear reasonable locally, yet their composition leaves an obligation unsatisfied.
-Conversely, both components might perform incompatible forms of sanitization, producing another failure despite each attempting to satisfy the same concern.
+Suppose components A and B both participate in constructing a database operation.
+The design of A assumes that B will ensure untrusted input cannot alter the structure of the query, while the design of B assumes that A has already established that property.
+Each design may appear reasonable locally, yet their composition leaves the obligation unsatisfied.
+The problem is not either mechanism considered alone; it is the uncovered responsibility between them.
 
 Systems thinking therefore asks whether the collection of design choices preserves the properties that the architecture sought to control.
 In particular, designers should ask whether:
@@ -197,15 +213,21 @@ Suppose no plausible processing mechanism can remain below the worker's memory l
 Alternatively, suppose the only viable mechanism requires moving authoritative state across a boundary established by the architecture.
 In either case, design has produced evidence that the inherited constraints do not admit a satisfactory mechanism.
 
-Detailed design produces evidence about whether inherited decisions are workable.
-An apparent degree of freedom may prove not to be local at all.
-The correct response is not to force a clever workaround into the implementation, but to reconsider the decision whose scope actually contains the consequence.
+In the building analogy, the plumbing engineer may discover that every pipe capable of supplying the required flow is too large for the service space the architecture provides.
 
+Software Design can expose the same problem.
+If no satisfactory mechanism fits within the inherited responsibilities, boundaries, or interactions, the problem cannot be resolved as a local Design choice.
+The inherited decision must be reconsidered.
+
+The correct response is not to force a clever workaround into the implementation; it is to take the discovery to the decision whose scope actually contains the consequence.
 Escalation can therefore have several destinations:
 
 - **Engineering environment:** the same decision recurs across components and should become a shared convention, abstraction, mechanism, or check.
 - **Architecture:** the conflict concerns responsibilities, boundaries, interactions, system-wide budgets, or another property of consequential organization.
 - **Specification:** detailed work reveals a missing, contradictory, or infeasible obligation.
+
+Escalation does more than repair the current design.
+It places what Design has learned at the scope where future engineering decisions can inherit it.
 
 The distinction matters because a local workaround can make an earlier engineering model false.
 
