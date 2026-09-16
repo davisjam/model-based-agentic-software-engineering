@@ -84,3 +84,7 @@ Claims, evidence, and remaining uncertainty feed a decision with more than two o
 These are not a checklist, and several feed backward. A failed validation need not mean "test more": sometimes the implementation should change, sometimes the architecture is wrong, and sometimes the commitment itself should be reconsidered. The question is therefore not simply *should we deliver?* but *what action follows from what we now know?*
 
 Evidence also changes after delivery. Monitoring, incidents, measurements, and user reports change the state of knowledge; continuing to deliver is then a new decision under new evidence. Software's updateability, where this argument began, makes post-delivery learning unusually practical — and creates the matching obligation to respond when that learning undermines the justification for delivering at all.
+
+---
+
+**Read the expanded treatment:** [*The Software Engineering Handbook*, "Validation" →](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/08-validation.html)

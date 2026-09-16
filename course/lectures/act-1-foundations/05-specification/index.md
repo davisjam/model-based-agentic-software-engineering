@@ -58,3 +58,7 @@ Once responsibility is allocated, engineers decide how tightly to bound the mach
 ## From specification to architecture
 
 Specification leaves a bounded space of acceptable realizations, not a complete design. The obligations that bound the space — state behavior, information structures, timing, expected change — may have been stated through different views, but they must eventually coexist in one system. Architecture begins from that bounded space. Its problem is no longer which realizations are acceptable, but how to organize one acceptable realization so that its competing obligations can be satisfied together.
+
+---
+
+**Read the expanded treatment:** [*The Software Engineering Handbook*, "Specification" →](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/05-specification.html)

@@ -87,3 +87,7 @@ Architecture deliberately does not decide everything. Once engineers have chosen
 Architecture organizes responsibilities, boundaries, and interactions without determining the mechanisms by which each part will fulfill its responsibility. Design inherits that organization and chooses among the mechanisms that remain available.
 
 The relationship is recursive. A subsystem that appears as one part in a system architecture will itself require architectural decisions if it remains too large to reason about directly. Conversely, detailed design may reveal that an apparently local choice has consequences beyond the part: perhaps available implementations conflict with another component, frustrate a required system property, or require a decision to be made consistently across the system. In that case, design has exposed an architectural question.
+
+---
+
+**Read the expanded treatment:** [*The Software Engineering Handbook*, "Architecture" →](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/06-architecture.html)

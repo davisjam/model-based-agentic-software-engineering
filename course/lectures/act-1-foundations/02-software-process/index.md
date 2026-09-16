@@ -68,3 +68,7 @@ Ask instead: *How much can we know before building, how expensive will our decis
 Those answers help determine how to arrange the work. They are not necessarily fixed, either. Engineers can sometimes invest in learning earlier, making decisions easier to reverse, or making systems easier to divide into useful increments. Whether those investments are worthwhile is itself an engineering decision.
 
 The goal of this module is therefore not to memorize a preferred software process. It is to learn to recognize why a particular arrangement of engineering work fits one problem better than another.
+
+---
+
+**Read the expanded treatment:** [*The Software Engineering Handbook*, "Process" →](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/01-process.html)

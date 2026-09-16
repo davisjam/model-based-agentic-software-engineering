@@ -60,3 +60,7 @@ The relevant questions are therefore not merely *How much more can each engineer
 ## The course project
 
 The course project provides a small-scale opportunity to make these choices deliberately. Teams must coordinate internally while also coordinating with other teams in their pod. Their Team Contract can specify mechanisms for communication, ownership, meetings, work tracking, Git and review practices, and handling blockers. Teams may also designate—and potentially rotate—a pod point of contact, trading fewer cross-team communication paths against the risks of bottlenecks, handoffs, and concentrating context in one person.
+
+---
+
+**Read the expanded treatment:** [*The Software Engineering Handbook*, "Teamwork" →](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/02-teamwork.html)

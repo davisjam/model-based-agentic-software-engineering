@@ -89,3 +89,7 @@ Accepting a requirement establishes what the engineering effort is willing to pr
 It does not yet follow exactly what the machine must guarantee. Some responsibility may reasonably remain with users, operators, other systems, or the surrounding environment; other responsibility must belong to the machine itself. Nor has the requirement necessarily settled every consequential distinction among acceptable machine behaviors.
 
 Requirements asks: *what should we promise?* Specification asks: *what must the machine and its environment provide for us to keep that promise?* Specification takes the accepted commitment and the understanding behind it, then decides where responsibility belongs and which differences among possible realizations must be constrained.
+
+---
+
+**Read the expanded treatment:** [*The Software Engineering Handbook*, "Requirements" →](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/04-requirements.html)
