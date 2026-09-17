@@ -12,7 +12,7 @@ Spotify's surrounding engineering estate also matters. Its System Model and Back
 
 **Portable lesson.** Scale implementation; concentrate human judgment on what to change and where.
 
-[^sp-estate]: Spotify System Model and Backstage service catalog, as recorded in the §5.5 reconstruction (service identities, ownership, dependencies, endpoints, lineage).
+[^sp-estate]: Spotify System Model and Backstage service catalog, as recorded in the {{sec:mage-in-the-wild}} reconstruction (service identities, ownership, dependencies, endpoints, lineage).
 [^sp-prfreq]: 76% PR-frequency figure as reported in the Honk account; cited here strictly as an activity measure, not as evidence of durable throughput.
 
 #### Recto — MAGE Interpretation

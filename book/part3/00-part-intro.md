@@ -16,7 +16,7 @@ Selected obligations can instead be encoded into the engineered environment. Som
 > Make engineering obligations enforceable by encoding them into mechanisms that
 > constrain actions, produce evidence, evaluate that evidence, and control admission.
 
-Not every preference warrants mechanical enforcement, and not every important property can support it. Some obligations remain dependent on expert judgment; others would cost more to mechanize than doing so is worth. Chapter 2's tolerances and degrees of freedom also distinguish obligations from variation that engineering deliberately leaves open. The sections ahead develop how to choose among these possibilities.
+Not every preference warrants mechanical enforcement, and not every important property can support it. Some obligations remain dependent on expert judgment; others would cost more to mechanize than doing so is worth. {{chapter:modeling}}'s tolerances and degrees of freedom also distinguish obligations from variation that engineering deliberately leaves open. The sections ahead develop how to choose among these possibilities.
 
 [ref:part3-nav-arc] traces the progression from engineering intent to a governed environment.
 

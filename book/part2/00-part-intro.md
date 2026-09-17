@@ -37,7 +37,7 @@ and they are not exhaustive. The same worker may appear as a component in one mo
 lifecycle in another, and the owner of work in a third. Architectural reasoning may traverse several such
 views at once.
 
-DocAble is the running example—the production accessibility service introduced in Chapter 1. A document
+DocAble is the running example—the production accessibility service introduced in {{chapter:problem}}. A document
 enters, remediation is distributed across workers and services, the result is validated, and a corrected
 document returns with a record of what changed. The real system is far more complicated than any
 representation ahead. That is the point. Each model keeps only the relationships its question needs.
@@ -48,7 +48,7 @@ the analyses it supports, then specializes that representation to DocAble. Four 
 throughout the chapter. A **property** is a claim that can be expressed over a model. An **invariant** is a
 property required to hold over a declared domain. An **analysis** or check produces evidence about a
 property. Whether the engineered environment enforces the resulting obligation is a separate question of
-**enforcement**, taken up in Chapter 3.
+**enforcement**, taken up in {{chapter:alignment}}.
 
 <!-- box-family: inset -->
 > #### Four questions for every model
@@ -60,7 +60,7 @@ property. Whether the engineered environment enforces the resulting obligation i
 > - **Property** — what can I now state precisely?
 > - **Quality attribute** — what engineering concern does that property serve?
 
-Chapter 3 adds a fifth question: **what enforces the property?** Modeling makes properties
+{{chapter:alignment}} adds a fifth question: **what enforces the property?** Modeling makes properties
 explicit; Alignment makes selected obligations enforceable.
 
 <!-- point: the-final-chapter-connects-the-six-without-a-seventh-model | The final section shows how the six models connect through shared identity without becoming a seventh model. | terms: model-zoo, scope-of-modeling, modeling-principle -->

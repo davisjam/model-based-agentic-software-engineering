@@ -6,7 +6,7 @@ should know?
 
 When a wiki carries important system knowledge, link its claims to the implementation and evidence they
 concern. Check mechanically decidable claims automatically. Give stronger structure only to knowledge whose
-future use justifies the cost. [§4.2](4.2-brownfield.html) gives the full treatment.
+future use justifies the cost. [{{sec:brownfield}}](4.2-brownfield.html) gives the full treatment.
 
 ### Joining the wiki to the code
 
@@ -55,5 +55,5 @@ than raw implementation count.
 3. **Below the grain** — implementation too fine-grained or generic to warrant its own representation, such
    as typed-ID aliases, configuration loaders, or enums.
 
-See [§4.2](4.2-brownfield.html) for top-down and bottom-up model construction, lint-and-cover
+See [{{sec:brownfield}}](4.2-brownfield.html) for top-down and bottom-up model construction, lint-and-cover
 preparation, the Missing-Model Metric, and cost-based governance sizing.

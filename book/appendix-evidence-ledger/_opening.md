@@ -1,6 +1,6 @@
 ## G.1 How to Read This Ledger
 
-Chapter 5 presents the DocAble case over time. This appendix carries the
+{{chapter:evidence}} presents the DocAble case over time. This appendix carries the
 quantitative and repository-level receipts behind its numerical claims.
 
 Each section gives the measurement, its source or counting procedure, the observation
@@ -12,5 +12,5 @@ The measurements fall into six groups: build scale and repository motion; model 
 drift; model coverage; representation and navigation cost; development and processing costs; and
 the relationship between measurement and enforcement.
 
-The ledger exists for traceability. A number summarized in Chapter 5 should be recoverable here, together
+The ledger exists for traceability. A number summarized in {{chapter:evidence}} should be recoverable here, together
 with the assumptions that bound it.

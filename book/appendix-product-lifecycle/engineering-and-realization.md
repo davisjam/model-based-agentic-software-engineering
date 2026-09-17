@@ -1,12 +1,12 @@
 **Engineering question.** How should the product or requested change be realized while satisfying its obligations?
 
-Engineering & Realization is the surface treated throughout Chapters 2–4. Its characteristic models include structural, behavioral, ownership, decision, measurement, and provenance views of the realized system (the six model classes, [ref:model-ontology]). The lifecycle question here is not what those models are, but where their knowledge and obligations come from and where they go.
+Engineering & Realization is the surface treated throughout Chapters {{chapter:modeling|num}}–{{chapter:method|num}}. Its characteristic models include structural, behavioral, ownership, decision, measurement, and provenance views of the realized system (the six model classes, [ref:model-ontology]). The lifecycle question here is not what those models are, but where their knowledge and obligations come from and where they go.
 
 Engineering does not manufacture all of its own obligations. Product discovery supplies needs, accepted requirements, and consequential product decisions. Product management supplies the intent and rationale for particular changes. Assurance contributes obligations that realization must satisfy. Operations supplies evidence from the behavior of the realized product.
 
 Engineering connects those inputs to the system being changed and exposes structure that neighboring surfaces can reuse: component identity, architecture, behavior, interfaces, dependencies, resource relationships, and evidence about the realized change. Shared identity lets the same entity connect lifecycle surfaces. A requirement from discovery can trace to a component and behavioral obligation in engineering; operational evidence can resolve to the same component; an assurance claim can refer to the requirement, the governing model, and evidence from the realized system.
 
-Chapters 2–4 supply the corresponding Modeling and Alignment practices.
+Chapters {{chapter:modeling|num}}–{{chapter:method|num}} supply the corresponding Modeling and Alignment practices.
 
 Engineering need not eliminate realization freedom. Governing models determine some choices while deliberately leaving others open; new functionality may create choices, a newly discovered obligation may remove apparent freedom, and stronger Alignment may constrain a choice previously left open. The relevant question for any realization is which choices the governing obligations determine and which remain free.
 

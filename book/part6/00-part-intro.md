@@ -1,5 +1,5 @@
 <!-- part-foreshadows: conversions-compound -->
-Chapter 5 supplied two views of the evidence. The originating case showed how MAGE's structures emerged
+{{chapter:evidence}} supplied two views of the evidence. The originating case showed how MAGE's structures emerged
 under sustained engineering pressure; the industrial reconstructions showed related structures arising
 independently under different constraints. Neither establishes a universal law. Together, they give us
 something worth explaining.
@@ -23,7 +23,7 @@ The objective is not to declare MAGE a universal law of software engineering—o
 generally. It is to make the explanation precise enough to be wrong. The evidence behind the theory comes
 from software engineering. The mechanisms are stated more generally because representation, enforcement,
 inherited structure, and the interaction between agentic capacity and its environment do not themselves
-require software. §6.3 therefore asks not only when MAGE should work within software engineering, but what
+require software. {{sec:scope-conditions}} therefore asks not only when MAGE should work within software engineering, but what
 properties a domain must have for the account to transfer at all.
 
 <!-- principlebox -->

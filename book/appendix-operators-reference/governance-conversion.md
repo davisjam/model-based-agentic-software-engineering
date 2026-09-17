@@ -37,4 +37,4 @@ future value > construction + carrying cost ?
 
 The goal is fewer costly recurrences and durable responses that repay their carrying cost. Cheap, rare failures may remain unconverted.
 
-See [§3.4](3.4-governance-conversion.html) for the full treatment.
+See [{{sec:governance-conversion}}](3.4-governance-conversion.html) for the full treatment.

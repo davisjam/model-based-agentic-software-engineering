@@ -3705,7 +3705,16 @@ def build_appendix_chapters(next_part: int, for_print: bool = False) -> list[dic
     appendix family keeps its own part number → its own TOC group / PDF bookmark parent."""
     part1 = _appendices_divider_record(next_part, _APPENDICES_PART1_SLUG, _APPENDICES_PART1_TITLE,
                                        _APPENDICES_PART1_SUBTITLE, "appendix-part-1-practice.md")
-    return [part1] + _build_appendix_chapters_v2(next_part + 1, for_print)
+    recs = [part1] + _build_appendix_chapters_v2(next_part + 1, for_print)
+    # Resolve the stable-id cross-reference tokens in every appendix body. The appendix builders assemble
+    # body_md from authored .md WITHOUT the chapter parse chain (parse_chapter is the numbered-chapter
+    # path), so a `{{chapter:<label>}}` / `{{sec:<label>}}` in appendix prose must be resolved here — this
+    # is the single entry every caller (web, print, glossary) routes through, so the appendix inherits the
+    # same resolution as the chapters in every projection.
+    for rec in recs:
+        if rec.get("body_md"):
+            rec["body_md"] = _apply_part_refs(rec["body_md"])
+    return recs
 
 
 #: The terminal book-object apparatus, in reading order: the Colophon first (the traditional making-of note),

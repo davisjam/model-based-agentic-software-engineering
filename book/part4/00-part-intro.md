@@ -1,6 +1,6 @@
 <!-- part-foreshadows: modeling-principle, alignment-principle, govern-the-environment, failures-become-machinery -->
 
-Chapters 2 and 3 developed Modeling and Alignment separately. This chapter runs them together as a
+Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} developed Modeling and Alignment separately. This chapter runs them together as a
 method. Modeling supplied a repertoire of representations for making different engineering questions
 tractable; Alignment supplied the mechanisms through which selected obligations are enforced. In
 practice, engineers choose and connect these moves as the work demands. MAGE begins by asking what should
