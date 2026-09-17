@@ -5,7 +5,7 @@
     "sections": 229,
     "explicit_ids": 16,
     "derived_ids": 213,
-    "missing_topic_sentence": 3,
+    "missing_topic_sentence": 5,
     "sections_drained": 188,
     "paragraph_points": 812
   },
@@ -18,7 +18,7 @@
           "section_id": "software-engineering-vocabulary",
           "level": 2,
           "heading_text": "Software engineering vocabulary",
-          "topic_sentence": "The book uses a small engineering vocabulary deliberately.",
+          "topic_sentence": "**Engineering.** The discipline of exercising informed *control* over consequential systems and accepting *responsibility* for their outcomes.",
           "id_source": "derived",
           "block_index": 2,
           "points": []
@@ -27,18 +27,18 @@
           "section_id": "software-agents",
           "level": 2,
           "heading_text": "Software agents",
-          "topic_sentence": "The agents, foundation models, harnesses, and operating limits involved in autonomous software work.",
+          "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 23,
+          "block_index": 22,
           "points": []
         },
         {
           "section_id": "the-governed-engineering-environment",
           "level": 2,
           "heading_text": "The Governed Engineering Environment",
-          "topic_sentence": "The environment that durably enforces engineering obligations.",
+          "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 32,
           "points": []
         }
       ],
