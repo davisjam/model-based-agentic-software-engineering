@@ -216,6 +216,11 @@ jobs:
           test -f "_site/$PDF" || { echo "ERROR: $PDF missing from site artifact"; exit 1; }
           EPUB="${PDF%.pdf}.epub"
           test -f "_site/$EPUB" || { echo "ERROR: $EPUB missing from site artifact"; exit 1; }
+          # The two landing cover thumbnails are build-derived (tools/cover_assets.py) + gitignored —
+          # produced by the ePub + handbook build steps above. Hard-gate them into the artifact so the
+          # landing can never ship thumbless (a silently-skipped derivation is a red deploy).
+          test -f _site/book/assets/cover-thumb.png || { echo "ERROR: book/assets/cover-thumb.png missing from site artifact"; exit 1; }
+          test -f _site/book/assets/handbook-cover-thumb.png || { echo "ERROR: book/assets/handbook-cover-thumb.png missing from site artifact"; exit 1; }
       # ── Publish the MAGE book at /book/mage-book/ + finish the /book/ layout ──────────────────────
       # Copy the MkDocs-built book site (strict-built above) into its published home — flat
       # `<slug>.html` stems identical to the retired hand-rolled pages, so every pre-swap URL +

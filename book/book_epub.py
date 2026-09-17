@@ -51,8 +51,6 @@ import html.entities
 import json
 import pathlib
 import re
-import shutil
-import subprocess
 import sys
 import xml.etree.ElementTree as ET
 import zipfile
@@ -63,6 +61,8 @@ ROOT = HERE.parent                                  # catalogue root
 sys.path.insert(0, str(HERE))
 import build_book    # noqa: E402 — the canonical build; this emitter projects its page records
 import book_mkdocs   # noqa: E402 — shared nav grouping + the cn-follow note-marker helper
+sys.path.insert(0, str(ROOT / "tools"))
+import cover_assets  # noqa: E402 — the ONE typst-cover->PNG + thumb helper (repo-root tools/)
 
 _EPUB_FILENAME = build_book._PDF_FILENAME[: -len(".pdf")] + ".epub"  # mage-book.epub — one stem, per edition suffix
 EPUB_OUT = HERE / _EPUB_FILENAME
@@ -186,23 +186,9 @@ def _render_cover_jpg(work_dir: pathlib.Path) -> bytes:
     the TITLED cover, not the bare art layer) to a one-page PNG, then recompress it to JPEG (the
     artwork is photographic; PNG would quadruple the container). 180 ppi on a US-letter page ->
     1530x1980 px, comfortably above e-reader cover-view resolution."""
-    import book_typst  # noqa: E402 — deferred: pulls the whole print emitter; cover-only use
-    book_typst._EmitCtx(ROOT)
-    typst = shutil.which("typst")
-    if not typst:
-        raise SystemExit("book_epub: `typst` not found on PATH — the cover render reuses the print "
-                         "cover (install typst, as the --pdf path requires)")
-    work_dir.mkdir(parents=True, exist_ok=True)
-    cover_typ = work_dir / "epub-cover.typ"
-    cover_png = work_dir / "epub-cover.png"
-    cover_typ.write_text(book_typst._PREAMBLE + "\n" + book_typst._cover_typst() + "\n",
-                         encoding="utf-8")
-    r = subprocess.run(
-        [typst, "compile", "--format", "png", "--ppi", "180", "--root", str(ROOT),
-         "--font-path", str(HERE / "fonts"), str(cover_typ), str(cover_png)],
-        capture_output=True, text=True)
-    if r.returncode != 0 or not cover_png.is_file():
-        raise SystemExit(f"book_epub: cover Typst compile failed (rc={r.returncode}):\n{r.stderr}")
+    cover_png = cover_assets.mage_cover_png(work_dir)
+    # Refresh the landing thumbnail from the SAME render — a retitle can never leave a stale raster.
+    cover_assets.write_thumb(cover_png, cover_assets.MAGE_THUMB)
     try:
         from PIL import Image  # noqa: E402 — the --pdf toolset (book/requirements-pdf.txt)
     except ImportError:

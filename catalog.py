@@ -5410,6 +5410,15 @@ def cmd_deploy(args) -> int:
             return 1
 
     if args.target == "local":
+        # Best-effort regen of the landing cover thumbnails (gitignored, build-derived from the Typst
+        # covers) so the local preview's landing shows the CURRENT titles. Needs typst + Pillow; on
+        # failure print a notice and continue (mirrors the site/.venv graceful-degrade just below —
+        # catalog.py stays stdlib-only, the Pillow/PyYAML imports live in the subprocess'd tool).
+        if subprocess.run([sys.executable, os.path.join("tools", "cover_assets.py"), "regen"],
+                          cwd=ROOT).returncode:
+            print("\n  (cover thumbs not regenerated — landing may show a stale/missing cover; "
+                  "needs typst + Pillow.)")
+
         # The MAGE book web edition serves from the MkDocs-built tree at its PUBLISHED path
         # (/book/mage-book/ ← book/web/site). Building it needs the pinned site/.venv toolchain —
         # the same posture as the handbook/teach web editions (catalog.py itself stays stdlib-only):

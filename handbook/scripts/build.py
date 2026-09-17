@@ -33,6 +33,9 @@ from typing import NamedTuple
 import _common as C
 import lint as linter
 
+sys.path.insert(0, str(C.GC_ROOT / "tools"))
+import cover_assets  # noqa: E402 — the ONE typst-cover->PNG + thumb helper (repo-root tools/)
+
 PDF_OUT = C.DIST / "software-engineering-handbook.pdf"
 EPUB_OUT = C.DIST / "software-engineering-handbook.epub"
 # Standalone per-unit PDFs (one per front-matter unit, chapter, and back-matter unit), published
@@ -364,19 +367,9 @@ def _epub_cover_png(book: dict) -> C.pathlib.Path:
     `hb-cover` reuses the real cover (artwork + live type) verbatim, so the ePub cover can never
     drift from the PDF's. 180 ppi on a US-letter page → 1530×1980 px, comfortably above e-reader
     cover-view resolution without bloating the container."""
-    cover_typ = GEN_EPUB / "cover.typ"
-    cover_png = GEN_EPUB / "cover.png"
-    cover_typ.write_text("\n".join([
-        '#import "/typst/cover.typ": hb-cover',
-        "#hb-cover(",
-        f'  title: "{book["title"]}",',
-        f'  subtitle: "{book["subtitle"]}",',
-        f'  author: "{book["author"]}",',
-        ")",
-        "",
-    ]), encoding="utf-8")
-    _run(["typst", "compile", "--format", "png", "--ppi", "180", str(cover_typ), str(cover_png),
-          "--root", str(C.HANDBOOK), "--font-path", str(C.FONT_PATH)])
+    cover_png = cover_assets.handbook_cover_png(GEN_EPUB, book)
+    # Refresh the landing thumbnail from the SAME render — the retitle-drift class dies here too.
+    cover_assets.write_thumb(cover_png, cover_assets.HANDBOOK_THUMB)
     print(f"  epub   ← cover.png (titled cover, {cover_png.stat().st_size // 1024} KiB)")
     return cover_png
 
@@ -522,10 +515,13 @@ def build_web(book: dict) -> None:
     # Assets the generated Markdown references, copied under the MkDocs docs_dir.
     shutil.copytree(C.FIGURES, GEN_WEB / "figures")
     shutil.copytree(C.WEB_SRC / "css", GEN_WEB / "css")
-    # The handbook's rendered COVER (title lockup + artwork — the same thumbnail the catalogue landing's
-    # handbook card uses; assets/cover-artwork.png is only the art-window LAYER the Typst cover
-    # composites). Copied under docs_dir so MkDocs ships it and the home page's <img> resolves as a
-    # sibling at the published /book/se-handbook/ depth. Cross-repo read like FONT_PATH for the PDF faces.
+    # The handbook's rendered COVER (title lockup + artwork; assets/cover-artwork.png is only the
+    # art-window LAYER the Typst cover composites). The thumb is now DERIVED from the Typst cover at
+    # build time and gitignored (created, never committed) — so self-regen it here before the copy: a
+    # standalone `build.py web` run can then never ship a stale or missing thumb. Copied under docs_dir
+    # so MkDocs ships it and the home page's <img> resolves as a sibling at the published
+    # /book/se-handbook/ depth. Cross-repo read like FONT_PATH for the PDF faces.
+    cover_assets.regen_handbook_thumb(book=book)
     shutil.copy2(C.GC_ROOT / "book" / "assets" / "handbook-cover-thumb.png", GEN_WEB / "cover-thumb.png")
     # Browser-tab favicon: the two-pan balance-scales rust badge (theme.favicon in web/mkdocs.yml
     # resolves against docs_dir, so the file must land in GEN_WEB).
