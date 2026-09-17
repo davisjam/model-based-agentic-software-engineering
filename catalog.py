@@ -719,7 +719,14 @@ def check_gh_refs() -> list[str]:
     Deterministic + offline (no network) — a rotted source reference must fail the build, not ship a 404
     'view the source' link. Path-exists twin of the build-time resolver in book/build_book.py."""
     problems: list[str] = []
+    # Skip `book/_design/` — working notes + pre-fold drafts, never a shipped book source (mirrors the
+    # scan-scope policy the banned-terms check states above). A design doc that names the `[gh:…]` marker
+    # as an EXAMPLE must not redden the shared validate gate; a real `[gh:]` source ref is still checked
+    # once the draft folds into a tracked `book/` chapter.
+    _design = os.sep + "book" + os.sep + "_design" + os.sep
     for md in sorted(glob.glob(os.path.join(ROOT, "book", "**", "*.md"), recursive=True)):
+        if _design in md:
+            continue
         text = open(md, encoding="utf-8").read()
         for path in _GH_MARKER_RE.findall(text):
             path = path.strip()

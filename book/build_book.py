@@ -518,6 +518,46 @@ _PART_TITLES = {
     8: "Conclusion",   # the top-level Conclusion — its sole page is titled "Conclusion" too (subtitle dropped 260909), so the header/TOC/divider dedup branches suppress the double print
 }
 
+# Chapter identity → its top-level unit number. The ONE place a renumber edits the number a
+# `{{chapter:<label>}}` reference resolves to — co-located with `_PART_DIRS`/`_PART_TITLES`, the same
+# file a reorg already touches, so a chapter reference edits ONE map, never every prose sentence. A
+# label is a frozen identity (assigned once, survives BOTH renumber and retitle), mirroring the
+# chapter_identity model's rule; `{{chapter:<label>}}` renders "Chapter N" with the number DERIVED
+# here, so a prose reference can never carry a stale number after the chapters are re-ordered. The
+# interlude carries a label too (so a remap survives the promotion that numbers it) but resolves to a
+# matter/float part, so a `{{chapter:one-problem-many-models}}` reference fails loud until it is numbered.
+_CHAPTER_LABELS: "dict[str, int | float]" = {
+    "problem": 1,
+    "modeling": 2,
+    "alignment": 3,
+    "one-problem-many-models": _INTERLUDE_PART,   # the interlude; the promotion numbers it Chapter 4
+    "method": 4,
+    "evidence": 5,
+    "theory": 6,
+    "profession": 7,
+}
+
+
+def _assert_chapter_label_parity() -> None:
+    """Startup parity check on the label→number map: every label points at a real part, and every
+    numbered (non-matter) part carries EXACTLY one label. A renumber that forgets to remap a label —
+    or leaves a numbered part unlabelled — fails the first build here, not silently in a reader's copy."""
+    for label, n in _CHAPTER_LABELS.items():
+        if n not in _PART_TITLES:
+            raise SystemExit(f"_CHAPTER_LABELS[{label!r}] = {n} is not a part in _PART_TITLES")
+    labelled: "dict[int | float, list[str]]" = {}
+    for label, n in _CHAPTER_LABELS.items():
+        labelled.setdefault(n, []).append(label)
+    for n in (p for p in _PART_TITLES if p not in _MATTER_PARTS):
+        got = labelled.get(n, [])
+        if len(got) != 1:
+            raise SystemExit(f"part {n} ({_PART_TITLES[n]}) must carry exactly one _CHAPTER_LABELS "
+                             f"entry, got {got!r}")
+
+
+_assert_chapter_label_parity()
+
+
 # The DO-ladder question each numbered Part answers — printed on the Part-opener orientation verso (the
 # PDF spread) under a fixed label. One question per Part 1-6, matching the corrected outcomes model: each
 # Part is framed by the single reasoning move the reader learns to make. Part 1 is the mindset opener (a
@@ -647,21 +687,83 @@ def _apply_data_claims(md: str, claims: dict[str, dict], chapter_titles: dict[st
     return re.sub(r"\[data:\s*([a-z0-9-]+)\s*\]", repl, md)
 
 
+_LABEL_TO_FILENAME: "dict[str, str] | None" = None
+
+
+def _chapter_filename_for(label: str) -> "str | None":
+    """The chapter_identity FILENAME (dir + `N.M-slug.md`) for a frozen identity label, so a `{{sec:}}`
+    reference can both form its §N.M locator AND guard against a matter section (a label whose file
+    lives in front matter / the interlude / the Conclusion carries no §N.M number). Returns None for an
+    unknown label."""
+    global _LABEL_TO_FILENAME
+    if _LABEL_TO_FILENAME is None:
+        p = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                         "book-models", "chapter_identity_declared.json")
+        decl = json.loads(open(p, encoding="utf-8").read())
+        _LABEL_TO_FILENAME = {c["label"]: c["filename"] for c in decl.get("chapters", [])}
+    return _LABEL_TO_FILENAME.get(label)
+
+
+_DIR_TO_PART = {d: p for p, d in _PART_DIRS.items()}
+_CHAPTER_REF_RE = re.compile(r"\{\{\s*chapter:([a-z][a-z0-9-]*)(?:\|(titled|num))?\s*\}\}")
+_CHAPTER_NUM_RE = re.compile(r"\{\{\s*chapter:\d+(?:\|[a-z]+)?\s*\}\}")
+_SEC_REF_RE = re.compile(r"\{\{\s*sec:([a-z][a-z0-9-]*)\s*\}\}")
+
+
 def _apply_part_refs(md: str) -> str:
-    """Substitute `{{chapter:N}}` → `Chapter N (<title>)`, the title read from `_PART_TITLES` at build
-    time. A prose reference to a chapter stays in sync with its title: rename the chapter once in
-    `_PART_TITLES` and every `{{chapter:N}}` updates, so a rename can never strand a stale "(The Old
-    Title)". Fails loud on a bad N (a reference to a chapter that does not exist) and on any leftover
-    legacy `{{part:N}}` marker (the Part level was retired — chapters 1-7 are the top-level units)."""
+    """Resolve the stable-id cross-reference tokens at parse time (so every projection — HTML, Typst
+    PDF, EPUB, mkdocs — inherits one resolution):
+
+      * `{{chapter:<label>}}`         → `Chapter N`           (the dominant prose form)
+      * `{{chapter:<label>|titled}}`  → `Chapter N (<Title>)` (title from `_PART_TITLES`)
+      * `{{chapter:<label>|num}}`     → `N`                   (spans: "Chapters {{a|num}}–{{b|num}}")
+      * `{{sec:<label>}}`             → `§N.M`                (label from `chapter_identity_declared.json`)
+
+    A reference names a frozen IDENTITY; the build derives the number from `_CHAPTER_LABELS` (chapters)
+    or the chapter-identity file stem (sections). A renumber edits the map/filenames once and every
+    reference re-derives — a typed "Chapter 5" / "§6.3" can never silently rot. Fails loud on: a leftover
+    `{{part:N}}` (the Part level was retired), a RETIRED numeric `{{chapter:N}}` (write the label), an
+    unknown label/modifier, or a label that resolves to matter (front matter / interlude / Conclusion —
+    no chapter number / no §N.M), each mirroring the build's other fail-loud unknown-token handling."""
     if re.search(r"\{\{\s*part:\d+\s*\}\}", md):
         raise SystemExit("legacy {{part:N}} marker found — the Part level was retired; "
-                         "write {{chapter:N}} instead")
-    def repl(m: "re.Match[str]") -> str:
-        n = int(m.group(1))
-        if n not in _PART_TITLES:
-            raise SystemExit(f"{{{{chapter:{n}}}}} references a chapter not in _PART_TITLES")
-        return f"Chapter {n} ({_PART_TITLES[n]})"
-    return re.sub(r"\{\{\s*chapter:(\d+)\s*\}\}", repl, md)
+                         "write {{chapter:<label>}} instead")
+    if _CHAPTER_NUM_RE.search(md):
+        raise SystemExit("numeric {{chapter:N}} marker found — the numeric chapter token was retired; "
+                         "write {{chapter:<label>}} (the number resolves from _CHAPTER_LABELS)")
+
+    def chap(m: "re.Match[str]") -> str:
+        label, mod = m.group(1), m.group(2)
+        if label not in _CHAPTER_LABELS:
+            raise SystemExit(f"{{{{chapter:{label}}}}} references an unknown chapter label "
+                             f"(not in _CHAPTER_LABELS)")
+        n = _CHAPTER_LABELS[label]
+        if n in _MATTER_PARTS:
+            raise SystemExit(f"{{{{chapter:{label}}}}} resolves to matter/interlude part {n}, which "
+                             f"carries no chapter number — name it in prose until it is numbered")
+        n = int(n)
+        if mod == "num":
+            return str(n)
+        if mod == "titled":
+            return f"Chapter {n} ({_PART_TITLES[n]})"
+        return f"Chapter {n}"
+
+    def sec(m: "re.Match[str]") -> str:
+        label = m.group(1)
+        fn = _chapter_filename_for(label)
+        if fn is None:
+            raise SystemExit(f"{{{{sec:{label}}}}} references an unknown chapter-identity label")
+        part = _DIR_TO_PART.get(fn.split("/")[0])
+        if part is None or part in _MATTER_PARTS:
+            raise SystemExit(f"{{{{sec:{label}}}}} resolves to a matter section ({fn}); a §N.M locator "
+                             f"is defined only for a numbered chapter")
+        cm = _PART_CHAP_RE.match(os.path.basename(fn)[:-3])
+        if not cm:
+            raise SystemExit(f"{{{{sec:{label}}}}} stem for {fn} does not match N.M- — cannot form §N.M")
+        return f"§{cm.group(1)}.{cm.group(2)}"
+
+    md = _CHAPTER_REF_RE.sub(chap, md)
+    return _SEC_REF_RE.sub(sec, md)
 
 
 # `{{dt:<key>}}` — derive a design-system NAME from the token SSOT so the colophon's prose (faces, accent)
