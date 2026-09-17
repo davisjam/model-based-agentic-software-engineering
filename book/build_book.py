@@ -1163,7 +1163,7 @@ def _abbr_cite(m: "re.Match[str]") -> str:
 def inline(s: str) -> str:
     # Intra-word emphasis: `[+X+]` → <em>X</em>. Stashed BEFORE escaping so the emitted <em> survives.
     # The italic `*…*` pass below is word-boundary-only by design and cannot emphasize letters *inside*
-    # a word — e.g. the acronym-deriving M / Ag / E in "Model-Based Agentic Software Engineering" (MAGE).
+    # a word — e.g. the acronym-deriving M / Ag / E in "Model-Based Agentic Engineering" (MAGE).
     em_spans: list[str] = []
 
     def _stash_em(m: "re.Match[str]") -> str:
@@ -3374,7 +3374,6 @@ _APPENDIX_CRAZY_IDEAS_OPENING_SLUG = "appendix-crazy-ideas"
 _CRAZY_IDEAS_PAGES: list[tuple[str, str]] = [
     ("experimental-substrate", "Commodity Intelligence as an Experimental Instrument for Software Engineering"),
     ("model-induction",        "Model Induction from Realized Work"),
-    ("model-based-agentic-engineering-beyond-software", "Model-Based Agentic Engineering Beyond Software"),
 ]
 
 
@@ -5587,7 +5586,8 @@ _PDF_PAGE_FLOOR = 50  # a real book render; under this means the render collapse
 # a full-bleed rasterized cover or an un-downsampled image blows this past 30 MB. The gate blocks such a
 # bloated PDF from shipping via CI or the local push. Measured on the post-qpdf-repack file (what ships).
 _PDF_MAX_BYTES = 8 * 1024 * 1024  # 8 MiB = 8388608 bytes
-_BOOK_TITLE = "Model-Based Agentic Software Engineering"
+_BOOK_TITLE = _BOOK_MANIFEST["title"]  # single source: the manifest, so the title can't drift across surfaces
+_BOOK_SUBTITLE = _BOOK_MANIFEST.get("subtitle", "")  # empty renders/asserts nothing
 
 
 def _pdf_page_count(pdf_path: pathlib.Path) -> int:
@@ -6041,6 +6041,11 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
     # glyphs), so the gate accepts either casing of the manifest title.
     if _BOOK_TITLE not in text and _BOOK_TITLE.upper() not in text:
         problems.append(f"cover title {_BOOK_TITLE!r} not found (cover did not render)")
+
+    # The cover also sets the subtitle as a quiet serif-italic line (title case, not tracked caps), so
+    # a silently-dropped subtitle block would ship undetected. Assert it in either casing when non-empty.
+    if _BOOK_SUBTITLE and _BOOK_SUBTITLE not in text and _BOOK_SUBTITLE.upper() not in text:
+        problems.append(f"cover subtitle {_BOOK_SUBTITLE!r} not found (subtitle block did not render)")
 
     # Source of truth: the discovered chapters + the projected appendix, in reading order. The PDF gate must
     # build the appendix in the SAME print projection the render used (`for_print=True`), so the expected
@@ -6978,16 +6983,16 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
     # label the emitter's nav uses; chapters derive theirs from `_pager_label`).
     extras = [
         {"slug": "index", "nav_title": "Home", "main_cls": "wrap", "head_meta": "",
-         "page_title": "Model-Based Agentic Software Engineering — Contents", "main": landing_main},
+         "page_title": f"{_BOOK_TITLE} — Contents", "main": landing_main},
         {"slug": BOOK_INDEX_SLUG, "nav_title": "Index (terms)", "main_cls": "wrap", "head_meta": "",
-         "page_title": "Index · Model-Based Agentic Software Engineering",
+         "page_title": f"Index · {_BOOK_TITLE}",
          "main": build_index_page(chapters, concept_registry, word_counts=word_counts)},
         {"slug": _FIGURES_GALLERY_SLUG, "nav_title": "Figures Gallery", "main_cls": "wrap",
-         "head_meta": "", "page_title": "Figures Gallery · Model-Based Agentic Software Engineering",
+         "head_meta": "", "page_title": f"Figures Gallery · {_BOOK_TITLE}",
          "main": build_figures_page(chapters, float_entries)},
         {"slug": _BIBLIOGRAPHY_SLUG, "nav_title": "Bibliography", "main_cls": "wrap",
          "head_meta": bib_meta,
-         "page_title": "Bibliography · Model-Based Agentic Software Engineering", "main": bib_main},
+         "page_title": f"Bibliography · {_BOOK_TITLE}", "main": bib_main},
     ]
 
     print(f"rendered {len(chapters)} chapter page bodies + {len(extras)} generated pages "

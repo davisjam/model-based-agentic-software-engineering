@@ -2122,7 +2122,7 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 // Type/colour/surface come from the design-token `dt` preamble above. Body stays at a print-native 11pt
 // (the token body step is screen-sized; print density is protected here) while the faces + palette follow
 // the tokens: Source Serif 4 display headings, a quiet body face, umber accent, and the semantic-box anchors.
-#set document(title: "Model-Based Agentic Software Engineering")
+#set document(title: "Model-Based Agentic Engineering — A Case Study in Software Engineering")
 // Asymmetric geometry: a narrow binding margin + a wide OUTER margin that holds the Tufte note column.
 // Text box = left 0.875in + measure 4.75in; note column = 0.375in gutter + 1.9in note + 0.6in trim.
 // 0.875 + 5.75 + 1.875 = 8.5in (measure widened 260820: fewer Tufte notes than the wide margin justified). The `#sidenote` helper (end of this preamble) places short editorial
@@ -2584,12 +2584,27 @@ def _cover_typst() -> str:
     the author from `author` — single source of truth, so the cover surfaces can never disagree on the
     words. The expansion renders uppercased; the PDF content gate accepts the uppercased projection.
 
+    SANCTIONED DIVERGENCE from the matched pair: the book's lockup carries a THIRD semantic level the
+    handbook cover does not — a quiet serif-italic subtitle (manifest `subtitle`, title case, not tracked
+    caps) seated between the expansion line and the author rule. The shared constants (window geometry,
+    band height, colophon inset, type top margin) are unchanged; only the book gains this line, and only
+    when the manifest subtitle is non-empty.
+
     Its own page, no folio. The imprint line + last-modified date move to the copyright page that
     follows (see `_copyright_page_typst`)."""
     m = bb._BOOK_MANIFEST
     display_word = _esc(m.get("cover_display_title", "MAGE"))
     expansion = _esc(m["title"].upper())
     author = _esc(m["author"].upper())
+    # Third semantic level (book-only divergence from the shared handbook cover): a quiet serif-italic
+    # subtitle between the expansion line and the author rule. Title case, NOT tracked caps, so it reads
+    # as a clarification rather than a second title. Empty manifest subtitle renders nothing.
+    subtitle = _esc(m.get("subtitle", ""))
+    subtitle_block = (
+        "      #v(0.14in, weak: true)\n"
+        '      #text(font: dt.font-display, size: 12pt, weight: 400, style: "italic", '
+        f"fill: cover-ink)[{subtitle}]\n"
+    ) if subtitle else ""
     cover_img = _root_rel(HERE / "assets" / "cover-artwork.png", _EmitCtx.root)
     return (
         "// LAYERED LIGHT cover: cream ground (sampled from the art's top band) -> full-width claymation\n"
@@ -2614,6 +2629,7 @@ def _cover_typst() -> str:
         "      #v(0.16in, weak: true)\n"
         "      #text(font: dt.font-display, size: 13.5pt, weight: 500, tracking: 0.16em, "
         f"fill: cover-muted)[{expansion}]\n"
+        f"{subtitle_block}"
         "      #v(0.2in, weak: true)\n"
         "      #line(length: 0.45in, stroke: 1pt + cover-accent)\n"
         "      #v(0.16in, weak: true)\n"

@@ -1,10 +1,10 @@
 {
   "_comment": "Single source of truth for the book's cover identity. Consumed by catalog.py (site landing hero) and book/build_book.py (print cover, web front page, footers). Edit here once; all render sites follow. An empty string renders nothing (e.g. subtitle omitted). The copyright line and the PhD byline are DERIVED from author + credential + copyright_years, so the name is stated once.",
   "kicker": "The MAGE Method",
-  "title": "Model-Based Agentic Software Engineering",
+  "title": "Model-Based Agentic Engineering",
   "_cover_display_title_comment": "The DOMINANT display word on the print cover's title lockup; `title` above renders beneath it as the tracked-caps expansion line. Cover-only; every other surface uses `title` verbatim.",
   "cover_display_title": "MAGE",
-  "subtitle": "",
+  "subtitle": "A Case Study in Software Engineering",
   "author": "James C. Davis",
   "credential": "PhD",
   "copyright_years": "2026–present",
