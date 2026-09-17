@@ -177,7 +177,7 @@ Specification establishes what the machine must guarantee; Architecture organize
 Design occurs within that organization, but individually reasonable choices can accumulate or interact in ways that cause the resulting machine to violate its specification.
 **Systems thinking** requires engineers to reason about these aggregate effects rather than evaluating each design choice only within its local scope.
 
-A mickle and a mickle makes a muckle.
+Many a little makes a mickle.
 Small local costs accumulate.
 Suppose an architecture establishes an end-to-end latency budget of 500 ms across five sequential components.
 Each component might independently choose a mechanism that responds within 400 ms and reasonably conclude that its own performance is acceptable.
