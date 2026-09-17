@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 838,
+    "total_sites": 841,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 496,
+      "book-web": 499,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -885,7 +885,7 @@
           },
           {
             "file": "book/web/docs/0.1-how-to-read-this-book.md",
-            "occ": 14
+            "occ": 24
           },
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
@@ -1369,7 +1369,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 306
+            "occ": 313
           },
           {
             "file": "book/web/docs/index.md",
@@ -1381,31 +1381,31 @@
           },
           {
             "file": "book/web/docs/part-1-intro.md",
-            "occ": 20
-          },
-          {
-            "file": "book/web/docs/part-2-intro.md",
-            "occ": 17
-          },
-          {
-            "file": "book/web/docs/part-3-intro.md",
             "occ": 25
           },
           {
+            "file": "book/web/docs/part-2-intro.md",
+            "occ": 22
+          },
+          {
+            "file": "book/web/docs/part-3-intro.md",
+            "occ": 30
+          },
+          {
             "file": "book/web/docs/part-4-intro.md",
-            "occ": 9
+            "occ": 14
           },
           {
             "file": "book/web/docs/part-5-intro.md",
-            "occ": 7
+            "occ": 12
           },
           {
             "file": "book/web/docs/part-6-intro.md",
-            "occ": 15
+            "occ": 20
           },
           {
             "file": "book/web/docs/part-7-intro.md",
-            "occ": 14
+            "occ": 19
           }
         ],
         "book-pdf": [
@@ -2939,7 +2939,7 @@
         "book-web": [
           {
             "file": "book/web/docs/0.1-how-to-read-this-book.md",
-            "occ": 2
+            "occ": 5
           },
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
@@ -3078,34 +3078,46 @@
             "occ": 36
           },
           {
+            "file": "book/web/docs/figures.md",
+            "occ": 2
+          },
+          {
             "file": "book/web/docs/index.md",
             "occ": 2
           },
           {
             "file": "book/web/docs/part-1-intro.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/part-2-intro.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/part-3-intro.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/part-6-intro.md",
             "occ": 3
           },
           {
+            "file": "book/web/docs/part-2-intro.md",
+            "occ": 3
+          },
+          {
+            "file": "book/web/docs/part-3-intro.md",
+            "occ": 7
+          },
+          {
+            "file": "book/web/docs/part-4-intro.md",
+            "occ": 2
+          },
+          {
+            "file": "book/web/docs/part-5-intro.md",
+            "occ": 2
+          },
+          {
+            "file": "book/web/docs/part-6-intro.md",
+            "occ": 5
+          },
+          {
             "file": "book/web/docs/part-7-intro.md",
-            "occ": 1
+            "occ": 3
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 41
+            "occ": 44
           }
         ]
       },

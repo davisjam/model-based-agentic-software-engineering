@@ -452,10 +452,10 @@
       "rationale": "book-level method synthesis; reader learns the whole method from the caption"
     },
     "assets/book-map.svg": {
-      "tier": "C",
+      "tier": "A",
       "kind": "roadmap",
       "location": "frontmatter",
-      "rationale": "the book's own map — the how-to-read compression (260820) makes the figure self-explanatory and the caption a one-line Reference label naming what the figure traces (question → argument → answer), not a length-earning Supporting caption"
+      "rationale": "explicit-architecture caption (frontma 260917): the figure now encodes the book's epistemic architecture — a nested software-engineering case between the question and the theory — and the caption teaches how to read that architecture standalone in print, earning an anchor-length caption"
     },
     "assets/docable-glimpse.svg": {
       "tier": "B",
