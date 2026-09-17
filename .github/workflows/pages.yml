@@ -70,6 +70,19 @@ jobs:
           mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
           sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
           typst --version
+      # Derive the two landing cover thumbnails EARLY — they are gitignored, build-derived artifacts
+      # (tools/cover_assets.py: manifest → Typst cover → Pillow downscale), so a fresh CI checkout does
+      # NOT carry them. Producing them here — right after the Typst install, before catalog.py build and
+      # before EVERY consumer (the landing's <img>, the console-error gate's subresource fetch,
+      # book_mkdocs' asset copy, the assemble hard-gate) — guarantees each downstream step sees a thumb
+      # freshly derived from the current manifests. The later "Render book ePub" + handbook build steps
+      # re-derive them idempotently. Deps: Pillow (book/requirements-pdf.txt) for the downscale + PyYAML
+      # for the handbook cover (reads handbook/book.yaml); Typst is already on PATH from the step above.
+      - name: Derive landing cover thumbnails (build-derived, gitignored; before any consumer)
+        run: |
+          python3 -m pip install -r book/requirements-pdf.txt
+          python3 -m pip install "pyyaml>=6,<7"
+          python3 tools/cover_assets.py regen
       # Pandoc backs the supplementary Software Engineering Handbook render (further down): the handbook's
       # manuscript is read + AST-transformed + citeproc'd by Pandoc, then projected to Typst for the PDF.
       # Install the pinned release the same clone-and-run-safe way as Typst above (download the pinned

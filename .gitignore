@@ -66,6 +66,15 @@ book/_design/*-brief*.md
 # The rendered book ePub (book/book_epub.py, the 4th IR projection) — same posture as the PDF:
 # a binary created locally / in CI, never committed; published at /book/mage-book.epub.
 /book/mage-book.epub
+# The two landing cover thumbnails — build-derived from the books' own Typst covers by
+# tools/cover_assets.py (manifest → Typst cover → Pillow downscale) — same posture as mage-book.pdf:
+# created locally / in CI, never committed. Deriving them (not committing them) makes title drift
+# impossible by construction — there is no baked raster to go stale. Invariant: catalog.py validate /
+# build / catalog_tests.py MUST pass with these absent (they are produced by the ePub + handbook build
+# steps that run AFTER validate/build in CI; a fresh clone regenerates them via
+# `python3 tools/cover_assets.py regen`, which needs typst + Pillow).
+/book/assets/cover-thumb.png
+/book/assets/handbook-cover-thumb.png
 # Per-section review-aid PDFs (FrontMatter / Part1-6 / BackMatter / Appendices) — emitted by a local
 # `build_book.py --pdf` alongside the full book, same gitignore posture as mage-book.pdf (created,
 # never committed; not rendered in CI).
