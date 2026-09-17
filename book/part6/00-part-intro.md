@@ -19,8 +19,12 @@ The chapter then turns from claims to inquiry. Its final section turns the theor
 conditions into a research agenda: what to measure, what comparisons could distinguish the proposed
 mechanisms, which quantities remain unknown, and what evidence would strengthen—or weaken—the account.
 
-The objective is not to declare MAGE a universal law of software engineering. It is to make the explanation
-precise enough to be wrong.
+The objective is not to declare MAGE a universal law of software engineering—or of agentic work more
+generally. It is to make the explanation precise enough to be wrong. The evidence behind the theory comes
+from software engineering. The mechanisms are stated more generally because representation, enforcement,
+inherited structure, and the interaction between agentic capacity and its environment do not themselves
+require software. §6.3 therefore asks not only when MAGE should work within software engineering, but what
+properties a domain must have for the account to transfer at all.
 
 <!-- principlebox -->
 <!-- box-family: canonical -->

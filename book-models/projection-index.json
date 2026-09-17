@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 837,
+    "total_sites": 838,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 495,
+      "book-web": 496,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -29,7 +29,7 @@
           },
           {
             "file": "book/web/docs/0.5-preface.md",
-            "occ": 8
+            "occ": 11
           },
           {
             "file": "book/web/docs/1.1-the-printer.md",
@@ -41,7 +41,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-new-engineering-problem.md",
-            "occ": 1
+            "occ": 5
           },
           {
             "file": "book/web/docs/1.5-problem-summary.md",
@@ -125,7 +125,7 @@
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 1
+            "occ": 4
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
@@ -149,7 +149,7 @@
           },
           {
             "file": "book/web/docs/8.1-the-part-that-stays-yours.md",
-            "occ": 1
+            "occ": 3
           },
           {
             "file": "book/web/docs/appendix-adopting-genai.md",
@@ -897,11 +897,11 @@
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 61
+            "occ": 67
           },
           {
             "file": "book/web/docs/0.5-preface.md",
-            "occ": 53
+            "occ": 62
           },
           {
             "file": "book/web/docs/1.1-the-printer.md",
@@ -917,7 +917,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-new-engineering-problem.md",
-            "occ": 10
+            "occ": 15
           },
           {
             "file": "book/web/docs/1.5-problem-summary.md",
@@ -1037,7 +1037,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 75
+            "occ": 78
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -1045,7 +1045,7 @@
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 42
+            "occ": 43
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
@@ -1069,7 +1069,7 @@
           },
           {
             "file": "book/web/docs/7.4-the-engineer.md",
-            "occ": 116
+            "occ": 114
           },
           {
             "file": "book/web/docs/7.5-what-cannot-be-delegated.md",
@@ -1077,7 +1077,7 @@
           },
           {
             "file": "book/web/docs/8.1-the-part-that-stays-yours.md",
-            "occ": 25
+            "occ": 29
           },
           {
             "file": "book/web/docs/about-the-author.md",
@@ -1369,7 +1369,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 304
+            "occ": 305
           },
           {
             "file": "book/web/docs/index.md",
@@ -1401,7 +1401,7 @@
           },
           {
             "file": "book/web/docs/part-6-intro.md",
-            "occ": 13
+            "occ": 15
           },
           {
             "file": "book/web/docs/part-7-intro.md",
@@ -1451,7 +1451,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 76
+            "occ": 78
           },
           {
             "file": "catalogue-figure.html",
@@ -1975,7 +1975,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 50
+            "occ": 51
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -2251,7 +2251,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 419
+            "occ": 420
           },
           {
             "file": "book/web/docs/index.md",
@@ -2837,7 +2837,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -2947,11 +2947,11 @@
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/web/docs/0.5-preface.md",
-            "occ": 7
+            "occ": 9
           },
           {
             "file": "book/web/docs/1.1-the-printer.md",
@@ -2964,6 +2964,10 @@
           {
             "file": "book/web/docs/1.3-the-agentic-substrate.md",
             "occ": 4
+          },
+          {
+            "file": "book/web/docs/1.4-the-new-engineering-problem.md",
+            "occ": 1
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
@@ -2999,7 +3003,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 12
+            "occ": 13
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -3007,7 +3011,7 @@
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
@@ -3031,7 +3035,7 @@
           },
           {
             "file": "book/web/docs/7.4-the-engineer.md",
-            "occ": 20
+            "occ": 19
           },
           {
             "file": "book/web/docs/7.5-what-cannot-be-delegated.md",
@@ -3039,7 +3043,7 @@
           },
           {
             "file": "book/web/docs/8.1-the-part-that-stays-yours.md",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/web/docs/about-the-author.md",
@@ -3091,7 +3095,7 @@
           },
           {
             "file": "book/web/docs/part-6-intro.md",
-            "occ": 1
+            "occ": 3
           },
           {
             "file": "book/web/docs/part-7-intro.md",
@@ -3101,7 +3105,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 40
+            "occ": 41
           }
         ]
       },
@@ -3119,7 +3123,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 14
+            "occ": 13
           },
           {
             "file": "development-workflow.html",
