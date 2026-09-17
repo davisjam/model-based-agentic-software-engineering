@@ -33,7 +33,7 @@ always been software-engineering questions. AI did not create them. It has simpl
 of engineering judgment much easier to see. That is why this handbook begins by treating software
 engineering as judgment and decision-making rather than as a catalog of activities and terminology.
 
-This handbook is also a practical companion to [Model-Based Agentic Software Engineering](https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book/index.html) (MAGE). MAGE
+This handbook is also a practical companion to [Model-Based Agentic Engineering](https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book/index.html) (MAGE). MAGE
 argues that engineering with capable agents depends on making consequential knowledge explicit,
 important obligations enforceable, and recurring judgment durable. Applying those ideas requires
 knowing what is consequential in the first place. An engineer must decide what should be modeled,

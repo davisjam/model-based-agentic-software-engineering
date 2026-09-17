@@ -1,11 +1,11 @@
 # AGENTS.md
 
-# Model-Based Agentic Software Engineering
+# Model-Based Agentic Engineering
 ## Instructions for authoring agents
 
 > Build, format, and index-annotation conventions live in [BUILD.md](BUILD.md).
 
-This repository contains *Model-Based Agentic Software Engineering (MAGE)*.
+This repository contains *Model-Based Agentic Engineering (MAGE)*.
 
 MAGE is an engineering book about how to build reliable software with probabilistic software agents.
 

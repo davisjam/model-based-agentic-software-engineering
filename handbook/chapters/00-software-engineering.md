@@ -146,7 +146,7 @@ a system. They must retain sufficient command to understand and direct it, evalu
 its consequential properties, recognize when its assumptions fail, and intervene when necessary. They
 remain answerable for the consequential decisions made under their authority.
 
-— *Model-Based Agentic Software Engineering* [@davis2026mage]
+— *Model-Based Agentic Engineering* [@davis2026mage]
 
 An engineer responsible for a payment service need not write every component or personally operate
 every server. The engineer must nevertheless be able to direct the system's development, judge whether
@@ -237,7 +237,7 @@ may change, what must remain true, and what evidence is sufficient becomes a lar
 engineering work.
 
 ::: read_further
-Davis, James C. [*Model-Based Agentic Software Engineering*](https://davisjam.github.io/model-based-agentic-software-engineering/). 1st ed. 2026. Develops a theory for maintaining engineering control as capable agents perform more of the work.
+Davis, James C. [*Model-Based Agentic Engineering*](https://davisjam.github.io/model-based-agentic-software-engineering/). 1st ed. 2026. Develops a theory for maintaining engineering control as capable agents perform more of the work.
 
 Brooks, Frederick P., Jr. ["No Silver Bullet—Essence and Accident in Software Engineering."](https://doi.org/10.1109/MC.1987.1663532) *Computer* 20, no. 4 (1987): 10–19. The classic distinction between the essential difficulty of software and accidental difficulties of its implementation.
 :::

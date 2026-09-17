@@ -115,7 +115,7 @@ Delegating work to an agent does not delegate responsibility.
 
 **Primary**
 
-- James C. Davis, *Model-Based Agentic Software Engineering*, 2026.
+- James C. Davis, *Model-Based Agentic Engineering*, 2026.
 - Titus Winters, Tom Manshreck, and Hyrum Wright, *Software Engineering at Google*, 2020.
 
 **Additional references**

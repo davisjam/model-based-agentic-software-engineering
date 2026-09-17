@@ -14,7 +14,7 @@ Engineering is the discipline of exercising informed control over consequential 
 
 GenAI changes how that control is exercised. Students can now delegate substantial implementation work while remaining responsible for the resulting system. This creates an opportunity to teach the enduring foundations of software engineering through the work that remains theirs: understanding the problem, specifying obligations, making and defending architectural and design decisions, evaluating evidence, governing change, and determining whether the resulting system is fit for its purpose.
 
-Teach with MAGE provides reusable materials for teaching software engineering from this perspective. The lectures, semester project, and assessments combine established software engineering foundations with contemporary GenAI-enabled practice. The underlying approach—MAGE (Model-Based Agentic Software Engineering)—is developed in full in the **[textbook](https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book/)**.
+Teach with MAGE provides reusable materials for teaching software engineering from this perspective. The lectures, semester project, and assessments combine established software engineering foundations with contemporary GenAI-enabled practice. The underlying approach—MAGE (Model-Based Agentic Engineering)—is developed in full in the **[textbook](https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book/)**.
 
 The materials are:
 

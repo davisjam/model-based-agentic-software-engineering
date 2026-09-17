@@ -1,4 +1,4 @@
-# *Model-Based Agentic Software Engineering* — the book
+# *Model-Based Agentic Engineering* — the book
 
 *Architecture, Validation, and Control for Agentic Software Engineering.* The book renders to a
 small static HTML site by `build_book.py` (wired into `catalog.py build`).

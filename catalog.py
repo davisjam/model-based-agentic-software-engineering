@@ -2438,8 +2438,10 @@ LANDING_CSS = """
 
   .v3-hero { max-width:44rem; margin:2.6rem auto 1rem; text-align:center; }
   .v3-eyebrow { color:var(--accent); font-weight:700; font-size:1rem; margin:0 0 0.6rem; }
-  .v3-title { font-family:var(--font-display); font-size:2.4rem; line-height:1.1; margin:0 0 1rem;
+  .v3-title { font-family:var(--font-display); font-size:2.4rem; line-height:1.1; margin:0 0 0.5rem;
               color:var(--ink); text-wrap:balance; }
+  .v3-subtitle { font-family:var(--font-display); font-style:italic; font-size:1.2rem; line-height:1.3;
+                 color:var(--muted); margin:0 0 1.2rem; text-wrap:balance; }
   .v3-lead { font-size:1.08rem; line-height:1.6; color:var(--ink); margin:0 auto 1rem; text-align:left;
              max-width:40rem; }
   .v3-hero-btns, .v3-btn-row { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:1.4rem 0; }
@@ -2875,8 +2877,9 @@ def _v3_hero() -> str:
     return (
         '<header class="v3-hero">\n'
         f'  <p class="v3-eyebrow">{_esc(q)}</p>\n'
-        '  <h1 class="v3-title">Model-Based Agentic Software Engineering</h1>\n'
-        '  <p class="v3-lead">Model-Based Agentic Software Engineering (MAGE) is an engineering methodology '
+        f'  <h1 class="v3-title">{html.escape(BOOK_MANIFEST["title"])}</h1>\n'
+        f'  <p class="v3-subtitle">{html.escape(BOOK_MANIFEST["subtitle"])}</p>\n'
+        '  <p class="v3-lead">Model-Based Agentic Engineering (MAGE) is an engineering methodology '
         'for environments in which AI agents perform substantial implementation work.</p>\n'
         '  <p class="v3-lead">MAGE has two principles that apply throughout the work. Modeling makes '
         'important engineering knowledge and intent explicit. Alignment makes important requirements '
@@ -3965,7 +3968,7 @@ LANDING_INTRO = """  <!-- ===================== HERO + BIG IDEA 1 ==============
       {book_title_block}
       <p class="m-lead">Generative AI is making implementation abundant and cheap; the hard part becomes
       <span class="term">governing the conditions under which fast code can be trusted</span>.
-      <span class="term">Model-Based Agentic Software Engineering (MAGE)</span> is a <span class="term">theory
+      <span class="term">Model-Based Agentic Engineering (MAGE)</span> is a <span class="term">theory
       and methodology</span> for engineering the governed environments in which autonomous intelligence can
       safely create software. Its six big ideas, below, trace the argument from problem to research frontier.</p>
       <p class="m-lead">Developed through one deeply studied production system and interpreted against
@@ -4709,7 +4712,7 @@ def cmd_build(_args) -> int:
     ])
     landing = (f"<!doctype html>\n<html lang=\"en\">\n{GENERATED_BANNER}\n<head>\n"
                f'<meta charset="utf-8" />\n<meta name="viewport" content="width=device-width, initial-scale=1" />\n'
-               f"<title>MAGE — Model-Based Agentic Software Engineering</title>\n{FONTS_LINK}\n"
+               f"<title>MAGE — Model-Based Agentic Engineering</title>\n{FONTS_LINK}\n"
                f"<style>{PAGE_CSS}{LANDING_CSS}{FONT_CSS}</style>\n</head>\n"
                f'<body class="landing">\n<main>\n{landing_body}\n{_site_footer("")}\n</main>\n</body>\n</html>\n')
     open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(landing)

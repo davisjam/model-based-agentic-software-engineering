@@ -331,7 +331,7 @@ This does not make implementation unskilled or make engineering a rigid sequence
 Programming still requires knowledge of languages, libraries, tools, and execution environments, and implementation will continue to reveal bad assumptions and better alternatives.
 That evidence should flow back to Design, Architecture, Specification, or the engineering environment.
 The goal is to make consequential engineering decisions where their alternatives and consequences can be examined, then use implementation to express and test those decisions reliably and auditably.
-*Model-Based Agentic Software Engineering* develops the practices needed to do this with capable agents.
+*Model-Based Agentic Engineering* develops the practices needed to do this with capable agents.
 
 [^gao-offshoring]: U.S. Government Accountability Office. [*Offshoring: U.S. Semiconductor and Software Industries Increasingly Produce in China and India.*](https://www.gao.gov/products/gao-06-423) GAO-06-423, 2006.
 

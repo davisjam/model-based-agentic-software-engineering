@@ -2,7 +2,7 @@
   Method language — STARTER glossary (adopt & adapt)
 
   The shared lexicon the governance method speaks in — lifted from the stabilized vocabulary of the
-  MAGE book (Model-Based Agentic Software Engineering). It is the common vocabulary the three partner
+  MAGE book (Model-Based Agentic Engineering). It is the common vocabulary the three partner
   skills (govern / operate / communicate) reach for, so a term means the same thing across all three.
 
   Two tiers ship here:
