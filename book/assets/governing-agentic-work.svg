@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: governing-agentic-work). §7.3's opening figure: "Governing agentic work."
+     The CONSTANT governing middle runs down the spine; the VARYING engineering material fans out to the
+     side and reconverges. Read top to bottom:
+       AGENTIC CAPACITY (agent blue) -> GOVERNED ENVIRONMENT (rust, the emphasized subject: four chips —
+       representations, evidence, constraints, enforcement) -> CONSEQUENTIAL WORK (neutral gray) -> a fan
+       to three subordinate, muted domain columns (software / engineering / knowledge work, each with its
+       own material) -> reconverging to HUMAN RESPONSIBILITY (agent blue, the anchor).
+     The spine is the figure's subject; the domain columns are deliberately quiet (muted gray, hairline
+     rule) so the fixed mechanism reads first and the varying material reads second.
+     Palette (allow-list only): ink #1c1917, paper #fdfcf9, panel #f6f4ef, rule #e4e0d8, muted #57534e,
+     governance rust #9a3f12 / tint #faf1e6, agent blue #2f5169 / fill #e7edf3, modeling green #155c38.
+     Grayscale-survivable: the spine's vertical order and the fan/reconverge geometry carry the meaning;
+     hue only reinforces role. No gridlines, no ornament. -->
+<svg id="gaw" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800"
+     role="img" aria-labelledby="gawTitle gawDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="gawTitle">Governing agentic work</title>
+  <desc id="gawDesc">A vertical spine shows the constant governing mechanism. Agentic capacity acts through
+    a governed environment — an engineered structure of representations, evidence, constraints, and
+    enforcement — before its consequential work can acquire consequence. Below the environment, the work
+    fans out to three subordinate domain columns whose engineering material differs: software supplies
+    architecture, requirements, and tests or gates; engineering supplies geometry, tolerances, and
+    simulation; knowledge work supplies domain models, rules or evidence, and approval or review. The three
+    columns reconverge on a single anchor: human responsibility for the result, which does not vary by
+    domain.</desc>
+
+  <defs>
+    <marker id="gaw-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <text x="500" y="46" text-anchor="middle" font-size="28" font-weight="700" fill="#1c1917">Governing agentic work</text>
+
+  <!-- ===== SPINE (constant mechanism) ===== -->
+  <!-- edges drawn first, under the boxes -->
+  <line x1="500" y1="146" x2="500" y2="180" stroke="#57534e" stroke-width="2" marker-end="url(#gaw-arrow)"/>
+  <line x1="500" y1="360" x2="500" y2="394" stroke="#57534e" stroke-width="2" marker-end="url(#gaw-arrow)"/>
+
+  <!-- AGENTIC CAPACITY — the acting party (agent blue) -->
+  <rect x="350" y="82" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="500" y="120" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#1c1917">AGENTIC CAPACITY</text>
+
+  <!-- GOVERNED ENVIRONMENT — the emphasized subject (governance rust) -->
+  <rect x="210" y="182" width="580" height="176" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
+  <text x="500" y="214" text-anchor="middle" font-size="24" font-weight="700" letter-spacing="0.5" fill="#9a3f12">GOVERNED ENVIRONMENT</text>
+  <!-- four chips: representations · evidence · constraints · enforcement (2x2) -->
+  <rect x="230" y="228" width="260" height="54" rx="8" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="360" y="261" text-anchor="middle" font-size="20" fill="#1c1917">representations</text>
+  <rect x="506" y="228" width="260" height="54" rx="8" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="636" y="261" text-anchor="middle" font-size="20" fill="#1c1917">evidence</text>
+  <rect x="230" y="296" width="260" height="54" rx="8" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="360" y="329" text-anchor="middle" font-size="20" fill="#1c1917">constraints</text>
+  <rect x="506" y="296" width="260" height="54" rx="8" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="636" y="329" text-anchor="middle" font-size="20" fill="#1c1917">enforcement</text>
+
+  <!-- CONSEQUENTIAL WORK — the output before it acquires consequence (neutral) -->
+  <rect x="350" y="398" width="300" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="500" y="435" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#1c1917">CONSEQUENTIAL WORK</text>
+
+  <!-- ===== FAN-OUT to the varying domain material ===== -->
+  <!-- fan edges: consequential work -> three column tops -->
+  <line x1="500" y1="458" x2="195" y2="504" stroke="#57534e" stroke-width="2" marker-end="url(#gaw-arrow)"/>
+  <line x1="500" y1="458" x2="500" y2="504" stroke="#57534e" stroke-width="2" marker-end="url(#gaw-arrow)"/>
+  <line x1="500" y1="458" x2="805" y2="504" stroke="#57534e" stroke-width="2" marker-end="url(#gaw-arrow)"/>
+
+  <!-- three subordinate domain columns (muted, hairline) -->
+  <!-- Software -->
+  <rect x="70" y="508" width="250" height="150" rx="10" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
+  <text x="195" y="540" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">Software</text>
+  <text x="195" y="576" text-anchor="middle" font-size="20" fill="#57534e">architecture</text>
+  <text x="195" y="606" text-anchor="middle" font-size="20" fill="#57534e">requirements</text>
+  <text x="195" y="636" text-anchor="middle" font-size="20" fill="#57534e">tests · gates</text>
+  <!-- Engineering -->
+  <rect x="375" y="508" width="250" height="150" rx="10" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
+  <text x="500" y="540" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">Engineering</text>
+  <text x="500" y="576" text-anchor="middle" font-size="20" fill="#57534e">geometry</text>
+  <text x="500" y="606" text-anchor="middle" font-size="20" fill="#57534e">tolerances</text>
+  <text x="500" y="636" text-anchor="middle" font-size="20" fill="#57534e">simulation</text>
+  <!-- Knowledge work -->
+  <rect x="680" y="508" width="250" height="150" rx="10" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
+  <text x="805" y="540" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">Knowledge work</text>
+  <text x="805" y="576" text-anchor="middle" font-size="20" fill="#57534e">domain models</text>
+  <text x="805" y="606" text-anchor="middle" font-size="20" fill="#57534e">rules · evidence</text>
+  <text x="805" y="636" text-anchor="middle" font-size="20" fill="#57534e">approval · review</text>
+
+  <!-- ===== RECONVERGE to the constant anchor ===== -->
+  <line x1="195" y1="658" x2="470" y2="706" stroke="#57534e" stroke-width="2" marker-end="url(#gaw-arrow)"/>
+  <line x1="500" y1="658" x2="500" y2="706" stroke="#57534e" stroke-width="2" marker-end="url(#gaw-arrow)"/>
+  <line x1="805" y1="658" x2="530" y2="706" stroke="#57534e" stroke-width="2" marker-end="url(#gaw-arrow)"/>
+
+  <!-- HUMAN RESPONSIBILITY — the anchor that does not vary (agent blue, modeling-green text tie) -->
+  <rect x="310" y="710" width="380" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <text x="500" y="750" text-anchor="middle" font-size="23" font-weight="700" letter-spacing="0.5" fill="#1c1917">HUMAN RESPONSIBILITY</text>
+</svg>

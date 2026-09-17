@@ -534,7 +534,7 @@ _PART_OPENER_QUESTIONS = {
     4: "How do I practice MAGE?",
     5: "What evidence supports MAGE?",
     6: "How does MAGE work, what should follow if the account is right, and where should we expect it to apply?",
-    7: "What follows for software engineering—and for the engineer?",
+    7: "What follows for software engineering—and what does the software case reveal about governing agents more generally?",
 }
 
 # Per-Part epigraph map — EMPTY by author's call: the per-Part opener epigraphs (once (quote,

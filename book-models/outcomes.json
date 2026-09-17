@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 14,
     "elaborative_links": 19,
     "units_serving_as_elaborative": 16,
-    "sections_total": 221,
+    "sections_total": 226,
     "sections_primary_of_an_outcome": 15,
     "modules": 9,
-    "lessons": 35
+    "lessons": 36
   },
   "taxonomy": {
     "know": [
@@ -380,7 +380,12 @@
             "section_outcomes": []
           },
           {
-            "lesson": "7.3-education-research-open-problems",
+            "lesson": "7.3-agentic-engineering-beyond-software",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "7.4-the-engineer",
             "own_outcomes": [],
             "section_outcomes": []
           }

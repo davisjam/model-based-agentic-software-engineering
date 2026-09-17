@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 830,
+    "total_sites": 837,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 488,
+      "book-web": 495,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -140,7 +140,11 @@
             "occ": 4
           },
           {
-            "file": "book/web/docs/7.3-education-research-open-problems.md",
+            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "occ": 20
+          },
+          {
+            "file": "book/web/docs/7.4-the-engineer.md",
             "occ": 5
           },
           {
@@ -245,7 +249,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 55
+            "occ": 57
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -259,7 +263,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 59
+            "occ": 60
           }
         ]
       },
@@ -1057,14 +1061,18 @@
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
-            "occ": 69
+            "occ": 64
           },
           {
-            "file": "book/web/docs/7.3-education-research-open-problems.md",
+            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "occ": 62
+          },
+          {
+            "file": "book/web/docs/7.4-the-engineer.md",
             "occ": 116
           },
           {
-            "file": "book/web/docs/7.4-what-cannot-be-delegated.md",
+            "file": "book/web/docs/7.5-what-cannot-be-delegated.md",
             "occ": 3
           },
           {
@@ -1349,7 +1357,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 85
+            "occ": 87
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1361,11 +1369,11 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 298
+            "occ": 304
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 21
+            "occ": 22
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1397,13 +1405,13 @@
           },
           {
             "file": "book/web/docs/part-7-intro.md",
-            "occ": 13
+            "occ": 14
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 131
+            "occ": 132
           }
         ]
       },
@@ -1602,7 +1610,11 @@
             "occ": 6
           },
           {
-            "file": "book/web/docs/7.3-education-research-open-problems.md",
+            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "occ": 1
+          },
+          {
+            "file": "book/web/docs/7.4-the-engineer.md",
             "occ": 2
           },
           {
@@ -1713,7 +1725,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 47
+            "occ": 48
           }
         ]
       },
@@ -1768,7 +1780,7 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/7.3-education-research-open-problems.md",
+            "file": "book/web/docs/7.4-the-engineer.md",
             "occ": 1
           },
           {
@@ -1986,7 +1998,11 @@
             "occ": 14
           },
           {
-            "file": "book/web/docs/7.3-education-research-open-problems.md",
+            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "occ": 6
+          },
+          {
+            "file": "book/web/docs/7.4-the-engineer.md",
             "occ": 10
           },
           {
@@ -2277,7 +2293,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 112
+            "occ": 113
           }
         ]
       },
@@ -2828,6 +2844,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/appendix-a-context-delivery-stack.md",
             "occ": 1
           },
@@ -2851,7 +2871,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 13
           }
         ]
       },
@@ -3003,14 +3023,18 @@
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
-            "occ": 6
+            "occ": 4
           },
           {
-            "file": "book/web/docs/7.3-education-research-open-problems.md",
+            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "occ": 14
+          },
+          {
+            "file": "book/web/docs/7.4-the-engineer.md",
             "occ": 20
           },
           {
-            "file": "book/web/docs/7.4-what-cannot-be-delegated.md",
+            "file": "book/web/docs/7.5-what-cannot-be-delegated.md",
             "occ": 1
           },
           {
@@ -3047,7 +3071,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 34
+            "occ": 36
           },
           {
             "file": "book/web/docs/index.md",
@@ -3077,7 +3101,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 39
+            "occ": 40
           }
         ]
       },
@@ -3197,10 +3221,14 @@
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
-            "occ": 5
+            "occ": 4
           },
           {
-            "file": "book/web/docs/7.3-education-research-open-problems.md",
+            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "occ": 2
+          },
+          {
+            "file": "book/web/docs/7.4-the-engineer.md",
             "occ": 1
           },
           {
@@ -3283,7 +3311,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 39
+            "occ": 40
           }
         ]
       },
@@ -3544,7 +3572,7 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/7.3-education-research-open-problems.md",
+            "file": "book/web/docs/7.4-the-engineer.md",
             "occ": 1
           },
           {

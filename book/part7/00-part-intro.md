@@ -4,9 +4,9 @@ engineering capital, and the surrounding environment interact; what that account
 apply; and how it might be tested.
 
 This final chapter asks what follows if that account is substantially right. It moves outward from the theory
-to the profession: first to how abundant implementation reorganizes software work, then to
-MAGE's relationship with older engineering and computing traditions, and finally to the engineer's
-expertise, authority, education, and responsibility.
+to the profession: first to how abundant implementation reorganizes software work, then to MAGE's relationship
+with older engineering and computing traditions, then to what the theory means beyond software, and finally to
+the engineer's expertise, authority, education, and responsibility.
 
 Delegation changes what engineers do and how they exercise control. It does not remove their responsibility for what they build.
 
@@ -24,4 +24,4 @@ Delegation changes what engineers do and how they exercise control. It does not 
 Alignment · Degrees of freedom
 
 **New here:** Reorganization of software work · Representation engineering · Engineering tradition ·
-Professional responsibility · Engineering education
+Professional responsibility · Engineering education · Agentic engineering beyond software
