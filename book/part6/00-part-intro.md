@@ -30,9 +30,9 @@ properties a domain must have for the account to transfer at all.
 <!-- box-family: canonical -->
 > ### The synthesis
 >
-> Agentic capacity does not by itself produce engineering progress. It acts through the engineered
-> environment surrounding the work. Modeling changes the representations used for consequential
-> reasoning; Alignment enforces selected obligations independently of the producing reasoner.
+> Agentic capacity does not by itself produce useful progress. It acts through the environment
+> surrounding the work. In engineering, Modeling changes the representations used for consequential
+> reasoning and Alignment enforces selected obligations independently of the producing reasoner.
 >
 > Together, these structures shape how much autonomous capacity becomes durable progress, how much failure
 > escapes, and how much human judgment the work still requires.
