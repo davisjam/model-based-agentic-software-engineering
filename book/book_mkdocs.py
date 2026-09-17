@@ -494,6 +494,9 @@ theme:
   custom_dir: ../../web-theme/overrides
   icon:
     logo: material/book-open-page-variant
+  # Browser-tab favicon — the truss-bridge rust badge (author-chosen v2 icon, bridge-A; tracked
+  # at book/assets/favicon.svg; emit() copies it into docs/assets/ since no page body cites it).
+  favicon: assets/favicon.svg
   # No toc.* features: every page front-matters `hide: [toc]` (the right margin belongs to the
   # Tufte sidenotes, not a per-page TOC rail — author decision 260916).
   features:
@@ -585,6 +588,13 @@ def emit(chapters: list[dict], extras: list[dict],
     (docs / "assets").mkdir(exist_ok=True)
     (docs / "assets" / "mage-book.css").write_text(css, encoding="utf-8")
     assets = _copy_assets(docs, bodies, css)
+    # The browser-tab favicon (theme.favicon) — referenced from mkdocs.yml, not any page body,
+    # so the body-reference scan above never finds it; copy it explicitly.
+    favicon = HERE / "assets" / "favicon.svg"
+    if not favicon.is_file():
+        raise SystemExit(f"book_mkdocs: theme favicon missing: {favicon}")
+    shutil.copy(favicon, docs / "assets" / "favicon.svg")
+    assets.append("assets/favicon.svg")
 
     yml = _mkdocs_yml(_nav_yaml(_nav_entries(chapters, extras)))
     (web_dir / "mkdocs.yml").write_text(yml, encoding="utf-8")

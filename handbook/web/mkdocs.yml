@@ -31,6 +31,9 @@ theme:
   # Book-glyph mark in the family header's brand strip (each property keeps its own mark).
   icon:
     logo: material/book-open-variant
+  # Browser-tab favicon — the two-pan balance-scales rust badge (author-chosen v2 icon, hb-A;
+  # tracked at handbook/assets/favicon.svg; build.py copies it into the generated docs_dir).
+  favicon: favicon.svg
   features:
     - navigation.sections
     - navigation.top
