@@ -9,7 +9,7 @@
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 5,
+    "zero_claim_suspects": 6,
     "over_cap_unfocused": 3,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
@@ -270,6 +270,7 @@
       "advanced_by": [
         "0.5-preface",
         "1.3-the-agentic-substrate",
+        "1.4-the-new-engineering-problem",
         "2.1-context-is-the-first-modeling-problem",
         "2.2-structural",
         "2.3-behavioral",
@@ -284,10 +285,9 @@
         "4.2-brownfield",
         "4.3-validating-change",
         "5.3-the-road-to-mage",
-        "why-mage-follows-from-the-machine",
         "metrics"
       ],
-      "body_depth": 16,
+      "body_depth": 15,
       "front_loaded": false,
       "overmapped": true,
       "fresh": true
@@ -319,6 +319,7 @@
       "advanced_by": [
         "0.5-preface",
         "1.3-the-agentic-substrate",
+        "1.4-the-new-engineering-problem",
         "3.1-where-obligations-can-be-enforced",
         "3.2-models-and-the-semantic-gap",
         "3.3-constraints-sensors-validators-gates",
@@ -327,10 +328,9 @@
         "4.3-validating-change",
         "4.5-packaging-the-method-as-skills",
         "5.4-failures-that-became-infrastructure",
-        "why-mage-follows-from-the-machine",
         "metrics"
       ],
-      "body_depth": 10,
+      "body_depth": 9,
       "front_loaded": false,
       "overmapped": true,
       "fresh": false
@@ -358,10 +358,10 @@
       "statement_hash": "34ec5613519e",
       "advanced_by": [
         "0.5-preface",
-        "why-mage-follows-from-the-machine"
+        "1.4-the-new-engineering-problem"
       ],
-      "body_depth": 1,
-      "front_loaded": false,
+      "body_depth": 0,
+      "front_loaded": true,
       "overmapped": false,
       "fresh": false
     },
@@ -456,7 +456,7 @@
         "0.5-preface",
         "2.8-system-knowledge",
         "7.1-reorganization-of-se",
-        "7.3-education-research-open-problems",
+        "7.4-the-engineer",
         "8.1-the-part-that-stays-yours"
       ],
       "body_depth": 4,
@@ -523,7 +523,7 @@
         "5.2-the-build",
         "5.3-the-road-to-mage",
         "6.3-scope-conditions",
-        "7.3-education-research-open-problems"
+        "7.4-the-engineer"
       ],
       "body_depth": 5,
       "front_loaded": false,
@@ -614,6 +614,15 @@
       "advances": [
         "modeling-principle",
         "alignment-principle"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "1.4-the-new-engineering-problem",
+      "advances": [
+        "modeling-principle",
+        "alignment-principle",
+        "principles-treat-the-causes"
       ],
       "exempt": null
     },
@@ -844,7 +853,12 @@
       "exempt": null
     },
     {
-      "slug": "7.3-education-research-open-problems",
+      "slug": "7.3-agentic-engineering-beyond-software",
+      "advances": [],
+      "exempt": null
+    },
+    {
+      "slug": "7.4-the-engineer",
       "advances": [
         "grounded-in-one-case",
         "mage-becomes-practical"
@@ -865,15 +879,6 @@
       "slug": "acknowledgments",
       "advances": [],
       "exempt": "apparatus"
-    },
-    {
-      "slug": "why-mage-follows-from-the-machine",
-      "advances": [
-        "modeling-principle",
-        "alignment-principle",
-        "principles-treat-the-causes"
-      ],
-      "exempt": null
     },
     {
       "slug": "lifecycles-and-runbooks",
@@ -911,6 +916,10 @@
       },
       {
         "chapter": "7.2-software-rejoins-engineering",
+        "advances": 0
+      },
+      {
+        "chapter": "7.3-agentic-engineering-beyond-software",
         "advances": 0
       }
     ],
@@ -974,6 +983,7 @@
         "chapters": [
           "0.5-preface",
           "1.3-the-agentic-substrate",
+          "1.4-the-new-engineering-problem",
           "2.1-context-is-the-first-modeling-problem",
           "2.2-structural",
           "2.3-behavioral",
@@ -988,7 +998,6 @@
           "4.2-brownfield",
           "4.3-validating-change",
           "5.3-the-road-to-mage",
-          "why-mage-follows-from-the-machine",
           "metrics"
         ]
       },
@@ -998,6 +1007,7 @@
         "chapters": [
           "0.5-preface",
           "1.3-the-agentic-substrate",
+          "1.4-the-new-engineering-problem",
           "3.1-where-obligations-can-be-enforced",
           "3.2-models-and-the-semantic-gap",
           "3.3-constraints-sensors-validators-gates",
@@ -1006,7 +1016,6 @@
           "4.3-validating-change",
           "4.5-packaging-the-method-as-skills",
           "5.4-failures-that-became-infrastructure",
-          "why-mage-follows-from-the-machine",
           "metrics"
         ]
       }

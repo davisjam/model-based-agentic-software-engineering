@@ -2721,7 +2721,7 @@ _CODA_SLUGS = frozenset({
     "3.6-alignment-summary",
     "5.6-what-the-evidence-supports",
     "6.5-what-the-theory-claims",
-    "7.4-what-cannot-be-delegated",
+    "7.5-what-cannot-be-delegated",
 })
 
 
