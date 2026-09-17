@@ -181,7 +181,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 7.2-software-rejoins-engineering
 
 
-### Lesson 7.3-agentic-engineering-beyond-software
+### Lesson 7.3-governing-agentic-work-beyond-software
 
 
 ### Lesson 7.4-the-engineer
