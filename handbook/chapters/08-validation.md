@@ -174,16 +174,26 @@ problem later. The same is true of an indefensible specification, architectural 
 design. Each engineering activity carries responsibility for the decisions made within it.
 
 Validation is nevertheless special because earlier decisions meet evidence there. Requirements
-establish what the engineering effort promised. Specification bounds what would satisfy those
-promises. Architecture and design determine how one realization is organized and how its parts
-fulfill their responsibilities. Implementation gives engineers a realization they can inspect,
-exercise, measure, analyze, and sometimes deliver provisionally to learn from use. Evidence can
-reveal an implementation defect, but it can also expose an architectural weakness, a missing
-distinction in the specification, or a requirement that does not serve its purpose. This continues
-the book's existing principle that decisions flow downward while engineering learning moves upward
-(@ch-design).
+establish what the engineering effort promised. Specification represents properties that the machine
+and environment must have if those promises are to be kept. Architecture represents the organization
+through which those properties will be realized. Design represents mechanisms and local properties by
+which the parts will fulfill their responsibilities. Implementation produces the realized system.
 
-The distinctive question at validation is whether the evidence is enough to deliver.
+These models become progressively more specific as engineering moves toward implementation. They do
+not all represent the same properties at different levels of detail. A specification might require a
+request to complete within 500 ms. An architectural model might allocate that time across a path of
+interacting services. A design might require one worker to remain below 4 GB of memory so that the
+chosen deployment remains economical. Other properties concern correctness rather than quantities: a
+payment may be charged at most once, a dependency may not cross a boundary, or a retry mechanism may
+need to be idempotent.
+
+Validation asks whether the realized system provides sufficient evidence for the properties on which
+those engineering decisions depended. Evidence can confirm the model, expose a defect in the
+realization, show that an assumption was wrong, or reveal that the model itself omitted something
+consequential. Learning therefore moves back through the same engineering decisions that constrained
+realization.
+
+The distinctive question at validation is whether the resulting evidence is enough to deliver.
 
 ## Consequence changes the amount of evidence we should demand {#sec-consequence-evidence}
 
@@ -260,16 +270,78 @@ ordinary examples cannot.
 
 The method follows from what engineers need to know.
 
-A claim is distinct both from the artifact it concerns and from the technique that supports it. The
-same artifact can carry many claims, and the same technique can support claims of quite different
-kinds. Requirements and specification supply the obvious claims: requirements state what the
-engineering effort promised, and specification bounds the behaviors that would count as keeping
-those promises. But architecture and design create claims of their own. An architecture that
-promises failure isolation is claiming that a fault in one part cannot corrupt another. A design
-that defers work to a queue rests on the claim that the same operation can safely execute twice
-(@ch-design). These claims rarely appear in any requirements document, yet the system depends on
-them, and some of the most expensive failures violate an assumption that nobody thought to state as
-a claim worth checking.
+### Validate at the scope of the property {#sec-scope-of-property}
+
+Engineering models represent properties at different scopes. A design may depend on a property of
+one mechanism or component. An architecture may depend on a property of several parts together. A
+specification constrains behavior at the machine boundary and states the assumptions under which
+that behavior should establish a requirement. Requirements concern the resulting outcomes in the
+world.
+
+Validation must therefore obtain evidence at the scope where the property exists. Establishing the
+local properties of every component does not establish every property of their composition. Three
+services can each satisfy their local latency budget while communication and queueing cause the
+end-to-end path to exceed its system budget. Two components can each behave correctly under their own
+assumptions while their assumptions leave an important responsibility to neither. Two services can
+each implement retries correctly while their interaction permits the same operation to occur twice.
+
+This relationship gives the familiar V-shaped picture of engineering a useful interpretation. The
+left side does not prescribe a sequence in which engineers must complete Requirements before
+Specification, Specification before Architecture, and so forth. @ch-process already showed why
+engineering activities may be interleaved. Instead, the left side represents engineering decisions
+becoming progressively more specific as models constrain a realization. The right side represents
+evidence gathered about the corresponding properties at progressively broader scopes.
+
+The familiar terms unit testing, integration testing, system testing, and acceptance testing
+describe common scopes of validation. Unit testing usually examines a chosen part in isolation;
+integration testing examines interactions among parts; system testing examines an assembled system
+at a chosen boundary; and acceptance testing asks whether the resulting system is acceptable for its
+intended use. These terms are useful professional vocabulary, but their boundaries are contextual. A
+subsystem may be treated as a unit from one perspective and as a system with its own internal
+architecture from another.
+
+This is why the scope of validation should follow the property being established, rather than a
+predetermined testing level. Architecture and design progressively refine the machine until it can
+be realized as an implementation (@ch-design). There need not be one architectural level followed by
+one design level: a system may be decomposed into subsystems, components, services, modules, and
+mechanisms, with consequential properties introduced at each scope. Validation follows the same
+structure in reverse. Local evidence can establish local properties, while properties arising from
+interactions require evidence about those interactions. Properties of the machine as a whole require
+evidence at the machine boundary, and requirements concerning outcomes in the world may require
+evidence about the machine operating in its environment (@fig-models-evidence-v).
+
+::: {.figure #fig-models-evidence-v alt="A V diagram. Down the left leg, engineering models become progressively more precise toward the point of the V: Requirements, concerning world outcomes; then Specification, concerning machine obligations and environment assumptions; then a single Architecture and Design wedge, shown as nested illustrative models — system organization, then subsystem, then mechanism — annotated that there is no fixed number of levels. The point of the V is Realization, the implementation. Up the right leg, evidence bears on the corresponding properties at broadening scopes: Local evidence, low on the rising leg, then Compositional evidence, then Boundary evidence, then World evidence at the top. Each right-side scope carries a lighter conventional term in quotation marks: unit testing, integration testing, system testing, and acceptance testing respectively."}
+![](../figures/validation/models-down-evidence-up.svg)
+
+Models and properties become more precise toward realization; evidence bears on properties at
+corresponding scopes. Conventional terms such as unit, integration, system, and acceptance testing
+name common scopes of evidence, not fixed structural levels. The V represents correspondence between
+engineering claims and evidence, not a required sequence of development activities.
+:::
+
+A conventional V-model is often drawn with a small number of development and testing levels. The
+figure above instead emphasizes the underlying engineering relationship. Models introduce properties
+as the system becomes more precisely described; validation asks what evidence bears on those
+properties at the scope where they live. Thus the first question is not whether a test is a unit,
+integration, or system test. It is what property must be established, at what scope, and what
+evidence would justify believing it. The conventional labels remain useful shorthand once those
+questions have been answered.
+
+The figure also shows why "correctness" is not one property established once at the bottom of the V.
+Correctness may concern a local algorithm, the interaction of several components, behavior at a
+system boundary, or an outcome in the world. Quantitative properties behave similarly: memory
+consumption may belong primarily to one design, while end-to-end latency belongs to the path through
+which a request travels.
+
+**Validate a property at the scope where the property lives.** Local evidence can contribute to a
+broader argument, but it cannot replace evidence about a property that exists only in composition. A
+unit test can establish something about one unit. It cannot by itself establish an end-to-end latency
+bound, system-wide consistency, or an outcome that depends on the environment.
+
+Later chapters examine important classes of software properties more systematically. For now, the
+important point is structural: engineering models make consequential properties explicit enough to
+guide realization, and validation asks what evidence establishes that the resulting system actually
+has them.
 
 Evidence, in turn, is always evidence *for* something, under assumptions. The assumptions should be
 made explicit, because they bound what the evidence can mean. A proof can strongly establish a
@@ -289,11 +361,53 @@ exactly as specified. Evidence about the world — observation of the deployed s
 its actual environment — can. This is one reason operational evidence, taken up at the end of this
 chapter, is a constituent of validation rather than an afterthought.
 
+### Metrics connect properties to evidence {#sec-metrics-evidence}
+
+Earlier engineering activities use metrics to reason about properties before a complete realization
+exists. Requirements may attach measures to outcomes in the world. Specification may bound latency,
+accuracy, capacity, or other machine behavior. Architecture may analyze critical-path latency,
+dependency structure, or failure domains. Design may compare mechanisms using memory consumption,
+execution time, or resource use. Validation uses such metrics to obtain evidence about whether the
+realized system has the properties those engineering decisions required.
+
+Three terms should remain distinct. A property is something about the system or its environment that
+matters to an engineering decision. A metric defines how some aspect of that property will be
+assessed. A measurement is a value obtained by applying the metric under particular conditions.
+
+Suppose an architectural model predicts that a request path will remain below a 500 ms latency
+bound. Engineers might define the metric as p99 end-to-end request latency under workload W. A
+validation experiment then measures 420 ms. The number is not meaningful evidence by itself. Its
+meaning comes from the property being assessed, the metric that relates the measurement to that
+property, and the workload and environment under which the measurement was obtained
+(@fig-property-to-judgment).
+
+::: {.figure #fig-property-to-judgment width="46%" alt="A vertical chain of six boxes connected by labeled arrows. An Engineering model represents a Property. The Property is assessed by a Metric. The Metric, applied under stated conditions, yields a Measurement. The Measurement bears on Evidence. The Evidence, interpreted with other evidence, yields a Judgment."}
+![](../figures/validation/property-to-judgment.svg)
+
+A measurement becomes evidence through an engineering claim. The model identifies a property that
+matters; a metric defines how an aspect of it will be assessed; measurement supplies an observation
+under stated conditions. Engineers interpret that observation as part of the evidence for a decision.
+:::
+
+A mismatch between model and measurement is itself engineering information. The implementation may be
+defective. The model may have omitted an important cost. Its assumptions may not describe the actual
+workload or environment. Or the metric may fail to capture the property engineers intended to assess.
+Validation does not assume that the model is right and ask only whether the implementation conforms
+to it.
+
+Metrics therefore connect models to observations without replacing engineering judgment. Some
+important properties cannot be reduced to one useful number, and even quantitative evidence must be
+interpreted under assumptions. The engineering order runs from what matters to what should be
+measured: choose a metric because it can provide evidence about a consequential property, not because
+the number happens to be available.
+
 ## Choosing among sources of evidence {#sec-choosing-evidence}
 
-Once the claim is explicit, validation techniques become alternatives for producing evidence about
-it. The useful question about each is its mechanism: what kind of uncertainty can it reduce, which
-failures can it expose or exclude, and what remains outside its reach.
+Once the claim and its scope are explicit, engineers can choose how to obtain evidence about it.
+Measurement is one possibility when a useful metric connects the property to observable behavior.
+Other claims require different mechanisms. The useful question about each technique is what kind of
+uncertainty it can reduce, which failures it can expose or exclude, and what remains outside its
+reach.
 
 - **Review** brings another engineer's knowledge and judgment to an artifact. It can expose
   reasoning errors the author cannot see and consequences the author did not consider. Nothing in
@@ -313,9 +427,10 @@ failures can it expose or exclude, and what remains outside its reach.
 - **Static analysis and model checking** reason about possible behaviors without producing each one
   through execution. They can *exclude* whole classes of failure — something no finite set of
   executions can do — but only over the model or abstraction they analyze.
-- **Measurement and experimentation** establish quantitative claims: whether a latency budget
-  holds under a workload, whether users complete a task, whether one variant outperforms another.
-  The evidence is only as good as the workload's or experiment's resemblance to reality.
+- **Measurement and experimentation** obtain quantitative evidence under stated conditions: whether
+  a latency budget holds under a workload, whether users complete a task, or whether one variant
+  outperforms another. Their evidentiary strength depends on whether the metric and experimental
+  conditions adequately represent the property and environment that matter.
 - **Operational observation** watches the deployed system itself, in the one environment no
   earlier technique can fully reproduce. Its evidence arrives after the consequences have begun.
 
@@ -337,8 +452,9 @@ relative to the claim it supports and the assumptions on which it depends.
 
 Evaluating a body of evidence is itself an engineering judgment, and a few questions structure it.
 What portion of the claim's space did the evidence actually exercise, and what portion did it
-never touch? Do the exercised conditions resemble the conditions of delivery, or a convenient
-laboratory version of them? Do the pieces of evidence rest on distinct assumptions, or do they all
+never touch? Does the evidence operate at the scope of the property, or does the argument incorrectly
+infer a compositional property from local evidence? Do the exercised conditions resemble the
+conditions of delivery, or a convenient laboratory version of them? Do the pieces of evidence rest on distinct assumptions, or do they all
 inherit the same one? Where a technique claims soundness or completeness, what exactly do its
 verdicts guarantee, and over what model? What uncertainty remains after all of it, and is that
 residual acceptable for this decision? Strong validation for consequential claims tends toward
@@ -450,16 +566,24 @@ that can fail in either direction, by demanding more assurance than minor conseq
 less than substantial ones require. People can agree entirely about a consequence and still
 disagree about what evidence it demands.
 
-The evidence itself starts from claims, not techniques. Engineers identify what they need to
-believe — including the claims and assumptions created by architecture and design, not only those
-written in requirements — then choose among sources of evidence by mechanism: what uncertainty each
-can reduce and what remains outside its reach. The strength of the result is judged by coverage,
-representativeness, independence, and assumptions rather than volume; a thousand tests sharing one
-mistaken interpretation are one reason, repeated, and cheap evidence generation has made judging
-evidence the scarce work. The decision that follows is not binary — deliver, gather more evidence,
-change the system, revisit an upstream decision, or refuse — and it recurs after delivery, because
-operational evidence keeps arriving and a justification made under an old state of knowledge cannot
-be reused under a new one.
+The evidence itself starts from properties and claims, not techniques. Engineering models make
+consequential properties explicit at different scopes as decisions move toward realization:
+requirements concern outcomes in the world; specification constrains machine behavior under
+environmental assumptions; architecture establishes properties of organization and composition; and
+design establishes properties of mechanisms and parts. Validation works back through those scopes.
+Local evidence cannot by itself establish a property that exists only in composition.
+
+Metrics connect some of these properties to observations. A property identifies what matters, a
+metric defines how an aspect of it will be assessed, and a measurement supplies an observed value
+under stated conditions. Measurements become evidence only relative to claims and assumptions.
+Engineers then choose among measurement, review, testing, analysis, model checking, operational
+observation, and other sources according to what uncertainty each can reduce. The resulting body of
+evidence is judged by coverage, representativeness, independence, assumptions, and remaining
+uncertainty rather than by volume.
+
+The decision that follows is not binary — deliver, gather more evidence, change the system, revisit
+an upstream decision, or refuse — and it recurs after delivery, because operational evidence keeps
+arriving and a justification made under an old state of knowledge cannot be reused under a new one.
 
 ::: read_further
 Winters, Titus, Tom Manshreck, and Hyrum Wright, eds. [*Software Engineering at Google: Lessons

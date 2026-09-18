@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 540" font-family="'Source Sans 3', Helvetica, sans-serif" role="img">
+  <title>Models and properties on the left become more precise toward realization at the point of the V; evidence on the right bears on those properties at corresponding scopes</title>
+  <!-- Umber Monograph palette: ink #1c1917, paper #fdfcf9, accent #9a3f12, rule #e4e0d8, panel #f6f4ef, subordinate #57534e / #78716c -->
+  <rect x="0" y="0" width="820" height="540" fill="#fdfcf9"/>
+
+  <!-- column headers -->
+  <text x="140" y="50" text-anchor="middle" font-size="12.5" letter-spacing="1.5" fill="#57534e">MODELS AND PROPERTIES</text>
+  <text x="690" y="50" text-anchor="middle" font-size="12.5" letter-spacing="1.5" fill="#57534e">EVIDENCE</text>
+
+  <!-- the two legs of the V: no arrowheads, no lifecycle ornament -->
+  <line x1="255" y1="95" x2="410" y2="452" stroke="#9a3f12" stroke-width="2.2"/>
+  <line x1="565" y1="95" x2="410" y2="452" stroke="#9a3f12" stroke-width="2.2"/>
+
+  <!-- LEFT: models (primary) with subordinate example properties -->
+  <text x="238" y="100" text-anchor="end" font-size="15" font-weight="600" fill="#1c1917">Requirements</text>
+  <text x="238" y="118" text-anchor="end" font-size="11.5" font-style="italic" fill="#57534e">world outcomes</text>
+
+  <text x="238" y="176" text-anchor="end" font-size="15" font-weight="600" fill="#1c1917">Specification</text>
+  <text x="238" y="194" text-anchor="end" font-size="11.5" font-style="italic" fill="#57534e">machine obligations</text>
+  <text x="238" y="209" text-anchor="end" font-size="11.5" font-style="italic" fill="#57534e">environment assumptions</text>
+
+  <text x="238" y="268" text-anchor="end" font-size="15" font-weight="600" fill="#1c1917">Architecture + Design</text>
+  <text x="238" y="286" text-anchor="end" font-size="11.5" font-style="italic" fill="#57534e">progressively more precise</text>
+  <text x="238" y="301" text-anchor="end" font-size="11.5" font-style="italic" fill="#57534e">engineering models</text>
+
+  <!-- the recursive middle: one wedge shown as illustrative nested models, no fixed number of levels -->
+  <rect x="70" y="312" width="168" height="25" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.1"/>
+  <text x="154" y="329" text-anchor="middle" font-size="11.5" fill="#1c1917">system organization</text>
+  <rect x="92" y="346" width="146" height="23" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.1"/>
+  <text x="165" y="362" text-anchor="middle" font-size="11.5" fill="#1c1917">subsystem</text>
+  <rect x="114" y="378" width="124" height="21" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.1"/>
+  <text x="176" y="393" text-anchor="middle" font-size="11.5" fill="#1c1917">mechanism</text>
+  <text x="176" y="416" text-anchor="middle" font-size="16" fill="#9a3f12">&#8942;</text>
+  <text x="238" y="432" text-anchor="end" font-size="11" font-style="italic" fill="#57534e">no fixed number of levels</text>
+
+  <!-- RIGHT: evidence (primary scope semantics) with lighter conventional terms -->
+  <text x="582" y="100" text-anchor="start" font-size="15" font-weight="600" fill="#1c1917">World evidence</text>
+  <text x="582" y="118" text-anchor="start" font-size="11.5" font-style="italic" fill="#78716c">&#8220;acceptance testing&#8221;</text>
+
+  <text x="582" y="176" text-anchor="start" font-size="15" font-weight="600" fill="#1c1917">Boundary evidence</text>
+  <text x="582" y="194" text-anchor="start" font-size="11.5" font-style="italic" fill="#78716c">&#8220;system testing&#8221;</text>
+
+  <text x="582" y="268" text-anchor="start" font-size="15" font-weight="600" fill="#1c1917">Compositional evidence</text>
+  <text x="582" y="286" text-anchor="start" font-size="11.5" font-style="italic" fill="#78716c">&#8220;integration testing&#8221;</text>
+
+  <text x="582" y="372" text-anchor="start" font-size="15" font-weight="600" fill="#1c1917">Local evidence</text>
+  <text x="582" y="390" text-anchor="start" font-size="11.5" font-style="italic" fill="#78716c">&#8220;unit testing&#8221;</text>
+
+  <!-- the point of the V: the realized system -->
+  <text x="410" y="478" text-anchor="middle" font-size="14.5" font-weight="600" fill="#1c1917">Realization</text>
+  <text x="410" y="495" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">Implementation</text>
+</svg>
