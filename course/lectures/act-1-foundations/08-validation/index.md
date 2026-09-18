@@ -50,11 +50,33 @@ Consequence establishes an evidentiary burden; it does not mechanically dictate 
 
 ## What must we establish?
 
-Validation begins with claims, not techniques. A payment service might need to establish that a payment cannot be charged twice, that unauthorized users cannot initiate payments, and that normal requests complete within an acceptable time. Evidence supporting one claim may say little about another. These claims are not invented at validation time: they inherit from the requirements the effort committed to, the specification that bounded acceptable behavior, and the architecture and design decisions about how the realization satisfies them. Validation asks which of those claims matter to *this* delivery decision. Begin with *what must be true for this delivery to be justified?* Only then choose techniques.
+Validation begins with claims, not techniques. A payment service might need to establish that a payment cannot be charged twice, that unauthorized users cannot initiate payments, and that normal requests complete within an acceptable time. Evidence supporting one claim may say little about another. Begin with *what must be true for this delivery to be justified?* Only then choose how to obtain evidence.
+
+These claims arise from engineering decisions made at different scopes. Requirements establish outcomes the engineering effort has promised in the world. Specification represents properties the machine and environment must have if those promises are to be kept. Architecture represents the organization through which system properties must emerge. Design represents mechanisms and local properties through which parts fulfill their responsibilities. Implementation produces the realization about which evidence can now be gathered.
+
+The relationship can be pictured as a V. Down the left side, engineering models become progressively more specific as they constrain realization. A specification may bound response latency; an architectural model may allocate that latency across a path; a design may require a worker to remain below a memory limit or a retry mechanism to be idempotent. Up the right side, validation obtains evidence about those properties at the scopes where they apply.
+
+![A V diagram. Down the left leg, engineering models become more specific toward realization at the point: Requirements (world outcomes), Specification (machine and environment), and Architecture and design. The point of the V is Realization. Up the right leg, validation gathers evidence at corresponding scopes: Local evidence low on the rising leg, then Compositional evidence, Boundary evidence, and World evidence at the top.](figures/models-evidence-v.svg)
+
+*Models become more specific toward realization; validation gathers evidence about their properties at the scope where each applies.*
+
+**Validate a property at the scope where the property lives.** Correct parts do not necessarily compose into a correct system. Components can each satisfy local latency budgets while their end-to-end path exceeds its system budget; individually reasonable assumptions can leave a responsibility unowned; correct retry mechanisms can interact to produce duplicate execution. Local evidence can support a broader argument, but it cannot substitute for evidence about a property that exists only in composition.
+
+At the top of the V, the distinction from Specification returns: evidence about the MACHINE alone cannot establish every requirement in the WORLD. Engineers may also need evidence that the ENVIRONMENT provides the assumptions on which the specification depends and that MACHINE + ENVIRONMENT actually produce the promised outcome.
 
 ## What evidence would bear on those claims?
 
-Different techniques produce different kinds of evidence, so the reasoning runs from each claim toward the evidence that would bear on it:
+Some properties can be connected to observations through metrics. A property identifies something that matters to an engineering decision. A metric defines how some aspect of that property will be assessed. A measurement is an observed value obtained by applying that metric under particular conditions.
+
+For example, an architectural model might require an end-to-end request path to remain below a 500 ms latency bound. Engineers could assess that property using p99 request latency under a defined workload. A measured value of 420 ms then provides evidence about the architectural claim. The value means little without the property, metric, workload, and environment that give it meaning.
+
+![A horizontal chain of six boxes joined by labeled arrows: MODEL represents PROPERTY; PROPERTY is assessed by METRIC; METRIC applied yields MEASUREMENT; MEASUREMENT bears on EVIDENCE; EVIDENCE interpreted yields JUDGMENT.](figures/property-to-judgment.svg)
+
+*A measurement becomes evidence only through the property and conditions that give it meaning.*
+
+Metrics are therefore one connection between engineering models and evidence. A disagreement between a predicted and measured value may indicate a defective implementation, an incomplete model, an invalid assumption, or a poor metric. Validation asks which explanation the evidence supports rather than assuming that either the model or realization must be correct.
+
+Not every important property is usefully reduced to a metric, and different claims require different kinds of evidence. The reasoning runs from each claim toward evidence capable of reducing the relevant uncertainty:
 
 **claim → possible failure → useful evidence**
 
@@ -65,11 +87,12 @@ Different techniques produce different kinds of evidence, so the reasoning runs 
 - **Fuzzing.** Explore unusual inputs and behaviors engineers may not have anticipated.
 - **Static analysis.** Reason about possible behavior without executing every path.
 - **Model checking.** Search a behavioral model for violations of stated properties.
+- **Measurement and experimentation.** Obtain quantitative evidence about properties under stated conditions.
 - **Operational evidence.** Observe behavior after delivery when learning in the world is acceptable.
 
 Several of these answer the same underlying difficulty, the **oracle problem**: generating test cases is often far cheaper than stating the correct answer for each one. Property-based testing states the expected answer as a property; differential testing lets an independent implementation flag disagreements; model checking states the property over an explicit model and searches it exhaustively.
 
-Neither a technique's name nor the quantity of evidence it produces establishes its strength. A model checker can exhaustively verify a property of the wrong model; thousands of generated tests can share one mistaken oracle; reviewers can share the author's mistaken assumption. Ask of any evidence: *What uncertainty does this evidence reduce, and what assumptions or failure modes remain?*
+Neither a technique's name nor the quantity of evidence it produces establishes its strength. A model checker can exhaustively verify a property of the wrong model; thousands of generated tests can share one mistaken oracle; reviewers can share the author's mistaken assumption; a precise measurement can assess the wrong property. Ask of any evidence: *What uncertainty does this evidence reduce, at what scope, and what assumptions or failure modes remain?*
 
 ## What should we do?
 

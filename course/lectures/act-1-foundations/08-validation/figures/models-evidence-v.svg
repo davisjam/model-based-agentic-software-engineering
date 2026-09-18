@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" font-family="'Source Sans 3', Helvetica, sans-serif" role="img">
+  <title>A V: engineering models on the left become more specific toward realization at the point; validation gathers evidence on the right about those properties at corresponding scopes</title>
+  <rect x="0" y="0" width="760" height="500" fill="#fdfcf9"/>
+
+  <text x="128" y="52" text-anchor="middle" font-size="12.5" letter-spacing="1.5" fill="#57534e">MODELS AND PROPERTIES</text>
+  <text x="632" y="52" text-anchor="middle" font-size="12.5" letter-spacing="1.5" fill="#57534e">EVIDENCE</text>
+
+  <line x1="250" y1="90" x2="380" y2="430" stroke="#9a3f12" stroke-width="2.2"/>
+  <line x1="510" y1="90" x2="380" y2="430" stroke="#9a3f12" stroke-width="2.2"/>
+
+  <!-- left: models, more specific downward -->
+  <text x="232" y="95" text-anchor="end" font-size="15" font-weight="600" fill="#1c1917">Requirements</text>
+  <text x="232" y="113" text-anchor="end" font-size="11.5" font-style="italic" fill="#57534e">world outcomes</text>
+
+  <text x="232" y="175" text-anchor="end" font-size="15" font-weight="600" fill="#1c1917">Specification</text>
+  <text x="232" y="193" text-anchor="end" font-size="11.5" font-style="italic" fill="#57534e">machine + environment</text>
+
+  <text x="232" y="270" text-anchor="end" font-size="15" font-weight="600" fill="#1c1917">Architecture</text>
+  <text x="232" y="288" text-anchor="end" font-size="11.5" font-style="italic" fill="#57534e">organization</text>
+
+  <text x="232" y="360" text-anchor="end" font-size="15" font-weight="600" fill="#1c1917">Design</text>
+  <text x="232" y="378" text-anchor="end" font-size="11.5" font-style="italic" fill="#57534e">mechanisms</text>
+
+  <!-- right: evidence at corresponding scopes -->
+  <text x="528" y="95" text-anchor="start" font-size="15" font-weight="600" fill="#1c1917">World evidence</text>
+  <text x="528" y="175" text-anchor="start" font-size="15" font-weight="600" fill="#1c1917">Boundary evidence</text>
+  <text x="528" y="270" text-anchor="start" font-size="15" font-weight="600" fill="#1c1917">Compositional evidence</text>
+  <text x="528" y="360" text-anchor="start" font-size="15" font-weight="600" fill="#1c1917">Local evidence</text>
+
+  <!-- the point of the V -->
+  <text x="380" y="456" text-anchor="middle" font-size="14.5" font-weight="600" fill="#1c1917">Realization</text>
+</svg>
