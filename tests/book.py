@@ -1081,10 +1081,11 @@ _PAIR_LABEL = {
 
 #: Numbered chapters SANCTIONED as a single continuous content narrative (one N.M content file whose turns
 #: are internal H2 sections, not sibling section files) — so their part→chapter node legitimately holds one
-#: content child and is exempt from the only-child rule. Keyed by the lone child's page slug.
-_SANCTIONED_SINGLE_CONTENT_CHAPTERS = frozenset({
-    "4.1-one-problem-many-models",  # Chapter 4, Engineering Through Models — promoted from the interlude
-})
+#: content child and is exempt from the only-child rule. Keyed by the lone child's page slug. Currently
+#: empty: the former sole member (the promoted-interlude Chapter 4 case) gained a sibling section when
+#: §"The Dynamics of MAGE" was prepended, so its part→chapter node now has two children and needs no
+#: exemption. The mechanism stays for the next single-narrative chapter.
+_SANCTIONED_SINGLE_CONTENT_CHAPTERS: "frozenset[str]" = frozenset()
 
 
 def check_only_child_headings() -> "tuple[str, list[str]]":

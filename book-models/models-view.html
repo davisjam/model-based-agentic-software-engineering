@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>39</b> chapters · <b>229</b> sections · <b>59</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>40</b> chapters · <b>232</b> sections · <b>59</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -451,62 +451,77 @@
 <section class="part" id="part-4">
 <h2>Module 4 — Engineering Through Models</h2>
 <div class="chapter">
-<h3 id="ch-4-1-one-problem-many-models"><span class="tier-kick">Lesson</span><a href="../book/4.1-one-problem-many-models.html" class="ch-link">4.1-one-problem-many-models</a> <span class="ch-slug">4.1-one-problem-many-models</span></h3>
-<div class="section s2" id="sec-4-1-one-problem-many-models--i-one-document-one-worker">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">I. One Document, One Worker</a></div>
+<h3 id="ch-4-1-the-dynamics-of-mage"><span class="tier-kick">Lesson</span><a href="../book/4.1-the-dynamics-of-mage.html" class="ch-link">4.1-the-dynamics-of-mage</a> <span class="ch-slug">4.1-the-dynamics-of-mage</span></h3>
+<div class="section s2" id="sec-4-1-the-dynamics-of-mage--alignment-changes-the-system">
+<div class="sec-h"><a href="../book/4.1-the-dynamics-of-mage.html">Alignment Changes the System</a></div>
+<p class="topic">Chapter 3 emphasized Alignment as a way to keep a realization faithful to its governing models.</p>
+</div>
+<div class="section s2" id="sec-4-1-the-dynamics-of-mage--establish-a-kernel-before-expanding">
+<div class="sec-h"><a href="../book/4.1-the-dynamics-of-mage.html">Establish a Kernel Before Expanding</a></div>
+<p class="topic">The first models brought into governance should protect the properties that subsequent transformations must not be allowed to damage.</p>
+</div>
+<div class="section s2" id="sec-4-1-the-dynamics-of-mage--greenfield-and-brownfield-mage">
+<div class="sec-h"><a href="../book/4.1-the-dynamics-of-mage.html">Greenfield and Brownfield MAGE</a></div>
+<p class="topic">Incremental adoption is easiest to see in a brownfield system.</p>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-4-2-one-problem-many-models"><span class="tier-kick">Lesson</span><a href="../book/4.2-one-problem-many-models.html" class="ch-link">4.2-one-problem-many-models</a> <span class="ch-slug">4.2-one-problem-many-models</span></h3>
+<div class="section s2" id="sec-4-2-one-problem-many-models--i-one-document-one-worker">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">I. One Document, One Worker</a></div>
 <p class="topic">DocAble originally treated an entire document as one unit of execution.</p>
 </div>
-<div class="section s2" id="sec-4-1-one-problem-many-models--ii-pages-as-the-unit-of-scale">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">II. Pages as the Unit of Scale</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--ii-pages-as-the-unit-of-scale">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">II. Pages as the Unit of Scale</a></div>
 <p class="topic">As documents grew larger, whole-document execution put increasing pressure on worker memory.</p>
 </div>
-<div class="section s2" id="sec-4-1-one-problem-many-models--iii-a-new-class-of-input">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">III. A New Class of Input</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--iii-a-new-class-of-input">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">III. A New Class of Input</a></div>
 <p class="topic">A 250 MB PowerPoint file does not imply that remediation needs 250 MB of document content resident in memory.</p>
 </div>
-<div class="section s2" id="sec-4-1-one-problem-many-models--iv-remove-media-from-the-working-set">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">IV. Remove Media from the Working Set</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--iv-remove-media-from-the-working-set">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">IV. Remove Media from the Working Set</a></div>
 <p class="topic">The memory problem came from coupling document structure to media residency: total media size increased the worker&#x27;s persistent working set even though most remediation operations needed only the document&#x27;s structural skeleton.</p>
 </div>
-<div class="section s2" id="sec-4-1-one-problem-many-models--v-once-memory-is-solved-why-are-we-chunking">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">V. Once Memory Is Solved, Why Are We Chunking?</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--v-once-memory-is-solved-why-are-we-chunking">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">V. Once Memory Is Solved, Why Are We Chunking?</a></div>
 <p class="topic">Page chunking had served two roles at once: it partitioned execution and bounded each worker&#x27;s memory.</p>
 </div>
-<div class="section s2" id="sec-4-1-one-problem-many-models--vi-analyze-before-you-build">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">VI. Analyze Before You Build</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--vi-analyze-before-you-build">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">VI. Analyze Before You Build</a></div>
 <p class="topic">Representing remediation as a dependency graph does more than provide an execution plan.</p>
 </div>
-<div class="section s3" id="sec-4-1-one-problem-many-models--dependencies-can-be-redesigned">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">Dependencies can be redesigned</a></div>
+<div class="section s3" id="sec-4-2-one-problem-many-models--dependencies-can-be-redesigned">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Dependencies can be redesigned</a></div>
 <p class="topic">The same analysis exposed a problem in contextual image description (panel c).</p>
 </div>
-<div class="section s3" id="sec-4-1-one-problem-many-models--predicting-latency">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">Predicting latency</a></div>
+<div class="section s3" id="sec-4-2-one-problem-many-models--predicting-latency">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Predicting latency</a></div>
 <p class="topic">The same graph supports a first-order latency model.</p>
 </div>
-<div class="section s3" id="sec-4-1-one-problem-many-models--predicting-the-cost-of-a-design-change">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">Predicting the cost of a design change</a></div>
+<div class="section s3" id="sec-4-2-one-problem-many-models--predicting-the-cost-of-a-design-change">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Predicting the cost of a design change</a></div>
 <p class="topic">Models can also answer questions about designs that do not exist yet.</p>
 </div>
-<div class="section s3" id="sec-4-1-one-problem-many-models--use-prediction-error-as-evidence">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">Use prediction error as evidence</a></div>
+<div class="section s3" id="sec-4-2-one-problem-many-models--use-prediction-error-as-evidence">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Use prediction error as evidence</a></div>
 <p class="topic">Implementation eventually supplies measurements, and the useful comparison is not simply whether the result was fast.</p>
 </div>
-<div class="section s2" id="sec-4-1-one-problem-many-models--vii-the-resulting-model-family">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">VII. The Resulting Model Family</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--vii-the-resulting-model-family">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">VII. The Resulting Model Family</a></div>
 <p class="topic">The large-file requirement did not produce one model.</p>
 </div>
-<div class="section s3" id="sec-4-1-one-problem-many-models--from-examples-to-a-bound">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">From examples to a bound</a></div>
+<div class="section s3" id="sec-4-2-one-problem-many-models--from-examples-to-a-bound">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">From examples to a bound</a></div>
 <p class="topic">The memory story shows the progression clearly:</p>
 </div>
-<div class="section s3" id="sec-4-1-one-problem-many-models--three-days">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">Three days</a></div>
+<div class="section s3" id="sec-4-2-one-problem-many-models--three-days">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Three days</a></div>
 <p class="topic">Laid out this way, the sequence looks like a substantial architecture project.</p>
 </div>
-<div class="section s3" id="sec-4-1-one-problem-many-models--finding-the-models">
-<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">Finding the models</a></div>
-<p class="topic">Chapter 5 asks engineers to find the models their work needs.</p>
+<div class="section s3" id="sec-4-2-one-problem-many-models--from-a-story-to-a-method">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">From a Story to a Method</a></div>
+<p class="topic">Nobody began this work with a plan to construct seven models.</p>
 </div>
 </div>
 </section>

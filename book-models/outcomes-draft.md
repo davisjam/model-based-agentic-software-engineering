@@ -96,7 +96,10 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 - _elaborates (owned by the program):_ (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.
 
-### Lesson 4.1-one-problem-many-models
+### Lesson 4.1-the-dynamics-of-mage
+
+
+### Lesson 4.2-one-problem-many-models
 
 
 ## Module 5 — The MAGE Method

@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 845,
+    "total_sites": 851,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 503,
+      "book-web": 509,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -72,7 +72,11 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/4.1-one-problem-many-models.md",
+            "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
+            "occ": 4
+          },
+          {
+            "file": "book/web/docs/4.2-one-problem-many-models.md",
             "occ": 2
           },
           {
@@ -263,7 +267,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 60
+            "occ": 61
           }
         ]
       },
@@ -984,8 +988,12 @@
             "occ": 7
           },
           {
-            "file": "book/web/docs/4.1-one-problem-many-models.md",
-            "occ": 23
+            "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
+            "occ": 18
+          },
+          {
+            "file": "book/web/docs/4.2-one-problem-many-models.md",
+            "occ": 20
           },
           {
             "file": "book/web/docs/5.1-the-mage-workflow.md",
@@ -1369,7 +1377,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 314
+            "occ": 317
           },
           {
             "file": "book/web/docs/index.md",
@@ -1415,7 +1423,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 133
+            "occ": 134
           }
         ]
       },
@@ -1562,7 +1570,11 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/4.1-one-problem-many-models.md",
+            "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
+            "occ": 1
+          },
+          {
+            "file": "book/web/docs/4.2-one-problem-many-models.md",
             "occ": 1
           },
           {
@@ -1729,7 +1741,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 48
+            "occ": 49
           }
         ]
       },
@@ -1930,8 +1942,12 @@
             "occ": 9
           },
           {
-            "file": "book/web/docs/4.1-one-problem-many-models.md",
-            "occ": 55
+            "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
+            "occ": 26
+          },
+          {
+            "file": "book/web/docs/4.2-one-problem-many-models.md",
+            "occ": 63
           },
           {
             "file": "book/web/docs/5.1-the-mage-workflow.md",
@@ -2255,7 +2271,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 420
+            "occ": 430
           },
           {
             "file": "book/web/docs/index.md",
@@ -2301,7 +2317,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 114
+            "occ": 115
           }
         ]
       },
@@ -2784,6 +2800,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/6.2-the-build.md",
             "occ": 1
           },
@@ -2807,7 +2827,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 7
+            "occ": 8
           }
         ]
       },
@@ -2998,6 +3018,10 @@
             "occ": 4
           },
           {
+            "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/5.2-brownfield.md",
             "occ": 3
           },
@@ -3129,7 +3153,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 45
+            "occ": 46
           }
         ]
       },
@@ -3580,8 +3604,8 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/4.1-one-problem-many-models.md",
-            "occ": 4
+            "file": "book/web/docs/4.2-one-problem-many-models.md",
+            "occ": 5
           },
           {
             "file": "book/web/docs/5.1-the-mage-workflow.md",

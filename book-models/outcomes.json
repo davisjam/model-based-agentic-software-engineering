@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 14,
     "elaborative_links": 19,
     "units_serving_as_elaborative": 16,
-    "sections_total": 229,
+    "sections_total": 232,
     "sections_primary_of_an_outcome": 15,
     "modules": 9,
-    "lessons": 37
+    "lessons": 38
   },
   "taxonomy": {
     "know": [
@@ -240,7 +240,12 @@
         "own_outcomes": [],
         "lessons": [
           {
-            "lesson": "4.1-one-problem-many-models",
+            "lesson": "4.1-the-dynamics-of-mage",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "4.2-one-problem-many-models",
             "own_outcomes": [],
             "section_outcomes": []
           }
