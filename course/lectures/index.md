@@ -31,9 +31,10 @@ Modules are published as their teaching materials are completed.
 - **[Teamwork](act-1-foundations/03-software-engineering-teamwork/index.md)**
 - **[Requirements](act-1-foundations/04-requirements/index.md)**
 - **[Specification](act-1-foundations/05-specification/index.md)**
-- Architecture
-- Design
-- Fundamentals of SWE with GenAI
+- **[Architecture](act-1-foundations/06-architecture/index.md)**
+- **[Design](act-1-foundations/07-design/index.md)**
+- **[Validation](act-1-foundations/08-validation/index.md)**
+- **[Engineering Decision-Making and Metrics](act-1-foundations/09-engineering-decision-making-and-metrics/index.md)**
 
 ## Act II — Building Systems & Governing Changes
 

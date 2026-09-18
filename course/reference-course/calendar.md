@@ -24,7 +24,7 @@ This reference course uses a 16-week sequence in three acts. The [Syllabus](syll
 | 2 | {module:Process} · {module:Teamwork} |
 | 3 | {module:Requirements & Specification} |
 | 4 | {module:Architecture} · {module:Design} |
-| 5 | {module:Validation} · {module:Software Engineering with GenAI} |
+| 5 | {module:Validation} · {module:Engineering Decision-Making and Metrics} |
 
 ## Act II — Building Systems & Governing Changes
 
