@@ -30,7 +30,17 @@ import sys
 
 import _common as C
 
-HARDCODED_NUM = re.compile(r"\b(Figure|Fig\.|Table|Section|Sect\.|Chapter)\s+\d+", re.IGNORECASE)
+# Hard-coded reference numbers in prose. The number of a figure/table/section/chapter is DERIVED at
+# build time from a stable id, so a literal typed into a sentence rots the moment its target moves.
+# Three literal families beyond the singular word+number:
+#   * plural spans  — "Chapters 2 and 3" (the trailing `s?`)
+#   * abbreviations — "Ch. 3", "Chs. 2-4", "Fig. 1", "Sect. 4" (the `Chs?\.` alternative + `Fig.`/`Sect.`)
+#   * the section glyph — "§6.3", "§§7.1" (SECTION_GLYPH; "§" is not a `\b` word char, so a 2nd pattern)
+# Kept in parity with the MAGE book's `no-hardcoded-ref` lint by the cross-book corpus test in
+# catalog_tests.py (`check_hardcoded_ref_parity`) — add a literal family to one book, add it to both.
+HARDCODED_NUM = re.compile(
+    r"\b(?:Figure|Fig\.|Table|Section|Sect\.|Chapter|Chs?\.)s?\s+\d", re.IGNORECASE)
+SECTION_GLYPH = re.compile(r"§+\s*\d")
 
 
 class Report:
@@ -70,11 +80,11 @@ class ChapterScan:
         if ident:
             self.ids.append((ident, kind))
 
-    def scan_blocks(self, blocks, in_escape: bool = False) -> None:
+    def scan_blocks(self, blocks, in_escape: bool = False, in_read_further: bool = False) -> None:
         for b in blocks:
-            self.scan_block(b, in_escape)
+            self.scan_block(b, in_escape, in_read_further)
 
-    def scan_block(self, node: dict, in_escape: bool) -> None:
+    def scan_block(self, node: dict, in_escape: bool, in_read_further: bool) -> None:
         t = node.get("t")
         c = node.get("c")
         if t == "Header":
@@ -88,12 +98,17 @@ class ChapterScan:
             classes = attr[1]
             self._check_div(attr, classes, inner)
             escape = in_escape or any(cl in C.ESCAPE_BLOCKS for cl in classes)
-            self.scan_blocks(inner, escape)
+            # A READ FURTHER block curates citations of EXTERNAL works; a number in one ("§§7.1 and 7.4")
+            # belongs to the cited work, not this book, and must stay literal. Exempt the block from the
+            # hardcoded-number scan ONLY — every other structural check still runs inside it.
+            read_further = in_read_further or any(cl in C.READ_FURTHER_BLOCKS for cl in classes)
+            self.scan_blocks(inner, escape, read_further)
         elif t == "Table":
             self._note_id(c[0], "table")
-            self.scan_any(c, in_escape)
+            self.scan_any(c, in_escape, in_read_further)
         elif t in ("Para", "Plain"):
-            self.hardcoded_scan(node)
+            if not in_read_further:
+                self.hardcoded_scan(node)
             self.scan_inlines(c, in_escape)
         elif t == "RawBlock":
             fmt, _text = c
@@ -102,21 +117,21 @@ class ChapterScan:
         elif t == "CodeBlock":
             self._note_id(c[0], "codeblock")
         elif isinstance(c, list):
-            self.scan_any(c, in_escape)
+            self.scan_any(c, in_escape, in_read_further)
 
-    def scan_any(self, node, in_escape: bool) -> None:
+    def scan_any(self, node, in_escape: bool, in_read_further: bool = False) -> None:
         if isinstance(node, list):
             for x in node:
-                self.scan_any(x, in_escape)
+                self.scan_any(x, in_escape, in_read_further)
         elif isinstance(node, dict):
             if "t" in node and node["t"] in (
                 "Header", "Div", "Table", "Para", "Plain", "RawBlock", "CodeBlock",
             ):
-                self.scan_block(node, in_escape)
+                self.scan_block(node, in_escape, in_read_further)
             elif "t" in node and node["t"] in ("Cite", "Image", "Link", "Span", "RawInline", "Str"):
                 self.scan_inline(node, in_escape)
             elif "c" in node:
-                self.scan_any(node["c"], in_escape)
+                self.scan_any(node["c"], in_escape, in_read_further)
 
     def scan_inlines(self, inlines, in_escape: bool) -> None:
         for i in inlines:
@@ -157,6 +172,8 @@ class ChapterScan:
     def hardcoded_scan(self, node: dict) -> None:
         text = C._stringify(node.get("c"))
         for m in HARDCODED_NUM.finditer(text):
+            self.hardcoded.append(m.group(0))
+        for m in SECTION_GLYPH.finditer(text):
             self.hardcoded.append(m.group(0))
 
     def _check_div(self, attr, classes, inner) -> None:

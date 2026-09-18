@@ -44,6 +44,25 @@ local function chapter_directory(doc)
   return dir
 end
 
+-- The book-level SECTION directory, injected by build.py alongside the chapter directory. Maps a
+-- `sec-` heading id to its title (the inline link text) and its owning chapter's web stem (the web
+-- link target). A single chapter's Pandoc run collects section titles only for its OWN headings
+-- (`sec_title`, pass 1), so a cross-chapter `@sec-` reference — target in a different run — misses
+-- that table; this directory is the fallback, exactly as `chapter_directory` is for `@ch-`.
+local function section_directory(doc)
+  local dir = {}
+  local meta = doc.meta["handbook_sections"]
+  if not meta then return dir end
+  for _, entry in ipairs(meta) do
+    local id = pandoc.utils.stringify(entry.id)
+    dir[id] = {
+      title = pandoc.utils.stringify(entry.title),
+      stem = pandoc.utils.stringify(entry.stem),
+    }
+  end
+  return dir
+end
+
 -- The book-global starting offset for a float sequence, injected per file by build.py
 -- (-M handbook_fig_offset=… / handbook_tbl_offset=…). A file rendered in its own Pandoc run would
 -- otherwise restart its sequence at 1; the offset — the numbered-float count of everything
@@ -58,6 +77,7 @@ end
 
 function Pandoc(doc)
   local chap = chapter_directory(doc)
+  local secdir = section_directory(doc)
 
   -- Pass 1: collect float numbers and section titles.
   local fig_number = {}   -- id -> integer (book-global figure sequence)
@@ -133,7 +153,10 @@ function Pandoc(doc)
           local label = (chap[cid] and chap[cid].short) or cid
           return pandoc.RawInline("typst", '#link(<chap-' .. cid .. '>)[' .. label .. ']')
         end
-        local label = sec_title[id] or id
+        -- Same-run section title first; else the cross-chapter directory (full-book Typst carries
+        -- every `<sec-…>` label book-wide, so the `#link` target needs no adjustment); else raw id.
+        local sd = secdir[id]
+        local label = sec_title[id] or (sd and sd.title) or id
         return pandoc.RawInline("typst", '#link(<' .. id .. '>)[#quote[' .. label .. ']]')
       else
         if p == "fig" or p == "tbl" then
@@ -156,8 +179,20 @@ function Pandoc(doc)
           end
           return pandoc.Link(pandoc.Str(label), href)
         end
-        local label = sec_title[id] or id
-        return pandoc.Link({ pandoc.Str("“" .. label .. "”") }, "#" .. id)
+        -- Web/ePub. Same-run title → local `#id` anchor (unchanged). Else the cross-chapter
+        -- directory: on the web the target lives on a sibling page (`<stem>.md#id`); in the single
+        -- ePub container every section anchor is book-wide, so `#id` still resolves. Unknown in both
+        -- → the current raw-id fallback, which lint makes unreachable for prose (unresolved refs are
+        -- fatal). Only a genuine cross-chapter `@sec-` exercises the directory branch.
+        local sd = secdir[id]
+        local label = sec_title[id] or (sd and sd.title) or id
+        local href
+        if sec_title[id] or not sd or FORMAT:match("^epub") then
+          href = "#" .. id
+        else
+          href = sd.stem .. ".md#" .. id
+        end
+        return pandoc.Link({ pandoc.Str("“" .. label .. "”") }, href)
       end
     end,
   })

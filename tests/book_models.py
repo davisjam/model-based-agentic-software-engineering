@@ -49,6 +49,64 @@ if _BOOK_MODELS not in sys.path:
     sys.path.insert(0, _BOOK_MODELS)
 
 
+def _load_handbook_lint():
+    """Import the SE Handbook's structural linter (`handbook/scripts/lint.py`) as a module, with its
+    script dir on `sys.path` so its `import _common` resolves. Loaded under a distinct name so it never
+    shadows another `lint` module in the suite. Import-time is side-effect-free (it only compiles the
+    hardcoded-number patterns; no build/subprocess runs until `main()`)."""
+    import importlib.util
+    hb_scripts = os.path.join(ROOT, "handbook", "scripts")
+    if hb_scripts not in sys.path:
+        sys.path.insert(0, hb_scripts)
+    spec = importlib.util.spec_from_file_location("handbook_lint", os.path.join(hb_scripts, "lint.py"))
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules["handbook_lint"] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def check_hardcoded_ref_parity():
+    """Cross-book PARITY corpus (the shared join for the two books' hardcoded-reference bans). The SE
+    Handbook and the MAGE book keep SEPARATE lints — the Handbook scans its Pandoc AST, the MAGE book
+    scans text over a different tree's fence/comment conventions — but they must ban the SAME literal
+    cross-reference FAMILIES: a chapter word, a chapter abbreviation, a section word, and the section
+    glyph. This test holds that join WITHOUT merging the lints: one representative literal of each shared
+    family must be rejected by BOTH books' patterns. Adding a family to one ban but not the other, or
+    weakening a pattern so it stops catching a family, fails here — the drift alarm the design calls for.
+
+    Figure/Table forms are deliberately NOT shared and so are absent from the corpus: the MAGE book bans
+    only a section-relative `Figure N-N` locator, while the Handbook bans a bare `Figure N`."""
+    import lint_no_hardcoded_ref as mage  # noqa: E402 — path set above; the MAGE-book hardcoded-ref lint
+    hb = _load_handbook_lint()
+    # One representative literal per SHARED family; each must be rejected by BOTH books.
+    corpus = [
+        "Chapter 4",         # chapter word, singular
+        "Chapters 2 and 3",  # chapter word, plural span
+        "Ch. 3",             # chapter abbreviation
+        "Chs. 2",            # chapter abbreviation, plural
+        "Section 2",         # section word
+        "Sect. 4",           # section abbreviation
+        "§6.3",              # section glyph
+        "§§7.1",             # section glyph, doubled
+    ]
+
+    def mage_rejects(s: str) -> bool:
+        return any(pat.search(s) for _name, pat, _remedy in mage._PATTERNS)
+
+    def handbook_rejects(s: str) -> bool:
+        return bool(hb.HARDCODED_NUM.search(s) or hb.SECTION_GLYPH.search(s))
+
+    issues: list[str] = []
+    for s in corpus:
+        if not mage_rejects(s):
+            issues.append(f"MAGE lint (lint_no_hardcoded_ref._PATTERNS) does NOT reject {s!r} — the two "
+                          "books' hardcoded-ref bans have drifted; add the family to both")
+        if not handbook_rejects(s):
+            issues.append(f"Handbook lint (handbook/scripts/lint.py HARDCODED_NUM/SECTION_GLYPH) does NOT "
+                          f"reject {s!r} — the two books' hardcoded-ref bans have drifted; add the family to both")
+    return (FAIL if issues else PASS), issues
+
+
 def check_outline_model():
     """The outline view's drift + invariant check (audit-only). Re-derives the outline from the book and
     reports: O1 the on-disk artifact matches a fresh derivation; O2/O3/O4 the outline's own invariants.

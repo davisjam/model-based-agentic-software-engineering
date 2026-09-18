@@ -11,10 +11,16 @@ moment the target moves. This check flags the literal forms so the author reache
 instead.
 
 Flagged literal patterns (in running prose):
-  * `Appendix <A-Z>`       → use `[appendix: <page-slug>]`   (resolves to "Appendix <letter>" + link)
-  * `Figure/Table <N-N>`   → use `[ref: <label>]`            (a section-relative float locator)
-  * `Chapter(s) <N>`       → use `{{chapter: <label>}}`      (the number resolves from _CHAPTER_LABELS)
-  * `§<N.M>`               → use `{{sec: <label>}}`          (the locator resolves from chapter_identity)
+  * `Appendix <A-Z>`         → use `[appendix: <page-slug>]`   (resolves to "Appendix <letter>" + link)
+  * `Figure/Table <N-N>`     → use `[ref: <label>]`            (a section-relative float locator)
+  * `Chapter(s)/Ch(s). <N>`  → use `{{chapter: <label>}}`      (the number resolves from _CHAPTER_LABELS)
+  * `§<N>` / `Section(s)/Sect(s). <N>` → use `{{sec: <label>}}` (the locator resolves from chapter_identity)
+
+The chapter/section FAMILIES here are kept in parity with the SE Handbook's own hardcoded-number lint
+(`handbook/scripts/lint.py`) by the cross-book corpus test in `catalog_tests.py`
+(`check_hardcoded_ref_parity`, in `tests/book_models.py`): a literal family added to one book's ban must be
+added to the other. The two lints stay SEPARATE (a text scan here vs. the Handbook's AST scan over a
+different tree); the test holds the shared vocabulary without merging them.
 
 Scope — the authored book prose that ships as narrative. Chapter/section references proliferate across
 EVERY narrative + appendix page (including the `_`-prefixed opening prose), so those two patterns scan the
@@ -61,15 +67,17 @@ XREF_DIRS = _NARRATIVE_DIRS + tuple(sorted(p.name for p in BOOK.glob("appendix-*
 # Each (name, regex, remedy) is a class of hardcoded reference. `Appendix <L>` matches a lone capital letter
 # (a word boundary after it), so "Appendix Explains…" (a capital word) does NOT trip. `Figure/Table` require
 # a chapter-relative `N-N`/`N.N` locator, so a bare "Figure" in prose is fine — only a typed float NUMBER is
-# a finding. `Chapter(s) <N>` catches both the singular and the span plural; `§<N.M>` the section locator.
+# a finding (this float family is deliberately NOT shared with the Handbook, which bans a bare "Figure N").
+# `chapter` catches the word (singular + span plural) AND the "Ch."/"Chs." abbreviation; `section` catches
+# the "§"/"§§" glyph AND the "Section(s)"/"Sect(s)." word — the shared families the parity corpus pins.
 _PATTERNS: tuple[tuple[str, re.Pattern[str], str], ...] = (
     ("appendix", re.compile(r"\bAppendix\s+[A-Z]\b"),
      "use `[appendix: <page-slug>]` (the letter resolves at build)"),
     ("float", re.compile(r"\b(?:Figure|Table)\s+[0-9]+[.\-][0-9]"),
      "use `[ref: <label>]` (a section-relative float locator)"),
-    ("chapter", re.compile(r"\bChapters?\s+\d"),
+    ("chapter", re.compile(r"\b(?:Chapters?|Chs?\.)\s+\d"),
      "use {{chapter:<label>}} (the number resolves at build)"),
-    ("section", re.compile(r"§\s*\d+\.\d+"),
+    ("section", re.compile(r"§+\s*\d|\b(?:Sections?|Sects?\.)\s+\d"),
      "use {{sec:<label>}} (the locator resolves at build)"),
 )
 # The stable-id patterns that scan the full XREF scope; the rest keep the LEGACY narrative scope.

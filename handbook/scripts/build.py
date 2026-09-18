@@ -76,26 +76,84 @@ def _chapter_meta(ch) -> dict:
     return C.meta_to_py(C.pandoc_ast(ch).get("meta", {}))
 
 
-def _chapter_directory_args(book: dict) -> list[str]:
-    """Write the book-level chapter directory and return the pandoc args that inject it.
+def _sec_headings(blocks) -> list[tuple[str, str]]:
+    """Every `sec-`-prefixed heading id in a chapter's block list, paired with its stringified title.
+
+    The Python port of crossrefs.lua's pass-1 Header case (`_common._stringify` mirrors that filter's
+    `pandoc.utils.stringify`). Recurses into Divs so a section heading nested inside a semantic block
+    is still collected."""
+    out: list[tuple[str, str]] = []
+
+    def walk(node) -> None:
+        if isinstance(node, list):
+            for x in node:
+                walk(x)
+            return
+        if not isinstance(node, dict):
+            return
+        if node.get("t") == "Header":
+            _level, (ident, _classes, _kv), inlines = node["c"]
+            if ident.startswith("sec-"):
+                out.append((ident, C._stringify(inlines)))
+        c = node.get("c")
+        if isinstance(c, list):
+            walk(c)
+
+    walk(blocks)
+    return out
+
+
+def _chapter_directory_args(book: dict) -> tuple[list[str], dict]:
+    """Write the book-level chapter + section directory; return the pandoc args that inject it AND the
+    per-chapter number map.
 
     Each chapter is rendered by its own Pandoc run, so a chapter that cross-references another
     (`@ch-<id>`) needs the sibling's identity from outside its own source. This projects book.yaml's
     ordered chapter list into a metadata file — chapter id → short title (inline link text) + web
-    stem (the web link target) — that crossrefs.lua reads to resolve every `@ch-` reference."""
+    stem (the web link target) + number — that crossrefs.lua reads to resolve every `@ch-` reference.
+
+    It ALSO projects every `sec-`-prefixed heading id (id → section title + owning chapter's web
+    stem) into a `handbook_sections` directory. crossrefs.lua collects section titles PER Pandoc run,
+    so a CROSS-CHAPTER `@sec-` reference — whose target heading renders in a different run than the
+    reference (every per-chapter PDF/web run; only the combined ePub run sees all sections) — would
+    otherwise render its raw id and, on the web, link to a dangling anchor on the wrong page. The
+    directory is the cross-run fallback, resolving such a reference exactly as `@ch-` resolves across
+    chapters. A same-chapter `@sec-` still resolves from the per-run title table; nothing consults the
+    directory until a genuine cross-chapter section reference exists.
+
+    The chapter NUMBER — the position among `kind: chapter` entries in book order, 0 for back matter —
+    is derived HERE, once, and returned as a `{chapter path → number}` map. The three render loops
+    (PDF/ePub/web) read it rather than each re-running the same kind-gated count (one source of truth).
+    The number also rides each directory entry, so a future "Chapter N" render variant for `@ch-` is a
+    crossrefs.lua-only change — the number is already in the map the filter reads."""
     C.GENERATED.mkdir(parents=True, exist_ok=True)
     directory = []
+    sections = []
+    numbers: dict = {}
+    chapter_no = 0
     for ch in C.chapter_files(book):
-        meta = _chapter_meta(ch)
+        ast = C.pandoc_ast(ch)
+        meta = C.meta_to_py(ast.get("meta", {}))
+        if (meta.get("kind") or "chapter") == "chapter":
+            chapter_no += 1
+            number = chapter_no
+        else:
+            number = 0  # back matter (the Conclusion) stays unnumbered
+        numbers[ch] = number
         directory.append({
             "id": meta.get("id", ch.stem),
             "short": meta.get("short_title", meta.get("title", ch.stem)),
             "stem": ch.stem,
+            "number": number,
         })
+        for sid, title in _sec_headings(ast.get("blocks", [])):
+            sections.append({"id": sid, "title": title, "stem": ch.stem})
     path = C.GENERATED / "chapter-map.yaml"
-    path.write_text(C.yaml.safe_dump({"handbook_chapters": directory}, allow_unicode=True),
-                    encoding="utf-8")
-    return ["--metadata-file", str(path)]
+    path.write_text(
+        C.yaml.safe_dump({"handbook_chapters": directory, "handbook_sections": sections},
+                         allow_unicode=True),
+        encoding="utf-8")
+    return ["--metadata-file", str(path)], numbers
 
 
 def _numbered_float_counts(md_path) -> tuple[int, int]:
@@ -223,7 +281,7 @@ def build_pdf(book: dict) -> None:
     GEN_TYPST.mkdir(parents=True, exist_ok=True)
     C.DIST.mkdir(parents=True, exist_ok=True)
 
-    chdir_args = _chapter_directory_args(book)
+    chdir_args, chapter_numbers = _chapter_directory_args(book)
     fm_units = _frontmatter_units(book, chdir_args)
     frontmatter_typst = "\n\n".join(block for _, _, block in fm_units)
 
@@ -238,7 +296,6 @@ def build_pdf(book: dict) -> None:
         for fm, title, block in fm_units]
 
     chapter_typst = []
-    chapter_no = 0
     for ch in C.chapter_files(book):
         meta = _chapter_meta(ch)
         stem = ch.stem
@@ -260,8 +317,8 @@ def build_pdf(book: dict) -> None:
             units.append(_Unit(stem, title, f"{kind.capitalize()} of the full book", 0,
                                *float_offsets[ch], chap))
         else:
-            chapter_no += 1
-            units.append(_Unit(stem, title, f"Chapter {chapter_no} of the full book", chapter_no,
+            number = chapter_numbers[ch]
+            units.append(_Unit(stem, title, f"Chapter {number} of the full book", number,
                                *float_offsets[ch], chap))
         # Kept on disk for inspection (spec §24); book.typ inlines the same content so the
         # template's imports stay in scope for the chapter's #hb-callout / #hb-figure calls.
@@ -313,11 +370,32 @@ class _Unit(NamedTuple):
     typst: str           # the unit's compiled Typst — the same block the full book concatenates
 
 
-# A cross-chapter reference in a unit's generated Typst: crossrefs.lua emits exactly
-# `#link(<chap-ID>)[Short Title]` (one fixed machine-generated shape, nothing else emits `<chap-`).
-# In the full book the target label exists; in a standalone unit it does not and `typst compile`
-# would fail, so the excerpt build rewrites the link to its plain short-title text.
+# Cross-unit references in a unit's generated Typst — one fixed machine-generated shape each, so a
+# regex rewrite to plain text is sound:
+#   * chapter: crossrefs.lua emits exactly `#link(<chap-ID>)[Short Title]` (nothing else emits `<chap-`).
+#   * section: it emits exactly `#link(<sec-ID>)[#quote[Title]]`.
+# In the full book the target label exists; in a standalone unit a reference whose target lies in
+# ANOTHER unit has no `<...>` label here and `typst compile` would fail. So the excerpt build rewrites
+# every foreign chapter link to its plain short title, and every foreign section link to its plain
+# quoted title. A section link whose target IS defined in this same unit stays a live link.
 _CH_XREF = re.compile(r"#link\(<chap-[\w.-]+>\)\[([^\]]*)\]")
+_SEC_XREF = re.compile(r"#link\(<(sec-[\w.-]+)>\)\[#quote\[([^\]]*)\]\]")
+
+
+def _strip_foreign_xrefs(typst: str) -> str:
+    """Rewrite a standalone unit's cross-UNIT references to plain text so `typst compile` succeeds.
+
+    Foreign chapter links become their short title; foreign section links become their quoted title.
+    A section link whose `<sec-ID>` label is DEFINED in this unit (a same-chapter `@sec-`) is kept
+    live — a definition is a bare `<sec-ID>` (heading label), a reference is `(<sec-ID>)`, so the
+    negative-lookbehind on `(` distinguishes them."""
+    defined = set(re.findall(r"(?<!\()<(sec-[\w.-]+)>", typst))
+
+    def _sec(m: "re.Match[str]") -> str:
+        sid, title = m.group(1), m.group(2)
+        return m.group(0) if sid in defined else f"#quote[{title}]"
+
+    return _SEC_XREF.sub(_sec, _CH_XREF.sub(r"\1", typst))
 
 
 def _build_chapter_pdfs(book: dict, units: list[_Unit]) -> None:
@@ -347,7 +425,7 @@ def _build_chapter_pdfs(book: dict, units: list[_Unit]) -> None:
             f"  tbl-offset: {u.tbl_offset},",
             ")",
             "",
-            _CH_XREF.sub(r"\1", u.typst),
+            _strip_foreign_xrefs(u.typst),
             "",
         ])
         src = GEN_TYPST / f"excerpt-{u.stem}.typ"
@@ -389,7 +467,7 @@ def build_epub(book: dict) -> None:
     GEN_EPUB.mkdir(parents=True, exist_ok=True)
     C.DIST.mkdir(parents=True, exist_ok=True)
 
-    chdir_args = _chapter_directory_args(book)
+    chdir_args, chapter_numbers = _chapter_directory_args(book)
 
     # Front matter that renders in the print edition (`views:` includes `handbook`) belongs in the
     # ePub too — the ePub is the reflowable sibling of the PDF, not of the web site.
@@ -402,15 +480,15 @@ def build_epub(book: dict) -> None:
         title = meta.get("title", fm.stem)
         sections.append(f"# {title} {{#chap-{meta.get('id', fm.stem)}}}\n\n{_source_body(fm)}")
         print(f"  epub   ← {fm.name} (front matter)")
-    chapter_no = 0
     for ch in C.chapter_files(book):
         meta = _chapter_meta(ch)
         title = meta.get("title", ch.stem)
         # Chapter numbering mirrors the web edition: `kind: chapter` takes the next number; back
-        # matter (the Conclusion) stays unnumbered. The heading id doubles as the `@ch-` anchor.
-        if (meta.get("kind") or "chapter") == "chapter":
-            chapter_no += 1
-            title = f"Chapter {chapter_no}: {title}"
+        # matter (the Conclusion) stays unnumbered. The number is derived once in
+        # _chapter_directory_args (0 == back matter). The heading id doubles as the `@ch-` anchor.
+        number = chapter_numbers[ch]
+        if number:
+            title = f"Chapter {number}: {title}"
         sections.append(f"# {title} {{#chap-{meta.get('id', ch.stem)}}}\n\n{_source_body(ch)}")
         print(f"  epub   ← {ch.name}")
     combined = GEN_EPUB / "book.md"
@@ -461,7 +539,7 @@ def build_web(book: dict) -> None:
         shutil.rmtree(GEN_WEB)
     GEN_WEB.mkdir(parents=True, exist_ok=True)
 
-    chdir_args = _chapter_directory_args(book)
+    chdir_args, chapter_numbers = _chapter_directory_args(book)
     # Book-global float numbering: each per-file Pandoc run is seeded with the numbered-float
     # count of everything before it, so web captions and cross-references match the PDF's numbers.
     float_args = _float_offset_args(book)
@@ -493,7 +571,6 @@ def build_web(book: dict) -> None:
     # Chapters. `kind: chapter` entries take the next chapter number ("Chapter N: Title" in the
     # page heading and navigation); back matter (the Conclusion) stays unnumbered.
     nav_entries: list[tuple[str, str]] = []       # (display title, href) in book order
-    chapter_no = 0
     for ch in C.chapter_files(book):
         meta = _chapter_meta(ch)
         stem = ch.stem
@@ -504,9 +581,9 @@ def build_web(book: dict) -> None:
                   "-L", str(C.FILTERS / "web.lua")])
         body = _run(cmd)
         title = meta.get("title", stem)
-        if (meta.get("kind") or "chapter") == "chapter":
-            chapter_no += 1
-            title = f"Chapter {chapter_no}: {title}"
+        number = chapter_numbers[ch]
+        if number:
+            title = f"Chapter {number}: {title}"
         page = f"# {title}\n\n{_chapter_dl_html(stem)}\n\n{body}\n"
         (GEN_WEB / f"{stem}.md").write_text(page, encoding="utf-8")
         nav_entries.append((title, f"{stem}.md"))

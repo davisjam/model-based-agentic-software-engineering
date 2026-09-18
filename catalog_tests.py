@@ -56,6 +56,7 @@ from tests.book_models import (
     check_chapter_shape,
     check_claims_model,
     check_flagship_stack,
+    check_hardcoded_ref_parity,
     check_industry_cases,
     check_link_integrity,
     check_close_label_integrity,
@@ -369,6 +370,14 @@ CHECKS = [
     # links are build-rewritten + validated by check_html_links, so out of scope. See tests/book_models.py.
     Check("book-models: whole-book chapter-link integrity (link_integrity_check.py)", 1,
           lambda strict: check_link_integrity()),
+    # BLOCKING (green at landing): the cross-book PARITY corpus — the SE Handbook and the MAGE book keep
+    # SEPARATE hardcoded-reference lints (the Handbook scans its Pandoc AST; the MAGE book scans text over a
+    # different tree), but must ban the SAME literal families (chapter word / chapter abbreviation / section
+    # word / section glyph). One representative literal of each shared family must be rejected by BOTH books'
+    # patterns — the drift alarm that holds the join without merging the lints. Figure/Table forms are
+    # deliberately NOT shared (MAGE bans `Figure N-N`, the Handbook bans `Figure N`). See tests/book_models.py.
+    Check("book-models: cross-book hardcoded-ref family parity (handbook lint <-> no-hardcoded-ref)", 1,
+          lambda strict: check_hardcoded_ref_parity()),
     # BLOCKING (promoted round-8 W3 after the drain): the C5 named-reference -> current-identity check — the
     # Part-IV "portable moves" close cites destinations by NAME; this proves each named label still matches the
     # destination's CURRENT identity (chapter title / operator-card title), catching map::territory drift IN
