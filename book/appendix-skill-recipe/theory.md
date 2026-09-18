@@ -56,7 +56,7 @@ Build a process-skill in three steps.
   choices that actually require reasoning.
 
 This construction mirrors the Execute / Delegate / Escalate distinction from
-[Operating MAGE](4.4-operating-mage.html). A process-skill does not turn every process into automation. It
+[Operating MAGE](5.4-operating-mage.html). A process-skill does not turn every process into automation. It
 makes the process explicit enough that each part can be handled by the appropriate mechanism or reasoner.
 
 <!-- point: the-discriminator-is-which-asset-survives-improved-judgment | The discriminator: which asset survives if individual judgments improve. | terms: process-skill, mastery-skill -->

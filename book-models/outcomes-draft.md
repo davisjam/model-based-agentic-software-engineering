@@ -92,36 +92,36 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 3.5-when-guardrails-collide
 
 
-## Module 3.5 — Part 3.5
+## Module 4 — Engineering Through Models
 
-
-### Lesson 3.5-one-problem-many-models
-
-
-## Module 4 — The MAGE Method
-
-- **[DECLARED]** (apply) After this Part, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism. _(primary: Module 4 · elaborated by: Module 5)_ — _anchor: The MAGE Method chapter arc: the-mage-workflow -> brownfield -> validating-change -> the-skills (governance-conversion + field-guide dissolved into 4.1 + the 4.4 synthesis close in round-6)._
 - _elaborates (owned by the program):_ (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.
 
-### Lesson 4.1-the-mage-workflow
+### Lesson 4.1-one-problem-many-models
+
+
+## Module 5 — The MAGE Method
+
+- **[DECLARED]** (apply) After this Part, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism. _(primary: Module 5 · elaborated by: Module 6)_ — _anchor: The MAGE Method chapter arc: the-mage-workflow -> brownfield -> validating-change -> the-skills (governance-conversion + field-guide dissolved into 4.1 + the 4.4 synthesis close in round-6)._
+
+### Lesson 5.1-the-mage-workflow
 
   - **[DERIVED]** (analyze) After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds. _(primary: guidance-or-enforcement · elaborated by: prevention-and-observation)_ — _anchor: point: guidance-aims-enforcement-binds (4.1 the MAGE Workflow, 'Guidance or Enforcement?' — guidance aims, enforcement binds)._
   - _elaborates (owned by the program):_ (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for.
   - **[DERIVED]** (understand) After this section, the reader can distinguish one-shot scripting from supervised autonomy and name what each supplies to the agent. — _anchor: point: not-every-task-deserves-the-full-apparatus-of-governed-autonomy / two-things-shorten-the-leash-reasoning-burden-and-assurance-need (re-homed to 'Size Work to Reasoning and Assurance' in 4.1 the MAGE Workflow; one-shot-scripting vs supervised-autonomy)._
   - **[DERIVED]** (evaluate) After this section, the reader can size a transformation's leap to its model and its guarantee. — _anchor: point: size-work-as-transformations-with-checkable-boundaries / docable-sizes-the-leap-to-bounded-typed-edits-the-unit-of-delegation-lines-up-with-a-unit-of-evidence (4.1 'Size Work to Reasoning and Assurance'; sizing-the-leap)._
 
-### Lesson 4.2-brownfield
+### Lesson 5.2-brownfield
 
 
-### Lesson 4.3-validating-change
+### Lesson 5.3-validating-change
 
   - **[DERIVED]** (apply) After this section, the reader can apply the one move behind property testing, fuzzing, and fuzz-MBSE: a generator hunting a counterexample to a stated model. — _anchor: point: let-the-claim-choose-the-search / fix-the-stable-obligation-not-the-seed (4.3 Validating Change, 'Generate Falsifying Evidence' — property / fuzz / TLA+ all hunt a counterexample to a stated model)._
   - **[DERIVED]** (evaluate) After this section, the reader can choose which validation strategy to reach for by the specification it attacks. — _anchor: point: let-the-claim-choose-the-search / the-three-cases-make-the-rule-concrete (4.3 'Generate Falsifying Evidence' — the shape of the property chooses the strategy)._
 
-### Lesson 4.4-operating-mage
+### Lesson 5.4-operating-mage
 
 - **[DERIVED]** (create) After this chapter, the reader can author a lifecycle and its runbook, giving the deterministic parts a tight algorithm and the judgment parts the roughest one that still fits. — _anchor: point: a-lifecycle-is-the-healthy-path-then-a-failure-map / type-each-runbook-step-execute-delegate-escalate (Operating MAGE, ch. 4.4 — lifecycles + externalized-judgment runbooks)._
-- **[DERIVED]** (create) After this chapter, the reader can design a metric that measures one level deeper — turning a number that reports into one that drives a decision — and place it on the hard-to-soft spectrum, feeding a hard number into a structured model the metric tool then consumes. _(primary: 4.4 · elaborated by: generative-validation)_ — _anchor: point: ousterhouts-rule-measure-one-level-deeper / some-evidence-is-mechanically-decidable-other-evidence-is-judgment-laden (Operating MAGE, ch. 4.4 — 'Measure the State That Matters' + its hard/soft examples)._
+- **[DERIVED]** (create) After this chapter, the reader can design a metric that measures one level deeper — turning a number that reports into one that drives a decision — and place it on the hard-to-soft spectrum, feeding a hard number into a structured model the metric tool then consumes. _(primary: 5.4 · elaborated by: generative-validation)_ — _anchor: point: ousterhouts-rule-measure-one-level-deeper / some-evidence-is-mechanically-decidable-other-evidence-is-judgment-laden (Operating MAGE, ch. 4.4 — 'Measure the State That Matters' + its hard/soft examples)._
   - **[DERIVED]** (analyze) After this section, the reader can map a lifecycle — the healthy path of a recurring activity plus, from each node, its failure states and the action for each — as a failure-mode-and-effects grid, and encode the way out and the prohibition an agent cannot supply on its own. — _anchor: point: a-lifecycle-is-the-healthy-path-then-a-failure-map / fmea-supplies-the-enumerate-failures-instinct / pair-every-prohibition-with-a-recovery-path (4.4 'Model the Lifecycle')._
   - **[DERIVED]** (apply) After this section, the reader can apply the roughest-algorithm-that-still-fits rule to a judgment step — giving a well-constrained decision an algorithm, an open-ended one only hints, a measurement a rubric, and a delegated task a pre-canned brief. — _anchor: point: type-each-runbook-step-execute-delegate-escalate / surround-a-judgment-step-with-deterministic-work (4.4 'Externalize Operational Judgment' — the roughest-algorithm framing folded into the Execute/Delegate/Escalate step typing)._
   - **[DERIVED]** (create) After this section, the reader can author a runbook that separates deterministic steps from judgment ones — giving the deterministic parts an executable tool that also yields a reusable trace, and the judgment parts a rubric or the roughest algorithm that still fits, up to a pre-canned brief for delegation. — _anchor: point: type-each-runbook-step-execute-delegate-escalate / surround-a-judgment-step-with-deterministic-work (4.4 'Externalize Operational Judgment')._
@@ -131,63 +131,63 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
   - **[DERIVED]** (analyze) After this section, the reader can classify a soft metric — a doc-derived test's coverage-of-doc-claims — as one that aims a reader rather than deciding, recognize why its softness is inseparable from a readiness judgment about the seam, and see why wiring it to a blocking gate manufactures hollow tests. — _anchor: point: a-doc-derived-tests-metric-is-genuinely-soft (4.4 'One judgment-laden example: doc-derived tests')._
   - **[DERIVED]** (understand) After this section, the reader can explain why the MBSE models are consumed at runtime to produce the metrics — the cold-start numbers and the coverage graph both read at check time — so a component-distance grade read from the model drives a pre-commit gate three ways, the model being the machinery rather than a picture of it. _(primary: let-useful-models-drive-machinery · elaborated by: when-guardrails-collide)_ — _anchor: point: an-executable-model-becomes-a-query-surface-for-consumers / the-grade-is-a-model-read-metric-not-a-gate (4.4 'Let useful models drive machinery')._
 
-### Lesson 4.5-packaging-the-method-as-skills
+### Lesson 5.5-packaging-the-method-as-skills
 
   - **[DERIVED]** (apply) After this section, the reader can use the self-governance signal — a bad thing happened twice — to mint a control instead of re-patching the instance. — _anchor: point: self-governance-packages-the-mage-method-itself / the-skill-can-query-the-governance-catalogue (4.5 'Self-Governance: Engineering the Environment')._
 
-## Module 5 — The Evidence
+## Module 6 — The Evidence
 
 - **[DECLARED]** (analyze) After this Part, the reader can trace how the method grew from a single reviewer to a multi-agent engineering organization in one real system, and relate each governance move to the problem that forced it. — _anchor: The Evidence is the ADA/DocAble case study: context -> timeline/work -> built-system -> road-to-MAGE (role progression)._
-- _elaborates (owned by Module 4):_ (apply) After this Part, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism.
+- _elaborates (owned by Module 5):_ (apply) After this Part, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism.
 
-### Lesson 5.1-the-problem-and-the-bar
-
-
-### Lesson 5.2-the-build
+### Lesson 6.1-the-problem-and-the-bar
 
 
-### Lesson 5.3-the-road-to-mage
+### Lesson 6.2-the-build
 
 
-### Lesson 5.4-failures-that-became-infrastructure
+### Lesson 6.3-the-road-to-mage
 
 
-### Lesson 5.5-mage-in-the-wild
+### Lesson 6.4-failures-that-became-infrastructure
 
 
-## Module 6 — The Theory
+### Lesson 6.5-mage-in-the-wild
 
 
-### Lesson 6.1-toward-a-theory-of-mage
+## Module 7 — The Theory
 
 
-### Lesson 6.2-what-the-theory-predicts
+### Lesson 7.1-toward-a-theory-of-mage
 
 
-### Lesson 6.3-scope-conditions
+### Lesson 7.2-what-the-theory-predicts
 
 
-### Lesson 6.4-research-agenda
+### Lesson 7.3-scope-conditions
+
+
+### Lesson 7.4-research-agenda
 
   - **[DERIVED]** (analyze) After this section, the reader can compare engineering surfaces that differ in representation and governance …. — _anchor: ts: Compare engineering surfaces that differ in representation and governance while holding as_
 
-## Module 7 — The Profession
+## Module 8 — The Profession
 
-- **[DECLARED]** (evaluate) After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become a common language of mature engineering. _(primary: Module 7 · elaborated by: conclusion, mage-in-the-wild)_ — _anchor: reorganization-of-se sections (where-engineering-effort-moves, what-stays-with-the-engineer, consequences-for-software-engineering) + the-part-that-stays-yours._
+- **[DECLARED]** (evaluate) After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become a common language of mature engineering. _(primary: Module 8 · elaborated by: conclusion, mage-in-the-wild)_ — _anchor: reorganization-of-se sections (where-engineering-effort-moves, what-stays-with-the-engineer, consequences-for-software-engineering) + the-part-that-stays-yours._
 
-### Lesson 7.1-reorganization-of-se
-
-
-### Lesson 7.2-software-rejoins-engineering
+### Lesson 8.1-reorganization-of-se
 
 
-### Lesson 7.3-agentic-engineering-beyond-software
+### Lesson 8.2-software-rejoins-engineering
 
 
-### Lesson 7.4-the-engineer
+### Lesson 8.3-agentic-engineering-beyond-software
 
 
-## Module 8 — Conclusion
+### Lesson 8.4-the-engineer
 
 
-### Lesson 8.1-the-part-that-stays-yours
+## Module 9 — Conclusion
+
+
+### Lesson 9.1-the-part-that-stays-yours

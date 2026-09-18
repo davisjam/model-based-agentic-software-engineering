@@ -1,44 +1,41 @@
-<!-- part-foreshadows: conversions-compound -->
-{{chapter:evidence}} supplied two views of the evidence. The originating case showed how MAGE's structures emerged
-under sustained engineering pressure; the industrial reconstructions showed related structures arising
-independently under different constraints. Neither establishes a universal law. Together, they give us
-something worth explaining.
+<!-- part-foreshadows: modeling-principle, alignment-principle, seat-moves -->
 
-We begin with a general theory of how agentic capacity interacts with the governed engineering
-environment. The theory treats implementation capacity as an input, not an outcome: the same capacity can
-produce durable progress or merely accelerate churn depending on the representations, evidence,
-constraints, and controls through which it acts. Engineering pressure exposes mismatches. Engineers can
-diagnose them and turn what they learn into structure that later work inherits.
+A method induced from practice should explain the engineering history that produced it. This chapter
+follows DocAble — a production document-accessibility system built largely by directing coding
+agents — from a five-minute feasibility experiment to a deployed service. Observing one system from
+the inside and from the beginning lets us reconstruct what a finished architecture cannot: which
+pressures appeared, what response followed, what survived, and what had to be revised again.
 
-We state the theory and its main predictions first, deliberately in general form. Only afterward do we
-ask where those predictions should be expected to hold. MAGE costs something to build, maintain,
-coordinate, and govern, and not every engineering judgment can or should become durable machinery. The
-scope conditions therefore bound the theory rather than precede it.
-
-The chapter then turns from claims to inquiry. Its final section turns the theory, predictions, and scope
-conditions into a research agenda: what to measure, what comparisons could distinguish the proposed
-mechanisms, which quantities remain unknown, and what evidence would strengthen—or weaken—the account.
-
-The objective is not to declare MAGE a universal law of software engineering—or of agentic work more
-generally. It is to make the explanation precise enough to be wrong. The evidence behind the theory comes
-from software engineering. The mechanisms are stated more generally because representation, enforcement,
-inherited structure, and the interaction between agentic capacity and its environment do not themselves
-require software. {{sec:scope-conditions}} therefore asks not only when MAGE should work within software engineering, but what
-properties a domain must have for the account to transfer at all.
+The clean method arrived last. As the system grew, missing representation became expensive in some
+places; missing enforcement became dangerous in others; repeated operational surprises exposed
+properties nobody had modeled at all. Some obligations were encoded before failure. Some models
+arose from clean design choices and simply held. Others were forged in incidents and hardened
+through recurrence. {{chapter:evidence}} preserves those differences rather than forcing every event through the
+finished theory.
 
 <!-- principlebox -->
 <!-- box-family: canonical -->
-> ### The synthesis
+> ### Depth and breadth
 >
-> Agentic capacity does not by itself produce useful progress. It acts through the environment
-> surrounding the work. In engineering, Modeling changes the representations used for consequential
-> reasoning and Alignment enforces selected obligations independently of the producing reasoner.
+> MAGE emerged from one deeply observed production build. That case supplies chronology, mechanism, and
+> within-case recurrence.
 >
-> Together, these structures shape how much autonomous capacity becomes durable progress, how much failure
-> escapes, and how much human judgment the work still requires.
+> Independent industrial accounts supply a different kind of evidence: variation across systems built by
+> other organizations under different constraints.
+>
+> **The first shows how the method emerged. The second asks how far its engineering grammar travels.**
 
-**Carrying forward:** Commodity intelligence · Modeling Principle · Alignment Principle · Governed
-Engineering Environment · Engineering capital · Probabilistic surface
+**New here:** Originating case · Support ratio · Delegation staircase · Within-case evidence · Industrial reconstructions · Comparative evidence
 
-**New here:** Dynamic Model · Environment quality · Determinization frontier · Representation innovation · Scope conditions ·
-Testable predictions · Research agenda
+{{chapter:evidence}} uses two views of the evidence; [ref:two-views-of-the-evidence] sets them side by side.
+
+<!-- label: two-views-of-the-evidence -->
+<!-- figure: assets/two-views-of-the-evidence.svg | *Two views of the evidence.* The originating case supplies longitudinal depth: sequence, mechanism, and within-case recurrence. Independent industrial reconstructions supply variation across systems and organizations but less process visibility. Together they motivate the theoretical account developed in Chapter 6. -->
+
+DocAble supplies sequence, mechanism, and within-case recurrence, but not causal or population-level estimates. The eight industrial reconstructions supply variation and alternative realizations, but less process history. Together they motivate rather than establish the theoretical account developed in {{chapter:theory}}.
+
+Chapters {{chapter:modeling|num}}–{{chapter:method|num}} presented the compressed method. Here the direction reverses. {{sec:the-ada-context}}–{{sec:failures}} return to the
+originating case from which much of that terminology was induced, so the wrong turns matter. A finished
+architecture shows what exists; a longitudinal case can show **why it exists and what it replaced**. {{sec:mage-in-the-wild}}
+then asks whether independently built systems expose comparable structures. Depth supplies mechanism;
+breadth supplies variation. {{chapter:theory}} asks what general account can explain both.

@@ -71,7 +71,7 @@
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
 </section>
-<nav class="toc" aria-label="Modules"><b>Modules:</b> <a href="#part-0">Front Matter</a> · <a href="#part-1">Module 1</a> · <a href="#part-2">Module 2</a> · <a href="#part-3">Module 3</a> · <a href="#part-3-5">Interlude — One Problem, Many Models</a> · <a href="#part-4">Module 4</a> · <a href="#part-5">Module 5</a> · <a href="#part-6">Module 6</a> · <a href="#part-7">Module 7</a> · <a href="#part-8">Module 8</a></nav>
+<nav class="toc" aria-label="Modules"><b>Modules:</b> <a href="#part-0">Front Matter</a> · <a href="#part-1">Module 1</a> · <a href="#part-2">Module 2</a> · <a href="#part-3">Module 3</a> · <a href="#part-4">Module 4</a> · <a href="#part-5">Module 5</a> · <a href="#part-6">Module 6</a> · <a href="#part-7">Module 7</a> · <a href="#part-8">Module 8</a> · <a href="#part-9">Module 9</a></nav>
 <section class="part" id="part-0">
 <h2>Front Matter</h2>
 <div class="chapter">
@@ -448,711 +448,711 @@
 </div>
 </div>
 </section>
-<section class="part" id="part-3-5">
-<h2>Interlude — One Problem, Many Models</h2>
+<section class="part" id="part-4">
+<h2>Module 4 — Engineering Through Models</h2>
 <div class="chapter">
-<h3 id="ch-3-5-one-problem-many-models"><a href="../book/3.5-one-problem-many-models.html" class="ch-link">3.5-one-problem-many-models</a> <span class="ch-slug">3.5-one-problem-many-models</span></h3>
-<div class="section s2" id="sec-3-5-one-problem-many-models--i-one-document-one-worker">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">I. One Document, One Worker</a></div>
+<h3 id="ch-4-1-one-problem-many-models"><span class="tier-kick">Lesson</span><a href="../book/4.1-one-problem-many-models.html" class="ch-link">4.1-one-problem-many-models</a> <span class="ch-slug">4.1-one-problem-many-models</span></h3>
+<div class="section s2" id="sec-4-1-one-problem-many-models--i-one-document-one-worker">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">I. One Document, One Worker</a></div>
 <p class="topic">DocAble originally treated an entire document as one unit of execution.</p>
 </div>
-<div class="section s2" id="sec-3-5-one-problem-many-models--ii-pages-as-the-unit-of-scale">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">II. Pages as the Unit of Scale</a></div>
+<div class="section s2" id="sec-4-1-one-problem-many-models--ii-pages-as-the-unit-of-scale">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">II. Pages as the Unit of Scale</a></div>
 <p class="topic">As documents grew larger, whole-document execution put increasing pressure on worker memory.</p>
 </div>
-<div class="section s2" id="sec-3-5-one-problem-many-models--iii-a-new-class-of-input">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">III. A New Class of Input</a></div>
+<div class="section s2" id="sec-4-1-one-problem-many-models--iii-a-new-class-of-input">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">III. A New Class of Input</a></div>
 <p class="topic">A 250 MB PowerPoint file does not imply that remediation needs 250 MB of document content resident in memory.</p>
 </div>
-<div class="section s2" id="sec-3-5-one-problem-many-models--iv-remove-media-from-the-working-set">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">IV. Remove Media from the Working Set</a></div>
+<div class="section s2" id="sec-4-1-one-problem-many-models--iv-remove-media-from-the-working-set">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">IV. Remove Media from the Working Set</a></div>
 <p class="topic">The memory problem came from coupling document structure to media residency: total media size increased the worker&#x27;s persistent working set even though most remediation operations needed only the document&#x27;s structural skeleton.</p>
 </div>
-<div class="section s2" id="sec-3-5-one-problem-many-models--v-once-memory-is-solved-why-are-we-chunking">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">V. Once Memory Is Solved, Why Are We Chunking?</a></div>
+<div class="section s2" id="sec-4-1-one-problem-many-models--v-once-memory-is-solved-why-are-we-chunking">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">V. Once Memory Is Solved, Why Are We Chunking?</a></div>
 <p class="topic">Page chunking had served two roles at once: it partitioned execution and bounded each worker&#x27;s memory.</p>
 </div>
-<div class="section s2" id="sec-3-5-one-problem-many-models--vi-analyze-before-you-build">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">VI. Analyze Before You Build</a></div>
+<div class="section s2" id="sec-4-1-one-problem-many-models--vi-analyze-before-you-build">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">VI. Analyze Before You Build</a></div>
 <p class="topic">Representing remediation as a dependency graph does more than provide an execution plan.</p>
 </div>
-<div class="section s3" id="sec-3-5-one-problem-many-models--dependencies-can-be-redesigned">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">Dependencies can be redesigned</a></div>
+<div class="section s3" id="sec-4-1-one-problem-many-models--dependencies-can-be-redesigned">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">Dependencies can be redesigned</a></div>
 <p class="topic">The same analysis exposed a problem in contextual image description (panel c).</p>
 </div>
-<div class="section s3" id="sec-3-5-one-problem-many-models--predicting-latency">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">Predicting latency</a></div>
+<div class="section s3" id="sec-4-1-one-problem-many-models--predicting-latency">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">Predicting latency</a></div>
 <p class="topic">The same graph supports a first-order latency model.</p>
 </div>
-<div class="section s3" id="sec-3-5-one-problem-many-models--predicting-the-cost-of-a-design-change">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">Predicting the cost of a design change</a></div>
+<div class="section s3" id="sec-4-1-one-problem-many-models--predicting-the-cost-of-a-design-change">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">Predicting the cost of a design change</a></div>
 <p class="topic">Models can also answer questions about designs that do not exist yet.</p>
 </div>
-<div class="section s3" id="sec-3-5-one-problem-many-models--use-prediction-error-as-evidence">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">Use prediction error as evidence</a></div>
+<div class="section s3" id="sec-4-1-one-problem-many-models--use-prediction-error-as-evidence">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">Use prediction error as evidence</a></div>
 <p class="topic">Implementation eventually supplies measurements, and the useful comparison is not simply whether the result was fast.</p>
 </div>
-<div class="section s2" id="sec-3-5-one-problem-many-models--vii-the-resulting-model-family">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">VII. The Resulting Model Family</a></div>
+<div class="section s2" id="sec-4-1-one-problem-many-models--vii-the-resulting-model-family">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">VII. The Resulting Model Family</a></div>
 <p class="topic">The large-file requirement did not produce one model.</p>
 </div>
-<div class="section s3" id="sec-3-5-one-problem-many-models--from-examples-to-a-bound">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">From examples to a bound</a></div>
+<div class="section s3" id="sec-4-1-one-problem-many-models--from-examples-to-a-bound">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">From examples to a bound</a></div>
 <p class="topic">The memory story shows the progression clearly:</p>
 </div>
-<div class="section s3" id="sec-3-5-one-problem-many-models--three-days">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">Three days</a></div>
+<div class="section s3" id="sec-4-1-one-problem-many-models--three-days">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">Three days</a></div>
 <p class="topic">Laid out this way, the sequence looks like a substantial architecture project.</p>
 </div>
-<div class="section s3" id="sec-3-5-one-problem-many-models--finding-the-models">
-<div class="sec-h"><a href="../book/3.5-one-problem-many-models.html">Finding the models</a></div>
-<p class="topic">Chapter 4 asks engineers to find the models their work needs.</p>
+<div class="section s3" id="sec-4-1-one-problem-many-models--finding-the-models">
+<div class="sec-h"><a href="../book/4.1-one-problem-many-models.html">Finding the models</a></div>
+<p class="topic">Chapter 5 asks engineers to find the models their work needs.</p>
 </div>
 </div>
 </section>
-<section class="part" id="part-4">
-<h2>Module 4 — The MAGE Method</h2>
-<div class="outcomes"><div class="oc-h">After Module 4 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this Part, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism. <span class="prov">declared</span></span></li></ul></div>
+<section class="part" id="part-5">
+<h2>Module 5 — The MAGE Method</h2>
+<div class="outcomes"><div class="oc-h">After Module 5 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this Part, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism. <span class="prov">declared</span></span></li></ul></div>
 <div class="chapter">
-<h3 id="ch-4-1-the-mage-workflow"><span class="tier-kick">Lesson</span><a href="../book/4.1-the-mage-workflow.html" class="ch-link">4.1-the-mage-workflow</a> <span class="ch-slug">4.1-the-mage-workflow</span></h3>
-<div class="section s2" id="sec-4-1-the-mage-workflow--one-turn-at-a-time">
-<div class="sec-h"><a href="../book/4.1-the-mage-workflow.html">One Turn at a Time</a></div>
+<h3 id="ch-5-1-the-mage-workflow"><span class="tier-kick">Lesson</span><a href="../book/5.1-the-mage-workflow.html" class="ch-link">5.1-the-mage-workflow</a> <span class="ch-slug">5.1-the-mage-workflow</span></h3>
+<div class="section s2" id="sec-5-1-the-mage-workflow--one-turn-at-a-time">
+<div class="sec-h"><a href="../book/5.1-the-mage-workflow.html">One Turn at a Time</a></div>
 <p class="topic">**Need.** A turn begins with something you want to learn, change, preserve, or make true.</p>
 </div>
-<div class="section s2" id="sec-4-1-the-mage-workflow--the-conversion-loop">
-<div class="sec-h"><a href="../book/4.1-the-mage-workflow.html">Closing the Loop</a></div>
+<div class="section s2" id="sec-5-1-the-mage-workflow--the-conversion-loop">
+<div class="sec-h"><a href="../book/5.1-the-mage-workflow.html">Closing the Loop</a></div>
 <p class="topic">**When judgment repeats, ask what future work should inherit from it.** The answer may be a model, invariant, sensor, validator, constraint, gate, runbook, or skill.</p>
 </div>
-<div class="section s2" id="sec-4-1-the-mage-workflow--guidance-or-enforcement">
-<div class="sec-h"><a href="../book/4.1-the-mage-workflow.html">Guidance or Enforcement?</a></div>
+<div class="section s2" id="sec-5-1-the-mage-workflow--guidance-or-enforcement">
+<div class="sec-h"><a href="../book/5.1-the-mage-workflow.html">Guidance or Enforcement?</a></div>
 <p class="topic">Keep one distinction sharp.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-4-1-the-mage-workflow--engineer-the-judgment">
-<div class="sec-h"><a href="../book/4.1-the-mage-workflow.html">Engineer the Judgment</a></div>
+<div class="section s2" id="sec-5-1-the-mage-workflow--engineer-the-judgment">
+<div class="sec-h"><a href="../book/5.1-the-mage-workflow.html">Engineer the Judgment</a></div>
 <p class="topic">Not every important judgment should become deterministic.</p>
 </div>
-<div class="section s2" id="sec-4-1-the-mage-workflow--structural-prevention">
-<div class="sec-h"><a href="../book/4.1-the-mage-workflow.html">Prefer Structural Prevention</a></div>
+<div class="section s2" id="sec-5-1-the-mage-workflow--structural-prevention">
+<div class="sec-h"><a href="../book/5.1-the-mage-workflow.html">Prefer Structural Prevention</a></div>
 <p class="topic">Prefer structural prevention when the legitimate action space can be closed.</p>
 </div>
-<div class="section s2" id="sec-4-1-the-mage-workflow--task-sizing">
-<div class="sec-h"><a href="../book/4.1-the-mage-workflow.html">Size Work to Reasoning and Assurance</a></div>
+<div class="section s2" id="sec-5-1-the-mage-workflow--task-sizing">
+<div class="sec-h"><a href="../book/5.1-the-mage-workflow.html">Size Work to Reasoning and Assurance</a></div>
 <p class="topic">Not every agent task deserves the full apparatus of governed autonomy.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can distinguish one-shot scripting from supervised autonomy and name what each supplies to the agent. <span class="prov">derived</span></span></li><li class="oc"><span class="bloom bloom-evaluate">evaluate</span><span class="oc-text">After this section, the reader can size a transformation&#x27;s leap to its model and its guarantee. <span class="prov">derived</span></span></li></ul></div>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-4-2-brownfield"><span class="tier-kick">Lesson</span><a href="../book/4.2-brownfield.html" class="ch-link">4.2-brownfield</a> <span class="ch-slug">4.2-brownfield</span></h3>
-<div class="section s2" id="sec-4-2-brownfield--start-with-what-you-already-have">
-<div class="sec-h"><a href="../book/4.2-brownfield.html">Start with What You Already Have</a></div>
+<h3 id="ch-5-2-brownfield"><span class="tier-kick">Lesson</span><a href="../book/5.2-brownfield.html" class="ch-link">5.2-brownfield</a> <span class="ch-slug">5.2-brownfield</span></h3>
+<div class="section s2" id="sec-5-2-brownfield--start-with-what-you-already-have">
+<div class="sec-h"><a href="../book/5.2-brownfield.html">Start with What You Already Have</a></div>
 <p class="topic">Begin with two questions, because representation and enforcement are different things.</p>
 </div>
-<div class="section s2" id="sec-4-2-brownfield--finding-models-in-the-implementation">
-<div class="sec-h"><a href="../book/4.2-brownfield.html">Finding Models in the Implementation</a></div>
+<div class="section s2" id="sec-5-2-brownfield--finding-models-in-the-implementation">
+<div class="sec-h"><a href="../book/5.2-brownfield.html">Finding Models in the Implementation</a></div>
 <p class="topic">Brownfield models need not begin with an engineer inventing the right abstraction in advance.</p>
 </div>
-<div class="section s2" id="sec-4-2-brownfield--reconcile-the-map-then-promote-obligations">
-<div class="sec-h"><a href="../book/4.2-brownfield.html">Reconcile the Map, Then Promote Obligations</a></div>
+<div class="section s2" id="sec-5-2-brownfield--reconcile-the-map-then-promote-obligations">
+<div class="sec-h"><a href="../book/5.2-brownfield.html">Reconcile the Map, Then Promote Obligations</a></div>
 <p class="topic">Begin with audit.</p>
 </div>
-<div class="section s2" id="sec-4-2-brownfield--migrate-one-bounded-surface-at-a-time">
-<div class="sec-h"><a href="../book/4.2-brownfield.html">Migrate One Bounded Surface at a Time</a></div>
+<div class="section s2" id="sec-5-2-brownfield--migrate-one-bounded-surface-at-a-time">
+<div class="sec-h"><a href="../book/5.2-brownfield.html">Migrate One Bounded Surface at a Time</a></div>
 <p class="topic">The immediate goal is not a complete model of the inherited system.</p>
 </div>
-<div class="section s2" id="sec-4-2-brownfield--audit-drain-promote">
-<div class="sec-h"><a href="../book/4.2-brownfield.html">Audit → Drain → Promote</a></div>
+<div class="section s2" id="sec-5-2-brownfield--audit-drain-promote">
+<div class="sec-h"><a href="../book/5.2-brownfield.html">Audit → Drain → Promote</a></div>
 <p class="topic">A valid future invariant is not always a valid present admission rule.</p>
 </div>
-<div class="section s2" id="sec-4-2-brownfield--derive-dont-copy">
-<div class="sec-h"><a href="../book/4.2-brownfield.html">Derive, Don&#x27;t Copy</a></div>
+<div class="section s2" id="sec-5-2-brownfield--derive-dont-copy">
+<div class="sec-h"><a href="../book/5.2-brownfield.html">Derive, Don&#x27;t Copy</a></div>
 <p class="topic">Recovering a model is only the first step.</p>
 </div>
-<div class="section s2" id="sec-4-2-brownfield--price-the-investment">
-<div class="sec-h"><a href="../book/4.2-brownfield.html">Price the Investment</a></div>
+<div class="section s2" id="sec-5-2-brownfield--price-the-investment">
+<div class="sec-h"><a href="../book/5.2-brownfield.html">Price the Investment</a></div>
 <p class="topic">A recurring gap does not automatically deserve machinery.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-4-3-validating-change"><span class="tier-kick">Lesson</span><a href="../book/4.3-validating-change.html" class="ch-link">4.3-validating-change</a> <span class="ch-slug">4.3-validating-change</span></h3>
-<div class="section s2" id="sec-4-3-validating-change--independent-evidence">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Independent Evidence</a></div>
+<h3 id="ch-5-3-validating-change"><span class="tier-kick">Lesson</span><a href="../book/5.3-validating-change.html" class="ch-link">5.3-validating-change</a> <span class="ch-slug">5.3-validating-change</span></h3>
+<div class="section s2" id="sec-5-3-validating-change--independent-evidence">
+<div class="sec-h"><a href="../book/5.3-validating-change.html">Independent Evidence</a></div>
 <p class="topic">To validate a change is to assemble evidence that bears on its obligations and decide what consequence that evidence should have.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--build-the-oracle">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Build the Oracle</a></div>
+<div class="section s2" id="sec-5-3-validating-change--build-the-oracle">
+<div class="sec-h"><a href="../book/5.3-validating-change.html">Build the Oracle</a></div>
 <p class="topic">An **oracle** is whatever supplies the judgment against which the observed result is evaluated.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--generate-falsifying-evidence">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Generate Falsifying Evidence</a></div>
+<div class="section s2" id="sec-5-3-validating-change--generate-falsifying-evidence">
+<div class="sec-h"><a href="../book/5.3-validating-change.html">Generate Falsifying Evidence</a></div>
 <p class="topic">Let the engineering claim choose the search.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the one move behind property testing, fuzzing, and fuzz-MBSE: a generator hunting a counterexample to a stated model. <span class="prov">derived</span></span></li><li class="oc"><span class="bloom bloom-evaluate">evaluate</span><span class="oc-text">After this section, the reader can choose which validation strategy to reach for by the specification it attacks. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--derive-obligations">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Name the Obligation Set Before Claiming Coverage</a></div>
+<div class="section s2" id="sec-5-3-validating-change--derive-obligations">
+<div class="sec-h"><a href="../book/5.3-validating-change.html">Name the Obligation Set Before Claiming Coverage</a></div>
 <p class="topic">Coverage answers a question about a population; the population must be named before the percentage has engineering meaning.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--did-the-search-cover-the-claim">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Did the Search Cover the Claim?</a></div>
+<div class="section s2" id="sec-5-3-validating-change--did-the-search-cover-the-claim">
+<div class="sec-h"><a href="../book/5.3-validating-change.html">Did the Search Cover the Claim?</a></div>
 <p class="topic">Generative validation adds an honesty question that a small example suite can often avoid: **did the campaign search the semantic region the claim is about?** Code coverage answers where execution went.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--give-the-verdict-the-right-consequence">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Give the Verdict the Right Consequence</a></div>
+<div class="section s2" id="sec-5-3-validating-change--give-the-verdict-the-right-consequence">
+<div class="sec-h"><a href="../book/5.3-validating-change.html">Give the Verdict the Right Consequence</a></div>
 <p class="topic">Validation may report or gate.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--two-boundaries">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Two Boundaries for Evidence</a></div>
+<div class="section s2" id="sec-5-3-validating-change--two-boundaries">
+<div class="sec-h"><a href="../book/5.3-validating-change.html">Two Boundaries for Evidence</a></div>
 <p class="topic">Chapter 3 gave a placement rule for enforcement: **evaluate an obligation at the earliest boundary where it becomes legible and enforceable.** That catches a problem close to its cause.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--why-abundance-changes-the-economics">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Why Abundance Changes the Economics</a></div>
+<div class="section s2" id="sec-5-3-validating-change--why-abundance-changes-the-economics">
+<div class="sec-h"><a href="../book/5.3-validating-change.html">Why Abundance Changes the Economics</a></div>
 <p class="topic">None of these techniques is new.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-4-4-operating-mage"><span class="tier-kick">Lesson</span><a href="../book/4.4-operating-mage.html" class="ch-link">4.4-operating-mage</a> <span class="ch-slug">4.4-operating-mage</span></h3>
+<h3 id="ch-5-4-operating-mage"><span class="tier-kick">Lesson</span><a href="../book/5.4-operating-mage.html" class="ch-link">5.4-operating-mage</a> <span class="ch-slug">5.4-operating-mage</span></h3>
 <div class="outcomes"><div class="oc-h">After this lesson — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this chapter, the reader can author a lifecycle and its runbook, giving the deterministic parts a tight algorithm and the judgment parts the roughest one that still fits. <span class="prov">derived</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this chapter, the reader can design a metric that measures one level deeper — turning a number that reports into one that drives a decision — and place it on the hard-to-soft spectrum, feeding a hard number into a structured model the metric tool then consumes. <span class="prov">derived</span></span></li></ul></div>
-<div class="section s2" id="sec-4-4-operating-mage--model-the-lifecycle">
-<div class="sec-h"><a href="../book/4.4-operating-mage.html">Model the Lifecycle</a></div>
+<div class="section s2" id="sec-5-4-operating-mage--model-the-lifecycle">
+<div class="sec-h"><a href="../book/5.4-operating-mage.html">Model the Lifecycle</a></div>
 <p class="topic">Start with the healthy path of a recurring activity: how a bug moves from reported to fixed, how a feature moves from designed to shipped, or how an agent moves from dispatched to landed.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can map a lifecycle — the healthy path of a recurring activity plus, from each node, its failure states and the action for each — as a failure-mode-and-effects grid, and encode the way out and the prohibition an agent cannot supply on its own. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-4-4-operating-mage--attach-reactions-to-lifecycle-events">
-<div class="sec-h"><a href="../book/4.4-operating-mage.html">Attach Reactions to Lifecycle Events</a></div>
+<div class="section s2" id="sec-5-4-operating-mage--attach-reactions-to-lifecycle-events">
+<div class="sec-h"><a href="../book/5.4-operating-mage.html">Attach Reactions to Lifecycle Events</a></div>
 <p class="topic">A lifecycle model says which states matter.</p>
 </div>
-<div class="section s2" id="sec-4-4-operating-mage--externalize-operational-judgment">
-<div class="sec-h"><a href="../book/4.4-operating-mage.html">Externalize Operational Judgment</a></div>
+<div class="section s2" id="sec-5-4-operating-mage--externalize-operational-judgment">
+<div class="sec-h"><a href="../book/5.4-operating-mage.html">Externalize Operational Judgment</a></div>
 <p class="topic">A runbook preserves how an experienced engineer reasons through a recurring situation, including which steps are mechanical and which require judgment.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the roughest-algorithm-that-still-fits rule to a judgment step — giving a well-constrained decision an algorithm, an open-ended one only hints, a measurement a rubric, and a delegated task a pre-canned brief. <span class="prov">derived</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this section, the reader can author a runbook that separates deterministic steps from judgment ones — giving the deterministic parts an executable tool that also yields a reusable trace, and the judgment parts a rubric or the roughest algorithm that still fits, up to a pre-canned brief for delegation. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-4-4-operating-mage--measure-the-state-that-matters">
-<div class="sec-h"><a href="../book/4.4-operating-mage.html">Measure the State That Matters</a></div>
+<div class="section s2" id="sec-5-4-operating-mage--measure-the-state-that-matters">
+<div class="sec-h"><a href="../book/5.4-operating-mage.html">Measure the State That Matters</a></div>
 <p class="topic">Operational measurement should expose the state the decision actually depends on.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply Ousterhout&#x27;s rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s3" id="sec-4-4-operating-mage--one-hard-example-coverage-measured-one-level-deeper">
-<div class="sec-h"><a href="../book/4.4-operating-mage.html">One hard example: coverage measured one level deeper</a></div>
+<div class="section s3" id="sec-5-4-operating-mage--one-hard-example-coverage-measured-one-level-deeper">
+<div class="sec-h"><a href="../book/5.4-operating-mage.html">One hard example: coverage measured one level deeper</a></div>
 <p class="topic">Requirements-based coverage joins model-to-code traceability with ordinary test coverage: it follows each modeled claim to the code that realizes it, then to the tests that exercise that code, and reports which claims have no exercising evidence.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can compute coverage measured one level deeper — joining a traceability graph&#x27;s claim-to-anchor edges with the coverage oracle so the metric counts model claims instead of lines, names an unexercised invariant instead of a percentage, and reports an honest exercised/unmeasurable/out-of-surface breakdown. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s3" id="sec-4-4-operating-mage--one-judgment-laden-example-doc-derived-tests">
-<div class="sec-h"><a href="../book/4.4-operating-mage.html">One judgment-laden example: doc-derived tests</a></div>
+<div class="section s3" id="sec-5-4-operating-mage--one-judgment-laden-example-doc-derived-tests">
+<div class="sec-h"><a href="../book/5.4-operating-mage.html">One judgment-laden example: doc-derived tests</a></div>
 <p class="topic">Doc-derived tests are generated from consequential claims in prose documentation and keep a trace back to the source claim.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can classify a soft metric — a doc-derived test&#x27;s coverage-of-doc-claims — as one that aims a reader rather than deciding, recognize why its softness is inseparable from a readiness judgment about the seam, and see why wiring it to a blocking gate manufactures hollow tests. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s3" id="sec-4-4-operating-mage--let-useful-models-drive-machinery">
-<div class="sec-h"><a href="../book/4.4-operating-mage.html">Let useful models drive machinery</a></div>
+<div class="section s3" id="sec-5-4-operating-mage--let-useful-models-drive-machinery">
+<div class="sec-h"><a href="../book/5.4-operating-mage.html">Let useful models drive machinery</a></div>
 <p class="topic">An executable model earns more than documentation value when tools consume it directly.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why the MBSE models are consumed at runtime to produce the metrics — the cold-start numbers and the coverage graph both read at check time — so a component-distance grade read from the model drives a pre-commit gate three ways, the model being the machinery rather than a picture of it. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-4-4-operating-mage--the-operating-rhythm">
-<div class="sec-h"><a href="../book/4.4-operating-mage.html">The Operating Rhythm</a></div>
+<div class="section s2" id="sec-5-4-operating-mage--the-operating-rhythm">
+<div class="sec-h"><a href="../book/5.4-operating-mage.html">The Operating Rhythm</a></div>
 <p class="topic">Put the pieces together and operation becomes a recurring rhythm.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-4-5-packaging-the-method-as-skills"><span class="tier-kick">Lesson</span><a href="../book/4.5-packaging-the-method-as-skills.html" class="ch-link">4.5-packaging-the-method-as-skills</a> <span class="ch-slug">4.5-packaging-the-method-as-skills</span></h3>
-<div class="section s2" id="sec-4-5-packaging-the-method-as-skills--what-a-reusable-skill-needs">
-<div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">What a Reusable Skill Needs</a></div>
+<h3 id="ch-5-5-packaging-the-method-as-skills"><span class="tier-kick">Lesson</span><a href="../book/5.5-packaging-the-method-as-skills.html" class="ch-link">5.5-packaging-the-method-as-skills</a> <span class="ch-slug">5.5-packaging-the-method-as-skills</span></h3>
+<div class="section s2" id="sec-5-5-packaging-the-method-as-skills--what-a-reusable-skill-needs">
+<div class="sec-h"><a href="../book/5.5-packaging-the-method-as-skills.html">What a Reusable Skill Needs</a></div>
 <p class="topic">A reusable skill needs three things: the representations needed to reason about the work, the recurring decisions that matter within it, and a procedure for making those decisions.</p>
 </div>
-<div class="section s2" id="sec-4-5-packaging-the-method-as-skills--deliver-the-right-context-and-measure-it">
-<div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Deliver the Right Context—and Measure It</a></div>
+<div class="section s2" id="sec-5-5-packaging-the-method-as-skills--deliver-the-right-context-and-measure-it">
+<div class="sec-h"><a href="../book/5.5-packaging-the-method-as-skills.html">Deliver the Right Context—and Measure It</a></div>
 <p class="topic">Packaging knowledge solves only half the problem.</p>
 </div>
-<div class="section s2" id="sec-4-5-packaging-the-method-as-skills--self-governance-engineering-the-environment">
-<div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Self-Governance: Engineering the Environment</a></div>
+<div class="section s2" id="sec-5-5-packaging-the-method-as-skills--self-governance-engineering-the-environment">
+<div class="sec-h"><a href="../book/5.5-packaging-the-method-as-skills.html">Self-Governance: Engineering the Environment</a></div>
 <p class="topic">Self-governance packages the MAGE method itself.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can use the self-governance signal — a bad thing happened twice — to mint a control instead of re-patching the instance. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s3" id="sec-4-5-packaging-the-method-as-skills--governance-must-earn-its-carrying-cost">
-<div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Governance must earn its carrying cost</a></div>
+<div class="section s3" id="sec-5-5-packaging-the-method-as-skills--governance-must-earn-its-carrying-cost">
+<div class="sec-h"><a href="../book/5.5-packaging-the-method-as-skills.html">Governance must earn its carrying cost</a></div>
 <p class="topic">Governance mechanisms and other durable engineering assets can become capital when their continuing value exceeds their carrying cost; they can also depreciate.</p>
 </div>
-<div class="section s2" id="sec-4-5-packaging-the-method-as-skills--self-operate-running-the-environment">
-<div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Self-Operate: Running the Environment</a></div>
+<div class="section s2" id="sec-5-5-packaging-the-method-as-skills--self-operate-running-the-environment">
+<div class="sec-h"><a href="../book/5.5-packaging-the-method-as-skills.html">Self-Operate: Running the Environment</a></div>
 <p class="topic">Self-operate packages the operating loop of the previous section.</p>
 </div>
-<div class="section s2" id="sec-4-5-packaging-the-method-as-skills--self-communicate-a-boundary-test">
-<div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Self-Communicate: a Boundary Test</a></div>
+<div class="section s2" id="sec-5-5-packaging-the-method-as-skills--self-communicate-a-boundary-test">
+<div class="sec-h"><a href="../book/5.5-packaging-the-method-as-skills.html">Self-Communicate: a Boundary Test</a></div>
 <p class="topic">Self-communicate provides a useful boundary test because technical communication remains substantially qualitative.</p>
 </div>
 </div>
 </section>
-<section class="part" id="part-5">
-<h2>Module 5 — The Evidence</h2>
-<div class="outcomes"><div class="oc-h">After Module 5 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this Part, the reader can trace how the method grew from a single reviewer to a multi-agent engineering organization in one real system, and relate each governance move to the problem that forced it. <span class="prov">declared</span></span></li></ul></div>
+<section class="part" id="part-6">
+<h2>Module 6 — The Evidence</h2>
+<div class="outcomes"><div class="oc-h">After Module 6 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this Part, the reader can trace how the method grew from a single reviewer to a multi-agent engineering organization in one real system, and relate each governance move to the problem that forced it. <span class="prov">declared</span></span></li></ul></div>
 <div class="chapter">
-<h3 id="ch-5-1-the-problem-and-the-bar"><span class="tier-kick">Lesson</span><a href="../book/5.1-the-problem-and-the-bar.html" class="ch-link">5.1-the-problem-and-the-bar</a> <span class="ch-slug">5.1-the-problem-and-the-bar</span></h3>
-<div class="section s2" id="sec-5-1-the-problem-and-the-bar--a-real-law-a-real-deadline">
-<div class="sec-h"><a href="../book/5.1-the-problem-and-the-bar.html">A Real Law, a Real Deadline</a></div>
+<h3 id="ch-6-1-the-problem-and-the-bar"><span class="tier-kick">Lesson</span><a href="../book/6.1-the-problem-and-the-bar.html" class="ch-link">6.1-the-problem-and-the-bar</a> <span class="ch-slug">6.1-the-problem-and-the-bar</span></h3>
+<div class="section s2" id="sec-6-1-the-problem-and-the-bar--a-real-law-a-real-deadline">
+<div class="sec-h"><a href="../book/6.1-the-problem-and-the-bar.html">A Real Law, a Real Deadline</a></div>
 <p class="topic">The Americans with Disabilities Act requires a public university to communicate with people who have disabilities as effectively as it communicates with everyone else.</p>
 </div>
-<div class="section s2" id="sec-5-1-the-problem-and-the-bar--nearly-free">
-<div class="sec-h"><a href="../book/5.1-the-problem-and-the-bar.html">What It Costs to Make One Document Accessible</a></div>
+<div class="section s2" id="sec-6-1-the-problem-and-the-bar--nearly-free">
+<div class="sec-h"><a href="../book/6.1-the-problem-and-the-bar.html">What It Costs to Make One Document Accessible</a></div>
 <p class="topic">The cost is easiest to see in one deck.</p>
 </div>
-<div class="section s2" id="sec-5-1-the-problem-and-the-bar--documents-as-semantic-artifacts">
-<div class="sec-h"><a href="../book/5.1-the-problem-and-the-bar.html">Documents as Semantic Artifacts</a></div>
+<div class="section s2" id="sec-6-1-the-problem-and-the-bar--documents-as-semantic-artifacts">
+<div class="sec-h"><a href="../book/6.1-the-problem-and-the-bar.html">Documents as Semantic Artifacts</a></div>
 <p class="topic">A document is a visual and semantic artifact: text, figures, tables, reading order, hierarchy, emphasis — the small tricks by which humans convey meaning to other humans.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-5-2-the-build"><span class="tier-kick">Lesson</span><a href="../book/5.2-the-build.html" class="ch-link">5.2-the-build</a> <span class="ch-slug">5.2-the-build</span></h3>
-<div class="section s2" id="sec-5-2-the-build--the-feasibility-probe">
-<div class="sec-h"><a href="../book/5.2-the-build.html">The Feasibility Probe</a></div>
+<h3 id="ch-6-2-the-build"><span class="tier-kick">Lesson</span><a href="../book/6.2-the-build.html" class="ch-link">6.2-the-build</a> <span class="ch-slug">6.2-the-build</span></h3>
+<div class="section s2" id="sec-6-2-the-build--the-feasibility-probe">
+<div class="sec-h"><a href="../book/6.2-the-build.html">The Feasibility Probe</a></div>
 <p class="topic">The project began in a committee meeting about the very deadline the last section described.</p>
 </div>
-<div class="section s2" id="sec-5-2-the-build--seven-stages-retrospectively">
-<div class="sec-h"><a href="../book/5.2-the-build.html">Seven Stages, Retrospectively</a></div>
+<div class="section s2" id="sec-6-2-the-build--seven-stages-retrospectively">
+<div class="sec-h"><a href="../book/6.2-the-build.html">Seven Stages, Retrospectively</a></div>
 <p class="topic">The build moved through seven recognizable stages, visible only in retrospect.</p>
 </div>
-<div class="section s2" id="sec-5-2-the-build--control-growth">
-<div class="sec-h"><a href="../book/5.2-the-build.html">The Controls Accumulate</a></div>
+<div class="section s2" id="sec-6-2-the-build--control-growth">
+<div class="sec-h"><a href="../book/6.2-the-build.html">The Controls Accumulate</a></div>
 <p class="topic">The growing engineered environment is visible in one especially easy-to-count class of artifacts: project-specific lints and gate scripts.</p>
 </div>
-<div class="section s2" id="sec-5-2-the-build--support-ratio-curve">
-<div class="sec-h"><a href="../book/5.2-the-build.html">The Support Ratio: the Environment Outgrew the Product</a></div>
+<div class="section s2" id="sec-6-2-the-build--support-ratio-curve">
+<div class="sec-h"><a href="../book/6.2-the-build.html">The Support Ratio: the Environment Outgrew the Product</a></div>
 <p class="topic">Another coarse measure shows where the engineering effort accumulated.</p>
 </div>
-<div class="section s2" id="sec-5-2-the-build--where-engineering-judgment-went">
-<div class="sec-h"><a href="../book/5.2-the-build.html">Where Engineering Judgment Went</a></div>
+<div class="section s2" id="sec-6-2-the-build--where-engineering-judgment-went">
+<div class="sec-h"><a href="../book/6.2-the-build.html">Where Engineering Judgment Went</a></div>
 <p class="topic">The feature list is less revealing than where engineering judgment went: defining what *accessible* meant operationally; discovering abstractions for unfamiliar formats and workflows; distinguishing local defects from missing representation or enforcement; building independent evidence; coordinating the fleet; and operating failures that crossed code, infrastructure, and deployment boundaries.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-5-3-the-road-to-mage"><span class="tier-kick">Lesson</span><a href="../book/5.3-the-road-to-mage.html" class="ch-link">5.3-the-road-to-mage</a> <span class="ch-slug">5.3-the-road-to-mage</span></h3>
-<div class="section s2" id="sec-5-3-the-road-to-mage--the-product-path">
-<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">The Product Path</a></div>
+<h3 id="ch-6-3-the-road-to-mage"><span class="tier-kick">Lesson</span><a href="../book/6.3-the-road-to-mage.html" class="ch-link">6.3-the-road-to-mage</a> <span class="ch-slug">6.3-the-road-to-mage</span></h3>
+<div class="section s2" id="sec-6-3-the-road-to-mage--the-product-path">
+<div class="sec-h"><a href="../book/6.3-the-road-to-mage.html">The Product Path</a></div>
 <p class="topic">A user uploads a file.</p>
 </div>
-<div class="section s2" id="sec-5-3-the-road-to-mage--model-as-bounded-subroutine">
-<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">The Model as a Bounded Subroutine</a></div>
+<div class="section s2" id="sec-6-3-the-road-to-mage--model-as-bounded-subroutine">
+<div class="sec-h"><a href="../book/6.3-the-road-to-mage.html">The Model as a Bounded Subroutine</a></div>
 <p class="topic">MAGE applies at two scales in this case.</p>
 </div>
-<div class="section s2" id="sec-5-3-the-road-to-mage--two-paths-to-durable-structure">
-<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">Two Paths to Durable Structure</a></div>
+<div class="section s2" id="sec-6-3-the-road-to-mage--two-paths-to-durable-structure">
+<div class="sec-h"><a href="../book/6.3-the-road-to-mage.html">Two Paths to Durable Structure</a></div>
 <p class="topic">Not every consequential structure was born from failure.</p>
 </div>
-<div class="section s3" id="sec-5-3-the-road-to-mage--the-computations-stabilized-before-their-composition">
-<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">The computations stabilized before their composition</a></div>
+<div class="section s3" id="sec-6-3-the-road-to-mage--the-computations-stabilized-before-their-composition">
+<div class="sec-h"><a href="../book/6.3-the-road-to-mage.html">The computations stabilized before their composition</a></div>
 <p class="topic">I made one useful decision about DocAble early, and came to a second only much later.</p>
 </div>
-<div class="section s3" id="sec-5-3-the-road-to-mage--composition-eventually-became-consequential">
-<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">Composition eventually became consequential</a></div>
+<div class="section s3" id="sec-6-3-the-road-to-mage--composition-eventually-became-consequential">
+<div class="sec-h"><a href="../book/6.3-the-road-to-mage.html">Composition eventually became consequential</a></div>
 <p class="topic">The balance changed as the pipeline grew.</p>
 </div>
-<div class="section s3" id="sec-5-3-the-road-to-mage--the-model-exposed-the-distinctions-that-mattered">
-<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">The model exposed the distinctions that mattered</a></div>
+<div class="section s3" id="sec-6-3-the-road-to-mage--the-model-exposed-the-distinctions-that-mattered">
+<div class="sec-h"><a href="../book/6.3-the-road-to-mage.html">The model exposed the distinctions that mattered</a></div>
 <p class="topic">By then the way the passes composed had become too complicated to understand comfortably from the implementation alone, and the computation graph gave us a way to reduce it.</p>
 </div>
-<div class="section s3" id="sec-5-3-the-road-to-mage--the-model-became-part-of-the-machinery">
-<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">The model became part of the machinery</a></div>
+<div class="section s3" id="sec-6-3-the-road-to-mage--the-model-became-part-of-the-machinery">
+<div class="sec-h"><a href="../book/6.3-the-road-to-mage.html">The model became part of the machinery</a></div>
 <p class="topic">A later redesign went further.</p>
 </div>
-<div class="section s3" id="sec-5-3-the-road-to-mage--freedom-can-be-exploratory">
-<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">Freedom can be exploratory</a></div>
+<div class="section s3" id="sec-6-3-the-road-to-mage--freedom-can-be-exploratory">
+<div class="sec-h"><a href="../book/6.3-the-road-to-mage.html">Freedom can be exploratory</a></div>
 <p class="topic">The episode changed how I think about degrees of freedom.</p>
 </div>
-<div class="section s2" id="sec-5-3-the-road-to-mage--the-delegation-staircase">
-<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">The Delegation Staircase</a></div>
+<div class="section s2" id="sec-6-3-the-road-to-mage--the-delegation-staircase">
+<div class="sec-h"><a href="../book/6.3-the-road-to-mage.html">The Delegation Staircase</a></div>
 <p class="topic">The five rungs are retrospective names for the changing center of gravity of my work—co-coder, QA, review lead, tech lead, architect—not a prescribed career ladder.</p>
 </div>
-<div class="section s3" id="sec-5-3-the-road-to-mage--what-explicit-models-made-checkable">
-<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">What explicit models made checkable</a></div>
+<div class="section s3" id="sec-6-3-the-road-to-mage--what-explicit-models-made-checkable">
+<div class="sec-h"><a href="../book/6.3-the-road-to-mage.html">What explicit models made checkable</a></div>
 <p class="topic">Explicit models changed not only what the system recorded, but what questions we could ask of it.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-5-4-failures-that-became-infrastructure"><span class="tier-kick">Lesson</span><a href="../book/5.4-failures-that-became-infrastructure.html" class="ch-link">5.4-failures-that-became-infrastructure</a> <span class="ch-slug">5.4-failures-that-became-infrastructure</span></h3>
-<div class="section s2" id="sec-5-4-failures-that-became-infrastructure--the-instruction-satisfied-to-the-letter">
-<div class="sec-h"><a href="../book/5.4-failures-that-became-infrastructure.html">The Instruction Satisfied to the Letter</a></div>
+<h3 id="ch-6-4-failures-that-became-infrastructure"><span class="tier-kick">Lesson</span><a href="../book/6.4-failures-that-became-infrastructure.html" class="ch-link">6.4-failures-that-became-infrastructure</a> <span class="ch-slug">6.4-failures-that-became-infrastructure</span></h3>
+<div class="section s2" id="sec-6-4-failures-that-became-infrastructure--the-instruction-satisfied-to-the-letter">
+<div class="sec-h"><a href="../book/6.4-failures-that-became-infrastructure.html">The Instruction Satisfied to the Letter</a></div>
 <p class="topic">**Problem.** By April the system had reached roughly 300,000 lines.</p>
 </div>
-<div class="section s2" id="sec-5-4-failures-that-became-infrastructure--the-architecture-was-the-constraint">
-<div class="sec-h"><a href="../book/5.4-failures-that-became-infrastructure.html">The Architecture Was the Constraint</a></div>
+<div class="section s2" id="sec-6-4-failures-that-became-infrastructure--the-architecture-was-the-constraint">
+<div class="sec-h"><a href="../book/6.4-failures-that-became-infrastructure.html">The Architecture Was the Constraint</a></div>
 <p class="topic">**Problem.** The service cost tens of dollars a day while idle on a Kubernetes cluster.</p>
 </div>
-<div class="section s2" id="sec-5-4-failures-that-became-infrastructure--the-decision-left-open">
-<div class="sec-h"><a href="../book/5.4-failures-that-became-infrastructure.html">The Decision Left Open</a></div>
+<div class="section s2" id="sec-6-4-failures-that-became-infrastructure--the-decision-left-open">
+<div class="sec-h"><a href="../book/6.4-failures-that-became-infrastructure.html">The Decision Left Open</a></div>
 <p class="topic">**Problem.** My merge-train cron kept stalling when two agents edited the same file.</p>
 </div>
-<div class="section s2" id="sec-5-4-failures-that-became-infrastructure--done-was-a-claim">
-<div class="sec-h"><a href="../book/5.4-failures-that-became-infrastructure.html">&quot;Done&quot; Was a Claim</a></div>
+<div class="section s2" id="sec-6-4-failures-that-became-infrastructure--done-was-a-claim">
+<div class="sec-h"><a href="../book/6.4-failures-that-became-infrastructure.html">&quot;Done&quot; Was a Claim</a></div>
 <p class="topic">**Problem.** Two incidents, close together, made &quot;done is a claim&quot; non-negotiable.</p>
 </div>
-<div class="section s2" id="sec-5-4-failures-that-became-infrastructure--fieldnote-content-free-detector">
-<div class="sec-h"><a href="../book/5.4-failures-that-became-infrastructure.html">A Content-Free Detector, Measured on the Wrong World</a></div>
+<div class="section s2" id="sec-6-4-failures-that-became-infrastructure--fieldnote-content-free-detector">
+<div class="sec-h"><a href="../book/6.4-failures-that-became-infrastructure.html">A Content-Free Detector, Measured on the Wrong World</a></div>
 <p class="topic">**Problem.** Late in the same stretch, an agent wrote me a content-free detector: if an image&#x27;s pixels barely vary, skip the vision model and mark it decorative.</p>
 </div>
-<div class="section s2" id="sec-5-4-failures-that-became-infrastructure--the-retry-that-became-a-storm">
-<div class="sec-h"><a href="../book/5.4-failures-that-became-infrastructure.html">The Retry That Became a Storm</a></div>
+<div class="section s2" id="sec-6-4-failures-that-became-infrastructure--the-retry-that-became-a-storm">
+<div class="sec-h"><a href="../book/6.4-failures-that-became-infrastructure.html">The Retry That Became a Storm</a></div>
 <p class="topic">The failures so far were about operating the fleet.</p>
 </div>
-<div class="section s2" id="sec-5-4-failures-that-became-infrastructure--provenance-became-a-lookup">
-<div class="sec-h"><a href="../book/5.4-failures-that-became-infrastructure.html">Provenance Became a Lookup</a></div>
+<div class="section s2" id="sec-6-4-failures-that-became-infrastructure--provenance-became-a-lookup">
+<div class="sec-h"><a href="../book/6.4-failures-that-became-infrastructure.html">Provenance Became a Lookup</a></div>
 <p class="topic">**Problem.** A corrupted document once took four cross-file hops to trace back to the pass that wrote it.</p>
 </div>
-<div class="section s2" id="sec-5-4-failures-that-became-infrastructure--measurement-the-story-that-stops-before-the-gate">
-<div class="sec-h"><a href="../book/5.4-failures-that-became-infrastructure.html">Measurement: the Story That Stops Before the Gate</a></div>
+<div class="section s2" id="sec-6-4-failures-that-became-infrastructure--measurement-the-story-that-stops-before-the-gate">
+<div class="sec-h"><a href="../book/6.4-failures-that-became-infrastructure.html">Measurement: the Story That Stops Before the Gate</a></div>
 <p class="topic">**Problem.** A document&#x27;s repair stalled in silence.</p>
 </div>
-<div class="section s2" id="sec-5-4-failures-that-became-infrastructure--a-mechanical-conversion">
-<div class="sec-h"><a href="../book/5.4-failures-that-became-infrastructure.html">A Mechanical Conversion</a></div>
+<div class="section s2" id="sec-6-4-failures-that-became-infrastructure--a-mechanical-conversion">
+<div class="sec-h"><a href="../book/6.4-failures-that-became-infrastructure.html">A Mechanical Conversion</a></div>
 <p class="topic">One conversion is small enough to state in a sentence.</p>
 </div>
-<div class="section s2" id="sec-5-4-failures-that-became-infrastructure--the-ex-ante-path">
-<div class="sec-h"><a href="../book/5.4-failures-that-became-infrastructure.html">The Ex-Ante Path</a></div>
+<div class="section s2" id="sec-6-4-failures-that-became-infrastructure--the-ex-ante-path">
+<div class="sec-h"><a href="../book/6.4-failures-that-became-infrastructure.html">The Ex-Ante Path</a></div>
 <p class="topic">Some useful structures were designed from known obligations rather than produced by incidents.</p>
 </div>
-<div class="section s2" id="sec-5-4-failures-that-became-infrastructure--what-this-case-supports">
-<div class="sec-h"><a href="../book/5.4-failures-that-became-infrastructure.html">What This Case Supports</a></div>
+<div class="section s2" id="sec-6-4-failures-that-became-infrastructure--what-this-case-supports">
+<div class="sec-h"><a href="../book/6.4-failures-that-became-infrastructure.html">What This Case Supports</a></div>
 <p class="topic">Step back from the individual incidents and one pattern does recur.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-5-5-mage-in-the-wild"><span class="tier-kick">Lesson</span><a href="../book/5.5-mage-in-the-wild.html" class="ch-link">5.5-mage-in-the-wild</a> <span class="ch-slug">5.5-mage-in-the-wild</span></h3>
-<div class="section s2" id="sec-5-5-mage-in-the-wild--eight-entry-points">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">Eight Entry Points</a></div>
+<h3 id="ch-6-5-mage-in-the-wild"><span class="tier-kick">Lesson</span><a href="../book/6.5-mage-in-the-wild.html" class="ch-link">6.5-mage-in-the-wild</a> <span class="ch-slug">6.5-mage-in-the-wild</span></h3>
+<div class="section s2" id="sec-6-5-mage-in-the-wild--eight-entry-points">
+<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">Eight Entry Points</a></div>
 <p class="topic">The organizations begin with different problems.</p>
 </div>
-<div class="section s2" id="sec-5-5-mage-in-the-wild--the-shared-baseline">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">The Shared Baseline</a></div>
+<div class="section s2" id="sec-6-5-mage-in-the-wild--the-shared-baseline">
+<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">The Shared Baseline</a></div>
 <p class="topic">Across the eight sources, four moves recur strongly enough to form a shared baseline.</p>
 </div>
-<div class="section s2" id="sec-5-5-mage-in-the-wild--where-the-reconstructions-differ">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">Where the Reconstructions Differ</a></div>
+<div class="section s2" id="sec-6-5-mage-in-the-wild--where-the-reconstructions-differ">
+<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">Where the Reconstructions Differ</a></div>
 <p class="topic">The differences are as informative as the commonalities.</p>
 </div>
-<div class="section s2" id="sec-5-5-mage-in-the-wild--the-modeling-ceiling">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">The Modeling Ceiling</a></div>
+<div class="section s2" id="sec-6-5-mage-in-the-wild--the-modeling-ceiling">
+<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">The Modeling Ceiling</a></div>
 <p class="topic">One difference is stark.</p>
 </div>
-<div class="section s2" id="sec-5-5-mage-in-the-wild--engineering-capital-at-organizational-scale">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">Engineering Capital at Organizational Scale</a></div>
+<div class="section s2" id="sec-6-5-mage-in-the-wild--engineering-capital-at-organizational-scale">
+<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">Engineering Capital at Organizational Scale</a></div>
 <p class="topic">The industrial reconstructions show something the single-engineer origin cannot: how these moves operate across an organization.</p>
 </div>
-<div class="section s2" id="sec-5-5-mage-in-the-wild--they-converged-on-a-problem">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">They Converged on a Problem</a></div>
+<div class="section s2" id="sec-6-5-mage-in-the-wild--they-converged-on-a-problem">
+<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">They Converged on a Problem</a></div>
 <p class="topic">The eight organizations do not converge on one stack, one degree of autonomy, or one modeling discipline.</p>
 </div>
-<div class="section s2" id="sec-5-5-mage-in-the-wild--four-views-of-repeated-judgment">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">Four Views of Repeated Judgment</a></div>
+<div class="section s2" id="sec-6-5-mage-in-the-wild--four-views-of-repeated-judgment">
+<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">Four Views of Repeated Judgment</a></div>
 <p class="topic">The approaches these organizations use can work.</p>
 </div>
-<div class="section s3" id="sec-5-5-mage-in-the-wild--view-1-repeated-exposure">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">View 1 — Repeated Exposure</a></div>
+<div class="section s3" id="sec-6-5-mage-in-the-wild--view-1-repeated-exposure">
+<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">View 1 — Repeated Exposure</a></div>
 <p class="topic">Chapter 1 introduced a deliberately simple model for consequential probabilistic judgment.</p>
 </div>
-<div class="section s3" id="sec-5-5-mage-in-the-wild--view-2-retry-purchases-another-chance">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">View 2 — Retry Purchases Another Chance</a></div>
+<div class="section s3" id="sec-6-5-mage-in-the-wild--view-2-retry-purchases-another-chance">
+<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">View 2 — Retry Purchases Another Chance</a></div>
 <p class="topic">The first view treats each exposure as one judgment.</p>
 </div>
-<div class="section s3" id="sec-5-5-mage-in-the-wild--view-3-engineering-can-act-at-different-places">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">View 3 — Engineering Can Act at Different Places</a></div>
+<div class="section s3" id="sec-6-5-mage-in-the-wild--view-3-engineering-can-act-at-different-places">
+<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">View 3 — Engineering Can Act at Different Places</a></div>
 <p class="topic">Retry is only one intervention.</p>
 </div>
-<div class="section s3" id="sec-5-5-mage-in-the-wild--view-4-one-judgment-can-acquire-durable-reach">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">View 4 — One Judgment Can Acquire Durable Reach</a></div>
+<div class="section s3" id="sec-6-5-mage-in-the-wild--view-4-one-judgment-can-acquire-durable-reach">
+<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">View 4 — One Judgment Can Acquire Durable Reach</a></div>
 <p class="topic">The preceding views still treat engineering largely as a sequence of realizations.</p>
 </div>
-<div class="section s3" id="sec-5-5-mage-in-the-wild--what-these-views-leave-out">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">What These Views Leave Out</a></div>
+<div class="section s3" id="sec-6-5-mage-in-the-wild--what-these-views-leave-out">
+<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">What These Views Leave Out</a></div>
 <p class="topic">These models are deliberately simple.</p>
 </div>
 </div>
 </section>
-<section class="part" id="part-6">
-<h2>Module 6 — The Theory</h2>
+<section class="part" id="part-7">
+<h2>Module 7 — The Theory</h2>
 <div class="chapter">
-<h3 id="ch-6-1-toward-a-theory-of-mage"><span class="tier-kick">Lesson</span><a href="../book/6.1-toward-a-theory-of-mage.html" class="ch-link">6.1-toward-a-theory-of-mage</a> <span class="ch-slug">6.1-toward-a-theory-of-mage</span></h3>
-<div class="section s2" id="sec-6-1-toward-a-theory-of-mage--the-dynamic-model">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">The Dynamic Model</a></div>
+<h3 id="ch-7-1-toward-a-theory-of-mage"><span class="tier-kick">Lesson</span><a href="../book/7.1-toward-a-theory-of-mage.html" class="ch-link">7.1-toward-a-theory-of-mage</a> <span class="ch-slug">7.1-toward-a-theory-of-mage</span></h3>
+<div class="section s2" id="sec-7-1-toward-a-theory-of-mage--the-dynamic-model">
+<div class="sec-h"><a href="../book/7.1-toward-a-theory-of-mage.html">The Dynamic Model</a></div>
 <p class="topic">[ref:mage-dynamic-model] puts the theory on one diagram.</p>
 </div>
-<div class="section s2" id="sec-6-1-toward-a-theory-of-mage--where-engineering-can-apply-leverage">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Where Engineering Can Apply Leverage</a></div>
+<div class="section s2" id="sec-7-1-toward-a-theory-of-mage--where-engineering-can-apply-leverage">
+<div class="sec-h"><a href="../book/7.1-toward-a-theory-of-mage.html">Where Engineering Can Apply Leverage</a></div>
 <p class="topic">The dynamic model suggests a broader question: where can engineering intervene to improve agentic work?</p>
 </div>
-<div class="section s2" id="sec-6-1-toward-a-theory-of-mage--what-makes-an-environment-effective">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">What Makes an Environment Effective</a></div>
+<div class="section s2" id="sec-7-1-toward-a-theory-of-mage--what-makes-an-environment-effective">
+<div class="sec-h"><a href="../book/7.1-toward-a-theory-of-mage.html">What Makes an Environment Effective</a></div>
 <p class="topic">More machinery does not mean a better environment.</p>
 </div>
-<div class="section s2" id="sec-6-1-toward-a-theory-of-mage--outcomes-and-observables">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Outcomes and Observables</a></div>
+<div class="section s2" id="sec-7-1-toward-a-theory-of-mage--outcomes-and-observables">
+<div class="sec-h"><a href="../book/7.1-toward-a-theory-of-mage.html">Outcomes and Observables</a></div>
 <p class="topic">A theory of agentic engineering should distinguish activity from progress.</p>
 </div>
-<div class="section s2" id="sec-6-1-toward-a-theory-of-mage--three-core-predictions">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Three Core Predictions</a></div>
+<div class="section s2" id="sec-7-1-toward-a-theory-of-mage--three-core-predictions">
+<div class="sec-h"><a href="../book/7.1-toward-a-theory-of-mage.html">Three Core Predictions</a></div>
 <p class="topic">Three predictions form the core of the theory.</p>
 </div>
-<div class="section s3" id="sec-6-1-toward-a-theory-of-mage--the-reasoning-horizon-proposition">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">The reasoning-horizon proposition</a></div>
+<div class="section s3" id="sec-7-1-toward-a-theory-of-mage--the-reasoning-horizon-proposition">
+<div class="sec-h"><a href="../book/7.1-toward-a-theory-of-mage.html">The reasoning-horizon proposition</a></div>
 <p class="topic">Why should representation create leverage in the first place?</p>
 </div>
-<div class="section s3" id="sec-6-1-toward-a-theory-of-mage--the-engineering-capital-proposition">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">The engineering-capital proposition</a></div>
+<div class="section s3" id="sec-7-1-toward-a-theory-of-mage--the-engineering-capital-proposition">
+<div class="sec-h"><a href="../book/7.1-toward-a-theory-of-mage.html">The engineering-capital proposition</a></div>
 <p class="topic">Representation leverage explains how structure can make one episode of reasoning easier.</p>
 </div>
-<div class="section s2" id="sec-6-1-toward-a-theory-of-mage--modeling-and-alignment-are-distinct-and-compound">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Modeling and Alignment Are Distinct—and Compound</a></div>
+<div class="section s2" id="sec-7-1-toward-a-theory-of-mage--modeling-and-alignment-are-distinct-and-compound">
+<div class="sec-h"><a href="../book/7.1-toward-a-theory-of-mage.html">Modeling and Alignment Are Distinct—and Compound</a></div>
 <p class="topic">The previous propositions explain why durable structure can help, but they combine two effects that MAGE keeps separate.</p>
 </div>
-<div class="section s3" id="sec-6-1-toward-a-theory-of-mage--cost-and-failure-separately">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Cost and failure, separately</a></div>
+<div class="section s3" id="sec-7-1-toward-a-theory-of-mage--cost-and-failure-separately">
+<div class="sec-h"><a href="../book/7.1-toward-a-theory-of-mage.html">Cost and failure, separately</a></div>
 <p class="topic">We can make the distinction precise by considering cost and failure separately.</p>
 </div>
-<div class="section s3" id="sec-6-1-toward-a-theory-of-mage--software-engineering-changes-the-problem">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Software engineering changes the problem</a></div>
+<div class="section s3" id="sec-7-1-toward-a-theory-of-mage--software-engineering-changes-the-problem">
+<div class="sec-h"><a href="../book/7.1-toward-a-theory-of-mage.html">Software engineering changes the problem</a></div>
 <p class="topic">The analysis so far asks what happens when repeated attempts face the same realization problem.</p>
 </div>
-<div class="section s3" id="sec-6-1-toward-a-theory-of-mage--modeling-can-also-enable-alignment">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Modeling can also enable Alignment</a></div>
+<div class="section s3" id="sec-7-1-toward-a-theory-of-mage--modeling-can-also-enable-alignment">
+<div class="sec-h"><a href="../book/7.1-toward-a-theory-of-mage.html">Modeling can also enable Alignment</a></div>
 <p class="topic">The two principles interact in a second way.</p>
 </div>
-<div class="section s3" id="sec-6-1-toward-a-theory-of-mage--the-joint-engineering-problem">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">The joint engineering problem</a></div>
+<div class="section s3" id="sec-7-1-toward-a-theory-of-mage--the-joint-engineering-problem">
+<div class="sec-h"><a href="../book/7.1-toward-a-theory-of-mage.html">The joint engineering problem</a></div>
 <p class="topic">We can now put the pieces back together.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-6-2-what-the-theory-predicts"><span class="tier-kick">Lesson</span><a href="../book/6.2-what-the-theory-predicts.html" class="ch-link">6.2-what-the-theory-predicts</a> <span class="ch-slug">6.2-what-the-theory-predicts</span></h3>
-<div class="section s2" id="sec-6-2-what-the-theory-predicts--trustworthy-representations">
-<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">Trustworthy Representations</a></div>
+<h3 id="ch-7-2-what-the-theory-predicts"><span class="tier-kick">Lesson</span><a href="../book/7.2-what-the-theory-predicts.html" class="ch-link">7.2-what-the-theory-predicts</a> <span class="ch-slug">7.2-what-the-theory-predicts</span></h3>
+<div class="section s2" id="sec-7-2-what-the-theory-predicts--trustworthy-representations">
+<div class="sec-h"><a href="../book/7.2-what-the-theory-predicts.html">Trustworthy Representations</a></div>
 <p class="topic">Brownfield software raises the first problem immediately: can a useful engineering model be recovered from a system that was never built around one?</p>
 </div>
-<div class="section s2" id="sec-6-2-what-the-theory-predicts--adaptive-governance">
-<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">Adaptive Governance</a></div>
+<div class="section s2" id="sec-7-2-what-the-theory-predicts--adaptive-governance">
+<div class="sec-h"><a href="../book/7.2-what-the-theory-predicts.html">Adaptive Governance</a></div>
 <p class="topic">Governance conversion remains primarily an act of judgment.</p>
 </div>
-<div class="section s2" id="sec-6-2-what-the-theory-predicts--engineering-economics">
-<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">Engineering Economics</a></div>
+<div class="section s2" id="sec-7-2-what-the-theory-predicts--engineering-economics">
+<div class="sec-h"><a href="../book/7.2-what-the-theory-predicts.html">Engineering Economics</a></div>
 <p class="topic">The economic predictions are the least settled of the three families.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-6-3-scope-conditions"><span class="tier-kick">Lesson</span><a href="../book/6.3-scope-conditions.html" class="ch-link">6.3-scope-conditions</a> <span class="ch-slug">6.3-scope-conditions</span></h3>
-<div class="section s2" id="sec-6-3-scope-conditions--return-governability-and-authority">
-<div class="sec-h"><a href="../book/6.3-scope-conditions.html">Return, Governability, and Authority</a></div>
+<h3 id="ch-7-3-scope-conditions"><span class="tier-kick">Lesson</span><a href="../book/7.3-scope-conditions.html" class="ch-link">7.3-scope-conditions</a> <span class="ch-slug">7.3-scope-conditions</span></h3>
+<div class="section s2" id="sec-7-3-scope-conditions--return-governability-and-authority">
+<div class="sec-h"><a href="../book/7.3-scope-conditions.html">Return, Governability, and Authority</a></div>
 <p class="topic">Whether MAGE applies to a given engineering surface comes down to three questions:</p>
 </div>
-<div class="section s2" id="sec-6-3-scope-conditions--the-expanding-frontier-of-explicit-engineering">
-<div class="sec-h"><a href="../book/6.3-scope-conditions.html">The Expanding Frontier of Explicit Engineering</a></div>
+<div class="section s2" id="sec-7-3-scope-conditions--the-expanding-frontier-of-explicit-engineering">
+<div class="sec-h"><a href="../book/7.3-scope-conditions.html">The Expanding Frontier of Explicit Engineering</a></div>
 <p class="topic">MAGE&#x27;s scope is not fixed because explicit engineering is becoming cheaper and, in some cases, more feasible.</p>
 </div>
-<div class="section s3" id="sec-6-3-scope-conditions--the-frontier-is-not-a-destination">
-<div class="sec-h"><a href="../book/6.3-scope-conditions.html">The frontier is not a destination</a></div>
+<div class="section s3" id="sec-7-3-scope-conditions--the-frontier-is-not-a-destination">
+<div class="sec-h"><a href="../book/7.3-scope-conditions.html">The frontier is not a destination</a></div>
 <p class="topic">Neither change should be mistaken for a destination for software engineering as a whole.</p>
 </div>
-<div class="section s2" id="sec-6-3-scope-conditions--typical-profiles">
-<div class="sec-h"><a href="../book/6.3-scope-conditions.html">Typical Profiles</a></div>
+<div class="section s2" id="sec-7-3-scope-conditions--typical-profiles">
+<div class="sec-h"><a href="../book/7.3-scope-conditions.html">Typical Profiles</a></div>
 <p class="topic">The two dimensions produce different profiles even within one organization or artifact.</p>
 </div>
-<div class="section s2" id="sec-6-3-scope-conditions--two-ways-an-investment-fails">
-<div class="sec-h"><a href="../book/6.3-scope-conditions.html">Two Ways an Investment Fails</a></div>
+<div class="section s2" id="sec-7-3-scope-conditions--two-ways-an-investment-fails">
+<div class="sec-h"><a href="../book/7.3-scope-conditions.html">Two Ways an Investment Fails</a></div>
 <p class="topic">MAGE becomes a bad bargain in two broad ways.</p>
 </div>
-<div class="section s2" id="sec-6-3-scope-conditions--scope-beyond-software">
-<div class="sec-h"><a href="../book/6.3-scope-conditions.html">Scope Beyond Software</a></div>
+<div class="section s2" id="sec-7-3-scope-conditions--scope-beyond-software">
+<div class="sec-h"><a href="../book/7.3-scope-conditions.html">Scope Beyond Software</a></div>
 <p class="topic">The evidence behind this theory comes from software engineering.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-6-4-research-agenda"><span class="tier-kick">Lesson</span><a href="../book/6.4-research-agenda.html" class="ch-link">6.4-research-agenda</a> <span class="ch-slug">6.4-research-agenda</span></h3>
-<div class="section s2" id="sec-6-4-research-agenda--parameterizing-the-model">
-<div class="sec-h"><a href="../book/6.4-research-agenda.html">Parameterizing the Model</a></div>
+<h3 id="ch-7-4-research-agenda"><span class="tier-kick">Lesson</span><a href="../book/7.4-research-agenda.html" class="ch-link">7.4-research-agenda</a> <span class="ch-slug">7.4-research-agenda</span></h3>
+<div class="section s2" id="sec-7-4-research-agenda--parameterizing-the-model">
+<div class="sec-h"><a href="../book/7.4-research-agenda.html">Parameterizing the Model</a></div>
 <p class="topic">The simple models above deliberately leave their parameters unspecified.</p>
 </div>
-<div class="section s3" id="sec-6-4-research-agenda--what-experiments-would-estimate">
-<div class="sec-h"><a href="../book/6.4-research-agenda.html">What experiments would estimate</a></div>
+<div class="section s3" id="sec-7-4-research-agenda--what-experiments-would-estimate">
+<div class="sec-h"><a href="../book/7.4-research-agenda.html">What experiments would estimate</a></div>
 <p class="topic">The question is not whether agents have one fixed reliability or cost.</p>
 </div>
-<div class="section s2" id="sec-6-4-research-agenda--engineering-routing">
-<div class="sec-h"><a href="../book/6.4-research-agenda.html">Engineering Routing</a></div>
+<div class="section s2" id="sec-7-4-research-agenda--engineering-routing">
+<div class="sec-h"><a href="../book/7.4-research-agenda.html">Engineering Routing</a></div>
 <p class="topic">These quantities suggest a further implication for automated software engineering.</p>
 </div>
-<div class="section s2" id="sec-6-4-research-agenda--representation-selection-induction-and-innovation">
-<div class="sec-h"><a href="../book/6.4-research-agenda.html">Representation Selection, Induction, and Innovation</a></div>
+<div class="section s2" id="sec-7-4-research-agenda--representation-selection-induction-and-innovation">
+<div class="sec-h"><a href="../book/7.4-research-agenda.html">Representation Selection, Induction, and Innovation</a></div>
 <p class="topic">Chapter 2 offered six useful classes of engineering model, not a proof that those classes are necessary, sufficient, or minimal.</p>
 </div>
-<div class="section s2" id="sec-6-4-research-agenda--experimental-designs">
-<div class="sec-h"><a href="../book/6.4-research-agenda.html">Experimental Designs</a></div>
+<div class="section s2" id="sec-7-4-research-agenda--experimental-designs">
+<div class="sec-h"><a href="../book/7.4-research-agenda.html">Experimental Designs</a></div>
 <p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
 </div>
-<div class="section s3" id="sec-6-4-research-agenda--separating-modeling-from-alignment">
-<div class="sec-h"><a href="../book/6.4-research-agenda.html">Separating Modeling from Alignment</a></div>
+<div class="section s3" id="sec-7-4-research-agenda--separating-modeling-from-alignment">
+<div class="sec-h"><a href="../book/7.4-research-agenda.html">Separating Modeling from Alignment</a></div>
 <p class="topic">A factorial design can cleanly separate Modeling from Alignment.</p>
 </div>
-<div class="section s3" id="sec-6-4-research-agenda--multi-project-longitudinal-design">
-<div class="sec-h"><a href="../book/6.4-research-agenda.html">Multi-project longitudinal design</a></div>
+<div class="section s3" id="sec-7-4-research-agenda--multi-project-longitudinal-design">
+<div class="sec-h"><a href="../book/7.4-research-agenda.html">Multi-project longitudinal design</a></div>
 <p class="topic">This design should vary or observe engineered-environment quality while tracking durable throughput, defect escape, and human-attention burden over weeks or months.</p>
 </div>
-<div class="section s3" id="sec-6-4-research-agenda--subsystem-level-design">
-<div class="sec-h"><a href="../book/6.4-research-agenda.html">Subsystem-level design</a></div>
+<div class="section s3" id="sec-7-4-research-agenda--subsystem-level-design">
+<div class="sec-h"><a href="../book/7.4-research-agenda.html">Subsystem-level design</a></div>
 <p class="topic">Compare engineering surfaces that differ in representation and governance while holding as much surrounding repository context constant as possible.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can compare engineering surfaces that differ in representation and governance …. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s3" id="sec-6-4-research-agenda--event-centered-longitudinal-design">
-<div class="sec-h"><a href="../book/6.4-research-agenda.html">Event-centered longitudinal design</a></div>
+<div class="section s3" id="sec-7-4-research-agenda--event-centered-longitudinal-design">
+<div class="sec-h"><a href="../book/7.4-research-agenda.html">Event-centered longitudinal design</a></div>
 <p class="topic">Follow one failure class through its whole life: first occurrence, repeat exposure, structural recognition, local repair, any durable conversion, propagation to later work, later recurrence, and eventual maintenance or retirement of the resulting asset.</p>
 </div>
-<div class="section s3" id="sec-6-4-research-agenda--what-the-designs-still-need">
-<div class="sec-h"><a href="../book/6.4-research-agenda.html">What the designs still need</a></div>
+<div class="section s3" id="sec-7-4-research-agenda--what-the-designs-still-need">
+<div class="sec-h"><a href="../book/7.4-research-agenda.html">What the designs still need</a></div>
 <p class="topic">All three designs require credible measures of durable throughput, human-attention burden, environment quality, and engineering-capital return.</p>
 </div>
 </div>
 </section>
-<section class="part" id="part-7">
-<h2>Module 7 — The Profession</h2>
-<div class="outcomes"><div class="oc-h">After Module 7 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-evaluate">evaluate</span><span class="oc-text">After this Part, the reader can evaluate the method&#x27;s implications for the discipline — where the judgment moved, what stays human, and where models become a common language of mature engineering. <span class="prov">declared</span></span></li></ul></div>
+<section class="part" id="part-8">
+<h2>Module 8 — The Profession</h2>
+<div class="outcomes"><div class="oc-h">After Module 8 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-evaluate">evaluate</span><span class="oc-text">After this Part, the reader can evaluate the method&#x27;s implications for the discipline — where the judgment moved, what stays human, and where models become a common language of mature engineering. <span class="prov">declared</span></span></li></ul></div>
 <div class="chapter">
-<h3 id="ch-7-1-reorganization-of-se"><span class="tier-kick">Lesson</span><a href="../book/7.1-reorganization-of-se.html" class="ch-link">7.1-reorganization-of-se</a> <span class="ch-slug">7.1-reorganization-of-se</span></h3>
-<div class="section s2" id="sec-7-1-reorganization-of-se--was-implementation-ever-the-bottleneck">
-<div class="sec-h"><a href="../book/7.1-reorganization-of-se.html">Was Implementation Ever the Bottleneck?</a></div>
+<h3 id="ch-8-1-reorganization-of-se"><span class="tier-kick">Lesson</span><a href="../book/8.1-reorganization-of-se.html" class="ch-link">8.1-reorganization-of-se</a> <span class="ch-slug">8.1-reorganization-of-se</span></h3>
+<div class="section s2" id="sec-8-1-reorganization-of-se--was-implementation-ever-the-bottleneck">
+<div class="sec-h"><a href="../book/8.1-reorganization-of-se.html">Was Implementation Ever the Bottleneck?</a></div>
 <p class="topic">A reasonable objection begins with a fact: **software engineers do not spend most of their workweek typing code.** This result predates generative AI.</p>
 </div>
-<div class="section s2" id="sec-7-1-reorganization-of-se--agents-entered-an-implementation-centered-discipline">
-<div class="sec-h"><a href="../book/7.1-reorganization-of-se.html">Agents Entered an Implementation-Centered Discipline</a></div>
+<div class="section s2" id="sec-8-1-reorganization-of-se--agents-entered-an-implementation-centered-discipline">
+<div class="sec-h"><a href="../book/8.1-reorganization-of-se.html">Agents Entered an Implementation-Centered Discipline</a></div>
 <p class="topic">The first generation of agentic software-engineering research inherited the engineering object already in front of it: a repository and a software-development task.</p>
 </div>
-<div class="section s2" id="sec-7-1-reorganization-of-se--the-old-dream-with-a-new-substrate">
-<div class="sec-h"><a href="../book/7.1-reorganization-of-se.html">The Old Dream, with a New Substrate</a></div>
+<div class="section s2" id="sec-8-1-reorganization-of-se--the-old-dream-with-a-new-substrate">
+<div class="sec-h"><a href="../book/8.1-reorganization-of-se.html">The Old Dream, with a New Substrate</a></div>
 <p class="topic">The ambition is older than the present substrate.</p>
 </div>
-<div class="section s2" id="sec-7-1-reorganization-of-se--representation-engineering">
-<div class="sec-h"><a href="../book/7.1-reorganization-of-se.html">Representation Engineering</a></div>
+<div class="section s2" id="sec-8-1-reorganization-of-se--representation-engineering">
+<div class="sec-h"><a href="../book/8.1-reorganization-of-se.html">Representation Engineering</a></div>
 <p class="topic">As implementation becomes cheaper, engineers can spend more of their effort on the representations through which humans and machines reason about the system.</p>
 </div>
-<div class="section s2" id="sec-7-1-reorganization-of-se--where-engineering-effort-moves">
-<div class="sec-h"><a href="../book/7.1-reorganization-of-se.html">Where Engineering Effort Moves</a></div>
+<div class="section s2" id="sec-8-1-reorganization-of-se--where-engineering-effort-moves">
+<div class="sec-h"><a href="../book/8.1-reorganization-of-se.html">Where Engineering Effort Moves</a></div>
 <p class="topic">Implementation shifts; responsibility does not.</p>
 </div>
-<div class="section s2" id="sec-7-1-reorganization-of-se--review-when-implementation-is-abundant">
-<div class="sec-h"><a href="../book/7.1-reorganization-of-se.html">Review When Implementation Is Abundant</a></div>
+<div class="section s2" id="sec-8-1-reorganization-of-se--review-when-implementation-is-abundant">
+<div class="sec-h"><a href="../book/8.1-reorganization-of-se.html">Review When Implementation Is Abundant</a></div>
 <p class="topic">Code review does not disappear when agents produce the code.</p>
 </div>
-<div class="section s2" id="sec-7-1-reorganization-of-se--the-software-factory-risk">
-<div class="sec-h"><a href="../book/7.1-reorganization-of-se.html">The Software Factory Risk</a></div>
+<div class="section s2" id="sec-8-1-reorganization-of-se--the-software-factory-risk">
+<div class="sec-h"><a href="../book/8.1-reorganization-of-se.html">The Software Factory Risk</a></div>
 <p class="topic">There is another possible trajectory.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-7-2-software-rejoins-engineering"><span class="tier-kick">Lesson</span><a href="../book/7.2-software-rejoins-engineering.html" class="ch-link">7.2-software-rejoins-engineering</a> <span class="ch-slug">7.2-software-rejoins-engineering</span></h3>
-<div class="section s2" id="sec-7-2-software-rejoins-engineering--the-disciplines-that-got-there-first">
-<div class="sec-h"><a href="../book/7.2-software-rejoins-engineering.html">The Disciplines That Got There First</a></div>
+<h3 id="ch-8-2-software-rejoins-engineering"><span class="tier-kick">Lesson</span><a href="../book/8.2-software-rejoins-engineering.html" class="ch-link">8.2-software-rejoins-engineering</a> <span class="ch-slug">8.2-software-rejoins-engineering</span></h3>
+<div class="section s2" id="sec-8-2-software-rejoins-engineering--the-disciplines-that-got-there-first">
+<div class="sec-h"><a href="../book/8.2-software-rejoins-engineering.html">The Disciplines That Got There First</a></div>
 <p class="topic">Older engineering disciplines had stronger reasons to separate representation from realization.</p>
 </div>
-<div class="section s2" id="sec-7-2-software-rejoins-engineering--model-first-engineering">
-<div class="sec-h"><a href="../book/7.2-software-rejoins-engineering.html">Model-First Engineering</a></div>
+<div class="section s2" id="sec-8-2-software-rejoins-engineering--model-first-engineering">
+<div class="sec-h"><a href="../book/8.2-software-rejoins-engineering.html">Model-First Engineering</a></div>
 <p class="topic">The Siemens reconstruction illustrates what this looks like in a model-first engineering culture.</p>
 </div>
-<div class="section s2" id="sec-7-2-software-rejoins-engineering--why-software-came-late-to-model-first-engineering">
-<div class="sec-h"><a href="../book/7.2-software-rejoins-engineering.html">Why Software Came Late to Model-First Engineering</a></div>
+<div class="section s2" id="sec-8-2-software-rejoins-engineering--why-software-came-late-to-model-first-engineering">
+<div class="sec-h"><a href="../book/8.2-software-rejoins-engineering.html">Why Software Came Late to Model-First Engineering</a></div>
 <p class="topic">Software&#x27;s economics differed from those of older engineering disciplines.</p>
 </div>
-<div class="section s2" id="sec-7-2-software-rejoins-engineering--the-language-of-engineering">
-<div class="sec-h"><a href="../book/7.2-software-rejoins-engineering.html">The Language of Engineering</a></div>
+<div class="section s2" id="sec-8-2-software-rejoins-engineering--the-language-of-engineering">
+<div class="sec-h"><a href="../book/8.2-software-rejoins-engineering.html">The Language of Engineering</a></div>
 <p class="topic">Models are the language of engineering.</p>
 </div>
-<div class="section s2" id="sec-7-2-software-rejoins-engineering--what-happened-to-the-cost">
-<div class="sec-h"><a href="../book/7.2-software-rejoins-engineering.html">What Happened to the Cost?</a></div>
+<div class="section s2" id="sec-8-2-software-rejoins-engineering--what-happened-to-the-cost">
+<div class="sec-h"><a href="../book/8.2-software-rejoins-engineering.html">What Happened to the Cost?</a></div>
 <p class="topic">Software models have always faced an economic test: the reasoning or assurance they provide must repay the cost of constructing and maintaining them.</p>
 </div>
-<div class="section s2" id="sec-7-2-software-rejoins-engineering--what-mage-claims-is-new">
-<div class="sec-h"><a href="../book/7.2-software-rejoins-engineering.html">What MAGE Claims Is New</a></div>
+<div class="section s2" id="sec-8-2-software-rejoins-engineering--what-mage-claims-is-new">
+<div class="sec-h"><a href="../book/8.2-software-rejoins-engineering.html">What MAGE Claims Is New</a></div>
 <p class="topic">MAGE does not claim to have discovered models, constraints, verification, external memory, structured reasoning, or autonomous software agents.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-7-3-agentic-engineering-beyond-software"><span class="tier-kick">Lesson</span><a href="../book/7.3-agentic-engineering-beyond-software.html" class="ch-link">7.3-agentic-engineering-beyond-software</a> <span class="ch-slug">7.3-agentic-engineering-beyond-software</span></h3>
-<div class="section s2" id="sec-7-3-agentic-engineering-beyond-software--what-must-transfer">
-<div class="sec-h"><a href="../book/7.3-agentic-engineering-beyond-software.html">What Must Transfer</a></div>
+<h3 id="ch-8-3-agentic-engineering-beyond-software"><span class="tier-kick">Lesson</span><a href="../book/8.3-agentic-engineering-beyond-software.html" class="ch-link">8.3-agentic-engineering-beyond-software</a> <span class="ch-slug">8.3-agentic-engineering-beyond-software</span></h3>
+<div class="section s2" id="sec-8-3-agentic-engineering-beyond-software--what-must-transfer">
+<div class="sec-h"><a href="../book/8.3-agentic-engineering-beyond-software.html">What Must Transfer</a></div>
 <p class="topic">The first requirement is representability.</p>
 </div>
-<div class="section s2" id="sec-7-3-agentic-engineering-beyond-software--model-based-engineering">
-<div class="sec-h"><a href="../book/7.3-agentic-engineering-beyond-software.html">Model-Based Engineering</a></div>
+<div class="section s2" id="sec-8-3-agentic-engineering-beyond-software--model-based-engineering">
+<div class="sec-h"><a href="../book/8.3-agentic-engineering-beyond-software.html">Model-Based Engineering</a></div>
 <p class="topic">Conventional engineering is the nearest transfer because the shape of the outcome changes least.</p>
 </div>
-<div class="section s2" id="sec-7-3-agentic-engineering-beyond-software--professional-knowledge-work">
-<div class="sec-h"><a href="../book/7.3-agentic-engineering-beyond-software.html">Professional Knowledge Work</a></div>
+<div class="section s2" id="sec-8-3-agentic-engineering-beyond-software--professional-knowledge-work">
+<div class="sec-h"><a href="../book/8.3-agentic-engineering-beyond-software.html">Professional Knowledge Work</a></div>
 <p class="topic">Other engineering disciplines are therefore the easiest place to see the transfer: the outcome is often still an artifact, and much of the representational machinery already exists.</p>
 </div>
-<div class="section s2" id="sec-7-3-agentic-engineering-beyond-software--science-as-the-harder-case">
-<div class="sec-h"><a href="../book/7.3-agentic-engineering-beyond-software.html">Science as the Harder Case</a></div>
+<div class="section s2" id="sec-8-3-agentic-engineering-beyond-software--science-as-the-harder-case">
+<div class="sec-h"><a href="../book/8.3-agentic-engineering-beyond-software.html">Science as the Harder Case</a></div>
 <p class="topic">Scientific work is worth examining because it tests the theory rather than flattering it.</p>
 </div>
-<div class="section s2" id="sec-7-3-agentic-engineering-beyond-software--where-the-generalization-fails">
-<div class="sec-h"><a href="../book/7.3-agentic-engineering-beyond-software.html">Where the Generalization Fails</a></div>
+<div class="section s2" id="sec-8-3-agentic-engineering-beyond-software--where-the-generalization-fails">
+<div class="sec-h"><a href="../book/8.3-agentic-engineering-beyond-software.html">Where the Generalization Fails</a></div>
 <p class="topic">The transfer conditions predict their own failures, and the failures deserve naming rather than a passing caveat.</p>
 </div>
-<div class="section s2" id="sec-7-3-agentic-engineering-beyond-software--a-research-prediction">
-<div class="sec-h"><a href="../book/7.3-agentic-engineering-beyond-software.html">A Research Prediction</a></div>
+<div class="section s2" id="sec-8-3-agentic-engineering-beyond-software--a-research-prediction">
+<div class="sec-h"><a href="../book/8.3-agentic-engineering-beyond-software.html">A Research Prediction</a></div>
 <p class="topic">The broader interpretation produces a testable prediction.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-7-4-the-engineer"><span class="tier-kick">Lesson</span><a href="../book/7.4-the-engineer.html" class="ch-link">7.4-the-engineer</a> <span class="ch-slug">7.4-the-engineer</span></h3>
-<div class="section s2" id="sec-7-4-the-engineer--authority-follows-competence-and-responsibility">
-<div class="sec-h"><a href="../book/7.4-the-engineer.html">Authority Follows Competence and Responsibility</a></div>
+<h3 id="ch-8-4-the-engineer"><span class="tier-kick">Lesson</span><a href="../book/8.4-the-engineer.html" class="ch-link">8.4-the-engineer</a> <span class="ch-slug">8.4-the-engineer</span></h3>
+<div class="section s2" id="sec-8-4-the-engineer--authority-follows-competence-and-responsibility">
+<div class="sec-h"><a href="../book/8.4-the-engineer.html">Authority Follows Competence and Responsibility</a></div>
 <p class="topic">MAGE increases both the leverage of engineering knowledge and the consequences of getting it wrong.</p>
 </div>
-<div class="section s3" id="sec-7-4-the-engineer--professional-authority">
-<div class="sec-h"><a href="../book/7.4-the-engineer.html">Professional authority</a></div>
+<div class="section s3" id="sec-8-4-the-engineer--professional-authority">
+<div class="sec-h"><a href="../book/8.4-the-engineer.html">Professional authority</a></div>
 <p class="topic">Engineering authority is not merely technical.</p>
 </div>
-<div class="section s3" id="sec-7-4-the-engineer--the-judgment-frontier">
-<div class="sec-h"><a href="../book/7.4-the-engineer.html">The judgment frontier</a></div>
+<div class="section s3" id="sec-8-4-the-engineer--the-judgment-frontier">
+<div class="sec-h"><a href="../book/8.4-the-engineer.html">The judgment frontier</a></div>
 <p class="topic">One social purpose of the engineer is to be entrusted with, and answerable for, technical work too complex or consequential for ordinary individuals to undertake for themselves.[cite: bugliarello-social-function] A small bridge across the ditch in my parents&#x27; yard allowed the neighborhood kids to visit more easily, but a few boards crossing a span of three feet did not call for a structural engineer.</p>
 </div>
-<div class="section s2" id="sec-7-4-the-engineer--sign-off-moves-toward-models-and-evidence">
-<div class="sec-h"><a href="../book/7.4-the-engineer.html">Sign-Off Moves Toward Models and Evidence</a></div>
+<div class="section s2" id="sec-8-4-the-engineer--sign-off-moves-toward-models-and-evidence">
+<div class="sec-h"><a href="../book/8.4-the-engineer.html">Sign-Off Moves Toward Models and Evidence</a></div>
 <p class="topic">Imagine an agentic system in which the fleet constructs most of the implementation, maintains selected engineering representations, runs validators, and assembles evidence for the claims the design is supposed to satisfy.</p>
 </div>
-<div class="section s2" id="sec-7-4-the-engineer--from-full-stack-to-full-system-engineering">
-<div class="sec-h"><a href="../book/7.4-the-engineer.html">From Full-Stack to Full-System Engineering</a></div>
+<div class="section s2" id="sec-8-4-the-engineer--from-full-stack-to-full-system-engineering">
+<div class="sec-h"><a href="../book/8.4-the-engineer.html">From Full-Stack to Full-System Engineering</a></div>
 <p class="topic">Software has used full-stack engineer to describe someone able to work across multiple implementation layers: interface, application logic, data, infrastructure, and deployment.</p>
 </div>
-<div class="section s2" id="sec-7-4-the-engineer--what-should-we-teach">
-<div class="sec-h"><a href="../book/7.4-the-engineer.html">What Should We Teach?</a></div>
+<div class="section s2" id="sec-8-4-the-engineer--what-should-we-teach">
+<div class="sec-h"><a href="../book/8.4-the-engineer.html">What Should We Teach?</a></div>
 <p class="topic">If engineers increasingly review systems through representations and evidence rather than reconstructing every property from implementation, education should shift accordingly.</p>
 </div>
-<div class="section s3" id="sec-7-4-the-engineer--is-there-software-engineering-knowledge-you-cannot-just-figure-out-for-yourself">
-<div class="sec-h"><a href="../book/7.4-the-engineer.html">Is there software engineering knowledge you cannot just figure out for yourself?</a></div>
+<div class="section s3" id="sec-8-4-the-engineer--is-there-software-engineering-knowledge-you-cannot-just-figure-out-for-yourself">
+<div class="sec-h"><a href="../book/8.4-the-engineer.html">Is there software engineering knowledge you cannot just figure out for yourself?</a></div>
 <p class="topic">The question for software engineering education is whether there is important software engineering knowledge that practitioners cannot reasonably be expected to figure out for themselves, or whether software engineering is distinct among the engineering disciplines in being predicated on adaptability more than specific expertise.</p>
 </div>
-<div class="section s3" id="sec-7-4-the-engineer--what-shouldn-t-software-engineers-have-to-figure-out-for-themselves">
-<div class="sec-h"><a href="../book/7.4-the-engineer.html">What shouldn&#x27;t software engineers have to figure out for themselves?</a></div>
+<div class="section s3" id="sec-8-4-the-engineer--what-shouldn-t-software-engineers-have-to-figure-out-for-themselves">
+<div class="sec-h"><a href="../book/8.4-the-engineer.html">What shouldn&#x27;t software engineers have to figure out for themselves?</a></div>
 <p class="topic">I would concede some of this ground.</p>
 </div>
-<div class="section s3" id="sec-7-4-the-engineer--shift-the-emphasis">
-<div class="sec-h"><a href="../book/7.4-the-engineer.html">Shift the emphasis</a></div>
+<div class="section s3" id="sec-8-4-the-engineer--shift-the-emphasis">
+<div class="sec-h"><a href="../book/8.4-the-engineer.html">Shift the emphasis</a></div>
 <p class="topic">Less educational effort may need to go toward producing routine implementation by hand, and more toward selecting abstractions, specifying properties, measuring systems, validating claims, reasoning about quality attributes, and governing autonomous work.</p>
 </div>
-<div class="section s3" id="sec-7-4-the-engineer--change-what-students-demonstrate">
-<div class="sec-h"><a href="../book/7.4-the-engineer.html">Change what students demonstrate</a></div>
+<div class="section s3" id="sec-8-4-the-engineer--change-what-students-demonstrate">
+<div class="sec-h"><a href="../book/8.4-the-engineer.html">Change what students demonstrate</a></div>
 <p class="topic">A capstone should therefore demonstrate more than a working artifact.</p>
 </div>
-<div class="section s2" id="sec-7-4-the-engineer--the-entry-rung-problem">
-<div class="sec-h"><a href="../book/7.4-the-engineer.html">The Entry-Rung Problem</a></div>
+<div class="section s2" id="sec-8-4-the-engineer--the-entry-rung-problem">
+<div class="sec-h"><a href="../book/8.4-the-engineer.html">The Entry-Rung Problem</a></div>
 <p class="topic">The traditional path into software engineering runs through implementation.</p>
 </div>
 </div>
 </section>
-<section class="part" id="part-8">
-<h2>Module 8 — Conclusion</h2>
+<section class="part" id="part-9">
+<h2>Module 9 — Conclusion</h2>
 <div class="chapter">
-<h3 id="ch-8-1-the-part-that-stays-yours"><span class="tier-kick">Lesson</span><a href="../book/8.1-the-part-that-stays-yours.html" class="ch-link">8.1-the-part-that-stays-yours</a> <span class="ch-slug">8.1-the-part-that-stays-yours</span></h3>
-<div class="section s2" id="sec-8-1-the-part-that-stays-yours--the-question-we-asked">
-<div class="sec-h"><a href="../book/8.1-the-part-that-stays-yours.html">The question we asked</a></div>
+<h3 id="ch-9-1-the-part-that-stays-yours"><span class="tier-kick">Lesson</span><a href="../book/9.1-the-part-that-stays-yours.html" class="ch-link">9.1-the-part-that-stays-yours</a> <span class="ch-slug">9.1-the-part-that-stays-yours</span></h3>
+<div class="section s2" id="sec-9-1-the-part-that-stays-yours--the-question-we-asked">
+<div class="sec-h"><a href="../book/9.1-the-part-that-stays-yours.html">The question we asked</a></div>
 <p class="topic">In the Preface, we asked:</p>
 </div>
-<div class="section s2" id="sec-8-1-the-part-that-stays-yours--the-answer-in-three-moves">
-<div class="sec-h"><a href="../book/8.1-the-part-that-stays-yours.html">The answer in three moves</a></div>
+<div class="section s2" id="sec-9-1-the-part-that-stays-yours--the-answer-in-three-moves">
+<div class="sec-h"><a href="../book/9.1-the-part-that-stays-yours.html">The answer in three moves</a></div>
 <p class="topic">Strip MAGE to three engineering moves and this is what remains.</p>
 </div>
-<div class="section s2" id="sec-8-1-the-part-that-stays-yours--the-part-that-stays-yours">
-<div class="sec-h"><a href="../book/8.1-the-part-that-stays-yours.html">The part that stays yours</a></div>
+<div class="section s2" id="sec-9-1-the-part-that-stays-yours--the-part-that-stays-yours">
+<div class="sec-h"><a href="../book/9.1-the-part-that-stays-yours.html">The part that stays yours</a></div>
 <p class="topic">We began with a machine capable of building almost anything you describe—and only what you describe.</p>
 </div>
 </div>

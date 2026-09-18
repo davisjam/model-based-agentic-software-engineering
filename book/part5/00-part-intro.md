@@ -1,41 +1,27 @@
-<!-- part-foreshadows: modeling-principle, alignment-principle, seat-moves -->
+<!-- part-foreshadows: modeling-principle, alignment-principle, govern-the-environment, failures-become-machinery -->
 
-A method induced from practice should explain the engineering history that produced it. This chapter
-follows DocAble — a production document-accessibility system built largely by directing coding
-agents — from a five-minute feasibility experiment to a deployed service. Observing one system from
-the inside and from the beginning lets us reconstruct what a finished architecture cannot: which
-pressures appeared, what response followed, what survived, and what had to be revised again.
-
-The clean method arrived last. As the system grew, missing representation became expensive in some
-places; missing enforcement became dangerous in others; repeated operational surprises exposed
-properties nobody had modeled at all. Some obligations were encoded before failure. Some models
-arose from clean design choices and simply held. Others were forged in incidents and hardened
-through recurrence. {{chapter:evidence}} preserves those differences rather than forcing every event through the
-finished theory.
+Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} developed Modeling and Alignment separately. This chapter runs them together as a
+method. Modeling supplied a repertoire of representations for making different engineering questions
+tractable; Alignment supplied the mechanisms through which selected obligations are enforced. In
+practice, engineers choose and connect these moves as the work demands. MAGE begins by asking what should
+be made explicit, places enforcement where stable obligations become legible and enforceable, and converts
+recurring judgment into durable engineering structure.
 
 <!-- principlebox -->
 <!-- box-family: canonical -->
-> ### Depth and breadth
+> ### The MAGE cycle
 >
-> MAGE emerged from one deeply observed production build. That case supplies chronology, mechanism, and
-> within-case recurrence.
+> Model the intent. Enforce stable obligations. Convert recurring judgment into durable engineering structure.
 >
-> Independent industrial accounts supply a different kind of evidence: variation across systems built by
-> other organizations under different constraints.
->
-> **The first shows how the method emerged. The second asks how far its engineering grammar travels.**
+> **Repeat.**
 
-**New here:** Originating case · Support ratio · Delegation staircase · Within-case evidence · Industrial reconstructions · Comparative evidence
+The result is a cycle rather than a catalogue. A task begins from the representations, controls, and
+evidence the environment already owns. Work exposes what those structures can and cannot answer. Some
+gaps earn better models; some earn sensors, validators, constraints, or gates; some remain judgment
+because the underlying obligation is still uncertain. Each useful conversion changes what later work
+inherits. Useful durable structure becomes engineering capital when later work benefits from it. That
+capital can drift, depreciate, and cost more to maintain than it returns, so this chapter covers operation
+and retirement as well as accumulation.
 
-{{chapter:evidence}} uses two views of the evidence; [ref:two-views-of-the-evidence] sets them side by side.
-
-<!-- label: two-views-of-the-evidence -->
-<!-- figure: assets/two-views-of-the-evidence.svg | *Two views of the evidence.* The originating case supplies longitudinal depth: sequence, mechanism, and within-case recurrence. Independent industrial reconstructions supply variation across systems and organizations but less process visibility. Together they motivate the theoretical account developed in Chapter 6. -->
-
-DocAble supplies sequence, mechanism, and within-case recurrence, but not causal or population-level estimates. The eight industrial reconstructions supply variation and alternative realizations, but less process history. Together they motivate rather than establish the theoretical account developed in {{chapter:theory}}.
-
-Chapters {{chapter:modeling|num}}–{{chapter:method|num}} presented the compressed method. Here the direction reverses. {{sec:the-ada-context}}–{{sec:failures}} return to the
-originating case from which much of that terminology was induced, so the wrong turns matter. A finished
-architecture shows what exists; a longitudinal case can show **why it exists and what it replaced**. {{sec:mage-in-the-wild}}
-then asks whether independently built systems expose comparable structures. Depth supplies mechanism;
-breadth supplies variation. {{chapter:theory}} asks what general account can explain both.
+DocAble supplies the deep case. Other organizations appear where they sharpen a move. The question
+here is practical: **what should you do next?**

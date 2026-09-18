@@ -1,5 +1,5 @@
 {
- "_note": "DECLARED navigation model for the book's cartographic layer (round-7 Thrust B). The Part SEQUENCE and full titles are NOT stored here — they are read from build_book._PART_TITLES at projection time (single source of truth, renumber-safe), exactly as the outcomes model reads it. This file holds only the per-Part facts the sequence cannot carry: a short SUBWAY_LABEL (the station name on the book-level map, an abbreviation of the full title), the NEW_HERE_VOCAB (terms first deployed in that Part), and the CARRYING_FORWARD (the author-CURATED 5-8 MOST load-bearing PRIOR terms this Part builds on — NOT the full cumulative lexicon; every entry must appear in an earlier Part's new_here_vocab). CONSUMERS: (1) book-models/nav_map_model.py projects assets/nav-subway-p{1..6}.svg (book-level 'where am I in the book?' map, one highlight variant per Part). The former Part-local map family (assets/nav-local-p{1..6}.svg, driven by the now-removed LOCAL_NODES field) was retired in the round-7 opener-anatomy change and deleted in W4 cleanup — the opener keeps only the subway map. (2) book/book_typst.py reads new_here_vocab + carrying_forward to render the Part-opener verso VOCAB BLOCK natively ('Carrying forward' capped-prior band + 'New here' this-Part band), the sole local-orientation device on the leaner verso. Hand-authored SOURCE. See scratchpad/theory-book-restructure/GLOSSARY-AND-MAPS-RATIFIED-PLAN.md §1. The Part-4 lean-4 (Workflow/Migration/Validation/Skills) matches round-6; carrying_forward sets are a W3 curation flagged for author eyeball at W4.",
+ "_note": "DECLARED navigation model for the book's cartographic layer (round-7 Thrust B). The Part SEQUENCE and full titles are NOT stored here — they are read from build_book._PART_TITLES at projection time (single source of truth, renumber-safe), exactly as the outcomes model reads it. This file holds only the per-Part facts the sequence cannot carry: a short SUBWAY_LABEL (the station name on the book-level map, an abbreviation of the full title), the NEW_HERE_VOCAB (terms first deployed in that Part), and the CARRYING_FORWARD (the author-CURATED 5-8 MOST load-bearing PRIOR terms this Part builds on — NOT the full cumulative lexicon; every entry must appear in an earlier Part's new_here_vocab). CONSUMERS: (1) book-models/nav_map_model.py projects assets/nav-subway-p{1..8}.svg (book-level 'where am I in the book?' map, one highlight variant per Part). The former Part-local map family (assets/nav-local-p{1..6}.svg, driven by the now-removed LOCAL_NODES field) was retired in the round-7 opener-anatomy change and deleted in W4 cleanup — the opener keeps only the subway map. (2) book/book_typst.py reads new_here_vocab + carrying_forward to render the Part-opener verso VOCAB BLOCK natively ('Carrying forward' capped-prior band + 'New here' this-Part band), the sole local-orientation device on the leaner verso. Hand-authored SOURCE. See scratchpad/theory-book-restructure/GLOSSARY-AND-MAPS-RATIFIED-PLAN.md §1. The Part-4 lean-4 (Workflow/Migration/Validation/Skills) matches round-6; carrying_forward sets are a W3 curation flagged for author eyeball at W4.",
  "parts": {
   "1": {
    "subway_label": "The Problem",
@@ -52,6 +52,22 @@
    ]
   },
   "4": {
+   "subway_label": "Through Models",
+   "new_here_vocab": [
+    "Modeling cycle",
+    "Model family",
+    "Prediction residual"
+   ],
+   "carrying_forward": [
+    "Model",
+    "Modeling Principle",
+    "Alignment Principle",
+    "Governance Mechanism",
+    "Reasoning horizon",
+    "Governed Engineering Environment"
+   ]
+  },
+  "5": {
    "subway_label": "Method",
    "new_here_vocab": [
     "MAGE workflow",
@@ -68,7 +84,7 @@
     "Governed Engineering Environment"
    ]
   },
-  "5": {
+  "6": {
    "subway_label": "Evidence",
    "new_here_vocab": [
     "Originating case",
@@ -86,7 +102,7 @@
     "Model"
    ]
   },
-  "6": {
+  "7": {
    "subway_label": "Theory",
    "new_here_vocab": [
     "Dynamic Model",
@@ -106,7 +122,7 @@
     "Probabilistic surface"
    ]
   },
-  "7": {
+  "8": {
    "subway_label": "Profession",
    "new_here_vocab": [
     "Representation engineering"

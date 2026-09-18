@@ -101,11 +101,12 @@ PART_TITLES = {
     1: "The New Engineering Problem",
     2: "Modeling",
     3: "Alignment",
-    4: "The MAGE Method",
-    5: "The Evidence",
-    6: "The Theory",
-    7: "The Profession",
-    8: "Conclusion",
+    4: "Engineering Through Models",
+    5: "The MAGE Method",
+    6: "The Evidence",
+    7: "The Theory",
+    8: "The Profession",
+    9: "Conclusion",
 }
 
 #: Renumber-safe PART key surrogate. The outcomes DECLARED source keys each part record by a stable LABEL

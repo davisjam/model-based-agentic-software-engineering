@@ -472,36 +472,29 @@ def _collect_glossary(chapters: list[dict]) -> None:
                 _GLOSSARY[term] = m.group("def").strip()
 
 # Part number → the source subdirectory that holds its chapters. Front matter is part 0, the
-# seven numbered parts are 1–7 (Part 2 is Modeling, Part 3 is Alignment, Part 4 is The MAGE Method,
-# Part 5 is The Evidence, Part 6 is The Theory, Part 7 is The Profession — the substantive argument +
-# case + theory + closing chapters), true back matter (the top-level Conclusion) is part 8. Appendix
-# parts follow.
-# The Interlude ("One Problem, Many Models") is unnumbered MATTER that sorts BETWEEN Part 3 (Alignment)
-# and Part 4 (The MAGE Method) — hence the float part number 3.5, which orders correctly in the
-# `(part, chapter)` sort without colliding with any numbered Part. Its single source file carries no
-# `N.M-` chapter prefix (that regex would misparse "3.5-…" as part 3 chapter 5), so discovery
-# special-cases it below rather than routing it through `_PART_CHAP_RE`.
-_INTERLUDE_PART = 3.5
-
+# eight numbered parts are 1–8 (Part 2 is Modeling, Part 3 is Alignment, Part 4 is Engineering Through
+# Models — the promoted worked-problem chapter — Part 5 is The MAGE Method, Part 6 is The Evidence,
+# Part 7 is The Theory, Part 8 is The Profession — the substantive argument + case + theory + closing
+# chapters), true back matter (the top-level Conclusion) is part 9. Appendix parts follow.
 _PART_DIRS = {
     0: "frontmatter",
     1: "part1",
     2: "part2",
     3: "part3",
-    _INTERLUDE_PART: "interlude",
     4: "part4",
     5: "part5",
     6: "part6",
     7: "part7",
-    8: "conclusion",   # the top-level Conclusion — an unnumbered MATTER part, parallel to the Preface
+    8: "part8",
+    9: "conclusion",   # the top-level Conclusion — an unnumbered MATTER part, parallel to the Preface
     # The back-matter apparatus (Colophon, About-the-Author) is NOT discovered here: it is a synthetic
     # post-appendix tail assembled by `build_backmatter_chapters` (mirrors `build_appendix_chapters`).
 }
 
 # The parts rendered as UNNUMBERED matter (no "Chapter N" kicker, own TOC/bookmark group): front matter (0)
-# and the top-level Conclusion (8). The synthetic post-appendix back matter sets `is_matter` on its own
+# and the top-level Conclusion (9). The synthetic post-appendix back matter sets `is_matter` on its own
 # records (its part number is dynamic — above the appendices), so it need not be listed here.
-_MATTER_PARTS = frozenset({0, _INTERLUDE_PART, 8})
+_MATTER_PARTS = frozenset({0, 9})
 
 # Part number → its display title (mirrors the `part-title` metadata; kept here so a part with no
 # chapters still names correctly, and so the TOC/index label is authoritative from one place).
@@ -510,12 +503,12 @@ _PART_TITLES = {
     1: "The New Engineering Problem",
     2: "Modeling",
     3: "Alignment",
-    _INTERLUDE_PART: "Interlude",
-    4: "The MAGE Method",
-    5: "The Evidence",
-    6: "The Theory",
-    7: "The Profession",
-    8: "Conclusion",   # the top-level Conclusion — its sole page is titled "Conclusion" too (subtitle dropped 260909), so the header/TOC/divider dedup branches suppress the double print
+    4: "Engineering Through Models",
+    5: "The MAGE Method",
+    6: "The Evidence",
+    7: "The Theory",
+    8: "The Profession",
+    9: "Conclusion",   # the top-level Conclusion — its sole page is titled "Conclusion" too (subtitle dropped 260909), so the header/TOC/divider dedup branches suppress the double print
 }
 
 # Chapter identity → its top-level unit number. The ONE place a renumber edits the number a
@@ -524,17 +517,17 @@ _PART_TITLES = {
 # label is a frozen identity (assigned once, survives BOTH renumber and retitle), mirroring the
 # chapter_identity model's rule; `{{chapter:<label>}}` renders "Chapter N" with the number DERIVED
 # here, so a prose reference can never carry a stale number after the chapters are re-ordered. The
-# interlude carries a label too (so a remap survives the promotion that numbers it) but resolves to a
-# matter/float part, so a `{{chapter:one-problem-many-models}}` reference fails loud until it is numbered.
+# label is frozen (survives the promotion) and now resolves to a numbered part like every other. "One
+# Problem, Many Models" was promoted from an unnumbered interlude to Chapter 4 (Engineering Through Models).
 _CHAPTER_LABELS: "dict[str, int | float]" = {
     "problem": 1,
     "modeling": 2,
     "alignment": 3,
-    "one-problem-many-models": _INTERLUDE_PART,   # the interlude; the promotion numbers it Chapter 4
-    "method": 4,
-    "evidence": 5,
-    "theory": 6,
-    "profession": 7,
+    "one-problem-many-models": 4,   # promoted from the interlude to Chapter 4
+    "method": 5,
+    "evidence": 6,
+    "theory": 7,
+    "profession": 8,
 }
 
 
@@ -559,22 +552,24 @@ _assert_chapter_label_parity()
 
 
 # The DO-ladder question each numbered Part answers — printed on the Part-opener orientation verso (the
-# PDF spread) under a fixed label. One question per Part 1-6, matching the corrected outcomes model: each
-# Part is framed by the single reasoning move the reader learns to make. Part 1 is the mindset opener (a
-# "why", the new-engineering-problem setup — what abundant implementation makes scarce), not an
-# instrumental "how do I"; Parts 2-4 are "how do I", Part 5 a "why", Part 6 a "where". Single source of
-# truth: book_typst.py reads these (imported as `bb`) for the
-# orientation verso AND the PART-OPENER SPREAD sensor greps the same label + strings, so the print divider
-# and its gate cannot disagree on which question a Part carries.
+# PDF spread) under a fixed label. One question per Part 1-8: each Part is framed by the single reasoning
+# move the reader learns to make. Part 1 is the mindset opener (a "why", the new-engineering-problem
+# setup — what abundant implementation makes scarce), not an instrumental "how do I"; Parts 2-3 are "how
+# do I" (the mechanisms), Part 4 a "what happens" (the promoted dynamics chapter), Part 5 a "how do I"
+# (the method), Part 6 a "what evidence", Part 7 a "how/where", Part 8 a "what follows". Single source of
+# truth: book_typst.py reads these (imported as `bb`) for the orientation verso AND the PART-OPENER SPREAD
+# sensor greps the same label + strings, so the print divider and its gate cannot disagree on which
+# question a Part carries.
 _PART_OPENER_QUESTION_LABEL = "Question this Chapter answers"
 _PART_OPENER_QUESTIONS = {
     1: "What becomes the engineering problem when implementation becomes abundant?",
     2: "How do I identify useful models?",
     3: "How do I make engineering obligations enforceable in my environment?",
-    4: "How do I practice MAGE?",
-    5: "What evidence supports MAGE?",
-    6: "How does MAGE work, what should follow if the account is right, and where should we expect it to apply?",
-    7: "What follows for software engineering—and what does the software case reveal about agentic engineering beyond software?",
+    4: "What happens when Modeling and Alignment are used together during actual engineering, where the right representation—and even the problem itself—is still being discovered?",
+    5: "How do I practice MAGE?",
+    6: "What evidence supports MAGE?",
+    7: "How does MAGE work, what should follow if the account is right, and where should we expect it to apply?",
+    8: "What follows for software engineering—and what does the software case reveal about agentic engineering beyond software?",
 }
 
 # Per-Part epigraph map — EMPTY by author's call: the per-Part opener epigraphs (once (quote,
@@ -631,7 +626,7 @@ _DATA_SOURCE_STEM: "dict[str, str] | None" = None
 
 def _chapter_stem_for(label: str) -> str:
     """A data-claim `source` is a number-free identity LABEL now (chapter_identity model); resolve it to the
-    numbered file stem (`the-timeline-and-the-work` -> `5.2-the-timeline-and-the-work`) that keys the build's
+    numbered file stem (`the-timeline-and-the-work` -> `6.2-the-timeline-and-the-work`) that keys the build's
     slug->title map and names the built HTML page. A value that is not a bare label (legacy numbered stem)
     passes through unchanged, so a half-migrated field still renders."""
     global _DATA_SOURCE_STEM
@@ -1213,13 +1208,8 @@ def _discover_chapters(metrics: dict[str, str]) -> list[dict]:
         if not d.is_dir():
             continue
         for p in sorted(d.glob("*.md")):
-            if part == _INTERLUDE_PART:
-                # The interlude is a single unnumbered matter document with no `N.M-` prefix; parse it
-                # directly as chapter 1 rather than through `_PART_CHAP_RE` (which would misread it).
-                found.append(parse_chapter(p, _INTERLUDE_PART, 1, metrics))
-                continue
             if p.stem == _PART_INTRO_STEM:
-                # A numbered Part's landing page. Front matter (0) and the top-level Conclusion (8 — matter)
+                # A numbered Part's landing page. Front matter (0) and the top-level Conclusion (9 — matter)
                 # are not numbered Parts, so they carry no landing page even if a stray intro file appears.
                 if part not in _MATTER_PARTS:
                     found.append(_parse_part_intro(p, part, metrics))
@@ -1235,7 +1225,7 @@ def _discover_chapters(metrics: dict[str, str]) -> list[dict]:
             found.append(parse_chapter(p, part, chapter, metrics))
     found.sort(key=lambda c: (c["part"], c["chapter"]))
     # Derive the sequential chapter number — single source of truth is the filesystem order over the
-    # numbered body Parts (1-5). Front/back matter (is_matter) is unnumbered and skipped. This replaces
+    # numbered body Parts (1-8). Front/back matter (is_matter) is unnumbered and skipped. This replaces
     # the old hand-typed "# Chapter N ·" H1 (which the build drops anyway), so a chapter number can never
     # drift again: renumbering is just moving a file.
     seq = 0
@@ -2464,10 +2454,10 @@ def _roadmap_nav_html(current_part: int) -> str:
                 f'aria-label="{html.escape(label, quote=True)}">'
                 f'<g id="bm-part-{n}" class="bm-part">{inner}</g></a>')
 
-    svg = re.sub(r'<g id="bm-part-(?P<n>[1-7])" class="bm-part">(?P<inner>.*?)</g>', decorate, svg, flags=re.S)
+    svg = re.sub(r'<g id="bm-part-(?P<n>[1-8])" class="bm-part">(?P<inner>.*?)</g>', decorate, svg, flags=re.S)
 
     items: list[str] = []
-    for n in range(1, 8):
+    for n in range(1, 9):
         label = html.escape(f'Chapter {n} — {_PART_TITLES.get(n, "")}')
         if n == current_part:
             items.append(f'<li aria-current="page">{label} (current chapter)</li>')
@@ -5914,7 +5904,7 @@ def _pdf_part_opener_spread(pdf_path: pathlib.Path, part_titles: dict[int, str],
     normed = [norm(t) for t in per_page]                 # title-case, for the divider-heading match
     normed_upper = [t.upper() for t in normed]           # for the uppercase apparatus-marker match
     results: list[dict] = []
-    for part in range(1, 8):
+    for part in range(1, 9):
         div = norm(f"Chapter {part}: {part_titles[part]}")  # divider heading, title-case ("Chapter N: Title" — renderer SSOT)
         # The verso carries the title heading AND the orientation apparatus; disambiguate on the apparatus so a
         # stray TOC/outline line echoing the heading is never mistaken for the orientation page.
@@ -6704,12 +6694,10 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
         part = ch.part  # type: ignore[attr-defined]
         if part == 0:
             return "FrontMatter"
-        if part == _INTERLUDE_PART:
-            return "Interlude"   # unnumbered matter between Parts 3 and 4 → its own mage-book-Interlude.pdf
-        if 1 <= part <= 7:
+        if 1 <= part <= 8:
             return f"Chapter{part}"
-        if part == 8:
-            return "Conclusion"   # the top-level Conclusion (matter part 8)
+        if part == 9:
+            return "Conclusion"   # the top-level Conclusion (matter part 9)
         if getattr(ch, "is_matter", False):
             return "BackMatter"   # the synthetic post-appendix apparatus (Colophon, About-the-Author)
         return "Appendices"
@@ -6725,9 +6713,9 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
             buckets[key] = []
             order.append(key)
         buckets[key].append(ch.slug)
-        # The per-appendix split (below) keys off the appendix parts ≥ 8; the synthetic back matter also sits
+        # The per-appendix split (below) keys off the appendix parts ≥ 9; the synthetic back matter also sits
         # above the appendices but is NOT an appendix — exclude it so it never mints a bogus per-appendix PDF.
-        if ch.part >= 8 and not getattr(ch, "is_matter", False):
+        if ch.part >= 9 and not getattr(ch, "is_matter", False):
             if ch.part not in appendix_slugs:
                 appendix_slugs[ch.part] = []
                 appendix_order.append(ch.part)
@@ -6777,10 +6765,10 @@ def build_pdf_split() -> int:
     print(f"\n== Per-section split PDFs ({len(sections)} sections; review aid, no whole-book gate) ==")
     produced: "list[tuple[str, int]]" = []
     failures: "list[str]" = []
-    # `sections` is already in whole-book reading order (front matter → Parts → Interlude → Conclusion →
+    # `sections` is already in whole-book reading order (front matter → Parts → Conclusion →
     # appendices). Stamp each filename with a zero-padded reading-order index so an alphabetical
     # filesystem sort (macOS Finder, `ls`) reproduces the book's order: mage-book-00-FrontMatter.pdf,
-    # …-04-Interlude.pdf, …-05-Part4.pdf, … . Two digits cover the ~20 sections without a width overflow.
+    # …-04-Chapter4.pdf, …-05-Chapter5.pdf, … . Two digits cover the ~20 sections without a width overflow.
     for idx, (suffix, slugs) in enumerate(sections):
         pdf_out = HERE / f"{base}-{idx:02d}-{suffix}.pdf"
         if not slugs:

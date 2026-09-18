@@ -1,12 +1,35 @@
 {
-  "_schema": {
-    "purpose": "Override registry for the heading-case Title-Case sensor (book-models/lint_heading_case.py). A heading whose CLEANED text (section number + {anchor} stripped) exactly matches an 'overrides[].heading' value is never flagged, even if the algorithm would suggest a different casing. Seed only with GENUINELY intentional exceptions the stop-word/proper-noun rule cannot express.",
-    "entry": { "heading": "<exact cleaned heading text>", "reason": "<why this casing is intentional>" }
+ "_schema": {
+  "purpose": "Override registry for the heading-case Title-Case sensor (book-models/lint_heading_case.py). A heading whose CLEANED text (section number + {anchor} stripped) exactly matches an 'overrides[].heading' value is never flagged, even if the algorithm would suggest a different casing. Seed only with GENUINELY intentional exceptions the stop-word/proper-noun rule cannot express.",
+  "entry": {
+   "heading": "<exact cleaned heading text>",
+   "reason": "<why this casing is intentional>"
+  }
+ },
+ "overrides": [
+  {
+   "heading": "self-communicate",
+   "reason": "Bare skill-package identifier used as a section heading in the skill-recipe appendix. The package is a lowercase code identifier (referenced lowercase in body prose and the `terms:` metadata tags); preserve the authored identifier casing rather than title-case a code name."
   },
-  "overrides": [
-    { "heading": "self-communicate", "reason": "Bare skill-package identifier used as a section heading in the skill-recipe appendix. The package is a lowercase code identifier (referenced lowercase in body prose and the `terms:` metadata tags); preserve the authored identifier casing rather than title-case a code name." },
-    { "heading": "self-governance", "reason": "Bare skill-package identifier used as a section heading; lowercase code identifier per body prose and `terms:` tags — preserve authored casing." },
-    { "heading": "self-operate", "reason": "Bare skill-package identifier used as a section heading; lowercase code identifier per body prose and `terms:` tags — preserve authored casing." },
-    { "heading": "The Canonical Move: From Observability to Provenance", "reason": "Chicago capitalizes the first word of a subtitle after a colon regardless of part of speech; 'From' is the subtitle-initial word, which the stop-word rule cannot express." }
-  ]
+  {
+   "heading": "self-governance",
+   "reason": "Bare skill-package identifier used as a section heading; lowercase code identifier per body prose and `terms:` tags — preserve authored casing."
+  },
+  {
+   "heading": "self-operate",
+   "reason": "Bare skill-package identifier used as a section heading; lowercase code identifier per body prose and `terms:` tags — preserve authored casing."
+  },
+  {
+   "heading": "The Canonical Move: From Observability to Provenance",
+   "reason": "Chicago capitalizes the first word of a subtitle after a colon regardless of part of speech; 'From' is the subtitle-initial word, which the stop-word rule cannot express."
+  },
+  {
+   "heading": "III. A New Class of Input",
+   "reason": "Roman-numeral section heading in Chapter 4 (Engineering Through Models). 'A' is the FIRST content word of the title ('A New Class of Input') and is correctly capitalized; the Title-Case sensor does not treat the leading Roman-numeral marker as a section prefix, so it mis-lowercases the article that opens the title."
+  },
+  {
+   "heading": "VII. The Resulting Model Family",
+   "reason": "Roman-numeral section heading in Chapter 4 (Engineering Through Models). 'The' is the FIRST content word of the title ('The Resulting Model Family') and is correctly capitalized; the sensor mis-lowercases it because the leading Roman-numeral marker is not recognized as a section prefix."
+  }
+ ]
 }

@@ -234,28 +234,28 @@
         ]
       },
       {
-        "module": "part-3.5",
-        "number": 3.5,
-        "title": "Part 3.5",
+        "module": "part-4",
+        "number": 4,
+        "title": "Engineering Through Models",
         "own_outcomes": [],
         "lessons": [
           {
-            "lesson": "3.5-one-problem-many-models",
+            "lesson": "4.1-one-problem-many-models",
             "own_outcomes": [],
             "section_outcomes": []
           }
         ]
       },
       {
-        "module": "part-4",
-        "number": 4,
+        "module": "part-5",
+        "number": 5,
         "title": "The MAGE Method",
         "own_outcomes": [
-          "part-4::apply-the-method-to-a-real-codebase-running-th"
+          "part-5::apply-the-method-to-a-real-codebase-running-th"
         ],
         "lessons": [
           {
-            "lesson": "4.1-the-mage-workflow",
+            "lesson": "5.1-the-mage-workflow",
             "own_outcomes": [],
             "section_outcomes": [
               "guidance-or-enforcement::classify-a-mechanism-on-the-soft-to-hard-spectrum",
@@ -264,12 +264,12 @@
             ]
           },
           {
-            "lesson": "4.2-brownfield",
+            "lesson": "5.2-brownfield",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "4.3-validating-change",
+            "lesson": "5.3-validating-change",
             "own_outcomes": [],
             "section_outcomes": [
               "generate-falsifying-evidence::apply-the-core-generative-validation-move-a-ge",
@@ -277,10 +277,10 @@
             ]
           },
           {
-            "lesson": "4.4-operating-mage",
+            "lesson": "5.4-operating-mage",
             "own_outcomes": [
-              "4.4-operating-mage::author-a-lifecycle-and-a-runbook-that-splits-th",
-              "4.4-operating-mage::design-a-metric-that-measures-one-level-deeper"
+              "5.4-operating-mage::author-a-lifecycle-and-a-runbook-that-splits-th",
+              "5.4-operating-mage::design-a-metric-that-measures-one-level-deeper"
             ],
             "section_outcomes": [
               "model-the-lifecycle::map-a-lifecycle-s-healthy-path-and-the-failu",
@@ -293,7 +293,7 @@
             ]
           },
           {
-            "lesson": "4.5-packaging-the-method-as-skills",
+            "lesson": "5.5-packaging-the-method-as-skills",
             "own_outcomes": [],
             "section_outcomes": [
               "self-governance-engineering-the-environment::use-the-self-governance-skill-convert-a-recu"
@@ -302,63 +302,63 @@
         ]
       },
       {
-        "module": "part-5",
-        "number": 5,
+        "module": "part-6",
+        "number": 6,
         "title": "The Evidence",
         "own_outcomes": [
-          "part-5::trace-the-method-s-evolution-through-a-real-ac"
+          "part-6::trace-the-method-s-evolution-through-a-real-ac"
         ],
         "lessons": [
           {
-            "lesson": "5.1-the-problem-and-the-bar",
+            "lesson": "6.1-the-problem-and-the-bar",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "5.2-the-build",
+            "lesson": "6.2-the-build",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "5.3-the-road-to-mage",
+            "lesson": "6.3-the-road-to-mage",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "5.4-failures-that-became-infrastructure",
+            "lesson": "6.4-failures-that-became-infrastructure",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "5.5-mage-in-the-wild",
+            "lesson": "6.5-mage-in-the-wild",
             "own_outcomes": [],
             "section_outcomes": []
           }
         ]
       },
       {
-        "module": "part-6",
-        "number": 6,
+        "module": "part-7",
+        "number": 7,
         "title": "The Theory",
         "own_outcomes": [],
         "lessons": [
           {
-            "lesson": "6.1-toward-a-theory-of-mage",
+            "lesson": "7.1-toward-a-theory-of-mage",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.2-what-the-theory-predicts",
+            "lesson": "7.2-what-the-theory-predicts",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.3-scope-conditions",
+            "lesson": "7.3-scope-conditions",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.4-research-agenda",
+            "lesson": "7.4-research-agenda",
             "own_outcomes": [],
             "section_outcomes": [
               "subsystem-level-design::compare-engineering-surfaces-that-differ-in-repr"
@@ -367,43 +367,43 @@
         ]
       },
       {
-        "module": "part-7",
-        "number": 7,
+        "module": "part-8",
+        "number": 8,
         "title": "The Profession",
         "own_outcomes": [
-          "part-7::evaluate-what-the-method-changes-for-how-software"
+          "part-8::evaluate-what-the-method-changes-for-how-software"
         ],
         "lessons": [
           {
-            "lesson": "7.1-reorganization-of-se",
+            "lesson": "8.1-reorganization-of-se",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "7.2-software-rejoins-engineering",
+            "lesson": "8.2-software-rejoins-engineering",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "7.3-agentic-engineering-beyond-software",
+            "lesson": "8.3-agentic-engineering-beyond-software",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "7.4-the-engineer",
+            "lesson": "8.4-the-engineer",
             "own_outcomes": [],
             "section_outcomes": []
           }
         ]
       },
       {
-        "module": "part-8",
-        "number": 8,
+        "module": "part-9",
+        "number": 9,
         "title": "Conclusion",
         "own_outcomes": [],
         "lessons": [
           {
-            "lesson": "8.1-the-part-that-stays-yours",
+            "lesson": "9.1-the-part-that-stays-yours",
             "own_outcomes": [],
             "section_outcomes": []
           }
@@ -500,11 +500,11 @@
       "gap_note": null
     },
     {
-      "outcome_id": "part-4::apply-the-method-to-a-real-codebase-running-th",
+      "outcome_id": "part-5::apply-the-method-to-a-real-codebase-running-th",
       "granularity": "part",
-      "primary_unit": "part-4",
+      "primary_unit": "part-5",
       "secondary_units": [
-        "part-5"
+        "part-6"
       ],
       "verb": "apply",
       "obj": "the method to a real codebase — running the MAGE workflow loop, inducing models from brownfield code, wielding the skills, holding the result with generative validation, and converting recurring failures into mechanisms",
@@ -515,9 +515,9 @@
       "gap_note": null
     },
     {
-      "outcome_id": "part-5::trace-the-method-s-evolution-through-a-real-ac",
+      "outcome_id": "part-6::trace-the-method-s-evolution-through-a-real-ac",
       "granularity": "part",
-      "primary_unit": "part-5",
+      "primary_unit": "part-6",
       "secondary_units": [],
       "verb": "trace",
       "obj": "the method's evolution through a real accessibility-remediation system",
@@ -528,9 +528,9 @@
       "gap_note": null
     },
     {
-      "outcome_id": "part-7::evaluate-what-the-method-changes-for-how-software",
+      "outcome_id": "part-8::evaluate-what-the-method-changes-for-how-software",
       "granularity": "part",
-      "primary_unit": "part-7",
+      "primary_unit": "part-8",
       "secondary_units": [
         "conclusion",
         "mage-in-the-wild"
@@ -544,9 +544,9 @@
       "gap_note": null
     },
     {
-      "outcome_id": "4.4-operating-mage::author-a-lifecycle-and-a-runbook-that-splits-th",
+      "outcome_id": "5.4-operating-mage::author-a-lifecycle-and-a-runbook-that-splits-th",
       "granularity": "chapter",
-      "primary_unit": "4.4-operating-mage",
+      "primary_unit": "5.4-operating-mage",
       "secondary_units": [],
       "verb": "author",
       "obj": "a lifecycle and a runbook that splits the deterministic from the judgment",
@@ -557,9 +557,9 @@
       "gap_note": null
     },
     {
-      "outcome_id": "4.4-operating-mage::design-a-metric-that-measures-one-level-deeper",
+      "outcome_id": "5.4-operating-mage::design-a-metric-that-measures-one-level-deeper",
       "granularity": "chapter",
-      "primary_unit": "4.4-operating-mage",
+      "primary_unit": "5.4-operating-mage",
       "secondary_units": [
         "generative-validation"
       ],
@@ -648,7 +648,7 @@
       "statement": "After this chapter, the reader can trace how a failure becomes durable engineering capital (or deliberately remains provisional), distinguish the ex-post and ex-ante paths, and state what a single longitudinal case can and cannot establish.",
       "bloom": "analyze",
       "provenance": "declared",
-      "anchor": "The eight episode sections under the standardized template ('The instruction satisfied to the letter' through 'Measurement: the story that stops before the gate', 5.4.1-5.4.8), the ex-ante confirmation 'Not every useful structure has an incident arc' (5.4.9), and the bounded epistemic close 'What this case supports' (5.4.10) in the chapter with identity label 'failures'.",
+      "anchor": "The eight episode sections under the standardized template ('The instruction satisfied to the letter' through 'Measurement: the story that stops before the gate', 6.4.1-6.4.8), the ex-ante confirmation 'Not every useful structure has an incident arc' (6.4.9), and the bounded epistemic close 'What this case supports' (6.4.10) in the chapter with identity label 'failures'.",
       "gap_note": null
     },
     {

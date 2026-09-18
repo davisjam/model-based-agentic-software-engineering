@@ -152,7 +152,7 @@ def findings() -> "list[DanglingRef]":
 #: Engineer's Day section. The former bound stopped at '## The Engineer', which SILENTLY skipped the
 #: Engineer's Day card refs (that is where the `[Daily Review]` label drifted from its card's 'Daily Operator
 #: Review' title unchecked); widening to EOF label-checks every named card/appendix destination in Part IV's tail.
-_CLOSE_FILE = "part4/4.6-portable-moves.md"
+_CLOSE_FILE = "part5/5.6-portable-moves.md"
 _CLOSE_START = "# Closing"
 _CLOSE_END = None  # None ⇒ scan to end-of-file (the close is Part IV's last region)
 #: A `[label](slug.html[#anchor])` link whose slug is a numbered chapter stem or an appendix-D card page.

@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 842,
+    "total_sites": 845,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 500,
+      "book-web": 503,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -72,83 +72,83 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/3.5-one-problem-many-models.md",
+            "file": "book/web/docs/4.1-one-problem-many-models.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/4.1-the-mage-workflow.md",
+            "file": "book/web/docs/5.1-the-mage-workflow.md",
             "occ": 15
           },
           {
-            "file": "book/web/docs/4.2-brownfield.md",
+            "file": "book/web/docs/5.2-brownfield.md",
             "occ": 10
           },
           {
-            "file": "book/web/docs/4.3-validating-change.md",
+            "file": "book/web/docs/5.3-validating-change.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/4.4-operating-mage.md",
+            "file": "book/web/docs/5.4-operating-mage.md",
             "occ": 13
           },
           {
-            "file": "book/web/docs/4.5-packaging-the-method-as-skills.md",
+            "file": "book/web/docs/5.5-packaging-the-method-as-skills.md",
             "occ": 34
           },
           {
-            "file": "book/web/docs/4.6-portable-moves.md",
+            "file": "book/web/docs/5.6-portable-moves.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/5.2-the-build.md",
+            "file": "book/web/docs/6.2-the-build.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/5.3-the-road-to-mage.md",
+            "file": "book/web/docs/6.3-the-road-to-mage.md",
             "occ": 7
           },
           {
-            "file": "book/web/docs/5.4-failures-that-became-infrastructure.md",
+            "file": "book/web/docs/6.4-failures-that-became-infrastructure.md",
             "occ": 9
           },
           {
-            "file": "book/web/docs/5.5-mage-in-the-wild.md",
+            "file": "book/web/docs/6.5-mage-in-the-wild.md",
             "occ": 15
           },
           {
-            "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
+            "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
             "occ": 19
           },
           {
-            "file": "book/web/docs/6.2-what-the-theory-predicts.md",
+            "file": "book/web/docs/7.2-what-the-theory-predicts.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/6.3-scope-conditions.md",
+            "file": "book/web/docs/7.3-scope-conditions.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/6.4-research-agenda.md",
+            "file": "book/web/docs/7.4-research-agenda.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/7.1-reorganization-of-se.md",
+            "file": "book/web/docs/8.1-reorganization-of-se.md",
             "occ": 17
           },
           {
-            "file": "book/web/docs/7.2-software-rejoins-engineering.md",
+            "file": "book/web/docs/8.2-software-rejoins-engineering.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "file": "book/web/docs/8.3-agentic-engineering-beyond-software.md",
             "occ": 20
           },
           {
-            "file": "book/web/docs/7.4-the-engineer.md",
+            "file": "book/web/docs/8.4-the-engineer.md",
             "occ": 5
           },
           {
-            "file": "book/web/docs/8.1-the-part-that-stays-yours.md",
+            "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
             "occ": 3
           },
           {
@@ -648,31 +648,31 @@
             "occ": 4
           },
           {
-            "file": "book/web/docs/4.2-brownfield.md",
+            "file": "book/web/docs/5.2-brownfield.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/4.3-validating-change.md",
+            "file": "book/web/docs/5.3-validating-change.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/5.2-the-build.md",
+            "file": "book/web/docs/6.2-the-build.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
+            "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
             "occ": 13
           },
           {
-            "file": "book/web/docs/6.2-what-the-theory-predicts.md",
+            "file": "book/web/docs/7.2-what-the-theory-predicts.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/6.4-research-agenda.md",
+            "file": "book/web/docs/7.4-research-agenda.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/6.5-what-the-theory-claims.md",
+            "file": "book/web/docs/7.5-what-the-theory-claims.md",
             "occ": 1
           },
           {
@@ -704,7 +704,7 @@
             "occ": 34
           },
           {
-            "file": "book/web/docs/part-6-intro.md",
+            "file": "book/web/docs/part-7-intro.md",
             "occ": 1
           }
         ],
@@ -822,7 +822,7 @@
       "book": {
         "book-web": [
           {
-            "file": "book/web/docs/4.3-validating-change.md",
+            "file": "book/web/docs/5.3-validating-change.md",
             "occ": 1
           },
           {
@@ -885,7 +885,7 @@
           },
           {
             "file": "book/web/docs/0.1-how-to-read-this-book.md",
-            "occ": 24
+            "occ": 26
           },
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
@@ -961,122 +961,122 @@
           },
           {
             "file": "book/web/docs/3.1-where-obligations-can-be-enforced.md",
-            "occ": 17
+            "occ": 18
           },
           {
             "file": "book/web/docs/3.2-models-and-the-semantic-gap.md",
-            "occ": 15
+            "occ": 16
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 26
-          },
-          {
-            "file": "book/web/docs/3.4-governance-conversion.md",
-            "occ": 22
-          },
-          {
-            "file": "book/web/docs/3.5-one-problem-many-models.md",
-            "occ": 19
-          },
-          {
-            "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 8
-          },
-          {
-            "file": "book/web/docs/3.6-alignment-summary.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/4.1-the-mage-workflow.md",
-            "occ": 44
-          },
-          {
-            "file": "book/web/docs/4.2-brownfield.md",
-            "occ": 29
-          },
-          {
-            "file": "book/web/docs/4.3-validating-change.md",
-            "occ": 15
-          },
-          {
-            "file": "book/web/docs/4.4-operating-mage.md",
-            "occ": 22
-          },
-          {
-            "file": "book/web/docs/4.5-packaging-the-method-as-skills.md",
             "occ": 27
           },
           {
-            "file": "book/web/docs/4.6-portable-moves.md",
-            "occ": 4
+            "file": "book/web/docs/3.4-governance-conversion.md",
+            "occ": 23
           },
           {
-            "file": "book/web/docs/5.1-the-problem-and-the-bar.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/5.2-the-build.md",
-            "occ": 15
-          },
-          {
-            "file": "book/web/docs/5.3-the-road-to-mage.md",
-            "occ": 20
-          },
-          {
-            "file": "book/web/docs/5.4-failures-that-became-infrastructure.md",
-            "occ": 21
-          },
-          {
-            "file": "book/web/docs/5.5-mage-in-the-wild.md",
-            "occ": 62
-          },
-          {
-            "file": "book/web/docs/5.6-what-the-evidence-supports.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 80
-          },
-          {
-            "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 26
-          },
-          {
-            "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 43
-          },
-          {
-            "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 42
-          },
-          {
-            "file": "book/web/docs/6.5-what-the-theory-claims.md",
+            "file": "book/web/docs/3.5-when-guardrails-collide.md",
             "occ": 9
           },
           {
-            "file": "book/web/docs/7.1-reorganization-of-se.md",
-            "occ": 85
+            "file": "book/web/docs/3.6-alignment-summary.md",
+            "occ": 7
           },
           {
-            "file": "book/web/docs/7.2-software-rejoins-engineering.md",
-            "occ": 64
+            "file": "book/web/docs/4.1-one-problem-many-models.md",
+            "occ": 23
           },
           {
-            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
-            "occ": 80
+            "file": "book/web/docs/5.1-the-mage-workflow.md",
+            "occ": 44
           },
           {
-            "file": "book/web/docs/7.4-the-engineer.md",
-            "occ": 114
+            "file": "book/web/docs/5.2-brownfield.md",
+            "occ": 29
           },
           {
-            "file": "book/web/docs/7.5-what-cannot-be-delegated.md",
+            "file": "book/web/docs/5.3-validating-change.md",
+            "occ": 15
+          },
+          {
+            "file": "book/web/docs/5.4-operating-mage.md",
+            "occ": 22
+          },
+          {
+            "file": "book/web/docs/5.5-packaging-the-method-as-skills.md",
+            "occ": 27
+          },
+          {
+            "file": "book/web/docs/5.6-portable-moves.md",
+            "occ": 4
+          },
+          {
+            "file": "book/web/docs/6.1-the-problem-and-the-bar.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/8.1-the-part-that-stays-yours.md",
+            "file": "book/web/docs/6.2-the-build.md",
+            "occ": 15
+          },
+          {
+            "file": "book/web/docs/6.3-the-road-to-mage.md",
+            "occ": 20
+          },
+          {
+            "file": "book/web/docs/6.4-failures-that-became-infrastructure.md",
+            "occ": 21
+          },
+          {
+            "file": "book/web/docs/6.5-mage-in-the-wild.md",
+            "occ": 62
+          },
+          {
+            "file": "book/web/docs/6.6-what-the-evidence-supports.md",
+            "occ": 3
+          },
+          {
+            "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
+            "occ": 80
+          },
+          {
+            "file": "book/web/docs/7.2-what-the-theory-predicts.md",
+            "occ": 26
+          },
+          {
+            "file": "book/web/docs/7.3-scope-conditions.md",
+            "occ": 43
+          },
+          {
+            "file": "book/web/docs/7.4-research-agenda.md",
+            "occ": 42
+          },
+          {
+            "file": "book/web/docs/7.5-what-the-theory-claims.md",
+            "occ": 9
+          },
+          {
+            "file": "book/web/docs/8.1-reorganization-of-se.md",
+            "occ": 85
+          },
+          {
+            "file": "book/web/docs/8.2-software-rejoins-engineering.md",
+            "occ": 64
+          },
+          {
+            "file": "book/web/docs/8.3-agentic-engineering-beyond-software.md",
+            "occ": 80
+          },
+          {
+            "file": "book/web/docs/8.4-the-engineer.md",
+            "occ": 114
+          },
+          {
+            "file": "book/web/docs/8.5-what-cannot-be-delegated.md",
+            "occ": 3
+          },
+          {
+            "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
             "occ": 29
           },
           {
@@ -1369,11 +1369,11 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 312
+            "occ": 314
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 22
+            "occ": 24
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1381,37 +1381,41 @@
           },
           {
             "file": "book/web/docs/part-1-intro.md",
-            "occ": 25
+            "occ": 28
           },
           {
             "file": "book/web/docs/part-2-intro.md",
-            "occ": 22
+            "occ": 25
           },
           {
             "file": "book/web/docs/part-3-intro.md",
-            "occ": 30
+            "occ": 34
           },
           {
             "file": "book/web/docs/part-4-intro.md",
-            "occ": 14
-          },
-          {
-            "file": "book/web/docs/part-5-intro.md",
-            "occ": 12
-          },
-          {
-            "file": "book/web/docs/part-6-intro.md",
             "occ": 20
           },
           {
+            "file": "book/web/docs/part-5-intro.md",
+            "occ": 17
+          },
+          {
+            "file": "book/web/docs/part-6-intro.md",
+            "occ": 15
+          },
+          {
             "file": "book/web/docs/part-7-intro.md",
-            "occ": 19
+            "occ": 23
+          },
+          {
+            "file": "book/web/docs/part-8-intro.md",
+            "occ": 22
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 132
+            "occ": 133
           }
         ]
       },
@@ -1451,7 +1455,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 79
+            "occ": 78
           },
           {
             "file": "catalogue-figure.html",
@@ -1550,10 +1554,6 @@
             "occ": 7
           },
           {
-            "file": "book/web/docs/3.5-one-problem-many-models.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
             "occ": 1
           },
@@ -1562,63 +1562,67 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/4.2-brownfield.md",
+            "file": "book/web/docs/4.1-one-problem-many-models.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/4.5-packaging-the-method-as-skills.md",
+            "file": "book/web/docs/5.2-brownfield.md",
+            "occ": 1
+          },
+          {
+            "file": "book/web/docs/5.5-packaging-the-method-as-skills.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/5.3-the-road-to-mage.md",
+            "file": "book/web/docs/6.3-the-road-to-mage.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/5.4-failures-that-became-infrastructure.md",
+            "file": "book/web/docs/6.4-failures-that-became-infrastructure.md",
             "occ": 9
           },
           {
-            "file": "book/web/docs/5.5-mage-in-the-wild.md",
+            "file": "book/web/docs/6.5-mage-in-the-wild.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
+            "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
             "occ": 6
           },
           {
-            "file": "book/web/docs/6.2-what-the-theory-predicts.md",
+            "file": "book/web/docs/7.2-what-the-theory-predicts.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/6.3-scope-conditions.md",
+            "file": "book/web/docs/7.3-scope-conditions.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/6.4-research-agenda.md",
+            "file": "book/web/docs/7.4-research-agenda.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/6.5-what-the-theory-claims.md",
+            "file": "book/web/docs/7.5-what-the-theory-claims.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/7.1-reorganization-of-se.md",
+            "file": "book/web/docs/8.1-reorganization-of-se.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/7.2-software-rejoins-engineering.md",
+            "file": "book/web/docs/8.2-software-rejoins-engineering.md",
             "occ": 6
           },
           {
-            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "file": "book/web/docs/8.3-agentic-engineering-beyond-software.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/7.4-the-engineer.md",
+            "file": "book/web/docs/8.4-the-engineer.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/8.1-the-part-that-stays-yours.md",
+            "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
             "occ": 2
           },
           {
@@ -1710,15 +1714,15 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/part-4-intro.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/part-6-intro.md",
+            "file": "book/web/docs/part-5-intro.md",
             "occ": 1
           },
           {
             "file": "book/web/docs/part-7-intro.md",
+            "occ": 1
+          },
+          {
+            "file": "book/web/docs/part-8-intro.md",
             "occ": 2
           }
         ],
@@ -1776,11 +1780,11 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/5.4-failures-that-became-infrastructure.md",
+            "file": "book/web/docs/6.4-failures-that-became-infrastructure.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/7.4-the-engineer.md",
+            "file": "book/web/docs/8.4-the-engineer.md",
             "occ": 1
           },
           {
@@ -1922,91 +1926,91 @@
             "occ": 6
           },
           {
-            "file": "book/web/docs/3.5-one-problem-many-models.md",
-            "occ": 55
-          },
-          {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
             "occ": 9
           },
           {
-            "file": "book/web/docs/4.1-the-mage-workflow.md",
+            "file": "book/web/docs/4.1-one-problem-many-models.md",
+            "occ": 55
+          },
+          {
+            "file": "book/web/docs/5.1-the-mage-workflow.md",
             "occ": 36
           },
           {
-            "file": "book/web/docs/4.2-brownfield.md",
+            "file": "book/web/docs/5.2-brownfield.md",
             "occ": 53
           },
           {
-            "file": "book/web/docs/4.3-validating-change.md",
+            "file": "book/web/docs/5.3-validating-change.md",
             "occ": 36
           },
           {
-            "file": "book/web/docs/4.4-operating-mage.md",
+            "file": "book/web/docs/5.4-operating-mage.md",
             "occ": 19
           },
           {
-            "file": "book/web/docs/4.5-packaging-the-method-as-skills.md",
+            "file": "book/web/docs/5.5-packaging-the-method-as-skills.md",
             "occ": 10
           },
           {
-            "file": "book/web/docs/4.6-portable-moves.md",
+            "file": "book/web/docs/5.6-portable-moves.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/5.1-the-problem-and-the-bar.md",
+            "file": "book/web/docs/6.1-the-problem-and-the-bar.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/5.2-the-build.md",
+            "file": "book/web/docs/6.2-the-build.md",
             "occ": 6
           },
           {
-            "file": "book/web/docs/5.3-the-road-to-mage.md",
+            "file": "book/web/docs/6.3-the-road-to-mage.md",
             "occ": 70
           },
           {
-            "file": "book/web/docs/5.4-failures-that-became-infrastructure.md",
+            "file": "book/web/docs/6.4-failures-that-became-infrastructure.md",
             "occ": 26
           },
           {
-            "file": "book/web/docs/5.5-mage-in-the-wild.md",
+            "file": "book/web/docs/6.5-mage-in-the-wild.md",
             "occ": 23
           },
           {
-            "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
+            "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
             "occ": 51
           },
           {
-            "file": "book/web/docs/6.2-what-the-theory-predicts.md",
+            "file": "book/web/docs/7.2-what-the-theory-predicts.md",
             "occ": 18
           },
           {
-            "file": "book/web/docs/6.3-scope-conditions.md",
+            "file": "book/web/docs/7.3-scope-conditions.md",
             "occ": 10
           },
           {
-            "file": "book/web/docs/6.4-research-agenda.md",
+            "file": "book/web/docs/7.4-research-agenda.md",
             "occ": 29
           },
           {
-            "file": "book/web/docs/7.1-reorganization-of-se.md",
+            "file": "book/web/docs/8.1-reorganization-of-se.md",
             "occ": 10
           },
           {
-            "file": "book/web/docs/7.2-software-rejoins-engineering.md",
+            "file": "book/web/docs/8.2-software-rejoins-engineering.md",
             "occ": 14
           },
           {
-            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "file": "book/web/docs/8.3-agentic-engineering-beyond-software.md",
             "occ": 8
           },
           {
-            "file": "book/web/docs/7.4-the-engineer.md",
+            "file": "book/web/docs/8.4-the-engineer.md",
             "occ": 10
           },
           {
-            "file": "book/web/docs/8.1-the-part-that-stays-yours.md",
+            "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
             "occ": 4
           },
           {
@@ -2279,21 +2283,25 @@
           },
           {
             "file": "book/web/docs/part-5-intro.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/part-6-intro.md",
             "occ": 3
           },
           {
+            "file": "book/web/docs/part-6-intro.md",
+            "occ": 2
+          },
+          {
             "file": "book/web/docs/part-7-intro.md",
+            "occ": 3
+          },
+          {
+            "file": "book/web/docs/part-8-intro.md",
             "occ": 2
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 113
+            "occ": 114
           }
         ]
       },
@@ -2776,7 +2784,7 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/5.2-the-build.md",
+            "file": "book/web/docs/6.2-the-build.md",
             "occ": 1
           },
           {
@@ -2832,19 +2840,19 @@
             "occ": 7
           },
           {
-            "file": "book/web/docs/4.1-the-mage-workflow.md",
+            "file": "book/web/docs/5.1-the-mage-workflow.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
+            "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/6.2-what-the-theory-predicts.md",
+            "file": "book/web/docs/7.2-what-the-theory-predicts.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "file": "book/web/docs/8.3-agentic-engineering-beyond-software.md",
             "occ": 1
           },
           {
@@ -2990,59 +2998,59 @@
             "occ": 4
           },
           {
-            "file": "book/web/docs/4.2-brownfield.md",
+            "file": "book/web/docs/5.2-brownfield.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/4.3-validating-change.md",
+            "file": "book/web/docs/5.3-validating-change.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/5.3-the-road-to-mage.md",
+            "file": "book/web/docs/6.3-the-road-to-mage.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
+            "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
             "occ": 13
           },
           {
-            "file": "book/web/docs/6.2-what-the-theory-predicts.md",
+            "file": "book/web/docs/7.2-what-the-theory-predicts.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/6.3-scope-conditions.md",
+            "file": "book/web/docs/7.3-scope-conditions.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/6.4-research-agenda.md",
+            "file": "book/web/docs/7.4-research-agenda.md",
             "occ": 14
           },
           {
-            "file": "book/web/docs/6.5-what-the-theory-claims.md",
+            "file": "book/web/docs/7.5-what-the-theory-claims.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/7.1-reorganization-of-se.md",
+            "file": "book/web/docs/8.1-reorganization-of-se.md",
             "occ": 33
           },
           {
-            "file": "book/web/docs/7.2-software-rejoins-engineering.md",
+            "file": "book/web/docs/8.2-software-rejoins-engineering.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "file": "book/web/docs/8.3-agentic-engineering-beyond-software.md",
             "occ": 13
           },
           {
-            "file": "book/web/docs/7.4-the-engineer.md",
+            "file": "book/web/docs/8.4-the-engineer.md",
             "occ": 19
           },
           {
-            "file": "book/web/docs/7.5-what-cannot-be-delegated.md",
+            "file": "book/web/docs/8.5-what-cannot-be-delegated.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/8.1-the-part-that-stays-yours.md",
+            "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
             "occ": 5
           },
           {
@@ -3107,17 +3115,21 @@
           },
           {
             "file": "book/web/docs/part-6-intro.md",
-            "occ": 5
+            "occ": 2
           },
           {
             "file": "book/web/docs/part-7-intro.md",
+            "occ": 5
+          },
+          {
+            "file": "book/web/docs/part-8-intro.md",
             "occ": 3
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 44
+            "occ": 45
           }
         ]
       },
@@ -3135,7 +3147,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 13
+            "occ": 12
           },
           {
             "file": "development-workflow.html",
@@ -3192,59 +3204,59 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/4.1-the-mage-workflow.md",
+            "file": "book/web/docs/5.1-the-mage-workflow.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/4.2-brownfield.md",
+            "file": "book/web/docs/5.2-brownfield.md",
             "occ": 9
           },
           {
-            "file": "book/web/docs/4.3-validating-change.md",
+            "file": "book/web/docs/5.3-validating-change.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/4.4-operating-mage.md",
+            "file": "book/web/docs/5.4-operating-mage.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/4.5-packaging-the-method-as-skills.md",
+            "file": "book/web/docs/5.5-packaging-the-method-as-skills.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/5.3-the-road-to-mage.md",
+            "file": "book/web/docs/6.3-the-road-to-mage.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/5.5-mage-in-the-wild.md",
+            "file": "book/web/docs/6.5-mage-in-the-wild.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
+            "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
             "occ": 6
           },
           {
-            "file": "book/web/docs/6.3-scope-conditions.md",
+            "file": "book/web/docs/7.3-scope-conditions.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/6.4-research-agenda.md",
+            "file": "book/web/docs/7.4-research-agenda.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/7.1-reorganization-of-se.md",
+            "file": "book/web/docs/8.1-reorganization-of-se.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/7.2-software-rejoins-engineering.md",
+            "file": "book/web/docs/8.2-software-rejoins-engineering.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "file": "book/web/docs/8.3-agentic-engineering-beyond-software.md",
             "occ": 2
           },
           {
-            "file": "book/web/docs/7.4-the-engineer.md",
+            "file": "book/web/docs/8.4-the-engineer.md",
             "occ": 1
           },
           {
@@ -3568,31 +3580,31 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/3.5-one-problem-many-models.md",
+            "file": "book/web/docs/4.1-one-problem-many-models.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/4.1-the-mage-workflow.md",
+            "file": "book/web/docs/5.1-the-mage-workflow.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/4.3-validating-change.md",
+            "file": "book/web/docs/5.3-validating-change.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/4.4-operating-mage.md",
+            "file": "book/web/docs/5.4-operating-mage.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/5.5-mage-in-the-wild.md",
+            "file": "book/web/docs/6.5-mage-in-the-wild.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
+            "file": "book/web/docs/8.3-agentic-engineering-beyond-software.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/7.4-the-engineer.md",
+            "file": "book/web/docs/8.4-the-engineer.md",
             "occ": 1
           },
           {

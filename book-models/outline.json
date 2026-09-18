@@ -2250,8 +2250,8 @@
       ]
     },
     {
-      "slug": "3.5-one-problem-many-models",
-      "part": 3.5,
+      "slug": "4.1-one-problem-many-models",
+      "part": 4,
       "sections": [
         {
           "section_id": "i-one-document-one-worker",
@@ -2374,7 +2374,7 @@
           "section_id": "finding-the-models",
           "level": 3,
           "heading_text": "Finding the models",
-          "topic_sentence": "Chapter 4 asks engineers to find the models their work needs.",
+          "topic_sentence": "Chapter 5 asks engineers to find the models their work needs.",
           "id_source": "derived",
           "block_index": 86,
           "points": []
@@ -2383,8 +2383,8 @@
       "preamble_points": []
     },
     {
-      "slug": "4.1-the-mage-workflow",
-      "part": 4,
+      "slug": "5.1-the-mage-workflow",
+      "part": 5,
       "sections": [
         {
           "section_id": "one-turn-at-a-time",
@@ -2586,8 +2586,8 @@
       ]
     },
     {
-      "slug": "4.2-brownfield",
-      "part": 4,
+      "slug": "5.2-brownfield",
+      "part": 5,
       "sections": [
         {
           "section_id": "start-with-what-you-already-have",
@@ -2824,8 +2824,8 @@
       ]
     },
     {
-      "slug": "4.3-validating-change",
-      "part": 4,
+      "slug": "5.3-validating-change",
+      "part": 5,
       "sections": [
         {
           "section_id": "independent-evidence",
@@ -3087,8 +3087,8 @@
       ]
     },
     {
-      "slug": "4.4-operating-mage",
-      "part": 4,
+      "slug": "5.4-operating-mage",
+      "part": 5,
       "sections": [
         {
           "section_id": "model-the-lifecycle",
@@ -3315,8 +3315,8 @@
       ]
     },
     {
-      "slug": "4.5-packaging-the-method-as-skills",
-      "part": 4,
+      "slug": "5.5-packaging-the-method-as-skills",
+      "part": 5,
       "sections": [
         {
           "section_id": "what-a-reusable-skill-needs",
@@ -3492,8 +3492,8 @@
       ]
     },
     {
-      "slug": "5.1-the-problem-and-the-bar",
-      "part": 5,
+      "slug": "6.1-the-problem-and-the-bar",
+      "part": 6,
       "sections": [
         {
           "section_id": "a-real-law-a-real-deadline",
@@ -3580,8 +3580,8 @@
       ]
     },
     {
-      "slug": "5.2-the-build",
-      "part": 5,
+      "slug": "6.2-the-build",
+      "part": 6,
       "sections": [
         {
           "section_id": "the-feasibility-probe",
@@ -3703,8 +3703,8 @@
       ]
     },
     {
-      "slug": "5.3-the-road-to-mage",
-      "part": 5,
+      "slug": "6.3-the-road-to-mage",
+      "part": 6,
       "sections": [
         {
           "section_id": "the-product-path",
@@ -4066,8 +4066,8 @@
       ]
     },
     {
-      "slug": "5.4-failures-that-became-infrastructure",
-      "part": 5,
+      "slug": "6.4-failures-that-became-infrastructure",
+      "part": 6,
       "sections": [
         {
           "section_id": "the-instruction-satisfied-to-the-letter",
@@ -4369,8 +4369,8 @@
       ]
     },
     {
-      "slug": "5.5-mage-in-the-wild",
-      "part": 5,
+      "slug": "6.5-mage-in-the-wild",
+      "part": 6,
       "sections": [
         {
           "section_id": "eight-entry-points",
@@ -4752,8 +4752,8 @@
       ]
     },
     {
-      "slug": "6.1-toward-a-theory-of-mage",
-      "part": 6,
+      "slug": "7.1-toward-a-theory-of-mage",
+      "part": 7,
       "sections": [
         {
           "section_id": "the-dynamic-model",
@@ -5275,8 +5275,8 @@
       ]
     },
     {
-      "slug": "6.2-what-the-theory-predicts",
-      "part": 6,
+      "slug": "7.2-what-the-theory-predicts",
+      "part": 7,
       "sections": [
         {
           "section_id": "trustworthy-representations",
@@ -5433,8 +5433,8 @@
       ]
     },
     {
-      "slug": "6.3-scope-conditions",
-      "part": 6,
+      "slug": "7.3-scope-conditions",
+      "part": 7,
       "sections": [
         {
           "section_id": "return-governability-and-authority",
@@ -5650,8 +5650,8 @@
       ]
     },
     {
-      "slug": "6.4-research-agenda",
-      "part": 6,
+      "slug": "7.4-research-agenda",
+      "part": 7,
       "sections": [
         {
           "section_id": "parameterizing-the-model",
@@ -5937,8 +5937,8 @@
       ]
     },
     {
-      "slug": "7.1-reorganization-of-se",
-      "part": 7,
+      "slug": "8.1-reorganization-of-se",
+      "part": 8,
       "sections": [
         {
           "section_id": "was-implementation-ever-the-bottleneck",
@@ -6040,8 +6040,8 @@
       "preamble_points": []
     },
     {
-      "slug": "7.2-software-rejoins-engineering",
-      "part": 7,
+      "slug": "8.2-software-rejoins-engineering",
+      "part": 8,
       "sections": [
         {
           "section_id": "the-disciplines-that-got-there-first",
@@ -6128,8 +6128,8 @@
       "preamble_points": []
     },
     {
-      "slug": "7.3-agentic-engineering-beyond-software",
-      "part": 7,
+      "slug": "8.3-agentic-engineering-beyond-software",
+      "part": 8,
       "sections": [
         {
           "section_id": "what-must-transfer",
@@ -6217,8 +6217,8 @@
       "preamble_points": []
     },
     {
-      "slug": "7.4-the-engineer",
-      "part": 7,
+      "slug": "8.4-the-engineer",
+      "part": 8,
       "sections": [
         {
           "section_id": "authority-follows-competence-and-responsibility",
@@ -6585,8 +6585,8 @@
       ]
     },
     {
-      "slug": "8.1-the-part-that-stays-yours",
-      "part": 8,
+      "slug": "9.1-the-part-that-stays-yours",
+      "part": 9,
       "sections": [
         {
           "section_id": "the-question-we-asked",

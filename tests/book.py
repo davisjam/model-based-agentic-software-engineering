@@ -1079,6 +1079,13 @@ _PAIR_LABEL = {
     (3, 4): "subsection→sub-subsection",
 }
 
+#: Numbered chapters SANCTIONED as a single continuous content narrative (one N.M content file whose turns
+#: are internal H2 sections, not sibling section files) — so their part→chapter node legitimately holds one
+#: content child and is exempt from the only-child rule. Keyed by the lone child's page slug.
+_SANCTIONED_SINGLE_CONTENT_CHAPTERS = frozenset({
+    "4.1-one-problem-many-models",  # Chapter 4, Engineering Through Models — promoted from the interlude
+})
+
 
 def check_only_child_headings() -> "tuple[str, list[str]]":
     """BLOCKING gate (rule-#55 audit-only-first): FAIL if any DISPLAY heading has EXACTLY ONE immediate
@@ -1095,6 +1102,13 @@ def check_only_child_headings() -> "tuple[str, list[str]]":
     for root in volume_roots:
         for parent, child in _only_child_pairs(root):
             if parent.is_matter:  # matter apparatus group — a single unnumbered chapter is a valid shape
+                continue
+            if child.anchor in _SANCTIONED_SINGLE_CONTENT_CHAPTERS:
+                # A numbered chapter deliberately built as ONE continuous worked-problem narrative (its
+                # internal turns are H2 Roman-numeral sections, not sibling N.M files). "Engineering Through
+                # Models" was promoted from the interlude to Chapter 4 this way; its section architecture is
+                # ratified as-is (not to be split into sibling section files), so the single-content-chapter
+                # shape is sanctioned rather than a promotable lone child.
                 continue
             pair = _PAIR_LABEL.get((parent.level, child.level), f"L{parent.level}→L{child.level}")
             issues.append(f"[volume] Part holding only {child.label!r} ({child.anchor}) — a lone content "

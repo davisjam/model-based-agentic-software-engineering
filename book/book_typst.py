@@ -250,12 +250,12 @@ def _toc_marker(kind: str, text: str) -> str:
 
 def _division_for(ch: "ir.Chapter") -> str:
     """The Contents top-level DIVISION a chapter belongs to. Three divisions, in book order: FRONT MATTER (the
-    pre-Part-1 chapters, part 0), THE BOOK (Parts 1-7 + the Conclusion, parts 1-8), APPENDICES (the appendix
-    Parts + their appendices, and the trailing back matter / bibliography, part ≥ 9). These are the only
+    pre-Part-1 chapters, part 0), THE BOOK (Parts 1-8 + the Conclusion, parts 1-9), APPENDICES (the appendix
+    Parts + their appendices, and the trailing back matter / bibliography, part ≥ 10). These are the only
     book-level dividers the Contents draws."""
     if ch.part == 0:
         return "FRONT MATTER"
-    if ch.part <= 8:
+    if ch.part <= 9:
         return "THE BOOK"
     return "APPENDICES"
 
@@ -1635,13 +1635,13 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     _LOF["prefix"] = _float_prefix(chapter, is_appendix)
     _LOF["fig_n"] = _LOF["tbl_n"] = 0
     _LOF["unnumbered"] = is_appendix_divider
-    # Front matter (0), the top-level Conclusion (7), and the synthetic back matter (dynamic part, flagged
+    # Front matter (0), the top-level Conclusion (9), and the synthetic back matter (dynamic part, flagged
     # `is_matter` on the record) are UNNUMBERED matter. A Part landing page (chapter-0 synthetic record) is
     # likewise unnumbered — it never prints an `N.0` — as is the appendices mode-marker. The predicate is
     # shared with `emit_document`'s section-flow decision (see `_is_numbered_body`).
     numbered = _is_numbered_body(chapter)
     chap_num = f"{chapter.part}.{chapter.chapter}" if numbered else None
-    # DISPLAY locator carries the § section mark ("§5.2" — the N.M units are sections of Chapters 1-7);
+    # DISPLAY locator carries the § section mark ("§5.2" — the N.M units are sections of Chapters 1-8);
     # `sec_prefix` below stays the bare "5.2" so subsection numbers read "5.2.1", not "§5.2.1".
     chap_num_disp = f"§{chap_num}" if chap_num else None
     # Appendix content pages number their `## ` sections off their reader-facing locator (`fig_prefix`
@@ -2715,13 +2715,13 @@ def _is_appendix_divider(ch: "ir.Chapter") -> bool:
 #: flags, so match on the minted slug exactly as `_is_part_page`/`_is_appendix_divider` do. Each sorts last
 #: in its Part by its `N.M-` filename but prints no number. Register a new terminal coda's slug here.
 _CODA_SLUGS = frozenset({
-    "4.6-portable-moves",
+    "5.6-portable-moves",
     "1.5-problem-summary",
     "2.9-modeling-summary",
     "3.6-alignment-summary",
-    "5.6-what-the-evidence-supports",
-    "6.5-what-the-theory-claims",
-    "7.5-what-cannot-be-delegated",
+    "6.6-what-the-evidence-supports",
+    "7.5-what-the-theory-claims",
+    "8.5-what-cannot-be-delegated",
 })
 
 
@@ -2902,7 +2902,7 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     forces the
     verso to an EVEN page (`#pagebreak(to:"even")`) so chapter 1 falls on the facing odd page (§G-5, accepts an
     occasional blank recto before the verso); screen mode uses a plain `#pagebreak()` (no facing concept). The
-    back-matter (7) and appendix Parts keep the simple single-page divider (no orientation apparatus)."""
+    back-matter (9) and appendix Parts keep the simple single-page divider (no orientation apparatus)."""
     if part == 0:
         return None
     # The appendices mode-marker takes its own part (one below Appendix A); render its distinct divider.
@@ -2910,20 +2910,16 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
         return _appendices_divider_typst(ch)
     part_titles = bb._PART_TITLES
     label = ""
-    # Matter parts (front matter, the Interlude at 3.5, the top-level Conclusion, the synthetic back matter)
-    # are NOT numbered Parts even when their number is ≤ 7 — they take the simple single-page divider with no
-    # orientation SPREAD / subway map (which the interlude has no station on).
-    is_numbered = (part in part_titles and part <= 7
+    # Matter parts (front matter, the top-level Conclusion, the synthetic back matter) are NOT numbered
+    # Parts even when their number is ≤ 8 — they take the simple single-page divider with no orientation
+    # SPREAD / subway map.
+    is_numbered = (part in part_titles and part <= 8
                    and part not in bb._MATTER_PARTS and not getattr(ch, "is_matter", False))
-    if part == 8:
+    if part == 9:
         # The top-level Conclusion (matter). A bare title heading (no "Part N" kicker, no nav label). Its
         # sole page is itself titled "Conclusion" (subtitle dropped 260909), so `render_chapter` suppresses
         # the level-2 chapter heading — this divider heading is the one printed "Conclusion".
-        kicker, title = "", part_titles.get(8, "Conclusion")
-    elif part == bb._INTERLUDE_PART:
-        # The Interlude (matter, between Parts 3 and 4). A bare "Interlude" divider — the bookmark PARENT
-        # under which "One Problem, Many Models" (level-2) nests. Mirrors the Conclusion's bare-title form.
-        kicker, title = "", part_titles.get(bb._INTERLUDE_PART, "Interlude")
+        kicker, title = "", part_titles.get(9, "Conclusion")
     elif getattr(ch, "is_matter", False):
         # The synthetic post-appendix back matter (Colophon, then About-the-Author). One bare "Back Matter"
         # divider heads both — the terminal book-object bookmark parent, after the appendices.
@@ -2952,11 +2948,11 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     # two-line-per-Part Contents bug.
     heading_text = f"{kicker}: {title}" if kicker else title
     heading = f"  = {inline_typst(heading_text)}\n"
-    # Contents division class: numbered Parts, the top-level Conclusion (7), and the synthetic Back Matter are
+    # Contents division class: numbered Parts, the top-level Conclusion (9), and the synthetic Back Matter are
     # PART-level entries; an appendix-LETTER divider ("Appendix A: …") is a level-1 heading on the page but
     # reads as a CHAPTER entry in the Contents (the two "Appendix Part I/II" dividers are the appendix PART
     # entries; the letters sit one level below them).
-    toc_kind = "part" if (is_numbered or part == 8 or getattr(ch, "is_matter", False)) else "chapter"
+    toc_kind = "part" if (is_numbered or part == 9 or getattr(ch, "is_matter", False)) else "chapter"
     toc_mark = _toc_marker(toc_kind, heading_text)
 
     if not is_numbered:
