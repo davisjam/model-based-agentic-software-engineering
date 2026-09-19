@@ -86,8 +86,9 @@ A good architectural decision makes important system properties tractable while 
 ## Where should the boundaries go? {#sec-boundaries}
 
 One of the most consequential architectural decisions is where to draw boundaries. A boundary is a
-promise about reasoning: things on the same side may be understood, changed, and operated together;
-things on opposite sides should be understandable apart.
+promise about reasoning and consequence: things on the same side may be understood, changed, and
+operated together; things on opposite sides should be understandable apart, and consequential
+effects should cross the boundary only through the interactions it permits.
 
 Suppose the same acceptable system can be organized in two ways. One organization separates
 collection, classification, summarization, and advice into distinct parts. Another groups
@@ -126,11 +127,30 @@ When comparing them, ask:
 - **Understanding:** Can a part be understood without reconstructing the whole system?
 - **Change:** Can an expected change remain local rather than spreading through unrelated parts?
 - **Composition:** Can a part be reused or recombined without importing unnecessary context?
-- **Failure:** Can a local failure remain local rather than corrupting unrelated work?
+- **Failure:** Can a local failure remain local rather than propagating into unrelated work?
 
 These objectives can conflict.
 Additional decomposition may improve change or failure containment while introducing more interfaces, dependencies, and concepts.
 A useful boundary therefore does not maximize modularity; it makes the properties that matter for this system sufficiently local.
+
+### Architecture bounds the consequences of uncertainty {#sec-bounded-consequence}
+
+Architecture bounds the consequences of uncertainty. Engineers can rarely establish every relevant
+property of every component with certainty. A boundary can make that residual uncertainty easier to
+accept by constraining what an unexpected behavior can affect. An isolated process may fail without
+corrupting another process. A permission boundary may prevent a component from exercising authority
+it does not need. A transaction may prevent a partially completed operation from leaving the system
+in an unacceptable state. Resource limits, timeouts, and similar controls can bound how far a
+failure propagates.
+
+These controls do not establish that the component inside the boundary is correct. They change the
+consequence of being wrong about it. Architecture can therefore convert an unbounded validation
+problem into a bounded consequence problem. If engineers cannot economically establish everything a
+component might do, they may instead establish that whatever it does, important consequences remain
+constrained. This makes architecture part of the later validation argument: architecture determines
+not only how easily a system can be tested, but what failures that validation misses can affect.
+@ch-validation develops this connection when considering whether the available evidence is
+sufficient to deliver a system.
 
 ## Architecture also allocates coordination among people {#sec-coordination}
 
@@ -236,6 +256,7 @@ Choosing an architecture requires making claims about what its organization will
 Different claims require different forms and strengths of evidence.
 A box-and-arrow diagram may establish that two responsibilities have been separated, but it does not by itself establish that a future change will remain local, that failures will be contained, or that a latency objective will be met.
 The representation and analysis must expose the property being claimed.
+A claim of failure containment, for example, requires evidence not merely that a boundary exists but that the boundary actually constrains the resources, authority, state, or interactions through which failure could propagate.
 
 Consider an expected change.
 Suppose an architecture is intended to isolate changes to an external service behind one component.
@@ -284,7 +305,8 @@ The ideas in this chapter can be summarized as a sequence.
 ::: {.decision #decision-defend-choice title="Defend an architectural choice"}
 1. Generate plausible alternatives. Use decomposition, prior experience, and architectural patterns
    to identify serious candidates. For consequential boundary choices, ask what should change,
-   fail, scale, remain consistent, be secured, or be owned together.
+   fail, scale, remain consistent, be secured, or be owned together—and what consequences should be
+   prevented from crossing the boundary.
 2. Eliminate specification violations. A candidate outside the acceptable realization space is not
    a tradeoff.
 3. Eliminate dominated alternatives. If another candidate is at least as good everywhere and better
@@ -340,9 +362,11 @@ acceptable realization be organized? Design asks: how should each part actually 
 Architecture chooses the consequential organization of one acceptable realization: its major
 parts, their responsibilities, the boundaries between them, and the rules by which they interact.
 Architectural decisions create constraints and affordances that later engineering must inherit.
-Boundaries do not eliminate coupling; they allocate it. Ask what should change, fail, scale,
-remain consistent, be secured, or be owned together. The resulting boundaries affect both
-technical dependencies and the coordination required among people.
+Boundaries do not eliminate coupling; they allocate it. They can also bound uncertainty: when
+correctness cannot be established completely, architectural controls can constrain the consequences
+of behavior that validation fails to anticipate. Ask what should change, fail, scale, remain
+consistent, be secured, or be owned together. The resulting boundaries affect both technical
+dependencies and the coordination required among people.
 
 Architectural decisions should begin by eliminating candidates that violate the specification and
 alternatives that are dominated by others. What remains are genuine tradeoffs requiring
