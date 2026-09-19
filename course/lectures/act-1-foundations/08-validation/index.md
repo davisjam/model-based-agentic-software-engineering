@@ -41,7 +41,7 @@ Answering that requires six related judgments:
 - **What is at stake?** What would happen if the system were wrong, and how reversible would the consequences be?
 - **Where must we establish confidence?** Which claims matter, and at what scope do their properties exist?
 - **How can we obtain evidence?** What can execution, analysis, review, formal reasoning, measurement, or operation tell us, and what can each not tell us?
-- **What validation strategy fits the uncertainty?** When should we use examples, properties, fuzzing, differential comparison, or another strategy to expose the failure we care about?
+- **What validation strategy fits the uncertainty?** What failure are we trying to expose, and what oracle can make that failure observable across enough of the relevant behavior?
 - **How strong is the resulting evidence?** How much does it cover, how representative and discriminating is it, how independent are its sources, and what uncertainty remains?
 - **When is it enough?** Given the consequences, available margin, controls on failure, and residual uncertainty, should we deliver, gather more evidence, change the system, revisit an earlier decision, or refuse?
 
@@ -59,7 +59,7 @@ Consequence is also not fixed. Engineered controls change what a failure is perm
 
 Validation begins with claims, not techniques. A payment service might need to establish that a payment cannot be charged twice, that unauthorized users cannot initiate payments, and that normal requests complete within an acceptable time. Evidence supporting one claim may say little about another. Begin with *what must be true for this delivery to be justified?* Only then ask where confidence in each claim has to attach.
 
-Specification supplies the starting point. A specification states what the MACHINE must do under assumptions about its ENVIRONMENT; requirements name outcomes in the WORLD. The claim that finally matters therefore concerns the assembled machine running in its actual environment, producing the promised outcome.
+Specification supplies the starting point. A specification states what the MACHINE must do under assumptions about its ENVIRONMENT; requirements name outcomes in the WORLD. The claim that ultimately matters therefore concerns the machine operating in its actual environment and producing the promised outcome.
 
 That suggests an obvious approach: exercise the whole system at its real boundary, where the thing we care about actually happens. Whole-system evidence is necessary. It is also insufficient as the only mechanism. When an end-to-end run fails, the defect could be anywhere in the system, and such failures are expensive to reproduce, localize, and diagnose. Many properties are also far cheaper to exercise or analyze on a part than on the assembly.
 
@@ -86,7 +86,7 @@ At the top of the V, the distinction from Specification returns: evidence about 
 
 ## How can we obtain evidence?
 
-Scope says where evidence attaches. It does not say how the evidence was obtained. A handful of instruments do that, and each carries a characteristic limitation that fixes what it can and cannot tell us.
+Scope says where evidence attaches. It does not say how the evidence was obtained. Several evidence mechanisms do that, and each carries a characteristic limitation that fixes what it can and cannot tell us.
 
 - **Dynamic testing** observes selected executions. Its fundamental limitation is sampling: executions not performed remain unobserved.
 - **Static analysis** reasons about possible behavior without executing it. Its conclusions depend on the abstraction it uses and on what the analyzer's guarantees actually mean; false positives and false negatives follow from those guarantees.
@@ -139,7 +139,7 @@ Neither a technique's name nor the quantity of evidence it produces establishes 
 
 Coverage and detection power are often confused, and the difference matters. Coverage records where we looked. Detection power asks whether looking there would have revealed the failure. A suite can execute every line while asserting almost nothing about the results. Mutation score is the canonical illustration: deliberately damage the program and ask how often the evidence notices.
 
-**Evidence multiplies; independence does not.** A thousand tests generated from the same mistaken interpretation of a requirement are not a thousand independent reasons to believe the interpretation is correct. They are one reason, repeated. The strength of a body of evidence grows with the diversity of the assumptions it rests on, not with its count. Cheap generation makes this sharper, not softer: when a tool can produce an implementation and its tests from the same prompt, both can inherit one misunderstanding, and the suite's size signals nothing about it.
+**Evidence multiplies; independence does not.** A thousand tests generated from the same mistaken interpretation of a requirement are not a thousand independent reasons to believe the interpretation is correct. They are one reason, repeated. The strength of a body of evidence depends not only on its quantity, but on the independence of the assumptions and failure modes behind it. Cheap generation makes this sharper, not softer: when a tool can produce an implementation and its tests from the same prompt, both can inherit one misunderstanding, and the suite's size signals nothing about it.
 
 Ask of any evidence: *What uncertainty does this evidence reduce, at what scope, and what assumptions or failure modes remain?*
 
@@ -176,7 +176,7 @@ Those considerations feed a decision with more than two outcomes:
 
 These are not a checklist, and several feed backward. A failed validation need not mean "test more": sometimes the implementation should change, sometimes the architecture is wrong, and sometimes the commitment itself should be reconsidered. The question is therefore not simply *should we deliver?* but *what action follows from what we now know?*
 
-Evidence also changes after delivery. Monitoring, incidents, measurements, and user reports change the state of knowledge; continuing to deliver is then a new decision under new evidence. Software's updateability, where this argument began, makes post-delivery learning unusually practical — and creates the matching obligation to respond when that learning undermines the justification for delivering at all.
+Evidence also changes after delivery. Monitoring, incidents, measurements, and user reports change the state of knowledge; continuing to deliver is then a new decision under new evidence. Evidence can also age when the system changes: engineers must ask which claims a modification could affect and which evidence therefore needs to be renewed. Software's updateability, where this argument began, makes post-delivery learning unusually practical — and creates the matching obligation to respond when that learning undermines the justification for delivering at all.
 
 ---
 
