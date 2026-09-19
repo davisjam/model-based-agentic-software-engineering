@@ -23,7 +23,14 @@ enforcing consequential engineering decisions across many changes.
 
 Abundance does not make implementation unimportant; it changes where additional engineering effort
 earns the greatest return. A factory with unlimited machine capacity and one inspector has not
-stopped manufacturing. Inspection has become the throughput constraint. In software, agents can now
+stopped manufacturing. Inspection has become the throughput constraint. Nor can inspection capacity
+be assumed to scale proportionally: sustained monitoring consumes finite human attention, and rare
+problems become especially difficult to detect as the stream of mostly acceptable output
+grows.[note: Wolfe, Horowitz, and Kenner found that rare targets in visual search are
+disproportionately missed as their prevalence falls [cite: wolfe2005rare]. Warm, Parasuraman, and
+Matthews synthesize the vigilance literature: sustained monitoring consumes attentional resources,
+imposes substantial workload, and can produce performance decrements and stress
+[cite: warm2008vigilance].] In software, agents can now
 produce changes faster than engineers can specify, understand, validate, and govern them. Models
 let later work reuse representations across many acts of implementation; validators and gates can
 likewise reuse selected engineering judgments by evaluating and enforcing them repeatedly. Engineering effort therefore moves toward deciding
