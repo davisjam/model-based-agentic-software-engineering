@@ -2288,54 +2288,54 @@
       "part": 4,
       "sections": [
         {
-          "section_id": "i-one-document-one-worker",
+          "section_id": "one-document-one-worker",
           "level": 2,
-          "heading_text": "I. One Document, One Worker",
+          "heading_text": "One Document, One Worker",
           "topic_sentence": "DocAble originally treated an entire document as one unit of execution.",
           "id_source": "derived",
           "block_index": 2,
           "points": []
         },
         {
-          "section_id": "ii-pages-as-the-unit-of-scale",
+          "section_id": "pages-as-the-unit-of-scale",
           "level": 2,
-          "heading_text": "II. Pages as the Unit of Scale",
+          "heading_text": "Pages as the Unit of Scale",
           "topic_sentence": "As documents grew larger, whole-document execution put increasing pressure on worker memory.",
           "id_source": "derived",
           "block_index": 8,
           "points": []
         },
         {
-          "section_id": "iii-a-new-class-of-input",
+          "section_id": "a-new-class-of-input",
           "level": 2,
-          "heading_text": "III. A New Class of Input",
+          "heading_text": "A New Class of Input",
           "topic_sentence": "A 250 MB PowerPoint file does not imply that remediation needs 250 MB of document content resident in memory.",
           "id_source": "derived",
           "block_index": 17,
           "points": []
         },
         {
-          "section_id": "iv-remove-media-from-the-working-set",
+          "section_id": "remove-media-from-the-working-set",
           "level": 2,
-          "heading_text": "IV. Remove Media from the Working Set",
+          "heading_text": "Remove Media from the Working Set",
           "topic_sentence": "The memory problem came from coupling document structure to media residency: total media size increased the worker's persistent working set even though most remediation operations needed only the document's structural skeleton.",
           "id_source": "derived",
           "block_index": 28,
           "points": []
         },
         {
-          "section_id": "v-once-memory-is-solved-why-are-we-chunking",
+          "section_id": "once-memory-is-solved-why-are-we-chunking",
           "level": 2,
-          "heading_text": "V. Once Memory Is Solved, Why Are We Chunking?",
+          "heading_text": "Once Memory Is Solved, Why Are We Chunking?",
           "topic_sentence": "Page chunking had served two roles at once: it partitioned execution and bounded each worker's memory.",
           "id_source": "derived",
           "block_index": 41,
           "points": []
         },
         {
-          "section_id": "vi-analyze-before-you-build",
+          "section_id": "analyze-before-you-build",
           "level": 2,
-          "heading_text": "VI. Analyze Before You Build",
+          "heading_text": "Analyze Before You Build",
           "topic_sentence": "Representing remediation as a dependency graph does more than provide an execution plan.",
           "id_source": "derived",
           "block_index": 51,
@@ -2378,9 +2378,9 @@
           "points": []
         },
         {
-          "section_id": "vii-the-resulting-model-family",
+          "section_id": "the-resulting-model-family",
           "level": 2,
-          "heading_text": "VII. The Resulting Model Family",
+          "heading_text": "The Resulting Model Family",
           "topic_sentence": "The large-file requirement did not produce one model.",
           "id_source": "derived",
           "block_index": 72,

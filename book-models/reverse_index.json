@@ -8999,6 +8999,16 @@
         }
       ]
     },
+    "section-id:a-new-class-of-input": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "4.2-one-problem-many-models::a-new-class-of-input",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:a-real-law-a-real-deadline": {
       "kind": "section-id",
       "dependents": [
@@ -9080,6 +9090,16 @@
         {
           "view": "outline",
           "element": "4.1-the-dynamics-of-mage::alignment-changes-the-system",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:analyze-before-you-build": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "4.2-one-problem-many-models::analyze-before-you-build",
           "role": "section-anchor"
         }
       ]
@@ -9659,36 +9679,6 @@
         }
       ]
     },
-    "section-id:i-one-document-one-worker": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "4.2-one-problem-many-models::i-one-document-one-worker",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:ii-pages-as-the-unit-of-scale": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "4.2-one-problem-many-models::ii-pages-as-the-unit-of-scale",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:iii-a-new-class-of-input": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "4.2-one-problem-many-models::iii-a-new-class-of-input",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:independent-evidence": {
       "kind": "section-id",
       "dependents": [
@@ -9705,16 +9695,6 @@
         {
           "view": "outline",
           "element": "8.4-the-engineer::is-there-software-engineering-knowledge-you-cannot-just-figure-out-for-yourself",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:iv-remove-media-from-the-working-set": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "4.2-one-problem-many-models::iv-remove-media-from-the-working-set",
           "role": "section-anchor"
         }
       ]
@@ -9904,6 +9884,26 @@
         }
       ]
     },
+    "section-id:once-memory-is-solved-why-are-we-chunking": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "4.2-one-problem-many-models::once-memory-is-solved-why-are-we-chunking",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:one-document-one-worker": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "4.2-one-problem-many-models::one-document-one-worker",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:one-hard-example-coverage-measured-one-level-deeper": {
       "kind": "section-id",
       "dependents": [
@@ -9995,6 +9995,16 @@
         {
           "view": "outline",
           "element": "7.1-toward-a-theory-of-mage::outcomes-and-observables",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:pages-as-the-unit-of-scale": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "4.2-one-problem-many-models::pages-as-the-unit-of-scale",
           "role": "section-anchor"
         }
       ]
@@ -10150,6 +10160,16 @@
         {
           "view": "outline",
           "element": "5.2-brownfield::reconcile-the-map-then-promote-obligations",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:remove-media-from-the-working-set": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "4.2-one-problem-many-models::remove-media-from-the-working-set",
           "role": "section-anchor"
         }
       ]
@@ -10869,6 +10889,16 @@
         }
       ]
     },
+    "section-id:the-resulting-model-family": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "4.2-one-problem-many-models::the-resulting-model-family",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:the-retry-that-became-a-storm": {
       "kind": "section-id",
       "dependents": [
@@ -11054,32 +11084,12 @@
         }
       ]
     },
-    "section-id:v-once-memory-is-solved-why-are-we-chunking": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "4.2-one-problem-many-models::v-once-memory-is-solved-why-are-we-chunking",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:validators-and-gates": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
           "element": "3.3-constraints-sensors-validators-gates::validators-and-gates",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:vi-analyze-before-you-build": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "4.2-one-problem-many-models::vi-analyze-before-you-build",
           "role": "section-anchor"
         }
       ]
@@ -11120,16 +11130,6 @@
         {
           "view": "outline",
           "element": "6.5-mage-in-the-wild::view-4-one-judgment-can-acquire-durable-reach",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:vii-the-resulting-model-family": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "4.2-one-problem-many-models::vii-the-resulting-model-family",
           "role": "section-anchor"
         }
       ]

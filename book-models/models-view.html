@@ -467,28 +467,28 @@
 </div>
 <div class="chapter">
 <h3 id="ch-4-2-one-problem-many-models"><span class="tier-kick">Lesson</span><a href="../book/4.2-one-problem-many-models.html" class="ch-link">4.2-one-problem-many-models</a> <span class="ch-slug">4.2-one-problem-many-models</span></h3>
-<div class="section s2" id="sec-4-2-one-problem-many-models--i-one-document-one-worker">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">I. One Document, One Worker</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--one-document-one-worker">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">One Document, One Worker</a></div>
 <p class="topic">DocAble originally treated an entire document as one unit of execution.</p>
 </div>
-<div class="section s2" id="sec-4-2-one-problem-many-models--ii-pages-as-the-unit-of-scale">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">II. Pages as the Unit of Scale</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--pages-as-the-unit-of-scale">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Pages as the Unit of Scale</a></div>
 <p class="topic">As documents grew larger, whole-document execution put increasing pressure on worker memory.</p>
 </div>
-<div class="section s2" id="sec-4-2-one-problem-many-models--iii-a-new-class-of-input">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">III. A New Class of Input</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--a-new-class-of-input">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">A New Class of Input</a></div>
 <p class="topic">A 250 MB PowerPoint file does not imply that remediation needs 250 MB of document content resident in memory.</p>
 </div>
-<div class="section s2" id="sec-4-2-one-problem-many-models--iv-remove-media-from-the-working-set">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">IV. Remove Media from the Working Set</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--remove-media-from-the-working-set">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Remove Media from the Working Set</a></div>
 <p class="topic">The memory problem came from coupling document structure to media residency: total media size increased the worker&#x27;s persistent working set even though most remediation operations needed only the document&#x27;s structural skeleton.</p>
 </div>
-<div class="section s2" id="sec-4-2-one-problem-many-models--v-once-memory-is-solved-why-are-we-chunking">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">V. Once Memory Is Solved, Why Are We Chunking?</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--once-memory-is-solved-why-are-we-chunking">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Once Memory Is Solved, Why Are We Chunking?</a></div>
 <p class="topic">Page chunking had served two roles at once: it partitioned execution and bounded each worker&#x27;s memory.</p>
 </div>
-<div class="section s2" id="sec-4-2-one-problem-many-models--vi-analyze-before-you-build">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">VI. Analyze Before You Build</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--analyze-before-you-build">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Analyze Before You Build</a></div>
 <p class="topic">Representing remediation as a dependency graph does more than provide an execution plan.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--dependencies-can-be-redesigned">
@@ -507,8 +507,8 @@
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Use prediction error as evidence</a></div>
 <p class="topic">Implementation eventually supplies measurements, and the useful comparison is not simply whether the result was fast.</p>
 </div>
-<div class="section s2" id="sec-4-2-one-problem-many-models--vii-the-resulting-model-family">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">VII. The Resulting Model Family</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--the-resulting-model-family">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">The Resulting Model Family</a></div>
 <p class="topic">The large-file requirement did not produce one model.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--from-examples-to-a-bound">
