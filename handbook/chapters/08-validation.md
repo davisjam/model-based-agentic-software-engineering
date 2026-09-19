@@ -12,7 +12,8 @@ description: >
 objectives:
   - Distinguish consequence, stakeholder judgment, and professional judgment as separate inputs to the delivery decision, and recognize the two pathologies of a mismatched standard.
   - Identify the claim a validation activity must support before selecting a technique, and choose techniques by the uncertainty each can reduce.
-  - Evaluate the strength of a body of evidence — its coverage, representativeness, independence, and assumptions — rather than its volume.
+  - Evaluate the strength of a body of evidence along explicit dimensions — coverage, detection power, representativeness, scope, independence, assumptions, and residual uncertainty — rather than by its volume.
+  - Reason about residual uncertainty at delivery through margin, coverage, containment, and reversibility, recognizing that software's discreteness limits what observed behavior implies about unobserved behavior.
   - Recognize when evidence gathered after delivery has changed the justification for continued delivery.
 ---
 
@@ -434,6 +435,16 @@ reach.
 - **Operational observation** watches the deployed system itself, in the one environment no
   earlier technique can fully reproduce. Its evidence arrives after the consequences have begun.
 
+Human review supplies a form of evidence that automated techniques often cannot: reviewers can
+recognize semantic mistakes, challenge assumptions, and notice that the wrong problem has been
+solved. But attention is itself a limited validation mechanism. Research on vigilance shows that
+sustained monitoring requires substantial mental effort and imposes measurable workload and stress
+[@warm2008vigilance], while research on rare-target search shows that infrequent targets are
+disproportionately missed [@wolfe2005rare]. These findings do not measure software review directly,
+but the analogy matters increasingly as automated systems produce more artifacts for humans to
+supervise. A human reviewer should be used where human judgment is valuable, not treated as an
+infinitely scalable detector of rare defects.
+
 Several of these techniques answer the same underlying difficulty, the *oracle problem*: engineers
 can often generate inputs far more cheaply than they can state the correct output for each one.
 Property-based testing responds by stating the expected answer as a property. Differential testing
@@ -450,17 +461,39 @@ explore an input space while sharing the same mistaken oracle. A code review can
 judgment while still missing behavior that neither reviewer considered. Evidence must be evaluated
 relative to the claim it supports and the assumptions on which it depends.
 
-Evaluating a body of evidence is itself an engineering judgment, and a few questions structure it.
-What portion of the claim's space did the evidence actually exercise, and what portion did it
-never touch? Does the evidence operate at the scope of the property, or does the argument incorrectly
-infer a compositional property from local evidence? Do the exercised conditions resemble the
-conditions of delivery, or a convenient laboratory version of them? Do the pieces of evidence rest on distinct assumptions, or do they all
-inherit the same one? Where a technique claims soundness or completeness, what exactly do its
-verdicts guarantee, and over what model? What uncertainty remains after all of it, and is that
-residual acceptable for this decision? Strong validation for consequential claims tends toward
-triangulation: multiple forms of evidence whose failure modes are uncorrelated, so that a mistaken
-assumption in one is caught by another.
+Evaluating a body of evidence is itself an engineering judgment, and a set of recurring dimensions
+structures it (@tbl-evidence-strength). None of them is a score. Each names a question that a body
+of evidence either answers or leaves open.
 
+| Dimension | The question it asks |
+|---|---|
+| Coverage | How much of the relevant behavior did the evidence examine? |
+| Detection power | Would this evidence have exposed the failure we care about? |
+| Representativeness | Do the examined conditions resemble the conditions of delivery? |
+| Scope | Does the evidence attach where the property actually exists? |
+| Independence | Could one mistaken assumption invalidate several pieces of evidence at once? |
+| Assumptions | What must be true for this evidence to mean what we think it means? |
+| Residual uncertainty | What consequential possibilities remain unresolved? |
+
+: Dimensions along which a body of evidence is judged. {#tbl-evidence-strength}
+
+Several of these have already appeared in this chapter. Scope is the relationship the V-shaped
+picture expressed: an argument that infers a compositional property from local evidence has
+attached its evidence in the wrong place. Assumptions include what a technique's own guarantees
+amount to — where a tool claims soundness or completeness, engineers should know what its verdicts
+guarantee, and over what model. Residual uncertainty is what the delivery decision ultimately
+weighs.
+
+Detection power is the dimension coverage is most often mistaken for. A test suite can execute
+every line of a module and assert almost nothing about what those lines produced. Mutation testing
+makes the difference visible: deliberately introduce small faults — invert a comparison, delete a
+statement, change a constant — and measure how many of them the suite detects. A high coverage
+figure beside a low mutation score describes a body of evidence that observes the system thoroughly
+and would notice very little if the system were wrong. The question is not whether the evidence
+reached the behavior, but whether it would have objected.
+
+Strong validation for consequential claims tends toward triangulation: multiple forms of evidence
+whose failure modes are uncorrelated, so that a mistaken assumption in one is caught by another.
 Independence deserves particular attention, because volume imitates it well.
 
 ::: {.key-idea #key-evidence-independence title="Evidence multiplies; independence does not"}
@@ -479,7 +512,92 @@ as implementation becomes abundant, the judgments surrounding it become relative
 The same shift applies inside validation: cheap evidence generation makes *judging* evidence — its
 coverage, its representativeness, its independence, its assumptions — the scarce engineering work.
 
+## Margin, discreteness, and containment {#sec-margin-containment}
+
+Other engineering disciplines provide useful language for reasoning about residual uncertainty. A
+tolerance describes a range of realized behavior that remains acceptable. A margin describes the
+separation between expected or observed behavior and an unacceptable boundary. Suppose, for
+example, that a system must keep p99 latency below 500 ms. Measurements of 420 ms and 499 ms both
+satisfy that requirement, but they do not put the engineer in the same position. The first leaves
+substantially more room for variation in workload, environment, measurement, and prediction.
+
+The observed separation from a threshold is not necessarily the margin an engineer can rely upon.
+Measurements vary, models omit effects, operating conditions change, and the conditions used for
+validation may differ from those encountered after delivery. Engineers therefore care about how
+much margin remains after accounting for the uncertainty relevant to the decision. A system barely
+inside a limit can satisfy its specification while providing little reason to believe that the
+limit will continue to hold as conditions vary.
+
+Software complicates this reasoning because its behavior is discrete. Nearby inputs or states need
+not produce nearby outcomes. Changing one value, crossing one boundary condition, receiving one
+unexpected message, or taking one previously unexplored branch can move execution onto a
+qualitatively different path. Physical systems can also exhibit discontinuities such as fracture or
+instability, but discontinuity is routine in software semantics. There is generally no useful
+notion that an execution was almost an authorization bypass or nearly performed the same
+transaction twice.
+
+This property limits what engineers can infer from observed executions. Executing many behaviors
+near an unexplored behavior does not generally establish what the unexplored behavior will do.
+Coverage tells us where evidence reached; it does not tell us how close we are to correctness.
+Statement, branch, condition, state-space, and requirements coverage can expose important gaps in a
+body of evidence, but increasing a coverage number does not by itself bound the behavior that
+remains unexplored.
+
+Software architecture provides another response to residual uncertainty: constrain the consequences
+of behavior that validation fails to anticipate. This idea has deep roots in software modularity.
+Meyer distinguished modular continuity, in which a small change affects only a small number of
+modules, from modular protection, in which abnormal behavior remains confined to a small
+neighborhood of the system [@meyer1997]. The same principle has an assurance consequence. If
+engineers cannot economically establish everything a component might do, architectural controls can
+instead constrain what that component is permitted to affect.
+
+The progression is worth stating plainly. Continuity bounds the propagation of change. Protection
+bounds the propagation of failure. Containment bounds the consequences of what the evidence failed
+to discover. Meyer offered locality as a criterion of good modular structure; validation asks a
+different question of the same structure, which is how much evidence is sufficient to act under
+uncertainty.
+
+The controls themselves are familiar, and validation gives them a second job. Interfaces constrain
+how components can interact. Process and container isolation can prevent one failure from
+corrupting unrelated components. Type and memory-safety mechanisms exclude classes of behavior.
+Permissions constrain authority. Transactions constrain partially completed changes. Resource
+limits, timeouts, and circuit breakers restrict propagation. Staged rollout limits the population
+exposed to a new behavior, while rollback can shorten the time for which a discovered failure
+remains active. @ch-architecture treated a boundary as a decision about what must be reasoned about
+together and what can fail independently; used this way, architecture converts an open-ended
+validation problem into a bounded consequence problem.
+
+These controls do not establish that the software inside them is correct. They change the
+consequence of being wrong. If an uncertain component has unrestricted authority over a
+consequential system, uncertainty about its behavior may demand very strong evidence before
+delivery. If the same uncertainty is enclosed by controls that make consequential outcomes
+impossible or tightly bounded, the delivery decision can be different. Architecture therefore
+contributes to validation not only by making systems easier to test, but by bounding what failures
+that validation missed can affect.
+
+The two kinds of residual uncertainty are therefore tractable in different ways
+(@tbl-margin-containment).
+
+| Kind of residual uncertainty | What the evidence can establish | The engineering response |
+|---|---|---|
+| Quantitative — a measured property standing some distance from a threshold | A separation that can be estimated, compared, and degraded by known sources of variation | Margin: how much separation survives the variation that matters |
+| Discrete — an unexplored behavior or an unanticipated state | Where evidence reached, but no distance from failure | Containment: how far a failure is permitted to propagate if it occurs |
+
+: Quantitative uncertainty admits margin reasoning; discrete uncertainty calls for containment.
+{#tbl-margin-containment}
+
+This gives engineers several distinct ways to reason about uncertainty. Margin asks how far
+observed behavior is from a known unacceptable boundary. Coverage asks where evidence has reached.
+Containment asks what can happen where the evidence is wrong. Reversibility asks what engineers can
+do after discovering they were wrong. None eliminates uncertainty. Together they help determine
+whether the remaining uncertainty is acceptable for the consequences of the decision.
+
 ## Deciding when to stop {#sec-when-to-stop}
+
+No amount of validation establishes every relevant property over every possible software behavior.
+The delivery decision therefore concerns residual uncertainty: what remains unknown, what
+consequences could follow if the evidence is wrong, what controls bound those consequences, and
+what can be done if failure is discovered after delivery.
 
 Additional evidence always has a cost: the effort of producing it, the attention of evaluating it,
 and the delay it imposes on whatever value delivery would create. @ch-process observed that
@@ -490,6 +608,26 @@ uncertainty can be the defensible choice, and demanding near-certainty is the pa
 overengineering, resources consumed without commensurate value. For a high-consequence system, the
 same unresolved uncertainty may justify expensive and diverse evidence, or it may mean that
 delivery cannot currently be defended at all.
+
+Before delivering, engineers can work through a short sequence of questions. Each one recovers
+something this chapter has developed.
+
+- **Claims.** Have we obtained evidence for the consequential claims, rather than for whichever
+  claims happened to be convenient to examine?
+- **Strength.** How strong is that evidence along the dimensions above — its coverage, detection
+  power, representativeness, scope, independence, and assumptions?
+- **Margin.** Where the behavior is quantitative, how much defensible separation remains before
+  the behavior becomes unacceptable?
+- **Containment.** If an unanticipated behavior occurs, what controls limit its consequence?
+- **Consequence.** What happens in the world if these arguments are wrong?
+- **Reversibility.** Can we detect, stop, repair, and recover from a failure discovered after
+  delivery?
+
+These questions do not compute a decision, and nothing here reduces delivery to an equation. They
+make the judgment answerable. An engineer who can say what the evidence establishes, how far the
+system sits from unacceptable behavior, what bounds a failure, and what could be done afterward has
+given reasons another engineer can examine. That is what separates professional judgment from
+preference.
 
 The decision at the end of validation is also not binary. Evidence that fails to justify delivery
 does not merely say "stop"; it usually says something about where the problem lies, and the
@@ -578,8 +716,16 @@ metric defines how an aspect of it will be assessed, and a measurement supplies 
 under stated conditions. Measurements become evidence only relative to claims and assumptions.
 Engineers then choose among measurement, review, testing, analysis, model checking, operational
 observation, and other sources according to what uncertainty each can reduce. The resulting body of
-evidence is judged by coverage, representativeness, independence, assumptions, and remaining
-uncertainty rather than by volume.
+evidence is judged along explicit dimensions — coverage, detection power, representativeness,
+scope, independence, assumptions, and residual uncertainty — rather than by volume.
+
+Software's discreteness bounds what any of that evidence can establish. Nearby inputs and states
+need not produce nearby behavior, so executions observed around an unexplored behavior do not
+license a conclusion about it, and a coverage number identifies where evidence reached rather than
+how near the system is to being correct. Margin reasoning remains useful for quantitative
+properties. For discrete behavior, engineers can still change what being wrong would cost:
+architectural and operational controls bound how far a failure propagates, and updateability
+preserves the ability to detect, stop, and repair one after delivery.
 
 The decision that follows is not binary — deliver, gather more evidence, change the system, revisit
 an upstream decision, or refuse — and it recurs after delivery, because operational evidence keeps
