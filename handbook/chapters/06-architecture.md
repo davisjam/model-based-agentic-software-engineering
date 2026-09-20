@@ -298,6 +298,38 @@ The engineering objective is therefore not to ask an agent to choose an architec
 obligation, and responsibility still belong to the engineers accountable for the system. The useful
 role of automation is to reduce how much of the architectural choice remains a bet.
 
+## Measurement for decision-making {#sec-measurement-architecture}
+
+The evidence considered so far supports choosing an architecture. Once the parts exist and run
+together, a second kind of evidence becomes available: whether the properties the organization was
+supposed to produce actually emerged from the composition.
+
+Architectural decisions make predictions. A boundary is expected to contain failures. A critical path
+is expected to meet its latency budget. Replicated services are expected to supply sufficient
+availability. A decomposition is expected to let parts change independently. Each prediction implies
+an observation. If the architecture claims that a request completes within 200 milliseconds,
+distributed traces show how that budget is actually spent along the path and which hop consumes most
+of it. If a boundary is intended to isolate failure, deliberately injecting a fault behind it, or
+examining what an unplanned incident actually reached, shows whether the failure stayed inside. If
+two components are supposed to evolve independently, the version-control history can be examined for
+changes that touched both. A pair of components repeatedly modified in the same commit is not
+evolving independently, whatever the diagram shows.
+
+The governing principle is to measure at the scope where the claimed property exists
+(@sec-scope-of-property). Measuring each component's latency does not establish end-to-end latency
+when queuing and interaction contribute much of the result. Establishing that each service is
+individually available does not establish that the system is available, because dependencies can fail
+together. An architectural property belongs to the composition, so the measurement must reach the
+composition. A dashboard of healthy component metrics is entirely compatible with an unhealthy
+system.
+
+When observation repeatedly disagrees with an architectural prediction, the cheap response is to
+repair whichever component the measurement pointed at. That response is sometimes right and often
+insufficient. The prediction came from the organization: its responsibilities, boundaries,
+interactions, resource assumptions, and account of how system properties arise. Persistent
+disagreement is evidence about that organization, and the architecture is what should then be
+reconsidered.
+
 ## A practical architecture decision procedure {#sec-decision-procedure}
 
 The ideas in this chapter can be summarized as a sequence.

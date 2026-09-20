@@ -252,6 +252,39 @@ Represent it as an explicit exception if it is justified.
 Change the architectural rule if repeated exceptions show that the rule itself is wrong.
 Local implementation should not silently redefine the system engineers believe they have.
 
+## Measurement for decision-making {#sec-measurement-design}
+
+A design decision predicts a tradeoff: that this mechanism will satisfy the inherited obligations at
+an acceptable cost in the properties it spends. Measurement tests that prediction, and the test is
+usually far cheaper than reversing the decision later.
+
+Which observation matters follows from the mechanism and the obligation it serves. A data-structure
+choice is informed by measured time and space behavior under a representative workload. A concurrency
+mechanism is examined through contention, latency, throughput, and behavior under partial failure. A
+caching strategy is evaluated through hit rate, memory consumption, invalidation behavior, and, in
+the observation most often skipped, its effect on end-to-end performance rather than on the cache's
+own statistics. Some design properties admit no convenient scalar at all. There the useful evidence
+is qualitative: whether another engineer can follow the mechanism, or what the design argument has to
+assume before it can conclude that the mechanism is correct.
+
+The workload deserves as much attention as the mechanism. A measurement is a value obtained under
+conditions, and the conditions are part of the evidence. The document-processing service that stays
+below 4 GB on the documents the team had at hand may exceed it on the documents users actually
+submit. Recording the conditions under which a design measurement was taken is what makes it
+possible, later, to notice that they no longer hold.
+
+Because implementation can be cheap, the least expensive model for answering a design question is
+sometimes a partial implementation. A probe can expose properties that would have been expensive to
+predict analytically. But a probe answers a question without recording the answer. Once the evidence
+exists, engineers should extract the relationship it revealed — the conditions under which the
+mechanism works, the tradeoff it embodies, and the obligations that future changes must preserve —
+and place it where the next engineer will encounter it. Otherwise the knowledge is discarded along
+with the throwaway code that produced it.
+
+A probe that contradicts the design assumption may call for a different local mechanism. It may
+instead be precisely the evidence that justifies escalation: no mechanism available within the
+inherited boundaries can satisfy the obligation, so the inherited decision is what must change.
+
 ## Cheap implementation changes the evidence
 
 Implementation can itself serve as a design probe.

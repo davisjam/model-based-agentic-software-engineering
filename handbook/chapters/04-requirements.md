@@ -286,6 +286,43 @@ Nor does acceptance end the coupling.
 What engineers learn through specification, architecture, design, implementation, validation, operations, and use may expose missing obligations or show that an earlier commitment should change.
 An accepted requirement is a commitment, not a claim that engineers will never learn anything that warrants reconsidering it.
 
+## Measurement for decision-making {#sec-measurement-requirements}
+
+A requirement is a judgment about an outcome that matters in the world. Before committing to it,
+engineers should ask what observations would later supply evidence that the promised outcome was
+actually achieved. An outcome nobody could recognize as achieved is an outcome nobody can be held
+to.
+
+Some requirements connect readily to observable quantities. Response time, energy consumption, and
+transaction capacity suggest direct measurements. Others require that a measurement model be built
+first. "Easy to use" might be investigated through a usability study: recruit participants
+representative of the intended users, give them representative tasks, and record task-completion
+times, error rates, and the points at which participants hesitate or ask for help. A standardized
+usability questionnaire administered afterward supplies a second, partly independent view. "Maintainable"
+might be investigated through the time and the number of components touched when engineers perform
+representative maintenance tasks. In each case the measurement does not replace the requirement. It
+supplies evidence about one aspect of the outcome the requirement represents, obtained under the
+conditions that particular study created.
+
+Some important requirements resist complete measurement. Safety and security are awkward precisely
+because observing no failures does not establish that none remain possible. Engineers can count
+incidents, vulnerabilities found, resistance under a particular set of attacks, safety margins,
+hazardous events, or conformance with specified controls. None of those observations measures how
+safe or how secure the system is in general. Such requirements need several forms of evidence at
+once, and engineers must stay explicit about what each form establishes and what it leaves open.
+
+Requirements also differ in criticality. Failing to satisfy one may create inconvenience; failing to
+satisfy another may threaten safety, security, mission success, or substantial economic value.
+Criticality need not form a simple total ranking. It can depend on operating context, groups of
+obligations may carry their own internal priorities, and some consequences resist direct comparison.
+Making these judgments explicit while the commitment is being made lets later engineering allocate
+design attention and validation evidence according to consequence (@ch-validation).
+
+Thinking about measurement during requirements work therefore serves two purposes. It tests whether
+the desired outcome has been stated clearly enough to recognize evidence about success. And it makes
+engineers confront the limits of that evidence before a convenient proxy quietly becomes the
+requirement itself.
+
 ## From requirements to specification {#sec-to-specification}
 
 Requirements engineering has now decided what to promise.

@@ -251,6 +251,38 @@ open unless later evidence makes the distinction consequential. The important qu
 not merely "Is this specified?" but "Do we understand why this choice is constrained, open, or
 still under investigation?"
 
+## Measurement for decision-making {#sec-measurement-specification}
+
+A specification makes two kinds of claims: what the machine must guarantee, and what its environment
+may be assumed to provide. Both are claims about reality, so reality can be consulted about both.
+
+Suppose the sleep advisor's specification assumes that the measurement service returns a night's data
+within five seconds, and that the machine's obligation to issue an advisory before the user leaves
+home was written on that assumption. Traces of that service in operation test the assumption
+directly. If its slowest responses sit well beyond five seconds, the assumption does not hold, and
+the obligation it supported was never adequately grounded. Or suppose a state model says that an
+advisory may be issued only after the user has consented to health monitoring. Executions recorded in
+the running system can be checked for transitions the model forbids. In both cases the measurement is
+useful because the specification told engineers which distinction to look for. Observations are cheap
+to collect and hard to interpret; the model supplies the interpretation.
+
+The more interesting evidence arrives when nothing appears to be wrong. Suppose the machine satisfies
+its specified obligations, the assumed environmental conditions appear to hold, and the required
+outcome still does not follow: users are not, in fact, warned before illness affects their day. The
+discrepancy now challenges the specification rather than its realization. Something consequential
+about the machine, its environment, or the relationship between them is missing from the model, and
+conformance testing will not find it, because the machine conforms.
+
+Measurement therefore gives specification a feedback loop:
+
+*Specification → Expected relationship → Observation → Discrepancy → Reassessment*
+
+The loop also tells engineers where the learning is worth buying. An assumption nobody has observed
+and a distinction nobody has resolved are both candidates, and observation is often the cheapest way
+to resolve them. Evidence from realization and operation can reveal which previously open choices
+should now be constrained, which assumptions no longer deserve authority, and which parts of the
+specification still require investigation.
+
 ## Software lets specifications learn {#sec-specifications-learn}
 
 Software's changeability (@ch-software-engineering) makes the timing of specification unusually
