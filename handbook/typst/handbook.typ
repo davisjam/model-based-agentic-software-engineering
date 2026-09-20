@@ -101,6 +101,35 @@
     block(above: 1.0em, below: 0.4em)[#it.body]
   }
 
+  // Tables — booktabs typography, book-wide. The manuscript writes a plain pipe table and pandoc
+  // emits a Typst `table`, whose default dress is a full grid: a rule between every column, a box
+  // around every cell, tight padding, and cells that inherit the body's justification. That reads
+  // as a spreadsheet export rather than as book typography. These four rules re-dress EVERY table
+  // in the book at once — no manuscript markup, and no per-table styling, decides a table's form.
+  //
+  //   * no vertical rules and no per-cell boxes (`stroke: none`);
+  //   * three horizontal rules only — a heavy rule above and below the table (drawn as the wrapper
+  //     block's own top/bottom edges, because Typst has no "last row" selector) and a light rule
+  //     under the header (the `table.hline()` pandoc emits after `table.header`, whose `auto`
+  //     stroke the `set table.hline` rule supplies since the table itself strokes nothing);
+  //   * generous cell padding, so prose-heavy rows breathe;
+  //   * left-aligned, ragged-right cells at a size below the body face — a narrow prose column set
+  //     justified stretches its words into rivers.
+  set table(stroke: none, inset: (x: 0.8em, y: 0.62em))
+  set table.hline(stroke: 0.5pt + palette.muted)
+  show table.cell.where(y: 0): set text(font: font-display, weight: 700, size: 9.5pt)
+  show table: it => block(
+    width: 100%,
+    above: 1.0em, below: 0.3em,
+    stroke: (top: 0.9pt + palette.ink, bottom: 0.9pt + palette.ink),
+    {
+      set align(left + top)
+      set par(justify: false, first-line-indent: 0em, leading: 0.62em)
+      set text(size: 10pt)
+      it
+    },
+  )
+
   // Code.
   show raw.where(block: true): it => block(
     width: 100%, fill: palette.code-bg, inset: 9pt, radius: 3pt,

@@ -131,6 +131,30 @@
   text-align: center;
 }
 
+/* Booktabs typography — the print edition's table rule (typst/handbook.typ), expressed for the web
+ * so a table reads the same in both projections: NO vertical rules and no cell boxes, three
+ * horizontal rules only (above the table, under the header row, below the last row), generous
+ * padding, left-aligned prose columns. Material's default dress — an outer box with rounded
+ * corners, a tinted header, and a rule under every row — is the "spreadsheet export" look this
+ * replaces. One rule, every table in the book. */
+.md-typeset table:not([class]) {
+  border: none;
+  border-top: 2px solid var(--md-default-fg-color--light);
+  border-bottom: 2px solid var(--md-default-fg-color--light);
+  border-radius: 0;
+}
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  border: none;
+  padding: 0.7em 0.9em;
+  text-align: left;
+  vertical-align: top;
+}
+.md-typeset table:not([class]) th {
+  background-color: transparent;
+  border-bottom: 1px solid var(--md-default-fg-color--lighter);
+}
+
 /* Captioned tables (filters/web.lua renders these as raw HTML so the id + caption survive GFM):
  * caption below the table, styled like a figure caption, with the "Table N." prefix in bold. */
 .md-typeset table caption {

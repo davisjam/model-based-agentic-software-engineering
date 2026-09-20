@@ -46,14 +46,12 @@ engineering effort.
 
 Failure creates new evidence. The system has encountered circumstances under which some expectation
 did not hold. Engineers can repair the immediate problem without learning much from that evidence,
-or they can use the discrepancy to reconsider the understanding that produced the system. The
-latter activity is the subject of this chapter.
-
-Failure-aware engineering treats failure as part of a continuing engineering process. It asks what
-failed, why previous engineering did not reveal the problem, what the failure teaches about the
-system and its environment, and what should change as a result. Those changes can occur in the
-engineered system, in the knowledge and practices of the team, and in the judgment of the
-individual engineer.
+or use the discrepancy to reconsider the understanding that produced the system. Failure-aware
+engineering concerns the latter activity. It treats failure as part of a continuing engineering
+process and asks what failed, why previous engineering did not reveal the problem, what the failure
+teaches about the system and its environment, and what should change as a result. Those changes can
+occur in the engineered system, in the knowledge and practices of the team, and in the judgment of
+the individual engineer.
 
 ## Experience builds judgment {#sec-experience-builds-judgment}
 
@@ -128,9 +126,6 @@ two-second assumption considered credible? Where was it represented? Which decis
 it? What evidence supported it? Did engineers believe the dependency guaranteed the bound, or did
 the assumption simply become embedded in the system without ever being made explicit?
 
-Failure is useful because it permits comparison between an engineering model and an observed
-consequence (@fig-expectation-observation).
-
 ::: {.figure #fig-expectation-observation width="52%" alt="A vertical chain: an Engineering model yields an Expectation, which leads to Action in the world, which yields an Observation. The Observation branches two ways. One branch, drawn in a lighter dashed box, is labeled Expectation holds. The other branch, highlighted, leads to Failure, then to Interpretation, then to Updated engineering understanding."}
 ![](../figures/failure-aware-engineering/expectation-and-observation.svg)
 
@@ -139,7 +134,7 @@ observation becomes evidence about the model, but only after engineers interpret
 discrepancy means.
 :::
 
-The interpretation step matters. A failure does not explain itself. The first explanation engineers
+The interpretation step matters (@fig-expectation-observation). A failure does not explain itself. The first explanation engineers
 construct may be wrong, and the same observation can be consistent with several causal accounts. A
 production outage following a deployment may have been caused by the deployment, exposed by it, or
 merely coincident with it. Reflection therefore requires the same discipline applied to other
@@ -188,36 +183,38 @@ Before answering them, engineers need to determine what kind of failure occurred
 ## What failed? {#sec-what-failed}
 
 Software failure is often discussed as though it were synonymous with an implementation defect.
-Implementation failures are important, but software can fail even when every executed instruction
-behaves as its implementer intended.
+That is the familiar case: the realized software does something its design did not intend. An
+incorrect bounds check permits an out-of-bounds access; a mistaken condition sends execution down
+the wrong path.
 
-The engineering activities developed in this handbook provide one way to locate what an incident
-has revealed (@tbl-locating-failure).
+But software can fail even when every executed instruction behaves as its implementer intended. The
+engineering activities developed in this handbook provide a sequence of progressively broader
+questions about what an incident has revealed (@tbl-locating-failure).
 
 | Engineering activity | A failure may reveal that… | Example |
 |---|---|---|
-| Requirements | The engineering effort pursued the wrong world outcome or omitted an important obligation. | A system performs its stated functions but fails an important stakeholder need. |
-| Specification | The required relationship between machine and environment was represented incorrectly or incompletely. | The machine behaves as specified, but an assumed environmental condition does not hold in deployment. |
-| Architecture | Responsibilities, boundaries, resources, or interactions make an important system property fragile or impossible to preserve. | A critical function shares a resource whose exhaustion by another workload prevents the critical function from operating. |
-| Design | A selected mechanism has consequences inconsistent with the properties it must satisfy. | A mechanism is functionally correct but cannot satisfy the required latency under realistic load. |
 | Implementation | The realized software departs from an otherwise adequate design. | Incorrect bounds handling permits an out-of-bounds memory access. |
+| Design | A selected mechanism has consequences inconsistent with the properties it must satisfy. | A mechanism is functionally correct but cannot satisfy required latency under realistic load. |
+| Architecture | Responsibilities, boundaries, resources, or interactions make an important system property fragile or impossible to preserve. | A critical function shares a resource whose exhaustion by another workload prevents the critical function from operating. |
+| Specification | The required relationship between machine and environment was represented incorrectly or incompletely. | The machine behaves as specified, but an assumed environmental condition does not hold in deployment. |
+| Requirements | The engineering effort pursued the wrong world outcome or omitted an important obligation. | A system performs its stated functions but fails an important stakeholder need. |
 
 : Locating what an incident revealed among the engineering activities. {#tbl-locating-failure}
 
-A requirements failure can therefore produce software that correctly implements its specification.
-If engineers promised the wrong outcome, faithful realization preserves the wrong commitment.
+Implementation is the most familiar case: the realized artifact simply does something the design
+did not intend. Design failures are subtler. The implementation may faithfully realize a selected
+mechanism, but that mechanism may consume unacceptable time, memory, energy, or other resources.
 
-A specification failure can similarly survive correct implementation. Engineers may accurately
-describe what the machine should do while incorrectly modeling the environment with which it
-interacts. Evidence gathered only under the assumed environmental conditions can then make the
-implementation appear satisfactory until deployment supplies a condition the specification failed
-to represent.
+Architecture widens the analysis further. Properties such as availability, isolation, and
+throughput can depend on interactions among components that behave correctly in isolation. A
+failure can therefore arise from how responsibilities, boundaries, resources, and interactions were
+organized rather than from incorrect behavior within any one component.
 
-Architecture and design introduce other possibilities. A property such as availability, isolation,
-or throughput can depend on interactions among components that behave correctly in isolation. A
-design mechanism can satisfy its functional responsibility while consuming unacceptable time,
-memory, energy, or operational complexity. Implementation adds the familiar possibility that the
-realized artifact simply does something the design did not intend.
+Specification and requirements expose the least familiar possibilities. A machine can faithfully
+implement its specification while the specification incorrectly represents the environment with
+which it interacts. More fundamentally, software can correctly implement both its design and
+specification while producing the wrong outcome because engineers committed to the wrong
+requirement or omitted an outcome that mattered.
 
 These categories are analytical aids rather than mutually exclusive classifications. One incident
 can expose weaknesses at several levels. A requirements decision may create an unusually difficult
@@ -385,13 +382,11 @@ component controlling a consequential system do not create equivalent risk. The 
 identical; the severity is not.
 :::
 
-The same reasoning applies to operating context. An outage can be minor under one operating mode
-and critical under another, because the obligations that matter differ between them.
-
-A severity judgment therefore depends on the violated obligation, the operating context, the extent
-of the violation, and the realized or credible consequence. These are the inputs an organization
-must make operational if its severity levels are to mean the same thing to two engineers who have
-never discussed them.
+Context matters as well. An outage can be minor under one operating mode and critical under another
+because the obligations and consequences differ. A severity judgment therefore depends on the
+violated obligation, operating context, extent of violation, and realized or credible consequence.
+An organization must make these relationships operational if its severity levels are to mean
+approximately the same thing to engineers applying them independently.
 
 This relationship connects failure analysis back to @ch-specification. Specifications need not
 treat every obligation as equally critical. Engineers can identify obligations whose violation
@@ -439,8 +434,8 @@ under which the failure occurred. The test preserves useful engineering knowledg
 change recreates those conditions, validation can expose the recurrence before delivery. For many
 implementation defects, this is an inexpensive and effective response.
 
-A regression test does not necessarily preserve the more general lesson exposed by the failure. A
-buffer overflow triggered by one input may reveal a broader weakness in how lengths are represented
+A regression test is memory, but extremely literal memory. It does not necessarily preserve the
+more general lesson exposed by the failure. A buffer overflow triggered by one input may reveal a broader weakness in how lengths are represented
 or checked. A capacity failure in one service may expose an architectural assumption shared by
 several services. A new feature can recreate the same resource dependency through a different path
 without reproducing the original incident closely enough to trigger its regression test.
@@ -621,9 +616,13 @@ expected. The organization may also understand the failure correctly and deliber
 probability of recurrence because eliminating it would cost more than the expected consequence
 justifies.
 
-The observation therefore requires interpretation. Two incidents that appear similar may have
-different causes, while two incidents that look different may expose the same engineering weakness.
-Counting recurring incidents is not itself a complete measure of organizational learning.
+The observation requires interpretation. Two incidents that appear similar may have different
+causes, while two incidents that look different may expose the same engineering weakness. Counting
+recurring incidents is therefore not itself a complete measure of organizational learning. At
+scale, engineers can search incident records and postmortems for earlier failures that share the
+same engineering relationship rather than the same literal symptoms. Language models can help
+identify candidate relationships across large collections of incident reports, although engineers
+must still judge whether two incidents genuinely express the same underlying lesson.
 
 A consequential recurrence nevertheless creates a useful question: what did the previous experience
 change, and why was that change insufficient here?
@@ -675,7 +674,7 @@ A small set of measures can nevertheless make the learning process more observab
 : Observations that make a failure-learning process visible, each paired with the inference it does
 not license. {#tbl-learning-observables}
 
-The final row connects failure learning to @ch-engineering-knowledge. A lesson that moves from an
+The final row returns to a problem developed in @ch-engineering-knowledge. A lesson that moves from an
 individual's memory into a test, model, validation rule, architectural constraint, or other shared
 structure has become more durable. Counting such changes can describe one aspect of organizational
 learning. It does not establish that the organization has learned everything the incident could
@@ -733,11 +732,9 @@ understanding does the observation actually challenge? What alternative explanat
 broadly does the lesson generalize? What should change in the system, in shared engineering
 knowledge, or in your own future judgment?
 
-Success deserves similar attention, particularly when it provides evidence across new conditions.
-Near misses and experiments can expose weaknesses without requiring a consequential incident. Other
-engineers' experiences can enter your repertoire through cases and preserved knowledge. The purpose
-is not to accumulate personal failures. It is to become increasingly capable of connecting
-engineering decisions with their consequences.
+Success, near misses, experiments, and other engineers' experiences can contribute similarly when
+they provide evidence across new conditions. The purpose is not to accumulate personal failures,
+but to become increasingly capable of connecting engineering decisions with their consequences.
 
 No engineer reaches a point at which this process becomes unnecessary. Systems change, environments
 change, organizations change, and engineers take responsibility for systems unlike those they have
