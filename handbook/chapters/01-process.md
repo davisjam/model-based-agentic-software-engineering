@@ -275,8 +275,6 @@ create smaller units from which we can learn or deliver value. But moving those 
 Invest when the resulting flexibility, information, or control is worth more than the investment required.
 :::
 
-## Closing {#sec-closing}
-
 Software engineering therefore does more than exploit the changeability of its medium. Engineers
 deliberately change the economics of future change. Requirements work can reduce uncertainty before
 commitment. Architecture and design can make some changes cheaper and more independent. Validation
@@ -285,6 +283,32 @@ rather than assuming them.
 
 Choosing a process is therefore not simply a matter of asking, What kind of project do we have? It also
 asks, What kind of project is it worth engineering this into?
+
+## Measurement for decision-making {#sec-measurement-process}
+
+A process choice rests on a model of the work: how much can be known before building, how expensive it
+is to change direction, and how independently useful work can be decomposed. Those are judgments made
+before much of the work exists, which means they are hypotheses. The project then produces evidence
+about whether they were right.
+
+Each dimension leaves a trace. Requirements churn and rework provide evidence about certainty; if
+decisions the team believed were settled are repeatedly reopened — reopened issues, change requests
+arriving after sign-off, features reworked after review — the work may contain more uncertainty than
+the chosen process assumed. The cost and latency of incorporating a change provide evidence about
+changeability. The size of increments, the frequency with which work sits blocked, and dependencies
+that prevent a partial system from being independently useful provide evidence about decomposability.
+Feedback latency matters across all three, because delayed evidence increases how much work is
+performed before a mistaken assumption can be corrected.
+
+These observations should not be converted into universal targets. A high rate of requirements change
+can indicate productive learning or poor requirements work; the measurement does not distinguish
+them. A short cycle time can indicate efficient feedback or merely smaller reported units. The
+observation becomes meaningful only through the process model and the engineering question being
+asked of it.
+
+Process selection is therefore not a classification performed once at the start of a project.
+Engineers choose a process using their current model of the work, observe how the work actually
+behaves, and revise either the process or the model when the two diverge.
 
 ## Summary
 

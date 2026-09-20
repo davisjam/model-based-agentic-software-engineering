@@ -218,6 +218,30 @@ The tools will continue to change. So will the systems we build with them. The e
 learning how to exploit a medium built for change without surrendering control of what those changes
 mean.
 
+## Measurement for decision-making {#sec-measurement-software-engineering}
+
+How would engineers know whether they were losing that control? The changeability of software
+produces leverage only when engineers retain enough control to use it deliberately, and that claim is
+not self-evidently true of any particular system. Change itself leaves observable consequences, so
+engineers can test their assumptions about how controllable a system actually remains.
+
+Which observations help depends on the decision at hand. Engineers might examine how long a
+consequential change takes to reach users, how often changes require rework, how widely a
+modification propagates through the system, how frequently changes introduce failures, or how long it
+takes to obtain evidence that a change is acceptable. These observations concern different
+properties. Change lead time says something about the system's capacity to accommodate change;
+escaped defects say something about the risk accompanying it; the number of components a typical
+change touches may provide evidence about coupling. None of them measures engineering quality in
+general, and treating any one as if it did would replace the engineering question with a number that
+happens to be available.
+
+The deeper question is whether the medium continues to supply the leverage the engineering model
+predicts. A system intended to remain readily changeable, but whose modifications become steadily
+broader, riskier, or more expensive, is supplying evidence that its structure no longer supports that
+intention. The purpose of the measurement is not the number. It is to make the discrepancy visible
+early enough that engineers can reconsider the structures and practices governing change, rather than
+discovering the loss of control at the moment they most need it.
+
 ## Summary
 
 Software is an expressive medium in which behavior is represented for execution by machines. Its unusual

@@ -463,7 +463,39 @@ eliminate interaction whose purpose is merely reconstructing work state while pr
 that creates engineering or organizational value.
 :::
 
-## Closing {#sec-teamwork-closing}
+## Measurement for decision-making {#sec-measurement-teamwork}
+
+A team structure is an engineering hypothesis about how individual capabilities and coordination
+mechanisms will combine into collective capability. Observation can help engineers determine whether
+that hypothesis is working.
+
+Coordination leaves evidence in the systems through which engineers work. Email, chat systems such as
+Teams or Slack, issue trackers, code review, and version-control history record requests, responses,
+handoffs, dependencies, and decisions. Engineers can use those records to examine how long
+consequential questions remain unanswered, how long work sits blocked on another person or team, how
+frequently work crosses an organizational boundary, where reviews repeatedly wait on the same few
+people, how often integration exposes incompatible assumptions, and which parts of the system
+generate unusually broad coordination.
+
+Extracting those relationships at scale once required substantial manual analysis or specialized
+tooling, which is why most organizations reasoned about coordination from the organization chart
+instead. Language models make another approach practical: they can classify and connect
+communication records, issues, reviews, and changes to reconstruct patterns of coordination for
+engineers to inspect. The result is still a model. A language model can misclassify an interaction,
+and recorded communication omits the informal coordination that happens in hallways and side
+conversations. But it makes the coordination the work actually demanded visible in a way an
+organization chart cannot, because the chart records intended structure while the records show what
+engineers had to do.
+
+Care is especially important when measurements concern people. Commit counts, lines of code, tickets
+closed, messages sent, and similar activity measures are poor substitutes for engineering capability
+or contribution. Once treated as targets, they distort the behavior they purport to measure. The
+property of interest is usually not individual activity, but whether the team possesses and
+coordinates the capabilities required to make and realize sound engineering decisions.
+
+Measure the coordination system, therefore, rather than reducing the people within it to scores. The
+purpose is to discover where the team's model of responsibilities, dependencies, and communication
+differs from what the work actually requires.
 
 The practical engineering question is therefore not simply *how do we make each engineer more
 productive?* It is also: *how should work and communication be structured so that individual

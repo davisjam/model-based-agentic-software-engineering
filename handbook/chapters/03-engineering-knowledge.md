@@ -378,6 +378,45 @@ chapters develop those decisions in turn.
 repeatedly experiences the same surprise without changing what it remembers, represents, or does has
 collected experience without accumulating much engineering knowledge.
 
+@ch-failure-aware-engineering returns to this problem from the other direction: when reality
+contradicts what engineers expected, how should the resulting experience become engineering knowledge
+that changes the system, the organization, and the engineer?
+
+## Measurement for decision-making {#sec-measurement-engineering-knowledge}
+
+An organization can hold large quantities of recorded information while remaining poor at
+remembering. The property of interest is not how much has been stored, but whether consequential
+knowledge becomes available in a usable form at the moment an engineering decision requires it.
+
+Parts of that process can be observed. Engineers can measure how long it takes to find the
+information needed for a decision, how often existing knowledge must be rediscovered through fresh
+investigation, and how frequently supposedly current records contradict the implemented system.
+Failure records deserve particular attention here, because they preserve cases in which reality
+contradicted an earlier understanding. When an incident repeats a lesson the organization has already
+encountered, that recurrence is evidence about the knowledge lifecycle itself: the earlier lesson was
+not represented durably enough, not retrievable when it mattered, not recognized as applicable, or
+not applied.
+
+A second useful question is whether represented knowledge can be traced to the artifacts it is
+supposed to govern. Which code realizes this architectural decision? Which implementation depends on
+this environmental assumption? Which tests supply evidence for this requirement? Performing that
+tracing by hand is expensive and feels to engineers like pure overhead, which is why it is usually
+not done. Language models can now search across prose, code, specifications, issue histories, and
+tests to propose these links at far lower cost. A proposed link is evidence, not ground truth. But
+cheap proposals make it practical to inspect whether consequential knowledge actually reaches the
+work it was meant to influence.
+
+These remain proxies. Search latency does not measure knowledge quality, document counts do not
+measure organizational memory, and an automatically inferred link does not establish that two
+artifacts are correctly related. Even apparent reuse can faithfully preserve an incorrect lesson. The
+model developed in this chapter therefore remains necessary: engineers must weigh the source,
+representation, strength, currency, and consequences of knowledge rather than counting its artifacts.
+
+Used with that caution, measurement can nevertheless show where the lifecycle is breaking down.
+Repeated rediscovery, decisions no one can locate, records that have drifted from the system they
+describe, and recurring violations of lessons already learned are all evidence that consequential
+knowledge is not surviving in a form strong enough to influence future engineering.
+
 ## Summary
 
 Engineering organizations learn from many sources. Engineers discover facts through design,

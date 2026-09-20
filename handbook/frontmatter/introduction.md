@@ -31,15 +31,28 @@ understand them.
 
 ## How to read this book
 
-Each chapter follows a recurring pattern. It first identifies the consequential decisions engineers
-face in that part of software development: what must be decided, what alternatives are available, and
-what consequences distinguish them. It then examines the knowledge and evidence that can inform those
-decisions. The purpose is to make engineering judgment explicit enough to study and practice.
+Each chapter follows a recurring pattern. It first develops a conceptual model for a consequential
+part of software engineering: the distinctions, relationships, and alternatives an engineer must
+understand. It then elaborates that model by identifying the decisions engineers face, what
+alternatives are available, and what consequences distinguish them. The purpose is to make
+engineering judgment explicit enough to study and practice.
+
+Near the end of each chapter, we ask how measurement can support those decisions. An engineering
+model implies properties, expectations, or predictions about the systems and organizations it
+describes, and observation can supply evidence about whether those expectations hold. Measurements do
+not make engineering decisions by themselves. They make some part of reality observable, so that
+engineers can compare what a model led them to expect with what actually occurred. The chapters
+therefore share a recurring reasoning pattern:
+
+*Model → Property → Observation → Evidence → Judgment*
 
 The chapters do not provide algorithms for making these decisions. Engineering judgment is necessary
 precisely because consequential decisions usually involve competing considerations, incomplete
-knowledge, and uncertainty. Instead, the chapters identify what deserves attention, provide ways to
-reason about it, and develop the evidence from which a defensible decision can be made.
+knowledge, imperfect measurements, and uncertainty. Instead, the chapters identify what deserves
+attention, provide ways to reason about it, and develop the evidence from which a defensible decision
+can be made. A metric is itself a model connecting a property we care about to something we can
+observe, so engineers must judge not only what to measure, but what the measurement means, what it
+omits, and whether the resulting evidence should change the decision.
 
 ### A note about metrics
 
