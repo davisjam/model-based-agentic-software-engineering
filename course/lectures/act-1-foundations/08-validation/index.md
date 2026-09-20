@@ -27,7 +27,8 @@ assignments: []
 instructor_notes: ""
 status: ready
 materials:
-  - title: Lecture slides — Validation (forthcoming)
+  - title: Lecture slides — Validation
+    src: 1-8-Validation.pptx
 ---
 
 **Premise.** *Validation asks what evidence is sufficient to deliver a software system into the world.*
