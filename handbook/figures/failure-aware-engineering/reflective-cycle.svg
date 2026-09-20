@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 268" font-family="'Source Sans 3', Helvetica, sans-serif" role="img">
+  <title>A cycle in which a decision produces a consequence, reflection on the consequence builds a repertoire, and the repertoire supports future recognition that returns to the next decision</title>
+  <!-- Umber Monograph palette: ink #1c1917, paper #fdfcf9, accent #9a3f12, rule #e4e0d8, panel #f6f4ef, subordinate #57534e -->
+  <rect x="0" y="0" width="720" height="268" fill="#fdfcf9"/>
+
+  <defs>
+    <marker id="rc-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- the forward chain -->
+  <rect x="24" y="60" width="140" height="48" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="94" y="89" text-anchor="middle" font-size="15" fill="#1c1917">Decision</text>
+
+  <rect x="212" y="60" width="140" height="48" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="282" y="89" text-anchor="middle" font-size="15" fill="#1c1917">Consequence</text>
+
+  <rect x="400" y="60" width="140" height="48" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="470" y="89" text-anchor="middle" font-size="15" fill="#1c1917">Reflection</text>
+
+  <rect x="588" y="60" width="108" height="48" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.5"/>
+  <text x="642" y="89" text-anchor="middle" font-size="15" fill="#1c1917">Repertoire</text>
+
+  <g stroke="#9a3f12" stroke-width="2" fill="none">
+    <line x1="164" y1="84" x2="204" y2="84" marker-end="url(#rc-arrow)"/>
+    <line x1="352" y1="84" x2="392" y2="84" marker-end="url(#rc-arrow)"/>
+    <line x1="540" y1="84" x2="580" y2="84" marker-end="url(#rc-arrow)"/>
+  </g>
+
+  <!-- the return path, through recognition -->
+  <rect x="266" y="192" width="188" height="48" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="360" y="221" text-anchor="middle" font-size="15" fill="#1c1917">Future recognition</text>
+
+  <g stroke="#9a3f12" stroke-width="2" fill="none">
+    <path d="M642,108 L642,216 L462,216" marker-end="url(#rc-arrow)"/>
+    <path d="M266,216 L94,216 L94,116" marker-end="url(#rc-arrow)"/>
+  </g>
+
+</svg>

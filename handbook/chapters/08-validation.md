@@ -204,6 +204,16 @@ behavior.
 Consequences give engineers reason to demand more or less assurance, but do not determine a unique
 threshold for delivery. Someone must still judge what evidence is sufficient.
 
+Evidence obligations should reflect consequence. Not every property deserves the same validation
+effort. A specification can identify some obligations as more critical than others, including
+groups of obligations with their own internal priorities (@sec-prioritizing-effort). The stronger
+the consequence of violating an obligation, the stronger the evidence we should ordinarily demand
+before relying on it. This relationship is not mechanical: criticality can depend on operating
+context, obligations can be incomparable, and finite evidence never eliminates uncertainty. Later,
+when we examine failure, we will turn the relationship around. The criticality of the violated
+obligation and the resulting consequence help determine the severity of a failure
+(@ch-failure-aware-engineering).
+
 That judgment changes as engineers learn. Before delivery, a harmful outcome may be only a
 possibility supported by stronger or weaker evidence. Delivery produces new information: engineers
 observe failures, measure outcomes, receive user reports, and discover consequences they did not

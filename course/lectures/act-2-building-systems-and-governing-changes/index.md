@@ -1,5 +1,5 @@
 ---
-title: Act II — Building Systems & Governing Changes
+title: Act II — Building Systems & Governing Change
 week:
 mage_readings: []
 objectives: []
@@ -11,14 +11,15 @@ status: draft
 ---
 
 
-# Act II — Building Systems & Governing Changes
+# Act II — Building Systems & Governing Change
 
-*How do we build our designs and govern changes to them?*
+*How do we realize engineering decisions, learn from experience, and govern change?*
 
-Act II turns from the structures used to reason about software to the work of realizing and changing systems. It covers implementation and representation, engineering with software agents, and the validation and assurance mechanisms used to keep change aligned with engineering intent.
+Act II turns from the structures used to reason about software to the work of realizing systems, governing the changes made to them, and learning from what happens when reality contradicts the engineering that produced them.
 
-- **Implementation & Representation** — translating designs into executable systems and choosing representations that make important properties explicit.
-- **Agentic Engineering & Governed Change** — using software agents as engineering instruments while constraining and governing the changes they produce.
-- **Validation & Assurance** — establishing evidence that a system satisfies its requirements and other engineering obligations.
+- **Modeling: Representation & Implementation** — how engineering knowledge is represented, and how implementation itself serves as a model and a probe.
+- **Alignment** — connecting those representations to realization, and making important obligations enforceable.
+- **Agent Levers** — directing capable software agents effectively inside a governed engineering environment.
+- **[Failure-Aware Engineering](04-failure-aware-engineering/index.md)** — what to learn when reality contradicts expectation, and how the lesson changes the system, the team, and the engineer.
 
-*Materials forthcoming.*
+*Remaining materials forthcoming.*

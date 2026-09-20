@@ -71,6 +71,16 @@ investigation has a cost, and delay has a cost. The purpose of specification is 
 detail but to spend engineering attention where additional precision or knowledge can change an
 important decision.
 
+Prioritizing effort is one use of consequence; recording it is another. Specifications need not
+treat every obligation as equally important. Engineers can identify critical obligations, group
+obligations by criticality, and represent priorities within or among those groups. Such priorities
+need not form a simple ranking: they can depend on operating conditions, and some obligations may
+be difficult to compare directly. Making criticality explicit helps later engineering decisions
+allocate resources and evidence according to consequence. Architecture can give the most critical
+obligations the structural attention they need, validation can demand evidence in proportion to
+what a violation would cost (@sec-consequence-evidence), and a failure can be assessed against the
+criticality of the obligation it violated (@ch-failure-aware-engineering).
+
 ## Allocating responsibility between environment and machine {#sec-environment-machine}
 
 A second judgment concerns the boundary of the machine itself. Requirements usually describe

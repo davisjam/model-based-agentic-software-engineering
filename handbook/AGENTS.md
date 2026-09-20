@@ -37,7 +37,8 @@ The chapters form one progression:
 8. **Design** — How should its parts actually realize their responsibilities?
 9. **Validation** — What evidence is sufficient to deliver?
 10. **Research and Development** — Which uncertain opportunities deserve engineering effort when we do not yet know what is possible? (Turns the framework outward: choosing the problems, not just deciding within them.)
-11. **Conclusion** — How should an engineer approach a consequential decision?
+11. **Failure-Aware Engineering** — What should an engineer learn when reality contradicts the expectation the earlier chapters justified? (Turns the framework backward: the same activities re-examined retrospectively.)
+12. **Conclusion** — How should an engineer approach a consequential decision?
 
 Do not let the chapters become seven independent textbook surveys.
 

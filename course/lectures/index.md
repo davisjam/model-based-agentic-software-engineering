@@ -36,15 +36,16 @@ Modules are published as their teaching materials are completed.
 - **[Validation](act-1-foundations/08-validation/index.md)**
 - **[Engineering Decision-Making and Metrics](act-1-foundations/09-engineering-decision-making-and-metrics/index.md)**
 
-## Act II — Building Systems & Governing Changes
+## Act II — Building Systems & Governing Change
 
-*How do we build our designs and govern changes to them?*
+*How do we realize engineering decisions, learn from experience, and govern change?*
 
-- Implementation & Representation
-- Agentic Engineering & Governed Change
-- Validation & Assurance
+- Modeling: Representation & Implementation
+- Alignment
+- Agent Levers
+- **[Failure-Aware Engineering](act-2-building-systems-and-governing-changes/04-failure-aware-engineering/index.md)**
 
-*Materials forthcoming.*
+*Remaining materials forthcoming.*
 
 ## Act III — Software in the World
 

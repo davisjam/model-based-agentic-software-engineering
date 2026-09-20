@@ -26,15 +26,15 @@ This reference course uses a 16-week sequence in three acts. The [Syllabus](syll
 | 4 | {module:Architecture} · {module:Design} |
 | 5 | {module:Validation} · {module:Engineering Decision-Making and Metrics} |
 
-## Act II — Building Systems & Governing Changes
+## Act II — Building Systems & Governing Change
 
-*How do we build our designs and govern changes to them?*
+*How do we realize engineering decisions, learn from experience, and govern change?*
 
 | Week | Topic |
 |---|---|
-| 6 | {module:Implementation & Representation} |
-| 7 | {module:Agentic Engineering & Governed Change} |
-| 8 | {module:Validation & Assurance} |
+| 6 | {module:Modeling: Representation & Implementation} |
+| 7 | {module:Alignment} |
+| 8 | {module:Agent Levers} · {module:Failure-Aware Engineering} |
 | 9 | Oral Exam / Synthesis |
 
 ## Act III — Software in the World
