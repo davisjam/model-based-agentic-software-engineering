@@ -59,6 +59,10 @@ Software often changes those economics. But software being changeable does not m
 
 Generative AI changes these economics again. If implementation becomes cheaper, building a candidate solution may become a practical way to answer questions that we previously tried to settle through analysis alone. But cheaper implementation does not automatically make requirements more certain, consequential decisions more reversible, or partial systems more informative. Faster building is valuable only when what we build helps us learn.
 
+## Measurement for decision-making
+
+The three questions are judgments about the work, not labels assigned at kickoff. The work then produces evidence about them. Decisions that were supposedly settled but keep reopening suggest less certainty than the chosen process assumed. The cost and latency of absorbing a change test the changeability estimate. Increments that cannot be delivered independently, or work that repeatedly blocks on someone else, test decomposability. Feedback latency bears on all three, because delayed evidence means more work is completed before a wrong assumption surfaces. None of these is a target: a high rate of requirements change can indicate productive learning or weak requirements work. The question they serve is *does the process still fit the work as the work actually behaves?* When the answer is no, revise the process or the model of the work.
+
 ## Process is an engineering decision
 
 The three dimensions give us a better question than *Which methodology should we use?*

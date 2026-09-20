@@ -705,6 +705,46 @@ without pretending to quantify the judgment produced by that system. The importa
 whether experience changes future engineering appropriately. Metrics can provide evidence for
 answering that question; they cannot answer it by themselves.
 
+## Measurement for decision-making {#sec-measurement-failure-aware-engineering}
+
+The preceding section asked whether an organization's learning can be observed. This one asks what
+the failure itself measured.
+
+Every chapter of this handbook developed a model and then asked what an engineer could observe to
+find out whether the model still held: whether change remains controllable
+(@ch-software-engineering), whether the process fits the work as the work actually behaves
+(@ch-process), whether the organization supplies the coordination the system demands (@ch-teamwork),
+whether consequential knowledge survives to reach the decision that needs it
+(@ch-engineering-knowledge), whether the promised outcome occurred (@ch-requirements), whether the
+model of machine and environment still describes reality (@ch-specification), whether the predicted
+properties emerge from the composition (@ch-architecture), whether the chosen mechanism produced the
+tradeoff it was chosen for (@ch-design), whether the evidence is strong enough for the consequence
+of being wrong (@ch-validation), and whether further investigation is buying information that
+changes what we do (@ch-research-and-development). In each case engineers selected the observation,
+and selected it while there was still time to deliberate.
+
+Failure is the same loop running the other way. The observation is not selected, it arrives at a
+time nobody chose, and it already disagrees. The deliberate work that remains is the step the
+forward loop performs first: deciding which model the observation is about.
+
+That is the movement of the entire book, compressed. We made decisions using models. We measured
+reality to inform those decisions. Reality eventually contradicted one of our expectations. Which
+model should change?
+
+The retrospective traversal earlier in this chapter (@sec-turn-the-handbook-around) is the procedure
+for answering that question, and its final entry deserves particular attention. A metric is a model
+connecting a property we care about to something observable, so a metric can fail the way any other
+model fails. Consider a service whose dashboard showed a healthy request-success rate throughout an
+outage, because the rate was computed at a load balancer that never saw the requests dropped
+upstream. Nothing was wrong with the measurement. What was wrong was the claim engineers had
+attached to it. A failure alongside untroubled indicators is evidence about the indicators, and an
+incident review that repairs the system while leaving that model intact has spent the failure
+poorly.
+
+Failures are expensive observations, and the organization has already paid for them. What remains is
+to spend them on the model that deserves to change rather than on the smallest repair that makes the
+symptom go away.
+
 ## Becoming a reflective engineer {#sec-reflective-engineer}
 
 Failure-aware engineering is ultimately part of developing professional judgment. The engineer

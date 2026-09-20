@@ -102,6 +102,12 @@ Observe → Interpret → Represent → Use → Reassess
 
 Reassessment does not simply mean "keep the documentation up to date." Historical knowledge can remain useful even after it ceases to describe the current system precisely; what changes is the authority it should carry for different decisions. Good engineering memory therefore requires both remembering and knowing what the organization should no longer treat as authoritative.
 
+## Measurement for decision-making
+
+An organization can hold enormous quantities of recorded information and still remember badly. The property that matters is not how much is stored: it is *does consequential knowledge reach the decision that needs it, in a form that decision can use?* Parts of that are observable. How long does finding the information for a decision take? How often is existing knowledge rediscovered through fresh investigation? How often do supposedly current records contradict the running system? Failure records deserve particular attention, because they preserve cases where reality contradicted an earlier understanding, and a repeated failure is evidence about whether the organization represented and reused what the first one taught.
+
+A second question is whether represented knowledge can be traced to the artifacts it governs: which code realizes this architectural decision, which implementation depends on this environmental assumption, which tests supply evidence for this requirement. Doing that tracing by hand is expensive and feels like overhead, which is why it rarely happens; language models can now propose such links across prose, code, tests, and issue histories cheaply enough to inspect. Treat the links as evidence, not ground truth. Search latency does not measure knowledge quality, document counts do not measure memory, and an inferred link does not establish that two artifacts are correctly related.
+
 ## Consequential knowledge should change engineering
 
 An organization has not necessarily learned merely because somebody wrote down what happened. Repeated rediscovery is evidence about the organization's representation of knowledge. A fact that engineers continually reconstruct may need to become easier to find. An explanation repeated to every new team member may deserve durable representation. Repeated mistakes may indicate that documentation is too weak a form for the lesson being preserved. When incidents repeatedly expose the same assumption, the organization may need to change the engineering environment rather than remind engineers of the lesson again.

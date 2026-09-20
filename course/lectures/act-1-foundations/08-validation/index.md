@@ -144,6 +144,14 @@ Coverage and detection power are often confused, and the difference matters. Cov
 
 Ask of any evidence: *What uncertainty does this evidence reduce, at what scope, and what assumptions or failure modes remain?*
 
+## Measurement for decision-making
+
+Every earlier unit asked what an engineer could observe to test the model it developed. Validation states the relationship those units were using:
+
+**Property → Metric → Measurement → Evidence → Judgment**
+
+The first three links were available all along. What the earlier units could not settle is the standard an observation must meet, which is what this unit supplies: the scope where the property exists, the strength dimensions, the margin remaining, and the consequence of being wrong. So the question validation asks of a measurement is not whether the number is accurate. It is *is the evidence strong enough for the consequence of being wrong?* Two teams can obtain the same measurement under the same conditions and owe different amounts of further work, because what happens to the world if they have misread it differs.
+
 ## When is it enough?
 
 Other engineering disciplines supply useful language for residual uncertainty. A **tolerance** describes a range of behavior the system may exhibit while remaining acceptable. A **margin** describes the separation between expected or observed behavior and an unacceptable boundary. A system whose measured p99 latency is 420 ms against a 500 ms limit occupies a different engineering position from one measuring 499 ms, even though both currently satisfy the requirement.

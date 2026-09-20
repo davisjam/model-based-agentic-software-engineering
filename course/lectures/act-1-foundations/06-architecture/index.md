@@ -80,6 +80,12 @@ The point is not that an architectural model predicts the finished system perfec
 
 Analysis itself has a cost. The useful question is whether resolving an uncertainty could change the architectural decision enough to justify that cost. Models, prototypes, and measurements are therefore ways of buying information about a consequential choice. As the cost of producing that evidence falls, perhaps as the result of Generative AI, more architectural questions become worth investigating. The more faithfully the architectural model captures the property we care about, the less we have to bet.
 
+## Measurement for decision-making
+
+Analysis supports the choice; once the parts run together, a second kind of evidence becomes available. Architectural decisions predict properties that emerge from composition, and each prediction implies an observation. If the architecture claims a request completes within 200 milliseconds, traces show how that budget is actually spent along the path. If a boundary is meant to isolate failure, an injected fault or an unplanned incident shows whether the failure stayed inside. If two components are meant to evolve independently, version-control history shows whether changes keep touching both.
+
+Measure at the scope where the claimed property exists. Component latencies do not establish end-to-end latency when queuing dominates the path, and individually available services do not establish an available system when dependencies fail together. A dashboard of healthy component metrics is compatible with an unhealthy system. When observation repeatedly disagrees with the prediction, the organization that produced the prediction is what should be reconsidered.
+
 ## From architecture to design
 
 Architecture deliberately does not decide everything. Once engineers have chosen the consequential organization of a system, each part must still realize the responsibility assigned to it. Some choices are constrained by the architecture. Others may already be settled by conventions and mechanisms that apply throughout the engineering environment. Still others remain deliberately open.

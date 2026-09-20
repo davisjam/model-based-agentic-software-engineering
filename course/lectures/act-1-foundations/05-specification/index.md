@@ -55,6 +55,12 @@ Once responsibility is allocated, engineers decide how tightly to bound the mach
 
 - **Learn.** Models, prototypes, experiments, and stakeholder feedback buy information about the consequential uncertainties. Evidence may justify a new constraint, reveal a tacit one, or show that a choice can safely remain free. The cost runs both ways: overspecification turns cheap future choices into present commitments that later engineers must preserve or deliberately revise; underspecification delegates a consequential choice downstream without making the obligation visible.
 
+## Measurement for decision-making
+
+A specification claims what the machine must guarantee and what its environment may be assumed to provide. Both are claims about reality, so reality can be consulted about both. If the specification assumes an upstream service responds within five seconds, production traces test that assumption directly. If a state model says an advisory may be issued only after consent, recorded executions can be checked for transitions the model forbids. The measurement is useful because the specification told engineers which distinction to look for.
+
+The more interesting evidence arrives when nothing appears to be wrong: the machine satisfies its obligations, the assumptions appear to hold, and the required outcome still does not follow. Conformance testing will not find that, because the machine conforms. The discrepancy is evidence against the specification itself, and the question becomes *does our model of machine and environment still describe consequential reality?*
+
 ## From specification to architecture
 
 Specification leaves a bounded space of acceptable realizations, not a complete design. The obligations that bound the space — state behavior, information structures, timing, expected change — may have been stated through different views, but they must eventually coexist in one system. Architecture begins from that bounded space. Its problem is no longer which realizations are acceptable, but how to organize one acceptable realization so that its competing obligations can be satisfied together.

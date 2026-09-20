@@ -34,6 +34,10 @@ This module introduces six claims about how GenAI changes software engineering:
 5. **Governance conversion turns recurring judgment into durable engineering structure.** When a failure exposes missing knowledge or an unenforced obligation, encode the lesson into a model, procedure, or mechanism that future work can inherit. Durable structure becomes engineering capital when later work keeps benefiting from it.
 6. **Engineering work will reorganize around what remains scarce.** As implementation becomes cheaper, more engineering effort will move toward representation, evidence, governance, coordination, and judgment. Agents may perform increasing portions of that work as well. The durable boundary is responsibility for deciding what matters, what evidence is sufficient, which obligations should be enforced, and what tradeoffs remain acceptable.
 
+## Measurement for decision-making
+
+Each unit of this course develops a model and then asks the same question of it: *what could we observe that would tell us whether the model still holds, and whether the decision it produced should stand?* Here the question is *are we keeping informed control over consequential change?* Changeability creates leverage only while engineers can still use it deliberately, so observe what change costs: how long a consequential change takes, how far a modification propagates, how often a change introduces a failure, how long it takes to obtain evidence that a change is acceptable. None of these measures engineering quality in general. A system meant to stay changeable that now demands broad, risky, or expensive modification is evidence about the structures governing change, not about the most recent change.
+
 ## From the claims to MAGE
 
 These six claims lead to **MAGE**: Model-Based Agentic Engineering. Its working cycle is: model consequential knowledge; enforce important obligations; do the governed work; convert recurring failures and judgment into durable structure; repeat. The goal is not maximum automation. It is to make greater autonomy possible while preserving the engineering decisions and controls that matter.

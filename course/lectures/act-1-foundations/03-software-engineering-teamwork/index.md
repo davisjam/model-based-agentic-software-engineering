@@ -57,6 +57,10 @@ GenAI also changes the allocation problem. Machine capability can often be purch
 
 The relevant questions are therefore not merely *How much more can each engineer produce?* They are *How does amplified individual capability change the interactions the team requires?* and *Which capabilities should we buy, which should we develop, and which assignments will produce them?*
 
+## Measurement for decision-making
+
+A team structure is a hypothesis about how individual capabilities and coordination mechanisms will combine. Coordination leaves records: email, chat, issue trackers, code review, and version-control history capture requests, handoffs, dependencies, and decisions. Those records can show how long consequential questions go unanswered, how often work crosses a team boundary, where reviews wait on the same few people, and which parts of the system generate unusually broad coordination. Extracting such patterns once required specialized tooling; language models make it practical, though they misclassify interactions and cannot see hallway conversations. Measure the coordination system, not the people inside it. Commit counts and tickets closed are poor substitutes for capability, and they distort behavior once they become targets. The question is *does our organization supply the coordination the work actually requires?*
+
 ## The course project
 
 The course project provides a small-scale opportunity to make these choices deliberately. Teams must coordinate internally while also coordinating with other teams in their pod. Their Team Contract can specify mechanisms for communication, ownership, meetings, work tracking, Git and review practices, and handling blockers. Teams may also designate—and potentially rotate—a pod point of contact, trading fewer cross-team communication paths against the risks of bottlenecks, handoffs, and concentrating context in one person.

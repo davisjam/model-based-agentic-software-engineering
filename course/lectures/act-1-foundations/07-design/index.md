@@ -62,6 +62,12 @@ The point is not to produce a particular kind of Design model. Models, analyses,
 
 Cheaper implementation changes these economics. When alternative mechanisms can be prototyped, measured, or discarded inexpensively, engineers can investigate choices that previously would have been settled largely through judgment. Generative AI can therefore accelerate an individual design, but its greater value may lie in making more Design choices cheap enough to investigate.
 
+## Measurement for decision-making
+
+A design decision predicts a tradeoff, and the prediction can be tested far more cheaply than it can be reversed later. The conditions are part of the evidence: the service that stays under 4 GB on the documents the team had at hand may exceed it on the documents users actually submit, so record the workload a design measurement was taken under. That record is what later lets someone notice the conditions no longer hold.
+
+A probe answers a question without preserving the answer. Once the evidence exists, extract the relationship it revealed — the conditions under which the mechanism works, the tradeoff it embodies, the obligations future changes must preserve — and put it where the next engineer will meet it. Otherwise the knowledge is discarded with the throwaway code. Ask *did the chosen mechanism produce the tradeoff we chose it for?* A probe that says no may call for a different mechanism, or may be exactly the evidence that an inherited decision should be reopened.
+
 ## When the choice is not ours
 
 Not every apparent degree of freedom should be resolved locally. If the engineering environment already establishes how dependencies are injected, how persistent state is accessed, or how retries behave, a component should normally follow that decision rather than invent another mechanism merely because alternatives exist. Shared mechanisms reduce the number of independent choices the system asks engineers to make.

@@ -218,6 +218,48 @@ a new idea was required. A new idea does not establish that it works. A successf
 does not establish that the improvement came from the claimed idea. The evidence must support the
 particular advance being claimed.
 
+## Measurement for decision-making {#sec-measurement-research-and-development}
+
+R&D is undertaken because something consequential is not known. Measurement is how an investigation
+finds out what it has learned, and whether the next unit of effort is worth spending.
+
+Consider a team investigating a new program-analysis technique because the existing technique cannot
+scale to the programs they care about. The first measurement belongs before the new idea, not after
+it. How do analysis time and memory grow as programs get larger? At what size does the existing tool
+stop being usable, and what gives way first: the constraint solver, a memory ceiling, or a timeout
+somebody configured years ago? The answer can go two ways, and both are useful. It may locate the
+limitation in the approach itself, which is the opening the chapter has been looking for. It may
+instead expose an accidental limitation that ordinary engineering can remove, in which case the team
+has found substantial work rather than an advance. This is the elbow-grease question
+(@sec-elbow-grease) asked empirically rather than imagined.
+
+If a new idea is required, measurement then establishes the size of the advance (@sec-how-large).
+The new technique analyzes programs ten times larger, or reduces an overnight run to minutes, or
+makes analyzable a class of systems that previously was not. Those observations matter only relative
+to the limitation that motivated the work. They also depend on what they are compared against: a
+claimed advance can disappear once the existing approach receives the same engineering attention the
+new one did, so the baseline should be the best existing approach rather than its most convenient
+embodiment.
+
+Experiments and prototypes earn their cost when they are built around a question whose answer
+changes the next decision. A quick prototype may show that the idea cannot meet its memory budget,
+and the work should stop. A small experiment may show that the idea works only under an assumption
+that rarely holds, and the work should be redirected toward the cases where the assumption is
+plausible. Negative results are useful for this reason: they resolve an uncertainty before more
+effort accumulates behind it.
+
+Activity is not the property we care about. Lines of code written, experiments run, papers read, and
+prototypes built measure effort, not learning. Before undertaking an R&D activity, an engineer
+should be able to complete the sentence:
+
+*If we observe ________, we will have reason to continue, redirect, or stop, because ________.*
+
+The blank need not be filled by a number. A counterexample can refute an assumption. A working
+construction can establish that something is possible at all. A benchmark can quantify an
+improvement against a baseline. What matters is that the observation bears on an uncertainty that
+would change what the team does next, and that the claim it supports is the one the work is actually
+making (@sec-establish).
+
 ## R&D is a bet on learning {#sec-bet-on-learning}
 
 R&D begins before we know whether the proposed idea will work. That uncertainty is not a defect in

@@ -24,17 +24,17 @@ materials:
 
 **Premise.** *Failure is a predictable engineering outcome; engineering judgment develops when engineers connect decisions to their consequences and allow experience to change future decisions.*
 
-Engineering is practiced with incomplete knowledge, imperfect models, fallible people, and finite evidence. Requirements can omit something important; specifications can misrepresent the environment; design decisions can interact unexpectedly; implementations contain defects; and validation leaves residual uncertainty. Engineering cannot promise that failure will never occur. Failure does produce new evidence: something engineers expected to hold did not. The task is therefore not only to repair the problem, but to determine what the discrepancy reveals and what should change.
+Engineering is practiced with incomplete knowledge, imperfect models, fallible people, and finite evidence. Failure produces new evidence: something engineers expected to hold did not. The task is therefore not only to repair the problem, but to determine what the discrepancy reveals and what should change.
 
 ## How does experience become judgment?
 
-The course has emphasized deliberate judgment: construct models, identify consequential properties and tradeoffs, gather evidence, decide despite uncertainty. Experienced engineers develop a second capability. A situation reminds them of an earlier failure. A harmless-looking assumption deserves investigation. Two different problems share a familiar structure. Call this **recognition**.
+Alongside the deliberate judgment this course has emphasized, experienced engineers develop a second capability. A situation reminds them of an earlier failure. A harmless-looking assumption deserves investigation. Two different problems share a familiar structure. Call this **recognition**.
 
-Experience alone does not produce it. Engineers must connect what they expected with what occurred and decide what the difference means. Schön's account of reflective practice gives us the model:
+Experience alone does not produce it: engineers must connect what they expected with what occurred and decide what the difference means. Schön's account of reflective practice gives the model:
 
 **Decision → Consequence → Reflection → Repertoire → Future recognition**
 
-Success contributes to that repertoire, but ambiguously: a system may succeed because its architecture is robust, because the workload is forgiving, or because a latent weakness has not yet been exercised. Failure gives a sharper signal — reality has contradicted an expectation — but it does not explain itself. Engineers must determine which model, assumption, or decision the observation challenges.
+Success feeds that repertoire ambiguously: a system may succeed because its architecture is robust, or because a latent weakness has not yet been exercised. Failure gives a sharper signal, but it does not explain itself.
 
 ## What failed — and why didn't we know?
 
@@ -48,33 +48,29 @@ An observed software failure is not necessarily an implementation failure. The e
 
 One incident can expose several levels. Suppose a critical function and an ordinary workload share a queue nobody drew on the architecture diagram: an implementation defect floods it, but the reason the flood mattered is architectural.
 
-A delivered failure also invites a second analysis: why didn't our evidence expose the problem? Turn the Validation model around — **claim → scope → mechanism → strategy → evidence strength → judgment** — and ask where it gave way. Perhaps we validated the wrong claim, or examined components when the property existed only at system scope. Perhaps the mechanism could not expose the behavior, or the search strategy never reached it. Sometimes none of these happened: competent validation leaves residual uncertainty, and a failure can realize an uncertainty engineers knowingly accepted.
+A delivered failure invites a second analysis. Turn the Validation model around — **claim → scope → mechanism → strategy → evidence strength → judgment** — and ask where it gave way: perhaps we validated the wrong claim, or examined components when the property existed only at system scope. Sometimes nothing gave way, because competent validation leaves residual uncertainty and a failure can realize an uncertainty engineers knowingly accepted.
 
-The two analyses differ. *Why did the system behave this way?* concerns the artifact. *Why did we build and trust a system that could behave this way?* concerns the engineering — and is not an accusation. The system's boundaries, safeguards, and assumptions came from earlier decisions made under some understanding of the world; failure lets us compare that understanding with what reality later revealed.
+*Why did the system behave this way?* concerns the artifact. *Why did we build and trust a system that could behave this way?* concerns the engineering, and is not an accusation.
 
 ## What should change?
 
-Learning from failure occurs at three interacting levels — **system**, **team**, and **engineer**.
+Learning from failure occurs at three interacting levels.
 
-- **System.** A regression test preserves the observed example, often enough for an implementation defect. A more general lesson may belong in an interface, an architecture, a specification, a validation rule, or an automated control. Future failures can rhyme with the original without reproducing it, so ask what class of conditions it exposed.
-- **Team.** The lesson must reach people who did not live it. A postmortem reconstructs what happened; a reflective postmortem also reconstructs the understanding that preceded it: *What did we believe? Why? What evidence made that belief credible? What did reality reveal that our model did not?*
-- **Engineer.** Reflection identifies which relationships in an experience explain its consequence — not to memorize failures, but to recognize when a new situation resembles an old engineering problem.
+- **System.** A regression test preserves the observed example, often enough for an implementation defect. A more general lesson belongs in an interface, an architecture, a specification, a validation rule, or an automated control. Future failures rhyme without repeating, so ask what class of conditions this one exposed.
+- **Team.** The lesson must reach people who did not live it. A reflective postmortem reconstructs the understanding that preceded the incident: *What did we believe? Why? What did reality reveal that our model did not?*
+- **Engineer.** Reflection identifies which relationships in an experience explain its consequence, so a later situation can be recognized as an old problem.
 
-Severity connects these responses to consequence. **Severity is a model of the consequence of violating an engineering obligation**, not a property of a defect: the same bounds error is minor in a disposable tool and critical in a network-facing component. A specification can therefore mark some obligations as more critical, and validation can demand stronger evidence for them.
+**Severity is a model of the consequence of violating an engineering obligation**, not a property of a defect: the same bounds error is minor in a disposable tool and critical in a network-facing component. A specification can therefore mark some obligations as more critical, and validation can demand stronger evidence for them.
 
-## Can we measure whether we learned?
+## Measurement for decision-making
 
-Failure-aware engineering creates observables: failure frequency and severity, detection and recovery time, corrective-action completion, recurrence within and across projects, and whether lessons become durable engineering structure.
+Every unit of this course asked what an engineer could observe to test the model it developed, and chose that observation while there was still time to deliberate. Failure runs the loop the other way: the observation arrives unselected, at a time nobody chose, and it already disagrees. We made decisions using models. We measured reality to inform them. Reality contradicted one of our expectations. *Which model should change?*
 
-Each is a metric, and therefore a model. Recovery time measures operational response, not learning. Completed action items show that planned work occurred, not that it addressed the right lesson. Recurrence may suggest a lesson was too narrow, but deciding whether two incidents share an underlying failure requires judgment. Each also distorts once it becomes a target.
-
-Judgment itself cannot be reduced to a metric. We can observe whether an engineer recognizes a hazard, questions an assumption, or decides soundly in one case. Those observations are evidence about judgment; they do not yield a quantity of it. Metrics make the learning system observable; they do not judge what was learned.
+The candidates include our metrics. Failure frequency, recovery time, corrective-action completion, and recurrence make the learning system observable, but each is a metric and therefore a model, and each distorts once it becomes a target. Recovery time measures operational response, not learning. A dashboard that stayed green through an outage is evidence about the dashboard. Judgment itself resists measurement: whether an engineer noticed a hazard in one case is evidence about judgment, not a quantity of it.
 
 ## Failure as part of engineering
 
-This unit turns the rest of the course backward. Before delivery, Requirements, Specification, Architecture, Design, and Validation ask what we should promise and why we should believe the system will deliver it. After failure, the same models let us reconstruct what we believed and find where reality disagreed. Two further questions belong to this course: which lesson should become an enforceable obligation, and where should the new knowledge live?
-
-The goal is not zero failure; finite evidence makes that impossible. It is to use consequential experience well: repair the system, understand what the failure revealed, preserve the lessons worth retaining, and let new evidence improve the decisions that follow. Failure is inevitable. Recurring failure is not.
+Two further questions belong to this course: which lesson should become an enforceable obligation, and where should the new knowledge live? The goal is not zero failure; finite evidence makes that impossible. It is to spend consequential experience well: repair the system, understand what the failure revealed, preserve the lessons worth keeping, and let new evidence improve the decisions that follow. Failure is inevitable. Recurring failure is not.
 
 ---
 

@@ -82,6 +82,10 @@ Trying to decide what to promise often changes what appears valuable. An estimat
 
 The coupling continues after requirements work. Specification, architecture, implementation, validation, operation, and use can all produce evidence that reopens an earlier decision. Requirements are commitments, not claims of perfect foresight.
 
+## Measurement for decision-making
+
+Before committing to a requirement, ask *what would later show that the promised outcome actually occurred?* Response time, energy consumption, and transaction capacity suggest direct measurements. Other outcomes need a measurement model first: "easy to use" might be investigated through a usability study that records task-completion times, error rates, and where participants hesitate, with a standardized questionnaire supplying a second view. Some requirements resist measurement entirely. Observing no security failures does not establish that none remain possible, so safety and security need several forms of evidence at once, each explicit about what it leaves open. Requirements also differ in **criticality**: inconvenience for one, safety or mission failure for another. Making that judgment now lets later work allocate design attention and validation evidence according to consequence.
+
 ## From requirements to specification
 
 Accepting a requirement establishes what the engineering effort is willing to promise in the world. Requirements work should also have established enough understanding of that world to explain the commitment: what stakeholders are trying to accomplish, how they expect to interact with the machine, and what relevant conditions surround that interaction.

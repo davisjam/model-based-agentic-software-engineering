@@ -664,6 +664,35 @@ what the evidence allows them to stand behind. A delivery decision is defensible
 to all three. People can agree about what a failure would do and still disagree about what evidence
 its possibility demands.
 
+## Measurement for decision-making {#sec-measurement-validation}
+
+Measurement has appeared in every chapter of this handbook, because an engineering model makes
+claims that observation can test. Validation is where the chain acquires its last links:
+
+*Property → Metric → Measurement → Evidence → Judgment*
+
+The earlier chapters could supply the first three. A requirement names an outcome and asks what
+would show that it was achieved. A specification tells engineers which distinction to watch for. An
+architecture predicts a property of the composition. A design measures a mechanism under a workload.
+What none of those activities settles on its own is the standard the resulting observation must
+meet, and that standard is what this chapter has developed. Whether the evidence attaches at the
+scope where the property exists (@sec-scope-of-property), whether it would have objected had the
+system been wrong (@tbl-evidence-strength), how much separation remains before behavior becomes
+unacceptable (@sec-margin-containment), and how much evidence the consequence of being wrong demands
+(@sec-consequence-evidence): these ask what a measurement is worth, not how to obtain it.
+
+The question validation puts to any measurement is therefore not whether the number is accurate. It
+is whether the evidence is strong enough for the consequence of being wrong. Two teams can obtain
+the same measurement under the same conditions and still owe different amounts of further work,
+because what happens to the world if they have misread it differs.
+
+That judgment is provisional in one further respect. Later evidence can overturn it. When reality
+contradicts a claim the evidence appeared to support, engineers can reconstruct what they believed,
+which evidence justified the belief, and which part of the engineering model should now change: the
+requirement, the specification, the architecture, the design, or the metric that reported the
+property. @ch-failure-aware-engineering develops that reconstruction. The next section begins it,
+because evidence of that kind first arrives in operation.
+
 ## Evidence after delivery {#sec-after-delivery}
 
 Delivery moves the system into the one environment no earlier validation could fully reproduce, and
