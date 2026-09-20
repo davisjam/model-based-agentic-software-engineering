@@ -38,13 +38,13 @@ Success feeds that repertoire ambiguously: a system may succeed because its arch
 
 ## What failed — and why didn't we know?
 
-An observed software failure is not necessarily an implementation failure. The engineering activities from this course locate what the incident revealed:
+An observed software failure is not necessarily an implementation failure. The engineering activities from this course pose a sequence of progressively broader questions about what the incident revealed:
 
-- **Requirements.** *Did we promise the wrong outcome, or omit an important obligation?*
-- **Specification.** *Did we misrepresent what the machine or its environment must provide?*
-- **Architecture.** *Did responsibilities, boundaries, or shared resources make an important system property fragile?*
-- **Design.** *Did a selected mechanism have consequences inconsistent with its obligations?*
 - **Implementation.** *Did the realized software depart from an otherwise adequate design?*
+- **Design.** *Did a selected mechanism have consequences inconsistent with its obligations?*
+- **Architecture.** *Did responsibilities, boundaries, or shared resources make an important system property fragile?*
+- **Specification.** *Did we misrepresent what the machine or its environment must provide?*
+- **Requirements.** *Did we promise the wrong outcome, or omit an important obligation?*
 
 One incident can expose several levels. Suppose a critical function and an ordinary workload share a queue nobody drew on the architecture diagram: an implementation defect floods it, but the reason the flood mattered is architectural.
 
