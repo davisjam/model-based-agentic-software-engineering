@@ -7,7 +7,7 @@
     "derived_ids": 216,
     "missing_topic_sentence": 5,
     "sections_drained": 188,
-    "paragraph_points": 813
+    "paragraph_points": 815
   },
   "chapters": [
     {
@@ -1998,7 +1998,7 @@
             {
               "slug": "modeling-and-alignment-form-a-feedback-loop",
               "text": "Alignment failures expose tacit knowledge or obligations that Modeling can externalize.",
-              "block_index": 24
+              "block_index": 25
             }
           ]
         },
@@ -2008,12 +2008,12 @@
           "heading_text": "Correct Judgment Without Enforcement",
           "topic_sentence": "A merge automation drained a backlog of agent worktrees into the mainline each tick.",
           "id_source": "derived",
-          "block_index": 27,
+          "block_index": 28,
           "points": [
             {
               "slug": "judgment-without-consequence-governance-conversion-can-delete-a-capability",
               "text": "Governance conversion can add a mechanism; it can also delete a capability the environment should never have offered.",
-              "block_index": 29
+              "block_index": 30
             }
           ]
         },
@@ -2023,32 +2023,32 @@
           "heading_text": "Engineering Capital",
           "topic_sentence": "Governance conversion motivates a useful accounting concept: **engineering capital**.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 35,
           "points": [
             {
               "slug": "governance-conversion-forms-engineering-capital-the-positive-stock",
               "text": "Governance conversion forms engineering capital — the concrete positive stock software engineering has lacked a name for.",
-              "block_index": 36
+              "block_index": 37
             },
             {
               "slug": "the-asset-is-something-you-can-point-at",
               "text": "The asset is not \"the team learned\" — it is something you can point at.",
-              "block_index": 39
+              "block_index": 40
             },
             {
               "slug": "capital-earns-a-return-lower-marginal-engineering-cost",
               "text": "Capital earns a return: lower marginal engineering cost. Conversion is capital formation.",
-              "block_index": 40
+              "block_index": 41
             },
             {
               "slug": "capital-depreciates-so-accumulation-cannot-be-the-objective",
               "text": "Capital depreciates; maintenance, reconciliation, and retirement manage it, so accumulation cannot be the objective.",
-              "block_index": 42
+              "block_index": 43
             },
             {
               "slug": "debt-and-capital-are-symmetric-stocks-that-compound",
               "text": "Technical debt and engineering capital are symmetric stocks — both accumulate, both change the economics of later change, both compound.",
-              "block_index": 45
+              "block_index": 46
             }
           ]
         },
@@ -2058,52 +2058,52 @@
           "heading_text": "Where Enforcement Stops",
           "topic_sentence": "Not every quality goal should end in enforcement.",
           "id_source": "derived",
-          "block_index": 47,
+          "block_index": 48,
           "points": [
             {
               "slug": "where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form",
               "text": "Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use.",
-              "block_index": 49
+              "block_index": 50
             },
             {
               "slug": "the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use",
               "text": "The residual is an obligation nobody made explicit enough for the environment to use.",
-              "block_index": 52
+              "block_index": 53
             },
             {
               "slug": "an-explicit-obligation-may-still-resist-cheap-mechanical-evaluation",
               "text": "An explicit obligation may still resist cheap mechanical evaluation — an honest boundary, not failed Alignment.",
-              "block_index": 55
+              "block_index": 56
             },
             {
               "slug": "observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment",
               "text": "Evaluated only: explicit and evaluated, yet un-gated — because a gate is a commitment.",
-              "block_index": 57
+              "block_index": 58
             },
             {
               "slug": "a-governed-obligation-carries-a-binding-consequence-appropriate-to-its-risk",
               "text": "A governed obligation is enforced in a form appropriate to the engineering decision; the four states are a design space, not a ladder.",
-              "block_index": 59
+              "block_index": 60
             },
             {
               "slug": "stronger-alignment-is-not-narrower-tolerance",
               "text": "Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable enforcement of the obligation engineering chose, not a narrower acceptable set.",
-              "block_index": 61
+              "block_index": 62
             },
             {
               "slug": "three-different-reasons-non-enforcement-is-sometimes-the-engineered-result",
               "text": "An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result.",
-              "block_index": 63
+              "block_index": 64
             },
             {
               "slug": "the-mechanism-that-discovers-need-not-carry-the-enforcement",
               "text": "The mechanism that discovers an obligation need not be the one that ultimately enforces it; Chapter 4 follows that migration.",
-              "block_index": 65
+              "block_index": 66
             },
             {
               "slug": "the-point-is-not-the-rightmost-leaf-it-is-knowing-where-each-obligation-sits-and-why",
               "text": "The point is not to drive every obligation to the rightmost leaf; it is to know where each sits and why — and conversion has now created an estate to govern.",
-              "block_index": 67
+              "block_index": 68
             }
           ]
         }
@@ -5233,24 +5233,29 @@
               "block_index": 180
             },
             {
+              "slug": "docable-default-everything-deterministic-was",
+              "text": "DocAble's default: everything that could be deterministic was; commodity intelligence only where the problem requires semantic judgment.",
+              "block_index": 182
+            },
+            {
               "slug": "moving-the-frontier-reduces-the-probabilistic-surface",
               "text": "Moving the frontier reduces the probabilistic surface without making the agent deterministic or removing realization freedom.",
-              "block_index": 182
+              "block_index": 184
             },
             {
               "slug": "the-frontier-moves-incrementally",
               "text": "The frontier moves incrementally: from prose to invariant to bounded-model checking to temporal specification.",
-              "block_index": 185
+              "block_index": 187
             },
             {
               "slug": "moving-the-frontier-preserves-degrees-of-freedom",
               "text": "Moving the frontier governs obligations, not the acceptable ways to satisfy them, which remain degrees of freedom.",
-              "block_index": 187
+              "block_index": 189
             },
             {
               "slug": "at-the-limit-realization-becomes-transformation",
               "text": "At the limit a complete realization model makes realization a transformation, connecting MAGE to model-based engineering.",
-              "block_index": 189
+              "block_index": 191
             }
           ]
         },
@@ -5260,27 +5265,27 @@
           "heading_text": "The joint engineering problem",
           "topic_sentence": "We can now put the pieces back together.",
           "id_source": "derived",
-          "block_index": 191,
+          "block_index": 193,
           "points": [
             {
               "slug": "objective-is-an-economical-division-of-labor",
               "text": "The objective is an economical division of labor among reasoner, environment, and remaining human judgment.",
-              "block_index": 194
+              "block_index": 196
             },
             {
               "slug": "engineer-jointly-chooses-representation-and-alignment",
               "text": "An engineer jointly chooses a representation and an Alignment strategy, trading carrying cost against realization and failure cost.",
-              "block_index": 196
+              "block_index": 198
             },
             {
               "slug": "schematic-both-levers-carry-construction-and-carrying-cost",
               "text": "Schematically: Modeling changes realization cost, Alignment changes failure consequence, and both impose carrying cost.",
-              "block_index": 199
+              "block_index": 201
             },
             {
               "slug": "part-v-evidence-is-depth-and-variation-not-effect-sizes",
               "text": "Chapter 5 supplied depth and variation, not population effect sizes; the theory is the proposed explanation of it.",
-              "block_index": 203
+              "block_index": 205
             }
           ]
         }
@@ -6343,24 +6348,29 @@
               "block_index": 34
             },
             {
+              "slug": "docable-was-not-deskilling-expertise-moved-upstream",
+              "text": "Building DocAble was not deskilling: expertise moved from realizing implementation decisions to deciding what to represent, constrain, measure, and preserve.",
+              "block_index": 36
+            },
+            {
               "slug": "authored-environment-carries-reasoning-forward",
               "text": "An authored environment carries an engineer's reasoning into later work, accumulating engineering capital with unusual leverage.",
-              "block_index": 36
+              "block_index": 38
             },
             {
               "slug": "inheritance-is-not-abdication",
               "text": "Inheritance is not abdication: expert work moves to creating, evaluating, and revising the durable structure.",
-              "block_index": 38
+              "block_index": 40
             },
             {
               "slug": "authorship-allocation-should-be-explicit-and-governed",
               "text": "How the authorship responsibilities are allocated across roles should be explicit and governed.",
-              "block_index": 42
+              "block_index": 44
             },
             {
               "slug": "natural-language-is-an-interface-not-the-method",
               "text": "Natural language may be one interface to the work; it is not the engineering method.",
-              "block_index": 44
+              "block_index": 46
             }
           ]
         },
@@ -6370,47 +6380,47 @@
           "heading_text": "Sign-Off Moves Toward Models and Evidence",
           "topic_sentence": "Imagine an agentic system in which the fleet constructs most of the implementation, maintains selected engineering representations, runs validators, and assembles evidence for the claims the design is supposed to satisfy.",
           "id_source": "derived",
-          "block_index": 46,
+          "block_index": 48,
           "points": [
             {
               "slug": "review-becomes-technical-acceptance-of-models-and-evidence",
               "text": "Under agentic implementation, human review becomes technical acceptance of representations and evidence rather than authorship.",
-              "block_index": 47
+              "block_index": 49
             },
             {
               "slug": "implementation-inspection-cannot-remain-primary-assurance",
               "text": "At scale, implementation-level inspection cannot remain the primary human assurance mechanism.",
-              "block_index": 49
+              "block_index": 51
             },
             {
               "slug": "models-and-evidence-are-intermediate-review-surfaces",
               "text": "Models provide intermediate review surfaces and evidence supports their claims; neither is sufficient alone.",
-              "block_index": 51
+              "block_index": 53
             },
             {
               "slug": "models-evidence-governance-engineer-relationship",
               "text": "Models state claims, evidence justifies them, governance sets required evidence and authority, and the engineer stays answerable.",
-              "block_index": 53
+              "block_index": 55
             },
             {
               "slug": "object-of-review-moves-accountability-does-not",
               "text": "The object of review moves to models and evidence; accountability does not move.",
-              "block_index": 56
+              "block_index": 58
             },
             {
               "slug": "early-evidence-supervisory-engineering-work",
               "text": "Early evidence describes supervisory engineering work; MAGE would give that supervision better reasoning surfaces.",
-              "block_index": 58
+              "block_index": 60
             },
             {
               "slug": "answerability-requires-competence-and-a-path-to-change",
               "text": "Real answerability requires competence and a path to change the environment, or responsibility becomes nominal.",
-              "block_index": 60
+              "block_index": 62
             },
             {
               "slug": "models-remain-objects-of-engineering-fidelity-maintained",
               "text": "Models remain objects of engineering: their fidelity to the system must be maintained and evidenced, not assumed.",
-              "block_index": 62
+              "block_index": 64
             }
           ]
         },
@@ -6420,37 +6430,37 @@
           "heading_text": "From Full-Stack to Full-System Engineering",
           "topic_sentence": "Software has used full-stack engineer to describe someone able to work across multiple implementation layers: interface, application logic, data, infrastructure, and deployment.",
           "id_source": "derived",
-          "block_index": 64,
+          "block_index": 66,
           "points": [
             {
               "slug": "commodity-intelligence-eases-full-stack-breadth",
               "text": "Commodity intelligence can make full-stack breadth across implementation layers easier to obtain.",
-              "block_index": 65
+              "block_index": 67
             },
             {
               "slug": "engineer-must-reason-across-full-system-and-lifecycle",
               "text": "MAGE requires reasoning across the full system and its lifecycle, not merely the implementation stack.",
-              "block_index": 67
+              "block_index": 69
             },
             {
               "slug": "docable-required-breadth-across-interacting-domains",
               "text": "Building DocAble required breadth across many interacting domains; no single concern defined the system.",
-              "block_index": 69
+              "block_index": 71
             },
             {
               "slug": "cheap-implementation-enables-judgment-developing-hyper-exploration",
               "text": "Cheap implementation enables hyper-exploration that develops engineering judgment rather than deskilling the engineer.",
-              "block_index": 71
+              "block_index": 73
             },
             {
               "slug": "consequential-judgment-follows-a-property-across-the-lifecycle",
               "text": "Consequential judgment often requires following a property across the whole lifecycle, not just implementation.",
-              "block_index": 73
+              "block_index": 75
             },
             {
               "slug": "trajectory-from-full-stack-to-full-system",
               "text": "The professional trajectory runs from full-stack toward full-system engineering, the scarcer competence.",
-              "block_index": 75
+              "block_index": 77
             }
           ]
         },
@@ -6460,12 +6470,12 @@
           "heading_text": "What Should We Teach?",
           "topic_sentence": "If engineers increasingly review systems through representations and evidence rather than reconstructing every property from implementation, education should shift accordingly.",
           "id_source": "derived",
-          "block_index": 77,
+          "block_index": 79,
           "points": [
             {
               "slug": "education-should-shift-toward-representations-and-evidence",
               "text": "If review shifts to representations and evidence, education should shift accordingly.",
-              "block_index": 78
+              "block_index": 80
             }
           ]
         },
@@ -6475,27 +6485,27 @@
           "heading_text": "Is there software engineering knowledge you cannot just figure out for yourself?",
           "topic_sentence": "The question for software engineering education is whether there is important software engineering knowledge that practitioners cannot reasonably be expected to figure out for themselves, or whether software engineering is distinct among the engineering disciplines in being predicated on adaptability more than specific expertise.",
           "id_source": "derived",
-          "block_index": 80,
+          "block_index": 82,
           "points": [
             {
               "slug": "does-se-have-durable-knowledge-or-only-adaptability",
               "text": "Perhaps software engineering is adaptability, not durable technical knowledge.",
-              "block_index": 81
+              "block_index": 83
             },
             {
               "slug": "mature-disciplines-accumulate-non-rediscoverable-knowledge",
               "text": "Mature engineering disciplines accumulate knowledge practitioners cannot rediscover alone.",
-              "block_index": 83
+              "block_index": 85
             },
             {
               "slug": "the-skeptical-case-is-stronger-in-software",
               "text": "Much software-engineering wisdom is learnable through experience alone.",
-              "block_index": 85
+              "block_index": 87
             },
             {
               "slug": "many-professionals-succeed-without-formal-se-education",
               "text": "Many successful professionals learned software outside formal education.",
-              "block_index": 87
+              "block_index": 89
             }
           ]
         },
@@ -6505,42 +6515,42 @@
           "heading_text": "What shouldn't software engineers have to figure out for themselves?",
           "topic_sentence": "I would concede some of this ground.",
           "id_source": "derived",
-          "block_index": 89,
+          "block_index": 91,
           "points": [
             {
               "slug": "alignment-principle-intuition-is-discoverable-through-practice",
               "text": "The Alignment Principle's basic intuition is discoverable through practice.",
-              "block_index": 90
+              "block_index": 92
             },
             {
               "slug": "concession-stops-at-the-foundations-of-computing",
               "text": "The concession does not extend to computing's accumulated foundations.",
-              "block_index": 92
+              "block_index": 94
             },
             {
               "slug": "expertise-is-understanding-abstractions-guarantees-and-limits",
               "text": "Expertise means understanding abstractions, their guarantees, and their limits.",
-              "block_index": 94
+              "block_index": 96
             },
             {
               "slug": "mage-rests-on-the-foundations-rather-than-replacing-them",
               "text": "MAGE rests on these foundations rather than replacing them.",
-              "block_index": 96
+              "block_index": 98
             },
             {
               "slug": "delegation-makes-foundations-more-consequential",
               "text": "Delegating realization makes the technical foundations more consequential.",
-              "block_index": 98
+              "block_index": 100
             },
             {
               "slug": "curriculum-remains-substantially-recognizable",
               "text": "The curriculum remains substantially recognizable.",
-              "block_index": 100
+              "block_index": 102
             },
             {
               "slug": "what-changes-is-the-allocation-of-attention",
               "text": "What changes is the allocation of attention.",
-              "block_index": 102
+              "block_index": 104
             }
           ]
         },
@@ -6550,17 +6560,17 @@
           "heading_text": "Shift the emphasis",
           "topic_sentence": "Less educational effort may need to go toward producing routine implementation by hand, and more toward selecting abstractions, specifying properties, measuring systems, validating claims, reasoning about quality attributes, and governing autonomous work.",
           "id_source": "derived",
-          "block_index": 104,
+          "block_index": 106,
           "points": [
             {
               "slug": "shift-emphasis-to-abstractions-specification-validation",
               "text": "Shift educational emphasis toward abstractions, specification, validation, modeling, and formal methods.",
-              "block_index": 105
+              "block_index": 107
             },
             {
               "slug": "coordination-becomes-a-technical-concern-at-individual-scale",
               "text": "Coordination becomes a technical concern at individual scale under agentic implementation capacity.",
-              "block_index": 107
+              "block_index": 109
             }
           ]
         },
@@ -6570,22 +6580,22 @@
           "heading_text": "Change what students demonstrate",
           "topic_sentence": "A capstone should therefore demonstrate more than a working artifact.",
           "id_source": "derived",
-          "block_index": 112,
+          "block_index": 114,
           "points": [
             {
               "slug": "capstone-should-carry-the-engineering-case",
               "text": "A capstone should carry the engineering case, not only a working artifact.",
-              "block_index": 113
+              "block_index": 115
             },
             {
               "slug": "program-objectives-change-little-practice-changes",
               "text": "Program objectives change little; how students practice and demonstrate the capabilities changes.",
-              "block_index": 115
+              "block_index": 117
             },
             {
               "slug": "teach-durable-principles-beneath-the-agent-interface",
               "text": "Teach the durable principles beneath the fast-changing agent interface, not the interface itself.",
-              "block_index": 117
+              "block_index": 119
             }
           ]
         },
@@ -6595,22 +6605,22 @@
           "heading_text": "The Entry-Rung Problem",
           "topic_sentence": "The traditional path into software engineering runs through implementation.",
           "id_source": "derived",
-          "block_index": 120,
+          "block_index": 122,
           "points": [
             {
               "slug": "genai-erodes-the-implementation-apprenticeship",
               "text": "GenAI erodes the implementation apprenticeship through which the profession trained senior engineers.",
-              "block_index": 121
+              "block_index": 123
             },
             {
               "slug": "entry-rung-problem-acquiring-judgment-without-implementation-work",
               "text": "The entry-rung problem: how to acquire engineering judgment when routine implementation is abundant.",
-              "block_index": 123
+              "block_index": 125
             },
             {
               "slug": "profession-reorganizes-around-responsibility-for-the-whole",
               "text": "The profession reorganizes around responsibility for the engineered whole, not the residual machine-poor tasks.",
-              "block_index": 125
+              "block_index": 127
             }
           ]
         }
