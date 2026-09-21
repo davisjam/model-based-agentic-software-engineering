@@ -12,7 +12,7 @@ description: >
 objectives:
   - Distinguish consequence, stakeholder judgment, and professional judgment as separate inputs to the delivery decision, and recognize the two pathologies of a mismatched standard.
   - Identify the claim a validation activity must support before selecting a technique, then choose an evidence mechanism by the uncertainty it can reduce and a validation strategy by where its oracle comes from.
-  - Evaluate the strength of a body of evidence along explicit dimensions — coverage, detection power, representativeness, scope, independence, assumptions, and residual uncertainty — rather than by its volume alone.
+  - Evaluate the strength of a body of evidence along explicit dimensions — coverage, detection power, representativeness, scope, independence, assumptions, and residual uncertainty — and identify what model justifies converting additional observations into additional confidence.
   - Reason about residual uncertainty at delivery through margin, coverage, containment, and reversibility, recognizing that software's discreteness limits what observed behavior implies about unobserved behavior.
   - Recognize when evidence gathered after delivery has changed the justification for continued delivery.
 ---
@@ -812,7 +812,9 @@ how an aspect of it will be assessed, and a measurement supplies an observed val
 conditions. Measurements become evidence only relative to claims and assumptions. Engineers choose
 sources of evidence according to the uncertainty each can reduce, then judge the resulting body of
 evidence by its coverage, detection power, representativeness, scope, independence, assumptions,
-and residual uncertainty — not by its volume alone.
+and residual uncertainty. Additional observations can greatly strengthen evidence, but only when a
+defensible model explains how those observations bear on the claim and how their opportunities for
+detection accumulate.
 
 Software's discreteness bounds what this evidence can establish. Nearby inputs and states need not
 produce nearby behavior, so coverage identifies where evidence reached rather than how near the
