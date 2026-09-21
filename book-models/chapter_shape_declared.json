@@ -92,13 +92,13 @@
         "artifacts": [
           {
             "type": "worked-example",
-            "name": "the running DocAble example",
-            "anchor": "docable-pipeline"
+            "name": "the running DocAble example (one job traced through the system)",
+            "anchor": "one-docable-job"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "Exempt (overview). Opens on the promise + three questions; grounding-case role implicit. Closes mapping Parts 2-5 with the grounding-case-not-proof stance.",
+      "note": "Exempt (overview). Opens on the promise + three questions; grounding-case role implicit. Closes mapping Parts 2-5 with the grounding-case-not-proof stance. The one-picture pipeline figure was demoted to the outside-only glimpse (W3 drain 2); the running example's system walk now lives in the one-docable-job figure, re-anchored here.",
       "opening_anchor": "The last chapter closed on a promise: the running example of this",
       "closing_anchor": "place every claim in the coming chapters can be traced back to."
     },
@@ -247,12 +247,12 @@
       "closing_anchor": "of controls, and those controls can themselves become inconsistent, redundant, or orphaned."
     },
     {
-      "slug": "lifecycles-and-runbooks",
+      "slug": "operating-mage",
       "opening": {
         "failure_question": "explicit",
         "answer": "explicit",
-        "thesis_link": "implicit",
-        "thesis_target": "argument-step"
+        "thesis_link": "explicit",
+        "thesis_target": "both"
       },
       "closing": {
         "kind": "synthesis"
@@ -261,45 +261,20 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the config-optimization runbook figure",
+            "name": "the config-optimization runbook figure (a judgment step fenced between deterministic ends)",
             "anchor": "runbook-split"
           },
           {
             "type": "framework",
-            "name": "the typed-step runbook taxonomy table (runnable / judgment-automatable / judgment-irreducible)",
-            "anchor": "runbook-step-kinds"
+            "name": "the typed-step externalized-judgment figure (Execute / Delegate / Escalate)",
+            "anchor": "externalize-judgment"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "Opening solid: agent lacks operating context -> write lifecycles + runbooks (governed-environment role implicit). Phase-2c added a chapter-level close: one instruction in three shapes (lifecycle -> runbook -> pre-canned brief), re-collecting the chapter, with the consequence that operating judgment stops living in your head and becomes something the environment holds — closing on the 2 a.m. callback to the opening.",
-      "opening_anchor": "You know what to do when the disk fills up, when two",
-      "closing_anchor": "state. That reading is a metric, and the next chapter develops it."
-    },
-    {
-      "slug": "metrics",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "implicit",
-        "thesis_target": "alignment"
-      },
-      "closing": {
-        "kind": "synthesis"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "table",
-            "name": "the governance metrics at a glance (metric, decision, axis)",
-            "anchor": "metrics-table"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Failure: a loop that cannot sense cannot steer; answer: metrics that drive decisions; sensor role (Alignment side) implicit. Closes reading the compact-reference table back through the chapter criterion — synthesis grounded in the table, not a bare re-announcement.",
-      "opening_anchor": "Every agent runs a loop. It takes an input, reasons, acts, and",
-      "closing_anchor": "The next chapter turns the method on itself: it governs the governance."
+      "note": "Merged successor of the former lifecycles-and-runbooks + metrics chapters (R33 merge; assessed fresh against the merged prose). Failure: operating knowledge lives in someone's head where an agent cannot reach it; answer: lifecycles, events, runbooks, and metrics as one operating loop, named as bringing the Modeling and Alignment disciplines into operation (both theses explicit in the lead). The former typed-step runbook taxonomy TABLE was reset (R59) into three definitions plus the externalized-judgment figure, re-anchored here; the metrics at-a-glance table was shed to the Operator's Reference and is no longer a chapter artifact. Closes re-collecting the four forms into the operating rhythm plus the three competencies — synthesis, ending on the handoff to the profession chapter.",
+      "opening_anchor": "A method has to survive ordinary days, not only successful changes. Repositories",
+      "closing_anchor": "and what must remain judgment. Chapter 7 returns to that professional shift."
     },
     {
       "slug": "when-guardrails-collide",
@@ -617,16 +592,10 @@
         "kind": "transition"
       },
       "delivers": {
-        "artifacts": [
-          {
-            "type": "worked-example",
-            "name": "the ADA problem-context table",
-            "anchor": "the-burden-shift"
-          }
-        ],
+        "artifacts": [],
         "artifact_would_help": false
       },
-      "note": "Question explicit (why is document accessibility a hard, worthwhile case); answer the bar the problem set. Compressed (r3): Theory-Formation epistemics moved to 6.1; closes on why the apparatus had to grow as large as it did, setting up the build.",
+      "note": "Question explicit (why is document accessibility a hard, worthwhile case); answer the bar the problem set. Compressed (r3): Theory-Formation epistemics moved to 6.1; closes on why the apparatus had to grow as large as it did, setting up the build. The burden-shift table was cut in the r12-w3 fold — its reactive-vs-proactive content survives as prose, so the chapter now delivers no labeled artifact.",
       "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Modeling Principle",
       "closing_anchor": "ground that the apparatus had to grow as large as it did."
     },
@@ -645,13 +614,13 @@
         "artifacts": [
           {
             "type": "worked-example",
-            "name": "the phased-timeline, velocity, and churn-per-path figures",
-            "anchor": "phased-timeline"
+            "name": "the seven-stage build timeline (pressure and consequence at each stage)",
+            "anchor": "build-stages-timeline"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "Opens on the arc + the one fact that is the book's engineering problem; every governance idea learned at a point on the arc (failures-become-machinery). Closes on the recurring move + the arc's numbers — synthesis.",
+      "note": "Opens on the arc + the one fact that is the book's engineering problem; every governance idea learned at a point on the arc (failures-become-machinery). Closes on the recurring move + the arc's numbers — synthesis. The Messy-Timeline (phased-timeline) figure was cut in the r12-w3 fold and the velocity/churn material moved to the evidence ledger; the arc is now carried by the seven-stage timeline, re-anchored here (the build-scale table and the control-growth/support-ratio curves accompany it).",
       "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Printer ·",
       "closing_anchor": "governed is the story the rest of this book has already told."
     },
@@ -679,31 +648,6 @@
       "note": "Round-12 merge (old 5.4 Built System + old 5.5 Road to MAGE, ~70% cut). The chapter opens on what ultimately shipped — a six-responsibility tour + the LLM-as-function-call pattern — then walks the delegation staircase that forced the method out of it: the seat climbing (seat-moves) made safe by each step's model or control (oversight-does-not-scale), grounded in the DocAble narrative (grounded-in-one-case) — the three claims the spine labels. thesis_target stays argument-step; spine labels unchanged, so check_argument_spine stays green. The Missing-Model-Metric mechanics were SENT to 4.2-brownfield (round-12 G3); the chapter keeps only the three-bugs inset + a one-line pointer, plus the round-10 traceability incident as a ≤1-para field note. Closes on the delegation-climbed-as-far-as-the-controls synthesis and the frontispiece boxes now made real.",
       "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Modeling Principle",
       "closing_anchor": "whether the method transfers is the question [Part 7](7.1-toward-a-theory-of-mage.html) takes up."
-    },
-    {
-      "slug": "reorganization-of-se",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "both"
-      },
-      "closing": {
-        "kind": "consequence"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the soft-hard spectrum figure",
-            "anchor": "soft-hard-spectrum"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Exempt (discussion). Opens restating both principles as the through-line (its job as the implications chapter); closes on limitations + the come-tell-me invitation.",
-      "opening_anchor": "Early on, this book argued that AI does not retire the software",
-      "closing_anchor": "of whole-environment question the empirical program that follows is built to ask."
     },
     {
       "slug": "reorganization-of-se",
@@ -738,24 +682,19 @@
       "delivers": {
         "artifacts": [
           {
-            "type": "table",
-            "name": "the modeling-ceiling matrix (where the software-first sites fall silent)",
-            "anchor": "modeling-ceiling"
-          },
-          {
-            "type": "table",
-            "name": "the governance census (obligations x mechanisms -> gaps and orphans; description turned to diagnosis)",
-            "anchor": "governance-census"
+            "type": "framework",
+            "name": "the modeling-ceiling tiers (where the software-first sources fall silent)",
+            "anchor": "modeling-ceiling-tiers"
           },
           {
             "type": "framework",
-            "name": "the six-company reconstruction map (which region of the theory each system makes load-bearing)",
-            "anchor": "six-company-map"
+            "name": "the entry-points map (the problem each organization starts from and where it invests in the engineered environment)",
+            "anchor": "six-entry-points"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "Comparative chapter (Round-4 R1/M4 W3-half: the FRESH where-mage-fits record, authored against the reworked opener; the prior record keyed here actually assessed 6.3 and was re-keyed to relationship-to-se). Opens by setting six independent industrial systems side by side as the book's third grade of evidence — reconstructions read for the pattern each instantiates, not an appendix of examples. Delivers the modeling-ceiling matrix, the governance census, and the six-company reconstruction map. Closes on the common destination the six reach by different entry points — synthesis, not re-announcement.",
+      "note": "Comparative chapter (Round-4 R1/M4 W3-half: the FRESH where-mage-fits record, authored against the reworked opener; the prior record keyed here actually assessed 6.3 and was re-keyed to relationship-to-se). Opens by setting independent industrial systems side by side as the book's third grade of evidence — reconstructions read for the pattern each instantiates, not an appendix of examples. Delivers the modeling-ceiling tiers and the entry-points map (the R47 fold replaced the matrix and six-company-map figures; the governance census relocated to Part III's Governing the Governance, where its census-trio figure is declared). Closes on the common destination the systems reach by different entry points — synthesis, not re-announcement.",
       "opening_anchor": "Six industrial systems sit at the center of this chapter: Cloudflare, Spotify,",
       "closing_anchor": "the phenomenon rather than rediscovering its pieces one failure at a time.**"
     },
@@ -795,16 +734,11 @@
             "type": "framework",
             "name": "the MAGE dynamic model (causal-loop diagram)",
             "anchor": "mage-dynamic-model"
-          },
-          {
-            "type": "table",
-            "name": "the seven-hypotheses table",
-            "anchor": "mage-hypotheses"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "Question: how does one deep case speak past itself; answer: a middle-range causal-loop theory that names the constructs, draws the mechanisms, and states what evidence would break it. Delivers the dynamic model and the seven-hypotheses table. Principle carried by content, not announced in the lead.",
+      "note": "Question: how does one deep case speak past itself; answer: a middle-range causal-loop theory that names the constructs, draws the mechanisms, and states what evidence would break it. Delivers the dynamic model; the hypotheses table moved to the split-out What the Theory Predicts chapter (its record will declare it when that chapter is assessed). Principle carried by content, not announced in the lead.",
       "opening_anchor": "The book has argued from one case, seen in depth. A theory",
       "closing_anchor": "whole argument as one causal spine, from cheap implementation to trustworthy software."
     },
