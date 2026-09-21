@@ -1249,6 +1249,12 @@
    "location": "part2",
    "rationale": "nine-panel repertoire of familiar model forms colour-coded by the six questions; supporting caption naming that primitives recur while semantics change"
   },
+  "assets/engineer-agent-interaction.svg": {
+   "tier": "B",
+   "kind": "flow",
+   "location": "part4",
+   "rationale": "the engineer's two interfaces with delegated realization — intent and knowledge out through natural language / specification / models, evidence back through review / testing / analysis, one shared implementation node as the hinge; supporting caption on channels complementary rather than sequential"
+  },
   "assets/active-passive-alignment.svg": {
    "tier": "B",
    "kind": "flow",

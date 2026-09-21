@@ -3,7 +3,7 @@
      → document-with-models. (b) It can instead be a loop: a problem drives a model, whose analysis yields
      predictions and a design, which drive implementation and measurement, which refine the model. viewBox 920
      for the figure font band. -->
-<!-- semantic-families: modeling, neutral -->
+<!-- semantic-families: modeling, governance, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 360" width="920" height="360"
      role="group" aria-labelledby="mcTitle mcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -16,6 +16,9 @@
   <defs>
     <marker id="mc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+    <marker id="mc-ah-refine" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
   </defs>
 
@@ -47,7 +50,9 @@
   <line x1="520" y1="228" x2="600" y2="228" stroke="#57534e" stroke-width="1.8" marker-end="url(#mc-ah)"/>
   <line x1="670" y1="208" x2="670" y2="172" stroke="#57534e" stroke-width="1.8" marker-end="url(#mc-ah)"/>
   <line x1="670" y1="248" x2="670" y2="284" stroke="#57534e" stroke-width="1.8" marker-end="url(#mc-ah)"/>
-  <!-- measurement → refine model (back to model) -->
-  <polyline points="600,304 460,304 460,172" fill="none" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#mc-ah)"/>
-  <text x="474" y="290" font-size="12.5" font-style="italic" fill="#9a3f12">refine model</text>
+  <!-- measurement → refine model: feedback routed around the OUTSIDE-LEFT of the model/analyze column —
+       out of measurement's left edge, beneath analyze, up well clear of the column, into model's left
+       edge — so the loop shares no segment with (and crosses no) black edge. -->
+  <polyline points="600,304 360,304 360,152 400,152" fill="none" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#mc-ah-refine)"/>
+  <text x="420" y="296" font-size="12.5" font-style="italic" fill="#9a3f12">refine model</text>
 </svg>

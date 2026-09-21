@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: engineer-agent-interaction). The engineer's two interfaces with delegated
+     realization. Left panel (Modeling / Communicating): the engineer communicates through three
+     complementary channels — natural language, specification, models — which converge on the agent and
+     become implementation. Right panel (Alignment / Evaluating): the implementation's result returns
+     evidence through three complementary channels — review, testing, analysis — which converge back on
+     the engineer. ONE shared implementation node is the hinge between the panels (the same engineer
+     appears at both upper ends: two points in one interaction, not two actors). The channels are peers:
+     each panel fans out in parallel, deliberately implying no maturity ladder (NL → spec → models) and
+     no evidence hierarchy (review → test → analysis). Colour by role: green tint = the Modeling side,
+     rust tint = the Alignment side, blue = the agent acting, ink = actors and artifacts.
+     viewBox 920 for the figure font band. -->
+<!-- semantic-families: modeling, governance, agent, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480"
+     role="group" aria-labelledby="eaiTitle eaiDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="eaiTitle">Engineer–agent interaction through Modeling and Alignment</title>
+  <desc id="eaiDesc">Two panels over one shared implementation node. Left panel, Modeling / Communicating:
+    the engineer fans out through three parallel channels — natural language, specification, and models —
+    which converge on the agent; the agent produces the implementation. Right panel, Alignment /
+    Evaluating: the implementation yields a result, which fans out through three parallel channels —
+    review, testing, and analysis — that converge back on the engineer. The same engineer appears at both
+    upper ends; the single implementation node at the bottom is the hinge between communicating intent
+    and evaluating evidence.</desc>
+
+  <defs>
+    <marker id="eai-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="480" fill="#fdfcf9"/>
+
+  <!-- ===== Panel: Modeling / Communicating ===== -->
+  <rect x="24" y="16" width="424" height="356" rx="10" fill="#e3f0e7" opacity="0.35"/>
+  <text x="40" y="46" font-size="20" font-weight="700" fill="#1c1917">MODELING / COMMUNICATING</text>
+  <text x="40" y="72" font-size="18.4" font-style="italic" fill="#57534e">what do I know, intend, and need to make explicit?</text>
+
+  <!-- ===== Panel: Alignment / Evaluating ===== -->
+  <rect x="472" y="16" width="424" height="356" rx="10" fill="#faf1e6" opacity="0.45"/>
+  <text x="488" y="46" font-size="20" font-weight="700" fill="#1c1917">ALIGNMENT / EVALUATING</text>
+  <text x="488" y="72" font-size="18.4" font-style="italic" fill="#57534e">what does the evidence justify believing or doing?</text>
+
+  <!-- engineers: the same engineer at two points in the interaction -->
+  <rect x="176" y="92" width="120" height="44" rx="8" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+  <text x="236" y="120" text-anchor="middle" font-size="19" fill="#1c1917">engineer</text>
+  <rect x="624" y="92" width="120" height="44" rx="8" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+  <text x="684" y="120" text-anchor="middle" font-size="19" fill="#1c1917">engineer</text>
+
+  <!-- left channels: three peers, no ladder -->
+  <rect x="28" y="192" width="128" height="56" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/>
+  <text x="92" y="216" text-anchor="middle" font-size="18.4" fill="#1c1917">natural</text>
+  <text x="92" y="238" text-anchor="middle" font-size="18.4" fill="#1c1917">language</text>
+  <rect x="172" y="192" width="128" height="56" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/>
+  <text x="236" y="227" text-anchor="middle" font-size="18.4" fill="#1c1917">specification</text>
+  <rect x="316" y="192" width="128" height="56" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/>
+  <text x="380" y="227" text-anchor="middle" font-size="18.4" fill="#1c1917">models</text>
+
+  <!-- right channels: three peers, no hierarchy -->
+  <rect x="476" y="192" width="128" height="56" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/>
+  <text x="540" y="227" text-anchor="middle" font-size="18.4" fill="#1c1917">review</text>
+  <rect x="620" y="192" width="128" height="56" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/>
+  <text x="684" y="227" text-anchor="middle" font-size="18.4" fill="#1c1917">testing</text>
+  <rect x="764" y="192" width="128" height="56" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/>
+  <text x="828" y="227" text-anchor="middle" font-size="18.4" fill="#1c1917">analysis</text>
+
+  <!-- agent and result -->
+  <rect x="176" y="304" width="120" height="44" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="236" y="332" text-anchor="middle" font-size="19" fill="#1c1917">agent</text>
+  <rect x="624" y="304" width="120" height="44" rx="8" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+  <text x="684" y="332" text-anchor="middle" font-size="19" fill="#1c1917">result</text>
+
+  <!-- the shared hinge: ONE implementation node -->
+  <rect x="375" y="404" width="170" height="48" rx="8" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+  <text x="460" y="434" text-anchor="middle" font-size="19" fill="#1c1917">implementation</text>
+
+  <!-- left flow: engineer fans out; channels converge on the agent (arrows point down) -->
+  <polyline points="236,136 236,164" fill="none" stroke="#1c1917" stroke-width="2"/>
+  <polyline points="92,164 380,164" fill="none" stroke="#1c1917" stroke-width="2"/>
+  <line x1="92" y1="164" x2="92" y2="192" stroke="#1c1917" stroke-width="2" marker-end="url(#eai-ah)"/>
+  <line x1="236" y1="164" x2="236" y2="192" stroke="#1c1917" stroke-width="2" marker-end="url(#eai-ah)"/>
+  <line x1="380" y1="164" x2="380" y2="192" stroke="#1c1917" stroke-width="2" marker-end="url(#eai-ah)"/>
+  <polyline points="92,248 92,276" fill="none" stroke="#1c1917" stroke-width="2"/>
+  <polyline points="380,248 380,276" fill="none" stroke="#1c1917" stroke-width="2"/>
+  <polyline points="92,276 380,276" fill="none" stroke="#1c1917" stroke-width="2"/>
+  <line x1="236" y1="248" x2="236" y2="304" stroke="#1c1917" stroke-width="2" marker-end="url(#eai-ah)"/>
+
+  <!-- right flow: result fans out; channels converge on the engineer (arrows point up) -->
+  <polyline points="684,304 684,276" fill="none" stroke="#1c1917" stroke-width="2"/>
+  <polyline points="540,276 828,276" fill="none" stroke="#1c1917" stroke-width="2"/>
+  <line x1="540" y1="276" x2="540" y2="248" stroke="#1c1917" stroke-width="2" marker-end="url(#eai-ah)"/>
+  <line x1="684" y1="276" x2="684" y2="248" stroke="#1c1917" stroke-width="2" marker-end="url(#eai-ah)"/>
+  <line x1="828" y1="276" x2="828" y2="248" stroke="#1c1917" stroke-width="2" marker-end="url(#eai-ah)"/>
+  <polyline points="540,192 540,164" fill="none" stroke="#1c1917" stroke-width="2"/>
+  <polyline points="828,192 828,164" fill="none" stroke="#1c1917" stroke-width="2"/>
+  <polyline points="540,164 828,164" fill="none" stroke="#1c1917" stroke-width="2"/>
+  <line x1="684" y1="192" x2="684" y2="136" stroke="#1c1917" stroke-width="2" marker-end="url(#eai-ah)"/>
+
+  <!-- the hinge: agent → implementation → result -->
+  <polyline points="236,348 236,428" fill="none" stroke="#1c1917" stroke-width="2"/>
+  <line x1="236" y1="428" x2="375" y2="428" stroke="#1c1917" stroke-width="2" marker-end="url(#eai-ah)"/>
+  <polyline points="545,428 684,428" fill="none" stroke="#1c1917" stroke-width="2"/>
+  <line x1="684" y1="428" x2="684" y2="348" stroke="#1c1917" stroke-width="2" marker-end="url(#eai-ah)"/>
+</svg>

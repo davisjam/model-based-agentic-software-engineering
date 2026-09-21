@@ -2257,9 +2257,9 @@
           "section_id": "alignment-changes-the-system",
           "level": 2,
           "heading_text": "Alignment Changes the System",
-          "topic_sentence": "Chapter 3 emphasized Alignment as a way to keep a realization faithful to its governing models.",
+          "topic_sentence": "The Alignment side of [ref:engineer-agent-interaction] contains two distinct activities.",
           "id_source": "derived",
-          "block_index": 2,
+          "block_index": 7,
           "points": []
         },
         {
@@ -2268,7 +2268,7 @@
           "heading_text": "Establish a Kernel Before Expanding",
           "topic_sentence": "The first models brought into governance should protect the properties that subsequent transformations must not be allowed to damage.",
           "id_source": "derived",
-          "block_index": 10,
+          "block_index": 15,
           "points": []
         },
         {
@@ -2277,7 +2277,7 @@
           "heading_text": "Greenfield and Brownfield MAGE",
           "topic_sentence": "Incremental adoption is easiest to see in a brownfield system.",
           "id_source": "derived",
-          "block_index": 20,
+          "block_index": 25,
           "points": []
         }
       ],
