@@ -28,4 +28,4 @@ The design also creates threats that should be made explicit. Foundation models 
 
 **Possible paper seed:** *Software Engineering With a Standardized Reasoner: Commodity Intelligence as an Experimental Instrument.*
 
-[^ci-productivity]: The existing productivity record already runs both ways: a field experiment across thousands of developers measured a real rise in completed tasks [cite: cui2025genai], while experienced developers in familiar repositories ran measurably slower with early tooling even as they believed themselves faster [cite: metr2025productivity]. The spread motivates the design: agent effects are context-dependent, so "AI use" is too coarse a variable to test on its own.
+[^ci-productivity]: The existing productivity record already runs both ways: a field experiment across thousands of developers measured a real rise in completed tasks,[cite: cui2025genai] while experienced developers in familiar repositories ran measurably slower with early tooling even as they believed themselves faster.[cite: metr2025productivity] The spread motivates the design: agent effects are context-dependent, so "AI use" is too coarse a variable to test on its own.

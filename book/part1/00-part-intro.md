@@ -1,5 +1,5 @@
 <!-- part-foreshadows: abundant-implementation, govern-the-environment -->
-Engineering reorganizes when a constraint moves.[note: The intuition is familiar from Amdahl's law: accelerating one part of a computation increases the relative importance of the work that remains [cite: amdahl1967]. Goldratt's Theory of Constraints states the broader operational version: system performance is governed by a constraint, and improving that constraint eventually moves attention to another [cite: goldratt1984]. The same constraint logic applies to software-engineering economics.] Steam radically reduced the cost of mechanical power.
+Engineering reorganizes when a constraint moves.[note: The intuition is familiar from Amdahl's law: accelerating one part of a computation increases the relative importance of the work that remains.[cite: amdahl1967] Goldratt's Theory of Constraints states the broader operational version: system performance is governed by a constraint, and improving that constraint eventually moves attention to another.[cite: goldratt1984] The same constraint logic applies to software-engineering economics.] Steam radically reduced the cost of mechanical power.
 Integrated circuits did the same for computation. Coding agents are now reducing the cost of software
 implementation. A scarce factor constrains
 output, so it draws investment and attention. Implementation was never the only scarce input to
@@ -27,10 +27,9 @@ stopped manufacturing. Inspection has become the throughput constraint. Nor can 
 be assumed to scale proportionally: sustained monitoring consumes finite human attention, and rare
 problems become especially difficult to detect as the stream of mostly acceptable output
 grows.[note: Wolfe, Horowitz, and Kenner found that rare targets in visual search are
-disproportionately missed as their prevalence falls [cite: wolfe2005rare]. Warm, Parasuraman, and
+disproportionately missed as their prevalence falls.[cite: wolfe2005rare] Warm, Parasuraman, and
 Matthews synthesize the vigilance literature: sustained monitoring consumes attentional resources,
-imposes substantial workload, and can produce performance decrements and stress
-[cite: warm2008vigilance].] In software, agents can now
+imposes substantial workload, and can produce performance decrements and stress.[cite: warm2008vigilance]] In software, agents can now
 produce changes faster than engineers can specify, understand, validate, and govern them. Models
 let later work reuse representations across many acts of implementation; validators and gates can
 likewise reuse selected engineering judgments by evaluating and enforcing them repeatedly. Engineering effort therefore moves toward deciding

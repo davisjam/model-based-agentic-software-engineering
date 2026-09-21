@@ -985,7 +985,7 @@
           "section_id": "the-canonical-move-resource-ownership",
           "level": 2,
           "heading_text": "The Canonical Move: Resource Ownership",
-          "topic_sentence": "Software engineering has a long vocabulary for control over a shared resource: locks and leases[cite: graycheriton1989], resource-allocation relationships, capability and claim relationships, ownership transfer, and the lifecycle of a claim from acquisition through expiry to reclamation.",
+          "topic_sentence": "Software engineering has a long vocabulary for control over a shared resource: locks and leases,[cite: graycheriton1989] resource-allocation relationships, capability and claim relationships, ownership transfer, and the lifecycle of a claim from acquisition through expiry to reclamation.",
           "id_source": "derived",
           "block_index": 1,
           "points": [
@@ -1067,7 +1067,7 @@
           "section_id": "the-canonical-move-permitted-alternatives",
           "level": 2,
           "heading_text": "The Canonical Move: Permitted Alternatives",
-          "topic_sentence": "Engineering represents permission in several familiar forms: decision tables that map conditions to allowed actions, rule systems, access-control matrices that record which subject may act on which object[cite: lampson1974], policy graphs, feature models that constrain which combinations of options are valid, and constraint systems that declare which assignments are admissible.",
+          "topic_sentence": "Engineering represents permission in several familiar forms: decision tables that map conditions to allowed actions, rule systems, access-control matrices that record which subject may act on which object,[cite: lampson1974] policy graphs, feature models that constrain which combinations of options are valid, and constraint systems that declare which assignments are admissible.",
           "id_source": "derived",
           "block_index": 1,
           "points": [
@@ -1124,7 +1124,7 @@
           "section_id": "the-canonical-move-quantities-relations-and-bounds",
           "level": 2,
           "heading_text": "The Canonical Move: Quantities, Relations, and Bounds",
-          "topic_sentence": "Engineering has many quantitative representations: performance and parametric models, capacity models, cost models, and the budgets and envelopes they are compared against; queueing and resource models appear where contention matters[cite: lazowska1984].",
+          "topic_sentence": "Engineering has many quantitative representations: performance and parametric models, capacity models, cost models, and the budgets and envelopes they are compared against; queueing and resource models appear where contention matters.[cite: lazowska1984] The move they share is small but decisive.",
           "id_source": "derived",
           "block_index": 1,
           "points": [
