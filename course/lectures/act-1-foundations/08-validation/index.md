@@ -30,162 +30,90 @@ materials:
   - title: Lecture slides — Validation
     src: 1-8-Validation.pptx
 ---
-
 **Premise.** *Validation asks what evidence is sufficient to deliver a software system into the world.*
 
-Software's updateability changes the economics of validation. Engineers can sometimes deliver before resolving every uncertainty, observe what happens, and repair the failures they discover: a game can ship with an occasional graphical defect. In that limited sense, *move fast and break things* describes a real engineering strategy.
+Software's updateability changes the economics of validation. Engineers can sometimes deliver under uncertainty, observe what happens, and repair what they discover. But an update repairs the software, not necessarily the consequences of its previous behavior. It cannot recover money already lost, make disclosed information private again, or reverse a physical injury.
 
-But an update repairs the software, not necessarily the consequences of its previous behavior. It cannot recover money already lost, make disclosed information private again, or reverse a physical injury. As the consequences of being wrong grow more substantial or less reversible, learning through failure becomes more expensive. Validation therefore does not seek maximal confidence before every delivery; it asks what evidence is sufficient for *this* one.
-
-Answering that requires six related judgments:
-
-- **What is at stake?** What would happen if the system were wrong, and how reversible would the consequences be?
-- **Where must we establish confidence?** Which claims matter, and at what scope do their properties exist?
-- **How can we obtain evidence?** What can execution, analysis, review, formal reasoning, measurement, or operation tell us, and what can each not tell us?
-- **What validation strategy fits the uncertainty?** What failure are we trying to expose, and what oracle can make that failure observable across enough of the relevant behavior?
-- **How strong is the resulting evidence?** How much does it cover, how representative and discriminating is it, how independent are its sources, and what uncertainty remains?
-- **When is it enough?** Given the consequences, available margin, controls on failure, and residual uncertainty, should we deliver, gather more evidence, change the system, revisit an earlier decision, or refuse?
-
-The questions structure the judgment rather than script it; evidence can send an engineer backward.
+Validation therefore does not seek certainty before every delivery. It asks what evidence is sufficient for *this* delivery. That requires several related judgments: what is at stake, which claims require confidence, where those claims exist, what evidence can bear on them, how strong that evidence is, and how much uncertainty engineers can responsibly carry into the world.
 
 ## What is at stake?
 
-Consider three defects: a game sometimes draws a character incorrectly, a TODO application occasionally loses a task, a medical device can deliver an incorrect dose. They differ in severity, reversibility, and how directly the software produces the harm. The game defect may annoy a player; the lost task destroys information on which a user depends; the wrong dose can directly injure its user. Almost any defect connects to severe harm through some causal chain, but causal distance matters: frustrated players sometimes behave badly, yet that does not make a graphical defect safety-critical.
+Consequence establishes an evidentiary burden. A graphical defect in a game, a TODO application that loses information, and a medical device that delivers an incorrect dose do not demand the same assurance because being wrong does not have the same consequences.
 
-Consequence establishes an evidentiary burden; it does not mechanically dictate the decision. Stakeholders and engineers can weigh the same consequence differently, and engineers do not merely execute the risk preferences of whoever controls the project: professional authority includes refusing a delivery the engineer cannot justify. The opposite error is real too: demanding far more assurance than the stakes warrant wastes resources and delays useful software. What is at stake determines how much uncertainty engineers can responsibly carry through delivery.
+Engineers must consider both the severity of a possible consequence and how directly the software can cause it. Almost any defect can be connected to serious harm through a sufficiently long chain of events, but that does not make every defect safety-critical. An incorrect radiation dose can directly injure a patient; a graphical glitch does not acquire the same significance merely because an annoyed user might subsequently act badly. The more direct and substantial the consequence, the stronger the evidence we should demand.
 
-Consequence is also not fixed. Engineered controls change what a failure is permitted to affect, so validation asks not only how likely we are to have missed a failure but what the system allows that failure to reach. The final section returns to this.
+Reversibility matters as well. Some failures can be repaired cheaply after delivery; others leave consequences that an update cannot undo. Demanding more assurance than the stakes warrant wastes resources and delays useful software; demanding too little transfers unjustified risk into the world.
+
+The question is therefore not *can we prove the system correct?* It is *what uncertainty can we responsibly carry through this delivery?*
 
 ## Where must we establish confidence?
 
-Validation begins with claims, not techniques. A payment service might need to establish that a payment cannot be charged twice, that unauthorized users cannot initiate payments, and that normal requests complete within an acceptable time. Evidence supporting one claim may say little about another. Begin with *what must be true for this delivery to be justified?* Only then ask where confidence in each claim has to attach.
+Validation begins with claims, not techniques. Specification states what the machine must do under assumptions about its environment; requirements identify outcomes promised in the world. Validation asks what evidence bears on those claims and where that evidence must attach.
 
-Specification supplies the starting point. A specification states what the MACHINE must do under assumptions about its ENVIRONMENT; requirements name outcomes in the WORLD. The claim that ultimately matters therefore concerns the machine operating in its actual environment and producing the promised outcome.
+Evidence can exist at several scopes. For a payment system required to charge a submitted payment at most once, engineers might obtain local evidence that an idempotency component rejects duplicate identifiers, compositional evidence about interacting retry mechanisms, system evidence at the assembled service boundary, and world evidence about the payment provider's actual semantics.
 
-That suggests an obvious approach: exercise the whole system at its real boundary, where the thing we care about actually happens. Whole-system evidence is necessary. It is also insufficient as the only mechanism. When an end-to-end run fails, the defect could be anywhere in the system, and such failures are expensive to reproduce, localize, and diagnose. Many properties are also far cheaper to exercise or analyze on a part than on the assembly.
+Smaller scopes make failures cheaper to reproduce, localize, and diagnose. But some properties exist only in composition. Components can each satisfy local latency budgets while their end-to-end path exceeds its system budget; individually correct mechanisms can interact incorrectly; machine-side evidence cannot establish that an environmental assumption actually holds.
 
-So engineers deliberately establish evidence at smaller scopes as well. For the "at most one charge" claim:
+Validate a property at the smallest scope capable of establishing it — but no smaller.
 
-- **Local evidence.** Does the idempotency component reject a repeated payment identifier?
-- **Compositional evidence.** What happens when a client retry and a server retry interact?
-- **Assembled-boundary evidence.** Does one submitted payment ever produce two charges at the service boundary?
-- **World evidence.** Under the payment provider's actual semantics, can the customer still be charged twice?
-
-**Validate a property at the smallest scope capable of establishing it — but no smaller.** The first half captures the economics: small scopes are cheap to run and their failures are cheap to diagnose. The second half preserves the end-to-end principle. Correct parts do not necessarily compose into a correct system. Components can each satisfy local latency budgets while their end-to-end path exceeds its system budget; individually reasonable assumptions can leave a responsibility unowned; correct retry mechanisms can interact to produce duplicate execution. Local evidence supports a broader argument. It cannot substitute for evidence about a property that exists only in composition.
-
-Software engineers have conventional names for roughly these scopes: **unit → integration → system → acceptance**. The names describe where evidence attaches, not how important it is, and the boundaries between them shift with what counts as a part. A "unit" for one team is a subsystem for another. Attach the vocabulary to the scopes the claims already demanded rather than treating the four names as a fixed taxonomy.
-
-Engineering models supply the other half of the picture. Requirements establish outcomes the engineering effort has promised in the world. Specification represents properties the machine and environment must have if those promises are to be kept. Architecture represents the organization through which system properties must emerge. Design represents mechanisms and local properties through which parts fulfill their responsibilities. Implementation produces the realization about which evidence can now be gathered. A specification may bound response latency; an architectural model may allocate that latency across a path; a design may require a worker to remain below a memory limit or a retry mechanism to be idempotent.
-
-Put the two legs together and the argument summarizes as a V. Down the left side, engineering models become progressively more specific as they constrain realization. Up the right side, validation obtains evidence about those properties at the scopes where they apply.
-
-![A V diagram. Down the left leg, engineering models become more specific toward realization at the point: Requirements (world outcomes), Specification (machine and environment), and Architecture and design. The point of the V is Realization. Up the right leg, validation gathers evidence at corresponding scopes: Local evidence low on the rising leg, then Compositional evidence, Boundary evidence, and World evidence at the top.](figures/models-evidence-v.svg)
-
-*Models become more specific toward realization; validation gathers evidence about their properties at the scope where each applies.*
-
-At the top of the V, the distinction from Specification returns: evidence about the MACHINE alone cannot establish every requirement in the WORLD. Engineers may also need evidence that the ENVIRONMENT provides the assumptions on which the specification depends and that MACHINE + ENVIRONMENT actually produce the promised outcome.
+The familiar terms *unit*, *integration*, *system*, and *acceptance* describe roughly these scopes. They tell us where evidence attaches, not how that evidence was obtained.
 
 ## How can we obtain evidence?
 
-Scope says where evidence attaches. It does not say how the evidence was obtained. Several evidence mechanisms do that, and each carries a characteristic limitation that fixes what it can and cannot tell us.
+Scope and evidence mechanism are independent choices. Engineers can obtain evidence through several mechanisms:
 
-- **Dynamic testing** observes selected executions. Its fundamental limitation is sampling: executions not performed remain unobserved.
-- **Static analysis** reasons about possible behavior without executing it. Its conclusions depend on the abstraction it uses and on what the analyzer's guarantees actually mean; false positives and false negatives follow from those guarantees.
-- **Human review and inspection** contribute semantic knowledge and judgment that may not be encoded mechanically. A reviewer can notice that the wrong problem was solved. But attention is finite, and research on vigilance and rare-target search gives us reason not to treat prolonged inspection as exhaustive assurance.
-- **Formal methods** reason mechanically over explicit models and properties. Bounded model checking, for example, asks whether any execution within a bound violates a property, and returns a counterexample when one does. Its guarantee extends only as far as the model, property, assumptions, and bound.
+- **Dynamic testing** observes selected executions. Its limitation is sampling: executions not performed remain unobserved.
+- **Static analysis** reasons about possible behavior without executing it. Its conclusions depend on the abstraction and guarantees of the analysis.
+- **Human review and inspection** contribute semantic knowledge and judgment that may not be encoded mechanically, but human attention is finite.
+- **Formal methods** reason mechanically over explicit models and properties. Their guarantees extend only as far as the model, property, assumptions, and bounds.
 - **Measurement and experimentation** obtain quantitative evidence under stated conditions.
-- **Operational observation** obtains evidence from the deployed system in its actual environment, but only after exposure to consequences has begun.
+- **Operational observation** obtains evidence from the deployed system in its actual environment, after exposure to consequences has begun.
 
-**Scope and evidence mechanism are independent choices.** A component can be dynamically tested, statically analyzed, reviewed, or formally checked. "Unit" tells us where evidence attaches; "testing" tells us something about how it was obtained.
+No mechanism simply establishes that the software is correct. Each observes or reasons about different aspects of the system and leaves different uncertainty behind.
 
-Measurement deserves its own chain, because a number alone establishes nothing. A property identifies something that matters to an engineering decision. A metric defines how some aspect of that property will be assessed. A measurement is an observed value obtained by applying that metric under particular conditions. An architectural model might require an end-to-end request path to remain below a 500 ms latency bound; engineers could assess that property using p99 request latency under a defined workload; a measured value of 420 ms then provides evidence about the architectural claim. The value means little without the property, metric, workload, and environment that give it meaning.
+Dynamic testing introduces another choice: the validation strategy. Executing a program is usually cheap; deciding whether the result is correct can be difficult. The oracle available determines what kinds of search are practical. Example-based testing supplies known expected answers. Property-based testing states a property over many generated inputs. Metamorphic testing checks relationships among executions. Differential testing compares independently developed implementations. Fuzzing uses weak oracles such as crashes, hangs, and assertion failures to search enormous spaces of unusual inputs.
 
-![A horizontal chain of six boxes joined by labeled arrows: MODEL represents PROPERTY; PROPERTY is assessed by METRIC; METRIC applied yields MEASUREMENT; MEASUREMENT bears on EVIDENCE; EVIDENCE interpreted yields JUDGMENT.](figures/property-to-judgment.svg)
-
-*A measurement becomes evidence only through the property and conditions that give it meaning.*
-
-A disagreement between a predicted and a measured value may indicate a defective implementation, an incomplete model, an invalid assumption, or a poor metric. Validation asks which explanation the evidence supports rather than assuming that either the model or the realization must be correct.
-
-## What validation strategy fits the uncertainty?
-
-Dynamic testing needs one thing the instrument itself does not supply: a way to decide whether an execution was correct. This is the **oracle problem**. Producing an execution is usually cheap; knowing whether its result is right can be expensive. Validation strategies differ in how they answer it, and therefore in how much search they can afford.
-
-The organizing question is not *which testing method is most sophisticated?* but *what failure am I trying to expose, and what strategy makes that failure observable?*
-
-| Strategy | What it searches | Where the oracle comes from |
-|---|---|---|
-| **Example-based** | Cases the engineer judged important | A known expected result, stated case by case |
-| **Property-based** | Generated inputs across a class | One property stated over the whole class |
-| **Metamorphic** | Related executions | A relation that must hold among executions, even when no single answer is known |
-| **Differential** | Inputs on which implementations disagree | An independently developed implementation |
-| **Fuzzing** | Unusual, malformed, and unanticipated inputs | A weak oracle: crashes, hangs, assertion failures, sanitizer reports |
-
-A weak oracle enables enormous search. That is the trade the lower rows make: they give up on knowing the right answer for each case in exchange for examining far more cases than an engineer could enumerate. The strategies are not ranked, and they combine. Fuzzing can drive a property-based oracle; differential comparison can supply the oracle for generated inputs.
-
-Strategy and scope are independent too. A property can be stated over a function, a service boundary, or an assembled system, and the same strategy applies at each.
+Choose the strategy for the uncertainty you need to reduce.
 
 ## How strong is the evidence?
 
-Neither a technique's name nor the quantity of evidence it produces establishes its strength. A model checker can exhaustively verify a property of the wrong model; thousands of generated tests can share one mistaken oracle; reviewers can share the author's mistaken assumption; a precise measurement can assess the wrong property. Evidence is judged along several dimensions at once:
+Neither the name of a technique nor the quantity of evidence establishes its strength. Engineers must ask what the evidence actually supports.
 
-| Dimension | Ask |
-|---|---|
-| **Coverage** | How much of the relevant behavior did we examine? |
-| **Detection power** | Would this evidence expose the failure we care about? |
-| **Representativeness** | Do the examined conditions resemble delivery? |
-| **Scope** | Does the evidence attach where the property actually exists? |
-| **Independence** | Could one mistaken assumption invalidate several pieces of evidence at once? |
-| **Assumptions** | What must be true for this evidence to mean what we think it means? |
-| **Residual uncertainty** | What consequential possibilities remain unresolved? |
+Important dimensions include **coverage** — how much relevant behavior was examined; **detection power** — whether the evidence would expose the failure of interest; **representativeness** — whether the conditions resemble delivery; **scope** — whether the evidence attaches where the property exists; **independence** — whether several pieces of evidence share the same potentially mistaken assumption; and **residual uncertainty** — what consequential possibilities remain unresolved.
 
-Coverage and detection power are often confused, and the difference matters. Coverage records where we looked. Detection power asks whether looking there would have revealed the failure. A suite can execute every line while asserting almost nothing about the results. Mutation score is the canonical illustration: deliberately damage the program and ask how often the evidence notices.
-
-**Evidence multiplies; independence does not.** A thousand tests generated from the same mistaken interpretation of a requirement are not a thousand independent reasons to believe the interpretation is correct. They are one reason, repeated. The strength of a body of evidence depends not only on its quantity, but on the independence of the assumptions and failure modes behind it. Cheap generation makes this sharper, not softer: when a tool can produce an implementation and its tests from the same prompt, both can inherit one misunderstanding, and the suite's size signals nothing about it.
-
-Ask of any evidence: *What uncertainty does this evidence reduce, at what scope, and what assumptions or failure modes remain?*
+These distinctions matter increasingly as evidence becomes cheap to generate. Ten thousand tests derived from one mistaken interpretation are not ten thousand independent reasons to trust that interpretation. They are one reason, repeated.
 
 ## Measurement for decision-making
 
-Every earlier unit asked what an engineer could observe to test the model it developed. Validation states the relationship those units were using:
+Measurement requires the same care. A useful chain is:
 
 **Property → Metric → Measurement → Evidence → Judgment**
 
-The first three links were available all along. What the earlier units could not settle is the standard an observation must meet, which is what this unit supplies: the scope where the property exists, the strength dimensions, the margin remaining, and the consequence of being wrong. So the question validation asks of a measurement is not whether the number is accurate. It is *is the evidence strong enough for the consequence of being wrong?* Two teams can obtain the same measurement under the same conditions and owe different amounts of further work, because what happens to the world if they have misread it differs.
+A metric defines how some aspect of a property will be assessed. A measurement applies that metric under particular conditions. The resulting value becomes evidence only through the property, metric, and conditions that give it meaning. A measured p99 latency of 420 milliseconds matters because, for example, an architectural model bounded that path at 500 milliseconds under a stated workload.
 
-## When is it enough?
+A disagreement between model and measurement is itself information. The implementation may be defective, an assumption may be false, the model may be incomplete, or the metric may not represent the property we thought it did.
 
-Other engineering disciplines supply useful language for residual uncertainty. A **tolerance** describes a range of behavior the system may exhibit while remaining acceptable. A **margin** describes the separation between expected or observed behavior and an unacceptable boundary. A system whose measured p99 latency is 420 ms against a 500 ms limit occupies a different engineering position from one measuring 499 ms, even though both currently satisfy the requirement.
+## When is the evidence enough?
 
-The measured separation is not necessarily the defensible margin. Workloads vary, measurements carry uncertainty, models omit effects, and operating conditions change. Engineers therefore ask how much separation remains after accounting for the uncertainty that matters. Metrics do not eliminate judgment; they make some of the quantities on which judgment depends explicit.
+Evidence must ultimately support an action. For quantitative properties, engineers can reason about margin: the separation between expected or observed behavior and an unacceptable boundary. A system measuring 420 milliseconds against a 500-millisecond limit is in a different position from one measuring 499 milliseconds, even though both currently satisfy the requirement. The defensible margin must also account for relevant uncertainty in workloads, measurements, models, and operating conditions.
 
-The analogy to physical engineering has a limit, and it is worth stating plainly. Software behavior is discrete. Nearby inputs and nearby program states need not produce nearby outcomes: a one-bit difference, a boundary condition, or a single unexpected transition can place execution on a qualitatively different path. Physical systems exhibit discontinuities too, as fracture and instability show, but in software discontinuity is routine.
+Not every software failure has a useful numerical margin. Software behavior is often discrete: one unexpected transition, malformed message, or missing authorization check can move execution onto a qualitatively different path. Engineers therefore also build containment into systems. Interfaces, isolation, permissions, transactions, resource limits, timeouts, staged rollout, and rollback do not prove that enclosed software is correct. They limit what an unanticipated failure can affect.
 
-That changes what margin can tell us. A large observed performance margin may be meaningful for a quantitative performance claim. There is no comparable numerical distance from a latent authorization bypass, a duplicate transaction, or an unhandled state transition. Passing many nearby cases does not imply that the unobserved cases between and around them are safe.
+For quantitative uncertainty, ask how much margin remains. For discrete and unanticipated behavior, ask how far failure is permitted to propagate.
 
-Software engineers compensate partly by engineering **controls that bound the consequences** of behavior they failed to predict. Interfaces restrict possible interactions. Process and container isolation restrict propagation. Type and memory-safety mechanisms rule out classes of behavior. Permissions and capability boundaries limit authority. Transactions limit partially completed changes. Resource quotas, timeouts, circuit breakers, staged rollout, and rollback constrain what a failure can affect. Such controls do not prove the enclosed software correct. They change the delivery decision by changing the possible consequence of being wrong. This is a further reason architectural boundaries matter: good boundaries make incomplete evidence safer to act upon.
+The final judgment considers the consequential claims, the strength of the evidence supporting them, remaining margin, containment, consequence, and reversibility. Several actions may follow:
 
-**For quantitative uncertainty, ask how much margin remains. For discrete and unanticipated behavior, ask how far failure is permitted to propagate.**
+- **Deliver** when the evidence justifies accepting the remaining uncertainty.
+- **Gather more evidence** when additional information could materially change the decision.
+- **Change the system** when reducing the risk is preferable to gathering more evidence about it.
+- **Revisit an upstream decision** when the evidence exposes a problem with a requirement, specification, architecture, or design.
+- **Refuse** when no available course makes delivery professionally defensible.
 
-Before delivering, then, ask:
+A failed validation therefore need not mean *test more*. Evidence can tell engineers that the implementation should change, that an architectural assumption was wrong, or that a commitment itself should be reconsidered.
 
-- **Claims.** Have we obtained evidence for the consequential claims?
-- **Strength.** How strong is that evidence along the relevant dimensions?
-- **Margin.** Where behavior is quantitative, how much defensible room remains before unacceptable behavior?
-- **Containment.** If an unanticipated behavior occurs, what controls limit its consequence?
-- **Consequence.** What happens if those arguments are wrong?
-- **Reversibility.** Can we detect, stop, repair, and recover from failure after delivery?
+Delivery does not end the argument. Operation produces new measurements, incidents, and observations, and changes to the software can invalidate evidence obtained for an earlier realization. Continuing to deliver is therefore another engineering decision under the evidence now available.
 
-Those considerations feed a decision with more than two outcomes:
-
-- **Deliver.** The available evidence justifies accepting the remaining uncertainty.
-- **Gather more evidence.** Additional information could materially change the decision.
-- **Change the system.** Reducing the risk is preferable to gathering more evidence about it.
-- **Revisit an upstream decision.** The evidence exposes a problem with a requirement, specification, architecture, or design choice.
-- **Refuse.** No available course makes delivery professionally defensible.
-
-These are not a checklist, and several feed backward. A failed validation need not mean "test more": sometimes the implementation should change, sometimes the architecture is wrong, and sometimes the commitment itself should be reconsidered. The question is therefore not simply *should we deliver?* but *what action follows from what we now know?*
-
-Evidence also changes after delivery. Monitoring, incidents, measurements, and user reports change the state of knowledge; continuing to deliver is then a new decision under new evidence. Evidence can also age when the system changes: engineers must ask which claims a modification could affect and which evidence therefore needs to be renewed. Software's updateability, where this argument began, makes post-delivery learning unusually practical — and creates the matching obligation to respond when that learning undermines the justification for delivering at all.
+Validation turns evidence into engineering judgment: what must be true, what evidence bears on it, how strong is that evidence, and is it enough to act?
 
 ---
 
