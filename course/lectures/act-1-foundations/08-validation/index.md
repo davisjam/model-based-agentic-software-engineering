@@ -40,7 +40,7 @@ Validation therefore does not seek certainty before every delivery. It asks what
 
 Consequence establishes an evidentiary burden. A graphical defect in a game, a TODO application that loses information, and a medical device that delivers an incorrect dose do not demand the same assurance because being wrong does not have the same consequences.
 
-Engineers must consider both the severity of a possible consequence and how directly the software can cause it. Almost any defect can be connected to serious harm through a sufficiently long chain of events, but that does not make every defect safety-critical. An incorrect radiation dose can directly injure a patient; a graphical glitch does not acquire the same significance merely because an annoyed user might subsequently act badly. The more direct and substantial the consequence, the stronger the evidence we should demand.
+Engineers must consider both the severity of a possible consequence and how directly the software can cause it. Almost any defect can be connected to serious harm through a sufficiently long chain of events, but that does not make every defect safety-critical. An incorrect radiation dose can directly injure a patient; a graphical glitch does not acquire the same significance merely because an annoyed user might subsequently act badly. More severe and more directly caused consequences generally demand stronger evidence.
 
 Reversibility matters as well. Some failures can be repaired cheaply after delivery; others leave consequences that an update cannot undo. Demanding more assurance than the stakes warrant wastes resources and delays useful software; demanding too little transfers unjustified risk into the world.
 
@@ -71,7 +71,7 @@ Scope and evidence mechanism are independent choices. Engineers can obtain evide
 
 No mechanism simply establishes that the software is correct. Each observes or reasons about different aspects of the system and leaves different uncertainty behind.
 
-Dynamic testing introduces another choice: the validation strategy. Executing a program is usually cheap; deciding whether the result is correct can be difficult. The oracle available determines what kinds of search are practical. Example-based testing supplies known expected answers. Property-based testing states a property over many generated inputs. Metamorphic testing checks relationships among executions. Differential testing compares independently developed implementations. Fuzzing uses weak oracles such as crashes, hangs, and assertion failures to search enormous spaces of unusual inputs.
+Dynamic testing introduces another choice: the validation strategy. Executing a program is usually cheap; deciding whether the result is correct can be difficult. The available oracle determines which testing strategies can practically search the input space. Example-based testing supplies known expected answers. Property-based testing states a property over many generated inputs. Metamorphic testing checks relationships among executions. Differential testing compares independently developed implementations. Fuzzing uses weak oracles such as crashes, hangs, and assertion failures to search enormous spaces of unusual inputs.
 
 Choose the strategy for the uncertainty you need to reduce.
 
@@ -89,7 +89,7 @@ Measurement requires the same care. A useful chain is:
 
 **Property → Metric → Measurement → Evidence → Judgment**
 
-A metric defines how some aspect of a property will be assessed. A measurement applies that metric under particular conditions. The resulting value becomes evidence only through the property, metric, and conditions that give it meaning. A measured p99 latency of 420 milliseconds matters because, for example, an architectural model bounded that path at 500 milliseconds under a stated workload.
+A metric specifies how observations will bear on some aspect of a property. A measurement applies that metric under particular conditions. The resulting value becomes evidence only through the property, metric, and conditions that give it meaning. A measured p99 latency of 420 milliseconds matters because, for example, an architectural model bounded that path at 500 milliseconds under a stated workload.
 
 A disagreement between model and measurement is itself information. The implementation may be defective, an assumption may be false, the model may be incomplete, or the metric may not represent the property we thought it did.
 
@@ -113,7 +113,7 @@ A failed validation therefore need not mean *test more*. Evidence can tell engin
 
 Delivery does not end the argument. Operation produces new measurements, incidents, and observations, and changes to the software can invalidate evidence obtained for an earlier realization. Continuing to deliver is therefore another engineering decision under the evidence now available.
 
-Validation turns evidence into engineering judgment: what must be true, what evidence bears on it, how strong is that evidence, and is it enough to act?
+Validation asks what must be true, where evidence for that claim must attach, what evidence we have obtained, how strong it is, and whether it is sufficient to act.
 
 ---
 
