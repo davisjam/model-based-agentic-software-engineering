@@ -22,7 +22,7 @@ The engineering problem therefore has two complementary questions:
 
 The first question is the subject of engineering decision-making; the second lets experience improve the models and judgment behind future decisions.
 
-Software engineering asks the first question continually; the particular decision changes across the engineering process, but the reasoning recurs. Metrics matter because measurement is one important way of obtaining the evidence that reasoning needs. But measurement is subordinate to the decision: we do not begin by asking what we can measure; we begin by asking what we need to decide. The *Measurement for decision-making* sections closing each unit of Act I have exercised this order, and this lecture makes their shared structure explicit.
+Software engineering asks the first question continually; the particular decision changes across the engineering process, but the reasoning recurs. Metrics matter because measurement is one important way of obtaining the evidence that reasoning needs. But measurement is subordinate to the decision: we do not begin by asking what we can measure; we begin by asking what we need to decide. The *Measurement for decision-making* sections throughout Act I have applied this reasoning to particular engineering decisions. This lecture makes the shared structure explicit.
 
 ## What decision are we making?
 
@@ -42,7 +42,7 @@ Engineering decision-making therefore has a recurring structure:
 
 **Decision → Model → Consequential property → Evidence → Judgment → Action**
 
-The structure is deliberately general: the useful evidence (analysis, prior experience, review, a prototype, an experiment, formal reasoning, operational observation, a measurement) depends on the decision and on the uncertainty preventing a confident choice.
+The structure is deliberately general. Useful evidence may come from analysis, prior experience, review, prototypes, experiments, formal reasoning, operational observation, or measurement. Which evidence matters depends on the decision and on the uncertainty preventing a confident choice.
 
 ## What evidence would change the decision?
 
@@ -70,7 +70,7 @@ Metrics can also mislead when engineers forget what they represent. A **misleadi
 
 Engineering judgment therefore returns to the first of the two questions: given what we know now, what should we do? The answer may be to proceed, choose another alternative, gather more evidence, change the system, revise the model, or decline to act; evidence is valuable insofar as it changes the justification for one of those actions.
 
-Later, the action's consequences arrive and the second question comes due: given what happened, what should we now believe? The answer may leave our model intact, narrow the conditions under which we trust it, or reveal an assumption worth reconsidering. Occasionally it shows a reasonable decision meeting a bad outcome inside uncertainty the engineers had knowingly accepted: evidence for future engineering, not a verdict on the earlier decision.
+Later, the action produces consequences and we ask the second question: given what happened, what should we now believe? The answer may leave our model intact, narrow the conditions under which we trust it, or reveal an assumption worth reconsidering. Occasionally, a bad outcome occurs despite a reasonable decision because the outcome lay within uncertainty the engineers had knowingly accepted. That is evidence for future engineering, not a verdict on the earlier decision.
 
 Across the engineering process, the details differ but the reasoning recurs:
 
