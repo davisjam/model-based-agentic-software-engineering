@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" font-family="'Source Sans 3', Helvetica, sans-serif" role="img">
-  <title>Before delivery, engineering runs forward from requirements through specification, architecture and design, implementation, and validation to a system operating in the world. A failure turns the same activities around: each is re-examined by a retrospective question, and the answers update the engineering models that guide future work</title>
+  <title>Before the decision, engineering runs forward from requirements through specification, architecture and design, implementation, and validation to a system operating in the world, asking: given what we know, what should we do? After the outcome, each activity is re-examined by a retrospective question, asking: given what happened, what should we now believe? The answers update the engineering models that guide future work</title>
   <!-- Umber Monograph palette: ink #1c1917, paper #fdfcf9, accent #9a3f12, rule #e4e0d8, panel #f6f4ef, subordinate #57534e -->
   <rect x="0" y="0" width="720" height="440" fill="#fdfcf9"/>
 
@@ -9,11 +9,11 @@
     </marker>
   </defs>
 
-  <text x="18" y="26" font-size="12" font-weight="600" fill="#57534e">BEFORE DELIVERY</text>
-  <text x="18" y="44" font-size="12" font-style="italic" fill="#57534e">Why should we believe this?</text>
+  <text x="18" y="26" font-size="12" font-weight="600" fill="#57534e">BEFORE THE DECISION</text>
+  <text x="18" y="44" font-size="12" font-style="italic" fill="#57534e">Given what we know, what should we do?</text>
 
-  <text x="300" y="26" font-size="12" font-weight="600" fill="#57534e">AFTER FAILURE</text>
-  <text x="300" y="44" font-size="12" font-style="italic" fill="#57534e">Why did we believe this?</text>
+  <text x="300" y="26" font-size="12" font-weight="600" fill="#57534e">AFTER THE OUTCOME</text>
+  <text x="300" y="44" font-size="12" font-style="italic" fill="#57534e">Given what happened, what should we now believe?</text>
 
   <!-- prospective chain, left column -->
   <rect x="18" y="60" width="200" height="34" rx="5" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.4"/>

@@ -270,9 +270,18 @@ uncertainty that was already recognized and deliberately accepted.
 :::
 
 This distinction prevents failure analysis from degenerating into hindsight. Knowing the outcome
-changes what appears obvious. Failure-aware engineering instead reconstructs what engineers could
-reasonably know before the outcome occurred and asks how the new evidence should alter future
-decisions.
+changes what appears obvious. A good engineering decision is one that was justified by the
+evidence reasonably available when the decision was made, not one that happens to produce a
+favorable outcome.
+
+This gives engineering two complementary questions:
+
+- **Before the decision:** Given what we know, what should we do?
+- **After the outcome:** Given what happened, what should we now believe?
+
+Failure-aware engineering concerns the second question. It reconstructs what engineers could
+reasonably know before the outcome occurred and asks how the new evidence should change the
+understanding used for future decisions.
 
 ## Human error has structure {#sec-human-error}
 
@@ -580,12 +589,12 @@ understanding embodied in the system and identify where the new evidence should 
 specification assumption may have shaped an architectural decision, for example, while the
 resulting weakness remained undetected because validation was performed at the wrong scope.
 
-::: {.figure #fig-prospective-retrospective alt="Two columns. The left column runs downward through Requirements, Specification, Architecture and design, Implementation, Validation, and System in the world, under the heading BEFORE DELIVERY and the question Why should we believe this? At the bottom, a highlighted Failure box sends an arrow back up the page into the right column, headed AFTER FAILURE and the question Why did we believe this? The right column carries one retrospective question opposite each activity, and they feed a box labeled Updated models and future engineering."}
+::: {.figure #fig-prospective-retrospective alt="Two columns. The left column runs downward through Requirements, Specification, Architecture and design, Implementation, Validation, and System in the world, under the heading BEFORE THE DECISION and the question Given what we know, what should we do? At the bottom, a highlighted Failure box sends an arrow back up the page into the right column, headed AFTER THE OUTCOME and the question Given what happened, what should we now believe? The right column carries one retrospective question opposite each activity, and they feed a box labeled Updated models and future engineering."}
 ![](../figures/failure-aware-engineering/prospective-and-retrospective.svg)
 
-Before delivery the activities run forward, each asking why we should believe the system will
-produce the consequences we intend. A failure turns the same sequence around: each activity
-acquires a retrospective question about the understanding under which it was performed.
+Before an engineering decision, models and evidence help determine what we should do given what
+we know. After an outcome contradicts our expectations, the same engineering activities can be
+examined retrospectively to determine what the new evidence should change.
 :::
 
 This retrospective use of the handbook is one reason a postmortem can contribute more than a
@@ -727,9 +736,12 @@ Failure is the same loop running the other way. The observation is not selected,
 time nobody chose, and it already disagrees. The deliberate work that remains is the step the
 forward loop performs first: deciding which model the observation is about.
 
-That is the movement of the entire book, compressed. We made decisions using models. We measured
-reality to inform those decisions. Reality eventually contradicted one of our expectations. Which
-model should change?
+Before a decision, engineers ask what they should do given what they know. After an outcome, they
+ask what they should now believe given what happened. Failure makes the second question
+unavoidable.
+
+We made decisions using models. We measured reality to inform those decisions. Reality eventually
+contradicted one of our expectations. Which model should change?
 
 The retrospective traversal earlier in this chapter (@sec-turn-the-handbook-around) is the procedure
 for answering that question, and its final entry deserves particular attention. A metric is a model
