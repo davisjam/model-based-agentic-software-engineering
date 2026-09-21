@@ -122,7 +122,13 @@ def parse_bib(text: str) -> list[dict]:
         etype, key, body = m.group(1).lower(), m.group(2).strip(), m.group(3)
         fields = _parse_fields(body)
         authors = _split_authors(fields.get("author", ""))
-        container = fields.get("journal") or fields.get("publisher") or fields.get("booktitle") or ""
+        # The csl record feeds the Highwire `citation_reference` meta tags (build_book._highwire_reference),
+        # so the container must fall through the fields each entry type actually carries — @misc uses
+        # `howpublished`, @techreport `institution`, @online `organization`, @phdthesis `school`. `note` is
+        # deliberately excluded: it is commentary, not a container/venue.
+        container = (fields.get("journal") or fields.get("publisher") or fields.get("booktitle")
+                     or fields.get("howpublished") or fields.get("institution")
+                     or fields.get("organization") or fields.get("school") or "")
         csl = {
             "type": etype,
             "title": fields.get("title", ""),
@@ -287,6 +293,18 @@ def main() -> int:
         for e in entries:
             key = e["key"]
             note_html, bib_html = _render_one(key, wd)
+            # NEVER-EMPTY GUARANTEE. Hayagriva's chicago-notes style treats a source with no locator —
+            # in this bib, every @misc carrying neither `url` nor `doi` — as notes-only and emits an
+            # EMPTY bibliography <li> (the note form stays complete). Our Works Cited is a NUMBERED list
+            # mirrored to the superscripts (BIB-4), so an entry cannot be omitted or blank: fall back to
+            # the engine's own note-form string, which for a notes-only source IS the full Chicago
+            # citation. Still one engine — no second CSL processor. Both forms empty = a real data
+            # defect; fail loud.
+            if not bib_html:
+                if not note_html:
+                    raise RuntimeError(f"entry {key!r} rendered EMPTY in both note and bibliography "
+                                       f"form — references.bib entry lacks renderable fields")
+                bib_html = note_html
             citations[key] = {
                 "note_html": note_html,
                 "works_cited_html": bib_html,   # numbered end-of-chapter entry body (order applied at assembly)
