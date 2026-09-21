@@ -12,7 +12,7 @@ description: >
 objectives:
   - Distinguish consequence, stakeholder judgment, and professional judgment as separate inputs to the delivery decision, and recognize the two pathologies of a mismatched standard.
   - Identify the claim a validation activity must support before selecting a technique, then choose an evidence mechanism by the uncertainty it can reduce and a validation strategy by where its oracle comes from.
-  - Evaluate the strength of a body of evidence along explicit dimensions — coverage, detection power, representativeness, scope, independence, assumptions, and residual uncertainty — rather than by its volume.
+  - Evaluate the strength of a body of evidence along explicit dimensions — coverage, detection power, representativeness, scope, independence, assumptions, and residual uncertainty — rather than by its volume alone.
   - Reason about residual uncertainty at delivery through margin, coverage, containment, and reversibility, recognizing that software's discreteness limits what observed behavior implies about unobserved behavior.
   - Recognize when evidence gathered after delivery has changed the justification for continued delivery.
 ---
@@ -265,6 +265,18 @@ ordinary examples cannot.
 
 The method follows from what engineers need to know.
 
+This ordering matters. Validation techniques are solutions to recurring evidence problems, not the
+starting point of validation. Fuzzing is useful when engineers can cheaply search many executions
+and recognize some failures with a weak oracle. Property-based testing is useful when individual
+expected results are expensive to enumerate but a property can be stated across a class of
+executions. Metamorphic testing is useful when individual answers are unavailable but relationships
+among executions are known. Model checking is useful when reasoning over possible modeled behaviors
+can establish something that sampling executions cannot.
+
+Learning these techniques matters, but knowing how to perform them does not determine which
+evidence an engineering decision requires. The claim comes first; the technique earns its place by
+providing evidence for it.
+
 ## Validate at the scope of the property {#sec-scope-of-property}
 
 Engineering models represent properties at different scopes. A design may depend on a property of
@@ -512,25 +524,70 @@ figure beside a low mutation score describes evidence that reaches much of the s
 little when it is wrong. The question is not whether the evidence reached the behavior, but whether
 it would have objected.
 
-Strong validation for consequential claims tends toward triangulation: multiple forms of evidence
-with sufficiently independent failure modes that a mistaken assumption in one can be caught by
-another. Independence deserves particular attention because volume can imitate it.
+More observations can nevertheless provide more evidence. Suppose each test execution is
+represented by a bitmap recording which program lines it covered. Tests with different bitmaps can
+extend the portion of the implementation the suite has examined. Coverage of states, transitions,
+requirements, or other model elements can provide analogous information about what the evidence
+has reached. But coverage and detection power remain different questions. Exercising a line,
+state, or modeled obligation does not establish that the oracle would recognize incorrect behavior
+there.
 
-::: {.key-idea #key-evidence-independence title="Evidence multiplies; independence does not"}
-A thousand tests generated from the same mistaken interpretation of a requirement are not a
-thousand independent reasons to believe the interpretation is correct. They are one reason,
-repeated. The strength of a body of evidence depends not only on its quantity, but on the
-independence of the assumptions and failure modes behind it.
+Nor does diversity of coverage imply independence. Two tests can examine different behaviors while
+relying on the same mistaken oracle or assumption. Conversely, evidence obtained through different
+mechanisms can still share a model whose omission invalidates them together. Coverage asks where
+the evidence reached; detection power asks whether it would notice the failure; independence asks
+whether the same mistake could defeat several pieces of evidence at once. These dimensions must be
+judged separately.
+
+These distinctions let us ask a deeper question: when should more observations make us more
+confident?
+
+Suppose five tests all pass. Now suppose 5,000 tests pass. It is tempting either to say that 5,000
+must provide much stronger evidence, or to object that test count means nothing. Neither
+conclusion follows without a model connecting the observations to the claim.
+
+Consider a deliberately simple model. Suppose a particular defect exists and each test has an
+independent probability p = 0.01 of exposing and detecting it. The probability that n tests all
+miss the defect is then
+
+P(all miss | defect) = (1 − p)ⁿ = 0.99ⁿ.
+
+Five tests would all miss with probability about 0.951. Five thousand would all miss with
+probability about 1.5 × 10⁻²². Under these assumptions, volume matters enormously. Repeated
+observations genuinely accumulate evidence.
+
+But the calculation has compressed several engineering questions into p. The test-generation
+process must have some probability of exercising behavior that exposes the defect, and the oracle
+must recognize the defect when that behavior occurs. Schematically,
+
+P(detect) = P(exercise relevant behavior) × P(recognize failure | exercised).
+
+The calculation also assumes sufficiently independent opportunities for detection. If generated
+tests cannot reach the defective behavior, the first probability is zero. If every test shares an
+oracle that accepts the defective behavior, the second is zero. If the opportunities to detect the
+defect are correlated, multiplying the same miss probability n times is not justified.
+
+This decomposition is schematic rather than a general formula for software reliability. Its
+purpose is to expose the assumptions hidden inside the apparently simple claim that a test has a
+particular probability of detecting a defect. These are not new concerns. They are the dimensions
+just distinguished: where the evidence reaches, whether it can detect the failure there, and
+whether additional observations can fail for the same reason.
+
+Cheap generation makes these distinctions increasingly important. A tool can generate an
+implementation and 5,000 passing tests from the same interpretation of a requirement. The
+resulting observations may genuinely expand coverage, yet still share an oracle or assumption that
+systematically misses the behavior that matters. Conversely, a large body of tests generated under
+a defensible sampling and detection model can provide dramatically stronger evidence than a small
+one. @ch-software-engineering argued that as implementation becomes abundant, the judgments
+surrounding it become relatively more important. The same shift applies inside validation: the
+engineering question is not whether evidence volume matters, but what model justifies converting
+additional observations into additional confidence.
+
+::: {.key-idea #key-evidence-model title="Confidence requires a model of the evidence"}
+More observations can provide much stronger evidence, but their number alone does not determine
+how much stronger. Engineers must ask what additional observations exercise, what failures they
+can detect, and which assumptions they share.
 :::
-
-This point becomes more important as generation becomes cheap. When tests were expensive to write,
-each embodied a deliberate act of engineering attention, so a large suite loosely signaled
-substantial scrutiny. When a tool can generate implementations and thousands of passing tests from
-the same prompt, the tests and the implementation can share a single mistaken interpretation, and
-the suite's size signals nothing about it. @ch-software-engineering argued that as implementation
-becomes abundant, the judgments surrounding it become relatively more important. The same shift
-applies inside validation: cheap evidence generation makes judging its coverage,
-representativeness, independence, and assumptions the scarce engineering work.
 
 ## Margin, discreteness, and containment {#sec-margin-containment}
 
@@ -755,7 +812,7 @@ how an aspect of it will be assessed, and a measurement supplies an observed val
 conditions. Measurements become evidence only relative to claims and assumptions. Engineers choose
 sources of evidence according to the uncertainty each can reduce, then judge the resulting body of
 evidence by its coverage, detection power, representativeness, scope, independence, assumptions,
-and residual uncertainty — not by its volume.
+and residual uncertainty — not by its volume alone.
 
 Software's discreteness bounds what this evidence can establish. Nearby inputs and states need not
 produce nearby behavior, so coverage identifies where evidence reached rather than how near the
