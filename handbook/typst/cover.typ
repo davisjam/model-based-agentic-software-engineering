@@ -58,7 +58,7 @@
   title: "",
   subtitle: "",
   author: "",
-  artwork: "/assets/cover-artwork.png",
+  artwork: "/handbook/assets/cover-artwork.png",
 ) = page(
   paper: "us-letter",
   margin: 0pt,

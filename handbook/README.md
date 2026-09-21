@@ -80,6 +80,32 @@ Figures keep alt text and caption structurally distinct: `alt` is the accessibil
 `<img>` and on the Typst `image(alt: …)` for tagged-PDF output), the caption paragraph is the visible
 label.
 
+**Figure text legibility (style primitive).** The book is print-intended, so every semantically
+meaningful text run in a figure SVG — labels, annotations, arrows' captions — must stay comfortably
+readable at printed size **in grayscale**. Concretely: figure text uses only the sanctioned inks
+(`#1c1917` body ink, `#57534e` subordinate gray, `#9a3f12` accent) — never a lighter gray and never
+opacity tricks — and must print at ≥ 6 pt *effective* size (font-size scaled by the SVG viewBox
+against the figure's rendered width). Light gray (`#e4e0d8`) is reserved for genuinely decorative
+structure — separator rules, panel fills — whose loss would not impair comprehension.
+`scripts/lint.py` enforces both halves mechanically (`check_figure_legibility`), so shrinking a
+figure (or wrapping it, below) without re-sizing its text fails the build rather than surfacing in
+print.
+
+**Wrapped floats (PDF only).** A figure Div — or a `.table` Div wrapping one captioned table — may
+carry `wrap="right"` plus an optional `wrap-width="2.05in"`: the print edition renders the float as
+a narrow right-hand column with the following prose paragraphs flowing beside it, via the book
+family's single side-float engine (`/book/typst/side-float.typ`, shared with the MAGE book;
+`#hb-wrapped` in `typst/components.typ` is the handbook's caller). Use it for a tall, narrow float
+that would otherwise cost a full-width band of its page. The reflowable web and ePub editions
+ignore the attribute. Never shrink a float's text to make a wrap fit — the legibility primitive
+above still applies at the wrapped width.
+
+**Table captions sit above.** A reader needs to know what a table represents before scanning its
+columns, so every **table** caption renders above its table in all three editions (the Typst rule in
+`typst/handbook.typ`, `caption-side: top` in `web/css/handbook.css` and `epub/epub.css`). **Figure**
+captions stay below. In the PDF the caption+table figure is unbreakable, so a caption can never
+strand at a page bottom with its table overleaf.
+
 ### Chapter-ending convention
 
 Every substantive chapter ends the same way, so the structure is checkable rather than stylistic:
@@ -124,7 +150,8 @@ chapter-metadata `kind:` other than `chapter` (e.g. `kind: front-matter`), or si
 metadata, invalid chapter ordering, unknown or malformed semantic blocks, figures without alt text or
 caption, duplicate IDs, unresolved cross-references, citation keys absent from the bibliography,
 broken image paths, hard-coded figure/table/section/chapter numbers in prose, raw HTML/Typst used for
-presentation outside a marked escape hatch, and malformed heading hierarchy. The build runs the
+presentation outside a marked escape hatch, malformed heading hierarchy, and figure-text legibility
+(sanctioned inks + the effective printed-size floor — see the style primitive above). The build runs the
 linter first and aborts on any error — it never degrades silently.
 
 It also runs the **chapter-ending drift check** described above: every non-exempt chapter must end

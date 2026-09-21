@@ -83,7 +83,7 @@ def handbook_cover_png(work_dir: pathlib.Path, book: "dict | None" = None) -> pa
             book = yaml.safe_load(fh)
     # Titles carry no `"` today; keep build.py's existing f-string quoting verbatim (no escaper here).
     typ_source = "\n".join([
-        '#import "/typst/cover.typ": hb-cover',
+        '#import "/handbook/typst/cover.typ": hb-cover',
         "#hb-cover(",
         f'  title: "{book["title"]}",',
         f'  subtitle: "{book["subtitle"]}",',
@@ -91,7 +91,7 @@ def handbook_cover_png(work_dir: pathlib.Path, book: "dict | None" = None) -> pa
         ")",
         "",
     ])
-    return render_cover_png(typ_source, work_dir / "cover.png", root=GC_ROOT / "handbook")
+    return render_cover_png(typ_source, work_dir / "cover.png", root=GC_ROOT)
 
 
 def regen_mage_thumb(work_dir: pathlib.Path = GC_ROOT / "book" / "_typst") -> pathlib.Path:

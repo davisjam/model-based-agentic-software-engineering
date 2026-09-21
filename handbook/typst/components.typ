@@ -4,6 +4,10 @@
 // what it LOOKS like in the PDF. Change the look here, never in the manuscript.
 
 #import "typography.typ": palette, font-display, callout-style
+// The family's ONE side-float wrap engine (vendored wrap-it core, shared with the MAGE book's
+// weight-aside) — see /book/typst/side-float.typ for provenance and the measurement-neutralisation
+// rationale. hb-wrapped below is the handbook's only caller.
+#import "/book/typst/side-float.typ": _wr-wrap-right
 
 // Front matter (Preface, Introduction): an UNNUMBERED opening. It avoids the chapter heading treatment
 // — no "CHAPTER" eyebrow, no chapter counter — because front matter is not Chapter 0. A hidden outlined
@@ -63,6 +67,19 @@
     #body
   ]
 }
+
+// A WRAPPED float (figure or table): the float renders as a fixed right-hand column — roughly a
+// third of the measure for a narrow vertical figure, half for a compact table — and the following
+// prose flows beside it, so a tall-and-narrow float no longer costs a full-width band of its page.
+// `fixed` is the already-built float (an #hb-figure call or a pandoc-emitted #figure(table(…)));
+// `wrapped` is the following prose gathered by the figures.lua wrap path. The engine splits the
+// prose to the float's height and returns the remainder to the full measure after the unit, so the
+// caller may gather generously. All book-wide float styling (caption position, booktabs dress)
+// applies inside the cell unchanged — the wrap changes geometry, never the float's own form.
+#let hb-wrapped(fixed, wrapped: [], box-width: 2.05in) = _wr-wrap-right(
+  fixed, wrapped, box-width: box-width,
+  boxer: (b, w) => box(width: w, b),
+)
 
 // A figure: the image, a numbered caption. Typst owns the "Figure N" numbering and the label makes
 // it referenceable via @id. `numbered: false` renders an UNNUMBERED figure — a plain muted caption

@@ -327,8 +327,8 @@ def build_pdf(book: dict) -> None:
         print(f"  typst  ← {ch.name}")
 
     book_typ = "\n".join([
-        '#import "/typst/handbook.typ": *',
-        '#import "/typst/components.typ": *',
+        '#import "/handbook/typst/handbook.typ": *',
+        '#import "/handbook/typst/components.typ": *',
         "",
         "#show: handbook.with(",
         f'  title: "{book["title"]}",',
@@ -353,7 +353,7 @@ def build_pdf(book: dict) -> None:
     # the page always prints a date.
     _run(["typst", "compile", str(GEN_TYPST / "book.typ"), str(PDF_OUT),
           "--input", f"last_modified={_last_modified(book)}",
-          "--root", str(C.HANDBOOK), "--font-path", str(C.FONT_PATH)])
+          "--root", str(C.GC_ROOT), "--font-path", str(C.FONT_PATH)])
     print(f"PDF → {PDF_OUT.relative_to(C.HANDBOOK)}")
 
     _build_chapter_pdfs(book, units)
@@ -409,8 +409,8 @@ def _build_chapter_pdfs(book: dict, units: list[_Unit]) -> None:
     CHAPTERS_PDF_DIR.mkdir(parents=True, exist_ok=True)
     for u in units:
         doc = "\n".join([
-            '#import "/typst/handbook.typ": *',
-            '#import "/typst/components.typ": *',
+            '#import "/handbook/typst/handbook.typ": *',
+            '#import "/handbook/typst/components.typ": *',
             "",
             "#show: handbook-excerpt.with(",
             f'  title: "{u.title}",',
@@ -431,7 +431,7 @@ def _build_chapter_pdfs(book: dict, units: list[_Unit]) -> None:
         src = GEN_TYPST / f"excerpt-{u.stem}.typ"
         src.write_text(doc, encoding="utf-8")
         _run(["typst", "compile", str(src), str(CHAPTERS_PDF_DIR / f"{u.stem}.pdf"),
-              "--root", str(C.HANDBOOK), "--font-path", str(C.FONT_PATH)])
+              "--root", str(C.GC_ROOT), "--font-path", str(C.FONT_PATH)])
         print(f"  chapter PDF → dist/chapters/{u.stem}.pdf")
     print(f"chapter PDFs → {CHAPTERS_PDF_DIR.relative_to(C.HANDBOOK)}/ ({len(units)} units)")
 

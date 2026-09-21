@@ -13,7 +13,7 @@
   </defs>
 
   <!-- ORDINARY CASE -->
-  <text x="18" y="30" font-size="12" font-weight="600" fill="#57534e">ORDINARY CASE</text>
+  <text x="18" y="30" font-size="13" font-weight="600" fill="#57534e">ORDINARY CASE</text>
   <text x="18" y="70" font-size="14" fill="#1c1917">Hazard</text>
 
   <g stroke="#9a3f12" stroke-width="2" fill="none">
@@ -29,15 +29,15 @@
   <rect x="456" y="40" width="34" height="52" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.4"/>
   <rect x="456" y="76" width="34" height="9" fill="#fdfcf9" stroke="none"/>
 
-  <text x="173" y="112" text-anchor="middle" font-size="11" fill="#57534e">Defense</text>
-  <text x="323" y="112" text-anchor="middle" font-size="11" fill="#57534e">Defense</text>
-  <text x="473" y="112" text-anchor="middle" font-size="11" fill="#57534e">Defense</text>
-  <text x="530" y="70" font-size="12" font-style="italic" fill="#57534e">stopped at the first layer</text>
+  <text x="173" y="112" text-anchor="middle" font-size="13" fill="#57534e">Defense</text>
+  <text x="323" y="112" text-anchor="middle" font-size="13" fill="#57534e">Defense</text>
+  <text x="473" y="112" text-anchor="middle" font-size="13" fill="#57534e">Defense</text>
+  <text x="530" y="70" font-size="13" font-style="italic" fill="#57534e">stopped at the first layer</text>
 
   <line x1="18" y1="146" x2="702" y2="146" stroke="#e4e0d8" stroke-width="1.5"/>
 
   <!-- ALIGNED WEAKNESSES -->
-  <text x="18" y="186" font-size="12" font-weight="600" fill="#57534e">ALIGNED WEAKNESSES</text>
+  <text x="18" y="186" font-size="13" font-weight="600" fill="#57534e">ALIGNED WEAKNESSES</text>
   <text x="18" y="238" font-size="14" fill="#1c1917">Hazard</text>
 
   <rect x="156" y="208" width="34" height="52" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.4"/>
@@ -53,9 +53,9 @@
     <line x1="74" y1="233" x2="576" y2="233" marker-end="url(#df-arrow)"/>
   </g>
 
-  <text x="173" y="280" text-anchor="middle" font-size="11" fill="#57534e">weakness</text>
-  <text x="323" y="280" text-anchor="middle" font-size="11" fill="#57534e">weakness</text>
-  <text x="473" y="280" text-anchor="middle" font-size="11" fill="#57534e">weakness</text>
+  <text x="173" y="280" text-anchor="middle" font-size="13" fill="#57534e">weakness</text>
+  <text x="323" y="280" text-anchor="middle" font-size="13" fill="#57534e">weakness</text>
+  <text x="473" y="280" text-anchor="middle" font-size="13" fill="#57534e">weakness</text>
   <text x="592" y="238" font-size="14" fill="#9a3f12">Failure</text>
 
 </svg>

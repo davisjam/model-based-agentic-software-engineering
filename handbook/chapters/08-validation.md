@@ -375,6 +375,14 @@ failure domains, design compares mechanisms by memory or execution time. Validat
 metrics to obtain evidence about whether the realized system has the properties those engineering
 decisions required.
 
+::: {.figure #fig-property-to-judgment wrap="right" wrap-width="2.05in" alt="A vertical chain of six boxes connected by labeled arrows. An Engineering model represents a Property. The Property is assessed by a Metric. The Metric, applied under stated conditions, yields a Measurement. The Measurement bears on Evidence. The Evidence, interpreted with other evidence, yields a Judgment."}
+![](../figures/validation/property-to-judgment.svg)
+
+A measurement becomes evidence through an engineering claim. The model identifies a property that
+matters; a metric defines how an aspect of it will be assessed; measurement supplies an observation
+under stated conditions. Engineers interpret that observation as part of the evidence for a decision.
+:::
+
 Three terms must remain distinct. A property is something about the system or its environment that
 matters to an engineering decision. A metric defines how some aspect of that property will be
 assessed. A measurement is a value obtained by applying the metric under particular conditions.
@@ -384,14 +392,6 @@ bound. Engineers might define the metric as p99 end-to-end request latency under
 measure 420 ms in a validation experiment. The number is not meaningful evidence by itself. Its
 meaning comes from the property, the metric connecting the measurement to that property, and the
 workload and environment under which it was obtained (@fig-property-to-judgment).
-
-::: {.figure #fig-property-to-judgment width="46%" alt="A vertical chain of six boxes connected by labeled arrows. An Engineering model represents a Property. The Property is assessed by a Metric. The Metric, applied under stated conditions, yields a Measurement. The Measurement bears on Evidence. The Evidence, interpreted with other evidence, yields a Judgment."}
-![](../figures/validation/property-to-judgment.svg)
-
-A measurement becomes evidence through an engineering claim. The model identifies a property that
-matters; a metric defines how an aspect of it will be assessed; measurement supplies an observation
-under stated conditions. Engineers interpret that observation as part of the evidence for a decision.
-:::
 
 A mismatch between model and measurement is itself engineering information. The implementation may be
 defective. The model may have omitted an important cost. Its assumptions may not describe the actual
@@ -407,9 +407,7 @@ the number happens to be available.
 
 ## Choose an evidence mechanism {#sec-choosing-evidence}
 
-Claim and scope are the first two decisions a validation argument makes. The rest follow, and this
-chapter takes them in order (@tbl-validation-skeleton).
-
+::: {.table wrap="right" wrap-width="3.4in"}
 | Decision | The question it asks |
 |---|---|
 | Claim | What do we need to believe? |
@@ -420,6 +418,10 @@ chapter takes them in order (@tbl-validation-skeleton).
 | Decision | Is the residual uncertainty acceptable? |
 
 : The decisions a validation argument makes. {#tbl-validation-skeleton}
+:::
+
+Claim and scope are the first two decisions a validation argument makes. The rest follow, and this
+chapter takes them in order (@tbl-validation-skeleton).
 
 Once the claim and its scope are explicit, engineers can choose how to obtain evidence. Of each
 mechanism (@tbl-evidence-mechanisms), ask what uncertainty it can reduce, which failures it can
@@ -540,48 +542,52 @@ whether the same mistake could defeat several pieces of evidence at once. These 
 judged separately.
 
 These distinctions let us ask a deeper question: when should more observations make us more
-confident?
+confident? Suppose five tests all pass, and then suppose 5,000 tests pass. It is tempting either
+to say that 5,000 must provide much stronger evidence, or to object that test count means nothing.
+Neither conclusion follows without a model connecting the observations to the claim. Conditional
+on a particular defect $D$ existing, suppose each test independently has probability $p = 0.01$ of
+exposing and detecting it. The probability that $n$ tests all miss the defect is then
 
-Suppose five tests all pass. Now suppose 5,000 tests pass. It is tempting either to say that 5,000
-must provide much stronger evidence, or to object that test count means nothing. Neither
-conclusion follows without a model connecting the observations to the claim.
+$$P(\text{all miss} \mid D) = (1-p)^n.$$
 
-Consider a deliberately simple model. Suppose a particular defect exists and each test has an
-independent probability p = 0.01 of exposing and detecting it. The probability that n tests all
-miss the defect is then
+For five tests, this probability is $0.99^5 \approx 0.951$. For 5,000 tests, it is
+$0.99^{5000} \approx 1.5 \times 10^{-22}$. Under these assumptions, volume matters enormously:
+repeated observations genuinely accumulate evidence. This calculation is not the probability that
+the software is correct after $n$ passing tests; that would require a model of how likely defects
+were beforehand. It tells us something narrower: if this particular defect exists and the stated
+detection model holds, how surprising is it that all $n$ tests missed it?
 
-P(all miss | defect) = (1 − p)ⁿ = 0.99ⁿ.
-
-Five tests would all miss with probability about 0.951. Five thousand would all miss with
-probability about 1.5 × 10⁻²². Under these assumptions, volume matters enormously. Repeated
-observations genuinely accumulate evidence.
-
-But the calculation has compressed several engineering questions into p. The test-generation
+But the calculation has compressed several engineering questions into $p$. The test-generation
 process must have some probability of exercising behavior that exposes the defect, and the oracle
 must recognize the defect when that behavior occurs. Schematically,
 
-P(detect) = P(exercise relevant behavior) × P(recognize failure | exercised).
+$$P(\text{detect } D) = P(\text{exercise relevant behavior} \mid D) \times P(\text{recognize } D \mid \text{exercised}).$$
 
-The calculation also assumes sufficiently independent opportunities for detection. If generated
-tests cannot reach the defective behavior, the first probability is zero. If every test shares an
-oracle that accepts the defective behavior, the second is zero. If the opportunities to detect the
-defect are correlated, multiplying the same miss probability n times is not justified.
+If generated tests cannot reach the defective behavior, the first probability is zero; millions of
+additional tests generated in the same way provide no evidence about that defect. For example,
+running the same input through a deterministic system 5,000 times does not explore 5,000
+behaviors, nor does generating only positive inputs when the system has distinct behavior for
+positive and negative values. If every test shares an oracle that accepts the defective behavior,
+the second probability is zero. The calculation also assumes sufficiently independent
+opportunities for detection. If tests repeatedly exercise the same behavior, depend on the same
+mistaken assumption, or use the same systematically wrong oracle, multiplying the same miss
+probability $n$ times is not justified.
 
 This decomposition is schematic rather than a general formula for software reliability. Its
-purpose is to expose the assumptions hidden inside the apparently simple claim that a test has a
-particular probability of detecting a defect. These are not new concerns. They are the dimensions
-just distinguished: where the evidence reaches, whether it can detect the failure there, and
-whether additional observations can fail for the same reason.
+purpose is to expose the assumptions compressed into the apparently simple claim that a test has a
+particular probability of detecting a defect. These are the dimensions just distinguished: where
+the evidence reaches, whether it can detect the failure there, and whether additional observations
+can fail for the same reason.
 
-Cheap generation makes these distinctions increasingly important. A tool can generate an
-implementation and 5,000 passing tests from the same interpretation of a requirement. The
-resulting observations may genuinely expand coverage, yet still share an oracle or assumption that
-systematically misses the behavior that matters. Conversely, a large body of tests generated under
-a defensible sampling and detection model can provide dramatically stronger evidence than a small
-one. @ch-software-engineering argued that as implementation becomes abundant, the judgments
-surrounding it become relatively more important. The same shift applies inside validation: the
-engineering question is not whether evidence volume matters, but what model justifies converting
-additional observations into additional confidence.
+Cheap generation makes this distinction increasingly important. A tool can generate an
+implementation and 5,000 passing tests from the same interpretation of a requirement. Those tests
+may genuinely expand coverage while still sharing an oracle or assumption that systematically
+misses the behavior that matters. Conversely, a large body of tests generated under a defensible
+sampling and detection model can provide dramatically stronger evidence than a small one. As
+implementation and evidence production become cheaper, judging what the resulting artifacts
+actually establish becomes relatively more important. The engineering question is therefore not
+whether evidence volume matters, but what model justifies converting additional observations into
+additional confidence.
 
 ::: {.key-idea #key-evidence-model title="Confidence requires a model of the evidence"}
 More observations can provide much stronger evidence, but their number alone does not determine

@@ -124,6 +124,10 @@
  * the column; force them to the full column width — lossless, they are pure vector. Scoped to .svg
  * so a future raster figure keeps max-width-only behavior (no blurry upscale). */
 .handbook-figure img[src$=".svg"] { width: 100%; }
+/* A print-wrapped figure (filters/figures.lua adds hb-narrow) is drawn for a ~2in column; keep it
+ * a modest inset on the web rather than stretching the narrow artwork across the content column. */
+.handbook-figure.hb-narrow img[src$=".svg"] { width: auto; max-width: min(100%, 17rem); }
+.handbook-figure.hb-narrow figcaption { max-width: 26rem; margin-inline: auto; }
 .handbook-figure figcaption {
   margin-top: 0.6em;
   font-size: 0.85em;
@@ -156,10 +160,12 @@
 }
 
 /* Captioned tables (filters/web.lua renders these as raw HTML so the id + caption survive GFM):
- * caption below the table, styled like a figure caption, with the "Table N." prefix in bold. */
+ * caption ABOVE the table (a reader needs to know what a table represents before scanning its
+ * columns — matches the print edition's tables-only rule in typst/handbook.typ; figure captions
+ * stay below), styled like a figure caption, with the "Table N." prefix in bold. */
 .md-typeset table caption {
-  caption-side: bottom;
-  margin-top: 0.6em;
+  caption-side: top;
+  margin-bottom: 0.6em;
   font-size: 0.85em;
   color: var(--md-default-fg-color--light);
   text-align: center;

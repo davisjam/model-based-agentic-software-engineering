@@ -17,6 +17,8 @@ Checks (spec §8):
   * hard-coded figure/table/section/chapter numbers in prose
   * raw HTML / raw Typst used for presentation (outside a marked escape hatch)
   * malformed heading hierarchy
+  * figure-text legibility: sanctioned inks only + the effective printed-size floor (README
+    "Figure text legibility" — the print-grayscale style primitive)
   * chapter-ending convention: `## Summary` + exactly one `read_further` block ends every
     substantive chapter; no bare References/Bibliography heading (non-`chapter` kinds exempt)
 
@@ -27,6 +29,7 @@ from __future__ import annotations
 import pathlib
 import re
 import sys
+import xml.etree.ElementTree as ET
 
 import _common as C
 
@@ -41,6 +44,75 @@ import _common as C
 HARDCODED_NUM = re.compile(
     r"\b(?:Figure|Fig\.|Table|Section|Sect\.|Chapter|Chs?\.)s?\s+\d", re.IGNORECASE)
 SECTION_GLYPH = re.compile(r"§+\s*\d")
+
+# ── Figure legibility (the figure-text style primitive) ────────────────────────────────────────
+# The book is print-intended: every semantically meaningful text run in a figure SVG must stay
+# comfortably readable at printed size, in grayscale. Two mechanical halves:
+#   * INK — figure text may use only the sanctioned inks (body ink, the #57534e subordinate gray,
+#     the accent). Lighter grays and any opacity trick on text are reserved for genuinely
+#     decorative structure (rules, panels), never for labels/annotations/in-diagram captions.
+#   * SIZE — the EFFECTIVE printed size of every text run (its font-size scaled by viewBox width
+#     vs the figure's rendered width in the PDF) must clear the floor below. The rendered width
+#     is the authored `width="NN%"` of the 6.1in text measure (default 82%), or the `wrap-width`
+#     box column for a wrapped figure — so shrinking a figure (or wrapping it) without re-sizing
+#     its text is caught here, not discovered in print.
+FIGURE_TEXT_INKS = {"#1c1917", "#57534e", "#9a3f12", "#000", "#000000", "black"}
+FIGURE_TEXT_FLOOR_PT = 6.0
+TEXT_MEASURE_IN = 8.5 - 1.3 - 1.1  # us-letter width minus the inside/outside margins (handbook.typ)
+
+
+def _figure_rendered_width_in(kv: dict) -> float:
+    """The figure's rendered print width in inches, from its Div attributes."""
+    wrap_w = kv.get("wrap-width", "")
+    m = re.fullmatch(r"([\d.]+)in", wrap_w)
+    base = float(m.group(1)) if m else TEXT_MEASURE_IN
+    pct = re.fullmatch(r"([\d.]+)%", kv.get("width", ""))
+    if pct:
+        frac = float(pct.group(1)) / 100.0
+    else:
+        frac = 1.0 if m else 0.82  # a wrapped figure spans its box column; else figures.lua's 82%
+    return base * frac
+
+
+def check_figure_legibility(svg_path: pathlib.Path, kv: dict) -> list[str]:
+    """Findings for one figure SVG's text ink + effective printed text size (empty == compliant)."""
+    findings: list[str] = []
+    try:
+        root = ET.parse(svg_path).getroot()
+    except ET.ParseError as exc:
+        return [f"{svg_path.name}: unparseable SVG ({exc})"]
+    vb = (root.get("viewBox") or "").split()
+    if len(vb) != 4:
+        return [f"{svg_path.name}: missing/malformed viewBox (needed to derive printed text size)"]
+    scale_pt = _figure_rendered_width_in(kv) / float(vb[2]) * 72.0  # printed pt per SVG unit
+
+    def walk(el, inherited: dict) -> None:
+        style = dict(inherited)
+        for key in ("font-size", "fill", "opacity", "fill-opacity"):
+            if el.get(key) is not None:
+                style[key] = el.get(key)
+        if el.tag.rsplit("}", 1)[-1] in ("text", "tspan") and "".join(el.itertext()).strip():
+            fill = style.get("fill", "black").lower()
+            if fill not in FIGURE_TEXT_INKS:
+                findings.append(
+                    f"{svg_path.name}: text {fill!r} is not a sanctioned figure-text ink "
+                    f"(use #57534e or darker; light gray is for decorative structure only)")
+            for key in ("opacity", "fill-opacity"):
+                if float(style.get(key, "1") or "1") < 1.0:
+                    findings.append(f"{svg_path.name}: text carries {key}<1 — low-opacity text is banned")
+            size = style.get("font-size")
+            if size is None:
+                findings.append(f"{svg_path.name}: text without a resolvable font-size")
+            elif float(re.sub(r"px$", "", size)) * scale_pt < FIGURE_TEXT_FLOOR_PT - 0.05:
+                findings.append(
+                    f"{svg_path.name}: text prints at "
+                    f"{float(re.sub(r'px$', '', size)) * scale_pt:.1f}pt (< {FIGURE_TEXT_FLOOR_PT}pt floor) "
+                    f"at the figure's rendered width — enlarge the text or the figure")
+        for child in el:
+            walk(child, style)
+
+    walk(root, {})
+    return findings
 
 
 class Report:
@@ -73,6 +145,7 @@ class ChapterScan:
         self.div_problems: list[str] = []             # malformed / unknown semantic blocks
         self.raw_presentation: list[str] = []         # raw html/typst outside an escape hatch
         self.hardcoded: list[str] = []                # hard-coded numbers in prose
+        self.figure_refs: list[tuple[str, dict]] = [] # (image src, figure-Div attrs) per figure
 
     # -- helpers ----------------------------------------------------------------
     def _note_id(self, attr, kind: str) -> None:
@@ -193,6 +266,8 @@ class ChapterScan:
         ident = attr[0]
         classes = attr[1]
         kv = C.attrs_to_dict(attr[2])
+        for img in _find_images(inner):
+            self.figure_refs.append((img["c"][2][0], kv))
         has_image = False
         caption_blocks = 0
         for b in inner:
@@ -418,6 +493,15 @@ def main() -> int:
             resolved = (chdir / src).resolve()
             if not resolved.exists():
                 rep.err(name, f"broken image path: {src}")
+        # figure legibility: sanctioned text inks + the effective printed-size floor
+        for src, kv in scan.figure_refs:
+            if not src.endswith(".svg"):
+                continue
+            resolved = (chdir / src).resolve()
+            if not resolved.exists():
+                continue  # reported above as a broken image path
+            for finding in check_figure_legibility(resolved, kv):
+                rep.err(name, f"figure legibility: {finding}")
 
     # Chapter-ending convention — FATAL (see check_chapter_ending; exempt kinds return no findings).
     for name, _scan, meta, blocks in scans:

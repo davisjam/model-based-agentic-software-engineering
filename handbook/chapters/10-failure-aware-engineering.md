@@ -126,7 +126,7 @@ two-second assumption considered credible? Where was it represented? Which decis
 it? What evidence supported it? Did engineers believe the dependency guaranteed the bound, or did
 the assumption simply become embedded in the system without ever being made explicit?
 
-::: {.figure #fig-expectation-observation width="52%" alt="A vertical chain: an Engineering model yields an Expectation, which leads to Action in the world, which yields an Observation. The Observation branches two ways. One branch, drawn in a lighter dashed box, is labeled Expectation holds. The other branch, highlighted, leads to Failure, then to Interpretation, then to Updated engineering understanding."}
+::: {.figure #fig-expectation-observation width="60%" alt="A vertical chain: an Engineering model yields an Expectation, which leads to Action in the world, which yields an Observation. The Observation branches two ways. One branch, drawn in a lighter dashed box, is labeled Expectation holds. The other branch, highlighted, leads to Failure, then to Interpretation, then to Updated engineering understanding."}
 ![](../figures/failure-aware-engineering/expectation-and-observation.svg)
 
 An engineering model produces an expectation the world can contradict. When it does, the

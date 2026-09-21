@@ -118,6 +118,23 @@
   set table(stroke: none, inset: (x: 0.8em, y: 0.62em))
   set table.hline(stroke: 0.5pt + palette.muted)
   show table.cell.where(y: 0): set text(font: font-display, weight: 700, size: 9.5pt)
+  // Table captions sit ABOVE their table — a reader needs to know what a table represents before
+  // scanning its columns. FIGURE captions stay below; this rule is deliberately tables-only.
+  // Orphan prevention: the enclosing #figure is UNBREAKABLE (Typst's default, made explicit here),
+  // so the caption and its table move across a page break as one block — a "Table N." line can
+  // never strand at a page bottom with the table overleaf.
+  show figure.where(kind: table): set figure.caption(position: top)
+  show figure.where(kind: table): set block(breakable: false)
+  // Pandoc wraps EVERY table in #figure(kind: table), even an uncaptioned id-less matrix. Left
+  // alone, that phantom figure silently steps the table counter, so the PDF numbers captioned
+  // tables one ahead of the web/ePub editions (whose sequence in crossrefs.lua counts only real,
+  // id-carrying tables). Render it bare and give back its counter step (the step happens at the
+  // element's location regardless of what this rule emits, so the update compensates in place):
+  // a caption-less table claims no number, and "Table N" agrees across all three editions.
+  show figure.where(kind: table): it => if it.caption == none {
+    counter(figure.where(kind: table)).update(n => n - 1)
+    it.body
+  } else { it }
   show table: it => block(
     width: 100%,
     above: 1.0em, below: 0.3em,

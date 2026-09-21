@@ -38,10 +38,12 @@ table thead th {
 }
 
 /* A captioned table's caption ("Table N. …", numbered by the web.lua filter): same quiet
-   treatment as a figure caption, below its table. */
+   treatment as a figure caption, but ABOVE its table — a reader needs to know what a table
+   represents before scanning its columns (matches the print edition's tables-only rule in
+   typst/handbook.typ; figure captions stay below). */
 table caption {
-  caption-side: bottom;
-  margin-top: 0.5em;
+  caption-side: top;
+  margin-bottom: 0.5em;
   font-size: 0.85em;
   text-align: left;
 }
