@@ -26,13 +26,11 @@ materials:
     src: 1-6-Architecture.pptx
 ---
 
-**Premise.** *The purpose of architecture is to organize a system so that the many competing obligations of its specification can be realized together. Architecture organizes the machine so that its obligations can be realized together: it identifies consequential parts, assigns responsibilities, establishes boundaries and interfaces, and constrains how the parts may interact. When multiple organizations satisfy the specification, engineers must compare the alternatives, analyze their consequences, and decide which tradeoffs are appropriate.*
+**Premise.** *Architecture organizes one acceptable realization so that its obligations can coexist.*
 
-A specification tells us what an acceptable realization must accomplish, but it deliberately leaves many choices about the system's organization open. Those choices matter because obligations such as performance, security, reliability, and expected change can interact: an organization that serves one property well may make another harder to achieve.
+A specification tells us what an acceptable realization must accomplish, but it deliberately leaves many choices about the system's organization open. Architecture identifies consequential parts, assigns responsibilities, establishes boundaries and interfaces, and constrains how the parts may interact. Those choices matter because obligations such as performance, security, reliability, and expected change can interact: an organization that serves one property well may make another harder to achieve.
 
 Architecture is where engineers make those obligations coexist. Its choices create affordances and constraints for the engineering work that follows. A boundary may make a change easier to isolate while making coordination harder. A communication rule may improve failure isolation while weakening consistency. An architectural decision therefore does more than describe a system: it changes the space of designs available to its parts.
-
-The distinction between architecture and design is recursive rather than absolute. A system architecture organizes responsibilities and interactions in ways that constrain the design of its parts. A part may itself require architecture when its internal responsibilities and interactions are consequential enough to organize explicitly. This is often called subsystem design: opening the part reveals another architectural problem at a smaller scope. Architecture therefore does not occupy one fixed level of a system hierarchy. It deliberately reasons about coarse-grained parts whose internals can, for the current engineering question, be treated as units.
 
 ## From specification to one system
 
@@ -53,15 +51,15 @@ A useful summary question is: *Where should we draw boundaries so that the inter
 
 Architectural boundaries can also become units of engineering ownership, so a decomposition affects not only coupling within the software but the coordination required among the people who build and maintain it.
 
-These questions can recur at smaller scales. What makes a decision architectural is not a particular notation or a fixed level of abstraction. It is that the decision establishes consequential organization within which further engineering decisions will be made. Architecture treats its major parts as units; design determines how those parts realize their responsibilities.
+What makes a decision architectural is not a particular notation or a fixed level of abstraction. It is that the decision establishes consequential organization within which further engineering decisions will be made.
 
 ## Architectural patterns provide alternatives
 
-Many architectural problems recur, and engineers have developed recurring organizations that offer different ways of addressing them. Components that need to communicate might call one another directly or communicate through events. Computations over related state might pass that state through a pipeline or operate on a shared repository. Dependencies might follow strict layers or deliberately cross them when the abstraction does not provide a needed capability. Domain code might depend directly on infrastructure or define interfaces that infrastructure adapters implement.
+Many architectural problems recur, and engineers have developed recurring organizations that offer different ways of addressing them.
 
 Experience with these recurring organizations gives engineers useful expectations about their consequences. A **layered organization** can provide comprehensible dependency rules but obstruct interactions that naturally cross the layers. A **shared repository** can simplify consistency while creating a central dependency. **Event-based communication** can reduce direct coupling while making ordering and end-to-end behavior harder to reason about. **Ports and adapters** can isolate domain behavior from infrastructure choices while introducing additional interfaces and indirection. None of these consequences makes one organization generally superior to another; they matter according to the properties required of the particular system.
 
-Architectural patterns are therefore useful in two related ways. They provide plausible alternatives when engineers are deciding how to organize a system, and prior experience provides an initial basis for reasoning about the consequences of those alternatives. That experience does not determine what will happen in a particular system. A pattern may suggest that one organization will improve change isolation or reduce coupling, for example, without establishing how much improvement will result or whether another consequence will matter more.
+Prior experience does not determine what will happen in a particular system. A pattern may suggest that one organization will improve change isolation or reduce coupling, for example, without establishing how much improvement will result or whether another consequence will matter more.
 
 The important skill is therefore not recognizing pattern names. For any proposed organization, ask:
 
@@ -70,15 +68,19 @@ The important skill is therefore not recognizing pattern names. For any proposed
 3. *What does it make harder?*
 4. *What properties can we now analyze?*
 
+## Choosing among acceptable architectures
+
+Several architectures may satisfy the specification while differing in performance, reliability, changeability, cost, and other consequential properties. First eliminate alternatives that violate a constraint: an inadmissible architecture is not a tradeoff. Then eliminate alternatives that are dominated by another acceptable choice. What remains are genuine tradeoffs requiring engineering judgment.
+
+Uncertainty need not remain a bet. If an unresolved question could change the choice, ask what evidence would distinguish the alternatives and whether obtaining it is worth the cost. Models, prototypes, analyses, and measurements buy information about consequential choices. As Generative AI lowers the cost of producing such evidence, more architectural questions become worth investigating.
+
 ## Architecture makes some system properties analyzable
 
-Architectural choices affect properties such as performance, reliability, security, and modifiability, but recognizing that relationship is only the beginning. A useful architectural model can make the relationship explicit enough to analyze. Which model is useful depends on the question. A dependency model, flow model, and deployment model are different reductions of the same system because they are intended to support different claims. An architecture therefore cannot generally be captured by one privileged view. Different views expose different structures and support different kinds of reasoning about the same system. For example, a dependency model can show whether a proposed boundary actually isolates a component from expected changes elsewhere in the system. A data-flow model can expose which components and communication steps lie on a latency-sensitive path. A deployment model can expose which failures can affect multiple parts of the system at once.
+Architectural choices affect properties such as performance, reliability, security, and modifiability, but recognizing that relationship is only the beginning. A useful architectural model can make the relationship explicit enough to analyze. Which model is useful depends on the question, so an architecture cannot generally be captured by one privileged view. For example, a dependency model can show whether a proposed boundary actually isolates a component from expected changes elsewhere in the system. A data-flow model can expose which components and communication steps lie on a latency-sensitive path. A deployment model can expose which failures can affect multiple parts of the system at once.
 
 Architectural claims can be supported at different levels. A pattern may provide a reasoned expectation based on prior engineering experience: a particular organization should make a change more local. An analytic model can support a stronger structural argument, such as establishing that no dependency crosses a proposed boundary. A quantitative model can go further when the relevant quantities can be represented: service times, communication costs, arrival rates, or failure probabilities can support predictions about latency, capacity, or reliability before the complete system has been implemented. Finally, measurements from an implemented system provide observed evidence about its actual behavior.
 
 The point is not that an architectural model predicts the finished system perfectly. Its conclusions are only as good as the representation and assumptions on which they depend. Rather, architectural models give engineers an opportunity to turn some consequential choices from matters of judgment alone into questions that can be examined before committing to an implementation.
-
-Analysis itself has a cost. The useful question is whether resolving an uncertainty could change the architectural decision enough to justify that cost. Models, prototypes, and measurements are therefore ways of buying information about a consequential choice. As the cost of producing that evidence falls, perhaps as the result of Generative AI, more architectural questions become worth investigating. The more faithfully the architectural model captures the property we care about, the less we have to bet.
 
 ## Measurement for decision-making
 
