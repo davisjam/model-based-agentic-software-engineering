@@ -38,12 +38,34 @@ _GENERATED = {"index", "book-index", "catalogue-figure", "figures", "bibliograph
 
 
 def _all_book_md_files() -> list[str]:
-    """Every book chapter-source markdown — front matter, the six numbered parts, AND back matter. (The
-    data-claims lint's helper globs only `part*`; citations also live in the preface, the Reflections
-    chapters, and the colophon, so this covers all chapter dirs.)"""
+    """Every book chapter-source markdown, derived from the build's own part-dir SSOT
+    (`build_book._PART_DIRS`: front matter, part1–part8, the Conclusion) so a new part can never fall
+    out of the citation gates' corpus. (A hand-listed tuple here silently missed part8 for a while —
+    the derive-don't-copy fix.) Appendix dirs are assembled synthetically by the build and stay outside
+    this chapter corpus; the source-hygiene checks (`_all_cite_source_md_files`) cover them."""
     out: list[str] = []
-    for sub in ("frontmatter", "part1", "part2", "part3", "part4", "part5", "part6", "part7"):
+    for sub in bb._PART_DIRS.values():
         out += glob.glob(os.path.join(_BOOK, sub, "*.md"))
+    return sorted(out)
+
+
+# Source trees under book/ that are NOT authored chapter/appendix prose: generated projections (web,
+# dist), design notes and drafts (_design), and the print/pitch scaffolding. The PLACEMENT check scans
+# everything else — any authored markdown a projection may render.
+_NON_SOURCE_DIRS = {"_design", "web", "dist", "_print", "_typst", "_pitch", "assets"}
+
+
+def _all_cite_source_md_files() -> list[str]:
+    """Every AUTHORED markdown under book/ (chapters, appendices, back matter, standalone notes) —
+    the widest source set a `[cite:]` marker may legitimately appear in. Broader than
+    `_all_book_md_files` on purpose: marker hygiene is a property of the authored source, not of the
+    chapter corpus, and the appendix dirs are assembled into pages synthetically."""
+    out: list[str] = []
+    for path in glob.glob(os.path.join(_BOOK, "**", "*.md"), recursive=True):
+        rel_parts = os.path.relpath(path, _BOOK).split(os.sep)
+        if any(seg in _NON_SOURCE_DIRS for seg in rel_parts):
+            continue
+        out.append(path)
     return sorted(out)
 
 
@@ -236,6 +258,61 @@ def check_cite_parity():
     if "references.bib" not in typ:
         issues.append("the Typst projection cites works but its #bibliography does not draw from "
                       "references.bib — the PDF would render from a different source than the web book")
+    return (FAIL if issues else PASS), issues
+
+
+def check_cite_nonempty():
+    """BIB-10 (BLOCKING). Every entry in citations.json carries a NON-EMPTY rendered string in all
+    three forms (note_html / works_cited_html / bib_html). The failure this pins: Hayagriva's
+    chicago-notes style treats a source with no locator (a @misc with neither url nor doi) as
+    notes-only and emits an EMPTY bibliography <li>, so a numbered Works-Cited entry rendered as a
+    bare number — silently, with no build error (11 entries shipped that way before the
+    render_citations.py never-empty fallback). Checks the committed JSON, the one artifact BOTH
+    surfaces consume, so any regression — a Typst/Hayagriva behavior change, a new notes-only entry
+    shape the fallback misses — fails loud here."""
+    if not os.path.isfile(_CITATIONS_JSON):
+        return PASS, ["no citations.json — nothing to check (CITE-FRESH owns the missing-file case)"]
+    import json
+    payload = json.load(open(_CITATIONS_JSON, encoding="utf-8"))
+    issues: list[str] = []
+    for key, entry in sorted(payload.get("citations", {}).items()):
+        for form in ("note_html", "works_cited_html", "bib_html"):
+            if not entry.get(form, "").strip():
+                issues.append(f"citations.json entry {key!r} renders EMPTY in {form} — the reader "
+                              f"would see a bare number; give the references.bib entry renderable "
+                              f"fields (or fix render_citations.py's never-empty fallback) and re-run "
+                              f"`python3 book/render_citations.py`")
+    return (FAIL if issues else PASS), issues
+
+
+# A [cite:] marker (no nested ] — the marker regex's own shape) immediately followed by sentence
+# punctuation = the marker sits BEFORE the punctuation it should follow.
+_CITE_BEFORE_PUNCT_RE = re.compile(r"\[cite:[^\]]+\][.,;:!?]")
+# A space/tab run directly before a marker = the marker floats off its word ("word [cite:x]").
+_CITE_SPACE_BEFORE_RE = re.compile(r"[ \t]+\[cite:")
+_FENCE_RE = re.compile(r"^```.*?^```", re.S | re.M)
+
+
+def check_cite_placement():
+    """BIB-11 (BLOCKING). House citation-marker placement over every authored source file: a `[cite:]`
+    marker FOLLOWS punctuation (`artifact.[cite:x]`, never `artifact [cite:x].`) and attaches directly
+    to the preceding text (no space before the marker). The failure this pins is silent: on the
+    narrow-viewport web presentation the in-column citation-note card is display:block, so a marker
+    placed before its period strands that period alone on the next line — no build error, the
+    paragraph just renders broken. Fenced code blocks are exempt (a fence may quote the wrong form).
+    Drained to 0 by the 260921 codemod, so it lands BLOCKING."""
+    issues: list[str] = []
+    for f in _all_cite_source_md_files():
+        text = _FENCE_RE.sub(lambda m: "\n" * m.group(0).count("\n"), open(f, encoding="utf-8").read())
+        for regex, what, fix in (
+            (_CITE_BEFORE_PUNCT_RE, "[cite:] marker sits BEFORE punctuation",
+             "move the marker after it: 'word.[cite:x]'"),
+            (_CITE_SPACE_BEFORE_RE, "space before [cite:] marker",
+             "attach the marker to the preceding text: 'word[cite:x]'"),
+        ):
+            for m in regex.finditer(text):
+                line = text.count("\n", 0, m.start()) + 1
+                issues.append(f"{rel(f)}:{line}: {what} — {fix}")
     return (FAIL if issues else PASS), issues
 
 

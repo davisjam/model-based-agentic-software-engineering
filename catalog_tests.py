@@ -78,8 +78,10 @@ from tests.citations import (
     check_cite_fresh,
     check_cite_mirror,
     check_cite_no_duplicates,
+    check_cite_nonempty,
     check_cite_orphans,
     check_cite_parity,
+    check_cite_placement,
     check_cite_resolve,
     check_cite_symbology,
     check_scholar_meta,
@@ -287,6 +289,16 @@ CHECKS = [
           lambda strict: check_cite_orphans(), audit_only=True),
     Check("book: CITE-DEDUP — no two .bib entries share a (title, year); no repeated key (BIB-9)", 1,
           lambda strict: check_cite_no_duplicates()),
+    # BLOCKING (both drained to 0 before landing, per the audit-only-first discipline): a citation entry
+    # must never RENDER empty (Hayagriva chicago-notes emits an empty bibliography <li> for a locatorless
+    # @misc — 11 Works-Cited entries shipped as bare numbers, silently), and a [cite:] marker must FOLLOW
+    # its punctuation with no space before it (marker-before-period strands the period on its own line
+    # under the in-column note card — silently). Both defects are mechanically detectable and produce no
+    # build error, which is exactly why they are gates.
+    Check("book: CITE-NONEMPTY — every citations.json entry renders non-empty in all forms (BIB-10)", 1,
+          lambda strict: check_cite_nonempty()),
+    Check("book: CITE-PLACEMENT — [cite:] markers follow punctuation, no space before (BIB-11)", 1,
+          lambda strict: check_cite_placement()),
     # AUDIT-ONLY (rule #55): the OUTLINE view-model drift + invariants (book-models/outline.json vs a fresh
     # derivation; O2 topic-sentence, O3 unique id, O4 nesting). The book's own "4+1 view held equal to the
     # source" discipline dogfooded on the book. Seeds 2 real O2 findings today, so it lands audit-only and
