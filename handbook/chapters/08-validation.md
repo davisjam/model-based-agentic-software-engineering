@@ -252,30 +252,25 @@ charged twice; an unauthorized user should not be able to initiate a payment; a 
 should appear in the account history; a normal request should complete within an acceptable time.
 Each claim concerns the same system, but evidence supporting one may say little about another.
 
-This is why validation techniques should not be taught as a catalog from which engineers select a
-sufficiently impressive collection. The engineering problem runs in the opposite direction:
-identify what must be believed, consider how the system could violate the claim, then seek evidence
-capable of distinguishing acceptable from unacceptable behavior.
+The claim therefore comes before the technique. Identify what must be believed, consider how the
+system could violate that claim, then seek evidence capable of distinguishing acceptable from
+unacceptable behavior. If the claim concerns duplicate charging, engineers need evidence capable of
+exposing duplicate execution under the conditions in which it might occur. If the claim concerns
+latency, they need measurements under relevant workloads and environments. If the claim concerns
+behavior over all possible values of some bounded input, exhaustive analysis or proof may provide
+evidence that ordinary examples cannot.
 
-If the claim concerns duplicate charging, engineers need evidence capable of exposing duplicate
-execution under the conditions in which it might occur. If the claim concerns latency, they need
-measurements under relevant workloads and environments. If the claim concerns behavior over all
-possible values of some bounded input, exhaustive analysis or proof may provide evidence that
-ordinary examples cannot.
-
-The method follows from what engineers need to know.
-
-This ordering matters. Validation techniques are solutions to recurring evidence problems, not the
-starting point of validation. Fuzzing is useful when engineers can cheaply search many executions
-and recognize some failures with a weak oracle. Property-based testing is useful when individual
-expected results are expensive to enumerate but a property can be stated across a class of
-executions. Metamorphic testing is useful when individual answers are unavailable but relationships
-among executions are known. Model checking is useful when reasoning over possible modeled behaviors
-can establish something that sampling executions cannot.
+Validation techniques can then be understood as solutions to recurring evidence problems. Fuzzing
+is useful when engineers can cheaply search many executions and recognize some failures with a weak
+oracle. Property-based testing is useful when individual expected results are expensive to
+enumerate but a property can be stated across a class of executions. Metamorphic testing is useful
+when individual answers are unavailable but relationships among executions are known. Model
+checking is useful when reasoning over possible modeled behaviors can establish something that
+sampling executions cannot.
 
 Learning these techniques matters, but knowing how to perform them does not determine which
-evidence an engineering decision requires. The claim comes first; the technique earns its place by
-providing evidence for it.
+evidence an engineering decision requires. What engineers need to know determines which techniques
+can provide useful evidence.
 
 ## Validate at the scope of the property {#sec-scope-of-property}
 
@@ -299,8 +294,8 @@ engineering activities may be interleaved. Instead, the left side represents inc
 engineering decisions as models constrain a realization; the right represents evidence about the
 corresponding properties at progressively broader scopes.
 
-The familiar terms unit testing, integration testing, system testing, and acceptance testing
-describe common scopes of validation. Unit testing usually examines a chosen part in isolation;
+The familiar terms *unit testing*, *integration testing*, *system testing*, and *acceptance
+testing* describe common scopes of validation. Unit testing usually examines a chosen part in isolation;
 integration testing examines interactions among parts; system testing examines an assembled system
 at a chosen boundary; and acceptance testing asks whether the resulting system is acceptable for its
 intended use. These terms are useful professional vocabulary, but their boundaries depend on
@@ -776,14 +771,13 @@ have been sound. It is another to continue the same behavior after evidence of s
 accumulates. The original justification cannot be reused, because it was a justification under a
 state of knowledge that no longer exists.
 
-Recent litigation against social-media companies illustrates the distinction, if read carefully.
-Plaintiffs — including states and school districts — have alleged that platform design features
-harmed young users and that companies continued delivering those features after internal evidence
-of harm accumulated. These allegations are not findings of fact or scientific proof of causation,
-and this chapter takes no position on the underlying social-science debate. The engineering lesson
-does not depend on their eventual adjudication. The shape of the accusation is exactly the failure
-this section names: not that you delivered under uncertainty, but that your evidence changed and
-your decision did not.
+Recent litigation against social-media companies illustrates the distinction. Plaintiffs,
+including states and school districts, have alleged that platform design features harmed young
+users and that companies continued delivering those features after internal evidence of harm
+accumulated. Of course, the court system is not engineering, and legal allegations do not establish
+engineering conclusions. But the engineering lesson does not depend on the outcome of these cases.
+The shape of the accusation is exactly the failure this section names: not that you delivered under
+uncertainty, but that your evidence changed and your decision did not.
 
 Software's medium gives this duty particular force. @ch-software-engineering observed that
 copyability and updateability cut both ways: the mechanism that propagates a repair across millions
