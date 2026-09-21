@@ -16,7 +16,8 @@ assignments: []
 instructor_notes: ""
 status: draft
 materials:
-  - title: Lecture slides — Engineering Decision-Making and Metrics (forthcoming)
+  - title: Lecture slides — Engineering Decision-Making and Metrics
+    src: 1-9-Engineering-Decision-Making-and-Metrics.pptx
 ---
 
 **Premise.** *Engineering requires making consequential decisions under incomplete knowledge. A good engineering decision is the decision best justified by the evidence available when it must be made.*
