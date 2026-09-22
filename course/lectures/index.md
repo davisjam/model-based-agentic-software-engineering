@@ -41,8 +41,8 @@ Modules are published as their teaching materials are completed.
 *How do we delegate realization, govern what is produced, and learn when reality contradicts our expectations?*
 
 - **[Agent Levers: Working with Software Agents](act-2-building-systems-and-governing-changes/01-agent-levers/index.md)**
-- Modeling: Representation & Implementation
-- Modeling: Engineering with Models
+- **[Modeling: Representation & Implementation](act-2-building-systems-and-governing-changes/02-modeling/index.md)**
+- **[Modeling: Engineering with Models](act-2-building-systems-and-governing-changes/02-modeling/index.md)**
 - Alignment: From Guidance to Authority
 - Alignment: Governing Realization
 - **[Failure-Aware Engineering](act-2-building-systems-and-governing-changes/04-failure-aware-engineering/index.md)**
