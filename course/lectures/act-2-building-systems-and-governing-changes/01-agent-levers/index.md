@@ -17,7 +17,8 @@ assignments: []
 instructor_notes: ""
 status: ready
 materials:
-  - title: Lecture slides — Agent Levers (forthcoming)
+  - title: Lecture slides — Agent Levers
+    src: 2-1-Agents.pptx
 ---
 
 **Premise.** *An agent's engineering capability is not a property of the model alone. What an agent can accomplish depends on the model, the harness through which it acts, and the engineering environment in which the work occurs.*
