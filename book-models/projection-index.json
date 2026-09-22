@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 851,
+    "total_sites": 857,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 509,
+      "book-web": 515,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -78,6 +78,10 @@
           {
             "file": "book/web/docs/4.2-one-problem-many-models.md",
             "occ": 2
+          },
+          {
+            "file": "book/web/docs/4.3-brownfield-engineering.md",
+            "occ": 7
           },
           {
             "file": "book/web/docs/5.1-the-mage-workflow.md",
@@ -253,7 +257,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 64
+            "occ": 67
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -267,7 +271,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 61
+            "occ": 62
           }
         ]
       },
@@ -652,6 +656,10 @@
             "occ": 4
           },
           {
+            "file": "book/web/docs/4.3-brownfield-engineering.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/5.2-brownfield.md",
             "occ": 1
           },
@@ -715,7 +723,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 19
+            "occ": 20
           }
         ]
       },
@@ -993,7 +1001,11 @@
           },
           {
             "file": "book/web/docs/4.2-one-problem-many-models.md",
-            "occ": 25
+            "occ": 26
+          },
+          {
+            "file": "book/web/docs/4.3-brownfield-engineering.md",
+            "occ": 35
           },
           {
             "file": "book/web/docs/5.1-the-mage-workflow.md",
@@ -1377,11 +1389,11 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 319
+            "occ": 322
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 24
+            "occ": 25
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1405,7 +1417,7 @@
           },
           {
             "file": "book/web/docs/part-5-intro.md",
-            "occ": 17
+            "occ": 18
           },
           {
             "file": "book/web/docs/part-6-intro.md",
@@ -1423,7 +1435,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 134
+            "occ": 135
           }
         ]
       },
@@ -1576,6 +1588,10 @@
           {
             "file": "book/web/docs/4.2-one-problem-many-models.md",
             "occ": 2
+          },
+          {
+            "file": "book/web/docs/4.3-brownfield-engineering.md",
+            "occ": 1
           },
           {
             "file": "book/web/docs/5.2-brownfield.md",
@@ -1741,7 +1757,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 49
+            "occ": 50
           }
         ]
       },
@@ -1948,6 +1964,10 @@
           {
             "file": "book/web/docs/4.2-one-problem-many-models.md",
             "occ": 65
+          },
+          {
+            "file": "book/web/docs/4.3-brownfield-engineering.md",
+            "occ": 29
           },
           {
             "file": "book/web/docs/5.1-the-mage-workflow.md",
@@ -2271,7 +2291,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 429
+            "occ": 439
           },
           {
             "file": "book/web/docs/index.md",
@@ -2279,7 +2299,7 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 18
+            "occ": 19
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -2317,7 +2337,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 115
+            "occ": 116
           }
         ]
       },
@@ -3022,6 +3042,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/4.3-brownfield-engineering.md",
+            "occ": 3
+          },
+          {
             "file": "book/web/docs/5.2-brownfield.md",
             "occ": 3
           },
@@ -3153,7 +3177,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 46
+            "occ": 47
           }
         ]
       },

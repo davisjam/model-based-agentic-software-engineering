@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 14,
     "elaborative_links": 19,
     "units_serving_as_elaborative": 16,
-    "sections_total": 232,
+    "sections_total": 236,
     "sections_primary_of_an_outcome": 15,
     "modules": 9,
-    "lessons": 38
+    "lessons": 39
   },
   "taxonomy": {
     "know": [
@@ -246,6 +246,11 @@
           },
           {
             "lesson": "4.2-one-problem-many-models",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "4.3-brownfield-engineering",
             "own_outcomes": [],
             "section_outcomes": []
           }
