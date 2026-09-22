@@ -716,7 +716,6 @@
       "closing_anchor": "tools, and the companion repository and leaves only the moves that port.",
       "delivers": {
         "concepts": [
-          "audits-into-lints",
           "soft-vs-hard-governance",
           "one-shot-scripting",
           "supervised-autonomy",
@@ -757,8 +756,6 @@
       "closing_anchor": "and mature both in place until an agent can reason through it.",
       "delivers": {
         "concepts": [
-          "greenfield",
-          "brownfield-migration",
           "quality",
           "quality-case-traceability",
           "top-down-refinement",
@@ -807,11 +804,7 @@
       "opening_anchor": "Every engineering process eventually asks the same question: **what evidence is sufficient",
       "closing_anchor": "The old techniques become more central because the economics around them changed.",
       "delivers": {
-        "concepts": [
-          "oracle",
-          "property-test-models-the-output",
-          "generative-validation"
-        ],
+        "concepts": [],
         "artifacts": [
           {
             "type": "decision-tree",
@@ -843,16 +836,11 @@
       "closing_anchor": "and what must remain judgment. Chapter 7 returns to that professional shift.",
       "delivers": {
         "concepts": [
-          "lifecycle",
           "failure-mode-effects-analysis",
           "agent-orchestration-model",
           "lifecycle-event-binding",
-          "deterministic-firing",
-          "runbook",
           "operational-playbook",
-          "deterministic-vs-judgment-split",
-          "resource-mediation",
-          "measure-one-level-deeper"
+          "resource-mediation"
         ],
         "artifacts": [
           {
@@ -891,7 +879,6 @@
       "closing_anchor": "The method does not depend on the file format, harness, or name.",
       "delivers": {
         "concepts": [
-          "standing-context",
           "self-governance",
           "governance-catalogue",
           "teetering-tower",

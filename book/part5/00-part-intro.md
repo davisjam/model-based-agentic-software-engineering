@@ -7,14 +7,6 @@ practice, engineers choose and connect these moves as the work demands. MAGE beg
 be made explicit, places enforcement where stable obligations become legible and enforceable, and converts
 recurring judgment into durable engineering structure.
 
-<!-- principlebox -->
-<!-- box-family: canonical -->
-> ### The MAGE cycle
->
-> Model the intent. Enforce stable obligations. Convert recurring judgment into durable engineering structure.
->
-> **Repeat.**
-
 The result is a cycle rather than a catalogue. A task begins from the representations, controls, and
 evidence the environment already owns. Work exposes what those structures can and cannot answer. Some
 gaps earn better models; some earn sensors, validators, constraints, or gates; some remain judgment
