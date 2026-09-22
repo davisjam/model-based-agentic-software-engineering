@@ -7,7 +7,7 @@
     "derived_ids": 182,
     "missing_topic_sentence": 5,
     "sections_drained": 136,
-    "paragraph_points": 614
+    "paragraph_points": 615
   },
   "chapters": [
     {
@@ -2677,19 +2677,24 @@
               "block_index": 65
             },
             {
+              "slug": "agentic-modifies-who-realizes",
+              "text": "Agentic names who performs realization; the supervisory machinery around that realization remains part of the factory.",
+              "block_index": 68
+            },
+            {
               "slug": "the-factory-is-a-functional-layer",
               "text": "The software factory's supervisory layer is functional, not a separate technology stack; one artifact can participate in production and in supervision at once.",
-              "block_index": 67
+              "block_index": 70
             },
             {
               "slug": "history-is-grounding-not-evidence",
               "text": "The industrial history is grounding, not evidence for MAGE: it supplies the shape of the transition, and the warning that the solution was never merely a faster fabricator.",
-              "block_index": 69
+              "block_index": 72
             },
             {
               "slug": "the-problem-the-evidence-must-answer",
               "text": "The problem the evidence must answer: increasing the capacity of the fabricator does not necessarily increase the capacity of the supervisor.",
-              "block_index": 71
+              "block_index": 74
             }
           ]
         }
