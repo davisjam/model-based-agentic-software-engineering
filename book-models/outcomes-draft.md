@@ -102,6 +102,9 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 4.2-one-problem-many-models
 
 
+### Lesson 4.3-brownfield-engineering
+
+
 ## Module 5 — The MAGE Method
 
 - **[DECLARED]** (apply) After this Part, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism. _(primary: Module 5 · elaborated by: Module 6)_ — _anchor: The MAGE Method chapter arc: the-mage-workflow -> brownfield -> validating-change -> the-skills (governance-conversion + field-guide dissolved into 4.1 + the 4.4 synthesis close in round-6)._
