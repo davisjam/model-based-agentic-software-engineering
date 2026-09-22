@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: the three layers
+     NEST — the model sits inside the harness, the harness inside the engineering environment — a
+     containment geometry a graph auto-layout would misdraw as a pipeline of flow nodes.
+     Palette, stroke, and type follow the course figure vocabulary
+     (act-1-foundations/04-requirements/figures/commitment-decision.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" width="760" height="420"
+     role="img" aria-labelledby="alTitle alDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="alTitle">Three nested layers of agentic capability: model, agent harness, engineering
+    environment</title>
+  <desc id="alDesc">Three nested layers: the model, which interprets, reasons, and generates, sits inside
+    the agent harness, which supplies context, instructions, tools, MCP, skills, and memory, which in turn
+    operates within the engineering environment of repositories, specifications, models, documentation,
+    tests, build systems, issue histories, and deployment systems.</desc>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="760" height="420" fill="#fdfcf9"/>
+
+  <!-- engineering environment (outermost) -->
+  <rect x="24" y="22" width="712" height="376" rx="10" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="380" y="56" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">ENGINEERING ENVIRONMENT</text>
+  <text x="380" y="374" text-anchor="middle" font-size="15" fill="#41586c">repositories · specifications · architectural models · documentation · tests</text>
+  <text x="380" y="392" text-anchor="middle" font-size="15" fill="#41586c">build systems · issue histories · deployment systems · organizational knowledge</text>
+
+  <!-- agent harness (middle) -->
+  <rect x="96" y="92" width="568" height="240" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="380" y="124" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">AGENT HARNESS</text>
+  <text x="380" y="310" text-anchor="middle" font-size="15" fill="#41586c">context · instructions · tools · MCP · skills · memory</text>
+
+  <!-- model (innermost) -->
+  <rect x="220" y="158" width="320" height="110" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="380" y="204" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">MODEL</text>
+  <text x="380" y="232" text-anchor="middle" font-size="15" fill="#41586c">interprets · reasons · generates</text>
+</svg>
