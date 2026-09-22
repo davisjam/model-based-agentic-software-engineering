@@ -10,6 +10,12 @@
     "enforce_body_when_status_in": ["ready"],
     "doc": "status is always checked against the enum. The body rules below apply in full only to a module whose description is meant to be complete (status: ready); a placeholder/draft is exempt while it is still an outline."
   },
+  "sessions": {
+    "key": "sessions",
+    "doc": "A module that spans more than one class session declares its session titles as a front-matter block list, e.g. `sessions:` then `- \"Modeling: Representation & Implementation\"` — the exact strings the reference calendar's {module:...} tokens use, so each session token links to this module page (site/hooks/modules.py). The session COUNT is never declared as a separate number: it is the length of this list, and tests/course.py enforces parity with the calendar (each declared session title appears exactly once as a calendar token; the module's own title does not also appear). A module with no `sessions:` key is a single-session module.",
+    "per_session_prose_word_band": [750, 1000],
+    "band_doc": "Prose budget for a ready module description, per session: body words (everything after the front matter, whitespace-split) should land in sessions x 750 .. sessions x 1000 — 750-1,000 for a one-session module, 1,500-2,000 for a two-session module. Checked audit-only by tests/course.py (check_course_lander_prose_word_band) while existing landers are out of band."
+  },
   "rules": [
     {
       "id": "premise-opens-body",

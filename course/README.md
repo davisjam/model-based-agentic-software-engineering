@@ -130,6 +130,28 @@ schema made concrete; the schema is the source of truth. Change a rule there, no
   would report as *needing repair* is refused by the pre-commit hook.
 - **Readings** (`readings:`) — readings are a **property of the module** they support (`before` /
   `optional`), not a parallel hierarchy. The hook renders a **Readings** section on the page.
+- **Sessions** (`sessions:`) — most modules occupy one class session and omit this key. A module that
+  spans several sessions declares their titles as a block list — the exact strings the calendar's
+  `{module:…}` tokens use — so each session token links to the one module page:
+
+  ```yaml
+  sessions:
+    - "Modeling: Representation & Implementation"
+    - "Modeling: Engineering with Models"
+  ```
+
+  The session *count* is never written down separately: it is the length of this list, and the test
+  suite enforces parity with the calendar (each declared session title appears exactly once as a
+  calendar token). The module description's **prose budget scales with the session count** — the band is
+  schema data ([`module-schema.json`](module-schema.json) `sessions.per_session_prose_word_band`),
+  checked (audit-only for now) by `tests/course.py`:
+
+  | sessions | prose-word band |
+  |---|---|
+  | 1 | 750–1,000 |
+  | 2 | 1,500–2,000 |
+
+  "Prose words" = everything after the front matter, whitespace-split (`len(body.split())`).
 - **Module description** — the body opens with a `**Premise.**` line (a one-sentence thesis, in italics),
   then a short framing paragraph, a `## A model …` section whose bullets carry the dimensions or levels
   the module teaches (bold statement lead-ins, or *italic* lead-ins where the axes are questions), and a

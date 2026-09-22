@@ -5,6 +5,12 @@ link to it; a topic whose module has not been authored yet renders as plain text
 those links, a topic cell carries a `{module:<title>}` token and this hook resolves it from the module
 pages themselves — each module's `title:` front matter is the single source of truth. So a link appears
 automatically the moment a matching module lands, and never dangles before then.
+
+A module that spans several class sessions additionally declares its session titles as a `sessions:`
+front-matter list (see course/module-schema.json). Each session title resolves a `{module:<session
+title>}` token to the same module page, so the calendar can list a two-session unit as two distinctly
+titled sessions while both link to the one lander. `tests/course.py` enforces parity between a module's
+declared sessions and the calendar's tokens.
 """
 from __future__ import annotations
 import os
@@ -16,13 +22,19 @@ _TOKEN = re.compile(r"\{module:([^}]+)\}")
 
 
 def _module_index(files) -> dict:
-    """Map a module page's `title` -> its source uri (the module's own front matter is the SSOT)."""
+    """Map a module page's `title` — plus each of its declared `sessions:` titles — to its source uri
+    (the module's own front matter is the SSOT)."""
     idx: dict = {}
     for f in files:
         if MODULE_RE.match(f.src_uri):
-            title = str(front_matter(f.abs_src_path).get("title") or "").strip()
+            fm = front_matter(f.abs_src_path)
+            title = str(fm.get("title") or "").strip()
             if title:
                 idx[title] = f.src_uri
+            for session in fm.get("sessions") or []:
+                session = str(session).strip()
+                if session:
+                    idx[session] = f.src_uri
     return idx
 
 

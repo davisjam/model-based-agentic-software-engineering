@@ -114,7 +114,12 @@ from tests.html import (
     check_summary_no_flow_content,
     check_aria_label_on_bare_element,
 )
-from tests.course import check_course_module_schema, check_course_nav_titles
+from tests.course import (
+    check_course_lander_prose_word_band,
+    check_course_module_schema,
+    check_course_nav_titles,
+    check_course_sessions_calendar_parity,
+)
 from tests.markdown import check_markdown_anchors, check_markdown_schema, check_render_safety
 from tests.pptx_validity import check_pptx_opc, check_pptx_schema
 from tests.mermaid_lint import check_mermaid_edge_labels
@@ -175,6 +180,15 @@ CHECKS = [
           lambda strict: check_course_module_schema()),
     Check("course: lecture-module nav labels are capitalized (.pages title present + first word Upper)", 1,
           lambda strict: check_course_nav_titles()),
+    # BLOCKING (green at landing): a multi-session module's declared `sessions:` titles and the reference
+    # calendar's {module:…} tokens are the same set — the declared list exists so the calendar's
+    # per-session tokens resolve to the one lander (site/hooks/modules.py), and this holds the join.
+    Check("course: declared module sessions == calendar {module:} tokens (session-calendar parity)", 1,
+          lambda strict: check_course_sessions_calendar_parity()),
+    # AUDIT-ONLY (first landing, several pre-band landers out of band): ready module descriptions land in
+    # the session-scaled prose band (module-schema.json: 750–1,000 words/session). Promote once drained.
+    Check("course: ready lander prose within session-scaled word band (module-schema sessions band)", 1,
+          lambda strict: check_course_lander_prose_word_band(), audit_only=True),
     # Committed-deck validity (tools/pptx_validate.py): stdlib OPC part-coverage always; the genuine
     # OOXML schema validator (OpenXmlValidator, needs .NET) runs skip-if-absent via pre_push — the
     # html-validate promotion posture. Two shipped PowerPoint needs-repair corruptions motivated this;

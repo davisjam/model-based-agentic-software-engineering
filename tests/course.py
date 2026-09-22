@@ -49,6 +49,32 @@ def _status(front_matter: str, key: str) -> "str | None":
     return m.group(1).strip().strip("\"'") if m else None
 
 
+def _fm_scalar(front_matter: str, key: str) -> "str | None":
+    """A whole-line scalar value (e.g. `title:` — which may contain spaces), quotes stripped."""
+    m = re.search(rf"^{re.escape(key)}:\s*(.+?)\s*$", front_matter, re.M)
+    return m.group(1).strip().strip("\"'") if m else None
+
+
+def _fm_sessions(front_matter: str) -> "list[str] | None":
+    """The `sessions:` block list (session titles), or None when the key is absent.
+
+    Minimal line reader (no PyYAML): the items are the indented `- ...` lines directly under the
+    `sessions:` key, ending at the first line that is not one."""
+    lines = front_matter.splitlines()
+    for i, ln in enumerate(lines):
+        if re.match(r"^sessions:\s*$", ln):
+            items: list[str] = []
+            for follower in lines[i + 1:]:
+                m = re.match(r"^\s+-\s+(.+?)\s*$", follower)
+                if not m:
+                    break
+                items.append(m.group(1).strip().strip("\"'"))
+            return items
+        if re.match(r"^sessions:\s*\S", ln):
+            return []  # inline form — unsupported; parity check reports it as malformed
+    return None
+
+
 def _body_lines(body: str) -> "list[str]":
     return body.splitlines()
 
@@ -170,6 +196,85 @@ def check_course_module_schema():
                 continue
             for msg in ev(rule, body, lines):
                 issues.append(f"{r}: [{rule['id']}] {msg}")
+    return (FAIL if issues else PASS), issues
+
+
+_CALENDAR = os.path.join(ROOT, "course", "reference-course", "calendar.md")
+_MODULE_TOKEN_RE = re.compile(r"\{module:([^}]+)\}")
+
+
+def check_course_sessions_calendar_parity():
+    """Declared `sessions:` lists agree with the reference calendar's `{module:…}` tokens.
+
+    A multi-session module declares its session titles in front matter so the calendar's per-session
+    tokens resolve to it (site/hooks/modules.py); the session COUNT is derived as the list's length.
+    This check holds the join: a declared list must be >=2 unique non-empty titles, every declared
+    session title must appear exactly once as a calendar token, the module's own title must not ALSO
+    appear (the calendar lists a multi-session unit by its sessions, not twice over), and no two module
+    pages may expose the same resolvable title (last-write-wins in the hook would silently mislink)."""
+    cal_tokens = [t.strip() for t in _MODULE_TOKEN_RE.findall(open(_CALENDAR, encoding="utf-8").read())]
+    counts: dict = {}
+    for t in cal_tokens:
+        counts[t] = counts.get(t, 0) + 1
+    pages = sorted(glob.glob(os.path.join(ROOT, "course", "lectures", "act-*", "[0-9][0-9]-*", "index.md")))
+    if not pages:
+        return FAIL, ["course sessions-parity: no module pages matched — glob or tree moved"]
+    issues: list[str] = []
+    exposed: dict = {}  # resolvable title -> first page exposing it
+    for page in pages:
+        r = rel(page)
+        front, _ = _split_front_matter(open(page, encoding="utf-8").read())
+        title = _fm_scalar(front, "title")
+        for t in filter(None, [title]):
+            if t in exposed:
+                issues.append(f"{r}: title {t!r} already exposed by {exposed[t]} — tokens would mislink")
+            exposed[t] = r
+        sessions = _fm_sessions(front)
+        if sessions is None:
+            continue
+        if len(sessions) < 2 or any(not s for s in sessions) or len(set(sessions)) != len(sessions):
+            issues.append(f"{r}: `sessions:` must be a block list of >=2 unique non-empty session titles "
+                          f"(got {sessions!r}); a single-session module omits the key")
+            continue
+        for s in sessions:
+            if s in exposed:
+                issues.append(f"{r}: session title {s!r} already exposed by {exposed[s]} — tokens would mislink")
+            exposed[s] = r
+            n = counts.get(s, 0)
+            if n != 1:
+                issues.append(f"{r}: declared session {s!r} appears {n}x as a calendar {{module:…}} token "
+                              f"(expected exactly 1) — sessions and {rel(_CALENDAR)} have drifted")
+        if title and counts.get(title, 0):
+            issues.append(f"{r}: module title {title!r} appears as a calendar token in addition to its "
+                          f"declared sessions — the calendar should list the sessions only")
+    return (FAIL if issues else PASS), issues
+
+
+def check_course_lander_prose_word_band():
+    """AUDIT-ONLY: a ready module description lands in its session-scaled prose-word band.
+
+    The band is schema data (course/module-schema.json `sessions.per_session_prose_word_band`,
+    750–1,000 words per session); a module's session count derives from its `sessions:` list (absent =
+    1). Words = body after the front matter, whitespace-split — headings, tables, and figure lines
+    included, matching the convention the landers were budgeted under. Audit-only per the
+    first-landing discipline: several existing landers predate the band; promote once they are drained."""
+    schema = _load_schema()
+    lo_per, hi_per = schema["sessions"]["per_session_prose_word_band"]
+    pages = sorted(glob.glob(os.path.join(ROOT, schema["applies_to"]["path_glob"])))
+    if not pages:
+        return FAIL, ["course word-band: no module pages matched — glob or tree moved"]
+    issues: list[str] = []
+    for page in pages:
+        text = open(page, encoding="utf-8").read()
+        front, body = _split_front_matter(text)
+        if _status(front, schema["front_matter"]["status_key"]) != "ready":
+            continue  # placeholder/draft: still an outline, no budget yet
+        n_sessions = len(_fm_sessions(front) or []) or 1
+        words = len(body.split())
+        lo, hi = lo_per * n_sessions, hi_per * n_sessions
+        if not lo <= words <= hi:
+            issues.append(f"{rel(page)}: {words} prose words, outside the {n_sessions}-session band "
+                          f"{lo}–{hi}")
     return (FAIL if issues else PASS), issues
 
 
