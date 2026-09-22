@@ -27,27 +27,43 @@ materials:
     src: 2-1-Agents.pptx
 ---
 
-**Premise.** *An agent's engineering capability is not a property of the model alone. What an agent can accomplish depends on the model, the harness through which it acts, and the engineering environment in which the work occurs.*
+**Premise.** *Delegation is something engineers design.*
 
-This unit asks how engineers should delegate work to capable but fallible machines: the question begins with where capability comes from.
+Earlier, we defined engineering as the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. That definition does not require engineers to personally perform every act of realization. Work can be delegated — to other people or to machine intelligence — while responsibility for the resulting system remains with the engineer.
+
+This unit asks how to make that delegation an engineering decision. An agent's engineering capability is not a property of the model alone. What an agent can accomplish depends on the model, the harness through which it acts, the engineering environment in which the work occurs, and how the work itself is structured.
+
+Delegation is therefore a system-design problem: bound the work, equip the agent, authorize its actions, and verify the result.
+
+**BOUND → EQUIP → AUTHORIZE → VERIFY**
+
+These are not rigid stages. They are four questions an engineer must answer when delegating consequential work. What work should the agent perform? What does it need in order to succeed? What consequences should it be permitted to produce? What evidence will justify accepting the result?
+
+The rest of this unit develops the engineering levers available for answering those questions.
+
+![The four delegation decisions — bound, equip, authorize, verify — each with its question and principal levers.](figures/delegation-model.svg)
+
+*Capability is designed across model, harness, and environment. Authority and evidence determine which consequences that capability may produce.*
 
 ## Where does capability live?
 
 An agent has three layers:
 
 - **The model** interprets information, reasons, and generates candidate actions or artifacts.
-- **The agent harness** turns that capability into an actor. It determines what context the model receives, what it remembers, which tools it can invoke, what actions it may take, how results return as feedback, and how work continues across steps. Contemporary harnesses share a small set of mechanisms: context, instructions, tools, MCP, skills, and memory. We study them for the engineering function each serves, not to memorize a platform.
+- **The agent harness** turns that capability into an actor. It determines what context the model receives, what it remembers, which tools it can invoke, what actions it may take, how results return as feedback, and how work continues across steps.
 - **The engineering environment** surrounds the work: repositories, specifications, architectural models, documentation, tests, build systems, issue histories, deployment systems, and organizational knowledge.
 
 ![The model nested inside the agent harness, inside the engineering environment.](figures/agent-layers.svg)
 
 *The layers are not independent: the harness selects what the model sees and does; the environment sets what must be reconstructed; the model bounds the reasoning.*
 
-Capability is a design variable. Frontier, smaller, open-weight, and specialized models trade against decomposition, representations, tools, and task scope; calls cost money, time, computation, and context; irrelevant context obscures what does matter. "Which model is best" has no context-free answer; the engineering question is what combination of model, harness, environment, and human judgment suffices for this work.
+Capability is a design variable. Frontier, smaller, open-weight, and specialized models trade against decomposition, representations, tools, and task scope; calls cost money, time, computation, and context. "Which model is best" has no context-free answer.
+
+These layers determine the capability available for delegated work. They do not determine what work should be delegated, what authority the agent should receive, or what evidence should be required before its work is accepted.
 
 ## Engineers have levers
 
-Each layer offers points of intervention:
+Once the work has been bounded, engineers can equip the agent by intervening at several points in this system:
 
 | Lever | Engineering purpose | Examples |
 |---|---|---|
@@ -58,29 +74,45 @@ Each layer offers points of intervention:
 | MCP | Connect agents to external capabilities through a common interface | repository, issue tracker, engineering service |
 | Skills | Package reusable ways of performing recurring work | review procedure, remediation workflow |
 | Memory / state | Preserve useful information across reasoning steps or tasks | plans, task state, durable records |
-| Work structure | Change the reasoning problem itself | decomposition, checkpoints, intermediate artifacts |
+| Task structure | Change the reasoning problem itself | decomposition, checkpoints, intermediate artifacts |
 
 The levers are not interchangeable. A tool does not solve a missing-context problem, more context does not create authority, and a skill does not guarantee its instructions are followed. When an agent struggles, "use a better model" is one engineering response among eight.
 
-## The reasoning horizon
+## Bound the work
 
-An agent's **reasoning horizon** is the amount of relevant state it can effectively bring to bear on a task. Models, context, retrieval, and tools extend it; so do better representations: an agent checking a change against the architecture can reconstruct dependencies from source or consult a trustworthy dependency model. The move is Pólya's — change the problem presented to the reasoner rather than the reasoner. Do not make the agent infer repeatedly what the environment can represent usefully; the objective is the right reasoning surface, not more context.
+Delegation begins by deciding what work the agent should perform. A task that is too broad may require the agent to maintain more relevant state than it can reason about effectively; a task divided too finely may require so much information to cross its boundaries that decomposition makes the work harder rather than easier.
 
-Recurring reconstruction is evidence of useful knowledge; the question is whether it stays ephemeral or becomes inheritable. Knowledge can live in people, prose, diagrams, specifications, models, tests, tools, conventions, and mechanisms, at different costs: permanence everywhere accumulates stale representations, implicitness everywhere forces rediscovery. Ask what future engineers — or future agents — would regret having to rediscover: an old knowledge-management question, newly visible when every reasoning episode can re-purchase the same reconstruction.
+Engineers can therefore change the task itself. They can narrow its scope, divide it into stages, establish intermediate artifacts, introduce checkpoints, separate generation from evaluation, or choose boundaries that reduce the amount of state each step must consider. These are not merely project-management choices. They change the reasoning problem presented to the agent.
 
-Decomposition changes the reasoning problem itself. Smaller tasks carry narrower context and clearer outputs, but information must cross the boundaries, and a poor decomposition forces reconstruction, continuous coordination, or locally reasonable but globally conflicting decisions. Agentic engineering does not eliminate architecture; it adds another system to architect, the system performing the engineering work.
+A useful delegation boundary gives the agent enough freedom to perform coherent work while keeping the consequential context and outputs tractable. The question is not *how small can we make the task?* It is *what boundary makes this work independently reasonable without forcing important relationships to be reconstructed across the boundary?* Agentic engineering does not eliminate architecture; it adds another system to architect, the system performing the engineering work.
+
+## Engineer the reasoning surface
+
+An agent's **reasoning horizon** is the amount of relevant state it can effectively bring to bear on a task. Better representations extend it: an agent checking a change against the architecture can reconstruct dependencies from source or consult a trustworthy dependency model. The move is Pólya's — change the problem presented to the reasoner rather than the reasoner.
+
+When work exceeds the agent's reasoning horizon, engineers have several choices: reduce the task, improve the representation, retrieve relevant context, externalize state, provide a tool, or move the delegation boundary. The objective is not to maximize the amount of context presented to the model. It is to construct a reasoning surface on which the relevant relationships become tractable.
+
+Recurring reconstruction is evidence of useful knowledge; the question is whether it stays ephemeral or becomes inheritable. Knowledge can live in people, prose, diagrams, specifications, models, tests, tools, conventions, and mechanisms, at different costs: permanence everywhere accumulates stale representations, implicitness everywhere forces rediscovery. Ask what future engineers — or future agents — would regret having to rediscover. Do not make the agent infer repeatedly what the environment can represent usefully.
 
 ## Capability is not authority
 
-A model responds to an invocation; an agent acts over time. The harness creates that difference. Tools also confer authority: search is one grant; modify, merge, or deploy quite another. Two design decisions follow: what does the agent need to perform the work, and what consequences should it be permitted to produce?
+A model responds to an invocation; an agent acts over time. The harness creates that difference, and tools confer authority as well as capability. Consider the same capable coding agent under five grants of authority: read repository → propose patch → modify branch → merge → deploy. Its underlying reasoning capability may be unchanged. What changes is the consequence it is permitted to produce. Authority is therefore an engineering variable independent of capability.
 
-Guidance answers only the first. Prompts, examples, retrieved context, plans, and instructions make desirable behavior more likely; none makes the outcome true. For consequential obligations, engineers may require evidence or controls outside the reasoning that produced the result. Help the agent succeed, but do not confuse helping it succeed with establishing that it did; later units develop the distinction.
+Two design decisions follow: what does the agent need to perform the work, and what consequences should it be permitted to produce? Equipping the agent answers the first question; authorization answers the second. Prompts, examples, retrieved context, plans, and instructions can make desirable behavior more likely. They do not restrict what an authorized action can cause, nor do they establish that the resulting artifact satisfies its obligations.
+
+## Verify the result
+
+Delegating realization does not delegate responsibility for deciding whether its result is acceptable. Before the work begins, engineers should therefore ask what evidence will be required to close the delegation. A generated patch might require tests and review; an architectural change might require evidence about dependency or performance consequences; a deployment might require stronger checks because its consequences are immediate and difficult to reverse.
+
+The required evidence depends on the claims and consequences of the work, not on whether a human or an agent produced it. Nor should the agent's own judgment that its work is correct generally be confused with independent evidence for that claim. Later units develop how engineering environments can evaluate such obligations and control what happens when they are violated.
 
 ## Engineer the whole system
 
-Model, harness, and environment are alternative and complementary places to spend engineering effort: a better model, a better representation, a different decomposition, preserved knowledge, narrower authority, evidence at a consequential boundary. The objective is not to maximize autonomy, minimize cost, or put a human in every loop; it is to design a system in which machine capability, the engineering environment, and human judgment are together sufficient for the consequences of the work.
+**BOUND → EQUIP → AUTHORIZE → VERIFY.** Bound the work so that it presents a tractable reasoning problem. Equip the agent with the capability, representations, context, state, and tools needed to perform it. Grant only the authority appropriate to the consequences of the task. Determine what evidence must exist before the work is accepted or allowed to produce further consequences.
 
-**Before you delegate.** Ask what work you are delegating, what the agent must know, what it should reason about, whether the task fits its reasoning horizon, what must persist, what authority it needs, and what evidence you will require. The agent is one component in the engineering system; engineer the system, not merely the prompt.
+These decisions interact. Better representations may let an agent handle a larger task. Narrower authority may make greater autonomy acceptable. Stronger verification may justify delegating work whose realization would otherwise require close human supervision. A more capable model may reduce the amount of decomposition required. The engineering object is therefore not the agent alone but the system in which delegation occurs.
+
+**Before you delegate.** What work is bounded here? What must the agent know and be able to do? Does the task fit its reasoning horizon? What authority does it need? What consequences should remain outside that authority? What evidence will close the work?
 
 ## Scope
 

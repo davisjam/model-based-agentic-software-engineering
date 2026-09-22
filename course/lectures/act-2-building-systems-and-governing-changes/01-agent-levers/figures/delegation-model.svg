@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: four parallel
+     decision columns aligned under one spanning banner — a column-alignment geometry a graph
+     auto-layout would misdraw as a flow of nodes. Palette, stroke, and type follow the course figure
+     vocabulary (figures/agent-layers.svg in this module). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 336" width="760" height="336"
+     role="img" aria-labelledby="dmTitle dmDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="dmTitle">The four delegation decisions: bound, equip, authorize, verify</title>
+  <desc id="dmDesc">A banner reading "delegated work" spans four columns. Bound asks what work and what
+    scope, with levers decomposition, checkpoints, artifacts, and interfaces. Equip asks what the agent
+    needs to succeed, with levers model, context, tools, representations, and memory. Authorize asks
+    what it may actually do, with grants read, modify, merge, and deploy. Verify asks what evidence
+    closes the work, with levers tests, analysis, review, and gates.</desc>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="760" height="336" fill="#fdfcf9"/>
+
+  <!-- spanning banner -->
+  <rect x="24" y="18" width="712" height="40" rx="10" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="380" y="44" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">DELEGATED WORK</text>
+
+  <!-- connectors banner -> columns -->
+  <line x1="108" y1="58" x2="108" y2="82" stroke="#2f5169" stroke-width="1.5"/>
+  <line x1="289" y1="58" x2="289" y2="82" stroke="#2f5169" stroke-width="1.5"/>
+  <line x1="470" y1="58" x2="470" y2="82" stroke="#2f5169" stroke-width="1.5"/>
+  <line x1="651" y1="58" x2="651" y2="82" stroke="#2f5169" stroke-width="1.5"/>
+
+  <!-- BOUND -->
+  <rect x="24" y="82" width="168" height="92" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="108" y="110" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">BOUND</text>
+  <text x="108" y="136" text-anchor="middle" font-size="13.5" fill="#41586c">What work?</text>
+  <text x="108" y="156" text-anchor="middle" font-size="13.5" fill="#41586c">What scope?</text>
+  <path d="M 108 174 L 108 196 M 103 190 L 108 197 L 113 190" fill="none" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="108" y="218" text-anchor="middle" font-size="14.5" fill="#41586c">decomposition</text>
+  <text x="108" y="240" text-anchor="middle" font-size="14.5" fill="#41586c">checkpoints</text>
+  <text x="108" y="262" text-anchor="middle" font-size="14.5" fill="#41586c">artifacts</text>
+  <text x="108" y="284" text-anchor="middle" font-size="14.5" fill="#41586c">interfaces</text>
+
+  <!-- EQUIP -->
+  <rect x="205" y="82" width="168" height="92" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="289" y="110" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">EQUIP</text>
+  <text x="289" y="136" text-anchor="middle" font-size="13.5" fill="#41586c">What does it need</text>
+  <text x="289" y="156" text-anchor="middle" font-size="13.5" fill="#41586c">to succeed?</text>
+  <path d="M 289 174 L 289 196 M 284 190 L 289 197 L 294 190" fill="none" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="289" y="218" text-anchor="middle" font-size="14.5" fill="#41586c">model</text>
+  <text x="289" y="240" text-anchor="middle" font-size="14.5" fill="#41586c">context</text>
+  <text x="289" y="262" text-anchor="middle" font-size="14.5" fill="#41586c">tools</text>
+  <text x="289" y="284" text-anchor="middle" font-size="14.5" fill="#41586c">representations</text>
+  <text x="289" y="306" text-anchor="middle" font-size="14.5" fill="#41586c">memory</text>
+
+  <!-- AUTHORIZE -->
+  <rect x="386" y="82" width="168" height="92" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="470" y="110" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">AUTHORIZE</text>
+  <text x="470" y="136" text-anchor="middle" font-size="13.5" fill="#41586c">What may it</text>
+  <text x="470" y="156" text-anchor="middle" font-size="13.5" fill="#41586c">actually do?</text>
+  <path d="M 470 174 L 470 196 M 465 190 L 470 197 L 475 190" fill="none" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="470" y="218" text-anchor="middle" font-size="14.5" fill="#41586c">read</text>
+  <text x="470" y="240" text-anchor="middle" font-size="14.5" fill="#41586c">modify</text>
+  <text x="470" y="262" text-anchor="middle" font-size="14.5" fill="#41586c">merge</text>
+  <text x="470" y="284" text-anchor="middle" font-size="14.5" fill="#41586c">deploy</text>
+
+  <!-- VERIFY -->
+  <rect x="567" y="82" width="168" height="92" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="651" y="110" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">VERIFY</text>
+  <text x="651" y="136" text-anchor="middle" font-size="13.5" fill="#41586c">What evidence</text>
+  <text x="651" y="156" text-anchor="middle" font-size="13.5" fill="#41586c">closes the work?</text>
+  <path d="M 651 174 L 651 196 M 646 190 L 651 197 L 656 190" fill="none" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="651" y="218" text-anchor="middle" font-size="14.5" fill="#41586c">tests</text>
+  <text x="651" y="240" text-anchor="middle" font-size="14.5" fill="#41586c">analysis</text>
+  <text x="651" y="262" text-anchor="middle" font-size="14.5" fill="#41586c">review</text>
+  <text x="651" y="284" text-anchor="middle" font-size="14.5" fill="#41586c">gates</text>
+</svg>
