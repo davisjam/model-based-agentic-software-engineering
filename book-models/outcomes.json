@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 8,
     "elaborative_links": 11,
     "units_serving_as_elaborative": 10,
-    "sections_total": 192,
+    "sections_total": 188,
     "sections_primary_of_an_outcome": 7,
     "modules": 8,
-    "lessons": 33
+    "lessons": 30
   },
   "taxonomy": {
     "know": [
@@ -168,22 +168,7 @@
             "section_outcomes": []
           },
           {
-            "lesson": "2.4-ownership",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
             "lesson": "2.5-decision",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "2.6-measurement",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "2.7-provenance",
             "own_outcomes": [],
             "section_outcomes": []
           },
@@ -695,19 +680,6 @@
       "gap_note": null
     },
     {
-      "outcome_id": "modeling-measurement-and-evidence::model-what-the-running-system-promises-and-the",
-      "granularity": "chapter",
-      "primary_unit": "modeling-measurement-and-evidence",
-      "secondary_units": [],
-      "verb": "model",
-      "obj": "what the running system promises and the record it must leave behind",
-      "statement": "After this chapter, the reader can model an operating envelope — naming measured quantities and the bounds that drive admission or merely report — and derive an audit-grade changelog from a provenance record the code writes as it acts.",
-      "bloom": "create",
-      "provenance": "declared",
-      "anchor": "Section titles 'what-the-system-promises-about-time-and-cost' + 'keeping-the-explanation-true-to-the-change' (operational-envelope-model + provenance-and-changelog-model).",
-      "gap_note": null
-    },
-    {
       "outcome_id": "modeling-structure-and-ownership::model-a-codebase-s-zones-with-a-component-zone",
       "granularity": "chapter",
       "primary_unit": "modeling-structure-and-ownership",
@@ -798,6 +770,19 @@
       "bloom": "analyze",
       "provenance": "declared",
       "anchor": "Section titles 'user-journey-model' + 'agent-orchestration-model' + 'journey-criticality-test-placement' + 'worked-join'.",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "scenarios-and-the-joined-model::model-what-the-running-system-promises-and-the",
+      "granularity": "chapter",
+      "primary_unit": "scenarios-and-the-joined-model",
+      "secondary_units": [],
+      "verb": "model",
+      "obj": "what the running system promises and the record it must leave behind",
+      "statement": "After this chapter, the reader can model an operating envelope — naming measured quantities and the bounds that drive admission or merely report — and derive an audit-grade changelog from a provenance record the code writes as it acts.",
+      "bloom": "create",
+      "provenance": "declared",
+      "anchor": "The 'Modeling Makes Properties Available to Engineering' cost-and-capacity passage (docable-attaches-no-hard-invariant-to-either-quantity) + the 'What Happened, and What Evidence Records It' subsection (attribution-model, record-once-derive-the-explanations).",
       "gap_note": null
     },
     {

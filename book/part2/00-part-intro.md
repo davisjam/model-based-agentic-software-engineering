@@ -21,30 +21,27 @@ MAGE therefore treats Modeling as an engineering activity in its own right:
 
 Which model is useful depends on what the engineer needs to know. A concurrency question may require ownership and lifecycle; an architectural-boundary question may require components and permitted communication edges. Different questions about the same system therefore call for different reductions.
 
-<!-- point: part-2-moves-through-five-model-classes | Chapter 2 moves through six classes of model, not a taxonomy to memorize. | terms: model-zoo, model-classes -->
-This chapter develops six broad classes of engineering question:
-
-- **Structural** — what parts exist, and which may depend on which.
-- **Behavioral** — what states a thing occupies, and how it moves between them.
-- **Ownership** — who controls a unit of work, and for how long.
-- **Decision** — what is allowed, or which alternative should be selected.
-- **Measurement** — what quantities the system holds, and against what bound.
-- **Provenance** — what happened to an artifact, and what evidence records it.
+<!-- point: part-2-moves-through-five-model-classes | Engineering questions recur in several broad forms — structural, behavioral, ownership, decision, measurement, provenance — useful views into the modeling repertoire, not a partition of engineering models; the chapter develops three in detail, then connects models across views. | terms: model-zoo, model-classes -->
+Engineering questions recur in several broad forms. Structural questions ask what exists and what is
+connected; behavioral questions ask what may happen; ownership questions ask who controls work; decision
+questions ask what is allowed; measurement questions ask how much and against what bound; provenance
+questions ask what happened and what evidence records it. These are useful views into the modeling
+repertoire, not a partition of engineering models. This chapter develops three of them in detail before
+showing how several models can be connected to answer questions that cross individual views.
 
 <!-- point: there-is-no-model-of-the-system-only-purposeful-reductions | There is no model of the system, only purposeful reductions that each answer one question. | terms: model-as-map, scope-of-modeling, map-and-territory -->
-These classes organize recurring engineering questions rather than partitioning systems. They overlap,
-and they are not exhaustive. The same worker may appear as a component in one model, an actor in a
-lifecycle in another, and the owner of work in a third. Architectural reasoning may traverse several such
-views at once.
+The classes overlap, and they are not exhaustive. The same worker may appear as a component in one
+model, an actor in a lifecycle in another, and the owner of work in a third. Architectural reasoning may
+traverse several such views at once.
 
 DocAble is the running example—the production accessibility service introduced in {{chapter:problem}}. A document
 enters, remediation is distributed across workers and services, the result is validated, and a corrected
 document returns with a record of what changed. The real system is far more complicated than any
 representation ahead. That is the point. Each model keeps only the relationships its question needs.
 
-<!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Each section begins with a familiar representation, its properties and analyses, then specializes it to DocAble; four terms stay distinct — property, invariant, analysis, enforcement — with enforcement reserved for Chapter 3. | terms: model-classes, modeling-principle, alignment-principle -->
-Each section begins with a familiar engineering representation, the properties it makes expressible, and
-the analyses it supports, then specializes that representation to DocAble. Four terms stay distinct
+<!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Each worked section begins with a familiar representation, its properties and analyses, then specializes it to DocAble; four terms stay distinct — property, invariant, analysis, enforcement — with enforcement reserved for Chapter 3. | terms: model-classes, modeling-principle, alignment-principle -->
+Each worked section begins with a familiar engineering representation, the properties it makes expressible,
+and the analyses it supports, then specializes that representation to DocAble. Four terms stay distinct
 throughout the chapter. A **property** is a claim that can be expressed over a model. An **invariant** is a
 property required to hold over a declared domain. An **analysis** or check produces evidence about a
 property. Whether the engineered environment enforces the resulting obligation is a separate question of
@@ -63,6 +60,6 @@ property. Whether the engineered environment enforces the resulting obligation i
 {{chapter:alignment}} adds a fifth question: **what enforces the property?** Modeling makes properties
 explicit; Alignment makes selected obligations enforceable.
 
-<!-- point: the-final-chapter-connects-the-six-without-a-seventh-model | The final section shows how the six models connect through shared identity without becoming a seventh model. | terms: model-zoo, scope-of-modeling, modeling-principle -->
-The final section, [System Knowledge](2.8-system-knowledge.html), shows how the six models connect
+<!-- point: the-final-chapter-connects-the-six-without-a-seventh-model | The final section shows how the models connect through shared identity without becoming one universal model. | terms: model-zoo, scope-of-modeling, modeling-principle -->
+The final section, [System Knowledge](2.8-system-knowledge.html), shows how the models connect
 without becoming a seventh model.

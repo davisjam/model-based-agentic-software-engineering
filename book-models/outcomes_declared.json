@@ -252,12 +252,12 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "modeling-measurement-and-evidence",
+      "primary_unit": "scenarios-and-the-joined-model",
       "verb": "model",
       "obj": "what the running system promises and the record it must leave behind",
       "statement": "After this chapter, the reader can model an operating envelope — naming measured quantities and the bounds that drive admission or merely report — and derive an audit-grade changelog from a provenance record the code writes as it acts.",
       "provenance": "declared",
-      "anchor": "Section titles 'what-the-system-promises-about-time-and-cost' + 'keeping-the-explanation-true-to-the-change' (operational-envelope-model + provenance-and-changelog-model)."
+      "anchor": "The 'Modeling Makes Properties Available to Engineering' cost-and-capacity passage (docable-attaches-no-hard-invariant-to-either-quantity) + the 'What Happened, and What Evidence Records It' subsection (attribution-model, record-once-derive-the-explanations)."
     },
     {
       "granularity": "chapter",

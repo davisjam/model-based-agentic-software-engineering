@@ -133,18 +133,6 @@
       "location": "part2",
       "rationale": "observed vs declared structure — supporting caption on correspondence, not correctness"
     },
-    "assets/genai-cost-capacity-model.svg": {
-      "tier": "B",
-      "kind": "model-diagram",
-      "location": "part2",
-      "rationale": "GenAI usage/cost/capacity/budget quantities — supporting caption on the measurement model over raw events"
-    },
-    "assets/measured-quantity-comparison.svg": {
-      "tier": "B",
-      "kind": "reduction",
-      "location": "part2",
-      "rationale": "measured quantity against a reference envelope — supporting caption on what the model compares, not the response"
-    },
     "assets/modeling-perp-enforcement.svg": {
       "tier": "B",
       "kind": "conceptual-spectrum",
@@ -985,12 +973,6 @@
       "location": "part2",
       "rationale": "invariant lookup"
     },
-    "modeling-measurement-and-evidence::Operational-envelope model — illustrative invariant": {
-      "tier": "C",
-      "kind": "reference-lookup",
-      "location": "part2",
-      "rationale": "invariant lookup"
-    },
     "assets/service-allow-list.svg": {
       "tier": "B",
       "kind": "model-schema",
@@ -1093,29 +1075,11 @@
       "location": "part2",
       "rationale": "the behavioral move — states and permitted transitions, the omitted edge as the forbidden behavior; supporting caption on the reachability/liveness analyses"
     },
-    "assets/canonical-ownership.svg": {
-      "tier": "B",
-      "kind": "canonical-opener",
-      "location": "part2",
-      "rationale": "the ownership move — a claim over time carrying the generation that rejects a stale claimant; supporting caption on interleaving analysis"
-    },
     "assets/canonical-decision.svg": {
       "tier": "B",
       "kind": "canonical-opener",
       "location": "part2",
       "rationale": "the decision move — the same arrow read descriptively (calls) and normatively (may call); supporting caption on the absent edge and policy checks"
-    },
-    "assets/canonical-measurement.svg": {
-      "tier": "B",
-      "kind": "canonical-opener",
-      "location": "part2",
-      "rationale": "the measurement move — quantities related and a value read against a declared envelope; supporting caption on aggregate-and-compare analysis"
-    },
-    "assets/canonical-provenance.svg": {
-      "tier": "B",
-      "kind": "canonical-opener",
-      "location": "part2",
-      "rationale": "the provenance move — typed derivation/attribution relations over stable identities; supporting caption on lineage/audit traversals"
     },
     "assets/modeling-repertoire.svg": {
       "tier": "B",
