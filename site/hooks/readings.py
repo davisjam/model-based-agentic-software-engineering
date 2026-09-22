@@ -96,6 +96,50 @@ def _resolve_mage(text: str) -> str:
     return _MAGE_TOKEN.sub(repl, text)
 
 
+# ── Full citations (SSOT) ────────────────────────────────────────────────────────────────────────────
+# A reading's trailing "Full citation: …" sentence is PROJECTED, never authored. The lander references a
+# work by its cite key in book/references.bib — the repo's one citation backend — and this hook renders
+# the Chicago note string from book/data/citations.json, the artifact render_citations.py projects
+# through the single Typst/Hayagriva engine the book's two surfaces already consume. So a bibliographic
+# fact lives in one record; fixing a wrong year is one .bib edit, not a hunt through prose copies.
+_CITATIONS_PATH = os.path.join(_REPO_ROOT, "book", "data", "citations.json")
+
+
+@functools.lru_cache(maxsize=1)
+def _citations() -> dict:
+    return json.load(open(_CITATIONS_PATH, encoding="utf-8"))["citations"]
+
+
+def _render_reading(item) -> str:
+    """Render one reading item. Two authored forms:
+
+    - a plain string — a reading with no backend record (e.g. a one-line optional entry); `{mage:}`
+      tokens resolve as before;
+    - a mapping `{cite, annotation[, locator]}` — the annotation (unit-specific pedagogy, correctly
+      local to the lander) is followed by a projected `Full citation:` sentence rendered from the
+      citation backend. `locator` narrows the citation to the assigned part (e.g. `§2.1 and §2.8`,
+      `chaps. 9 and 11–14`), folded in before the closing period.
+
+    An unknown key or malformed item fails the build loud (the `{mage:}` resolver's pattern) — a rotted
+    reference must stop the build, not ship."""
+    if isinstance(item, str):
+        return _resolve_mage(item)
+    if not isinstance(item, dict) or not str(item.get("cite") or "").strip():
+        raise ValueError(f"readings: unsupported item shape {item!r} — a reading is a plain string or a "
+                         f"{{cite, annotation[, locator]}} mapping")
+    key = str(item["cite"]).strip()
+    entry = _citations().get(key)
+    if entry is None:
+        raise ValueError(f"readings: cite key {key!r} not in book/data/citations.json — add the work to "
+                         f"book/references.bib and re-run `python3 book/render_citations.py`")
+    citation = entry["note_html"].strip()
+    locator = str(item.get("locator") or "").strip()
+    if locator:
+        citation = (citation[:-1].rstrip() if citation.endswith(".") else citation) + f", {locator}."
+    annotation = _resolve_mage(str(item.get("annotation") or "").strip())
+    return f"{annotation} Full citation: {citation}" if annotation else f"Full citation: {citation}"
+
+
 def _readings_section(readings: dict) -> str:
     before = readings.get("before") or []
     groups = readings.get("groups") or []
@@ -108,7 +152,7 @@ def _readings_section(readings: dict) -> str:
     if before:
         out.append("**Before class**")
         out.append("")
-        out += [f"- {_resolve_mage(r)}" for r in before]
+        out += [f"- {_render_reading(r)}" for r in before]
         out.append("")
     # `groups` renders each named subheading in the SAME grammar as before/optional — a bold label followed
     # by its bullet list — so a topic with several readings stays a plain reading list, just longer. An
@@ -120,7 +164,7 @@ def _readings_section(readings: dict) -> str:
         if heading:
             out.append(f"**{heading}**")
             out.append("")
-        out += [f"- {_resolve_mage(r)}" for r in items]
+        out += [f"- {_render_reading(r)}" for r in items]
         out.append("")
         if note:
             out.append(_resolve_mage(note))
@@ -128,7 +172,7 @@ def _readings_section(readings: dict) -> str:
     if optional:
         out.append("**Optional / further reading**")
         out.append("")
-        out += [f"- {_resolve_mage(r)}" for r in optional]
+        out += [f"- {_render_reading(r)}" for r in optional]
         out.append("")
     return "\n".join(out)
 
@@ -145,8 +189,8 @@ def _reading_guide(files) -> str:
         core_items = list(readings.get("before") or [])
         for g in readings.get("groups") or []:
             core_items += g.get("items") or []
-        core = " · ".join(_strip_links(_resolve_mage(r)) for r in core_items) or "—"
-        add = " · ".join(_strip_links(_resolve_mage(r)) for r in readings.get("optional") or []) or "—"
+        core = " · ".join(_strip_links(_render_reading(r)) for r in core_items) or "—"
+        add = " · ".join(_strip_links(_render_reading(r)) for r in readings.get("optional") or []) or "—"
         rows.append(f"| {title} | {core} | {add} |")
     if not rows:
         return "_No readings assigned yet._"
