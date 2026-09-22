@@ -36,6 +36,11 @@ frontmatter:
     views: [handbook, web]
   - file: frontmatter/introduction.md
     views: [handbook, web]
+  # Acknowledgments print last in the front matter, immediately before the chapters. Named thanks
+  # only — the NSF funding line renders separately from NSF_ACK in scripts/build.py (PDF imprint,
+  # web colophon, ePub rights line); repeating it here would double it in every edition.
+  - file: frontmatter/acknowledgments.md
+    views: [handbook, web]
 
 # Chapter build order. Each entry is a file under chapters/. The order here is authoritative; the
 # per-chapter `order:` metadata must agree with it (the linter checks this). Reordering the book is
