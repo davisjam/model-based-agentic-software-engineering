@@ -14,4 +14,4 @@ when violations still depend on human detection. Address whichever uncovered gap
 Apply Audit → Synchronize → Govern → Extend to a selected surface rather than to the organization as a
 whole. Appendix H records the observed DocAble measurements.
 
-See [{{sec:brownfield}}](5.2-brownfield.html) for the full treatment.
+See [{{sec:brownfield-engineering}}](4.3-brownfield-engineering.html) for the full treatment.

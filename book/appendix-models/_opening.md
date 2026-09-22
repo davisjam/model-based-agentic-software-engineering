@@ -1,4 +1,4 @@
-Chapters {{chapter:modeling|num}}–{{chapter:method|num}} introduce only the model detail needed for the engineering argument. This appendix
+Chapters {{chapter:modeling|num}}–{{chapter:one-problem-many-models|num}} introduce only the model detail needed for the engineering argument. This appendix
 collects the principal schemas, invariants, derivation directions, and correspondence machinery
 for those models.
 

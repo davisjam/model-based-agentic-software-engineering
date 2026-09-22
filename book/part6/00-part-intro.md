@@ -34,7 +34,7 @@ finished theory.
 
 DocAble supplies sequence, mechanism, and within-case recurrence, but not causal or population-level estimates. The eight industrial reconstructions supply variation and alternative realizations, but less process history. Together they motivate rather than establish the theoretical account developed in {{chapter:theory}}.
 
-Chapters {{chapter:modeling|num}}–{{chapter:method|num}} presented the compressed method. Here the direction reverses. {{sec:the-ada-context}}–{{sec:failures}} return to the
+Chapters {{chapter:modeling|num}}–{{chapter:one-problem-many-models|num}} presented the compressed method. Here the direction reverses. {{sec:the-ada-context}}–{{sec:failures}} return to the
 originating case from which much of that terminology was induced, so the wrong turns matter. A finished
 architecture shows what exists; a longitudinal case can show **why it exists and what it replaced**. {{sec:mage-in-the-wild}}
 then asks whether independently built systems expose comparable structures. Depth supplies mechanism;
