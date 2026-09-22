@@ -31,9 +31,9 @@ materials:
 
 Architecture leaves us with consequential parts, responsibilities, boundaries, interfaces, and rules for interaction. Those decisions deliberately leave open how each part actually works. A service responsible for processing work may still require choices about algorithms, data structures, state representation, caching, concurrency, failure handling, and resource management. Design resolves such choices so that the part can fulfill its responsibility while satisfying the obligations it inherits.
 
-Architecture can recur during this work. Opening a component may reveal that it is itself too large to reason about directly and should be organized into consequential subparts with distinct responsibilities and interactions. That is another architectural problem, now at a smaller scope; the Architecture unit gave us tools for reasoning about it. The distinctive concern of Design begins once the relevant organization is fixed: *How should this part actually work?*
+Architecture can recur during this work. Opening a component may reveal that it is itself too large to reason about directly and should be organized into consequential subparts with distinct responsibilities and interactions. That is another architectural problem, now at a smaller scope; the Architecture unit gave us tools for reasoning about it. The distinctive concern of design begins once the relevant organization is fixed: *How should this part actually work?*
 
-## What does Design inherit?
+## What does design inherit?
 
 A designer does not begin with a blank sheet of paper. At any particular scope, earlier engineering decisions have already reduced the space of possible implementations.
 
@@ -45,13 +45,13 @@ What remains is a set of degrees of freedom: choices that have not yet been fixe
 - **Choose.** Alternative mechanisms remain, and their consequential differences can be resolved within the responsibility being designed.
 - **Escalate.** Choosing a satisfactory mechanism requires reconsidering something the design inherited.
 
-Most of the distinctive work of Design lies in **choose**. The engineer knows what responsibility the part must fulfill and the constraints under which it must operate, but several mechanisms could plausibly do the job. Design is the engineering judgment required to choose among them.
+Most of the distinctive work of design lies in **choose**. The engineer knows what responsibility the part must fulfill and the constraints under which it must operate, but several mechanisms could plausibly do the job. Design is the engineering judgment required to choose among them.
 
 ## Choosing a mechanism
 
 Suppose an architecture assigns document processing to a service deployed on a cloud worker. The service must satisfy its functional obligations while meeting a system cost goal. The cloud provider's pricing creates a consequential boundary: a worker requiring more than 4 GB of memory must use a more expensive two-core tier, and that additional cost would violate the goal.
 
-Architecture does not need to determine how the service stays below 4 GB. That is a Design problem. The service might load an entire document into memory, process it through a bounded stream, or maintain a compact intermediate representation. Each mechanism may fulfill the same responsibility while differing in peak memory, latency, implementation complexity, and future changeability. If loading the document requires 6 GB while streaming requires 1 GB, the inherited cost obligation makes that difference consequential.
+Architecture does not need to determine how the service stays below 4 GB. That is a design problem. The service might load an entire document into memory, process it through a bounded stream, or maintain a compact intermediate representation. Each mechanism may fulfill the same responsibility while differing in peak memory, latency, implementation complexity, and future changeability. If loading the document requires 6 GB while streaming requires 1 GB, the inherited cost obligation makes that difference consequential.
 
 Design decisions take many forms. Engineers choose algorithms, data structures, state representations, caching and batching policies, scheduling and concurrency mechanisms, retry strategies, memory lifetimes, and internal control flow. Computer science provides many of the available mechanisms and helps us understand their properties. Design puts those mechanisms into an engineering context: *Which alternative should we use here, given the obligations this part must satisfy?*
 
@@ -59,13 +59,13 @@ The answer is rarely determined by one property. An in-memory representation may
 
 ## Reason about the consequences
 
-A Design choice should be supported by enough evidence to distinguish among plausible mechanisms. What evidence is useful depends on what makes the alternatives consequential.
+A design choice should be supported by enough evidence to distinguish among plausible mechanisms. What evidence is useful depends on what makes the alternatives consequential.
 
 For the cloud worker, a memory model or measurement from a prototype might establish whether a candidate representation can remain below 4 GB. If latency separates two algorithms, a quantitative model or benchmark may be useful. If concurrent workers could process the same job, a lifecycle or state representation may expose whether the proposed coordination mechanism preserves ownership. If the uncertainty is primarily implementation complexity, building two small alternatives may be cheaper than trying to predict the difference.
 
-The point is not to produce a particular kind of Design model. Models, analyses, prototypes, measurements, and implementations are ways of buying information about a choice. Use the evidence that makes the consequential difference among alternatives visible enough to decide.
+The point is not to produce a particular kind of design model. Models, analyses, prototypes, measurements, and implementations are ways of buying information about a choice. Use the evidence that makes the consequential difference among alternatives visible enough to decide.
 
-Cheaper implementation changes these economics. When alternative mechanisms can be prototyped, measured, or discarded inexpensively, engineers can investigate choices that previously would have been settled largely through judgment. Generative AI can therefore accelerate an individual design, but its greater value may lie in making more Design choices cheap enough to investigate.
+Cheaper implementation changes these economics. When alternative mechanisms can be prototyped, measured, or discarded inexpensively, engineers can investigate choices that previously would have been settled largely through judgment. Generative AI can therefore accelerate an individual design, but its greater value may lie in making more design choices cheap enough to investigate.
 
 ## Measurement for decision-making
 
@@ -79,7 +79,7 @@ Not every apparent degree of freedom should be resolved locally. If the engineer
 
 Design can also reveal that an apparent choice must be escalated. Perhaps no plausible mechanism keeps the processing service below its memory limit while satisfying its other obligations. Perhaps the only workable mechanism requires moving authoritative state across a boundary the architecture deliberately established. Detailed reasoning has then produced evidence that an inherited decision should be reconsidered.
 
-The destination depends on what was learned. A mechanism repeatedly needed across components may belong in the engineering environment. A conflict involving responsibilities, boundaries, or interactions may reopen Architecture. A newly discovered obligation may reopen Specification. Design does not silently work around these decisions; it exposes when they no longer provide a workable space of mechanisms.
+The destination depends on what was learned. A mechanism repeatedly needed across components may belong in the engineering environment. A conflict involving responsibilities, boundaries, or interactions may reopen architecture. A newly discovered obligation may reopen specification. Design does not silently work around these decisions; it exposes when they no longer provide a workable space of mechanisms.
 
 Specification bounded acceptable behavior. Architecture organized responsibilities and interactions so those obligations could coexist. Design makes each part work by selecting mechanisms that satisfy what it inherits. Sometimes opening a part reveals another architectural problem; more often, the engineer must choose among algorithms, representations, data structures, and other mechanisms whose consequences differ in ways that matter.
 

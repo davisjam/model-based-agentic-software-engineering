@@ -35,7 +35,7 @@ That distinction matters because the activities themselves are fairly stable. Ne
 
 ## A model for the process choice
 
-This module develops a simple model for reasoning about that choice along three questions:
+This unit develops a simple model for reasoning about that choice along three questions:
 
 - *How much can we know before we build?* When requirements and solutions can be established confidently in advance, more work can be planned up front. When building is itself a way of discovering what is needed, shorter feedback cycles become more valuable.
 - *How expensive is change?* Processes inherited from conventional engineering reflect media in which late change can be extraordinarily expensive. Software makes many changes cheaper—but not all changes cheap. An internal function may be easy to replace; a public API used by thousands of clients may not be.
@@ -71,7 +71,7 @@ Ask instead: *How much can we know before building, how expensive will our decis
 
 Those answers help determine how to arrange the work. They are not necessarily fixed, either. Engineers can sometimes invest in learning earlier, making decisions easier to reverse, or making systems easier to divide into useful increments. Whether those investments are worthwhile is itself an engineering decision.
 
-The goal of this module is therefore not to memorize a preferred software process. It is to learn to recognize why a particular arrangement of engineering work fits one problem better than another.
+The goal of this unit is therefore not to memorize a preferred software process. It is to learn to recognize why a particular arrangement of engineering work fits one problem better than another.
 
 ---
 

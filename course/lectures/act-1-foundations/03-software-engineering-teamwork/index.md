@@ -30,7 +30,7 @@ Software engineering requires more than assembling capable individuals. As proje
 
 ## A model of teamwork at several levels
 
-This module develops a model for reasoning about teamwork at several levels:
+This unit develops a model for reasoning about teamwork at several levels:
 
 - **Individuals contribute more than implementation.** Effective engineers learn, exercise judgment, adapt to changing conditions, understand the product and organization around them, communicate across differences in context, and help other engineers succeed.
 - **Teams depend on shared context and trust.** Members must be able to rely on one another's information, surface uncertainty and mistakes, understand ownership and responsibilities, and construct sufficiently compatible views of the system and its goals.

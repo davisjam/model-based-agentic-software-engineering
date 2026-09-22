@@ -38,7 +38,7 @@ The engineering problem therefore has two complementary questions:
 
 The first question is the subject of engineering decision-making; the second lets experience improve the models and judgment behind future decisions.
 
-Software engineering asks the first question continually; the particular decision changes across the engineering process, but the reasoning recurs. Metrics matter because measurement is one important way of obtaining the evidence that reasoning needs. But measurement is subordinate to the decision: we do not begin by asking what we can measure; we begin by asking what we need to decide. The *Measurement for decision-making* sections throughout Act I have applied this reasoning to particular engineering decisions. This lecture makes the shared structure explicit.
+Software engineering asks the first question continually; the particular decision changes across the engineering process, but the reasoning recurs. Metrics matter because measurement is one important way of obtaining the evidence that reasoning needs. But measurement is subordinate to the decision: we do not begin by asking what we can measure; we begin by asking what we need to decide. The *Measurement for decision-making* sections throughout Act I have applied this reasoning to particular engineering decisions. This unit makes the shared structure explicit.
 
 ## What decision are we making?
 

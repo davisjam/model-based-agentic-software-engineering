@@ -25,7 +25,7 @@ This is the course's opening argument. It asks what changes when implementation 
 
 ## Six claims about software engineering with GenAI
 
-This module introduces six claims about how GenAI changes software engineering:
+This unit introduces six claims about how GenAI changes software engineering:
 
 1. **Commodity intelligence changes the economics of software engineering.** Implementation capacity is becoming abundant relative to engineering judgment. As implementation gets cheaper, engineering effort shifts toward what remains scarce: deciding what to build, representing the system clearly enough to reason about it, producing evidence, and making important requirements enforceable by the engineering environment.
 2. **Scale creates a reasoning problem.** Large software systems already exceed the reasoning horizon of humans; agents inherit the same problem. Software engineering has always answered scale with abstraction. Commodity intelligence does not remove that need. It makes the representations that guide the work more important.
@@ -42,7 +42,7 @@ Each unit of this course develops a model and then asks the same question of it:
 
 These six claims lead to **MAGE**: Model-Based Agentic Engineering. Its working cycle is: model consequential knowledge; enforce important obligations; do the governed work; convert recurring failures and judgment into durable structure; repeat. The goal is not maximum automation. It is to make greater autonomy possible while preserving the engineering decisions and controls that matter.
 
-One question recurs throughout the course: *How do we safely grant autonomy to commodity intelligence—and what cannot be delegated?* The lecture develops Modeling, Alignment, and governance conversion from this engineering problem rather than presenting MAGE as a collection of prescribed practices.
+One question recurs throughout the course: *How do we safely grant autonomy to commodity intelligence—and what cannot be delegated?* The unit develops Modeling, Alignment, and governance conversion from this engineering problem rather than presenting MAGE as a collection of prescribed practices.
 
 ---
 
