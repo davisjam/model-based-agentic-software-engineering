@@ -94,7 +94,7 @@ Engineering representations are produced by people inside organizations. Those p
 
 This matters because engineering records can acquire audiences their authors never anticipated. Internal messages, estimates, meeting notes, design discussions, and incident records may eventually be read by executives, auditors, regulators, courts, journalists, or legislators. The lesson is not to avoid creating records or to disguise uncomfortable facts. It is the opposite: distinguish observation from interpretation, represent uncertainty honestly, preserve material disagreement, and attribute decisions accurately.
 
-**Who records a decision influences what the organization later remembers about it. Treat that influence as an engineering responsibility.**
+Who records a decision influences what the organization later remembers about it. Treat that influence as an engineering responsibility.
 
 ## Engineering knowledge has a lifecycle
 
