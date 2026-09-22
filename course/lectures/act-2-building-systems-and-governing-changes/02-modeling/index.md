@@ -61,9 +61,9 @@ Consider a software system and some questions an engineer might ask of it:
 
 There is no reason to expect one representation to answer all of these questions well. A component graph makes dependencies obvious while saying almost nothing about legal runtime behavior. A state machine exposes that behavior while omitting deployment. A deployment model locates software without explaining who owns it. The first modeling decision is therefore not *which notation should I use?* It is *what question am I trying to answer?* Only then can we ask what information must survive the reduction.
 
-The repertoire to select from is large, because engineers ask a large variety of questions. UML alone provides fourteen diagram types across structure, behavior, interaction, and deployment. Model-based systems engineering broadens the space further: requirements, interfaces, logical and physical structure, parameters, and allocations can all be represented explicitly. Engineers also routinely use models that are never called UML: dependency graphs, schemas, critical paths, dataflow models, ownership maps, cost models, API specifications. The catalogue demonstrates something more important than any entry in it. There is no universal model of a software system; selecting among models is itself an engineering decision.
+The repertoire to select from is large, because engineers ask a large variety of questions. UML alone provides fourteen diagram types across structure, behavior, interaction, and deployment. Model-based systems engineering broadens the space further: requirements, interfaces, logical and physical structure, parameters, and allocations can all be represented explicitly. Engineers also routinely use models that are never called UML: dependency graphs, schemas, ownership maps, cost models. The catalogue demonstrates something more important than any entry in it. There is no universal model of a software system; selecting among models is itself an engineering decision.
 
-## One reduction, carried through
+## Reducing a system for a question
 
 Suppose an implementation contains:
 
