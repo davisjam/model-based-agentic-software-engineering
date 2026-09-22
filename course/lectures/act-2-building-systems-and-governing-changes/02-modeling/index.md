@@ -13,7 +13,7 @@ readings:
     - heading: The size of the modeling repertoire
       items:
         - cite: visualparadigm-uml-guide
-          annotation: 'Visual Paradigm, ["The Complete Guide to UML Diagram Types"](https://www.visual-paradigm.com/guide/the-complete-guide-to-uml-diagrams-all-14-types-explained-with-practical-examples). UML is deliberately enormous: its fourteen standard diagram types provide different representations of system structure and behavior. Do not attempt to memorize this catalogue; browse all of it. For each type, ask what information it preserves, what it leaves out, and what engineering question would make that reduction useful. The point of the reading is to see the size of the established modeling repertoire before we practice selecting from it.'
+          annotation: '["The Complete Guide to UML Diagram Types."](readings/visual-paradigm-uml-diagram-types.pdf) UML is deliberately enormous: its fourteen standard diagram types provide different representations of system structure and behavior. Do not attempt to memorize this catalogue; browse all of it. For each type, ask what information it preserves, what it leaves out, and what engineering question would make that reduction useful. The point of the reading is to see the size of the established modeling repertoire before we practice selecting from it. (Source: [visual-paradigm.com/guide](https://www.visual-paradigm.com/guide/the-complete-guide-to-uml-diagrams-all-14-types-explained-with-practical-examples).)'
     - heading: 'Models as engineering artifacts: the MBSE tradition'
       items:
         - cite: madni2018mbse
