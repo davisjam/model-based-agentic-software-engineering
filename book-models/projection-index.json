@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 816,
+    "total_sites": 819,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 474,
+      "book-web": 477,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -98,6 +98,10 @@
           {
             "file": "book/web/docs/6.3-other-agentic-software-factories.md",
             "occ": 9
+          },
+          {
+            "file": "book/web/docs/6.4-what-the-factories-show.md",
+            "occ": 1
           },
           {
             "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
@@ -247,7 +251,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 56
+            "occ": 57
           }
         ]
       },
@@ -984,8 +988,8 @@
             "occ": 43
           },
           {
-            "file": "book/web/docs/6.6-what-the-evidence-supports.md",
-            "occ": 3
+            "file": "book/web/docs/6.4-what-the-factories-show.md",
+            "occ": 4
           },
           {
             "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
@@ -1902,6 +1906,10 @@
             "occ": 19
           },
           {
+            "file": "book/web/docs/6.4-what-the-factories-show.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
             "occ": 51
           },
@@ -2221,7 +2229,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 108
+            "occ": 109
           }
         ]
       },
@@ -2930,6 +2938,10 @@
             "occ": 3
           },
           {
+            "file": "book/web/docs/6.4-what-the-factories-show.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
             "occ": 13
           },
@@ -3045,7 +3057,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 45
+            "occ": 46
           }
         ]
       },
