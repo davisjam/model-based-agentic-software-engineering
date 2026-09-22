@@ -7,7 +7,7 @@
     "derived_ids": 182,
     "missing_topic_sentence": 5,
     "sections_drained": 136,
-    "paragraph_points": 615
+    "paragraph_points": 614
   },
   "chapters": [
     {
@@ -2607,29 +2607,24 @@
           "block_index": 39,
           "points": [
             {
-              "slug": "volume-broke-per-artifact-inspection",
-              "text": "Mass production broke per-artifact inspection: examining everything was uneconomic, and chasing every variation sent engineers hunting causes that did not exist.",
+              "slug": "steam-capacity-created-a-control-problem",
+              "text": "Steam power increased the capacity of the fabricator; precision manufacturing created a corresponding problem of control that examining every artifact could not answer.",
               "block_index": 40
             },
             {
-              "slug": "shewhart-represented-the-process",
-              "text": "Shewhart's control charts represented the process rather than only examining its products, separating routine variation from assignable causes that demand intervention.",
-              "block_index": 42
-            },
-            {
               "slug": "the-widget-question-answered",
-              "text": "Mature factories learned that the quality team cannot simply examine every widget; tolerances, metrology, process control, sampling, and traceability replaced universal direct inspection.",
-              "block_index": 44
+              "text": "Mature factories learned that the quality team cannot simply examine every widget; tolerances and metrology are central, and the rest of the production system is organized to keep production within tolerance.",
+              "block_index": 42
             },
             {
               "slug": "supervision-through-surfaces-not-watching",
               "text": "A supervisor stays in control through the factory's supervisory surfaces — plans, production state, measurements, alarms, exceptions — not by watching every machine cycle.",
-              "block_index": 46
+              "block_index": 44
             },
             {
               "slug": "defects-change-the-factory",
               "text": "A recurring defect changes the factory itself — fixture, tolerance, process, inspection regime, tooling, training, or design — not merely the defective artifact.",
-              "block_index": 48
+              "block_index": 46
             }
           ]
         },
@@ -2639,27 +2634,27 @@
           "heading_text": "Software Repeats the Separation",
           "topic_sentence": "Software largely skipped this separation, because its engineers were also its fabricators.",
           "id_source": "derived",
-          "block_index": 51,
+          "block_index": 49,
           "points": [
             {
               "slug": "software-skipped-the-separation",
               "text": "Software largely skipped this separation because its engineers were also its fabricators; source code stayed rich because its author was also its interpreter.",
-              "block_index": 52
+              "block_index": 50
             },
             {
               "slug": "we-built-pieces-of-a-factory",
               "text": "Software built pieces of a factory — compiler, build, tests, source control, CI, deployment, observability — while consequential knowledge stayed in human cognition or in the implementation.",
-              "block_index": 54
+              "block_index": 52
             },
             {
               "slug": "agents-break-the-coupling",
               "text": "Agents break the coupling: software has acquired the equivalent of extremely fast automated machine tools while its supervisory practice still assumes an engineer reads the fabricated artifact.",
-              "block_index": 56
+              "block_index": 54
             },
             {
               "slug": "faster-fabrication-swamps-artifact-attached-supervision",
               "text": "Making the agent ten times faster does not make artifact-attached supervision more capable; it produces ten times more of the thing supervision must read.",
-              "block_index": 60
+              "block_index": 58
             }
           ]
         },
@@ -2669,32 +2664,32 @@
           "heading_text": "Engineering the Supervisory Layer",
           "topic_sentence": "Only now, with the history in place, name the method.",
           "id_source": "derived",
-          "block_index": 62,
+          "block_index": 60,
           "points": [
             {
               "slug": "mage-components-read-as-production-engineering",
               "text": "Read against the factory's history, the method of the earlier chapters describes components of an industrial production system.",
-              "block_index": 63
+              "block_index": 61
             },
             {
               "slug": "mage-does-not-replace-the-factory",
               "text": "MAGE does not replace the software factory; it supplies representations and supervisory mechanisms through which engineers exercise informed control over automated realization.",
-              "block_index": 67
+              "block_index": 65
             },
             {
               "slug": "the-factory-is-a-functional-layer",
               "text": "The software factory's supervisory layer is functional, not a separate technology stack; one artifact can participate in production and in supervision at once.",
-              "block_index": 69
+              "block_index": 67
             },
             {
               "slug": "history-is-grounding-not-evidence",
               "text": "The industrial history is grounding, not evidence for MAGE: it supplies the shape of the transition, and the warning that the solution was never merely a faster fabricator.",
-              "block_index": 71
+              "block_index": 69
             },
             {
               "slug": "the-problem-the-evidence-must-answer",
               "text": "The problem the evidence must answer: increasing the capacity of the fabricator does not necessarily increase the capacity of the supervisor.",
-              "block_index": 73
+              "block_index": 71
             }
           ]
         }
