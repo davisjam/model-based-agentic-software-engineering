@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 865,
+    "total_sites": 827,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 523,
+      "book-web": 485,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -86,30 +86,6 @@
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
             "occ": 17
-          },
-          {
-            "file": "book/web/docs/5.1-the-mage-workflow.md",
-            "occ": 15
-          },
-          {
-            "file": "book/web/docs/5.2-brownfield.md",
-            "occ": 10
-          },
-          {
-            "file": "book/web/docs/5.3-validating-change.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/5.4-operating-mage.md",
-            "occ": 13
-          },
-          {
-            "file": "book/web/docs/5.5-packaging-the-method-as-skills.md",
-            "occ": 34
-          },
-          {
-            "file": "book/web/docs/5.6-portable-moves.md",
-            "occ": 4
           },
           {
             "file": "book/web/docs/6.2-the-build.md",
@@ -253,7 +229,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 6
+            "occ": 4
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -261,11 +237,11 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 67
+            "occ": 54
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 4
+            "occ": 2
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -275,7 +251,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 63
+            "occ": 57
           }
         ]
       },
@@ -575,7 +551,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 14
+            "occ": 11
           },
           {
             "file": "catalogue-figure.html",
@@ -664,14 +640,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/5.2-brownfield.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/5.3-validating-change.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/6.2-the-build.md",
             "occ": 1
           },
@@ -717,7 +685,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 34
+            "occ": 33
           },
           {
             "file": "book/web/docs/part-7-intro.md",
@@ -727,7 +695,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 20
+            "occ": 18
           }
         ]
       },
@@ -838,22 +806,18 @@
       "book": {
         "book-web": [
           {
-            "file": "book/web/docs/5.3-validating-change.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/appendix-field-guide.md",
             "occ": 1
           },
           {
             "file": "book/web/docs/book-index.md",
-            "occ": 2
+            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 3
+            "occ": 2
           }
         ]
       },
@@ -901,7 +865,7 @@
           },
           {
             "file": "book/web/docs/0.1-how-to-read-this-book.md",
-            "occ": 26
+            "occ": 25
           },
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
@@ -1014,30 +978,6 @@
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
             "occ": 56
-          },
-          {
-            "file": "book/web/docs/5.1-the-mage-workflow.md",
-            "occ": 43
-          },
-          {
-            "file": "book/web/docs/5.2-brownfield.md",
-            "occ": 29
-          },
-          {
-            "file": "book/web/docs/5.3-validating-change.md",
-            "occ": 15
-          },
-          {
-            "file": "book/web/docs/5.4-operating-mage.md",
-            "occ": 22
-          },
-          {
-            "file": "book/web/docs/5.5-packaging-the-method-as-skills.md",
-            "occ": 27
-          },
-          {
-            "file": "book/web/docs/5.6-portable-moves.md",
-            "occ": 4
           },
           {
             "file": "book/web/docs/6.1-the-problem-and-the-bar.md",
@@ -1385,7 +1325,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 87
+            "occ": 85
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1397,7 +1337,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 336
+            "occ": 315
           },
           {
             "file": "book/web/docs/index.md",
@@ -1405,27 +1345,23 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 18
+            "occ": 17
           },
           {
             "file": "book/web/docs/part-1-intro.md",
-            "occ": 28
+            "occ": 27
           },
           {
             "file": "book/web/docs/part-2-intro.md",
-            "occ": 25
+            "occ": 24
           },
           {
             "file": "book/web/docs/part-3-intro.md",
-            "occ": 34
+            "occ": 33
           },
           {
             "file": "book/web/docs/part-4-intro.md",
-            "occ": 22
-          },
-          {
-            "file": "book/web/docs/part-5-intro.md",
-            "occ": 17
+            "occ": 21
           },
           {
             "file": "book/web/docs/part-6-intro.md",
@@ -1433,17 +1369,17 @@
           },
           {
             "file": "book/web/docs/part-7-intro.md",
-            "occ": 23
+            "occ": 22
           },
           {
             "file": "book/web/docs/part-8-intro.md",
-            "occ": 22
+            "occ": 21
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 136
+            "occ": 129
           }
         ]
       },
@@ -1483,7 +1419,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 83
+            "occ": 79
           },
           {
             "file": "catalogue-figure.html",
@@ -1603,14 +1539,6 @@
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/5.2-brownfield.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/5.5-packaging-the-method-as-skills.md",
             "occ": 4
           },
           {
@@ -1758,10 +1686,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/part-5-intro.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/part-7-intro.md",
             "occ": 1
           },
@@ -1773,7 +1697,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 52
+            "occ": 49
           }
         ]
       },
@@ -1857,7 +1781,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 2
+            "occ": 1
           }
         ]
       }
@@ -1987,31 +1911,7 @@
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 21
-          },
-          {
-            "file": "book/web/docs/5.1-the-mage-workflow.md",
-            "occ": 35
-          },
-          {
-            "file": "book/web/docs/5.2-brownfield.md",
-            "occ": 53
-          },
-          {
-            "file": "book/web/docs/5.3-validating-change.md",
-            "occ": 36
-          },
-          {
-            "file": "book/web/docs/5.4-operating-mage.md",
-            "occ": 19
-          },
-          {
-            "file": "book/web/docs/5.5-packaging-the-method-as-skills.md",
-            "occ": 10
-          },
-          {
-            "file": "book/web/docs/5.6-portable-moves.md",
-            "occ": 3
+            "occ": 22
           },
           {
             "file": "book/web/docs/6.1-the-problem-and-the-bar.md",
@@ -2303,7 +2203,7 @@
           },
           {
             "file": "book/web/docs/book-index.md",
-            "occ": 12
+            "occ": 11
           },
           {
             "file": "book/web/docs/colophon.md",
@@ -2311,7 +2211,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 439
+            "occ": 400
           },
           {
             "file": "book/web/docs/index.md",
@@ -2319,7 +2219,7 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 19
+            "occ": 16
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -2338,10 +2238,6 @@
             "occ": 3
           },
           {
-            "file": "book/web/docs/part-5-intro.md",
-            "occ": 2
-          },
-          {
             "file": "book/web/docs/part-6-intro.md",
             "occ": 2
           },
@@ -2357,7 +2253,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 117
+            "occ": 110
           }
         ]
       },
@@ -2737,7 +2633,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 42
+            "occ": 31
           },
           {
             "file": "catalogue-figure.html",
@@ -2900,10 +2796,6 @@
             "occ": 7
           },
           {
-            "file": "book/web/docs/5.1-the-mage-workflow.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
             "occ": 3
           },
@@ -2939,7 +2831,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 13
+            "occ": 12
           }
         ]
       },
@@ -3070,14 +2962,6 @@
             "occ": 3
           },
           {
-            "file": "book/web/docs/5.2-brownfield.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/5.3-validating-change.md",
-            "occ": 4
-          },
-          {
             "file": "book/web/docs/6.3-the-road-to-mage.md",
             "occ": 1
           },
@@ -3182,10 +3066,6 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/part-5-intro.md",
-            "occ": 2
-          },
-          {
             "file": "book/web/docs/part-6-intro.md",
             "occ": 2
           },
@@ -3201,7 +3081,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 48
+            "occ": 45
           }
         ]
       },
@@ -3277,26 +3157,6 @@
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/5.1-the-mage-workflow.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/5.2-brownfield.md",
-            "occ": 9
-          },
-          {
-            "file": "book/web/docs/5.3-validating-change.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/5.4-operating-mage.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/5.5-packaging-the-method-as-skills.md",
             "occ": 1
           },
           {
@@ -3401,7 +3261,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 34
+            "occ": 26
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -3415,7 +3275,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 41
+            "occ": 36
           }
         ]
       },
@@ -3615,7 +3475,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 7
+            "occ": 6
           }
         ],
         "website-theory": [
@@ -3664,18 +3524,6 @@
             "occ": 3
           },
           {
-            "file": "book/web/docs/5.1-the-mage-workflow.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/5.3-validating-change.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/5.4-operating-mage.md",
-            "occ": 3
-          },
-          {
             "file": "book/web/docs/6.5-mage-in-the-wild.md",
             "occ": 1
           },
@@ -3701,13 +3549,13 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 10
+            "occ": 8
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 13
+            "occ": 10
           }
         ]
       },
@@ -3737,7 +3585,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "development-workflow.html",

@@ -385,7 +385,7 @@ def _book_md_files() -> list[str]:
     a data-claim living there."""
     import glob
     files: list[str] = []
-    for sub in ("frontmatter", "part1", "part2", "part3", "part4", "part5", "part6", "part7"):
+    for sub in ("frontmatter", "part1", "part2", "part3", "part4", "part6", "part7"):
         files.extend(glob.glob(os.path.join(ROOT, "book", sub, "*.md")))
     return sorted(files)
 

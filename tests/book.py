@@ -75,7 +75,7 @@ DELIMITER_PAIRS = (("(", ")"), ("{", "}"))  # pairs checked for balance in prose
 
 BOOK = os.path.join(ROOT, "book")
 # Source chapters live under these dirs (part1..6, plus front/back matter); appendix + meta files excluded.
-_CHAPTER_SRC_DIRS = ("part1", "part2", "part3", "part4", "part5", "part6", "frontmatter", "part7")
+_CHAPTER_SRC_DIRS = ("part1", "part2", "part3", "part4", "part6", "frontmatter", "part7")
 # Front matter (Preface, Acknowledgments), the Reflections chapters (Theory, Implications, Conclusion), and
 # the Back-Matter apparatus (About the Author, Colophon) are narrative or reference prose that does not
 # plausibly want a figure, so the visual-per-chapter rule EXEMPTS them by default (part6/part7 carry

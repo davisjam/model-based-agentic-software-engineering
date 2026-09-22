@@ -176,7 +176,7 @@
         "Atlassian's Jira team delegates KTLO work by turning each task into an explicit work item carrying context through the Teamwork Graph plus workflow instructions; a maintenance class becomes delegable once the tacit repair procedure is encoded, not because the agent got clever."
       ],
       "destination": {
-        "chapter": "the-skills",
+        "chapter": "engineering-the-environment",
         "anchor": null
       },
       "role": "corroborate",
@@ -296,7 +296,7 @@
         "NVIDIA treats a skill as a deployable capability, not a static prompt, and runs it through an eight-stage supply chain — source, review, scan, evaluate, skill card, sign, catalog, sync — where scanning looks for agent-specific threats, not only conventional software risk."
       ],
       "destination": {
-        "chapter": "the-skills",
+        "chapter": "engineering-the-environment",
         "anchor": null
       },
       "role": "corroborate",
@@ -320,7 +320,7 @@
         "Red Hat observes that a developer portal's value was never its UI but the curated context underneath, and that agentic engineering turns that existing human-facing surface into an execution substrate by adding a programmatic (MCP) access layer: 'the portal isn't dying; it's becoming infrastructure'."
       ],
       "destination": {
-        "chapter": "brownfield",
+        "chapter": "brownfield-engineering",
         "anchor": null
       },
       "role": "corroborate",
@@ -344,7 +344,7 @@
         "Twilio's example: an unguided agent asked to 'verify users' hand-rolls a six-digit OTP, while its skill redirects to a dedicated Verify product and thereby inherits rate limiting, fraud controls and routing — reusable knowledge surfacing obligations the operator did not know enough to ask about."
       ],
       "destination": {
-        "chapter": "the-skills",
+        "chapter": "engineering-the-environment",
         "anchor": null
       },
       "role": "corroborate",

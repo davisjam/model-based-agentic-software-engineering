@@ -472,17 +472,16 @@ def _collect_glossary(chapters: list[dict]) -> None:
                 _GLOSSARY[term] = m.group("def").strip()
 
 # Part number → the source subdirectory that holds its chapters. Front matter is part 0, the
-# eight numbered parts are 1–8 (Part 2 is Modeling, Part 3 is Alignment, Part 4 is Engineering Through
-# Models — the promoted worked-problem chapter — Part 5 is The MAGE Method, Part 6 is The Evidence,
-# Part 7 is The Theory, Part 8 is The Profession — the substantive argument + case + theory + closing
-# chapters), true back matter (the top-level Conclusion) is part 9. Appendix parts follow.
+# numbered parts are 1–4 and 6–8 (Part 2 is Modeling, Part 3 is Alignment, Part 4 is MAGE in Motion —
+# the Ch4/Ch5 merger absorbed the old Part 5, "The MAGE Method", into it; the book intentionally runs
+# 4 → 6 with no Chapter 5 — Part 6 is The Evidence, Part 7 is The Theory, Part 8 is The Profession),
+# true back matter (the top-level Conclusion) is part 9. Appendix parts follow.
 _PART_DIRS = {
     0: "frontmatter",
     1: "part1",
     2: "part2",
     3: "part3",
     4: "part4",
-    5: "part5",
     6: "part6",
     7: "part7",
     8: "part8",
@@ -503,8 +502,7 @@ _PART_TITLES = {
     1: "The New Engineering Problem",
     2: "Modeling",
     3: "Alignment",
-    4: "Engineering Through Models",
-    5: "The MAGE Method",
+    4: "MAGE in Motion: Engineering Through Models",
     6: "The Evidence",
     7: "The Theory",
     8: "The Profession",
@@ -523,8 +521,7 @@ _CHAPTER_LABELS: "dict[str, int | float]" = {
     "problem": 1,
     "modeling": 2,
     "alignment": 3,
-    "one-problem-many-models": 4,   # promoted from the interlude to Chapter 4
-    "method": 5,
+    "one-problem-many-models": 4,   # promoted from the interlude to Chapter 4; absorbed Chapter 5 ("method") in the Ch4/Ch5 merger
     "evidence": 6,
     "theory": 7,
     "profession": 8,
@@ -552,11 +549,11 @@ _assert_chapter_label_parity()
 
 
 # The DO-ladder question each numbered Part answers — printed on the Part-opener orientation verso (the
-# PDF spread) under a fixed label. One question per Part 1-8: each Part is framed by the single reasoning
-# move the reader learns to make. Part 1 is the mindset opener (a "why", the new-engineering-problem
-# setup — what abundant implementation makes scarce), not an instrumental "how do I"; Parts 2-3 are "how
-# do I" (the mechanisms), Part 4 a "what happens" (the promoted dynamics chapter), Part 5 a "how do I"
-# (the method), Part 6 a "what evidence", Part 7 a "how/where", Part 8 a "what follows". Single source of
+# PDF spread) under a fixed label. One question per numbered Part: each Part is framed by the single
+# reasoning move the reader learns to make. Part 1 is the mindset opener (a "why", the new-engineering-
+# problem setup — what abundant implementation makes scarce), not an instrumental "how do I"; Parts 2-3
+# are "how do I" (the mechanisms), Part 4 a "what happens" (the dynamics + the method, post the Ch4/Ch5
+# merger), Part 6 a "what evidence", Part 7 a "how/where", Part 8 a "what follows". Single source of
 # truth: book_typst.py reads these (imported as `bb`) for the orientation verso AND the PART-OPENER SPREAD
 # sensor greps the same label + strings, so the print divider and its gate cannot disagree on which
 # question a Part carries.
@@ -565,8 +562,7 @@ _PART_OPENER_QUESTIONS = {
     1: "What becomes the engineering problem when implementation becomes abundant?",
     2: "How do I identify useful models?",
     3: "How do I make engineering obligations enforceable in my environment?",
-    4: "What happens when Modeling and Alignment are used together during actual engineering, where the right representation—and even the problem itself—is still being discovered?",
-    5: "How do I practice MAGE?",
+    4: "What happens when Modeling and Alignment are used together in actual engineering, as representations are discovered, systems change, and engineering knowledge accumulates?",
     6: "What evidence supports MAGE?",
     7: "How does MAGE work, what should follow if the account is right, and where should we expect it to apply?",
     8: "What follows for software engineering—and what does the software case reveal about agentic engineering beyond software?",
@@ -2457,7 +2453,7 @@ def _roadmap_nav_html(current_part: int) -> str:
     svg = re.sub(r'<g id="bm-part-(?P<n>[1-8])" class="bm-part">(?P<inner>.*?)</g>', decorate, svg, flags=re.S)
 
     items: list[str] = []
-    for n in range(1, 9):
+    for n in sorted(p for p in _PART_TITLES if isinstance(p, int) and 0 < p < 9 and p not in _MATTER_PARTS):
         label = html.escape(f'Chapter {n} — {_PART_TITLES.get(n, "")}')
         if n == current_part:
             items.append(f'<li aria-current="page">{label} (current chapter)</li>')
@@ -5904,7 +5900,7 @@ def _pdf_part_opener_spread(pdf_path: pathlib.Path, part_titles: dict[int, str],
     normed = [norm(t) for t in per_page]                 # title-case, for the divider-heading match
     normed_upper = [t.upper() for t in normed]           # for the uppercase apparatus-marker match
     results: list[dict] = []
-    for part in range(1, 9):
+    for part in sorted(p for p in part_titles if isinstance(p, int) and 0 < p < 9 and p not in (0, 9)):
         div = norm(f"Chapter {part}: {part_titles[part]}")  # divider heading, title-case ("Chapter N: Title" — renderer SSOT)
         # The verso carries the title heading AND the orientation apparatus; disambiguate on the apparatus so a
         # stray TOC/outline line echoing the heading is never mistaken for the orientation page.

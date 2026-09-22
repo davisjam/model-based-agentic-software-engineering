@@ -5,8 +5,8 @@
      mechanisms and supplies the evidence), and the engineering argument it substantiates (Chapter 7 + Chapter 8,
      OUTSIDE — the abstraction from the evidence and its implications). A single clean descent runs from the
      Preface's opening question to the Conclusion's answer + its converse; the Ch1->Ch2 arrow crosses INTO the
-     case region and the Ch5->Ch6 arrow crosses OUT, so the boundary crossings enact the epistemics. Two DOTTED
-     branches hang the appendix parts off the argument (Chapter 5 to Practice, Chapter 6 to Evidence), OUTSIDE
+     case region and the Ch6->Ch7 arrow crosses OUT, so the boundary crossings enact the epistemics. Two DOTTED
+     branches hang the appendix parts off the argument (Chapter 4 to Practice, Chapter 6 to Evidence), OUTSIDE
      the region. RHYTHM PASS (rhythm-260917): viewBox height 848 -> 1008, all of it spent on WHITESPACE — air
      after the framing moves (Preface -> Ch1 -> case), interior padding of the case region above Ch2 and below
      Ch5, doubled gaps + flanking rules around Chapter 4 (the static->dynamic step), and an annotated
@@ -27,8 +27,8 @@
     question: how do we safely grant autonomy to commodity intelligence? It leads to Chapter 1, The New Engineering
     Problem — changed economics. A subtly shaded region then nests the software-engineering case — the chapters that
     develop the mechanisms and supply the evidence. Inside it: Chapter 2, Modeling — make knowledge and intent
-    explicit. Then Chapter 3, Alignment — enforce selected obligations. Then Chapter 4, Engineering Through Models —
-    One Problem, Many Models, the dynamics of a worked problem. Then Chapter 5, The MAGE Method — model, align, work, convert; a
+    explicit. Then Chapter 3, Alignment — enforce selected obligations. Then Chapter 4, MAGE in Motion: Engineering Through Models —
+    the dynamics of a worked problem, brownfield recovery, and the engineered environment: model, align, work, convert; a
     dotted branch runs to Appendix Part I, Practice (use and extend). Then Chapter 6, The Evidence — depth and breadth;
     a dotted branch runs to Appendix Part II, Evidence (inspect the empirical record). The descent leaves the case
     region at Chapter 7, The Theory — the abstraction from that evidence: theory, predictions, scope conditions, and a
@@ -88,19 +88,11 @@
   <line x1="100" y1="448" x2="236" y2="448" stroke="#cec8bd" stroke-width="1"/>
   <line x1="300" y1="448" x2="436" y2="448" stroke="#cec8bd" stroke-width="1"/>
 
-  <!-- INTERLUDE — One Problem, Many Models (unnumbered matter, seated in the descent; displayed by title alone) -->
-  <rect id="interlude" x="24" y="464" width="488" height="60" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.2"/>
-  <text x="268" y="491" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Chapter 4 · Engineering Through Models</text>
-  <text x="268" y="512" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e">One Problem, Many Models</text>
-  <line x1="268" y1="524" x2="268" y2="556" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
-  <!-- Interlude air (below) -->
-  <line x1="100" y1="540" x2="236" y2="540" stroke="#cec8bd" stroke-width="1"/>
-  <line x1="300" y1="540" x2="436" y2="540" stroke="#cec8bd" stroke-width="1"/>
-
-  <!-- CHAPTER 4 — The MAGE Method (neutral: joins the two) -->
-  <rect id="part-4" x="24" y="556" width="488" height="58" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="268" y="582" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Chapter 5 · The MAGE Method</text>
-  <text x="268" y="603" text-anchor="middle" font-size="18.4" font-weight="600" fill="#1c1917">model · align · work · convert</text>
+  <!-- CHAPTER 4 — MAGE in Motion (the Ch4/Ch5 merger: dynamics + worked case + brownfield + environment) -->
+  <rect id="part-4" x="24" y="464" width="488" height="150" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="268" y="516" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Chapter 4 · MAGE in Motion</text>
+  <text x="268" y="540" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e">One Problem, Many Models</text>
+  <text x="268" y="564" text-anchor="middle" font-size="18.4" font-weight="600" fill="#1c1917">model · align · work · convert</text>
   <line x1="268" y1="614" x2="268" y2="630" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
   <!-- CHAPTER 4 to Appendix Part I (DOTTED branch — related destination, not a step; quieter than the argument) -->

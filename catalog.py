@@ -3645,7 +3645,7 @@ def _apply_body() -> str:
         "This page is a concise guide to applying MAGE. It summarizes the practical argument rather than "
         "reproducing it: Chapter 4 of the book develops the method in full, and Appendix G develops "
         "organizational adoption.\n\n"
-        "[Read Chapter 5: The MAGE Method →](book/mage-book/5.1-the-mage-workflow.html) · "
+        "[Read Chapter 4: MAGE in Motion →](book/mage-book/4.1-the-dynamics-of-mage.html) · "
         "[Read Appendix G: Adopting GenAI in an Organization →](book/mage-book/appendix-adopting-genai.html)"))
     p.append(render_md(
         "## Engineer the environment, not just the realization\n\n"
@@ -3666,7 +3666,7 @@ def _apply_body() -> str:
         "learned.\n\n"
         "The result is an iterative engineering process, not an attempt to specify everything correctly in "
         "advance.\n\n"
-        "[Read the full method in Chapter 5 →](book/mage-book/5.1-the-mage-workflow.html)"))
+        "[Read the full method in Chapter 4 →](book/mage-book/4.1-the-dynamics-of-mage.html)"))
     p.append(render_md(
         "## Start where you are\n\n"
         "There is no single MAGE starting point. Where to begin depends on two questions: how much of the "
@@ -3702,9 +3702,9 @@ def _apply_body() -> str:
         "Different systems—and different requirements within the same system—can support different amounts "
         "of delegation.\n\n"
         "## Go deeper\n\n"
-        "**The MAGE Method — Chapter 4.** The complete treatment of the practical method: choosing work units, "
-        "modeling, alignment, governance conversion, brownfield migration, validation, operations, and "
-        "reusable skills. [Read Chapter 5 →](book/mage-book/5.1-the-mage-workflow.html)\n\n"
+        "**MAGE in Motion: Engineering Through Models — Chapter 4.** The complete treatment of the practical method: "
+        "the dynamics, the worked DocAble case, brownfield recovery, and engineering the environment — "
+        "validation, operations, and reusable skills. [Read Chapter 4 →](book/mage-book/4.1-the-dynamics-of-mage.html)\n\n"
         "**Adopting GenAI in an Organization — Appendix G.** Guidance for moving from individual assistance "
         "toward bounded delegation: identifying the functions people currently supply, deciding which "
         "responsibilities can move into the engineering environment, and expanding delegation where the "

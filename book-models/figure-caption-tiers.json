@@ -349,18 +349,6 @@
    "location": "part3",
    "rationale": "the representation ladder — richer representation expands computation; Part-3 capstone, supporting"
   },
-  "assets/precision-follows-knowledge.svg": {
-   "tier": "B",
-   "kind": "conceptual-spectrum",
-   "location": "part4",
-   "rationale": "the precision-follows-knowledge continuum — uncertain needs earn exploration; stabilized claims become models and authoritative mechanisms; §4.1 loop-cycle supporting"
-  },
-  "assets/migration-2x2.svg": {
-   "tier": "A",
-   "kind": "conceptual-spectrum",
-   "location": "part4",
-   "rationale": "the §4.2 chapter-opening anchor — the existing-system × settled-intent 2x2 that names the proportionate first move in each corner"
-  },
   "assets/two-views-of-the-evidence.svg": {
    "tier": "A",
    "kind": "conceptual-framework",
@@ -649,23 +637,11 @@
    "location": "part4",
    "rationale": "introduces the three-skills framework"
   },
-  "the-skills::Governance versus operate": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part4",
-   "rationale": "the SG/SO question split — one facet per row (question, acts-on, produces, hands-off); supporting comparison beside the three-skills anchor"
-  },
   "education-research-open-problems::The authorship division": {
    "tier": "B",
    "kind": "comparison",
    "location": "part7",
    "rationale": "the durable authorship split — what Self-Governance carries vs. what the engineer remains answerable for; §6.6.1 answerability table"
-  },
-  "assets/skill-recipe.svg": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part4",
-   "rationale": "the skill skeleton; supports three-skills (sibling of the anchor)"
   },
   "assets/engineering-recurring-work.svg": {
    "tier": "A",
@@ -673,23 +649,11 @@
    "location": "part4",
    "rationale": "the Part IV synthesis: an environment both supports the reasoner and enforces selected obligations (dashed = enforce where feasible), and the cycle iterates; anchor figure for 4.1.4"
   },
-  "assets/bootstrapping-governed-environment.svg": {
-   "tier": "B",
-   "kind": "flow",
-   "location": "part4",
-   "rationale": "domain practitioner -> self-governance skill -> coding intelligence -> governed environment; supporting figure for the 4.5.3 inset"
-  },
   "assets/figure-composition.svg": {
    "tier": "B",
    "kind": "conceptual-framework",
    "location": "appendix",
    "rationale": "the three partner skills act on one governed environment from three directions — Appendix E capstone composition figure (sibling of skill-recipe)"
-  },
-  "assets/derive-dont-copy.svg": {
-   "tier": "B",
-   "kind": "conceptual",
-   "location": "part4",
-   "rationale": "derive-don't-copy — one authority, consumers query/join/generate; two authorities, a parity check"
   },
   "assets/two-evidence-boundaries.svg": {
    "tier": "B",
@@ -703,30 +667,6 @@
    "location": "part4",
    "rationale": "the whole governed action — environment shapes the agent, prevention closes the action space, evidence guards the consequence"
   },
-  "assets/models-to-evidence.svg": {
-   "tier": "B",
-   "kind": "conceptual",
-   "location": "part4",
-   "rationale": "from models to evidence — derive obligations, take the census, choose evidence, then claim coverage"
-  },
-  "assets/externalizing-judgment.svg": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part4",
-   "rationale": "recurring procedure typed into deterministic / bounded-judgment / irreducible steps and their forms"
-  },
-  "assets/event-reaction-fire.svg": {
-   "tier": "B",
-   "kind": "process-flow",
-   "location": "part4",
-   "rationale": "binding a reaction to a lifecycle event: deterministic firing whose payload splits execute / delegate / escalate"
-  },
-  "assets/deliver-context-two-layer.svg": {
-   "tier": "A",
-   "kind": "conceptual",
-   "location": "part4",
-   "rationale": "context delivery as two layers — a small standing context and a task-relevant slice; the section anchor, caption walks both layers"
-  },
   "assets/transformations-pipeline.svg": {
    "tier": "B",
    "kind": "process-synthesis",
@@ -738,18 +678,6 @@
    "kind": "conceptual-axis",
    "location": "part4",
    "rationale": "novelty sets the leap"
-  },
-  "assets/example-vs-generative.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part4",
-   "rationale": "a point vs a space"
-  },
-  "assets/generative-loop.svg": {
-   "tier": "A",
-   "kind": "conceptual-illustration",
-   "location": "part4",
-   "rationale": "the generate-oracle-counterexample-coverage loop — A-tier synthesis of the whole generative-validation family; caption walks the loop"
   },
   "assets/velocity-commits-per-week.svg": {
    "tier": "B",
@@ -853,24 +781,6 @@
    "location": "part1",
    "rationale": "supports the derivation figure"
   },
-  "operating-mage::Typing a runbook's steps": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part4",
-   "rationale": "governs the step taxonomy"
-  },
-  "operating-mage::Measure one level deeper": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part4",
-   "rationale": "decision-driving table"
-  },
-  "operating-mage::The Missing-Model-Metric drain, run by run": {
-   "tier": "B",
-   "kind": "data",
-   "location": "part4",
-   "rationale": "per-run measurements"
-  },
   "modeling-structure-and-ownership::Invariants of the Logical view": {
    "tier": "C",
    "kind": "reference-lookup",
@@ -900,18 +810,6 @@
    "kind": "supporting",
    "location": "part2",
    "rationale": "II-to-III handoff contract — property-only float (giant C/S/V/G table deleted, Move #3)"
-  },
-  "brownfield::Sizing the mechanism": {
-   "tier": "A",
-   "kind": "design-decision-table",
-   "location": "part4",
-   "rationale": "the right-size-the-fix 2x2; caption interprets the cells"
-  },
-  "the-skills::The three skills, by construction layer": {
-   "tier": "C",
-   "kind": "reference-structure",
-   "location": "part4",
-   "rationale": "construction-layer matrix lookup"
   },
   "failures::The lessons, quotable": {
    "tier": "C",
@@ -1099,12 +997,6 @@
    "location": "part2",
    "rationale": "invariant lookup"
   },
-  "the-mage-workflow::Substrate property → consequence → response → method step": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part4",
-   "rationale": "the substrate landscape synthesis table (R14: 7-row property→consequence→response→method-step) opening Part IV"
-  },
   "assets/service-allow-list.svg": {
    "tier": "B",
    "kind": "model-schema",
@@ -1147,12 +1039,6 @@
    "location": "part6",
    "rationale": "the chapter's climax image — why software's inverted economics kept it from model-based engineering until commodity intelligence made live models affordable; anchor with the two-column comparison resolving into one causal chain"
   },
-  "assets/representation-enforcement.svg": {
-   "tier": "B",
-   "kind": "conceptual-two-track",
-   "location": "part4",
-   "rationale": "the 'two tracks, not one ladder' slogan now lives inside the figure; the caption is demoted to a plain supporting gloss on how representation and authority strengthen independently"
-  },
   "assets/discovering-models-migration.svg": {
    "tier": "A",
    "kind": "process-flow",
@@ -1188,12 +1074,6 @@
    "kind": "decision-diagram",
    "location": "part3",
    "rationale": "an obligation forks on property kind to constraint, validator, or gate — supporting caption on matching mechanism to property, not a maturity ladder"
-  },
-  "assets/claim-choose-the-search.svg": {
-   "tier": "B",
-   "kind": "decision-diagram",
-   "location": "part4",
-   "rationale": "the kind of claim selects the falsifying evidence — supporting caption on input, reachable-state, and temporal properties, with structural exclusion preferred"
   },
   "assets/question-to-consequence-progression.svg": {
    "tier": "B",

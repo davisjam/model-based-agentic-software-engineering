@@ -13,39 +13,26 @@ a Gang-of-Four appendix projected from the sibling catalogue entries.
 
 ```
 book/
-  frontmatter/0.1-what-this-book-argues.md, 0.2-the-mage-method-at-a-glance.md, 0.3-the-books-language.md,
-             0.4-preface.md, 0.5-how-to-read-this-book.md, 0.6-acknowledgments.md
-  part1/  (Part 1 — The Context)
-    1.1-the-printer.md
-    1.2-mage-by-example.md
-    1.3-the-agentic-substrate.md
-    1.4-the-new-engineering-problem.md
+  frontmatter/0.0-acknowledgments.md, 0.1-how-to-read-this-book.md, 0.2-what-this-book-argues.md,
+             0.3-the-mage-method-at-a-glance.md, 0.4-the-books-language.md, 0.5-preface.md
+  part1/  (Part 1 — The New Engineering Problem)
+    1.1-the-printer.md … 1.5-problem-summary.md
   part2/  (Part 2 — Modeling)
-    2.1-context-is-the-first-modeling-problem.md … 2.7-scenarios-and-the-joined-model.md
-  part3/  (Part 3 — The Governed Engineering Environment)
-    3.1-where-obligations-can-be-enforced.md
-    3.2-models-and-the-semantic-gap.md
-    3.3-constraints-sensors-validators-gates.md
-    3.4-governance-conversion.md
-    3.5-when-guardrails-collide.md
-  part4/  (Part 4 — Putting It to Work)
-    4.1-the-mage-workflow.md
-    4.2-brownfield.md
-    4.3-validating-change.md
-    4.4-operating-mage.md
-    4.5-packaging-the-method-as-skills.md
-    4.6-portable-moves.md
-  part5/  (Part 5 — The Evidence)
-    5.1-the-problem-and-the-bar.md
-    5.2-the-build.md
-    5.3-the-road-to-mage.md
-    5.4-failures-that-became-infrastructure.md
-    5.5-mage-in-the-wild.md
-  part6/  (Part 6 — The Profession)
-    6.1-toward-a-theory-of-mage.md … 6.6-education-research-open-problems.md
-  part7/  (back matter)
-    7.1-about-the-author.md
-    7.2-colophon.md
+    2.1-context-is-the-first-modeling-problem.md … 2.9-modeling-summary.md
+  part3/  (Part 3 — Alignment)
+    3.1-where-obligations-can-be-enforced.md … 3.5-when-guardrails-collide.md
+  part4/  (Part 4 — MAGE in Motion: Engineering Through Models)
+    4.1-the-dynamics-of-mage.md
+    4.2-one-problem-many-models.md
+    4.3-brownfield-engineering.md
+    4.4-engineering-the-environment.md
+  part6/  (Part 6 — The Evidence; the book runs 4 → 6 with no Chapter 5 since the Ch4/Ch5 merger)
+    6.1-the-problem-and-the-bar.md … 6.6-what-the-evidence-supports.md
+  part7/  (Part 7 — The Theory)
+    7.1-toward-a-theory-of-mage.md … 7.5-what-the-theory-claims.md
+  part8/  (Part 8 — The Profession)
+    8.1-reorganization-of-se.md … 8.5-what-cannot-be-delegated.md
+  conclusion/9.1-the-part-that-stays-yours.md
   appendix-front-door.md, appendix-stacks/, appendix-notes/, appendix-operators-reference/,
              appendix-skill-recipe/, appendix-c/    # hand-authored + catalogue-projected appendices
   data/metrics.json      # headline numbers, referenced from prose via {{token}}

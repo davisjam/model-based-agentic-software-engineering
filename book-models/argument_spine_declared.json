@@ -375,11 +375,6 @@
       "alignment-principle",
       "failures-become-machinery"
     ],
-    "operating-mage": [
-      "govern-the-environment",
-      "modeling-principle",
-      "alignment-principle"
-    ],
     "when-guardrails-collide": [
       "govern-the-environment",
       "modeling-principle"
@@ -409,24 +404,16 @@
       "modeling-principle",
       "mage-becomes-practical"
     ],
-    "the-mage-workflow": [
-      "modeling-principle",
-      "alignment-principle",
-      "failures-become-machinery",
-      "govern-the-environment"
-    ],
-    "brownfield": [
+    "brownfield-engineering": [
       "govern-the-environment",
       "modeling-principle",
       "failures-become-machinery"
     ],
-    "the-skills": [
-      "failures-become-machinery",
-      "alignment-principle"
-    ],
-    "generative-validation": [
+    "engineering-the-environment": [
       "modeling-principle",
-      "alignment-principle"
+      "alignment-principle",
+      "failures-become-machinery",
+      "govern-the-environment"
     ],
     "the-ada-context": [
       "grounded-in-one-case"
