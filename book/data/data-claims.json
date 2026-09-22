@@ -1,10 +1,13 @@
 {
   "_note": "Data-claim manifest — the single source of truth for the book's governed data cross-references. One entry per grounded datum. A `[data: <slug>]` marker in the prose resolves against this file to a footnote-style cross-ref into the chapter that reports the number (fail-loud on an unknown slug, like an unknown {{token}}). Fields: `source` = the chapter slug (a book/<slug>.html page) that reports the datum; `anchor` = the {#heading-id} on that chapter's reporting section (\"\" until the render lands); `holds` = the load-bearing numbers/units that MUST still appear in the source (the check_data_claims lint compares digit-sequences+units under a loose match; a number change fails, a spelling change is fine; [] until the render pins them); `status` = final | preliminary | partial (the strength signal); `gloss` = a one-line description of the datum. THE ARGUMENTATIVE CHAIN (W-LEDGER 260803): every datum also carries `spine_claim` (or `spine_claims: []` when it genuinely bears weight for more than one) = the argument-spine claim id this number bears weight for (joins to book-models/argument_spine_declared.json — DL1); `observable` = the real-world quantity actually observed; `data_source` = how/where measured, with provenance (tool + method + artifact/commit); `limitation` = what the datum CANNOT show / the honest caveat. A preliminary datum with a stated limitation is honest; an unbound number is not. The extended check (DL1 join-integrity, DL2 four-fields-present, DL3 underquantified report, DL4 holds-still-appear) runs audit-only. The substantiation aggregator (`catalog.py substantiation`) joins these data-claims + the lit-positioning citations under each spine claim to flag under-substantiated-or-situated reality-claims. Regenerate the anchors + this file together when a source section moves. Queryable via `catalog.py data-claims`.",
-
   "refactor-cost": {
-    "source": "the-road-to-mage",
+    "source": "inside-docables-software-factory",
     "anchor": "refactor-cost",
-    "holds": ["58 files", "5,000 lines", "5 hours"],
+    "holds": [
+      "58 files",
+      "5,000 lines",
+      "5 hours"
+    ],
     "status": "final",
     "spine_claim": "abundant-implementation",
     "observable": "files touched + lines rewritten + wall-clock for one cross-format migration.",
@@ -13,7 +16,7 @@
     "gloss": "A cross-format migration touched fifty-eight files and rewrote five thousand lines in about five hours of agent time — refactoring became an afternoon's work."
   },
   "nearly-free": {
-    "source": "the-ada-context",
+    "source": "inside-docables-software-factory",
     "anchor": "nearly-free",
     "holds": [],
     "status": "final",
@@ -24,7 +27,7 @@
     "gloss": "The per-document remediation cost cascade — do-it-yourself professor cost vs. external-vendor quote vs. the tool's per-deck processing cost — showing high-quality remediation nearly for free."
   },
   "velocity": {
-    "source": "the-timeline-and-the-work",
+    "source": "inside-docables-software-factory",
     "anchor": "velocity",
     "holds": [],
     "status": "final",
@@ -37,7 +40,12 @@
   "mbse-nav-token": {
     "source": "the-executable-zoo",
     "anchor": "mbse-nav-token",
-    "holds": ["20%", "12%", "82%", "50%"],
+    "holds": [
+      "20%",
+      "12%",
+      "82%",
+      "50%"
+    ],
     "status": "preliminary",
     "spine_claim": "modeling-principle",
     "observable": "Tokens-to-answer with MBSE navigation guidance ON versus OFF, across four modeled tasks.",
@@ -45,11 +53,17 @@
     "limitation": "N=4 pilot — not powered; single fleet; measures tokens, not accuracy (zero accuracy loss noted, but at small N); the system-level Garden-null reframe of the MBSE ablation is coming in W5.",
     "gloss": "A controlled A/B pilot of MBSE navigation guidance (N=4 modeled tasks): tokens-to-answer with guidance ON vs. OFF, 20% / 12% / 82% / 50% fewer tokens, median ~35% fewer, zero accuracy loss."
   },
-
   "support-ratio-curve": {
-    "source": "the-timeline-and-the-work",
+    "source": "inside-docables-software-factory",
     "anchor": "support-ratio-curve",
-    "holds": ["0.85", "2.48", "3.68", "3.06", "26,956", "1,501,907"],
+    "holds": [
+      "0.85",
+      "2.48",
+      "3.68",
+      "3.06",
+      "26,956",
+      "1,501,907"
+    ],
     "status": "final",
     "spine_claim": "govern-the-environment",
     "observable": "Support-apparatus LoC divided by production LoC at four dated commits (prototype / mechanization / hardening / now): 0.85 -> 2.48 -> 3.68 -> 3.06.",
@@ -58,11 +72,21 @@
     "gloss": "The support-ratio curve across four windows (0.85 -> 2.48 -> 3.68 -> 3.06): the support apparatus stayed larger than production across the mature windows, crossing from sub-parity to ~3x while production LoC grew ~18x — the build-the-environment-first revealed preference."
   },
   "model-sync-efficacy": {
-    "source": "the-road-to-mage",
+    "source": "inside-docables-software-factory",
     "anchor": "model-sync-efficacy",
-    "holds": ["+8,970", "−173 lines", "63 commits", "0", "56 closes", "27 genuine"],
+    "holds": [
+      "+8,970",
+      "−173 lines",
+      "63 commits",
+      "0",
+      "56 closes",
+      "27 genuine"
+    ],
     "status": "preliminary",
-    "spine_claims": ["alignment-principle", "sync-cost-reduced"],
+    "spine_claims": [
+      "alignment-principle",
+      "sync-cost-reduced"
+    ],
     "observable": "The model-sync sensor's drift-detection readings and the reconciliation labor they drive: a derived-floor churn of +8,970 / -173 lines across 63 commits; 0 model-drift reopens across a separate, cumulative N=56 closes; and a first before-data report of ~27 findings at a signal-to-noise near 1.0.",
     "data_source": "The §3.8 model-sync measurement (draft committed f6147fc; the reporting section landed in W7). Figures from the sync report's churn ledger (63-commit refresh window) + the cumulative close ledger (N=56 closes, 0 reopens) + the first drift-detection report's finding tally.",
     "limitation": "A single subsystem's sync episode, before the drift-detector's signal-to-noise was tuned; the ~27-finding S:N~1.0 is a before-data snapshot, not a steady-state rate; not a controlled comparison against un-synced development. Primary binding is the drift-detection (alignment) claim; it also bears on the sync-cost-reduced (co-evolution economics) claim — see the parked-binding note in the results log.",
@@ -71,7 +95,17 @@
   "mmm-drain": {
     "source": "operating-mage",
     "anchor": "mmm-drain",
-    "holds": ["56%", "55%", "52%", "39%", "32.2%", "30.1%", "20.9%", "14.9%", "7.89%"],
+    "holds": [
+      "56%",
+      "55%",
+      "52%",
+      "39%",
+      "32.2%",
+      "30.1%",
+      "20.9%",
+      "14.9%",
+      "7.89%"
+    ],
     "status": "final",
     "spine_claim": "modeling-principle",
     "observable": "The Missing-Model-Metric orphan rate (share of tests whose exercised code reaches no model-anchored symbol) draining as subsystems get modeled across nine tracer re-runs: 56% -> 55% -> 52% -> 39% -> 32.2% -> 30.1% -> 20.9% -> 14.9% -> 7.89%.",
@@ -80,9 +114,14 @@
     "gloss": "The Missing-Model-Metric drain: orphan (code-unmodelled) rate falling from 56% to 7.89% across nine tracer re-runs as the model-loop modeled each biggest orphan cluster in turn — code-to-model coverage rising to ~92%."
   },
   "churn": {
-    "source": "the-timeline-and-the-work",
+    "source": "inside-docables-software-factory",
     "anchor": "churn",
-    "holds": ["371,855", "941,120", "286,378", "3,767"],
+    "holds": [
+      "371,855",
+      "941,120",
+      "286,378",
+      "3,767"
+    ],
     "status": "partial",
     "spine_claim": "churn-is-the-limit",
     "observable": "Per-path additions and deletions (web/ and backend/) across the four study windows; mechanization is the churn peak for both, then deletions collapse and later windows go net-additive (backend/ -286K deletions at mechanization -> -3.8K at hardening).",
@@ -91,9 +130,19 @@
     "gloss": "Path churn (web/ + backend/) across four windows: mechanization is the add-and-delete peak; later windows go net-additive as the built environment stabilizes the code."
   },
   "control-growth": {
-    "source": "the-timeline-and-the-work",
+    "source": "inside-docables-software-factory",
     "anchor": "control-growth",
-    "holds": ["336", "595", "747", "20", "76", "102", "993 registered", "208 commits", "27 lints"],
+    "holds": [
+      "336",
+      "595",
+      "747",
+      "20",
+      "76",
+      "102",
+      "993 registered",
+      "208 commits",
+      "27 lints"
+    ],
     "status": "final",
     "spine_claim": "failures-become-machinery",
     "observable": "The count of governance controls in the tree at four dated windows — project-specific lint files (0 -> 336 -> 595 -> 747) and gate scripts (0 -> 20 -> 76 -> 102) — with 993 registered lint specs at the final window, plus the failure-attribution discipline's footprint: 208 commits carrying a paired fix-and-lint tag and 27 lints citing a specific dated incident in their own text. Model/invariant DEEPENING axis (loop-mode companion to the lint/gate WIDENING counts): typed model files 38 -> 79 -> 123 (~2.1x acceleration in loop-mode) and INV- invariant IDs 2 -> 45 -> 154 (~5x acceleration) over the same windows — the growth locus moved from raw lint files (which slowed, 538 -> 698 -> 751) into models + invariants, so the 'environment converts failures into machinery' claim reads as deepening, not only widening.",
@@ -102,7 +151,7 @@
     "gloss": "The control substrate accumulating across four windows: project-specific lint files 0 -> 336 -> 595 -> 747 and gate scripts 0 -> 20 -> 76 -> 102 (993 registered lint specs at the final window), the environment converting failures into durable machinery as a documented, named, growing discipline."
   },
   "epic-closure-rate": {
-    "source": "the-timeline-and-the-work",
+    "source": "inside-docables-software-factory",
     "anchor": "",
     "holds": [],
     "status": "preliminary",

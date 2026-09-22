@@ -7474,6 +7474,16 @@
         }
       ]
     },
+    "section-id:nearly-free": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.2-inside-docables-software-factory::nearly-free",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:not-every-unmodeled-choice-is-free": {
       "kind": "section-id",
       "dependents": [
@@ -8285,16 +8295,6 @@
         {
           "view": "outline",
           "element": "1.4-the-new-engineering-problem::the-problem-is-larger-than-software",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:the-problem-the-factory-was-built-for": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.2-inside-docables-software-factory::the-problem-the-factory-was-built-for",
           "role": "section-anchor"
         }
       ]

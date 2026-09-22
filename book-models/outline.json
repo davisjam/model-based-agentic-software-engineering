@@ -3,8 +3,8 @@
   "_counts": {
     "chapters": 35,
     "sections": 192,
-    "explicit_ids": 5,
-    "derived_ids": 187,
+    "explicit_ids": 6,
+    "derived_ids": 186,
     "missing_topic_sentence": 5,
     "sections_drained": 140,
     "paragraph_points": 603
@@ -2749,11 +2749,11 @@
       "part": 6,
       "sections": [
         {
-          "section_id": "the-problem-the-factory-was-built-for",
+          "section_id": "nearly-free",
           "level": 2,
           "heading_text": "The Problem the Factory Was Built For",
           "topic_sentence": "Before the case can carry much weight, the bar has to be clear.",
-          "id_source": "derived",
+          "id_source": "explicit",
           "block_index": 4,
           "points": [
             {
