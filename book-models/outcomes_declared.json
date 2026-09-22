@@ -279,7 +279,7 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "failures",
+      "primary_unit": "inside-docables-software-factory",
       "verb": "trace",
       "obj": "how engineering failures leave behind several FORMS of durable capital — representation, decision rule, deterministic check, behavioral model, derived provenance, provisional measurement — some granted authority and some deliberately not, reading the case as evidence of mechanism and sequence rather than prevalence",
       "statement": "After this chapter, the reader can trace how a failure becomes durable engineering capital (or deliberately remains provisional), distinguish the ex-post and ex-ante paths, and state what a single longitudinal case can and cannot establish.",
@@ -288,7 +288,7 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "the-ada-context",
+      "primary_unit": "inside-docables-software-factory",
       "verb": "explain",
       "obj": "why document accessibility is a hard, high-burden problem worth this machinery",
       "statement": "After this chapter, the reader can explain the accessibility problem the case-study system solves and why a document is not just a file.",
@@ -297,7 +297,7 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "the-timeline-and-the-work",
+      "primary_unit": "inside-docables-software-factory",
       "verb": "map",
       "obj": "the project's stages to the kinds of work each demanded and the velocity each produced",
       "statement": "After this chapter, the reader can map the case-study project's stages to the kinds of work each demanded and the velocity each produced.",
@@ -306,7 +306,7 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "the-road-to-mage",
+      "primary_unit": "inside-docables-software-factory",
       "verb": "trace",
       "obj": "how the built system forced the method out of it — the delegation staircase from solo co-coder to architect, each rung safe only because the step below minted the control it needed",
       "statement": "After this chapter, the reader can trace the delegation staircase — co-coder, QA, review lead, tech lead, architect — by which the built system forced MAGE out of it, and can name why each rung was safe to climb only because the step below first minted the control that caught what the delegation dropped.",

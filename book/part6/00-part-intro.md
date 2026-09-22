@@ -1,17 +1,17 @@
 <!-- part-foreshadows: modeling-principle, alignment-principle, seat-moves -->
 
-A method induced from practice should explain the engineering history that produced it. This chapter
-follows DocAble — a production document-accessibility system built largely by directing coding
-agents — from a five-minute feasibility experiment to a deployed service. Observing one system from
-the inside and from the beginning lets us reconstruct what a finished architecture cannot: which
-pressures appeared, what response followed, what survived, and what had to be revised again.
+What happens to the software factory when agents substantially increase its capacity for
+realization? This chapter puts that question to observed systems. It is the book's empirical
+chapter, and it deliberately does not open with MAGE: the chapter first derives the software factory
+as an analytical object from two centuries of production engineering, then studies real factories —
+one from the inside, several from the outside — and lets supervision emerge as the central problem
+rather than assuming it.
 
-The clean method arrived last. As the system grew, missing representation became expensive in some
-places; missing enforcement became dangerous in others; repeated operational surprises exposed
-properties nobody had modeled at all. Some obligations were encoded before failure. Some models
-arose from clean design choices and simply held. Others were forged in incidents and hardened
-through recurrence. {{chapter:evidence}} preserves those differences rather than forcing every event through the
-finished theory.
+The evidence comes in two forms. DocAble — a production document-accessibility system built largely
+by directing coding agents — supplies depth: chronology, mechanism, and within-case recurrence,
+observed from the inside and from the beginning. Independent industrial accounts supply breadth:
+variation across systems built by other organizations under different constraints, none of them
+claimed as adopters of this book's method.
 
 <!-- principlebox -->
 <!-- box-family: canonical -->
@@ -25,17 +25,19 @@ finished theory.
 >
 > **The first shows how the method emerged. The second asks how far its engineering grammar travels.**
 
-**New here:** Originating case · Support ratio · Delegation staircase · Within-case evidence · Industrial reconstructions · Comparative evidence
+**New here:** Software factory · Originating case · Support ratio · Delegation staircase · Within-case evidence · Industrial reconstructions · Comparative evidence
 
 {{chapter:evidence}} uses two views of the evidence; [ref:two-views-of-the-evidence] sets them side by side.
 
 <!-- label: two-views-of-the-evidence -->
 <!-- figure: assets/two-views-of-the-evidence.svg | *Two views of the evidence.* The originating case supplies longitudinal depth: sequence, mechanism, and within-case recurrence. Independent industrial reconstructions supply variation across systems and organizations but less process visibility. Together they motivate the theoretical account developed in Chapter 6. -->
 
-DocAble supplies sequence, mechanism, and within-case recurrence, but not causal or population-level estimates. The eight industrial reconstructions supply variation and alternative realizations, but less process history. Together they motivate rather than establish the theoretical account developed in {{chapter:theory}}.
-
-Chapters {{chapter:modeling|num}}–{{chapter:one-problem-many-models|num}} presented the compressed method. Here the direction reverses. {{sec:the-ada-context}}–{{sec:failures}} return to the
-originating case from which much of that terminology was induced, so the wrong turns matter. A finished
-architecture shows what exists; a longitudinal case can show **why it exists and what it replaced**. {{sec:mage-in-the-wild}}
-then asks whether independently built systems expose comparable structures. Depth supplies mechanism;
-breadth supplies variation. {{chapter:theory}} asks what general account can explain both.
+The chapter runs in four sections. {{sec:the-software-factory}} derives the factory concept from the
+history of manufacturing and ends on the problem the evidence must answer: increasing the capacity
+of the fabricator does not necessarily increase the capacity of the supervisor.
+{{sec:inside-docables-software-factory}} opens the deep case — what DocAble's factory knows, what it
+can derive and enforce, how it learned, and what its supervisor actually does.
+{{sec:mage-in-the-wild}} reads independently documented industrial systems as software factories
+under one consistent lens. {{sec:what-the-evidence-supports}} states what the factories show, and
+what they cannot. Depth supplies mechanism; breadth supplies variation. {{chapter:theory}} asks what
+general account can explain both.

@@ -1,1199 +1,1205 @@
 {
- "_note": "Declared caption-tier verdicts for the book's authored figure/table captions. Each key is a caption id: for a figure, the `figure:` asset path (already unique in chapter scope); for a table, `<chapter-file>::<short>` using the table's existing `[short: ...]` print-index name (single source of truth: the same string the list-of-tables uses). `tier` is A|B|C — the caption's argumentative role (A Anchor 4-8 sentences/60-120 words; B Supporting 2-4/25-70; C Reference 1-2/<=30). `kind` and `location` are the classification axes; `rationale` is one line. Mirrors the brick-fitness.json genre: a flat declared map with a _note provenance block, no hardcoded list in the builder or lint. Consumed by book-models/lint_caption_length.py, which measures each authored caption's length against its tier band (A carries a floor: an under-written anchor is a finding). A new figure/table with no row here is itself a finding (drift defense). Source of the first-pass verdicts + the ratified A/B borderline resolutions (constraint-vs-sensor=A, services-reactive-view=A, join-composite=A, llm-as-function-call=B): book/_design/drafts/caption-tier-model-260806.md. The lint lands AUDIT-ONLY (rule #55): the current tree squeezed every caption to <=3 sentences/<=50 words under the retired uniform cap, so all 17 A-tier captions are under-length today; the Phase-3 rewrite wave drains the findings to 0, then the lint promotes to blocking.",
- "tiers": {
-  "assets/realization-space.svg": {
-   "tier": "B",
-   "kind": "set-diagram",
-   "location": "part2",
-   "rationale": "obligation/realization Venn — two obligation regions and their acceptable intersection with distinct realization points; supporting caption names that obligations bound a region without selecting a point, and the remaining choices are degrees of freedom"
-  },
-  "assets/from-nodes-to-composition.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part2",
-   "rationale": "two-panel worked example — computations without composition (113 registered, 2 authored relations) beside composition made explicit (11 payload-bearing + 22 control gates); supporting caption on typing the derived relations"
-  },
-  "assets/two-reductions-static-realized.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part2",
-   "rationale": "static computation structure beside one run's realized edit record; supporting caption on the two reductions being unjoined today and the join added when a question needs it"
-  },
-  "assets/fidelity-vs-authority.svg": {
-   "tier": "B",
-   "kind": "conceptual-axis",
-   "location": "part3",
-   "rationale": "correspondence strength and authority direction drawn as two independent directed axes; supporting caption on stronger correspondence not moving the authority arrow"
-  },
-  "assets/modeling-history.svg": {
-   "tier": "A",
-   "kind": "progression-diagram",
-   "location": "part5",
-   "rationale": "the top-to-bottom modeling history — a partial model growing the composition half it lacked, exposing dependency semantics and effect boundedness; anchor caption for the road-to-MAGE progression"
-  },
-  "assets/adopting-assistance-to-delegation.svg": {
-   "tier": "A",
-   "kind": "flow",
-   "location": "appendixG",
-   "rationale": "Appendix G figure G.1-1 — the shift from individual assistance to bounded delegation as a changing boundary (responsibilities move into models/evidence/mechanisms), not a maturity ladder; anchor figure for the appendix"
-  },
-  "assets/adopting-investment-paths.svg": {
-   "tier": "B",
-   "kind": "flow",
-   "location": "appendixG",
-   "rationale": "Appendix G figure G.2-1 — two paths (representation vs control) from the two recurring costs (reconstruction, adjudication) to engineering capital; strengthen surface by surface where return justifies it, not a maturity ladder"
-  },
-  "assets/adopting-figures-recap.svg": {
-   "tier": "B",
-   "kind": "conceptual-framework",
-   "location": "appendixG",
-   "rationale": "Appendix G recap panel — the four earlier figures (value/governability Section 6.3, governance-conversion loop Section 3.4, support-apparatus ratio and effort-redistribution Part V) named and reused rather than re-embedded"
-  },
-  "assets/h1-product-lifecycle.svg": {
-   "tier": "A",
-   "kind": "model-diagram",
-   "location": "appendixH",
-   "rationale": "Appendix H opening figure — the five lifecycle surfaces with Assurance drawn cross-cutting; anchor caption sets the differential-adoption frame for the whole appendix"
-  },
-  "assets/h4-change-diagnosis-inheritance.svg": {
-   "tier": "B",
-   "kind": "flow",
-   "location": "appendixH",
-   "rationale": "change episode from diagnosis and traceability through the realization space to acceptance evidence and inherited durable structure — supporting caption on change-scoped models, degrees of freedom, and inheritance"
-  },
-  "assets/h5-incident-to-governance.svg": {
-   "tier": "B",
-   "kind": "flow",
-   "location": "appendixH",
-   "rationale": "incident to root-cause to modeled cause to structural rhymes to repair-the-class to governance conversion — supporting caption on repairing the class and inheriting the lesson"
-  },
-  "assets/h6-assurance-models-realization.svg": {
-   "tier": "B",
-   "kind": "flow",
-   "location": "appendixH",
-   "rationale": "assurance claim requiring model evidence, realization evidence, and the traceability/Alignment correspondence between them — supporting caption on assurance across models and realization"
-  },
-  "assets/h8-product-gee.svg": {
-   "tier": "A",
-   "kind": "model-diagram",
-   "location": "appendixH",
-   "rationale": "Appendix H closing figure — heterogeneous local models composing into the product GEE via shared identity/relations, reasoned through by agents and Alignment; anchor caption"
-  },
-  "assets/h9-capital-time-space.svg": {
-   "tier": "A",
-   "kind": "model-diagram",
-   "location": "appendixH",
-   "rationale": "Appendix H closing figure — engineering capital at the origin of a time axis (the product lifecycle) and a space axis (other products and organizations); anchor caption carries the two-dimensional capital argument"
-  },
-  "assets/document-mutation-model.svg": {
-   "tier": "B",
-   "kind": "model-diagram",
-   "location": "part2",
-   "rationale": "structural document-mutation seam — supporting caption naming the sanctioned boundary the model exposes"
-  },
-  "assets/structural-reduction.svg": {
-   "tier": "B",
-   "kind": "reduction",
-   "location": "part2",
-   "rationale": "territory-to-model reduction for document mutation — supporting caption on what the model keeps and drops"
-  },
-  "assets/recovery-ordering-model.svg": {
-   "tier": "B",
-   "kind": "model-diagram",
-   "location": "part2",
-   "rationale": "three recovery states plus the forbidden ordering — supporting caption on the edge that does not exist"
-  },
-  "assets/model-first-encoding-second.svg": {
-   "tier": "B",
-   "kind": "reduction",
-   "location": "part2",
-   "rationale": "behavioral model above its encoding and implementation — supporting caption on model-before-syntax"
-  },
-  "assets/in-flight-ownership-states.svg": {
-   "tier": "B",
-   "kind": "model-diagram",
-   "location": "part2",
-   "rationale": "in-flight lease states — supporting caption on who holds a claim and when it is stale"
-  },
-  "assets/in-flight-lease-overlap.svg": {
-   "tier": "B",
-   "kind": "reduction",
-   "location": "part2",
-   "rationale": "one lease fanning into ownership/behavior/measurement views — supporting caption on class overlap"
-  },
-  "assets/service-flow-model.svg": {
-   "tier": "B",
-   "kind": "model-diagram",
-   "location": "part2",
-   "rationale": "declared service-flow graph — supporting caption on permitted edges and the sole public node"
-  },
-  "assets/observed-vs-declared.svg": {
-   "tier": "B",
-   "kind": "reduction",
-   "location": "part2",
-   "rationale": "observed vs declared structure — supporting caption on correspondence, not correctness"
-  },
-  "assets/genai-cost-capacity-model.svg": {
-   "tier": "B",
-   "kind": "model-diagram",
-   "location": "part2",
-   "rationale": "GenAI usage/cost/capacity/budget quantities — supporting caption on the measurement model over raw events"
-  },
-  "assets/measured-quantity-comparison.svg": {
-   "tier": "B",
-   "kind": "reduction",
-   "location": "part2",
-   "rationale": "measured quantity against a reference envelope — supporting caption on what the model compares, not the response"
-  },
-  "assets/modeling-perp-enforcement.svg": {
-   "tier": "B",
-   "kind": "conceptual-spectrum",
-   "location": "part2",
-   "rationale": "modeling a quantity vs assigning its authority — supporting caption on the Part II / Part III split"
-  },
-  "assets/attribution-model.svg": {
-   "tier": "B",
-   "kind": "model-diagram",
-   "location": "part2",
-   "rationale": "run/operation/target/mutation/pass/evidence — supporting caption on selecting events that matter to audit"
-  },
-  "assets/provenance-record-vs-views.svg": {
-   "tier": "B",
-   "kind": "reduction",
-   "location": "part2",
-   "rationale": "one action record deriving several explanations — supporting caption on record-once-derive"
-  },
-  "assets/modeling-substrate.svg": {
-   "tier": "B",
-   "kind": "model-diagram",
-   "location": "part2",
-   "rationale": "the layered modeling substrate joined by shared identity — supporting caption on models as a system"
-  },
-  "assets/substrate-traversal.svg": {
-   "tier": "B",
-   "kind": "model-diagram",
-   "location": "part2",
-   "rationale": "task-driven traversal of the substrate — supporting caption on entering at the named entity and following identities"
-  },
-  "assets/derive-generate-trace.svg": {
-   "tier": "B",
-   "kind": "reduction",
-   "location": "part2",
-   "rationale": "three ways to keep map and territory equal — supporting caption chosen by which side is authoritative"
-  },
-  "assets/joined-by-identity.svg": {
-   "tier": "B",
-   "kind": "model-diagram",
-   "location": "part2",
-   "rationale": "models joined by identity, not one universal graph — supporting caption on derive/trace/check-decidable"
-  },
-  "assets/modeling-creates-surfaces.svg": {
-   "tier": "B",
-   "kind": "reduction",
-   "location": "part2",
-   "rationale": "cross-Part path territory->model->property->alignment->consequence — supporting caption closing Part II"
-  },
-  "assets/one-docable-job.svg": {
-   "tier": "B",
-   "kind": "territory-diagram",
-   "location": "part1",
-   "rationale": "one DocAble job as territory not model — supporting caption locating the landmarks Parts II/III redraw"
-  },
-  "assets/authority-spectrum.svg": {
-   "tier": "A",
-   "kind": "conceptual-spectrum",
-   "location": "part3",
-   "rationale": "authority softest-to-hardest across four boundaries; the memorable takeaway replacing the model-internals tutorial — anchor with inlined accessible description"
-  },
-  "assets/part3-nav-arc.svg": {
-   "tier": "B",
-   "kind": "navigation",
-   "location": "part3",
-   "rationale": "Part-III opener nav arc — five chapters as five questions on one descending arc"
-  },
-  "assets/intervention-boundaries.svg": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part3",
-   "rationale": "the four intervention boundaries as semantic grains (not strengths) — 3.1's figure; v7 recut the caption to a terse supporting directive (guidance vs authority boundaries), no longer an anchor-length reading guide"
-  },
-  "assets/governance-conversion.svg": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part3",
-   "rationale": "governance conversion — diagnose what was missing, encode the missing structure, future work inherits it; 3.4's central figure"
-  },
-  "assets/residual-decision-tree.svg": {
-   "tier": "B",
-   "kind": "decision-tree",
-   "location": "part3",
-   "rationale": "three questions, four leaves — places any goal relative to the mechanisms; v7 recut the caption terse (RESIDUAL/EVALUATED-ONLY leaves), no longer anchor-length"
-  },
-  "assets/three-relations.svg": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part3",
-   "rationale": "the three relations an obligation can test — correspondence, independent evaluation, acceptance; supporting figure for 3.2.1"
-  },
-  "assets/cost-enforcement-gradient.svg": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part3",
-   "rationale": "one measurement fanning to observe/adapt/gate — the roles are not stages of maturity; supporting figure for 3.3.3"
-  },
-  "assets/positive-negative-obligation.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part3",
-   "rationale": "two shapes of constraint — a negative prohibition vs a positive must-call obligation; supporting figure for 3.3.4"
-  },
-  "assets/provenance-carried-admission.svg": {
-   "tier": "B",
-   "kind": "flow",
-   "location": "part3",
-   "rationale": "the single sanctioned derivation path carries provenance to the consequence boundary, which requires it; supporting figure for 3.3.6"
-  },
-  "assets/judgment-without-consequence.svg": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part3",
-   "rationale": "evidence and correct judgment without a blocking consequence — the auto-resolution cascade; supporting figure for 3.4.3"
-  },
-  "assets/field-guide-cloudflare.svg": {
-   "tier": "C",
-   "kind": "team-card",
-   "location": "appendix",
-   "rationale": "Field Guide card — Cloudflare: policy-first governance to the Alignment Principle; reference/nav card art, short caption"
-  },
-  "assets/field-guide-spotify.svg": {
-   "tier": "C",
-   "kind": "team-card",
-   "location": "appendix",
-   "rationale": "Field Guide card — Spotify: fleet-first autonomy to the Governed Engineering Environment; reference/nav card art, short caption"
-  },
-  "assets/field-guide-shopify.svg": {
-   "tier": "C",
-   "kind": "team-card",
-   "location": "appendix",
-   "rationale": "Field Guide card — Shopify: shared agent-ready environment to the Engineering Environment; reference/nav card art, short caption"
-  },
-  "assets/field-guide-docker.svg": {
-   "tier": "C",
-   "kind": "team-card",
-   "location": "appendix",
-   "rationale": "Field Guide card — Docker: authority boundaries and eval loops to Governance Conversion; reference/nav card art, short caption"
-  },
-  "assets/field-guide-siemens.svg": {
-   "tier": "C",
-   "kind": "team-card",
-   "location": "appendix",
-   "rationale": "Field Guide card — Siemens: model-first engineering to the Modeling Principle (one rung short of the drift gate); reference/nav card art, short caption"
-  },
-  "assets/field-guide-zenseact.svg": {
-   "tier": "C",
-   "kind": "team-card",
-   "location": "appendix",
-   "rationale": "Field Guide card — Zenseact: autonomous knowledge work to the Reasoning Horizon; reference/nav card art, short caption"
-  },
-  "assets/field-guide-uber.svg": {
-   "tier": "C",
-   "kind": "team-card",
-   "location": "appendix",
-   "rationale": "Field Guide card — Uber: factory-scale economics to the Governed Engineering Environment; reference/nav card art, short caption"
-  },
-  "assets/model-ontology.svg": {
-   "tier": "B",
-   "kind": "taxonomy",
-   "location": "part2",
-   "rationale": "the six-class working ontology — the 2.1 twin of front-matter Figure 0.3-2; a conceptual reference caption naming the classifying axis"
-  },
-  "assets/model-classes.svg": {
-   "tier": "C",
-   "kind": "taxonomy",
-   "location": "frontmatter",
-   "rationale": "the six model-classes taxonomy — glossary Model-entry reference chrome; short nav/reference caption"
-  },
-  "assets/gloss-core-ideas.svg": {
-   "tier": "C",
-   "kind": "concept-map",
-   "location": "frontmatter",
-   "rationale": "glossary section-map for 'The core ideas' — orientation concept-map chrome; short reference caption"
-  },
-  "assets/gloss-agent-vocab.svg": {
-   "tier": "C",
-   "kind": "concept-map",
-   "location": "frontmatter",
-   "rationale": "glossary section-map for 'How coding agents work (and fail)' — orientation concept-map chrome; short reference caption"
-  },
-  "assets/gloss-gee.svg": {
-   "tier": "B",
-   "kind": "concept-map",
-   "location": "frontmatter",
-   "rationale": "glossary ontology for 'The Governed Engineering Environment' — the redrawn figure teaches the mechanism→obligation authority relation and the two surfaces, so the caption is explanatory (both branches + capital), not short orientation chrome"
-  },
-  "assets/mage-vocabulary.svg": {
-   "tier": "C",
-   "kind": "vocabulary-spine",
-   "location": "frontmatter",
-   "rationale": "the book's noun spine placed after the glossary — the vocabulary as one chain every later figure instantiates; short reference caption"
-  },
-  "assets/open-frontiers.svg": {
-   "tier": "A",
-   "kind": "roadmap",
-   "location": "part6",
-   "rationale": "the research-program map — four kinds welded to H1-H8; the coda anchor for 'Where the frontier goes next'"
-  },
-  "assets/model-ladder.svg": {
-   "tier": "B",
-   "kind": "conceptual-spectrum",
-   "location": "part3",
-   "rationale": "the representation ladder — richer representation expands computation; Part-3 capstone, supporting"
-  },
-  "assets/two-views-of-the-evidence.svg": {
-   "tier": "A",
-   "kind": "conceptual-framework",
-   "location": "part5",
-   "rationale": "Part-V opener depth/breadth split — originating case vs. industrial reconstructions converging on analytic generalization; motivates Part VI"
-  },
-  "assets/determinization-frontier.svg": {
-   "tier": "A",
-   "kind": "conceptual-framework",
-   "location": "part6",
-   "rationale": "the determinization frontier the whole method walks toward; Part-6 closing anchor image"
-  },
-  "assets/six-company-map.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part6",
-   "rationale": "six systems reconstruct regions of one theory; the map that opens Meet the six"
-  },
-  "assets/six-entry-points.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part6",
-   "rationale": "six systems enter the shared design space at different points; the R47 map that opens MAGE in the Wild"
-  },
-  "assets/modeling-ceiling-tiers.svg": {
-   "tier": "A",
-   "kind": "conceptual-framework",
-   "location": "part6",
-   "rationale": "the three-tier modeling ceiling (knowledge / executable model / governed correspondence); R47 replacement for the 12-col matrix"
-  },
-  "assets/determinization-two-paths.svg": {
-   "tier": "A",
-   "kind": "conceptual-framework",
-   "location": "part6",
-   "rationale": "the two paths to mechanization (direct vs representation shift); R47 replacement for the determinization ladder"
-  },
-  "assets/where-effort-moves.svg": {
-   "tier": "A",
-   "kind": "conceptual-framework",
-   "location": "part6",
-   "rationale": "where engineering effort moves across an unchanged lifecycle; R47 replacement for the SDLC-to-SELC figure"
-  },
-  "assets/why-software-modeled.svg": {
-   "tier": "A",
-   "kind": "conceptual-framework",
-   "location": "part6",
-   "rationale": "the three economic variables (physical realization / implementation labor / synchronization cost) and the change that moves them; R47 replacement for why-software-came-last"
-  },
-  "assets/model-induction-general.svg": {
-   "tier": "A",
-   "kind": "conceptual-framework",
-   "location": "part6",
-   "rationale": "the model-induction move drawn once — realized work to repeated forms to a named concept — with the left rail stating the move and three columns instantiating it in software, knowledge work, and CAD; the anchor for the 'models can be induced from the work' callback"
-  },
-  "assets/return-governability.svg": {
-   "tier": "B",
-   "kind": "conceptual-framework",
-   "location": "part6",
-   "rationale": "value of explicit engineering (vertical) x feasible governability (horizontal), with four self-explanatory quadrants (explicit judgment / authority / informal / selective); anchor figure for 6.3.2. Tier B: the quadrants now carry their own prose, so the caption is deliberately short"
-  },
-  "assets/governance-census.svg": {
-   "tier": "B",
-   "kind": "conceptual-illustration",
-   "location": "part6",
-   "rationale": "obligations vs mechanisms; gap/orphan as counts — supports the census subsection"
-  },
-  "assets/research-arc.svg": {
-   "tier": "B",
-   "kind": "methodology",
-   "location": "frontmatter",
-   "rationale": "the research arc — the book's evidence procedure from one case to the refined theory; the enlarged figure carries the sequence, the trimmed caption supports it"
-  },
-  "assets/engineering-leverage.svg": {
-   "tier": "A",
-   "kind": "comparison-framework",
-   "location": "part1",
-   "rationale": "engineering leverage moves into the environment when agents implement; Part-1 opener framing (260815 copyedit — replaces new-engineering-problem.svg as Fig 1.1-1). Promoted B->A 260911: the caption now also carries the control/responsibility claim — the environment as the means through which engineers retain control, and MAGE's primary-means contention (control-responsibility surgery)."
-  },
-  "assets/environment-as-object.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part1",
-   "rationale": "engineer-the-agent vs engineer-the-environment; supporting contrast paired with the new-problem anchor"
-  },
-  "assets/mage-method.svg": {
-   "tier": "A",
-   "kind": "conceptual-framework",
-   "location": "frontmatter",
-   "rationale": "book-level method synthesis; reader learns the whole method from the caption"
-  },
-  "assets/book-map.svg": {
-   "tier": "A",
-   "kind": "roadmap",
-   "location": "frontmatter",
-   "rationale": "explicit-architecture caption (frontma 260917): the figure now encodes the book's epistemic architecture — a nested software-engineering case between the question and the theory — and the caption teaches how to read that architecture standalone in print, earning an anchor-length caption"
-  },
-  "assets/docable-glimpse.svg": {
-   "tier": "B",
-   "kind": "conceptual-framework",
-   "location": "part1",
-   "rationale": "the running production-system glimpse — input to output; the object the book governs (R42 terse-caption revision: internals deliberately absent)"
-  },
-  "assets/docable-pipeline.svg": {
-   "tier": "A",
-   "kind": "architectural-overview",
-   "location": "part1",
-   "rationale": "introduces the whole case-study system"
-  },
-  "assets/loop-engineering.svg": {
-   "tier": "B",
-   "kind": "mechanism-detail",
-   "location": "part1",
-   "rationale": "the four levers; elaborates the loop"
-  },
-  "assets/reasoning-horizon.svg": {
-   "tier": "B",
-   "kind": "conceptual-illustration",
-   "location": "part1",
-   "rationale": "why compaction needs models"
-  },
-  "assets/agentic-substrate.svg": {
-   "tier": "B",
-   "kind": "conceptual-framework",
-   "location": "part1",
-   "rationale": "foundation model + agentic harness -> agent -> engineering environment; the §1.3.1 substrate diagram the reasoning-horizon and authority arguments both derive from (260815 copyedit)"
-  },
-  "assets/substrate-to-method.svg": {
-   "tier": "B",
-   "kind": "comparison-framework",
-   "location": "part1",
-   "rationale": "finite state -> representation problem -> Modeling; probabilistic work -> enforcement problem -> Alignment; Part 1's closing derivation figure (260815 copyedit)"
-  },
-  "assets/sdlc-to-selc.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part6",
-   "rationale": "the reassigned seat"
-  },
-  "assets/agent-stack-layers.svg": {
-   "tier": "A",
-   "kind": "architectural-overview",
-   "location": "part2",
-   "rationale": "the MAGE stack — Part 2 anchor framework"
-  },
-  "assets/documentation-hierarchy.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part2",
-   "rationale": "islands vs model-at-apex"
-  },
-  "assets/semantic-gap-levels.svg": {
-   "tier": "B",
-   "kind": "conceptual-illustration",
-   "location": "part2",
-   "rationale": "where to lift a check"
-  },
-  "assets/governance-conversion-loop.svg": {
-   "tier": "A",
-   "kind": "core-loop",
-   "location": "part2",
-   "rationale": "the governance-conversion loop — central construct"
-  },
-  "assets/control-growth.svg": {
-   "tier": "B",
-   "kind": "data-chart",
-   "location": "part2",
-   "rationale": "controls-accumulate curve; supports the empirical claim"
-  },
-  "assets/constraint-vs-sensor.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part2",
-   "rationale": "the two governance moves; v7 recut the caption to a terse constraint-vs-sensor selection rule, no longer anchor-length"
-  },
-  "assets/form-move-2x2.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part2",
-   "rationale": "form (soft/hard) x move (constraint/sensor) 2x2; one worked example per cell"
-  },
-  "assets/config-optimization-runbook.svg": {
-   "tier": "B",
-   "kind": "runbook",
-   "location": "part2",
-   "rationale": "the fenced judgment step"
-  },
-  "assets/metric-spectrum.svg": {
-   "tier": "B",
-   "kind": "conceptual-spectrum",
-   "location": "part2",
-   "rationale": "hard-vs-soft metrics"
-  },
-  "assets/mmm-drain-curve.svg": {
-   "tier": "B",
-   "kind": "data-chart",
-   "location": "part2",
-   "rationale": "the orphan-rate drain"
-  },
-  "assets/collision-edge.svg": {
-   "tier": "B",
-   "kind": "conceptual-illustration",
-   "location": "part2",
-   "rationale": "the conflict is the edge"
-  },
-  "assets/census-trio.svg": {
-   "tier": "B",
-   "kind": "conceptual-illustration",
-   "location": "part2",
-   "rationale": "catalogue / graph / coverage — three views over the control machinery; v7 recut the caption to a terser supporting form (same identities, different relations)"
-  },
-  "assets/trunk-and-views.svg": {
-   "tier": "A",
-   "kind": "architectural-framework",
-   "location": "part3",
-   "rationale": "one trunk, five views — Part 3 anchor"
-  },
-  "assets/coherence-triangle.svg": {
-   "tier": "B",
-   "kind": "conceptual-illustration",
-   "location": "part3",
-   "rationale": "schema + invariants + proof"
-  },
-  "assets/dataflow-inset.svg": {
-   "tier": "C",
-   "kind": "structure-inset",
-   "location": "part3",
-   "rationale": "a labelled edge inset; identify-only"
-  },
-  "assets/service-model-structure.svg": {
-   "tier": "B",
-   "kind": "model-schema",
-   "location": "part3",
-   "rationale": "the logical-view schema"
-  },
-  "assets/sync-model-structure.svg": {
-   "tier": "B",
-   "kind": "model-schema",
-   "location": "part3",
-   "rationale": "the process-view lock schema"
-  },
-  "assets/component-model-structure.svg": {
-   "tier": "B",
-   "kind": "model-schema",
-   "location": "part3",
-   "rationale": "the development-view registry"
-  },
-  "assets/deployment-model-structure.svg": {
-   "tier": "B",
-   "kind": "model-schema",
-   "location": "part3",
-   "rationale": "the physical-view placement"
-  },
-  "assets/dag-policy-structure.svg": {
-   "tier": "B",
-   "kind": "conceptual-policy",
-   "location": "part3",
-   "rationale": "profile edit, not graph edit"
-  },
-  "assets/join-composite.svg": {
-   "tier": "A",
-   "kind": "synthesis",
-   "location": "part3",
-   "rationale": "the four-model join — synthesizes the whole Part-3 model set"
-  },
-  "assets/model-sync-two-layer-net.svg": {
-   "tier": "B",
-   "kind": "mechanism-illustration",
-   "location": "part2",
-   "rationale": "the two-layer net — teaches how to read coverage vs guarantee (v8 simplified the caption to a tier-B length)"
-  },
-  "assets/wiki-linkage.svg": {
-   "tier": "B",
-   "kind": "process-diagram",
-   "location": "part4",
-   "rationale": "the wiki-as-model round-trip"
-  },
-  "assets/squash-zero-promote.svg": {
-   "tier": "B",
-   "kind": "runbook",
-   "location": "part4",
-   "rationale": "audit -> drain -> promote"
-  },
-  "assets/three-skills.svg": {
-   "tier": "A",
-   "kind": "conceptual-framework",
-   "location": "part4",
-   "rationale": "introduces the three-skills framework"
-  },
-  "education-research-open-problems::The authorship division": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part7",
-   "rationale": "the durable authorship split — what Self-Governance carries vs. what the engineer remains answerable for; §6.6.1 answerability table"
-  },
-  "assets/engineering-recurring-work.svg": {
-   "tier": "A",
-   "kind": "flow",
-   "location": "part4",
-   "rationale": "the Part IV synthesis: an environment both supports the reasoner and enforces selected obligations (dashed = enforce where feasible), and the cycle iterates; anchor figure for 4.1.4"
-  },
-  "assets/figure-composition.svg": {
-   "tier": "B",
-   "kind": "conceptual-framework",
-   "location": "appendix",
-   "rationale": "the three partner skills act on one governed environment from three directions — Appendix E capstone composition figure (sibling of skill-recipe)"
-  },
-  "assets/two-evidence-boundaries.svg": {
-   "tier": "B",
-   "kind": "conceptual",
-   "location": "part4",
-   "rationale": "the earliest-legible and last-safe evidence boundaries on one work-to-consequence timeline"
-  },
-  "assets/governed-action.svg": {
-   "tier": "B",
-   "kind": "conceptual",
-   "location": "part4",
-   "rationale": "the whole governed action — environment shapes the agent, prevention closes the action space, evidence guards the consequence"
-  },
-  "assets/transformations-pipeline.svg": {
-   "tier": "B",
-   "kind": "process-synthesis",
-   "location": "part4",
-   "rationale": "one skeleton, sized transformations"
-  },
-  "assets/novelty-axis.svg": {
-   "tier": "B",
-   "kind": "conceptual-axis",
-   "location": "part4",
-   "rationale": "novelty sets the leap"
-  },
-  "assets/velocity-commits-per-week.svg": {
-   "tier": "B",
-   "kind": "data-chart",
-   "location": "appendix-evidence-ledger",
-   "rationale": "the velocity curve (re-homed to the Part-V evidence ledger, R46)"
-  },
-  "assets/build-stages-timeline.svg": {
-   "tier": "B",
-   "kind": "timeline",
-   "location": "part5",
-   "rationale": "the seven build stages as pressure->consequence (replaces the retired seven-stage table, R46)"
-  },
-  "assets/phased-timeline.svg": {
-   "tier": "B",
-   "kind": "timeline",
-   "location": "part5",
-   "rationale": "the messy timeline"
-  },
-  "assets/support-ratio-curve.svg": {
-   "tier": "B",
-   "kind": "data-chart",
-   "location": "part5",
-   "rationale": "the support ratio"
-  },
-  "assets/churn-per-path.svg": {
-   "tier": "B",
-   "kind": "data-chart",
-   "location": "appendix-evidence-ledger",
-   "rationale": "path churn across windows (re-homed to the Part-V evidence ledger, R46)"
-  },
-  "assets/llm-as-function-call.svg": {
-   "tier": "B",
-   "kind": "mechanism-illustration",
-   "location": "part5",
-   "rationale": "LLM as a function call; author-held at supporting"
-  },
-  "assets/services-reactive-view.svg": {
-   "tier": "A",
-   "kind": "architectural-overview",
-   "location": "part5",
-   "rationale": "the built system's runtime architecture — case-study anchor"
-  },
-  "assets/system-overview.svg": {
-   "tier": "B",
-   "kind": "architectural-overview",
-   "location": "part5",
-   "rationale": "the six-responsibility end-to-end tour — supports the responsibility bullets above it"
-  },
-  "assets/frontend-mvc-editor-dsl.svg": {
-   "tier": "B",
-   "kind": "architectural-detail",
-   "location": "part5",
-   "rationale": "the editor MVC loop"
-  },
-  "assets/dsl-remediation-function.svg": {
-   "tier": "B",
-   "kind": "conceptual-illustration",
-   "location": "part5",
-   "rationale": "two producers, one language"
-  },
-  "assets/mage-staircase.svg": {
-   "tier": "A",
-   "kind": "synthesis",
-   "location": "part5",
-   "rationale": "the road-to-MAGE staircase — chapter-summary synthesis"
-  },
-  "assets/mage-dynamic-model.svg": {
-   "tier": "A",
-   "kind": "conceptual-framework",
-   "location": "part6",
-   "rationale": "THE central theoretical model"
-  },
-  "assets/mage-churn-vs-compounding.svg": {
-   "tier": "A",
-   "kind": "conceptual-framework",
-   "location": "part6",
-   "rationale": "the Churn/Compounding sign contrast — pairs two of the book's core dynamics; Part 6 anchor"
-  },
-  "toward-a-theory-of-mage::Churn and its positive duals": {
-   "tier": "B",
-   "kind": "conceptual-table",
-   "location": "part6",
-   "rationale": "the churn-vs-compounding duality table — negative dynamics against their positive duals"
-  },
-  "assets/author-headshot.jpg": {
-   "tier": "C",
-   "kind": "author-photo",
-   "location": "backmatter",
-   "rationale": "identify the author; one sentence"
-  },
-  "how-to-read-this-book::Where to look — surfaces, jobs, and the questions they answer": {
-   "tier": "C",
-   "kind": "reference-nav",
-   "location": "frontmatter",
-   "rationale": "look-up nav table"
-  },
-  "why-mage-follows-from-the-machine::Substrate property → problem/opportunity → MAGE response": {
-   "tier": "B",
-   "kind": "summary-of-points",
-   "location": "part1",
-   "rationale": "supports the derivation figure"
-  },
-  "modeling-structure-and-ownership::Invariants of the Logical view": {
-   "tier": "C",
-   "kind": "reference-lookup",
-   "location": "part3",
-   "rationale": "invariant lookup"
-  },
-  "modeling-structure-and-ownership::Invariants of the Development view": {
-   "tier": "C",
-   "kind": "reference-lookup",
-   "location": "part3",
-   "rationale": "invariant lookup"
-  },
-  "scenarios-and-the-joined-model::Invariants of the Scenarios view": {
-   "tier": "C",
-   "kind": "reference-lookup",
-   "location": "part3",
-   "rationale": "invariant lookup"
-  },
-  "scenarios-and-the-joined-model::The mental toolbox": {
-   "tier": "C",
-   "kind": "reference-lookup",
-   "location": "part2",
-   "rationale": "synthesis toolbox lookup"
-  },
-  "scenarios-and-the-joined-model::What each model hands forward": {
-   "tier": "B",
-   "kind": "supporting",
-   "location": "part2",
-   "rationale": "II-to-III handoff contract — property-only float (giant C/S/V/G table deleted, Move #3)"
-  },
-  "failures::The lessons, quotable": {
-   "tier": "C",
-   "kind": "summary-of-points",
-   "location": "part5",
-   "rationale": "the quotable lessons strip — aphorism + move per row (re-homed from the dissolved lessons-learned chapter into 5.6; keyed on the surviving 'failures' identity label)"
-  },
-  "the-ada-context::The burden shift": {
-   "tier": "C",
-   "kind": "reference-context",
-   "location": "part5",
-   "rationale": "one-row context"
-  },
-  "the-timeline-and-the-work::The support ratio across four windows": {
-   "tier": "B",
-   "kind": "data",
-   "location": "part5",
-   "rationale": "measured ratio"
-  },
-  "the-timeline-and-the-work::Per-path churn across the four windows": {
-   "tier": "B",
-   "kind": "data",
-   "location": "part5",
-   "rationale": "numstat measurement"
-  },
-  "the-timeline-and-the-work::The seven build stages and what each forced": {
-   "tier": "B",
-   "kind": "timeline-table",
-   "location": "part5",
-   "rationale": "the seven build stages — the chapter's spine; each row a pressure and what it forced into the product and the machinery"
-  },
-  "the-timeline-and-the-work::The build's scale at one snapshot": {
-   "tier": "B",
-   "kind": "scale-ledger",
-   "location": "part5",
-   "rationale": "the scale-at-a-glance box — production/support/IaC/model LoC and the sustained commit rate, offloaded from the prose so the body lands on 'I inspected almost none of the code'"
-  },
-  "assets/pdf-seam-layers.svg": {
-   "tier": "A",
-   "kind": "history-layers",
-   "location": "part5",
-   "rationale": "the flagship format-seam history — five layers each forced by the residual the last one left, ending on the enforcement itself found mis-reporting; anchor caption naming every layer"
-  },
-  "assets/measurement-no-gate.svg": {
-   "tier": "A",
-   "kind": "history-chain",
-   "location": "part5",
-   "rationale": "the 5.4.8 measurement-without-gate FLAGSHIP — timeout to measurement to model to evidence to report to ?authority, the terminal authority node left deliberately open; anchor caption for the ungated-measurement beat (R46)"
-  },
-  "toward-a-theory-of-mage::The four dimensions of E": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part6",
-   "rationale": "dimensioning table"
-  },
-  "toward-a-theory-of-mage::Constructs and moderators": {
-   "tier": "C",
-   "kind": "reference-lookup",
-   "location": "part6",
-   "rationale": "per-construct lookup of the model"
-  },
-  "toward-a-theory-of-mage::The three MAGE outcomes and their observables": {
-   "tier": "B",
-   "kind": "summary-of-points",
-   "location": "part6",
-   "rationale": "the three predicted outcomes"
-  },
-  "toward-a-theory-of-mage::The four Modeling × Alignment combinations": {
-   "tier": "B",
-   "kind": "summary-of-points",
-   "location": "part6",
-   "rationale": "the 2x2 of Modeling and Alignment as separable levers — each cell's primary contribution"
-  },
-  "toward-a-theory-of-mage::MAGE's eight falsifiable hypotheses H1–H8": {
-   "tier": "A",
-   "kind": "design-decision-table",
-   "location": "part6",
-   "rationale": "the theory's core claims + falsifiers; caption interprets"
-  },
-  "toward-a-theory-of-mage::Three study designs mapped to H1–H8": {
-   "tier": "B",
-   "kind": "summary-of-points",
-   "location": "part6",
-   "rationale": "three study designs"
-  },
-  "toward-a-theory-of-mage::Evidence sources and their strongest inferences": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part6",
-   "rationale": "two evidence sources + future work against strongest inference / does-not-establish — the R47 evidence-status table"
-  },
-  "what-the-theory-predicts::MAGE's nine hypotheses in three families": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part6",
-   "rationale": "the nine named hypotheses in three families with their core quantities — the R47 research-program summary"
-  },
-  "scope-conditions::Typical MAGE profiles by setting": {
-   "tier": "B",
-   "kind": "framework",
-   "location": "part6",
-   "rationale": "typical profiles by setting against the recurs/governable gates — where investment pays and residual judgment stays"
-  },
-  "mage-in-the-wild::The Modeling Ceiling": {
-   "tier": "B",
-   "kind": "comparison-summary",
-   "location": "part6",
-   "rationale": "modeling-ceiling matrix across six sites + MAGE"
-  },
-  "mage-in-the-wild::What Everyone Does": {
-   "tier": "B",
-   "kind": "comparison-summary",
-   "location": "part6",
-   "rationale": "universal-convergence bucket"
-  },
-  "mage-in-the-wild::What Industry Discovered": {
-   "tier": "B",
-   "kind": "comparison-summary",
-   "location": "part6",
-   "rationale": "generalizes-convergence bucket"
-  },
-  "mage-in-the-wild::Universal patterns — key": {
-   "tier": "C",
-   "kind": "reference-key",
-   "location": "part6",
-   "rationale": "companion key-list to the universal glyph grid — construct + full statement per U-key"
-  },
-  "mage-in-the-wild::Discovered patterns — key": {
-   "tier": "C",
-   "kind": "reference-key",
-   "location": "part6",
-   "rationale": "companion key-list to the generalizes glyph grid — construct + full statement per G-key"
-  },
-  "backmatter/colophon.md::The manuscript's governing models and the failures they prevent": {
-   "tier": "C",
-   "kind": "reference-colophon",
-   "location": "backmatter",
-   "rationale": "per-model lookup; the synthetic back matter carries no chapter-identity row, so its caption id keys on the file path"
-  },
-  "the-executable-zoo::Token savings from working through a model": {
-   "tier": "B",
-   "kind": "data",
-   "location": "part3",
-   "rationale": "model-on-vs-off measurement"
-  },
-  "the-executable-zoo::The five-field model-page template": {
-   "tier": "C",
-   "kind": "reference-lookup",
-   "location": "part3",
-   "rationale": "the per-model template fields + reader questions"
-  },
-  "assets/task-closure-tree.svg": {
-   "tier": "A",
-   "kind": "mechanism-illustration",
-   "location": "part3",
-   "rationale": "task-closure expression tree + derived grade"
-  },
-  "modeling-behavior-and-execution::Synchronization model — illustrative invariant": {
-   "tier": "C",
-   "kind": "reference-lookup",
-   "location": "part3",
-   "rationale": "invariant lookup"
-  },
-  "modeling-behavior-and-execution::Deployment-topology model — illustrative invariant": {
-   "tier": "C",
-   "kind": "reference-lookup",
-   "location": "part3",
-   "rationale": "invariant lookup"
-  },
-  "modeling-behavior-and-execution::Invariant-DAG execution policy — illustrative invariant": {
-   "tier": "C",
-   "kind": "reference-lookup",
-   "location": "part3",
-   "rationale": "invariant lookup"
-  },
-  "modeling-behavior-and-execution::Job-lifecycle state machine — illustrative invariant": {
-   "tier": "C",
-   "kind": "reference-lookup",
-   "location": "part2",
-   "rationale": "invariant lookup"
-  },
-  "modeling-measurement-and-evidence::Operational-envelope model — illustrative invariant": {
-   "tier": "C",
-   "kind": "reference-lookup",
-   "location": "part2",
-   "rationale": "invariant lookup"
-  },
-  "assets/service-allow-list.svg": {
-   "tier": "B",
-   "kind": "model-schema",
-   "location": "part3",
-   "rationale": "the declared service-connectivity allow-list — one public node, permitted edges, forbidden default"
-  },
-  "assets/typed-seam.svg": {
-   "tier": "B",
-   "kind": "conceptual-illustration",
-   "location": "part3",
-   "rationale": "the typed seam — ordinary code reaches a format library only through one structured model per format"
-  },
-  "assets/fig-job-lifecycle-sm.svg": {
-   "tier": "B",
-   "kind": "model-schema",
-   "location": "part3",
-   "rationale": "the remediation job lifecycle state machine — every active state routes to a terminal FAILED, no re-entry"
-  },
-  "assets/fig-lease-vs-cas.svg": {
-   "tier": "B",
-   "kind": "conceptual-illustration",
-   "location": "part3",
-   "rationale": "lease (crash recovery) vs compare-and-set (exactly-once permission) — the claim, not the lease, carries correctness"
-  },
-  "assets/fig-measurement-envelope.svg": {
-   "tier": "B",
-   "kind": "conceptual-illustration",
-   "location": "part3",
-   "rationale": "observation / prediction / obligation — observed warm path against predicted worst case and the job budget"
-  },
-  "assets/provenance-derivation.svg": {
-   "tier": "B",
-   "kind": "mechanism-illustration",
-   "location": "part3",
-   "rationale": "provenance derivation — a mutation stamp fans out through one registry to validation and the customer changelog"
-  },
-  "assets/why-software-came-last.svg": {
-   "tier": "A",
-   "kind": "conceptual-comparison",
-   "location": "part6",
-   "rationale": "the chapter's climax image — why software's inverted economics kept it from model-based engineering until commodity intelligence made live models affordable; anchor with the two-column comparison resolving into one causal chain"
-  },
-  "assets/discovering-models-migration.svg": {
-   "tier": "A",
-   "kind": "process-flow",
-   "location": "part4",
-   "rationale": "discovering models during a brownfield migration — weak signals partition into legitimate shape, mechanical debt, and latent concept, then naming the earned concepts changes the substrate later migration and enforcement run on; anchor for §4.2 Finding the Model in the Code"
-  },
-  "assets/recovering-model-from-brownfield.svg": {
-   "tier": "A",
-   "kind": "process-flow",
-   "location": "part4",
-   "rationale": "recovering a model from brownfield structure — the software induction chain from realized code up to a named model, with the mechanical-discovery phase held separate from the engineering judgment that names the concept; anchor for §4.2 Recover Latent Models from the Implementation"
-  },
-  "assets/audit-drain-promote-generalized.svg": {
-   "tier": "A",
-   "kind": "process-flow",
-   "location": "part4",
-   "rationale": "the generalized three-beat move — the audit's findings partition into drain, redesign, and accept; draining and redesign identify the obligation that deserves authority; the final mechanism may promote the detector to blocking or retain it as a signal while a narrower control carries authority; anchor generalizing Audit → Drain → Promote"
-  },
-  "assets/behavioral-property-classes.svg": {
-   "tier": "B",
-   "kind": "taxonomy-diagram",
-   "location": "part2",
-   "rationale": "three property classes a behavioral model exposes — supporting caption on which checker follows from which property"
-  },
-  "assets/lease-interleaving-trace.svg": {
-   "tier": "B",
-   "kind": "state-trace",
-   "location": "part2",
-   "rationale": "reclaim and reissue overlapping a stale holder's late release — supporting caption on why an epoch fence makes the old release inapplicable"
-  },
-  "assets/match-mechanism-to-property.svg": {
-   "tier": "B",
-   "kind": "decision-diagram",
-   "location": "part3",
-   "rationale": "an obligation forks on property kind to constraint, validator, or gate — supporting caption on matching mechanism to property, not a maturity ladder"
-  },
-  "assets/question-to-consequence-progression.svg": {
-   "tier": "B",
-   "kind": "progression-diagram",
-   "location": "part2",
-   "rationale": "engineering question to representation to analysis to evidence to authority — worked mini-example of representation selection before the six-class ontology (§2.1)"
-  },
-  "assets/established-traditions-new-composition.svg": {
-   "tier": "A",
-   "kind": "conceptual-convergence",
-   "location": "part6",
-   "rationale": "two established traditions (engineering + AI) converge in MAGE's new composition → GEE → governance conversion → engineering capital; the §6.5.4 heritage anchor"
-  },
-  "assets/canonical-structural.svg": {
-   "tier": "B",
-   "kind": "canonical-opener",
-   "location": "part2",
-   "rationale": "the structural move — entities and typed relations, the edge label carrying the engineering meaning; supporting caption naming reachability/path/cycle analyses"
-  },
-  "assets/canonical-behavioral.svg": {
-   "tier": "B",
-   "kind": "canonical-opener",
-   "location": "part2",
-   "rationale": "the behavioral move — states and permitted transitions, the omitted edge as the forbidden behavior; supporting caption on the reachability/liveness analyses"
-  },
-  "assets/canonical-ownership.svg": {
-   "tier": "B",
-   "kind": "canonical-opener",
-   "location": "part2",
-   "rationale": "the ownership move — a claim over time carrying the generation that rejects a stale claimant; supporting caption on interleaving analysis"
-  },
-  "assets/canonical-decision.svg": {
-   "tier": "B",
-   "kind": "canonical-opener",
-   "location": "part2",
-   "rationale": "the decision move — the same arrow read descriptively (calls) and normatively (may call); supporting caption on the absent edge and policy checks"
-  },
-  "assets/canonical-measurement.svg": {
-   "tier": "B",
-   "kind": "canonical-opener",
-   "location": "part2",
-   "rationale": "the measurement move — quantities related and a value read against a declared envelope; supporting caption on aggregate-and-compare analysis"
-  },
-  "assets/canonical-provenance.svg": {
-   "tier": "B",
-   "kind": "canonical-opener",
-   "location": "part2",
-   "rationale": "the provenance move — typed derivation/attribution relations over stable identities; supporting caption on lineage/audit traversals"
-  },
-  "assets/modeling-repertoire.svg": {
-   "tier": "B",
-   "kind": "repertoire-spread",
-   "location": "part2",
-   "rationale": "nine-panel repertoire of familiar model forms colour-coded by the six questions; supporting caption naming that primitives recur while semantics change"
-  },
-  "assets/engineer-agent-interaction.svg": {
-   "tier": "B",
-   "kind": "flow",
-   "location": "part4",
-   "rationale": "the engineer's two interfaces with delegated realization — intent and knowledge out through natural language / specification / models, evidence back through review / testing / analysis, one shared implementation node as the hinge; supporting caption on channels complementary rather than sequential"
-  },
-  "assets/active-passive-alignment.svg": {
-   "tier": "B",
-   "kind": "flow",
-   "location": "part4",
-   "rationale": "active alignment converging a realization onto a model, then the model + mechanisms remaining in the GEE as passive alignment — the two modes as one sequence; supporting caption on establish-then-preserve (book-style SVG redraw of the author artwork)"
-  },
-  "assets/alignment-kernel.svg": {
-   "tier": "A",
-   "kind": "concentric",
-   "location": "part4",
-   "rationale": "the alignment kernel as concentric accumulation — protected properties at the core, later models extending the governed surface under the constraints already established; anchor caption telling the reader the layers are the same class of model entering governance over time (book-style SVG redraw of the author artwork)"
-  },
-  "assets/interlude-execution-unit.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part4",
-   "rationale": "two execution units for document remediation — (a) whole-document resident state beside (b) page-chunked division; supporting caption on reducing per-worker working state"
-  },
-  "assets/interlude-storage-vs-reasoning.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part4",
-   "rationale": "chunked residency beside skeletonized residency — media resident vs streamed on demand; supporting caption on total media size no longer bounding worker memory"
-  },
-  "assets/interlude-graph-two-partitions.svg": {
-   "tier": "A",
-   "kind": "comparison",
-   "location": "part4",
-   "rationale": "two execution policies over one remediation graph — (a) page-oriented grouping by location beside (b) frontier grouping by readiness; anchor caption walking how the same work and dependencies admit a different execution boundary"
-  },
-  "assets/interlude-analysis-before-build.svg": {
-   "tier": "A",
-   "kind": "comparison",
-   "location": "part4",
-   "rationale": "analysis before implementation — (a) critical path as latency floor, (b) node decomposition exposing parallel children, (c) representation change removing a serial dependency; anchor caption on what the model exposes before the change is built"
-  },
-  "assets/interlude-latency-floor.svg": {
-   "tier": "B",
-   "kind": "flow",
-   "location": "part4",
-   "rationale": "the GenAI dependency chain and its irreducible latency floor; supporting caption on why the three dependent levels' per-call times add"
-  },
-  "assets/interlude-prediction-residual.svg": {
-   "tier": "B",
-   "kind": "comparison",
-   "location": "part4",
-   "rationale": "using prediction error as evidence — (a) the residual pointing to a wrong parameter/relation/mechanism beside (b) the refine-and-retest feedback loop; supporting caption on turning the gap into an engineering question"
-  },
-  "assets/interlude-modeling-cycle.svg": {
-   "tier": "B",
-   "kind": "cycle",
-   "location": "part4",
-   "rationale": "modeling as a loop — the non-linear problem→model→prediction/design→implementation/measurement cycle that continues while the questions justify the cost"
-  },
-  "assets/factory-progression.svg": {
-   "tier": "B",
-   "kind": "progression-diagram",
-   "location": "part6",
-   "rationale": "the five-stage craft-to-supervised-production chain — the chapter's historical explanatory model; supporting caption on knowledge and control moving from the fabricator into the production system"
+  "_note": "Declared caption-tier verdicts for the book's authored figure/table captions. Each key is a caption id: for a figure, the `figure:` asset path (already unique in chapter scope); for a table, `<chapter-file>::<short>` using the table's existing `[short: ...]` print-index name (single source of truth: the same string the list-of-tables uses). `tier` is A|B|C — the caption's argumentative role (A Anchor 4-8 sentences/60-120 words; B Supporting 2-4/25-70; C Reference 1-2/<=30). `kind` and `location` are the classification axes; `rationale` is one line. Mirrors the brick-fitness.json genre: a flat declared map with a _note provenance block, no hardcoded list in the builder or lint. Consumed by book-models/lint_caption_length.py, which measures each authored caption's length against its tier band (A carries a floor: an under-written anchor is a finding). A new figure/table with no row here is itself a finding (drift defense). Source of the first-pass verdicts + the ratified A/B borderline resolutions (constraint-vs-sensor=A, services-reactive-view=A, join-composite=A, llm-as-function-call=B): book/_design/drafts/caption-tier-model-260806.md. The lint lands AUDIT-ONLY (rule #55): the current tree squeezed every caption to <=3 sentences/<=50 words under the retired uniform cap, so all 17 A-tier captions are under-length today; the Phase-3 rewrite wave drains the findings to 0, then the lint promotes to blocking.",
+  "tiers": {
+    "assets/realization-space.svg": {
+      "tier": "B",
+      "kind": "set-diagram",
+      "location": "part2",
+      "rationale": "obligation/realization Venn — two obligation regions and their acceptable intersection with distinct realization points; supporting caption names that obligations bound a region without selecting a point, and the remaining choices are degrees of freedom"
+    },
+    "assets/from-nodes-to-composition.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part2",
+      "rationale": "two-panel worked example — computations without composition (113 registered, 2 authored relations) beside composition made explicit (11 payload-bearing + 22 control gates); supporting caption on typing the derived relations"
+    },
+    "assets/two-reductions-static-realized.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part2",
+      "rationale": "static computation structure beside one run's realized edit record; supporting caption on the two reductions being unjoined today and the join added when a question needs it"
+    },
+    "assets/fidelity-vs-authority.svg": {
+      "tier": "B",
+      "kind": "conceptual-axis",
+      "location": "part3",
+      "rationale": "correspondence strength and authority direction drawn as two independent directed axes; supporting caption on stronger correspondence not moving the authority arrow"
+    },
+    "assets/modeling-history.svg": {
+      "tier": "A",
+      "kind": "progression-diagram",
+      "location": "part5",
+      "rationale": "the top-to-bottom modeling history — a partial model growing the composition half it lacked, exposing dependency semantics and effect boundedness; anchor caption for the road-to-MAGE progression"
+    },
+    "assets/adopting-assistance-to-delegation.svg": {
+      "tier": "A",
+      "kind": "flow",
+      "location": "appendixG",
+      "rationale": "Appendix G figure G.1-1 — the shift from individual assistance to bounded delegation as a changing boundary (responsibilities move into models/evidence/mechanisms), not a maturity ladder; anchor figure for the appendix"
+    },
+    "assets/adopting-investment-paths.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "appendixG",
+      "rationale": "Appendix G figure G.2-1 — two paths (representation vs control) from the two recurring costs (reconstruction, adjudication) to engineering capital; strengthen surface by surface where return justifies it, not a maturity ladder"
+    },
+    "assets/adopting-figures-recap.svg": {
+      "tier": "B",
+      "kind": "conceptual-framework",
+      "location": "appendixG",
+      "rationale": "Appendix G recap panel — the four earlier figures (value/governability Section 6.3, governance-conversion loop Section 3.4, support-apparatus ratio and effort-redistribution Part V) named and reused rather than re-embedded"
+    },
+    "assets/h1-product-lifecycle.svg": {
+      "tier": "A",
+      "kind": "model-diagram",
+      "location": "appendixH",
+      "rationale": "Appendix H opening figure — the five lifecycle surfaces with Assurance drawn cross-cutting; anchor caption sets the differential-adoption frame for the whole appendix"
+    },
+    "assets/h4-change-diagnosis-inheritance.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "appendixH",
+      "rationale": "change episode from diagnosis and traceability through the realization space to acceptance evidence and inherited durable structure — supporting caption on change-scoped models, degrees of freedom, and inheritance"
+    },
+    "assets/h5-incident-to-governance.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "appendixH",
+      "rationale": "incident to root-cause to modeled cause to structural rhymes to repair-the-class to governance conversion — supporting caption on repairing the class and inheriting the lesson"
+    },
+    "assets/h6-assurance-models-realization.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "appendixH",
+      "rationale": "assurance claim requiring model evidence, realization evidence, and the traceability/Alignment correspondence between them — supporting caption on assurance across models and realization"
+    },
+    "assets/h8-product-gee.svg": {
+      "tier": "A",
+      "kind": "model-diagram",
+      "location": "appendixH",
+      "rationale": "Appendix H closing figure — heterogeneous local models composing into the product GEE via shared identity/relations, reasoned through by agents and Alignment; anchor caption"
+    },
+    "assets/h9-capital-time-space.svg": {
+      "tier": "A",
+      "kind": "model-diagram",
+      "location": "appendixH",
+      "rationale": "Appendix H closing figure — engineering capital at the origin of a time axis (the product lifecycle) and a space axis (other products and organizations); anchor caption carries the two-dimensional capital argument"
+    },
+    "assets/document-mutation-model.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "structural document-mutation seam — supporting caption naming the sanctioned boundary the model exposes"
+    },
+    "assets/structural-reduction.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "territory-to-model reduction for document mutation — supporting caption on what the model keeps and drops"
+    },
+    "assets/recovery-ordering-model.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "three recovery states plus the forbidden ordering — supporting caption on the edge that does not exist"
+    },
+    "assets/model-first-encoding-second.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "behavioral model above its encoding and implementation — supporting caption on model-before-syntax"
+    },
+    "assets/in-flight-ownership-states.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "in-flight lease states — supporting caption on who holds a claim and when it is stale"
+    },
+    "assets/in-flight-lease-overlap.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "one lease fanning into ownership/behavior/measurement views — supporting caption on class overlap"
+    },
+    "assets/service-flow-model.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "declared service-flow graph — supporting caption on permitted edges and the sole public node"
+    },
+    "assets/observed-vs-declared.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "observed vs declared structure — supporting caption on correspondence, not correctness"
+    },
+    "assets/genai-cost-capacity-model.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "GenAI usage/cost/capacity/budget quantities — supporting caption on the measurement model over raw events"
+    },
+    "assets/measured-quantity-comparison.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "measured quantity against a reference envelope — supporting caption on what the model compares, not the response"
+    },
+    "assets/modeling-perp-enforcement.svg": {
+      "tier": "B",
+      "kind": "conceptual-spectrum",
+      "location": "part2",
+      "rationale": "modeling a quantity vs assigning its authority — supporting caption on the Part II / Part III split"
+    },
+    "assets/attribution-model.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "run/operation/target/mutation/pass/evidence — supporting caption on selecting events that matter to audit"
+    },
+    "assets/provenance-record-vs-views.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "one action record deriving several explanations — supporting caption on record-once-derive"
+    },
+    "assets/modeling-substrate.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "the layered modeling substrate joined by shared identity — supporting caption on models as a system"
+    },
+    "assets/substrate-traversal.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "task-driven traversal of the substrate — supporting caption on entering at the named entity and following identities"
+    },
+    "assets/derive-generate-trace.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "three ways to keep map and territory equal — supporting caption chosen by which side is authoritative"
+    },
+    "assets/joined-by-identity.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "models joined by identity, not one universal graph — supporting caption on derive/trace/check-decidable"
+    },
+    "assets/modeling-creates-surfaces.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "cross-Part path territory->model->property->alignment->consequence — supporting caption closing Part II"
+    },
+    "assets/one-docable-job.svg": {
+      "tier": "B",
+      "kind": "territory-diagram",
+      "location": "part1",
+      "rationale": "one DocAble job as territory not model — supporting caption locating the landmarks Parts II/III redraw"
+    },
+    "assets/authority-spectrum.svg": {
+      "tier": "A",
+      "kind": "conceptual-spectrum",
+      "location": "part3",
+      "rationale": "authority softest-to-hardest across four boundaries; the memorable takeaway replacing the model-internals tutorial — anchor with inlined accessible description"
+    },
+    "assets/part3-nav-arc.svg": {
+      "tier": "B",
+      "kind": "navigation",
+      "location": "part3",
+      "rationale": "Part-III opener nav arc — five chapters as five questions on one descending arc"
+    },
+    "assets/intervention-boundaries.svg": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part3",
+      "rationale": "the four intervention boundaries as semantic grains (not strengths) — 3.1's figure; v7 recut the caption to a terse supporting directive (guidance vs authority boundaries), no longer an anchor-length reading guide"
+    },
+    "assets/governance-conversion.svg": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part3",
+      "rationale": "governance conversion — diagnose what was missing, encode the missing structure, future work inherits it; 3.4's central figure"
+    },
+    "assets/residual-decision-tree.svg": {
+      "tier": "B",
+      "kind": "decision-tree",
+      "location": "part3",
+      "rationale": "three questions, four leaves — places any goal relative to the mechanisms; v7 recut the caption terse (RESIDUAL/EVALUATED-ONLY leaves), no longer anchor-length"
+    },
+    "assets/three-relations.svg": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part3",
+      "rationale": "the three relations an obligation can test — correspondence, independent evaluation, acceptance; supporting figure for 3.2.1"
+    },
+    "assets/cost-enforcement-gradient.svg": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part3",
+      "rationale": "one measurement fanning to observe/adapt/gate — the roles are not stages of maturity; supporting figure for 3.3.3"
+    },
+    "assets/positive-negative-obligation.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part3",
+      "rationale": "two shapes of constraint — a negative prohibition vs a positive must-call obligation; supporting figure for 3.3.4"
+    },
+    "assets/provenance-carried-admission.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "part3",
+      "rationale": "the single sanctioned derivation path carries provenance to the consequence boundary, which requires it; supporting figure for 3.3.6"
+    },
+    "assets/judgment-without-consequence.svg": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part3",
+      "rationale": "evidence and correct judgment without a blocking consequence — the auto-resolution cascade; supporting figure for 3.4.3"
+    },
+    "assets/field-guide-cloudflare.svg": {
+      "tier": "C",
+      "kind": "team-card",
+      "location": "appendix",
+      "rationale": "Field Guide card — Cloudflare: policy-first governance to the Alignment Principle; reference/nav card art, short caption"
+    },
+    "assets/field-guide-spotify.svg": {
+      "tier": "C",
+      "kind": "team-card",
+      "location": "appendix",
+      "rationale": "Field Guide card — Spotify: fleet-first autonomy to the Governed Engineering Environment; reference/nav card art, short caption"
+    },
+    "assets/field-guide-shopify.svg": {
+      "tier": "C",
+      "kind": "team-card",
+      "location": "appendix",
+      "rationale": "Field Guide card — Shopify: shared agent-ready environment to the Engineering Environment; reference/nav card art, short caption"
+    },
+    "assets/field-guide-docker.svg": {
+      "tier": "C",
+      "kind": "team-card",
+      "location": "appendix",
+      "rationale": "Field Guide card — Docker: authority boundaries and eval loops to Governance Conversion; reference/nav card art, short caption"
+    },
+    "assets/field-guide-siemens.svg": {
+      "tier": "C",
+      "kind": "team-card",
+      "location": "appendix",
+      "rationale": "Field Guide card — Siemens: model-first engineering to the Modeling Principle (one rung short of the drift gate); reference/nav card art, short caption"
+    },
+    "assets/field-guide-zenseact.svg": {
+      "tier": "C",
+      "kind": "team-card",
+      "location": "appendix",
+      "rationale": "Field Guide card — Zenseact: autonomous knowledge work to the Reasoning Horizon; reference/nav card art, short caption"
+    },
+    "assets/field-guide-uber.svg": {
+      "tier": "C",
+      "kind": "team-card",
+      "location": "appendix",
+      "rationale": "Field Guide card — Uber: factory-scale economics to the Governed Engineering Environment; reference/nav card art, short caption"
+    },
+    "assets/model-ontology.svg": {
+      "tier": "B",
+      "kind": "taxonomy",
+      "location": "part2",
+      "rationale": "the six-class working ontology — the 2.1 twin of front-matter Figure 0.3-2; a conceptual reference caption naming the classifying axis"
+    },
+    "assets/model-classes.svg": {
+      "tier": "C",
+      "kind": "taxonomy",
+      "location": "frontmatter",
+      "rationale": "the six model-classes taxonomy — glossary Model-entry reference chrome; short nav/reference caption"
+    },
+    "assets/gloss-core-ideas.svg": {
+      "tier": "C",
+      "kind": "concept-map",
+      "location": "frontmatter",
+      "rationale": "glossary section-map for 'The core ideas' — orientation concept-map chrome; short reference caption"
+    },
+    "assets/gloss-agent-vocab.svg": {
+      "tier": "C",
+      "kind": "concept-map",
+      "location": "frontmatter",
+      "rationale": "glossary section-map for 'How coding agents work (and fail)' — orientation concept-map chrome; short reference caption"
+    },
+    "assets/gloss-gee.svg": {
+      "tier": "B",
+      "kind": "concept-map",
+      "location": "frontmatter",
+      "rationale": "glossary ontology for 'The Governed Engineering Environment' — the redrawn figure teaches the mechanism→obligation authority relation and the two surfaces, so the caption is explanatory (both branches + capital), not short orientation chrome"
+    },
+    "assets/mage-vocabulary.svg": {
+      "tier": "C",
+      "kind": "vocabulary-spine",
+      "location": "frontmatter",
+      "rationale": "the book's noun spine placed after the glossary — the vocabulary as one chain every later figure instantiates; short reference caption"
+    },
+    "assets/open-frontiers.svg": {
+      "tier": "A",
+      "kind": "roadmap",
+      "location": "part6",
+      "rationale": "the research-program map — four kinds welded to H1-H8; the coda anchor for 'Where the frontier goes next'"
+    },
+    "assets/model-ladder.svg": {
+      "tier": "B",
+      "kind": "conceptual-spectrum",
+      "location": "part3",
+      "rationale": "the representation ladder — richer representation expands computation; Part-3 capstone, supporting"
+    },
+    "assets/two-views-of-the-evidence.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part5",
+      "rationale": "Part-V opener depth/breadth split — originating case vs. industrial reconstructions converging on analytic generalization; motivates Part VI"
+    },
+    "assets/determinization-frontier.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part6",
+      "rationale": "the determinization frontier the whole method walks toward; Part-6 closing anchor image"
+    },
+    "assets/six-company-map.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part6",
+      "rationale": "six systems reconstruct regions of one theory; the map that opens Meet the six"
+    },
+    "assets/six-entry-points.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part6",
+      "rationale": "six systems enter the shared design space at different points; the R47 map that opens MAGE in the Wild"
+    },
+    "assets/modeling-ceiling-tiers.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part6",
+      "rationale": "the three-tier modeling ceiling (knowledge / executable model / governed correspondence); R47 replacement for the 12-col matrix"
+    },
+    "assets/determinization-two-paths.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part6",
+      "rationale": "the two paths to mechanization (direct vs representation shift); R47 replacement for the determinization ladder"
+    },
+    "assets/where-effort-moves.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part6",
+      "rationale": "where engineering effort moves across an unchanged lifecycle; R47 replacement for the SDLC-to-SELC figure"
+    },
+    "assets/why-software-modeled.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part6",
+      "rationale": "the three economic variables (physical realization / implementation labor / synchronization cost) and the change that moves them; R47 replacement for why-software-came-last"
+    },
+    "assets/model-induction-general.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part6",
+      "rationale": "the model-induction move drawn once — realized work to repeated forms to a named concept — with the left rail stating the move and three columns instantiating it in software, knowledge work, and CAD; the anchor for the 'models can be induced from the work' callback"
+    },
+    "assets/return-governability.svg": {
+      "tier": "B",
+      "kind": "conceptual-framework",
+      "location": "part6",
+      "rationale": "value of explicit engineering (vertical) x feasible governability (horizontal), with four self-explanatory quadrants (explicit judgment / authority / informal / selective); anchor figure for 6.3.2. Tier B: the quadrants now carry their own prose, so the caption is deliberately short"
+    },
+    "assets/governance-census.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part6",
+      "rationale": "obligations vs mechanisms; gap/orphan as counts — supports the census subsection"
+    },
+    "assets/research-arc.svg": {
+      "tier": "B",
+      "kind": "methodology",
+      "location": "frontmatter",
+      "rationale": "the research arc — the book's evidence procedure from one case to the refined theory; the enlarged figure carries the sequence, the trimmed caption supports it"
+    },
+    "assets/engineering-leverage.svg": {
+      "tier": "A",
+      "kind": "comparison-framework",
+      "location": "part1",
+      "rationale": "engineering leverage moves into the environment when agents implement; Part-1 opener framing (260815 copyedit — replaces new-engineering-problem.svg as Fig 1.1-1). Promoted B->A 260911: the caption now also carries the control/responsibility claim — the environment as the means through which engineers retain control, and MAGE's primary-means contention (control-responsibility surgery)."
+    },
+    "assets/environment-as-object.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part1",
+      "rationale": "engineer-the-agent vs engineer-the-environment; supporting contrast paired with the new-problem anchor"
+    },
+    "assets/mage-method.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "frontmatter",
+      "rationale": "book-level method synthesis; reader learns the whole method from the caption"
+    },
+    "assets/book-map.svg": {
+      "tier": "A",
+      "kind": "roadmap",
+      "location": "frontmatter",
+      "rationale": "explicit-architecture caption (frontma 260917): the figure now encodes the book's epistemic architecture — a nested software-engineering case between the question and the theory — and the caption teaches how to read that architecture standalone in print, earning an anchor-length caption"
+    },
+    "assets/docable-glimpse.svg": {
+      "tier": "B",
+      "kind": "conceptual-framework",
+      "location": "part1",
+      "rationale": "the running production-system glimpse — input to output; the object the book governs (R42 terse-caption revision: internals deliberately absent)"
+    },
+    "assets/docable-pipeline.svg": {
+      "tier": "A",
+      "kind": "architectural-overview",
+      "location": "part1",
+      "rationale": "introduces the whole case-study system"
+    },
+    "assets/loop-engineering.svg": {
+      "tier": "B",
+      "kind": "mechanism-detail",
+      "location": "part1",
+      "rationale": "the four levers; elaborates the loop"
+    },
+    "assets/reasoning-horizon.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part1",
+      "rationale": "why compaction needs models"
+    },
+    "assets/agentic-substrate.svg": {
+      "tier": "B",
+      "kind": "conceptual-framework",
+      "location": "part1",
+      "rationale": "foundation model + agentic harness -> agent -> engineering environment; the §1.3.1 substrate diagram the reasoning-horizon and authority arguments both derive from (260815 copyedit)"
+    },
+    "assets/substrate-to-method.svg": {
+      "tier": "B",
+      "kind": "comparison-framework",
+      "location": "part1",
+      "rationale": "finite state -> representation problem -> Modeling; probabilistic work -> enforcement problem -> Alignment; Part 1's closing derivation figure (260815 copyedit)"
+    },
+    "assets/sdlc-to-selc.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part6",
+      "rationale": "the reassigned seat"
+    },
+    "assets/agent-stack-layers.svg": {
+      "tier": "A",
+      "kind": "architectural-overview",
+      "location": "part2",
+      "rationale": "the MAGE stack — Part 2 anchor framework"
+    },
+    "assets/documentation-hierarchy.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part2",
+      "rationale": "islands vs model-at-apex"
+    },
+    "assets/semantic-gap-levels.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part2",
+      "rationale": "where to lift a check"
+    },
+    "assets/governance-conversion-loop.svg": {
+      "tier": "A",
+      "kind": "core-loop",
+      "location": "part2",
+      "rationale": "the governance-conversion loop — central construct"
+    },
+    "assets/control-growth.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part2",
+      "rationale": "controls-accumulate curve; supports the empirical claim"
+    },
+    "assets/constraint-vs-sensor.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part2",
+      "rationale": "the two governance moves; v7 recut the caption to a terse constraint-vs-sensor selection rule, no longer anchor-length"
+    },
+    "assets/form-move-2x2.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part2",
+      "rationale": "form (soft/hard) x move (constraint/sensor) 2x2; one worked example per cell"
+    },
+    "assets/config-optimization-runbook.svg": {
+      "tier": "B",
+      "kind": "runbook",
+      "location": "part2",
+      "rationale": "the fenced judgment step"
+    },
+    "assets/metric-spectrum.svg": {
+      "tier": "B",
+      "kind": "conceptual-spectrum",
+      "location": "part2",
+      "rationale": "hard-vs-soft metrics"
+    },
+    "assets/mmm-drain-curve.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part2",
+      "rationale": "the orphan-rate drain"
+    },
+    "assets/collision-edge.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part2",
+      "rationale": "the conflict is the edge"
+    },
+    "assets/census-trio.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part2",
+      "rationale": "catalogue / graph / coverage — three views over the control machinery; v7 recut the caption to a terser supporting form (same identities, different relations)"
+    },
+    "assets/trunk-and-views.svg": {
+      "tier": "A",
+      "kind": "architectural-framework",
+      "location": "part3",
+      "rationale": "one trunk, five views — Part 3 anchor"
+    },
+    "assets/coherence-triangle.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part3",
+      "rationale": "schema + invariants + proof"
+    },
+    "assets/dataflow-inset.svg": {
+      "tier": "C",
+      "kind": "structure-inset",
+      "location": "part3",
+      "rationale": "a labelled edge inset; identify-only"
+    },
+    "assets/service-model-structure.svg": {
+      "tier": "B",
+      "kind": "model-schema",
+      "location": "part3",
+      "rationale": "the logical-view schema"
+    },
+    "assets/sync-model-structure.svg": {
+      "tier": "B",
+      "kind": "model-schema",
+      "location": "part3",
+      "rationale": "the process-view lock schema"
+    },
+    "assets/component-model-structure.svg": {
+      "tier": "B",
+      "kind": "model-schema",
+      "location": "part3",
+      "rationale": "the development-view registry"
+    },
+    "assets/deployment-model-structure.svg": {
+      "tier": "B",
+      "kind": "model-schema",
+      "location": "part3",
+      "rationale": "the physical-view placement"
+    },
+    "assets/dag-policy-structure.svg": {
+      "tier": "B",
+      "kind": "conceptual-policy",
+      "location": "part3",
+      "rationale": "profile edit, not graph edit"
+    },
+    "assets/join-composite.svg": {
+      "tier": "A",
+      "kind": "synthesis",
+      "location": "part3",
+      "rationale": "the four-model join — synthesizes the whole Part-3 model set"
+    },
+    "assets/model-sync-two-layer-net.svg": {
+      "tier": "B",
+      "kind": "mechanism-illustration",
+      "location": "part2",
+      "rationale": "the two-layer net — teaches how to read coverage vs guarantee (v8 simplified the caption to a tier-B length)"
+    },
+    "assets/wiki-linkage.svg": {
+      "tier": "B",
+      "kind": "process-diagram",
+      "location": "part4",
+      "rationale": "the wiki-as-model round-trip"
+    },
+    "assets/squash-zero-promote.svg": {
+      "tier": "B",
+      "kind": "runbook",
+      "location": "part4",
+      "rationale": "audit -> drain -> promote"
+    },
+    "assets/three-skills.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part4",
+      "rationale": "introduces the three-skills framework"
+    },
+    "education-research-open-problems::The authorship division": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part7",
+      "rationale": "the durable authorship split — what Self-Governance carries vs. what the engineer remains answerable for; §6.6.1 answerability table"
+    },
+    "assets/engineering-recurring-work.svg": {
+      "tier": "A",
+      "kind": "flow",
+      "location": "part4",
+      "rationale": "the Part IV synthesis: an environment both supports the reasoner and enforces selected obligations (dashed = enforce where feasible), and the cycle iterates; anchor figure for 4.1.4"
+    },
+    "assets/figure-composition.svg": {
+      "tier": "B",
+      "kind": "conceptual-framework",
+      "location": "appendix",
+      "rationale": "the three partner skills act on one governed environment from three directions — Appendix E capstone composition figure (sibling of skill-recipe)"
+    },
+    "assets/two-evidence-boundaries.svg": {
+      "tier": "B",
+      "kind": "conceptual",
+      "location": "part4",
+      "rationale": "the earliest-legible and last-safe evidence boundaries on one work-to-consequence timeline"
+    },
+    "assets/governed-action.svg": {
+      "tier": "B",
+      "kind": "conceptual",
+      "location": "part4",
+      "rationale": "the whole governed action — environment shapes the agent, prevention closes the action space, evidence guards the consequence"
+    },
+    "assets/transformations-pipeline.svg": {
+      "tier": "B",
+      "kind": "process-synthesis",
+      "location": "part4",
+      "rationale": "one skeleton, sized transformations"
+    },
+    "assets/novelty-axis.svg": {
+      "tier": "B",
+      "kind": "conceptual-axis",
+      "location": "part4",
+      "rationale": "novelty sets the leap"
+    },
+    "assets/velocity-commits-per-week.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "appendix-evidence-ledger",
+      "rationale": "the velocity curve (re-homed to the Part-V evidence ledger, R46)"
+    },
+    "assets/build-stages-timeline.svg": {
+      "tier": "B",
+      "kind": "timeline",
+      "location": "part5",
+      "rationale": "the seven build stages as pressure->consequence (replaces the retired seven-stage table, R46)"
+    },
+    "assets/phased-timeline.svg": {
+      "tier": "B",
+      "kind": "timeline",
+      "location": "part5",
+      "rationale": "the messy timeline"
+    },
+    "assets/support-ratio-curve.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "the support ratio"
+    },
+    "assets/churn-per-path.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "appendix-evidence-ledger",
+      "rationale": "path churn across windows (re-homed to the Part-V evidence ledger, R46)"
+    },
+    "assets/llm-as-function-call.svg": {
+      "tier": "B",
+      "kind": "mechanism-illustration",
+      "location": "part5",
+      "rationale": "LLM as a function call; author-held at supporting"
+    },
+    "assets/services-reactive-view.svg": {
+      "tier": "A",
+      "kind": "architectural-overview",
+      "location": "part5",
+      "rationale": "the built system's runtime architecture — case-study anchor"
+    },
+    "assets/system-overview.svg": {
+      "tier": "B",
+      "kind": "architectural-overview",
+      "location": "part5",
+      "rationale": "the six-responsibility end-to-end tour — supports the responsibility bullets above it"
+    },
+    "assets/frontend-mvc-editor-dsl.svg": {
+      "tier": "B",
+      "kind": "architectural-detail",
+      "location": "part5",
+      "rationale": "the editor MVC loop"
+    },
+    "assets/dsl-remediation-function.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part5",
+      "rationale": "two producers, one language"
+    },
+    "assets/mage-staircase.svg": {
+      "tier": "A",
+      "kind": "synthesis",
+      "location": "part5",
+      "rationale": "the road-to-MAGE staircase — chapter-summary synthesis"
+    },
+    "assets/mage-dynamic-model.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part6",
+      "rationale": "THE central theoretical model"
+    },
+    "assets/mage-churn-vs-compounding.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part6",
+      "rationale": "the Churn/Compounding sign contrast — pairs two of the book's core dynamics; Part 6 anchor"
+    },
+    "toward-a-theory-of-mage::Churn and its positive duals": {
+      "tier": "B",
+      "kind": "conceptual-table",
+      "location": "part6",
+      "rationale": "the churn-vs-compounding duality table — negative dynamics against their positive duals"
+    },
+    "assets/author-headshot.jpg": {
+      "tier": "C",
+      "kind": "author-photo",
+      "location": "backmatter",
+      "rationale": "identify the author; one sentence"
+    },
+    "how-to-read-this-book::Where to look — surfaces, jobs, and the questions they answer": {
+      "tier": "C",
+      "kind": "reference-nav",
+      "location": "frontmatter",
+      "rationale": "look-up nav table"
+    },
+    "why-mage-follows-from-the-machine::Substrate property → problem/opportunity → MAGE response": {
+      "tier": "B",
+      "kind": "summary-of-points",
+      "location": "part1",
+      "rationale": "supports the derivation figure"
+    },
+    "modeling-structure-and-ownership::Invariants of the Logical view": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part3",
+      "rationale": "invariant lookup"
+    },
+    "modeling-structure-and-ownership::Invariants of the Development view": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part3",
+      "rationale": "invariant lookup"
+    },
+    "scenarios-and-the-joined-model::Invariants of the Scenarios view": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part3",
+      "rationale": "invariant lookup"
+    },
+    "scenarios-and-the-joined-model::The mental toolbox": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part2",
+      "rationale": "synthesis toolbox lookup"
+    },
+    "scenarios-and-the-joined-model::What each model hands forward": {
+      "tier": "B",
+      "kind": "supporting",
+      "location": "part2",
+      "rationale": "II-to-III handoff contract — property-only float (giant C/S/V/G table deleted, Move #3)"
+    },
+    "failures::The lessons, quotable": {
+      "tier": "C",
+      "kind": "summary-of-points",
+      "location": "part5",
+      "rationale": "the quotable lessons strip — aphorism + move per row (re-homed from the dissolved lessons-learned chapter into 5.6; keyed on the surviving 'failures' identity label)"
+    },
+    "the-ada-context::The burden shift": {
+      "tier": "C",
+      "kind": "reference-context",
+      "location": "part5",
+      "rationale": "one-row context"
+    },
+    "the-timeline-and-the-work::The support ratio across four windows": {
+      "tier": "B",
+      "kind": "data",
+      "location": "part5",
+      "rationale": "measured ratio"
+    },
+    "the-timeline-and-the-work::Per-path churn across the four windows": {
+      "tier": "B",
+      "kind": "data",
+      "location": "part5",
+      "rationale": "numstat measurement"
+    },
+    "the-timeline-and-the-work::The seven build stages and what each forced": {
+      "tier": "B",
+      "kind": "timeline-table",
+      "location": "part5",
+      "rationale": "the seven build stages — the chapter's spine; each row a pressure and what it forced into the product and the machinery"
+    },
+    "assets/pdf-seam-layers.svg": {
+      "tier": "A",
+      "kind": "history-layers",
+      "location": "part5",
+      "rationale": "the flagship format-seam history — five layers each forced by the residual the last one left, ending on the enforcement itself found mis-reporting; anchor caption naming every layer"
+    },
+    "assets/measurement-no-gate.svg": {
+      "tier": "A",
+      "kind": "history-chain",
+      "location": "part5",
+      "rationale": "the 5.4.8 measurement-without-gate FLAGSHIP — timeout to measurement to model to evidence to report to ?authority, the terminal authority node left deliberately open; anchor caption for the ungated-measurement beat (R46)"
+    },
+    "toward-a-theory-of-mage::The four dimensions of E": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part6",
+      "rationale": "dimensioning table"
+    },
+    "toward-a-theory-of-mage::Constructs and moderators": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part6",
+      "rationale": "per-construct lookup of the model"
+    },
+    "toward-a-theory-of-mage::The three MAGE outcomes and their observables": {
+      "tier": "B",
+      "kind": "summary-of-points",
+      "location": "part6",
+      "rationale": "the three predicted outcomes"
+    },
+    "toward-a-theory-of-mage::The four Modeling × Alignment combinations": {
+      "tier": "B",
+      "kind": "summary-of-points",
+      "location": "part6",
+      "rationale": "the 2x2 of Modeling and Alignment as separable levers — each cell's primary contribution"
+    },
+    "toward-a-theory-of-mage::MAGE's eight falsifiable hypotheses H1–H8": {
+      "tier": "A",
+      "kind": "design-decision-table",
+      "location": "part6",
+      "rationale": "the theory's core claims + falsifiers; caption interprets"
+    },
+    "toward-a-theory-of-mage::Three study designs mapped to H1–H8": {
+      "tier": "B",
+      "kind": "summary-of-points",
+      "location": "part6",
+      "rationale": "three study designs"
+    },
+    "toward-a-theory-of-mage::Evidence sources and their strongest inferences": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part6",
+      "rationale": "two evidence sources + future work against strongest inference / does-not-establish — the R47 evidence-status table"
+    },
+    "what-the-theory-predicts::MAGE's nine hypotheses in three families": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part6",
+      "rationale": "the nine named hypotheses in three families with their core quantities — the R47 research-program summary"
+    },
+    "scope-conditions::Typical MAGE profiles by setting": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part6",
+      "rationale": "typical profiles by setting against the recurs/governable gates — where investment pays and residual judgment stays"
+    },
+    "mage-in-the-wild::The Modeling Ceiling": {
+      "tier": "B",
+      "kind": "comparison-summary",
+      "location": "part6",
+      "rationale": "modeling-ceiling matrix across six sites + MAGE"
+    },
+    "mage-in-the-wild::What Everyone Does": {
+      "tier": "B",
+      "kind": "comparison-summary",
+      "location": "part6",
+      "rationale": "universal-convergence bucket"
+    },
+    "mage-in-the-wild::What Industry Discovered": {
+      "tier": "B",
+      "kind": "comparison-summary",
+      "location": "part6",
+      "rationale": "generalizes-convergence bucket"
+    },
+    "mage-in-the-wild::Universal patterns — key": {
+      "tier": "C",
+      "kind": "reference-key",
+      "location": "part6",
+      "rationale": "companion key-list to the universal glyph grid — construct + full statement per U-key"
+    },
+    "mage-in-the-wild::Discovered patterns — key": {
+      "tier": "C",
+      "kind": "reference-key",
+      "location": "part6",
+      "rationale": "companion key-list to the generalizes glyph grid — construct + full statement per G-key"
+    },
+    "backmatter/colophon.md::The manuscript's governing models and the failures they prevent": {
+      "tier": "C",
+      "kind": "reference-colophon",
+      "location": "backmatter",
+      "rationale": "per-model lookup; the synthetic back matter carries no chapter-identity row, so its caption id keys on the file path"
+    },
+    "the-executable-zoo::Token savings from working through a model": {
+      "tier": "B",
+      "kind": "data",
+      "location": "part3",
+      "rationale": "model-on-vs-off measurement"
+    },
+    "the-executable-zoo::The five-field model-page template": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part3",
+      "rationale": "the per-model template fields + reader questions"
+    },
+    "assets/task-closure-tree.svg": {
+      "tier": "A",
+      "kind": "mechanism-illustration",
+      "location": "part3",
+      "rationale": "task-closure expression tree + derived grade"
+    },
+    "modeling-behavior-and-execution::Synchronization model — illustrative invariant": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part3",
+      "rationale": "invariant lookup"
+    },
+    "modeling-behavior-and-execution::Deployment-topology model — illustrative invariant": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part3",
+      "rationale": "invariant lookup"
+    },
+    "modeling-behavior-and-execution::Invariant-DAG execution policy — illustrative invariant": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part3",
+      "rationale": "invariant lookup"
+    },
+    "modeling-behavior-and-execution::Job-lifecycle state machine — illustrative invariant": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part2",
+      "rationale": "invariant lookup"
+    },
+    "modeling-measurement-and-evidence::Operational-envelope model — illustrative invariant": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part2",
+      "rationale": "invariant lookup"
+    },
+    "assets/service-allow-list.svg": {
+      "tier": "B",
+      "kind": "model-schema",
+      "location": "part3",
+      "rationale": "the declared service-connectivity allow-list — one public node, permitted edges, forbidden default"
+    },
+    "assets/typed-seam.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part3",
+      "rationale": "the typed seam — ordinary code reaches a format library only through one structured model per format"
+    },
+    "assets/fig-job-lifecycle-sm.svg": {
+      "tier": "B",
+      "kind": "model-schema",
+      "location": "part3",
+      "rationale": "the remediation job lifecycle state machine — every active state routes to a terminal FAILED, no re-entry"
+    },
+    "assets/fig-lease-vs-cas.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part3",
+      "rationale": "lease (crash recovery) vs compare-and-set (exactly-once permission) — the claim, not the lease, carries correctness"
+    },
+    "assets/fig-measurement-envelope.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part3",
+      "rationale": "observation / prediction / obligation — observed warm path against predicted worst case and the job budget"
+    },
+    "assets/provenance-derivation.svg": {
+      "tier": "B",
+      "kind": "mechanism-illustration",
+      "location": "part3",
+      "rationale": "provenance derivation — a mutation stamp fans out through one registry to validation and the customer changelog"
+    },
+    "assets/why-software-came-last.svg": {
+      "tier": "A",
+      "kind": "conceptual-comparison",
+      "location": "part6",
+      "rationale": "the chapter's climax image — why software's inverted economics kept it from model-based engineering until commodity intelligence made live models affordable; anchor with the two-column comparison resolving into one causal chain"
+    },
+    "assets/discovering-models-migration.svg": {
+      "tier": "A",
+      "kind": "process-flow",
+      "location": "part4",
+      "rationale": "discovering models during a brownfield migration — weak signals partition into legitimate shape, mechanical debt, and latent concept, then naming the earned concepts changes the substrate later migration and enforcement run on; anchor for §4.2 Finding the Model in the Code"
+    },
+    "assets/recovering-model-from-brownfield.svg": {
+      "tier": "A",
+      "kind": "process-flow",
+      "location": "part4",
+      "rationale": "recovering a model from brownfield structure — the software induction chain from realized code up to a named model, with the mechanical-discovery phase held separate from the engineering judgment that names the concept; anchor for §4.2 Recover Latent Models from the Implementation"
+    },
+    "assets/audit-drain-promote-generalized.svg": {
+      "tier": "A",
+      "kind": "process-flow",
+      "location": "part4",
+      "rationale": "the generalized three-beat move — the audit's findings partition into drain, redesign, and accept; draining and redesign identify the obligation that deserves authority; the final mechanism may promote the detector to blocking or retain it as a signal while a narrower control carries authority; anchor generalizing Audit → Drain → Promote"
+    },
+    "assets/behavioral-property-classes.svg": {
+      "tier": "B",
+      "kind": "taxonomy-diagram",
+      "location": "part2",
+      "rationale": "three property classes a behavioral model exposes — supporting caption on which checker follows from which property"
+    },
+    "assets/lease-interleaving-trace.svg": {
+      "tier": "B",
+      "kind": "state-trace",
+      "location": "part2",
+      "rationale": "reclaim and reissue overlapping a stale holder's late release — supporting caption on why an epoch fence makes the old release inapplicable"
+    },
+    "assets/match-mechanism-to-property.svg": {
+      "tier": "B",
+      "kind": "decision-diagram",
+      "location": "part3",
+      "rationale": "an obligation forks on property kind to constraint, validator, or gate — supporting caption on matching mechanism to property, not a maturity ladder"
+    },
+    "assets/question-to-consequence-progression.svg": {
+      "tier": "B",
+      "kind": "progression-diagram",
+      "location": "part2",
+      "rationale": "engineering question to representation to analysis to evidence to authority — worked mini-example of representation selection before the six-class ontology (§2.1)"
+    },
+    "assets/established-traditions-new-composition.svg": {
+      "tier": "A",
+      "kind": "conceptual-convergence",
+      "location": "part6",
+      "rationale": "two established traditions (engineering + AI) converge in MAGE's new composition → GEE → governance conversion → engineering capital; the §6.5.4 heritage anchor"
+    },
+    "assets/canonical-structural.svg": {
+      "tier": "B",
+      "kind": "canonical-opener",
+      "location": "part2",
+      "rationale": "the structural move — entities and typed relations, the edge label carrying the engineering meaning; supporting caption naming reachability/path/cycle analyses"
+    },
+    "assets/canonical-behavioral.svg": {
+      "tier": "B",
+      "kind": "canonical-opener",
+      "location": "part2",
+      "rationale": "the behavioral move — states and permitted transitions, the omitted edge as the forbidden behavior; supporting caption on the reachability/liveness analyses"
+    },
+    "assets/canonical-ownership.svg": {
+      "tier": "B",
+      "kind": "canonical-opener",
+      "location": "part2",
+      "rationale": "the ownership move — a claim over time carrying the generation that rejects a stale claimant; supporting caption on interleaving analysis"
+    },
+    "assets/canonical-decision.svg": {
+      "tier": "B",
+      "kind": "canonical-opener",
+      "location": "part2",
+      "rationale": "the decision move — the same arrow read descriptively (calls) and normatively (may call); supporting caption on the absent edge and policy checks"
+    },
+    "assets/canonical-measurement.svg": {
+      "tier": "B",
+      "kind": "canonical-opener",
+      "location": "part2",
+      "rationale": "the measurement move — quantities related and a value read against a declared envelope; supporting caption on aggregate-and-compare analysis"
+    },
+    "assets/canonical-provenance.svg": {
+      "tier": "B",
+      "kind": "canonical-opener",
+      "location": "part2",
+      "rationale": "the provenance move — typed derivation/attribution relations over stable identities; supporting caption on lineage/audit traversals"
+    },
+    "assets/modeling-repertoire.svg": {
+      "tier": "B",
+      "kind": "repertoire-spread",
+      "location": "part2",
+      "rationale": "nine-panel repertoire of familiar model forms colour-coded by the six questions; supporting caption naming that primitives recur while semantics change"
+    },
+    "assets/engineer-agent-interaction.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "part4",
+      "rationale": "the engineer's two interfaces with delegated realization — intent and knowledge out through natural language / specification / models, evidence back through review / testing / analysis, one shared implementation node as the hinge; supporting caption on channels complementary rather than sequential"
+    },
+    "assets/active-passive-alignment.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "part4",
+      "rationale": "active alignment converging a realization onto a model, then the model + mechanisms remaining in the GEE as passive alignment — the two modes as one sequence; supporting caption on establish-then-preserve (book-style SVG redraw of the author artwork)"
+    },
+    "assets/alignment-kernel.svg": {
+      "tier": "A",
+      "kind": "concentric",
+      "location": "part4",
+      "rationale": "the alignment kernel as concentric accumulation — protected properties at the core, later models extending the governed surface under the constraints already established; anchor caption telling the reader the layers are the same class of model entering governance over time (book-style SVG redraw of the author artwork)"
+    },
+    "assets/interlude-execution-unit.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part4",
+      "rationale": "two execution units for document remediation — (a) whole-document resident state beside (b) page-chunked division; supporting caption on reducing per-worker working state"
+    },
+    "assets/interlude-storage-vs-reasoning.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part4",
+      "rationale": "chunked residency beside skeletonized residency — media resident vs streamed on demand; supporting caption on total media size no longer bounding worker memory"
+    },
+    "assets/interlude-graph-two-partitions.svg": {
+      "tier": "A",
+      "kind": "comparison",
+      "location": "part4",
+      "rationale": "two execution policies over one remediation graph — (a) page-oriented grouping by location beside (b) frontier grouping by readiness; anchor caption walking how the same work and dependencies admit a different execution boundary"
+    },
+    "assets/interlude-analysis-before-build.svg": {
+      "tier": "A",
+      "kind": "comparison",
+      "location": "part4",
+      "rationale": "analysis before implementation — (a) critical path as latency floor, (b) node decomposition exposing parallel children, (c) representation change removing a serial dependency; anchor caption on what the model exposes before the change is built"
+    },
+    "assets/interlude-latency-floor.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "part4",
+      "rationale": "the GenAI dependency chain and its irreducible latency floor; supporting caption on why the three dependent levels' per-call times add"
+    },
+    "assets/interlude-prediction-residual.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part4",
+      "rationale": "using prediction error as evidence — (a) the residual pointing to a wrong parameter/relation/mechanism beside (b) the refine-and-retest feedback loop; supporting caption on turning the gap into an engineering question"
+    },
+    "assets/interlude-modeling-cycle.svg": {
+      "tier": "B",
+      "kind": "cycle",
+      "location": "part4",
+      "rationale": "modeling as a loop — the non-linear problem→model→prediction/design→implementation/measurement cycle that continues while the questions justify the cost"
+    },
+    "assets/factory-progression.svg": {
+      "tier": "B",
+      "kind": "progression-diagram",
+      "location": "part6",
+      "rationale": "the five-stage craft-to-supervised-production chain — the chapter's historical explanatory model; supporting caption on knowledge and control moving from the fabricator into the production system"
+    },
+    "inside-docables-software-factory::The build's scale at one snapshot": {
+      "tier": "B",
+      "kind": "scale-ledger",
+      "location": "part5",
+      "rationale": "the scale-at-a-glance box — production/support/IaC/model LoC and the sustained commit rate, offloaded from the prose so the body lands on 'I inspected almost none of the code'"
+    },
+    "inside-docables-software-factory::Census specimens and their supervisory consequences": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part6",
+      "rationale": "the four-column census-specimen table (engineering question / representation / consumer / supervisory consequence) — the census shown by affordance rather than catalogue"
+    }
   }
- }
 }

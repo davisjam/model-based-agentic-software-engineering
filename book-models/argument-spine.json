@@ -3,14 +3,14 @@
   "_note": "The argument-spine model holds the book's linear argument as an ordered run of claims, each reconciling the author's seed statements, the claims model, and the Big-Ideas model into one step — plus the per-chapter labeling of which steps each chapter advances. The `flags` block is DERIVED editorial signal and never gates: CHAPTER-side (a non-exempt chapter advancing 0 steps is suspect; one advancing more than the focus cap is probably unfocused — the directive's Phase-1c worklist) AND CLAIM-side health (a non-exempt claim advanced by 0 chapters is a gap; one advanced only within Part 0/1 is front-loaded/shallow; one advanced by more than the overmap cap is an overmapping-audit surface). Per-claim `reviewed_hash` seeds the AS8 freshness sensor: a statement edited without a re-review reddens its advancing chapters. Exempt chapters (preface / conclusion / discussion / end-of-part synthesis / apparatus) and exempt claims (genuine front-loaded-by-design premises) are the ones whose breadth, silence, or shallow reach is their job.",
   "_counts": {
     "spine_claims": 15,
-    "chapters_labeled": 29,
+    "chapters_labeled": 26,
     "chapters_exempt": 10,
-    "advancement_edges": 79,
+    "advancement_edges": 75,
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 6,
-    "over_cap_unfocused": 3,
+    "zero_claim_suspects": 7,
+    "over_cap_unfocused": 2,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
     "overmapped_claims": 1,
@@ -70,10 +70,9 @@
         "0.5-preface",
         "1.1-the-printer",
         "1.2-mage-by-example",
-        "6.2-the-build",
-        "6.4-failures-that-became-infrastructure"
+        "6.2-inside-docables-software-factory"
       ],
-      "body_depth": 2,
+      "body_depth": 1,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -101,7 +100,7 @@
       "advanced_by": [
         "0.5-preface",
         "1.1-the-printer",
-        "6.4-failures-that-became-infrastructure",
+        "6.2-inside-docables-software-factory",
         "9.1-the-part-that-stays-yours"
       ],
       "body_depth": 2,
@@ -132,7 +131,7 @@
       "advanced_by": [
         "0.5-preface",
         "1.2-mage-by-example",
-        "6.3-the-road-to-mage",
+        "6.2-inside-docables-software-factory",
         "8.1-reorganization-of-se"
       ],
       "body_depth": 2,
@@ -232,7 +231,7 @@
         "3.5-when-guardrails-collide",
         "4.3-brownfield-engineering",
         "4.4-engineering-the-environment",
-        "6.4-failures-that-became-infrastructure",
+        "6.2-inside-docables-software-factory",
         "8.1-reorganization-of-se"
       ],
       "body_depth": 8,
@@ -282,7 +281,7 @@
         "3.5-when-guardrails-collide",
         "4.3-brownfield-engineering",
         "4.4-engineering-the-environment",
-        "6.3-the-road-to-mage"
+        "6.2-inside-docables-software-factory"
       ],
       "body_depth": 13,
       "front_loaded": false,
@@ -322,7 +321,7 @@
         "3.3-constraints-sensors-validators-gates",
         "3.4-governance-conversion",
         "4.4-engineering-the-environment",
-        "6.4-failures-that-became-infrastructure"
+        "6.2-inside-docables-software-factory"
       ],
       "body_depth": 6,
       "front_loaded": false,
@@ -388,7 +387,7 @@
         "3.4-governance-conversion",
         "4.3-brownfield-engineering",
         "4.4-engineering-the-environment",
-        "6.4-failures-that-became-infrastructure"
+        "6.2-inside-docables-software-factory"
       ],
       "body_depth": 4,
       "front_loaded": false,
@@ -478,12 +477,11 @@
       "word_count": 26,
       "statement_hash": "6e678662a007",
       "advanced_by": [
-        "6.3-the-road-to-mage",
-        "6.4-failures-that-became-infrastructure",
+        "6.2-inside-docables-software-factory",
         "8.1-reorganization-of-se",
         "9.1-the-part-that-stays-yours"
       ],
-      "body_depth": 4,
+      "body_depth": 3,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -512,13 +510,11 @@
       "advanced_by": [
         "0.5-preface",
         "1.2-mage-by-example",
-        "6.1-the-problem-and-the-bar",
-        "6.2-the-build",
-        "6.3-the-road-to-mage",
+        "6.2-inside-docables-software-factory",
         "7.3-scope-conditions",
         "8.4-the-engineer"
       ],
-      "body_depth": 5,
+      "body_depth": 3,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -748,39 +744,22 @@
       "exempt": null
     },
     {
-      "slug": "6.1-the-problem-and-the-bar",
-      "advances": [
-        "grounded-in-one-case"
-      ],
+      "slug": "6.1-software-factory",
+      "advances": [],
       "exempt": null
     },
     {
-      "slug": "6.2-the-build",
+      "slug": "6.2-inside-docables-software-factory",
       "advances": [
+        "grounded-in-one-case",
         "abundant-implementation",
-        "grounded-in-one-case"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "6.3-the-road-to-mage",
-      "advances": [
         "oversight-does-not-scale",
         "modeling-principle",
         "seat-moves",
-        "grounded-in-one-case"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "6.4-failures-that-became-infrastructure",
-      "advances": [
-        "abundant-implementation",
         "fault-lies-in-instructions",
         "govern-the-environment",
         "alignment-principle",
-        "failures-become-machinery",
-        "seat-moves"
+        "failures-become-machinery"
       ],
       "exempt": null
     },
@@ -869,6 +848,10 @@
         "advances": 0
       },
       {
+        "chapter": "6.1-software-factory",
+        "advances": 0
+      },
+      {
         "chapter": "7.2-what-the-theory-predicts",
         "advances": 0
       },
@@ -897,25 +880,18 @@
         ]
       },
       {
-        "chapter": "6.3-the-road-to-mage",
-        "advances": 4,
+        "chapter": "6.2-inside-docables-software-factory",
+        "advances": 9,
         "spine_ids": [
+          "grounded-in-one-case",
+          "abundant-implementation",
           "oversight-does-not-scale",
           "modeling-principle",
           "seat-moves",
-          "grounded-in-one-case"
-        ]
-      },
-      {
-        "chapter": "6.4-failures-that-became-infrastructure",
-        "advances": 6,
-        "spine_ids": [
-          "abundant-implementation",
           "fault-lies-in-instructions",
           "govern-the-environment",
           "alignment-principle",
-          "failures-become-machinery",
-          "seat-moves"
+          "failures-become-machinery"
         ]
       }
     ],
@@ -941,7 +917,7 @@
           "3.5-when-guardrails-collide",
           "4.3-brownfield-engineering",
           "4.4-engineering-the-environment",
-          "6.3-the-road-to-mage"
+          "6.2-inside-docables-software-factory"
         ]
       }
     ]

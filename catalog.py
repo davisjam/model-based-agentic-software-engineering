@@ -3063,7 +3063,7 @@ def _v3_evidence() -> str:
         '  <div class="v3-cards v3-cards-2">\n'
         + _v3_card("DocAble — depth", "",
                    "The originating production system and the longitudinal record from which the early MAGE concepts emerged.",
-                   [("Explore the originating case", "book/mage-book/6.1-the-problem-and-the-bar.html")]) + "\n"
+                   [("Explore the originating case", "book/mage-book/6.2-inside-docables-software-factory.html")]) + "\n"
         + _v3_card("Industrial cases — breadth", "",
                    f"Independent accounts from {_INDUSTRY_ORGS_PROSE}, examined through the MAGE framework for recurring patterns, differences, and limits.",
                    [("Explore the industrial cases", "industry-case-studies.html")]) + "\n"

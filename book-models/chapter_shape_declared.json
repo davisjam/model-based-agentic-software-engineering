@@ -467,75 +467,6 @@
       "closing_anchor": "a map that agrees with its territory"
     },
     {
-      "slug": "the-ada-context",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "argument-step"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "delivers": {
-        "artifacts": [],
-        "artifact_would_help": false
-      },
-      "note": "Question explicit (why is document accessibility a hard, worthwhile case); answer the bar the problem set. Compressed (r3): Theory-Formation epistemics moved to 6.1; closes on why the apparatus had to grow as large as it did, setting up the build. The burden-shift table was cut in the r12-w3 fold — its reactive-vs-proactive content survives as prose, so the chapter now delivers no labeled artifact. DV4 resolution (260922): the handover is the CONCEPT semantic-artifact ('a document is a visual and semantic artifact'), index-def'd at its defining paragraph. The burden-shift table stays cut — its content is now one prose sentence, no table-shaped content remains to re-label.",
-      "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Modeling Principle",
-      "closing_anchor": "ground that the apparatus had to grow as large as it did."
-    },
-    {
-      "slug": "the-timeline-and-the-work",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "argument-step"
-      },
-      "closing": {
-        "kind": "synthesis"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "worked-example",
-            "name": "the seven-stage build timeline (pressure and consequence at each stage)",
-            "anchor": "build-stages-timeline"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Opens on the arc + the one fact that is the book's engineering problem; every governance idea learned at a point on the arc (failures-become-machinery). Closes on the recurring move + the arc's numbers — synthesis. The Messy-Timeline (phased-timeline) figure was cut in the r12-w3 fold and the velocity/churn material moved to the evidence ledger; the arc is now carried by the seven-stage timeline, re-anchored here (the build-scale table and the control-growth/support-ratio curves accompany it).",
-      "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Printer ·",
-      "closing_anchor": "governed is the story the rest of this book has already told."
-    },
-    {
-      "slug": "the-road-to-mage",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "argument-step"
-      },
-      "closing": {
-        "kind": "synthesis"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "worked-example",
-            "name": "the MAGE-staircase figure",
-            "anchor": "mage-staircase"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Round-12 merge (old 5.4 Built System + old 5.5 Road to MAGE, ~70% cut). The chapter opens on what ultimately shipped — a six-responsibility tour + the LLM-as-function-call pattern — then walks the delegation staircase that forced the method out of it: the seat climbing (seat-moves) made safe by each step's model or control (oversight-does-not-scale), grounded in the DocAble narrative (grounded-in-one-case) — the three claims the spine labels. thesis_target stays argument-step; spine labels unchanged, so check_argument_spine stays green. The Missing-Model-Metric mechanics were SENT to 4.2-brownfield (round-12 G3); the chapter keeps only the three-bugs inset + a one-line pointer, plus the round-10 traceability incident as a ≤1-para field note. Closes on the delegation-climbed-as-far-as-the-controls synthesis and the frontispiece boxes now made real.",
-      "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Modeling Principle",
-      "closing_anchor": "whether the method transfers is the question [Part 7](7.1-toward-a-theory-of-mage.html) takes up."
-    },
-    {
       "slug": "reorganization-of-se",
       "opening": {
         "failure_question": "explicit",
@@ -654,23 +585,34 @@
       "closing_anchor": "the appendices are intended to work as a reference while you build."
     },
     {
-      "slug": "failures",
+      "slug": "inside-docables-software-factory",
       "opening": {
-        "failure_question": "implicit",
+        "failure_question": "explicit",
         "answer": "explicit",
         "thesis_link": "explicit",
-        "thesis_target": "argument-step"
+        "thesis_target": "both"
       },
       "closing": {
         "kind": "transition"
       },
       "delivers": {
-        "artifacts": [],
+        "artifacts": [
+          {
+            "type": "table",
+            "name": "the census-specimen table (engineering question / representation / consumer / supervisory consequence)",
+            "anchor": "factory-census-specimens"
+          },
+          {
+            "type": "worked-example",
+            "name": "the MAGE-staircase figure",
+            "anchor": "mage-staircase"
+          }
+        ],
         "artifact_would_help": false
       },
-      "note": "Process-tracing heart of Part V. Opens on governance conversion as an EMPIRICAL claim over selected reconstructable episodes (NOT 'every mechanism began as a failure'). Standardized episode template: Problem -> Initial response -> Why insufficient -> What became durable -> Return. ~Eight incidents plus a clean-design confirmation (5.4.9, ex-ante path) and the epistemic close (5.4.10: mechanism + sequence, not prevalence). Shows multiple FORMS of capital — representation, policy, decision rule, sensor, validator, gate, provenance, measurement, procedure — including the deliberately UNGATED measurement flagship (5.4.8). Aphorism table CUT; 'Claude is the fastest road to hell' survives as a field-note footnote at 5.4.1. Closes handing the org-scaling / prevalence question to Part VI.",
-      "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ Governance Conversion ·",
-      "closing_anchor": "pressures, make comparable moves, or reveal boundaries the DocAble case could not."
+      "note": "Ch6 restructure (C2, 260922): merger of the former the-ada-context / the-timeline-and-the-work / the-road-to-mage / failures chapters into one depth section organized around supervisory capacity. Opens on the section question (if the engineer cannot supervise by inspecting implementation, what makes supervision possible?) and answers MAGE explicitly via the triad. Subsections: problem scene-setting (keeps the semantic-artifact index-def), inspection-stops-scaling (build-scale + support ratio + triad reinterpretation), the live model census with a four-column specimen table, the joins (invariant chain / IAM grants / provenance / computation graph), governance conversions organized by what each failure converted into, the functional delegation staircase, and the liability ledger. Closes turning outward to the other factories.",
+      "opening_anchor": "> ### This section illustrates {#illustrates} > > ✓ The Modeling Principle",
+      "closing_anchor": "that question does not depend on anyone else having heard of MAGE."
     }
   ]
 }

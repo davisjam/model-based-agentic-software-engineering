@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 8,
     "elaborative_links": 11,
     "units_serving_as_elaborative": 10,
-    "sections_total": 213,
+    "sections_total": 194,
     "sections_primary_of_an_outcome": 7,
     "modules": 8,
-    "lessons": 36
+    "lessons": 33
   },
   "taxonomy": {
     "know": [
@@ -280,22 +280,7 @@
             "section_outcomes": []
           },
           {
-            "lesson": "6.1-the-problem-and-the-bar",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "6.2-the-build",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "6.3-the-road-to-mage",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "6.4-failures-that-became-infrastructure",
+            "lesson": "6.2-inside-docables-software-factory",
             "own_outcomes": [],
             "section_outcomes": []
           },
@@ -591,19 +576,6 @@
       "gap_note": null
     },
     {
-      "outcome_id": "failures::trace-how-engineering-failures-leave-behind-se",
-      "granularity": "chapter",
-      "primary_unit": "failures",
-      "secondary_units": [],
-      "verb": "trace",
-      "obj": "how engineering failures leave behind several FORMS of durable capital — representation, decision rule, deterministic check, behavioral model, derived provenance, provisional measurement — some granted authority and some deliberately not, reading the case as evidence of mechanism and sequence rather than prevalence",
-      "statement": "After this chapter, the reader can trace how a failure becomes durable engineering capital (or deliberately remains provisional), distinguish the ex-post and ex-ante paths, and state what a single longitudinal case can and cannot establish.",
-      "bloom": "analyze",
-      "provenance": "declared",
-      "anchor": "The eight episode sections under the standardized template ('The instruction satisfied to the letter' through 'Measurement: the story that stops before the gate', 6.4.1-6.4.8), the ex-ante confirmation 'Not every useful structure has an incident arc' (6.4.9), and the bounded epistemic close 'What this case supports' (6.4.10) in the chapter with identity label 'failures'.",
-      "gap_note": null
-    },
-    {
       "outcome_id": "governance-conversion::distinguish-ex-ante-obligations-from-ex-post-ones-an",
       "granularity": "chapter",
       "primary_unit": "governance-conversion",
@@ -616,6 +588,58 @@
       "bloom": "understand",
       "provenance": "derived",
       "anchor": "point: a-governed-environment-grows-ex-ante-and-ex-post-with-conversion-the-hinge / the-conversion-lands-in-one-of-five-places / governance-conversion-forms-engineering-capital-the-positive-stock / where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "inside-docables-software-factory::explain-why-document-accessibility-is-a-hard-hig",
+      "granularity": "chapter",
+      "primary_unit": "inside-docables-software-factory",
+      "secondary_units": [],
+      "verb": "explain",
+      "obj": "why document accessibility is a hard, high-burden problem worth this machinery",
+      "statement": "After this chapter, the reader can explain the accessibility problem the case-study system solves and why a document is not just a file.",
+      "bloom": "understand",
+      "provenance": "declared",
+      "anchor": "Section titles 'a-noble-idea-with-a-crushing-implementation', 'the-rule-that-changed-the-burden', 'why-a-document-is-not-just-a-file'.",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "inside-docables-software-factory::map-the-project-s-stages-to-the-kinds-of-wor",
+      "granularity": "chapter",
+      "primary_unit": "inside-docables-software-factory",
+      "secondary_units": [],
+      "verb": "map",
+      "obj": "the project's stages to the kinds of work each demanded and the velocity each produced",
+      "statement": "After this chapter, the reader can map the case-study project's stages to the kinds of work each demanded and the velocity each produced.",
+      "bloom": "analyze",
+      "provenance": "declared",
+      "anchor": "Section titles 'six-stages-then-a-seventh', 'velocity', 'the-kinds-of-work-it-required'.",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "inside-docables-software-factory::trace-how-engineering-failures-leave-behind-se",
+      "granularity": "chapter",
+      "primary_unit": "inside-docables-software-factory",
+      "secondary_units": [],
+      "verb": "trace",
+      "obj": "how engineering failures leave behind several FORMS of durable capital — representation, decision rule, deterministic check, behavioral model, derived provenance, provisional measurement — some granted authority and some deliberately not, reading the case as evidence of mechanism and sequence rather than prevalence",
+      "statement": "After this chapter, the reader can trace how a failure becomes durable engineering capital (or deliberately remains provisional), distinguish the ex-post and ex-ante paths, and state what a single longitudinal case can and cannot establish.",
+      "bloom": "analyze",
+      "provenance": "declared",
+      "anchor": "The eight episode sections under the standardized template ('The instruction satisfied to the letter' through 'Measurement: the story that stops before the gate', 6.4.1-6.4.8), the ex-ante confirmation 'Not every useful structure has an incident arc' (6.4.9), and the bounded epistemic close 'What this case supports' (6.4.10) in the chapter with identity label 'failures'.",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "inside-docables-software-factory::trace-how-the-built-system-forced-the-method-o",
+      "granularity": "chapter",
+      "primary_unit": "inside-docables-software-factory",
+      "secondary_units": [],
+      "verb": "trace",
+      "obj": "how the built system forced the method out of it — the delegation staircase from solo co-coder to architect, each rung safe only because the step below minted the control it needed",
+      "statement": "After this chapter, the reader can trace the delegation staircase — co-coder, QA, review lead, tech lead, architect — by which the built system forced MAGE out of it, and can name why each rung was safe to climb only because the step below first minted the control that caught what the delegation dropped.",
+      "bloom": "analyze",
+      "provenance": "declared",
+      "anchor": "The merged chapter: 'What ultimately got built' (six-responsibility tour + system-overview figure), 'The LLM as a function call' (#llm-as-function-call), and 'The staircase' with the five rung lead-ins (Co-coder / QA / Review lead / Tech lead / Architect) + the mage-staircase figure.",
       "gap_note": null
     },
     {
@@ -777,19 +801,6 @@
       "gap_note": null
     },
     {
-      "outcome_id": "the-ada-context::explain-why-document-accessibility-is-a-hard-hig",
-      "granularity": "chapter",
-      "primary_unit": "the-ada-context",
-      "secondary_units": [],
-      "verb": "explain",
-      "obj": "why document accessibility is a hard, high-burden problem worth this machinery",
-      "statement": "After this chapter, the reader can explain the accessibility problem the case-study system solves and why a document is not just a file.",
-      "bloom": "understand",
-      "provenance": "declared",
-      "anchor": "Section titles 'a-noble-idea-with-a-crushing-implementation', 'the-rule-that-changed-the-burden', 'why-a-document-is-not-just-a-file'.",
-      "gap_note": null
-    },
-    {
       "outcome_id": "the-agent-stack::distinguish-guidance-from-authority-and-place-a-mech",
       "granularity": "chapter",
       "primary_unit": "the-agent-stack",
@@ -813,32 +824,6 @@
       "bloom": "evaluate",
       "provenance": "declared",
       "anchor": "Section titles: 'The Engineering Object', 'an-open-ended-technology', 'whose-fault-is-it'.",
-      "gap_note": null
-    },
-    {
-      "outcome_id": "the-road-to-mage::trace-how-the-built-system-forced-the-method-o",
-      "granularity": "chapter",
-      "primary_unit": "the-road-to-mage",
-      "secondary_units": [],
-      "verb": "trace",
-      "obj": "how the built system forced the method out of it — the delegation staircase from solo co-coder to architect, each rung safe only because the step below minted the control it needed",
-      "statement": "After this chapter, the reader can trace the delegation staircase — co-coder, QA, review lead, tech lead, architect — by which the built system forced MAGE out of it, and can name why each rung was safe to climb only because the step below first minted the control that caught what the delegation dropped.",
-      "bloom": "analyze",
-      "provenance": "declared",
-      "anchor": "The merged chapter: 'What ultimately got built' (six-responsibility tour + system-overview figure), 'The LLM as a function call' (#llm-as-function-call), and 'The staircase' with the five rung lead-ins (Co-coder / QA / Review lead / Tech lead / Architect) + the mage-staircase figure.",
-      "gap_note": null
-    },
-    {
-      "outcome_id": "the-timeline-and-the-work::map-the-project-s-stages-to-the-kinds-of-wor",
-      "granularity": "chapter",
-      "primary_unit": "the-timeline-and-the-work",
-      "secondary_units": [],
-      "verb": "map",
-      "obj": "the project's stages to the kinds of work each demanded and the velocity each produced",
-      "statement": "After this chapter, the reader can map the case-study project's stages to the kinds of work each demanded and the velocity each produced.",
-      "bloom": "analyze",
-      "provenance": "declared",
-      "anchor": "Section titles 'six-stages-then-a-seventh', 'velocity', 'the-kinds-of-work-it-required'.",
       "gap_note": null
     },
     {

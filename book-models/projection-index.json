@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 831,
+    "total_sites": 817,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 489,
+      "book-web": 475,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -92,16 +92,8 @@
             "occ": 4
           },
           {
-            "file": "book/web/docs/6.2-the-build.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/6.3-the-road-to-mage.md",
-            "occ": 7
-          },
-          {
-            "file": "book/web/docs/6.4-failures-that-became-infrastructure.md",
-            "occ": 9
+            "file": "book/web/docs/6.2-inside-docables-software-factory.md",
+            "occ": 14
           },
           {
             "file": "book/web/docs/6.5-mage-in-the-wild.md",
@@ -255,7 +247,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 58
+            "occ": 56
           }
         ]
       },
@@ -555,7 +547,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 11
+            "occ": 10
           },
           {
             "file": "catalogue-figure.html",
@@ -644,10 +636,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/6.2-the-build.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
             "occ": 13
           },
@@ -699,7 +687,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 18
+            "occ": 17
           }
         ]
       },
@@ -988,24 +976,12 @@
             "occ": 16
           },
           {
-            "file": "book/web/docs/6.1-the-problem-and-the-bar.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/6.2-the-build.md",
-            "occ": 15
-          },
-          {
-            "file": "book/web/docs/6.3-the-road-to-mage.md",
-            "occ": 20
-          },
-          {
-            "file": "book/web/docs/6.4-failures-that-became-infrastructure.md",
-            "occ": 21
+            "file": "book/web/docs/6.2-inside-docables-software-factory.md",
+            "occ": 28
           },
           {
             "file": "book/web/docs/6.5-mage-in-the-wild.md",
-            "occ": 62
+            "occ": 61
           },
           {
             "file": "book/web/docs/6.6-what-the-evidence-supports.md",
@@ -1345,11 +1321,11 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 315
+            "occ": 312
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 26
+            "occ": 25
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1387,7 +1363,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 127
           }
         ]
       },
@@ -1427,7 +1403,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 80
+            "occ": 78
           },
           {
             "file": "catalogue-figure.html",
@@ -1550,16 +1526,12 @@
             "occ": 4
           },
           {
-            "file": "book/web/docs/6.3-the-road-to-mage.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/6.4-failures-that-became-infrastructure.md",
-            "occ": 9
+            "file": "book/web/docs/6.2-inside-docables-software-factory.md",
+            "occ": 2
           },
           {
             "file": "book/web/docs/6.5-mage-in-the-wild.md",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
@@ -1675,11 +1647,11 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 31
+            "occ": 30
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1705,7 +1677,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 49
+            "occ": 48
           }
         ]
       },
@@ -1756,10 +1728,6 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/6.4-failures-that-became-infrastructure.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/8.4-the-engineer.md",
             "occ": 1
           },
@@ -1775,7 +1743,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 6
+            "occ": 5
           }
         ]
       },
@@ -1926,20 +1894,8 @@
             "occ": 4
           },
           {
-            "file": "book/web/docs/6.1-the-problem-and-the-bar.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/6.2-the-build.md",
-            "occ": 6
-          },
-          {
-            "file": "book/web/docs/6.3-the-road-to-mage.md",
-            "occ": 70
-          },
-          {
-            "file": "book/web/docs/6.4-failures-that-became-infrastructure.md",
-            "occ": 26
+            "file": "book/web/docs/6.2-inside-docables-software-factory.md",
+            "occ": 68
           },
           {
             "file": "book/web/docs/6.5-mage-in-the-wild.md",
@@ -2223,7 +2179,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 401
+            "occ": 382
           },
           {
             "file": "book/web/docs/index.md",
@@ -2231,7 +2187,7 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 16
+            "occ": 15
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -2265,7 +2221,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 111
+            "occ": 108
           }
         ]
       },
@@ -2645,7 +2601,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 32
+            "occ": 28
           },
           {
             "file": "catalogue-figure.html",
@@ -2752,10 +2708,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/6.2-the-build.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/book-index.md",
             "occ": 1
           },
@@ -2775,7 +2727,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 8
+            "occ": 7
           }
         ]
       },
@@ -2978,10 +2930,6 @@
             "occ": 3
           },
           {
-            "file": "book/web/docs/6.3-the-road-to-mage.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
             "occ": 13
           },
@@ -3097,7 +3045,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 46
+            "occ": 45
           }
         ]
       },
@@ -3174,10 +3122,6 @@
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
             "occ": 1
-          },
-          {
-            "file": "book/web/docs/6.3-the-road-to-mage.md",
-            "occ": 2
           },
           {
             "file": "book/web/docs/6.5-mage-in-the-wild.md",
@@ -3291,7 +3235,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 36
+            "occ": 35
           }
         ]
       },
