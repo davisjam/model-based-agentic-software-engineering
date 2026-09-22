@@ -6758,6 +6758,18 @@ def build_pdf_split() -> int:
     last_modified = _book_last_modified()
     base = _PDF_FILENAME[:-4] if _PDF_FILENAME.endswith(".pdf") else _PDF_FILENAME  # "mage-book"
 
+    # CLEAN BEFORE WRITE: the slice filename carries the chapter/appendix NUMBER, so a renumber mints a
+    # new filename set and leaves the previous generation on disk — a stale slice is indistinguishable
+    # from a current one in a folder listing (a reader once opened a ChapterN.pdf that corresponded to
+    # nothing). Remove every prior `<base>-NN-*` slice (PDF + its `_typst/` source) before emitting the
+    # current set; the glob's two-digit-dash shape cannot match the whole-book `mage-book.pdf` or a
+    # dated snapshot like `mage-book-09062026.pdf`.
+    stale = sorted(HERE.glob(f"{base}-[0-9][0-9]-*.pdf")) + sorted(typ_dir.glob(f"{base}-[0-9][0-9]-*.typ"))
+    for old in stale:
+        old.unlink()
+    if stale:
+        print(f"cleaned {len(stale)} previous per-section slice file(s) before writing the current set")
+
     print(f"\n== Per-section split PDFs ({len(sections)} sections; review aid, no whole-book gate) ==")
     produced: "list[tuple[str, int]]" = []
     failures: "list[str]" = []
