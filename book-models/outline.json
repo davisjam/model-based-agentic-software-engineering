@@ -7,7 +7,7 @@
     "derived_ids": 182,
     "missing_topic_sentence": 5,
     "sections_drained": 136,
-    "paragraph_points": 613
+    "paragraph_points": 611
   },
   "chapters": [
     {
@@ -1177,7 +1177,7 @@
           "section_id": "a-heterogeneous-modeling-substrate",
           "level": 2,
           "heading_text": "A Heterogeneous Modeling Substrate",
-          "topic_sentence": "DocAble's models differ in shape on purpose.",
+          "topic_sentence": "DocAble's models differ in shape.",
           "id_source": "derived",
           "block_index": 2,
           "points": [
@@ -1192,8 +1192,8 @@
               "block_index": 7
             },
             {
-              "slug": "the-unity-is-semantic-not-syntactic",
-              "text": "The models cohere semantically, not syntactically: the same entity named in one model resolves to the same entity in another.",
+              "slug": "models-agree-on-entity-identity",
+              "text": "The models need not share a file format or metamodel; they need to agree on entity identity — the same entity named in one model resolves to the same entity in another.",
               "block_index": 10
             },
             {
@@ -1223,28 +1223,23 @@
             },
             {
               "slug": "event-grain-is-part-of-the-provenance-model",
-              "text": "Choosing the event grain is part of the modeling decision — too coarse collapses distinct changes into an opaque \"document modified\" event, too fine becomes another execution trace later reasoning must reconstruct into meaning.",
+              "text": "Choosing the grain is part of the modeling decision — \"document modified\" is too coarse, a complete execution trace too fine; DocAble records consequential mutations as typed operations and derives audit, debugging, and changelog views from that history.",
               "block_index": 21
             },
             {
-              "slug": "record-once-derive-the-explanations",
-              "text": "A human-facing explanation is derived from the same structured history rather than maintained as a second, independently-written account; record the consequential action once, then derive the audit, debugging, or changelog view from it.",
+              "slug": "a-typed-edit-record-replays-deterministically",
+              "text": "During a PDF remediation session mutations are recorded as typed edit values in a per-session log, and a replay engine can apply the same sequence deterministically — one representation explains what happened and reproduces the mutations while omitting the reasoning that produced them.",
               "block_index": 23
             },
             {
-              "slug": "a-typed-edit-record-replays-deterministically",
-              "text": "The recorded history can be replayed: the PDF path records mutations as typed edit values in a per-session log, and a replay engine applies the same sequence deterministically, so one representation both explains and reproduces the resulting mutations while remaining a purposeful reduction of execution.",
-              "block_index": 25
-            },
-            {
               "slug": "record-and-replay-separate-three-questions",
-              "text": "The computation graph asks what may compose, the provenance record says which mutations did occur in this run, and replay asks whether that history can be reproduced — three separate questions, no one representation subsuming the others.",
-              "block_index": 27
+              "text": "The computation graph asks what may compose, the provenance record says which mutations occurred in this run, and replay asks whether that history can be reproduced.",
+              "block_index": 25
             },
             {
               "slug": "provenance-boundary-model-records-a-lint-guarantees-every-mutator-stamps",
               "text": "The model records attribution per mutation; a structural check can establish that every mutator leaves an attribution record but not that the semantic account inside it is correct — this chapter models the evidence, Chapter 3 enforces the obligation.",
-              "block_index": 30
+              "block_index": 28
             }
           ]
         },
@@ -1254,37 +1249,37 @@
           "heading_text": "Questions That Span Models",
           "topic_sentence": "A model makes selected properties of a system available for reasoning.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 30,
           "points": [
             {
               "slug": "joining-models-makes-cross-representation-properties-available",
-              "text": "A model makes selected properties of a system available for reasoning; joining models makes properties that cross those representations available — analogous to the questions integration testing asks that unit testing cannot.",
-              "block_index": 33
+              "text": "A model makes selected properties of a system available for reasoning; joining models makes properties that cross those representations available for reasoning.",
+              "block_index": 31
             },
             {
               "slug": "the-interservice-edge-is-a-worked-join",
               "text": "One typed interservice-call edge joins to deployment configuration for the callee URL, to runtime identity for the required invocation grant, and to the service catalog for topology agreement; 28 modeled edges produce 10 distinct grants, a deployment plan no single artifact contains.",
-              "block_index": 35
+              "block_index": 33
             },
             {
               "slug": "connections-can-create-information",
               "text": "Connections can create information that no individual model contains: the call model lacks the environment-specific runtime identity, the deployment environment does not state the intended topology, and their join determines the permission that should exist.",
-              "block_index": 37
+              "block_index": 35
             },
             {
               "slug": "a-declared-property-can-determine-what-evidence-must-exist",
               "text": "Declared invariant facts derive a verification tier, the tier mandates a checker kind, and a check joins the citation against the checker corpus on disk — so a declared property can determine what kind of evidence must exist.",
-              "block_index": 39
+              "block_index": 37
             },
             {
               "slug": "joins-are-also-where-information-is-lost",
               "text": "Each representation can be locally reasonable while their composition fails to preserve a distinction the engineering decision requires — the entitlement failure crossed exactly such a seam.",
-              "block_index": 41
+              "block_index": 39
             },
             {
               "slug": "an-agent-enters-through-the-object-its-task-names-and-traverses-outward",
               "text": "Semantic unity lets an agent enter the substrate at the entity its task names and follow relations outward, taking only the connected slice the question needs.",
-              "block_index": 43
+              "block_index": 41
             }
           ]
         },
@@ -1294,17 +1289,17 @@
           "heading_text": "Maintain Explicit Correspondence",
           "topic_sentence": "Multiple models create a correspondence problem: represented facts can diverge from the system or from one another.",
           "id_source": "derived",
-          "block_index": 46,
+          "block_index": 44,
           "points": [
             {
               "slug": "a-family-of-models-risks-a-second-system-of-record-that-diverges",
               "text": "A family of models invites an obvious danger — a second system of record that quietly diverges from the first — and the answer is to engineer the relationship between map and territory, not to stop modeling.",
-              "block_index": 48
+              "block_index": 46
             },
             {
               "slug": "name-the-direction-of-derivation-up-front",
               "text": "A model and the code stay equal by derivation, and derivation runs in one of two directions; the machinery that keeps them equal depends on which.",
-              "block_index": 51
+              "block_index": 49
             }
           ]
         },
@@ -1314,32 +1309,32 @@
           "heading_text": "Derive when implementation owns the truth",
           "topic_sentence": "The model is a projection of the code, reconciled at build time.",
           "id_source": "derived",
-          "block_index": 56,
+          "block_index": 54,
           "points": [
             {
               "slug": "the-computation-model-is-the-generate-case-execution-follows-it",
               "text": "The remediation subsystem now illustrates both directions around one source of truth: its explicit computation model is consumed by execution, so realization follows the model rather than reconstructing composition from node implementations — the generate case.",
-              "block_index": 60
+              "block_index": 58
             },
             {
               "slug": "a-separate-python-view-projects-the-model-for-analysis",
               "text": "A separate Python remediation-graph view projects that structure for analysis and governance — queryable, joinable, drift-checked — without becoming the runtime scheduler.",
-              "block_index": 62
+              "block_index": 60
             },
             {
               "slug": "one-source-of-truth-supports-both-directions",
               "text": "One source of truth supports both directions at once: execution consumes the authoritative model while analytical views derive from it or from parity-bound declarations; the question is which representation owns the fact and which consumers must follow it.",
-              "block_index": 64
+              "block_index": 62
             },
             {
               "slug": "derivation-solves-correspondence-not-architecture-quality",
               "text": "Derivation settles correspondence, not whether the architecture is good.",
-              "block_index": 66
+              "block_index": 64
             },
             {
               "slug": "where-neither-is-fully-derivable-maintain-traceability-and-check-decidable-predicates",
               "text": "Where neither side can be fully derived from the other, maintain traceability between them and check the predicates that are mechanically decidable.",
-              "block_index": 68
+              "block_index": 66
             }
           ]
         },
@@ -1349,12 +1344,12 @@
           "heading_text": "Trace and check where neither owns the truth",
           "topic_sentence": "Where neither side can be fully derived from the other, the move is **traceability plus drift checking**.",
           "id_source": "derived",
-          "block_index": 70,
+          "block_index": 68,
           "points": [
             {
               "slug": "two-layers-cover-the-relationship-mechanical-and-judgment",
-              "text": "Mechanical correspondence has a declared surface: some claims are decidable, others remain semantic and require judgment, and still others are not modeled at all.",
-              "block_index": 72
+              "text": "Mechanical correspondence has a declared surface: some claims are decidable, others remain semantic and require judgment, unmodeled properties have no model-based coverage, and a recurring miss is a candidate for refining the representation or adding a control.",
+              "block_index": 70
             }
           ]
         },
@@ -1364,27 +1359,22 @@
           "heading_text": "Some correspondence remains semantic",
           "topic_sentence": "Mechanical correspondence has a declared surface.",
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 71,
           "points": [
-            {
-              "slug": "two-gaps-remain-the-semantic-miss-and-the-unmodeled-region",
-              "text": "Two different gaps: a semantic miss, where correspondence still holds syntactically but meaning has changed, and an unmodeled region, which has no model-based coverage.",
-              "block_index": 75
-            },
             {
               "slug": "an-executable-model-is-its-schema-plus-its-checked-predicates",
               "text": "Operationally, an executable model is its structured schema plus the predicates a machine can check over that schema; a schema without checked predicates is only half the pattern.",
-              "block_index": 78
+              "block_index": 74
             },
             {
               "slug": "no-synchronization-mechanism-proves-semantic-correctness",
               "text": "Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture.",
-              "block_index": 86
+              "block_index": 82
             },
             {
               "slug": "the-narrow-guarantee-is-the-boundary-part-iii-begins-at",
               "text": "The bounded guarantee — decide the decidable over the claimed surface — is the boundary Chapter 3 opens on, where agreement is distinguished from correctness.",
-              "block_index": 89
+              "block_index": 85
             }
           ]
         },
@@ -1394,47 +1384,47 @@
           "heading_text": "Modeling Makes Properties Available to Engineering",
           "topic_sentence": "A model does not govern the system merely by existing.",
           "id_source": "derived",
-          "block_index": 91,
+          "block_index": 87,
           "points": [
             {
               "slug": "a-model-does-not-govern-by-existing-it-makes-a-property-explicit",
               "text": "A model does not govern by existing: a structural model names a forbidden dependency without preventing it, a behavioral model an illegal transition without rejecting it, a measurement model a budget without stopping work — Modeling makes the property explicit, it does not enforce it.",
-              "block_index": 92
+              "block_index": 88
             },
             {
               "slug": "docable-attaches-no-hard-invariant-to-either-quantity",
               "text": "DocAble's cost-and-capacity model relates usage and pricing to an attributable cost against a budget and concurrency to a capacity demand against an envelope, and attaches no hard invariant to either quantity: the model says cost can be compared against a budget, not that it must not exceed one.",
-              "block_index": 94
+              "block_index": 90
             },
             {
               "slug": "measurement-boundary-modeling-and-enforcement-are-separate",
-              "text": "The cost-and-capacity model makes spending attributable and demand comparable to an envelope; it does not decide the budget, guarantee the numbers are collected correctly, or enforce the bound — a model earning its place by exposing a property while leaving enforcement open.",
-              "block_index": 96
+              "text": "The cost-and-capacity model makes spending attributable and demand comparable to an envelope; it does not decide the budget, guarantee that the numbers are collected correctly, or enforce the bound.",
+              "block_index": 92
             },
             {
-              "slug": "the-important-change-is-semantic-reach",
+              "slug": "relational-obligations-need-enough-representation",
               "text": "Local syntactic obligations need little modeling; architectural boundaries, temporal obligations, distributed ownership, provenance, and end-to-end policy need enough representation to expose the relevant relationships, which Modeling makes available to analysis and governance.",
-              "block_index": 99
+              "block_index": 95
             },
             {
               "slug": "alignment-does-not-require-a-separately-represented-model",
-              "text": "Alignment does not require a separately represented model — some obligations are observable at an action or artifact boundary and can be constrained directly; models extend the range of properties the environment can enforce.",
-              "block_index": 102
+              "text": "Alignment does not require every obligation to have a separately represented model — some properties are observable at an action or artifact boundary and can be constrained directly; models extend the range of properties available for analysis and enforcement.",
+              "block_index": 98
             },
             {
               "slug": "docable-models-arose-around-expensive-questions",
-              "text": "DocAble's models arose around engineering questions that implementation alone made expensive, ambiguous, or unsafe to reconstruct; across the cases, the useful model is the representation that preserves the distinctions and relationships a consequential question requires.",
-              "block_index": 105
+              "text": "DocAble's models arose around engineering questions that implementation alone made expensive or unsafe to reconstruct; different questions required different reductions, and shared identities connect them where a decision crosses views.",
+              "block_index": 100
             },
             {
               "slug": "part-iii-asks-which-obligations-the-environment-should-hold",
               "text": "Chapter 3 asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them.",
-              "block_index": 107
+              "block_index": 102
             },
             {
               "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-enforcement-is-a-separate-question",
               "text": "Models can provide value before enforcement — reasoning, analysis, composition, traceability — and Chapter 3 asks the separate question of enforcement.",
-              "block_index": 114
+              "block_index": 109
             }
           ]
         }
