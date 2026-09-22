@@ -135,7 +135,10 @@ def _render_reading(item) -> str:
     citation = entry["note_html"].strip()
     locator = str(item.get("locator") or "").strip()
     if locator:
-        citation = (citation[:-1].rstrip() if citation.endswith(".") else citation) + f", {locator}."
+        base = citation[:-1].rstrip() if citation.endswith(".") else citation
+        # Chicago sets the closing period INSIDE a quoted locator ('chap. 2, "Modularity."').
+        tail = f'{locator[:-1]}."' if locator.endswith('"') else f"{locator}."
+        citation = f"{base}, {tail}"
     annotation = _resolve_mage(str(item.get("annotation") or "").strip())
     return f"{annotation} Full citation: {citation}" if annotation else f"Full citation: {citation}"
 

@@ -4,12 +4,17 @@ readings:
   groups:
     - heading: Decision-making theory
       items:
-        - 'Salado, *Rethink Engineering* — selected chapters. Frames engineering as choosing among alternatives under uncertainty rather than merely producing artifacts. Read it for what a defensible engineering decision must account for: alternatives, consequences, evidence, and uncertainty. Full citation: Alejandro Salado, *Rethink Engineering* (selected chapters).'
-        - 'Harris and Tayler, ["Don''t Let Metrics Undermine Your Business"](https://hbr.org/2019/09/dont-let-metrics-undermine-your-business) (2019). Explains surrogation: confusing a metric with the property or objective it represents. Read it as a warning about what happens when an observable proxy becomes the thing being managed. Full citation: Michael Harris and Bill Tayler, "Don''t Let Metrics Undermine Your Business," *Harvard Business Review*, September–October 2019.'
+        - cite: salado2026
+          locator: 'selected chapters'
+          annotation: 'Salado, *Rethink Engineering* — selected chapters. Frames engineering as choosing among alternatives under uncertainty rather than merely producing artifacts. Read it for what a defensible engineering decision must account for: alternatives, consequences, evidence, and uncertainty.'
+        - cite: harris2019surrogation
+          annotation: 'Harris and Tayler, ["Don''t Let Metrics Undermine Your Business"](https://hbr.org/2019/09/dont-let-metrics-undermine-your-business) (2019). Explains surrogation: confusing a metric with the property or objective it represents. Read it as a warning about what happens when an observable proxy becomes the thing being managed.'
     - heading: Decision-making in practice
       items:
-        - 'Öqvist, Messinger, and Wohlrab, ["Supporting Early Architectural Decision-Making through Tradeoff Analysis: A Study with Volvo Cars"](https://research.chalmers.se/publication/542772/file/542772_Fulltext.pdf) (FSE Companion 2024). Shows architectural decision-making in practice: model alternatives, simulate their consequences, and expose tradeoffs among properties. The analysis informs judgment rather than computing the decision. Full citation: Rebekka Öqvist, Michael Messinger, and Rebekka Wohlrab, "Supporting Early Architectural Decision-Making through Tradeoff Analysis: A Study with Volvo Cars," in *Companion Proceedings of the 32nd ACM International Conference on the Foundations of Software Engineering* (FSE Companion ''24), 2024.'
-        - 'Forsgren et al., ["The SPACE of Developer Productivity: There''s More to It Than You Think"](https://queue.acm.org/detail.cfm?id=3454124) (2021). Shows why an important software-engineering property may require several complementary measures rather than one proxy. Read it as a concrete example of measuring a multidimensional property without collapsing it into a single number. Full citation: Nicole Forsgren, Margaret-Anne Storey, Chandra Maddila, Thomas Zimmermann, Brian Houck, and Jenna Butler, "The SPACE of Developer Productivity: There''s More to It Than You Think," *ACM Queue* 19, no. 1 (2021).'
+        - cite: oqvist2024tradeoff
+          annotation: 'Öqvist, Messinger, and Wohlrab, ["Supporting Early Architectural Decision-Making through Tradeoff Analysis: A Study with Volvo Cars"](https://research.chalmers.se/publication/542772/file/542772_Fulltext.pdf) (FSE Companion 2024). Shows architectural decision-making in practice: model alternatives, simulate their consequences, and expose tradeoffs among properties. The analysis informs judgment rather than computing the decision.'
+        - cite: forsgren2021space
+          annotation: 'Forsgren et al., ["The SPACE of Developer Productivity: There''s More to It Than You Think"](https://queue.acm.org/detail.cfm?id=3454124) (2021). Shows why an important software-engineering property may require several complementary measures rather than one proxy. Read it as a concrete example of measuring a multidimensional property without collapsing it into a single number.'
 instructor_materials: []
 student_materials: []
 assignments: []
