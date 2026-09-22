@@ -474,7 +474,7 @@ def _collect_glossary(chapters: list[dict]) -> None:
 # Part number → the source subdirectory that holds its chapters. Front matter is part 0, the
 # numbered parts are 1–4 and 6–8 (Part 2 is Modeling, Part 3 is Alignment, Part 4 is MAGE in Motion —
 # the Ch4/Ch5 merger absorbed the old Part 5, "The MAGE Method", into it; the book intentionally runs
-# 4 → 6 with no Chapter 5 — Part 6 is The Evidence, Part 7 is The Theory, Part 8 is The Profession),
+# 4 → 6 with no Chapter 5 — Part 6 is Agentic Software Factories, Part 7 is The Theory, Part 8 is The Profession),
 # true back matter (the top-level Conclusion) is part 9. Appendix parts follow.
 _PART_DIRS = {
     0: "frontmatter",
@@ -503,7 +503,7 @@ _PART_TITLES = {
     2: "Modeling",
     3: "Alignment",
     4: "MAGE in Motion: Engineering Through Models",
-    6: "The Evidence",
+    6: "Agentic Software Factories",
     7: "The Theory",
     8: "The Profession",
     9: "Conclusion",   # the top-level Conclusion — its sole page is titled "Conclusion" too (subtitle dropped 260909), so the header/TOC/divider dedup branches suppress the double print
@@ -563,7 +563,7 @@ _PART_OPENER_QUESTIONS = {
     2: "How do I identify useful models?",
     3: "How do I make engineering obligations enforceable in my environment?",
     4: "What happens when Modeling and Alignment are used together in actual engineering, as representations are discovered, systems change, and engineering knowledge accumulates?",
-    6: "What evidence supports MAGE?",
+    6: "What happens to the software factory when agents substantially increase its capacity for realization?",
     7: "How does MAGE work, what should follow if the account is right, and where should we expect it to apply?",
     8: "What follows for software engineering—and what does the software case reveal about agentic engineering beyond software?",
 }

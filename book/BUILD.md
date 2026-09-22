@@ -56,7 +56,7 @@ book/
   part2/          2.1-context-is-the-first-modeling-problem.md … 2.9-modeling-summary.md (9 chapters)  (Part 2 — Modeling)
   part3/          3.1-where-obligations-can-be-enforced.md … 3.5-when-guardrails-collide.md (5 chapters)              (Part 3 — Alignment)
   part4/          4.1-the-dynamics-of-mage.md … 4.4-engineering-the-environment.md (4 chapters)     (Part 4 — MAGE in Motion: Engineering Through Models)
-  part6/          6.1-the-problem-and-the-bar.md … 6.6-what-the-evidence-supports.md (6 chapters; the book runs 4 → 6 with no Chapter 5 since the Ch4/Ch5 merger)  (Part 6 — The Evidence)
+  part6/          6.1-software-factory.md … 6.4-what-the-factories-show.md (4 chapters; the book runs 4 → 6 with no Chapter 5 since the Ch4/Ch5 merger)  (Part 6 — Agentic Software Factories)
   part7/          7.1-toward-a-theory-of-mage.md … 7.5-what-the-theory-claims.md (5 chapters)       (Part 7 — The Theory)
   part8/          8.1-reorganization-of-se.md … 8.5-what-cannot-be-delegated.md (5 chapters)        (Part 8 — The Profession)
   data/metrics.json          # headline numbers, referenced from prose via {{token}}

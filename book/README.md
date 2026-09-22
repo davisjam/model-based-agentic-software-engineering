@@ -26,8 +26,8 @@ book/
     4.2-one-problem-many-models.md
     4.3-brownfield-engineering.md
     4.4-engineering-the-environment.md
-  part6/  (Part 6 — The Evidence; the book runs 4 → 6 with no Chapter 5 since the Ch4/Ch5 merger)
-    6.1-the-problem-and-the-bar.md … 6.6-what-the-evidence-supports.md
+  part6/  (Part 6 — Agentic Software Factories; the book runs 4 → 6 with no Chapter 5 since the Ch4/Ch5 merger)
+    6.1-software-factory.md … 6.4-what-the-factories-show.md
   part7/  (Part 7 — The Theory)
     7.1-toward-a-theory-of-mage.md … 7.5-what-the-theory-claims.md
   part8/  (Part 8 — The Profession)
