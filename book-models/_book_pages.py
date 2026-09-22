@@ -22,7 +22,7 @@ _BOOK = os.path.join(_ROOT, "book")
 #: The DISCOVERED chapter-bearing subdirectories, in reading order: the numbered Parts plus the top-level
 #: Conclusion (`conclusion/`). The synthetic back matter (`backmatter/` — Colophon, About-the-Author) carries
 #: no `N.M-` chapter files, so it is not enumerated here (it is assembled after the appendices at build time).
-_SUBDIRS = ("frontmatter", "part1", "part2", "part3", "part4", "part6", "part7", "part8", "conclusion")
+_SUBDIRS = ("frontmatter", "part1", "part2", "part3", "part4", "part5", "part6", "part7", "conclusion")
 
 #: A chapter file name is `<N>.<M>-slug.md`.
 _CHAPTER_RE = re.compile(r"\d+\.\d+-")

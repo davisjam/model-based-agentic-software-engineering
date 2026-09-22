@@ -56,9 +56,9 @@ book/
   part2/          2.1-context-is-the-first-modeling-problem.md … 2.9-modeling-summary.md (9 chapters)  (Part 2 — Modeling)
   part3/          3.1-where-obligations-can-be-enforced.md … 3.5-when-guardrails-collide.md (5 chapters)              (Part 3 — Alignment)
   part4/          4.1-the-dynamics-of-mage.md … 4.4-engineering-the-environment.md (4 chapters)     (Part 4 — MAGE in Motion: Engineering Through Models)
-  part6/          6.1-software-factory.md … 6.4-what-the-factories-show.md (4 chapters; the book runs 4 → 6 with no Chapter 5 since the Ch4/Ch5 merger)  (Part 6 — Agentic Software Factories)
-  part7/          7.1-toward-a-theory-of-mage.md … 7.5-what-the-theory-claims.md (5 chapters)       (Part 7 — The Theory)
-  part8/          8.1-reorganization-of-se.md … 8.5-what-cannot-be-delegated.md (5 chapters)        (Part 8 — The Profession)
+  part5/          5.1-software-factory.md … 5.4-what-the-factories-show.md (4 chapters)             (Part 5 — Agentic Software Factories)
+  part6/          6.1-toward-a-theory-of-mage.md … 6.5-what-the-theory-claims.md (5 chapters)       (Part 6 — The Theory)
+  part7/          7.1-reorganization-of-se.md … 7.5-what-cannot-be-delegated.md (5 chapters)        (Part 7 — The Profession)
   data/metrics.json          # headline numbers, referenced from prose via {{token}}
   assets/                     # figure assets (inline SVGs, rasters)
   appendix-fills/<role>/<slug>.md   # per-entry Structure + Sample Code fills for the appendix
@@ -87,7 +87,7 @@ freely. Front and back matter render without a "Chapter N" kicker.
 
 The per-Part opener epigraphs were removed (author's call) — `_PART_EPIGRAPHS` in `build_book.py` is
 the empty mechanism, kept should they ever return. The book's one epigraph is the Conclusion's Tennyson
-(*Ulysses*) opener, authored inline in `conclusion/8.1-the-part-that-stays-yours.md` and pinned to the
+(*Ulysses*) opener, authored inline in `conclusion/9.1-the-part-that-stays-yours.md` and pinned to the
 main column by the `<!-- epigraph -->` marker.
 
 ### Copyright footer

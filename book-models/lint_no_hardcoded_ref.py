@@ -51,7 +51,7 @@ BOOK = HERE.parent / "book"
 # LEGACY scope — the narrative dirs the appendix-letter / figure-number patterns govern (unchanged: their
 # drain in the extra appendix dirs is a separate follow-up). `book/_design/` (design docs) excluded by omission.
 LEGACY_DIRS = (
-    "frontmatter", "part1", "part2", "part3", "part4", "part6", "conclusion", "backmatter",
+    "frontmatter", "part1", "part2", "part3", "part4", "part5", "conclusion", "backmatter",
     "appendix-fills", "appendix-stacks", "appendix-skill-recipe",
 )
 # Back-compat alias (external callers may import PROSE_DIRS).
@@ -59,8 +59,8 @@ PROSE_DIRS = LEGACY_DIRS
 
 # XREF scope — every shipped narrative + appendix dir (the chapter/section patterns scan the full set,
 # `_`-prefixed opening prose included). Appendix dirs are globbed so a new one is covered automatically.
-_NARRATIVE_DIRS = ("frontmatter", "part1", "part2", "part3", "interlude", "part4", "part6",
-                   "part7", "conclusion", "backmatter")
+_NARRATIVE_DIRS = ("frontmatter", "part1", "part2", "part3", "part4", "part5",
+                   "part6", "part7", "conclusion", "backmatter")
 XREF_DIRS = _NARRATIVE_DIRS + tuple(sorted(p.name for p in BOOK.glob("appendix-*") if p.is_dir()))
 
 # ── The literal cross-reference patterns a symbolic marker should replace ─────────────────────────────

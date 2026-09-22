@@ -70,7 +70,7 @@
         "0.5-preface",
         "1.1-the-printer",
         "1.2-mage-by-example",
-        "6.2-inside-docables-software-factory"
+        "5.2-inside-docables-software-factory"
       ],
       "body_depth": 1,
       "front_loaded": false,
@@ -100,7 +100,7 @@
       "advanced_by": [
         "0.5-preface",
         "1.1-the-printer",
-        "6.2-inside-docables-software-factory",
+        "5.2-inside-docables-software-factory",
         "9.1-the-part-that-stays-yours"
       ],
       "body_depth": 2,
@@ -131,8 +131,8 @@
       "advanced_by": [
         "0.5-preface",
         "1.2-mage-by-example",
-        "6.2-inside-docables-software-factory",
-        "8.1-reorganization-of-se"
+        "5.2-inside-docables-software-factory",
+        "7.1-reorganization-of-se"
       ],
       "body_depth": 2,
       "front_loaded": false,
@@ -231,8 +231,8 @@
         "3.5-when-guardrails-collide",
         "4.3-brownfield-engineering",
         "4.4-engineering-the-environment",
-        "6.2-inside-docables-software-factory",
-        "8.1-reorganization-of-se"
+        "5.2-inside-docables-software-factory",
+        "7.1-reorganization-of-se"
       ],
       "body_depth": 8,
       "front_loaded": false,
@@ -281,7 +281,7 @@
         "3.5-when-guardrails-collide",
         "4.3-brownfield-engineering",
         "4.4-engineering-the-environment",
-        "6.2-inside-docables-software-factory"
+        "5.2-inside-docables-software-factory"
       ],
       "body_depth": 13,
       "front_loaded": false,
@@ -321,7 +321,7 @@
         "3.3-constraints-sensors-validators-gates",
         "3.4-governance-conversion",
         "4.4-engineering-the-environment",
-        "6.2-inside-docables-software-factory"
+        "5.2-inside-docables-software-factory"
       ],
       "body_depth": 6,
       "front_loaded": false,
@@ -387,7 +387,7 @@
         "3.4-governance-conversion",
         "4.3-brownfield-engineering",
         "4.4-engineering-the-environment",
-        "6.2-inside-docables-software-factory"
+        "5.2-inside-docables-software-factory"
       ],
       "body_depth": 4,
       "front_loaded": false,
@@ -447,8 +447,8 @@
       "advanced_by": [
         "0.5-preface",
         "2.8-system-knowledge",
-        "8.1-reorganization-of-se",
-        "8.4-the-engineer",
+        "7.1-reorganization-of-se",
+        "7.4-the-engineer",
         "9.1-the-part-that-stays-yours"
       ],
       "body_depth": 4,
@@ -477,8 +477,8 @@
       "word_count": 26,
       "statement_hash": "6e678662a007",
       "advanced_by": [
-        "6.2-inside-docables-software-factory",
-        "8.1-reorganization-of-se",
+        "5.2-inside-docables-software-factory",
+        "7.1-reorganization-of-se",
         "9.1-the-part-that-stays-yours"
       ],
       "body_depth": 3,
@@ -510,9 +510,9 @@
       "advanced_by": [
         "0.5-preface",
         "1.2-mage-by-example",
-        "6.2-inside-docables-software-factory",
-        "7.3-scope-conditions",
-        "8.4-the-engineer"
+        "5.2-inside-docables-software-factory",
+        "6.3-scope-conditions",
+        "7.4-the-engineer"
       ],
       "body_depth": 3,
       "front_loaded": false,
@@ -544,8 +544,8 @@
       "word_count": 30,
       "statement_hash": "3d5cdcd1963c",
       "advanced_by": [
-        "7.1-toward-a-theory-of-mage",
-        "8.1-reorganization-of-se",
+        "6.1-toward-a-theory-of-mage",
+        "7.1-reorganization-of-se",
         "9.1-the-part-that-stays-yours"
       ],
       "body_depth": 3,
@@ -744,12 +744,12 @@
       "exempt": null
     },
     {
-      "slug": "6.1-software-factory",
+      "slug": "5.1-software-factory",
       "advances": [],
       "exempt": null
     },
     {
-      "slug": "6.2-inside-docables-software-factory",
+      "slug": "5.2-inside-docables-software-factory",
       "advances": [
         "grounded-in-one-case",
         "abundant-implementation",
@@ -764,36 +764,36 @@
       "exempt": null
     },
     {
-      "slug": "6.3-other-agentic-software-factories",
+      "slug": "5.3-other-agentic-software-factories",
       "advances": [],
       "exempt": "discussion"
     },
     {
-      "slug": "7.1-toward-a-theory-of-mage",
+      "slug": "6.1-toward-a-theory-of-mage",
       "advances": [
         "conversions-compound"
       ],
       "exempt": null
     },
     {
-      "slug": "7.2-what-the-theory-predicts",
+      "slug": "6.2-what-the-theory-predicts",
       "advances": [],
       "exempt": null
     },
     {
-      "slug": "7.3-scope-conditions",
+      "slug": "6.3-scope-conditions",
       "advances": [
         "grounded-in-one-case"
       ],
       "exempt": "discussion"
     },
     {
-      "slug": "7.4-research-agenda",
+      "slug": "6.4-research-agenda",
       "advances": [],
       "exempt": null
     },
     {
-      "slug": "8.1-reorganization-of-se",
+      "slug": "7.1-reorganization-of-se",
       "advances": [
         "oversight-does-not-scale",
         "govern-the-environment",
@@ -804,17 +804,17 @@
       "exempt": "discussion"
     },
     {
-      "slug": "8.2-software-rejoins-engineering",
+      "slug": "7.2-software-rejoins-engineering",
       "advances": [],
       "exempt": null
     },
     {
-      "slug": "8.3-agentic-engineering-beyond-software",
+      "slug": "7.3-agentic-engineering-beyond-software",
       "advances": [],
       "exempt": null
     },
     {
-      "slug": "8.4-the-engineer",
+      "slug": "7.4-the-engineer",
       "advances": [
         "grounded-in-one-case",
         "mage-becomes-practical"
@@ -848,23 +848,23 @@
         "advances": 0
       },
       {
-        "chapter": "6.1-software-factory",
+        "chapter": "5.1-software-factory",
         "advances": 0
       },
       {
-        "chapter": "7.2-what-the-theory-predicts",
+        "chapter": "6.2-what-the-theory-predicts",
         "advances": 0
       },
       {
-        "chapter": "7.4-research-agenda",
+        "chapter": "6.4-research-agenda",
         "advances": 0
       },
       {
-        "chapter": "8.2-software-rejoins-engineering",
+        "chapter": "7.2-software-rejoins-engineering",
         "advances": 0
       },
       {
-        "chapter": "8.3-agentic-engineering-beyond-software",
+        "chapter": "7.3-agentic-engineering-beyond-software",
         "advances": 0
       }
     ],
@@ -880,7 +880,7 @@
         ]
       },
       {
-        "chapter": "6.2-inside-docables-software-factory",
+        "chapter": "5.2-inside-docables-software-factory",
         "advances": 9,
         "spine_ids": [
           "grounded-in-one-case",
@@ -917,7 +917,7 @@
           "3.5-when-guardrails-collide",
           "4.3-brownfield-engineering",
           "4.4-engineering-the-environment",
-          "6.2-inside-docables-software-factory"
+          "5.2-inside-docables-software-factory"
         ]
       }
     ]

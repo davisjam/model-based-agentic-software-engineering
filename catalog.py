@@ -1484,9 +1484,9 @@ def cmd_validate(_args) -> int:
     # CAPABILITY-LADDER MODEL — AUDIT-ONLY (rule #55 first landing). The book's ONE canonical 8-rung
     # Representation Capability Ladder (book-models/capability_ladder_declared.json) is a queryable,
     # drift-gated model: the TEACHING abstraction the opening figure / new Chapter 2 / Chapter 4 adoption path /
-    # Appendix-A stacks / Appendix-E skill rung / Chapter 6 comparative all project. This band reports the
+    # Appendix-A stacks / Appendix-E skill rung / Chapter 5 comparative all project. This band reports the
     # structural invariants CL1 (rung id + order 1..8 contiguous + non-empty text + closed lean enum) / CL2
-    # (the modeling_ceiling_map is a TOTAL 12->8 join to the Part-6 empirical matrix — the ladder TEACHES, the
+    # (the modeling_ceiling_map is a TOTAL 12->8 join to the Part-5 empirical matrix — the ladder TEACHES, the
     # matrix MEASURES, the map keeps them from diverging) / CL3 (the closed anti-CMM guard is present) — but
     # does NOT increment n_issues on first landing. A follow-up flips CL1-CL3 to BLOCKING once a clean session
     # confirms the drain. CL0-drift is walked by the tests/book_models.py check + the model's `verify` CLI.
@@ -3063,7 +3063,7 @@ def _v3_evidence() -> str:
         '  <div class="v3-cards v3-cards-2">\n'
         + _v3_card("DocAble — depth", "",
                    "The originating production system and the longitudinal record from which the early MAGE concepts emerged.",
-                   [("Explore the originating case", "book/mage-book/6.2-inside-docables-software-factory.html")]) + "\n"
+                   [("Explore the originating case", "book/mage-book/5.2-inside-docables-software-factory.html")]) + "\n"
         + _v3_card("Industrial cases — breadth", "",
                    f"Independent accounts from {_INDUSTRY_ORGS_PROSE}, examined through the MAGE framework for recurring patterns, differences, and limits.",
                    [("Explore the industrial cases", "industry-case-studies.html")]) + "\n"
@@ -3080,7 +3080,7 @@ def _v3_research() -> str:
         'human judgment remains necessary.</p>\n'
         '  <p class="v3-btn-row">\n'
         '    <a class="v3-btn v3-btn-secondary" href="theory.html">Read the theory &#8594;</a>\n'
-        '    <a class="v3-btn v3-btn-secondary" href="book/mage-book/7.4-research-agenda.html">Explore the research agenda &#8594;</a>\n'
+        '    <a class="v3-btn v3-btn-secondary" href="book/mage-book/6.4-research-agenda.html">Explore the research agenda &#8594;</a>\n'
         '  </p>\n</section>')
 
 
@@ -3399,27 +3399,27 @@ def _ic_index_body(cases: "list[dict]", hedge: str) -> str:
     p.append("<h2>Across all eight</h2>")
     p.append("<p>One page reads the eight side by side. The "
              f'<a href="{_attr(_COMPARATIVE_PAGE)}">comparative analysis</a> projects the book’s '
-             "Chapter 6 matrices to the web — the correspondence matrix, the modeling-ceiling ladder, "
+             "Chapter 5 matrices to the web — the correspondence matrix, the modeling-ceiling ladder, "
              "and the convergence tables — from the same model the print edition builds, so the two "
              "surfaces cannot fall out of step.</p>")
     return "\n".join(p)
 
 
 def _comparative_body() -> str:
-    """The Comparative-analysis page body — a PROJECTION of the book's Chapter 6 matrices to the web. The
+    """The Comparative-analysis page body — a PROJECTION of the book's Chapter 5 matrices to the web. The
     correspondence matrix, the modeling-ceiling ladder, and the two convergence tables are rendered by the
-    SAME model functions the book's Ch6 build calls (render_matrix_md / render_modeling_ceiling_md /
+    SAME model functions the book's Ch5 build calls (render_matrix_md / render_modeling_ceiling_md /
     render_convergence_md / render_convergence_key_md), so the page cannot diverge from the book (the
     ratified F-comparative exact-reuse decision). Every reader-facing SENTENCE is a hand-authored literal
     or a verbatim authored string read from the model (the distinctive headline + hedge + statements); no
     sentence is machine-composed from slug lists. The seven-kind placement map is the hero. Exactly one
     `<h1>`; a `<!-- comparative-analysis: -->` trace marker leads the body (the pillar-page analogue)."""
-    import industry_cases_model as icm  # noqa: E402 — the Ch6 render functions, on sys.path since module load
+    import industry_cases_model as icm  # noqa: E402 — the Ch5 render functions, on sys.path since module load
     model = icm.derive_model()
     p: "list[str]" = []
     p.append("<!-- comparative-analysis: ch6-projection -->")
     p.append("<h1>Comparative analysis</h1>")
-    p.append('<div class="concept-band"><span class="concept-chip">Chapter 6, in miniature</span>'
+    p.append('<div class="concept-band"><span class="concept-chip">Chapter 5, in miniature</span>'
              '<span class="concept-kicker">the six reconstructions, read at once</span></div>')
     hero = namespace_svg_ids(_inline_svg("assets/six-company-map.svg"), "cmp-hero")
     if hero:
@@ -3434,7 +3434,7 @@ def _comparative_body() -> str:
     # Hand-authored framing + the verbatim model tables, assembled as one markdown document.
     md: "list[str]" = []
     md.append("This page reads the six reconstructions next to one another. It projects the book’s "
-              "Chapter 6 material straight to the web, drawn from the same model, so the two surfaces cannot "
+              "Chapter 5 material straight to the web, drawn from the same model, so the two surfaces cannot "
               "drift. The two convergence tables are the exact tables the print edition lays out; the "
               "correspondence matrix and the modeling-ceiling ladder carry the same data the book renders, "
               "shaped here as tables where print presents it as cards and prose. MAGE ran at none of these "
@@ -4740,7 +4740,7 @@ def cmd_build(_args) -> int:
                      _crumb("", [("Industry case studies", "")]),
                      _ic_index_body(ic_authored, ic_hedge), rel_root="")
     open(os.path.join(ROOT, _IC_INDEX_PAGE), "w", encoding="utf-8").write(ic_index)
-    # The Comparative-analysis page — the book's Ch6 matrices projected to the web via the SAME model render
+    # The Comparative-analysis page — the book's Ch5 matrices projected to the web via the SAME model render
     # functions, so it cannot drift from the book. Linked from the pillar index (its orphan-gate inbound edge).
     comparative = _page("Comparative analysis",
                         _crumb("", [("Industry case studies", _IC_INDEX_PAGE), ("Comparative analysis", "")]),

@@ -267,53 +267,53 @@
         ]
       },
       {
-        "module": "part-6",
-        "number": 6,
+        "module": "part-5",
+        "number": 5,
         "title": "Agentic Software Factories",
         "own_outcomes": [
-          "part-6::trace-what-happens-to-the-software-factory-whe"
+          "part-5::trace-what-happens-to-the-software-factory-whe"
         ],
         "lessons": [
           {
-            "lesson": "6.1-software-factory",
+            "lesson": "5.1-software-factory",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.2-inside-docables-software-factory",
+            "lesson": "5.2-inside-docables-software-factory",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.3-other-agentic-software-factories",
+            "lesson": "5.3-other-agentic-software-factories",
             "own_outcomes": [],
             "section_outcomes": []
           }
         ]
       },
       {
-        "module": "part-7",
-        "number": 7,
+        "module": "part-6",
+        "number": 6,
         "title": "The Theory",
         "own_outcomes": [],
         "lessons": [
           {
-            "lesson": "7.1-toward-a-theory-of-mage",
+            "lesson": "6.1-toward-a-theory-of-mage",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "7.2-what-the-theory-predicts",
+            "lesson": "6.2-what-the-theory-predicts",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "7.3-scope-conditions",
+            "lesson": "6.3-scope-conditions",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "7.4-research-agenda",
+            "lesson": "6.4-research-agenda",
             "own_outcomes": [],
             "section_outcomes": [
               "subsystem-level-design::compare-engineering-surfaces-that-differ-in-repr"
@@ -322,30 +322,30 @@
         ]
       },
       {
-        "module": "part-8",
-        "number": 8,
+        "module": "part-7",
+        "number": 7,
         "title": "The Profession",
         "own_outcomes": [
-          "part-8::evaluate-what-the-method-changes-for-how-software"
+          "part-7::evaluate-what-the-method-changes-for-how-software"
         ],
         "lessons": [
           {
-            "lesson": "8.1-reorganization-of-se",
+            "lesson": "7.1-reorganization-of-se",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "8.2-software-rejoins-engineering",
+            "lesson": "7.2-software-rejoins-engineering",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "8.3-agentic-engineering-beyond-software",
+            "lesson": "7.3-agentic-engineering-beyond-software",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "8.4-the-engineer",
+            "lesson": "7.4-the-engineer",
             "own_outcomes": [],
             "section_outcomes": []
           }
@@ -454,9 +454,9 @@
       "gap_note": null
     },
     {
-      "outcome_id": "part-6::trace-what-happens-to-the-software-factory-whe",
+      "outcome_id": "part-5::trace-what-happens-to-the-software-factory-whe",
       "granularity": "part",
-      "primary_unit": "part-6",
+      "primary_unit": "part-5",
       "secondary_units": [],
       "verb": "trace",
       "obj": "what happens to the software factory when agents substantially increase its capacity for realization",
@@ -467,9 +467,9 @@
       "gap_note": null
     },
     {
-      "outcome_id": "part-8::evaluate-what-the-method-changes-for-how-software",
+      "outcome_id": "part-7::evaluate-what-the-method-changes-for-how-software",
       "granularity": "part",
-      "primary_unit": "part-8",
+      "primary_unit": "part-7",
       "secondary_units": [
         "conclusion",
         "mage-in-the-wild"

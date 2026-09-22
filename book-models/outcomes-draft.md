@@ -111,55 +111,49 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
   - **[DERIVED]** (apply) After this section, the reader can apply Ousterhout's rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried. — _anchor: 4.4 'Operate the Environment' — Ousterhout's rule: measure one level deeper (whole-project cloud bill vs cost by service); re-homed in the Ch4/Ch5 merger._
   - **[DERIVED]** (analyze) After this section, the reader can map a lifecycle — the healthy path of a recurring activity plus the failure states that matter and the sanctioned recovery from each — pairing every prohibition with the recovery path an agent cannot supply on its own. — _anchor: 4.4 'Operate the Environment' — lifecycle model paragraph + pair-prohibitions-with-recovery-paths; re-homed in the Ch4/Ch5 merger._
 
-## Module 6 — The Evidence
+## Module 5 — Agentic Software Factories
 
-- **[DECLARED]** (analyze) After this Part, the reader can trace how the method grew from a single reviewer to a multi-agent engineering organization in one real system, and relate each governance move to the problem that forced it. — _anchor: The Evidence is the ADA/DocAble case study: context -> timeline/work -> built-system -> road-to-MAGE (role progression)._
+- **[DECLARED]** (analyze) After this Part, the reader can analyze a software production system as a software factory — distinguish realization capacity from supervisory capacity, trace how one deeply observed factory made supervision possible through models, joins, enforcement, and governance conversion, and read independent factories through the same lens. — _anchor: Agentic Software Factories: the historical software-factory derivation -> inside DocAble's factory (census, joins, conversions, staircase) -> other factories under one lens -> what the factories show._
 
-### Lesson 6.1-the-problem-and-the-bar
-
-
-### Lesson 6.2-the-build
+### Lesson 5.1-software-factory
 
 
-### Lesson 6.3-the-road-to-mage
+### Lesson 5.2-inside-docables-software-factory
 
 
-### Lesson 6.4-failures-that-became-infrastructure
+### Lesson 5.3-other-agentic-software-factories
 
 
-### Lesson 6.5-mage-in-the-wild
+## Module 6 — The Theory
 
 
-## Module 7 — The Theory
+### Lesson 6.1-toward-a-theory-of-mage
 
 
-### Lesson 7.1-toward-a-theory-of-mage
+### Lesson 6.2-what-the-theory-predicts
 
 
-### Lesson 7.2-what-the-theory-predicts
+### Lesson 6.3-scope-conditions
 
 
-### Lesson 7.3-scope-conditions
-
-
-### Lesson 7.4-research-agenda
+### Lesson 6.4-research-agenda
 
   - **[DERIVED]** (analyze) After this section, the reader can compare engineering surfaces that differ in representation and governance …. — _anchor: ts: Compare engineering surfaces that differ in representation and governance while holding as_
 
-## Module 8 — The Profession
+## Module 7 — The Profession
 
-- **[DECLARED]** (evaluate) After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become a common language of mature engineering. _(primary: Module 8 · elaborated by: conclusion, mage-in-the-wild)_ — _anchor: reorganization-of-se sections (where-engineering-effort-moves, what-stays-with-the-engineer, consequences-for-software-engineering) + the-part-that-stays-yours._
+- **[DECLARED]** (evaluate) After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become a common language of mature engineering. _(primary: Module 7 · elaborated by: conclusion, mage-in-the-wild)_ — _anchor: reorganization-of-se sections (where-engineering-effort-moves, what-stays-with-the-engineer, consequences-for-software-engineering) + the-part-that-stays-yours._
 
-### Lesson 8.1-reorganization-of-se
-
-
-### Lesson 8.2-software-rejoins-engineering
+### Lesson 7.1-reorganization-of-se
 
 
-### Lesson 8.3-agentic-engineering-beyond-software
+### Lesson 7.2-software-rejoins-engineering
 
 
-### Lesson 8.4-the-engineer
+### Lesson 7.3-agentic-engineering-beyond-software
+
+
+### Lesson 7.4-the-engineer
 
 
 ## Module 9 — Conclusion

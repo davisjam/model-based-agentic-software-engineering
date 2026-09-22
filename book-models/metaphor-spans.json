@@ -66,7 +66,7 @@
       "payoff": "The stock the positive dual of churn accrues; it earns returns while it stays fit, and depreciates when it does not.",
       "overlap_ok": false,
       "overlap_rationale": "",
-      "notes": "The vehicle for the compounding principle — attached to the STOCK (engineering capital), so flow (compounding) and stock stay coherent. Named on the glossary page (ground truth for core); pays off in Part 6 (the Compounding-Governance proposition + the Bureaucracy-vs-Engineering-capital section, where technical debt is set against engineering capital). Compound INTEREST, deliberately: it fixes the valence against the pre-existing opposite-sign term `compounding-failure-probability` (Part 4). No vehicle collision — no prior `capital`/`compound` span exists."
+      "notes": "The vehicle for the compounding principle — attached to the STOCK (engineering capital), so flow (compounding) and stock stay coherent. Named on the glossary page (ground truth for core); pays off in Part 5 (the Compounding-Governance proposition + the Bureaucracy-vs-Engineering-capital section, where technical debt is set against engineering capital). Compound INTEREST, deliberately: it fixes the valence against the pre-existing opposite-sign term `compounding-failure-probability` (Part 4). No vehicle collision — no prior `capital`/`compound` span exists."
     },
     {
       "kind": "metaphor",

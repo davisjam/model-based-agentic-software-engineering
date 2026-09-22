@@ -26,12 +26,12 @@ book/
     4.2-one-problem-many-models.md
     4.3-brownfield-engineering.md
     4.4-engineering-the-environment.md
-  part6/  (Part 6 — Agentic Software Factories; the book runs 4 → 6 with no Chapter 5 since the Ch4/Ch5 merger)
-    6.1-software-factory.md … 6.4-what-the-factories-show.md
-  part7/  (Part 7 — The Theory)
-    7.1-toward-a-theory-of-mage.md … 7.5-what-the-theory-claims.md
-  part8/  (Part 8 — The Profession)
-    8.1-reorganization-of-se.md … 8.5-what-cannot-be-delegated.md
+  part5/  (Part 5 — Agentic Software Factories)
+    5.1-software-factory.md … 5.4-what-the-factories-show.md
+  part6/  (Part 6 — The Theory)
+    6.1-toward-a-theory-of-mage.md … 6.5-what-the-theory-claims.md
+  part7/  (Part 7 — The Profession)
+    7.1-reorganization-of-se.md … 7.5-what-cannot-be-delegated.md
   conclusion/9.1-the-part-that-stays-yours.md
   appendix-front-door.md, appendix-stacks/, appendix-notes/, appendix-operators-reference/,
              appendix-skill-recipe/, appendix-c/    # hand-authored + catalogue-projected appendices

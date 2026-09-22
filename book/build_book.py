@@ -472,19 +472,19 @@ def _collect_glossary(chapters: list[dict]) -> None:
                 _GLOSSARY[term] = m.group("def").strip()
 
 # Part number → the source subdirectory that holds its chapters. Front matter is part 0, the
-# numbered parts are 1–4 and 6–8 (Part 2 is Modeling, Part 3 is Alignment, Part 4 is MAGE in Motion —
-# the Ch4/Ch5 merger absorbed the old Part 5, "The MAGE Method", into it; the book intentionally runs
-# 4 → 6 with no Chapter 5 — Part 6 is Agentic Software Factories, Part 7 is The Theory, Part 8 is The Profession),
-# true back matter (the top-level Conclusion) is part 9. Appendix parts follow.
+# numbered parts run contiguously 1–7 (Part 2 is Modeling, Part 3 is Alignment, Part 4 is MAGE in
+# Motion — the Ch4/Ch5 merger absorbed the old Part 5, "The MAGE Method", into it, and the 260922
+# renumber closed the resulting 4 → 6 gap — Part 5 is Agentic Software Factories, Part 6 is The
+# Theory, Part 7 is The Profession), true back matter (the top-level Conclusion) is part 9. Appendix parts follow.
 _PART_DIRS = {
     0: "frontmatter",
     1: "part1",
     2: "part2",
     3: "part3",
     4: "part4",
+    5: "part5",
     6: "part6",
     7: "part7",
-    8: "part8",
     9: "conclusion",   # the top-level Conclusion — an unnumbered MATTER part, parallel to the Preface
     # The back-matter apparatus (Colophon, About-the-Author) is NOT discovered here: it is a synthetic
     # post-appendix tail assembled by `build_backmatter_chapters` (mirrors `build_appendix_chapters`).
@@ -503,9 +503,9 @@ _PART_TITLES = {
     2: "Modeling",
     3: "Alignment",
     4: "MAGE in Motion: Engineering Through Models",
-    6: "Agentic Software Factories",
-    7: "The Theory",
-    8: "The Profession",
+    5: "Agentic Software Factories",
+    6: "The Theory",
+    7: "The Profession",
     9: "Conclusion",   # the top-level Conclusion — its sole page is titled "Conclusion" too (subtitle dropped 260909), so the header/TOC/divider dedup branches suppress the double print
 }
 
@@ -522,9 +522,9 @@ _CHAPTER_LABELS: "dict[str, int | float]" = {
     "modeling": 2,
     "alignment": 3,
     "one-problem-many-models": 4,   # promoted from the interlude to Chapter 4; absorbed Chapter 5 ("method") in the Ch4/Ch5 merger
-    "evidence": 6,
-    "theory": 7,
-    "profession": 8,
+    "evidence": 5,
+    "theory": 6,
+    "profession": 7,
 }
 
 
@@ -553,7 +553,7 @@ _assert_chapter_label_parity()
 # reasoning move the reader learns to make. Part 1 is the mindset opener (a "why", the new-engineering-
 # problem setup — what abundant implementation makes scarce), not an instrumental "how do I"; Parts 2-3
 # are "how do I" (the mechanisms), Part 4 a "what happens" (the dynamics + the method, post the Ch4/Ch5
-# merger), Part 6 a "what evidence", Part 7 a "how/where", Part 8 a "what follows". Single source of
+# merger), Part 5 a "what evidence", Part 6 a "how/where", Part 7 a "what follows". Single source of
 # truth: book_typst.py reads these (imported as `bb`) for the orientation verso AND the PART-OPENER SPREAD
 # sensor greps the same label + strings, so the print divider and its gate cannot disagree on which
 # question a Part carries.
@@ -563,9 +563,9 @@ _PART_OPENER_QUESTIONS = {
     2: "How do I identify useful models?",
     3: "How do I make engineering obligations enforceable in my environment?",
     4: "What happens when Modeling and Alignment are used together in actual engineering, as representations are discovered, systems change, and engineering knowledge accumulates?",
-    6: "What happens to the software factory when agents substantially increase its capacity for realization?",
-    7: "How does MAGE work, what should follow if the account is right, and where should we expect it to apply?",
-    8: "What follows for software engineering—and what does the software case reveal about agentic engineering beyond software?",
+    5: "What happens to the software factory when agents substantially increase its capacity for realization?",
+    6: "How does MAGE work, what should follow if the account is right, and where should we expect it to apply?",
+    7: "What follows for software engineering—and what does the software case reveal about agentic engineering beyond software?",
 }
 
 # Per-Part epigraph map — EMPTY by author's call: the per-Part opener epigraphs (once (quote,
@@ -3651,7 +3651,7 @@ def _appendix_contents_md(ordered: list[dict]) -> str:
 # The two appendix-Part dividers — synthetic mode-marker pages that head the two appendix Parts, giving the
 # appendices a conceptual hierarchy (the reader leaves the argument and enters the reference manual, split by
 # purpose). Part I (Practice) sits immediately BEFORE Appendix A; Part II (Evidence) immediately BEFORE
-# Appendix G. Neither is a numbered Part ("Part 7" is back matter); the `is_appendix_divider` flag routes each
+# Appendix G. Neither is a numbered Part (the appendix parts sit above the numbered ones); the `is_appendix_divider` flag routes each
 # to its own distinct rendering on both surfaces (web: `.appendices-divider`; PDF: a level-1 bookmark PARENT,
 # so A–F nest under Part I and G–H under Part II). Each takes its own part number, one below the appendix it
 # precedes, so it heads its own TOC/index group and PDF bookmark-parent divider page. Per-record `subtitle`
@@ -6672,7 +6672,7 @@ def build_pdf() -> int:
 def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
     """The ONE canonical grouping of the book's ordered chapters into the review sections, keyed off the
     same `part` field the whole-book render iterates:
-      part 0 → FrontMatter · parts 1-7 → Chapter1…Chapter7 · part 8 → Conclusion · parts ≥ 8 → Appendices
+      part 0 → FrontMatter · parts 1-7 → Chapter1…Chapter7 · part 9 → Conclusion · parts ≥ 10 → Appendices
     (the appendices front-door divider plus every appendix chapter) · the synthetic matter tail → BackMatter.
     It reuses the IR chapter order, so each
     section is a contiguous slice of the whole-book reading order — there is no second section model that
@@ -6733,7 +6733,7 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
 
 
 def build_pdf_split() -> int:
-    """Emit one PDF per logical book section (front matter, Parts 1-6, back matter, appendices) alongside the
+    """Emit one PDF per logical book section (front matter, Parts 1-7, back matter, appendices) alongside the
     full `mage-book.pdf`. Each section PDF is projected from the SAME typed IR and Typst emitter the whole
     book uses (`book_typst.emit_document(..., split_section=True)`), so a section PDF cannot diverge from its
     slice of the whole book. A `[ref:]` cross-reference whose target float sits in another section renders as

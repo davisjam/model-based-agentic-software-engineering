@@ -1,43 +1,44 @@
-<!-- part-foreshadows: modeling-principle, alignment-principle, seat-moves -->
+<!-- part-foreshadows: conversions-compound -->
+{{chapter:evidence}} supplied two views of the evidence. The originating case showed how MAGE's structures emerged
+under sustained engineering pressure; the industrial reconstructions showed related structures arising
+independently under different constraints. Neither establishes a universal law. Together, they give us
+something worth explaining.
 
-What happens to the software factory when agents substantially increase its capacity for
-realization? This chapter puts that question to observed systems. It is the book's empirical
-chapter, and it deliberately does not open with MAGE: the chapter first derives the software factory
-as an analytical object from two centuries of production engineering, then studies real factories —
-one from the inside, several from the outside — and lets supervision emerge as the central problem
-rather than assuming it.
+We begin with a general theory of how agentic capacity interacts with the governed engineering
+environment. The theory treats implementation capacity as an input, not an outcome: the same capacity can
+produce durable progress or merely accelerate churn depending on the representations, evidence,
+constraints, and controls through which it acts. Engineering pressure exposes mismatches. Engineers can
+diagnose them and turn what they learn into structure that later work inherits.
 
-The evidence comes in two forms. DocAble — a production document-accessibility system built largely
-by directing coding agents — supplies depth: chronology, mechanism, and within-case recurrence,
-observed from the inside and from the beginning. Independent industrial accounts supply breadth:
-variation across systems built by other organizations under different constraints, none of them
-claimed as adopters of this book's method.
+We state the theory and its main predictions first, deliberately in general form. Only afterward do we
+ask where those predictions should be expected to hold. MAGE costs something to build, maintain,
+coordinate, and govern, and not every engineering judgment can or should become durable machinery. The
+scope conditions therefore bound the theory rather than precede it.
+
+The chapter then turns from claims to inquiry. Its final section turns the theory, predictions, and scope
+conditions into a research agenda: what to measure, what comparisons could distinguish the proposed
+mechanisms, which quantities remain unknown, and what evidence would strengthen—or weaken—the account.
+
+The objective is not to declare MAGE a universal law of software engineering—or of agentic work more
+generally. It is to make the explanation precise enough to be wrong. The evidence behind the theory comes
+from software engineering. The mechanisms are stated more generally because representation, enforcement,
+inherited structure, and the interaction between agentic capacity and its environment do not themselves
+require software. {{sec:scope-conditions}} therefore asks not only when MAGE should work within software engineering, but what
+properties a domain must have for the account to transfer at all.
 
 <!-- principlebox -->
 <!-- box-family: canonical -->
-> ### Depth and breadth
+> ### The synthesis
 >
-> MAGE emerged from one deeply observed production build. That case supplies chronology, mechanism, and
-> within-case recurrence.
+> Agentic capacity does not by itself produce useful progress. It acts through the environment
+> surrounding the work. In engineering, Modeling changes the representations used for consequential
+> reasoning and Alignment enforces selected obligations independently of the producing reasoner.
 >
-> Independent industrial accounts supply a different kind of evidence: variation across systems built by
-> other organizations under different constraints.
->
-> **The first shows how the method emerged. The second asks how far its engineering grammar travels.**
+> Together, these structures shape how much autonomous capacity becomes durable progress, how much failure
+> escapes, and how much human judgment the work still requires.
 
-**New here:** Software factory · Originating case · Support ratio · Delegation staircase · Within-case evidence · Industrial reconstructions · Comparative evidence
+**Carrying forward:** Commodity intelligence · Modeling Principle · Alignment Principle · Governed
+Engineering Environment · Engineering capital · Probabilistic surface
 
-{{chapter:evidence}} uses two views of the evidence; [ref:two-views-of-the-evidence] sets them side by side.
-
-<!-- label: two-views-of-the-evidence -->
-<!-- figure: assets/two-views-of-the-evidence.svg | *Two views of the evidence.* The originating case supplies longitudinal depth: sequence, mechanism, and within-case recurrence. Independent industrial reconstructions supply variation across systems and organizations but less process visibility. Together they motivate the theoretical account developed in Chapter 6. -->
-
-The chapter runs in four sections. {{sec:the-software-factory}} derives the factory concept from the
-history of manufacturing and ends on the problem the evidence must answer: increasing the capacity
-of the fabricator does not necessarily increase the capacity of the supervisor.
-{{sec:inside-docables-software-factory}} opens the deep case — what DocAble's factory knows, what it
-can derive and enforce, how it learned, and what its supervisor actually does.
-{{sec:mage-in-the-wild}} reads independently documented industrial systems as software factories
-under one consistent lens. {{sec:what-the-evidence-supports}} states what the factories show, and
-what they cannot. Depth supplies mechanism; breadth supplies variation. {{chapter:theory}} asks what
-general account can explain both.
+**New here:** Dynamic Model · Environment quality · Determinization frontier · Representation innovation · Scope conditions ·
+Testable predictions · Research agenda

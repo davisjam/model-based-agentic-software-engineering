@@ -74,16 +74,17 @@ _PLACEHOLDER_RE = re.compile(
 DELIMITER_PAIRS = (("(", ")"), ("{", "}"))  # pairs checked for balance in prose (after masking)
 
 BOOK = os.path.join(ROOT, "book")
-# Source chapters live under these dirs (part1..6, plus front/back matter); appendix + meta files excluded.
-_CHAPTER_SRC_DIRS = ("part1", "part2", "part3", "part4", "part6", "frontmatter", "part7")
-# Front matter (Preface, Acknowledgments), the Reflections chapters (Theory, Implications, Conclusion), and
-# the Back-Matter apparatus (About the Author, Colophon) are narrative or reference prose that does not
-# plausibly want a figure, so the visual-per-chapter rule EXEMPTS them by default (part6/part7 carry
-# forward the exemption the single `backmatter/` dir held before the Part-6/7 split — the closing prose
+# Source chapters live under these dirs (the numbered parts, plus front matter); appendix + meta files excluded.
+_CHAPTER_SRC_DIRS = ("part1", "part2", "part3", "part4", "part5", "frontmatter", "part6", "part7")
+# Front matter (Preface, Acknowledgments) and the closing-argument chapters (the factories/evidence,
+# theory, and profession parts) are narrative or reference prose that does not
+# plausibly want a figure per section, so the visual-per-chapter rule EXEMPTS them by default (part5-7
+# carry forward the exemption the single `backmatter/` dir held before those chapters were promoted to
+# numbered parts — the closing prose
 # gains figures in the later content wave, not this structural move). A page that DOES want the rule can
 # opt in via source dir; a body chapter that genuinely needs no figure opts out with a per-file
 # `<!-- noqa: book-visual — <reason> -->`.
-_VISUAL_EXEMPT_SRC_DIRS = ("frontmatter", "part6", "part7")
+_VISUAL_EXEMPT_SRC_DIRS = ("frontmatter", "part5", "part6", "part7")
 
 # ---- the finding + suppression model -------------------------------------------------------------
 

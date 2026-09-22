@@ -340,7 +340,7 @@
     "assets/open-frontiers.svg": {
       "tier": "A",
       "kind": "roadmap",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the research-program map — four kinds welded to H1-H8; the coda anchor for 'Where the frontier goes next'"
     },
     "assets/model-ladder.svg": {
@@ -358,61 +358,61 @@
     "assets/determinization-frontier.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the determinization frontier the whole method walks toward; Part-6 closing anchor image"
     },
     "assets/six-company-map.svg": {
       "tier": "B",
       "kind": "comparison",
-      "location": "part6",
+      "location": "part5",
       "rationale": "six systems reconstruct regions of one theory; the map that opens Meet the six"
     },
     "assets/six-entry-points.svg": {
       "tier": "B",
       "kind": "comparison",
-      "location": "part6",
+      "location": "part5",
       "rationale": "six systems enter the shared design space at different points; the R47 map that opens MAGE in the Wild"
     },
     "assets/modeling-ceiling-tiers.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the three-tier modeling ceiling (knowledge / executable model / governed correspondence); R47 replacement for the 12-col matrix"
     },
     "assets/determinization-two-paths.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the two paths to mechanization (direct vs representation shift); R47 replacement for the determinization ladder"
     },
     "assets/where-effort-moves.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "where engineering effort moves across an unchanged lifecycle; R47 replacement for the SDLC-to-SELC figure"
     },
     "assets/why-software-modeled.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the three economic variables (physical realization / implementation labor / synchronization cost) and the change that moves them; R47 replacement for why-software-came-last"
     },
     "assets/model-induction-general.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the model-induction move drawn once — realized work to repeated forms to a named concept — with the left rail stating the move and three columns instantiating it in software, knowledge work, and CAD; the anchor for the 'models can be induced from the work' callback"
     },
     "assets/return-governability.svg": {
       "tier": "B",
       "kind": "conceptual-framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "value of explicit engineering (vertical) x feasible governability (horizontal), with four self-explanatory quadrants (explicit judgment / authority / informal / selective); anchor figure for 6.3.2. Tier B: the quadrants now carry their own prose, so the caption is deliberately short"
     },
     "assets/governance-census.svg": {
       "tier": "B",
       "kind": "conceptual-illustration",
-      "location": "part6",
+      "location": "part5",
       "rationale": "obligations vs mechanisms; gap/orphan as counts — supports the census subsection"
     },
     "assets/research-arc.svg": {
@@ -484,7 +484,7 @@
     "assets/sdlc-to-selc.svg": {
       "tier": "B",
       "kind": "comparison",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the reassigned seat"
     },
     "assets/agent-stack-layers.svg": {
@@ -640,7 +640,7 @@
     "education-research-open-problems::The authorship division": {
       "tier": "B",
       "kind": "comparison",
-      "location": "part7",
+      "location": "part6",
       "rationale": "the durable authorship split — what Self-Governance carries vs. what the engineer remains answerable for; §6.6.1 answerability table"
     },
     "assets/engineering-recurring-work.svg": {
@@ -748,19 +748,19 @@
     "assets/mage-dynamic-model.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "THE central theoretical model"
     },
     "assets/mage-churn-vs-compounding.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
-      "location": "part6",
-      "rationale": "the Churn/Compounding sign contrast — pairs two of the book's core dynamics; Part 6 anchor"
+      "location": "part5",
+      "rationale": "the Churn/Compounding sign contrast — pairs two of the book's core dynamics; Part 5 anchor"
     },
     "toward-a-theory-of-mage::Churn and its positive duals": {
       "tier": "B",
       "kind": "conceptual-table",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the churn-vs-compounding duality table — negative dynamics against their positive duals"
     },
     "assets/author-headshot.jpg": {
@@ -856,85 +856,85 @@
     "toward-a-theory-of-mage::The four dimensions of E": {
       "tier": "B",
       "kind": "framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "dimensioning table"
     },
     "toward-a-theory-of-mage::Constructs and moderators": {
       "tier": "C",
       "kind": "reference-lookup",
-      "location": "part6",
+      "location": "part5",
       "rationale": "per-construct lookup of the model"
     },
     "toward-a-theory-of-mage::The three MAGE outcomes and their observables": {
       "tier": "B",
       "kind": "summary-of-points",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the three predicted outcomes"
     },
     "toward-a-theory-of-mage::The four Modeling × Alignment combinations": {
       "tier": "B",
       "kind": "summary-of-points",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the 2x2 of Modeling and Alignment as separable levers — each cell's primary contribution"
     },
     "toward-a-theory-of-mage::MAGE's eight falsifiable hypotheses H1–H8": {
       "tier": "A",
       "kind": "design-decision-table",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the theory's core claims + falsifiers; caption interprets"
     },
     "toward-a-theory-of-mage::Three study designs mapped to H1–H8": {
       "tier": "B",
       "kind": "summary-of-points",
-      "location": "part6",
+      "location": "part5",
       "rationale": "three study designs"
     },
     "toward-a-theory-of-mage::Evidence sources and their strongest inferences": {
       "tier": "B",
       "kind": "framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "two evidence sources + future work against strongest inference / does-not-establish — the R47 evidence-status table"
     },
     "what-the-theory-predicts::MAGE's nine hypotheses in three families": {
       "tier": "B",
       "kind": "framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the nine named hypotheses in three families with their core quantities — the R47 research-program summary"
     },
     "scope-conditions::Typical MAGE profiles by setting": {
       "tier": "B",
       "kind": "framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "typical profiles by setting against the recurs/governable gates — where investment pays and residual judgment stays"
     },
     "mage-in-the-wild::The Modeling Ceiling": {
       "tier": "B",
       "kind": "comparison-summary",
-      "location": "part6",
+      "location": "part5",
       "rationale": "modeling-ceiling matrix across six sites + MAGE"
     },
     "mage-in-the-wild::What Everyone Does": {
       "tier": "B",
       "kind": "comparison-summary",
-      "location": "part6",
+      "location": "part5",
       "rationale": "universal-convergence bucket"
     },
     "mage-in-the-wild::What Industry Discovered": {
       "tier": "B",
       "kind": "comparison-summary",
-      "location": "part6",
+      "location": "part5",
       "rationale": "generalizes-convergence bucket"
     },
     "mage-in-the-wild::Universal patterns — key": {
       "tier": "C",
       "kind": "reference-key",
-      "location": "part6",
+      "location": "part5",
       "rationale": "companion key-list to the universal glyph grid — construct + full statement per U-key"
     },
     "mage-in-the-wild::Discovered patterns — key": {
       "tier": "C",
       "kind": "reference-key",
-      "location": "part6",
+      "location": "part5",
       "rationale": "companion key-list to the generalizes glyph grid — construct + full statement per G-key"
     },
     "backmatter/colophon.md::The manuscript's governing models and the failures they prevent": {
@@ -1030,7 +1030,7 @@
     "assets/why-software-came-last.svg": {
       "tier": "A",
       "kind": "conceptual-comparison",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the chapter's climax image — why software's inverted economics kept it from model-based engineering until commodity intelligence made live models affordable; anchor with the two-column comparison resolving into one causal chain"
     },
     "assets/discovering-models-migration.svg": {
@@ -1078,7 +1078,7 @@
     "assets/established-traditions-new-composition.svg": {
       "tier": "A",
       "kind": "conceptual-convergence",
-      "location": "part6",
+      "location": "part5",
       "rationale": "two established traditions (engineering + AI) converge in MAGE's new composition → GEE → governance conversion → engineering capital; the §6.5.4 heritage anchor"
     },
     "assets/canonical-structural.svg": {
@@ -1186,7 +1186,7 @@
     "assets/factory-progression.svg": {
       "tier": "B",
       "kind": "progression-diagram",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the five-stage craft-to-supervised-production chain — the chapter's historical explanatory model; supporting caption on knowledge and control moving from the fabricator into the production system"
     },
     "inside-docables-software-factory::The build's scale at one snapshot": {
@@ -1198,7 +1198,7 @@
     "inside-docables-software-factory::Census specimens and their supervisory consequences": {
       "tier": "B",
       "kind": "framework",
-      "location": "part6",
+      "location": "part5",
       "rationale": "the four-column census-specimen table (engineering question / representation / consumer / supervisory consequence) — the census shown by affordance rather than catalogue"
     }
   }

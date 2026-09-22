@@ -44,7 +44,7 @@
       "kind": "frontier",
       "status": "open",
       "one_line": "How far judgment compiles into deterministic machinery — and how far it can be pushed by conjecturing the rungs not yet discovered.",
-      "source_section": "7.1-toward-a-theory-of-mage",
+      "source_section": "6.1-toward-a-theory-of-mage",
       "related_hypotheses": [
         "H3-mechanized-assurance",
         "H4-representation-leverage"
@@ -56,7 +56,7 @@
       "kind": "frontier",
       "status": "open",
       "one_line": "Richer representation expands what Alignment can determinize — Modeling and Alignment are causally interdependent, not parallel.",
-      "source_section": "7.1-toward-a-theory-of-mage",
+      "source_section": "6.1-toward-a-theory-of-mage",
       "related_hypotheses": [
         "H4-representation-leverage"
       ]
@@ -67,7 +67,7 @@
       "kind": "frontier",
       "status": "conjectured",
       "one_line": "How much assurance emerges as a by-product of a model-rich governed environment (the MAGE-II conjecture); proximity to NIST AI RMF and UL 4600.",
-      "source_section": "7.2-what-the-theory-predicts",
+      "source_section": "6.2-what-the-theory-predicts",
       "related_hypotheses": [
         "H3-mechanized-assurance"
       ]
@@ -78,7 +78,7 @@
       "kind": "frontier",
       "status": "open",
       "one_line": "What must be shared for an outsider to reproduce not the artifact but the capacity to evolve it; which environment artifacts join the supply chain.",
-      "source_section": "7.4-research-agenda",
+      "source_section": "6.4-research-agenda",
       "related_hypotheses": [
         "H7-conversion-conditions"
       ]
@@ -89,7 +89,7 @@
       "kind": "measurement",
       "status": "established",
       "one_line": "Inventory obligations against mechanisms; measure Coverage, Under-governance, and Governance-debt — with propagation-latency proposed as a future fourth metric.",
-      "source_section": "6.3-other-agentic-software-factories",
+      "source_section": "5.3-other-agentic-software-factories",
       "related_hypotheses": [
         "H3-mechanized-assurance",
         "H6-oversight-amortization",
@@ -102,7 +102,7 @@
       "kind": "dynamics",
       "status": "open",
       "one_line": "How a lesson, once encoded into shared machine-actionable structure, propagates to later work; how the organization changes shape as agent throughput rises.",
-      "source_section": "7.1-toward-a-theory-of-mage",
+      "source_section": "6.1-toward-a-theory-of-mage",
       "related_hypotheses": [
         "H1-failure-class-exposure",
         "H7-conversion-conditions",
@@ -115,7 +115,7 @@
       "kind": "generalization",
       "status": "conjectured",
       "one_line": "Whether the answer generalizes to model-based engineering at large (Siemens, Zenseact) — the widened core question of MBAE.",
-      "source_section": "6.3-other-agentic-software-factories",
+      "source_section": "5.3-other-agentic-software-factories",
       "related_hypotheses": [
         "H4-representation-leverage"
       ]

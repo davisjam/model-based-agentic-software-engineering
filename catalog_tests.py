@@ -523,7 +523,7 @@ CHECKS = [
     # AUDIT-ONLY (rule #55 first landing): the CAPABILITY-LADDER model — the book's ONE canonical 8-rung
     # Representation Capability Ladder as a queryable, drift-gated model. The TEACHING abstraction projected
     # into the opening figure, the new Part 2 explanatory ladder, the Part 4 adoption path, the Appendix-A
-    # stacks, the Appendix-E skill rung, and the Part 6 comparative. Reports CL0-drift + CL1 (rung id + order
+    # stacks, the Appendix-E skill rung, and the Part 5 comparative. Reports CL0-drift + CL1 (rung id + order
     # 1..8 contiguous + non-empty text + closed lean enum) / CL2 (the modeling_ceiling_map is a TOTAL 12->8
     # join to the Part-6 empirical matrix — the ladder TEACHES, the matrix MEASURES, the map keeps them from
     # diverging) / CL3 (the closed anti-CMM guard is present). Lands audit-only-first (CL1-3 green from birth);

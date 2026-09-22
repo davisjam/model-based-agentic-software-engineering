@@ -496,7 +496,7 @@ def check_capability_ladder():
     """The capability-ladder model's drift + structural check (audit-only first landing, rule-#55 discipline).
     The book's ONE canonical 8-rung Representation Capability Ladder — the TEACHING abstraction projected into
     the opening figure, the new Part 2 explanatory ladder, the Part 4 adoption path, the Appendix-A stacks,
-    the Appendix-E skill rung, and the Part 6 comparative. Re-derives the model from the hand-authored
+    the Appendix-E skill rung, and the Part 5 comparative. Re-derives the model from the hand-authored
     `capability_ladder_declared.json` (joined against the 12-rung modeling_ceiling_ladder in
     industry_cases_declared.json) and reports: CL0-drift against the on-disk artifact; CL1 (rung id + order
     1..N contiguous with N==8 + non-empty text + closed lean enum), CL2 (the modeling_ceiling_map is a TOTAL

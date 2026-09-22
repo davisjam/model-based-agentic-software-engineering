@@ -39,7 +39,7 @@ _GENERATED = {"index", "book-index", "catalogue-figure", "figures", "bibliograph
 
 def _all_book_md_files() -> list[str]:
     """Every book chapter-source markdown, derived from the build's own part-dir SSOT
-    (`build_book._PART_DIRS`: front matter, part1–part8, the Conclusion) so a new part can never fall
+    (`build_book._PART_DIRS`: front matter, the numbered parts, the Conclusion) so a new part can never fall
     out of the citation gates' corpus. (A hand-listed tuple here silently missed part8 for a while —
     the derive-don't-copy fix.) Appendix dirs are assembled synthetically by the build and stay outside
     this chapter corpus; the source-hygiene checks (`_all_cite_source_md_files`) cover them."""
