@@ -63,7 +63,7 @@ These layers determine the capability available for delegated work. They do not 
 
 ## Engineers have levers
 
-Once the work has been bounded, engineers can equip the agent by intervening at several points in this system:
+Once the work has been bounded, engineers can equip the agent by intervening at several points in this system. The levers are a repertoire of interventions, all serving the EQUIP decision:
 
 | Lever | Engineering purpose | Examples |
 |---|---|---|
@@ -88,7 +88,7 @@ A useful delegation boundary gives the agent enough freedom to perform coherent 
 
 ## Engineer the reasoning surface
 
-An agent's **reasoning horizon** is the amount of relevant state it can effectively bring to bear on a task. Better representations extend it: an agent checking a change against the architecture can reconstruct dependencies from source or consult a trustworthy dependency model. The move is Pólya's — change the problem presented to the reasoner rather than the reasoner.
+An agent's **reasoning horizon** is the amount of relevant state it can effectively bring to bear on a task. Better representations extend it by changing the problem presented to the reasoner: an agent checking a change against the architecture can reconstruct dependencies from source or consult a trustworthy dependency model.
 
 When work exceeds the agent's reasoning horizon, engineers have several choices: reduce the task, improve the representation, retrieve relevant context, externalize state, provide a tool, or move the delegation boundary. The objective is not to maximize the amount of context presented to the model. It is to construct a reasoning surface on which the relevant relationships become tractable.
 
@@ -111,8 +111,6 @@ The required evidence depends on the claims and consequences of the work, not on
 **BOUND → EQUIP → AUTHORIZE → VERIFY.** Bound the work so that it presents a tractable reasoning problem. Equip the agent with the capability, representations, context, state, and tools needed to perform it. Grant only the authority appropriate to the consequences of the task. Determine what evidence must exist before the work is accepted or allowed to produce further consequences.
 
 These decisions interact. Better representations may let an agent handle a larger task. Narrower authority may make greater autonomy acceptable. Stronger verification may justify delegating work whose realization would otherwise require close human supervision. A more capable model may reduce the amount of decomposition required. The engineering object is therefore not the agent alone but the system in which delegation occurs.
-
-**Before you delegate.** What work is bounded here? What must the agent know and be able to do? Does the task fit its reasoning horizon? What authority does it need? What consequences should remain outside that authority? What evidence will close the work?
 
 ## Scope
 
