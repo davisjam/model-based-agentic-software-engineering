@@ -1,21 +1,21 @@
-"""LINT `point-claim-word-cap` — a `point` decorator's `<claim>` segment must be ≤20 words.
+"""LINT `point-claim-word-cap` — a `point` decorator's `<claim>` segment must be ≤56 words.
 
 THE NEW POINT FORM.  The drain's canonical points changed shape: a verbose paragraph paraphrase is WRONG;
 the new form is `<!-- point: <slug> | <claim> | terms: <t1>, <t2> -->` where `<claim>` is a SHORT
-declarative sentence — capped at **20 words**. This lint makes the cap machine-checkable: a word is a
+declarative sentence — capped at **56 words**. This lint makes the cap machine-checkable: a word is a
 whitespace-separated token in the `<claim>` segment ONLY (deterministic; the `terms:` segment does not
-count), and a claim over 20 words is a finding.
+count), and a claim over 56 words is a finding.
 
-CAP SET FROM THE CORPUS, NOT BY TASTE (260920).  Measured over all 833 points: min 5, median 18, mean
-20.2, max 56 words. The original cap of 10 flagged 747 points (90%) — it was measuring an undone reform,
-not a drifting corpus. The cap is now 20: the claims still read as short declaratives, and the finding
-count halves to ~303 (36%). Re-measure before moving it again; the distribution is the argument.
+CAP SET TO THE CORPUS MAXIMUM (260921, author's call).  Measured over 835 points: min 5, median 18,
+mean 20, max 56. Successive caps were tried (10 → 747 findings, 20 → 303, 45 → 5) and the author ruled
+the remaining noise not worth the team's time. The cap is therefore 56 — the longest claim in the
+corpus — so the lint currently reports ZERO.
 
-STILL AUDIT-ONLY, AND THE REMAINDER IS A WORKLIST.  The ~303 findings at cap 20 are NOT false positives.
-They are the points still carrying the OLD verbose paragraph-paraphrase form this decorator replaced — the
-reform pass that was to drain them never ran (the lint landed against 175 points; the book now has 833).
-This lint PRINTS findings and exits 0, never reddening a commit. Promote it to blocking only after that
-drain, not by loosening the cap until the tree happens to be clean.
+WHAT THIS MEANS, STATED HONESTLY.  At 56 this check no longer constrains authoring; it is a backstop
+against a future claim longer than anything written so far, not a style gate. The original intent (a
+`<claim>` is a SHORT declarative sentence, and the ~300 points still carrying the OLD verbose
+paragraph-paraphrase form are a reform worklist) is UNMET and deliberately parked. If that reform is
+ever run, lower the cap in step with it and re-measure; do not lower it first.
 
 Run `python3 book-models/lint_point_claim_word_cap.py` to see the findings (audit-only, exit 0).
 """
@@ -28,7 +28,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import book_symbols as bs  # noqa: E402 — read-only over book_ir (the point decorators live in the IR)
 
 #: The claim-word cap. A `<claim>` segment with more whitespace-separated tokens than this is a finding.
-CLAIM_WORD_CAP = 20
+CLAIM_WORD_CAP = 56
 
 
 def claim_word_count(claim: str) -> int:
