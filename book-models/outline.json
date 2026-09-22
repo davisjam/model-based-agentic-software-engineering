@@ -963,7 +963,7 @@
           "block_index": 10,
           "points": [
             {
-              "slug": "the-load-bearing-fact-is-an-absent-edge-between-staged-and-durable",
+              "slug": "the-decisive-fact-is-an-absent-edge-between-staged-and-durable",
               "text": "The recovery obligation lives in the gap between local staging and durable publication: there is no direct FALLBACK_STAGED to DB_UPDATED edge, so the record can never point at a not-yet-durable artifact.",
               "block_index": 14
             },

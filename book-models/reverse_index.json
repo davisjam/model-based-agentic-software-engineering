@@ -5439,6 +5439,16 @@
         }
       ]
     },
+    "point:the-decisive-fact-is-an-absent-edge-between-staged-and-durable": {
+      "kind": "point",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "2.3-behavioral::block-14",
+          "role": "paragraph-point"
+        }
+      ]
+    },
     "point:the-diagnosis-a-common-asymmetry": {
       "kind": "point",
       "dependents": [
@@ -5755,16 +5765,6 @@
         {
           "view": "outline",
           "element": "2.3-behavioral::block-47",
-          "role": "paragraph-point"
-        }
-      ]
-    },
-    "point:the-load-bearing-fact-is-an-absent-edge-between-staged-and-durable": {
-      "kind": "point",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "2.3-behavioral::block-14",
           "role": "paragraph-point"
         }
       ]

@@ -11,7 +11,7 @@
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="roTitle">Recovery-ordering model: three legal states and one forbidden edge</title>
   <desc id="roDesc">Three states in legal order. FALLBACK_STAGED transitions on upload success to
-    FALLBACK_UPLOADED, which transitions when durable state is updated to DB_UPDATED. The load-bearing fact
+    FALLBACK_UPLOADED, which transitions when durable state is updated to DB_UPDATED. The decisive fact
     is a forbidden edge: FALLBACK_STAGED may not go directly to DB_UPDATED. Durable state may not name an
     artifact recovery has not yet published.</desc>
 
@@ -59,6 +59,5 @@
   <text x="558" y="247" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">the model</text>
 
   <!-- footer: protect the point -->
-  <text x="340" y="384" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The load-bearing fact is the edge that does not exist.</text>
-  <text x="340" y="408" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">The fallback artifact must become durable before database state may refer to it.</text>
+  <text x="340" y="396" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">The fallback artifact must become durable before database state may refer to it.</text>
 </svg>
