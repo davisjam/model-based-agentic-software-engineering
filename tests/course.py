@@ -310,3 +310,55 @@ def check_course_nav_titles():
             issues.append(f"{rel(pages)}: nav title {title!r} is not capitalized — the first word should "
                           "begin with an uppercase letter (e.g. 'Design', not 'design')")
     return (FAIL if issues else PASS), issues
+
+
+# ── Reading citations — the course side of the bibliography subsystem (BIB-12) ───────────────────────
+# A lander reading references a work by cite key (`- cite: <key>` in its readings front matter); the
+# teach-site build projects the formatted citation from book/data/citations.json (site/hooks/readings.py).
+# This gate holds the join from the course side: every key resolves in references.bib, and no lander
+# carries a hand-written "Full citation:" sentence — the SSOT violation the key form replaced. The line
+# reader is anchored to the block-mapping spelling the landers use (`- cite: <key>`); the hook's loud
+# failure on an unknown key at site-build time backstops any spelling this reader misses.
+
+_CITE_ITEM_RE = re.compile(r"^\s*-\s*cite:\s*(\S+)\s*$")
+
+
+def iter_course_reading_cite_keys() -> "list[tuple[str, int, str]]":
+    """Every `cite:` key referenced by a course-lander reading, as (page, line, key). Also consumed by
+    the book-side CITE-ORPHAN audit, which counts a lander reference as a use of a .bib entry."""
+    out: list[tuple[str, int, str]] = []
+    for page in sorted(glob.glob(os.path.join(ROOT, _MODULE_INDEX_GLOB))):
+        front, _ = _split_front_matter(open(page, encoding="utf-8").read())
+        for i, ln in enumerate(front.splitlines(), start=2):  # +1 for the opening `---`
+            m = _CITE_ITEM_RE.match(ln)
+            if m:
+                out.append((page, i, m.group(1).strip("\"'")))
+    return out
+
+
+def check_course_reading_citations():
+    """BIB-12 (BLOCKING; drained to 0 at landing). (a) Every lander `cite:` key names an entry in
+    book/references.bib — a rotted key must fail here, not at site-build time on a machine with the
+    toolchain. (b) No lander front matter contains a hand-written "Full citation:" string — bibliographic
+    fact is projected from the one backend, never re-authored as prose (the drift this subsystem
+    removed). Non-empty rendering of every referenced entry is already held globally by CITE-NONEMPTY
+    (BIB-10) over citations.json, and citations.json ⊇ bib keys by CITE-FRESH (BIB-6) — not re-checked
+    here."""
+    from tests.citations import _bib_keys  # deferred: avoids a module-import cycle with tests.citations
+    keys = _bib_keys()
+    issues: list[str] = []
+    refs = iter_course_reading_cite_keys()
+    for page, line, key in refs:
+        if keys and key not in keys:
+            issues.append(f"{rel(page)}:{line}: cite key {key!r} names no entry in book/references.bib")
+    for page in sorted(glob.glob(os.path.join(ROOT, _MODULE_INDEX_GLOB))):
+        front, _ = _split_front_matter(open(page, encoding="utf-8").read())
+        for i, ln in enumerate(front.splitlines(), start=2):
+            if "Full citation:" in ln:
+                issues.append(f"{rel(page)}:{i}: hand-written 'Full citation:' prose — reference the "
+                              f"work by key (`- cite: <key>` + annotation) so the citation is projected "
+                              f"from book/references.bib, not re-authored per lander")
+    if not refs and not issues:
+        return FAIL, ["course reading-citations: no `cite:` references found in any lander — the "
+                      "readings tree or item spelling moved; the gate would silently pass otherwise"]
+    return (FAIL if issues else PASS), issues

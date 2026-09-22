@@ -136,14 +136,18 @@ def check_cite_fresh():
 
 def check_cite_orphans():
     """Decision #4 (AUDIT-ONLY). A references.bib entry that nothing cites is a warning, not a failure — a
-    bibliography may legitimately carry a work only its end-of-book list references. Reports the uncited
-    keys so an author can prune a tight bib or ignore the note."""
+    bibliography may legitimately carry a work only its end-of-book list references. A course-lander
+    reading reference (`- cite: <key>` in readings front matter, projected by the teach-site build) counts
+    as a use — the .bib is the repo's ONE citation backend, so lander-assigned works live here too.
+    Reports the uncited keys so an author can prune a tight bib or ignore the note."""
     keys = _bib_keys()
     if not keys:
         return PASS, []
+    from tests.course import iter_course_reading_cite_keys  # deferred: avoids a module-import cycle
     cited: set[str] = set()
     for f in _all_book_md_files():
         cited.update(bb.iter_cite_keys(open(f, encoding="utf-8").read()))
+    cited.update(k for _page, _line, k in iter_course_reading_cite_keys())
     orphans = sorted(keys - cited)
     return (FAIL if orphans else PASS), [f"WARN {k!r} is in references.bib but nothing cites [cite: {k}]"
                                          for k in orphans]

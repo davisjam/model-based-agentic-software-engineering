@@ -118,6 +118,7 @@ from tests.course import (
     check_course_lander_prose_word_band,
     check_course_module_schema,
     check_course_nav_titles,
+    check_course_reading_citations,
     check_course_sessions_calendar_parity,
 )
 from tests.markdown import check_markdown_anchors, check_markdown_schema, check_render_safety
@@ -185,6 +186,11 @@ CHECKS = [
     # per-session tokens resolve to the one lander (site/hooks/modules.py), and this holds the join.
     Check("course: declared module sessions == calendar {module:} tokens (session-calendar parity)", 1,
           lambda strict: check_course_sessions_calendar_parity()),
+    # BLOCKING (drained to 0 at landing): every lander reading `cite:` key resolves in references.bib,
+    # and no lander re-authors a hand-written "Full citation:" sentence — bibliographic fact is projected
+    # from the one citation backend (site/hooks/readings.py), never hand-maintained per lander.
+    Check("course: READ-CITE — lander cite keys resolve; no hand-written 'Full citation:' prose (BIB-12)", 1,
+          lambda strict: check_course_reading_citations()),
     # AUDIT-ONLY (first landing, several pre-band landers out of band): ready module descriptions land in
     # the session-scaled prose band (module-schema.json: 750–1,000 words/session). Promote once drained.
     Check("course: ready lander prose within session-scaled word band (module-schema sessions band)", 1,
