@@ -74,7 +74,7 @@ By the end of the course, students should be able to:
 The curriculum has three acts:
 
 - **Act I — Foundations:** process, teamwork, requirements, architecture, design, and validation, concluding with engineering decision-making and metrics.
-- **Act II — Building Systems & Governing Changes:** implementation, agentic engineering, and assurance.
+- **Act II — Building Systems & Governing Changes:** working with software agents, modeling and implementation, alignment and assurance, and failure-aware engineering.
 - **Act III — Software in the World:** operations, security, maintenance, evolution, and professional judgment.
 
 See the [Calendar](calendar.md) for one 16-week sequence.

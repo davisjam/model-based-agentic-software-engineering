@@ -28,13 +28,13 @@ This reference course uses a 16-week sequence in three acts. The [Syllabus](syll
 
 ## Act II — Building Systems & Governing Change
 
-*How do we realize engineering decisions, learn from experience, and govern change?*
+*How do we delegate realization, govern what is produced, and learn when reality contradicts our expectations?*
 
 | Week | Topic |
 |---|---|
-| 6 | {module:Modeling: Representation & Implementation} |
-| 7 | {module:Alignment} |
-| 8 | {module:Agent Levers} · {module:Failure-Aware Engineering} |
+| 6 | {module:Agent Levers: Working with Software Agents} · {module:Modeling: Representation & Implementation} |
+| 7 | {module:Modeling: Engineering with Models} · {module:Alignment: From Guidance to Authority} |
+| 8 | {module:Alignment: Governing Realization} · {module:Failure-Aware Engineering} |
 | 9 | Oral Exam / Synthesis |
 
 ## Act III — Software in the World

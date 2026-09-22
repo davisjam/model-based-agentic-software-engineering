@@ -38,11 +38,13 @@ Modules are published as their teaching materials are completed.
 
 ## Act II — Building Systems & Governing Change
 
-*How do we realize engineering decisions, learn from experience, and govern change?*
+*How do we delegate realization, govern what is produced, and learn when reality contradicts our expectations?*
 
+- Agent Levers: Working with Software Agents
 - Modeling: Representation & Implementation
-- Alignment
-- Agent Levers
+- Modeling: Engineering with Models
+- Alignment: From Guidance to Authority
+- Alignment: Governing Realization
 - **[Failure-Aware Engineering](act-2-building-systems-and-governing-changes/04-failure-aware-engineering/index.md)**
 
 *Remaining materials forthcoming.*
