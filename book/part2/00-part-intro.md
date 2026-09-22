@@ -61,5 +61,5 @@ property. Whether the engineered environment enforces the resulting obligation i
 explicit; Alignment makes selected obligations enforceable.
 
 <!-- point: the-final-chapter-connects-the-six-without-a-seventh-model | The final section shows how the models connect through shared identity without becoming one universal model. | terms: model-zoo, scope-of-modeling, modeling-principle -->
-The final section, [System Knowledge](2.8-system-knowledge.html), shows how the models connect
+The final section, [System Knowledge](2.5-system-knowledge.html), shows how the models connect
 without becoming a seventh model.

@@ -2596,7 +2596,7 @@ def _is_appendix_divider(ch: "ir.Chapter") -> bool:
 #: in its Part by its `N.M-` filename but prints no number. Register a new terminal coda's slug here.
 _CODA_SLUGS = frozenset({
     "1.5-problem-summary",
-    "2.9-modeling-summary",
+    "2.6-modeling-summary",
     "3.6-alignment-summary",
     "5.4-what-the-factories-show",
     "6.5-what-the-theory-claims",

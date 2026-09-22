@@ -51,19 +51,10 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 2.3-behavioral
 
 
-### Lesson 2.4-ownership
+### Lesson 2.4-decision
 
 
-### Lesson 2.5-decision
-
-
-### Lesson 2.6-measurement
-
-
-### Lesson 2.7-provenance
-
-
-### Lesson 2.8-system-knowledge
+### Lesson 2.5-system-knowledge
 
 
 ## Module 3 — Alignment

@@ -53,7 +53,7 @@ from the path, and reads the title metadata from each file.
 book/
   frontmatter/    0.0-acknowledgments.md … 0.5-preface.md (6 chapters)                              (Part 0 — Front Matter)
   part1/          1.1-the-printer.md … 1.5-problem-summary.md (5 chapters)                          (Part 1 — The New Engineering Problem)
-  part2/          2.1-context-is-the-first-modeling-problem.md … 2.9-modeling-summary.md (9 chapters)  (Part 2 — Modeling)
+  part2/          2.1-context-is-the-first-modeling-problem.md … 2.6-modeling-summary.md (7 chapters)  (Part 2 — Modeling)
   part3/          3.1-where-obligations-can-be-enforced.md … 3.5-when-guardrails-collide.md (5 chapters)              (Part 3 — Alignment)
   part4/          4.1-the-dynamics-of-mage.md … 4.4-engineering-the-environment.md (4 chapters)     (Part 4 — MAGE in Motion: Engineering Through Models)
   part5/          5.1-software-factory.md … 5.4-what-the-factories-show.md (4 chapters)             (Part 5 — Agentic Software Factories)

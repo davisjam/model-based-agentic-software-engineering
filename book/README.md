@@ -18,7 +18,7 @@ book/
   part1/  (Part 1 — The New Engineering Problem)
     1.1-the-printer.md … 1.5-problem-summary.md
   part2/  (Part 2 — Modeling)
-    2.1-context-is-the-first-modeling-problem.md … 2.9-modeling-summary.md
+    2.1-context-is-the-first-modeling-problem.md … 2.6-modeling-summary.md
   part3/  (Part 3 — Alignment)
     3.1-where-obligations-can-be-enforced.md … 3.5-when-guardrails-collide.md
   part4/  (Part 4 — MAGE in Motion: Engineering Through Models)
