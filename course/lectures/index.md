@@ -43,8 +43,8 @@ Modules are published as their teaching materials are completed.
 - **[Agent Levers: Working with Software Agents](act-2-building-systems-and-governing-changes/01-agent-levers/index.md)**
 - **[Modeling: Representation & Implementation](act-2-building-systems-and-governing-changes/02-modeling/index.md)**
 - **[Modeling: Engineering with Models](act-2-building-systems-and-governing-changes/02-modeling/index.md)**
-- Alignment: From Guidance to Authority
-- Alignment: Governing Realization
+- **[Alignment: From Guidance to Authority](act-2-building-systems-and-governing-changes/03-alignment/index.md)**
+- **[Alignment: Governing Realization](act-2-building-systems-and-governing-changes/03-alignment/index.md)**
 - **[Failure-Aware Engineering](act-2-building-systems-and-governing-changes/04-failure-aware-engineering/index.md)**
 
 *Remaining materials forthcoming.*
