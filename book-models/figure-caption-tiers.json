@@ -1200,6 +1200,18 @@
       "kind": "framework",
       "location": "part5",
       "rationale": "the four-column census-specimen table (engineering question / representation / consumer / supervisory consequence) — the census shown by affordance rather than catalogue"
+    },
+    "assets/entitlement-domain.svg": {
+      "tier": "B",
+      "kind": "domain-diagram",
+      "location": "part2",
+      "rationale": "the upload-entitlement domain drawn before the failure story — user, groups, finite vs unlimited entitlement, and the admission decision that needs both facts; supporting caption names why a finite-only representation cannot answer the question"
+    },
+    "assets/entitlement-model-evolution.svg": {
+      "tier": "A",
+      "kind": "comparison",
+      "location": "part2",
+      "rationale": "four-panel chronological anchor for the entitlement case — original scalar model, domain evolution, the stale reduction that discards the unlimited distinction, and the revised decision model that preserves it; A-tier caption tells the reader to read it as loss vs preservation of one distinction, not repository architecture"
     }
   }
 }

@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 819,
+    "total_sites": 820,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 477,
+      "book-web": 478,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -917,7 +917,7 @@
           },
           {
             "file": "book/web/docs/2.5-decision.md",
-            "occ": 3
+            "occ": 7
           },
           {
             "file": "book/web/docs/2.6-measurement.md",
@@ -1839,7 +1839,7 @@
           },
           {
             "file": "book/web/docs/2.5-decision.md",
-            "occ": 21
+            "occ": 64
           },
           {
             "file": "book/web/docs/2.6-measurement.md",
@@ -2187,7 +2187,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 382
+            "occ": 403
           },
           {
             "file": "book/web/docs/index.md",
@@ -2195,7 +2195,7 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 15
+            "occ": 17
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -3112,6 +3112,10 @@
             "occ": 5
           },
           {
+            "file": "book/web/docs/2.5-decision.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/2.7-provenance.md",
             "occ": 7
           },
@@ -3247,7 +3251,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 35
+            "occ": 36
           }
         ]
       },

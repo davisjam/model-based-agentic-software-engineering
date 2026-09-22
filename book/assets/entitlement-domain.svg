@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Chapter 2 decision-family figure — the upload-entitlement domain (gc-ch2-revision 260922).
+     Job: give the reader the billing domain BEFORE the failure story — user, groups, the two
+     entitlement kinds, and the decision that must preserve both facts. Shared visual grammar;
+     green family ground (decision). Evidence: R2-response-B item 5 (entitlement RCA). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600" role="img" aria-labelledby="entDomT entDomD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="entDomT">The upload-entitlement domain: users, groups, finite and unlimited entitlement, and the admission decision</title>
+  <desc id="entDomD">A user belongs to one or more groups. A group is either a finite-credit group, carrying remaining credits, or an unlimited group, carrying no credit limit. Both kinds feed the upload decision, which must preserve both facts and ends in admit or reject.</desc>
+  <defs>
+    <marker id="entDom-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
+    <marker id="entDom-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="600" fill="#fdfcf9"/>
+  <text x="480" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Upload entitlement — the domain the decision must preserve</text>
+
+  <!-- USER -->
+  <rect x="410" y="76" width="140" height="54" rx="10" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+  <text x="480" y="110" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">User</text>
+
+  <line x1="480" y1="130" x2="480" y2="176" stroke="#1c1917" stroke-width="2" marker-end="url(#entDom-ah)"/>
+  <text x="494" y="160" font-size="18" font-style="italic" fill="#57534e">belongs to one or more</text>
+
+  <!-- GROUPS -->
+  <rect x="400" y="180" width="160" height="54" rx="10" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+  <text x="480" y="214" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Groups</text>
+
+  <!-- fan-out to the two kinds -->
+  <line x1="440" y1="234" x2="255" y2="288" stroke="#1c1917" stroke-width="2" marker-end="url(#entDom-ah)"/>
+  <line x1="520" y1="234" x2="705" y2="288" stroke="#1c1917" stroke-width="2" marker-end="url(#entDom-ah)"/>
+
+  <!-- FINITE-CREDIT GROUP -->
+  <rect x="110" y="292" width="270" height="88" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="245" y="328" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Finite-credit group</text>
+  <text x="245" y="358" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">a remaining credit balance</text>
+
+  <!-- UNLIMITED GROUP -->
+  <rect x="580" y="292" width="270" height="88" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="715" y="328" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Unlimited group</text>
+  <text x="715" y="358" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">no credit limit</text>
+
+  <!-- converge on the decision -->
+  <line x1="245" y1="380" x2="425" y2="442" stroke="#155c38" stroke-width="2.2" marker-end="url(#entDom-ah-green)"/>
+  <line x1="715" y1="380" x2="535" y2="442" stroke="#155c38" stroke-width="2.2" marker-end="url(#entDom-ah-green)"/>
+  <text x="245" y="416" text-anchor="middle" font-size="18" font-style="italic" fill="#155c38">how many credits remain?</text>
+  <text x="722" y="416" text-anchor="middle" font-size="18" font-style="italic" fill="#155c38">is any entitlement unlimited?</text>
+
+  <!-- UPLOAD DECISION -->
+  <rect x="370" y="446" width="220" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
+  <text x="480" y="482" text-anchor="middle" font-size="22" font-weight="700" fill="#155c38">Upload decision</text>
+
+  <line x1="430" y1="504" x2="360" y2="546" stroke="#1c1917" stroke-width="2" marker-end="url(#entDom-ah)"/>
+  <line x1="530" y1="504" x2="600" y2="546" stroke="#1c1917" stroke-width="2" marker-end="url(#entDom-ah)"/>
+  <rect x="270" y="550" width="120" height="42" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="1.6"/>
+  <text x="330" y="577" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">ADMIT</text>
+  <rect x="570" y="550" width="120" height="42" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="1.6"/>
+  <text x="630" y="577" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">REJECT</text>
+</svg>
