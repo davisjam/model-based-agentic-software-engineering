@@ -140,3 +140,6 @@ Reference-GITIGNORE/
 # skip-if-absent when no .NET toolchain — never committed)
 tools/pptx-validate-harness/bin/
 tools/pptx-validate-harness/obj/
+
+# Archived third-party readings — kept locally against linkrot, NOT redistributed
+/_local-readings/
