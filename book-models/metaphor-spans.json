@@ -4,7 +4,7 @@
   "ration_rule": "Each declared idea gets ONE canonical slogan (scope invoke-by-name) at its best location. Later appearances are blunt referential invocations, not fresh polished formulations. A `used-once` line appears exactly once; a `commandment` may recur as a refrain. Density/clustering caps ration polished occurrences. A slogan and a metaphor elaborating the SAME idea do not compete — only two invoke-by-name slogans on one idea do.",
   "ratified_counts": {
     "core": 9,
-    "local": 6,
+    "local": 5,
     "overlaps": 0,
     "slogans": 7,
     "commandments": 0,
@@ -234,30 +234,6 @@
       "overlap_ok": false,
       "overlap_rationale": "",
       "notes": "Vehicle word 'staircase' is reused by mage-staircase (5.4) — see the vehicle-collision check. Renaming this to 'the evidence ladder/ratchet' (a DEFERRED editorial call, no content edit here) would free 'staircase' for the load-bearing 5.4 close."
-    },
-    {
-      "kind": "metaphor",
-      "name": "The DOJ ramp",
-      "slug": "doj-ramp",
-      "recurrence": "local",
-      "vehicle": "call-ahead-for-a-ramp versus the ramp is simply there",
-      "elaborates": {
-        "model": "argues-claims",
-        "id": "reliability-from-environment"
-      },
-      "introduced_at": {
-        "label": "inside-docables-software-factory",
-        "anchor": "title-ii-now-means-digital"
-      },
-      "pays_off_at": {
-        "label": "inside-docables-software-factory",
-        "anchor": "title-ii-now-means-digital"
-      },
-      "stretch": "the-ada-context",
-      "payoff": "Accessibility as a property present by default, not requested on demand.",
-      "overlap_ok": false,
-      "overlap_rationale": "",
-      "notes": "The DOJ's own analogy, carried in the burden-shift table. The ramp present-by-default is reliability from the environment, not on demand."
     },
     {
       "kind": "metaphor",
