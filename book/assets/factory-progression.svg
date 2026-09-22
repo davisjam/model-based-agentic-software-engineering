@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: factory-progression). The chapter's explanatory model: the historical
+     progression from craft production to the supervised production system, drawn as a five-stage
+     descending chain. Each stage names what moved out of the individual fabricator and into the
+     production system. A history figure (linear chain genre), not an architecture diagram.
+     Palette: Umber Monograph tokens (accent #9a3f12 stage names/nodes, ink #1c1917 body,
+     muted #57534e secondary, rule #e4e0d8 spine). Font Source Sans 3. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 620"
+     role="img" aria-labelledby="fpTitle fpDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fpTitle">The historical progression from craft to the supervised production system</title>
+  <desc id="fpDesc">A five-stage descending chain. Craft: the skilled fabricator carries much of the
+    production knowledge. Precision: consequential properties become explicitly measurable.
+    Repeatability: specifications and tolerances permit independent realization. Automation: machines
+    perform increasing amounts of fabrication. Supervised production system: representations,
+    instrumentation, controls, and exceptions permit production beyond direct human observation.
+    Arrows connect each stage to the next, top to bottom.</desc>
+
+  <defs>
+    <marker id="fpArrow" viewBox="0 0 10 10" refX="10" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- ============ stages: y-centres 70, 190, 310, 430, 550 (step 120) ============ -->
+
+  <!-- 1 · Craft -->
+  <circle cx="76" cy="70" r="7" fill="#9a3f12"/>
+  <text x="100" y="63" font-size="21" font-weight="700" letter-spacing="0.04em" fill="#9a3f12">CRAFT</text>
+  <text x="100" y="88" font-size="20" fill="#1c1917">the skilled fabricator carries much of the production knowledge</text>
+
+  <line x1="76" y1="90" x2="76" y2="152" stroke="#9a3f12" stroke-width="2" marker-end="url(#fpArrow)"/>
+
+  <!-- 2 · Precision -->
+  <circle cx="76" cy="190" r="7" fill="#9a3f12"/>
+  <text x="100" y="183" font-size="21" font-weight="700" letter-spacing="0.04em" fill="#9a3f12">PRECISION</text>
+  <text x="100" y="208" font-size="20" fill="#1c1917">consequential properties become explicitly measurable</text>
+
+  <line x1="76" y1="210" x2="76" y2="272" stroke="#9a3f12" stroke-width="2" marker-end="url(#fpArrow)"/>
+
+  <!-- 3 · Repeatability -->
+  <circle cx="76" cy="310" r="7" fill="#9a3f12"/>
+  <text x="100" y="303" font-size="21" font-weight="700" letter-spacing="0.04em" fill="#9a3f12">REPEATABILITY</text>
+  <text x="100" y="328" font-size="20" fill="#1c1917">specifications and tolerances permit independent realization</text>
+
+  <line x1="76" y1="330" x2="76" y2="392" stroke="#9a3f12" stroke-width="2" marker-end="url(#fpArrow)"/>
+
+  <!-- 4 · Automation -->
+  <circle cx="76" cy="430" r="7" fill="#9a3f12"/>
+  <text x="100" y="423" font-size="21" font-weight="700" letter-spacing="0.04em" fill="#9a3f12">AUTOMATION</text>
+  <text x="100" y="448" font-size="20" fill="#1c1917">machines perform increasing amounts of fabrication</text>
+
+  <line x1="76" y1="450" x2="76" y2="512" stroke="#9a3f12" stroke-width="2" marker-end="url(#fpArrow)"/>
+
+  <!-- 5 · Supervised production system -->
+  <circle cx="76" cy="550" r="7" fill="#9a3f12"/>
+  <text x="100" y="543" font-size="21" font-weight="700" letter-spacing="0.04em" fill="#9a3f12">SUPERVISED PRODUCTION SYSTEM</text>
+  <text x="100" y="568" font-size="20" fill="#1c1917">representations, instrumentation, controls, and exceptions</text>
+  <text x="100" y="590" font-size="20" fill="#1c1917">permit production beyond direct human observation</text>
+</svg>

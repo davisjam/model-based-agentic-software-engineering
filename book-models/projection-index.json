@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 827,
+    "total_sites": 831,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 485,
+      "book-web": 489,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -86,6 +86,10 @@
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
             "occ": 17
+          },
+          {
+            "file": "book/web/docs/6.1-software-factory.md",
+            "occ": 4
           },
           {
             "file": "book/web/docs/6.2-the-build.md",
@@ -251,7 +255,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 57
+            "occ": 58
           }
         ]
       },
@@ -980,6 +984,10 @@
             "occ": 56
           },
           {
+            "file": "book/web/docs/6.1-software-factory.md",
+            "occ": 16
+          },
+          {
             "file": "book/web/docs/6.1-the-problem-and-the-bar.md",
             "occ": 3
           },
@@ -1379,7 +1387,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -1419,7 +1427,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 79
+            "occ": 80
           },
           {
             "file": "catalogue-figure.html",
@@ -1914,6 +1922,10 @@
             "occ": 22
           },
           {
+            "file": "book/web/docs/6.1-software-factory.md",
+            "occ": 4
+          },
+          {
             "file": "book/web/docs/6.1-the-problem-and-the-bar.md",
             "occ": 4
           },
@@ -2211,7 +2223,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 400
+            "occ": 401
           },
           {
             "file": "book/web/docs/index.md",
@@ -2253,7 +2265,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 110
+            "occ": 111
           }
         ]
       },
@@ -2633,7 +2645,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 31
+            "occ": 32
           },
           {
             "file": "catalogue-figure.html",
@@ -2962,6 +2974,10 @@
             "occ": 3
           },
           {
+            "file": "book/web/docs/6.1-software-factory.md",
+            "occ": 3
+          },
+          {
             "file": "book/web/docs/6.3-the-road-to-mage.md",
             "occ": 1
           },
@@ -3081,7 +3097,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 45
+            "occ": 46
           }
         ]
       },

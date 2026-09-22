@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 8,
     "elaborative_links": 11,
     "units_serving_as_elaborative": 10,
-    "sections_total": 207,
+    "sections_total": 213,
     "sections_primary_of_an_outcome": 7,
     "modules": 8,
-    "lessons": 35
+    "lessons": 36
   },
   "taxonomy": {
     "know": [
@@ -274,6 +274,11 @@
           "part-6::trace-the-method-s-evolution-through-a-real-ac"
         ],
         "lessons": [
+          {
+            "lesson": "6.1-software-factory",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
           {
             "lesson": "6.1-the-problem-and-the-bar",
             "own_outcomes": [],
