@@ -9,7 +9,7 @@
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 7,
+    "zero_claim_suspects": 8,
     "over_cap_unfocused": 3,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
@@ -741,6 +741,11 @@
       "exempt": null
     },
     {
+      "slug": "4.4-engineering-the-environment",
+      "advances": [],
+      "exempt": null
+    },
+    {
       "slug": "5.1-the-mage-workflow",
       "advances": [
         "modeling-principle",
@@ -907,6 +912,10 @@
       },
       {
         "chapter": "4.3-brownfield-engineering",
+        "advances": 0
+      },
+      {
+        "chapter": "4.4-engineering-the-environment",
         "advances": 0
       },
       {

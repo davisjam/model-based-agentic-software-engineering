@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 857,
+    "total_sites": 864,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 515,
+      "book-web": 522,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -82,6 +82,10 @@
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
             "occ": 7
+          },
+          {
+            "file": "book/web/docs/4.4-engineering-the-environment.md",
+            "occ": 16
           },
           {
             "file": "book/web/docs/5.1-the-mage-workflow.md",
@@ -271,7 +275,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 62
+            "occ": 63
           }
         ]
       },
@@ -1005,7 +1009,11 @@
           },
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
-            "occ": 35
+            "occ": 36
+          },
+          {
+            "file": "book/web/docs/4.4-engineering-the-environment.md",
+            "occ": 56
           },
           {
             "file": "book/web/docs/5.1-the-mage-workflow.md",
@@ -1389,15 +1397,15 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 322
+            "occ": 336
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 25
+            "occ": 26
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 17
+            "occ": 18
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -1435,7 +1443,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 135
+            "occ": 136
           }
         ]
       },
@@ -1592,6 +1600,10 @@
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
             "occ": 1
+          },
+          {
+            "file": "book/web/docs/4.4-engineering-the-environment.md",
+            "occ": 4
           },
           {
             "file": "book/web/docs/5.2-brownfield.md",
@@ -1757,7 +1769,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 50
+            "occ": 51
           }
         ]
       },
@@ -1968,6 +1980,10 @@
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
             "occ": 29
+          },
+          {
+            "file": "book/web/docs/4.4-engineering-the-environment.md",
+            "occ": 21
           },
           {
             "file": "book/web/docs/5.1-the-mage-workflow.md",
@@ -2337,7 +2353,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 116
+            "occ": 117
           }
         ]
       },
@@ -3046,6 +3062,10 @@
             "occ": 3
           },
           {
+            "file": "book/web/docs/4.4-engineering-the-environment.md",
+            "occ": 3
+          },
+          {
             "file": "book/web/docs/5.2-brownfield.md",
             "occ": 3
           },
@@ -3177,7 +3197,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 47
+            "occ": 48
           }
         ]
       },
@@ -3249,6 +3269,10 @@
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
+            "occ": 1
+          },
+          {
+            "file": "book/web/docs/4.4-engineering-the-environment.md",
             "occ": 1
           },
           {
@@ -3387,7 +3411,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 40
+            "occ": 41
           }
         ]
       },
@@ -3632,6 +3656,10 @@
             "occ": 6
           },
           {
+            "file": "book/web/docs/4.4-engineering-the-environment.md",
+            "occ": 3
+          },
+          {
             "file": "book/web/docs/5.1-the-mage-workflow.md",
             "occ": 1
           },
@@ -3675,7 +3703,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 13
           }
         ]
       },
