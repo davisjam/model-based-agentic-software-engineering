@@ -7,7 +7,7 @@
     "derived_ids": 188,
     "missing_topic_sentence": 5,
     "sections_drained": 142,
-    "paragraph_points": 623
+    "paragraph_points": 624
   },
   "chapters": [
     {
@@ -1559,14 +1559,19 @@
               "block_index": 82
             },
             {
+              "slug": "docable-models-arose-around-expensive-questions",
+              "text": "DocAble's models arose around engineering questions that implementation alone made expensive, ambiguous, or unsafe to reconstruct; across the cases, the useful model is the representation that preserves the distinctions and relationships a consequential question requires.",
+              "block_index": 85
+            },
+            {
               "slug": "part-iii-asks-which-obligations-the-environment-should-hold",
               "text": "Chapter 3 asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them.",
-              "block_index": 85
+              "block_index": 87
             },
             {
               "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-enforcement-is-a-separate-question",
               "text": "Models can provide value before enforcement — reasoning, analysis, composition, traceability — and Chapter 3 asks the separate question of enforcement.",
-              "block_index": 92
+              "block_index": 94
             }
           ]
         }
