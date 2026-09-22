@@ -523,7 +523,7 @@
             {
               "slug": "modeling-and-alignment-complement-one-another",
               "text": "Modeling makes selected properties explicit enough to reason about; Alignment enforces selected obligations over realization; neither requires the other in every case, but together they let engineering knowledge and judgment persist outside any one producing run.",
-              "block_index": 6
+              "block_index": 8
             }
           ]
         },
@@ -533,12 +533,12 @@
           "heading_text": "The Problem Is Larger than Software",
           "topic_sentence": "Software makes the problem unusually visible, but does not create it.",
           "id_source": "derived",
-          "block_index": 9,
+          "block_index": 11,
           "points": [
             {
               "slug": "the-problem-is-larger-than-software",
               "text": "Software makes the governing problem visible; it does not create it.",
-              "block_index": 10
+              "block_index": 12
             }
           ]
         }
@@ -3585,17 +3585,17 @@
             {
               "slug": "vlms-changed-the-boundary-not-the-system",
               "text": "VLMs changed the feasible boundary; they did not make a production system.",
-              "block_index": 24
+              "block_index": 25
             },
             {
               "slug": "the-missing-work-was-engineering",
               "text": "The missing work was engineering around the model.",
-              "block_index": 26
+              "block_index": 27
             },
             {
               "slug": "an-uneven-capability-surface-raised-required-structure",
               "text": "An uneven capability surface raised the structure the system owed.",
-              "block_index": 28
+              "block_index": 29
             }
           ]
         }

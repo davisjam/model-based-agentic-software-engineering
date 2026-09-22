@@ -211,6 +211,8 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: tool-deterministic-action | Tool (deterministic action)
 - concept: engineered-environment | The engineered environment
 - concept: injection-point | Injection point
+- concept: representation-problem | The Representation Problem
+- concept: enforcement-problem | The Enforcement Problem
 - concept: model-as-map | Model as map
 - concept: map-and-territory | Map and territory
 - concept: model-drift | Model drift
@@ -336,6 +338,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: three-ways-to-run-an-agent | Three ways to run an agent
 - concept: governance-centric | Governance-centric
 - concept: velocity-exposes-the-danger | Velocity exposes the danger
+- concept: semantic-artifact | Semantic artifact
 - concept: support-ratio | The support ratio
 - concept: optionality-is-poison | Optionality is poison
 - concept: refactoring-is-free | Refactoring is free

@@ -9,8 +9,8 @@
     "thesis_spine_mismatches": 0,
     "openings_implicit_thesis": 7,
     "chapters_with_artifact": 24,
-    "chapters_concept_only": 3,
-    "delivers_neither": 2,
+    "chapters_concept_only": 5,
+    "delivers_neither": 0,
     "all_prose_would_benefit": 0
   },
   "taxonomy": {
@@ -236,11 +236,14 @@
       "closing": {
         "kind": "synthesis"
       },
-      "note": "R42 shrink to synthesis-only (~2pp). Reinforced-concrete / pairing / 'Not a faster programmer' / observable-loop derivation MOVED to 1.3. Recalls the two properties in one paragraph, then NAMES Problem A (representation -> Part II Modeling) and Problem B (authority -> Part III Alignment) as three H2 sections, closing on one composition paragraph. THEORY CHANGE: the two problems are related but INDEPENDENT -- MAGE teaches Modeling first as a methodological choice, not because Alignment is impossible without it. No re-derivation.",
+      "note": "R42 shrink to synthesis-only (~2pp). Reinforced-concrete / pairing / 'Not a faster programmer' / observable-loop derivation MOVED to 1.3. Recalls the two properties in one paragraph, then NAMES Problem A (representation -> Part II Modeling) and Problem B (authority -> Part III Alignment) as three H2 sections, closing on one composition paragraph. THEORY CHANGE: the two problems are related but INDEPENDENT -- MAGE teaches Modeling first as a methodological choice, not because Alignment is impossible without it. No re-derivation. DV4 resolution (260922): the chapter's handover is the pair of named-problem CONCEPTS — representation-problem and enforcement-problem — index-def'd at the defining list; the enforcement-problem registration was already scheduled by the authority->enforcement rename plan ('when the defining prose lands').",
       "opening_anchor": "Commodity intelligence changes the economics of implementation without abolishing the",
       "closing_anchor": "it does not remove the decisions themselves.",
       "delivers": {
-        "concepts": [],
+        "concepts": [
+          "representation-problem",
+          "enforcement-problem"
+        ],
         "artifacts": [],
         "artifact_would_help": false
       },
@@ -921,11 +924,13 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "Question explicit (why is document accessibility a hard, worthwhile case); answer the bar the problem set. Compressed (r3): Theory-Formation epistemics moved to 6.1; closes on why the apparatus had to grow as large as it did, setting up the build. The burden-shift table was cut in the r12-w3 fold — its reactive-vs-proactive content survives as prose, so the chapter now delivers no labeled artifact.",
+      "note": "Question explicit (why is document accessibility a hard, worthwhile case); answer the bar the problem set. Compressed (r3): Theory-Formation epistemics moved to 6.1; closes on why the apparatus had to grow as large as it did, setting up the build. The burden-shift table was cut in the r12-w3 fold — its reactive-vs-proactive content survives as prose, so the chapter now delivers no labeled artifact. DV4 resolution (260922): the handover is the CONCEPT semantic-artifact ('a document is a visual and semantic artifact'), index-def'd at its defining paragraph. The burden-shift table stays cut — its content is now one prose sentence, no table-shaped content remains to re-label.",
       "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Modeling Principle",
       "closing_anchor": "ground that the apparatus had to grow as large as it did.",
       "delivers": {
-        "concepts": [],
+        "concepts": [
+          "semantic-artifact"
+        ],
         "artifacts": [],
         "artifact_would_help": false
       },
@@ -1219,16 +1224,7 @@
     ],
     "failing_closings": [],
     "thesis_spine_mismatches": [],
-    "delivers_neither": [
-      {
-        "chapter": "why-mage-follows-from-the-machine",
-        "note": "R42 shrink to synthesis-only (~2pp). Reinforced-concrete / pairing / 'Not a faster programmer' / observable-loop derivation MOVED to 1.3. Recalls the two properties in one paragraph, then NAMES Problem A (representation -> Part II Modeling) and Problem B (authority -> Part III Alignment) as three H2 sections, closing on one composition paragraph. THEORY CHANGE: the two problems are related but INDEPENDENT -- MAGE teaches Modeling first as a methodological choice, not because Alignment is impossible without it. No re-derivation."
-      },
-      {
-        "chapter": "the-ada-context",
-        "note": "Question explicit (why is document accessibility a hard, worthwhile case); answer the bar the problem set. Compressed (r3): Theory-Formation epistemics moved to 6.1; closes on why the apparatus had to grow as large as it did, setting up the build. The burden-shift table was cut in the r12-w3 fold — its reactive-vs-proactive content survives as prose, so the chapter now delivers no labeled artifact."
-      }
-    ],
+    "delivers_neither": [],
     "all_prose_would_benefit": []
   }
 }
