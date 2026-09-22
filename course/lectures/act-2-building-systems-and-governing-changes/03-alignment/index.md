@@ -77,7 +77,7 @@ Evidence for one does not establish the others, and agreement is not correctness
 
 ## Four roles, and a preference for prevention
 
-Once the obligation and its boundary are known, we can ask what the environment should do. MAGE distinguishes four roles:
+Once the obligation and its boundary are known, we can ask what the environment should do. Four roles are useful:
 
 - **Constraint** — narrows what may happen.
 - **Sensor** — observes what happened and produces evidence.
@@ -112,9 +112,9 @@ One failure can reveal several gaps at once. The categories diagnose where durab
 
 ## Governance conversion and engineering capital
 
-MAGE calls the ex-post version of this move governance conversion. A failure or important surprise exposes something future work should not have to rediscover, and engineering converts the lesson into durable structure. The repair fixes this instance. Governance conversion changes what future work inherits. The result may be a model rather than a gate: a failure may reveal knowledge never represented, or state the system cannot observe. This is why Modeling and Alignment form a feedback loop: Modeling makes engineering knowledge explicit, Alignment connects selected obligations to mechanisms that can act on them, and failure exposes weaknesses in either side.
+The ex-post version of this move is governance conversion. A failure or important surprise exposes something future work should not have to rediscover, and engineering converts the lesson into durable structure. The repair fixes this instance. Governance conversion changes what future work inherits. The result may be a model rather than a gate: a failure may reveal knowledge never represented, or state the system cannot observe. This is why Modeling and Alignment form a feedback loop: Modeling makes engineering knowledge explicit, Alignment connects selected obligations to mechanisms that can act on them, and failure exposes weaknesses in either side.
 
-When future work benefits from this durable structure, MAGE calls it engineering capital. Technical debt makes future work pay again for an expedient decision made today; engineering capital lets future work inherit engineering performed earlier. The important quantity is not the count of artifacts but the future engineering work they save or improve. Capital also depreciates: models drift, sensors become noisy, validators preserve assumptions that no longer hold, and a gate can eventually cost more than the failure it prevents. Accumulation is not the objective. Engineering a governed environment includes maintaining, reconciling, and eventually retiring its machinery.
+When future work benefits from this durable structure, it becomes engineering capital. Technical debt makes future work pay again for an expedient decision made today; engineering capital lets future work inherit engineering performed earlier. The important quantity is not the count of artifacts but the future engineering work they save or improve. Capital also depreciates: models drift, sensors become noisy, validators preserve assumptions that no longer hold, and a gate can eventually cost more than the failure it prevents. Accumulation is not the objective. Engineering a governed environment includes maintaining, reconciling, and eventually retiring its machinery.
 
 ## Not everything should be enforced
 
