@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 817,
+    "total_sites": 816,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 475,
+      "book-web": 474,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -96,8 +96,8 @@
             "occ": 14
           },
           {
-            "file": "book/web/docs/6.5-mage-in-the-wild.md",
-            "occ": 15
+            "file": "book/web/docs/6.3-other-agentic-software-factories.md",
+            "occ": 9
           },
           {
             "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
@@ -547,7 +547,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 10
+            "occ": 12
           },
           {
             "file": "catalogue-figure.html",
@@ -980,8 +980,8 @@
             "occ": 28
           },
           {
-            "file": "book/web/docs/6.5-mage-in-the-wild.md",
-            "occ": 61
+            "file": "book/web/docs/6.3-other-agentic-software-factories.md",
+            "occ": 43
           },
           {
             "file": "book/web/docs/6.6-what-the-evidence-supports.md",
@@ -1403,7 +1403,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 78
+            "occ": 77
           },
           {
             "file": "catalogue-figure.html",
@@ -1530,8 +1530,8 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/6.5-mage-in-the-wild.md",
-            "occ": 3
+            "file": "book/web/docs/6.3-other-agentic-software-factories.md",
+            "occ": 2
           },
           {
             "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
@@ -1691,7 +1691,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 5
+            "occ": 4
           }
         ],
         "website-theory": [
@@ -1898,8 +1898,8 @@
             "occ": 68
           },
           {
-            "file": "book/web/docs/6.5-mage-in-the-wild.md",
-            "occ": 23
+            "file": "book/web/docs/6.3-other-agentic-software-factories.md",
+            "occ": 19
           },
           {
             "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
@@ -2601,7 +2601,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 28
+            "occ": 30
           },
           {
             "file": "catalogue-figure.html",
@@ -3124,8 +3124,8 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/6.5-mage-in-the-wild.md",
-            "occ": 1
+            "file": "book/web/docs/6.3-other-agentic-software-factories.md",
+            "occ": 3
           },
           {
             "file": "book/web/docs/7.1-toward-a-theory-of-mage.md",
@@ -3435,7 +3435,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 6
+            "occ": 7
           }
         ],
         "website-theory": [
@@ -3484,10 +3484,6 @@
             "occ": 3
           },
           {
-            "file": "book/web/docs/6.5-mage-in-the-wild.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/8.3-agentic-engineering-beyond-software.md",
             "occ": 1
           },
@@ -3515,7 +3511,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 10
+            "occ": 9
           }
         ]
       },

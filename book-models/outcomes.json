@@ -30,7 +30,7 @@
     "outcomes_with_elaborative_units": 8,
     "elaborative_links": 11,
     "units_serving_as_elaborative": 10,
-    "sections_total": 194,
+    "sections_total": 192,
     "sections_primary_of_an_outcome": 7,
     "modules": 8,
     "lessons": 33
@@ -285,7 +285,7 @@
             "section_outcomes": []
           },
           {
-            "lesson": "6.5-mage-in-the-wild",
+            "lesson": "6.3-other-agentic-software-factories",
             "own_outcomes": [],
             "section_outcomes": []
           }
@@ -656,16 +656,16 @@
       "gap_note": null
     },
     {
-      "outcome_id": "mage-in-the-wild::analyze-six-independent-industrial-systems-as-ev",
+      "outcome_id": "mage-in-the-wild::analyze-eight-independently-documented-engineeri",
       "granularity": "chapter",
       "primary_unit": "mage-in-the-wild",
       "secondary_units": [],
       "verb": "analyze",
-      "obj": "six independent industrial systems as evidence for and against MAGE's claims — the modeling ceiling, the convergence buckets, and the gap/orphan diagnosis — without mistaking corroboration for a controlled test",
-      "statement": "After this chapter, the reader can analyze six independent industrial systems as evidence for and against MAGE's claims — the modeling ceiling where the software-first sites fall silent, the convergence buckets they share anyway, and the gap/orphan diagnosis read across the six sites — without mistaking corroboration across reconstructions for a controlled test.",
+      "obj": "eight independently documented engineering systems as software factories under one consistent lens — what increased realization, what work inherits, what structures supervision, what stays human — without mistaking corroboration for a controlled test",
+      "statement": "After this chapter, the reader can analyze an independently documented engineering system as a software factory — apply the six-question lens, place its public evidence against the modeling ceiling, and state the common asymmetry the reports expose — without mistaking corroboration across reconstructions for a controlled test.",
       "bloom": "analyze",
       "provenance": "declared",
-      "anchor": "Section titles 'the-modeling-ceiling', 'three-buckets-of-convergence', 'the-organizational-topology', 'common-destination-different-entry-points'.",
+      "anchor": "The eight 'Inside X's Software Factory' mini-cases, the shared-baseline/differences section with the modeling-ceiling tiers, and the closing common-asymmetry diagnosis in the chapter with identity label 'mage-in-the-wild'.",
       "gap_note": null
     },
     {

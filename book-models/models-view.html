@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>35</b> chapters · <b>194</b> sections · <b>46</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>35</b> chapters · <b>192</b> sections · <b>46</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -647,54 +647,46 @@
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-6-5-mage-in-the-wild"><span class="tier-kick">Lesson</span><a href="../book/6.5-mage-in-the-wild.html" class="ch-link">6.5-mage-in-the-wild</a> <span class="ch-slug">6.5-mage-in-the-wild</span></h3>
-<div class="section s2" id="sec-6-5-mage-in-the-wild--eight-entry-points">
-<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">Eight Entry Points</a></div>
-<p class="topic">The organizations begin with different problems.</p>
+<h3 id="ch-6-3-other-agentic-software-factories"><span class="tier-kick">Lesson</span><a href="../book/6.3-other-agentic-software-factories.html" class="ch-link">6.3-other-agentic-software-factories</a> <span class="ch-slug">6.3-other-agentic-software-factories</span></h3>
+<div class="section s2" id="sec-6-3-other-agentic-software-factories--inside-uber-s-software-factory">
+<div class="sec-h"><a href="../book/6.3-other-agentic-software-factories.html">Inside Uber&#x27;s Software Factory</a></div>
+<p class="topic">Uber gives the fullest account of realization increasing at organizational scale: more than 70 percent of pull requests attributed to local or cloud agents, more than 3,600 engineer-created agent skills executing over 30,000 times per day, managed agents performing code review, CI repair, end-to-end changes, alert triage, debugging, and maintenance.[cite: medisetty2026factory] What new work inherits is the interesting structure: real workloads become benchmarks; models are selected against cost, quality, and reliability; context and tool access are compiled down to reduce unnecessary reasoning; recurring workflows harden into reusable skills — in one example, deterministic tool orchestration moves out of repeated model turns into executable code, cutting token use by more than half on common workflows and by more than 90 percent in bulk cases.[cite: medisetty2026factory] Supervision is structured by measurement: managed agents are evaluated in units such as cost per merged pull request, review, or alert.</p>
 </div>
-<div class="section s2" id="sec-6-5-mage-in-the-wild--the-shared-baseline">
-<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">The Shared Baseline</a></div>
-<p class="topic">Across the eight sources, four moves recur strongly enough to form a shared baseline.</p>
+<div class="section s2" id="sec-6-3-other-agentic-software-factories--inside-gitlab-s-software-factory">
+<div class="sec-h"><a href="../book/6.3-other-agentic-software-factories.html">Inside GitLab&#x27;s Software Factory</a></div>
+<p class="topic">GitLab starts from the other end: as code becomes abundant, the scarce problem shifts to trusting it.</p>
 </div>
-<div class="section s2" id="sec-6-5-mage-in-the-wild--where-the-reconstructions-differ">
-<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">Where the Reconstructions Differ</a></div>
-<p class="topic">The differences are as informative as the commonalities.</p>
+<div class="section s2" id="sec-6-3-other-agentic-software-factories--inside-cloudflare-s-software-factory">
+<div class="sec-h"><a href="../book/6.3-other-agentic-software-factories.html">Inside Cloudflare&#x27;s Software Factory</a></div>
+<p class="topic">Cloudflare gives the cleanest policy-first entry.</p>
 </div>
-<div class="section s2" id="sec-6-5-mage-in-the-wild--the-modeling-ceiling">
-<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">The Modeling Ceiling</a></div>
-<p class="topic">One difference is stark.</p>
+<div class="section s2" id="sec-6-3-other-agentic-software-factories--inside-siemens-s-software-factory">
+<div class="sec-h"><a href="../book/6.3-other-agentic-software-factories.html">Inside Siemens&#x27;s Software Factory</a></div>
+<p class="topic">Siemens enters from outside software-first engineering, and that is exactly its value.</p>
 </div>
-<div class="section s2" id="sec-6-5-mage-in-the-wild--engineering-capital-at-organizational-scale">
-<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">Engineering Capital at Organizational Scale</a></div>
-<p class="topic">The industrial reconstructions show something the single-engineer origin cannot: how these moves operate across an organization.</p>
+<div class="section s2" id="sec-6-3-other-agentic-software-factories--inside-docker-s-software-factory">
+<div class="sec-h"><a href="../book/6.3-other-agentic-software-factories.html">Inside Docker&#x27;s Software Factory</a></div>
+<p class="topic">Docker&#x27;s system separates delegated roles, tool permissions, implementation, and evaluation: seven permission-backed roles, an independent reviewer running on a separate model invocation, and deterministic tests supplying repeatable evidence.[cite: delapena2026fleet] Realization and evaluation are both substantially mechanized; final admission deliberately is not.</p>
 </div>
-<div class="section s2" id="sec-6-5-mage-in-the-wild--they-converged-on-a-problem">
-<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">They Converged on a Problem</a></div>
-<p class="topic">The eight organizations do not converge on one stack, one degree of autonomy, or one modeling discipline.</p>
+<div class="section s2" id="sec-6-3-other-agentic-software-factories--inside-spotify-s-software-factory">
+<div class="sec-h"><a href="../book/6.3-other-agentic-software-factories.html">Inside Spotify&#x27;s Software Factory</a></div>
+<p class="topic">Spotify&#x27;s Honk system moves large-scale code migration from distributed manual implementation toward centrally scoped, fleet-executed work: a migration that could previously involve hundreds of teams over weeks can be scoped by one engineer over a few days, with tooling identifying and scheduling targets, agents executing changes concurrently, and the engineer supervising the fleet and handling exceptions.[cite: spotify2026honk] The inheritance is the estate representation — a system model and service catalog carrying identities, ownership, dependencies, and lineage — through which migrations are targeted rather than rediscovered per repository.</p>
 </div>
-<div class="section s2" id="sec-6-5-mage-in-the-wild--four-views-of-repeated-judgment">
-<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">Four Views of Repeated Judgment</a></div>
-<p class="topic">The approaches these organizations use can work.</p>
+<div class="section s2" id="sec-6-3-other-agentic-software-factories--inside-shopify-s-software-factory">
+<div class="sec-h"><a href="../book/6.3-other-agentic-software-factories.html">Inside Shopify&#x27;s Software Factory</a></div>
+<p class="topic">Shopify&#x27;s account describes agent work occurring in shared, observable channels rather than private sessions — one month&#x27;s snapshot counts 59,918 sessions across 5,170 channels involving more than 7,000 people, &quot;multiplayer by construction.&quot;[cite: moreno2026river] Shared sessions become searchable organizational artifacts; recurring knowledge is extracted into skills, conventions, and defaults later agents retrieve.</p>
 </div>
-<div class="section s3" id="sec-6-5-mage-in-the-wild--view-1-repeated-exposure">
-<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">View 1 — Repeated Exposure</a></div>
-<p class="topic">Chapter 1 introduced a deliberately simple model for consequential probabilistic judgment.</p>
+<div class="section s2" id="sec-6-3-other-agentic-software-factories--inside-zenseact-s-software-factory">
+<div class="sec-h"><a href="../book/6.3-other-agentic-software-factories.html">Inside Zenseact&#x27;s Software Factory</a></div>
+<p class="topic">Zenseact, building driver-assistance software, describes an organizational split: a platform team owns common substrate — authentication, sessions, execution, and the safety envelope — while domain teams retain their own agents, tools, instructions, and expertise.[cite: dufwa2026zap] Routing machinery selects task-relevant expertise instead of loading the whole organizational corpus into every reasoning window.</p>
 </div>
-<div class="section s3" id="sec-6-5-mage-in-the-wild--view-2-retry-purchases-another-chance">
-<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">View 2 — Retry Purchases Another Chance</a></div>
-<p class="topic">The first view treats each exposure as one judgment.</p>
+<div class="section s2" id="sec-6-3-other-agentic-software-factories--what-the-factories-share-and-where-they-differ">
+<div class="sec-h"><a href="../book/6.3-other-agentic-software-factories.html">What the Factories Share, and Where They Differ</a></div>
+<p class="topic">Across the eight accounts, four moves recur strongly enough to form a shared baseline.</p>
 </div>
-<div class="section s3" id="sec-6-5-mage-in-the-wild--view-3-engineering-can-act-at-different-places">
-<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">View 3 — Engineering Can Act at Different Places</a></div>
-<p class="topic">Retry is only one intervention.</p>
-</div>
-<div class="section s3" id="sec-6-5-mage-in-the-wild--view-4-one-judgment-can-acquire-durable-reach">
-<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">View 4 — One Judgment Can Acquire Durable Reach</a></div>
-<p class="topic">The preceding views still treat engineering largely as a sequence of realizations.</p>
-</div>
-<div class="section s3" id="sec-6-5-mage-in-the-wild--what-these-views-leave-out">
-<div class="sec-h"><a href="../book/6.5-mage-in-the-wild.html">What These Views Leave Out</a></div>
-<p class="topic">These models are deliberately simple.</p>
+<div class="section s2" id="sec-6-3-other-agentic-software-factories--the-engineers-inside-the-factories">
+<div class="sec-h"><a href="../book/6.3-other-agentic-software-factories.html">The Engineers Inside the Factories</a></div>
+<p class="topic">The eight accounts above are institutional self-descriptions — engineering blogs and vendor architecture papers, systems presented at their best.</p>
 </div>
 </div>
 </section>
