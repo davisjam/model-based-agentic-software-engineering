@@ -92,15 +92,15 @@ have overlooked?
 Requirements elicitation, specification, process models, architectural views, design alternatives,
 prototypes, tests, reviews, and measurements all help you answer these questions. They are not
 recipes that remove the need for judgment. Indeed, this handbook has necessarily presented software
-engineering as something of a just-so story.[^justso] Identify what is required, construct useful
+engineering as something of a just-so story, *How the Engineers Got Their Judgment*.[^justso] Identify what is required, construct useful
 models, reason about alternatives, gather the appropriate evidence, and make a justified decision.
 Does following this process mean that everything will work?
 
 Of course not. Models are incomplete, evidence is finite, and engineering judgment is fallible. The
 value of the discipline is not that it makes engineers infallible, but that it makes enough of
 their reasoning explicit to test against reality. Before making a consequential decision, state
-what you expect to happen and why. Then observe what actually happens. When expectation and
-observation differ, do not merely repair the result: ask what the discrepancy reveals about the
+what you expect to happen and why. Then observe what actually happens. When expectations and
+observations differ, do not merely repair the result: ask what the discrepancy reveals about the
 model, assumption, evidence, or judgment that produced the prediction. When they agree, ask what
 the observation actually supports and how far that conclusion can safely generalize.
 
@@ -118,14 +118,15 @@ result: stating what is required, deciding what freedom may remain, recognizing 
 choices, determining what evidence is needed, evaluating what comes back, and intervening when the
 result or its assumptions are unacceptable.
 
-This is the connection to *Model-Based Agentic Engineering* [@davis2026mage]. MAGE begins from
-software-engineering judgment rather than replacing it. Models make consequential knowledge and
-intent available to delegated work; alignment makes important obligations enforceable; engineering
-structure preserves lessons that should not have to be rediscovered. None of these mechanisms,
-however, can determine which knowledge is consequential, which obligations matter, or which
-evidence is sufficient. Those remain engineering judgments. The purpose of this handbook is
-therefore not to prepare you to compete with a machine at producing software, but to teach enough
-of the discipline to delegate realization without delegating engineering.
+This is the premise of *Model-Based Agentic Engineering* [@davis2026mage]: as machines become
+capable of performing more of the work of realization, engineers can delegate more of that work
+without delegating responsibility for its consequences. They can tell an agent what must be true,
+give it the knowledge and constraints needed to act, examine the evidence it produces, and
+intervene when the result is unacceptable. But how does an engineer know what must be specified,
+which constraints matter, what evidence is sufficient, or when intervention is necessary? Those
+are engineering judgments. The purpose of this handbook is therefore not to prepare you to compete
+with a machine at producing software, but to teach enough of the discipline to delegate
+realization without delegating engineering.
 
 Engineers master their medium, exercise judgment over its consequences, and take responsibility for
 what they create, even when they do not create every part themselves. That judgment develops
