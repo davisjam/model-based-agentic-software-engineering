@@ -222,9 +222,20 @@
 }
 
 /* Math: rendered to HTML at build time (filters/web.lua Math handler), no client-side JS. Display
-   math sits centered on its own line; inline math flows with the prose. */
+   math sits centered on its own line; inline math flows with the prose. Both contracts are EXPLICIT
+   (display + float pinned, enforced by lint.py::check_math_flow_contract): Material ships an
+   inline-admonition utility `.md-typeset .inline { float: left; width: 11.7rem; margin-right: .8rem }`
+   that matches the `inline` token of Pandoc's `class="math inline"` and floats every formula out of
+   its paragraph. These rules out-specify it (0,3,0 > 0,2,0) and pin every box property it sets. */
+.md-typeset .math.inline {
+  display: inline;
+  float: none;
+  width: auto;
+  margin: 0;
+}
 .md-typeset .math.display {
   display: block;
+  float: none;
   text-align: center;
   margin: 1.2em 0;
 }
