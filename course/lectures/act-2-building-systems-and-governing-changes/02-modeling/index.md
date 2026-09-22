@@ -36,11 +36,11 @@ materials:
 
 **Premise.** *A model is useful because it leaves things out.*
 
-Software contains more detail than an engineer can usefully consider at once. Source code carries control flow, data structures, variable names, helper functions, logging, error handling, and configuration; a running system adds deployment state, network behavior, timing, resource consumption, and failure. An engineer rarely needs all of it to answer a particular question. A dependency model may preserve which components can depend on which others while ignoring their implementations. A state machine may preserve legal changes in system state while ignoring the functions that realize those changes. A resource model may preserve costs along a critical path while ignoring most program behavior. Each deliberately reduces the territory it describes. Modeling is the engineering activity of choosing what to preserve so that a question becomes easier to answer.
+Earlier, we defined engineering as the discipline of exercising informed control over consequential systems. Informed control requires more than possessing an implementation. An engineer must be able to understand the properties relevant to a decision without reconstructing the entire system every time the question changes.
 
-This connects modeling to an idea from Architecture and Design: degrees of freedom. Engineering progressively constrains some choices while deliberately leaving others open, and a useful model does the same. It represents the decisions and relationships pertinent to an engineering question and leaves unrelated degrees of freedom unspecified. The connection matters most when realization is delegated to software agents. Engineers do not need to specify every variable name or helper function merely because an agent will choose them; they need representations sufficient to reason about the properties for which they remain responsible. The remaining freedom stays delegated.
+A dependency graph discards most of the program so that relationships among components become easy to inspect. A state machine ignores most implementation detail so that legal transitions become explicit. A resource model suppresses behavior so that cost, latency, or capacity can be analyzed. The reduction is useful precisely because it is incomplete.
 
-The objective of this unit is not to produce more diagrams. It is to construct a system of representations in which important engineering questions become cheap to answer.
+Modeling therefore supports informed control by preserving the distinctions needed for an engineering question while deliberately leaving unrelated degrees of freedom unspecified. The objective is not to reproduce the system in another notation. It is to construct a system of representations in which important engineering questions become cheap to answer.
 
 ## Two lectures, three activities
 
