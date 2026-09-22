@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 22,
-    "total_sites": 820,
+    "total_sites": 819,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 478,
+      "book-web": 477,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -909,11 +909,11 @@
           },
           {
             "file": "book/web/docs/2.3-behavioral.md",
-            "occ": 4
+            "occ": 8
           },
           {
             "file": "book/web/docs/2.4-ownership.md",
-            "occ": 5
+            "occ": 1
           },
           {
             "file": "book/web/docs/2.5-decision.md",
@@ -921,15 +921,15 @@
           },
           {
             "file": "book/web/docs/2.6-measurement.md",
-            "occ": 5
+            "occ": 3
           },
           {
             "file": "book/web/docs/2.7-provenance.md",
-            "occ": 8
+            "occ": 4
           },
           {
             "file": "book/web/docs/2.8-system-knowledge.md",
-            "occ": 14
+            "occ": 16
           },
           {
             "file": "book/web/docs/2.9-modeling-summary.md",
@@ -1823,7 +1823,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 65
+            "occ": 68
           },
           {
             "file": "book/web/docs/2.2-structural.md",
@@ -1831,11 +1831,11 @@
           },
           {
             "file": "book/web/docs/2.3-behavioral.md",
-            "occ": 45
+            "occ": 62
           },
           {
             "file": "book/web/docs/2.4-ownership.md",
-            "occ": 19
+            "occ": 2
           },
           {
             "file": "book/web/docs/2.5-decision.md",
@@ -1843,15 +1843,15 @@
           },
           {
             "file": "book/web/docs/2.6-measurement.md",
-            "occ": 30
+            "occ": 12
           },
           {
             "file": "book/web/docs/2.7-provenance.md",
-            "occ": 28
+            "occ": 9
           },
           {
             "file": "book/web/docs/2.8-system-knowledge.md",
-            "occ": 99
+            "occ": 123
           },
           {
             "file": "book/web/docs/2.9-modeling-summary.md",
@@ -2906,10 +2906,6 @@
             "occ": 13
           },
           {
-            "file": "book/web/docs/2.4-ownership.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/2.8-system-knowledge.md",
             "occ": 1
           },
@@ -3057,7 +3053,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 46
+            "occ": 45
           }
         ]
       },
@@ -3117,11 +3113,11 @@
           },
           {
             "file": "book/web/docs/2.7-provenance.md",
-            "occ": 7
+            "occ": 2
           },
           {
             "file": "book/web/docs/2.8-system-knowledge.md",
-            "occ": 10
+            "occ": 14
           },
           {
             "file": "book/web/docs/2.9-modeling-summary.md",
