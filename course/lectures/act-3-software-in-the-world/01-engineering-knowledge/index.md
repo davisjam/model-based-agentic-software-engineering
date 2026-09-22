@@ -27,7 +27,7 @@ materials:
   - title: Lecture slides — Engineering Knowledge (forthcoming)
 ---
 
-**Premise.** *Software engineering depends on knowledge that must outlive the people, systems, and circumstances in which it was discovered. Engineering organizations therefore need ways to acquire consequential knowledge, preserve it beyond individual memory, and make it available to future engineering decisions.*
+**Premise.** *Engineering organizations must preserve consequential knowledge beyond the people and circumstances in which it was discovered.*
 
 An engineering organization can know more than any person in it. Knowledge about a system may be distributed across engineers, users, documents, models, code, tests, tools, operational records, and the engineering environment itself. An engineer need not personally remember why every constraint exists if the organization can recover and apply the relevant knowledge when a decision requires it. Engineering knowledge, in this sense, is information about a system, its environment, or the decisions surrounding it that can support future engineering judgment.
 
