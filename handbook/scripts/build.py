@@ -688,7 +688,37 @@ def build_web(book: dict) -> None:
     mkdocs_cmd = [str(mkdocs)] if mkdocs.is_file() else [sys.executable, "-m", "mkdocs"]
     _run(mkdocs_cmd + ["build", "-f", str(gen_cfg),
                        "-d", str(SITE_OUT), "--strict"])
+    _math_flow_gate()
     print(f"WEB → {SITE_OUT.relative_to(C.HANDBOOK)}/")
+
+
+def _math_flow_gate() -> None:
+    """Rendered-geometry gate: math must stay in the text flow of the BUILT site (deploy-blocking).
+
+    Pandoc's `class="math inline"` markup once collided with MkDocs Material's `.md-typeset .inline`
+    utility (`float: left; width: 11.7rem`), which floated every inline formula out of its paragraph.
+    A static check of our own files cannot see an upstream stylesheet's selector land, so this drives
+    headless Chrome (book/check_math_flow.mjs — the Puppeteer dep the responsive/console gates already
+    use) over every built page carrying math markup and asserts the computed style: inline math
+    inline + unfloated, display math block. The static half of the contract lives in
+    lint.py::check_math_flow_contract. Skip-if-absent when the browser toolchain is missing (the
+    html-validate posture — CI always has it, so the authoritative run never skips)."""
+    math_pages = sorted(p for p in SITE_OUT.glob("*.html")
+                        if 'class="math' in p.read_text(encoding="utf-8", errors="replace"))
+    if not math_pages:
+        print("math-flow gate: no built page carries math markup — nothing to check")
+        return
+    script = C.GC_ROOT / "book" / "check_math_flow.mjs"
+    node = shutil.which("node")
+    if node is None or not (C.GC_ROOT / "book" / "node_modules" / "puppeteer").is_dir():
+        print("math-flow gate: SKIPPED — node/Puppeteer not installed (run `npm ci` in book/); "
+              f"{len(math_pages)} math-bearing page(s) NOT geometry-checked locally; CI runs this gate",
+              file=sys.stderr)
+        return
+    print(f"math-flow gate: checking {len(math_pages)} math-bearing page(s) in headless Chrome …")
+    r = subprocess.run([node, str(script)] + [str(p) for p in math_pages], cwd=C.GC_ROOT)
+    if r.returncode:
+        C.die("math out of the text flow on the built site (see findings above); web build refused")
 
 
 def _yaml_title(path) -> str | None:

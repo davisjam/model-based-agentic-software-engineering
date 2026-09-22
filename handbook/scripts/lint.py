@@ -21,6 +21,9 @@ Checks (spec §8):
     "Figure text legibility" — the print-grayscale style primitive)
   * chapter-ending convention: `## Summary` + exactly one `read_further` block ends every
     substantive chapter; no bare References/Bibliography heading (non-`chapter` kinds exempt)
+  * web math-flow contract: every math wrapper class the web filter emits has an explicit
+    `display` + `float` pin in the handbook web CSS (a bare token like `inline` otherwise gets
+    captured by a theme utility class and floated out of the paragraph)
 
 Usage: python3 scripts/lint.py
 """
@@ -121,6 +124,57 @@ class Report:
 
     def err(self, chapter: str, msg: str) -> None:
         self.errors.append(f"{chapter}: {msg}")
+
+
+# ── Math flow contract (web projection) ────────────────────────────────────────────────────────
+# Pandoc's HTML math markup tags every math node `class="math inline"` / `class="math display"`
+# (filters/web.lua Math handler). Those bare tokens are a collision surface: MkDocs Material ships
+# a `.md-typeset .inline` utility (its inline-admonition float — `float: left; width: 11.7rem`)
+# that captures ANY element carrying the `inline` class and knocks the math out of the paragraph
+# flow. So the handbook web CSS must pin an EXPLICIT box contract — `display` AND `float` — for
+# every math wrapper class the filter emits, at a specificity above the theme utility; leaving the
+# browser default to inheritance is exactly the hole the theme rule fell through. This static half
+# fails the moment a math class lacks its contract (or a new one is emitted without one); the
+# rendered-geometry gate (`build.py web` → `book/check_math_flow.mjs`) verifies the actual cascade
+# OUTCOME in a browser, catching an upstream rule this file cannot see.
+MATH_CLASS_EMISSION = re.compile(r'"(math [a-z-]+)"')
+CSS_RULE = re.compile(r"([^{}]+)\{([^{}]*)\}")  # flat (selector, body) pairs; @media headers skipped
+
+
+def check_math_flow_contract() -> list[str]:
+    """Findings for the web math-flow contract: every math wrapper class emitted by the web filter
+    carries an explicit `display` + `float` declaration in the handbook web CSS, and no CSS rule of
+    ours floats math (empty == compliant)."""
+    findings: list[str] = []
+    web_lua = C.FILTERS / "web.lua"
+    css_path = C.WEB_SRC / "css" / "handbook.css"
+    emitted = sorted(set(MATH_CLASS_EMISSION.findall(web_lua.read_text(encoding="utf-8"))))
+    if not emitted:
+        return [f"{web_lua.name}: no '\"math <variant>\"' class emission found — the Math handler "
+                "changed shape; update MATH_CLASS_EMISSION to match so this contract keeps checking"]
+    css = re.sub(r"/\*.*?\*/", "", css_path.read_text(encoding="utf-8"), flags=re.S)
+    rules = CSS_RULE.findall(css)
+    for cls in emitted:
+        compound = "." + ".".join(cls.split())  # "math inline" -> ".math.inline"
+        declared: set[str] = set()
+        for sel, body in rules:
+            if compound in sel:
+                declared |= {d.split(":", 1)[0].strip() for d in body.split(";") if ":" in d}
+        for prop in ("display", "float"):
+            if prop not in declared:
+                findings.append(
+                    f"{css_path.name}: no explicit '{prop}' for '{compound}' — the web filter emits "
+                    f"class=\"{cls}\", and without a pinned box contract a theme utility class "
+                    "matching one of its tokens (e.g. Material's '.md-typeset .inline' float) "
+                    "captures the span and knocks the math out of the text flow")
+    for sel, body in rules:
+        if ".math" not in sel:
+            continue
+        m = re.search(r"float\s*:\s*([^;]+)", body)
+        if m and m.group(1).strip() != "none":
+            findings.append(f"{css_path.name}: '{' '.join(sel.split())}' floats math "
+                            f"(float: {m.group(1).strip()}) — math must stay in the text flow")
+    return findings
 
 
 def crossref_prefix(cid: str) -> str | None:
@@ -507,6 +561,11 @@ def main() -> int:
     for name, _scan, meta, blocks in scans:
         for f in check_chapter_ending(name, blocks, meta):
             rep.err(name, f"chapter-ending convention: {f}")
+
+    # Web math-flow contract — every emitted math class pins display + float (see the block comment
+    # at check_math_flow_contract; the browser-side counterpart runs in `build.py web`).
+    for f in check_math_flow_contract():
+        rep.err("web", f"math flow contract: {f}")
 
     if rep.errors:
         sys.stderr.write(f"lint FAILED — {len(rep.errors)} issue(s):\n")
