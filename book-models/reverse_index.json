@@ -9109,16 +9109,6 @@
         }
       ]
     },
-    "section-id:the-answer-in-three-moves": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "9.1-the-part-that-stays-yours::the-answer-in-three-moves",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:the-building-blocks-of-engineering": {
       "kind": "section-id",
       "dependents": [
@@ -9165,6 +9155,16 @@
         {
           "view": "outline",
           "element": "5.2-inside-docables-software-factory::the-computation-graph-a-representation-that-took-over-execution",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:the-core-of-mage": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "9.1-the-part-that-stays-yours::the-core-of-mage",
           "role": "section-anchor"
         }
       ]

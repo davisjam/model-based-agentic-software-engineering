@@ -340,6 +340,14 @@ MARKER_KEYWORDS = (
     # `<!-- pullquote -->` — arms the NEXT blockquote as a label-less pull-quote (large centered
     #   emphasis, no fill/border box). [INFRA-1], part6-apply-SPEC-260807.md §C-1/§F.
     "pullquote",
+    # `<!-- coda-rule -->` — EMITS one centered hairline at half the text measure: the typographic pause
+    #   before a closing sentence, which then sets in ORDINARY BODY TYPE. Its sibling `pullquote` ARMS the
+    #   next block and enlarges it; this marker arms nothing and touches the sentence not at all — the rule
+    #   alone says the argument has ended. Half-measure is the deliberate width: full width would read as a
+    #   section boundary, a fifth as ornament. Emitter, not armer, so it lives with `stack-legend` /
+    #   `brick-grid` in the IR's `_EMITS` table; HTML renders `<hr class="coda-rule">`, Typst a centered
+    #   `#line` with more space above than below.
+    "coda-rule",
     # `<!-- epigraph -->` — arms the NEXT blockquote as an INLINE chapter epigraph: a visually-modest
     #   italic quotation in the MAIN column with its attribution line beneath (the blockquote's last
     #   paragraph, authored with an em-dash lead) — never the right-rail sidenote the plain-blockquote
@@ -1676,6 +1684,13 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
                 # inert in HTML: the pipe table renders through the ordinary table path and web width relies on
                 # CSS overflow. Consume so the marker never leaks into the reader-visible page (mirrors
                 # note-spread; the Typst emitter wraps the next table in a flipped page).
+                return True
+            if s == "<!-- coda-rule -->":
+                # `<!-- coda-rule -->` — EMITS the closing hairline (half the text measure, centered, more
+                # air above than below) and consumes the marker. Unlike its `pullquote` neighbour it arms
+                # nothing: the sentence beneath it renders as an ordinary paragraph, in body type. Full-string
+                # match — the bare no-arg idiom shared with `glossary-auto` / `pullquote`.
+                _emit('<hr class="coda-rule">')
                 return True
             if s == "<!-- pullquote -->":
                 # `<!-- pullquote -->` — arms the NEXT blockquote as a label-less pull-quote. Consumed

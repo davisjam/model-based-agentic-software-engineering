@@ -284,7 +284,19 @@ blockquote.pull-quote{
   padding: 1.15rem 0;
   border-top: 1px solid var(--accent);
   border-bottom: 1px solid var(--accent);
-}blockquote.pull-quote p{ margin: 0; }blockquote.pull-quote strong{ font-style: normal; }.book-eq{ text-align: center; color: var(--ink); margin: 1.3rem 0; overflow-x: auto; }.book-eq math{ font-size: 1.18em; }.book-eq-boxed math{ font-size: 1.06em; }.book-eq-boxed{ border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
+}blockquote.pull-quote p{ margin: 0; }blockquote.pull-quote strong{ font-style: normal; }/* CODA RULE — the pull-quote's quiet opposite. Where a pull-quote lifts a line OUT of the text by size and
+   centering, this marks a PAUSE and leaves the sentence alone: one centered hairline at half the measure,
+   then ordinary body type beneath it. The width carries the meaning — a full-measure rule reads as a
+   section boundary, a fifth of the measure as ornament, half as a deliberate stop. Margins are asymmetric
+   (more above than below) so the rule closes the argument above it and the sentence below reads as its coda.
+   Authored via a bare `coda-rule` marker comment; it EMITS this element rather than arming the next block. */
+hr.coda-rule{
+  width: 50%;
+  margin: 3.2rem auto 2.1rem;
+  border: 0;
+  border-top: 1px solid var(--accent);
+  height: 0;
+}.book-eq{ text-align: center; color: var(--ink); margin: 1.3rem 0; overflow-x: auto; }.book-eq math{ font-size: 1.18em; }.book-eq-boxed math{ font-size: 1.06em; }.book-eq-boxed{ border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
            display: inline-block; margin: 0.5rem auto; }.book-eq-boxed-wrap{ text-align: center; margin: 1.3rem 0; }math.book-math-inline{ font-size: 1.05em; }figure.book-figure{ margin: 1.8rem 0; text-align: center; }/* Inlined figure SVGs carry only a viewBox (no width/height), so without an explicit width the
    browser default-sizes them well under the reading column. The emitter stamps each figure with
    `--fig-natural` (the viewBox width — the coordinate space the diagram was laid out in, where a

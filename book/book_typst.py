@@ -292,6 +292,17 @@ def _render_stack_legend(directive_line: str) -> str:
             + _indent(body) + "\n]")
 
 
+def _render_coda_rule() -> str:
+    """`<!-- coda-rule -->` → the print twin of the web `hr.coda-rule`: ONE centered hairline at half the
+    text measure, with more air above it than below. The rule says the argument has ended; the paragraph
+    beneath it is the coda, and it renders through the ORDINARY paragraph path — untouched, body type. The
+    stroke reuses the same `border-hairline + accent` pair the pull-quote rules use, so the book keeps one
+    rule vocabulary; the asymmetric `#v()` pair carries the spacing the web margins carry."""
+    return ("#v(2.3em)\n"
+            "#align(center)[#line(length: 50%, stroke: dt.border-hairline + dt.accent)]\n"
+            "#v(1.4em)")
+
+
 def _render_brick_grid(directive_line: str) -> str:
     """`<!-- brick-grid: <group> -->` → the packed Typst brick grid for one Appendix-C zone (§14). The packer
     (`build_book._brick_pack`) resolves the rows and per-brick spans; here each row becomes a `#grid` of
@@ -1114,12 +1125,14 @@ def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = F
     if k is K.EQ:
         return _render_eq(block.raw)
     if k in (K.DIRECTIVE, K.OTHER):
-        # The two build-generated appendix-v2 directives render a block; every other marker (index / iframe /
+        # The three emitting directives render a block; every other marker (index / iframe /
         # keep-together wrapper) is inert in the flat block stream (the note wrapper is applied in render_chapter).
         if block.directive == "stack-legend":
             return _render_stack_legend(block.raw.strip())
         if block.directive == "brick-grid":
             return _render_brick_grid(block.raw.strip())
+        if block.directive == "coda-rule":
+            return _render_coda_rule()
         return ""                                        # inert markers / catalogue iframe — no print output
     return _render_paragraph(block.raw)                  # defensive fall-through
 

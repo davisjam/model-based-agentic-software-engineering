@@ -68,8 +68,12 @@ _ARMS = {"label", "table"}                       # arm state consumed by the nex
 # `stack-legend` / `brick-grid` (appendix-restructure v2, flag ON) emit a build-generated block — the linked
 # constituent legend / the packed brick grid. They carry BlockKind.OTHER + a `directive` tag; the render
 # twins (`book_typst.render_typst` OTHER branch, `build_book._consume_leading_marker`) key off the tag.
+# `coda-rule` is the third emitter: a bare marker that renders ONE centered half-measure hairline, the
+# typographic pause before a closing sentence set in ordinary body type. It EMITS (like the two above)
+# rather than ARMS (like `pullquote`) — the following paragraph renders untouched.
 _EMITS = {"figure": BlockKind.FIGURE, "figure-iframe": BlockKind.OTHER, "eq": BlockKind.EQ,
-          "stack-legend": BlockKind.OTHER, "brick-grid": BlockKind.OTHER}
+          "stack-legend": BlockKind.OTHER, "brick-grid": BlockKind.OTHER,
+          "coda-rule": BlockKind.OTHER}
 
 #: The optional 3rd point segment (`terms: <t1>, <t2>`) — a `terms:` prefix then a comma list. The leading
 #: `terms:` keyword is matched case-insensitively; the captured group is the raw comma-separated slug list.
