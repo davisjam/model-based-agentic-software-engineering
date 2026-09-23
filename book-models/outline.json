@@ -2307,7 +2307,7 @@
           "heading_text": "Predicting latency",
           "topic_sentence": "The same graph supports a first-order latency model.",
           "id_source": "derived",
-          "block_index": 76,
+          "block_index": 77,
           "points": []
         },
         {
@@ -2316,7 +2316,7 @@
           "heading_text": "Predicting the cost of a design change",
           "topic_sentence": "Models can also answer questions about designs that do not exist yet.",
           "id_source": "derived",
-          "block_index": 83,
+          "block_index": 84,
           "points": []
         },
         {
@@ -2325,7 +2325,7 @@
           "heading_text": "Use prediction error as evidence",
           "topic_sentence": "Implementation eventually supplies measurements, and the useful comparison is not simply whether the result was fast.",
           "id_source": "derived",
-          "block_index": 87,
+          "block_index": 88,
           "points": []
         },
         {
@@ -2334,7 +2334,7 @@
           "heading_text": "What Carries Forward",
           "topic_sentence": "DocAble did not turn observed wall-clock time into the durable control.",
           "id_source": "derived",
-          "block_index": 91,
+          "block_index": 92,
           "points": []
         },
         {
@@ -2343,7 +2343,7 @@
           "heading_text": "Models get falsified; the obligation survives",
           "topic_sentence": "A ratchet does not make the current model true forever.",
           "id_source": "derived",
-          "block_index": 94,
+          "block_index": 95,
           "points": []
         },
         {
@@ -2352,7 +2352,7 @@
           "heading_text": "What a score does not carry",
           "topic_sentence": "A black-box optimization loop could target peak memory or elapsed time directly, and for some tasks that is the economical choice.",
           "id_source": "derived",
-          "block_index": 102,
+          "block_index": 103,
           "points": []
         },
         {
@@ -2361,7 +2361,7 @@
           "heading_text": "The Resulting Model Family",
           "topic_sentence": "The large-file requirement did not produce one model.",
           "id_source": "derived",
-          "block_index": 104,
+          "block_index": 105,
           "points": []
         },
         {
@@ -2370,7 +2370,7 @@
           "heading_text": "From examples to a bound",
           "topic_sentence": "The memory story shows the progression clearly:",
           "id_source": "derived",
-          "block_index": 109,
+          "block_index": 110,
           "points": []
         },
         {
@@ -2379,7 +2379,7 @@
           "heading_text": "Three days",
           "topic_sentence": "Laid out this way, the sequence looks like a substantial architecture project.",
           "id_source": "derived",
-          "block_index": 113,
+          "block_index": 114,
           "points": []
         },
         {
@@ -2388,7 +2388,7 @@
           "heading_text": "From a Story to a Method",
           "topic_sentence": "Nobody began this work with a plan to construct seven models.",
           "id_source": "derived",
-          "block_index": 120,
+          "block_index": 121,
           "points": []
         }
       ],
