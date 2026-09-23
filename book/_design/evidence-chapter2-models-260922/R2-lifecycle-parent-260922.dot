@@ -1,0 +1,35 @@
+// AUTO-GENERATED from web/jobtypes/statemachine.py :: ParentJobState + PARENT_TRANSITIONS + PARENT_TERMINAL_STATES (mechanical export, no hand-redraw).
+digraph parent_lifecycle {
+  rankdir=LR;
+  fontname="Helvetica"; node [fontname="Helvetica"]; edge [fontname="Helvetica" fontsize=9];
+  label="ParentJobState lifecycle (authoritative transition table)\ndouble circle = terminal-safe; green = success terminal; red = failure; red dashed X-edges = FORBIDDEN (absent by design)"; labelloc=t;
+  __start [shape=point width=0.15];
+  "IDLE" [shape=doublecircle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "CLAIMED" [shape=circle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "TRIAGING" [shape=circle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "SPLITTING" [shape=circle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "DISPATCHING" [shape=circle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "WAITING" [shape=circle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "MERGING" [shape=circle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "FINALIZING" [shape=doublecircle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "COMPLETED" [shape=doublecircle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "FAILED" [shape=doublecircle style=filled fillcolor="#f0f0f0" color="#000000"];
+  __start -> "IDLE";
+  "IDLE" -> "CLAIMED";
+  "CLAIMED" -> "FAILED";
+  "CLAIMED" -> "TRIAGING";
+  "TRIAGING" -> "FAILED";
+  "TRIAGING" -> "SPLITTING";
+  "SPLITTING" -> "DISPATCHING";
+  "SPLITTING" -> "FAILED";
+  "DISPATCHING" -> "FAILED";
+  "DISPATCHING" -> "WAITING";
+  "WAITING" -> "FAILED";
+  "WAITING" -> "MERGING";
+  "MERGING" -> "FAILED";
+  "MERGING" -> "FINALIZING";
+  "FINALIZING" -> "COMPLETED";
+  "FINALIZING" -> "FAILED";
+  "COMPLETED" -> "IDLE";
+  "FAILED" -> "IDLE";
+}

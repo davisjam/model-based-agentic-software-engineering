@@ -1,0 +1,27 @@
+%% AUTO-GENERATED from web/jobtypes/statemachine.py :: ParentJobState + PARENT_TRANSITIONS + PARENT_TERMINAL_STATES.
+stateDiagram-v2
+    [*] --> IDLE
+    IDLE --> CLAIMED
+    CLAIMED --> FAILED
+    CLAIMED --> TRIAGING
+    TRIAGING --> FAILED
+    TRIAGING --> SPLITTING
+    SPLITTING --> DISPATCHING
+    SPLITTING --> FAILED
+    DISPATCHING --> FAILED
+    DISPATCHING --> WAITING
+    WAITING --> FAILED
+    WAITING --> MERGING
+    MERGING --> FAILED
+    MERGING --> FINALIZING
+    FINALIZING --> COMPLETED
+    FINALIZING --> FAILED
+    COMPLETED --> IDLE
+    FAILED --> IDLE
+    COMPLETED:::terminal
+    FAILED:::terminal
+    FINALIZING:::terminal
+    IDLE:::terminal
+    classDef terminal stroke-width:3px
+    classDef successTerminal fill:#e5f5e0,stroke:#33a02c,stroke-width:3px
+    classDef failureTerminal fill:#fee0d2,stroke:#e31a1c,stroke-width:3px

@@ -1,0 +1,40 @@
+// AUTO-GENERATED from web/jobtypes/statemachine.py :: ChunkState + CHUNK_TRANSITIONS + CHUNK_TERMINAL_STATES (mechanical export, no hand-redraw).
+digraph chunk_lifecycle {
+  rankdir=LR;
+  fontname="Helvetica"; node [fontname="Helvetica"]; edge [fontname="Helvetica" fontsize=9];
+  label="ChunkState lifecycle (authoritative transition table)\ndouble circle = terminal-safe; green = success terminal; red = failure; red dashed X-edges = FORBIDDEN (absent by design)"; labelloc=t;
+  __start [shape=point width=0.15];
+  "IDLE" [shape=doublecircle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "CLAIMED" [shape=circle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "DOWNLOADING" [shape=circle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "PROCESSING" [shape=circle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "UPLOADING" [shape=circle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "CANCELLING" [shape=doublecircle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "COMPLETING" [shape=doublecircle style=filled fillcolor="#e5f5e0" color="#33a02c"];
+  "FAILED" [shape=doublecircle style=filled fillcolor="#fee0d2" color="#e31a1c"];
+  "REQUEUING" [shape=doublecircle style=filled fillcolor="#f0f0f0" color="#000000"];
+  "BATON_HANDOFF" [shape=doublecircle style=filled fillcolor="#e5f5e0" color="#33a02c"];
+  __start -> "IDLE";
+  "IDLE" -> "CLAIMED";
+  "CLAIMED" -> "DOWNLOADING";
+  "CLAIMED" -> "FAILED";
+  "DOWNLOADING" -> "CANCELLING";
+  "DOWNLOADING" -> "FAILED";
+  "DOWNLOADING" -> "PROCESSING";
+  "PROCESSING" -> "CANCELLING";
+  "PROCESSING" -> "FAILED";
+  "PROCESSING" -> "REQUEUING";
+  "PROCESSING" -> "UPLOADING";
+  "UPLOADING" -> "BATON_HANDOFF";
+  "UPLOADING" -> "CANCELLING";
+  "UPLOADING" -> "COMPLETING";
+  "UPLOADING" -> "FAILED";
+  "CANCELLING" -> "COMPLETING";
+  "COMPLETING" -> "IDLE";
+  "FAILED" -> "IDLE";
+  "REQUEUING" -> "IDLE";
+  "BATON_HANDOFF" -> "IDLE";
+  "PROCESSING" -> "BATON_HANDOFF" [style=dashed color="#e31a1c" penwidth=2 label="FORBIDDEN\nINV-BAT-4: durable upload must precede the baton terminal" fontcolor="#e31a1c" constraint=false arrowhead=tee];
+  "FAILED" -> "BATON_HANDOFF" [style=dashed color="#e31a1c" penwidth=2 label="FORBIDDEN\nINV-BAT-7: a failure can never masquerade as a banked milestone" fontcolor="#e31a1c" constraint=false arrowhead=tee];
+  "FAILED" -> "REQUEUING" [style=dashed color="#e31a1c" penwidth=2 label="FORBIDDEN\nno-failure-requeue doctrine (lint-no-failure-requeue.py)" fontcolor="#e31a1c" constraint=false arrowhead=tee];
+}

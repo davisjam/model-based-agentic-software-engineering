@@ -1,0 +1,33 @@
+%% AUTO-GENERATED from web/jobtypes/statemachine.py :: ChunkState + CHUNK_TRANSITIONS + CHUNK_TERMINAL_STATES.
+stateDiagram-v2
+    [*] --> IDLE
+    IDLE --> CLAIMED
+    CLAIMED --> DOWNLOADING
+    CLAIMED --> FAILED
+    DOWNLOADING --> CANCELLING
+    DOWNLOADING --> FAILED
+    DOWNLOADING --> PROCESSING
+    PROCESSING --> CANCELLING
+    PROCESSING --> FAILED
+    PROCESSING --> REQUEUING
+    PROCESSING --> UPLOADING
+    UPLOADING --> BATON_HANDOFF
+    UPLOADING --> CANCELLING
+    UPLOADING --> COMPLETING
+    UPLOADING --> FAILED
+    CANCELLING --> COMPLETING
+    COMPLETING --> IDLE
+    FAILED --> IDLE
+    REQUEUING --> IDLE
+    BATON_HANDOFF --> IDLE
+    BATON_HANDOFF:::successTerminal
+    CANCELLING:::terminal
+    COMPLETING:::successTerminal
+    FAILED:::failureTerminal
+    IDLE:::terminal
+    REQUEUING:::terminal
+    classDef terminal stroke-width:3px
+    classDef successTerminal fill:#e5f5e0,stroke:#33a02c,stroke-width:3px
+    classDef failureTerminal fill:#fee0d2,stroke:#e31a1c,stroke-width:3px
+    note right of PROCESSING: FORBIDDEN edge PROCESSING to BATON_HANDOFF (INV-BAT-4: durable upload must precede the baton terminal)
+    note right of FAILED: FORBIDDEN edge FAILED to BATON_HANDOFF (INV-BAT-7: a failure can never masquerade as a banked milestone) AND FORBIDDEN edge FAILED to REQUEUING (no-failure-requeue doctrine (lint-no-failure-requeue.py))
