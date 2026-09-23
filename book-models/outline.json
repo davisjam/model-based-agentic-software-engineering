@@ -649,7 +649,7 @@
           "points": [
             {
               "slug": "unknown-tacit-explicit-free-are-states",
-              "text": "Unknown, tacit, explicit, and free are present states of a choice, and they change as the system changes.",
+              "text": "Whether a choice is tacitly bounded or genuinely free is a present state, not a fixed one; it changes as engineers learn from the system.",
               "block_index": 51
             },
             {
@@ -664,7 +664,7 @@
             },
             {
               "slug": "there-is-no-model-of-the-system",
-              "text": "There is no model of the system, only purposeful reductions that each answer one question.",
+              "text": "A model earns its place by the question it settles, not by how much of the system it represents.",
               "block_index": 61
             },
             {
@@ -1383,7 +1383,7 @@
             },
             {
               "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-enforcement-is-a-separate-question",
-              "text": "Models can provide value before enforcement — reasoning, analysis, composition, traceability — and Chapter 3 asks the separate question of enforcement.",
+              "text": "Models are useful without enforcement — they preserve decisions, expose relationships, and let engineers and agents reason from shared representations; Alignment adds another use by turning selected modeled properties into obligations.",
               "block_index": 107
             }
           ]
