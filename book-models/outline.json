@@ -6,8 +6,8 @@
     "explicit_ids": 6,
     "derived_ids": 206,
     "missing_topic_sentence": 4,
-    "sections_drained": 152,
-    "paragraph_points": 700
+    "sections_drained": 153,
+    "paragraph_points": 705
   },
   "chapters": [
     {
@@ -5801,13 +5801,39 @@
           "points": []
         },
         {
-          "section_id": "how-much-specification-remains",
+          "section_id": "how-much-specification-and-of-what-kind",
           "level": 2,
-          "heading_text": "How much specification remains?",
-          "topic_sentence": "This leaves an important question open: how much specification remains necessary?",
+          "heading_text": "How much specification, and of what kind?",
+          "topic_sentence": "This leaves two related questions open: how much consequential intent must engineers make explicit, and in what form?",
           "id_source": "derived",
           "block_index": 19,
-          "points": []
+          "points": [
+            {
+              "slug": "two-open-questions-how-much-and-in-what-form",
+              "text": "Two questions stay open — how much consequential intent must be explicit, and in what representation; the answers differ for realization and for assurance.",
+              "block_index": 20
+            },
+            {
+              "slug": "commodity-intelligence-moves-the-frontier",
+              "text": "Capable agents already carry familiar work on sparse instruction; novelty pushes more intent back into explicit form, and future agents may infer far more.",
+              "block_index": 22
+            },
+            {
+              "slug": "the-question-is-what-stays-explicit-not-how-little",
+              "text": "The open question is not how much specification can disappear but what should remain explicit, in what representation, and for what purpose.",
+              "block_index": 24
+            },
+            {
+              "slug": "richer-machinery-is-the-opportunity",
+              "text": "Cheap intelligence is an opportunity to build and operate engineering machinery richer than humans could economically sustain alone.",
+              "block_index": 26
+            },
+            {
+              "slug": "not-to-abolish-engineering-but-to-demand-it",
+              "text": "The book's last word: commodity intelligence has not come to abolish engineering, but to demand it.",
+              "block_index": 28
+            }
+          ]
         }
       ],
       "preamble_points": []
