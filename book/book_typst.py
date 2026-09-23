@@ -2709,8 +2709,11 @@ def _nav_map_image(kind: str, part: int, width: str) -> str:
     nav-model.json `_note`). These maps are navigational chrome, not referenceable floats, so they render as a
     plain `#image` — no "Figure N" number, no caption, and none of the figure-family / caption-tier coupling
     numbered floats carry. Assets are PROJECTED (never hand-authored) by `book-models/nav_map_model.py` from
-    `nav-model.json` + `_PART_TITLES`, so the map cannot drift from the Part sequence. A missing asset fails the
-    COMPILE loud (below), so the subway map's presence on the verso needs no post-hoc text re-check."""
+    `nav-model.json` + `_PART_TITLES`, so the Part SEQUENCE, the station count, and each map's `Chapter N ·
+    Title` line cannot drift. The station LABELS can: they are hand-abbreviated in `nav-model.json` (a full
+    title will not fit a seven-stop strip), so a retitle leaves the station name stale until an author
+    re-abbreviates it — see the projector's header. A missing asset fails the COMPILE loud (below), so the
+    subway map's presence on the verso needs no post-hoc text re-check."""
     asset = HERE / "assets" / f"nav-{kind}-p{part}.svg"
     if not asset.is_file():
         raise SystemExit(f"part-opener orientation map missing: {asset} "

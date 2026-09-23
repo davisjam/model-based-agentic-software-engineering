@@ -3,23 +3,35 @@
 Projects the book-level transit-map SVGs from ONE declared model (`nav-model.json`) plus the book's
 Part-sequence single source of truth (`build_book._PART_TITLES`):
 
-  * `assets/nav-subway-p{1..6}.svg` — the BOOK-LEVEL "subway map": the six Parts as a line of stations
-    (Mindset → Modeling → Alignment → Method → Evidence → Profession), one variant per Part with THAT Part's
-    station highlighted. Answers "where am I in the book?"
+  * `assets/nav-subway-p{1..7}.svg` — the BOOK-LEVEL "subway map": the seven numbered Chapters as a line of
+    stations (The Problem → Modeling → Alignment → MAGE in Motion → Factories → Theory → Profession), one
+    variant per Part with THAT Part's station highlighted. Answers "where am I in the book?" The top-level
+    Conclusion is unnumbered matter, so it is not a station and mints no map.
 
 (The former Part-local map family — `assets/nav-local-p{1..6}.svg` — was retired in the round-7 opener
 anatomy change: the leaner opener embeds only the subway map, and the Part-opener verso now renders its own
 native vocab block from `new_here_vocab` + `carrying_forward`. The projector no longer emits it.)
 
 WHY A PROJECTOR, not hand-SVGs: the book-map drifted once already on a Part rename (its own header records
-a forced manual rebuild after Modeling/Alignment swapped). A projector over `_PART_TITLES` cannot drift — a
-renumber/rename re-projects. This is the book's own IR-projection thesis turned on its navigation art.
+a forced manual rebuild after Modeling/Alignment swapped). A projector over `_PART_TITLES` re-derives the
+Part SEQUENCE, the station COUNT, the highlighted index, and each map's `Chapter N · Title` line on every
+run, so a renumber or a retitle cannot leave those stale. This is the book's own IR-projection thesis turned
+on its navigation art.
+
+WHAT THE PROJECTION STILL DOES NOT COVER — read this before trusting the map: the STATION LABELS come from
+the hand-authored `subway_label` field, not from `_PART_TITLES`, because a full title does not fit a
+seven-stop horizontal strip and no rule derives a good abbreviation. So a Part RETITLE re-renders the title
+line while leaving the station name untouched, and the map drifts in exactly the half the projection does not
+own. It happened: the Interlude promotion retitled Parts 4 and 5, and the stations read "Through Models" and
+"Evidence" for weeks after. Whenever `_PART_TITLES` changes, re-abbreviate `subway_label` in
+`nav-model.json` by hand. Keep a label under ~14 characters — the stations sit 135 user-units apart at the
+1000-unit reference width, so two adjacent labels whose half-widths sum past that will collide.
 
 Every emitted SVG carries an AUTO-GEN provenance header (a hand-edit is meant to be caught + re-projected)
 and a `<!-- semantic-families: neutral -->` budget marker (these are orientation art, not role-coloured
 figures). Stdlib-only, clone-and-run, like `catalog.py`.
 
-    python3 book-models/nav_map_model.py            # re-project all 6 subway SVGs into book/assets/
+    python3 book-models/nav_map_model.py            # re-project all 7 subway SVGs into book/assets/
     python3 book-models/nav_map_model.py --check     # drift check: fail (exit 1) if any on-disk SVG differs
 """
 from __future__ import annotations
@@ -80,17 +92,26 @@ def _header(label: str, view_h: int) -> str:
     )
 
 
-def _station_xs(n: int, x0: int = 95, x1: int = 905) -> "list[float]":
+def _station_xs(n: int, x0: int = 80, x1: int = 920) -> "list[float]":
+    """Evenly spaced station centres. The span is set by the two things that bound it: the END labels
+    (centred on the terminal stations, so half a label hangs past `x0` / `x1` and must stay inside the
+    1000-unit canvas) and the NEIGHBOUR labels (the 140-unit pitch a seven-stop strip gets must exceed the
+    half-widths of any two adjacent names combined)."""
     if n == 1:
         return [(x0 + x1) / 2]
     return [x0 + i * (x1 - x0) / (n - 1) for i in range(n)]
 
 
 def _stations_svg(labels: "list[str]", y: float, active_idx: "int | None",
-                  active_size: int = 24, base_size: int = 19) -> str:
+                  active_size: int = 20, base_size: int = 19) -> str:
     """A connected row of labeled stations — the shared transit-map primitive for both map families. The
     active station (if any) renders as a filled disc + bold ink label; the rest as hollow discs + muted
-    labels. The connecting line runs behind the discs."""
+    labels. The connecting line runs behind the discs.
+
+    `active_size` sits one point over `base_size`, not five: the filled 15-unit disc, the bold weight, and
+    the full-ink colour already carry the "you are here". The extra type size bought nothing and cost the
+    longest station name its clearance — set to 24, a bold "MAGE in Motion" ran straight through
+    "Alignment" and "Factories" on the Chapter 4 opener."""
     xs = _station_xs(len(labels))
     parts: "list[str]" = []
     parts.append(f'  <line x1="{xs[0]:.1f}" y1="{y}" x2="{xs[-1]:.1f}" y2="{y}" '
@@ -127,8 +148,9 @@ def render_subway(active_part: int, model: dict) -> str:
 
 
 def _targets(model: dict) -> "dict[str, str]":
-    """{asset_path: svg_text} for all 6 subway nav maps — the projection surface `regenerate` + `--check`
-    share."""
+    """{asset_path: svg_text} for every numbered Part's subway nav map — the projection surface
+    `regenerate` + `--check` share. A Part that leaves the numbered sequence leaves this set, so its old
+    asset survives on disk unwritten and unchecked; retire the file by hand when that happens."""
     out: "dict[str, str]" = {}
     for n in _part_nums():
         out[os.path.join(_ASSETS, f"nav-subway-p{n}.svg")] = render_subway(n, model)

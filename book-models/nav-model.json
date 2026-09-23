@@ -1,5 +1,5 @@
 {
- "_note": "DECLARED navigation model for the book's cartographic layer (round-7 Thrust B). The Part SEQUENCE and full titles are NOT stored here — they are read from build_book._PART_TITLES at projection time (single source of truth, renumber-safe), exactly as the outcomes model reads it. This file holds only the per-Part facts the sequence cannot carry: a short SUBWAY_LABEL (the station name on the book-level map, an abbreviation of the full title), the NEW_HERE_VOCAB (terms first deployed in that Part), and the CARRYING_FORWARD (the author-CURATED 5-8 MOST load-bearing PRIOR terms this Part builds on — NOT the full cumulative lexicon; every entry must appear in an earlier Part's new_here_vocab). CONSUMERS: (1) book-models/nav_map_model.py projects assets/nav-subway-p{1..8}.svg (book-level 'where am I in the book?' map, one highlight variant per Part). The former Part-local map family (assets/nav-local-p{1..6}.svg, driven by the now-removed LOCAL_NODES field) was retired in the round-7 opener-anatomy change and deleted in W4 cleanup — the opener keeps only the subway map. (2) book/book_typst.py reads new_here_vocab + carrying_forward to render the Part-opener verso VOCAB BLOCK natively ('Carrying forward' capped-prior band + 'New here' this-Part band), the sole local-orientation device on the leaner verso. Hand-authored SOURCE. See scratchpad/theory-book-restructure/GLOSSARY-AND-MAPS-RATIFIED-PLAN.md §1. The Part-4 lean-4 (Workflow/Migration/Validation/Skills) matches round-6; carrying_forward sets are a W3 curation flagged for author eyeball at W4.",
+ "_note": "DECLARED navigation model for the book's cartographic layer (round-7 Thrust B). The Part SEQUENCE and full titles are NOT stored here — they are read from build_book._PART_TITLES at projection time (single source of truth, renumber-safe), exactly as the outcomes model reads it. This file holds only the per-Part facts the sequence cannot carry: a short SUBWAY_LABEL (the station name on the book-level map, a HAND-AUTHORED abbreviation of the full title — it is the one nav fact the projector CANNOT derive, so a Part RETITLE does not propagate into it; re-abbreviate here by hand whenever _PART_TITLES changes, and keep it under ~14 characters or adjacent stations on the seven-stop strip collide), the NEW_HERE_VOCAB (terms first deployed in that Part), and the CARRYING_FORWARD (the author-CURATED 5-8 MOST load-bearing PRIOR terms this Part builds on — NOT the full cumulative lexicon; every entry must appear in an earlier Part's new_here_vocab). CONSUMERS: (1) book-models/nav_map_model.py projects assets/nav-subway-p{1..7}.svg (book-level 'where am I in the book?' map, one highlight variant per NUMBERED Part). Only the numbered Parts are stations: the top-level Conclusion is unnumbered matter (part 9, in _MATTER_PARTS), takes the plain single-page divider, and mints no map — so this file carries records 1-7 only. The stale record 8 and its orphan assets/nav-subway-p8.svg were retired after the Interlude promotion renumbered the body to Chapters 1-7 + Conclusion. The former Part-local map family (assets/nav-local-p{1..6}.svg, driven by the now-removed LOCAL_NODES field) was retired in the round-7 opener-anatomy change and deleted in W4 cleanup — the opener keeps only the subway map. (2) book/book_typst.py reads new_here_vocab + carrying_forward to render the Part-opener verso VOCAB BLOCK natively ('Carrying forward' capped-prior band + 'New here' this-Part band), the sole local-orientation device on the leaner verso. Hand-authored SOURCE. See scratchpad/theory-book-restructure/GLOSSARY-AND-MAPS-RATIFIED-PLAN.md §1. The Part-4 lean-4 (Workflow/Migration/Validation/Skills) matches round-6; carrying_forward sets are a W3 curation flagged for author eyeball at W4.",
  "parts": {
   "1": {
    "subway_label": "The Problem",
@@ -52,7 +52,7 @@
    ]
   },
   "4": {
-   "subway_label": "Through Models",
+   "subway_label": "MAGE in Motion",
    "new_here_vocab": [
     "Active alignment",
     "Passive alignment",
@@ -74,7 +74,7 @@
    ]
   },
   "5": {
-   "subway_label": "Evidence",
+   "subway_label": "Factories",
    "new_here_vocab": [
     "MAGE workflow",
     "Brownfield migration",
@@ -122,20 +122,6 @@
     "Governed Engineering Environment",
     "Engineering capital",
     "Degrees of freedom"
-   ]
-  },
-  "8": {
-   "subway_label": "Profession",
-   "new_here_vocab": [
-    "Representation engineering"
-   ],
-   "carrying_forward": [
-    "Governed Engineering Environment",
-    "Engineering capital",
-    "Modeling Principle",
-    "Alignment Principle",
-    "Determinization frontier",
-    "Model"
    ]
   }
  }
