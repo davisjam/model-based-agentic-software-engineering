@@ -7,7 +7,7 @@
     "derived_ids": 189,
     "missing_topic_sentence": 5,
     "sections_drained": 143,
-    "paragraph_points": 648
+    "paragraph_points": 649
   },
   "chapters": [
     {
@@ -3851,44 +3851,49 @@
               "block_index": 167
             },
             {
+              "slug": "the-decomposition-explains-factory-variation",
+              "text": "The factories differ in where they carry engineering knowledge; the decomposition explains why those arrangements can coexist, and the relevant question is what probability and cost of satisfactory realization an arrangement produces and what knowledge survives for the next task.",
+              "block_index": 171
+            },
+            {
               "slug": "a-sound-gate-blocks-covered-failure-regardless-of-producer",
               "text": "A sound admission gate makes covered failure impossible to admit regardless of how the producer reasoned.",
-              "block_index": 171
+              "block_index": 173
             },
             {
               "slug": "the-guarantee-is-independent-of-the-producers-reasoning",
               "text": "Alignment makes consequence independent of whether the producing reasoner got the covered judgment right.",
-              "block_index": 174
+              "block_index": 176
             },
             {
               "slug": "assurance-without-modeling-can-be-expensive",
               "text": "Assurance without useful representation is expensive: rejected candidates regenerate, so realization cost climbs.",
-              "block_index": 176
+              "block_index": 178
             },
             {
               "slug": "same-guarantee-different-cost-over-different-surfaces",
               "text": "The same admission guarantee over two reasoning surfaces produces substantially different realization costs.",
-              "block_index": 179
+              "block_index": 181
             },
             {
               "slug": "hiding-the-model-does-not-weaken-the-gate-only-raises-cost",
               "text": "Hiding the model does not weaken a perfect gate; it only raises the cost of reaching an acceptable candidate.",
-              "block_index": 181
+              "block_index": 183
             },
             {
               "slug": "alignment-protects-the-boundary-modeling-reduces-collisions",
               "text": "Alignment protects the boundary; Modeling reduces how often work collides with it.",
-              "block_index": 183
+              "block_index": 185
             },
             {
               "slug": "modeling-acts-before-admission-alignment-at-it",
               "text": "Modeling can act at several stages before admission — stating intent, recovering it, easing realization — while Alignment acts afterward or alongside realization by determining whether covered failures can acquire consequence.",
-              "block_index": 185
+              "block_index": 187
             },
             {
               "slug": "modeling-changes-economics-alignment-changes-enforcement",
               "text": "Their primary contributions are separable — Modeling and Alignment are different levers.",
-              "block_index": 189
+              "block_index": 191
             }
           ]
         },
@@ -3898,37 +3903,37 @@
           "heading_text": "Software engineering changes the problem",
           "topic_sentence": "The analysis so far asks what happens when repeated attempts face the same realization problem.",
           "id_source": "derived",
-          "block_index": 191,
+          "block_index": 193,
           "points": [
             {
               "slug": "part-v-model-isolated-exposure-under-fixed-conditions",
               "text": "Chapter 5's model deliberately isolated repeated probabilistic exposure under fixed conditions.",
-              "block_index": 192
+              "block_index": 194
             },
             {
               "slug": "se-needs-a-model-where-each-realization-changes-the-next",
               "text": "Software engineering needs a different model: each realization becomes structure inherited by the next.",
-              "block_index": 194
+              "block_index": 196
             },
             {
               "slug": "independence-omits-the-inherited-environment",
               "text": "Independence omits the inherited environment; success at each step depends on the environment carried into it.",
-              "block_index": 196
+              "block_index": 198
             },
             {
               "slug": "coupling-creates-path-dependence-decay-self-reinforcing",
               "text": "The coupling creates path dependence: poor structure makes good realization harder, and decay can become self-reinforcing.",
-              "block_index": 201
+              "block_index": 203
             },
             {
               "slug": "the-reverse-trajectory-capital-carries-structure-forward",
               "text": "The reverse trajectory: a realization that improves capital carries useful structure forward for later work.",
-              "block_index": 203
+              "block_index": 205
             },
             {
               "slug": "independent-vs-dynamic-model-answer-different-questions",
               "text": "The independent model isolates repeated exposure; the dynamic model preserves the coupling between realizations and environments.",
-              "block_index": 205
+              "block_index": 207
             }
           ]
         },
@@ -3938,47 +3943,47 @@
           "heading_text": "Modeling can also enable Alignment",
           "topic_sentence": "The two principles interact in a second way.",
           "id_source": "derived",
-          "block_index": 207,
+          "block_index": 209,
           "points": [
             {
               "slug": "modeling-can-turn-a-semantic-obligation-into-a-checkable-one",
               "text": "Modeling can turn a semantic obligation into a checkable one by changing the object over which it is decided.",
-              "block_index": 208
+              "block_index": 210
             },
             {
               "slug": "two-kinds-of-hard-judgmental-vs-wrong-representation",
               "text": "Two kinds of hard question look alike in code: intrinsically judgmental, or buried in the wrong representation.",
-              "block_index": 210
+              "block_index": 212
             },
             {
               "slug": "determinization-frontier-defined",
               "text": "The determinization frontier separates judgment supplied per instance from judgment the environment can carry repeatably.",
-              "block_index": 212
+              "block_index": 214
             },
             {
               "slug": "docable-default-everything-deterministic-was",
               "text": "DocAble's default: everything that could be deterministic was; commodity intelligence only where the problem requires semantic judgment.",
-              "block_index": 214
+              "block_index": 216
             },
             {
               "slug": "moving-the-frontier-reduces-the-probabilistic-surface",
               "text": "Moving the frontier reduces the probabilistic surface without making the agent deterministic or removing realization freedom.",
-              "block_index": 216
+              "block_index": 218
             },
             {
               "slug": "the-frontier-moves-incrementally",
               "text": "The frontier moves incrementally: from prose to invariant to bounded-model checking to temporal specification.",
-              "block_index": 219
+              "block_index": 221
             },
             {
               "slug": "moving-the-frontier-preserves-degrees-of-freedom",
               "text": "Moving the frontier governs obligations, not the acceptable ways to satisfy them, which remain degrees of freedom.",
-              "block_index": 221
+              "block_index": 223
             },
             {
               "slug": "at-the-limit-realization-becomes-transformation",
               "text": "At the limit a complete realization model makes realization a transformation, connecting MAGE to model-based engineering.",
-              "block_index": 223
+              "block_index": 225
             }
           ]
         },
@@ -3988,27 +3993,27 @@
           "heading_text": "The joint engineering problem",
           "topic_sentence": "We can now put the pieces back together.",
           "id_source": "derived",
-          "block_index": 225,
+          "block_index": 227,
           "points": [
             {
               "slug": "objective-is-an-economical-division-of-labor",
               "text": "The objective is an economical division of labor among reasoner, environment, and remaining human judgment.",
-              "block_index": 228
+              "block_index": 230
             },
             {
               "slug": "engineer-jointly-chooses-representation-and-alignment",
               "text": "An engineer jointly chooses a representation and an Alignment strategy, trading carrying cost against realization and failure cost.",
-              "block_index": 230
+              "block_index": 232
             },
             {
               "slug": "schematic-both-levers-carry-construction-and-carrying-cost",
               "text": "Schematically: Modeling changes realization cost, Alignment changes failure consequence, and both impose carrying cost.",
-              "block_index": 233
+              "block_index": 235
             },
             {
               "slug": "part-v-evidence-is-depth-and-variation-not-effect-sizes",
               "text": "Chapter 5 supplied depth and variation, not population effect sizes; the theory is the proposed explanation of it.",
-              "block_index": 237
+              "block_index": 239
             }
           ]
         }
