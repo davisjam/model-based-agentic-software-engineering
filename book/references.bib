@@ -1203,14 +1203,291 @@
   urldate   = {2026-08-07},
 }
 
-% Siemens Software A3E — Autonomous Agentic Assistance for Engineering (+ Capital / Teamcenter / Simcenter).
+% Siemens A3E — the Simcenter Technology Innovation research vision (task agents / orchestrators /
+% knowledge graph / MCP+A2A). SCOPE CAUTION (verified 2026-09-23 against the article body): the post is
+% about simulation/CAE, contains no sentences about code generation or software realization, and
+% disclaims itself as "a research vision and innovation roadmap, not a committed product delivery."
+% Cite it for the agentic-architecture vision, never for model-first software fabrication — that claim
+% is carried by siemens2026eigen and liu2024agentstudio below.
 @online{siemens2026a3e,
-  author    = {{Siemens Digital Industries Software}},
-  title     = {A3E: Autonomous, Agentic Assistance for Engineering},
+  author    = {Berger, Daniel and Bergmann, Dorlis and Canedo, Arquimedes and Ciobanas, Alexandru and Gavranovic, Stefan and Hartmann, Dirk and Liu, Kai},
+  title     = {Your Next Colleague Is an Agent: The Dawn of Agentic AI-Aided Engineering},
   year      = {2026},
+  date      = {2026-07-03},
   publisher = {Siemens Digital Industries Software},
-  url       = {https://blogs.sw.siemens.com/},
-  urldate   = {2026-08-07},
+  url       = {https://blogs.sw.siemens.com/art-of-the-possible/agentic-ai-aided-engineering/},
+  urldate   = {2026-09-23},
+}
+
+% Siemens Eigen Engineering Agent — generates SCL/LAD PLC code, test logic, and HMI JavaScript from a
+% TIA Portal project and "iterates until pre-defined performance benchmarks are met" (the admission
+% criterion as a pre-set acceptance region). The load-bearing model-first-software cite for §5.3.
+@online{siemens2026eigen,
+  author    = {{Siemens AG}},
+  title     = {Siemens Brings AI to the Physical World with Eigen Engineering Agent},
+  year      = {2026},
+  date      = {2026-04-20},
+  publisher = {Siemens AG},
+  url       = {https://press.siemens.com/global/en/pressrelease/siemens-brings-ai-physical-world-eigen-engineering-agent},
+  urldate   = {2026-09-23},
+}
+
+% Siemens Agent Studio (2024) — agents operating on SysML v2 / ACEL with Amesim simulation as the
+% validator and an explicit human wait-point at critical decisions. Research, not product; two years
+% older than the rest of the Siemens record and useful as trend evidence for the model-first axis.
+@online{liu2024agentstudio,
+  author    = {Liu, Kai and Canedo, Arquimedes},
+  title     = {Agent Studio: A Multi-Agent System for Systems Engineering},
+  year      = {2024},
+  date      = {2024-12-12},
+  publisher = {Siemens Digital Industries Software},
+  url       = {https://blogs.sw.siemens.com/art-of-the-possible/agent-studio-a-multi-agent-system-for-systems-engineering/},
+  urldate   = {2026-09-23},
+}
+
+% Cloudflare "Orchestrating AI Code Review at scale" — the admission machinery: coordinator + seven
+% specialist reviewers, the verdict→GitLab-action rubric (approve / unapprove / block), risk-tiered
+% review effort, and the measured `break glass` human override (288 uses, 0.6% of MRs).
+@online{skidmore2026review,
+  author    = {Skidmore, Ryan},
+  title     = {Orchestrating AI Code Review at Scale},
+  year      = {2026},
+  date      = {2026-04-20},
+  publisher = {Cloudflare},
+  url       = {https://blog.cloudflare.com/ai-code-review/},
+  urldate   = {2026-09-23},
+}
+
+% Cloudflare "Code Orange: Fail Small is complete" — the incident→RFC→rule→agent flywheel, two named
+% rules traced to the Nov/Dec 2025 outages, and Snapstone (enrol a config pattern, inherit safe
+% deployment). Outcome claim is a counterfactual, not a measurement — cite accordingly.
+@online{hartman2026failsmall,
+  author    = {Hartman, Jeremy},
+  title     = {Code Orange: Fail Small Is Complete. The Result Is a Stronger Cloudflare Network},
+  year      = {2026},
+  date      = {2026-05-01},
+  publisher = {Cloudflare},
+  url       = {https://blog.cloudflare.com/code-orange-fail-small-complete/},
+  urldate   = {2026-09-23},
+}
+
+% Cloudflare OS (CIO account) — the clearest stated motive for the Codex ("Anyone at Cloudflare could
+% now write bad code, faster") and the first-party statement that the agent-evaluation loop is future
+% work ("We are now shifting focus to giving engineers the tools to define the loops...").
+@online{rhea2026cloudflareos,
+  author    = {Rhea, Sam},
+  title     = {How We're Rethinking Work at Cloudflare with Cloudflare OS},
+  year      = {2026},
+  date      = {2026-08-05},
+  publisher = {Cloudflare},
+  url       = {https://blog.cloudflare.com/how-we-use-ai-with-cloudflare-os/},
+  urldate   = {2026-09-23},
+}
+
+% Uber uReview talk (AIE World's Fair 2026, verbatim transcript) — the corpus's clearest first-party
+% admission statement ("we still have humans approving the code, but we see a short path... to a
+% percentage of our code landing automatically") and time-to-first-review 3h (2024) → 9h (2026).
+@online{bond2026ureview,
+  author    = {Bond, Will and Ketkar, Ameya},
+  title     = {Building uReview, Uber's Multi-Agent Code Review Engine},
+  year      = {2026},
+  publisher = {AI Engineer World's Fair},
+  url       = {https://ai.engineer/talks/EL123UNokkI-building-ureview-ubers-multi-agent-code-review},
+  urldate   = {2026-09-23},
+}
+
+% Uber Agentic SDLC talk (AIE World's Fair 2026, verbatim transcript) — the inner-loop evidence chain
+% (static-analysis repair, simulator screenshot vs. Figma spec, staging integration), the PR's table of
+% checks, monthly incident-review mining into maintenance skills, and Huda's closing ("the factory
+% still needs people to decide whether that feature should be built").
+@online{medisetty2026sdlc,
+  author    = {Medisetty, Uday Kiran and Huda, Adam},
+  title     = {Agentic SDLC at Uber --- Building Blocks for Uber's Software Factory},
+  year      = {2026},
+  publisher = {AI Engineer World's Fair},
+  url       = {https://ai.engineer/talks/17-YSUHo6Lk-agentic-sdlc-at-uber-building-blocks-ubers},
+  urldate   = {2026-09-23},
+}
+
+% Pragmatic Engineer on Uber (Mar 2026, updated with Uber-supplied corrections) — the earlier, narrower
+% agent-PR metric (11% of PRs opened by agents) that the >70% "attributed" figure must not be conflated
+% with; no source reconciles the two definitions.
+@online{orosz2026uber,
+  author    = {Orosz, Gergely},
+  title     = {How Uber Uses AI for Development: Inside Look},
+  year      = {2026},
+  date      = {2026-03-10},
+  publisher = {The Pragmatic Engineer},
+  url       = {https://newsletter.pragmaticengineer.com/p/how-uber-uses-ai-for-development},
+  urldate   = {2026-09-23},
+}
+
+% Spotify Fleet Management Part 3 (pre-agent, 2023) — the fleet line the agent later joined:
+% Fleetshift, BigQuery/GitHub-search targeting, the automerge inversion (change author decides, repo
+% owner opts out), Fleetsweep, Firewatch post-merge monitoring, cohorted rollout.
+@online{brown2023fleet,
+  author    = {Brown, Matt},
+  title     = {Fleet Management at Spotify (Part 3): Fleet-Wide Refactoring},
+  year      = {2023},
+  date      = {2023-05-15},
+  publisher = {Spotify Engineering},
+  url       = {https://engineering.atspotify.com/2023/05/fleet-management-at-spotify-part-3-fleet-wide-refactoring},
+  urldate   = {2026-09-23},
+}
+
+% Spotify Honk series Parts 1–3 (Charas & Bruggmann, 2025-11-06 / 2025-11-24 / 2025-12-09) — anchor
+% resolves to Part 1. Carries the substitution statement ("All the surrounding Fleet Management
+% infrastructure ... remains exactly the same"), the narrow tool surface and deliberate exclusions
+% (Part 2), and the verifier abstraction + pre-PR stop-hook gate + LLM-judge rates (Part 3).
+@online{charas2025honk,
+  author    = {Charas, Max and Bruggmann, Marc},
+  title     = {1,500+ PRs Later: Spotify's Journey with Our Background Coding Agent},
+  year      = {2025},
+  date      = {2025-11-06},
+  publisher = {Spotify Engineering},
+  url       = {https://engineering.atspotify.com/2025/11/spotifys-background-coding-agent-part-1},
+  urldate   = {2026-09-23},
+}
+
+% Spotify Honk Part 4 — the single documented end-to-end migration: Backstage endpoint-lineage
+% targeting, the Scio scope reduction, the missing build-time tests that relocated verification to
+% humans, and judgment-call fields left unchanged and annotated for the reviewer.
+@online{edwardsjoseph2026migrations,
+  author    = {Edwards Joseph, Devon},
+  title     = {Background Coding Agents: Supercharging Downstream Consumer Dataset Migrations},
+  year      = {2026},
+  date      = {2026-04-22},
+  publisher = {Spotify Engineering},
+  url       = {https://engineering.atspotify.com/2026/4/background-coding-agents-dataset-migrations-honk-part-4},
+  urldate   = {2026-09-23},
+}
+
+% Spotify "Coding Is No Longer the Constraint" (Code with Claude talk write-up) — 2.5M+ cumulative
+% automated maintenance PRs "the vast majority auto-merged with no human in the loop", the
+% one-engineer-in-days migration compression, Backstage catalog exposed to agents as MCP/CLI, and the
+% golden-state + Soundcheck + lint guardrails.
+@online{spotify2026constraint,
+  author    = {Gustavsson, Niklas},
+  title     = {Coding Is No Longer the Constraint: Scaling Developer Experience to Teams and Agents at Spotify},
+  year      = {2026},
+  date      = {2026-06-03},
+  publisher = {Spotify Engineering},
+  url       = {https://engineering.atspotify.com/2026/6/code-with-claude-coding-is-no-longer-the-constraint},
+  urldate   = {2026-09-23},
+}
+
+% InfoQ on Spotify's QCon London 2026 talk — third-party report carrying the LLM-judge removal
+% ("verification steps in prompts proving sufficient"), the agent-runtime/verification-runtime split,
+% and the review-is-the-new-bottleneck framing. Second-hand; not corroborated in first-party text.
+@online{curtis2026spotifyqcon,
+  author    = {Curtis, Daniel},
+  title     = {QCon London 2026: Rewriting All of Spotify's Code Base, All the Time},
+  year      = {2026},
+  date      = {2026-03-18},
+  publisher = {InfoQ},
+  url       = {https://www.infoq.com/news/2026/03/spotify-honk-rewrite},
+  urldate   = {2026-09-23},
+}
+
+% Spotify quality-at-velocity post (SVP Technology & Platforms) — the one first-party fleet-automation
+% production-failure account, the monthly incident-retrospective questions and their negative finding,
+% and "AI increased the capacity to produce change. The next constraint became our ability to verify it."
+@online{singer2026quality,
+  author    = {Singer, Tyson},
+  title     = {AI Changed How Spotify Builds. What We Learned (and Fixed) About Quality at Higher Velocity},
+  year      = {2026},
+  date      = {2026-09-16},
+  publisher = {Spotify Engineering},
+  url       = {https://engineering.atspotify.com/2026/9/ai-changed-how-spotify-builds-what-we-learned-and-fixed-about-quality-at-higher-velocity},
+  urldate   = {2026-09-23},
+}
+
+% Lütke "Learning on the Shop floor" (CEO essay) — the 36%→77% merge-rate improvement with the
+% counterfactual controlled ("We did not retrain a model. We did not switch models."), the no-DM rule,
+% and the human extraction mechanism. Founder-stated quantities, not audited.
+@online{lutke2026shopfloor,
+  author    = {Lütke, Tobi},
+  title     = {Learning on the Shop Floor},
+  year      = {2026},
+  date      = {2026-05-09},
+  url       = {https://x.com/tobi/article/2053121182044451016},
+  urldate   = {2026-09-23},
+}
+
+% Shopify security-workflow post — the admission controls for River's security lane: draft-only,
+% human merge authority, freshness-gated merge queue, post-merge verification, and "any rule that
+% determines whether a vulnerability is closed must be enforced in code." Stated for security
+% workflows only; do not generalize to all River output.
+@online{son2026security,
+  author    = {Son, Erin and Li, Kaiyi},
+  title     = {How River Takes Security Work from a Fix to Merge},
+  year      = {2026},
+  date      = {2026-09-02},
+  publisher = {Shopify Engineering},
+  url       = {https://shopify.engineering/river-vulnerability-remediation},
+  urldate   = {2026-09-23},
+}
+
+% Shopifreaks digest of the Sept 2026 Knowledge Project podcast — third-party paraphrase (the
+% transcript is members-only): ~10,000 channels with ~7,000 people (channels roughly doubled since
+% May while headcount stayed flat), and "up to half of PRs start as a River conversation"
+% (founder-stated, unaudited; an origination share, not a merged-coauthored share).
+@online{drecksler2026river,
+  author    = {Drecksler, Paul},
+  title     = {Shopify CEO Tobi Lütke Says Half the Company's Pull Requests Now Start as Slack Conversations with an Agent Named River},
+  year      = {2026},
+  date      = {2026-09-17},
+  publisher = {Shopifreaks},
+  url       = {https://www.shopifreaks.com/shopify-ceo-tobi-lutke-says-half-the-companys-pull-requests-now-start-as-slack-conversations-with-an-agent-named-river/},
+  urldate   = {2026-09-23},
+}
+
+% GitLab AI-Assisted Development Playbook (handbook, last modified 2026-03-27) — the internal doctrine:
+% failing test before every feature; "Fix the environment, not the prompt"; "Prompts are suggestions.
+% CI is a gate."; the test-count guard; the autonomy ladder and maturity grid.
+@online{gitlab2026playbook,
+  author    = {{GitLab}},
+  title     = {AI-Assisted Development Playbook},
+  year      = {2026},
+  publisher = {GitLab Handbook},
+  url       = {https://handbook.gitlab.com/handbook/engineering/workflow/ai-assisted-development/},
+  urldate   = {2026-09-23},
+}
+
+% GitLab Orbit team public work item #163 — the dated internal quantity: 135K-line Rust codebase,
+% ~95% agent-generated, 4 engineers, 259 MRs in ~2 weeks, atop ~4 weeks of harness construction;
+% "Every agent-generated change still goes through CI, security scanning, and code review."
+@online{gitlab2026orbitissue,
+  author    = {{GitLab}},
+  title     = {Orbit Project Agentic Engineering Enablement (Work Item 163)},
+  year      = {2026},
+  publisher = {GitLab},
+  url       = {https://gitlab.com/gitlab-org/orbit/knowledge-graph/-/work_items/163},
+  urldate   = {2026-09-23},
+}
+
+% GitLab Duo customization docs — the four customer-authored intent entry points and their fixed repo
+% paths (AGENTS.md, chat-rules.md, mr-review-instructions.yaml, skills/<name>/SKILL.md). Undated page;
+% year from the in-page GitLab-19.x lineage and the 2026-09-23 access.
+@online{gitlab2026customize,
+  author    = {{GitLab}},
+  title     = {Customize GitLab Duo Agent Platform},
+  year      = {2026},
+  publisher = {GitLab Documentation},
+  url       = {https://docs.gitlab.com/user/duo_agent_platform/customize/},
+  urldate   = {2026-09-23},
+}
+
+% GitLab Security Review Flow docs — the sharpest admission-authority statement in the GitLab record:
+% "The flow never sets the Approve state, even when it finds no issues." Undated page; introduced in
+% GitLab 19.1 (2026).
+@online{gitlab2026securityreview,
+  author    = {{GitLab}},
+  title     = {Security Review Flow},
+  year      = {2026},
+  publisher = {GitLab Documentation},
+  url       = {https://docs.gitlab.com/user/duo_agent_platform/flows/foundational_flows/security_review/},
+  urldate   = {2026-09-23},
 }
 
 % Zenseact "A Platform for Scalable Enterprise AI Agents" (ZAP) — federated internal agent platform.

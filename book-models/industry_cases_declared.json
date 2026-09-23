@@ -216,7 +216,7 @@
         ]
       },
 
-      "autonomous_work": "Honk inspects repos, edits code, builds/tests via per-repo verifiers, opens PRs, runs unattended across many repos (one Kubernetes pod per task), and by 2026 accepts work conversationally from Slack. Targeting is templated (Fleetshift selects repos); implementation is open-ended (the agent determines its own path). Admission is automated (automerger); humans own migration intent, standards, and ambiguous field mappings.",
+      "autonomous_work": "Honk inspects repos, edits code, builds/tests via per-repo verifiers, opens PRs, runs unattended across many repos (per-task containerized execution on Kubernetes), and by 2026 accepts work conversationally from Slack. Targeting is templated (Fleetshift selects repos); implementation is open-ended (the agent determines its own path). Admission is automated (automerger); humans own migration intent, standards, and ambiguous field mappings.",
       "object_territory": ["source-code", "models", "specs"],
       "representations": ["architecture-model", "structured-policy", "tests"],
       "traceability": "Partial. Component/dependency/endpoint-lineage models with stable component identities in Backstage; auto-generated architecture diagrams stay synced to metadata (drift-free by construction); Firewatch links each automerged PR to later deploy/pipeline failures. But no generalized deterministic drift gate that maintains model<->implementation parity over the code the agent edits and can block divergence.",
@@ -232,13 +232,13 @@
         "admission_to_main": "deterministic"
       },
       "feedback_adaptation": "Two loops. Loop A (concrete): observed agent-loop failures drove environmental changes - a CI fail led to an independent verifier abstraction + automatic pre-PR enforcement; scope creep led to an LLM judge that vetoes and requests correction (~25% veto rate, ~50% self-correct). Loop B (stated intent, not a measured loop): the Scio struggle diagnosed 'the ecosystem lacks standardization/tests', pushing standardized frameworks and a testing prerequisite - a change to the substrate itself, framed by Spotify as forward-looking strategy.",
-      "org_memory": "The pre-agent platform - Fleet Management, Fleetshift, the Backstage catalog, the System Model, Soundcheck standards, the automerger, Firewatch, standardized stacks - was built for human engineers and deterministic bots years before Honk, then became the substrate for autonomous coding; the Chief Architect credits that earlier investment for Spotify's AI-readiness.",
+      "org_memory": "The pre-agent platform - Fleet Management, Fleetshift, the Backstage software catalog, Soundcheck standards, the automerger, Firewatch, standardized stacks - was built for human engineers and deterministic bots years before Honk, then became the substrate for autonomous coding; the Chief Architect credits that earlier investment for Spotify's AI-readiness.",
       "implicit_theory": "The book reads Spotify as treating the software estate as one governable fleet: standardize it enough that changes are predictable, model its components/dependencies/ownership/standards, automate targeting/execution/admission/monitoring, give a probabilistic agent only the transformation problem deterministic automation handles poorly, constrain its tools, verify independently, and automatically admit on strong evidence - the platform, not the model alone, decides whether autonomy scales.",
 
       "mage_constructs": [
         {"construct": "alignment-principle",      "strength": "strong",   "note": "the book reads this as the sample's strongest Alignment instance: verifiers, linters, the pre-PR gate, the automerger, Soundcheck, and Firewatch act on later changes without the author present"},
-        {"construct": "modeling-principle",       "strength": "strong",   "note": "the book reads the System Model, the Backstage catalog, and dependency/endpoint lineage with metadata-synced diagrams as a deep, agent-facing model of the estate"},
-        {"construct": "externalized-knowledge", "strength": "strong",        "note": "the book reads the Backstage catalog + System Model — service/ownership/dependency/endpoint lineage with stable component identities — as strong externalization of the service estate as a retrievable graph, the first rung its deeper Modeling (strong) is built on"},
+        {"construct": "modeling-principle",       "strength": "strong",   "note": "the book reads the Backstage software catalog and dependency/endpoint lineage with metadata-synced diagrams as a deep, agent-facing model of the estate"},
+        {"construct": "externalized-knowledge", "strength": "strong",        "note": "the book reads the Backstage software catalog — service/ownership/dependency/endpoint lineage with stable component identities — as strong externalization of the service estate as a retrievable graph, the first rung its deeper Modeling (strong) is built on"},
         {"construct": "bootstrap-governance",  "strength": "strong",   "note": "the book reads years of standards/platform/model infrastructure predating agents as a mature E(0) the agent dropped into"},
         {"construct": "governance-conversion", "strength": "partial",  "note": "the book reads Loop A (failure -> verifier abstraction + judge) as a completed conversion, while Loop B (standardize frameworks, require tests) is stated as strategy, not a measured failure->control->recurrence-drop"},
         {"construct": "determinization",       "strength": "strong",   "note": "the book reads decidable obligations (build/test/format, admission) landing on deterministic verifiers/gates while a probabilistic judge covers the residual semantic scope-check"},
@@ -248,7 +248,7 @@
       ],
 
       "modeling_ceiling": [
-        {"rung": "topology",                   "level": "yes",      "note": "the System Model + Backstage catalog make component topology explicit and agent-facing"},
+        {"rung": "topology",                   "level": "yes",      "note": "the Backstage software catalog makes component topology explicit and agent-facing"},
         {"rung": "ownership-deps",             "level": "yes",      "note": "ownership + dependency lineage carried in Backstage with stable component identities"},
         {"rung": "infra-as-code",              "level": "yes",      "note": "declarative infra across the standardized stacks"},
         {"rung": "structured-policy",          "level": "some",     "note": "Soundcheck standards — structured checks, not a full obligations corpus"},
@@ -264,7 +264,7 @@
 
       "hypotheses": ["H2-governance-moderation", "H3-mechanized-assurance", "H4-representation-leverage", "H6-oversight-amortization"],
       "adds_to_mage": ["environment-can-precede-the-workforce", "standardization-as-first-class-environment-quality", "automatic-admission-predates-ai", "verifier-as-abstraction-that-compresses-evidence", "inner-and-outer-feedback-loops"],
-      "mage_explains_implicit": "MAGE connects Spotify's separately-named System Model / Backstage / Soundcheck / verifiers / judge / automerger / Firewatch as representation + obligation + deterministic evidence + semantic residue + admission + escaped-defect sensing inside ONE governed environment, and generalizes why infrastructure built before agents made Spotify unusually ready for them.",
+      "mage_explains_implicit": "MAGE connects Spotify's separately-named Backstage catalog / Soundcheck / verifiers / judge / automerger / Firewatch as representation + obligation + deterministic evidence + semantic residue + admission + escaped-defect sensing inside ONE governed environment, and generalizes why infrastructure built before agents made Spotify unusually ready for them.",
       "limitations": ["no-generalized-model-territory-drift-gate", "governance-conversion-loop-b-is-intent-not-measured", "capability-amplification-contextual-not-tested", "productivity-numbers-self-reported-not-causal", "commercial-contamination-in-newest-material", "semantic-judge-lacks-robust-evals"],
       "index_blurb": "Governed its software estate for years, then swapped in a reasoning agent and left the surrounding machinery standing — the environment came first.",
       "result_sentence": "Spotify built a standardized, model-backed, automatically-governed engineering substrate for humans and deterministic bots over several years, then swapped the deterministic transformation function for a probabilistic reasoner when autonomous coding agents arrived and left the surrounding targeting, verification, admission, and monitoring machinery essentially unchanged - the sample's cleanest demonstration that the governed environment is conceptually prior to the agent."
