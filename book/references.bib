@@ -1193,6 +1193,39 @@
   urldate   = {2026-08-07},
 }
 
+% Docker, the Fleet report — seven autonomous CI roles, the worker/reviewer loop (the reviewer is a
+% separate model invocation evaluating the full diff), the determinized test tiers, and the admission
+% boundary: "The Fleet creates pull requests. It does not merge them." Cited in 4.4 for the
+% producer-grader separation. RESTORED 2026-09-23 after a corpus change orphaned it, with every field
+% re-verified against the live post that day: the earlier entry carried a truncated title, no
+% publication date, and a best-effort landing-page URL. This post does NOT contain the "prayer" line
+% that 4.4 quotes — that is mikhalev2026untrusted below. Do not cite this entry for that quotation.
+@online{delapena2026fleet,
+  author    = {de la Peña, Manuel},
+  title     = {A Virtual Agent Team at Docker: How the Coding Agent Sandboxes Team Uses a Fleet of Agents to Ship Faster},
+  year      = {2026},
+  date      = {2026-05-01},
+  publisher = {Docker},
+  url       = {https://www.docker.com/blog/a-virtual-agent-team-at-docker/},
+  urldate   = {2026-09-23},
+}
+
+% Docker, "The Untrusted Autonomous Workload" — a first-person account of letting a coding agent migrate
+% the author's own blog and approving the result by its outcomes without reading the diffs. This post
+% carries the line 4.4 quotes: "And reviewing outcomes while skipping changes is not a security model.
+% It's a prayer." SCOPE CAUTION (verified 2026-09-23 against the article body): one practitioner's
+% personal migration written up on Docker's blog. Cite it for the outcome-only-review failure only —
+% never as Docker engineering evidence, and never as the Fleet team's stated philosophy.
+@online{mikhalev2026untrusted,
+  author    = {Mikhalev, Vladimir},
+  title     = {The Untrusted Autonomous Workload: How AI Coding Agents Reshape What Isolation Has to Do},
+  year      = {2026},
+  date      = {2026-05-26},
+  publisher = {Docker},
+  url       = {https://www.docker.com/blog/untrusted-autonomous-workload-ai-sandboxes/},
+  urldate   = {2026-09-23},
+}
+
 % Siemens A3E — the Simcenter Technology Innovation research vision (task agents / orchestrators /
 % knowledge graph / MCP+A2A). SCOPE CAUTION (verified 2026-09-23 against the article body): the post is
 % about simulation/CAE, contains no sentences about code generation or software realization, and
