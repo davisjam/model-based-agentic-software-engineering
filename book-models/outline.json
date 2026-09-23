@@ -7,7 +7,7 @@
     "derived_ids": 206,
     "missing_topic_sentence": 4,
     "sections_drained": 153,
-    "paragraph_points": 731
+    "paragraph_points": 732
   },
   "chapters": [
     {
@@ -5443,19 +5443,24 @@
           "block_index": 38,
           "points": [
             {
+              "slug": "zenseact-is-an-observed-instance-of-the-generalization",
+              "text": "One industrial case is an instance rather than a prospect: an automotive company's agents do engineering knowledge work and no software realization, domain teams author each agent as two text files, and admission runs per tool call instead of per change.",
+              "block_index": 43
+            },
+            {
               "slug": "accounting-environment-already-engineered",
               "text": "Accounting's environment is already engineered: double-entry is an old enforcement mechanism, and the profession's controls give obligations independent paths to consequence.",
-              "block_index": 44
+              "block_index": 51
             },
             {
               "slug": "law-representation-without-determinization",
               "text": "Legal analysis has abundant representations, but its consequential judgments are semantic and contested — representation does not imply determinization.",
-              "block_index": 47
+              "block_index": 54
             },
             {
               "slug": "unit-of-transfer-is-the-surface",
               "text": "The unit of transfer is the surface, not the profession — the pair shows the frontier's position is a property of the domain's obligations.",
-              "block_index": 50
+              "block_index": 57
             }
           ]
         },
@@ -5465,12 +5470,12 @@
           "heading_text": "Science as the Harder Case",
           "topic_sentence": "Scientific work is worth examining because it tests the theory rather than flattering it.",
           "id_source": "derived",
-          "block_index": 52,
+          "block_index": 59,
           "points": [
             {
               "slug": "science-tests-the-theory",
               "text": "Science is the deliberately hard case: inquiry's conduct is governable, its conclusions are not.",
-              "block_index": 53
+              "block_index": 60
             }
           ]
         },
@@ -5480,12 +5485,12 @@
           "heading_text": "Where the Generalization Fails",
           "topic_sentence": "The transfer conditions predict their own failures, and the failures deserve naming rather than a passing caveat.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 64,
           "points": [
             {
               "slug": "failure-traits-named",
               "text": "The transfer conditions predict their own failures; the traits deserve naming rather than a caveat.",
-              "block_index": 58
+              "block_index": 65
             }
           ]
         },
@@ -5495,7 +5500,7 @@
           "heading_text": "A Research Prediction",
           "topic_sentence": "The broader interpretation produces a testable prediction.",
           "id_source": "derived",
-          "block_index": 63,
+          "block_index": 70,
           "points": []
         }
       ],
