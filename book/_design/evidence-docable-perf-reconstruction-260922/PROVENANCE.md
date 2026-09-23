@@ -55,6 +55,27 @@ It still becomes public on push. §10's hedges and §0's verified/not-verified
 split are load-bearing for reading it honestly — they are the reason this is a
 defensible thing to publish, and they must not be stripped.
 
+## ⚠️ Terminology note — "skeletonization" names two different things
+
+**The record and the book use this word for different scopes. Do not read one
+as the other.** (Recorded here rather than in the artifact so its sha256 keeps
+verifying against the original capture.)
+
+| where | what it names | status |
+|---|---|---|
+| **This record**, §2 item 3 | the narrow strategy *"strip embedded media pre-produce"* | **REFUTED + PARKED** — *"would render blank figures; does not bound the dominant render-fed capture term"* |
+| **The book**, §4.2 | the architecture where the pipeline streams through the package, moves media to external storage, and leaves stable references in a small structural skeleton | **durable** — this is the media-by-reference lever of §2 item 3's sibling, `chunkless-produce-memory-bounding-260831` (content-addressed `media://<sha256>` + sidecar spill; pptx-250 peak RSS 2747.3 → ~1400 MiB) |
+
+**The book's usage is the correct and intended language** (author ruling,
+260923). The chapter is describing the durable architecture, not the parked
+strategy. The bound it teaches is held by `bounded-streaming-buffers-260830`
+(a seam, a BLOCKING lint, and property test INV-BSB-4 — constructed and
+declared rather than measured) together with that media-by-reference lever.
+
+The hazard this note exists to prevent: a later reader or agent matching the
+book's term against this record's narrower one, concluding the chapter
+describes abandoned architecture, and "correcting" prose that is already right.
+
 ## Standing
 
 `book/_design/` is tracked but excluded from the built site
