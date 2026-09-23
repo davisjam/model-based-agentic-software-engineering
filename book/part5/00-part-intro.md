@@ -26,17 +26,17 @@ factories divide realization and supervision under different constraints
 >
 > **The first shows how the method emerged. The second asks how far its engineering grammar travels.**
 
-**New here:** Software factory · Support ratio · Delegation staircase
+**New here:** Software factory · Agentic software factory · Support ratio · Delegation staircase
 
 <!-- label: two-views-of-the-evidence -->
 <!-- figure: assets/two-views-of-the-evidence.svg | *Two views of the evidence.* The originating case supplies longitudinal depth: sequence, mechanism, and within-case recurrence. Independent industrial reconstructions supply variation across systems and organizations but less process visibility. Together they motivate the theoretical account developed in {{chapter:theory}}. -->
 
-The chapter runs in four sections. {{sec:the-software-factory}} derives the factory concept from the
-history of manufacturing and ends on the problem the evidence must answer: increasing the capacity
-of the fabricator does not necessarily increase the capacity of the supervisor.
-{{sec:inside-docables-software-factory}} opens the deep case — what DocAble's factory knows, what it
-can derive and enforce, how it learned, and what its supervisor actually does.
-{{sec:mage-in-the-wild}} reads independently documented industrial systems as software factories
-under one consistent lens. {{sec:what-the-evidence-supports}} states what the factories show, and
-what they cannot. Depth supplies mechanism; breadth supplies variation. {{chapter:theory}} asks what
-general account can explain both.
+The chapter runs in three sections and a closing synthesis. {{sec:the-software-factory}} derives the
+factory concept from the history of manufacturing and asks what a production system must know and
+control when fabrication outruns direct human supervision.
+{{sec:inside-docables-software-factory}} examines one factory from the inside: where work comes
+from, how humans and agents divide it, what structures shape realization, where resulting changes
+are evaluated and admitted, and how experience changes later production. {{sec:mage-in-the-wild}}
+asks the same questions of independently documented industrial systems. The closing synthesis
+({{sec:what-the-evidence-supports}}) states what the factories show, and what they cannot.
+{{chapter:theory}} asks what general account can explain both.
