@@ -84,6 +84,14 @@ OUTPUT_TYPE = "screen"
 # and clears these around one section's emission.
 _SPLIT_LABELS: "set[str] | None" = None
 _SPLIT_LABEL_TEXT: "dict[str, str]" = {}
+# The same degradation, one level up: a LINKED chapter reference (`{{chapter:<label>|link:…}}`, resolved
+# upstream to a markdown link at `part-N-intro.html`) targets the chapter divider's `<part-N>` anchor. In
+# a section slice the referenced chapter is not in the document at all, so the anchor is absent and a live
+# `#link(<part-N>)` would fail the compile. `_SPLIT_PARTS` carries the chapter numbers THIS document
+# actually contains; an out-of-document reference degrades to the plain styled anchor text, which is what
+# the reader of a single-chapter PDF should see — a dead link is worse than no link.
+# `_SPLIT_PARTS is None` = whole-book mode: every chapter divider is present, so every reference stays live.
+_SPLIT_PARTS: "set[int] | None" = None
 
 # Appendix chapter/note headings repeat many times (one per entry), so they read as a per-entry head, not
 # a part-opener. The general H1 show rule sizes chapter titles at 1.5em (16.5pt on the 11pt body) — too
@@ -212,8 +220,22 @@ def _inline(s: str, stash: list[str]) -> str:
         text = (m.group(2) or slug).strip()
         return _hold(f'#link("../ABSTRACTIONS.html#{slug}")[{_esc(text)}]')
     s = _ABBR_RE.sub(_abbr, s)
-    # 5. Markdown links `[text](href)` → `#link(href)[text]`.
-    s = _LINK_RE.sub(lambda m: _hold(f"#link({_typst_str(m.group(2))})[{_esc(m.group(1))}]"), s)
+    # 5. Markdown links `[text](href)` → `#link(href)[text]`. One href shape is re-targeted: a LINKED
+    #    chapter reference points at the chapter's web landing page, which does not exist in a PDF, so it
+    #    becomes an INTERNAL `#link(<part-N>)` to that chapter's divider anchor — the reference jumps
+    #    within the document instead of leaving it. The shape is matched with build_book's own inverse of
+    #    the href builder (ONE definition, both projections). In a section slice whose document lacks that
+    #    chapter, it degrades to plain text (see `_SPLIT_PARTS`).
+    def _link(m: "re.Match[str]") -> str:
+        text, href = m.group(1), m.group(2)
+        cm = bb._CHAPTER_PAGE_HREF_RE.match(href)
+        if cm:
+            n = int(cm.group(1))
+            if _SPLIT_PARTS is not None and n not in _SPLIT_PARTS:
+                return _hold(_esc(text))
+            return _hold(f"#link(<part-{n}>)[{_esc(text)}]")
+        return _hold(f"#link({_typst_str(href)})[{_esc(text)}]")
+    s = _LINK_RE.sub(_link, s)
     # 6. Bold / italic → strong / emph. Non-greedy bold so an inner *italic* survives. The recursion threads
     #    the SAME stash so an already-held placeholder inside the span is never re-restored out of range.
     s = _BOLD_RE.sub(lambda m: _hold(f"#strong[{_inline(m.group(1), stash)}]"), s)
@@ -2632,6 +2654,17 @@ def _is_numbered_body(ch: "ir.Chapter") -> bool:
             and not _is_appendix_divider(ch) and not _is_coda(ch))
 
 
+def _is_numbered_part(part: int, ch: "ir.Chapter") -> bool:
+    """Whether `part` opens with a NUMBERED chapter divider — the divider that carries the `<part-N>`
+    anchor a linked chapter reference jumps to. Matter parts (front matter, the top-level Conclusion, the
+    synthetic back matter) take the plain single-page divider and mint no anchor, even when their number
+    is ≤ 8. `ch` is the part's FIRST chapter, the record the divider is built from. Shared by
+    `_part_divider_typst` (which emits the anchor) and `emit_document` (which decides, per section slice,
+    which anchors the document holds), so the emitter and the split context cannot disagree."""
+    return (part in bb._PART_TITLES and part <= 8
+            and part not in bb._MATTER_PARTS and not getattr(ch, "is_matter", False))
+
+
 #: Per-Part divider text (title, subtitle), keyed by the minted slug — the PDF twin of the web records'
 #: `chapter_title` + `subtitle`. Two Parts: Practice (A–F) and Evidence (G–H).
 _APPENDIX_DIVIDER_TEXT = {
@@ -2802,11 +2835,7 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
         return _appendices_divider_typst(ch)
     part_titles = bb._PART_TITLES
     label = ""
-    # Matter parts (front matter, the top-level Conclusion, the synthetic back matter) are NOT numbered
-    # Parts even when their number is ≤ 8 — they take the simple single-page divider with no orientation
-    # SPREAD / subway map.
-    is_numbered = (part in part_titles and part <= 8
-                   and part not in bb._MATTER_PARTS and not getattr(ch, "is_matter", False))
+    is_numbered = _is_numbered_part(part, ch)
     if part == 9:
         # The top-level Conclusion (matter). A bare title heading (no "Part N" kicker, no nav label). Its
         # sole page is itself titled "Conclusion" (subtitle dropped 260909), so `render_chapter` suppresses
@@ -3098,9 +3127,11 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
     When `split_section` is set (a per-section review PDF that renders only `slugs`), a `[ref:]`
     cross-reference whose target float lives OUTSIDE this section degrades to descriptive text instead of a
     live Typst `@label`: the label is absent from this subset document, so a live reference would fail the
-    compile. Intra-section references stay live. Whole-book mode (`split_section=False`) is untouched — the
-    shipped `mage-book.pdf` keeps every `[ref:]` a live link."""
-    global _SPLIT_LABELS, _SPLIT_LABEL_TEXT
+    compile. Intra-section references stay live. A LINKED chapter reference degrades the same way, one
+    level up: it targets the chapter divider's `<part-N>` anchor, so outside this slice it renders as the
+    plain anchor text. Whole-book mode (`split_section=False`) is untouched — the shipped `mage-book.pdf`
+    keeps every `[ref:]` and every chapter reference a live link."""
+    global _SPLIT_LABELS, _SPLIT_LABEL_TEXT, _SPLIT_PARTS
     root = root or HERE.parent
     ctx = _EmitCtx(root)
     # The record dicts and the IR come from ONE assembly (`book_records`), so the back-of-book Index —
@@ -3113,6 +3144,15 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
         sec = set(slugs)
         _SPLIT_LABELS = {key for key, (ch, _b) in doc.labels().items() if ch.slug in sec}
         _SPLIT_LABEL_TEXT = _book_label_text(doc)
+        # Which chapter anchors this slice will hold. The emission loop below builds one divider per part,
+        # from the FIRST chapter of that part it meets; walk the slugs in that same order and apply the
+        # same predicate, so this set names exactly the `<part-N>` anchors the document ends up carrying.
+        first_of_part: "dict[int, ir.Chapter]" = {}
+        for _slug in slugs:
+            _ch = by_slug.get(_slug)
+            if _ch is not None and _ch.part not in first_of_part:
+                first_of_part[_ch.part] = _ch
+        _SPLIT_PARTS = {p for p, c in first_of_part.items() if _is_numbered_part(p, c)}
     parts: list[str] = [_PREAMBLE]
     # The front-matter acknowledgments chapter — relocated onto the copyright page in the PRINT projection
     # (its source file is untouched, so the web book still renders it as a chapter). Matched by title so the
@@ -3275,6 +3315,7 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
     # unknown-slug `raise SystemExit` above aborts the whole process, so it needs no reset here.
     _SPLIT_LABELS = None
     _SPLIT_LABEL_TEXT = {}
+    _SPLIT_PARTS = None
     return result
 
 

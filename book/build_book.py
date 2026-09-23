@@ -704,9 +704,34 @@ def _chapter_filename_for(label: str) -> "str | None":
 
 
 _DIR_TO_PART = {d: p for p, d in _PART_DIRS.items()}
-_CHAPTER_REF_RE = re.compile(r"\{\{\s*chapter:([a-z][a-z0-9-]*)(?:\|(titled|num))?\s*\}\}")
+# The four reference forms. The optional modifier is ONE alternation with two arms: the two BARE
+# modifiers (`titled` / `num`), or the argument-taking `link:<anchor text>`. The arms cannot collide —
+# a bare modifier is anchored to the closing braces, and the anchor text excludes `|` and `}` so it can
+# neither swallow a following modifier nor run past the token. Anchor text keeps spaces and capitals.
+_CHAPTER_REF_RE = re.compile(
+    r"\{\{\s*chapter:([a-z][a-z0-9-]*)(?:\|(?:(titled|num)|link:([^|}]+)))?\s*\}\}")
 _CHAPTER_NUM_RE = re.compile(r"\{\{\s*chapter:\d+(?:\|[a-z]+)?\s*\}\}")
 _SEC_REF_RE = re.compile(r"\{\{\s*sec:([a-z][a-z0-9-]*)\s*\}\}")
+# Any `{{chapter:…}}` / `{{sec:…}}` shape at all — the fail-loud residue scan below. The resolving
+# regexes above are precise; this one is deliberately loose, so a MALFORMED token (a typo'd modifier,
+# an empty `link:`) stops the build instead of shipping literal braces to the reader. The notation-leak
+# gate's token scan only knows the colon-less `{{metric}}` shape, so without this a malformed
+# colon-namespaced token has no other net.
+_CHAPTER_ANY_REF_RE = re.compile(r"\{\{\s*(?:chapter|sec):[^}]*\}\}")
+
+
+def chapter_page_href(n: "int | float") -> str:
+    """The web page a chapter reference LINKS to: the chapter's landing page (`part-N-intro.html`), the
+    same target the book-roadmap nav already links each chapter node to. ONE definition of the chapter
+    page URL, read by the HTML projection (which emits it verbatim) and matched by
+    `_CHAPTER_PAGE_HREF_RE` in the print projection (which maps it back to an in-document Typst label)."""
+    return f"part-{int(n)}-intro.html"
+
+
+#: The inverse of `chapter_page_href` — the join the PRINT projection uses to recognise a chapter link
+#: in the shared markdown and re-target it inside the PDF. Imported by `book_typst`, never re-spelled
+#: there, so the two projections cannot drift on the chapter-link shape.
+_CHAPTER_PAGE_HREF_RE = re.compile(r"^part-(\d+)-intro\.html$")
 
 
 def _apply_part_refs(md: str) -> str:
@@ -716,7 +741,15 @@ def _apply_part_refs(md: str) -> str:
       * `{{chapter:<label>}}`         → `Chapter N`           (the dominant prose form)
       * `{{chapter:<label>|titled}}`  → `Chapter N (<Title>)` (title from `_PART_TITLES`)
       * `{{chapter:<label>|num}}`     → `N`                   (spans: "Chapters {{a|num}}–{{b|num}}")
+      * `{{chapter:<label>|link:T}}`  → `[T](part-N-intro.html)` — a LINKED reference carrying the
+        author's own anchor text. The first three forms name a chapter in running prose and stay PLAIN
+        TEXT, which is what the ~130 existing uses read as; only this fourth form asks for a link, so a
+        reference becomes navigable by opting in, one site at a time.
       * `{{sec:<label>}}`             → `§N.M`                (label from `chapter_identity_declared.json`)
+
+    The link form resolves to an ordinary markdown link, the one inline token EVERY projection already
+    renders (HTML `<a>`, ePub, Typst `#link`) — so no projection can silently drop it. The print
+    projection re-targets it from the web URL to an in-document label; see `book_typst._inline`.
 
     A reference names a frozen IDENTITY; the build derives the number from `_CHAPTER_LABELS` (chapters)
     or the chapter-identity file stem (sections). A renumber edits the map/filenames once and every
@@ -732,7 +765,7 @@ def _apply_part_refs(md: str) -> str:
                          "write {{chapter:<label>}} (the number resolves from _CHAPTER_LABELS)")
 
     def chap(m: "re.Match[str]") -> str:
-        label, mod = m.group(1), m.group(2)
+        label, mod, anchor = m.group(1), m.group(2), m.group(3)
         if label not in _CHAPTER_LABELS:
             raise SystemExit(f"{{{{chapter:{label}}}}} references an unknown chapter label "
                              f"(not in _CHAPTER_LABELS)")
@@ -745,6 +778,14 @@ def _apply_part_refs(md: str) -> str:
             return str(n)
         if mod == "titled":
             return f"Chapter {n} ({_PART_TITLES[n]})"
+        if anchor is not None:
+            text = anchor.strip()
+            # A `]` would close the markdown link early and ship a broken half-link; an empty anchor
+            # would emit a link with nothing to click. Both stop the build.
+            if not text or "]" in text:
+                raise SystemExit(f"{{{{chapter:{label}|link:…}}}} needs non-empty anchor text without "
+                                 f"']' — got {anchor!r}")
+            return f"[{text}]({chapter_page_href(n)})"
         return f"Chapter {n}"
 
     def sec(m: "re.Match[str]") -> str:
@@ -761,8 +802,15 @@ def _apply_part_refs(md: str) -> str:
             raise SystemExit(f"{{{{sec:{label}}}}} stem for {fn} does not match N.M- — cannot form §N.M")
         return f"§{cm.group(1)}.{cm.group(2)}"
 
-    md = _CHAPTER_REF_RE.sub(chap, md)
-    return _SEC_REF_RE.sub(sec, md)
+    md = _SEC_REF_RE.sub(sec, _CHAPTER_REF_RE.sub(chap, md))
+    # Residue scan: every well-formed token is gone by now, so anything still matching the loose shape is
+    # MALFORMED (a typo'd modifier, an empty `link:`, a stray pipe). Fail here rather than ship literal
+    # braces — the same fail-loud posture this function takes on a retired or unknown token.
+    leftover = _CHAPTER_ANY_REF_RE.search(md)
+    if leftover:
+        raise SystemExit(f"malformed cross-reference token {leftover.group(0)!r} — expected "
+                         f"{{{{chapter:<label>[|titled|num|link:<text>]}}}} or {{{{sec:<label>}}}}")
+    return md
 
 
 # `{{dt:<key>}}` — derive a design-system NAME from the token SSOT so the colophon's prose (faces, accent)
