@@ -2796,12 +2796,12 @@
             },
             {
               "slug": "the-factory-question-set",
-              "text": "Thinking in factory terms changes what we look for: where work comes from, what the fabricator receives, which decisions it may make, where its work is evaluated, what admits a change, and what happens when production reveals a problem.",
+              "text": "The factory metaphor identifies what must be examined in a production system: where work enters, what the fabricator receives and may decide, where the resulting change is evaluated and admitted, and whether a failure is repaired locally or alters the production system that later work inherits.",
               "block_index": 110
             },
             {
               "slug": "the-factory-makes-the-human-role-analyzable",
-              "text": "The factory metaphor makes the human role an object of analysis: factories divide origination, requirements, design, admission evidence, exceptions, and factory change differently, so the question is what humans and agents each do and may decide, not how much is automated.",
+              "text": "Human work belongs in the same account: engineers may decide what enters production, establish requirements, make design decisions, define acceptable evidence, admit changes, and modify the factory. The question is therefore larger than how much implementation an agent performs; it is how a change moves from engineering need to accepted software.",
               "block_index": 112
             },
             {
@@ -2916,7 +2916,7 @@
             },
             {
               "slug": "the-problem-the-evidence-must-answer",
-              "text": "The problem the evidence must answer: increasing the capacity of the fabricator does not necessarily increase the capacity of the supervisor.",
+              "text": "The problem the evidence must answer: increasing the capacity of the fabricator does not necessarily increase the capacity of the supervisor, so added realization capacity raises a supervisory question before an automation one — whether the production system can direct, evaluate, and learn from the changes now possible.",
               "block_index": 155
             }
           ]
