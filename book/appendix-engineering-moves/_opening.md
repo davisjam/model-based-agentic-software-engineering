@@ -1,10 +1,6 @@
 This appendix shows how the same engineering judgment can produce different mechanisms in different systems.
 
-Each section starts from a recurring engineering problem, names the move that addresses it, and shows two realizations.
-
-Read each page in one direction:
-
-**Problem → Move → two realizations.**
+Each page runs in one direction: **Problem → Move → two realizations.**
 
 A move is portable engineering judgment: close an action surface, derive obligations from a model, deliver policy where a decision occurs. A mechanism is one concrete realization of that move: a typed mutation API, a coverage census, a context-injection hook. Mechanisms vary by system; the move travels.
 
