@@ -8,8 +8,8 @@ readings:
     - heading: The modeling principle
       items:
         - cite: davis2026mage
-          locator: '§2.1 and §2.8'
-          annotation: '{mage:2.1} and {mage:2.8} Davis, 2026. The spine of the unit. The first chapter develops the modeling principle this unit applies: externalize selected engineering knowledge and intent into representations suited to the questions engineers and agents must answer. Pay particular attention to how a useful model is selected, what information it preserves, and how traceability and drift connect a model to the territory it describes. The second chapter treats what happens when models accumulate: shared identities, joins, and the system of models rather than any single one. The catalogue of model kinds between them belongs to the lectures.'
+          locator: '§2.1 and §2.5'
+          annotation: '{mage:2.1} and {mage:2.5} Davis, 2026. The spine of the unit. The first chapter develops the modeling principle this unit applies: externalize selected engineering knowledge and intent into representations suited to the questions engineers and agents must answer. Pay particular attention to how a useful model is selected, what information it preserves, and how traceability and drift connect a model to the territory it describes. The second chapter treats what happens when models accumulate: shared identities, joins, and the system of models rather than any single one. The catalogue of model kinds between them belongs to the lectures.'
     - heading: The size of the modeling repertoire
       items:
         - cite: visualparadigm-uml-guide
