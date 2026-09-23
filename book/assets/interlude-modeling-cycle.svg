@@ -25,8 +25,8 @@
   <rect x="0" y="0" width="920" height="360" fill="#fdfcf9"/>
   <line x1="330" y1="40" x2="330" y2="330" stroke="#e7e2d6" stroke-width="1.5"/>
 
-  <!-- (a) linear (not this) -->
-  <text x="30" y="30" font-size="17.5" font-weight="700" fill="#57534e">(a) Not this</text>
+  <!-- (a) linear (models after implementation) -->
+  <text x="30" y="30" font-size="17.5" font-weight="700" fill="#57534e">(a) Models after implementation</text>
   <g text-anchor="middle" font-size="14.5" fill="#78716c">
     <rect x="90" y="60" width="150" height="40" rx="8" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.8"/><text x="165" y="85">design</text>
     <rect x="90" y="140" width="150" height="40" rx="8" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.8"/><text x="165" y="165">implement</text>

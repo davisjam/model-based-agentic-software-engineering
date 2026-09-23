@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>32</b> chapters · <b>204</b> sections · <b>46</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>32</b> chapters · <b>210</b> sections · <b>46</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -458,8 +458,16 @@
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Remove Media from the Working Set</a></div>
 <p class="topic">The memory problem came from coupling document structure to media residency: total media size increased the worker&#x27;s persistent working set even though most remediation operations needed only the document&#x27;s structural skeleton.</p>
 </div>
-<div class="section s2" id="sec-4-2-one-problem-many-models--once-memory-is-solved-why-are-we-chunking">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Once Memory Is Solved, Why Are We Chunking?</a></div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--why-one-level-deeper-matters">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Why One Level Deeper Matters</a></div>
+<p class="topic">An end-to-end measurement says whether the outcome moved.</p>
+</div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--memory-did-not-stop-mattering">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Memory Did Not Stop Mattering</a></div>
+<p class="topic">Bringing memory under governance did not make memory disappear.</p>
+</div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--why-are-we-still-chunking">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Why Are We Still Chunking?</a></div>
 <p class="topic">Page chunking had served two roles at once: it partitioned execution and bounded each worker&#x27;s memory.</p>
 </div>
 <div class="section s2" id="sec-4-2-one-problem-many-models--analyze-before-you-build">
@@ -469,6 +477,10 @@
 <div class="section s3" id="sec-4-2-one-problem-many-models--dependencies-can-be-redesigned">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Dependencies can be redesigned</a></div>
 <p class="topic">The same analysis exposed a problem in contextual image description (panel c).</p>
+</div>
+<div class="section s3" id="sec-4-2-one-problem-many-models--the-second-resource-model">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">The second resource model</a></div>
+<p class="topic">The critical-path model explained which dependencies could determine latency.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--predicting-latency">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Predicting latency</a></div>
@@ -481,6 +493,18 @@
 <div class="section s3" id="sec-4-2-one-problem-many-models--use-prediction-error-as-evidence">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Use prediction error as evidence</a></div>
 <p class="topic">Implementation eventually supplies measurements, and the useful comparison is not simply whether the result was fast.</p>
+</div>
+<div class="section s2" id="sec-4-2-one-problem-many-models--what-carries-forward">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">What Carries Forward</a></div>
+<p class="topic">DocAble did not turn observed wall-clock time into the durable control.</p>
+</div>
+<div class="section s3" id="sec-4-2-one-problem-many-models--models-get-falsified-the-obligation-survives">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Models get falsified; the obligation survives</a></div>
+<p class="topic">A ratchet does not make the current model true forever.</p>
+</div>
+<div class="section s3" id="sec-4-2-one-problem-many-models--what-a-score-does-not-carry">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">What a score does not carry</a></div>
+<p class="topic">A black-box optimization loop could target peak memory or elapsed time directly, and for some tasks that is the economical choice.</p>
 </div>
 <div class="section s2" id="sec-4-2-one-problem-many-models--the-resulting-model-family">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">The Resulting Model Family</a></div>
