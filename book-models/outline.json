@@ -1716,8 +1716,8 @@
               "block_index": 48
             },
             {
-              "slug": "these-are-matches-not-levels-of-sophistication",
-              "text": "These are matches between property and mechanism, not levels of sophistication.",
+              "slug": "mechanisms-match-properties-not-an-adoption-sequence",
+              "text": "These mechanisms differ in what they make observable or enforceable; their ordering does not prescribe an adoption sequence — an environment uses the mechanisms appropriate to the obligations it must govern.",
               "block_index": 50
             },
             {
@@ -1756,13 +1756,13 @@
           "section_id": "one-measurement-different-enforcement-decisions",
           "level": 2,
           "heading_text": "One Measurement, Different Enforcement Decisions",
-          "topic_sentence": "The four roles are not stages of maturity.",
+          "topic_sentence": "Related measurements from DocAble's GenAI cost-and-usage model support different enforcement decisions, and [ref:cost-enforcement-gradient] fans them across the roles.",
           "id_source": "derived",
           "block_index": 72,
           "points": [
             {
-              "slug": "the-four-roles-are-not-stages-of-maturity",
-              "text": "The four roles are not stages of maturity: one quantitative model can support observation, adaptation, graceful degradation, or hard admission control.",
+              "slug": "one-model-several-enforcement-decisions",
+              "text": "One quantitative model can support observation, adaptation, graceful degradation, or hard admission control; the appropriate response depends on the obligation attached to the quantity.",
               "block_index": 74
             },
             {
@@ -2000,7 +2000,7 @@
             },
             {
               "slug": "a-governed-obligation-carries-a-binding-consequence-appropriate-to-its-risk",
-              "text": "A governed obligation is enforced in a form appropriate to the engineering decision; the four states are a design space, not a ladder.",
+              "text": "A governed obligation is enforced in a form appropriate to the engineering decision.",
               "block_index": 60
             },
             {

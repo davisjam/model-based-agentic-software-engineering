@@ -3844,6 +3844,16 @@
         }
       ]
     },
+    "point:mechanisms-match-properties-not-an-adoption-sequence": {
+      "kind": "point",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "3.3-constraints-sensors-validators-gates::block-50",
+          "role": "paragraph-point"
+        }
+      ]
+    },
     "point:migration-vs-authentication-engineering-changes-difficulty-and-assurance": {
       "kind": "point",
       "dependents": [
@@ -4355,6 +4365,16 @@
         {
           "view": "outline",
           "element": "5.2-inside-docables-software-factory::block-2",
+          "role": "paragraph-point"
+        }
+      ]
+    },
+    "point:one-model-several-enforcement-decisions": {
+      "kind": "point",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "3.3-constraints-sensors-validators-gates::block-74",
           "role": "paragraph-point"
         }
       ]
@@ -6239,16 +6259,6 @@
         }
       ]
     },
-    "point:the-four-roles-are-not-stages-of-maturity": {
-      "kind": "point",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "3.3-constraints-sensors-validators-gates::block-74",
-          "role": "paragraph-point"
-        }
-      ]
-    },
     "point:the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible": {
       "kind": "point",
       "dependents": [
@@ -7135,16 +7145,6 @@
         {
           "view": "outline",
           "element": "2.1-context-is-the-first-modeling-problem::block-61",
-          "role": "paragraph-point"
-        }
-      ]
-    },
-    "point:these-are-matches-not-levels-of-sophistication": {
-      "kind": "point",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "3.3-constraints-sensors-validators-gates::block-50",
           "role": "paragraph-point"
         }
       ]

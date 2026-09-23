@@ -1,4 +1,4 @@
-The preceding argument can be turned into a procedure. It is deliberately organized around one engineering surface at a time rather than around an enterprise-wide maturity level.
+The preceding argument can be turned into a procedure. It is deliberately organized around one engineering surface at a time.
 
 1. **Choose a recurring unit of work.** Start where GenAI can already perform useful work and where the organization can observe the result. Identify the artifact or system being changed, the outcome expected, and the boundary of the work unit.
 2. **Write down the consequential obligations.** Ask what must remain true if this work is delegated. Include functional requirements, architectural boundaries, security and privacy rules, operational limits, provenance requirements, and qualitative obligations that matter to acceptance. Do not require every obligation to be mechanically decidable.
