@@ -362,3 +362,59 @@ def check_course_reading_citations():
         return FAIL, ["course reading-citations: no `cite:` references found in any lander — the "
                       "readings tree or item spelling moved; the gate would silently pass otherwise"]
     return (FAIL if issues else PASS), issues
+
+
+# ── MAGE book-reference token integrity (MAGE-TOKEN) ─────────────────────────────────────────────────
+#: The site hook's exact token grammar (site/hooks/readings.py `_MAGE_TOKEN`) — mirrored, not imported:
+#: the hook lives in the mkdocs-only toolchain and this suite stays stdlib clone-and-run.
+_MAGE_TOKEN_RE = re.compile(r"\{mage:(\d+(?:\.\d+)?)\}")
+_CHAPTER_TITLE_RE = re.compile(r"<!--\s*chapter-title:\s*.+?\s*-->")
+_CHAPTER_FILE_RE = re.compile(r"(\d+(?:\.\d+)?)-.+\.md$")
+
+
+def _mage_resolvable_sections() -> "set[str]":
+    """Section numbers a `{mage:N.M}` token can resolve to: every `book/part*/N.M-*.md` that carries a
+    `<!-- chapter-title: -->` marker — the same predicate the site build's resolver applies."""
+    nums: set[str] = set()
+    for f in glob.glob(os.path.join(ROOT, "book", "part*", "*.md")):
+        m = _CHAPTER_FILE_RE.match(os.path.basename(f))
+        if m and _CHAPTER_TITLE_RE.search(open(f, encoding="utf-8").read()):
+            nums.add(m.group(1))
+    return nums
+
+
+def check_course_mage_tokens_resolve():
+    """MAGE-TOKEN (BLOCKING; 0 findings at landing). Every `{mage:N.M}` token in a served markdown
+    source resolves to an existing book chapter — `book/part*/N.M-*.md` carrying a chapter-title
+    marker. The resolver that expands these tokens (site/hooks/readings.py) runs ONLY in CI's
+    teach-site mkdocs step, so a book-side chapter renumbering that strands a course reading
+    reference passes every local gate and dies on the Pages build (the stale `{mage:2.8}` after the
+    Chapter 2 consolidation renamed 2.8 -> 2.5). This Tier-1 twin applies the resolver's own
+    predicate at test time: glob the tokens, glob the chapters, diff the sets."""
+    import catalog  # deferred: mirrors tests.common's use of the shared model without a load-time cycle
+
+    sections = _mage_resolvable_sections()
+    if not sections:
+        return FAIL, ["mage-token: no book/part*/N.M-*.md carries a chapter-title marker — the book "
+                      "tree or its marker grammar moved; the gate would silently pass otherwise"]
+    prune = catalog.site_prune_dirs()
+    issues: list[str] = []
+    found = 0
+    for dirpath, dirnames, filenames in os.walk(ROOT):
+        dirnames[:] = [d for d in dirnames if d not in prune]
+        for fn in filenames:
+            if not fn.endswith(".md"):
+                continue
+            path = os.path.join(dirpath, fn)
+            for i, ln in enumerate(open(path, encoding="utf-8").read().splitlines(), start=1):
+                for m in _MAGE_TOKEN_RE.finditer(ln):
+                    found += 1
+                    if m.group(1) not in sections:
+                        issues.append(f"{rel(path)}:{i}: {m.group(0)} resolves to no "
+                                      f"book/part*/{m.group(1)}-*.md with a chapter-title marker — "
+                                      f"repoint the reference or restore the chapter")
+    if not found and not issues:
+        return FAIL, ["mage-token: no {mage:N.M} tokens found in any served markdown — the course "
+                      "readings moved or the token grammar changed; the gate would silently pass "
+                      "otherwise"]
+    return (FAIL if issues else PASS), issues

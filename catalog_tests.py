@@ -116,6 +116,7 @@ from tests.html import (
 )
 from tests.course import (
     check_course_lander_prose_word_band,
+    check_course_mage_tokens_resolve,
     check_course_module_schema,
     check_course_nav_titles,
     check_course_reading_citations,
@@ -191,6 +192,13 @@ CHECKS = [
     # from the one citation backend (site/hooks/readings.py), never hand-maintained per lander.
     Check("course: READ-CITE — lander cite keys resolve; no hand-written 'Full citation:' prose (BIB-12)", 1,
           lambda strict: check_course_reading_citations()),
+    # BLOCKING (0 findings at landing): every {mage:N.M} book-reference token resolves to a
+    # book/part*/N.M-*.md carrying a chapter-title marker — the resolver's own predicate, applied
+    # stdlib-side. The resolver (site/hooks/readings.py) runs only in CI's teach-site mkdocs step, so a
+    # book chapter renumbering that stranded a course reading token ({mage:2.8} after the Chapter 2
+    # consolidation) passed every local gate and broke only the Pages build. See tests/course.py.
+    Check("course: MAGE-TOKEN — every {mage:N.M} token resolves to a book chapter (resolver's stdlib twin)", 1,
+          lambda strict: check_course_mage_tokens_resolve()),
     # AUDIT-ONLY (first landing, several pre-band landers out of band): ready module descriptions land in
     # the session-scaled prose band (module-schema.json: 750–1,000 words/session). Promote once drained.
     Check("course: ready lander prose within session-scaled word band (module-schema sessions band)", 1,
