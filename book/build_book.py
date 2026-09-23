@@ -522,7 +522,7 @@ _CHAPTER_LABELS: "dict[str, int | float]" = {
     "modeling": 2,
     "alignment": 3,
     "one-problem-many-models": 4,   # promoted from the interlude to Chapter 4; absorbed Chapter 5 ("method") in the Ch4/Ch5 merger
-    "evidence": 5,
+    "software-factories": 5,
     "theory": 6,
     "profession": 7,
 }

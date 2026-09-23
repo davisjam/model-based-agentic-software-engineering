@@ -1,6 +1,6 @@
 **Eight organizations, seven kinds**
 
-{{chapter:evidence}} ({{sec:mage-in-the-wild}}) asks whether engineering structures found in DocAble recur in systems developed independently under different technical and organizational pressures. This appendix presents the evidence behind that comparison.
+{{chapter:software-factories}} ({{sec:mage-in-the-wild}}) asks whether engineering structures found in DocAble recur in systems developed independently under different technical and organizational pressures. This appendix presents the evidence behind that comparison.
 
 These are reconstructions, not additional case studies. Public accounts reveal selected mechanisms and design decisions, not the engineering history available for DocAble. They can show that a comparable structure exists, demonstrate another way to realize it, or mark a limit on the MAGE interpretation. They cannot establish causation, and silence in a public source does not establish that an organization lacks a capability (see {{sec:toward-a-theory-of-mage}}.5 and {{sec:mage-in-the-wild}}).
 

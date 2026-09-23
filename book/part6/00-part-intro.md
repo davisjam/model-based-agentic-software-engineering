@@ -1,5 +1,5 @@
 <!-- part-foreshadows: conversions-compound -->
-{{chapter:evidence}} supplied two views of the evidence. The originating case showed how MAGE's structures emerged
+{{chapter:software-factories}} supplied two views of the evidence. The originating case showed how MAGE's structures emerged
 under sustained engineering pressure; the industrial reconstructions showed related structures arising
 independently under different constraints. Neither establishes a universal law. Together, they give us
 something worth explaining.
