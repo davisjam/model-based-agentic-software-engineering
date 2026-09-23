@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>32</b> chapters · <b>212</b> sections · <b>46</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>32</b> chapters · <b>213</b> sections · <b>46</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -711,45 +711,49 @@
 </div>
 <div class="chapter">
 <h3 id="ch-5-3-other-agentic-software-factories"><span class="tier-kick">Lesson</span><a href="../book/5.3-other-agentic-software-factories.html" class="ch-link">5.3-other-agentic-software-factories</a> <span class="ch-slug">5.3-other-agentic-software-factories</span></h3>
-<div class="section s2" id="sec-5-3-other-agentic-software-factories--inside-uber-s-software-factory">
-<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Inside Uber&#x27;s Software Factory</a></div>
+<div class="section s2" id="sec-5-3-other-agentic-software-factories--organizing-the-emerging-factory-forms">
+<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Organizing the Emerging Factory Forms</a></div>
+<p class="topic">§5.1 defined a software factory as a production system for controlled change.</p>
+</div>
+<div class="section s2" id="sec-5-3-other-agentic-software-factories--internal-software-factories">
+<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Internal Software Factories</a></div>
+<p class="topic">Five of the seven accounts describe a factory an organization built to change its own software, and each enters from a different problem.</p>
+</div>
+<div class="section s3" id="sec-5-3-other-agentic-software-factories--uber-the-environment-as-the-engineered-object">
+<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Uber: the environment as the engineered object</a></div>
 <p class="topic">Uber gives the fullest account of realization increasing at organizational scale: more than 70 percent of pull requests attributed to local or cloud agents, more than 3,600 engineer-created agent skills executing over 30,000 times per day, managed agents performing code review, CI repair, end-to-end changes, alert triage, debugging, and maintenance.[cite: medisetty2026factory] What new work inherits is the interesting structure: real workloads become benchmarks; models are selected against cost, quality, and reliability; context and tool access are compiled down to reduce unnecessary reasoning; recurring workflows harden into reusable skills — in one example, deterministic tool orchestration moves out of repeated model turns into executable code, cutting token use by more than half on common workflows and by more than 90 percent in bulk cases.[cite: medisetty2026factory] Supervision is structured by measurement: managed agents are evaluated in units such as cost per merged pull request, review, or alert.</p>
 </div>
-<div class="section s2" id="sec-5-3-other-agentic-software-factories--inside-gitlab-s-software-factory">
-<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Inside GitLab&#x27;s Software Factory</a></div>
-<p class="topic">GitLab starts from the other end: as code becomes abundant, the scarce problem shifts to trusting it.</p>
-</div>
-<div class="section s2" id="sec-5-3-other-agentic-software-factories--inside-cloudflare-s-software-factory">
-<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Inside Cloudflare&#x27;s Software Factory</a></div>
+<div class="section s3" id="sec-5-3-other-agentic-software-factories--cloudflare-policy-as-a-machine-readable-corpus">
+<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Cloudflare: policy as a machine-readable corpus</a></div>
 <p class="topic">Cloudflare gives the cleanest policy-first entry.</p>
 </div>
-<div class="section s2" id="sec-5-3-other-agentic-software-factories--inside-siemens-s-software-factory">
-<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Inside Siemens&#x27;s Software Factory</a></div>
-<p class="topic">Siemens enters from outside software-first engineering, and that is exactly its value.</p>
-</div>
-<div class="section s2" id="sec-5-3-other-agentic-software-factories--inside-docker-s-software-factory">
-<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Inside Docker&#x27;s Software Factory</a></div>
-<p class="topic">Docker&#x27;s system separates delegated roles, tool permissions, implementation, and evaluation: seven permission-backed roles, an independent reviewer running on a separate model invocation, and deterministic tests supplying repeatable evidence.[cite: delapena2026fleet] Realization and evaluation are both substantially mechanized; final admission deliberately is not.</p>
-</div>
-<div class="section s2" id="sec-5-3-other-agentic-software-factories--inside-spotify-s-software-factory">
-<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Inside Spotify&#x27;s Software Factory</a></div>
+<div class="section s3" id="sec-5-3-other-agentic-software-factories--spotify-fleet-scale-change-over-an-estate-model">
+<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Spotify: fleet-scale change over an estate model</a></div>
 <p class="topic">Spotify&#x27;s Honk system moves large-scale code migration from distributed manual implementation toward centrally scoped, fleet-executed work: a migration that could previously involve hundreds of teams over weeks can be scoped by one engineer over a few days, with tooling identifying and scheduling targets, agents executing changes concurrently, and the engineer supervising the fleet and handling exceptions.[cite: spotify2026honk] The inheritance is the estate representation — a system model and service catalog carrying identities, ownership, dependencies, and lineage — through which migrations are targeted rather than rediscovered per repository.</p>
 </div>
-<div class="section s2" id="sec-5-3-other-agentic-software-factories--inside-shopify-s-software-factory">
-<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Inside Shopify&#x27;s Software Factory</a></div>
+<div class="section s3" id="sec-5-3-other-agentic-software-factories--shopify-shared-sessions-as-organizational-context">
+<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Shopify: shared sessions as organizational context</a></div>
 <p class="topic">Shopify&#x27;s account describes agent work occurring in shared, observable channels rather than private sessions — one month&#x27;s snapshot counts 59,918 sessions across 5,170 channels involving more than 7,000 people, &quot;multiplayer by construction.&quot;[cite: moreno2026river] Shared sessions become searchable organizational artifacts; recurring knowledge is extracted into skills, conventions, and defaults later agents retrieve.</p>
 </div>
-<div class="section s2" id="sec-5-3-other-agentic-software-factories--inside-zenseact-s-software-factory">
-<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Inside Zenseact&#x27;s Software Factory</a></div>
+<div class="section s3" id="sec-5-3-other-agentic-software-factories--zenseact-shared-substrate-distributed-domain-judgment">
+<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Zenseact: shared substrate, distributed domain judgment</a></div>
 <p class="topic">Zenseact, building driver-assistance software, describes an organizational split: a platform team owns common substrate — authentication, sessions, execution, and the safety envelope — while domain teams retain their own agents, tools, instructions, and expertise.[cite: dufwa2026zap] Routing machinery selects task-relevant expertise instead of loading the whole organizational corpus into every reasoning window.</p>
+</div>
+<div class="section s2" id="sec-5-3-other-agentic-software-factories--the-factory-in-a-box">
+<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">The Factory in a Box</a></div>
+<p class="topic">GitLab belongs in the other column, and the reason is not the size of its agent deployment.</p>
+</div>
+<div class="section s2" id="sec-5-3-other-agentic-software-factories--model-first-factories">
+<div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">Model-First Factories</a></div>
+<p class="topic">Siemens sits at the end of the second axis the software-first accounts do not reach.</p>
 </div>
 <div class="section s2" id="sec-5-3-other-agentic-software-factories--what-the-factories-share-and-where-they-differ">
 <div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">What the Factories Share, and Where They Differ</a></div>
-<p class="topic">Across the eight accounts, four moves recur strongly enough to form a shared baseline.</p>
+<p class="topic">Across the seven accounts, four moves recur strongly enough to form a shared baseline.</p>
 </div>
 <div class="section s2" id="sec-5-3-other-agentic-software-factories--the-engineers-inside-the-factories">
 <div class="sec-h"><a href="../book/5.3-other-agentic-software-factories.html">The Engineers Inside the Factories</a></div>
-<p class="topic">The eight accounts above are institutional self-descriptions — engineering blogs and vendor architecture papers, systems presented at their best.</p>
+<p class="topic">The seven accounts above are institutional self-descriptions — engineering blogs and vendor architecture papers, systems presented at their best.</p>
 </div>
 </div>
 </section>
