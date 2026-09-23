@@ -1176,6 +1176,18 @@
       "kind": "requirements-index",
       "location": "part1",
       "rationale": "compact R1-R8 index of what DocAble had to accomplish; the factories chapter returns to them as engineering constraints"
+    },
+    "inside-docables-software-factory::The factory's observed construction and operating cost": {
+      "tier": "B",
+      "kind": "data",
+      "location": "part5",
+      "rationale": "observed factory accounting — human engineering, agent subscriptions, metered inference, cloud infrastructure; supporting caption pins the measurement window and the estimated-vs-metered distinction"
+    },
+    "inside-docables-software-factory::The remediation task at four scales": {
+      "tier": "B",
+      "kind": "data",
+      "location": "part5",
+      "rationale": "scenario table — one course, break-even, Purdue-scale, 100-institution scenario under one stated $4,000/course manual counterfactual; supporting caption names the shared assumption"
     }
   }
 }
