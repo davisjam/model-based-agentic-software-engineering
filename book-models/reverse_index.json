@@ -8939,6 +8939,16 @@
         }
       ]
     },
+    "section-id:the-building-blocks-of-engineering": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "7.2-software-rejoins-engineering::the-building-blocks-of-engineering",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:the-canonical-move-permitted-alternatives": {
       "kind": "section-id",
       "dependents": [
@@ -9160,16 +9170,6 @@
         {
           "view": "outline",
           "element": "7.4-the-engineer::the-judgment-frontier",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:the-language-of-engineering": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "7.2-software-rejoins-engineering::the-language-of-engineering",
           "role": "section-anchor"
         }
       ]

@@ -357,7 +357,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: pattern | The design-pattern form
 - concept: modeling-principle | The Modeling Principle
 - concept: alignment-principle | The Alignment Principle
-- concept: universal-language | Models are the universal language
+- concept: universal-language | Models are the building blocks of engineering
 - concept: generative-validation | Generative validation
 - concept: mirror-vs-spec | Mirror vs. spec
 - concept: drift-caveat | The drift caveat
