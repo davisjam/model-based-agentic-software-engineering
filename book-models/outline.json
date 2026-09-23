@@ -5089,7 +5089,7 @@
             },
             {
               "slug": "mage-accepts-machinery-and-changes-the-object",
-              "text": "MAGE accepts that machinery and changes the engineering object: what durable environment should be engineered around autonomous implementation.",
+              "text": "MAGE accepts that machinery and enlarges the engineering object: what durable environment should be engineered around autonomous implementation.",
               "block_index": 15
             },
             {
@@ -5133,7 +5133,7 @@
           "section_id": "where-engineering-effort-moves",
           "level": 2,
           "heading_text": "Where Engineering Effort Moves",
-          "topic_sentence": "Implementation shifts; responsibility does not.",
+          "topic_sentence": "**Delegation expands; responsibility remains.** The fleet can assume work across more of the engineering lifecycle; engineers must retain sufficient control to remain responsible for intent, abstraction, evidence, tradeoffs, and acceptance.",
           "id_source": "derived",
           "block_index": 32,
           "points": []
@@ -5148,9 +5148,9 @@
           "points": []
         },
         {
-          "section_id": "the-software-factory-risk",
+          "section_id": "the-software-factory-risk-production-outrunning-engineering-control",
           "level": 2,
-          "heading_text": "The Software Factory Risk",
+          "heading_text": "The Software Factory Risk: Production Outrunning Engineering Control",
           "topic_sentence": "There is another possible trajectory.",
           "id_source": "derived",
           "block_index": 49,
@@ -5194,7 +5194,7 @@
           "section_id": "the-language-of-engineering",
           "level": 2,
           "heading_text": "The Language of Engineering",
-          "topic_sentence": "Models are the language of engineering.",
+          "topic_sentence": "Models are the building blocks of engineering.[note: Here I mean model in the broad sense developed in Chapter 2: a purposeful reduction that preserves distinctions needed for some question.",
           "id_source": "derived",
           "block_index": 17,
           "points": [
@@ -5233,13 +5233,13 @@
           "section_id": "what-mage-claims-is-new",
           "level": 2,
           "heading_text": "What MAGE Claims Is New",
-          "topic_sentence": "MAGE does not claim to have discovered models, constraints, verification, external memory, structured reasoning, or autonomous software agents.",
+          "topic_sentence": "The components of MAGE have deep precedents: models, constraints, verification, external memory, structured reasoning, and autonomous software agents.",
           "id_source": "derived",
           "block_index": 32,
           "points": [
             {
               "slug": "what-mage-claims-is-new",
-              "text": "MAGE does not claim to have discovered the components; its claim is architectural and disciplinary — redesign the environment when autonomous implementation becomes a primary productive substrate.",
+              "text": "The components of MAGE have deep precedents; its claim concerns their architectural and disciplinary composition — redesign the environment when autonomous implementation becomes a primary productive substrate.",
               "block_index": 33
             }
           ]
@@ -5359,7 +5359,7 @@
           "section_id": "professional-authority",
           "level": 3,
           "heading_text": "Professional authority",
-          "topic_sentence": "Engineering authority is not merely technical.",
+          "topic_sentence": "Engineering authority extends beyond technical capability.",
           "id_source": "derived",
           "block_index": 6,
           "points": [
@@ -5525,7 +5525,7 @@
             },
             {
               "slug": "cheap-implementation-enables-judgment-developing-hyper-exploration",
-              "text": "Cheap implementation enables hyper-exploration that develops engineering judgment rather than deskilling the engineer.",
+              "text": "Cheap realization compresses the modeling cycle, so realization and connection amplification develop engineering judgment rather than deskilling the engineer.",
               "block_index": 73
             },
             {
