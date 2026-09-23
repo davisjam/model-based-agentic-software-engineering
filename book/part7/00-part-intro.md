@@ -22,8 +22,8 @@ Delegation changes what engineers do and how they exercise control. It does not 
 >
 > The same account suggests a broader engineering problem: how people retain informed control when agents perform consequential engineering work in domains whose representations, evidence, and means of enforcement differ from software.
 
-**Carrying forward:** Commodity intelligence · Modeling · Alignment · Governed Engineering Environment ·
-Engineering capital · Degrees of freedom
+**Carrying forward:** Commodity intelligence · Modeling Principle · Alignment Principle · Governed
+Engineering Environment · Engineering capital · Degrees of freedom
 
 **New here:** Representation engineering · Agentic engineering beyond software · Full-system engineering ·
 Professional responsibility
