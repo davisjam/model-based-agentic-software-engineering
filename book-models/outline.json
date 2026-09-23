@@ -7,7 +7,7 @@
     "derived_ids": 206,
     "missing_topic_sentence": 4,
     "sections_drained": 153,
-    "paragraph_points": 732
+    "paragraph_points": 733
   },
   "chapters": [
     {
@@ -2975,32 +2975,32 @@
           "heading_text": "The Problem the Factory Was Built For",
           "topic_sentence": "In 2024, the U.S.",
           "id_source": "explicit",
-          "block_index": 10,
+          "block_index": 12,
           "points": [
             {
               "slug": "the-rule-and-the-extension",
               "text": "The 2024 DOJ rule set WCAG 2.1 AA and a 2026 deadline; four days before the deadline, the Department extended it by a year.",
-              "block_index": 12
+              "block_index": 14
             },
             {
               "slug": "the-explanation-was-a-production-problem",
               "text": "The Department's explanation described a production problem: technology, including generative AI, had not delivered remediation at scale.",
-              "block_index": 14
+              "block_index": 16
             },
             {
               "slug": "the-arithmetic-of-one-course",
               "text": "Shown arithmetic: one ordinary course costs 304 hours of remediation, about 7.6 work weeks.",
-              "block_index": 16
+              "block_index": 18
             },
             {
               "slug": "the-estimate-is-conservative-and-the-scope-is-national",
               "text": "The five-hour figure is conservative, 3,000 courses put one university near a million hours, and the national counts set the scope.",
-              "block_index": 19
+              "block_index": 21
             },
             {
               "slug": "box-checking-sharpened-the-target",
               "text": "The Department's box-checking concern sharpened the target: passing a checker is not making a document accessible.",
-              "block_index": 21
+              "block_index": 23
             }
           ]
         },
@@ -3010,22 +3010,22 @@
           "heading_text": "Technology, or Engineering?",
           "topic_sentence": "I saw a different question in the same evidence: **was this a problem of technology, or of engineering?**",
           "id_source": "derived",
-          "block_index": 23,
+          "block_index": 25,
           "points": [
             {
               "slug": "a-different-question-technology-or-engineering",
               "text": "The same evidence posed a different question: was this a problem of technology, or of engineering?",
-              "block_index": 24
+              "block_index": 26
             },
             {
               "slug": "a-document-is-a-semantic-artifact",
               "text": "A document is a visual and semantic artifact, and remediation must recover enough meaning to present it through another channel.",
-              "block_index": 26
+              "block_index": 28
             },
             {
               "slug": "genai-need-only-supply-the-semantic-part",
               "text": "Generative AI only needed to supply the historically missing semantic reasoning; deterministic software and human judgment could carry the rest.",
-              "block_index": 29
+              "block_index": 31
             }
           ]
         },
@@ -3035,22 +3035,22 @@
           "heading_text": "The Feasibility Probe",
           "topic_sentence": "Chapter 1 proposed a diagnostic rule: suspect the setup before inferring a machine limit.",
           "id_source": "derived",
-          "block_index": 31,
+          "block_index": 33,
           "points": [
             {
               "slug": "docable-tested-the-diagnostic-rule",
               "text": "Chapter 1's diagnostic rule — suspect the setup before inferring a machine limit — got an unusually consequential test.",
-              "block_index": 32
+              "block_index": 34
             },
             {
               "slug": "the-probe-tested-the-uncertain-part-first",
               "text": "The feasibility probe tested the uncertain part first, and the descriptions were good.",
-              "block_index": 34
+              "block_index": 36
             },
             {
               "slug": "the-rest-was-engineering",
               "text": "Generative AI supplied the missing semantic reasoning; the rest was engineering.",
-              "block_index": 36
+              "block_index": 38
             }
           ]
         },
@@ -3060,22 +3060,22 @@
           "heading_text": "Building with Agents",
           "topic_sentence": "Not reading the code was deliberate.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 40,
           "points": [
             {
               "slug": "not-reading-the-code-was-deliberate",
               "text": "Not reading the code was deliberate: the aim was to control the system through the engineering environment around its implementation.",
-              "block_index": 40
-            },
-            {
-              "slug": "the-build-moved-under-concrete-pressures",
-              "text": "The build moved chronologically under concrete pressures: PowerPoint first, then more formats, deployment, real users, inadequate checkers, and hardening; the factory did not choose that work, the engineer interpreted environmental pressure into it.",
               "block_index": 42
             },
             {
+              "slug": "the-build-moved-under-concrete-pressures",
+              "text": "The build moved chronologically under concrete pressures: PowerPoint first, then more formats, deployment, real users, inadequate checkers, and hardening. Most new work entered through pressures outside the fabricator, which the engineer translated into engineering work that the accumulated production system then shaped.",
+              "block_index": 44
+            },
+            {
               "slug": "what-the-engineer-did-while-agents-implemented",
-              "text": "The process is easier to understand through the engineer's own work: decomposing, deciding, examining failures, and changing the environment when a judgment should not recur.",
-              "block_index": 45
+              "text": "The engineer's own work was concentrated elsewhere: decomposing, deciding, examining failures, and changing the environment when a judgment should not recur.",
+              "block_index": 47
             }
           ]
         },
@@ -3085,42 +3085,42 @@
           "heading_text": "Ordinary Engineering, and Engineering for Agents",
           "topic_sentence": "Some of those changes were ordinary software engineering.",
           "id_source": "derived",
-          "block_index": 47,
+          "block_index": 49,
           "points": [
             {
               "slug": "ordinary-and-agent-specific-changes",
               "text": "Some environmental changes were ordinary software engineering; others existed specifically because agents did the implementation.",
-              "block_index": 48
+              "block_index": 50
             },
             {
               "slug": "model-selection-was-an-engineering-decision",
               "text": "Model selection was itself an engineering decision: frontier models were reserved for judgments where their additional capability earned their additional cost — the cheapest-adequate-judge rule applied to the fabricator rather than to the validator.",
-              "block_index": 50
+              "block_index": 52
             },
             {
               "slug": "parallel-implementation-cheap-admission-serialized",
               "text": "The resulting arrangement made parallel implementation cheap while admission to the production system remained serialized through evidence: realization capacity fanned out without granting each fabricator authority to admit its work.",
-              "block_index": 52
+              "block_index": 54
             },
             {
               "slug": "the-two-sides-interacted",
               "text": "The distinction was not clean: the engineering environment and the product developed together.",
-              "block_index": 54
+              "block_index": 56
             },
             {
               "slug": "the-environment-accumulated-in-sequence",
               "text": "The environment was absent at the start; April, May, and July each added durable structure in response to failures.",
-              "block_index": 56
+              "block_index": 58
             },
             {
               "slug": "the-sequence-matters",
               "text": "The work began with a software problem and capable agents, not with MAGE or a plan for a factory; the structures appeared at the limits of directing agents without them.",
-              "block_index": 58
+              "block_index": 60
             },
             {
               "slug": "requirements-explain-the-size",
               "text": "Semantic reasoning was one requirement of eight; the rest generated the engineering system around the model.",
-              "block_index": 60
+              "block_index": 62
             }
           ]
         },
@@ -3130,12 +3130,12 @@
           "heading_text": "The Controls Accumulate",
           "topic_sentence": "The growing engineered environment is visible in one especially easy-to-count class of artifacts: project-specific lints and gate scripts.",
           "id_source": "explicit",
-          "block_index": 62,
+          "block_index": 64,
           "points": [
             {
               "slug": "the-control-count-is-evidence-of-investment",
               "text": "The control count is evidence of investment, not quality.",
-              "block_index": 63
+              "block_index": 65
             }
           ]
         },
@@ -3145,17 +3145,17 @@
           "heading_text": "The Support Ratio",
           "topic_sentence": "Another coarse measure shows where the engineering effort accumulated.",
           "id_source": "explicit",
-          "block_index": 66,
+          "block_index": 68,
           "points": [
             {
               "slug": "the-environment-outgrew-the-product",
               "text": "Support apparatus outgrew the production code, settling a little above three-to-one.",
-              "block_index": 68
+              "block_index": 70
             },
             {
               "slug": "the-facts-reinterpreted-around-supervisory-capacity",
               "text": "DocAble did not solve abundant implementation by reading faster; it changed what the engineer had to supervise.",
-              "block_index": 73
+              "block_index": 75
             }
           ]
         },
@@ -3165,32 +3165,32 @@
           "heading_text": "What the Factory Knows",
           "topic_sentence": "Source code alone stopped being an adequate engineering interface as DocAble grew.",
           "id_source": "derived",
-          "block_index": 75,
+          "block_index": 77,
           "points": [
             {
               "slug": "source-code-stopped-being-an-adequate-interface",
               "text": "Source code alone stopped being an adequate engineering interface as DocAble grew: repository search could locate a symbol but not say which services participated in a workflow, which component owned a piece of state, or what had to stay bounded as a path changed.",
-              "block_index": 77
+              "block_index": 79
             },
             {
               "slug": "the-census-is-live-not-frozen",
               "text": "At the repository revision examined here, DocAble contained 129 declared system models; the exact inventory changes with the system.",
-              "block_index": 79
+              "block_index": 81
             },
             {
               "slug": "the-population-is-heterogeneous",
               "text": "The model population is genuinely heterogeneous — registries, instruments, budgets, schemas, constraint sets, dataflows, topologies, state machines, decision tables, policies — split across product-facing and fleet-facing concerns.",
-              "block_index": 81
+              "block_index": 83
             },
             {
               "slug": "specimens-show-why-representations-afford-supervision",
               "text": "Six specimens show the census's purpose: each representation answers an engineering question for a consumer, and its supervisory consequence is what the engineer no longer reconstructs from implementation.",
-              "block_index": 83
+              "block_index": 85
             },
             {
               "slug": "the-supervisor-does-not-supervise-2mloc-through-2mloc",
               "text": "The recurring pattern: each representation replaces implementation-reading with a purpose-built supervisory surface — the supervisor is not supervising two million lines through two million lines.",
-              "block_index": 86
+              "block_index": 88
             }
           ]
         },
@@ -3200,27 +3200,27 @@
           "heading_text": "What the Factory Can Derive and Enforce",
           "topic_sentence": "A repository can contain excellent documentation and still supervise nothing.",
           "id_source": "derived",
-          "block_index": 88,
+          "block_index": 90,
           "points": [
             {
               "slug": "a-repository-of-documentation-is-not-a-supervisory-environment",
               "text": "Models alone would be documentation; the factory joins them and gives them consequences, which is the difference between describing knowledge and acting on it.",
-              "block_index": 90
+              "block_index": 92
             },
             {
               "slug": "the-invariant-chain-derives-checker-obligations",
               "text": "The invariant chain: property facts on each invariant derive a verification tier, the tier mandates a checker class, and a check fails when the checker is missing — the model tells the factory what evidence it owes.",
-              "block_index": 92
+              "block_index": 94
             },
             {
               "slug": "the-iam-join-derives-grants",
               "text": "The IAM join: service relationships × deployment wiring × runtime identity derive the invoker-grant plan, and a coherence gate asserts the derived grants at deploy time.",
-              "block_index": 94
+              "block_index": 96
             },
             {
               "slug": "the-provenance-join-derives-the-changelog",
               "text": "The provenance join: every mutation stamps its verb and pass, the customer changelog is derived from the stamps, and a wiring validator catches mutating paths that fail to stamp.",
-              "block_index": 96
+              "block_index": 98
             }
           ]
         },
@@ -3230,27 +3230,27 @@
           "heading_text": "The Computation Graph: a Representation That Took Over Execution",
           "topic_sentence": "The deepest of the factory's joins earned its position over time, and its history is worth a short telling because a later subsection depends on it.",
           "id_source": "derived",
-          "block_index": 100,
+          "block_index": 102,
           "points": [
             {
               "slug": "the-computations-stabilized-before-composition",
               "text": "The remediation core was decomposed into passes early; their composition stayed implicit until it accumulated global cost.",
-              "block_index": 101
+              "block_index": 103
             },
             {
               "slug": "deriving-the-graph-exposed-the-distinctions",
               "text": "Deriving the missing composition exposed distinctions the code had never stated: data flow versus control gating, and the boundedness of each pass's mutations.",
-              "block_index": 103
+              "block_index": 105
             },
             {
               "slug": "the-representation-became-authoritative-for-execution",
               "text": "The pass declarations became the source the graph projects from, a blocking parity check holds them together, and a later redesign made the modeled dependencies authoritative for execution order.",
-              "block_index": 106
+              "block_index": 108
             },
             {
               "slug": "explicit-models-changed-what-was-checkable",
               "text": "Explicit lifecycle and ownership models made previously slippery properties checkable — exhaustive exploration of the ownership state space, temporal specifications checked mechanically — and created the correspondence obligation in return.",
-              "block_index": 108
+              "block_index": 110
             }
           ]
         },
@@ -3260,72 +3260,72 @@
           "heading_text": "How the Factory Learned",
           "topic_sentence": "Where did all this factory machinery come from?",
           "id_source": "derived",
-          "block_index": 110,
+          "block_index": 112,
           "points": [
             {
               "slug": "governance-conversion-is-an-empirical-claim-about-durable-structure",
               "text": "Where did the machinery come from? Not grand design: governance conversion claims some episodes leave durable structure later work inherits, and this subsection reconstructs the episodes where that sequence is visible.",
-              "block_index": 112
+              "block_index": 114
             },
             {
               "slug": "implicit-lifecycle-became-explicit-model",
               "text": "An implicit lifecycle and a retry reflex became an explicit lifecycle model, atomic claiming, and recovery as a decision over evidence.",
-              "block_index": 114
+              "block_index": 116
             },
             {
               "slug": "destructive-library-behavior-became-a-typed-seam",
               "text": "A convenient library call that silently destroyed accessibility structure became a canonical-library policy, a typed mutation seam, and a build-time ban — and the gate itself later had to be hardened.",
-              "block_index": 116
+              "block_index": 118
             },
             {
               "slug": "cross-service-assumptions-became-explicit-models",
               "text": "A file path sent across a service boundary became a typed client that makes the mistake unrepresentable, plus an explicit service graph — and a review found the bypass path the boundary did not govern.",
-              "block_index": 118
+              "block_index": 120
             },
             {
               "slug": "an-instruction-satisfied-to-the-letter",
               "text": "\"Use types,\" satisfied to the letter and voided in spirit, became a commodity-lint floor driven to zero plus induced typed abstractions region by region.",
-              "block_index": 120
+              "block_index": 122
             },
             {
               "slug": "optimizing-within-an-architecture-that-was-itself-the-constraint",
               "text": "Weeks of in-frame autoscaler optimization against the same ceiling became a decision rule: price the architectural change instead of commissioning another local optimization.",
-              "block_index": 123
+              "block_index": 125
             },
             {
               "slug": "an-unmade-decision-is-where-the-agent-guesses-worst",
               "text": "A conflict handler with an unmade design decision silently deleted landed work for four days; the choice was made once, encoded, and the destructive default barred.",
-              "block_index": 126
+              "block_index": 128
             },
             {
               "slug": "two-green-reports-that-were-not-true",
               "text": "Two green reports — a lint gate swallowing its own error, pin tests landed onto a tree missing the checked field — became independent evidence regenerated at the admission boundary.",
-              "block_index": 129
+              "block_index": 131
             },
             {
               "slug": "a-detector-that-measured-the-right-quantity-on-the-wrong-world",
               "text": "A content-free image detector, provably safe on the world it was measured on, would silence a Rothko; the cheap proxy lost the last word and a regression preserved the failure class.",
-              "block_index": 132
+              "block_index": 134
             },
             {
               "slug": "bypasses-produced-empty-changelog-rows",
               "text": "Eleven mutation sites bypassing the stamp helper shipped blank changelogs; representation, migration, then gating turned provenance from inference into a lookup.",
-              "block_index": 135
+              "block_index": 137
             },
             {
               "slug": "a-timeout-spoke-only-after-the-budget-was-spent",
               "text": "A silent eight-minute stall became a provisional per-chunk worst-case model that is deliberately NOT a gate — alignment need not culminate in blocking enforcement.",
-              "block_index": 137
+              "block_index": 139
             },
             {
               "slug": "some-conversions-were-almost-mechanical",
               "text": "Some conversions were mechanical: a repeated review finding — a missing reserved prefix on inserted artifacts — became a blocking lint.",
-              "block_index": 140
+              "block_index": 142
             },
             {
               "slug": "the-case-contains-both-ex-post-and-ex-ante-paths",
               "text": "Not every structure was forced by failure: the reactive backend, the closed edit vocabulary, and the unified rule engine were designed from known obligations and simply held.",
-              "block_index": 142
+              "block_index": 144
             }
           ]
         },
@@ -3335,32 +3335,32 @@
           "heading_text": "What the Supervisor Does",
           "topic_sentence": "What was the human doing while the factory accumulated?",
           "id_source": "derived",
-          "block_index": 144,
+          "block_index": 146,
           "points": [
             {
               "slug": "mage-was-not-designed-as-an-org-chart",
-              "text": "The five rung labels — co-coder, QA, review lead, tech lead, architect — are retrospective names for the changing center of gravity of the engineer's own work.",
-              "block_index": 146
+              "text": "The staircase records how the division of work changed inside one factory: each step moved system knowledge, realization work, evaluation, or admission out of direct human handling and into the engineered environment. It is a chronology of DocAble, not a maturity model for other factories.",
+              "block_index": 148
             },
             {
               "slug": "rungs-compressed",
               "text": "Each rung delegated what the environment had just become able to carry: reading, then evaluation, then decidable findings, then locality of reasoning, then system-level knowledge itself.",
-              "block_index": 148
+              "block_index": 150
             },
             {
               "slug": "the-staircase-has-two-interacting-supports",
               "text": "The staircase's two supports: Alignment moved enforcement of repeatable obligations out of direct review; Modeling moved system knowledge out of the engineer's head; weakness in either sent the work back down.",
-              "block_index": 151
+              "block_index": 153
             },
             {
               "slug": "human-attention-moved-to-a-functional-list",
               "text": "Functionally, the top of the climb rewrites the supervisor's job description: human attention moved away from supervising individual acts of realization and toward the work only judgment can do.",
-              "block_index": 153
+              "block_index": 155
             },
             {
               "slug": "mage-afforded-supervision-by-changing-its-objects",
               "text": "The payoff: MAGE afforded supervision by changing the objects through which supervision occurred — it did not automate supervision, and human judgment remains central.",
-              "block_index": 156
+              "block_index": 158
             }
           ]
         },
@@ -3370,32 +3370,32 @@
           "heading_text": "What the Factory Cost, and What It Bought",
           "topic_sentence": "What did this factory cost, and what did the money buy?",
           "id_source": "derived",
-          "block_index": 158,
+          "block_index": 160,
           "points": [
             {
               "slug": "the-accounting-prices-the-case",
               "text": "The case can be priced in the lifecycle terms of the previous section's value model, and the accounting is deliberately simple.",
-              "block_index": 160
+              "block_index": 162
             },
             {
               "slug": "composition-more-informative-than-total",
               "text": "~90% of the observed investment was human engineering labor; the factory consumed ~5.6B tokens of machine intelligence while direct agent and inference charges stayed below $6,000.",
-              "block_index": 163
+              "block_index": 165
             },
             {
               "slug": "infrastructure-carried-an-instructive-inefficiency",
               "text": "Roughly half the cloud spend came from an initially always-on Kubernetes deployment later replaced by the serverless migration: the factory was itself an engineered system whose production economics changed as its architecture improved.",
-              "block_index": 166
+              "block_index": 168
             },
             {
               "slug": "do-not-divide-by-documents",
               "text": "The $110,633 should not be divided by documents processed — much of it purchased durable capability, and the nearly two million lines are machinery purchased by the investment, not the return on it.",
-              "block_index": 168
+              "block_index": 170
             },
             {
               "slug": "the-111k-is-an-observation-about-startup-cost",
               "text": "In the lifecycle model's terms the $110,633 is primarily an observation about C_startup; the open empirical questions are three different numbers — keeping the factory, the next substantial change, the next document.",
-              "block_index": 170
+              "block_index": 172
             }
           ]
         },
@@ -3405,32 +3405,32 @@
           "heading_text": "The Manual-Remediation Counterfactual",
           "topic_sentence": "Was that a defensible investment?",
           "id_source": "derived",
-          "block_index": 172,
+          "block_index": 174,
           "points": [
             {
               "slug": "use-both-numbers",
               "text": "Directly observed costs totaled ~$111,000; to avoid false precision and allow generously for omitted costs, the analysis treats the factory as a $200,000 investment.",
-              "block_index": 173
+              "block_index": 175
             },
             {
               "slug": "purdues-course-population",
               "text": "Purdue's public syllabus library listed 7,605 distinct courses for Fall 2026 as observed on September 22, 2026 — a library count on a date, not an audited statistic — supporting a conservative order-of-magnitude 10,000 courses per academic year.",
-              "block_index": 175
+              "block_index": 177
             },
             {
               "slug": "the-4000-dollar-manual-unit-cost",
               "text": "The assumed manual unit cost is one person-week per course at $100/hour institutional labor cost — $4,000 — assumptions stated visibly and deliberately low against the chapter's opening arithmetic.",
-              "block_index": 177
+              "block_index": 179
             },
             {
               "slug": "forty-million-is-a-one-time-corpus-figure",
               "text": "Under these assumptions the existing corpus represents ~$40M of labor-equivalent work — a one-time initial-corpus figure, not an annual one; the ongoing term depends on the rate materials change and is not estimated here.",
-              "block_index": 181
+              "block_index": 183
             },
             {
               "slug": "the-counterfactual-is-a-unit-cost-not-a-budget",
               "text": "The purpose is not to claim Purdue would actually spend $40 million; the calculation establishes a counterfactual unit cost against which productive capacity can be evaluated.",
-              "block_index": 187
+              "block_index": 189
             }
           ]
         },
@@ -3440,37 +3440,37 @@
           "heading_text": "What the Rulemaking Record Says the Alternative Is",
           "topic_sentence": "These figures measure the scale of the work under a manual-production counterfactual; they are not a market forecast.",
           "id_source": "derived",
-          "block_index": 189,
+          "block_index": 191,
           "points": [
             {
               "slug": "institutions-cannot-purchase-the-counterfactual",
               "text": "The $40M and $4B figures measure the scale of the work, not a market: at sufficiently high unit cost the likely alternative to comprehensive remediation is not spending whatever it costs — it is doing less.",
-              "block_index": 190
+              "block_index": 192
             },
             {
               "slug": "the-record-documents-both-constraints",
               "text": "The rulemaking record documents both constraints: the capability constraint (current technology, including generative AI, cannot reliably automate STEM remediation at scale) and the resource-response constraint (limited resources driving rapid, procedural box-checking).",
-              "block_index": 192
+              "block_index": 194
             },
             {
               "slug": "the-triangle-has-no-satisfactory-production-system",
               "text": "Together the observations describe an engineering problem with no satisfactory production system — and the engineering claim is the sharp one: accessibility is an outcome, not a checklist.",
-              "block_index": 194
+              "block_index": 196
             },
             {
               "slug": "docable-aims-into-the-gap",
               "text": "DocAble aims into the gap between the two statements: the opportunity is not $4B of existing expenditure awaiting displacement but changing the production function so that reliable remediation becomes economical at scale.",
-              "block_index": 196
+              "block_index": 198
             },
             {
               "slug": "historical-spending-is-constrained-by-the-old-production-function",
               "text": "The general point: a new production technology's value cannot always be estimated from historical spending on the work it replaces, because historical spending is itself constrained by the old production function.",
-              "block_index": 199
+              "block_index": 201
             },
             {
               "slug": "the-abstract-numerator-earns-its-keep",
               "text": "This is why the value side of the factory model stays abstract: valuing documents processed would miss the phenomenon — the value is the accessibility users actually experience, and checklists and conformance measurements are models of, and evidence for, that outcome.",
-              "block_index": 201
+              "block_index": 203
             }
           ]
         },
@@ -3480,37 +3480,37 @@
           "heading_text": "Break-Even, Marginal Cost, and Replication",
           "topic_sentence": "What must the changed production function deliver before the investment is recovered?",
           "id_source": "derived",
-          "block_index": 203,
+          "block_index": 205,
           "points": [
             {
               "slug": "break-even-is-fifty-courses",
               "text": "Even the deliberately inflated $200,000 construction cost equals about fifty manually remediated courses — 0.5% of one year's estimated course population — a break-even threshold that can be falsified.",
-              "block_index": 204
+              "block_index": 206
             },
             {
               "slug": "marginal-cost-has-early-evidence",
               "text": "The progression's fourth step is marginal production cost, and the early evidence is one pilot, reported as observed rather than audited: ~10 decks, ~500 slides, roughly $10 of model spend plus about 90 minutes of review.",
-              "block_index": 208
+              "block_index": 210
             },
             {
               "slug": "the-scenario-table-puts-four-scales-side-by-side",
               "text": "An explicit scenario — 100 U.S. public universities with instructional estates roughly comparable to Purdue's, about 6% of the 1,570 public degree-granting institutions — puts the four scales side by side.",
-              "block_index": 210
+              "block_index": 212
             },
             {
               "slug": "the-table-is-not-an-expenditure-forecast",
               "text": "The caveat that governs the table: these are not estimates of expenditures universities will actually make; they characterize the scale of the task under a stated counterfactual, with the initial corpus remediated once.",
-              "block_index": 213
+              "block_index": 215
             },
             {
               "slug": "three-amortizations",
               "text": "The last row is where software-factory economics diverge from the physical analogy: construction cost does not multiply by 100 universities — subject to deployment, integration, and operating costs, the software capability replicates.",
-              "block_index": 215
+              "block_index": 217
             },
             {
               "slug": "keep-three-numbers-distinct",
               "text": "Keep three numbers distinct: ~$4B of remediation-equivalent work is the engineering opportunity, what institutions would pay is the addressable market, what DocAble captures is a business question — MAGE needs only the first.",
-              "block_index": 219
+              "block_index": 221
             }
           ]
         },
@@ -3520,27 +3520,27 @@
           "heading_text": "The Factory Is Also a Liability",
           "topic_sentence": "Keeping the case honest requires the other ledger column, because everything this section has praised also has a failure mode.",
           "id_source": "derived",
-          "block_index": 221,
+          "block_index": 223,
           "points": [
             {
               "slug": "the-map-pointed-at-a-ghost",
               "text": "A model kept naming a moved symbol and stayed authoritative-looking for days — accumulated structure fails in its own ways.",
-              "block_index": 223
+              "block_index": 225
             },
             {
               "slug": "accumulated-structure-has-carrying-costs",
               "text": "The liability list: models drift, controls conflict, evidence goes stale, gates encode obsolete assumptions, support machinery needs operating, and engineering capital depreciates.",
-              "block_index": 225
+              "block_index": 227
             },
             {
               "slug": "the-claim-is-bounded-one-engineer-one-ecosystem",
               "text": "The claim stays bounded: one longitudinal case, one primary engineer, one model ecosystem, no controlled comparison — the case establishes mechanism and sequence, not prevalence.",
-              "block_index": 227
+              "block_index": 229
             },
             {
               "slug": "turn-outward-to-other-factories",
-              "text": "The transition: DocAble is one deliberately engineered response to abundant realization; the stronger question is whether independently developed factories exhibit the same pressures.",
-              "block_index": 229
+              "text": "The transition: DocAble is one deliberately engineered response to abundant realization, so a factory has to be evaluated as a production system rather than by agent capability alone; the stronger question is whether independently developed factories exhibit the same pressures.",
+              "block_index": 231
             }
           ]
         }
@@ -3553,18 +3553,23 @@
         },
         {
           "slug": "the-engineers-role-was-engineering-not-implementation",
-          "text": "The engineer's role was engineering rather than implementation: work entered from goals, feedback, standards mandates, production failures, and community accessibility guidance, and he supplied requirements, architecture, models, templates, and the consequential controls.",
+          "text": "New work did not originate in the agents or the factory's models. It came from engineering needs: goals, user feedback, production failures, standards obligations, advocacy guidance, and institutional use. The engineer decided which pressures became engineering work and made the consequential requirements, architecture, validation, and deployment decisions.",
           "block_index": 4
         },
         {
           "slug": "the-agents-performed-the-entire-implementation",
-          "text": "The agents performed the entire implementation, shaped but not determined by architecture, models, tests, instructions, work orders, and controls; the engineer watched system behavior, evidence, consequential decisions, and factory-level failures instead of the code.",
+          "text": "The existing engineering environment shaped how the work could be realized: architecture, tests, models, instructions, validators, deployment machinery, and accumulated controls carried earlier decisions. Agents implemented inside it, and the engineer's attention went to direction, evidence, admission, and changing the production system.",
           "block_index": 6
+        },
+        {
+          "slug": "the-division-of-work-is-the-factory-examined",
+          "text": "That division of work is the factory this section examines, and the chronology matters because none of it arrived fully formed: as realization accelerated, failures exposed missing representations, controls, and supervisory surfaces, and the production system changed in response.",
+          "block_index": 8
         },
         {
           "slug": "requirements-ordinary-capacity-unusual",
           "text": "The requirements were ordinary production-software requirements; the unusual condition was the implementation capacity available to one engineer.",
-          "block_index": 8
+          "block_index": 10
         }
       ]
     },
