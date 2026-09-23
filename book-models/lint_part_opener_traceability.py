@@ -11,8 +11,9 @@ in the spine, the chapters advance them, and the spine reconciles them to the Bi
 
 THE CHECK — the loop must CLOSE for every declared id:
   (a) RESOLVES — the id is a real node in `argument_spine_declared.json` `spine[]`.
-  (b) ADVANCED-IN-PART — at least one chapter WITHIN that same Part advances it (intersect the chapter's
-      `spine_advances` from `chapter-shape.json` with the Part's chapter slugs, keyed by the `N.` prefix).
+  (b) ADVANCED-IN-PART — at least one chapter WITHIN that same Part advances it, read from the spine's OWN
+      `chapter_advances` map in `argument_spine_declared.json` (chapter key -> the spine ids that chapter
+      advances), resolved to a Part number via the chapter identity table.
   (c) TRACES-TO-AN-ARGUMENT-ANCHOR — the spine node reconciles to at least one of the book's headline
       arguments: either a Big Idea via `reconciles.big_ideas` (each slug resolving in
       `landing-big-ideas.json`), OR a "What This Book Argues" claim via `reconciles.argues_claims` (each
@@ -22,9 +23,18 @@ THE CHECK — the loop must CLOSE for every declared id:
       claim→anchor path in the models, so this is the direct spine→anchor join.
 
 A declared id that fails any leg is a finding, reported as `part<N>: <id> — <which leg failed>`. The lint
-reads the three models at lint-time (the stable-lint-reads-the-SSOT discipline); a spine or chapter-shape
-edit re-derives the answer with no second copy to maintain. Stdlib-only, matching `catalog.py`'s
-clone-and-run posture.
+reads the models at lint-time (the stable-lint-reads-the-SSOT discipline); a spine edit re-derives the
+answer with no second copy to maintain. Stdlib-only, matching `catalog.py`'s clone-and-run posture.
+
+WHY leg (b) READS THE SPINE, NOT `chapter-shape.json`.  It first read the generated `chapter-shape.json`,
+whose `spine_advances` is only materialized for chapters that carry a hand-authored editorial assessment.
+That made leg (b) silently ASSESSMENT-GATED: a Part whose chapters have no shape assessment could not pass
+leg (b) for any id, however well the Part actually advances it, so the honest response to the decorator was
+to delete it — which is what happened to Part 4 (its opener's four ids were lost when the Part-5 retirement
+removed the opener that held them, and the new opener could not carry them back). `chapter_advances` in
+`argument_spine_declared.json` is the hand-declared SSOT for the same relation, covers every chapter, and
+is a strict SUPERSET of the shape projection (54 chapter-part/id pairs vs 48), so this is the same check
+over complete data — no Part passes that would have failed before.
 
 Run `python3 book-models/lint_part_opener_traceability.py` (audit-only, exit 0) or `--strict` (exit 1 on any
 finding). Landed audit-only while several openers foreshadowed argument premises that reconciled to no
@@ -82,7 +92,7 @@ _LABEL_TO_PART: "dict[str, int] | None" = None
 
 
 def _part_of(slug: str) -> "int | None":
-    """The Part number for a chapter key. chapter-shape.json keys chapters by the number-free identity LABEL
+    """The Part number for a chapter key. The book models key chapters by the number-free identity LABEL
     now, so resolve the label to its filename's N.M- prefix (via the identity table); fall back to the `N.`
     prefix for a still-numbered slug (half-migration). A key with neither is None (skipped)."""
     m = _PART_PREFIX_RE.match(slug)
@@ -110,14 +120,14 @@ def findings() -> "list[str]":
     argues_claims = _load("argues_claims_declared.json")
     argues_claim_slugs = set(argues_claims.get("_order", []))
 
-    # spine id -> the set of Part numbers whose chapters advance it (from chapter-shape's spine_advances).
-    shape = _load("chapter-shape.json")
+    # spine id -> the set of Part numbers whose chapters advance it, from the spine model's own
+    # `chapter_advances` (chapter key -> ids). See the module docstring for why this is the SSOT here.
     advanced_in_part: "dict[str, set[int]]" = {}
-    for ch in shape.get("chapters", []):
-        part = _part_of(ch.get("slug", ""))
+    for chapter, sids in spine_model.get("chapter_advances", {}).items():
+        part = _part_of(chapter)
         if part is None:
             continue
-        for sid in ch.get("spine_advances", []):
+        for sid in sids:
             advanced_in_part.setdefault(sid, set()).add(part)
 
     out: "list[str]" = []

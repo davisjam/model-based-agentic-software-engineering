@@ -1,3 +1,5 @@
+<!-- part-foreshadows: modeling-principle, alignment-principle, govern-the-environment, failures-become-machinery -->
+
 Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} separated Modeling from Alignment so that
 each mechanism could be examined clearly. Engineering does not usually present them that way. As work
 proceeds, new evidence changes what engineers understand about the problem; one representation exposes the
