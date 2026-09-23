@@ -18,21 +18,31 @@ Part SEQUENCE, the station COUNT, the highlighted index, and each map's `Chapter
 run, so a renumber or a retitle cannot leave those stale. This is the book's own IR-projection thesis turned
 on its navigation art.
 
-WHAT THE PROJECTION STILL DOES NOT COVER — read this before trusting the map: the STATION LABELS come from
-the hand-authored `subway_label` field, not from `_PART_TITLES`, because a full title does not fit a
-seven-stop horizontal strip and no rule derives a good abbreviation. So a Part RETITLE re-renders the title
-line while leaving the station name untouched, and the map drifts in exactly the half the projection does not
-own. It happened: the Interlude promotion retitled Parts 4 and 5, and the stations read "Through Models" and
-"Evidence" for weeks after. Whenever `_PART_TITLES` changes, re-abbreviate `subway_label` in
-`nav-model.json` by hand. Keep a label under ~14 characters — the stations sit 135 user-units apart at the
-1000-unit reference width, so two adjacent labels whose half-widths sum past that will collide.
+WHAT THE PROJECTION DOES NOT DERIVE — the STATION LABELS come from the hand-authored `subway_label` field,
+not from `_PART_TITLES`, because a full title does not fit a seven-stop horizontal strip and no rule derives
+a good abbreviation (prefix-before-colon, drop-the-article, and last-word each fail on some Part). The
+abbreviations stay editorial. Keep a label under ~14 characters — the stations sit 135 user-units apart at
+the 1000-unit reference width, so two adjacent labels whose half-widths sum past that will collide.
+
+That un-derived half used to drift silently: a Part RETITLE re-rendered the title line and left the station
+name untouched. It happened — the Interlude promotion retitled Parts 4 and 5, and the stations read "Through
+Models" and "Evidence" for weeks after. A SENSOR now catches it. Each `subway_label` carries a
+`subway_label_derived_from` FINGERPRINT recording the exact title the abbreviation was made from, and
+`--check` compares every fingerprint against the live `_PART_TITLES` entry. A retitle diverges the pair and
+fails the gate, naming the Part and the remedy. The fingerprint deliberately stores the title rather than
+testing a substring or prefix rule: "Through Models" IS a substring of "MAGE in Motion: Engineering Through
+Models", so a containment test would have passed the exact bug this sensor exists to catch.
+
+So `--check` runs TWO legs over different failure classes. The SVG leg catches a hand-edited asset (someone
+opened the SVG); the LABEL leg catches a retitled book (someone edited `_PART_TITLES`). Neither sees the
+other's failure. `catalog.py validate` runs both on every commit.
 
 Every emitted SVG carries an AUTO-GEN provenance header (a hand-edit is meant to be caught + re-projected)
 and a `<!-- semantic-families: neutral -->` budget marker (these are orientation art, not role-coloured
 figures). Stdlib-only, clone-and-run, like `catalog.py`.
 
     python3 book-models/nav_map_model.py            # re-project all 7 subway SVGs into book/assets/
-    python3 book-models/nav_map_model.py --check     # drift check: fail (exit 1) if any on-disk SVG differs
+    python3 book-models/nav_map_model.py --check     # both drift legs: exit 1 on a stale SVG or a stale label
 """
 from __future__ import annotations
 
@@ -40,6 +50,7 @@ import argparse
 import json
 import os
 import sys
+from typing import NamedTuple
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
@@ -167,8 +178,64 @@ def regenerate() -> int:
     return 0
 
 
-def check() -> int:
-    model = _load_model()
+class LabelDrift(NamedTuple):
+    """One numbered Part whose station name no longer answers to the Part's title."""
+    part: int
+    label: "str | None"        # the station name on the strip; None when the Part has no nav-model record
+    derived_from: "str | None"  # the fingerprint — the title the abbreviation was made from
+    live_title: str             # what `_PART_TITLES` calls the Part today
+
+    def describe(self) -> str:
+        if self.label is None:
+            return (f"Part {self.part} (\"{self.live_title}\") has NO nav-model record — add one with a "
+                    f"`subway_label` abbreviation and a `subway_label_derived_from` of "
+                    f"\"{self.live_title}\".")
+        if self.derived_from is None:
+            return (f"Part {self.part} station \"{self.label}\" carries no `subway_label_derived_from` — "
+                    f"record the title it abbreviates (the Part now reads \"{self.live_title}\").")
+        return (f"Part {self.part} was retitled: the station reads \"{self.label}\", abbreviated from "
+                f"\"{self.derived_from}\", but the Part is now \"{self.live_title}\". Re-abbreviate "
+                f"`subway_label` for the new title (keep it under ~14 characters), then set "
+                f"`subway_label_derived_from` to \"{self.live_title}\" in the same edit.")
+
+
+def label_drift_findings(model: "dict | None" = None) -> "list[LabelDrift]":
+    """The LABEL leg of the drift check: every station's `subway_label_derived_from` fingerprint still
+    names the Part's live `_PART_TITLES` entry.
+
+    A fingerprint, not a rule. The abbreviations are editorial judgments no rule reproduces, so the check
+    cannot derive the label — it asks instead whether the title the author abbreviated is still the title
+    the book prints. Any containment test (substring / prefix / subsequence) would be worse than useless
+    here: it passes the motivating bug outright."""
+    model = _load_model() if model is None else model
+    out: "list[LabelDrift]" = []
+    for n in _part_nums():
+        live = bbh._PART_TITLES[n]
+        rec = model.get(str(n))
+        if rec is None:
+            out.append(LabelDrift(n, None, None, live))
+            continue
+        fingerprint = rec.get("subway_label_derived_from")
+        if fingerprint != live:
+            out.append(LabelDrift(n, rec.get("subway_label"), fingerprint, live))
+    return out
+
+
+def summary_line(findings: "list[LabelDrift]") -> str:
+    return (f"{len(findings)} station label(s) drifted from their Part title "
+            f"(Part{'s' if len(findings) != 1 else ''} "
+            f"{', '.join(str(f.part) for f in findings)})")
+
+
+def svg_drift_findings(model: "dict | None" = None) -> "list[str]":
+    """The SVG leg of the drift check: every on-disk asset still equals what the projector emits. Returns
+    the repo-relative paths that differ (a hand-edit, or a model edit nobody re-projected).
+
+    Empty — never a false green — when the model is missing a Part record: the projection cannot run at
+    all then, and `label_drift_findings` owns that finding."""
+    model = _load_model() if model is None else model
+    if any(f.label is None for f in label_drift_findings(model)):
+        return []
     drift: "list[str]" = []
     for path, svg in sorted(_targets(model).items()):
         on_disk = ""
@@ -177,20 +244,41 @@ def check() -> int:
                 on_disk = fh.read()
         if on_disk != svg:
             drift.append(os.path.relpath(path, _ROOT))
+    return drift
+
+
+def check() -> int:
+    model = _load_model()
+    # LEG 1 — LABEL drift (the retitled-book class). Runs first: a missing Part record would crash the
+    # projection below, so report it as a finding rather than a traceback.
+    labels = label_drift_findings(model)
+    if labels:
+        print(f"nav-map LABEL DRIFT — {summary_line(labels)}; the station strip no longer answers to the "
+              f"book's chapter titles. Edit book-models/nav-model.json:")
+        for f in labels:
+            print(f"    {f.describe()}")
+        if any(f.label is None for f in labels):
+            return 1  # the projection cannot run against an incomplete model; fix the record first
+    # LEG 2 — SVG drift (the hand-edited-asset class).
+    drift = svg_drift_findings(model)
     if drift:
-        print(f"nav-map DRIFT — {len(drift)} SVG(s) differ from the projection; re-run "
+        print(f"nav-map SVG DRIFT — {len(drift)} SVG(s) differ from the projection; re-run "
               f"`python3 book-models/nav_map_model.py`:")
         for d in drift:
             print(f"    {d}")
+    if drift or labels:
         return 1
-    print(f"nav-map: {len(_targets(model))} SVGs in sync with nav-model.json + _PART_TITLES")
+    print(f"nav-map: {len(_targets(model))} SVGs in sync with nav-model.json + _PART_TITLES; "
+          f"{len(_part_nums())} station labels still answer to their Part titles")
     return 0
 
 
 def main(argv: "list[str] | None" = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--check", action="store_true", help="drift-check instead of regenerating (exit 1 on drift)")
+    ap.add_argument("--check", action="store_true",
+                    help="drift-check instead of regenerating: both the SVG leg and the station-label "
+                         "fingerprint leg (exit 1 on either)")
     args = ap.parse_args(argv)
     return check() if args.check else regenerate()
 

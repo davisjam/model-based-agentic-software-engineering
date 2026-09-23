@@ -1714,6 +1714,34 @@ def cmd_validate(_args) -> int:
               f"run `python3 book-models/lint_operator_card_page_span.py`")
         if span_gates:
             n_issues += len(span_over)
+    # NAV-STATION LABEL PARITY — BLOCKING (green at landing). The subway map's station strip is projected
+    # from nav-model.json, but each station NAME is a hand-authored abbreviation: no rule turns "MAGE in
+    # Motion: Engineering Through Models" into "MAGE in Motion" and "The New Engineering Problem" into "The
+    # Problem", so the labels stay editorial and cannot be code-generated. They drifted for weeks after the
+    # Interlude promotion retitled two Parts. Each label now carries a `subway_label_derived_from`
+    # FINGERPRINT — the exact title it was abbreviated from — and this band fails when a fingerprint stops
+    # matching the live `_PART_TITLES` entry. A fingerprint, not a containment test: the old label is often a
+    # substring of the new title (it was, in the motivating bug), so substring/prefix/subsequence rules pass
+    # the exact failure. The projector's SECOND leg runs here too — the on-disk SVG vs the projection, which
+    # catches the other class, a hand-edited or never-re-projected asset. Both legs were green at HEAD, so
+    # they land blocking together. `nav_map_model.py --check` ran in NO gate before this; `validate` is the
+    # cheapest home that fires on every commit (the pre-commit hook runs it), and both legs cost ~40ms.
+    # See book-models/nav_map_model.py.
+    import nav_map_model as nmm  # noqa: E402 — blocking station-label fingerprint + SVG projection parity
+    nav_labels = nmm.label_drift_findings()
+    if nav_labels:
+        print(f"  [nav]   {nmm.summary_line(nav_labels)} — edit book-models/nav-model.json, then re-project "
+              f"with `python3 book-models/nav_map_model.py`:")
+        for f in nav_labels:
+            print(f"          {f.describe()}")
+        n_issues += len(nav_labels)
+    nav_svgs = nmm.svg_drift_findings()
+    if nav_svgs:
+        print(f"  [nav]   {len(nav_svgs)} nav SVG(s) differ from the projection — re-run "
+              f"`python3 book-models/nav_map_model.py`:")
+        for p in nav_svgs:
+            print(f"          {p}")
+        n_issues += len(nav_svgs)
     print(f"validated {len(entries)} entries "
           f"(agent {by_role['Agent']} · bridge {by_role['Bridge']} · product {by_role['Product']}) "
           f"— {n_issues} issue(s)")

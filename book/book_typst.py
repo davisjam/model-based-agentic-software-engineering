@@ -2710,9 +2710,10 @@ def _nav_map_image(kind: str, part: int, width: str) -> str:
     plain `#image` — no "Figure N" number, no caption, and none of the figure-family / caption-tier coupling
     numbered floats carry. Assets are PROJECTED (never hand-authored) by `book-models/nav_map_model.py` from
     `nav-model.json` + `_PART_TITLES`, so the Part SEQUENCE, the station count, and each map's `Chapter N ·
-    Title` line cannot drift. The station LABELS can: they are hand-abbreviated in `nav-model.json` (a full
-    title will not fit a seven-stop strip), so a retitle leaves the station name stale until an author
-    re-abbreviates it — see the projector's header. A missing asset fails the COMPILE loud (below), so the
+    Title` line cannot drift. The station LABELS are not derived — they are hand-abbreviated in
+    `nav-model.json` (a full title will not fit a seven-stop strip) — but they no longer drift silently
+    either: each one records the title it abbreviates, and `catalog.py validate` fails the commit when a
+    retitle diverges the pair. See the projector's header. A missing asset fails the COMPILE loud (below), so the
     subway map's presence on the verso needs no post-hoc text re-check."""
     asset = HERE / "assets" / f"nav-{kind}-p{part}.svg"
     if not asset.is_file():
