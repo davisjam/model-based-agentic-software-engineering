@@ -1,8 +1,10 @@
 <!-- part-foreshadows: abundant-implementation, govern-the-environment -->
 Engineering reorganizes when a constraint moves.[note: The intuition is familiar from Amdahl's law: accelerating one part of a computation increases the relative importance of the work that remains.[cite: amdahl1967] Goldratt's Theory of Constraints states the broader operational version: system performance is governed by a constraint, and improving that constraint eventually moves attention to another.[cite: goldratt1984] The same constraint logic applies to software-engineering economics.] Steam radically reduced the cost of mechanical power.
 Integrated circuits did the same for computation. Coding agents are now reducing the cost of software
-implementation. A scarce factor constrains
-output, so it draws investment and attention. Implementation was never the only scarce input to
+implementation. Humans and agents can both implement software, but capable agents can do in minutes
+or hours work that would have consumed days or weeks of skilled human effort. As implementation
+becomes abundant, the next-scarcest factors constrain
+output, so they draw investment and attention. Implementation was never the only scarce input to
 software engineering, but for most of the field's history it consumed enough expert effort to
 limit what teams could attempt and how quickly they could change a system. As its marginal cost
 falls, other constraints become more visible: deciding what to build, representing a large system

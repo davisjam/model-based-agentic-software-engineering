@@ -7,7 +7,7 @@
     "derived_ids": 198,
     "missing_topic_sentence": 4,
     "sections_drained": 152,
-    "paragraph_points": 689
+    "paragraph_points": 688
   },
   "chapters": [
     {
@@ -350,24 +350,19 @@
               "block_index": 53
             },
             {
-              "slug": "interlude-follows-one-problem",
-              "text": "The interlude after Chapter 3 follows one engineering problem in depth — a large presentation exposes a memory problem, then a representation problem, then an execution problem, and successive models reveal each and support design decisions before the implementation is complete.",
+              "slug": "motion-then-the-production-system",
+              "text": "Chapter 4 puts those mechanisms in motion, following engineering problems through successive models, decisions, implementation, and governance conversion; Chapter 5 then examines the production system itself — what failed, what those failures revealed, and how recurring judgments became durable engineering structure.",
               "block_index": 55
-            },
-            {
-              "slug": "part-v-examines-the-build-itself",
-              "text": "Chapter 5 uses DocAble differently: it examines the build itself — what failed, what those failures revealed, and how recurring judgments became models, controls, and other durable engineering structure.",
-              "block_index": 57
             },
             {
               "slug": "docable-is-depth-not-the-whole-evidence",
               "text": "DocAble provides depth, not the book's entire evidentiary basis; other engineering organizations reappear to show where related structures recur, where they take different forms, and where the evidence supports a more limited interpretation.",
-              "block_index": 59
+              "block_index": 57
             },
             {
               "slug": "bridge-to-the-substrate",
               "text": "We can now examine the machinery that makes autonomous implementation possible and the engineering mechanisms through which MAGE acts on it.",
-              "block_index": 61
+              "block_index": 59
             }
           ]
         }
@@ -388,7 +383,7 @@
           "section_id": "foundation-model-and-agentic-harness",
           "level": 2,
           "heading_text": "Foundation Model and Agentic Harness",
-          "topic_sentence": "A foundation model supplies broad semantic reasoning at low marginal cost.",
+          "topic_sentence": "A foundation model makes broad semantic reasoning available at a marginal cost far below the skilled human labor that many such tasks previously required.",
           "id_source": "derived",
           "block_index": 5,
           "points": [
@@ -399,7 +394,7 @@
             },
             {
               "slug": "four-foundation-model-properties",
-              "text": "Four properties of the foundation model matter to the engineering argument: broad semantic reasoning, probabilistic output, bounded working state, and cheap repeated reasoning.",
+              "text": "Four properties of the foundation model matter to the engineering argument: broad semantic reasoning, probabilistic output, bounded working state, and inexpensive repeated reasoning.",
               "block_index": 10
             },
             {
