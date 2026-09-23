@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 813,
+    "total_sites": 814,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 471,
+      "book-web": 472,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -89,7 +89,7 @@
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 10
+            "occ": 11
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
@@ -873,7 +873,7 @@
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 70
+            "occ": 76
           },
           {
             "file": "book/web/docs/0.5-preface.md",
@@ -965,7 +965,7 @@
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 20
+            "occ": 32
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
@@ -1518,6 +1518,10 @@
             "occ": 4
           },
           {
+            "file": "book/web/docs/5.1-software-factory.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
             "occ": 2
           },
@@ -1669,7 +1673,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 48
+            "occ": 49
           }
         ]
       },
@@ -1871,7 +1875,7 @@
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 8
+            "occ": 9
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
@@ -2855,7 +2859,7 @@
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 5
+            "occ": 10
           },
           {
             "file": "book/web/docs/0.5-preface.md",
@@ -2907,7 +2911,7 @@
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 3
+            "occ": 9
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
