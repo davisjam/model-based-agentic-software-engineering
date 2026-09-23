@@ -40,6 +40,8 @@ _SYMBOLS: dict[str, tuple[str, str]] = {
     "geq": ("≥", ">="),
     "le": ("≤", "<="),
     "ge": ("≥", ">="),
+    "gg": ("≫", "gt.double"),
+    "ll": ("≪", "lt.double"),
     "in": ("∈", "in"),
     "land": ("∧", "and"),
     "lor": ("∨", "or"),
