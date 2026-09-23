@@ -1,72 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 2.8 System-Knowledge primary model (part2-v8-260814 re-author; folds to book/assets/).
-     REVISION per v8 editor guidance (2.8-1): REDRAW radial/peer to kill the false top/bottom tiers. The
-     center is SHARED IDENTITIES; the six purpose models (structural, behavioral, ownership, decision,
-     measurement, provenance) are PEERS arranged around it, each joined to the center. Traceability,
-     derivation, and query surfaces live in the surrounding footer band, NOT inside the identity box.
-     Grammar: gray #57534e = the shared-identity center that joins without collapsing; blue #2f5169 = the
-     six heterogeneous peer models. Hand-authored (a radial peer arrangement, not a layered stack). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 580" width="760" height="580"
+<!-- 2.5 System-Knowledge primary model (ch2 ontology retirement, 260922). REDRAW: the former "six peer
+     models" wheel named the retired classification; the peers are now DocAble's real representations —
+     service registry, deployment topology, state machines, entitlement policy, computation graph,
+     provenance records, measurements — arranged around SHARED SYSTEM IDENTITIES. Traceability,
+     derivation, and query surfaces live in the surrounding footer band, NOT inside the identity hub.
+     Grammar: gray #57534e = the shared-identity hub that joins without collapsing; blue #2f5169 = the
+     heterogeneous representations. Hand-authored (a radial peer arrangement a Mermaid layout cannot
+     hold); radial spokes are deliberate — a hub-and-peers fan an elbow would clutter. -->
+<!-- edge-grammar: keep-angles -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 615" width="880" height="615"
      role="img" aria-labelledby="mbTitle mbDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mbTitle">Heterogeneous models arranged as peers around shared identities</title>
-  <desc id="mbDesc">A radial arrangement. At the center sit shared identities. Six purpose models —
-    structural, behavioral, ownership, decision, measurement, and provenance — are peers around the center,
-    each joined to it. No model sits above another. Traceability, derivation, and query surfaces surround
-    them in a footer band, not inside the identity center. The unity is semantic, not a hierarchy.</desc>
+  <title id="mbTitle">DocAble's heterogeneous representations as peers around shared system identities</title>
+  <desc id="mbDesc">A radial arrangement. At the center sit shared system identities. Seven DocAble
+    representations — service registry, deployment topology, state machines, entitlement policy,
+    computation graph, provenance records, and measurements — are peers around the center, each joined
+    to it. No representation sits above another. Traceability, derivation, and query surfaces surround
+    them in a footer band, not inside the identity hub. The unity is semantic, not a hierarchy.</desc>
 
-  <text x="380" y="30" text-anchor="middle" font-size="15.2" font-weight="700" letter-spacing="1.2" fill="#2f5169">DOCABLE MODELING SUBSTRATE &#183; SIX PEER MODELS</text>
+  <text x="440" y="30" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1.2" fill="#2f5169">DOCABLE MODELING SUBSTRATE</text>
 
-  <!-- spokes: center to each peer (drawn first, under the boxes); each runs hub-center to peer-center so the
-       opaque ellipse + box fills cap the ends. The hub is an ellipse (not lint-legible), so a transparent
-       rect over it carries the id "shared-identities". -->
+  <!-- spokes: hub center to each peer center (drawn first, under the boxes); the opaque ellipse + box
+       fills cap the ends. The hub is an ellipse (not lint-legible), so a transparent rect over it
+       carries the id "shared-identities". -->
   <g stroke="#57534e" stroke-width="2" opacity="0.75">
-    <!-- edge: structural -> shared-identities -->
-    <line x1="380" y1="238" x2="380" y2="138"/>
-    <!-- edge: behavioral -> shared-identities -->
-    <line x1="380" y1="290" x2="549" y2="200"/>
-    <!-- edge: ownership -> shared-identities -->
-    <line x1="380" y1="290" x2="549" y2="380"/>
-    <!-- edge: decision -> shared-identities -->
-    <line x1="380" y1="342" x2="380" y2="442"/>
-    <!-- edge: measurement -> shared-identities -->
-    <line x1="380" y1="290" x2="211" y2="380"/>
-    <!-- edge: provenance -> shared-identities -->
-    <line x1="380" y1="290" x2="211" y2="200"/>
+    <!-- edge: service-registry -> shared-identities -->
+    <line x1="440" y1="100" x2="440" y2="305"/>
+    <!-- edge: deployment-topology -> shared-identities -->
+    <line x1="600" y1="177" x2="440" y2="305"/>
+    <!-- edge: state-machines -> shared-identities -->
+    <line x1="640" y1="351" x2="440" y2="305"/>
+    <!-- edge: entitlement-policy -> shared-identities -->
+    <line x1="567" y1="490" x2="440" y2="305"/>
+    <!-- edge: computation-graph -> shared-identities -->
+    <line x1="318" y1="490" x2="440" y2="305"/>
+    <!-- edge: provenance-records -> shared-identities -->
+    <line x1="240" y1="351" x2="440" y2="305"/>
+    <!-- edge: measurements -> shared-identities -->
+    <line x1="280" y1="177" x2="440" y2="305"/>
   </g>
 
-  <!-- center: SHARED IDENTITIES (gray) -->
-  <rect id="shared-identities" x="276" y="238" width="208" height="104" fill="none" stroke="none"/>
-  <ellipse cx="380" cy="290" rx="104" ry="52" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
-  <text x="380" y="285" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">SHARED</text>
-  <text x="380" y="306" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">IDENTITIES</text>
+  <!-- hub: SHARED SYSTEM IDENTITIES (gray) -->
+  <rect id="shared-identities" x="315" y="247" width="250" height="116" fill="none" stroke="none"/>
+  <ellipse cx="440" cy="305" rx="125" ry="58" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
+  <text x="440" y="300" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">SHARED SYSTEM</text>
+  <text x="440" y="323" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">IDENTITIES</text>
 
-  <!-- six peer models (blue) -->
-  <g font-size="15.5" font-weight="700" fill="#2f5169" text-anchor="middle">
+  <!-- seven peer representations (blue) -->
+  <g font-size="18" font-weight="700" fill="#2f5169" text-anchor="middle">
     <!-- top -->
-    <rect id="structural" x="305" y="86" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="380" y="118">structural</text>
+    <rect id="service-registry" x="340" y="75" width="200" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="440" y="106">service registry</text>
     <!-- upper-right -->
-    <rect id="behavioral" x="474" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="549" y="206">behavioral</text>
+    <rect id="deployment-topology" x="480" y="152" width="240" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="600" y="183">deployment topology</text>
+    <!-- right -->
+    <rect id="state-machines" x="545" y="326" width="190" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="640" y="357">state machines</text>
     <!-- lower-right -->
-    <rect id="ownership" x="474" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="549" y="386">ownership</text>
-    <!-- bottom -->
-    <rect id="decision" x="305" y="442" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="380" y="474">decision</text>
+    <rect id="entitlement-policy" x="454" y="465" width="226" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="567" y="496">entitlement policy</text>
     <!-- lower-left -->
-    <rect id="measurement" x="136" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="211" y="386">measurement</text>
+    <rect id="computation-graph" x="205" y="465" width="226" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="318" y="496">computation graph</text>
+    <!-- left -->
+    <rect id="provenance-records" x="125" y="326" width="230" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="240" y="357">provenance records</text>
     <!-- upper-left -->
-    <rect id="provenance" x="136" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="211" y="206">provenance</text>
+    <rect id="measurements" x="190" y="152" width="180" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="280" y="183">measurements</text>
   </g>
 
-  <!-- surrounding band: traceability / derivation / query surfaces (NOT in the identity box) -->
-  <rect x="90" y="516" width="580" height="34" rx="12" fill="none" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5"/>
-  <text x="380" y="538" text-anchor="middle" font-size="15.2" font-weight="700" fill="#57534e">traceability &#183; derivation &#183; query surfaces</text>
+  <!-- surrounding band: traceability / derivation / query surfaces (NOT in the identity hub) -->
+  <rect x="150" y="543" width="580" height="36" rx="12" fill="none" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5"/>
+  <text x="440" y="567" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">traceability &#183; derivation &#183; query surfaces</text>
 
   <!-- footer: protect the point -->
-  <text x="380" y="570" text-anchor="middle" font-size="15.2" font-style="italic" fill="#1c1917">Multiple views of one system &#8212; no tiers, no single universal model of the architecture.</text>
+  <text x="440" y="605" text-anchor="middle" font-size="18" font-style="italic" fill="#1c1917">Several representations of one system, joined where a question crosses them.</text>
 </svg>

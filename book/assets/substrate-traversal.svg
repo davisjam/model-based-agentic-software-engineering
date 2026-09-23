@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 2.8 System-Knowledge model diagram (part2-v8-260814 re-author; folds to book/assets/).
-     REVISION per v8 editor guidance (2.8-2): radial traversal from a named ENTITY, with the task arrow
-     coming INTO the entity. From the entity, six model relations fan outward as PEERS — structural,
-     behavioral, decision, measurement, provenance, ownership — with NO implied sequence among them. A
-     task retrieves only the relations its question needs. Grammar: gray #57534e = the task and the named
-     entity (shared identity); blue #2f5169 = the six model relations reached from it. Hand-authored (a
+<!-- 2.5 System-Knowledge model diagram (ch2 ontology retirement, 260922). REDRAW: the spokes formerly
+     named the retired six-class taxonomy; they now name real DocAble representations — service
+     registry, flow model, lifecycle, policy, provenance, measurements. A task enters at a named
+     ENTITY (the arrow comes INTO the entity); the representations fan outward as PEERS, and the task
+     retrieves only the relations its question needs. Grammar: gray #57534e = the task and the named
+     entity (shared identity); blue #2f5169 = the representations reached from it. Hand-authored (a
      radial fan from one entity, not a two-tier ordering). -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560" width="820" height="560"
      role="img" aria-labelledby="stTitle stDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="stTitle">Task-driven traversal: enter at a named entity, follow only the relations needed</title>
-  <desc id="stDesc">A task enters the substrate through a named system entity, shown by an arrow into the
-    entity. From the entity, six model relations fan outward as peers: structural, behavioral, decision,
-    measurement, provenance, and ownership. There is no order among them. The task retrieves only the
-    relations its engineering question requires.</desc>
+  <desc id="stDesc">A task enters the modeling substrate through a named system entity, shown by an
+    arrow into the entity. From the entity, represented relationships fan outward as peers: the service
+    registry, the flow model, the lifecycle, policy, provenance, and measurements. The task retrieves
+    only the relations its engineering question requires.</desc>
 
   <defs>
     <marker id="st-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
@@ -31,20 +31,20 @@
   <line x1="410" y1="68" x2="410" y2="253" stroke="#57534e" stroke-width="2.4" marker-end="url(#st-k)"/>
   <text x="422" y="160" font-size="16.4" font-style="italic" fill="#57534e">enters at a named entity</text>
 
-  <!-- spokes: entity to the six relations (drawn under the boxes); heads seated on each box's near border -->
+  <!-- spokes: entity to the six representations (drawn under the boxes); heads seated on each box's near border -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#st-b)">
-    <!-- edge: entity -> decision -->
-    <path d="M505,291 L610,291 L610,232"/>          <!-- to right: seat on decision bottom border -->
-    <!-- edge: entity -> behavioral -->
-    <path d="M470,255 L470,147"/>          <!-- to upper-right: behavioral bottom border -->
-    <!-- edge: entity -> structural -->
-    <path d="M350,255 L350,147"/>          <!-- to upper-left: structural bottom border -->
-    <!-- edge: entity -> ownership -->
-    <path d="M315,291 L210,291 L210,232"/>          <!-- to left: seat on ownership bottom border -->
+    <!-- edge: entity -> policy -->
+    <path d="M505,291 L610,291 L610,232"/>          <!-- to right: seat on policy bottom border -->
+    <!-- edge: entity -> flow-model -->
+    <path d="M470,255 L470,147"/>          <!-- to upper-right: flow-model bottom border -->
+    <!-- edge: entity -> service-registry -->
+    <path d="M350,255 L350,147"/>          <!-- to upper-left: service-registry bottom border -->
+    <!-- edge: entity -> lifecycle -->
+    <path d="M315,291 L210,291 L210,232"/>          <!-- to left: seat on lifecycle bottom border -->
     <!-- edge: entity -> provenance -->
     <path d="M350,327 L350,435"/>          <!-- to lower-left: provenance top border -->
-    <!-- edge: entity -> measurement -->
-    <path d="M470,327 L470,435"/>          <!-- to lower-right: measurement top border -->
+    <!-- edge: entity -> measurements -->
+    <path d="M470,327 L470,435"/>          <!-- to lower-right: measurements top border -->
   </g>
 
   <!-- named ENTITY (gray identity, center) -->
@@ -52,23 +52,22 @@
   <text x="410" y="288" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">named ENTITY</text>
   <text x="410" y="310" text-anchor="middle" font-size="16.4" font-style="italic" fill="#57534e">e.g. a job, a service</text>
 
-  <!-- six relation boxes (blue peers) -->
+  <!-- six representation boxes (blue peers) -->
   <g font-size="16.4" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect id="decision" x="535" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="610" y="211">decision</text>
-    <rect id="behavioral" x="435" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="510" y="126">behavioral</text>
-    <rect id="structural" x="235" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="310" y="126">structural</text>
-    <rect id="ownership" x="135" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="210" y="211">ownership</text>
+    <rect id="policy" x="535" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="610" y="211">policy</text>
+    <rect id="flow-model" x="435" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="510" y="126">flow model</text>
+    <rect id="service-registry" x="220" y="95" width="180" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="310" y="126">service registry</text>
+    <rect id="lifecycle" x="135" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="210" y="211">lifecycle</text>
     <rect id="provenance" x="235" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="310" y="468">provenance</text>
-    <rect id="measurement" x="435" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="510" y="468">measurement</text>
+    <rect id="measurements" x="430" y="437" width="160" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="510" y="468">measurements</text>
   </g>
 
   <!-- footer: protect the point -->
-  <text x="410" y="524" text-anchor="middle" font-size="16.4" font-weight="700" fill="#1c1917">Retrieve only the relations needed for the current question.</text>
-  <text x="410" y="546" text-anchor="middle" font-size="16.4" font-style="italic" fill="#57534e">No order among the six &#8212; enter at the entity, follow what the question needs.</text>
+  <text x="410" y="530" text-anchor="middle" font-size="16.4" font-weight="700" fill="#1c1917">Retrieve only the relations needed for the current question.</text>
 </svg>
