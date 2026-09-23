@@ -365,6 +365,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: governance-target-models-bridge | Governance target — models-bridge
 - concept: governance-target-product | Governance target — product
 - concept: scope-of-modeling | The scope of modeling
+- concept: ratcheteering | Ratcheteering
 
 ## Term tiers
 
