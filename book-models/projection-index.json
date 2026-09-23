@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 813,
+    "total_sites": 814,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 471,
+      "book-web": 472,
       "website-catalogue": 219,
       "website-industry-cases": 51,
       "website-landing": 14,
@@ -133,7 +133,7 @@
           },
           {
             "file": "book/web/docs/7.4-the-engineer.md",
-            "occ": 5
+            "occ": 6
           },
           {
             "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
@@ -1001,7 +1001,7 @@
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
-            "occ": 88
+            "occ": 91
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
@@ -1013,7 +1013,7 @@
           },
           {
             "file": "book/web/docs/7.4-the-engineer.md",
-            "occ": 118
+            "occ": 121
           },
           {
             "file": "book/web/docs/7.5-what-cannot-be-delegated.md",
@@ -1550,6 +1550,10 @@
             "occ": 2
           },
           {
+            "file": "book/web/docs/7.1-reorganization-of-se.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
             "occ": 6
           },
@@ -1669,7 +1673,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 48
+            "occ": 49
           }
         ]
       },
