@@ -7,7 +7,7 @@
     "derived_ids": 189,
     "missing_topic_sentence": 5,
     "sections_drained": 143,
-    "paragraph_points": 649
+    "paragraph_points": 650
   },
   "chapters": [
     {
@@ -4479,19 +4479,24 @@
               "block_index": 27
             },
             {
+              "slug": "the-decomposition-refines-the-measurand",
+              "text": "The encode-interpret-realize factorization tells a study what to measure inside p: a factorial design crossing representation quality, reasoner capability, realization task, and Alignment mechanism can estimate the stage probabilities separately.",
+              "block_index": 29
+            },
+            {
               "slug": "objective-is-a-map-of-conditions-not-one-coefficient",
               "text": "The objective is a map of when capability, representation, iteration, and enforcement substitute or complement, not one coefficient.",
-              "block_index": 29
+              "block_index": 31
             },
             {
               "slug": "crossed-experiments-separate-capability-leverage-retry-and-assurance",
               "text": "Crossed experiments varying model and environment can separate capability effects, representation leverage, retry economics, and assurance.",
-              "block_index": 32
+              "block_index": 34
             },
             {
               "slug": "representation-has-oversight-value-beyond-realization",
               "text": "These experiments measure representation's value to realization; it may still matter for engineering control even when capability grows.",
-              "block_index": 34
+              "block_index": 36
             }
           ]
         },
@@ -4501,47 +4506,47 @@
           "heading_text": "Engineering Routing",
           "topic_sentence": "These quantities suggest a further implication for automated software engineering.",
           "id_source": "derived",
-          "block_index": 36,
+          "block_index": 38,
           "points": [
             {
               "slug": "model-routing-treats-the-task-as-given",
               "text": "Model routing treats the task as given; software engineering permits changing the problem presented to the model.",
-              "block_index": 38
+              "block_index": 40
             },
             {
               "slug": "migration-vs-authentication-engineering-changes-difficulty-and-assurance",
               "text": "Engineering changes both the difficulty presented to the reasoner and the assurance required, as migration and authentication differ.",
-              "block_index": 40
+              "block_index": 42
             },
             {
               "slug": "model-is-only-one-component-of-the-realization-strategy",
               "text": "Representation, context, iteration, and Alignment are all realization-strategy components; the model is only one.",
-              "block_index": 42
+              "block_index": 44
             },
             {
               "slug": "an-engineering-router-selects-the-whole-strategy-jointly",
               "text": "An automated system could jointly select model, representation, harness, enforcement, and retry budget under a task assurance bound.",
-              "block_index": 44
+              "block_index": 46
             },
             {
               "slug": "the-assurance-bound-is-task-specific",
               "text": "The assurance bound is task-specific: routing should reflect the obligations and consequences, not just apparent difficulty.",
-              "block_index": 49
+              "block_index": 51
             },
             {
               "slug": "engineering-routing-selects-the-realization-strategy",
               "text": "Engineering routing asks which engineered realization strategy should receive a task, not merely which reasoner.",
-              "block_index": 51
+              "block_index": 53
             },
             {
               "slug": "task-difficulty-is-not-fixed-engineering-can-change-it",
               "text": "Task difficulty is not fixed; engineering can change it, so the optimum depends on task, capability, environment, assurance, and recurrence.",
-              "block_index": 53
+              "block_index": 55
             },
             {
               "slug": "research-question-how-cheaply-to-engineer-a-task-safe-to-delegate",
               "text": "The research question becomes how cheaply a task can be engineered to be safe to delegate, not merely how difficult it is.",
-              "block_index": 55
+              "block_index": 57
             }
           ]
         },
@@ -4551,42 +4556,42 @@
           "heading_text": "Representation Selection, Induction, and Innovation",
           "topic_sentence": "Chapter 2 offered six useful classes of engineering model, not a proof that those classes are necessary, sufficient, or minimal.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 59,
           "points": [
             {
               "slug": "representation-selection-is-a-research-problem",
               "text": "Chapter 2's six model classes were not proven necessary or minimal; representation selection is itself a research problem.",
-              "block_index": 58
+              "block_index": 60
             },
             {
               "slug": "sufficient-vs-minimal-useful-representation-families",
               "text": "A sufficient family answers the declared questions; a minimal-useful family drops representations whose benefit fails to justify carrying cost.",
-              "block_index": 60
+              "block_index": 62
             },
             {
               "slug": "dependency-graph-example-of-leverage-vs-redundant-cost",
               "text": "A dependency graph earns its cost by answering the question and enabling a validator; a second redundant representation adds cost without leverage.",
-              "block_index": 62
+              "block_index": 64
             },
             {
               "slug": "induction-recovers-latent-structure-the-system-embodies",
               "text": "Induction recovers latent structure the system already embodies; it is not yet innovation in the strongest sense.",
-              "block_index": 64
+              "block_index": 66
             },
             {
               "slug": "innovation-proposing-representations-neither-supplied-nor-latent",
               "text": "The stronger question is whether a reasoner can innovate representations that make relationships tractable when neither supplied nor latent.",
-              "block_index": 66
+              "block_index": 68
             },
             {
               "slug": "learning-formulation-which-representation-preserves-needed-distinctions",
               "text": "A learning formulation asks which representation preserves the distinctions engineering questions need while suppressing irrelevant state.",
-              "block_index": 68
+              "block_index": 70
             },
             {
               "slug": "experiment-compares-authored-induced-and-innovated-representations",
               "text": "An experiment compares authored, induced, and innovated representations on reasoning success, correspondence, carrying cost, and later benefit.",
-              "block_index": 70
+              "block_index": 72
             }
           ]
         },
@@ -4596,7 +4601,7 @@
           "heading_text": "Experimental Designs",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 72,
+          "block_index": 74,
           "points": []
         },
         {
@@ -4605,12 +4610,12 @@
           "heading_text": "Separating Modeling from Alignment",
           "topic_sentence": "A factorial design can cleanly separate Modeling from Alignment.",
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 75,
           "points": [
             {
               "slug": "design-separate-modeling-from-alignment-by-hiding-the-representation",
               "text": "Holding the gate fixed while hiding or exposing the representation separates Alignment's independence from Modeling's leverage.",
-              "block_index": 74
+              "block_index": 76
             }
           ]
         },
@@ -4620,17 +4625,17 @@
           "heading_text": "Multi-project longitudinal design",
           "topic_sentence": "This design should vary or observe engineered-environment quality while tracking durable throughput, defect escape, and human-attention burden over weeks or months.",
           "id_source": "derived",
-          "block_index": 76,
+          "block_index": 78,
           "points": [
             {
               "slug": "crossed-longitudinal-design-substitute-vs-complement",
               "text": "A crossed longitudinal design tests whether environment quality substitutes for, complements, or barely affects model capability.",
-              "block_index": 77
+              "block_index": 79
             },
             {
               "slug": "measure-where-human-work-goes-narrow-vs-broad-account",
               "text": "Measuring where human work goes distinguishes the narrow coding-productivity account from MAGE's broader shift of realization work.",
-              "block_index": 79
+              "block_index": 81
             }
           ]
         },
@@ -4640,12 +4645,12 @@
           "heading_text": "Subsystem-level design",
           "topic_sentence": "Compare engineering surfaces that differ in representation and governance while holding as much surrounding repository context constant as possible.",
           "id_source": "derived",
-          "block_index": 81,
+          "block_index": 83,
           "points": [
             {
               "slug": "subsystem-design-tests-leverage-where-theory-predicts",
               "text": "A subsystem design with stepped introduction tests whether leverage, determinization, and assurance appear where the theory predicts.",
-              "block_index": 82
+              "block_index": 84
             }
           ]
         },
@@ -4655,12 +4660,12 @@
           "heading_text": "Event-centered longitudinal design",
           "topic_sentence": "Follow one failure class through its whole life: first occurrence, repeat exposure, structural recognition, local repair, any durable conversion, propagation to later work, later recurrence, and eventual maintenance or retirement of the resulting asset.",
           "id_source": "derived",
-          "block_index": 84,
+          "block_index": 86,
           "points": [
             {
               "slug": "event-centered-design-separates-engineer-improved-from-environment-learned",
               "text": "An event-centered design follows one failure class end to end, separating 'the engineer improved' from 'the environment learned.'",
-              "block_index": 85
+              "block_index": 87
             }
           ]
         },
@@ -4670,22 +4675,22 @@
           "heading_text": "What the designs still need",
           "topic_sentence": "All three designs require credible measures of durable throughput, human-attention burden, environment quality, and engineering-capital return.",
           "id_source": "derived",
-          "block_index": 87,
+          "block_index": 89,
           "points": [
             {
               "slug": "designs-need-outcome-measures-until-then-counts-stay-descriptive",
               "text": "The designs need credible outcome measures; until then support ratio and counts stay descriptive, not proxies for value.",
-              "block_index": 88
+              "block_index": 90
             },
             {
               "slug": "ci-makes-these-experiments-tractable",
               "text": "Commodity intelligence may make these experiments tractable by holding engine, repository, and task fixed while one factor varies.",
-              "block_index": 90
+              "block_index": 92
             },
             {
               "slug": "theory-may-generalize-beyond-software-engineering",
               "text": "The theory's mechanisms are not code-specific and may generalize to other engineering and knowledge work; testing that is future work.",
-              "block_index": 93
+              "block_index": 95
             }
           ]
         }
