@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: book-map). frontma-260917 pass: the book's argument in THREE MOVEMENTS —
-     the engineering question (Preface + Chapter 1, OUTSIDE), the nested SOFTWARE-ENGINEERING CASE
-     (Chapters 2-6 including the promoted Chapter 4, seated inside a subtly shaded #eef2f6 no-stroke region that develops the
-     mechanisms and supplies the evidence), and the engineering argument it substantiates (Chapter 7 + Chapter 8,
-     OUTSIDE — the abstraction from the evidence and its implications). A single clean descent runs from the
-     Preface's opening question to the Conclusion's answer + its converse; the Ch1->Ch2 arrow crosses INTO the
-     case region and the Ch6->Ch7 arrow crosses OUT, so the boundary crossings enact the epistemics. Two DOTTED
-     branches hang the appendix parts off the argument (Chapter 4 to Practice, Chapter 6 to Evidence), OUTSIDE
-     the region. RHYTHM PASS (rhythm-260917): viewBox height 848 -> 1008, all of it spent on WHITESPACE — air
-     after the framing moves (Preface -> Ch1 -> case), interior padding of the case region above Ch2 and below
-     Ch5, doubled gaps + flanking rules around Chapter 4 (the static->dynamic step), and an annotated
-     Ch5 -> Ch6 gap ("abstract from the case"). Primary column widened 440 -> 488; appendix boxes quieted
-     (lighter stroke + medium weight, type stays at the font-band floor). The promoted Chapter 4 node carries
-     the descriptive phrase "One Problem, Many Models" beneath its title. FONT NOTE: the
-     viewBox width is held to 920 so every label normalizes into the figure font band (abs x 1000/920 lands
-     near body size) and renders near body size in the PDF column. Palette: Umber Monograph tokens per
-     chapter; the promoted Chapter 4 uses the muted matter palette (Preface/Conclusion); the case region is a
-     low-saturation pale blue drawn from Chapter 5's evidence family (#e7edf3, lightened); appendix
-     destinations muted #78716c with a dashed border. -->
+<!-- Hand-authored SVG (label: book-map). frontma-260917 pass, realigned to the Chs. 4-7 structure
+     (realign-260922): the book's argument in THREE MOVEMENTS — the engineering question (Preface +
+     Chapter 1, OUTSIDE), the nested SOFTWARE-ENGINEERING CASE (Chapters 2-5, seated inside a subtly
+     shaded #eef2f6 no-stroke region that develops the mechanisms and supplies the evidence), and the
+     engineering argument it substantiates (Chapter 6 + Chapter 7, OUTSIDE — the abstraction from the
+     factories and its implications). A single clean descent runs from the Preface's opening question to
+     the Conclusion's answer + its converse; the Ch1->Ch2 arrow crosses INTO the case region and the
+     Ch5->Ch6 arrow crosses OUT, so the boundary crossings enact the epistemics. Two DOTTED branches hang
+     the appendix parts off the argument (Chapter 4 to Practice, Chapter 5 to Evidence), OUTSIDE the
+     region. RHYTHM: the vertical space is spent on WHITESPACE — air after the framing moves (Preface ->
+     Ch1 -> case), interior padding of the case region above Ch2 and below Ch5, a doubled gap + flanking
+     rules above Chapter 4 (the static->dynamic step), and an annotated Ch5 -> Ch6 gap ("abstract from the
+     factories"). Primary column 488 wide; appendix boxes quieted (lighter stroke + medium weight, type
+     stays at the font-band floor). REALIGN NOTE: Chapter 4 is a numbered chapter, not an interlude, so it
+     sheds the old "One Problem, Many Models" subtitle and keeps only its four moves; Chapter 5 is the
+     production-system chapter (Agentic Software Factories), which is what now SUPPLIES the evidence rather
+     than being titled "The Evidence". FONT NOTE: the viewBox width is held to 920 so every label
+     normalizes into the figure font band (abs x 1000/920 lands near body size) and renders near body size
+     in the PDF column. Palette: Umber Monograph tokens per chapter; Chapter 4 uses the muted matter
+     palette (Preface/Conclusion); the case region is a low-saturation pale blue drawn from Chapter 5's
+     evidence family (#e7edf3, lightened); appendix destinations muted #78716c with a dashed border. -->
 <!-- semantic-families: agent, governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 1008" width="920" height="1008"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 942" width="920" height="942"
      role="group" aria-labelledby="bmTitle bmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="bmTitle">The book's argument in three movements — the engineering question, the nested software-engineering case, and the engineering argument it substantiates, from the Preface's question to the Conclusion's answer</title>
@@ -27,15 +29,15 @@
     question: how do we safely grant autonomy to commodity intelligence? It leads to Chapter 1, The New Engineering
     Problem — changed economics. A subtly shaded region then nests the software-engineering case — the chapters that
     develop the mechanisms and supply the evidence. Inside it: Chapter 2, Modeling — make knowledge and intent
-    explicit. Then Chapter 3, Alignment — enforce selected obligations. Then Chapter 4, MAGE in Motion: Engineering Through Models —
-    the dynamics of a worked problem, brownfield recovery, and the engineered environment: model, align, work, convert; a
-    dotted branch runs to Appendix Part I, Practice (use and extend). Then Chapter 6, The Evidence — depth and breadth;
-    a dotted branch runs to Appendix Part II, Evidence (inspect the empirical record). The descent leaves the case
-    region at Chapter 7, The Theory — the abstraction from that evidence: theory, predictions, scope conditions, and a
-    research agenda. Then Chapter 8, The Profession — how software work reorganizes, agentic engineering beyond
-    software, and the responsibility that remains the engineer's. The descent ends at the Conclusion, which returns to
-    the Preface's question and asks its converse: what cannot be delegated? Responsibility. The dotted appendix
-    branches are related destinations, not steps in the argument.</desc>
+    explicit. Then Chapter 3, Alignment — enforce selected obligations. Then Chapter 4, MAGE in Motion — the mechanisms
+    put in motion on a worked problem: model, align, work, convert; a dotted branch runs to Appendix Part I, Practice
+    (use and extend). Then Chapter 5, Agentic Software Factories — the production system that supplies the evidence: a
+    deep case, industrial variation, and what the factories show; a dotted branch runs to Appendix Part II, Evidence
+    (inspect the empirical record). The descent leaves the case region at Chapter 6, The Theory — the abstraction from
+    those factories: dynamics, economics, predictions, and scope conditions. Then Chapter 7, The Profession — how
+    software work reorganizes, agentic engineering beyond software, and the responsibility that remains the engineer's.
+    The descent ends at the Conclusion, which returns to the Preface's question and asks its converse: what cannot be
+    delegated? Responsibility. The dotted appendix branches are related destinations, not steps in the argument.</desc>
 
   <defs>
     <marker id="bm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -46,12 +48,12 @@
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="920" height="1008" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="920" height="942" fill="#fdfcf9"/>
 
-  <!-- THE SOFTWARE ENGINEERING CASE — the shaded region nesting Chapters 2-6 (incl. the promoted Chapter 4) (renders beneath
+  <!-- THE SOFTWARE ENGINEERING CASE — the shaded region nesting Chapters 2-5 (renders beneath
        the nodes; its header renders AFTER the Ch1->Ch2 arrow, on a region-colored halo, so the descent passes
        under the label instead of striking through it) -->
-  <rect x="12" y="238" width="512" height="478" rx="10" fill="#eef2f6"/>
+  <rect x="12" y="238" width="512" height="412" rx="10" fill="#eef2f6"/>
 
   <!-- top framing kicker -->
   <text x="268" y="30" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e"
@@ -88,49 +90,48 @@
   <line x1="100" y1="448" x2="236" y2="448" stroke="#cec8bd" stroke-width="1"/>
   <line x1="300" y1="448" x2="436" y2="448" stroke="#cec8bd" stroke-width="1"/>
 
-  <!-- CHAPTER 4 — MAGE in Motion (the Ch4/Ch5 merger: dynamics + worked case + brownfield + environment) -->
-  <rect id="part-4" x="24" y="464" width="488" height="150" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
-  <text x="268" y="516" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Chapter 4 · MAGE in Motion</text>
-  <text x="268" y="540" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e">One Problem, Many Models</text>
-  <text x="268" y="564" text-anchor="middle" font-size="18.4" font-weight="600" fill="#1c1917">model · align · work · convert</text>
-  <line x1="268" y1="614" x2="268" y2="630" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+  <!-- CHAPTER 4 — MAGE in Motion (the mechanisms put in motion: dynamics + worked problem + environment) -->
+  <rect id="part-4" x="24" y="464" width="488" height="84" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="268" y="500" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Chapter 4 · MAGE in Motion</text>
+  <text x="268" y="526" text-anchor="middle" font-size="18.4" font-weight="600" fill="#1c1917">model · align · work · convert</text>
+  <line x1="268" y1="548" x2="268" y2="564" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
   <!-- CHAPTER 4 to Appendix Part I (DOTTED branch — related destination, not a step; quieter than the argument) -->
-  <line x1="512" y1="585" x2="604" y2="585" stroke="#78716c" stroke-width="1.5" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
-  <rect id="appendix-1" x="604" y="559" width="296" height="52" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.4" stroke-dasharray="5 3"/>
-  <text x="752" y="582" text-anchor="middle" font-size="18.4" font-weight="600" fill="#57534e">Appendix Part I · Practice</text>
-  <text x="752" y="602" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">use + extend</text>
+  <line x1="512" y1="506" x2="604" y2="506" stroke="#78716c" stroke-width="1.5" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
+  <rect id="appendix-1" x="604" y="480" width="296" height="52" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.4" stroke-dasharray="5 3"/>
+  <text x="752" y="503" text-anchor="middle" font-size="18.4" font-weight="600" fill="#57534e">Appendix Part I · Practice</text>
+  <text x="752" y="523" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">use + extend</text>
 
-  <!-- CHAPTER 5 — The Evidence (fleet blue) -->
-  <rect id="part-5" x="24" y="630" width="488" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="268" y="655" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Chapter 6 · The Evidence</text>
-  <text x="268" y="675" text-anchor="middle" font-size="18.4" font-weight="600" fill="#2f5169">depth + breadth</text>
+  <!-- CHAPTER 5 — Agentic Software Factories (fleet blue; the production system that supplies the evidence) -->
+  <rect id="part-5" x="24" y="564" width="488" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="268" y="589" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Chapter 5 · Agentic Software Factories</text>
+  <text x="268" y="609" text-anchor="middle" font-size="18.4" font-weight="600" fill="#2f5169">deep case · industrial variation · production systems</text>
 
   <!-- CHAPTER 5 to Appendix Part II (DOTTED branch) -->
-  <line x1="512" y1="658" x2="604" y2="658" stroke="#78716c" stroke-width="1.5" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
-  <rect id="appendix-2" x="604" y="632" width="296" height="52" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.4" stroke-dasharray="5 3"/>
-  <text x="752" y="655" text-anchor="middle" font-size="18.4" font-weight="600" fill="#57534e">Appendix Part II · Evidence</text>
-  <text x="752" y="675" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">inspect the empirical record</text>
+  <line x1="512" y1="592" x2="604" y2="592" stroke="#78716c" stroke-width="1.5" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
+  <rect id="appendix-2" x="604" y="566" width="296" height="52" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.4" stroke-dasharray="5 3"/>
+  <text x="752" y="589" text-anchor="middle" font-size="18.4" font-weight="600" fill="#57534e">Appendix Part II · Evidence</text>
+  <text x="752" y="609" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">inspect the empirical record</text>
 
-  <!-- The descent leaves the case region: evidence -> theory (the crossing gets its own air + label) -->
-  <line x1="268" y1="686" x2="268" y2="748" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
-  <text x="284" y="738" text-anchor="start" font-size="18.4" font-style="italic" fill="#57534e">abstract from the case</text>
+  <!-- The descent leaves the case region: factories -> theory (the crossing gets its own air + label) -->
+  <line x1="268" y1="620" x2="268" y2="682" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+  <text x="284" y="672" text-anchor="start" font-size="18.4" font-style="italic" fill="#57534e">abstract from the factories</text>
 
   <!-- CHAPTER 6 — The Theory (purple) -->
-  <rect id="part-6" x="24" y="748" width="488" height="56" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
-  <text x="268" y="773" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Chapter 7 · The Theory</text>
-  <text x="268" y="793" text-anchor="middle" font-size="18.4" font-style="italic" fill="#5b4a72">theory · predictions · scope · agenda</text>
-  <line x1="268" y1="804" x2="268" y2="820" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+  <rect id="part-6" x="24" y="682" width="488" height="56" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
+  <text x="268" y="707" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Chapter 6 · The Theory</text>
+  <text x="268" y="727" text-anchor="middle" font-size="18.4" font-style="italic" fill="#5b4a72">dynamics · economics · predictions · scope</text>
+  <line x1="268" y1="738" x2="268" y2="754" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
   <!-- CHAPTER 7 — The Profession (deeper purple) -->
-  <rect id="part-7" x="24" y="820" width="488" height="56" rx="8" fill="#e8e0f2" stroke="#4a3d5e" stroke-width="2.4"/>
-  <text x="268" y="845" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Chapter 8 · The Profession</text>
-  <text x="268" y="865" text-anchor="middle" font-size="18.4" font-style="italic" fill="#4a3d5e">software work · broader engineering · responsibility</text>
-  <line x1="268" y1="876" x2="268" y2="892" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+  <rect id="part-7" x="24" y="754" width="488" height="56" rx="8" fill="#e8e0f2" stroke="#4a3d5e" stroke-width="2.4"/>
+  <text x="268" y="779" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Chapter 7 · The Profession</text>
+  <text x="268" y="799" text-anchor="middle" font-size="18.4" font-style="italic" fill="#4a3d5e">software work · broader engineering · responsibility</text>
+  <line x1="268" y1="810" x2="268" y2="826" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
   <!-- CONCLUSION — the answer + its converse (unnumbered matter; generous vertical padding closes the frame) -->
-  <rect id="conclusion" x="24" y="892" width="488" height="86" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
-  <text x="268" y="924" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
-  <text x="268" y="948" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
-  <text x="268" y="967" text-anchor="middle" font-size="18.4" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" fill="#9a3f12">RESPONSIBILITY</tspan></text>
+  <rect id="conclusion" x="24" y="826" width="488" height="86" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="268" y="858" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
+  <text x="268" y="882" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
+  <text x="268" y="901" text-anchor="middle" font-size="18.4" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" fill="#9a3f12">RESPONSIBILITY</tspan></text>
 </svg>
