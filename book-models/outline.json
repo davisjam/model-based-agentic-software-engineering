@@ -5,9 +5,9 @@
     "sections": 195,
     "explicit_ids": 6,
     "derived_ids": 189,
-    "missing_topic_sentence": 5,
+    "missing_topic_sentence": 4,
     "sections_drained": 143,
-    "paragraph_points": 650
+    "paragraph_points": 644
   },
   "chapters": [
     {
@@ -735,72 +735,42 @@
           ]
         },
         {
-          "section_id": "six-classes-of-engineering-question",
+          "section_id": "the-engineering-modeling-repertoire",
           "level": 2,
-          "heading_text": "Six Classes of Engineering Question",
-          "topic_sentence": null,
+          "heading_text": "The Engineering Modeling Repertoire",
+          "topic_sentence": "Software engineers do not need to invent a representation from first principles each time they encounter a consequential question.",
           "id_source": "derived",
           "block_index": 92,
           "points": [
             {
-              "slug": "the-six-class-ontology-is-useful-not-exhaustive",
-              "text": "The classification caveat: six classes organized by the engineering question a model answers, useful rather than exhaustive, and able to overlap.",
+              "slug": "engineering-fields-have-accumulated-a-modeling-repertoire",
+              "text": "Software engineers need not invent a representation from first principles each time; engineering fields have accumulated a large repertoire of models for recurring questions, each preserving different information and supporting different analyses.",
               "block_index": 94
             },
             {
-              "slug": "at-an-abstract-level-each-class-is-a-graph-what-differs-is-what-nodes-and-edges-mean",
-              "text": "The six classes differ less in shape than in semantics: each can be understood as a graph of things and relationships, and what changes from class to class is what the nodes and edges mean.",
-              "block_index": 97
+              "slug": "read-the-repertoire-as-available-moves-not-a-taxonomy",
+              "text": "Read the repertoire figure as a set of available moves, not a taxonomy of modeling: similar graphical forms can carry very different semantics, and what matters is the engineering question a representation's entities and relations preserve.",
+              "block_index": 96
             },
             {
-              "slug": "mage-classifies-by-question-because-one-graph-shape-answers-many-questions",
-              "text": "MAGE classifies models by engineering question rather than notation because the same graph-shaped representation can answer very different questions depending on its semantics, and one system fact can participate in several views.",
+              "slug": "recognize-the-question-select-the-representation",
+              "text": "The practical skill is recognizing the engineering question and selecting a representation that preserves the properties needed to answer it; the repertoire is larger than the figure's examples, MAGE prescribes no new notation, and the inset gives the broader rule.",
               "block_index": 99
-            },
-            {
-              "slug": "the-repertoire-is-larger-than-the-six-classes",
-              "text": "A portion of the established repertoire — nine familiar representations read as a set of moves, not a taxonomy of all modeling; MAGE prescribes no new notation, and the repertoire is larger than the six classes below.",
-              "block_index": 101
             },
             {
               "slug": "reuse-the-established-repertoire-choosing-is-judgment",
               "text": "This chapter illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment.",
-              "block_index": 104
+              "block_index": 101
             },
             {
-              "slug": "measurement-and-provenance-make-the-same-move",
-              "text": "Telemetry is observation, and a measurement model relates quantities — usage times price is cost, concurrent jobs are capacity demand — so a bound becomes statable; logs and traces are observability, and a provenance model selects and structures realized history so \"what changed, and what evidence records it\" becomes a query rather than a search.",
-              "block_index": 110
-            },
-            {
-              "slug": "the-classes-are-views-not-boxes",
-              "text": "The classes classify questions, not data structures; one represented fact can answer several. The lease is Ownership, Behavioral, and Measurement at once.",
-              "block_index": 112
-            },
-            {
-              "slug": "system-knowledge-is-substrate-not-a-seventh-class",
-              "text": "System knowledge is the connected substrate where the six classes meet, not a seventh peer class.",
-              "block_index": 115
-            },
-            {
-              "slug": "tolerance-is-not-a-seventh-class",
-              "text": "The classes name the engineering question; tolerance names the variation that question permits, not a seventh class.",
-              "block_index": 117
-            },
-            {
-              "slug": "purpose-comes-first-representation-follows",
-              "text": "The model class names the engineering question; the representation form is a separate choice, so purpose comes first and representation follows.",
-              "block_index": 119
-            },
-            {
-              "slug": "the-chapters-ahead-apply-the-repertoire-to-six-docable-models",
-              "text": "The sections ahead develop three classes in detail through production models from DocAble; the final section asks how such representations connect through shared identity, reaching for measurement and provenance views where the connected substrate needs them.",
-              "block_index": 121
+              "slug": "the-sections-ahead-develop-three-kinds-of-modeling-question",
+              "text": "The sections ahead do not survey the repertoire; they develop structural, behavioral, and decision questions through DocAble examples, other questions appear where the examples need them, and the final section asks what joining representations through shared identity makes possible.",
+              "block_index": 105
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
               "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment makes selected properties enforceable.",
-              "block_index": 123
+              "block_index": 107
             }
           ]
         }
