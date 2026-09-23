@@ -3,12 +3,12 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 815,
+    "total_sites": 811,
     "by_projection": {
       "book-pdf": 14,
       "book-web": 473,
       "website-catalogue": 219,
-      "website-industry-cases": 51,
+      "website-industry-cases": 47,
       "website-landing": 14,
       "website-misc": 30,
       "website-resources": 6,
@@ -101,7 +101,7 @@
           },
           {
             "file": "book/web/docs/5.4-what-the-factories-show.md",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -185,7 +185,7 @@
           },
           {
             "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 13
+            "occ": 10
           },
           {
             "file": "book/web/docs/appendix-g-a-practical-adoption-procedure.md",
@@ -229,7 +229,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 16
+            "occ": 14
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -580,10 +580,6 @@
           {
             "file": "industry-case-cloudflare-codex.html",
             "occ": 1
-          },
-          {
-            "file": "industry-case-docker.html",
-            "occ": 10
           },
           {
             "file": "industry-case-gitlab-abundant.html",
@@ -1237,7 +1233,7 @@
           },
           {
             "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 67
+            "occ": 66
           },
           {
             "file": "book/web/docs/appendix-g-a-practical-adoption-procedure.md",
@@ -1436,10 +1432,6 @@
             "occ": 5
           },
           {
-            "file": "industry-case-docker.html",
-            "occ": 3
-          },
-          {
             "file": "industry-case-gitlab-abundant.html",
             "occ": 6
           },
@@ -1611,7 +1603,7 @@
           },
           {
             "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 8
+            "occ": 7
           },
           {
             "file": "book/web/docs/appendix-g-a-practical-adoption-procedure.md",
@@ -2107,7 +2099,7 @@
           },
           {
             "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 17
+            "occ": 16
           },
           {
             "file": "book/web/docs/appendix-g-a-practical-adoption-procedure.md",
@@ -2626,10 +2618,6 @@
             "occ": 2
           },
           {
-            "file": "industry-case-docker.html",
-            "occ": 2
-          },
-          {
             "file": "industry-case-gitlab-abundant.html",
             "occ": 11
           },
@@ -2813,10 +2801,6 @@
           },
           {
             "file": "industry-case-cloudflare-codex.html",
-            "occ": 2
-          },
-          {
-            "file": "industry-case-docker.html",
             "occ": 2
           },
           {

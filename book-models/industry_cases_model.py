@@ -421,7 +421,7 @@ _TABLE_BUCKETS = ("universal", "generalizes")
 #: cards, in roster order (Cloudflare keeps its deep reading — per-case-onepager-DESIGN §4 rec-i). IC7 audits
 #: each placed card for COVERAGE of its record + a TRACE marker (`<!-- case-onepager: <id> -->`) back to it;
 #: it no longer composes or byte-parities the card text.
-_ONEPAGER_GALLERY_IDS = ("spotify-honk", "shopify", "docker", "siemens", "zenseact")
+_ONEPAGER_GALLERY_IDS = ("spotify-honk", "shopify", "siemens", "zenseact")
 
 #: The short-key PREFIX per table bucket (U1..U9 for universal, G1..G6 for generalizes). Distinct prefixes
 #: so the prose and the per-case one-pagers can cite a grid row unambiguously across the two tables, and so a

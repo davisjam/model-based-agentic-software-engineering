@@ -3397,11 +3397,12 @@ _FIELD_GUIDE_DIR = HERE / "appendix-field-guide"
 # appendices; the letter is resolved at build from the `part_title`.
 _APPENDIX_FIELD_GUIDE_OPENING_SLUG = "appendix-field-guide"
 
-# The seven team cards, in deck order (kind order). Each is one authored `.md` under the front-door dir; an
+# The six team cards, in deck order (kind order). Each is one authored `.md` under the front-door dir; an
 # absent-on-disk file is skipped, so the opening alone still renders. Uber is the deep exemplar of the
-# seventh kind (a durable environment around a replaceable reasoner); GitLab shares that kind as the cited
-# sibling in Uber's card and §5.5, so it has no card of its own.
-_FIELD_GUIDE_TEAMS: list[str] = ["cloudflare", "spotify", "shopify", "docker", "siemens", "zenseact", "uber"]
+# sixth kind (a durable environment around a replaceable reasoner); GitLab shares that kind as the cited
+# sibling in Uber's card and §5.5, so it has no card of its own. The Docker card was RETIRED on 260923 with
+# the Docker case, so the appendix presents exactly the seven-organization corpus §5.3 reconstructs.
+_FIELD_GUIDE_TEAMS: list[str] = ["cloudflare", "spotify", "shopify", "siemens", "zenseact", "uber"]
 
 
 def build_field_guide_chapters(part: int, letter: str = "G", locator_figs: bool = False) -> list[dict]:

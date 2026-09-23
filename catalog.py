@@ -3121,7 +3121,7 @@ def _landing_closing() -> str:
         ("Apply the MAGE Method", "apply-mage.html",
          "the method applied to your system — three practical questions"),
         ("Industry case studies", "industry-case-studies.html",
-         "eight industrial systems, read through MAGE"),
+         "seven industrial systems, read through MAGE"),
         ("Book", "book/mage-book/index.html", "the full treatment of the method"),
         ("Teach with MAGE", "teach/index.html", "learning materials — a course companion for instructors"),
         ("Claude quickstart", "quick-start.html", "install the skills in your repo"),
@@ -4007,7 +4007,7 @@ LANDING_INTRO = """  <!-- ===================== HERO + BIG IDEA 1 ==============
       and methodology</span> for engineering the governed environments in which autonomous intelligence can
       safely create software. Its six big ideas, below, trace the argument from problem to research frontier.</p>
       <p class="m-lead">Developed through one deeply studied production system and interpreted against
-      independent industrial practice from Cloudflare, Spotify, Shopify, Docker, Siemens, Zenseact, Uber, and GitLab.</p>
+      independent industrial practice from Cloudflare, Spotify, Shopify, Siemens, Zenseact, Uber, and GitLab.</p>
       <p class="m-lead"><a class="hero-cta" href="book/mage-book/index.html"><strong>The book provides the full
       treatment.</strong></a> &nbsp;·&nbsp; <a class="hero-cta" href="quick-start.html"><strong>QuickStart:
       install the Skills for Claude in your own repo.</strong></a></p>

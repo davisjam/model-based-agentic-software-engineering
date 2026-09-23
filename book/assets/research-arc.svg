@@ -10,7 +10,10 @@
      Two colour families only: green #1f7a4d/#155c38 modeling (the theory nodes) and neutral #57534e (the
      evidence/procedure nodes + the inference spine), so the figure reads in grayscale. Palette: Umber
      Monograph tokens (ink #1c1917, paper #fdfcf9, neutral #57534e, green #1f7a4d + emphasis #155c38,
-     modeling tint #e3f0e7, neutral tint #f6f4ef). Coordinate-authored (no invisible anchors). -->
+     modeling tint #e3f0e7, neutral tint #f6f4ef). Coordinate-authored (no invisible anchors).
+     260923: the industrial-accounts node reads "seven", not "eight" — the Docker case was removed from the
+     corpus on the author's evidentiary ruling. HAND-AUTHORED asset: nothing projects this file (the
+     generated figures are the nav-subway maps from book-models/nav_map_model.py), so edit it here. -->
 <!-- semantic-families: modeling, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740" width="1000" height="740"
      role="group" aria-labelledby="raTitle raDesc"
@@ -22,7 +25,7 @@
     book later teaches the method.
     Stage one, DocAble — one production system, observed in longitudinal depth over months.
     Stage two, Early MAGE — the theory induced from that one case: Modeling, Alignment, governance
-    conversion, engineering capital. Stage three, independent industrial accounts — eight independent industrial
+    conversion, engineering capital. Stage three, independent industrial accounts — seven independent industrial
     systems. Stage four, comparative reconstruction — each system reconstructed in MAGE's vocabulary:
     recurring moves, variation, limits. That comparison refines — it does not validate — the theory. Stage
     five, MAGE theory — the account developed in Chapter 6. Beneath it a split: the originating case gives
@@ -71,7 +74,7 @@
   <!-- N3 Independent industrial accounts (neutral: external evidence) -->
   <rect id="industrial-accounts" x="240" y="274" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="500" y="300" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Independent industrial accounts</text>
-  <text x="500" y="321" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">eight independent industrial systems</text>
+  <text x="500" y="321" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">seven independent industrial systems</text>
 
   <!-- N4 Comparative reconstruction (neutral: procedure) -->
   <rect id="comparative-recon" x="240" y="366" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
