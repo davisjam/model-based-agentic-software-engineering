@@ -370,6 +370,14 @@ for injection patterns before execution and tool *output* is sanitized for promp
 embedded in data from external systems — a trust boundary drawn around the agent's own inputs, not
 only around its outputs. Supported by [E21].
 
+**[C11a] — ZAP's publicly described quality strategy combines aiming and containment without
+detection.** Containment and aiming are affirmatively documented: per-tool/per-role permission
+gating [E20], injection validation and output sanitization [E21], delegation allow-lists and depth
+limits [E22], deterministic context routing [E16][E17]. A mechanism that evaluates whether an
+agent's *answer is correct* — evaluation suite, benchmark, golden answers, or any post-hoc check —
+is not publicly stated (GAPS 9). The absence of detection is a fact about the record, not an
+asserted design choice: no source says Zenseact decided against evaluation.
+
 ### How experience changes the factory
 
 **[C12] — Zenseact converts a routing failure into a typed, resolved finding — the clearest
@@ -434,6 +442,8 @@ that ISO 26262 and ASIL would be central to Zenseact's agent account is **refute
 5. Who authorizes a *new agent* to exist, what review (if any) a new SKILL.md or skill module
    receives before it is loaded, and whether a domain team can grant itself a write-capable tool.
    The per-call permission table is documented [E20]; the process that *populates* it is not.
+   Marker: **not publicly stated** — [S1] is the sole substantive source and documents the
+   table's semantics [E20] without any sentence on its authorship, review, or change process.
 
 **On the fabricator's inheritance**
 
@@ -477,6 +487,18 @@ that ISO 26262 and ASIL would be central to Zenseact's agent account is **refute
 17. Any adoption, usage, cost, latency, or benefit figure whatsoever [E31].
 18. Whether ZAP remains in production as of late 2026 — the record ends on 2026-05-29 and nothing
     newer exists.
+
+**Added by the second analytical pass (2026-09-23) — appended rather than renumbered**
+
+19. Whether a `confirm`-gate approval or rejection [E20] is logged, attributed, or auditable
+    afterward is **not publicly stated**; the admin dashboard [E25] is described as surfacing
+    disclosure misses, not permission decisions.
+
+20. **How the RAG store and skill corpus are kept true is not publicly stated.** [E13] shows a
+    vector DB and [E19] shows RAG context injected per turn scoped by agent, skill, and user; no
+    source states what populates the store, on what cadence, or how stale entries are detected.
+    The disclosure-miss loop [E25]–[E27] repairs retrieval *fit* (does the right skill load);
+    nothing in the record addresses retrieval *truth* (is what loads still correct).
 
 ---
 

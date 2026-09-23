@@ -599,6 +599,21 @@ human-held escape hatch, all three instrumented*. `[E27] [E27a] [E27b]`
 reports "are not considered complete until all findings have been addressed." This is the only place in
 the record where an agent's output is a completion condition rather than an input to judgment. `[E27c]`
 
+**[C33]** Cloudflare runs two admission regimes at opposite strengths. Product code is admitted by a
+machine in the ordinary case [E27a]. Factory policy — the obligations the machine enforces — is admitted
+by humans, heavily: proposal by merge request, "several rounds of feedback from an increasingly broad
+group of reviewers," final approval by a named domain owner [E26], and a separate human promotion step
+from advisory to blocking [E27]. The most machine-forward admission posture in the corpus sits atop the
+most human-forward policy-admission process — and the promotion actor is still unnamed ([GAPS] 1).
+
+**[C34]** Cloudflare is the only case in the eight-site corpus that grants a *probabilistic* evaluator
+blocking admission authority — the coordinator's verdict maps directly onto the VCS action [E27a] — and
+the grant is engineered around rather than assumed: bounded by corpus scoping (only enforced MUSTs block
+[E27]), by an approval-biased rubric [E27a], and by a logged, measured human override [E27b]. Elsewhere
+in the corpus, blocking power is reserved for deterministic or execution-based checks and probabilistic
+review stays advisory. The instrumented bound covers only the false-block direction (see [GAPS] 12a).
+`[E27] [E27a] [E27b]`
+
 ### How experience changes the factory
 
 **[C24]** **The book's current claim that Cloudflare "shows much less… of failures being converted into
@@ -683,6 +698,11 @@ Explicit silences. None of the following is inferable from the sources; all are 
    ("60+ and counting"); nothing describes removal, deprecation, or a rule found not to pay for itself.
 4. **What happens when a domain owner and a reviewer agent disagree**, or how a false-positive block is
    contested other than by `break glass`.
+4a. Whether the coordinator's `POST /approve` [E27a] satisfies the merge-approval requirement alone —
+    i.e., whether an ordinary merge request with a clean verdict can merge with **no** human review at
+    all, or whether a human approval is additionally required by repository policy — is **not publicly
+    stated**. [E29d]'s "requiring additional manual reviews" applies to flagged divergences, not to the
+    clean case.
 
 **The deterministic/semantic split — the brief's central question**
 
@@ -710,6 +730,18 @@ Explicit silences. None of the following is inferable from the sources; all are 
     measuring false-positive rates, or revising prompts in response. [E30] places this in the future.
 12. **Snapstone's enrolment rate is unreported.** How many configuration units were brought in, by whom,
     on what trigger. `[E29c]`
+12a. **No false-pass instrument.** The `break glass` count [E27b] measures forced approvals — the
+     false-*block* channel of the machine-held gate. No published measurement addresses the
+     false-*pass* channel: violations of enforced MUST statements that the reviewer failed to flag.
+     The gate's calibration record is one-sided; whether any missed-violation audit exists is not
+     publicly stated.
+12b. **Consequence containment for code is unestablished.** Snapstone's health-mediated deployment is
+     described for *configuration* units [E29c], and the Fail Small programme's controlled rollouts
+     concern configuration changes [E28]. Whether any analogous blast-radius mechanism (staged
+     rollout, health-mediated deploy, rollback discipline) governs ordinary *code* changes admitted by
+     the AI reviewer [E27a] is not publicly stated. The reviewer record documents detection up to the
+     merge gate and post-production review of incident *reports* [E9][E27c]; it should not be read as
+     containment of admitted changes.
 
 **The governed system**
 
@@ -718,6 +750,11 @@ Explicit silences. None of the following is inferable from the sources; all are 
 14. **No traceability join between an obligation and the code it governs.** Applicability is decided by an
     LLM at review time, not by a mechanical model↔implementation link.
 15. **No drift gate over agent edits** of any kind.
+15a. **How the Backstage system model is kept current is not publicly stated.** [E17] gives the
+     catalog's contents and its purpose ("Without this structured data, agents are working blind"); no
+     source describes how entries are created or refreshed, whether ownership mappings are validated,
+     or how a stale catalog entry is detected. The one freshness control described anywhere in the
+     record governs AGENTS.md files [E32], not the catalog.
 
 **Economics and effect**
 

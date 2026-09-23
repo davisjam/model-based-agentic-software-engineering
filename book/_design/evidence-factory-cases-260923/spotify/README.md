@@ -409,7 +409,10 @@ the case's most distinctive causal claim.** Spotify asserts both directions:
 consistent code makes the agent better ("in our more fragmented codebases, agent
 performance is measurably worse" [E63]), and the Scio abandonment [E43] is the
 negative instance — a corner of the estate too heterogeneous to prompt against,
-where the factory withdrew rather than degrade. The retrospective diagnoses the
+where the factory withdrew rather than degrade. The measurement behind
+"measurably" is claimed and not published — no metric, sample, or comparison
+appears in any source — so the causal claim is asserted with a measurement
+claimed, not shown. The retrospective diagnoses the
 failure as an *estate* defect: consolidate the data landscape, and "enforce
 requirements for testing and validation across repositories so that agents like
 Honk can verify their work in an automated fashion." [E47] The QCon framing makes
@@ -465,6 +468,16 @@ The book should treat this as one of the corpus's few documented *retirements* o
 a control, and should note that the retirement is reported only second-hand and
 is not corroborated or dated in first-party text. [GAP-6]
 
+**[C34]** The judge's retirement, if accurate as reported, moved the
+scope-adherence obligation *from* an independent evaluator *back into the
+generator's own instructions* — "verification steps in prompts proving
+sufficient" [E51] — the only documented movement in this corpus from independent
+evidence toward producer self-report. The deterministic verifiers, which read the
+artifact independently and gate PR existence [E36][E37][E52], were retained. The
+asymmetry of what was kept and what was retired is itself evidence about which
+evaluator kind the factory trusted. Second-hand and uncorroborated first-party;
+see [GAP-6]. `[E36] [E37] [E38] [E51] [E52]`
+
 **[C20]** **Quality is only as strong as the estate's test coverage, and Spotify
 says so.** The pre-agent system stated the dependency outright — automatic
 admission "requires that changes can be automatically verified" and rests on test
@@ -499,7 +512,9 @@ build a PR inbox, consider automerge *for documentation changes*, standardize th
 codebase. [E54] The dataset case confirms human merge for that migration. [E44]
 **The book should not read Spotify's 2.5M-PR automerge posture as covering the
 agentic subset; the record distinguishes them and the aggregate figure does not
-decompose.** [GAP-4]
+decompose.** [GAP-4] Note the evidentiary shape: the bottleneck naming is
+asserted by the speakers [E53], not measured — no review-latency or review-load
+figure appears anywhere in the Spotify record.
 
 **[C24]** The aviation analogy the speakers themselves reach for — "pilots
 monitoring automated systems perform the hardest job" [E53] — is §5.1's
@@ -515,6 +530,14 @@ the Goose Farm dashboard shows live sessions [E62]; Soundcheck compliance scores
 update as PRs land [E72]. The supervisory surface is migration-state and
 exception-flagging — §5.1's "plans, production state, measurements, alarms,
 exceptions" — with the artifact reachable but not the default view.
+
+**[C33]** Spotify's factory artifacts are admitted through ordinary human code
+review while its deterministic product changes automerge: the shift resource is
+"stored as a YAML file in a GitHub repo just like any other code… making pull
+requests, getting code reviews" [E22], and prompts are version-controlled and
+tested [E33] — while the maintenance changes those artifacts drive merge with no
+human in the loop [E14] [E56]. The admission regime for changing the factory is
+*stronger* than the regime for the changes the factory produces.
 
 ### How experience changes the factory
 
@@ -572,6 +595,29 @@ product** — §5.1's reframing is Spotify's operating model: "Instead of perfor
 10,000 small ones?" and weekly repaving of >75% of production. [E7][S1] The
 estate is continuously rewritten rather than periodically upgraded.
 
+**[C35]** The Spotify record documents a three-step technique frontier ordered by
+estate homogeneity, productized as an explicit mode switch: deterministic shifts
+for well-defined changes [E72]; agentic mode for complex, varied changes — the
+residual 30% and the corner cases that grew a deterministic updater to 20,000
+lines [E25][E50][E72]; and withdrawal where estate variance defeats prompting —
+the Scio decision [E43]. The frontier's driver, in Spotify's own diagnosis, is
+variance across the estate, not per-repo difficulty [E43][E47][E63].
+
+**[C36]** Spotify's post-admission containment layer — cohorted rollout gated on
+prior-cohort deployment health [E20], Firewatch correlation and author-alerting
+[E19], rate-limited working-hours merges [E14][E15], and the 2026 expansion of
+rollback capacity [E75] — predates the agent: [E19] and [E20] are documented in
+2023, before Honk existed. The containment machinery bounding what an admitted
+change can do in production is inherited reliability engineering, not agent
+governance.
+
+**[C37]** The only cost the record attaches to the pre-agent technique is
+complexity, not money: the deterministic Maven updater's corner-case handling
+grew past 20,000 lines of transformation script [E25], which is the stated reason
+the agent replaced it. No monetary figure appears for either the deterministic or
+the agentic technique [GAP-11], so the substitution's economics are argued from
+maintainability, not measured cost.
+
 ---
 
 ### [GAPS] — what the public record does not answer
@@ -581,7 +627,9 @@ conversational origination [E29][E67] but never says whether Slack-initiated
 Honk PRs go through the same verifiers, the same targeting model, or the same
 merge policy as migration shifts, nor who reviews them. Given that "hundreds of
 developers now interact with our agent" [E27] and product managers use it [S4],
-this is a material silence.
+this is a material silence. Marker: **not publicly stated** — no source describes
+any verification, targeting, or merge policy for Slack-initiated Honk PRs; the
+silence is complete rather than a conflict.
 
 **[GAP-2] The denominator.** Every agent quantity is a numerator: 1,500+ merged
 [E27], 3,000+ merged [E48], 1,000 per 10 days [E49]. Spotify never publishes how
@@ -601,7 +649,11 @@ is not published anywhere in the record.
 deterministic shifts. Nothing states the automerge policy for Honk output; the
 review-bottleneck framing [E53][E54] implies human review is the norm, and
 automerge for documentation changes is discussed as prospective [E54]. The
-record does not decompose the aggregate.
+record does not decompose the aggregate. Marker: **unclear**, not silence.
+Sources exist — [E53]/[E54] frame human review as the norm and automerge for
+documentation changes as prospective; [E56]'s 2.5M automerge figure is an
+undecomposed aggregate — but no source states the automerge policy for Honk
+output, so the sources underdetermine rather than omit the answer.
 
 **[GAP-5] What "review" of a fleet-scale agent PR actually consists of.** Spotify
 notes the hazard directly — with changes "over thousands of components, these
@@ -613,7 +665,14 @@ what evidence they are shown, and whether sampling is used are not described.
 appears only in third-party reporting of a talk [E51] and directly contradicts a
 first-party post from three months earlier [E38]. No first-party account
 acknowledges the removal, dates it, or reports what scope-adherence signal
-replaced it beyond "verification steps in prompts."
+replaced it beyond "verification steps in prompts." Marker precision: the judge's
+current status is **unclear** (conflicting sources — [E38], first-party,
+2025-12-09, describes it in operation with measured veto/self-correct rates;
+[E51], third-party report of a first-party talk, 2026-03-18, reports it removed —
+the two conflict unless time-ordered, and no first-party source confirms, dates,
+or explains the removal), while the removal's date, criterion, and decision
+process are **not publicly stated**. The two markers are different findings and
+should not be merged when citing this gap.
 
 **[GAP-7] What happened in the failed dependency upgrade.** The one reported
 fleet-automation production failure [E75] gives no date beyond "this year," no
@@ -661,6 +720,26 @@ frequency" [E57]) appear in a talk write-up with no population, instrument,
 period, or definition of "AI coding tools." The 76% PR-frequency figure in
 particular is not separable from the automated-PR volume that Fleet Management
 already generated.
+
+**[GAP-14] Whether Slack-originated Honk PRs pass the pre-PR verification gate.**
+[GAP-1] records that the Slack path's governance is undescribed; specifically, no
+source states whether the stop-hook verifier requirement [E37] and the
+verification-runtime precondition on PR creation [E52] apply to conversationally
+originated work, or only to migration shifts. Not publicly stated.
+
+**[GAP-15] Control retirement machinery.** The judge's reported removal [E51] is
+an event, not a process: no Spotify source describes a criterion, review, or
+owner for deciding that any verification control (verifier, judge, gate) has
+stopped earning its cost. The record documents controls being added and
+strengthened [E35][E36][E37][E75]; a retirement mechanism is not publicly stated.
+
+**[GAP-16] How the authored layer of the estate model is kept true.** The derived
+layer is documented as re-ingested (code, configuration, and infrastructure into
+BigQuery [E4]; targeting tables refreshed daily [E13]). The authored layer —
+Backstage component entries, ownership, lineage edges, Soundcheck standards — has
+no publicly stated maintenance mechanism: no source says how a stale catalog
+entry or lineage edge is detected or corrected, for a factory whose targeting and
+automerge machinery consume that layer directly [E41][E20].
 
 ---
 

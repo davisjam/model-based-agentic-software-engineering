@@ -54,16 +54,55 @@ read directly from the downloaded PNG assets instead.)
 
 | Org | File | Lines | Sources | Evidence items | Claims |
 |---|---|---|---|---|---|
-| Uber | `uber/README.md` | 341 | 12 | 47 | 30 |
-| Cloudflare | `cloudflare/README.md` | 744 | 13 | 65 | 32 |
-| Spotify | `spotify/README.md` | 742 | 16 | 81 | 32 |
-| Shopify | `shopify/README.md` | 278 | 14 | 53 | 32 |
-| Siemens | `siemens/README.md` | 220 | 14 | 49 | 31 |
-| Zenseact | `zenseact/README.md` | 520 | 12 | 41 | 16 |
-| GitLab | `gitlab/README.md` | 686 | 25 | 59 | 36 |
+| Uber | `uber/README.md` | 357 | 12 | 47 | 34 |
+| Cloudflare | `cloudflare/README.md` | 781 | 13 | 65 | 34 |
+| Spotify | `spotify/README.md` | 821 | 16 | 81 | 37 |
+| Shopify | `shopify/README.md` | 287 | 14 | 53 | 34 |
+| Siemens | `siemens/README.md` | 224 | 14 | 49 | 31 |
+| Zenseact | `zenseact/README.md` | 542 | 12 | 41 | 17 |
+| GitLab | `gitlab/README.md` | 738 | 25 | 59 | 39 |
 
-(Counts are unique ids per file, counted mechanically on 2026-09-23; sub-lettered items
-such as `E27a` count separately. Total: ~3,500 lines, ~395 evidence items, 209 claims.)
+(Counts are unique ids per file, counted mechanically; sub-lettered items such as `E27a`
+count separately. Total: ~3,750 lines, ~395 evidence items, 226 claims. Line and claim
+counts were re-counted after the second pass's §E addenda landed on 2026-09-23; the pass
+added `[C]` and `[GAPS]` entries only, so the evidence and source columns are unchanged.)
+
+## Second analytical pass — 2026-09-23
+
+The seven files above are the crawl. On the same day a **second pass** read them as a
+corpus rather than one at a time, and its output is
+`book/_design/drafts/case-analysis-pass2-260923/` (four cluster files plus a ruling
+SYNTHESIS). It ran as four question-clusters — authority and admission; obligations and
+evidence; specification and failure; correspondence and economics — over the seven cases
+**plus DocAble (§5.2) as an eighth comparator**, so a distinction could be tested against a
+factory whose internals the book documents from the inside.
+
+**The discipline rule.** A distinction was recorded only if either (a) two cases differed on
+it and both sides carried `[E]` ids, or (b) one source called the difference consequential in
+its own voice. A distinction that could be drawn but that no case varied, and that no source
+named, was dropped. The clusters' "considered and dropped" sections record what that rule
+killed.
+
+**Silence stayed separate from absence.** Throughout the pass, "**not publicly stated**"
+(the crawl looked and the record is silent) and "**unclear**" (sources exist but conflict or
+underdetermine) are distinct findings and are never collapsed into one phrasing. Several of
+the addenda below exist only to mark which of the two an existing gap actually is.
+
+**What the pass changed in the book.** Its §B found four passages in §5.1–§5.4 asserting
+something the evidence contradicts; all four landed in §5.3 on 2026-09-23. Briefly: the
+shared-baseline paragraph grounded all human retention at admission in evidence adequacy,
+which is Uber's framing alone (Shopify's is responsibility-grounded, Siemens' compliance-
+grounded); the chapter said conversion's effect "is measured nowhere" five paragraphs after
+saying Shopify measured it "with the counterfactual controlled"; GitLab's withheld-Approve
+construction was generalized past the one flow that documents it; and Uber's PR evidence
+table was presented without noting the producing agent assembles it. A reader wondering why
+those sentences read as they now do should start at §B of the SYNTHESIS.
+
+Its §E supplied the per-org addenda applied to the seven files in the same pass — new
+`[GAPS]` entries, amendments where an existing claim over- or understated its evidence, and
+new `[C]` claims. Ids were **appended, never renumbered**, so every citation written before
+2026-09-23 still resolves. §A's remaining distinctions are routed but deliberately **not**
+folded into the chapter; they await the author's ruling.
 
 ## Standing instruction
 

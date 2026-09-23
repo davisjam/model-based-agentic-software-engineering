@@ -537,11 +537,25 @@ published routing rule between the two kinds of control. [E23]
 CI enforcement — including a CI job that fails if `AGENTS.md` and `CLAUDE.md` drift out of sync.
 The instructions to the fabricator are themselves a governed artifact. [E15]
 
+**[C38]** The test-count guard's override is a per-change, in-band, visible artifact: the CI job
+fails "if test count decreases without a `skip-test-count-check` label" [E6]. The escape from the
+mechanical control is itself recorded on the merge request it excuses.
+
+**[C39]** GitLab's routing rule between deterministic and probabilistic checking states a *cost*
+criterion, not a consequence criterion: "If RuboCop, or Danger can catch it deterministically, let
+them — it's cheaper, faster, and raised directly in the IDE," with AI review reserved for "things
+that require judgement or context to evaluate" [E23]. Contrast organizations that draw the same line
+by consequence class; the criterion, not the move, is what varies across the corpus. `[E23]`
+
 ### Who or what holds admission authority
 
-**[C24]** In every documented GitLab flow, admission authority is human and is expressed as a
-withheld capability rather than a recommendation: "The flow never sets the Approve state, even when
-it finds no issues." A machine may produce, repair, and advise; only a person approves. [E51]
+**[C24]** In the one flow whose approval posture is documented, admission authority is human and is
+expressed as a withheld capability rather than a recommendation: the Security Review Flow "never
+sets the Approve state, even when it finds no issues" [E51]. Whether the same prohibition governs
+the Code Review Flow — and whether it is a platform invariant or a per-flow choice — is unclear: the
+Code Review Flow page states neither that it can approve nor that human review remains required
+[E52], and the only flat all-flows statement is third-party [E54] (see [GAPS] 7). A machine may
+produce, repair, and advise; only a person approves. [E51]
 
 **[C25]** Agent action is nonetheless given an identity that can hold authority-relevant limits.
 Composite identity binds a service account to the triggering human and evaluates the *more
@@ -567,12 +581,19 @@ self-serving — GitLab sells the remedy — but it states the factory-in-a-box 
 the vendor can ship the machinery and the evidence, and cannot ship the capacity to judge.
 [E57] [E58]
 
+**[C37]** GitLab runs two admission granularities simultaneously rather than alternatively: a
+per-tool-call policy lattice (Always Allow / Ask / Deny, Owner-held, tightenable only [E49] [E50])
+*and* a per-change human approval boundary ([E51], [E17]). The tool-call layer governs what an agent
+may do; the change layer governs what may land; neither substitutes for the other.
+
 ### How experience changes the factory
 
 **[C29]** GitLab describes a closed learning loop in which the *instructions* are the learning
 substrate: the agent is permitted to update `AGENTS.md` and skills when it finds a better way, and a
 session learning log accumulates "every non-obvious thing the agent had to learn" so "it doesn't
-make the same mistake twice." Episode knowledge becomes inherited structure. [E11]
+make the same mistake twice." Episode knowledge becomes inherited structure. [E11] Whether those
+self-updates receive review before taking effect is not publicly stated ([GAPS] 13) — the playbook
+that mandates CI gates for code prescribes no gate for the instructions.
 
 **[C30]** Maintenance of that structure is itself automated on a cadence: weekly TODO scans, weekly
 doc-freshness checks, a "Ralph pattern" agent loop that diffs docs against code and opens
@@ -658,7 +679,11 @@ service is the one only the customer can author.
    approval prohibition explicitly [E51]; the Code Review Flow page states neither that it can
    approve nor that human review remains required [E52]. The only flat statement that a maintainer
    must approve every change is third-party [E54]. Whether the prohibition is a platform invariant
-   or a per-flow choice is **not established by the public record**.
+   or a per-flow choice is **not established by the public record**. Marker: **unclear**, not
+   silence. [E51] states the prohibition for the Security Review Flow first-party; [E54] states the
+   general constraint third-party; [E52] records that the Code Review Flow page states neither. The
+   sources underdetermine whether the approve-prohibition is a platform invariant or a per-flow
+   choice.
 
 8. **Governance for Agents was private beta at announcement** [E35] and no public documentation of
    its policy language, evaluation semantics, or enforcement points was located. What "policy" can
@@ -683,3 +708,30 @@ service is the one only the customer can author.
     last-modified date on the fetched content [S10]–[S18], [S21]–[S23], [S25]. For a book that
     distinguishes 2024 from 2026 claims, these are dated only by access (2026-09-23) and, where
     available, by an in-page "Introduced in GitLab <version>" note.
+
+13. [E11] recommends letting an agent "update its own instructions" so "the next session starts with
+    improved context." Whether such self-updates pass through merge-request review, any other gate,
+    or take effect immediately is **not publicly stated**.
+
+14. **Whether the `devex-ai-assistance` provenance label is enforced.** [E20] states the expectation
+    ("we expect every merge request author to apply…") and [E21] its rationale; whether any
+    mechanism gates a merge on the label's presence, or whether it is a stated norm only, is not
+    publicly stated.
+
+15. **No post-admission containment account.** The record documents action-phase bounds (composite
+    identity evaluated at the more restrictive role [E47]; tool-call allow/ask/deny with
+    stricter-only overrides [E49][E50]) and pre-merge gates [E5][E6][E17], but nothing describes how
+    a *merged* agent-authored change is rolled back, feature-gated, or progressively deployed — at
+    GitLab or at any customer. Not publicly stated.
+
+16. **No control-lifetime account.** The record documents controls being installed and tightened —
+    the maturity-gated autonomy ladder [E2][E9], tool policy that a project "can only be equal to or
+    stricter than" its group [E50] — and no instance of a control weakened or retired as agent
+    capability improved. Not publicly stated.
+
+17. **Orbit's freshness guarantee is not publicly stated.** CDC ingestion [E29] and the 45-minute
+    full-index figure [E33] describe capability, not an operating bound: no source states the
+    staleness the graph may accumulate between a change landing and an agent reading it, or whether
+    staleness is measured. Combined with default-branch-only indexing [E44] and the AGENTS.md
+    non-propagation rule [E38], the age of what a fabricator actually reads at any moment is
+    unclear.
