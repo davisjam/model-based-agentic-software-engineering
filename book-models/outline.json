@@ -7,7 +7,7 @@
     "derived_ids": 200,
     "missing_topic_sentence": 4,
     "sections_drained": 148,
-    "paragraph_points": 731
+    "paragraph_points": 733
   },
   "chapters": [
     {
@@ -3591,37 +3591,42 @@
           "heading_text": "Process Design and Tolerance",
           "topic_sentence": "DocAble's emphasis on tolerance was partly a consequence of the problem that produced it.",
           "id_source": "derived",
-          "block_index": 4,
+          "block_index": 6,
           "points": [
             {
               "slug": "docables-tolerance-emphasis-followed-from-its-circumstances",
               "text": "DocAble's emphasis on tolerance followed from its circumstances: accessibility supplied external legal obligations, and one engineer with no spare humans to inspect agent output had little process to design and every reason to encode requirements precisely.",
-              "block_index": 5
+              "block_index": 7
             },
             {
               "slug": "commercial-factories-emphasize-process-because-agents-work-inside-organizations",
               "text": "Commercial agents work inside large engineering organizations where work moves among people, authority must be bounded, and changes enter systems many people maintain, so those factories emphasize process design; the difference is where the visible machinery is concentrated.",
-              "block_index": 7
+              "block_index": 9
             },
             {
               "slug": "industrial-factories-have-tolerance-machinery-but-much-intent-stays-in-natural-language",
               "text": "Tests, static checks, simulators, benchmarks, and policy predicates are genuine tolerance machinery, but much of the intent in the public accounts stays in natural language, which does not itself provide a machine-checkable boundary around acceptable realizations.",
-              "block_index": 9
+              "block_index": 11
             },
             {
               "slug": "mage-represents-the-obligation-rather-than-the-checking-technique",
               "text": "DocAble's tolerance is distinctive: MAGE represents the consequential property explicitly and uses Alignment to maintain correspondence with the realized system, so the tolerance is the represented obligation rather than any particular checking technique, which permits tighter tolerances than instructions or isolated checks alone.",
-              "block_index": 12
+              "block_index": 14
+            },
+            {
+              "slug": "externalized-knowledge-carries-its-own-maintenance-burden",
+              "text": "The representations a factory uses become part of its maintenance burden — GitLab, Cloudflare, and Shopify all describe machinery for keeping inherited context current — so externalizing engineering knowledge exchanges repeated judgment for the carrying cost of production structure, and whether the exchange pays depends on reuse and upkeep.",
+              "block_index": 16
             },
             {
               "slug": "process-design-and-tolerance-respond-differently-to-a-better-fabricator",
               "text": "Process design encodes assumptions about how production must proceed, which a better fabricator can change; tolerances describe properties the product must preserve, which a better fabricator does not change.",
-              "block_index": 14
+              "block_index": 18
             },
             {
               "slug": "mage-concentrates-on-the-tolerance-side-of-the-factory",
               "text": "MAGE concentrates on the tolerance side and does not prescribe a general process, so the distinction is not between factories that have tolerances and factories that do not, but between ways of representing them, establishing them, and making them consequential.",
-              "block_index": 16
+              "block_index": 20
             }
           ]
         },
@@ -3631,22 +3636,22 @@
           "heading_text": "The Engineer in the Factory",
           "topic_sentence": "In both aspects of factory engineering, human engineers use their judgment to decide what the production system should carry.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 22,
           "points": [
             {
               "slug": "both-problems-require-judgment-that-shapes-later-production",
-              "text": "Both problems require human judgment — about decomposition, information, authority, review, and admission on one side, and about which properties are consequential and what evidence establishes them on the other — exercised once so it shapes subsequent production.",
-              "block_index": 19
+              "text": "Both problems require human judgment — about decomposition, information, authority, review, and admission on one side, and about which properties are consequential and what evidence establishes them on the other — exercised once so it shapes subsequent production, with the industrial cases showing the leverage directly.",
+              "block_index": 23
             },
             {
               "slug": "agents-sit-outside-the-accountability-mechanisms-that-delegate-judgment-to-people",
               "text": "Organizations delegate judgment to people partly through incentives and accountability, and agents sit outside every one of those loops, so the human engineer decides which decisions may remain with the agent and which need stronger control through the production system.",
-              "block_index": 21
+              "block_index": 25
             },
             {
               "slug": "tolerance-preserves-control-without-specifying-the-realization",
               "text": "A tolerance preserves engineering control without specifying the realization: the engineer names the consequential property and the evidence required for it, and the agent keeps the remaining degrees of freedom.",
-              "block_index": 23
+              "block_index": 27
             }
           ]
         },
@@ -3656,27 +3661,27 @@
           "heading_text": "Factories Inside and Outside the Organization",
           "topic_sentence": "The cases also differ in who supplies the factory.",
           "id_source": "derived",
-          "block_index": 25,
+          "block_index": 29,
           "points": [
             {
               "slug": "the-cases-differ-in-who-supplies-the-factory",
               "text": "The cases differ in who supplies the factory: some are internal production systems whose owners engineer the machinery their agents work through, while others move toward a reusable factory in a box supplied to organizations the provider does not own.",
-              "block_index": 26
+              "block_index": 30
             },
             {
               "slug": "every-factory-joins-capability-to-organization-specific-intent",
               "text": "Every software factory must join productive capability to organization-specific engineering intent; an internal factory builds that connection directly, and a factory in a box must solve the same problem across an organizational boundary.",
-              "block_index": 28
+              "block_index": 32
             },
             {
               "slug": "a-provider-cannot-know-which-properties-are-consequential",
               "text": "A provider can supply agents, orchestration, context, execution, permissions, evidence infrastructure, and generic controls, but cannot know which properties of a customer's software are consequential, so the customer's engineering knowledge must enter generic production machinery.",
-              "block_index": 30
+              "block_index": 34
             },
             {
               "slug": "joining-capacity-to-control-remains-an-open-design-space",
               "text": "How a factory in a box exposes machinery for process design, for product tolerances, or for both remains an open design space; the narrower point is that productive capacity and engineering control need not come from the same place.",
-              "block_index": 32
+              "block_index": 36
             }
           ]
         }
@@ -3688,9 +3693,14 @@
           "block_index": 0
         },
         {
+          "slug": "production-capacity-and-supervisory-capacity-need-not-grow-together",
+          "text": "The comparison also exposes a constraint: the capacity to produce changes and the capacity to supervise and verify them need not grow together, as Uber, Spotify, Cloudflare, and Shopify each show, so process design includes the allocation of scarce supervisory capacity and not only the organization of realization.",
+          "block_index": 2
+        },
+        {
           "slug": "process-design-and-tolerance-are-both-problems-of-factory-engineering",
           "text": "Process design determines how production proceeds and tolerance determines what variation in the product is acceptable; both are problems of factory engineering, and the cases show how differently a factory can distribute its effort between them.",
-          "block_index": 2
+          "block_index": 4
         }
       ]
     },
