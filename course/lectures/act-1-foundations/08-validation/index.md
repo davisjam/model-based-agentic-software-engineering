@@ -77,7 +77,7 @@ Scope and evidence mechanism are independent choices. Engineers can obtain evide
 
 No mechanism simply establishes that the software is correct. Each observes or reasons about different aspects of the system and leaves different uncertainty behind.
 
-Dynamic testing introduces another choice: the validation strategy. Executing a program is usually cheap; deciding whether the result is correct can be difficult. The available oracle determines which testing strategies can practically search the input space. Example-based testing supplies known expected answers. Property-based testing states a property over many generated inputs. Metamorphic testing checks relationships among executions. Differential testing compares independently developed implementations. Fuzzing uses weak oracles such as crashes, hangs, and assertion failures to search enormous spaces of unusual inputs.
+Dynamic testing introduces another choice: the validation strategy. Executing a program is usually cheap; deciding whether the result is correct can be difficult. The available oracle determines which executions can practically be searched. Example-based testing supplies known expected answers. Property-based testing states what should hold across generated executions; sometimes the useful property relates several executions, such as how an image operation should behave after its input is rotated. Differential testing obtains an oracle by comparing independently developed implementations. Fuzzing uses weak failure signals such as crashes, hangs, and assertion failures to search enormous spaces of unusual inputs.
 
 Choose the strategy for the uncertainty you need to reduce.
 

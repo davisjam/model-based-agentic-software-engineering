@@ -263,10 +263,10 @@ evidence that ordinary examples cannot.
 Validation techniques can then be understood as solutions to recurring evidence problems. Fuzzing
 is useful when engineers can cheaply search many executions and recognize some failures with a weak
 oracle. Property-based testing is useful when individual expected results are expensive to
-enumerate but a property can be stated across a class of executions. Metamorphic testing is useful
-when individual answers are unavailable but relationships among executions are known. Model
-checking is useful when reasoning over possible modeled behaviors can establish something that
-sampling executions cannot.
+enumerate but a property can be stated across a class of executions, including a property that
+relates one execution to another when no individual answer is available. Model checking is useful
+when reasoning over possible modeled behaviors can establish something that sampling executions
+cannot.
 
 Learning these techniques matters, but knowing how to perform them does not determine which
 evidence an engineering decision requires. What engineers need to know determines which techniques
@@ -456,26 +456,26 @@ determining what each execution should produce. Validation strategies differ par
 solve this *oracle problem*: where the judgment that distinguishes acceptable from unacceptable
 behavior comes from (@tbl-validation-strategies).
 
-| Strategy | What it searches | Where the oracle comes from |
-|---|---|---|
-| Example-based | Cases the engineer judged important | A known expected result, stated case by case |
-| Property-based | Generated inputs across a class | One property stated over the whole class |
-| Metamorphic | Related executions of the same system | A relation that must hold among them, even when no single answer is known |
-| Differential | Inputs on which independent implementations disagree | An independently developed implementation |
-| Fuzzing | Large, unusual, and malformed input spaces | A weak failure signal: a crash, a hang, an assertion failure |
+| Strategy | Oracle |
+|---|---|
+| Example-based | Expected result for a chosen input |
+| Property-based | Property that generated executions must satisfy, possibly relating several executions |
+| Differential | Agreement with an independent implementation |
+| Fuzzing | Failure signal such as a crash, hang, or failed assertion |
 
 : Validation strategies, ordered by where the oracle comes from. {#tbl-validation-strategies}
 
-The progression is worth stating plainly: an explicit answer, then a property, then a relation,
-then an independent implementation, then a weak failure signal. Each step gives up something about
-knowing the right answer and buys search in return. Example-based testing is direct and cheap when
-the important cases and their expected outcomes are known, and silent about every case not
-selected. Property-based testing trades hand-picking examples for the harder work of stating what
-should be true in general. A metamorphic relation asks less still: it needs only that two
-executions stand in a stated relationship, which is why it reaches systems whose individual outputs
-no one can predict. Differential testing is valuable exactly when the correct answer is expensive
-to state case by case. Fuzzing exposes robustness failures cheaply while saying little about
-functional correctness.
+Example-based testing requires an expected result for each test. This works well when important
+cases are known and their answers are easy to state. When they are not, a property can provide the
+oracle instead. For example, an engineer may not know the correct edge map for an arbitrary image,
+but may know that rotating the image before edge detection should have the same effect as rotating
+the resulting edge map. Properties that relate multiple executions in this way are often called
+metamorphic relations.
+
+Other strategies obtain an oracle differently. Differential testing compares the results of
+independent implementations. Fuzzing often uses much weaker signals, such as crashes, hangs, or
+failed assertions. The choice depends on what failures must be found and what can be said about
+correct behavior.
 
 The strategies are not ranked, and they combine. Fuzzing can drive a property-based oracle;
 differential comparison can supply the oracle for generated inputs. Strategy is also independent of
