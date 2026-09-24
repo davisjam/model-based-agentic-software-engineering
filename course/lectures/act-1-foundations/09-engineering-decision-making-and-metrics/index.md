@@ -29,7 +29,9 @@ materials:
 
 Engineers expect to be wrong sometimes. Our models are incomplete, our evidence is finite, and consequential decisions often must be made before their outcomes can be observed. Engineering cannot eliminate that uncertainty. It can reduce how often we are wrong, make the remaining uncertainty explicit, and improve the basis on which we act.
 
-The premise separates a decision from its outcome. A good decision can produce a bad outcome: engineers may choose the alternative best supported by the available evidence and still encounter a condition they could not reasonably have predicted. Conversely, a poorly justified decision can succeed through luck. We should learn from both outcomes without judging the quality of the original decision solely by what happened afterward.
+The premise separates a decision from its outcome. A good decision can produce a bad outcome: engineers may choose the alternative best supported by the available evidence and still encounter a condition they could not reasonably have predicted. But incomplete evidence does not excuse every surprise. Risk management asks what consequential uncertainty remains, what could happen if our understanding is wrong, and which risks can responsibly be accepted rather than investigated, reduced, or avoided. Ignoring a recognizable uncertainty is different from encountering one that could not reasonably have been anticipated.
+
+Conversely, a poorly justified decision can succeed through luck. We should learn from both outcomes without judging the quality of the original decision solely by what happened afterward. Judge the decision by the justification available at the time, including how responsibly it treated what remained unknown.
 
 The engineering problem therefore has two complementary questions:
 
@@ -53,6 +55,8 @@ The first task is to identify the decision clearly enough to ask: *what conseque
 Engineering decisions often precede their consequences: we choose an architecture before observing the completed system's behavior, accept a requirement before knowing what satisfying it will cost, deliver before observing every condition the deployed system will encounter.
 
 Models let us reason across that gap. A process model identifies certainty, changeability, and decomposability as properties relevant to arranging work. A specification represents obligations and environmental assumptions. An architectural model represents responsibilities, boundaries, interactions, and predicted system properties. A design model represents the consequential tradeoffs among mechanisms. The model does not make the decision; it identifies the relationships we believe matter and lets us reason about their consequences.
+
+The model need not be formal, or even explicitly called a model. An equation, diagram, rule of thumb, causal belief, or assumed relationship can play this role in a decision. An engineer who expects a larger cache to reduce latency is already relying on a model of the relationship between cache size and system behavior. Making that model explicit can make its assumptions easier to examine, but the reasoning depends on it whether or not anyone gives it a name.
 
 Engineering decision-making therefore has a recurring structure:
 
@@ -78,11 +82,15 @@ Suppose an architectural model bounds an end-to-end request path at 500 millisec
 
 Measure at the scope where the property exists. Component latency does not establish end-to-end latency when composition contributes additional delay; commit counts do not establish engineering productivity; requirements churn does not by itself distinguish productive learning from poor requirements work. Every metric represents some aspects of reality and omits others.
 
+That reduction is also why one property may require several metrics. Suppose a team wants evidence that a subsystem is ready for integration. A falling defect count provides one view, while unresolved test observations and failures escaping earlier test stages provide others. No one measurement establishes readiness. Together they can expose aspects of the property that another measure leaves out.
+
+More measurements do not automatically provide stronger evidence. Several metrics may depend on the same assumption, observe the same behavior, or share the same blind spot. Evidence becomes stronger when the measurements are complementary: they bear on different aspects of the consequential claim or reach it through meaningfully different observations. The objective is not a larger dashboard. It is enough independent evidence to support the decision.
+
 ## What should we do?
 
 Evidence informs judgment; it does not replace it. Two engineers can possess the same measurement and rationally decide differently, because the consequences, remaining uncertainty, reversibility, or evidentiary burden differ. That measured 420 milliseconds against a 500-millisecond bound may be comfortable evidence under one workload and weak evidence under another, and the same unresolved uncertainty might be acceptable in a game and unacceptable in a medical device.
 
-Metrics can also mislead when engineers forget what they represent. A **misleading proxy** substitutes something observable for the property actually at issue. **Goodhart's Law** names a second danger: once a measurement becomes a target, people and systems can optimize the measurement rather than the property it was intended to represent.
+Individual metrics and collections of metrics can mislead when engineers forget what they represent. A **misleading proxy** substitutes something observable for the property actually at issue. **Goodhart's Law** names a second danger: once a measurement becomes a target, people and systems can optimize the measurement rather than the property it was intended to represent.
 
 Engineering judgment therefore returns to the first of the two questions: given what we know now, what should we do? The answer may be to proceed, choose another alternative, gather more evidence, change the system, revise the model, or decline to act; evidence is valuable insofar as it changes the justification for one of those actions.
 
