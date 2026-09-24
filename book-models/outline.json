@@ -4122,13 +4122,13 @@
           "section_id": "software-engineering-changes-the-problem",
           "level": 3,
           "heading_text": "Software engineering changes the problem",
-          "topic_sentence": "The analysis so far asks what happens when repeated attempts face the same realization problem.",
+          "topic_sentence": "The analysis so far uses a simplification to isolate repeated probabilistic exposure: if consequential judgments have some probability of success and successive exposures are treated as independent, their joint probability of success falls as the number of exposures grows.",
           "id_source": "derived",
           "block_index": 213,
           "points": [
             {
               "slug": "part-v-model-isolated-exposure-under-fixed-conditions",
-              "text": "Chapter 5's model deliberately isolated repeated probabilistic exposure under fixed conditions.",
+              "text": "The simple models deliberately isolated repeated probabilistic exposure under fixed conditions.",
               "block_index": 214
             },
             {
@@ -4382,7 +4382,7 @@
         },
         {
           "slug": "part-v-model-narrow-theory-widens-the-unit",
-          "text": "Chapter 5's model was deliberately narrow; the theory widens the unit to capacity, environment, adaptation, and payoff.",
+          "text": "The chapter begins with deliberately narrow models of probability and cost; the dynamic model then widens the unit to capacity, environment, adaptation, and payoff.",
           "block_index": 11
         }
       ]
