@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 813,
+    "total_sites": 817,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 475,
+      "book-web": 479,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -100,7 +100,11 @@
             "occ": 53
           },
           {
-            "file": "book/web/docs/5.4-what-the-factories-show.md",
+            "file": "book/web/docs/5.4-engineers-in-the-software-factory.md",
+            "occ": 4
+          },
+          {
+            "file": "book/web/docs/5.5-engineering-the-factory.md",
             "occ": 16
           },
           {
@@ -251,7 +255,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 57
+            "occ": 58
           }
         ]
       },
@@ -972,7 +976,11 @@
             "occ": 101
           },
           {
-            "file": "book/web/docs/5.4-what-the-factories-show.md",
+            "file": "book/web/docs/5.4-engineers-in-the-software-factory.md",
+            "occ": 5
+          },
+          {
+            "file": "book/web/docs/5.5-engineering-the-factory.md",
             "occ": 21
           },
           {
@@ -1351,7 +1359,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 124
+            "occ": 125
           }
         ]
       },
@@ -1518,7 +1526,11 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/5.4-what-the-factories-show.md",
+            "file": "book/web/docs/5.4-engineers-in-the-software-factory.md",
+            "occ": 1
+          },
+          {
+            "file": "book/web/docs/5.5-engineering-the-factory.md",
             "occ": 1
           },
           {
@@ -1665,7 +1677,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 49
+            "occ": 50
           }
         ]
       },
@@ -1878,7 +1890,11 @@
             "occ": 19
           },
           {
-            "file": "book/web/docs/5.4-what-the-factories-show.md",
+            "file": "book/web/docs/5.4-engineers-in-the-software-factory.md",
+            "occ": 1
+          },
+          {
+            "file": "book/web/docs/5.5-engineering-the-factory.md",
             "occ": 2
           },
           {
@@ -2201,7 +2217,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 106
+            "occ": 107
           }
         ]
       },
@@ -2902,7 +2918,7 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/5.4-what-the-factories-show.md",
+            "file": "book/web/docs/5.5-engineering-the-factory.md",
             "occ": 1
           },
           {
@@ -3104,7 +3120,7 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/5.4-what-the-factories-show.md",
+            "file": "book/web/docs/5.5-engineering-the-factory.md",
             "occ": 1
           },
           {
@@ -3468,7 +3484,7 @@
             "occ": 4
           },
           {
-            "file": "book/web/docs/5.4-what-the-factories-show.md",
+            "file": "book/web/docs/5.5-engineering-the-factory.md",
             "occ": 1
           },
           {

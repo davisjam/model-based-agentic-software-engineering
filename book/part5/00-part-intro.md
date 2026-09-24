@@ -33,7 +33,8 @@ supervision. {{sec:inside-docables-software-factory}} examines one such factory 
 DocAble, where agentic realization grew alongside the engineering structures needed to direct,
 evaluate, and admit its work. {{sec:mage-in-the-wild}} then examines independently developed
 industrial systems to ask which of these pressures recur under different organizations,
-technologies, and allocations of human and machine authority. A closing synthesis
-({{sec:what-the-evidence-supports}}) compares what these factories represent and control, and
-identifies where the originating case differs from the public industrial accounts.
+technologies, and allocations of human and machine authority.
+{{sec:engineers-in-the-software-factory}} then reads both sources through the two ideas the first
+section installs, and asks what work remains for the engineers responsible for these factories. A
+short coda ({{sec:what-the-evidence-supports}}) states where that leaves the purchased factory.
 {{chapter:theory}} develops the theory needed to explain those differences.

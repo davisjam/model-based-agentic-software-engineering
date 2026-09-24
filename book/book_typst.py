@@ -2633,7 +2633,7 @@ _CODA_SLUGS = frozenset({
     "1.5-problem-summary",
     "2.6-modeling-summary",
     "3.6-alignment-summary",
-    "5.4-what-the-factories-show",
+    "5.5-engineering-the-factory",
     "6.5-what-the-theory-claims",
     "7.5-what-cannot-be-delegated",
 })
