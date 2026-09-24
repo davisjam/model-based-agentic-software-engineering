@@ -1,167 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- §6.1 — probability-in-the-software-factory.svg. Hand-SVG: an annotated reprise of Figure 5.1-1
-     (process-design-and-tolerance.svg) — same frame, band, node geometry, palette and type scale. The
-     Chapter 5 factory is deliberately GHOSTED here (thin grey rims, lightened labels) so the model the
-     chapter adds carries the picture: the three probability terms sit over their own transitions, and
-     the encoded property forks into the tolerance the realization is evaluated against. Ghosting is
-     emphasis, not redrawing — the geometry is the earlier figure's. Kept in hand-SVG for the same
-     reason as its parent: a flow band and a bounded acceptable region in one frame is a bespoke
-     composition, not a graph d2 can lay out. -->
+     (process-design-and-tolerance.svg). EVERY inherited coordinate and dimension is copied from that
+     file unchanged — frame, band, the four path boxes, the span bracket at y=286, the acceptable
+     region, the dots, the two outcome boxes and every heading position — so that flipping between the
+     two pages reads as a transformation, not a remapping. The Chapter 5 factory recedes by THINNING
+     ITS STROKES AND LIGHTENING ITS FILLS, never by lightening its words: pale type is unreadable in
+     print, and the base layer still has to be read. Fade IN DEGREE, not IN KIND — the band keeps the
+     same fill and the boxes the same stroke hue as Figure 5.1-1, one step lighter and thinner. An
+     earlier pass dropped them to hairlines on an unfilled band, and the factory then read as a
+     different drawing rather than a quieter one.
+     What this chapter adds is the overlay. Figure 5.1-1 draws ONE bracket across the whole path;
+     this figure keeps that line and its endpoints and adds two interior ticks, partitioning the path
+     into the three transitions the decomposition scores. The three probability terms are the largest
+     type in the figure. The encoded property also forks: one use reaches the fabricator, the other
+     supplies the tolerance the realization is later evaluated against.
+     Figure 5.1-1's `context · tools · routing · authority · sequencing` is deliberately ABSENT here.
+     It labels the span bracket there; the overlay owns that lane here, and parking the phrase anywhere
+     else would make it travel across the page on a flip — the one thing this pair must not do.
+     Kept in hand-SVG for the same reason as its parent: a flow band and a bounded acceptable region
+     in one frame is a bespoke composition, not a graph d2 can lay out. -->
 <!-- semantic-families: governance, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 772" width="1000" height="772"
      role="img" aria-labelledby="pfTitle pfDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="pfTitle">Probability on the production path, and the encoded property forking into the
     tolerance the realization is evaluated against</title>
-  <desc id="pfDesc">The SOFTWARE FACTORY frame of the earlier figure, drawn faintly so that what this
-    chapter adds stands in front of it. Across the top, inside the dashed PRODUCTION PROCESS band, a
-    left-to-right path in pale grey runs from engineering intent, through a box labelled encoded property
-    and drawn in the governance colour, through the fabricator, and out to a realization. Each of the
-    three arrows carries, in dark type below it, the probability that its step succeeds, written with E
-    for correct encoding, I for correct interpretation and L for correct realization: P of E from intent
-    to the encoded property, P of I given E from the encoded property to the fabricator, and P of L given
-    I and E from the fabricator to the realization. A note under the first term reads: not raised by
-    a better fabricator. A note under the other two reads: process design and better agents raise these.
-    Below the path the encoded property forks. A second line in the governance colour leaves the bottom of
-    that box, runs down the left of the figure annotated supplies the tolerance, and enters the bounded
-    ACCEPTABLE REGION through its left side — a different route from the production path. The region is
-    carried by a left-hand definition, TOLERANCE — what variation in the product is acceptable, and dots
-    inside it mark distinct acceptable realizations the fabricator may choose among. Separately, a
-    measurement arrow drops from the realization into the top of the same region, annotated measurement,
-    tests, property-based testing, analysis and human judgment. From the region two arrows lead out, one
-    labelled within tolerance to admitted change and one labelled outside to revise or reject. One use of
-    the encoded property reaches the fabricator; the other outlives realization and takes part in judging
-    its result.</desc>
+  <desc id="pfDesc">The SOFTWARE FACTORY of the earlier figure, at identical proportions, with its
+    containers drawn in thin lines so that what this chapter adds stands in front of them. Across the
+    top, inside the dashed PRODUCTION PROCESS band, the same left-to-right path runs from engineering
+    intent, through a box labelled encoded property and drawn in the governance colour, through the
+    fabricator, and out to a realization. The bracket that spanned the whole path in the earlier figure
+    is here divided by two ticks into the three transitions of the path, and under each division stands
+    a probability term, set much larger and bolder than any other type in the figure: P of E over
+    intent to encoded property, P of I given E over encoded property to fabricator, and P of L given I
+    and E over fabricator to realization, with E for correct encoding, I for correct interpretation and
+    L for correct realization. A short phrase under each term names the step it scores. A note under the
+    first term reads: not raised by a better fabricator. A note under the other two reads: process
+    design and better agents raise these. Below the band the encoded property forks. A second line in
+    the governance colour leaves the bottom of that box, runs down past the band annotated supplies the
+    tolerance, and enters the bounded ACCEPTABLE REGION through its left side — a different route from
+    the production path. The region is carried by the heading TOLERANCE — what variation in the product
+    is acceptable, and dots inside it mark distinct acceptable realizations the fabricator may choose
+    among. Separately, a measurement arrow drops from the realization into the top of the same region,
+    annotated measurement, tests, property-based testing, analysis, simulation and human judgment. From
+    the region two arrows lead out, one labelled within tolerance to admitted change and one labelled
+    outside to revise or reject. One use of the encoded property reaches the fabricator; the other
+    outlives realization and takes part in judging its result.</desc>
 
   <defs>
     <marker id="pfArrowGhost" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10"
             refX="12" refY="5" orient="auto">
-      <path d="M0,0 L12,5 L0,10 Z" fill="#b5aea6"/>
-    </marker>
-    <marker id="pfArrow" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10"
-            refX="12" refY="5" orient="auto">
-      <path d="M0,0 L12,5 L0,10 Z" fill="#8a837c"/>
+      <path d="M0,0 L12,5 L0,10 Z" fill="#a8a29e"/>
     </marker>
     <marker id="pfArrowRust" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10"
             refX="12" refY="5" orient="auto">
       <path d="M0,0 L12,5 L0,10 Z" fill="#9a3f12"/>
     </marker>
+    <marker id="pfArrowRustFine" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="8"
+            refX="10" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#9a3f12"/>
+    </marker>
   </defs>
 
-  <!-- page ground + the inherited factory frame, ghosted: the reader has met it, so it recedes -->
+  <!-- page ground + the inherited factory frame, thinned: the reader has met it, so it recedes.
+       Coordinates identical to Figure 5.1-1. -->
   <rect x="0" y="0" width="1000" height="772" fill="#fdfcf9"/>
-  <rect x="26" y="62" width="948" height="682" rx="12" fill="#fdfcf9" stroke="#e8e4dd" stroke-width="1.5"/>
+  <rect x="26" y="62" width="948" height="682" rx="12" fill="#fdfcf9" stroke="#cfc9bf" stroke-width="1.5"/>
 
-  <!-- the production process band, ghosted and deepened to carry the probability terms under the path -->
-  <rect x="48" y="142" width="904" height="232" rx="10" fill="none" stroke="#e0dbd3" stroke-width="1.5"
+  <!-- the production process band, thinned -->
+  <rect x="48" y="152" width="904" height="248" rx="10" fill="#f4f0e8" stroke="#c4beb4" stroke-width="1.5"
         stroke-dasharray="7 5"/>
 
-  <!-- the acceptable region: the bound the realization is measured against, not a stage. Kept at full
-       strength — it is the tolerance side of the model, not inherited chrome. -->
-  <rect id="n-region" x="372" y="452" width="580" height="170" rx="14" fill="#9a3f12" fill-opacity="0.1"
-        stroke="#9a3f12" stroke-width="3"/>
+  <!-- the acceptable region: same rectangle as Figure 5.1-1, drawn back so probability leads here. It
+       was the foreground object in the conceptual figure; in this one it is not. -->
+  <rect id="n-region" x="372" y="456" width="580" height="176" rx="14" fill="#9a3f12" fill-opacity="0.05"
+        stroke="#9a3f12" stroke-width="2"/>
 
   <!-- edges are drawn first so each node's opaque fill caps its tail; heads seat outside the target rim -->
-  <!-- the production path, ghosted -->
+  <!-- the production path, thinned -->
   <!-- edge: n-intent -> n-encoded -->
-  <line x1="244" y1="220" x2="302" y2="220" stroke="#cfc9bf" stroke-width="1.5"
+  <line x1="244" y1="228" x2="302" y2="228" stroke="#a8a29e" stroke-width="2"
         marker-end="url(#pfArrowGhost)"/>
   <!-- edge: n-encoded -> n-fabricator -->
-  <line x1="469" y1="220" x2="526" y2="220" stroke="#cfc9bf" stroke-width="1.5"
+  <line x1="469" y1="228" x2="526" y2="228" stroke="#a8a29e" stroke-width="2"
         marker-end="url(#pfArrowGhost)"/>
   <!-- edge: n-fabricator -> n-realization -->
-  <line x1="693" y1="220" x2="751" y2="220" stroke="#cfc9bf" stroke-width="1.5"
+  <line x1="693" y1="228" x2="751" y2="228" stroke="#a8a29e" stroke-width="2"
         marker-end="url(#pfArrowGhost)"/>
-  <!-- the tolerance side, at full strength. The encoded property enters the region through its SIDE and
-       the realization through its TOP, so the two uses of the region read as different paths. -->
-  <!-- edge: n-encoded -> n-region -->
-  <path d="M332,247 L332,537 L372,537" fill="none" stroke="#9a3f12" stroke-width="2.5"
+  <!-- edge: n-realization -> n-region — the measurement drop of Figure 5.1-1, at the same x, thinned -->
+  <line x1="880" y1="260" x2="880" y2="456" stroke="#9a3f12" stroke-width="1.5"
+        marker-end="url(#pfArrowRustFine)"/>
+  <!-- edge: n-encoded -> n-region, AT FULL STRENGTH. This is what the chapter adds on the tolerance
+       side: the same representation does two jobs — it feeds the fabricator AND supplies the bound the
+       result is judged against. It enters the region through the SIDE, the realization through the TOP,
+       so the two uses read as different routes. -->
+  <path d="M340,260 L340,544 L372,544" fill="none" stroke="#9a3f12" stroke-width="2.5"
         marker-end="url(#pfArrowRust)"/>
-  <!-- edge: n-realization -> n-region -->
-  <line x1="903" y1="247" x2="903" y2="452" stroke="#9a3f12" stroke-width="2.5"
-        marker-end="url(#pfArrowRust)"/>
+  <!-- line jump: the fork passes UNDER the span bracket, which belongs to the overlay -->
+  <line x1="331" y1="286" x2="349" y2="286" stroke="#fdfcf9" stroke-width="5"/>
   <!-- edge: n-region -> n-admitted -->
-  <line x1="805" y1="617" x2="805" y2="670" stroke="#8a837c" stroke-width="1.5"
-        marker-end="url(#pfArrow)"/>
+  <line x1="805" y1="632" x2="805" y2="672" stroke="#a8a29e" stroke-width="2"
+        marker-end="url(#pfArrowGhost)"/>
   <!-- edge: n-region -> n-revise -->
-  <line x1="515" y1="617" x2="515" y2="670" stroke="#8a837c" stroke-width="1.5"
-        marker-end="url(#pfArrow)"/>
+  <line x1="515" y1="632" x2="515" y2="672" stroke="#a8a29e" stroke-width="2"
+        marker-end="url(#pfArrowGhost)"/>
 
-  <!-- the production path, ghosted: same four stations, same positions as Figure 5.1-1. Only the encoded
-       property keeps its rim, because it is the engineering representation that forks. -->
-  <rect id="n-intent" x="77" y="188" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#e0dbd3"
-        stroke-width="1.5"/>
-  <rect id="n-encoded" x="302" y="188" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#9a3f12"
+  <!-- the production path: same four stations, same positions and sizes as Figure 5.1-1, thinned. Only
+       the encoded property keeps a full rim, because it is the representation that forks. -->
+  <rect id="n-intent" x="77" y="196" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#a8a29e"
+        stroke-width="2"/>
+  <rect id="n-encoded" x="302" y="196" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#9a3f12"
         stroke-width="2.5"/>
-  <rect id="n-fabricator" x="526" y="188" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#e0dbd3"
-        stroke-width="1.5"/>
-  <rect id="n-realization" x="751" y="188" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#e0dbd3"
-        stroke-width="1.5"/>
+  <rect id="n-fabricator" x="526" y="196" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#a8a29e"
+        stroke-width="2"/>
+  <rect id="n-realization" x="751" y="196" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#a8a29e"
+        stroke-width="2"/>
 
-  <!-- both outcomes carry equal weight: rejection is a result the factory produces, not a failure of it -->
-  <rect id="n-admitted" x="700" y="668" width="210" height="56" rx="8" fill="#fdfcf9" stroke="#a8a29e"
-        stroke-width="1.5"/>
-  <rect id="n-revise" x="420" y="668" width="190" height="56" rx="8" fill="#fdfcf9" stroke="#a8a29e"
-        stroke-width="1.5"/>
-
-  <!-- realizations the factory would accept: the fabricator's remaining freedom -->
-  <g fill="#57534e">
-    <circle cx="482" cy="538" r="6"/>
-    <circle cx="562" cy="526" r="6"/>
-    <circle cx="642" cy="544" r="6"/>
-    <circle cx="722" cy="528" r="6"/>
-    <circle cx="802" cy="540" r="6"/>
+  <!-- THE OVERLAY. Figure 5.1-1's bracket, same line, same endpoints, now divided at the two interior
+       stations: one span per transition of the decomposition. -->
+  <g stroke="#1c1917" stroke-width="2" fill="none" stroke-linecap="square">
+    <line x1="163" y1="286" x2="837" y2="286"/>
+    <line x1="163" y1="286" x2="163" y2="272"/>
+    <line x1="388" y1="286" x2="388" y2="272"/>
+    <line x1="612" y1="286" x2="612" y2="272"/>
+    <line x1="837" y1="286" x2="837" y2="272"/>
   </g>
 
-  <!-- text last: every label is painted over the fills it sits on -->
-  <!-- the inherited factory's own labels, lightened -->
-  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#b5aea6"
+  <!-- both outcomes, thinned. Same rectangles as Figure 5.1-1. -->
+  <rect id="n-admitted" x="700" y="672" width="210" height="56" rx="8" fill="#fdfcf9" stroke="#a8a29e"
+        stroke-width="2"/>
+  <rect id="n-revise" x="420" y="672" width="190" height="56" rx="8" fill="#fdfcf9" stroke="#a8a29e"
+        stroke-width="2"/>
+
+  <!-- realizations the factory would accept: the fabricator's remaining freedom -->
+  <g fill="#a8a29e">
+    <circle cx="482" cy="542" r="6"/>
+    <circle cx="562" cy="530" r="6"/>
+    <circle cx="642" cy="548" r="6"/>
+    <circle cx="722" cy="532" r="6"/>
+    <circle cx="802" cy="546" r="6"/>
+  </g>
+
+  <!-- the inherited heading rules, at the same coordinates, drawn back -->
+  <rect x="52" y="114" width="180" height="4" fill="#292524" fill-opacity="0.5"/>
+  <rect x="52" y="500" width="180" height="4" fill="#9a3f12" fill-opacity="0.5"/>
+
+  <!-- text last: every label is painted over the fills it sits on. Nothing here is set in a pale grey —
+       the factory recedes through its strokes, not through unreadable words. -->
+  <text x="500" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#44403c"
         letter-spacing="1.5">SOFTWARE FACTORY</text>
 
-  <text x="52" y="106" font-size="25" font-weight="700" fill="#b5aea6" letter-spacing="1">PROCESS DESIGN</text>
-  <text x="52" y="134" font-size="20" fill="#a8a29e">how production proceeds</text>
+  <text x="52" y="104" font-size="27" font-weight="700" fill="#1c1917" letter-spacing="1.2">PROCESS DESIGN</text>
+  <text x="52" y="140" font-size="20" fill="#44403c">how production proceeds</text>
 
-  <text x="70" y="172" font-size="20" font-weight="700" fill="#b5aea6" letter-spacing="1.2">PRODUCTION PROCESS</text>
-  <text x="930" y="172" text-anchor="end" font-size="20" fill="#a8a29e">context · tools · routing · authority · sequencing</text>
+  <text x="70" y="180" font-size="19" font-weight="700" fill="#44403c" letter-spacing="1.2">PRODUCTION PROCESS</text>
 
-  <text x="163" y="212" text-anchor="middle" font-size="21" fill="#948d85">Engineering</text>
-  <text x="163" y="238" text-anchor="middle" font-size="21" fill="#948d85">intent</text>
-  <text x="388" y="212" text-anchor="middle" font-size="21" fill="#57534e">Encoded</text>
-  <text x="388" y="238" text-anchor="middle" font-size="21" fill="#57534e">property</text>
-  <text x="612" y="228" text-anchor="middle" font-size="21" fill="#948d85">Fabricator</text>
-  <text x="837" y="228" text-anchor="middle" font-size="21" fill="#948d85">Realization</text>
+  <text x="163" y="220" text-anchor="middle" font-size="22" fill="#1c1917">Engineering</text>
+  <text x="163" y="246" text-anchor="middle" font-size="22" fill="#1c1917">intent</text>
+  <text x="388" y="220" text-anchor="middle" font-size="22" fill="#1c1917">Encoded</text>
+  <text x="388" y="246" text-anchor="middle" font-size="22" fill="#1c1917">property</text>
+  <text x="612" y="236" text-anchor="middle" font-size="22" fill="#1c1917">Fabricator</text>
+  <text x="837" y="236" text-anchor="middle" font-size="22" fill="#1c1917">Realization</text>
 
-  <!-- what this chapter adds, in front of the ghosted factory: one probability per transition, each
-       sitting over the arrow whose step it scores -->
-  <text x="262" y="300" text-anchor="middle" font-size="20" fill="#1c1917"><tspan
+  <!-- the three probability terms: the dominant layer of this figure, each seated under the span of
+       path it scores -->
+  <text x="275" y="328" text-anchor="middle" font-size="36" font-weight="700" fill="#1c1917"><tspan
         font-style="italic">P</tspan>(<tspan font-style="italic">E</tspan>)</text>
-  <text x="455" y="300" text-anchor="middle" font-size="20" fill="#1c1917"><tspan
+  <text x="500" y="328" text-anchor="middle" font-size="36" font-weight="700" fill="#1c1917"><tspan
         font-style="italic">P</tspan>(<tspan font-style="italic">I</tspan> | <tspan
         font-style="italic">E</tspan>)</text>
-  <text x="735" y="300" text-anchor="middle" font-size="20" fill="#1c1917"><tspan
+  <text x="724" y="328" text-anchor="middle" font-size="36" font-weight="700" fill="#1c1917"><tspan
         font-style="italic">P</tspan>(<tspan font-style="italic">L</tspan> | <tspan
         font-style="italic">I</tspan>, <tspan font-style="italic">E</tspan>)</text>
 
+  <!-- what each term scores. The P(E) column is set flush right so the fork has a clear corridor. -->
+  <text x="324" y="354" text-anchor="end" font-size="16" fill="#1c1917">correctly encode intent</text>
+  <text x="500" y="354" text-anchor="middle" font-size="16" fill="#1c1917">correctly interpret encoding</text>
+  <text x="724" y="354" text-anchor="middle" font-size="16" fill="#1c1917">correctly realize interpretation</text>
+
   <!-- the two annotations that carry the theory: what process design can lift, and what it cannot -->
-  <text x="300" y="336" text-anchor="end" font-size="20" fill="#9a3f12">not raised by</text>
-  <text x="300" y="360" text-anchor="end" font-size="20" fill="#9a3f12">a better fabricator</text>
-  <text x="350" y="336" font-size="20" fill="#44403c">process design and better agents raise these</text>
+  <text x="324" y="380" text-anchor="end" font-size="17" font-weight="700" fill="#9a3f12">not raised by a better fabricator</text>
+  <text x="612" y="380" text-anchor="middle" font-size="17" fill="#1c1917">process design and better agents raise these</text>
 
-  <text x="318" y="420" text-anchor="end" font-size="20" fill="#9a3f12">supplies the tolerance</text>
+  <text x="326" y="430" text-anchor="end" font-size="20" font-weight="700" fill="#9a3f12">supplies the tolerance</text>
 
-  <text x="862" y="406" text-anchor="end" font-size="21" fill="#9a3f12">measurement</text>
-  <text x="862" y="432" text-anchor="end" font-size="20" fill="#9a3f12">tests · PBT · analysis · human judgment</text>
+  <text x="856" y="418" text-anchor="end" font-size="20" font-weight="700" fill="#9a3f12">measurement</text>
+  <text x="856" y="442" text-anchor="end" font-size="18" fill="#9a3f12">tests · PBT · analysis · simulation · human judgment</text>
 
-  <text x="52" y="472" font-size="25" font-weight="700" fill="#9a3f12" letter-spacing="1">TOLERANCE</text>
-  <text x="52" y="500" font-size="20" fill="#57534e">what variation in the product</text>
-  <text x="52" y="524" font-size="20" fill="#57534e">is acceptable</text>
+  <text x="52" y="490" font-size="27" font-weight="700" fill="#1c1917" letter-spacing="1.2">TOLERANCE</text>
+  <text x="52" y="526" font-size="20" fill="#44403c">what variation in the product</text>
+  <text x="52" y="550" font-size="20" fill="#44403c">is acceptable</text>
 
-  <text x="662" y="484" text-anchor="middle" font-size="25" font-weight="700" fill="#9a3f12"
+  <text x="662" y="490" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12"
         letter-spacing="1">ACCEPTABLE REGION</text>
-  <text x="662" y="596" text-anchor="middle" font-size="20" fill="#57534e">the fabricator may choose among these</text>
+  <text x="662" y="610" text-anchor="middle" font-size="18" fill="#44403c">the fabricator may choose among these</text>
 
-  <text x="818" y="650" font-size="20" fill="#8a837c">within tolerance</text>
-  <text x="502" y="650" text-anchor="end" font-size="20" fill="#8a837c">outside</text>
-  <text x="805" y="703" text-anchor="middle" font-size="21" fill="#57534e">Admitted change</text>
-  <text x="515" y="703" text-anchor="middle" font-size="21" fill="#57534e">Revise / reject</text>
+  <text x="818" y="662" font-size="19" fill="#44403c">within tolerance</text>
+  <text x="502" y="662" text-anchor="end" font-size="19" fill="#44403c">outside</text>
+  <text x="805" y="707" text-anchor="middle" font-size="22" fill="#1c1917">Admitted change</text>
+  <text x="515" y="707" text-anchor="middle" font-size="22" fill="#1c1917">Revise / reject</text>
 </svg>
