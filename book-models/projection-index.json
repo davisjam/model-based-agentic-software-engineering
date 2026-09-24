@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 813,
+    "total_sites": 814,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 475,
+      "book-web": 476,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -101,7 +101,7 @@
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 53
+            "occ": 54
           },
           {
             "file": "book/web/docs/5.4-two-problems-of-factory-engineering.md",
@@ -977,7 +977,7 @@
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 102
+            "occ": 113
           },
           {
             "file": "book/web/docs/5.4-two-problems-of-factory-engineering.md",
@@ -1309,7 +1309,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 115
+            "occ": 119
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -2914,6 +2914,10 @@
             "occ": 2
           },
           {
+            "file": "book/web/docs/5.3-other-agentic-software-factories.md",
+            "occ": 7
+          },
+          {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
             "occ": 14
           },
@@ -2987,7 +2991,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 40
+            "occ": 42
           },
           {
             "file": "book/web/docs/figures.md",
@@ -3029,7 +3033,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 45
+            "occ": 46
           }
         ]
       },
