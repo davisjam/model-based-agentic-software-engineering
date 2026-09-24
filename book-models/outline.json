@@ -7,7 +7,7 @@
     "derived_ids": 197,
     "missing_topic_sentence": 4,
     "sections_drained": 145,
-    "paragraph_points": 693
+    "paragraph_points": 699
   },
   "chapters": [
     {
@@ -2525,19 +2525,49 @@
               "block_index": 13
             },
             {
-              "slug": "what-the-software-factory-repeatedly-produces-is-change",
-              "text": "What software engineering repeatedly produces is change: features, repairs, adaptations, migrations, and other transformations of a maintained software system.",
+              "slug": "software-holds-what-we-expect-to-change",
+              "text": "Software occupies this unusual role because it is unusually easy to change: we put behavior into software precisely when we expect it may need to vary, so the result is nearly tautological — software contains the things we expect to change, and software changes continually.",
               "block_index": 15
+            },
+            {
+              "slug": "what-the-software-factory-repeatedly-produces-is-change",
+              "text": "What software engineering repeatedly produces is therefore change: features, repairs, adaptations, migrations, and other transformations of a maintained software system.",
+              "block_index": 17
             },
             {
               "slug": "a-software-factory-is-a-production-system-for-controlled-change",
               "text": "Change is the object named by this book's definition of software engineering, so a software factory is a production system for controlled change.",
-              "block_index": 17
+              "block_index": 19
             },
             {
-              "slug": "agentic-names-who-performs-realization",
-              "text": "In an agentic software factory agents perform the realization work, and the surrounding production system still decides what work enters production, how realization proceeds, what variation is acceptable, what evidence is required, and what may be admitted.",
-              "block_index": 20
+              "slug": "representations-of-software-carry-a-carrying-cost",
+              "text": "Change complicates the factory analogy because the production system must evolve with what it produces: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost.",
+              "block_index": 22
+            },
+            {
+              "slug": "organizations-judge-the-carrying-cost-differently",
+              "text": "Software organizations have made different economic judgments about that cost — some find durable value in explicit representations, others find it cheaper to keep skilled engineers close to implementation — and the tradeoff turns on how much reusable knowledge a representation carries and how expensive it is to keep accurate.",
+              "block_index": 24
+            },
+            {
+              "slug": "agile-is-intelligible-when-the-product-is-change",
+              "text": "The Agile movement placed substantially greater weight on keeping knowledgeable humans close to implementation, which makes particular sense when the object of engineering is controlled change: a representation that does not change with the software can cease to describe the thing it is meant to govern.",
+              "block_index": 26
+            },
+            {
+              "slug": "earlier-separation-attempts-met-the-same-tradeoff",
+              "text": "Earlier attempts to separate engineering judgment from implementation met the same tradeoff from the other direction: moving decisions upstream let less experienced programmers implement, but only if costly representations carried the judgment they would otherwise supply.",
+              "block_index": 28
+            },
+            {
+              "slug": "the-question-was-where-judgment-is-carried-most-economically",
+              "text": "The economic question was never whether software should use models but where engineering judgment could be carried most economically without losing control: craft production stays economical when transferring judgment out of fabrication costs as much as leaving it there, and factory production becomes economical when reusable structures carry it more cheaply.",
+              "block_index": 30
+            },
+            {
+              "slug": "commodity-intelligence-changes-the-tradeoff",
+              "text": "Commodity intelligence changes the tradeoff: agents are inexpensive and capable enough to resolve many ordinary realization decisions, so the production system can carry selected consequential judgments while leaving substantial realization freedom to the agent.",
+              "block_index": 32
             }
           ]
         },
@@ -2547,22 +2577,22 @@
           "heading_text": "Walking Through a Software Factory",
           "topic_sentence": "The factory metaphor gives us a vocabulary for walking through an agentic software production system without assuming in advance how it should be organized.",
           "id_source": "derived",
-          "block_index": 25,
+          "block_index": 34,
           "points": [
             {
               "slug": "four-questions-orient-a-walkthrough",
               "text": "Four questions orient a walkthrough of an agentic software production system without assuming in advance how it should be organized: what it produces, what people do, how production is organized, and what the tolerances are.",
-              "block_index": 26
+              "block_index": 35
             },
             {
               "slug": "software-tolerances-take-more-forms-than-a-dimension",
               "text": "A software tolerance may be a quantitative bound, an invariant, a behavioral requirement, an architectural constraint, a security policy, or another statement of acceptable variation — some checkable mechanically, others still requiring human judgment.",
-              "block_index": 29
+              "block_index": 38
             },
             {
               "slug": "the-four-questions-are-broader-than-mage",
               "text": "The four questions are deliberately broader than MAGE — a factory may answer them with tests, policies, human review, simulators, permission systems, or models — and the two case sections ask them of DocAble and of independently developed industrial systems.",
-              "block_index": 31
+              "block_index": 40
             }
           ]
         }
