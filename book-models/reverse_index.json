@@ -6429,16 +6429,6 @@
         }
       ]
     },
-    "point:the-factories-differ-sharply-in-what-they-measure": {
-      "kind": "point",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "5.3-other-agentic-software-factories::block-99",
-          "role": "paragraph-point"
-        }
-      ]
-    },
     "point:the-factories-place-admission-in-four-different-locations": {
       "kind": "point",
       "dependents": [
@@ -7115,6 +7105,16 @@
         {
           "view": "outline",
           "element": "2.4-decision::block-35",
+          "role": "paragraph-point"
+        }
+      ]
+    },
+    "point:the-reported-measurements-favor-production-over-quality": {
+      "kind": "point",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "5.3-other-agentic-software-factories::block-99",
           "role": "paragraph-point"
         }
       ]

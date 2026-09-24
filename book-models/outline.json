@@ -3486,8 +3486,8 @@
               "block_index": 97
             },
             {
-              "slug": "the-factories-differ-sharply-in-what-they-measure",
-              "text": "Uber and Cloudflare publish production activity but not quality, Spotify measures the health of the engineering system, Shopify publishes a merge-rate improvement with the model fixed, GitLab keeps its aggregates private, and Siemens and Zenseact publish little — so the record says more about output volume than output quality.",
+              "slug": "the-reported-measurements-favor-production-over-quality",
+              "text": "The reported measurements are much stronger on production than on quality: Uber and Cloudflare report cost, throughput, findings, and overrides, Spotify reports engineering-system health, Shopify a merge-rate improvement with the model fixed, GitLab measurement mechanisms, Siemens and Zenseact little — and internal measurements may go unreported.",
               "block_index": 99
             },
             {
