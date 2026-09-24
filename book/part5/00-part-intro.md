@@ -11,8 +11,7 @@ what the product had to be and to determine whether production remained within t
 This chapter develops the software factory from that history and then examines contemporary agentic
 software factories. DocAble provides a case observed from the inside, including how its factory
 changed as production accelerated. Public accounts from other organizations show how different
-factories divide realization and supervision under different constraints
-([ref:two-views-of-the-evidence]).
+factories divide realization and supervision under different constraints.
 
 <!-- principlebox -->
 <!-- box-family: canonical -->
@@ -28,15 +27,13 @@ factories divide realization and supervision under different constraints
 
 **New here:** Software factory · Agentic software factory · Support ratio · Delegation staircase
 
-<!-- label: two-views-of-the-evidence -->
-<!-- figure: assets/two-views-of-the-evidence.svg | *Two views of the evidence.* The originating case supplies longitudinal depth: sequence, mechanism, and within-case recurrence. Independent industrial reconstructions supply variation across systems and organizations but less process visibility. Together they motivate the theoretical account developed in {{chapter:theory}}. -->
-
-The chapter runs in three sections and a closing synthesis. {{sec:the-software-factory}} derives the
-factory concept from the history of manufacturing and asks what a production system must know and
-control when fabrication outruns direct human supervision.
-{{sec:inside-docables-software-factory}} examines one factory from the inside: where work comes
-from, how humans and agents divide it, what structures shape realization, where resulting changes
-are evaluated and admitted, and how experience changes later production. {{sec:mage-in-the-wild}}
-asks the same questions of independently documented industrial systems. The closing synthesis
-({{sec:what-the-evidence-supports}}) states what the factories show, and what they cannot.
-{{chapter:theory}} asks what general account can explain both.
+{{sec:the-software-factory}} develops the software-factory concept from the history of manufacturing
+and asks what a production system must know and control when fabrication outruns direct human
+supervision. {{sec:inside-docables-software-factory}} examines one such factory from the inside:
+DocAble, where agentic realization grew alongside the engineering structures needed to direct,
+evaluate, and admit its work. {{sec:mage-in-the-wild}} then examines independently developed
+industrial systems to ask which of these pressures recur under different organizations,
+technologies, and allocations of human and machine authority. A closing synthesis
+({{sec:what-the-evidence-supports}}) compares what these factories represent and control, and
+identifies where the originating case differs from the public industrial accounts.
+{{chapter:theory}} develops the theory needed to explain those differences.
