@@ -119,26 +119,26 @@
         letter-spacing="1.5">SOFTWARE FACTORY</text>
 
   <text x="52" y="106" font-size="25" font-weight="700" fill="#b5aea6" letter-spacing="1">PROCESS DESIGN</text>
-  <text x="52" y="134" font-size="20" fill="#b5aea6">how production proceeds</text>
+  <text x="52" y="134" font-size="20" fill="#a8a29e">how production proceeds</text>
 
-  <text x="70" y="172" font-size="20" font-weight="700" fill="#c4bfb8" letter-spacing="1.2">PRODUCTION PROCESS</text>
-  <text x="930" y="172" text-anchor="end" font-size="20" fill="#b5aea6">context · tools · routing · authority · sequencing</text>
+  <text x="70" y="172" font-size="20" font-weight="700" fill="#b5aea6" letter-spacing="1.2">PRODUCTION PROCESS</text>
+  <text x="930" y="172" text-anchor="end" font-size="20" fill="#a8a29e">context · tools · routing · authority · sequencing</text>
 
-  <text x="163" y="212" text-anchor="middle" font-size="21" fill="#a8a29e">Engineering</text>
-  <text x="163" y="238" text-anchor="middle" font-size="21" fill="#a8a29e">intent</text>
+  <text x="163" y="212" text-anchor="middle" font-size="21" fill="#948d85">Engineering</text>
+  <text x="163" y="238" text-anchor="middle" font-size="21" fill="#948d85">intent</text>
   <text x="388" y="212" text-anchor="middle" font-size="21" fill="#57534e">Encoded</text>
   <text x="388" y="238" text-anchor="middle" font-size="21" fill="#57534e">property</text>
-  <text x="612" y="228" text-anchor="middle" font-size="21" fill="#a8a29e">Fabricator</text>
-  <text x="837" y="228" text-anchor="middle" font-size="21" fill="#a8a29e">Realization</text>
+  <text x="612" y="228" text-anchor="middle" font-size="21" fill="#948d85">Fabricator</text>
+  <text x="837" y="228" text-anchor="middle" font-size="21" fill="#948d85">Realization</text>
 
   <!-- what this chapter adds, in front of the ghosted factory: one probability per transition, each
        sitting over the arrow whose step it scores -->
-  <text x="262" y="300" text-anchor="middle" font-size="22" fill="#1c1917"><tspan
-        font-style="italic">p</tspan><tspan font-size="17" dy="6">encode</tspan></text>
-  <text x="455" y="300" text-anchor="middle" font-size="22" fill="#1c1917"><tspan
-        font-style="italic">p</tspan><tspan font-size="17" dy="6">interpret | encode</tspan></text>
-  <text x="735" y="300" text-anchor="middle" font-size="22" fill="#1c1917"><tspan
-        font-style="italic">p</tspan><tspan font-size="17" dy="6">realize | interpret, encode</tspan></text>
+  <text x="262" y="300" text-anchor="middle" font-size="20" fill="#1c1917"><tspan
+        font-style="italic">P</tspan>(encode)</text>
+  <text x="455" y="300" text-anchor="middle" font-size="20" fill="#1c1917"><tspan
+        font-style="italic">P</tspan>(interpret | encode)</text>
+  <text x="735" y="300" text-anchor="middle" font-size="20" fill="#1c1917"><tspan
+        font-style="italic">P</tspan>(realize | interpret, encode)</text>
 
   <!-- the two annotations that carry the theory: what process design can lift, and what it cannot -->
   <text x="300" y="336" text-anchor="end" font-size="20" fill="#9a3f12">not raised by</text>
