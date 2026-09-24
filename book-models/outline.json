@@ -7,7 +7,7 @@
     "derived_ids": 200,
     "missing_topic_sentence": 4,
     "sections_drained": 148,
-    "paragraph_points": 727
+    "paragraph_points": 731
   },
   "chapters": [
     {
@@ -3482,18 +3482,38 @@
             },
             {
               "slug": "the-differences-are-as-informative-as-the-commonalities",
-              "text": "The factories differ in where admission sits, how much knowledge they route into each task, whether failure-to-structure conversion is measured (the mechanism is documented nearly everywhere; aggregate yield once, class-recurrence nowhere), and — most sharply — how explicitly they model the governed system; no ordering follows.",
+              "text": "The factories place admission differently — Cloudflare's coordinator holds the merge gate, Spotify splits it by fabricator, Uber keeps it human while naming partial automation, GitLab withholds approval by construction — and ground the human boundary differently, so the evidence does not collapse them into a single delegation frontier.",
               "block_index": 98
             },
             {
-              "slug": "software-first-accounts-model-knowledge-not-behavior",
-              "text": "The observed modeling frontier: the software-first accounts publicly show knowledge and governance representations; Siemens crosses into machine-checkable system models from a model-first tradition; DocAble additionally checks selected model-implementation relations and gives them consequences.",
+              "slug": "the-factories-differ-sharply-in-what-they-measure",
+              "text": "Uber publishes production economics and withholds quality values, Cloudflare publishes reviewer activity and no defect measure, Spotify measures factory health, Shopify publishes a merge-rate improvement with the model fixed, GitLab keeps its aggregates private, and Siemens and Zenseact publish little — so the record says more about output volume than output quality.",
               "block_index": 100
             },
             {
+              "slug": "operating-experience-changes-the-factories-but-the-effect-is-rarely-established",
+              "text": "Cloudflare, Shopify, GitLab, and Spotify all convert operating experience into rules, shared instructions, code-enforced guarantees, environment repair, or a withdrawn control — instances of governance conversion whose conversion is established far more often than its effect, and no organization publishes a recurrence measure.",
+              "block_index": 102
+            },
+            {
+              "slug": "supervision-and-verification-do-not-scale-with-production",
+              "text": "One constraint recurs: the capacity to supervise and verify does not automatically increase with the capacity to produce changes — Uber's reviewer delay, Spotify's verification controls outrun by volume, Shopify's slop grenade, Cloudflare's checks moved earlier — so fabrication can outpace the attention and evidence that establish acceptability.",
+              "block_index": 104
+            },
+            {
+              "slug": "the-supervision-constraint-is-an-operating-constraint-not-a-new-factory-kind",
+              "text": "The observation identifies an operating constraint on the factories already described rather than another kind of factory: process design determines where scarce supervision is spent and tolerances determine what must be established before admission, and cheaper fabrication makes the factory's economics depend on both.",
+              "block_index": 106
+            },
+            {
+              "slug": "the-inheritance-channel-carries-its-own-maintenance-cost",
+              "text": "A second recurring cost is the upkeep of the representations through which a factory inherits engineering knowledge — GitLab's freshness and convergence machinery, Cloudflare's context checks, Shopify's drift repair — so production structures are capital only while they remain accurate enough to be useful.",
+              "block_index": 108
+            },
+            {
               "slug": "the-common-structure-is-leverage-organizational-capital",
-              "text": "At organizational scale the recurring structure is leverage: one policy shapes thousands of changes, one representation guides a fleet, one learned constraint protects every later task — the organizational face of engineering capital.",
-              "block_index": 103
+              "text": "Where the factories converge most strongly is leverage: shared mechanisms centralize while domain judgment stays distributed, human judgment moves upstream, private learning becomes shared structure, and the unit of governance grows — so a scarce judgment gains multiplicative reach when the environment carries it forward.",
+              "block_index": 110
             }
           ]
         }
