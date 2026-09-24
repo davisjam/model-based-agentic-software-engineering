@@ -106,9 +106,6 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 - **[DECLARED]** (analyze) After this Part, the reader can analyze a software production system as a software factory — distinguish realization capacity from supervisory capacity, trace how one deeply observed factory made supervision possible through models, joins, enforcement, and governance conversion, and read independent factories through the same lens. — _anchor: Agentic Software Factories: the historical software-factory derivation -> inside DocAble's factory (census, joins, conversions, staircase) -> other factories under one lens -> what the factories show._
 
-### Lesson 5.1-software-factory
-
-
 ### Lesson 5.2-inside-docables-software-factory
 
 
