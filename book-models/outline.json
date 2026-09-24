@@ -6,8 +6,8 @@
     "explicit_ids": 6,
     "derived_ids": 200,
     "missing_topic_sentence": 4,
-    "sections_drained": 148,
-    "paragraph_points": 713
+    "sections_drained": 149,
+    "paragraph_points": 714
   },
   "chapters": [
     {
@@ -64,7 +64,13 @@
           "topic_sentence": "This book began with one hard engineering problem that emerged over months of building a real production system.",
           "id_source": "derived",
           "block_index": 26,
-          "points": []
+          "points": [
+            {
+              "slug": "resource-scarcity-pushed-mage-toward-stating-what-the-product-must-preserve",
+              "text": "A resource-poor engineering environment made abundant human supervision unavailable, which pushed MAGE toward stating what the product must preserve and building a production system that could establish those properties without a human inspecting every realization.",
+              "block_index": 29
+            }
+          ]
         },
         {
           "section_id": "the-new-bottleneck",
@@ -72,7 +78,7 @@
           "heading_text": "The new bottleneck",
           "topic_sentence": "Agents can produce changes much faster than the surrounding environment can understand or govern them.",
           "id_source": "derived",
-          "block_index": 29,
+          "block_index": 31,
           "points": []
         },
         {
@@ -81,7 +87,7 @@
           "heading_text": "The originating system",
           "topic_sentence": "This book began with DocAble, a production service for remediating inaccessible documents.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 39,
           "points": []
         },
         {
@@ -90,7 +96,7 @@
           "heading_text": "Evidence and scope",
           "topic_sentence": "MAGE draws on two kinds of evidence.",
           "id_source": "derived",
-          "block_index": 43,
+          "block_index": 45,
           "points": []
         },
         {
@@ -99,7 +105,7 @@
           "heading_text": "What the method turned out to be",
           "topic_sentence": "Two principles organize MAGE:",
           "id_source": "derived",
-          "block_index": 45,
+          "block_index": 47,
           "points": []
         },
         {
@@ -108,7 +114,7 @@
           "heading_text": "Who this book is for",
           "topic_sentence": "This book is for software engineers who suspect the ground has moved and want to know where to stand.",
           "id_source": "derived",
-          "block_index": 52,
+          "block_index": 54,
           "points": []
         }
       ],
