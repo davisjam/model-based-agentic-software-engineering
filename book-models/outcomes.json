@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 8,
     "elaborative_links": 11,
     "units_serving_as_elaborative": 10,
-    "sections_total": 201,
+    "sections_total": 205,
     "sections_primary_of_an_outcome": 7,
     "modules": 8,
-    "lessons": 29
+    "lessons": 30
   },
   "taxonomy": {
     "know": [
@@ -259,6 +259,11 @@
           "part-5::trace-what-happens-to-the-software-factory-whe"
         ],
         "lessons": [
+          {
+            "lesson": "5.1-software-factory",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
           {
             "lesson": "5.2-inside-docables-software-factory",
             "own_outcomes": [],
