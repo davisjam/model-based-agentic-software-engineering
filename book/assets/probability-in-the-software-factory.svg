@@ -17,10 +17,10 @@
     chapter adds stands in front of it. Across the top, inside the dashed PRODUCTION PROCESS band, a
     left-to-right path in pale grey runs from engineering intent, through a box labelled encoded property
     and drawn in the governance colour, through the fabricator, and out to a realization. Each of the
-    three arrows carries, in dark type below it, the probability that its step succeeds: the probability
-    of encoding from intent to the encoded property, the probability of interpretation given encoding
-    from the encoded property to the fabricator, and the probability of realization given interpretation
-    and encoding from the fabricator to the realization. A note under the first term reads: not raised by
+    three arrows carries, in dark type below it, the probability that its step succeeds, written with E
+    for correct encoding, I for correct interpretation and L for correct realization: P of E from intent
+    to the encoded property, P of I given E from the encoded property to the fabricator, and P of L given
+    I and E from the fabricator to the realization. A note under the first term reads: not raised by
     a better fabricator. A note under the other two reads: process design and better agents raise these.
     Below the path the encoded property forks. A second line in the governance colour leaves the bottom of
     that box, runs down the left of the figure annotated supplies the tolerance, and enters the bounded
@@ -134,11 +134,13 @@
   <!-- what this chapter adds, in front of the ghosted factory: one probability per transition, each
        sitting over the arrow whose step it scores -->
   <text x="262" y="300" text-anchor="middle" font-size="20" fill="#1c1917"><tspan
-        font-style="italic">P</tspan>(encode)</text>
+        font-style="italic">P</tspan>(<tspan font-style="italic">E</tspan>)</text>
   <text x="455" y="300" text-anchor="middle" font-size="20" fill="#1c1917"><tspan
-        font-style="italic">P</tspan>(interpret | encode)</text>
+        font-style="italic">P</tspan>(<tspan font-style="italic">I</tspan> | <tspan
+        font-style="italic">E</tspan>)</text>
   <text x="735" y="300" text-anchor="middle" font-size="20" fill="#1c1917"><tspan
-        font-style="italic">P</tspan>(realize | interpret, encode)</text>
+        font-style="italic">P</tspan>(<tspan font-style="italic">L</tspan> | <tspan
+        font-style="italic">I</tspan>, <tspan font-style="italic">E</tspan>)</text>
 
   <!-- the two annotations that carry the theory: what process design can lift, and what it cannot -->
   <text x="300" y="336" text-anchor="end" font-size="20" fill="#9a3f12">not raised by</text>
