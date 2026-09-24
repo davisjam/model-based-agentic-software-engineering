@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 817,
+    "total_sites": 812,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 479,
+      "book-web": 474,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -105,7 +105,7 @@
           },
           {
             "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 16
+            "occ": 3
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -977,11 +977,11 @@
           },
           {
             "file": "book/web/docs/5.4-engineers-in-the-software-factory.md",
-            "occ": 5
+            "occ": 6
           },
           {
             "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 21
+            "occ": 11
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -1321,7 +1321,7 @@
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 25
+            "occ": 26
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1349,7 +1349,7 @@
           },
           {
             "file": "book/web/docs/part-6-intro.md",
-            "occ": 21
+            "occ": 22
           },
           {
             "file": "book/web/docs/part-7-intro.md",
@@ -1530,10 +1530,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
             "occ": 9
           },
@@ -1677,7 +1673,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 50
+            "occ": 49
           }
         ]
       },
@@ -1892,10 +1888,6 @@
           {
             "file": "book/web/docs/5.4-engineers-in-the-software-factory.md",
             "occ": 1
-          },
-          {
-            "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 2
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -2217,7 +2209,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 107
+            "occ": 106
           }
         ]
       },
@@ -2918,10 +2910,6 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
             "occ": 14
           },
@@ -3037,7 +3025,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 46
+            "occ": 45
           }
         ]
       },
@@ -3118,10 +3106,6 @@
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
             "occ": 2
-          },
-          {
-            "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 1
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -3231,7 +3215,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 36
+            "occ": 35
           }
         ]
       },
@@ -3484,10 +3468,6 @@
             "occ": 4
           },
           {
-            "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
             "occ": 1
           },
@@ -3515,7 +3495,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 11
+            "occ": 10
           }
         ]
       },
