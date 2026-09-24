@@ -3639,42 +3639,42 @@
           "heading_text": "The Dynamic Model",
           "topic_sentence": "[ref:mage-dynamic-model] puts the theory on one diagram.",
           "id_source": "derived",
-          "block_index": 13,
+          "block_index": 14,
           "points": [
             {
               "slug": "dynamic-model-capacity-environment-produce-performance",
               "text": "Agentic capacity and the governed environment jointly shape realized performance: throughput, defect escape, attention consumed.",
-              "block_index": 14
+              "block_index": 15
             },
             {
               "slug": "mismatch-shows-as-symptoms-that-need-diagnosis",
               "text": "Mismatch shows as churn, escaped defects, and friction; symptoms signal a problem but not which one.",
-              "block_index": 17
+              "block_index": 18
             },
             {
               "slug": "feedback-structure-knowledge-work-gaps-diagnose-improve",
               "text": "The feedback loop: prior knowledge seeds the environment; work exposes gaps; diagnosis improves it; ambition repeats.",
-              "block_index": 19
+              "block_index": 20
             },
             {
               "slug": "cybernetic-heritage-good-regulator",
               "text": "The feedback structure has a cybernetic heritage; Conant and Ashby's good regulator theorem connects regulation to representation — the regulated object changed, but the model-regulation link remains.",
-              "block_index": 21
+              "block_index": 22
             },
             {
               "slug": "environment-represents-observes-adapts",
               "text": "The environment represents consequential properties, observes work, and changes when its representations or controls prove inadequate.",
-              "block_index": 23
+              "block_index": 24
             },
             {
               "slug": "two-routes-ex-ante-and-ex-post",
               "text": "Durable structure has two routes: before failure from known obligations, after experience from use (governance conversion).",
-              "block_index": 25
+              "block_index": 26
             },
             {
               "slug": "adaptation-needs-diagnosis-and-a-path-to-the-shared-environment",
               "text": "Adaptation reaches the shared environment only with structural diagnosis and a path with authority to change it.",
-              "block_index": 27
+              "block_index": 28
             }
           ]
         },
@@ -3684,27 +3684,27 @@
           "heading_text": "Where Engineering Can Apply Leverage",
           "topic_sentence": "The dynamic model suggests a broader question: where can engineering intervene to improve agentic work?",
           "id_source": "derived",
-          "block_index": 29,
+          "block_index": 30,
           "points": [
             {
               "slug": "leverage-has-several-intervention-points",
               "text": "Engineering can intervene at model, environment, process, representation, or evidence.",
-              "block_index": 30
+              "block_index": 31
             },
             {
               "slug": "one-school-locates-leverage-in-the-process",
               "text": "One school locates leverage in the engineering process around agents.",
-              "block_index": 32
+              "block_index": 33
             },
             {
               "slug": "mage-weights-the-environment-and-representations",
               "text": "MAGE weights the engineered environment and its representations most heavily.",
-              "block_index": 34
+              "block_index": 35
             },
             {
               "slug": "leverage-sources-are-complementary-not-exclusive",
               "text": "These leverage sources are complementary, differing in emphasis and mechanism.",
-              "block_index": 36
+              "block_index": 37
             }
           ]
         },
@@ -3714,32 +3714,32 @@
           "heading_text": "What Makes an Environment Effective",
           "topic_sentence": "More machinery does not mean a better environment.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 39,
           "points": [
             {
               "slug": "more-machinery-is-not-a-better-environment",
               "text": "More machinery is not a better environment; what counts is fit to the work, not how much machinery exists.",
-              "block_index": 39
+              "block_index": 40
             },
             {
               "slug": "four-properties-of-an-effective-environment",
               "text": "An effective environment needs useful representations, adequate coverage, coherence, and economy.",
-              "block_index": 41
+              "block_index": 42
             },
             {
               "slug": "four-properties-govern-the-probabilistic-surface",
               "text": "The four properties jointly determine how much consequential work still rests on fallible per-instance inference.",
-              "block_index": 44
+              "block_index": 45
             },
             {
               "slug": "coverage-need-not-mechanize-every-obligation",
               "text": "Coverage need not mechanize every obligation; a strong environment names where judgment belongs and where paying repeatedly is wasteful.",
-              "block_index": 46
+              "block_index": 47
             },
             {
               "slug": "not-a-maturity-model-improve-the-limiting-part",
               "text": "These are not maturity stages; improve whichever part of the environment is limiting the work.",
-              "block_index": 48
+              "block_index": 49
             }
           ]
         },
@@ -3749,27 +3749,27 @@
           "heading_text": "Outcomes and Observables",
           "topic_sentence": "A theory of agentic engineering should distinguish activity from progress.",
           "id_source": "derived",
-          "block_index": 50,
+          "block_index": 51,
           "points": [
             {
               "slug": "distinguish-activity-from-progress-three-outcomes",
               "text": "The theory distinguishes activity from progress via three outcomes: durable throughput, defect escape, human-attention burden.",
-              "block_index": 51
+              "block_index": 52
             },
             {
               "slug": "definitions-of-the-three-outcomes",
               "text": "Durable throughput survives rework; defect escape reaches later stages; attention burden is judgment consumed per unit.",
-              "block_index": 54
+              "block_index": 55
             },
             {
               "slug": "human-attention-is-a-conserved-resource",
               "text": "Human attention is not an implementation detail of governance; it is one of the scarce resources the engineered environment is intended to conserve.",
-              "block_index": 59
+              "block_index": 60
             },
             {
               "slug": "activity-counts-are-not-outcome",
               "text": "Easy-to-count quantities (commits, lines, control files, support ratio) measure activity or investment, not outcome.",
-              "block_index": 61
+              "block_index": 62
             }
           ]
         },
@@ -3779,37 +3779,37 @@
           "heading_text": "Three Core Predictions",
           "topic_sentence": "Three predictions form the core of the theory.",
           "id_source": "derived",
-          "block_index": 64,
+          "block_index": 65,
           "points": [
             {
               "slug": "three-predictions-three-ways-environment-helps",
               "text": "Three core predictions concern three ways an engineered environment can help.",
-              "block_index": 65
+              "block_index": 66
             },
             {
               "slug": "the-three-effects-are-distinct",
               "text": "Environment fit, representation leverage, and engineering capital are related but distinct effects.",
-              "block_index": 68
+              "block_index": 69
             },
             {
               "slug": "environment-fit-moderates-velocity",
               "text": "Environment fit moderates the effect of velocity: added capacity yields throughput when the environment fits and churn when it does not; raw velocity may rise either way.",
-              "block_index": 70
+              "block_index": 71
             },
             {
               "slug": "representation-creates-leverage",
               "text": "A trustworthy task-relevant model lowers the cost of acceptable realization by reducing reconstruction; it fails if upkeep outweighs reach.",
-              "block_index": 72
+              "block_index": 73
             },
             {
               "slug": "engineering-capital-amortizes-judgment",
               "text": "Durable structure lets later work inherit judgment, but the return lasts only while the asset stays fit.",
-              "block_index": 74
+              "block_index": 75
             },
             {
               "slug": "each-core-claim-can-fail",
               "text": "Each core proposition can fail; they are testable propositions, not guarantees.",
-              "block_index": 76
+              "block_index": 77
             }
           ]
         },
@@ -3819,67 +3819,67 @@
           "heading_text": "The reasoning-horizon proposition",
           "topic_sentence": "Why should representation create leverage in the first place?",
           "id_source": "derived",
-          "block_index": 78,
+          "block_index": 79,
           "points": [
             {
               "slug": "reconstruction-precedes-reasoning-about-the-question",
               "text": "Answering an engineering question first requires reconstructing enough of the system to know what it means.",
-              "block_index": 80
+              "block_index": 81
             },
             {
               "slug": "context-postpones-but-a-model-changes-the-problem",
               "text": "Larger context and retrieval postpone the horizon; DocAble met the limit literally — roughly 590,000 tokens of reasoning representation against a 272,000-token context made windowing and whole-document compression the next representation problem.",
-              "block_index": 82
+              "block_index": 83
             },
             {
               "slug": "the-general-move-presents-consequential-structure",
               "text": "The general move: a useful model changes the problem by presenting the consequential structure directly — the basis for the reasoning-horizon proposition.",
-              "block_index": 84
+              "block_index": 85
             },
             {
               "slug": "a-model-shortens-the-reasoning-path",
               "text": "A model shortens the reasoning path, not merely each step: reasoning already performed is preserved in the environment.",
-              "block_index": 88
+              "block_index": 89
             },
             {
               "slug": "map-analogy-preserve-relationships-suppress-detail",
               "text": "Like a map, a model's value is preserving the relationships a class of questions needs while suppressing detail.",
-              "block_index": 90
+              "block_index": 91
             },
             {
               "slug": "agents-change-the-economics-of-an-old-scale-problem",
               "text": "Agents do not create the scale problem; they change its economics and frequency, raising the return on representations.",
-              "block_index": 92
+              "block_index": 93
             },
             {
               "slug": "representations-put-consequential-structure-into-usable-form",
               "text": "Representations put consequential structure into a form the reasoner can use directly, not merely store facts.",
-              "block_index": 94
+              "block_index": 95
             },
             {
               "slug": "leverage-can-originate-bottom-up-from-recovered-models",
               "text": "Leverage can originate bottom-up: implementation signals can recover a latent model the system already embodies.",
-              "block_index": 96
+              "block_index": 97
             },
             {
               "slug": "representation-innovation-machines-may-propose-new-representations",
               "text": "Representation innovation: a reasoner may propose a decomposition or state space under which a question becomes tractable.",
-              "block_index": 98
+              "block_index": 99
             },
             {
               "slug": "representations-human-designed-induced-and-innovated",
               "text": "Representations can be human-designed, machine-induced, or machine-innovated, each extending the effective reasoning horizon.",
-              "block_index": 100
+              "block_index": 101
             },
             {
               "slug": "discovery-does-not-confer-trust-a-representation-must-earn-it",
               "text": "Discovery does not confer trust: a machine-proposed representation still must earn trust in the relationship it claims.",
-              "block_index": 102
+              "block_index": 103
             },
             {
               "slug": "representation-engineering-is-bidirectional",
               "text": "Representation engineering is bidirectional: humans extend machine reasoning and machines may recover or invent abstractions.",
-              "block_index": 104
+              "block_index": 105
             }
           ]
         },
@@ -3889,52 +3889,52 @@
           "heading_text": "The engineering-capital proposition",
           "topic_sentence": "Representation leverage explains how structure can make one episode of reasoning easier.",
           "id_source": "derived",
-          "block_index": 106,
+          "block_index": 107,
           "points": [
             {
               "slug": "repeated-reconstruction-pays-for-the-same-reasoning",
               "text": "Repeatedly reconstructing the same fact or judgment pays for the same reasoning; some judgments can instead be preserved.",
-              "block_index": 108
+              "block_index": 109
             },
             {
               "slug": "engineering-capital-defined-inherited-productive-capacity",
               "text": "Engineering capital: prior engineering work leaves behind productive capacity that future work can inherit.",
-              "block_index": 110
+              "block_index": 111
             },
             {
               "slug": "capital-not-memory-must-return-and-can-depreciate",
               "text": "Capital, not memory: an asset becomes capital when it changes future cost or risk, and it can depreciate — while the investment threshold itself moves as agentic capacity lowers construction and maintenance costs.",
-              "block_index": 113
+              "block_index": 114
             },
             {
               "slug": "capital-transfers-judgment-beyond-its-originator",
               "text": "Capital transfers judgment beyond its originator: a later reasoner benefits without reconstructing the reasoning.",
-              "block_index": 115
+              "block_index": 116
             },
             {
               "slug": "capital-transfer-is-partial-judgment-needed-again-on-change",
               "text": "The transfer is partial: capital carries only what it represents, so change requires expert judgment again.",
-              "block_index": 117
+              "block_index": 118
             },
             {
               "slug": "debt-vs-capital-governance-includes-retirement",
               "text": "Debt makes change costly, capital makes it productive; neither is permanent, so governance includes retirement.",
-              "block_index": 119
+              "block_index": 120
             },
             {
               "slug": "three-interacting-debts-technical-cognitive-intent",
               "text": "Debt has three interacting forms — technical, cognitive, intent — which GenAI can accelerate together.",
-              "block_index": 121
+              "block_index": 122
             },
             {
               "slug": "gee-acts-on-technical-intent-and-cognitive-debt-differently",
               "text": "A GEE counters technical and intent debt with durable structure and preserves the understanding needed for cognitive debt.",
-              "block_index": 123
+              "block_index": 124
             },
             {
               "slug": "capital-gives-knowledge-a-home-governance-keeps-it-trustworthy",
               "text": "Capital gives knowledge, intent, and judgment a durable home; governance decides which assets stay trustworthy.",
-              "block_index": 125
+              "block_index": 126
             }
           ]
         },
@@ -3944,27 +3944,27 @@
           "heading_text": "Modeling and Alignment Are Distinct—and Compound",
           "topic_sentence": "The previous propositions explain why durable structure can help, but they combine two effects that MAGE keeps separate.",
           "id_source": "derived",
-          "block_index": 127,
+          "block_index": 128,
           "points": [
             {
               "slug": "modeling-and-alignment-are-two-separable-effects",
               "text": "Durable structure combines two separable effects: helping the reasoner answer, and controlling whether a bad answer gains consequence.",
-              "block_index": 128
+              "block_index": 129
             },
             {
               "slug": "modeling-changes-representation-alignment-enforces-obligations",
               "text": "Modeling changes the representation reasoned over; Alignment enforces selected obligations; either can help without the other.",
-              "block_index": 130
+              "block_index": 131
             },
             {
               "slug": "either-lever-works-without-the-other",
               "text": "A model can help without enforcing; a mechanism can govern even when the producer never sees the rule.",
-              "block_index": 132
+              "block_index": 133
             },
             {
               "slug": "two-problems-help-the-agent-vs-block-the-forbidden",
               "text": "Two distinct problems: help the agent produce acceptable work, and ensure the forbidden result cannot enter regardless.",
-              "block_index": 135
+              "block_index": 136
             }
           ]
         },
@@ -3974,147 +3974,147 @@
           "heading_text": "Cost and failure, separately",
           "topic_sentence": "We can make the distinction precise by considering cost and failure separately.",
           "id_source": "derived",
-          "block_index": 137,
+          "block_index": 138,
           "points": [
             {
               "slug": "modeling-lowers-expected-cost-of-acceptable-realization",
               "text": "One role of Modeling: raise per-attempt success or lower per-attempt cost, so acceptable realization is cheaper to find.",
-              "block_index": 139
+              "block_index": 140
             },
             {
               "slug": "the-ratio-matters-more-than-either-term",
               "text": "The ratio matters more than either term: a representation that raises attempt cost can still lower expected realization cost when its increase in p_R is large enough.",
-              "block_index": 143
+              "block_index": 144
             },
             {
               "slug": "representation-trades-against-reasoning-capability",
               "text": "Cheap articulation can be expensive in expectation; a stronger reasoner raises p_R at inference cost, a better representation changes the problem — so Modeling trades representational investment against realization cost and reasoning capability.",
-              "block_index": 146
+              "block_index": 147
             },
             {
               "slug": "representation-precedes-model-selection",
               "text": "Representation precedes model selection: ask what representation makes the problem available for reasoning before asking which reasoner should solve it — in DocAble, a practical cost rule: improve the representation before buying more inference.",
-              "block_index": 148
+              "block_index": 149
             },
             {
               "slug": "p-r-factors-into-encode-interpret-realize",
               "text": "An analytical (not independence-claiming) factorization of p_R into encode, interpret, and realize stages exposes the asymmetry: a stronger reasoner improves interpretation and realization but cannot recover intent that was never encoded.",
-              "block_index": 150
+              "block_index": 151
             },
             {
               "slug": "interpretation-depends-on-how-much-inference-is-asked",
               "text": "The interpretation factor also depends on how much inference the representation asks the agent to supply, and that burden varies: where the intended solution follows well-represented patterns, a sparse specification can still interpret well.",
-              "block_index": 155
+              "block_index": 156
             },
             {
               "slug": "novelty-reduces-the-usefulness-of-the-agents-prior",
               "text": "Other things equal, novelty is one factor that reduces the usefulness of the agent's prior as a substitute for explicit representation: specification supplies explicit engineering intent where inference from prior patterns is least dependable.",
-              "block_index": 157
+              "block_index": 158
             },
             {
               "slug": "familiarity-solves-production-not-assurance",
               "text": "Familiarity solves the production problem but does not establish the property: unless the consequential property is represented, the environment cannot distinguish following the intended pattern from producing something that looks right.",
-              "block_index": 159
+              "block_index": 160
             },
             {
               "slug": "learned-priors-do-not-supply-an-assurance-surface",
               "text": "Raising the interpretation factor does not retire explicit models or Alignment: learned priors reduce how much must be specified for realization without supplying an assurance surface for consequential properties.",
-              "block_index": 161
+              "block_index": 162
             },
             {
               "slug": "interpretation-factor-is-conditional-on-familiarity",
               "text": "The interpretation factor is conditional not only on encoding quality and agent capability but also on the familiarity of the intended interpretation relative to what the agent already knows.",
-              "block_index": 163
+              "block_index": 164
             },
             {
               "slug": "the-first-factor-sits-at-the-human-interface",
               "text": "Encoding failure belongs largely to the human/factory interface: failing to articulate a consequential distinction and failing to recover it are different failures, and the entitlement case shows a representation that could not express the intent at all.",
-              "block_index": 165
+              "block_index": 166
             },
             {
               "slug": "capability-cannot-recover-unencoded-intent",
               "text": "The asymmetry: capability can compensate for difficult interpretation but not for missing intent, so Modeling helps both before implementation begins — and can sometimes remove the judgment entirely.",
-              "block_index": 167
+              "block_index": 168
             },
             {
               "slug": "perfect-reasoner-bound",
               "text": "In the limit of a perfect reasoner — interpretation and realization approaching certainty — p_R remains bounded by the encoding factor, so capability purchases cannot discharge an obligation the organization never externalized.",
-              "block_index": 169
+              "block_index": 170
             },
             {
               "slug": "perfect-fabrication-exposes-the-upstream-problem",
               "text": "Perfect fabrication does not eliminate the engineering problem upstream of fabrication — it exposes it: a stronger reasoner can reconstruct much, but cannot reliably recover consequential knowledge that never entered the factory.",
-              "block_index": 173
+              "block_index": 174
             },
             {
               "slug": "the-bound-does-not-argue-for-complete-specification",
               "text": "The bound does not argue for complete specification — that would recreate the earlier software factories' economics; the new possibility is realization freedom with the smaller set of consequential decisions explicitly preserved.",
-              "block_index": 175
+              "block_index": 176
             },
             {
               "slug": "carrying-cost-completes-the-comparison",
               "text": "With carrying cost explicit, a representation can be economically preferable even when it is more expensive to construct and each realization through it is more expensive — it need only improve satisfactory realization enough, especially over repeated use.",
-              "block_index": 177
+              "block_index": 178
             },
             {
               "slug": "capacity-moves-both-sides-of-the-investment",
               "text": "Commodity intelligence changes both sides of the investment: greater implementation capacity can justify richer engineering structure while reducing the cost of carrying it, so the carrying term is not a fixed parameter of the environment.",
-              "block_index": 181
+              "block_index": 182
             },
             {
               "slug": "expensive-reasoners-are-a-prediction-of-the-theory",
               "text": "Compensating for weak explicit representation by buying frontier reasoning is a prediction of the theory, not an objection: arrangements trade spending in the interpretation factor against carrying cost, making the purchased factory a measurable open question.",
-              "block_index": 183
+              "block_index": 184
             },
             {
               "slug": "repeated-use-amortizes-judgment",
               "text": "Across n realizations the fixed representation cost amortizes and the judgment embodied in the representation is reused — the factories accumulating shared policy, models, and permissions at scale are amortizing judgment, not adding process.",
-              "block_index": 187
+              "block_index": 188
             },
             {
               "slug": "the-decomposition-explains-factory-variation",
               "text": "The factories differ in where they carry engineering knowledge; the decomposition explains why those arrangements can coexist, and the relevant question is what probability and cost of satisfactory realization an arrangement produces and what knowledge survives for the next task.",
-              "block_index": 191
+              "block_index": 192
             },
             {
               "slug": "a-sound-gate-blocks-covered-failure-regardless-of-producer",
               "text": "A sound admission gate makes covered failure impossible to admit regardless of how the producer reasoned.",
-              "block_index": 193
+              "block_index": 194
             },
             {
               "slug": "the-guarantee-is-independent-of-the-producers-reasoning",
               "text": "Alignment makes consequence independent of whether the producing reasoner got the covered judgment right.",
-              "block_index": 196
+              "block_index": 197
             },
             {
               "slug": "assurance-without-modeling-can-be-expensive",
               "text": "Assurance without useful representation is expensive: rejected candidates regenerate, so realization cost climbs.",
-              "block_index": 198
+              "block_index": 199
             },
             {
               "slug": "same-guarantee-different-cost-over-different-surfaces",
               "text": "The same admission guarantee over two reasoning surfaces produces substantially different realization costs.",
-              "block_index": 201
+              "block_index": 202
             },
             {
               "slug": "hiding-the-model-does-not-weaken-the-gate-only-raises-cost",
               "text": "Hiding the model does not weaken a perfect gate; it only raises the cost of reaching an acceptable candidate.",
-              "block_index": 203
+              "block_index": 204
             },
             {
               "slug": "alignment-protects-the-boundary-modeling-reduces-collisions",
               "text": "Alignment protects the boundary; Modeling reduces how often work collides with it.",
-              "block_index": 205
+              "block_index": 206
             },
             {
               "slug": "modeling-acts-before-admission-alignment-at-it",
               "text": "Modeling can act at several stages before admission — stating intent, recovering it, easing realization — while Alignment acts afterward or alongside realization by determining whether covered failures can acquire consequence.",
-              "block_index": 207
+              "block_index": 208
             },
             {
               "slug": "modeling-changes-economics-alignment-changes-enforcement",
               "text": "Their primary contributions are separable — Modeling and Alignment are different levers.",
-              "block_index": 211
+              "block_index": 212
             }
           ]
         },
@@ -4124,47 +4124,47 @@
           "heading_text": "Software engineering changes the problem",
           "topic_sentence": "The analysis so far uses a simplification to isolate repeated probabilistic exposure: if consequential judgments have some probability of success and successive exposures are treated as independent, their joint probability of success falls as the number of exposures grows.",
           "id_source": "derived",
-          "block_index": 213,
+          "block_index": 214,
           "points": [
             {
               "slug": "simple-models-isolated-repeated-exposure-under-fixed-conditions",
               "text": "The simple models deliberately isolated repeated probabilistic exposure under fixed conditions.",
-              "block_index": 214
+              "block_index": 215
             },
             {
               "slug": "se-needs-a-model-where-each-realization-changes-the-next",
               "text": "Software engineering needs a different model: each realization becomes structure inherited by the next.",
-              "block_index": 216
+              "block_index": 217
             },
             {
               "slug": "creation-and-change-share-one-factorization",
               "text": "The factorization describes one realization whether it creates a system or changes one; change differs because it inherits architecture, representations, conventions, obligations, tests, and capital from earlier work.",
-              "block_index": 218
+              "block_index": 219
             },
             {
               "slug": "independence-omits-the-inherited-environment",
               "text": "Independence omits the inherited environment; success at each step depends on the environment carried into it.",
-              "block_index": 220
+              "block_index": 221
             },
             {
               "slug": "creation-is-the-boundary-case-of-change",
               "text": "Creation is realization from an initial environment, change is realization given an inherited one, and each realization determines the environment later work inherits — so the factory produces a sequence of changes, not independent realizations.",
-              "block_index": 225
+              "block_index": 226
             },
             {
               "slug": "coupling-creates-path-dependence-decay-self-reinforcing",
               "text": "The coupling creates path dependence: poor structure makes good realization harder, and decay can become self-reinforcing.",
-              "block_index": 228
+              "block_index": 229
             },
             {
               "slug": "the-reverse-trajectory-capital-carries-structure-forward",
               "text": "The reverse trajectory: a realization that improves capital carries useful structure forward for later work.",
-              "block_index": 230
+              "block_index": 231
             },
             {
               "slug": "independent-vs-dynamic-model-answer-different-questions",
               "text": "The independent model isolates repeated exposure; the dynamic model preserves the coupling between realizations and environments.",
-              "block_index": 232
+              "block_index": 233
             }
           ]
         },
@@ -4174,47 +4174,47 @@
           "heading_text": "Modeling can also enable Alignment",
           "topic_sentence": "The two principles interact in a second way.",
           "id_source": "derived",
-          "block_index": 234,
+          "block_index": 235,
           "points": [
             {
               "slug": "modeling-can-turn-a-semantic-obligation-into-a-checkable-one",
               "text": "Modeling can turn a semantic obligation into a checkable one by changing the object over which it is decided.",
-              "block_index": 235
+              "block_index": 236
             },
             {
               "slug": "two-kinds-of-hard-judgmental-vs-wrong-representation",
               "text": "Two kinds of hard question look alike in code: intrinsically judgmental, or buried in the wrong representation.",
-              "block_index": 237
+              "block_index": 238
             },
             {
               "slug": "determinization-frontier-defined",
               "text": "The determinization frontier separates judgment supplied per instance from judgment the environment can carry repeatably.",
-              "block_index": 239
+              "block_index": 240
             },
             {
               "slug": "docable-default-everything-deterministic-was",
               "text": "DocAble's default: everything that could be deterministic was; commodity intelligence only where the problem requires semantic judgment.",
-              "block_index": 241
+              "block_index": 242
             },
             {
               "slug": "moving-the-frontier-reduces-the-probabilistic-surface",
               "text": "Moving the frontier reduces the probabilistic surface without making the agent deterministic or removing realization freedom.",
-              "block_index": 243
+              "block_index": 244
             },
             {
               "slug": "the-frontier-moves-incrementally",
               "text": "The frontier moves incrementally: from prose to invariant to bounded-model checking to temporal specification.",
-              "block_index": 246
+              "block_index": 247
             },
             {
               "slug": "moving-the-frontier-preserves-degrees-of-freedom",
               "text": "Moving the frontier governs obligations, not the acceptable ways to satisfy them, which remain degrees of freedom.",
-              "block_index": 248
+              "block_index": 249
             },
             {
               "slug": "at-the-limit-realization-becomes-transformation",
               "text": "At the limit a complete realization model makes realization a transformation, connecting MAGE to model-based engineering.",
-              "block_index": 250
+              "block_index": 251
             }
           ]
         },
@@ -4224,22 +4224,22 @@
           "heading_text": "The joint engineering problem",
           "topic_sentence": "We can now put the pieces back together.",
           "id_source": "derived",
-          "block_index": 252,
+          "block_index": 253,
           "points": [
             {
               "slug": "objective-is-an-economical-division-of-labor",
               "text": "The objective is an economical division of labor among reasoner, environment, and remaining human judgment.",
-              "block_index": 255
+              "block_index": 256
             },
             {
               "slug": "engineer-jointly-chooses-representation-and-alignment",
               "text": "An engineer jointly chooses a representation and an Alignment strategy, trading carrying cost against realization and failure cost.",
-              "block_index": 257
+              "block_index": 258
             },
             {
               "slug": "schematic-both-levers-carry-construction-and-carrying-cost",
               "text": "Schematically: Modeling changes realization cost, Alignment changes failure consequence, and both impose carrying cost.",
-              "block_index": 260
+              "block_index": 261
             }
           ]
         },
@@ -4249,27 +4249,27 @@
           "heading_text": "The Factory's Value Proposition",
           "topic_sentence": "The expression above prices one realization.",
           "id_source": "derived",
-          "block_index": 264,
+          "block_index": 265,
           "points": [
             {
               "slug": "a-factory-is-an-investment-in-productive-capacity",
               "text": "A factory is an investment in productive capacity, so its economics cannot be evaluated from construction cost alone.",
-              "block_index": 266
+              "block_index": 267
             },
             {
               "slug": "the-recurring-output-is-transformation",
               "text": "Software preserves the investment structure but changes what is produced: the factory does not manufacture each copy consumed, and its recurring output is the continued transformation of a maintained software system.",
-              "block_index": 268
+              "block_index": 269
             },
             {
               "slug": "separate-construction-from-continued-production",
               "text": "The cost model separates factory construction from continued production: startup cost, a stream of change costs, carrying cost, and expected failure loss.",
-              "block_index": 270
+              "block_index": 271
             },
             {
               "slug": "the-marginal-question-matters-most",
               "text": "The marginal question matters most: a successful factory may be expensive to construct and economical to use, because the productive capacity makes the stream of subsequent changes cheaper, faster, safer, or possible at all.",
-              "block_index": 274
+              "block_index": 275
             }
           ]
         },
@@ -4279,12 +4279,12 @@
           "heading_text": "Two Margins, Not One",
           "topic_sentence": "Software adds a distinction manufacturing does not have, and it should be stated explicitly: there are two margins here, not one.",
           "id_source": "derived",
-          "block_index": 278,
+          "block_index": 279,
           "points": [
             {
               "slug": "software-has-two-margins",
               "text": "Software has two distinct margins, a major difference from manufacturing: the production margin (the next acceptable change) and the replication margin (serving that change's benefit to the next user).",
-              "block_index": 279
+              "block_index": 280
             }
           ]
         },
@@ -4294,12 +4294,12 @@
           "heading_text": "The Idle Factory Still Depreciates",
           "topic_sentence": "Carrying cost also divides, and the division is where the physical analogy breaks most instructively.",
           "id_source": "derived",
-          "block_index": 281,
+          "block_index": 282,
           "points": [
             {
               "slug": "carrying-cost-splits-into-operational-and-capital",
               "text": "Carrying cost splits into operational carry and capital maintenance: a software factory can be cheap to leave physically idle while its engineering capital continues to depreciate.",
-              "block_index": 282
+              "block_index": 283
             }
           ]
         },
@@ -4309,17 +4309,17 @@
           "heading_text": "What the Changes Are Worth",
           "topic_sentence": "Against these costs stands what the stream of changes is worth, and that side of the comparison is deliberately left abstract, because it cannot be specified universally.",
           "id_source": "derived",
-          "block_index": 286,
+          "block_index": 287,
           "points": [
             {
               "slug": "what-a-change-is-worth-is-a-model-of-value",
               "text": "What the stream of changes is worth cannot be specified universally: each factory's outcome quantities are themselves models of value chosen for a particular engineering or organizational decision.",
-              "block_index": 287
+              "block_index": 288
             },
             {
               "slug": "mage-concerns-the-first-arrow",
               "text": "The economic chain runs factory → software capability → use → value, and MAGE primarily concerns the first arrow; the organization's business model determines how capability becomes value.",
-              "block_index": 289
+              "block_index": 290
             }
           ]
         },
@@ -4329,32 +4329,32 @@
           "heading_text": "Correctness Is Not the Factory's Objective",
           "topic_sentence": "Correctness, however, is still not the factory's final objective.",
           "id_source": "derived",
-          "block_index": 293,
+          "block_index": 294,
           "points": [
             {
               "slug": "the-probability-model-explains-the-factory-economics",
               "text": "The probability model explains the terms of the lifecycle factory economics: higher p_R raises durable throughput and lowers the cost of a change; Alignment exchanges validation cost for reduced escape risk; models preserve reasoning as engineering capital.",
-              "block_index": 294
+              "block_index": 295
             },
             {
               "slug": "correctness-alone-does-not-establish-value",
               "text": "Correctness alone does not establish value: a factory can reliably and efficiently produce software that nobody needs.",
-              "block_index": 296
+              "block_index": 297
             },
             {
               "slug": "the-economic-interpretation-of-modeling-and-alignment",
               "text": "The economic interpretation of Modeling and Alignment: valuable where the cost of externalizing, preserving, and enforcing consequential knowledge is lower than the expected cost of repeatedly reconstructing it, incorrectly realizing it, or allowing its violation to escape.",
-              "block_index": 298
+              "block_index": 299
             },
             {
               "slug": "the-problem-moves-as-fabrication-approaches-perfection",
               "text": "Commodity intelligence moves the boundary: the engineering problem does not disappear as fabrication approaches perfection — it moves toward deciding what must be preserved, inferred, established before admission, and what the capability is worth.",
-              "block_index": 300
+              "block_index": 301
             },
             {
               "slug": "part-v-evidence-is-depth-and-variation-not-effect-sizes",
               "text": "Chapter 5 supplied depth and variation, not population effect sizes; the theory is the proposed explanation of it.",
-              "block_index": 302
+              "block_index": 303
             }
           ]
         }
@@ -4382,7 +4382,7 @@
         },
         {
           "slug": "narrow-models-first-then-the-dynamic-model-widens-the-unit",
-          "text": "The chapter begins with deliberately narrow models of probability and cost; the dynamic model then widens the unit to capacity, environment, adaptation, and payoff.",
+          "text": "Chapter 5 identified the economic tradeoff in where engineering judgment is carried; this chapter makes it precise, beginning with deliberately narrow models of probability and cost, after which the dynamic model widens the unit to capacity, environment, adaptation, and payoff.",
           "block_index": 11
         }
       ]
