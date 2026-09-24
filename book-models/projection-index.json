@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 813,
+    "total_sites": 812,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 475,
+      "book-web": 474,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -100,7 +100,7 @@
             "occ": 53
           },
           {
-            "file": "book/web/docs/5.4-engineers-in-the-software-factory.md",
+            "file": "book/web/docs/5.4-two-problems-of-factory-engineering.md",
             "occ": 4
           },
           {
@@ -973,15 +973,15 @@
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 101
+            "occ": 102
           },
           {
-            "file": "book/web/docs/5.4-engineers-in-the-software-factory.md",
-            "occ": 6
+            "file": "book/web/docs/5.4-two-problems-of-factory-engineering.md",
+            "occ": 19
           },
           {
             "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 16
+            "occ": 17
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -1321,7 +1321,7 @@
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 26
+            "occ": 27
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1526,10 +1526,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/5.4-engineers-in-the-software-factory.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
             "occ": 9
           },
@@ -1673,7 +1669,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 49
+            "occ": 48
           }
         ]
       },
@@ -1882,8 +1878,8 @@
             "occ": 19
           },
           {
-            "file": "book/web/docs/5.4-engineers-in-the-software-factory.md",
-            "occ": 1
+            "file": "book/web/docs/5.4-two-problems-of-factory-engineering.md",
+            "occ": 2
           },
           {
             "file": "book/web/docs/5.5-engineering-the-factory.md",
