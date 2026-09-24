@@ -7,8 +7,9 @@ build (rendered natively by the browser — no JavaScript, no webfonts, no build
 emits Typst math atoms for the print edition.
 
 The subset is deliberately small — exactly the constructs the book uses (variables, numbers, sub/superscripts,
-`\\prod`/`\\sum`/`\\arg\\min` with limits, `\\text`, `\\boxed`, a fixed operator table, grouping). Anything
-outside it raises `MathError` so a typo fails the build loud rather than mis-rendering silently.
+`\\prod`/`\\sum`/`\\arg\\min` with limits, `\\text`, `\\bar`, `\\mathcal`, `\\boxed`, a fixed operator table,
+grouping). Anything outside it raises `MathError` so a typo fails the build loud rather than mis-rendering
+silently.
 
 Public API:
   to_mathml(latex, display=False) -> str   # a <math> element
@@ -164,7 +165,18 @@ def _tokenize(s: str) -> list[tuple[str, str]]:
 
 
 # ── Parser → AST (nodes are small dicts) ──────────────────────────────────────────────────────────
-# node kinds: var, num, op, text, sym, row, sub, sup, subsup, bigop, boxed
+# node kinds: var, num, op, text, sym, row, sub, sup, subsup, bigop, boxed, accent, cal
+
+
+def _sole_letter(node: dict) -> str | None:
+    """The single variable letter a node reduces to, unwrapping one-child rows; None otherwise."""
+    while node["k"] == "row":
+        kids = node.get("kids", [])
+        if len(kids) != 1:
+            return None
+        node = kids[0]
+    return node["v"] if node["k"] == "var" else None
+
 
 class _P:
     def __init__(self, toks: list[tuple[str, str]]) -> None:
@@ -236,10 +248,19 @@ class _P:
 
     def parse_cmd(self) -> dict:
         _, name = self.next()
-        if name == "frac":
+        if name in ("frac", "dfrac"):
+            # `\dfrac` is `\frac` forced to display style; block equations are already display style and
+            # the book uses no inline fractions, so the two render identically here.
             num = self.parse_atom()
             den = self.parse_atom()
             return {"k": "frac", "num": num, "den": den}
+        if name == "bar":
+            return {"k": "accent", "kid": self.parse_atom()}
+        if name == "mathcal":
+            letter = _sole_letter(self.parse_atom())
+            if letter is None:
+                raise MathError("\\mathcal must wrap a single letter")
+            return {"k": "cal", "v": letter}
         if name == "boxed":
             if self.peek() is None or self.peek()[0] != "lbrace":
                 raise MathError("\\boxed must be followed by {…}")
@@ -322,6 +343,10 @@ def _ml(node: dict) -> str:
         return f"<msubsup>{_ml(b)}{_ml(node['sub'])}{_ml(node['sup'])}</msubsup>"
     if k == "frac":
         return f"<mfrac>{_ml(node['num'])}{_ml(node['den'])}</mfrac>"
+    if k == "accent":
+        return f'<mover accent="true">{_ml(node["kid"])}<mo stretchy="false">&#xAF;</mo></mover>'
+    if k == "cal":
+        return f'<mi mathvariant="script">{html.escape(node["v"])}</mi>'
     if k == "boxed":
         return _ml(node["kid"])  # the border is applied by the HTML wrapper, not menclose
     raise MathError(f"cannot emit MathML for node {k}")
@@ -384,6 +409,10 @@ def _ty(node: dict) -> str:
         return f"{_grp(node['base'])}_({_ty(node['sub'])})^({_ty(node['sup'])})"
     if k == "frac":
         return f"frac({_ty(node['num'])}, {_ty(node['den'])})"
+    if k == "accent":
+        return f"macron({_ty(node['kid'])})"
+    if k == "cal":
+        return f"cal({node['v']})"
     if k == "boxed":
         return _ty(node["kid"])  # the border is applied by the Typst wrapper
     raise MathError(f"cannot emit Typst for node {k}")
