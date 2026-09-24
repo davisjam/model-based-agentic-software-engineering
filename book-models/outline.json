@@ -7,7 +7,7 @@
     "derived_ids": 206,
     "missing_topic_sentence": 4,
     "sections_drained": 154,
-    "paragraph_points": 739
+    "paragraph_points": 740
   },
   "chapters": [
     {
@@ -5458,7 +5458,7 @@
           "heading_text": "What Must Transfer",
           "topic_sentence": "The first requirement is representability.",
           "id_source": "derived",
-          "block_index": 16,
+          "block_index": 18,
           "points": []
         },
         {
@@ -5467,7 +5467,7 @@
           "heading_text": "Model-Based Engineering",
           "topic_sentence": "Conventional engineering is the nearest transfer because the shape of the outcome changes least.",
           "id_source": "derived",
-          "block_index": 27,
+          "block_index": 29,
           "points": []
         },
         {
@@ -5476,27 +5476,27 @@
           "heading_text": "Professional Knowledge Work",
           "topic_sentence": "Other engineering disciplines are therefore the easiest place to see the transfer: the outcome is often still an artifact, and much of the representational machinery already exists.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 40,
           "points": [
             {
               "slug": "zenseact-is-an-observed-instance-of-the-generalization",
               "text": "One industrial case is an instance rather than a prospect: an automotive company's agents do engineering knowledge work and no software realization, domain teams author each agent as two text files, and admission runs per tool call instead of per change.",
-              "block_index": 43
+              "block_index": 45
             },
             {
               "slug": "accounting-environment-already-engineered",
               "text": "Accounting's environment is already engineered: double-entry is an old enforcement mechanism, and the profession's controls give obligations independent paths to consequence.",
-              "block_index": 51
+              "block_index": 53
             },
             {
               "slug": "law-representation-without-determinization",
               "text": "Legal analysis has abundant representations, but its consequential judgments are semantic and contested — representation does not imply determinization.",
-              "block_index": 54
+              "block_index": 56
             },
             {
               "slug": "unit-of-transfer-is-the-surface",
               "text": "The unit of transfer is the surface, not the profession — the pair shows the frontier's position is a property of the domain's obligations.",
-              "block_index": 57
+              "block_index": 59
             }
           ]
         },
@@ -5506,12 +5506,12 @@
           "heading_text": "Science as the Harder Case",
           "topic_sentence": "Scientific work is worth examining because it tests the theory rather than flattering it.",
           "id_source": "derived",
-          "block_index": 59,
+          "block_index": 61,
           "points": [
             {
               "slug": "science-tests-the-theory",
               "text": "Science is the deliberately hard case: inquiry's conduct is governable, its conclusions are not.",
-              "block_index": 60
+              "block_index": 62
             }
           ]
         },
@@ -5521,12 +5521,12 @@
           "heading_text": "Where the Generalization Fails",
           "topic_sentence": "The transfer conditions predict their own failures, and the failures deserve naming rather than a passing caveat.",
           "id_source": "derived",
-          "block_index": 64,
+          "block_index": 66,
           "points": [
             {
               "slug": "failure-traits-named",
               "text": "The transfer conditions predict their own failures; the traits deserve naming rather than a caveat.",
-              "block_index": 65
+              "block_index": 67
             }
           ]
         },
@@ -5536,11 +5536,17 @@
           "heading_text": "A Research Prediction",
           "topic_sentence": "The broader interpretation produces a testable prediction.",
           "id_source": "derived",
-          "block_index": 70,
+          "block_index": 72,
           "points": []
         }
       ],
-      "preamble_points": []
+      "preamble_points": [
+        {
+          "slug": "the-factorys-boundary-is-not-the-problems-boundary",
+          "text": "Zenseact's platform fell outside this book's definition of an agentic software factory and still presented the same engineering problem, so the boundary of the software factory is not the boundary of the underlying problem.",
+          "block_index": 4
+        }
+      ]
     },
     {
       "slug": "7.4-the-engineer",
