@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- §5.1 Figure 5.1-1 — process-design-and-tolerance.svg. Hand-SVG: a flow band and a bounded
+     acceptable region in one frame is a bespoke composition, not a graph d2 can lay out. -->
+<!-- semantic-families: agent, governance, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 772" width="1000" height="772"
+     role="img" aria-labelledby="pdtTitle pdtDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="pdtTitle">Process design organizes production around the fabricator; tolerance bounds the
+    product</title>
+  <desc id="pdtDesc">One large frame labelled SOFTWARE FACTORY holds two distinct engineering concerns.
+    Across the top, inside a dashed band labelled PROCESS DESIGN — how production proceeds — a
+    left-to-right path runs from engineering intent, through context and work, into a heavy central box
+    labelled FABRICATOR, and out to a realization; a small annotation under the path reads context, tools,
+    routing, authority, sequencing. Below the path, a wide bounded region drawn in the governance colour is
+    labelled ACCEPTABLE REGION and carried by a left-hand definition, TOLERANCE — what variation in the
+    product is acceptable. Several dots inside the region mark distinct acceptable realizations the
+    fabricator may choose among. A measurement arrow drops from the realization to the boundary of that
+    region rather than passing through it, annotated with the mechanisms that establish where a realization
+    falls: tests, property-based testing, analysis, simulation, measurement, human judgment. From the region
+    two short arrows lead out, one labelled within tolerance to admitted change and a lighter one labelled
+    outside to revise or reject.</desc>
+
+  <defs>
+    <marker id="pdtArrow" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10"
+            refX="12" refY="5" orient="auto">
+      <path d="M0,0 L12,5 L0,10 Z" fill="#57534e"/>
+    </marker>
+    <marker id="pdtArrowFaint" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10"
+            refX="12" refY="5" orient="auto">
+      <path d="M0,0 L12,5 L0,10 Z" fill="#8a837c"/>
+    </marker>
+    <marker id="pdtArrowRust" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10"
+            refX="12" refY="5" orient="auto">
+      <path d="M0,0 L12,5 L0,10 Z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- page ground + the factory frame (the system that contains the fabricator) -->
+  <rect x="0" y="0" width="1000" height="772" fill="#fdfcf9"/>
+  <rect x="26" y="62" width="948" height="682" rx="12" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
+
+  <!-- the process-design band: the path by which work reaches, passes through, and leaves the fabricator -->
+  <rect x="48" y="152" width="904" height="186" rx="10" fill="none" stroke="#cfc9bf" stroke-width="1.5"
+        stroke-dasharray="7 5"/>
+
+  <!-- the acceptable region: a bounded region for properties of the realization, not a stage -->
+  <rect id="n-region" x="372" y="430" width="580" height="190" rx="14" fill="#9a3f12" fill-opacity="0.08"
+        stroke="#9a3f12" stroke-width="2.5"/>
+
+  <!-- edges are drawn first so each node's opaque fill caps its tail; heads seat outside the target rim -->
+  <!-- edge: n-intent -> n-work -->
+  <line x1="244" y1="220" x2="287" y2="220" stroke="#57534e" stroke-width="2" marker-end="url(#pdtArrow)"/>
+  <!-- edge: n-work -> n-fabricator -->
+  <line x1="454" y1="220" x2="497" y2="220" stroke="#57534e" stroke-width="2" marker-end="url(#pdtArrow)"/>
+  <!-- edge: n-fabricator -> n-realization -->
+  <line x1="708" y1="220" x2="751" y2="220" stroke="#57534e" stroke-width="2" marker-end="url(#pdtArrow)"/>
+  <!-- edge: n-realization -> n-region -->
+  <line x1="837" y1="247" x2="837" y2="430" stroke="#9a3f12" stroke-width="2.5"
+        marker-end="url(#pdtArrowRust)"/>
+  <!-- edge: n-region -> n-admitted -->
+  <line x1="805" y1="615" x2="805" y2="666" stroke="#57534e" stroke-width="2" marker-end="url(#pdtArrow)"/>
+  <!-- edge: n-region -> n-revise -->
+  <line x1="515" y1="615" x2="515" y2="666" stroke="#8a837c" stroke-width="1.5"
+        marker-end="url(#pdtArrowFaint)"/>
+
+  <!-- the production path; the fabricator is one component of it, and the heaviest -->
+  <rect id="n-intent" x="77" y="188" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#cfc9bf"
+        stroke-width="1.5"/>
+  <rect id="n-work" x="287" y="188" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#cfc9bf"
+        stroke-width="1.5"/>
+  <rect id="n-fabricator" x="497" y="168" width="216" height="104" rx="10" fill="#e7edf3" stroke="#2f5169"
+        stroke-width="4"/>
+  <rect id="n-realization" x="751" y="188" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#cfc9bf"
+        stroke-width="1.5"/>
+
+  <!-- the two consequences of measurement -->
+  <rect id="n-admitted" x="700" y="666" width="210" height="56" rx="8" fill="#fdfcf9" stroke="#57534e"
+        stroke-width="2"/>
+  <rect id="n-revise" x="420" y="666" width="190" height="56" rx="8" fill="#fdfcf9" stroke="#cfc9bf"
+        stroke-width="1.5"/>
+
+  <!-- realizations the factory would accept: the fabricator's remaining freedom -->
+  <g fill="#1c1917">
+    <circle cx="482" cy="538" r="6"/>
+    <circle cx="562" cy="526" r="6"/>
+    <circle cx="642" cy="544" r="6"/>
+    <circle cx="722" cy="528" r="6"/>
+    <circle cx="802" cy="540" r="6"/>
+  </g>
+
+  <!-- text last: every label is painted over the fills it sits on -->
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#57534e"
+        letter-spacing="1.5">SOFTWARE FACTORY</text>
+
+  <text x="52" y="106" font-size="24" font-weight="700" fill="#57534e" letter-spacing="1">PROCESS DESIGN</text>
+  <text x="52" y="134" font-size="20" fill="#57534e">how production proceeds</text>
+
+  <text x="163" y="212" text-anchor="middle" font-size="21" fill="#1c1917">Engineering</text>
+  <text x="163" y="238" text-anchor="middle" font-size="21" fill="#1c1917">intent</text>
+  <text x="373" y="228" text-anchor="middle" font-size="21" fill="#1c1917">Context / work</text>
+  <text x="605" y="229" text-anchor="middle" font-size="27" font-weight="700" fill="#1c1917"
+        letter-spacing="1.5">FABRICATOR</text>
+  <text x="837" y="228" text-anchor="middle" font-size="21" fill="#1c1917">Realization</text>
+
+  <text x="500" y="318" text-anchor="middle" font-size="20" fill="#57534e">context · tools · routing · authority · sequencing</text>
+
+  <text x="822" y="360" text-anchor="end" font-size="21" fill="#9a3f12">measurement</text>
+  <text x="822" y="390" text-anchor="end" font-size="20" fill="#9a3f12">tests · PBT · analysis · simulation</text>
+  <text x="822" y="416" text-anchor="end" font-size="20" fill="#9a3f12">measurement · human judgment</text>
+
+  <text x="52" y="472" font-size="24" font-weight="700" fill="#9a3f12" letter-spacing="1">TOLERANCE</text>
+  <text x="52" y="500" font-size="20" fill="#57534e">what variation in the product</text>
+  <text x="52" y="524" font-size="20" fill="#57534e">is acceptable</text>
+
+  <text x="662" y="484" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12"
+        letter-spacing="1">ACCEPTABLE REGION</text>
+  <text x="662" y="596" text-anchor="middle" font-size="20" fill="#57534e">the fabricator may choose among these</text>
+
+  <text x="818" y="648" font-size="20" fill="#57534e">within tolerance</text>
+  <text x="502" y="648" text-anchor="end" font-size="20" fill="#8a837c">outside</text>
+  <text x="805" y="701" text-anchor="middle" font-size="21" fill="#1c1917">Admitted change</text>
+  <text x="515" y="701" text-anchor="middle" font-size="21" fill="#57534e">Revise / reject</text>
+</svg>
