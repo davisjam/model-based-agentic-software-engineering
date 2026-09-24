@@ -4199,6 +4199,16 @@
         }
       ]
     },
+    "point:narrow-models-first-then-the-dynamic-model-widens-the-unit": {
+      "kind": "point",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.1-toward-a-theory-of-mage::block-11",
+          "role": "paragraph-point"
+        }
+      ]
+    },
     "point:natural-language-is-an-interface-not-the-method": {
       "kind": "point",
       "dependents": [
@@ -4645,26 +4655,6 @@
         {
           "view": "outline",
           "element": "6.1-toward-a-theory-of-mage::block-302",
-          "role": "paragraph-point"
-        }
-      ]
-    },
-    "point:part-v-model-isolated-exposure-under-fixed-conditions": {
-      "kind": "point",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.1-toward-a-theory-of-mage::block-214",
-          "role": "paragraph-point"
-        }
-      ]
-    },
-    "point:part-v-model-narrow-theory-widens-the-unit": {
-      "kind": "point",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.1-toward-a-theory-of-mage::block-11",
           "role": "paragraph-point"
         }
       ]
@@ -5505,6 +5495,16 @@
         {
           "view": "outline",
           "element": "5.3-other-agentic-software-factories::block-77",
+          "role": "paragraph-point"
+        }
+      ]
+    },
+    "point:simple-models-isolated-repeated-exposure-under-fixed-conditions": {
+      "kind": "point",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.1-toward-a-theory-of-mage::block-214",
           "role": "paragraph-point"
         }
       ]
