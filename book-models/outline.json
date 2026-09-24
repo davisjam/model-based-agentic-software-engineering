@@ -7,7 +7,7 @@
     "derived_ids": 200,
     "missing_topic_sentence": 4,
     "sections_drained": 148,
-    "paragraph_points": 721
+    "paragraph_points": 722
   },
   "chapters": [
     {
@@ -3351,9 +3351,14 @@
               "block_index": 50
             },
             {
+              "slug": "shopifys-instruction-corpus-also-accumulates-maintenance",
+              "text": "The mechanism that accumulates shared knowledge accumulates upkeep with it: instruction files apply recursively across the monorepo, a directory missing one of the two files leaves some developers running a degraded agent, and the CEO calls the automation that repairs the drift a stupid complexity tax.",
+              "block_index": 52
+            },
+            {
               "slug": "shopify-converted-one-failure-into-a-code-enforced-guarantee-and-scopes-the-claim",
               "text": "The sharpest conversion is a failure that moved a rule from prompt to code — River violated its own prompt-stated enumeration requirement, producing the rule that guarantees belong in code — and the admission controls named alongside it are stated for the security lane only.",
-              "block_index": 52
+              "block_index": 54
             }
           ]
         },
@@ -3363,17 +3368,17 @@
           "heading_text": "Zenseact",
           "topic_sentence": "Zenseact, a driver-assistance software company, belongs here with a scoping sentence attached: its agents do not produce software.",
           "id_source": "derived",
-          "block_index": 54,
+          "block_index": 56,
           "points": [
             {
               "slug": "zenseact-federates-agent-ownership-while-keeping-the-authority-to-act-central",
               "text": "Zenseact's agents do no software realization, and the case earns its place on the federation question: a platform team owns a runtime with no business logic, a domain team's agent is a directory with two text files, and a central permission table still resolves every tool call.",
-              "block_index": 55
+              "block_index": 57
             },
             {
               "slug": "zenseact-is-architecture-described-by-its-authors-not-practice-observed",
               "text": "The federation claim is a design property the record never demonstrates — one source, no adoption count, no outcome figure — and the single measured mechanism is a context router whose typed failures are repaired in the skill file rather than the model.",
-              "block_index": 57
+              "block_index": 59
             }
           ]
         },
@@ -3383,37 +3388,37 @@
           "heading_text": "The Factory in a Box",
           "topic_sentence": "GitLab belongs in the other column because the capability its account describes is generalized and sold, to be attached to somebody else's repositories, policies, and engineering knowledge.",
           "id_source": "derived",
-          "block_index": 59,
+          "block_index": 61,
           "points": [
             {
               "slug": "gitlab-sells-the-capability-and-its-own-practice-prices-what-the-box-omits",
               "text": "GitLab generalizes and sells the production capability, which poses a question no internal factory faces — what productizes generically and what the adopter must supply — and its own handbook prices the second half: failing-test-first doctrine, CI as the gate, a test-count guard, and a 95-percent-agent-generated service built atop four weeks of harness construction.",
-              "block_index": 60
+              "block_index": 62
             },
             {
               "slug": "the-factory-in-a-box-is-an-integration-problem-at-both-ends",
               "text": "A factory in a box introduces a boundary an internal factory does not have: the vendor supplies fabricator, orchestration, context machinery, evidence, and generic controls, and the engineering problem is integration, not installation — at both ends of the production line.",
-              "block_index": 62
+              "block_index": 64
             },
             {
               "slug": "customer-intent-enters-as-files-and-customer-authority-as-a-withheld-capability",
               "text": "Upstream, intent enters as files the customer authors at fixed repository paths, under the vendor's thesis that what an agent cannot access in context does not exist; downstream, admission authority stays human by construction — the flow never sets the Approve state — with agent privileges intersected and tool policy tightenable only.",
-              "block_index": 64
+              "block_index": 66
             },
             {
               "slug": "the-record-prices-the-infrastructure-and-not-the-knowledge-authoring",
               "text": "The public record is specific about infrastructure and silent about the knowledge-authoring cost — no case study of a customer writing those files, no measure of output against their quality — and the layer that produced GitLab's own 95-percent service is precisely the layer only the customer can author.",
-              "block_index": 66
+              "block_index": 68
             },
             {
               "slug": "the-form-question-stated-plainly",
               "text": "The externalization question follows directly from the two-ended boundary and is worth stating plainly.",
-              "block_index": 68
+              "block_index": 70
             },
             {
               "slug": "the-externalization-question-is-the-modeling-problem-commercially",
               "text": "The question restates the Modeling problem in commercial terms, and the factory chapter already named the tradeoff behind it: a purchased factory that works only when the buyer describes the software almost completely has recreated the arrangement the earlier software factories died of.",
-              "block_index": 72
+              "block_index": 74
             }
           ]
         },
@@ -3423,32 +3428,32 @@
           "heading_text": "Model-First Factories",
           "topic_sentence": "Siemens answers a question the software-first accounts never have to ask: what changes when explicit engineering models already sit upstream of realization?",
           "id_source": "derived",
-          "block_index": 74,
+          "block_index": 76,
           "points": [
             {
               "slug": "model-first-production-inverts-where-intent-enters",
               "text": "Model-first production inverts where intent enters: explicit engineering models, not the repository and its tests, carry the system's semantics, and the software is generated downstream of them.",
-              "block_index": 75
+              "block_index": 77
             },
             {
               "slug": "siemens-model-first-evidence-is-eigen-and-agent-studio",
               "text": "The load-bearing Siemens evidence is Eigen — control code generated from a TIA Portal engineering model, iterating until pre-defined performance benchmarks are met, a tolerance in this chapter's exact sense — and the 2024 Agent Studio research on SysML v2 with simulation as validator: a model supplies goal and context, a deterministic engine supplies the verdict.",
-              "block_index": 77
+              "block_index": 79
             },
             {
               "slug": "siemens-vision-disclaims-itself-and-the-gaps-sit-where-stakes-are-highest",
               "text": "The broader architecture Siemens publishes is an explicit research vision about simulation, not software realization; no source establishes a model-implementation conformance gate, and Eigen's record names no human approval step — while the one account of Siemens changing its own software keeps a human in the loop and grounds that gate in compliance.",
-              "block_index": 79
+              "block_index": 81
             },
             {
               "slug": "a-cheap-and-capable-fabricator-changes-what-a-model-must-determine",
               "text": "The sharp difference from the old model-driven dream is that today's fabricator is cheap and capable at once, so a model-first factory need not determine every realization decision — only the consequential ones.",
-              "block_index": 81
+              "block_index": 83
             },
             {
               "slug": "model-first-is-a-position-and-siemens-sells-the-combined-cell",
               "text": "Model-first is a position on one axis rather than a maturity level, and the axis is independent of the first — Siemens itself partially fills the combined cell, selling model-first factories in a box for the narrow software of control logic and chip design, while no observed case sells one for general-purpose software.",
-              "block_index": 83
+              "block_index": 85
             }
           ]
         },
@@ -3458,27 +3463,27 @@
           "heading_text": "What the Factories Share, and Where They Differ",
           "topic_sentence": "The substrate these factories share was stated at the outset.",
           "id_source": "derived",
-          "block_index": 85,
+          "block_index": 87,
           "points": [
             {
               "slug": "the-human-admission-boundary-rests-on-three-different-stated-groundings",
               "text": "The shared substrate was stated at the outset; the one part of it the corpus does not state uniformly is why consequential decisions stay human — evidence adequacy at Uber, responsibility at Shopify, compliance obligation at Siemens — and those three groundings predict different futures for the boundary.",
-              "block_index": 86
+              "block_index": 88
             },
             {
               "slug": "the-differences-are-as-informative-as-the-commonalities",
               "text": "The factories differ in where admission sits, how much knowledge they route into each task, whether failure-to-structure conversion is measured (the mechanism is documented nearly everywhere; aggregate yield once, class-recurrence nowhere), and — most sharply — how explicitly they model the governed system; no ordering follows.",
-              "block_index": 88
+              "block_index": 90
             },
             {
               "slug": "software-first-accounts-model-knowledge-not-behavior",
               "text": "The observed modeling frontier: the software-first accounts publicly show knowledge and governance representations; Siemens crosses into machine-checkable system models from a model-first tradition; DocAble additionally checks selected model-implementation relations and gives them consequences.",
-              "block_index": 90
+              "block_index": 92
             },
             {
               "slug": "the-common-structure-is-leverage-organizational-capital",
               "text": "At organizational scale the recurring structure is leverage: one policy shapes thousands of changes, one representation guides a fleet, one learned constraint protects every later task — the organizational face of engineering capital.",
-              "block_index": 93
+              "block_index": 95
             }
           ]
         }
