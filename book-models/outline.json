@@ -4048,12 +4048,12 @@
           "points": [
             {
               "slug": "modeling-lowers-expected-cost-of-acceptable-realization",
-              "text": "One role of Modeling: raise per-attempt success or lower per-attempt cost, so acceptable realization is cheaper to find.",
+              "text": "Under a simple retry model the expected realization cost names the expected production cost of obtaining one acceptable realization; one role of Modeling is to raise per-attempt success or lower per-attempt cost so that quantity falls.",
               "block_index": 141
             },
             {
               "slug": "the-ratio-matters-more-than-either-term",
-              "text": "The ratio matters more than either term: a representation that raises attempt cost can still lower expected realization cost when its increase in p_R is large enough.",
+              "text": "The ratio exposes the interaction between cost and reliability: halving attempt cost and doubling attempt success move the expected realization cost equally, so a representation that raises attempt cost can still be preferable when its increase in p_R is large enough.",
               "block_index": 145
             },
             {
@@ -4168,7 +4168,7 @@
             },
             {
               "slug": "repeated-use-amortizes-judgment",
-              "text": "Across n realizations the fixed representation cost amortizes and the judgment embodied in the representation is reused — the factories accumulating shared policy, models, and permissions at scale are amortizing judgment, not adding process.",
+              "text": "Under a simple linear maintenance model — build once, carry repeatedly, realize repeatedly — the fixed representation cost amortizes across n realizations and the judgment embodied in the representation is reused; the factories accumulating shared policy, models, and permissions at scale are amortizing judgment, not adding process.",
               "block_index": 203
             },
             {
