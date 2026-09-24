@@ -36,5 +36,5 @@ industrial systems to ask which of these pressures recur under different organiz
 technologies, and allocations of human and machine authority.
 {{sec:engineers-in-the-software-factory}} then returns to process design and tolerance to interpret
 what these different factories imply for the engineer's role and for the purchased factory. A short
-coda ({{sec:what-the-evidence-supports}}) closes the chapter.
+coda closes the chapter.
 {{chapter:theory}} develops the theory needed to explain those differences.
