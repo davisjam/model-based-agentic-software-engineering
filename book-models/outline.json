@@ -4188,7 +4188,7 @@
             },
             {
               "slug": "assurance-without-modeling-can-be-expensive",
-              "text": "Assurance without useful representation is expensive: rejected candidates regenerate, so realization cost climbs.",
+              "text": "Assurance without useful representation is expensive: if each independently generated candidate satisfies the covered obligation with probability p_R and rejected candidates are regenerated until one passes, the expected admission cost carries both production and validation cost on every attempt.",
               "block_index": 214
             },
             {
