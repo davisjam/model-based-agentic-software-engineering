@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 811,
+    "total_sites": 812,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 473,
+      "book-web": 474,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -101,7 +101,7 @@
           },
           {
             "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -977,7 +977,7 @@
           },
           {
             "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 11
+            "occ": 16
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -1395,7 +1395,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 84
+            "occ": 83
           },
           {
             "file": "catalogue-figure.html",
@@ -1882,6 +1882,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/5.5-engineering-the-factory.md",
+            "occ": 3
+          },
+          {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
             "occ": 63
           },
@@ -2201,7 +2205,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 105
+            "occ": 106
           }
         ]
       },
