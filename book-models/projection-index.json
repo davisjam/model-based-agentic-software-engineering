@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 812,
+    "total_sites": 813,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 474,
+      "book-web": 475,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -19,6 +19,10 @@
     "agent": {
       "book": {
         "book-web": [
+          {
+            "file": "book/web/docs/0.1-how-to-read-this-book.md",
+            "occ": 1
+          },
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
             "occ": 2
@@ -255,7 +259,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 58
+            "occ": 59
           }
         ]
       },
@@ -861,7 +865,7 @@
           },
           {
             "file": "book/web/docs/0.1-how-to-read-this-book.md",
-            "occ": 24
+            "occ": 27
           },
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
