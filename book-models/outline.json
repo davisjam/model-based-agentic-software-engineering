@@ -7,7 +7,7 @@
     "derived_ids": 199,
     "missing_topic_sentence": 5,
     "sections_drained": 147,
-    "paragraph_points": 706
+    "paragraph_points": 703
   },
   "chapters": [
     {
@@ -5078,42 +5078,27 @@
           "points": []
         },
         {
-          "section_id": "the-software-factory-risk-production-outrunning-engineering-control",
+          "section_id": "engineering-the-production-system",
           "level": 2,
-          "heading_text": "The Software Factory Risk: Production Outrunning Engineering Control",
-          "topic_sentence": "Chapter 5 described the software factory as a production system for controlled change: machinery, representations, constraints, evidence, and organization through which acceptable changes are produced.",
+          "heading_text": "Engineering the Production System",
+          "topic_sentence": "Chapter 5 distinguished two places engineering attention can go as realization becomes abundant.",
           "id_source": "derived",
           "block_index": 49,
           "points": [
             {
-              "slug": "production-capacity-and-engineering-understanding-are-different-quantities",
-              "text": "Only the factory's capacity for realization arrives as a purchased commodity; the capacity to understand, evaluate, and govern what it realizes has to be engineered.",
+              "slug": "two-places-engineering-attention-can-go",
+              "text": "Chapter 5 distinguished two places engineering attention can go as realization becomes abundant: operating agentic machinery, and engineering the production system around it so selected knowledge, evidence, and controls persist across acts of realization.",
               "block_index": 50
             },
             {
-              "slug": "operator-and-manufacturing-engineer-relate-to-machinery-differently",
-              "text": "A physical factory admits two relationships to productive machinery: an operator runs the machinery and keeps production moving; a manufacturing engineer works on the production system around it.",
-              "block_index": 54
+              "slug": "both-futures-contain-capable-agents-and-differ-in-where-judgment-goes",
+              "text": "The distinction matters professionally because both futures can contain capable agents and very little human implementation; they differ in where scarce engineering judgment goes, and MAGE predicts increasing value in the second kind of work.",
+              "block_index": 52
             },
             {
-              "slug": "the-engineer-becomes-an-agent-operator",
-              "text": "The software factories place substantial engineering effort in the first role, so most supervision stays attached to individual acts of production.",
-              "block_index": 56
-            },
-            {
-              "slug": "the-docable-factory-points-toward-engineering-the-production-system",
-              "text": "The DocAble factory places the engineer's effort on the production system: models make consequential properties explicit and machine-checkable, Alignment turns them into feedback and evidence, and conversion changes what later work inherits.",
-              "block_index": 58
-            },
-            {
-              "slug": "the-distinction-is-operating-versus-engineering-not-manual-versus-automated",
-              "text": "Both factories can delegate implementation almost completely; they differ in whether the engineer operates the agents producing changes or engineers the production system governing them.",
-              "block_index": 60
-            },
-            {
-              "slug": "the-two-futures-differ-in-where-engineering-attention-goes",
-              "text": "Both futures contain capable agents and little human implementation; they differ in whether scarce engineering attention buys more capable machinery to operate or scales supervision with realization.",
-              "block_index": 63
+              "slug": "not-a-new-lifecycle-phase-but-a-new-means-of-exercising-it",
+              "text": "This is not a new lifecycle phase: requirements, design, validation, operation, and maintenance remain, but engineers increasingly exercise those responsibilities through the production system in which agents work.",
+              "block_index": 55
             }
           ]
         }
