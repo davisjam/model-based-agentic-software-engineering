@@ -7,7 +7,7 @@
     "derived_ids": 200,
     "missing_topic_sentence": 4,
     "sections_drained": 148,
-    "paragraph_points": 726
+    "paragraph_points": 727
   },
   "chapters": [
     {
@@ -3282,7 +3282,7 @@
             },
             {
               "slug": "uber-publishes-cost-and-withholds-quality",
-              "text": "Reviewer attention is the one resource Uber schedules as scarce — review latency rose from three to nine hours and maintenance is placed against Monday's review load — while the measurement stays asymmetric: cost published in detail, the named quality signals tracked and never published.",
+              "text": "Uber treats reviewer attention as a production resource with finite capacity — review latency rose from three to nine hours and maintenance is placed against Monday's review load — while the measurement stays asymmetric: production economics published in considerable detail, the named quality signals held and never published, and no stated evidence requirement for admission.",
               "block_index": 37
             }
           ]
@@ -3302,12 +3302,12 @@
             },
             {
               "slug": "cloudflare-promotes-obligations-into-blocking-authority-and-instruments-one-side-only",
-              "text": "Authority arrives in a separate promotion step from advisory to blocking, after which a coordinator agent maps its verdict onto the version-control action with no human in the path — bounded by an approval-biased rubric and a logged break-glass override whose 0.6 percent rate measures only the false-block direction.",
+              "text": "Authority arrives in a separate promotion step from advisory to blocking, after which a coordinator agent maps its verdict onto the version-control action with no human in the path — bounded by an approval-biased rubric and a logged break-glass override whose 0.6 percent rate measures only the false-block direction, while the larger published counts measure activity by the control rather than defects prevented.",
               "block_index": 42
             },
             {
               "slug": "cloudflare-converts-failures-into-structure-but-never-measures-the-loop",
-              "text": "Failures convert into environmental structure along four documented paths — named rules from named outages, Snapstone enrolment, representation revision, a new linter station — but no loop is closed by measurement, and Cloudflare itself calls the agent-evaluation loop unfinished.",
+              "text": "Operating experience converts into environmental structure along four documented paths — named rules from named outages, Snapstone enrolment, representation revision, a new linter station — but no loop is closed by measurement, and Cloudflare itself calls the agent-evaluation loop unfinished.",
               "block_index": 44
             }
           ]
@@ -3327,13 +3327,18 @@
             },
             {
               "slug": "spotify-installs-and-then-retires-a-control-as-the-fabricator-improves",
-              "text": "The controls around the agent station are tuned to the fabricator and move with it: a deliberately narrow tool surface, verification as a precondition of the PR's existence, and an LLM judge added after agents gamed builds and later reported removed as models improved — the corpus's only recorded control withdrawal.",
+              "text": "The controls around the agent station are tuned to the fabricator and move with it: a deliberately narrow tool surface, verification as a precondition of the PR's existence, and an LLM judge added after agents gamed builds and later reported removed as models improved — which, if that second-hand account is accurate, is the corpus's only recorded control withdrawal after the fabricator improved.",
               "block_index": 49
             },
             {
               "slug": "spotify-splits-admission-by-fabricator-and-names-verification-as-the-constraint",
               "text": "Admission splits on which fabricator produced the change — deterministic fleet changes automerge by default while agent-authored ones wait for human review — and Spotify's own incident retrospectives name verification capacity, not generation, as the binding constraint.",
               "block_index": 51
+            },
+            {
+              "slug": "spotify-measures-the-health-of-the-engineering-system-not-just-agent-activity",
+              "text": "Spotify measures the pressure beyond the incident count — a rebuilt rework metric separating genuine rework from new development and legacy refactoring, with no reported increase during the AI ramp-up, plus complexity and pull-request size watched with the thresholds explicitly held fixed — producing a result more complicated than either \"AI reduced quality\" or \"AI preserved quality\".",
+              "block_index": 53
             }
           ]
         },
@@ -3343,27 +3348,27 @@
           "heading_text": "Shopify",
           "topic_sentence": "Shopify's question is how one engineer's hard-won fix becomes knowledge that every later session inherits, and its answer begins in the architecture rather than in a pipeline.",
           "id_source": "derived",
-          "block_index": 53,
+          "block_index": 55,
           "points": [
             {
               "slug": "shopify-makes-every-session-observable-organizational-material",
               "text": "Shopify's question is how one engineer's fix becomes something every later session inherits, and the answer starts in the architecture: River lives in Slack, refuses direct messages, and turns every session into a public transcript watched by colleagues.",
-              "block_index": 54
+              "block_index": 56
             },
             {
               "slug": "shopify-mines-sessions-by-hand-and-measured-the-effect",
-              "text": "The documented conversion mechanism is human — people watch River work and write down what it should have known, as files in the monorepo — with the effect measured and the counterfactual controlled: merge rate 36 to 77 percent in two months without retraining or switching models; no automated extraction is established.",
-              "block_index": 56
+              "text": "The documented conversion mechanism is human — people watch River work and write down what it should have known, as files in the monorepo — with the effect measured and the counterfactual controlled: merge rate 36 to 77 percent in two months without retraining or switching models, self-reported and not isolating human learning from environmental improvement; no automated extraction is established.",
+              "block_index": 58
             },
             {
               "slug": "shopifys-instruction-corpus-also-accumulates-maintenance",
               "text": "The mechanism that accumulates shared knowledge accumulates upkeep with it: instruction files apply recursively across the monorepo, a directory missing one of the two files leaves some developers running a degraded agent, and the CEO calls the automation that repairs the drift a stupid complexity tax.",
-              "block_index": 58
+              "block_index": 60
             },
             {
               "slug": "shopify-converted-one-failure-into-a-code-enforced-guarantee-and-scopes-the-claim",
-              "text": "The sharpest conversion is a failure that moved a rule from prompt to code — River violated its own prompt-stated enumeration requirement, producing the rule that guarantees belong in code — and the admission controls named alongside it are stated for the security lane only.",
-              "block_index": 60
+              "text": "The sharpest conversion is a failure that moved a rule from an instruction the agent interprets to a condition the production system enforces — River violated its own prompt-stated enumeration requirement, producing the rule that guarantees belong in code — and the admission controls named alongside it are stated for the security lane only.",
+              "block_index": 62
             }
           ]
         },
@@ -3373,17 +3378,17 @@
           "heading_text": "Zenseact",
           "topic_sentence": "Zenseact, a driver-assistance software company, belongs here with a scoping sentence attached: its agents do not produce software.",
           "id_source": "derived",
-          "block_index": 62,
+          "block_index": 64,
           "points": [
             {
               "slug": "zenseact-federates-agent-ownership-while-keeping-the-authority-to-act-central",
               "text": "Zenseact's agents do no software realization, and the case earns its place on the federation question: a platform team owns a runtime with no business logic, a domain team's agent is a directory with two text files, and a central permission table still resolves every tool call.",
-              "block_index": 63
+              "block_index": 65
             },
             {
               "slug": "zenseact-is-architecture-described-by-its-authors-not-practice-observed",
-              "text": "The federation claim is a design property the record never demonstrates — one source, no adoption count, no outcome figure — and the single measured mechanism is a context router whose typed failures are repaired in the skill file rather than the model.",
-              "block_index": 65
+              "text": "The federation claim is a design property the record never demonstrates — one source, no adoption count, no outcome figure — and its one published performance measurement concerns a context router whose typed failures are repaired in the skill file rather than the model.",
+              "block_index": 67
             }
           ]
         },
@@ -3393,37 +3398,37 @@
           "heading_text": "The Factory in a Box",
           "topic_sentence": "GitLab belongs in the other column because the capability its account describes is generalized and sold, to be attached to somebody else's repositories, policies, and engineering knowledge.",
           "id_source": "derived",
-          "block_index": 67,
+          "block_index": 69,
           "points": [
             {
               "slug": "gitlab-sells-the-capability-and-its-own-practice-prices-what-the-box-omits",
-              "text": "GitLab generalizes and sells the production capability, which poses a question no internal factory faces — what productizes generically and what the adopter must supply — and its own handbook prices the second half: failing-test-first doctrine, CI as the gate, a test-count guard, and a 95-percent-agent-generated service built atop four weeks of harness construction.",
-              "block_index": 68
+              "text": "GitLab generalizes and sells the production capability, which poses a question no internal factory faces — what productizes generically and what the adopter must supply — and its own handbook prices the second half: failing-test-first doctrine, CI as the gate, a test-count guard, and a 95-percent-agent-generated service whose roughly two-week production episode follows roughly four weeks of harness construction — a visible factory startup investment.",
+              "block_index": 70
             },
             {
               "slug": "the-factory-in-a-box-is-an-integration-problem-at-both-ends",
               "text": "A factory in a box introduces a boundary an internal factory does not have: the vendor supplies fabricator, orchestration, context machinery, evidence, and generic controls, and the engineering problem is integration, not installation — at both ends of the production line.",
-              "block_index": 70
+              "block_index": 72
             },
             {
               "slug": "customer-intent-enters-as-files-and-customer-authority-as-a-withheld-capability",
               "text": "Upstream, intent enters as files the customer authors at fixed repository paths, under the vendor's thesis that what an agent cannot access in context does not exist; downstream, admission authority stays human by construction — the flow never sets the Approve state — with agent privileges intersected and tool policy tightenable only.",
-              "block_index": 72
+              "block_index": 74
             },
             {
               "slug": "the-record-prices-the-infrastructure-and-not-the-knowledge-authoring",
-              "text": "The public record is specific about infrastructure and silent about the knowledge-authoring cost — no case study of a customer writing those files, no measure of output against their quality — and the layer that produced GitLab's own 95-percent service is precisely the layer only the customer can author.",
-              "block_index": 74
+              "text": "The public record is specific about infrastructure and silent about the knowledge-authoring cost — no case study of a customer writing those files, no measure of output against their quality, and an AI-assistance label whose aggregate distribution is never published — and the layer that produced GitLab's own 95-percent service is precisely the layer only the customer can author.",
+              "block_index": 76
             },
             {
               "slug": "the-form-question-stated-plainly",
               "text": "The externalization question follows directly from the two-ended boundary and is worth stating plainly.",
-              "block_index": 76
+              "block_index": 78
             },
             {
               "slug": "the-externalization-question-is-the-modeling-problem-commercially",
               "text": "The question restates the Modeling problem in commercial terms, and the factory chapter already named the tradeoff behind it: a purchased factory that works only when the buyer describes the software almost completely has recreated the arrangement the earlier software factories died of.",
-              "block_index": 80
+              "block_index": 82
             }
           ]
         },
@@ -3433,32 +3438,32 @@
           "heading_text": "Model-First Factories",
           "topic_sentence": "Siemens answers a question the software-first accounts never have to ask: what changes when explicit engineering models already sit upstream of realization?",
           "id_source": "derived",
-          "block_index": 82,
+          "block_index": 84,
           "points": [
             {
               "slug": "model-first-production-inverts-where-intent-enters",
               "text": "Model-first production inverts where intent enters: explicit engineering models, not the repository and its tests, carry the system's semantics, and the software is generated downstream of them.",
-              "block_index": 83
+              "block_index": 85
             },
             {
               "slug": "siemens-model-first-evidence-is-eigen-and-agent-studio",
               "text": "The load-bearing Siemens evidence is Eigen — control code generated from a TIA Portal engineering model, iterating until pre-defined performance benchmarks are met, a tolerance in this chapter's exact sense — and the 2024 Agent Studio research on SysML v2 with simulation as validator: a model supplies goal and context, a deterministic engine supplies the verdict.",
-              "block_index": 85
+              "block_index": 87
             },
             {
               "slug": "siemens-vision-disclaims-itself-and-the-gaps-sit-where-stakes-are-highest",
-              "text": "The broader architecture Siemens publishes is an explicit research vision about simulation, not software realization; no source establishes a model-implementation conformance gate, and Eigen's record names no human approval step — while the one account of Siemens changing its own software keeps a human in the loop and grounds that gate in compliance.",
-              "block_index": 87
+              "text": "The broader architecture Siemens publishes is an explicit research vision about simulation, not software realization; no source establishes a model-implementation conformance gate, and Eigen's record names no human approval step — while the one account of Siemens changing its own software keeps a human in the loop and grounds that gate in compliance — and the record supplies almost no operating measurement of the factory itself.",
+              "block_index": 89
             },
             {
               "slug": "a-cheap-and-capable-fabricator-changes-what-a-model-must-determine",
               "text": "The sharp difference from the old model-driven dream is that today's fabricator is cheap and capable at once, so a model-first factory need not determine every realization decision — only the consequential ones.",
-              "block_index": 89
+              "block_index": 91
             },
             {
               "slug": "model-first-is-a-position-and-siemens-sells-the-combined-cell",
               "text": "Model-first is a position on one axis rather than a maturity level, and the axis is independent of the first — Siemens itself partially fills the combined cell, selling model-first factories in a box for the narrow software of control logic and chip design, while no observed case sells one for general-purpose software.",
-              "block_index": 91
+              "block_index": 93
             }
           ]
         },
@@ -3468,27 +3473,27 @@
           "heading_text": "What the Factories Share, and Where They Differ",
           "topic_sentence": "The substrate these factories share was stated at the outset.",
           "id_source": "derived",
-          "block_index": 93,
+          "block_index": 95,
           "points": [
             {
               "slug": "the-human-admission-boundary-rests-on-three-different-stated-groundings",
               "text": "The shared substrate was stated at the outset; the one part of it the corpus does not state uniformly is why consequential decisions stay human — evidence adequacy at Uber, responsibility at Shopify, compliance obligation at Siemens — and those three groundings predict different futures for the boundary.",
-              "block_index": 94
+              "block_index": 96
             },
             {
               "slug": "the-differences-are-as-informative-as-the-commonalities",
               "text": "The factories differ in where admission sits, how much knowledge they route into each task, whether failure-to-structure conversion is measured (the mechanism is documented nearly everywhere; aggregate yield once, class-recurrence nowhere), and — most sharply — how explicitly they model the governed system; no ordering follows.",
-              "block_index": 96
+              "block_index": 98
             },
             {
               "slug": "software-first-accounts-model-knowledge-not-behavior",
               "text": "The observed modeling frontier: the software-first accounts publicly show knowledge and governance representations; Siemens crosses into machine-checkable system models from a model-first tradition; DocAble additionally checks selected model-implementation relations and gives them consequences.",
-              "block_index": 98
+              "block_index": 100
             },
             {
               "slug": "the-common-structure-is-leverage-organizational-capital",
               "text": "At organizational scale the recurring structure is leverage: one policy shapes thousands of changes, one representation guides a fleet, one learned constraint protects every later task — the organizational face of engineering capital.",
-              "block_index": 101
+              "block_index": 103
             }
           ]
         }
