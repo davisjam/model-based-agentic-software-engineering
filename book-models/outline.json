@@ -7,7 +7,7 @@
     "derived_ids": 200,
     "missing_topic_sentence": 4,
     "sections_drained": 148,
-    "paragraph_points": 718
+    "paragraph_points": 720
   },
   "chapters": [
     {
@@ -4007,139 +4007,149 @@
               "block_index": 149
             },
             {
+              "slug": "the-probabilities-belong-to-a-production-system",
+              "text": "The probabilities belong to a production system: the factory of Chapter 5, redrawn with each step of the realization path carrying the probability that it succeeds and the encoded property also supplying the tolerance the result is evaluated against.",
+              "block_index": 151
+            },
+            {
+              "slug": "fabricator-and-tolerance-act-differently-on-the-same-system",
+              "text": "The distinction matters because improving the fabricator and improving the tolerance act differently on this system.",
+              "block_index": 154
+            },
+            {
               "slug": "p-r-factors-into-encode-interpret-realize",
               "text": "An analytical (not independence-claiming) factorization of p_R into encode, interpret, and realize stages exposes the asymmetry: a stronger reasoner improves interpretation and realization but cannot recover intent that was never encoded.",
-              "block_index": 151
+              "block_index": 156
             },
             {
               "slug": "the-two-factory-techniques-act-on-different-factors",
               "text": "The two factory techniques act on different factors: process design raises the interpretation and realization terms by improving the conditions around the fabricator, while tolerance engineering acts on encoding and lets acceptance rest on something other than the fabricator having got it right.",
-              "block_index": 156
+              "block_index": 161
             },
             {
               "slug": "interpretation-depends-on-how-much-inference-is-asked",
               "text": "The interpretation factor also depends on how much inference the representation asks the agent to supply, and that burden varies: where the intended solution follows well-represented patterns, a sparse specification can still interpret well.",
-              "block_index": 159
+              "block_index": 164
             },
             {
               "slug": "novelty-reduces-the-usefulness-of-the-agents-prior",
               "text": "Other things equal, novelty is one factor that reduces the usefulness of the agent's prior as a substitute for explicit representation: specification supplies explicit engineering intent where inference from prior patterns is least dependable.",
-              "block_index": 161
+              "block_index": 166
             },
             {
               "slug": "familiarity-solves-production-not-assurance",
               "text": "Familiarity solves the production problem but does not establish the property: unless the consequential property is represented, the environment cannot distinguish following the intended pattern from producing something that looks right.",
-              "block_index": 163
+              "block_index": 168
             },
             {
               "slug": "learned-priors-do-not-supply-an-assurance-surface",
               "text": "Raising the interpretation factor does not retire explicit models or Alignment: learned priors reduce how much must be specified for realization without supplying an assurance surface for consequential properties.",
-              "block_index": 165
+              "block_index": 170
             },
             {
               "slug": "process-design-cannot-discharge-a-natural-language-obligation",
               "text": "The same limit applies to process design: it improves how an agent interprets natural-language intent, but an obligation left in natural language may require another act of probabilistic interpretation to establish that the result satisfies it, so tolerance supplies an independently evaluable boundary instead.",
-              "block_index": 167
+              "block_index": 172
             },
             {
               "slug": "interpretation-factor-is-conditional-on-familiarity",
               "text": "The interpretation factor is conditional not only on encoding quality and agent capability but also on the familiarity of the intended interpretation relative to what the agent already knows.",
-              "block_index": 169
+              "block_index": 174
             },
             {
               "slug": "the-first-factor-sits-at-the-human-interface",
               "text": "Encoding failure belongs largely to the human/factory interface: failing to articulate a consequential distinction and failing to recover it are different failures, and the entitlement case shows a representation that could not express the intent at all.",
-              "block_index": 171
+              "block_index": 176
             },
             {
               "slug": "capability-cannot-recover-unencoded-intent",
               "text": "The asymmetry: capability can compensate for difficult interpretation but not for missing intent, so Modeling helps both before implementation begins — and can sometimes remove the judgment entirely.",
-              "block_index": 173
+              "block_index": 178
             },
             {
               "slug": "perfect-reasoner-bound",
               "text": "In the limit of a perfect reasoner — interpretation and realization approaching certainty — p_R remains bounded by the encoding factor, so capability purchases cannot discharge an obligation the organization never externalized.",
-              "block_index": 175
+              "block_index": 180
             },
             {
               "slug": "perfect-fabrication-exposes-the-upstream-problem",
               "text": "Perfect fabrication does not eliminate the engineering problem upstream of fabrication — it exposes it: a stronger reasoner can reconstruct much, but cannot reliably recover consequential knowledge that never entered the factory.",
-              "block_index": 179
+              "block_index": 184
             },
             {
               "slug": "the-bound-limits-process-design-and-exposes-a-tolerance-limit",
               "text": "Read in factory terms the bound limits process design — it cannot make an incorrectly encoded obligation correct — and tolerance exposes a different limit: with a property represented explicitly and independently evaluated, better fabrication drives interpretation and realization error down while the remaining error approaches the probability that the engineering representation itself is wrong.",
-              "block_index": 181
+              "block_index": 186
             },
             {
               "slug": "the-bound-does-not-argue-for-complete-specification",
               "text": "The bound does not argue for complete specification — that would recreate the earlier software factories' economics; the new possibility is realization freedom with the smaller set of consequential decisions explicitly preserved.",
-              "block_index": 183
+              "block_index": 188
             },
             {
               "slug": "carrying-cost-completes-the-comparison",
               "text": "With carrying cost explicit, a representation can be economically preferable even when it is more expensive to construct and each realization through it is more expensive — it need only improve satisfactory realization enough, especially over repeated use.",
-              "block_index": 185
+              "block_index": 190
             },
             {
               "slug": "capacity-moves-both-sides-of-the-investment",
               "text": "Commodity intelligence changes both sides of the investment: greater implementation capacity can justify richer engineering structure while reducing the cost of carrying it, so the carrying term is not a fixed parameter of the environment.",
-              "block_index": 189
+              "block_index": 194
             },
             {
               "slug": "expensive-reasoners-are-a-prediction-of-the-theory",
               "text": "Compensating for weak explicit representation by buying frontier reasoning is a prediction of the theory, not an objection: a factory that keeps consequential properties inside natural-language inference purchases reliability again on every change, while explicit tolerance converts some of that recurring inference into durable structure whose cost sits in the carrying term.",
-              "block_index": 191
+              "block_index": 196
             },
             {
               "slug": "repeated-use-amortizes-judgment",
               "text": "Across n realizations the fixed representation cost amortizes and the judgment embodied in the representation is reused — the factories accumulating shared policy, models, and permissions at scale are amortizing judgment, not adding process.",
-              "block_index": 195
+              "block_index": 200
             },
             {
               "slug": "the-decomposition-explains-factory-variation",
               "text": "The factories differ in where they carry engineering knowledge; the decomposition explains why those arrangements can coexist, and the relevant question is what probability and cost of satisfactory realization an arrangement produces and what knowledge survives for the next task.",
-              "block_index": 199
+              "block_index": 204
             },
             {
               "slug": "a-sound-gate-blocks-covered-failure-regardless-of-producer",
               "text": "A sound admission gate makes covered failure impossible to admit regardless of how the producer reasoned.",
-              "block_index": 201
+              "block_index": 206
             },
             {
               "slug": "the-guarantee-is-independent-of-the-producers-reasoning",
               "text": "Alignment makes consequence independent of whether the producing reasoner got the covered judgment right.",
-              "block_index": 204
+              "block_index": 209
             },
             {
               "slug": "assurance-without-modeling-can-be-expensive",
               "text": "Assurance without useful representation is expensive: rejected candidates regenerate, so realization cost climbs.",
-              "block_index": 206
+              "block_index": 211
             },
             {
               "slug": "same-guarantee-different-cost-over-different-surfaces",
               "text": "The same admission guarantee over two reasoning surfaces produces substantially different realization costs.",
-              "block_index": 209
+              "block_index": 214
             },
             {
               "slug": "hiding-the-model-does-not-weaken-the-gate-only-raises-cost",
               "text": "Hiding the model does not weaken a perfect gate; it only raises the cost of reaching an acceptable candidate.",
-              "block_index": 211
+              "block_index": 216
             },
             {
               "slug": "alignment-protects-the-boundary-modeling-reduces-collisions",
               "text": "Alignment protects the boundary; Modeling reduces how often work collides with it.",
-              "block_index": 213
+              "block_index": 218
             },
             {
               "slug": "modeling-acts-before-admission-alignment-at-it",
               "text": "Modeling can act at several stages before admission — stating intent, recovering it, easing realization — while Alignment acts afterward or alongside realization by determining whether covered failures can acquire consequence.",
-              "block_index": 215
+              "block_index": 220
             },
             {
               "slug": "modeling-changes-economics-alignment-changes-enforcement",
               "text": "Their primary contributions are separable — Modeling and Alignment are different levers.",
-              "block_index": 219
+              "block_index": 224
             }
           ]
         },
@@ -4149,47 +4159,47 @@
           "heading_text": "Software engineering changes the problem",
           "topic_sentence": "The analysis so far uses a simplification to isolate repeated probabilistic exposure: if consequential judgments have some probability of success and successive exposures are treated as independent, their joint probability of success falls as the number of exposures grows.",
           "id_source": "derived",
-          "block_index": 221,
+          "block_index": 226,
           "points": [
             {
               "slug": "simple-models-isolated-repeated-exposure-under-fixed-conditions",
               "text": "The simple models deliberately isolated repeated probabilistic exposure under fixed conditions.",
-              "block_index": 222
+              "block_index": 227
             },
             {
               "slug": "se-needs-a-model-where-each-realization-changes-the-next",
               "text": "Software engineering needs a different model: each realization becomes structure inherited by the next.",
-              "block_index": 224
+              "block_index": 229
             },
             {
               "slug": "creation-and-change-share-one-factorization",
               "text": "The factorization describes one realization whether it creates a system or changes one; change differs because it inherits architecture, representations, conventions, obligations, tests, and capital from earlier work.",
-              "block_index": 226
+              "block_index": 231
             },
             {
               "slug": "independence-omits-the-inherited-environment",
               "text": "Independence omits the inherited environment; success at each step depends on the environment carried into it.",
-              "block_index": 228
+              "block_index": 233
             },
             {
               "slug": "creation-is-the-boundary-case-of-change",
               "text": "Creation is realization from an initial environment, change is realization given an inherited one, and each realization determines the environment later work inherits — so the factory produces a sequence of changes, not independent realizations.",
-              "block_index": 233
+              "block_index": 238
             },
             {
               "slug": "coupling-creates-path-dependence-decay-self-reinforcing",
               "text": "The coupling creates path dependence: poor structure makes good realization harder, and decay can become self-reinforcing.",
-              "block_index": 236
+              "block_index": 241
             },
             {
               "slug": "the-reverse-trajectory-capital-carries-structure-forward",
               "text": "The reverse trajectory: a realization that improves capital carries useful structure forward for later work.",
-              "block_index": 238
+              "block_index": 243
             },
             {
               "slug": "independent-vs-dynamic-model-answer-different-questions",
               "text": "The independent model isolates repeated exposure; the dynamic model preserves the coupling between realizations and environments.",
-              "block_index": 240
+              "block_index": 245
             }
           ]
         },
@@ -4199,47 +4209,47 @@
           "heading_text": "Modeling can also enable Alignment",
           "topic_sentence": "The two principles interact in a second way.",
           "id_source": "derived",
-          "block_index": 242,
+          "block_index": 247,
           "points": [
             {
               "slug": "modeling-can-turn-a-semantic-obligation-into-a-checkable-one",
               "text": "Modeling can turn a semantic obligation into a checkable one by changing the object over which it is decided.",
-              "block_index": 243
+              "block_index": 248
             },
             {
               "slug": "two-kinds-of-hard-judgmental-vs-wrong-representation",
               "text": "Two kinds of hard question look alike in code: intrinsically judgmental, or buried in the wrong representation.",
-              "block_index": 245
+              "block_index": 250
             },
             {
               "slug": "determinization-frontier-defined",
               "text": "The determinization frontier separates judgment supplied per instance from judgment the environment can carry repeatably — in factory terms, an economic boundary between judgments still bought probabilistically through the production process and properties made durable as tolerances.",
-              "block_index": 247
+              "block_index": 252
             },
             {
               "slug": "docable-default-everything-deterministic-was",
               "text": "DocAble's default: everything that could be deterministic was; commodity intelligence only where the problem requires semantic judgment.",
-              "block_index": 249
+              "block_index": 254
             },
             {
               "slug": "moving-the-frontier-reduces-the-probabilistic-surface",
               "text": "Moving the frontier reduces the probabilistic surface without making the agent deterministic or removing realization freedom.",
-              "block_index": 251
+              "block_index": 256
             },
             {
               "slug": "the-frontier-moves-incrementally",
               "text": "The frontier moves incrementally: from prose to invariant to bounded-model checking to temporal specification.",
-              "block_index": 254
+              "block_index": 259
             },
             {
               "slug": "moving-the-frontier-preserves-degrees-of-freedom",
               "text": "Moving the frontier governs obligations, not the acceptable ways to satisfy them, which remain degrees of freedom.",
-              "block_index": 256
+              "block_index": 261
             },
             {
               "slug": "at-the-limit-realization-becomes-transformation",
               "text": "At the limit a complete realization model makes realization a transformation, connecting MAGE to model-based engineering.",
-              "block_index": 258
+              "block_index": 263
             }
           ]
         },
@@ -4249,22 +4259,22 @@
           "heading_text": "The joint engineering problem",
           "topic_sentence": "We can now put the pieces back together.",
           "id_source": "derived",
-          "block_index": 260,
+          "block_index": 265,
           "points": [
             {
               "slug": "objective-is-an-economical-division-of-labor",
               "text": "The objective is an economical division of labor among reasoner, environment, and remaining human judgment.",
-              "block_index": 263
+              "block_index": 268
             },
             {
               "slug": "engineer-jointly-chooses-representation-and-alignment",
               "text": "An engineer jointly chooses a representation and an Alignment strategy, trading carrying cost against realization and failure cost.",
-              "block_index": 265
+              "block_index": 270
             },
             {
               "slug": "schematic-both-levers-carry-construction-and-carrying-cost",
               "text": "Schematically: Modeling changes realization cost, Alignment changes failure consequence, and both impose carrying cost — and the minimization prices the factory's standing choice between buying inference quality repeatedly and making a property durable as a tolerance.",
-              "block_index": 268
+              "block_index": 273
             }
           ]
         },
@@ -4274,27 +4284,27 @@
           "heading_text": "The Factory's Value Proposition",
           "topic_sentence": "The expression above prices one realization.",
           "id_source": "derived",
-          "block_index": 272,
+          "block_index": 277,
           "points": [
             {
               "slug": "a-factory-is-an-investment-in-productive-capacity",
               "text": "A factory is an investment in productive capacity, so its economics cannot be evaluated from construction cost alone.",
-              "block_index": 274
+              "block_index": 279
             },
             {
               "slug": "the-recurring-output-is-transformation",
               "text": "Software preserves the investment structure but changes what is produced: the factory does not manufacture each copy consumed, and its recurring output is the continued transformation of a maintained software system.",
-              "block_index": 276
+              "block_index": 281
             },
             {
               "slug": "separate-construction-from-continued-production",
               "text": "The cost model separates factory construction from continued production: startup cost, a stream of change costs, carrying cost, and expected failure loss.",
-              "block_index": 278
+              "block_index": 283
             },
             {
               "slug": "the-marginal-question-matters-most",
               "text": "The marginal question matters most: a successful factory may be expensive to construct and economical to use, because the productive capacity makes the stream of subsequent changes cheaper, faster, safer, or possible at all.",
-              "block_index": 282
+              "block_index": 287
             }
           ]
         },
@@ -4304,12 +4314,12 @@
           "heading_text": "Two Margins, Not One",
           "topic_sentence": "Software adds a distinction manufacturing does not have, and it should be stated explicitly: there are two margins here, not one.",
           "id_source": "derived",
-          "block_index": 286,
+          "block_index": 291,
           "points": [
             {
               "slug": "software-has-two-margins",
               "text": "Software has two distinct margins, a major difference from manufacturing: the production margin (the next acceptable change) and the replication margin (serving that change's benefit to the next user).",
-              "block_index": 287
+              "block_index": 292
             }
           ]
         },
@@ -4319,12 +4329,12 @@
           "heading_text": "The Idle Factory Still Depreciates",
           "topic_sentence": "Carrying cost also divides, and the division is where the physical analogy breaks most instructively.",
           "id_source": "derived",
-          "block_index": 289,
+          "block_index": 294,
           "points": [
             {
               "slug": "carrying-cost-splits-into-operational-and-capital",
               "text": "Carrying cost splits into operational carry and capital maintenance: a software factory can be cheap to leave physically idle while its engineering capital continues to depreciate.",
-              "block_index": 290
+              "block_index": 295
             }
           ]
         },
@@ -4334,17 +4344,17 @@
           "heading_text": "What the Changes Are Worth",
           "topic_sentence": "Against these costs stands what the stream of changes is worth, and that side of the comparison is deliberately left abstract, because it cannot be specified universally.",
           "id_source": "derived",
-          "block_index": 294,
+          "block_index": 299,
           "points": [
             {
               "slug": "what-a-change-is-worth-is-a-model-of-value",
               "text": "What the stream of changes is worth cannot be specified universally: each factory's outcome quantities are themselves models of value chosen for a particular engineering or organizational decision.",
-              "block_index": 295
+              "block_index": 300
             },
             {
               "slug": "mage-concerns-the-first-arrow",
               "text": "The economic chain runs factory → software capability → use → value, and MAGE primarily concerns the first arrow; the organization's business model determines how capability becomes value.",
-              "block_index": 297
+              "block_index": 302
             }
           ]
         },
@@ -4354,32 +4364,32 @@
           "heading_text": "Correctness Is Not the Factory's Objective",
           "topic_sentence": "Correctness, however, is still not the factory's final objective.",
           "id_source": "derived",
-          "block_index": 301,
+          "block_index": 306,
           "points": [
             {
               "slug": "the-probability-model-explains-the-factory-economics",
               "text": "The probability model explains the terms of the lifecycle factory economics: higher p_R raises durable throughput and lowers the cost of a change; Alignment exchanges validation cost for reduced escape risk; models preserve reasoning as engineering capital.",
-              "block_index": 302
+              "block_index": 307
             },
             {
               "slug": "correctness-alone-does-not-establish-value",
               "text": "Correctness alone does not establish value: a factory can reliably and efficiently produce software that nobody needs.",
-              "block_index": 304
+              "block_index": 309
             },
             {
               "slug": "the-economic-interpretation-of-modeling-and-alignment",
               "text": "The economic interpretation of Modeling and Alignment: valuable where the cost of externalizing, preserving, and enforcing consequential knowledge is lower than the expected cost of repeatedly reconstructing it, incorrectly realizing it, or allowing its violation to escape.",
-              "block_index": 306
+              "block_index": 311
             },
             {
               "slug": "the-problem-moves-as-fabrication-approaches-perfection",
               "text": "Commodity intelligence moves the boundary: the engineering problem does not disappear as fabrication approaches perfection — it moves toward deciding what must be preserved, inferred, established before admission, and what the capability is worth.",
-              "block_index": 308
+              "block_index": 313
             },
             {
               "slug": "part-v-evidence-is-depth-and-variation-not-effect-sizes",
               "text": "Chapter 5 supplied depth and variation, not population effect sizes; the theory is the proposed explanation of it.",
-              "block_index": 310
+              "block_index": 315
             }
           ]
         }
