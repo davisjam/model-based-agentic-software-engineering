@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 812,
+    "total_sites": 811,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 474,
+      "book-web": 473,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -86,10 +86,6 @@
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
             "occ": 25
-          },
-          {
-            "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 6
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
@@ -255,7 +251,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 58
+            "occ": 57
           }
         ]
       },
@@ -965,7 +961,7 @@
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 13
+            "occ": 16
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
@@ -1399,7 +1395,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 83
+            "occ": 84
           },
           {
             "file": "catalogue-figure.html",
@@ -1874,10 +1870,6 @@
             "occ": 23
           },
           {
-            "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 3
-          },
-          {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
             "occ": 73
           },
@@ -2209,7 +2201,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 106
+            "occ": 105
           }
         ]
       },
@@ -2692,6 +2684,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/5.1-software-factory.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/book-index.md",
             "occ": 1
           },
@@ -2711,7 +2707,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 7
+            "occ": 8
           }
         ]
       },
@@ -2903,7 +2899,7 @@
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
