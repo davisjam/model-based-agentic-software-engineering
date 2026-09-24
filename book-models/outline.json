@@ -3302,7 +3302,7 @@
             },
             {
               "slug": "cloudflare-promotes-obligations-into-blocking-authority-and-instruments-one-side-only",
-              "text": "Authority arrives in a separate promotion step from advisory to blocking, after which a coordinator agent maps its verdict onto the version-control action with no human in the path — bounded by an approval-biased rubric and a logged break-glass override whose 0.6 percent rate measures only the false-block direction, while the larger published counts measure activity by the control rather than defects prevented.",
+              "text": "Authority arrives in a separate promotion step from advisory to blocking, after which a coordinator agent maps its verdict onto the version-control action with no human in the path — bounded by an approval-biased rubric and a logged 0.6 percent break-glass rate which, like the larger published counts, measures activity rather than defects prevented.",
               "block_index": 42
             },
             {
@@ -3327,7 +3327,7 @@
             },
             {
               "slug": "spotify-installs-and-then-retires-a-control-as-the-fabricator-improves",
-              "text": "The controls around the agent station are tuned to the fabricator and move with it: a deliberately narrow tool surface, verification as a precondition of the PR's existence, and an LLM judge added after agents gamed builds and later reported removed as models improved — which, if that second-hand account is accurate, is the corpus's only recorded control withdrawal after the fabricator improved.",
+              "text": "The controls around the agent station are tuned to the fabricator and move with it: a deliberately narrow tool surface, verification as a precondition of the PR's existence, and an LLM judge added after agents gamed builds and, on a second-hand account, removed once models improved.",
               "block_index": 49
             },
             {
@@ -3337,7 +3337,7 @@
             },
             {
               "slug": "spotify-measures-the-health-of-the-engineering-system-not-just-agent-activity",
-              "text": "Spotify measures the pressure beyond the incident count — a rebuilt rework metric separating genuine rework from new development and legacy refactoring, with no reported increase during the AI ramp-up, plus complexity and pull-request size watched with the thresholds explicitly held fixed — producing a result more complicated than either \"AI reduced quality\" or \"AI preserved quality\".",
+              "text": "Spotify measures the pressure beyond the incident count: a rebuilt rework metric separating genuine rework from new development and legacy refactoring reports no increase during the AI ramp-up, while complexity and pull-request size rise with the thresholds explicitly held fixed.",
               "block_index": 53
             }
           ]
@@ -3357,7 +3357,7 @@
             },
             {
               "slug": "shopify-mines-sessions-by-hand-and-measured-the-effect",
-              "text": "The documented conversion mechanism is human — people watch River work and write down what it should have known, as files in the monorepo — with the effect measured and the counterfactual controlled: merge rate 36 to 77 percent in two months without retraining or switching models, self-reported and not isolating human learning from environmental improvement; no automated extraction is established.",
+              "text": "The documented conversion mechanism is human — people watch River work and write down what it should have known, as files in the monorepo — and the effect is measured with the counterfactual controlled: merge rate 36 to 77 percent in two months, self-reported and entangled with environmental improvement.",
               "block_index": 58
             },
             {
@@ -3402,7 +3402,7 @@
           "points": [
             {
               "slug": "gitlab-sells-the-capability-and-its-own-practice-prices-what-the-box-omits",
-              "text": "GitLab generalizes and sells the production capability, which poses a question no internal factory faces — what productizes generically and what the adopter must supply — and its own handbook prices the second half: failing-test-first doctrine, CI as the gate, a test-count guard, and a 95-percent-agent-generated service whose roughly two-week production episode follows roughly four weeks of harness construction — a visible factory startup investment.",
+              "text": "GitLab generalizes and sells the production capability, which poses a question no internal factory faces — what productizes generically and what the adopter must supply — and its own handbook prices the second half: failing-test-first doctrine, CI as the gate, a test-count guard, and a two-week 95-percent-agent-generated service built after four weeks of harness construction.",
               "block_index": 70
             },
             {
@@ -3417,7 +3417,7 @@
             },
             {
               "slug": "the-record-prices-the-infrastructure-and-not-the-knowledge-authoring",
-              "text": "The public record is specific about infrastructure and silent about the knowledge-authoring cost — no case study of a customer writing those files, no measure of output against their quality, and an AI-assistance label whose aggregate distribution is never published — and the layer that produced GitLab's own 95-percent service is precisely the layer only the customer can author.",
+              "text": "The public record is specific about infrastructure and silent about the knowledge-authoring cost — no customer case study, no measure of output against instruction quality, an AI-assistance label whose distribution is never published — and the layer that produced GitLab's own 95-percent service is the layer only the customer can author.",
               "block_index": 76
             },
             {
@@ -3452,7 +3452,7 @@
             },
             {
               "slug": "siemens-vision-disclaims-itself-and-the-gaps-sit-where-stakes-are-highest",
-              "text": "The broader architecture Siemens publishes is an explicit research vision about simulation, not software realization; no source establishes a model-implementation conformance gate, and Eigen's record names no human approval step — while the one account of Siemens changing its own software keeps a human in the loop and grounds that gate in compliance — and the record supplies almost no operating measurement of the factory itself.",
+              "text": "The broader architecture Siemens publishes is an explicit research vision about simulation, not software realization; no source establishes a model-implementation conformance gate, Eigen's record names no human approval step, and almost no operating measurement is published — while the one account of Siemens changing its own software keeps a human in the loop on compliance grounds.",
               "block_index": 89
             },
             {
@@ -3551,7 +3551,7 @@
         },
         {
           "slug": "the-accounts-also-show-how-the-factories-are-operated",
-          "text": "The public accounts also reveal operation: some organizations measure cost and throughput in detail, some measure review load, admission, rework or incidents, and several describe failures that moved knowledge into durable production structure — so the cases serve three related questions: how production is structured, what the organization chooses to measure, and what operating experience causes the factory to change.",
+          "text": "The public accounts also reveal operation: some measure cost and throughput in detail, some measure review load, admission, rework or incidents, and several describe failures that moved knowledge into durable structure — so the cases serve three questions: how production is structured, what is measured, and what operating experience changes.",
           "block_index": 23
         },
         {
