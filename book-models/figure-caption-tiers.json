@@ -355,11 +355,11 @@
       "location": "part5",
       "rationale": "the two independent dimensions the industrial cases are organized by; establishes the section's vocabulary rather than anchoring the chapter's argument"
     },
-    "assets/modeling-ceiling-tiers.svg": {
+    "assets/modeling-frontier-tiers.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
       "location": "part5",
-      "rationale": "the three-tier modeling ceiling (knowledge / executable model / governed correspondence); R47 replacement for the 12-col matrix"
+      "rationale": "the observed modeling frontier in three tiers, ordered by how far a representation participates in engineering control (knowledge available to reasoning / machine-checkable models / checked correspondence + enforceable obligations); R47 replacement for the 12-col matrix, re-axed 260923"
     },
     "assets/determinization-two-paths.svg": {
       "tier": "A",
