@@ -7,7 +7,7 @@
     "derived_ids": 200,
     "missing_topic_sentence": 4,
     "sections_drained": 148,
-    "paragraph_points": 740
+    "paragraph_points": 741
   },
   "chapters": [
     {
@@ -1548,14 +1548,19 @@
               "block_index": 27
             },
             {
+              "slug": "docable-requested-temporal-checking-for-an-obligation-its-models-already-carried",
+              "text": "DocAble's temporal model checking ran the other way round: engineering fixed the obligation from the system's models, then requested an analysis suited to it; the independence that matters lies between the obligation's source and the realization judged against it.",
+              "block_index": 29
+            },
+            {
               "slug": "alignment-makes-conformance-dependable-modeling-decides-what-can-become-an-obligation",
               "text": "Alignment can make conformance to an obligation dependable; Modeling determines what engineering knowledge is available to become an obligation at all.",
-              "block_index": 29
+              "block_index": 31
             },
             {
               "slug": "an-obligation-can-test-one-of-three-relations",
               "text": "Three different relations matter — correspondence, conformance, or acceptance — and they are not interchangeable.",
-              "block_index": 31
+              "block_index": 33
             }
           ]
         },
@@ -1565,22 +1570,22 @@
           "heading_text": "The Semantic Gap",
           "topic_sentence": "A second problem is placement.",
           "id_source": "derived",
-          "block_index": 49,
+          "block_index": 51,
           "points": [
             {
               "slug": "an-obligation-can-be-perfectly-stated-and-unenforceable-at-the-boundary-you-check",
               "text": "An obligation can be stated clearly and still be unenforceable at the boundary where you try to check it.",
-              "block_index": 51
+              "block_index": 53
             },
             {
               "slug": "a-deployment-can-pass-every-check-and-still-serve-a-blank-page",
               "text": "A deployment can pass every earlier check and still serve a blank page; the property is legible only once the pieces compose in the served system.",
-              "block_index": 56
+              "block_index": 58
             },
             {
               "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
               "text": "Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work.",
-              "block_index": 58
+              "block_index": 60
             }
           ]
         },
@@ -1590,27 +1595,27 @@
           "heading_text": "The Earliest Decidable Boundary",
           "topic_sentence": "The agent-return check is one instance of a rule that runs under the whole of this chapter:",
           "id_source": "derived",
-          "block_index": 64,
+          "block_index": 66,
           "points": [
             {
               "slug": "place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable",
               "text": "The design rule: place enforcement at the earliest boundary where the obligation is both legible and decidable.",
-              "block_index": 66
+              "block_index": 68
             },
             {
               "slug": "the-part-two-rhyme-coarsest-representation-earliest-boundary",
               "text": "The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible.",
-              "block_index": 73
+              "block_index": 75
             },
             {
               "slug": "real-boundaries-are-sometimes-approximate-a-roughly-right-hook-beats-the-perfect-one",
               "text": "Real boundaries are sometimes approximate: semantic placement is an engineering trade-off, not a demand for a theoretically perfect hook.",
-              "block_index": 80
+              "block_index": 82
             },
             {
               "slug": "the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does",
               "text": "The section has supplied both requirements for enforcement; the next question is what the mechanism at that boundary actually does.",
-              "block_index": 82
+              "block_index": 84
             }
           ]
         }
