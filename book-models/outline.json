@@ -3640,12 +3640,12 @@
             },
             {
               "slug": "agents-sit-outside-the-accountability-mechanisms-that-delegate-judgment-to-people",
-              "text": "Organizations delegate judgment to people partly through incentives and accountability, and agents sit outside every one of those loops, so the human engineer decides which decisions may remain with the agent and which need stronger control through the production system.",
+              "text": "Organizations delegate judgment to people partly through incentives and accountability, agents sit outside every one of those loops, and greater capability does not remove the difference, so the human engineer decides which decisions may remain with the agent and which need stronger control through the production system.",
               "block_index": 25
             },
             {
               "slug": "tolerance-preserves-control-without-specifying-the-realization",
-              "text": "A tolerance preserves engineering control without specifying the realization: the engineer names the consequential property and the evidence required for it, and the agent keeps the remaining degrees of freedom.",
+              "text": "A tolerance preserves engineering control without specifying realization: the engineer names the consequential property and the evidence required for it, the agent keeps the remaining degrees of freedom, and the task is to decide which judgments the factory carries forward.",
               "block_index": 27
             }
           ]
@@ -3689,7 +3689,7 @@
         },
         {
           "slug": "production-capacity-and-supervisory-capacity-need-not-grow-together",
-          "text": "The comparison also exposes a constraint: the capacity to produce changes and the capacity to supervise and verify them need not grow together, as Uber, Spotify, Cloudflare, and Shopify each show, so process design includes the allocation of scarce supervisory capacity and not only the organization of realization.",
+          "text": "The comparison also exposed a constraint: the capacity to produce changes and the capacity to supervise and verify them need not grow together, so process design includes the allocation of scarce supervisory capacity and not only the organization of realization.",
           "block_index": 2
         },
         {
