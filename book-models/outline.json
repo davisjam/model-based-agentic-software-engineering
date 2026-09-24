@@ -6,8 +6,8 @@
     "explicit_ids": 6,
     "derived_ids": 206,
     "missing_topic_sentence": 4,
-    "sections_drained": 153,
-    "paragraph_points": 733
+    "sections_drained": 154,
+    "paragraph_points": 739
   },
   "chapters": [
     {
@@ -5324,7 +5324,38 @@
           "topic_sentence": "Chapter 5 described the software factory as a production system for controlled change: machinery, representations, constraints, evidence, and organization through which acceptable changes are produced.",
           "id_source": "derived",
           "block_index": 49,
-          "points": []
+          "points": [
+            {
+              "slug": "production-capacity-and-engineering-understanding-are-different-quantities",
+              "text": "Only the factory's capacity for realization arrives as a purchased commodity; the capacity to understand, evaluate, and govern what it realizes has to be engineered.",
+              "block_index": 50
+            },
+            {
+              "slug": "operator-and-manufacturing-engineer-relate-to-machinery-differently",
+              "text": "A physical factory admits two relationships to productive machinery: an operator runs the machinery and keeps production moving; a manufacturing engineer works on the production system around it.",
+              "block_index": 54
+            },
+            {
+              "slug": "the-engineer-becomes-an-agent-operator",
+              "text": "The software factories place substantial engineering effort in the first role, so most supervision stays attached to individual acts of production.",
+              "block_index": 56
+            },
+            {
+              "slug": "the-docable-factory-points-toward-engineering-the-production-system",
+              "text": "The DocAble factory places the engineer's effort on the production system: models make consequential properties explicit and machine-checkable, Alignment turns them into feedback and evidence, and conversion changes what later work inherits.",
+              "block_index": 58
+            },
+            {
+              "slug": "the-distinction-is-operating-versus-engineering-not-manual-versus-automated",
+              "text": "Both factories can delegate implementation almost completely; they differ in whether the engineer operates the agents producing changes or engineers the production system governing them.",
+              "block_index": 60
+            },
+            {
+              "slug": "the-two-futures-differ-in-where-engineering-attention-goes",
+              "text": "Both futures contain capable agents and little human implementation; they differ in whether scarce engineering attention buys more capable machinery to operate or scales supervision with realization.",
+              "block_index": 63
+            }
+          ]
         }
       ],
       "preamble_points": []
