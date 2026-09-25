@@ -493,12 +493,6 @@
       "location": "part2",
       "rationale": "the governance-conversion loop — central construct"
     },
-    "assets/control-growth.svg": {
-      "tier": "B",
-      "kind": "data-chart",
-      "location": "part2",
-      "rationale": "controls-accumulate curve; supports the empirical claim"
-    },
     "assets/constraint-vs-sensor.svg": {
       "tier": "B",
       "kind": "comparison",
@@ -678,12 +672,6 @@
       "kind": "timeline",
       "location": "part5",
       "rationale": "the messy timeline"
-    },
-    "assets/support-ratio-curve.svg": {
-      "tier": "B",
-      "kind": "data-chart",
-      "location": "part5",
-      "rationale": "the support ratio"
     },
     "assets/churn-per-path.svg": {
       "tier": "B",
@@ -1176,6 +1164,54 @@
       "kind": "data",
       "location": "part5",
       "rationale": "scenario table — one course, break-even, Purdue-scale, 100-institution scenario under one stated $4,000/course manual counterfactual; supporting caption names the shared assumption"
+    },
+    "assets/f1_realization_over_time.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "weekly commits landing on main across 29 weeks, split by reconstructed authorship provenance; supporting caption on the late-era squash shift being a landing-mechanism change, not a slowdown"
+    },
+    "assets/f2_work_over_time.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "Epics created and closed per week from the discipline's introduction; supporting caption on the series recording engineering intent formalized rather than a pre-existing backlog drained, with the creation-outpaces-closure ratio and the restricted correlation window stated"
+    },
+    "assets/f7_controls_accumulate.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "project-specific lint files, gate scripts and system-model files per week; supporting caption on the four-snapshot control-growth curve resolved into a 29-week series with a stock-like shape decoupled from throughput"
+    },
+    "assets/f5_f6_capital_and_support_ratio.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "weekly source-tree LoC by category over the support-to-production ratio, with the recoverable cloc snapshots overlaid as diamonds; supporting caption on the below-parity to roughly three-to-one trajectory being the comparable claim, not the levels"
+    },
+    "assets/f21_f22_model_census.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "the 129 declared system models by declared form and by target; supporting caption on the factory representing both the product it produces and the machinery that produces it, and on the census being live rather than frozen"
+    },
+    "assets/f13_mature_flow_funnel.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "one mature week's admission funnel — runs started, landed through the full gate, aborted, work spaces retired; supporting caption on parallel realization fanning out while admission stays serialized through regenerated evidence"
+    },
+    "assets/f10_what_experience_became.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "the twelve governance-conversion episodes by the durable structure each failure became, coloured by enforcement class; supporting caption on the soft/hard distribution and on the exhibit being a structured restatement of the chapter's narrative, not an independent census"
+    },
+    "assets/f19_delegation_over_time.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "weekly commit provenance as a delegation proxy; supporting caption on the human-or-unknown residual being an upper bound on human-authored realization and a different quantity from inspection share"
     }
   }
 }

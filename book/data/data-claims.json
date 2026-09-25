@@ -57,19 +57,15 @@
     "source": "inside-docables-software-factory",
     "anchor": "support-ratio-curve",
     "holds": [
-      "0.85",
-      "2.48",
-      "3.68",
-      "3.06",
-      "26,956",
-      "1,501,907"
+      "3.9",
+      "1.75 million lines"
     ],
     "status": "final",
     "spine_claim": "govern-the-environment",
-    "observable": "Support-apparatus LoC divided by production LoC at four dated commits (prototype / mechanization / hardening / now): 0.85 -> 2.48 -> 3.68 -> 3.06.",
-    "data_source": "A categorized line-count tool (run-cloc) with today's category map applied to four historical worktrees via ADA_CLOC_SCAN_ROOT (contamination-free /tmp clone, tool files never inside the counted tree); SHAs c55f3637 (prototype 04-09), e0f10aea (mechanization 05-31), b1a4c1d4 (hardening 06-30), 07af718a (now 08-03).",
-    "limitation": "LoC is a coarse proxy for effort; ~20% by-design side-trees (root configs, assets, non-primary tests, the book itself) sit outside the census; single-repo, single-author-fleet — a revealed preference, not a controlled comparison of governed vs. ungoverned development. The final-window dip is production growing faster (+45%), not support falling (still +21%). Render location + holds pins land in W4.",
-    "gloss": "The support-ratio curve across four windows (0.85 -> 2.48 -> 3.68 -> 3.06): the support apparatus stayed larger than production across the mature windows, crossing from sub-parity to ~3x while production LoC grew ~18x — the build-the-environment-first revealed preference."
+    "observable": "Support-apparatus source divided by production source at each week's last commit across 29 weeks: below parity in the prototype weeks, parity crossed around weeks 5-6, a steep climb through mechanization, then a plateau between roughly 3.5 and 3.9 across the mature era. Excluding documentation, tests dominate the support mass at about 1.75 million lines at the final week.",
+    "data_source": "A 29-week history-mining pass over the parent repo with its own category path-map, acquired 260925.103236; series in book/data/factory-archaeology-260925/loc_weekly.csv, the earlier authored snapshots in loc_snapshots.csv, write-up in book/data/factory-archaeology-260925/provenance/B_factory_capital.md. Supersedes the four-snapshot cloc curve (0.85 -> 2.48 -> 3.68 -> 3.06).",
+    "limitation": "LoC is a coarse proxy for effort. The weekly series is an INDEPENDENT re-derivation with its own category boundaries, not the earlier cloc configuration, so the levels are the mining pass's own and only the TREND (below parity, crosses, settles around three-to-one) is comparable across the two; the gap is left visible in the figure by overlaying the earlier snapshot ratios as diamonds. Only two of the four earlier snapshots carry a recoverable ratio, so only two diamonds render. Single repo, single-author fleet — a revealed preference, not a controlled comparison of governed vs. ungoverned development.",
+    "gloss": "The support ratio resolved weekly across 29 weeks: below parity in the prototype weeks, parity crossed around weeks 5-6, then a plateau between roughly 3.5 and 3.9 — the support apparatus outweighing the production source it exists to govern, several times over."
   },
   "model-sync-efficacy": {
     "source": "inside-docables-software-factory",
@@ -133,22 +129,17 @@
     "source": "inside-docables-software-factory",
     "anchor": "control-growth",
     "holds": [
-      "336",
-      "595",
-      "747",
-      "20",
-      "76",
-      "102",
-      "993 registered",
+      "990 files",
+      "595 files",
       "208 commits",
       "27 lints"
     ],
     "status": "final",
     "spine_claim": "failures-become-machinery",
-    "observable": "The count of governance controls in the tree at four dated windows — project-specific lint files (0 -> 336 -> 595 -> 747) and gate scripts (0 -> 20 -> 76 -> 102) — with 993 registered lint specs at the final window, plus the failure-attribution discipline's footprint: 208 commits carrying a paired fix-and-lint tag and 27 lints citing a specific dated incident in their own text. Model/invariant DEEPENING axis (loop-mode companion to the lint/gate WIDENING counts): typed model files 38 -> 79 -> 123 (~2.1x acceleration in loop-mode) and INV- invariant IDs 2 -> 45 -> 154 (~5x acceleration) over the same windows — the growth locus moved from raw lint files (which slowed, 538 -> 698 -> 751) into models + invariants, so the 'environment converts failures into machinery' claim reads as deepening, not only widening.",
-    "data_source": "A tree scan (git ls-tree per window SHA) counting lint-* files under the lint directory and gate scripts, at the four study-v2 commit-date boundaries c55f3637 (prototype 04-09) / e0f10aea (mechanization 05-31) / b1a4c1d4 (hardening 06-30) / HEAD (now 08-03); registered-spec count from the lint-registration modules at HEAD; the 208 fix-and-lint commits and 27 incident-citing lints from a commit-message and lint-docstring grep (w4b-measurements scratchpad).",
-    "limitation": "A control-growth curve, not a causal rate: the telemetry that would record the fire->control edge captured only the reflection hook firing (event/ts/session/facet), never the resulting control, so the fraction of controls born from a failure versus authored up front is not measured. Attribution is a documented, named discipline (the paired fix-and-lint tag in 208 commits; 27 lints citing a dated incident), reported as an honest range (27 high-confidence -> 260 loose keyword proxy), not a precise causal percentage. Single repo, single fleet; counts are at HEAD 700533b6 / 2026-08-03 and drift upward on re-run. Model/invariant-axis caveats: the deepening ABSOLUTES depend on the counting pathspec — the ACCELERATION (~2.1x models, ~5x invariants) is the stable signal, the raw counts are not a fixed quantity; the loop-mode window is ~2 weeks (one data point, not a trend); and the invariant acceleration is CONFOUNDED with the INV- ID discipline itself being new this window (some of the rise is the one-time cost of introducing invariants), so the honest claim is bounded to the window.",
-    "gloss": "The control substrate accumulating across four windows: project-specific lint files 0 -> 336 -> 595 -> 747 and gate scripts 0 -> 20 -> 76 -> 102 (993 registered lint specs at the final window), the environment converting failures into durable machinery as a documented, named, growing discipline."
+    "observable": "Project-specific lint files, gate/check scripts and system-model files at each week's last commit across the project's 29 weeks: the lint-file count flat at zero through week 8, a sharp takeoff across weeks 9-11, then near-monotone stock-like growth to roughly 990 files at the mining head, with a weekly commits-to-lint-files correlation of approximately zero. Plus the failure-attribution discipline's footprint: 208 commits carrying a paired fix-and-lint tag and 27 lints naming the dated incident that motivated them.",
+    "data_source": "A 29-week history-mining pass over the parent repo (per-week last-commit tree scan), acquired 260925.103236; series in book/data/factory-archaeology-260925/control_growth_weekly.csv and cross_metric_correlations.csv, write-up in book/data/factory-archaeology-260925/provenance/C_governance_conversion.md. Supersedes the earlier four-snapshot curve (0 -> 336 -> 595 -> 747 lints; 0 -> 20 -> 76 -> 102 gates), one of whose points (595 at the hardening-window revision) the weekly series reproduces exactly and thereby validates the lint-file definition.",
+    "limitation": "A control-growth curve, not a causal rate: nothing in the record captures the failure-to-control edge, so the fraction of controls born from a failure rather than authored up front is not measured. Attribution is a documented, named discipline (208 paired fix-and-lint commits; 27 incident-citing lints), reported as such and not as a causal percentage. The gate-script and system-model companion traces use the mining pass's own definitions and are independent re-derivations, not reproductions of the earlier counts. Single repo, single fleet; counts are at the mining head (project week 29, 2026-09-21) and drift upward on re-run.",
+    "gloss": "The control substrate accumulating week by week across 29 weeks: lint files flat at zero through week 8, a sharp takeoff at weeks 9-11, then stock-like growth to roughly 990 — growth decoupled from that week's realization volume, which is what distinguishes deliberate investment from a side effect of throughput."
   },
   "epic-closure-rate": {
     "source": "inside-docables-software-factory",
