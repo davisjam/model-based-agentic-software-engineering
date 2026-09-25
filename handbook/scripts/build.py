@@ -663,7 +663,12 @@ def build_web(book: dict) -> None:
     # verbatim twins, so the asset is the single source and neither can drift.
     ico_pdf = (C.GC_ROOT / "web-theme" / "glyphs" / "pdf-file.svg").read_text(encoding="utf-8").strip()
     ico_epub = (C.GC_ROOT / "web-theme" / "glyphs" / "epub-file.svg").read_text(encoding="utf-8").strip()
-    lines = [f"# {book['title']}", "", f"*{book['subtitle']}*", "",
+    # Front-matter title override. Material renders "{page.title} - {site_name}", and site_name IS
+    # the book title — so letting this page's H1 supply page.title emitted the handbook's name twice
+    # ("The SE Handbook - The SE Handbook") in every tab and link-preview card. The subtitle is the
+    # half the suffix doesn't already carry. The H1 below is unaffected; only the <title> changes.
+    lines = ["---", f"title: {json.dumps(book['subtitle'])}", "---", "",
+             f"# {book['title']}", "", f"*{book['subtitle']}*", "",
              f"{book['author']} · Edition {book['edition']} · {book['year']}", "",
              '<p class="hb-top-row">'
              f'<a href="software-engineering-handbook.pdf">{ico_pdf}Download the PDF edition ↓</a> '

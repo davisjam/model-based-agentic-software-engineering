@@ -579,7 +579,11 @@ def emit(chapters: list[dict], extras: list[dict],
     for c in chapters:
         bodies[c["slug"]] = _page_md(c, _nav_label(c))
     for e in extras:
-        title = build_book._BOOK_MANIFEST["title"] if e["slug"] == "index" else e["nav_title"]
+        # The landing's front-matter title feeds Material's "{page.title} - {site_name}" tab/`<title>`
+        # string, and site_name IS the manifest title — so titling the landing with the manifest title
+        # too emitted the book's name twice ("MAGE - MAGE") in every tab and link-preview card. The
+        # subtitle is the half the suffix doesn't already carry.
+        title = build_book._BOOK_MANIFEST["subtitle"] if e["slug"] == "index" else e["nav_title"]
         if e["slug"] == "index":
             e = {**e, "main": _absolutize_companion_link(_link_cover_to_pdf(e["main"]))}
         bodies[e["slug"]] = _page_md(e, title)
