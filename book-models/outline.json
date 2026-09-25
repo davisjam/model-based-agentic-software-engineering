@@ -2550,23 +2550,23 @@
               "block_index": 15
             },
             {
-              "slug": "software-holds-what-we-expect-to-change",
-              "text": "Software occupies this unusual role because it is unusually easy to change: we put behavior into software precisely when we expect it may need to vary, so the result is nearly tautological — software contains the things we expect to change, and software changes continually.",
+              "slug": "the-output-is-the-next-working-realization",
+              "text": "The output of a software factory is not another copy of the product but the next working realization of it: each production cycle begins with a working software system and attempts to produce a changed system that still works.",
               "block_index": 17
             },
             {
-              "slug": "what-the-software-factory-repeatedly-produces-is-change",
-              "text": "What software engineering repeatedly produces is therefore change: features, repairs, adaptations, migrations, and other transformations of a maintained software system.",
+              "slug": "a-software-factory-is-a-production-system-for-controlled-change",
+              "text": "The factory's job is to realize controlled change — the same object named by this book's definition of software engineering, so a software factory is the production system through which that change occurs.",
               "block_index": 19
             },
             {
-              "slug": "a-software-factory-is-a-production-system-for-controlled-change",
-              "text": "Change is the object named by this book's definition of software engineering, so a software factory is a production system for controlled change.",
-              "block_index": 21
+              "slug": "the-two-problems-specialize-to-changes-not-copies",
+              "text": "The difference respecializes the two problems of factory engineering: process design organizes the production of changes, and tolerance constrains how much freedom the fabricator may exercise while the changed product remains acceptable, so the factory produces new realizations of an evolving artifact rather than copies of the same one.",
+              "block_index": 22
             },
             {
               "slug": "representations-of-software-carry-a-carrying-cost",
-              "text": "Change complicates the factory analogy because the production system must evolve with what it produces: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost.",
+              "text": "Realizing controlled change carries a cost physical manufacturing can amortize differently: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost.",
               "block_index": 24
             },
             {
