@@ -7,7 +7,7 @@
     "derived_ids": 200,
     "missing_topic_sentence": 4,
     "sections_drained": 148,
-    "paragraph_points": 741
+    "paragraph_points": 740
   },
   "chapters": [
     {
@@ -2542,57 +2542,57 @@
           "heading_text": "What Does a Software Factory Produce?",
           "topic_sentence": "The analogy requires one adjustment before we apply it to software.",
           "id_source": "derived",
-          "block_index": 16,
+          "block_index": 14,
           "points": [
             {
               "slug": "software-does-not-repeatedly-produce-instances",
               "text": "The analogy needs one adjustment: a physical factory commonly produces many instances of a product, while a software service may be one continuously evolving system and another copy of a program costs almost nothing.",
-              "block_index": 17
+              "block_index": 15
             },
             {
               "slug": "software-holds-what-we-expect-to-change",
               "text": "Software occupies this unusual role because it is unusually easy to change: we put behavior into software precisely when we expect it may need to vary, so the result is nearly tautological — software contains the things we expect to change, and software changes continually.",
-              "block_index": 19
+              "block_index": 17
             },
             {
               "slug": "what-the-software-factory-repeatedly-produces-is-change",
               "text": "What software engineering repeatedly produces is therefore change: features, repairs, adaptations, migrations, and other transformations of a maintained software system.",
-              "block_index": 21
+              "block_index": 19
             },
             {
               "slug": "a-software-factory-is-a-production-system-for-controlled-change",
               "text": "Change is the object named by this book's definition of software engineering, so a software factory is a production system for controlled change.",
-              "block_index": 23
+              "block_index": 21
             },
             {
               "slug": "representations-of-software-carry-a-carrying-cost",
               "text": "Change complicates the factory analogy because the production system must evolve with what it produces: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost.",
-              "block_index": 26
+              "block_index": 24
             },
             {
               "slug": "organizations-judge-the-carrying-cost-differently",
               "text": "Software organizations have made different economic judgments about that cost — some find durable value in explicit representations, others find it cheaper to keep skilled engineers close to implementation — and the tradeoff turns on how much reusable knowledge a representation carries and how expensive it is to keep accurate.",
-              "block_index": 28
+              "block_index": 26
             },
             {
               "slug": "agile-is-intelligible-when-the-product-is-change",
               "text": "The Agile movement placed substantially greater weight on keeping knowledgeable humans close to implementation, which makes particular sense when the object of engineering is controlled change: a representation that does not change with the software can cease to describe the thing it is meant to govern.",
-              "block_index": 30
+              "block_index": 28
             },
             {
               "slug": "earlier-separation-attempts-met-the-same-tradeoff",
               "text": "Earlier attempts to separate engineering judgment from implementation met the same tradeoff from the other direction: moving decisions upstream let less experienced programmers implement, but only if costly representations carried the judgment they would otherwise supply.",
-              "block_index": 32
+              "block_index": 30
             },
             {
               "slug": "the-question-was-where-judgment-is-carried-most-economically",
               "text": "The economic question was never whether software should use models but where engineering judgment could be carried most economically without losing control: craft production stays economical when transferring judgment out of fabrication costs as much as leaving it there, and factory production becomes economical when reusable structures carry it more cheaply.",
-              "block_index": 34
+              "block_index": 32
             },
             {
               "slug": "commodity-intelligence-changes-the-tradeoff",
               "text": "Commodity intelligence changes the tradeoff: agents are inexpensive and capable enough to resolve many ordinary realization decisions, so the production system can carry selected consequential judgments while leaving substantial realization freedom to the agent.",
-              "block_index": 36
+              "block_index": 34
             }
           ]
         },
@@ -2602,22 +2602,22 @@
           "heading_text": "Walking Through a Software Factory",
           "topic_sentence": "The factory metaphor gives us a vocabulary for walking through an agentic software production system without assuming in advance how it should be organized.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 36,
           "points": [
             {
               "slug": "four-questions-orient-a-walkthrough",
               "text": "Four questions orient a walkthrough of an agentic software production system without assuming in advance how it should be organized: what it produces, what people do, how production is organized, and what the tolerances are.",
-              "block_index": 39
+              "block_index": 37
             },
             {
               "slug": "software-tolerances-take-more-forms-than-a-dimension",
               "text": "A software tolerance may be a quantitative bound, an invariant, a behavioral requirement, an architectural constraint, a security policy, or another statement of acceptable variation — some checkable mechanically, others still requiring human judgment.",
-              "block_index": 42
+              "block_index": 40
             },
             {
               "slug": "the-four-questions-are-broader-than-mage",
               "text": "The four questions are deliberately broader than MAGE — a factory may answer them with tests, policies, human review, simulators, permission systems, or models — and the two case sections ask them of DocAble and of independently developed industrial systems.",
-              "block_index": 44
+              "block_index": 42
             }
           ]
         }
@@ -2644,14 +2644,9 @@
           "block_index": 7
         },
         {
-          "slug": "make-the-parts-efficiently-and-make-parts-that-fit",
-          "text": "Process design determines how efficiently work moves through the factory, and tolerance determines whether the resulting work is fit for its intended use; a factory must do both, producing parts at an economically useful rate and parts that fit together well enough for the product to work.",
-          "block_index": 10
-        },
-        {
           "slug": "a-better-production-system-made-a-different-artifact-practical",
-          "text": "Watt's engine needed cylinders bored more accurately than ordinary eighteenth-century production could manage, and Wilkinson's boring machinery supplied them — so the advance was not a faster way to make an existing artifact but a production system that made a different artifact practical.",
-          "block_index": 14
+          "text": "A factory must solve both problems: an economically useful rate, and a product within acceptable bounds. Watt's engine needed cylinders bored more accurately than ordinary production could manage; Wilkinson's boring machinery supplied them. The advance was not a faster way to make an existing artifact but a production system that made a different artifact practical.",
+          "block_index": 12
         }
       ]
     },
