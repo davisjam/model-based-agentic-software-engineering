@@ -14,13 +14,46 @@ later reader can tell whether the data needs refreshing without re-deriving any 
 | **Source** | the sibling `mage-book-52-factory-archaeology/` working directory in the parent repo (not part of this submodule) |
 | **Chapter revision ingested** | `5.2-inside-docables-software-factory-260925.103236.md` (108,591 bytes), with its cover note `COVER-NOTE-52-V2-260925.103236.md` |
 | **Window mined** | the parent repo's project weeks 1–29, 2026-03-09 through 2026-09-21 |
-| **This directory** | 25 CSVs — the mined weekly series and its census tables |
+| **This directory** | 25 CSVs — the mined weekly series and its census tables — plus one JSON, the later per-Epic size ingest below |
 | **Sibling scripts** | `book/figures/factory-archaeology-260925/` — 17 matplotlib generators |
 | **Analysis write-ups** | `provenance/` beside this file — 10 notes, one per mining pass (A–J) |
 
 A superseded revision, `5.2-inside-docables-software-factory-REVISED-260925.md` (09:45,
 103,416 bytes), also sits in the source directory. It was **not** ingested; the
 `260925.103236` file is a re-synthesis over it.
+
+## Second ingest — per-Epic size, `epic_size_metrics-260925.185809.json`
+
+| | |
+|---|---|
+| **Acquisition stamp** | `260925.185809` (the emitter's own `generated_ts`, 2026-09-25T18:58:09Z) |
+| **Source** | the same sibling working directory, a later mining pass than the `103236` ingest |
+| **Answers** | how big *one* closed Epic is — the magnitude behind a single point on `f2_work_over_time` |
+| **Population** | all 478 closed Epics (374 directory-form, 104 flat-file), joined against the 32,099 non-merge commits reachable from the parent repo's main |
+| **Write-up** | `epic-size-quantification-260925.md` in the source directory, not ingested |
+
+**The join is non-temporal by construction.** A commit is attributed to an Epic when its
+*message* cites that Epic by qualified path, or when it is the Epic's close chore. Timing
+proximity is never used: in a fleet that lands many Epics' commits interleaved on the same day
+it would be actively wrong. The closure record itself is no help — the close tool verifies its
+commit list for reachability and then discards it.
+
+**Read the commit counts as a lower bound.** The path-qualified join covers 444 of 478 closed
+Epics (92.9%); the 34 misses are mostly early Epics whose commits used a bare subject scope. A
+looser join that accepts a bare slug match reaches 477 of 478 but over-counts badly for Epics
+whose slug names a fleet-wide discipline theme. §5.2 quotes the strict median (2 commits) and
+names the looser one (4) as the upper bracket.
+
+**Two churn measures, and the chapter says which.** Median *total repository* churn is 344
+lines; median *production-source* churn is 10. The gap is the point: the median Epic's change is
+mostly its own design document, phase notes, models, and controls. Quoting either alone
+misleads. The mean is unusable without the median — a single mechanical mass-repoint Epic
+(2,525,014 lines across 496 files in 5 commits) pulls the mean total churn from ~1,348 to 7,032.
+
+**One field in the artifact does not support a claim.** `agent_execs` has n=15 of 444, because
+it proxies agent executions by counting agent-id tokens surviving in commit messages, and those
+are stripped at squash or cherry-pick. §5.2 makes no agents-per-Epic claim from it. The correct
+source would be the parent repo's agent registry, which is not mined here.
 
 ## Refreshing the data
 
@@ -29,11 +62,12 @@ them drifts upward on a re-run, and the chapter says so where it matters — the
 had already drifted by one between the revision examined and the census re-derived while the
 chapter was being written. Refresh when a claim's *shape* is at stake, not to chase a level.
 
-Re-mining requires the extraction tool, **`factory_archaeology.py`**, which was deliberately
-not copied here. It lives with the source working directory, reads the parent repository's git
-history directly, and is of no use to this submodule: the book repo ships the *results* of the
-archaeology, not the machinery that performs it. Its raw extraction caches (`data/_raw/`) are
-likewise absent — they are large and regenerable.
+Re-mining requires the extraction tools — **`factory_archaeology.py`** for the weekly series and
+**`mine_epic_size.py`** for the per-Epic sizes — which were deliberately not copied here. They
+live with the source working directory, read the parent repository's git history directly, and
+are of no use to this submodule: the book repo ships the *results* of the archaeology, not the
+machinery that performs it. The raw extraction caches (`data/_raw/`) are likewise absent — they
+are large and regenerable.
 
 ## Regenerating the figures
 
