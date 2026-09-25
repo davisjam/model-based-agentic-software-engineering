@@ -526,9 +526,9 @@ how should what an engineering organization learns persist, in what form, and wi
 authority?
 
 ::: read_further
-Li, Paul Luo, Amy J. Ko, and Jiamin Zhu. ["What Makes a Great Software Engineer?"](https://doi.org/10.1109/ICSE.2015.335) In *Proceedings of the 37th IEEE/ACM International Conference on Software Engineering (ICSE)*, 700–710. IEEE, 2015. An interview study of why experienced engineers rate judgment, system understanding, and enabling colleagues alongside implementation skill.
+[@li2015great] An interview study of why experienced engineers rate judgment, system understanding, and enabling colleagues alongside implementation skill.
 
-Brooks, Frederick P., Jr. *The Mythical Man-Month: Essays on Software Engineering*. Anniversary ed. Reading, MA: Addison-Wesley, 1995. The title essay makes the classic argument that adding people adds coordination work as well as capacity.
+[@brooks1995] The title essay makes the classic argument that adding people adds coordination work as well as capacity.
 
-Davis, James C. [*Model-Based Agentic Engineering*](https://davisjam.github.io/model-based-agentic-software-engineering/). 1st ed. 2026. Examines where scarce engineering effort moves when implementation is abundant, and how junior engineers will still develop judgment. Focus on Part 7, "The Profession," especially §§7.1 and 7.4.
+[@davis2026mage, Part 7, "The Profession," §§7.1 and 7.4] Examines where scarce engineering effort moves when implementation is abundant, and how junior engineers will still develop judgment.
 :::

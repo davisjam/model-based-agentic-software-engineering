@@ -96,6 +96,13 @@ Consequence worth stating: a grouped entry needs no new lint concept either. "Ev
 fact in this paragraph is projected" is the same predicate whether the paragraph holds one cite or
 three.
 
+One authoring rule falls out of implementation and is recorded in the filter's header: **a projected
+entry carries its own closing period, so connective prose must leave a cite at a sentence boundary.**
+"For the technique's origin: [@claessen2000quickcheck] For a contemporary application in an agentic
+setting: [@anthropic2026propertytesting]" reads correctly; the mid-clause "see X; for a contemporary
+application, see Y" yields "…268–79.; for a contemporary…". Chapter 8's entry was rewritten to the
+first shape, which changed its punctuation and not one word of its argument.
+
 ## §4. What stays hand-authored — the annotation, per surface
 
 The annotation is pedagogy, not bibliographic fact, and it legitimately differs by surface: a

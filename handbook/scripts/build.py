@@ -23,6 +23,7 @@ The build LINTS first and aborts on any manuscript error (it never degrades sile
 from __future__ import annotations
 
 import datetime
+import json
 import os
 import re
 import shutil
@@ -56,9 +57,48 @@ EPUB_CSS = C.HANDBOOK / "epub" / "epub.css"
 NSF_ACK = ("This work was supported by the U.S. National Science Foundation under grants "
            "#2541917, #2452533, and #2343596.")
 
-# The filter pipeline. crossrefs runs BEFORE citeproc (it claims @fig/@sec cites); citeproc resolves
-# the real citations; the remaining filters run after, over the resolved AST.
-COMMON_PRE = ["-L", str(C.FILTERS / "crossrefs.lua")]
+# The filter pipeline. crossrefs runs BEFORE citeproc (it claims @fig/@sec cites), then citations
+# (it claims every cite inside a READ FURTHER block, whose locator citeproc would consume); citeproc
+# resolves the remaining real citations; the rest run after, over the resolved AST.
+COMMON_PRE = ["-L", str(C.FILTERS / "crossrefs.lua"), "-L", str(C.FILTERS / "citations.lua")]
+
+# The one citation backend's rendered Chicago strings — book/references.bib projected through
+# book/render_citations.py. The Handbook reads the same artifact the MAGE book's two surfaces and the
+# course landers read, so a bibliographic fact lives in exactly one record.
+CITATIONS_JSON = C.GC_ROOT / "book" / "data" / "citations.json"
+
+#: The closed set of markup the rendered Chicago strings carry. They are HTML (the book's HTML surface
+#: consumes them directly); the Handbook's manuscript pipeline is Markdown, so they are converted on the
+#: way in. Anything outside this set stops the build rather than leaking raw HTML into a chapter.
+_CITE_HTML_RE = re.compile(r'<a href="([^"]+)">(.*?)</a>|<em>(.*?)</em>|(<[^>]+>)', re.S)
+
+
+def _bib_markdown(html_str: str) -> str:
+    """One rendered Chicago entry, HTML → Markdown. Links and emphasis are the only markup the
+    renderer emits; an unexpected tag is a signal that the projection changed shape, not something to
+    pass through silently."""
+    def repl(m: "re.Match") -> str:
+        if m.group(1) is not None:
+            return f"[{m.group(2)}]({m.group(1)})"
+        if m.group(3) is not None:
+            return f"*{m.group(3)}*"
+        raise SystemExit(f"build.py: unexpected tag {m.group(4)!r} in a rendered citation — "
+                         "book/render_citations.py changed its output shape; widen _bib_markdown")
+    return _CITE_HTML_RE.sub(repl, html_str).replace("&amp;", "&")
+
+
+def _citation_projections() -> dict:
+    """`{cite key → Chicago bibliography string, in Markdown}` for every entry in the backend.
+
+    The BIBLIOGRAPHY form, not the note form the course landers project: a READ FURTHER box is a
+    hanging-indent reference list, and this is the same string the MAGE book's Works Cited prints.
+    Staleness against references.bib is already held by the CITE-FRESH gate, so this only fails on a
+    missing file."""
+    if not CITATIONS_JSON.is_file():
+        C.die(f"citations.json not found at {CITATIONS_JSON} — run `python3 book/render_citations.py`")
+    payload = json.loads(CITATIONS_JSON.read_text(encoding="utf-8"))
+    return {key: _bib_markdown(entry["bib_html"].strip())
+            for key, entry in payload["citations"].items()}
 
 
 def _bib_args(book: dict) -> list[str]:
@@ -147,8 +187,12 @@ def _chapter_directory_args(book: dict) -> tuple[list[str], dict]:
         for sid, title in _sec_headings(ast.get("blocks", [])):
             sections.append({"id": sid, "title": title, "stem": ch.stem})
     path = C.GENERATED / "chapter-map.yaml"
+    # The citation projections ride the SAME directory file: it is already injected into every Pandoc
+    # invocation via --metadata-file, so citations.lua reads its map without a new argument at any of
+    # the four call sites.
     path.write_text(
-        C.yaml.safe_dump({"handbook_chapters": directory, "handbook_sections": sections},
+        C.yaml.safe_dump({"handbook_chapters": directory, "handbook_sections": sections,
+                          "handbook_citations": _citation_projections()},
                          allow_unicode=True),
         encoding="utf-8")
     return ["--metadata-file", str(path)], numbers

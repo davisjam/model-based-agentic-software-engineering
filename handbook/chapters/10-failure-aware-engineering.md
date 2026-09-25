@@ -844,32 +844,22 @@ consequential experience well: repair what failed, understand what the failure r
 lessons worth retaining, and allow new evidence to improve the decisions that follow.
 
 ::: read_further
-Schön, Donald A. *The Reflective Practitioner: How Professionals Think in Action*. New York: Basic
-Books, 1983. How professional judgment develops through reflection on practice. Read for
-reflection-in-action, reflection-on-action, and the repertoire an experienced practitioner brings
-to a new situation.
+[@schon1983reflective] How professional judgment develops through reflection on practice. Read for
+reflection-in-action, reflection-on-action, and the repertoire an experienced practitioner brings to
+a new situation.
 
-Norman, Donald A. *The Design of Everyday Things*. Revised and expanded ed. New York: Basic Books,
-2013. The distinction between slips and mistakes, and why apparent human error often points at the
-conditions and artifacts through which people act.
+[@norman2013] The distinction between slips and mistakes, and why apparent human error often points
+at the conditions and artifacts through which people act.
 
-Reason, James. *Human Error*. Cambridge: Cambridge University Press, 1990. A systemic account of
-human failure, latent conditions, and defenses. Read for the reasoning behind the Swiss-cheese
-model rather than the diagram itself.
+[@reason1990humanerror] A systemic account of human failure, latent conditions, and defenses. Read
+for the reasoning behind the Swiss-cheese model rather than the diagram itself.
 
-Petroski, Henry. *To Engineer Is Human: The Role of Failure in Successful Design*. New York:
-Vintage Books, 1992. How engineering disciplines have treated failure as knowledge about the limits
-of their designs and models.
+[@petroski1992] How engineering disciplines have treated failure as knowledge about the limits of
+their designs and models.
 
-Lunney, John, Sue Lueder, and Gary O'Connor. ["Postmortem Culture: Learning from
-Failure."](https://sre.google/sre-book/postmortem-culture/) In *Site Reliability Engineering: How
-Google Runs Production Systems*, edited by Betsy Beyer, Chris Jones, Jennifer Petoff, and Niall
-Richard Murphy. Sebastopol, CA: O'Reilly Media, 2016. A production practice for turning operational
-failures into shared organizational knowledge.
+[@lunney2016postmortem] A production practice for turning operational failures into shared
+organizational knowledge.
 
-Anandayuvaraj, Dharun, Tanmay Singla, Zain A. H. Hammadeh, Andreas Lund, Alexandra Holloway, and
-James C. Davis. "Learning From Software Failures: A Case Study at a National Space Research Center."
-In *Proceedings of the 48th IEEE/ACM International Conference on Software Engineering*, 2026.
-Empirical evidence on how practitioners gather, document, share, and apply lessons from failure,
-and what happens when that learning stays informal.
+[@anandayuvaraj2026failures] Empirical evidence on how practitioners gather, document, share, and
+apply lessons from failure, and what happens when that learning stays informal.
 :::

@@ -310,23 +310,15 @@ The bet is ultimately on learning. Even a failed direction pays, if you recogniz
 you and let that evidence change what you pursue next.
 
 ::: read_further
-Robertson Ishii, Teresa, and Philip Atkins. ["Essential vs. Accidental
-Properties."](https://plato.stanford.edu/entries/essential-accidental/) In *The Stanford
-Encyclopedia of Philosophy*. The ancient distinction between what belongs to a thing as the kind
-of thing it is and what merely belongs to one realization of it.
+[@robertson-sep-essential] The ancient distinction between what belongs to a thing as the kind of
+thing it is and what merely belongs to one realization of it.
 
-Hamming, Richard W. ["You and Your
-Research."](https://www.cs.virginia.edu/~robins/YouAndYourResearch.html) Talk at Bellcore, 1986.
-A classic talk about choosing important research problems. Some of the advice has aged; the
-central question has not.
+[@hamming1986research] A classic talk about choosing important research problems. Some of the advice
+has aged; the central question has not.
 
-OECD. [*Frascati Manual 2015: Guidelines for Collecting and Reporting Data on Research and
-Experimental Development*](https://doi.org/10.1787/9789264239012-en). Paris: OECD Publishing, 2015.
-The formal definition of R&D, from the manual used to decide what counts as research across
-countries and industries.
+[@oecd2015frascati] The formal definition of R&D, from the manual used to decide what counts as
+research across countries and industries.
 
-Bush, Vannevar. [*Science, the Endless
-Frontier*](https://www.nsf.gov/od/lpa/nsf50/vbush1945.htm). Washington, DC: United States
-Government Printing Office, 1945. The report that argued for funding research whose object is
-knowledge and trusting applications to follow.
+[@bush1945frontier] The report that argued for funding research whose object is knowledge and
+trusting applications to follow.
 :::

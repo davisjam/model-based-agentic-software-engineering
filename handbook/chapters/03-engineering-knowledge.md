@@ -443,20 +443,15 @@ Engineering knowledge lets yesterday's learning reduce today's rediscovery. The 
 what the system ought to accomplish in the first place.
 
 ::: read_further
-Hutchins, Edwin. ["How a Cockpit Remembers Its Speeds."](https://doi.org/10.1207/s15516709cog1903_1)
-*Cognitive Science* 19, no. 3 (1995): 265–288. The canonical demonstration of distributed cognition
-across people, procedures, instruments, and representations.
+[@hutchins1995cockpit] The canonical demonstration of distributed cognition across people, procedures,
+instruments, and representations.
 
-Rus, Ioana, and Mikael Lindvall. ["Knowledge Management in Software Engineering."](https://doi.org/10.1109/MS.2002.1003450)
-*IEEE Software* 19, no. 3 (2002): 26–38. Introduces knowledge management as a software-engineering
-problem of creating, sharing, and preserving organizational knowledge.
+[@rus2002km] Introduces knowledge management as a software-engineering problem of creating, sharing,
+and preserving organizational knowledge.
 
-Hansen, Morten T., Nitin Nohria, and Thomas Tierney. ["What's Your Strategy for Managing Knowledge?"](https://hbr.org/1999/03/whats-your-strategy-for-managing-knowledge)
-*Harvard Business Review* 77, no. 2 (1999): 106–116. Contrasts codifying knowledge with connecting
-the people who possess it.
+[@hansen1999knowledge] Contrasts codifying knowledge with connecting the people who possess it.
 
-Hogan, Aidan, et al. ["Knowledge Graphs."](https://doi.org/10.1145/3447772) *ACM Computing Surveys*
-54, no. 4 (2021), Article 71. A comprehensive survey of knowledge graphs as explicit, processable
+[@hogan2021knowledgegraphs] A comprehensive survey of knowledge graphs as explicit, processable
 representations of entities and relationships. Read the introductory material and the sections on
 representation rather than the entire survey.
 :::

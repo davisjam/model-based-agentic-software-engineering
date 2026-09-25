@@ -386,11 +386,11 @@ Cheap implementation increases the evidence available to make these judgments.
 It does not make the judgments for us.
 
 ::: read_further
-Meyer, Bertrand. *Object-Oriented Software Construction*. 2nd ed. Upper Saddle River, NJ: Prentice Hall, 1997. Develops criteria for judging whether a decomposition makes understanding, change, composition, and failure sufficiently local. Focus on the "Modularity" chapter.
+[@meyer1997oosc, chap. 2, "Modularity"] Develops criteria for judging whether a decomposition makes understanding, change, composition, and failure sufficiently local.
 
-Parnas, David L., and Paul C. Clements. ["A Rational Design Process: How and Why to Fake It."](https://doi.org/10.1109/TSE.1986.6312938) *IEEE Transactions on Software Engineering* SE-12, no. 2 (1986): 251–57. The classic explanation of why rational design descriptions remain useful even though real design is iterative.
+[@parnas1986rational] The classic explanation of why rational design descriptions remain useful even though real design is iterative.
 
-["Design Docs at Google."](https://www.industrialempathy.com/posts/design-docs-at-google/) A practical account of making consequential design reasoning inspectable before it disappears into implementation.
+[@designdocs-google] A practical account of making consequential design reasoning inspectable before it disappears into implementation.
 
-Gamma, Erich, Richard Helm, Ralph Johnson, and John Vlissides. *Design Patterns: Elements of Reusable Object-Oriented Software*. Reading, MA: Addison-Wesley, 1994. Patterns package accumulated design experience, expanding the candidate set without determining which mechanism fits a particular system. Read the introductory and concluding chapters, plus the "Facade" and "Command" patterns.
+[@gof1994, chaps. 1 and 6] Patterns package accumulated design experience, expanding the candidate set without determining which mechanism fits a particular system. Read the introductory and concluding chapters, plus the "Facade" and "Command" patterns.
 :::

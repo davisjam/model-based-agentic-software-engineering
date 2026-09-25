@@ -828,29 +828,19 @@ the system and world keep changing, and a justification made under one state of 
 simply be reused under another.
 
 ::: read_further
-Winters, Titus, Tom Manshreck, and Hyrum Wright, eds. [*Software Engineering at Google: Lessons
-Learned from Programming Over Time*](https://abseil.io/resources/swe-book). Sebastopol, CA:
-O'Reilly Media, 2020. An account of how engineers obtain evidence at different scopes, from review
-through unit tests to larger-scale testing. Read the "Code Review" chapter (chap. 9) and the
-testing chapters (chaps. 11–14).
+[@winters2020, chaps. 9 and 11–14] An account of how engineers obtain evidence at different scopes,
+from review through unit tests to larger-scale testing. Read the "Code Review" chapter and the
+testing chapters.
 
-Cockx, Jesper. ["An Introduction to Property-Based Testing with
-QuickCheck"](https://jesper.sikanda.be/posts/quickcheck-intro.html) (2020). Introduces
-property-based testing: state properties that should hold across a class of inputs, then generate
-inputs in search of counterexamples. The Haskell syntax is incidental; the validation strategy is
-not. For the technique's origin, see Claessen and Hughes, ["QuickCheck: A Lightweight Tool
-for Random Testing of Haskell Programs"](https://doi.org/10.1145/351240.351266) (ICFP 2000); for a
-contemporary application in an agentic setting, see Anthropic, ["Finding bugs across the Python
-ecosystem with Claude and property-based
-testing"](https://www.anthropic.com/research/property-based-testing) (2026).
+[@cockx2020quickcheck] Introduces property-based testing: state properties that should hold across a
+class of inputs, then generate inputs in search of counterexamples. The Haskell syntax is
+incidental; the validation strategy is not. For the technique's origin:
+[@claessen2000quickcheck] For a contemporary application in an agentic setting:
+[@anthropic2026propertytesting]
 
-McKeeman, William M. ["Differential Testing for
-Software."](https://www.cs.tufts.edu/comp/150FP/archive/bill-mckeeman/DifferentailTesting.pdf)
-*Digital Technical Journal* 10, no. 1 (1998): 100–107. Introduces differential testing:
-independently developed implementations serve as partial oracles for one another.
+[@mckeeman1998differential] Introduces differential testing: independently developed implementations
+serve as partial oracles for one another.
 
-Palshikar, Girish Keshav. ["An Introduction to Model
-Checking."](https://webdocs.cs.ualberta.ca/~paullu/C605/EMS-2004-02-12.pdf) *Embedded Systems
-Programming*, February 2004. An accessible introduction to model checking and the evidence
-obtained by exhaustively checking a model.
+[@palshikar2004modelchecking] An accessible introduction to model checking and the evidence obtained
+by exhaustively checking a model.
 :::

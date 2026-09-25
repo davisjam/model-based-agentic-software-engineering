@@ -261,7 +261,7 @@ may change, what must remain true, and what evidence is sufficient becomes a lar
 engineering work.
 
 ::: read_further
-Davis, James C. [*Model-Based Agentic Engineering*](https://davisjam.github.io/model-based-agentic-software-engineering/). 1st ed. 2026. Develops a theory for maintaining engineering control as capable agents perform more of the work.
+[@davis2026mage] Develops a theory for maintaining engineering control as capable agents perform more of the work.
 
-Brooks, Frederick P., Jr. ["No Silver Bullet—Essence and Accident in Software Engineering."](https://doi.org/10.1109/MC.1987.1663532) *Computer* 20, no. 4 (1987): 10–19. The classic distinction between the essential difficulty of software and accidental difficulties of its implementation.
+[@brooks1987] The classic distinction between the essential difficulty of software and accidental difficulties of its implementation.
 :::

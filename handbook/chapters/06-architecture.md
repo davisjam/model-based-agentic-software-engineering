@@ -414,11 +414,9 @@ Its decisions constrain the mechanisms available to Design.
 Design works within those constraints and can reveal when an architectural decision must be revisited.
 
 ::: read_further
-Bass, Len, Paul Clements, and Rick Kazman. *Software Architecture in Practice*. 3rd ed. Boston:
-Addison-Wesley, 2012. The standard treatment of how quality attributes drive architectural
-decisions.
+[@bass-saip] The standard treatment of how quality attributes drive architectural decisions.
 
-Fairbanks, George. [*Just Enough Software Architecture: A Risk-Driven Approach*](https://www.georgefairbanks.com/book/). Boulder, CO: Marshall & Brainerd, 2010. A risk-driven approach to deciding how much architectural modeling is worth doing.
+[@fairbanks2010] A risk-driven approach to deciding how much architectural modeling is worth doing.
 
-Kruchten, Philippe. ["The 4+1 View Model of Architecture."](https://doi.org/10.1109/52.469759) *IEEE Software* 12, no. 6 (1995): 42–50. The classic argument for using multiple architectural views to answer different engineering questions.
+[@kruchten1995] The classic argument for using multiple architectural views to answer different engineering questions.
 :::

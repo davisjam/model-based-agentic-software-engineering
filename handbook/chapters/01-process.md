@@ -324,9 +324,9 @@ decomposability. Process choice therefore asks both what kind of project we have
 it is worth engineering this into.
 
 ::: read_further
-Sommerville, Ian. *Software Engineering*. 10th ed. Boston: Pearson, 2016. A clear survey of plan-driven and incremental process models.
+[@sommerville2016] A clear survey of plan-driven and incremental process models.
 
-Boehm, Barry, and Richard Turner. *Balancing Agility and Discipline: A Guide for the Perplexed*. Boston: Addison-Wesley, 2003. Frames the balance between up-front discipline and later adaptation as an engineering tradeoff.
+[@boehm2003balancing] Frames the balance between up-front discipline and later adaptation as an engineering tradeoff.
 
-Winters, Titus, Tom Manshreck, and Hyrum Wright. *Software Engineering at Google: Lessons Learned from Programming Over Time*. Sebastopol, CA: O'Reilly Media, 2020. Treats software engineering as programming integrated over time and change.
+[@winters2020] Treats software engineering as programming integrated over time and change.
 :::

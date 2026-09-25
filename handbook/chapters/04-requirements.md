@@ -354,9 +354,9 @@ Requirements engineering therefore does not eliminate uncertainty before commitm
 Accepted requirements pass to specification, which determines what those promises require of the machine and its environment.
 
 ::: read_further
-Nuseibeh, Bashar, and Steve Easterbrook. ["Requirements Engineering: A Roadmap."](https://doi.org/10.1145/336512.336523) In *Proceedings of the Conference on The Future of Software Engineering (ICSE '00)*, 35–46. New York: ACM, 2000. A concise map of requirements engineering: elicitation, modeling, analysis, negotiation, and evolution.
+[@nuseibeh2000roadmap] A concise map of requirements engineering: elicitation, modeling, analysis, negotiation, and evolution.
 
-Patton, Jeff. ["The New User Story Backlog Is a Map."](https://web.archive.org/web/20190718153846/https://www.jpattonassociates.com/the-new-backlog/) Jeff Patton & Associates, October 8, 2008. A practitioner's argument for organizing requirements around what users are trying to accomplish rather than a flat feature list.
+[@patton2008backlogmap] A practitioner's argument for organizing requirements around what users are trying to accomplish rather than a flat feature list.
 
-Kostova, Blagovesta, Lucien Etzlinger, David Derrier, Gil Regev, and Alain Wegmann. ["Requirements Elicitation with a Service Canvas for Packaged Enterprise Systems."](https://doi.org/10.1109/RE.2019.00043) In *2019 IEEE 27th International Requirements Engineering Conference (RE)*, 340–350. IEEE, 2019. An industrial case study of what a customer's initial requirements list failed to capture.
+[@kostova2019canvas] An industrial case study of what a customer's initial requirements list failed to capture.
 :::
