@@ -1153,6 +1153,12 @@
       "location": "part1",
       "rationale": "compact R1-R8 index of what DocAble had to accomplish; the factories chapter returns to them as engineering constraints"
     },
+    "inside-docables-software-factory::The DocAble requirements, repeated": {
+      "tier": "C",
+      "kind": "requirements-index",
+      "location": "part5",
+      "rationale": "deliberate repeat of the Chapter 1 R1-R8 index at the point the factory has to satisfy them; the caption's job is to name it as the same table, not to re-teach the rows"
+    },
     "inside-docables-software-factory::The factory's observed construction and operating cost": {
       "tier": "B",
       "kind": "data",
