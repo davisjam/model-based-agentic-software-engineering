@@ -95,6 +95,31 @@ main column by the `<!-- epigraph -->` marker.
 Every page footer carries `© James C. Davis, 2026–present` (the `COPYRIGHT` constant). It is emitted by
 the build; do not add it to prose.
 
+### Searching the prose — `findprose.py`, never `grep -F`
+
+The markdown is **hard-wrapped**, so most sentences straddle a newline (measured in
+`part5/5.2-inside-docables-software-factory.md`: 576 of 884 prose lines, 65%, continue onto the next).
+`grep -F "several words in a row"` therefore returns **nothing** whenever the phrase crosses a wrap —
+and that zero reads as *"the text is missing,"* which is how present sentences get reported as
+deletions. Use the wrap-safe search instead:
+
+```bash
+python3 book/findprose.py "developed ways to organize production and to specify"   # → book/part5/00-part-intro.md:8
+python3 book/findprose.py --from-file checklist.txt                                # preservation checklist: per-phrase ✓/✗
+python3 book/findprose.py --list-corpus                                            # exactly which files it searches
+```
+
+It flattens every whitespace run — the wrap's newline included — before matching, then maps the hit
+back to the real `file:line` where it starts. Several phrases give a ✓/✗ checklist with a summary
+count, and the exit code is 0 only when **every** phrase was found, so a preservation check composes in
+a `&&` chain. Defaults: case **sensitive** (`-i` relaxes), HTML comments **searched** (a
+`<!-- point: … -->` claim is a legitimate target; `--no-comments` drops them), and typographic quotes
+folded to ASCII on both sides — the print renderer smart-quotes `'` into `’`, so a phrase copied out of
+the rendered book would otherwise miss ASCII source silently. `--in PATH` narrows the corpus;
+`--selftest` re-checks the line mapping against an independent oracle.
+
+Single words are still fine with `grep`. Phrases are not.
+
 ---
 
 ## 3. Authoring conventions and directives
@@ -384,6 +409,9 @@ concept registry.
 ## 7. Quick checklist for editing the book
 
 - Edit markdown under `part<N>/`, `frontmatter/` — never the `.html`.
+- Checking whether a sentence is still present → `python3 book/findprose.py "<phrase>"` (or
+  `--from-file` for a whole checklist). **Never `grep -F` a multi-word phrase** — the source is
+  hard-wrapped, so grep's zero means "crossed a newline" far more often than "deleted" (§2).
 - New recurring number → `data/metrics.json`, referenced as `{{token}}`.
 - New figure → drop the asset in `assets/`, reference with `<!-- figure: assets/<file> | caption -->`,
   and **introduce it**: put `<!-- label: <key> -->` on the line above it and name it with a `[ref:<key>]`
