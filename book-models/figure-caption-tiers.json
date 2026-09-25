@@ -1187,7 +1187,7 @@
       "tier": "B",
       "kind": "data-chart",
       "location": "part5",
-      "rationale": "project-specific lint files, gate scripts and system-model files per week; supporting caption on the four-snapshot control-growth curve resolved into a 29-week series with a stock-like shape decoupled from throughput"
+      "rationale": "project-specific lint files, gate scripts and system-model files per week; supporting caption on the four-snapshot control-growth curve resolved into a 29-week series with a cumulative shape decoupled from throughput"
     },
     "assets/f5_f6_capital_and_support_ratio.svg": {
       "tier": "B",
