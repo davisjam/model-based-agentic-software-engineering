@@ -2699,7 +2699,7 @@
             },
             {
               "slug": "the-first-question-was-whether-the-capability-was-real",
-              "text": "Seven of the eight requirements were engineering. The first question was whether the one newly available capability was actually available.",
+              "text": "Seven of the eight requirements were engineering. The first question was whether frontier models could supply the missing capability.",
               "block_index": 31
             }
           ]
@@ -2728,7 +2728,7 @@
             },
             {
               "slug": "conventional-automation-could-not-supply-that-reasoning",
-              "text": "Automated accessibility had historically been unable to supply that reasoning — too many formats, and too many ways of expressing the same idea, for conventional automation to enumerate — so modern frontier models were obvious candidates to try.",
+              "text": "Automated accessibility had historically been unable to supply that reasoning — too many formats, and too many ways of expressing the same idea, for conventional automation to enumerate — so modern frontier models were obvious candidates.",
               "block_index": 39
             },
             {
@@ -2767,7 +2767,7 @@
           "section_id": "the-two-rules-of-agentic-software-engineering",
           "level": 3,
           "heading_text": "The Two Rules of Agentic Software Engineering",
-          "topic_sentence": "I began that engineering with two rules.",
+          "topic_sentence": "I began with two rules.",
           "id_source": "derived",
           "block_index": 53,
           "points": [
@@ -2867,13 +2867,13 @@
           "section_id": "control-growth",
           "level": 3,
           "heading_text": "The Controls Accumulate",
-          "topic_sentence": "The third trace shows what accumulated beside that throughput, in one especially easy-to-count class of artifacts: project-specific lints and gate scripts.",
+          "topic_sentence": "The third trace measures one family of controls that accumulated beside that throughput: project-specific lints and gate scripts.",
           "id_source": "explicit",
           "block_index": 91,
           "points": [
             {
               "slug": "the-control-count-is-evidence-of-investment",
-              "text": "The third trace shows what accumulated beside the throughput: lint files flat through week 8, a sharp takeoff at weeks 9–11, then near-monotone stock-like growth to roughly 990 files at the mining head, decoupled from weekly realization volume. Count is evidence of investment, not quality.",
+              "text": "The third trace measures one family of controls that accumulated beside the throughput: lint files flat through week 8, a sharp takeoff at weeks 9–11, then near-monotone stock-like growth to roughly 990 files at the mining head, decoupled from weekly realization volume. Count is evidence of investment, not quality.",
               "block_index": 92
             }
           ]
@@ -3027,7 +3027,7 @@
           "section_id": "the-computation-graph-a-representation-that-took-over-execution",
           "level": 3,
           "heading_text": "The Computation Graph: a Representation That Took Over Execution",
-          "topic_sentence": "The deepest of the factory's joins earned its position over time, and its history is worth a short telling because a later subsection depends on it.",
+          "topic_sentence": "The computation graph became the deepest of these joins over time.",
           "id_source": "derived",
           "block_index": 150,
           "points": [
@@ -3253,7 +3253,7 @@
             },
             {
               "slug": "the-4000-dollar-manual-unit-cost",
-              "text": "The assumed manual unit cost is one person-week per course at $100/hour institutional labor cost — $4,000 — assumptions stated visibly and deliberately low against the chapter's opening arithmetic.",
+              "text": "The assumed manual unit cost is one person-week per course at $100/hour institutional labor cost — $4,000 — assumptions stated visibly and deliberately conservative against the chapter's opening arithmetic.",
               "block_index": 244
             },
             {
@@ -3387,7 +3387,7 @@
         },
         {
           "slug": "the-engineers-role-was-engineering-not-implementation",
-          "text": "New work did not originate in the agents or the factory's models. It came from engineering needs: goals, user feedback, production failures, standards obligations, advocacy guidance, and institutional use. The engineer decided which pressures became engineering work and made the consequential requirements, architecture, validation, and deployment decisions.",
+          "text": "New work did not originate in the agents or the factory's models. It came from engineering needs: goals, user feedback, production failures, standards obligations, advocacy guidance, and institutional use. The engineer decided which pressures became engineering work and made the consequential decisions about requirements, architecture, validation, and deployment.",
           "block_index": 4
         },
         {
