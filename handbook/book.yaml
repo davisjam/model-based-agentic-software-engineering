@@ -19,8 +19,12 @@ outputs:
   web:
     enabled: true
 
+# Bibliography. The `file` is the REPO'S ONE citation backend (book/references.bib) reached from the
+# handbook root -- there is no separate handbook bibliography (readings-ssot-260925). The CSL stays
+# local: a style is not bibliographic data, and the Handbook's inline author-date register is
+# deliberately different from the MAGE book's note register.
 bibliography:
-  file: bibliography/references.bib
+  file: ../book/references.bib
   csl: bibliography/chicago-author-date.csl
 
 # Front matter — unnumbered material that precedes the chapters (Preface, etc.). Each entry names a

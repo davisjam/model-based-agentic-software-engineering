@@ -78,6 +78,21 @@ def chapter_files(book: dict) -> list[pathlib.Path]:
     return [HANDBOOK / rel for rel in book["chapters"]]
 
 
+def bib_path(book: dict) -> pathlib.Path:
+    """The bibliography database this book cites against, resolved from the handbook root.
+
+    `book.yaml` names it relatively, and it now points OUT of the handbook tree (`../book/references.bib`)
+    — the repo's one citation backend, shared with the MAGE book and the course landers. Resolving by
+    path, not by `BIB_DIR / basename`, is what lets it live outside `bibliography/`."""
+    return (HANDBOOK / book["bibliography"]["file"]).resolve()
+
+
+def csl_path(book: dict) -> pathlib.Path:
+    """The CSL style the renderer formats inline citations with. A style is not bibliographic data, so
+    this one stays local to the handbook even though the .bib does not."""
+    return (HANDBOOK / book["bibliography"]["csl"]).resolve()
+
+
 def frontmatter_entries(book: dict) -> list[dict]:
     """The book.yaml `frontmatter:` list (Preface, etc.); empty when the book declares none.
 

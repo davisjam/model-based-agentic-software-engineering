@@ -432,7 +432,7 @@ def main() -> int:
     book = C.load_book()
     rep = Report()
 
-    bib = C.BIB_DIR / pathlib.Path(book["bibliography"]["file"]).name
+    bib = C.bib_path(book)
     known_keys = C.bib_keys(bib) if bib.exists() else set()
     if not bib.exists():
         rep.err("book.yaml", f"bibliography file not found: {bib}")

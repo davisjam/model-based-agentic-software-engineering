@@ -66,9 +66,7 @@ def _bib_args(book: dict) -> list[str]:
     # chapter never dumps a "References"/"Bibliography" list at its end. The reader-facing end matter
     # is the curated READ FURTHER box (see handbook-components.lua). suppress-bibliography keeps every
     # inline cite resolved while dropping citeproc's per-chapter reference section.
-    bib = C.BIB_DIR / C.pathlib.Path(book["bibliography"]["file"]).name
-    csl = C.BIB_DIR / C.pathlib.Path(book["bibliography"]["csl"]).name
-    return ["--citeproc", "--bibliography", str(bib), "--csl", str(csl),
+    return ["--citeproc", "--bibliography", str(C.bib_path(book)), "--csl", str(C.csl_path(book)),
             "-M", "suppress-bibliography=true"]
 
 

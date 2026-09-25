@@ -624,7 +624,7 @@ Software architecture provides another response to residual uncertainty: constra
 consequences of behavior that validation fails to anticipate. This idea has deep roots in software
 modularity. Meyer distinguished modular continuity, in which a small change affects only a small
 number of modules, from modular protection, in which abnormal behavior remains confined to a small
-neighborhood of the system [@meyer1997]. The same principle matters for assurance. If engineers
+neighborhood of the system [@meyer1997oosc]. The same principle matters for assurance. If engineers
 cannot economically establish everything a component might do, architectural controls can instead
 constrain what that component is permitted to affect.
 

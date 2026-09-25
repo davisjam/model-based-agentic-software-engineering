@@ -72,7 +72,7 @@ what occurred, and what does the difference imply for a future situation? The re
 becomes part of the engineer's repertoire of situations, interpretations, and possible responses.
 
 Donald Schön describes professional practice in terms of this relationship between action and
-reflection [@schon1983]. Professionals can reflect while acting, revising their understanding as a
+reflection [@schon1983reflective]. Professionals can reflect while acting, revising their understanding as a
 situation develops, and they can reflect afterward on what the experience revealed. In both cases,
 practice produces more than an immediate outcome. Properly interpreted, it changes the resources
 available for future judgment (@fig-reflective-cycle).
@@ -326,7 +326,7 @@ validation, access controls, architectural boundaries, redundancy, monitoring, o
 procedures, rollback mechanisms, and others.
 
 James Reason's Swiss-cheese model provides a useful representation of how failures can pass through
-such defenses [@reason1990]. Individual defenses are imperfect. A weakness that passes through one
+such defenses [@reason1990humanerror]. Individual defenses are imperfect. A weakness that passes through one
 layer may be stopped by another. Consequential failure can occur when weaknesses in several
 defenses align sufficiently for a hazard to propagate through them (@fig-defenses-alignment).
 

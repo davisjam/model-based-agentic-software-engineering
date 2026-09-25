@@ -197,7 +197,7 @@ over its lifetime, what risks each creates, and what opportunities are lost by c
 The same gap appears at larger scale. Consider an organization preparing to replace or substantially
 change an enterprise system. Stakeholders may already have produced a large spreadsheet of requested
 features. That list can contain substantial useful information and still be insufficient to
-establish a credible scope, cost, or implementation plan [@kostova2019]. Different groups often know
+establish a credible scope, cost, or implementation plan [@kostova2019canvas]. Different groups often know
 different parts of the system. Management may understand organizational strategy, regulation,
 budgets, and desired outcomes. Operational staff may understand actual workflows, exceptions,
 recurring friction, and workarounds. Technical staff may understand dependencies and constraints
