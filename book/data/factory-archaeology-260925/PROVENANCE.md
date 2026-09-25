@@ -112,8 +112,11 @@ Recorded so a later refresh does not rediscover them:
   weeks that are structurally zero because the discipline being counted did not yet exist. The
   Epic creation/closure correlation is the case that matters: `r = 0.9095` over 29 weeks
   becomes `r ≈ 0.70` over the eighteen weeks the Epic discipline existed, because eleven
-  jointly-zero weeks inflate it. §5.2 reports the restricted figure and explains the
-  difference. Read every other row of that file with the same question in mind.
+  jointly-zero weeks inflate it. **§5.2 no longer reports either figure.** The Epic-size
+  ingest above shows why: Epics vary from 1 to 102 commits and from 7 to 2.5M lines, so a
+  correlation between creation and closure counts invites the reader to treat them as
+  homogeneous arrival and service units, which they are not. Read every other row of that
+  file with the same question in mind.
 - **The mature-flow event log covers the admission stage only.** Per-task validation attempts,
   repair iterations, rollbacks and escalations were never retained as queryable events, so the
   funnel upstream of admission is not reconstructable from this record at any date.
