@@ -13,9 +13,12 @@ readings:
         - cite: anandayuvaraj2026failures
           annotation: 'Anandayuvaraj et al., "Learning From Software Failures: A Case Study at a National Space Research Center" (ICSE 2026). Empirical evidence about how software practitioners gather, document, share, and apply lessons from failure. Read for what happens when the learning loop stays informal: lessons remain tacit or fragmented, depend on individual memory, and related problems recur across projects.'
   optional:
-    - 'Norman, *The Design of Everyday Things*, revised and expanded ed. (2013). Slips, mistakes, and the relationship between apparent human error and the designed systems through which people act.'
-    - 'Reason, *Human Error* (1990). Human fallibility, latent conditions, and defenses — the reasoning behind the Swiss-cheese model, rather than the diagram.'
-    - 'Petroski, *To Engineer Is Human: The Role of Failure in Successful Design* (1992). Failure as a source of engineering knowledge about the limits of designs and models.'
+    - cite: norman2013
+      annotation: 'Slips, mistakes, and the relationship between apparent human error and the designed systems through which people act.'
+    - cite: reason1990humanerror
+      annotation: 'Human fallibility, latent conditions, and defenses — the reasoning behind the Swiss-cheese model, rather than the diagram.'
+    - cite: petroski1992
+      annotation: 'Failure as a source of engineering knowledge about the limits of designs and models.'
 instructor_materials: []
 student_materials: []
 assignments: []

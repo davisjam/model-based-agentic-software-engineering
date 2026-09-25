@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 814,
+    "total_sites": 815,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 476,
+      "book-web": 477,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -97,7 +97,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 18
+            "occ": 43
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
@@ -245,7 +245,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 54
+            "occ": 73
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -973,7 +973,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 57
+            "occ": 64
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
@@ -1321,7 +1321,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 306
+            "occ": 308
           },
           {
             "file": "book/web/docs/index.md",
@@ -1875,7 +1875,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 73
+            "occ": 81
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
@@ -2167,7 +2167,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 374
+            "occ": 381
           },
           {
             "file": "book/web/docs/index.md",
@@ -2175,7 +2175,7 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 15
+            "occ": 16
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -3112,6 +3112,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/5.2-inside-docables-software-factory.md",
+            "occ": 2
+          },
+          {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
             "occ": 2
           },
@@ -3209,7 +3213,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 26
+            "occ": 27
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -3223,7 +3227,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 35
+            "occ": 36
           }
         ]
       },

@@ -4,11 +4,16 @@ readings:
   groups:
     - heading: The new engineering problem
       items:
-        - '[MAGE Part I, "The New Engineering Problem."](https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book/part-1-intro.html) Davis, 2026. Develops the premise that commodity intelligence changes the economics of software engineering by making implementation capacity abundant relative to engineering judgment. Introduces the resulting imbalance and asks where engineering effort moves when producing implementation is no longer the dominant constraint.'
-        - '[Frederick P. Brooks, "No Silver Bullet—Essence and Accident in Software Engineering."](https://doi.org/10.1109/MC.1987.1663532) *Computer* 20, no. 4 (1987): 10–19. The classic statement that software''s essential difficulty is conceptual — deciding what to build and keeping it coherent — while tools address only accidental complexity. It frames why making implementation cheaper moves the engineering bottleneck rather than removing it, the same claim GenAI now tests at scale.'
+        - cite: davis2026mage
+          locator: 'Part I, "The New Engineering Problem"'
+          annotation: '[MAGE Part I, "The New Engineering Problem."](https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book/part-1-intro.html) Develops the premise that commodity intelligence changes the economics of software engineering by making implementation capacity abundant relative to engineering judgment. Introduces the resulting imbalance and asks where engineering effort moves when producing implementation is no longer the dominant constraint.'
+        - cite: brooks1987
+          annotation: 'Brooks, ["No Silver Bullet."](https://doi.org/10.1109/MC.1987.1663532) The classic statement that software''s essential difficulty is conceptual — deciding what to build and keeping it coherent — while tools address only accidental complexity. It frames why making implementation cheaper moves the engineering bottleneck rather than removing it, the same claim GenAI now tests at scale.'
     - heading: The MAGE argument
       items:
-        - '[MAGE Part 0, "What This Book Argues"](https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book/0.2-what-this-book-argues.html) and ["MAGE on One Page."](https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book/0.3-the-mage-method-at-a-glance.html) Davis, 2026. A compact statement of MAGE''s six claims and their relationship: scale creates an enduring reasoning problem; commodity intelligence changes its economics; Modeling makes consequential knowledge explicit; Alignment makes obligations enforceable; governance conversion turns recurring judgment into durable structure; and engineering work reorganizes around what remains scarce.'
+        - cite: davis2026mage
+          locator: 'Part 0, §§0.2 and 0.3'
+          annotation: '[MAGE Part 0, "What This Book Argues"](https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book/0.2-what-this-book-argues.html) and ["MAGE on One Page."](https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book/0.3-the-mage-method-at-a-glance.html) A compact statement of MAGE''s six claims and their relationship: scale creates an enduring reasoning problem; commodity intelligence changes its economics; Modeling makes consequential knowledge explicit; Alignment makes obligations enforceable; governance conversion turns recurring judgment into durable structure; and engineering work reorganizes around what remains scarce.'
 instructor_materials: []
 student_materials: []
 assignments: []

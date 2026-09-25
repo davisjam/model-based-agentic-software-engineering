@@ -23,7 +23,9 @@ readings:
         - cite: simons1995control
           annotation: 'Simons, ["Control in an Age of Empowerment"](https://hbr.org/1995/03/control-in-an-age-of-empowerment) (1995). The organizational precedent. Management faced the delegation problem long before software agents existed: how to grant people real autonomy while keeping the organization''s consequential obligations intact. Simons'' answer is a designed system of controls, not more instruction — empowerment and control engineered together, the same pairing this unit makes of capability and authority. The reading also guards against a misreading: Alignment is not a distinctively AI-era invention.'
   optional:
-    - 'MAGE, Chapter 3, §§3.3.4–3.3.7 and {mage:3.5}. The later §3.3 sections elaborate mechanisms that land better after the walk from linter to CI to constraints to sanctioned paths — provenance-carried admission in particular is taught in class rather than required beforehand. §3.5 answers what happens after a hundred controls accumulate: the natural extension for an interested student, not required preparation.'
+    - cite: davis2026mage
+      locator: '§§3.3.4–3.3.7 and §3.5'
+      annotation: 'MAGE, Chapter 3, §§3.3.4–3.3.7 and {mage:3.5}. The later §3.3 sections elaborate mechanisms that land better after the walk from linter to CI to constraints to sanctioned paths — provenance-carried admission in particular is taught in class rather than required beforehand. §3.5 answers what happens after a hundred controls accumulate: the natural extension for an interested student, not required preparation.'
 instructor_materials: []
 student_materials: []
 assignments: []

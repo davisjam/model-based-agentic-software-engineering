@@ -23,7 +23,8 @@ readings:
         - cite: aghion1997authority
           annotation: 'Aghion and Tirole, ["Formal and Real Authority in Organizations"](https://doi.org/10.1086/262063) (1997), selected sections. This is not a software-engineering paper, and its agents are people. That is precisely why we read it. Aghion and Tirole distinguish the formal right to make a decision from effective control over the decision, and show that delegation, information, initiative, and control are intertwined. Read it as a theory of the problem created whenever one actor delegates consequential work to another: what must the delegate know, what freedom should they receive, and what control must the principal retain?'
   optional:
-    - 'Estefan, "Survey of Model-Based Systems Engineering (MBSE) Methodologies" (INCOSE, 2008). The historical foundation of MBSE: a survey of the early methodologies, distinguishing methodology, process, method, and lifecycle model.'
+    - cite: estefan2008mbse
+      annotation: 'The historical foundation of MBSE: a survey of the early methodologies, distinguishing methodology, process, method, and lifecycle model.'
 instructor_materials: []
 student_materials: []
 assignments: []

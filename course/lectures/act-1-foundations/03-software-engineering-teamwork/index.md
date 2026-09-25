@@ -4,16 +4,21 @@ readings:
   groups:
     - heading: Teamwork
       items:
-        - 'The Mythical Man-Month, Ch. 2. Discusses the nonlinear scaling of teamwork.'
-        - 'Software Engineering at Google, Ch. 2, "How to Work Well on Teams."'
+        - cite: brooks1995
+          locator: 'chap. 2'
+          annotation: 'Discusses the nonlinear scaling of teamwork.'
+        - cite: winters2020
+          locator: 'chap. 2, "How to Work Well on Teams"'
     - heading: Engineering work
       items:
         - '{mage:7.1} Davis, 2026. How increasingly capable agents change the distribution of work in software engineering, shifting human attention toward intent, abstraction, evidence, coordination, judgment, and acceptance.'
         - '{mage:7.3} Davis, 2026. What does it mean to be a software engineer when machines can perform increasing amounts of engineering work? The durable role of the engineer lies not in whatever tasks machines currently cannot perform, but in responsibility for what systems should mean, what evidence is sufficient, and what tradeoffs are acceptable.'
     - heading: Metrics
       items:
-        - 'Software Engineering at Google, Ch. 7, "Measuring Engineering Productivity."'
-        - '[DORA Metrics](https://dora.dev/guides/dora-metrics/). A widely used framework for measuring software delivery performance.'
+        - cite: winters2020
+          locator: 'chap. 7, "Measuring Engineering Productivity"'
+        - cite: dora-metrics
+          annotation: 'A widely used framework for measuring software delivery performance.'
 instructor_materials: []
 student_materials: []
 assignments: []

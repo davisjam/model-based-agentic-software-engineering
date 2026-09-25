@@ -7,11 +7,17 @@ readings:
         - '{mage:1.1} A contemporary perspective on how commodity intelligence changes the economics of software production. The reading asks what happens to software engineering when implementation becomes abundant relative to engineering judgment, and provides a useful lens for considering why engineering processes change as the underlying productive medium changes.'
     - heading: Process models
       items:
-        - 'Royce (1970), "Managing the Development of Large Software Systems: Concepts and Techniques." Summarizes early efforts and failures to engineer large software systems.'
-        - 'The Mythical Man-Month, Ch. 11. Covers similar ground to Royce from Brooks''s more informal, essay-like perspective.'
-        - '[Beck (1999), "Embracing Change with Extreme Programming."](https://ieeexplore.ieee.org/document/796139) Describes the major practices of XP and its approach to embracing change compared with traditional Waterfall development.'
-        - 'The [Agile Manifesto](https://agilemanifesto.org/) and its [Principles](https://agilemanifesto.org/principles.html). Beck, Fowler, Martin, et al., 2001.'
-        - '[The Scrum Guide](readings/scrum-guide-2020.pdf). Schwaber & Sutherland, November 2020. (Source: [redagile.com/scrum-guide](https://www.redagile.com/scrum-guide).)'
+        - cite: royce1970
+          annotation: 'Summarizes early efforts and failures to engineer large software systems.'
+        - cite: brooks1995
+          locator: 'chap. 11'
+          annotation: 'Covers similar ground to Royce from Brooks''s more informal, essay-like perspective.'
+        - cite: beck1999xp
+          annotation: 'Describes the major practices of XP and its approach to embracing change compared with traditional Waterfall development.'
+        - cite: agile-manifesto2001
+          annotation: 'Read the manifesto together with its [Principles](https://agilemanifesto.org/principles.html).'
+        - cite: scrumguide2020
+          annotation: 'Read the [course copy](readings/scrum-guide-2020.pdf) of the November 2020 edition. (Source: [redagile.com/scrum-guide](https://www.redagile.com/scrum-guide).)'
     - heading: A critical perspective
       items:
         - '["Extreme Programming Considered Harmful."](readings/extreme-programming-considered-harmful.pdf) An engineering critique of Extreme Programming based on the author''s experience. Read as a practitioner perspective rather than as systematic empirical evidence.'

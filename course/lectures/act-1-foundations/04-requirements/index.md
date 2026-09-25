@@ -4,7 +4,9 @@ readings:
   groups:
     - heading: Organized textbook treatment
       items:
-        - 'Sommerville (2016), *Software Engineering*, 10th ed., Ch. 4, "Requirements Engineering." An organized introduction to requirements engineering, including functional and nonfunctional requirements, elicitation, analysis, validation, and requirements change. (Boston: Pearson, 2016; available through O''Reilly Learning.)'
+        - cite: sommerville2016
+          locator: 'chap. 4, "Requirements Engineering"'
+          annotation: 'An organized introduction to requirements engineering, including functional and nonfunctional requirements, elicitation, analysis, validation, and requirements change. (Available through O''Reilly Learning.)'
     - heading: Stories from practice
       items:
         - cite: patton2008backlogmap
