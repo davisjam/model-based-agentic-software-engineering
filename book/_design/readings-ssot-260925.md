@@ -169,3 +169,46 @@ of new lint code.
 | 4 | Finish the lander migration — raw bibliographic strings → `- cite:` items. |
 | 5 | Land BIB-13. |
 | 6 | Per-pair content reconciliation: apply the unambiguous, report the editorial. |
+
+---
+
+## §8. Phase-6 reconciliation — what each surface has that the other lacks
+
+With one backend, this is now a computed diff rather than a reading exercise: compare the cite keys
+in a chapter's READ FURTHER box against the keys in its lander's `readings:` front matter. The table
+below is that diff, taken after Phases 3 and 4 (which closed several gaps on their own — Chapter 8's
+property-based sources, for instance, went from three-on-one-side to matched, because the lander's
+hand-written `note:` became two cite-backed items).
+
+**Applied (one).** `warm2008vigilance` → Handbook Chapter 8's READ FURTHER. The test for "unambiguous"
+here is deliberately narrow, because a READ FURTHER box is a curated short list and lengthening it is
+an editorial act: *the chapter's own prose already cites the work, and the matched lander already
+assigns it.* Chapter 8 §"evidence and attention" cites Warm et al. on vigilance in the body; lander
+08-validation assigns it under "Human attention is a finite validation mechanism." Exactly one pair
+met that test.
+
+**For the author (everything else).** No divergence below was applied, and nothing was dropped from
+either surface.
+
+| Pair | Handbook has, lander lacks | Lander has, Handbook lacks | Recommendation |
+|---|---|---|---|
+| 00 Software Engineering ↔ 01 Engineering and GenAI | — | — | Match. |
+| 01 Process ↔ 02 Software Process | Sommerville; Boehm & Turner; Winters et al. | Royce; Brooks chap. 11; Beck (XP); Agile Manifesto; Scrum Guide | **Zero overlap, and it reads deliberate, not drifted.** The Handbook offers three modern surveys of how process is argued about; the lander assigns the primary sources process arguments are *made of*. Author's call whether that split is intended. If it is, say so in the chapter; if not, the obvious bridge is the Agile Manifesto into the Handbook and Sommerville into the lander. |
+| 02 Teamwork ↔ 03 Teamwork | Li, Ko & Zhu; MAGE Part 7 | Winters chap. 2; Winters chap. 7; DORA | The MAGE gap is only apparent — the lander reaches Part 7 through `{mage:7.1}`/`{mage:7.3}` tokens. **Li, Ko & Zhu is the real one**, and it is the strongest single candidate in this table: it is the Handbook chapter's own empirical anchor for what engineers value in each other. Recommend adding it to the lander. |
+| 03 Engineering Knowledge ↔ Act 3 / 01 | — | — | Match, all four. |
+| 04 Requirements ↔ 04 Requirements | Nuseibeh & Easterbrook | Sommerville chap. 4 | **Substitutes, not additions.** Each surface carries one organized survey of requirements engineering; they are different surveys. Cross-adding gives each two. Recommend leaving split, or picking one survey for both. |
+| 05 Specification ↔ 05 Specification | — | MAGE Part II intro + §2.1 | The lander pairs specification with the modeling chapter; the Handbook chapter does not reach for MAGE. Whether the Handbook should is a question about the two books' relationship, not a drift. |
+| 06 Architecture ↔ 06 Architecture | Bass, Clements & Kazman | Abowd et al.; Kazman ATAM; Wan et al.; MAGE §4.2 | The lander is a *teaching* list (analysis methods, practice study, a worked case); the Handbook is a *reading* list (one standard text, one risk framing, one views framing). Both look intentional. Bass is the one candidate that fits the lander's "Architecture and risk" group without changing its character. |
+| 07 Design ↔ 07 Design | — | — | Match, all four. |
+| 08 Validation ↔ 08 Validation | — (after the applied addition) | Miller et al. on fuzz testing | The Handbook chapter names fuzzing but does not cite Miller, so adding it is a new commitment, not a projection of one — that is why it was not applied. Recommend adding if the chapter's fuzzing treatment is meant to stand on evidence. |
+| 10 Failure-Aware ↔ Act 2 / 04 | — | — | Match, all six (three of them the lander's `optional:`). |
+| 09 Research and Development | *no lander* | — | The Handbook chapter has no matched course unit. Structural, not drift. |
+
+**Unpaired in the other direction**, for completeness: four landers have no Handbook chapter —
+09 Engineering Decision-Making and Metrics, and Act 2's 01 Agent Levers, 02 Modeling, 03 Alignment.
+Those units teach from MAGE rather than the Handbook.
+
+**Two readings still carry no bibliographic record**, and both need an author decision rather than a
+migration. "Extreme Programming Considered Harmful" (lander 02) names no author and no year on either
+surface. "Works by Nancy Leveson, TODO." (lander 03-alignment) is an explicit placeholder whose own
+note says the work and portion are still being chosen.

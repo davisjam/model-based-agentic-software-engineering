@@ -838,6 +838,10 @@ incidental; the validation strategy is not. For the technique's origin:
 [@claessen2000quickcheck] For a contemporary application in an agentic setting:
 [@anthropic2026propertytesting]
 
+[@warm2008vigilance] Why sustained monitoring is demanding work rather than the passive activity it
+appears to be, and so why assurance does not scale by putting more machine output in front of human
+reviewers.
+
 [@mckeeman1998differential] Introduces differential testing: independently developed implementations
 serve as partial oracles for one another.
 
