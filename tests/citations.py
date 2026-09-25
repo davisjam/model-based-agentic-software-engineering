@@ -14,6 +14,9 @@ The gates:
                                     two glyph sets are disjoint.
   SCHOLAR-META  (BIB-8, BLOCKING) — every chapter page's <head> carries the required highwire citation_*
                                     tags.
+  HB-CITE       (BIB-13, BLOCKING) — the Handbook side of the same join BIB-12 holds on the course side:
+                                    every Handbook cite key resolves, and a READ FURTHER box carries no
+                                    hand-authored bibliographic fact.
 """
 from __future__ import annotations
 
@@ -138,7 +141,8 @@ def check_cite_orphans():
     """Decision #4 (AUDIT-ONLY). A references.bib entry that nothing cites is a warning, not a failure — a
     bibliography may legitimately carry a work only its end-of-book list references. A course-lander
     reading reference (`- cite: <key>` in readings front matter, projected by the teach-site build) counts
-    as a use — the .bib is the repo's ONE citation backend, so lander-assigned works live here too.
+    as a use, and so does a Handbook `[@key]` — the .bib is the repo's ONE citation backend, so works
+    assigned by a lander or by a Handbook chapter live here too.
     Reports the uncited keys so an author can prune a tight bib or ignore the note."""
     keys = _bib_keys()
     if not keys:
@@ -148,9 +152,86 @@ def check_cite_orphans():
     for f in _all_book_md_files():
         cited.update(bb.iter_cite_keys(open(f, encoding="utf-8").read()))
     cited.update(k for _page, _line, k in iter_course_reading_cite_keys())
+    cited.update(k for _path, _line, k in iter_handbook_cite_keys())
     orphans = sorted(keys - cited)
     return (FAIL if orphans else PASS), [f"WARN {k!r} is in references.bib but nothing cites [cite: {k}]"
                                          for k in orphans]
+
+
+# ── Handbook reading citations — the Handbook side of the bibliography subsystem (BIB-13) ───────────
+# A Handbook chapter ends in a curated `::: read_further` box. Every bibliographic fact in it is
+# PROJECTED from this .bib (rendered to Chicago in citations.json, substituted by
+# handbook/filters/citations.lua), never typed into the prose — the same doctrine BIB-12 holds for a
+# course lander, applied to the other surface that curates readings. The reader below is anchored to the
+# manuscript's own grammar: a fenced `::: read_further` div, and Pandoc's `[@key]` citation.
+
+_HANDBOOK_GLOBS = ("handbook/chapters/*.md", "handbook/frontmatter/*.md")
+#: A Pandoc bracketed citation. Cross-reference cites (`@fig-`, `@sec-`, `@ch-`, …) share the syntax and
+#: are claimed by crossrefs.lua before citeproc sees them, so they are excluded by their id prefix —
+#: mirroring `handbook/scripts/_common.py CROSSREF_PREFIXES`, which no stdlib gate may import (the
+#: handbook scripts need PyYAML; this suite stays clone-and-run).
+_HB_CITE_RE = re.compile(r"\[@([A-Za-z][\w:.#$%&+?<>~/-]*)")
+_HB_CROSSREF_PREFIXES = ("sec-", "fig-", "tbl-", "def-", "decision-", "tradeoff-", "ex-", "example-",
+                         "case-", "note-", "key-", "ch-")
+_READ_FURTHER_RE = re.compile(r"^:::+\s*\{?\.?(read_further|read-further)\b[^\n]*\n(.*?)^:::+\s*$",
+                              re.M | re.S)
+#: A Markdown link (inline or reference-style target) inside a READ FURTHER box. The projection supplies
+#: every bibliographic URL, so a hand-written one is exactly the fact that must not be re-authored.
+_MD_LINK_RE = re.compile(r"\]\(\s*(?:https?:|www\.|[^)\s]*\.(?:pdf|html?))")
+
+
+def _handbook_files() -> list[str]:
+    out: list[str] = []
+    for pattern in _HANDBOOK_GLOBS:
+        out += glob.glob(os.path.join(ROOT, pattern))
+    return sorted(out)
+
+
+def iter_handbook_cite_keys() -> "list[tuple[str, int, str]]":
+    """Every bibliographic cite key in the Handbook manuscript, as (file, line, key). Also consumed by
+    the CITE-ORPHAN audit, which counts a Handbook reference as a use of a .bib entry."""
+    out: list[tuple[str, int, str]] = []
+    for path in _handbook_files():
+        for i, line in enumerate(open(path, encoding="utf-8").read().splitlines(), start=1):
+            for key in _HB_CITE_RE.findall(line):
+                if not key.startswith(_HB_CROSSREF_PREFIXES):
+                    out.append((path, i, key))
+    return out
+
+
+def check_handbook_reading_citations():
+    """BIB-13 (BLOCKING; 0 findings at landing). (a) Every Handbook `[@key]` names an entry in
+    references.bib — the Handbook cites against the repo's ONE backend since its own 25-entry .bib was
+    retired. (b) No `::: read_further` box carries a Markdown link, and every box carries at least one
+    cite: a reference's URL, title and year arrive through the projection, so a hand-written link is a
+    bibliographic fact re-authored in prose — the Handbook's analogue of the `Full citation:` string
+    BIB-12 bans on a lander. Rendering non-emptiness is already held globally by CITE-NONEMPTY (BIB-10)
+    and freshness by CITE-FRESH (BIB-6); neither is re-checked here."""
+    keys = _bib_keys()
+    issues: list[str] = []
+    for path, line, key in iter_handbook_cite_keys():
+        if keys and key not in keys:
+            issues.append(f"{rel(path)}:{line}: cite key {key!r} names no entry in book/references.bib")
+    boxes = 0
+    for path in _handbook_files():
+        text = open(path, encoding="utf-8").read()
+        for match in _READ_FURTHER_RE.finditer(text):
+            boxes += 1
+            body = match.group(2)
+            line0 = text[:match.start(2)].count("\n") + 1
+            if not _HB_CITE_RE.search(body):
+                issues.append(f"{rel(path)}:{line0}: READ FURTHER box carries no `[@key]` citation — a "
+                              f"reading is referenced by key so its citation is projected from "
+                              f"book/references.bib")
+            for m in _MD_LINK_RE.finditer(body):
+                issues.append(f"{rel(path)}:{line0 + body[:m.start()].count(chr(10))}: hand-written link "
+                              f"in a READ FURTHER box — reference the work by key (`[@key]` + "
+                              f"annotation) so its URL is projected, not re-authored per chapter")
+    if not boxes and not issues:
+        return FAIL, ["handbook reading-citations: no `::: read_further` box found in any chapter — the "
+                      "manuscript tree or the block spelling moved; the gate would silently pass "
+                      "otherwise"]
+    return (FAIL if issues else PASS), issues
 
 
 def check_cite_no_duplicates():

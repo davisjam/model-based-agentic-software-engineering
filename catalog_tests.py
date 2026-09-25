@@ -84,6 +84,7 @@ from tests.citations import (
     check_cite_placement,
     check_cite_resolve,
     check_cite_symbology,
+    check_handbook_reading_citations,
     check_scholar_meta,
 )
 from tests.common import FAIL, PASS, SKIP, changed_vs_origin
@@ -317,6 +318,13 @@ CHECKS = [
           lambda strict: check_cite_orphans(), audit_only=True),
     Check("book: CITE-DEDUP — no two .bib entries share a (title, year); no repeated key (BIB-9)", 1,
           lambda strict: check_cite_no_duplicates()),
+    # BLOCKING (0 findings at landing, so it lands blocking rather than audit-only-first): the Handbook
+    # side of the join BIB-12 holds on the course side. Every Handbook `[@key]` resolves in
+    # references.bib, and a READ FURTHER box carries no hand-written Markdown link — its citations are
+    # projected from the one backend by handbook/filters/citations.lua, never re-authored in prose.
+    # See book/_design/readings-ssot-260925.md.
+    Check("handbook: HB-CITE — Handbook cite keys resolve; no hand-written link in a READ FURTHER box "
+          "(BIB-13)", 1, lambda strict: check_handbook_reading_citations()),
     # BLOCKING (both drained to 0 before landing, per the audit-only-first discipline): a citation entry
     # must never RENDER empty (Hayagriva chicago-notes emits an empty bibliography <li> for a locatorless
     # @misc — 11 Works-Cited entries shipped as bare numbers, silently), and a [cite:] marker must FOLLOW
