@@ -6589,6 +6589,16 @@
         }
       ]
     },
+    "point:the-exhibits-measure-what-the-requirements-cost": {
+      "kind": "point",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "5.2-inside-docables-software-factory::block-117",
+          "role": "paragraph-point"
+        }
+      ]
+    },
     "point:the-explanation-was-a-production-problem": {
       "kind": "point",
       "dependents": [
@@ -7555,16 +7565,6 @@
         {
           "view": "outline",
           "element": "2.2-structural::block-33",
-          "role": "paragraph-point"
-        }
-      ]
-    },
-    "point:the-stock-is-what-the-requirements-cost": {
-      "kind": "point",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "5.2-inside-docables-software-factory::block-117",
           "role": "paragraph-point"
         }
       ]

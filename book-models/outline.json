@@ -2873,7 +2873,7 @@
           "points": [
             {
               "slug": "the-control-count-is-evidence-of-investment",
-              "text": "The third trace measures one family of controls that accumulated beside the throughput: lint files flat through week 8, a sharp takeoff at weeks 9–11, then near-monotone stock-like growth to roughly 990 files at the mining head, decoupled from weekly realization volume. Count is evidence of investment, not quality.",
+              "text": "The third trace measures one family of controls that accumulated beside the throughput: lint files flat through week 8, a sharp takeoff at weeks 9–11, then near-monotone cumulative growth to roughly 990 files at the mining head, decoupled from weekly realization volume. Count is evidence of investment, not quality.",
               "block_index": 92
             }
           ]
@@ -2893,7 +2893,7 @@
             },
             {
               "slug": "the-observed-sequence",
-              "text": "Read in order, the four exhibits form one observed sequence: realization became abundant; named engineering intent kept flowing through it; controls accumulated as a stock; and the engineered environment came to outweigh the production source. One case cannot prove the sequence necessary, but in this case it is unmistakable.",
+              "text": "Read in order, the four exhibits form one observed sequence: realization became abundant; named engineering intent kept flowing through it; controls accumulated as a deliberate investment; and the engineered environment came to outweigh the production source. One case cannot prove the sequence necessary, but in this case it is unmistakable.",
               "block_index": 102
             }
           ]
@@ -2902,7 +2902,7 @@
           "section_id": "what-accumulated-and-why",
           "level": 3,
           "heading_text": "What Accumulated, and Why",
-          "topic_sentence": "What was in that accumulating stock?",
+          "topic_sentence": "What had accumulated?",
           "id_source": "derived",
           "block_index": 104,
           "points": [
@@ -2937,8 +2937,8 @@
               "block_index": 115
             },
             {
-              "slug": "the-stock-is-what-the-requirements-cost",
-              "text": "The stock the four exhibits measured is what the eight requirements cost, once the one the model answered is set aside: the model solved the part of the problem that had historically resisted automation, and not the software engineering problem around it.",
+              "slug": "the-exhibits-measure-what-the-requirements-cost",
+              "text": "What the four exhibits measure is what the eight requirements cost, once the one the model answered is set aside: the model solved the part of the problem that had historically resisted automation, and not the software engineering problem around it.",
               "block_index": 117
             },
             {
