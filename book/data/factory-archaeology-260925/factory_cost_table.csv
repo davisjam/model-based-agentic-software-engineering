@@ -1,0 +1,6 @@
+factory_input,quantity,cost_usd,basis,confidence
+Human engineering,6 months,100000,author valuation of engineering time,estimated
+Claude coding agents,~5.0B tokens,4800,4 Claude Max subscriptions; tokens order-of-magnitude estimate,estimated
+OpenAI inference,628M tokens,946,metered OpenAI ($946.45),exact (metered)
+Google Cloud infrastructure,,4886,GCP billing ($4886.30); ~half from always-on K8s pre-serverless,exact (billed)
+TOTAL,~5.6B tokens,110633,sum; through 2026-09-22,mixed

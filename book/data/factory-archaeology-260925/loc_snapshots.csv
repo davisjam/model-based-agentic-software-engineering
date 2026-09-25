@@ -1,0 +1,5 @@
+snapshot,date,prod_loc,support_loc,iac_loc,system_model_loc,support_ratio,note
+prototype,2026-04-09,26956,,,,0.85,post-prototype; support_ratio 0.85 (below parity)
+mechanization,2026-05-31,,,,,,mechanization window (e0f10aea); ratio crosses parity — exact LoC not in metrics.json
+hardening,2026-06-30,,,,,,hardening window (b1a4c1d4); support ratio peaks
+now-Aug3,2026-08-03,491090,1501907,35323,28507,3.0,canonical book snapshot (ce0bde110fbb); total_loc 2824878; ratio 3.0

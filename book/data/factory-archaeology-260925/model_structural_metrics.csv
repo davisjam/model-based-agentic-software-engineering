@@ -1,0 +1,4 @@
+metric,value,book_ref,note
+declared_models,129,129,files with both MODEL_FORM and MODEL_KIND
+system_models_py_files_total,297,,all .py under system-models/ (incl. helpers/tests/non-model)
+distinct_INV_ids,3865,154 (HEAD@0803),unique INV-* invariant IDs across system-models/ + docs/; book deepening axis 2->45->154

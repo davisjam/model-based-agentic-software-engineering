@@ -1,0 +1,6 @@
+metric,our_rederivation_head,our_rederivation_at_book_snapshot,book_value_0803,definition,note
+paired_fix_lint_commits,349,333,208,commit msg contains BOTH [FIX] and [LINT] tags,at the 08-03 SHA we count 333 vs the book's 208 — growth since the snapshot (16) is MINOR; the gap is DEFINITIONAL (the book's exact grep predicate is unrecovered). NOT a book reproduction.
+fix_only_commits,728,650,,[FIX] without [LINT],context for the paired count
+lint_only_commits,319,293,,[LINT] without [FIX],context
+incident_citing_lints,286,204,27,lint-*.py whose body has a 26xxxx date token AND an incident/RCA/regression word,"even at the 08-03 SHA we count 204 vs the book's 27 — our predicate is far BROADER than the book's 'names the dated incident that motivated it' (we match any 'regression'/'RCA' mention). A loose UPPER proxy, NOT the book's 27."
+registered_lint_specs,1836,1230,993,count of blocking=/audit_only= kwargs in lint_all/registrations/batch_*.py,"at the 08-03 SHA we count 1230 vs the book's 993 — part is growth (606 since), part is over-count (a spec often carries BOTH kwargs). The book's 993 used the registration loader at HEAD. Approximate."

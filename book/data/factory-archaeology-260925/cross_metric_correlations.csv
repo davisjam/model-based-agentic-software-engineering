@@ -1,0 +1,9 @@
+metric_x,metric_y,n_weeks,pearson_r,spearman_rho
+commits_all,agent_landings_merge_train,29,-0.0519,-0.1113
+commits_all,files_changed,27,0.7125,0.7949
+commits_all,epics_created,29,0.5135,0.4297
+epics_created,epics_closed,29,0.9095,0.9142
+commits_all,lint_files,27,0.0672,0.012
+churn,lint_files,27,-0.0633,-0.3176
+commits_all,cum_conversions,29,0.1925,0.2678
+agent_landings_merge_train,files_changed,27,-0.2965,-0.3803

@@ -1,0 +1,130 @@
+file,model,form,target_kind,target,form_secondary,kind_secondary,purpose
+system-models/agent_orch.py,agent_orch,STATE_MACHINE,AGENT_META,agent/factory,CONSTRAINT_SET,,Typed Layer-3 SSOT for the composed agent-orchestration state-machine model.
+system-models/agent_substrate_layering.py,agent_substrate_layering,CONSTRAINT_SET,AGENT_META,agent/factory,,,Typed layer-boundary contracts for the agent-substrate.
+system-models/anomaly_detectors.py,anomaly_detectors,REGISTRY,PRODUCT,product,,,The anomaly-detector registry — the canned analysis per ``AnomalyKind`` (Phase-4 impl).
+system-models/audio_render_rss_sizing_model.py,audio_render_rss_sizing_model,BUDGET,PRODUCT,product,,,``audio_render_rss_sizing_model`` — the peak-RSS prediction that sizes ``audio-render-service``.
+system-models/batch_execution_model.py,batch_execution_model,BUDGET,PRODUCT,product,,,Layer-3 model for GenAI batch-execution cost/latency — ``batch_size`` as a tunable term.
+system-models/boundary_kinds.py,boundary_kinds,REGISTRY,AGENT_META,agent/factory,,,Boundary-kind classification helpers for Component path resolution.
+system-models/c4_container.py,c4_container,TOPOLOGY,PRODUCT,product,,,"C4 Context + Container view — a DERIVED, customer-facing system-at-a-glance projection."
+system-models/calibration_cell.py,calibration_cell,SCHEMA,PRODUCT,product,,,Shared calibration-cell provenance carrier for the cost-function model family.
+system-models/canonical_read_surfaces.py,canonical_read_surfaces,REGISTRY,PRODUCT,product,,,Canonical access surfaces — READ-side meta-file sibling to state_mutator_registry.
+system-models/census_collection_exempt.py,census_collection_exempt,REGISTRY,AGENT_META,agent/factory,,,Registry: test-shaped files pytest legitimately does NOT collect (census EXEMPT).
+system-models/chunkless_concurrency_sizing_model.py,chunkless_concurrency_sizing_model,BUDGET,PRODUCT,product,,,``chunkless_concurrency_sizing_model`` — the dial-stack sizing SoT for the chunkless baton.
+system-models/chunkless_critical_path_model.py,chunkless_critical_path_model,BUDGET,PRODUCT,product,,,Layer-4 model: the CALL-LEVEL critical-path / expected-cost function over the
+system-models/chunkless_distribution_model.py,chunkless_distribution_model,DATAFLOW,PRODUCT,product,,,"Layer-3 system-model: the CHUNKLESS-DISTRIBUTION paradigm — its entities, its"
+system-models/chunkless_time_complexity_model.py,chunkless_time_complexity_model,BUDGET,PRODUCT,product,,,``chunkless_time_complexity_model`` — the round-multiplication TIME envelope of one chunkless job.
+system-models/claude_md_rules.py,claude_md_rules,REGISTRY,AGENT_META,agent/factory,,,"Registry of CLAUDE.md numbered-rule metadata, extracted from inline ``<!-- rule-meta: -->`` blocks."
+system-models/cli_output_contracts.py,cli_output_contracts,SCHEMA,PRODUCT,product,,,Per-subcommand expected-JSON-output contracts for the external-CLI seams.
+system-models/cli_parity.py,cli_parity,CONSTRAINT_SET,PRODUCT,product,,,INV-CLI-PARITY — the pure-Python deployment invariant (Layer 3 meta-file).
+system-models/cloud_cost_allocation.py,cloud_cost_allocation,BUDGET,PRODUCT,product,,AGENT_META,Layer-3 SSOT for the settled-day per-job CLOUD-cost ALLOCATION (Epic
+system-models/cloud_service_provider.py,cloud_service_provider,CONSTRAINT_SET,ENVIRONMENT,execution-environment,,,Typed SSOT for CLOUD-PROVIDER CONSTRAINT FACTS — the limits we do NOT control.
+system-models/code_categories.py,code_categories,REGISTRY,AGENT_META,agent/factory,,,Per-category (leaf / group / meta / unknown) code classification.
+system-models/cold_start_attribution.py,cold_start_attribution,REGISTRY,PRODUCT,product,,,Shared QUALITATIVE cold-start attribution model — one level beneath ``cold_ms``.
+system-models/cold_start_distributions.py,cold_start_distributions,SCHEMA,PRODUCT,product,,,Typed reader/writer for the measured cold-start distribution SINK (the history).
+system-models/complexity_assurance.py,complexity_assurance,REGISTRY,AGENT_META,agent/factory,,,Per-format complexity-assurance registry — the typed CLAIMS surface (G2/NS2).
+system-models/components.py,components,TOPOLOGY,PRODUCT,product,,AGENT_META,Canonical system-component catalogue for ADAtool.
+system-models/control_family.py,control_family,REGISTRY,AGENT_META,agent/factory,,,Typed ``ControlFamily`` meta-registry — the code→control anchor sources.
+system-models/cost_model.py,cost_model,REGISTRY,PRODUCT,product,,,Cost-model vocabulary: algorithmic complexity vs concrete constants.
+system-models/coverage_ref.py,coverage_ref,SCHEMA,AGENT_META,agent/factory,,,DDT++ enabler — map test coverage onto the state-machine model's nodes.
+system-models/cron_entries.py,cron_entries,REGISTRY,AGENT_META,agent/factory,,,Source-of-truth registry for periodic GC cron entries (NOT the per-minute merge-train).
+system-models/csharp_product_invariants.py,csharp_product_invariants,CONSTRAINT_SET,PRODUCT,product,,,C#-product-invariant UMBRELLA MODEL — a PROJECTION of the C# registry SoT.
+system-models/data_flow.py,data_flow,DATAFLOW,PRODUCT,product,,,Compliance-grade data-flow model (DFD) — the typed sink + edge registry.
+system-models/deploy_promote_lifecycle.py,deploy_promote_lifecycle,STATE_MACHINE,AGENT_META,agent/factory,CONSTRAINT_SET,PRODUCT,Typed Layer-3 model of the Cloud Run fleet-promote lifecycle (deploy substrate).
+system-models/deployment_topology.py,deployment_topology,TOPOLOGY,PRODUCT,product,,,Typed Layer-3 loader for the managed-deployment topology.
+system-models/diagram_model.py,diagram_model,SCHEMA,AGENT_META,agent/factory,,,Target-agnostic intermediate diagram graph + the model→graph projections.
+system-models/diagram_render.py,diagram_render,INSTRUMENT,AGENT_META,agent/factory,,,The graph→text half of the generated model-viz pipeline — pluggable targets.
+system-models/doc_lints_by_tier.py,doc_lints_by_tier,REGISTRY,AGENT_META,agent/factory,,,Registry: SYNTAX-tier doc lints eligible to run at precommit intermediate commits.
+system-models/docker_codegen.py,docker_codegen,REGISTRY,AGENT_META,agent/factory,,PRODUCT,Canonical Dockerfile-codegen substrate types + lookup tables.
+system-models/document_fact_catalogue.py,document_fact_catalogue,REGISTRY,PRODUCT,product,,,"Document Fact Catalogue (DFC) — the DECLARATIVE, INERT, lint-time catalogue of"
+system-models/edit_application_ordering_model.py,edit_application_ordering_model,CONSTRAINT_SET,PRODUCT,product,,,Layer-3 system-model: the EDIT-APPLICATION-ORDERING oracle — the executable
+system-models/entitlement_model.py,entitlement_model,DECISION_TABLE,PRODUCT,product,,,"Layer-3 SSOT for the ADATool **entitlement / admit** decision — ""can this user"
+system-models/environment_model.py,environment_model,TOPOLOGY,PRODUCT,product,,,The typed ENVIRONMENT MODEL — per-deployment behavioral-fork inventory + staging-fidelity coverage.
+system-models/error_path_coverage.py,error_path_coverage,REGISTRY,AGENT_META,agent/factory,,,Registry: fleet ErrorPath → failure-injection test that drives BOTH destinations.
+system-models/external_seams.py,external_seams,REGISTRY,AGENT_META,agent/factory,,,External-seam classification helpers for Component path resolution.
+system-models/fanout_execution_model.py,fanout_execution_model,CONSTRAINT_SET,PRODUCT,product,,,Contract/shape model for the bounded-concurrency ORDERED-RESULT fan-out executor (rule #57).
+system-models/feature_gates.py,feature_gates,REGISTRY,PRODUCT,product,,,Typed registry + lifecycle for the validated-feature-promotion discipline.
+system-models/fidelity_tier.py,fidelity_tier,REGISTRY,PRODUCT,product,,,The ``FidelityTier`` vocabulary — the models-bridge home of the harness tiers.
+system-models/finance_pricing_model.py,finance_pricing_model,BUDGET,PRODUCT,product,,,Layer-3 SSOT for the ADATool unit-economics / cost-volume-profit (CVP) model.
+system-models/frontend_build_model.py,frontend_build_model,TOPOLOGY,AGENT_META,agent/factory,,PRODUCT,Typed single-source-of-truth for the frontend build model.
+system-models/frontend_flow.py,frontend_flow,DATAFLOW,PRODUCT,product,,,Frontend-flow model for ADATool's five frontend trees.
+system-models/fuzz_targets.py,fuzz_targets,REGISTRY,AGENT_META,agent/factory,,,The model-derived fuzz-target census — fuzz coverage as a queryable model property.
+system-models/genai_first_policy.py,genai_first_policy,POLICY,PRODUCT,product,,,GenAI-First-Policy MODEL — a typed NAMING of the fail-fast / cost-tier-cascade
+system-models/genai_invocation_contract.py,genai_invocation_contract,DECISION_TABLE,PRODUCT,product,,,GenAI-Invocation-Contract MODEL — a PROJECTION of the C# TaskContract SoT.
+system-models/governance_control_firing_ledger.py,governance_control_firing_ledger,INSTRUMENT,AGENT_META,agent/factory,,,"Tier-1 control-EXERCISE mining — a DERIVED, READ-ONLY projection (Phase 2)."
+system-models/governance_conversion_ledger.py,governance_conversion_ledger,INSTRUMENT,AGENT_META,agent/factory,,,"The governance-conversion causal ledger — a DERIVED PROJECTION, not a 5th store."
+system-models/governance_glue_classes.py,governance_glue_classes,REGISTRY,AGENT_META,agent/factory,,,"The shared, CLOSED named-class glue registry for BOTH governance coverage metrics."
+system-models/governance_graph.py,governance_graph,INTERACTION,AGENT_META,agent/factory,,,Typed Layer-3 SSOT for the PROCESS-governance Governance Graph (L-orch canary).
+system-models/image_fidelity_model.py,image_fidelity_model,DATAFLOW,PRODUCT,product,,,"Image-fidelity / downsample MODEL — a typed, INERT projection that NAMES the"
+system-models/interservice_edges.py,interservice_edges,TOPOLOGY,PRODUCT,product,,,The InterServiceCall contract model — the typed sync-edge SoT (Phase 2).
+system-models/invariant_surfaces.py,invariant_surfaces,REGISTRY,AGENT_META,agent/factory,,,The invariant-surface opt-out meta-registry + the R-1 family-ratchet (P:F9).
+system-models/ir_registry.py,ir_registry,REGISTRY,PRODUCT,product,,,IR registry — the alignment-control meta-file (CLAUDE.md rule #33).
+system-models/journey_criticality.py,journey_criticality,REGISTRY,PRODUCT,product,,,The typed journey-criticality model — MAJOR/MINOR journeys/parts → derived test-tier.
+system-models/kcoverage_activation.py,kcoverage_activation,INSTRUMENT,AGENT_META,agent/factory,,,The k-coverage ACTIVATION-CONDITION AUDIT — W0 of
+system-models/kcoverage_exercise_harness.py,kcoverage_exercise_harness,INSTRUMENT,AGENT_META,agent/factory,,,The k-coverage EXERCISE-MEASUREMENT harness — the founding piece of
+system-models/kcoverage_setcover.py,kcoverage_setcover,INSTRUMENT,AGENT_META,agent/factory,,,The k-coverage SET-COVER SELECTOR — Phase 3 of
+system-models/lightweight_precommit_candidates.py,lightweight_precommit_candidates,REGISTRY,AGENT_META,agent/factory,,,Canonical registry of LIGHTWEIGHT-tier lint candidates.
+system-models/lock_classes.py,lock_classes,REGISTRY,AGENT_META,agent/factory,,,Canonical lock-class registry for the dev-machine OS-lock substrate.
+system-models/media_separation_dataflow.py,media_separation_dataflow,DATAFLOW,PRODUCT,product,,,MediaSeparationDataflow — a read-only INERT PROJECTION that NAMES the data
+system-models/mediators.py,mediators,REGISTRY,AGENT_META,agent/factory,,,Canonical mediator registry for dev-time subprocess serialization.
+system-models/merge_train_lifecycle.py,merge_train_lifecycle,STATE_MACHINE,AGENT_META,agent/factory,CONSTRAINT_SET,,Typed Layer-3 model of the merge-train ``run`` (default-landing) lifecycle.
+system-models/metric_ref.py,metric_ref,SCHEMA,AGENT_META,agent/factory,,,Metric-provenance enabler — a quality-bearing model element DECLARES its
+system-models/metric_validation_harness.py,metric_validation_harness,INSTRUMENT,AGENT_META,agent/factory,,,OFFLINE metric-validation harness (MV-1…MV-7) for the ``struct-tree`` /
+system-models/missing_control_metric.py,missing_control_metric,INSTRUMENT,AGENT_META,agent/factory,,,"The Missing-CONTROL-Metric — the governance-side dual of MMM, PRODUCTION tool."
+system-models/model_decision_telemetry_coverage.py,model_decision_telemetry_coverage,INSTRUMENT,AGENT_META,agent/factory,,,"Kind-aware decision/transform TELEMETRY coverage — the second, orthogonal"
+system-models/model_invariant.py,model_invariant,SCHEMA,AGENT_META,agent/factory,,,The shared DECLARED-tier model-invariant record + tier→kind map (rule #57).
+system-models/model_link_contract.py,model_link_contract,CONSTRAINT_SET,AGENT_META,agent/factory,,,The typed MODEL-LINK CONTRACT — strong-links-by-default + declare-to-weaken + minimal floor.
+system-models/model_selection_probe.py,model_selection_probe,DECISION_TABLE,PRODUCT,product,,,Layer-3 model for the per-item dynamic MODEL-SELECTION probe (INV-PROBE-*).
+system-models/model_sync_report.py,model_sync_report,INSTRUMENT,AGENT_META,agent/factory,,,Model-sync drift-instrumentation report — composition over the standing sinks.
+system-models/model_trace_coverage.py,model_trace_coverage,INSTRUMENT,AGENT_META,agent/factory,,,"Trace-based model-element coverage — the fast, per-run complement to"
+system-models/module_seam_ownership.py,module_seam_ownership,REGISTRY,AGENT_META,agent/factory,,,"Module-seam ownership — concern→canonical-seam map, Layer-3 meta-file sibling."
+system-models/process_view.py,process_view,TOPOLOGY,PRODUCT,product,,,C1 Process view — the runtime process/concurrency projection over the composed SM model.
+system-models/recovery_upload_first_trace_query.py,recovery_upload_first_trace_query,INSTRUMENT,PRODUCT,product,,,``*_trace_query.py`` checker — INV-TQ-RECOVERY-UPLOAD-FIRST (Epic
+system-models/remediation_cost_budget.py,remediation_cost_budget,BUDGET,PRODUCT,product,,,Layer-3 SSOT for the remediation chunk-cost DYNAMICS model (INV-BUDGET).
+system-models/remediation_graph.py,remediation_graph,DATAFLOW,PRODUCT,product,,,RemediationGraph — a read-only PROJECTION that NAMES the auto-remediation
+system-models/remediation_graph_accuracy_provider.py,remediation_graph_accuracy_provider,REGISTRY,PRODUCT,product,BUDGET,,"The ``ACCURACY`` attribute provider + the g-task→node join + the ``(variance,"
+system-models/remediation_graph_bounded_execution_provider.py,remediation_graph_bounded_execution_provider,REGISTRY,PRODUCT,product,BUDGET,,BoundedExecutionProvider — the BOUNDED-EXECUTION attribute PROVIDER on the
+system-models/remediation_graph_checker_trust_provider.py,remediation_graph_checker_trust_provider,REGISTRY,PRODUCT,product,,,CheckerTrustProvider — the CHECKER-TRUST attribute PROVIDER on the
+system-models/remediation_graph_complexity_provider.py,remediation_graph_complexity_provider,REGISTRY,PRODUCT,product,BUDGET,,ComplexityProvider — the COMPLEXITY attribute provider on the remediation-graph
+system-models/remediation_graph_config_provider.py,remediation_graph_config_provider,REGISTRY,PRODUCT,product,,,KindConfigProvider — the ``AttributeName.KIND_CONFIG`` attribute provider for
+system-models/remediation_graph_cost_provider.py,remediation_graph_cost_provider,REGISTRY,PRODUCT,product,BUDGET,,CostProvider — the COST attribute PROVIDER on the remediation-graph substrate.
+system-models/remediation_graph_latency_provider.py,remediation_graph_latency_provider,REGISTRY,PRODUCT,product,BUDGET,,LatencyProvider — the LATENCY attribute PROVIDER on the remediation-graph substrate
+system-models/remediation_graph_measured_provider.py,remediation_graph_measured_provider,REGISTRY,PRODUCT,product,BUDGET,,MeasuredAttributeProvider — the GENERAL base for graph attribute providers whose
+system-models/remediation_graph_tolerance_provider.py,remediation_graph_tolerance_provider,REGISTRY,PRODUCT,product,BUDGET,,The ``DETERMINISM_TOLERANCE`` attribute provider + the K-run reproducibility
+system-models/remediation_graph_unit_test_provider.py,remediation_graph_unit_test_provider,REGISTRY,PRODUCT,product,,,TestCoverageProvider — the TEST_COVERAGE attribute PROVIDER on the remediation-graph
+system-models/remediation_pipeline_phases.py,remediation_pipeline_phases,DATAFLOW,PRODUCT,product,,,RemediationPipelinePhases — a read-only PROJECTION that NAMES the PDF
+system-models/remediation_policy.py,remediation_policy,POLICY,PRODUCT,product,,,RemediationPolicy — a read-only PROJECTION that NAMES the cross-format
+system-models/remediator_checker.py,remediator_checker,REGISTRY,PRODUCT,product,,,"Layer-3 remediator⇄checker coverage-join model — a PROJECTION, not a re-derivation."
+system-models/required_env_per_role.py,required_env_per_role,REGISTRY,AGENT_META,agent/factory,,,The required-env-per-DISPATCH-ROLE model — the missing SoT (rule #33).
+system-models/rerun_idempotency_model.py,rerun_idempotency_model,CONSTRAINT_SET,PRODUCT,product,,,Layer-3 SSOT for the RERUN-IDEMPOTENCY author-content-hash contract (Epic
+system-models/retention_policy.py,retention_policy,POLICY,PRODUCT,product,,,Single source of truth for the user-file retention policy.
+system-models/role_instantiations.py,role_instantiations,REGISTRY,AGENT_META,agent/factory,,,The role -> instantiation registry — the single source of truth the FidelityDial projects from.
+system-models/runtime_census.py,runtime_census,REGISTRY,AGENT_META,agent/factory,,PRODUCT,Managed-runtime taxonomy — the census over each Component's primary runtime
+system-models/scope_tiers.py,scope_tiers,REGISTRY,AGENT_META,agent/factory,,,Canonical test/coverage scope-tier classification for Components.
+system-models/serverless_phase_disposition.py,serverless_phase_disposition,DECISION_TABLE,PRODUCT,product,,,SoT: the disposition of every GKE-DAG phase the serverless deploy leg does NOT
+system-models/service_sizing.py,service_sizing,BUDGET,PRODUCT,product,,,Plane-independent per-service memory-sizing source of truth (SoT).
+system-models/service_tiers.py,service_tiers,REGISTRY,PRODUCT,product,,,Canonical tier-class classification for service-flow Components.
+system-models/staging_covariate.py,staging_covariate,SCHEMA,PRODUCT,product,,,Staging size-covariate telemetry schema + the growth-confirmation output types.
+system-models/state_machines.py,state_machines,STATE_MACHINE,PRODUCT,product,CONSTRAINT_SET,,Typed Layer-3 SSOT for the composed cross-service state-machine model.
+system-models/state_mutator_registry.py,state_mutator_registry,CONSTRAINT_SET,PRODUCT,product,,,Canonical single-writer / monopoly contracts for state-mutation functions.
+system-models/stop_hook_governance.py,stop_hook_governance,CONSTRAINT_SET,AGENT_META,agent/factory,,,system-models/stop_hook_governance.py — the Stop-event governance model (map == territory).
+system-models/strip_order_trace_query.py,strip_order_trace_query,INSTRUMENT,PRODUCT,product,,,Worked-example ``*_trace_query.py`` checker — the strip-attribution legal-flow
+system-models/supported_filetypes.py,supported_filetypes,REGISTRY,PRODUCT,product,,,Canonical frozen registry of the four document filetypes supported by ADATool.
+system-models/symbol_resolution.py,symbol_resolution,INSTRUMENT,AGENT_META,agent/factory,,,Canonical AST-first symbol-in-file resolver — the ONE shared seam (rule #11 / CC-3).
+system-models/synchronization.py,synchronization,REGISTRY,PRODUCT,product,,,Canonical synchronization-lock registry for dev-time OS primitive inventory.
+system-models/task_model.py,task_model,INTERACTION,PRODUCT,product,,,The typed TASK-CLOSURE model — every user journey as (entry → flow → CLOSURE).
+system-models/telemetry_collection.py,telemetry_collection,REGISTRY,AGENT_META,agent/factory,,PRODUCT,Canonical TELEMETRY-COLLECTION PROVENANCE model — a MODELS-BRIDGE inventory of collection-points.
+system-models/telemetry_idjoin_model.py,telemetry_idjoin_model,SCHEMA,PRODUCT,product,,,Canonical TELEMETRY ID-JOIN model — the typed SoT for the agent-token capture/join collapse.
+system-models/telemetry_surface_binding.py,telemetry_surface_binding,REGISTRY,PRODUCT,product,,,Canonical TELEMETRY-FEED ↔ SURFACE binding model — the CONSUMER half of the observability graph.
+system-models/timeout_budgets.py,timeout_budgets,BUDGET,PRODUCT,product,,,Typed Layer-3 SSOT for the pipeline timeout-budget ordering model.
+system-models/trace_model_links.py,trace_model_links,INSTRUMENT,AGENT_META,agent/factory,,,Bidirectional model↔code↔trace RESOLVE + the two peer DISCOVERY signals — layer (c)
+system-models/trace_model_tags.py,trace_model_tags,REGISTRY,AGENT_META,agent/factory,,,The DECLARED model-ID tag vocabulary — layer (c) of the trace↔model linkage
+system-models/trace_query.py,trace_query,SCHEMA,PRODUCT,product,,,Invariants-as-trace-queries — a legal-flow / ordering invariant expressed as a
+system-models/traceability.py,traceability,SCHEMA,AGENT_META,agent/factory,,,Typed traceability SCHEMA for the model↔code linkage graph (mbse-sync P4-a).
+system-models/traceability_builder.py,traceability_builder,INSTRUMENT,AGENT_META,agent/factory,,,The traceability GRAPH-BUILDER + the 6 resolvers behind the P4-a schema (mbse-sync P4-b).
+system-models/upload_before_parent_trace_query.py,upload_before_parent_trace_query,INSTRUMENT,PRODUCT,product,,,Cross-SM ``*_trace_query.py`` checker — INV-TQ-UPLOAD-BEFORE-PARENT (Epic
+system-models/user_feedback.py,user_feedback,DATAFLOW,PRODUCT,product,,,Tiny system-model of the user-feedback subsystem (report → persist → admin retrieval).
+system-models/ux_surfaces.py,ux_surfaces,REGISTRY,PRODUCT,product,,,Layer 3 meta-file: UX-surface write-authority registries for frontend trees.
+system-models/verification_policy.py,verification_policy,POLICY,PRODUCT,product,,,Remediation VERIFICATION-POLICY model — a PROJECTION of the C# registry SoT.
+system-models/warm_path_segments.py,warm_path_segments,BUDGET,PRODUCT,product,,,Warm-remediation critical-path SEGMENT MODEL (sibling of the cold-start model).
+system-models/wcag_coverage_gaps.py,wcag_coverage_gaps,REGISTRY,PRODUCT,product,,,Canonical WCAG-coverage-gap registry for ADAtool rules.
+system-models/worker_rss_sizing_model.py,worker_rss_sizing_model,BUDGET,PRODUCT,product,,,``worker_rss_sizing_model`` — the peak-RSS prediction that sizes ``worker-chunkless``.
