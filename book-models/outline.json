@@ -2803,7 +2803,7 @@
             },
             {
               "slug": "epics-measure-the-cadence-of-formalized-intent",
-              "text": "The second trace counts named units of engineering intent, not commits: from week 12 Epics were created and closed in volume, co-moving at r ≈ 0.7 once eleven structurally-zero weeks are excluded, with creation outrunning closure three to one. Emergent greenfield work, not a backlog drained: the engineer supplies the intent, abundant realization executes it.",
+              "text": "An Epic was DocAble's unit for a substantial feature request. The second trace counts those named units, not commits: from week 12 they were created and closed in volume, co-moving at r ≈ 0.7 once eleven structurally-zero weeks are excluded, creation outrunning closure three to one — emergent greenfield work, not a backlog drained.",
               "block_index": 67
             }
           ]
