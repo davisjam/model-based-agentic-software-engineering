@@ -2833,7 +2833,7 @@
           "points": [
             {
               "slug": "four-traces-read-in-sequence",
-              "text": "The retrospective stage narrative can be checked against the repository's own record: a 29-week mining pass reconstructed weekly series read here as four exhibits — how much was realized, what work flowed through, what controls accumulated, and how large the whole apparatus became relative to the product.",
+              "text": "The retrospective stage narrative can be checked against the repository's own record: a 29-week mining pass reconstructed weekly series read here as four exhibits — how much was realized, what work flowed through, what controls accumulated, and how large the support side became relative to the product.",
               "block_index": 70
             },
             {
@@ -2892,18 +2892,18 @@
           "section_id": "support-ratio-curve",
           "level": 3,
           "heading_text": "The Support Ratio",
-          "topic_sentence": "The fourth trace weighs the whole supporting apparatus against the product it supports.",
+          "topic_sentence": "The fourth trace weighs the tests and supporting infrastructure against the product they support.",
           "id_source": "explicit",
           "block_index": 96,
           "points": [
             {
               "slug": "the-environment-outgrew-the-product",
-              "text": "The fourth trace weighs the whole apparatus against the product: the support ratio begins below parity, crosses parity around weeks 5–6, climbs through mechanization, and plateaus between roughly 3.5 and 3.9 — with the two recoverable earlier cloc snapshots overlaid as checks. The ratio is descriptive, not a target.",
+              "text": "The fourth trace weighs the support side against the product: the support ratio begins below parity, crosses parity around weeks 5–6, climbs through mechanization, and plateaus between roughly 3.5 and 3.9 — with the two recoverable earlier cloc snapshots overlaid as checks. The ratio is descriptive, not a target.",
               "block_index": 98
             },
             {
               "slug": "the-observed-sequence",
-              "text": "Read in order, the four exhibits form one observed sequence: realization became abundant; named engineering intent kept flowing through it; controls accumulated as a deliberate investment; and the engineering apparatus came to outweigh the production source. One case cannot prove the sequence necessary, but in this case it is unmistakable.",
+              "text": "Read in order, the four exhibits form one observed sequence: realization became abundant; named engineering intent kept flowing through it; controls accumulated as a deliberate investment; and the supporting software came to outweigh the production source. One case cannot prove the sequence necessary, but in this case it is unmistakable.",
               "block_index": 102
             }
           ]
@@ -2918,7 +2918,7 @@
           "points": [
             {
               "slug": "ordinary-and-agent-specific-changes",
-              "text": "What accumulated was engineering apparatus around the implementation: some of it ordinary software engineering, other parts existing specifically because agents did the implementation.",
+              "text": "What accumulated was a factory around the implementation: some of it ordinary software engineering, other parts existing specifically because agents did the implementation.",
               "block_index": 105
             },
             {
@@ -3092,13 +3092,13 @@
           "section_id": "what-escalated-failures-became",
           "level": 3,
           "heading_text": "What Escalated Failures Became",
-          "topic_sentence": "Where did all this factory apparatus come from?",
+          "topic_sentence": "Where did all this factory machinery come from?",
           "id_source": "derived",
           "block_index": 170,
           "points": [
             {
               "slug": "governance-conversion-is-an-empirical-claim-about-durable-structure",
-              "text": "Where did the apparatus come from? Not grand design: governance conversion claims some episodes leave durable structure later work inherits, and this subsection reconstructs the episodes where that sequence is visible — the accumulation the build's control curve counted in aggregate, seen one episode at a time.",
+              "text": "Where did the machinery come from? Not grand design: governance conversion claims some episodes leave durable structure later work inherits, and this subsection reconstructs the episodes where that sequence is visible — the accumulation the build's control curve counted in aggregate, seen one episode at a time.",
               "block_index": 171
             },
             {
@@ -3402,7 +3402,7 @@
         },
         {
           "slug": "the-agents-performed-the-entire-implementation",
-          "text": "The existing engineering apparatus shaped how the work could be realized: architecture, tests, models, instructions, validators, deployment machinery, and accumulated controls carried earlier decisions. Agents implemented inside the environment it created, and the engineer's attention went to direction, evidence, admission, and changing the production system.",
+          "text": "The existing engineering environment shaped how the work could be realized: architecture, tests, models, instructions, validators, deployment machinery, and accumulated controls carried earlier decisions. Agents implemented inside it, and the engineer's attention went to direction, evidence, admission, and changing the production system.",
           "block_index": 6
         },
         {
@@ -3774,7 +3774,7 @@
             },
             {
               "slug": "commercial-factories-emphasize-process-because-agents-work-inside-organizations",
-              "text": "Commercial agents work inside large engineering organizations where work moves among people, authority must be bounded, and changes enter systems many people maintain, so those factories emphasize process design; the difference is where the visible engineering apparatus is concentrated.",
+              "text": "Commercial agents work inside large engineering organizations where work moves among people, authority must be bounded, and changes enter systems many people maintain, so those factories emphasize process design; the difference is where the visible engineering structure is concentrated.",
               "block_index": 9
             },
             {
@@ -3839,7 +3839,7 @@
           "points": [
             {
               "slug": "the-cases-differ-in-who-supplies-the-factory",
-              "text": "The cases differ in who supplies the factory: some are internal production systems whose owners engineer the apparatus their agents work through, while others move toward a reusable factory in a box supplied to organizations the provider does not own.",
+              "text": "The cases differ in who supplies the factory: some are internal production systems whose owners engineer the factory their agents work through, while others move toward a reusable factory in a box supplied to organizations the provider does not own.",
               "block_index": 30
             },
             {
@@ -3854,7 +3854,7 @@
             },
             {
               "slug": "joining-capacity-to-control-remains-an-open-design-space",
-              "text": "How a factory in a box exposes apparatus for process design, means of representing and enforcing product tolerances, or both remains an open design space; the narrower point is that productive capacity and engineering control need not come from the same place.",
+              "text": "How a factory in a box exposes machinery for process design, means of representing and enforcing product tolerances, or both remains an open design space; the narrower point is that productive capacity and engineering control need not come from the same place.",
               "block_index": 36
             }
           ]
