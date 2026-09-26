@@ -3849,12 +3849,12 @@
             },
             {
               "slug": "a-provider-cannot-know-which-properties-are-consequential",
-              "text": "A provider can supply agents, orchestration, context, execution, permissions, evidence infrastructure, and generic controls, but cannot know which properties of a customer's software are consequential, so the customer's engineering knowledge must enter generic production machinery.",
+              "text": "A provider can supply agents, orchestration, context, execution, permissions, evidence infrastructure, and generic controls, but cannot know which properties of a customer's software are consequential, so the customer's engineering knowledge must enter a generic production system.",
               "block_index": 34
             },
             {
               "slug": "joining-capacity-to-control-remains-an-open-design-space",
-              "text": "How a factory in a box exposes machinery for process design, means of representing and enforcing product tolerances, or both remains an open design space; the narrower point is that productive capacity and engineering control need not come from the same place.",
+              "text": "How a factory in a box provides means of designing the production process, of representing and enforcing product tolerances, or both remains an open design space; the narrower point is that productive capacity and engineering control need not come from the same place.",
               "block_index": 36
             }
           ]
