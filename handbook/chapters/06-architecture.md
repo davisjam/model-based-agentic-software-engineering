@@ -419,4 +419,10 @@ Design works within those constraints and can reveal when an architectural decis
 [@fairbanks2010] A risk-driven approach to deciding how much architectural modeling is worth doing.
 
 [@kruchten1995] The classic argument for using multiple architectural views to answer different engineering questions.
+
+[@abowd1996scenario] Establishes the move that makes an architectural claim examinable at all: turn a quality-attribute concern into concrete scenarios and walk the architecture through them.
+
+[@kazman2000atam] Stages that analysis into a repeatable organizational method, and names what an evaluation yields — risks, sensitivity points, and tradeoff points.
+
+[@wan2023archpractice] An empirical account of how practitioners actually conduct architectural work, useful for seeing which parts of the methods literature reach practice.
 :::

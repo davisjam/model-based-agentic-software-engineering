@@ -845,6 +845,10 @@ reviewers.
 [@mckeeman1998differential] Introduces differential testing: independently developed implementations
 serve as partial oracles for one another.
 
+[@miller2022fuzz] Repeats the original fuzz-testing experiment decades later on widely used
+utilities and still finds failures, showing how much evidence cheap input generation and a weak
+oracle obtain on their own.
+
 [@palshikar2004modelchecking] An accessible introduction to model checking and the evidence obtained
 by exhaustively checking a model.
 :::

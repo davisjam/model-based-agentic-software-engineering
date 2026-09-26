@@ -531,4 +531,6 @@ authority?
 [@brooks1995] The title essay makes the classic argument that adding people adds coordination work as well as capacity.
 
 [@davis2026mage, Part 7, "The Profession," §§7.1 and 7.4] Examines where scarce engineering effort moves when implementation is abundant, and how junior engineers will still develop judgment.
+
+[@dora-metrics] An industry measurement program whose four indicators — deployment frequency, change lead time, change failure rate, and recovery time — characterize how a team's delivery behaves rather than how much any individual produces.
 :::

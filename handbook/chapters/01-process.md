@@ -324,6 +324,14 @@ decomposability. Process choice therefore asks both what kind of project we have
 it is worth engineering this into.
 
 ::: read_further
+[@royce1970] The paper usually credited with the phased "waterfall" arrangement, which in fact argues that a single pass through the phases is insufficient and that iteration and early prototyping are required.
+
+[@beck1999xp] Argues that when change is expected, engineering discipline is better spent keeping change cheap than on preventing it up front.
+
+[@agile-manifesto2001] The short statement of values that consolidated a family of lightweight process arguments into a common position.
+
+[@scrumguide2020] Prescribes one widely adopted incremental arrangement in normative detail, and shows how little of the engineering work such a framework actually determines.
+
 [@sommerville2016] A clear survey of plan-driven and incremental process models.
 
 [@boehm2003balancing] Frames the balance between up-front discipline and later adaptation as an engineering tradeoff.

@@ -204,6 +204,29 @@ either surface.
 | 10 Failure-Aware ↔ Act 2 / 04 | — | — | Match, all six (three of them the lander's `optional:`). |
 | 09 Research and Development | *no lander* | — | The Handbook chapter has no matched course unit. Structural, not drift. |
 
+### §8a. Author rulings — how the table above was resolved
+
+Two rulings settled the table, and both point the same direction: **the Handbook carries a superset of
+the lander readings**, and **a class should assign three or four readings, not ten.** So every gap in
+this table closes *upward into the Handbook*; none closes by pushing a Handbook-only work down into a
+lander.
+
+- **SUPERSEDED — the Teamwork row's "Recommend adding Li, Ko & Zhu to the lander."** The reasoning
+  stands (it is the Handbook chapter's own empirical anchor for what engineers value in each other),
+  but the direction does not: lander 03 Teamwork already assigns six readings, above the three-to-four
+  target, so adding a seventh is the wrong move. `li2015great` stays Handbook-only. The same ruling
+  retires the cross-add suggestions in the Process, Requirements, and Architecture rows.
+- **APPLIED — nine additions to the Handbook**, closing the lander-has/Handbook-lacks column: ch01
+  Process gains Royce, Beck, the Agile Manifesto, and the Scrum Guide (as a historical arc, ahead of
+  the three surveys, so the surveys read as surveys *of* that material); ch02 Teamwork gains
+  `dora-metrics`; ch06 Architecture gains Abowd, Kazman, and Wan; ch08 Validation gains
+  `miller2022fuzz`. The Validation row's caveat — that citing Miller is a new editorial commitment
+  rather than a projection of an existing one — is now the author's ratified commitment.
+- **UNRESOLVED BY DESIGN — the four chapter-level placement differences** (`brooks1995` in Handbook
+  ch02 against lander 02; `sommerville2016`; `winters2020`; `davis2026mage`). Ruled legitimate: the
+  landers follow a different pedagogical flow than the Handbook chapters, so a work may sit under a
+  different heading on each surface without being drift.
+
 **Unpaired in the other direction**, for completeness: four landers have no Handbook chapter —
 09 Engineering Decision-Making and Metrics, and Act 2's 01 Agent Levers, 02 Modeling, 03 Alignment.
 Those units teach from MAGE rather than the Handbook.
