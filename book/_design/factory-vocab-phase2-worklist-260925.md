@@ -39,7 +39,7 @@ guard        partition = kinds-overlap-not-partition  (the kinds OVERLAP; they d
 | `support-apparatus` (retain) | The support/production ratio measurement — the supporting apparatus weighed against the product it supports. The author calls this "a particularly good use of apparatus". | RETAIN as written. Do not generalize it: outside the support/production measurement, the collective noun is `engineering apparatus`. |
 | `stock` (retain-narrow) | An EMPIRICAL / ECONOMIC noun, admitted ONLY where accumulation over time is the measured phenomenon — "the stock of controls" beside a growth curve. | Do not use `stock` as the general conceptual name for factory structures. It is warehouse vocabulary in a factory book; a prior pass drove it from 14 to 0 in the DocAble section, and this narrow licence does not re-open the general use. |
 
-## Findings (11)
+## Findings (10)
 
 Each line is `file:line`, the matched phrase, and the node the model says applies instead. The phrase is matched on WRAP-JOINED text, so a `file:line` is where the phrase STARTS — it may continue onto the next line.
 
@@ -55,7 +55,6 @@ Each line is `file:line`, the matched phrase, and the node the model says applie
 - book/part5/5.4-two-problems-of-factory-engineering.md:158: MISUSE 'machinery for process design' — the model says `engineering-apparatus` (engineering apparatus) applies here
 - book/part5/5.4-two-problems-of-factory-engineering.md:159: MISUSE 'richer machinery' — the model says `engineering-apparatus` (engineering apparatus) applies here
 - book/part5/5.4-two-problems-of-factory-engineering.md:159: MISUSE 'machinery for process design' — the model says `engineering-apparatus` (engineering apparatus) applies here
-- book/part5/5.1-software-factory.md:204: HETEROGENEOUS LIST 'or other machinery' closes an enumeration spanning 6 kinds (human review, models, permission systems, policies, simulators, tests) — a list that spans kinds wants the collective noun `engineering-apparatus`, not one kind as a catch-all
 
 ### Per-finding replacement guidance
 
@@ -78,7 +77,7 @@ Each line is `file:line`, the matched phrase, and the node the model says applie
 - book/part5/5.4-two-problems-of-factory-engineering.md:148: 'production machinery' — DEFENDED, leave alone
 - book/part5/5.4-two-problems-of-factory-engineering.md:155: 'production machinery' — DEFENDED, leave alone
 
-## Foreshadowing coverage (4 gap(s)) — NOT part of the promotable finding set
+## Foreshadowing coverage (1 gap(s)) — NOT part of the promotable finding set
 
 The software-factory section's manufacturing examples should PREFIGURE the software terms the case sections use, so the conceptual transfer is already prepared when the software term arrives. The lint checks only whether the vehicle word is PRESENT; whether it prefigures is editorial.
 
@@ -90,19 +89,17 @@ The software-factory section's manufacturing examples should PREFIGURE the softw
 | quality gate | admission gate | `control` |
 | jig / fixture | test harness | `tooling` |
 
-- VEHICLE ABSENT — no 'conveyor' / 'assembly line' in 5.1-software-factory.md, so the manufacturing example that should prefigure 'merge train' (kind `machinery`) is not placed
-- VEHICLE ABSENT — no 'quality gate' / 'inspection station' in 5.1-software-factory.md, so the manufacturing example that should prefigure 'admission gate' (kind `control`) is not placed
-- VEHICLE ABSENT — no 'jig' / 'fixture' in 5.1-software-factory.md, so the manufacturing example that should prefigure 'test harness' (kind `tooling`) is not placed
 - COUNTERPART ABSENT — no 'test harness' in the software sections, so the pair 'jig / fixture' → 'test harness' has no landing site to prefigure
 
 ## The two-way gap against the author's site list
 
-The author's site-by-site pass covers 14 sections; this lint produces findings in 4 of them. Both directions of the gap are reported, because both are useful. Section ordinals are INFERRED from heading order and from the DocAble section's own "seven movements" sentence — the source files carry no §5.2.N numbering.
+The author's site-by-site pass covers 14 sections; this lint produces findings in 3 of them. Both directions of the gap are reported, because both are useful. Section ordinals are INFERRED from heading order and from the DocAble section's own "seven movements" sentence — the source files carry no §5.2.N numbering.
 
-### Author named it; the lint finds nothing (10)
+### Author named it; the lint finds nothing (11)
 
 A zero here is not a clean bill. Where the raw `machinery` count is above zero, every one of those uses needs the role test applied by a reader — that is judgment work the lint declines to fake, not a lint gap to close.
 
+- §5.1 (5.1-software-factory.md:1-231) — 0 lint findings, 12 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
 - §5.2 opening (5.2-inside-docables-software-factory.md:1-54) — 0 lint findings, 4 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
 - §5.2.2 (5.2-inside-docables-software-factory.md:135-541) — 0 lint findings, 3 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
 - §5.2.3 (5.2-inside-docables-software-factory.md:542-697) — 0 lint findings, 9 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
@@ -135,7 +132,7 @@ Per-file counts of the watched words. The `engineering capital` column is the de
 
 ```
 book/part5/00-part-intro.md: machinery=1  apparatus=0  tooling=0  representation=0  control=1  infrastructure=0  engineering capital=0  stock=0
-book/part5/5.1-software-factory.md: machinery=8  apparatus=0  tooling=0  representation=14  control=5  infrastructure=0  engineering capital=0  stock=0
+book/part5/5.1-software-factory.md: machinery=14  apparatus=7  tooling=7  representation=16  control=10  infrastructure=2  engineering capital=2  stock=0
 book/part5/5.2-inside-docables-software-factory.md: machinery=31  apparatus=8  tooling=1  representation=52  control=38  infrastructure=6  engineering capital=5  stock=0
 book/part5/5.3-other-agentic-software-factories.md: machinery=12  apparatus=0  tooling=1  representation=13  control=35  infrastructure=6  engineering capital=1  stock=0
 book/part5/5.4-two-problems-of-factory-engineering.md: machinery=19  apparatus=0  tooling=0  representation=5  control=12  infrastructure=2  engineering capital=0  stock=0
