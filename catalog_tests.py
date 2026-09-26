@@ -55,6 +55,7 @@ from tests.book_models import (
     check_chapter_identity_conformance,
     check_chapter_shape,
     check_claims_model,
+    check_factory_vocabulary,
     check_flagship_stack,
     check_hardcoded_ref_parity,
     check_industry_cases,
@@ -546,6 +547,18 @@ CHECKS = [
     # a follow-up flips CL1-CL3 to blocking once a clean session confirms the drain. See tests/book_models.py.
     Check("book-models: capability-ladder drift + structure (capability_ladder_declared.json)", 1,
           lambda strict: check_capability_ladder(), audit_only=True),
+    # AUDIT-ONLY (rule #55 first landing): the FACTORY-VOCABULARY model — Chapter 5's internal editing
+    # vocabulary, never printed in the book, split out of the one overloaded word `machinery`. Reports
+    # FV0-drift + FV1 (node id + closed node_kind enum + non-empty role test AND negative rule) / FV2
+    # (cardinality — exactly one collective and one property, so "apparatus is a fourth category / capital is
+    # a fifth" cannot be re-opened) / FV3 (collects == the kind set, stated from both ends) / FV4 (the
+    # anti-partition guard + `control` declares real overlaps — the kinds intersect by design) / FV5 (the
+    # property holds OF the collective) / FV6 (the foreshadowing map joins onto the kinds) / FV7 (misuse
+    # tiers + usage licences + list spec resolve). Lands audit-only-first (FV1-7 green from birth); a
+    # follow-up flips them to blocking once a clean session confirms the drain. The PROSE half is the
+    # separately audit-only `factory-vocab` lint reported by `catalog.py validate`. See tests/book_models.py.
+    Check("book-models: factory-vocabulary drift + structure (factory_vocabulary_declared.json)", 1,
+          lambda strict: check_factory_vocabulary(), audit_only=True),
     # AUDIT-ONLY (rule #55 first landing): the SUPPORTING-SOURCES model — the book's Tier-2 corroboration corpus
     # as a queryable, drift-gated SIBLING of the industry-cases model. 19 records (18 engineering reports; Stripe
     # split into two sharing one citation_key), each naming the single claim it reinforces + the manuscript

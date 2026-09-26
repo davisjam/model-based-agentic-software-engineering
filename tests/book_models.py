@@ -525,6 +525,45 @@ def check_capability_ladder():
     return (FAIL if issues else PASS), issues
 
 
+def check_factory_vocabulary():
+    """The factory-vocabulary model's drift + structural check (audit-only first landing, rule-#55
+    discipline). Chapter 5's INTERNAL EDITING vocabulary — never printed in the book — split out of the one
+    overloaded word `machinery`: a WHOLE (the factory) holding a PART (the fabricator) and a COLLECTIVE
+    (engineering apparatus) whose members are the five KINDs, plus a PROPERTY (engineering capital) that
+    holds OF accumulated apparatus and an ENVIRONMENT the arrangement creates. Re-derives the model from the
+    hand-authored `factory_vocabulary_declared.json` and reports: FV0-drift against the on-disk artifact;
+    FV1 (node id + closed node_kind enum + non-empty role test AND negative rule), FV2 (cardinality —
+    exactly one collective and one property, so the 'apparatus is a fourth category / capital is a fifth'
+    error cannot be re-opened), FV3 (the collective's `collects` list is exactly the kind set, stated from
+    both ends), FV4 (the anti-partition guard is present and `control` declares real overlaps — the kinds
+    intentionally intersect and must never be read as disjoint bins), FV5 (the property holds OF the
+    collective), FV6 (the foreshadowing map joins onto the kinds), FV7 (misuse tiers + usage licences + the
+    heterogeneous-list spec resolve). Keyed off `book-models/factory-vocabulary.json` +
+    `factory_vocabulary_declared.json`."""
+    import factory_vocabulary_model as fvm  # noqa: E402 — path set above; the book-model package
+
+    issues: list[str] = []
+
+    # FV0-drift — the stored artifact equals a fresh derivation.
+    fresh = fvm.to_jsonable()
+    stored = fvm.load_artifact()
+    keys = ("partition", "nodes", "usage_licences", "foreshadowing", "foreshadowing_scope",
+            "misuse_collocations", "heterogeneous_list", "_counts")
+    if stored is None:
+        issues.append(f"{rel(fvm._ARTIFACT)} missing — run "
+                      f"`python3 book-models/factory_vocabulary_model.py regenerate`")
+    elif any(stored.get(k) != fresh[k] for k in keys):
+        issues.append(f"DRIFT: {rel(fvm._ARTIFACT)} disagrees with a fresh derivation — regenerate "
+                      f"with `python3 book-models/factory_vocabulary_model.py regenerate`")
+
+    # FV1–FV7 — structural / schema invariants over the vocabulary.
+    issues.extend(fvm.structural_findings())
+
+    # Audit-only: same non-gating contract as the sibling first landings — surfaced as [audt], excluded from
+    # the fail tally. A follow-up promotes FV1–FV7 to blocking once a clean session confirms the drain.
+    return (FAIL if issues else PASS), issues
+
+
 def check_supporting_sources():
     """The supporting-sources model's schema + join check (audit-only first landing, rule-#55 discipline). The
     book's Tier-2 corroboration corpus (`supporting_sources_declared.json`) is a queryable SIBLING of the Tier-1

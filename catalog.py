@@ -1132,6 +1132,30 @@ def cmd_validate(_args) -> int:
     for msg in lcv.findings():
         print(f"  [vocab] {msg}")
         n_issues += 1
+    # FACTORY-VOCABULARY — AUDIT-ONLY (first landing). Chapter 5's factory language had `machinery` doing
+    # duty for agents, orchestration, tests, models, policies, permissions, validators, infrastructure and
+    # controls at once. The vocabulary model splits those into a COLLECTIVE noun (engineering apparatus) and
+    # the five KINDs that participate in it, plus a PROPERTY (engineering capital) and an ENVIRONMENT. This
+    # band reports the three DETERMINISTIC checks — named misuse collocations, the heterogeneous-list
+    # terminal, and a narrow-licence word outside its licence — plus the model's own FV1-FV7 structure. It
+    # does NOT increment n_issues: the prose violates it by design right now, and the findings ARE the prose
+    # worklist. A follow-up flips it to blocking once that worklist drains (the repo's audit-only-first
+    # landing discipline). The role tests are deliberately NOT checked — see the lint's docstring for what
+    # it will never catch. See book-models/lint_factory_vocabulary.py.
+    import factory_vocabulary_model as fvmod  # noqa: E402 — the vocabulary SSOT
+    import lint_factory_vocabulary as lfv  # noqa: E402 — audit-only factory-vocabulary lint
+    fv_struct = fvmod.structural_findings()
+    if fv_struct:
+        print(f"  [factvocab] AUDIT-ONLY: {len(fv_struct)} factory-vocabulary MODEL finding(s) — run "
+              f"`python3 book-models/factory_vocabulary_model.py verify` (does not gate):")
+        for msg in fv_struct:
+            print(f"              {msg}")
+    fv_findings = lfv.findings()
+    if fv_findings:
+        print(f"  [factvocab] AUDIT-ONLY: {len(fv_findings)} factory-vocabulary prose finding(s) — run "
+              f"`python3 book-models/lint_factory_vocabulary.py` (does not gate):")
+        for msg in fv_findings:
+            print(f"              {msg}")
     # NOTE-JUDGMENTS — the R7 invariant over book-models/note-judgments.json: every Appendix-B flagship note
     # teaches one distinct engineering judgment. Completeness (every note has a well-formed judgment record)
     # + curated distinct_from SHAPE are BLOCKING — deterministic, cannot false-positive on well-formed data;
