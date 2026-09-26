@@ -1132,16 +1132,20 @@ def cmd_validate(_args) -> int:
     for msg in lcv.findings():
         print(f"  [vocab] {msg}")
         n_issues += 1
-    # FACTORY-VOCABULARY — AUDIT-ONLY (first landing). Chapter 5's factory language had `machinery` doing
-    # duty for agents, orchestration, tests, models, policies, permissions, validators, infrastructure and
-    # controls at once. The vocabulary model splits those into a COLLECTIVE noun (engineering apparatus) and
-    # the five KINDs that participate in it, plus a PROPERTY (engineering capital) and an ENVIRONMENT. This
-    # band reports the three DETERMINISTIC checks — named misuse collocations, the heterogeneous-list
-    # terminal, and a narrow-licence word outside its licence — plus the model's own FV1-FV8 structure. It
-    # does NOT increment n_issues: the prose violates it by design right now, and the findings ARE the prose
-    # worklist. A follow-up flips it to blocking once that worklist drains (the repo's audit-only-first
-    # landing discipline). The role tests are deliberately NOT checked — see the lint's docstring for what
-    # it will never catch. See book-models/lint_factory_vocabulary.py.
+    # FACTORY-VOCABULARY — AUDIT-ONLY (first landing). Chapter 5's factory vocabulary was REDUCED to a
+    # four-term core, each term answering a different question — fabricator (who does the work), model (what
+    # describes what should be built), tool (what the fabricator works with), control (what bounds its
+    # freedom) — inside the whole (the factory), and taught by one formulation: `Fabricators build the
+    # product from models, using tools, subject to controls.` `control` is a ROLE, not a fourth part: a test
+    # is a tool an agent runs and reasons about, and participates in a control when the result carries a
+    # consequence the agent cannot simply reason away. Two terms LEFT the chapter with that reduction
+    # (`engineering apparatus`, `engineering capital`), and the lint's POLARITY INVERTED with them: it finds
+    # the retired words where an earlier version steered prose toward one of them. This band reports the
+    # three DETERMINISTIC checks — a retired term inside its banned scope, the formulation's presence, and a
+    # narrow-licence word outside its licence — plus the model's own FV1-FV9 structure. It does NOT increment
+    # n_issues, per the repo's audit-only-first landing discipline for an inverted check; a follow-up flips
+    # it to blocking. The role tests, and `tool` versus `control` at a site, are deliberately NOT checked —
+    # see the lint's docstring for what it will never catch. See book-models/lint_factory_vocabulary.py.
     import factory_vocabulary_model as fvmod  # noqa: E402 — the vocabulary SSOT
     import lint_factory_vocabulary as lfv  # noqa: E402 — audit-only factory-vocabulary lint
     fv_struct = fvmod.structural_findings()

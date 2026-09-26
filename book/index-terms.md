@@ -228,7 +228,6 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: agreement-vs-correctness | Agreement is not correctness
 - concept: earliest-legible-boundary | The earliest legible boundary
 - concept: engineering-capital | Engineering capital
-- concept: engineering-apparatus | Engineering apparatus
 - concept: right-level-of-enforcement | The right level of enforcement
 - concept: measure-one-level-deeper | Measure one level deeper
 - concept: governed-environment | The governed environment
@@ -526,18 +525,18 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - term: assurance-criticality | local
 - term: determinization | section
 - term: independent-evidence | section
-<!-- The factory-vocabulary kinds (book-models/factory_vocabulary_declared.json). `engineering-apparatus`
-     is the COLLECTIVE noun and registers above as a `- concept:` (tier `section`, the peer of
-     `engineering-capital`): the software-factory section develops it and the case sections carry it. The
-     KIND words below are paragraph-tier — no section is ABOUT machinery or tooling, so registering them
-     `section` would license a `section-terms:` marker that names the wrong tier-1 concept. The model's
-     remaining node ids (`representation`, `control`, `infrastructure`) are deliberately NOT registered:
-     they are the editing model's join keys, and as bare registry slugs they would collide with the
-     concepts already registered above (`representation-form`, `knowledge-representation`, `constraint`,
-     `gate`, `engineering-substrate`). `stock` is likewise absent on purpose — it is a word under a narrow
-     usage licence, not a concept the book develops. -->
-- term: machinery | local
-- term: tooling | local
+<!-- The factory vocabulary (book-models/factory_vocabulary_declared.json) registers almost nothing here,
+     and the reduction is why. `engineering-apparatus` is GONE — the term was retired, so its concept
+     registration went with it. `machinery` and `tooling` are gone too: both are ordinary factory prose now
+     rather than defined categories, and a registered term the book does not develop only pads the index.
+     `engineering-capital` (registered above) is DEFINED in the governance-conversion section and carried by
+     the practice, theory, and closing chapters; the software-factory chapter deliberately does NOT use it —
+     the factory is made concrete there first, and the economic reading arrives later. The four-term core's
+     remaining ids (`model`, `tool`, `control`, `code-fabricator`) are not registered under those slugs
+     either: `model`, `constraint`, `gate`, and `tool-deterministic-action` already carry that ground above,
+     and a bare `tool` or `control` slug would collide with them. `stock` is likewise absent on purpose — a
+     word under a narrow usage licence, not a concept the book develops. `support-apparatus` stays: it
+     names the support/production ratio measurement, which the DocAble chapter does develop. -->
 - term: support-apparatus | local
 
 ## Notes

@@ -527,21 +527,26 @@ def check_capability_ladder():
 
 def check_factory_vocabulary():
     """The factory-vocabulary model's drift + structural check (audit-only first landing, rule-#55
-    discipline). Chapter 5's INTERNAL EDITING vocabulary — never printed in the book — split out of the one
-    overloaded word `machinery`: a WHOLE (the factory) holding a PART (the fabricator) and a COLLECTIVE
-    (engineering apparatus) whose members are the five KINDs, plus a PROPERTY (engineering capital) that
-    holds OF accumulated apparatus and an ENVIRONMENT the arrangement creates. Re-derives the model from the
-    hand-authored `factory_vocabulary_declared.json` and reports: FV0-drift against the on-disk artifact;
-    FV1 (node id + closed node_kind enum + non-empty role test AND negative rule), FV2 (cardinality —
-    exactly one collective and one property, so the 'apparatus is a fourth category / capital is a fifth'
-    error cannot be re-opened), FV3 (the collective's `collects` list is exactly the kind set, stated from
-    both ends), FV4 (the anti-partition guard is present and `control` declares real overlaps — the kinds
-    intentionally intersect and must never be read as disjoint bins), FV5 (the property holds OF the
-    collective), FV6 (the foreshadowing map joins onto the kinds), FV7 (misuse tiers + usage licences + the
-    heterogeneous-list spec resolve), FV8 (every `author_named_sections` row carries an id and names a
-    file that exists, so a renamed chapter reddens rather than silently emptying the two-way gap report).
-    Keyed off `book-models/factory-vocabulary.json` +
-    `factory_vocabulary_declared.json`."""
+    discipline). Chapter 5's INTERNAL EDITING vocabulary — never printed in the book — REDUCED to a
+    four-term core, each term answering a different question: a WHOLE (the factory) holding three PARTs (the
+    fabricator, who does the work; the model, what describes what should be built; the tool, what the
+    fabricator works with) plus a ROLE (control, what bounds its freedom), and an ENVIRONMENT naming what
+    their arrangement creates. One formulation teaches it: `Fabricators build the product from models, using
+    tools, subject to controls.` Re-derives the model from the hand-authored
+    `factory_vocabulary_declared.json` and reports: FV0-drift against the on-disk artifact; FV1 (node id +
+    closed node_kind enum + non-empty question, role test AND negative rule), FV2 (cardinality — one whole,
+    one role, one environment, three parts; and a node declaring a RETIRED node_kind is refused by name, so
+    the 'apparatus is a fourth category / capital is a fifth' error cannot be re-opened), FV3 (four terms,
+    four DIFFERENT questions — two terms sharing a question means one is redundant), FV4 (the anti-bin guard
+    is present and `control` carries a non-empty discriminator plus real `realized_by` edges — a control is
+    realized THROUGH the parts and must never be read as a fourth bin beside them), FV5 (parts and role hang
+    off the whole; only the role carries the role's fields), FV6 (the foreshadowing map joins onto the core),
+    FV7 (misuse tiers + usage licences resolve), FV8 (every `author_named_sections` row carries an id and
+    names a file that exists, so a renamed chapter reddens rather than silently emptying the two-way gap
+    report), FV9 (the reduction's own invariants: the formulation is present and scoped to real files; every
+    retired term states why it left, what to say instead, and the scope it is banned in; an exemption that
+    overlaps no banned word is dead config; and no retired phrase collides with a live node label). Keyed
+    off `book-models/factory-vocabulary.json` + `factory_vocabulary_declared.json`."""
     import factory_vocabulary_model as fvm  # noqa: E402 — path set above; the book-model package
 
     issues: list[str] = []
@@ -549,8 +554,9 @@ def check_factory_vocabulary():
     # FV0-drift — the stored artifact equals a fresh derivation.
     fresh = fvm.to_jsonable()
     stored = fvm.load_artifact()
-    keys = ("partition", "nodes", "usage_licences", "foreshadowing", "foreshadowing_scope",
-            "misuse_collocations", "heterogeneous_list", "_counts")
+    keys = ("partition", "formulation", "formulation_scope", "nodes", "retired_terms", "usage_licences",
+            "foreshadowing", "foreshadowing_scope", "misuse_collocations", "author_named_sections",
+            "_counts")
     if stored is None:
         issues.append(f"{rel(fvm._ARTIFACT)} missing — run "
                       f"`python3 book-models/factory_vocabulary_model.py regenerate`")
@@ -558,11 +564,11 @@ def check_factory_vocabulary():
         issues.append(f"DRIFT: {rel(fvm._ARTIFACT)} disagrees with a fresh derivation — regenerate "
                       f"with `python3 book-models/factory_vocabulary_model.py regenerate`")
 
-    # FV1–FV7 — structural / schema invariants over the vocabulary.
+    # FV1–FV9 — structural / schema invariants over the vocabulary.
     issues.extend(fvm.structural_findings())
 
     # Audit-only: same non-gating contract as the sibling first landings — surfaced as [audt], excluded from
-    # the fail tally. A follow-up promotes FV1–FV8 to blocking once a clean session confirms the drain.
+    # the fail tally. A follow-up promotes FV1–FV9 to blocking once a clean session confirms the drain.
     return (FAIL if issues else PASS), issues
 
 

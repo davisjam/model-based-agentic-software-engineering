@@ -1,68 +1,72 @@
 """LINT `factory-vocab` — hold the DETERMINISTIC part of Chapter 5's factory vocabulary.
 
-`machinery` had been carrying agents, orchestration, tests, models, policies, permissions, validators,
-infrastructure and controls at once. The vocabulary model splits those into a collective noun (engineering
-apparatus) and five kinds that participate in it (machinery, tooling, representation, control,
-infrastructure), plus a property (engineering capital) and an environment. This lint holds the part of that
-decision a machine can settle, and REFUSES to pretend about the rest.
+The vocabulary was REDUCED to a four-term core — fabricator, model, tool, control — inside the factory, and
+taught by one formulation: `Fabricators build the product from models, using tools, subject to controls.`
+Two words LEFT the chapter with that reduction: `engineering apparatus` (which did almost the same work as
+`factory`, with fuzzier boundaries) and `engineering capital` (which asks the reader to reinterpret the
+factory economically just where the chapter is making it concrete). This lint holds the part of that decision
+a machine can settle, and REFUSES to pretend about the rest.
+
+THE POLARITY IS INVERTED FROM THE EARLIER VERSION.  The old denylist pushed prose TOWARD `engineering
+apparatus` (`engineering machinery` -> apparatus, `richer machinery` -> apparatus, a heterogeneous-list
+terminal -> apparatus). Under the reduced vocabulary that guidance is wrong in both directions: the target
+term no longer exists, and `machinery` is ordinary factory prose rather than a policed category, so a
+`machinery` collocation is a style call. The deterministic check now runs the other way — it FINDS the
+retired terms. The heterogeneous-list check is retired with them: a list that names its members needs no
+collective noun at the end of it, so there is nothing left to reassign the terminal to.
 
 WHAT IS NOT MECHANIZABLE — stated up front, because a lint that overreaches gets ignored.
-  * The role tests are NOT checkable. "Does this actively perform, route, coordinate, transform, or
-    execute production work?" needs the referent read in context. So the lint never flags a bare
-    `machinery`, `tooling`, or `representation` and asks a human to adjudicate — that report would be
-    hundreds of lines of noise, and noise gets skipped.
-  * "Is this referent DELIBERATELY HETEROGENEOUS?" — the apparatus test — is the same shape of problem a
-    sibling project already assessed INFEASIBLE for a lint (deciding whether a test value is "queryable"
-    from a registry): the signal is not deterministic, so enforcement there became a stated rule plus a
-    review criterion. Same verdict here.
-  * Whether `engineering capital` is doing PROPERTY work (the sentence turns on durable future leverage)
-    or has decayed into a label is a judgment about emphasis. The lint reports a COUNT in its census so an
-    editor can see density; it raises no finding.
+  * The role tests are NOT checkable. "Does the fabricator use this to work on the product?" needs the
+    referent read in context. So the lint never flags a bare `model`, `tool`, or `control` and asks a human
+    to adjudicate — that report would be hundreds of lines of noise, and noise gets skipped.
+  * TOOL versus CONTROL at a site is the subtle judgment the whole vocabulary turns on: the same test is a
+    tool when an agent runs it and reasons about the result, and participates in a control when the result
+    carries a consequence the agent cannot simply reason away. Deciding which a sentence is about is the
+    author's call, not a pattern match.
+  * `machinery` and `tooling` are no longer policed at all. They are ordinary prose now, and the lint that
+    used to adjudicate them was becoming ontology for ontology's sake.
   * Whether a manufacturing example PREFIGURES its software counterpart is judgment. The lint checks only
     the mechanical half — is the vehicle word present at all — under its own heading.
 
 WHAT IS MECHANIZABLE, and is checked:
-  1. NAMED MISUSE COLLOCATIONS — literal phrases the author identified as misuses (`tolerance machinery`,
-     `context machinery`, `engineering machinery`, `richer machinery`, `machinery for process design`,
-     `machinery for making it effective`). Each row carries the node the model says applies instead.
-  2. THE HETEROGENEOUS-LIST PATTERN — a `machinery` TERMINAL closing an enumeration whose members span
-     kinds ("tests, policies, human review, simulators, permission systems, models, or other machinery").
-     Deterministic: a closed terminal set plus at least two distinct closed member words in the same
-     sentence.
+  1. RETIRED TERMS INSIDE THEIR BANNED SCOPE — `engineering apparatus` (plus the bare `apparatus` it hides
+     behind, minus the `support apparatus` measurement licence) and `engineering capital`, each scoped to
+     the globs the model declares. The scope is the load-bearing field: `engineering capital` is banned in
+     Chapter 5 ONLY. It is live and DEFINED elsewhere in the book — 52 uses across parts 3, 4, 6, 7 and the
+     conclusion — a known and accepted asymmetry the author ruled a later problem. Bare `capital` is NOT
+     banned anywhere: ordinary economic prose stays, the defined term goes.
+  2. THE FORMULATION IS PRESENT — a POSITIVE check, unusual for a lint and the reason it earns its keep
+     here. The four terms only cohere because one sentence ties them together, and a passage edited later
+     can silently lose it. Checked wrap-tolerantly against the file the model scopes it to.
   3. `stock` OUTSIDE ITS NARROW LICENCE — `stock` with no accumulation word nearby. A prior pass drove
      `stock` from 14 to 0 in the DocAble section; the vocabulary model re-admits it ONLY where accumulation
-     over time is the measured phenomenon, and this check defends that result without re-opening the
-     general use.
+     over time is the measured phenomenon, and this check defends that result.
 
 AUTHOR-DEFENDED PHRASES ARE NEVER FINDINGS.  `production machinery` is correct where DocAble genuinely has
-orchestration, merge, and execution machinery and the contrast is the argument — the author defends it
-twice. It carries `confidence: author-defended` in the model, `findings()` excludes that tier by
-construction, and the report lists its sites under a DO-NOT-CHANGE heading so a later prose pass does not
-"fix" them. A lint that raises a pre-rejected finding has spent its credibility.
+orchestration, merge, and execution machinery and the contrast is the argument — the author defends it twice.
+It carries `confidence: author-defended` in the model, `findings()` excludes that tier by construction, and
+the report lists its sites under a DO-NOT-CHANGE heading so a later prose pass does not "fix" them into a
+term. A lint that raises a pre-rejected finding has spent its credibility.
 
-SINGLE SOURCE OF TRUTH.  Every phrase, member word, terminal, accumulation word, and replacement node lives
-in `factory_vocabulary_declared.json` (via `factory_vocabulary_model.py`). The regexes and the report are
-DERIVED from it, so a future vocabulary shift is one new row in the model — this file does not change.
+SINGLE SOURCE OF TRUTH.  Every banned phrase, exemption, scope glob, accumulation word, and replacement
+instruction lives in `factory_vocabulary_declared.json` (via `factory_vocabulary_model.py`). The regexes and
+the report are DERIVED from it, so a future vocabulary shift is one edited row in the model — this file does
+not change.
 
-WRAP-TOLERANT MATCHING.  The book's markdown is hard-wrapped; 65% of prose lines in the DocAble section
-continue onto the next. `machinery for process design` is written across a line break at one of its two
-real sites, so a line-by-line scan would MISS it (the failure `book/findprose.py` exists to prevent). This
-lint therefore joins each hard-wrapped block, matches on the joined text, and maps the hit back to the line
-where the phrase starts.
+WRAP-TOLERANT MATCHING.  The book's markdown is hard-wrapped; most prose lines in the DocAble section
+continue onto the next, and a multi-word phrase is routinely written across a line break (the failure
+`book/findprose.py` exists to prevent). This lint therefore joins each hard-wrapped block, matches on the
+joined text, and maps the hit back to the line where the phrase starts.
 
 SCOPE — the numbered Chapter 5 files (`book/part5/*.md`). Deliberately excluded, each for a reason:
-  * Chapter 5.1's HISTORICAL-MANUFACTURING PREAMBLE (everything before that file's first `##` heading) —
-    literal physical machinery is the CORRECT word there (Wilkinson's boring machinery, mechanization,
-    machine tools). The author: "Leave all of this alone." Scoped STRUCTURALLY (before the first `##`)
-    rather than by line number so it survives a reflow.
-  * The rest of the book (`part1/`…`part4/`, `part6/`, `part7/`, `conclusion/`) — `machinery` is used there
-    in senses this model does not govern; one chapter is even titled "Agentic Machinery and Engineering
-    Mechanisms", naming the productive substrate rather than factory apparatus. Widening the scope is a
-    separate editorial decision; when it is taken, it is one edit to `_SCAN_GLOBS`.
+  * The software-factory section's HISTORICAL-MANUFACTURING PREAMBLE (everything before that file's first
+    `##` heading) — literal physical machinery is the CORRECT word there (Wilkinson's boring machinery,
+    mechanization, machine tools). The author: "Leave all of this alone." Scoped STRUCTURALLY (before the
+    first `##`) rather than by line number so it survives a reflow.
+  * The rest of the book — the retired terms' `banned_in` globs decide, and today they name Chapter 5 only.
+    Widening them is a separate editorial decision, taken in the model rather than in code.
   * Figure SVGs under `book/assets/` — hand-authored node labels with their own established vocabulary,
     governed by the figure lints; a label change is a figure edit.
-  * Appendix fills and front/back matter — out of the scanned globs by construction; they mirror the
-    catalogue lexicon rather than the chapter's factory vocabulary.
   * Fenced code blocks — literal transcripts and command text, not authored prose.
 
 ESCAPE.  A genuine exception (a quotation, a deliberate contrast) suppresses with a same-line comment
@@ -70,16 +74,15 @@ ESCAPE.  A genuine exception (a quotation, a deliberate contrast) suppresses wit
 is REQUIRED; a bare `noqa: factory-vocab` does not suppress. Suppressing any line a multi-line phrase spans
 suppresses the finding.
 
-LANDS AUDIT-ONLY.  It PRINTS findings and exits 0. The prose sections violate it by design right now — that
-is the point; the findings ARE the prose worklist. A follow-up promotes it to blocking once the worklist is
-drained (the repo's audit-only-first landing discipline, the path `lint_term_tags_registered` is also on).
-The FORESHADOWING-COVERAGE block is reported separately and is NOT part of the promotable finding set: it
-records which manufacturing vehicles the chapter has not yet placed, and whether a given pair is worth
-landing stays an editorial call.
+LANDS AUDIT-ONLY.  It PRINTS findings and exits 0, per the repo's audit-only-first landing discipline: an
+inverted check lands non-gating, a drain pass takes it to zero, and a follow-up promotes it to blocking. The
+FORESHADOWING-COVERAGE block is reported separately and is NOT part of the promotable finding set: it records
+which manufacturing vehicles the chapter has not yet placed, and whether a given pair is worth landing stays
+an editorial call.
 
     python3 book-models/lint_factory_vocabulary.py             # print findings + census (exit 0)
     python3 book-models/lint_factory_vocabulary.py --list      # print the derived phrase/pattern tables
-    python3 book-models/lint_factory_vocabulary.py --worklist   # emit the Phase-2 worklist markdown
+    python3 book-models/lint_factory_vocabulary.py --worklist   # emit the prose worklist markdown
 """
 from __future__ import annotations
 
@@ -97,7 +100,7 @@ import factory_vocabulary_model as fvm  # noqa: E402 — the vocabulary SSOT thi
 
 BOOK = _HERE.parent / "book"
 
-#: The scanned scope — the numbered Chapter 5 files. One edit widens it (see the module docstring).
+#: The scanned scope — the numbered Chapter 5 files. The retired terms' `banned_in` globs narrow it further.
 _SCAN_GLOBS = ("part5/*.md",)
 
 #: Files whose HISTORICAL-MANUFACTURING PREAMBLE (everything before the first `## ` heading) is excluded:
@@ -108,9 +111,6 @@ _PREAMBLE_EXCLUDED = ("5.1-software-factory.md",)
 #: sentence of joined text on either side. Matching mechanics, not vocabulary: the accumulation WORDS are
 #: declared in the model.
 _LICENCE_WINDOW = 140
-
-#: Sentence boundaries used to bound an enumeration when counting heterogeneous-list members.
-_SENTENCE_BREAK = re.compile(r"[.;:|]")
 
 _NOQA_RE = re.compile(r"noqa:\s*factory-vocab\s*(?:—|\s-\s)\s*\S")
 
@@ -200,69 +200,72 @@ def _rel(path: pathlib.Path) -> str:
 def _phrase_re(phrase: str, plural: bool = True) -> "re.Pattern[str]":
     """A phrase matched with `\\s+` between words, so a hard wrap inside it still matches once the block is
     joined. Case-insensitive and word-bounded. `plural` adds an optional trailing `s` to the final word —
-    wanted for a singular target (`stock` -> `stocks`), wrong for a word declared plural already
-    (`models`), so the member-word matcher passes False."""
+    wanted for a singular target (`stock` -> `stocks`), wrong for a word declared plural already."""
     body = r"\s+".join(re.escape(w) for w in phrase.split())
     tail = "s?" if plural else ""
     return re.compile(rf"\b{body}{tail}\b", re.IGNORECASE)
-
-
-def _named_matchers(model: "fvm.FactoryVocabularyModel") -> "list[tuple[fvm.Misuse, re.Pattern[str]]]":
-    return [(m, _phrase_re(m.phrase)) for m in model.findings_collocations()]
 
 
 def _defended_matchers(model: "fvm.FactoryVocabularyModel") -> "list[tuple[fvm.Misuse, re.Pattern[str]]]":
     return [(m, _phrase_re(m.phrase)) for m in model.defended_collocations()]
 
 
+def _banned_scope(term: "fvm.RetiredTerm") -> "list[pathlib.Path]":
+    """The files a retired term's ban covers — its own `banned_in` globs, intersected with the scanned
+    chapter so a widened glob still cannot reach an unscanned tree by accident."""
+    scanned = set(_chapter_files())
+    return sorted({p for g in term.banned_in for p in BOOK.glob(g)} & scanned)
+
+
 # ---- the checks --------------------------------------------------------------------------------------
 
-def _collocation_findings(model: "fvm.FactoryVocabularyModel") -> "list[str]":
-    """CHECK 1 — the named misuse collocations. A literal phrase the author identified, plus the node the
-    model says applies instead. Author-defended phrases are excluded by `findings_collocations()`."""
+def _retired_findings(model: "fvm.FactoryVocabularyModel") -> "list[str]":
+    """CHECK 1 — a RETIRED term inside its banned scope. The inverted check: the model declares the words
+    that left the chapter, and this finds them. A hit falling inside one of the term's
+    `exempt_collocations` (the `support apparatus` measurement label) is not a finding."""
     out: "list[str]" = []
-    matchers = _named_matchers(model)
-    for path in _chapter_files():
-        skip = path.name in _PREAMBLE_EXCLUDED
-        for block in _iter_blocks(path, skip_preamble=skip):
-            for misuse, pat in matchers:
-                for hit in pat.finditer(block.text):
-                    if block.suppressed(hit.start(), hit.end()):
-                        continue
-                    node = model.node(misuse.reassign_to)
-                    label = node.label if node else misuse.reassign_to
-                    out.append(f"{_rel(path)}:{block.line_at(hit.start())}: MISUSE "
-                               f"{hit.group(0).strip()!r} — the model says `{misuse.reassign_to}` "
-                               f"({label}) applies here")
+    for term in model.retired_terms:
+        probes = [_phrase_re(term.phrase)] + [_phrase_re(w) for w in term.banned_words]
+        exempts = [_phrase_re(e) for e in term.exempt_collocations]
+        for path in _banned_scope(term):
+            skip = path.name in _PREAMBLE_EXCLUDED
+            for block in _iter_blocks(path, skip_preamble=skip):
+                covered = [(m.start(), m.end()) for e in exempts for m in e.finditer(block.text)]
+                seen: "set[tuple[int, int]]" = set()
+                for pat in probes:
+                    for hit in pat.finditer(block.text):
+                        span = (hit.start(), hit.end())
+                        if span in seen:
+                            continue
+                        seen.add(span)
+                        if any(lo <= hit.start() and hit.end() <= hi for lo, hi in covered):
+                            continue
+                        if block.suppressed(hit.start(), hit.end()):
+                            continue
+                        out.append(f"{_rel(path)}:{block.line_at(hit.start())}: RETIRED TERM "
+                                   f"{hit.group(0).strip()!r} — `{term.phrase}` left this chapter. "
+                                   f"{term.say_instead}")
     return out
 
 
-def _list_findings(model: "fvm.FactoryVocabularyModel") -> "list[str]":
-    """CHECK 2 — the heterogeneous-list pattern: a `machinery` terminal closing an enumeration whose
-    members span kinds. Bounded to the sentence containing the terminal; requires at least
-    `min_distinct_members` distinct closed member words in that span."""
-    spec = model.heterogeneous_list
-    terminals = [(t, _phrase_re(t)) for t in spec.get("terminal_patterns", [])]
-    members = [(w, _phrase_re(w, plural=False)) for w in spec.get("member_words", [])]
-    need = int(spec.get("min_distinct_members", 2))
-    target = spec.get("reassign_to", "")
+def _formulation_findings(model: "fvm.FactoryVocabularyModel") -> "list[str]":
+    """CHECK 2 — the FORMULATION is present. A positive check: the four terms cohere only because one
+    sentence ties them together, and a later edit to the passage can silently drop it. Matched
+    wrap-tolerantly (the sentence is written across a line break) against every file in
+    `formulation_scope`."""
     out: "list[str]" = []
-    for path in _chapter_files():
-        skip = path.name in _PREAMBLE_EXCLUDED
-        for block in _iter_blocks(path, skip_preamble=skip):
-            for _terminal, pat in terminals:
-                for hit in pat.finditer(block.text):
-                    breaks = [m.end() for m in _SENTENCE_BREAK.finditer(block.text, 0, hit.start())]
-                    span = block.text[(breaks[-1] if breaks else 0):hit.start()]
-                    found = sorted({w for w, mp in members if mp.search(span)})
-                    if len(found) < need:
-                        continue
-                    if block.suppressed(hit.start(), hit.end()):
-                        continue
-                    out.append(f"{_rel(path)}:{block.line_at(hit.start())}: HETEROGENEOUS LIST "
-                               f"{hit.group(0).strip()!r} closes an enumeration spanning "
-                               f"{len(found)} kinds ({', '.join(found)}) — a list that spans kinds wants "
-                               f"the collective noun `{target}`, not one kind as a catch-all")
+    if not model.formulation.strip():
+        return out
+    pat = _phrase_re(model.formulation.rstrip("."), plural=False)
+    for name in model.formulation_scope:
+        path = BOOK / "part5" / name
+        if not path.is_file():
+            out.append(f"book/part5/{name}: FORMULATION SCOPE names a file that does not exist")
+            continue
+        joined = " ".join(b.text for b in _iter_blocks(path, skip_preamble=False))
+        if not pat.search(joined):
+            out.append(f"{_rel(path)}: FORMULATION ABSENT — the sentence that teaches the four-term core "
+                       f"is not in this file: {model.formulation!r}")
     return out
 
 
@@ -296,7 +299,7 @@ def findings(model: "fvm.FactoryVocabularyModel | None" = None) -> "list[str]":
     of it (whether a pair is worth landing is editorial)."""
     if model is None:
         model = fvm.derive_model()
-    return _collocation_findings(model) + _list_findings(model) + _licence_findings(model)
+    return _retired_findings(model) + _formulation_findings(model) + _licence_findings(model)
 
 
 def defended_sites(model: "fvm.FactoryVocabularyModel | None" = None) -> "list[str]":
@@ -341,7 +344,7 @@ def foreshadow_findings(model: "fvm.FactoryVocabularyModel | None" = None) -> "l
         if not present(f.manufacturing_probes, scope.get("manufacturing", [])):
             out.append(f"VEHICLE ABSENT — no {' / '.join(repr(p) for p in f.manufacturing_probes)} in "
                        f"{', '.join(scope.get('manufacturing', []))}, so the manufacturing example that "
-                       f"should prefigure {f.software!r} (kind `{f.kind}`) is not placed")
+                       f"should prefigure {f.software!r} (term `{f.kind}`) is not placed")
         if not present(f.software_probes, scope.get("software", [])):
             out.append(f"COUNTERPART ABSENT — no {' / '.join(repr(p) for p in f.software_probes)} in the "
                        f"software sections, so the pair {f.manufacturing!r} → {f.software!r} has no "
@@ -372,14 +375,22 @@ def _heading_span(path: pathlib.Path, heading: str) -> "tuple[int, int]":
     return 0, -1  # heading not found — reported as a gap-report finding
 
 
+def _residual_re(model: "fvm.FactoryVocabularyModel") -> "re.Pattern[str]":
+    """The word the gap report counts per named section — the residual a human still has to read. Derived
+    from the retired terms rather than hardcoded: the earlier version counted `machinery`, which is no
+    longer policed, so counting it would report judgment work nobody owes."""
+    words = sorted({w for t in model.retired_terms for w in ([t.phrase] + t.banned_words)}, key=len)
+    return re.compile("|".join(re.escape(w) for w in words) or r"(?!x)x", re.IGNORECASE)
+
+
 def gap_report(model: "fvm.FactoryVocabularyModel | None" = None) -> "tuple[list[str], list[str]]":
     """The TWO-WAY GAP between the author's site-by-site pass and what this lint can mechanically find.
     Both directions are reported; neither is dropped.
 
     Returned as `(author_named_without_findings, findings_outside_named_sections)`:
       * A named section with ZERO findings is either a lint gap or a site needing the role test the lint
-        cannot supply. The row carries the section's raw `machinery` occurrence count, so the reader can
-        tell "nothing to fix here" (count 0) from "everything here needs judgment" (count > 0).
+        cannot supply. The row carries the section's raw retired-word occurrence count, so the reader can
+        tell "nothing to fix here" (count 0) from "residual uses a human must read" (count > 0).
       * A finding in a section the author did NOT name is a candidate he may not have seen.
     """
     if model is None:
@@ -390,7 +401,7 @@ def gap_report(model: "fvm.FactoryVocabularyModel | None" = None) -> "tuple[list
 
     named_rows: "list[str]" = []
     covered: "set[tuple[str, int]]" = set()
-    word = re.compile(r"machinery", re.IGNORECASE)
+    word = _residual_re(model)
     for s in model.author_named_sections:
         path = BOOK / "part5" / s.file
         lo, hi = _heading_span(path, s.heading)
@@ -403,11 +414,11 @@ def gap_report(model: "fvm.FactoryVocabularyModel | None" = None) -> "tuple[list
         raw = path.read_text(encoding="utf-8").splitlines()
         occ = sum(1 for i, ln in enumerate(raw, 1) if lo <= i <= hi and word.search(ln))
         if not n_find:
-            named_rows.append(f"{s.id} ({s.file}:{lo}-{hi}) — 0 lint findings, {occ} raw `machinery` "
-                              f"occurrence(s). " + ("Nothing for the lint OR a human to do."
-                                                    if occ == 0 else
-                                                    "Every one needs the role test, which the lint cannot "
-                                                    "apply — this is judgment work, not a lint gap."))
+            named_rows.append(f"{s.id} ({s.file}:{lo}-{hi}) — 0 lint findings, {occ} residual "
+                              f"retired-word occurrence(s). " + ("Nothing for the lint OR a human to do."
+                                                                 if occ == 0 else
+                                                                 "Each is either a licensed measurement "
+                                                                 "label or a site a reader must judge."))
     outside = [f for f, (fl, ln) in zip(fs, placed) if (fl, ln) not in covered] if len(placed) == len(fs) \
         else [f for f in fs]
     return named_rows, outside
@@ -419,31 +430,38 @@ _OUT_OF_SCOPE_GLOBS = ("part1/*.md", "part2/*.md", "part3/*.md", "part4/*.md", "
 
 
 def out_of_scope_candidates(model: "fvm.FactoryVocabularyModel | None" = None) -> "list[str]":
-    """Named misuse collocations OUTSIDE the scanned chapter. Reported, never a finding: the vocabulary
-    decision is Chapter 5's, and `machinery` elsewhere is used in senses this model does not govern. These
-    are candidates a reader of the Chapter-5 decision may not have looked for — the other half of the
-    two-way gap, on the SCOPE axis rather than the site axis. Widening `_SCAN_GLOBS` is a separate call."""
+    """Retired-term COMPOUNDS outside the banned scope, counted per file. Reported, never findings: the
+    reduction is Chapter 5's decision, and `engineering capital` is DEFINED outside it — the author ruled
+    the other chapters a later problem, to be settled after Chapter 5's metaphor is constrained. This is the
+    other half of the two-way gap, on the SCOPE axis rather than the site axis, and it is the accounting a
+    decision to widen `banned_in` would need."""
     if model is None:
         model = fvm.derive_model()
-    matchers = _named_matchers(model)
     out: "list[str]" = []
-    for path in sorted(p for g in _OUT_OF_SCOPE_GLOBS for p in BOOK.glob(g)):
-        for block in _iter_blocks(path, skip_preamble=False):
-            for misuse, pat in matchers:
-                for h in pat.finditer(block.text):
-                    out.append(f"{_rel(path)}:{block.line_at(h.start())}: {h.group(0).strip()!r} "
-                               f"(out of scope; the model would say `{misuse.reassign_to}`)")
+    for term in model.retired_terms:
+        pat = _phrase_re(term.phrase)
+        per_file: "list[tuple[str, int]]" = []
+        for path in sorted(p for g in _OUT_OF_SCOPE_GLOBS for p in BOOK.glob(g)):
+            joined = " ".join(b.text for b in _iter_blocks(path, skip_preamble=False))
+            n = len(pat.findall(joined))
+            if n:
+                per_file.append((_rel(path), n))
+        total = sum(n for _, n in per_file)
+        if total:
+            out.append(f"`{term.phrase}` — {total} use(s) in {len(per_file)} file(s) outside the banned "
+                       f"scope ({', '.join(term.banned_in)}); NOT findings, a later decision")
+            out.extend(f"    {f}: {n}" for f, n in per_file)
     return out
 
 
 def census(model: "fvm.FactoryVocabularyModel | None" = None) -> "list[str]":
-    """A per-file COUNT of the vocabulary words, printed as context rather than findings. This is where the
-    `engineering capital` density the author warns about ("do not repeatedly call everything engineering
-    capital") becomes visible without the lint pretending to adjudicate any single use."""
+    """A per-file COUNT of the watched words, printed as context rather than findings. The retired terms
+    should read 0 inside the banned scope; `machinery` and `tooling` are shown because they were once
+    policed and the counts document that de-policing rather than hiding it."""
     if model is None:
         model = fvm.derive_model()
-    watched = ["machinery", "apparatus", "tooling", "representation", "control",
-               "infrastructure", "engineering capital", "stock"]
+    watched = ["engineering apparatus", "support apparatus", "apparatus", "engineering capital",
+               "machinery", "tooling", "model", "tool", "control", "stock"]
     pats = {w: _phrase_re(w) for w in watched}
     rows: "list[str]" = []
     for path in _chapter_files():
@@ -453,13 +471,13 @@ def census(model: "fvm.FactoryVocabularyModel | None" = None) -> "list[str]":
     return rows
 
 
-# ---- the Phase-2 worklist projection ----------------------------------------------------------------
+# ---- the prose worklist projection ------------------------------------------------------------------
 
 def render_worklist(model: "fvm.FactoryVocabularyModel | None" = None) -> str:
     """Project the findings into the prose worklist a later pass consumes: the model's structure, the per
-    term role tests and negative rules, every finding with its replacement node, the author-defended sites
-    to leave alone, the foreshadowing gaps, and the census. Regenerating this file re-derives it from the
-    model, so it cannot drift from the lint."""
+    term questions and negative rules, the retired terms and their replacement instructions, every finding,
+    the author-defended sites to leave alone, the foreshadowing gaps, and the census. Regenerating this file
+    re-derives it from the model, so it cannot drift from the lint."""
     if model is None:
         model = fvm.derive_model()
     fs = findings(model)
@@ -482,49 +500,37 @@ def render_worklist(model: "fvm.FactoryVocabularyModel | None" = None) -> str:
         fvm.render_tree(model),
         "```",
         "",
-        "`engineering apparatus` is the COLLECTIVE NOUN, not a fourth category beside machinery / tooling "
-        "/ representation. `engineering capital` is a PROPERTY of accumulated apparatus, not a fifth "
-        "category. The five kinds OVERLAP by design — `control` names what a decision DOES, so the same "
-        "validator is tooling by what it is and a control by what its verdict decides.",
+        "Four terms, each answering a DIFFERENT question, inside the factory. `control` is a ROLE, not a "
+        "fourth part: the same test is a tool by what it is, and participates in a control when its result "
+        "carries a consequence the agent cannot simply reason away. A reading that sorts the terms into "
+        "mutually exclusive bins has the model wrong.",
         "",
         "## Role tests and negative rules",
         "",
-        "| term | role test | negative rule |",
-        "|---|---|---|",
+        "| term | question | role test | negative rule |",
+        "|---|---|---|---|",
     ]
     for n in model.nodes:
-        lines.append(f"| `{n.id}` | {n.role_test} | {n.negative_rule} |")
+        lines.append(f"| `{n.id}` | {n.question} | {n.role_test} | {n.negative_rule} |")
     for u in model.usage_licences:
-        lines.append(f"| `{u.id}` ({u.disposition}) | {u.licence} | {u.negative_rule} |")
+        lines.append(f"| `{u.id}` ({u.disposition}) | (usage licence) | {u.licence} | {u.negative_rule} |")
     lines += [
+        "",
+        "## Retired terms — the inverted half of the decision",
+        "",
+        "These words LEFT Chapter 5. The lint's polarity now runs this way: it finds them, where an earlier "
+        "version steered prose toward one of them.",
+        "",
+        fvm.render_retired_md(model),
         "",
         f"## Findings ({len(fs)})",
         "",
-        "Each line is `file:line`, the matched phrase, and the node the model says applies instead. The "
+        "Each line is `file:line`, the matched phrase, and what the model says to write instead. The "
         "phrase is matched on WRAP-JOINED text, so a `file:line` is where the phrase STARTS — it may "
         "continue onto the next line.",
         "",
-        "**A stated gap in this worklist.** The author's own site-by-site replacement WORDING is not "
-        "reproduced below, because his vocabulary document is not in the repository — only the phrase list "
-        "and the negative rules reached this model. The replacement guidance in the next table is the "
-        "MODEL'S reading of each phrase, not the author's sentences. Where his document is available, "
-        "prefer his wording: it is more specific than any rule can infer. Do not read a silence here as "
-        "his approval.",
-        "",
     ]
     lines += [f"- {f}" for f in fs] or ["- (none)"]
-    lines += [
-        "",
-        "### Per-finding replacement guidance",
-        "",
-        "| phrase | applies instead | note |",
-        "|---|---|---|",
-    ]
-    for m in model.findings_collocations():
-        lines.append(f"| `{m.phrase}` | `{m.reassign_to}` | {m.note} |")
-    hl = model.heterogeneous_list
-    lines.append(f"| *(the heterogeneous-list terminal)* | `{hl.get('reassign_to', '')}` | "
-                 f"{hl.get('note', '')} |")
     lines += [
         "",
         f"## DO NOT CHANGE — author-defended sites ({len(dfd)})",
@@ -561,8 +567,8 @@ def render_worklist(model: "fvm.FactoryVocabularyModel | None" = None) -> str:
         "",
         f"### Author named it; the lint finds nothing ({len(named_gap)})",
         "",
-        "A zero here is not a clean bill. Where the raw `machinery` count is above zero, every one of "
-        "those uses needs the role test applied by a reader — that is judgment work the lint declines to "
+        "A zero here is not a clean bill. Where the residual count is above zero, each occurrence is "
+        "either a licensed measurement label or a site a reader must judge — work the lint declines to "
         "fake, not a lint gap to close.",
         "",
     ]
@@ -573,17 +579,17 @@ def render_worklist(model: "fvm.FactoryVocabularyModel | None" = None) -> str:
         "",
     ]
     lines += [f"- {o}" for o in outside] or [
-        "- (none) — every finding falls inside a section the author already named. The lint's precision "
-        "against his list is total; its RECALL is the four sections above.",
+        "- (none) — every finding falls inside a section the author already named.",
     ]
     lines += [
         "",
-        f"### Outside the scanned chapter ({len(oos)}) — the scope axis of the same gap",
+        f"### Outside the banned scope ({len(oos)} line(s)) — the scope axis of the same gap",
         "",
-        "The same named phrases elsewhere in the book. NOT findings: the vocabulary decision is Chapter "
-        "5's, and one chapter is titled \"Agentic Machinery and Engineering Mechanisms\", naming the "
-        "productive substrate rather than factory apparatus. Listed so a decision to widen the scope is "
-        "made deliberately and with the cost visible.",
+        "The retired terms elsewhere in the book. NOT findings, and the asymmetry is DELIBERATE: "
+        "`engineering capital` is defined in the governance-conversion section and carried by the theory "
+        "and practice chapters, so it is live on both sides of a Chapter 5 that no longer uses it. The "
+        "author ruled the other chapters a later problem, to be settled once Chapter 5's metaphor is "
+        "constrained. Listed so widening `banned_in` is a deliberate call with the cost visible.",
         "",
     ]
     lines += [f"- {o}" for o in oos] or ["- (none)"]
@@ -591,9 +597,9 @@ def render_worklist(model: "fvm.FactoryVocabularyModel | None" = None) -> str:
         "",
         "## Census — context, not findings",
         "",
-        "Per-file counts of the watched words. The `engineering capital` column is the density the model "
-        "warns about; the lint raises no finding on it because deciding whether a given sentence turns on "
-        "durable future leverage is judgment.",
+        "Per-file counts of the watched words. The retired terms should read 0 inside the banned scope; "
+        "`machinery` and `tooling` are shown because they were once policed categories and are now ordinary "
+        "prose, so the counts document the de-policing rather than hiding it.",
         "",
         "```",
     ]
@@ -603,15 +609,14 @@ def render_worklist(model: "fvm.FactoryVocabularyModel | None" = None) -> str:
         "",
         "## What this lint will never catch",
         "",
-        "- **The role tests.** Whether a referent performs / routes / executes (machinery) versus "
-        "instruments (tooling) versus represents (representation) needs the referent read in context.",
-        "- **The apparatus test.** \"Is this referent deliberately heterogeneous?\" is not deterministic — "
-        "the same shape of signal a sibling project assessed infeasible to lint and replaced with a rule "
-        "plus a review criterion.",
-        "- **`engineering capital` overuse.** A density judgment; the census shows the counts, a human "
-        "decides which uses turn on durable leverage.",
-        "- **`control` versus `tooling` at a site.** Different axes that overlap by design; choosing which "
-        "the sentence is about is the author's call.",
+        "- **The role tests.** Whether a referent describes the product (model), is worked with (tool), or "
+        "bounds what may be done (control) needs the referent read in context.",
+        "- **`tool` versus `control` at a site.** The subtle judgment the whole vocabulary turns on: the "
+        "same test is a tool when an agent runs it and reasons about the result, and participates in a "
+        "control when the result carries a consequence the agent cannot simply reason away. Which one a "
+        "sentence is about is the author's call.",
+        "- **Whether a `machinery` or `tooling` use reads well.** Neither is policed any more; both are "
+        "ordinary factory prose, and adjudicating them was becoming ontology for ontology's sake.",
         "- **Whether a vehicle prefigures.** Presence is mechanical; prefiguration is not.",
         "",
     ]
@@ -623,15 +628,16 @@ def render_worklist(model: "fvm.FactoryVocabularyModel | None" = None) -> str:
 def _print_list(model: "fvm.FactoryVocabularyModel") -> int:
     print("== factory-vocab — the derived tables (single source of truth: "
           "factory_vocabulary_declared.json) ==")
-    print("  NAMED MISUSE COLLOCATIONS -> replacement node:")
-    for m in model.findings_collocations():
-        print(f"    {m.phrase!r} -> {m.reassign_to!r}")
+    print(f"  FORMULATION (must be present in {', '.join(model.formulation_scope)}):")
+    print(f"    {model.formulation}")
+    print("  RETIRED TERMS -> banned scope:")
+    for t in model.retired_terms:
+        extra = f" + bare {t.banned_words}" if t.banned_words else ""
+        exempt = f"; exempt {t.exempt_collocations}" if t.exempt_collocations else ""
+        print(f"    {t.phrase!r}{extra} in {t.banned_in}{exempt}")
     print("  AUTHOR-DEFENDED (never a finding):")
     for m in model.defended_collocations():
         print(f"    {m.phrase!r}")
-    hl = model.heterogeneous_list
-    print(f"  HETEROGENEOUS LIST: terminals {hl.get('terminal_patterns')} + "
-          f">={hl.get('min_distinct_members')} of {hl.get('member_words')} -> {hl.get('reassign_to')!r}")
     for u in model.usage_licences:
         print(f"  USAGE LICENCE {u.phrase!r} [{u.disposition}] — accumulation words "
               f"{u.accumulation_words or '(no window test)'}")
@@ -655,9 +661,8 @@ def main(argv: "list[str] | None" = None) -> int:
     print(f"== factory-vocab — Chapter 5 factory vocabulary over {', '.join(_SCAN_GLOBS)} [AUDIT-ONLY "
           f"(prints, exits 0)] ==")
     if not fs:
-        print(f"  clean — {len(model.findings_collocations())} named collocation(s), the "
-              f"heterogeneous-list pattern, and {len(model.usage_licences)} usage licence(s) watched; "
-              f"none appear un-suppressed")
+        print(f"  clean — {len(model.retired_terms)} retired term(s) absent from their banned scope, the "
+              f"formulation present, and {len(model.usage_licences)} usage licence(s) respected")
     else:
         print(f"  {len(fs)} finding(s):")
         for f in fs:
@@ -675,7 +680,7 @@ def main(argv: "list[str] | None" = None) -> int:
     named_gap, outside = gap_report(model)
     if named_gap:
         print(f"  GAP — author named the section, the lint finds nothing ({len(named_gap)}; a non-zero "
-              f"`machinery` count there is JUDGMENT work, not a lint gap):")
+              f"residual count there is a licensed label or JUDGMENT work, not a lint gap):")
         for g in named_gap:
             print(f"    {g}")
     if outside:
@@ -684,11 +689,11 @@ def main(argv: "list[str] | None" = None) -> int:
             print(f"    {o}")
     oos = out_of_scope_candidates(model)
     if oos:
-        print(f"  OUT OF SCOPE ({len(oos)}; the same phrases elsewhere in the book — NOT findings, listed "
-              f"so widening the scope is a deliberate call):")
+        print(f"  OUTSIDE THE BANNED SCOPE ({len(oos)} line(s); the retired terms elsewhere in the book — "
+              f"NOT findings, a deliberate later decision):")
         for o in oos:
             print(f"    {o}")
-    print("  CENSUS (context, not findings — the `engineering capital` density the model warns about):")
+    print("  CENSUS (context, not findings):")
     for row in census(model):
         print(f"    {row}")
     return 0

@@ -8,60 +8,50 @@ The deterministic findings of `factory-vocab` over `book/part5/`, plus the parts
 
 ```
 WHOLE        factory  — the factory (the production system)
-  PART       code-fabricator  — the fabricator
-  COLLECTIVE engineering-apparatus  — engineering apparatus   (a collective noun, NOT a sibling kind)
-    KIND     machinery  — machinery
-    KIND     tooling  — tooling
-    KIND     representation  — representation (model)
-    KIND     control  — control   [overlaps: machinery, tooling, representation, infrastructure]
-    KIND     infrastructure  — infrastructure
-PROPERTY     engineering-capital  — holds of `engineering-apparatus` (an interpretation, not a kind)
+  PART       code-fabricator  — Who does the work?
+  PART       model  — What describes what should be built?
+  PART       tool  — What does the fabricator work with?
+  ROLE       control  — What bounds the fabricator's freedom?   (realized by: model, tool; a ROLE, not a fourth part)
+               discriminator: The result carries a consequence the agent cannot simply reason away — a failing test that blocks admission, a permission boundary on action, a merge gate on admission.
 ENVIRONMENT  engineering-environment  — the engineering environment
-guard        partition = kinds-overlap-not-partition  (the kinds OVERLAP; they do not partition)
+guard        partition = control-is-a-role-not-a-bin
+formulation  Fabricators build the product from models, using tools, subject to controls.
+retired      engineering apparatus, engineering capital  (banned in part5/*.md)
 ```
 
-`engineering apparatus` is the COLLECTIVE NOUN, not a fourth category beside machinery / tooling / representation. `engineering capital` is a PROPERTY of accumulated apparatus, not a fifth category. The five kinds OVERLAP by design — `control` names what a decision DOES, so the same validator is tooling by what it is and a control by what its verdict decides.
+Four terms, each answering a DIFFERENT question, inside the factory. `control` is a ROLE, not a fourth part: the same test is a tool by what it is, and participates in a control when its result carries a consequence the agent cannot simply reason away. A reading that sorts the terms into mutually exclusive bins has the model wrong.
 
 ## Role tests and negative rules
 
-| term | role test | negative rule |
-|---|---|---|
-| `factory` | Is the referent the WHOLE production system — the arrangement that determines what should be made, organizes how production proceeds, and judges whether what was produced is acceptable? | Do not use `factory` for one of its constituents. The factory is the whole; the fabricator is a part inside it and the apparatus is the collection of structures arranged around that part. |
-| `code-fabricator` | Is the referent the thing that REALIZES the artifact from a description of what should be made? | Do not call the fabricator `machinery`. It is the PART the apparatus is arranged around — the printer inside the factory — not one of the apparatus's kinds. |
-| `engineering-apparatus` | Is the referent DELIBERATELY HETEROGENEOUS — several kinds at once, such that naming any single kind would narrow it wrongly? | Engineering apparatus is NOT a fourth category alongside machinery, tooling, and representations. It is the COLLECTIVE NOUN: machinery, tooling, representations, controls, and infrastructure participate in the apparatus. Do not give it a role test that competes with the kinds' role tests. |
-| `machinery` | Does it actively PERFORM, ROUTE, COORDINATE, TRANSFORM, or EXECUTE production work? | Do NOT call a static model, policy, representation, test suite, or human review `machinery` merely because it belongs to the factory. |
-| `tooling` | Is it an INSTRUMENT used to configure, inspect, measure, analyze, or verify? | `tooling` names what the thing operationally IS; `control` names the constraint it makes consequential. They are different axes, so neither substitutes for the other — a validator is tooling AND, where its verdict gates admission, a control. |
-| `representation` | Does it REPRESENT engineering knowledge or intent in structured form? | It is not machinery merely because the factory uses it. A representation is consumed BY machinery; that does not make it machinery. |
-| `control` | Does it make an engineering decision CONSEQUENTIAL for later work? | Do not turn `control` into a physical category parallel to tooling. The categories intentionally OVERLAP: the same validator is tooling by what it is and a control by what its verdict decides. A reading that sorts the kinds into mutually exclusive bins has the model wrong. |
-| `infrastructure` | Is it the COMPUTATIONAL or OPERATIONAL SUBSTRATE that production runs on? | Do not replace `infrastructure` merely for terminological uniformity. Where the referent is the substrate, the established word is the right one. |
-| `engineering-capital` | Does the sentence turn on DURABLE FUTURE LEVERAGE — investment embodied in structures that make earlier engineering work useful to later production? | Engineering capital is not a fifth category. It is a PROPERTY / INTERPRETATION of accumulated apparatus. Do not repeatedly call everything engineering capital: the empirical claim is that the artifacts ACCUMULATED; capital is the interpretation of what that accumulation is worth to later work. |
-| `engineering-environment` | Is the referent what the ARRANGEMENT of apparatus CREATES — the conditions agents produce work inside? | Do not use `environment` as a synonym for `apparatus`. The apparatus is the collection of structures; the environment is what arranging them produces. One is the inventory, the other the condition. |
-| `support-apparatus` (retain) | The support/production ratio measurement — the supporting apparatus weighed against the product it supports. The author calls this "a particularly good use of apparatus". | RETAIN as written. Do not generalize it: outside the support/production measurement, the collective noun is `engineering apparatus`. |
-| `stock` (retain-narrow) | An EMPIRICAL / ECONOMIC noun, admitted ONLY where accumulation over time is the measured phenomenon — "the stock of controls" beside a growth curve. | Do not use `stock` as the general conceptual name for factory structures. It is warehouse vocabulary in a factory book; a prior pass drove it from 14 to 0 in the DocAble section, and this narrow licence does not re-open the general use. |
+| term | question | role test | negative rule |
+|---|---|---|---|
+| `factory` | What is the whole engineered system for producing software change? | Is the referent the WHOLE production system — the arrangement that determines what should be made, organizes how production proceeds, and judges whether what was produced is acceptable? | Do not use `factory` for one of its constituents. The factory is the whole; the fabricator, the models, and the tools are parts inside it. Where the whole is meant, `factory` or `engineering environment` is the word — there is no collective noun between them. |
+| `code-fabricator` | Who does the work? | Is the referent the agent that does the work of REALIZATION — that builds the artifact from a description of what should be made? | Do not equate the fabricator with the factory. It is the part the rest is arranged around — the printer inside the factory. |
+| `model` | What describes what should be built? | Does it REPRESENT the thing the factory intends to build, including the relevant properties it should have? | A model is not a tool merely because the factory consumes it, and not a control merely because a control reads a property off it. It describes; the consequence is the control's. |
+| `tool` | What does the fabricator work with? | Does the fabricator USE it to inspect, modify, build, test, or otherwise work on the product? | A tool is what the thing IS; a control is what its result DECIDES. The same test is a tool when an agent runs it and reasons about the outcome. Do not rename a tool a control merely because a control is built on it. |
+| `control` | What bounds the fabricator's freedom? | Does it CONSTRAIN what the fabricator may do or what the factory may accept — such that the constraint holds whether or not the agent agrees with it? | `control` is a ROLE, not a bin parallel to model and tool. The same test is a tool by what it is and participates in a control when its verdict has teeth. A reading that sorts the terms into mutually exclusive bins has the model wrong; so does a reading that calls every tool a control. |
+| `engineering-environment` | What conditions does the arrangement create for the work? | Is the referent what the ARRANGEMENT of the factory's parts CREATES — the conditions agents produce work inside, and the accumulated constraints and information they inherit? | Do not use `environment` as a loose synonym for the factory's contents. The factory is the system; the environment is the condition arranging it produces. Both name the whole, from different angles — that is why no third collective noun is needed. |
+| `support-apparatus` (retain) | (usage licence) | The support/production ratio MEASUREMENT — the supporting apparatus weighed against the product it supports. A narrowly defined measurement label where an aggregate category is genuinely needed: the lines-of-code accounting line, and the liability sentence anchored to the three-to-one ratio. | RETAIN only as a measurement label. In running prose, `tests and supporting infrastructure` is clearer — and the collective noun it once generalized to (`engineering apparatus`) is retired, so there is nothing to widen this licence into. |
+| `stock` (retain-narrow) | (usage licence) | An EMPIRICAL / ECONOMIC noun, admitted ONLY where accumulation over time is the measured phenomenon — "the stock of controls" beside a growth curve. | Do not use `stock` as the general conceptual name for factory structures. It is warehouse vocabulary in a factory book; a prior pass drove it from 14 to 0 in the DocAble section, and this narrow licence does not re-open the general use. |
+
+## Retired terms — the inverted half of the decision
+
+These words LEFT Chapter 5. The lint's polarity now runs this way: it finds them, where an earlier version steered prose toward one of them.
+
+| retired term | banned in | why it left | say instead |
+|---|---|---|---|
+| `engineering apparatus` | part5/*.md | It did almost the same work as `factory`, with fuzzier boundaries, and invited the reader to ask how apparatus formally differs from tooling. Chapter 5 should feel like touring a factory, not learning a vocabulary for classifying every object on the factory floor. | For the whole, say `factory` or `engineering environment`. For particular pieces, NAME them: models, tests, validators, orchestration, deployment infrastructure, controls. A list that names its members needs no collective noun at the end of it. |
+| `engineering capital` | part5/*.md | It asks the reader to reinterpret the factory economically just when Chapter 5 is trying to make the factory concrete: what its parts are, how they fit together, how it was built, and what comparable organizations have built. The theory chapters can observe that some of those durable structures embody prior judgment and introduce the abstraction then. See the thing first; theorize its economics later. | Name the structures and what they do for later work. The depreciation argument survives in concrete register: the structures that carry decisions forward must themselves be maintained, and some will stop being worth their upkeep. Ordinary economic prose — carrying cost, construction, `capital only while future work inherits from it` — is NOT retired; the defined term is. |
 
 ## Findings (0)
 
-Each line is `file:line`, the matched phrase, and the node the model says applies instead. The phrase is matched on WRAP-JOINED text, so a `file:line` is where the phrase STARTS — it may continue onto the next line.
-
-**A stated gap in this worklist.** The author's own site-by-site replacement WORDING is not reproduced below, because his vocabulary document is not in the repository — only the phrase list and the negative rules reached this model. The replacement guidance in the next table is the MODEL'S reading of each phrase, not the author's sentences. Where his document is available, prefer his wording: it is more specific than any rule can infer. Do not read a silence here as his approval.
+Each line is `file:line`, the matched phrase, and what the model says to write instead. The phrase is matched on WRAP-JOINED text, so a `file:line` is where the phrase STARTS — it may continue onto the next line.
 
 - (none)
 
-### Per-finding replacement guidance
-
-| phrase | applies instead | note |
-|---|---|---|
-| `tolerance machinery` | `tooling` | The referent is "tests, static checks, simulators, benchmarks, and policy predicates" — instruments that VERIFY, so `tooling`. Where the sentence turns on the bound being consequential rather than on the instruments, `control` is the other correct reading; the two are different axes, not rivals. |
-| `context machinery` | `representation` | Context is engineering knowledge in structured form: `context representations`, or simply `context`. If the referent is narrowly the retrieval/assembly path that delivers it, that path IS machinery — decide by the role test at the site. |
-| `engineering machinery` | `engineering-apparatus` | The referent is deliberately heterogeneous ("where the visible engineering apparatus is concentrated"), which is exactly the collective noun's job. |
-| `richer machinery` | `engineering-apparatus` | "More of everything" is the collective, not one kind. |
-| `machinery for process design` | `engineering-apparatus` | What a factory in a box EXPOSES for process design spans kinds — surfaces, representations, and controls — so the collective noun is right. |
-| `machinery for making it effective` | `control` | Making customer intent effective in production IS the control role test: it makes an engineering decision consequential for later work. |
-| *(the heterogeneous-list terminal)* | `engineering-apparatus` | The clearest misuse: a `machinery` TERMINAL closing an enumeration whose members span kinds — "tests, policies, human review, simulators, permission systems, models, or other machinery." A list that spans kinds wants the collective noun, not one of the kinds as a catch-all. |
-
 ## DO NOT CHANGE — author-defended sites (3)
 
-**`production machinery`** — NOT a finding. The author defends this phrase twice — in the opening contrast of the two-problems section and again in the factories-inside-and-outside subsection — because DocAble genuinely has orchestration, merge, and execution machinery and the contrast is the argument. Listed so a later pass does not "fix" it.
+**`production machinery`** — NOT a finding. The author defends this phrase — in the opening contrast of the two-problems section and again in the factories-inside-and-outside subsection — because DocAble genuinely has orchestration, merge, and execution machinery and the contrast is the argument. With `machinery` demoted from defined category to ordinary prose, the phrase is simply good English; the row survives so a later pass does not "fix" it into a term.
 
 - book/part5/5.4-two-problems-of-factory-engineering.md:11: 'production machinery' — DEFENDED, leave alone
 - book/part5/5.4-two-problems-of-factory-engineering.md:148: 'production machinery' — DEFENDED, leave alone
@@ -71,13 +61,12 @@ Each line is `file:line`, the matched phrase, and the node the model says applie
 
 The software-factory section's manufacturing examples should PREFIGURE the software terms the case sections use, so the conceptual transfer is already prepared when the software term arrives. The lint checks only whether the vehicle word is PRESENT; whether it prefigures is editorial.
 
-| manufacturing example | → software counterpart | kind |
+| manufacturing example | → software counterpart | term |
 |---|---|---|
-| conveyor / assembly line | merge train | `machinery` |
-| gauge | validator | `tooling` |
-| drawing / process spec | model | `representation` |
+| drawing / process spec | model | `model` |
+| gauge | validator | `tool` |
+| jig / fixture | test harness | `tool` |
 | quality gate | admission gate | `control` |
-| jig / fixture | test harness | `tooling` |
 
 - COUNTERPART ABSENT — no 'test harness' in the software sections, so the pair 'jig / fixture' → 'test harness' has no landing site to prefigure
 
@@ -87,56 +76,71 @@ The author's site-by-site pass covers 14 sections; this lint produces findings i
 
 ### Author named it; the lint finds nothing (14)
 
-A zero here is not a clean bill. Where the raw `machinery` count is above zero, every one of those uses needs the role test applied by a reader — that is judgment work the lint declines to fake, not a lint gap to close.
+A zero here is not a clean bill. Where the residual count is above zero, each occurrence is either a licensed measurement label or a site a reader must judge — work the lint declines to fake, not a lint gap to close.
 
-- §5.1 (5.1-software-factory.md:1-231) — 0 lint findings, 12 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.2 opening (5.2-inside-docables-software-factory.md:1-54) — 0 lint findings, 4 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.2.2 (5.2-inside-docables-software-factory.md:135-542) — 0 lint findings, 2 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.2.3 (5.2-inside-docables-software-factory.md:543-698) — 0 lint findings, 6 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.2.4 (5.2-inside-docables-software-factory.md:699-926) — 0 lint findings, 5 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.2.5 (5.2-inside-docables-software-factory.md:927-1021) — 0 lint findings, 2 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.2.6 (5.2-inside-docables-software-factory.md:1022-1289) — 0 lint findings, 0 raw `machinery` occurrence(s). Nothing for the lint OR a human to do.
-- §5.2.7 (5.2-inside-docables-software-factory.md:1290-1329) — 0 lint findings, 1 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.3 (5.3-other-agentic-software-factories.md:1-511) — 0 lint findings, 7 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.4 opening (5.4-two-problems-of-factory-engineering.md:1-27) — 0 lint findings, 1 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.4.1 (5.4-two-problems-of-factory-engineering.md:28-98) — 0 lint findings, 3 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.4.2 (5.4-two-problems-of-factory-engineering.md:99-130) — 0 lint findings, 0 raw `machinery` occurrence(s). Nothing for the lint OR a human to do.
-- §5.4.3 (5.4-two-problems-of-factory-engineering.md:131-163) — 0 lint findings, 3 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- the coda (5.5-engineering-the-factory.md:1-34) — 0 lint findings, 1 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
+- §5.1 (5.1-software-factory.md:1-228) — 0 lint findings, 0 residual retired-word occurrence(s). Nothing for the lint OR a human to do.
+- §5.2 opening (5.2-inside-docables-software-factory.md:1-54) — 0 lint findings, 1 residual retired-word occurrence(s). Each is either a licensed measurement label or a site a reader must judge.
+- §5.2.2 (5.2-inside-docables-software-factory.md:135-542) — 0 lint findings, 0 residual retired-word occurrence(s). Nothing for the lint OR a human to do.
+- §5.2.3 (5.2-inside-docables-software-factory.md:543-698) — 0 lint findings, 0 residual retired-word occurrence(s). Nothing for the lint OR a human to do.
+- §5.2.4 (5.2-inside-docables-software-factory.md:699-926) — 0 lint findings, 0 residual retired-word occurrence(s). Nothing for the lint OR a human to do.
+- §5.2.5 (5.2-inside-docables-software-factory.md:927-1021) — 0 lint findings, 0 residual retired-word occurrence(s). Nothing for the lint OR a human to do.
+- §5.2.6 (5.2-inside-docables-software-factory.md:1022-1289) — 0 lint findings, 0 residual retired-word occurrence(s). Nothing for the lint OR a human to do.
+- §5.2.7 (5.2-inside-docables-software-factory.md:1290-1329) — 0 lint findings, 2 residual retired-word occurrence(s). Each is either a licensed measurement label or a site a reader must judge.
+- §5.3 (5.3-other-agentic-software-factories.md:1-511) — 0 lint findings, 0 residual retired-word occurrence(s). Nothing for the lint OR a human to do.
+- §5.4 opening (5.4-two-problems-of-factory-engineering.md:1-27) — 0 lint findings, 0 residual retired-word occurrence(s). Nothing for the lint OR a human to do.
+- §5.4.1 (5.4-two-problems-of-factory-engineering.md:28-98) — 0 lint findings, 0 residual retired-word occurrence(s). Nothing for the lint OR a human to do.
+- §5.4.2 (5.4-two-problems-of-factory-engineering.md:99-130) — 0 lint findings, 0 residual retired-word occurrence(s). Nothing for the lint OR a human to do.
+- §5.4.3 (5.4-two-problems-of-factory-engineering.md:131-163) — 0 lint findings, 0 residual retired-word occurrence(s). Nothing for the lint OR a human to do.
+- the coda (5.5-engineering-the-factory.md:1-34) — 0 lint findings, 0 residual retired-word occurrence(s). Nothing for the lint OR a human to do.
 
 ### The lint found it; the author's list does not cover the site (0)
 
-- (none) — every finding falls inside a section the author already named. The lint's precision against his list is total; its RECALL is the four sections above.
+- (none) — every finding falls inside a section the author already named.
 
-### Outside the scanned chapter (6) — the scope axis of the same gap
+### Outside the banned scope (22 line(s)) — the scope axis of the same gap
 
-The same named phrases elsewhere in the book. NOT findings: the vocabulary decision is Chapter 5's, and one chapter is titled "Agentic Machinery and Engineering Mechanisms", naming the productive substrate rather than factory apparatus. Listed so a decision to widen the scope is made deliberately and with the cost visible.
+The retired terms elsewhere in the book. NOT findings, and the asymmetry is DELIBERATE: `engineering capital` is defined in the governance-conversion section and carried by the theory and practice chapters, so it is live on both sides of a Chapter 5 that no longer uses it. The author ruled the other chapters a later problem, to be settled once Chapter 5's metaphor is constrained. Listed so widening `banned_in` is a deliberate call with the cost visible.
 
-- book/conclusion/9.1-the-part-that-stays-yours.md:80: 'engineering machinery' (out of scope; the model would say `engineering-apparatus`)
-- book/conclusion/9.1-the-part-that-stays-yours.md:84: 'engineering machinery' (out of scope; the model would say `engineering-apparatus`)
-- book/part1/1.1-the-printer.md:92: 'engineering machinery' (out of scope; the model would say `engineering-apparatus`)
-- book/part2/2.3-behavioral.md:96: 'richer machinery' (out of scope; the model would say `engineering-apparatus`)
-- book/part4/4.2-one-problem-many-models.md:124: 'engineering machinery' (out of scope; the model would say `engineering-apparatus`)
-- book/part6/6.5-what-the-theory-claims.md:17: 'engineering machinery' (out of scope; the model would say `engineering-apparatus`)
+- `engineering capital` — 52 use(s) in 21 file(s) outside the banned scope (part5/*.md); NOT findings, a later decision
+-     book/conclusion/9.1-the-part-that-stays-yours.md: 1
+-     book/part3/00-part-intro.md: 1
+-     book/part3/3.4-governance-conversion.md: 6
+-     book/part3/3.5-when-guardrails-collide.md: 2
+-     book/part3/3.6-alignment-summary.md: 1
+-     book/part4/00-part-intro.md: 1
+-     book/part4/4.1-the-dynamics-of-mage.md: 2
+-     book/part4/4.2-one-problem-many-models.md: 1
+-     book/part4/4.3-brownfield-engineering.md: 1
+-     book/part4/4.4-engineering-the-environment.md: 4
+-     book/part6/00-part-intro.md: 1
+-     book/part6/6.1-toward-a-theory-of-mage.md: 13
+-     book/part6/6.2-what-the-theory-predicts.md: 3
+-     book/part6/6.3-scope-conditions.md: 3
+-     book/part6/6.4-research-agenda.md: 1
+-     book/part6/6.5-what-the-theory-claims.md: 2
+-     book/part7/00-part-intro.md: 2
+-     book/part7/7.1-reorganization-of-se.md: 1
+-     book/part7/7.2-software-rejoins-engineering.md: 2
+-     book/part7/7.3-agentic-engineering-beyond-software.md: 1
+-     book/part7/7.4-the-engineer.md: 3
 
 ## Census — context, not findings
 
-Per-file counts of the watched words. The `engineering capital` column is the density the model warns about; the lint raises no finding on it because deciding whether a given sentence turns on durable future leverage is judgment.
+Per-file counts of the watched words. The retired terms should read 0 inside the banned scope; `machinery` and `tooling` are shown because they were once policed categories and are now ordinary prose, so the counts document the de-policing rather than hiding it.
 
 ```
-book/part5/00-part-intro.md: machinery=1  apparatus=0  tooling=0  representation=0  control=1  infrastructure=0  engineering capital=0  stock=0
-book/part5/5.1-software-factory.md: machinery=14  apparatus=7  tooling=7  representation=16  control=10  infrastructure=2  engineering capital=2  stock=0
-book/part5/5.2-inside-docables-software-factory.md: machinery=21  apparatus=20  tooling=1  representation=52  control=39  infrastructure=6  engineering capital=5  stock=0
-book/part5/5.3-other-agentic-software-factories.md: machinery=7  apparatus=0  tooling=1  representation=15  control=35  infrastructure=6  engineering capital=1  stock=0
-book/part5/5.4-two-problems-of-factory-engineering.md: machinery=7  apparatus=8  tooling=0  representation=5  control=12  infrastructure=2  engineering capital=0  stock=0
-book/part5/5.5-engineering-the-factory.md: machinery=1  apparatus=0  tooling=0  representation=2  control=2  infrastructure=0  engineering capital=0  stock=0
+book/part5/00-part-intro.md: engineering apparatus=0  support apparatus=0  apparatus=0  engineering capital=0  machinery=1  tooling=0  model=0  tool=0  control=1  stock=0
+book/part5/5.1-software-factory.md: engineering apparatus=0  support apparatus=0  apparatus=0  engineering capital=0  machinery=7  tooling=0  model=13  tool=12  control=13  stock=0
+book/part5/5.2-inside-docables-software-factory.md: engineering apparatus=0  support apparatus=3  apparatus=3  engineering capital=0  machinery=24  tooling=1  model=150  tool=1  control=40  stock=0
+book/part5/5.3-other-agentic-software-factories.md: engineering apparatus=0  support apparatus=0  apparatus=0  engineering capital=0  machinery=7  tooling=1  model=60  tool=20  control=35  stock=0
+book/part5/5.4-two-problems-of-factory-engineering.md: engineering apparatus=0  support apparatus=0  apparatus=0  engineering capital=0  machinery=9  tooling=0  model=2  tool=4  control=12  stock=0
+book/part5/5.5-engineering-the-factory.md: engineering apparatus=0  support apparatus=0  apparatus=0  engineering capital=0  machinery=1  tooling=0  model=8  tool=0  control=2  stock=0
 ```
 
 ## What this lint will never catch
 
-- **The role tests.** Whether a referent performs / routes / executes (machinery) versus instruments (tooling) versus represents (representation) needs the referent read in context.
-- **The apparatus test.** "Is this referent deliberately heterogeneous?" is not deterministic — the same shape of signal a sibling project assessed infeasible to lint and replaced with a rule plus a review criterion.
-- **`engineering capital` overuse.** A density judgment; the census shows the counts, a human decides which uses turn on durable leverage.
-- **`control` versus `tooling` at a site.** Different axes that overlap by design; choosing which the sentence is about is the author's call.
+- **The role tests.** Whether a referent describes the product (model), is worked with (tool), or bounds what may be done (control) needs the referent read in context.
+- **`tool` versus `control` at a site.** The subtle judgment the whole vocabulary turns on: the same test is a tool when an agent runs it and reasons about the result, and participates in a control when the result carries a consequence the agent cannot simply reason away. Which one a sentence is about is the author's call.
+- **Whether a `machinery` or `tooling` use reads well.** Neither is policed any more; both are ordinary factory prose, and adjudicating them was becoming ontology for ontology's sake.
 - **Whether a vehicle prefigures.** Presence is mechanical; prefiguration is not.
 

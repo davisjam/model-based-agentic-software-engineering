@@ -1,53 +1,55 @@
 """The FACTORY-VOCABULARY view — a typed model of the internal editing vocabulary behind Chapter 5's
-factory language. `machinery` had been doing duty for agents, orchestration, tests, models, policies,
-permissions, validators, infrastructure and controls at once, and the chapter now draws finer distinctions
-than one word supports. This model names the distinctions so an editing pass can apply them consistently
-and a lint can hold the mechanizable part.
+factory language. This model names the distinctions the prose draws so an editing pass can apply them
+consistently and a lint can hold the mechanizable part.
 
-AN EDITING MODEL, NOT A PASSAGE.  The taxonomy is deliberately NOT printed in the book. It governs how the
-prose chooses words; the reader meets the words, never the table. A sibling of the other declared ->
+AN EDITING MODEL, NOT A PASSAGE.  The structure below is deliberately NOT printed in the book. It governs
+how the prose chooses words; the reader meets the words, never the table. A sibling of the other declared ->
 generated book models (capability_ladder / argument_spine): the hand-authored source of truth is
 `book-models/factory_vocabulary_declared.json`; factory-vocabulary.json is generated
 (`python3 book-models/factory_vocabulary_model.py regenerate`).
 
-THREE KINDS OF NODE — the structural correction is the whole point.  An earlier draft of the vocabulary
-listed `engineering apparatus` as though it were a fourth category alongside machinery / tooling /
-representation, and `engineering capital` as a fifth. It is neither:
+THE VOCABULARY WAS REDUCED.  An earlier version of this model carried a COLLECTIVE noun (`engineering
+apparatus`), five KINDs participating in it (machinery, tooling, representation, control, infrastructure),
+and a PROPERTY (`engineering capital`) holding of the collective. The author ruled that one to two terms too
+many: apparatus did almost the same work as `factory` with fuzzier boundaries; `machinery` versus `tooling`
+had become ontology for ontology's sake; and capital asked the reader to reinterpret the factory
+economically just as the chapter was trying to make it concrete. What survives is a FOUR-TERM CORE, each
+term answering a DIFFERENT question, inside the whole:
 
-    WHOLE        factory                     the production system
-      +- PART        code-fabricator          the thing that realizes the artifact
-      +- COLLECTIVE  engineering-apparatus    a COLLECTIVE NOUN, not a sibling of the kinds
-           +- KIND   machinery                performs / routes / coordinates / executes
-           +- KIND   tooling                  configures / inspects / measures / verifies
-           +- KIND   representation           represents knowledge or intent in structured form
-           +- KIND   control                  makes a decision consequential for later work
-           +- KIND   infrastructure           the computational / operational substrate
-    PROPERTY     engineering-capital          holds OF accumulated apparatus (an interpretation)
-    ENVIRONMENT  engineering-environment      what the arrangement of apparatus creates
+    WHOLE        factory                the engineered system for producing software change
+      +- PART    code-fabricator        Who does the work?
+      +- PART    model                  What describes what should be built?
+      +- PART    tool                   What does the fabricator work with?
+      +- ROLE    control                What bounds its freedom?
+    ENVIRONMENT  engineering-environment  what the arrangement creates for the work
 
-The `node_kind` field carries that distinction as data, and FV2/FV3/FV5 hold it: exactly one collective
-(so no sixth "kind" can be smuggled in beside the apparatus), the collective's `collects` list is exactly
-the set of kinds (total and closed — every kind participates, and nothing that is not a kind is collected),
-and the property `holds_of` the collective rather than sitting beside it.
+One formulation teaches it, and the lint checks the sentence is present:
 
-THE KINDS OVERLAP BY DESIGN — the anti-partition guard.  `control` is not a physical category parallel to
-tooling: the same validator is tooling by what it IS and a control by what its verdict DECIDES. Those are
-different axes. A consumer that sorts the kinds into mutually exclusive bins has the model wrong, so the
-declared `partition` field carries the closed value `kinds-overlap-not-partition` (checked by FV4, the
-anti-CMM-guard analogue in capability_ladder_model.py), and `control` declares explicit `overlaps` edges
-that FV4 requires to be non-trivial.
+    Fabricators build the product from models, using tools, subject to controls.
+
+CONTROL IS A ROLE, NOT A BIN — the subtle part, and the part a careless reading loses.  A test is ordinarily
+a TOOL: an agent can run it and reason about the result. It participates in a CONTROL when the result
+carries a consequence the agent cannot simply reason away — a failing test that blocks admission, a
+permission boundary on action, a merge gate on admission. So `control` is modelled as a `role` REALIZED BY
+the parts (`realized_by`), never as a fourth part beside them, and it carries the `discriminator` verbatim as
+data. FV4 holds all of that: the closed `partition` guard `control-is-a-role-not-a-bin`, at least two
+`realized_by` edges, and a non-empty discriminator.
 
 GENRE CHECK — adopt the schema, reject the runtime.  The genre is a controlled vocabulary / thesaurus, and
-its canonical best-in-class is SKOS. We ADOPT the one distinction SKOS draws that this model turns on: a
-collection is not a broader concept (`skos:Collection` exists precisely so "a bag of these" is not modeled
-as "a kind above these") — that is the apparatus. We REJECT the faceted-classification runtime, where
-facets partition: hence the anti-partition guard above. No RDF, no URIs, no inference engine; the schema
-earns its keep, the runtime does not.
+its canonical best-in-class is SKOS. We ADOPT its insistence that a relation is not a concept — the reason
+`control` is a role rather than a part. We REJECT the faceted-classification runtime, where facets partition:
+hence the anti-bin guard. No RDF, no URIs, no inference engine; the schema earns its keep, the runtime does
+not.
+
+RETIRED TERMS INVERT THE LINT'S POLARITY.  `retired_terms` carries the two words that LEFT Chapter 5, each
+with the scope it is banned in, the reason, and what to say instead. The old deterministic check steered
+prose TOWARD `engineering apparatus`; the new one finds it. `engineering capital` is banned only inside
+Chapter 5 — it remains live and defined elsewhere in the book, a known and accepted asymmetry.
 
 Run `python3 book-models/factory_vocabulary_model.py regenerate` to write the artifact; `... verify` to
-drift-check; `... tree` to print the WHOLE/PART/COLLECTIVE/KIND/PROPERTY/ENVIRONMENT structure; `... tests`
-to print the per-term role tests and negative rules; `... foreshadow` to print the manufacturing -> software
-foreshadowing map.
+drift-check; `... tree` to print the WHOLE/PART/ROLE/ENVIRONMENT structure; `... tests` to print the
+per-term questions, role tests, and negative rules; `... foreshadow` to print the manufacturing -> software
+foreshadowing map; `... retired` to print the retired terms and their replacement guidance.
 """
 from __future__ import annotations
 
@@ -59,8 +61,8 @@ from dataclasses import asdict, dataclass, field
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ARTIFACT = os.path.join(_HERE, "factory-vocabulary.json")
 _DECLARED = os.path.join(_HERE, "factory_vocabulary_declared.json")
-#: The chapter the vocabulary governs. FV8 joins `author_named_sections[].file` against it, so a renamed
-#: chapter file reddens rather than silently emptying the gap report.
+#: The chapter the vocabulary governs. FV8 joins `author_named_sections[].file` against it, and FV9 joins
+#: `formulation_scope`, so a renamed chapter file reddens rather than silently emptying the report.
 _PART5 = os.path.join(os.path.dirname(_HERE), "book", "part5")
 
 _PROVENANCE = ("GENERATED by book-models/factory_vocabulary_model.py — do not hand-edit; regenerate with "
@@ -69,25 +71,31 @@ _PROVENANCE = ("GENERATED by book-models/factory_vocabulary_model.py — do not 
 
 _MODEL_NOTE = (
     "The factory-vocabulary model holds the INTERNAL EDITING vocabulary behind Chapter 5's factory "
-    "language — never printed in the book. Three kinds of node, not one flat list: a WHOLE (the factory) "
-    "holding a PART (the fabricator) and a COLLECTIVE (engineering apparatus) whose members are the five "
-    "KINDs (machinery, tooling, representation, control, infrastructure), plus a PROPERTY (engineering "
-    "capital) that holds OF accumulated apparatus and an ENVIRONMENT the arrangement creates. Apparatus is "
-    "the collective noun, NOT a fourth category; capital is a property, NOT a fifth. The kinds OVERLAP by "
-    "design — `control` names what a decision DOES, not a physical category parallel to tooling — and the "
-    "`partition` guard carries the closed anti-partition value so no consumer renders them as disjoint "
-    "bins. `misuse_collocations` and `heterogeneous_list` are the deterministic part a lint can hold "
-    "(lint_factory_vocabulary.py); the role tests are the part a human applies.")
+    "language — never printed in the book. A FOUR-TERM CORE, each term answering a different question, "
+    "inside a WHOLE: the factory holds three PARTs (the fabricator — who does the work; the model — what "
+    "describes what should be built; the tool — what the fabricator works with) plus a ROLE (control — what "
+    "bounds its freedom), and an ENVIRONMENT names what their arrangement creates. One formulation teaches "
+    "it: `Fabricators build the product from models, using tools, subject to controls.` CONTROL IS A ROLE, "
+    "NOT A BIN: a test is a tool an agent runs and reasons about, and it participates in a control when the "
+    "result carries a consequence the agent cannot simply reason away — declared as `discriminator` and "
+    "guarded by the closed `partition` value. `retired_terms` carries the two words that LEFT the chapter "
+    "(`engineering apparatus`, `engineering capital`), scoped bans included; that plus the narrow-licence "
+    "words is the deterministic part a lint can hold (lint_factory_vocabulary.py). The role tests are the "
+    "part a human applies.")
 
-#: The closed set of node kinds. Three DISTINCT kinds of node, plus the whole and the part they hang from.
-#: A sixth value is a model change, not an append — the author's correction is exactly that `collective`
-#: and `property` are NOT more `kind`s.
-NODE_KINDS = ("whole", "part", "collective", "kind", "property", "environment")
+#: The closed set of node kinds. FOUR values, and the absence of `collective` / `kind` / `property` is
+#: itself the guard: the retired "apparatus is a fourth category, capital is a fifth" error cannot be
+#: re-declared, because there is no node kind to declare it as. A fifth value is a model change.
+NODE_KINDS = ("whole", "part", "role", "environment")
 
-#: The closed anti-partition guard (FV4). Present verbatim, or a consumer could render the kinds as
-#: mutually exclusive facets — which the author explicitly ruled out. The analogue of the capability
-#: ladder's `capability-not-maturity` guard.
-PARTITION_GUARD = "kinds-overlap-not-partition"
+#: Node kinds the REDUCTION removed. Declared so the regression is named rather than merely absent — FV2
+#: refuses any node carrying one, with the reason attached.
+RETIRED_NODE_KINDS = ("collective", "kind", "property")
+
+#: The closed anti-bin guard (FV4). Present verbatim, or a consumer could render the four terms as
+#: mutually exclusive bins — which mis-states `control`. The analogue of the capability ladder's
+#: `capability-not-maturity` guard, re-aimed at the reduced vocabulary.
+PARTITION_GUARD = "control-is-a-role-not-a-bin"
 
 #: The closed set of misuse-collocation confidence tiers.
 #:   `named`           — the author named this phrase as a misuse; a lint finding.
@@ -102,27 +110,44 @@ DISPOSITIONS = ("retain", "retain-narrow")
 
 @dataclass
 class Node:
-    """One node of the vocabulary. `id` is the kebab join key (the slug the term registry and the lint's
-    `reassign_to` both resolve against); `node_kind` its place in the three-kinds-of-node structure;
-    `role_test` the question that decides whether the word applies at a site; `negative_rule` the
-    load-bearing half — what the word must NOT be stretched to cover.
+    """One node of the vocabulary. `id` is the kebab join key (the slug the term registry and the lint both
+    resolve against); `node_kind` its place in the WHOLE / PART / ROLE / ENVIRONMENT structure; `question`
+    the question the term answers (the core's organizing device — four terms, four DIFFERENT questions, so
+    two nodes sharing a question means one of them is redundant); `role_test` the question that decides
+    whether the word applies at a site; `negative_rule` the load-bearing half — what the word must NOT be
+    stretched to cover.
 
     The structural edges are deliberately DIFFERENT fields per node kind, so the distinction cannot blur:
-    `parent` (a part/collective hangs from the whole), `member_of` (a kind participates in the collective),
-    `collects` (the collective's members), `holds_of` (a property holds of a collective), `overlaps` (kinds
-    that deliberately intersect this one — the anti-partition edges)."""
+    `parent` (a part or the role hangs from the whole) and `realized_by` (the parts a ROLE is realized
+    through — the anti-bin edges). `discriminator` is the role's own field: the test that says when a part
+    stops being merely itself and participates in the role."""
     id: str
     node_kind: str
     label: str
+    question: str
     role_test: str
     negative_rule: str
     exemplars: "list[str]" = field(default_factory=list)
     parent: str = ""
-    member_of: str = ""
-    collects: "list[str]" = field(default_factory=list)
-    holds_of: str = ""
-    overlaps: "list[str]" = field(default_factory=list)
+    realized_by: "list[str]" = field(default_factory=list)
+    discriminator: str = ""
     aliases: "list[str]" = field(default_factory=list)
+
+
+@dataclass
+class RetiredTerm:
+    """A term that LEFT the governed scope. `phrase` is the compound the ban is named for; `banned_words`
+    adds bare words the compound hides behind (`apparatus` for `engineering apparatus`) and is EMPTY where
+    the bare word stays legitimate (`capital` remains ordinary economic prose); `exempt_collocations` are
+    the surviving licensed uses a hit may fall inside. `banned_in` scopes the ban to globs under `book/` —
+    the field that keeps this a Chapter-5 decision rather than a book-wide sweep."""
+    id: str
+    phrase: str
+    retired_because: str
+    say_instead: str
+    banned_in: "list[str]" = field(default_factory=list)
+    banned_words: "list[str]" = field(default_factory=list)
+    exempt_collocations: "list[str]" = field(default_factory=list)
 
 
 @dataclass
@@ -175,12 +200,14 @@ class AuthorNamedSection:
 @dataclass
 class FactoryVocabularyModel:
     partition: str
+    formulation: str
+    formulation_scope: "list[str]"
     nodes: "list[Node]"
+    retired_terms: "list[RetiredTerm]"
     usage_licences: "list[UsageLicence]"
     foreshadowing: "list[Foreshadow]"
     foreshadowing_scope: "dict[str, list[str]]"
     misuse_collocations: "list[Misuse]"
-    heterogeneous_list: dict
     author_named_sections: "list[AuthorNamedSection]" = field(default_factory=list)
 
     def node(self, node_id: str) -> "Node | None":
@@ -192,16 +219,21 @@ class FactoryVocabularyModel:
     def of_kind(self, node_kind: str) -> "list[Node]":
         return [n for n in self.nodes if n.node_kind == node_kind]
 
-    def kind_ids(self) -> "list[str]":
-        return [n.id for n in self.of_kind("kind")]
+    def part_ids(self) -> "list[str]":
+        return [n.id for n in self.of_kind("part")]
 
-    def the_collective(self) -> "Node | None":
-        collectives = self.of_kind("collective")
-        return collectives[0] if len(collectives) == 1 else None
+    def the_role(self) -> "Node | None":
+        roles = self.of_kind("role")
+        return roles[0] if len(roles) == 1 else None
+
+    def core_ids(self) -> "list[str]":
+        """The FOUR-TERM CORE — the three parts plus the role. The set the foreshadowing map joins onto."""
+        return self.part_ids() + [n.id for n in self.of_kind("role")]
 
     def findings_collocations(self) -> "list[Misuse]":
         """The misuse rows a lint may raise as FINDINGS — `author-defended` rows excluded by construction,
-        so a pre-rejected finding cannot reach the report."""
+        so a pre-rejected finding cannot reach the report. Empty today: the named rows steered prose toward
+        a term that no longer exists. The mechanism survives so a future named row is still validated."""
         return [m for m in self.misuse_collocations if m.confidence == "named"]
 
     def defended_collocations(self) -> "list[Misuse]":
@@ -222,12 +254,19 @@ def derive_model(raw: "dict | None" = None) -> FactoryVocabularyModel:
         raw = _load_declared()
     nodes = [
         Node(id=n.get("id", ""), node_kind=n.get("node_kind", ""), label=n.get("label", ""),
-             role_test=n.get("role_test", ""), negative_rule=n.get("negative_rule", ""),
-             exemplars=list(n.get("exemplars", []) or []), parent=n.get("parent", ""),
-             member_of=n.get("member_of", ""), collects=list(n.get("collects", []) or []),
-             holds_of=n.get("holds_of", ""), overlaps=list(n.get("overlaps", []) or []),
-             aliases=list(n.get("aliases", []) or []))
+             question=n.get("question", ""), role_test=n.get("role_test", ""),
+             negative_rule=n.get("negative_rule", ""), exemplars=list(n.get("exemplars", []) or []),
+             parent=n.get("parent", ""), realized_by=list(n.get("realized_by", []) or []),
+             discriminator=n.get("discriminator", ""), aliases=list(n.get("aliases", []) or []))
         for n in raw.get("nodes", [])
+    ]
+    retired = [
+        RetiredTerm(id=r.get("id", ""), phrase=r.get("phrase", ""),
+                    retired_because=r.get("retired_because", ""), say_instead=r.get("say_instead", ""),
+                    banned_in=list(r.get("banned_in", []) or []),
+                    banned_words=list(r.get("banned_words", []) or []),
+                    exempt_collocations=list(r.get("exempt_collocations", []) or []))
+        for r in raw.get("retired_terms", [])
     ]
     licences = [
         UsageLicence(id=u.get("id", ""), phrase=u.get("phrase", ""), disposition=u.get("disposition", ""),
@@ -253,41 +292,48 @@ def derive_model(raw: "dict | None" = None) -> FactoryVocabularyModel:
         for s in raw.get("author_named_sections", [])
     ]
     return FactoryVocabularyModel(
-        partition=raw.get("partition", ""), nodes=nodes, usage_licences=licences, foreshadowing=fore,
-        foreshadowing_scope=scope, misuse_collocations=misuses,
-        heterogeneous_list=dict(raw.get("heterogeneous_list", {}) or {}),
-        author_named_sections=named,
+        partition=raw.get("partition", ""), formulation=raw.get("formulation", ""),
+        formulation_scope=list(raw.get("formulation_scope", []) or []),
+        nodes=nodes, retired_terms=retired, usage_licences=licences, foreshadowing=fore,
+        foreshadowing_scope=scope, misuse_collocations=misuses, author_named_sections=named,
     )
 
 
-# ---- invariants (FV1-FV7) ---------------------------------------------------------------------------
+# ---- invariants (FV1-FV9) ---------------------------------------------------------------------------
 
 def structural_findings(model: "FactoryVocabularyModel | None" = None) -> "list[str]":
     """The STRUCTURAL / SCHEMA invariants over the vocabulary. Deterministic — every one is a set or
     enum check over declared data, never a judgment about prose.
 
-    FV1 — node ids unique + kebab; `node_kind` in the closed NODE_KINDS; `label`, `role_test`, and
-          `negative_rule` non-empty on every node (a node without a negative rule is the failure this
+    FV1 — node ids unique + kebab; `node_kind` in the closed NODE_KINDS; `label`, `question`, `role_test`,
+          and `negative_rule` non-empty on every node (a node without a negative rule is the failure this
           model exists to prevent — the role test alone lets a word creep).
-    FV2 — CARDINALITY encodes the author's correction: exactly one `whole`, one `collective`, one
-          `property`, one `environment`. A second collective or property would re-open precisely the
-          "fourth category / fifth category" error the correction closed.
-    FV3 — the collective's `collects` list is EXACTLY the set of `kind` node ids (total and closed): every
-          kind participates in the apparatus, and the apparatus collects nothing that is not a kind. Every
-          kind also declares `member_of` == the collective, so the edge is stated from both ends.
-    FV4 — ANTI-PARTITION: `partition` == PARTITION_GUARD, `control` declares at least two `overlaps`, and
-          every `overlaps` / `parent` / `member_of` / `holds_of` id resolves to a node.
-    FV5 — the `property` holds_of the `collective` (capital is an interpretation OF accumulated apparatus,
-          not a sibling of the kinds); the `part` and the `collective` both `parent` the `whole`.
+    FV2 — CARDINALITY encodes the REDUCTION: exactly one `whole`, one `role`, one `environment`, and three
+          `part`s (fabricator, model, tool). A node declaring a RETIRED_NODE_KIND re-opens the "apparatus is
+          a fourth category / capital is a fifth" error and is refused by name.
+    FV3 — the four-term core answers four DIFFERENT questions: every node's `question` is distinct. Two
+          terms sharing a question means one of them is redundant, which is exactly the defect the
+          reduction removed.
+    FV4 — ANTI-BIN: `partition` == PARTITION_GUARD; the `role` carries a non-empty `discriminator` and at
+          least two `realized_by` edges, each resolving to a `part` (control is realized THROUGH the parts,
+          not placed beside them); every `parent` / `realized_by` id resolves to a node.
+    FV5 — every `part` and the `role` `parent` the `whole`; only the `role` declares `realized_by` or a
+          `discriminator` (a part that carries them is being smuggled into the role's job).
     FV6 — the foreshadowing map: `manufacturing`, `software`, and both probe lists non-empty, and every
-          `kind` value resolves to a `kind` node id (the map joins onto the node table, so a renamed kind
-          cannot orphan the transfer). The map need not be surjective over the kinds — `infrastructure`
-          has no manufacturing counterpart the chapter uses, and that is an honest gap, not a finding.
+          `kind` value resolves to a core id (a part or the role), so a renamed term cannot orphan the
+          transfer. The map need not be surjective — the fabricator has no manufacturing vehicle the
+          chapter uses, and that is an honest gap, not a finding.
     FV7 — misuse rows: `confidence` in CONFIDENCE_TIERS; a `named` row's `reassign_to` resolves to a node
-          id; an `author-defended` row carries an EMPTY `reassign_to` (it is not a finding, so it has no
-          replacement) and a non-empty note. Usage licences: `disposition` in DISPOSITIONS, licence and
-          negative rule non-empty. The heterogeneous-list spec: non-empty terminals + members, and its
-          `reassign_to` resolves.
+          id; an `author-defended` row carries an EMPTY `reassign_to` and a non-empty note. Usage licences:
+          `disposition` in DISPOSITIONS, licence and negative rule non-empty.
+    FV8 — the author's named sections resolve against real files, and each row carries a unique id.
+    FV9 — the REDUCTION's own invariants. The `formulation` is non-empty and every `formulation_scope` file
+          exists (the sentence the chapter teaches must have a file to be taught in). Every retired term
+          declares a non-empty `phrase`, `retired_because`, `say_instead`, and at least one `banned_in`
+          glob — a ban without a stated replacement is a lint finding no one can act on. Every
+          `exempt_collocation` must CONTAIN one of its term's banned words, or the exemption is dead config
+          that suppresses nothing. And no retired phrase may collide with a live node label, which would
+          mean banning the vocabulary the model is telling prose to use.
 
     (Drift — the artifact equals a fresh derivation — is the `verify` CLI, mirroring the siblings.)"""
     if model is None:
@@ -304,64 +350,72 @@ def structural_findings(model: "FactoryVocabularyModel | None" = None) -> "list[
             out.append(f"FV1 node id {n.id!r} is not kebab-case")
         if n.node_kind not in NODE_KINDS:
             out.append(f"FV1 node {n.id!r} node_kind {n.node_kind!r} not in {NODE_KINDS}")
-        for fname in ("label", "role_test", "negative_rule"):
+        for fname in ("label", "question", "role_test", "negative_rule"):
             if not str(getattr(n, fname)).strip():
                 out.append(f"FV1 node {n.id!r} has empty {fname}")
 
-    # FV2 — the cardinality that encodes the correction.
-    for solo in ("whole", "collective", "property", "environment"):
+    # FV2 — the cardinality that encodes the reduction.
+    for solo in ("whole", "role", "environment"):
         got = model.of_kind(solo)
         if len(got) != 1:
             out.append(f"FV2 expected exactly one {solo!r} node, found {len(got)} "
-                       f"({[n.id for n in got]}) — a second {solo} re-opens the "
-                       f"'apparatus is a fourth category / capital is a fifth' error")
-
-    # FV3 — collects == the kind set, stated from both ends.
-    collective = model.the_collective()
-    kinds = set(model.kind_ids())
-    if collective is not None:
-        collected = set(collective.collects)
-        for missing in sorted(kinds - collected):
-            out.append(f"FV3 collective {collective.id!r} does not collect kind {missing!r} "
-                       f"(every kind participates in the apparatus)")
-        for extra in sorted(collected - kinds):
-            out.append(f"FV3 collective {collective.id!r} collects {extra!r}, which is not a `kind` node")
-        for k in model.of_kind("kind"):
-            if k.member_of != collective.id:
-                out.append(f"FV3 kind {k.id!r} member_of {k.member_of!r} — expected {collective.id!r}")
-
-    # FV4 — the anti-partition guard + edge resolution.
-    if model.partition != PARTITION_GUARD:
-        out.append(f"FV4 partition {model.partition!r} is not the closed anti-partition value "
-                   f"{PARTITION_GUARD!r} — without it a consumer may render the kinds as disjoint bins")
-    control = model.node("control")
-    if control is None:
-        out.append("FV4 no `control` node — the overlapping kind the anti-partition rule is about")
-    elif len([o for o in control.overlaps if o != "control"]) < 2:
-        out.append("FV4 `control` declares fewer than two `overlaps` — the model must state the overlap "
-                   "explicitly so it cannot be read as a partition")
+                       f"({[n.id for n in got]})")
+    if len(model.of_kind("part")) != 3:
+        out.append(f"FV2 expected three `part` nodes (the fabricator, the model, the tool), found "
+                   f"{len(model.of_kind('part'))} ({model.part_ids()}) — the four-term core is three "
+                   f"parts plus the control role")
     for n in model.nodes:
-        for fname in ("parent", "member_of", "holds_of"):
-            val = getattr(n, fname)
-            if val and val not in ids:
-                out.append(f"FV4 node {n.id!r} {fname} {val!r} resolves to no node")
-        for o in n.overlaps:
-            if o not in kinds:
-                out.append(f"FV4 node {n.id!r} overlaps {o!r}, which is not a `kind` node")
+        if n.node_kind in RETIRED_NODE_KINDS:
+            out.append(f"FV2 node {n.id!r} declares the RETIRED node_kind {n.node_kind!r} — the "
+                       f"vocabulary was reduced precisely to remove the collective noun and the property; "
+                       f"re-adding one is a model change, not an append")
 
-    # FV5 — the property hangs off the collective; part + collective hang off the whole.
+    # FV3 — four terms, four different questions.
+    seen_q: "dict[str, str]" = {}
+    for n in model.nodes:
+        key = " ".join(n.question.lower().split())
+        if key and key in seen_q:
+            out.append(f"FV3 nodes {seen_q[key]!r} and {n.id!r} answer the SAME question "
+                       f"{n.question!r} — two terms answering one question means one is redundant")
+        seen_q[key] = n.id
+
+    # FV4 — the anti-bin guard + edge resolution.
+    if model.partition != PARTITION_GUARD:
+        out.append(f"FV4 partition {model.partition!r} is not the closed anti-bin value "
+                   f"{PARTITION_GUARD!r} — without it a consumer may render the four terms as disjoint "
+                   f"bins, which mis-states `control`")
+    role = model.the_role()
+    parts = set(model.part_ids())
+    if role is None:
+        out.append("FV4 no single `role` node — `control` is the role the anti-bin rule is about")
+    else:
+        if not role.discriminator.strip():
+            out.append(f"FV4 role {role.id!r} has an empty `discriminator` — the relational test (the "
+                       f"result carries a consequence the agent cannot simply reason away) is the whole "
+                       f"content of the role, and losing it collapses the role back into a bin")
+        if len(role.realized_by) < 2:
+            out.append(f"FV4 role {role.id!r} declares fewer than two `realized_by` edges — the model must "
+                       f"state which parts realize it, or it reads as a fourth part")
+        for r in role.realized_by:
+            if r not in parts:
+                out.append(f"FV4 role {role.id!r} realized_by {r!r}, which is not a `part` node")
+    for n in model.nodes:
+        if n.parent and n.parent not in ids:
+            out.append(f"FV4 node {n.id!r} parent {n.parent!r} resolves to no node")
+
+    # FV5 — the parts and the role hang off the whole; only the role carries the role's fields.
     whole = model.of_kind("whole")
-    prop = model.of_kind("property")
-    if collective is not None and prop:
-        if prop[0].holds_of != collective.id:
-            out.append(f"FV5 property {prop[0].id!r} holds_of {prop[0].holds_of!r} — expected the "
-                       f"collective {collective.id!r} (capital is a property OF accumulated apparatus)")
     if whole:
-        for n in model.of_kind("part") + model.of_kind("collective"):
+        for n in model.of_kind("part") + model.of_kind("role"):
             if n.parent != whole[0].id:
                 out.append(f"FV5 node {n.id!r} parent {n.parent!r} — expected the whole {whole[0].id!r}")
+    for n in model.nodes:
+        if n.node_kind != "role" and (n.realized_by or n.discriminator.strip()):
+            out.append(f"FV5 node {n.id!r} is a {n.node_kind!r} but carries `realized_by` / "
+                       f"`discriminator` — those are the ROLE's fields")
 
-    # FV6 — the foreshadowing map joins onto the kinds.
+    # FV6 — the foreshadowing map joins onto the core.
+    core = set(model.core_ids())
     for f in model.foreshadowing:
         for fname in ("manufacturing", "software"):
             if not str(getattr(f, fname)).strip():
@@ -369,14 +423,14 @@ def structural_findings(model: "FactoryVocabularyModel | None" = None) -> "list[
         if not f.manufacturing_probes or not f.software_probes:
             out.append(f"FV6 foreshadowing row {f.manufacturing!r}->{f.software!r} is missing a probe list "
                        f"(the deterministic presence test has nothing to run)")
-        if f.kind not in kinds:
+        if f.kind not in core:
             out.append(f"FV6 foreshadowing row {f.manufacturing!r}->{f.software!r} kind {f.kind!r} "
-                       f"resolves to no `kind` node")
+                       f"resolves to no core term (expected one of {sorted(core)})")
     for side in ("manufacturing", "software"):
         if not model.foreshadowing_scope.get(side):
             out.append(f"FV6 foreshadowing_scope is missing the {side!r} file list")
 
-    # FV7 — misuse rows + usage licences + the list spec.
+    # FV7 — misuse rows + usage licences.
     for m in model.misuse_collocations:
         if m.confidence not in CONFIDENCE_TIERS:
             out.append(f"FV7 misuse {m.phrase!r} confidence {m.confidence!r} not in {CONFIDENCE_TIERS}")
@@ -393,15 +447,8 @@ def structural_findings(model: "FactoryVocabularyModel | None" = None) -> "list[
         for fname in ("phrase", "licence", "negative_rule"):
             if not str(getattr(u, fname)).strip():
                 out.append(f"FV7 usage licence {u.id!r} has empty {fname}")
-    hl = model.heterogeneous_list
-    if not hl.get("terminal_patterns") or not hl.get("member_words"):
-        out.append("FV7 heterogeneous_list is missing terminal_patterns or member_words")
-    if hl.get("reassign_to") not in ids:
-        out.append(f"FV7 heterogeneous_list reassign_to {hl.get('reassign_to')!r} resolves to no node")
 
-    # FV8 — the author's named sections resolve against real files, and each row carries an id. The HEADING
-    # itself is resolved by the lint (which owns file reading); here we hold the shape and the file join, so
-    # a renamed chapter file reddens rather than silently emptying the gap report.
+    # FV8 — the author's named sections resolve against real files.
     seen_ids: "set[str]" = set()
     for s in model.author_named_sections:
         if not s.id.strip():
@@ -412,42 +459,84 @@ def structural_findings(model: "FactoryVocabularyModel | None" = None) -> "list[
         if not os.path.isfile(os.path.join(_PART5, s.file)):
             out.append(f"FV8 author_named_sections {s.id!r} names file {s.file!r}, which does not exist "
                        f"in book/part5/")
+
+    # FV9 — the reduction's own invariants: the formulation, and the retired terms.
+    if not model.formulation.strip():
+        out.append("FV9 `formulation` is empty — the one sentence the chapter teaches is the whole point "
+                   "of reducing the vocabulary, and the lint's positive check has nothing to look for")
+    if not model.formulation_scope:
+        out.append("FV9 `formulation_scope` is empty — the formulation must name the file that teaches it")
+    for fname in model.formulation_scope:
+        if not os.path.isfile(os.path.join(_PART5, fname)):
+            out.append(f"FV9 formulation_scope names file {fname!r}, which does not exist in book/part5/")
+    labels = {" ".join(n.label.lower().split()) for n in model.nodes}
+    retired_ids: "set[str]" = set()
+    for r in model.retired_terms:
+        if r.id in retired_ids:
+            out.append(f"FV9 duplicate retired_terms id {r.id!r}")
+        retired_ids.add(r.id)
+        for fname in ("phrase", "retired_because", "say_instead"):
+            if not str(getattr(r, fname)).strip():
+                out.append(f"FV9 retired term {r.id!r} has empty {fname} — a ban without a stated "
+                           f"replacement is a finding nobody can act on")
+        if not r.banned_in:
+            out.append(f"FV9 retired term {r.id!r} declares no `banned_in` scope — an unscoped ban would "
+                       f"sweep chapters the decision does not cover")
+        words = [r.phrase.lower()] + [w.lower() for w in r.banned_words]
+        for ex in r.exempt_collocations:
+            if not any(w in ex.lower() for w in words):
+                out.append(f"FV9 retired term {r.id!r} exempts {ex!r}, which contains none of its banned "
+                           f"words {words} — the exemption suppresses nothing")
+        if " ".join(r.phrase.lower().split()) in labels:
+            out.append(f"FV9 retired term {r.id!r} phrase {r.phrase!r} is also a live node label — the "
+                       f"model would be banning the vocabulary it tells prose to use")
     return out
 
 
 # ---- projections ------------------------------------------------------------------------------------
 
 def render_tree(model: "FactoryVocabularyModel | None" = None) -> str:
-    """The WHOLE / PART / COLLECTIVE / KIND / PROPERTY / ENVIRONMENT structure as an indented tree — the
-    shape an editor should hold in mind. Printed by the CLI, never by the book."""
+    """The WHOLE / PART / ROLE / ENVIRONMENT structure as an indented tree, each term with the question it
+    answers — the shape an editor should hold in mind. Printed by the CLI, never by the book."""
     if model is None:
         model = derive_model()
     lines: "list[str]" = []
     for w in model.of_kind("whole"):
         lines.append(f"WHOLE        {w.id}  — {w.label}")
     for p in model.of_kind("part"):
-        lines.append(f"  PART       {p.id}  — {p.label}")
-    coll = model.the_collective()
-    if coll is not None:
-        lines.append(f"  COLLECTIVE {coll.id}  — {coll.label}   (a collective noun, NOT a sibling kind)")
-        for k in model.of_kind("kind"):
-            over = f"   [overlaps: {', '.join(k.overlaps)}]" if k.overlaps else ""
-            lines.append(f"    KIND     {k.id}  — {k.label}{over}")
-    for pr in model.of_kind("property"):
-        lines.append(f"PROPERTY     {pr.id}  — holds of `{pr.holds_of}` (an interpretation, not a kind)")
+        lines.append(f"  PART       {p.id}  — {p.question}")
+    role = model.the_role()
+    if role is not None:
+        lines.append(f"  ROLE       {role.id}  — {role.question}   "
+                     f"(realized by: {', '.join(role.realized_by)}; a ROLE, not a fourth part)")
+        lines.append(f"               discriminator: {role.discriminator}")
     for e in model.of_kind("environment"):
         lines.append(f"ENVIRONMENT  {e.id}  — {e.label}")
-    lines.append(f"guard        partition = {model.partition}  (the kinds OVERLAP; they do not partition)")
+    lines.append(f"guard        partition = {model.partition}")
+    lines.append(f"formulation  {model.formulation}")
+    if model.retired_terms:
+        lines.append(f"retired      {', '.join(r.phrase for r in model.retired_terms)}  "
+                     f"(banned in {', '.join(sorted({g for r in model.retired_terms for g in r.banned_in}))})")
     return "\n".join(lines)
 
 
 def render_foreshadow_md(model: "FactoryVocabularyModel | None" = None) -> str:
     """The foreshadowing map as a table — the manufacturing example chosen to PREFIGURE each software
-    term, and the kind the pair instantiates."""
+    term, and the core term the pair instantiates."""
     if model is None:
         model = derive_model()
     rows = [f"| {f.manufacturing} | {f.software} | `{f.kind}` |" for f in model.foreshadowing]
-    return "\n".join(["| manufacturing example | → software counterpart | kind |", "|---|---|---|", *rows])
+    return "\n".join(["| manufacturing example | → software counterpart | term |", "|---|---|---|", *rows])
+
+
+def render_retired_md(model: "FactoryVocabularyModel | None" = None) -> str:
+    """The retired terms as a table — the word, why it left, and what to say instead. The inverted half of
+    the vocabulary decision: the lint now FINDS these rather than steering prose toward them."""
+    if model is None:
+        model = derive_model()
+    rows = [f"| `{r.phrase}` | {', '.join(r.banned_in)} | {r.retired_because} | {r.say_instead} |"
+            for r in model.retired_terms]
+    return "\n".join(["| retired term | banned in | why it left | say instead |", "|---|---|---|---|", *rows])
 
 
 # ---- materialization --------------------------------------------------------------------------------
@@ -461,6 +550,8 @@ def to_jsonable(model: "FactoryVocabularyModel | None" = None) -> dict:
         "_counts": {
             "nodes": len(model.nodes),
             "by_node_kind": {nk: len(model.of_kind(nk)) for nk in NODE_KINDS},
+            "core_terms": len(model.core_ids()),
+            "retired_terms": len(model.retired_terms),
             "usage_licences": len(model.usage_licences),
             "foreshadowing_pairs": len(model.foreshadowing),
             "misuse_named": len(model.findings_collocations()),
@@ -468,12 +559,14 @@ def to_jsonable(model: "FactoryVocabularyModel | None" = None) -> dict:
             "author_named_sections": len(model.author_named_sections),
         },
         "partition": model.partition,
+        "formulation": model.formulation,
+        "formulation_scope": list(model.formulation_scope),
         "nodes": [asdict(n) for n in model.nodes],
+        "retired_terms": [asdict(r) for r in model.retired_terms],
         "usage_licences": [asdict(u) for u in model.usage_licences],
         "foreshadowing": [asdict(f) for f in model.foreshadowing],
         "foreshadowing_scope": {k: list(v) for k, v in model.foreshadowing_scope.items()},
         "misuse_collocations": [asdict(m) for m in model.misuse_collocations],
-        "heterogeneous_list": dict(model.heterogeneous_list),
         "author_named_sections": [asdict(s) for s in model.author_named_sections],
     }
 
@@ -485,9 +578,10 @@ def regenerate() -> int:
         fh.write("\n")
     c = payload["_counts"]
     print(f"wrote {os.path.relpath(_ARTIFACT)} — {c['nodes']} nodes "
-          f"({c['by_node_kind']['kind']} kinds under 1 collective); {c['usage_licences']} usage licence(s); "
-          f"{c['foreshadowing_pairs']} foreshadowing pair(s); {c['misuse_named']} named misuse(s) + "
-          f"{c['misuse_author_defended']} author-defended")
+          f"({c['core_terms']}-term core: {c['by_node_kind']['part']} parts + "
+          f"{c['by_node_kind']['role']} role); {c['retired_terms']} retired term(s); "
+          f"{c['usage_licences']} usage licence(s); {c['foreshadowing_pairs']} foreshadowing pair(s); "
+          f"{c['misuse_named']} named misuse(s) + {c['misuse_author_defended']} author-defended")
     fs = structural_findings()
     if fs:
         print(f"  {len(fs)} structural finding(s):")
@@ -510,12 +604,14 @@ def verify() -> int:
         print(f"no {os.path.relpath(_ARTIFACT)} — run `regenerate` first")
         return 1
     fresh = to_jsonable()
-    keys = ("partition", "nodes", "usage_licences", "foreshadowing", "foreshadowing_scope",
-            "misuse_collocations", "heterogeneous_list", "author_named_sections", "_counts")
+    keys = ("partition", "formulation", "formulation_scope", "nodes", "retired_terms", "usage_licences",
+            "foreshadowing", "foreshadowing_scope", "misuse_collocations", "author_named_sections",
+            "_counts")
     if any(stored.get(k) != fresh[k] for k in keys):
         print("DRIFT: factory-vocabulary.json disagrees with a fresh derivation — regenerate")
         return 1
     print(f"factory-vocabulary.json is in sync ({fresh['_counts']['nodes']} nodes, "
+          f"{fresh['_counts']['retired_terms']} retired, "
           f"{fresh['_counts']['foreshadowing_pairs']} foreshadowing pairs)")
     return 0
 
@@ -524,13 +620,22 @@ def verify() -> int:
 
 def _print_tests() -> int:
     model = derive_model()
-    print("== factory vocabulary — role tests and negative rules (the editing model; never printed) ==")
+    print("== factory vocabulary — questions, role tests, negative rules (the editing model; never "
+          "printed) ==")
+    print(f"\nFORMULATION  {model.formulation}")
     for n in model.nodes:
         print(f"\n{n.id}  [{n.node_kind}]  {n.label}")
+        print(f"  QUESTION   {n.question}")
         print(f"  ROLE TEST  {n.role_test}")
         print(f"  NEGATIVE   {n.negative_rule}")
+        if n.discriminator:
+            print(f"  DISCRIM.   {n.discriminator}")
         if n.exemplars:
             print(f"  EXEMPLARS  {'; '.join(n.exemplars)}")
+    for r in model.retired_terms:
+        print(f"\n{r.id}  [RETIRED in {', '.join(r.banned_in)}]  \"{r.phrase}\"")
+        print(f"  WHY        {r.retired_because}")
+        print(f"  INSTEAD    {r.say_instead}")
     for u in model.usage_licences:
         print(f"\n{u.id}  [usage-licence: {u.disposition}]  \"{u.phrase}\"")
         print(f"  LICENCE    {u.licence}")
@@ -551,6 +656,9 @@ def main(argv: "list[str]") -> int:
         return _print_tests()
     if cmd == "foreshadow":
         print(render_foreshadow_md())
+        return 0
+    if cmd == "retired":
+        print(render_retired_md())
         return 0
     print(__doc__)
     return 2

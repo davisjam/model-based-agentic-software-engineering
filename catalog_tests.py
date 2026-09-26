@@ -548,17 +548,20 @@ CHECKS = [
     Check("book-models: capability-ladder drift + structure (capability_ladder_declared.json)", 1,
           lambda strict: check_capability_ladder(), audit_only=True),
     # AUDIT-ONLY (rule #55 first landing): the FACTORY-VOCABULARY model — Chapter 5's internal editing
-    # vocabulary, never printed in the book, split out of the one overloaded word `machinery`. Reports
-    # FV0-drift + FV1 (node id + closed node_kind enum + non-empty role test AND negative rule) / FV2
-    # (cardinality — exactly one collective and one property, so "apparatus is a fourth category / capital is
-    # a fifth" cannot be re-opened) / FV3 (collects == the kind set, stated from both ends) / FV4 (the
-    # anti-partition guard + `control` declares real overlaps — the kinds intersect by design) / FV5 (the
-    # property holds OF the collective) / FV6 (the foreshadowing map joins onto the kinds) / FV7 (misuse
-    # tiers + usage licences + list spec resolve) / FV8 (the author's named sections resolve against
-    # real chapter files, so a rename reddens instead of silently emptying the two-way gap report).
-    # Lands audit-only-first (FV1-8 green from birth); a
-    # follow-up flips them to blocking once a clean session confirms the drain. The PROSE half is the
-    # separately audit-only `factory-vocab` lint reported by `catalog.py validate`. See tests/book_models.py.
+    # vocabulary, never printed in the book, REDUCED to a four-term core (fabricator / model / tool /
+    # control) inside the factory and taught by one formulation. Reports FV0-drift + FV1 (node id + closed
+    # node_kind enum + non-empty question, role test AND negative rule) / FV2 (cardinality — one whole, one
+    # role, one environment, three parts; a RETIRED node_kind is refused by name, so "apparatus is a fourth
+    # category / capital is a fifth" cannot be re-opened) / FV3 (four terms, four DIFFERENT questions) / FV4
+    # (the anti-bin guard + `control` carries a discriminator and real `realized_by` edges — a role realized
+    # THROUGH the parts, never a fourth bin beside them) / FV5 (parts and role hang off the whole; only the
+    # role carries the role's fields) / FV6 (the foreshadowing map joins onto the core) / FV7 (misuse tiers +
+    # usage licences resolve) / FV8 (the author's named sections resolve against real chapter files, so a
+    # rename reddens instead of silently emptying the two-way gap report) / FV9 (the formulation is present
+    # and scoped to real files; every retired term states why it left, what to say instead, and the scope it
+    # is banned in). Lands audit-only-first (FV1-9 green from birth); a follow-up flips them to blocking once
+    # a clean session confirms the drain. The PROSE half is the separately audit-only `factory-vocab` lint
+    # reported by `catalog.py validate`. See tests/book_models.py.
     Check("book-models: factory-vocabulary drift + structure (factory_vocabulary_declared.json)", 1,
           lambda strict: check_factory_vocabulary(), audit_only=True),
     # AUDIT-ONLY (rule #55 first landing): the SUPPORTING-SOURCES model — the book's Tier-2 corroboration corpus

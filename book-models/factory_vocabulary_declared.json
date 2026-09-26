@@ -1,15 +1,22 @@
 {
-  "_note": "HAND-AUTHORED SSOT for the FACTORY VOCABULARY — the internal editing model behind Chapter 5's factory language. It is an EDITING model, never a passage: the author was explicit that this taxonomy is not printed in the book. `machinery` had been carrying agents, orchestration, tests, models, policies, permissions, validators, infrastructure and controls at once, and the chapter now makes finer distinctions than one word supports. THE STRUCTURAL CORRECTION IS THE POINT: engineering apparatus is NOT a fourth category alongside machinery / tooling / representation — it is the COLLECTIVE NOUN those kinds participate in; and engineering capital is NOT a fifth category — it is a PROPERTY (an interpretation) of accumulated apparatus. So the model carries three distinct kinds of node, not one flat list: a WHOLE (the factory) containing a PART (the fabricator) and a COLLECTIVE (the apparatus) whose members are KINDs, plus a PROPERTY that holds OF the collective and an ENVIRONMENT the arrangement creates. GENRE CHECK (adopt the schema, reject the runtime): the genre is a controlled vocabulary / thesaurus (SKOS-shaped — broader/narrower/collection). We adopt the collection-vs-concept distinction SKOS draws (`skos:Collection` is precisely 'not a broader concept'), and REJECT the mutually-exclusive-facet runtime: the `partition` guard carries the closed anti-partition value and `control` declares explicit `overlaps`, so no consumer can render the kinds as disjoint bins. Sibling of the other declared->generated book models (capability_ladder / argument_spine): the hand-authored source of truth is this file; factory-vocabulary.json is generated (`python3 book-models/factory_vocabulary_model.py regenerate`).",
+  "_note": "HAND-AUTHORED SSOT for the FACTORY VOCABULARY — the internal editing model behind Chapter 5's factory language. It is an EDITING model, never a passage: the taxonomy is not printed in the book. THE VOCABULARY WAS REDUCED (phase 3a). An earlier version of this model carried a COLLECTIVE noun (`engineering apparatus`), five KINDs under it, and a PROPERTY (`engineering capital`). The author ruled that one to two terms too many: apparatus did almost the same work as `factory` with fuzzier boundaries, `machinery` had become ontology for ontology's sake, and capital asked the reader to reinterpret the factory economically just as Chapter 5 was trying to make it concrete. What remains is a FOUR-TERM CORE, each term answering a DIFFERENT question — fabricator (who does the work), model (what describes what should be built), tool (what the fabricator works with), control (what bounds its freedom) — inside the WHOLE (the factory), taught by one formulation: `Fabricators build the product from models, using tools, subject to controls.` CONTROL IS A ROLE, NOT A BIN: a test is ordinarily a TOOL an agent can run and reason about, and it participates in a CONTROL when the result carries a consequence the agent cannot simply reason away. That discriminator is declared as data (`discriminator` on the role) and guarded (FV4), because it is the subtle part and the part a careless reading loses. GENRE CHECK (adopt the schema, reject the runtime): the genre is a controlled vocabulary / thesaurus (SKOS-shaped). We keep SKOS's concept-vs-relation distinction — `control` is modelled as a role realized BY the parts, not as a fourth part beside them — and reject the faceted-classification runtime where facets partition. `retired_terms` carries the two words that LEFT Chapter 5, and the lint's polarity now runs the other way: it finds them rather than steering prose toward them. Sibling of the other declared->generated book models (capability_ladder / argument_spine): the hand-authored source of truth is this file; factory-vocabulary.json is generated (`python3 book-models/factory_vocabulary_model.py regenerate`).",
 
-  "partition": "kinds-overlap-not-partition",
+  "partition": "control-is-a-role-not-a-bin",
+
+  "formulation": "Fabricators build the product from models, using tools, subject to controls.",
+
+  "_formulation_note": "The one sentence the software-factory section teaches, verbatim. The author tried and rejected \"Fabricators act on models\" — often the fabricator acts on the PRODUCT, informed by models. The lint checks this sentence is PRESENT in the scoped file: a positive, deterministic check on the passage that carries the whole vocabulary.",
+
+  "formulation_scope": ["5.1-software-factory.md"],
 
   "nodes": [
     {
       "id": "factory",
       "node_kind": "whole",
       "label": "the factory (the production system)",
+      "question": "What is the whole engineered system for producing software change?",
       "role_test": "Is the referent the WHOLE production system — the arrangement that determines what should be made, organizes how production proceeds, and judges whether what was produced is acceptable?",
-      "negative_rule": "Do not use `factory` for one of its constituents. The factory is the whole; the fabricator is a part inside it and the apparatus is the collection of structures arranged around that part.",
+      "negative_rule": "Do not use `factory` for one of its constituents. The factory is the whole; the fabricator, the models, and the tools are parts inside it. Where the whole is meant, `factory` or `engineering environment` is the word — there is no collective noun between them.",
       "exemplars": ["DocAble's production system", "an internal software factory", "a factory in a box"]
     },
     {
@@ -17,93 +24,85 @@
       "node_kind": "part",
       "parent": "factory",
       "label": "the fabricator",
-      "role_test": "Is the referent the thing that REALIZES the artifact from a description of what should be made?",
-      "negative_rule": "Do not call the fabricator `machinery`. It is the PART the apparatus is arranged around — the printer inside the factory — not one of the apparatus's kinds.",
+      "question": "Who does the work?",
+      "role_test": "Is the referent the agent that does the work of REALIZATION — that builds the artifact from a description of what should be made?",
+      "negative_rule": "Do not equate the fabricator with the factory. It is the part the rest is arranged around — the printer inside the factory.",
       "exemplars": ["a coding agent", "the printer in the printer metaphor", "the agent fleet's implementing runs"]
     },
     {
-      "id": "engineering-apparatus",
-      "node_kind": "collective",
+      "id": "model",
+      "node_kind": "part",
       "parent": "factory",
-      "label": "engineering apparatus",
-      "collects": ["machinery", "tooling", "representation", "control", "infrastructure"],
-      "role_test": "Is the referent DELIBERATELY HETEROGENEOUS — several kinds at once, such that naming any single kind would narrow it wrongly?",
-      "negative_rule": "Engineering apparatus is NOT a fourth category alongside machinery, tooling, and representations. It is the COLLECTIVE NOUN: machinery, tooling, representations, controls, and infrastructure participate in the apparatus. Do not give it a role test that competes with the kinds' role tests.",
-      "exemplars": ["where the visible engineering apparatus is concentrated", "the support apparatus that outgrew the product", "the apparatus the weekly series measured"]
+      "label": "model",
+      "question": "What describes what should be built?",
+      "role_test": "Does it REPRESENT the thing the factory intends to build, including the relevant properties it should have?",
+      "negative_rule": "A model is not a tool merely because the factory consumes it, and not a control merely because a control reads a property off it. It describes; the consequence is the control's.",
+      "exemplars": ["architecture descriptions", "service graphs", "interface specifications", "a drawing", "a process specification", "the properties a change must preserve"]
     },
     {
-      "id": "machinery",
-      "node_kind": "kind",
-      "member_of": "engineering-apparatus",
-      "label": "machinery",
-      "role_test": "Does it actively PERFORM, ROUTE, COORDINATE, TRANSFORM, or EXECUTE production work?",
-      "negative_rule": "Do NOT call a static model, policy, representation, test suite, or human review `machinery` merely because it belongs to the factory.",
-      "exemplars": ["orchestrators", "execution pipelines", "merge trains", "deployment machinery", "the automated cherry-pick path"]
-    },
-    {
-      "id": "tooling",
-      "node_kind": "kind",
-      "member_of": "engineering-apparatus",
-      "label": "tooling",
-      "role_test": "Is it an INSTRUMENT used to configure, inspect, measure, analyze, or verify?",
-      "negative_rule": "`tooling` names what the thing operationally IS; `control` names the constraint it makes consequential. They are different axes, so neither substitutes for the other — a validator is tooling AND, where its verdict gates admission, a control.",
-      "exemplars": ["linters", "test harnesses", "validators", "static analyzers", "coverage collectors"]
-    },
-    {
-      "id": "representation",
-      "node_kind": "kind",
-      "member_of": "engineering-apparatus",
-      "label": "representation (model)",
-      "role_test": "Does it REPRESENT engineering knowledge or intent in structured form?",
-      "negative_rule": "It is not machinery merely because the factory uses it. A representation is consumed BY machinery; that does not make it machinery.",
-      "exemplars": ["system models", "service graphs", "deployment topology", "specifications", "project instructions"]
+      "id": "tool",
+      "node_kind": "part",
+      "parent": "factory",
+      "label": "tool",
+      "question": "What does the fabricator work with?",
+      "role_test": "Does the fabricator USE it to inspect, modify, build, test, or otherwise work on the product?",
+      "negative_rule": "A tool is what the thing IS; a control is what its result DECIDES. The same test is a tool when an agent runs it and reasons about the outcome. Do not rename a tool a control merely because a control is built on it.",
+      "exemplars": ["linters", "test harnesses", "validators", "static analyzers", "a gauge", "a jig", "a fixture"]
     },
     {
       "id": "control",
-      "node_kind": "kind",
-      "member_of": "engineering-apparatus",
+      "node_kind": "role",
+      "parent": "factory",
       "label": "control",
-      "overlaps": ["machinery", "tooling", "representation", "infrastructure"],
-      "role_test": "Does it make an engineering decision CONSEQUENTIAL for later work?",
-      "negative_rule": "Do not turn `control` into a physical category parallel to tooling. The categories intentionally OVERLAP: the same validator is tooling by what it is and a control by what its verdict decides. A reading that sorts the kinds into mutually exclusive bins has the model wrong.",
-      "exemplars": ["gates", "permissions", "enforced policies", "admission decisions", "a ban-lint on a raw seam"]
-    },
-    {
-      "id": "infrastructure",
-      "node_kind": "kind",
-      "member_of": "engineering-apparatus",
-      "label": "infrastructure",
-      "role_test": "Is it the COMPUTATIONAL or OPERATIONAL SUBSTRATE that production runs on?",
-      "negative_rule": "Do not replace `infrastructure` merely for terminological uniformity. Where the referent is the substrate, the established word is the right one.",
-      "exemplars": ["execution environments", "the deployment substrate", "CI runners", "the evidence infrastructure"]
-    },
-    {
-      "id": "engineering-capital",
-      "node_kind": "property",
-      "holds_of": "engineering-apparatus",
-      "label": "engineering capital",
-      "role_test": "Does the sentence turn on DURABLE FUTURE LEVERAGE — investment embodied in structures that make earlier engineering work useful to later production?",
-      "negative_rule": "Engineering capital is not a fifth category. It is a PROPERTY / INTERPRETATION of accumulated apparatus. Do not repeatedly call everything engineering capital: the empirical claim is that the artifacts ACCUMULATED; capital is the interpretation of what that accumulation is worth to later work.",
-      "exemplars": ["the controls a later Epic inherits without re-deriving them", "a validator written once and consulted by every subsequent run"]
+      "question": "What bounds the fabricator's freedom?",
+      "realized_by": ["model", "tool"],
+      "discriminator": "The result carries a consequence the agent cannot simply reason away — a failing test that blocks admission, a permission boundary on action, a merge gate on admission.",
+      "role_test": "Does it CONSTRAIN what the fabricator may do or what the factory may accept — such that the constraint holds whether or not the agent agrees with it?",
+      "negative_rule": "`control` is a ROLE, not a bin parallel to model and tool. The same test is a tool by what it is and participates in a control when its verdict has teeth. A reading that sorts the terms into mutually exclusive bins has the model wrong; so does a reading that calls every tool a control.",
+      "exemplars": ["an admission gate", "a permission boundary", "an enforced policy", "a quality gate that rejects a part", "a ban-lint on a raw seam"]
     },
     {
       "id": "engineering-environment",
       "node_kind": "environment",
       "label": "the engineering environment",
+      "question": "What conditions does the arrangement create for the work?",
       "aliases": ["Governed Engineering Environment", "the engineered environment"],
-      "role_test": "Is the referent what the ARRANGEMENT of apparatus CREATES — the conditions agents produce work inside?",
-      "negative_rule": "Do not use `environment` as a synonym for `apparatus`. The apparatus is the collection of structures; the environment is what arranging them produces. One is the inventory, the other the condition.",
+      "role_test": "Is the referent what the ARRANGEMENT of the factory's parts CREATES — the conditions agents produce work inside, and the accumulated constraints and information they inherit?",
+      "negative_rule": "Do not use `environment` as a loose synonym for the factory's contents. The factory is the system; the environment is the condition arranging it produces. Both name the whole, from different angles — that is why no third collective noun is needed.",
       "exemplars": ["the existing engineering environment shaped how the work could be realized", "a Governed Engineering Environment"]
     }
   ],
+
+  "retired_terms": [
+    {
+      "id": "engineering-apparatus",
+      "phrase": "engineering apparatus",
+      "banned_words": ["apparatus"],
+      "exempt_collocations": ["support apparatus"],
+      "retired_because": "It did almost the same work as `factory`, with fuzzier boundaries, and invited the reader to ask how apparatus formally differs from tooling. Chapter 5 should feel like touring a factory, not learning a vocabulary for classifying every object on the factory floor.",
+      "say_instead": "For the whole, say `factory` or `engineering environment`. For particular pieces, NAME them: models, tests, validators, orchestration, deployment infrastructure, controls. A list that names its members needs no collective noun at the end of it.",
+      "banned_in": ["part5/*.md"]
+    },
+    {
+      "id": "engineering-capital",
+      "phrase": "engineering capital",
+      "banned_words": [],
+      "exempt_collocations": [],
+      "retired_because": "It asks the reader to reinterpret the factory economically just when Chapter 5 is trying to make the factory concrete: what its parts are, how they fit together, how it was built, and what comparable organizations have built. The theory chapters can observe that some of those durable structures embody prior judgment and introduce the abstraction then. See the thing first; theorize its economics later.",
+      "say_instead": "Name the structures and what they do for later work. The depreciation argument survives in concrete register: the structures that carry decisions forward must themselves be maintained, and some will stop being worth their upkeep. Ordinary economic prose — carrying cost, construction, `capital only while future work inherits from it` — is NOT retired; the defined term is.",
+      "banned_in": ["part5/*.md"]
+    }
+  ],
+
+  "_retired_scope_note": "The bans are scoped to `part5/*.md` ONLY. `engineering capital` is live on both sides of Chapter 5 — 52 uses across parts 3, 4, 6, 7 and the conclusion, and it is DEFINED in the governance-conversion section. That asymmetry is a known, accepted state: the author ruled the other chapters a later problem, to be settled after Chapter 5's metaphor is constrained. Widening `banned_in` is a separate editorial decision, not a drain.",
 
   "usage_licences": [
     {
       "id": "support-apparatus",
       "phrase": "support apparatus",
       "disposition": "retain",
-      "licence": "The support/production ratio measurement — the supporting apparatus weighed against the product it supports. The author calls this \"a particularly good use of apparatus\".",
-      "negative_rule": "RETAIN as written. Do not generalize it: outside the support/production measurement, the collective noun is `engineering apparatus`."
+      "licence": "The support/production ratio MEASUREMENT — the supporting apparatus weighed against the product it supports. A narrowly defined measurement label where an aggregate category is genuinely needed: the lines-of-code accounting line, and the liability sentence anchored to the three-to-one ratio.",
+      "negative_rule": "RETAIN only as a measurement label. In running prose, `tests and supporting infrastructure` is clearer — and the collective noun it once generalized to (`engineering apparatus`) is retired, so there is nothing to widen this licence into."
     },
     {
       "id": "stock",
@@ -117,25 +116,25 @@
 
   "foreshadowing": [
     {
-      "manufacturing": "conveyor / assembly line",
-      "software": "merge train",
-      "kind": "machinery",
-      "manufacturing_probes": ["conveyor", "assembly line"],
-      "software_probes": ["merge train"]
+      "manufacturing": "drawing / process spec",
+      "software": "model",
+      "kind": "model",
+      "manufacturing_probes": ["drawing", "process plan", "process specification"],
+      "software_probes": ["system model", "model census"]
     },
     {
       "manufacturing": "gauge",
       "software": "validator",
-      "kind": "tooling",
+      "kind": "tool",
       "manufacturing_probes": ["gauge"],
       "software_probes": ["validator"]
     },
     {
-      "manufacturing": "drawing / process spec",
-      "software": "model",
-      "kind": "representation",
-      "manufacturing_probes": ["drawing", "process plan", "process specification"],
-      "software_probes": ["system model", "model census"]
+      "manufacturing": "jig / fixture",
+      "software": "test harness",
+      "kind": "tool",
+      "manufacturing_probes": ["jig", "fixture"],
+      "software_probes": ["test harness"]
     },
     {
       "manufacturing": "quality gate",
@@ -143,22 +142,17 @@
       "kind": "control",
       "manufacturing_probes": ["quality gate", "inspection station"],
       "software_probes": ["admission gate", "admission control"]
-    },
-    {
-      "manufacturing": "jig / fixture",
-      "software": "test harness",
-      "kind": "tooling",
-      "manufacturing_probes": ["jig", "fixture"],
-      "software_probes": ["test harness"]
     }
   ],
+
+  "_foreshadowing_note": "The conveyor / assembly line -> merge train pair was RETIRED with `machinery`. It existed to prefigure machinery-as-a-category; in a passage that no longer defines machinery it would either re-teach the retired category or sit as an unattached example. The merge train keeps its own referent in the DocAble section, where it is described as what it does rather than as an instance of a kind.",
 
   "foreshadowing_scope": {
     "manufacturing": ["5.1-software-factory.md"],
     "software": ["5.2-inside-docables-software-factory.md", "5.3-other-agentic-software-factories.md", "5.4-two-problems-of-factory-engineering.md"]
   },
 
-  "_author_named_sections_note": "The sections the author's site-by-site vocabulary pass covers. Recorded so the gap between WHAT THE AUTHOR NAMED and WHAT A LINT CAN FIND is derived rather than asserted: a named section with zero findings is either a lint gap or a site needing the role test, and both are worth reporting. Each row names its section STRUCTURALLY — by heading text, or `*opening*` for everything before the file's first `##`, or a null heading for the whole file — so a reflow cannot shift the boundary. CAVEAT: the source files carry no §5.2.N / §5.4.N numbering; the ordinals below are INFERRED from the DocAble section's own 'seven movements' sentence and from heading order. The author's verbatim per-site replacement text was NOT available when this model was built (his document is not in the repo), so `misuse_collocations[].note` carries the model's reading, not his wording.",
+  "_author_named_sections_note": "The sections the author's site-by-site vocabulary pass covers. Recorded so the gap between WHAT THE AUTHOR NAMED and WHAT A LINT CAN FIND is derived rather than asserted. Each row names its section STRUCTURALLY — by heading text, or `*opening*` for everything before the file's first `##`, or a null heading for the whole file — so a reflow cannot shift the boundary. CAVEAT: the source files carry no §5.2.N / §5.4.N numbering; the ordinals below are INFERRED from the DocAble section's own 'seven movements' sentence and from heading order.",
 
   "author_named_sections": [
     {"id": "§5.1", "file": "5.1-software-factory.md", "heading": null},
@@ -179,54 +173,12 @@
 
   "misuse_collocations": [
     {
-      "phrase": "tolerance machinery",
-      "reassign_to": "tooling",
-      "confidence": "named",
-      "note": "The referent is \"tests, static checks, simulators, benchmarks, and policy predicates\" — instruments that VERIFY, so `tooling`. Where the sentence turns on the bound being consequential rather than on the instruments, `control` is the other correct reading; the two are different axes, not rivals."
-    },
-    {
-      "phrase": "context machinery",
-      "reassign_to": "representation",
-      "confidence": "named",
-      "note": "Context is engineering knowledge in structured form: `context representations`, or simply `context`. If the referent is narrowly the retrieval/assembly path that delivers it, that path IS machinery — decide by the role test at the site."
-    },
-    {
-      "phrase": "engineering machinery",
-      "reassign_to": "engineering-apparatus",
-      "confidence": "named",
-      "note": "The referent is deliberately heterogeneous (\"where the visible engineering apparatus is concentrated\"), which is exactly the collective noun's job."
-    },
-    {
-      "phrase": "richer machinery",
-      "reassign_to": "engineering-apparatus",
-      "confidence": "named",
-      "note": "\"More of everything\" is the collective, not one kind."
-    },
-    {
-      "phrase": "machinery for process design",
-      "reassign_to": "engineering-apparatus",
-      "confidence": "named",
-      "note": "What a factory in a box EXPOSES for process design spans kinds — surfaces, representations, and controls — so the collective noun is right."
-    },
-    {
-      "phrase": "machinery for making it effective",
-      "reassign_to": "control",
-      "confidence": "named",
-      "note": "Making customer intent effective in production IS the control role test: it makes an engineering decision consequential for later work."
-    },
-    {
       "phrase": "production machinery",
       "reassign_to": "",
       "confidence": "author-defended",
-      "note": "NOT a finding. The author defends this phrase twice — in the opening contrast of the two-problems section and again in the factories-inside-and-outside subsection — because DocAble genuinely has orchestration, merge, and execution machinery and the contrast is the argument. Listed so a later pass does not \"fix\" it."
+      "note": "NOT a finding. The author defends this phrase — in the opening contrast of the two-problems section and again in the factories-inside-and-outside subsection — because DocAble genuinely has orchestration, merge, and execution machinery and the contrast is the argument. With `machinery` demoted from defined category to ordinary prose, the phrase is simply good English; the row survives so a later pass does not \"fix\" it into a term."
     }
   ],
 
-  "heterogeneous_list": {
-    "reassign_to": "engineering-apparatus",
-    "terminal_patterns": ["or other machinery", "and other machinery", "or machinery", "and machinery"],
-    "member_words": ["tests", "test suites", "policies", "policy", "human review", "reviews", "simulators", "permission systems", "permissions", "models", "representations", "specifications", "gates", "validators", "invariants"],
-    "min_distinct_members": 2,
-    "note": "The clearest misuse: a `machinery` TERMINAL closing an enumeration whose members span kinds — \"tests, policies, human review, simulators, permission systems, models, or other machinery.\" A list that spans kinds wants the collective noun, not one of the kinds as a catch-all."
-  }
+  "_misuse_note": "The NAMED misuse rows are gone. They existed to steer prose TOWARD `engineering apparatus` (`tolerance machinery` -> tooling, `engineering machinery` -> apparatus, `richer machinery` -> apparatus, `machinery for process design` -> apparatus, and a heterogeneous-list terminal -> apparatus). Under the reduced vocabulary that guidance is WRONG in both directions: the target term no longer exists, and `machinery` is no longer a policed category, so a `machinery` collocation is a style call rather than a violation. Two of those sites are now back to `machinery` on purpose. The deterministic check that replaces them runs the other way — see `retired_terms`. The `author-defended` tier is kept because it still does work: it records a phrase a later pass must not touch."
 }
