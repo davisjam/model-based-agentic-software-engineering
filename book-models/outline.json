@@ -7,7 +7,7 @@
     "derived_ids": 204,
     "missing_topic_sentence": 5,
     "sections_drained": 151,
-    "paragraph_points": 762
+    "paragraph_points": 764
   },
   "chapters": [
     {
@@ -2560,39 +2560,49 @@
               "block_index": 19
             },
             {
+              "slug": "a-factory-contains-more-than-its-fabricators",
+              "text": "A factory contains more than its fabricators: machinery performs and coordinates production work, tooling positions and measures it, and the broader engineering apparatus takes in those things together with the drawings, specifications, controls, and infrastructure. The kinds overlap, and as they accumulate they become engineering capital.",
+              "block_index": 22
+            },
+            {
+              "slug": "software-factories-contain-analogous-structures",
+              "text": "Software factories contain analogous structures: orchestrators, execution pipelines, and merge trains are machinery; linters, test harnesses, validators, and analyzers are tooling; architectural models and service graphs are representations; and controls use those structures to constrain what the factory may produce or admit.",
+              "block_index": 24
+            },
+            {
               "slug": "the-two-problems-specialize-to-changes-not-copies",
               "text": "The difference respecializes the two problems of factory engineering: process design organizes the production of changes, and tolerance constrains how much freedom the fabricator may exercise while the changed product remains acceptable, so the factory produces new realizations of an evolving artifact rather than copies of the same one.",
-              "block_index": 22
+              "block_index": 26
             },
             {
               "slug": "representations-of-software-carry-a-carrying-cost",
               "text": "Realizing controlled change carries a cost physical manufacturing can amortize differently: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost.",
-              "block_index": 24
+              "block_index": 28
             },
             {
               "slug": "organizations-judge-the-carrying-cost-differently",
               "text": "Software organizations have made different economic judgments about that cost — some find durable value in explicit representations, others find it cheaper to keep skilled engineers close to implementation — and the tradeoff turns on how much reusable knowledge a representation carries and how expensive it is to keep accurate.",
-              "block_index": 26
+              "block_index": 30
             },
             {
               "slug": "agile-is-intelligible-when-the-product-is-change",
               "text": "The Agile movement placed substantially greater weight on keeping knowledgeable humans close to implementation, which makes particular sense when the object of engineering is controlled change: a representation that does not change with the software can cease to describe the thing it is meant to govern.",
-              "block_index": 28
+              "block_index": 32
             },
             {
               "slug": "earlier-separation-attempts-met-the-same-tradeoff",
               "text": "Earlier attempts to separate engineering judgment from implementation met the same tradeoff from the other direction: moving decisions upstream let less experienced programmers implement, but only if costly representations carried the judgment they would otherwise supply.",
-              "block_index": 30
+              "block_index": 34
             },
             {
               "slug": "the-question-was-where-judgment-is-carried-most-economically",
               "text": "The economic question was never whether software should use models but where engineering judgment could be carried most economically without losing control: craft production stays economical when transferring judgment out of fabrication costs as much as leaving it there, and factory production becomes economical when reusable structures carry it more cheaply.",
-              "block_index": 32
+              "block_index": 36
             },
             {
               "slug": "commodity-intelligence-changes-the-tradeoff",
               "text": "Commodity intelligence changes the tradeoff: agents are inexpensive and capable enough to resolve many ordinary realization decisions, so the production system can carry selected consequential judgments while leaving substantial realization freedom to the agent.",
-              "block_index": 34
+              "block_index": 38
             }
           ]
         },
@@ -2602,22 +2612,22 @@
           "heading_text": "Walking Through a Software Factory",
           "topic_sentence": "The factory metaphor gives us a vocabulary for walking through an agentic software production system without assuming in advance how it should be organized.",
           "id_source": "derived",
-          "block_index": 36,
+          "block_index": 40,
           "points": [
             {
               "slug": "four-questions-orient-a-walkthrough",
               "text": "Four questions orient a walkthrough of an agentic software production system without assuming in advance how it should be organized: what it produces, what people do, how production is organized, and what the tolerances are.",
-              "block_index": 37
+              "block_index": 41
             },
             {
               "slug": "software-tolerances-take-more-forms-than-a-dimension",
               "text": "A software tolerance may be a quantitative bound, an invariant, a behavioral requirement, an architectural constraint, a security policy, or another statement of acceptable variation — some checkable mechanically, others still requiring human judgment.",
-              "block_index": 40
+              "block_index": 44
             },
             {
               "slug": "the-four-questions-are-broader-than-mage",
               "text": "The four questions are deliberately broader than MAGE — a factory may answer them with tests, policies, human review, simulators, permission systems, or models — and the two case sections ask them of DocAble and of independently developed industrial systems.",
-              "block_index": 42
+              "block_index": 46
             }
           ]
         }
