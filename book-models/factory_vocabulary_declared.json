@@ -158,6 +158,25 @@
     "software": ["5.2-inside-docables-software-factory.md", "5.3-other-agentic-software-factories.md", "5.4-two-problems-of-factory-engineering.md"]
   },
 
+  "_author_named_sections_note": "The sections the author's site-by-site vocabulary pass covers. Recorded so the gap between WHAT THE AUTHOR NAMED and WHAT A LINT CAN FIND is derived rather than asserted: a named section with zero findings is either a lint gap or a site needing the role test, and both are worth reporting. Each row names its section STRUCTURALLY — by heading text, or `*opening*` for everything before the file's first `##`, or a null heading for the whole file — so a reflow cannot shift the boundary. CAVEAT: the source files carry no §5.2.N / §5.4.N numbering; the ordinals below are INFERRED from the DocAble section's own 'seven movements' sentence and from heading order. The author's verbatim per-site replacement text was NOT available when this model was built (his document is not in the repo), so `misuse_collocations[].note` carries the model's reading, not his wording.",
+
+  "author_named_sections": [
+    {"id": "§5.1", "file": "5.1-software-factory.md", "heading": null},
+    {"id": "§5.2 opening", "file": "5.2-inside-docables-software-factory.md", "heading": "*opening*"},
+    {"id": "§5.2.2", "file": "5.2-inside-docables-software-factory.md", "heading": "Building the Factory"},
+    {"id": "§5.2.3", "file": "5.2-inside-docables-software-factory.md", "heading": "Inside the Factory"},
+    {"id": "§5.2.4", "file": "5.2-inside-docables-software-factory.md", "heading": "The Factory in Operation"},
+    {"id": "§5.2.5", "file": "5.2-inside-docables-software-factory.md", "heading": "The Supervisor's Job"},
+    {"id": "§5.2.6", "file": "5.2-inside-docables-software-factory.md", "heading": "Economics"},
+    {"id": "§5.2.7", "file": "5.2-inside-docables-software-factory.md", "heading": "Liability"},
+    {"id": "§5.3", "file": "5.3-other-agentic-software-factories.md", "heading": null},
+    {"id": "§5.4 opening", "file": "5.4-two-problems-of-factory-engineering.md", "heading": "*opening*"},
+    {"id": "§5.4.1", "file": "5.4-two-problems-of-factory-engineering.md", "heading": "Process Design and Tolerance"},
+    {"id": "§5.4.2", "file": "5.4-two-problems-of-factory-engineering.md", "heading": "The Engineer in the Factory"},
+    {"id": "§5.4.3", "file": "5.4-two-problems-of-factory-engineering.md", "heading": "Factories Inside and Outside the Organization"},
+    {"id": "the coda", "file": "5.5-engineering-the-factory.md", "heading": null}
+  ],
+
   "misuse_collocations": [
     {
       "phrase": "tolerance machinery",

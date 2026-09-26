@@ -1137,7 +1137,7 @@ def cmd_validate(_args) -> int:
     # controls at once. The vocabulary model splits those into a COLLECTIVE noun (engineering apparatus) and
     # the five KINDs that participate in it, plus a PROPERTY (engineering capital) and an ENVIRONMENT. This
     # band reports the three DETERMINISTIC checks — named misuse collocations, the heterogeneous-list
-    # terminal, and a narrow-licence word outside its licence — plus the model's own FV1-FV7 structure. It
+    # terminal, and a narrow-licence word outside its licence — plus the model's own FV1-FV8 structure. It
     # does NOT increment n_issues: the prose violates it by design right now, and the findings ARE the prose
     # worklist. A follow-up flips it to blocking once that worklist drains (the repo's audit-only-first
     # landing discipline). The role tests are deliberately NOT checked — see the lint's docstring for what

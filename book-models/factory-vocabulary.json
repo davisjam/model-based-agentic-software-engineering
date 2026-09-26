@@ -14,7 +14,8 @@
     "usage_licences": 2,
     "foreshadowing_pairs": 5,
     "misuse_named": 6,
-    "misuse_author_defended": 1
+    "misuse_author_defended": 1,
+    "author_named_sections": 14
   },
   "partition": "kinds-overlap-not-partition",
   "nodes": [
@@ -391,5 +392,77 @@
     ],
     "min_distinct_members": 2,
     "note": "The clearest misuse: a `machinery` TERMINAL closing an enumeration whose members span kinds — \"tests, policies, human review, simulators, permission systems, models, or other machinery.\" A list that spans kinds wants the collective noun, not one of the kinds as a catch-all."
-  }
+  },
+  "author_named_sections": [
+    {
+      "id": "§5.1",
+      "file": "5.1-software-factory.md",
+      "heading": ""
+    },
+    {
+      "id": "§5.2 opening",
+      "file": "5.2-inside-docables-software-factory.md",
+      "heading": "*opening*"
+    },
+    {
+      "id": "§5.2.2",
+      "file": "5.2-inside-docables-software-factory.md",
+      "heading": "Building the Factory"
+    },
+    {
+      "id": "§5.2.3",
+      "file": "5.2-inside-docables-software-factory.md",
+      "heading": "Inside the Factory"
+    },
+    {
+      "id": "§5.2.4",
+      "file": "5.2-inside-docables-software-factory.md",
+      "heading": "The Factory in Operation"
+    },
+    {
+      "id": "§5.2.5",
+      "file": "5.2-inside-docables-software-factory.md",
+      "heading": "The Supervisor's Job"
+    },
+    {
+      "id": "§5.2.6",
+      "file": "5.2-inside-docables-software-factory.md",
+      "heading": "Economics"
+    },
+    {
+      "id": "§5.2.7",
+      "file": "5.2-inside-docables-software-factory.md",
+      "heading": "Liability"
+    },
+    {
+      "id": "§5.3",
+      "file": "5.3-other-agentic-software-factories.md",
+      "heading": ""
+    },
+    {
+      "id": "§5.4 opening",
+      "file": "5.4-two-problems-of-factory-engineering.md",
+      "heading": "*opening*"
+    },
+    {
+      "id": "§5.4.1",
+      "file": "5.4-two-problems-of-factory-engineering.md",
+      "heading": "Process Design and Tolerance"
+    },
+    {
+      "id": "§5.4.2",
+      "file": "5.4-two-problems-of-factory-engineering.md",
+      "heading": "The Engineer in the Factory"
+    },
+    {
+      "id": "§5.4.3",
+      "file": "5.4-two-problems-of-factory-engineering.md",
+      "heading": "Factories Inside and Outside the Organization"
+    },
+    {
+      "id": "the coda",
+      "file": "5.5-engineering-the-factory.md",
+      "heading": ""
+    }
+  ]
 }

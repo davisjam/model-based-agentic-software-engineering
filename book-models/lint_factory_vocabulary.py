@@ -349,6 +349,93 @@ def foreshadow_findings(model: "fvm.FactoryVocabularyModel | None" = None) -> "l
     return out
 
 
+def _heading_span(path: pathlib.Path, heading: str) -> "tuple[int, int]":
+    """The 1-based inclusive line span of a named section, derived STRUCTURALLY from the file so a reflow
+    cannot shift it. `heading` empty -> the whole file; `*opening*` -> everything before the first `## `;
+    otherwise the `##`/`###` whose text matches, running to the next heading at the same or higher level."""
+    raw = path.read_text(encoding="utf-8").splitlines()
+    if not heading:
+        return 1, len(raw)
+    first = next((i for i, ln in enumerate(raw, 1) if ln.startswith("## ")), len(raw) + 1)
+    if heading == "*opening*":
+        return 1, first - 1
+    for i, ln in enumerate(raw, 1):
+        m = re.match(r"^(#{2,4})\s+(.*?)(?:\s*\{#[^}]*\})?\s*$", ln)
+        if not m or m.group(2).strip() != heading:
+            continue
+        level = len(m.group(1))
+        for j in range(i + 1, len(raw) + 1):
+            nxt = re.match(r"^(#{1,4})\s", raw[j - 1])
+            if nxt and len(nxt.group(1)) <= level:
+                return i, j - 1
+        return i, len(raw)
+    return 0, -1  # heading not found — reported as a gap-report finding
+
+
+def gap_report(model: "fvm.FactoryVocabularyModel | None" = None) -> "tuple[list[str], list[str]]":
+    """The TWO-WAY GAP between the author's site-by-site pass and what this lint can mechanically find.
+    Both directions are reported; neither is dropped.
+
+    Returned as `(author_named_without_findings, findings_outside_named_sections)`:
+      * A named section with ZERO findings is either a lint gap or a site needing the role test the lint
+        cannot supply. The row carries the section's raw `machinery` occurrence count, so the reader can
+        tell "nothing to fix here" (count 0) from "everything here needs judgment" (count > 0).
+      * A finding in a section the author did NOT name is a candidate he may not have seen.
+    """
+    if model is None:
+        model = fvm.derive_model()
+    fs = findings(model)
+    hit = re.compile(r"^book/part5/([^:]+):(\d+):")
+    placed = [(m.group(1), int(m.group(2))) for m in (hit.match(f) for f in fs) if m]
+
+    named_rows: "list[str]" = []
+    covered: "set[tuple[str, int]]" = set()
+    word = re.compile(r"machinery", re.IGNORECASE)
+    for s in model.author_named_sections:
+        path = BOOK / "part5" / s.file
+        lo, hi = _heading_span(path, s.heading)
+        if hi < lo:
+            named_rows.append(f"{s.id} ({s.file}) — heading {s.heading!r} NOT FOUND; the section was "
+                              f"renamed, so this row of the model needs updating")
+            continue
+        n_find = [(f, ln) for f, ln in placed if f == s.file and lo <= ln <= hi]
+        covered.update(n_find)
+        raw = path.read_text(encoding="utf-8").splitlines()
+        occ = sum(1 for i, ln in enumerate(raw, 1) if lo <= i <= hi and word.search(ln))
+        if not n_find:
+            named_rows.append(f"{s.id} ({s.file}:{lo}-{hi}) — 0 lint findings, {occ} raw `machinery` "
+                              f"occurrence(s). " + ("Nothing for the lint OR a human to do."
+                                                    if occ == 0 else
+                                                    "Every one needs the role test, which the lint cannot "
+                                                    "apply — this is judgment work, not a lint gap."))
+    outside = [f for f, (fl, ln) in zip(fs, placed) if (fl, ln) not in covered] if len(placed) == len(fs) \
+        else [f for f in fs]
+    return named_rows, outside
+
+
+#: The rest of the narrative body, scanned ONLY for the out-of-scope report below — never for findings.
+_OUT_OF_SCOPE_GLOBS = ("part1/*.md", "part2/*.md", "part3/*.md", "part4/*.md", "part6/*.md",
+                       "part7/*.md", "conclusion/*.md")
+
+
+def out_of_scope_candidates(model: "fvm.FactoryVocabularyModel | None" = None) -> "list[str]":
+    """Named misuse collocations OUTSIDE the scanned chapter. Reported, never a finding: the vocabulary
+    decision is Chapter 5's, and `machinery` elsewhere is used in senses this model does not govern. These
+    are candidates a reader of the Chapter-5 decision may not have looked for — the other half of the
+    two-way gap, on the SCOPE axis rather than the site axis. Widening `_SCAN_GLOBS` is a separate call."""
+    if model is None:
+        model = fvm.derive_model()
+    matchers = _named_matchers(model)
+    out: "list[str]" = []
+    for path in sorted(p for g in _OUT_OF_SCOPE_GLOBS for p in BOOK.glob(g)):
+        for block in _iter_blocks(path, skip_preamble=False):
+            for misuse, pat in matchers:
+                for h in pat.finditer(block.text):
+                    out.append(f"{_rel(path)}:{block.line_at(h.start())}: {h.group(0).strip()!r} "
+                               f"(out of scope; the model would say `{misuse.reassign_to}`)")
+    return out
+
+
 def census(model: "fvm.FactoryVocabularyModel | None" = None) -> "list[str]":
     """A per-file COUNT of the vocabulary words, printed as context rather than findings. This is where the
     `engineering capital` density the author warns about ("do not repeatedly call everything engineering
@@ -417,6 +504,13 @@ def render_worklist(model: "fvm.FactoryVocabularyModel | None" = None) -> str:
         "phrase is matched on WRAP-JOINED text, so a `file:line` is where the phrase STARTS — it may "
         "continue onto the next line.",
         "",
+        "**A stated gap in this worklist.** The author's own site-by-site replacement WORDING is not "
+        "reproduced below, because his vocabulary document is not in the repository — only the phrase list "
+        "and the negative rules reached this model. The replacement guidance in the next table is the "
+        "MODEL'S reading of each phrase, not the author's sentences. Where his document is available, "
+        "prefer his wording: it is more specific than any rule can infer. Do not read a silence here as "
+        "his approval.",
+        "",
     ]
     lines += [f"- {f}" for f in fs] or ["- (none)"]
     lines += [
@@ -453,6 +547,46 @@ def render_worklist(model: "fvm.FactoryVocabularyModel | None" = None) -> str:
         "",
     ]
     lines += [f"- {f}" for f in fore] or ["- (none)"]
+    named_gap, outside = gap_report(model)
+    oos = out_of_scope_candidates(model)
+    lines += [
+        "",
+        "## The two-way gap against the author's site list",
+        "",
+        "The author's site-by-site pass covers "
+        f"{len(model.author_named_sections)} sections; this lint produces findings in "
+        f"{len(model.author_named_sections) - len(named_gap)} of them. Both directions of the gap are "
+        "reported, because both are useful. Section ordinals are INFERRED from heading order and from the "
+        "DocAble section's own \"seven movements\" sentence — the source files carry no §5.2.N numbering.",
+        "",
+        f"### Author named it; the lint finds nothing ({len(named_gap)})",
+        "",
+        "A zero here is not a clean bill. Where the raw `machinery` count is above zero, every one of "
+        "those uses needs the role test applied by a reader — that is judgment work the lint declines to "
+        "fake, not a lint gap to close.",
+        "",
+    ]
+    lines += [f"- {g}" for g in named_gap] or ["- (none)"]
+    lines += [
+        "",
+        f"### The lint found it; the author's list does not cover the site ({len(outside)})",
+        "",
+    ]
+    lines += [f"- {o}" for o in outside] or [
+        "- (none) — every finding falls inside a section the author already named. The lint's precision "
+        "against his list is total; its RECALL is the four sections above.",
+    ]
+    lines += [
+        "",
+        f"### Outside the scanned chapter ({len(oos)}) — the scope axis of the same gap",
+        "",
+        "The same named phrases elsewhere in the book. NOT findings: the vocabulary decision is Chapter "
+        "5's, and one chapter is titled \"Agentic Machinery and Engineering Mechanisms\", naming the "
+        "productive substrate rather than factory apparatus. Listed so a decision to widen the scope is "
+        "made deliberately and with the cost visible.",
+        "",
+    ]
+    lines += [f"- {o}" for o in oos] or ["- (none)"]
     lines += [
         "",
         "## Census — context, not findings",
@@ -538,6 +672,22 @@ def main(argv: "list[str] | None" = None) -> int:
         print(f"  FORESHADOWING COVERAGE ({len(fore)}; NOT part of the promotable finding set):")
         for f in fore:
             print(f"    {f}")
+    named_gap, outside = gap_report(model)
+    if named_gap:
+        print(f"  GAP — author named the section, the lint finds nothing ({len(named_gap)}; a non-zero "
+              f"`machinery` count there is JUDGMENT work, not a lint gap):")
+        for g in named_gap:
+            print(f"    {g}")
+    if outside:
+        print(f"  GAP — the lint found it outside any author-named section ({len(outside)}):")
+        for o in outside:
+            print(f"    {o}")
+    oos = out_of_scope_candidates(model)
+    if oos:
+        print(f"  OUT OF SCOPE ({len(oos)}; the same phrases elsewhere in the book — NOT findings, listed "
+              f"so widening the scope is a deliberate call):")
+        for o in oos:
+            print(f"    {o}")
     print("  CENSUS (context, not findings — the `engineering capital` density the model warns about):")
     for row in census(model):
         print(f"    {row}")

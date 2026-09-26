@@ -538,7 +538,9 @@ def check_factory_vocabulary():
     both ends), FV4 (the anti-partition guard is present and `control` declares real overlaps — the kinds
     intentionally intersect and must never be read as disjoint bins), FV5 (the property holds OF the
     collective), FV6 (the foreshadowing map joins onto the kinds), FV7 (misuse tiers + usage licences + the
-    heterogeneous-list spec resolve). Keyed off `book-models/factory-vocabulary.json` +
+    heterogeneous-list spec resolve), FV8 (every `author_named_sections` row carries an id and names a
+    file that exists, so a renamed chapter reddens rather than silently emptying the two-way gap report).
+    Keyed off `book-models/factory-vocabulary.json` +
     `factory_vocabulary_declared.json`."""
     import factory_vocabulary_model as fvm  # noqa: E402 — path set above; the book-model package
 
@@ -560,7 +562,7 @@ def check_factory_vocabulary():
     issues.extend(fvm.structural_findings())
 
     # Audit-only: same non-gating contract as the sibling first landings — surfaced as [audt], excluded from
-    # the fail tally. A follow-up promotes FV1–FV7 to blocking once a clean session confirms the drain.
+    # the fail tally. A follow-up promotes FV1–FV8 to blocking once a clean session confirms the drain.
     return (FAIL if issues else PASS), issues
 
 
