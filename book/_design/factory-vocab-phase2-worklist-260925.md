@@ -39,22 +39,13 @@ guard        partition = kinds-overlap-not-partition  (the kinds OVERLAP; they d
 | `support-apparatus` (retain) | The support/production ratio measurement — the supporting apparatus weighed against the product it supports. The author calls this "a particularly good use of apparatus". | RETAIN as written. Do not generalize it: outside the support/production measurement, the collective noun is `engineering apparatus`. |
 | `stock` (retain-narrow) | An EMPIRICAL / ECONOMIC noun, admitted ONLY where accumulation over time is the measured phenomenon — "the stock of controls" beside a growth curve. | Do not use `stock` as the general conceptual name for factory structures. It is warehouse vocabulary in a factory book; a prior pass drove it from 14 to 0 in the DocAble section, and this narrow licence does not re-open the general use. |
 
-## Findings (10)
+## Findings (0)
 
 Each line is `file:line`, the matched phrase, and the node the model says applies instead. The phrase is matched on WRAP-JOINED text, so a `file:line` is where the phrase STARTS — it may continue onto the next line.
 
 **A stated gap in this worklist.** The author's own site-by-site replacement WORDING is not reproduced below, because his vocabulary document is not in the repository — only the phrase list and the negative rules reached this model. The replacement guidance in the next table is the MODEL'S reading of each phrase, not the author's sentences. Where his document is available, prefer his wording: it is more specific than any rule can infer. Do not read a silence here as his approval.
 
-- book/part5/5.3-other-agentic-software-factories.md:325: MISUSE 'context machinery' — the model says `representation` (representation (model)) applies here
-- book/part5/5.3-other-agentic-software-factories.md:327: MISUSE 'context machinery' — the model says `representation` (representation (model)) applies here
-- book/part5/5.4-two-problems-of-factory-engineering.md:47: MISUSE 'engineering machinery' — the model says `engineering-apparatus` (engineering apparatus) applies here
-- book/part5/5.4-two-problems-of-factory-engineering.md:50: MISUSE 'tolerance machinery' — the model says `tooling` (tooling) applies here
-- book/part5/5.4-two-problems-of-factory-engineering.md:53: MISUSE 'tolerance machinery' — the model says `tooling` (tooling) applies here
-- book/part5/5.4-two-problems-of-factory-engineering.md:149: MISUSE 'context machinery' — the model says `representation` (representation (model)) applies here
-- book/part5/5.4-two-problems-of-factory-engineering.md:153: MISUSE 'machinery for making it effective' — the model says `control` (control) applies here
-- book/part5/5.4-two-problems-of-factory-engineering.md:158: MISUSE 'machinery for process design' — the model says `engineering-apparatus` (engineering apparatus) applies here
-- book/part5/5.4-two-problems-of-factory-engineering.md:159: MISUSE 'richer machinery' — the model says `engineering-apparatus` (engineering apparatus) applies here
-- book/part5/5.4-two-problems-of-factory-engineering.md:159: MISUSE 'machinery for process design' — the model says `engineering-apparatus` (engineering apparatus) applies here
+- (none)
 
 ### Per-finding replacement guidance
 
@@ -68,12 +59,11 @@ Each line is `file:line`, the matched phrase, and the node the model says applie
 | `machinery for making it effective` | `control` | Making customer intent effective in production IS the control role test: it makes an engineering decision consequential for later work. |
 | *(the heterogeneous-list terminal)* | `engineering-apparatus` | The clearest misuse: a `machinery` TERMINAL closing an enumeration whose members span kinds — "tests, policies, human review, simulators, permission systems, models, or other machinery." A list that spans kinds wants the collective noun, not one of the kinds as a catch-all. |
 
-## DO NOT CHANGE — author-defended sites (4)
+## DO NOT CHANGE — author-defended sites (3)
 
 **`production machinery`** — NOT a finding. The author defends this phrase twice — in the opening contrast of the two-problems section and again in the factories-inside-and-outside subsection — because DocAble genuinely has orchestration, merge, and execution machinery and the contrast is the argument. Listed so a later pass does not "fix" it.
 
 - book/part5/5.4-two-problems-of-factory-engineering.md:11: 'production machinery' — DEFENDED, leave alone
-- book/part5/5.4-two-problems-of-factory-engineering.md:144: 'production machinery' — DEFENDED, leave alone
 - book/part5/5.4-two-problems-of-factory-engineering.md:148: 'production machinery' — DEFENDED, leave alone
 - book/part5/5.4-two-problems-of-factory-engineering.md:155: 'production machinery' — DEFENDED, leave alone
 
@@ -93,23 +83,26 @@ The software-factory section's manufacturing examples should PREFIGURE the softw
 
 ## The two-way gap against the author's site list
 
-The author's site-by-site pass covers 14 sections; this lint produces findings in 3 of them. Both directions of the gap are reported, because both are useful. Section ordinals are INFERRED from heading order and from the DocAble section's own "seven movements" sentence — the source files carry no §5.2.N numbering.
+The author's site-by-site pass covers 14 sections; this lint produces findings in 0 of them. Both directions of the gap are reported, because both are useful. Section ordinals are INFERRED from heading order and from the DocAble section's own "seven movements" sentence — the source files carry no §5.2.N numbering.
 
-### Author named it; the lint finds nothing (11)
+### Author named it; the lint finds nothing (14)
 
 A zero here is not a clean bill. Where the raw `machinery` count is above zero, every one of those uses needs the role test applied by a reader — that is judgment work the lint declines to fake, not a lint gap to close.
 
 - §5.1 (5.1-software-factory.md:1-231) — 0 lint findings, 12 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
 - §5.2 opening (5.2-inside-docables-software-factory.md:1-54) — 0 lint findings, 4 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.2.2 (5.2-inside-docables-software-factory.md:135-541) — 0 lint findings, 3 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.2.3 (5.2-inside-docables-software-factory.md:542-697) — 0 lint findings, 9 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.2.4 (5.2-inside-docables-software-factory.md:698-925) — 0 lint findings, 8 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.2.5 (5.2-inside-docables-software-factory.md:926-1020) — 0 lint findings, 2 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.2.6 (5.2-inside-docables-software-factory.md:1021-1288) — 0 lint findings, 2 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.2.7 (5.2-inside-docables-software-factory.md:1289-1328) — 0 lint findings, 2 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
-- §5.4 opening (5.4-two-problems-of-factory-engineering.md:1-27) — 0 lint findings, 2 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
+- §5.2.2 (5.2-inside-docables-software-factory.md:135-542) — 0 lint findings, 2 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
+- §5.2.3 (5.2-inside-docables-software-factory.md:543-698) — 0 lint findings, 6 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
+- §5.2.4 (5.2-inside-docables-software-factory.md:699-926) — 0 lint findings, 5 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
+- §5.2.5 (5.2-inside-docables-software-factory.md:927-1021) — 0 lint findings, 2 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
+- §5.2.6 (5.2-inside-docables-software-factory.md:1022-1289) — 0 lint findings, 0 raw `machinery` occurrence(s). Nothing for the lint OR a human to do.
+- §5.2.7 (5.2-inside-docables-software-factory.md:1290-1329) — 0 lint findings, 1 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
+- §5.3 (5.3-other-agentic-software-factories.md:1-511) — 0 lint findings, 7 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
+- §5.4 opening (5.4-two-problems-of-factory-engineering.md:1-27) — 0 lint findings, 1 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
+- §5.4.1 (5.4-two-problems-of-factory-engineering.md:28-98) — 0 lint findings, 3 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
 - §5.4.2 (5.4-two-problems-of-factory-engineering.md:99-130) — 0 lint findings, 0 raw `machinery` occurrence(s). Nothing for the lint OR a human to do.
-- the coda (5.5-engineering-the-factory.md:1-34) — 0 lint findings, 2 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
+- §5.4.3 (5.4-two-problems-of-factory-engineering.md:131-163) — 0 lint findings, 3 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
+- the coda (5.5-engineering-the-factory.md:1-34) — 0 lint findings, 1 raw `machinery` occurrence(s). Every one needs the role test, which the lint cannot apply — this is judgment work, not a lint gap.
 
 ### The lint found it; the author's list does not cover the site (0)
 
@@ -133,10 +126,10 @@ Per-file counts of the watched words. The `engineering capital` column is the de
 ```
 book/part5/00-part-intro.md: machinery=1  apparatus=0  tooling=0  representation=0  control=1  infrastructure=0  engineering capital=0  stock=0
 book/part5/5.1-software-factory.md: machinery=14  apparatus=7  tooling=7  representation=16  control=10  infrastructure=2  engineering capital=2  stock=0
-book/part5/5.2-inside-docables-software-factory.md: machinery=31  apparatus=8  tooling=1  representation=52  control=38  infrastructure=6  engineering capital=5  stock=0
-book/part5/5.3-other-agentic-software-factories.md: machinery=12  apparatus=0  tooling=1  representation=13  control=35  infrastructure=6  engineering capital=1  stock=0
-book/part5/5.4-two-problems-of-factory-engineering.md: machinery=19  apparatus=0  tooling=0  representation=5  control=12  infrastructure=2  engineering capital=0  stock=0
-book/part5/5.5-engineering-the-factory.md: machinery=3  apparatus=0  tooling=0  representation=2  control=2  infrastructure=0  engineering capital=0  stock=0
+book/part5/5.2-inside-docables-software-factory.md: machinery=21  apparatus=20  tooling=1  representation=52  control=39  infrastructure=6  engineering capital=5  stock=0
+book/part5/5.3-other-agentic-software-factories.md: machinery=7  apparatus=0  tooling=1  representation=15  control=35  infrastructure=6  engineering capital=1  stock=0
+book/part5/5.4-two-problems-of-factory-engineering.md: machinery=7  apparatus=8  tooling=0  representation=5  control=12  infrastructure=2  engineering capital=0  stock=0
+book/part5/5.5-engineering-the-factory.md: machinery=1  apparatus=0  tooling=0  representation=2  control=2  infrastructure=0  engineering capital=0  stock=0
 ```
 
 ## What this lint will never catch
