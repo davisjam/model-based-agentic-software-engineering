@@ -2561,12 +2561,12 @@
             },
             {
               "slug": "a-factory-contains-more-than-its-fabricators",
-              "text": "A factory contains more than its fabricators: machinery performs and coordinates production work, tooling equips particular operations, and the broader engineering apparatus takes in those things together with the drawings, specifications, controls, and infrastructure. The kinds overlap, and structures that keep carrying useful decisions forward become engineering capital.",
+              "text": "A factory contains more than its fabricators. Models say what should be made, tools are what the work is done with, and controls bound what may be done and what may be accepted. A gauge measures a part; at a quality gate, the same reading decides whether the part proceeds.",
               "block_index": 22
             },
             {
               "slug": "software-factories-contain-analogous-structures",
-              "text": "Software factories contain analogous structures: orchestrators, execution pipelines, and merge trains are machinery; linters, test harnesses, validators, and analyzers are tooling; architectural models and service graphs are representations; and controls constrain production or admission through rules, gates, permissions, and checks built from those structures.",
+              "text": "Software factories hold all three: models describe the product, tools work on it, and controls bound both. A test is ordinarily a tool an agent runs and reasons about; it participates in a control when the result carries a consequence the agent cannot reason away. Fabricators build the product from models, using tools, subject to controls.",
               "block_index": 24
             },
             {

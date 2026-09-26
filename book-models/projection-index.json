@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 816,
+    "total_sites": 815,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 478,
+      "book-web": 477,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -93,7 +93,7 @@
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
@@ -969,7 +969,7 @@
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 40
+            "occ": 35
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
@@ -1522,10 +1522,6 @@
             "occ": 4
           },
           {
-            "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
             "occ": 3
           },
@@ -1677,7 +1673,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 49
+            "occ": 48
           }
         ]
       },
