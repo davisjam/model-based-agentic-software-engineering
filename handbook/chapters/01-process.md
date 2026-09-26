@@ -330,7 +330,7 @@ it is worth engineering this into.
 
 [@agile-manifesto2001] The short statement of values that consolidated a family of lightweight process arguments into a common position.
 
-[@scrumguide2020] Prescribes one widely adopted incremental arrangement in normative detail, and shows how little of the engineering work such a framework actually determines.
+[@scrumguide2020] Prescribes one widely adopted incremental arrangement in normative detail, leaving most engineering decisions to the team.
 
 [@sommerville2016] A clear survey of plan-driven and incremental process models.
 

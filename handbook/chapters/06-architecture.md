@@ -420,7 +420,7 @@ Design works within those constraints and can reveal when an architectural decis
 
 [@kruchten1995] The classic argument for using multiple architectural views to answer different engineering questions.
 
-[@abowd1996scenario] Establishes the move that makes an architectural claim examinable at all: turn a quality-attribute concern into concrete scenarios and walk the architecture through them.
+[@abowd1996scenario] Shows how to evaluate an architecture by turning quality-attribute concerns into concrete scenarios and tracing each one through the design.
 
 [@kazman2000atam] Stages that analysis into a repeatable organizational method, and names what an evaluation yields — risks, sensitivity points, and tradeoff points.
 
