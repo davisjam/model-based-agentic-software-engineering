@@ -68,10 +68,10 @@ embodied in an interface, or enforced by a check. What the organization can know
 depends partly on how knowledge is distributed through its engineering environment.
 
 Without some form of engineering memory,[^engineering-memory] that distributed knowledge decays with
-the conversations and people that carried it. Engineers rediscover old constraints, repeat experiments, reopen settled
-arguments without knowing why earlier alternatives were rejected, or remove peculiar-looking
-mechanisms whose purpose has become invisible. The cost appears later as repeated work and decisions
-made without information the organization once possessed.
+the conversations and people that carried it. Engineers rediscover old constraints, repeat
+experiments, reopen settled arguments without knowing why earlier alternatives were rejected, or
+remove peculiar-looking mechanisms whose purpose has become invisible. The cost appears later as
+repeated work and decisions made without information the organization once possessed.
 
 Preserving knowledge is not free either. Someone must record it, organize it, find it, interpret it,
 and sometimes maintain it as the system changes. A repository containing every conversation,
@@ -88,10 +88,10 @@ cheap are weaker ones. The purpose of engineering memory is not to preserve ever
 reduce consequential rediscovery.
 
 [^engineering-memory]: Engineering memory is sometimes called *institutional knowledge*, but the
-terms pick out different objects. Engineering memory pertains to a system: what the organization
-retains about the artifact it builds and operates. Institutional knowledge pertains to the
-organization producing it, including its people, processes, and norms. The two overlap, because how
-an organization worked often explains why its system took the shape it did.
+terms name different things. Engineering memory concerns the system: what the organization retains
+about the artifact it builds and operates. Institutional knowledge concerns the organization
+producing it, including its people, processes, and norms. The two overlap, because how an
+organization worked often explains why its system took the shape it did.
 
 ## Engineering knowledge comes from many places {#sec-knowledge-sources}
 
@@ -164,7 +164,7 @@ Once engineers recognize knowledge as valuable, preserving more of it can seem o
 Past a point, the strategy defeats itself. Documents must be searched and interpreted; models
 compete for attention; old decisions must be distinguished from current ones; contradictory records
 require reconciliation. Material that nobody trusts becomes another body of information future
-engineers must search and then assess before they can act.
+engineers must search and assess before they can act.
 
 Capturing knowledge also creates maintenance costs. A representation intended to describe the
 current system may require revision as the system evolves. The more representations an organization
@@ -191,11 +191,11 @@ The question is therefore not simply whether something is worth knowing. Enginee
 expected value of future use against the cost of making the knowledge persist.
 
 The retrieval side of that cost is not fixed. Finding recorded knowledge is an old problem, pursued
-for decades as information retrieval and enterprise search, and language models and the agents built
-on them have made retrieval over unstructured historical material capable enough that knowledge once
-preserved but effectively unfindable may now be reachable. That capability has to be used carefully,
-because a system that answers plausibly from stale, contradictory, or superseded records makes
-confident wrong answers cheaper to produce.
+for decades as information retrieval and enterprise search. Language models and the agents built on
+them have made retrieval over unstructured historical material capable enough that knowledge once
+preserved but effectively unfindable may now be reachable. That capability demands care. A system
+that answers plausibly from stale, contradictory, or superseded records makes confident wrong
+answers cheaper to produce.
 
 ## Knowledge can be represented with different strengths {#sec-representation-forms}
 
@@ -370,10 +370,10 @@ Good engineering memory requires both remembering and knowing what no longer des
 The strongest evidence that knowledge matters is often that engineers keep needing it, and repeated
 rediscovery is evidence about the representation as much as about the knowledge. A fact that
 engineers continually reconstruct may need to become easier to find. An explanation repeated to
-every new team member may deserve durable representation. Repeated mistakes can indicate that documentation is too weak a form
-for the knowledge being preserved. When incidents repeatedly expose the same assumption, the
-organization may need to change the engineering environment rather than remind engineers of the
-lesson again.
+every new team member may deserve durable representation. Repeated mistakes can indicate that
+documentation is too weak a form for the knowledge being preserved. When incidents repeatedly
+expose the same assumption, the organization may need to change the engineering environment rather
+than remind engineers of the lesson again.
 
 Consequential knowledge can therefore migrate into more durable engineering structure, and the
 appropriate destination depends on what future decision the knowledge should constrain. Some
