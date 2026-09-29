@@ -95,11 +95,7 @@ Parsimony is the complementary judgment: each distinction the model does include
 
 Parsimony depends on one more thing: the agent. The engineering obligation fixes the consequential distinctions that must be preserved, and no increase in agent capability relaxes that obligation. But a particular agent may also need scaffolding — additional decomposition, examples, or intermediate structure — to interpret and realize the obligation reliably. Call the obligation plus its scaffolding the **specified region**: everything the engineer actually writes down. Below it lie the degrees of freedom, the realization choices left to the agent.
 
-![The specified region stacks the engineering obligation above the scaffolding this agent needs; greater agent capability moves only the specification boundary, reducing scaffolding. Below lie the degrees of freedom left to the agent.](figures/specified-region.svg)
-
-*Two boundaries, not one. The obligation boundary is set by the engineering problem and does not move with capability. The specification boundary does: a more capable agent needs less scaffolding, shrinking the specified region toward the obligation.*
-
-Capability can reduce how much we must specify. It cannot reduce what must be true. Parsimony, restated for delegation: *how little do we need to specify while still preserving the engineering obligation and enabling this agent to interpret and realize it reliably?*
+The specified region has two boundaries, not one. The obligation boundary is set by the engineering problem and does not move with capability. The specification boundary does: a more capable agent needs less scaffolding, shrinking the specified region toward the obligation. Capability can reduce how much we must specify. It cannot reduce what must be true. Parsimony, restated for delegation: *how little do we need to specify while still preserving the engineering obligation and enabling this agent to interpret and realize it reliably?*
 
 Two production cases answer the obvious question: *how do I know whether I left out the right things?* The first is DocAble's lease model, which governs ownership of an in-flight job. A lease records an owner, a generation, and a lifetime. Suppose worker A holds generation 7, appears to stall, and the job is subsequently claimed by worker B at generation 8. A late action from A must not clear or supersede B's newer claim. The missing transition matters: stale-generation release is not a permitted way to change the current ownership state.
 
