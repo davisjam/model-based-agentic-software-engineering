@@ -35,9 +35,9 @@ materials:
     src: 2-1-Agents.pptx
 ---
 
-**Premise.** *Delegation is something engineers design.*
+**Premise.** *Delegation is something engineers design, from the work delegated and the properties of its recipient.*
 
-Earlier, we defined engineering as the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. That definition does not require engineers to personally perform every act of realization. Work can be delegated — to other people or to machine intelligence — while responsibility for the resulting system remains with the engineer.
+Earlier, we defined engineering as the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. That definition does not require engineers to personally perform every act of realization. Work can be delegated, whether to other people or to machine intelligence. Responsibility for the resulting system remains with the engineer.
 
 Delegation is not new to software engineering. Engineers have always delegated realization: to junior colleagues, to contractors and vendors, to libraries they did not write, and to compilers that allocate registers and manage memory on their behalf. Factories made the same move earlier still, delegating fabrication to skilled machinists while retaining control through drawings, tolerances, gauges, and inspection. In each case the engineer answered the same four questions: what work to hand over, what the recipient needed in order to do it, what consequences it was permitted to produce, and what evidence would justify accepting the result.
 
