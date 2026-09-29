@@ -1,5 +1,5 @@
 ---
-title: "Agent Levers: Working with Software Agents"
+title: "Delegating to Software Agents: Old Problem, New Properties"
 readings:
   groups:
     - heading: Delegation is not new
@@ -30,7 +30,7 @@ assignments: []
 instructor_notes: ""
 status: ready
 materials:
-  - title: Lecture slides — Agent Levers
+  - title: "Lecture slides — Delegating to Software Agents: Old Problem, New Properties"
     src: 2-1-Agents.pptx
 ---
 
