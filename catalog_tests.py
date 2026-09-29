@@ -118,6 +118,7 @@ from tests.html import (
     check_aria_label_on_bare_element,
 )
 from tests.course import (
+    check_course_act_nav_covers_every_unit,
     check_course_lander_prose_word_band,
     check_course_mage_tokens_resolve,
     check_course_module_schema,
@@ -185,6 +186,12 @@ CHECKS = [
           lambda strict: check_course_module_schema()),
     Check("course: lecture-module nav labels are capitalized (.pages title present + first word Upper)", 1,
           lambda strict: check_course_nav_titles()),
+    # BLOCKING (green at landing): every authored lecture unit reaches its act's nav. An explicit `nav:`
+    # allowlist in an act's `.pages` overrides awesome-pages discovery, so a unit the allowlist forgets
+    # builds and serves but never appears in the sidebar — how `03 Alignment` stayed invisible for four
+    # days. Passes trivially under the `...` rest token; fires on a re-enumerated, incomplete allowlist.
+    Check("course: every lecture-unit directory appears in its act's nav", 1,
+          lambda strict: check_course_act_nav_covers_every_unit()),
     # BLOCKING (green at landing): a multi-session module's declared `sessions:` titles and the reference
     # calendar's {module:…} tokens are the same set — the declared list exists so the calendar's
     # per-session tokens resolve to the one lander (site/hooks/modules.py), and this holds the join.

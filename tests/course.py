@@ -312,6 +312,74 @@ def check_course_nav_titles():
     return (FAIL if issues else PASS), issues
 
 
+#: A `nav:` block entry in a `.pages` file — the indented `- <entry>` lines under the key.
+_PAGES_NAV_ITEM_RE = re.compile(r"^\s+-\s+(.+?)\s*$")
+#: awesome-pages' rest token: "everything not named explicitly, in natural sort order".
+_REST_TOKEN = "..."
+
+
+def _pages_nav_entries(pages_path: str) -> "list[str] | None":
+    """The act `.pages` `nav:` block entries, or None when the file declares no `nav:` key.
+
+    None means auto-discovery — awesome-pages lists every child. Stdlib line reader (the suite runs on a
+    fresh checkout with nothing installed), anchored to the block-list spelling the act files use."""
+    if not os.path.exists(pages_path):
+        return None
+    lines = open(pages_path, encoding="utf-8").read().splitlines()
+    for i, ln in enumerate(lines):
+        if re.match(r"^nav:\s*$", ln):
+            entries: list[str] = []
+            for follower in lines[i + 1:]:
+                m = _PAGES_NAV_ITEM_RE.match(follower)
+                if not m:
+                    break
+                entries.append(m.group(1).strip().strip("\"'"))
+            return entries
+    return None
+
+
+def check_course_act_nav_covers_every_unit():
+    """BLOCKING. Every lecture-unit directory under an act reaches that act's built nav.
+
+    awesome-pages auto-discovers an act's children, but an explicit `nav:` allowlist in the act's
+    `.pages` OVERRIDES discovery — so a unit absent from the allowlist is authored, built, and served,
+    yet invisible in the sidebar. `03-alignment` shipped that way for four days: a hand-grown act
+    allowlist gained `04`, then `01`, then `02`, and nobody went back for `03`.
+
+    The acts now pin `index.md` and delegate the rest to the `...` token, so this check passes
+    trivially today. It exists for the reintroduction: the moment someone re-enumerates an act's units
+    by hand and forgets one, the omission fails here instead of shipping.
+
+    Stdlib twin of the awesome-pages rule (mkdocs lives in the site-only toolchain): a bare `...` covers
+    every child not named explicitly. Any other entry counts as a literal name, so an unrecognized
+    rest-glob spelling fails loud rather than passing silently."""
+    acts = sorted(d for d in glob.glob(os.path.join(ROOT, "course", "lectures", "act-*")) if os.path.isdir(d))
+    if not acts:
+        return FAIL, ["course act-nav: no course/lectures/act-* directories matched — the lectures tree "
+                      "moved; the check would silently pass over an empty set otherwise"]
+    issues: list[str] = []
+    units_seen = 0
+    for act in acts:
+        units = sorted(d for d in glob.glob(os.path.join(act, "*"))
+                       if os.path.isfile(os.path.join(d, "index.md")))
+        units_seen += len(units)
+        entries = _pages_nav_entries(os.path.join(act, ".pages"))
+        if entries is None or _REST_TOKEN in entries:
+            continue  # auto-discovery (no `nav:`, or the rest token) — every unit is reachable
+        listed = set(entries)
+        for unit in units:
+            if os.path.basename(unit) not in listed:
+                issues.append(
+                    f"{rel(unit)}: authored but absent from {rel(os.path.join(act, '.pages'))}'s `nav:` "
+                    f"allowlist — an explicit list overrides awesome-pages discovery, so this unit "
+                    f"builds and serves but never appears in the sidebar. Add it, or replace the "
+                    f"enumeration with `- ...` so units are discovered.")
+    if not units_seen:
+        return FAIL, ["course act-nav: no lecture-unit directories (act-*/<dir>/index.md) found — the "
+                      "unit layout moved; the check would silently pass otherwise"]
+    return (FAIL if issues else PASS), issues
+
+
 # ── Reading citations — the course side of the bibliography subsystem (BIB-12) ───────────────────────
 # A lander reading references a work by cite key (`- cite: <key>` in its readings front matter); the
 # teach-site build projects the formatted citation from book/data/citations.json (site/hooks/readings.py).
