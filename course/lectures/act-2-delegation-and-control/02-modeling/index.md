@@ -5,26 +5,26 @@ sessions:
   - "Modeling: Systems of Models"
 readings:
   groups:
-    - heading: The modeling principle
+    - heading: The Modeling principle
       items:
         - cite: davis2026mage
           locator: '§2.1 and §2.5'
-          annotation: '{mage:2.1} and {mage:2.5} Davis, 2026. The spine of the unit, assigned by lecture. Read §2.1 for Lecture 1. It develops purposeful reduction: how an engineering question selects what a model must preserve, the accumulated modeling repertoire, and the account of tolerances and degrees of freedom this unit builds on. Read §2.5 for Lecture 2. It treats what happens when models accumulate: heterogeneous models over shared identities, correspondence maintained by deriving, generating, or tracing and checking, and joins that answer questions no single model contains. §§2.2–2.4 are the book''s worked repertoire of structural, behavioral, and decision models, developed through production examples. Consult them as reference; you are not asked to memorize a taxonomy.'
-    - heading: The size of the modeling repertoire
+          annotation: '{mage:2.1} and {mage:2.5} Davis, 2026. The spine of the unit, assigned by lecture. Read §2.1 for Lecture 1: it develops models as purposeful reductions, and its questions are the ones to carry into every example — *what must this model preserve, and what can it safely leave out?* Read §2.5 for Lecture 2: it treats what happens when models accumulate — semantics, correspondence, shared identities, authority, and the joins that answer questions no single model contains. §§2.2–2.4 are a repertoire, not a taxonomy to memorize; consult them as reference.'
+    - heading: The size of the Modeling repertoire
       items:
         - cite: visualparadigm-uml-guide
-          annotation: '["The Complete Guide to UML Diagram Types."](readings/visual-paradigm-uml-diagram-types.pdf) UML is deliberately enormous: fourteen standard diagram types, each a different representation of system structure or behavior. Browse all of it; do not memorize any of it. The purpose of the reading is breadth. This is what decades of accumulated modeling repertoire look like, and UML is one established source within the larger repertoire Lecture 1 surveys. For each diagram type, ask the questions the lecture teaches: what engineering question does this representation make easier to answer, what does it preserve, and what does it omit? (Source: [visual-paradigm.com/guide](https://www.visual-paradigm.com/guide/the-complete-guide-to-uml-diagrams-all-14-types-explained-with-practical-examples).)'
-    - heading: 'Models as engineering artifacts: the MBSE tradition'
+          annotation: '["The Complete Guide to UML Diagram Types."](readings/visual-paradigm-uml-diagram-types.pdf) Browse, do not memorize. For each diagram type, ask the questions the lecture teaches: what question does this representation make easier to answer, what does it preserve, and what does it deliberately leave out? The point is not UML syntax; it is how much accumulated knowledge already exists about reducing a system for a purpose. (Source: [visual-paradigm.com/guide](https://www.visual-paradigm.com/guide/the-complete-guide-to-uml-diagrams-all-14-types-explained-with-practical-examples).)'
+    - heading: Models as engineering artifacts
       items:
         - cite: madni2018mbse
-          annotation: 'Madni and Sievers, ["Model-Based Systems Engineering: Motivation, Current Status, and Research Opportunities"](https://doi.org/10.1002/sys.21438) (2018). Places our use of models in the much older tradition of model-based systems engineering, which treats models not as illustrations but as engineering artifacts used across specification, design, analysis, verification, and configuration management. Look past the particular MBSE technologies and ask a more general question as you read: what becomes possible when important engineering knowledge has explicit structure rather than remaining distributed across documents, implementations, and people''s heads?'
-    - heading: Delegation as an information problem
+          annotation: 'Madni and Sievers, ["Model-Based Systems Engineering: Motivation, Current Status, and Research Opportunities"](https://doi.org/10.1002/sys.21438) (2018). Model-based systems engineering is an older tradition in which models are engineering artifacts, not illustrations. Look past the particular technologies and ask: what becomes possible when engineering knowledge has explicit structure rather than living across documents, implementations, and people''s heads?'
+    - heading: 'Return to earlier readings: degrees of freedom and parsimony'
       items:
-        - cite: aghion1997authority
-          annotation: 'Aghion and Tirole, ["Formal and Real Authority in Organizations"](https://doi.org/10.1086/262063) (1997), selected sections. This is not a software-engineering paper, and its agents are people. That is precisely why we read it. Aghion and Tirole distinguish the formal right to make a decision from effective control over the decision, and show that delegation, information, initiative, and control are intertwined. Read it against this unit''s opening problem: a principal who delegates consequential work must decide what the delegate should know, what freedom the delegate should receive, and what control the principal must retain. Modeling is our engineering answer to the first of those questions.'
-  optional:
-    - cite: estefan2008mbse
-      annotation: 'The historical foundation of MBSE: a survey of the early methodologies, distinguishing methodology, process, method, and lifecycle model.'
+        - cite: kruchten1995
+          annotation: 'Kruchten, ["The 4+1 View Model of Architecture"](https://doi.org/10.1109/52.469759), previously assigned in Unit 06, Architecture. First read for why architecture needs several views; return to it as an example of degrees of freedom. Each view preserves what its questions require and leaves the rest outside the representation: *what must each view preserve, and what is it free to omit?* The paper is also a precedent for systems of models: several purposeful views contribute to knowledge about one system without collapsing every concern into one representation — which is also why there need not be a grand model. Whether greater unification helps depends on the system and the questions.'
+        - cite: meyer1997oosc
+          annotation: 'Meyer, *Object-Oriented Software Construction*, previously assigned in Unit 07, Design. First read for design and abstraction; return to it through the lens of parsimony. Purposeful reduction asks not only what a model must contain but whether every distinction earns its place. For each element, ask: *what engineering question requires this distinction, and what would we lose without it?* If nothing consequential, omission improves the model. Meyer complements Kruchten: degrees of freedom reason from the obligation toward what must be preserved; parsimony turns back toward the representation and asks whether we preserved more than the question requires.'
+      note: 'These two Act I readings become useful again here. If you skipped either the first time, now is a good time; if you read it, revisit it through the Modeling lens.'
 instructor_materials: []
 student_materials: []
 assignments: []
