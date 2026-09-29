@@ -26,7 +26,7 @@ This reference course uses a 16-week sequence in three acts. The [Syllabus](syll
 | 4 | {module:Architecture} · {module:Design} |
 | 5 | {module:Validation} · {module:Engineering Decision-Making and Metrics} |
 
-## Act II — Building Systems & Governing Change
+## Act II — Delegation and Control
 
 *How do we delegate realization, govern what is produced, and learn when reality contradicts our expectations?*
 

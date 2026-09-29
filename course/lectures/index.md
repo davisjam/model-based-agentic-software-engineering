@@ -36,7 +36,7 @@ Units are published as their teaching materials are completed.
 - **[Validation](act-1-foundations/08-validation/index.md)**
 - **[Engineering Decision-Making and Metrics](act-1-foundations/09-engineering-decision-making-and-metrics/index.md)**
 
-## Act II — Building Systems & Governing Change
+## Act II — Delegation and Control
 
 *How do we delegate realization, govern what is produced, and learn when reality contradicts our expectations?*
 
