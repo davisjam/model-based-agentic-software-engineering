@@ -37,13 +37,11 @@ materials:
 
 **Premise.** *A model is useful because it leaves things out and makes explicit what must remain.*
 
-Agents make delegation cheap. But delegation creates a communication problem: the agent must recover what matters from what we give it. We cannot, and should not, specify every implementation choice. The engineering problem is to communicate consequential structure and intent while leaving the remaining degrees of freedom to the agent. That is the role of Modeling.
+Agents make implementation easy to delegate, but delegation creates a communication problem: the agent must recover what matters from what we give it. We cannot, and should not, specify every implementation choice. The engineering problem is to make consequential structure and intent explicit while leaving the remaining degrees of freedom to the agent. That is the role of Modeling.
 
-Earlier, we defined engineering as the discipline of exercising informed control over consequential systems. Informed control requires more than possessing an implementation. An engineer must be able to answer consequential questions without reconstructing the entire system every time the question changes.
+Informed control requires more than possessing an implementation: an engineer must be able to answer consequential questions without reconstructing the entire system every time the question changes. A dependency graph discards most of a program while preserving relationships among components. A state machine discards most implementation detail while preserving states, transitions, and the transitions that must not occur. A quantitative model discards behavior and structure while preserving quantities and bounds relevant to cost, latency, or capacity. Each is useful because it omits most of the system and because it makes the distinctions relevant to its question explicit.
 
-A dependency graph discards most of a program while preserving relationships among components. A state machine discards most implementation detail while preserving states, transitions, and the transitions that must not occur. A quantitative model discards behavior and structure while preserving quantities and bounds relevant to cost, latency, or capacity. Each is useful because it omits most of the system and because it makes the distinctions relevant to its question explicit.
-
-Modeling is therefore an act of purposeful reduction. We decide what a question requires us to preserve, what can remain free, and how to represent what remains. The objective is not to reproduce the system in another notation. It is to construct representations in which consequential engineering questions become cheap to answer.
+Modeling is therefore an act of purposeful reduction. We decide what a question requires us to preserve, what can remain free, and how to represent what remains. The objective is not to reproduce the system in another notation. It is to preserve enough of the system that consequential questions become cheap to answer.
 
 ## Two lectures, three activities
 
@@ -56,15 +54,13 @@ Three classroom activities exercise three progressively harder judgments: Reduce
 
 ## Questions come first
 
-Consider a software system and some questions an engineer might ask of it:
+Consider a software system and three questions an engineer might ask of it:
 
 - *Which components may depend on this service?*
 - *Can this workflow reach an illegal state?*
-- *Which operations lie on the latency-critical path?*
-- *Where is customer data permitted to flow?*
-- *Who is responsible when this component fails?*
+- *What limits the system's capacity?*
 
-There is no reason to expect one representation to answer all of these questions well. A component graph makes dependencies obvious while saying almost nothing about legal runtime behavior. A state machine exposes that behavior while omitting deployment. A deployment model locates software without explaining who owns it. The first modeling decision is therefore not *which notation should I use?* It is *what question am I trying to answer?*
+No single representation answers all three well. A dependency model makes the first question cheap while saying almost nothing about legal runtime behavior. A behavioral model exposes that behavior while saying nothing about load. A quantitative model bounds capacity while omitting structure and behavior alike. Each preserves different facts about the same territory. The first modeling decision is therefore not *which notation should I use?* It is *what question am I trying to answer?*
 
 The unit turns that decision into a discipline. For every model, ask four questions:
 
@@ -75,7 +71,7 @@ The unit turns that decision into a discipline. For every model, ask four questi
 
 ## Use the engineering repertoire
 
-The reduction rarely needs to be invented. Engineering disciplines have accumulated models for recurring kinds of questions: component and dependency graphs, state machines, data-flow models, ownership and resource models, decision and policy models, quantitative models, schemas, provenance records. Do not invent a representation merely because you can. Start from the repertoire and select for the question.
+The reduction rarely needs to be invented. Software engineering and its neighboring disciplines have accumulated model forms for recurring questions: dependency graphs for structural questions, state machines for behavioral ones, quantitative models for capacity and cost. Do not invent a representation merely because you can. Start from the repertoire and select for the question.
 
 UML is one established source within that repertoire, with fourteen standardized diagram types across structure, behavior, interaction, and deployment. Model-based systems engineering broadens the space further, treating requirements, interfaces, structure, and allocations as explicit engineering artifacts. The assigned readings ask you to browse this breadth, not memorize it. There is no universal model of a software system; selecting among models is itself an engineering decision.
 
@@ -97,13 +93,13 @@ Parsimony is the complementary judgment: each distinction the model does include
 
 ## How much must we specify?
 
-Parsimony depends on one more thing: the agent. The engineering obligation fixes the consequential distinctions that must be preserved, and no increase in agent capability relaxes it. But a particular agent may also need scaffolding — additional decomposition, examples, or intermediate structure — to interpret and realize the obligation reliably. Call the obligation plus its scaffolding the **specified region**: everything the engineer actually writes down. Below it lie the degrees of freedom, the realization choices left to the agent.
+Parsimony depends on one more thing: the agent. The engineering obligation fixes the consequential distinctions that must be preserved, and no increase in agent capability relaxes that obligation. But a particular agent may also need scaffolding — additional decomposition, examples, or intermediate structure — to interpret and realize the obligation reliably. Call the obligation plus its scaffolding the **specified region**: everything the engineer actually writes down. Below it lie the degrees of freedom, the realization choices left to the agent.
 
 ![The specified region stacks the engineering obligation above the scaffolding this agent needs; greater agent capability moves only the specification boundary, reducing scaffolding. Below lie the degrees of freedom left to the agent.](figures/specified-region.svg)
 
 *Two boundaries, not one. The obligation boundary is set by the engineering problem and does not move with capability. The specification boundary does: a more capable agent needs less scaffolding, shrinking the specified region toward the obligation.*
 
-Capability can reduce how much we must specify. It cannot reduce what must be true. Parsimony, restated for delegation: how little do we need to specify while still preserving the engineering obligation and enabling this agent to interpret and realize it reliably?
+Capability can reduce how much we must specify. It cannot reduce what must be true. Parsimony, restated for delegation: *how little do we need to specify while still preserving the engineering obligation and enabling this agent to interpret and realize it reliably?*
 
 Two production cases answer the obvious question: *how do I know whether I left out the right things?* The first is DocAble's lease model, which governs ownership of an in-flight job. A lease records an owner, a generation, and a lifetime. Suppose worker A holds generation 7, appears to stall, and the job is subsequently claimed by worker B at generation 8. A late action from A must not clear or supersede B's newer claim. The missing transition matters: stale-generation release is not a permitted way to change the current ownership state.
 
@@ -126,27 +122,27 @@ The forms are not interchangeable in engineering quality. A state machine may ma
 
 We can state the idea probabilistically. For an intended engineering claim *c* and a representation *r*, consider *P*(agent correctly interprets *c* given *r*). Modeling does not make this probability one. Ambiguous names, overloaded arrows, missing semantics, and poorly chosen reductions all produce misinterpretation. Representation is an engineering choice partly because it changes the probability that the consequential claim is recovered correctly.
 
-The representation is part of the interface between engineer and agent, and delegation succeeds only if the agent interprets the model as intended. Parsimony gains a probabilistic reading too: a representation can fail by omitting a necessary distinction or by burying it among irrelevant ones. And the fourth question becomes concrete: does the representation make the consequential interpretation sufficiently likely? Later units use this probabilistic view systematically; for now, the seed is enough.
+The representation is part of the interface between engineer and agent, and delegation succeeds only if the agent interprets the model as intended. Parsimony gains a probabilistic reading too: a representation can fail by omitting a necessary distinction or by burying it among irrelevant ones. And the fourth question becomes concrete: *does the representation make the consequential interpretation sufficiently likely?* Good Modeling reduces freedom of interpretation where meaning matters while preserving freedom of realization where it does not. Later units use this probabilistic view systematically; for now, the seed is enough.
 
 ## Models are engineered artifacts
 
-Lecture 2 begins where the first lecture's models accumulate. Engineering with models then resembles programming: schemas constrain interpretation the way types do, model elements need stable identities the way names do, and the DRY principle warns about duplicated knowledge in both. Four requirements accumulate as models become a system: meaning, correspondence, identity, and composition.
+One model makes one engineering question tractable; a production system needs many, built for different questions and maintained in different places. Lecture 2 asks how those models retain meaning and stay connected to the system they describe. Engineering with models comes to resemble programming: schemas constrain interpretation the way types do, model elements need stable identities the way names do, and the DRY principle warns about duplicated knowledge in both. Four requirements accumulate as models become a system: meaning, correspondence, identity, and composition.
 
-**Meaning.** Consider the simplest architectural diagram: an arrow from A to B. As a structural claim it says *A calls B*. As a decision claim it says *A may call B*. As an observation it says *A was observed calling B*. Same nodes, same arrow, different engineering claims — and an absent decision edge means *not allowed*, not *does not happen*. The probability seed returns as diagnosis: an unlabeled, overloaded arrow can leave correct interpretation unlikely even though the diagram looks tidy. The fix is not more detail but better semantics; a compact typed edge can be interpreted more reliably than a longer ambiguous description.
+**Meaning.** Consider the simplest architectural diagram: an arrow from A to B. As a structural claim it says *A calls B*. As a decision claim it says *A may call B*. As an observation it says *A was observed calling B*. Same nodes, same arrow, different engineering claims. The semantics diverge hardest at the absent edge: in a structural model an absent edge represents nothing, while in a decision model it may state a prohibition. The probability seed returns as diagnosis: an unlabeled, overloaded arrow can leave correct interpretation unlikely even though the diagram looks tidy. The fix is not more detail but better semantics; a compact typed edge can be interpreted more reliably than a longer ambiguous description.
 
 **Correspondence.** A model makes claims about a territory, and engineering must maintain the correspondence. Where the implementation owns the truth, *derive* the model from it. Where the model owns the truth, *generate* the downstream artifact from it. Where neither fully determines the other, *trace and check* the correspondences a machine can decide. And correspondence is not correctness: a model and an implementation can agree perfectly and both be wrong for the engineering question.
 
 **Identity and authority.** Once several models describe one system, they meet at shared elements. In DocAble, a computation identity lets measured latency and cost join the computation graph; a service identity connects flow policy, deployment, and access control. The rule is not *never duplicate bytes*; projections, caches, diagrams, and agent-facing views may duplicate freely. The rule is: do not independently maintain the same engineering fact in several places. Give model elements stable identities, give each consequential fact an authoritative source, and derive or join the rest. Here the model-versus-representation distinction pays off: several representations may legitimately expose the same fact.
 
-**Composition without collapse.** DocAble's sharpest case is a single declared relation: one service may call another. That edge participates in questions no single model answers. Is the communication permitted? Where is the callee deployed? What runtime identity invokes it, and what invocation grant must exist? Does the deployed topology correspond to the declared one? The declared edges are held in exact correspondence with the deployment edge set, and deployment derives the cloud invocation grants from those declared edges. No single artifact contains that deployment plan; joining purposeful reductions through shared identities produces it.
+**Composition without collapse.** DocAble's composition case starts from a single declared relation: one service may call another. That edge participates in questions no single model answers. Is the communication permitted? Where is the callee deployed? What runtime identity invokes it, and what invocation grant must exist? Does the deployed topology correspond to the declared one? The declared edges are held in exact correspondence with the deployment edge set, and deployment derives the cloud invocation grants from those declared edges. No single artifact contains that deployment plan; joining purposeful reductions through shared identities produces it.
 
 The temptation after joins is obvious: put everything into one universal model. Resist it. Each reduction is useful because it suppresses information irrelevant to its question, and one enormous model would recreate the complexity Modeling exists to reduce. There is no grand model.
 
 ## Three activities, three judgments
 
-- **Reduce** (Lecture 1). Groups receive the same small system but different engineering questions. What must your model preserve? What may it omit? What property should become expressible? The debrief carries the lesson: different questions about the same territory produce different models, and each group must defend that its model is parsimonious.
-- **Interpret** (Lecture 1). Groups receive several small representations, including the same A-to-B drawing twice under different semantics. For each: what engineering question does it answer, what semantics do you infer, what property does it make expressible, and what remains ambiguous? The exercise makes the probability of correct interpretation tangible without estimating a number.
-- **Join** (Lecture 2). Groups receive small model fragments sharing identities — service flow, deployment, runtime identity and access, measurements — and a question none answers alone. Which models are needed, which identities permit the join, what does the composition answer, and what still cannot be concluded? A join is not omniscience.
+- **Reduce** (Lecture 1). Groups receive the same small system but different engineering questions. *What must your model preserve? What may it omit? What property should become expressible?* The debrief carries the lesson: different questions about the same territory produce different reductions, and each group defends its model as parsimonious.
+- **Interpret** (Lecture 1). Groups receive several small representations, including the same A-to-B drawing twice under different semantics. For each: *what claim does this representation appear to make, and what remains ambiguous?* The exercise makes the probability of correct interpretation tangible without estimating a number.
+- **Join** (Lecture 2). Groups receive small model fragments sharing identities — service flow, deployment, runtime identity and access, measurements — and a question none answers alone. They identify the join the question requires, the answer it supports, and what still cannot be concluded.
 
 ## From Modeling to Alignment
 
