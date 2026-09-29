@@ -20,7 +20,7 @@ is a hub that points at its materials.
 | `course/LICENSE` | CC BY 4.0 (teaching content), attributed to Davis + France. | yes |
 | `course/README.md` | Authoring guide: preview, adding materials, metadata, bundle, release. | yes |
 | `site/mkdocs.yml` | The site configuration (theme, nav, hooks, base path). | yes |
-| `site/hooks/` | Two build hooks (schedule table; materials section). | yes |
+| `site/hooks/` | Build hooks: materials section; readings + reading guide; `{module:}` link resolution; lecture-unit nav numbering. | yes |
 | `site/requirements.txt` | Pinned site toolchain (mkdocs, material, awesome-pages). | yes |
 | `tools/build_course_bundle.py` | Builds the distributable course `.zip`. | yes |
 | `.github/workflows/pages.yml` | Existing Pages workflow, **extended** to also build `/teach`. | yes (modified) |

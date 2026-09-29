@@ -184,7 +184,8 @@ CHECKS = [
     Check("markdown: schema + md-link existence", 1, lambda strict: check_markdown_schema()),
     Check("course: module pages conform to module-schema.json (Premise + model list)", 1,
           lambda strict: check_course_module_schema()),
-    Check("course: lecture-module nav labels are capitalized (.pages title present + first word Upper)", 1,
+    Check("course: lecture-module nav labels are capitalized (.pages title present + label starts Upper, "
+          "no hardcoded NN)", 1,
           lambda strict: check_course_nav_titles()),
     # BLOCKING (green at landing): every authored lecture unit reaches its act's nav. An explicit `nav:`
     # allowlist in an act's `.pages` overrides awesome-pages discovery, so a unit the allowlist forgets

@@ -22,7 +22,8 @@ from tests.common import FAIL, PASS, ROOT, rel
 #: section whose label it takes from the dir's `.pages` `title:`.
 _MODULE_INDEX_GLOB = "course/lectures/*/[0-9]*-*/index.md"
 _PAGES_TITLE_RE = re.compile(r"^title:\s*(.+?)\s*$", re.M)
-#: Strip an optional leading "NN " module-number prefix so we test the first word of the actual label.
+#: A hardcoded "NN " module-number prefix — no longer authored (the build hook derives the ordinal from
+#: the directory name), so its reappearance in a stored title is itself the finding.
 _NUM_PREFIX_RE = re.compile(r"^\d+\s+")
 
 _SCHEMA_PATH = os.path.join(ROOT, "course", "module-schema.json")
@@ -284,8 +285,15 @@ def check_course_nav_titles():
     awesome-pages derives a section's sidebar label from its directory's `.pages` `title:`, and falls
     back to the directory name (lowercased, hyphens → spaces) when the file is absent — which is exactly
     how `07-design` shipped in the navbar as "07 design" instead of "07 Design". This check requires the
-    `.pages` to exist and its title, after an optional leading "NN " module-number prefix, to begin with
-    an uppercase letter, so a missing file or a lowercase label cannot reach the published nav."""
+    `.pages` to exist and its title to begin with an uppercase letter, so a missing file or a lowercase
+    label cannot reach the published nav.
+
+    It inspects the STORED title, not the rendered one. The stored title is now the LABEL alone — the
+    unit's ordinal is derived from its `NN-` directory prefix at build time (site/hooks/
+    course_nav_numbering.py) — so the label's own first character is the thing to test. Requiring an
+    uppercase LETTER (not merely the first alphabetic character anywhere in the string) also rejects a
+    re-hardcoded "03 " prefix, the duplication the numbering hook removed: a leading digit fails here
+    rather than rendering as "03 03 Alignment"."""
     mods = sorted(glob.glob(os.path.join(ROOT, _MODULE_INDEX_GLOB)))
     if not mods:
         return FAIL, [f"course nav-titles: no module pages matched {_MODULE_INDEX_GLOB} — glob or tree "
@@ -303,11 +311,13 @@ def check_course_nav_titles():
             issues.append(f"{rel(pages)}: no `title:` — awesome-pages will auto-title from the "
                           "lowercased directory name")
             continue
-        title = m.group(1).strip().strip("\"'")
-        label = _NUM_PREFIX_RE.sub("", title)
-        first = next((ch for ch in label if ch.isalpha()), "")
-        if first and not first.isupper():
-            issues.append(f"{rel(pages)}: nav title {title!r} is not capitalized — the first word should "
+        label = m.group(1).strip().strip("\"'")
+        if _NUM_PREFIX_RE.match(label):
+            issues.append(f"{rel(pages)}: nav title {label!r} hardcodes the unit number — the ordinal is "
+                          "derived from the `NN-` directory prefix at build time, so storing it here "
+                          "duplicates the fact and renders twice. Keep the label only (e.g. 'Alignment')")
+        elif not label[:1].isupper():
+            issues.append(f"{rel(pages)}: nav title {label!r} is not capitalized — the label should "
                           "begin with an uppercase letter (e.g. 'Design', not 'design')")
     return (FAIL if issues else PASS), issues
 
