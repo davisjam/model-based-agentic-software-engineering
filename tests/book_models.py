@@ -107,6 +107,81 @@ def check_hardcoded_ref_parity():
     return (FAIL if issues else PASS), issues
 
 
+def check_figure_path_geometry():
+    """The figure-edge geometry parser reads SVG path COMMANDS, never raw number positions.
+
+    THE DEFECT CLASS THIS PINS. `H` and `V` carry ONE coordinate, and an arc's leading five parameters are
+    radii / rotation / flags rather than a coordinate. Code that pairs a path's raw numbers positionally
+    therefore desynchronizes: for `M 100 200 V 400 H 300` the drawn endpoint is (300, 400), but the last
+    two numbers read (400, 300) — x and y transposed. The dangling-edge sensor and the should-be-orthogonal
+    sensor that imports it both take endpoints and end-travel from this parser, so the transposition
+    surfaced as bogus "floats N px outside" and "head skims" findings against correctly drawn ORTHOGONAL
+    elbows — the lint penalizing the very house style the drawing guidance asks authors for.
+
+    PARITY MAKES THE BUG INTERMITTENT, so one passing figure proves nothing: a path carrying an even
+    number of odd-arity commands comes out accidentally right. Hence a corpus, and hence the second
+    assertion below — each H/V row must also prove that positional pairing gets it WRONG, so a corpus that
+    the broken code would have passed cannot masquerade as a pin.
+
+    Curve and arc rows guard the other direction: routing the line commands through the parser must not
+    regress the cubic ends (`endpoint - near control point` is the `orient="auto"` tangent), and an end
+    whose direction is undeterminable — an arc, a zero-length final segment — must come back None so the
+    caller leaves it unjudged rather than acting on a guess."""
+    import lint_figure_dangling_edge as led  # noqa: E402 — path set above; the figure-edge geometry sensor
+
+    # Each row is hand-walked from the path data. `naive_wrong` marks the rows whose whole job is to catch
+    # positional pairing; the assertion below proves each of them actually does.
+    # (d, endpoints, end-travel, start-travel, naive_wrong)
+    corpus = [
+        # M(100,200) -V-> (100,400) -H-> (300,400). Naive last-two-numbers reads (400,300): transposed.
+        ("M 100 200 V 400 H 300", ((100, 200), (300, 400)), (200, 0), (0, -200), True),
+        # a real book figure: M(770,574) -H-> (826,574) -V-> (826,90) -H-> (772,90). Naive reads (90,772).
+        ("M770 574 H826 V90 H772", ((770, 574), (772, 90)), (-54, 0), (-56, 0), True),
+        # relative: m(10,10) -l-> (15,15) -h-> (20,15). Naive reads (5,5) — the raw offsets, not a point.
+        ("m10,10 l5,5 h5", ((10, 10), (20, 15)), (5, 0), (-5, -5), True),
+        # cubic: the tangent-setting neighbour is the near CONTROL point, so end-travel is (20,20)-(20,10).
+        ("M0,0 C10,0 20,10 20,20", ((0, 0), (20, 20)), (0, 10), (-10, 0), False),
+        ("M10,20 L30,40", ((10, 20), (30, 40)), (20, 20), (-20, -20), False),
+        # arc: `38 38 0 0 1` are radii/rotation/flags. The endpoint survives naive pairing, but the travel
+        # does not — naive reads (93.1, 73.2) out of a flag and a rotation. Neither end's tangent follows
+        # from the point list (the chord is not the tangent), so BOTH ends come back None, not guessed.
+        ("M64,26 A38 38 0 0 1 93.1,74.2", ((64, 26), (93.1, 74.2)), None, None, True),
+        # zero-length final segment: the END vector is meaningless (None); the START end is still readable.
+        ("M10,10 L20,20 L20,20", ((10, 10), (20, 20)), None, (-10, -10), False),
+    ]
+
+    def flat(v) -> list:
+        return [c for p in v for c in p] if isinstance(v[0], (tuple, list)) else list(v)
+
+    def same(got, want) -> bool:
+        if got is None or want is None:
+            return got is None and want is None
+        return all(abs(a - b) < 1e-6 for a, b in zip(flat(got), flat(want)))
+
+    issues: list[str] = []
+    for d, want_ep, want_last, want_first, naive_wrong in corpus:
+        tag = f'<path d="{d}"/>'
+        got_ep = led._endpoints(tag)
+        if not same(got_ep, want_ep):
+            issues.append(f"_endpoints({d!r}) = {got_ep} — want {want_ep}; the parser is pairing raw path "
+                          "numbers positionally again instead of walking the commands")
+        for at_last, want in ((True, want_last), (False, want_first)):
+            got = led._travel(tag, at_last)
+            if not same(got, want):
+                issues.append(f"_travel({d!r}, at_last={at_last}) = {got} — want {want}; the arrowhead-angle "
+                              "check reads this, so a wrong vector is a bogus head-skims finding")
+        if naive_wrong:
+            # this row must DISCRIMINATE: positional pairing has to get its endpoint or its end-travel wrong,
+            # or the row would pass under the broken code and pin nothing.
+            nums = [float(n) for n in re.findall(led._NUM, d)]
+            naive_ep = (nums[-2], nums[-1]) if len(nums) >= 4 else None
+            naive_tr = (nums[-2] - nums[-4], nums[-1] - nums[-3]) if len(nums) >= 4 else None
+            if same(naive_ep, want_ep[1]) and same(naive_tr, want_last):
+                issues.append(f"corpus row {d!r} claims to catch positional pairing, but naive pairing lands "
+                              "on the right endpoint AND the right travel — it pins nothing; replace it")
+    return (FAIL if issues else PASS), issues
+
+
 def check_outline_model():
     """The outline view's drift + invariant check (audit-only). Re-derives the outline from the book and
     reports: O1 the on-disk artifact matches a fresh derivation; O2/O3/O4 the outline's own invariants.

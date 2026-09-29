@@ -103,43 +103,70 @@ def _endpoints(tag: str) -> tuple | None:
     d = re.search(r'\bd="([^"]*)"', tag)
     if not d:
         return None
-    nums = [float(n) for n in re.findall(_NUM, d.group(1))]
-    if len(nums) < 4:
+    pts = _path_points(d.group(1))
+    if len(pts) < 2:
         return None
-    return ((nums[0], nums[1]), (nums[-2], nums[-1]))
+    return (pts[0], pts[-1])
 
 
-def _polyline_points(d: str) -> list:
-    """Points of an M/L/H/V-only path (a straight segment or an orthogonal elbow). Curves are classified
-    before this is called, so only line commands need handling."""
-    toks = re.findall(r"[MmLlHhVvZz]|-?\d*\.?\d+(?:[eE][-+]?\d+)?", d)
+_PATH_TOK = re.compile(_NUM + r"|[A-Za-z]")   # number FIRST so an exponent's `e` stays inside its number
+_PATH_ARITY = {"M": 2, "L": 2, "H": 1, "V": 1, "C": 6, "S": 4, "Q": 4, "T": 2, "A": 7, "Z": 0}
+
+
+def _path_points(d: str) -> list:
+    """Every coordinate point a path's commands produce, in drawing order — on-path points AND the control
+    points of curve commands. Callers lean on two properties: each command's LAST emitted point is its
+    on-path endpoint, so `pts[0]` and `pts[-1]` are the path's two ends; and the point ADJACENT to an end
+    sets that end's tangent (a cubic's near control point, a line's previous vertex). Handles
+    M/L/H/V/C/S/Q/T/A/Z, absolute and relative.
+
+    THE DEFECT THIS EXISTS TO KILL. `H` and `V` carry ONE coordinate, and an arc's first five parameters
+    are radii/rotation/flags rather than a coordinate. Pairing a path's raw numbers positionally therefore
+    desynchronizes — an orthogonal elbow's endpoint comes back with x and y transposed — so every caller
+    walks the commands through here instead of re-deriving geometry from `re.findall(_NUM, d)`."""
+    toks = _PATH_TOK.findall(d)
     pts: list = []
-    cur = (0.0, 0.0)
-    i = 0
+    cur = start = (0.0, 0.0)
     cmd = None
+    i = 0
     while i < len(toks):
-        t = toks[i]
-        if t.isalpha():
-            cmd = t
+        if toks[i].isalpha():
+            cmd = toks[i]
             i += 1
-            continue
         if cmd is None:
             i += 1
             continue
         rel, C = cmd.islower(), cmd.upper()
-        if C in ("M", "L"):
-            x, y = float(toks[i]), float(toks[i + 1])
-            i += 2
-            cur = (cur[0] + x, cur[1] + y) if rel else (x, y)
+        n = _PATH_ARITY.get(C)
+        if n is None:
+            cmd = None                       # unknown command: resync on the next command letter
+            continue
+        if C == "Z":
+            cur = start
             pts.append(cur)
-        elif C == "H":
-            x = float(toks[i]); i += 1
-            cur = (cur[0] + x if rel else x, cur[1]); pts.append(cur)
+            cmd = None
+            continue
+        if i + n > len(toks):
+            break                            # truncated command list — stop rather than guess
+        args = [float(v) for v in toks[i:i + n]]
+        i += n
+        ox, oy = cur if rel else (0.0, 0.0)
+        if C == "H":
+            cur = (ox + args[0], cur[1])
+            pts.append(cur)
         elif C == "V":
-            y = float(toks[i]); i += 1
-            cur = (cur[0], cur[1] + y if rel else y); pts.append(cur)
+            cur = (cur[0], oy + args[0])
+            pts.append(cur)
+        elif C == "A":
+            cur = (ox + args[5], oy + args[6])   # rx ry rot large-arc sweep are not coordinates
+            pts.append(cur)
         else:
-            i += 1
+            for k in range(0, n, 2):
+                cur = (ox + args[k], oy + args[k + 1])
+                pts.append(cur)
+        if C == "M":
+            start = cur
+            cmd = "l" if rel else "L"        # a repeated M coordinate set is an implicit lineto
     return pts
 
 
@@ -163,7 +190,7 @@ def _classify(tag: str) -> str:
     d = dm.group(1)
     if re.search(r"[CcSsQqTtAa]", d):
         return "curve"
-    pts = _polyline_points(d)
+    pts = _path_points(d)
     if len(pts) < 2:
         return "degenerate"
     segs = list(zip(pts, pts[1:]))
@@ -253,7 +280,11 @@ def _ang_between(u: tuple, v: tuple):
 def _travel(tag: str, at_last: bool):
     """Outward end-travel vector at one end (endpoint minus the adjacent interior point). This is the
     direction `orient="auto"` points the head. line: the far endpoint is the adjacent point; path: the
-    neighbouring control point in the d list."""
+    point next to that end in `_path_points` — a curve's neighbouring control point, an elbow's previous
+    vertex. None when the direction is not determinable, and the caller then leaves that end UNJUDGED
+    rather than acting on a guess: a zero-length final segment (the vector, and so the angle, is
+    meaningless), or an ARC, whose end tangent turns on the sweep geometry and does not follow from the
+    point list at all."""
     if tag.startswith("<line"):
         vals = [_ATTR(tag, a) for a in ("x1", "y1", "x2", "y2")]
         if None in vals:
@@ -263,12 +294,14 @@ def _travel(tag: str, at_last: bool):
     d = re.search(r'\bd="([^"]*)"', tag)
     if not d:
         return None
-    nums = [float(n) for n in re.findall(_NUM, d.group(1))]
-    if len(nums) < 4:
+    if re.search(r"[Aa]", d.group(1)):
         return None
-    if at_last:
-        return (nums[-2] - nums[-4], nums[-1] - nums[-3])
-    return (nums[0] - nums[2], nums[1] - nums[3])
+    pts = _path_points(d.group(1))
+    if len(pts) < 2:
+        return None
+    tip, adj = (pts[-1], pts[-2]) if at_last else (pts[0], pts[1])
+    v = (tip[0] - adj[0], tip[1] - adj[1])
+    return None if math.hypot(*v) < 1e-9 else v
 
 
 def _seat_assignment(a, b, na, nb):

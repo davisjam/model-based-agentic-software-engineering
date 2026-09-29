@@ -56,6 +56,7 @@ from tests.book_models import (
     check_chapter_shape,
     check_claims_model,
     check_factory_vocabulary,
+    check_figure_path_geometry,
     check_flagship_stack,
     check_hardcoded_ref_parity,
     check_industry_cases,
@@ -427,6 +428,15 @@ CHECKS = [
     # deliberately NOT shared (MAGE bans `Figure N-N`, the Handbook bans `Figure N`). See tests/book_models.py.
     Check("book-models: cross-book hardcoded-ref family parity (handbook lint <-> no-hardcoded-ref)", 1,
           lambda strict: check_hardcoded_ref_parity()),
+    # BLOCKING (green at landing): the figure-edge geometry parser reads SVG path COMMANDS, not raw number
+    # positions. `H`/`V` carry ONE coordinate and an arc's leading five parameters are radii/rotation/flags,
+    # so positional pairing desynchronizes and returns a transposed endpoint — which made the dangling-edge
+    # and should-be-orthogonal sensors fire bogus "floats outside" / "head skims" findings at correctly drawn
+    # orthogonal elbows, penalizing the house drawing style. A synthetic corpus pins endpoints + end-travel
+    # across odd-arity, relative, cubic, arc, and zero-length-segment paths; each odd-arity row must also
+    # prove naive pairing gets it wrong, so the corpus cannot pass under the broken code. See tests/book_models.py.
+    Check("book-models: figure-edge path geometry parses commands, not number positions", 1,
+          lambda strict: check_figure_path_geometry(), audit_only=False),
     # BLOCKING (promoted round-8 W3 after the drain): the C5 named-reference -> current-identity check — the
     # Part-IV "portable moves" close cites destinations by NAME; this proves each named label still matches the
     # destination's CURRENT identity (chapter title / operator-card title), catching map::territory drift IN
