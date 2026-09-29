@@ -49,8 +49,8 @@ Software agents introduce a new recipient: probabilistic automation capable of r
 
 | | another person | deterministic automation | probabilistic automation |
 |---|---|---|---|
-| **reliability** | depends on skill and care; may fudge, or claim competence not held, and may not recognise that a situation is unfamiliar | exact and repeatable within its specification — and wrong exactly as specified, every time | depends on model strength and context; produces fluent work whether or not it is correct |
-| **unforeseen circumstances** | can adapt, but recognising novelty itself takes expertise | cannot act outside what was specified | acts regardless of whether it should |
+| **reliability** | depends on skill and care; may fudge, or claim competence not held, and may not recognize that a situation is unfamiliar | exact and repeatable within its specification — and wrong exactly as specified, every time | depends on model strength and context; produces fluent work whether or not it is correct |
+| **unforeseen circumstances** | can adapt, but recognizing novelty itself takes expertise | has no independent judgment for novel circumstances | can reason about novelty, but may fail to recognize or handle it correctly |
 | **what the delegator supplies** | instruction, context, and review | a specification, once | instruction, context, and review — re-supplied each engagement |
 | **memory** | learns durably; knowledge accrues in the person | does not learn, but *is* memory — the check encodes it permanently | carries memory as session state, externalized files, and weights; the durable part is what was externalized by design, and the internal part is not interpretable |
 | **accountable?** | yes | no | no |
