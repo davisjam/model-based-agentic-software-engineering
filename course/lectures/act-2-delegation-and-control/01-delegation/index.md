@@ -88,22 +88,17 @@ Capability is a design variable. Frontier, smaller, open-weight, and specialized
 
 These layers determine the capability available for delegated work. They do not determine what work should be delegated, what authority the agent should receive, or what evidence should be required before its work is accepted.
 
-## Engineers have levers
+## Equip the agent
 
-Once the work has been bounded, engineers can equip the agent by intervening at several points in this system. The levers are a repertoire of interventions, all serving the EQUIP decision:
+Once the work has been bounded, engineers can equip the agent by changing three parts of the delegation system:
 
-| Lever | Engineering purpose | Examples |
+| Equip | Engineering purpose | Examples |
 |---|---|---|
-| Model | Select the underlying reasoning capability | frontier, low-cost, specialized, open-weight |
-| Context | Make relevant information available now | files, specifications, retrieved knowledge |
-| Instructions | Shape how work should be approached | system instructions, project instructions |
-| Tools | Give the agent capabilities to observe or act | shell, compiler, tests, search, APIs |
-| MCP | Connect agents to external capabilities through a common interface | repository, issue tracker, engineering service |
-| Skills | Package reusable ways of performing recurring work | review procedure, remediation workflow |
-| Memory / state | Preserve useful information across reasoning steps or tasks | plans, task state, durable records |
-| Task structure | Change the reasoning problem itself | decomposition, checkpoints, intermediate artifacts |
+| Reasoner | Select the underlying reasoning capability | frontier, low-cost, specialized, open-weight models |
+| Information | Make relevant knowledge and state available to the reasoner | context, instructions, retrieved knowledge, memory, representations |
+| Means | Give the agent ways to observe, act, and carry out recurring work | tools, APIs, MCP connections, skills, workflows |
 
-The levers are not interchangeable. A tool does not solve a missing-context problem, more context does not create authority, and a skill does not guarantee its instructions are followed. When an agent struggles, "use a better model" is one engineering response among eight.
+These interventions solve different problems. A stronger reasoner does not supply missing information; more context does not provide a missing capability to act; a tool does not establish that its use is authorized. Diagnose what the delegation lacks before deciding how to equip it.
 
 ## Bound the work
 
