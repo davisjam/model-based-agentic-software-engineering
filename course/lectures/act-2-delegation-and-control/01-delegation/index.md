@@ -44,6 +44,19 @@ What changes with agents is not the questions but the answers, because the prope
 
 That difference has a direct engineering consequence. When onboarding is re-paid on every task, knowledge a human colleague would absorb once must instead be carried by the environment in which the work occurs. Choosing what to delegate, and how, therefore means reasoning about the properties of the thing you are delegating to.
 
+Set side by side, the three differ on the properties that decide what each can be given. Accountability is the only row where both automations fall on the same side against a person, which is why responsibility for the result stays with the engineer whenever the delegate is a machine.
+
+| | another person | deterministic automation | probabilistic automation |
+|---|---|---|---|
+| **reliability** | depends on skill and care; may fudge, or claim competence not held, and may not recognise that a situation is unfamiliar | exact and repeatable within its specification — and wrong exactly as specified, every time | depends on model strength and context; produces fluent work whether or not it is correct |
+| **unforeseen circumstances** | can adapt, but recognising novelty itself takes expertise | cannot act outside what was specified | acts regardless of whether it should |
+| **what the delegator supplies** | instruction, context, and review | a specification, once | instruction, context, and review — re-supplied each engagement |
+| **memory** | learns durably; knowledge accrues in the person | does not learn, but *is* memory — the check encodes it permanently | carries memory as session state, externalized files, and weights; the durable part is what was externalized by design, and the internal part is not interpretable |
+| **accountable?** | yes | no | no |
+| **cost shape** | low setup, high per unit | high setup, near-zero per unit | low setup, low but non-zero per unit |
+
+The memory row is what the rest of this Act answers: deterministic automation is the only one of the three that remembers by construction, so the response to an agent's non-persistence is to push knowledge into checks and representations — the work of Modeling and Alignment.
+
 This unit asks how to make that delegation an engineering decision. An agent's engineering capability is not a property of the model alone. What an agent can accomplish depends on the model, the harness through which it acts, the engineering environment in which the work occurs, and how the work itself is structured.
 
 Delegation is therefore a system-design problem: bound the work, equip the agent, authorize its actions, and verify the result.
