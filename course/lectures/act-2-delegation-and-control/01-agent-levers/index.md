@@ -23,8 +23,7 @@ readings:
       items:
         - cite: davis2026sehandbook
           locator: 'chap. 4'
-          annotation: '[*The Software Engineering Handbook*, Chapter 4, "Engineering Knowledge."](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/03-engineering-knowledge.html) Davis, 2026. Focus on what an organization should remember, how knowledge moves among people, representations, and mechanisms, and why representations are evidence rather than reality. The chapter supplies the knowledge-management frame this unit applies to agents: an environment that carries knowledge extends every reasoner that works within it.'
-      note: 'The Handbook chapter is further reading, not required for this unit. Knowledge management belongs more properly to Modeling, where engineering knowledge and its representations are the subject; read the chapter now if you want the fuller account of what an organization should remember, which this unit borrows from rather than develops.'
+          annotation: '[*The Software Engineering Handbook*, Chapter 4, "Engineering Knowledge."](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/03-engineering-knowledge.html) Davis, 2026. Read the full chapter. Focus on what an organization should remember, how knowledge moves among people, representations, and mechanisms, and why representations are evidence rather than reality. The chapter supplies the knowledge-management frame this unit applies to agents: an environment that carries knowledge extends every reasoner that works within it.'
 instructor_materials: []
 student_materials: []
 assignments: []
