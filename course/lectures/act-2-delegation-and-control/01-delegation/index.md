@@ -100,19 +100,13 @@ These interventions solve different problems. A stronger reasoner does not suppl
 
 ## Bound the work
 
-Delegation begins by deciding what work the agent should perform. A task that is too broad may require the agent to maintain more relevant state than it can reason about effectively; a task divided too finely may require so much information to cross its boundaries that decomposition makes the work harder rather than easier.
+Delegation begins by deciding what work the agent should perform and what choices it may resolve. A task that is too broad may require more relevant state than the agent can reason about effectively; one divided too finely may force important relationships to be repeatedly reconstructed across task boundaries.
 
-Engineers can therefore change the task itself. They can narrow its scope, divide it into stages, establish intermediate artifacts, introduce checkpoints, separate generation from evaluation, or choose boundaries that reduce the amount of state each step must consider. These are not merely project-management choices. They change the reasoning problem presented to the agent.
+An agent's **reasoning horizon** is the amount of relevant state it can effectively bring to bear on a task. Engineers can move work within that horizon by narrowing its scope, choosing better boundaries, retrieving relevant context, externalizing state, supplying tools, or providing representations that make important relationships easier to reason about. A dependency model, for example, may expose relationships that the agent could otherwise reconstruct only by examining thousands of source lines.
 
-A useful delegation boundary gives the agent enough freedom to perform coherent work while keeping the consequential context and outputs tractable. The question is not *how small can we make the task?* It is *what boundary makes this work independently reasonable without forcing important relationships to be reconstructed across the boundary?* Agentic engineering does not eliminate architecture; it adds another system to architect, the system performing the engineering work.
+The objective is not the smallest task or the largest context window. It is a tractable reasoning surface: enough freedom for the agent to perform coherent work without requiring consequential relationships to be repeatedly reconstructed. When the same knowledge must be recovered again and again, that is evidence that the engineering environment may need to represent it explicitly.
 
-## Engineer the reasoning surface
-
-An agent's **reasoning horizon** is the amount of relevant state it can effectively bring to bear on a task. Better representations extend it by changing the problem presented to the reasoner: an agent checking a change against the architecture can reconstruct dependencies from source or consult a trustworthy dependency model.
-
-When work exceeds the agent's reasoning horizon, engineers have several choices: reduce the task, improve the representation, retrieve relevant context, externalize state, provide a tool, or move the delegation boundary. The objective is not to maximize the amount of context presented to the model. It is to construct a reasoning surface on which the relevant relationships become tractable.
-
-Recurring reconstruction is evidence of useful knowledge; the question is whether it stays ephemeral or becomes inheritable. Knowledge can live in people, prose, diagrams, specifications, models, tests, tools, conventions, and mechanisms, at different costs: permanence everywhere accumulates stale representations, implicitness everywhere forces rediscovery. Ask what future engineers — or future agents — would regret having to rediscover. Do not make the agent infer repeatedly what the environment can represent usefully.
+Delegation therefore leaves some degrees of freedom for the recipient to resolve. Greater capability may let engineers leave more choices open. Deciding which choices to delegate remains an engineering decision.
 
 ## Capability is not authority
 
