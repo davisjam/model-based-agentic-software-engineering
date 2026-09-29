@@ -134,6 +134,6 @@ Modeling asks how consequential engineering knowledge can be represented so that
 
 ## What changes as agents improve?
 
-Contemporary agents still require substantial engineering around their reasoning: task boundaries, external context and representations, tools, permissions, and human oversight. Those properties are changing rapidly. Agents are becoming better at sustained reasoning, independent progress, tool use, and constructing useful representations for themselves.
+Contemporary agents still require substantial engineering around their reasoning: task boundaries, external context and representations, tools, permissions, and independent checks. Those needs are changing as agents become better at sustained reasoning, independent progress, tool use, constructing useful representations, and evaluating their own work.
 
-Suppose those capabilities improve substantially. What changes about BOUND → EQUIP → AUTHORIZE → VERIFY? What stays the same?
+Suppose those capabilities improve substantially. What changes about BOUND → EQUIP → AUTHORIZE → VERIFY? What stays the same? If agents can construct the representations they need and evaluate their own work, what knowledge and control must still exist outside the agent?
