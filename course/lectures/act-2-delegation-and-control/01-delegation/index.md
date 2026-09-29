@@ -37,7 +37,7 @@ materials:
     src: 2-1-Agents.pptx
 ---
 
-**Premise.** *Delegation is something engineers design, from the work delegated and the properties of its recipient.*
+**Premise.** *Delegation is an engineering decision shaped by the work, the recipient, and the consequences.*
 
 Earlier, we defined engineering as the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. That does not require engineers to personally perform every act of realization. Work can be delegated; responsibility for the resulting system remains with the engineer.
 
@@ -72,23 +72,21 @@ The rest of this unit develops the engineering levers available for answering th
 
 ## Where does capability live?
 
-An agent has three layers:
+An agent's capability emerges from three layers:
 
 - **The model** interprets information, reasons, and generates candidate actions or artifacts.
-- **The agent harness** turns that capability into an actor. It determines what context the model receives, what it remembers, which tools it can invoke, what actions it may take, how results return as feedback, and how work continues across steps.
-- **The engineering environment** surrounds the work: repositories, specifications, architectural models, documentation, tests, build systems, issue histories, deployment systems, and organizational knowledge.
+- **The agent harness** turns that reasoning into sustained action by managing context, state, tools, feedback, and continuation across steps.
+- **The engineering environment** supplies the artifacts and systems in which the work occurs: repositories, specifications, engineering models, tests, build and deployment systems, and organizational knowledge.
 
 ![The model nested inside the agent harness, inside the engineering environment.](figures/agent-layers.svg)
 
-*The layers are not independent: the harness selects what the model sees and does; the environment sets what must be reconstructed; the model bounds the reasoning.*
-
-Capability is a design variable. Frontier, smaller, open-weight, and specialized models trade against decomposition, representations, tools, and task scope; calls cost money, time, computation, and context. "Which model is best" has no context-free answer.
+*The layers interact: the harness determines what reaches the model and what it can do; the environment determines what knowledge and mechanisms are available; the model bounds the reasoning.*
 
 These layers determine the capability available for delegated work. They do not determine what work should be delegated, what authority the agent should receive, or what evidence should be required before its work is accepted.
 
 ## Equip the agent
 
-Once the work has been bounded, engineers can equip the agent by changing three parts of the delegation system:
+Within this system, engineers have three broad ways to equip the agent for the bounded work:
 
 | Equip | Engineering purpose | Examples |
 |---|---|---|
