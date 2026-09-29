@@ -39,13 +39,13 @@ materials:
 
 **Premise.** *Delegation is something engineers design, from the work delegated and the properties of its recipient.*
 
-Earlier, we defined engineering as the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. That definition does not require engineers to personally perform every act of realization. Work can be delegated, whether to other people or to machine intelligence. Responsibility for the resulting system remains with the engineer.
+Earlier, we defined engineering as the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. That does not require engineers to personally perform every act of realization. Work can be delegated; responsibility for the resulting system remains with the engineer.
 
-Delegation is not new to software engineering. Engineers have always delegated realization: to junior colleagues, to contractors and vendors, to libraries they did not write, and to compilers that allocate registers and manage memory on their behalf. Factories made the same move earlier still, delegating fabrication to skilled machinists while retaining control through drawings, tolerances, gauges, and inspection. That move handed work to two kinds of recipient at once. Judgment stayed with the machinist, while other knowledge moved into the drawing, the tolerance, the gauge, and the inspection step — instruments that read the same way every time and could not be argued with. A gauge is deterministic automation, so two of the three recipients an engineer chooses among today are centuries old, and only the third is new. The longer history is in {mage:5.1} In each case the engineer answered the same four questions: what work to hand over, what the recipient needed in order to do it, what consequences it was permitted to produce, and what evidence would justify accepting the result.
+Delegation is not new. Software engineers delegate to colleagues, contractors, libraries, compilers, and other automation. Factories did the same earlier still: engineers delegated fabrication to skilled machinists while drawings, tolerances, gauges, and inspection preserved control over the result. Nursing provides another consequential setting in which work is deliberately assigned according to the capability of the recipient, the consequences of the task, and the supervision available.
 
-What changes with agents? The primary change is in cost: work previously assigned to an engineer (human intelligence) can now be completed by a reasoning machine (commodity intelligence), and machines are cheaper than humans. The other change is harder. It is identifying the right means of supervising agentic work so that we can have confidence in the result: trustworthy outcomes from probabilistic actors.
+Across these settings, the recipient changes but the delegation problem persists: what work should be handed over, what does the recipient need, what consequences may it produce, and what evidence justifies accepting the result?
 
-Set side by side, the three differ on the properties that decide what each can be given. Accountability is the only row where both automations fall on the same side against a person, which is why responsibility for the result stays with the engineer whenever the delegate is a machine.
+Software agents introduce a new recipient: probabilistic automation capable of reasoning and acting over time. Their capabilities and costs differ substantially from both people and deterministic automation, but the engineering problem of delegation remains.
 
 | | another person | deterministic automation | probabilistic automation |
 |---|---|---|---|
@@ -55,8 +55,6 @@ Set side by side, the three differ on the properties that decide what each can b
 | **memory** | learns durably; knowledge accrues in the person | does not learn, but *is* memory — the check encodes it permanently | carries memory as session state, externalized files, and weights; the durable part is what was externalized by design, and the internal part is not interpretable |
 | **accountable?** | yes | no | no |
 | **cost shape** | low setup, high per unit | high setup, near-zero per unit | low setup, low but non-zero per unit |
-
-The memory row is what the rest of this Act answers: deterministic automation is the only one of the three that remembers by construction, so the response to an agent's non-persistence is to push knowledge into checks and representations — the work of Modeling and Alignment.
 
 This unit asks how to make that delegation an engineering decision. An agent's engineering capability is not a property of the model alone. What an agent can accomplish depends on the model, the harness through which it acts, the engineering environment in which the work occurs, and how the work itself is structured.
 
