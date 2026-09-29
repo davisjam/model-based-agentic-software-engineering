@@ -31,6 +31,12 @@ materials:
 
 Earlier, we defined engineering as the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. That definition does not require engineers to personally perform every act of realization. Work can be delegated — to other people or to machine intelligence — while responsibility for the resulting system remains with the engineer.
 
+Delegation is not new to software engineering. Engineers have always delegated realization: to junior colleagues, to contractors and vendors, to libraries they did not write, and to compilers that allocate registers and manage memory on their behalf. Factories made the same move earlier still, delegating fabrication to skilled machinists while retaining control through drawings, tolerances, gauges, and inspection. In each case the engineer answered the same four questions: what work to hand over, what the recipient needed in order to do it, what consequences it was permitted to produce, and what evidence would justify accepting the result.
+
+What changes with agents is not the questions but the answers, because the properties of the recipient changed. A human colleague learns durably: onboarding is paid once and amortized over a career, which is why a great deal of engineering knowledge can remain tacit and still be reliable. A colleague can also be asked why they did something, and holds responsibility for the answer. An agent is fast, inexpensive, and parallel, and tires of nothing — but its learning does not persist between tasks, it produces fluent work whether or not that work is correct, and it holds no responsibility that can be asked after the fact.
+
+That difference has a direct engineering consequence. When onboarding is re-paid on every task, knowledge a human colleague would absorb once must instead be carried by the environment in which the work occurs. Choosing what to delegate, and how, therefore means reasoning about the properties of the thing you are delegating to.
+
 This unit asks how to make that delegation an engineering decision. An agent's engineering capability is not a property of the model alone. What an agent can accomplish depends on the model, the harness through which it acts, the engineering environment in which the work occurs, and how the work itself is structured.
 
 Delegation is therefore a system-design problem: bound the work, equip the agent, authorize its actions, and verify the result.
