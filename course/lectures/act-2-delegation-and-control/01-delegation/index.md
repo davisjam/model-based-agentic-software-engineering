@@ -126,12 +126,16 @@ The required evidence depends on the claims and consequences of the work, not on
 
 ## Engineer the whole system
 
-**BOUND → EQUIP → AUTHORIZE → VERIFY.** Bound the work so that it presents a tractable reasoning problem. Equip the agent with the capability, representations, context, state, and tools needed to perform it. Grant only the authority appropriate to the consequences of the task. Determine what evidence must exist before the work is accepted or allowed to produce further consequences.
-
-These decisions interact. Better representations may let an agent handle a larger task. Narrower authority may make greater autonomy acceptable. Stronger verification may justify delegating work whose realization would otherwise require close human supervision. A more capable model may reduce the amount of decomposition required. The engineering object is therefore not the agent alone but the system in which delegation occurs.
+**BOUND → EQUIP → AUTHORIZE → VERIFY.** These decisions interact. Better representations or a more capable model may permit broader delegation; narrower authority or stronger verification may make greater autonomy acceptable. The engineering object is not the agent alone but the system in which delegation occurs.
 
 ## Scope
 
-This unit deliberately avoids the technical details of how language models produce intelligence; we consider their properties in the abstract, with enough detail to provide a useful model for controlling their behavior. We do study the mechanisms through which contemporary agents are controlled and connected to engineering work — context management, tools, MCP, skills, memory, permissions, and work decomposition — for their engineering purpose rather than the details of any particular product.
+We study contemporary mechanisms such as context management, tools, MCP, skills, memory, permissions, and work decomposition for the engineering purposes they serve, rather than the details of particular products.
 
-The remainder of this Act considers the paired tasks of sufficiently specifying a problem (Modeling) and the means by which to ensure an agent complies (Alignment).
+Modeling asks how consequential engineering knowledge can be represented so that humans and agents need not continually reconstruct it. Alignment asks when engineering obligations should have consequences for what the environment permits or accepts.
+
+## What changes as agents improve?
+
+Contemporary agents still require substantial engineering around their reasoning: task boundaries, external context and representations, tools, permissions, and human oversight. Those properties are changing rapidly. Agents are becoming better at sustained reasoning, independent progress, tool use, and constructing useful representations for themselves.
+
+Suppose those capabilities improve substantially. What changes about BOUND → EQUIP → AUTHORIZE → VERIFY? What stays the same?
