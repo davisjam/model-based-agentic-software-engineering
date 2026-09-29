@@ -37,7 +37,9 @@ materials:
 
 **Premise.** *Delegation is an engineering decision shaped by the work, the recipient, and the consequences.*
 
-Earlier, we defined engineering as the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. That does not require engineers to personally perform every act of realization. Work can be delegated; responsibility for the resulting system remains with the engineer.
+Software agents combine attractive properties of two familiar recipients of delegated work. Like people, they can reason, adapt, and act under circumstances that were not completely specified in advance. Like deterministic automation, however, they cannot assume responsibility for the consequences of their actions. We can delegate work to an agent; we cannot delegate responsibility to it.
+
+Earlier, we defined engineering as the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. That does not require engineers to personally perform every act of realization. **It requires them to retain responsibility for the resulting system.**
 
 Delegation is not new. Software engineers delegate to colleagues, contractors, libraries, compilers, and other automation. Factories did the same earlier still: engineers delegated fabrication to skilled machinists while drawings, tolerances, gauges, and inspection preserved control over the result. Nursing provides another consequential setting in which work is deliberately assigned according to the capability of the recipient, the consequences of the task, and the supervision available.
 
