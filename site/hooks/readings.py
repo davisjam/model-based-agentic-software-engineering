@@ -17,7 +17,10 @@ Front-matter shape:
 
 A reading may cite a MAGE book section with a `{mage:N.M}` token (e.g. `{mage:7.1} Davis, 2026. …`); the
 token expands at build time to `[MAGE §N.M, "<chapter title>."](<book url>)`, with the title and URL read
-from the book source — so a MAGE reference is a reference, never a hand-typed title that can drift.
+from the book source — so a MAGE reference is a reference, never a hand-typed title that can drift. The
+token resolves in **page body prose too**, not only in `readings:` front matter: a lander that cites a
+book section mid-argument writes the same token and gets the same drift-proof link. (Before this, a body
+token shipped literally as `{mage:5.1}`, because the resolver only ran over reading items.)
 
 Two renderings:
 - On any page that declares `readings:`, append a **Readings** section (Before class / Optional).
@@ -201,7 +204,9 @@ def _reading_guide(files) -> str:
 
 
 def on_page_markdown(markdown: str, *, page, config, files):
-    md = markdown
+    # Body prose may cite a book section with the same `{mage:N.M}` token the readings use, so resolve the
+    # page first. An unknown section raises, matching the readings path: a rotted reference stops the build.
+    md = _resolve_mage(markdown)
     readings = (page.meta or {}).get("readings")
     if isinstance(readings, dict):
         md = md + _readings_section(readings)
