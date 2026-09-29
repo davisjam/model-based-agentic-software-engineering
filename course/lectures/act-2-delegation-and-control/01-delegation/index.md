@@ -110,9 +110,13 @@ Delegation therefore leaves some degrees of freedom for the recipient to resolve
 
 ## Capability is not authority
 
-A model responds to an invocation; an agent acts over time. The harness creates that difference, and tools confer authority as well as capability. Consider the same capable coding agent under five grants of authority: read repository → propose patch → modify branch → merge → deploy. Its underlying reasoning capability may be unchanged. What changes is the consequence it is permitted to produce. Authority is therefore an engineering variable independent of capability.
+A model responds to an invocation; an agent acts over time. The harness creates that difference, and tools confer authority as well as capability. Consider the same capable coding agent under five grants of authority:
 
-Two design decisions follow: what does the agent need to perform the work, and what consequences should it be permitted to produce? Equipping the agent answers the first question; authorization answers the second. Prompts, examples, retrieved context, plans, and instructions can make desirable behavior more likely. They do not restrict what an authorized action can cause, nor do they establish that the resulting artifact satisfies its obligations.
+*read repository → propose patch → modify branch → merge → deploy*
+
+Its underlying reasoning capability may be unchanged. What changes is the consequence it is permitted to produce. Authority is therefore an engineering variable independent of capability.
+
+Instructions can make desirable behavior more likely. They do not restrict what an authorized action can cause or establish that the resulting artifact is acceptable.
 
 ## Verify the result
 
