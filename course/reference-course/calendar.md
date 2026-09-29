@@ -32,8 +32,8 @@ This reference course uses a 16-week sequence in three acts. The [Syllabus](syll
 
 | Week | Topic |
 |---|---|
-| 6 | {module:Delegating to Software Agents: Old Problem, New Properties} · {module:Modeling: Representation & Implementation} |
-| 7 | {module:Modeling: Engineering with Models} · {module:Alignment: From Guidance to Authority} |
+| 6 | {module:Delegating to Software Agents: Old Problem, New Properties} · {module:Modeling: Purposeful Reduction} |
+| 7 | {module:Modeling: Systems of Models} · {module:Alignment: From Guidance to Authority} |
 | 8 | {module:Alignment: Governing Realization} · {module:Failure-Aware Engineering} |
 | 9 | Oral Exam / Synthesis |
 
