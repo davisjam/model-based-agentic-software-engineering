@@ -13,13 +13,21 @@ status: draft
 
 # Act II — Delegation and Control
 
-*How do we delegate realization, govern what is produced, and learn when reality contradicts our expectations?*
+*How do we delegate realization, preserve what matters, govern what is produced, and learn when reality contradicts our expectations?*
 
-Act II turns from the structures used to reason about software to the work of realizing systems, and to the problem of retaining control over that work when an engineer does not perform it personally. We begin with capable software agents and the problem delegating realization creates, then develop representations and enforcement mechanisms for governing that work, before asking how engineers learn when reality contradicts what they expected.
+Act II turns from the structures used to reason about software to the work of realizing systems, and to the problem of retaining control over that work when an engineer does not perform it personally. We begin with capable software agents and the familiar engineering problem of delegation: bounding work, equipping a delegate, granting authority, and obtaining evidence about the result.
 
-- **[Delegating to Software Agents: Old Problem, New Properties](01-delegation/index.md)** — how contemporary agentic systems work, and how to direct them well. Delegation exposes the engineering problem the rest of the Act answers: agents can produce and modify software at a rate and scale that makes direct human supervision of every implementation detail impractical.
-- **[Modeling: Representation & Implementation](02-modeling/index.md)** · **[Modeling: Engineering with Models](02-modeling/index.md)** (two sessions) — how engineering knowledge is represented, and how implementation itself serves as a model and a probe. Modeling arrives here as a response to the supervision problem, and it is also one of the course's fundamental engineering subjects in its own right.
-- **[Alignment: From Guidance to Authority](03-alignment/index.md)** · **[Alignment: Governing Realization](03-alignment/index.md)** (two sessions) — connecting those representations to realization, and making important obligations enforceable rather than advisory.
-- **[Failure-Aware Engineering](04-failure-aware-engineering/index.md)** — what to learn when reality contradicts expectation, and how the lesson changes the system, the team, and the engineer.
+The rest of the Act develops a model of what happens inside that delegation. For a task *T*, reasoning model *M*, representation *R*, and surrounding harness and process *H*, we can ask about the probability that one attempt produces an acceptable realization:
 
-*Remaining materials forthcoming.*
+> **p(T, M, R, H)**
+
+That probability hides several different engineering problems. Did the representation correctly encode what mattered? Did the reasoner correctly interpret it? Did the resulting implementation correctly realize it?
+
+> **p<sub>R</sub> = P(E | R) · P(I | E, R) · P(L | I, E, R)**
+
+Act II works through this system. Modeling asks what should be represented, what distinctions the representation must preserve, and what freedom it should leave to realization. Alignment asks which obligations should be enforced independently of whether the producing reasoner gets them right. Failure-Aware Engineering asks how the engineering environment should change when reality reveals that its models, controls, or assumptions were inadequate.
+
+- **[Delegating to Software Agents: Old Problem, New Properties](01-delegation/index.md)** — how contemporary agentic systems work, and how to bound, equip, authorize, and verify delegated realization.
+- **[Modeling: Representation & Implementation](02-modeling/index.md)** · **[Modeling: Engineering with Models](02-modeling/index.md)** (two sessions) — how engineering knowledge is represented; what a representation must preserve; how models constrain realization without determining it; and how implementations and models correspond.
+- **[Alignment: From Guidance to Authority](03-alignment/index.md)** · **[Alignment: Governing Realization](03-alignment/index.md)** (two sessions) — how selected obligations acquire authority beyond the producing reasoner's judgment, and how realizations are admitted, rejected, or constrained.
+- **[Failure-Aware Engineering](04-failure-aware-engineering/index.md)** — what to learn when reality contradicts expectation, and how that evidence changes models, controls, the engineering environment, and the engineer.
