@@ -7,7 +7,7 @@
     "derived_ids": 204,
     "missing_topic_sentence": 5,
     "sections_drained": 151,
-    "paragraph_points": 767
+    "paragraph_points": 770
   },
   "chapters": [
     {
@@ -623,29 +623,44 @@
               "block_index": 42
             },
             {
+              "slug": "reduction-fails-in-either-direction",
+              "text": "Reduction fails in either direction: too little reproduces complexity and may needlessly constrain realization, while too much erases a consequential distinction.",
+              "block_index": 44
+            },
+            {
+              "slug": "mage-prefers-adequate-reductions-not-more-models",
+              "text": "MAGE does not prefer more explicit models; it prefers adequate purposeful reductions — sometimes the engineering improvement is deleting modeled structure — and the examples ahead supply the criterion's boundary cases.",
+              "block_index": 47
+            },
+            {
+              "slug": "models-are-provisional-engineering-judgments",
+              "text": "Degrees of freedom asks what present obligations permit leaving open; parsimony asks whether represented distinctions earn their place; neither judgment is final, because experience may reveal an omitted distinction was consequential or a represented one unnecessary.",
+              "block_index": 49
+            },
+            {
               "slug": "software-tolerance-is-often-qualitative",
               "text": "In software a tolerance can be numeric but is often qualitative, because code owes more to discrete mathematics than to continuous media.",
-              "block_index": 44
+              "block_index": 51
             },
             {
               "slug": "a-measurement-model-can-carry-a-margin-not-just-a-target",
               "text": "Even a numeric bound is rarely a single line — a budget carries a margin, a capacity envelope leaves headroom — so a quantitative model can represent the band of acceptable variation, not just a target.",
-              "block_index": 46
+              "block_index": 53
             },
             {
               "slug": "obligations-bound-a-region-without-choosing-a-point",
               "text": "Obligations bound the space of acceptable realizations without selecting a point; commodity intelligence makes exercising that freedom cheap, so Modeling names the consequential distinctions and Alignment enforces selected boundaries.",
-              "block_index": 48
+              "block_index": 55
             },
             {
               "slug": "capability-moves-the-specification-boundary-not-the-obligation",
               "text": "The obligation boundary is set by the engineering problem and does not move with agent capability; the specification boundary can move — greater capability reduces required scaffolding but cannot recover omitted semantics.",
-              "block_index": 52
+              "block_index": 59
             },
             {
               "slug": "tacit-obligation-vs-genuinely-free",
               "text": "A tacit obligation can look free; the \"not that\" test reveals a boundary that was never written down.",
-              "block_index": 55
+              "block_index": 62
             }
           ]
         },
@@ -655,32 +670,32 @@
           "heading_text": "Not every unmodeled choice is free",
           "topic_sentence": "This also distinguishes tacit obligations from genuinely free choices.",
           "id_source": "derived",
-          "block_index": 56,
+          "block_index": 63,
           "points": [
             {
               "slug": "unknown-tacit-explicit-free-are-states",
               "text": "Whether a choice is tacitly bounded or genuinely free is a present state, not a fixed one; it changes as engineers learn from the system.",
-              "block_index": 58
+              "block_index": 65
             },
             {
               "slug": "modeling-can-precede-complete-specification",
               "text": "Modeling can begin before specification is complete; a reduction can make variation tractable so distinctions can be discovered.",
-              "block_index": 60
+              "block_index": 67
             },
             {
               "slug": "the-question-decides-what-to-keep",
               "text": "Hold the system constant, change the question, and the model changes; there is no single model of the system.",
-              "block_index": 65
+              "block_index": 72
             },
             {
               "slug": "there-is-no-model-of-the-system",
               "text": "A model earns its place by the question it settles, not by how much of the system it represents.",
-              "block_index": 68
+              "block_index": 75
             },
             {
               "slug": "a-reduction-first-even-when-executable",
               "text": "A model is a reduction first, even when it runs; executability changes what you can DO with it, not whether it abstracts.",
-              "block_index": 71
+              "block_index": 78
             }
           ]
         },
@@ -690,27 +705,27 @@
           "heading_text": "Structure Makes Representations Machine-Operable",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 80,
           "points": [
             {
               "slug": "structured-is-the-word-doing-the-work",
               "text": "Structure — an explicit declared shape a machine can read — is what lets a representation be traversed, checked, and joined.",
-              "block_index": 79
+              "block_index": 86
             },
             {
               "slug": "the-simplest-useful-form-is-a-graph",
               "text": "The simplest useful form of externalized knowledge is a graph of engineering entities and their relations; graph names the structure, not the storage.",
-              "block_index": 82
+              "block_index": 89
             },
             {
               "slug": "shape-does-not-distinguish-a-model-semantics-do",
               "text": "Many representations can be read as graphs of entities and relations; shape does not distinguish them, semantics do — a dependency, a transition, an ownership claim, and a permission can all be arrows answering different questions.",
-              "block_index": 85
+              "block_index": 92
             },
             {
               "slug": "industry-already-lives-here",
               "text": "Externalized knowledge representation is the lightest form of Modeling, and most of industry already stands on it.",
-              "block_index": 87
+              "block_index": 94
             }
           ]
         },
@@ -720,22 +735,22 @@
           "heading_text": "Representations Support Accumulating Capabilities",
           "topic_sentence": "Structured representations support different capabilities: externalized knowledge, typed relationships, explicit semantics, stated properties, derivation, generation, traceability, and checking.",
           "id_source": "derived",
-          "block_index": 89,
+          "block_index": 96,
           "points": [
             {
               "slug": "capability-comes-in-rungs",
               "text": "Structured representations support different capabilities — externalized knowledge, typed relationships, semantics, properties, derivation, generation, traceability, checking — acquired as engineers ask more, but not a required sequence or maturity model.",
-              "block_index": 91
+              "block_index": 98
             },
             {
               "slug": "the-consequence-is-selective-modeling",
               "text": "Selective modeling: model facts repeatedly reconstructed and properties repeatedly adjudicated, adding structure when the reduction in recurring engineering work justifies carrying it.",
-              "block_index": 94
+              "block_index": 101
             },
             {
               "slug": "enforcement-remains-separate",
               "text": "Enforcement stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Chapter 3 asks which the engineered environment should enforce.",
-              "block_index": 96
+              "block_index": 103
             }
           ]
         },
@@ -745,37 +760,37 @@
           "heading_text": "The Engineering Modeling Repertoire",
           "topic_sentence": "Software engineers do not need to invent a representation from first principles each time they encounter a consequential question.",
           "id_source": "derived",
-          "block_index": 99,
+          "block_index": 106,
           "points": [
             {
               "slug": "engineering-fields-have-accumulated-a-modeling-repertoire",
               "text": "Software engineers need not invent a representation from first principles each time; engineering fields have accumulated a large repertoire of models for recurring questions, each preserving different information and supporting different analyses.",
-              "block_index": 101
+              "block_index": 108
             },
             {
               "slug": "read-the-repertoire-as-available-moves-not-a-taxonomy",
               "text": "Similar graphical forms can carry very different semantics, and what matters is the engineering question a representation's entities and relations preserve.",
-              "block_index": 103
+              "block_index": 110
             },
             {
               "slug": "recognize-the-question-select-the-representation",
               "text": "The practical skill is recognizing the engineering question and selecting a representation that preserves the properties needed to answer it; MAGE prescribes no new notation, and the inset gives the broader rule.",
-              "block_index": 106
+              "block_index": 113
             },
             {
               "slug": "reuse-the-established-repertoire-choosing-is-judgment",
               "text": "This chapter illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment.",
-              "block_index": 108
+              "block_index": 115
             },
             {
               "slug": "the-sections-ahead-develop-three-kinds-of-modeling-question",
               "text": "The sections ahead do not survey the repertoire; they develop structural, behavioral, and decision questions through DocAble examples, other questions appear where the examples need them, and the final section asks what joining representations through shared identity makes possible.",
-              "block_index": 112
+              "block_index": 119
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
               "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment makes selected properties enforceable.",
-              "block_index": 114
+              "block_index": 121
             }
           ]
         }
