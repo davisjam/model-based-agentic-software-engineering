@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 813,
+    "total_sites": 814,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 475,
+      "book-web": 476,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -53,11 +53,15 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 40
+            "occ": 41
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
             "occ": 6
+          },
+          {
+            "file": "book/web/docs/2.6-modeling-summary.md",
+            "occ": 1
           },
           {
             "file": "book/web/docs/3.1-where-obligations-can-be-enforced.md",
@@ -259,7 +263,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 59
+            "occ": 60
           }
         ]
       },
@@ -559,7 +563,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 10
+            "occ": 12
           },
           {
             "file": "catalogue-figure.html",
@@ -1403,7 +1407,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 80
+            "occ": 81
           },
           {
             "file": "catalogue-figure.html",
@@ -2581,7 +2585,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 33
+            "occ": 36
           },
           {
             "file": "catalogue-figure.html",
