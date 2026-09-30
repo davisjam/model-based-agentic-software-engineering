@@ -892,7 +892,7 @@
             },
             {
               "slug": "the-static-graph-is-not-one-execution-of-it",
-              "text": "The computation model is static per run, but other views attach observations to its stable computation identities — DocAble now joins staged-run latency and cost to those identities without turning the structural graph into an execution log.",
+              "text": "The computation model is static per run, but other views attach observations to its stable computation identities — DocAble joins staged-run latency and cost to those identities without turning the structural graph into an execution log.",
               "block_index": 33
             },
             {
@@ -1293,7 +1293,7 @@
           "points": [
             {
               "slug": "the-computation-model-is-the-generate-case-execution-follows-it",
-              "text": "The remediation subsystem now illustrates both directions around one source of truth: its explicit computation model is consumed by execution, so realization follows the model rather than reconstructing composition from node implementations — the generate case.",
+              "text": "The remediation subsystem illustrates both directions around one source of truth: its explicit computation model is consumed by execution, so realization follows the model rather than reconstructing composition from node implementations — the generate case.",
               "block_index": 56
             },
             {

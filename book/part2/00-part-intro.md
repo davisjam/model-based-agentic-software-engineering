@@ -34,6 +34,8 @@ DocAble is the running example—the production accessibility service introduced
 enters, remediation is distributed across workers and services, the result is validated, and a corrected
 document returns with a record of what changed. The real system is far more complicated than any
 single representation ahead. That is the point. Each model keeps only the relationships its question needs.
+The DocAble specifics ahead — models, mechanisms, and counts — describe the repository revision examined
+at the time of writing; the live system moves, and exact quantities belong to figures regenerated from it.
 
 <!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Each worked section begins with a familiar representation, its properties and analyses, then specializes it to DocAble; four terms stay distinct — property, invariant, analysis, enforcement — with enforcement reserved for Chapter 3. | terms: model-classes, modeling-principle, alignment-principle -->
 Each worked section begins with a familiar engineering representation, the properties it makes expressible,
