@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1400 950" width="1400" height="950" role="img" aria-labelledby="ttTitle ttDesc" font-family="'Source Sans 3', sans-serif">
+<title id="ttTitle">Same territory, different questions</title>
+<desc id="ttDesc">Five models of one course-registration system, shown together: a class diagram, a sequence diagram, a state machine, an activity diagram and a use-case diagram. The territory is held constant; each diagram answers a different engineering question and preserves different distinctions.</desc>
+<rect x="0" y="0" width="1400" height="950" fill="#fdfcf9"/>
+<text x="700.0" y="46" text-anchor="middle" font-size="42" font-weight="700" letter-spacing="2.5" fill="#41586c">ONE TERRITORY: COURSE REGISTRATION</text>
+<rect x="29.0" y="74" width="430" height="372" rx="12" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.5"/>
+<image xlink:href="1-what-exists-class.png" x="47.0" y="138.2" width="394.0" height="177.7"/>
+<line x1="47.0" y1="380" x2="441.0" y2="380" stroke="#2f5169" stroke-width="1.5" opacity="0.45"/>
+<text x="244.0" y="426" text-anchor="middle" font-size="44" font-weight="700" fill="#2f5169">What exists?</text>
+<rect x="485.0" y="74" width="430" height="372" rx="12" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.5"/>
+<image xlink:href="2-who-talks-sequence.png" x="503.0" y="94.4" width="394.0" height="265.1"/>
+<line x1="503.0" y1="380" x2="897.0" y2="380" stroke="#2f5169" stroke-width="1.5" opacity="0.45"/>
+<text x="700.0" y="426" text-anchor="middle" font-size="44" font-weight="700" fill="#2f5169">Who talks to whom?</text>
+<rect x="941.0" y="74" width="430" height="372" rx="12" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.5"/>
+<image xlink:href="3-what-states-state-machine.png" x="959.0" y="134.4" width="394.0" height="185.2"/>
+<line x1="959.0" y1="380" x2="1353.0" y2="380" stroke="#2f5169" stroke-width="1.5" opacity="0.45"/>
+<text x="1156.0" y="426" text-anchor="middle" font-size="44" font-weight="700" fill="#2f5169">What states?</text>
+<rect x="257.0" y="472" width="430" height="372" rx="12" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.5"/>
+<image xlink:href="4-what-paths-activity.png" x="314.3" y="490.0" width="315.4" height="270.0"/>
+<line x1="275.0" y1="778" x2="669.0" y2="778" stroke="#2f5169" stroke-width="1.5" opacity="0.45"/>
+<text x="472.0" y="824" text-anchor="middle" font-size="44" font-weight="700" fill="#2f5169">What paths?</text>
+<rect x="713.0" y="472" width="430" height="372" rx="12" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.5"/>
+<image xlink:href="5-who-needs-what-usecase.png" x="756.5" y="490.0" width="342.9" height="270.0"/>
+<line x1="731.0" y1="778" x2="1125.0" y2="778" stroke="#2f5169" stroke-width="1.5" opacity="0.45"/>
+<text x="928.0" y="824" text-anchor="middle" font-size="44" font-weight="700" fill="#2f5169">Who needs what?</text>
+</svg>

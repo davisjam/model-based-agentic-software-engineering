@@ -1,0 +1,22 @@
+' Tour slide 7 — "Who talks to whom, and in what order?"
+' Sequence diagram over the SAME course-registration territory. Plan §S s7.
+' Register for a section, with the capacity check and the two outcomes.
+@startuml
+!include _theme.puml
+hide footbox
+
+actor Student as S
+participant "Registration" as R
+participant "Section" as SEC
+participant "Enrollment" as E
+
+S -> R : register(section)
+R -> SEC : seats available?
+SEC --> R : count
+alt seats available
+  R -> E : create
+  R --> S : enrolled
+else section full
+  R --> S : waitlisted
+end
+@enduml

@@ -1,0 +1,119 @@
+' Shared deck theme for the 2-2-Modeling-1 tour diagrams (U-OV-DIAG).
+' Palette is the course figure vocabulary (see 02-modeling/figures/specified-region.svg and
+' the U-OV-KIT visual-family spec): slate #2f5169 strokes and headings, #41586c secondary text,
+' #fdfcf9 paper, #eef2f6 / #faf7f0 fills.
+'
+' #C8102E is RESERVED for the Modeling-lever overlay across 2-1 / 2-2 / Alignment and must not
+' appear here. Emphasis in these diagrams is carried by a heavier slate rim + the warm #faf7f0
+' fill, matching the "exactly one emphasised rim" idiom of the visual-family spec.
+'
+' Type is sized for projection: the smallest label in any rendered diagram must be at least
+' 1/30 of the figure width, so that a 9 in placement on the 10 in slide keeps every glyph above
+' ~20 pt on screen.
+
+skinparam backgroundColor #fdfcf9
+skinparam defaultFontName "Source Sans 3"
+skinparam defaultFontColor #2f5169
+skinparam defaultFontSize 30
+skinparam shadowing false
+skinparam roundCorner 12
+skinparam dpi 100
+skinparam nodesep 70
+skinparam ranksep 70
+skinparam linetype ortho
+
+skinparam ArrowColor #2f5169
+skinparam ArrowThickness 2.5
+skinparam ArrowFontSize 26
+skinparam ArrowFontColor #41586c
+
+skinparam class {
+  BackgroundColor #eef2f6
+  BorderColor #2f5169
+  BorderThickness 2.5
+  FontColor #2f5169
+  FontSize 32
+  FontStyle bold
+  AttributeFontColor #41586c
+  AttributeFontSize 26
+}
+
+skinparam state {
+  BackgroundColor #eef2f6
+  BorderColor #2f5169
+  BorderThickness 2.5
+  FontColor #2f5169
+  FontSize 32
+  FontStyle bold
+  StartColor #2f5169
+  EndColor #2f5169
+}
+
+skinparam activity {
+  BackgroundColor #eef2f6
+  BorderColor #2f5169
+  BorderThickness 2.5
+  FontColor #2f5169
+  FontSize 30
+  DiamondBackgroundColor #faf7f0
+  DiamondBorderColor #2f5169
+  DiamondFontColor #2f5169
+  DiamondFontSize 28
+  StartColor #2f5169
+  EndColor #2f5169
+  BarColor #2f5169
+}
+
+skinparam usecase {
+  BackgroundColor #eef2f6
+  BorderColor #2f5169
+  BorderThickness 2.5
+  FontColor #2f5169
+  FontSize 29
+}
+skinparam actor {
+  BackgroundColor #fdfcf9
+  BorderColor #2f5169
+  FontColor #2f5169
+  FontSize 30
+  FontStyle bold
+}
+skinparam actorStyle awesome
+
+skinparam sequence {
+  ParticipantBackgroundColor #eef2f6
+  ParticipantBorderColor #2f5169
+  ParticipantBorderThickness 2.5
+  ParticipantFontColor #2f5169
+  ParticipantFontSize 31
+  ParticipantFontStyle bold
+  ParticipantPadding 30
+  ActorBackgroundColor #fdfcf9
+  ActorBorderColor #2f5169
+  ActorFontColor #2f5169
+  ActorFontSize 31
+  ActorFontStyle bold
+  LifeLineBorderColor #2f5169
+  LifeLineBackgroundColor #e7edf3
+  ArrowColor #2f5169
+  ArrowThickness 2.5
+  ArrowFontSize 27
+  ArrowFontColor #2f5169
+  BoxBorderColor #2f5169
+  MessageAlignment center
+  GroupBackgroundColor #faf7f0
+  GroupBorderColor #2f5169
+  GroupFontColor #2f5169
+  GroupFontSize 27
+  GroupHeaderFontColor #41586c
+  GroupHeaderFontSize 26
+  GroupHeaderBackgroundColor #faf7f0
+  DividerBackgroundColor #faf7f0
+}
+
+skinparam note {
+  BackgroundColor #faf7f0
+  BorderColor #2f5169
+  FontColor #41586c
+  FontSize 26
+}

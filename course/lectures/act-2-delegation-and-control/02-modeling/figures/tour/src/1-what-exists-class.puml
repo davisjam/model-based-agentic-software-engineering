@@ -1,0 +1,33 @@
+' Tour slide 6 — "What exists, and how is it related?"
+' Class / entity diagram over the course-registration territory. Plan §S s6.
+' Deliberately sparse: the SHAPE of the answer is the content, not the attribute list.
+@startuml
+!include _theme.puml
+hide circle
+hide empty members
+skinparam nodesep 90
+skinparam ranksep 45
+
+class Course {
+  code
+  title
+}
+class Instructor {
+  name
+}
+class Section {
+  term
+  capacity
+}
+class Enrollment {
+  status
+}
+class Student {
+  name
+}
+
+Course "1" *-- "0..*" Section
+Instructor "1" -- "0..*" Section
+Section "1" -left- "0..*" Enrollment
+Enrollment "0..*" -left- "1" Student
+@enduml

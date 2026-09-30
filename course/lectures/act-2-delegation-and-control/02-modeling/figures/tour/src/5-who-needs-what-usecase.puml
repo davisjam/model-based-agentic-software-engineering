@@ -1,0 +1,37 @@
+' Tour slide 10 — "Who needs what from the system?"
+' Use-case diagram over the SAME course-registration territory. Plan §S s10.
+' "Drop a course" carries the single accent in the figure: it returns on slide 27
+' (Models refine into models) as the use case the refinement chain starts from.
+' The accent is a DEEPER SLATE fill at the same rim weight. It must not be the warm #faf7f0:
+' that cream already means "decision / branch" in the sequence and activity diagrams
+' (the alt frame, the capacity diamond), and reusing it here would read as semantics.
+' It must not be red either — #C8102E is reserved deck-wide for the Modeling-lever overlay.
+@startuml
+!include _theme.puml
+left to right direction
+skinparam nodesep 35
+skinparam ranksep 150
+skinparam rectangle {
+  BackgroundColor #fdfcf9
+  BorderColor #2f5169
+  BorderThickness 2
+  FontColor #41586c
+  FontSize 27
+}
+
+actor Student as ST
+actor Instructor as IN
+actor Registrar as RG
+
+rectangle "Course registration" {
+  usecase UC1 as "Register for\na section"
+  usecase UC2 as "Drop a course" #d7e3ed
+  usecase UC3 as "View roster"
+  usecase UC4 as "Approve a\ncourse proposal"
+}
+
+ST --> UC1
+ST --> UC2
+IN --> UC3
+RG --> UC4
+@enduml

@@ -1,0 +1,20 @@
+' Tour slide 9 — "What paths can execution take?"
+' Activity diagram over the SAME course-registration territory. Plan §S s9.
+' The BRANCH is the content: one capacity decision, two paths, one rejoin.
+' Every action is one short line, so the figure stays near 1.6:1 and projects large.
+@startuml
+!include _theme.puml
+skinparam nodesep 100
+skinparam ranksep 55
+
+start
+:Request a section;
+:Check capacity;
+if (seats available?) then ([yes])
+  :Create enrollment;
+else ([no])
+  :Add to waitlist;
+endif
+:Notify student;
+stop
+@enduml

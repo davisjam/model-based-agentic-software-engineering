@@ -1,0 +1,24 @@
+' Tour slide 8 — "What states can this occupy, and which transitions are legal?"
+' State machine over the catalog side of the SAME course-registration territory:
+' the lifecycle of a course proposal. Plan §S s8 + §D2(c).
+'
+' ==> REUSED VERBATIM on correspondence slide 26 ("One model, many implementations").
+'     Visual identity between slide 8 and slide 26 is REQUIRED (plan §S s8 notes).
+'     Place the SAME rendered PNG on both slides. Do not re-draw, re-theme or re-crop.
+'
+' Laid out 2 rows deep on purpose. A straight left-to-right chain of four states renders
+' about 10:1, which projects too small to read; the snake holds the figure near 2.4:1 so a
+' 9 in placement keeps every glyph above 20 pt AND still works as slide 26's top band.
+@startuml
+!include _theme.puml
+hide empty description
+skinparam nodesep 120
+skinparam ranksep 70
+
+[*] -right-> Draft
+Draft -right-> Submitted : submit
+Submitted -down-> Approved : approve
+Approved -right-> Published : publish
+Submitted --> Draft : revise
+Published -right-> [*]
+@enduml
