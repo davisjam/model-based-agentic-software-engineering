@@ -7,6 +7,12 @@
       "location": "part2",
       "rationale": "obligation/realization Venn — two obligation regions and their acceptable intersection with distinct realization points; supporting caption names that obligations bound a region without selecting a point, and the remaining choices are degrees of freedom"
     },
+    "assets/specified-region.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "obligation/scaffolding/degrees-of-freedom stack — supporting caption naming the two boundaries and which one capability moves"
+    },
     "assets/from-nodes-to-composition.svg": {
       "tier": "B",
       "kind": "comparison",

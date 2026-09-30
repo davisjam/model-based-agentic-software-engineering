@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ch2 editorial pass 260929: the specified-region figure, promoted from the act-2 Modeling lecture
+     into the book (Sec 2.1, beside degrees of freedom and parsimony). A stacked region diagram with two
+     named horizontal boundaries and a boundary-motion arrow — a geometry a graph auto-layout would
+     misdraw as a flow of nodes, so hand-authored per the drawing escape hatch. Recolored to the book
+     palette: governance #9a3f12 = the capability-invariant obligation; agent #2f5169 = the
+     capability-dependent scaffolding; neutral #57534e = degrees of freedom and annotations. -->
+<!-- semantic-families: governance, agent, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 496" width="1000" height="496"
+     role="img" aria-labelledby="srTitle srDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="srTitle">Obligation, scaffolding, and degrees of freedom</title>
+  <desc id="srDesc">A stacked diagram. The specified region groups two layers: the engineering
+    obligation, holding consequential distinctions that must be preserved, and scaffolding, the
+    additional structure this agent needs to interpret and realize the obligation reliably. The
+    obligation boundary between them is set by the engineering problem and does not move with
+    capability. The specification boundary below the scaffolding is set by the obligation and by this
+    agent's capability. Below it sit the degrees of freedom: realization choices left to the agent.
+    An upward arrow shows that greater agent capability can reduce required scaffolding.</desc>
+
+  <defs>
+    <marker id="sr-a" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="1000" height="496" fill="#fdfcf9"/>
+
+  <!-- specified region: obligation + scaffolding -->
+  <rect x="232" y="28" width="516" height="314" rx="14" fill="#f6f4ef" stroke="#57534e"
+        stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="490" y="58" text-anchor="middle" font-size="21" font-weight="700" letter-spacing="1.2"
+        fill="#57534e">SPECIFIED REGION</text>
+
+  <!-- engineering obligation (governance: fixed by the problem) -->
+  <rect x="250" y="72" width="480" height="104" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="490" y="104" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">ENGINEERING OBLIGATION</text>
+  <text x="490" y="132" text-anchor="middle" font-size="20" fill="#57534e">consequential distinctions</text>
+  <text x="490" y="156" text-anchor="middle" font-size="20" fill="#57534e">that must be preserved</text>
+
+  <!-- obligation boundary -->
+  <line x1="250" y1="196" x2="730" y2="196" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="755" y="192" font-size="20" font-weight="700" fill="#9a3f12">obligation boundary</text>
+  <text x="755" y="216" font-size="20" fill="#57534e">set by the engineering</text>
+  <text x="755" y="240" font-size="20" fill="#57534e">problem; does not move</text>
+  <text x="755" y="264" font-size="20" fill="#57534e">with capability</text>
+
+  <!-- scaffolding (agent: capability-dependent) -->
+  <rect x="250" y="216" width="480" height="104" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="490" y="248" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">SCAFFOLDING</text>
+  <text x="490" y="276" text-anchor="middle" font-size="20" fill="#57534e">additional structure this agent needs to</text>
+  <text x="490" y="300" text-anchor="middle" font-size="20" fill="#57534e">interpret and realize the obligation reliably</text>
+
+  <!-- specification boundary: the lower edge of the specified region -->
+  <line x1="232" y1="342" x2="748" y2="342" stroke="#1c1917" stroke-width="2.5"/>
+  <text x="755" y="338" font-size="20" font-weight="700" fill="#1c1917">specification boundary</text>
+  <text x="755" y="362" font-size="20" fill="#57534e">set by the obligation</text>
+  <text x="755" y="386" font-size="20" fill="#57534e">and by this agent's</text>
+  <text x="755" y="410" font-size="20" fill="#57534e">capability</text>
+
+  <!-- degrees of freedom -->
+  <rect x="250" y="366" width="480" height="96" rx="10" fill="#fdfcf9" stroke="#57534e" stroke-width="1.5"/>
+  <text x="490" y="400" text-anchor="middle" font-size="22" font-weight="700" fill="#57534e">DEGREES OF FREEDOM</text>
+  <text x="490" y="430" text-anchor="middle" font-size="20" fill="#57534e">realization choices left to the agent</text>
+
+  <!-- capability moves only the specification boundary, toward the obligation boundary, never across -->
+  <line x1="215" y1="430" x2="215" y2="212" stroke="#2f5169" stroke-width="2" marker-end="url(#sr-a)"/>
+  <text x="202" y="322" text-anchor="end" font-size="20" fill="#57534e">greater agent</text>
+  <text x="202" y="346" text-anchor="end" font-size="20" fill="#57534e">capability can reduce</text>
+  <text x="202" y="370" text-anchor="end" font-size="20" fill="#57534e">required scaffolding</text>
+</svg>
