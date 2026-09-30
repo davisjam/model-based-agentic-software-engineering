@@ -91,6 +91,8 @@ A useful model does not merely remove detail. It distinguishes obligations from 
 
 Parsimony is the complementary judgment: each distinction the model does include must earn its place. If removing a distinction would not impair the engineering question, it probably does not belong. Neither judgment runs once. Reason top-down from the question: *what must the model preserve?* Then inspect the model bottom-up: *is each included distinction necessary?* Good models emerge by moving between the two directions until the model preserves what the question requires without reproducing the territory.
 
+Neither direction gives a mechanical answer. Engineers cannot generally know in advance that every omitted distinction is irrelevant or every included distinction necessary. Degrees of freedom and parsimony are disciplines for making that judgment with the evidence available. Analysis, implementation, measurement, or failure may later reveal that an omitted distinction mattered or an included distinction did not. When that happens, revise the model.
+
 ## How much must we specify?
 
 Parsimony depends on one more thing: the agent. The engineering obligation fixes the consequential distinctions that must be preserved, and no increase in agent capability relaxes that obligation. But a particular agent may also need scaffolding — additional decomposition, examples, or intermediate structure — to interpret and realize the obligation reliably. Call the obligation plus its scaffolding the **specified region**: everything the engineer actually writes down. Below it lie the degrees of freedom, the realization choices left to the agent.
