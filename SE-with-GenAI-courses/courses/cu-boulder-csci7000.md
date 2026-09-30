@@ -28,3 +28,31 @@ practitioner-mode engagement.
 
 Rich: full dated schedule with complete paper list, verbatim objectives, grading, assignment
 specs. Several project-milestone subpages not fetched.
+
+## Adoptability (drop-in availability, audited 2026-09-30)
+
+**Category 2 — substantial reusable materials, at the upper end.** Every assignment, milestone, and
+reading is public and directly reusable; the in-class delivery material is not, mostly by design.
+
+- **Public:** full syllabus (prerequisites, attendance and laptop policies, grading 10/20/20/50) · a
+  dated week-by-week schedule of **28 sessions**, each row carrying topic, papers, and deadlines ·
+  **3 assignment types with complete public instructions** — paper critiques (five required sections
+  plus an alternate tool-experience-report structure), paper presentations (with a full **80-point
+  rubric**: Content 30 / Added Value 30 / Materials Quality 20 / Discussion Facilitation 20), and the
+  project · **a 7-page project chain**: proposal → four milestones → final, with Milestone 1
+  specifying a 2-page ACM `sigconf` document and ≥5 annotated related-work sources · roughly 27
+  linked papers, the strongest asset · 6 full lecture PDFs.
+- **Absent:** instructor delivery material for about 22 of 28 meetings — though most sessions are
+  student-delivered presentations, so this is largely the seminar's shape rather than a withholding.
+  The project milestones state requirements with no point breakdown or scoring criteria.
+- **Login:** almost none. One Canvas link for submission; the Piazza forum is described as
+  forthcoming and unpublished. Schedule, syllabus, every assignment and milestone page, all six
+  decks, and all reading links are open.
+- **License:** **no license stated.** No copyright line, CC mark, or reuse statement on the schedule,
+  syllabus, any assignment page, any of the five milestone pages, or `finalProject.html`; the six
+  decks are served without terms.
+- **Checked:** the course tree (`index`, `syllabus`, `paperCritiques`, `paperPresentation`,
+  `researchProject`, `projectProposal`, `projectTeams`, `milestone1–4`, `finalProject`), all reached
+  and all 200; six deck PDFs downloaded and byte-verified.
+
+Method, corpus-wide counts, and the unreachable-this-pass log: [adoptability-audit.md](../adoptability-audit.md).

@@ -29,3 +29,25 @@ aside. Shares the CMU 17-316 design family (same Mom-Test/INVEST/dev-spec/chat-l
 
 Rich: full calendar, syllabus, milestone specs (P1, P5 fetched; others public but uninspected).
 Specific vendor tools not established.
+
+## Adoptability (drop-in availability, audited 2026-09-30)
+
+**Category 1 — drop-in / canned course.** The most complete package in the corpus, and explicitly
+licensed: near-total deck coverage, seven assignments and an eight-stage project with point-level
+rubrics, and a calendar carrying its own readings.
+
+- **Public:** 26 slide PDFs covering 25 of 26 meeting days, every one fetched and confirmed as a real
+  payload · 7 reflection essays (a1–a7) with complete instructions · an 8-stage project (p0–p7),
+  requirements engineering through final demo and postmortem · a full syllabus · a calendar with
+  roughly 25 linked readings · 3 student tutorials (saving LLM logs, reading a paper, a glossary) ·
+  point-level rubrics on the assignment pages.
+- **Absent:** a separate teaching-notes file; guidance is embedded in the decks.
+- **Login:** none for any instructional artifact. Discord and the two Canvas sections are
+  communication and submission surfaces.
+- **License:** **CC BY-SA 4.0.** Every page footer reads: *"© 2022-2026 Martin Kellogg, Andrew Begel,
+  Austin Henley, Jonathan Bell, Adeel Bhutta and Mitch Wand. Released under the CC BY-SA license."*
+  Share-alike obliges an adopter to release derivatives on the same terms.
+- **Checked:** the course root and its `/about/`, `/calendar/`, `/projects/p0–p7`,
+  `/assignments/a1–a7`, and `/tutorials/` pages; all 26 PDFs under `/assets/`; the footer text.
+
+Method, corpus-wide counts, and the unreachable-this-pass log: [adoptability-audit.md](../adoptability-audit.md).

@@ -42,3 +42,34 @@ first-run empirical evaluation (where AI helped, where it failed, tool-design im
 
 Rich on design and assessment (both rubrics printed in full); thin on lecture-by-lecture
 materials (slides and handouts not public).
+
+## Adoptability (drop-in availability, audited 2026-09-30)
+
+**Category 3 — inspectable but not adoptable.** The ICSE-SEET paper is an unusually rich description
+under CC BY 4.0, and it releases no materials package. A paper about a course is not a course.
+
+- **Public:** the paper itself — the course design, the six-phase weekly structure, the final-project
+  shape, an evaluation with 68 students · **two multi-column 0–4 rubric tables typeset in the paper**,
+  one over the development process (issue and user-story quality, PR and commit granularity,
+  CI/linting, 80%/90% coverage thresholds, system-test depth) and one over the final report · a
+  narrative discussion of what worked, what students found hardest, and how to give students free
+  tool access. The department teaching page lists the module and its meeting slot.
+- **The decisive check:** the paper's full text was extracted and searched for `zenodo`, `osf`,
+  `figshare`, `github`, `gitlab`, `replication`, `artifact`, `supplement`, `available at`, `package`,
+  and `reproduc`. **No data-availability statement, no artifact appendix, no materials link.** Every
+  URL is either a tool-vendor footnote or a bibliography DOI. The author's public `~fein/teaching/`
+  directory hosts other courses' files and has no directory for this one — an absence, not a locked
+  folder.
+- **Absent:** no syllabus, no calendar, **zero** slides or notes, **0** assignment handouts, no
+  starter repo, no student reading list. The rubrics can be retyped; they are not downloadable as an
+  instrument.
+- **Login:** not applicable. There is no student-facing course site to be gated; Stud.IP presumably
+  holds the materials but nothing public points there. This is "not published," not "behind a login."
+- **License:** the **paper** carries "This work is licensed under a Creative Commons Attribution 4.0
+  International License," which covers its rubric tables. For **course materials** there is no license
+  stated, because no course materials are published.
+- **Checked:** the author's self-hosted PDF (727 KB, 11 pages, full text extracted and grepped); the
+  chair's teaching page; the author's public web directory tree; three WebSearches for a replication
+  package. The ACM DL landing page 403'd the fetcher; the identical self-hosted PDF substituted.
+
+Method, corpus-wide counts, and the unreachable-this-pass log: [adoptability-audit.md](../adoptability-audit.md).
