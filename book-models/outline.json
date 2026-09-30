@@ -2992,13 +2992,13 @@
           "section_id": "what-the-factory-knows",
           "level": 3,
           "heading_text": "What the Factory Knows",
-          "topic_sentence": "At the repository revision examined here, DocAble contained 129 declared system models — each a typed, queryable representation registered in one place, most carrying their own consistency checks.",
+          "topic_sentence": "At the repository revision examined here, DocAble contained 130 declared system models — the count the factory's canonical census query (`repo-query models kinds`) returns, and the census Chapter 2's \"roughly 130\" summarizes — each a typed, queryable representation registered in one place, most carrying their own consistency checks.",
           "id_source": "derived",
           "block_index": 127,
           "points": [
             {
               "slug": "the-census-is-live-not-frozen",
-              "text": "At the repository revision examined here, DocAble contained 129 declared system models; the exact inventory changes with the system.",
+              "text": "At the repository revision examined here, DocAble contained 130 declared system models, the count returned by the factory's canonical census query; the exact inventory changes with the system.",
               "block_index": 128
             },
             {

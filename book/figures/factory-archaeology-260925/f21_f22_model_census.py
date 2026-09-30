@@ -2,7 +2,7 @@
 """F21 + F22 — Model census: forms (F21) and targets (F22).
 
 Standalone: reads ../../data/factory-archaeology-260925/model_census.csv. matplotlib only.
-Reproduces the book's census at this revision (129 models). Two panels:
+Reproduces the book's census at this revision (130 models). Two panels:
 F21 horizontal bars by declared form; F22 by target (product / agent-factory
 / execution-environment).
 """

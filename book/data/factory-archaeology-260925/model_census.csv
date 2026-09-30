@@ -12,6 +12,7 @@ system-models/census_collection_exempt.py,census_collection_exempt,REGISTRY,AGEN
 system-models/chunkless_concurrency_sizing_model.py,chunkless_concurrency_sizing_model,BUDGET,PRODUCT,product,,,``chunkless_concurrency_sizing_model`` — the dial-stack sizing SoT for the chunkless baton.
 system-models/chunkless_critical_path_model.py,chunkless_critical_path_model,BUDGET,PRODUCT,product,,,Layer-4 model: the CALL-LEVEL critical-path / expected-cost function over the
 system-models/chunkless_distribution_model.py,chunkless_distribution_model,DATAFLOW,PRODUCT,product,,,"Layer-3 system-model: the CHUNKLESS-DISTRIBUTION paradigm — its entities, its"
+system-models/chunkless_space_complexity_model.py,chunkless_space_complexity_model,BUDGET,PRODUCT,product,,,``chunkless_space_complexity_model`` — the peak-RSS envelope of one chunkless job.
 system-models/chunkless_time_complexity_model.py,chunkless_time_complexity_model,BUDGET,PRODUCT,product,,,``chunkless_time_complexity_model`` — the round-multiplication TIME envelope of one chunkless job.
 system-models/claude_md_rules.py,claude_md_rules,REGISTRY,AGENT_META,agent/factory,,,"Registry of CLAUDE.md numbered-rule metadata, extracted from inline ``<!-- rule-meta: -->`` blocks."
 system-models/cli_output_contracts.py,cli_output_contracts,SCHEMA,PRODUCT,product,,,Per-subcommand expected-JSON-output contracts for the external-CLI seams.
