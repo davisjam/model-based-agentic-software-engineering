@@ -7,7 +7,7 @@
     "derived_ids": 204,
     "missing_topic_sentence": 5,
     "sections_drained": 151,
-    "paragraph_points": 764
+    "paragraph_points": 765
   },
   "chapters": [
     {
@@ -1006,6 +1006,11 @@
               "slug": "ownership-boundary",
               "text": "The lease model makes ownership under contention precise and its invariant checkable; it does not establish the implementation obeys the invariant, nor decide what a stale release should trigger.",
               "block_index": 44
+            },
+            {
+              "slug": "the-lease-model-omits-the-processing-topology",
+              "text": "The model omits the processing topology: ownership, generation, lifetime, and reclamation are the consequential properties, and the implementation later changed how the job's work is partitioned without invalidating the model — the pointers to the code changed, not the model.",
+              "block_index": 46
             }
           ]
         },
@@ -1015,17 +1020,17 @@
           "heading_text": "One Representation, Several Questions",
           "topic_sentence": "The lease is the chapter's clearest case of one representation answering several classes of question.",
           "id_source": "derived",
-          "block_index": 46,
+          "block_index": 53,
           "points": [
             {
               "slug": "the-lease-answers-ownership-behavioral-and-measurement-questions-at-once",
               "text": "Read as ownership the lease says who controls a job; read as behavioral it traces a claimed-held-expired-reclaimed lifecycle; counted, it measures how much work is in flight — one representation, three questions.",
-              "block_index": 47
+              "block_index": 54
             },
             {
               "slug": "overlap-confirms-the-classes-sort-questions-not-data-structures",
               "text": "The overlap follows from the distinction introduced at the chapter's opening: model classes identify engineering questions, not mutually exclusive data structures — the observation the closing section builds on to connect the models.",
-              "block_index": 50
+              "block_index": 57
             }
           ]
         }
@@ -1334,12 +1339,12 @@
             {
               "slug": "no-synchronization-mechanism-proves-semantic-correctness",
               "text": "Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture.",
-              "block_index": 80
+              "block_index": 75
             },
             {
               "slug": "the-narrow-guarantee-is-the-boundary-part-iii-begins-at",
               "text": "The bounded guarantee — decide the decidable over the claimed surface — is the boundary Chapter 3 opens on, where agreement is distinguished from correctness.",
-              "block_index": 83
+              "block_index": 78
             }
           ]
         },
@@ -1349,47 +1354,47 @@
           "heading_text": "Modeling Makes Properties Available to Engineering",
           "topic_sentence": "A model does not govern the system merely by existing.",
           "id_source": "derived",
-          "block_index": 85,
+          "block_index": 80,
           "points": [
             {
               "slug": "a-model-does-not-govern-by-existing-it-makes-a-property-explicit",
               "text": "A model does not govern by existing: a structural model names a forbidden dependency without preventing it, a behavioral model an illegal transition without rejecting it, a measurement model a budget without stopping work — Modeling makes the property explicit, it does not enforce it.",
-              "block_index": 86
+              "block_index": 81
             },
             {
               "slug": "docable-attaches-no-hard-invariant-to-either-quantity",
               "text": "DocAble's cost-and-capacity model relates usage and pricing to an attributable cost against a budget and concurrency to a capacity demand against an envelope, and attaches no hard invariant to either quantity: the model says cost can be compared against a budget, not that it must not exceed one.",
-              "block_index": 88
+              "block_index": 83
             },
             {
               "slug": "measurement-boundary-modeling-and-enforcement-are-separate",
               "text": "The cost-and-capacity model makes spending attributable and demand comparable to an envelope; it does not decide the budget, guarantee that the numbers are collected correctly, or enforce the bound.",
-              "block_index": 90
+              "block_index": 85
             },
             {
               "slug": "relational-obligations-need-enough-representation",
               "text": "Local syntactic obligations need little modeling; architectural boundaries, temporal obligations, distributed ownership, provenance, and end-to-end policy need enough representation to expose the relevant relationships, which Modeling makes available to analysis and governance.",
-              "block_index": 93
+              "block_index": 88
             },
             {
               "slug": "alignment-does-not-require-a-separately-represented-model",
               "text": "Alignment does not require every obligation to have a separately represented model — some properties are observable at an action or artifact boundary and can be constrained directly; models extend the range of properties available for analysis and enforcement.",
-              "block_index": 96
+              "block_index": 91
             },
             {
               "slug": "docable-models-arose-around-expensive-questions",
               "text": "DocAble's models arose around engineering questions that implementation alone made expensive or unsafe to reconstruct; different questions required different reductions, and shared identities connect them where a decision crosses views.",
-              "block_index": 98
+              "block_index": 93
             },
             {
               "slug": "part-iii-asks-which-obligations-the-environment-should-hold",
               "text": "Chapter 3 asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them.",
-              "block_index": 100
+              "block_index": 95
             },
             {
               "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-enforcement-is-a-separate-question",
               "text": "Models are useful without enforcement — they preserve decisions, expose relationships, and let engineers and agents reason from shared representations; Alignment adds another use by turning selected modeled properties into obligations.",
-              "block_index": 107
+              "block_index": 102
             }
           ]
         }

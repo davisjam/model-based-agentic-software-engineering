@@ -331,7 +331,9 @@
       "opening_anchor": "Behavioral models add time.",
       "closing_anchor": "permission the whole question.",
       "delivers": {
-        "concepts": [],
+        "concepts": [
+          "invariant"
+        ],
         "artifacts": [
           {
             "type": "framework",
@@ -403,8 +405,7 @@
           "derivation-direction",
           "model-from-code",
           "model-to-code",
-          "traceability",
-          "invariant"
+          "traceability"
         ],
         "artifacts": [
           {
