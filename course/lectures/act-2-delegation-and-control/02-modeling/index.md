@@ -93,6 +93,14 @@ Parsimony is the complementary judgment: each distinction the model does include
 
 Neither direction gives a mechanical answer. Engineers cannot generally know in advance that every omitted distinction is irrelevant or every included distinction necessary. Degrees of freedom and parsimony are disciplines for making that judgment with the evidence available. Analysis, implementation, measurement, or failure may later reveal that an omitted distinction mattered or an included distinction did not. When that happens, revise the model.
 
+## Models can follow implementation
+
+Modeling does not require Perfect Design Up Front. A model is a tool for preserving and communicating consequential knowledge, not a claim that engineers completely understand the system before building it. As agents make implementation and representation cheaper, engineers can model what they know, build to learn what they do not, and revise the model as the work produces evidence.
+
+Sometimes implementation comes first. In Design, we used prototypes as probes: building a candidate realization can be the cheapest way to discover how a mechanism behaves or which distinctions matter. But a prototype preserves the implementation, not necessarily what engineers learned from it. Once the probe answers the question, induce a model from the working realization that captures the consequential relationship, constraint, or tradeoff the prototype exposed. The implementation may later be replaced; the engineering knowledge should not have to be rediscovered with it.
+
+This is another reason Modeling matters for delegation. Models reduce how much consequential knowledge and intent must be reconstructed from implementation each time work passes between engineer and agent. They need not be perfect to serve that purpose. They need to preserve enough of what currently matters to support the next engineering decision, and to change when the evidence changes.
+
 ## How much must we specify?
 
 Parsimony depends on one more thing: the agent. The engineering obligation fixes the consequential distinctions that must be preserved, and no increase in agent capability relaxes that obligation. But a particular agent may also need scaffolding — additional decomposition, examples, or intermediate structure — to interpret and realize the obligation reliably. Call the obligation plus its scaffolding the **specified region**: everything the engineer actually writes down. Below it lie the degrees of freedom, the realization choices left to the agent.
