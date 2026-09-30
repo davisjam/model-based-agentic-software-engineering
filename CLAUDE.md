@@ -69,6 +69,15 @@ re-deriving these, so they live here:**
   (`catalog_tests.py`) between writers. To isolate a second agent's change from a concurrent one (e.g. a live
   hand-edit), commit in TWO steps (the isolated change first) or `git stash` the second agent's own files
   across the first commit — never `git commit --no-verify` (banned; it skips the hook).
+- **A writer is done only when it says so.** Gate the next writer on the agent's own completion
+  signal. A `DONE-*.md` checkpoint, landed commits, and a quiet transcript all mean "it reached a
+  reporting step" — none of them mean it stopped writing; agents routinely commit, checkpoint, then
+  keep going through a verification round. Inferring completion from an artifact caused three
+  concurrent-write incidents in one session (260930). If you must proceed without the signal, the
+  cheap check is on the WRITER's side: a unit whose first commit's parent is not the HEAD it was
+  given has just detected a concurrent writer, and should rebase rather than revert. Also treat the
+  human as a writer — they open the deck or the file in an app whenever they like, so a dirty tree
+  you did not cause is a reason to stop and ask, never to clean up.
 - **Drafting parallelizes; infrastructure serializes.** Split a big job into (a) SEQUENTIAL INFRASTRUCTURE —
   `catalog.py` / `book/build_book.py` / `book/book_typst.py` renderers, packers, migrations (shared
   files, one writer) — and (b) PARALLEL CONTENT DRAFTING — prose, blurbs, notes — that writes to DRAFT files
