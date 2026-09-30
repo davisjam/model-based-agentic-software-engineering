@@ -120,7 +120,7 @@ The recovery model can be drawn as a state diagram, written as a transition tabl
 - **Model** — a purposeful reduction of some territory that preserves selected properties or relationships for answering engineering questions.
 - **Representation** — a concrete form in which a model is expressed so that humans or machines can inspect, manipulate, analyze, or consume it.
 
-A diagram is a representation, not a synonym for a model. The distinction lets us state properties over models: the recovery model makes *publication precedes the record* expressible whatever the encoding. It also prepares Lecture 2: the same engineering fact can appear in several representations, because authority belongs to the model, not to any encoding of it.
+A diagram is a representation, not a synonym for a model. The distinction lets us state properties over models: the recovery model makes *publication precedes the record* expressible whatever the encoding. It also prepares Lecture 2: the same model can have several representations without making each representation an independent source of truth.
 
 ## Representation affects interpretation
 
@@ -142,12 +142,12 @@ One model makes one engineering question tractable; a production system needs ma
 
 **Composition without collapse.** DocAble's composition case starts from a single declared relation: one service may call another. That edge participates in questions no single model answers. Is the communication permitted? Where is the callee deployed? What runtime identity invokes it, and what invocation grant must exist? Does the deployed topology correspond to the declared one? The declared edges are held in exact correspondence with the deployment edge set, and deployment derives the cloud invocation grants from those declared edges. No single artifact contains that deployment plan; joining purposeful reductions through shared identities produces it.
 
-The temptation after joins is obvious: put everything into one universal model. Resist it. Each reduction is useful because it suppresses information irrelevant to its question, and one enormous model would recreate the complexity Modeling exists to reduce. There is no grand model.
+The temptation after joins is obvious: put everything into one universal model. Sometimes that is worthwhile: a unified model can make cross-cutting questions easier to state and analyze. But unification also creates a larger artifact whose semantics and correspondences must be maintained. Often, shared identities and explicit relationships are enough to connect purposeful reductions without collapsing them into one representation. There need not be a grand model. How much to unify is itself a modeling decision.
 
 ## Three activities, three judgments
 
 - **Reduce** (Lecture 1). Groups receive the same small system but different engineering questions. *What must your model preserve? What may it omit? What property should become expressible?* The debrief carries the lesson: different questions about the same territory produce different reductions, and each group defends its model as parsimonious.
-- **Interpret** (Lecture 1). Groups receive several small representations, including the same A-to-B drawing twice under different semantics. For each: *what claim does this representation appear to make, and what remains ambiguous?* The exercise makes the probability of correct interpretation tangible without estimating a number.
+- **Interpret** (Lecture 1). Groups receive several small representations, including the same A-to-B drawing under different semantics and two different representations intended to express the same model. For each: *what model does this representation appear to express, what claim does it make, and what remains ambiguous?* The exercise makes the probability of correct interpretation tangible without estimating a number.
 - **Join** (Lecture 2). Groups receive small model fragments sharing identities — service flow, deployment, runtime identity and access, measurements — and a question none answers alone. They identify the join the question requires, the answer it supports, and what still cannot be concluded.
 
 ## From Modeling to Alignment
