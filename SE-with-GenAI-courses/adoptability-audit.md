@@ -91,12 +91,18 @@ Per course:
 | Harvard COMPSCI 1060 — SE with Generative AI | core | 4 | no license stated |
 | Virginia Tech CS 5914 — AI Tools for Software Delivery | core | 4 | no license stated |
 
-**Licensing is the corpus's dominant condition, not an edge case.** Twenty-one of twenty-five state
-no license over their instructional materials. Four state one: CMU 17-316 (MIT), NJIT (CC BY-SA
-4.0), Northeastern (CC BY-NC 4.0 for materials, Apache 2.0 for code), and Passau — whose CC BY 4.0
-covers the *paper* describing the course, since no materials were released. Two more courses carry
-MIT only on an ancillary setup repo (UMich's `aider-ollama`, UCSD's `tritonai-starter`) while the
-teaching materials themselves are unlicensed.
+**Licensing is the corpus's dominant condition, not an edge case.** **Twenty-two of twenty-five
+state no license over their own instructional materials.** Three state one: CMU 17-316 (MIT), NJIT
+(CC BY-SA 4.0), and Northeastern (CC BY-NC 4.0 for materials, Apache 2.0 for code).
+
+Three near-misses are worth naming, because each looks like a license and is not.
+
+- **Passau** publishes under CC BY 4.0 — but that covers the *paper* describing the course, which
+  released no materials to license.
+- **Memphis** states MIT in its footer as an *attribution to the upstream CMU work*, not a grant of
+  its own; no Memphis-owned public repo carries a license file.
+- **UMich and UCSD** carry MIT on an ancillary setup repo (`aider-ollama`, `tritonai-starter`) while
+  the teaching materials themselves are unlicensed.
 
 So the headline number splits. **Five courses are materially drop-in. Three are drop-in and legally
 adoptable without writing to the author: CMU 17-316, NJIT CS 485, and Northeastern CS 7180.**
