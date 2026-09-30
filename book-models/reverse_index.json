@@ -4704,7 +4704,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.3-behavioral::block-57",
+          "element": "2.3-behavioral::block-55",
           "role": "paragraph-point"
         }
       ]
@@ -4724,7 +4724,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.3-behavioral::block-44",
+          "element": "2.3-behavioral::block-42",
           "role": "paragraph-point"
         }
       ]
@@ -6429,6 +6429,16 @@
         }
       ]
     },
+    "point:the-contrast-between-the-two-structural-models": {
+      "kind": "point",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "2.2-structural::block-31",
+          "role": "paragraph-point"
+        }
+      ]
+    },
     "point:the-control-count-is-evidence-of-investment": {
       "kind": "point",
       "dependents": [
@@ -6864,7 +6874,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.2-structural::block-35",
+          "element": "2.2-structural::block-37",
           "role": "paragraph-point"
         }
       ]
@@ -6934,7 +6944,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.3-behavioral::block-54",
+          "element": "2.3-behavioral::block-52",
           "role": "paragraph-point"
         }
       ]
@@ -6944,7 +6954,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.3-behavioral::block-46",
+          "element": "2.3-behavioral::block-44",
           "role": "paragraph-point"
         }
       ]
@@ -7014,7 +7024,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.2-structural::block-31",
+          "element": "2.2-structural::block-33",
           "role": "paragraph-point"
         }
       ]
@@ -7025,16 +7035,6 @@
         {
           "view": "outline",
           "element": "2.3-behavioral::block-17",
-          "role": "paragraph-point"
-        }
-      ]
-    },
-    "point:the-model-exposes-the-question-a-compare-and-set-holds-the-line": {
-      "kind": "point",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "2.3-behavioral::block-42",
           "role": "paragraph-point"
         }
       ]
@@ -7614,7 +7614,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.2-structural::block-33",
+          "element": "2.2-structural::block-35",
           "role": "paragraph-point"
         }
       ]

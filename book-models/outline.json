@@ -886,19 +886,24 @@
               "block_index": 28
             },
             {
+              "slug": "the-contrast-between-the-two-structural-models",
+              "text": "The first model preserves one architectural relation; the second preserves a family of typed compositional relations over the same system.",
+              "block_index": 31
+            },
+            {
               "slug": "the-model-also-records-how-bounded-each-effect-is",
               "text": "The same model records how bounded each computation's effect is — a typed patch for all or part of its edits, or a direct in-place edit — exposing distinctions the implementation contains but does not represent uniformly.",
-              "block_index": 31
+              "block_index": 33
             },
             {
               "slug": "the-static-graph-is-not-one-execution-of-it",
               "text": "The computation model is static per run, but other views attach observations to its stable computation identities — DocAble joins staged-run latency and cost to those identities without turning the structural graph into an execution log.",
-              "block_index": 33
+              "block_index": 35
             },
             {
               "slug": "the-identity-spine-supports-added-views-without-enlarging-the-schema",
               "text": "Additional engineering views attach by computation identity rather than enlarging the structural schema; declared properties state intent, measured properties report observation, so an unmeasured value is unknown, not zero.",
-              "block_index": 35
+              "block_index": 37
             }
           ]
         }
@@ -1008,19 +1013,14 @@
               "block_index": 38
             },
             {
-              "slug": "the-model-exposes-the-question-a-compare-and-set-holds-the-line",
-              "text": "The generation makes \"is this release applicable to the current claim?\" decidable — the property the model exposes; whether a release path compares generations and rejects the stale one is the Chapter 3 enforcement, verified separately by exhaustive interleaving search.",
-              "block_index": 42
-            },
-            {
               "slug": "ownership-boundary",
-              "text": "The lease model makes ownership under contention precise and its invariant checkable; it does not establish the implementation obeys the invariant, nor decide what a stale release should trigger.",
-              "block_index": 44
+              "text": "The generation exposes the question — is this release applicable to the current claim? — and the model's job ends at making that invariant precise and checkable; whether the release path refuses the stale release is a hard guard for Chapter 3, verified by exhaustive search over the interleavings.",
+              "block_index": 42
             },
             {
               "slug": "the-lease-model-omits-the-processing-topology",
               "text": "The model omits the processing topology: ownership, generation, lifetime, and reclamation are the consequential properties, and the implementation later changed how the job's work is partitioned without invalidating the model — the pointers to the code changed, not the model.",
-              "block_index": 46
+              "block_index": 44
             }
           ]
         },
@@ -1030,17 +1030,17 @@
           "heading_text": "One Representation, Several Questions",
           "topic_sentence": "The lease is the chapter's clearest case of one representation answering several classes of question.",
           "id_source": "derived",
-          "block_index": 53,
+          "block_index": 51,
           "points": [
             {
               "slug": "the-lease-answers-ownership-behavioral-and-measurement-questions-at-once",
               "text": "Read as ownership the lease says who controls a job; read as behavioral it traces a claimed-held-expired-reclaimed lifecycle; counted, it measures how much work is in flight — one representation, three questions.",
-              "block_index": 54
+              "block_index": 52
             },
             {
               "slug": "overlap-confirms-the-classes-sort-questions-not-data-structures",
               "text": "The overlap follows from the distinction introduced at the chapter's opening: model classes identify engineering questions, not mutually exclusive data structures — the observation the closing section builds on to connect the models.",
-              "block_index": 57
+              "block_index": 55
             }
           ]
         }
@@ -1096,7 +1096,7 @@
             },
             {
               "slug": "docable-does-not-reconcile-observed-traffic-so-correspondence-is-the-open-question",
-              "text": "DocAble generates config from the declared graph but does not reconcile observed traffic against it at runtime; the open correspondence exposes what the model makes checkable but cannot itself decide — whether the deployed services communicate only along the permitted edges.",
+              "text": "DocAble generates config from the declared graph but does not reconcile observed traffic against it at runtime; whether the deployed services stay on the permitted edges, and what a departure should cost, is Alignment's question.",
               "block_index": 19
             }
           ]
@@ -1131,7 +1131,7 @@
             },
             {
               "slug": "the-production-failure-produced-the-model",
-              "text": "The same-day root-cause analysis made the admission question explicit and produced an explicit entitlement decision model — with property tests, a cross-runtime parity corpus, and a shape lint — in roughly five hours from RCA to deletion of the lossy reduction.",
+              "text": "The root-cause analysis made the admission question explicit and produced an explicit entitlement decision model — with property tests, a cross-runtime parity corpus, and a shape check — in roughly five hours from RCA to deletion of the lossy reduction.",
               "block_index": 31
             },
             {
@@ -1146,7 +1146,7 @@
             },
             {
               "slug": "an-explicit-model-would-have-made-the-obligation-visible",
-              "text": "The author changed the system concept in one place and did not carry it into another representation of the same decision; an explicit model would not have prevented the bug, but it would have made the obligation to update the corresponding representation visible.",
+              "text": "The author changed the domain in one place and did not carry the change into every representation of the same decision; when the domain contains a consequential distinction, every representation used to reason about that decision must be capable of expressing it.",
               "block_index": 40
             }
           ]
