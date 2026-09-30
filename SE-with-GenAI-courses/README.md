@@ -25,6 +25,7 @@ The ECE 30861 comparison came last and cites the already-frozen evidence.
 | [courses/](courses/) | One brief per core comparator: what it teaches and how it is organized |
 | [matrix.md](matrix.md) | Cross-course concept matrix (Delegation · Modeling · Alignment/control · Traditional SE under AI) with evidence |
 | [organization.md](organization.md) | How each course intellectually decomposes the problem |
+| [adoptability-audit.md](adoptability-audit.md) | Could another instructor teach these? A separate pass coding **drop-in instructional availability** — 5 of 25 qualify, 3 of those carry a license |
 | [ece30861-comparison.md](ece30861-comparison.md) | ECE 30861 vs the corpus: shared, distinctive, and plausibly omitted by ECE 30861 |
 | [sources/](sources/) | Per-course evidence files (quotes + URLs) and the source appendix — the raw material every classification rests on |
 
@@ -39,3 +40,7 @@ Three rules were enforced while coding:
   passing mention of models or oversight is not the richer concept.
 - **Evidence outranks classification.** Matrix cells carry quotations or precise syllabus
   references; a cell without evidence says so.
+- **Observability and availability are separate variables.** The evidence coding above says how much
+  of a course we can *see*. [adoptability-audit.md](adoptability-audit.md) revisited the live URLs to
+  code whether the instructional package can be *taught*, and reuses none of that coding — a course
+  can be richly documented and completely unadoptable.
