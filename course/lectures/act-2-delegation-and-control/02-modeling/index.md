@@ -73,7 +73,7 @@ The unit turns that decision into a discipline. For every model, ask four questi
 
 The reduction rarely needs to be invented. Software engineering and its neighboring disciplines have accumulated model forms for recurring questions: dependency graphs for structural questions, state machines for behavioral ones, quantitative models for capacity and cost. Do not invent a representation merely because you can. Start from the repertoire and select for the question.
 
-UML is one established source within that repertoire, with fourteen standardized diagram types across structure, behavior, interaction, and deployment. Model-based systems engineering broadens the space further, treating requirements, interfaces, structure, and allocations as explicit engineering artifacts. The assigned readings ask you to browse this breadth, not memorize it. There is no universal model of a software system; selecting among models is itself an engineering decision.
+UML is the industry-standard starting point for software modeling, providing established structural and behavioral views for many recurring engineering questions. Not every useful software model fits within UML, and some questions call for representations from other engineering traditions. But before inventing a new representation, ask whether an established form already serves the question. Model-based systems engineering broadens the repertoire further, treating requirements, interfaces, structure, and allocations as explicit engineering artifacts. The assigned readings ask you to browse this breadth, not memorize it. Selecting among models is itself an engineering decision.
 
 ## Reducing a real system
 
