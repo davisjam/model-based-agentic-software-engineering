@@ -31,8 +31,10 @@ assignments: []
 instructor_notes: ""
 status: ready
 materials:
-  - title: Lecture 1 slides — Purposeful Reduction (forthcoming)
-  - title: Lecture 2 slides — Systems of Models (forthcoming)
+  - title: "Lecture 1 slides — Modeling: Purposeful Reduction"
+    src: 2-2-Modeling-1-Purposeful-Reduction.pptx
+  - title: "Lecture 2 slides — Modeling: Systems of Models"
+    src: 2-2-Modeling-2-Systems-of-Models.pptx
 ---
 
 **Premise.** *A model is useful because it leaves things out and makes explicit what must remain.*
