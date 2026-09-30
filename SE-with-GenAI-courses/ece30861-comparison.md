@@ -194,6 +194,23 @@ mostly got there *through the tools* — hooks vs context files taught guidance-
 CLAUDE.md taught knowledge-in-the-environment, agent permissioning taught authority. ECE 30861
 derives the same ideas from engineering precedent (nursing delegation, factory inspection,
 end-to-end arguments, management control). The concepts meet in the middle; the derivations are
-opposite. That is evidence the ideas are real (independent arrival), and equally a warning that
-the tool-driven route may make parts of the conceptual apparatus feel derivable-from-practice to
-students who already use the tools.
+opposite. That is evidence the ideas are real: independent arrival from opposite directions.
+
+**Author's correction to this reading (260930).** The framing above treats tools and engineering
+precedent as rival derivations, and worries that tool-fluent students may find the conceptual
+apparatus redundant. That inverts the pedagogical point. ECE 30861 also teaches through the tools —
+the question is not which derivation to use but what a student is left holding afterwards.
+
+> "I obviously see this through the tools as well. But if we teach ONLY through the tools then the
+> students don't see that it's a broader notion — just that there's a tool, hey."
+
+A student who meets guidance-versus-enforcement only as *hooks versus context files* has learned a
+fact about one vendor's agent harness. A student who meets it as the same distinction that separates
+a posted policy from a locked door — and who has seen it in nursing delegation, factory inspection,
+and end-to-end arguments — has learned an engineering idea that outlives the harness. The precedent
+is not an alternative route to the same destination; it is what makes the destination general.
+
+This reframes §2's distinctiveness finding. The external corpus's tool-first derivations are not
+evidence that the concepts are widely held. They are evidence that the concepts are *reachable*
+through current tooling — while leaving open whether students retain them once the tooling changes.
+That is the claim this survey cannot settle, and the one worth measuring.
