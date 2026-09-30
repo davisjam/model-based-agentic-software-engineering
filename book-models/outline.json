@@ -7,7 +7,7 @@
     "derived_ids": 205,
     "missing_topic_sentence": 5,
     "sections_drained": 157,
-    "paragraph_points": 797
+    "paragraph_points": 798
   },
   "chapters": [
     {
@@ -6149,8 +6149,13 @@
             },
             {
               "slug": "what-changes-is-the-allocation-of-attention",
-              "text": "What changes is the allocation of attention.",
+              "text": "Routine implementation is already cheap enough to alter the engineering problem while specification, validation, coordination, and judgment stay scarce, so education should change which competencies it practices rather than which subjects it drops.",
               "block_index": 114
+            },
+            {
+              "slug": "trajectories-explain-why-the-competencies-may-keep-moving",
+              "text": "Chapter 6 explains why these competencies matter and §7.1's four trajectories explain why their relative importance may keep moving; the trajectories may advance unevenly, but they begin from a change already underway.",
+              "block_index": 116
             }
           ]
         },
@@ -6160,17 +6165,17 @@
           "heading_text": "Shift the emphasis",
           "topic_sentence": "Less educational effort may need to go toward producing routine implementation by hand, and more toward selecting abstractions, specifying properties, measuring systems, validating claims, reasoning about quality attributes, and governing autonomous work.",
           "id_source": "derived",
-          "block_index": 116,
+          "block_index": 118,
           "points": [
             {
               "slug": "shift-emphasis-to-abstractions-specification-validation",
               "text": "Shift educational emphasis toward abstractions, specification, validation, modeling, and formal methods.",
-              "block_index": 117
+              "block_index": 119
             },
             {
               "slug": "coordination-becomes-a-technical-concern-at-individual-scale",
               "text": "Coordination becomes a technical concern at individual scale under agentic implementation capacity.",
-              "block_index": 119
+              "block_index": 121
             }
           ]
         },
@@ -6180,22 +6185,22 @@
           "heading_text": "Change what students demonstrate",
           "topic_sentence": "A capstone should therefore demonstrate more than a working artifact.",
           "id_source": "derived",
-          "block_index": 124,
+          "block_index": 126,
           "points": [
             {
               "slug": "capstone-should-carry-the-engineering-case",
               "text": "A capstone should carry the engineering case, not only a working artifact.",
-              "block_index": 125
+              "block_index": 127
             },
             {
               "slug": "program-objectives-change-little-practice-changes",
               "text": "Program objectives change little; how students practice and demonstrate the capabilities changes.",
-              "block_index": 127
+              "block_index": 129
             },
             {
               "slug": "teach-durable-principles-beneath-the-agent-interface",
               "text": "Teach the durable principles beneath the fast-changing agent interface, not the interface itself.",
-              "block_index": 129
+              "block_index": 131
             }
           ]
         },
@@ -6205,22 +6210,22 @@
           "heading_text": "The Entry-Rung Problem",
           "topic_sentence": "The traditional path into software engineering runs through implementation.",
           "id_source": "derived",
-          "block_index": 132,
+          "block_index": 134,
           "points": [
             {
               "slug": "genai-erodes-the-implementation-apprenticeship",
               "text": "GenAI erodes the implementation apprenticeship through which the profession trained senior engineers.",
-              "block_index": 133
+              "block_index": 135
             },
             {
               "slug": "entry-rung-problem-acquiring-judgment-without-implementation-work",
               "text": "The entry-rung problem: how to acquire engineering judgment when routine implementation is abundant.",
-              "block_index": 135
+              "block_index": 137
             },
             {
               "slug": "profession-reorganizes-around-responsibility-for-the-whole",
               "text": "The profession reorganizes around responsibility for the engineered whole, not the residual machine-poor tasks.",
-              "block_index": 137
+              "block_index": 139
             }
           ]
         }
