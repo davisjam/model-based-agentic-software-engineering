@@ -78,6 +78,17 @@ re-deriving these, so they live here:**
   given has just detected a concurrent writer, and should rebase rather than revert. Also treat the
   human as a writer — they open the deck or the file in an app whenever they like, so a dirty tree
   you did not cause is a reason to stop and ask, never to clean up.
+- **A clean tree is not a safe tree: check for a live handle before rewriting a binary.** Before any
+  unit rewrites a whole `.pptx` (a reorder, a repack, anything that replaces the package rather than
+  patching one part), check `lsof <file>` for an open handle and look for a sibling `~$<name>.pptx`
+  lock. An app holding the file open writes the WHOLE package on the next save, so its save silently
+  replaces everything the unit did — and for a `sldIdLst` reorder there is no partial-credit version
+  and nothing in the tree afterwards to show the work existed. The tree being clean and byte-identical
+  to HEAD proves only that the human has not saved YET; it says nothing about what their next Cmd-S
+  will do. Verified live on 260930: a unit's pre-flight caught an open handle on an otherwise
+  pristine tree. Do the read-only analysis while you wait, then write as one fast transaction and
+  re-check the handle immediately before writing — a confirmation that the file was closed goes stale
+  in minutes.
 - **Drafting parallelizes; infrastructure serializes.** Split a big job into (a) SEQUENTIAL INFRASTRUCTURE —
   `catalog.py` / `book/build_book.py` / `book/book_typst.py` renderers, packers, migrations (shared
   files, one writer) — and (b) PARALLEL CONTENT DRAFTING — prose, blurbs, notes — that writes to DRAFT files
