@@ -89,6 +89,20 @@ re-deriving these, so they live here:**
   pristine tree. Do the read-only analysis while you wait, then write as one fast transaction and
   re-check the handle immediately before writing — a confirmation that the file was closed goes stale
   in minutes.
+- **Never infer from a fragment when the whole is a command away — this governs reading ARTIFACTS as
+  much as agents.** The failure class is one thing wearing three costumes, all seen on 260930–261001:
+  a live unit judged dead from transcript quiet; a dense ten-finding review judged empty from a
+  one-word closing line; and a slide paragraph reported as clipped because a single `<a:t>` run was
+  read as though it were the line. In the third case the claim was false and shipped in a commit
+  message before it was caught. Whenever you are about to characterise something, ask what the SMALLEST
+  unit is that could carry the whole meaning, and read THAT. The concrete rules that follow, below.
+- **Reading OOXML text: runs are not lines. Join the runs inside each `<a:p>` before you compare
+  anything.** PowerPoint splits a single sentence across arbitrarily many `<a:t>` runs and re-splits
+  them on every save, so a run routinely begins mid-word — the 261001 instance was a run starting
+  `raw boxes and arrows…` because `…why do SWEs d` ended the run before it. Diffing runs therefore
+  invents edits that never happened and hides real ones; diff PARAGRAPHS. The same caution applies to
+  any claim about on-slide wording: extract per-`<a:p>`, join, then compare. (Sibling gotcha: a
+  `slidenum` field's `<a:t>` is a stale RENDER CACHE, not the position — see above.)
 - **An agent's state comes from a content probe, not a surface signal.** Silence, a terse closing
   line, a short tool count, a stale task-output file — none of these distinguish a dead unit from a
   working one, or an empty review from a dense one. **The task-output file's mtime is not a liveness
