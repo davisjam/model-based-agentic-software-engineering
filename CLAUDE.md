@@ -89,6 +89,21 @@ re-deriving these, so they live here:**
   pristine tree. Do the read-only analysis while you wait, then write as one fast transaction and
   re-check the handle immediately before writing — a confirmation that the file was closed goes stale
   in minutes.
+- **An agent's state comes from a content probe, not a surface signal.** Silence, a terse closing
+  line, a short tool count, a stale task-output file — none of these distinguish a dead unit from a
+  working one, or an empty review from a dense one. **The task-output file's mtime is not a liveness
+  signal at all:** on 261001 one sat frozen for 40 minutes while the agent it belonged to committed
+  three times and staged a fourth. Probe the content instead. For liveness: `git log --format=%cI`
+  for commit times, and `git status --porcelain` on the artifact — a staged-but-uncommitted change
+  means the unit is mid-commit *right now*. For a review: read the report body, never the final
+  message. Both directions cost real work on 260930–261001 — a unit judged dead after an hour of
+  transcript quiet was live, and a `git checkout --` was staged over its uncommitted fixes (its index
+  lock is what stopped it); a review judged empty from a one-word tail held ten measured findings,
+  two of which inverted an author's intent. The asymmetry is the point: a probe costs seconds, and
+  acting on a wrong inference destroys work or discards a finding nobody will look for twice. A
+  corollary for whoever holds the tree: a live unit's staged work sits in the SAME index you are
+  about to commit from, which is the second reason `git add -A` is banned here — stage named paths,
+  or you will author a commit containing another writer's in-flight work.
 - **Drafting parallelizes; infrastructure serializes.** Split a big job into (a) SEQUENTIAL INFRASTRUCTURE —
   `catalog.py` / `book/build_book.py` / `book/book_typst.py` renderers, packers, migrations (shared
   files, one writer) — and (b) PARALLEL CONTENT DRAFTING — prose, blurbs, notes — that writes to DRAFT files
