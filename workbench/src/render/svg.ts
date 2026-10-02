@@ -117,11 +117,22 @@ function resolve(assignments: readonly EmphasisAssignment[]): Resolved {
   return { kind, mark, glyph, reasons: assignments.map((a) => a.reason) };
 }
 
+/**
+ * The emphasis attributes. Deliberately NOT `class`: every call site composes its own shape class
+ * with `r.mark.className`, and a `class` key here lands after that spread in the object literal and
+ * replaces it.
+ *
+ * It used to emit one, and the result was that an unemphasized shape — which is most of them —
+ * ended up with `class: null`, which `el` drops. Every rect and polyline therefore shipped with no
+ * class at all, so the inline stylesheet matched nothing and SVG's default `fill: black` applied:
+ * black boxes with near-black labels inside them. Found by mounting the renderer in the page, not
+ * by any test — `render-svg.test.ts` checks that every MARKS class has a stylesheet RULE, and
+ * nothing checked that the class reaches the element.
+ */
 const markAttrs = (r: Resolved): Attrs => ({
   "stroke-width": r.mark.strokeWidth,
   "stroke-dasharray": r.mark.dashArray,
   opacity: r.mark.opacity === 1 ? null : r.mark.opacity,
-  class: r.kind === null ? null : r.mark.className,
   "data-emphasis": r.kind,
   "data-emphasis-reason": r.reasons.length === 0 ? null : r.reasons.join("; "),
 });

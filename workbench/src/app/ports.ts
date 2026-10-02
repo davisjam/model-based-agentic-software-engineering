@@ -12,6 +12,13 @@
 import type {
   CanonicalSystem, Configuration, Finding, QueryResult,
 } from "../ir/types.ts";
+import type { RenderedView, SceneRequest } from "../render/types.ts";
+
+/**
+ * Re-exported so a port consumer still has one import site for the whole contract surface, now
+ * that the rendering contract is the renderer's own rather than a placeholder declared here.
+ */
+export type { RenderedView, SceneRequest };
 
 /** Phase C — the analysis engine. Consumes canonical IR only; never YAML, never the DOM. */
 export interface EnginePort {
@@ -54,59 +61,16 @@ export interface TransactionPort {
 /**
  * Phase E — rendering. Note the shape: a caller cannot obtain the SVG without the structured
  * representation of the same facts. That is FR-A11Y-2 made structural rather than remembered.
+ *
+ * **This port now speaks the renderer's own types rather than a pair declared here.** It used to
+ * declare `RenderOptions` with `target: string` ("the renderer decides by looking it up") and a
+ * reduced `AccessibleView`. Phase E landed a tagged `SceneSubject` — because a model and a machine
+ * may share an id, so resolving a bare string is a guess — and an `AccessibleScene` carrying the
+ * evidence steps, the legend and the system hash that the reduced shape had nowhere to put. Two
+ * declarations of one contract is the second source of truth every other part of this project
+ * removes on sight, and the narrower one was the one that would have silently thrown away the
+ * accessible twin's substance on the way to the UI.
  */
 export interface RenderPort {
-  render(system: CanonicalSystem, options: RenderOptions): RenderedView;
-}
-
-export interface RenderOptions {
-  /** Graph model id, or machine id — the renderer decides by looking it up. */
-  readonly target: string;
-  readonly selection: readonly string[];
-  /** Ids to emphasise as evidence (a witness path, a counterexample's states). */
-  readonly evidence: readonly string[];
-  /** Previous positions, honoured as strong hints so a one-node change perturbs locally. */
-  readonly positionHints: ReadonlyMap<string, { readonly x: number; readonly y: number }>;
-}
-
-export interface RenderedView {
-  readonly svg: string;
-  /** The same facts, non-visually. Never optional, never derived by the caller. */
-  readonly accessible: AccessibleView;
-  readonly positions: ReadonlyMap<string, { readonly x: number; readonly y: number }>;
-}
-
-/**
- * The accessible twin of a rendered view (FR-A11Y-2).
- *
- * Every visual distinction the renderer makes appears here as text or structure. A witness trace is
- * a list of steps before it is a coloured path; a violation is a labelled status before it is a red
- * stroke. The UI renders this into real DOM — headings, lists, a table — so the model is navigable
- * and editable with no canvas involved.
- */
-export interface AccessibleView {
-  readonly title: string;
-  /** One row per node: what it is, what it contains, how it relates. */
-  readonly nodes: readonly AccessibleNode[];
-  readonly edges: readonly AccessibleEdge[];
-  /** Plain-language summary a screen reader can take in before the detail. */
-  readonly summary: string;
-}
-
-export interface AccessibleNode {
-  readonly id: string;
-  readonly label: string;
-  readonly kind: string;
-  readonly parent: string | null;
-  /** "selected", "evidence", "initial", "violation" — never conveyed by colour alone. */
-  readonly states: readonly string[];
-  readonly properties: readonly { readonly name: string; readonly value: string }[];
-}
-
-export interface AccessibleEdge {
-  readonly from: string;
-  readonly to: string;
-  readonly kind: string;
-  readonly label: string | null;
-  readonly states: readonly string[];
+  render(system: CanonicalSystem, request: SceneRequest): RenderedView;
 }

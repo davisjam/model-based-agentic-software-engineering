@@ -112,6 +112,40 @@
   figure { margin: 0; }
   figure svg { max-width: 100%; height: auto; background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; }
 
+  /*
+    Editing forms. Native fieldset/legend/label/select throughout: a real <legend> is announced as
+    the group name, and a disabled <fieldset> disables every control inside it, which is how the
+    whole editing surface turns off before a model is loaded without tracking each input.
+  */
+  .forms { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); }
+  fieldset {
+    margin: 0; border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .8rem .8rem;
+    background: var(--panel);
+  }
+  fieldset[disabled] { opacity: .55; }
+  legend { font-weight: 700; font-size: .95rem; padding-inline: .3rem; }
+  fieldset p.hint { color: var(--muted); font-size: .85rem; margin: .1rem 0 .5rem; }
+  .field { display: block; margin-block-end: .5rem; }
+  .field > span { display: block; font-size: .85rem; color: var(--muted); }
+  .field input[type="text"], .field select {
+    font: inherit; width: 100%; padding: .3rem .4rem; border: 1px solid var(--rule);
+    border-radius: 4px; background: var(--bg); color: var(--ink);
+  }
+  .check { display: flex; gap: .4rem; align-items: baseline; margin-block-end: .5rem; font-size: .9rem; }
+
+  /* Notes and provenance inside an inspector row. Labelled, so a note never reads as a finding. */
+  .sublabel {
+    margin: .5rem 0 .15rem; font-size: .78rem; text-transform: uppercase;
+    letter-spacing: .04em; color: var(--muted);
+  }
+  ul.notes { margin: 0; padding-inline-start: 1.1rem; font-size: .92rem; }
+  dl.prov { margin: 0; font-size: .92rem; display: grid; grid-template-columns: auto 1fr; gap: .1rem .5rem; }
+  dl.prov dt { color: var(--muted); }
+  dl.prov dd { margin: 0; }
+  .caveat { font-size: .85rem; color: var(--warn-ink); background: var(--warn-bg);
+    padding: .25rem .4rem; border-radius: 3px; margin: .3rem 0 0; }
+  .note-warning { font-weight: 700; }
+
   /* Visually hidden but present for assistive technology. */
   .sr-only {
     position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -146,10 +180,165 @@
 <main>
   <div id="banner"></div>
 
+  <!--
+    The hypothesis bar. Static markup, shown when a hypothesis is open, because a control that is
+    created and destroyed on every repaint takes the user's focus with it. The banner above says IN
+    WORDS that the authoritative model is unchanged; these are the two ways out of that state.
+  -->
+  <div id="hypothesis-bar" hidden>
+    <button id="hypothesis-apply" type="button" class="primary">Accept this hypothesis as authoritative</button>
+    <button id="hypothesis-discard" type="button">Discard this hypothesis</button>
+  </div>
+
   <section id="model" aria-labelledby="model-h">
     <h2 id="model-h">Model</h2>
     <p class="intro" id="summary"></p>
     <div id="sections"></div>
+  </section>
+
+  <!--
+    The editing surface, and the reason it is HTML rather than canvas gestures: every workflow has
+    to have a keyboard path, and a native form already has one. Each form sends exactly one
+    operation through the same `transact` call `window.mage.transact` makes, so there is one
+    mutation path rather than a human one and an agent one.
+
+    The option lists are refreshed from the model on every repaint; the markup is not rebuilt, so
+    the caret stays where the user put it.
+  -->
+  <section id="edit" aria-labelledby="edit-h">
+    <h2 id="edit-h">Edit</h2>
+    <p class="intro">
+      Every edit is one validated transaction. A rejected edit changes nothing and says why. The
+      lists below offer only what this model system declares.
+    </p>
+
+    <fieldset id="edit-mode">
+      <legend>Apply the next edit to</legend>
+      <div class="check">
+        <input type="radio" id="target-main" name="edit-target" value="main" checked>
+        <label for="target-main">the authoritative model</label>
+      </div>
+      <div class="check">
+        <input type="radio" id="target-hypothesis" name="edit-target" value="hypothesis">
+        <label for="target-hypothesis">a hypothesis, left for review before it becomes authoritative</label>
+      </div>
+      <label class="field" for="hypothesis-label">
+        <span>Hypothesis name</span>
+        <input type="text" id="hypothesis-label" autocomplete="off" placeholder="direct publish">
+      </label>
+      <label class="field" for="edit-rationale">
+        <span>Why (optional, recorded with the revision)</span>
+        <input type="text" id="edit-rationale" autocomplete="off">
+      </label>
+    </fieldset>
+
+    <!--
+      Where a refusal lands. A div, not a p, because a rejection carries a LIST of findings and a
+      list inside a paragraph is not markup the parser keeps. Not a live region either: #live is the
+      one polite announcer, and a second would talk over it.
+    -->
+    <div id="edit-result"></div>
+
+    <div class="forms">
+      <fieldset id="form-add-entity">
+        <legend>Add an entity</legend>
+        <p class="hint">Entities are the one identity namespace. The id is immutable once it exists.</p>
+        <label class="field" for="add-entity-id"><span>Id</span>
+          <input type="text" id="add-entity-id" autocomplete="off"></label>
+        <label class="field" for="add-entity-type"><span>Type (optional)</span>
+          <input type="text" id="add-entity-type" autocomplete="off"></label>
+        <label class="field" for="add-entity-label"><span>Label (optional)</span>
+          <input type="text" id="add-entity-label" autocomplete="off"></label>
+        <button type="button" id="add-entity-go">Add the entity</button>
+      </fieldset>
+
+      <fieldset id="form-add-state">
+        <legend>Add a state</legend>
+        <p class="hint">A control state of an existing machine. There is no operation for adding a machine itself.</p>
+        <label class="field" for="add-state-machine"><span>Machine</span>
+          <select id="add-state-machine"></select></label>
+        <label class="field" for="add-state-id"><span>State name</span>
+          <input type="text" id="add-state-id" autocomplete="off"></label>
+        <button type="button" id="add-state-go">Add the state</button>
+      </fieldset>
+
+      <fieldset id="form-delete-element">
+        <legend>Delete an element</legend>
+        <p class="hint">
+          Refused while anything still refers to it, unless you ask for the references to go too.
+        </p>
+        <label class="field" for="delete-element-target"><span>Element</span>
+          <select id="delete-element-target"></select></label>
+        <div class="check">
+          <input type="checkbox" id="delete-element-cascade">
+          <label for="delete-element-cascade">also delete everything that refers to it</label>
+        </div>
+        <button type="button" id="delete-element-go">Delete the element</button>
+      </fieldset>
+
+      <fieldset id="form-add-relation">
+        <legend>Connect two entities</legend>
+        <p class="hint">
+          Only relation types this model system declares, and only endpoints the chosen model
+          contains.
+        </p>
+        <label class="field" for="add-relation-model"><span>Model</span>
+          <select id="add-relation-model"></select></label>
+        <label class="field" for="add-relation-from"><span>From</span>
+          <select id="add-relation-from"></select></label>
+        <label class="field" for="add-relation-to"><span>To</span>
+          <select id="add-relation-to"></select></label>
+        <label class="field" for="add-relation-type"><span>Relation type</span>
+          <select id="add-relation-type"></select></label>
+        <button type="button" id="add-relation-go">Add the relation</button>
+      </fieldset>
+
+      <fieldset id="form-delete-relation">
+        <legend>Remove a relation</legend>
+        <p class="hint">What a relation's absence asserts is stated in the Relations table above.</p>
+        <label class="field" for="delete-relation-target"><span>Relation</span>
+          <select id="delete-relation-target"></select></label>
+        <button type="button" id="delete-relation-go">Remove the relation</button>
+      </fieldset>
+
+      <fieldset id="form-set-label">
+        <legend>Change a label</legend>
+        <p class="hint">Labels are editable; ids are not. Changing identity is a delete plus an add.</p>
+        <label class="field" for="set-label-target"><span>Element</span>
+          <select id="set-label-target"></select></label>
+        <label class="field" for="set-label-value"><span>New label</span>
+          <input type="text" id="set-label-value" autocomplete="off"></label>
+        <button type="button" id="set-label-go">Change the label</button>
+      </fieldset>
+
+      <fieldset id="form-set-property">
+        <legend>Set or clear a property</legend>
+        <p class="hint">
+          The kind is explicit so a value is never guessed at: <code>3</code> as text and
+          <code>3</code> as a number are different facts.
+        </p>
+        <label class="field" for="set-property-target"><span>Entity</span>
+          <select id="set-property-target"></select></label>
+        <label class="field" for="set-property-name"><span>Property name</span>
+          <input type="text" id="set-property-name" list="property-names" autocomplete="off">
+          <datalist id="property-names"></datalist></label>
+        <label class="field" for="set-property-kind"><span>Kind</span>
+          <select id="set-property-kind">
+            <option value="string">text</option>
+            <option value="integer">whole number</option>
+            <option value="boolean">true or false</option>
+          </select></label>
+        <label class="field" for="set-property-value"><span>Value</span>
+          <input type="text" id="set-property-value" autocomplete="off"></label>
+        <label class="field" for="set-property-domain"><span>Domain (optional; needed to compare for order)</span>
+          <select id="set-property-domain"></select></label>
+        <div class="check">
+          <input type="checkbox" id="set-property-unset">
+          <label for="set-property-unset">clear it instead</label>
+        </div>
+        <button type="button" id="set-property-go">Set the property</button>
+      </fieldset>
+    </div>
   </section>
 
   <section id="questions" aria-labelledby="questions-h">
@@ -174,9 +363,18 @@
   <section id="diagram" aria-labelledby="diagram-h">
     <h2 id="diagram-h">Diagram</h2>
     <p class="intro">
-      A second view. Everything shown here is also stated above, in words — the diagram adds no
-      fact that the model section omits.
+      A second view over one model or machine at a time. Every fact in the picture is also above, in
+      words; what the picture adds is emphasis, and the reading below states that too.
     </p>
+    <label class="field" for="diagram-subject"><span>Draw</span>
+      <select id="diagram-subject"></select></label>
+    <!--
+      The diagram in words: the renderer's own structured twin, not a summary of the picture
+      written by this file. It carries what the SVG encodes visually — reading order, what each
+      emphasis marker means, which nodes carry one — which is the half the model tables above do
+      NOT state. Plain DOM, not a live region: it must be readable, not announced on every repaint.
+    -->
+    <div id="diagram-text"></div>
     <figure id="canvas" aria-hidden="true"></figure>
   </section>
 </main>

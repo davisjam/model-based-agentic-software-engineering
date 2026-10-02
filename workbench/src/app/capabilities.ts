@@ -36,11 +36,13 @@ export type CapabilityId =
   | "query" | "analyze" | "inspect-evidence"
   | "create-hypothesis" | "commit-hypothesis" | "discard-hypothesis"
   | "undo" | "redo"
-  | "import" | "export";
+  | "import" | "export"
+  | "add-note";
 
 /**
  * How complete an affordance is. `wired` means it reaches the service; `refusing` means the path
- * exists and deliberately declines (see the two ports in main.ts); `absent` means nothing yet.
+ * exists and deliberately declines, naming what it cannot do rather than failing vaguely; `absent`
+ * means nothing yet.
  *
  * Only `wired` satisfies UX-I1. The other two exist so the registry can be TRUE while the product
  * is incomplete, rather than aspirational and therefore useless as a gate.
@@ -75,8 +77,13 @@ const refusing = (at: string, note: string): Affordance => ({ at, status: "refus
 const absent = (at: string, note: string): Affordance => ({ at, status: "absent", note });
 
 /**
- * The registry. Reflects what is actually built as of 261002 — several entries are deliberately
+ * The registry. Reflects what is actually built as of 261002 — three entries are deliberately
  * NOT wired, and UX-I1 fails on exactly those.
+ *
+ * All three remaining failures have the same cause and it is not a UI gap: the transaction schema
+ * has no operation for adding a model, deleting a model, or attaching a note, so there is nothing
+ * to wire on EITHER side. Inventing an operation to clear a violation would make the registry agree
+ * with a schema that does not have it, which is worse than a violation that is true.
  */
 export const CAPABILITIES: readonly Capability[] = [
   {
@@ -152,13 +159,17 @@ export const CAPABILITIES: readonly Capability[] = [
     producesEvidence: false,
   },
 
-  // ---- not yet wired. UX-I1 fails on these, deliberately and visibly. --------------------------
+  // ---- editing. Every form sends ONE operation through the same `transact` the agent calls. ----
+  //
+  // There is deliberately no human affordance for adding a MACHINE: the op set has `add-state` but
+  // no `add-machine`, so neither interface can do it. That is a symmetric gap in the schema, not an
+  // asymmetry between the interfaces, which is why it is a comment here and not a violation.
 
   {
     id: "create-element",
     summary: "Add an entity, state or machine.",
     service: "transactions.apply",
-    human: [absent("canvas / inspector", "Phase G: no editing surface yet; edit the source and re-open.")],
+    human: [wired("edit-section.add-entity"), wired("edit-section.add-state")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -166,9 +177,10 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "delete-element",
     summary: "Remove an entity, state or machine, refusing if anything still references it.",
     service: "transactions.apply",
-    human: [absent("canvas / inspector",
-      "Phase G: no editing surface. Deleting also needs the reference check that refuses a delete "
-      + "while anything still points at the target, which only the transaction engine performs.")],
+    // The reference check that refuses a delete while something still points at the target lives in
+    // the transaction engine. The form offers the cascade as an explicit opt-in rather than
+    // reimplementing the check, so both interfaces get the same refusal for the same reason.
+    human: [wired("edit-section.delete-element")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -176,9 +188,10 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "create-relation",
     summary: "Connect two entities with a licensed relation type.",
     service: "transactions.apply",
-    human: [absent("canvas.connect",
-      "Phase G: connecting requires the canvas to offer only relation types the IR licenses for that "
-      + "source, target and model type, which needs the affordance-licensing seam.")],
+    // Licensing is what the form narrows: only relation types the system declares, and only
+    // endpoints the chosen model contains -- an edge between entities a model does not contain is
+    // an edge no view of that model would draw.
+    human: [wired("edit-section.add-relation")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -186,8 +199,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "delete-relation",
     summary: "Remove a relation.",
     service: "transactions.apply",
-    human: [absent("canvas / inspector",
-      "Phase G: no editing surface yet; relations are removed by editing the source and re-opening.")],
+    human: [wired("edit-section.delete-relation")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -195,12 +207,13 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "edit-property",
     summary: "Change a property or label through the same transaction any other edit uses.",
     service: "transactions.apply",
-    human: [absent("inspector",
-      "Phase G: the inspector must offer only properties licensed for that semantic type, and every "
-      + "edit must become the same transaction an agent would create -- neither exists yet.")],
+    human: [wired("edit-section.set-label"), wired("edit-section.set-property")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
+
+  // ---- not wired. UX-I1 fails on these, deliberately and visibly. ------------------------------
+
   {
     id: "create-model",
     summary: "Add a purposeful model, with its question.",
@@ -223,12 +236,31 @@ export const CAPABILITIES: readonly Capability[] = [
     producesEvidence: false,
   },
   {
+    id: "add-note",
+    summary: "Attach a note or provenance to an object, without changing what the model asserts.",
+    service: "transactions.apply",
+    // The inspector SHOWS notes and provenance; nothing can write one. Reported as a violation
+    // rather than quietly omitted, because a reader who can see a note and not add one will
+    // reasonably assume the feature is finished.
+    human: [absent("model-section.notes",
+      "the inspector displays notes and provenance, but the transaction schema has no add-note "
+      + "operation, so no edit path can write one. Notes are authored in the source file.")],
+    machine: [absent("window.mage.transact",
+      "no add-note operation in the transaction schema; the op set covers elements, relations, "
+      + "properties, purpose and saved queries. A note-adding transaction would commit WITHOUT "
+      + "advancing the semantic revision, because the hash excludes annotation (invariant A1).")],
+    producesEvidence: false,
+  },
+
+  // ---- the hypothesis bar. Opening one routes through the SAME validated transaction path. -----
+
+  {
     id: "create-hypothesis",
     summary: "Open a what-if branch through the same validated transaction path as any edit.",
     service: "workspace.openHypothesis",
-    human: [absent("hypothesis-bar",
-      "Phase G: the banner RENDERS an active hypothesis and says the authoritative model is unchanged, "
-      + "but nothing in the UI can open one. An agent can; a human cannot. This is the asymmetry UX-I1 exists to catch.")],
+    // The editing forms choose the branch; there is no separate what-if mechanism, because a
+    // second mutation path is where the bugs would live.
+    human: [wired("edit-section.hypothesis-target")],
     machine: [wired("window.mage.hypothesis.open")],
     producesEvidence: true,
   },
@@ -236,8 +268,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "commit-hypothesis",
     summary: "Accept a hypothesis as authoritative.",
     service: "workspace.applyHypothesis",
-    human: [absent("hypothesis-bar",
-      "Phase G: accepting a hypothesis needs the bar that opening it would create.")],
+    human: [wired("hypothesis-bar.accept")],
     machine: [wired("window.mage.hypothesis.apply")],
     producesEvidence: false,
   },
@@ -245,8 +276,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "discard-hypothesis",
     summary: "Throw a hypothesis away; the authoritative model was never touched.",
     service: "workspace.discardHypothesis",
-    human: [absent("hypothesis-bar",
-      "Phase G: discarding needs the same bar; the service itself restores the parked system correctly.")],
+    human: [wired("hypothesis-bar.discard")],
     machine: [wired("window.mage.hypothesis.discard")],
     producesEvidence: false,
   },
