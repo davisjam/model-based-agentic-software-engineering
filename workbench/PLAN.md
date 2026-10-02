@@ -20,25 +20,24 @@ Architecture: [`models/workbench-components.mage.yaml`](models/workbench-compone
 | D | YAML adapter + transaction engine | **landed** |
 | E | Renderer: deterministic layout + SVG | **landed** |
 | F | Services facade + `window.mage` agent API (FR-AGENT-1/2) | **landed** |
-| G | UI shell + accessible view model + page | **landed**; the render port still refuses honestly |
+| G | UI shell + accessible view model + page | **landed**; renderer bound `1f451427` |
 | K | Capability registry + UX-I1/I2/I3 + CI assertions (`requirements-ux-261002.md` §22-26) | **landed** `58c20691`, `c7304676` |
-| L | Annotation + provenance; A1 held by the hash | **landed** `b0856b0e`; schema + rule in flight |
-| H | Integration: gates, Pages build, docs | **in flight** |
-| I | Quantitative models (latency/memory/requirements) | unblocked — all 7 ruled, §1a.3 |
-| J | RDF projection + SPARQL (Comunica) + structured not-answerable | **new**, §1a |
+| L | Annotation + provenance; A1 held by the hash | **landed** `b0856b0e`; schema + `ANNOTATION` rule `4779477f` |
+| H | Integration: gates, Pages build, docs | **landed** `fbdd7b0f`; browser tier `74335d8b` |
+| I | Quantitative models — representation + accounting | **landed** `b44b2bed` (V27–V31), `02b4761e` (V35–V37); evaluator pending |
+| J | RDF projection + query evaluator + structured not-answerable | **landed** `c21c46e0`, `96010d5f`, `408c2388`, `f032fb81`; `sparqljs` text front-end pending |
+| M | Default example systems as the end-to-end suite | **landed** `2ebddc63`; Document Processing in flight |
 
-Three waves run concurrently as of 261002, in worktrees, on disjoint footprints — semantics
-(`SEMANTICS.md`, `src/validator/`, `validate.py`, the schemas), presentation (`index.html`,
-`src/ui/`, `src/app/`), and publish (`.github/`, `catalog.py`, the landing link). Worktrees inside
-this submodule were verified working the same day, which is what made the split available; the
-earlier guidance that gc agents must share `main` was written before anyone tried it.
+**UX-I1 is ZERO over 22 capabilities** — every public semantic capability is reachable from the page
+and from an attached agent, and both reach it through the same service. It began the day at 17
+violations over 19 capabilities, ten of them missing a human affordance. The three that held out
+longest (`add-model`, `delete-model`, `add-note`) were violating on BOTH sides, which is what told us
+they were a missing transaction operation rather than an interface gap — the registry reported that
+rather than quietly dropping the rows.
 
-**The honest status of UX-I1 is the number to watch, not the phase table.** The capability registry
-reports 12 of 19 capabilities violating affordance parity at `df3d745d` — ten of them missing a
-HUMAN affordance, so an attached agent can edit a model a person cannot. The presentation wave
-exists to close eight of those; `create-model` and `delete-model` stay violating on both sides
-because the transaction schema has no operation for them, and the registry says so rather than
-quietly dropping them.
+Up to seven waves ran concurrently in worktrees on disjoint footprints. Worktrees inside this
+submodule were verified working on 261002, which is what made the split available; the earlier
+guidance that gc agents must share `main` was written before anyone tried it.
 
 ### 0.1 Companion documents
 
@@ -412,4 +411,3 @@ checkout.
 - **Comments survive tool writes.**
 - Node is pinned by `.nvmrc` (24); `engines` floor is 22.
 
-<!-- hook-landed verification d957465a -->
