@@ -1,0 +1,278 @@
+/**
+ * `window.mage` — the live agent interface (FR-AGENT-1, FR-AGENT-2).
+ *
+ * A student runs the workbench in a visible Chromium tab; a coding agent attaches to THAT TAB over
+ * CDP and operates the workbench while the student watches the model change.
+ *
+ * What this module is not responsible for: CDP. MAGE opens no debugging port, discovers no agent,
+ * holds no socket, and implements no part of the protocol. CDP is transport, supplied by the user's
+ * environment, and MAGE's responsibility begins at the page context. There is no server, no
+ * embedded LLM, no MCP server, no agent backend, and no API key.
+ *
+ * Every method here delegates to the ONE Workspace. There is deliberately no agent-side model copy
+ * and no privileged write path: an agent's `transact` is the same call the human toolbar makes, and
+ * goes through the same validation. That is why an agent's edit is immediately visible in the
+ * ordinary workbench rather than needing to be synced into it.
+ *
+ * FR-AGENT-2 is the reason this returns more than data. An agent must be able to determine what the
+ * models represent and WHAT THE WORKBENCH LICENSES without inferring semantics from geometry — so
+ * `describe()` ships the schemas, `inspect()` ships purpose and omissions, and every result ships
+ * coverage and the system hash it describes.
+ */
+import type { Finding, QueryResult } from "../ir/types.ts";
+import type { Workspace } from "./services.ts";
+
+/** Bumped on a breaking change to this surface. Implementation internals are not API. */
+export const AGENT_API_VERSION = "0.1.0";
+
+export interface MageAgentApi {
+  readonly version: string;
+  describe(): ApiDescription;
+  context(): WorkspaceContext;
+  inspect(): SystemInspection;
+  transact(transaction: unknown): TransactionOutcome;
+  hypothesis: HypothesisApi;
+  query(query: unknown): QueryResult;
+  savedQueries(): Record<string, QueryResult>;
+  evidence(queryId: string): QueryResult | null;
+  view: ViewApi;
+  undo(): boolean;
+  redo(): boolean;
+  load(text: string): WorkspaceContext;
+  export(): string;
+}
+
+export interface ApiDescription {
+  readonly version: string;
+  readonly semantics: string;
+  /** The published JSON Schemas, inline, so an agent needs no second fetch and no network. */
+  readonly schemas: Readonly<Record<string, unknown>>;
+  readonly operations: readonly OperationDescription[];
+  /** Named limitations, so an agent learns the boundary from the API instead of from a wrong answer. */
+  readonly notSupported: readonly string[];
+}
+
+export interface OperationDescription {
+  readonly name: string;
+  readonly summary: string;
+  readonly returns: string;
+}
+
+export interface WorkspaceContext {
+  readonly systemId: string;
+  readonly hash: string;
+  readonly hypothesis: string | null;
+  readonly findings: readonly Finding[];
+  readonly counts: Readonly<Record<string, number>>;
+  readonly canUndo: boolean;
+  readonly canRedo: boolean;
+}
+
+export interface SystemInspection {
+  readonly hash: string;
+  readonly entities: readonly EntityInspection[];
+  readonly relationTypes: readonly RelationTypeInspection[];
+  readonly models: readonly ModelInspection[];
+  readonly machines: readonly MachineInspection[];
+  readonly events: readonly { readonly id: string; readonly participants: readonly string[] }[];
+}
+
+export interface EntityInspection {
+  readonly id: string;
+  readonly label: string;
+  readonly type: string | null;
+  readonly properties: Readonly<Record<string, { readonly value: string | number | boolean; readonly domain: string | null }>>;
+  readonly contains: readonly string[];
+  readonly parent: string | null;
+  /** Every model this entity appears in — identity across representations, made queryable. */
+  readonly appearsIn: readonly string[];
+}
+
+export interface RelationTypeInspection {
+  readonly id: string;
+  readonly description: string;
+  readonly absence: string | null;
+  /** `forbidden` means a multi-hop question over this relation is not licensed, and will be refused. */
+  readonly pathComposition: "allowed" | "forbidden";
+}
+
+export interface ModelInspection {
+  readonly id: string;
+  readonly label: string;
+  readonly question: string | null;
+  readonly represents: readonly string[];
+  /** What this model DECLINES to say. The basis for "cannot be answered from this model". */
+  readonly omits: readonly string[];
+  readonly entities: readonly string[];
+  readonly relations: readonly { readonly from: string; readonly to: string; readonly type: string }[];
+}
+
+export interface MachineInspection {
+  readonly id: string;
+  readonly entity: string | null;
+  readonly instances: number;
+  readonly initial: string;
+  readonly states: readonly string[];
+  readonly variables: readonly { readonly id: string; readonly domain: readonly (string | number | boolean)[] }[];
+  readonly transitions: readonly {
+    readonly from: string; readonly to: string;
+    readonly sync: string | null; readonly label: string | null;
+  }[];
+}
+
+export interface TransactionOutcome {
+  readonly ok: boolean;
+  readonly findings: readonly Finding[];
+  readonly hash: string;
+}
+
+export interface HypothesisApi {
+  open(label: string, transaction: unknown): TransactionOutcome;
+  apply(): boolean;
+  discard(): boolean;
+  /** Saved queries under the hypothesis, for the current-vs-hypothesis comparison. */
+  compare(): Readonly<Record<string, QueryResult>>;
+}
+
+export interface ViewApi {
+  /** Non-semantic by construction: a view never changes what the model asserts. */
+  select(ids: readonly string[]): void;
+  selection(): readonly string[];
+  focus(target: string): void;
+  target(): string | null;
+}
+
+/** Non-semantic view state. Deliberately NOT in the IR, so it cannot affect a query result. */
+export interface ViewState {
+  target: string | null;
+  selection: string[];
+}
+
+export function createAgentApi(
+  workspace: Workspace,
+  viewState: ViewState,
+  schemas: Readonly<Record<string, unknown>>,
+  onViewChange: () => void,
+): MageAgentApi {
+  const lastResults = new Map<string, QueryResult>();
+
+  const context = (): WorkspaceContext => {
+    const s = workspace.state;
+    return {
+      systemId: s.system.systemId,
+      hash: s.hash,
+      hypothesis: s.hypothesis,
+      findings: s.findings,
+      counts: {
+        entities: s.system.entities.size,
+        models: s.system.models.size,
+        machines: s.system.machines.size,
+        instances: s.system.instances.length,
+        relations: s.system.relations.length,
+        events: s.system.events.size,
+        savedQueries: s.system.queries.size,
+      },
+      canUndo: s.canUndo,
+      canRedo: s.canRedo,
+    };
+  };
+
+  return {
+    version: AGENT_API_VERSION,
+
+    describe: () => ({
+      version: AGENT_API_VERSION,
+      semantics: "workbench/SEMANTICS.md — rules V1-V25 fix meaning; the schemas fix shape.",
+      schemas,
+      operations: [
+        { name: "context", summary: "System id, canonical hash, open hypothesis, validation findings, counts.", returns: "WorkspaceContext" },
+        { name: "inspect", summary: "Full semantic inspection: entities with cross-model appearances, relation types with composition semantics, models with purpose and omissions, machines with states and transitions.", returns: "SystemInspection" },
+        { name: "transact", summary: "Apply a transaction. Verifies base against the canonical hash, applies to a copy, validates the whole system, commits atomically or not at all.", returns: "TransactionOutcome" },
+        { name: "query", summary: "Run a graph or behavioural query. Returns outcome, coverage and evidence — never a boolean.", returns: "QueryResult" },
+        { name: "savedQueries", summary: "Re-run every saved query against the current system.", returns: "Record<string, QueryResult>" },
+        { name: "hypothesis.open", summary: "Open a what-if branch through the same validated transaction path as any other mutation.", returns: "TransactionOutcome" },
+        { name: "hypothesis.compare", summary: "Saved-query results under the hypothesis, for current-vs-hypothesis comparison.", returns: "Record<string, QueryResult>" },
+        { name: "view.select", summary: "Non-semantic selection. Cannot affect a query result.", returns: "void" },
+      ],
+      notSupported: [
+        "fairness and liveness: 'can it reach X' is in scope, 'will it eventually reach X' is not",
+        "past-time temporal operators: such a query is compiled to a safety property over a disclosed history variable",
+        "instance binding: multiplicity gives occupancy, never which instance holds which resource",
+        "participant selection: an event synchronizing with a multiply-instantiated machine is refused",
+        "real-valued or unbounded variables: every variable has a finite enumerated domain",
+        "SMT and optimization",
+      ],
+    }),
+
+    context,
+
+    inspect: () => {
+      const s = workspace.state.system;
+      const appearsIn = new Map<string, string[]>();
+      for (const m of s.models.values()) {
+        for (const id of m.entities) (appearsIn.get(id) ?? appearsIn.set(id, []).get(id)!).push(m.id);
+      }
+      return {
+        hash: workspace.state.hash,
+        entities: [...s.entities.values()].map((e) => ({
+          id: e.id, label: e.label, type: e.type,
+          properties: Object.fromEntries([...e.properties].map(([k, v]) => [k, { value: v.value, domain: v.domain }])),
+          contains: e.contains, parent: e.parent,
+          appearsIn: appearsIn.get(e.id) ?? [],
+        })),
+        relationTypes: [...s.relationTypes.values()].map((r) => ({
+          id: r.id, description: r.description, absence: r.absence, pathComposition: r.pathComposition,
+        })),
+        models: [...s.models.values()].map((m) => ({
+          id: m.id, label: m.label, question: m.purpose.question,
+          represents: m.purpose.represents, omits: m.purpose.omits, entities: m.entities,
+          relations: s.relations.filter((r) => r.model === m.id).map((r) => ({ from: r.from, to: r.to, type: r.type })),
+        })),
+        machines: [...s.machines.values()].map((m) => ({
+          id: m.id, entity: m.entity, instances: m.instances, initial: m.initial, states: m.states,
+          variables: [...m.variables.values()].map((v) => ({ id: v.id, domain: v.domain })),
+          transitions: m.transitions.map((t) => ({ from: t.from, to: t.to, sync: t.sync, label: t.label })),
+        })),
+        events: [...s.events.values()].map((e) => ({ id: e.id, participants: e.participants })),
+      };
+    },
+
+    transact: (transaction) => {
+      const r = workspace.transact(transaction);
+      return { ok: r.ok, findings: r.findings, hash: workspace.state.hash };
+    },
+
+    hypothesis: {
+      open: (label, transaction) => {
+        const r = workspace.openHypothesis(label, transaction);
+        return { ok: r.ok, findings: r.findings, hash: workspace.state.hash };
+      },
+      apply: () => workspace.applyHypothesis(),
+      discard: () => workspace.discardHypothesis(),
+      compare: () => Object.fromEntries(workspace.runSavedQueries()),
+    },
+
+    query: (q) => workspace.query(q),
+
+    savedQueries: () => {
+      const results = workspace.runSavedQueries();
+      lastResults.clear();
+      for (const [id, r] of results) lastResults.set(id, r);
+      return Object.fromEntries(results);
+    },
+
+    evidence: (queryId) => lastResults.get(queryId) ?? null,
+
+    view: {
+      select: (ids) => { viewState.selection = [...ids]; onViewChange(); },
+      selection: () => [...viewState.selection],
+      focus: (target) => { viewState.target = target; onViewChange(); },
+      target: () => viewState.target,
+    },
+
+    undo: () => workspace.undo(),
+    redo: () => workspace.redo(),
+    load: (text) => { workspace.load(text); return context(); },
+    export: () => workspace.export(),
+  };
+}
