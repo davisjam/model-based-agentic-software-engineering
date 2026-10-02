@@ -63,14 +63,47 @@ engineering judgment a Phase can resolve, two need the author, and one is empiri
 | # | Question | Who resolves | Blocks |
 |---|---|---|---|
 | Q1 | Interval arithmetic, or worst-case bounds only? | recommended: worst-case | Phase I analysis |
-| **Q2** | **What declares the latency accounting model?** | **author** | **Document Processing fixtures** |
-| **Q3** | **What precise predicate is `memory(c)`?** | **author** | **Document Processing fixtures** |
+| Q2 | What declares the latency accounting model? | **RULED** — declared basis; `entities` for v0.1 | — |
+| Q3 | What precise predicate is `memory(c)`? | **RULED** — `residency` / `when`, never inferred | — |
 | Q4 | Is expectation in scope for v0.1? | recommended: no | the cache what-if |
 | Q5 | Outcome shape for an unbounded additive maximum | likely `refuted` + lasso | Phase I analysis |
-| Q6 | Do quantities project to RDF? | **resolved** — structured resources | — |
-| Q7 | Can Comunica ship on static Pages at all? | **empirical — measure** | Phase J layer 2 |
-| Q8 | SPARQL in the Worker or the main thread? | Phase J layer 2 | — |
+| Q6 | Do quantities project to RDF? | **RESOLVED** — structured resources | — |
+| Q7 | Can Comunica ship on static Pages at all? | **ANSWERED — NO**, by measurement | — |
+| Q8 | SPARQL in the Worker or the main thread? | delegated to the evaluator wave | — |
 | Q9 | Is "run arbitrary SPARQL" a semantic capability under UX-I1? | author; recommended: no | the query surface |
+
+**Four of the nine are now settled, and three were settled by something other than argument.**
+Q2 and Q3 were ruled by the author — see `DECISIONS-RULED-quantities-261002.md`, which records both
+rulings and the reasoning for the alternatives they rejected. Q6 was resolved by layer 1 landing: it
+already projects a relation type's own properties as facts rather than flattening them, so quantities
+follow the same pattern. **Q7 was answered by measurement, and the answer was no** —
+`MEASUREMENT-comunica-261002.md` has the numbers. Only Q9 still wants the author.
+
+Q7's negative result paid for itself twice. Commissioned to ask whether a library could ship, it
+found that Comunica silently drops forward branches of an alternative property path inside a `GRAPH`
+block — the exact construct this design prescribes, since layer 1 materializes no inverse term (so
+symmetry is `(p|^p)`) and each model's relations live in a named graph. Its ten-row table of patterns,
+with a *correct* column, is now the conformance oracle for the evaluator we write instead.
+
+### 0.3 As-built, verified by running it
+
+Verified 261002 by serving the page and attaching headless Chromium over CDP, rather than by reading
+the code:
+
+- `window.mage` live: 20 operations, **0 affordance gaps** (UX-I1 satisfied), 14 methods.
+- The flagship journey executes. `restricted-data-reaches-impermitted-subscriber` → `holds`,
+  exhaustive, with a path witness — the cross-model join finding the violation.
+  `subscribes-chain-checkout-to-fulfillment` → `unlicensed`, naming path-composition (V7 refusing a
+  multi-hop rather than answering `false`). `did-analytics-receive-it-at-2-04` → `unlicensed`, naming
+  the undeclared relation type (purposeful omission). Neither refusal is an error; both are answers.
+- The human surface agrees with the agent on the same counts — UX-I3 observed across both interfaces
+  in one process, which no node-tier test can see.
+- The canvas draws real SVG and remains `aria-hidden` and LAST. 52 focusable controls, 0 unlabelled.
+
+⚠️ **Known gaps as built:** `favicon.ico` 404 (the only console error); Document Processing absent, so
+EX-I3 unsatisfied with the quantitative rows reported `unavailable`/`unexercised` rather than
+omitted; no evaluator yet, so SPARQL questions cannot be answered; properties not yet first-class
+(UX-I5).
 
 **Q2 and Q3 are genuine underdetermination in the requirements, not gaps in anyone's reading.** §8
 says latency sums "according to the declared accounting model" without saying where that is declared
