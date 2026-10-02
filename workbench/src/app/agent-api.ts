@@ -20,6 +20,8 @@
  * coverage and the system hash it describes.
  */
 import type { Finding, QueryResult } from "../ir/types.ts";
+import type { PendingResult } from "./ports.ts";
+import type { ExhaustedResult, QueryAlgebra, SeamQuestion } from "../sparql/index.ts";
 import type { Workspace } from "./services.ts";
 import type { ExampleCatalog, ExampleDescription } from "./examples.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
@@ -81,6 +83,45 @@ export interface MageAgentApi {
   loadExample(id: string): Promise<WorkspaceContext>;
   /** Where each object came from. Read-only: provenance cannot alter semantics (UX-I6). */
   provenance(): readonly ProvenanceRecord[];
+  /**
+   * The long analyses: the ones that run in the Worker rather than on the thread that paints.
+   *
+   * Here because of UX-I2, not because an agent needs a thread. A person who asks for a long
+   * exploration is told how big the space was and whether the walk finished; if an agent could not
+   * read the same figures, that would be a human-only conclusion — which is the half of UX-I2 this
+   * project usually fails in the other direction.
+   *
+   * It is NOT a new semantic capability, and deliberately earns no row in the capability registry.
+   * `analyze` already names `workspace.query` as its service and has wired affordances on both
+   * sides; running a long one off-thread changes WHERE the engine runs, not what the workbench can
+   * do. Inventing a capability for it would make the registry report a capability the product did
+   * not gain. What the registry does owe is `window.mage.analysis.explore` as a second machine
+   * affordance on the `analyze` row — a one-line edit in `capabilities.ts`, named rather than made,
+   * because that file belongs to another wave.
+   */
+  analysis: AnalysisApi;
+}
+
+/**
+ * Long analysis, for a machine client. Promises, because these are the two operations that are long
+ * by nature — and the facade stays synchronous for everything else, for the reason `services.ts`
+ * gives at the ports.
+ */
+export interface AnalysisApi {
+  /** Walk the configuration space; get its SIZE and whether the walk finished. */
+  explore(limit?: number): Promise<PendingResult>;
+  /**
+   * Re-issue a question whose interactive step budget ran out.
+   *
+   * Takes the spent result, so the Worker's larger budget is reachable only as the escalation of an
+   * exhausted question rather than as a way around the interactive bound.
+   */
+  resolveExhausted(
+    spent: ExhaustedResult, question: SeamQuestion, query: QueryAlgebra, budget?: number,
+  ): Promise<PendingResult>;
+  /** Request ids currently running, so an agent can report and cancel them. */
+  inFlight(): readonly number[];
+  cancel(id: number): void;
 }
 
 export interface ApiDescription {
@@ -337,5 +378,17 @@ export function createAgentApi(
     // loading an example is a workspace, and an agent reads it with the methods above.
     loadExample: async (id) => { await examples.load(id); return context(); },
     provenance: () => workspace.provenance(),
+
+    // Straight through to the one Workspace, like every other method here. An agent's long
+    // exploration is the same call the page makes, against the same IR, over the same Worker.
+    analysis: {
+      explore: (limit) => (limit === undefined ? workspace.explore() : workspace.explore(limit)),
+      resolveExhausted: (spent, question, query, budget) =>
+        budget === undefined
+          ? workspace.resolveExhausted(spent, question, query)
+          : workspace.resolveExhausted(spent, question, query, budget),
+      inFlight: () => workspace.analysisInFlight(),
+      cancel: (id) => workspace.cancelAnalysis(id),
+    },
   };
 }

@@ -5,9 +5,16 @@
  * hash the request was issued against is dropped and reported as `stale`. The UI therefore cannot
  * render a result for a model the user has already changed, which is a mistake it would otherwise
  * make in exactly the situation that matters — the user edits, then looks at the answer.
+ *
+ * DOM-free on purpose, so a test can drive it with a fake or with a real `node:worker_threads`
+ * thread. The one place that touches the `Worker` constructor is `port.ts`.
  */
 import type { QueryResult } from "../ir/types.ts";
-import type { AnalysisState, WorkerReply, WorkerRequest } from "./protocol.ts";
+import type { QueryAlgebra, SeamQuestion } from "../sparql/index.ts";
+import type {
+  AnalysisState, SpaceSummary, WorkerEvaluation, WorkerReply, WorkerRequest,
+} from "./protocol.ts";
+import { WORKER_STATE_LIMIT, WORKER_STEP_BUDGET } from "./protocol.ts";
 
 export interface AnalysisClientEvents {
   readonly onState: (state: AnalysisState, id: number) => void;
@@ -25,11 +32,28 @@ interface Pending {
   readonly resolve: (value: PendingResult) => void;
 }
 
+/**
+ * What a Worker round trip can hand back.
+ *
+ * Closed, and every arm is an ANALYSIS: a query result, a batch of them, a space SUMMARY, a SPARQL
+ * evaluation, or a reason there is no answer. No arm carries a system, a document or source text, so
+ * a caller holding one of these has nothing it could write back into the workspace. That is how the
+ * Worker stays unable to mutate the model rather than merely declining to.
+ */
 export type PendingResult =
   | { readonly status: "ok"; readonly result: QueryResult }
   | { readonly status: "ok-many"; readonly results: ReadonlyMap<string, QueryResult> }
+  | { readonly status: "ok-space"; readonly space: SpaceSummary }
+  | { readonly status: "ok-evaluation"; readonly evaluation: WorkerEvaluation }
   | { readonly status: "stale" }
   | { readonly status: "cancelled" }
+  /**
+   * The analysis did not happen, and this says why.
+   *
+   * One arm for every such reason — a worker throw, an unparseable source, no worker wired at all —
+   * because a caller's obligation is identical in all three: show the sentence. A silent empty
+   * result is the failure mode this arm exists to make unavailable.
+   */
   | { readonly status: "failed"; readonly messages: readonly string[] };
 
 export class AnalysisClient {
@@ -74,6 +98,22 @@ export class AnalysisClient {
       return;
     }
 
+    if (reply.kind === "exploration") {
+      // A walk stopped by its ceiling is bounded, exactly as a bounded query result is: the number
+      // is real and the coverage is not total.
+      this.#events.onState(reply.space.complete ? "complete" : "bounded", reply.id);
+      pending.resolve({ status: "ok-space", space: reply.space });
+      return;
+    }
+
+    if (reply.kind === "evaluation") {
+      // A second exhaustion in the Worker is `bounded` too. It is not a failure — the question is
+      // licensed and the evaluator spent a real budget on it — and it is not an answer.
+      this.#events.onState(reply.evaluation.kind === "exhausted" ? "bounded" : "complete", reply.id);
+      pending.resolve({ status: "ok-evaluation", evaluation: reply.evaluation });
+      return;
+    }
+
     // A bounded result is neither success nor failure; the UI must say INCONCLUSIVE.
     this.#events.onState(reply.result.coverage.kind === "bounded" ? "bounded" : "complete", reply.id);
     pending.resolve({ status: "ok", result: reply.result });
@@ -87,28 +127,65 @@ export class AnalysisClient {
     });
   }
 
-  analyze(document: unknown, systemHash: string, query: unknown, limit?: number): Promise<PendingResult> {
+  analyze(source: string, systemHash: string, query: unknown, limit?: number): Promise<PendingResult> {
     const id = this.#next++;
     return this.#send(
       limit === undefined
-        ? { kind: "analyze", id, systemHash, document, query }
-        : { kind: "analyze", id, systemHash, document, query, limit },
+        ? { kind: "analyze", id, systemHash, source, query }
+        : { kind: "analyze", id, systemHash, source, query, limit },
       systemHash,
     );
   }
 
-  analyzeSaved(document: unknown, systemHash: string, limit?: number): Promise<PendingResult> {
+  analyzeSaved(source: string, systemHash: string, limit?: number): Promise<PendingResult> {
     const id = this.#next++;
     return this.#send(
       limit === undefined
-        ? { kind: "analyze-saved", id, systemHash, document }
-        : { kind: "analyze-saved", id, systemHash, document, limit },
+        ? { kind: "analyze-saved", id, systemHash, source }
+        : { kind: "analyze-saved", id, systemHash, source, limit },
       systemHash,
     );
+  }
+
+  /** Walk the configuration space under the Worker's ceiling, and report its size. */
+  explore(source: string, systemHash: string, limit: number = WORKER_STATE_LIMIT): Promise<PendingResult> {
+    const id = this.#next++;
+    return this.#send({ kind: "explore", id, systemHash, source, limit }, systemHash);
+  }
+
+  /**
+   * Re-issue a licensed question with the Worker's step budget.
+   *
+   * The question is re-admitted on the other side; see the `sparql` request arm for why that is the
+   * gate working rather than a duplicated check.
+   */
+  evaluateQuestion(
+    source: string, systemHash: string, question: SeamQuestion, query: QueryAlgebra,
+    budget: number = WORKER_STEP_BUDGET,
+  ): Promise<PendingResult> {
+    const id = this.#next++;
+    return this.#send({ kind: "sparql", id, systemHash, source, question, query, budget }, systemHash);
   }
 
   cancel(id: number): void {
     this.#worker.postMessage({ kind: "cancel", id } satisfies WorkerRequest);
+  }
+
+  /**
+   * Settle every in-flight request as failed, naming the reason.
+   *
+   * The Worker's OWN failures arrive as `failed` replies. This is for the failures that produce no
+   * reply at all — the bundle 404s, the module throws while loading, the thread is killed — where
+   * every promise would otherwise pend forever. A hung await is worse than an error: it is a silent
+   * empty result that never even arrives, so there is nothing for a caller to report.
+   */
+  abort(reason: string): void {
+    const pending = [...this.#pending];
+    this.#pending.clear();
+    for (const [id, entry] of pending) {
+      this.#events.onState("complete", id);
+      entry.resolve({ status: "failed", messages: [reason] });
+    }
   }
 
   /** In-flight request ids, so the UI can show what is running and offer cancellation. */
