@@ -1,0 +1,191 @@
+# Expected results for the message-bus example. Read by test/examples.test.ts, which drives the
+# real application seams -- Workspace.load, Workspace.query, createAgentApi -- and compares.
+#
+# ## Fixture discipline (section 10)
+#
+# These pin SEMANTIC outcomes and nothing else. No rendering coordinates, no layout order, no
+# generated ids, no state counts. Two deliberate distinctions in the evidence vocabulary:
+#
+#   path           an ORDERED node sequence. Used where the sequence IS the answer, so a witness of
+#                  length 1 would prove the query did not ask what it looks like it asks.
+#   nodes_include  an unordered subset. Used where the engine's answer is a SET (predecessors), and
+#                  the order it happens to emit is incidental.
+#
+# A fixture that pinned the incidental ordering would fail the next time someone improved the
+# engine's iteration, and the lesson a reader would take is that these fixtures are noise.
+
+example: message-bus
+system: system.mage.yaml
+title: Message Bus
+summary: >
+  Explore an event-driven order system through linked event-flow, propagation and data-policy models.
+
+# Purposeful models, for the EX-I2 check. Machines and graph models both carry a `purpose`, so both
+# count; this example has no machines.
+models:
+  - id: event-flow
+    kind: graph
+  - id: event-propagation
+    kind: graph
+  - id: data-policy
+    kind: graph
+
+# ---------------------------------------------------------------------------
+# Requirements (section 2: "at least one requirement").
+#
+# MAGE v0.1 has NO requirement construct -- no `requirements:` key in mage-model.schema.json, no
+# `CanonRequirement` in the IR. A requirement is therefore carried here, joined to the saved query
+# that decides it. `satisfied_when` is the outcome that would mean the requirement holds; `status` is
+# what the shipped system actually does. The test asserts the join: the query's recorded expected
+# outcome must agree with `status`, so a requirement cannot claim to be satisfied by a query that
+# refutes it.
+# ---------------------------------------------------------------------------
+requirements:
+  - id: no-restricted-data-to-an-impermitted-subscriber
+    statement: >
+      No event type carrying data above a service's permitted sensitivity may be delivered to that
+      service.
+    expressed_as: restricted-data-reaches-impermitted-subscriber
+    satisfied_when: refuted
+    status: violated
+    note: >
+      Violated on purpose. Analytics permits internal data and subscribes to OrderCreated, which
+      carries a restricted shipping address. Shipping the violation is what makes the safety query
+      return a real counterexample instead of a vacuous holds, and it is what the section 4.6
+      modification repairs.
+
+queries:
+
+  - id: who-publishes-order-created
+    label: What publishes OrderCreated?
+    suggested: false
+    models: [event-flow]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        nodes_include: [order-created, checkout]
+        node_count: 2
+    note: >
+      Single-model. `predecessors` is not a composing form, so the forbidden path composition on
+      `publishes` does not gate it: asking who points AT an entity is one hop by construction.
+
+  - id: who-subscribes-to-order-created
+    label: Which services subscribe to OrderCreated?
+    suggested: true
+    models: [event-flow]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        nodes_include: [order-created, analytics, billing, inventory]
+        node_count: 4
+    note: >
+      Single-model, and the answer is a set of three subscribers. Fulfillment is absent because it
+      subscribes to PaymentCompleted, not to OrderCreated.
+
+  - id: subscribes-chain-checkout-to-fulfillment
+    label: Is Fulfillment reachable from Checkout through a chain of subscriptions?
+    suggested: true
+    models: [event-flow]
+    expected:
+      outcome: unlicensed
+      coverage: not-applicable
+      refusal_contains: "not licensed by this model"
+      no_evidence: true
+    note: >
+      V7, and the point of declaring composition per relation type. `unlicensed` is a SUCCESSFUL
+      result reporting what the model does not authorize. It is emphatically not `refuted`, which
+      would assert that no such chain exists -- a claim event-flow never made.
+
+  - id: checkout-event-reaches-fulfillment
+    label: Can an event originating at Checkout eventually cause an event to reach Fulfillment?
+    suggested: true
+    models: [event-propagation]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [checkout, order-created, billing, payment-completed, fulfillment]
+    note: >
+      The same shape of question the previous entry refuses, answered by the model that licenses
+      composition. The ordered four-hop witness is pinned because the hop count is the evidence: a
+      one-node witness would mean the endpoints had not resolved and the search took a degenerate
+      early return, which is how this project once shipped a vacuous holds.
+
+  - id: restricted-data-reaches-impermitted-subscriber
+    label: Can restricted data reach Analytics?
+    suggested: true
+    models: [event-flow, data-policy]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [analytics, order-created]
+    note: >
+      THE cross-model question, and the one neither model answers alone. event-flow contributes the
+      `subscribes` edge and declares no sensitivities; data-policy contributes `permits` on the
+      service and `carries` on the event type and declares no edge. Shared entity identity permits
+      the join, and the ordered sensitivity domain is what makes `permits < carries` typecheck (V20).
+
+      `holds` IS the safety breach. The question is existential, so the witness
+      `analytics -> order-created` is the counterexample to the requirement above: Analytics permits
+      internal, OrderCreated carries restricted. The field that makes it restricted is
+      shipping-address, which the data-policy model represents as a `carries_field` edge.
+
+  - id: did-analytics-receive-it-at-2-04
+    label: Did Analytics actually receive OrderCreated at 2:04 PM?
+    suggested: true
+    models: [event-flow]
+    expected:
+      outcome: unlicensed
+      coverage: not-applicable
+      refusal_contains: "is not declared by this system"
+      no_evidence: true
+    note: >
+      Purposeful omission (section 7), executed rather than described. Both event models represent
+      permission and neither represents observation, so there is no vocabulary in which to ask what
+      arrived and when. The engine refuses and names the cause.
+
+      Worth being exact about WHICH refusal this is. The engine reports unknown vocabulary -- the
+      relation type is not declared -- not a missing distinction. No code path consults
+      `purpose.omits` when refusing, so the link between a declared omission and the refusal a user
+      sees is prose, not machinery. `RefusalReason.missing-distinction` exists in the engine's type
+      and is never produced.
+
+# ---------------------------------------------------------------------------
+# Useful modifications (section 4.6). Each is a real transaction driven through
+# openHypothesis / discardHypothesis, and each must CHANGE a recorded answer and then change back.
+# A safety property that no modification can break may be holding vacuously.
+#
+# `base` is omitted: it must equal the live system hash, which the test fills in. A hash written
+# down here would be stale the moment the example changed.
+# ---------------------------------------------------------------------------
+modifications:
+
+  - id: drop-the-analytics-subscription
+    label: Remove Analytics from OrderCreated
+    rationale: >
+      The repair section 4.6 asks for. Both edges go in ONE transaction: event-propagation's edge is
+      the image of event-flow's, so removing one and not the other would leave the two models
+      disagreeing about the same fact. One transaction, atomic, either both or neither.
+    transaction:
+      operations:
+        - op: delete-relation
+          model: event-flow
+          id: analytics-subscribes-order-created
+        - op: delete-relation
+          model: event-propagation
+          id: propagate-order-created-analytics
+    changes:
+      - query: restricted-data-reaches-impermitted-subscriber
+        from: holds
+        to: refuted
