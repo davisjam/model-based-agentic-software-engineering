@@ -91,8 +91,10 @@ case to keep in mind. Three things hold injectivity by construction:
 | `urn:mage:effect:` | system, machine, transition index, effect index | one effect of a transition |
 | `urn:mage:event:` | system, id | a declared synchronized event |
 | `urn:mage:query:` | system, id | a saved engineering question |
+| `urn:mage:quant:` | system, id | a quantitative annotation |
+| `urn:mage:dim:` | dimension | one of MAGE's five dimensions |
 
-Three of these need their reasoning stated.
+Four of these need their reasoning stated.
 
 - **States, variables and derived values are machine-scoped.** Two machines may both have `idle`,
   and in a system where they do, one `idle` resource would make a configuration unreadable.
@@ -104,6 +106,13 @@ Three of these need their reasoning stated.
   false, a value truncated at an unquoted comma. A projection that let `5` and `"5"` name one domain
   value would be the sixth, and it would merge two values of one domain where nothing would look
   wrong.
+- **A dimension carries no system segment**, and it is the only kind that does not. `duration` is
+  MAGE's term rather than an author's: it means the same thing in every system, its base unit and its
+  aggregation scope come from the dimension table in `src/ir/types.ts` rather than from any document,
+  and no author can declare a sixth. Two systems in one store therefore share
+  `urn:mage:dim:duration`, which makes a query over every duration quantity in the store a join
+  rather than a union over system-local spellings. Injectivity is unaffected: the kind tag leads, so a
+  one-segment `dim` IRI cannot collide with anything.
 
 ### What the scheme deliberately does not do
 
@@ -156,6 +165,38 @@ So the split is:
 | events and their participants | |
 | saved-query existence | |
 | model metadata: label, purpose, scope, graph handle | |
+| quantities, and the dimensions they use | |
+
+### Quantities are system-level facts, for every target kind
+
+A quantity targets a transition, a relation, an entity, a state, a parameter or a model, so the
+question has to be asked target kind by target kind. The answer comes out uniform, and the reasoning
+is worth keeping because a wrong answer here is a cross-model query that either misses quantities or
+finds ones it should not.
+
+**The IR's shape says it first.** `CanonicalSystem.quantities` is a flat system-level map, exactly
+like entities, machines and events. `CanonRelation.model` is still the only field in the IR carrying a
+model. No quantity names a reduction, so there is nothing to put a quantity in a named graph *with*.
+
+**And the meaning agrees.** A quantity asserts something about the modeled system — the cache really
+does hold 128 MB, the gateway really does take 100–500 ms — not about a reduction of it. Its truth is
+not relative to which model you adopt, which is precisely the test the named-graph rule applies.
+
+Two target kinds look like exceptions and are not:
+
+- **`relation:`** is the tempting one, because the relation named lives in some model's graph. But
+  `relations` is flattened across every model, so one relation id can name edges in two models, and a
+  quantity on it would have to pick one or be duplicated into both. Picking is arbitrary;
+  duplicating makes `SUM` double. The latency of a gateway call is a fact about the call, and the
+  reductions are where it is *visible*, not where it is *true*.
+- **`model:`** targets the reduction itself. That is the case model metadata already settled: a
+  model's label and purpose describe the reduction rather than asserting anything inside it, and they
+  go in the default graph for the same reason. Putting a quantity about a model inside that model's
+  graph would mean entering a graph to learn something about the graph.
+
+The cost, stated plainly: a quantity on a relation does **not** scope to that relation's model, so
+"the latency of the edges in model M" is not a graph-scoped query. It needs a join from
+`mage:target` to the relation, and v0.1 cannot do that join at all — see §7.
 
 ### Two consequences to know before writing a query
 
@@ -262,6 +303,8 @@ Used only as the object of `rdf:type`.
 | `mage:Effect` | one write a transition performs |
 | `mage:Event` | a declared synchronized event with named participants |
 | `mage:Query` | a saved engineering question |
+| `mage:Quantity` | a quantitative annotation over the model. Never part of the state vector |
+| `mage:Dimension` | one of MAGE's five dimensions. Carries its base unit and its aggregation scope |
 
 ### Properties
 
@@ -281,8 +324,8 @@ Used only as the object of `rdf:type`.
 | `mage:domainValue` | domain | domain value | membership: this value belongs to this domain |
 | `mage:value` | domain value | typed literal | the scalar the domain value stands for |
 | `mage:ordinal` | domain value, machine instance | integer | zero-based position in a declared order |
-| `mage:rangeMin` | domain | number | inclusive lower bound of an integer domain |
-| `mage:rangeMax` | domain | number | inclusive upper bound of an integer domain |
+| `mage:rangeMin` | domain, quantity | number | inclusive lower bound: of an integer domain, or of a quantity's range |
+| `mage:rangeMax` | domain, quantity, dimension | number | inclusive upper bound: of an integer domain, of a quantity's range, or a dimension's V29 ceiling |
 | `mage:valueDomain` | property key | domain | the domain this key's values are drawn from |
 | `mage:question` | model, machine | string | the engineering question it exists to answer |
 | `mage:represents` | model, machine | string | a distinction the author claims this reduction preserves |
@@ -300,7 +343,7 @@ Used only as the object of `rdf:type`.
 | `mage:variableKind` | variable | `"boolean"` / `"integer"` / `"enum"` | which kind of variable |
 | `mage:permittedValue` | variable | typed literal | one value the variable may take. Enumerated, because a finite domain is a list and not a promise |
 | `mage:initialValue` | variable | typed literal | its value in the initial configuration |
-| `mage:expression` | derived value, effect | string | the expression verbatim. The engine owns the grammar |
+| `mage:expression` | derived value, effect, quantity | string | the expression verbatim. The engine owns the grammar |
 | `mage:transitionIndex` | transition | integer | position in the machine's transition list. Semantic: a reorder is a different system |
 | `mage:from` | transition | state | source state |
 | `mage:to` | transition | state | target state |
@@ -313,8 +356,15 @@ Used only as the object of `rdf:type`.
 | `mage:targetVariable` | effect | variable | the variable the effect writes |
 | `mage:canTransitionTo` | state | state | the machine declares a transition between them. Declared adjacency, NOT enabledness and NOT reachability |
 | `mage:participant` | event | machine | a machine that must take part |
+| `mage:target` | quantity | string | what the quantity annotates, as written: `entity:cache`. Verbatim, and not resolved — see §7 |
+| `mage:targetKind` | quantity | `"transition"` / `"relation"` / `"entity"` / `"state"` / `"parameter"` / `"model"` | the typed prefix. Withheld when the prefix is not one of the six |
+| `mage:dimension` | quantity | dimension | which dimension the magnitude is in. Withheld when the declared dimension is not one of the five |
+| `mage:valueKind` | quantity | `"point"` / `"range"` / `"expression"` / `"absent"` | which shape of value the author wrote |
+| `mage:magnitude` | quantity | number | a point magnitude, in the dimension's BASE units |
+| `mage:baseUnit` | dimension | string | the unit every magnitude of this dimension is in. Withheld when dimensionless |
+| `mage:aggregationScope` | dimension | `"configuration"` / `"execution"` / `"structural"` | which axis this dimension aggregates along |
 
-### Two rules the table cannot show
+### Three rules the table cannot show
 
 **A property value drawn from a declared domain gets identity; one without gets a literal.**
 
@@ -336,6 +386,58 @@ two values the model never ranked — the same shape of over-reach as a transiti
 (`mage:domainValue`) is still projected for every domain; the values exist, they are simply not
 ranked.
 
+**A quantity is a structured resource, and the dimension travels with the number.** This is Q6 of
+`DESIGN-quantities-261002.md`, ruled in `DESIGN-sparql-261002.md` §5.
+
+```
+quant:s:cache-memory  rdf:type       mage:Quantity
+quant:s:cache-memory  mage:target    "entity:cache"
+quant:s:cache-memory  mage:dimension dim:memory
+quant:s:cache-memory  mage:magnitude 1.25E-1          # 128 KB, in MB
+dim:memory            mage:baseUnit  "MB"
+dim:memory            mage:aggregationScope "configuration"
+```
+
+The alternative was a bare literal — `ent:s:cache mage:latencyMs 250` — and it loses the dimension,
+at which point SPARQL can add milliseconds to megabytes. V30 forbids exactly that at the validation
+layer, so a flattened projection would silently permit what validation forbids: the worst kind of
+layering mistake, because each layer looks correct on its own. Relation types already set the pattern
+— `mage:pathComposition` and `mage:symmetric` are projected as facts rather than folded away.
+
+It costs query ergonomics, and the trade is deliberate. **There is no convenience literal alongside
+it.** Two representations of one fact is the duplication this projection exists to avoid, and the
+convenient one would be the one that loses the dimension.
+
+Four specifics:
+
+- **A magnitude is in BASE units, always, and never the authored unit.** `250 ms` and `0.25 s` are one
+  quantity: `src/ir/hash.ts` says so and normalizes for that reason, and the projection must agree or
+  a unit rewrite would move the quad set while `systemHash` stood still. A test asserts the two
+  spellings project to byte-identical N-Quads.
+- **The base unit lives on the dimension, once.** That is what makes `mage:magnitude 250` readable at
+  all: the number is meaningless without the unit, and repeating `"ms"` on every duration quantity
+  would be one fact in N places, able to disagree with itself.
+- **The aggregation scope lives on the dimension too**, and for a sharper reason: the IR *derives* it
+  from the dimension and forbids an author from choosing it per quantity. Copied onto each quantity,
+  a later bug could emit a `ratio` quantity scoped `execution`, and the dataset would carry a
+  contradiction nothing would report. One hop reaches it —
+  `?q mage:dimension/mage:aggregationScope ?scope` — and it cannot be wrong. The field is not
+  decoration: a consumer that cannot see the scope could sum a hit rate along a path, which is the
+  category error the typed scope exists to refuse.
+- **A range is two bounds and does not collapse.** `range: [100 ms, 500 ms]` projects `mage:rangeMin`
+  and `mage:rangeMax`, never one number. A maximum analysis reading a collapsed lower bound reports a
+  latency the model never claimed, and nothing looks wrong.
+
+**A magnitude that did not reach base units projects no magnitude.** §7 of the quantities design: a
+quantity reaches anything downstream in base units or not at all. A literal the dimension could not
+normalize — `250 millisec`, a `KB` on a `duration` — has no base, so no magnitude quad is emitted.
+This is the dangling-reference rule of §5 applied to a number: the resource exists, and content
+triples come only from a declaration that carries them. `mage:valueKind` is what keeps *failed to
+normalize* distinguishable from *no value declared*: the first projects `"point"` with no magnitude,
+the second projects `"absent"`. An unrecognized dimension is treated the same way — the quantity
+projects in full with no `mage:dimension`, because minting a sixth dimension resource would advertise
+a base unit and a scope it does not have.
+
 ---
 
 ## 5. Totality, determinism and dangling references
@@ -352,6 +454,13 @@ undeclared state is. The validator is the component that calls it a finding.
 One exception, stated because it is an exception: `mage:value` on a domain value is supplied by the
 *assertion* as well as by the domain's declaration. Withholding it would lose the scalar entirely
 when the domain is missing or does not list that value, and the assertion does carry it.
+
+**A dimension resource is the one resource no `mage:declares` edge reaches**, and it is emitted only
+for a dimension some quantity actually used. MAGE owns the five dimensions; no author declared them,
+so a `declares` edge from the system would be false. Projecting the whole table unconditionally would
+put facts about MAGE into a dataset about a system, and would mean a system with no quantities no
+longer projected what it projected before quantities existed — the same reason
+`mage:canTransitionTo`'s composition policy appears only once a transition has been projected.
 
 `project` is **deterministic**: the same system gives the same quads, and `toNQuads` gives the same
 bytes. Three things hold it, and all three are tested:
@@ -406,8 +515,36 @@ The honest list. Each of these is a deliberate omission, not an oversight.
 | `CanonEntity.parent` | the derived inverse of `contains`. SPARQL has `^` |
 | `CanonVariable.machine`, `CanonTransition.machine` | already carried by the owning machine's edge and by the IRI |
 | resolved guard references | `mage:ref` keeps the dotted string verbatim. Resolving `worker.state` to an instance and a variable is the engine's job, and two resolvers are how two resolvers come to disagree |
-| guard and effect expressions, parsed | same reason. `mage:expression` is the author's text; the grammar is the engine's |
+| guard, effect and quantity expressions, parsed | same reason. `mage:expression` is the author's text; the grammar is the engine's. So a quantity an expression references is not an edge in the dataset either |
+| a quantity's target, resolved to the thing it annotates | four of the six target kinds have nothing to resolve to — see below |
+| a magnitude's authored spelling and unit | `mage:magnitude` is the normalized value. §7 of the quantities design makes the authored unit cosmetic, and the author's text is the *finding* channel: V28 quotes it out of the IR, where it is kept |
+| the declared dimension word when it is not one of the five | same reason, and symmetrically: the quantity simply has no `mage:dimension` |
 | configurations, traces, query results | the state space is constructed, not stored. A projection of an exploration would be a second home for an answer that already has one |
+
+### The one thing that could not be projected faithfully: a quantity's target
+
+`mage:target` carries the author's string — `entity:cache`, `transition:parse` — and not the IRI of
+the thing it annotates. That is the useful join, so withholding it needs a reason, and the reason is
+that the IR cannot support it for most target kinds:
+
+| Target kind | Resolvable? |
+|---|---|
+| `entity:` | yes — `urn:mage:ent:<sys>:<ref>` |
+| `model:` | yes — `urn:mage:model:<sys>:<ref>` |
+| `relation:` | **no.** Relation ids are excluded from the semantic hash, so relations are not reified — §3 |
+| `transition:` | **no.** A transition is addressed by its index within a machine. There is no transition id in the IR for `transition:parse` to name |
+| `state:` | **no.** A state IRI is machine-scoped, and nothing fixes how a ref spells the machine |
+| `parameter:` | **no.** v0.1 does not represent parameters at all (V27 reports it as a reserved future shape) |
+
+Resolving the two that work would leave a dataset where `?q mage:targetEntity ?e` answers for
+entities and silently returns nothing for transitions — so a latency query written against it would
+report a confident subset. The projection's standing preference is the other way round: silence beats
+a confident subset. So no target is resolved, uniformly, and `mage:targetKind` is projected so a
+consumer can at least filter by kind without doing string surgery on the raw ref.
+
+What would change this: the IR making relation ids semantic (§3 already names that as the
+precondition for anchoring a quantity on a relation), and giving transitions and states addresses a
+`target:` ref can name. Both are IR changes, which is the right order — the IR is the semantics.
 
 Two losses happen *upstream*, in canonicalization, and the projection cannot recover them: an
 entity's `description` and a domain's `description` are both dropped when the loaded document becomes

@@ -43,6 +43,10 @@ export const MAGE_CLASSES = {
   Effect: V("Effect"),
   Event: V("Event"),
   Query: V("Query"),
+  /** A quantitative annotation. A structured resource, so the dimension travels with the number. */
+  Quantity: V("Quantity"),
+  /** One of MAGE's five dimensions. Carries its base unit and its aggregation scope. */
+  Dimension: V("Dimension"),
 } as const satisfies Record<string, Iri>;
 
 /**
@@ -86,6 +90,11 @@ export const MAGE = {
    * else. On a machine instance it is the index in the expansion.
    */
   ordinal: V("ordinal"),
+  /**
+   * An inclusive bound. One fact, three subjects: an integer domain's declared range, the two ends
+   * of a quantity's range, and a dimension's V29 ceiling. Minting a term per subject would say
+   * "inclusive lower bound" three times in three spellings.
+   */
   rangeMin: V("rangeMin"),
   rangeMax: V("rangeMax"),
   /** Property key to the domain its values are drawn from. */
@@ -156,4 +165,31 @@ export const MAGE = {
   // --- events --------------------------------------------------------------------------------
   /** Event to a machine that must take part in it. */
   participant: V("participant"),
+
+  // --- quantities and dimensions -------------------------------------------------------------
+  /**
+   * The quantity's target, as the author wrote it: `entity:cache`, `transition:parse`.
+   *
+   * Verbatim, like `mage:ref`, and for a harder reason: four of the six target kinds have no
+   * semantic id to mint an IRI from. `RDF-VOCABULARY.md` §7 states the whole argument.
+   */
+  target: V("target"),
+  /** `transition` / `relation` / `entity` / `state` / `parameter` / `model`. Withheld when unrecognized. */
+  targetKind: V("targetKind"),
+  /** Quantity to its dimension resource. An IRI, so a `FILTER` joins on it rather than on a word. */
+  dimension: V("dimension"),
+  /** `point` / `range` / `expression` / `absent`. Which shape of value the author wrote. */
+  valueKind: V("valueKind"),
+  /** A point magnitude, in the dimension's BASE units. Never the authored unit. */
+  magnitude: V("magnitude"),
+  /** The unit every magnitude of this dimension is expressed in. Withheld when dimensionless. */
+  baseUnit: V("baseUnit"),
+  /**
+   * `configuration` / `execution` / `structural`: which axis this dimension aggregates along.
+   *
+   * On the DIMENSION, not on the quantity, because that is where the fact lives — the IR derives it
+   * from the dimension and forbids an author from choosing it. Named `aggregationScope` rather than
+   * `scope` because a model already has a scope, and the two are unrelated.
+   */
+  aggregationScope: V("aggregationScope"),
 } as const satisfies Record<string, Iri>;

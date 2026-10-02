@@ -5,12 +5,15 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
+import { systemHash } from "../src/ir/hash.ts";
+import { DIMENSIONS } from "../src/ir/types.ts";
 import type { Quad } from "../src/rdf/terms.ts";
 import {
   MAGE, MAGE_CLASSES, RDF_TYPE, RESOURCE_KINDS, URN_PREFIX, VOCABULARY_TAG, XSD,
-  derivedIri, domainIri, domainValueIri, effectIri, entityIri, eventIri, guardIri, instanceIri,
-  iri, machineIri, modelGraphIri, modelIri, project, projectedGraphs, propertyIri, queryIri,
-  relationTypeIri, serializeQuad, stateIri, str, systemIri, toNQuads, transitionIri, variableIri,
+  derivedIri, dimensionIri, domainIri, domainValueIri, effectIri, entityIri, eventIri, guardIri,
+  instanceIri, iri, machineIri, modelGraphIri, modelIri, project, projectedGraphs, propertyIri,
+  quantityIri, queryIri, relationTypeIri, serializeQuad, stateIri, str, systemIri, toNQuads,
+  transitionIri, variableIri,
 } from "../src/rdf/index.ts";
 
 const load = (p: string) => canonicalize(parse(readFileSync(p, "utf8")));
@@ -22,6 +25,12 @@ const SYSTEM_FILES = [
   "models/workbench-components.mage.yaml",
   "models/workbench-affordances.mage.yaml",
 ];
+
+/** Terms that would hand a reasoner licence to add facts MAGE never asserted. */
+const FORBIDDEN = ["rdf-schema", "2002/07/owl", "rdfs:", "owl:", "subClassOf", "inverseOf", "TransitiveProperty"];
+
+/** The only IRIs the projection may emit from outside MAGE's own space. */
+const ALLOWED_FOREIGN = new Set<string>([RDF_TYPE.value, XSD.string, XSD.integer, XSD.boolean, XSD.double]);
 
 /** Every IRI mentioned anywhere in a quad, including the graph name and the literal datatypes. */
 function allIris(quads: readonly Quad[]): Set<string> {
@@ -138,7 +147,7 @@ test("one id reused across every kind yields distinct IRIs", () => {
     modelGraphIri("s", "idle"), machineIri("s", "idle"), instanceIri("s", "idle"),
     stateIri("s", "m", "idle"), variableIri("s", "m", "idle"), derivedIri("s", "m", "idle"),
     transitionIri("s", "m", 0), guardIri("s", "m", 0, 0), effectIri("s", "m", 0, 0),
-    eventIri("s", "idle"), queryIri("s", "idle"),
+    eventIri("s", "idle"), queryIri("s", "idle"), quantityIri("s", "idle"), dimensionIri("idle"),
   ].map((t) => t.value);
 
   assert.equal(new Set(minted).size, minted.length, `collision among:\n  ${minted.join("\n  ")}`);
@@ -265,9 +274,6 @@ test("no RDFS or OWL term is ever emitted", () => {
   // MAGE fixes the meaning of its own vocabulary. A single `rdfs:subClassOf` would hand a reasoner
   // licence to add facts the model never asserted -- the same failure the engine's `unlicensed`
   // outcome refuses one layer up.
-  const FORBIDDEN = ["rdf-schema", "2002/07/owl", "rdfs:", "owl:", "subClassOf", "inverseOf", "TransitiveProperty"];
-  const ALLOWED_FOREIGN = new Set<string>([RDF_TYPE.value, XSD.string, XSD.integer, XSD.boolean, XSD.double]);
-
   for (const file of SYSTEM_FILES) {
     const text = nquads(file);
     for (const needle of FORBIDDEN) {
@@ -356,6 +362,208 @@ test("a dangling reference mints its IRI and gets no type", () => {
 });
 
 // ------------------------------------------------------------------------------------------------
+// Quantities: structured resources, never flattened (DESIGN-sparql-261002.md §5)
+// ------------------------------------------------------------------------------------------------
+
+/**
+ * One quantity per value shape and per failure mode, with a model and a relation so the named-graph
+ * assertion has something to contrast against.
+ *
+ * Built inline rather than added to a repo example on purpose: `docable`'s quad count is pinned, and
+ * the negative control below depends on every repo model having no quantities at all.
+ */
+const quantified = (parseLatency: string = "250 ms") => canonicalize({
+  mage: 1,
+  system: { id: "s" },
+  entities: { api: null, cache: null },
+  "relation-types": { may_invoke: { composition: { path: "allowed" } } },
+  models: {
+    flow: {
+      entities: ["api", "cache"],
+      relations: [{ id: "api-cache", from: "api", to: "cache", type: "may_invoke" }],
+    },
+  },
+  quantities: {
+    "cache-memory": { target: "entity:cache", dimension: "memory", value: "128 KB" },
+    "gateway-latency": { target: "relation:api-cache", dimension: "duration", range: ["100 ms", "500 ms"] },
+    "hit-rate": { target: "entity:cache", dimension: "ratio", value: 0.8 },
+    "parse-latency": { target: "transition:parse", dimension: "duration", value: parseLatency },
+    "path-latency": { target: "model:flow", dimension: "duration", value: { expression: "metrics.state_count * 2 ms" } },
+    "unnormalized": { target: "entity:cache", dimension: "duration", value: "250 millisec" },
+    "unmeasured": { target: "entity:cache", dimension: "count" },
+    "exotic": { target: "entity:cache", dimension: "furlongs", value: "7 fl" },
+  },
+});
+
+/** Every object of `<subject> <predicate> ?o`, as written in the dataset. */
+const objects = (dataset: readonly Quad[], subject: string, predicate: { readonly value: string }): string[] =>
+  dataset
+    .filter((q) => q.subject.value === subject && q.predicate.value === predicate.value)
+    .map((q) => q.object.value);
+
+const quantObjects = (dataset: readonly Quad[], id: string, predicate: { readonly value: string }): string[] =>
+  objects(dataset, quantityIri("s", id).value, predicate);
+
+test("a quantity projects as a structured resource, with its dimension beside its number", () => {
+  // The failure this catches is the flattened `gateway latencyMs 250`: the number arrives with no
+  // dimension, and SPARQL can then add milliseconds to megabytes -- which V30 refuses at the
+  // validation layer. A projection that silently permits what validation forbids is the layering
+  // mistake where each layer looks correct alone.
+  const dataset = project(quantified());
+  const memory = quantityIri("s", "cache-memory").value;
+
+  assert.deepEqual(objects(dataset, memory, RDF_TYPE), [MAGE_CLASSES.Quantity.value]);
+  assert.deepEqual(objects(dataset, memory, MAGE.id), ["cache-memory"]);
+  assert.deepEqual(objects(dataset, memory, MAGE.dimension), [dimensionIri("memory").value]);
+  assert.deepEqual(objects(dataset, memory, MAGE.target), ["entity:cache"]);
+  assert.deepEqual(objects(dataset, memory, MAGE.targetKind), ["entity"]);
+  // `128 KB` in base units. The lexical form is pinned too: canonical xsd:double, since a magnitude
+  // is legitimately non-integral and `0.125` is not an integer the way every other number here is.
+  assert.deepEqual(objects(dataset, memory, MAGE.magnitude), ["1.25E-1"]);
+  assert.equal(Number("1.25E-1"), 0.125);
+  // And the system declares it, so "which quantities does this system assert?" is one pattern.
+  assert.ok(dataset.some((q) =>
+    q.subject.value === systemIri("s").value
+    && q.predicate.value === MAGE.declares.value
+    && q.object.value === memory));
+});
+
+test("the dimension is a term a FILTER can see, and it carries the unit the magnitude is in", () => {
+  // A dimension spelled as a string literal on each quantity would be filterable too -- but then the
+  // base unit has nowhere to live, and `mage:magnitude 250` is a number whose unit a consumer has to
+  // know out of band. One resource per dimension states the unit once, where it cannot disagree with
+  // itself.
+  const dataset = project(quantified());
+  const duration = dimensionIri("duration").value;
+  assert.deepEqual(objects(dataset, duration, RDF_TYPE), [MAGE_CLASSES.Dimension.value]);
+  assert.deepEqual(objects(dataset, duration, MAGE.id), ["duration"]);
+  assert.deepEqual(objects(dataset, duration, MAGE.baseUnit), [DIMENSIONS.duration.base]);
+
+  // `ratio` is dimensionless, so there is no unit token to project -- and it carries V29's ceiling.
+  const ratio = dimensionIri("ratio").value;
+  assert.deepEqual(objects(dataset, ratio, MAGE.baseUnit), []);
+  assert.deepEqual(objects(dataset, ratio, MAGE.rangeMax), [String(DIMENSIONS.ratio.maximum)]);
+
+  // Only the dimensions a quantity actually used: `cost` is one of the five and this system never
+  // names it, so projecting the whole table would put facts about MAGE in a dataset about a system.
+  assert.deepEqual(objects(dataset, dimensionIri("cost").value, RDF_TYPE), []);
+});
+
+test("250 ms and 0.25 s are one quantity: base units, and the projection agrees with the hash", () => {
+  // The property that keeps the dataset and the hash describing one system. Were the authored unit
+  // projected instead, a unit rewrite would move the quad set while `systemHash` stood still -- and
+  // a consumer diffing datasets would read a cosmetic edit as a semantic change.
+  const ms = quantified("250 ms");
+  const s = quantified("0.25 s");
+  assert.equal(systemHash(ms), systemHash(s));
+  assert.equal(toNQuads(project(ms)), toNQuads(project(s)));
+  assert.deepEqual(quantObjects(project(s), "parse-latency", MAGE.magnitude), ["250"]);
+});
+
+test("a range projects as two distinct bounds", () => {
+  // Collapsed to one number, `[100 ms, 500 ms]` becomes a wrong answer with no symptom: a maximum
+  // analysis reading the lower bound reports a latency the model never claimed.
+  const dataset = project(quantified());
+  assert.deepEqual(quantObjects(dataset, "gateway-latency", MAGE.rangeMin), ["100"]);
+  assert.deepEqual(quantObjects(dataset, "gateway-latency", MAGE.rangeMax), ["500"]);
+  assert.deepEqual(quantObjects(dataset, "gateway-latency", MAGE.valueKind), ["range"]);
+  assert.deepEqual(quantObjects(dataset, "gateway-latency", MAGE.magnitude), [], "a range is not also a point");
+});
+
+test("every quantity's aggregation scope is reachable, and it is stated in exactly one place", () => {
+  // Scope is not decoration: a consumer that cannot see it could sum a hit rate along a path, which
+  // is the category error the field exists to refuse. It hangs on the DIMENSION because that is
+  // where the IR derives it from -- copied onto each quantity, a later bug could emit a `ratio`
+  // quantity scoped `execution`, and the dataset would carry a contradiction with no symptom.
+  const dataset = project(quantified());
+  const scopeOf = (id: string): string[] =>
+    quantObjects(dataset, id, MAGE.dimension).flatMap((d) => objects(dataset, d, MAGE.aggregationScope));
+
+  assert.deepEqual(scopeOf("cache-memory"), [DIMENSIONS.memory.scope]);
+  assert.deepEqual(scopeOf("parse-latency"), [DIMENSIONS.duration.scope]);
+  assert.deepEqual(scopeOf("hit-rate"), [DIMENSIONS.ratio.scope]);
+  assert.deepEqual(scopeOf("unmeasured"), [DIMENSIONS.count.scope]);
+
+  const onQuantity = dataset.filter((q) =>
+    q.predicate.value === MAGE.aggregationScope.value && q.subject.value.startsWith(`${URN_PREFIX}quant:`));
+  assert.deepEqual(onQuantity, [], "the scope must have one home, not two");
+});
+
+test("a magnitude that did not reach base units projects no magnitude, and stays distinguishable", () => {
+  // Section 7 of the quantities design: a quantity reaches anything downstream in base units or not
+  // at all. Emitting `"250 millisec"` where a query reads a number would put a dimensionless string
+  // in the one place the dimension is the whole point; V28 is what quotes the author's text back at
+  // them. `valueKind` is what keeps this apart from a quantity that declared no value whatsoever.
+  const dataset = project(quantified());
+  assert.deepEqual(quantObjects(dataset, "unnormalized", MAGE.valueKind), ["point"]);
+  assert.deepEqual(quantObjects(dataset, "unnormalized", MAGE.magnitude), []);
+  assert.deepEqual(quantObjects(dataset, "unmeasured", MAGE.valueKind), ["absent"]);
+  assert.deepEqual(quantObjects(dataset, "unmeasured", MAGE.magnitude), []);
+  assert.ok(!toNQuads(dataset).includes("millisec"), "the authored spelling is the validator's, not the dataset's");
+});
+
+test("an unrecognized dimension mints no dimension resource", () => {
+  // The projection must not depend on validation, so the quantity still projects in full -- but
+  // there is no sixth dimension, and `urn:mage:dim:furlongs` would advertise one with a base unit
+  // and a scope it does not have. The dataset says only that this quantity has no dimension.
+  const dataset = project(quantified());
+  assert.deepEqual(quantObjects(dataset, "exotic", RDF_TYPE), [MAGE_CLASSES.Quantity.value]);
+  assert.deepEqual(quantObjects(dataset, "exotic", MAGE.dimension), []);
+  assert.deepEqual(quantObjects(dataset, "exotic", MAGE.target), ["entity:cache"]);
+  assert.ok(!toNQuads(dataset).includes("furlongs"), "the authored dimension word is not projected");
+});
+
+test("an expression is projected verbatim, and its operands are not resolved", () => {
+  // Same rule as a guard's `mage:ref` and an effect's `mage:expression`: the engine owns the grammar,
+  // and a second resolver in the projection is how two resolvers come to disagree.
+  const dataset = project(quantified());
+  assert.deepEqual(quantObjects(dataset, "path-latency", MAGE.expression), ["metrics.state_count * 2 ms"]);
+  assert.deepEqual(quantObjects(dataset, "path-latency", MAGE.valueKind), ["expression"]);
+  assert.deepEqual(quantObjects(dataset, "path-latency", MAGE.magnitude), []);
+});
+
+test("quantities and dimensions never leave the default graph", () => {
+  // A quantity asserts something about the modeled system, not about a reduction of it, and nothing
+  // in the IR attaches one to a model. In a named graph, a quantity on a relation would have to pick
+  // one of the models that relation appears in, and a cross-model query would miss the others.
+  const dataset = project(quantified());
+  assert.deepEqual(projectedGraphs(dataset), [modelGraphIri("s", "flow").value],
+    "the fixture must have a named graph, or this test proves nothing");
+
+  const QUANTITATIVE = [`${URN_PREFIX}quant:`, `${URN_PREFIX}dim:`];
+  const mentions = (q: Quad): boolean => QUANTITATIVE.some((p) =>
+    q.subject.value.startsWith(p) || (q.object.kind === "iri" && q.object.value.startsWith(p)));
+  const quantitative = dataset.filter(mentions);
+  assert.ok(quantitative.length > 0);
+  for (const q of quantitative) assert.equal(q.graph, null, serializeQuad(q));
+});
+
+test("a quantity-bearing projection is deterministic and still invites no reasoner in", () => {
+  // A quantity is exactly where someone reaches for `owl:DatatypeProperty`. MAGE fixes the meaning
+  // of `mage:magnitude` itself, in RDF-VOCABULARY.md, and borrows nothing to do it.
+  const text = toNQuads(project(quantified()));
+  assert.equal(text, toNQuads(project(quantified())));
+  for (const needle of FORBIDDEN) assert.ok(!text.includes(needle), `emitted ${needle}`);
+  const foreign = [...allIris(project(quantified()))].filter((v) => !v.startsWith(URN_PREFIX));
+  for (const v of foreign) assert.ok(ALLOWED_FOREIGN.has(v), `emitted a foreign IRI: ${v}`);
+});
+
+test("a system with no quantities projects exactly what it projected before quantities existed", () => {
+  // The negative control. An empty `quantities:` map must add nothing at all -- no dimension table,
+  // no class declaration, no stray `declares` edge -- or every existing count becomes unreadable.
+  const raw = parse(readFileSync("examples/docable.mage.yaml", "utf8")) as Record<string, unknown>;
+  assert.equal(raw["quantities"], undefined, "docable declares none, which is what makes it the control");
+  raw["quantities"] = {};
+  assert.equal(toNQuads(project(canonicalize(raw))), nquads("examples/docable.mage.yaml"));
+
+  for (const file of SYSTEM_FILES) {
+    const text = nquads(file);
+    assert.ok(!text.includes(`${URN_PREFIX}quant:`), file);
+    assert.ok(!text.includes(`${URN_PREFIX}dim:`), file);
+  }
+});
+
+// ------------------------------------------------------------------------------------------------
 // N-Quads escaping
 // ------------------------------------------------------------------------------------------------
 
@@ -440,10 +648,14 @@ test("a retry_count of 3 is an integer and the string \"3\" is not", () => {
 test("every vocabulary term is defined in RDF-VOCABULARY.md", () => {
   // A term nobody defined is a term that will be queried with a meaning the projection did not
   // intend. Keeping the join mechanical is cheaper than keeping it by habit.
+  //
+  // The needle is the BACKTICKED spelling, which is how the doc writes every term. A bare substring
+  // search is satisfied by a longer term that contains the shorter one -- `mage:targetVariable`
+  // documents `mage:target` for free -- so the join would pass while the term stayed undefined.
   const doc = readFileSync("RDF-VOCABULARY.md", "utf8");
   const missing: string[] = [];
   for (const term of [...Object.keys(MAGE_CLASSES), ...Object.keys(MAGE)]) {
-    if (!doc.includes(`mage:${term}`)) missing.push(term);
+    if (!doc.includes(`\`mage:${term}\``)) missing.push(term);
   }
   assert.deepEqual(missing, [], `undefined in RDF-VOCABULARY.md: ${missing.join(", ")}`);
 });

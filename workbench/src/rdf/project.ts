@@ -11,7 +11,8 @@
  * relative to M's reduction. Everything else lands in the default graph. `CanonRelation.model` is
  * the only field in the IR that carries a model, which is why relations are the only quads that
  * leave the default graph: an entity's existence, type, properties and containment hold whichever
- * reduction you adopt, and a model's own metadata (label, purpose, scope) describes the reduction
+ * reduction you adopt, a quantity asserts something about the modeled system rather than about a
+ * reduction of it, and a model's own metadata (label, purpose, scope) describes the reduction
  * rather than asserting anything inside it. So the named graphs hold exactly the typed relation
  * edges, and the entity IRIs inside them are SHARED with the default graph and with each other.
  * That sharing is the mechanism: a conclusion emerges from the join across reductions rather than
@@ -33,11 +34,12 @@
  * relation ids, relation-type prose, the system name), so two systems with the same hash can
  * project to different quads. The quad set is therefore not a revision token. `systemHash` is.
  */
-import type { CanonicalSystem, Purpose } from "../ir/types.ts";
+import type { CanonicalSystem, Dimension, Magnitude, Purpose } from "../ir/types.ts";
+import { DIMENSION_IDS, DIMENSIONS } from "../ir/types.ts";
 import {
-  derivedIri, domainIri, domainValueIri, effectIri, entityIri, eventIri, guardIri, instanceIri,
-  machineIri, modelGraphIri, modelIri, propertyIri, queryIri, relationTypeIri, stateIri, systemIri,
-  transitionIri, variableIri,
+  derivedIri, dimensionIri, domainIri, domainValueIri, effectIri, entityIri, eventIri, guardIri,
+  instanceIri, machineIri, modelGraphIri, modelIri, propertyIri, quantityIri, queryIri,
+  relationTypeIri, stateIri, systemIri, transitionIri, variableIri,
 } from "./iri.ts";
 import { canonicalDataset, numeric, RDF_TYPE, scalarTerm, str, bool, type Dataset, type Iri, type Quad, type Term } from "./terms.ts";
 import { MAGE, MAGE_CLASSES } from "./vocabulary.ts";
@@ -48,6 +50,18 @@ export function project(system: CanonicalSystem): Dataset {
 
   const add = (subject: Iri, predicate: Iri, object: Term, graph: Iri | null = null): void => {
     quads.push({ subject, predicate, object, graph });
+  };
+
+  /**
+   * One magnitude, in BASE units, and nothing when it has none.
+   *
+   * §7: a quantity reaches anything downstream in base units or not at all. A literal that failed to
+   * normalize has no base, so no magnitude quad is emitted — the dangling-reference rule applied to a
+   * number, where content triples come only from a declaration that carries them. Emitting the
+   * author's text instead would put a value with no dimension in the place a query reads for one.
+   */
+  const addMagnitude = (subject: Iri, predicate: Iri, m: Magnitude): void => {
+    if (m.base !== null) add(subject, predicate, numeric(m.base));
   };
 
   /** `question` / `represents` / `omits`, shared by models and machines. */
@@ -244,6 +258,71 @@ export function project(system: CanonicalSystem): Dataset {
     add(EVENT, RDF_TYPE, MAGE_CLASSES.Event);
     add(EVENT, MAGE.id, str(e.id));
     for (const p of e.participants) add(EVENT, MAGE.participant, machineIri(sys, p));
+  }
+
+  // --- quantities, and the dimensions they use -----------------------------------------------
+  // Structured resources, never flattened to a bare literal. Flattening `gateway-latency` to
+  // `gateway latencyMs 250` drops the dimension, and SPARQL could then add milliseconds to
+  // megabytes — which V30 refuses at the validation layer. A projection that silently permits what
+  // validation forbids is the layering mistake where each layer looks correct alone. The relation
+  // types already set the pattern: a type's own properties are projected as facts, not folded away.
+  //
+  // Every quantity lands in the DEFAULT graph whatever it targets; `RDF-VOCABULARY.md` §2a has the
+  // reasoning, and the one-line version is that nothing in the IR attaches a quantity to a model.
+  const usedDimensions = new Set<Dimension>();
+  for (const q of system.quantities.values()) {
+    const QUANT = quantityIri(sys, q.id);
+    add(SYS, MAGE.declares, QUANT);
+    add(QUANT, RDF_TYPE, MAGE_CLASSES.Quantity);
+    add(QUANT, MAGE.id, str(q.id));
+    // Verbatim, like a guard's `mage:ref`, and not resolved to the IRI of the thing it annotates:
+    // only `entity:` and `model:` refs could be resolved at all, and resolving two of six kinds
+    // would let a latency query answer with a silent subset. RDF-VOCABULARY.md §7.
+    add(QUANT, MAGE.target, str(q.target.raw));
+    if (q.target.kind !== null) add(QUANT, MAGE.targetKind, str(q.target.kind));
+    // `dimensionRaw` is withheld when the dimension is not one of the five, for the same reason the
+    // magnitude is: the projection carries meaning, and V28 is what quotes the author's own word.
+    if (q.dimension !== null) {
+      usedDimensions.add(q.dimension);
+      add(QUANT, MAGE.dimension, dimensionIri(q.dimension));
+    }
+    // The discriminator, as `domainKind` and `variableKind` already are for their unions. Without it
+    // an absent value and a magnitude that failed to normalize would both be silence.
+    add(QUANT, MAGE.valueKind, str(q.value.kind));
+    switch (q.value.kind) {
+      case "point":
+        addMagnitude(QUANT, MAGE.magnitude, q.value.magnitude);
+        break;
+      case "range":
+        // Two bounds, two quads. A range collapsed to one number is a wrong answer waiting.
+        addMagnitude(QUANT, MAGE.rangeMin, q.value.low);
+        addMagnitude(QUANT, MAGE.rangeMax, q.value.high);
+        break;
+      case "expression":
+        // The source verbatim, like an effect's. The parse is the engine's, and a second resolver is
+        // how two resolvers come to disagree.
+        add(QUANT, MAGE.expression, str(q.value.source));
+        break;
+      case "absent":
+        break;
+    }
+  }
+
+  // One resource per dimension a quantity actually used, so the base unit a magnitude is expressed
+  // in has a home and is stated ONCE. No `mage:declares` edge reaches it: MAGE owns the five
+  // dimensions, and no author declared them. Emitted on demand for the same reason
+  // `canTransitionTo`'s composition policy is — a system with no quantities must project exactly
+  // what it projected before quantities existed.
+  for (const d of DIMENSION_IDS.filter((id) => usedDimensions.has(id))) {
+    const spec = DIMENSIONS[d];
+    const DIM = dimensionIri(d);
+    add(DIM, RDF_TYPE, MAGE_CLASSES.Dimension);
+    add(DIM, MAGE.id, str(d));
+    // Withheld rather than spelled `"1"` for a dimensionless dimension: `ratio` and `count` carry no
+    // unit token at all, and a projected `"1"` is a unit a query could filter on.
+    if (spec.base !== null) add(DIM, MAGE.baseUnit, str(spec.base));
+    add(DIM, MAGE.aggregationScope, str(spec.scope));
+    if (spec.maximum !== null) add(DIM, MAGE.rangeMax, numeric(spec.maximum));
   }
 
   // --- saved queries ------------------------------------------------------------------------
