@@ -16,9 +16,14 @@
  * emphatically not `refuted`: `refuted` would assert that no such ownership chain exists, which is
  * a claim the model never made.
  *
- * Six forms go beyond the reference: `all-paths`, `predecessors`, `successors`, `cycles`,
- * `components`, `containment`. `validate.py` refuses them by design ("belongs to the workbench
- * engine"), so there is no behaviour to port and PLAN.md §C.1 is the specification.
+ * Four forms go beyond the reference: `all-paths`, `cycles`, `components`, `containment`.
+ * `validate.py` refuses them by design ("belongs to the workbench engine"), so there is no
+ * behaviour to port and PLAN.md §C.1 is the specification.
+ *
+ * `predecessors` and `successors` used to be on that list and are not. The reference refused them
+ * for scope while this engine answered them, which made one licensed question get two different
+ * answers on two shipped examples; the reference now evaluates both, since a one-step read of an
+ * adjacency it has already built needs nothing it lacks.
  */
 import type { CanonDomain, CanonicalSystem, Evidence, GuardOp, QueryResult, Scalar } from "../ir/types.ts";
 import {

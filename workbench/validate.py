@@ -451,14 +451,16 @@ def check_meaning(doc: dict, f: Findings, verbose: bool = True) -> None:
             elif not (doms & ordered):
                 f.add("V20", f"queries.{qid}", f"domain {doms.pop()!r} is not an ordered-enum; <,>,<=,>= are not defined on it.")
 
-    # V7 -- a multi-hop query over a relation whose composition forbids paths must be REFUSED.
-    multihop = {"reachability", "path", "shortest-path", "all-paths"}
+    # V7 -- a composing query over a relation whose composition forbids paths must be REFUSED.
+    # GRAPH_COMPOSING, not a local copy: this list and the evaluator's used to be two literals, and
+    # a form added to one and not the other would note nothing while refusing, or refuse nothing
+    # while noting.
     for qid, q in (doc.get("queries") or {}).items():
         g = q.get("graph") or {}
-        if g.get("form") in multihop:
+        if g.get("form") in GRAPH_COMPOSING:
             rt = rel_types.get(g.get("relation")) or {}
             if ((rt.get("composition") or {}).get("path")) == "forbidden" and verbose:
-                print(f"  [note V7] queries.{qid}: multi-hop '{g.get('form')}' over "
+                print(f"  [note V7] queries.{qid}: composing '{g.get('form')}' over "
                       f"'{g.get('relation')}' is UNLICENSED by design -- the engine must return "
                       f"outcome=unlicensed with a refusal, not an answer.")
 
@@ -1184,10 +1186,43 @@ def check_annotation(doc: dict, f: Findings) -> None:
 # before any workbench code exists -- the component-dependency model is enforceable on day one.
 #
 # Behavioral (state-space) queries are NOT evaluated here; they belong in the workbench's own
-# engine, in a Web Worker. This covers the graph forms only, and says so when asked for more.
+# engine, in a Web Worker. This covers six graph forms -- direct, predecessors, successors,
+# reachability, path, shortest-path -- and says so when asked for more.
+#
+# Where this tool and the engine both answer, they must answer the SAME. `test/parity.test.ts`
+# compares the two tools' outcomes over every model in the repo, which is the gate that now holds
+# the agreement; it used to compare findings only, and three shipped `predecessors` queries got two
+# different answers under a green build.
 # ---------------------------------------------------------------------------------------------
 
-GRAPH_MULTIHOP = {"reachability", "path", "shortest-path", "all-paths"}
+# Forms whose answer is DERIVED BY COMPOSING EDGES, and which `composition.path` therefore gates
+# (V7). The test is the derivation, not the hop count.
+#
+# This is the same set as the engine's `GRAPH_COMPOSING` in src/engine/types.ts, deliberately,
+# because a licensing decision the two tools make differently is a licensing decision neither tool
+# can be trusted on. `components` is in it: a connected component is a reachability class, which is
+# exactly the inference `forbidden` declines to authorize. `cycles` is out, licensed by V8's
+# `properties.acyclic` independently of V7; `containment` is out, walking the entity tree rather
+# than a relation type; and `predecessors`/`successors` are out because they read the adjacency ONE
+# STEP and compose nothing -- a declaration about PATHS has no purchase on a one-hop question.
+#
+# Three of these five are gated here and evaluated by the engine alone. Gating is cheaper than
+# evaluating, and refusing for the licensing reason beats refusing for the scope reason.
+GRAPH_COMPOSING = {"reachability", "path", "shortest-path", "all-paths", "components"}
+
+# Refusal causes, spelled as the engine's `RefusalReason` spells them, so the parity test can
+# compare the CAUSE of a refusal and not merely the word `unlicensed`. The two scope refusals below
+# both read `unsupported-form` -- "the form exists in the schema but this version does not evaluate
+# it" -- which covers a form this tool skips and a form carrying a feature it skips.
+CAUSE_UNKNOWN_VOCABULARY = "unknown-vocabulary"
+CAUSE_COMPOSITION_FORBIDDEN = "composition-forbidden"
+CAUSE_UNSUPPORTED_FORM = "unsupported-form"
+
+
+def _refuse(cause: str, sentence: str) -> dict:
+    """A refusal is a SUCCESSFUL outcome (V7). `cause` says which kind, in the engine's vocabulary."""
+    return {"outcome": "unlicensed", "coverage": {"kind": "not-applicable"},
+            "refusal": sentence, "cause": cause}
 
 
 def _edges(doc: dict, rel_type: str) -> dict[str, set[str]]:
@@ -1233,36 +1268,80 @@ def run_graph_query(doc: dict, q: dict) -> dict:
     rel_spec = (doc.get("relation-types") or {}).get(rel)
 
     if rel_spec is None:
-        return {"outcome": "unlicensed", "coverage": {"kind": "not-applicable"},
-                "refusal": f"relation type '{rel}' is not declared by this system."}
+        return _refuse(CAUSE_UNKNOWN_VOCABULARY, f"relation type '{rel}' is not declared by this system.")
 
-    # V7 -- a multi-hop question over a relation that forbids path composition is refused, not
-    # answered. Being told a question is not licensed is a result, not an error.
-    if form in GRAPH_MULTIHOP and ((rel_spec.get("composition") or {}).get("path")) == "forbidden":
-        return {"outcome": "unlicensed", "coverage": {"kind": "not-applicable"},
-                "refusal": f"'{rel}' is declared as a direct relation without path-composition "
-                           f"semantics. A multi-hop '{rel}' query is not licensed by this model."}
+    # V7 -- a question whose answer composes edges, over a relation that forbids path composition,
+    # is refused rather than answered. Being told a question is not licensed is a result, not an
+    # error. This runs BEFORE the scope guards below so a forbidden query refuses for the licensing
+    # reason, which is the reason the author needs to hear.
+    if form in GRAPH_COMPOSING and ((rel_spec.get("composition") or {}).get("path")) == "forbidden":
+        return _refuse(CAUSE_COMPOSITION_FORBIDDEN,
+                       f"'{rel}' is declared as a direct relation without path-composition "
+                       f"semantics. A multi-hop '{rel}' query is not licensed by this model.")
+
+    # A `where` clause is a JOIN over entity properties, and this tool has no join evaluator. It is
+    # refused for scope, once, for every form -- not ignored.
+    #
+    # Ignoring it is what used to happen, and the shape of the bug is worth keeping written down.
+    # `direct` with a where clause and no endpoints evaluated `None in adj.get(None, set())`, which
+    # is False, and returned a confident `refuted`. On message-bus that query is "can an event
+    # carrying restricted data reach a service not permitted to process it?" -- so the tool answered
+    # NO about a system where the answer is YES. The multi-hop branch grew a guard for the same
+    # class when the Phase C agent found it on docable's security query; `direct` was the site that
+    # guard missed. One check above the dispatch now covers every form, including the forms this
+    # tool does not yet evaluate.
+    if g.get("where"):
+        return _refuse(CAUSE_UNSUPPORTED_FORM,
+                       f"a '{form}' query with a `where` clause is not evaluated here; the "
+                       f"where-clause join belongs to the workbench engine.")
 
     adj = _edges(doc, rel)
     src, dst = g.get("from"), g.get("to")
 
+    # A named endpoint that is not a declared entity is refused, not answered about. The alternative
+    # is a confident `refuted` on a misspelling -- "no, api does not reach gatewya" -- which is the
+    # same class of wrong answer as the `where` case above, and the engine refuses it too.
+    for label, named in (("from", src), ("to", dst)):
+        if named is not None and named not in (doc.get("entities") or {}):
+            return _refuse(CAUSE_UNKNOWN_VOCABULARY,
+                           f"{label}: '{named}' is not a declared entity of this system.")
+
+    # Every form below needs the endpoints it reads. The engine lets a query name ONE endpoint and
+    # range the other over the universe; this tool does not, and refuses rather than guessing. The
+    # outcome-parity test compares answers over every repo model, so the day a shipped model asks a
+    # one-endpoint question the gap fails the build instead of hiding.
     if form == "direct":
+        if src is None or dst is None:
+            return _refuse(CAUSE_UNKNOWN_VOCABULARY,
+                           f"a '{form}' query must name both endpoints.")
         hit = dst in adj.get(src, set())
         res = {"outcome": "holds" if hit else "refuted", "coverage": {"kind": "exhaustive"}}
         if hit:
             res["evidence"] = {"shape": "path", "role": "witness", "nodes": [src, dst]}
         return res
 
+    if form in {"predecessors", "successors"}:
+        # One hop, and the reason this tool answers them: `composition.path` governs composition,
+        # these compose nothing, and the adjacency `_edges` already built is the whole answer.
+        #
+        # `successors` reads `from` and `predecessors` reads `to`; each falls back to the other
+        # because "predecessors, from: X" is the natural writing and still means the predecessors OF
+        # X. The engine resolves the two spellings the same way.
+        focus = (src or dst) if form == "successors" else (dst or src)
+        if focus is None:
+            return _refuse(CAUSE_UNKNOWN_VOCABULARY, f"a {form} query must name the entity it is about.")
+        nodes = sorted(adj.get(focus, set())) if form == "successors" \
+            else sorted(peer for peer, outs in adj.items() if focus in outs)
+        res = {"outcome": "holds" if nodes else "refuted",
+               "coverage": {"kind": "exhaustive", "states_explored": len(adj)}}
+        if nodes:
+            res["evidence"] = {"shape": "path", "role": "witness", "nodes": [focus, *nodes]}
+        return res
+
     if form in {"reachability", "path", "shortest-path"}:
-        # A where-clause JOIN names neither endpoint. Without this guard _shortest_path(adj, None,
-        # None) takes its `src == dst` early return and reports `holds` with a one-node witness of
-        # [None] -- the right word for the wrong reason, and it would stay `holds` even if the join
-        # were false. The security query in examples/docable.mage.yaml was passing vacuously on
-        # exactly this path; it carries no `expect`, so nothing failed. Found by the Phase C agent.
         if src is None or dst is None:
-            return {"outcome": "unlicensed", "coverage": {"kind": "not-applicable"},
-                    "refusal": f"a '{form}' query naming neither endpoint is not evaluated here; "
-                               f"the where-clause join belongs to the workbench engine."}
+            return _refuse(CAUSE_UNKNOWN_VOCABULARY,
+                           f"a '{form}' query must name both endpoints.")
         route = _shortest_path(adj, src, dst)
         res = {"outcome": "holds" if route else "refuted",
                "coverage": {"kind": "exhaustive", "states_explored": len(adj)}}
@@ -1270,9 +1349,10 @@ def run_graph_query(doc: dict, q: dict) -> dict:
             res["evidence"] = {"shape": "path", "role": "witness", "nodes": route}
         return res
 
-    return {"outcome": "unlicensed", "coverage": {"kind": "not-applicable"},
-            "refusal": f"graph form '{form}' is not evaluated by this tool; it belongs to the "
-                       f"workbench engine. Evaluated here: direct, reachability, path, shortest-path."}
+    return _refuse(CAUSE_UNSUPPORTED_FORM,
+                   f"graph form '{form}' is not evaluated by this tool; it belongs to the workbench "
+                   f"engine. Evaluated here: direct, predecessors, successors, reachability, path, "
+                   f"shortest-path.")
 
 
 def check_queries(doc: dict, f: Findings, verbose: bool = True) -> None:
@@ -1502,14 +1582,34 @@ def self_test() -> int:
     return 1 if failures else 0
 
 
+def graph_outcomes(doc: dict) -> list[dict]:
+    """Every graph query's ANSWER, for the parity test. Behavioral queries are not evaluated here.
+
+    Findings alone were not enough. Both tools reported examples/message-bus clean while disagreeing
+    about the answer to three of its six questions, because no example declares `expect`, so no
+    disagreement became a finding and the parity test compared findings. An outcome is a result in
+    its own right and now travels on the wire as one.
+    """
+    out = []
+    for qid, q in (doc.get("queries") or {}).items():
+        if q.get("kind") != "graph":
+            continue
+        res = run_graph_query(doc, q)
+        out.append({"id": qid, "form": (q.get("graph") or {}).get("form"),
+                    "outcome": res["outcome"], "cause": res.get("cause"),
+                    "where": bool((q.get("graph") or {}).get("where"))})
+    return sorted(out, key=lambda r: r["id"])
+
+
 def emit_json(path: pathlib.Path) -> int:
-    """Machine-readable findings, for the TypeScript parity test.
+    """Machine-readable findings and query outcomes, for the TypeScript parity test.
 
     Two independent implementations of one numbered specification are only worth having if their
     disagreement is detectable, which needs a stable wire format rather than printed prose.
     """
     doc = yaml.safe_load(path.read_text())
     f = Findings()
+    queries: list[dict] = []
     if isinstance(doc, dict):
         check_coercion(doc, f)
         if not f:
@@ -1518,8 +1618,9 @@ def emit_json(path: pathlib.Path) -> int:
                 check_meaning(doc, f, verbose=False)
                 check_annotation(doc, f)
                 check_queries(doc, f, verbose=False)
-    print(json.dumps({"findings": [{"rule": r, "where": w, "message": m} for r, w, m in f.rows]},
-                     indent=2, sort_keys=True))
+                queries = graph_outcomes(doc)
+    print(json.dumps({"findings": [{"rule": r, "where": w, "message": m} for r, w, m in f.rows],
+                      "queries": queries}, indent=2, sort_keys=True))
     return 0
 
 

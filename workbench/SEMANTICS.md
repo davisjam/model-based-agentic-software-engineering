@@ -118,11 +118,31 @@ calls B and B calls C, A does not call C — yet "can A reach C through calls?" 
 meaningful derived question. `composition.path: allowed` says the transitive closure is a licensed
 object of inquiry; it does not add edges to the model.
 
-**V7.** A `path`, `reachability`, or `shortest-path` query over a relation type with
-`composition.path: forbidden` MUST be refused, not answered:
+**V7.** A query over a relation type with `composition.path: forbidden` MUST be refused, not
+answered, when its answer is **derived by composing edges**. The composing forms are exactly
+`path`, `reachability`, `shortest-path`, `all-paths` and `components`, and that list is exhaustive:
 
 > `owns` is declared as a direct relation without path-composition semantics. A multi-hop `owns`
 > query is not licensed by this model.
+
+Every other form is licensed regardless of `composition.path`, and the reason is the same each time
+— it asks what the model literally says rather than what follows from it:
+
+| form | why `forbidden` does not reach it |
+|------|-----------------------------------|
+| `direct` | one declared edge |
+| `predecessors`, `successors` | the adjacency read ONE STEP, in one direction |
+| `cycles` | licensed by V8's `properties.acyclic`, which a forbidden type may also declare |
+| `containment` | walks the entity `contains` tree (§2), not a relation type |
+
+`components` is in the gated list although it names no path: a connected component is a
+reachability class, which is exactly the inference `forbidden` declines to authorize.
+
+The enumeration is written out because it was read as open. V7 once listed three forms and said no
+more, and the two implementations drew different boundaries around the fourth: `validate.py`
+refused `predecessors` while the engine answered it, on message-bus and document-processing, with
+nothing failing. The question "is this form gated?" now has one answer per form and a test that
+holds both tools to it (`test/parity.test.ts`).
 
 Refusal is a successful query outcome (`outcome: unlicensed`), not an error. Being told that a
 question is not answerable from a model is information.

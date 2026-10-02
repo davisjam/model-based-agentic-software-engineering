@@ -7,6 +7,22 @@
 // Rules implemented by only one side are listed explicitly in ASYMMETRIC. That list is the honest
 // record of where the implementations differ; a rule may only be there on purpose, and moving one
 // out of it is how parity grows.
+//
+// ## A finding is not the only kind of result
+//
+// This file compared FINDINGS, over two models, and called that parity. It was wrong twice over,
+// and the two mistakes compounded:
+//
+//   - The three shipped examples were not among the models swept. The sweep named
+//     examples/docable.mage.yaml and models/workbench-components.mage.yaml as literals, so every
+//     example a reader actually opens was outside the test that claimed both tools agreed.
+//   - A query OUTCOME was not compared at all. No shipped example declares `expect`, so a
+//     disagreement about an answer never becomes a finding, and a test comparing findings cannot
+//     see one. Both tools reported message-bus clean while disagreeing about three of its six
+//     answers.
+//
+// So the second test below compares the ANSWERS, over every model in the repo, and the model list
+// is derived from the app's shipped-example declaration rather than written here again.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -15,7 +31,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { parse, stringify } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
+import { runSavedQueries } from "../src/engine/index.ts";
 import { validate } from "../src/validator/rules.ts";
+import { EXAMPLE_IDS, exampleText } from "../scripts/gen-example-coverage.ts";
 import type { Finding } from "../src/ir/types.ts";
 
 /** Rules BOTH implementations enforce. Disagreement here is a failure. */
@@ -42,7 +60,13 @@ const ASYMMETRIC: Record<string, string> = {
   V17: "Both enforce finiteness, at DIFFERENT layers: the JSON Schema requires range-or-domain, so Python reports SCHEMA and skips its meaning pass, while TS has no runtime schema layer and reports V17. Found by this test, not by inspection.",
   V20: "Python only: ordered-domain typing of order comparisons in saved queries.",
   SCHEMA: "Python only: JSON Schema shape pass. TS gets shape from generated types at compile time.",
-  QUERY: "Python only: asserted-query evaluation lives in validate.py and the workbench engine.",
+  // Narrow, and it used to read wider. Both sides EVALUATE saved queries and the test below holds
+  // them to the same answers; what is Python-only is the FINDING it raises when a query's `expect`
+  // is unmet, because validate.py is a CI gate and the engine answers a reader's question. The
+  // older wording said "asserted-query evaluation lives in validate.py and the workbench engine",
+  // which read as though answers were asymmetric too -- and while it stood, three shipped
+  // `predecessors` queries got two different answers with nothing complaining.
+  QUERY: "Python only: the finding raised when a saved query's `expect` is unmet. Both sides evaluate queries; see the outcome-parity test below, which holds them to identical answers.",
   // §7.5 governs the SPARQL interface over the RDF projection. Both sides gate their OWN evaluator
   // from the relation-type declaration (V7), so the licensing rule itself is not asymmetric -- but the
   // second interface exists only in TypeScript, so there is no Python site these three could compare
@@ -52,15 +76,45 @@ const ASYMMETRIC: Record<string, string> = {
   V34: "TS only: named-graph scope selection. validate.py unions across every model by construction and never scopes to one, so the choice V34 forces does not arise there.",
 };
 
-const pyFindings = (yamlText: string): Finding[] => {
+/** One graph query's answer, as both sides now report it. `where` is a fact about the QUERY. */
+interface PyQueryOutcome {
+  readonly id: string;
+  readonly form: string;
+  readonly outcome: string;
+  /** The engine's `RefusalReason` spelling, or null when the query was answered. */
+  readonly cause: string | null;
+  readonly where: boolean;
+}
+
+interface PyRun {
+  readonly findings: Finding[];
+  readonly queries: PyQueryOutcome[];
+}
+
+const pyRun = (yamlText: string): PyRun => {
   const dir = mkdtempSync(join(tmpdir(), "mage-parity-"));
   const file = join(dir, "m.mage.yaml");
   writeFileSync(file, yamlText);
   const out = execFileSync("python3", ["validate.py", "--json", file], { encoding: "utf8" });
-  return (JSON.parse(out) as { findings: Finding[] }).findings;
+  return JSON.parse(out) as PyRun;
 };
 
+const pyFindings = (yamlText: string): Finding[] => pyRun(yamlText).findings;
+
 const tsFindings = (yamlText: string): readonly Finding[] => validate(canonicalize(parse(yamlText)));
+
+/** The engine's answer to every GRAPH query, keyed the way the Python side keys its own. */
+const tsQueries = (yamlText: string): Map<string, { outcome: string; cause: string | null }> => {
+  const system = canonicalize(parse(yamlText));
+  const out = new Map<string, { outcome: string; cause: string | null }>();
+  for (const [id, answer] of runSavedQueries(system)) {
+    const raw = system.queries.get(id)?.raw;
+    const kind = (raw as { kind?: unknown } | undefined)?.kind;
+    if (kind !== "graph") continue;
+    out.set(id, { outcome: answer.result.outcome, cause: answer.refusal?.reason ?? null });
+  }
+  return out;
+};
 
 const key = (f: Finding): string => `${f.rule} @ ${f.where}`;
 const inParity = (f: Finding): boolean => PARITY.has(f.rule);
@@ -71,6 +125,19 @@ function assertParity(label: string, yamlText: string): void {
   assert.deepEqual(ts, py, `parity mismatch on ${label}\n  python: ${py}\n  typescript: ${ts}`);
 }
 
+/**
+ * Every model in the repo, with the shipped examples looked up rather than listed.
+ *
+ * `EXAMPLE_IDS` re-exports `SHIPPED_EXAMPLE_IDS` from src/app/examples.ts, which is what "shipped"
+ * MEANS here — so a fourth example reaches this test by landing, not by someone remembering to add
+ * a string. The two non-example models stay literal because nothing else declares them.
+ */
+const repoModels = (): readonly { label: string; text: string }[] => [
+  ...EXAMPLE_IDS.map((id) => ({ label: `examples/${id}/system.mage.yaml`, text: exampleText(id) })),
+  ...["examples/docable.mage.yaml", "models/workbench-components.mage.yaml"]
+    .map((label) => ({ label, text: readFileSync(label, "utf8") })),
+];
+
 test("every asymmetry is declared with a reason", () => {
   for (const [rule, reason] of Object.entries(ASYMMETRIC)) {
     assert.ok(!PARITY.has(rule), `${rule} cannot be both parity and asymmetric`);
@@ -79,11 +146,62 @@ test("every asymmetry is declared with a reason", () => {
 });
 
 test("repo models agree (and are clean)", () => {
-  for (const f of ["examples/docable.mage.yaml", "models/workbench-components.mage.yaml"]) {
-    const text = readFileSync(f, "utf8");
-    assertParity(f, text);
-    assert.deepEqual(tsFindings(text).filter(inParity), [], `${f} should be clean`);
+  // The shipped examples are in this sweep now. They were not, and that is half of why a live
+  // disagreement on message-bus survived: the models a reader opens were outside the test.
+  for (const { label, text } of repoModels()) {
+    assertParity(label, text);
+    assert.deepEqual(tsFindings(text).filter(inParity), [], `${label} should be clean`);
   }
+});
+
+test("repo models get the same ANSWERS, not merely the same findings", () => {
+  // The property this test exists for: a disagreement about what a model MEANS fails the build,
+  // whether or not either tool calls it a finding. Two claims, both held per query.
+  //
+  //   (1) Outcomes agree, and when both refuse they refuse for the same CAUSE. A licensing refusal
+  //       on one side and an answer on the other is the failure that got through before.
+  //   (2) The only queries exempt from (1) are the ones carrying a `where` clause, which validate.py
+  //       declines for scope because it has no join evaluator. That exemption is DERIVED from the
+  //       query, so it shrinks when the gap closes and it cannot be used to excuse anything else.
+  //
+  // Behavioral queries are outside this comparison: validate.py evaluates no state space at all,
+  // by design, and the first assertion below pins that boundary rather than assuming it.
+  let compared = 0;
+  let excused = 0;
+
+  for (const { label, text } of repoModels()) {
+    const py = pyRun(text).queries;
+    const ts = tsQueries(text);
+    assert.deepEqual([...py.map((r) => r.id)].sort(), [...ts.keys()].sort(),
+      `${label}: the two tools disagree about WHICH queries are graph queries`);
+
+    for (const row of py) {
+      const theirs = ts.get(row.id);
+      assert.ok(theirs !== undefined, `${label}/${row.id}: no engine answer`);
+
+      if (row.cause === "unsupported-form") {
+        assert.ok(row.where,
+          `${label}/${row.id}: validate.py refused a '${row.form}' query for scope with no \`where\` ` +
+          `clause to explain it. Either it should answer this question, or the exemption needs a ` +
+          `second reason written down here. The engine answers '${theirs.outcome}'.`);
+        excused += 1;
+        continue;
+      }
+
+      assert.equal(theirs.outcome, row.outcome,
+        `${label}/${row.id} ('${row.form}'): validate.py says '${row.outcome}', the engine says ` +
+        `'${theirs.outcome}'. One of them is wrong about this model.`);
+      assert.equal(theirs.cause, row.cause,
+        `${label}/${row.id}: both refused, for different reasons -- validate.py '${String(row.cause)}' ` +
+        `against the engine's '${String(theirs.cause)}'`);
+      compared += 1;
+    }
+  }
+
+  assert.ok(compared > 0, "the sweep compared nothing; a vacuous parity test is the defect itself");
+  assert.ok(excused < compared,
+    `${excused} of ${excused + compared} answers are excused for scope; the exemption is supposed ` +
+    `to be the narrow case, not the rule`);
 });
 
 const base = { mage: 1, system: { id: "t" } };
