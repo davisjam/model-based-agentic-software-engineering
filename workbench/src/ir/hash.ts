@@ -13,7 +13,26 @@
  * then catches, not a forged change. The `base` is prefixed `fnv1a64:` so it is self-describing
  * and cannot be mistaken for a cryptographic claim.
  */
-import type { CanonicalSystem } from "./types.ts";
+import type { CanonicalSystem, QuantityValue } from "./types.ts";
+
+/**
+ * A quantity's value, projected in BASE units.
+ *
+ * So `250 ms` and `0.25 s` are one quantity and a unit rewrite does not invalidate a pending
+ * transaction — the same argument that keeps comments and key order out. The declared unit is
+ * cosmetic; the magnitude is not. A literal that failed to normalize has no base, so its written
+ * text stands in: two different broken literals are still two different systems.
+ */
+function quantityValue(v: QuantityValue): unknown {
+  switch (v.kind) {
+    case "point": return ["point", v.magnitude.base, v.magnitude.base === null ? v.magnitude.raw : null];
+    case "range": return ["range", v.low.base, v.high.base, v.low.raw, v.high.raw];
+    // Whitespace inside an expression is cosmetic; its structure is not. Normalizing the spacing is
+    // as far as this goes — folding `2 ms + 2 ms` into `4 ms` would be evaluation.
+    case "expression": return ["expression", v.source.trim().split(/\s+/).join(" ")];
+    case "absent": return ["absent"];
+  }
+}
 
 /** Stable projection: everything semantic, nothing cosmetic, in a fixed order. */
 function semanticProjection(s: CanonicalSystem): unknown {
@@ -46,6 +65,10 @@ function semanticProjection(s: CanonicalSystem): unknown {
       ]),
     ]),
     sorted(s.events, (e) => [[...e.participants].sort()]),
+    // Quantities are SEMANTIC, so they hash — the contrast with annotation, which invariant A1
+    // excludes, is the clearest statement of where the formal boundary lies. A note saying
+    // "gateway latency is probably 200 ms" cannot change a latency query; a declared `200 ms` must.
+    sorted(s.quantities, (q) => [q.target.raw, q.dimension, quantityValue(q.value)]),
     sorted(s.queries, (q) => [JSON.stringify(q.raw)]),
   ];
 }

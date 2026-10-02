@@ -21,6 +21,9 @@ import type { Finding } from "../src/ir/types.ts";
 /** Rules BOTH implementations enforce. Disagreement here is a failure. */
 const PARITY = new Set([
   "V1", "V3", "V4", "V5", "V6", "V9", "V10", "V11", "V12", "V14", "V19", "V24", "V25", "V26",
+  // The quantity family. Nothing in it is asymmetric: both sides carry the dimension table, so a
+  // drifted unit factor surfaces here rather than as two tools disagreeing about one model.
+  "V27", "V28", "V29", "V30", "V31",
   // Not a V-rule: A1 holds annotation outside semantics, so a V-number would contradict the
   // invariant the feature rests on. Both sides implement it, so it belongs in the parity set.
   "ANNOTATION",
@@ -132,6 +135,48 @@ test("violations agree, rule by rule", () => {
     ["ANNOTATION stray key from an unquoted comma", {
       ...base, entities: { e: { notes: [{ id: "n1", kind: "comment", text: "one thing", "and another": null }] } },
     }],
+    ["V27 quantity targeting an undeclared entity", {
+      ...base, entities: { cache: {} },
+      quantities: { "cache-memory": { target: "entity:ghost", dimension: "memory", value: "1 MB" } },
+    }],
+    ["V27 transition index past the end", {
+      ...base, machines: { document: { initial: "a", states: { a: null, b: null }, transitions: [{ from: "a", to: "b" }] } },
+      quantities: { parse: { target: "transition:document#9", dimension: "duration", value: "20 ms" } },
+    }],
+    ["V27 parameter is a reserved future shape", {
+      ...base, quantities: { p: { target: "parameter:batch_size", dimension: "count", value: 8 } },
+    }],
+    ["V28 a bare number where a unit is required", {
+      ...base, entities: { cache: {} },
+      quantities: { q: { target: "entity:cache", dimension: "duration", value: 250 } },
+    }],
+    ["V28 a spelling the two loaders read differently", {
+      // `017` is 15 to PyYAML and 17 to the `yaml` package. Quoted, it reaches our own parser, which
+      // refuses it -- so the two tools cannot disagree about what the model says.
+      ...base, entities: { cache: {} },
+      quantities: { q: { target: "entity:cache", dimension: "duration", value: "017 ms" } },
+    }],
+    ["V29 a ratio above one", {
+      ...base, entities: { cache: {} },
+      quantities: { "hit-rate": { target: "entity:cache", dimension: "ratio", value: 1.3 } },
+    }],
+    ["V29 a reversed range, which exercises the GB and MB factors on both sides", {
+      ...base, entities: { cache: {} },
+      quantities: { q: { target: "entity:cache", dimension: "memory", range: ["1 GB", "1 MB"] } },
+    }],
+    ["V29 a reversed range across KB and MB", {
+      ...base, entities: { cache: {} },
+      quantities: { q: { target: "entity:cache", dimension: "memory", range: ["1 MB", "128 KB"] } },
+    }],
+    ["V30 a unit from another dimension", {
+      ...base, entities: { cache: {} },
+      quantities: { q: { target: "entity:cache", dimension: "duration", value: "128 MB" } },
+    }],
+    ["V30 addition across incompatible dimensions", {
+      ...base, models: { g: { type: "graph", entities: [] } },
+      quantities: { q: { target: "model:g", dimension: "duration", value: { expression: "250 ms + 128 MB" } } },
+    }],
+    ["V31 a user entity shadowing the reserved namespace", { ...base, entities: { metrics: {} } }],
   ];
   for (const [label, doc] of cases) {
     const text = stringify(doc);

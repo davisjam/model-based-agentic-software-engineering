@@ -8,7 +8,7 @@ This is the authoritative semantics. The JSON Schemas beside it
 [`mage-transaction.schema.json`](mage-transaction.schema.json)) constrain *shape*; this document
 fixes *meaning*. Where a question is about what a model asserts, this file decides it.
 
-Validation rules are numbered **V1…V26** so implementations, tests, and error messages can cite them.
+Validation rules are numbered **V1…V31** so implementations, tests, and error messages can cite them.
 Numbers are append-only: a new rule takes the next free one and lands in the section that owns its
 subject, so the sequence stays stable rather than sorted.
 
@@ -361,6 +361,149 @@ fix is to quote the value and the author needs to know which text got cut. The s
 leaves a note object open so this reaches the meaning pass: a shape complaint about an unexpected
 property is the same unhelpful message V25 exists to replace.
 
+### 5.2 Quantities annotate the model; they are not part of it
+
+> Quantitative annotations SHALL NOT enter the behavioral state vector merely because their values
+> are real-valued. — ruling §6
+
+A quantity is evaluated **over** a configuration, a transition, a path or the model's structure. It
+is never a coordinate of a configuration. So
+
+```yaml
+quantities:
+  parse-latency:   { target: transition:document#0,   dimension: duration, value: 20 ms }
+  gateway-latency: { target: relation:remediation-gateway, dimension: duration, range: [100 ms, 500 ms] }
+  cache-memory:    { target: entity:cache,            dimension: memory,   value: 128 MB }
+  hit-rate:        { target: entity:cache,            dimension: ratio,    value: 0.80 }
+```
+
+leaves the reachable configuration space exactly the size it was. This is the hard boundary of the
+feature, and it is the one place where a convenience shortcut would be unrecoverable: a real-valued
+annotation in the state vector makes the space infinite while the walk keeps reporting
+`Coverage.kind: "exhaustive"`, and that flag licenses the strongest claims the workbench makes.
+`test/quantities.test.ts` counts configurations with and without the annotations above.
+
+**Put this beside §5.1 and the boundary reads clearly in both directions.** A note saying *"gateway
+latency is probably 200 ms"* cannot change a latency query, because invariant A1 keeps annotation out
+of the semantic projection. A declared quantity of `200 ms` must, so it enters the hash. Context can
+be abundant; formal commitment is deliberate.
+
+#### Dimensions and normalization
+
+Five dimensions, closed:
+
+| Dimension | Base | Units | Scope |
+|---|---|---|---|
+| `duration` | `ms` | `ms: 1`, `s: 1000` | execution |
+| `memory` | `MB` | `KB: 0.0009765625`, `MB: 1`, `GB: 1024` | configuration |
+| `cost` | `usd` | `usd: 1` | execution |
+| `ratio` | — | none; a bare number in `[0, 1]` | structural |
+| `count` | — | none; a bare number | structural |
+
+**Literals normalize to the base unit during canonicalization.** A quantity reaches anything
+downstream in base units or not at all. Every factor above is an integer multiple of a power of two,
+so the conversion introduces no rounding and `128 KB + 1 MB` is 1.125 on the nose — which is why a
+normalized magnitude is a plain float rather than a rational. A unit whose factor is not a binary
+fraction (microseconds at `0.001`, say) fails the gate in `test/quantities.test.ts` rather than
+quietly degrading every later equality.
+
+**Scope follows the dimension, and is never authored.** The ruling (§8) puts memory over
+configurations and latency and cost over executions, so aggregation is DERIVED from the dimension
+rather than chosen per query. Asking for the sum of a configuration-scoped quantity along a path is
+then a category error the types refuse, not a wrong answer something computes. ⚠️ The ruling names
+two scopes; the IR carries a third, `structural`, for `ratio` and `count`. A hit rate aggregates
+along neither axis — filing it under `execution` would license *summing hit rates along a path*,
+which is exactly the error a typed scope exists to refuse.
+
+#### Addressing
+
+Every quantity targets `<kind>:<ref>` over a closed kind set: `transition:`, `relation:`, `entity:`,
+`state:`, `parameter:`, `model:`.
+
+- A **relation** is addressed by its own `id:`. Endpoints are not a stable id — a second edge between
+  the same pair would silently make the annotation ambiguous.
+- A **transition** is addressed `transition:<machine>#<index>`. ⚠️ The ruling illustrates
+  `transition:parse`, which this version does not accept: transitions carry no id, `label:` carries
+  no semantics (V1), and two transitions may share a label. The index is already how a transaction
+  deletes a transition, so it is the handle that exists.
+- A **state** may be bare when exactly one machine declares it, and must be qualified
+  `state:<machine>.<state>` otherwise. The resolver refuses the ambiguity rather than picking a
+  machine, matching how a bare variable reference resolves in §4.1.
+- `parameter:` is **reserved**. v0.1 represents no parameters, so the finding says so rather than
+  reporting a missing declaration the author cannot write — the treatment V15 gives `ref` variables.
+
+#### Model metrics live in a reserved namespace
+
+```yaml
+value: { expression: metrics.state_count * 2 ms }
+```
+
+`metrics.state_count`, `metrics.transition_count`, `metrics.entity_count` and
+`metrics.relation_count` are facts computed **from** the model, not asserted **about** the modeled
+system (ruling §10). They count declared structure: `state_count` sums each machine's states and is
+not the number of reachable configurations, because a model metric that depended on exploration would
+stop being a fact about the model. They are never ambient — `metrics` is reserved, and a user
+identifier of that name is a finding.
+
+#### Expressions
+
+A `value: { expression: … }` is a sum of products over literals, `metrics.*` values and other
+quantity ids. Operators stand alone between spaces, because an id may contain `-` and splitting on
+the character would cut `gateway-latency` in half. There are no parentheses in v0.1.
+
+Expressions are **dimensionally typed, never evaluated**. `ratio` and `count` collapse to
+dimensionless under arithmetic — a proportion and a tally are both pure numbers — which is what makes
+`metrics.state_count * 2 ms` a duration without making `ms * ms` legal.
+
+#### The five rules
+
+- **V27 — every reference a quantity makes resolves.** A quantity whose `target` does not exist is an
+  error, and so is an expression naming an undeclared quantity or a `metrics.*` value that is not one
+  of the four. No dangling annotations (ruling §9). The failure is V26's one layer up: an annotation
+  pointing at a deleted transition is not invalid, it is *wrong*, and nothing reports it unless a
+  rule does.
+- **V28 — the dimension and every literal are readable.** The dimension MUST be one of the five. A
+  literal MUST carry a unit of that dimension where the dimension has units, MUST NOT where it does
+  not, and MUST be written as a plain decimal. The spelling restriction is not fussiness: measured,
+  PyYAML reads `017` as 15, `1_000` as 1000 and `1:30` as 90, while the `yaml` package reads 17,
+  `"1_000"` and `"1:30"`. A unit-bearing literal is a YAML *string*, so refusing those spellings
+  closes the class for `duration`, `memory` and `cost` outright. A bare number where a unit is
+  required is the sharpest case of all — a silently assumed unit is the dimension bug this feature
+  exists to prevent, committed by the feature itself.
+- **V29 — the magnitude is admissible.** No dimension admits a negative magnitude (ruling §29 ⑥
+  grants safety to *monotone nonnegative* interval expressions). A `ratio` lies in `[0, 1]`: a hit
+  rate of `1.3` is a finding, because the constraint is a rule and not a sentence in a table. A
+  `range` runs low to high.
+- **V30 — dimensions agree.** Within a literal, between a literal's unit and its declared dimension,
+  across both ends of a range, and among the operands of an operation. `250 ms + 2 s` is valid,
+  `128 MB + 1 GB` is valid, `250 ms + 128 MB` is not. Ruling §7: *do not silently coerce dimensions.*
+  A dimension error is exactly the defect that yields a plausible number nobody questions.
+- **V31 — `metrics` is reserved.** No entity, model, machine, state, variable, derived value, event,
+  relation type, domain or quantity may be named `metrics`. A shadow would make `metrics.state_count`
+  read as that object's member, and the §10 distinction would stop being visible on the page.
+
+Each rule declines once an earlier one has spoken about the same object, which is V26's discipline
+applied inside this family. A quantity with an unreadable dimension draws no magnitude complaints —
+every one of them would be a consequence. An expression with an unresolvable operand draws no
+dimension complaint, because a guessed dimension mismatch sends the author hunting for the wrong
+defect.
+
+#### What this version represents and does not compute
+
+Quantities are **represented and validated**; they are not yet evaluated. Two questions the ruling
+leaves open block the analysis layer, and both are recorded in
+[`DESIGN-quantities-261002.md`](DESIGN-quantities-261002.md) §8 rather than guessed at:
+
+- **The accounting model for latency.** §8 sums transition, entity and relation latency *"according
+  to the declared accounting model"* without saying where that is declared or what the choices are.
+  Summing all three double-counts a pipeline carrying latency on both a stage and the edge into it.
+- **The predicate behind `memory(c)`.** §8 offers *retained memory of active states/entities plus
+  temporary memory of the active operation*, and says "approximately". "Active" carries the weight
+  and is undefined.
+
+A representation that is right outranks an evaluator built on a guess, because the guess would be
+baked into fixtures and then into expectations.
+
 ---
 
 ## 6. Execution semantics, precisely
@@ -634,10 +777,14 @@ MUST emit them quoted; readers MUST NOT rely on loader date coercion.
 UML or SysML compliance; arbitrary diagramming; code generation; reverse engineering; OCL; BPMN;
 sequence diagrams; requirements management; collaborative editing; accounts; cloud storage; general
 simulation; **fairness and liveness**; **past-time temporal operators**; **instance binding**;
-**participant selection**; real-valued or unbounded variables; SMT.
+**participant selection**; **quantitative evaluation**; real-valued or unbounded variables; SMT.
 
-Each of the last six is a deliberate, named limitation rather than an oversight, and each has a
+Each of the last seven is a deliberate, named limitation rather than an oversight, and each has a
 refusal message so a user meets a clear boundary instead of a wrong answer.
+
+**Quantitative evaluation** is the newest of them and the narrowest. Quantities are represented,
+normalized and validated (§5.2); summing a trace's latency and evaluating `memory(c)` wait on two
+questions the ruling leaves open, named at the end of that section.
 
 ---
 

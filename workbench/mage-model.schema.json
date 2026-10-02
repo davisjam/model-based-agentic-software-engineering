@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://davisjam.github.io/model-based-agentic-software-engineering/workbench/mage-model.schema.json",
   "title": "MAGE model system",
-  "description": "A model system: one identity namespace of entities, zero or more graph models, zero or more state machines. Shape only -- meaning is fixed by SEMANTICS.md, whose validation rules V1-V26 this schema cannot all express. Rules marked ENGINE below require a validator pass beyond JSON Schema.",
+  "description": "A model system: one identity namespace of entities, zero or more graph models, zero or more state machines. Shape only -- meaning is fixed by SEMANTICS.md, whose validation rules V1-V31 this schema cannot all express. Rules marked ENGINE below require a validator pass beyond JSON Schema.",
   "type": "object",
   "required": ["mage", "system"],
   "additionalProperties": false,
@@ -243,6 +243,13 @@
       }
     },
 
+    "quantities": {
+      "description": "Quantitative annotations over existing semantic objects. NEVER part of the behavioral state vector (V6/SEMANTICS.md 5.2) -- a real-valued annotation in the state vector would make the reachable space infinite. ENGINE-checked: targets resolve (V27), dimension and literals are readable (V28), magnitudes are in bounds (V29), dimensions agree (V30).",
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": { "$ref": "#/$defs/quantity" }
+    },
+
     "queries": {
       "description": "Saved queries, re-run when the model changes. Each value conforms to mage-query.schema.json.",
       "type": "object",
@@ -286,6 +293,50 @@
       "pattern": "^[A-Za-z_][A-Za-z0-9_.-]*$",
       "minLength": 1,
       "maxLength": 128
+    },
+    "quantity": {
+      "description": "One quantitative annotation. Shape only. NOTE what is deliberately NOT constrained here: `dimension` carries no enum and `target` carries no prefix pattern, so an unrecognised dimension or target kind reaches the MEANING layer and both implementations cite the same rule (V28/V27) instead of Python answering SCHEMA where TypeScript answers a V-number. Nor is value-or-range required: V28's message tells an author what to write, which a oneOf complaint does not.",
+      "type": "object",
+      "required": ["target", "dimension"],
+      "additionalProperties": false,
+      "properties": {
+        "target": {
+          "description": "`<kind>:<ref>` over the closed kind set transition | relation | entity | state | parameter | model (V27). A transition is addressed `transition:<machine>#<index>` -- it has no id, and label: carries no semantics (V1). A relation is addressed by its own id:.",
+          "type": "string"
+        },
+        "dimension": {
+          "description": "One of duration | memory | cost | ratio | count. Checked at the meaning layer (V28), not here.",
+          "type": "string"
+        },
+        "value": {
+          "description": "A unit-bearing literal (`250 ms`), a bare number for the dimensionless dimensions ratio and count, or an expression. A unit-bearing literal is a STRING in YAML, which is why its magnitude is parsed by the workbench rather than by a loader: the two loaders this project runs disagree on `017`, `1_000`, `1e3` and `1:30`.",
+          "oneOf": [
+            { "type": "string" },
+            { "type": "number" },
+            {
+              "type": "object",
+              "required": ["expression"],
+              "additionalProperties": false,
+              "properties": {
+                "expression": {
+                  "description": "A sum of products over literals, `metrics.*` values and other quantity ids. Operators stand alone between spaces, because an id may contain `-`. No parentheses in v0.1.",
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        },
+        "range": {
+          "description": "A closed interval, low then high (V29). Both ends carry the same dimension (V30).",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "oneOf": [{ "type": "string" }, { "type": "number" }] }
+        },
+        "description": { "type": "string" },
+        "notes": { "$ref": "#/$defs/notes" },
+        "provenance": { "$ref": "#/$defs/provenance" }
+      }
     },
     "intRange": {
       "type": "array",
