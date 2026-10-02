@@ -40,6 +40,49 @@ exists to close eight of those; `create-model` and `delete-model` stay violating
 because the transaction schema has no operation for them, and the registry says so rather than
 quietly dropping them.
 
+### 0.1 Companion documents
+
+This plan is the spine; four documents carry detail it should not duplicate.
+
+| Document | What it holds |
+|---|---|
+| `SEMANTICS.md` | Authoritative semantics. The numbered rules V1–V26. |
+| `OPEN-DECISIONS.md` | D1–D6, **all ruled.** Kept as the record of what was decided and why. |
+| `DESIGN-quantities-261002.md` | Phase I design. Representation is determined; the analysis layer is not. |
+| `DESIGN-sparql-261002.md` | Phase J layer 2 design. SPARQL as an interface, per the D3 ruling. |
+
+Plus five verbatim requirement documents (`requirements-*-261002.md`) — CDP agent operability,
+accessibility, RDF/SPARQL/SMT, UX, and default example systems. Those are the author's text and are
+not edited; the design documents above are where they become implementable.
+
+### 0.2 Open questions index
+
+D1–D6 are ruled. Nine questions are open, and **the split matters more than the count**: six are
+engineering judgment a Phase can resolve, two need the author, and one is empirical.
+
+| # | Question | Who resolves | Blocks |
+|---|---|---|---|
+| Q1 | Interval arithmetic, or worst-case bounds only? | recommended: worst-case | Phase I analysis |
+| **Q2** | **What declares the latency accounting model?** | **author** | **Document Processing fixtures** |
+| **Q3** | **What precise predicate is `memory(c)`?** | **author** | **Document Processing fixtures** |
+| Q4 | Is expectation in scope for v0.1? | recommended: no | the cache what-if |
+| Q5 | Outcome shape for an unbounded additive maximum | likely `refuted` + lasso | Phase I analysis |
+| Q6 | Do quantities project to RDF? | **resolved** — structured resources | — |
+| Q7 | Can Comunica ship on static Pages at all? | **empirical — measure** | Phase J layer 2 |
+| Q8 | SPARQL in the Worker or the main thread? | Phase J layer 2 | — |
+| Q9 | Is "run arbitrary SPARQL" a semantic capability under UX-I1? | author; recommended: no | the query surface |
+
+**Q2 and Q3 are genuine underdetermination in the requirements, not gaps in anyone's reading.** §8
+says latency sums "according to the declared accounting model" without saying where that is declared
+or what the options are — and summing state, transition and relation latency all three double-counts
+a pipeline modelled with latency on both a stage and the edge into it. §8 then defines `memory(c)`
+as "retained memory of active states/entities plus temporary memory of the active operation" and
+says *approximately*; "active" carries the weight and is undefined. Two defensible readings give
+different numbers for the same example and both look right, so a fixture written before the ruling
+would encode a guess as ground truth.
+
+That is why Phase I was split: the representation layer is dispatchable now, and the evaluator is not.
+
 ## 1. The two new top-level requirements
 
 Added 2026-10-02 from `cdp.md` and `a11y.md`. Both are **definition-of-done criteria, not later
