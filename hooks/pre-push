@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""pre-push: BUILD the site AND the PDF, then run the fast deterministic gate — before any push.
+"""pre-push: run the gates the pushed change can actually affect, then the deterministic floor.
 
 Four gates, in order, so a change that would fail CI cannot leave the machine:
 
@@ -16,7 +16,6 @@ Four gates, in order, so a change that would fail CI cannot leave the machine:
      This is the SAME step CI runs on every push (.github/workflows/pages.yml), so a Typst compile error
      or a content-integrity regression is caught on the machine, not three minutes into CI — and the
      gitignored /book/mage-book.pdf refreshes on every push instead of going stale between renders.
-     Typst compiles the whole book in a couple of seconds.
 
   3. `handbook/scripts/build.py pdf` — the supplementary Software Engineering Handbook's Typst PDF
      render (parity with the book PDF). CI renders + publishes it on every push and asserts it
@@ -28,11 +27,36 @@ Four gates, in order, so a change that would fail CI cannot leave the machine:
      resolution, the book/*.html tracking (orphans), the concept-model drift lints (L1/L2/L3), the
      empty-<th> twin, skill bundle integrity. ~seconds.
 
-CI still runs `catalog_tests.py --full` (Tier-2: html-validate + sampled axe + `claude plugin validate`)
-as the authoritative gate. Install once with `python3 catalog.py install-hooks` (sets core.hooksPath=hooks).
-No shell — pure Python, per the repo's tooling posture.
+Plus, when the push touches it:
 
-Bypass (humans, rare — e.g. pushing a WIP branch): `git push --no-verify`.
+  5. `workbench/validate.py --self-test` and a validation pass over every `workbench/**/*.mage.yaml`
+     — the workbench's schema/semantics gate and its architectural assertions. A commit that lets the
+     semantic kernel depend on a view fails here.
+
+## Scope selection — why some gates are skipped
+
+The two Typst renders dominate wall-clock, and a push that touches only `workbench/` or `.github/`
+cannot change either PDF. So the hook reads the pushed commit range and runs the expensive renders
+only when their own inputs moved.
+
+The rule is deliberately asymmetric: **run everything unless the change set is provably disjoint from
+a gate's inputs.** A wrong guess therefore costs time, never correctness. Specifically:
+
+  - The deterministic floor (gate 4) ALWAYS runs. It is seconds, and it is the net.
+  - `catalog.py build` ALWAYS runs. It is the render gate, and nearly every tree feeds the site.
+  - The book PDF runs iff a path under `book/` or `book-models/` moved.
+  - The handbook PDF runs iff a path under `handbook/` moved.
+  - The workbench gate runs iff a path under `workbench/` moved.
+  - If the range cannot be determined (a new branch, a shallow clone, an unreadable ref), EVERY gate
+    runs. Unknown scope is never treated as empty scope.
+
+Override: `GC_PREPUSH_ALL=1 git push` forces every gate regardless of scope.
+Bypass entirely (humans, rare — e.g. pushing a WIP branch): `git push --no-verify`.
+
+CI still runs `catalog_tests.py --full` (Tier-2: html-validate + sampled axe + `claude plugin validate`)
+as the authoritative gate, with every stage unconditional — CI is the backstop that does not guess.
+Install once with `python3 catalog.py install-hooks` (sets core.hooksPath=hooks).
+No shell — pure Python, per the repo's tooling posture.
 """
 import os
 import subprocess
@@ -40,42 +64,120 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Prefix -> the gate whose inputs live under it. A path matching none of these affects only the
+# site, which gate 1 and gate 4 already cover unconditionally.
+SCOPES = {
+    "book": ("book/", "book-models/"),
+    "handbook": ("handbook/",),
+    "workbench": ("workbench/",),
+}
+
+ZERO = "0" * 40
+
 
 def _run(*args: str) -> int:
     return subprocess.run([sys.executable, *args], cwd=ROOT).returncode
 
 
+def _git(*args: str) -> str | None:
+    try:
+        out = subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, check=True)
+    except (subprocess.CalledProcessError, OSError):
+        return None
+    return out.stdout
+
+
+def _changed_paths() -> set[str] | None:
+    """Paths in the pushed range, or None when the range cannot be established.
+
+    git hands a pre-push hook one line per ref on stdin:
+        <local ref> <local sha> <remote ref> <remote sha>
+    A remote sha of all-zeros means the remote has no such branch yet, so there is no range to
+    diff against and we must assume everything is in scope.
+    """
+    if os.environ.get("GC_PREPUSH_ALL"):
+        return None
+    try:
+        lines = [ln.split() for ln in sys.stdin.read().splitlines() if ln.strip()]
+    except OSError:
+        return None
+    if not lines:
+        # Invoked without stdin (a manual run, or a git that gave us nothing) -- do not guess.
+        return None
+    paths: set[str] = set()
+    for parts in lines:
+        if len(parts) != 4:
+            return None
+        _, local_sha, _, remote_sha = parts
+        if local_sha == ZERO:          # branch deletion: nothing to build
+            continue
+        if remote_sha == ZERO:         # new branch: no base to diff against
+            return None
+        out = _git("diff", "--name-only", f"{remote_sha}..{local_sha}")
+        if out is None:                # unreadable ref (e.g. remote sha not fetched)
+            return None
+        paths.update(p for p in out.splitlines() if p)
+    return paths
+
+
+def _touches(paths: set[str] | None, prefixes: tuple[str, ...]) -> bool:
+    if paths is None:
+        return True
+    return any(p.startswith(pre) for p in paths for pre in prefixes)
+
+
+def _fail(message: str) -> None:
+    sys.stderr.write(message + "(or `git push --no-verify` to override).\n")
+    sys.exit(1)
+
+
+changed = _changed_paths()
+if changed is None:
+    print("pre-push: scope UNKNOWN — running every gate", file=sys.stderr)
+else:
+    active = [name for name, pres in SCOPES.items() if _touches(changed, pres)] or ["site-only"]
+    print(f"pre-push: {len(changed)} changed path(s); scope: {', '.join(active)}", file=sys.stderr)
+
 print("pre-push: catalog.py build (render gate — catches build aborts CI would hit) …", file=sys.stderr)
 if _run("catalog.py", "build"):
-    sys.stderr.write(
-        "\npre-push: catalog.py build FAILED — push refused.\n"
-        "The site does not render; fix the build error above (or `git push --no-verify` to override).\n")
-    sys.exit(1)
+    _fail("\npre-push: catalog.py build FAILED — push refused.\n"
+          "The site does not render; fix the build error above ")
 
-print("pre-push: book/build_book.py --pdf (Typst PDF render + content-integrity gate CI runs) …", file=sys.stderr)
-if _run("book/build_book.py", "--pdf"):
-    sys.stderr.write(
-        "\npre-push: book/build_book.py --pdf FAILED — push refused.\n"
-        "The PDF does not render or fails the content-integrity gate; fix the error above "
-        "(or `git push --no-verify` to override).\n")
-    sys.exit(1)
+if _touches(changed, SCOPES["book"]):
+    print("pre-push: book/build_book.py --pdf (Typst PDF render + content-integrity gate CI runs) …", file=sys.stderr)
+    if _run("book/build_book.py", "--pdf"):
+        _fail("\npre-push: book/build_book.py --pdf FAILED — push refused.\n"
+              "The PDF does not render or fails the content-integrity gate; fix the error above ")
+else:
+    print("pre-push: book PDF SKIPPED — no book/ or book-models/ path in this push", file=sys.stderr)
 
-# The supplementary Software Engineering Handbook PDF — parity with the book PDF above. CI
-# (.github/workflows/pages.yml) renders + publishes it on every push and asserts it fatal-if-missing,
-# so a handbook render failure would fail CI; catch it here on the machine instead. `build.py pdf` also
-# refreshes the gitignored local review artifacts (dist/software-engineering-handbook.pdf AND the landers
-# staple, which the pdf target emits), so they never go stale between manual handbook builds — which is
-# why the separate landers-staple refresh that used to live at the end of this hook is now redundant.
-print("pre-push: handbook/scripts/build.py pdf (handbook Typst PDF render — parity with the book PDF) …", file=sys.stderr)
-if _run("handbook/scripts/build.py", "pdf"):
-    sys.stderr.write(
-        "\npre-push: handbook/scripts/build.py pdf FAILED — push refused.\n"
-        "The handbook PDF does not render; fix the error above (or `git push --no-verify` to override).\n")
-    sys.exit(1)
+if _touches(changed, SCOPES["handbook"]):
+    print("pre-push: handbook/scripts/build.py pdf (handbook Typst PDF render — parity with the book PDF) …", file=sys.stderr)
+    if _run("handbook/scripts/build.py", "pdf"):
+        _fail("\npre-push: handbook/scripts/build.py pdf FAILED — push refused.\n"
+              "The handbook PDF does not render; fix the error above ")
+else:
+    print("pre-push: handbook PDF SKIPPED — no handbook/ path in this push", file=sys.stderr)
+
+if _touches(changed, SCOPES["workbench"]):
+    print("pre-push: workbench/validate.py --self-test (rules fire on models that violate them) …", file=sys.stderr)
+    if _run("workbench/validate.py", "--self-test"):
+        _fail("\npre-push: workbench self-test FAILED — push refused.\n"
+              "A semantic rule stopped detecting its own violation; fix the error above ")
+    models = []
+    for base in ("workbench/models", "workbench/examples"):
+        d = os.path.join(ROOT, base)
+        if os.path.isdir(d):
+            models += [f"{base}/{n}" for n in sorted(os.listdir(d)) if n.endswith((".mage.yaml", ".mage.yml"))]
+    for rel in models:
+        print(f"pre-push: workbench/validate.py {rel} …", file=sys.stderr)
+        if _run("workbench/validate.py", rel):
+            _fail(f"\npre-push: {rel} FAILED validation — push refused.\n"
+                  "Shape, a numbered semantic rule, or an asserted architectural query; see above ")
+else:
+    print("pre-push: workbench gate SKIPPED — no workbench/ path in this push", file=sys.stderr)
 
 print("pre-push: catalog_tests.py --tier1 (deterministic gate) …", file=sys.stderr)
 if _run("catalog_tests.py", "--tier1"):
-    sys.stderr.write(
-        "\npre-push: catalog_tests.py --tier1 FAILED — push refused.\n"
-        "Fix the failing gate(s) above, or `git push --no-verify` to override (rare).\n")
-    sys.exit(1)
+    _fail("\npre-push: catalog_tests.py --tier1 FAILED — push refused.\n"
+          "Fix the failing gate(s) above, ")
