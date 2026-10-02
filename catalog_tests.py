@@ -33,6 +33,7 @@ import argparse
 import sys
 from typing import Callable, NamedTuple
 
+import catalog  # the site renderer + its regen-drift gate (check_generated_html_fresh)
 from tests.book import (
     check_caption_orphan_gate,
     check_float_ref_gate,
@@ -177,6 +178,23 @@ def _plugin_changed(changed: frozenset[str]) -> bool:
     return any(f.startswith("plugin/") or f.startswith(".claude-plugin/") for f in changed)
 
 
+def _render_determinism() -> tuple:
+    """Precondition for the drift check below: the renderer must agree with itself."""
+    findings = catalog.check_render_determinism()
+    return (FAIL if findings else PASS), findings
+
+
+def _regen_drift() -> tuple:
+    """The committed generated pages must equal a fresh render. Hosted here (suite -> pre-push -> CI) and
+    NOT inside `catalog.py build`, because build is the regenerator: checked before its writes it blocks
+    the very commit that would fix the drift, and checked after them it compares the build against itself.
+
+    SKIPs on uncommitted source changes — the verdict is a property of a commit, and a working tree
+    mid-edit is not one. Both hosts that matter run on a clean tree, so the skip costs no coverage there."""
+    verdict, findings = catalog.check_generated_html_fresh()
+    return {"clean": PASS, "drift": FAIL, "skipped": SKIP}[verdict], findings
+
+
 def _pptx_changed(changed: frozenset[str]) -> bool:
     """The deck-validity checks read the committed .pptx files, the validator tool, and its baseline."""
     return any(f.endswith(".pptx") or f.startswith("tools/pptx") or f == "tests/pptx_validity.py"
@@ -227,6 +245,18 @@ CHECKS = [
           needs_run=_pptx_changed),
     Check("course: committed pptx OOXML schema validity (OpenXmlValidator)", 2, check_pptx_schema,
           needs_run=_pptx_changed, pre_push=True),
+    # BLOCKING (clean at landing, 106 tracked pages): the committed generated HTML equals a fresh render.
+    # The regen discipline was ROUTE-DEPENDENT and one route skipped it — the tracked pre-commit hook
+    # rebuilds the site and force-stages the HTML, but it does not run on `git merge --no-ff`, so a run of
+    # merge landings left the committed index.html missing a card the generator had been producing for
+    # hours (a37b31bf). Making every future commit route cooperate is the weaker fix; this compares output
+    # to a fresh render and does not care how the commit was made. Renders in memory and writes nothing, so
+    # it cannot damage a committed page the way a rebuild-then-compare gate could. ~0.2s. See
+    # catalog.check_generated_html_fresh for the scope rule (emitted ∩ git-tracked) and why INDEX.html is out.
+    Check("html: the site renderer is deterministic (two interpreters, two hash seeds, same bytes)", 1,
+          lambda strict: _render_determinism()),
+    Check("html: committed generated pages equal a fresh render (regen drift)", 1,
+          lambda strict: _regen_drift()),
     Check("markdown: #anchor resolution", 1, lambda strict: check_markdown_anchors()),
     Check("render: XSS neutralization (escape seam + link scheme)", 1, lambda strict: check_render_safety()),
     Check("html: link + anchor resolution", 1, lambda strict: check_html_links()),

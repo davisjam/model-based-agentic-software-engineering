@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import glob
+import hashlib
 import html
 import json
 import os
@@ -4742,11 +4743,23 @@ def check_orphan_pages() -> list[str]:
     return sorted(orphans)
 
 
-def cmd_build(_args) -> int:
+def render_site_pages(entries: list[Entry]) -> "tuple[dict[str, str], dict[str, int]]":
+    """Render every page the site build emits: {repo-relative path -> HTML text}. Writes nothing.
+
+    Split out of cmd_build so the WRITER (cmd_build) and the DRIFT GATE (check_generated_html_fresh)
+    render through one path. A gate with its own second renderer would drift from the real one and then
+    vouch for bytes nobody serves.
+
+    Returning strings is the whole trick: the gate compares in memory, so it never opens a committed page
+    for writing and cannot leave a half-written file behind if it dies mid-check — the failure mode that
+    cost this repo a 601-line generated file and made `_sync_figure_census` write-then-`os.replace`.
+
+    It deliberately does NOT run the census syncs (`_sync_figure_census` / `_sync_markdown_census`): those
+    MUTATE `.md` sources, and a check must not. Their staleness has its own source-side gate
+    (`check_census_tokens`, blocking in `validate`), so nothing is left uncovered by the omission.
+    """
     global _ABBR_MAP, _ABBR_PREFIX
-    entries = all_entries()
-    _sync_figure_census(entries)  # keep the static figures' counts equal to the census
-    _sync_markdown_census(entries)  # keep the prose census tokens equal to the census (README/INDEX/CLAUDE/bridge)
+    pages: dict[str, str] = {}
     _ABBR_MAP = parse_abstractions()
     written = 0
     n_concept = 0
@@ -4784,8 +4797,7 @@ def cmd_build(_args) -> int:
                 trail.append((title, ""))
             body = render_md(md)
             html = _page(title, _crumb(rel_root, trail), body, rel_root=rel_root)
-        out_path = f[:-3] + ".html"
-        open(out_path, "w", encoding="utf-8").write(html)
+        pages[os.path.relpath(f[:-3] + ".html", ROOT)] = html
         written += 1
     # landing index.html = a projection of the Big-Ideas model (hero + six minimal BRICKS + the closing
     # conclusion + three ways-in buttons), then the census and the quiet vocabulary/definitions/outcomes
@@ -4811,8 +4823,8 @@ def cmd_build(_args) -> int:
                f"<title>MAGE — Model-Based Agentic Engineering</title>\n{FONTS_LINK}\n"
                f"<style>{PAGE_CSS}{LANDING_CSS}{FONT_CSS}</style>\n</head>\n"
                f'<body class="landing">\n<main>\n{landing_body}\n{_site_footer("")}\n</main>\n</body>\n</html>\n')
-    open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(landing)
-    open(os.path.join(ROOT, "catalogue-views.html"), "w", encoding="utf-8").write(build_views_page(entries))
+    pages["index.html"] = landing
+    pages["catalogue-views.html"] = build_views_page(entries)
     # Industry-case-studies pillar — a projection of book-models/industry_cases_declared.json. The index +
     # one per-case page per AUTHORED case are written directly (like index.html / catalogue-views.html), not
     # from a `.md`: projected structure around hand-authored record prose (rule: no machine-composed prose).
@@ -4828,40 +4840,40 @@ def cmd_build(_args) -> int:
     ic_index = _page("Industry case studies",
                      _crumb("", [("Industry case studies", "")]),
                      _ic_index_body(ic_authored, ic_hedge), rel_root="")
-    open(os.path.join(ROOT, _IC_INDEX_PAGE), "w", encoding="utf-8").write(ic_index)
+    pages[_IC_INDEX_PAGE] = ic_index
     # The Comparative-analysis page — the book's Ch5 matrices projected to the web via the SAME model render
     # functions, so it cannot drift from the book. Linked from the pillar index (its orphan-gate inbound edge).
     comparative = _page("Comparative analysis",
                         _crumb("", [("Industry case studies", _IC_INDEX_PAGE), ("Comparative analysis", "")]),
                         _comparative_body(), rel_root="")
-    open(os.path.join(ROOT, _COMPARATIVE_PAGE), "w", encoding="utf-8").write(comparative)
+    pages[_COMPARATIVE_PAGE] = comparative
     # The standalone Theory page — the one-circulation dynamics diagram + the two theses + the inside-cover card.
     # Reachable from the primary nav's "Theory" cell (its orphan-gate inbound edge); the landing also carries
     # a hero-adjacent 'theory at a glance' card linking here (F-theory: both a landing element and a page).
     theory = _page("The theory of MAGE",
                    _crumb("", [("The theory of MAGE", "")]),
                    _theory_body(), rel_root="")
-    open(os.path.join(ROOT, _THEORY_PAGE), "w", encoding="utf-8").write(theory)
+    pages[_THEORY_PAGE] = theory
     # The 'Apply the MAGE Method' page — a concise figure-led practical summary (replaces the retired
     # 'Constructing the GEE' catalogue page). Reachable from the primary nav's "Apply MAGE" cell, the
     # landing 'Using MAGE' Method card, and the landing closing (its orphan-gate inbound edges).
     apply_page = _page("Apply the MAGE Method",
                        _crumb("", [("Apply the MAGE Method", "")]),
                        _apply_body(), rel_root="")
-    open(os.path.join(ROOT, _APPLY_PAGE), "w", encoding="utf-8").write(apply_page)
+    pages[_APPLY_PAGE] = apply_page
     # The Quick start page — organized around the three MAGE skills + the revised Figure E.2-1 (generated
     # so the figure inlines). Replaces the retired Path A/B + adoption-sequence markdown page. Reachable
     # from the hero 'Try MAGE' button, the 'Using MAGE' QuickStart card, the hero-cta, and the landing
     # closing (its orphan-gate inbound edges).
     quickstart = _page("Quick start", _crumb("", [("Quick start", "")]), _quickstart_body(), rel_root="")
-    open(os.path.join(ROOT, _QUICKSTART_PAGE), "w", encoding="utf-8").write(quickstart)
+    pages[_QUICKSTART_PAGE] = quickstart
     # The two projected Resource pages — Talks + Writings (book-models/resources.json). Each is reachable
     # from the landing Resources section's 'Browse talks' / 'Browse writings' card (the orphan-gate inbound
     # edge); each links its assets under resources/. Book + Curriculum are existing surfaces, not projected.
     talks_page = _page("Talks", _crumb("", [("Talks", "")]), _talks_body(), rel_root="")
-    open(os.path.join(ROOT, "talks.html"), "w", encoding="utf-8").write(talks_page)
+    pages["talks.html"] = talks_page
     writings_page = _page("Writings", _crumb("", [("Writings", "")]), _writings_body(), rel_root="")
-    open(os.path.join(ROOT, "writings.html"), "w", encoding="utf-8").write(writings_page)
+    pages["writings.html"] = writings_page
     # website-v3 (260825): the standalone Big Question page is RETIRED with the concept machinery — the
     # landing hero now carries the core question directly, and the book is authoritative for the answer.
     n_ic = 0
@@ -4871,14 +4883,187 @@ def cmd_build(_args) -> int:
         crumb = _crumb("", [("Industry case studies", _IC_INDEX_PAGE), (org, "")])
         html = _page(f"Industry case studies — {org}", crumb,
                      _ic_case_body(rec, ic_labels, ic_hedge, ic_distinctive), rel_root="")
-        open(os.path.join(ROOT, _ic_page_name(cid)), "w", encoding="utf-8").write(html)
+        pages[_ic_page_name(cid)] = html
         n_ic += 1
-    print(f"built {_IC_INDEX_PAGE} + {n_ic} industry-case page(s)")
     # The six concept ENTRY pages (`concept-<slug>.html`) were rendered in the md loop above from their
     # hand-authored `concept-<slug>.md`, with the model's figures + `more` projected in — no separate
     # whole-body projection now (Option B: the entry is authored + parity-gated, not generated whole).
-    print(f"built {written} entry/index pages + landing index.html + catalogue-views.html "
-          f"+ {n_concept} concept entry pages ({len(entries)} mechanisms in census)")
+    return pages, {"md_pages": written, "ic_pages": n_ic, "concept_pages": n_concept}
+
+
+def _head_blobs() -> "tuple[dict[str, str], str] | None":
+    """({path: blob id at HEAD}, git's hash algorithm), or None if git cannot answer.
+
+    None is reported as a finding by the caller, never read as "nothing is committed" — a gate that takes
+    a failed subprocess for an empty set passes silently, the one outcome worse than failing."""
+    try:
+        fmt = subprocess.run(["git", "rev-parse", "--show-object-format"], cwd=ROOT,
+                             capture_output=True, text=True)
+        tree = subprocess.run(["git", "ls-tree", "-r", "-z", "HEAD"], cwd=ROOT,
+                              capture_output=True, text=True)
+    except OSError:
+        return None
+    if fmt.returncode or tree.returncode:
+        return None
+    blobs: dict[str, str] = {}
+    for rec in tree.stdout.split("\0"):
+        if not rec:
+            continue
+        meta, _, path = rec.partition("\t")
+        bits = meta.split()
+        if len(bits) == 3 and bits[1] == "blob":
+            blobs[path] = bits[2]
+    return blobs, fmt.stdout.strip()
+
+
+def _blob_id(text: str, algo: str) -> str:
+    """git's object id for `text` stored as a blob — the same bytes git itself would hash."""
+    data = text.encode("utf-8")
+    return hashlib.new(algo, b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
+
+
+def _uncommitted_sources(emitted: "frozenset[str]") -> list[str]:
+    """Tracked files that differ from HEAD and are NOT pages the build emits, or None if git cannot say.
+
+    The drift gate's verdict is a property of a COMMIT, so it needs the sources it renders to be the
+    sources HEAD holds. Modified GENERATED pages are excluded deliberately: both the pre-commit hook and
+    CI run `catalog.py build` before any test, which rewrites those pages in the working tree. Counting
+    that as dirt would make the gate skip in precisely the hosts it exists to protect — and a stale page
+    rewritten by that build is the symptom, not interference."""
+    try:
+        r = subprocess.run(["git", "diff", "--name-only", "-z", "HEAD"], cwd=ROOT,
+                           capture_output=True, text=True)
+    except OSError:
+        return None
+    if r.returncode:
+        return None
+    return sorted(p for p in r.stdout.split("\0") if p and p not in emitted)
+
+
+def check_generated_html_fresh() -> "tuple[str, list[str]]":
+    """Regen-drift gate: every COMMITTED generated page must equal a fresh render of its sources. Returns
+    ("clean" | "drift" | "skipped", findings). A page that differs is STALE — the source moved and the
+    committed HTML did not follow.
+
+    This exists because the regen discipline was route-dependent and one route skipped it. The tracked
+    `pre-commit` hook rebuilds the site and force-stages the HTML, which keeps the committed copy in sync
+    for an ordinary commit — but the hook does not run on `git merge --no-ff`, and a run of merge landings
+    is how `index.html` came to be missing a landing card the generator had been producing for hours
+    (fixed in a37b31bf). Making every future commit route cooperate is the weaker fix: this one compares
+    output to a fresh render and does not care how the commit was made.
+
+    The committed side is git's BLOB at HEAD, not the file on disk, and that choice is load-bearing: both
+    the pre-commit hook and CI's Pages workflow run `catalog.py build` before any test runs, so an on-disk
+    comparison would be comparing that build against itself and would pass on every tree, drifted or not.
+    HEAD is immune to an intervening build. Comparison is by object id — git's own, computed with stdlib
+    hashlib — so nothing is read back off disk and no page is ever opened for writing.
+
+    Scope is DERIVED, not declared — what `render_site_pages` emits, intersected with the blobs at HEAD —
+    so a page added to the build is covered the moment it is added, with no registry to forget to update.
+    The intersection excludes exactly one page today, `INDEX.html` (emitted from INDEX.md, never committed;
+    CI re-renders it on every push, and that render is what Pages serves). Checking an uncommitted page
+    would also be unsound on a case-insensitive filesystem, where `INDEX.html` and the landing `index.html`
+    are one file — the macOS collision `check_one_h1_per_served_source` already exists to work around.
+    """
+    pages, _counts = render_site_pages(all_entries())
+    head = _head_blobs()
+    if head is None:
+        return "drift", ["cannot read the committed tree (`git ls-tree HEAD` failed) — the gate did not "
+                         "run; it compares against COMMITTED pages, so without git it has no reference"]
+    blobs, algo = head
+    dirt = _uncommitted_sources(frozenset(pages))
+    if dirt is None:
+        return "drift", ["cannot tell whether the sources are committed (`git diff HEAD` failed) — "
+                         "the gate did not run"]
+    if dirt:
+        shown = ", ".join(dirt[:4]) + (f" (+{len(dirt) - 4} more)" if len(dirt) > 4 else "")
+        return "skipped", [f"uncommitted source changes ({len(dirt)}): {shown} — the committed pages are "
+                           f"checked against a render of the COMMITTED sources, and these are not those"]
+    findings: list[str] = []
+    for rel, html in sorted(pages.items()):
+        committed = blobs.get(rel)
+        if committed is None:
+            continue  # emitted but never committed — no committed copy to be stale (see INDEX.html above)
+        if _blob_id(html, algo) != committed:
+            findings.append(f"{rel}: STALE — the committed page differs from a fresh render")
+    return ("drift" if findings else "clean"), findings
+
+
+_RENDER_DIGEST_PROG = """\
+import hashlib, catalog
+pages, _counts = catalog.render_site_pages(catalog.all_entries())
+for rel, html in sorted(pages.items()):
+    print(rel, hashlib.sha256(html.encode("utf-8")).hexdigest())
+"""
+
+
+def _render_digests(seed: str) -> "dict[str, str] | None":
+    """{page -> sha256 of its render} from a SEPARATE interpreter run under the given PYTHONHASHSEED."""
+    r = subprocess.run([sys.executable, "-c", _RENDER_DIGEST_PROG], cwd=ROOT, capture_output=True,
+                       text=True, env={**os.environ, "PYTHONHASHSEED": seed})
+    if r.returncode:
+        return None
+    out: dict[str, str] = {}
+    for line in r.stdout.splitlines():
+        rel, _, digest = line.rpartition(" ")
+        if rel:
+            out[rel] = digest
+    return out
+
+
+def check_render_determinism() -> list[str]:
+    """Self-test for the gate above: render the site in two separate interpreters under different hash
+    seeds and require the renders to agree.
+
+    A drift gate over a nondeterministic renderer fails on a clean tree, gets disabled, and then still
+    looks like coverage — strictly worse than no gate. So the determinism the gate assumes is asserted
+    rather than trusted, and a render path that grows a clock, an absolute path, or an unordered traversal
+    fails here under its own name instead of reddening the drift gate for a reason nobody can act on.
+
+    Two PROCESSES, not two calls, and two different PYTHONHASHSEEDs: set iteration order is what varies,
+    and it varies per interpreter. A same-process double render cannot see it, so the cheaper version of
+    this check would pass on exactly the renderer it most needs to reject. Costs two interpreter starts.
+    """
+    first, second = _render_digests("0"), _render_digests("1")
+    if first is None or second is None:
+        return ["the render could not be run in a subprocess — determinism is unverified, so the drift "
+                "gate's precondition is unestablished"]
+    if set(first) != set(second):
+        only = sorted(set(first) ^ set(second))
+        return [f"the render emits a different PAGE SET under a different hash seed: {', '.join(only)}"]
+    return [f"{rel}: NONDETERMINISTIC — two renders of identical sources disagree (hash-seed dependent "
+            f"iteration order, a clock, or an absolute path in the render)"
+            for rel in sorted(first) if first[rel] != second[rel]]
+
+
+def cmd_regen_check(_args) -> int:
+    """`catalog.py regen-check` — the drift gate as a runnable verb (BLOCKING; exit 1 on any finding)."""
+    verdict, findings = check_generated_html_fresh()
+    # One stream throughout, so the header cannot land after the findings it heads (stdout is buffered to
+    # a pipe while stderr is not), and a generic noun, so a skip reason is not labelled a stale page.
+    print("== regen-check — committed generated HTML vs a fresh render ==")
+    if verdict == "clean":
+        print("  clean — every committed generated page equals a fresh render")
+        return 0
+    for f in findings:
+        print(f"    - {f}")
+    if verdict == "skipped":
+        print("  SKIPPED — commit or stash the source changes above, then re-run.")
+        return 0
+    print(f"  {len(findings)} stale page(s). Fix: `python3 catalog.py build`, then commit the result.")
+    return 1
+
+
+def cmd_build(_args) -> int:
+    entries = all_entries()
+    _sync_figure_census(entries)  # keep the static figures' counts equal to the census
+    _sync_markdown_census(entries)  # keep the prose census tokens equal to the census (README/INDEX/CLAUDE/bridge)
+    pages, counts = render_site_pages(entries)
+    for rel, html in pages.items():
+        open(os.path.join(ROOT, rel), "w", encoding="utf-8").write(html)
+    print(f"built {_IC_INDEX_PAGE} + {counts['ic_pages']} industry-case page(s)")
+    print(f"built {counts['md_pages']} entry/index pages + landing index.html + catalogue-views.html "
+          f"+ {counts['concept_pages']} concept entry pages ({len(entries)} mechanisms in census)")
     # Regenerate the Extended Figure Gallery dev artifact (live/unused/draft figures, for review). Non-fatal
     # subprocess (a review tool must never break the build); output is gitignored + orphan-gate-excluded
     # (book/_design is in NON_SITE_DIRS). Runs here so all figure references are known.
@@ -5671,6 +5856,7 @@ def main() -> int:
     s = sub.add_parser("summaries", help="dump role/family/entry summaries (tooltip source)")
     s.add_argument("--json", action="store_true")
     sub.add_parser("build", help="render every .md → .html + regenerate the landing census")
+    sub.add_parser("regen-check", help="BLOCKING drift gate: assert every committed generated page equals a fresh render (catches stale HTML from a commit route that skipped the regen hook — e.g. a merge commit). Renders in memory; writes nothing")
     tp = sub.add_parser("test", help="build, then run the catalogue + skill test suite (markdown/html/skill; axe + claude validate)")
     tp.add_argument("--strict", action="store_true", help="treat a Tier-2 SKIP (missing axe/claude) as failure")
     sub.add_parser("check-responsive", help="deploy-blocking gate: assert the landing masonry tiles into >=3 columns at wide width and 1 column at phone width (headless Chrome; needs book/ Puppeteer)")
@@ -5708,7 +5894,8 @@ def main() -> int:
     d.add_argument("-m", "--message", default="deploy: rebuild site", help="commit message for github mode")
     args = p.parse_args()
     return {"validate": cmd_validate, "query": cmd_query, "summaries": cmd_summaries,
-            "build": cmd_build, "test": cmd_test, "check-responsive": cmd_check_responsive,
+            "build": cmd_build, "regen-check": cmd_regen_check,
+            "test": cmd_test, "check-responsive": cmd_check_responsive,
             "check-console": cmd_check_console,
             "data-claims": cmd_data_claims, "concepts": cmd_concepts,
             "definitions": cmd_definitions, "outcomes-site": cmd_outcomes_site,

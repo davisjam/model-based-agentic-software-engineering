@@ -46,6 +46,15 @@ if _deck_gate.returncode:
 _catalog("validate")   # refuse to build/commit an invalid schema
 _catalog("build")      # render .md -> .html + regenerate the landing census + the skill bundle
 
+# The regen-DRIFT gate (`catalog.py regen-check`, which asserts the COMMITTED HTML equals a fresh render)
+# deliberately does NOT run here, and the reason is structural rather than a matter of taste. This hook IS
+# the regenerator: before the build above, every ordinary content commit legitimately has stale committed
+# HTML, so the gate would block the commit that fixes it; after the build, the committed side is whatever
+# the `git add` below is about to stage, so the gate would be comparing the build against itself. Either
+# way it is useless or hostile. Its verdict is a property of a COMMIT, so it is hosted in catalog_tests.py
+# (pre-push + CI's --full), where the tree is clean and HEAD is the thing under test. That placement is
+# also what catches the route this hook cannot reach at all: a `git merge --no-ff` commit never runs it.
+
 
 def _regen(script: str, artifact: str) -> None:
     """Regenerate a derived-view model artifact from the book source and stage it. Fails the commit if
