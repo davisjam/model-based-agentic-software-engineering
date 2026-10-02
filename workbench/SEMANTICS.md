@@ -8,7 +8,7 @@ This is the authoritative semantics. The JSON Schemas beside it
 [`mage-transaction.schema.json`](mage-transaction.schema.json)) constrain *shape*; this document
 fixes *meaning*. Where a question is about what a model asserts, this file decides it.
 
-Validation rules are numbered **V1…V31** so implementations, tests, and error messages can cite them.
+Validation rules are numbered **V1…V34** so implementations, tests, and error messages can cite them.
 Numbers are append-only: a new rule takes the next free one and lands in the section that owns its
 subject, so the sequence stays stable rather than sorted.
 
@@ -642,6 +642,46 @@ guess.
 
 Saved queries live in the model system and re-run when the model changes. Engineering questions
 become versionable alongside the models that answer them.
+
+### 7.5 Many interfaces, one semantics
+
+A model system may be asked questions through more than one interface: the analysis engine, and a
+SPARQL 1.1 subset over the RDF projection. SPARQL is an **interface**, not the semantic foundation,
+and the three rules below are what keeps the second interface from quietly meaning something else.
+
+**V32 — the licensing gate reads the IR, and no interface bypasses it.** V7 refuses a multi-hop
+question over a relation type declaring `composition.path: forbidden`. V32 fixes where that authority
+lives: the **IR**, consulted before evaluation, for every interface over the same model.
+
+Nothing in the RDF projection carries the refusal. A raw endpoint evaluates `mage:owns+` and returns
+rows, so the refusal has to be a gate the question passes through rather than a `FILTER` the query
+author may omit — **a licensing check a caller can forget is not a control.** Implementations SHOULD
+hold this with a type: a question becomes runnable only by passing the gate, so an evaluator cannot be
+handed an ungated one. Two interfaces deciding this rule separately MUST decide it identically, down
+to the refusal sentence; a user who asks both and hears two explanations learns that one is guessing.
+
+**V33 — a refusal names what is missing AND what would license the question.** A refusal is an object,
+not a sentence: `outcome: unlicensed` plus the cause as data, the distinction the model lacks, and the
+change that would make the question answerable. A refusal that only declines is a dead end.
+
+Three causes, which a caller MUST be able to tell apart without reading English:
+
+| Cause | What it means | What it offers |
+|---|---|---|
+| **unlicensed by the model** | `composition.path: forbidden` (V7, V32) | declare composition allowed — a semantic claim the author owns |
+| **outside the supported subset** | the question uses a construct this version does not accept | the construct, by name, and the accepted set |
+| **not expressible as a relational question** | the question is behavioral | **routes to the engine** and says so |
+
+The first and third MUST NOT be collapsed. One reports that the model declines to answer; the other
+sends the asker to the interface that answers. A user told "unlicensed" when the truth is "the engine
+answers that" concludes the tool cannot do something it does.
+
+**V34 — query scope is stated per question, never defaulted.** System-level facts and each model's
+relations occupy different graphs, so every question chooses between the **union** across models and
+**one model's** graph. A claim about the system queries the union, and is therefore not escapable by
+moving the offending edge into another model; a question about one purposeful reduction scopes to that
+reduction. Implementations MUST make the caller state which. Choosing wrong is a silent wrong answer,
+and a default picks for a caller who never considered the question.
 
 ---
 

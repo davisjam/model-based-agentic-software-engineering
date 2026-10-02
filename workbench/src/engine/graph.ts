@@ -43,8 +43,14 @@ const DEFAULT_MAX_HOPS = 8;
 
 const sorted = (xs: Iterable<string>): readonly string[] => [...xs].sort();
 
-/** Which models carry edges of this type — the `models` half of a structured refusal. */
-function modelsDeclaring(system: CanonicalSystem, relation: string): readonly string[] {
+/**
+ * Which models carry edges of this type — the `models` half of a structured refusal.
+ *
+ * Exported for `src/sparql/licensing.ts`. The SPARQL seam builds the same V7 refusal and must name
+ * the same models in it; a second copy of this three-line query is how the two would drift apart on
+ * a detail nobody re-reads.
+ */
+export function modelsDeclaring(system: CanonicalSystem, relation: string): readonly string[] {
   return sorted(new Set(system.relations.filter((r) => r.type === relation).map((r) => r.model)));
 }
 
