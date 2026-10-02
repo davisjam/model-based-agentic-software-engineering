@@ -30,7 +30,7 @@ import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { Workspace } from "../src/app/services.ts";
 import { createAgentApi } from "../src/app/agent-api.ts";
-import type { CanonicalSystem, Evidence, QueryResult, Scalar } from "../src/ir/types.ts";
+import type { CanonQuantity, CanonicalSystem, Evidence, QueryResult, Scalar } from "../src/ir/types.ts";
 import {
   CAPABILITY_ROWS, EXAMPLE_IDS, deriveCoverage, exampleText, generateExampleCoverageModel,
   loadExample, machineVocabulary, purposefulModels, realPorts, sharedIdentities,
@@ -277,19 +277,37 @@ test("the supplied and presented query sets are exactly as declared", () => {
   }
 });
 
-test("a requirement's status agrees with the query that decides it", () => {
-  // MAGE v0.1 has no requirement construct, so a requirement lives in the fixture joined to a saved
-  // query. Without this check the join is a comment: a requirement could claim to be satisfied by a
-  // query whose recorded outcome refutes it.
+test("a requirement's status agrees with whatever decides it", () => {
+  // MAGE v0.1 has no requirement construct, so a requirement lives in the fixture joined to the
+  // thing that decides it. Without this check the join is a comment: a requirement could claim to be
+  // satisfied by a query whose recorded outcome refutes it.
+  //
+  // Two routes, and the fixture reader already refuses a requirement declaring both or neither:
+  //
+  //   expressedAs  a saved query decides it. The outcome must agree with `satisfiedWhen`.
+  //   decidedBy    a hand-derived quantitative expectation decides it. Nothing in src/ performs the
+  //                comparison, so the status is `pending-evaluator` and the check is that it does
+  //                NOT claim a verdict -- plus that the ceiling it states is the one the model
+  //                declares, which is checked against `declaredAs` further down.
   for (const ex of examples()) {
     assert.ok(ex.fixture.requirements.length > 0, `${ex.id}: section 2 asks for at least one requirement`);
     for (const req of ex.fixture.requirements) {
-      const q = ex.fixture.queries.find((x) => x.id === req.expressedAs);
-      assert.ok(q !== undefined, `${ex.id}/${req.id}: names query '${req.expressedAs}', which is not supplied`);
-      const met = q.expected.outcome === req.satisfiedWhen;
-      assert.equal(met, req.status === "satisfied",
-        `${ex.id}/${req.id}: status '${req.status}' disagrees with '${q.id}' answering ${q.expected.outcome} ` +
-        `against satisfied_when ${req.satisfiedWhen}`);
+      if (req.expressedAs !== null) {
+        const q = ex.fixture.queries.find((x) => x.id === req.expressedAs);
+        assert.ok(q !== undefined, `${ex.id}/${req.id}: names query '${req.expressedAs}', which is not supplied`);
+        const met = q.expected.outcome === req.satisfiedWhen;
+        assert.equal(met, req.status === "satisfied",
+          `${ex.id}/${req.id}: status '${req.status}' disagrees with '${q.id}' answering ${q.expected.outcome} ` +
+          `against satisfied_when ${req.satisfiedWhen}`);
+        continue;
+      }
+      const decider = ex.fixture.quantitativeExpectations.find((e) => e.id === req.decidedBy);
+      assert.ok(decider !== undefined,
+        `${ex.id}/${req.id}: names expectation '${String(req.decidedBy)}', which is not supplied`);
+      assert.equal(req.status, "pending-evaluator",
+        `${ex.id}/${req.id}: '${decider.id}' is hand-derived, so the requirement must not claim a verdict`);
+      assert.ok(decider.handDerived,
+        `${ex.id}/${req.id}: a pending-evaluator requirement must be decided by a hand-derived expectation`);
     }
   }
 });
@@ -492,6 +510,226 @@ test("message-bus: event-propagation is exactly the image of event-flow's permis
     "event-propagation must be the publish-and-subscribe image, with nothing added or dropped");
 });
 
+// ----------------------------------------------------------------------------------------------
+// document-processing: the quantitative half
+//
+// The accounting rulings put the join between a behavioral execution and a quantity on SHARED
+// IDENTITY, and the IR cannot hold that join itself: an entity's `executes_in_state` is an ordinary
+// property, so nothing stops it naming a state no machine declares. V27 resolves a quantity's
+// `target` and its `when.state`; it has no opinion about a property. These tests are that missing
+// half, plus the premise-checking that keeps the hand-derived numbers honest.
+// ----------------------------------------------------------------------------------------------
+
+/** Where a stage entity says it runs, for every entity that says so. */
+const stageStates = (system: CanonicalSystem): ReadonlyMap<string, string> => {
+  const out = new Map<string, string>();
+  for (const e of system.entities.values()) {
+    const state = e.properties.get("executes_in_state")?.value;
+    if (state !== undefined) out.set(e.id, String(state));
+  }
+  return out;
+};
+
+/** A quantity's normalized magnitude in base units, taking one end of a range. */
+function baseMagnitude(q: CanonQuantity, bound: "low" | "high"): number {
+  const v = q.value;
+  if (v.kind === "point") {
+    assert.ok(v.magnitude.base !== null, `${q.id}: magnitude did not normalize`);
+    return v.magnitude.base;
+  }
+  assert.equal(v.kind, "range", `${q.id}: expected a point or a range, got ${v.kind}`);
+  const end = v.kind === "range" ? (bound === "high" ? v.high : v.low) : null;
+  assert.ok(end?.base !== null && end?.base !== undefined, `${q.id}: range end did not normalize`);
+  return end.base;
+}
+
+/** The state each configuration of a trace occupies, including the one it started in. */
+function visitedStates(ev: Evidence, instance: string): readonly string[] {
+  const steps = [...ev.steps, ...(ev.cycle ?? [])];
+  const first = steps[0];
+  if (first === undefined) return [];
+  const seen = [String(first.from.control.get(instance))];
+  for (const s of steps) seen.push(String(s.to.control.get(instance)));
+  return seen;
+}
+
+test("document-processing: every stage names a lifecycle state, and every charged entity is a stage", () => {
+  // The join entity accounting runs on. Two directions, and both matter.
+  //
+  // Forward: `executes_in_state` must name a state some machine declares, or the entity is charged
+  // on the occupancy of nothing. Backward: an entity carrying a latency annotation must declare a
+  // stage, or its occurrence is never counted and the quantity validates while reaching no analysis
+  // -- which is the state V35-V37 exist to make unreachable, reproduced one level up in a property
+  // the validator does not read.
+  const system = loadExample("document-processing").workspace.state.system;
+  const declared = new Set<string>();
+  for (const m of system.machines.values()) for (const s of m.states) declared.add(`${m.id}.${s}`).add(s);
+
+  const stages = stageStates(system);
+  assert.ok(stages.size > 0, "the performance model must declare at least one stage");
+  for (const [entity, state] of stages) {
+    assert.ok(declared.has(state), `${entity}: executes_in_state '${state}' is not a declared state`);
+  }
+
+  for (const q of system.quantities.values()) {
+    if (q.dimension !== "duration" || q.target.kind !== "entity") continue;
+    assert.ok(stages.has(q.target.ref),
+      `${q.id} charges entity '${q.target.ref}', which declares no executes_in_state -- under ` +
+      `basis: entities its occurrences are never counted, so the quantity reaches no analysis`);
+  }
+
+  // And the cache is deliberately NOT a stage: its memory is charged by residency, not by a state's
+  // occupancy. An entity declaring a stage AND a resident charge would be declaring both at once.
+  for (const q of system.quantities.values()) {
+    if (q.residency === null || q.target.kind !== "entity") continue;
+    assert.ok(!stages.has(q.target.ref),
+      `${q.target.ref} is resident and also declares a stage; residency already says every configuration`);
+  }
+});
+
+test("document-processing: each hand-derived expectation's premises match the model and the engine", () => {
+  // The numbers are a human's. Every INPUT to them is the product's, and this is where the two meet.
+  // A premise that drifts -- a quantity retuned, a trace that changes shape, a ceiling edited in one
+  // place -- fails the build instead of leaving a stale figure that still looks derived.
+  const ex = loadExample("document-processing");
+  const system = ex.workspace.state.system;
+  const stages = stageStates(system);
+  assert.ok(ex.fixture.quantitativeExpectations.length > 0, "the example must state its expectations");
+
+  for (const e of ex.fixture.quantitativeExpectations) {
+    assert.ok(e.handDerived, `${e.id}: this version evaluates no quantity, so every entry is hand-derived`);
+
+    // Premise 1: the per-occurrence charges are the model's own normalized magnitudes.
+    for (const [id, ms] of e.charges) {
+      const q = system.quantities.get(id);
+      assert.ok(q !== undefined, `${e.id}: charges name quantity '${id}', which the model does not declare`);
+      assert.equal(q.dimension, "duration", `${e.id}/${id}: charged as a latency but declared ${String(q.dimension)}`);
+      assert.equal(baseMagnitude(q, e.bound ?? "high"), ms,
+        `${e.id}/${id}: the fixture charges ${ms} ms, the model declares something else`);
+    }
+
+    // Premise 2: the occurrence counts are the engine's, read off the witness trace through each
+    // entity's declared stage. This is the half the product does supply, so it is checked, not
+    // assumed -- and it is what makes a retry charge twice.
+    if (e.traceFrom !== null) {
+      const res = ex.workspace.query(savedRaw(system, e.traceFrom));
+      assert.equal(res.outcome, "holds", `${e.id}: '${e.traceFrom}' must produce a witness`);
+      assert.ok(res.evidence !== null, `${e.id}: '${e.traceFrom}' returned no evidence`);
+      const machine = [...system.machines.keys()][0];
+      assert.ok(machine !== undefined);
+      const visits = visitedStates(res.evidence, machine);
+      assert.ok(visits.length > 0, `${e.id}: the witness carries no configurations`);
+      for (const [entity, count] of e.occurrences) {
+        const state = stages.get(entity);
+        assert.ok(state !== undefined, `${e.id}: '${entity}' declares no stage, so it has no occurrences`);
+        const bare = state.includes(".") ? state.slice(state.lastIndexOf(".") + 1) : state;
+        assert.equal(visits.filter((s) => s === bare).length, count,
+          `${e.id}/${entity}: the fixture claims ${count} occurrence(s) of '${bare}' along '${e.traceFrom}'`);
+      }
+    }
+
+    // Premise 3: the resident / when-charged split is the quantities' own declaration, and exactly
+    // one `when` charge exists -- two would make summing them an upper bound rather than the peak,
+    // because nothing here asks whether both named states can be active together.
+    if (e.metric === "memory") {
+      const memory = [...system.quantities.values()].filter(
+        (q) => q.dimension === "memory" && q.target.kind === "entity");
+      const resident = memory.filter((q) => q.residency !== null).map((q) => q.id).sort();
+      const charged = memory.filter((q) => q.when !== null).map((q) => q.id).sort();
+      assert.deepEqual([...e.residentMb.keys()].sort(), resident, `${e.id}: resident set is stale`);
+      assert.deepEqual([...e.whenChargedMb.keys()].sort(), charged, `${e.id}: when-charged set is stale`);
+      assert.equal(charged.length, 1,
+        `${e.id}: ${charged.length} when-charged quantities. Summing more than one needs a JOINT ` +
+        `reachability question -- whether both named states can be active in one configuration -- ` +
+        `which this expectation does not ask.`);
+      for (const [id, mb] of [...e.residentMb, ...e.whenChargedMb]) {
+        const q = system.quantities.get(id);
+        assert.ok(q !== undefined, `${e.id}: names quantity '${id}', which the model does not declare`);
+        assert.equal(baseMagnitude(q, "high"), mb, `${e.id}/${id}: the fixture charges ${mb} MB`);
+      }
+
+      // Premise 4: a `when` charge whose state is unreachable enters memory(c) nowhere, so the
+      // 256 MB summand is real only if the engine says the state is reached.
+      assert.ok(e.reachabilityFrom !== null, `${e.id}: a memory peak must name the query deciding reachability`);
+      const res = ex.workspace.query(savedRaw(system, e.reachabilityFrom));
+      assert.equal(res.outcome, "holds",
+        `${e.id}: '${e.reachabilityFrom}' does not establish that the when-charged state is reached`);
+    }
+  }
+});
+
+test("document-processing: each requirement's ceiling is the one the model declares", () => {
+  // The ceiling has one source of truth -- a `model:`-targeted quantity, which SEMANTICS.md 5.3
+  // exempts from every accounting basis precisely so it can be a declared total to compare against.
+  // Without this check the fixture's `limit_ms` is a second copy free to drift from it.
+  const system = loadExample("document-processing").workspace.state.system;
+  const fixture = loadExample("document-processing").fixture;
+  const decided = fixture.requirements.filter((r) => r.decidedBy !== null);
+  assert.ok(decided.length > 0, "the example must carry a quantitative requirement");
+
+  for (const req of decided) {
+    assert.ok(req.declaredAs !== null, `${req.id}: must name the model: quantity carrying its ceiling`);
+    const q = system.quantities.get(req.declaredAs);
+    assert.ok(q !== undefined, `${req.id}: names quantity '${req.declaredAs}', which the model does not declare`);
+    assert.equal(q.target.kind, "model",
+      `${req.id}: a declared ceiling targets model:, not ${String(q.target.kind)} -- anything else is a summand`);
+    assert.equal(baseMagnitude(q, "high"), req.limit, `${req.id}: the fixture's limit is not the declared one`);
+    // A `model:` total declares no residency, and V37 reports one if it does. Asserted here too,
+    // because this is the one place a reader learns why the exemption exists.
+    assert.equal(q.residency, null, `${req.id}: a model-level total is compared against memory(c), never a summand`);
+    assert.equal(q.when, null, `${req.id}: a model-level total declares no activation`);
+  }
+});
+
+test("document-processing: the hand arithmetic adds up", () => {
+  // A statement about the FIXTURE's own numbers, not about the product: given these charges and
+  // these occurrence counts, does the stated total follow? It catches a typo in a sum that the
+  // commit message also carries, and it catches nothing else. The product computing any of this is
+  // the skipped test below.
+  const ex = loadExample("document-processing");
+  const system = ex.workspace.state.system;
+  // Which quantity charges which entity is the MODEL's fact -- a quantity's `target` -- so the two
+  // halves of the sum are joined through it rather than by matching names that happen to look alike.
+  const chargedEntity = (quantityId: string): string =>
+    String(system.quantities.get(quantityId)?.target.ref);
+
+  for (const e of ex.fixture.quantitativeExpectations) {
+    if (e.metric === "latency") {
+      let total = 0;
+      for (const [entity, count] of e.occurrences) {
+        const charges = [...e.charges].filter(([id]) => chargedEntity(id) === entity);
+        assert.ok(charges.length > 0, `${e.id}: no declared charge targets entity '${entity}'`);
+        for (const [, ms] of charges) total += count * ms;
+      }
+      assert.equal(total, e.expected, `${e.id}: the occurrences and charges sum to ${total}, not ${e.expected}`);
+      continue;
+    }
+    const resident = [...e.residentMb.values()].reduce((a, b) => a + b, 0);
+    const active = [...e.whenChargedMb.values()].reduce((a, b) => a + b, 0);
+    assert.equal(resident, e.baseline, `${e.id}: the resident total is the floor, and it is ${resident}`);
+    assert.equal(resident + active, e.expected,
+      `${e.id}: memory(c) at its peak is ${resident} + ${active}, not ${e.expected}`);
+  }
+});
+
+// --- Inert: what the product cannot do -------------------------------------------------------
+//
+// Skipped rather than absent. The gap belongs in `npm test` output, where the next person to read
+// the suite sees it, and not only in a commit message they will never open. Each reason names the
+// missing mechanism, so the evaluator wave can delete the skip and keep the assertion.
+
+test("the product computes a path latency", { skip: "no query aggregates a quantity along an execution, and $defs.result carries no field for a magnitude -- expected-results.yaml carries the number by hand" }, () => {
+  assert.fail("unreachable while skipped");
+});
+
+test("the product computes memory(c) and a peak over reachable configurations", { skip: "nothing in src/ implements memory(c) = resident + active, nor the max over reachable configurations" }, () => {
+  assert.fail("unreachable while skipped");
+});
+
+test("the product decides a declared requirement against its model: ceiling", { skip: "a model: quantity is a declared total and nothing compares a computed total against one; both quantitative requirements rest at pending-evaluator" }, () => {
+  assert.fail("unreachable while skipped");
+});
+
 test("worker-queue: every non-free lease state is claimed by exactly one worker entity", () => {
   // Worker identity lives in two places: as an entity in the worker-pool model, and as an
   // enumerated state in the lease machine, because V14 gives multiplicity as occupancy and never as
@@ -557,28 +795,41 @@ test("the coverage model loads clean and answers its own question", () => {
 
 test("EX-I3: the coverage model reports the gaps rather than omitting them", () => {
   // The honest answer to "does the shipped suite exercise every major public semantic capability?"
-  // is no, and this is the assertion that keeps it from quietly becoming yes. Document Processing is
-  // not shipped, so quantitative performance has no demonstration -- and the rows that would carry
-  // it must be present and marked, not dropped.
+  // is no, and this is the assertion that keeps it from quietly becoming yes.
+  //
+  // This test used to pin three rows as not-exercised, and two advances made that pinning wrong in
+  // turn: landing the quantity construct moved quantitative-annotations off `unavailable`, and
+  // shipping Document Processing exercised it outright. A snapshot of today's statuses fails on
+  // every real advance, so what is asserted here is the INVARIANT -- every row present, every
+  // `unavailable` row naming its blocker, and the matrix still reporting at least one gap.
   const report = deriveCoverage(examples());
 
-  // What EX-I3 actually requires is that these rows are PRESENT and NOT exercised. Which flavour of
-  // not-exercised they are is DERIVED and moves as phases land: `unavailable` means MAGE lacks the
-  // construct, `unexercised` means the construct exists and the shipped examples do not use it.
-  // Landing the quantity representation layer legitimately moved quantitative-annotations from the
-  // first to the second, so pinning the literal status made this test a snapshot that failed on a
-  // real advance. Assert the invariant, and let the status come from the substrate.
-  for (const id of ["quantitative-annotations", "performance", "requirements"]) {
-    const status = report.status.get(id);
-    assert.ok(status !== undefined, `${id} must be present in the model, not dropped`);
-    assert.notEqual(status, "exercised",
-      `${id} is reported exercised, but no shipped example demonstrates it`);
+  for (const row of CAPABILITY_ROWS) {
+    const status = report.status.get(row.id);
+    assert.ok(status !== undefined, `${row.id} must be present in the model, not dropped`);
     // Only an `unavailable` row owes a blocking construct -- that is the claim "MAGE cannot do this
     // yet", and an unnamed blocker makes it unfalsifiable. An `unexercised` row has nothing to name:
     // the construct is there and the examples simply do not reach for it.
     if (status === "unavailable") {
-      assert.ok((report.missingConstructs.get(id) ?? []).length > 0, `${id} must name what blocks it`);
+      assert.ok((report.missingConstructs.get(row.id) ?? []).length > 0, `${row.id} must name what blocks it`);
+    } else {
+      assert.deepEqual(report.missingConstructs.get(row.id) ?? [], [],
+        `${row.id} names a blocking construct but is not reported unavailable`);
     }
+  }
+
+  // `performance` is the row to watch, and it stays unavailable on purpose. Document Processing
+  // declares the quantities, declares their accounting and states both numbers -- and MAGE still
+  // decides neither requirement, because no query aggregates a quantity along an execution and no
+  // result field could carry the magnitude. The three neighbouring rows report what IS exercised,
+  // so the matrix distinguishes "represented and validated" from "evaluated" instead of blurring
+  // them into one green cell.
+  assert.equal(report.status.get("performance"), "unavailable",
+    "performance must stay unavailable while no query aggregates a quantity along an execution");
+  for (const id of ["quantitative-annotations", "declared-accounting",
+    "path-quantity-accounting", "configuration-memory-accounting"]) {
+    assert.equal(report.status.get(id), "exercised",
+      `${id} is what Document Processing was built to demonstrate`);
   }
 
   // The negative control for the whole model: a matrix where every row is green is a matrix nobody

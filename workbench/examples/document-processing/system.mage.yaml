@@ -1,0 +1,621 @@
+# Document Processing -- MAGE default example 2 of 3.
+#
+# Central lesson: a model useful for reasoning about workflow is not necessarily useful for
+# reasoning about performance. The lifecycle decides WHICH stages execute and HOW OFTEN; the
+# performance model decides WHAT EACH EXECUTION COSTS. Neither answers the latency question alone.
+#
+# Two purposeful models over one identity namespace:
+#
+#   document-lifecycle   a state machine. What states can a document enter, and what must occur
+#                        before publication? Carries the bounded retry counter.
+#   pipeline-performance a graph. Which stage costs what, and which stages hold memory while they
+#                        run? Carries every quantity and the declared accounting.
+#
+# They join on the `document` entity and on the state names: each stage entity declares the
+# lifecycle state during which it executes (`executes_in_state`), and the remediation memory charge
+# names that state in its `when:` clause. That join is the example's point.
+#
+# ## This file is the first model written against the accounting rulings (V35-V37)
+#
+# Two declarations do the work, and both are AUTHORED rather than inferred:
+#
+#   accounting.latency.basis: entities   -- an execution's latency is the sum over each OCCURRENCE
+#                                           of an accounted entity along it. Latency on a
+#                                           transition, a relation or a state is a V36 finding.
+#   residency / when                     -- every memory quantity declares exactly one. Neither is
+#                                           a V37 finding, because the quantity would then enter
+#                                           neither summand of memory(c).
+#
+# A retry charges Remediate again because the trace VISITS that entity again. No quantity anywhere
+# encodes a retry cost, and asking for one would be the double-counting the rulings refused.
+#
+# ## Known divergences, reported rather than worked around
+#
+# A machine carries no annotation at all -- `CanonMachine` has no `annotation` field -- so the
+# rationale the requirements' section 8 asks for lives on the `document` entity the machine names.
+# That is the honest workaround worker-queue already uses, not the intended home; the intended home
+# is an annotation slot on the machine.
+#
+# `python3 validate.py` and the TypeScript engine disagree about `stages-of-this-document`. Python
+# answers `unlicensed`, reading `stage_of`'s `composition.path: forbidden` as gating `predecessors`;
+# TypeScript answers `holds`, because `predecessors` asks who points AT an entity and is one hop by
+# construction. The divergence is NOT this example's: message-bus's `who-publishes-order-created`
+# and `who-subscribes-to-order-created` have the same shape and the same disagreement, and so does
+# its `restricted-data-reaches-impermitted-subscriber`. It belongs to the PARITY surface, and both
+# implementations cannot be right. expected-results.yaml records which side this file pins and why.
+#
+# The headers of message-bus and worker-queue report SCHEMA findings for `notes:` and the IR-shaped
+# `provenance:`. Both keys now appear in mage-model.schema.json and `python3 validate.py` reports all
+# three examples clean, so those two headers are stale. This one does not repeat the claim.
+#
+# MAGE v0.1 has no requirement construct and no query that aggregates a quantity along a path. The
+# two requirements are therefore declared as `model:`-targeted quantities, which is what the
+# `model:` exemption in SEMANTICS.md 5.3 exists for: a declared TOTAL that a requirement is compared
+# against, charged by no basis. Nothing in src/ performs the comparison yet. expected-results.yaml
+# carries the arithmetic by hand, marked as hand-derived, and test/examples.test.ts leaves the
+# verdict assertions inert with a stated reason rather than silently absent.
+
+mage: 1
+
+system:
+  id: document-processing
+  name: Document Remediation Pipeline
+  description: >
+    A document-remediation pipeline with a bounded retry policy, modeled twice: as the lifecycle a
+    document passes through, and as the latency and memory each stage costs when it runs.
+
+relation-types:
+
+  stage_of:
+    description: The component performs one stage of this document's processing.
+    absence: >
+      The component performs no stage of this document's processing. Absence says nothing about
+      whether the component exists or runs for some other reason -- a cache attached to a stage is
+      not itself a stage.
+    composition:
+      # A stage of a stage is not a thing. The target of `stage_of` is the document, and a document
+      # stages nothing, so a multi-hop question comes back unlicensed rather than false.
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
+  precedes:
+    description: The design runs the source stage before the target stage.
+    absence: >
+      No ordering between the two stages is represented. It does NOT follow that they run
+      concurrently: this model represents the pipeline's shape, not its scheduling.
+    composition:
+      # Pipeline order composes: if parse precedes remediate and remediate precedes validate, then
+      # parse runs before validate. Reachability through `precedes` is a meaningful question.
+      path: allowed
+    properties:
+      symmetric: false
+      acyclic: true
+
+  invokes:
+    description: The source stage calls the target component while it runs.
+    absence: No synchronous call is represented.
+    composition:
+      # A call chain is meaningful, so multi-hop is licensed.
+      path: allowed
+    properties:
+      symmetric: false
+      acyclic: true
+
+  caches_for:
+    description: The cache sits in front of the component and serves some of its requests.
+    absence: No cache is represented in front of that component.
+    composition:
+      # A cache of a cache is not represented here, and nothing would be asserted by composing two
+      # of these edges.
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
+# ---------------------------------------------------------------------------
+# THE identity namespace. Ids are immutable (V2).
+#
+# `executes_in_state` is the join that makes entity accounting work: it names the lifecycle state
+# during whose occupancy this component runs, so a trace that visits the state charges the
+# component. The value is checked against the machine's declared states by
+# test/examples.test.ts -- the IR cannot hold that join itself.
+#
+# Two components share one state. `remediation` and `model-gateway` both execute during
+# `remediating`, because the lifecycle preserves no distinction between remediating and calling the
+# gateway. That is the lesson rather than a defect: the behavioral model is coarser than the
+# performance model needs, and shared identity still lets the two join.
+# ---------------------------------------------------------------------------
+entities:
+
+  document:
+    type: document
+    label: Document
+    notes:
+      # The machine's rationale lives here. `CanonMachine` has no `annotation` field, so `notes:` on
+      # a machine would load as nothing -- the same honest workaround worker-queue uses.
+      - id: document-lifecycle-rationale
+        kind: rationale
+        text: >
+          The document-lifecycle machine represents the states a document passes through and the
+          bounded retry policy governing re-validation. It is the model that supplies EXECUTIONS:
+          which stages run, in what order, and how many times. It deliberately represents no
+          duration, no memory and no wall-clock time, so no question about cost has a reading here
+          -- that is what the performance model is for.
+      - id: document-performance-rationale
+        kind: rationale
+        text: >
+          The pipeline-performance model represents what each stage costs and holds. It supplies
+          COSTS and no executions: it has no notion of order of occurrence and cannot say how many
+          times remediation runs. Asking it for the latency of a document is a category error; the
+          number exists only over an execution the lifecycle supplies.
+      - id: shared-identity
+        kind: comment
+        text: >
+          Both models name this entity, and the performance model's components name this machine's
+          states. The two are reductions of one pipeline rather than unrelated diagrams.
+      - id: retry-charge-is-not-authored
+        kind: comment
+        text: >
+          Nothing in this file encodes the cost of a retry. A retry charges Remediate and the
+          gateway again because the behavioral trace visits those components again, which is the Q2
+          ruling's whole mechanism: shared identity connects purposeful models, it does not
+          accumulate their annotations.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Model a document-remediation pipeline twice -- as a bounded-retry lifecycle and as a
+        quantitative performance model over the same components -- so that the maximum latency of a
+        publishing document needs both, and so that an omitted cache hit rate makes an
+        expected-latency question unanswerable.
+      rationale: MAGE-provided example, document-processing, version 1.
+
+  parser:
+    type: service
+    label: Parse
+    properties:
+      executes_in_state: parsing
+
+  remediation:
+    type: service
+    label: Remediate
+    properties:
+      executes_in_state: remediating
+
+  model-gateway:
+    type: service
+    label: Model Gateway
+    properties:
+      # The gateway runs inside remediation, so it shares that state. The lifecycle has no separate
+      # state for a gateway call and does not need one.
+      executes_in_state: remediating
+
+  gateway-cache:
+    type: cache
+    label: Gateway cache
+    # No `executes_in_state`: a cache is not a stage. Its memory is charged by residency, not by the
+    # occupancy of a lifecycle state, and the suite checks that only latency-bearing components
+    # declare a stage.
+    notes:
+      - id: cache-hit-frequency-is-omitted
+        kind: assumption
+        text: >
+          This cache is represented, and the cost of a hit and the cost of a miss are both
+          representable from the gateway's declared range. Its HIT FREQUENCY is not represented and
+          is not meant to be: an expected latency is a weighted average, and the weights are the one
+          thing this model declines to supply. The suggested question
+          `expected-latency-with-the-cache` asks for exactly that average, and the engine refuses it
+          by name.
+
+  validator:
+    type: service
+    label: Validate
+    properties:
+      executes_in_state: validating
+
+# ---------------------------------------------------------------------------
+# The declared accounting model (Q2 ruling, V35/V36).
+#
+# One basis per path-aggregated metric, and the vocabulary is closed at one member for v0.1 so that
+# adding transition or relation accounting later is a deliberate act. Under `entities`, an
+# execution's latency is the sum of the latency assigned to each OCCURRENCE of an accounted entity
+# along the execution; a `duration` on a transition, a relation or a state contributes to nothing
+# and is a V36 finding rather than silently inert.
+# ---------------------------------------------------------------------------
+accounting:
+  latency:
+    basis: entities
+
+# ---------------------------------------------------------------------------
+# Quantities (requirements section 5.4), as annotations OVER the model and never part of it.
+#
+# Six annotations, two declarations, one exemption:
+#
+#   four `duration` on entities    charged per occurrence along a trace (basis: entities)
+#   one `memory` with `when:`      charged exactly while that state is active
+#   one `memory` with `residency:` charged in every configuration where the entity exists
+#   two `model:` totals            the declared requirements, charged by no basis
+#
+# The gateway's 100-500 ms range is the only interval here, and it is where a maximum comes from:
+# the maximum modeled latency takes its high end, every occurrence.
+# ---------------------------------------------------------------------------
+quantities:
+
+  parse-latency:
+    target: entity:parser
+    dimension: duration
+    value: 50 ms
+    description: One parse of one document.
+
+  remediate-latency:
+    target: entity:remediation
+    dimension: duration
+    value: 100 ms
+    description: One remediation pass, excluding the gateway call it makes.
+
+  gateway-latency:
+    target: entity:model-gateway
+    dimension: duration
+    range: [100 ms, 500 ms]
+    description: One gateway call. The interval is modeled; its distribution is not.
+
+  validate-latency:
+    target: entity:validator
+    dimension: duration
+    value: 75 ms
+    description: One conformance validation pass.
+
+  remediation-memory:
+    target: entity:remediation
+    dimension: memory
+    value: 256 MB
+    # Charged exactly while the document is remediating. Residency is never inferred: "idle service
+    # memory stays resident" and "idle service memory disappears" are both guesses MAGE refuses to
+    # make, so the annotation names the behavioral thing whose activation licenses the charge.
+    when:
+      state: document-lifecycle.remediating
+    description: Held by remediation while it runs, released when it finishes.
+
+  cache-memory:
+    target: entity:gateway-cache
+    dimension: memory
+    value: 128 MB
+    residency: resident
+    description: Held in every configuration. A cache that emptied between documents would not be one.
+
+  # The two requirements of section 5.4, as declared model content.
+  #
+  # MAGE v0.1 has no `requirements:` construct, and a `model:` quantity is what the semantics offer
+  # instead: a declared TOTAL that a requirement is compared against, exempt from every accounting
+  # basis because nothing sums it per occurrence (SEMANTICS.md 5.3). Declaring the ceiling is
+  # representation. Deciding whether the model meets it is evaluation, and no code does that yet.
+  latency-requirement:
+    target: model:pipeline-performance
+    dimension: duration
+    value: 750 ms
+    description: Required normal processing latency, as a declared ceiling.
+
+  peak-memory-requirement:
+    target: model:pipeline-performance
+    dimension: memory
+    value: 512 MB
+    description: Required peak memory over reachable configurations, as a declared ceiling.
+
+machines:
+
+  document-lifecycle:
+    entity: document
+    purpose:
+      question: What states can a document enter, and what must occur before publication?
+      represents:
+        - document lifecycle states
+        - the bounded retry counter
+        - that publication follows validation and nothing else
+        - re-validation after a failed validation
+      # NOTE: V24 checks `omits` only against a GRAPH model's vocabulary -- `checkMeaning` iterates
+      # `system.models` and never `system.machines`. test/examples.test.ts implements the missing
+      # check for these examples so this list cannot decay into decoration.
+      omits:
+        - how long any state lasts
+        - how much memory any stage holds
+        - retry backoff delay and wall-clock scheduling
+        - the disposition of a document that exhausts its retries
+        - concurrent documents and queue depth
+    initial: uploaded
+    states:
+      uploaded:
+      parsing:
+      remediating:
+      validating:
+      waiting:
+      published:
+    variables:
+      retry_count:
+        type: integer
+        # A finite domain is mandatory (V17), and it is what bounds the number of remediation passes
+        # -- which is what makes a MAXIMUM latency exist at all. An unbounded retry policy has no
+        # maximum modeled latency, and the model would have to refuse the question.
+        range: [0, 3]
+        initial: 0
+    derived:
+      # Recomputed, never stored, never part of state identity (V18).
+      retries_exhausted: retry_count == 3
+    transitions:
+
+      # Index 0.
+      - from: uploaded
+        to: parsing
+        label: parse
+
+      # Index 1.
+      - from: parsing
+        to: remediating
+        label: remediate
+
+      # Index 2.
+      - from: remediating
+        to: validating
+        label: validate
+
+      # Index 3. The ONLY edge into published, which is what makes the safety question decidable.
+      # The section 5.6-style modification in expected-results.yaml adds a second one and the answer
+      # flips.
+      - from: validating
+        to: published
+        label: publish
+
+      # Index 4.
+      - from: validating
+        to: waiting
+        label: failed
+
+      # Index 5. The retry, and the only transition that advances the counter. Deleting it is the
+      # second declared modification: with no retry the lifecycle supplies one remediation pass, and
+      # the maximum latency becomes the retry-free latency.
+      - from: waiting
+        to: remediating
+        label: retry
+        requires:
+          retry_count: { lt: 3 }
+        effects:
+          retry_count: retry_count + 1
+
+models:
+
+  pipeline-performance:
+    type: graph
+    label: Pipeline Performance
+    purpose:
+      question: Does document processing satisfy the modeled latency and memory requirements?
+      represents:
+        - pipeline stage identity
+        - pipeline order
+        - the gateway call remediation makes
+        - the cache in front of the gateway
+        - per-stage latency
+        - memory held while remediating, and memory held always
+        - the declared latency and peak-memory ceilings
+      # Checked against this model's real vocabulary (V24). The first entry is the flagship
+      # purposeful omission: the hit and miss costs are both representable, and their FREQUENCIES
+      # are deliberately absent, so an expected latency has no reading here.
+      omits:
+        - cache hit frequency
+        - the distribution of the gateway latency within its declared range
+        - upload and publication latency
+        - CPU, disk and network as separate resources
+        - how many documents run at once
+    entities: [document, parser, remediation, model-gateway, gateway-cache, validator]
+    notes:
+      - id: pipeline-performance-rationale
+        kind: rationale
+        text: >
+          This model represents cost and holds no executions. It names the same components the
+          lifecycle's states correspond to, and it says what one occurrence of each costs. It cannot
+          say how many occurrences there are, which is why the maximum-latency question needs the
+          lifecycle: the retry bound lives there, and the bound is what makes a maximum exist.
+      - id: entity-accounting-is-declared
+        kind: comment
+        text: >
+          Every latency annotation sits on an ENTITY, under a declared `accounting.latency.basis:
+          entities`. That is not a style preference. Summing across kinds would make the meaning of
+          a model depend on whether the author happened to represent the same operation in two
+          linked models, so a `duration` on a transition or a relation is a V36 finding here.
+      - id: memory-is-a-configuration-property
+        kind: comment
+        text: >
+          memory(c) = the sum of resident charges plus the sum of charges whose named state is
+          active in c. Both summands are keyed on a declaration, so `remediation-memory` carries a
+          `when:` and `cache-memory` carries `residency: resident`. The reading this produces:
+          during remediation 384 MB, outside it 128 MB.
+      - id: requirements-are-declared-totals
+        kind: comment
+        text: >
+          `latency-requirement` and `peak-memory-requirement` target `model:`, which exempts them
+          from every accounting basis -- nothing charges them per occurrence, because a requirement
+          is compared against a computed total rather than summed into it. They are the closest
+          thing v0.1 offers to a requirement construct.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Attach section 5.4's latency and memory quantities to the pipeline components, declare the
+        accounting basis and each memory charge's residency, and declare the two requirements as
+        model-level totals.
+      rationale: MAGE-provided example, document-processing, version 1.
+    relations:
+
+      - id: parser-stage-of-document
+        from: parser
+        to: document
+        type: stage_of
+      - id: remediation-stage-of-document
+        from: remediation
+        to: document
+        type: stage_of
+      - id: gateway-stage-of-document
+        from: model-gateway
+        to: document
+        type: stage_of
+      - id: validator-stage-of-document
+        from: validator
+        to: document
+        type: stage_of
+
+      - id: parse-precedes-remediate
+        from: parser
+        to: remediation
+        type: precedes
+      - id: remediate-precedes-validate
+        from: remediation
+        to: validator
+        type: precedes
+
+      - id: remediation-invokes-gateway
+        from: remediation
+        to: model-gateway
+        type: invokes
+
+      - id: cache-caches-for-gateway
+        from: gateway-cache
+        to: model-gateway
+        type: caches_for
+
+# ---------------------------------------------------------------------------
+# Saved queries. Expected outcomes live in expected-results.yaml -- one source of truth, because the
+# fixture also carries the models each question needs and the evidence it must produce.
+# ---------------------------------------------------------------------------
+queries:
+
+  # Section 5.3's safety query. `refuted` under exhaustive coverage establishes it: no reachable
+  # execution reaches published while avoiding validating, because index 3 is the only edge in.
+  publish-without-validating:
+    name: Can a document be published without reaching validating?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        document-lifecycle.state: published
+      avoid:
+        document-lifecycle.state: validating
+
+  # Section 5.3's behavioral query, asked in the only form that denotes it. `repeatable-cycle` asks
+  # for a genuinely repeated CONFIGURATION; `refuted` under exhaustive coverage says no reachable
+  # execution can retry forever, because retry_count strictly advances within a finite domain.
+  #
+  # That is an exhaustive statement about a finite transition system. It is not temporal liveness.
+  retry-forever:
+    name: Can processing continue retrying indefinitely?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: repeatable-cycle
+      target:
+        document-lifecycle.state: remediating
+
+  # The honest companion. A document CAN return to remediating -- that is re-entry, and the evidence
+  # is a lasso. It cannot do so forever.
+  document-returns-to-remediating:
+    name: Can a document return to remediating after a failed validation?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: recurrence
+      target:
+        document-lifecycle.state: remediating
+
+  # The retry-free execution. Its witness trace is the one whose latency the 750 ms ceiling is meant
+  # to govern, and expected-results.yaml pins the per-stage occurrence counts along it.
+  document-publishes:
+    name: Can a document reach published?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        document-lifecycle.state: published
+
+  # THE cross-model execution, and the reason the lifecycle carries a bounded counter. Pinning
+  # retry_count to its ceiling selects the publishing execution with the most remediation passes,
+  # which is the execution the maximum-latency question is about. The lifecycle supplies the trace;
+  # the performance model supplies what each visit costs; neither alone is sufficient.
+  publishes-after-three-retries:
+    name: Can a document publish having used every permitted retry?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        all-of:
+          - document-lifecycle.state: published
+          - document-lifecycle.retry_count: 3
+
+  # Whether the 256 MB remediation charge is ever incurred. The charge names a state in its `when:`
+  # clause; this asks the lifecycle whether that state is reachable. Cross-model by construction:
+  # the quantity is the performance model's and the state is the lifecycle's.
+  remediation-memory-is-charged:
+    name: Is the 256 MB remediation charge ever incurred?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        document-lifecycle.state: remediating
+
+  # Single-model and structural: which components perform a stage of this document's processing.
+  # `stage_of` forbids composition, and `predecessors` is not a composing form, so asking who points
+  # AT the document is one hop by construction.
+  stages-of-this-document:
+    name: Which components perform a stage of this document's processing?
+    kind: graph
+    quantifier: exists
+    graph:
+      form: predecessors
+      relation: stage_of
+      to: document
+
+  # Pipeline order, over the one relation type that licenses composition. The witness is a two-hop
+  # path, which is how you can tell the answer is not the degenerate src == dst one.
+  parse-runs-before-validate:
+    name: Does parsing run before validation?
+    kind: graph
+    quantifier: exists
+    graph:
+      form: path
+      relation: precedes
+      from: parser
+      to: validator
+
+  # THE flagship purposeful omission (section 5.6), made executable.
+  #
+  # An expected latency is a weighted average of the hit and miss costs, and this model declares no
+  # weights. The engine refuses the question by naming the vocabulary that would carry them: the
+  # relation type is `cache_hit_frequency`, so the sentence a user reads tells them what to model
+  # rather than merely declining.
+  #
+  # Section 5.6 prescribes the sentence "Not answerable. The model represents hit and miss costs but
+  # deliberately omits their frequencies." The engine does not produce that sentence -- no code path
+  # consults `purpose.omits` when refusing -- and expected-results.yaml records the gap rather than
+  # dressing it up.
+  expected-latency-with-the-cache:
+    name: Does the cache improve expected latency without violating the memory requirement?
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: cache_hit_frequency
+      from: gateway-cache
+      to: model-gateway
+
+views:
+
+  lifecycle:
+    label: Document lifecycle
+    machines: [document-lifecycle]
+    direction: top-to-bottom
+
+  pipeline:
+    label: Pipeline performance
+    models: [pipeline-performance]
+    direction: left-to-right
+    show-properties: [executes_in_state]
