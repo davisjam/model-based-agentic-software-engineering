@@ -338,6 +338,53 @@
         </div>
         <button type="button" id="set-property-go">Set the property</button>
       </fieldset>
+
+      <fieldset id="form-add-model">
+        <legend>Add a model</legend>
+        <p class="hint">
+          A model is a purposeful reduction, so the question it answers is required. It lists
+          entities the system already declares; models reference, they never redeclare.
+        </p>
+        <label class="field" for="add-model-id"><span>Id</span>
+          <input type="text" id="add-model-id" autocomplete="off"></label>
+        <label class="field" for="add-model-label"><span>Label (optional)</span>
+          <input type="text" id="add-model-label" autocomplete="off"></label>
+        <label class="field" for="add-model-question"><span>The engineering question it answers</span>
+          <input type="text" id="add-model-question" autocomplete="off"
+                 placeholder="Which services may invoke which other services?"></label>
+        <label class="field" for="add-model-entities">
+          <span>Entities (optional, separated by commas)</span>
+          <input type="text" id="add-model-entities" list="entity-ids" autocomplete="off">
+          <datalist id="entity-ids"></datalist></label>
+        <button type="button" id="add-model-go">Add the model</button>
+      </fieldset>
+
+      <fieldset id="form-delete-model">
+        <legend>Remove a model</legend>
+        <p class="hint">
+          Refused while the model still asserts a relation. Remove those relations first: each one
+          is an architectural claim, and nothing here will drop a claim as a side effect.
+        </p>
+        <label class="field" for="delete-model-target"><span>Model</span>
+          <select id="delete-model-target"></select></label>
+        <button type="button" id="delete-model-go">Remove the model</button>
+      </fieldset>
+
+      <fieldset id="form-add-note">
+        <legend>Attach a note</legend>
+        <p class="hint">
+          Context, not a constraint. A note changes nothing the model asserts and does not advance
+          its revision, so analysis ignores it. To make an assumption bind a result, represent it as
+          a property, a variable or a guard.
+        </p>
+        <label class="field" for="add-note-target"><span>About</span>
+          <select id="add-note-target"></select></label>
+        <label class="field" for="add-note-kind"><span>Kind</span>
+          <select id="add-note-kind"></select></label>
+        <label class="field" for="add-note-text"><span>Note</span>
+          <input type="text" id="add-note-text" autocomplete="off"></label>
+        <button type="button" id="add-note-go">Attach the note</button>
+      </fieldset>
     </div>
   </section>
 
