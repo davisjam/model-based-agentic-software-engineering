@@ -244,10 +244,15 @@
     },
 
     "quantities": {
-      "description": "Quantitative annotations over existing semantic objects. NEVER part of the behavioral state vector (V6/SEMANTICS.md 5.2) -- a real-valued annotation in the state vector would make the reachable space infinite. ENGINE-checked: targets resolve (V27), dimension and literals are readable (V28), magnitudes are in bounds (V29), dimensions agree (V30).",
+      "description": "Quantitative annotations over existing semantic objects. NEVER part of the behavioral state vector (V6/SEMANTICS.md 5.2) -- a real-valued annotation in the state vector would make the reachable space infinite. ENGINE-checked: targets resolve (V27), dimension and literals are readable (V28), magnitudes are in bounds (V29), dimensions agree (V30), each one reaches an analysis (V36, V37).",
       "type": "object",
       "propertyNames": { "$ref": "#/$defs/id" },
       "additionalProperties": { "$ref": "#/$defs/quantity" }
+    },
+    "accounting": {
+      "description": "How each path-aggregated metric charges its annotations, keyed by metric name (`latency`, `cost`). One basis per metric; the vocabulary is `entities` for v0.1, closed so that adding transition or relation accounting is a deliberate act. Declared per quantitative model -- v0.1 has one per system, the quantities: map, so this is a top-level block. ENGINE-checked (V35): the metric and the basis are known, and a metric with annotations declares one. NEITHER the metric name nor the basis is enumerated here, for the reason `dimension` is not: a wrong one reaches the MEANING layer and both implementations cite V35 instead of Python answering SCHEMA where TypeScript answers a V-number.",
+      "type": "object",
+      "additionalProperties": { "type": "object" }
     },
 
     "queries": {
@@ -332,6 +337,14 @@
           "minItems": 2,
           "maxItems": 2,
           "items": { "oneOf": [{ "type": "string" }, { "type": "number" }] }
+        },
+        "residency": {
+          "description": "`resident` -- charged in every configuration where the target exists. Exactly one of residency / when on a configuration-scoped (memory) quantity; neither is a finding, because the quantity would then enter no summand of memory(c) (V37). NO enum here deliberately: `residency: transient` is a plausible author guess and V37's message names the closed vocabulary, which a schema complaint does not.",
+          "type": "string"
+        },
+        "when": {
+          "description": "`{ state: <machine>.<state> }` -- charged exactly while that behavioral state is active. The state reference resolves like any other (V27). Left OPEN rather than closed to `state` only, for the reason a note object is left open: an unexpected key here means the charge is declared nowhere, and V37 can say that where a shape complaint cannot.",
+          "type": "object"
         },
         "description": { "type": "string" },
         "notes": { "$ref": "#/$defs/notes" },

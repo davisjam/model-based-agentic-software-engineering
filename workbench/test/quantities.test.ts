@@ -1,4 +1,4 @@
-// Quantities: the representation layer, and the five rules over it (V27-V31).
+// Quantities: the representation layer (V27-V31) and the declared accounting model (V35-V37).
 //
 // The first test is the one to read. §6 makes "quantities are not state" a hard semantic boundary,
 // and the shortcut it forbids is the only unrecoverable one in this phase: a real-valued annotation
@@ -6,10 +6,11 @@
 // `Coverage.kind: "exhaustive"`, and that flag licenses the strongest claims the workbench makes.
 // Counting configurations with and against the same model is that boundary, executable.
 //
-// Nothing here evaluates a quantity. Summing a trace's latency needs an accounting model the spec
-// does not declare, and `memory(c)` turns on an undefined "active" -- both are recorded as open
-// questions in DESIGN-quantities-261002.md §8 rather than guessed at, because a guess would be
-// baked into fixtures and then into expectations.
+// Nothing here evaluates a quantity, and that line survived the accounting rulings intact. The
+// accounting model is now DECLARED (DECISIONS-RULED-quantities-261002.md): the author states a basis
+// per path-aggregated metric and states when a memory quantity is charged, so V35-V37 check the
+// declaration and nothing sums a trace. Dimensional typing needed no arithmetic for the same reason
+// -- participation is a property of a quantity's declaration, not of its value.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { canonicalize } from "../src/ir/canonicalize.ts";
@@ -17,13 +18,18 @@ import { systemHash } from "../src/ir/hash.ts";
 import { checkQuantities, validate } from "../src/validator/rules.ts";
 import { compileSystem, defaultOptions, exploreSpace } from "../src/engine/explore.ts";
 import {
-  DIMENSIONS, DIMENSION_IDS, METRIC_NAMES, UNIT_DIMENSIONS, configKey, isPlainDecimal, modelMetrics,
+  ACCOUNTED_METRICS, ACCOUNTED_METRIC_IDS, ACCOUNTING_BASES, BASIS_TARGET_KINDS, DIMENSIONS,
+  DIMENSION_IDS, METRIC_NAMES, RESIDENCIES, UNIT_DIMENSIONS, configKey, isPlainDecimal, modelMetrics,
 } from "../src/ir/types.ts";
 import type { CanonicalSystem, Dimension, Finding, Magnitude } from "../src/ir/types.ts";
 
 const base = {
   mage: 1,
   system: { id: "t" },
+  // Declared once in the fixture so the V27-V31 tests below keep their subject. Without it every
+  // duration quantity here would also draw V35, which is correct behaviour and the wrong thing for a
+  // test about units to be asserting.
+  accounting: { latency: { basis: "entities" } },
   entities: { cache: {}, parser: {} },
   "relation-types": { calls: { description: "d", composition: { path: "allowed" } } },
   models: { g: { type: "graph", entities: ["cache", "parser"], relations: [{ id: "edge", from: "parser", to: "cache", type: "calls" }] } },
@@ -345,21 +351,22 @@ test("V29 holds a ratio inside [0, 1]", () => {
   assert.match(found[0]?.message ?? "", /above the maximum 1 for ratio/);
   // The negative control, including both endpoints: a rule that fires on everything buys nothing.
   for (const value of [0, 0.8, 1]) assert.deepEqual(rules(one({ dimension: "ratio", value })), []);
-  // And the ceiling belongs to `ratio` alone -- 1024 MB is not out of bounds.
-  assert.deepEqual(rules(one({ dimension: "memory", value: "1024 MB" })), []);
+  // And the ceiling belongs to `ratio` alone -- 1024 MB is not out of bounds. The `residency:` is
+  // V37's requirement, not V29's subject; without it this would assert two rules at once.
+  assert.deepEqual(rules(one({ dimension: "memory", value: "1024 MB", residency: "resident" })), []);
 });
 
 test("V29 refuses a negative magnitude and a reversed range", () => {
   // §29 ⑥ grants safety to "monotone nonnegative interval expressions", and a memory of -1 MB
   // models nothing.
-  assert.deepEqual(rules(one({ dimension: "memory", value: "-1 MB" })), ["V29"]);
+  assert.deepEqual(rules(one({ dimension: "memory", value: "-1 MB", residency: "resident" })), ["V29"]);
   assert.deepEqual(rules(one({ dimension: "count", value: -1 })), ["V29"]);
-  const found = findings(one({ dimension: "memory", range: ["1 GB", "1 MB"] }));
+  const found = findings(one({ dimension: "memory", range: ["1 GB", "1 MB"], residency: "resident" }));
   assert.deepEqual(found.map((f) => f.rule), ["V29"]);
   assert.match(found[0]?.message ?? "", /reversed: 1024 > 1 in MB/);
   // The negative control: ordered, and equal, are both fine -- a point interval is a range.
   assert.deepEqual(rules(one({ dimension: "duration", range: ["100 ms", "500 ms"] })), []);
-  assert.deepEqual(rules(one({ dimension: "memory", range: ["1024 MB", "1 GB"] })), []);
+  assert.deepEqual(rules(one({ dimension: "memory", range: ["1024 MB", "1 GB"], residency: "resident" })), []);
 });
 
 test("V30 refuses a unit from another dimension", () => {
@@ -402,6 +409,255 @@ test("V30 declines when an operand never resolved", () => {
     broken: { target: "entity:cache", dimension: "bytes", value: 1 },
     q: { target: "model:g", dimension: "memory", value: { expression: "broken + 2 MB" } },
   }), ["V28"]);
+});
+
+// ---------------------------------------------------------------------------------------------
+// Task 7 -- V35, V36, V37: the declared accounting model
+//
+// The governing principle every test below is an instance of: a quantitative annotation that cannot
+// participate unambiguously in the accounting semantics of its metric is INVALID, not inert. The
+// failure these catch is the one a validator is most likely to permit -- a quantity that typechecks,
+// validates, and then reaches no analysis, which is the type system claiming more than the semantics
+// provide.
+// ---------------------------------------------------------------------------------------------
+
+/** The ruled document's own example, as a whole system. The clean case is the one to read. */
+const worked = (overrides: Record<string, unknown> = {}): unknown => ({
+  mage: 1,
+  system: { id: "docproc" },
+  accounting: { latency: { basis: "entities" } },
+  entities: { remediation: {}, "gateway-cache": {} },
+  machines: {
+    document: {
+      initial: "waiting",
+      states: { waiting: null, remediating: null, published: null },
+      transitions: [
+        { from: "waiting", to: "remediating", label: "remediate" },
+        { from: "remediating", to: "published" },
+      ],
+    },
+  },
+  quantities: {
+    // 256 MB charged exactly while the linked behavioral thing is active.
+    remediation: {
+      target: "entity:remediation", dimension: "memory", value: "256 MB",
+      when: { state: "document.remediating" },
+    },
+    // 128 MB charged in every configuration where the entity exists.
+    "gateway-cache": { target: "entity:gateway-cache", dimension: "memory", value: "128 MB", residency: "resident" },
+    remediate: { target: "entity:remediation", dimension: "duration", value: "100 ms" },
+  },
+  ...overrides,
+});
+
+test("the ruled document's worked example canonicalizes and validates clean", () => {
+  // The whole point of both rulings, executable: "the shipped example now has one interpretation.
+  // During remediation it is at least 384 MB; outside remediation the cache remains 128 MB." That
+  // determinacy is what the two declarations buy, so the clean case is the load-bearing assertion.
+  const s = canonicalize(worked());
+  assert.deepEqual(validate(s), []);
+
+  // And the declarations survived canonicalization as the typed things the evaluator will read.
+  assert.equal(s.accounting.get("latency")?.basis, "entities");
+  assert.equal(s.quantities.get("gateway-cache")?.residency, "resident");
+  assert.equal(s.quantities.get("remediation")?.when?.state, "document.remediating");
+  // Neither is authored on the other quantity: exactly one form per quantity is V37's content.
+  assert.equal(s.quantities.get("gateway-cache")?.when, null);
+  assert.equal(s.quantities.get("remediation")?.residency, null);
+});
+
+test("V35 refuses a latency annotation with no declared accounting basis", () => {
+  // The ruling: "Each path-aggregated quantitative metric SHALL declare one accounting basis." An
+  // undeclared basis leaves the author's duration annotations reaching nothing, which the governing
+  // principle makes invalid rather than inert.
+  const found = checkQuantities(canonicalize(worked({ accounting: undefined })));
+  assert.deepEqual(found.map((f) => f.rule), ["V35"]);
+  assert.equal(found[0]?.where, "accounting");
+  assert.match(found[0]?.message ?? "", /no accounting basis is declared for 'latency'/);
+
+  // The requirement is triggered by a quantity the basis would charge, not declared unconditionally:
+  // a system with no duration annotation has nothing that could over-claim.
+  assert.deepEqual(rules({ q: { target: "entity:cache", dimension: "count", value: 1 } }), []);
+  assert.deepEqual(
+    checkQuantities(canonicalize({ ...base, accounting: undefined, quantities: undefined })), []);
+});
+
+test("V35 refuses a basis outside the closed vocabulary, including `all`", () => {
+  // `all` is the one the ruling names and rejects: with it, "double counting then becomes an
+  // authoring problem with no principled answer". A permissive union also cannot be narrowed later
+  // without breaking every model that relied on it, which is why the set is closed at one member.
+  for (const basis of ["all", "transitions", "relations", ""]) {
+    const found = checkQuantities(canonicalize(worked({ accounting: { latency: { basis } } })));
+    assert.deepEqual(found.map((f) => f.rule), ["V35"], `basis '${basis}'`);
+    assert.equal(found[0]?.where, "accounting.latency");
+  }
+  assert.deepEqual(ACCOUNTING_BASES, ["entities"]);
+});
+
+test("V35 tells a metric from a dimension", () => {
+  // `accounting: { memory: … }` is the plausible mistake, because the author knows `memory` as a
+  // dimension. A metric names the ANALYSIS; only the execution-scoped dimensions are summed along a
+  // path, and memory declares where it is charged instead.
+  const found = checkQuantities(canonicalize(worked({
+    accounting: { latency: { basis: "entities" }, memory: { basis: "entities" } },
+  })));
+  assert.deepEqual(found.map((f) => f.rule), ["V35"]);
+  assert.match(found[0]?.message ?? "", /names a DIMENSION, and a metric is not a dimension/);
+
+  // The metric set is DERIVED, never a hand-kept list: a metric is path-aggregated exactly when its
+  // dimension's scope is `execution`. Without this a new execution-scoped dimension would silently
+  // acquire quantities that no basis accounts for and no rule notices.
+  const executionDimensions = DIMENSION_IDS.filter((d) => DIMENSIONS[d].scope === "execution");
+  assert.deepEqual(
+    [...ACCOUNTED_METRIC_IDS].map((m) => ACCOUNTED_METRICS[m]).sort(),
+    [...executionDimensions].sort());
+});
+
+test("V36 refuses a latency annotation on a kind the declared basis does not account for", () => {
+  // Q2's rule. Latency annotations on other semantic kinds "SHALL NOT implicitly contribute", and
+  // the reason is sharper than arithmetic: indiscriminate summing "makes the meaning of a model
+  // depend on whether the author happened to represent the same operation in multiple linked
+  // models." A retry is charged twice because the trace visits the operation twice.
+  for (const target of ["transition:document#0", "state:document.remediating"]) {
+    const found = checkQuantities(canonicalize(worked({
+      quantities: { q: { target, dimension: "duration", value: "100 ms" } },
+    })));
+    assert.deepEqual(found.map((f) => f.rule), ["V36"], `target '${target}'`);
+    assert.match(found[0]?.message ?? "", /charges only entity: targets/);
+  }
+
+  // The negative control, and the reason the rule is not merely "refuse everything": an
+  // entity-targeted duration is exactly what basis `entities` charges.
+  assert.deepEqual(checkQuantities(canonicalize(worked({
+    quantities: { q: { target: "entity:remediation", dimension: "duration", value: "100 ms" } },
+  }))), []);
+  assert.deepEqual(BASIS_TARGET_KINDS.entities, ["entity"]);
+
+  // A `model:` target is exempt, and that is a judgement the rule has to make explicitly: a declared
+  // model TOTAL is compared against, never accumulated per occurrence, so no basis charges it.
+  assert.deepEqual(checkQuantities(canonicalize(worked({
+    models: { flow: { type: "graph", entities: ["remediation"] } },
+    quantities: { q: { target: "model:flow", dimension: "duration", value: { expression: "metrics.state_count * 2 ms" } } },
+  }))), []);
+});
+
+test("V37 refuses a memory quantity that declares neither residency nor when", () => {
+  // Q3's rule. Such a quantity enters neither summand of memory(c), so no configuration charges it.
+  // The ruling refused to supply a default: "I would not say 'idle service memory stays resident' or
+  // 'idle service memory disappears.' Neither is something MAGE can infer from 'service.'"
+  const found = checkQuantities(canonicalize(worked({
+    quantities: { q: { target: "entity:gateway-cache", dimension: "memory", value: "128 MB" } },
+  })));
+  assert.deepEqual(found.map((f) => f.rule), ["V37"]);
+  assert.match(found[0]?.message ?? "", /enters neither summand of memory\(c\)/);
+
+  // Both forms are accepted, and nothing else is. A closed vocabulary at one member keeps adding a
+  // second residency a deliberate act.
+  assert.deepEqual(RESIDENCIES, ["resident"]);
+  assert.deepEqual(rules({ q: { target: "entity:cache", dimension: "memory", value: "1 MB", residency: "transient" } }), ["V37"]);
+});
+
+test("V37 refuses a memory quantity that declares BOTH", () => {
+  // The two forms are the two summands and a quantity enters one of them. Accepting both would
+  // either double-charge the resident sum or silently pick a winner, which is the implicit-semantics
+  // failure the ruling exists to remove.
+  const found = checkQuantities(canonicalize(worked({
+    quantities: {
+      q: {
+        target: "entity:gateway-cache", dimension: "memory", value: "128 MB",
+        residency: "resident", when: { state: "document.remediating" },
+      },
+    },
+  })));
+  assert.deepEqual(found.map((f) => f.rule), ["V37"]);
+  assert.match(found[0]?.message ?? "", /declares both/);
+
+  // And a `when:` block that declares no state is the same defect wearing a declaration: nothing
+  // identifies the thing whose activation charges the quantity.
+  for (const when of [{}, { configuration: "c" }, "document.remediating"]) {
+    assert.deepEqual(rules({ q: { target: "entity:cache", dimension: "memory", value: "1 MB", when } }),
+      ["V37"], JSON.stringify(when));
+  }
+});
+
+test("V37 refuses residency on a dimension that is not configuration-scoped", () => {
+  // Residency says which CONFIGURATIONS charge a quantity, which only a configuration-scoped
+  // dimension asks. A duration's accounting is the declared basis, so a resident latency is a
+  // category error rather than a redundant field -- it would otherwise sit there reaching nothing.
+  for (const dimension of ["duration", "ratio", "count"] as const) {
+    const value = dimension === "duration" ? "100 ms" : 1;
+    assert.deepEqual(rules(one({ dimension, value, residency: "resident" })), ["V37"], dimension);
+    assert.deepEqual(rules(one({ dimension, value, when: { state: "waiting" } })), ["V37"], dimension);
+  }
+
+  // And a model-level memory total takes neither: memory(c) sums over entities, so a whole-model
+  // figure is compared against it rather than being a summand of it.
+  assert.deepEqual(rules({ q: { target: "model:g", dimension: "memory", value: "1 MB", residency: "resident" } }), ["V37"]);
+  assert.deepEqual(rules({ q: { target: "model:g", dimension: "memory", value: "1 MB" } }), []);
+});
+
+test("V27 resolves when.state through the same resolver as a state: target", () => {
+  // The ruling requires `when.state` to resolve "like every other reference", so it extends V27
+  // rather than earning a rule of its own -- a second resolver is how two reference rules drift
+  // apart, and the bare-name ambiguity refusal is exactly what would have been fixed in one only.
+  const whenState = (state: string): readonly Finding[] => checkQuantities(canonicalize(worked({
+    quantities: { q: { target: "entity:gateway-cache", dimension: "memory", value: "1 MB", when: { state } } },
+  })));
+
+  assert.deepEqual(whenState("document.remediating").map((f) => f.rule), []);
+  assert.deepEqual(whenState("remediating").map((f) => f.rule), [], "a bare name resolves when unambiguous");
+
+  const ghost = whenState("document.ghost");
+  assert.deepEqual(ghost.map((f) => f.rule), ["V27"]);
+  assert.match(ghost[0]?.message ?? "", /'document' declares no state 'ghost'/);
+  assert.deepEqual(whenState("nomachine.remediating").map((f) => f.rule), ["V27"]);
+  assert.deepEqual(whenState("nosuchstate").map((f) => f.rule), ["V27"]);
+});
+
+test("a broken target and a broken when are two distinguishable findings, not one line twice", () => {
+  // The double-report hazard. Both references are V27's subject, so both must be reported -- and at
+  // DIFFERENT `where`s, or the author reads two identical locations and fixes one field.
+  const found = checkQuantities(canonicalize(worked({
+    quantities: {
+      q: { target: "entity:ghost", dimension: "memory", value: "1 MB", when: { state: "document.ghost" } },
+    },
+  })));
+  assert.deepEqual(found.map((f) => f.rule), ["V27", "V27"]);
+  assert.deepEqual(found.map((f) => f.where), ["quantities.q", "quantities.q.when"]);
+
+  // And a resolvable `when` on a broken target reports the target alone: V27 does not say the same
+  // thing twice, and V37 declines because what residency a quantity needs depends on what it
+  // annotates -- which an unresolvable target leaves undecidable.
+  const targetOnly = checkQuantities(canonicalize(worked({
+    quantities: {
+      q: { target: "entity:ghost", dimension: "memory", value: "1 MB", when: { state: "document.remediating" } },
+    },
+  })));
+  assert.deepEqual(targetOnly.map((f) => f.where), ["quantities.q"]);
+});
+
+test("the accounting declaration and residency are SEMANTIC, so they move the hash", () => {
+  // They decide which analyses a quantity can participate in, so two systems differing in them
+  // compute different answers and are not the same system. The contrast with annotation is the
+  // test: invariant A1 keeps a note out of the hash, and these must be in it.
+  const declared = systemHash(canonicalize(worked()));
+
+  assert.notEqual(systemHash(canonicalize(worked({ accounting: undefined }))), declared,
+    "declaring a basis must not be invisible to the transaction base");
+  assert.notEqual(systemHash(canonicalize(worked({ accounting: { latency: { basis: "transitions" } } }))), declared,
+    "a different basis is a different system even when every quantity is byte-identical");
+
+  // Residency likewise: resident and when-active are different memory profiles.
+  const resident = (spec: Record<string, unknown>): string => systemHash(canonicalize(worked({
+    quantities: { q: { target: "entity:gateway-cache", dimension: "memory", value: "128 MB", ...spec } },
+  })));
+  assert.notEqual(resident({ residency: "resident" }), resident({ when: { state: "document.remediating" } }));
+  assert.notEqual(resident({ residency: "resident" }), resident({}));
+
+  // A1 still holds alongside all of it: a note on the quantity, or on the system, changes nothing.
+  assert.equal(
+    resident({ residency: "resident", notes: [{ id: "n1", kind: "rationale", text: "measured on staging" }] }),
+    resident({ residency: "resident" }));
 });
 
 test("V25 still runs first and exclusively, so a coerced model reports no quantity finding", () => {

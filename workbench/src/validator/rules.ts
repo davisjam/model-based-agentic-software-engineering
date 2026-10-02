@@ -1,5 +1,5 @@
 /**
- * The numbered semantic rules, V1–V31 of ../../SEMANTICS.md, plus the un-numbered ANNOTATION pass.
+ * The numbered semantic rules of ../../SEMANTICS.md, plus the un-numbered ANNOTATION pass.
  *
  * Kernel component: depends only on the IR. Every finding carries its rule id, so the spec, this
  * module, `workbench/validate.py`, and the error a user reads all cite the same identifier. That
@@ -10,10 +10,14 @@
  * reference resolution, graph acyclicity, participant symmetry, and loader hazards.
  */
 import type {
-  Annotated, CanonMachine, CanonQuantity, CanonicalSystem, Dimension, ExprOperand, Finding, GuardOp,
-  Magnitude, Scalar,
+  AccountedMetric, Annotated, CanonMachine, CanonQuantity, CanonicalSystem, Dimension, ExprOperand,
+  Finding, GuardOp, Magnitude, Scalar, TargetKind,
 } from "../ir/types.ts";
-import { DIMENSIONS, DIMENSION_IDS, METRIC_NAMES, METRIC_NAMESPACE, TARGET_KINDS } from "../ir/types.ts";
+import {
+  ACCOUNTABLE_TARGET_KINDS, ACCOUNTED_METRICS, ACCOUNTED_METRIC_IDS, ACCOUNTING_BASES,
+  AGGREGATE_TARGET_KIND, BASIS_TARGET_KINDS, DIMENSIONS, DIMENSION_IDS, METRIC_NAMES,
+  METRIC_NAMESPACE, RESIDENCIES, TARGET_KINDS,
+} from "../ir/types.ts";
 
 /**
  * YAML 1.1 implicit-types these bare scalars. A key or id among them was read as a boolean or null
@@ -375,14 +379,45 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
 }
 
 // ---------------------------------------------------------------------------------------------
-// V27–V31 — quantities.
+// V27–V31, V35–V37 — quantities.
 //
-// Five subjects, one each: the references resolve (V27), the dimension and the literals are
-// readable (V28), the magnitudes are in bounds (V29), the dimensions agree (V30), and the reserved
-// `metrics` namespace is not shadowed (V31).
+// Eight subjects, one each: the references resolve (V27), the dimension and the literals are
+// readable (V28), the magnitudes are in bounds (V29), the dimensions agree (V30), the reserved
+// `metrics` namespace is not shadowed (V31), the accounting basis is declared (V35), each quantity
+// contributes through that basis (V36), and a configuration-scoped quantity declares when it is
+// charged (V37).
 // ---------------------------------------------------------------------------------------------
 
 const listUnits = (d: Dimension): string => Object.keys(DIMENSIONS[d].units).join(", ");
+
+/**
+ * Where a state reference points, or the reason it points nowhere.
+ *
+ * ONE resolver for both of a quantity's state references — its `target: state:…` and its
+ * `when: { state: … }`. They are the same question and the ruling says so ("`when.state` resolves to
+ * a real state, like every other reference"), so a second resolver would be two rules drifting
+ * apart: the bare-name ambiguity refusal would be fixed in one and not the other.
+ *
+ * `subject` prefixes the message and `qualifyPrefix` spells the fix for the caller's own syntax,
+ * which is the only thing the two sites do differently.
+ */
+function stateFault(s: CanonicalSystem, subject: string, ref: string, qualifyPrefix: string): string | null {
+  const dot = ref.lastIndexOf(".");
+  if (dot > 0 && dot < ref.length - 1) {
+    const machine = s.machines.get(ref.slice(0, dot));
+    if (machine === undefined) return `${subject}: '${ref.slice(0, dot)}' is not a declared machine.`;
+    return machine.states.includes(ref.slice(dot + 1)) ? null
+      : `${subject}: '${machine.id}' declares no state '${ref.slice(dot + 1)}'.`;
+  }
+  // A bare state name resolves only when it is unambiguous, which is how src/engine/refs.ts
+  // treats a bare variable: refuse the ambiguity rather than pick a machine.
+  const owners = [...s.machines.values()].filter((m) => m.states.includes(ref));
+  if (owners.length === 1) return null;
+  return owners.length === 0
+    ? `${subject}: no machine declares a state '${ref}'.`
+    : `${subject}: ${owners.length} machines declare a state '${ref}'. Qualify it as ` +
+      `${qualifyPrefix}<machine>.${ref}.`;
+}
 
 /** Where a quantity's `target` points, or the reason it points nowhere. */
 function targetFault(s: CanonicalSystem, q: CanonQuantity): string | null {
@@ -402,23 +437,8 @@ function targetFault(s: CanonicalSystem, q: CanonQuantity): string | null {
       return s.relations.some((r) => r.id === ref) ? null
         : `target '${raw}': no relation declares id '${ref}'. A quantity addresses a relation ` +
           `through its own 'id:', which an unidentified relation does not have.`;
-    case "state": {
-      const dot = ref.lastIndexOf(".");
-      if (dot > 0 && dot < ref.length - 1) {
-        const machine = s.machines.get(ref.slice(0, dot));
-        if (machine === undefined) return `target '${raw}': '${ref.slice(0, dot)}' is not a declared machine.`;
-        return machine.states.includes(ref.slice(dot + 1)) ? null
-          : `target '${raw}': '${machine.id}' declares no state '${ref.slice(dot + 1)}'.`;
-      }
-      // A bare state name resolves only when it is unambiguous, which is how src/engine/refs.ts
-      // treats a bare variable: refuse the ambiguity rather than pick a machine.
-      const owners = [...s.machines.values()].filter((m) => m.states.includes(ref));
-      if (owners.length === 1) return null;
-      return owners.length === 0
-        ? `target '${raw}': no machine declares a state '${ref}'.`
-        : `target '${raw}': ${owners.length} machines declare a state '${ref}'. Qualify it as ` +
-          `state:<machine>.${ref}.`;
-    }
+    case "state":
+      return stateFault(s, `target '${raw}'`, ref, "state:");
     case "transition": {
       // Transitions carry no id, and `label:` carries no semantics (V1) — addressing one by label
       // would make a documentation string load-bearing and break on a duplicate. The stable address
@@ -492,8 +512,194 @@ type DimensionClass = "duration" | "memory" | "cost" | "dimensionless";
 const classOf = (d: Dimension | null): DimensionClass =>
   d === null || d === "ratio" || d === "count" ? "dimensionless" : d;
 
+// ---------------------------------------------------------------------------------------------
+// V35–V37 — the declared accounting model.
+//
+// One principle runs through all three: a quantitative annotation that cannot participate
+// unambiguously in the accounting semantics of its metric is INVALID, rather than silently inert.
+// If MAGE accepts a quantity as meaningful there must be a defined route from it to the analyses its
+// dimension is intended for; otherwise the type system claims more than the semantics provide.
+//
+// Nothing here evaluates anything. Participation is a property of a quantity's DECLARATION — its
+// dimension, its target kind, its residency — so these rules read declared data and never sum a
+// trace, which is what keeps them in the validator and out of the analysis layer.
+// ---------------------------------------------------------------------------------------------
+
+const listBases = (): string => ACCOUNTING_BASES.join(", ");
+
+const listKinds = (kinds: readonly TargetKind[]): string => kinds.map((k) => `${k}:`).join(", ");
+
+/** The metric that accounts for a dimension, or null when the dimension is not path-aggregated. */
+const metricFor = (d: Dimension): AccountedMetric | null =>
+  ACCOUNTED_METRIC_IDS.find((m) => ACCOUNTED_METRICS[m] === d) ?? null;
+
 /**
- * V27–V31 for one system.
+ * True when an accounting rule has an opinion about this quantity's target.
+ *
+ * False for `model:` (an aggregate, not an occurrence) and for every kind that does not resolve at
+ * all, where V27 has already named the real defect and a second finding about accounting would send
+ * the author to the wrong line.
+ */
+const isAccountableTarget = (q: CanonQuantity): boolean =>
+  q.target.kind !== null && ACCOUNTABLE_TARGET_KINDS.includes(q.target.kind);
+
+/**
+ * V35 — each path-aggregated metric with annotations declares exactly one accounting basis.
+ *
+ * The requirement is triggered by the PRESENCE of a quantity the basis would charge, not declared
+ * unconditionally: a system with no duration annotation has nothing that could over-claim, and a
+ * mandatory declaration about nothing is noise rather than a control.
+ */
+function checkAccounting(c: Collector, s: CanonicalSystem): void {
+  for (const a of s.accounting.values()) {
+    const where = `accounting.${a.metric}`;
+    if (a.dimension === null) {
+      const isDimension = (DIMENSION_IDS as readonly string[]).includes(a.metric);
+      c.add("V35", where,
+        `'${a.metric}' is not a path-aggregated metric. Declared: ${ACCOUNTED_METRIC_IDS.join(", ")}.` +
+        (isDimension
+          ? ` '${a.metric}' names a DIMENSION, and a metric is not a dimension — only the ` +
+            `execution-scoped dimensions are summed along a path. A ${a.metric} quantity declares ` +
+            `where it is charged with 'residency:' or 'when:' instead (V37).`
+          : ""));
+      continue;
+    }
+    if (a.basis === null) {
+      c.add("V35", where,
+        `basis '${a.basisRaw}' is not one of ${listBases()}. The vocabulary is closed at one member ` +
+        `for v0.1, so adding transition or relation accounting later is a deliberate act rather than ` +
+        `a permissive union that cannot be narrowed again.`);
+    }
+  }
+
+  for (const metric of ACCOUNTED_METRIC_IDS) {
+    if (s.accounting.has(metric)) continue;
+    const dimension = ACCOUNTED_METRICS[metric];
+    const subjects = [...s.quantities.values()]
+      .filter((q) => q.dimension === dimension && isAccountableTarget(q));
+    if (subjects.length === 0) continue;
+    const one = subjects.length === 1;
+    c.add("V35", "accounting",
+      `${subjects.length} ${dimension} quantit${one ? "y" : "ies"} ` +
+      `(${subjects.map((q) => q.id).sort().join(", ")}) ${one ? "is" : "are"} annotated, but no ` +
+      `accounting basis is declared for '${metric}'. Write ` +
+      `'accounting: { ${metric}: { basis: entities } }'. Until it is declared those quantities reach ` +
+      `no analysis, and a quantity that validates and then reaches nothing is the type system ` +
+      `claiming more than the semantics provide.`);
+  }
+}
+
+/**
+ * V36 — a quantity contributes to its metric only through the declared basis.
+ *
+ * Why this is not merely tidier: summing every kind indiscriminately "makes the meaning of a model
+ * depend on whether the author happened to represent the same operation in multiple linked models.
+ * Shared identity should let us connect purposeful models, not cause their annotations to be
+ * accumulated." A retry is charged twice because the behavioral trace visits the operation twice,
+ * never because a state duration and a transition duration and a relation duration were added up.
+ */
+function checkParticipation(c: Collector, s: CanonicalSystem, q: CanonQuantity, dimension: Dimension,
+  where: string): void {
+  const metric = metricFor(dimension);
+  if (metric === null || !isAccountableTarget(q)) return;
+  const declared = s.accounting.get(metric);
+  // V35 already said the declaration is missing or unreadable; a participation complaint on top of
+  // it would describe a basis nobody chose.
+  if (declared === undefined || declared.basis === null) return;
+  const charged = BASIS_TARGET_KINDS[declared.basis];
+  if (charged.includes(q.target.kind as TargetKind)) return;
+  c.add("V36", where,
+    `target '${q.target.raw}' is a ${q.target.kind}, and '${metric}' declares basis ` +
+    `'${declared.basis}', which charges only ${listKinds(charged)} targets. An execution's ${metric} ` +
+    `is the sum over each occurrence of an accounted entity along it, so this annotation contributes ` +
+    `to nothing — move it to the entity whose occurrence it costs, or declare a basis that accounts ` +
+    `for ${q.target.kind} targets.`);
+}
+
+/**
+ * V37 — a configuration-scoped quantity declares exactly one of `residency:` or `when:`.
+ *
+ * `memory(c)` is the sum of resident quantities plus the sum of those whose behavioral thing is
+ * active in `c`. Both summands are keyed on a declaration, and the ruling refused to supply a
+ * default for either: "I would not say 'idle service memory stays resident' or 'idle service memory
+ * disappears.' Neither is something MAGE can infer from 'service.'" A memory quantity declaring
+ * neither enters no summand, so it is invalid rather than inert.
+ *
+ * The last stage resolves `when.state` through the SAME resolver as a `state:` target, and reports
+ * it as V27 — a reference that does not resolve is V27's subject whichever field carries it.
+ */
+function checkResidency(c: Collector, s: CanonicalSystem, q: CanonQuantity, dimension: Dimension,
+  where: string): void {
+  const scope = DIMENSIONS[dimension].scope;
+  const declared = q.residencyRaw !== null;
+  const when = q.when;
+  const both = `Declare exactly one of 'residency: resident' or 'when: { state: <machine>.<state> }'.`;
+
+  if (scope !== "configuration") {
+    if (declared || when !== null) {
+      c.add("V37", where,
+        `declares residency, but ${dimension} is ${scope}-scoped. Residency says which ` +
+        `configurations a quantity is charged in, which is a question only a configuration-scoped ` +
+        `dimension asks — a ${dimension} is aggregated along an execution and its accounting is the ` +
+        `declared basis (V35).`);
+    }
+    return;
+  }
+  if (q.target.kind === AGGREGATE_TARGET_KIND) {
+    if (declared || when !== null) {
+      c.add("V37", where,
+        `target '${q.target.raw}' addresses a whole model, so this is a declared TOTAL rather than a ` +
+        `charge on one entity. memory(c) sums over entities; a model-level total is compared against ` +
+        `it, never a summand of it. Drop the residency declaration, or target the entity it charges.`);
+    }
+    return;
+  }
+  // An unresolvable target leaves the requirement itself undecidable: whether a residency is wanted
+  // depends on what the quantity annotates. V27 has named that, and it is the thing to fix first.
+  if (!isAccountableTarget(q)) return;
+
+  if (declared && when !== null) {
+    c.add("V37", where,
+      `declares both 'residency: ${q.residencyRaw}' and a 'when:' clause. They are the two summands ` +
+      `of memory(c) and a quantity enters one of them: resident means charged in every configuration ` +
+      `where the entity exists, 'when' means charged exactly while the named state is active. ${both}`);
+    return;
+  }
+  if (!declared && when === null) {
+    c.add("V37", where,
+      `is a ${dimension} quantity with no declared residency, so it enters neither summand of ` +
+      `memory(c) and no configuration charges it. Residency is not inferred from the kind of thing ` +
+      `annotated — "idle service memory stays resident" and "idle service memory disappears" are ` +
+      `both guesses MAGE refuses to make. ${both}`);
+    return;
+  }
+  if (declared && q.residency === null) {
+    c.add("V37", where,
+      `residency '${q.residencyRaw}' is not one of ${RESIDENCIES.join(", ")}. The vocabulary is ` +
+      `closed at one member for v0.1; a quantity charged only while something is active says so ` +
+      `with 'when:' instead.`);
+    return;
+  }
+  if (when !== null && when.state === null) {
+    const stray = when.unexpectedKeys.length > 0
+      ? ` It carries ${when.unexpectedKeys.map((k) => `'${k}'`).join(", ")} instead.`
+      : "";
+    c.add("V37", where,
+      `the 'when:' clause declares no 'state:', so nothing identifies the behavioral thing whose ` +
+      `activation charges this quantity — and activation is never inferred.${stray} Write ` +
+      `'when: { state: <machine>.<state> }'.`);
+    return;
+  }
+  if (when !== null && when.state !== null) {
+    const fault = stateFault(s, `when.state '${when.state}'`, when.state, "");
+    // Reported at `.when` rather than at the quantity, so a broken target and a broken `when` are
+    // two distinguishable V27 findings instead of two lines about the same place.
+    if (fault !== null) c.add("V27", `${where}.when`, fault);
+  }
+}
+
+/**
+ * V27–V31 and V35–V37 for one system.
  *
  * Each quantity is checked in stages and a stage DECLINES once an earlier one spoke about the same
  * object — V26's discipline, applied inside this family. A quantity whose dimension is unreadable
@@ -528,6 +734,9 @@ export function checkQuantities(s: CanonicalSystem): readonly Finding[] {
     reserve(`machines.${m.id}.states`, m.states);
   }
 
+  // V35 — the accounting declaration itself, before any quantity is read against it.
+  checkAccounting(c, s);
+
   for (const q of s.quantities.values()) {
     const where = `quantities.${q.id}`;
 
@@ -543,6 +752,11 @@ export function checkQuantities(s: CanonicalSystem): readonly Finding[] {
       continue;
     }
     const dimension = q.dimension;
+
+    // V36 / V37 — can this annotation reach the analysis its dimension is for? Both read the
+    // DECLARATION only, so neither needs a trace or a sum.
+    checkParticipation(c, s, q, dimension, where);
+    checkResidency(c, s, q, dimension, where);
 
     const literal = (m: Magnitude, part: string): boolean => {
       const v28 = faultMessage(m, dimension, part);

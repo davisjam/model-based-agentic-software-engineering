@@ -24,6 +24,11 @@ const PARITY = new Set([
   // The quantity family. Nothing in it is asymmetric: both sides carry the dimension table, so a
   // drifted unit factor surfaces here rather than as two tools disagreeing about one model.
   "V27", "V28", "V29", "V30", "V31",
+  // The accounting family, and nothing in it is asymmetric either -- these are plain structural
+  // checks over declared data, so both sides carry the same four closed tables (the metric map, the
+  // basis vocabulary, the kinds a basis charges, the residency vocabulary). A drifted table shows up
+  // here as one tool accepting a model the other refuses, which is the only way it would ever show.
+  "V35", "V36", "V37",
   // Not a V-rule: A1 holds annotation outside semantics, so a V-number would contradict the
   // invariant the feature rests on. Both sides implement it, so it belongs in the parity set.
   "ANNOTATION",
@@ -184,6 +189,49 @@ test("violations agree, rule by rule", () => {
       quantities: { q: { target: "model:g", dimension: "duration", value: { expression: "250 ms + 128 MB" } } },
     }],
     ["V31 a user entity shadowing the reserved namespace", { ...base, entities: { metrics: {} } }],
+    ["V35 a latency annotation with no declared accounting basis", {
+      ...base, entities: { parse: {} },
+      quantities: { "parse-latency": { target: "entity:parse", dimension: "duration", value: "50 ms" } },
+    }],
+    ["V35 a basis outside the closed vocabulary", {
+      ...base, entities: { parse: {} }, accounting: { latency: { basis: "all" } },
+      quantities: { "parse-latency": { target: "entity:parse", dimension: "duration", value: "50 ms" } },
+    }],
+    ["V35 a metric name that is really a dimension", {
+      ...base, accounting: { memory: { basis: "entities" } },
+    }],
+    ["V36 a latency annotation on a kind entity accounting does not charge", {
+      ...base, accounting: { latency: { basis: "entities" } },
+      machines: { document: { initial: "a", states: { a: null, b: null }, transitions: [{ from: "a", to: "b" }] } },
+      quantities: { q: { target: "transition:document#0", dimension: "duration", value: "50 ms" } },
+    }],
+    ["V37 a memory quantity declaring neither residency nor when", {
+      ...base, entities: { cache: {} },
+      quantities: { q: { target: "entity:cache", dimension: "memory", value: "128 MB" } },
+    }],
+    ["V37 a memory quantity declaring both", {
+      ...base, entities: { cache: {} },
+      machines: { document: { initial: "a", states: { a: null }, transitions: [] } },
+      quantities: { q: {
+        target: "entity:cache", dimension: "memory", value: "128 MB",
+        residency: "resident", when: { state: "document.a" },
+      } },
+    }],
+    ["V37 a residency outside the closed vocabulary", {
+      ...base, entities: { cache: {} },
+      quantities: { q: { target: "entity:cache", dimension: "memory", value: "128 MB", residency: "transient" } },
+    }],
+    ["V37 residency on a dimension that is not configuration-scoped", {
+      ...base, entities: { cache: {} }, accounting: { latency: { basis: "entities" } },
+      quantities: { q: { target: "entity:cache", dimension: "duration", value: "50 ms", residency: "resident" } },
+    }],
+    ["V27 a when.state that names no state, through the shared resolver", {
+      ...base, entities: { cache: {} },
+      machines: { document: { initial: "a", states: { a: null }, transitions: [] } },
+      quantities: { q: {
+        target: "entity:cache", dimension: "memory", value: "128 MB", when: { state: "document.ghost" },
+      } },
+    }],
   ];
   for (const [label, doc] of cases) {
     const text = stringify(doc);

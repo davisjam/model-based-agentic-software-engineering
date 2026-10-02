@@ -13,7 +13,7 @@
  * then catches, not a forged change. The `base` is prefixed `fnv1a64:` so it is self-describing
  * and cannot be mistaken for a cryptographic claim.
  */
-import type { CanonicalSystem, QuantityValue } from "./types.ts";
+import type { CanonQuantity, CanonicalSystem, QuantityValue } from "./types.ts";
 
 /**
  * A quantity's value, projected in BASE units.
@@ -32,6 +32,26 @@ function quantityValue(v: QuantityValue): unknown {
     case "expression": return ["expression", v.source.trim().split(/\s+/).join(" ")];
     case "absent": return ["absent"];
   }
+}
+
+/**
+ * When a quantity is charged, projected the same way its value is.
+ *
+ * `residency` and `when` are SEMANTIC, not descriptive: they decide which summand of `memory(c)` a
+ * quantity enters, so two systems differing in them compute different peak memory and are not the
+ * same system. The contrast with annotation (invariant A1, excluded entirely) is the test — a note
+ * saying "this cache is always resident" cannot change a memory analysis; `residency: resident`
+ * must.
+ *
+ * An unreadable declaration falls back to its written text, matching the magnitude rule above: two
+ * differently-broken declarations are still two different systems.
+ */
+function residencyProjection(q: CanonQuantity): unknown {
+  return [
+    q.residency,
+    q.residency === null ? q.residencyRaw : null,
+    q.when === null ? null : [q.when.state, [...q.when.unexpectedKeys]],
+  ];
 }
 
 /** Stable projection: everything semantic, nothing cosmetic, in a fixed order. */
@@ -68,7 +88,11 @@ function semanticProjection(s: CanonicalSystem): unknown {
     // Quantities are SEMANTIC, so they hash — the contrast with annotation, which invariant A1
     // excludes, is the clearest statement of where the formal boundary lies. A note saying
     // "gateway latency is probably 200 ms" cannot change a latency query; a declared `200 ms` must.
-    sorted(s.quantities, (q) => [q.target.raw, q.dimension, quantityValue(q.value)]),
+    sorted(s.quantities, (q) => [q.target.raw, q.dimension, quantityValue(q.value), residencyProjection(q)]),
+    // The accounting declaration decides which annotations reach which analysis, so a system that
+    // charges latency per entity is not the system that charges it per transition even when every
+    // quantity is byte-identical. It hashes for the same reason a quantity does.
+    sorted(s.accounting, (a) => [a.basis, a.basis === null ? a.basisRaw : null]),
     sorted(s.queries, (q) => [JSON.stringify(q.raw)]),
   ];
 }

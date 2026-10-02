@@ -11,15 +11,16 @@
  * reports it. Two passes rather than one so a single bad field cannot abort the whole load.
  */
 import type {
-  Annotated, CanonDomain, CanonEntity, CanonEvent, CanonMachine, CanonModel, CanonQuantity,
-  CanonRelation, CanonRelationType, CanonTransition, CanonVariable, CanonicalSystem, Dimension,
-  Effect, ExprFactor, ExprOperand, ExprTerm, Guard, GuardOp, HistoryEntry, MachineInstance,
-  Magnitude, MagnitudeFault, Note, NoteKind, PropertyValue, Provenance, Purpose, QuantityTarget,
-  QuantityValue, SavedQuery, Scalar, TargetKind,
+  AccountedMetric, AccountingBasis, Annotated, CanonAccounting, CanonDomain, CanonEntity, CanonEvent,
+  CanonMachine, CanonModel, CanonQuantity, CanonRelation, CanonRelationType, CanonTransition,
+  CanonVariable, CanonicalSystem, Dimension, Effect, ExprFactor, ExprOperand, ExprTerm, Guard,
+  GuardOp, HistoryEntry, MachineInstance, Magnitude, MagnitudeFault, Note, NoteKind, PropertyValue,
+  Provenance, Purpose, QuantityTarget, QuantityValue, QuantityWhen, Residency, SavedQuery, Scalar,
+  TargetKind,
 } from "./types.ts";
 import {
-  DIMENSION_IDS, DIMENSIONS, METRIC_NAMESPACE, NO_ANNOTATION, TARGET_KINDS, UNIT_DIMENSIONS,
-  isPlainDecimal,
+  ACCOUNTED_METRICS, ACCOUNTED_METRIC_IDS, ACCOUNTING_BASES, DIMENSION_IDS, DIMENSIONS,
+  METRIC_NAMESPACE, NO_ANNOTATION, RESIDENCIES, TARGET_KINDS, UNIT_DIMENSIONS, isPlainDecimal,
 } from "./types.ts";
 
 type Obj = Record<string, unknown>;
@@ -458,12 +459,33 @@ function quantityValue(spec: Obj, dimension: Dimension | null): QuantityValue {
   return { kind: "point", magnitude: magnitude(v, dimension) };
 }
 
+/** The only key a `when` block carries in v0.1. Anything else is recorded, never dropped. */
+const WHEN_KEYS: ReadonlySet<string> = new Set(["state"]);
+
+/**
+ * `when: { state: document.remediating }`.
+ *
+ * A `when` written as a bare string rather than a block yields a null state and no unexpected keys,
+ * so V37 reports an undeclared charge rather than this guessing that the string was the state.
+ */
+function quantityWhen(raw: unknown): QuantityWhen {
+  const s = isObj(raw) ? raw : {};
+  const state = asStr(s["state"]).trim();
+  return {
+    state: state === "" ? null : state,
+    unexpectedKeys: Object.keys(s).filter((k) => !WHEN_KEYS.has(k)).sort(),
+  };
+}
+
 function quantities(raw: unknown): Map<string, CanonQuantity> {
   const out = new Map<string, CanonQuantity>();
   for (const [id, spec] of sortedEntries(raw)) {
     const s = isObj(spec) ? spec : {};
     const declared = asStr(s["dimension"]);
     const dimension = (DIMENSION_IDS as readonly string[]).includes(declared) ? (declared as Dimension) : null;
+    // Keyed on `undefined` rather than falsiness: a declaration the author wrote and got wrong is a
+    // different V37 finding from no declaration at all, so presence must survive canonicalization.
+    const residencyRaw = s["residency"] === undefined ? null : asStr(s["residency"]).trim();
     out.set(id, {
       id,
       target: target(s["target"]),
@@ -473,7 +495,36 @@ function quantities(raw: unknown): Map<string, CanonQuantity> {
       // author choose it per quantity would let them opt out of the aggregation it licenses.
       scope: dimension === null ? null : DIMENSIONS[dimension].scope,
       value: quantityValue(s, dimension),
+      residencyRaw,
+      residency: (RESIDENCIES as readonly string[]).includes(residencyRaw ?? "")
+        ? (residencyRaw as Residency)
+        : null,
+      when: s["when"] === undefined ? null : quantityWhen(s["when"]),
       annotation: annotation(s),
+    });
+  }
+  return out;
+}
+
+/**
+ * The declared accounting model. Shape only: V35 says whether the metric and the basis are known.
+ *
+ * The metric name is kept as written even when it names nothing, because the finding quotes it —
+ * `accounting: { memory: … }` is a plausible mistake and the message has to be able to say that
+ * memory accounting is residency rather than a basis.
+ */
+function accounting(raw: unknown): Map<string, CanonAccounting> {
+  const out = new Map<string, CanonAccounting>();
+  for (const [metric, spec] of sortedEntries(raw)) {
+    const s = isObj(spec) ? spec : {};
+    const basisRaw = asStr(s["basis"]).trim();
+    out.set(metric, {
+      metric,
+      dimension: (ACCOUNTED_METRIC_IDS as readonly string[]).includes(metric)
+        ? ACCOUNTED_METRICS[metric as AccountedMetric]
+        : null,
+      basisRaw,
+      basis: (ACCOUNTING_BASES as readonly string[]).includes(basisRaw) ? (basisRaw as AccountingBasis) : null,
     });
   }
   return out;
@@ -516,6 +567,7 @@ export function canonicalize(doc: unknown): CanonicalSystem {
     instances: expand(mach),
     events,
     quantities: quantities(d["quantities"]),
+    accounting: accounting(d["accounting"]),
     queries,
   };
 }
