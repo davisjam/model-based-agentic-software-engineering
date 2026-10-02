@@ -37,6 +37,7 @@ import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 import { parse } from "yaml";
 import { runQuery } from "../src/engine/index.ts";
+import { renderView } from "../src/render/index.ts";
 import { Workspace } from "../src/app/services.ts";
 import type { Ports } from "../src/app/services.ts";
 import type { CanonMachine, CanonicalSystem, Outcome, Scalar } from "../src/ir/types.ts";
@@ -321,11 +322,11 @@ export const realPorts: Ports = {
     behaviorQuery: (system, query) => runQuery(system, query).result,
     explore: () => ({ configurations: [], exhaustive: false }),
   },
-  render: {
-    render: () => ({
-      svg: "", accessible: { title: "", nodes: [], edges: [], summary: "" }, positions: new Map(),
-    }),
-  },
+  // The REAL renderer, for the same reason the engine port is real: a stub here would make these
+  // ports a second, weaker definition of the application, and the suite's whole claim is that it
+  // drives what a user drives. The stub this replaces also broke the build the moment the renderer's
+  // accessible view gained fields — a semantic merge conflict with nothing textually in common.
+  render: { render: (system, request) => renderView(system, request) },
 };
 
 export const exampleText = (id: string): string =>
