@@ -129,7 +129,12 @@ def _book_title_block() -> str:
 # axe) so a rendered artifact ever dropped under `docs/` can't trip the reachability gate.
 # web-theme holds the shared MkDocs theme-extension package (Jinja partials + theme CSS) — its .html
 # files are TEMPLATES the MkDocs builds consume, never served pages, so the html scanners skip them.
-NON_SITE_DIRS = ("plugin", "node_modules", "site", "_site", ".git", "__pycache__", "hooks", "_drafts", "_print", "docs", "_design", "web-theme")
+# workbench holds the MAGE Model Workbench APPLICATION source: index.html is its app shell, not a
+# catalogue page. It loads a bundle from the gitignored `workbench/dist/`, which only exists after a
+# build, so linking it from the site before CI builds that bundle would publish a page whose script
+# 404s. The integration phase (workbench/PLAN.md §6, Phase H) adds the Pages build step AND the
+# inbound link together; until then the orphan gate must not treat the shell as an unreachable page.
+NON_SITE_DIRS = ("plugin", "node_modules", "site", "_site", ".git", "__pycache__", "hooks", "_drafts", "_print", "docs", "_design", "web-theme", "workbench")
 
 
 def gitignored_top_dirs() -> frozenset[str]:

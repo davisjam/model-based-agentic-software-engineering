@@ -1,0 +1,186 @@
+<!--
+  MAGE Model Workbench.
+
+  Hand-authored, semantic, and deliberately plain. Three things about this file are requirements
+  rather than preferences:
+
+  1. FR-A11Y: real landmarks, real headings, real tables. The structured model view is the PRIMARY
+     editing surface, not a fallback for the diagram — model editing and query execution must be
+     possible without touching the canvas, so the canvas is last in the document order and the
+     structure is first.
+  2. Self-contained: no CDN, no webfont, no remote image. The page is served as static assets and a
+     fetch to another host would simply fail.
+  3. Theme-aware in both directions, because the host may stamp a theme or the OS may report one.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAGE Model Workbench</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fbfaf7;
+    --panel: #ffffff;
+    --ink: #1d1b16;
+    --muted: #5c5750;
+    --rule: #ddd6c7;
+    --accent: #8e6f3e;
+    --accent-ink: #ffffff;
+    --warn-bg: #fff6e0;
+    --warn-ink: #6b4a00;
+    --danger-bg: #fdeceb;
+    --danger-ink: #8a1c13;
+    --focus: #0b5fff;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17160f; --panel: #201e16; --ink: #f2eee4; --muted: #b3aa98;
+      --rule: #3a362a; --accent: #c8a564; --accent-ink: #17160f;
+      --warn-bg: #3a2f12; --warn-ink: #f0d9a0;
+      --danger-bg: #3d1a16; --danger-ink: #f6bdb6;
+      --focus: #8ab4ff;
+    }
+  }
+  /* The host's toggle stamps data-theme on the root, and it must win in BOTH directions. */
+  :root[data-theme="dark"] {
+    --bg: #17160f; --panel: #201e16; --ink: #f2eee4; --muted: #b3aa98;
+    --rule: #3a362a; --accent: #c8a564; --accent-ink: #17160f;
+    --warn-bg: #3a2f12; --warn-ink: #f0d9a0;
+    --danger-bg: #3d1a16; --danger-ink: #f6bdb6; --focus: #8ab4ff;
+  }
+  :root[data-theme="light"] {
+    --bg: #fbfaf7; --panel: #ffffff; --ink: #1d1b16; --muted: #5c5750;
+    --rule: #ddd6c7; --accent: #8e6f3e; --accent-ink: #ffffff;
+    --warn-bg: #fff6e0; --warn-ink: #6b4a00;
+    --danger-bg: #fdeceb; --danger-ink: #8a1c13; --focus: #0b5fff;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  /* A visible focus ring is a requirement, not a default to be overridden. */
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+  .skip {
+    position: absolute; left: -9999px; top: 0; padding: .5rem .75rem;
+    background: var(--accent); color: var(--accent-ink); z-index: 10;
+  }
+  .skip:focus { left: .5rem; top: .5rem; }
+
+  header[role="banner"] {
+    display: flex; flex-wrap: wrap; gap: .75rem; align-items: center;
+    padding: .75rem 1rem; border-bottom: 1px solid var(--rule); background: var(--panel);
+  }
+  header h1 { font-size: 1.05rem; margin: 0 auto 0 0; font-weight: 700; }
+  button, label.file {
+    font: inherit; padding: .4rem .7rem; border: 1px solid var(--rule);
+    border-radius: 4px; background: var(--panel); color: var(--ink); cursor: pointer;
+  }
+  button[disabled] { opacity: .5; cursor: not-allowed; }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+  main { padding: 1rem; max-width: 72rem; margin: 0 auto; }
+  section { margin-block-end: 2rem; }
+  h2 { font-size: 1.15rem; border-block-end: 1px solid var(--rule); padding-block-end: .3rem; }
+  .intro { color: var(--muted); margin-block: .25rem 1rem; }
+
+  /* Wide content scrolls in its own container; the body never scrolls sideways. */
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; }
+  th, td { text-align: left; padding: .4rem .6rem; border-block-end: 1px solid var(--rule); vertical-align: top; }
+  th { font-size: .85rem; letter-spacing: .02em; text-transform: uppercase; color: var(--muted); }
+  td.id, code { font-family: var(--mono); font-size: .9em; }
+
+  /* A status is a WORD in a bordered chip. Never a colour alone, never a bare glyph. */
+  .state {
+    display: inline-block; font-size: .78rem; padding: .05rem .4rem; margin-inline-end: .25rem;
+    border: 1px solid var(--rule); border-radius: 999px; color: var(--muted); white-space: nowrap;
+  }
+  .banner { padding: .6rem .8rem; border-radius: 4px; border: 1px solid var(--rule); margin-block-end: 1rem; }
+  .banner.warning { background: var(--warn-bg); color: var(--warn-ink); }
+  .banner.danger { background: var(--danger-bg); color: var(--danger-ink); }
+  .outcome { font-weight: 700; }
+  .coverage, .refusal, .compilation { color: var(--muted); font-size: .92rem; }
+  .evidence { font-family: var(--mono); font-size: .85rem; margin: .3rem 0 0; padding-inline-start: 1.1rem; }
+  .stale { font-weight: 700; }
+
+  figure { margin: 0; }
+  figure svg { max-width: 100%; height: auto; background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; }
+
+  /* Visually hidden but present for assistive technology. */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#model">Skip to the model</a>
+
+<header role="banner">
+  <h1>MAGE Model Workbench</h1>
+  <label class="file">
+    Open a .mage.yaml
+    <input id="file" type="file" accept=".yaml,.yml,.json" class="sr-only">
+  </label>
+  <button id="example" type="button">Load the example</button>
+  <button id="export" type="button">Export</button>
+  <button id="run" type="button" class="primary">Run all questions</button>
+  <button id="undo" type="button" disabled>Undo</button>
+  <button id="redo" type="button" disabled>Redo</button>
+</header>
+
+<!--
+  FR-A11Y-3: consequential async changes are announced here, politely and debounced. `polite` and
+  not `assertive` on purpose — analysis completing is worth knowing, not worth interrupting a
+  sentence for — and the region is never given focus, so an announcement cannot steal the caret.
+-->
+<p id="live" role="status" aria-live="polite" class="sr-only"></p>
+
+<main>
+  <div id="banner"></div>
+
+  <section id="model" aria-labelledby="model-h">
+    <h2 id="model-h">Model</h2>
+    <p class="intro" id="summary"></p>
+    <div id="sections"></div>
+  </section>
+
+  <section id="questions" aria-labelledby="questions-h">
+    <h2 id="questions-h">Questions</h2>
+    <p class="intro">
+      Saved questions re-run when the model changes. Every answer carries its coverage: a bounded
+      search is reported as inconclusive, never as a no.
+    </p>
+    <div id="question-list"></div>
+  </section>
+
+  <section id="findings" aria-labelledby="findings-h">
+    <h2 id="findings-h">Validation</h2>
+    <div id="finding-list"></div>
+  </section>
+
+  <!--
+    The diagram is LAST in document order, deliberately. It is a second view over the same facts;
+    everything in it is above, in prose. aria-hidden because the structured view is the accessible
+    representation and duplicating it here would produce an announcement storm.
+  -->
+  <section id="diagram" aria-labelledby="diagram-h">
+    <h2 id="diagram-h">Diagram</h2>
+    <p class="intro">
+      A second view. Everything shown here is also stated above, in words — the diagram adds no
+      fact that the model section omits.
+    </p>
+    <figure id="canvas" aria-hidden="true"></figure>
+  </section>
+</main>
+
+<script type="module" src="./dist/workbench.js"></script>
+</body>
+</html>
