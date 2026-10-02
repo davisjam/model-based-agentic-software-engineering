@@ -129,12 +129,50 @@ _MMDC = HERE / "node_modules" / ".bin" / "mmdc"
 _MMDC_PUPPETEER = HERE / "assets" / "mmdc-puppeteer.json"
 
 
+_MERMAID_LOCKFILE = HERE / "package-lock.json"        # the npm pin `npm ci` installs mmdc + Chromium from
+_MERMAID_NODE_PIN = HERE.parent / ".nvmrc"            # the Node major CI and dev agree on
+_RENDERER_FINGERPRINT: str | None = None              # memoized: the toolchain half of the cache key
+
+
+def _mermaid_renderer_fingerprint() -> str:
+    """A digest of every DECLARED input to a mermaid render other than the fence body itself.
+
+    A cache key that covers only the fence source ships a stale diagram the moment anything else in the
+    render path moves, and a stale diagram is worse than a slow build. The renderer inputs are:
+
+      - `assets/mermaid-config.json` — theme, fonts, label sizes, per-diagram-type spacing.
+      - `assets/mmdc-puppeteer.json` — the browser launch options `mmdc -p` passes through.
+      - `package-lock.json` — the exact mermaid-cli / mermaid / Puppeteer tree `npm ci` installs. Mermaid
+        measures label text IN the browser to size nodes, so a Chromium or mermaid bump changes diagram
+        GEOMETRY, not just styling; the whole locked tree is therefore a render input, not just the
+        mermaid packages.
+      - `.nvmrc` — the Node major the lockfile is resolved against.
+      - `PUPPETEER_EXECUTABLE_PATH` / `CHROME_PATH` — an externally supplied browser replaces the bundled
+        Chromium, so its path discriminates the renderer (see `_mermaid_env`). Unset in CI.
+
+    Read once per process: the lockfile is ~115 KB and the key is computed per fence.
+
+    Not covered, and not coverable from here: the CONTENT of an externally supplied browser binary (we
+    key on its path, not its version) and a hand-mutated `node_modules`. Both are off the `npm ci` path.
+    """
+    global _RENDERER_FINGERPRINT
+    if _RENDERER_FINGERPRINT is None:
+        parts = [p.read_text(encoding="utf-8") if p.is_file() else f"<absent:{p.name}>"
+                 for p in (_MERMAID_CONFIG, _MMDC_PUPPETEER, _MERMAID_LOCKFILE, _MERMAID_NODE_PIN)]
+        parts.append(os.environ.get("PUPPETEER_EXECUTABLE_PATH")
+                     or os.environ.get("CHROME_PATH") or "<bundled-chromium>")
+        _RENDERER_FINGERPRINT = hashlib.sha256("\x00".join(parts).encode("utf-8")).hexdigest()
+    return _RENDERER_FINGERPRINT
+
+
 def _mermaid_cache_key(source: str) -> str:
-    """The content-hash cache key for a mermaid fence body — `sha256(source + config + idscheme)`. The single
-    source of truth for the on-disk `.mermaid-svg-cache/<key>.svg` filename, shared by `render_mermaid_svg`
-    (which renders + caches) and the Typst projection's cache-path lookup, so the two never disagree."""
+    """The content-hash cache key for a mermaid fence body — `sha256(source + renderer-fingerprint)`. The
+    single source of truth for the on-disk `.mermaid-svg-cache/<key>.svg` filename, shared by
+    `render_mermaid_svg` (which renders + caches) and the Typst projection's cache-path lookup, so the two
+    never disagree. `idscheme-v2` is the scheme marker: bump it when the key's SHAPE changes (v2 folded in
+    the renderer fingerprint, so every v1 entry is correctly a miss)."""
     return hashlib.sha256(
-        (source.strip() + "\x00" + _MERMAID_CONFIG.read_text(encoding="utf-8") + "\x00idscheme-v1").encode("utf-8")
+        (source.strip() + "\x00" + _mermaid_renderer_fingerprint() + "\x00idscheme-v2").encode("utf-8")
     ).hexdigest()
 
 
@@ -151,7 +189,7 @@ def render_mermaid_svg(source: str) -> str:
     key = _mermaid_cache_key(src)
     # Give each rendered SVG a UNIQUE root id from its content hash. mmdc defaults to a fixed id="my-svg"
     # (+ chart-title-my-svg / chart-desc-my-svg), so two diagrams on one page collide (duplicate-ID →
-    # html-validate FAILs). A per-diagram svgId namespaces the SVG's ids. (The "idscheme-v1" marker in the
+    # html-validate FAILs). A per-diagram svgId namespaces the SVG's ids. (The "idscheme-vN" marker in the
     # cache key above invalidates SVGs cached under the old fixed-id scheme; bump it if the scheme changes.)
     svg_id = f"mermaid-{key[:16]}"
     cached = _MERMAID_CACHE / f"{key}.svg"

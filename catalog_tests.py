@@ -128,6 +128,10 @@ from tests.course import (
 )
 from tests.markdown import check_markdown_anchors, check_markdown_schema, check_render_safety
 from tests.pptx_validity import check_pptx_opc, check_pptx_schema
+from tests.mermaid_cache import (
+    check_mermaid_cache_hit_and_edit,
+    check_mermaid_cache_key_covers_every_render_input,
+)
 from tests.mermaid_lint import check_mermaid_edge_labels
 from tests.skill import (
     check_bundle_links,
@@ -710,6 +714,15 @@ CHECKS = [
     # at render time with a cryptic message. Lands as a real gate check — the tree is at 0 findings.
     Check("book: mermaid edge-label footguns ([ ] / ~> inside |label|)", 1,
           lambda strict: check_mermaid_edge_labels()),
+    # BLOCKING: the build-time mermaid→SVG cache is what keeps a rebuild cheap (a cold render of this
+    # tree's fences costs ~80 s of headless-Chromium spawns), so its key is the correctness story — a key
+    # that misses a render input serves a diagram drawn under the OLD input forever. These two run the real
+    # `render_mermaid_svg` against a counting stub for `mmdc`: sub-second, no browser. See
+    # tests/mermaid_cache.py.
+    Check("book: mermaid cache — a hit skips the renderer; an edited fence re-renders", 1,
+          lambda strict: check_mermaid_cache_hit_and_edit()),
+    Check("book: mermaid cache key covers every declared render input (no stale diagrams)", 1,
+          lambda strict: check_mermaid_cache_key_covers_every_render_input()),
 ]
 
 REAL_CHECKS = [c for c in CHECKS if not c.audit_only]  # the gate — the count the summary reports

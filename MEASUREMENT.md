@@ -1,6 +1,14 @@
 # `catalog.py build` profile — the incremental-render idea is killed by measurement (a negative result)
 
-**TL;DR.** Per-chapter `.md`→`.html` render is **~17 %** of the ~9.75 s build — far below the
+> **Re-profiled 261002 — the numbers below are superseded; the verdict is not.** The index-builder fix
+> this document recommends appears to have landed (`_scan_term_refs` no longer surfaces in a profile),
+> and the dominant cost moved to a different pass. See
+> [§ 261002 re-profile](#261002-re-profile--the-cost-moved-to-svg-id-namespacing) at the end. The
+> STOP verdict on incremental render stands and was never the thing that was wrong: both the old
+> dominant cost (an always-run aggregate) and the new one (an always-run string rewrite) are passes
+> incrementality could not have reached.
+
+**TL;DR (260-era).** Per-chapter `.md`→`.html` render is **~17 %** of the ~9.75 s build — far below the
 ~60 % decision-gate threshold that would justify building a sound incremental render graph.
 The build is dominated by a **single aggregate page**, `book/book-index.html`, whose term-index
 computation takes **~4.4 s (≈46 % of the whole build)**. Aggregates must always regenerate for
@@ -80,3 +88,33 @@ report — reuse the already-rendered bodies or drop the re-render.
 
 These are ordinary optimizations of always-run aggregate passes, not a build graph — they capture the
 dominant cost the incremental idea could never reach, with no staleness surface.
+
+## 261002 re-profile — the cost moved to SVG id-namespacing
+
+Re-measured on `6cca06db`+, Node 24.21.0, warm caches. The index-builder lever this document
+recommended is gone from the profile, and the new dominant pass is `namespace_svg_ids`
+(`book-models/svg_id_namespace.py`), which prefixed an inlined SVG's internal ids with **three
+whole-document `re.sub` scans per id** — O(ids × len(svg)). Matplotlib-exported figures carry hundreds
+of ids, so the build scanned **703 MB of text to rewrite 4.5 MB of SVG**: 9,546 ids over 402 calls.
+
+| | before | after (single-pass rewrite) |
+|---|---|---|
+| `namespace_svg_ids` (402 calls) | 11.22 s | **0.21 s** |
+| `book/build_book.py` | 12.14 s user | **1.24 s user** |
+| `catalog.py build` | 15.9 s user + 2.6 s sys | **3.6 s user + 1.9 s sys** |
+| `catalog.py build` wall | 20.6–73.6 s | **8.6–10.6 s** |
+
+**Read CPU, not wall, on this host.** Across four pre-fix runs the build's CPU was a steady ~18 s while
+wall ranged 21–74 s — the spread is concurrent-agent contention on the machine, not variance in the
+build. A wall-clock number measured here reports the fleet.
+
+**Mermaid is not a cost of `catalog.py build`, and cannot be.** Since the MkDocs publish swap the web
+build emits fences for client-side rendering: the emitted tree holds **0** `pre class="mermaid"` blocks
+and `render_mermaid_svg` is never called. The build-time `mmdc` render and its content-hashed cache
+(`book/.mermaid-svg-cache/`, gitignored) now serve only the **PDF** path and the entry thumbnails, where
+they are worth roughly 80 s of headless-Chromium spawns per cold render (~0.6 s per fence steady state,
+5.5 s on the first spawn). The cache key was hardened the same day to cover the whole declared render
+toolchain — see `book/_design/drafts/mermaid-build-cache-261002.md`.
+
+**Where the next profile belongs.** `catalog_tests.py --tier1` now costs **54 s wall / 26 s CPU**,
+roughly 5× the build it follows in the pre-push gate. It is the dominant term in a push, and unprofiled.
