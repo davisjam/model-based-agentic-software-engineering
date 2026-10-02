@@ -1,0 +1,437 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://davisjam.github.io/model-based-agentic-software-engineering/workbench/mage-model.schema.json",
+  "title": "MAGE model system",
+  "description": "A model system: one identity namespace of entities, zero or more graph models, zero or more state machines. Shape only -- meaning is fixed by SEMANTICS.md, whose validation rules V1-V25 this schema cannot all express. Rules marked ENGINE below require a validator pass beyond JSON Schema.",
+  "type": "object",
+  "required": ["mage", "system"],
+  "additionalProperties": false,
+  "properties": {
+    "mage": {
+      "description": "Format version. Incompatible changes bump it.",
+      "const": 1
+    },
+    "system": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+
+    "domains": {
+      "description": "Named value domains. ordered-enum admits <, >, <=, >= (V20).",
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["type"],
+        "additionalProperties": false,
+        "properties": {
+          "type": { "enum": ["enum", "ordered-enum", "boolean", "integer"] },
+          "values": {
+            "description": "Required for enum / ordered-enum. For ordered-enum the list order IS the order, ascending.",
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "range": { "$ref": "#/$defs/intRange" },
+          "description": { "type": "string" }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "type": { "enum": ["enum", "ordered-enum"] } } },
+            "then": { "required": ["values"] }
+          },
+          {
+            "if": { "properties": { "type": { "const": "integer" } } },
+            "then": { "required": ["range"] }
+          }
+        ]
+      }
+    },
+
+    "relation-types": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description", "composition"],
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "description": "What the presence of this relation asserts. For humans.",
+            "type": "string"
+          },
+          "absence": {
+            "description": "What the ABSENCE of this relation asserts -- often the more important half. For humans.",
+            "type": "string"
+          },
+          "composition": {
+            "type": "object",
+            "required": ["path"],
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "description": "allowed: multi-hop queries over this relation are licensed (transitive closure is a legitimate object of inquiry). forbidden: the engine REFUSES such queries (V7). This is not a claim that the relation itself is transitive.",
+                "enum": ["allowed", "forbidden"]
+              }
+            }
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "symmetric": { "type": "boolean", "default": false },
+              "acyclic": {
+                "description": "true makes a cycle in this relation type a validation error (V8).",
+                "type": "boolean",
+                "default": false
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "entities": {
+      "description": "THE identity namespace. Ids are immutable (V2); labels are not.",
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": { "type": "string" },
+          "label": { "type": "string" },
+          "description": { "type": "string" },
+          "properties": {
+            "description": "IMMUTABLE descriptive facts. Never part of the state vector (V16).",
+            "$ref": "#/$defs/propertyBag"
+          },
+          "contains": {
+            "description": "Containment. Acyclic (V4) and single-parent (V5); ENGINE-checked.",
+            "type": "array",
+            "items": { "$ref": "#/$defs/id" }
+          },
+          "provenance": { "$ref": "#/$defs/provenance" }
+        }
+      }
+    },
+
+    "events": {
+      "description": "Declared synchronized events (tier T3). An event is ONE system transition involving all participants, applied atomically.",
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["participants"],
+        "additionalProperties": false,
+        "properties": {
+          "participants": {
+            "description": "Machine names. Every participant must offer a sync:-transition for this event (V12). A multiply-instantiated participant is REFUSED in v0.1 (V14).",
+            "type": "array",
+            "minItems": 2,
+            "items": { "$ref": "#/$defs/id" }
+          },
+          "description": { "type": "string" }
+        }
+      }
+    },
+
+    "machines": {
+      "description": "Behavioral units. One instance unless instances: is declared. A machine need not correspond to an entity; where it does, say so with entity:.",
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["initial", "states", "transitions"],
+        "additionalProperties": false,
+        "properties": {
+          "entity": {
+            "description": "Optional correspondence to a system entity (V6).",
+            "$ref": "#/$defs/id"
+          },
+          "instances": {
+            "description": "N independent interleaved copies, addressed name[0..N-1]. Default 1, addressed by bare name. Gives occupancy, NOT binding (V14).",
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "purpose": { "$ref": "#/$defs/purpose" },
+          "initial": { "$ref": "#/$defs/id" },
+          "states": {
+            "type": "object",
+            "minProperties": 1,
+            "propertyNames": { "$ref": "#/$defs/id" },
+            "additionalProperties": {
+              "oneOf": [
+                { "type": "null" },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "label": { "type": "string" },
+                    "description": { "type": "string" }
+                  }
+                }
+              ]
+            }
+          },
+          "variables": {
+            "description": "THE state vector. Every variable must have a FINITE domain (V17).",
+            "type": "object",
+            "propertyNames": { "$ref": "#/$defs/id" },
+            "additionalProperties": { "$ref": "#/$defs/variable" }
+          },
+          "derived": {
+            "description": "Pure expressions over current state. Never stored, never part of state identity (V18); dependency graph must be acyclic (V19).",
+            "type": "object",
+            "propertyNames": { "$ref": "#/$defs/id" },
+            "additionalProperties": { "type": "string" }
+          },
+          "transitions": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/transition" }
+          }
+        }
+      }
+    },
+
+    "models": {
+      "description": "Purposeful reductions over the entity namespace.",
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["type"],
+        "additionalProperties": false,
+        "properties": {
+          "type": { "const": "graph" },
+          "label": { "type": "string" },
+          "purpose": { "$ref": "#/$defs/purpose" },
+          "entities": {
+            "description": "Ids of system-level entities this model includes. Models reference; they never redeclare (V3).",
+            "type": "array",
+            "items": { "$ref": "#/$defs/id" }
+          },
+          "relations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["from", "to", "type"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "$ref": "#/$defs/id" },
+                "from": { "$ref": "#/$defs/id" },
+                "to": { "$ref": "#/$defs/id" },
+                "type": { "$ref": "#/$defs/id" },
+                "label": { "type": "string" },
+                "properties": { "$ref": "#/$defs/propertyBag" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "queries": {
+      "description": "Saved queries, re-run when the model changes. Each value conforms to mage-query.schema.json.",
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": { "type": "object" }
+    },
+
+    "views": {
+      "description": "Visual reductions. A view is itself a purposeful reduction; it carries NO semantic model data.",
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "label": { "type": "string" },
+          "models": { "type": "array", "items": { "$ref": "#/$defs/id" } },
+          "machines": { "type": "array", "items": { "$ref": "#/$defs/id" } },
+          "hide": { "type": "array", "items": { "type": "string" } },
+          "show-properties": { "type": "array", "items": { "type": "string" } },
+          "direction": { "enum": ["left-to-right", "top-to-bottom"] },
+          "layout": {
+            "description": "Optional position HINTS for incremental layout stability. Never semantic.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "required": ["x", "y"],
+              "additionalProperties": false,
+              "properties": { "x": { "type": "number" }, "y": { "type": "number" } }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "$defs": {
+    "id": {
+      "type": "string",
+      "description": "Shape only. Ids that a YAML 1.1 loader would coerce (on/off/yes/no/true/false/null/~, or numeric-looking) are additionally REFUSED by the validator (V25) -- this pattern cannot catch them because the loader mangles them first.",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_.-]*$",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "intRange": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "type": "integer" }
+    },
+    "scalar": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "boolean" },
+        { "type": "integer" }
+      ]
+    },
+    "propertyBag": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          { "$ref": "#/$defs/scalar" },
+          {
+            "type": "object",
+            "required": ["value"],
+            "additionalProperties": false,
+            "properties": {
+              "value": { "$ref": "#/$defs/scalar" },
+              "domain": {
+                "description": "Names a domain in domains:. Required for order comparisons (V20).",
+                "$ref": "#/$defs/id"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "variable": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "description": "ref is RESERVED and must be rejected with a future-version message, never misinterpreted (V15).",
+          "enum": ["boolean", "integer", "enum", "ref"]
+        },
+        "range": { "$ref": "#/$defs/intRange" },
+        "values": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "domain": { "$ref": "#/$defs/id" },
+        "initial": { "$ref": "#/$defs/scalar" },
+        "target": { "$ref": "#/$defs/id" },
+        "nullable": { "type": "boolean" },
+        "description": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "integer" } } },
+          "then": {
+            "anyOf": [{ "required": ["range"] }, { "required": ["domain"] }],
+            "$comment": "V17: finite domain mandatory."
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "enum" } } },
+          "then": { "anyOf": [{ "required": ["values"] }, { "required": ["domain"] }] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "ref" } } },
+          "then": { "required": ["target"] }
+        }
+      ]
+    },
+    "transition": {
+      "type": "object",
+      "required": ["from", "to"],
+      "additionalProperties": false,
+      "properties": {
+        "from": { "$ref": "#/$defs/id" },
+        "to": { "$ref": "#/$defs/id" },
+        "label": {
+          "description": "Documentation only. Carries NO semantics -- use sync: for synchronization (V1).",
+          "type": "string"
+        },
+        "sync": {
+          "description": "Synchronization, and nothing else. MUST resolve to an entry in events: (V1).",
+          "$ref": "#/$defs/id"
+        },
+        "requires": {
+          "description": "Guard over the PRE-transition system state, evaluated atomically with the transition. A guard is NOT synchronization: it reads another machine without making it step. Refused against a multiply-instantiated machine (V11).",
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              { "$ref": "#/$defs/scalar" },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "eq": { "$ref": "#/$defs/scalar" },
+                  "ne": { "$ref": "#/$defs/scalar" },
+                  "lt": { "type": "integer" },
+                  "le": { "type": "integer" },
+                  "gt": { "type": "integer" },
+                  "ge": { "type": "integer" }
+                }
+              }
+            ]
+          }
+        },
+        "effects": {
+          "description": "Variable assignments. Two transitions joined by one event MUST NOT assign the same variable (V13) -- statically checked from this block.",
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "purpose": {
+      "description": "What this reduction is FOR. omits is CHECKED against the model's actual vocabulary, not merely asserted (V24).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "question": { "type": "string" },
+        "represents": { "type": "array", "items": { "type": "string" } },
+        "omits": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "type": "object",
+          "required": ["kind"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": { "enum": ["repository", "service", "document", "external", "other"] },
+            "ref": { "type": "string" },
+            "description": { "type": "string" }
+          }
+        },
+        "correspondence": {
+          "type": "object",
+          "required": ["kind"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "description": "How the model-to-world correspondence was established. v0.1 permits asserted; the stronger kinds are where later tooling earns trust rather than claiming it.",
+              "enum": ["asserted", "checked", "derived", "generated"]
+            },
+            "checked": { "type": "string", "format": "date" },
+            "note": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

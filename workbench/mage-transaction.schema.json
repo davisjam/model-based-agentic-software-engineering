@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://davisjam.github.io/model-based-agentic-software-engineering/workbench/mage-transaction.schema.json",
+  "title": "MAGE model transaction",
+  "description": "An all-or-nothing change to a model system. Application order is fixed: parse -> verify base -> apply to a temporary IR -> validate the ENTIRE resulting system -> commit. Any failure leaves the current system unchanged. Semantics in SEMANTICS.md section 9.",
+  "type": "object",
+  "required": ["transaction"],
+  "additionalProperties": false,
+  "properties": {
+    "transaction": {
+      "type": "object",
+      "required": ["base", "operations"],
+      "additionalProperties": false,
+      "properties": {
+        "base": {
+          "description": "Hash of the CANONICAL IR the operations were computed against -- never of the file bytes. Comments and key order are preserved on write, so a file hash would be invalidated by cosmetic edits. A mismatch is a LOUD failure, never a best-effort merge: an agent whose premise has changed must recompute.",
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "target": {
+          "description": "Branch to apply to. 'main' is the authoritative system; any other name is a hypothesis branch for what-if analysis.",
+          "type": "string",
+          "default": "main"
+        },
+        "rationale": {
+          "description": "Why this change, in the requester's terms. Shown in the proposal preview and retained in the audit trail.",
+          "type": "string"
+        },
+        "semantics": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "atomic": {
+              "description": "Always true in v0.1. Present so a future non-atomic mode cannot be introduced silently.",
+              "const": true
+            }
+          }
+        },
+        "operations": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/operation" }
+        }
+      }
+    }
+  },
+
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_.\\[\\]/-]*$", "maxLength": 160 },
+    "scalar": { "oneOf": [{ "type": "string" }, { "type": "boolean" }, { "type": "integer" }] },
+
+    "operation": {
+      "description": "Ids are immutable (V2): there is no rename operation. set-label changes the human-readable label; changing identity means delete plus add, and the consequences are then visible in the diff.",
+      "oneOf": [
+        { "$ref": "#/$defs/opSetLabel" },
+        { "$ref": "#/$defs/opSetProperty" },
+        { "$ref": "#/$defs/opAddEntity" },
+        { "$ref": "#/$defs/opDeleteEntity" },
+        { "$ref": "#/$defs/opAddState" },
+        { "$ref": "#/$defs/opDeleteState" },
+        { "$ref": "#/$defs/opAddTransition" },
+        { "$ref": "#/$defs/opDeleteTransition" },
+        { "$ref": "#/$defs/opAddRelation" },
+        { "$ref": "#/$defs/opDeleteRelation" },
+        { "$ref": "#/$defs/opSetPurpose" },
+        { "$ref": "#/$defs/opSaveQuery" },
+        { "$ref": "#/$defs/opDeleteQuery" }
+      ]
+    },
+
+    "opSetLabel": {
+      "type": "object",
+      "required": ["op", "id", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "set-label" },
+        "id": { "$ref": "#/$defs/id" },
+        "value": { "type": "string" }
+      }
+    },
+    "opSetProperty": {
+      "type": "object",
+      "required": ["op", "id", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "set-property" },
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string" },
+        "value": { "$ref": "#/$defs/scalar" },
+        "domain": { "$ref": "#/$defs/id" },
+        "unset": {
+          "description": "Remove the property. Mutually exclusive with value.",
+          "const": true
+        }
+      }
+    },
+    "opAddEntity": {
+      "type": "object",
+      "required": ["op", "id"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "add-entity" },
+        "id": { "$ref": "#/$defs/id" },
+        "type": { "type": "string" },
+        "label": { "type": "string" },
+        "contains": { "type": "array", "items": { "$ref": "#/$defs/id" } }
+      }
+    },
+    "opDeleteEntity": {
+      "type": "object",
+      "required": ["op", "id"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "delete-entity" },
+        "id": { "$ref": "#/$defs/id" },
+        "cascade": {
+          "description": "false (default) means the transaction FAILS if anything still references this id -- dangling references are never created silently.",
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "opAddState": {
+      "type": "object",
+      "required": ["op", "machine", "state"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "add-state" },
+        "machine": { "$ref": "#/$defs/id" },
+        "state": { "$ref": "#/$defs/id" },
+        "label": { "type": "string" }
+      }
+    },
+    "opDeleteState": {
+      "type": "object",
+      "required": ["op", "machine", "state"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "delete-state" },
+        "machine": { "$ref": "#/$defs/id" },
+        "state": { "$ref": "#/$defs/id" },
+        "cascade": { "type": "boolean", "default": false }
+      }
+    },
+    "opAddTransition": {
+      "type": "object",
+      "required": ["op", "machine", "from", "to"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "add-transition" },
+        "machine": { "$ref": "#/$defs/id" },
+        "from": { "$ref": "#/$defs/id" },
+        "to": { "$ref": "#/$defs/id" },
+        "label": { "type": "string" },
+        "sync": {
+          "description": "Synchronization only; must resolve to a declared event (V1). Named sync: because YAML 1.1 coerces a bare `on` key to boolean true.",
+          "$ref": "#/$defs/id"
+        },
+        "requires": { "type": "object" },
+        "effects": { "type": "object", "additionalProperties": { "type": "string" } }
+      }
+    },
+    "opDeleteTransition": {
+      "type": "object",
+      "required": ["op", "machine"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "delete-transition" },
+        "machine": { "$ref": "#/$defs/id" },
+        "index": {
+          "description": "Position in the machine's transitions list. Use when from/to/on do not identify one uniquely -- nondeterminism makes duplicates legal.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "from": { "$ref": "#/$defs/id" },
+        "to": { "$ref": "#/$defs/id" },
+        "sync": { "$ref": "#/$defs/id" }
+      }
+    },
+    "opAddRelation": {
+      "type": "object",
+      "required": ["op", "model", "from", "to", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "add-relation" },
+        "model": { "$ref": "#/$defs/id" },
+        "id": { "$ref": "#/$defs/id" },
+        "from": { "$ref": "#/$defs/id" },
+        "to": { "$ref": "#/$defs/id" },
+        "type": { "$ref": "#/$defs/id" },
+        "label": { "type": "string" }
+      }
+    },
+    "opDeleteRelation": {
+      "type": "object",
+      "required": ["op", "model"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "delete-relation" },
+        "model": { "$ref": "#/$defs/id" },
+        "id": { "$ref": "#/$defs/id" },
+        "from": { "$ref": "#/$defs/id" },
+        "to": { "$ref": "#/$defs/id" },
+        "type": { "$ref": "#/$defs/id" }
+      }
+    },
+    "opSetPurpose": {
+      "type": "object",
+      "required": ["op", "scope", "id"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "set-purpose" },
+        "scope": { "enum": ["model", "machine"] },
+        "id": { "$ref": "#/$defs/id" },
+        "question": { "type": "string" },
+        "represents": { "type": "array", "items": { "type": "string" } },
+        "omits": {
+          "description": "Checked against the model's actual vocabulary on validation, not merely asserted (V24). A transaction that declares an omission the model contradicts FAILS.",
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "opSaveQuery": {
+      "type": "object",
+      "required": ["op", "id", "query"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "save-query" },
+        "id": { "$ref": "#/$defs/id" },
+        "query": {
+          "description": "Conforms to mage-query.schema.json.",
+          "type": "object"
+        }
+      }
+    },
+    "opDeleteQuery": {
+      "type": "object",
+      "required": ["op", "id"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "delete-query" },
+        "id": { "$ref": "#/$defs/id" }
+      }
+    }
+  }
+}

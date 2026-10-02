@@ -1,0 +1,309 @@
+# Worked example for the MAGE Model Workbench.
+#
+# Exercises every semantic tier in SEMANTICS.md:
+#   T1  a single machine                     -> `document` alone is an ordinary transition system
+#   T2  a second machine                     -> interleaving, no synchronization machinery
+#   T3  a declared event                     -> `acquire` steps both machines atomically
+#   T4  deliberately NOT used                -> see the note on `worker` below
+#
+# Comments in this file are preserved across tool writes. That is a requirement, not a courtesy:
+# a representation advertised as Git-friendly and human-edited cannot discard its own annotations.
+
+mage: 1
+
+system:
+  id: docable
+  name: DocAble
+  description: >
+    Document accessibility remediation. Two purposeful reductions over one entity namespace:
+    a permitted-invocation graph, and a document/worker lifecycle.
+
+# ---------------------------------------------------------------------------
+# Ordered domains make the cross-model security join well typed (V20).
+# Without this, `classification > accepts` compares two unrelated vocabularies.
+# ---------------------------------------------------------------------------
+domains:
+  sensitivity:
+    type: ordered-enum
+    values: [public, internal, restricted]
+    description: Ascending sensitivity. restricted content may not flow to a public-only service.
+
+relation-types:
+
+  may_invoke:
+    description: The design permits the source to invoke the target.
+    absence: No permission to invoke is represented. This model says nothing about runtime calls.
+    composition:
+      # Multi-hop questions ARE licensed: "can the API reach the gateway through permitted
+      # invocation?" is meaningful even though may_invoke is not itself transitive.
+      path: allowed
+    properties:
+      symmetric: false
+      acyclic: false
+
+  data_flow:
+    description: Data may flow directly from source to target.
+    absence: No direct data flow is represented.
+    composition:
+      path: allowed
+    properties:
+      symmetric: false
+
+  owns:
+    description: The source is the sole owner of the target.
+    absence: No ownership is represented.
+    composition:
+      # Ownership does not compose: owning a service does not make you the owner of
+      # everything that service owns. A multi-hop `owns` query is REFUSED (V7), not answered.
+      path: forbidden
+    properties:
+      acyclic: true
+
+# ---------------------------------------------------------------------------
+# THE identity namespace. Ids are immutable; labels are not.
+# ---------------------------------------------------------------------------
+entities:
+
+  api:
+    type: service
+    label: Document API
+    properties:
+      accepts: { value: restricted, domain: sensitivity }
+
+  remediation:
+    type: service
+    label: Remediation Service
+    contains: [parser, repair-engine]
+    properties:
+      classification: { value: restricted, domain: sensitivity }
+    provenance:
+      subject:
+        kind: repository
+        ref: src/services/remediation
+      correspondence:
+        kind: asserted
+        checked: "2026-10-02"   # quoted: YAML 1.1 would hand the loader a date object, and JSON has no date type
+        note: Entity boundary matches the deployed service; internals checked by inspection only.
+
+  parser:
+    type: component
+    label: Parser
+
+  repair-engine:
+    type: component
+    label: Repair Engine
+
+  gateway:
+    type: service
+    label: Model Gateway
+    properties:
+      # The join that matters: this service accepts public content only.
+      accepts: { value: public, domain: sensitivity }
+
+# ---------------------------------------------------------------------------
+# T3: one declared synchronized event. Both participants are singletons, which is
+# what makes this legal -- see the `worker` note below.
+# ---------------------------------------------------------------------------
+events:
+  acquire:
+    participants: [document, worker]
+    description: >
+      The worker takes the document. One system transition: the document enters processing
+      and the worker becomes held, atomically. There is no observable intermediate state.
+
+machines:
+
+  document:
+    entity: remediation          # optional correspondence (V6)
+    purpose:
+      question: Can a document reach published without being reviewed?
+      represents: [document lifecycle states, worker custody during processing]
+      omits: [wall-clock duration, retry backoff policy, document content]
+    initial: waiting
+    states:
+      waiting:
+      processing:
+      reviewed:
+      published:
+      failed:
+    variables:
+      retry_count:
+        type: integer
+        range: [0, 3]           # finite domain mandatory (V17)
+        initial: 0
+    derived:
+      # Never stored, never part of state identity (V18).
+      exhausted: retry_count == 3
+    transitions:
+
+      - from: waiting
+        to: processing
+        sync: acquire           # synchronization, and nothing else (V1)
+
+      # A guard, NOT synchronization: the document reads the worker's state and moves alone.
+      - from: processing
+        to: reviewed
+        label: review
+        requires:
+          worker.state: held
+
+      - from: reviewed
+        to: published
+        label: publish
+
+      # Nondeterminism is required, not merely tolerated: `processing` offers both
+      # review and fail, and exhaustive analysis explores both.
+      - from: processing
+        to: failed
+        label: fail
+
+      - from: failed
+        to: waiting
+        label: retry
+        requires:
+          retry_count: { lt: 3 }
+        effects:
+          retry_count: retry_count + 1
+
+  worker:
+    # DELIBERATELY one instance. `instances: 2` would be legal and would let us ask
+    # "can two workers be held at once?" -- but it would also make `acquire` illegal
+    # under V14, because v0.1 has no participant selection. Multiplicity gives
+    # occupancy, never binding. To model "which worker holds which document",
+    # model the resource: a lock machine with free | held_by_0 | held_by_1.
+    purpose:
+      question: Is the document ever processed while no worker holds it?
+      represents: [worker custody]
+      omits: [worker scheduling, worker identity, queue depth]
+    initial: idle
+    states:
+      idle:
+      held:
+    transitions:
+      - from: idle
+        to: held
+        sync: acquire
+      - from: held
+        to: idle
+        label: release
+
+models:
+
+  service-flow:
+    type: graph
+    label: Service Flow
+    purpose:
+      question: Which services may invoke which other services?
+      represents: [service identity, permitted invocation]
+      # Checked against the model's actual vocabulary, not merely asserted (V24).
+      omits: [observed runtime calls, call frequency, latency]
+    entities: [api, remediation, gateway, parser, repair-engine]
+    relations:
+      - id: api-remediation
+        from: api
+        to: remediation
+        type: may_invoke
+      - id: remediation-gateway
+        from: remediation
+        to: gateway
+        type: may_invoke
+      - id: remediation-owns-parser
+        from: remediation
+        to: parser
+        type: owns
+
+  data-classification:
+    type: graph
+    label: Data Classification
+    purpose:
+      question: Where can restricted document content travel?
+      represents: [direct data flow, sensitivity of endpoints]
+      omits: [permitted invocation, encryption in transit]
+    entities: [api, remediation, gateway]
+    relations:
+      - id: flow-api-remediation
+        from: api
+        to: remediation
+        type: data_flow
+      - id: flow-remediation-gateway
+        from: remediation
+        to: gateway
+        type: data_flow
+
+# ---------------------------------------------------------------------------
+# Engineering questions are versioned artifacts alongside the models that answer them.
+# ---------------------------------------------------------------------------
+queries:
+
+  publish-requires-review:
+    name: Can a document be published without being reviewed?
+    kind: behavior
+    # Existential: a witness trace would prove it CAN happen.
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        document.state: published
+      avoid:
+        document.state: reviewed
+
+  processing-implies-custody:
+    name: Is the document ever processing while the worker is idle?
+    kind: behavior
+    # Universal: exhaustive satisfaction proves it; a counterexample refutes it.
+    quantifier: forall
+    behavior:
+      form: invariant
+      predicate:
+        not:
+          all-of:
+            - document.state: processing
+            - worker.state: idle
+
+  document-can-return-to-waiting:
+    name: Can the document return to waiting after failing?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      # Evidence is a LASSO: a prefix plus the repeating cycle.
+      form: recurrence
+      target:
+        document.state: waiting
+
+  restricted-reaches-public:
+    name: Can restricted content reach a public-only service?
+    kind: graph
+    quantifier: exists
+    graph:
+      form: path
+      relation: data_flow
+      where:
+        compare:
+          - left: source.classification
+            op: gt
+            right: target.accepts
+
+  # Included on purpose as the refusal case: `owns` declares composition.path: forbidden,
+  # so this query returns outcome=unlicensed with a refusal message (V7) -- a successful
+  # result that reports what the model does not authorize.
+  transitive-ownership:
+    name: Does the API transitively own the parser?
+    kind: graph
+    quantifier: exists
+    graph:
+      form: reachability
+      relation: owns
+      from: api
+      to: parser
+
+views:
+
+  overview:
+    label: Overview
+    models: [service-flow]
+    direction: left-to-right
+
+  security:
+    label: Security
+    models: [service-flow, data-classification]
+    show-properties: [classification, accepts]

@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://davisjam.github.io/model-based-agentic-software-engineering/workbench/mage-query.schema.json",
+  "title": "MAGE query and query result",
+  "description": "A question asked of a model system, and the shape of the answer. Every query carries an explicit quantifier: it determines what counts as evidence, and conflating existential with universal is the error the workbench exists to make visible. Semantics in SEMANTICS.md section 7.",
+  "oneOf": [{ "$ref": "#/$defs/query" }, { "$ref": "#/$defs/result" }],
+
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_.\\[\\]-]*$", "maxLength": 160 },
+
+    "query": {
+      "type": "object",
+      "required": ["kind", "quantifier"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "Human-facing question. Saved queries re-run on model change.",
+          "type": "string"
+        },
+        "kind": { "enum": ["behavior", "graph"] },
+        "quantifier": {
+          "description": "exists: a witness proves TRUE, exhaustive absence proves FALSE. forall: exhaustive satisfaction proves TRUE, a counterexample proves FALSE. Never inferred silently -- an ambiguous natural-language question triggers Clarification or a displayed interpretation (V21).",
+          "enum": ["exists", "forall"]
+        },
+        "behavior": { "$ref": "#/$defs/behaviorQuery" },
+        "graph": { "$ref": "#/$defs/graphQuery" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "behavior" } } },
+          "then": { "required": ["behavior"] }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "graph" } } },
+          "then": { "required": ["graph"] }
+        }
+      ]
+    },
+
+    "behaviorQuery": {
+      "description": "A question about executions. Safety and reachability only: fairness is unsupported, so 'can it reach X' is in scope and 'will it eventually reach X' is not.",
+      "type": "object",
+      "required": ["form"],
+      "additionalProperties": false,
+      "properties": {
+        "form": {
+          "description": "reach: a configuration satisfying target is reachable. invariant: predicate holds in every reachable configuration. recurrence: a configuration satisfying target is re-enterable (evidence is a LASSO). deadend: a configuration with no enabled step exists. transition-live: a named transition is executable in some reachable configuration.",
+          "enum": ["reach", "invariant", "recurrence", "deadend", "transition-live"]
+        },
+        "target": {
+          "description": "State predicate. Required for reach and recurrence.",
+          "$ref": "#/$defs/predicate"
+        },
+        "predicate": {
+          "description": "State predicate asserted to hold. Required for invariant.",
+          "$ref": "#/$defs/predicate"
+        },
+        "avoid": {
+          "description": "Configurations the trace must never pass through. A past-time question is NOT expressed here -- it compiles to an invariant over a history variable, and the compilation is disclosed (V23).",
+          "$ref": "#/$defs/predicate"
+        },
+        "transition": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "machine": { "$ref": "#/$defs/id" },
+            "from": { "$ref": "#/$defs/id" },
+            "to": { "$ref": "#/$defs/id" },
+            "sync": { "$ref": "#/$defs/id" }
+          }
+        },
+        "limit": {
+          "description": "Max configurations to explore. Exceeding it yields coverage.kind=bounded, and therefore result=inconclusive (V22) -- never 'no'.",
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+
+    "predicate": {
+      "description": "Conjunction of atoms unless all-of/any-of/not is used. An atom's key names a machine state (document.state), an instance state (worker[1].state), a variable, or a derived value.",
+      "oneOf": [
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "oneOf": [
+              { "type": ["string", "boolean", "integer"] },
+              {
+                "type": "object",
+                "minProperties": 1,
+                "additionalProperties": false,
+                "properties": {
+                  "eq": { "type": ["string", "boolean", "integer"] },
+                  "ne": { "type": ["string", "boolean", "integer"] },
+                  "lt": { "type": "integer" },
+                  "le": { "type": "integer" },
+                  "gt": { "type": "integer" },
+                  "ge": { "type": "integer" }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "properties": {
+            "all-of": { "type": "array", "items": { "$ref": "#/$defs/predicate" } },
+            "any-of": { "type": "array", "items": { "$ref": "#/$defs/predicate" } },
+            "not": { "$ref": "#/$defs/predicate" }
+          }
+        }
+      ]
+    },
+
+    "graphQuery": {
+      "type": "object",
+      "required": ["form", "relation"],
+      "additionalProperties": false,
+      "properties": {
+        "form": {
+          "enum": ["direct", "reachability", "path", "shortest-path", "all-paths", "predecessors", "successors", "cycles", "components", "containment"]
+        },
+        "relation": {
+          "description": "Relation type traversed. A multi-hop form over a type with composition.path=forbidden is REFUSED, not answered (V7) -- outcome=unlicensed.",
+          "$ref": "#/$defs/id"
+        },
+        "from": { "$ref": "#/$defs/id" },
+        "to": { "$ref": "#/$defs/id" },
+        "max-hops": { "type": "integer", "minimum": 1 },
+        "where": {
+          "description": "Join predicate over endpoint properties, e.g. source.classification > target.accepts. Well-typed only if both sides declare the SAME ordered domain (V20).",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "source": { "$ref": "#/$defs/propertyConstraint" },
+            "target": { "$ref": "#/$defs/propertyConstraint" },
+            "compare": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["left", "op", "right"],
+                "additionalProperties": false,
+                "properties": {
+                  "left": { "type": "string" },
+                  "op": { "enum": ["eq", "ne", "lt", "le", "gt", "ge"] },
+                  "right": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "propertyConstraint": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": ["string", "boolean", "integer"] },
+          {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": false,
+            "properties": {
+              "eq": { "type": ["string", "boolean", "integer"] },
+              "ne": { "type": ["string", "boolean", "integer"] },
+              "in": { "type": "array", "items": { "type": ["string", "boolean", "integer"] } }
+            }
+          }
+        ]
+      }
+    },
+
+    "result": {
+      "type": "object",
+      "required": ["outcome", "coverage"],
+      "additionalProperties": false,
+      "properties": {
+        "outcome": {
+          "description": "true/false are claims the coverage licenses. inconclusive is mandatory when coverage is bounded (V22). unlicensed means the model does not authorize the question -- a SUCCESSFUL result, not an error (V7, V24).",
+          "enum": ["true", "false", "inconclusive", "unlicensed"]
+        },
+        "interpreted-as": {
+          "description": "The question actually evaluated, in plain language. Mandatory when the query came from natural language (V21).",
+          "type": "string"
+        },
+        "formal-query": {
+          "description": "The query object actually executed. The UI exposes this beside the answer.",
+          "type": "object"
+        },
+        "coverage": {
+          "type": "object",
+          "required": ["kind"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": { "enum": ["exhaustive", "bounded", "not-applicable"] },
+            "states_explored": { "type": "integer", "minimum": 0 },
+            "reason": { "enum": ["state-limit", "time-limit", "depth-limit"] }
+          },
+          "allOf": [
+            {
+              "if": { "properties": { "kind": { "const": "bounded" } } },
+              "then": { "required": ["reason"] }
+            }
+          ]
+        },
+        "evidence": { "$ref": "#/$defs/evidence" },
+        "refusal": {
+          "description": "Why the model does not license the question. Required when outcome=unlicensed.",
+          "type": "string"
+        },
+        "compilation": {
+          "description": "Disclosed rewrites, e.g. an auxiliary history variable added to answer a past-time question (V23).",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["kind", "explanation"],
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "enum": ["history-variable", "symmetry-reduction", "other"] },
+              "explanation": { "type": "string" }
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "outcome": { "const": "unlicensed" } } },
+          "then": { "required": ["refusal"] }
+        }
+      ]
+    },
+
+    "evidence": {
+      "description": "A witness supports an existential; a counterexample refutes a universal. A lasso is required for recurrence.",
+      "type": "object",
+      "required": ["shape", "role"],
+      "additionalProperties": false,
+      "properties": {
+        "shape": { "enum": ["trace", "lasso", "path", "none"] },
+        "role": { "enum": ["witness", "counterexample"] },
+        "steps": { "type": "array", "items": { "$ref": "#/$defs/step" } },
+        "cycle": {
+          "description": "The repeating suffix. Required when shape=lasso.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/step" }
+        },
+        "nodes": {
+          "description": "Entity ids, for graph evidence.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "shape": { "const": "lasso" } } },
+          "then": { "required": ["cycle"] }
+        }
+      ]
+    },
+
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "machines": {
+          "description": "Instances that moved. More than one means a declared synchronized event fired.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "sync": { "$ref": "#/$defs/id" },
+        "from": { "type": "object", "additionalProperties": { "type": ["string", "boolean", "integer"] } },
+        "to": { "type": "object", "additionalProperties": { "type": ["string", "boolean", "integer"] } },
+        "label": { "type": "string" }
+      }
+    }
+  }
+}
