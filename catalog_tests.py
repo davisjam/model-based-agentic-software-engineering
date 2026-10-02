@@ -94,6 +94,7 @@ from tests.citations import (
 from tests.common import FAIL, PASS, SKIP, changed_vs_origin
 from tests.deploy import check_deploy_publishable
 from tests.external import check_axe, check_axe_coverage_set, check_claude_validate, check_html_valid, check_lab_logo_url
+from tests.hooks import check_hook_operates_on_committing_tree
 from tests.html import (
     check_lab_logo_single_sourced,
     check_book_emitted_tree,
@@ -204,6 +205,8 @@ def _pptx_changed(changed: frozenset[str]) -> bool:
 CHECKS = [
     Check("deploy: _is_publishable rejects every _design/ path (any ext); publishes real outputs", 1,
           lambda strict: check_deploy_publishable()),
+    Check("hooks: pre-commit resolves its root from the COMMITTING tree and stages only under it", 1,
+          lambda strict: check_hook_operates_on_committing_tree()),
     Check("markdown: schema + md-link existence", 1, lambda strict: check_markdown_schema()),
     Check("course: module pages conform to module-schema.json (Premise + model list)", 1,
           lambda strict: check_course_module_schema()),

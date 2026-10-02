@@ -15,6 +15,54 @@ Four jobs, all cheap enough to run on every commit:
      cross-ref fails at commit, not at deploy. The SLOW external checks stay deploy-time (see the note at
      that step).
 
+Jobs 1 and 2 run ONLY in the publishing checkout. Jobs 0 and 3 run everywhere, against the committing
+tree. The two sections below say why.
+
+## Which tree this hook operates on
+
+`core.hooksPath` holds an absolute path into the main checkout's `hooks/`, so main's commits and every
+`git worktree`'s commits all execute THIS file. The root therefore comes from the committing context —
+`_hook_root.committing_toplevel()`, which asks git for the top of the tree being committed — and never
+from `__file__`. `__file__` names the checkout that owns the hook, which decides one thing only: whether
+the committer IS that checkout.
+
+Deriving the root from `__file__` cost real work on 261002. Git exports `GIT_INDEX_FILE` into a hook (the
+committing worktree's index, or the temp index a pathspec commit builds) and subprocesses inherit it, so
+the `git add` calls below read MAIN's working tree and wrote it into SOMEONE ELSE's index. Four commits
+took main's `index.html` / `workbench/index.html` / `book-models/projection-index.json` without naming
+them. Once it went further: an agent's own staged `workbench/index.html` was overwritten with main's
+byte-identical copy, so the path showed no change and dropped out of the commit with no error and nothing
+in the output to notice. A pathspec on the commit does not defend against this — the temp index is the one
+git exports.
+
+## A worktree commit gates; it does not regenerate
+
+The regenerate-and-stage half runs only when the committing tree owns this hook — in practice, the main
+checkout. Three reasons, in descending order of how much they constrain the choice:
+
+  - **The generators do not run in a worktree.** `catalog.py build` aborts there: the book build needs
+    `book/assets/cover-thumb.png`, which is gitignored and produced by `tools/cover_assets.py regen`
+    (typst + Pillow). Verified 261002 in a worktree sitting on a landed main commit — rc=1, "page body
+    references missing asset …/cover-thumb.png". Pointing the root at the committing tree WITHOUT this
+    split would have blocked every worktree commit outright.
+  - **The derived artifacts belong to the publisher.** GitHub Pages serves main's committed HTML. A
+    branch carries content; main carries what it publishes. Landing a branch onto main runs this hook in
+    main, which regenerates then — and the one route that skips it, `git merge --no-ff`, is already
+    covered by the regen-drift gate in `catalog_tests.py` (pre-push + CI `--full`), where the tree is
+    clean and HEAD is the thing under test.
+  - **It costs ~13s per commit** (validate ~10s, build ~3s) to re-render 85 catalogue pages that an agent
+    editing `workbench/src/` cannot have changed.
+
+The gates do not weaken. Before this change a worktree commit ran `validate` and `book-float-ref` against
+MAIN's tree, so their verdict described content the commit did not contain — green on the committer's own
+breakage, red on main's unrelated dirt. They now read the committing tree. A worktree commit does give up
+`catalog.py build` as a render gate, and that loses nothing: it was building main, and pre-push plus CI run
+the render on the tree that publishes.
+
+Skipping regeneration does not strand the committer either. The freshness gates inside `validate` compare a
+derived artifact against the BUILT html, so leaving both untouched keeps them in sync — verified by
+appending prose to a book chapter in a worktree and running `catalog.py validate` with no build: rc=0.
+
 Install once with `python3 catalog.py install-hooks` (sets core.hooksPath=hooks). No shell — pure Python,
 per the repo's tooling posture.
 """
@@ -22,7 +70,16 @@ import os
 import subprocess
 import sys
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+HOOK_FILE = os.path.abspath(__file__)
+sys.path.insert(0, os.path.dirname(HOOK_FILE))
+from _hook_root import committing_toplevel, resolve  # noqa: E402 — sits beside the hook, so it is reachable before the root is known
+
+ROOT, IS_PUBLISHER = resolve(HOOK_FILE, committing_toplevel())
+
+# Name the tree and the mode. The 261002 defect hid because nothing in the output said which tree the
+# hook was touching, and a dropped file looks exactly like a file with no changes.
+print(f"pre-commit: {ROOT} — "
+      f"{'publishing checkout: gate + regenerate + stage' if IS_PUBLISHER else 'worktree: gate only, no regeneration'}")
 
 
 def _catalog(*args: str) -> None:
@@ -44,16 +101,16 @@ if _deck_gate.returncode:
     sys.exit(1)
 
 _catalog("validate")   # refuse to build/commit an invalid schema
-_catalog("build")      # render .md -> .html + regenerate the landing census + the skill bundle
 
 # The regen-DRIFT gate (`catalog.py regen-check`, which asserts the COMMITTED HTML equals a fresh render)
 # deliberately does NOT run here, and the reason is structural rather than a matter of taste. This hook IS
-# the regenerator: before the build above, every ordinary content commit legitimately has stale committed
+# the regenerator: before the build below, every ordinary content commit legitimately has stale committed
 # HTML, so the gate would block the commit that fixes it; after the build, the committed side is whatever
 # the `git add` below is about to stage, so the gate would be comparing the build against itself. Either
 # way it is useless or hostile. Its verdict is a property of a COMMIT, so it is hosted in catalog_tests.py
 # (pre-push + CI's --full), where the tree is clean and HEAD is the thing under test. That placement is
-# also what catches the route this hook cannot reach at all: a `git merge --no-ff` commit never runs it.
+# also what catches the two routes this hook cannot reach: a `git merge --no-ff` commit never runs it, and
+# a worktree commit now deliberately skips the regeneration.
 
 
 def _regen(script: str, artifact: str) -> None:
@@ -65,53 +122,71 @@ def _regen(script: str, artifact: str) -> None:
     subprocess.run(["git", "add", "--", os.path.join("book-models", artifact)], cwd=ROOT)
 
 
-# book-models DERIVED VIEWS: these JSONs are pure projections of the book source (outline structure,
-# learning-outcome tiers, symbol reverse-index). Editing the book without regenerating them leaves the
-# committed artifact STALE — a recurring class caught only later by the deploy-scope views-audit. Regen
-# is sub-second, so run + stage it on every commit: the staleness is made impossible, not merely detected.
-# These MUST regen before the reading-view render below, which projects outline.json + outcomes.json.
-_regen("outline_model.py", "outline.json")
-_regen("outcomes_model.py", "outcomes.json")
-_regen("reverse_index.py", "reverse_index.json")
-# The CHAPTER-IDENTITY artifact is a pure projection of the hand-authored chapter_identity_declared.json
-# (label + filename per chapter). Regen + stage it on every commit so the derived materialization never
-# goes stale vs the declared source — the same staleness class the sibling derived-view regens close.
-_regen("chapter_identity_model.py", "chapter_identity.json")
+def _regenerate_and_stage() -> None:
+    """Render the site + the derived views into ROOT and stage them.
 
-# The PROJECTION index is a DERIVED inversion of the BUILT HTML (which projection + site each tracked
-# concept renders in). It scans the .html the `catalog build` above just wrote, so it regenerates AFTER
-# the build — editing a page without regenerating it leaves the committed index stale, exactly the class
-# the other derived-view regens close. Sub-second; regen + stage on every commit.
-_regen("projections_model.py", "projection-index.json")
+    Every `git add` here runs with cwd=ROOT, and ROOT is the committing tree, so the content read and the
+    index written now belong to the same repository. That identity is what the caller's IS_PUBLISHER guard
+    protects: run this under any other root and it force-stages one tree's output into another's commit.
+    """
+    _catalog("build")      # render .md -> .html + regenerate the landing census + the skill bundle
 
-# The SLOGAN/METAPHOR OCCURRENCE index is a second DERIVED inversion of the BUILT book HTML (every slogan +
-# local-metaphor phrase, the site + nearest anchor it appears at). Like the projection index, it scans the
-# .html the build above just wrote, so it regenerates AFTER the build; its freshness gate is BLOCKING in
-# `catalog.py validate`, so a page edited without regenerating it would redden the next commit.
-_regen("metaphor_slogan_index_model.py", "metaphor-slogan-index.json")
+    # book-models DERIVED VIEWS: these JSONs are pure projections of the book source (outline structure,
+    # learning-outcome tiers, symbol reverse-index). Editing the book without regenerating them leaves the
+    # committed artifact STALE — a recurring class caught only later by the deploy-scope views-audit. Regen
+    # is sub-second, so run + stage it on every commit: the staleness is made impossible, not merely
+    # detected. These MUST regen before the reading-view render below, which projects outline.json +
+    # outcomes.json.
+    _regen("outline_model.py", "outline.json")
+    _regen("outcomes_model.py", "outcomes.json")
+    _regen("reverse_index.py", "reverse_index.json")
+    # The CHAPTER-IDENTITY artifact is a pure projection of the hand-authored chapter_identity_declared.json
+    # (label + filename per chapter). Regen + stage it on every commit so the derived materialization never
+    # goes stale vs the declared source — the same staleness class the sibling derived-view regens close.
+    _regen("chapter_identity_model.py", "chapter_identity.json")
 
-# CHAPTER SHAPE is the last derived view that was regenerated by hand — so it was the only one that
-# DRIFTED, silently, until someone happened to run it (found drifted 260920). Its siblings above are all
-# regen+staged here precisely so staleness is impossible rather than merely detected; chapter shape gets
-# the same treatment. `regenerate` exits 0 while PRINTING its structural advisories (DV3/DV4/U8), so
-# adding it here does not redden a commit on an advisory — only a generator error fails the commit.
-_regen("chapter_shape_model.py", "chapter-shape.json")
+    # The PROJECTION index is a DERIVED inversion of the BUILT HTML (which projection + site each tracked
+    # concept renders in). It scans the .html the `catalog build` above just wrote, so it regenerates AFTER
+    # the build — editing a page without regenerating it leaves the committed index stale, exactly the class
+    # the other derived-view regens close. Sub-second; regen + stage on every commit.
+    _regen("projections_model.py", "projection-index.json")
 
-# book-models READING VIEW: re-render the browsable HTML view of the book models (outline + outcomes)
-# and stage it, exactly like the site build stays fresh. The page is a PROJECTION of the models, so a
-# model regeneration must re-flow the view; running it on every commit means the committed HTML can
-# never go stale. Tracked (not gitignored) — mirrors how GitHub Pages serves the committed site HTML.
-_render = subprocess.run([sys.executable, os.path.join("book-models", "render_models_view.py"),
-                          "regenerate"], cwd=ROOT)
-if _render.returncode:
-    sys.exit(_render.returncode)
-subprocess.run(["git", "add", "--", "book-models/models-view.html"], cwd=ROOT)
+    # The SLOGAN/METAPHOR OCCURRENCE index is a second DERIVED inversion of the BUILT book HTML (every slogan +
+    # local-metaphor phrase, the site + nearest anchor it appears at). Like the projection index, it scans the
+    # .html the build above just wrote, so it regenerates AFTER the build; its freshness gate is BLOCKING in
+    # `catalog.py validate`, so a page edited without regenerating it would redden the next commit.
+    _regen("metaphor_slogan_index_model.py", "metaphor-slogan-index.json")
 
-# Stage the regenerated CATALOGUE site pages. The retired hand-rolled book pages (`book/<slug>.html`)
-# are gitignored, so this pathspec cannot resurrect one — the book's web edition lives in the emitted,
-# never-committed `book/web/` tree (the C3 publish swap ended the book's tracked-HTML discipline).
-subprocess.run(["git", "add", "--", "*.html"], cwd=ROOT)
-subprocess.run(["git", "add", "--", "plugin"], cwd=ROOT)  # stage the regenerated skill bundle (plugin/**/*.html is gitignored)
+    # CHAPTER SHAPE is the last derived view that was regenerated by hand — so it was the only one that
+    # DRIFTED, silently, until someone happened to run it (found drifted 260920). Its siblings above are all
+    # regen+staged here precisely so staleness is impossible rather than merely detected; chapter shape gets
+    # the same treatment. `regenerate` exits 0 while PRINTING its structural advisories (DV3/DV4/U8), so
+    # adding it here does not redden a commit on an advisory — only a generator error fails the commit.
+    _regen("chapter_shape_model.py", "chapter-shape.json")
+
+    # book-models READING VIEW: re-render the browsable HTML view of the book models (outline + outcomes)
+    # and stage it, exactly like the site build stays fresh. The page is a PROJECTION of the models, so a
+    # model regeneration must re-flow the view; running it on every commit means the committed HTML can
+    # never go stale. Tracked (not gitignored) — mirrors how GitHub Pages serves the committed site HTML.
+    _render = subprocess.run([sys.executable, os.path.join("book-models", "render_models_view.py"),
+                              "regenerate"], cwd=ROOT)
+    if _render.returncode:
+        sys.exit(_render.returncode)
+    subprocess.run(["git", "add", "--", "book-models/models-view.html"], cwd=ROOT)
+
+    # Stage the regenerated CATALOGUE site pages. The retired hand-rolled book pages (`book/<slug>.html`)
+    # are gitignored, so this pathspec cannot resurrect one — the book's web edition lives in the emitted,
+    # never-committed `book/web/` tree (the C3 publish swap ended the book's tracked-HTML discipline).
+    subprocess.run(["git", "add", "--", "*.html"], cwd=ROOT)
+    subprocess.run(["git", "add", "--", "plugin"], cwd=ROOT)  # stage the regenerated skill bundle (plugin/**/*.html is gitignored)
+
+
+if IS_PUBLISHER:
+    _regenerate_and_stage()
+else:
+    print("pre-commit: site + derived-view regeneration SKIPPED — this commit is not from the publishing "
+          "checkout. The branch carries content; main regenerates when the branch lands, and the "
+          "regen-drift gate in catalog_tests.py (pre-push + CI --full) is the backstop.")
 
 # book-float-ref BLOCKING GATE: every numbered float (figure/table) must be introduced by a `[ref:]`
 # cross-ref in the prose. This is a CHEAP, deterministic, deploy-scope check that twice went red only at
@@ -134,5 +209,7 @@ if _status == "FAIL":
 
 # book-models DRIFT AUDIT (AUDIT-ONLY): report structural + freshness drift over the typed view-models,
 # but do NOT block the commit yet (no --strict). Sub-second. A follow-up promotes it to blocking (adds
-# --strict) once the seed findings are drained — the repo's audit-only-first landing discipline.
+# --strict) once the seed findings are drained — the repo's audit-only-first landing discipline. From a
+# worktree this is also the early warning for the regeneration this hook just skipped: it names the
+# derived views the branch leaves stale, which main refreshes on the landing commit.
 subprocess.run([sys.executable, "catalog.py", "views-audit"], cwd=ROOT)
