@@ -53,21 +53,36 @@ test("invariant: a universal that holds is established by exhaustive satisfactio
   assert.equal(answer.result.evidence, null);
 });
 
-test("recurrence: evidence is a LASSO, and the substituted cycle is disclosed", () => {
+test("recurrence means RE-ENTRY, with nothing disclosed -- it answers the question asked", () => {
   const s = docable();
   const answer = runQuery(s, savedQuery(s, "document-can-return-to-waiting"));
   assert.equal(answer.result.outcome, "holds");
   assert.equal(answer.result.evidence?.shape, "lasso");
-  // The schema requires `cycle` whenever shape is lasso.
   assert.ok((answer.result.evidence?.cycle ?? []).length > 0);
-  // No configuration repeats, because `retry_count` advances on the way back round. The engine
-  // answers the question that was asked and says what it substituted.
-  const disclosures = answer.result.compilation.map((c) => c.explanation).join(" ");
-  assert.match(disclosures, /No configuration repeats/);
-  assert.match(disclosures, /target-to-target segment/);
+  // No configuration repeats here -- retry_count advances on the way back round -- but recurrence
+  // does not ask about repeated configurations, so there is nothing to apologise for. An earlier
+  // design searched for a true cycle first and disclosed the fallback; that let one query mean two
+  // things depending on what the search found. Ruled 261002: a query denotes a question, not a
+  // search strategy.
+  assert.deepEqual(answer.result.compilation, [], "re-entry is the denotation, so no substitution note");
 });
 
-test("recurrence: a true configuration cycle is reported without a substitution note", () => {
+test("THE PAIR: the retry loop is re-entered (holds) but is NOT repeatable (refuted)", () => {
+  // This is why the two forms exist. Same model, same target, two different engineering questions,
+  // two different honest answers. If either form could return the other's answer, the distinction
+  // the author insisted on would be lost.
+  const s = docable();
+  const target = { "document.state": "waiting" } as const;
+  const reentry = runQuery(s, behavior("exists", "recurrence", { target }));
+  const forever = runQuery(s, behavior("exists", "repeatable-cycle", { target }));
+  assert.equal(reentry.result.outcome, "holds", "it demonstrably returns to waiting");
+  assert.equal(forever.result.outcome, "refuted",
+    "retry_count strictly advances, so no configuration repeats and it cannot loop indefinitely");
+  assert.equal(forever.result.coverage.kind, "exhaustive",
+    "refuted is only sound under exhaustive coverage");
+});
+
+test("repeatable-cycle: a genuine configuration cycle holds, with a lasso", () => {
   const answer = runQuery(build({
     machines: {
       m: {
@@ -75,10 +90,18 @@ test("recurrence: a true configuration cycle is reported without a substitution 
         transitions: [{ from: "a", to: "b", label: "out" }, { from: "b", to: "a", label: "back" }],
       },
     },
-  }), behavior("exists", "recurrence", { target: { "m.state": "a" } }));
+  }), behavior("exists", "repeatable-cycle", { target: { "m.state": "a" } }));
   assert.equal(answer.result.outcome, "holds");
   assert.equal(answer.result.evidence?.shape, "lasso");
   assert.deepEqual(answer.result.compilation, []);
+});
+
+test("repeatable-cycle without a target is UNLICENSED, not refuted", () => {
+  const answer = runQuery(build({
+    machines: { m: { initial: "a", states: { a: null }, transitions: [] } },
+  }), behavior("exists", "repeatable-cycle", {}));
+  assert.equal(answer.result.outcome, "unlicensed");
+  assert.match(answer.result.refusal ?? "", /must carry a 'target' predicate/);
 });
 
 test("recurrence: a target that is never re-entered is refuted under exhaustive coverage", () => {

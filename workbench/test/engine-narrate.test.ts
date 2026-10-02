@@ -50,7 +50,9 @@ test("a lasso marks its repeating segment, so a cycle is legible without a diagr
   assert.equal(firstRepeating, steps.length - repeating.length);
   assert.match(narration.evidence?.summary ?? "", /A lasso: \d+ steps? to the target, then a \d+-step segment/);
   // The substitution disclosure travels with the narration, not only in the raw result.
-  assert.ok(narration.disclosures.some((d) => /No configuration repeats/.test(d)));
+  // The substitution disclosure is GONE by ruling: recurrence denotes re-entry, so there is
+  // nothing substituted to disclose. What must stay legible is the repeating segment itself.
+  assert.deepEqual(narration.disclosures, [], "re-entry is the denotation, not a fallback");
 });
 
 test("bounded coverage narrates the V22 caveat explicitly", () => {

@@ -52,6 +52,7 @@ import {
 const NATURAL_QUANTIFIER: Readonly<Record<BehaviorForm, Quantifier>> = {
   reach: "exists",
   recurrence: "exists",
+  "repeatable-cycle": "exists",
   deadend: "exists",
   "transition-live": "exists",
   invariant: "forall",
@@ -127,6 +128,14 @@ export function runBehaviorQuery(
       return unsettled(space, systemHash, interpretedAs, "holds");
     }
 
+    case "repeatable-cycle": {
+      if (q.target === null) {
+        return unlicensed(systemHash, "a 'repeatable-cycle' query must carry a 'target' predicate.", interpretedAs);
+      }
+      const target = compilePredicate(scope, q.target);
+      if (!target.ok) return unlicensed(systemHash, `target: ${target.refusal}`, interpretedAs);
+      return repeatableCycle(exploreSpace(compiled.value, base), target.value, systemHash, interpretedAs);
+    }
     case "recurrence": {
       if (q.target === null) {
         return unlicensed(systemHash, "a 'recurrence' query must carry a 'target' predicate.", interpretedAs);
@@ -222,13 +231,18 @@ function unsettled(
  * Recurrence, in two passes.
  *
  * A true lasso is a prefix plus a cycle back to the SAME configuration, and that is tried first.
- * But "can the document return to waiting?" is usually asked of a model where returning advances a
- * counter, so no configuration ever repeats and a strict lasso search answers `refuted` to a
- * question whose honest answer is yes. The second pass therefore looks for target RE-ENTRY: a
- * target configuration, at least one step, another target configuration. The reported `cycle` is
- * then the target-to-target segment rather than a true cycle, and that substitution is DISCLOSED.
+ * `recurrence` means exactly ONE thing: the target is RE-ENTERED. A target configuration, at least
+ * one step, another target configuration. Nothing more.
  *
- * SEMANTICS.md §7.2 does not say which of the two readings `recurrence` means; see the report.
+ * It deliberately does NOT look for a true repeated configuration first and fall back to re-entry.
+ * That earlier design let the same query mean different things depending on what the search happened
+ * to find, which is a search strategy masquerading as a denotation. Ruled 261002: "queries should
+ * denote questions, not search strategies."
+ *
+ * "Can it loop indefinitely?" is a different and sharper engineering question than "can it come
+ * back", so it is a different form: `repeatable-cycle`, below. The retry example — where returning to
+ * `waiting` advances `retry_count`, so no configuration ever repeats — therefore answers `holds` for
+ * `recurrence` and `refuted` for `repeatable-cycle`, which is the honest pair of answers.
  */
 function recurrence(
   space: StateSpace, target: CompiledPredicate, systemHash: string, interpretedAs: string,
@@ -237,13 +251,6 @@ function recurrence(
   space.configs.forEach((cfg, i) => {
     if (target(cfg)) hits.push(i);
   });
-
-  for (const at of hits) {
-    const cycle = cycleThrough(space, at);
-    if (cycle !== null) {
-      return settled(space, systemHash, interpretedAs, "holds", lasso(traceTo(space, at), cycle));
-    }
-  }
 
   let best: { readonly at: number; readonly segment: readonly Step[] } | null = null;
   for (const from of hits) {
@@ -254,17 +261,36 @@ function recurrence(
     }
   }
   if (best !== null) {
-    return verdict(result({
-      outcome: "holds", coverage: exhaustive(space.statesExplored), systemHash, interpretedAs,
-      evidence: lasso(traceTo(space, best.at), best.segment),
-      compilation: asCompilation([
-        ...space.notes,
-        `No configuration repeats, so there is no cycle in the strict sense: the target is ` +
-        `re-entered in a DIFFERENT configuration, because some variable advanced along the way. ` +
-        `The reported cycle is the target-to-target segment, which is the question that was asked ` +
-        `("can it return to this state?"), not a true loop.`,
-      ]),
-    }));
+    // The reported `cycle` is the target-to-target segment. That IS the answer to the question
+    // asked, so there is nothing to disclose — a disclosure here would be apologising for giving
+    // the right answer.
+    return settled(space, systemHash, interpretedAs, "holds",
+      lasso(traceTo(space, best.at), best.segment));
+  }
+  return unsettled(space, systemHash, interpretedAs, "refuted");
+}
+
+/**
+ * `repeatable-cycle` — is there an execution that can repeat forever from the target?
+ *
+ * This is the strict reading: a genuinely repeated CONFIGURATION, which is what makes a cycle
+ * actually repeatable. A loop whose bounded variable strictly advances is not one, and answers
+ * `refuted` here while `recurrence` answers `holds` — the two forms exist precisely so those two
+ * questions have different names.
+ *
+ * Same distinction as the path-aggregation rule: a positive repeatable cycle makes an additive
+ * maximum unbounded, and a strictly-advancing loop does not.
+ */
+function repeatableCycle(
+  space: StateSpace, target: CompiledPredicate, systemHash: string, interpretedAs: string,
+): Verdict {
+  for (let i = 0; i < space.configs.length; i += 1) {
+    const cfg = space.configs[i];
+    if (cfg === undefined || !target(cfg)) continue;
+    const cycle = cycleThrough(space, i);
+    if (cycle !== null) {
+      return settled(space, systemHash, interpretedAs, "holds", lasso(traceTo(space, i), cycle));
+    }
   }
   return unsettled(space, systemHash, interpretedAs, "refuted");
 }
@@ -321,6 +347,12 @@ function describeSelector(sel: TransitionSelector): string {
 export function interpretation(q: BehaviorQuery): string {
   const avoiding = q.avoid === null ? "" : `, without ever passing through a configuration where ${describePredicate(q.avoid)}`;
   switch (q.form) {
+    case "repeatable-cycle":
+      return `Does there exist an execution that reaches a configuration where ` +
+        `${q.target === null ? "(no target given)" : describePredicate(q.target)}` +
+        ` and can then repeat that configuration forever` +
+        `${avoiding}? (A loop that advances a bounded variable is NOT repeatable; ` +
+        `ask 'recurrence' for whether the state is merely re-entered.)`;
     case "reach":
       return `Does there exist an execution reaching a configuration where ` +
         `${q.target === null ? "the target holds" : describePredicate(q.target)}${avoiding}?`;

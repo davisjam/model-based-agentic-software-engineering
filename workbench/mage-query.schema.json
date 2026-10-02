@@ -48,8 +48,8 @@
       "additionalProperties": false,
       "properties": {
         "form": {
-          "description": "reach: a configuration satisfying target is reachable. invariant: predicate holds in every reachable configuration. recurrence: a configuration satisfying target is re-enterable (evidence is a LASSO). deadend: a configuration with no enabled step exists. transition-live: a named transition is executable in some reachable configuration.",
-          "enum": ["reach", "invariant", "recurrence", "deadend", "transition-live"]
+          "description": "reach: a configuration satisfying target is reachable. invariant: predicate holds in every reachable configuration. recurrence: the target is RE-ENTERED -- a target configuration, at least one step, another target configuration; evidence is a LASSO whose cycle is the target-to-target segment. repeatable-cycle: a genuinely repeated CONFIGURATION, which is what makes a cycle actually repeatable; a loop whose bounded variable strictly advances answers refuted here while recurrence answers holds. Two forms, because can-it-come-back and can-it-loop-indefinitely are different questions and a query must denote a question rather than a search strategy. deadend: a configuration with no enabled step exists. transition-live: a named transition is executable in some reachable configuration.",
+          "enum": ["reach", "invariant", "recurrence", "repeatable-cycle", "deadend", "transition-live"]
         },
         "target": {
           "description": "State predicate. Required for reach and recurrence.",

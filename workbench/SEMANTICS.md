@@ -372,9 +372,27 @@ in YAML is implicit-typed to a boolean (§10.1), so `expect: false` in a saved q
 Python/JS boolean and silently matches nothing. That bug was found by this spec's own gate, which is
 the argument for V25 in miniature.
 
-**V22.** When `coverage.kind` is `bounded`, the result MUST be reported as **INCONCLUSIVE** and MUST
-NOT be rendered as "no". "No such trace exists" is sound only under exhaustive coverage; under a
-bound, the true statement is "no such trace within the explored region."
+**V22 — incomplete coverage weakens conclusions drawn from ABSENCE, never evidence already found.**
+
+> Incomplete coverage prevents conclusions that depend on the absence of settling evidence. It does
+> not weaken settling evidence that has been found.
+
+**Settling evidence** is a **witness** for an existential claim or a **counterexample** for a
+universal one. Either establishes its claim on its own terms, because further search cannot unfind
+it. So:
+
+| | settling evidence found | none found |
+|---|---|---|
+| **∃** | `holds` — regardless of coverage | `refuted` iff exhaustive, else `inconclusive` |
+| **∀** | `refuted` — regardless of coverage | `holds` iff exhaustive, else `inconclusive` |
+
+Only the right-hand column depends on coverage, and that is the whole of V22. "No such trace exists"
+is sound only under exhaustive coverage; under a bound the true statement is "no such trace within
+the explored region", which is `inconclusive` and MUST NOT be rendered as "no".
+
+The principle is stated generally rather than as a rule about bounded search, because it travels:
+any future incompleteness — a time limit, a depth limit, a sampling strategy, an abstraction — has
+the same shape.
 
 The state limit is a **v0.1** concern, not a later one. Finite domains do not bound the product
 *usefully*: two machines, three instances and one `[0,10]` variable already reach millions of
@@ -383,9 +401,30 @@ configurations.
 ### 7.2 Evidence shapes
 
 - **trace** — a finite sequence of steps from the initial configuration.
-- **lasso** — a finite prefix plus a cycle. Required for "can the system return to `S`?", which is
-  existential and needs no fairness. Implementations MUST support both shapes from the start rather
-  than retrofitting the second.
+- **lasso** — a finite prefix plus a repeating segment. Implementations MUST support both shapes from
+  the start rather than retrofitting the second.
+
+### 7.2a Two cycle questions, two forms — a query denotes a question, not a search strategy
+
+`recurrence` and `repeatable-cycle` both produce a lasso, and they are deliberately distinct:
+
+| Form | Asks | Holds when |
+|---|---|---|
+| `recurrence` | *Can the system return to S?* | the target is **re-entered**: a target configuration, ≥1 step, another target configuration |
+| `repeatable-cycle` | *Can it loop indefinitely from S?* | a **configuration genuinely repeats**, which is what makes a cycle repeatable |
+
+The worked example shows why one form cannot serve both. `document-can-return-to-waiting` asks about
+a retry loop that advances `retry_count`, so `(waiting, 0)` … `(waiting, 3)` are four *distinct*
+configurations and none ever repeats. The honest answers are therefore **`recurrence`: holds** (it
+demonstrably returns) and **`repeatable-cycle`: refuted** (it cannot run forever).
+
+An earlier design made `recurrence` search for a true cycle first and fall back to re-entry, saying
+which it had done. That is **forbidden**: it lets one query mean two different things depending on
+what the search happened to find, so a reader cannot tell from the query what was asked. Each form
+has exactly one denotation, and `recurrence` discloses nothing because it substitutes nothing.
+
+This is the same distinction the quantitative rules draw: a strictly-advancing loop is not a
+repeatable cycle, which is why it cannot make an additive maximum unbounded.
 
 ### 7.3 Past-time properties compile to safety
 

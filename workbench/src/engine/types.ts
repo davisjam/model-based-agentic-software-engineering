@@ -90,7 +90,7 @@ export type GraphForm =
   | "direct" | "reachability" | "path" | "shortest-path" | "all-paths"
   | "predecessors" | "successors" | "cycles" | "components" | "containment";
 
-export type BehaviorForm = "reach" | "invariant" | "recurrence" | "deadend" | "transition-live";
+export type BehaviorForm = "reach" | "invariant" | "recurrence" | "repeatable-cycle" | "deadend" | "transition-live";
 
 const GRAPH_FORMS: ReadonlySet<string> = new Set<GraphForm>([
   "direct", "reachability", "path", "shortest-path", "all-paths",
@@ -98,7 +98,7 @@ const GRAPH_FORMS: ReadonlySet<string> = new Set<GraphForm>([
 ]);
 
 const BEHAVIOR_FORMS: ReadonlySet<string> = new Set<BehaviorForm>([
-  "reach", "invariant", "recurrence", "deadend", "transition-live",
+  "reach", "invariant", "recurrence", "repeatable-cycle", "deadend", "transition-live",
 ]);
 
 /**
