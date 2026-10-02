@@ -9,7 +9,10 @@
  *  - `evaluateRequirement` — a bound judged into Outcome + Coverage + Evidence, nothing new;
  *  - `expectedMetric`    — always a refusal, naming what is missing or what is deferred (Q4).
  */
-export { buildChargeTable, ChargeAccumulator, stepCharge, type ChargeTable } from "./charge.ts";
+export {
+  buildChargeTable, ChargeAccumulator, EXECUTES_IN_STATE, resolveStateRef, stepCharge,
+  type ChargeTable,
+} from "./charge.ts";
 export {
   defaultPathOptions, maxOverExecutions, traceMetric, type PathMetric, type PathOptions,
 } from "./latency.ts";

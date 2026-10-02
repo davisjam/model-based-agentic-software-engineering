@@ -3,31 +3,35 @@
  *
  * ## The correspondence, stated once
  *
- * A trace step is an occurrence of accounted entity `e` exactly when the step ENTERS a state whose
- * id is `e`'s id, on some moving instance. The initial configuration counts too: an execution
- * begins already visiting its initial states. So for the Document Processing lifecycle, a state
- * `remediate` entered twice is two visits to the entity `remediate`, and the retry charges it
- * twice — because the trace visits the entity again, never because a state duration and a
- * transition duration were added together.
+ * Every accounted entity has one BEHAVIORAL COUNTERPART: a (machine, state) pair. A trace step is
+ * an occurrence of entity `e` exactly when, on some moving instance, it ENTERS `e`'s counterpart
+ * state; the initial configuration counts too, because an execution begins already visiting its
+ * initial states. The counterpart is found by two routes, explicit first:
  *
- * ## Why id-equality and not something cleverer
+ *  1. **Declared** — the entity's `executes_in_state` property names the lifecycle state during
+ *     whose occupancy the component runs. This is how Document Processing joins `remediation` to
+ *     `document-lifecycle.remediating`, and it is what lets TWO components share one state (the
+ *     gateway also executes in `remediating` — the lifecycle is coarser than the performance
+ *     model, deliberately). Resolution follows the V27 discipline: qualified, or bare only when
+ *     one machine declares the state.
+ *  2. **Shared identity** — absent a declaration, a state spelling the entity's id IS the entity:
+ *     the same id naming the same conceptual thing in two purposeful reductions, which is MAGE's
+ *     composition doctrine. Every machine declaring such a state yields a counterpart.
  *
- * "Shared identity allows those reductions to compose" is MAGE's composition doctrine, and shared
- * identity means literally the SAME id naming the same conceptual thing in two purposeful models.
- * The lifecycle model names a stage; the performance model declares the entity that stage is; when
- * the two spell the same id they are one thing, and a visit to the stage is a visit to the entity.
+ * A declaration REPLACES the identity route for its entity rather than adding to it — two live
+ * routes for one entity would be the double-counting shape the accounting ruling exists to refuse.
  *
- * Two alternatives were considered and rejected:
+ * So for the Document Processing lifecycle, a retry that re-enters `remediating` charges
+ * `Remediate` and the gateway AGAIN — the trace visits those entities again. That is the whole Q2
+ * mechanism; no state-plus-transition arithmetic exists here to get wrong.
  *
- *  - The V6 `machine.entity` link. It is machine-granular: one lifecycle machine maps to ONE
- *    entity, so per-stage costs (`Parse 50 ms`, `Remediate 100 ms`) cannot be distinguished, and a
- *    component machine's return-to-idle move would charge a second visit that is not one. §2 of
- *    SEMANTICS.md describes that link as a navigation affordance; this module leaves it as one.
- *  - An explicit `when:`-style clause on the latency quantity, mirroring memory. V37 makes
- *    `when:` a finding on anything that is not configuration-scoped, and the ruling's latency form
- *    carries none — the occurrence join is identity, not an authored predicate.
+ * Rejected alternative, recorded because it looks plausible: the V6 `machine.entity` link as the
+ * join. It is machine-granular — one lifecycle machine maps to ONE entity, so `Parse 50 ms` and
+ * `Remediate 100 ms` cannot be told apart, and a component machine's return-to-idle move would
+ * count a visit that is not one. §2 of SEMANTICS.md presents that link as a navigation affordance,
+ * and it stays one.
  *
- * An accounted quantity whose entity shares identity with NO declared state is the governing
+ * An accounted quantity whose entity has NO counterpart on either route is the governing
  * principle's nightmare — validated, then silently contributing nothing — so building the table
  * REFUSES it, naming the missing correspondence. (A static rule should eventually catch this at
  * validation; until it does, the refusal here is the fence.)
@@ -37,6 +41,12 @@ import { ACCOUNTED_METRICS } from "../ir/types.ts";
 import { detail, fail, ok, type Res } from "../engine/types.ts";
 import { quantityMagnitude, type Charge, type RangeEnd, type TraceCharges } from "./types.ts";
 
+/**
+ * The property naming an entity's lifecycle state. A property rather than IR structure: the IR
+ * cannot hold the join itself in v0.1, and the shipped example established this spelling.
+ */
+export const EXECUTES_IN_STATE = "executes_in_state";
+
 interface EntityCharge {
   readonly quantity: string;
   readonly entity: string;
@@ -45,10 +55,61 @@ interface EntityCharge {
 
 export interface ChargeTable {
   readonly metric: AccountedMetric;
-  /** State id → the charges one entry into that state fires. States with no charge are absent. */
+  /** `machine.state` → the charges one entry into that state fires. Uncharged states are absent. */
   readonly byState: ReadonlyMap<string, readonly EntityCharge[]>;
+  /** instance id → machine id, so a step's entered states can be keyed without re-deriving. */
+  readonly instanceMachine: ReadonlyMap<string, string>;
   /** True when the system declares no quantity this metric accounts — every trace totals zero. */
   readonly empty: boolean;
+}
+
+/**
+ * Resolve a state reference the way V27 resolved it at validation: qualified by machine, or bare
+ * only when exactly one machine declares the state. Shared with memory's `when.state` so the two
+ * reference forms cannot drift apart.
+ */
+export function resolveStateRef(
+  system: CanonicalSystem, ref: string,
+): Res<{ readonly machine: string; readonly state: string }> {
+  const dot = ref.indexOf(".");
+  if (dot !== -1) {
+    const machine = ref.slice(0, dot);
+    const state = ref.slice(dot + 1);
+    const m = system.machines.get(machine);
+    if (m === undefined || !m.states.includes(state)) {
+      return fail(`state reference '${ref}' does not resolve; run validation (V27).`);
+    }
+    return ok({ machine, state });
+  }
+  const owners = [...system.machines.values()].filter((m) => m.states.includes(ref));
+  const sole = owners[0];
+  if (owners.length !== 1 || sole === undefined) {
+    return fail(`state reference '${ref}' is ${owners.length === 0 ? "undeclared" : "ambiguous"}; run validation (V27).`);
+  }
+  return ok({ machine: sole.id, state: ref });
+}
+
+/** The counterpart states of one entity, by the two routes above. Empty means no correspondence. */
+function counterpartStates(
+  system: CanonicalSystem, entityId: string,
+): Res<readonly { readonly machine: string; readonly state: string }[]> {
+  const declared = system.entities.get(entityId)?.properties.get(EXECUTES_IN_STATE);
+  if (declared !== undefined) {
+    if (typeof declared.value !== "string") {
+      return fail(`entity '${entityId}' declares ${EXECUTES_IN_STATE} with a non-string value; name a state.`);
+    }
+    const resolved = resolveStateRef(system, declared.value);
+    if (!resolved.ok) {
+      return fail(`entity '${entityId}': ${EXECUTES_IN_STATE} '${declared.value}' names no declared state.`,
+        detail("unknown-vocabulary", [`state '${declared.value}'`]));
+    }
+    return ok([resolved.value]);
+  }
+  const out: { machine: string; state: string }[] = [];
+  for (const m of system.machines.values()) {
+    if (m.states.includes(entityId)) out.push({ machine: m.id, state: entityId });
+  }
+  return ok(out);
 }
 
 export function buildChargeTable(
@@ -61,34 +122,40 @@ export function buildChargeTable(
     // when validation was skipped — defence in depth at the seam, not a second validator.
     (q) => q.dimension === dimension && q.target.kind === "entity");
 
-  if (accounted.length === 0) return ok({ metric, byState: new Map(), empty: true });
+  const instanceMachine = new Map<string, string>();
+  for (const inst of system.instances) instanceMachine.set(inst.id, inst.machine);
+
+  if (accounted.length === 0) return ok({ metric, byState: new Map(), instanceMachine, empty: true });
 
   if (system.accounting.get(metric)?.basis !== "entities") {
     // Defence in depth: V35 refuses this before evaluation is reachable.
     return fail(`no accounting basis is declared for '${metric}' (V35); run validation.`);
   }
 
-  const declaredStates = new Set<string>();
-  for (const m of system.machines.values()) for (const s of m.states) declaredStates.add(s);
-
   const byState = new Map<string, EntityCharge[]>();
   for (const q of accounted) {
     const entity = q.target.ref;
-    if (!declaredStates.has(entity)) {
+    const counterparts = counterpartStates(system, entity);
+    if (!counterparts.ok) return counterparts;
+    if (counterparts.value.length === 0) {
       return fail(
-        `quantity '${q.id}' charges entity '${entity}', but no machine declares a state sharing ` +
-        `that identity, so no execution can ever visit it and the quantity would be silently ` +
-        `inert. Name the lifecycle state '${entity}', or rename one to match the other.`,
-        detail("missing-distinction", [`a behavioral state sharing identity with entity '${entity}'`]));
+        `quantity '${q.id}' charges entity '${entity}', but it declares no ${EXECUTES_IN_STATE} ` +
+        `and no machine declares a state sharing that identity, so no execution can ever visit it ` +
+        `and the quantity would be silently inert. Declare ${EXECUTES_IN_STATE} on the entity, or ` +
+        `name the lifecycle state '${entity}'.`,
+        detail("missing-distinction", [`a behavioral state corresponding to entity '${entity}'`]));
     }
     const each = quantityMagnitude(q, end);
     if (!each.ok) return each;
-    const list = byState.get(entity);
-    const charge: EntityCharge = { quantity: q.id, entity, each: each.value };
-    if (list === undefined) byState.set(entity, [charge]);
-    else list.push(charge);
+    for (const c of counterparts.value) {
+      const key = `${c.machine}.${c.state}`;
+      const list = byState.get(key);
+      const charge: EntityCharge = { quantity: q.id, entity, each: each.value };
+      if (list === undefined) byState.set(key, [charge]);
+      else list.push(charge);
+    }
   }
-  return ok({ metric, byState, empty: false });
+  return ok({ metric, byState, instanceMachine, empty: false });
 }
 
 /** The charge one step fires: the entry charges of every state its moving instances enter. */
@@ -96,8 +163,9 @@ export function stepCharge(table: ChargeTable, step: Step): number {
   let total = 0;
   for (const instance of step.instances) {
     const entered = step.to.control.get(instance);
-    if (entered === undefined) continue;
-    for (const c of table.byState.get(entered) ?? []) total += c.each;
+    const machine = table.instanceMachine.get(instance);
+    if (entered === undefined || machine === undefined) continue;
+    for (const c of table.byState.get(`${machine}.${entered}`) ?? []) total += c.each;
   }
   return total;
 }
@@ -119,19 +187,22 @@ export class ChargeAccumulator {
 
   /** The execution begins in its initial configuration: those states are visited, so they charge. */
   visitConfiguration(cfg: Configuration): void {
-    for (const state of cfg.control.values()) this.visit(state);
+    for (const [instance, state] of cfg.control) this.visit(instance, state);
   }
 
   visitStep(step: Step): void {
     for (const instance of step.instances) {
       const entered = step.to.control.get(instance);
-      if (entered !== undefined) this.visit(entered);
+      if (entered !== undefined) this.visit(instance, entered);
     }
   }
 
-  private visit(state: string): void {
-    if (!this.table.byState.has(state)) return;
-    this.visits.set(state, (this.visits.get(state) ?? 0) + 1);
+  private visit(instance: string, state: string): void {
+    const machine = this.table.instanceMachine.get(instance);
+    if (machine === undefined) return;
+    const key = `${machine}.${state}`;
+    if (!this.table.byState.has(key)) return;
+    this.visits.set(key, (this.visits.get(key) ?? 0) + 1);
   }
 
   charges(): TraceCharges {
@@ -139,8 +210,8 @@ export class ChargeAccumulator {
     let total = 0;
     // Iterate the table, not the visit map, so the order is the quantities' canonical order and
     // two identical executions report byte-identical breakdowns.
-    for (const [state, entries] of this.table.byState) {
-      const occurrences = this.visits.get(state) ?? 0;
+    for (const [key, entries] of this.table.byState) {
+      const occurrences = this.visits.get(key) ?? 0;
       if (occurrences === 0) continue;
       for (const e of entries) {
         const subtotal = occurrences * e.each;

@@ -231,17 +231,34 @@ decide, with the load-bearing one first.
 
 ### 10.1 The trace-step-to-entity correspondence
 
-> A trace step is an occurrence of accounted entity `e` exactly when the step ENTERS a state whose
-> id is `e`'s id, on some moving instance. The initial configuration counts: an execution begins
-> already visiting its initial states.
+> Every accounted entity has one behavioral counterpart, a (machine, state) pair, found by two
+> routes with the explicit one first: (1) the entity's `executes_in_state` property names the
+> lifecycle state during whose occupancy it runs, resolved under the V27 discipline (qualified, or
+> bare only when unambiguous); (2) absent that declaration, a state spelling the entity's id IS
+> the entity — shared identity in its literal sense. A trace step is an occurrence of `e` exactly
+> when it ENTERS `e`'s counterpart state on some moving instance, and the initial configuration
+> counts as visited. A declaration REPLACES the identity route for its entity; two live routes on
+> one entity would be the double-counting shape the accounting ruling refuses.
 
 This is the join the Q2 ruling writes as
-`behavioral execution --shared identity--> performance component`, made mechanical. Shared
-identity in MAGE means the SAME id naming the same conceptual thing in two purposeful reductions
-(the RDF ruling's `remediation mayInvoke gateway` / `remediation deployedOn workerPool` join), so
-the lifecycle state `remediate` and the performance entity `remediate` are one thing, and entering
-the stage is visiting the entity. A retry enters `remediate` twice, so `remediate` is charged
-twice — the occurrence count comes from the trace, never from arithmetic across kinds.
+`behavioral execution --shared identity--> performance component`, made mechanical. A retry
+re-enters `remediating`, so `Remediate` — and the gateway, which declares the same state — is
+charged again: the occurrence count comes from the trace, never from arithmetic across kinds.
+
+**The oracle encounter, recorded because it changed this design.** The evaluator was first built
+on route (2) alone. Document Processing — authored concurrently as the first model against
+V35–V37 — landed with route (1): entity ids that do NOT spell state names (`parser` / `parsing`),
+and two components (`remediation`, `model-gateway`) executing in ONE state, which id-equality
+cannot express at all. The declared property is strictly more expressive and still fully authored,
+so it became the primary route; identity remains the fallback because it is the composition
+doctrine's own join and costs nothing to honor. After the revision the evaluator reproduces every
+hand-derived figure in the example's `expected-results.yaml`: maximum publishing latency 2,750 ms
+(1×50 + 4×100 + 4×500 + 4×75), retry-free 725 ms, peak memory 384 MB during remediation against
+the 128 MB baseline, and the flagship expected-latency refusal — pinned by the oracle tests in
+`test/quant-eval.test.ts`. One scope note: the evaluator's maximum ranges over ALL executions,
+the fixture's question over publishing ones; they coincide on this model because the
+retries-exhausted dead end charges exactly what the publishing path charges, and the test says so
+rather than conflating the questions.
 
 Two alternatives were rejected:
 
@@ -251,15 +268,16 @@ Two alternatives were rejected:
   that link as a navigation affordance; it stays one.
 - **An explicit `when:`-style clause on latency quantities, mirroring memory.** V37 makes
   `residency:`/`when:` findings on anything not configuration-scoped, and the ruling's latency
-  form carries neither — the occurrence join is identity, not an authored predicate. Memory needed
-  `when` because *activation* is a predicate over configurations; a visit needs no predicate.
+  form carries neither. The example put the declaration on the ENTITY instead — where it describes
+  the component once, not per quantity — and the evaluator follows it.
 
-Consequence, enforced at the evaluator seam: an accounted quantity whose entity shares identity
-with **no declared state** can never be visited, which is exactly the validated-but-inert state
+Consequence, enforced at the evaluator seam: an accounted quantity whose entity has **no
+counterpart on either route** can never be visited, which is exactly the validated-but-inert state
 the governing principle forbids — so building the charge table REFUSES it, naming the missing
 correspondence. [LINT] follow-up: this is statically decidable and belongs in the V-rule family
-(a V36 companion) so it fails at validation rather than at first evaluation; not landed here
-because SEMANTICS.md and the validator are owned elsewhere this wave.
+(a V36 companion), as is `executes_in_state` resolution itself, today checked only by the
+example's own suite; not landed here because SEMANTICS.md and the validator are owned elsewhere
+this wave.
 
 ### 10.2 Q1 operationalized — ends are selected by the operator, never both
 

@@ -11,9 +11,11 @@
 // wrong decomposition behind it.
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import { validate } from "../src/validator/rules.ts";
-import { compileSystem, defaultOptions, exploreSpace } from "../src/engine/explore.ts";
+import { compileSystem, defaultOptions, exploreSpace, traceTo } from "../src/engine/explore.ts";
 import type { CanonicalSystem, Configuration } from "../src/ir/types.ts";
 import {
   evaluateRequirement, expectedMetric, maxOverExecutions, memoryOf, peakMemory, traceMetric,
@@ -170,6 +172,33 @@ test("an accounted entity NO state shares identity with is refused, not silently
   assert.ok(!max.ok, "an unvisitable accounted quantity must refuse, not drop");
   assert.match(max.refusal, /no machine declares a state sharing that identity/);
   assert.match(max.refusal, /gateway-cache/);
+});
+
+test("a declared executes_in_state REPLACES the identity join for its entity", () => {
+  // The two routes to a counterpart state, and their precedence. The entity `work` spells a state
+  // id AND declares it executes in a different state; charging both routes would be the
+  // double-counting shape the accounting ruling refuses, so the declaration wins outright.
+  const s = canonicalize({
+    mage: 1,
+    system: { id: "precedence" },
+    accounting: { latency: { basis: "entities" } },
+    entities: { work: { properties: { executes_in_state: "busy" } } },
+    machines: {
+      m: {
+        initial: "work", states: { work: null, busy: null },
+        transitions: [{ from: "work", to: "busy" }],
+      },
+    },
+    quantities: { "work-latency": { target: "entity:work", dimension: "duration", value: "10 ms" } },
+  });
+  const max = maxOverExecutions(s, "latency");
+  assert.ok(max.ok, max.ok ? "" : max.refusal);
+  assert.equal(max.value.kind, "finite");
+  if (max.value.kind !== "finite") return;
+  // The initial state `work` shares the entity's id but is NOT charged: the declaration points at
+  // `busy`, entered once. Both routes live would make this 20.
+  assert.equal(max.value.total, 10);
+  assert.equal(max.value.charges[0]?.occurrences, 1);
 });
 
 // ---------------------------------------------------------------------------------------------
@@ -427,6 +456,97 @@ test("with a frequency declared, expectation still refuses — composition is de
   assert.equal(a.refusal?.reason, "reserved-feature");
   assert.match(a.result.refusal ?? "", /'hit-rate'/);
   assert.match(a.result.refusal ?? "", /all-hit and all-miss/);
+});
+
+// ---------------------------------------------------------------------------------------------
+// The oracle — Document Processing's hand-derived figures, reproduced by the evaluator
+// ---------------------------------------------------------------------------------------------
+
+/**
+ * The shipped example, loaded the way its own suite loads it. Its expected-results.yaml carries
+ * figures derived BY HAND with the arithmetic shown, explicitly labelled pending this evaluator —
+ * so each assertion below closes one of those entries. A disagreement would mean one side is
+ * wrong, which is exactly what the hand derivation exists to detect.
+ */
+const documentProcessing = (): CanonicalSystem =>
+  canonicalize(parse(readFileSync("examples/document-processing/system.mage.yaml", "utf8")));
+
+test("oracle: maximum publishing latency is 2,750 ms — 1×50 + 4×100 + 4×500 + 4×75", () => {
+  // expected-results.yaml `max-publishing-latency`. Four remediation passes (the first plus one
+  // per permitted retry under retry_count in [0,3]), the gateway at its high end every pass, and
+  // the gateway charged ON THE SAME state entries as remediation — two entities, one state, which
+  // the declared executes_in_state join expresses and an id-equality join could not.
+  const max = maxOverExecutions(documentProcessing(), "latency");
+  assert.ok(max.ok, max.ok ? "" : max.refusal);
+  assert.equal(max.value.kind, "finite");
+  if (max.value.kind !== "finite") return;
+  assert.equal(max.value.total, 2750);
+  assert.equal(max.value.coverage.kind, "exhaustive");
+
+  const byQuantity = new Map(max.value.charges.map((c) => [c.quantity, c]));
+  assert.equal(byQuantity.get("parse-latency")?.occurrences, 1);
+  assert.equal(byQuantity.get("remediate-latency")?.occurrences, 4);
+  assert.equal(byQuantity.get("gateway-latency")?.occurrences, 4);
+  assert.equal(byQuantity.get("gateway-latency")?.each, 500);
+  assert.equal(byQuantity.get("validate-latency")?.occurrences, 4);
+
+  // The evaluator's maximum ranges over ALL executions; the fixture's question is over executions
+  // that publish. The two coincide here because the dead-end path (retries exhausted, waiting)
+  // charges exactly what the publishing path charges — observed equality, not the same question.
+  const r = evaluateRequirement(documentProcessing(),
+    { id: "latency-requirement", metric: "latency", operator: "<=", bound: "750 ms" });
+  assert.equal(r.result.outcome, "refuted");
+  assert.equal(r.result.evidence?.role, "counterexample");
+  assert.equal(r.analysis?.observed, 2750);
+});
+
+test("oracle: the retry-free execution costs 725 ms, inside the 750 ms ceiling", () => {
+  // expected-results.yaml `retry-free-latency`: what makes the counterexample informative — the
+  // ceiling is refuted by the retry policy, not by a hopelessly slow pipeline. The shortest trace
+  // to `published` is the BFS parent chain, which never takes the retry loop.
+  const s = documentProcessing();
+  const compiled = compileSystem(s);
+  assert.ok(compiled.ok, compiled.ok ? "" : compiled.refusal);
+  const space = exploreSpace(compiled.value, defaultOptions(10_000));
+  const published = space.configs.findIndex(
+    (c) => c.control.get("document-lifecycle") === "published"
+      && c.values.get("document-lifecycle.retry_count") === 0);
+  assert.ok(published !== -1, "fixture drift: no retry-free published configuration");
+  const trace = traceTo(space, published);
+  const cost = traceMetric(s, "latency", trace);
+  assert.ok(cost.ok, cost.ok ? "" : cost.refusal);
+  assert.equal(cost.value.total, 725);
+});
+
+test("oracle: peak memory is 384 MB during remediation and 128 MB elsewhere, under 512", () => {
+  // expected-results.yaml `peak-memory`: resident 128 + when-active 256. Both figures asserted,
+  // so the baseline cannot silently become resident-everything or active-nowhere.
+  const s = documentProcessing();
+  const peak = peakMemory(s);
+  assert.ok(peak.ok, peak.ok ? "" : peak.refusal);
+  assert.equal(peak.value.peak, 384);
+  assert.equal(peak.value.coverage.kind, "exhaustive");
+
+  const initial = configsOf(s)[0];
+  assert.ok(initial !== undefined);
+  const baseline = memoryOf(s, initial);
+  assert.ok(baseline.ok, baseline.ok ? "" : baseline.refusal);
+  assert.equal(baseline.value.total, 128);
+
+  const r = evaluateRequirement(s,
+    { id: "peak-memory-requirement", metric: "peak_memory", operator: "<=", bound: "512 MB" });
+  assert.equal(r.result.outcome, "holds");
+  assert.equal(r.result.coverage.kind, "exhaustive");
+  assert.equal(r.analysis?.observed, 384);
+});
+
+test("oracle: the flagship omission — expected latency is not answerable, by name", () => {
+  // The model represents hit and miss costs (the gateway's range) and deliberately omits their
+  // frequencies; the example's own notes say the engine must refuse this by name, and it does.
+  const a = expectedMetric(documentProcessing(), "latency");
+  assert.equal(a.result.outcome, "unlicensed");
+  assert.match(a.result.refusal ?? "", /deliberately omits their frequencies/);
+  assert.equal(a.refusal?.reason, "missing-distinction");
 });
 
 // ---------------------------------------------------------------------------------------------

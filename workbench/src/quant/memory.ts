@@ -21,7 +21,8 @@ import type { CanonicalSystem, Configuration, Coverage } from "../ir/types.ts";
 import {
   compileSystem, DEFAULT_STATE_LIMIT, defaultOptions, exploreSpace, traceTo,
 } from "../engine/explore.ts";
-import { bounded, exhaustive, fail, ok, type Res } from "../engine/types.ts";
+import { bounded, exhaustive, ok, type Res } from "../engine/types.ts";
+import { resolveStateRef } from "./charge.ts";
 import { quantityMagnitude, type ConfigurationMemory, type MemoryContribution, type PeakMemory, type RangeEnd } from "./types.ts";
 
 export interface MemoryOptions {
@@ -49,7 +50,7 @@ export function memoryContributions(
       continue;
     }
     if (whenState === null) continue;
-    const resolved = resolveState(system, whenState);
+    const resolved = resolveStateRef(system, whenState);
     if (!resolved.ok) return resolved;
     out.push({
       quantity: q.id, entity: q.target.ref, mode: "when",
@@ -57,32 +58,6 @@ export function memoryContributions(
     });
   }
   return ok(out);
-}
-
-/**
- * Resolve a `when.state` reference the way V27 resolved it at validation: qualified by machine, or
- * bare only when exactly one machine declares the state. Re-resolved here rather than cached on
- * the IR so the evaluator and the validator cannot disagree about which state was meant.
- */
-function resolveState(
-  system: CanonicalSystem, ref: string,
-): Res<{ readonly machine: string; readonly state: string }> {
-  const dot = ref.indexOf(".");
-  if (dot !== -1) {
-    const machine = ref.slice(0, dot);
-    const state = ref.slice(dot + 1);
-    const m = system.machines.get(machine);
-    if (m === undefined || !m.states.includes(state)) {
-      return fail(`when.state '${ref}' does not resolve; run validation (V27).`);
-    }
-    return ok({ machine, state });
-  }
-  const owners = [...system.machines.values()].filter((m) => m.states.includes(ref));
-  const sole = owners[0];
-  if (owners.length !== 1 || sole === undefined) {
-    return fail(`when.state '${ref}' is ${owners.length === 0 ? "undeclared" : "ambiguous"}; run validation (V27).`);
-  }
-  return ok({ machine: sole.id, state: ref });
 }
 
 /** memory(c) for one configuration, with the contributions that actually charged. */
