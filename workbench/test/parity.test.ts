@@ -19,7 +19,12 @@ import { validate } from "../src/validator/rules.ts";
 import type { Finding } from "../src/ir/types.ts";
 
 /** Rules BOTH implementations enforce. Disagreement here is a failure. */
-const PARITY = new Set(["V1", "V3", "V4", "V5", "V6", "V9", "V10", "V11", "V12", "V14", "V19", "V24", "V25"]);
+const PARITY = new Set([
+  "V1", "V3", "V4", "V5", "V6", "V9", "V10", "V11", "V12", "V14", "V19", "V24", "V25", "V26",
+  // Not a V-rule: A1 holds annotation outside semantics, so a V-number would contradict the
+  // invariant the feature rests on. Both sides implement it, so it belongs in the parity set.
+  "ANNOTATION",
+]);
 
 /** Known asymmetries, deliberate. Each needs a reason, not just an entry. */
 const ASYMMETRIC: Record<string, string> = {
@@ -108,6 +113,24 @@ test("violations agree, rule by rule", () => {
       "relation-types": { calls: { description: "d", composition: { path: "allowed" } } },
       entities: { a: {} },
       models: { g: { type: "graph", entities: ["a", "ghost"], relations: [{ from: "a", to: "ghost", type: "calls" }] } },
+    }],
+    ["V26 guard against an undeclared state", {
+      ...base, machines: {
+        w: { initial: "idle", states: { idle: null, held: null }, transitions: [] },
+        m: { initial: "a", states: { a: null, b: null }, transitions: [{ from: "a", to: "b", requires: { "w.state": "busy" } }] },
+      },
+    }],
+    ["V26 integer comparand outside the range", {
+      ...base, machines: {
+        m: {
+          initial: "a", states: { a: null, b: null },
+          variables: { retry_count: { type: "integer", range: [0, 3] } },
+          transitions: [{ from: "a", to: "b", requires: { retry_count: { gt: 9 } } }],
+        },
+      },
+    }],
+    ["ANNOTATION stray key from an unquoted comma", {
+      ...base, entities: { e: { notes: [{ id: "n1", kind: "comment", text: "one thing", "and another": null }] } },
     }],
   ];
   for (const [label, doc] of cases) {

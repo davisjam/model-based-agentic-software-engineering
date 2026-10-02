@@ -1,5 +1,5 @@
 /**
- * The numbered semantic rules, V1–V25 of ../../SEMANTICS.md.
+ * The numbered semantic rules, V1–V26 of ../../SEMANTICS.md, plus the un-numbered ANNOTATION pass.
  *
  * Kernel component: depends only on the IR. Every finding carries its rule id, so the spec, this
  * module, `workbench/validate.py`, and the error a user reads all cite the same identifier. That
@@ -9,7 +9,9 @@
  * Deliberately NOT here: JSON Schema shape checking. The schema owns shape; this owns meaning —
  * reference resolution, graph acyclicity, participant symmetry, and loader hazards.
  */
-import type { CanonicalSystem, Finding } from "../ir/types.ts";
+import type {
+  Annotated, CanonMachine, CanonicalSystem, Finding, GuardOp, Scalar,
+} from "../ir/types.ts";
 
 /**
  * YAML 1.1 implicit-types these bare scalars. A key or id among them was read as a boolean or null
@@ -72,7 +74,73 @@ export function checkCoercion(s: CanonicalSystem): readonly Finding[] {
   return c.findings;
 }
 
-/** V1–V24 — meaning, once the loaded model is known to be the written one. */
+/**
+ * `<`, `>`, `<=`, `>=`. Spelled out here rather than imported: the component model draws no edge
+ * from the validator to the query engine, which owns the identical set. A four-element closed set is
+ * the cheapest thing to duplicate across that boundary. The real fix is to lift reference resolution
+ * down into the IR, where both components may reach it, and that is a refactor rather than a rule.
+ */
+const ORDER_OPS: ReadonlySet<GuardOp> = new Set<GuardOp>(["lt", "le", "gt", "ge"]);
+
+interface GuardDomain {
+  readonly values: readonly Scalar[];
+  /** True only for a bounded integer, which is what makes an order comparison meaningful. */
+  readonly ordered: boolean;
+  /** How the message names the thing: "variable 'document.retry_count'". */
+  readonly subject: string;
+}
+
+/**
+ * The values a guard reference can take, for V26's membership test — or null, meaning V26 declines.
+ *
+ * Null covers every case that is somebody else's finding: a head that is not a declared machine, a
+ * member the machine does not declare, a multiply-instantiated machine (V11), and a variable with no
+ * finite domain (V15/V17). The engine refuses all of them when it compiles the guard, with the cause
+ * named. V26 reports domain membership, so it reports nothing when the reference itself is the bug.
+ */
+function guardDomain(s: CanonicalSystem, ref: string): GuardDomain | null {
+  const single = (id: string): CanonMachine | null => {
+    const m = s.machines.get(id);
+    return m !== undefined && m.instances === 1 ? m : null;
+  };
+  const control = (m: CanonMachine): GuardDomain | null =>
+    // A machine with no declared states has an empty domain, and nothing is a member of nothing.
+    // The machine is already malformed; saying so again under V26 would be noise.
+    m.states.length === 0 ? null : { values: m.states, ordered: false, subject: `control state of '${m.id}'` };
+  const member = (m: CanonMachine, name: string): GuardDomain | null => {
+    if (name === "state") return control(m);
+    const v = m.variables.get(name);
+    if (v !== undefined) {
+      if (v.domain.length === 0) return null;
+      return { values: v.domain, ordered: v.kind === "integer", subject: `variable '${m.id}.${name}'` };
+    }
+    if (m.derived.has(name)) {
+      return { values: [false, true], ordered: false, subject: `derived value '${m.id}.${name}'` };
+    }
+    return null;
+  };
+
+  // Dotted form first, split at the LAST dot: ids may contain dots, member names may not. A head
+  // that names no machine falls through, because the whole string may be a bare variable name.
+  const dot = ref.lastIndexOf(".");
+  if (dot > 0 && dot < ref.length - 1) {
+    const head = ref.slice(0, dot);
+    if (s.machines.has(head)) {
+      const m = single(head);
+      return m === null ? null : member(m, ref.slice(dot + 1));
+    }
+  }
+  const asMachine = single(ref);
+  if (asMachine !== null) return control(asMachine);
+  if (s.machines.has(ref)) return null;
+  const owners = [...s.machines.values()].filter((m) => m.variables.has(ref) || m.derived.has(ref));
+  const only = owners.length === 1 ? owners[0] : undefined;
+  return only === undefined ? null : member(only, ref);
+}
+
+const listed = (values: readonly Scalar[]): string => values.map((v) => String(v)).join(", ");
+
+/** V1–V24 and V26 — meaning, once the loaded model is known to be the written one. */
 export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
   const c = new Collector();
 
@@ -185,6 +253,32 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
             `guard references multiply-instantiated machine '${head}'; there is no participant selection in v0.1.`);
         }
       }
+      // V26 — the guard's value must be something its reference can actually hold. A guard against
+      // an impossible value is dead: the transition never fires, so the reachable set is smaller
+      // than the author believes and every query over it is sound about a different system.
+      for (const g of t.guards) {
+        const dom = guardDomain(s, g.ref);
+        if (dom === null) continue;
+        const where = `machines.${m.id}.transitions[${t.index}].requires`;
+        if (ORDER_OPS.has(g.op)) {
+          // An order comparison on an unordered reference is a typing question, not a membership
+          // one; the engine refuses it with V20's message and V26 stays out of it.
+          if (!dom.ordered) continue;
+          const nums = dom.values.filter((v): v is number => typeof v === "number");
+          if (nums.length === 0) continue;
+          const lo = Math.min(...nums);
+          const hi = Math.max(...nums);
+          if (typeof g.value !== "number" || g.value < lo || g.value > hi) {
+            c.add("V26", where,
+              `guard '${g.ref} ${g.op} ${String(g.value)}' compares against a value outside the ` +
+              `range of ${dom.subject} (${lo}..${hi}), so it is decided before the model runs.`);
+          }
+        } else if (!dom.values.includes(g.value)) {
+          c.add("V26", where,
+            `guard '${g.ref} ${g.op} ${String(g.value)}': '${String(g.value)}' is not in the domain ` +
+            `of ${dom.subject}. Declared: ${listed(dom.values)}.`);
+        }
+      }
       // V13 — two transitions joined by one event must not assign the same variable. Checked from
       // declared effects, so an arbitrary runtime winner is impossible rather than unlikely.
       if (t.sync !== null) {
@@ -275,10 +369,44 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
 }
 
 /**
+ * ANNOTATION — a note that lost half its text.
+ *
+ * A separate pass from checkMeaning, and that separation is the point rather than tidiness: A1 holds
+ * that annotation does not alter semantic interpretation, so an annotation finding does not belong
+ * among the rules that fix meaning. It gets a named id instead of a V-number for the same reason.
+ *
+ * The failure is YAML flow style terminating an unquoted value at a comma, so
+ * `{ kind: comment, text: one thing, and another }` loads as `text: "one thing"` plus a stray KEY.
+ * Canonicalization keeps the leftover keys precisely so this can say which text got cut; without the
+ * key name the author knows a note is broken but not where to put the quotes.
+ */
+export function checkAnnotation(s: CanonicalSystem): readonly Finding[] {
+  const c = new Collector();
+  const sweep = (scope: string, a: Annotated): void => {
+    for (const n of a.notes) {
+      if (n.unexpectedKeys.length === 0) continue;
+      c.add("ANNOTATION", `${scope}.notes.${n.id}`,
+        `unexpected key(s) ${n.unexpectedKeys.map((k) => `'${k}'`).join(", ")}: the signature of an ` +
+        `unquoted comma in YAML flow style, which ends the value and makes the rest a key. The text ` +
+        `reads '${n.text}' and the remainder is gone. Quote it.`);
+    }
+  };
+  for (const e of s.entities.values()) sweep(`entities.${e.id}`, e.annotation);
+  for (const m of s.models.values()) sweep(`models.${m.id}`, m.annotation);
+  // Keyed by relation id, falling back to its endpoints, because the IR flattens and re-sorts
+  // relations across models: a positional index here would name a different edge than the file does.
+  for (const r of s.relations) {
+    sweep(`models.${r.model}.relations.${r.id ?? `${r.from}->${r.to}`}`, r.annotation);
+  }
+  return c.findings;
+}
+
+/**
  * The full pass, in the order that produces useful messages: coercion first and exclusively,
  * because past that point we cannot trust that the model we loaded is the model that was written.
  */
 export function validate(s: CanonicalSystem): readonly Finding[] {
   const coercion = checkCoercion(s);
-  return coercion.length > 0 ? coercion : checkMeaning(s);
+  if (coercion.length > 0) return coercion;
+  return [...checkMeaning(s), ...checkAnnotation(s)];
 }

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://davisjam.github.io/model-based-agentic-software-engineering/workbench/mage-model.schema.json",
   "title": "MAGE model system",
-  "description": "A model system: one identity namespace of entities, zero or more graph models, zero or more state machines. Shape only -- meaning is fixed by SEMANTICS.md, whose validation rules V1-V25 this schema cannot all express. Rules marked ENGINE below require a validator pass beyond JSON Schema.",
+  "description": "A model system: one identity namespace of entities, zero or more graph models, zero or more state machines. Shape only -- meaning is fixed by SEMANTICS.md, whose validation rules V1-V26 this schema cannot all express. Rules marked ENGINE below require a validator pass beyond JSON Schema.",
   "type": "object",
   "required": ["mage", "system"],
   "additionalProperties": false,
@@ -117,6 +117,7 @@
             "type": "array",
             "items": { "$ref": "#/$defs/id" }
           },
+          "notes": { "$ref": "#/$defs/notes" },
           "provenance": { "$ref": "#/$defs/provenance" }
         }
       }
@@ -218,6 +219,8 @@
             "type": "array",
             "items": { "$ref": "#/$defs/id" }
           },
+          "notes": { "$ref": "#/$defs/notes" },
+          "provenance": { "$ref": "#/$defs/provenance" },
           "relations": {
             "type": "array",
             "items": {
@@ -230,7 +233,9 @@
                 "to": { "$ref": "#/$defs/id" },
                 "type": { "$ref": "#/$defs/id" },
                 "label": { "type": "string" },
-                "properties": { "$ref": "#/$defs/propertyBag" }
+                "properties": { "$ref": "#/$defs/propertyBag" },
+                "notes": { "$ref": "#/$defs/notes" },
+                "provenance": { "$ref": "#/$defs/provenance" }
               }
             }
           }
@@ -404,10 +409,64 @@
         "omits": { "type": "array", "items": { "type": "string" } }
       }
     },
-    "provenance": {
+    "notes": {
+      "description": "Free annotation attached to an entity, a model or a relation. NON-SEMANTIC: notes never alter interpretation or an analysis result, and the canonical hash excludes them (A1, SEMANTICS.md 5.1).",
+      "type": "array",
+      "items": { "$ref": "#/$defs/note" }
+    },
+    "note": {
+      "description": "One note. OPEN on purpose: an unquoted comma in YAML flow style truncates the text and leaves a stray KEY behind, and the validator reports that under ANNOTATION with the cause named. A shape complaint about an unexpected property would be the same unhelpful message V25 exists to replace.",
+      "type": "object",
+      "required": ["kind", "text"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": {
+          "description": "assumption is the interesting one: a note SAYING something is an assumption does not make it part of formal analysis. To constrain a query it must be represented as a property, variable, guard or quantity.",
+          "enum": ["comment", "rationale", "assumption", "question", "todo"]
+        },
+        "text": { "type": "string" },
+        "author": {
+          "description": "Which side wrote it -- human or agent. Not an identity claim.",
+          "type": "string"
+        },
+        "at": {
+          "description": "Timestamp, QUOTED. JSON has no date type and a bare one is coerced by a YAML 1.1 loader (10.1).",
+          "type": "string"
+        }
+      }
+    },
+    "historyEntry": {
+      "description": "One entry of a provenance history. Append-only and system-managed, never editable commentary.",
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "revision": { "type": "string" },
+        "actor": { "type": "string" },
+        "prompt": { "type": "string" },
+        "action": { "type": "string" },
+        "at": { "type": "string" }
+      }
+    },
+    "provenance": {
+      "description": "Where an object came from, in both senses one key has to carry: what part of the world it corresponds to (subject / correspondence, 8.1), and who authored it (created_by / prompt / history, 5.1). Non-semantic like notes.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "created_by": {
+          "description": "human or agent.",
+          "type": "string"
+        },
+        "created_at": { "type": "string" },
+        "prompt": {
+          "description": "The instruction that produced this object -- the field that earns provenance its place. With agent-authored models it answers why the model has this shape, which reading the model cannot tell you. Deliberately not the whole conversation.",
+          "type": "string"
+        },
+        "rationale": { "type": "string" },
+        "history": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/historyEntry" }
+        },
         "subject": {
           "type": "object",
           "required": ["kind"],

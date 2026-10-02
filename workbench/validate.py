@@ -5,12 +5,14 @@ Usage:
     python3 workbench/validate.py workbench/examples/docable.mage.yaml
     python3 workbench/validate.py --self-test
 
-Two layers, in order:
+Three layers, in order:
 
   1. SHAPE  -- mage-model.schema.json (JSON Schema Draft 2020-12).
   2. MEANING -- the numbered rules in SEMANTICS.md that reference resolution, graph acyclicity, or
      loader behaviour put beyond a schema's reach. Each finding cites its rule id, so an error
      message, a test, and the spec all say the same thing.
+  3. ANNOTATION -- malformed notes. Last and separate because A1 holds that annotation never alters
+     semantic interpretation; folding it into layer 2 would file it among the rules that fix meaning.
 
 Exit codes: 0 clean, 1 findings, 2 missing dependency.
 """
@@ -38,6 +40,16 @@ YAML_COERCED = {
     "YES", "NO", "ON", "OFF",
 }
 
+# Guard comparison operators, in the order canonicalize.ts reads them, so a `{lt: 1, gt: 9}` guard
+# yields the same two comparisons on both sides and the parity test compares like with like.
+GUARD_OPS = ("eq", "ne", "lt", "le", "gt", "ge")
+ORDER_OPS = frozenset({"lt", "le", "gt", "ge"})
+
+# Keys that belong on a note. Anything else is the stray key an unquoted comma leaves behind.
+NOTE_KEYS = frozenset({"id", "kind", "text", "author", "at"})
+
+SCALAR_TYPES = (str, bool, int, float)
+
 
 class Findings:
     def __init__(self) -> None:
@@ -56,6 +68,117 @@ class Findings:
 
 def _ids_of(obj: object) -> list[str]:
     return list(obj.keys()) if isinstance(obj, dict) else []
+
+
+def _numeric(value: object) -> bool:
+    """A number, and not a bool. Python makes `True` an int; the IR and the schema do not."""
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
+def _in_domain(value: object, values: list[object]) -> bool:
+    """Membership that matches JavaScript's.
+
+    Python holds `True == 1`, so a plain `in` would accept a boolean guard against an integer
+    domain here and reject it in the TypeScript validator. The two implementations have to agree on
+    the SAME finding, not merely on the rule number.
+    """
+    return any(isinstance(v, bool) == isinstance(value, bool) and v == value for v in values)
+
+
+def _int_at(seq: object, i: int) -> int | None:
+    return seq[i] if isinstance(seq, list) and len(seq) > i and _numeric(seq[i]) else None
+
+
+def _domain_values(spec: dict, domains: dict) -> tuple[list[object], bool] | None:
+    """The enumerated domain of one raw variable declaration, plus whether it is ordered.
+
+    Mirrors canonicalize.ts: an inline `type` wins, a named domain fills in what the inline
+    declaration omits, and the answer is a LIST because finiteness is a list rather than a hope
+    (V17). None means the declaration is not finitely bounded, which is V15/V17's finding -- V26
+    stays silent on it.
+    """
+    named = domains.get(spec.get("domain")) if isinstance(spec.get("domain"), str) else None
+    named = named if isinstance(named, dict) else {}
+    vtype = spec.get("type")
+    if vtype == "boolean" or named.get("type") == "boolean":
+        return [False, True], False
+    if vtype == "integer" or named.get("type") == "integer":
+        lo = _int_at(spec.get("range"), 0)
+        hi = _int_at(spec.get("range"), 1)
+        lo = lo if lo is not None else _int_at(named.get("range"), 0)
+        hi = hi if hi is not None else _int_at(named.get("range"), 1)
+        if lo is None or hi is None or hi < lo:
+            return None
+        return list(range(int(lo), int(hi) + 1)), True
+    inline = [v for v in (spec.get("values") or []) if isinstance(v, str)] if isinstance(spec.get("values"), list) else []
+    values = inline or [v for v in (named.get("values") or []) if isinstance(v, str)]
+    return (values, False) if values else None
+
+
+def _guard_domain(machines: dict, domains: dict, ref: str) -> tuple[list[object], bool, str] | None:
+    """What a guard reference can hold, for V26 -- or None, meaning V26 declines to speak.
+
+    None covers every case that belongs to another finding: a head naming no machine, a member the
+    machine does not declare, a multiply-instantiated machine (V11), and a variable with no finite
+    domain (V15/V17). The engine refuses all of them when it compiles the guard, with the cause
+    named, so reporting them here would blame domain membership for a reference error.
+    """
+    def single(mid: str) -> dict | None:
+        m = machines.get(mid)
+        if not isinstance(m, dict) or int(m.get("instances", 1) or 1) != 1:
+            return None
+        return m
+
+    def control(mid: str, m: dict) -> tuple[list[object], bool, str] | None:
+        # A machine with no declared states has an empty domain, and nothing is a member of
+        # nothing. The machine is already malformed; saying so again under V26 would be noise.
+        states: list[object] = sorted(str(s) for s in _ids_of(m.get("states")))
+        return (states, False, f"control state of '{mid}'") if states else None
+
+    def member(mid: str, m: dict, name: str) -> tuple[list[object], bool, str] | None:
+        if name == "state":
+            return control(mid, m)
+        variables = m.get("variables") if isinstance(m.get("variables"), dict) else {}
+        if name in variables:
+            spec = variables[name] if isinstance(variables[name], dict) else {}
+            resolved = _domain_values(spec, domains)
+            if resolved is None:
+                return None
+            values, ordered = resolved
+            return values, ordered, f"variable '{mid}.{name}'"
+        derived = m.get("derived") if isinstance(m.get("derived"), dict) else {}
+        if name in derived:
+            return [False, True], False, f"derived value '{mid}.{name}'"
+        return None
+
+    # Dotted form first, split at the LAST dot: ids may contain dots, member names may not. A head
+    # naming no machine falls through, because the whole string may be a bare variable name.
+    dot = ref.rfind(".")
+    if 0 < dot < len(ref) - 1 and ref[:dot] in machines:
+        head = ref[:dot]
+        m = single(head)
+        return member(head, m, ref[dot + 1:]) if m is not None else None
+    bare = single(ref)
+    if bare is not None:
+        return control(ref, bare)
+    if ref in machines:
+        return None
+    owners = [mid for mid, m in machines.items() if isinstance(m, dict)
+              and (ref in (m.get("variables") or {} if isinstance(m.get("variables"), dict) else {})
+                   or ref in (m.get("derived") or {} if isinstance(m.get("derived"), dict) else {}))]
+    if len(owners) != 1:
+        return None
+    owner = single(owners[0])
+    return member(owners[0], owner, ref) if owner is not None else None
+
+
+def _guard_comparisons(cond: object) -> list[tuple[str, object]]:
+    """One guard entry's (op, value) pairs, exactly as canonicalize.ts builds them."""
+    if isinstance(cond, SCALAR_TYPES):
+        return [("eq", cond)]
+    if isinstance(cond, dict):
+        return [(op, cond[op]) for op in GUARD_OPS if op in cond and isinstance(cond[op], SCALAR_TYPES)]
+    return []
 
 
 def check_shape(doc: object, f: Findings) -> None:
@@ -179,6 +302,35 @@ def check_meaning(doc: dict, f: Findings, verbose: bool = True) -> None:
                     f.add("V11", f"machines.{mname}.transitions[{i}].requires",
                           f"guard references multiply-instantiated machine '{head}'; there is no participant selection in v0.1.")
 
+    # V26 -- a guard's value must be something its reference can actually hold. A guard against an
+    # impossible value is dead: the transition never fires, the reachable set is smaller than the
+    # author believes, and every query over it answers a question about a different system.
+    for mname, m in machines.items():
+        for i, t in enumerate(m.get("transitions") or []):
+            requires = t.get("requires") if isinstance(t.get("requires"), dict) else {}
+            where = f"machines.{mname}.transitions[{i}].requires"
+            for key in sorted(requires, key=str):
+                resolved = _guard_domain(machines, domains, str(key))
+                if resolved is None:
+                    continue
+                values, ordered, subject = resolved
+                for op, value in _guard_comparisons(requires[key]):
+                    if op in ORDER_OPS:
+                        # An order comparison on an unordered reference is a typing question, not a
+                        # membership one. The engine refuses it with V20's message.
+                        nums = [v for v in values if _numeric(v)]
+                        if not ordered or not nums:
+                            continue
+                        lo, hi = min(nums), max(nums)
+                        if not _numeric(value) or not lo <= value <= hi:
+                            f.add("V26", where,
+                                  f"guard '{key} {op} {value}' compares against a value outside the "
+                                  f"range of {subject} ({lo}..{hi}), so it is decided before the model runs.")
+                    elif not _in_domain(value, values):
+                        f.add("V26", where,
+                              f"guard '{key} {op} {value}': '{value}' is not in the domain of "
+                              f"{subject}. Declared: {', '.join(str(v) for v in values)}.")
+
     # V15 / V17 -- reserved ref type; every variable finitely bounded.
     for mname, m in machines.items():
         for vname, v in (m.get("variables") or {}).items():
@@ -251,6 +403,48 @@ def check_meaning(doc: dict, f: Findings, verbose: bool = True) -> None:
             if omitted in vocab:
                 f.add("V24", f"models.{mid}.purpose.omits",
                       f"'{omitted}' is declared omitted but appears in this model -- the declaration would lie to a reader.")
+
+
+def check_annotation(doc: dict, f: Findings) -> None:
+    """ANNOTATION -- a note that lost half its text.
+
+    A pass of its own, and that separation is the point rather than tidiness: A1 holds that
+    annotation never alters semantic interpretation, so an annotation finding does not belong among
+    the rules that fix meaning, and it carries a named id instead of a V-number for the same reason.
+
+    The failure is YAML flow style ending an unquoted value at a comma, so
+    `{ kind: comment, text: one thing, and another }` loads as `text: "one thing"` plus a stray KEY.
+    The note is half gone and nothing looks wrong, which is worse than one that failed to load. The
+    finding names the stray key because the fix is to quote the value and the author has to know
+    which text got cut.
+    """
+    def sweep(scope: str, holder: object) -> None:
+        notes = (holder or {}).get("notes") if isinstance(holder, dict) else None
+        for i, n in enumerate(notes or []):
+            # Mirrors canonicalize.ts: a note with no text is DROPPED, so there is nothing to report.
+            if not isinstance(n, dict) or not isinstance(n.get("text"), str) or not n["text"]:
+                continue
+            stray = sorted(str(k) for k in n if str(k) not in NOTE_KEYS)
+            if not stray:
+                continue
+            nid = n["id"] if isinstance(n.get("id"), str) else f"note-{i + 1}"
+            keys = ", ".join(f"'{k}'" for k in stray)
+            f.add("ANNOTATION", f"{scope}.notes.{nid}",
+                  f"unexpected key(s) {keys}: the signature of an unquoted comma in YAML flow style, "
+                  f"which ends the value and makes the rest a key. The text reads '{n['text']}' and "
+                  f"the remainder is gone. Quote it.")
+
+    for eid, ent in (doc.get("entities") or {}).items():
+        sweep(f"entities.{eid}", ent)
+    for mid, model in (doc.get("models") or {}).items():
+        sweep(f"models.{mid}", model)
+        # Keyed by relation id, falling back to its endpoints, because the IR flattens and re-sorts
+        # relations across models: a positional index would name a different edge on each side.
+        for rel in ((model or {}).get("relations") or []) if isinstance(model, dict) else []:
+            if not isinstance(rel, dict):
+                continue
+            key = rel["id"] if isinstance(rel.get("id"), str) else f"{rel.get('from')}->{rel.get('to')}"
+            sweep(f"models.{mid}.relations.{key}", rel)
 
 
 # ---------------------------------------------------------------------------------------------
@@ -406,6 +600,7 @@ def validate(path: pathlib.Path) -> int:
     check_shape(doc, f)
     if not f and isinstance(doc, dict):
         check_meaning(doc, f)
+        check_annotation(doc, f)
     elif f:
         print("  (meaning checks skipped -- fix the shape findings first)")
     if f:
@@ -455,6 +650,20 @@ def self_test() -> int:
                  "models": {"g": {"type": "graph", "entities": ["a", "b"],
                                   "purpose": {"omits": ["calls"]},
                                   "relations": [{"from": "a", "to": "b", "type": "calls"}]}}}),
+        # V26: `w.state: busy` where w declares idle and held. The guard never holds, so the
+        # transition is dead and every query over the machine describes a smaller system.
+        ("V26", {**base, "machines": {
+            "w": {"initial": "idle", "states": {"idle": None, "held": None}, "transitions": []},
+            "m": {"initial": "a", "states": {"a": None, "b": None},
+                  "transitions": [{"from": "a", "to": "b", "requires": {"w.state": "busy"}}]}}}),
+        # V26 again, the interval case: retry_count is [0, 3], so `gt: 9` is decided before the
+        # model runs. An integer declares a range rather than a list.
+        ("V26", {**base, "machines": {
+            "m": {"initial": "a", "states": {"a": None, "b": None},
+                  "variables": {"retry_count": {"type": "integer", "range": [0, 3]}},
+                  "transitions": [{"from": "a", "to": "b", "requires": {"retry_count": {"gt": 9}}}]}}}),
+        ("ANNOTATION", {**base, "entities": {
+            "e": {"notes": [{"kind": "comment", "text": "one thing", "and another": None}]}}}),
     ]
     failures = 0
     for expect, doc in cases:
@@ -464,6 +673,7 @@ def self_test() -> int:
             check_shape(doc, f)
             if not [r for r in f.rows if r[0] == "SCHEMA"]:
                 check_meaning(doc, f)
+                check_annotation(doc, f)
         rules = {r[0] for r in f.rows}
         if expect in rules:
             print(f"  [ok  ] {expect} detected")
@@ -477,7 +687,7 @@ def self_test() -> int:
         f = Findings()
         check_coercion(doc, f); check_shape(doc, f)
         if not f:
-            check_meaning(doc, f); check_queries(doc, f, verbose=False)
+            check_meaning(doc, f); check_annotation(doc, f); check_queries(doc, f, verbose=False)
         if f:
             failures += 1
             print(f"  [FAIL] component model should be clean; {len(f.rows)} finding(s)")
@@ -503,6 +713,7 @@ def self_test() -> int:
         check_coercion(doc, f)
         check_shape(doc, f)
         check_meaning(doc, f)
+        check_annotation(doc, f)
         if f:
             failures += 1
             print(f"  [FAIL] the worked example should be clean; {len(f.rows)} finding(s)")
@@ -527,6 +738,7 @@ def emit_json(path: pathlib.Path) -> int:
             check_shape(doc, f)
             if not [r for r in f.rows if r[0] == "SCHEMA"]:
                 check_meaning(doc, f, verbose=False)
+                check_annotation(doc, f)
                 check_queries(doc, f, verbose=False)
     print(json.dumps({"findings": [{"rule": r, "where": w, "message": m} for r, w, m in f.rows]},
                      indent=2, sort_keys=True))
