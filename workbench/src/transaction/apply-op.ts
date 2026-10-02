@@ -15,7 +15,7 @@
 import type { Finding, Scalar } from "../ir/types.ts";
 import { MageDocument } from "../yaml/document.ts";
 import type { Path, YamlValue } from "../yaml/document.ts";
-import { blocked, entityReferences, stateReferences } from "./references.ts";
+import { blocked, entityReferences, modelReferences, stateReferences } from "./references.ts";
 import type { Reference, SeqMatch } from "./references.ts";
 import type { Operation } from "./types.ts";
 
@@ -58,6 +58,22 @@ function applyCascade(doc: MageDocument, refs: readonly Reference[]): void {
 }
 
 /**
+ * The refusal for references no cascade can mechanically repair, or null when there are none.
+ *
+ * Separate from `resolveDelete` because `delete-model` needs this half and not the other: every
+ * reference `modelReferences` reports is blocked, so offering a `cascade` would be offering a
+ * repair that does not exist. Sharing the formatting keeps one phrasing of "cannot delete X".
+ */
+function refuseBlocked(where: string, subject: string, refs: readonly Reference[]): OpFailure | null {
+  const hard = blocked(refs);
+  if (hard.length === 0) return null;
+  const reason = (r: Reference): string => `${r.message} ${(r.removal as { reason: string }).reason}`;
+  return fail(where,
+    `cannot delete ${subject}: ${hard.map((r) => `${r.where} — ${reason(r)}`).join("; ")}`,
+    hard.map((r) => ({ rule: "TRANSACTION", where: r.where, message: reason(r) })));
+}
+
+/**
  * Refuse-or-cascade, shared by `delete-entity` and `delete-state`.
  *
  * Without `cascade` a non-empty reference list is a refusal naming every site — a dangling
@@ -68,12 +84,8 @@ function resolveDelete(
   doc: MageDocument, where: string, subject: string,
   refs: readonly Reference[], cascade: boolean,
 ): OpFailure | null {
-  const hard = blocked(refs);
-  if (hard.length > 0) {
-    return fail(where,
-      `cannot delete ${subject}: ${hard.map((r) => `${r.where} — ${r.message} ${(r.removal as { reason: string }).reason}`).join("; ")}`,
-      hard.map((r) => ({ rule: "TRANSACTION", where: r.where, message: `${r.message} ${(r.removal as { reason: string }).reason}` })));
-  }
+  const hard = refuseBlocked(where, subject, refs);
+  if (hard !== null) return hard;
   if (!cascade && refs.length > 0) {
     return fail(where,
       `cannot delete ${subject}: ${refs.length} reference(s) remain — ` +
@@ -104,6 +116,43 @@ function uniqueIndex(
       `Nondeterminism makes duplicates legal, so address one by 'index'.`);
   }
   return hits[0] as number;
+}
+
+/**
+ * Where the object an `add-note` addresses lives in the document.
+ *
+ * Returns a tagged union rather than `Path | OpFailure`: a `Path` IS an array, so the two cases
+ * cannot be told apart by shape without a tag that says which.
+ */
+function noteTarget(
+  doc: MageDocument, op: Extract<Operation, { op: "add-note" }>, where: string,
+): { readonly path: Path } | { readonly failure: OpFailure } {
+  if (op.scope !== "relation") {
+    const ns = op.scope === "entity" ? "entities" : "models";
+    // `id` is required for these two scopes at the parse stage; checked again because the type
+    // permits its absence and a thrown error here would be the one failure mode the pipeline bans.
+    if (op.id === undefined || !doc.has([ns, op.id])) {
+      return { failure: fail(where, `add-note: no ${op.scope} '${op.id ?? ""}'.`) };
+    }
+    return { path: [ns, op.id] };
+  }
+  if (op.model === undefined || !doc.has(["models", op.model])) {
+    return { failure: fail(where, `add-note: no model '${op.model ?? ""}' to look for the relation in.`) };
+  }
+  const path: Path = ["models", op.model, "relations"];
+  const found = op.id !== undefined
+    ? uniqueIndex(doc, path, where, "add-note", { id: op.id })
+    : uniqueIndex(doc, path, where, "add-note", { from: op.from, to: op.to, type: op.type });
+  return typeof found === "number" ? { path: [...path, found] } : { failure: found };
+}
+
+/** Note ids already in use at a target, so a new note cannot shadow one a finding cites. */
+function noteIds(existing: readonly unknown[]): ReadonlySet<string> {
+  const out = new Set<string>();
+  for (const n of existing) {
+    if (isRecord(n) && typeof n["id"] === "string") out.add(n["id"]);
+  }
+  return out;
 }
 
 /** Namespaces `set-label` may address, searched in this order. */
@@ -254,6 +303,66 @@ export function applyOperation(doc: MageDocument, op: Operation, index: number):
       // `omits` is checked against the model's real vocabulary by V24 at the validation stage, so a
       // declaration the model contradicts fails the transaction rather than becoming prose that lies.
       if (op.omits !== undefined) doc.setIn([ns, op.id, "purpose", "omits"], [...op.omits]);
+      return null;
+    }
+
+    case "add-model": {
+      if (doc.has(["models", op.id])) {
+        return fail(where, `add-model: '${op.id}' already exists; ids are immutable (V2).`);
+      }
+      // `type: graph` is written rather than asked for: it is the only model type the schema
+      // allows, so a field for it would be a question with one answer.
+      //
+      // No purpose block here. `set-purpose` owns question/represents/omits, and a model with no
+      // question is a container rather than a reduction — so send the two ops in one transaction
+      // and atomicity makes them indivisible. Unknown entity ids are V3's at the validation stage,
+      // the same way add-relation leaves its endpoints to V3.
+      doc.setIn(["models", op.id], compact({
+        type: "graph", label: op.label,
+        entities: op.entities === undefined ? undefined : [...op.entities],
+      }));
+      return null;
+    }
+
+    case "delete-model": {
+      if (!doc.has(["models", op.id])) return fail(where, `delete-model: no model '${op.id}'.`);
+      const refused = refuseBlocked(where, `model '${op.id}'`, modelReferences(doc.system(), op.id));
+      if (refused !== null) return refused;
+      // A view is presentation: it sits outside the IR and outside the hash, so dropping its
+      // mention of a model that no longer exists asserts nothing and is done here. A relation is a
+      // claim, which is why one is pruned quietly and the other refuses above.
+      for (const view of doc.keysAt(["views"])) {
+        doc.dropSeqItems(["views", view, "models"], (item) => item === op.id);
+      }
+      doc.deleteIn(["models", op.id]);
+      return null;
+    }
+
+    case "add-note": {
+      const target = noteTarget(doc, op, where);
+      if ("failure" in target) return target.failure;
+
+      const existing = doc.get([...target.path, "notes"]);
+      const notes = Array.isArray(existing) ? existing : [];
+      const taken = noteIds(notes);
+      let id = op.note.id;
+      if (id === undefined) {
+        // Deterministic from the document, so the same transaction against the same system writes
+        // the same bytes. Skips a taken name rather than overwriting one.
+        let n = notes.length + 1;
+        while (taken.has(`note-${n}`)) n += 1;
+        id = `note-${n}`;
+      } else if (taken.has(id)) {
+        return fail(where,
+          `add-note: '${target.path.join(".")}' already carries a note with id '${id}'. A note id is ` +
+          `how an ANNOTATION finding addresses one, so two of them would name the same site.`);
+      }
+      // Only a note's own keys are written, in the order the files already use. `unexpectedKeys` and
+      // the ANNOTATION rule exist for hand-written notes a YAML comma truncated; an op has no
+      // excuse to produce one, and the parser refuses a stray key rather than writing it.
+      doc.pushIn([...target.path, "notes"], compact({
+        id, kind: op.note.kind, text: op.note.text, author: op.note.author, at: op.note.at,
+      }));
       return null;
     }
 

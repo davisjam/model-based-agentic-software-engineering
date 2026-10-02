@@ -22,7 +22,8 @@
  *
  * Honesty is the point of the `status` field. A capability whose human affordance is not yet wired
  * says so, and UX-I1 fails. That is the invariant naming incomplete work rather than letting the
- * workbench be described as finished.
+ * workbench be described as finished. The field earned its keep: UX-I1 reported twelve violations,
+ * then six, then none, and each drop was a wave of work the invariant had named in advance.
  */
 
 /** Every public semantic capability. The list is closed; adding one is a deliberate act. */
@@ -73,17 +74,20 @@ export interface Capability {
 }
 
 const wired = (at: string): Affordance => ({ at, status: "wired" });
-const refusing = (at: string, note: string): Affordance => ({ at, status: "refusing", note });
-const absent = (at: string, note: string): Affordance => ({ at, status: "absent", note });
 
 /**
- * The registry. Reflects what is actually built as of 261002 — three entries are deliberately
- * NOT wired, and UX-I1 fails on exactly those.
+ * The registry. Reflects what is actually built as of 261002 — every capability is wired on both
+ * sides, and UX-I1 reports nothing.
  *
- * All three remaining failures have the same cause and it is not a UI gap: the transaction schema
- * has no operation for adding a model, deleting a model, or attaching a note, so there is nothing
- * to wire on EITHER side. Inventing an operation to clear a violation would make the registry agree
- * with a schema that does not have it, which is worse than a violation that is true.
+ * The last three failures shared one cause, and it was not a UI gap: the transaction schema had no
+ * operation for adding a model, deleting a model or attaching a note, so there was nothing to bind
+ * on EITHER side. The fix was therefore `add-model`, `delete-model` and `add-note` first and the
+ * controls second. Writing a control for an op that does not exist would have cleared the violation
+ * by making the registry lie, which is worse than a violation that is true.
+ *
+ * `refusing` and `absent` now have no users. They stay in `AffordanceStatus` because the next
+ * capability someone declares will need them before it needs `wired` — and because a registry that
+ * can only say "finished" is not a gate.
  */
 export const CAPABILITIES: readonly Capability[] = [
   {
@@ -159,7 +163,10 @@ export const CAPABILITIES: readonly Capability[] = [
     producesEvidence: false,
   },
 
-  // ---- editing. Every form sends ONE operation through the same `transact` the agent calls. ----
+  // ---- editing. Every form sends ONE transaction through the same `transact` the agent calls. ---
+  //
+  // One transaction, usually one operation. `create-model` sends two, because a model needs its
+  // question and `set-purpose` already owns that field; atomicity makes the pair one act.
   //
   // There is deliberately no human affordance for adding a MACHINE: the op set has `add-state` but
   // no `add-machine`, so neither interface can do it. That is a symmetric gap in the schema, not an
@@ -212,43 +219,39 @@ export const CAPABILITIES: readonly Capability[] = [
     producesEvidence: false,
   },
 
-  // ---- not wired. UX-I1 fails on these, deliberately and visibly. ------------------------------
-
   {
     id: "create-model",
     summary: "Add a purposeful model, with its question.",
     service: "transactions.apply",
-    human: [absent("models-panel.add",
-      "Phase G: no models panel. Creating a model should also prompt for its engineering question, "
-      + "which is the habit the workbench exists to teach.")],
-    machine: [refusing("window.mage.transact",
-      "no add-model operation in the transaction schema yet; the op set covers elements and relations")],
+    // The form requires the engineering question, which `add-model` itself does not carry: it sends
+    // `add-model` plus `set-purpose` in one transaction, composing with the op that already owns the
+    // purpose block. Atomicity makes the pair indivisible, so a question-less model never commits —
+    // and the habit the workbench exists to teach is enforced by the control rather than suggested.
+    human: [wired("edit-section.add-model")],
+    machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
   {
     id: "delete-model",
-    summary: "Remove a purposeful model.",
+    summary: "Remove a purposeful model, refusing while it still asserts a relation.",
     service: "transactions.apply",
-    human: [absent("models-panel",
-      "Phase G: no models panel; a model is removed by editing the source and re-opening.")],
-    machine: [refusing("window.mage.transact",
-      "no delete-model operation in the transaction schema yet")],
+    // No cascade on either side, deliberately. Relations are flattened across models and carry the
+    // model that asserts them, so a relation is a claim rather than a pointer; dropping it as a
+    // side effect would shrink the architecture and tell no one.
+    human: [wired("edit-section.delete-model")],
+    machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
   {
     id: "add-note",
-    summary: "Attach a note or provenance to an object, without changing what the model asserts.",
+    summary: "Attach a note to an object, without changing what the model asserts.",
     service: "transactions.apply",
-    // The inspector SHOWS notes and provenance; nothing can write one. Reported as a violation
-    // rather than quietly omitted, because a reader who can see a note and not add one will
-    // reasonably assume the feature is finished.
-    human: [absent("model-section.notes",
-      "the inspector displays notes and provenance, but the transaction schema has no add-note "
-      + "operation, so no edit path can write one. Notes are authored in the source file.")],
-    machine: [absent("window.mage.transact",
-      "no add-note operation in the transaction schema; the op set covers elements, relations, "
-      + "properties, purpose and saved queries. A note-adding transaction would commit WITHOUT "
-      + "advancing the semantic revision, because the hash excludes annotation (invariant A1).")],
+    // The one capability whose successful use leaves the system hash where it was. Annotation is
+    // outside the semantic projection (A1), so this commits WITHOUT advancing the revision and does
+    // not invalidate a pending agent transaction. Both affordances say so: the form in words, and
+    // `describe()` through the schema's own description of the op.
+    human: [wired("edit-section.add-note")],
+    machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
 

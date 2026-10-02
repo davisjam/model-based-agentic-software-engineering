@@ -39,7 +39,8 @@ export type SeqMatch =
 export interface Reference {
   readonly kind:
     | "relation" | "model-entity" | "containment" | "machine-entity"
-    | "transition-endpoint" | "machine-initial" | "guard" | "event-participant";
+    | "transition-endpoint" | "machine-initial" | "guard" | "event-participant"
+    | "model-relation";
   /** Dotted site, in the author's terms: `models.service-flow.relations`. */
   readonly where: string;
   readonly message: string;
@@ -97,6 +98,39 @@ export function entityReferences(s: CanonicalSystem, id: string): readonly Refer
     });
   }
 
+  return out;
+}
+
+/**
+ * What a model still asserts, and would take with it.
+ *
+ * Relations only, and every one is `blocked` — which is why `delete-model` has no `cascade` field to
+ * offer. `CanonicalSystem.relations` is flattened across every model and carries its owning model,
+ * and the flattening is deliberate: an architectural claim must not be escapable by moving an edge
+ * to another model. A relation is therefore not a pointer AT the model that a cascade could tidy
+ * away; it is a claim the model makes. Deleting that claim and declining to delete it assert
+ * different things, exactly as they do for a guard on a deleted state, so the author says which.
+ *
+ * A model's entities need no entry: entities are system-level and models reference rather than
+ * redeclare them (V3), so a deleted model leaves every entity standing.
+ */
+export function modelReferences(s: CanonicalSystem, id: string): readonly Reference[] {
+  const out: Reference[] = [];
+  for (const r of s.relations) {
+    if (r.model !== id) continue;
+    out.push({
+      kind: "model-relation",
+      where: `models.${id}.relations`,
+      message: `this model asserts ${r.id ?? `${r.from} -${r.type}-> ${r.to}`}.`,
+      // Terse on purpose: the refusal repeats this once per relation, and the reasoning belongs in
+      // this module's doc comment rather than three times in one sentence a user has to read.
+      removal: {
+        kind: "blocked",
+        reason: "Delete that relation explicitly, in this transaction if you like — a claim must not " +
+                "disappear as a side effect.",
+      },
+    });
+  }
   return out;
 }
 

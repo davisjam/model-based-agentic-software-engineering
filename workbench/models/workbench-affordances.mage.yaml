@@ -186,22 +186,22 @@ entities:
     type: semantic-capability
     label: "Add a purposeful model, with its question."
     properties:
-      human: not-wired
-      machine: not-wired
+      human: wired
+      machine: wired
 
   delete-model:
     type: semantic-capability
-    label: "Remove a purposeful model."
+    label: "Remove a purposeful model, refusing while it still asserts a relation."
     properties:
-      human: not-wired
-      machine: not-wired
+      human: wired
+      machine: wired
 
   add-note:
     type: semantic-capability
-    label: "Attach a note or provenance to an object, without changing what the model asserts."
+    label: "Attach a note to an object, without changing what the model asserts."
     properties:
-      human: not-wired
-      machine: not-wired
+      human: wired
+      machine: wired
 
   create-hypothesis:
     type: semantic-capability
@@ -313,8 +313,14 @@ models:
       - { from: edit-property, to: human-interface, type: afforded-by }
       - { from: edit-property, to: machine-interface, type: afforded-by }
       - { from: edit-property, to: service.transactions-apply, type: implemented-by }
+      - { from: create-model, to: human-interface, type: afforded-by }
+      - { from: create-model, to: machine-interface, type: afforded-by }
       - { from: create-model, to: service.transactions-apply, type: implemented-by }
+      - { from: delete-model, to: human-interface, type: afforded-by }
+      - { from: delete-model, to: machine-interface, type: afforded-by }
       - { from: delete-model, to: service.transactions-apply, type: implemented-by }
+      - { from: add-note, to: human-interface, type: afforded-by }
+      - { from: add-note, to: machine-interface, type: afforded-by }
       - { from: add-note, to: service.transactions-apply, type: implemented-by }
       - { from: create-hypothesis, to: human-interface, type: afforded-by }
       - { from: create-hypothesis, to: machine-interface, type: afforded-by }
