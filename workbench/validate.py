@@ -253,6 +253,133 @@ def check_meaning(doc: dict, f: Findings) -> None:
                       f"'{omitted}' is declared omitted but appears in this model -- the declaration would lie to a reader.")
 
 
+# ---------------------------------------------------------------------------------------------
+# Graph query evaluation. Enough of the engine to make an architectural invariant a CI gate
+# before any workbench code exists -- the component-dependency model is enforceable on day one.
+#
+# Behavioral (state-space) queries are NOT evaluated here; they belong in the workbench's own
+# engine, in a Web Worker. This covers the graph forms only, and says so when asked for more.
+# ---------------------------------------------------------------------------------------------
+
+GRAPH_MULTIHOP = {"reachability", "path", "shortest-path", "all-paths"}
+
+
+def _edges(doc: dict, rel_type: str) -> dict[str, set[str]]:
+    """Adjacency for one relation type, across EVERY model in the system.
+
+    Union rather than per-model: an architectural invariant about the system is not escapable by
+    declaring the offending edge in a different model.
+    """
+    sym = (((doc.get("relation-types") or {}).get(rel_type) or {}).get("properties") or {}).get("symmetric", False)
+    adj: dict[str, set[str]] = {}
+    for model in (doc.get("models") or {}).values():
+        for rel in (model.get("relations") or []):
+            if rel.get("type") != rel_type:
+                continue
+            adj.setdefault(rel["from"], set()).add(rel["to"])
+            if sym:
+                adj.setdefault(rel["to"], set()).add(rel["from"])
+    return adj
+
+
+def _shortest_path(adj: dict[str, set[str]], src: str, dst: str) -> list[str] | None:
+    """BFS, so the witness returned is the shortest one -- the most legible counterexample."""
+    if src == dst:
+        return [src]
+    seen, frontier = {src}, [[src]]
+    while frontier:
+        nxt = []
+        for route in frontier:
+            for peer in sorted(adj.get(route[-1], ())):
+                if peer == dst:
+                    return route + [peer]
+                if peer not in seen:
+                    seen.add(peer)
+                    nxt.append(route + [peer])
+        frontier = nxt
+    return None
+
+
+def run_graph_query(doc: dict, q: dict) -> dict:
+    """Evaluate one graph query. Returns a result object shaped per mage-query.schema.json."""
+    g = q.get("graph") or {}
+    form, rel = g.get("form"), g.get("relation")
+    rel_spec = (doc.get("relation-types") or {}).get(rel)
+
+    if rel_spec is None:
+        return {"outcome": "unlicensed", "coverage": {"kind": "not-applicable"},
+                "refusal": f"relation type '{rel}' is not declared by this system."}
+
+    # V7 -- a multi-hop question over a relation that forbids path composition is refused, not
+    # answered. Being told a question is not licensed is a result, not an error.
+    if form in GRAPH_MULTIHOP and ((rel_spec.get("composition") or {}).get("path")) == "forbidden":
+        return {"outcome": "unlicensed", "coverage": {"kind": "not-applicable"},
+                "refusal": f"'{rel}' is declared as a direct relation without path-composition "
+                           f"semantics. A multi-hop '{rel}' query is not licensed by this model."}
+
+    adj = _edges(doc, rel)
+    src, dst = g.get("from"), g.get("to")
+
+    if form == "direct":
+        hit = dst in adj.get(src, set())
+        res = {"outcome": "holds" if hit else "refuted", "coverage": {"kind": "exhaustive"}}
+        if hit:
+            res["evidence"] = {"shape": "path", "role": "witness", "nodes": [src, dst]}
+        return res
+
+    if form in {"reachability", "path", "shortest-path"}:
+        route = _shortest_path(adj, src, dst)
+        res = {"outcome": "holds" if route else "refuted",
+               "coverage": {"kind": "exhaustive", "states_explored": len(adj)}}
+        if route:
+            res["evidence"] = {"shape": "path", "role": "witness", "nodes": route}
+        return res
+
+    return {"outcome": "unlicensed", "coverage": {"kind": "not-applicable"},
+            "refusal": f"graph form '{form}' is not evaluated by this tool; it belongs to the "
+                       f"workbench engine. Evaluated here: direct, reachability, path, shortest-path."}
+
+
+def check_queries(doc: dict, f: Findings, verbose: bool = True) -> None:
+    """Run every saved query that declares `expect`, and fail on a mismatch.
+
+    A query WITHOUT `expect` is exploratory: reported, never failed. A query WITH `expect` is an
+    assertion about the architecture, and a mismatch is a build failure.
+    """
+    asserted = 0
+    for qid, q in (doc.get("queries") or {}).items():
+        if q.get("kind") != "graph":
+            if verbose and "expect" in q:
+                print(f"  [skip] {qid}: behavioral queries are evaluated by the workbench engine, not here")
+            continue
+        res = run_graph_query(doc, q)
+        outcome, expect = res["outcome"], q.get("expect")
+        if isinstance(expect, bool):
+            # YAML 1.1 again: a bare `expect: false` arrives as a Python bool, never matching an
+            # outcome string. Caught here with the cause named rather than as a silent mismatch.
+            f.add("V25", qid, f"expect loaded as boolean {expect!r} -- a YAML loader coerced it. "
+                              f"Use 'refuted' or 'holds'; the outcome vocabulary is deliberately "
+                              f"not true/false.")
+            continue
+        if expect is None:
+            if verbose:
+                print(f"  [info] {qid}: {outcome}")
+            continue
+        asserted += 1
+        if outcome == expect:
+            if verbose:
+                print(f"  [ok  ] {qid}: {outcome}")
+        else:
+            detail = ""
+            if (ev := res.get("evidence")) and ev.get("nodes"):
+                detail = " via " + " -> ".join(ev["nodes"])
+            if res.get("refusal"):
+                detail = " (" + res["refusal"] + ")"
+            f.add("QUERY", qid, f"expected {expect}, got {outcome}{detail}")
+    if verbose and asserted:
+        print(f"  {asserted} asserted query(ies) evaluated")
+
+
 def validate(path: pathlib.Path) -> int:
     print(f"mage-validate: {path}")
     try:
@@ -276,7 +403,14 @@ def validate(path: pathlib.Path) -> int:
         print(f"mage-validate: {len(f.rows)} finding(s)")
         f.report()
         return 1
-    print("mage-validate: clean -- shape and meaning")
+    if doc.get("queries"):
+        print("mage-validate: asserted queries")
+        check_queries(doc, f)
+    if f:
+        print(f"mage-validate: {len(f.rows)} finding(s)")
+        f.report()
+        return 1
+    print("mage-validate: clean -- shape, meaning, and asserted queries")
     return 0
 
 
@@ -327,6 +461,32 @@ def self_test() -> int:
         else:
             failures += 1
             print(f"  [FAIL] {expect} NOT detected; got {sorted(rules) or 'nothing'}")
+    # The evaluator must FAIL when the kernel grows a dependency on a view -- the whole point.
+    comp = HERE / "models" / "workbench-components.mage.yaml"
+    if comp.exists():
+        doc = yaml.safe_load(comp.read_text())
+        f = Findings()
+        check_coercion(doc, f); check_shape(doc, f)
+        if not f:
+            check_meaning(doc, f); check_queries(doc, f, verbose=False)
+        if f:
+            failures += 1
+            print(f"  [FAIL] component model should be clean; {len(f.rows)} finding(s)")
+            f.report()
+        else:
+            print("  [ok  ] component model clean, all asserted queries hold")
+        violated = yaml.safe_load(comp.read_text())
+        violated["models"]["dependencies"]["relations"].append(
+            {"id": "SMUGGLED", "from": "model-ir", "to": "ui", "type": "depends-on"})
+        f2 = Findings()
+        check_queries(violated, f2, verbose=False)
+        caught = [r for r in f2.rows if "kernel-must-not-reach-ui" in r[1]]
+        if caught:
+            print(f"  [ok  ] injected kernel->ui edge CAUGHT: {caught[0][2]}")
+        else:
+            failures += 1
+            print("  [FAIL] injected kernel->ui dependency NOT caught -- the gate does not gate")
+
     example = HERE / "examples" / "docable.mage.yaml"
     if example.exists():
         f = Findings()

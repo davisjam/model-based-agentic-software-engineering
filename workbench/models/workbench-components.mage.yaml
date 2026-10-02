@@ -1,0 +1,229 @@
+# The workbench's own component-dependency model.
+#
+# This is model (1) of the eight. It is not an example for students: it is the architectural
+# constraint the implementation answers to, and `validate.py --queries` enforces it in CI.
+#
+# The whole point is one claim: EVERYTHING DEPENDS INWARD ON THE SEMANTIC KERNEL. `model-ir` is the
+# kernel; it must not reach the UI, the YAML adapter, the renderer, or the agent adapter. If that
+# edge ever appears, a saved query below fails and the build goes red -- before any human notices
+# that the kernel has quietly grown a dependency on a view.
+
+mage: 1
+
+system:
+  id: mage-workbench
+  name: MAGE Model Workbench
+  description: >
+    Browser-native modeling workbench. Modeled in its own notation so that building it exercises
+    the method, and so an implementation agent receives the engineering distinctions it is expected
+    to preserve rather than prose beside the code.
+
+relation-types:
+
+  depends-on:
+    description: >
+      Source may reference target at build time: an import, a type reference, a direct call.
+    absence: >
+      No build-time dependency is permitted. The absence is the load-bearing half of this model:
+      an edge that is not drawn here is an edge the implementation may not create.
+    composition:
+      # Multi-hop IS the question. "Can model-ir reach ui?" is the architectural invariant, and it
+      # is about the transitive closure, not about a single declared edge.
+      path: allowed
+    properties:
+      symmetric: false
+      # A dependency cycle between components is a design error, so the validator refuses one.
+      acyclic: true
+
+  may_mutate:
+    description: Source may mutate the target's state in place.
+    absence: Target is immutable from the source's perspective.
+    composition:
+      # Mutation authority does not compose: A mutating B, and B mutating C, does not license A to
+      # mutate C. A multi-hop may_mutate query is therefore refused rather than answered.
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: false
+
+entities:
+
+  model-ir:
+    type: component
+    label: Model IR
+    description: >
+      The canonical semantic representation, and the only semantic input to analysis. Depends on
+      nothing. Every other component depends on it.
+    properties:
+      layer: kernel
+
+  validator:
+    type: component
+    label: Validator
+    description: Shape pass plus the numbered semantic rules. Reads the IR; never mutates it.
+    properties:
+      layer: kernel
+
+  query-engine:
+    type: component
+    label: Query Engine
+    description: >
+      State-space construction and query execution. Consumes canonical IR only -- never YAML, so
+      formatting cannot reach a result.
+    properties:
+      layer: kernel
+
+  yaml-adapter:
+    type: component
+    label: YAML Adapter
+    description: >
+      Concrete syntax boundary. Parses to canonical IR and serializes back with comments and key
+      order preserved. The only component that knows YAML exists.
+    properties:
+      layer: adapter
+
+  persistence:
+    type: component
+    label: Persistence
+    description: File import/export plus convenience browser storage. Portable file is the truth.
+    properties:
+      layer: adapter
+
+  agent-adapter:
+    type: component
+    label: Agent Adapter
+    description: >
+      Translates between natural language and the command algebra. Emits Transaction, Query or
+      Clarification; it has no privileged write path to the IR.
+    properties:
+      layer: adapter
+
+  analysis-worker:
+    type: component
+    label: Analysis Worker
+    description: Web Worker host for the query engine, so exploration never blocks the UI thread.
+    properties:
+      layer: host
+
+  renderer:
+    type: component
+    label: Renderer
+    description: Produces SVG from the IR. Reads only; layout hints are view metadata, never semantics.
+    properties:
+      layer: view
+
+  ui:
+    type: component
+    label: UI
+    description: Editing, selection, navigation, inspection. Depends inward; nothing depends on it.
+    properties:
+      layer: view
+
+models:
+
+  dependencies:
+    type: graph
+    label: Component dependencies
+    purpose:
+      question: Which workbench components may depend on which others?
+      represents: [component identity, permitted build-time dependency, mutation authority]
+      omits: [runtime call frequency, module file layout, bundle chunking, test doubles]
+    entities: [model-ir, validator, query-engine, yaml-adapter, persistence, agent-adapter, analysis-worker, renderer, ui]
+    relations:
+      # --- inward dependencies on the kernel -------------------------------------------------
+      - { id: ui-ir,        from: ui,              to: model-ir,     type: depends-on }
+      - { id: ui-renderer,  from: ui,              to: renderer,     type: depends-on }
+      - { id: ui-agent,     from: ui,              to: agent-adapter, type: depends-on }
+      - { id: ui-worker,    from: ui,              to: analysis-worker, type: depends-on }
+      - { id: ui-persist,   from: ui,              to: persistence,  type: depends-on }
+      - { id: yaml-ir,      from: yaml-adapter,    to: model-ir,     type: depends-on }
+      - { id: val-ir,       from: validator,       to: model-ir,     type: depends-on }
+      - { id: rend-ir,      from: renderer,        to: model-ir,     type: depends-on }
+      - { id: qe-ir,        from: query-engine,    to: model-ir,     type: depends-on }
+      - { id: worker-qe,    from: analysis-worker, to: query-engine, type: depends-on }
+      - { id: agent-ir,     from: agent-adapter,   to: model-ir,     type: depends-on }
+      - { id: persist-yaml, from: persistence,     to: yaml-adapter, type: depends-on }
+      # --- mutation authority ----------------------------------------------------------------
+      # Exactly one component may mutate the authoritative IR, and it is reached only through the
+      # validated transaction path. Note what is ABSENT: no renderer, no agent-adapter, no ui.
+      - { id: yaml-mut-ir,  from: yaml-adapter,    to: model-ir,     type: may_mutate }
+
+queries:
+
+  # ---------------------------------------------------------------------------------------------
+  # THE architectural invariant. Four separate queries rather than one, so a failure names the
+  # exact edge that appeared. Each is existential with an expected answer of false: a witness path
+  # would be the violation.
+  # ---------------------------------------------------------------------------------------------
+
+  kernel-must-not-reach-ui:
+    name: Can the semantic kernel reach the UI through dependencies?
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph: { form: reachability, relation: depends-on, from: model-ir, to: ui }
+
+  kernel-must-not-reach-renderer:
+    name: Can the semantic kernel reach the renderer through dependencies?
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph: { form: reachability, relation: depends-on, from: model-ir, to: renderer }
+
+  kernel-must-not-reach-yaml:
+    name: Can the semantic kernel reach the YAML adapter through dependencies?
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph: { form: reachability, relation: depends-on, from: model-ir, to: yaml-adapter }
+
+  kernel-must-not-reach-agent:
+    name: Can the semantic kernel reach the agent adapter through dependencies?
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph: { form: reachability, relation: depends-on, from: model-ir, to: agent-adapter }
+
+  # The query engine's semantic input is canonical IR only. If it ever depends on the YAML adapter,
+  # then YAML formatting can reach an analysis result -- the exact slop the pipeline model forbids.
+  engine-must-not-reach-yaml:
+    name: Can the query engine reach the YAML adapter?
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph: { form: reachability, relation: depends-on, from: query-engine, to: yaml-adapter }
+
+  # The renderer reads the IR and does not write it.
+  renderer-must-not-mutate-ir:
+    name: May the renderer mutate the model IR?
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph: { form: direct, relation: may_mutate, from: renderer, to: model-ir }
+
+  # Agent output reaches the authoritative model only through validation.
+  agent-must-not-mutate-ir:
+    name: May the agent adapter mutate the model IR directly?
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph: { form: direct, relation: may_mutate, from: agent-adapter, to: model-ir }
+
+  # Positive control. If this one ever returns false, the model is broken rather than the code --
+  # a suite of only-negative expectations passes just as well against an empty graph.
+  ui-can-reach-kernel:
+    name: Can the UI reach the semantic kernel? (it must)
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph: { form: reachability, relation: depends-on, from: ui, to: model-ir }
+
+  # Refusal control. may_mutate declares composition.path: forbidden, so a multi-hop question over
+  # it is UNLICENSED -- a successful result reporting what the model does not authorize, not an
+  # answer. Keeps that path exercised.
+  transitive-mutation-is-unlicensed:
+    name: Can the UI transitively mutate the model IR?
+    kind: graph
+    quantifier: exists
+    expect: unlicensed
+    graph: { form: reachability, relation: may_mutate, from: ui, to: model-ir }

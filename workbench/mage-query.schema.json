@@ -18,6 +18,10 @@
           "type": "string"
         },
         "kind": { "enum": ["behavior", "graph"] },
+        "expect": {
+          "description": "Expected outcome, for a saved query used as a CI gate. Present means the query is an ASSERTION: a run whose outcome differs is a build failure. Absent means the query is exploratory and any outcome is reported without judgement. Values are holds/refuted/... and never true/false -- a bare boolean here is a YAML-coercion bug (V25).",
+          "enum": ["holds", "refuted", "inconclusive", "unlicensed"]
+        },
         "quantifier": {
           "description": "exists: a witness proves TRUE, exhaustive absence proves FALSE. forall: exhaustive satisfaction proves TRUE, a counterexample proves FALSE. Never inferred silently -- an ambiguous natural-language question triggers Clarification or a displayed interpretation (V21).",
           "enum": ["exists", "forall"]
@@ -180,8 +184,8 @@
       "additionalProperties": false,
       "properties": {
         "outcome": {
-          "description": "true/false are claims the coverage licenses. inconclusive is mandatory when coverage is bounded (V22). unlicensed means the model does not authorize the question -- a SUCCESSFUL result, not an error (V7, V24).",
-          "enum": ["true", "false", "inconclusive", "unlicensed"]
+          "description": "holds: the claim is established (a witness for exists, exhaustive satisfaction for forall). refuted: the claim is refuted (exhaustive absence for exists, a counterexample for forall). inconclusive: mandatory when coverage is bounded (V22). unlicensed: the model does not authorize the question -- a SUCCESSFUL result, not an error (V7, V24). Deliberately NOT true/false: there is no boolean result, only a claim plus coverage plus evidence -- and a bare `true`/`false` in YAML is implicit-typed to a boolean anyway (V25).",
+          "enum": ["holds", "refuted", "inconclusive", "unlicensed"]
         },
         "interpreted-as": {
           "description": "The question actually evaluated, in plain language. Mandatory when the query came from natural language (V21).",

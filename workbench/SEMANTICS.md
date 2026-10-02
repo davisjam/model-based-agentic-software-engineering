@@ -335,10 +335,12 @@ Every query carries an explicit **quantifier**. This is not a stylistic choice: 
 counts as evidence, and conflating the two is the single most common modeling error the workbench
 exists to make visible.
 
-| Claim | Evidence it is TRUE | Evidence it is FALSE |
+| Claim | `holds` is established by | `refuted` is established by |
 |---|---|---|
 | **∃** a trace satisfying *P* | a **witness** trace | **exhaustive absence** |
 | **∀** reachable configurations satisfy *P* | **exhaustive satisfaction** | a **counterexample** |
+
+Under bounded coverage neither column is available and the outcome is `inconclusive` (V22).
 
 **V21.** A natural-language question that does not determine its quantifier MUST either request
 clarification or display the interpretation it chose:
@@ -348,19 +350,27 @@ clarification or display the interpretation it chose:
 ### 7.1 Coverage is part of every result
 
 ```yaml
-result: false
+outcome: refuted
 coverage:
   kind: exhaustive
   states_explored: 37
 ```
 
 ```yaml
-result: inconclusive
+outcome: inconclusive
 coverage:
   kind: bounded
   states_explored: 1000000
   reason: state-limit
 ```
+
+**The outcome vocabulary is `holds | refuted | inconclusive | unlicensed` — deliberately not
+`true`/`false`.** Two reasons, and both matter. Semantically, there is no boolean result: there is a
+claim, its coverage, and its evidence, and naming the status `true` invites exactly the
+`result: boolean` shortcut the result type exists to prevent. Mechanically, a bare `true` or `false`
+in YAML is implicit-typed to a boolean (§10.1), so `expect: false` in a saved query arrives as a
+Python/JS boolean and silently matches nothing. That bug was found by this spec's own gate, which is
+the argument for V25 in miniature.
 
 **V22.** When `coverage.kind` is `bounded`, the result MUST be reported as **INCONCLUSIVE** and MUST
 NOT be rendered as "no". "No such trace exists" is sound only under exhaustive coverage; under a
