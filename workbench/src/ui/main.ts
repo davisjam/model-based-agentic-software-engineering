@@ -14,6 +14,7 @@ import { ExampleCatalog } from "../app/examples.ts";
 import type { ExampleDescription } from "../app/examples.ts";
 import { AGENT_API_VERSION, createAgentApi } from "../app/agent-api.ts";
 import type { ViewState } from "../app/agent-api.ts";
+import { createLazyAnalysisPort } from "../worker/port.ts";
 import {
   buildViewModel, planAsk, planEdit, propertyRow, resolveSubject, subjectValue,
 } from "./view-model.ts";
@@ -139,6 +140,22 @@ const ports: Ports = {
       return { configurations: [], exhaustive: false };
     },
   },
+  // The analysis Worker, which until this change shipped and was never instantiated.
+  //
+  // LAZY on purpose. analysis.worker.js is 350 KB because the long analyses live there, and
+  // spawning at page load would charge every visitor that download to run a walk most of them never
+  // ask for. The first long analysis starts the thread; nothing else does.
+  //
+  // The URL is relative to the SERVED PAGE — index.html loads ./dist/workbench.js — which is
+  // exactly why it is spelled in the composition root and not inside src/worker/.
+  analysis: createLazyAnalysisPort("./dist/analysis.worker.js", {
+    onState: (state, id) => {
+      // FR-A11Y-3: a long analysis SETTLING is consequential; its starting is not. The debounced
+      // sender composes a burst of these into one sentence rather than a storm.
+      if (state === "running") return;
+      announce(`Analysis ${id} ${state === "bounded" ? "stopped at its budget" : state}.`);
+    },
+  }),
   // The renderer, bound. It returns the picture and its structured twin together — there is no
   // export that yields one without the other — so the UI cannot draw a diagram that a
   // screen-reader user gets nothing from.
