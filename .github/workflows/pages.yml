@@ -91,6 +91,37 @@ jobs:
       - name: Install book node tooling (mermaid-cli for build-time SVG + Puppeteer for the served-page smoke gates, from book/ lockfile)
         working-directory: book
         run: npm ci
+      # ── Model Workbench browser tier (deploy-blocking) ──────────────────────────────────────────
+      # Every other workbench test is node-tier: the IR, the engine, the validator, the view model,
+      # the services facade — all driven directly, none of them loading index.html. So the first
+      # thing a user does, and the CDP agent surface FR-AGENT-1/-2 specify, had no gate at all. This
+      # step serves workbench/ and drives the real page in headless Chromium.
+      #
+      # It must run HERE, not beside the other workbench gates above: it needs BOTH the esbuild
+      # bundle (built in that step) AND Puppeteer + its bundled Chromium (installed by the book
+      # `npm ci` immediately above). Puppeteer is RESOLVED from book/node_modules, never added to
+      # workbench/package.json — workbench/node_modules is a symlink shared across parallel agent
+      # worktrees, so an install there mutates trees this job does not own.
+      #
+      # It serves workbench/, NOT workbench/dist/. dist/ holds bundles only; index.html loads
+      # `./dist/workbench.js`, so a page served from inside dist/ resolves that to
+      # dist/dist/workbench.js and cannot work. Serving dist/ would gate a page nobody ships.
+      #
+      # The receipt assertion is the same discipline as the bundle assertion above, and for a
+      # sharper reason: `node --test` over a glob that matches NOTHING exits 0 and prints "pass 0".
+      # A renamed directory would turn this into a green gate that launched no browser. The suite
+      # writes the receipt only after a browser booted and the page loaded, and the receipt carries
+      # what the run measured — so the log publishes the numbers rather than asserting them blind.
+      - name: Model Workbench browser tier (headless Chromium over the served page) + receipt assertion
+        working-directory: workbench
+        env:
+          WB_BROWSER_RECEIPT: ${{ runner.temp }}/wb-browser-receipt.json
+        run: |
+          test -f dist/workbench.js || { echo "ERROR: workbench bundle missing — the browser tier would serve a page with no app"; exit 1; }
+          rm -f "$WB_BROWSER_RECEIPT"
+          npm run test:browser
+          test -s "$WB_BROWSER_RECEIPT" || { echo "ERROR: browser tier wrote no receipt — no browser was launched (a glob that matches no test file exits 0)"; exit 1; }
+          cat "$WB_BROWSER_RECEIPT"
       # Typst backs BOTH the citation render (below) and the PDF print edition (further down), so install it
       # up front — the pinned release, clone-and-run-safe + reproducible (verify it extracts a runnable
       # binary, put it on PATH).
