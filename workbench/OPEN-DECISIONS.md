@@ -271,3 +271,21 @@ one line either.
 
 **Recommendation: add it.** The parity test makes the three-way consistency enforceable rather than
 hoped for, and this is exactly the class of defect the numbered rules exist for.
+
+### Ruled 261002 — add it, on both sides, inside the parity set
+
+The author ruled for V26 and it is in flight. Three notes the implementation has to respect, each of
+which surfaced only once someone sat down to write it:
+
+- **V25 keeps its exclusive first pass.** A value that YAML implicit-typed is not the value the
+  author wrote, so reporting a domain mismatch against it blames the wrong thing. Coercion is
+  diagnosed before membership.
+- **Integer domains are an interval, not a list.** An integer variable declares a `range`, so
+  membership is a bounds test. Only the enum kinds have a list to be a member of.
+- **An unresolvable `ref` already belongs to V6/V9/V10.** V26 must not double-report it. A rule that
+  fires a second finding for a defect already named is noise in the output a reader has to learn to
+  discount, and this file exists partly to stop that happening by accident.
+
+V26 goes into `PARITY`, not `ASYMMETRIC`. The asymmetry table is an honest record of rules one side
+cannot reach — a schema-layer check, a generated-type check — and each entry carries its reason.
+Domain membership has no such excuse: both sides have the domain and both sides have the guard.

@@ -20,11 +20,25 @@ Architecture: [`models/workbench-components.mage.yaml`](models/workbench-compone
 | D | YAML adapter + transaction engine | **landed** |
 | E | Renderer: deterministic layout + SVG | **landed** |
 | F | Services facade + `window.mage` agent API (FR-AGENT-1/2) | **landed** |
-| G | UI shell + accessible view model + page | **landed**; two ports still refuse honestly |
-| K | Capability registry + UX-I1/I2/I3 + CI assertions (`requirements-ux-261002.md` §22-26) | **next** |
-| H | Integration: gates, Pages build, docs | last |
+| G | UI shell + accessible view model + page | **landed**; the render port still refuses honestly |
+| K | Capability registry + UX-I1/I2/I3 + CI assertions (`requirements-ux-261002.md` §22-26) | **landed** `58c20691`, `c7304676` |
+| L | Annotation + provenance; A1 held by the hash | **landed** `b0856b0e`; schema + rule in flight |
+| H | Integration: gates, Pages build, docs | **in flight** |
 | I | Quantitative models (latency/memory/requirements) | unblocked — all 7 ruled, §1a.3 |
 | J | RDF projection + SPARQL (Comunica) + structured not-answerable | **new**, §1a |
+
+Three waves run concurrently as of 261002, in worktrees, on disjoint footprints — semantics
+(`SEMANTICS.md`, `src/validator/`, `validate.py`, the schemas), presentation (`index.html`,
+`src/ui/`, `src/app/`), and publish (`.github/`, `catalog.py`, the landing link). Worktrees inside
+this submodule were verified working the same day, which is what made the split available; the
+earlier guidance that gc agents must share `main` was written before anyone tried it.
+
+**The honest status of UX-I1 is the number to watch, not the phase table.** The capability registry
+reports 12 of 19 capabilities violating affordance parity at `df3d745d` — ten of them missing a
+HUMAN affordance, so an attached agent can edit a model a person cannot. The presentation wave
+exists to close eight of those; `create-model` and `delete-model` stay violating on both sides
+because the transaction schema has no operation for them, and the registry says so rather than
+quietly dropping them.
 
 ## 1. The two new top-level requirements
 
