@@ -72,6 +72,7 @@ from tests.book_models import (
     check_print_appendix_projection,
     check_research_agenda,
     check_projection_index,
+    check_projection_scan_hoist_parity,
     check_reverse_index,
     check_slogan_density,
     check_theory_model,
@@ -395,6 +396,15 @@ CHECKS = [
     # reconciled and a clean session confirms freshness/completeness stay 0. See tests/book_models.py.
     Check("book-models: projection-index sync — freshness + completeness + site-home (projection-index.json)", 1,
           lambda strict: check_projection_index(), audit_only=True),
+    # BLOCKING byte-identity net for the projection-index scan hoist — the sibling of the index-scan hoist
+    # parity gate, landed green. `build_index` went from O(terms x surfaces) to O(surfaces) by hoisting the
+    # CSS-var strip per file and putting a case-insensitive literal pre-filter in front of the boundary scan
+    # (29 terms x 233 surfaces re-scanned 8.7 MB as 252 MB; 88% of pairs score 0). The pre-optimization
+    # one-liner is embedded as the ORACLE, so agreement proves the hoist changed speed and not output, and
+    # the soundness leg pins that a skip never hides a match — including the two Unicode folds `re.I`
+    # honours but `str.lower()` does not. See tests/book_models.py.
+    Check("book-models: projection-index scan hoist == naive reference; pre-filter never hides a match", 1,
+          lambda strict: check_projection_scan_hoist_parity()),
     # BLOCKING (rule #55 promotion, 260802 — drain confirmed 0 at HEAD): the CLAIMS view-model — a fifth
     # sibling model holding the book's load-bearing propositions + the contradiction predicate none of the
     # others carry (DESIGN book-claims-model-260801). C7-drift (claims.json vs a fresh derivation) + C1-C6

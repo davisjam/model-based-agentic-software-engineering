@@ -814,6 +814,126 @@ def check_projection_index():
     return (FAIL if issues else PASS), issues
 
 
+def check_projection_scan_hoist_parity():
+    """BLOCKING soundness net for the projection-index scan hoist, the sibling of
+    `tests.book.check_index_scan_hoist_parity`. `build_index` was made O(surfaces) instead of
+    O(terms x surfaces) by (a) hoisting the CSS-var strip into a per-file `prepare_text` and (b) putting a
+    case-insensitive literal pre-filter in front of the whole-word boundary scan, which a leading lookbehind
+    makes ~4x more expensive than a bare literal search. 29 terms x 233 surfaces re-stripped and re-scanned
+    the same 8.7 MB into 252 MB; 88% of those (term, surface) pairs score 0.
+
+    The gate is `lookbehind + escape(term) + lookahead` under `re.I`, so it can only match where the bare
+    literal occurs case-insensitively — the pre-filter's claim. The REFERENCE embedded below IS the
+    pre-optimization one-liner, verbatim, computed independently of the production path, so agreement proves
+    the hoist changed speed and not output. Three legs, all sub-millisecond:
+
+      - HOIST: `prepare_text(t)[0]` equals the strip it replaced, and the casefolded twin is a casefold of
+        it — a per-file normalization that is still a pure function of the file.
+      - PARITY: `count_prepared` equals the naive reference on an adversarial corpus — the boundary rules
+        (hyphen-joined, word-joined, `--var` tokens), case-insensitivity, phrase terms, repeat counts, and
+        the OVERLAPPING-TERM case the live registry really contains (`agent` inside `engineered agent
+        loop`, `model` inside `model zoo`), which is why the scan cannot be collapsed into one alternation.
+      - PRE-FILTER SOUNDNESS: the skip decision never hides a match. Every row the pre-filter rejects must
+        have a naive count of 0, and the Unicode folds `re.I` honours must not be skipped. U+017F LATIN
+        SMALL LETTER LONG S is the DISCRIMINATING one: `re.I` matches it against `s`, `casefold()` maps it
+        to `s`, but `str.lower()` leaves it alone — so a "simplify casefold() to lower()" edit skips a pair
+        the gate would have counted, and only this leg notices. (U+212A KELVIN SIGN is covered too, but
+        `lower()` folds it as well, so it does NOT discriminate — it is here as a second fold case, not as
+        the pin.) Both are written as `\\u` escapes: as raw glyphs an editor or a copy-paste round-trip
+        normalizes them to ASCII, which silently empties the leg.
+
+    Totality over the LIVE corpus is held by `check_projection_index`'s FRESHNESS leg, which compares the
+    whole derived index against the committed artifact on every run; this check pins the predicate itself,
+    including the inputs the live corpus does not happen to contain today."""
+    import projections_model as pm  # noqa: E402 — path set above; the book-model package
+
+    def naive(text: str, term: str) -> int:
+        """The pre-optimization algorithm, verbatim — the oracle."""
+        stripped = pm._CSS_VAR.sub(" ", text)
+        return len(re.findall(r"(?<![\w-])" + re.escape(term) + r"(?![\w-])", stripped, re.I))
+
+    issues: list[str] = []
+
+    # (A) HOIST — the normalization still depends only on the file.
+    for name, text in [
+        ("css-var", "a --diagram-churn b churn --model-bridge-fill model bridge"),
+        ("mixed-case", "Churn CHURN cHuRn"),
+        ("empty", ""),
+        ("unicode", "Model \u212ao\u017fmos model zoo"),
+    ]:
+        prepared = pm.prepare_text(text)
+        if prepared[0] != pm._CSS_VAR.sub(" ", text):
+            issues.append(f"hoist: prepare_text({name!r}) stripped text != the strip it replaced")
+        if prepared[1] != prepared[0].casefold():
+            issues.append(f"hoist: prepare_text({name!r}) folded twin != stripped.casefold()")
+
+    # (B) PARITY + (C) PRE-FILTER SOUNDNESS over an adversarial corpus. Each row is (text, term); the
+    # expectation is whatever the naive reference says — the reference is the oracle, not a hand-written
+    # number, so a row cannot be mis-transcribed.
+    terms = ["churn", "model", "model zoo", "model bridge", "agent", "engineered agent loop",
+             "engineering", "software engineering", "engineering capital", "governance mechanism",
+             # A non-ASCII TERM (not merely non-ASCII text). `re.I` folding is symmetric, so this pattern
+             # matches plain 'software engineering' in prose; the pre-filter must fold the TERM the same way
+             # it folds the text. Every term the live registry carries today is an ASCII slug, so without
+             # this row a `term.casefold()` -> `term.lower()` edit is invisible while being unsound.
+             "\u017foftware engineering"]
+    texts = [
+        "",
+        "churn",
+        "Churn churn CHURN",
+        "bi-churn --diagram-churn churn-rate prechurn",
+        "--diagram-churn churn",                      # the var strip must expose the real use
+        "the model zoo holds a model and a model bridge",   # overlapping terms, all must count
+        "engineered agent loop needs an agent; the agent loop is engineered",
+        "software engineering is engineering; engineering capital is not",
+        "a governance mechanism governs. Governance Mechanism again.",
+        "model’s model-driven modeller model",    # boundary: apostrophe / hyphen / suffix
+        "MODEL ZOO\nmodel\tzoo",                      # newline/tab are not the phrase's space
+        "\u212aelvin model zoo",        # U+212A KELVIN SIGN: re.I folds it to 'k' (so does lower())
+        "\u017foftware engineering",    # U+017F LONG S: re.I + casefold fold to 's'; lower() does NOT
+        "nothing relevant here at all",
+        # Two SAME-LENGTH, different-content rows with different counts. A memo keyed on a text
+        # DIGEST rather than the text (len, or a truncated hash) collides here and serves the wrong
+        # count; without a length collision in the corpus that class is invisible.
+        "churn churn zzzz",
+        "model model zzzz",
+    ]
+    skipped = 0
+    for text in texts:
+        prepared = pm.prepare_text(text)
+        for term in terms:
+            want = naive(text, term)
+            got = pm.count_prepared(prepared, term)
+            if got != want:
+                issues.append(f"parity: count_prepared({text!r}, {term!r}) = {got}, reference = {want}")
+            if term.casefold() not in prepared[1]:
+                skipped += 1
+                if want != 0:
+                    issues.append(f"pre-filter UNSOUND: skipped {term!r} in {text!r} but reference "
+                                  f"counts {want} — the skip predicate hides a real match")
+    if not skipped:
+        issues.append("pre-filter soundness leg is vacuous — no row exercised the skip path; the corpus "
+                      "no longer tests what it claims to test")
+
+    # (D) The fold-direction pin, driven through the PRODUCTION path (`count_prepared`) rather than a
+    # re-derived copy of the skip predicate — so narrowing the fold ANYWHERE (in `prepare_text`'s folded
+    # twin or in `count_prepared`'s test) is caught, not just a textual edit to one of them. U+017F is the
+    # discriminating row: `re.I` and `casefold()` fold it to 's', `str.lower()` leaves it, so a
+    # casefold->lower edit returns 0 here while the reference still counts 1.
+    for text, term in [("\u212aelvin model zoo", "model zoo"),
+                       ("\u017foftware engineering", "software engineering")]:
+        want = naive(text, term)
+        if want == 0:
+            issues.append(f"corpus rot: {text!r} no longer matches {term!r} under re.I, so it no longer "
+                          f"pins the fold direction — re-pick a glyph `re.I` still folds")
+        elif pm.count_prepared(pm.prepare_text(text), term) != want:
+            issues.append(f"fold-direction REGRESSION: {term!r} in {text!r} counts 0 but the reference "
+                          f"counts {want} — the fold narrowed (casefold() -> lower()?) and the pre-filter "
+                          f"now skips a pair the gate would have counted")
+
+    return (FAIL if issues else PASS), issues
+
+
 def check_print_appendix_projection():
     """Guards the print/web appendix split against silent drift from catalogue-classification.json
     (audit-only first landing, rule-#55). The PRINT appendix emits a page only for the flagship subset; the

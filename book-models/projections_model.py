@@ -36,6 +36,7 @@ and `... site-home` for the two sync gates.
 """
 from __future__ import annotations
 
+import functools
 import json
 import os
 import re
@@ -126,12 +127,49 @@ def tracked_terms() -> "dict[str, str]":
     return {s: s.replace("-", " ") for s in sorted(slugs)}
 
 
+@functools.lru_cache(maxsize=None)
+def _term_re(term: str) -> "re.Pattern[str]":
+    """The compiled whole-word gate pattern for one term. Keyed on `term` alone — the pattern is a pure
+    function of it — so the memo cannot serve a stale pattern for a different term."""
+    return re.compile(r"(?<![\w-])" + re.escape(term) + r"(?![\w-])", re.I)
+
+
+def prepare_text(text: str) -> "tuple[str, str]":
+    """One served file normalized for term counting → `(stripped, stripped.casefold())`.
+
+    Both halves are a pure function of `text` — NOT of the term — so a file is prepared ONCE and then
+    scanned against every term. The per-term re-strip this replaces was O(terms × len(doc)): 29 terms ×
+    233 surfaces re-stripped the same 8.7 MB into 252 MB of scanning. The casefolded twin backs the
+    pre-filter in `count_prepared`."""
+    stripped = _CSS_VAR.sub(" ", text)
+    return stripped, stripped.casefold()
+
+
+def count_prepared(prepared: "tuple[str, str]", term: str) -> int:
+    """`_count` over an already-`prepare_text`ed file. Identical result, two cheap guards in front.
+
+    The gate pattern is `lookbehind + escape(term) + lookahead` under `re.I`, so it can only match where
+    the bare literal occurs case-insensitively — if the literal is absent the count is 0 and the boundary
+    scan (33 ms on the 1.9 MB figures gallery, because a leading lookbehind defeats the engine's literal-
+    prefix skip) is skipped outright. 88% of (term, surface) pairs score 0, so the pre-filter does almost
+    all the work. `casefold()` is the CONSERVATIVE direction: full case folding equates a superset of what
+    `re.I`'s simple folding does (U+212A KELVIN SIGN → k, U+017F LATIN SMALL LETTER LONG S → s), so it can
+    only over-admit — a wasted scan, never a skipped match. That soundness is PINNED by
+    `tests.book_models.check_projection_scan_hoist_parity`, not argued from here."""
+    stripped, folded = prepared
+    if term.casefold() not in folded:
+        return 0
+    return len(_term_re(term).findall(stripped))
+
+
 def _count(text: str, term: str) -> int:
     """Whole-word / whole-phrase occurrences of `term` in `text`, CSS-var tokens stripped first. The
     boundary `(?<![\\w-])…(?![\\w-])` excludes hyphen-joined forms (a `bi-churn` anchor, a leftover
-    `--diagram-churn`), so only substantive prose uses count."""
-    stripped = _CSS_VAR.sub(" ", text)
-    return len(re.findall(r"(?<![\w-])" + re.escape(term) + r"(?![\w-])", stripped, re.I))
+    `--diagram-churn`), so only substantive prose uses count.
+
+    The single-pair entry point, kept as the readable definition of the count; `build_index` scans a
+    prepared file against every term via `count_prepared` instead."""
+    return count_prepared(prepare_text(text), term)
 
 
 # ---- the derived inversion --------------------------------------------------------------------------
@@ -143,10 +181,11 @@ def build_index() -> "dict[str, dict]":
     surfaces = served_html_surfaces()
     terms = tracked_terms()
     projections = load_registry()
-    # Pre-read each served file once (scanned against every term).
-    text_of: "dict[str, str]" = {}
+    # Pre-read AND pre-normalize each served file once (then scanned against every term) — the
+    # normalization is a pure function of the file, so doing it per term was pure repeated work.
+    prepared: "dict[str, tuple[str, str]]" = {}
     for rel in surfaces:
-        text_of[rel] = open(os.path.join(_ROOT, rel), encoding="utf-8").read()
+        prepared[rel] = prepare_text(open(os.path.join(_ROOT, rel), encoding="utf-8").read())
 
     index: "dict[str, dict]" = {}
     pdf_projection = next((p for p in projections if p.get("derived_twin_of")), None)
@@ -157,7 +196,7 @@ def build_index() -> "dict[str, dict]":
                 continue  # book-pdf handled below (derived from its twin)
             sites: "list[dict]" = []
             for rel in _resolve_projection(proj, surfaces):
-                n = _count(text_of[rel], term)
+                n = count_prepared(prepared[rel], term)
                 if n:
                     sites.append({"file": rel, "occ": n})
             if sites:
