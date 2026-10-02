@@ -160,6 +160,37 @@ else:
     print("pre-push: handbook PDF SKIPPED — no handbook/ path in this push", file=sys.stderr)
 
 if _touches(changed, SCOPES["workbench"]):
+    # The TypeScript gates run FIRST and are the cheap ones: a type error or a failing unit test is
+    # a faster, more localized signal than a model-validation failure, and tsc under
+    # noUncheckedIndexedAccess catches a class the tests cannot reach.
+    #
+    # npm/npx need Node >= 22 (.nvmrc pins 24). A developer whose shell has not run `nvm use` would
+    # otherwise see a confusing failure from inside tsc rather than a clear one here, so the version
+    # is checked up front and the gate SKIPS rather than failing — a missing toolchain is not a
+    # broken change, and CI runs these unconditionally.
+    node_ok = False
+    try:
+        out = subprocess.run(["node", "--version"], capture_output=True, text=True, check=True).stdout
+        node_ok = int(out.lstrip("v").split(".")[0]) >= 22
+    except (subprocess.CalledProcessError, OSError, ValueError):
+        node_ok = False
+
+    if not node_ok:
+        print("pre-push: workbench TypeScript gates SKIPPED — Node >= 22 not on PATH "
+              "(`nvm use` reads .nvmrc); CI runs them unconditionally", file=sys.stderr)
+    else:
+        for label, args in (
+            ("tsc --noEmit (strict + noUncheckedIndexedAccess + exactOptionalPropertyTypes)",
+             ["npx", "tsc", "--noEmit"]),
+            ("npm test (unit + parity + source hygiene)", ["npm", "test", "--silent"]),
+            ("npm run build (the published bundle must actually bundle)", ["npm", "run", "build", "--silent"]),
+        ):
+            print(f"pre-push: workbench {label} …", file=sys.stderr)
+            rc = subprocess.run(args, cwd=os.path.join(ROOT, "workbench")).returncode
+            if rc:
+                _fail(f"\npre-push: workbench {label} FAILED — push refused.\n"
+                      "Fix the error above ")
+
     print("pre-push: workbench/validate.py --self-test (rules fire on models that violate them) …", file=sys.stderr)
     if _run("workbench/validate.py", "--self-test"):
         _fail("\npre-push: workbench self-test FAILED — push refused.\n"
