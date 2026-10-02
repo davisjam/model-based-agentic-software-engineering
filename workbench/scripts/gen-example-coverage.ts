@@ -40,6 +40,7 @@ import { runQuery } from "../src/engine/index.ts";
 import { renderView } from "../src/render/index.ts";
 import { Workspace } from "../src/app/services.ts";
 import type { Ports } from "../src/app/services.ts";
+import { ACCOUNTABLE_TARGET_KINDS } from "../src/ir/types.ts";
 import type { CanonMachine, CanonicalSystem, Outcome, Scalar } from "../src/ir/types.ts";
 
 // ----------------------------------------------------------------------------------------------
@@ -158,12 +159,75 @@ export interface FixtureQuery {
   readonly note: string;
 }
 
+/**
+ * `pending-evaluator` is the third status, and it carries weight.
+ *
+ * A requirement whose verdict needs arithmetic no product code performs cannot honestly read
+ * `satisfied` or `violated`: the fixture would present a hand-derived figure as a machine-verified
+ * one. That is the "validated but unreachable" confusion V35-V37 exist to prevent, one layer up.
+ */
+export type RequirementStatus = "satisfied" | "violated" | "pending-evaluator";
+
 export interface FixtureRequirement {
   readonly id: string;
   readonly statement: string;
-  readonly expressedAs: string;
-  readonly satisfiedWhen: Outcome;
-  readonly status: "satisfied" | "violated";
+  /** A saved query decides it. Null when `decidedBy` does; exactly one of the two. */
+  readonly expressedAs: string | null;
+  /** The outcome that means the requirement holds. Present with `expressedAs`. */
+  readonly satisfiedWhen: Outcome | null;
+  /** A hand-derived quantitative expectation decides it. Null when `expressedAs` does. */
+  readonly decidedBy: string | null;
+  /** The `model:` quantity declaring the ceiling, so the number has ONE source of truth. */
+  readonly declaredAs: string | null;
+  /** The ceiling, in the metric's base unit. Checked against `declaredAs`'s magnitude. */
+  readonly limit: number | null;
+  /** What the product cannot do. Required on a `pending-evaluator` requirement. */
+  readonly blockedBy: string | null;
+  readonly status: RequirementStatus;
+}
+
+export type QuantitativeMetric = "latency" | "memory";
+
+/**
+ * One hand-derived quantitative expectation, and the oracle for the evaluator that will replace it.
+ *
+ * MAGE v0.1 represents and validates quantities; it does not evaluate them. Nothing sums a latency
+ * along a trace, computes `memory(c)`, or takes a peak over reachable configurations. So the numbers
+ * come from a human, and every PREMISE they rest on is stated separately so the suite can check it
+ * against the model and the engine. A future evaluator that disagrees then disagrees about one
+ * premise rather than about "the answer".
+ *
+ * Magnitudes here are plain numbers in the metric's BASE unit. Writing `50 ms` would need a second
+ * magnitude parser in the fixture reader, and the one thing V28 exists to protect is the last place
+ * to grow a second parser.
+ */
+export interface QuantitativeExpectation {
+  readonly id: string;
+  readonly metric: QuantitativeMetric;
+  readonly label: string;
+  /** Always true in this version. A field rather than a convention, so the claim is greppable. */
+  readonly handDerived: boolean;
+  /** Latency: the saved query whose witness trace supplies the occurrence counts. */
+  readonly traceFrom: string | null;
+  /** Which end of a declared interval the figure takes. A maximum takes `high`. */
+  readonly bound: "low" | "high" | null;
+  /** Quantity id -> per-occurrence charge, in ms. Checked against the model's magnitudes. */
+  readonly charges: ReadonlyMap<string, number>;
+  /** Entity id -> occurrences along the trace. Checked against the engine's witness. */
+  readonly occurrences: ReadonlyMap<string, number>;
+  /** Memory: the saved query deciding whether the `when`-charged state is reachable at all. */
+  readonly reachabilityFrom: string | null;
+  /** Quantity id -> MB, for the quantities declaring `residency: resident`. */
+  readonly residentMb: ReadonlyMap<string, number>;
+  /** Quantity id -> MB, for the quantities declaring a `when:` clause. */
+  readonly whenChargedMb: ReadonlyMap<string, number>;
+  /** The derivation, written out. Read by a human; the suite checks that it adds up. */
+  readonly arithmetic: string;
+  /** The hand-derived total, in the metric's base unit. */
+  readonly expected: number;
+  /** Memory: the floor, when only the resident charges apply. */
+  readonly baseline: number | null;
+  readonly note: string;
 }
 
 export interface FixtureChange {
@@ -194,6 +258,8 @@ export interface Fixture {
   readonly requirements: readonly FixtureRequirement[];
   readonly queries: readonly FixtureQuery[];
   readonly modifications: readonly FixtureModification[];
+  /** Empty for an example with no quantities. */
+  readonly quantitativeExpectations: readonly QuantitativeExpectation[];
 }
 
 function readEvidence(raw: unknown, where: string): EvidenceExpectation {
@@ -240,13 +306,70 @@ export function readFixture(exampleId: string): Fixture {
   const requirements = arr(doc["requirements"], `${path}.requirements`).map((r, i) => {
     const w = `${path}.requirements[${i}]`;
     const o = obj(r, w);
+    const expressedAs = o["expressed_as"] === undefined ? null : str(o["expressed_as"], `${w}.expressed_as`);
+    const decidedBy = o["decided_by"] === undefined ? null : str(o["decided_by"], `${w}.decided_by`);
+    // Exactly one route, refused here rather than downstream: a requirement naming both would let
+    // two sources disagree about its verdict, and one naming neither claims a verdict from nothing.
+    if ((expressedAs === null) === (decidedBy === null)) {
+      throw new FixtureError(`${w}: declare exactly one of 'expressed_as' or 'decided_by'`);
+    }
+    const status = need(
+      (["satisfied", "violated", "pending-evaluator"] as const).find((s) => s === o["status"]),
+      `${w}.status`, "satisfied, violated or pending-evaluator");
+    if (status === "pending-evaluator" && o["blocked_by"] === undefined) {
+      throw new FixtureError(`${w}: a pending-evaluator requirement must say what blocks it`);
+    }
+    // One limit field per metric, so the key names the unit and no magnitude parser is needed.
+    const limits = (["limit_ms", "limit_mb"] as const).filter((k) => o[k] !== undefined);
+    if (decidedBy !== null && limits.length !== 1) {
+      throw new FixtureError(`${w}: a 'decided_by' requirement declares exactly one of limit_ms, limit_mb`);
+    }
+    const limitKey = limits[0];
     return {
       id: str(o["id"], `${w}.id`),
       statement: str(o["statement"], `${w}.statement`),
-      expressedAs: str(o["expressed_as"], `${w}.expressed_as`),
-      satisfiedWhen: outcome(o["satisfied_when"], `${w}.satisfied_when`),
-      status: need((["satisfied", "violated"] as const).find((s) => s === o["status"]),
-        `${w}.status`, "satisfied or violated"),
+      expressedAs,
+      satisfiedWhen: expressedAs === null ? null : outcome(o["satisfied_when"], `${w}.satisfied_when`),
+      decidedBy,
+      declaredAs: o["declared_as"] === undefined ? null : str(o["declared_as"], `${w}.declared_as`),
+      limit: limitKey === undefined ? null : posInt(o[limitKey], `${w}.${limitKey}`),
+      blockedBy: o["blocked_by"] === undefined ? null : str(o["blocked_by"], `${w}.blocked_by`),
+      status,
+    };
+  });
+
+  const quantitative = (doc["quantitative_expectations"] === undefined
+    ? []
+    : arr(doc["quantitative_expectations"], `${path}.quantitative_expectations`)
+  ).map((e, i) => {
+    const w = `${path}.quantitative_expectations[${i}]`;
+    const o = obj(e, w);
+    const metric = need((["latency", "memory"] as const).find((m) => m === o["metric"]),
+      `${w}.metric`, "latency or memory");
+    const amounts = (key: string): ReadonlyMap<string, number> => {
+      const out = new Map<string, number>();
+      for (const [k, v] of Object.entries(isObj(o[key]) ? o[key] : {})) out.set(k, posInt(v, `${w}.${key}.${k}`));
+      return out;
+    };
+    const total = metric === "latency" ? "expected_ms" : "expected_mb";
+    return {
+      id: str(o["id"], `${w}.id`),
+      metric,
+      label: str(o["label"], `${w}.label`),
+      handDerived: bool(o["hand_derived"], `${w}.hand_derived`),
+      traceFrom: o["trace_from"] === undefined ? null : str(o["trace_from"], `${w}.trace_from`),
+      bound: o["bound"] === undefined
+        ? null : need((["low", "high"] as const).find((b) => b === o["bound"]), `${w}.bound`, "low or high"),
+      charges: amounts("charges"),
+      occurrences: amounts("occurrences"),
+      reachabilityFrom: o["reachability_from"] === undefined
+        ? null : str(o["reachability_from"], `${w}.reachability_from`),
+      residentMb: amounts("resident_mb"),
+      whenChargedMb: amounts("when_charged_mb"),
+      arithmetic: str(o["arithmetic"], `${w}.arithmetic`),
+      expected: posInt(o[total], `${w}.${total}`),
+      baseline: o["baseline_mb"] === undefined ? null : posInt(o["baseline_mb"], `${w}.baseline_mb`),
+      note: str(o["note"], `${w}.note`),
     };
   });
 
@@ -301,6 +424,7 @@ export function readFixture(exampleId: string): Fixture {
     title: str(doc["title"], `${path}.title`),
     summary: str(doc["summary"], `${path}.summary`),
     models, requirements, queries, modifications,
+    quantitativeExpectations: quantitative,
   };
 }
 
@@ -308,7 +432,7 @@ export function readFixture(exampleId: string): Fixture {
 // Loading an example the way a user does
 // ----------------------------------------------------------------------------------------------
 
-export const EXAMPLE_IDS = ["message-bus", "worker-queue"] as const;
+export const EXAMPLE_IDS = ["message-bus", "document-processing", "worker-queue"] as const;
 export type ExampleId = (typeof EXAMPLE_IDS)[number];
 
 /**
@@ -627,7 +751,8 @@ export const CAPABILITY_ROWS: readonly CapabilityRow[] = [
     matrixRow: "Safety",
     requires: [],
     detect: (ctx) => ctx.fixture.requirements.some((r) =>
-      r.satisfiedWhen === "refuted" && queryKind(ctx.system, r.expressedAs) === "graph"),
+      r.expressedAs !== null && r.satisfiedWhen === "refuted"
+      && queryKind(ctx.system, r.expressedAs) === "graph"),
   },
   {
     id: "reachability",
@@ -706,17 +831,73 @@ export const CAPABILITY_ROWS: readonly CapabilityRow[] = [
   },
   {
     id: "quantitative-annotations",
-    label: "A quantity attached to a transition, a state or a component.",
+    label: "A quantity with a readable dimension, attached to a component, a state or a whole model.",
     matrixRow: "Quantities",
     requires: ["model.quantities"],
-    detect: () => false,
+    detect: (ctx) => [...ctx.system.quantities.values()]
+      .some((qt) => qt.dimension !== null && qt.target.kind !== null),
   },
   {
+    // Split from the row above because the two can diverge, and the gap between them is where the
+    // quantity layer's real defect used to live: a quantity that typechecks, validates and then
+    // reaches no analysis. The declarations are what close it.
+    id: "declared-accounting",
+    label:
+      "The accounting DECLARED rather than inferred: a path-aggregated metric naming one basis, and " +
+      "every configuration-scoped quantity naming whether it is resident or charged while a state is " +
+      "active (V35-V37).",
+    matrixRow: "Quantities",
+    requires: ["model.quantities"],
+    detect: (ctx) => {
+      const latency = ctx.system.accounting.get("latency");
+      if (latency === undefined || latency.basis === null) return false;
+      const charged = [...ctx.system.quantities.values()].filter((qt) =>
+        qt.dimension === "memory" && qt.target.kind !== null
+        && ACCOUNTABLE_TARGET_KINDS.includes(qt.target.kind));
+      // Exactly one declaration each: both summands of memory(c) are keyed on one, and a quantity
+      // enters one of them.
+      return charged.length > 0 && charged.every((qt) => (qt.residency !== null) !== (qt.when !== null));
+    },
+  },
+  {
+    id: "path-quantity-accounting",
+    label:
+      "An execution's latency accounted per OCCURRENCE of an accounted entity along a behavioral " +
+      "trace: the occurrence counts read off the engine's witness, the per-occurrence charges off " +
+      "the model, and a retry charged twice because the trace visits twice.",
+    matrixRow: "Performance",
+    requires: ["model.quantities"],
+    detect: (ctx) => ctx.fixture.quantitativeExpectations.some(
+      (e) => e.metric === "latency" && e.traceFrom !== null && e.occurrences.size > 0),
+  },
+  {
+    id: "configuration-memory-accounting",
+    label:
+      "memory(c) as the resident sum plus the charges whose named state is active in c, with a peak " +
+      "over the reachable configurations.",
+    matrixRow: "Performance",
+    requires: ["model.quantities"],
+    detect: (ctx) => ctx.fixture.quantitativeExpectations.some(
+      (e) => e.metric === "memory" && e.residentMb.size > 0 && e.whenChargedMb.size > 0),
+  },
+  {
+    // The row the three above do NOT cover, and keeping it separate is the honest part. Document
+    // Processing declares the quantities, declares the accounting, and states both numbers -- and
+    // the PRODUCT still answers neither question. Nothing in src/ sums a trace's latency or
+    // computes memory(c); the query result shape has no field that could carry the magnitude. So
+    // this row reports `unavailable` while its three neighbours report exercised, and that
+    // difference is the status of the quantity layer stated precisely.
+    //
+    // Detected from the fixture rather than hardcoded false, so it flips when the evaluator lands:
+    // a quantitative requirement that reaches a real verdict is exactly what is missing.
     id: "performance",
-    label: "A latency or memory question answered by aggregating quantities over the executions a behavioral model supplies.",
+    label:
+      "A latency or memory requirement DECIDED by the product: a query that aggregates quantities " +
+      "over the executions a behavioral model supplies, and a result that carries the number.",
     matrixRow: "Performance",
     requires: ["model.quantities", "query.path-aggregation"],
-    detect: () => false,
+    detect: (ctx) => ctx.fixture.requirements.some(
+      (r) => r.decidedBy !== null && r.status !== "pending-evaluator"),
   },
   {
     id: "requirements",
@@ -796,9 +977,13 @@ export function generateExampleCoverageModel(
     "# MAGE has no construct for carries a `blocked-by` edge naming what is missing -- reported, never",
     "# omitted, because a coverage model that claims a capability the product lacks is worse than none.",
     "#",
-    "# Document Processing, the third default example in the requirements, is NOT shipped. Its",
-    "# quantitative-performance content needs constructs this version does not have, which is why the",
-    "# Quantities, Performance and Requirements rows are unavailable rather than merely uncovered.",
+    "# All three default examples ship. Document Processing declares quantities, declares their",
+    "# accounting, and states both performance numbers -- so the Quantities rows are exercised. The",
+    "# Performance row still reports unavailable, and the difference is deliberate: MAGE represents and",
+    "# validates quantities but evaluates none of them. No query aggregates a quantity along an",
+    "# execution and no result field could carry the magnitude, so a latency or memory requirement",
+    "# reaches no verdict. Requirements is unavailable for a plainer reason -- there is no requirement",
+    "# construct, and the examples carry their requirements in their fixtures.",
     "",
     "mage: 1",
     "",

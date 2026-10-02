@@ -7,9 +7,13 @@
 # MAGE has no construct for carries a `blocked-by` edge naming what is missing -- reported, never
 # omitted, because a coverage model that claims a capability the product lacks is worse than none.
 #
-# Document Processing, the third default example in the requirements, is NOT shipped. Its
-# quantitative-performance content needs constructs this version does not have, which is why the
-# Quantities, Performance and Requirements rows are unavailable rather than merely uncovered.
+# All three default examples ship. Document Processing declares quantities, declares their
+# accounting, and states both performance numbers -- so the Quantities rows are exercised. The
+# Performance row still reports unavailable, and the difference is deliberate: MAGE represents and
+# validates quantities but evaluates none of them. No query aggregates a quantity along an
+# execution and no result field could carry the magnitude, so a latency or memory requirement
+# reaches no verdict. Requirements is unavailable for a plainer reason -- there is no requirement
+# construct, and the examples carry their requirements in their fixtures.
 
 mage: 1
 
@@ -61,6 +65,14 @@ entities:
       purposeful_models: 3
       supplied_queries: 6
       suggested_queries: 5
+
+  example.document-processing:
+    type: default-example
+    label: "Document Processing"
+    properties:
+      purposeful_models: 2
+      supplied_queries: 9
+      suggested_queries: 4
 
   example.worker-queue:
     type: default-example
@@ -191,14 +203,35 @@ entities:
 
   capability.quantitative-annotations:
     type: semantic-capability
-    label: "A quantity attached to a transition, a state or a component."
+    label: "A quantity with a readable dimension, attached to a component, a state or a whole model."
     properties:
       matrix_row: "Quantities"
-      status: { value: unexercised, domain: coverage-status }
+      status: { value: exercised, domain: coverage-status }
+
+  capability.declared-accounting:
+    type: semantic-capability
+    label: "The accounting DECLARED rather than inferred: a path-aggregated metric naming one basis, and every configuration-scoped quantity naming whether it is resident or charged while a state is active (V35-V37)."
+    properties:
+      matrix_row: "Quantities"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.path-quantity-accounting:
+    type: semantic-capability
+    label: "An execution's latency accounted per OCCURRENCE of an accounted entity along a behavioral trace: the occurrence counts read off the engine's witness, the per-occurrence charges off the model, and a retry charged twice because the trace visits twice."
+    properties:
+      matrix_row: "Performance"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.configuration-memory-accounting:
+    type: semantic-capability
+    label: "memory(c) as the resident sum plus the charges whose named state is active in c, with a peak over the reachable configurations."
+    properties:
+      matrix_row: "Performance"
+      status: { value: exercised, domain: coverage-status }
 
   capability.performance:
     type: semantic-capability
-    label: "A latency or memory question answered by aggregating quantities over the executions a behavioral model supplies."
+    label: "A latency or memory requirement DECIDED by the product: a query that aggregates quantities over the executions a behavioral model supplies, and a result that carries the number."
     properties:
       matrix_row: "Performance"
       status: { value: unavailable, domain: coverage-status }
@@ -234,6 +267,7 @@ models:
         - the order in which a reader should work through the examples
     entities:
       - example.message-bus
+      - example.document-processing
       - example.worker-queue
       - capability.structural-models
       - capability.typed-relationships
@@ -253,32 +287,50 @@ models:
       - capability.bounded-coverage-reporting
       - capability.containment-hierarchy
       - capability.quantitative-annotations
+      - capability.declared-accounting
+      - capability.path-quantity-accounting
+      - capability.configuration-memory-accounting
       - capability.performance
       - capability.requirements
       - construct.model-requirements
       - construct.query-path-aggregation
     relations:
       - { from: example.message-bus, to: capability.structural-models, type: exercises }
+      - { from: example.document-processing, to: capability.structural-models, type: exercises }
       - { from: example.worker-queue, to: capability.structural-models, type: exercises }
       - { from: example.message-bus, to: capability.typed-relationships, type: exercises }
+      - { from: example.document-processing, to: capability.typed-relationships, type: exercises }
+      - { from: example.document-processing, to: capability.state-machines, type: exercises }
       - { from: example.worker-queue, to: capability.state-machines, type: exercises }
       - { from: example.worker-queue, to: capability.synchronized-events, type: exercises }
       - { from: example.message-bus, to: capability.cross-model-identity, type: exercises }
+      - { from: example.document-processing, to: capability.cross-model-identity, type: exercises }
       - { from: example.worker-queue, to: capability.cross-model-identity, type: exercises }
       - { from: example.message-bus, to: capability.model-composition, type: exercises }
+      - { from: example.document-processing, to: capability.model-composition, type: exercises }
       - { from: example.worker-queue, to: capability.model-composition, type: exercises }
       - { from: example.message-bus, to: capability.graph-reachability, type: exercises }
+      - { from: example.document-processing, to: capability.graph-reachability, type: exercises }
       - { from: example.worker-queue, to: capability.safety, type: exercises }
       - { from: example.message-bus, to: capability.safety-as-existential-dual, type: exercises }
+      - { from: example.document-processing, to: capability.reachability, type: exercises }
       - { from: example.worker-queue, to: capability.reachability, type: exercises }
+      - { from: example.document-processing, to: capability.bounded-progress, type: exercises }
       - { from: example.worker-queue, to: capability.bounded-progress, type: exercises }
+      - { from: example.document-processing, to: capability.bounded-cycles, type: exercises }
       - { from: example.worker-queue, to: capability.bounded-cycles, type: exercises }
       - { from: example.message-bus, to: capability.witnesses, type: exercises }
+      - { from: example.document-processing, to: capability.witnesses, type: exercises }
       - { from: example.worker-queue, to: capability.witnesses, type: exercises }
       - { from: example.worker-queue, to: capability.counterexamples, type: exercises }
       - { from: example.message-bus, to: capability.purposeful-non-answerability, type: exercises }
+      - { from: example.document-processing, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.worker-queue, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.worker-queue, to: capability.bounded-coverage-reporting, type: exercises }
+      - { from: example.document-processing, to: capability.quantitative-annotations, type: exercises }
+      - { from: example.document-processing, to: capability.declared-accounting, type: exercises }
+      - { from: example.document-processing, to: capability.path-quantity-accounting, type: exercises }
+      - { from: example.document-processing, to: capability.configuration-memory-accounting, type: exercises }
       - { from: capability.performance, to: construct.query-path-aggregation, type: blocked-by }
       - { from: capability.requirements, to: construct.model-requirements, type: blocked-by }
 
@@ -461,11 +513,41 @@ queries:
     name: "Which shipped example exercises quantities -- quantitative-annotations?"
     kind: graph
     quantifier: exists
-    expect: refuted
+    expect: holds
     graph:
       form: predecessors
       relation: exercises
       to: capability.quantitative-annotations
+
+  exercised-by.declared-accounting:
+    name: "Which shipped example exercises quantities -- declared-accounting?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.declared-accounting
+
+  exercised-by.path-quantity-accounting:
+    name: "Which shipped example exercises performance -- path-quantity-accounting?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.path-quantity-accounting
+
+  exercised-by.configuration-memory-accounting:
+    name: "Which shipped example exercises performance -- configuration-memory-accounting?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.configuration-memory-accounting
 
   exercised-by.performance:
     name: "Which shipped example exercises performance -- performance?"

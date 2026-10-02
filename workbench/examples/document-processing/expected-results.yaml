@@ -1,0 +1,469 @@
+# Expected results for the document-processing example. Read by test/examples.test.ts, which drives
+# the real application seams -- Workspace.load, Workspace.query, createAgentApi -- and compares.
+#
+# ## Fixture discipline (section 10)
+#
+# These pin SEMANTIC outcomes and nothing else: no rendering coordinates, no layout order, no
+# generated ids, no state counts. `path` pins an ORDERED node sequence where the sequence IS the
+# answer; `nodes_include` is an unordered subset where the engine's answer is a set.
+#
+# ## The quantitative half is HAND-DERIVED, and says so
+#
+# Nothing in src/ sums a latency along a trace, computes memory(c), computes peak memory, or decides
+# a declared requirement. The quantity layer is REPRESENTED and VALIDATED (V27-V31, V35-V37); it is
+# not evaluated. SEMANTICS.md 5.3 says so outright, and `scripts/gen-example-coverage.ts` probes the
+# published query schema and finds no result field that could carry a computed magnitude.
+#
+# So `quantitative_expectations` below carries numbers derived BY HAND, with the arithmetic written
+# out, and every entry is flagged `hand_derived: true`. What the suite does and does not check:
+#
+#   CHECKED   each entry's premises. Occurrence counts come from the engine's own witness trace;
+#             per-occurrence charges come from the model's normalized magnitudes; the resident and
+#             when-charged split comes from the quantities' own declarations; the ceiling comes from
+#             the `model:` quantity that declares it. A premise that drifts fails the build.
+#   CHECKED   each entry's arithmetic adds up, as a statement about the FIXTURE's own numbers. A
+#             typo in a sum does not ship.
+#   INERT     that the PRODUCT computes any of it. Three tests are skipped with a stated reason, so
+#             the gap shows up in `npm test` output rather than only in a commit message.
+#
+# A requirement whose verdict needs the evaluator carries `status: pending-evaluator` and a
+# `hand_verdict`. It does not claim `satisfied` or `violated` on the strength of arithmetic a human
+# did, because a fixture that reads as machine-verified when it is not is the "validated but
+# unreachable" confusion V35-V37 exist to prevent, one layer up.
+
+example: document-processing
+system: system.mage.yaml
+title: Document Processing
+summary: >
+  Explore a document-remediation pipeline through a bounded-retry lifecycle and a quantitative
+  performance model over the same components.
+
+# Purposeful models, for the EX-I2 check. A machine carries a `purpose` exactly as a graph model
+# does, so both count.
+models:
+  - id: document-lifecycle
+    kind: machine
+  - id: pipeline-performance
+    kind: graph
+
+# ---------------------------------------------------------------------------
+# Requirements (section 2: "at least one requirement").
+#
+# MAGE v0.1 has no requirement construct. Two routes exist, and this example uses both:
+#
+#   expressed_as  a saved query decides it. `satisfied_when` is the outcome that means it holds.
+#   decided_by    a `quantitative_expectations` entry decides it, and `declared_as` names the
+#                 `model:` quantity carrying the ceiling so the number has one source of truth.
+#
+# The latency and memory requirements take the second route and stop at `pending-evaluator`:
+# declaring a ceiling is representation, and comparing a computed total against it is evaluation.
+# ---------------------------------------------------------------------------
+requirements:
+
+  - id: publication-requires-validation
+    statement: >
+      No document reaches published without passing through validating.
+    expressed_as: publish-without-validating
+    satisfied_when: refuted
+    status: satisfied
+    note: >
+      Satisfied, and not vacuously: the second declared modification adds a remediating-to-published
+      shortcut and the answer flips to holds. A safety property no modification can break may be
+      holding for a reason nobody checked.
+
+  - id: normal-processing-latency
+    statement: >
+      Processing latency of a document that publishes is at most 750 ms.
+    declared_as: latency-requirement
+    limit_ms: 750
+    decided_by: max-publishing-latency
+    status: pending-evaluator
+    blocked_by: >
+      No query aggregates a quantity along an execution, and no field of the query result shape can
+      carry the magnitude one would compute.
+    note: >
+      The hand verdict is VIOLATED, and the configuration that decides it is the retry policy. The
+      retry-free execution costs 725 ms at the gateway's worst case, inside the ceiling with 25 ms
+      to spare; every permitted retry adds another remediation pass and another validation, and
+      three of them reach 2,750 ms. The ceiling governs the pipeline only when nothing retries,
+      which is the distinction the two models exist to separate.
+
+  - id: peak-memory
+    statement: >
+      Peak memory over reachable configurations is at most 512 MB.
+    declared_as: peak-memory-requirement
+    limit_mb: 512
+    decided_by: peak-memory
+    status: pending-evaluator
+    blocked_by: >
+      No code computes memory(c) over a configuration, and none takes the maximum over the reachable
+      ones.
+    note: >
+      The hand verdict is SATISFIED, with 128 MB of headroom. The configuration that decides it is
+      any one where the document is remediating: the cache is resident at 128 MB and the remediation
+      charge adds 256 MB while that state is active, for 384 MB. Outside remediation only the cache
+      is charged, so memory never falls below 128 MB either.
+
+# ---------------------------------------------------------------------------
+# Hand-derived quantitative expectations.
+#
+# The oracle for the evaluator wave that is building the analysis half. Each entry states the
+# execution it is about, every premise it rests on, the arithmetic, and the number -- so a
+# disagreement between this file and a future evaluator localizes to one premise rather than to "the
+# answer is different".
+#
+# `charge_ms` and the memory values are in BASE UNITS, plainly. Writing them as `50 ms` would need a
+# second magnitude parser in the fixture reader, and a second parser of the one thing V28 exists to
+# protect is the last place to put one.
+# ---------------------------------------------------------------------------
+quantitative_expectations:
+
+  - id: max-publishing-latency
+    metric: latency
+    label: >
+      What is the maximum modeled latency of a document that eventually publishes, including
+      permitted retries?
+    hand_derived: true
+    # The execution. Its witness trace supplies the occurrence counts, and pinning retry_count to
+    # its ceiling is what selects the publishing execution with the most remediation passes.
+    trace_from: publishes-after-three-retries
+    # A maximum takes the high end of every declared interval. The gateway's range is the only one.
+    bound: high
+    # Per-occurrence charge, in ms, keyed by the quantity that declares it. Checked against the
+    # model's normalized magnitudes.
+    charges:
+      parse-latency: 50
+      remediate-latency: 100
+      gateway-latency: 500
+      validate-latency: 75
+    # How many times the trace visits each charged entity. Checked against the engine's trace, via
+    # each entity's `executes_in_state` and the state the configuration occupies.
+    occurrences:
+      parser: 1
+      remediation: 4
+      model-gateway: 4
+      validator: 4
+    arithmetic: >
+      1 x 50 (parse) + 4 x 100 (remediate) + 4 x 500 (gateway, high end) + 4 x 75 (validate)
+      = 50 + 400 + 2000 + 300 = 2750
+    expected_ms: 2750
+    note: >
+      Four remediation passes, not one: the first plus one per permitted retry. The retry charges
+      Remediate and the gateway again because the trace VISITS them again -- no quantity in the
+      model encodes a retry cost, and the Q2 ruling refused to let one.
+
+      This DISAGREES with the requirements' illustrative 1,425 ms (section 5.5), and the
+      illustration is the side that does not add up. Two separate problems with it. First, its
+      printed trace takes ONE retry while its caption calls the number a maximum over
+      retry_count in [0,3], and a maximum over that bound takes three. Second, 1,425 is not
+      derivable from section 5.4's six quantities at any gateway value: one retry gives 400 + 2g,
+      which needs g = 512.5 ms, and three retries give 750 + 4g, which needs g = 168.75 ms --
+      neither is an endpoint of the declared [100 ms, 500 ms]. At the high end the one-retry
+      execution costs 1,400 ms. The spec asks for numbers "chosen so expected answers are simple
+      and deterministic"; 2,750 is that number for the question as asked, and section 5.5's
+      illustration needs correcting.
+
+  - id: retry-free-latency
+    metric: latency
+    label: What does a document that publishes without retrying cost?
+    hand_derived: true
+    trace_from: document-publishes
+    bound: high
+    charges:
+      parse-latency: 50
+      remediate-latency: 100
+      gateway-latency: 500
+      validate-latency: 75
+    occurrences:
+      parser: 1
+      remediation: 1
+      model-gateway: 1
+      validator: 1
+    arithmetic: >
+      1 x 50 (parse) + 1 x 100 (remediate) + 1 x 500 (gateway, high end) + 1 x 75 (validate)
+      = 725
+    expected_ms: 725
+    note: >
+      Shipped alongside the maximum because it is what makes the counterexample informative. 725 ms
+      fits inside the 750 ms ceiling at the gateway's worst case, so the requirement is not refuted
+      by a pipeline that is hopelessly slow -- it is refuted by the retry policy. The second
+      declared modification deletes the retry transition, and this becomes the maximum.
+
+  - id: peak-memory
+    metric: memory
+    label: What is the peak modeled memory over reachable configurations?
+    hand_derived: true
+    # memory(c) = the resident sum plus the sum of charges whose named state is active in c. This
+    # entry needs reachability for the one `when`-charged quantity, and that is a behavioral
+    # question the engine does answer.
+    reachability_from: remediation-memory-is-charged
+    resident_mb:
+      cache-memory: 128
+    when_charged_mb:
+      remediation-memory: 256
+    arithmetic: >
+      resident 128 (cache) + active 256 (remediation, while document-lifecycle.remediating)
+      = 384 during remediation; 128 in every other configuration
+    expected_mb: 384
+    baseline_mb: 128
+    note: >
+      Residency is declared, never inferred. The cache carries `residency: resident` because a cache
+      that emptied between documents would not be one; the remediation charge carries
+      `when: { state: document-lifecycle.remediating }` because it is held only while that stage
+      runs. The Q3 ruling refused to supply a default for either -- "idle service memory stays
+      resident" and "idle service memory disappears" are both guesses -- so both declarations are
+      the author's.
+
+      One `when`-charged quantity, which is why summing it with the resident total is exact rather
+      than an upper bound. Two would need a JOINT reachability question: whether both named states
+      can be active in one configuration. test/examples.test.ts asserts the count is one, so adding
+      a second charge fails the build instead of silently over-estimating the peak.
+
+queries:
+
+  - id: publish-without-validating
+    label: Can a document be published without reaching validating?
+    suggested: true
+    models: [document-lifecycle]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      Section 5.3's safety query. `refuted` under exhaustive coverage establishes the requirement:
+      the walk explored every configuration reachable while avoiding validating and found no
+      published among them, because the publish transition is the only edge in. Coverage is
+      exhaustive over the PRUNED space -- `avoid` is part of the question, not a search budget --
+      so the sound statement is "no execution avoiding validating reaches published", which is
+      exactly what was asked.
+
+  - id: retry-forever
+    label: Can processing continue retrying indefinitely?
+    suggested: true
+    models: [document-lifecycle]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      `repeatable-cycle` asks for a genuinely repeated CONFIGURATION, and retry_count strictly
+      advances within a finite domain, so no reachable execution can loop in retry forever. That is
+      an exhaustive statement about a finite transition system, not temporal liveness: MAGE has no
+      fairness assumption and no infinite-trace operator. The bound is also what makes the maximum
+      latency exist -- an unbounded retry policy would have no maximum to report.
+
+  - id: document-returns-to-remediating
+    label: Can a document return to remediating after a failed validation?
+    suggested: false
+    models: [document-lifecycle]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: lasso
+        role: witness
+        cycle_min_steps: 3
+        labels_at_least:
+          retry: 1
+    note: >
+      The honest companion to the question above, and the reason the engine has two forms. The
+      document CAN re-enter remediating, and the evidence is a lasso whose cycle carries the retry
+      transition. It cannot do so forever. Reporting both answers is how a reader learns that
+      "re-entry" and "forever" are different claims needing different evidence.
+
+  - id: document-publishes
+    label: Can a document reach published?
+    suggested: false
+    models: [document-lifecycle]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 4
+        labels_at_least:
+          parse: 1
+          remediate: 1
+          validate: 1
+          publish: 1
+        final:
+          document-lifecycle.state: published
+          document-lifecycle.retry_count: 0
+    note: >
+      The retry-free execution, pinned on its final configuration rather than its length: retry_count
+      is 0 at publication, which is what identifies this as the no-retry path and not merely a short
+      one. Its occurrence counts feed the `retry-free-latency` expectation.
+
+  - id: publishes-after-three-retries
+    label: Can a document publish having used every permitted retry?
+    suggested: true
+    models: [document-lifecycle, pipeline-performance]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 13
+        labels_at_least:
+          retry: 3
+          validate: 4
+          failed: 3
+        final:
+          document-lifecycle.state: published
+          document-lifecycle.retry_count: 3
+    note: >
+      THE cross-model execution, and the one neither model answers alone. The lifecycle supplies the
+      trace and the retry bound; the performance model supplies what each visit costs; the latency
+      exists only over the pair. Pinning three retries and four validations is pinning the
+      ACCOUNTING, not the trace length -- the occurrence counts are what the latency sum multiplies,
+      so a trace that reached published by some shorter route would make the number wrong and this
+      expectation catches it.
+
+  - id: remediation-memory-is-charged
+    label: Is the 256 MB remediation charge ever incurred?
+    suggested: false
+    models: [document-lifecycle, pipeline-performance]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 2
+        final:
+          document-lifecycle.state: remediating
+    note: >
+      Cross-model by construction: the quantity belongs to the performance model and the state it
+      names belongs to the lifecycle. A `when`-charged quantity whose state were unreachable would
+      enter memory(c) in no configuration, so this is the question that decides whether the 256 MB
+      summand is real -- and the reachability half is the part the engine already answers.
+
+  - id: stages-of-this-document
+    label: Which components perform a stage of this document's processing?
+    suggested: false
+    models: [pipeline-performance]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        nodes_include: [document, parser, remediation, model-gateway, validator]
+        node_count: 5
+    note: >
+      Single-model and structural. `predecessors` is not a composing form, so `stage_of`'s forbidden
+      path composition does not gate it: asking who points AT an entity is one hop by construction.
+      The gateway appears here and shares a lifecycle state with remediation, which is the asymmetry
+      the example turns on -- the performance model distinguishes two components where the lifecycle
+      has one state.
+
+      A PARITY divergence sits on this query, and it is pinned to the TypeScript reading
+      deliberately. `python3 validate.py` answers `unlicensed`, taking the forbidden composition to
+      gate `predecessors` as well. Message-bus's two `predecessors` queries diverge the same way, so
+      the disagreement predates this example and belongs to the parity surface rather than here.
+      Both implementations cannot be right: either a one-hop question is gated by a declaration about
+      PATHS, or it is not.
+
+  - id: parse-runs-before-validate
+    label: Does parsing run before validation?
+    suggested: false
+    models: [pipeline-performance]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [parser, remediation, validator]
+    note: >
+      The composing question, over the one relation type here that licenses composition. The ordered
+      two-hop witness is pinned because the hop count IS the evidence: a one-node path is how a
+      vacuous holds looks from outside, which this project has shipped once already.
+
+  - id: expected-latency-with-the-cache
+    label: Does the cache improve expected latency without violating the memory requirement?
+    suggested: true
+    models: [pipeline-performance]
+    expected:
+      outcome: unlicensed
+      coverage: not-applicable
+      refusal_contains: "cache_hit_frequency"
+      no_evidence: true
+    note: >
+      THE flagship purposeful omission (section 5.6), and the one quantitative question that needs
+      no evaluator to refuse. An expected latency is a weighted average of the hit cost and the miss
+      cost. Both costs are representable -- a hit skips the gateway call, a miss pays it, and the
+      gateway's range bounds them -- and the WEIGHTS are what this model declines to supply. The
+      cache is shipped without a hit rate on purpose: modeling one would delete the lesson, and V24
+      would then catch `omits: [cache hit frequency]` as a declaration that lies to a reader.
+
+      The refusal names the missing vocabulary: "relation type 'cache_hit_frequency' is not declared
+      by this system." The relation type is named for the distinction so the sentence tells the
+      author what to model rather than merely declining.
+
+      Worth being exact about the gap. Section 5.6 prescribes the sentence "Not answerable. The model
+      represents hit and miss costs but deliberately omits their frequencies." The engine does not
+      produce it. No code path consults `purpose.omits` when refusing, so
+      `RefusalReason.missing-distinction` exists in the engine's type and is never emitted, and the
+      link between a declared omission and the refusal a user reads is prose rather than machinery.
+      Message-bus's `did-analytics-receive-it-at-2-04` records the same gap. Closing it needs the
+      refusal path to consult the declared omissions, which would also let the sentence quote the
+      author's own words back.
+
+# ---------------------------------------------------------------------------
+# Useful modifications (section 2). Each is a real transaction driven through
+# openHypothesis / discardHypothesis, and each must CHANGE a recorded answer and then change back.
+#
+# `base` is omitted: it must equal the live system hash, which the test fills in. A hash written
+# down here would be stale the moment the example changed.
+#
+# No modification touches a quantity. The transaction vocabulary has no op for one -- `add-quantity`
+# does not exist -- so a what-if that adds the cache's hit rate is not expressible, which is a
+# second, structural reason the section 5.6 omission stays omitted.
+# ---------------------------------------------------------------------------
+modifications:
+
+  - id: remove-the-retry
+    label: Remove the retry transition
+    rationale: >
+      The lesson, as a transaction. Deleting one edge in the LIFECYCLE changes the answer to a
+      question about PERFORMANCE: with no retry the pipeline supplies exactly one remediation pass,
+      the maximum latency falls from 2,750 ms to the retry-free 725 ms, and the 750 ms ceiling holds.
+      No quantity changed. The performance model decides what an occurrence costs and the lifecycle
+      decides how many there are.
+    transaction:
+      operations:
+        # Selected by endpoint rather than by index, so the operation survives a reordering of the
+        # transitions list. `waiting -> remediating` is unique.
+        - op: delete-transition
+          machine: document-lifecycle
+          from: waiting
+          to: remediating
+    changes:
+      - query: publishes-after-three-retries
+        from: holds
+        to: refuted
+      - query: document-returns-to-remediating
+        from: holds
+        to: refuted
+
+  - id: publish-without-validating-shortcut
+    label: Add a shortcut from remediating straight to published
+    rationale: >
+      The repair in reverse. Section 5.3's safety property holds because the publish transition is
+      the only edge into published; adding a second one that skips validation breaks it, and the
+      counterexample appears. Shipping it as a modification is what keeps the satisfied requirement
+      from holding for a reason nobody checked.
+    transaction:
+      operations:
+        - op: add-transition
+          machine: document-lifecycle
+          from: remediating
+          to: published
+          label: publish-unvalidated
+    changes:
+      - query: publish-without-validating
+        from: refuted
+        to: holds
