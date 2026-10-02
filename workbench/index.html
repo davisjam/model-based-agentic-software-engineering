@@ -18,6 +18,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MAGE Model Workbench</title>
+<!--
+  The favicon, inline. A browser requests /favicon.ico whether or not a page asks it to, and the
+  404 it gets is the only console error on an otherwise clean load. An icon FILE would fix the
+  console and add an asset every published copy of this page has to carry; a data URI fixes it with
+  no network request at all, which also keeps the self-contained rule above intact.
+
+  An M in the project's accent brown, on a transparent ground, so it reads in either theme.
+-->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Ctext%20x='8'%20y='13'%20font-family='serif'%20font-size='15'%20font-weight='700'%20text-anchor='middle'%20fill='%238e6f3e'%3EM%3C/text%3E%3C/svg%3E">
 <style>
   :root {
     color-scheme: light dark;
@@ -142,6 +151,15 @@
   dl.prov { margin: 0; font-size: .92rem; display: grid; grid-template-columns: auto 1fr; gap: .1rem .5rem; }
   dl.prov dt { color: var(--muted); }
   dl.prov dd { margin: 0; }
+  /*
+    The prompt, set apart. It is the field a reader of an agent-authored model came for, so it gets
+    the accent rule and the larger measure rather than a row in the list below it. The emphasis is
+    not the only channel: the markup labels it "Asked for" above, in words.
+  */
+  p.prompt {
+    margin: .1rem 0 .5rem; padding-inline-start: .7rem; border-inline-start: 3px solid var(--accent);
+    font-size: 1.02rem; max-width: 46rem;
+  }
   .caveat { font-size: .85rem; color: var(--warn-ink); background: var(--warn-bg);
     padding: .25rem .4rem; border-radius: 3px; margin: .3rem 0 0; }
   .note-warning { font-weight: 700; }
@@ -163,7 +181,7 @@
     Open a .mage.yaml
     <input id="file" type="file" accept=".yaml,.yml,.json" class="sr-only">
   </label>
-  <button id="example" type="button">Load the example</button>
+  <button id="new-system" type="button">Create new model system</button>
   <button id="export" type="button">Export</button>
   <button id="run" type="button" class="primary">Run all questions</button>
   <button id="undo" type="button" disabled>Undo</button>
@@ -189,6 +207,42 @@
     <button id="hypothesis-apply" type="button" class="primary">Accept this hypothesis as authoritative</button>
     <button id="hypothesis-discard" type="button">Discard this hypothesis</button>
   </div>
+
+  <!--
+    The three ways in (default-examples section 3): create, load an example, import. Create and
+    import are the first two buttons in the toolbar above and stay reachable after a model is
+    loaded; the example menu lives here because it comes with a description, and a description is
+    not a toolbar control.
+
+    All three end at the same `Workspace.load`. Loading an example gives an ordinary editable
+    workspace -- there is no example execution mode (EX-I1) -- and the prose says so, because a
+    first-time reader has no other way to know that modifying the example is expected.
+  -->
+  <section id="start" aria-labelledby="start-h">
+    <h2 id="start-h">Start</h2>
+    <p class="intro">
+      Three ways in. <strong>Create new model system</strong> and <strong>Open a .mage.yaml</strong>
+      are in the toolbar above. Or load one of the shipped examples below. Whichever you choose, you
+      get the same ordinary editable workspace: edit it, question it, undo it, export it.
+    </p>
+    <fieldset>
+      <legend>Load an example</legend>
+      <p class="hint">
+        Two examples ship, and their titles, models and suggested questions below are read from the
+        example files themselves rather than written here. Document Processing is specified and not
+        yet built: its performance model needs the quantitative evaluator, and a menu entry that
+        loaded an empty system would be worse than an absent one.
+      </p>
+      <label class="field" for="example-choice"><span>Example</span>
+        <select id="example-choice"></select></label>
+      <!--
+        The description. Plain DOM, not a live region: #live is the one polite announcer and a second
+        would talk over it, so selecting an example announces the gist and renders the detail here.
+      -->
+      <div id="example-description"></div>
+      <button type="button" id="example-load" class="primary">Load this example</button>
+    </fieldset>
+  </section>
 
   <section id="model" aria-labelledby="model-h">
     <h2 id="model-h">Model</h2>
@@ -400,6 +454,25 @@
   <section id="findings" aria-labelledby="findings-h">
     <h2 id="findings-h">Validation</h2>
     <div id="finding-list"></div>
+  </section>
+
+  <!--
+    Provenance. Its own section rather than a row in the inspector's detail column, because the
+    PROMPT is the field that earns the feature: with an agent-authored model it answers why the
+    object has this shape and what its author was asked to preserve, which reading the model cannot.
+    Buried in a metadata list, nobody finds it.
+
+    Read-only by construction: the service hands back records and no writer, so inspecting an origin
+    cannot move a hash or a result (UX-I6).
+  -->
+  <section id="provenance" aria-labelledby="provenance-h">
+    <h2 id="provenance-h">Provenance</h2>
+    <p class="intro">
+      Where each object came from, and what its author was asked to preserve. Provenance is context
+      rather than constraint: reading it cannot change an answer, and recording it does not advance
+      the model's revision.
+    </p>
+    <div id="provenance-list"></div>
   </section>
 
   <!--
