@@ -38,14 +38,26 @@ import type { Finding } from "../ir/types.ts";
 import { Workspace } from "./services.ts";
 
 /**
- * The examples that exist, in the conceptual order section 18 gives them.
+ * The examples that ship, in the conceptual order section 18 gives them — and the SOLE declaration
+ * of that set.
  *
- * **Document Processing is specified and NOT built, so it is not listed.** Its performance model
- * needs the quantitative evaluator, which is still blocked; an entry that loaded an empty system
- * would teach a new reader that the workbench is broken. An absent menu item is the honest report,
- * and the coverage model already states the gap in the one place that can be queried.
+ * `scripts/gen-example-coverage.ts` re-exports this rather than keeping its own list. It briefly did
+ * keep one, and the two disagreed within the hour: Document Processing was authored and added there
+ * while this file still omitted it, so the menu offered two examples while three shipped. Four tests
+ * caught it, which is the system working — but the defect was a duplicated list, not a missing
+ * string, and adding the string would have left the duplication to drift again.
+ *
+ * The direction matters. The app layer owns what ships, because the menu and the agent catalogue are
+ * what "shipped" MEANS; a build script consumes that fact. The reverse would make the published set
+ * a property of a generator.
+ *
+ * Document Processing's entry was withheld while its performance model had no evaluator, on the
+ * reasoning that a menu item loading an empty system teaches a new reader the workbench is broken.
+ * It now loads a complete model system whose quantitative REQUIREMENTS are declared and whose
+ * verdicts are still hand-derived — so the example is honest about itself and the coverage model
+ * states the remaining gap where it can be queried.
  */
-export const SHIPPED_EXAMPLE_IDS = ["message-bus", "worker-queue"] as const;
+export const SHIPPED_EXAMPLE_IDS = ["message-bus", "document-processing", "worker-queue"] as const;
 
 export type ShippedExampleId = (typeof SHIPPED_EXAMPLE_IDS)[number];
 

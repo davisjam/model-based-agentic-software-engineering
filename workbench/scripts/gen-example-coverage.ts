@@ -39,6 +39,7 @@ import { parse } from "yaml";
 import { runQuery } from "../src/engine/index.ts";
 import { renderView } from "../src/render/index.ts";
 import { Workspace } from "../src/app/services.ts";
+import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
 import type { Ports } from "../src/app/services.ts";
 import { ACCOUNTABLE_TARGET_KINDS } from "../src/ir/types.ts";
 import type { CanonMachine, CanonicalSystem, Outcome, Scalar } from "../src/ir/types.ts";
@@ -432,8 +433,11 @@ export function readFixture(exampleId: string): Fixture {
 // Loading an example the way a user does
 // ----------------------------------------------------------------------------------------------
 
-export const EXAMPLE_IDS = ["message-bus", "document-processing", "worker-queue"] as const;
-export type ExampleId = (typeof EXAMPLE_IDS)[number];
+// RE-EXPORTED, not redeclared. This script briefly kept its own copy of the shipped-example list and
+// the two drifted within the hour -- see the note on SHIPPED_EXAMPLE_IDS. The app layer owns what
+// ships; a generator consumes it.
+export { SHIPPED_EXAMPLE_IDS as EXAMPLE_IDS } from "../src/app/examples.ts";
+export type { ShippedExampleId as ExampleId } from "../src/app/examples.ts";
 
 /**
  * The real ports. A test or a generator that reached `canonicalize()` and `runGraphQuery()` directly
@@ -961,7 +965,7 @@ const q = (s: string): string => JSON.stringify(s);
 const constructEntity = (c: string): string => `construct.${c.replace(/\./g, "-")}`;
 
 export function generateExampleCoverageModel(
-  examples: readonly LoadedExample[] = EXAMPLE_IDS.map(loadExample),
+  examples: readonly LoadedExample[] = SHIPPED_EXAMPLE_IDS.map(loadExample),
   probe: ProductProbe = probeProduct(),
 ): string {
   const report = deriveCoverage(examples, probe);

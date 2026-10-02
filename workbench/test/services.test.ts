@@ -170,18 +170,33 @@ test("the catalogue offers exactly the examples that ship", () => {
     "the menu and the shipped example set must be the same list");
 });
 
-test("Document Processing is NOT offered, because it is not built", () => {
-  // Section 1 specifies three examples and two exist: Document Processing needs the quantitative
-  // evaluator. The absence is deliberate, so it is pinned -- a later agent reading the spec and
-  // adding the menu entry would ship a control that loads nothing.
-  const { catalog } = catalogue();
-  assert.ok(!catalog.ids().includes("document-processing" as never),
-    "an entry that fails or loads an empty system is worse than an absent one");
+test("all three specified examples are offered, and each one loads", async () => {
+  // This test previously pinned the OPPOSITE: that Document Processing was absent, because its
+  // performance model had no evaluator and a menu entry loading an empty system teaches a reader
+  // the workbench is broken. That absence was correct when written and obsolete within the hour,
+  // once the example was authored with declared requirements whose verdicts are hand-derived.
+  //
+  // Kept rather than deleted, inverted, because the claim it guards is still the real one: a menu
+  // entry must LOAD. So each id is loaded, not merely listed -- listing was never the property
+  // worth protecting.
+  const first = catalogue();
+  assert.equal(first.catalog.ids().length, 3, "section 1 specifies three examples");
+  for (const id of first.catalog.ids()) {
+    // A fresh workspace per id: loading into a reused one would pass even if a later load silently
+    // left the previous system in place.
+    const { ws, catalog } = catalogue();
+    await catalog.load(id);
+    assert.equal(ws.state.loaded, true, `${id} is offered but did not load`);
+    assert.deepEqual(ws.state.findings, [], `${id} loads with validation findings`);
+  }
 });
 
 test("an unknown example is refused by name, not by a failed fetch", async () => {
+  // The fixture used to be "document-processing" -- a real id that merely had not shipped yet, which
+  // stopped being unknown the moment it did. A negative fixture must name something that CANNOT
+  // exist, not something that does not exist today.
   const { catalog } = catalogue();
-  await assert.rejects(() => catalog.load("document-processing"), UnknownExampleError);
+  await assert.rejects(() => catalog.load("no-such-example-ever"), UnknownExampleError);
   await assert.rejects(() => catalog.describe("nonsense"), UnknownExampleError);
 });
 
