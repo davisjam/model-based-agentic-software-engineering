@@ -122,12 +122,23 @@ preserved verbatim in `AccessibleScene.outcome` — the renderer does not rewrit
 
 ## 6. Open items for the orchestrator
 
-1. **`Evidence.cycle` convention — confirm when Phase C lands.** `describeEvidence` reads `cycle`
+Items 1 and 2 were **ruled by the orchestrator on 2026-10-02**; the rulings are recorded inline so
+this file does not read as still-open. Items 3 and 4 remain for Phase G.
+
+1. **RULED: `cycle` is the repeating suffix of `steps`** — confirmed, and Phase C will be held to it
+   when the engine lands. The assumption below was correct and the test is the right place for a
+   violation to surface. `describeEvidence` reads `cycle`
    as the repeating **suffix of `steps`** (so `cycleStartIndex = steps.length - cycle.length + 1`),
    per the doc comment in `src/ir/types.ts`. If Phase C instead returns the cycle as a separate
    list *not* included in `steps`, one line in `describeEvidence` changes and
    `a lasso names where the repeating suffix begins` catches it.
-2. **`views:` is in the model schema but not in the canonical IR.** `mage-model.schema.json`
+2. **RULED: view state lives in the Phase F services facade, NOT in the IR.** `canonicalize()`
+   dropping `views:` is therefore correct behaviour rather than a gap. The decisive argument is
+   sharper than the one I made: anything in the IR enters the **canonical hash**, so a saved view
+   position would change the semantic revision and invalidate every pending agent transaction for a
+   *pan*. The remaining trap — a schema advertising a field nothing round-trips — is the
+   orchestrator's to resolve by wiring it through the facade or removing it from the schema. Original
+   finding follows. **`views:` is in the model schema but not in the canonical IR.** `mage-model.schema.json`
    defines `views.<id>.{models, machines, direction, show-properties, layout}` — including the
    `layout` position hints this phase consumes — but `canonicalize()` drops the whole section, so
    `CanonicalSystem` has no `views`. Right now `SceneRequest` takes `direction`, `hints` and
@@ -255,8 +266,8 @@ corrections:
   hypothesis diff**, which §5 and SEMANTICS.md §12 both require ("a hypothesis renders on the
   *same* layout with added, deleted and changed elements visually distinguished"). I added `added`
   / `removed` / `changed` to the emphasis vocabulary and a test
-  (`a hypothesis diff renders on the same layout with each change stated`). Worth folding into §4.2
-  so the next reader does not think it is out of scope.
+  (`a hypothesis diff renders on the same layout with each change stated`). **Confirmed as a §4.2
+  drafting omission and being folded in; the implementation and test stand as the answer.**
 - **§4.3 says "emit the structured representation alongside the SVG".** I made that stronger than
   "alongside": there is no way to get one without the other. If the intent was a looser coupling —
   e.g. a caller wanting positions without a picture — `layoutScene` and `buildScene` are exported
@@ -267,9 +278,10 @@ quoted font names in the inline stylesheet serialize as `&quot;`, which is not r
 when the markup is inlined into an HTML document — it silently breaks the CSS rule. The stylesheet
 is now free of `"` and `the inline stylesheet survives XML escaping` pins it.
 
-## 9. Two substrate findings, neither in my footprint
+## 9. Three findings from the commit path
 
-Both hit while committing. Reporting rather than fixing, because both live outside `src/render/**`.
+(a) and (b) are substrate, outside `src/render/**`, and were reported rather than fixed — both have
+since been fixed by the orchestrator. (c) is mine, and is the one worth remembering.
 
 **(a) The pre-commit hook currently fails its own orphan-page gate, and will block the sibling
 agents too.** `workbench/index.html` exists as an **untracked** file in the main
@@ -301,5 +313,40 @@ because the window is wide: the hook takes over two minutes, so any interrupted 
 Related and worth knowing: the hook's catalog build is also what wrote a copy of the generated MAGE
 landing page into `workbench/index.html` in my worktree and staged it into a commit, which I had to
 unpick. Staging only named paths (never `git add -A`) did not protect me, because the hook staged it
-itself. **Check `git show --stat` after every commit in this repo** — that is how both of these were
-caught, and it is also how the NUL byte was caught.
+itself. **Check `git show --stat` after every commit in this repo** — confirmed independently from
+the orchestrator's side, where a commit whose pathspec named three files carried five.
+
+**(c) A literal NUL byte in `layout.ts`, invisible to every tool that was supposed to catch it.**
+Mine, fixed in `d5c3c15c`, and recorded here because the failure mode generalizes.
+
+One byte at offset 6618 — the separator in `rankInput`'s dedup key, which should have been
+`` `${a} -> ${b}` `` and was `` `${a}\0${b}` ``. It got in during authoring, not by any deliberate
+choice.
+
+What makes it worth a section is the **detection gap**. The byte was semantically harmless: it is an
+internal `Set` key, never serialized, never compared against anything but itself, and NUL is
+arguably a *better* separator than a space since the id pattern cannot produce either. So:
+
+- `tsc --noEmit` compiled it clean — NUL is a legal character in a template literal.
+- All 69 tests passed, because the key's only job is uniqueness and NUL does that job.
+- The editor rendered it as nothing visible at all.
+- `validate.py` was unaffected.
+
+Every gate this phase has was green with a NUL byte sitting in a source file. The *only* symptom was
+that git classified the whole file as binary, so `git show --stat` reported
+`workbench/src/render/layout.ts | Bin 22086 -> 23255 bytes` instead of a line diff — meaning the
+largest and most intricate module in the phase would have arrived for review as an opaque blob, and
+every future diff of it likewise.
+
+Two things follow. First, **read `git show --stat` after committing, and read it for the diff SHAPE,
+not just the file list** — "did it stage what I named" is the obvious check, and "is each file still
+reviewable" is the one that caught this. Second, a `grep` for control bytes over authored source is
+cheap and mechanical, and would have caught it at authoring time rather than at review time:
+
+```python
+any(b < 9 or (13 < b < 32) for b in path.read_bytes())
+```
+
+That is the lint-shaped version of this finding, and it is a better home for the rule than a habit.
+`tsc` will not do it, tests will not do it, and a reviewer looking at `Bin 22086 -> 23255 bytes`
+cannot do it either.
