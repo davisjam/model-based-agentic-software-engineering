@@ -130,8 +130,11 @@ const BEHAVIOR_FORM_SET: ReadonlySet<string> = new Set(BEHAVIOR_FORMS);
  * not a relation type. `components` IS here, because a connected component is a reachability class
  * and that is exactly the inference `forbidden` declines to authorize.
  *
- * `validate.py`'s `GRAPH_MULTIHOP` is the four path forms only; it never evaluates `components`,
- * so this is an extension of the reference rather than a divergence from it.
+ * `validate.py`'s `GRAPH_COMPOSING` is the same five forms, by name and by content. It was the four
+ * path forms, which made `components` an extension here rather than a shared decision — and a
+ * licensing boundary the two tools draw differently is a licensing boundary neither can be trusted
+ * on. `test/parity.test.ts` now compares the two tools' ANSWERS over every repo model, so a form
+ * added to one list and not the other fails the build.
  */
 export const GRAPH_COMPOSING: ReadonlySet<GraphForm> = new Set<GraphForm>([
   "reachability", "path", "shortest-path", "all-paths", "components",

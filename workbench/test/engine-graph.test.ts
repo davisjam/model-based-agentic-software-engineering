@@ -36,6 +36,26 @@ test("a DIRECT query over that same forbidden relation is licensed and answered"
   assert.equal(runQuery(s, graph("direct", "owns", { from: "api", to: "parser" })).result.outcome, "refuted");
 });
 
+test("predecessors and successors over that forbidden relation are licensed too", () => {
+  // The ruling V7 now states outright, and the one the two implementations disagreed about. A
+  // `predecessors` query reads the adjacency ONE STEP: it composes nothing, so a declaration about
+  // PATHS does not reach it. Gating it would make `composition.path: forbidden` mean "this relation
+  // may not be queried", which is not what it says and not what the engine does for `direct`.
+  //
+  // Pinned on `owns` specifically, because `owns` is the forbidden-composition type: a regression
+  // that moved either form into GRAPH_COMPOSING would turn these two answers into refusals.
+  const s = docable();
+  const into = runQuery(s, graph("predecessors", "owns", { to: "parser" }));
+  assert.equal(into.result.outcome, "holds");
+  assert.deepEqual(into.nodeSets, [["remediation"]]);
+  assert.equal(into.refusal, null);
+
+  const outOf = runQuery(s, graph("successors", "owns", { from: "remediation" }));
+  assert.equal(outOf.result.outcome, "holds");
+  assert.deepEqual(outOf.nodeSets, [["parser"]]);
+  assert.equal(outOf.refusal, null);
+});
+
 test("BFS yields the shortest witness, so the evidence is the most legible one", () => {
   const answer = runQuery(docable(), graph("reachability", "may_invoke", { from: "api", to: "gateway" }));
   assert.equal(answer.result.outcome, "holds");
