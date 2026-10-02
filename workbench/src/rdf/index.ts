@@ -10,8 +10,8 @@ export { escapeIri, escapeLiteral, serializeQuad, serializeTerm, toNQuads } from
 export { MAGE, MAGE_CLASSES } from "./vocabulary.ts";
 export {
   RESOURCE_KINDS, URN_PREFIX, VOCABULARY_TAG,
-  derivedIri, dimensionIri, domainIri, domainValueIri, effectIri, entityIri, eventIri, guardIri,
-  instanceIri, machineIri, modelGraphIri, modelIri, propertyIri, quantityIri, queryIri,
+  accountingIri, derivedIri, dimensionIri, domainIri, domainValueIri, effectIri, entityIri, eventIri,
+  guardIri, instanceIri, machineIri, modelGraphIri, modelIri, propertyIri, quantityIri, queryIri,
   relationTypeIri, stateIri, systemIri, transitionIri, variableIri, vocabularyIri,
   type ResourceKind,
 } from "./iri.ts";

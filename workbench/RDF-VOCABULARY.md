@@ -92,10 +92,14 @@ case to keep in mind. Three things hold injectivity by construction:
 | `urn:mage:event:` | system, id | a declared synchronized event |
 | `urn:mage:query:` | system, id | a saved engineering question |
 | `urn:mage:quant:` | system, id | a quantitative annotation |
+| `urn:mage:acct:` | system, metric | one declared accounting basis, addressed by metric name |
 | `urn:mage:dim:` | dimension | one of MAGE's five dimensions |
 
-Four of these need their reasoning stated.
+Five of these need their reasoning stated.
 
+- **An accounting declaration is addressed by its METRIC name as written**, and is system-scoped
+  because `CanonicalSystem.accounting` is a flat system-level map — v0.1 has one quantitative model
+  per system, so there is no model segment to carry. §2 has the rest.
 - **States, variables and derived values are machine-scoped.** Two machines may both have `idle`,
   and in a system where they do, one `idle` resource would make a configuration unreadable.
 - **A transition is addressed by its index within its machine**, which is the address the IR itself
@@ -166,6 +170,7 @@ So the split is:
 | saved-query existence | |
 | model metadata: label, purpose, scope, graph handle | |
 | quantities, and the dimensions they use | |
+| the declared accounting bases | |
 
 ### Quantities are system-level facts, for every target kind
 
@@ -197,6 +202,50 @@ Two target kinds look like exceptions and are not:
 The cost, stated plainly: a quantity on a relation does **not** scope to that relation's model, so
 "the latency of the edges in model M" is not a graph-scoped query. It needs a join from
 `mage:target` to the relation, and v0.1 cannot do that join at all — see §7.
+
+### The declared accounting basis is a system-level fact too
+
+`accounting: { latency: { basis: entities } }` is the author's declaration of **how** a metric's
+annotations reach an analysis (V35, ruled in `DECISIONS-RULED-quantities-261002.md`). It is declared
+per quantitative model rather than per quantity, so where it lands is a judgement call and not a
+reading off the IR's shape. It goes in the **default graph**.
+
+**The IR's shape says it first, again.** `CanonicalSystem.accounting` is a flat system-level map
+keyed by metric name, exactly like `quantities`. `CanonRelation.model` is still the only field in the
+IR carrying a model. No accounting declaration names a reduction, so there is nothing to put one in a
+named graph *with*.
+
+**And the meaning agrees, for the reason model metadata already established.** A basis states the
+rule by which the numbers are charged; it does not assert anything inside any reduction. A statement
+*about* a reduction, placed inside that reduction's graph, reads as a statement *within* it — the
+exact confusion §2 avoided for a model's label and purpose, and §2's quantity subsection avoided for
+a `model:` quantity. Worse here than there, because the fact is a *rule*: a cross-model query would
+find or miss the rule by which its own numbers are summed depending on which graphs it scoped to,
+which is an arithmetic error rather than a missing row.
+
+**It is a resource, not a predicate on the system.** Flattened, the declaration would need one
+vocabulary term per metric name — `mage:latencyBasis`, `mage:costBasis` — and a new term for every
+metric added later. One term per IR field is the rule of §4, and `accounting` is one field. The
+resource also gives the declaration's own `mage:dimension` a subject to hang on, which is the join
+the declaration exists for:
+
+```
+acct:s:latency  rdf:type              mage:Accounting
+acct:s:latency  mage:id               "latency"
+acct:s:latency  mage:accountingBasis  "entities"
+acct:s:latency  mage:dimension        dim:duration     # -> the quantities it charges
+```
+
+The metric name is the address even when it names no path-aggregated metric. `accounting: { memory:
+… }` is a plausible mistake and a V35 finding, and it is a finding *about a declaration the author
+made* — a dataset that could not address it would disagree with the validator about whether anything
+was declared at all.
+
+**What changes when quantities become model-scoped.** v0.1 has exactly one quantitative model per
+system, which is why the declaration is a top-level block and why this section's question has an easy
+answer. When quantities scope to a model the declaration moves with them, and the named-graph
+question becomes real rather than settled by the IR's shape. Revisit it then; the reasoning above is
+about where a *rule* belongs, and it will still apply.
 
 ### Two consequences to know before writing a query
 
@@ -304,6 +353,7 @@ Used only as the object of `rdf:type`.
 | `mage:Event` | a declared synchronized event with named participants |
 | `mage:Query` | a saved engineering question |
 | `mage:Quantity` | a quantitative annotation over the model. Never part of the state vector |
+| `mage:Accounting` | one declared accounting basis, for one path-aggregated metric |
 | `mage:Dimension` | one of MAGE's five dimensions. Carries its base unit and its aggregation scope |
 
 ### Properties
@@ -358,9 +408,12 @@ Used only as the object of `rdf:type`.
 | `mage:participant` | event | machine | a machine that must take part |
 | `mage:target` | quantity | string | what the quantity annotates, as written: `entity:cache`. Verbatim, and not resolved — see §7 |
 | `mage:targetKind` | quantity | `"transition"` / `"relation"` / `"entity"` / `"state"` / `"parameter"` / `"model"` | the typed prefix. Withheld when the prefix is not one of the six |
-| `mage:dimension` | quantity | dimension | which dimension the magnitude is in. Withheld when the declared dimension is not one of the five |
+| `mage:dimension` | quantity, accounting | dimension | which dimension the magnitude is in, or which one a metric accounts for. Withheld when the declared word is not one of the five, and when a metric name is not a path-aggregated metric |
 | `mage:valueKind` | quantity | `"point"` / `"range"` / `"expression"` / `"absent"` | which shape of value the author wrote |
 | `mage:magnitude` | quantity | number | a point magnitude, in the dimension's BASE units |
+| `mage:residency` | quantity | `"resident"` | charged in every configuration where the annotated thing exists. Withheld when the author's word is not in the closed vocabulary |
+| `mage:chargedWhile` | quantity | state | charged exactly while that state is active. An IRI — the only reference the projection resolves |
+| `mage:accountingBasis` | accounting | `"entities"` | which target kind this metric's accounting charges. Withheld when the author's word is unreadable |
 | `mage:baseUnit` | dimension | string | the unit every magnitude of this dimension is in. Withheld when dimensionless |
 | `mage:aggregationScope` | dimension | `"configuration"` / `"execution"` / `"structural"` | which axis this dimension aggregates along |
 
@@ -437,6 +490,55 @@ normalize* distinguishable from *no value declared*: the first projects `"point"
 the second projects `"absent"`. An unrecognized dimension is treated the same way — the quantity
 projects in full with no `mage:dimension`, because minting a sixth dimension resource would advertise
 a base unit and a scope it does not have.
+
+**When a quantity is charged is declared, and the charge condition is a REFERENCE.** Q3's ruling
+refused both available defaults — "I would not say 'idle service memory stays resident' or 'idle
+service memory disappears.' Neither is something MAGE can infer from 'service'" — so the two summands
+of `memory(c)` are two authored declarations, and V37 makes a memory quantity declaring neither
+*invalid* rather than inert. The projection carries both, as two different predicates:
+
+```
+quant:s:cache-memory        mage:residency     "resident"
+quant:s:remediation-memory  mage:chargedWhile  state:s:document:remediating
+```
+
+The gap this closed is worth naming, because it was a *disagreement between layers* rather than a
+missing field: the validator knew which summand a quantity entered and the dataset did not, so
+*which quantities are charged only while remediating?* could not be asked of the projection even
+though the IR held the answer and V37 enforced its shape.
+
+- **`mage:chargedWhile` is the one reference the projection resolves**, and it is the exception that
+  proves §7's rule rather than breaking it. §7 refuses to resolve `mage:target` because that one
+  predicate spans six target kinds and only two of them can be resolved at all, so resolving would
+  leave a query answering confidently for entities and silently for transitions. `when.state` names
+  exactly one kind — a state, always — so resolving it is total *within its own predicate*, and
+  nothing is a confident subset of anything. Projected as the author's bare string, the condition
+  could not reach the state's machine, its transitions or its adjacency, which is the one useful
+  thing about having a charge condition in a graph at all.
+- **The resolution is V37's, not a guess.** `<machine>.<state>` carries the whole address; a bare
+  name resolves only when exactly one machine declares that state, and a bare name two machines
+  declare is **refused** rather than assigned to the first. Picking would hang the charge on an
+  arbitrary machine's state and nothing downstream would report the wrong answer — the silent-merge
+  failure the IRI scheme exists to prevent. V27 is what tells the author to qualify it.
+- **The dotted form mints unconditionally**, so §5's dangling-reference rule holds here too: a
+  `when.state` of `ghost.remediating` projects a state IRI with no `rdf:type`, which is exactly what
+  an undeclared state is. The join a consumer writes is therefore
+  `?q mage:chargedWhile ?s . ?s a mage:State`, and that typed form binds exactly the references the
+  validator accepts. `test/rdf.test.ts` asserts that equivalence against `checkQuantities` directly,
+  because the projection's resolver and the validator's `stateFault` read one reference for two
+  different outputs, and two resolvers are how two resolvers come to disagree. The unification belongs
+  in the IR, which owns reference semantics.
+- **An unreadable word is not projected, and the author's string is not projected beside the IRI.**
+  `residency: transient` is a declaration the author made and got wrong; V37 is the channel that
+  quotes an author's own text, exactly as V28 quotes an unrecognized dimension. And there is no
+  convenience literal alongside `mage:chargedWhile`, for the reason there is none alongside
+  `mage:magnitude`: two representations of one fact is the duplication this projection exists to
+  avoid, and the convenient one here is the one that cannot be joined.
+- **No discriminator is projected for the charge**, unlike `mage:valueKind`. A value is present on
+  every quantity and its *shape* is what `valueKind` discriminates; residency is optional, and its
+  absence is itself the fact V37 reports. A `mage:chargeKind "when"` on a quantity whose reference
+  resolved to nothing would advertise a condition a consumer cannot follow. *Which* memory quantities
+  declare no charge is the validator's question, and it has a channel for it.
 
 ---
 
@@ -519,6 +621,9 @@ The honest list. Each of these is a deliberate omission, not an oversight.
 | a quantity's target, resolved to the thing it annotates | four of the six target kinds have nothing to resolve to — see below |
 | a magnitude's authored spelling and unit | `mage:magnitude` is the normalized value. §7 of the quantities design makes the authored unit cosmetic, and the author's text is the *finding* channel: V28 quotes it out of the IR, where it is kept |
 | the declared dimension word when it is not one of the five | same reason, and symmetrically: the quantity simply has no `mage:dimension` |
+| a `residency:` or `basis:` word that is not in its closed vocabulary | same reason again: V37 and V35 quote the author's text out of the IR, and a projected `"transient"` would be a residency a query could filter on |
+| a `when.state` reference the projection could not resolve to one state | §4. A bare name two machines declare names no single state, so there is no IRI to mint and no bare string worth minting instead |
+| a discriminator for which charge a quantity declared | §4. Residency is optional and its absence is V37's finding, not a shape a consumer reads |
 | configurations, traces, query results | the state space is constructed, not stored. A projection of an exploration would be a second home for an answer that already has one |
 
 ### The one thing that could not be projected faithfully: a quantity's target
@@ -533,14 +638,22 @@ that the IR cannot support it for most target kinds:
 | `model:` | yes — `urn:mage:model:<sys>:<ref>` |
 | `relation:` | **no.** Relation ids are excluded from the semantic hash, so relations are not reified — §3 |
 | `transition:` | **no.** A transition is addressed by its index within a machine. There is no transition id in the IR for `transition:parse` to name |
-| `state:` | **no.** A state IRI is machine-scoped, and nothing fixes how a ref spells the machine |
+| `state:` | yes, since V37 — `<machine>.<state>`, or a bare name exactly one machine declares |
 | `parameter:` | **no.** v0.1 does not represent parameters at all (V27 reports it as a reserved future shape) |
 
-Resolving the two that work would leave a dataset where `?q mage:targetEntity ?e` answers for
+Resolving the three that work would leave a dataset where `?q mage:targetEntity ?e` answers for
 entities and silently returns nothing for transitions — so a latency query written against it would
 report a confident subset. The projection's standing preference is the other way round: silence beats
 a confident subset. So no target is resolved, uniformly, and `mage:targetKind` is projected so a
 consumer can at least filter by kind without doing string surgery on the raw ref.
+
+**The `state:` row changed, and the record is worth correcting rather than quietly updating.** It
+read "nothing fixes how a ref spells the machine," and that was true when it was written. V37 then
+fixed it: `stateFault` in `src/validator/rules.ts` resolves a `state:` target and a `when.state` with
+the same code, deliberately, because they are the same question. So the reason a `state:` target goes
+unresolved is no longer that it *cannot* be — it is the uniformity argument above, which `transition:`
+and `relation:` still make unanswerable. `mage:chargedWhile` is resolved because it is a predicate
+with one kind in it (§4); `mage:target` is not, because it has six.
 
 What would change this: the IR making relation ids semantic (§3 already names that as the
 precondition for anchoring a quantity on a relation), and giving transitions and states addresses a

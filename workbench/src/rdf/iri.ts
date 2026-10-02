@@ -56,12 +56,13 @@ export type ResourceKind =
   | "event"
   | "query"
   | "quant"
+  | "acct"
   | "dim";
 
 export const RESOURCE_KINDS: readonly ResourceKind[] = [
   "sys", "ent", "prop", "rt", "dom", "domval", "model", "graph",
   "mach", "inst", "state", "var", "deriv", "trans", "guard", "effect",
-  "event", "query", "quant", "dim",
+  "event", "query", "quant", "acct", "dim",
 ];
 
 export const URN_PREFIX = "urn:mage:";
@@ -94,6 +95,17 @@ export const instanceIri = (system: string, id: string): Iri => mint("inst", sys
 export const eventIri = (system: string, id: string): Iri => mint("event", system, id);
 export const queryIri = (system: string, id: string): Iri => mint("query", system, id);
 export const quantityIri = (system: string, id: string): Iri => mint("quant", system, id);
+
+/**
+ * One `accounting:` entry, addressed by the METRIC name as the author wrote it.
+ *
+ * System-scoped, like a quantity, because `CanonicalSystem.accounting` is a flat system-level map:
+ * v0.1 has one quantitative model per system, so the declaration has no model segment to carry.
+ * The metric name is the address even when it names no path-aggregated metric — `accounting: memory`
+ * is a V35 finding about a declaration that exists, and a resource it could not address would make
+ * the dataset disagree with the validator about whether the author declared anything.
+ */
+export const accountingIri = (system: string, metric: string): Iri => mint("acct", system, metric);
 
 /**
  * A dimension, and the one kind carrying NO system segment.

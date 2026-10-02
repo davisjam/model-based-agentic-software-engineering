@@ -13,7 +13,9 @@
  * leave the default graph: an entity's existence, type, properties and containment hold whichever
  * reduction you adopt, a quantity asserts something about the modeled system rather than about a
  * reduction of it, and a model's own metadata (label, purpose, scope) describes the reduction
- * rather than asserting anything inside it. So the named graphs hold exactly the typed relation
+ * rather than asserting anything inside it. A declared accounting basis is the same kind of fact as
+ * that metadata: it states how the numbers are charged, not anything inside a reduction. So the
+ * named graphs hold exactly the typed relation
  * edges, and the entity IRIs inside them are SHARED with the default graph and with each other.
  * That sharing is the mechanism: a conclusion emerges from the join across reductions rather than
  * from any single model.
@@ -37,12 +39,39 @@
 import type { CanonicalSystem, Dimension, Magnitude, Purpose } from "../ir/types.ts";
 import { DIMENSION_IDS, DIMENSIONS } from "../ir/types.ts";
 import {
-  derivedIri, dimensionIri, domainIri, domainValueIri, effectIri, entityIri, eventIri, guardIri,
-  instanceIri, machineIri, modelGraphIri, modelIri, propertyIri, quantityIri, queryIri,
+  accountingIri, derivedIri, dimensionIri, domainIri, domainValueIri, effectIri, entityIri, eventIri,
+  guardIri, instanceIri, machineIri, modelGraphIri, modelIri, propertyIri, quantityIri, queryIri,
   relationTypeIri, stateIri, systemIri, transitionIri, variableIri,
 } from "./iri.ts";
 import { canonicalDataset, numeric, RDF_TYPE, scalarTerm, str, bool, type Dataset, type Iri, type Quad, type Term } from "./terms.ts";
 import { MAGE, MAGE_CLASSES } from "./vocabulary.ts";
+
+/**
+ * The state IRI a `when: { state: … }` names, or null when the reference names no single state.
+ *
+ * This is V37's reference rule read as a projection rather than as a diagnosis. `<machine>.<state>`
+ * carries the whole address, so it mints without consulting anything — §5's dangling-reference rule,
+ * where an undeclared state is an untyped resource and the validator is what calls it a finding. A
+ * BARE name carries no machine segment, so the declaration has to supply one, and it does only when
+ * exactly one machine declares that state. Two machines declaring it is refused rather than assigned
+ * to the first: picking would hang the charge condition on an arbitrary machine's state, and nothing
+ * downstream would report the wrong answer. V27 is what tells the author to qualify it.
+ *
+ * So the resolution duplicates `stateFault` in `src/validator/rules.ts`, which resolves the same
+ * reference to produce a message instead of an IRI. Two resolvers are how two resolvers come to
+ * disagree, so `test/rdf.test.ts` asserts the equivalence directly — an IRI is minted exactly when
+ * the validator reports no finding — rather than leaving the agreement to care. The unification
+ * belongs in the IR, which owns reference semantics and which this layer may not reach into.
+ */
+function whenStateIri(system: CanonicalSystem, ref: string): Iri | null {
+  const dot = ref.lastIndexOf(".");
+  if (dot > 0 && dot < ref.length - 1) {
+    return stateIri(system.systemId, ref.slice(0, dot), ref.slice(dot + 1));
+  }
+  const owners = [...system.machines.values()].filter((m) => m.states.includes(ref));
+  const only = owners.length === 1 ? owners[0] : undefined;
+  return only === undefined ? null : stateIri(system.systemId, only.id, ref);
+}
 
 export function project(system: CanonicalSystem): Dataset {
   const quads: Quad[] = [];
@@ -286,6 +315,18 @@ export function project(system: CanonicalSystem): Dataset {
       usedDimensions.add(q.dimension);
       add(QUANT, MAGE.dimension, dimensionIri(q.dimension));
     }
+    // WHEN this quantity is charged (V37). Authored, never inferred: the ruling refused both
+    // available defaults — "I would not say 'idle service memory stays resident' or 'idle service
+    // memory disappears'" — so the two summands of `memory(c)` are two declarations, and the
+    // dataset carries which one a quantity entered or it carries nothing.
+    //
+    // Only the READABLE word, like `mage:dimension`: `residency: transient` is a declaration the
+    // author got wrong, and V37 is the channel that quotes an author's own text back at them.
+    if (q.residency !== null) add(QUANT, MAGE.residency, str(q.residency));
+    if (q.when !== null && q.when.state !== null) {
+      const WHEN = whenStateIri(system, q.when.state);
+      if (WHEN !== null) add(QUANT, MAGE.chargedWhile, WHEN);
+    }
     // The discriminator, as `domainKind` and `variableKind` already are for their unions. Without it
     // an absent value and a magnitude that failed to normalize would both be silence.
     add(QUANT, MAGE.valueKind, str(q.value.kind));
@@ -306,6 +347,30 @@ export function project(system: CanonicalSystem): Dataset {
       case "absent":
         break;
     }
+  }
+
+  // --- the declared accounting model ----------------------------------------------------------
+  // A resource per `accounting:` entry, in the DEFAULT graph. `RDF-VOCABULARY.md` §2b has the
+  // reasoning; the one-line version is that an accounting basis states how the numbers are charged
+  // rather than asserting anything inside a reduction, which is the judgement model metadata and a
+  // `model:` quantity already settled.
+  //
+  // A resource rather than a predicate on the system, because flattening would need one vocabulary
+  // term per metric name — `mage:latencyBasis`, `mage:costBasis` — and a new term for every metric
+  // added. One term per IR field is the rule; `accounting` is one field.
+  for (const a of system.accounting.values()) {
+    const ACCT = accountingIri(sys, a.metric);
+    add(SYS, MAGE.declares, ACCT);
+    add(ACCT, RDF_TYPE, MAGE_CLASSES.Accounting);
+    add(ACCT, MAGE.id, str(a.metric));
+    if (a.dimension !== null) {
+      // The join that makes the declaration usable: basis -> dimension -> the quantities charged.
+      // So an accounting declaration USES its dimension, and the resource below has to be typed —
+      // otherwise `?a mage:dimension/mage:baseUnit ?u` would be silently empty.
+      usedDimensions.add(a.dimension);
+      add(ACCT, MAGE.dimension, dimensionIri(a.dimension));
+    }
+    if (a.basis !== null) add(ACCT, MAGE.accountingBasis, str(a.basis));
   }
 
   // One resource per dimension a quantity actually used, so the base unit a magnitude is expressed
