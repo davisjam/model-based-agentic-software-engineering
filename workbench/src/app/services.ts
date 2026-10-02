@@ -23,7 +23,7 @@ import { canonicalize } from "../ir/canonicalize.ts";
 import { systemHash } from "../ir/hash.ts";
 import { validate } from "../validator/rules.ts";
 import { TransactionEngine } from "../transaction/engine.ts";
-import type { EnginePort, RenderOptions, RenderPort, RenderedView } from "./ports.ts";
+import type { EnginePort, RenderPort, RenderedView, SceneRequest } from "./ports.ts";
 
 /**
  * Ports that remain genuinely external. YAML and transactions are no longer here: the
@@ -222,8 +222,8 @@ export class Workspace {
   // -- views -----------------------------------------------------------------------------------
 
   /** Non-semantic. A view never changes what the model asserts. */
-  renderView(options: RenderOptions): RenderedView {
-    return this.#ports.render.render(this.#engine.system(), options);
+  renderView(request: SceneRequest): RenderedView {
+    return this.#ports.render.render(this.#engine.system(), request);
   }
 
   /** Escape hatch for a caller that holds only a document: canonicalize without loading. */

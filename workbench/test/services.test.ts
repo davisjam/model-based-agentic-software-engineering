@@ -7,20 +7,21 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { runQuery } from "../src/engine/index.ts";
+import { renderView } from "../src/render/index.ts";
 import { Workspace } from "../src/app/services.ts";
 import type { Ports } from "../src/app/services.ts";
 
+// The real renderer rather than a stub. The render port now speaks the renderer's own types, so a
+// hand-written stub here would be a third copy of a shape that already has one owner -- and the
+// previous stub's empty accessible twin was exactly the kind of value the a11y tests exist to
+// reject. These tests do not render; wiring the real one costs nothing and cannot drift.
 const ports: Ports = {
   engine: {
     graphQuery: (system, query) => runQuery(system, query).result,
     behaviorQuery: (system, query) => runQuery(system, query).result,
     explore: () => ({ configurations: [], exhaustive: false }),
   },
-  render: {
-    render: () => ({
-      svg: "", accessible: { title: "", nodes: [], edges: [], summary: "" }, positions: new Map(),
-    }),
-  },
+  render: { render: (system, request) => renderView(system, request) },
 };
 
 const docable = () => readFileSync("examples/docable.mage.yaml", "utf8");

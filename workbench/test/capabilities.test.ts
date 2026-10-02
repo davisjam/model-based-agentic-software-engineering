@@ -1,9 +1,9 @@
 // The capability registry and the UX invariants it enforces.
 //
-// UX-I1 currently FAILS on 17 of 19 capabilities, and that is the point: the registry states what is
-// actually built, so the invariant names incomplete work instead of letting the workbench be
-// described as finished. These tests therefore pin the violations as a BASELINE — new ones fail the
-// build, and fixing one requires deleting its line here, which is a deliberate act.
+// UX-I1 fails on 3 of 20 capabilities, and that is the point: the registry states what is actually
+// built, so the invariant names incomplete work instead of letting the workbench be described as
+// finished. These tests therefore pin the violations as a BASELINE — new ones fail the build, and
+// fixing one requires deleting its line here, which is a deliberate act.
 //
 // Asserting zero violations would be aspirational and would have to be disabled, which is how a gate
 // becomes decoration.
@@ -18,27 +18,30 @@ import type { CapabilityId } from "../src/app/capabilities.ts";
 /**
  * Capabilities with NO wired human affordance, as of 261002.
  *
- * Read the shape, not just the list: everything that MUTATES the model is here, because the
- * transaction engine is landed but not bound to the workspace. The workbench can read, analyse and
- * answer; it cannot yet edit.
+ * Was ten; now three, and the shape of what is left is the interesting part. Every remaining
+ * failure also has no MACHINE affordance — the two lists are now identical — which means the
+ * workbench no longer has a single capability an agent can reach and a person cannot. That
+ * asymmetry is the one UX-I1 exists to catch, and it is gone.
+ *
+ * What remains is a missing OPERATION, not a missing control: the transaction schema has no
+ * add-model, delete-model or add-note op, so there is nothing to bind on either side. Writing a
+ * control for an op that does not exist would clear the violation by making the registry lie.
  */
-const NO_HUMAN: readonly CapabilityId[] = [
-  "create-element", "delete-element", "create-relation", "delete-relation", "edit-property",
-  "create-model", "delete-model",
-  // These three are the asymmetry UX-I1 exists to catch: an AGENT can open, commit and discard a
-  // hypothesis, and a human cannot. The banner renders an active hypothesis but nothing opens one.
-  "create-hypothesis", "commit-hypothesis", "discard-hypothesis",
-];
+const NO_HUMAN: readonly CapabilityId[] = ["create-model", "delete-model", "add-note"];
+
+/** Identical to NO_HUMAN, and that identity is the claim: the gaps are symmetric. */
+const NO_MACHINE: readonly CapabilityId[] = ["create-model", "delete-model", "add-note"];
 
 /**
- * Capabilities with no wired machine affordance.
+ * The eight capabilities whose human affordance this change built.
  *
- * Was seven; now two. Binding the TransactionEngine to the workspace cleared five in one change,
- * because every element/relation/property edit routes through `transactions.apply`. The two that
- * remain are not a wiring gap at all: the transaction schema has no add-model or delete-model
- * operation, so there is nothing to wire until the op set grows.
+ * Shortening the baseline alone would be a weaker test: a capability deleted from the registry
+ * would also disappear from the violation list and pass. These must be present AND wired.
  */
-const NO_MACHINE: readonly CapabilityId[] = ["create-model", "delete-model"];
+const NEWLY_WIRED: readonly CapabilityId[] = [
+  "create-element", "delete-element", "create-relation", "delete-relation", "edit-property",
+  "create-hypothesis", "commit-hypothesis", "discard-hypothesis",
+];
 
 test("UX-I1 violations match the recorded baseline exactly", () => {
   const violations = checkAffordanceParity();
@@ -49,6 +52,40 @@ test("UX-I1 violations match the recorded baseline exactly", () => {
     "a capability gained or lost a human affordance; update NO_HUMAN deliberately");
   assert.deepEqual(machine, [...NO_MACHINE].sort(),
     "a capability gained or lost a machine affordance; update NO_MACHINE deliberately");
+});
+
+test("no capability is reachable by an agent but not by a person", () => {
+  // The asymmetry UX-I1 exists to catch, asserted directly rather than inferred from two lists.
+  // A capability with a machine affordance and no human one means an agent can make a change the
+  // user can neither see the control for nor reverse by hand.
+  const violations = checkAffordanceParity();
+  const noHuman = new Set(violations.filter((v) => v.problem.includes("HUMAN")).map((v) => v.capability));
+  const noMachine = new Set(violations.filter((v) => v.problem.includes("MACHINE")).map((v) => v.capability));
+  const agentOnly = [...noHuman].filter((id) => !noMachine.has(id)).sort();
+  assert.deepEqual(agentOnly, [],
+    `agent-only capabilities: ${agentOnly.join(", ")} — an agent can do these and a person cannot`);
+});
+
+test("the editing and hypothesis capabilities are wired on both sides", () => {
+  const violating = new Set(checkAffordanceParity().map((v) => v.capability));
+  const declared = new Set(CAPABILITIES.map((c) => c.id));
+  for (const id of NEWLY_WIRED) {
+    assert.ok(declared.has(id), `${id} is no longer in the registry; the baseline cannot vouch for it`);
+    assert.ok(!violating.has(id), `${id} should be wired on both sides but is not`);
+  }
+});
+
+test("every wired affordance names ONE site, not a description of several", () => {
+  // `canvas / inspector` was an absent-affordance placeholder, and a placeholder left behind on a
+  // wired entry would defeat the closure check in §26, which compares these strings against the
+  // sites that actually reach the model. One site means no spaces and no slashes.
+  for (const c of CAPABILITIES) {
+    for (const a of [...c.human, ...c.machine]) {
+      if (a.status !== "wired") continue;
+      assert.doesNotMatch(a.at, /[ /]/,
+        `${c.id}: '${a.at}' describes several places; a wired affordance is one addressable site`);
+    }
+  }
 });
 
 test("every capability names exactly one application service", () => {
@@ -131,12 +168,11 @@ test("describe() derives its operations from the registry, and reports the gaps"
   // to remove, sitting in the file that advertises the API.
   const { createAgentApi } = await import("../src/app/agent-api.ts");
   const { Workspace } = await import("../src/app/services.ts");
+  const { renderView } = await import("../src/render/index.ts");
   const noop = {
     engine: { graphQuery: () => { throw new Error("unused"); }, behaviorQuery: () => { throw new Error("unused"); },
       explore: () => ({ configurations: [], exhaustive: false }) },
-    yaml: { parse: () => ({}), serialize: () => "" },
-    transactions: { apply: (system: never) => ({ ok: false, system, findings: [] }) },
-    render: { render: () => ({ svg: "", accessible: { title: "", nodes: [], edges: [], summary: "" }, positions: new Map() }) },
+    render: { render: renderView },
   };
   const ws = new Workspace(noop as never);
   const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {});
@@ -147,8 +183,13 @@ test("describe() derives its operations from the registry, and reports the gaps"
   const names = new Set(d.operations.map((o) => o.name));
   for (const c of CAPABILITIES) assert.ok(names.has(c.id), `${c.id} missing from describe()`);
 
-  // And it must admit where the interfaces diverge.
+  // And it must admit where the workbench falls short of its own registry. This assertion used to
+  // read `create-hypothesis` — an agent could open a hypothesis and a human could not. That gap is
+  // closed, so the example moved to one that is still true rather than being deleted: an agent
+  // must be told it cannot attach a note, or it will try and get a schema error for an answer.
   assert.equal(d.affordanceGaps.length, checkAffordanceParity().length);
-  assert.ok(d.affordanceGaps.some((g) => g.startsWith("create-hypothesis")),
-    "an agent should be told a human cannot open a hypothesis");
+  assert.ok(d.affordanceGaps.some((g) => g.startsWith("add-note")),
+    "an agent should be told that no interface can attach a note");
+  assert.ok(!d.affordanceGaps.some((g) => g.startsWith("create-hypothesis")),
+    "a human can now open a hypothesis; describe() must not still report it as a gap");
 });

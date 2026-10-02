@@ -151,35 +151,35 @@ entities:
     type: semantic-capability
     label: "Add an entity, state or machine."
     properties:
-      human: not-wired
+      human: wired
       machine: wired
 
   delete-element:
     type: semantic-capability
     label: "Remove an entity, state or machine, refusing if anything still references it."
     properties:
-      human: not-wired
+      human: wired
       machine: wired
 
   create-relation:
     type: semantic-capability
     label: "Connect two entities with a licensed relation type."
     properties:
-      human: not-wired
+      human: wired
       machine: wired
 
   delete-relation:
     type: semantic-capability
     label: "Remove a relation."
     properties:
-      human: not-wired
+      human: wired
       machine: wired
 
   edit-property:
     type: semantic-capability
     label: "Change a property or label through the same transaction any other edit uses."
     properties:
-      human: not-wired
+      human: wired
       machine: wired
 
   create-model:
@@ -196,25 +196,32 @@ entities:
       human: not-wired
       machine: not-wired
 
+  add-note:
+    type: semantic-capability
+    label: "Attach a note or provenance to an object, without changing what the model asserts."
+    properties:
+      human: not-wired
+      machine: not-wired
+
   create-hypothesis:
     type: semantic-capability
     label: "Open a what-if branch through the same validated transaction path as any edit."
     properties:
-      human: not-wired
+      human: wired
       machine: wired
 
   commit-hypothesis:
     type: semantic-capability
     label: "Accept a hypothesis as authoritative."
     properties:
-      human: not-wired
+      human: wired
       machine: wired
 
   discard-hypothesis:
     type: semantic-capability
     label: "Throw a hypothesis away; the authoritative model was never touched."
     properties:
-      human: not-wired
+      human: wired
       machine: wired
 
 models:
@@ -259,6 +266,7 @@ models:
       - edit-property
       - create-model
       - delete-model
+      - add-note
       - create-hypothesis
       - commit-hypothesis
       - discard-hypothesis
@@ -290,21 +298,30 @@ models:
       - { from: redo, to: human-interface, type: afforded-by }
       - { from: redo, to: machine-interface, type: afforded-by }
       - { from: redo, to: service.workspace-redo, type: implemented-by }
+      - { from: create-element, to: human-interface, type: afforded-by }
       - { from: create-element, to: machine-interface, type: afforded-by }
       - { from: create-element, to: service.transactions-apply, type: implemented-by }
+      - { from: delete-element, to: human-interface, type: afforded-by }
       - { from: delete-element, to: machine-interface, type: afforded-by }
       - { from: delete-element, to: service.transactions-apply, type: implemented-by }
+      - { from: create-relation, to: human-interface, type: afforded-by }
       - { from: create-relation, to: machine-interface, type: afforded-by }
       - { from: create-relation, to: service.transactions-apply, type: implemented-by }
+      - { from: delete-relation, to: human-interface, type: afforded-by }
       - { from: delete-relation, to: machine-interface, type: afforded-by }
       - { from: delete-relation, to: service.transactions-apply, type: implemented-by }
+      - { from: edit-property, to: human-interface, type: afforded-by }
       - { from: edit-property, to: machine-interface, type: afforded-by }
       - { from: edit-property, to: service.transactions-apply, type: implemented-by }
       - { from: create-model, to: service.transactions-apply, type: implemented-by }
       - { from: delete-model, to: service.transactions-apply, type: implemented-by }
+      - { from: add-note, to: service.transactions-apply, type: implemented-by }
+      - { from: create-hypothesis, to: human-interface, type: afforded-by }
       - { from: create-hypothesis, to: machine-interface, type: afforded-by }
       - { from: create-hypothesis, to: service.workspace-openHypothesis, type: implemented-by }
+      - { from: commit-hypothesis, to: human-interface, type: afforded-by }
       - { from: commit-hypothesis, to: machine-interface, type: afforded-by }
       - { from: commit-hypothesis, to: service.workspace-applyHypothesis, type: implemented-by }
+      - { from: discard-hypothesis, to: human-interface, type: afforded-by }
       - { from: discard-hypothesis, to: machine-interface, type: afforded-by }
       - { from: discard-hypothesis, to: service.workspace-discardHypothesis, type: implemented-by }
