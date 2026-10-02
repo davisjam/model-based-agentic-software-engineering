@@ -63,12 +63,37 @@ to adapt it?* If it depends on a file, path, or rule number it can't see, the en
 Large changes are made by dispatched agents. Two facts shape how to parallelize them safely — **I keep
 re-deriving these, so they live here:**
 
-- **One writer at a time on `main`.** The `pre-commit` hook rebuilds the site and **force-stages** the
-  regenerated `.html` + `book-models/*` on every commit, so two agents committing concurrently collide on
-  those generated files. Keep exactly ONE agent editing/committing `main` at a time; run the full suite
-  (`catalog_tests.py`) between writers. To isolate a second agent's change from a concurrent one (e.g. a live
-  hand-edit), commit in TWO steps (the isolated change first) or `git stash` the second agent's own files
-  across the first commit — never `git commit --no-verify` (banned; it skips the hook).
+- **Give every parallel agent a WORKTREE; keep `main` for one writer.** Worktrees work inside this
+  submodule — verified 261002: `git worktree add` registers under the superproject's
+  `.git/modules/talks-and-notes/governance-catalog`, checks out completely, and `npm test` runs inside
+  one with `node_modules` symlinked from the main checkout. That is the structural fix and it should be
+  the default for any multi-agent wave: disjoint directories, one branch each, orchestrator merges.
+  Earlier guidance here said gc agents work `main` directly with no worktrees; that was the best answer
+  available before anyone tried, and it is now wrong.
+- **One writer at a time on `main`** — still true for whoever IS on `main`. The `pre-commit` hook
+  rebuilds the site and **force-stages** the regenerated `.html` + `book-models/*` on every commit, so
+  two agents committing concurrently collide on those generated files. Run the full suite
+  (`catalog_tests.py`) between writers. To isolate a second agent's change from a concurrent one (e.g. a
+  live hand-edit), commit in TWO steps (the isolated change first) or `git stash` the second agent's own
+  files across the first commit — never `git commit --no-verify` (banned; it skips the hook).
+- **The INDEX is shared state, and `git commit` without a pathspec commits all of it.** This is the
+  concurrent-writer hazard on `main`, and staging carefully does not defend against it. On 261002 an
+  agent staged exactly one named path of its own, then ran `git commit -F -`; three files the
+  orchestrator had just staged were already in the index, so they landed inside the agent's commit under
+  the agent's unrelated message. The agent had used no `-A`, no `-a`, no `.`.
+  - **The defense that holds is a pathspec commit:** `git commit -- <my paths>`, which builds a
+    temporary index from exactly those paths and leaves everything else staged for its owner.
+  - Before committing in a shared checkout, check `git diff --cached --name-only` for foreign paths. A
+    foreign path means stop and ask, not commit.
+  - **Caveat:** the `pre-commit` hook force-stages regenerated artifacts (`*.html`, `book-models/*`,
+    `plugin/`), and a pathspec commit excludes them unless named. If your change legitimately
+    re-renders output, diff it and name the changed tracked files explicitly.
+  - `git add -A` stays banned for the same family of reasons, but note it was NOT the mechanism here —
+    blaming it would have left the real hole open. (Diagnosed by the agent whose commit swept the files,
+    correcting the orchestrator, who had asserted the mechanism without reading the command.)
+- **Do not mix isolation modes in one wave.** If some agents in a wave get worktrees, they all do. On
+  261002 three workbench agents had worktrees and did not collide; the one agent left on `main` is the
+  one that collided. The control worked exactly where it was applied and failed exactly where it was not.
 - **A writer is done only when it says so.** Gate the next writer on the agent's own completion
   signal. A `DONE-*.md` checkpoint, landed commits, and a quiet transcript all mean "it reached a
   reporting step" — none of them mean it stopped writing; agents routinely commit, checkpoint, then
