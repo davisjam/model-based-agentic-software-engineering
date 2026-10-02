@@ -120,3 +120,31 @@ test("the generated model declares every capability and both interfaces", () => 
   assert.match(yaml, /absence: >/);
   assert.match(yaml, /UX-I1 violation, not a design choice/);
 });
+
+test("describe() derives its operations from the registry, and reports the gaps", async () => {
+  // The registry drives describe() (UX section 22). Before this, agent-api.ts hand-listed eight
+  // operations while the registry held nineteen -- the second source of truth the registry exists
+  // to remove, sitting in the file that advertises the API.
+  const { createAgentApi } = await import("../src/app/agent-api.ts");
+  const { Workspace } = await import("../src/app/services.ts");
+  const noop = {
+    engine: { graphQuery: () => { throw new Error("unused"); }, behaviorQuery: () => { throw new Error("unused"); },
+      explore: () => ({ configurations: [], exhaustive: false }) },
+    yaml: { parse: () => ({}), serialize: () => "" },
+    transactions: { apply: (system: never) => ({ ok: false, system, findings: [] }) },
+    render: { render: () => ({ svg: "", accessible: { title: "", nodes: [], edges: [], summary: "" }, positions: new Map() }) },
+  };
+  const ws = new Workspace(noop as never);
+  const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {});
+  const d = api.describe();
+
+  assert.equal(d.operations.length, CAPABILITIES.length,
+    "describe() must report exactly the registry's capabilities");
+  const names = new Set(d.operations.map((o) => o.name));
+  for (const c of CAPABILITIES) assert.ok(names.has(c.id), `${c.id} missing from describe()`);
+
+  // And it must admit where the interfaces diverge.
+  assert.equal(d.affordanceGaps.length, checkAffordanceParity().length);
+  assert.ok(d.affordanceGaps.some((g) => g.startsWith("create-hypothesis")),
+    "an agent should be told a human cannot open a hypothesis");
+});

@@ -21,6 +21,7 @@
  */
 import type { Finding, QueryResult } from "../ir/types.ts";
 import type { Workspace } from "./services.ts";
+import { CAPABILITIES, checkAffordanceParity } from "./capabilities.ts";
 
 /** Bumped on a breaking change to this surface. Implementation internals are not API. */
 export const AGENT_API_VERSION = "0.1.0";
@@ -48,6 +49,11 @@ export interface ApiDescription {
   /** The published JSON Schemas, inline, so an agent needs no second fetch and no network. */
   readonly schemas: Readonly<Record<string, unknown>>;
   readonly operations: readonly OperationDescription[];
+  /**
+   * UX-I1 violations as of this build. Present so an agent can see where the two interfaces do NOT
+   * converge, rather than discovering it by making a change no human can see or reverse.
+   */
+  readonly affordanceGaps: readonly string[];
   /** Named limitations, so an agent learns the boundary from the API instead of from a wrong answer. */
   readonly notSupported: readonly string[];
 }
@@ -184,16 +190,17 @@ export function createAgentApi(
       version: AGENT_API_VERSION,
       semantics: "workbench/SEMANTICS.md — rules V1-V25 fix meaning; the schemas fix shape.",
       schemas,
-      operations: [
-        { name: "context", summary: "System id, canonical hash, open hypothesis, validation findings, counts.", returns: "WorkspaceContext" },
-        { name: "inspect", summary: "Full semantic inspection: entities with cross-model appearances, relation types with composition semantics, models with purpose and omissions, machines with states and transitions.", returns: "SystemInspection" },
-        { name: "transact", summary: "Apply a transaction. Verifies base against the canonical hash, applies to a copy, validates the whole system, commits atomically or not at all.", returns: "TransactionOutcome" },
-        { name: "query", summary: "Run a graph or behavioural query. Returns outcome, coverage and evidence — never a boolean.", returns: "QueryResult" },
-        { name: "savedQueries", summary: "Re-run every saved query against the current system.", returns: "Record<string, QueryResult>" },
-        { name: "hypothesis.open", summary: "Open a what-if branch through the same validated transaction path as any other mutation.", returns: "TransactionOutcome" },
-        { name: "hypothesis.compare", summary: "Saved-query results under the hypothesis, for current-vs-hypothesis comparison.", returns: "Record<string, QueryResult>" },
-        { name: "view.select", summary: "Non-semantic selection. Cannot affect a query result.", returns: "void" },
-      ],
+      // DERIVED from the capability registry, not hand-listed. A hand-written copy here would be
+      // the second source of truth the registry exists to eliminate -- and it was, until this change.
+      operations: CAPABILITIES.map((c) => ({
+        name: c.id,
+        summary: c.summary,
+        returns: c.producesEvidence ? "a result carrying outcome, coverage and evidence" : "void or a context object",
+      })),
+      // FR-AGENT-2: an agent must be able to tell what the workbench LICENSES. That includes which
+      // capabilities it cannot currently reach a human affordance for -- an agent that edits a model
+      // nobody can edit by hand has created a divergence the user cannot inspect or undo.
+      affordanceGaps: checkAffordanceParity().map((v) => `${v.capability}: ${v.problem}`),
       notSupported: [
         "fairness and liveness: 'can it reach X' is in scope, 'will it eventually reach X' is not",
         "past-time temporal operators: such a query is compiled to a safety property over a disclosed history variable",
