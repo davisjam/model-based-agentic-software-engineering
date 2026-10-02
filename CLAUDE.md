@@ -160,6 +160,34 @@ re-deriving these, so they live here:**
 - **Gate discipline:** verify each `main` commit on the full suite BEFORE stacking the next writer; NEVER
   `git add -A` (it sweeps `book/_design/`); briefs read this file (the submodule ROOT `CLAUDE.md` — there is
   no `book/CLAUDE.md`).
+- **Run the TYPE-CHECK and the tests after every land, not just the tests.** A clean merge can produce a
+  tree where every test passes and the code does not build, because disjoint branches can be
+  *semantically* incompatible. Seen 261002: one wave stubbed an `AccessibleScene` literal, a concurrent
+  wave added eight required fields to that type, no line was touched by both, git merged happily, and
+  `tsc` went red while `npm test` stayed green at 325 the whole time — `node:test` does not typecheck. The
+  fix was not to pad the stub but to use the real renderer the stub stood in for; a stub in a module
+  named `realPorts` was the actual defect, and it silently voided the accessible-view requirement at the
+  one seam that produces it.
+- **A worktree's `node_modules` may be a SYMLINK to the main checkout's — never `npm install` in one.**
+  Parallel agents share that one directory, so an install mutates every live agent at once: silently, and
+  blamed on whichever one fails next. A brief that needs a package to *measure* something must say to
+  install it in an isolated `/tmp` directory with its own `package.json`. Check `pwd` before invoking a
+  package manager.
+- **The `pre-commit` hook stages MAIN-CHECKOUT files into a worktree agent's commit.** `core.hooksPath`
+  points at the main checkout, so the hook runs with that `cwd` and its `git add` of regenerated `*.html`
+  + `book-models/*` inherits `GIT_INDEX_FILE` — the files ride into the agent's commit snapshot even
+  though it used a pathspec and edited none of them. Two agents reported this independently on 261002.
+  Harmless when those blobs already match `main` (verify with `git rev-parse <branch>:<path>` against
+  `main:<path>` — identical blobs are a no-op in the 3-way merge), and a silent cross-writer edit when
+  they do not. Verify before landing; do not assume.
+- **Generated output drifts when a commit route skips the hook — `git merge` is such a route.** The hook
+  rebuilds the site and force-stages the regenerated `.html`, which keeps the committed HTML in sync for
+  ordinary commits and does nothing on a `merge --no-ff`. After several merge-landings in a row the
+  committed `index.html` was missing a card `catalog.py` had been generating for hours; nothing reached
+  the published site, because CI re-renders from source on push, but the committed tree was stale and the
+  drift surfaced only when a later hook run left a modification that blocked the next merge. Prefer a
+  gate that compares committed output to a fresh render over one that depends on every future commit
+  route cooperating.
 
 ## Writing style
 
