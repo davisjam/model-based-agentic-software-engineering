@@ -21,7 +21,8 @@ Architecture: [`models/workbench-components.mage.yaml`](models/workbench-compone
 | F | Services facade + `window.mage` agent API (FR-AGENT-1/2) | after C/D/E interfaces settle |
 | G | UI shell + accessibility (FR-A11Y-1/2/3) | after E/F |
 | H | Integration: gates, Pages build, docs | last |
-| I | Quantitative models (latency/memory/requirements) | **held** — 7 open questions, §7 below |
+| I | Quantitative models (latency/memory/requirements) | **UNBLOCKED 261002** — all 7 ruled, §1a.3 |
+| J | RDF projection + SPARQL (Comunica) + structured not-answerable | **new**, §1a |
 
 ## 1. The two new top-level requirements
 
@@ -85,6 +86,99 @@ canonical model hash, a transaction schema, or a coverage object. And `window.ma
              ▼                  ▼                  ▼
        Human + AT         CDP agent          Sighted human
 ```
+
+## 1a. The layered architecture (ruled 261002, `requirements-rdf-sparql-smt-261002.md`)
+
+Four deliberately distinct representations. **They are not to be conflated.**
+
+```
+.mage.yaml            friendly typed authoring + interchange format
+      ↓
+Typed MAGE IR         application semantics          <- LANDED, unchanged
+      ↓
+RDF Dataset           canonical relational projection; one named graph per purposeful model
+      ↓
+SPARQL / lowering     the standard query language
+      ↓
+SMT                   only when symbolic reasoning is required
+```
+
+**What survives intact.** The typed IR is still the application semantics and still what everything
+is built on — §3 says the YAML parser normalizes into it. And §28 independently confirms the hash
+decision: *"The semantic revision hash SHALL be calculated over a canonicalized form of the typed
+semantic IR, not YAML bytes and not rendered RDF serialization."* That is exactly what `hash.ts`
+does, so comments, whitespace, key order and view layout do not change semantic identity.
+
+**What changes.**
+
+- **SPARQL 1.1 (subset) is the standard relational query language, and we do not invent a competing
+  graph-query DSL.** Supported subset: SELECT, ASK, basic graph patterns, named graphs, FILTER,
+  comparison, property paths, OPTIONAL, COUNT/MIN/MAX/SUM, GROUP BY, ORDER BY, LIMIT. No extensions
+  in v0.1; every accepted query stays valid SPARQL. The subset is enforced at MAGE's validation
+  boundary, not by reimplementing the language.
+- **RDF is a projection, not a replacement, and it is NOT OWL.** No RDFS/OWL inference is acquired;
+  MAGE defines its own vocabulary semantics. RDF supplies identity, typed resources and relations,
+  properties, named graphs, and a standard query substrate — nothing more.
+- **Named graphs are how purposeful reductions compose.** Each model projects to one named graph;
+  shared entity identity is what lets a conclusion emerge from the join rather than from any single
+  model.
+- **`not-answerable` gets structured.** §12 is the most important pedagogical behaviour in the
+  document: a SPARQL result answers a question about *represented facts*, not necessarily the
+  engineering proposition intended. So the pipeline is: question → required distinctions → are they
+  represented? → query, or NOT ANSWERABLE. The result shape grows from a prose refusal to
+  `{ status: "not-answerable", reason: "missing-distinction", missing: ["payload-propagation"],
+  models: [...] }`.
+- **Least-complicated mechanism, one semantics.** §14: do not force everything through SMT. RDF
+  lookup, SPARQL property path, direct arithmetic, or SMT — whichever is simplest that preserves the
+  semantics. The binding invariant: *"Specialized implementations and SMT implementations SHALL
+  implement the same MAGE semantics. Optimization must not create a second semantics."*
+
+### 1a.1 Library decisions (researched by the author, §27)
+
+| Concern | Choice | Note |
+|---|---|---|
+| YAML | `yaml` (eemeli) | already our dependency; document/CST API preserves comments |
+| RDF store | RDF/JS + N3.js | in-memory store; Turtle/TriG export comes nearly free as a debug format |
+| SPARQL | Comunica | queries RDF/JS sources directly; *"start with Comunica rather than writing even a 'small' SPARQL evaluator"* |
+| SMT | z3-solver (WASM) | **feasibility risk — see below** |
+| Layout | ELK.js | layered layouts, ports, Web Worker; computes coordinates only. **Not** Mermaid or PlantUML |
+| Persistence | IndexedDB | a wrapper is optional and not architecturally important |
+
+### 1a.2 ⚠️ z3-on-Pages is a verified blocker, not just a spike
+
+The author flagged z3 as *"the one library choice I would treat as a feasibility spike before
+committing the architecture"*, because it uses threads/SharedArrayBuffer and so needs cross-origin
+isolation headers.
+
+**Checked 261002: our deploy target is GitHub Pages via `actions/deploy-pages`, and Pages cannot set
+response headers.** `SharedArrayBuffer` requires `Cross-Origin-Opener-Policy: same-origin` plus
+`Cross-Origin-Embedder-Policy: require-corp`, and there is no mechanism to send those from Pages. So
+the threaded z3 build does not work on this host as shipped. Four ways out, cheapest first:
+
+1. **Defer SMT.** §14 already routes only the hardest class to it, and nothing in v0.1 needs it.
+   Everything described for v0.1 is deterministic computation over a state space we already build.
+2. **A cross-origin-isolation service worker** (the `coi-serviceworker` technique) re-serves
+   responses with the isolation headers from a static host. It works on Pages, at the cost of a
+   reload on first visit and some fragility.
+3. **A single-threaded z3 build**, if one is available without pthreads — no SAB, no headers.
+4. **Host the SMT path elsewhere** — rejected: it contradicts "no server, no daemon, static assets".
+
+Recommendation: **(1) now, (3) investigated before any SMT work, (2) only if (3) fails.** This does
+not block v0.1.
+
+### 1a.3 Rulings on the seven held questions
+
+All seven accepted (§29). Two carry refinements worth keeping:
+
+- **① path aggregation** — accepted *in substance*, but do NOT make `max|min|named` a fundamental
+  execution-path selector. **Distinguish paths/traces from analyses over them.** Bounded monotonic
+  variables license finite unrolling; a **positive repeatable cycle makes an additive maximum
+  unbounded, and that produces a CYCLE WITNESS** rather than a refusal. Better than what I proposed.
+- **③ units** — accepted, and add `ratio` as a dimension class (hit rates, probabilities).
+
+②, ④, ⑤, ⑥, ⑦ and both smaller points (stable-ID addressing resolved during validation; explicit
+model metrics) accepted as proposed. Phase I is therefore **unblocked** — see §7, which this
+supersedes on the open-question list while leaving the engineering content valid.
 
 ## 2. Phase C — Engine  *(disjoint: `src/engine/**`)*
 
