@@ -411,3 +411,5 @@ checkout.
   analysis-execution model exists to prevent.
 - **Comments survive tool writes.**
 - Node is pinned by `.nvmrc` (24); `engines` floor is 22.
+
+<!-- hook-landed verification d957465a -->
