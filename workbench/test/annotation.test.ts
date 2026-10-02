@@ -14,6 +14,7 @@ import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { runQuery } from "../src/engine/index.ts";
+import { checkAnnotation, checkMeaning } from "../src/validator/rules.ts";
 
 const base = `
 mage: 1
@@ -172,4 +173,62 @@ entities:
   // The hardening: canonicalize records the leftover keys so the validator can report them.
   assert.deepEqual(notes[0]?.unexpectedKeys, ["and another"],
     "a stray key is the signature of an unquoted comma and must not be swallowed");
+});
+
+const strayKeyDoc = `mage: 1
+system: { id: a }
+relation-types:
+  may_invoke:
+    description: permitted invocation
+    composition: { path: allowed }
+entities:
+  api:
+    type: service
+    notes:
+      - { id: n1, kind: comment, text: one thing, and another }
+  gateway: { type: service }
+models:
+  flow:
+    type: graph
+    entities: [api, gateway]
+    notes:
+      - { kind: question, text: a question, with a comma }
+    relations:
+      - id: a-g
+        from: api
+        to: gateway
+        type: may_invoke
+        notes:
+          - { kind: rationale, text: a permission, not an observation }
+`;
+
+test("ANNOTATION reports the truncated note and names the stray key", () => {
+  // Carried is not the same as unchecked. The finding has to name the key, because the fix is to
+  // quote the value and the author needs to know which text got cut.
+  const found = checkAnnotation(sys(strayKeyDoc));
+  assert.deepEqual(found.map((f) => f.rule), ["ANNOTATION", "ANNOTATION", "ANNOTATION"]);
+  const api = found.find((f) => f.where.startsWith("entities."));
+  assert.equal(api?.where, "entities.api.notes.n1");
+  assert.match(api?.message ?? "", /'and another'/);
+  assert.match(api?.message ?? "", /reads 'one thing'/);
+
+  // All three annotation levels are swept. A note with no declared id is addressed by the
+  // positional fallback canonicalize assigns it; a relation is addressed by its id, not an index,
+  // because the IR flattens and re-sorts relations across models.
+  assert.deepEqual(found.map((f) => f.where).sort(), [
+    "entities.api.notes.n1",
+    "models.flow.notes.note-1",
+    "models.flow.relations.a-g.notes.note-1",
+  ]);
+});
+
+test("ANNOTATION is not a semantic rule, and the meaning pass does not claim it", () => {
+  // A1 again, this time about the validator's own shape: the pass that fixes meaning must stay
+  // silent here, or the finding id would contradict the invariant the feature is built on.
+  assert.deepEqual(checkMeaning(sys(strayKeyDoc)), []);
+});
+
+test("a well-formed note produces no finding", () => {
+  assert.deepEqual(checkAnnotation(sys(annotated)), []);
+  assert.deepEqual(checkAnnotation(sys(base)), []);
 });

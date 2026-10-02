@@ -8,7 +8,13 @@ This is the authoritative semantics. The JSON Schemas beside it
 [`mage-transaction.schema.json`](mage-transaction.schema.json)) constrain *shape*; this document
 fixes *meaning*. Where a question is about what a model asserts, this file decides it.
 
-Validation rules are numbered **V1…V25** so implementations, tests, and error messages can cite them.
+Validation rules are numbered **V1…V26** so implementations, tests, and error messages can cite them.
+Numbers are append-only: a new rule takes the next free one and lands in the section that owns its
+subject, so the sequence stays stable rather than sorted.
+
+One finding id carries no number. `ANNOTATION` reports a malformed note (§5.1). Annotation sits
+outside semantics by construction, so a V-number would file it under the one thing it is defined not
+to be.
 
 ---
 
@@ -175,6 +181,19 @@ machines:
   transitions. That is a modeling obligation, not a tool limitation.
 - **V11.** A guard referencing a machine with `instances: N > 1` MUST be refused, for the same reason
   as V14 — there is no participant selection in v0.1.
+- **V26.** A guard's `value` MUST be a member of the domain of the variable or state set its `ref`
+  resolves to. A `ref` resolving to a control state compares against that machine's declared states;
+  a `ref` resolving to a variable compares against that variable's enumerated domain. A bounded
+  integer declares a `range` rather than a list, so there the test is an interval.
+
+  A guard comparing against a value the reference can never hold is dead. The transition never
+  fires, the reachable set is smaller than the author believes, and every query over it answers a
+  question about a different system — soundly, which is what makes it hard to notice.
+
+  V26 reports membership and nothing else. A `ref` that resolves to no declared machine member, and
+  an order comparison on a reference with no declared ordering, are separate failures: the engine
+  refuses both when it compiles the guard, and blaming domain membership for a reference error would
+  send the author to the wrong line.
 
 ### 4.2 T2 — interleaving
 
@@ -307,6 +326,40 @@ entities:
 
 `classification > accepts` now typechecks. Partial orders and lattices are deliberately out of scope
 until incomparable elements are actually needed.
+
+### 5.1 Annotation is carried, not interpreted
+
+An entity, a model and a relation may each carry `notes:` and `provenance:`. Those are the three
+levels the loader reads annotation from, and they obey one invariant:
+
+> **A1.** Annotations SHALL NOT alter the semantic interpretation or analysis result of a model
+> unless their content is explicitly represented by a semantic construct.
+
+A1 is held structurally rather than by discipline: the canonical hash projects semantics only, and
+annotation is not in the projection. Two systems differing only in notes are therefore the same
+system, which is why adding a note commits without advancing the semantic revision and cannot
+invalidate a pending agent transaction. The boundary matters most for `kind: assumption`. A note
+*saying* something is an assumption does not make that assumption part of formal analysis; to
+constrain a query it must be represented as a property, a variable, a guard or a quantity. Context
+can be abundant; formal commitment is deliberate.
+
+Being non-semantic does not make a note unchecked. A malformed one is reported under the finding id
+**`ANNOTATION`**, which carries no V-number on purpose: the V-rules fix meaning, and filing an
+annotation finding among them would contradict the invariant the feature rests on.
+
+What `ANNOTATION` reports is the truncation trap. YAML flow style terminates an unquoted value at a
+comma, so
+
+```yaml
+notes:
+  - { kind: comment, text: one thing, and another }
+```
+
+loads as `text: "one thing"` plus a stray KEY `and another`. The note is half gone and nothing looks
+wrong, which is worse than a note that failed to load. The finding names the stray key, because the
+fix is to quote the value and the author needs to know which text got cut. The schema deliberately
+leaves a note object open so this reaches the meaning pass: a shape complaint about an unexpected
+property is the same unhelpful message V25 exists to replace.
 
 ---
 
