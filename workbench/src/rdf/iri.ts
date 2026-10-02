@@ -54,12 +54,14 @@ export type ResourceKind =
   | "guard"
   | "effect"
   | "event"
-  | "query";
+  | "query"
+  | "quant"
+  | "dim";
 
 export const RESOURCE_KINDS: readonly ResourceKind[] = [
   "sys", "ent", "prop", "rt", "dom", "domval", "model", "graph",
   "mach", "inst", "state", "var", "deriv", "trans", "guard", "effect",
-  "event", "query",
+  "event", "query", "quant", "dim",
 ];
 
 export const URN_PREFIX = "urn:mage:";
@@ -91,6 +93,17 @@ export const machineIri = (system: string, id: string): Iri => mint("mach", syst
 export const instanceIri = (system: string, id: string): Iri => mint("inst", system, id);
 export const eventIri = (system: string, id: string): Iri => mint("event", system, id);
 export const queryIri = (system: string, id: string): Iri => mint("query", system, id);
+export const quantityIri = (system: string, id: string): Iri => mint("quant", system, id);
+
+/**
+ * A dimension, and the one kind carrying NO system segment.
+ *
+ * `duration` is MAGE's term, not an author's: it means the same thing in every system, its base unit
+ * and its aggregation scope come from the dimension table rather than from any document, and no
+ * author can declare a sixth. So two systems in one store share the resource, and a query over every
+ * duration quantity in the store is a join rather than a union over system-local spellings.
+ */
+export const dimensionIri = (dimension: string): Iri => mint("dim", dimension);
 
 /** The named graph a purposeful model's relations live in. Distinct from the model resource. */
 export const modelGraphIri = (system: string, model: string): Iri => mint("graph", system, model);

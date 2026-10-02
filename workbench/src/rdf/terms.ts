@@ -91,9 +91,11 @@ function doubleLexical(n: number): string {
 /**
  * A number, typed by what it is rather than by what it was declared as.
  *
- * The workbench forbids reals in v0.1, so a non-integer arriving here is malformed input that
- * canonicalization passed through and the validator reports. Emitting it as `xsd:double` keeps the
- * projection honest: a consumer must not be able to read `2.5` back as `2`.
+ * A non-integer is not by itself a symptom. A quantity magnitude is legitimately real — a `ratio` of
+ * `0.8`, or `128 KB` normalized to `0.125 MB` — while elsewhere in v0.1 the workbench forbids reals,
+ * so a non-integer there is malformed input canonicalization passed through and the validator
+ * reports. Either way `xsd:double` keeps the projection honest: a consumer must not be able to read
+ * `2.5` back as `2`.
  */
 export const numeric = (n: number): Literal =>
   Number.isSafeInteger(n)
