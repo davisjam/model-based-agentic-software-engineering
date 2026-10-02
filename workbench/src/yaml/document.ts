@@ -112,19 +112,22 @@ export class MageDocument {
       where: `offset ${e.pos[0]}`,
       message: e.message,
     }));
+    // Warnings (e.g. an unsupported directive) are surfaced too — a silently ignored directive is
+    // how a file comes to mean something other than it says.
+    for (const w of doc.warnings) findings.push({ rule: "SYNTAX", where: `offset ${w.pos[0]}`, message: w.message });
+
     if (docs.length > 1) {
+      // Not a model system at all, so there is nothing to hand back: picking the first document
+      // would load a fraction of the file and report success.
       findings.push({
         rule: "SYNTAX",
         where: "(document)",
         message: `${docs.length} YAML documents in one file; a model system is exactly one.`,
       });
+      return { document: null, findings };
     }
-    // Warnings (e.g. an unsupported directive) are surfaced too — a silently ignored directive is
-    // how a file comes to mean something other than it says.
-    for (const w of doc.warnings) findings.push({ rule: "SYNTAX", where: `offset ${w.pos[0]}`, message: w.message });
-    return findings.some((f) => f.rule === "SYNTAX" && doc.errors.length > 0)
-      ? { document: null, findings }
-      : { document: new MageDocument(text, tokens, doc), findings };
+    if (doc.errors.length > 0) return { document: null, findings };
+    return { document: new MageDocument(text, tokens, doc), findings };
   }
 
   get fidelity(): Fidelity { return this.#fidelity; }
@@ -276,6 +279,11 @@ export class MageDocument {
       Scalar: (_key, scalar) => {
         if (typeof scalar.value === "string" && coercionHazard(scalar.value) !== null) {
           scalar.type = Scalar.QUOTE_DOUBLE;
+        } else if (scalar.value === null) {
+          // Write the empty value a hand-author writes — `draining:`, not `draining: null`. Both
+          // load identically; only one matches the idiom of every state block already in the file,
+          // and this is a format people read in a diff.
+          scalar.source = "";
         }
       },
     });
