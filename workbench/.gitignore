@@ -1,3 +1,5 @@
 dist/
-node_modules/
+# No trailing slash: node_modules is a SYMLINK in the parallel worktrees, and a
+# trailing slash matches only a real directory -- it showed untracked on every status.
+node_modules
 src/ir/schema-*.ts

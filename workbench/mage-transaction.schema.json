@@ -13,9 +13,9 @@
       "additionalProperties": false,
       "properties": {
         "base": {
-          "description": "Hash of the CANONICAL IR the operations were computed against -- never of the file bytes. Comments and key order are preserved on write, so a file hash would be invalidated by cosmetic edits. A mismatch is a LOUD failure, never a best-effort merge: an agent whose premise has changed must recompute.",
+          "description": "Hash of the CANONICAL IR the operations were computed against -- never of the file bytes. Comments and key order are preserved on write, so a file hash would be invalidated by cosmetic edits. A mismatch is a LOUD failure, never a best-effort merge: an agent whose premise has changed must recompute. The algorithm is NAMED in the value because this is a concurrency token, not a security boundary -- v0.1 emits fnv1a64 (see src/ir/hash.ts for why SubtleCrypto was rejected), and the prefix stops it being read as a cryptographic claim.",
           "type": "string",
-          "pattern": "^sha256:[0-9a-f]{64}$"
+          "pattern": "^(fnv1a64|sha256):[0-9a-f]{16,64}$"
         },
         "target": {
           "description": "Branch to apply to. 'main' is the authoritative system; any other name is a hypothesis branch for what-if analysis.",
