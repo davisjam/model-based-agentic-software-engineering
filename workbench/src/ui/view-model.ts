@@ -15,6 +15,7 @@
  * is the second view and this is the first.
  */
 import type { Annotated, CanonicalSystem, Finding, QueryResult, Scalar } from "../ir/types.ts";
+import { provenanceFields } from "../app/provenance.ts";
 import type { SceneSubject } from "../render/types.ts";
 import { NOTE_KINDS, isNoteKind } from "../transaction/types.ts";
 import type { Operation } from "../transaction/types.ts";
@@ -490,20 +491,15 @@ function noteLines(a: Annotated): readonly NoteLine[] {
 const CAVEAT = "An assumption written as a note is context, not a constraint: analysis does not use "
   + "it. To make an assumption bind a result, represent it as a property, a variable or a guard.";
 
+/**
+ * The inspector's per-row block, from the shared derivation.
+ *
+ * The field order used to be written out here and again in the Provenance section. Two copies of
+ * "the prompt leads" is one copy too many: the prompt could lead in one surface and trail in the
+ * other, with nothing to catch it. `provenanceFields` is now the only place that decides.
+ */
 function provenanceBlock(a: Annotated): ProvenanceBlock | null {
-  const p = a.provenance;
-  if (p === null) return null;
-  const fields: { label: string; value: string }[] = [];
-  if (p.prompt !== null) fields.push({ label: "Asked for", value: p.prompt });
-  if (p.rationale !== null) fields.push({ label: "Rationale", value: p.rationale });
-  if (p.createdBy !== null) fields.push({ label: "Created by", value: p.createdBy });
-  if (p.createdAt !== null) fields.push({ label: "Created at", value: p.createdAt });
-  for (const h of p.history) {
-    const parts = [h.actor, h.action, h.prompt === null ? null : `asked: ${h.prompt}`, h.revision, h.at]
-      .filter((s): s is string => s !== null && s !== "");
-    if (parts.length > 0) fields.push({ label: "History", value: parts.join(" · ") });
-  }
-  return { fields, unreadable: fields.length === 0 };
+  return a.provenance === null ? null : provenanceFields(a.provenance);
 }
 
 /** The three annotation-bearing fields of a row, assembled once so no call site forgets one. */

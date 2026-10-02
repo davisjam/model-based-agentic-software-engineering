@@ -8,8 +8,12 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { runQuery } from "../src/engine/index.ts";
 import { renderView } from "../src/render/index.ts";
-import { Workspace } from "../src/app/services.ts";
+import { NEW_SYSTEM, Workspace } from "../src/app/services.ts";
 import type { Ports } from "../src/app/services.ts";
+import { ExampleCatalog, UnknownExampleError } from "../src/app/examples.ts";
+import type { AssetReader } from "../src/app/examples.ts";
+import { createAgentApi } from "../src/app/agent-api.ts";
+import { EXAMPLE_IDS, readFixture } from "../scripts/gen-example-coverage.ts";
 
 // The real renderer rather than a stub. The render port now speaks the renderer's own types, so a
 // hand-written stub here would be a third copy of a shape that already has one owner -- and the
@@ -140,4 +144,208 @@ test("saved queries re-run against the CURRENT system after a commit", () => {
   for (const r of second.values()) {
     assert.equal(r.systemHash, ws.state.hash, "every result must carry the hash it describes");
   }
+});
+
+// ----------------------------------------------------------------------------------------------
+// The example catalogue (default-examples sections 3 and 12)
+// ----------------------------------------------------------------------------------------------
+//
+// Driven through the real seams, for the reason test/examples.test.ts gives: a test that read the
+// example files itself would check two parsers and witness nothing about the application. EX-I1's
+// claim is that loading an example is loading a file, and only the facade can show that happening.
+
+const assets: AssetReader = (path) => Promise.resolve(readFileSync(path, "utf8"));
+
+const catalogue = (): { readonly ws: Workspace; readonly catalog: ExampleCatalog } => {
+  const ws = new Workspace(ports);
+  return { ws, catalog: new ExampleCatalog(ws, assets) };
+};
+
+test("the catalogue offers exactly the examples that ship", () => {
+  // Looked up, not written down. The coverage generator owns the shipped list, so a third example
+  // landing there must reach the menu -- and a menu that drifted from the shipped set would offer
+  // an entry whose files do not exist.
+  const { catalog } = catalogue();
+  assert.deepEqual([...catalog.ids()].sort(), [...EXAMPLE_IDS].sort(),
+    "the menu and the shipped example set must be the same list");
+});
+
+test("Document Processing is NOT offered, because it is not built", () => {
+  // Section 1 specifies three examples and two exist: Document Processing needs the quantitative
+  // evaluator. The absence is deliberate, so it is pinned -- a later agent reading the spec and
+  // adding the menu entry would ship a control that loads nothing.
+  const { catalog } = catalogue();
+  assert.ok(!catalog.ids().includes("document-processing" as never),
+    "an entry that fails or loads an empty system is worse than an absent one");
+});
+
+test("an unknown example is refused by name, not by a failed fetch", async () => {
+  const { catalog } = catalogue();
+  await assert.rejects(() => catalog.load("document-processing"), UnknownExampleError);
+  await assert.rejects(() => catalog.describe("nonsense"), UnknownExampleError);
+});
+
+test("a description is read from the example, never written beside it", async () => {
+  // The claim this test exists for: every string in the panel traces to a shipped file. If a
+  // description could be authored here, it could disagree with the example it describes, and
+  // nothing would notice.
+  const { catalog } = catalogue();
+  for (const id of EXAMPLE_IDS) {
+    const d = await catalog.describe(id);
+    const fixture = readFixture(id);
+    assert.equal(d.title, fixture.title.trim(), `${id}: the title must be the example's own`);
+    assert.equal(d.summary, fixture.summary.trim(), `${id}: the summary must be the example's own`);
+
+    // The presented questions are the fixture's `suggested` set, by their natural-language labels.
+    assert.deepEqual([...d.tryAsking],
+      fixture.queries.filter((q) => q.suggested).map((q) => q.label),
+      `${id}: the presented questions must be the ones the example marks suggested`);
+    assert.ok(d.tryAsking.length >= 3 && d.tryAsking.length <= 5,
+      `${id}: ${d.tryAsking.length} presented questions, section 2 asks for 3 to 5`);
+
+    // And the models, with their questions, from the system itself -- machines included, because a
+    // machine carries a purpose exactly as a graph model does.
+    assert.deepEqual([...d.models].map((m) => `${m.kind}:${m.id}`).sort(),
+      fixture.models.map((m) => `${m.kind}:${m.id}`).sort(),
+      `${id}: the described models must be the example's purposeful models`);
+    for (const m of d.models) {
+      assert.ok(m.question !== null && m.question.length > 0,
+        `${id}: model '${m.id}' is described without the question it answers`);
+    }
+  }
+});
+
+test("loading an example gives an ordinary workspace: the shipped counts, and no findings", async () => {
+  // The brief's acceptance check, through the catalogue rather than around it. Expected counts are
+  // LOOKED UP from the fixture's declared models, so a snapshot in this file cannot go stale.
+  for (const id of EXAMPLE_IDS) {
+    const { ws, catalog } = catalogue();
+    const r = await catalog.load(id);
+    assert.ok(r.ok, `${id}: did not load`);
+    assert.deepEqual(r.findings, [], `${id}: an example must ship clean`);
+    assert.deepEqual(ws.state.findings, [], `${id}: and must validate clean once loaded`);
+    assert.ok(ws.state.loaded, `${id}: the workspace must report a loaded model`);
+
+    const declared = readFixture(id).models;
+    assert.equal(ws.state.system.models.size, declared.filter((m) => m.kind === "graph").length,
+      `${id}: graph-model count must match the example's declared models`);
+    assert.equal(ws.state.system.machines.size, declared.filter((m) => m.kind === "machine").length,
+      `${id}: machine count must match the example's declared models`);
+
+    // Ordinary means editable. A rename commits and advances the revision, exactly as it would on an
+    // imported file -- which is EX-I1 asserted on the workspace rather than on the loader.
+    const before = ws.state.hash;
+    const first = [...ws.state.system.models.keys(), ...ws.state.system.machines.keys()][0];
+    assert.ok(first !== undefined);
+    const edit = ws.transact({ transaction: { base: before,
+      operations: [{ op: "set-label", id: first, value: "Edited by hand" }] } });
+    assert.ok(edit.ok, `${id}: a loaded example must be editable -- ${edit.findings.map((f) => f.message).join("; ")}`);
+    assert.notEqual(ws.state.hash, before, `${id}: editing an example must advance its revision`);
+  }
+});
+
+test("EX-I1: the catalogue's load and a plain import produce the SAME system", async () => {
+  // The structural half. If the two hashes agree, nothing in the example path preprocessed,
+  // patched or marked the system -- there is no privileged import.
+  for (const id of EXAMPLE_IDS) {
+    const { ws, catalog } = catalogue();
+    await catalog.load(id);
+
+    const imported = new Workspace(ports);
+    assert.ok(imported.load(readFileSync(`examples/${id}/system.mage.yaml`, "utf8")).ok);
+    assert.equal(ws.state.hash, imported.state.hash,
+      `${id}: loading an example must be indistinguishable from importing its file`);
+  }
+});
+
+test("creating a new model system loads an empty, editable, clean workspace", () => {
+  const ws = new Workspace(ports);
+  const r = ws.load(NEW_SYSTEM);
+  assert.ok(r.ok, `the new-system template must load: ${r.findings.map((f) => f.message).join("; ")}`);
+  assert.deepEqual(r.findings, [], "a new system must not greet its author with findings");
+  assert.ok(ws.state.loaded, "the editing forms key off `loaded`, so creating must set it");
+  assert.equal(ws.state.system.models.size, 0);
+  // The template's advice survives an export, because the YAML layer preserves comments. A new
+  // system a user exports untouched should still say what to do next.
+  assert.match(ws.export(), /engineering question/);
+});
+
+// ----------------------------------------------------------------------------------------------
+// Provenance (UX-I6 / invariant A1)
+// ----------------------------------------------------------------------------------------------
+
+test("provenance reaches the one service, prompt separated from the metadata", async () => {
+  const { ws, catalog } = catalogue();
+  await catalog.load("message-bus");
+  const records = ws.provenance();
+  assert.ok(records.length > 0, "the shipped examples record provenance (section 8)");
+
+  const flow = records.find((p) => p.object === "model:event-flow");
+  assert.ok(flow !== undefined, "a model that records its origin must appear");
+  assert.ok(flow.prompt !== null, "the prompt is the field that earns the feature");
+  assert.ok(!flow.fields.some((f) => f.label === "Asked for"),
+    "the prompt must NOT also sit in the metadata list; the separation is what makes it prominent");
+  assert.ok(flow.fields.some((f) => f.label === "Created by" && f.value === "mage-example"),
+    "the shipped examples identify themselves as MAGE-provided");
+  assert.ok(!flow.unreadable);
+});
+
+test("UX-I6: reading provenance cannot move the model, and a note does not advance the revision", async () => {
+  const { ws, catalog } = catalogue();
+  await catalog.load("message-bus");
+  const before = ws.state.hash;
+  const answer = ws.runSavedQueries().get("restricted-data-reaches-impermitted-subscriber")?.outcome;
+
+  // Reading, repeatedly. The service returns records and no writer, so this cannot do anything --
+  // which is the assertion.
+  for (let i = 0; i < 3; i += 1) assert.ok(ws.provenance().length > 0);
+  assert.equal(ws.state.hash, before, "inspecting provenance must not change the system's identity");
+  assert.equal(ws.runSavedQueries().get("restricted-data-reaches-impermitted-subscriber")?.outcome,
+    answer, "inspecting provenance must not change an answer");
+
+  // And the writing side of the same invariant, on the capability next door: a note commits and
+  // leaves the semantic revision exactly where it was.
+  const noted = ws.transact({ transaction: { base: before, operations: [{
+    op: "add-note", scope: "model", id: "event-flow",
+    note: { kind: "comment", text: "Annotation is outside the semantic projection." },
+  }] } });
+  assert.ok(noted.ok, `the note must commit: ${noted.findings.map((f) => f.message).join("; ")}`);
+  assert.equal(ws.state.hash, before, "A1: a note must not advance the semantic revision");
+});
+
+test("provenance the IR cannot read is reported rather than dropped", () => {
+  // docable's `remediation` records provenance under keys the IR does not read. "Records where it
+  // came from, in a spelling we do not understand" is a different fact from "records nothing", and
+  // dropping the row would make the two indistinguishable.
+  const ws = loaded();
+  const unreadable = ws.provenance().filter((p) => p.unreadable);
+  assert.ok(unreadable.length > 0, "docable carries an unreadable provenance block to pin this");
+  for (const p of unreadable) {
+    assert.equal(p.prompt, null);
+    assert.deepEqual(p.fields, []);
+  }
+});
+
+test("an agent reads the same provenance and the same examples the person does", async () => {
+  // UX-I1 for the two new rows, asserted as object identity rather than as agreement: ONE catalogue
+  // and ONE workspace, so the agent cannot be reading a second copy that happens to match.
+  const { ws, catalog } = catalogue();
+  const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {}, catalog);
+
+  const described = await api.examples();
+  assert.deepEqual(described.map((d) => d.id), [...catalog.ids()]);
+  assert.deepEqual(described, await catalog.describeAll());
+
+  const context = await api.loadExample("worker-queue");
+  assert.equal(context.hash, ws.state.hash, "the agent's context must describe the loaded system");
+  assert.equal(context.counts["models"], ws.state.system.models.size);
+  assert.deepEqual(context.findings, [], "a shipped example must load clean for an agent too");
+  assert.deepEqual(api.provenance(), ws.provenance());
+
+  // After loadExample the agent holds an ORDINARY workspace: it inspects and edits with the same
+  // methods an imported file gets, and there is no example-specific surface (EX-I1).
+  assert.ok(api.inspect().models.length > 0);
+  const edited = api.transact({ transaction: { base: context.hash,
+    operations: [{ op: "set-label", id: "worker-pool", value: "Pool" }] } });
+  assert.ok(edited.ok, `an example must be editable through window.mage: ${edited.findings.map((f) => f.message).join("; ")}`);
 });

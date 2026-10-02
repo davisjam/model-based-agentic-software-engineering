@@ -29,6 +29,8 @@ import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { Workspace } from "../src/app/services.ts";
+import { ExampleCatalog } from "../src/app/examples.ts";
+import type { AssetReader } from "../src/app/examples.ts";
 import { createAgentApi } from "../src/app/agent-api.ts";
 import type { CanonicalSystem, Evidence, QueryResult, Scalar } from "../src/ir/types.ts";
 import {
@@ -38,6 +40,12 @@ import {
 } from "../scripts/gen-example-coverage.ts";
 
 const examples = (): readonly LoadedExample[] => EXAMPLE_IDS.map(loadExample);
+
+// The agent API now holds the example catalogue, because `examples()` and `loadExample()` must be
+// the same object the human menu calls. In a test the catalogue reads the shipped files directly;
+// in the page it reads them over `fetch`.
+const fileAssets: AssetReader = (path) => Promise.resolve(readFileSync(path, "utf8"));
+const catalogue = (workspace: Workspace): ExampleCatalog => new ExampleCatalog(workspace, fileAssets);
 
 const savedRaw = (system: CanonicalSystem, id: string): unknown => {
   const saved = system.queries.get(id);
@@ -303,7 +311,7 @@ test("UX-I2: the agent path returns what the human path returns", () => {
   // test for the thing most likely to break later -- someone adding a convenience path that
   // bypasses the facade.
   for (const ex of examples()) {
-    const api = createAgentApi(ex.workspace, { target: null, selection: [] }, {}, () => {});
+    const api = createAgentApi(ex.workspace, { target: null, selection: [] }, {}, () => {}, catalogue(ex.workspace));
     const system = ex.workspace.state.system;
     for (const q of ex.fixture.queries) {
       const raw = savedRaw(system, q.id);
@@ -327,7 +335,7 @@ test("UX-I2: an agent can read each model's purpose and omissions", () => {
   // FR-AGENT-2. An agent must be able to tell what a model represents and what it declines to say,
   // without inferring semantics from geometry -- which is what makes a refusal actionable.
   for (const ex of examples()) {
-    const api = createAgentApi(ex.workspace, { target: null, selection: [] }, {}, () => {});
+    const api = createAgentApi(ex.workspace, { target: null, selection: [] }, {}, () => {}, catalogue(ex.workspace));
     const inspection = api.inspect();
     for (const m of inspection.models) {
       assert.ok(m.question !== null, `${ex.id}: model '${m.id}' exposes no question to an agent`);
@@ -408,7 +416,7 @@ test("an agent drives the same hypothesis through window.mage, with the same ans
   // commit and discard, and a human cannot. Until that is wired, the agent path is the only path --
   // which makes testing it the only way to know the mechanism works at all.
   const ex = loadExample("worker-queue");
-  const api = createAgentApi(ex.workspace, { target: null, selection: [] }, {}, () => {});
+  const api = createAgentApi(ex.workspace, { target: null, selection: [] }, {}, () => {}, catalogue(ex.workspace));
   const mod = ex.fixture.modifications.find((m) => m.id === "begin-processing-without-the-lease");
   assert.ok(mod !== undefined);
   const change = mod.changes[0];

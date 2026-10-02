@@ -11,6 +11,8 @@
  */
 import type { AccessibleScene, SvgNode } from "../render/types.ts";
 import { MARK_MEANINGS } from "../render/types.ts";
+import type { ExampleDescription } from "../app/examples.ts";
+import type { ProvenanceRecord } from "../app/provenance.ts";
 import type { Choice, FindingRow, QuestionRow, Row, Section, ViewModel } from "./view-model.ts";
 
 const el = <K extends keyof HTMLElementTagNameMap>(
@@ -254,6 +256,83 @@ export function fillSelect(select: HTMLSelectElement, choices: readonly Choice[]
     return option;
   }));
   if (choices.some((c) => c.value === wanted)) select.value = wanted;
+}
+
+/**
+ * The Provenance section.
+ *
+ * The prompt is rendered as a headline paragraph, above and apart from the metadata list, because it
+ * is the field a reader of an agent-authored model actually came for. The separation is structural:
+ * `ProvenanceRecord` keeps `prompt` out of `fields`, so no stylesheet change can quietly demote it
+ * back into a row of a table.
+ */
+export function paintProvenance(records: readonly ProvenanceRecord[], root: HTMLElement): void {
+  root.replaceChildren();
+  if (records.length === 0) {
+    root.append(el("p", "No object in this model system records where it came from.", "intro"));
+    return;
+  }
+  for (const r of records) {
+    const article = el("article");
+    const heading = `${r.kind}: ${r.label}`;
+    article.setAttribute("aria-label", `Provenance of ${heading}`);
+    const h = el("h3", heading);
+    article.append(h, el("p", r.object, "id"));
+
+    if (r.unreadable) {
+      article.append(el("p",
+        "The source records provenance, but none of its fields could be read.", "coverage"));
+      root.append(article);
+      continue;
+    }
+    if (r.prompt !== null) {
+      article.append(el("p", "Asked for", "sublabel"), el("p", r.prompt, "prompt"));
+    }
+    if (r.fields.length > 0) {
+      const dl = el("dl", undefined, "prov");
+      for (const f of r.fields) dl.append(el("dt", f.label), el("dd", f.value));
+      article.append(dl);
+    }
+    root.append(article);
+  }
+}
+
+/**
+ * An example's description, shown before it loads (section 3).
+ *
+ * Every string here comes from the example's own files. Nothing is phrased in this function except
+ * the two sub-headings, which is what keeps the panel honest about the thing it describes.
+ */
+export function paintExampleDescription(
+  description: ExampleDescription | null, root: HTMLElement,
+): void {
+  root.replaceChildren();
+  if (description === null) return;
+  root.append(el("h3", description.title), el("p", description.summary, "intro"));
+
+  root.append(el("p", "Models", "sublabel"));
+  const models = el("ul", undefined, "notes");
+  for (const m of description.models) {
+    const li = el("li");
+    // The space is a real text node, not a margin. A screen reader reads the concatenated text, so
+    // the kind chip and the label would otherwise arrive as "graphData Policy".
+    li.append(el("span", m.kind, "state"), document.createTextNode(" "), el("strong", m.label));
+    // The question comes with the model because it is what the model is FOR -- and because a list of
+    // model names teaches a reader nothing about why there is more than one.
+    if (m.question !== null) li.append(document.createTextNode(` — ${m.question}`));
+    models.append(li);
+  }
+  root.append(models);
+
+  root.append(el("p", "Try asking", "sublabel"));
+  const asking = el("ul", undefined, "notes");
+  for (const q of description.tryAsking) asking.append(el("li", q));
+  root.append(asking);
+}
+
+/** The example chooser's own failure report. A fetch that fails must say so, not render nothing. */
+export function paintExampleProblem(problem: string, root: HTMLElement): void {
+  root.replaceChildren(el("p", problem, "caveat"));
 }
 
 /** The rejected-edit report. Plain DOM: `announce()` is the one live region, and it says the gist. */

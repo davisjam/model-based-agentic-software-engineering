@@ -23,6 +23,8 @@ import { canonicalize } from "../ir/canonicalize.ts";
 import { systemHash } from "../ir/hash.ts";
 import { validate } from "../validator/rules.ts";
 import { TransactionEngine } from "../transaction/engine.ts";
+import { collectProvenance } from "./provenance.ts";
+import type { ProvenanceRecord } from "./provenance.ts";
 import type { EnginePort, RenderPort, RenderedView, SceneRequest } from "./ports.ts";
 
 /**
@@ -52,6 +54,26 @@ export interface WorkspaceState {
 export type Listener = (state: WorkspaceState) => void;
 
 const EMPTY = "mage: 1\nsystem:\n  id: untitled\n";
+
+/**
+ * What "Create new model system" loads.
+ *
+ * Deliberately a string of YAML handed to the ordinary `load`, not a constructor. Creating a system
+ * and importing one are the same act on the same seam, which is why the registry treats the new
+ * control as a second affordance of `import` rather than a capability of its own.
+ *
+ * The comment survives the round trip — the YAML layer preserves comments — so a user who exports
+ * an untouched new system gets a file that says what to do next.
+ */
+export const NEW_SYSTEM = [
+  "# A new MAGE model system. Add a purposeful model and the engineering question it answers:",
+  "# a model that states no question cannot refuse a question it does not cover.",
+  "mage: 1",
+  "system:",
+  "  id: untitled",
+  "  name: Untitled model system",
+  "",
+].join("\n");
 
 export class Workspace {
   #engine: TransactionEngine;
@@ -117,6 +139,21 @@ export class Workspace {
   /** Export, preserving the comments and key order of whatever was imported. */
   export(): string {
     return this.#engine.toText();
+  }
+
+  // -- provenance ------------------------------------------------------------------------------
+
+  /**
+   * Where each object came from. The ONE service both the Provenance section and
+   * `window.mage.provenance()` call.
+   *
+   * Read-only, and that is UX-I6 held structurally: a caller is handed records, never a writer, so
+   * inspecting an origin cannot reach the IR and cannot move a result. The records are derived on
+   * every call rather than cached, because a cache would be a second copy of annotation state that
+   * a committed transaction could leave stale.
+   */
+  provenance(): readonly ProvenanceRecord[] {
+    return collectProvenance(this.#engine.system());
   }
 
   // -- mutation --------------------------------------------------------------------------------

@@ -38,7 +38,8 @@ export type CapabilityId =
   | "create-hypothesis" | "commit-hypothesis" | "discard-hypothesis"
   | "undo" | "redo"
   | "import" | "export"
-  | "add-note";
+  | "load-example"
+  | "add-note" | "inspect-provenance";
 
 /**
  * How complete an affordance is. `wired` means it reaches the service; `refusing` means the path
@@ -76,8 +77,13 @@ export interface Capability {
 const wired = (at: string): Affordance => ({ at, status: "wired" });
 
 /**
- * The registry. Reflects what is actually built as of 261002 — every capability is wired on both
- * sides, and UX-I1 reports nothing.
+ * The registry. Reflects what is actually built as of 261002 — all twenty-two capabilities are
+ * wired on both sides, and UX-I1 reports nothing.
+ *
+ * The last two came from the §20 capability table rather than from a developer noticing a gap:
+ * `load-example` and `inspect-provenance` were rows in the specification with no registry entry, so
+ * UX-I1 could not fail for them. A capability the registry never declares is invisible to its own
+ * gate, which is why a test now reads that table and insists every row maps to an entry here.
  *
  * The last three failures shared one cause, and it was not a UI gap: the transaction schema had no
  * operation for adding a model, deleting a model or attaching a note, so there was nothing to bind
@@ -92,10 +98,27 @@ const wired = (at: string): Affordance => ({ at, status: "wired" });
 export const CAPABILITIES: readonly Capability[] = [
   {
     id: "import",
-    summary: "Open a .mage.yaml model system.",
+    summary: "Open a .mage.yaml model system, or start an empty one.",
     service: "workspace.load",
-    human: [wired("header.file-input"), wired("header.load-example")],
+    // Creating a new system is the SAME act: a string of YAML through the same seam. It is a second
+    // affordance here rather than a capability of its own, because a capability whose service and
+    // semantics are identical to an existing one would make the registry longer without making it
+    // say more. `header.load-example` used to sit in this list, and moved out when loading a shipped
+    // example became a capability with its own service.
+    human: [wired("header.file-input"), wired("header.new-system")],
     machine: [wired("window.mage.load")],
+    producesEvidence: false,
+  },
+  {
+    id: "load-example",
+    summary: "Load a shipped example, as an ordinary editable workspace.",
+    service: "examples.load",
+    // EX-I1 lives behind this one string. `examples.load` fetches the shipped bytes and calls
+    // `workspace.load` -- the import seam -- so there is no privileged path and no example mode. The
+    // capability earns its own row because the SELECTION and the description are semantics `import`
+    // does not have: an agent asking what it may load gets an answer here and nowhere else.
+    human: [wired("start.load-example")],
+    machine: [wired("window.mage.loadExample"), wired("window.mage.examples")],
     producesEvidence: false,
   },
   {
@@ -252,6 +275,21 @@ export const CAPABILITIES: readonly Capability[] = [
     // `describe()` through the schema's own description of the op.
     human: [wired("edit-section.add-note")],
     machine: [wired("window.mage.transact")],
+    producesEvidence: false,
+  },
+  {
+    id: "inspect-provenance",
+    summary: "Read where each object came from, and what its author was asked to preserve.",
+    service: "workspace.provenance",
+    // The read-only twin of `add-note`, and governed by the same invariant (A1 / UX-I6). The service
+    // returns records and no writer, so inspecting an origin cannot move a hash or a result.
+    //
+    // It gets a prominent section rather than a row in the inspector's detail column because the
+    // `prompt` is the field that earns the feature: with an agent-authored model it answers why the
+    // object has this shape, which reading the object cannot. A prompt nobody finds is a prompt
+    // nobody reads.
+    human: [wired("provenance-section.records")],
+    machine: [wired("window.mage.provenance")],
     producesEvidence: false,
   },
 
