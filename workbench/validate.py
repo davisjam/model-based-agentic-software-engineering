@@ -328,6 +328,15 @@ def run_graph_query(doc: dict, q: dict) -> dict:
         return res
 
     if form in {"reachability", "path", "shortest-path"}:
+        # A where-clause JOIN names neither endpoint. Without this guard _shortest_path(adj, None,
+        # None) takes its `src == dst` early return and reports `holds` with a one-node witness of
+        # [None] -- the right word for the wrong reason, and it would stay `holds` even if the join
+        # were false. The security query in examples/docable.mage.yaml was passing vacuously on
+        # exactly this path; it carries no `expect`, so nothing failed. Found by the Phase C agent.
+        if src is None or dst is None:
+            return {"outcome": "unlicensed", "coverage": {"kind": "not-applicable"},
+                    "refusal": f"a '{form}' query naming neither endpoint is not evaluated here; "
+                               f"the where-clause join belongs to the workbench engine."}
         route = _shortest_path(adj, src, dst)
         res = {"outcome": "holds" if route else "refuted",
                "coverage": {"kind": "exhaustive", "states_explored": len(adj)}}
