@@ -49,7 +49,7 @@ export interface CanonEntity {
   readonly label: string;
   readonly properties: ReadonlyMap<string, PropertyValue>;
   readonly contains: readonly string[];
-  readonly parent: string | null;
+  readonly parent: string | null;  readonly annotation: Annotated;
 }
 
 export interface PropertyValue {
@@ -73,7 +73,7 @@ export interface CanonRelation {
   readonly model: string;
   readonly from: string;
   readonly to: string;
-  readonly type: string;
+  readonly type: string;  readonly annotation: Annotated;
 }
 
 export interface Purpose {
@@ -87,8 +87,93 @@ export interface CanonModel {
   readonly id: string;
   readonly label: string;
   readonly purpose: Purpose;
-  readonly entities: readonly string[];
+  readonly entities: readonly string[];  readonly annotation: Annotated;
 }
+
+// --------------------------------------------------------------------------------------------
+// Annotation and provenance — first-class, and deliberately NON-SEMANTIC
+// --------------------------------------------------------------------------------------------
+
+/**
+ * The note vocabulary. Small on purpose.
+ *
+ * `assumption` is the interesting one, and the boundary it marks is the point of the whole feature:
+ * a note SAYING something is an assumption does not make that assumption part of formal analysis.
+ * If an assumption must constrain a query, it has to be represented formally — as a property, a
+ * variable, a guard, a quantity. Context can be abundant; formal commitment is deliberate.
+ */
+export type NoteKind = "comment" | "rationale" | "assumption" | "question" | "todo";
+
+export interface Note {
+  readonly id: string;
+  readonly kind: NoteKind;
+  readonly text: string;
+  /**
+   * Keys on the note object that are not part of a note.
+   *
+   * Almost always the signature of an unquoted comma in YAML flow style: `{ text: a, b }` loads as
+   * `text: "a"` plus a stray key `b`, truncating the note silently. Kept rather than dropped so a
+   * validation rule can say so -- a note that lost half its text is worse than one that failed to
+   * load, because nothing looks wrong.
+   */
+  readonly unexpectedKeys: readonly string[];
+  /** "human" | "agent" — who wrote it. Not an identity claim, just which side. */
+  readonly author: string | null;
+  readonly at: string | null;
+}
+
+/**
+ * How an object came into existence.
+ *
+ * The PROMPT is the valuable field. With agent-authored models it answers the question a reader
+ * actually has — *why does this model have this shape, and what was the agent asked to preserve?* —
+ * which no amount of reading the model itself will tell you.
+ *
+ * Deliberately NOT the whole conversation: that is noisy, potentially huge, and may carry
+ * irrelevant or private material. Just the instruction that produced this object, plus an optional
+ * concise rationale the agent supplied.
+ */
+export interface Provenance {
+  readonly createdBy: string | null;
+  readonly createdAt: string | null;
+  readonly prompt: string | null;
+  readonly rationale: string | null;
+  /** Append-only. System-managed: never editable commentary. */
+  readonly history: readonly HistoryEntry[];
+}
+
+export interface HistoryEntry {
+  /** The semantic revision this entry produced. */
+  readonly revision: string | null;
+  readonly actor: string | null;
+  readonly prompt: string | null;
+  readonly action: string | null;
+  readonly at: string | null;
+}
+
+/**
+ * Annotation carried by any semantic object.
+ *
+ * **The invariant (A1):** annotations SHALL NOT alter the semantic interpretation or analysis result
+ * of a model unless their content is explicitly represented by a semantic construct.
+ *
+ * This is held STRUCTURALLY, not by discipline: `systemHash` excludes annotation entirely, so two
+ * systems differing only in notes are the SAME system. Three consequences follow, and all three are
+ * tested:
+ *
+ *  1. A note cannot change a query result, because the engine reads the configuration space and
+ *     annotation is not in it.
+ *  2. Adding a note does not invalidate a pending agent transaction — the same argument that kept
+ *     view positions out of the IR.
+ *  3. A note-adding transaction therefore commits WITHOUT advancing the semantic revision, which is
+ *     surprising until you accept that the hash identifies semantics rather than edits.
+ */
+export interface Annotated {
+  readonly notes: readonly Note[];
+  readonly provenance: Provenance | null;
+}
+
+export const NO_ANNOTATION: Annotated = { notes: [], provenance: null };
 
 // --------------------------------------------------------------------------------------------
 // Behavior

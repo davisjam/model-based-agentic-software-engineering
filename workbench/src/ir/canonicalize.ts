@@ -11,10 +11,11 @@
  * reports it. Two passes rather than one so a single bad field cannot abort the whole load.
  */
 import type {
-  CanonDomain, CanonEntity, CanonEvent, CanonMachine, CanonModel, CanonRelation,
+  Annotated, CanonDomain, CanonEntity, CanonEvent, CanonMachine, CanonModel, CanonRelation,
   CanonRelationType, CanonTransition, CanonVariable, CanonicalSystem, Effect, Guard, GuardOp,
-  MachineInstance, PropertyValue, Purpose, SavedQuery, Scalar,
+  HistoryEntry, MachineInstance, Note, NoteKind, PropertyValue, Provenance, Purpose, SavedQuery, Scalar,
 } from "./types.ts";
+import { NO_ANNOTATION } from "./types.ts";
 
 type Obj = Record<string, unknown>;
 
@@ -31,6 +32,55 @@ const sortedEntries = (v: unknown): readonly [string, unknown][] =>
   isObj(v) ? Object.entries(v).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)) : [];
 
 const GUARD_OPS: readonly GuardOp[] = ["eq", "ne", "lt", "le", "gt", "ge"];
+
+const NOTE_KINDS: readonly NoteKind[] = ["comment", "rationale", "assumption", "question", "todo"];
+
+/**
+ * Notes and provenance. Non-semantic, so a malformed one is DROPPED rather than defaulted into
+ * something meaningful -- annotation that cannot be read is better absent than invented.
+ */
+function annotation(raw: unknown): Annotated {
+  const s = isObj(raw) ? raw : {};
+  const notes: Note[] = [];
+  asArr(s["notes"]).forEach((n, i) => {
+    if (!isObj(n)) return;
+    const kindRaw = asStr(n["kind"], "comment");
+    const kind = (NOTE_KINDS as readonly string[]).includes(kindRaw) ? (kindRaw as NoteKind) : "comment";
+    const text = asStr(n["text"]);
+    if (text === "") return;
+    const KNOWN = new Set(["id", "kind", "text", "author", "at"]);
+    notes.push({
+      id: asStr(n["id"], `note-${i + 1}`), kind, text,
+      author: typeof n["author"] === "string" ? n["author"] : null,
+      at: typeof n["at"] === "string" ? n["at"] : null,
+      unexpectedKeys: Object.keys(n).filter((k) => !KNOWN.has(k)).sort(),
+    });
+  });
+
+  let provenance: Provenance | null = null;
+  const pr = s["provenance"];
+  if (isObj(pr)) {
+    const history: HistoryEntry[] = [];
+    for (const h of asArr(pr["history"])) {
+      if (!isObj(h)) continue;
+      history.push({
+        revision: typeof h["revision"] === "string" ? h["revision"] : null,
+        actor: typeof h["actor"] === "string" ? h["actor"] : null,
+        prompt: typeof h["prompt"] === "string" ? h["prompt"] : null,
+        action: typeof h["action"] === "string" ? h["action"] : null,
+        at: typeof h["at"] === "string" ? h["at"] : null,
+      });
+    }
+    provenance = {
+      createdBy: typeof pr["created_by"] === "string" ? pr["created_by"] : null,
+      createdAt: typeof pr["created_at"] === "string" ? pr["created_at"] : null,
+      prompt: typeof pr["prompt"] === "string" ? pr["prompt"] : null,
+      rationale: typeof pr["rationale"] === "string" ? pr["rationale"] : null,
+      history,
+    };
+  }
+  return notes.length === 0 && provenance === null ? NO_ANNOTATION : { notes, provenance };
+}
 
 // --------------------------------------------------------------------------------------------
 
@@ -73,6 +123,7 @@ function entities(raw: unknown): Map<string, CanonEntity> {
       label: asStr(s["label"], id),
       properties: properties(s["properties"]),
       contains: strArr(s["contains"]),
+      annotation: annotation(s),
     });
   }
   // Second pass resolves parents, so containment is navigable in both directions without the
@@ -126,6 +177,7 @@ function models(raw: unknown): { models: Map<string, CanonModel>; relations: Can
       label: asStr(s["label"], id),
       purpose: purpose(s["purpose"]),
       entities: strArr(s["entities"]),
+      annotation: annotation(s),
     });
     for (const r of asArr(s["relations"])) {
       if (!isObj(r)) continue;
@@ -135,6 +187,7 @@ function models(raw: unknown): { models: Map<string, CanonModel>; relations: Can
         from: asStr(r["from"]),
         to: asStr(r["to"]),
         type: asStr(r["type"]),
+        annotation: annotation(r),
       });
     }
   }
