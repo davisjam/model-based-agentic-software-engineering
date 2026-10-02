@@ -6,10 +6,12 @@
  * §4): the IR's authority over which questions are licensed, and a refusal that names what would
  * license the question.
  *
- * **No parser, no SPARQL text.** `MEASUREMENT-comunica-261002.md` ruled Comunica out on size and on
- * a measured wrong answer, so `eval.ts` evaluates a typed query algebra (`algebra.ts`) shaped like a
- * `sparqljs` parse; the text→algebra walk lands with the parser. The evaluator takes a
- * `LicensedQuestion`, so the gate has structurally already run.
+ * **The text path, added 261002 (WB-SPARQLJS).** `MEASUREMENT-comunica-261002.md` ruled Comunica out
+ * on size and on a measured wrong answer, so `eval.ts` evaluates a typed query algebra
+ * (`algebra.ts`) shaped like a `sparqljs` parse, and `parse.ts` walks real `sparqljs` output onto
+ * it. `answerSparql` is the whole interface: text in, solutions or a structured refusal out. The
+ * evaluator takes a `LicensedQuestion`, which only `admit` produces, so the gate has structurally
+ * already run on every path that reaches evaluation.
  *
  * Dependencies point inward: `../ir/` for the IR, `../engine/` for the licensing predicate and the
  * refusal vocabulary this layer shares with it, and `../rdf/` for the terms the evaluator matches.
@@ -37,3 +39,7 @@ export {
   type AskResult, type Bindings, type Evaluation, type ExhaustedResult, type RefusedResult,
   type SelectResult,
 } from "./eval.ts";
+export {
+  answerSparql, translate,
+  type Answer, type TranslatedQuery, type Translation,
+} from "./parse.ts";
