@@ -30,7 +30,14 @@ import type { Coverage, Evidence, GuardOp, Outcome, QueryResult, Scalar } from "
 export type RefusalReason =
   /** V7 — the relation type declares `composition.path: forbidden`. */
   | "composition-forbidden"
-  /** V24 — the model represents something, but deliberately omits what the question needs. */
+  /**
+   * V24 — the model represents something, but deliberately omits what the question needs.
+   *
+   * Produced on both paths: the quantitative one (`src/quant/`, for an expectation with no declared
+   * frequency and for an entity with no behavioral counterpart) and the graph one
+   * (`src/engine/omission.ts`, when a name resolves nowhere and a `purpose.omits` covers it). §7.6
+   * rules which cause wins when several are true.
+   */
   | "missing-distinction"
   /** The question names an entity, state, variable or relation this system does not declare. */
   | "unknown-vocabulary"

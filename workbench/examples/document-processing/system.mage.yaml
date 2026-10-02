@@ -36,13 +36,20 @@
 # That is the honest workaround worker-queue already uses, not the intended home; the intended home
 # is an annotation slot on the machine.
 #
-# `python3 validate.py` and the TypeScript engine disagree about `stages-of-this-document`. Python
-# answers `unlicensed`, reading `stage_of`'s `composition.path: forbidden` as gating `predecessors`;
-# TypeScript answers `holds`, because `predecessors` asks who points AT an entity and is one hop by
-# construction. The divergence is NOT this example's: message-bus's `who-publishes-order-created`
-# and `who-subscribes-to-order-created` have the same shape and the same disagreement, and so does
-# its `restricted-data-reaches-impermitted-subscriber`. It belongs to the PARITY surface, and both
-# implementations cannot be right. expected-results.yaml records which side this file pins and why.
+# `python3 validate.py` and the TypeScript engine used to disagree about `stages-of-this-document`,
+# and this header's account of WHY was wrong. It said Python read `stage_of`'s
+# `composition.path: forbidden` as gating `predecessors`. It never consulted `composition.path` for
+# that form; it refused for SCOPE, having built the adjacency that answers the question and then
+# declining to read it. The two tools agreed about the meaning of `predecessors` all along.
+#
+# Both answer `holds` now, with identical witnesses, and `test/parity.test.ts` compares the ANSWERS
+# rather than only the findings -- which is what let the disagreement live under a green build.
+# SEMANTICS.md §3.1 writes V7's composing set out as exhaustive, with a row per other form.
+#
+# One outcome difference survives, on `restricted-data-reaches-impermitted-subscriber` in
+# message-bus: validate.py has no `where`-clause join evaluator and refuses that query for scope.
+# The parity test derives that exemption from the query rather than listing ids, so it shrinks when
+# the gap closes.
 #
 # The headers of message-bus and worker-queue report SCHEMA findings for `notes:` and the IR-shaped
 # `provenance:`. Both keys now appear in mage-model.schema.json and `python3 validate.py` reports all
@@ -594,9 +601,10 @@ queries:
   # rather than merely declining.
   #
   # Section 5.6 prescribes the sentence "Not answerable. The model represents hit and miss costs but
-  # deliberately omits their frequencies." The engine does not produce that sentence -- no code path
-  # consults `purpose.omits` when refusing -- and expected-results.yaml records the gap rather than
-  # dressing it up.
+  # deliberately omits their frequencies." The engine produces the modelling half of it now: the
+  # refusal rung consults every `purpose.omits` before reporting a bare absence, so this query comes
+  # back with cause `missing-distinction` and the model's own words -- "deliberately omits 'cache hit
+  # frequency'" -- rather than a bare report that a lookup missed.
   expected-latency-with-the-cache:
     name: Does the cache improve expected latency without violating the memory requirement?
     kind: graph

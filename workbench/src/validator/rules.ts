@@ -15,8 +15,8 @@ import type {
 } from "../ir/types.ts";
 import {
   ACCOUNTABLE_TARGET_KINDS, ACCOUNTED_METRICS, ACCOUNTED_METRIC_IDS, ACCOUNTING_BASES,
-  AGGREGATE_TARGET_KIND, BASIS_TARGET_KINDS, DIMENSIONS, DIMENSION_IDS, METRIC_NAMES,
-  METRIC_NAMESPACE, RESIDENCIES, TARGET_KINDS,
+  AGGREGATE_TARGET_KIND, BASIS_TARGET_KINDS, DIMENSIONS, DIMENSION_IDS, EXECUTES_IN_STATE,
+  METRIC_NAMES, METRIC_NAMESPACE, RESIDENCIES, TARGET_KINDS,
 } from "../ir/types.ts";
 
 /**
@@ -699,7 +699,47 @@ function checkResidency(c: Collector, s: CanonicalSystem, q: CanonQuantity, dime
 }
 
 /**
- * V27–V31 and V35–V37 for one system.
+ * V38 — an entity's `executes_in_state` resolves to a declared state.
+ *
+ * This is the join entity accounting runs on: `executes_in_state` names the lifecycle state during
+ * whose occupancy the entity runs, and a trace step that enters that state charges the entity. It
+ * decides every latency number the evaluator reports, and it was checked only by
+ * `test/examples.test.ts` — one example's own suite, over the models that ship. A property naming no
+ * state in any other model got no finding and then quietly charged nothing.
+ *
+ * Resolution goes through `stateFault`, the resolver V27 uses for a `state:` target and for
+ * `when.state`. Three reference rules, one resolver: a third copy is how the bare-name ambiguity
+ * refusal would be fixed in two of them and forgotten in the third.
+ *
+ * Why its own number rather than V27's: V27's subject is a QUANTITY's references, and its remedy is
+ * to fix the annotation. This reference is made by an ENTITY, and a reader whose `executes_in_state`
+ * is wrong is not editing a quantity at all. The findings cite different lines and send the author to
+ * different places, which is what a rule id is for.
+ */
+function checkExecutesInState(c: Collector, s: CanonicalSystem): void {
+  for (const e of s.entities.values()) {
+    const declared = e.properties.get(EXECUTES_IN_STATE);
+    if (declared === undefined) continue;
+    const where = `entities.${e.id}.properties.${EXECUTES_IN_STATE}`;
+    if (typeof declared.value !== "string" || declared.value === "") {
+      c.add("V38", where,
+        `declares ${EXECUTES_IN_STATE} as ${JSON.stringify(declared.value)}, which names no state. ` +
+        `The value is a state reference — '<machine>.<state>', or a bare state name exactly one ` +
+        `machine declares.`);
+      continue;
+    }
+    const fault = stateFault(s, `${EXECUTES_IN_STATE} '${declared.value}'`, declared.value, "");
+    if (fault !== null) {
+      c.add("V38", where,
+        `${fault} This property is the join entity accounting charges through, so a reference that ` +
+        `resolves nowhere means no execution ever visits '${e.id}' and every quantity charging it ` +
+        `reaches no analysis.`);
+    }
+  }
+}
+
+/**
+ * V27–V31 and V35–V38 for one system.
  *
  * Each quantity is checked in stages and a stage DECLINES once an earlier one spoke about the same
  * object — V26's discipline, applied inside this family. A quantity whose dimension is unreadable
@@ -736,6 +776,9 @@ export function checkQuantities(s: CanonicalSystem): readonly Finding[] {
 
   // V35 — the accounting declaration itself, before any quantity is read against it.
   checkAccounting(c, s);
+
+  // V38 — the join the basis charges through, before the quantities that ride on it.
+  checkExecutesInState(c, s);
 
   for (const q of s.quantities.values()) {
     const where = `quantities.${q.id}`;

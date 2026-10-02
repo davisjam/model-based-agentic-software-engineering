@@ -2,7 +2,10 @@
 // the pedagogically load-bearing one, and getting it wrong looks like a working engine.
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { parse } from "yaml";
+import { canonicalize } from "../src/ir/canonicalize.ts";
 import { runQuery } from "../src/engine/index.ts";
+import { exampleText } from "../scripts/gen-example-coverage.ts";
 import { build, docable, savedQuery } from "./engine-fixtures.ts";
 
 const graph = (form: string, relation: string, extra: Record<string, unknown> = {}): unknown =>
@@ -82,6 +85,100 @@ test("an undeclared relation type is refused, not answered as absent", () => {
   const answer = runQuery(docable(), graph("direct", "invented", { from: "api", to: "gateway" }));
   assert.equal(answer.result.outcome, "unlicensed");
   assert.match(answer.result.refusal ?? "", /not declared by this system/);
+  // No purpose declares anything covering `invented`, so the honest cause is the absence itself.
+  // Pinned against the omission rung below: that rung must not swallow this case.
+  assert.equal(answer.refusal?.reason, "unknown-vocabulary");
+});
+
+test("V24 at query time: a need a purpose declares omitted refuses as missing-distinction", () => {
+  // docable's `service-flow` declares `omits: [observed runtime calls, call frequency, latency]`.
+  // Nothing in the system declares a `calls` relation type, and that absence is the model's own
+  // decision -- so the refusal quotes the decision rather than reporting a lookup miss. The
+  // difference is what the author does next: "not declared" sends them hunting for a misspelling.
+  const answer = runQuery(docable(), graph("direct", "calls", { from: "api", to: "gateway" }));
+
+  assert.equal(answer.result.outcome, "unlicensed", "a refusal is still a successful outcome (V7)");
+  assert.equal(answer.refusal?.reason, "missing-distinction");
+  assert.deepEqual(answer.refusal?.missing, ["observed runtime calls"],
+    "the structured half carries the author's own words, not a paraphrase");
+  assert.deepEqual(answer.refusal?.models, ["service-flow"]);
+  assert.match(answer.result.refusal ?? "", /deliberately omits 'observed runtime calls'/);
+  // The structural clause survives: both facts are true and a reader needs both.
+  assert.match(answer.result.refusal ?? "", /not declared by this system/);
+  assert.equal(answer.result.evidence, null);
+});
+
+test("coverage runs need-to-omission, so a need with an extra word is NOT claimed as omitted", () => {
+  // The guard that keeps this from guessing. docable's `data-policy` omits `encryption in transit`;
+  // `encryption_at_rest` contributes `rest`, which the omission does not have. A looser match would
+  // tell an author the model decided something it never considered -- the same wrong-reason defect
+  // this rung exists to fix, committed in the other direction.
+  const answer = runQuery(docable(), graph("direct", "encryption_at_rest", { from: "api", to: "gateway" }));
+  assert.equal(answer.refusal?.reason, "unknown-vocabulary");
+
+  // And the direction that DOES hold: the identifier spelling of the omission itself.
+  const covered = runQuery(docable(), graph("direct", "encryption_in_transit", { from: "api", to: "gateway" }));
+  assert.equal(covered.refusal?.reason, "missing-distinction");
+  assert.deepEqual(covered.refusal?.missing, ["encryption in transit"]);
+});
+
+test("§7.6 precedence: subject order first, then declared decision over bare absence", () => {
+  // Three causes can be true of one query at once. The ruling is in two parts and they compose.
+  //
+  // By SUBJECT: the relation type must resolve before composition is consultable, and the form must
+  // be licensed before the endpoints are worth reading. That order is unchanged.
+  // WITHIN a subject: a declared decision outranks a bare absence.
+  const s = build({
+    "relation-types": { owns: { description: "d", composition: { path: "forbidden" } } },
+    entities: { a: null, b: null },
+    models: {
+      g: {
+        type: "graph", entities: ["a", "b"],
+        purpose: { omits: ["observed runtime calls", "payload propagation"] },
+        relations: [{ from: "a", to: "b", type: "owns" }],
+      },
+    },
+  });
+
+  // Subject 1, declared: the type resolves nowhere and the model says that is deliberate.
+  assert.equal(runQuery(s, graph("reachability", "calls", { from: "a", to: "b" })).refusal?.reason,
+    "missing-distinction");
+
+  // All three true at once: a composing form over the forbidden type, with an endpoint that is both
+  // undeclared and declared omitted. The FORM is subject 2 and the endpoints are subject 3, so the
+  // licensing refusal wins -- the question is not askable in this model's licensing at all, which
+  // makes what its endpoints name moot.
+  assert.equal(
+    runQuery(s, graph("reachability", "owns", { from: "a", to: "payload_propagation" })).refusal?.reason,
+    "composition-forbidden");
+
+  // Same endpoint on a form composition licenses: subject 3 is reached, and the declared decision
+  // wins there too. One ruling, applied at every rung rather than at the one a brief named.
+  const endpoint = runQuery(s, graph("direct", "owns", { from: "a", to: "payload_propagation" }));
+  assert.equal(endpoint.refusal?.reason, "missing-distinction");
+  assert.deepEqual(endpoint.refusal?.missing, ["payload propagation"]);
+
+  // And an endpoint nobody declared anything about stays the honest absence.
+  assert.equal(runQuery(s, graph("direct", "owns", { from: "a", to: "invented" })).refusal?.reason,
+    "unknown-vocabulary");
+});
+
+test("§5.6: Document Processing's flagship omission answers from the graph path", () => {
+  // The case the whole rung exists for, over the model that ships. Before this, the engine said
+  // "relation type 'cache_hit_frequency' is not declared by this system" -- true, and §5.6
+  // prescribes "the model represents hit and miss costs but deliberately omits their frequencies".
+  // "Undeclared type" reads as a typo where "deliberately omits" reads as a modelling decision.
+  const s = canonicalize(parse(exampleText("document-processing")));
+  const answer = runQuery(s, savedQuery(s, "expected-latency-with-the-cache"));
+
+  assert.equal(answer.result.outcome, "unlicensed");
+  assert.equal(answer.refusal?.reason, "missing-distinction");
+  assert.deepEqual(answer.refusal?.missing, ["cache hit frequency"]);
+  assert.deepEqual(answer.refusal?.models, ["pipeline-performance"]);
+  assert.match(answer.result.refusal ?? "", /deliberately omits 'cache hit frequency'/);
+  // expected-results.yaml pins `cache_hit_frequency` in the refusal, and keeping the structural
+  // clause is what lets the CAUSE change without a shipped fixture's expectation changing.
+  assert.match(answer.result.refusal ?? "", /cache_hit_frequency/);
 });
 
 test("a forall graph query is refused with the right pairing named", () => {

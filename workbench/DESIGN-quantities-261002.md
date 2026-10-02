@@ -279,6 +279,12 @@ correspondence. [LINT] follow-up: this is statically decidable and belongs in th
 example's own suite; not landed here because SEMANTICS.md and the validator are owned elsewhere
 this wave.
 
+**Half of that follow-up has landed as V38** (SEMANTICS.md §5.3): `executes_in_state` resolution is
+now a rule on both implementations, through the resolver V27 already shares with `when.state`. The
+BACKWARD half — an accounted entity with no counterpart on either route — stays the evaluator-seam
+refusal described above, because whether a counterpart is wanted depends on which quantities the
+declared basis charges rather than on the declaration alone.
+
 ### 10.2 Q1 operationalized — ends are selected by the operator, never both
 
 Requirements accept `<=` and `<`, which select the UPPER end of any declared range (the worst

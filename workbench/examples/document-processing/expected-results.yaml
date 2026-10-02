@@ -359,12 +359,20 @@ queries:
       the example turns on -- the performance model distinguishes two components where the lifecycle
       has one state.
 
-      A PARITY divergence sits on this query, and it is pinned to the TypeScript reading
-      deliberately. `python3 validate.py` answers `unlicensed`, taking the forbidden composition to
-      gate `predecessors` as well. Message-bus's two `predecessors` queries diverge the same way, so
-      the disagreement predates this example and belongs to the parity surface rather than here.
-      Both implementations cannot be right: either a one-hop question is gated by a declaration about
-      PATHS, or it is not.
+      This query carried a PARITY divergence and no longer does. Both implementations answer `holds`,
+      with byte-identical witnesses, and `test/parity.test.ts` compares the answers rather than only
+      the findings.
+
+      The diagnosis recorded here was wrong, and it was wrong before the divergence closed: it said
+      `python3 validate.py` read `stage_of`'s forbidden path composition as gating `predecessors`. It
+      never consulted `composition.path` for this form at all. It refused for SCOPE -- "graph form
+      'predecessors' is not evaluated by this tool; it belongs to the workbench engine" -- having
+      built the adjacency that answers the question and then declining to read it. The two tools
+      agreed about the MEANING of `predecessors` throughout and disagreed about which of them would
+      evaluate it, which is the better of the two possible defects: had one read a hop where the
+      other read a closure, nothing short of picking a reading could have fixed it. validate.py
+      evaluates both forms now, and V7's composing set is written out as exhaustive in SEMANTICS.md
+      §3.1.
 
   - id: parse-runs-before-validate
     label: Does parsing run before validation?
@@ -399,18 +407,20 @@ queries:
       cache is shipped without a hit rate on purpose: modeling one would delete the lesson, and V24
       would then catch `omits: [cache hit frequency]` as a declaration that lies to a reader.
 
-      The refusal names the missing vocabulary: "relation type 'cache_hit_frequency' is not declared
-      by this system." The relation type is named for the distinction so the sentence tells the
-      author what to model rather than merely declining.
+      The refusal names the missing vocabulary AND the decision behind it. The relation type is named
+      for the distinction, so "relation type 'cache_hit_frequency' is not declared by this system"
+      already tells the author what to model; the sentence then adds that model
+      `pipeline-performance` "deliberately omits 'cache hit frequency'", quoting the declaration in
+      the author's own words.
 
-      Worth being exact about the gap. Section 5.6 prescribes the sentence "Not answerable. The model
-      represents hit and miss costs but deliberately omits their frequencies." The engine does not
-      produce it. No code path consults `purpose.omits` when refusing, so
-      `RefusalReason.missing-distinction` exists in the engine's type and is never emitted, and the
-      link between a declared omission and the refusal a user reads is prose rather than machinery.
-      Message-bus's `did-analytics-receive-it-at-2-04` records the same gap. Closing it needs the
-      refusal path to consult the declared omissions, which would also let the sentence quote the
-      author's own words back.
+      That second half was prose here until the engine learned to read it. The gap this note used to
+      record -- `RefusalReason.missing-distinction` declared and never emitted on the graph path -- is
+      closed: the refusal rung consults every `purpose.omits` before reporting a bare absence, and the
+      structured cause is now `missing-distinction` rather than `unknown-vocabulary`. §7.6 rules which
+      cause wins when several are true. `refusal_contains` above is unchanged and still passes,
+      because the structural clause was kept and the omission sentence appended to it: a reader needs
+      both facts, and only the CAUSE changed. Message-bus's `did-analytics-receive-it-at-2-04`
+      answers the same way now, off `omits: [observed runtime delivery]`.
 
 # ---------------------------------------------------------------------------
 # Useful modifications (section 2). Each is a real transaction driven through

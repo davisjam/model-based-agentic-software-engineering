@@ -26,6 +26,7 @@
  * adjacency it has already built needs nothing it lacks.
  */
 import type { CanonDomain, CanonicalSystem, Evidence, GuardOp, QueryResult, Scalar } from "../ir/types.ts";
+import { undeclared } from "./omission.ts";
 import {
   bounded, detail, exhaustive, fail, GRAPH_COMPOSING, NOT_APPLICABLE, ok, ORDER_OPS, result,
   unlicensed, verdict,
@@ -356,7 +357,7 @@ function endpoints(system: CanonicalSystem, q: GraphQuery, adj: Adjacency, where
   }
   for (const [label, id] of [["from", q.from], ["to", q.to]] as const) {
     if (id !== null && !system.entities.has(id)) {
-      return fail(`${label}: '${id}' is not a declared entity of this system.`);
+      return undeclared(system, `${label}: '${id}' is not a declared entity of this system`, id);
     }
   }
   return ok({
@@ -382,11 +383,34 @@ const witness = (nodes: readonly string[]): Evidence =>
   ({ shape: "path", role: "witness", steps: [], cycle: null, nodes });
 
 /**
+ * Refuse a name this system does not declare — the five rungs where that happens, through one call.
+ *
+ * The sentence was written out at each site and the CAUSE was `unknown-vocabulary` at each site,
+ * which is how the graph path came to be unable to say "this was omitted on purpose" (see
+ * omission.ts). Routing them through `undeclared` means the §7.6 precedence ruling holds at every
+ * rung rather than at the one a brief happened to name.
+ */
+const refuseUndeclared = (
+  system: CanonicalSystem, systemHash: string, absence: string, need: string,
+  interpretedAs: string | null = null,
+): GraphAnswer => {
+  const f = undeclared(system, absence, need);
+  return answer(unlicensed(systemHash, f.refusal, interpretedAs, f.detail));
+};
+
+/**
  * Evaluate one graph query.
  *
  * Order of refusals is deliberate: the relation type must exist, then composition must license the
  * form, then the endpoints must make sense. A user who misspelled a relation type should not first
  * be told about path composition.
+ *
+ * That order is by SUBJECT, and it is not a priority over causes — a later subject cannot be judged
+ * until an earlier one resolves. The second half of the ruling (SEMANTICS.md §7.6) governs what
+ * happens WITHIN one subject: a declared decision outranks a bare absence, so a name that resolves
+ * nowhere while some purpose declares it omitted refuses as `missing-distinction` rather than
+ * `unknown-vocabulary`. The two halves compose and never compete: `composition-forbidden`
+ * presupposes a relation type that resolved, and the omission rung presupposes one that did not.
  */
 export function runGraphQuery(
   system: CanonicalSystem, q: GraphQuery, quantifier: Quantifier, systemHash: string,
@@ -396,7 +420,8 @@ export function runGraphQuery(
   // Containment is not a relation type: §2 declares it on the entity and it yields hierarchical
   // paths by construction, so it is licensed without consulting `composition.path`.
   if (q.form !== "containment" && relType === undefined) {
-    return answer(unlicensed(systemHash, `relation type '${q.relation}' is not declared by this system.`));
+    return refuseUndeclared(system, systemHash,
+      `relation type '${q.relation}' is not declared by this system`, q.relation);
   }
 
   if (quantifier === "forall") {
@@ -433,7 +458,7 @@ export function runGraphQuery(
 
   if (q.form === "direct") {
     const ends = endpoints(system, q, adj, q.where);
-    if (!ends.ok) return answer(unlicensed(systemHash, ends.refusal, interpretedAs));
+    if (!ends.ok) return answer(unlicensed(systemHash, ends.refusal, interpretedAs, ends.detail));
     for (const src of ends.value.sources) {
       for (const dst of ends.value.targets) {
         if (!ends.value.pairOk(src, dst)) continue;
@@ -452,7 +477,7 @@ export function runGraphQuery(
 
   if (q.form === "reachability" || q.form === "path" || q.form === "shortest-path") {
     const ends = endpoints(system, q, adj, q.where);
-    if (!ends.ok) return answer(unlicensed(systemHash, ends.refusal, interpretedAs));
+    if (!ends.ok) return answer(unlicensed(systemHash, ends.refusal, interpretedAs, ends.detail));
     let best: readonly string[] | null = null;
     let visited = 0;
     let truncated = false;
@@ -484,7 +509,7 @@ export function runGraphQuery(
 
   if (q.form === "all-paths") {
     const ends = endpoints(system, q, adj, q.where);
-    if (!ends.ok) return answer(unlicensed(systemHash, ends.refusal, interpretedAs));
+    if (!ends.ok) return answer(unlicensed(systemHash, ends.refusal, interpretedAs, ends.detail));
     const found: (readonly string[])[] = [];
     let truncated = false;
     for (const src of ends.value.sources) {
@@ -517,7 +542,8 @@ export function runGraphQuery(
         `a ${q.form} query must name the entity it is about.`, interpretedAs));
     }
     if (!system.entities.has(focus)) {
-      return answer(unlicensed(systemHash, `'${focus}' is not a declared entity of this system.`, interpretedAs));
+      return refuseUndeclared(system, systemHash,
+        `'${focus}' is not a declared entity of this system`, focus, interpretedAs);
     }
     const nodes = q.form === "successors" ? (adj.out.get(focus) ?? []) : (adj.into.get(focus) ?? []);
     const unique = sorted(new Set(nodes));
@@ -543,7 +569,8 @@ export function runGraphQuery(
   const groups = allComponents(adj);
   if (q.from !== null) {
     if (!system.entities.has(q.from)) {
-      return answer(unlicensed(systemHash, `'${q.from}' is not a declared entity of this system.`, interpretedAs));
+      return refuseUndeclared(system, systemHash,
+        `'${q.from}' is not a declared entity of this system`, q.from, interpretedAs);
     }
     const comp = adj.nodes.includes(q.from) ? component(adj, q.from) : [q.from];
     return answer(result({
@@ -570,7 +597,8 @@ function containment(
     return answer(unlicensed(systemHash, "a containment query must name an entity.", interpretedAs));
   }
   if (!system.entities.has(focus)) {
-    return answer(unlicensed(systemHash, `'${focus}' is not a declared entity of this system.`, interpretedAs));
+    return refuseUndeclared(system, systemHash,
+      `'${focus}' is not a declared entity of this system`, focus, interpretedAs);
   }
   const chain = containmentPath(system, focus);
   if (q.from !== null && q.to !== null) {

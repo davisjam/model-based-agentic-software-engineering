@@ -33,19 +33,18 @@
  *
  * An accounted quantity whose entity has NO counterpart on either route is the governing
  * principle's nightmare — validated, then silently contributing nothing — so building the table
- * REFUSES it, naming the missing correspondence. (A static rule should eventually catch this at
- * validation; until it does, the refusal here is the fence.)
+ * REFUSES it, naming the missing correspondence.
+ *
+ * Half of that is now static. V38 resolves every `executes_in_state` at validation, through the same
+ * resolver V27 uses, so a declaration naming a state no machine declares is a finding before any
+ * trace is walked — this file no longer carries that check alone. The BACKWARD half (an accounted
+ * entity with no counterpart on either route) stays a refusal here, because it depends on which
+ * quantities a basis charges rather than on the declaration alone.
  */
 import type { AccountedMetric, CanonicalSystem, Configuration, Step } from "../ir/types.ts";
-import { ACCOUNTED_METRICS } from "../ir/types.ts";
+import { ACCOUNTED_METRICS, EXECUTES_IN_STATE } from "../ir/types.ts";
 import { detail, fail, ok, type Res } from "../engine/types.ts";
 import { quantityMagnitude, type Charge, type RangeEnd, type TraceCharges } from "./types.ts";
-
-/**
- * The property naming an entity's lifecycle state. A property rather than IR structure: the IR
- * cannot hold the join itself in v0.1, and the shipped example established this spelling.
- */
-export const EXECUTES_IN_STATE = "executes_in_state";
 
 interface EntityCharge {
   readonly quantity: string;

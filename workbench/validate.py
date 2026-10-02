@@ -100,6 +100,12 @@ RESIDENCIES = ("resident",)
 # The only key a `when` block carries in v0.1.
 WHEN_KEYS = frozenset({"state"})
 
+# The entity property naming the lifecycle state during whose occupancy that entity runs. Mirrors
+# src/ir/types.ts EXECUTES_IN_STATE -- the validator resolves it (V38) and the quantitative
+# evaluator joins a trace step through it, so a second spelling anywhere is a join that stops
+# joining.
+EXECUTES_IN_STATE = "executes_in_state"
+
 METRIC_NAMESPACE = "metrics"
 METRIC_NAMES = ("state_count", "transition_count", "entity_count", "relation_count")
 
@@ -962,6 +968,50 @@ def check_participation(doc: dict, f: Findings, qid: str, spec: dict, dimension:
           f"accounts for {kind} targets.")
 
 
+def check_executes_in_state(doc: dict, f: Findings) -> None:
+    """V38 -- an entity's `executes_in_state` resolves to a declared state.
+
+    This is the join entity accounting runs on: the property names the lifecycle state during whose
+    occupancy the entity runs, and a trace step entering that state charges the entity. It decides
+    every latency number the evaluator reports, and it was checked only by one example's own test
+    suite -- a property naming no state in any other model got no finding and then charged nothing.
+
+    Resolution goes through `_state_fault`, the resolver V27 uses for a `state:` target and for
+    `when.state`. Three reference rules, one resolver: a third copy is how the bare-name ambiguity
+    refusal gets fixed in two of them and forgotten in the third.
+
+    Its own number rather than V27's: V27's subject is a QUANTITY's references and its remedy is to
+    fix the annotation. This reference is made by an ENTITY, and an author whose `executes_in_state`
+    is wrong is not editing a quantity at all.
+    """
+    for eid, spec in (doc.get("entities") or {}).items():
+        if not isinstance(spec, dict):
+            continue
+        props = spec.get("properties") or {}
+        if not isinstance(props, dict) or EXECUTES_IN_STATE not in props:
+            continue
+        value = props[EXECUTES_IN_STATE]
+        if isinstance(value, dict):
+            value = value.get("value")
+        # Mirrors canonicalize.ts `properties`: a non-scalar is not a property at all, so it never
+        # reaches the IR and TypeScript has nothing to report. Shape is the schema's subject.
+        if not isinstance(value, SCALAR_TYPES):
+            continue
+        where = f"entities.{eid}.properties.{EXECUTES_IN_STATE}"
+        if not isinstance(value, str) or not value:
+            f.add("V38", where,
+                  f"declares {EXECUTES_IN_STATE} as {json.dumps(value)}, which names no state. The "
+                  f"value is a state reference -- '<machine>.<state>', or a bare state name exactly "
+                  f"one machine declares.")
+            continue
+        fault = _state_fault(doc, f"{EXECUTES_IN_STATE} '{value}'", value, "")
+        if fault is not None:
+            f.add("V38", where,
+                  f"{fault} This property is the join entity accounting charges through, so a "
+                  f"reference that resolves nowhere means no execution ever visits '{eid}' and every "
+                  f"quantity charging it reaches no analysis.")
+
+
 def check_residency(doc: dict, f: Findings, qid: str, spec: dict, dimension: str) -> None:
     """V37 -- a configuration-scoped quantity declares exactly one of `residency:` or `when:`.
 
@@ -1066,6 +1116,9 @@ def check_quantities(doc: dict, f: Findings) -> None:
 
     # V35 -- the accounting declaration itself, before any quantity is read against it.
     check_accounting(doc, f)
+
+    # V38 -- the join the basis charges through, before the quantities that ride on it.
+    check_executes_in_state(doc, f)
 
     for qid, spec in (doc.get("quantities") or {}).items():
         spec = spec if isinstance(spec, dict) else {}
@@ -1217,12 +1270,69 @@ GRAPH_COMPOSING = {"reachability", "path", "shortest-path", "all-paths", "compon
 CAUSE_UNKNOWN_VOCABULARY = "unknown-vocabulary"
 CAUSE_COMPOSITION_FORBIDDEN = "composition-forbidden"
 CAUSE_UNSUPPORTED_FORM = "unsupported-form"
+CAUSE_MISSING_DISTINCTION = "missing-distinction"
 
 
 def _refuse(cause: str, sentence: str) -> dict:
     """A refusal is a SUCCESSFUL outcome (V7). `cause` says which kind, in the engine's vocabulary."""
     return {"outcome": "unlicensed", "coverage": {"kind": "not-applicable"},
             "refusal": sentence, "cause": cause}
+
+
+def _words(text: str) -> list[str]:
+    """Lowercased alphanumeric words. `cache_hit_frequency` and `cache hit frequency` agree here."""
+    return [w for w in re.split(r"[^a-z0-9]+", text.lower()) if w]
+
+
+def _omission_covering(doc: dict, need: str) -> tuple[str, list[str]] | None:
+    """The declared omission covering `need`, and every purpose that declared one.
+
+    Mirrors src/engine/omission.ts, including the coverage direction: an omission covers a need when
+    EVERY word of the need appears among the omission's words. An omission is prose and a need is an
+    identifier, so equality would never fire; requiring every need word is what stops it guessing.
+    Machines count alongside models -- §8 gives both a `purpose`.
+    """
+    purposes = []
+    for key in ("models", "machines"):
+        for mid, spec in sorted((doc.get(key) or {}).items()):
+            if isinstance(spec, dict):
+                purposes.append((mid, (spec.get("purpose") or {}).get("omits") or []))
+    purposes.sort(key=lambda row: row[0])
+
+    want = _words(need)
+    text: str | None = None
+    declared_by: list[str] = []
+    for mid, omits in purposes:
+        hit = next((o for o in omits
+                    if isinstance(o, str) and want and set(want) <= set(_words(o))), None)
+        if hit is None:
+            continue
+        if text is None:
+            text = hit
+        declared_by.append(mid)
+    return None if text is None else (text, declared_by)
+
+
+def _refuse_undeclared(doc: dict, absence: str, need: str) -> dict:
+    """Refuse a name this system does not declare, as a purposeful omission where a purpose says so.
+
+    The structural clause is kept verbatim and the omission sentence APPENDED: both facts are true
+    and a reader needs both -- the name resolves nowhere, and that is a decision rather than an
+    oversight. Only the CAUSE changes, which is what the parity test compares.
+    """
+    omitted = _omission_covering(doc, need)
+    if omitted is None:
+        return _refuse(CAUSE_UNKNOWN_VOCABULARY, f"{absence}.")
+    text, declared_by = omitted
+    one = len(declared_by) == 1
+    who = (f"model '{declared_by[0]}'" if one
+           else "models " + ", ".join(f"'{m}'" for m in declared_by))
+    return _refuse(CAUSE_MISSING_DISTINCTION,
+                   f"{absence}, and the absence is a declared modelling decision: {who} "
+                   f"deliberately {'omits' if one else 'omit'} '{text}'. There is no misspelling to "
+                   f"hunt for -- the model represents what its purpose says it represents, and this "
+                   f"is outside it. Answering would mean adding the distinction to a model that "
+                   f"chose to leave it out.")
 
 
 def _edges(doc: dict, rel_type: str) -> dict[str, set[str]]:
@@ -1268,7 +1378,10 @@ def run_graph_query(doc: dict, q: dict) -> dict:
     rel_spec = (doc.get("relation-types") or {}).get(rel)
 
     if rel_spec is None:
-        return _refuse(CAUSE_UNKNOWN_VOCABULARY, f"relation type '{rel}' is not declared by this system.")
+        # The omission rung, before the bare-absence one. SEMANTICS.md §7.6: within one subject a
+        # declared decision outranks an absence, so a relation type nowhere in the system that some
+        # purpose declares omitted refuses as `missing-distinction`.
+        return _refuse_undeclared(doc, f"relation type '{rel}' is not declared by this system", str(rel))
 
     # V7 -- a question whose answer composes edges, over a relation that forbids path composition,
     # is refused rather than answered. Being told a question is not licensed is a result, not an
@@ -1303,8 +1416,8 @@ def run_graph_query(doc: dict, q: dict) -> dict:
     # same class of wrong answer as the `where` case above, and the engine refuses it too.
     for label, named in (("from", src), ("to", dst)):
         if named is not None and named not in (doc.get("entities") or {}):
-            return _refuse(CAUSE_UNKNOWN_VOCABULARY,
-                           f"{label}: '{named}' is not a declared entity of this system.")
+            return _refuse_undeclared(
+                doc, f"{label}: '{named}' is not a declared entity of this system", str(named))
 
     # Every form below needs the endpoints it reads. The engine lets a query name ONE endpoint and
     # range the other over the universe; this tool does not, and refuses rather than guessing. The
