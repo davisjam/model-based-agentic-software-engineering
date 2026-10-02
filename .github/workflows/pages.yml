@@ -9,7 +9,8 @@
 #   - Permissions are job-scoped: the `build` job (which runs third-party test code — axe-core + html-validate) holds
 #     NO deploy/write capability; only the `deploy` job gets `pages: write` + `id-token: write`.
 #   - Third-party test tooling is pinned: `npm ci` installs the exact tree in package-lock.json
-#     (integrity-hash verified); axe + html-validate run via `npx --no-install` so they never fetch at run time.
+#     (integrity-hash verified) — once at the root, once in book/, once in workbench/, each against its own
+#     committed lockfile; axe + html-validate run via `npx --no-install` so they never fetch at run time.
 #   - Every action is pinned to an immutable commit SHA (a tag like `v4` is movable; a SHA is not).
 #   - The published artifact excludes `.git`, `node_modules`, and `.github` (nothing secret on a public
 #     repo, but it keeps the deploy tree minimal and avoids serving node_modules).
@@ -53,6 +54,34 @@ jobs:
           node-version-file: .nvmrc
       - name: Install pinned test tooling (axe-core + html-validate, exact tree from lockfile)
         run: npm ci
+      # ── Model Workbench: its gates, then the published bundle ───────────────────────────────────
+      # Until now the workbench's gates ran ONLY in the pre-push hook — i.e. only on the author's
+      # laptop, and that hook SKIPS the TypeScript gates outright when the shell's Node is older than
+      # 22. A type error or a failing unit test could reach main unseen. They run here unconditionally,
+      # and they run BEFORE the bundle build: a type error is a sharper, more localized signal than a
+      # bundler error, so fail on it first.
+      #
+      # Node is already set up above from .nvmrc — the single source of truth the developer's `nvm use`
+      # reads too. No second version is named here; a second copy is a drift source.
+      #
+      # The bundle is build-derived and gitignored, so a fresh checkout has no workbench/dist/. It is
+      # built here, early, because `workbench/dist/` must exist before the assemble step rsyncs the
+      # tree into _site/ — and asserted non-trivial rather than merely present, because the failure
+      # mode is silent: the shell returns 200 with an empty body and a 404 in the console. esbuild
+      # bundles the whole engine, so the real artifact is ~400 KB; 50 KB is a floor that an empty or
+      # truncated emit cannot clear while leaving room for the bundle to shrink legitimately.
+      - name: Model Workbench gates + bundle (tsc, unit suite, esbuild -> workbench/dist/)
+        working-directory: workbench
+        run: |
+          npm ci
+          npx tsc --noEmit
+          npm test
+          npm run build
+          test -f dist/workbench.js || { echo "ERROR: workbench bundle missing after build"; exit 1; }
+          test -f dist/analysis.worker.js || { echo "ERROR: workbench analysis worker bundle missing after build"; exit 1; }
+          SIZE=$(wc -c < dist/workbench.js)
+          test "$SIZE" -ge 51200 || { echo "ERROR: workbench bundle is $SIZE bytes, under the 51200-byte floor — an empty or truncated emit"; exit 1; }
+          echo "workbench bundle: $SIZE bytes"
       # book/ node tooling must be installed BEFORE `catalog.py build`: the build renders every ```mermaid
       # fence to a static inline SVG at build time via mermaid-cli (mmdc), which lives in book/node_modules.
       # `npm ci` in book/ also downloads mermaid-cli's + Puppeteer's bundled Chromium (no
@@ -238,6 +267,13 @@ jobs:
           # landing can never ship thumbless (a silently-skipped derivation is a red deploy).
           test -f _site/book/assets/cover-thumb.png || { echo "ERROR: book/assets/cover-thumb.png missing from site artifact"; exit 1; }
           test -f _site/book/assets/handbook-cover-thumb.png || { echo "ERROR: book/assets/handbook-cover-thumb.png missing from site artifact"; exit 1; }
+          # The Model Workbench app shell + its build-derived bundle. The shell is tracked and rides in
+          # with the rsync; the bundle is gitignored and exists only because the workbench step above
+          # built it. Hard-gate both: the landing links the shell, and a shell without its bundle is a
+          # 200 that renders nothing — the same class of silent failure the PDF assertion above prevents.
+          test -f _site/workbench/index.html || { echo "ERROR: workbench/index.html missing from site artifact"; exit 1; }
+          test -f _site/workbench/dist/workbench.js || { echo "ERROR: workbench/dist/workbench.js missing from site artifact — the bundle did not ride into _site"; exit 1; }
+          test -f _site/workbench/examples/docable.mage.yaml || { echo "ERROR: workbench example model missing from site artifact — the shell's 'Load the example' button fetches it"; exit 1; }
       # ── Publish the MAGE book at /book/mage-book/ + finish the /book/ layout ──────────────────────
       # Copy the MkDocs-built book site (strict-built above) into its published home — flat
       # `<slug>.html` stems identical to the retired hand-rolled pages, so every pre-swap URL +
