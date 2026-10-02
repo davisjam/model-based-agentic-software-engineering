@@ -262,9 +262,13 @@ export function canonicalize(doc: unknown): CanonicalSystem {
     entities: entities(d["entities"]),
     relationTypes: relationTypes(d["relation-types"]),
     // Sorted so the hash does not move when an author reorders relations within a model.
+    // Keyed with JSON.stringify rather than a NUL-separated template literal. NUL is a
+    // tempting separator because it cannot occur in the data -- but it makes the file
+    // binary to tooling, and git's own heuristic only inspects the first 8 KB, so a NUL
+    // past that offset (this one was at 11001) is invisible to every gate we have.
     relations: relations.sort((a, b) =>
-      `${a.type} ${a.from} ${a.to} ${a.model}`.localeCompare(
-        `${b.type} ${b.from} ${b.to} ${b.model}`)),
+      JSON.stringify([a.type, a.from, a.to, a.model])
+        .localeCompare(JSON.stringify([b.type, b.from, b.to, b.model]))),
     models: ms,
     machines: mach,
     instances: expand(mach),
