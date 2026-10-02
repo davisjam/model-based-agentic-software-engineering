@@ -86,20 +86,38 @@ export const detail = (
 
 export type Quantifier = "exists" | "forall";
 
-export type GraphForm =
-  | "direct" | "reachability" | "path" | "shortest-path" | "all-paths"
-  | "predecessors" | "successors" | "cycles" | "components" | "containment";
-
-export type BehaviorForm = "reach" | "invariant" | "recurrence" | "repeatable-cycle" | "deadend" | "transition-live";
-
-const GRAPH_FORMS: ReadonlySet<string> = new Set<GraphForm>([
+/**
+ * Legal `GraphQuery`/`BehaviorQuery` forms, and the sole source of truth for them.
+ *
+ * `mage-query.schema.json` carries its own copy of each list, by necessity: the schema is the
+ * published authority for the wire format, and making it import from here would invert that —
+ * the schema would become derived from an implementation detail. That two-way split is held by a
+ * parity test (`test/engine-forms.test.ts`), not the compiler, for exactly that reason.
+ *
+ * Within this module, there used to be a third copy: a hand-written `Set<GraphForm>` /
+ * `Set<BehaviorForm>` for the runtime membership check. A `Set<T>` typechecks even when it is
+ * missing a member of `T` — it's a legal subset — so that copy could silently drift from the type
+ * and `tsc` would stay green. Deriving the type from the array instead of the array from the type
+ * makes that drift impossible: there is one list, and the `Set` below is built from it.
+ */
+export const GRAPH_FORMS = [
   "direct", "reachability", "path", "shortest-path", "all-paths",
   "predecessors", "successors", "cycles", "components", "containment",
-]);
+] as const;
 
-const BEHAVIOR_FORMS: ReadonlySet<string> = new Set<BehaviorForm>([
+export type GraphForm = typeof GRAPH_FORMS[number];
+
+export const BEHAVIOR_FORMS = [
   "reach", "invariant", "recurrence", "repeatable-cycle", "deadend", "transition-live",
-]);
+] as const;
+
+export type BehaviorForm = typeof BEHAVIOR_FORMS[number];
+
+// Typed `ReadonlySet<string>`, not `ReadonlySet<GraphForm>`/`ReadonlySet<BehaviorForm>`: the
+// membership check below runs against an untyped `str(g["form"])` result, before the value has
+// earned the narrower type.
+const GRAPH_FORM_SET: ReadonlySet<string> = new Set(GRAPH_FORMS);
+const BEHAVIOR_FORM_SET: ReadonlySet<string> = new Set(BEHAVIOR_FORMS);
 
 /**
  * Forms whose answer is derived by composing edges, and which are therefore gated by
@@ -278,8 +296,8 @@ function parseWhere(raw: unknown): GraphWhere | null {
 export function parseGraphQuery(raw: unknown): Res<GraphQuery> {
   const g = isObj(raw) ? raw : {};
   const form = str(g["form"]);
-  if (form === null || !GRAPH_FORMS.has(form)) {
-    return fail(`graph form '${String(g["form"])}' is not one of ${[...GRAPH_FORMS].join(", ")}.`);
+  if (form === null || !GRAPH_FORM_SET.has(form)) {
+    return fail(`graph form '${String(g["form"])}' is not one of ${GRAPH_FORMS.join(", ")}.`);
   }
   const relation = str(g["relation"]);
   if (relation === null) return fail("a graph query must name the relation type it traverses.");
@@ -296,8 +314,8 @@ export function parseGraphQuery(raw: unknown): Res<GraphQuery> {
 export function parseBehaviorQuery(raw: unknown): Res<BehaviorQuery> {
   const b = isObj(raw) ? raw : {};
   const form = str(b["form"]);
-  if (form === null || !BEHAVIOR_FORMS.has(form)) {
-    return fail(`behavior form '${String(b["form"])}' is not one of ${[...BEHAVIOR_FORMS].join(", ")}.`);
+  if (form === null || !BEHAVIOR_FORM_SET.has(form)) {
+    return fail(`behavior form '${String(b["form"])}' is not one of ${BEHAVIOR_FORMS.join(", ")}.`);
   }
   const t = isObj(b["transition"]) ? b["transition"] : null;
   return ok({
