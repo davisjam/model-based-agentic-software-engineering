@@ -12,7 +12,8 @@
     "check": "tsc --noEmit",
     "test": "node --test \"test/*.test.ts\"",
     "build": "node build.mjs",
-    "all": "npm run check && npm run test && npm run build"
+    "all": "npm run check && npm run test && npm run build",
+    "affordances": "node scripts/gen-affordances.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.4",

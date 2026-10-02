@@ -1,0 +1,305 @@
+# GENERATED from src/app/capabilities.ts by `npm run affordances`. Do not hand-edit:
+# the registry is the single source of truth, and a hand-written copy would be the second
+# source of truth this model exists to make impossible.
+
+mage: 1
+
+system:
+  id: mage-workbench-affordances
+  name: MAGE Workbench interface affordances
+
+relation-types:
+
+  afforded-by:
+    description: The capability can be invoked through this interface.
+    absence: >
+      The capability is NOT reachable through that interface. For a semantic capability this is a
+      UX-I1 violation, not a design choice.
+    composition:
+      path: forbidden
+    properties:
+      symmetric: false
+
+  implemented-by:
+    description: The capability resolves to this one application service.
+    absence: No service is named, so the two interfaces cannot be shown to converge.
+    composition:
+      path: forbidden
+
+entities:
+
+  human-interface:
+    type: interface
+    label: Human interface
+
+  machine-interface:
+    type: interface
+    label: Machine interface (window.mage)
+
+  service.transactions-apply:
+    type: application-service
+    label: "transactions.apply"
+
+  service.validator-validate:
+    type: application-service
+    label: "validator.validate"
+
+  service.workspace-applyHypothesis:
+    type: application-service
+    label: "workspace.applyHypothesis"
+
+  service.workspace-discardHypothesis:
+    type: application-service
+    label: "workspace.discardHypothesis"
+
+  service.workspace-export:
+    type: application-service
+    label: "workspace.export"
+
+  service.workspace-load:
+    type: application-service
+    label: "workspace.load"
+
+  service.workspace-openHypothesis:
+    type: application-service
+    label: "workspace.openHypothesis"
+
+  service.workspace-query:
+    type: application-service
+    label: "workspace.query"
+
+  service.workspace-redo:
+    type: application-service
+    label: "workspace.redo"
+
+  service.workspace-runSavedQueries:
+    type: application-service
+    label: "workspace.runSavedQueries"
+
+  service.workspace-state:
+    type: application-service
+    label: "workspace.state"
+
+  service.workspace-undo:
+    type: application-service
+    label: "workspace.undo"
+
+  import:
+    type: semantic-capability
+    label: "Open a .mage.yaml model system."
+    properties:
+      human: wired
+      machine: wired
+
+  export:
+    type: semantic-capability
+    label: "Write the model system back out, comments and key order preserved."
+    properties:
+      human: wired
+      machine: wired
+
+  inspect:
+    type: semantic-capability
+    label: "Read every modelled fact: entities, relations, machines, purpose, omissions."
+    properties:
+      human: wired
+      machine: wired
+
+  validate:
+    type: semantic-capability
+    label: "Report findings against the numbered rules V1-V26."
+    properties:
+      human: wired
+      machine: wired
+
+  query:
+    type: semantic-capability
+    label: "Run one graph or behavioural query and return outcome, coverage and evidence."
+    properties:
+      human: wired
+      machine: wired
+
+  analyze:
+    type: semantic-capability
+    label: "Re-run every saved question against the current system."
+    properties:
+      human: wired
+      machine: wired
+
+  inspect-evidence:
+    type: semantic-capability
+    label: "Read a witness, counterexample or lasso as ordered steps."
+    properties:
+      human: wired
+      machine: wired
+
+  undo:
+    type: semantic-capability
+    label: "Return to the previous semantic revision."
+    properties:
+      human: wired
+      machine: wired
+
+  redo:
+    type: semantic-capability
+    label: "Re-apply an undone revision."
+    properties:
+      human: wired
+      machine: wired
+
+  create-element:
+    type: semantic-capability
+    label: "Add an entity, state or machine."
+    properties:
+      human: not-wired
+      machine: not-wired
+
+  delete-element:
+    type: semantic-capability
+    label: "Remove an entity, state or machine, refusing if anything still references it."
+    properties:
+      human: not-wired
+      machine: not-wired
+
+  create-relation:
+    type: semantic-capability
+    label: "Connect two entities with a licensed relation type."
+    properties:
+      human: not-wired
+      machine: not-wired
+
+  delete-relation:
+    type: semantic-capability
+    label: "Remove a relation."
+    properties:
+      human: not-wired
+      machine: not-wired
+
+  edit-property:
+    type: semantic-capability
+    label: "Change a property or label through the same transaction any other edit uses."
+    properties:
+      human: not-wired
+      machine: not-wired
+
+  create-model:
+    type: semantic-capability
+    label: "Add a purposeful model, with its question."
+    properties:
+      human: not-wired
+      machine: not-wired
+
+  delete-model:
+    type: semantic-capability
+    label: "Remove a purposeful model."
+    properties:
+      human: not-wired
+      machine: not-wired
+
+  create-hypothesis:
+    type: semantic-capability
+    label: "Open a what-if branch through the same validated transaction path as any edit."
+    properties:
+      human: not-wired
+      machine: wired
+
+  commit-hypothesis:
+    type: semantic-capability
+    label: "Accept a hypothesis as authoritative."
+    properties:
+      human: not-wired
+      machine: wired
+
+  discard-hypothesis:
+    type: semantic-capability
+    label: "Throw a hypothesis away; the authoritative model was never touched."
+    properties:
+      human: not-wired
+      machine: wired
+
+models:
+
+  affordances:
+    type: graph
+    label: Interface affordances
+    purpose:
+      question: >
+        Does every supported semantic capability have both a human and a machine affordance
+        over the same application service?
+      represents: [semantic capability, interface, application service, afforded-by, implemented-by]
+      omits: [individual buttons, keyboard shortcuts, visual layout, pointer gestures]
+    entities:
+      - human-interface
+      - machine-interface
+      - service.transactions-apply
+      - service.validator-validate
+      - service.workspace-applyHypothesis
+      - service.workspace-discardHypothesis
+      - service.workspace-export
+      - service.workspace-load
+      - service.workspace-openHypothesis
+      - service.workspace-query
+      - service.workspace-redo
+      - service.workspace-runSavedQueries
+      - service.workspace-state
+      - service.workspace-undo
+      - import
+      - export
+      - inspect
+      - validate
+      - query
+      - analyze
+      - inspect-evidence
+      - undo
+      - redo
+      - create-element
+      - delete-element
+      - create-relation
+      - delete-relation
+      - edit-property
+      - create-model
+      - delete-model
+      - create-hypothesis
+      - commit-hypothesis
+      - discard-hypothesis
+    relations:
+      - { from: import, to: human-interface, type: afforded-by }
+      - { from: import, to: machine-interface, type: afforded-by }
+      - { from: import, to: service.workspace-load, type: implemented-by }
+      - { from: export, to: human-interface, type: afforded-by }
+      - { from: export, to: machine-interface, type: afforded-by }
+      - { from: export, to: service.workspace-export, type: implemented-by }
+      - { from: inspect, to: human-interface, type: afforded-by }
+      - { from: inspect, to: machine-interface, type: afforded-by }
+      - { from: inspect, to: service.workspace-state, type: implemented-by }
+      - { from: validate, to: human-interface, type: afforded-by }
+      - { from: validate, to: machine-interface, type: afforded-by }
+      - { from: validate, to: service.validator-validate, type: implemented-by }
+      - { from: query, to: human-interface, type: afforded-by }
+      - { from: query, to: machine-interface, type: afforded-by }
+      - { from: query, to: service.workspace-query, type: implemented-by }
+      - { from: analyze, to: human-interface, type: afforded-by }
+      - { from: analyze, to: machine-interface, type: afforded-by }
+      - { from: analyze, to: service.workspace-runSavedQueries, type: implemented-by }
+      - { from: inspect-evidence, to: human-interface, type: afforded-by }
+      - { from: inspect-evidence, to: machine-interface, type: afforded-by }
+      - { from: inspect-evidence, to: service.workspace-query, type: implemented-by }
+      - { from: undo, to: human-interface, type: afforded-by }
+      - { from: undo, to: machine-interface, type: afforded-by }
+      - { from: undo, to: service.workspace-undo, type: implemented-by }
+      - { from: redo, to: human-interface, type: afforded-by }
+      - { from: redo, to: machine-interface, type: afforded-by }
+      - { from: redo, to: service.workspace-redo, type: implemented-by }
+      - { from: create-element, to: service.transactions-apply, type: implemented-by }
+      - { from: delete-element, to: service.transactions-apply, type: implemented-by }
+      - { from: create-relation, to: service.transactions-apply, type: implemented-by }
+      - { from: delete-relation, to: service.transactions-apply, type: implemented-by }
+      - { from: edit-property, to: service.transactions-apply, type: implemented-by }
+      - { from: create-model, to: service.transactions-apply, type: implemented-by }
+      - { from: delete-model, to: service.transactions-apply, type: implemented-by }
+      - { from: create-hypothesis, to: machine-interface, type: afforded-by }
+      - { from: create-hypothesis, to: service.workspace-openHypothesis, type: implemented-by }
+      - { from: commit-hypothesis, to: machine-interface, type: afforded-by }
+      - { from: commit-hypothesis, to: service.workspace-applyHypothesis, type: implemented-by }
+      - { from: discard-hypothesis, to: machine-interface, type: afforded-by }
+      - { from: discard-hypothesis, to: service.workspace-discardHypothesis, type: implemented-by }

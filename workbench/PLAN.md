@@ -3,7 +3,8 @@
 **Status:** live. Updated as phases land. This file is the durable record; the orchestrator's todo
 list is a view of it, not the source.
 
-Semantics: [`SEMANTICS.md`](SEMANTICS.md) (frozen kernel, rules V1–V25).
+Semantics: [`SEMANTICS.md`](SEMANTICS.md) (rules V1–V25; V22 generalized and §7.2a added 261002).
+Open decisions: [`OPEN-DECISIONS.md`](OPEN-DECISIONS.md) — **all six ruled 261002**.
 Architecture: [`models/workbench-components.mage.yaml`](models/workbench-components.mage.yaml)
 — and its asserted queries are a build gate, not documentation.
 
@@ -15,13 +16,14 @@ Architecture: [`models/workbench-components.mage.yaml`](models/workbench-compone
 |---|---|---|
 | A | Toolchain + semantic kernel (`src/ir/`) | **landed** `6cca06db` |
 | B | Numbered rules in TS + Python/TS parity test | **landed** `53063675` |
-| C | Engine: graph + state-space + behavioral queries | **parallel, dispatched** |
-| D | YAML adapter + transaction engine | **parallel, dispatched** |
-| E | Renderer: deterministic layout + SVG | **parallel, dispatched** |
-| F | Services facade + `window.mage` agent API (FR-AGENT-1/2) | after C/D/E interfaces settle |
-| G | UI shell + accessibility (FR-A11Y-1/2/3) | after E/F |
+| C | Engine: graph + state-space + behavioral queries | **landed** |
+| D | YAML adapter + transaction engine | **landed** |
+| E | Renderer: deterministic layout + SVG | **landed** |
+| F | Services facade + `window.mage` agent API (FR-AGENT-1/2) | **landed** |
+| G | UI shell + accessible view model + page | **landed**; two ports still refuse honestly |
+| K | Capability registry + UX-I1/I2/I3 + CI assertions (`requirements-ux-261002.md` §22-26) | **next** |
 | H | Integration: gates, Pages build, docs | last |
-| I | Quantitative models (latency/memory/requirements) | **UNBLOCKED 261002** — all 7 ruled, §1a.3 |
+| I | Quantitative models (latency/memory/requirements) | unblocked — all 7 ruled, §1a.3 |
 | J | RDF projection + SPARQL (Comunica) + structured not-answerable | **new**, §1a |
 
 ## 1. The two new top-level requirements
