@@ -142,6 +142,49 @@ jobs:
           npm run test:browser
           test -s "$WB_BROWSER_RECEIPT" || { echo "ERROR: browser tier wrote no receipt — no browser was launched (a glob that matches no test file exits 0)"; exit 1; }
           cat "$WB_BROWSER_RECEIPT"
+      # ── Model Workbench FR-A11Y tier (deploy-blocking) ──────────────────────────────────────────
+      # FR-A11Y-1/-2/-3 were declared a definition-of-done criterion rather than a later pass, and
+      # the step above does not test them: it asserts three accessibility properties by hand, in one
+      # page state, and says nothing about heading order, ARIA validity, contrast, or whether a
+      # keyboard can REACH any of the thirteen operations section 19 enumerates.
+      #
+      # Two suites, in their own directory so this step and the one above stay separable:
+      #   a11y/axe.test.mjs       axe-core over four page states (empty / loaded / properties /
+      #                           hypothesis open), plus a contrast measurement of the SVG diagram
+      #                           text, which axe reports as INCOMPLETE and therefore never judged.
+      #   a11y/keyboard.test.mjs  all thirteen of section 19's operations driven by Tab, Enter,
+      #                           Space, arrows and typing — no element.click(), no handler call.
+      #
+      # BLOCKING, and blocking at zero: measured 0 axe violations in all four states (40–47 rules
+      # passing) and 13/13 operations reachable, after the one defect this wave found was fixed in
+      # the same change (figure svg took its background from var(--panel), so the dark theme painted
+      # the renderer's fixed-light #11151c ink on a #201e16 ground — 1.1:1 for the emphasis glyph and
+      # the mark legend). Had that not been closeable here the step would have landed non-blocking
+      # with the findings enumerated: the repo's rule is drain-then-promote, because a blocking-red
+      # gate breaks every agent pushing through it.
+      #
+      # axe-core is RESOLVED from the ROOT node_modules (`npm ci` in the first step), where it is
+      # already pinned at 4.12.1 for the catalogue's own a11y tier — not added to
+      # workbench/package.json, which would pin the same tool twice in one repo and mutate a
+      # node_modules symlinked across parallel agent worktrees. Puppeteer comes from book/ exactly as
+      # the step above resolves it.
+      #
+      # Two receipts, hard-asserted for the same reason as the one above: each suite is its own file,
+      # so each could be the one whose glob silently matched nothing.
+      - name: Model Workbench FR-A11Y tier (axe-core over four states + section 19 by keyboard) + receipt assertions
+        working-directory: workbench
+        env:
+          WB_AXE_RECEIPT: ${{ runner.temp }}/wb-axe-receipt.json
+          WB_KEYBOARD_RECEIPT: ${{ runner.temp }}/wb-keyboard-receipt.json
+        run: |
+          test -f dist/workbench.js || { echo "ERROR: workbench bundle missing — the FR-A11Y tier would audit a page with no app"; exit 1; }
+          test -f ../node_modules/axe-core/axe.min.js || { echo "ERROR: axe-core missing from the root node_modules — the root 'npm ci' step must run before this one"; exit 1; }
+          rm -f "$WB_AXE_RECEIPT" "$WB_KEYBOARD_RECEIPT"
+          npm run test:a11y
+          test -s "$WB_AXE_RECEIPT" || { echo "ERROR: the axe suite wrote no receipt — no browser audited the page"; exit 1; }
+          test -s "$WB_KEYBOARD_RECEIPT" || { echo "ERROR: the keyboard suite wrote no receipt — no browser drove the keyboard"; exit 1; }
+          cat "$WB_AXE_RECEIPT"
+          cat "$WB_KEYBOARD_RECEIPT"
       # Typst backs BOTH the citation render (below) and the PDF print edition (further down), so install it
       # up front — the pinned release, clone-and-run-safe + reproducible (verify it extracts a runnable
       # binary, put it on PATH).

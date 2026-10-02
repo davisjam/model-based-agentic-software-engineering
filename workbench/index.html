@@ -129,7 +129,23 @@
   }
 
   figure { margin: 0; }
-  figure svg { max-width: 100%; height: auto; background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; }
+  /*
+    The diagram's ground is FIXED light, not var(--panel), and that is a WCAG 1.4.3 fix rather than
+    a taste.
+
+    The renderer's stylesheet (src/render/svg.ts) is a theme-invariant light palette and has to be:
+    the SVG is also exported standalone, so it cannot read this page's custom properties. Its ink is
+    #11151c. With var(--panel) the dark theme painted that ink on a #201e16 ground -- 1.1:1 against
+    the 4.5:1 AA floor -- for exactly the two texts that sit on the bare ground with no halo: the
+    emphasis glyph and the mark legend, which ARE the textual equivalent of the visual emphasis
+    channel FR-A11Y-2 requires. aria-hidden on #canvas hides that from a screen reader and does
+    nothing for a sighted low-vision reader.
+
+    axe reports this rule as INCOMPLETE for SVG text -- it cannot resolve an SVG fill against an SVG
+    ancestor's paint -- so the page scored zero violations throughout. Measured and pinned by
+    test/browser/a11y/axe.test.mjs instead.
+  */
+  figure svg { max-width: 100%; height: auto; background: #ffffff; border: 1px solid var(--rule); border-radius: 4px; }
 
   /*
     Editing forms. Native fieldset/legend/label/select throughout: a real <legend> is announced as

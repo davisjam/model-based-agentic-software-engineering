@@ -19,6 +19,10 @@
 //
 // Running it locally: `npm run build` in workbench/, `npm ci` in book/ (once — it fetches the
 // bundled Chromium), then `npm run test:browser`. CI does exactly those three things in that order.
+//
+// The FR-A11Y tier in test/browser/a11y/ shares this fixture and runs as `npm run test:a11y`. It
+// additionally needs `npm ci` at the REPO ROOT, where axe-core is pinned -- resolved there, like
+// Puppeteer from book/, rather than added to this package.
 import { createRequire } from "node:module";
 import { createServer } from "node:http";
 import { readFile, writeFile } from "node:fs/promises";
@@ -36,6 +40,13 @@ export const REPO_ROOT = join(WORKBENCH_DIR, "..");
  */
 export const PORT = 8143;
 export const ORIGIN = `http://127.0.0.1:${PORT}`;
+
+/**
+ * `node --test` runs test FILES in parallel, so every suite that calls `startServer` needs its own
+ * port or the second one binds a busy socket and fails for a reason that has nothing to do with the
+ * page. 8143 is the original browser tier; the FR-A11Y suites claim 8144 and 8145.
+ */
+export const originFor = (port) => `http://127.0.0.1:${port}`;
 
 const MIME = new Map(Object.entries({
   ".html": "text/html; charset=utf-8",
@@ -92,7 +103,7 @@ export function loadPuppeteer() {
  * thrown during module evaluation is still caught. Recording from page creation onward also means
  * the console assertion covers everything the suite does to the page, not just its first paint.
  */
-export async function openWorkbench(browser) {
+export async function openWorkbench(browser, origin = ORIGIN) {
   const page = await browser.newPage();
   const diagnostics = { pageErrors: [], consoleErrors: [], notFound: [], requestFailures: [] };
 
@@ -101,7 +112,7 @@ export async function openWorkbench(browser) {
   page.on("response", (r) => { if (r.status() === 404) diagnostics.notFound.push(new URL(r.url()).pathname); });
   page.on("requestfailed", (r) => diagnostics.requestFailures.push(`${new URL(r.url()).pathname}: ${r.failure()?.errorText}`));
 
-  await page.goto(`${ORIGIN}/index.html`, { waitUntil: "networkidle0", timeout: 60_000 });
+  await page.goto(`${origin}/index.html`, { waitUntil: "networkidle0", timeout: 60_000 });
   // window.mage is installed at the end of module evaluation; networkidle0 does not imply it ran.
   await page.waitForFunction(() => typeof window.mage === "object", { timeout: 30_000 });
   return { page, diagnostics };
@@ -141,6 +152,14 @@ export async function loadFlagshipExample(page) {
  */
 export const RECEIPT_PATH = process.env.WB_BROWSER_RECEIPT ?? join(tmpdir(), "wb-browser-receipt.json");
 
+/**
+ * The FR-A11Y tiers get their own receipts for the same reason: each runs in its own file, so each
+ * can be the one that silently matched no glob. Their CI step hard-asserts both.
+ */
+export const AXE_RECEIPT_PATH = process.env.WB_AXE_RECEIPT ?? join(tmpdir(), "wb-axe-receipt.json");
+export const KEYBOARD_RECEIPT_PATH =
+  process.env.WB_KEYBOARD_RECEIPT ?? join(tmpdir(), "wb-keyboard-receipt.json");
+
 /** Everything the gate measured, in one page round trip, for the receipt. */
 export async function measureForReceipt(page) {
   return page.evaluate(() => {
@@ -166,7 +185,7 @@ export async function measureForReceipt(page) {
   });
 }
 
-export async function writeReceipt(payload) {
-  await writeFile(RECEIPT_PATH, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
-  return RECEIPT_PATH;
+export async function writeReceipt(payload, path = RECEIPT_PATH) {
+  await writeFile(path, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+  return path;
 }
