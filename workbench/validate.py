@@ -96,7 +96,7 @@ def check_coercion(doc: dict, f: Findings) -> None:
                       "as `true`. The synchronization key is `sync:`.")
 
 
-def check_meaning(doc: dict, f: Findings) -> None:
+def check_meaning(doc: dict, f: Findings, verbose: bool = True) -> None:
     entities = doc.get("entities") or {}
     machines = doc.get("machines") or {}
     events = doc.get("events") or {}
@@ -237,7 +237,7 @@ def check_meaning(doc: dict, f: Findings) -> None:
         g = q.get("graph") or {}
         if g.get("form") in multihop:
             rt = rel_types.get(g.get("relation")) or {}
-            if ((rt.get("composition") or {}).get("path")) == "forbidden":
+            if ((rt.get("composition") or {}).get("path")) == "forbidden" and verbose:
                 print(f"  [note V7] queries.{qid}: multi-hop '{g.get('form')}' over "
                       f"'{g.get('relation')}' is UNLICENSED by design -- the engine must return "
                       f"outcome=unlicensed with a refusal, not an answer.")
@@ -504,15 +504,38 @@ def self_test() -> int:
     return 1 if failures else 0
 
 
+def emit_json(path: pathlib.Path) -> int:
+    """Machine-readable findings, for the TypeScript parity test.
+
+    Two independent implementations of one numbered specification are only worth having if their
+    disagreement is detectable, which needs a stable wire format rather than printed prose.
+    """
+    doc = yaml.safe_load(path.read_text())
+    f = Findings()
+    if isinstance(doc, dict):
+        check_coercion(doc, f)
+        if not f:
+            check_shape(doc, f)
+            if not [r for r in f.rows if r[0] == "SCHEMA"]:
+                check_meaning(doc, f, verbose=False)
+                check_queries(doc, f, verbose=False)
+    print(json.dumps({"findings": [{"rule": r, "where": w, "message": m} for r, w, m in f.rows]},
+                     indent=2, sort_keys=True))
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("path", nargs="?", type=pathlib.Path, help="a .mage.yaml model system")
     ap.add_argument("--self-test", action="store_true", help="check that each rule fires on a model that violates it")
+    ap.add_argument("--json", action="store_true", help="emit findings as JSON (for the parity test); always exits 0")
     args = ap.parse_args()
     if args.self_test:
         return self_test()
     if not args.path:
         ap.error("give a path, or --self-test")
+    if args.json:
+        return emit_json(args.path)
     return validate(args.path)
 
 
