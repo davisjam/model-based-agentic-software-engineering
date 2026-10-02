@@ -1,5 +1,5 @@
 /**
- * The numbered semantic rules, V1–V26 of ../../SEMANTICS.md, plus the un-numbered ANNOTATION pass.
+ * The numbered semantic rules, V1–V31 of ../../SEMANTICS.md, plus the un-numbered ANNOTATION pass.
  *
  * Kernel component: depends only on the IR. Every finding carries its rule id, so the spec, this
  * module, `workbench/validate.py`, and the error a user reads all cite the same identifier. That
@@ -10,8 +10,10 @@
  * reference resolution, graph acyclicity, participant symmetry, and loader hazards.
  */
 import type {
-  Annotated, CanonMachine, CanonicalSystem, Finding, GuardOp, Scalar,
+  Annotated, CanonMachine, CanonQuantity, CanonicalSystem, Dimension, ExprOperand, Finding, GuardOp,
+  Magnitude, Scalar,
 } from "../ir/types.ts";
+import { DIMENSIONS, DIMENSION_IDS, METRIC_NAMES, METRIC_NAMESPACE, TARGET_KINDS } from "../ir/types.ts";
 
 /**
  * YAML 1.1 implicit-types these bare scalars. A key or id among them was read as a boolean or null
@@ -140,7 +142,7 @@ function guardDomain(s: CanonicalSystem, ref: string): GuardDomain | null {
 
 const listed = (values: readonly Scalar[]): string => values.map((v) => String(v)).join(", ");
 
-/** V1–V24 and V26 — meaning, once the loaded model is known to be the written one. */
+/** V1–V24 and V26–V31 — meaning, once the loaded model is known to be the written one. */
 export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
   const c = new Collector();
 
@@ -365,7 +367,333 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
     }
   }
 
+  // Quantities last, and through the same entry point so every caller of checkMeaning gets them.
+  // The pass stays separately exported because it has its own subject and its own tests.
+  c.findings.push(...checkQuantities(s));
+
   return c.findings;
+}
+
+// ---------------------------------------------------------------------------------------------
+// V27–V31 — quantities.
+//
+// Five subjects, one each: the references resolve (V27), the dimension and the literals are
+// readable (V28), the magnitudes are in bounds (V29), the dimensions agree (V30), and the reserved
+// `metrics` namespace is not shadowed (V31).
+// ---------------------------------------------------------------------------------------------
+
+const listUnits = (d: Dimension): string => Object.keys(DIMENSIONS[d].units).join(", ");
+
+/** Where a quantity's `target` points, or the reason it points nowhere. */
+function targetFault(s: CanonicalSystem, q: CanonQuantity): string | null {
+  const { kind, ref, raw } = q.target;
+  if (kind === null) {
+    return `target '${raw}' names no kind. Write one of ${TARGET_KINDS.map((k) => `${k}:`).join(" ")}.`;
+  }
+  if (ref === "") return `target '${raw}' names a kind but no object.`;
+  switch (kind) {
+    case "entity":
+      return s.entities.has(ref) ? null : `target '${raw}': '${ref}' is not a declared entity.`;
+    case "model":
+      return s.models.has(ref) ? null : `target '${raw}': '${ref}' is not a declared model.`;
+    case "relation":
+      // By id, never by endpoints. §9 requires a STABLE semantic id, and `a->b` is not one: adding a
+      // second edge between the same pair silently makes the annotation ambiguous.
+      return s.relations.some((r) => r.id === ref) ? null
+        : `target '${raw}': no relation declares id '${ref}'. A quantity addresses a relation ` +
+          `through its own 'id:', which an unidentified relation does not have.`;
+    case "state": {
+      const dot = ref.lastIndexOf(".");
+      if (dot > 0 && dot < ref.length - 1) {
+        const machine = s.machines.get(ref.slice(0, dot));
+        if (machine === undefined) return `target '${raw}': '${ref.slice(0, dot)}' is not a declared machine.`;
+        return machine.states.includes(ref.slice(dot + 1)) ? null
+          : `target '${raw}': '${machine.id}' declares no state '${ref.slice(dot + 1)}'.`;
+      }
+      // A bare state name resolves only when it is unambiguous, which is how src/engine/refs.ts
+      // treats a bare variable: refuse the ambiguity rather than pick a machine.
+      const owners = [...s.machines.values()].filter((m) => m.states.includes(ref));
+      if (owners.length === 1) return null;
+      return owners.length === 0
+        ? `target '${raw}': no machine declares a state '${ref}'.`
+        : `target '${raw}': ${owners.length} machines declare a state '${ref}'. Qualify it as ` +
+          `state:<machine>.${ref}.`;
+    }
+    case "transition": {
+      // Transitions carry no id, and `label:` carries no semantics (V1) — addressing one by label
+      // would make a documentation string load-bearing and break on a duplicate. The stable address
+      // is machine plus index, which is already how a transaction deletes one.
+      const hash = ref.lastIndexOf("#");
+      if (hash <= 0 || hash === ref.length - 1) {
+        return `target '${raw}': address a transition as transition:<machine>#<index>. A transition ` +
+          `has no id, and 'label:' carries no semantics (V1), so an index is the only stable handle.`;
+      }
+      const machine = s.machines.get(ref.slice(0, hash));
+      if (machine === undefined) return `target '${raw}': '${ref.slice(0, hash)}' is not a declared machine.`;
+      const text = ref.slice(hash + 1);
+      const index = Number(text);
+      if (!/^(?:0|[1-9][0-9]*)$/.test(text) || index >= machine.transitions.length) {
+        return `target '${raw}': '${machine.id}' declares ${machine.transitions.length} transition(s), ` +
+          `so index '${text}' addresses none.`;
+      }
+      return null;
+    }
+    case "parameter":
+      return `target '${raw}': 'parameter:' is a reserved future shape. v0.1 represents no parameters, ` +
+        `so no parameter target can resolve — annotate the transition or entity instead.`;
+  }
+}
+
+/** V28's account of a literal that did not reach base units. Null when the fault is V30's. */
+function faultMessage(m: Magnitude, dimension: Dimension, part: string): string | null {
+  switch (m.fault) {
+    case null:
+      return null;
+    case "unit-foreign":
+      return null;
+    case "absent":
+      return `${part} has no value. Declare 'value:' or 'range:'.`;
+    case "dimension-unknown":
+      return null;
+    case "spelling":
+      return `${part} '${m.raw}' is not a plain decimal with an optional unit. Loaders disagree on ` +
+        `every other spelling — PyYAML reads '017' as 15 and '1:30' as 90 where the 'yaml' package ` +
+        `reads 17 and '1:30' — so the workbench accepts only digits with at most one decimal point.`;
+    case "unit-missing":
+      return `${part} '${m.raw}' is a bare number, and ${dimension} is measured in ${listUnits(dimension)}. ` +
+        `Write '${m.raw} ${DIMENSIONS[dimension].base}' if that is what you meant: a silently assumed ` +
+        `unit is the dimension error this feature exists to prevent.`;
+    case "unit-forbidden":
+      return `${part} '${m.raw}' carries a unit, but ${dimension} is dimensionless. Write the number alone.`;
+    case "unit-unknown":
+      return `${part} '${m.raw}': '${String(m.unit)}' is not a unit this workbench knows. ` +
+        `${dimension} accepts ${listUnits(dimension)}.`;
+  }
+}
+
+/** V30's account of the same literal: the unit is real, and it measures something else. */
+function foreignMessage(m: Magnitude, dimension: Dimension, part: string): string | null {
+  if (m.fault !== "unit-foreign") return null;
+  const owner = [...DIMENSION_IDS].find((d) => DIMENSIONS[d].units[String(m.unit)] !== undefined);
+  return `${part} '${m.raw}' is measured in ${String(owner)}, but this quantity declares ${dimension}. ` +
+    `§7 forbids silently coercing one dimension into another.`;
+}
+
+/**
+ * What arithmetic sees. `ratio` and `count` both collapse to dimensionless, which is ordinary
+ * dimensional analysis — a proportion and a tally are both pure numbers.
+ *
+ * Collapsing them is what lets `metrics.state_count * 2 ms` be a duration (§10's own example) and
+ * `entity_count / state_count` be a ratio, without `ms * ms` or `250 ms + 128 MB` becoming legal.
+ * `ratio`'s [0, 1] ceiling is unaffected: V29 enforces it on the literal, where it belongs.
+ */
+type DimensionClass = "duration" | "memory" | "cost" | "dimensionless";
+
+const classOf = (d: Dimension | null): DimensionClass =>
+  d === null || d === "ratio" || d === "count" ? "dimensionless" : d;
+
+/**
+ * V27–V31 for one system.
+ *
+ * Each quantity is checked in stages and a stage DECLINES once an earlier one spoke about the same
+ * object — V26's discipline, applied inside this family. A quantity whose dimension is unreadable
+ * gets no magnitude complaints, because every one of them would be a consequence; an expression with
+ * an unresolvable operand gets no dimension complaint, because the operand is the bug.
+ */
+export function checkQuantities(s: CanonicalSystem): readonly Finding[] {
+  const c = new Collector();
+
+  // V31 — `metrics` is reserved. A user id that shadows it would make `metrics.state_count` read as
+  // that object's member, so the §10 distinction between a fact FROM the model and a fact ABOUT the
+  // modeled system would stop being visible on the page.
+  const reserve = (scope: string, ids: Iterable<string>): void => {
+    for (const id of ids) {
+      if (id === METRIC_NAMESPACE) {
+        c.add("V31", scope,
+          `'${METRIC_NAMESPACE}' is the reserved model-metric namespace (${METRIC_NAMES.join(", ")}); ` +
+          `it cannot also name a ${scope.split(".")[0] ?? scope} object. Rename it.`);
+      }
+    }
+  };
+  reserve("entities", s.entities.keys());
+  reserve("machines", s.machines.keys());
+  reserve("events", s.events.keys());
+  reserve("models", s.models.keys());
+  reserve("relation-types", s.relationTypes.keys());
+  reserve("domains", s.domains.keys());
+  reserve("quantities", s.quantities.keys());
+  for (const m of s.machines.values()) {
+    reserve(`machines.${m.id}.variables`, m.variables.keys());
+    reserve(`machines.${m.id}.derived`, m.derived.keys());
+    reserve(`machines.${m.id}.states`, m.states);
+  }
+
+  for (const q of s.quantities.values()) {
+    const where = `quantities.${q.id}`;
+
+    // V27 — no dangling annotations (§9). A quantity pointing at a deleted transition is not
+    // invalid, it is WRONG, and nothing says so unless a rule does.
+    const fault = targetFault(s, q);
+    if (fault !== null) c.add("V27", where, fault);
+
+    if (q.dimension === null) {
+      c.add("V28", where,
+        `dimension '${q.dimensionRaw}' is not one of ${DIMENSION_IDS.join(", ")}. The dimension is the ` +
+        `quantity's type, so nothing else about it can be checked without one.`);
+      continue;
+    }
+    const dimension = q.dimension;
+
+    const literal = (m: Magnitude, part: string): boolean => {
+      const v28 = faultMessage(m, dimension, part);
+      if (v28 !== null) c.add("V28", where, v28);
+      const v30 = foreignMessage(m, dimension, part);
+      if (v30 !== null) c.add("V30", where, v30);
+      return m.base !== null;
+    };
+
+    // V29 — the magnitude is admissible. Negatives are refused across the board: §29 ⑥ grants
+    // safety to "monotone nonnegative interval expressions", and a memory of -1 MB is not a model
+    // of anything. The ratio ceiling is a RULE here rather than a sentence in the dimension table.
+    const bounds = (m: Magnitude, part: string): void => {
+      if (m.base === null) return;
+      if (m.base < 0) {
+        c.add("V29", where, `${part} normalizes to ${m.base}; no v0.1 dimension admits a negative magnitude.`);
+      }
+      const max = DIMENSIONS[dimension].maximum;
+      if (max !== null && m.base > max) {
+        c.add("V29", where,
+          `${part} normalizes to ${m.base}, above the maximum ${max} for ${dimension} — a ratio is a ` +
+          `proportion of one, so 80% is 0.8.`);
+      }
+    };
+
+    const v = q.value;
+    if (v.kind === "point") {
+      if (literal(v.magnitude, "value")) bounds(v.magnitude, "value");
+    } else if (v.kind === "range") {
+      const lowOk = literal(v.low, "range low");
+      const highOk = literal(v.high, "range high");
+      if (lowOk) bounds(v.low, "range low");
+      if (highOk) bounds(v.high, "range high");
+      if (lowOk && highOk && (v.low.base ?? 0) > (v.high.base ?? 0)) {
+        c.add("V29", where,
+          `range [${v.low.raw}, ${v.high.raw}] is reversed: ${v.low.base} > ${v.high.base} in ` +
+          `${String(DIMENSIONS[dimension].base ?? dimension)}.`);
+      }
+    } else if (v.kind === "absent") {
+      c.add("V28", where, "has no value. Declare 'value:' or 'range:'.");
+    } else {
+      checkExpression(c, s, q, dimension, where);
+    }
+  }
+  return c.findings;
+}
+
+/** The dimension an operand contributes, for operands already known to resolve. */
+function operandDimension(s: CanonicalSystem, o: ExprOperand): Dimension | null {
+  switch (o.kind) {
+    case "literal": return o.dimension;
+    // Every model metric is a plain count of model structure.
+    case "metric": return "count";
+    case "quantity": return s.quantities.get(o.id)?.dimension ?? null;
+    case "unreadable": return null;
+  }
+}
+
+/**
+ * V27/V28 then V30 over one expression.
+ *
+ * Nothing is evaluated. §7 makes dimensional agreement a VALIDATION question, and a dimension is a
+ * property of the operands rather than of their values, so typing the expression needs no arithmetic
+ * — which is also what keeps this out of the analysis layer.
+ */
+function checkExpression(
+  c: Collector, s: CanonicalSystem, q: CanonQuantity, dimension: Dimension, where: string,
+): void {
+  const v = q.value;
+  if (v.kind !== "expression") return;
+  if (v.terms.length === 0) {
+    c.add("V28", where, `expression '${v.source}' has no operands.`);
+    return;
+  }
+
+  let unresolved = 0;
+  for (const term of v.terms) {
+    for (const f of term.factors) {
+      const o = f.operand;
+      if (o.kind === "unreadable") {
+        unresolved += 1;
+        c.add("V28", where,
+          `expression operand '${o.text}' is not a magnitude, a model metric, or a declared quantity. ` +
+          `Operators stand alone between spaces, parentheses are not v0.1 syntax, and an expression ` +
+          `may not end with an operator.`);
+      } else if (o.kind === "metric") {
+        if (o.name === "") {
+          unresolved += 1;
+          c.add("V27", where, `'${METRIC_NAMESPACE}' names a namespace, not a value. Write ${METRIC_NAMESPACE}.${METRIC_NAMES[0]}.`);
+        } else if (!(METRIC_NAMES as readonly string[]).includes(o.name)) {
+          unresolved += 1;
+          c.add("V27", where,
+            `'${METRIC_NAMESPACE}.${o.name}' is not a model metric. Declared: ${METRIC_NAMES.join(", ")}.`);
+        }
+      } else if (o.kind === "quantity") {
+        if (!s.quantities.has(o.id)) {
+          unresolved += 1;
+          c.add("V27", where, `expression references '${o.id}', which is not a declared quantity.`);
+        } else if (s.quantities.get(o.id)?.dimension === null) {
+          // Its own V28 already names the cause; a dimension complaint here would send the author
+          // to the wrong quantity.
+          unresolved += 1;
+        }
+      } else if (o.magnitude.fault !== null) {
+        unresolved += 1;
+        const v28 = faultMessage(o.magnitude, o.dimension ?? dimension, `expression operand`);
+        if (v28 !== null) c.add("V28", where, v28);
+      }
+    }
+  }
+  // Every dimension below would be a guess if one operand did not resolve, and a guessed dimension
+  // mismatch sends the author hunting for the wrong defect.
+  if (unresolved > 0) return;
+
+  // V30 — a product carries at most one dimension and `/` divides by a pure number. `ms` times `ms`
+  // has no dimension in v0.1, so nothing downstream could name the result.
+  const termClasses: DimensionClass[] = [];
+  for (const term of v.terms) {
+    const carried = term.factors.filter((f) => classOf(operandDimension(s, f.operand)) !== "dimensionless");
+    // The divisor check runs FIRST: `10 ms / 2 ms` is two dimensioned operands too, and "you
+    // divided by a duration" sends the author to the operator rather than counting operands.
+    const divisor = term.factors.find(
+      (f) => f.op === "/" && classOf(operandDimension(s, f.operand)) !== "dimensionless");
+    if (divisor !== undefined) {
+      c.add("V30", where,
+        `expression '${v.source}' divides by a ${classOf(operandDimension(s, divisor.operand))} ` +
+        `operand; a divisor must be dimensionless.`);
+      return;
+    }
+    if (carried.length > 1) {
+      c.add("V30", where,
+        `expression '${v.source}' multiplies ${carried.length} dimensioned operands ` +
+        `(${carried.map((f) => classOf(operandDimension(s, f.operand))).join(" x ")}); v0.1 has no ` +
+        `compound dimensions.`);
+      return;
+    }
+    termClasses.push(carried[0] === undefined ? "dimensionless" : classOf(operandDimension(s, carried[0].operand)));
+  }
+
+  const first = termClasses[0] ?? "dimensionless";
+  const clash = termClasses.find((d) => d !== first);
+  if (clash !== undefined) {
+    c.add("V30", where,
+      `expression '${v.source}' adds ${first} to ${clash}. §7 forbids silently coercing one dimension ` +
+      `into another.`);
+    return;
+  }
+  if (first !== classOf(dimension)) {
+    c.add("V30", where,
+      `expression '${v.source}' has dimension ${first}, but the quantity declares ${dimension}.`);
+  }
 }
 
 /**

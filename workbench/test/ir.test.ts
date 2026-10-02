@@ -52,6 +52,29 @@ test("containment resolves parents in both directions", () => {
   assert.equal(s.entities.get("remediation")?.parent, null);
 });
 
+test("quantities canonicalize into base units, or not at all", () => {
+  // `canonicalize` is total and non-validating, so a literal that cannot be read must still produce
+  // a value. The `base: null` is §7's "in base units or not at all" held as a type, and the fault
+  // tells the validator what to say instead of leaving it to re-derive the cause.
+  const s = canonicalize({
+    mage: 1, system: { id: "t" }, entities: { cache: {} },
+    quantities: {
+      good: { target: "entity:cache", dimension: "memory", value: "128 KB" },
+      bad: { target: "entity:cache", dimension: "memory", value: "128 whatsits" },
+    },
+  });
+  const good = s.quantities.get("good");
+  assert.equal(good?.target.kind, "entity");
+  assert.equal(good?.target.ref, "cache");
+  assert.equal(good?.scope, "configuration");
+  assert.ok(good?.value.kind === "point");
+  assert.deepEqual(good.value.magnitude, { raw: "128 KB", unit: "KB", base: 0.125, fault: null });
+
+  const bad = s.quantities.get("bad");
+  assert.ok(bad?.value.kind === "point");
+  assert.deepEqual(bad.value.magnitude, { raw: "128 whatsits", unit: "whatsits", base: null, fault: "unit-unknown" });
+});
+
 test("hash is stable across cosmetic change and moves on semantic change", () => {
   const raw = readFileSync("examples/docable.mage.yaml", "utf8");
   const base = systemHash(canonicalize(parse(raw)));

@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import json
 import pathlib
+import re
 import sys
 
 try:
@@ -50,6 +51,41 @@ NOTE_KEYS = frozenset({"id", "kind", "text", "author", "at"})
 
 SCALAR_TYPES = (str, bool, int, float)
 
+# The dimension table, mirroring src/ir/types.ts DIMENSIONS. Duplicated across the language boundary
+# the way GUARD_OPS and YAML_COERCED already are -- a small closed table is the cheapest thing to
+# copy, and a drifted factor shows up as a parity mismatch because a reversed `[1 GB, 1 MB]` range
+# only fires when both sides agree that GB exceeds MB.
+#
+# Every factor is an integer multiple of a power of two (1, 1000, 1024, 2**-10), so normalizing an
+# exactly-representable magnitude introduces no rounding and `128 KB + 1 MB` is 1.125 on the nose.
+# That is why a normalized magnitude is a plain float on both sides instead of a rational.
+DIMENSIONS: dict[str, dict] = {
+    "duration": {"base": "ms", "units": {"ms": 1.0, "s": 1000.0}, "scope": "execution", "maximum": None},
+    "memory": {"base": "MB", "units": {"KB": 0.0009765625, "MB": 1.0, "GB": 1024.0},
+               "scope": "configuration", "maximum": None},
+    "cost": {"base": "usd", "units": {"usd": 1.0}, "scope": "execution", "maximum": None},
+    "ratio": {"base": None, "units": {}, "scope": "structural", "maximum": 1.0},
+    "count": {"base": None, "units": {}, "scope": "structural", "maximum": None},
+}
+
+DIMENSION_IDS = ("duration", "memory", "cost", "ratio", "count")
+UNIT_DIMENSIONS = {u: d for d in DIMENSION_IDS for u in DIMENSIONS[d]["units"]}
+
+TARGET_KINDS = ("transition", "relation", "entity", "state", "parameter", "model")
+
+METRIC_NAMESPACE = "metrics"
+METRIC_NAMES = ("state_count", "transition_count", "entity_count", "relation_count")
+
+EXPR_OPS = frozenset({"+", "-", "*", "/"})
+
+# A plain decimal, and deliberately nothing else. Exotic spellings are where the two loaders this
+# project runs disagree, measured: PyYAML reads `017` as 15, `1_000` as 1000 and `1:30` as 90, while
+# the `yaml` package reads 17, "1_000" and "1:30". A unit-bearing literal arrives as a STRING, so the
+# magnitude is parsed here rather than by a loader and the class is closed outright.
+_DECIMAL = re.compile(r"^-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?$")
+_ID_SHAPE = re.compile(r"^[A-Za-z_][A-Za-z0-9_.-]*$")
+_INDEX = re.compile(r"^(?:0|[1-9][0-9]*)$")
+
 
 class Findings:
     def __init__(self) -> None:
@@ -73,6 +109,11 @@ def _ids_of(obj: object) -> list[str]:
 def _numeric(value: object) -> bool:
     """A number, and not a bool. Python makes `True` an int; the IR and the schema do not."""
     return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
+def _num(x: float) -> str:
+    """Format like JavaScript's String(number), so both validators print a magnitude identically."""
+    return str(int(x)) if x == int(x) and abs(x) < 1e21 else repr(x)
 
 
 def _in_domain(value: object, values: list[object]) -> bool:
@@ -394,6 +435,10 @@ def check_meaning(doc: dict, f: Findings, verbose: bool = True) -> None:
                       f"'{g.get('relation')}' is UNLICENSED by design -- the engine must return "
                       f"outcome=unlicensed with a refusal, not an answer.")
 
+    # V27-V31 -- quantities. Last, and through this one entry point so every caller gets them; the
+    # pass stays a separate function because it has its own subject and its own tests.
+    check_quantities(doc, f)
+
     # V24 -- omits is checked against the model's real vocabulary, not merely asserted.
     for mid, model in models.items():
         vocab = {rel.get("type") for rel in (model.get("relations") or [])}
@@ -403,6 +448,430 @@ def check_meaning(doc: dict, f: Findings, verbose: bool = True) -> None:
             if omitted in vocab:
                 f.add("V24", f"models.{mid}.purpose.omits",
                       f"'{omitted}' is declared omitted but appears in this model -- the declaration would lie to a reader.")
+
+
+# ---------------------------------------------------------------------------------------------
+# V27-V31 -- quantities. Mirrors src/validator/rules.ts checkQuantities.
+#
+# Five subjects, one each: the references resolve (V27), the dimension and the literals are readable
+# (V28), the magnitudes are in bounds (V29), the dimensions agree (V30), and the reserved `metrics`
+# namespace is not shadowed (V31).
+# ---------------------------------------------------------------------------------------------
+
+
+def _split_literal(raw: object) -> tuple[str, str, str | None, bool]:
+    """(text, number_text, unit, plain) -- a written literal, before any dimension is consulted."""
+    if _numeric(raw):
+        # str(1e21) is '1e+21', which _DECIMAL refuses, so an absurd magnitude is reported rather
+        # than carried downstream in a spelling no author wrote.
+        text = str(raw)
+        return text, text, None, bool(_DECIMAL.match(text))
+    if not isinstance(raw, str):
+        return "", "", None, False
+    text = raw.strip()
+    if not text:
+        return "", "", None, False
+    words = text.split()
+    if len(words) > 2:
+        return text, words[0], None, False
+    unit = words[1] if len(words) == 2 else None
+    return text, words[0], unit, bool(_DECIMAL.match(words[0]))
+
+
+def _magnitude(raw: object, dimension: str | None) -> tuple[str, str | None, float | None, str | None]:
+    """(raw, unit, base, fault) -- one written magnitude, normalized against its declared dimension.
+
+    `base is None` exactly when `fault is not None`: §7's "a quantity reaches anything downstream in
+    base units or not at all". The fault is recorded rather than re-derived so both implementations
+    produce the same message from the same classification.
+    """
+    text, number_text, unit, plain = _split_literal(raw)
+    if not text:
+        return "", None, None, "absent"
+    if dimension is None:
+        return text, unit, None, "dimension-unknown"
+    if not plain:
+        return text, unit, None, "spelling"
+    spec = DIMENSIONS[dimension]
+    dimensionless = spec["base"] is None
+    if unit is None:
+        if dimensionless:
+            return text, None, float(number_text), None
+        return text, None, None, "unit-missing"
+    if dimensionless:
+        return text, unit, None, "unit-forbidden"
+    factor = spec["units"].get(unit)
+    if factor is None:
+        return text, unit, None, "unit-foreign" if unit in UNIT_DIMENSIONS else "unit-unknown"
+    return text, unit, float(number_text) * factor, None
+
+
+def _list_units(dimension: str) -> str:
+    return ", ".join(DIMENSIONS[dimension]["units"])
+
+
+def _fault_message(mag: tuple, dimension: str, part: str) -> str | None:
+    """V28's account of a literal that did not reach base units. None when the fault is V30's."""
+    raw, unit, _base, fault = mag
+    if fault in (None, "unit-foreign", "dimension-unknown"):
+        return None
+    if fault == "absent":
+        return f"{part} has no value. Declare 'value:' or 'range:'."
+    if fault == "spelling":
+        return (f"{part} '{raw}' is not a plain decimal with an optional unit. Loaders disagree on "
+                f"every other spelling -- PyYAML reads '017' as 15 and '1:30' as 90 where the 'yaml' "
+                f"package reads 17 and '1:30' -- so the workbench accepts only digits with at most "
+                f"one decimal point.")
+    if fault == "unit-missing":
+        return (f"{part} '{raw}' is a bare number, and {dimension} is measured in "
+                f"{_list_units(dimension)}. Write '{raw} {DIMENSIONS[dimension]['base']}' if that is "
+                f"what you meant: a silently assumed unit is the dimension error this feature exists "
+                f"to prevent.")
+    if fault == "unit-forbidden":
+        return f"{part} '{raw}' carries a unit, but {dimension} is dimensionless. Write the number alone."
+    return (f"{part} '{raw}': '{unit}' is not a unit this workbench knows. {dimension} accepts "
+            f"{_list_units(dimension)}.")
+
+
+def _foreign_message(mag: tuple, dimension: str, part: str) -> str | None:
+    """V30's account of the same literal: the unit is real, and it measures something else."""
+    raw, unit, _base, fault = mag
+    if fault != "unit-foreign":
+        return None
+    return (f"{part} '{raw}' is measured in {UNIT_DIMENSIONS.get(unit)}, but this quantity declares "
+            f"{dimension}. §7 forbids silently coercing one dimension into another.")
+
+
+def _class_of(d: str | None) -> str:
+    """What arithmetic sees. `ratio` and `count` both collapse to dimensionless -- a proportion and a
+    tally are both pure numbers, which is what lets `metrics.state_count * 2 ms` be a duration
+    without making `ms * ms` legal."""
+    return "dimensionless" if d is None or d in ("ratio", "count") else d
+
+
+def _relations(doc: dict) -> list[dict]:
+    """Every relation, flattened across models -- the IR's own shape."""
+    out = []
+    for model in (doc.get("models") or {}).values():
+        if isinstance(model, dict):
+            out += [r for r in (model.get("relations") or []) if isinstance(r, dict)]
+    return out
+
+
+def _target(raw: object) -> tuple[str, str | None, str]:
+    """(raw, kind, ref). kind is None when the prefix is not one of the six."""
+    text = raw.strip() if isinstance(raw, str) else ""
+    colon = text.find(":")
+    if colon <= 0:
+        return text, None, text
+    head = text[:colon]
+    return text, head if head in TARGET_KINDS else None, text[colon + 1:].strip()
+
+
+def _target_fault(doc: dict, target: tuple[str, str | None, str]) -> str | None:
+    """Where a quantity's target points, or the reason it points nowhere (V27)."""
+    raw, kind, ref = target
+    machines = doc.get("machines") or {}
+    if kind is None:
+        return f"target '{raw}' names no kind. Write one of {' '.join(k + ':' for k in TARGET_KINDS)}."
+    if not ref:
+        return f"target '{raw}' names a kind but no object."
+    if kind == "entity":
+        return None if ref in (doc.get("entities") or {}) else f"target '{raw}': '{ref}' is not a declared entity."
+    if kind == "model":
+        return None if ref in (doc.get("models") or {}) else f"target '{raw}': '{ref}' is not a declared model."
+    if kind == "relation":
+        # By id, never by endpoints. §9 requires a STABLE semantic id, and `a->b` is not one: a second
+        # edge between the same pair would silently make the annotation ambiguous.
+        if any(r.get("id") == ref for r in _relations(doc)):
+            return None
+        return (f"target '{raw}': no relation declares id '{ref}'. A quantity addresses a relation "
+                f"through its own 'id:', which an unidentified relation does not have.")
+    if kind == "state":
+        dot = ref.rfind(".")
+        if 0 < dot < len(ref) - 1:
+            head, name = ref[:dot], ref[dot + 1:]
+            if head not in machines:
+                return f"target '{raw}': '{head}' is not a declared machine."
+            states = _ids_of((machines[head] or {}).get("states"))
+            return None if name in states else f"target '{raw}': '{head}' declares no state '{name}'."
+        # A bare state name resolves only when unambiguous, which is how src/engine/refs.ts treats a
+        # bare variable: refuse the ambiguity rather than pick a machine.
+        owners = [mid for mid, m in machines.items()
+                  if isinstance(m, dict) and ref in _ids_of(m.get("states"))]
+        if len(owners) == 1:
+            return None
+        if not owners:
+            return f"target '{raw}': no machine declares a state '{ref}'."
+        return (f"target '{raw}': {len(owners)} machines declare a state '{ref}'. Qualify it as "
+                f"state:<machine>.{ref}.")
+    if kind == "transition":
+        # Transitions carry no id, and label: carries no semantics (V1) -- addressing one by label
+        # would make a documentation string load-bearing. Machine plus index is the stable handle,
+        # which is already how a transaction deletes one.
+        hashed = ref.rfind("#")
+        if hashed <= 0 or hashed == len(ref) - 1:
+            return (f"target '{raw}': address a transition as transition:<machine>#<index>. A "
+                    f"transition has no id, and 'label:' carries no semantics (V1), so an index is "
+                    f"the only stable handle.")
+        head, text = ref[:hashed], ref[hashed + 1:]
+        if head not in machines:
+            return f"target '{raw}': '{head}' is not a declared machine."
+        count = len([t for t in ((machines[head] or {}).get("transitions") or []) if isinstance(t, dict)])
+        if not _INDEX.match(text) or int(text) >= count:
+            return (f"target '{raw}': '{head}' declares {count} transition(s), so index '{text}' "
+                    f"addresses none.")
+        return None
+    return (f"target '{raw}': 'parameter:' is a reserved future shape. v0.1 represents no parameters, "
+            f"so no parameter target can resolve -- annotate the transition or entity instead.")
+
+
+def _classify_operand(text: str) -> tuple:
+    """('literal', magnitude, dimension) | ('metric', name) | ('quantity', id) | ('unreadable', text)."""
+    _t, number_text, unit, plain = _split_literal(text)
+    if unit is not None:
+        # A recognised unit makes this a LITERAL even when its decimal is misspelled, so `017 ms` is
+        # reported as a spelling the loaders disagree on rather than as an unrecognisable name.
+        owner = UNIT_DIMENSIONS.get(unit)
+        if owner is not None:
+            return "literal", _magnitude(text, owner), owner
+    elif plain:
+        return "literal", (text.strip(), None, float(number_text), None), None
+    if text == METRIC_NAMESPACE:
+        return "metric", ""
+    if text.startswith(METRIC_NAMESPACE + "."):
+        return "metric", text[len(METRIC_NAMESPACE) + 1:]
+    if _ID_SHAPE.match(text):
+        return "quantity", text
+    return "unreadable", text
+
+
+def _parse_expression(source: str) -> list[tuple[str, list[tuple[str, tuple]]]]:
+    """`metrics.state_count * 2 ms` -> a sum of products. Mirrors canonicalize.ts parseExpression.
+
+    An operator MUST stand alone between spaces, because an id may contain `-` and splitting on the
+    character would cut a reference in half. Parentheses are not v0.1 syntax, so a token carrying one
+    becomes an unreadable operand that V28 reports instead of being dropped from the dimension check.
+    """
+    words = source.split()
+    terms: list[tuple[str, list[tuple[str, tuple]]]] = []
+    term_op, factor_op = "+", "*"
+    factors: list[tuple[str, tuple]] = []
+    pending: list[str] = []
+
+    def flush_factor() -> None:
+        nonlocal pending
+        if pending:
+            factors.append((factor_op, _classify_operand(" ".join(pending))))
+            pending = []
+
+    def flush_term() -> None:
+        nonlocal factors
+        flush_factor()
+        if factors:
+            terms.append((term_op, factors))
+            factors = []
+
+    for w in words:
+        if w not in EXPR_OPS:
+            pending.append(w)
+        elif w in ("+", "-"):
+            flush_term()
+            term_op, factor_op = w, "*"
+        else:
+            flush_factor()
+            factor_op = w
+    # A trailing operator would otherwise vanish and the expression would check clean while meaning
+    # something the author did not write.
+    if words and words[-1] in EXPR_OPS:
+        factors.append((factor_op, ("unreadable", words[-1])))
+    flush_term()
+    return terms
+
+
+def _operand_dimension(quantities: dict, operand: tuple) -> str | None:
+    kind = operand[0]
+    if kind == "literal":
+        return operand[2]
+    if kind == "metric":
+        return "count"
+    if kind == "quantity":
+        spec = quantities.get(operand[1])
+        declared = (spec or {}).get("dimension")
+        return declared if declared in DIMENSION_IDS else None
+    return None
+
+
+def _check_expression(doc: dict, f: Findings, qid: str, dimension: str, source: str) -> None:
+    """V27/V28 then V30 over one expression. Nothing is evaluated: §7 makes dimensional agreement a
+    VALIDATION question, and a dimension is a property of the operands rather than of their values."""
+    where = f"quantities.{qid}"
+    quantities = doc.get("quantities") or {}
+    terms = _parse_expression(source)
+    if not terms:
+        f.add("V28", where, f"expression '{source}' has no operands.")
+        return
+
+    unresolved = 0
+    for _op, factors in terms:
+        for _fop, operand in factors:
+            kind = operand[0]
+            if kind == "unreadable":
+                unresolved += 1
+                f.add("V28", where,
+                      f"expression operand '{operand[1]}' is not a magnitude, a model metric, or a "
+                      f"declared quantity. Operators stand alone between spaces, parentheses are not "
+                      f"v0.1 syntax, and an expression may not end with an operator.")
+            elif kind == "metric":
+                if operand[1] == "":
+                    unresolved += 1
+                    f.add("V27", where, f"'{METRIC_NAMESPACE}' names a namespace, not a value. Write "
+                                        f"{METRIC_NAMESPACE}.{METRIC_NAMES[0]}.")
+                elif operand[1] not in METRIC_NAMES:
+                    unresolved += 1
+                    f.add("V27", where, f"'{METRIC_NAMESPACE}.{operand[1]}' is not a model metric. "
+                                        f"Declared: {', '.join(METRIC_NAMES)}.")
+            elif kind == "quantity":
+                if operand[1] not in quantities:
+                    unresolved += 1
+                    f.add("V27", where,
+                          f"expression references '{operand[1]}', which is not a declared quantity.")
+                elif (quantities[operand[1]] or {}).get("dimension") not in DIMENSION_IDS:
+                    # Its own V28 already names the cause; a dimension complaint here would send the
+                    # author to the wrong quantity.
+                    unresolved += 1
+            else:
+                mag = operand[1]
+                if mag[3] is not None:
+                    unresolved += 1
+                    msg = _fault_message(mag, operand[2] or dimension, "expression operand")
+                    if msg is not None:
+                        f.add("V28", where, msg)
+    # Every dimension below would be a guess if one operand did not resolve, and a guessed dimension
+    # mismatch sends the author hunting for the wrong defect.
+    if unresolved:
+        return
+
+    classes: list[str] = []
+    for _op, factors in terms:
+        carried = [o for _fop, o in factors if _class_of(_operand_dimension(quantities, o)) != "dimensionless"]
+        # The divisor check runs FIRST: `10 ms / 2 ms` is two dimensioned operands too, and "you
+        # divided by a duration" sends the author to the operator rather than counting operands.
+        divisors = [o for fop, o in factors
+                    if fop == "/" and _class_of(_operand_dimension(quantities, o)) != "dimensionless"]
+        if divisors:
+            f.add("V30", where,
+                  f"expression '{source}' divides by a "
+                  f"{_class_of(_operand_dimension(quantities, divisors[0]))} operand; a divisor must "
+                  f"be dimensionless.")
+            return
+        if len(carried) > 1:
+            shown = " x ".join(_class_of(_operand_dimension(quantities, o)) for o in carried)
+            f.add("V30", where,
+                  f"expression '{source}' multiplies {len(carried)} dimensioned operands ({shown}); "
+                  f"v0.1 has no compound dimensions.")
+            return
+        classes.append(_class_of(_operand_dimension(quantities, carried[0])) if carried else "dimensionless")
+
+    first = classes[0]
+    clash = next((d for d in classes if d != first), None)
+    if clash is not None:
+        f.add("V30", where, f"expression '{source}' adds {first} to {clash}. §7 forbids silently "
+                            f"coercing one dimension into another.")
+        return
+    if first != _class_of(dimension):
+        f.add("V30", where,
+              f"expression '{source}' has dimension {first}, but the quantity declares {dimension}.")
+
+
+def check_quantities(doc: dict, f: Findings) -> None:
+    machines = doc.get("machines") or {}
+
+    # V31 -- `metrics` is reserved. A user id shadowing it would make `metrics.state_count` read as
+    # that object's member, so §10's distinction between a fact FROM the model and a fact ABOUT the
+    # modeled system would stop being visible on the page.
+    def reserve(scope: str, ids: object) -> None:
+        for key in _ids_of(ids) if isinstance(ids, dict) else (ids or []):
+            if key == METRIC_NAMESPACE:
+                f.add("V31", scope,
+                      f"'{METRIC_NAMESPACE}' is the reserved model-metric namespace "
+                      f"({', '.join(METRIC_NAMES)}); it cannot also name a {scope.split('.')[0]} "
+                      f"object. Rename it.")
+
+    for scope in ("entities", "machines", "events", "models", "relation-types", "domains", "quantities"):
+        reserve(scope, doc.get(scope) or {})
+    for mid, m in machines.items():
+        if not isinstance(m, dict):
+            continue
+        reserve(f"machines.{mid}.variables", m.get("variables") or {})
+        reserve(f"machines.{mid}.derived", m.get("derived") or {})
+        reserve(f"machines.{mid}.states", m.get("states") or {})
+
+    for qid, spec in (doc.get("quantities") or {}).items():
+        spec = spec if isinstance(spec, dict) else {}
+        where = f"quantities.{qid}"
+
+        # V27 -- no dangling annotations (§9). A quantity pointing at a deleted transition is not
+        # invalid, it is WRONG, and nothing says so unless a rule does.
+        fault = _target_fault(doc, _target(spec.get("target")))
+        if fault is not None:
+            f.add("V27", where, fault)
+
+        declared = spec.get("dimension") if isinstance(spec.get("dimension"), str) else ""
+        if declared not in DIMENSION_IDS:
+            f.add("V28", where,
+                  f"dimension '{declared}' is not one of {', '.join(DIMENSION_IDS)}. The dimension is "
+                  f"the quantity's type, so nothing else about it can be checked without one.")
+            continue
+        dimension = declared
+
+        def literal(mag: tuple, part: str) -> bool:
+            v28 = _fault_message(mag, dimension, part)
+            if v28 is not None:
+                f.add("V28", where, v28)
+            v30 = _foreign_message(mag, dimension, part)
+            if v30 is not None:
+                f.add("V30", where, v30)
+            return mag[2] is not None
+
+        # V29 -- the magnitude is admissible. Negatives are refused across the board: §29 ⑥ grants
+        # safety to "monotone nonnegative interval expressions", and a memory of -1 MB models nothing.
+        def bounds(mag: tuple, part: str) -> None:
+            base = mag[2]
+            if base is None:
+                return
+            if base < 0:
+                f.add("V29", where, f"{part} normalizes to {_num(base)}; no v0.1 dimension admits a "
+                                    f"negative magnitude.")
+            maximum = DIMENSIONS[dimension]["maximum"]
+            if maximum is not None and base > maximum:
+                f.add("V29", where,
+                      f"{part} normalizes to {_num(base)}, above the maximum {_num(maximum)} for "
+                      f"{dimension} -- a ratio is a proportion of one, so 80% is 0.8.")
+
+        rng = spec.get("range")
+        value = spec.get("value")
+        if isinstance(rng, list) and rng:
+            low = _magnitude(rng[0], dimension)
+            high = _magnitude(rng[1] if len(rng) > 1 else None, dimension)
+            low_ok, high_ok = literal(low, "range low"), literal(high, "range high")
+            if low_ok:
+                bounds(low, "range low")
+            if high_ok:
+                bounds(high, "range high")
+            if low_ok and high_ok and low[2] > high[2]:
+                f.add("V29", where,
+                      f"range [{low[0]}, {high[0]}] is reversed: {_num(low[2])} > {_num(high[2])} in "
+                      f"{DIMENSIONS[dimension]['base'] or dimension}.")
+        elif isinstance(value, dict):
+            source = value.get("expression") if isinstance(value.get("expression"), str) else ""
+            _check_expression(doc, f, qid, dimension, source)
+        elif value is None:
+            f.add("V28", where, "has no value. Declare 'value:' or 'range:'.")
+        else:
+            mag = _magnitude(value, dimension)
+            if literal(mag, "value"):
+                bounds(mag, "value")
 
 
 def check_annotation(doc: dict, f: Findings) -> None:
@@ -664,6 +1133,34 @@ def self_test() -> int:
                   "transitions": [{"from": "a", "to": "b", "requires": {"retry_count": {"gt": 9}}}]}}}),
         ("ANNOTATION", {**base, "entities": {
             "e": {"notes": [{"kind": "comment", "text": "one thing", "and another": None}]}}}),
+        # V27: a quantity pointing at an entity nobody declared. Not invalid -- WRONG, and silent
+        # unless a rule says so.
+        ("V27", {**base, "entities": {"cache": {}},
+                 "quantities": {"q": {"target": "entity:ghost", "dimension": "memory", "value": "1 MB"}}}),
+        # V28: `250` with dimension duration. The unit the author meant is not written down, and a
+        # silently assumed one is the dimension bug this feature exists to prevent.
+        ("V28", {**base, "entities": {"cache": {}},
+                 "quantities": {"q": {"target": "entity:cache", "dimension": "duration", "value": 250}}}),
+        # V28 again: `017 ms` reads as 15 here and as 17 in the TypeScript loader, so the spelling is
+        # refused rather than silently meaning two different things in two tools.
+        ("V28", {**base, "entities": {"cache": {}},
+                 "quantities": {"q": {"target": "entity:cache", "dimension": "duration", "value": "017 ms"}}}),
+        # V29: a hit rate above one. The [0, 1] constraint is a rule, not a comment.
+        ("V29", {**base, "entities": {"cache": {}},
+                 "quantities": {"q": {"target": "entity:cache", "dimension": "ratio", "value": 1.3}}}),
+        # V29 again, and it exercises the GB and MB factors on both sides: the range only reads as
+        # reversed if 1 GB really does normalize above 1 MB.
+        ("V29", {**base, "entities": {"cache": {}},
+                 "quantities": {"q": {"target": "entity:cache", "dimension": "memory",
+                                      "range": ["1 GB", "1 MB"]}}}),
+        # V30: `250 ms + 128 MB`. §7's own invalid example, and the defect class that yields a
+        # plausible number nobody questions.
+        ("V30", {**base, "models": {"g": {"type": "graph", "entities": []}},
+                 "quantities": {"q": {"target": "model:g", "dimension": "duration",
+                                      "value": {"expression": "250 ms + 128 MB"}}}}),
+        # V31: a user entity named `metrics` would shadow the reserved namespace, and §10's
+        # distinction between a fact FROM the model and one ABOUT the system stops being visible.
+        ("V31", {**base, "entities": {"metrics": {}}}),
     ]
     failures = 0
     for expect, doc in cases:

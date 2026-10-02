@@ -11,11 +11,16 @@
  * reports it. Two passes rather than one so a single bad field cannot abort the whole load.
  */
 import type {
-  Annotated, CanonDomain, CanonEntity, CanonEvent, CanonMachine, CanonModel, CanonRelation,
-  CanonRelationType, CanonTransition, CanonVariable, CanonicalSystem, Effect, Guard, GuardOp,
-  HistoryEntry, MachineInstance, Note, NoteKind, PropertyValue, Provenance, Purpose, SavedQuery, Scalar,
+  Annotated, CanonDomain, CanonEntity, CanonEvent, CanonMachine, CanonModel, CanonQuantity,
+  CanonRelation, CanonRelationType, CanonTransition, CanonVariable, CanonicalSystem, Dimension,
+  Effect, ExprFactor, ExprOperand, ExprTerm, Guard, GuardOp, HistoryEntry, MachineInstance,
+  Magnitude, MagnitudeFault, Note, NoteKind, PropertyValue, Provenance, Purpose, QuantityTarget,
+  QuantityValue, SavedQuery, Scalar, TargetKind,
 } from "./types.ts";
-import { NO_ANNOTATION } from "./types.ts";
+import {
+  DIMENSION_IDS, DIMENSIONS, METRIC_NAMESPACE, NO_ANNOTATION, TARGET_KINDS, UNIT_DIMENSIONS,
+  isPlainDecimal,
+} from "./types.ts";
 
 type Obj = Record<string, unknown>;
 
@@ -291,6 +296,190 @@ function expand(ms: Map<string, CanonMachine>): MachineInstance[] {
 }
 
 // --------------------------------------------------------------------------------------------
+// Quantities
+//
+// Normalization lives HERE because canonicalize is already total, deterministic and non-validating:
+// §7's "literals normalize to the base unit during model normalization" then has exactly one home,
+// and a quantity reaches anything downstream in base units or not at all.
+// --------------------------------------------------------------------------------------------
+
+/** A written literal split into decimal and unit token, before any dimension is consulted. */
+interface SplitLiteral {
+  readonly text: string;
+  readonly numberText: string;
+  readonly unit: string | null;
+  /** False when the decimal is missing or not plain, so no dimension can rescue it. */
+  readonly plain: boolean;
+}
+
+const NO_LITERAL: SplitLiteral = { text: "", numberText: "", unit: null, plain: false };
+
+function splitLiteral(raw: unknown): SplitLiteral {
+  if (typeof raw === "number") {
+    // String(1e21) is "1e+21", which isPlainDecimal refuses. An absurd magnitude is therefore
+    // reported rather than carried downstream in a spelling no author wrote.
+    const text = String(raw);
+    return { text, numberText: text, unit: null, plain: Number.isFinite(raw) && isPlainDecimal(text) };
+  }
+  if (typeof raw !== "string") return NO_LITERAL;
+  const text = raw.trim();
+  if (text === "") return NO_LITERAL;
+  const words = text.split(/\s+/);
+  const numberText = words[0] ?? "";
+  if (words.length > 2) return { text, numberText, unit: null, plain: false };
+  return { text, numberText, unit: words[1] ?? null, plain: isPlainDecimal(numberText) };
+}
+
+const faulted = (lit: SplitLiteral, unit: string | null, fault: MagnitudeFault): Magnitude =>
+  ({ raw: lit.text, unit, base: null, fault });
+
+/** One written magnitude, normalized against the dimension that was declared for it. */
+function magnitude(raw: unknown, dimension: Dimension | null): Magnitude {
+  const lit = splitLiteral(raw);
+  if (lit.text === "") return faulted(lit, null, "absent");
+  if (dimension === null) return faulted(lit, lit.unit, "dimension-unknown");
+  if (!lit.plain) return faulted(lit, lit.unit, "spelling");
+  const spec = DIMENSIONS[dimension];
+  const dimensionless = spec.base === null;
+  if (lit.unit === null) {
+    return dimensionless
+      ? { raw: lit.text, unit: null, base: Number(lit.numberText), fault: null }
+      : faulted(lit, null, "unit-missing");
+  }
+  if (dimensionless) return faulted(lit, lit.unit, "unit-forbidden");
+  const factor = spec.units[lit.unit];
+  if (factor === undefined) {
+    return faulted(lit, lit.unit, UNIT_DIMENSIONS.has(lit.unit) ? "unit-foreign" : "unit-unknown");
+  }
+  return { raw: lit.text, unit: lit.unit, base: Number(lit.numberText) * factor, fault: null };
+}
+
+/** The schema's id shape, for telling a reference apart from a typo. */
+const ID_SHAPE = /^[A-Za-z_][A-Za-z0-9_.-]*$/;
+
+function classifyOperand(text: string): ExprOperand {
+  const lit = splitLiteral(text);
+  // A recognised unit makes this a LITERAL even when its decimal is misspelled, so `017 ms` is
+  // reported as a spelling the loaders disagree on rather than as an unrecognisable name.
+  if (lit.unit !== null) {
+    const owner = UNIT_DIMENSIONS.get(lit.unit);
+    if (owner !== undefined) return { kind: "literal", magnitude: magnitude(text, owner), dimension: owner };
+  } else if (lit.plain) {
+    const bare: Magnitude = { raw: lit.text, unit: null, base: Number(lit.numberText), fault: null };
+    return { kind: "literal", magnitude: bare, dimension: null };
+  }
+  if (text === METRIC_NAMESPACE) return { kind: "metric", name: "" };
+  if (text.startsWith(`${METRIC_NAMESPACE}.`)) {
+    return { kind: "metric", name: text.slice(METRIC_NAMESPACE.length + 1) };
+  }
+  if (ID_SHAPE.test(text)) return { kind: "quantity", id: text };
+  return { kind: "unreadable", text };
+}
+
+const EXPR_OPS: ReadonlySet<string> = new Set(["+", "-", "*", "/"]);
+
+/**
+ * `metrics.state_count * 2 ms` -> a sum of products. Nothing is evaluated; the shape exists so a
+ * dimension check can walk the operands (V30).
+ *
+ * An operator MUST stand alone between spaces, because an id may contain `-` (`gateway-latency`)
+ * and splitting on the character would cut a reference in half. Tokens are therefore
+ * whitespace-separated words: a lone `+ - * /` is an operator, and any run of other words is one
+ * operand — which is also how `2 ms` stays a single operand.
+ *
+ * Precedence is the ordinary one. Parentheses are not v0.1 syntax, so a token carrying one becomes
+ * an unreadable operand that V28 reports, instead of being dropped from the dimension check.
+ */
+function parseExpression(source: string): readonly ExprTerm[] {
+  const words = source.trim().split(/\s+/).filter((w) => w !== "");
+  const terms: ExprTerm[] = [];
+  let termOp: "+" | "-" = "+";
+  let factors: ExprFactor[] = [];
+  let factorOp: "*" | "/" = "*";
+  let pending: string[] = [];
+
+  const flushFactor = (): void => {
+    if (pending.length === 0) return;
+    factors.push({ op: factorOp, operand: classifyOperand(pending.join(" ")) });
+    pending = [];
+  };
+  const flushTerm = (): void => {
+    flushFactor();
+    if (factors.length === 0) return;
+    terms.push({ op: termOp, factors });
+    factors = [];
+  };
+
+  for (const w of words) {
+    if (!EXPR_OPS.has(w)) {
+      pending.push(w);
+    } else if (w === "+" || w === "-") {
+      flushTerm();
+      termOp = w;
+      factorOp = "*";
+    } else {
+      flushFactor();
+      factorOp = w === "/" ? "/" : "*";
+    }
+  }
+  // A trailing operator would otherwise vanish and the expression would check clean while meaning
+  // something the author did not write. Record it as unreadable so V28 names it.
+  const last = words.at(-1);
+  if (last !== undefined && EXPR_OPS.has(last)) {
+    factors.push({ op: factorOp, operand: { kind: "unreadable", text: last } });
+  }
+  flushTerm();
+  return terms;
+}
+
+function target(raw: unknown): QuantityTarget {
+  const text = asStr(raw).trim();
+  const colon = text.indexOf(":");
+  if (colon <= 0) return { raw: text, kind: null, ref: text };
+  const head = text.slice(0, colon);
+  return {
+    raw: text,
+    kind: (TARGET_KINDS as readonly string[]).includes(head) ? (head as TargetKind) : null,
+    ref: text.slice(colon + 1).trim(),
+  };
+}
+
+function quantityValue(spec: Obj, dimension: Dimension | null): QuantityValue {
+  const range = asArr(spec["range"]);
+  if (range.length > 0) {
+    return { kind: "range", low: magnitude(range[0], dimension), high: magnitude(range[1], dimension) };
+  }
+  const v = spec["value"];
+  if (isObj(v)) {
+    const source = asStr(v["expression"]);
+    return { kind: "expression", source, terms: parseExpression(source) };
+  }
+  if (v === undefined || v === null) return { kind: "absent" };
+  return { kind: "point", magnitude: magnitude(v, dimension) };
+}
+
+function quantities(raw: unknown): Map<string, CanonQuantity> {
+  const out = new Map<string, CanonQuantity>();
+  for (const [id, spec] of sortedEntries(raw)) {
+    const s = isObj(spec) ? spec : {};
+    const declared = asStr(s["dimension"]);
+    const dimension = (DIMENSION_IDS as readonly string[]).includes(declared) ? (declared as Dimension) : null;
+    out.set(id, {
+      id,
+      target: target(s["target"]),
+      dimension,
+      dimensionRaw: declared,
+      // Derived, never authored. §8's distinction is a fact about the dimension, so letting an
+      // author choose it per quantity would let them opt out of the aggregation it licenses.
+      scope: dimension === null ? null : DIMENSIONS[dimension].scope,
+      value: quantityValue(s, dimension),
+      annotation: annotation(s),
+    });
+  }
+  return out;
+}
+
+// --------------------------------------------------------------------------------------------
 
 export function canonicalize(doc: unknown): CanonicalSystem {
   const d = isObj(doc) ? doc : {};
@@ -326,6 +515,7 @@ export function canonicalize(doc: unknown): CanonicalSystem {
     machines: mach,
     instances: expand(mach),
     events,
+    quantities: quantities(d["quantities"]),
     queries,
   };
 }

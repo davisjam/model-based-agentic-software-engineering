@@ -9,7 +9,7 @@
  * a transaction builds a NEW system and swaps it, which is what makes undo/redo and hypothesis
  * branches fall out of one mechanism instead of three.
  *
- * Semantics: ../../SEMANTICS.md. Rule ids (V1…V25) cited in comments are that document's.
+ * Semantics: ../../SEMANTICS.md. Rule ids (V1…V31) cited in comments are that document's.
  */
 
 // --------------------------------------------------------------------------------------------
@@ -235,6 +235,209 @@ export interface MachineInstance {
 }
 
 // --------------------------------------------------------------------------------------------
+// Quantities — annotations OVER the model, and never part of it
+// --------------------------------------------------------------------------------------------
+
+/**
+ * The five core dimensions (§5, plus `ratio` from the §29 ruling).
+ *
+ * Closed, and closed in CODE rather than in the JSON Schema. An unrecognised dimension is a MEANING
+ * finding (V28), so both implementations of the spec cite the same rule; an enum in the schema would
+ * make Python answer `SCHEMA` where TypeScript answers `V28`, which is the asymmetry V17 already
+ * carries and there is no reason to grow it.
+ */
+export type Dimension = "duration" | "memory" | "cost" | "ratio" | "count";
+
+/**
+ * Which axis a dimension aggregates along. §8: memory is principally a property over
+ * configurations, latency and cost over executions.
+ *
+ * `structural` is a third member the ruling does not name, and it is here to keep the field honest.
+ * A hit rate aggregates along neither axis — it parameterizes an analysis. Filing `ratio` under
+ * `execution` would license "sum the hit rates along this path", which is the exact category error
+ * a typed scope exists to refuse. The scope is DERIVED from the dimension and never authored, so an
+ * author cannot pick a convenient one per quantity.
+ */
+export type QuantityScope = "configuration" | "execution" | "structural";
+
+export interface DimensionSpec {
+  /** The unit every literal normalizes to. Null means dimensionless: a bare number, no unit token. */
+  readonly base: string | null;
+  /** Unit name -> multiplier into the base unit. Empty for a dimensionless dimension. */
+  readonly units: Readonly<Record<string, number>>;
+  readonly scope: QuantityScope;
+  /** Inclusive ceiling on a normalized magnitude, or null when the dimension has none (V29). */
+  readonly maximum: number | null;
+}
+
+/**
+ * The dimension table. Normalization multiplies by one entry of `units` and stops.
+ *
+ * Every factor is an integer multiple of a power of two — 1, 1000, 1024, 2^-10 — so converting an
+ * exactly-representable magnitude introduces NO rounding, and `128 KB + 1 MB` is 1.125 on the nose
+ * rather than 1.1250000000000002. That property is why a normalized magnitude can be a plain
+ * float64 instead of a rational, and it is not an accident to be rediscovered later:
+ * `test/quantities.test.ts` walks this table and asserts it, so a proposed `us: 0.001` fails the
+ * gate instead of quietly breaking every equality assertion downstream.
+ *
+ * The guarantee covers the CONVERSION only. A decimal literal such as `0.8` is not a binary
+ * fraction and rounds to the nearest double — identically in both loaders and in our own parser,
+ * since all three are IEEE-754 correctly-rounded, so the two implementations still agree.
+ *
+ * `ratio` and `count` carry no units. §7 spells ratio's base as `"1"`; a dimensionless base and no
+ * unit table say the same thing with one condition instead of two.
+ */
+export const DIMENSIONS: Readonly<Record<Dimension, DimensionSpec>> = {
+  duration: { base: "ms", units: { ms: 1, s: 1000 }, scope: "execution", maximum: null },
+  memory: { base: "MB", units: { KB: 0.0009765625, MB: 1, GB: 1024 }, scope: "configuration", maximum: null },
+  cost: { base: "usd", units: { usd: 1 }, scope: "execution", maximum: null },
+  ratio: { base: null, units: {}, scope: "structural", maximum: 1 },
+  count: { base: null, units: {}, scope: "structural", maximum: null },
+};
+
+export const DIMENSION_IDS: readonly Dimension[] = ["duration", "memory", "cost", "ratio", "count"];
+
+/** Unit token -> the one dimension that owns it. No unit is shared; a test pins that. */
+export const UNIT_DIMENSIONS: ReadonlyMap<string, Dimension> = new Map(
+  DIMENSION_IDS.flatMap((d) => Object.keys(DIMENSIONS[d].units).map((u): [string, Dimension] => [u, d])),
+);
+
+/**
+ * A plain decimal, and deliberately nothing else.
+ *
+ * Exotic numeric spellings are where this project's two loaders disagree, measured: PyYAML reads
+ * `017` as 15 (octal), `1_000` as 1000 and `1:30` as 90 (sexagesimal), while the `yaml` package
+ * reads the same three as 17, `"1_000"` and `"1:30"`. A unit-bearing literal arrives as a STRING, so
+ * its magnitude is parsed here rather than by a loader, and refusing every spelling the two
+ * disagree on closes the class outright for duration, memory and cost.
+ *
+ * Simple literal matching, which is what the regex policy permits — no structure is being parsed.
+ */
+export const isPlainDecimal = (text: string): boolean => /^-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?$/.test(text);
+
+/** Why a written literal did not reach base units. `null` on a magnitude that did. */
+export type MagnitudeFault =
+  | "absent"
+  | "dimension-unknown"
+  | "spelling"
+  | "unit-missing"
+  | "unit-forbidden"
+  | "unit-unknown"
+  | "unit-foreign";
+
+/**
+ * One written magnitude.
+ *
+ * `base` is the normalized value or null, which is §7's "a quantity reaches anything downstream in
+ * base units or not at all" held as a type. The invariant: `base === null` exactly when
+ * `fault !== null`. The fault is recorded rather than re-derived so both implementations produce the
+ * same message from the same classification instead of each re-deciding what went wrong.
+ */
+export interface Magnitude {
+  /** Verbatim, as written. The finding quotes it; the author has to recognise their own text. */
+  readonly raw: string;
+  /** The declared unit token, retained even when it is the thing that is wrong. */
+  readonly unit: string | null;
+  readonly base: number | null;
+  readonly fault: MagnitudeFault | null;
+}
+
+/** An operand of a quantity expression. Nothing here is evaluated; these carry DIMENSIONS only. */
+export type ExprOperand =
+  | { readonly kind: "literal"; readonly magnitude: Magnitude; readonly dimension: Dimension | null }
+  /** `metrics.<name>`. The name is checked against METRIC_NAMES, not assumed (V31). */
+  | { readonly kind: "metric"; readonly name: string }
+  /** Another quantity by id; its dimension comes from ITS declaration, so nothing recurses. */
+  | { readonly kind: "quantity"; readonly id: string }
+  | { readonly kind: "unreadable"; readonly text: string };
+
+export interface ExprFactor {
+  /** `*` on the leading factor of a term, which is the identity. */
+  readonly op: "*" | "/";
+  readonly operand: ExprOperand;
+}
+
+export interface ExprTerm {
+  /** `+` on the leading term. */
+  readonly op: "+" | "-";
+  readonly factors: readonly ExprFactor[];
+}
+
+export type QuantityValue =
+  | { readonly kind: "point"; readonly magnitude: Magnitude }
+  | { readonly kind: "range"; readonly low: Magnitude; readonly high: Magnitude }
+  | { readonly kind: "expression"; readonly source: string; readonly terms: readonly ExprTerm[] }
+  | { readonly kind: "absent" };
+
+/**
+ * What a quantity annotates. Closed prefix set (§9), kept in code for the same reason as Dimension.
+ *
+ * `parameter` names a construct v0.1 does not represent at all. It stays in the union because the
+ * ruling lists it, and V27 reports it as a reserved future shape — the treatment V15 already gives
+ * `ref` variables, rather than the misleading "no such parameter".
+ */
+export type TargetKind = "transition" | "relation" | "entity" | "state" | "parameter" | "model";
+
+export const TARGET_KINDS: readonly TargetKind[] =
+  ["transition", "relation", "entity", "state", "parameter", "model"];
+
+export interface QuantityTarget {
+  /** The whole `kind:ref` string as written. */
+  readonly raw: string;
+  /** Null when the prefix is not one of the six; V27 reports it. */
+  readonly kind: TargetKind | null;
+  /** Everything after the first colon. */
+  readonly ref: string;
+}
+
+/**
+ * A quantitative annotation.
+ *
+ * NOT in `Configuration`, and that exclusion is the hard boundary of §6: a real-valued annotation
+ * admitted to the state vector would make the reachable space infinite and turn
+ * `Coverage.kind: "exhaustive"` into a claim no walk can support.
+ */
+export interface CanonQuantity {
+  readonly id: string;
+  readonly target: QuantityTarget;
+  /** Null when the declared dimension is not one of the five; V28 reports it. */
+  readonly dimension: Dimension | null;
+  /**
+   * The dimension as written, so the finding can quote the author's own text. Retained only for
+   * that: the invariant is `dimension === null` exactly when `dimensionRaw` is not one of the five.
+   */
+  readonly dimensionRaw: string;
+  /** Derived from `dimension`, never authored. Null follows a null dimension. */
+  readonly scope: QuantityScope | null;
+  readonly value: QuantityValue;
+  readonly annotation: Annotated;
+}
+
+/**
+ * Facts computed FROM the model, not asserted ABOUT the modeled system (§10).
+ *
+ * Snake_case because these keys ARE the authored identifiers: `metrics.state_count`. A typed record
+ * rather than a map, so the reserved set is closed at the type level and V31 cannot drift from it.
+ *
+ * `state_count` counts DECLARED states, summed across machines and not multiplied by `instances`.
+ * It is structural, so it must not be confused with the number of reachable configurations — that
+ * is a product of exploration, and a model metric that depended on exploration would stop being a
+ * fact about the model.
+ */
+export interface ModelMetrics {
+  readonly state_count: number;
+  readonly transition_count: number;
+  readonly entity_count: number;
+  readonly relation_count: number;
+}
+
+/** Reserved namespace. A user identifier named this is a finding (V31), never a shadow. */
+export const METRIC_NAMESPACE = "metrics";
+
+export const METRIC_NAMES: readonly (keyof ModelMetrics)[] =
+  ["state_count", "transition_count", "entity_count", "relation_count"];
+
+// --------------------------------------------------------------------------------------------
 // The system
 // --------------------------------------------------------------------------------------------
 
@@ -255,6 +458,7 @@ export interface CanonicalSystem {
   readonly machines: ReadonlyMap<string, CanonMachine>;
   readonly instances: readonly MachineInstance[];
   readonly events: ReadonlyMap<string, CanonEvent>;
+  readonly quantities: ReadonlyMap<string, CanonQuantity>;
   readonly queries: ReadonlyMap<string, SavedQuery>;
 }
 
@@ -268,6 +472,13 @@ export interface CanonicalSystem {
  * Quantities, properties and derived values are NOT here. Properties are immutable (V16); derived
  * values are recomputed and never stored (V18). Keeping them out is what preserves the finite
  * exploration guarantee.
+ *
+ * Quantities are excluded for a sharper reason than the other two, and §6 makes it normative: their
+ * values are real. One admitted here makes the reachable space infinite, and the walk would still
+ * report `Coverage.kind: "exhaustive"` — a lie every later result inherits, since that flag is what
+ * licenses the strongest claims the workbench makes. A quantity is evaluated OVER a configuration;
+ * it is never a coordinate of one. `test/quantities.test.ts` pins the invariant by counting the
+ * configurations of a system with and without quantities.
  */
 export interface Configuration {
   /** instance id -> state id */
@@ -343,6 +554,28 @@ export interface Finding {
   readonly where: string;
   readonly message: string;
 }
+
+/**
+ * The reserved `metrics.*` values for one system.
+ *
+ * A function, not a field on `CanonicalSystem`, and that follows V18's rule for derived values:
+ * recompute, never store. Storing them would also put them in the hash twice — once as the
+ * structure they count, once as the count.
+ */
+export const modelMetrics = (s: CanonicalSystem): ModelMetrics => {
+  let states = 0;
+  let transitions = 0;
+  for (const m of s.machines.values()) {
+    states += m.states.length;
+    transitions += m.transitions.length;
+  }
+  return {
+    state_count: states,
+    transition_count: transitions,
+    entity_count: s.entities.size,
+    relation_count: s.relations.length,
+  };
+};
 
 export const configKey = (c: Configuration): string => {
   const control = [...c.control.entries()].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
