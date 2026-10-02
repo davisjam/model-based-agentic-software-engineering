@@ -30,11 +30,15 @@ const NO_HUMAN: readonly CapabilityId[] = [
   "create-hypothesis", "commit-hypothesis", "discard-hypothesis",
 ];
 
-/** Capabilities with no wired machine affordance — all the same transaction-binding gap. */
-const NO_MACHINE: readonly CapabilityId[] = [
-  "create-element", "delete-element", "create-relation", "delete-relation", "edit-property",
-  "create-model", "delete-model",
-];
+/**
+ * Capabilities with no wired machine affordance.
+ *
+ * Was seven; now two. Binding the TransactionEngine to the workspace cleared five in one change,
+ * because every element/relation/property edit routes through `transactions.apply`. The two that
+ * remain are not a wiring gap at all: the transaction schema has no add-model or delete-model
+ * operation, so there is nothing to wire until the op set grows.
+ */
+const NO_MACHINE: readonly CapabilityId[] = ["create-model", "delete-model"];
 
 test("UX-I1 violations match the recorded baseline exactly", () => {
   const violations = checkAffordanceParity();

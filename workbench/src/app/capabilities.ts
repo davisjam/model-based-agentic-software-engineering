@@ -159,8 +159,7 @@ export const CAPABILITIES: readonly Capability[] = [
     summary: "Add an entity, state or machine.",
     service: "transactions.apply",
     human: [absent("canvas / inspector", "Phase G: no editing surface yet; edit the source and re-open.")],
-    machine: [refusing("window.mage.transact",
-      "the transaction engine is landed and tested but not bound to the workspace document")],
+    machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
   {
@@ -170,8 +169,7 @@ export const CAPABILITIES: readonly Capability[] = [
     human: [absent("canvas / inspector",
       "Phase G: no editing surface. Deleting also needs the reference check that refuses a delete "
       + "while anything still points at the target, which only the transaction engine performs.")],
-    machine: [refusing("window.mage.transact",
-      "the transaction engine implements the delete and its reference check, but is not bound to the workspace")],
+    machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
   {
@@ -181,8 +179,7 @@ export const CAPABILITIES: readonly Capability[] = [
     human: [absent("canvas.connect",
       "Phase G: connecting requires the canvas to offer only relation types the IR licenses for that "
       + "source, target and model type, which needs the affordance-licensing seam.")],
-    machine: [refusing("window.mage.transact",
-      "the transaction engine applies add-relation; it is not bound to the workspace document")],
+    machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
   {
@@ -191,8 +188,7 @@ export const CAPABILITIES: readonly Capability[] = [
     service: "transactions.apply",
     human: [absent("canvas / inspector",
       "Phase G: no editing surface yet; relations are removed by editing the source and re-opening.")],
-    machine: [refusing("window.mage.transact",
-      "the transaction engine applies delete-relation; it is not bound to the workspace document")],
+    machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
   {
@@ -202,8 +198,7 @@ export const CAPABILITIES: readonly Capability[] = [
     human: [absent("inspector",
       "Phase G: the inspector must offer only properties licensed for that semantic type, and every "
       + "edit must become the same transaction an agent would create -- neither exists yet.")],
-    machine: [refusing("window.mage.transact",
-      "the transaction engine applies set-property and set-label; it is not bound to the workspace")],
+    machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
   {

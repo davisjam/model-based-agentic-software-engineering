@@ -152,35 +152,35 @@ entities:
     label: "Add an entity, state or machine."
     properties:
       human: not-wired
-      machine: not-wired
+      machine: wired
 
   delete-element:
     type: semantic-capability
     label: "Remove an entity, state or machine, refusing if anything still references it."
     properties:
       human: not-wired
-      machine: not-wired
+      machine: wired
 
   create-relation:
     type: semantic-capability
     label: "Connect two entities with a licensed relation type."
     properties:
       human: not-wired
-      machine: not-wired
+      machine: wired
 
   delete-relation:
     type: semantic-capability
     label: "Remove a relation."
     properties:
       human: not-wired
-      machine: not-wired
+      machine: wired
 
   edit-property:
     type: semantic-capability
     label: "Change a property or label through the same transaction any other edit uses."
     properties:
       human: not-wired
-      machine: not-wired
+      machine: wired
 
   create-model:
     type: semantic-capability
@@ -290,10 +290,15 @@ models:
       - { from: redo, to: human-interface, type: afforded-by }
       - { from: redo, to: machine-interface, type: afforded-by }
       - { from: redo, to: service.workspace-redo, type: implemented-by }
+      - { from: create-element, to: machine-interface, type: afforded-by }
       - { from: create-element, to: service.transactions-apply, type: implemented-by }
+      - { from: delete-element, to: machine-interface, type: afforded-by }
       - { from: delete-element, to: service.transactions-apply, type: implemented-by }
+      - { from: create-relation, to: machine-interface, type: afforded-by }
       - { from: create-relation, to: service.transactions-apply, type: implemented-by }
+      - { from: delete-relation, to: machine-interface, type: afforded-by }
       - { from: delete-relation, to: service.transactions-apply, type: implemented-by }
+      - { from: edit-property, to: machine-interface, type: afforded-by }
       - { from: edit-property, to: service.transactions-apply, type: implemented-by }
       - { from: create-model, to: service.transactions-apply, type: implemented-by }
       - { from: delete-model, to: service.transactions-apply, type: implemented-by }

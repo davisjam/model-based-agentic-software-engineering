@@ -5,7 +5,6 @@
  * root, so the dependency edges the component model asserts all terminate here rather than tangling
  * between modules. Everything below it depends inward on the IR.
  */
-import { parse as parseYaml } from "yaml";
 import { runQuery, runSavedQueries } from "../engine/index.ts";
 import { Workspace } from "../app/services.ts";
 import type { Ports } from "../app/services.ts";
@@ -55,43 +54,18 @@ const ports: Ports = {
   engine: {
     graphQuery: (system, query) => runQuery(system, query).result,
     behaviorQuery: (system, query) => runQuery(system, query).result,
-    explore: (system) => {
-      // The facade's explore() is not used by the UI yet; the engine owns exploration and the
-      // Worker is the path for it. Reporting honestly rather than fabricating a configuration set.
-      void system;
+    explore: () => {
+      // The UI does not use the facade's explore(); the engine owns exploration and the Worker is
+      // the path for a long one. Reporting honestly rather than fabricating a configuration set.
       return { configurations: [], exhaustive: false };
     },
-  },
-  yaml: {
-    // The plain parse feeds canonicalize, which is what the facade wants. MageDocument is the
-    // CST-preserving path and belongs to the transaction seam below, not to loading -- loading an
-    // invalid file must still succeed (editing must not destroy someone's work), and MageDocument
-    // returns a null document for unparseable text.
-    parse: (text) => parseYaml(text),
-    // Export returns the ORIGINAL text, so comments and key order survive a load/export round trip
-    // untouched. Once the transaction seam below is bound, this becomes document.toText().
-    serialize: (_system, originalText) => originalText ?? "",
-  },
-  transactions: {
-    // Transactions are applied through the Phase D engine, which owns the fixed pipeline. Wiring it
-    // to the facade needs the MageDocument that produced the IR, which the Workspace does not hold
-    // yet — so this refuses rather than pretending to apply. Named in PLAN.md as the Phase F/G seam.
-    apply: (system, _transaction) => ({
-      ok: false,
-      system,
-      findings: [{
-        rule: "WIRING",
-        where: "transactions.apply",
-        message: "the transaction engine is landed but not yet bound to the workspace document; "
-               + "edit the .mage.yaml and re-open until that seam is finished.",
-      }],
-    }),
   },
   render: {
     render: (system, options) => {
       void system; void options;
-      // Same posture: the renderer is landed and tested, but binding it needs the scene request
-      // shape the UI has not yet built. An empty view is honest; a fabricated one is not.
+      // The renderer is landed and tested; binding it needs the scene request the UI has not built.
+      // An empty accessible view is honest; a fabricated one would be a lie the a11y tests cannot
+      // catch, and those tests exist precisely to make FR-A11Y-2 checkable.
       return {
         svg: "",
         accessible: { title: "", nodes: [], edges: [], summary: "" },
@@ -135,8 +109,10 @@ byId("file").addEventListener("change", (event) => {
   const file = input.files?.[0];
   if (file === undefined) return;
   void file.text().then((text) => {
-    workspace.load(text);
-    announce(`Loaded ${file.name}. ${workspace.state.findings.length} validation finding(s).`);
+    const r = workspace.load(text);
+    announce(r.ok
+      ? `Loaded ${file.name}. ${workspace.state.findings.length} validation finding(s).`
+      : `${file.name} could not be parsed: ${r.findings.map((f) => f.message).join("; ")}`);
   });
 });
 
@@ -144,8 +120,8 @@ byId("example").addEventListener("click", () => {
   void fetch("./examples/docable.mage.yaml")
     .then((r) => r.text())
     .then((text) => {
-      workspace.load(text);
-      announce("Loaded the DocAble example.");
+      const r = workspace.load(text);
+      announce(r.ok ? "Loaded the DocAble example." : "The example failed to parse.");
     })
     .catch(() => announce("Could not load the example; open a .mage.yaml instead."));
 });
