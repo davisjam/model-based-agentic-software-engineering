@@ -1,0 +1,24 @@
+{
+  "// why": "Strict beyond `strict`, because this codebase is read and edited by agents: an unchecked index or an optional-vs-undefined slip is exactly the class of bug a reviewer skims past. erasableSyntaxOnly keeps the source runnable by node --experimental-strip-types without a build step, so tests need no bundler.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable", "WebWorker"],
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src", "test", "build.mjs"]
+}

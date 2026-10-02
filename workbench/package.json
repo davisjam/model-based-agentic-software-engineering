@@ -1,0 +1,29 @@
+{
+  "name": "mage-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Browser-native modeling workbench for MAGE model systems. Pure client-side: no server, no account, no install.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "types": "json2ts -i mage-model.schema.json -o src/ir/schema-model.ts --additionalProperties false && json2ts -i mage-query.schema.json -o src/ir/schema-query.ts --additionalProperties false && json2ts -i mage-transaction.schema.json -o src/ir/schema-transaction.ts --additionalProperties false",
+    "check": "tsc --noEmit",
+    "test": "node --test \"test/*.test.ts\"",
+    "build": "node build.mjs",
+    "all": "npm run check && npm run test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "esbuild": "^0.25.0",
+    "json-schema-to-typescript": "^15.0.0",
+    "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "yaml": "^2.6.0"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true
+  }
+}
