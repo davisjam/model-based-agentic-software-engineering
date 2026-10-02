@@ -89,7 +89,10 @@ with a *correct* column, is now the conformance oracle for the evaluator we writ
 Verified 261002 by serving the page and attaching headless Chromium over CDP, rather than by reading
 the code:
 
-- `window.mage` live: 20 operations, **0 affordance gaps** (UX-I1 satisfied), 14 methods.
+- `window.mage` live: **0 affordance gaps** (UX-I1 satisfied) over the registry's full capability set.
+  The operation count is deliberately not quoted here — it moved from 20 to 22 within an hour, and
+  `describe().operations` is the registry projected into the page, so the number that means anything
+  is "equal to the registry", which the browser gate asserts by derivation rather than by literal.
 - The flagship journey executes. `restricted-data-reaches-impermitted-subscriber` → `holds`,
   exhaustive, with a path witness — the cross-model join finding the violation.
   `subscribes-chain-checkout-to-fulfillment` → `unlicensed`, naming path-composition (V7 refusing a
@@ -99,21 +102,28 @@ the code:
   in one process, which no node-tier test can see.
 - The canvas draws real SVG and remains `aria-hidden` and LAST. 52 focusable controls, 0 unlabelled.
 
-⚠️ **Known gaps as built:** `favicon.ico` 404 (the only console error); Document Processing absent, so
-EX-I3 unsatisfied with the quantitative rows reported `unavailable`/`unexercised` rather than
-omitted; no evaluator yet, so SPARQL questions cannot be answered; properties not yet first-class
-(UX-I5).
+This is now a standing gate rather than a one-off observation: the browser tier
+(`test/browser/`, run in CI) loads the served page in headless Chromium and asserts the agent
+surface, the flagship journey's three outcomes, the human/agent convergence, and the accessibility
+properties. It writes a receipt the CI step asserts, because a gate that silently skips reports
+coverage it does not have.
 
-**Q2 and Q3 are genuine underdetermination in the requirements, not gaps in anyone's reading.** §8
-says latency sums "according to the declared accounting model" without saying where that is declared
-or what the options are — and summing state, transition and relation latency all three double-counts
-a pipeline modelled with latency on both a stage and the edge into it. §8 then defines `memory(c)`
-as "retained memory of active states/entities plus temporary memory of the active operation" and
-says *approximately*; "active" carries the weight and is undefined. Two defensible readings give
-different numbers for the same example and both look right, so a fixture written before the ruling
-would encode a guess as ground truth.
+⚠️ **Known gaps as built:**
 
-That is why Phase I was split: the representation layer is dispatchable now, and the evaluator is not.
+- **No quantitative evaluator.** The representation and accounting layers are landed and validated
+  (V27–V31, V35–V37), so a quantity's shape and its accounting are enforced; nothing computes a
+  path's latency or `memory(c)` yet. Q2 and Q3 are ruled, so this is now build work rather than a
+  decision.
+- **The accounting rules have never been run against a model an author wrote.** All six models in
+  the repo declare zero quantities, so their zero-findings result has an empty subject population —
+  a clean result on weak evidence. Document Processing is the first real test.
+- **`sparqljs` text → algebra is unwired.** The evaluator takes a typed algebra; SPARQL text cannot
+  be submitted yet.
+- **Properties are not first-class** (UX-I5), and **UX-I4 / UX-I7 have no checkable assertion**.
+- **The RDF projection omits the accounting fields**, so the dataset and the validator disagree about
+  how much they know about a quantity.
+- **EX-I3 unsatisfied** until Document Processing ships; the coverage model reports its rows as
+  `unavailable` / `unexercised` rather than omitting them.
 
 ## 1. The two new top-level requirements
 
