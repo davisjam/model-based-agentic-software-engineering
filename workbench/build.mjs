@@ -5,7 +5,7 @@
 // Pages host both forbid external fetches -- so a bundler's dev-time conveniences buy nothing
 // here, and every dependency is one more thing to upgrade.
 import { build } from "esbuild";
-import { mkdir, copyFile } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
 
 const outdir = "dist";
 await mkdir(outdir, { recursive: true });
@@ -24,5 +24,8 @@ const common = {
 await build({ ...common, entryPoints: ["src/ui/main.ts"], outfile: `${outdir}/workbench.js` });
 await build({ ...common, entryPoints: ["src/worker/analysis.worker.ts"], outfile: `${outdir}/analysis.worker.js` });
 
-await copyFile("index.html", `${outdir}/index.html`);
-console.log(`build: ${outdir}/workbench.js + ${outdir}/analysis.worker.js + index.html`);
+// dist/ holds bundles ONLY. The served page is workbench/index.html, which loads
+// `./dist/workbench.js`; a copy of that file inside dist/ resolves the same relative src to
+// dist/dist/workbench.js, so the copy is a page that cannot work. It was also a second .html under
+// workbench/, which the site's reachability gate reads as an orphan once workbench/ enters the walk.
+console.log(`build: ${outdir}/workbench.js + ${outdir}/analysis.worker.js`);

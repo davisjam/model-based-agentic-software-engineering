@@ -129,12 +129,25 @@ def _book_title_block() -> str:
 # axe) so a rendered artifact ever dropped under `docs/` can't trip the reachability gate.
 # web-theme holds the shared MkDocs theme-extension package (Jinja partials + theme CSS) — its .html
 # files are TEMPLATES the MkDocs builds consume, never served pages, so the html scanners skip them.
-# workbench holds the MAGE Model Workbench APPLICATION source: index.html is its app shell, not a
-# catalogue page. It loads a bundle from the gitignored `workbench/dist/`, which only exists after a
-# build, so linking it from the site before CI builds that bundle would publish a page whose script
-# 404s. The integration phase (workbench/PLAN.md §6, Phase H) adds the Pages build step AND the
-# inbound link together; until then the orphan gate must not treat the shell as an unreachable page.
+# workbench holds the MAGE Model Workbench APPLICATION: `workbench/index.html` is its app shell, not a
+# catalogue page, and its body is empty markup until its ES-module bundle populates it. The workbench now
+# SHIPS — CI builds the bundle and asserts it into the artifact, and the landing's "Using MAGE" section
+# links the shell (`_WORKBENCH_PAGE` below) — so it is reachable and the orphan gate has nothing to flag.
+# The exclusion stays because two html-walk gates measure the wrong thing on an app shell:
+#   - The console-error gate loads every page over `file://`, where a `<script type="module">` src is
+#     blocked by CORS. The shell reports three errors there that do not occur over http (measured
+#     2026-10-02). That is the gate's loading scheme, not a defect in the published page, and the only
+#     fixes are to serve the gate over http or to exempt the page — a gate redesign either way.
+#   - html-validate reports `no-redundant-role` on the shell's explicit `role="banner"`. One attribute in
+#     a workbench-owned file; fixing it does not change the console-gate verdict, which is the blocker.
+# The workbench's own gates hold it instead: `tsc --noEmit`, its unit suite, and the bundle build, all in
+# the Pages workflow. Revisit this exclusion only if the console gate learns to serve pages over http.
 NON_SITE_DIRS = ("plugin", "node_modules", "site", "_site", ".git", "__pycache__", "hooks", "_drafts", "_print", "docs", "_design", "web-theme", "workbench")
+
+# The workbench's published URL, linked from the landing's "Using MAGE" section. Named here, beside the
+# exclusion that keeps the shell out of the page walks, so the two statements about the same file are read
+# together: excluded from the walks, reachable from the landing.
+_WORKBENCH_PAGE = "workbench/index.html"
 
 
 def gitignored_top_dirs() -> frozenset[str]:
@@ -3110,6 +3123,9 @@ def _v3_use() -> str:
         + _v3_card("The Method", "",
                    "Apply Modeling and Alignment to the work, then use recurring failures and repeated judgment to improve the engineering environment.",
                    [("Apply the method", "apply-mage.html")]) + "\n"
+        + _v3_card("Model Workbench", "",
+                   "Open a MAGE model system in the browser, check it against the semantics, and run saved questions over it. The page runs entirely on your machine: no account, no install, and the model is never uploaded.",
+                   [("Open the workbench", _WORKBENCH_PAGE)]) + "\n"
         '  </div>\n</section>')
 
 
