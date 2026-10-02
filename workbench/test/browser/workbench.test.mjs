@@ -9,7 +9,7 @@
  * by hand.
  *
  * Every number asserted below was MEASURED against this commit's tree, by running the suite's own
- * harness and printing what the page reported: 20 operations, 0 affordance gaps, 0 unlabelled
+ * harness and printing what the page reported: 0 affordance gaps, 0 unlabelled
  * controls, 11 entities / 3 models / 18 relations / 6 saved questions in the flagship example.
  * None is a guess.
  *
@@ -24,6 +24,7 @@
  */
 import { describe, it, before, after } from "node:test";
 import assert from "node:assert/strict";
+import { CAPABILITIES } from "../../src/app/capabilities.ts";
 import {
   startServer, stopServer, loadPuppeteer, openWorkbench, loadFlagshipExample,
   measureForReceipt, writeReceipt, PORT, ORIGIN,
@@ -64,7 +65,7 @@ describe("FR-AGENT: the agent surface is reachable from the page context", () =>
     assert.match(got.version, /^\d+\.\d+\.\d+$/);
   });
 
-  it("describe() reports 20 operations, each named and summarised", async () => {
+  it("describe() reports exactly the registry's capabilities, each named and summarised", async () => {
     const d = await page.evaluate(() => {
       const x = window.mage.describe();
       return {
@@ -74,7 +75,14 @@ describe("FR-AGENT: the agent surface is reachable from the page context", () =>
         limitations: x.notSupported.length,
       };
     });
-    assert.equal(d.count, 20, "operation count moved; the capability registry describe() derives from changed");
+    // DERIVED from the registry, not a measured snapshot. The count was 20 when this suite was
+    // written and 22 an hour later, when a wave registered load-example and inspect-provenance —
+    // so a literal here failed on progress, which is the exact failure mode this file's own header
+    // warns about for the focusable count. `describe().operations` IS the registry projected into
+    // the page, so comparing the page's count to the registry's is the assertion that means
+    // something: it catches a projection that drops or invents an operation, at any registry size.
+    assert.equal(d.count, CAPABILITIES.length,
+      `the page advertises ${d.count} operations, the registry declares ${CAPABILITIES.length} — describe() is not projecting the registry`);
     assert.deepEqual(d.unnamed, [], "an operation shipped without a name or a summary");
     // The schemas ride inline so an agent needs no second fetch and no network (FR-AGENT-2).
     assert.deepEqual(d.schemas, ["model", "query", "transaction"]);
