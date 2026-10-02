@@ -1,0 +1,409 @@
+# Worker Queue -- MAGE default example 3 of 3.
+#
+# Central lesson: "nothing bad happens" and "something good eventually happens" are different
+# engineering questions, and they may need different modeled distinctions.
+#
+# Three purposeful models over one identity namespace:
+#
+#   job-lifecycle  a state machine. What states can a job enter, and does the retry policy bound it?
+#   job-lease      a state machine. Who holds custody of the job, as enumerated lease states.
+#   worker-pool    a graph. Which workers are permitted to claim this job?
+#
+# The two machines are linked by shared job identity (both declare `entity: job`) and by the
+# `claim` and `release` events, which step them atomically. The cross-model safety question --
+# can a job be in processing while nobody holds its lease? -- needs both.
+#
+# ## What this example does NOT claim
+#
+# The engine explores a finite transition system exhaustively. When it reports that no reachable
+# execution loops forever in retry, that is an exhaustive statement about a finite space, NOT
+# temporal liveness verification. MAGE has no fairness assumptions and no infinite-trace operators:
+# "can it reach X" is in scope, "will it eventually reach X" is not. The saved queries and
+# expected-results.yaml say so in those terms, and so should any prose that cites them.
+#
+# ## Two known divergences, both reported rather than worked around
+#
+# `notes:` and the IR-shaped `provenance:` are absent from mage-model.schema.json, so
+# `python3 validate.py` reports SCHEMA findings for this file while the TypeScript loader accepts it
+# and validates it clean. Same gap as message-bus; see that file's header.
+#
+# A machine carries no annotation at all: `CanonMachine` has no `annotation` field, so `notes:` on a
+# machine would load as nothing. Both machines declare `entity: job`, so the per-model rationale
+# section 8 asks for lives on that entity instead. An annotation slot on the machine is the fix.
+
+mage: 1
+
+system:
+  id: worker-queue
+  name: Worker Queue with Leases
+  description: >
+    A job queue with two workers and an explicit lease. Job lifecycle, lease ownership, and the
+    permitted-claim structure, over one namespace of a job and its workers.
+
+relation-types:
+
+  may_claim:
+    description: The worker is permitted to claim this job.
+    absence: >
+      The worker is not permitted to claim the job. Absence says nothing about scheduling: among the
+      workers that ARE permitted, this model does not represent which one the scheduler picks, or
+      whether it picks fairly.
+    composition:
+      # A claim chain is not a thing -- the target of a claim is a job, and a job claims nothing.
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
+entities:
+
+  job:
+    type: job
+    label: Job
+    notes:
+      # Machines carry no annotation in the v0.1 IR -- `CanonMachine` has no `annotation` field, so
+      # `notes:` on a machine would be silently dropped. Both machines declare `entity: job`, so the
+      # rationale for each lives here, on the identity they share. That is the honest workaround, not
+      # the intended home; the intended home is an annotation slot on the machine.
+      - id: job-lifecycle-rationale
+        kind: rationale
+        text: >
+          The job-lifecycle machine represents the states a job passes through and the bounded retry
+          policy that governs re-queueing. It is the progress-oriented model: because retry_count has
+          a finite declared domain and every retry strictly advances it, exhaustive exploration can
+          establish that no reachable execution loops forever. It deliberately does not represent
+          wall-clock time, scheduler behaviour, or how long any state lasts, so no question about
+          duration or fairness has a reading here.
+      - id: job-lease-rationale
+        kind: rationale
+        text: >
+          The job-lease machine represents custody of this job as three enumerated states: free,
+          held-by-0, held-by-1. Enumerating them is forced rather than chosen. MAGE v0.1 gives
+          multiplicity as occupancy and never as binding (V14), so a model that must know WHICH
+          worker holds the job cannot use a reference-valued variable or a multiply-instantiated
+          worker machine -- it has to make the ownership states explicit. The upside is that dual
+          ownership becomes unrepresentable rather than merely unreachable.
+      - id: shared-identity
+        kind: comment
+        text: >
+          Both machines name this entity, which is what makes the cross-model question sound: the
+          lifecycle and the lease are two reductions of one job, not two unrelated diagrams.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Model a job queue with a bounded retry policy and an explicit two-worker lease, so that
+        safety and bounded progress are separately expressible and separately checkable.
+      rationale: MAGE-provided example, worker-queue, version 1.
+
+  worker-0:
+    type: worker
+    label: worker-0
+    properties:
+      # The join to the lease machine: this worker's custody is represented by that lease state.
+      # test/examples.test.ts checks that every non-free lease state is claimed by exactly one
+      # worker entity, so the two models cannot disagree about who exists.
+      holds_lease_as: held-by-0
+
+  worker-1:
+    type: worker
+    label: worker-1
+    properties:
+      holds_lease_as: held-by-1
+
+events:
+
+  claim:
+    participants: [job-lifecycle, job-lease]
+    description: >
+      A worker takes the job. One system transition: the job enters claimed and the lease becomes
+      held, atomically. There is no observable configuration in which the job is claimed and the
+      lease is still free. Both lease targets are offered, so the choice of worker is explored as
+      nondeterminism rather than resolved.
+
+  release:
+    participants: [job-lifecycle, job-lease]
+    description: >
+      The worker gives the job back, on success or on failure. The job leaves processing and the
+      lease returns to free in one step.
+
+machines:
+
+  job-lifecycle:
+    entity: job
+    purpose:
+      question: Can every accepted job reach a terminal state under the modeled retry policy?
+      represents:
+        - job lifecycle states
+        - the bounded retry counter
+        - the two terminal outcomes, completed and dead_letter
+        - custody handover at claim and release
+      # NOTE: V24 checks `omits` only against a GRAPH model's vocabulary -- `checkMeaning` iterates
+      # `system.models` and never `system.machines`. A machine's omissions are therefore declared but
+      # unvalidated by the shipped validator. test/examples.test.ts implements the missing check for
+      # these examples so the list cannot decay into decoration here.
+      omits:
+        - scheduler fairness between workers
+        - real wall-clock scheduling and timeouts
+        - arbitrary worker population
+        - retry backoff delay
+        - queue depth and job arrival rate
+    initial: queued
+    states:
+      queued:
+      claimed:
+      processing:
+      completed:
+      failed:
+      dead_letter:
+    variables:
+      retry_count:
+        type: integer
+        # A finite domain is mandatory (V17) and it is what makes the progress claim decidable: a
+        # loop whose bounded variable strictly advances cannot repeat a configuration.
+        range: [0, 3]
+        initial: 0
+    derived:
+      # Recomputed, never stored, never part of state identity (V18).
+      retries_exhausted: retry_count == 3
+    transitions:
+
+      - from: queued
+        to: claimed
+        sync: claim
+
+      # A GUARD, not synchronization: the job reads the lease's state and moves alone. This is the
+      # transition section 6.7 asks you to break and then repair -- an unguarded path into
+      # processing is what makes the safety counterexample appear.
+      - from: claimed
+        to: processing
+        label: begin
+        requires:
+          job-lease.state: { ne: free }
+
+      # Nondeterminism is required, not tolerated: processing offers both outcomes and exhaustive
+      # analysis explores both.
+      - from: processing
+        to: completed
+        sync: release
+
+      - from: processing
+        to: failed
+        sync: release
+
+      - from: failed
+        to: queued
+        label: retry
+        requires:
+          retry_count: { lt: 3 }
+        effects:
+          retry_count: retry_count + 1
+
+      - from: failed
+        to: dead_letter
+        label: give-up
+        requires:
+          retry_count: 3
+
+  job-lease:
+    entity: job
+    purpose:
+      question: Which worker, if any, holds this job?
+      represents:
+        - lease custody as an enumerated state
+        - worker identity, as the ordinal in the held-by state
+        - acquisition and release of the lease
+      omits:
+        - scheduler fairness between workers
+        - lease expiry and renewal deadlines
+        - arbitrary worker population
+        - what the holder is doing with the job
+    initial: free
+    states:
+      free:
+      held-by-0:
+      held-by-1:
+    transitions:
+      - from: free
+        to: held-by-0
+        sync: claim
+      - from: free
+        to: held-by-1
+        sync: claim
+      - from: held-by-0
+        to: free
+        sync: release
+      - from: held-by-1
+        to: free
+        sync: release
+
+models:
+
+  worker-pool:
+    type: graph
+    label: Worker Pool
+    purpose:
+      question: Which workers are permitted to claim this job?
+      represents:
+        - job identity
+        - worker identity
+        - permitted claim
+        - the lease state that represents each worker's custody
+      omits:
+        - scheduler fairness between permitted workers
+        - real wall-clock scheduling
+        - worker capacity and concurrency limits
+        - worker health and heartbeats
+    entities: [job, worker-0, worker-1]
+    notes:
+      - id: worker-pool-rationale
+        kind: rationale
+        text: >
+          This model exists so that worker identity is declared rather than implied by two state
+          names. It answers one structural question -- who may claim the job -- and it is the model
+          that pins the lease machine's vocabulary to a real population: each worker entity names the
+          lease state that represents its custody. Keeping it separate from the lease machine is
+          deliberate. Permission to claim is a design fact that does not change as the job runs; who
+          currently holds the lease changes on every step.
+      - id: worker-pool-is-not-a-scheduler
+        kind: comment
+        text: >
+          Two permitted workers and no fairness assumption. The engine explores both claim outcomes
+          as nondeterminism, which answers "can worker-1 hold it" and refuses "will worker-1
+          eventually get a turn".
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Declare the worker population and the permitted-claim structure, and tie each worker to the
+        lease state that represents its custody.
+      rationale: MAGE-provided example, worker-queue, version 1.
+    relations:
+      - id: worker-0-may-claim-job
+        from: worker-0
+        to: job
+        type: may_claim
+      - id: worker-1-may-claim-job
+        from: worker-1
+        to: job
+        type: may_claim
+
+# ---------------------------------------------------------------------------
+# Saved queries. Expected outcomes live in expected-results.yaml -- one source of truth, because the
+# fixture also carries the models each question needs and the evidence it must produce.
+# ---------------------------------------------------------------------------
+queries:
+
+  completed-is-reachable:
+    name: Can a job reach completed?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        job-lifecycle.state: completed
+
+  dead-letter-is-reachable:
+    name: Can a job reach dead_letter?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        job-lifecycle.state: dead_letter
+
+  # The same question as above, under a deliberately absurd search budget. V22 is the lesson: a
+  # BOUNDED search that found nothing reads `inconclusive`, never "no". The sound statement is "not
+  # within the explored region", and the result discloses the bound that stopped it.
+  dead-letter-within-a-tiny-budget:
+    name: Is dead_letter reachable within a two-configuration search budget?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        job-lifecycle.state: dead_letter
+      limit: 2
+
+  # The progress question, asked in the only form that denotes it. `repeatable-cycle` asks for a
+  # genuinely repeated CONFIGURATION; `refuted` under exhaustive coverage says no reachable execution
+  # can loop in retry forever, because retry_count strictly advances within a finite domain.
+  #
+  # That is an exhaustive statement about a finite transition system. It is not temporal liveness.
+  job-can-retry-forever:
+    name: Can a job stay in the retry loop indefinitely?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: repeatable-cycle
+      target:
+        job-lifecycle.state: queued
+
+  # The honest companion to the question above, and the reason the engine has two forms. The job CAN
+  # return to queued -- that is re-entry, and the evidence is a lasso. It cannot do so forever.
+  job-returns-to-queued:
+    name: Can a job return to queued after failing?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: recurrence
+      target:
+        job-lifecycle.state: queued
+
+  # THE cross-model safety requirement. The lifecycle model supplies `processing`; the lease model
+  # supplies `free`; neither alone can state the property. Universal, so exhaustive satisfaction
+  # establishes it and a counterexample refutes it -- which is what the section 6.7 modification does.
+  lease-held-while-processing:
+    name: Is the job ever in processing while no worker holds its lease?
+    kind: behavior
+    quantifier: forall
+    behavior:
+      form: invariant
+      predicate:
+        not:
+          all-of:
+            - job-lifecycle.state: processing
+            - job-lease.state: free
+
+  # Section 6.4's question, and a careful answer. `refuted` here is VACUOUS: one machine has one
+  # control state, so the conjunction is unsatisfiable in the state vector and no transition
+  # structure was consulted. Read it as "the lease model cannot express dual ownership", which is a
+  # stronger statement than "it does not happen" and a weaker one than "two owners were checked for".
+  two-workers-own-one-job:
+    name: Can two workers simultaneously own the same job?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        all-of:
+          - job-lease.state: held-by-0
+          - job-lease.state: held-by-1
+
+  # Purposeful omission, made executable. Fairness needs a scheduler and a dispatch step, and this
+  # system declares neither. The engine refuses and names the missing vocabulary rather than
+  # answering from a model that does not hold the distinction.
+  is-the-scheduler-fair:
+    name: Does the scheduler give both workers a turn?
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: transition-live
+      transition:
+        machine: scheduler
+        sync: dispatch
+
+views:
+
+  lifecycle:
+    label: Job lifecycle
+    machines: [job-lifecycle]
+    direction: top-to-bottom
+
+  custody:
+    label: Lease custody
+    machines: [job-lease]
+    direction: left-to-right
+
+  pool:
+    label: Worker pool
+    models: [worker-pool]
+    show-properties: [holds_lease_as]

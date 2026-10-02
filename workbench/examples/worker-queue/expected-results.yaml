@@ -1,0 +1,249 @@
+# Expected results for the worker-queue example. Read by test/examples.test.ts, which drives the
+# real application seams and compares.
+#
+# Fixture discipline per section 10: semantic outcomes only. For a behavioral trace that means the
+# outcome, the coverage KIND, the final configuration, and label counts that carry the bound --
+# never the exact step count (which moves if the engine's BFS tie-breaking changes) and never the
+# number of configurations explored (which moves if a state is added anywhere).
+
+example: worker-queue
+system: system.mage.yaml
+title: Worker Queue
+summary: >
+  Explore a leased job queue through linked lifecycle, custody and worker-pool models, and see where
+  safety and bounded progress part company.
+
+# Purposeful models for the EX-I2 check. Two machines and one graph model: a machine carries a
+# `purpose` exactly as a graph model does, so a count that looked only at `system.models` would
+# report this example as having one model and would be wrong.
+models:
+  - id: job-lifecycle
+    kind: machine
+  - id: job-lease
+    kind: machine
+  - id: worker-pool
+    kind: graph
+
+requirements:
+  - id: processing-implies-custody
+    statement: >
+      The job is never in processing unless some worker holds its lease.
+    expressed_as: lease-held-while-processing
+    satisfied_when: holds
+    status: satisfied
+    note: >
+      Established by exhaustive exploration of a finite transition system. That is the whole claim:
+      every reachable configuration was enumerated and none violates the predicate. The modification
+      below breaks it on demand, which is what distinguishes a property that holds from one that is
+      never tested.
+
+  - id: retry-policy-bounds-every-execution
+    statement: >
+      No reachable execution stays in the retry loop forever; a job that keeps failing reaches
+      dead_letter.
+    expressed_as: job-can-retry-forever
+    satisfied_when: refuted
+    status: satisfied
+    note: >
+      Stated carefully. The engine refuted the existence of a repeatable configuration across an
+      exhaustively explored finite space, because retry_count strictly advances inside a declared
+      finite domain. That is NOT temporal liveness verification and must not be described as such --
+      MAGE declares no fairness assumptions and has no infinite-trace operators. The companion
+      question `job-returns-to-queued` holds, and the pair is the honest answer: the job can come
+      back, and it cannot come back forever.
+
+queries:
+
+  - id: completed-is-reachable
+    label: Can a job reach completed?
+    suggested: true
+    models: [job-lifecycle, job-lease]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 3
+        final:
+          job-lifecycle.state: completed
+          job-lease.state: free
+    note: >
+      Nominally a single-model question, but the witness needs both: `claim` and `release` are
+      declared events, so the lifecycle cannot step into claimed or out of processing unless the
+      lease machine offers its half of the synchronization. The trace shows the lease returning to
+      free as the job completes, in the same step.
+
+  - id: dead-letter-is-reachable
+    label: Can a job reach dead_letter?
+    suggested: true
+    models: [job-lifecycle, job-lease]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 16
+        labels_at_least:
+          retry: 3
+        final:
+          job-lifecycle.state: dead_letter
+          job-lifecycle.retry_count: 3
+    note: >
+      The bound, witnessed. Three retries and no more: the counter saturates its declared domain and
+      `give-up` is the only transition `failed` still offers. `labels_at_least` pins the count of
+      retry steps rather than the total step count, because the retry count is the semantic content
+      and the total is an artifact of how the trace reaches the counter.
+
+  - id: dead-letter-within-a-tiny-budget
+    label: Is dead_letter reachable within a two-configuration search budget?
+    suggested: false
+    models: [job-lifecycle]
+    expected:
+      outcome: inconclusive
+      coverage: bounded
+      coverage_reason: state-limit
+      no_evidence: true
+    note: >
+      The same question as the entry above, asked with a budget two configurations wide. V22 in its
+      sharpest form: the search was truncated with work outstanding, so the outcome is
+      `inconclusive` and the coverage is `bounded` with the reason named. It must never render as
+      "no" -- dead_letter plainly IS reachable, as the unbudgeted query shows, and a result that
+      said otherwise would be unsound rather than merely unhelpful.
+
+      Shipped as a supplied query rather than left to a unit test because the distinction between
+      "not found" and "not there" is one a student has to see the workbench make.
+
+  - id: job-can-retry-forever
+    label: Can a job stay in the retry loop indefinitely?
+    suggested: true
+    models: [job-lifecycle]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      `repeatable-cycle` asks for a genuinely repeated CONFIGURATION. There is none, because every
+      pass through the retry loop advances retry_count. Refuted under exhaustive coverage, which is
+      an exhaustive statement about a finite space and nothing stronger.
+
+  - id: job-returns-to-queued
+    label: Can a job return to queued after failing?
+    suggested: false
+    models: [job-lifecycle, job-lease]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: lasso
+        role: witness
+        cycle_min_steps: 4
+        labels_at_least:
+          retry: 1
+    note: >
+      The companion to the question above, and the reason the engine has two forms rather than one
+      that guesses. Re-entry holds; repeatability does not. The evidence is a lasso whose cycle is
+      the queued-to-queued segment, and retry_count is one higher at the end of it than at the
+      start -- which is exactly why the same loop is not repeatable.
+
+  - id: lease-held-while-processing
+    label: Is the job ever in processing while no worker holds its lease?
+    suggested: true
+    models: [job-lifecycle, job-lease]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      THE cross-model safety property. `processing` is a lifecycle state; `free` is a lease state;
+      no single model can state the conjunction. Universal, so exhaustive satisfaction establishes it
+      and a counterexample refutes it. Held non-vacuously: both conjuncts are individually
+      reachable, and the modification below produces the counterexample on demand.
+
+  - id: two-workers-own-one-job
+    label: Can two workers simultaneously own the same job?
+    suggested: false
+    models: [job-lease]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      Refuted, and VACUOUSLY so -- which matters more than the outcome. One machine has one control
+      state, so `held-by-0 and held-by-1` is unsatisfiable in the state vector and no transition was
+      consulted to decide it. The sound reading is that the lease model makes dual ownership
+      unrepresentable. That is stronger than "it does not happen here" and weaker than "two owners
+      were searched for and not found", and a reader who takes it for the latter has been misled by
+      a correct answer.
+
+  - id: is-the-scheduler-fair
+    label: Does the scheduler give both workers a turn?
+    suggested: true
+    models: [job-lifecycle, job-lease, worker-pool]
+    expected:
+      outcome: unlicensed
+      coverage: not-applicable
+      refusal_contains: "not about this model's vocabulary"
+      no_evidence: true
+    note: >
+      Purposeful omission (section 7), executed. Fairness needs a scheduler and a dispatch step, and
+      this system declares neither, so the engine refuses and names the missing vocabulary. Two
+      things it is NOT: it is not a claim that the scheduler is unfair, and it is not derived from
+      the `omits` lists -- no refusal path consults them.
+
+      There is a further gap behind that. V24 checks `omits` against a model's real vocabulary only
+      for GRAPH models: `checkMeaning` iterates `system.models` and never `system.machines`. Both
+      machines here declare omissions that the shipped validator does not check, so
+      test/examples.test.ts implements the missing check for these examples.
+
+modifications:
+
+  - id: begin-processing-without-the-lease
+    label: Let processing begin before the lease is acquired
+    rationale: >
+      Section 6.7. An unguarded `queued -> processing` transition is the fault a real queue has when
+      a worker short-circuits the claim. One step is enough to refute the invariant, and the
+      counterexample names the step.
+    transaction:
+      operations:
+        - op: add-transition
+          machine: job-lifecycle
+          from: queued
+          to: processing
+          label: steal
+    changes:
+      - query: lease-held-while-processing
+        from: holds
+        to: refuted
+    counterexample:
+      shape: trace
+      role: counterexample
+      min_steps: 1
+      labels_at_least:
+        steal: 1
+      final:
+        job-lifecycle.state: processing
+        job-lease.state: free
+
+  - id: repair-the-stolen-transition
+    label: Require lease ownership before processing begins
+    rationale: >
+      The second half of section 6.7. The same transition with the guard the others carry, which is
+      the repair an agent would propose as a hypothesis for a student to inspect. Re-running the
+      safety query re-establishes the property, which also shows the guard -- not the absence of the
+      transition -- is what carries the invariant.
+    transaction:
+      operations:
+        - op: add-transition
+          machine: job-lifecycle
+          from: queued
+          to: processing
+          label: steal
+          requires:
+            job-lease.state:
+              ne: free
+    changes:
+      - query: lease-held-while-processing
+        from: holds
+        to: holds

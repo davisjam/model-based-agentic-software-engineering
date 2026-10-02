@@ -1,0 +1,525 @@
+# GENERATED from the shipped examples by `node scripts/gen-example-coverage.ts`. Do not hand-edit:
+# every row is derived from the examples' own loaded IR and expected-results fixtures, and
+# test/examples.test.ts re-generates this file and compares, so a hand edit fails the build.
+#
+# Reads as: which major public semantic capabilities of MAGE does the shipped example suite
+# actually exercise? A capability with no incoming `exercises` edge is not covered. A capability
+# MAGE has no construct for carries a `blocked-by` edge naming what is missing -- reported, never
+# omitted, because a coverage model that claims a capability the product lacks is worse than none.
+#
+# Document Processing, the third default example in the requirements, is NOT shipped. Its
+# quantitative-performance content needs constructs this version does not have, which is why the
+# Quantities, Performance and Requirements rows are unavailable rather than merely uncovered.
+
+mage: 1
+
+system:
+  id: mage-example-coverage
+  name: MAGE default-example coverage
+  description: >
+    Which semantic capabilities the shipped default examples exercise, derived from the examples
+    themselves and from a probe of the published schemas.
+
+domains:
+  coverage-status:
+    type: enum
+    values: [exercised, unexercised, unavailable]
+    description: >
+      exercised: at least one shipped example exercises it. unexercised: MAGE supports it and no
+      shipped example reaches it. unavailable: MAGE has no construct for it, so no example could.
+
+relation-types:
+
+  exercises:
+    description: The example exercises this semantic capability.
+    absence: >
+      No shipped example exercises the capability. For a capability MAGE supports, that is a gap in
+      the example suite, not a design choice.
+    composition:
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
+  blocked-by:
+    description: The capability is unreachable because MAGE declares no such construct.
+    absence: >
+      Nothing structural blocks the capability. If no example exercises it anyway, the example
+      suite is what is missing.
+    composition:
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
+entities:
+
+  example.message-bus:
+    type: default-example
+    label: "Message Bus"
+    properties:
+      purposeful_models: 3
+      supplied_queries: 6
+      suggested_queries: 5
+
+  example.worker-queue:
+    type: default-example
+    label: "Worker Queue"
+    properties:
+      purposeful_models: 3
+      supplied_queries: 8
+      suggested_queries: 5
+
+  capability.structural-models:
+    type: semantic-capability
+    label: "A structural model: entities and typed relations, with a declared purpose."
+    properties:
+      matrix_row: "Relations"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.typed-relationships:
+    type: semantic-capability
+    label: "Two or more relation types, each declaring what its ABSENCE asserts and whether paths compose."
+    properties:
+      matrix_row: "Relations"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.state-machines:
+    type: semantic-capability
+    label: "An explicit finite state machine with a declared initial state and enumerated states."
+    properties:
+      matrix_row: "State machine"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.synchronized-events:
+    type: semantic-capability
+    label: "A declared event stepping two machines atomically, with no observable intermediate state."
+    properties:
+      matrix_row: "State machine"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.cross-model-identity:
+    type: semantic-capability
+    label: "One identity named by two or more purposeful models, which is what makes a join sound."
+    properties:
+      matrix_row: "Composition"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.model-composition:
+    type: semantic-capability
+    label: "A supplied question whose answer needs information from more than one purposeful model."
+    properties:
+      matrix_row: "Composition"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.graph-reachability:
+    type: semantic-capability
+    label: "A multi-hop reachability question answered over a relation type that licenses composition."
+    properties:
+      matrix_row: "Composition"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.safety:
+    type: semantic-capability
+    label: "A universal behavioral invariant established by exhaustive exploration, refutable by a counterexample."
+    properties:
+      matrix_row: "Safety"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.safety-as-existential-dual:
+    type: semantic-capability
+    label: "A safety property over a graph model, stated as the existential dual because v0.1 declares no universal graph form: the requirement is satisfied when the query is REFUTED, and `holds` is the breach."
+    properties:
+      matrix_row: "Safety"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.reachability:
+    type: semantic-capability
+    label: "A reachability question answered with a finite witness trace."
+    properties:
+      matrix_row: "Liveness"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.bounded-progress:
+    type: semantic-capability
+    label: "Progress under a bounded policy: no reachable execution repeats a configuration forever. An exhaustive statement about a finite space, NOT temporal liveness verification."
+    properties:
+      matrix_row: "Liveness"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.bounded-cycles:
+    type: semantic-capability
+    label: "A bounded counter that makes a retry loop finite, and a lasso witness for the re-entry."
+    properties:
+      matrix_row: "State machine"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.witnesses:
+    type: semantic-capability
+    label: "A witness returned with an established existential claim, not merely the word that settles it."
+    properties:
+      matrix_row: "Composition"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.counterexamples:
+    type: semantic-capability
+    label: "A counterexample returned with a refuted universal claim, naming the step that breaks it."
+    properties:
+      matrix_row: "Safety"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.purposeful-non-answerability:
+    type: semantic-capability
+    label: "A question REFUSED, with the cause named, rather than answered from a model that does not hold the distinction."
+    properties:
+      matrix_row: "Not-answerable"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.bounded-coverage-reporting:
+    type: semantic-capability
+    label: "A search truncated by its state limit, reported as inconclusive under bounded coverage (V22)."
+    properties:
+      matrix_row: "Not-answerable"
+      status: { value: exercised, domain: coverage-status }
+
+  capability.containment-hierarchy:
+    type: semantic-capability
+    label: "Entity containment, and a hierarchical containment path as evidence."
+    properties:
+      matrix_row: "Relations"
+      status: { value: unexercised, domain: coverage-status }
+
+  capability.quantitative-annotations:
+    type: semantic-capability
+    label: "A quantity attached to a transition, a state or a component."
+    properties:
+      matrix_row: "Quantities"
+      status: { value: unavailable, domain: coverage-status }
+
+  capability.performance:
+    type: semantic-capability
+    label: "A latency or memory question answered by aggregating quantities over the executions a behavioral model supplies."
+    properties:
+      matrix_row: "Performance"
+      status: { value: unavailable, domain: coverage-status }
+
+  capability.requirements:
+    type: semantic-capability
+    label: "A requirement as a first-class object the model is judged against, not prose beside it."
+    properties:
+      matrix_row: "Requirements"
+      status: { value: unavailable, domain: coverage-status }
+
+  construct.model-quantities:
+    type: absent-construct
+    label: "A quantity construct: a magnitude with a dimension, attached to a transition or a component."
+
+  construct.model-requirements:
+    type: absent-construct
+    label: "A requirement construct: a named, checkable obligation the model is judged against."
+
+  construct.query-path-aggregation:
+    type: absent-construct
+    label: "A query that aggregates a quantity over an execution path, and somewhere in the result shape to report the number it computes."
+
+models:
+
+  coverage:
+    type: graph
+    label: Default-example coverage
+    purpose:
+      question: >
+        Does the shipped example suite exercise every major public semantic capability of MAGE?
+      represents: [default example, semantic capability, absent construct, exercises, blocked-by]
+      omits:
+        - how thoroughly a capability is exercised
+        - which test asserts a given capability
+        - capabilities internal to the engine and not reachable from a model file
+        - the order in which a reader should work through the examples
+    entities:
+      - example.message-bus
+      - example.worker-queue
+      - capability.structural-models
+      - capability.typed-relationships
+      - capability.state-machines
+      - capability.synchronized-events
+      - capability.cross-model-identity
+      - capability.model-composition
+      - capability.graph-reachability
+      - capability.safety
+      - capability.safety-as-existential-dual
+      - capability.reachability
+      - capability.bounded-progress
+      - capability.bounded-cycles
+      - capability.witnesses
+      - capability.counterexamples
+      - capability.purposeful-non-answerability
+      - capability.bounded-coverage-reporting
+      - capability.containment-hierarchy
+      - capability.quantitative-annotations
+      - capability.performance
+      - capability.requirements
+      - construct.model-quantities
+      - construct.model-requirements
+      - construct.query-path-aggregation
+    relations:
+      - { from: example.message-bus, to: capability.structural-models, type: exercises }
+      - { from: example.worker-queue, to: capability.structural-models, type: exercises }
+      - { from: example.message-bus, to: capability.typed-relationships, type: exercises }
+      - { from: example.worker-queue, to: capability.state-machines, type: exercises }
+      - { from: example.worker-queue, to: capability.synchronized-events, type: exercises }
+      - { from: example.message-bus, to: capability.cross-model-identity, type: exercises }
+      - { from: example.worker-queue, to: capability.cross-model-identity, type: exercises }
+      - { from: example.message-bus, to: capability.model-composition, type: exercises }
+      - { from: example.worker-queue, to: capability.model-composition, type: exercises }
+      - { from: example.message-bus, to: capability.graph-reachability, type: exercises }
+      - { from: example.worker-queue, to: capability.safety, type: exercises }
+      - { from: example.message-bus, to: capability.safety-as-existential-dual, type: exercises }
+      - { from: example.worker-queue, to: capability.reachability, type: exercises }
+      - { from: example.worker-queue, to: capability.bounded-progress, type: exercises }
+      - { from: example.worker-queue, to: capability.bounded-cycles, type: exercises }
+      - { from: example.message-bus, to: capability.witnesses, type: exercises }
+      - { from: example.worker-queue, to: capability.witnesses, type: exercises }
+      - { from: example.worker-queue, to: capability.counterexamples, type: exercises }
+      - { from: example.message-bus, to: capability.purposeful-non-answerability, type: exercises }
+      - { from: example.worker-queue, to: capability.purposeful-non-answerability, type: exercises }
+      - { from: example.worker-queue, to: capability.bounded-coverage-reporting, type: exercises }
+      - { from: capability.quantitative-annotations, to: construct.model-quantities, type: blocked-by }
+      - { from: capability.performance, to: construct.model-quantities, type: blocked-by }
+      - { from: capability.performance, to: construct.query-path-aggregation, type: blocked-by }
+      - { from: capability.requirements, to: construct.model-requirements, type: blocked-by }
+
+# One assertion per capability. `expect` makes a saved query a CI gate: re-running them
+# re-derives the matrix, so the answer to the model's question is executable rather than read off
+# a table someone maintained by hand.
+queries:
+
+  exercised-by.structural-models:
+    name: "Which shipped example exercises relations -- structural-models?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.structural-models
+
+  exercised-by.typed-relationships:
+    name: "Which shipped example exercises relations -- typed-relationships?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.typed-relationships
+
+  exercised-by.state-machines:
+    name: "Which shipped example exercises state machine -- state-machines?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.state-machines
+
+  exercised-by.synchronized-events:
+    name: "Which shipped example exercises state machine -- synchronized-events?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.synchronized-events
+
+  exercised-by.cross-model-identity:
+    name: "Which shipped example exercises composition -- cross-model-identity?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.cross-model-identity
+
+  exercised-by.model-composition:
+    name: "Which shipped example exercises composition -- model-composition?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.model-composition
+
+  exercised-by.graph-reachability:
+    name: "Which shipped example exercises composition -- graph-reachability?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.graph-reachability
+
+  exercised-by.safety:
+    name: "Which shipped example exercises safety -- safety?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.safety
+
+  exercised-by.safety-as-existential-dual:
+    name: "Which shipped example exercises safety -- safety-as-existential-dual?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.safety-as-existential-dual
+
+  exercised-by.reachability:
+    name: "Which shipped example exercises liveness -- reachability?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.reachability
+
+  exercised-by.bounded-progress:
+    name: "Which shipped example exercises liveness -- bounded-progress?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.bounded-progress
+
+  exercised-by.bounded-cycles:
+    name: "Which shipped example exercises state machine -- bounded-cycles?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.bounded-cycles
+
+  exercised-by.witnesses:
+    name: "Which shipped example exercises composition -- witnesses?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.witnesses
+
+  exercised-by.counterexamples:
+    name: "Which shipped example exercises safety -- counterexamples?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.counterexamples
+
+  exercised-by.purposeful-non-answerability:
+    name: "Which shipped example exercises not-answerable -- purposeful-non-answerability?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.purposeful-non-answerability
+
+  exercised-by.bounded-coverage-reporting:
+    name: "Which shipped example exercises not-answerable -- bounded-coverage-reporting?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.bounded-coverage-reporting
+
+  exercised-by.containment-hierarchy:
+    name: "Which shipped example exercises relations -- containment-hierarchy?"
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.containment-hierarchy
+
+  exercised-by.quantitative-annotations:
+    name: "Which shipped example exercises quantities -- quantitative-annotations?"
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.quantitative-annotations
+
+  exercised-by.performance:
+    name: "Which shipped example exercises performance -- performance?"
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.performance
+
+  exercised-by.requirements:
+    name: "Which shipped example exercises requirements -- requirements?"
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph:
+      form: predecessors
+      relation: exercises
+      to: capability.requirements
+
+  blocked.quantitative-annotations:
+    name: "What construct does MAGE lack that makes quantitative-annotations unreachable?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: successors
+      relation: blocked-by
+      from: capability.quantitative-annotations
+
+  blocked.performance:
+    name: "What construct does MAGE lack that makes performance unreachable?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: successors
+      relation: blocked-by
+      from: capability.performance
+
+  blocked.requirements:
+    name: "What construct does MAGE lack that makes requirements unreachable?"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: successors
+      relation: blocked-by
+      from: capability.requirements
