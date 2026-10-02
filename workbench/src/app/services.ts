@@ -27,16 +27,26 @@ import { collectProvenance } from "./provenance.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
 import { evaluateOne, evaluateProperties } from "./properties.ts";
 import type { EvaluatedProperty } from "./properties.ts";
-import type { EnginePort, RenderPort, RenderedView, SceneRequest } from "./ports.ts";
+import type {
+  AnalysisPort, EnginePort, PendingResult, RenderPort, RenderedView, SceneRequest,
+} from "./ports.ts";
+import type { ExhaustedResult, QueryAlgebra, SeamQuestion } from "../sparql/index.ts";
+import { WORKER_STATE_LIMIT, WORKER_STEP_BUDGET } from "../worker/protocol.ts";
 
 /**
  * Ports that remain genuinely external. YAML and transactions are no longer here: the
  * `TransactionEngine` owns both, because a transaction needs the document and the document is where
  * comments live.
+ *
+ * `analysis` is OPTIONAL, and that is a statement about the product rather than a convenience. A
+ * `Worker` is spawned by a page against a URL relative to that page; a test, a CI script and
+ * `validate.py` have no page. The facade must work without one — and must say so when a caller asks
+ * for work that only a Worker can do, rather than answering with an empty space.
  */
 export interface Ports {
   readonly engine: EnginePort;
   readonly render: RenderPort;
+  readonly analysis?: AnalysisPort;
 }
 
 export interface WorkspaceState {
@@ -288,6 +298,116 @@ export class Workspace {
    */
   evaluate(id: string, query: unknown): EvaluatedProperty {
     return evaluateOne(this.#engine.system(), id, query, this.query(query), this.#engine.hash());
+  }
+
+  // -- long analysis ---------------------------------------------------------------------------
+  //
+  // ## Why these two are async and nothing else changed
+  //
+  // The ports above are synchronous on purpose, and the reasoning is a few screens up: the common
+  // case is a small model, and an await on `query()` would cost every caller — the human panel, the
+  // property list, `window.mage.query`, `validate.py`'s gate — a thread boundary to buy nothing.
+  // Making everything async to accommodate the Worker would be the tail wagging the dog.
+  //
+  // So the Worker is reached through an ADDITIONAL surface rather than by converting the existing
+  // one, and the two methods on it are the two operations that are long BY NATURE: walking the
+  // configuration space, and re-issuing a question whose synchronous budget ran out. Neither has a
+  // synchronous caller to break, because until now neither had a caller at all.
+  //
+  // ## What the caller gets while one runs
+  //
+  // A promise, plus the state events the client was constructed with. No progress fraction: the
+  // explorer does not know how big the space is until it has walked it, so a percentage would be a
+  // number we invented — and this codebase prefers an honest "running" to a confident fiction. The
+  // real figures (`statesExplored`, `steps`) arrive with the result, which is also when the change
+  // becomes consequential enough for the page to announce it.
+  //
+  // ## Why a Worker reply cannot move the model
+  //
+  // Four things hold it, in order of how hard they are to undo:
+  //
+  //   1. The request union has no arm carrying an operation or a transaction. The Worker's inbox
+  //      cannot express a write.
+  //   2. The reply union carries only analyses — a result, a space summary, an evaluation, findings.
+  //      No arm carries a system, a document or source text, so there is nothing in a reply a caller
+  //      could load.
+  //   3. These methods return the outcome to their caller. They do not touch `#engine`, and they do
+  //      not `#emit()`. The single mutator remains `transact`, whose input comes from the caller.
+  //   4. `analysis.worker.ts` does not import `../transaction/`, so there is no `apply` on that
+  //      thread to call. A test asserts that over the worker's own bytes, so adding one is a test
+  //      failure rather than a code review someone has to remember to do.
+
+  /**
+   * Walk the reachable configuration space and report its SIZE.
+   *
+   * The answer is a summary, not the configurations: a million configurations is a million pairs of
+   * Maps, and the question this serves — "is this model's behaviour tractable, and did the walk
+   * finish" — is answered by the counts and the stop reason. A caller that needs a particular
+   * configuration asks a behavioural query and gets a witness.
+   */
+  async explore(limit: number = WORKER_STATE_LIMIT): Promise<PendingResult> {
+    const analysis = this.#ports.analysis;
+    if (analysis === undefined) return Workspace.#noWorker("a long exploration");
+    return analysis.explore(this.#engine.toText(), this.#engine.hash(), limit);
+  }
+
+  /**
+   * Re-issue a question whose synchronous step budget ran out.
+   *
+   * **The caller re-issues; the evaluator does not hand over a continuation.** That was a real fork
+   * and the reasoning is worth keeping: the evaluator's budget state is a stack of recursive calls
+   * plus a quad index built during the walk, so there is nothing serializable to hand over — making
+   * one would mean rewriting the evaluator as a resumable machine, and the cost of that lands on
+   * every query to speed up the ones that exhaust. Re-issuing recomputes, and what it recomputes is
+   * bounded by the budget that was just spent: the synchronous attempt is 1/40th of the Worker's, so
+   * the duplicated work is a rounding error against the work that remains.
+   *
+   * Re-issuing also keeps the two components apart. `eval.ts` names its budget and says to route the
+   * question onward; it does not know a Worker exists, and it does not acquire a dependency on one.
+   *
+   * The spent result is a PARAMETER rather than documentation. A caller cannot reach the big budget
+   * without one in hand, so the Worker is the escalation path for an exhausted question and not a
+   * general-purpose fast lane around the interactive budget.
+   */
+  async resolveExhausted(
+    spent: ExhaustedResult, question: SeamQuestion, query: QueryAlgebra,
+    budget: number = WORKER_STEP_BUDGET,
+  ): Promise<PendingResult> {
+    const analysis = this.#ports.analysis;
+    if (analysis === undefined) {
+      return Workspace.#noWorker(`the question that exhausted ${spent.steps} steps`);
+    }
+    return analysis.evaluateQuestion(this.#engine.toText(), this.#engine.hash(), question, query, budget);
+  }
+
+  /** What is running, so a caller can show it and offer cancellation. Empty without a Worker. */
+  analysisInFlight(): readonly number[] {
+    return this.#ports.analysis?.inFlight() ?? [];
+  }
+
+  /** Abandon one in-flight analysis. A no-op without a Worker, because nothing is running. */
+  cancelAnalysis(id: number): void {
+    this.#ports.analysis?.cancel(id);
+  }
+
+  /**
+   * The refusal for "there is no Worker here".
+   *
+   * A `failed` arm carrying the sentence, not an empty result: the facade's standing rule is that a
+   * refusal names what would license the question, and the thing that would license this one is a
+   * wired port. The alternative — resolving to a space of zero configurations marked incomplete — is
+   * literally true and operationally a lie, because a reader cannot tell it from a model with no
+   * reachable behaviour.
+   */
+  static #noWorker(what: string): PendingResult {
+    return {
+      status: "failed",
+      messages: [
+        `no analysis worker is wired: ${what} has nowhere to run. The page supplies ` +
+        `Ports.analysis via createAnalysisClient('./dist/analysis.worker.js', …); a host without a ` +
+        `page — a test, a CI script — has no Worker and gets this instead of an invented answer.`,
+      ],
+    };
   }
 
   // -- views -----------------------------------------------------------------------------------

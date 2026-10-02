@@ -15,6 +15,12 @@ import type { AssetReader } from "../src/app/examples.ts";
 import { createAgentApi } from "../src/app/agent-api.ts";
 import { checkPropertyGrounding } from "../src/app/properties.ts";
 import { EXAMPLE_IDS, readFixture } from "../scripts/gen-example-coverage.ts";
+import { admit, evaluate } from "../src/sparql/index.ts";
+import type { SeamQuestion, SelectQuery } from "../src/sparql/index.ts";
+import { entityIri, modelGraphIri, relationTypeIri } from "../src/rdf/iri.ts";
+import { project } from "../src/rdf/project.ts";
+import { variable } from "../src/sparql/index.ts";
+import { onThread } from "./worker-fixtures.ts";
 
 // The real renderer rather than a stub. The render port now speaks the renderer's own types, so a
 // hand-written stub here would be a third copy of a shape that already has one owner -- and the
@@ -144,6 +150,128 @@ test("saved queries re-run against the CURRENT system after a commit", () => {
   const second = ws.runSavedQueries();
   for (const r of second.values()) {
     assert.equal(r.systemHash, ws.state.hash, "every result must carry the hash it describes");
+  }
+});
+
+// ----------------------------------------------------------------------------------------------
+// Long analysis through the facade, into the real Worker
+// ----------------------------------------------------------------------------------------------
+//
+// The gap these close: the Worker shipped, CI asserted the bundle into the published artifact, and
+// nothing instantiated it. A facade test is where that shows, because the facade is the only place a
+// caller can reach -- so these drive `Ports.analysis` exactly as the page will.
+
+/** The facade over the real worker thread. */
+const withWorker = (): { readonly ws: Workspace; readonly stop: () => void } => {
+  const thread = onThread();
+  const ws = new Workspace({ ...ports, analysis: thread.client });
+  const r = ws.load(docable());
+  assert.ok(r.ok, "the worked example must load");
+  return { ws, stop: thread.stop };
+};
+
+test("without a Worker, a long exploration REFUSES and names what would run it", async () => {
+  // Not an empty configuration set. A space of zero configurations marked incomplete is literally
+  // true and operationally a lie: a reader cannot tell it from a model with no reachable behaviour.
+  const ws = loaded();
+  const out = await ws.explore();
+  assert.equal(out.status, "failed", "a host with no page has no Worker, and must say so");
+  if (out.status !== "failed") return;
+  assert.match(out.messages[0] ?? "", /no analysis worker is wired/);
+  assert.match(out.messages[0] ?? "", /Ports\.analysis/,
+    "a refusal must name the change that would license the question");
+});
+
+test("a long exploration reaches the Worker and leaves the model EXACTLY where it was", async () => {
+  // UX-I3 at the thread boundary. The Worker holds a second copy of the IR, so the invariant holds
+  // only while that copy is write-only to nobody -- and the observable form of "the Worker cannot
+  // mutate" is that a round trip moves neither the hash nor the bytes.
+  const { ws, stop } = withWorker();
+  try {
+    const before = ws.state.hash;
+    const text = ws.export();
+    const out = await ws.explore(5_000);
+    assert.equal(out.status, "ok-space",
+      `expected a space, got ${out.status}${out.status === "failed" ? `: ${out.messages.join("; ")}` : ""}`);
+    if (out.status !== "ok-space") return;
+    assert.ok(out.space.statesExplored > 1, "a space of one configuration would witness nothing");
+
+    assert.equal(ws.state.hash, before, "a Worker round trip must not advance the semantic revision");
+    assert.equal(ws.export(), text, "nor change a byte of the document");
+    assert.equal(ws.state.canUndo, false, "and must leave no revision to undo");
+  } finally {
+    stop();
+  }
+});
+
+// docable declares `may_invoke` with `composition.path: allowed`, and `owns` forbidden -- the pair
+// this question set needs.
+const COMPOSING: SeamQuestion = {
+  kind: "relational", relation: "may_invoke", traversal: "composing", evidence: "bindings",
+  scope: { kind: "system-union" }, subset: { kind: "within-subset" },
+};
+
+/** `SELECT ?x WHERE { GRAPH <service-flow> { <api> may_invoke+ ?x } }`. */
+const REACHES: SelectQuery = {
+  kind: "select", select: [variable("x")], from: null,
+  where: [{
+    kind: "graph", name: modelGraphIri("docable", "service-flow"),
+    patterns: [{
+      kind: "bgp",
+      triples: [{
+        subject: entityIri("docable", "api"),
+        predicate: { kind: "path-one-or-more", path: relationTypeIri("docable", "may_invoke") },
+        object: variable("x"),
+      }],
+    }],
+  }],
+  groupBy: null, orderBy: null, limit: null,
+};
+
+test("an exhausted question routes through the facade to the Worker, and resolves", async () => {
+  // The second gap, end to end. `exhausted` said "route it to the analysis Worker" and there was no
+  // route; this is the route, and `resolveExhausted` takes the spent result so the Worker's budget
+  // is the escalation of an exhausted question rather than a way around the interactive bound.
+  const { ws, stop } = withWorker();
+  try {
+    const system = ws.state.system;
+    const before = ws.state.hash;
+    const admission = admit(system, COMPOSING);
+    assert.equal(admission.kind, "licensed");
+    if (admission.kind !== "licensed") return;
+
+    const spent = evaluate(project(system), REACHES, admission.question, 2);
+    assert.equal(spent.kind, "exhausted", "a 2-step budget cannot finish a one-or-more path");
+    if (spent.kind !== "exhausted") return;
+
+    const out = await ws.resolveExhausted(spent, COMPOSING, REACHES);
+    assert.equal(out.status, "ok-evaluation",
+      `expected an evaluation, got ${out.status}${out.status === "failed" ? `: ${out.messages.join("; ")}` : ""}`);
+    if (out.status !== "ok-evaluation") return;
+    assert.equal(out.evaluation.kind, "select", "the Worker's budget resolves what the page's could not");
+    if (out.evaluation.kind !== "select") return;
+    assert.equal(out.evaluation.rows.length, 2, "api may_invoke+ reaches remediation and gateway");
+    assert.equal(ws.state.hash, before, "resolving a question must not advance the revision");
+    assert.equal(ws.state.system, system,
+      "nor rebuild the IR: the workspace is holding the same object it held before the round trip");
+  } finally {
+    stop();
+  }
+});
+
+test("UX-I2: an agent reaches the same long analysis, over the same Worker", async () => {
+  // Same service, not two paths that look alike. `window.mage.analysis` is the facade's method, so a
+  // person reading "4 configurations, walk complete" and an agent reading it are reading one answer.
+  const { ws, stop } = withWorker();
+  try {
+    const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {}, new ExampleCatalog(ws, assets));
+    const mine = await ws.explore(5_000);
+    const theirs = await api.analysis.explore(5_000);
+    assert.equal(mine.status, "ok-space");
+    assert.deepEqual(theirs, mine, "the agent's figures must be the person's figures");
+    assert.deepEqual(api.analysis.inFlight(), [], "nothing is running once both have settled");
+  } finally {
+    stop();
   }
 });
 

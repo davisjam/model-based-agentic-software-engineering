@@ -13,12 +13,13 @@ import type {
   CanonicalSystem, Configuration, Finding, QueryResult,
 } from "../ir/types.ts";
 import type { RenderedView, SceneRequest } from "../render/types.ts";
+import type { AnalysisClient, PendingResult } from "../worker/client.ts";
 
 /**
  * Re-exported so a port consumer still has one import site for the whole contract surface, now
  * that the rendering contract is the renderer's own rather than a placeholder declared here.
  */
-export type { RenderedView, SceneRequest };
+export type { PendingResult, RenderedView, SceneRequest };
 
 /** Phase C — the analysis engine. Consumes canonical IR only; never YAML, never the DOM. */
 export interface EnginePort {
@@ -32,6 +33,24 @@ export interface EnginePort {
     readonly exhaustive: boolean;
   };
 }
+
+/**
+ * Phase G — analysis off the UI thread.
+ *
+ * **A `Pick` of the client's own type, not a second declaration of it.** `RenderPort` learned this
+ * the expensive way: a narrower restatement of a contract silently threw away the substance of what
+ * the implementation returned. So this names the four methods the facade calls and inherits their
+ * signatures, which means a fake in a test cannot drift from the real client and a change to the
+ * client's shape is a type error here rather than at integration.
+ *
+ * `analyze` and `analyzeSaved` are deliberately NOT in the subset. The facade answers an ordinary
+ * query synchronously, in process, and that is the decision recorded in `services.ts`: the common
+ * case is a small model, and a thread boundary on it would cost every caller an await to buy
+ * nothing. What the Worker is FOR is the two operations below, both of which are long by nature.
+ */
+export type AnalysisPort = Pick<
+  AnalysisClient, "explore" | "evaluateQuestion" | "inFlight" | "cancel"
+>;
 
 /** Phase D — the concrete-syntax boundary. The only component that knows YAML exists. */
 export interface YamlPort {
