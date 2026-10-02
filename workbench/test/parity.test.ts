@@ -38,6 +38,13 @@ const ASYMMETRIC: Record<string, string> = {
   V20: "Python only: ordered-domain typing of order comparisons in saved queries.",
   SCHEMA: "Python only: JSON Schema shape pass. TS gets shape from generated types at compile time.",
   QUERY: "Python only: asserted-query evaluation lives in validate.py and the workbench engine.",
+  // §7.5 governs the SPARQL interface over the RDF projection. Both sides gate their OWN evaluator
+  // from the relation-type declaration (V7), so the licensing rule itself is not asymmetric -- but the
+  // second interface exists only in TypeScript, so there is no Python site these three could compare
+  // against. They move out of this table when validate.py grows a SPARQL seam, which is not planned.
+  V32: "TS only: the SPARQL licensing gate (src/sparql/licensing.ts). validate.py projects no RDF and exposes no SPARQL interface, so it has no second interface to gate.",
+  V33: "TS only: the seam's refusal vocabulary (src/sparql/refusal.ts). validate.py emits a refusal SENTENCE from run_graph_query and has no structured-refusal channel to carry a cause.",
+  V34: "TS only: named-graph scope selection. validate.py unions across every model by construction and never scopes to one, so the choice V34 forces does not arise there.",
 };
 
 const pyFindings = (yamlText: string): Finding[] => {
