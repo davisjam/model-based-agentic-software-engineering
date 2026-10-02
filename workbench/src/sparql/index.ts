@@ -6,13 +6,14 @@
  * §4): the IR's authority over which questions are licensed, and a refusal that names what would
  * license the question.
  *
- * **No parser, no evaluator, no SPARQL text.** `MEASUREMENT-comunica-261002.md` ruled Comunica out on
- * size and on a measured wrong answer, so we write the evaluator — which makes this seam the thing the
- * evaluator is built on rather than a wrapper around someone else's engine.
+ * **No parser, no SPARQL text.** `MEASUREMENT-comunica-261002.md` ruled Comunica out on size and on
+ * a measured wrong answer, so `eval.ts` evaluates a typed query algebra (`algebra.ts`) shaped like a
+ * `sparqljs` parse; the text→algebra walk lands with the parser. The evaluator takes a
+ * `LicensedQuestion`, so the gate has structurally already run.
  *
- * Dependencies point inward: `../ir/` for the IR and `../engine/` for the licensing predicate and the
- * refusal vocabulary this layer shares with it. Nothing here imports RDF terms; the gate decides from
- * the IR, which is V32's whole content.
+ * Dependencies point inward: `../ir/` for the IR, `../engine/` for the licensing predicate and the
+ * refusal vocabulary this layer shares with it, and `../rdf/` for the terms the evaluator matches.
+ * The gate itself imports no RDF terms; it decides from the IR, which is V32's whole content.
  */
 export {
   admit, directionsOf, licensesTraversal, traversalOf,
@@ -25,3 +26,14 @@ export {
   type EngineRoute, type RefusalCause, type RouteReason, type SeamRefusal,
   type SupportedConstruct,
 } from "./refusal.ts";
+export {
+  variable,
+  type AggregateBinding, type Aggregate, type AskQuery, type ComparisonOp, type Expression,
+  type GraphPattern, type OrderComparator, type PathNode, type PatternTerm, type PropertyPath,
+  type QueryAlgebra, type SelectItem, type SelectQuery, type TriplePattern, type Variable,
+} from "./algebra.ts";
+export {
+  DEFAULT_STEP_BUDGET, evaluate,
+  type AskResult, type Bindings, type Evaluation, type ExhaustedResult, type RefusedResult,
+  type SelectResult,
+} from "./eval.ts";

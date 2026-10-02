@@ -124,6 +124,36 @@ The analysis Worker already exists for long explorations. A SPARQL query over a 
 fast, but property paths over a large one are not bounded in any obvious way. Reusing the Worker
 costs an async boundary the services facade deliberately avoided for the synchronous engine.
 
+**Ruled (261002, WB-EVAL): main thread, synchronous, with an explicit step budget.** The evaluator
+(`src/sparql/eval.ts`) counts every quad matched, path step expanded, and join pair produced
+against a budget; exceeding it returns a fourth result arm, `exhausted`, naming the budget and
+routing the caller to the Worker. An unbounded synchronous evaluator was not a candidate — the
+brief and this section both rule it out — so the decision was between paying the async boundary on
+every query and bounding the synchronous path. The measurements say the common case never needed
+the boundary:
+
+- `ASK { GRAPH <g> { e0 p+ e999 } }`, 1,000-entity chain: **2.4 ms** median (Comunica, same scale
+  point, §4: 50–80 ms).
+- Same query over a 5,000-entity chain: **9.2 ms** (Comunica: 188–214 ms). ≤16,384 steps.
+- `(p|^p)*` — V8's symmetry encoding, closed — across the 5,000-entity chain: **11.5 ms**.
+- The pathological shape, `?x p* ?y` with both ends free over a 500-entity chain: **154 ms**,
+  125,250 rows, ≤262,144 steps. This is the shape that motivates the budget; no worked example
+  asks it.
+
+(M3 Pro, Node 24, median of 5; step counts are powers-of-two upper bounds from a doubling probe.)
+A step costs 0.6–1.2 µs, so the default budget of 500,000 steps bounds the worst case near
+0.3–0.6 s and admits every measured query with at least 2× headroom. The projection of a worked
+example is two orders of magnitude smaller than these chains, so typical evaluation sits in
+single-digit milliseconds — the Worker's cold-start and messaging cost would exceed the query.
+
+Second-order consequences, stated so they are decisions rather than discoveries: the budget is a
+**work** bound, not a wall-clock bound, so a slower machine stretches the seconds but nothing
+stalls unboundedly; `exhausted` is distinguishable from both an empty result and a refusal, so a
+caller cannot read "too big for here" as "no" (the Comunica lesson applied to ourselves); and
+wiring `exhausted` to an actual Worker dispatch is deliberately NOT built here — the Worker
+protocol is another unit's surface this wave, and the routing arm gives it a stable thing to catch
+when it lands.
+
 ### Q9 — Is "run arbitrary SPARQL" a capability, and does UX-I1 apply to it?
 
 This is the interesting one, and it is a real question rather than a detail.
