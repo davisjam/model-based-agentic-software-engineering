@@ -8,12 +8,13 @@ import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { DIMENSIONS } from "../src/ir/types.ts";
 import type { Quad } from "../src/rdf/terms.ts";
+import { checkQuantities, validate } from "../src/validator/rules.ts";
 import {
   MAGE, MAGE_CLASSES, RDF_TYPE, RESOURCE_KINDS, URN_PREFIX, VOCABULARY_TAG, XSD,
-  derivedIri, dimensionIri, domainIri, domainValueIri, effectIri, entityIri, eventIri, guardIri,
-  instanceIri, iri, machineIri, modelGraphIri, modelIri, project, projectedGraphs, propertyIri,
-  quantityIri, queryIri, relationTypeIri, serializeQuad, stateIri, str, systemIri, toNQuads,
-  transitionIri, variableIri,
+  accountingIri, derivedIri, dimensionIri, domainIri, domainValueIri, effectIri, entityIri, eventIri,
+  guardIri, instanceIri, iri, machineIri, modelGraphIri, modelIri, project, projectedGraphs,
+  propertyIri, quantityIri, queryIri, relationTypeIri, serializeQuad, stateIri, str, systemIri,
+  toNQuads, transitionIri, variableIri,
 } from "../src/rdf/index.ts";
 
 const load = (p: string) => canonicalize(parse(readFileSync(p, "utf8")));
@@ -147,7 +148,8 @@ test("one id reused across every kind yields distinct IRIs", () => {
     modelGraphIri("s", "idle"), machineIri("s", "idle"), instanceIri("s", "idle"),
     stateIri("s", "m", "idle"), variableIri("s", "m", "idle"), derivedIri("s", "m", "idle"),
     transitionIri("s", "m", 0), guardIri("s", "m", 0, 0), effectIri("s", "m", 0, 0),
-    eventIri("s", "idle"), queryIri("s", "idle"), quantityIri("s", "idle"), dimensionIri("idle"),
+    eventIri("s", "idle"), queryIri("s", "idle"), quantityIri("s", "idle"),
+    accountingIri("s", "idle"), dimensionIri("idle"),
   ].map((t) => t.value);
 
   assert.equal(new Set(minted).size, minted.length, `collision among:\n  ${minted.join("\n  ")}`);
@@ -560,6 +562,234 @@ test("a system with no quantities projects exactly what it projected before quan
     const text = nquads(file);
     assert.ok(!text.includes(`${URN_PREFIX}quant:`), file);
     assert.ok(!text.includes(`${URN_PREFIX}dim:`), file);
+  }
+});
+
+// ------------------------------------------------------------------------------------------------
+// The declared accounting model (DECISIONS-RULED-quantities-261002.md; rules V35-V37)
+// ------------------------------------------------------------------------------------------------
+
+/**
+ * A system whose quantities declare how they are charged, and which VALIDATES CLEAN.
+ *
+ * Written here rather than added to a repo model because all six repo models declare zero
+ * quantities -- which is also why V35-V37 report nothing against them, and why a fixture written
+ * against those rules has to be checked against them rather than assumed correct. The test below
+ * asserts `validate` is silent on it, so a fixture that drifted out of the rules fails loudly
+ * instead of pinning a shape the validator rejects.
+ *
+ * `idle` is declared by BOTH machines and `busy` by only one, on purpose: that is the pair the bare
+ * reference cases need.
+ */
+const accountedSource = (): Record<string, unknown> => ({
+  mage: 1,
+  system: { id: "s" },
+  entities: { api: null, cache: null, remediation: null },
+  "relation-types": { may_invoke: { composition: { path: "allowed" } } },
+  models: {
+    flow: {
+      entities: ["api", "remediation"],
+      relations: [{ id: "api-rem", from: "api", to: "remediation", type: "may_invoke" }],
+    },
+  },
+  machines: {
+    document: {
+      initial: "idle",
+      states: { idle: null, remediating: null },
+      transitions: [{ from: "idle", to: "remediating" }],
+    },
+    worker: { initial: "idle", states: { idle: null, busy: null }, transitions: [] },
+  },
+  accounting: { latency: { basis: "entities" } },
+  quantities: {
+    "cache-memory": { target: "entity:cache", dimension: "memory", value: "128 MB", residency: "resident" },
+    "remediation-memory": {
+      target: "entity:remediation", dimension: "memory", value: "256 MB",
+      when: { state: "document.remediating" },
+    },
+    "remediate-latency": { target: "entity:remediation", dimension: "duration", value: "100 ms" },
+  },
+});
+
+const accounted = () => canonicalize(accountedSource());
+
+/** The same system with every accounting field removed, and nothing else changed. */
+const unaccounted = () => {
+  const raw = accountedSource();
+  delete raw["accounting"];
+  const quantities = raw["quantities"] as Record<string, Record<string, unknown>>;
+  for (const q of Object.values(quantities)) {
+    delete q["residency"];
+    delete q["when"];
+  }
+  return canonicalize(raw);
+};
+
+/** The system with one memory quantity, charged by the `when.state` reference under test. */
+const charged = (ref: unknown) => {
+  const raw = accountedSource();
+  raw["quantities"] = { q: { target: "entity:cache", dimension: "memory", value: "1 MB", when: { state: ref } } };
+  return canonicalize(raw);
+};
+
+test("the accounting fixture validates clean, so what follows pins an authorable system", () => {
+  // The guard on every assertion below. A fixture the validator rejects would pin the projection of
+  // a system nobody can write, and V35-V37 have no other subject population in this repo to check
+  // it against: all six repo models declare zero quantities.
+  assert.deepEqual(validate(accounted()), []);
+  // And the control: the same system without the declarations is exactly what the rules refuse.
+  assert.deepEqual(checkQuantities(unaccounted()).map((f) => `${f.rule} ${f.where}`), [
+    "V35 accounting",
+    "V37 quantities.cache-memory",
+    "V37 quantities.remediation-memory",
+  ]);
+});
+
+test("a resident quantity and a when-conditioned one are distinguishable in the dataset", () => {
+  // The gap this closes: the validator knew which summand of memory(c) a quantity entered and the
+  // dataset did not, so "which quantities are charged only while remediating?" could not be asked
+  // of the projection even though the IR held the answer. Both summands are now visible, and they
+  // are visible as DIFFERENT predicates -- a consumer distinguishes them without reading a word.
+  const dataset = project(accounted());
+  assert.deepEqual(quantObjects(dataset, "cache-memory", MAGE.residency), ["resident"]);
+  assert.deepEqual(quantObjects(dataset, "cache-memory", MAGE.chargedWhile), []);
+  assert.deepEqual(quantObjects(dataset, "remediation-memory", MAGE.residency), []);
+  assert.deepEqual(
+    quantObjects(dataset, "remediation-memory", MAGE.chargedWhile),
+    [stateIri("s", "document", "remediating").value],
+  );
+  // An execution-scoped quantity declares neither, and V37 forbids it from declaring either.
+  assert.deepEqual(quantObjects(dataset, "remediate-latency", MAGE.residency), []);
+  assert.deepEqual(quantObjects(dataset, "remediate-latency", MAGE.chargedWhile), []);
+});
+
+test("a charge condition joins to the state it names -- the SAME IRI the state projects under", () => {
+  // The one useful thing about a charge condition in a graph. Projected as the author's bare string,
+  // `mage:chargedWhile "document.remediating"` cannot reach the state's transitions, its machine or
+  // its adjacency, and the dataset would hold a reference pointing nowhere. The match is asserted
+  // against the IRI the STATE projects under, not against a spelling -- an IRI scheme change that
+  // moved one and not the other would pass an eyeballed shape check and fail this.
+  const dataset = project(accounted());
+  const condition = dataset.find((q) => q.predicate.value === MAGE.chargedWhile.value);
+  assert.ok(condition, "nothing projected a charge condition");
+  assert.equal(condition.object.kind, "iri", "a charge condition must be a reference, not a literal");
+  const named = condition.object.value;
+
+  // 1. It is the object of the machine's own `mage:state` edge: the state resource, reached from the
+  //    machine that declares it.
+  assert.ok(objects(dataset, machineIri("s", "document").value, MAGE.state).includes(named));
+  // 2. It is typed, and carries the id the author wrote.
+  assert.deepEqual(objects(dataset, named, RDF_TYPE), [MAGE_CLASSES.State.value]);
+  assert.deepEqual(objects(dataset, named, MAGE.id), ["remediating"]);
+  // 3. And the join reaches onward through the behavioral structure, which is the point of joining
+  //    at all: `remediating` is where the document's one transition goes.
+  const transition = dataset.find((q) => q.predicate.value === MAGE.to.value && q.object.value === named);
+  assert.ok(transition, "the charge condition reaches no transition");
+  assert.equal(transition.subject.value, transitionIri("s", "document", 0).value);
+});
+
+test("a bare state name resolves only when one machine declares it, and the validator agrees", () => {
+  // Two resolvers are how two resolvers come to disagree. `whenStateIri` in the projection and
+  // `stateFault` in the validator read the same reference for different outputs -- an IRI and a
+  // message -- so the agreement is asserted mechanically rather than left to care. Drift in either
+  // direction fails here: a projection that picked the first of two machines declaring `idle` would
+  // hang the charge on an arbitrary state and nothing downstream would report it, and a projection
+  // that refused a bare name the validator accepts would silently lose a valid charge condition.
+  //
+  // The predicate is TYPED reachability, not mere minting, because the dotted form mints
+  // unconditionally by section 5's dangling-reference rule: `ghost.x` mints an untyped resource.
+  // What a query joins on is `?q mage:chargedWhile ?s . ?s a mage:State`, and that binds exactly
+  // the references the validator accepts.
+  for (const ref of ["worker.busy", "busy", "idle", "nosuch", "ghost.x", ""]) {
+    const system = charged(ref);
+    const dataset = project(system);
+    const accepted = !checkQuantities(system).some((f) => f.where.startsWith("quantities.q"));
+    const condition = dataset.find((q) => q.predicate.value === MAGE.chargedWhile.value);
+    const typed = condition !== undefined
+      && objects(dataset, condition.object.value, RDF_TYPE).includes(MAGE_CLASSES.State.value);
+    assert.equal(typed, accepted, `when.state ${JSON.stringify(ref)}: validator and projection disagree`);
+  }
+
+  // And the two resolutions a bare name can have, spelled out, so the loop above cannot pass by
+  // refusing everything.
+  assert.deepEqual(
+    objects(project(charged("busy")), quantityIri("s", "q").value, MAGE.chargedWhile),
+    [stateIri("s", "worker", "busy").value],
+  );
+  assert.deepEqual(objects(project(charged("idle")), quantityIri("s", "q").value, MAGE.chargedWhile), []);
+});
+
+test("a model's accounting basis is reachable in the default graph, and joins to what it charges", () => {
+  // Where it belongs is the judgement call, and RDF-VOCABULARY.md 2b records the reasoning: an
+  // accounting basis states how the numbers are charged rather than asserting anything inside a
+  // reduction, which is the call model metadata and a `model:` quantity already settled. In a
+  // reduction's graph it would read as a statement WITHIN that reduction, and a cross-model query
+  // would find or miss the rule by which its own numbers are summed depending on scope.
+  const dataset = project(accounted());
+  const latency = accountingIri("s", "latency").value;
+
+  assert.deepEqual(objects(dataset, latency, RDF_TYPE), [MAGE_CLASSES.Accounting.value]);
+  assert.deepEqual(objects(dataset, latency, MAGE.id), ["latency"]);
+  assert.deepEqual(objects(dataset, latency, MAGE.accountingBasis), ["entities"]);
+  assert.deepEqual(objects(dataset, latency, MAGE.dimension), [dimensionIri("duration").value]);
+  assert.ok(objects(dataset, systemIri("s").value, MAGE.declares).includes(latency),
+    "the author declared it, so the system declares it");
+
+  // The default graph, and the fixture has a named graph so the assertion is not vacuous.
+  assert.deepEqual(projectedGraphs(dataset), [modelGraphIri("s", "flow").value]);
+  const about = dataset.filter((q) =>
+    q.subject.value.startsWith(`${URN_PREFIX}acct:`)
+    || (q.object.kind === "iri" && q.object.value.startsWith(`${URN_PREFIX}acct:`)));
+  assert.equal(about.length, 5);
+  for (const q of about) assert.equal(q.graph, null, serializeQuad(q));
+
+  // The join the declaration exists for: basis -> dimension -> the quantities that dimension
+  // charges. Flattened onto the system as `mage:latencyBasis` there would be no subject to hang the
+  // dimension on, and a term per metric name would be needed for every metric added.
+  const charges = objects(dataset, latency, MAGE.dimension).flatMap((d) => dataset
+    .filter((q) => q.predicate.value === MAGE.dimension.value && q.object.value === d
+      && q.subject.value.startsWith(`${URN_PREFIX}quant:`))
+    .map((q) => q.subject.value));
+  assert.deepEqual(charges, [quantityIri("s", "remediate-latency").value]);
+  // And the dimension the declaration names is TYPED, or that join's next hop would be empty.
+  assert.deepEqual(objects(dataset, dimensionIri("duration").value, MAGE.baseUnit), [DIMENSIONS.duration.base]);
+});
+
+test("an accounting-bearing projection is deterministic and still invites no reasoner in", () => {
+  // A charge CONDITION is exactly where someone reaches for an entailment term to say "this implies
+  // that". MAGE fixes the meaning of `mage:chargedWhile` in RDF-VOCABULARY.md and borrows nothing.
+  const text = toNQuads(project(accounted()));
+  assert.equal(text, toNQuads(project(accounted())));
+  for (const needle of FORBIDDEN) assert.ok(!text.includes(needle), `emitted ${needle}`);
+  const foreign = [...allIris(project(accounted()))].filter((v) => !v.startsWith(URN_PREFIX));
+  for (const v of foreign) assert.ok(ALLOWED_FOREIGN.has(v), `emitted a foreign IRI: ${v}`);
+  // No convenience duplicate: the author's reference string is not projected beside the IRI, and an
+  // unreadable word is not projected at all. Two representations of one fact is the duplication
+  // this projection exists to avoid, and the convenient one is the one that cannot be joined.
+  assert.ok(!text.includes("document.remediating"), "the authored reference is the validator's, not the dataset's");
+});
+
+test("a system with quantities but NO accounting fields projects exactly what it did before", (t) => {
+  // The negative control. Every quad of the unaccounted system must survive unchanged in the
+  // accounted one -- so the three new fields ADD facts and perturb nothing, and the existing
+  // quantity pins stay readable.
+  const full = project(accounted());
+  const plain = project(unaccounted());
+  const isNew = (q: { subject: { value: string }; predicate: { value: string }; object: { kind: string; value: string } }): boolean =>
+    q.subject.value.startsWith(`${URN_PREFIX}acct:`)
+    || (q.object.kind === "iri" && q.object.value.startsWith(`${URN_PREFIX}acct:`))
+    || q.predicate.value === MAGE.residency.value
+    || q.predicate.value === MAGE.chargedWhile.value;
+
+  assert.deepEqual(full.filter((q) => !isNew(q)).map(serializeQuad), plain.map(serializeQuad));
+  assert.equal(full.filter(isNew).length, full.length - plain.length);
+  t.diagnostic(`accounting fields add ${full.length - plain.length} quads: ${plain.length} -> ${full.length}`);
+
+  // And the quantity fixture that predates these rules is untouched: no stray term reaches a system
+  // that declares none.
+  const existing = toNQuads(project(quantified()));
+  for (const needle of [`${URN_PREFIX}acct:`, MAGE.residency.value, MAGE.chargedWhile.value, MAGE.accountingBasis.value]) {
+    assert.ok(!existing.includes(needle), `a system declaring no accounting emitted ${needle}`);
   }
 });
 

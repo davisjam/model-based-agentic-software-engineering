@@ -45,6 +45,8 @@ export const MAGE_CLASSES = {
   Query: V("Query"),
   /** A quantitative annotation. A structured resource, so the dimension travels with the number. */
   Quantity: V("Quantity"),
+  /** One declared accounting basis, for one path-aggregated metric. The route a quantity reaches an analysis by. */
+  Accounting: V("Accounting"),
   /** One of MAGE's five dimensions. Carries its base unit and its aggregation scope. */
   Dimension: V("Dimension"),
 } as const satisfies Record<string, Iri>;
@@ -184,6 +186,27 @@ export const MAGE = {
   magnitude: V("magnitude"),
   /** The unit every magnitude of this dimension is expressed in. Withheld when dimensionless. */
   baseUnit: V("baseUnit"),
+  /**
+   * `resident`: this quantity is charged in every configuration where the thing it annotates exists.
+   *
+   * One of the two summands of `memory(c)`. Withheld when the author's word is not in the closed
+   * vocabulary, because the projection carries meaning and V37 is what quotes an author's own text.
+   */
+  residency: V("residency"),
+  /**
+   * Quantity to the STATE whose activation charges it — the other summand of `memory(c)`.
+   *
+   * An IRI, not the author's string, and the only reference the projection resolves. V37 fixes how a
+   * `when.state` spells its machine, so the resolution is MAGE's rather than a guess, and a charge
+   * condition a consumer cannot follow to the state it names is the one thing a graph was for.
+   */
+  chargedWhile: V("chargedWhile"),
+  /**
+   * `entities`: which target kind this metric's accounting charges. A closed vocabulary of one.
+   *
+   * Withheld when the author's basis word is unreadable, for the same reason as `mage:residency`.
+   */
+  accountingBasis: V("accountingBasis"),
   /**
    * `configuration` / `execution` / `structural`: which axis this dimension aggregates along.
    *
