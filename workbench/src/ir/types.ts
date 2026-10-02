@@ -9,7 +9,8 @@
  * a transaction builds a NEW system and swaps it, which is what makes undo/redo and hypothesis
  * branches fall out of one mechanism instead of three.
  *
- * Semantics: ../../SEMANTICS.md. Rule ids (V1…V31) cited in comments are that document's.
+ * Semantics: ../../SEMANTICS.md. Every `V<n>` cited in a comment here is that document's rule id.
+ * A range was written out once and went stale twice, so the range is gone: the spec owns the count.
  */
 
 // --------------------------------------------------------------------------------------------
@@ -481,6 +482,16 @@ export interface CanonAccounting {
 export type Residency = "resident";
 
 export const RESIDENCIES: readonly Residency[] = ["resident"];
+
+/**
+ * The entity property naming the lifecycle state during whose occupancy that entity runs.
+ *
+ * A property rather than IR structure: the IR cannot hold the join itself in v0.1, and the shipped
+ * example established this spelling. It is a kernel constant because TWO kernel components read it
+ * — the validator resolves it (V38) and the quantitative evaluator joins a trace step through it —
+ * and a second spelling in either would be a join that silently stops joining.
+ */
+export const EXECUTES_IN_STATE = "executes_in_state";
 
 /** `when: { state: … }` — the behavioral thing whose activation licenses the charge. */
 export interface QuantityWhen {

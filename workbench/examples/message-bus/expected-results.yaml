@@ -155,11 +155,17 @@ queries:
       permission and neither represents observation, so there is no vocabulary in which to ask what
       arrived and when. The engine refuses and names the cause.
 
-      Worth being exact about WHICH refusal this is. The engine reports unknown vocabulary -- the
-      relation type is not declared -- not a missing distinction. No code path consults
-      `purpose.omits` when refusing, so the link between a declared omission and the refusal a user
-      sees is prose, not machinery. `RefusalReason.missing-distinction` exists in the engine's type
-      and is never produced.
+      Worth being exact about WHICH refusal this is, because the answer changed. The engine used to
+      report unknown vocabulary and nothing else: `observed_delivery` is not a declared relation type,
+      which is true and reads as a typo. The refusal rung now consults `purpose.omits` first, and all
+      three event models declare `observed runtime delivery` omitted -- so the cause is
+      `missing-distinction` and the sentence quotes the declaration. The link between a declared
+      omission and the refusal a user reads is machinery rather than prose; §7.6 of SEMANTICS.md rules
+      which cause wins when several are true.
+
+      `refusal_contains` above is unchanged and still passes. The structural clause was kept and the
+      omission sentence appended, because a reader needs both facts -- the name resolves nowhere, and
+      that is a decision rather than an oversight.
 
 # ---------------------------------------------------------------------------
 # Useful modifications (section 4.6). Each is a real transaction driven through

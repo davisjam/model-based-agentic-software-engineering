@@ -8,7 +8,7 @@ This is the authoritative semantics. The JSON Schemas beside it
 [`mage-transaction.schema.json`](mage-transaction.schema.json)) constrain *shape*; this document
 fixes *meaning*. Where a question is about what a model asserts, this file decides it.
 
-Validation rules are numbered **V1…V37** so implementations, tests, and error messages can cite them.
+Validation rules are numbered **V1…V38** so implementations, tests, and error messages can cite them.
 Numbers are append-only: a new rule takes the next free one and lands in the section that owns its
 subject, so the sequence stays stable rather than sorted.
 
@@ -522,6 +522,8 @@ dimensionless under arithmetic — a proportion and a tally are both pure number
   read as that object's member, and the §10 distinction would stop being visible on the page.
 - **V35, V36, V37 — the declared accounting model.** §5.3, below. They are the rules that make a
   validated-but-unreachable quantity impossible.
+- **V38 — `executes_in_state` resolves.** §5.3, below. The join those three charge *through*, held to
+  the same reference discipline as the references they check.
 
 Each rule declines once an earlier one has spoken about the same object, which is V26's discipline
 applied inside this family. A quantity with an unreadable dimension draws no magnitude complaints —
@@ -539,7 +541,8 @@ This is the governing principle of the whole quantity layer, and it is stronger 
 MAGE accepts a quantity as meaningful there must be a defined route from that quantity to the
 analyses its dimension is intended for; otherwise the type system is claiming more than the semantics
 provide. A quantity that typechecks, validates, and then reaches nothing is the worst available
-outcome, because nothing looks wrong. V35, V36 and V37 exist to make that state unreachable.
+outcome, because nothing looks wrong. V35, V36 and V37 exist to make that state unreachable, and V38
+holds the join they charge through.
 
 Two declarations do the work, and both are **authored** rather than inferred.
 
@@ -580,6 +583,61 @@ behavioral execution --shared identity--> performance component --> duration
 
 The lifecycle model decides which stages execute and how often; the performance model decides what
 each execution costs.
+
+##### The join is authored, so it is a reference, so it resolves (V38)
+
+The arrow in the middle of that diagram is a declaration. An entity's **`executes_in_state`** property
+names the lifecycle state during whose occupancy the entity runs, and a trace step entering that state
+is an occurrence of the entity. Absent the property, a state spelling the entity's own id *is* the
+entity, which is MAGE's composition doctrine applied to accounting.
+
+```yaml
+entities:
+  remediation:
+    properties:
+      executes_in_state: remediating      # or document.remediating
+```
+
+**V38 — an entity's `executes_in_state` resolves to a declared state.** The reference is qualified
+`<machine>.<state>`, or a bare state name exactly one machine declares; a bare name two machines
+declare is ambiguous and is refused with "qualify it" rather than resolved by picking one. A value
+that is not a state reference at all — a number, an empty string — names no state and is the same
+finding.
+
+Resolution goes through the **same resolver** as a quantity's `state:` target and its `when.state`
+(V27). Three reference rules, one resolver: a third copy is how the bare-name ambiguity refusal gets
+fixed in two of them and forgotten in the third.
+
+Its own number rather than V27's, and the distinction is the author's. V27's subject is a *quantity's*
+references, and its remedy is to edit an annotation. This reference is made by an *entity*, and
+someone whose `executes_in_state` is wrong is not editing a quantity at all. The two findings cite
+different lines and send a reader to different places, which is what a rule id is for.
+
+Why it earns a rule rather than staying a test: this property decides which entity every trace step
+charges, and therefore every latency number the workbench reports. It was checked only by one shipped
+example's own suite — so a property naming no state in any *other* model got no finding and then
+quietly charged nothing, which is the governing principle's failure one level above V35–V37.
+
+⚠️ V38 is the **forward** half. The backward half — an entity that a basis charges but that has no
+counterpart on either route — is not a rule, because whether a counterpart is wanted depends on which
+quantities the declared basis charges rather than on the declaration alone. The evaluator refuses it
+when it builds a charge table, naming the missing correspondence.
+
+**A declaration REPLACES the identity route for its entity**, rather than adding to it: two live
+routes for one entity would be the double-counting shape the accounting rulings exist to refuse. That
+precedence is **semantics, not a rule**, and the distinction is worth stating because it looks like
+V37's "declares both" finding and is not one. V37 can fire because `residency` and `when` are the two
+summands of `memory(c)` and a quantity that declares neither enters no summand — there is a model an
+author can write that the rule refuses. Here the precedence is total: a declaration either exists or
+it does not, the outcome is defined either way, and no model violates it. A rule with no possible
+finding is not a rule; it is the semantics, and it belongs here.
+
+The near-miss, recorded because it is the thing that would change the answer: an entity whose id
+*spells* a state while also declaring `executes_in_state` for a *different* one has authored two
+contradictory joins, and the precedence drops one of them silently. That would deserve a finding —
+the shape is V37's "declares both" exactly. It is not one today because every model in this repo has
+an empty intersection between entity ids and state names, so the predicate has no subject and the
+identity route is unexercised. The trigger to promote it is the first model that writes both.
 
 ⚠️ `model:` is **exempt**, and that is a judgement this version makes explicitly rather than by
 omission. A `model:` quantity is a declared TOTAL — *path latency is `metrics.state_count * 2 ms`* —
@@ -841,6 +899,57 @@ moving the offending edge into another model; a question about one purposeful re
 reduction. Implementations MUST make the caller state which. Choosing wrong is a silent wrong answer,
 and a default picks for a caller who never considered the question.
 
+### 7.6 When several refusals are true, which one the engine says
+
+More than one refusal can be true of one question. A query may compose over a relation type whose
+`composition.path` is `forbidden`, *and* reference a distinction a model declares omitted, *and* name
+a type nothing declares — all at once. Every one of those sentences is true and the engine says one.
+An author shown the least useful of three true refusals learns the least, so the choice is ruled
+rather than left to the order the code happens to check things in.
+
+**The ruling has two parts, and they compose.**
+
+**By subject.** The engine refuses on the first subject of the query it cannot get past: the relation
+type must resolve, then the form must be licensed, then the endpoints must make sense. This is not a
+priority over causes — it is that a later subject cannot be judged until an earlier one resolves.
+Composition is a property of a relation type, so it is unaskable about a type that does not exist; an
+endpoint is only worth reading once the question it is an endpoint of is licensed. A user who
+misspelled a relation type should not first be told about path composition.
+
+**Within one subject, a declared decision outranks a bare absence.** When a name resolves nowhere in
+the system and some model's or machine's `purpose.omits` covers it, the cause is
+`missing-distinction` and the refusal quotes the author's own words. When nothing was declared about
+it, the cause is `unknown-vocabulary` and the refusal says only that.
+
+The reason is what the author does next. `unknown-vocabulary` sends a reader hunting for a
+misspelling; `composition-forbidden` invites them to propose `composition.path: allowed`. Both of
+those next steps are wasted when the thing the question needs was left out on purpose — the
+misspelling does not exist, and licensing composition would not supply the missing distinction.
+`missing-distinction` is the only one of the three whose next step is the real one: decide whether
+this model should represent the omitted distinction at all. It names a decision somebody made, where
+the other two name a lookup that failed.
+
+So a refusal reports, in order of preference: a decision recorded about *this* question's subject,
+then a decision recorded about the inference the question performs, then an absence nobody spoke
+about. Worked, on the composing case: a `reachability` query over a `forbidden` type whose endpoint
+is both undeclared and declared omitted refuses as `composition-forbidden`, because the form is
+subject 2 and the endpoint subject 3 — the question is not askable in this model's licensing at all,
+which makes what its endpoints name moot. The same endpoint on a `direct` query refuses as
+`missing-distinction`, because subject 3 is reached.
+
+**The ruling binds every rung, not the one a bug report named.** The engine has five places where a
+name fails to resolve — the relation type, a `from`/`to` endpoint, the focus of
+`predecessors`/`successors`, the focus of `components`, the focus of `containment` — and they route
+through one refusal builder so the rule holds at all five.
+
+⚠️ **As-built: the SPARQL seam does not yet apply this rule.** §7.5's V32 requires two interfaces over
+one model to decide a licensing question identically, "down to the refusal sentence."
+`src/sparql/licensing.ts` refuses an undeclared relation type or entity as `unknown-vocabulary` with
+no omission rung, so the same purposeful omission asked through SPARQL still reads as a lookup miss.
+The fix is the one this section describes, applied at that seam's two vocabulary refusals; until it
+lands, a reader who asks both interfaces hears two explanations, which is the thing V32 exists to
+prevent.
+
 ---
 
 ## 8. Purpose: what a model represents, and what it declines to
@@ -868,6 +977,30 @@ Without V24 this feature decays into prose that rots: a model declaring `omits: 
 carrying a `payload` property will confidently tell a student it cannot answer a question it can.
 Checked, "cannot answer" becomes a derived claim with the same standing as every other analysis
 result.
+
+**`omits` is read at query time, not only at validation.** A declaration nothing consults is prose
+with a rule attached. So when a query names something the system does not declare, the engine
+consults every model's and machine's `omits` before refusing, and a covered need refuses with cause
+`missing-distinction` quoting the declaration (§7.6 rules the precedence). This is what makes
+Document Processing's §5.6 case answerable: the engine said *"relation type `cache_hit_frequency` is
+not declared by this system"*, which is true and reads as a typo, where the model had already
+recorded *"deliberately omits cache hit frequency"* — a modelling decision. Both facts now travel in
+one refusal, with the decision as the cause.
+
+**Coverage, not equality.** An omission is prose and a query names an identifier:
+`omits: [cache hit frequency]` against `cache_hit_frequency`. Both sides reduce to lowercase
+alphanumeric words, and **an omission covers a need when every word of the need appears among the
+omission's words.** The direction is the authoring direction — a prose omission is longer and more
+specific than the identifier a query uses — and requiring *every* need word is the guard against
+guessing: `encryption_at_rest` against `omits: [encryption in transit]` contributes `rest`, which the
+omission does not have, so it is not covered and the refusal falls back to the honest absence. A
+looser rule would tell an author the model decided something it never considered, which is the same
+wrong-reason defect in the other direction.
+
+Consulting `omits` here is sound because of where it happens: the engine reaches this rung only after
+failing to resolve the name across the whole system, so the premise V24 enforces per model — an
+omission never names live vocabulary — is holding by construction at the only point the lookup runs.
+V24 is what makes a surviving omission trustworthy; this reads it rather than re-deriving it.
 
 ### 8.1 Correspondence and provenance
 

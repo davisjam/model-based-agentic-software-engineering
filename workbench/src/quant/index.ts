@@ -10,7 +10,7 @@
  *  - `expectedMetric`    — always a refusal, naming what is missing or what is deferred (Q4).
  */
 export {
-  buildChargeTable, ChargeAccumulator, EXECUTES_IN_STATE, resolveStateRef, stepCharge,
+  buildChargeTable, ChargeAccumulator, resolveStateRef, stepCharge,
   type ChargeTable,
 } from "./charge.ts";
 export {

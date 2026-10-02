@@ -46,7 +46,12 @@ const PARITY = new Set([
   // checks over declared data, so both sides carry the same four closed tables (the metric map, the
   // basis vocabulary, the kinds a basis charges, the residency vocabulary). A drifted table shows up
   // here as one tool accepting a model the other refuses, which is the only way it would ever show.
-  "V35", "V36", "V37",
+  //
+  // V38 joins them because the join it resolves decides every latency number the evaluator reports,
+  // and because both sides resolve it through the resolver they already share with V27 -- so a
+  // drifted bare-name or ambiguity rule surfaces here rather than as two tools disagreeing about
+  // which entity a trace step charges.
+  "V35", "V36", "V37", "V38",
   // Not a V-rule: A1 holds annotation outside semantics, so a V-number would contradict the
   // invariant the feature rests on. Both sides implement it, so it belongs in the parity set.
   "ANNOTATION",
@@ -350,12 +355,75 @@ test("violations agree, rule by rule", () => {
         target: "entity:cache", dimension: "memory", value: "128 MB", when: { state: "document.ghost" },
       } },
     }],
+    ["V38 an executes_in_state naming a state no machine declares", {
+      ...base, entities: { parse: { properties: { executes_in_state: "ghost" } } },
+      machines: { document: { initial: "a", states: { a: null }, transitions: [] } },
+    }],
+    ["V38 an executes_in_state naming an undeclared machine", {
+      ...base, entities: { parse: { properties: { executes_in_state: "ghost.a" } } },
+      machines: { document: { initial: "a", states: { a: null }, transitions: [] } },
+    }],
+    ["V38 a bare state name two machines declare, which is the shared resolver's ambiguity refusal", {
+      ...base, entities: { parse: { properties: { executes_in_state: "busy" } } },
+      machines: {
+        document: { initial: "busy", states: { busy: null }, transitions: [] },
+        worker: { initial: "busy", states: { busy: null }, transitions: [] },
+      },
+    }],
+    ["V38 a non-string executes_in_state, which names no state on either side", {
+      ...base, entities: { parse: { properties: { executes_in_state: 3 } } },
+      machines: { document: { initial: "a", states: { a: null }, transitions: [] } },
+    }],
   ];
   for (const [label, doc] of cases) {
     const text = stringify(doc);
     assertParity(label, text);
     // Each case must actually fire something in the parity set, or it is testing nothing.
     assert.ok(tsFindings(text).filter(inParity).length > 0, `${label} produced no parity finding`);
+  }
+});
+
+test("the purposeful-omission rung agrees, including where it declines to match", () => {
+  // The coverage rule exists twice -- src/engine/omission.ts and validate.py's `_omission_covering`
+  // -- because neither tool can import the other's. Two copies of a MATCHING rule is the worst kind
+  // of duplication: a drift produces no error, just one tool saying "deliberately omitted" where
+  // the other says "not declared", which is exactly the wrong-reason defect the rung exists to fix.
+  // The repo sweep above covers the two shipped cases; this covers the boundary of the rule itself.
+  const doc = {
+    ...base,
+    "relation-types": { owns: { description: "d", composition: { path: "forbidden" } } },
+    entities: { a: {}, b: {} },
+    models: {
+      g: {
+        type: "graph", entities: ["a", "b"],
+        purpose: { omits: ["observed runtime calls", "encryption in transit"] },
+        relations: [{ from: "a", to: "b", type: "owns" }],
+      },
+    },
+    queries: {
+      // Covered: every word of `calls` appears in `observed runtime calls`.
+      "omitted-relation": { kind: "graph", quantifier: "exists", graph: { form: "direct", relation: "calls", from: "a", to: "b" } },
+      // Covered the other way round -- the identifier spelling of the omission itself.
+      "omitted-exactly": { kind: "graph", quantifier: "exists", graph: { form: "direct", relation: "encryption_in_transit", from: "a", to: "b" } },
+      // NOT covered: `rest` is a word the omission does not have, so neither tool may claim it.
+      "not-omitted": { kind: "graph", quantifier: "exists", graph: { form: "direct", relation: "encryption_at_rest", from: "a", to: "b" } },
+      // The licensing subject is judged before the endpoints, so an omitted endpoint does not win here.
+      "forbidden-beats-endpoint": { kind: "graph", quantifier: "exists", graph: { form: "reachability", relation: "owns", from: "a", to: "observed_runtime_calls" } },
+    },
+  };
+  const text = stringify(doc);
+  const py = new Map(pyRun(text).queries.map((r) => [r.id, r.cause]));
+  const ts = tsQueries(text);
+
+  const expected: Record<string, string> = {
+    "omitted-relation": "missing-distinction",
+    "omitted-exactly": "missing-distinction",
+    "not-omitted": "unknown-vocabulary",
+    "forbidden-beats-endpoint": "composition-forbidden",
+  };
+  for (const [id, cause] of Object.entries(expected)) {
+    assert.equal(py.get(id), cause, `${id}: validate.py said '${String(py.get(id))}'`);
+    assert.equal(ts.get(id)?.cause, cause, `${id}: the engine said '${String(ts.get(id)?.cause)}'`);
   }
 });
 

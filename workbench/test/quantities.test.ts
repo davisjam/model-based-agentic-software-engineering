@@ -670,3 +670,79 @@ test("V25 still runs first and exclusively, so a coerced model reports no quanti
   }));
   assert.deepEqual([...new Set(found.map((f) => f.rule))], ["V25"]);
 });
+
+// ---------------------------------------------------------------------------------------------
+// V38 -- the join entity accounting charges through
+//
+// `executes_in_state` names the lifecycle state during whose occupancy an entity runs, and a trace
+// step entering that state charges the entity. It decides every latency number the evaluator
+// reports, and before V38 it was checked only by test/examples.test.ts -- one example's own suite,
+// over the models that ship. A property naming no state in any other model got no finding and then
+// quietly charged nothing, which is the governing principle's failure one level up from V35-V37.
+// ---------------------------------------------------------------------------------------------
+
+/** The worked example with `executes_in_state` authored on the entity accounting charges. */
+const joined = (value: unknown): unknown => worked({
+  entities: { remediation: { properties: { executes_in_state: value } }, "gateway-cache": {} },
+});
+
+test("V38 accepts a qualified reference and a bare name exactly one machine declares", () => {
+  for (const value of ["document.remediating", "remediating"]) {
+    assert.deepEqual(validate(canonicalize(joined(value))), [], `'${value}' must resolve`);
+  }
+});
+
+test("V38 refuses an executes_in_state naming a state no machine declares", () => {
+  const found = checkQuantities(canonicalize(joined("ghost")));
+  assert.deepEqual(found.map((f) => f.rule), ["V38"]);
+  assert.deepEqual(found.map((f) => f.where), ["entities.remediation.properties.executes_in_state"]);
+  // The message says why it matters, not merely that it failed: a reference resolving nowhere means
+  // no execution ever visits the entity and every quantity charging it reaches no analysis.
+  assert.match(found[0]?.message ?? "", /no machine declares a state 'ghost'/);
+  assert.match(found[0]?.message ?? "", /reaches no analysis/);
+});
+
+test("V38 refuses an unknown machine in a qualified reference", () => {
+  const found = checkQuantities(canonicalize(joined("ghost.remediating")));
+  assert.deepEqual(found.map((f) => f.rule), ["V38"]);
+  assert.match(found[0]?.message ?? "", /'ghost' is not a declared machine/);
+});
+
+test("V38 resolves through V27's machinery, so the ambiguity refusal is the same one", () => {
+  // The reason this rule reuses `stateFault` rather than growing a third resolver: a bare state name
+  // two machines declare is AMBIGUOUS, and the refusal must say "qualify it" rather than pick a
+  // machine. Three reference rules sharing one resolver cannot drift on that; three resolvers would.
+  const twoMachines = joined("remediating");
+  const found = checkQuantities(canonicalize({
+    ...(twoMachines as Record<string, unknown>),
+    machines: {
+      document: {
+        initial: "waiting", states: { waiting: null, remediating: null, published: null },
+        transitions: [{ from: "waiting", to: "remediating" }, { from: "remediating", to: "published" }],
+      },
+      shadow: { initial: "remediating", states: { remediating: null }, transitions: [] },
+    },
+  }));
+  assert.deepEqual(found.map((f) => f.rule), ["V38"]);
+  assert.match(found[0]?.message ?? "", /2 machines declare a state 'remediating'\. Qualify it as <machine>\.remediating/);
+});
+
+test("V38 refuses a non-string executes_in_state, and ignores a shape the IR never holds", () => {
+  // A scalar that is not a string names no state and is reported. A non-scalar is not a property at
+  // all -- canonicalize drops it, so there is nothing in the IR to resolve and shape is the schema's
+  // subject. validate.py mirrors both halves, which is what keeps the two in parity here.
+  const scalar = checkQuantities(canonicalize(joined(3)));
+  assert.deepEqual(scalar.map((f) => f.rule), ["V38"]);
+  assert.match(scalar[0]?.message ?? "", /which names no state/);
+
+  const s = canonicalize(joined({ not: "a property" }));
+  assert.equal(s.entities.get("remediation")?.properties.has("executes_in_state"), false);
+  assert.deepEqual(checkQuantities(s).map((f) => f.rule), []);
+});
+
+test("V38 is silent on an entity that declares no stage, because a cache is not one", () => {
+  // The shipped example's deliberate absence. `gateway-cache` carries memory by residency, not by a
+  // state's occupancy, so V38 must have no opinion about it -- a rule that demanded the property
+  // everywhere would make residency unexpressible.
+  assert.deepEqual(validate(canonicalize(worked())), []);
+});
