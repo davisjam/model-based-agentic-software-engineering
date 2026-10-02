@@ -4475,8 +4475,20 @@ def _sync_figure_census(entries: list[Entry]) -> None:
         txt = open(path, encoding="utf-8").read()
         for key, val in counts.items():
             txt = re.sub(rf'(<span data-census="{re.escape(key)}">)[^<]*(</span>)', rf"\g<1>{val}\g<2>", txt)
-        with open(path, "w", encoding="utf-8") as fh:
-            fh.write(txt)
+        # Write atomically. These pages are HAND-AUTHORED, so a truncate-then-write that is
+        # interrupted between the two steps destroys content no build can regenerate. That happened
+        # on 261002: a commit was killed (SIGTERM, a caller's timeout) inside this function, leaving
+        # development-workflow.html at 0 bytes, and the next commit faithfully recorded the empty
+        # file. temp-then-replace cannot lose the original -- os.replace is atomic on POSIX, so the
+        # path either names the old content or the new one, never a truncated file.
+        tmp = path + ".tmp"
+        try:
+            with open(tmp, "w", encoding="utf-8") as fh:
+                fh.write(txt)
+            os.replace(tmp, path)
+        finally:
+            if os.path.exists(tmp):
+                os.unlink(tmp)
 
 
 # --- Markdown census tokens: the prose analogue of the figure's `data-census` spans. ---

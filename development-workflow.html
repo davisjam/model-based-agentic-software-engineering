@@ -1,0 +1,601 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Development process — the control substrate around the human-directs-agents loop</title><style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #555;
+
+    /* HUMAN — light blue */
+    --h-bg: #dbe5f3; --h-bg-dark: #2a4d7a; --h-ink: #1e3a5f;
+    /* ORCHESTRATOR + agents — warm coral */
+    --a-bg: #fde2cf; --a-bg-dark: #c2410c; --a-ink: #7c2d12;
+    /* PRODUCT + project controls — green */
+    --s-bg: #dcfce7; --s-bg-dark: #15803d; --s-ink: #14532d;
+    /* ENGINEERING ENVIRONMENT / control substrate — neutral slate (the enclosure) */
+    --env-border: #475569; --env-bg: #f1f5f9; --proc-bg: #e2e8f0; --env-ink: #334155;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px;
+    font-family: "Avenir Next", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink); background: white;
+  }
+  .compare-note {
+    max-width: 880px; margin: 0 auto 18px; font-size: 12px; color: var(--muted);
+    border: 1px dashed #bbb; border-radius: 6px; padding: 7px 11px; background: #fafafa;
+  }
+  .opt-label { max-width: 880px; margin: 26px auto 8px; font-size: 13px; font-weight: 700; color: var(--muted); }
+
+  .figure { margin: 0 auto; border: 1.5px solid var(--ink); padding: 18px 20px 14px; background: white; }
+  .fig-wide { width: 860px; max-width: 100%; }
+  .fig-tall { width: 460px; max-width: 100%; }
+
+  /* Human architect box */
+  .human { background: var(--h-bg); border: 1.5px solid var(--h-bg-dark); border-radius: 9px; padding: 9px 12px; }
+  .human h3 { margin: 0 0 2px; font-size: 13.5px; color: var(--h-ink); }
+  .human p { margin: 0; font-size: 10.5px; line-height: 1.4; color: var(--h-ink); }
+  .human.rev { text-align: center; }
+  .human.rev p { font-weight: 600; }
+
+  /* Engineering environment / control substrate — the enclosure */
+  .env {
+    position: relative;
+    border: 2.5px solid var(--env-border);
+    background: var(--env-bg);
+    border-radius: 12px;
+    padding: 20px 16px 16px;
+  }
+  .env-tab {
+    position: absolute; top: -12px; left: 16px;
+    background: var(--env-border); color: white;
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.01em;
+    padding: 2px 10px; border-radius: 5px;
+  }
+  .proc-band {
+    background: var(--proc-bg); border: 1px solid #cbd5e1; border-radius: 7px;
+    padding: 6px 10px; margin-bottom: 12px; font-size: 10.5px; color: var(--env-ink); line-height: 1.35;
+  }
+  .proc-band b { color: var(--env-ink); }
+
+  /* Inner actor boxes */
+  .actor { border-radius: 8px; padding: 9px 11px; }
+  .actor h4 { margin: 0 0 3px; font-size: 12.5px; letter-spacing: -0.01em; }
+  .actor p { margin: 0; font-size: 10.5px; line-height: 1.38; }
+  .actor .prod { font-weight: 700; display: block; margin-bottom: 1px; }
+  .actor-a { background: var(--a-bg); border: 1.5px solid var(--a-bg-dark); }
+  .actor-a h4 { color: var(--a-ink); } .actor-a p { color: var(--a-ink); }
+  .actor-s { background: var(--s-bg); border: 1.5px solid var(--s-bg-dark); }
+  .actor-s h4 { color: var(--s-ink); } .actor-s p, .actor-s .prod { color: var(--s-ink); }
+
+  /* tiny sub-agent chips under the orchestrator title */
+  .bots { display: flex; gap: 4px; margin: 1px 0 5px; }
+  .bot { width: 16px; height: 14px; border-radius: 3px; background: white; border: 1.3px solid var(--a-ink); position: relative; }
+  .bot:before, .bot:after { content: ""; position: absolute; top: 4px; width: 3px; height: 3px; border-radius: 50%; background: var(--a-ink); }
+  .bot:before { left: 3px; } .bot:after { right: 3px; }
+
+  /* Inner flow (Option 1: side by side) */
+  .inner-row { display: flex; align-items: stretch; gap: 0; }
+  .inner-row .actor { flex: 1 1 0; min-width: 0; }
+  .h-arrow { flex: 0 0 86px; align-self: center; text-align: center; color: var(--a-bg-dark); font-size: 22px; line-height: 1; font-weight: 700; }
+  .h-arrow span { display: block; font-size: 8.5px; font-weight: 600; color: var(--muted); font-style: italic; margin-top: 1px; }
+
+  /* Vertical connector arrows + labels */
+  .v-arrow { text-align: center; color: var(--muted); font-size: 19px; line-height: 1; margin: 5px 0; }
+  .v-arrow span { display: block; font-size: 9.5px; font-style: italic; color: var(--muted); margin-bottom: 1px; }
+  .v-arrow.into { color: var(--h-bg-dark); }
+  .v-arrow.vel  { color: var(--a-bg-dark); margin: 8px 0; }
+  .v-arrow.fb   { color: var(--env-border); }
+
+  /* Option 1 feedback bar (return to the human at top) */
+  .fb-bar {
+    display: flex; align-items: center; gap: 8px; margin-top: 10px;
+    font-size: 10px; font-style: italic; color: var(--muted);
+    border-top: 2px dashed var(--env-border); padding-top: 7px;
+  }
+  .fb-bar .uphook { color: var(--env-border); font-style: normal; font-weight: 700; font-size: 15px; }
+
+  /* ---- Option 1 (revised): true one-row, human-left, U-shaped feedback return ---- */
+  .figure-o1 { width: 900px; max-width: 100%; margin: 0 auto; }
+  .o1-diagram { border: 1.5px solid var(--ink); padding: 18px 20px; }
+  .o1-grid { display: grid; grid-template-columns: 188px 72px 1fr; align-items: center; }
+  .o1-human { grid-column: 1; grid-row: 1; }
+  .o1-mainarrow { grid-column: 2; grid-row: 1; text-align: center; color: var(--h-bg-dark); font-size: 24px; font-weight: 700; line-height: 1; }
+  .o1-mainarrow span { display: block; font-size: 8px; font-weight: 400; font-style: italic; color: var(--muted); line-height: 1.18; margin-top: 3px; }
+  .o1-env { grid-column: 3; grid-row: 1; }
+  .o1-fb { grid-column: 1 / -1; grid-row: 2; position: relative; height: 34px; margin-top: 8px; }
+  .o1-fb .fb-path {            /* the U: open at top, both ends rise into human (left) and env (right) */
+    position: absolute; left: 94px; right: 46px; top: 0; bottom: 13px;
+    border: 2px dashed var(--env-border); border-top: none;
+    border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+  }
+  .o1-fb .fb-up {             /* arrowhead pointing up into the Human architect box */
+    position: absolute; left: 88px; top: -7px; width: 0; height: 0;
+    border-left: 6px solid transparent; border-right: 6px solid transparent;
+    border-bottom: 9px solid var(--env-border);
+  }
+  .o1-fb .fb-label {
+    position: absolute; left: 50%; transform: translateX(-50%); bottom: 6px;
+    background: white; padding: 0 10px; font-size: 10px; font-style: italic; color: var(--muted); white-space: nowrap;
+  }
+
+  /* Role-differentiated agent tiles (Variant B) — compact, subordinate to the enclosure */
+  .orch-bar { background: var(--a-bg-dark); color: white; border-radius: 5px; text-align: center; font-size: 9.5px; font-weight: 700; padding: 2px 6px; margin: 1px 0 5px; }
+  .orch-bar span { font-weight: 400; font-size: 8.5px; }
+  .role-tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
+  .tile { background: white; border: 1.3px solid var(--a-ink); border-radius: 4px; padding: 3px 3px; text-align: center; font-size: 8.5px; line-height: 1.15; color: var(--a-ink); }
+  .tile b { display: block; font-size: 9px; }
+  .role-foot { margin-top: 5px; font-size: 8.5px; font-style: italic; color: var(--muted); text-align: center; }
+
+  /* Codebase depiction inside the green Product box */
+  .codebase { display: flex; align-items: center; gap: 7px; margin-top: 7px; padding-top: 6px; border-top: 1px dashed #86c79b; }
+  .cb-icon { position: relative; width: 26px; height: 24px; flex: 0 0 26px; }
+  .cb-icon i { position: absolute; width: 18px; height: 16px; border: 1.4px solid var(--s-bg-dark); border-radius: 3px; }
+  .cb-icon i:nth-child(1) { top: 0; left: 8px; background: var(--s-bg); }
+  .cb-icon i:nth-child(2) { top: 4px; left: 4px; background: white; }
+  .cb-icon i:nth-child(3) { top: 8px; left: 0; background: white; }
+  .cb-stat { font-size: 9px; font-weight: 600; color: var(--s-ink); line-height: 1.3; }
+
+  /* ---- Variant C (refined): compact, shallow, neutral-gray substrate ---- */
+  .vc .o1-diagram { padding: 14px 16px; }
+  .vc .o1-grid { grid-template-columns: 205px 116px 1fr; }             /* (3) wider human col; (fix) wider arrow col so its label clears the substrate */
+  /* (2) substrate = neutral gray container (not blue/slate); actors keep blue/orange/green */
+  .vc .o1-env.env { padding: 15px 13px 11px; background: #f4f4f5; border-color: #71717a; }
+  .vc .env-tab { background: #e4e4e7; color: #3f3f46; border: 1px solid #a1a1aa; font-size: 10px; font-weight: 600; top: -11px; }
+  .vc .proc-band { padding: 3px 9px; font-size: 9.5px; margin-bottom: 9px; background: #ececee; border-color: #d4d4d8; }
+  .vc .hbul { margin: 3px 0 0; padding-left: 15px; font-size: 10.5px; line-height: 1.45; color: var(--h-ink); }
+  .vc .hbul li { margin-bottom: 2px; }
+  .vc .actor { padding: 7px 9px; }
+  .vc .actor-a h4, .vc .actor-s h4 { margin-bottom: 3px; }
+  /* (1) bigger role tiles (~25%) + less empty space below */
+  .vc .orch-bar { padding: 2px 6px; font-size: 9.5px; margin: 0 0 5px; }
+  .vc .orch-bar span { font-size: 8.5px; }
+  .vc .role-tiles { gap: 4px; }
+  .vc .tile { padding: 4px 3px; font-size: 10px; line-height: 1.2; }
+  .vc .tile b { font-size: 10.5px; }
+  .vc .role-foot { margin-top: 6px; font-size: 8.5px; }
+  /* (4) reduce green Product-box dominance */
+  .vc .actor-s .prod { font-size: 10px; font-weight: 600; margin-bottom: 1px; }
+  .vc .actor-s p { font-size: 10px; line-height: 1.5; }
+  /* (6) small arrow labels slightly more legible */
+  .vc .o1-mainarrow span { font-size: 9px; color: #444; white-space: normal; max-width: 112px; margin: 3px auto 0; }
+  .vc .h-arrow span { font-size: 9px; color: #444; }
+  /* (5) subtler feedback (lighter dashed + label); shifted to track the wider human col */
+  .vc .o1-fb { height: 26px; margin-top: 5px; }
+  .vc .o1-fb .fb-path { border-width: 1px; border-color: #c4cad1; bottom: 11px; left: 102px; }
+  .vc .o1-fb .fb-up { border-bottom-color: #c4cad1; border-left-width: 5px; border-right-width: 5px; border-bottom-width: 7px; left: 96px; }
+  .vc .o1-fb .fb-label { font-size: 9px; color: #aab2bb; bottom: 5px; }
+
+  /* ---- Variant D: C's compact style, but Product artifact split from Project-specific controls; cleaner feedback ---- */
+  .vd .d-right { display: flex; flex-direction: column; gap: 6px; flex: 1.15 1 0; min-width: 0; }
+  .vd .product-artifact { background: var(--s-bg); border: 1.5px solid var(--s-bg-dark); }   /* the artifact: solid green */
+  .vd .product-artifact h4 { margin: 0 0 2px; font-size: 12.5px; color: var(--s-ink); letter-spacing: -0.01em; }
+  .vd .product-artifact p { margin: 0; font-size: 11px; font-weight: 600; color: var(--s-ink); }
+  .vd .project-controls { background: #fff; border: 1.5px solid var(--s-bg-dark); }           /* controls around it: outlined */
+  .vd .project-controls h4 { margin: 0 0 2px; font-size: 11.5px; color: var(--s-ink); letter-spacing: -0.01em; }
+  .vd .project-controls p { margin: 0; font-size: 10px; line-height: 1.5; color: var(--s-ink); }
+  /* cleaner feedback: thin SOLID (not dashed) line, label 'failures / evidence' */
+  .vd .o1-fb { height: 22px; margin-top: 4px; }
+  .vd .o1-fb .fb-path { border: 1px solid #aeb6bf; border-top: none; bottom: 9px; left: 102px; right: 56px; border-bottom-left-radius: 7px; border-bottom-right-radius: 7px; }
+  .vd .o1-fb .fb-up { border-bottom-color: #aeb6bf; }
+  .vd .o1-fb .fb-label { font-size: 9px; color: #98a0aa; bottom: 4px; left: 50%; transform: translateX(-50%); background: white; padding: 0 8px; }
+
+  /* ---- Variant E (vN): 'Controlled engineering environment'; Product OUTSIDE; uniform dark-blue arrows ---- */
+  .figure-o1.ve { width: 1120px; }                                   /* wider so the label column + env + external Product all fit */
+  .ve .o1-grid { grid-template-columns: 200px 150px 1fr auto; }      /* human | label(wide enough for the labels) | env | Product(out) */
+
+  /* connector arrows: ALL dark blue (uniform meaning) */
+  .ve .o1-mainarrow { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #2a4d7a; }
+  .ve .o1-mainarrow .lbl-top, .ve .o1-mainarrow .lbl-bot { font-size: 10px; font-weight: 600; color: #2a4d7a; line-height: 1.15; max-width: none; margin: 0; white-space: nowrap; }
+  .ve .o1-mainarrow .big { font-size: 24px; font-weight: 700; line-height: 1; color: #2a4d7a; }
+  .ve .o1-mainarrow .ma-svg { display: block; margin: 1px 0; }   /* SVG main arrow — same style as the other connectors */
+  .ve .h-arrow { color: #2a4d7a; }
+  .ve .h-arrow span { color: #2a4d7a; }
+  /* 'Agents modify': rightward arrow -> Product + a hook up-and-left into the environment */
+  .ve .am-arrow { flex: none; width: 66px; display: flex; flex-direction: column; align-items: center; position: relative; }
+  .ve .am-svg { overflow: visible; display: block; }
+  .ve .am-label { font-size: 9px; font-weight: 600; font-style: italic; color: #2a4d7a; text-align: center; line-height: 1.12; margin-top: 3px; }
+
+  /* env inner row: orchestrator | project-specific controls — even, vertically centered, gap so they never overlap */
+  .ve .inner-row { align-items: center; gap: 14px; }
+  .ve .inner-row .actor-a { flex: 1.1 1 0; }
+  .ve .inner-row .project-controls { flex: 1 1 0; }
+
+  /* Product OUTSIDE the controlled environment (col 4) */
+  .ve .o1-out { grid-column: 4; grid-row: 1; display: flex; align-items: center; }
+  .ve .o1-out .product-artifact { width: 150px; flex: none; }
+
+  /* keep orchestrator content compact so the agent tiles fit the box */
+  .ve .actor-a { padding-bottom: 8px; }
+  .ve .orch-bar { font-size: 9px; padding: 1px 5px; }
+  .ve .tile { font-size: 9.5px; padding: 3px 2px; }
+  .ve .tile b { font-size: 10px; }
+
+  /* feedback: dark-blue + heavier; from under the external Product back to the human */
+  .ve .o1-fb { height: 24px; margin-top: 5px; }
+  .ve .o1-fb .fb-path { border: 2px solid #2a4d7a; border-top: none; bottom: 9px; left: 100px; right: 64px; border-bottom-left-radius: 7px; border-bottom-right-radius: 7px; }
+  .ve .o1-fb .fb-up { border-bottom-color: #2a4d7a; border-left-width: 6px; border-right-width: 6px; border-bottom-width: 9px; left: 93px; top: -8px; }
+  .ve .o1-fb .fb-label { font-size: 9.5px; color: #2a4d7a; font-weight: 600; bottom: 4px; left: 50%; transform: translateX(-50%); background: white; padding: 0 8px; }
+
+  /* ---- Variant I: controls-agents-controls 'sandwich' (left-to-right) ---- */
+  .figure-sw { width: 1240px; max-width: 100%; margin: 0 auto; }
+  .sw-diagram { border: 1.5px solid var(--ink); padding: 16px 18px; }
+  .sw-row { display: flex; align-items: center; }
+  .sw-human, .sw-product { flex: 0 0 152px; border-radius: 9px; padding: 9px 11px; }
+  .sw-human { background: var(--h-bg); border: 1.5px solid var(--h-bg-dark); }
+  .sw-human h3 { margin: 0 0 3px; font-size: 13px; color: var(--h-ink); }
+  .sw-human ul { margin: 0; padding-left: 15px; font-size: 10.5px; line-height: 1.45; color: var(--h-ink); }
+  .sw-product { background: var(--s-bg); border: 2px solid var(--s-bg-dark); }
+  .sw-product h3 { margin: 0 0 2px; font-size: 13px; color: var(--s-ink); }
+  .sw-product p { margin: 0; font-size: 11px; color: var(--s-ink); font-weight: 600; }
+  .sw-env { flex: 1 1 auto; position: relative; border: 2.5px solid #475569; background: #f4f4f5; border-radius: 12px; padding: 20px 13px 13px; margin: 0 3px; }
+  .sw-env-tab { position: absolute; top: -11px; left: 16px; background: #e4e4e7; color: #3f3f46; border: 1px solid #a1a1aa; font-size: 10px; font-weight: 600; padding: 2px 10px; border-radius: 5px; }
+  .sw-inner { display: flex; align-items: stretch; }
+  .sw-box { border-radius: 8px; padding: 8px 9px; flex: 1 1 0; min-width: 0; }
+  .sw-box h4 { margin: 0 0 4px; font-size: 11.5px; letter-spacing: -0.01em; line-height: 1.12; }
+  .sw-box ul { margin: 0; padding-left: 13px; font-size: 9.5px; line-height: 1.4; }
+  .sw-box ul li { margin-bottom: 1px; }
+  .sw-substrate, .sw-controls { background: #eafaf1; border: 1.5px solid var(--s-bg-dark); }   /* the two control 'slices' */
+  .sw-substrate h4, .sw-substrate ul, .sw-controls h4, .sw-controls ul { color: var(--s-ink); }
+  .sw-agents { background: var(--a-bg); border: 2px solid var(--a-bg-dark); flex: 1.25 1 0; }   /* the agents (the meat) */
+  .sw-agents h4 { color: var(--a-ink); }
+  .sw-orch-sub { font-size: 9px; font-weight: 700; color: var(--a-ink); margin: 0 0 4px; }
+  .sw-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+  .sw-tile { background: white; border: 1.3px solid var(--a-ink); border-radius: 4px; padding: 2px 1px; text-align: center; font-size: 8px; line-height: 1.1; color: var(--a-ink); }
+  .sw-tile b { display: block; font-size: 8.5px; }
+  .sw-arrow, .sw-arrow2 { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .sw-arrow { flex-basis: 74px; }
+  .sw-arrow2 { flex-basis: 60px; }
+  .sw-arrow svg, .sw-arrow2 svg { display: block; }
+  .sw-arrow .lbl, .sw-arrow2 .lbl { font-size: 8.5px; font-style: italic; color: #2a4d7a; text-align: center; line-height: 1.12; margin-top: 2px; }
+  .sw-fb { position: relative; height: 22px; margin: 8px 0 0; }
+  .sw-fb .fbline { position: absolute; left: 92px; right: 80px; top: 11px; border-top: 1.5px solid #2a4d7a; }   /* subtle feedback */
+  .sw-fb .fbhead { position: absolute; left: 84px; top: 6px; width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-right: 9px solid #2a4d7a; }
+  .sw-fb .fblbl { position: absolute; left: 50%; transform: translateX(-50%); top: 3px; background: white; padding: 0 8px; font-size: 9px; font-style: italic; color: #2a4d7a; }
+
+  /* ---- Variant J: sandwich, explicit palette (Human blue · Orchestrator blue-violet · substrate+controls slate · env light-gray · Product green) ---- */
+  .figure-sj { width: 1240px; max-width: 100%; margin: 0 auto; }
+  .sj-diagram { border: 1.5px solid var(--ink); padding: 16px 18px; }
+  .sj-row { display: flex; align-items: center; }
+  .sj-human, .sj-product { flex: 0 0 152px; border-radius: 9px; padding: 9px 11px; }
+  .sj-human  { background: #dbe5f3; border: 1.5px solid #2a4d7a; }                            /* light blue / navy */
+  .sj-human h3 { margin: 0 0 3px; font-size: 13px; color: #1e3a5f; }
+  .sj-human ul { margin: 0; padding-left: 15px; font-size: 10.5px; line-height: 1.45; color: #1e3a5f; }
+  .sj-product { background: #dcfce7; border: 2px solid #15803d; }                             /* pale green / green */
+  .sj-product h3 { margin: 0 0 2px; font-size: 13px; color: #14532d; }
+  .sj-product p { margin: 0; font-size: 11px; color: #14532d; font-weight: 600; }
+  .sj-env { flex: 1 1 auto; position: relative; border: 2.5px solid #334155; background: #f7f8fa; border-radius: 12px; padding: 20px 13px 13px; margin: 0 3px; }   /* very light gray / dark slate */
+  .sj-env-tab { position: absolute; top: -11px; left: 16px; background: #e2e8f0; color: #334155; border: 1px solid #94a3b8; font-size: 10px; font-weight: 600; padding: 2px 10px; border-radius: 5px; }
+  .sj-inner { display: flex; align-items: stretch; }
+  .sj-box { border-radius: 8px; padding: 8px 9px; flex: 1 1 0; min-width: 0; }
+  .sj-box h4 { margin: 0 0 4px; font-size: 11.5px; letter-spacing: -0.01em; line-height: 1.12; }
+  .sj-box ul { margin: 0; padding-left: 13px; font-size: 9.5px; line-height: 1.4; }
+  .sj-box ul li { margin-bottom: 1px; }
+  .sj-substrate, .sj-controls { background: #eef1f5; border: 1.5px solid #64748b; }           /* pale slate / slate */
+  .sj-substrate h4, .sj-substrate ul, .sj-controls h4, .sj-controls ul { color: #334155; }
+  .sj-agents { background: #e6e3f6; border: 2px solid #4338ca; flex: 1.25 1 0; }              /* pale blue-violet / dark blue */
+  .sj-agents h4 { color: #312e81; }
+  .sj-orch-sub { font-size: 9px; font-weight: 700; color: #312e81; margin: 0 0 4px; }
+  .sj-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+  .sj-tile { background: white; border: 1.3px solid #4338ca; border-radius: 4px; padding: 2px 1px; text-align: center; font-size: 8px; line-height: 1.1; color: #312e81; }
+  .sj-tile b { display: block; font-size: 8.5px; }
+  .sj-arrow, .sj-arrow2 { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .sj-arrow { flex-basis: 122px; }
+  .sj-arrow.sj-arrow-out { flex-basis: 168px; padding: 0 12px; }   /* wider + side padding so "(environment & product)" clears the Product box */
+  .sj-arrow2 { flex-basis: 42px; }
+  .sj-arrow svg, .sj-arrow2 svg { display: block; }
+  .sj-arrow .lbl-top, .sj-arrow .lbl-bot { font-size: 11px; font-style: italic; color: #2a4d7a; text-align: center; line-height: 1.15; }
+  .sj-arrow .lbl-top { margin-bottom: 4px; }
+  .sj-arrow .lbl-bot { margin-top: 4px; }
+  .sj-fb { position: relative; height: 26px; margin: 9px 0 0; }
+  .sj-fb .fbline { position: absolute; left: 92px; right: 80px; top: 13px; border-top: 1.5px solid #64748b; }   /* lighter slate feedback */
+  .sj-fb .fbhead { position: absolute; left: 84px; top: 8px; width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-right: 9px solid #64748b; }
+  .sj-fb .fblbl { position: absolute; left: 50%; transform: translateX(-50%); top: 0; background: white; padding: 0 8px; font-size: 11px; font-style: italic; color: #475569; text-align: center; line-height: 1.18; }
+
+  /* ---- Variant K: Variant J with larger type, widened to 1440px so nothing overflows ---- */
+  .figure-sk { width: 1440px; max-width: 100%; margin: 0 auto; }
+  .sk-diagram { border: 1.5px solid var(--ink); padding: 20px 22px; }
+  .sk-row { display: flex; align-items: center; }
+  .sk-human, .sk-product { flex: 0 0 184px; border-radius: 10px; padding: 11px 13px; }
+  .sk-human  { background: #dbe5f3; border: 1.5px solid #2a4d7a; }                            /* light blue / navy */
+  .sk-human h3 { margin: 0 0 4px; font-size: 16px; color: #1e3a5f; }
+  .sk-human ul { margin: 0; padding-left: 17px; font-size: 13px; line-height: 1.5; color: #1e3a5f; }
+  .sk-product { background: #dcfce7; border: 2px solid #15803d; }                             /* pale green / green */
+  .sk-product h3 { margin: 0 0 3px; font-size: 16px; color: #14532d; }
+  .sk-product p { margin: 0; font-size: 13.5px; color: #14532d; font-weight: 600; }
+  .sk-env { flex: 1 1 auto; position: relative; border: 2.5px solid #334155; background: #f7f8fa; border-radius: 13px; padding: 24px 15px 15px; margin: 0 4px; }   /* very light gray / dark slate */
+  .sk-env-tab { position: absolute; top: -13px; left: 18px; background: #e2e8f0; color: #334155; border: 1px solid #94a3b8; font-size: 12px; font-weight: 600; padding: 3px 12px; border-radius: 6px; }
+  .sk-inner { display: flex; align-items: stretch; }
+  .sk-box { border-radius: 9px; padding: 10px 12px; flex: 1 1 0; min-width: 0; }
+  .sk-box h4 { margin: 0 0 6px; font-size: 14.5px; letter-spacing: -0.01em; line-height: 1.15; }
+  .sk-box ul { margin: 0; padding-left: 16px; font-size: 12px; line-height: 1.5; }
+  .sk-box ul li { margin-bottom: 2px; }
+  .sk-substrate, .sk-controls { background: #eef1f5; border: 1.5px solid #64748b; }           /* pale slate / slate */
+  .sk-substrate h4, .sk-substrate ul, .sk-controls h4, .sk-controls ul { color: #334155; }
+  .sk-agents { background: #e6e3f6; border: 2px solid #4338ca; flex: 1.25 1 0; }              /* pale blue-violet / dark blue */
+  .sk-agents h4 { color: #312e81; }
+  .sk-orch-sub { font-size: 11.5px; font-weight: 700; color: #312e81; margin: 0 0 6px; }
+  .sk-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .sk-tile { background: white; border: 1.3px solid #4338ca; border-radius: 5px; padding: 4px 2px; text-align: center; font-size: 10.5px; line-height: 1.15; color: #312e81; }
+  .sk-tile b { display: block; font-size: 11px; }
+  .sk-arrow, .sk-arrow2 { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .sk-arrow { flex-basis: 140px; }
+  .sk-arrow.sk-arrow-out { flex-basis: 200px; padding: 0 14px; }   /* wider + side padding so "(environment & product)" clears the Product box */
+  .sk-arrow2 { flex-basis: 48px; }
+  .sk-arrow svg, .sk-arrow2 svg { display: block; }
+  .sk-arrow .lbl-top, .sk-arrow .lbl-bot { font-size: 13px; font-style: italic; color: #2a4d7a; text-align: center; line-height: 1.18; }
+  .sk-arrow .lbl-top { margin-bottom: 5px; }
+  .sk-arrow .lbl-bot { margin-top: 5px; }
+  .sk-fb { position: relative; height: 30px; margin: 11px 0 0; }
+  .sk-fb .fbline { position: absolute; left: 100px; right: 90px; top: 15px; border-top: 1.5px solid #64748b; }   /* lighter slate feedback */
+  .sk-fb .fbhead { position: absolute; left: 91px; top: 10px; width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-right: 10px solid #64748b; }
+  .sk-fb .fblbl { position: absolute; left: 50%; transform: translateX(-50%); top: 0; background: white; padding: 0 10px; font-size: 13px; font-style: italic; color: #475569; text-align: center; line-height: 1.2; }
+
+  /* ---- Variant L: Variant K width (1440px) but bigger type + tighter gutters between the 3 main parts ---- */
+  .figure-sl { width: 1440px; max-width: 100%; margin: 0 auto; }
+  .sl-diagram { border: 1.5px solid var(--ink); padding: 20px 18px; }
+  .sl-row { display: flex; align-items: center; }
+  .sl-end { flex: 0 0 178px; display: flex; flex-direction: column; }
+  .sl-human, .sl-product { border-radius: 10px; padding: 11px 13px; }
+  .sl-subcap { margin-top: 9px; font-size: 13.5px; font-style: italic; color: #475569; text-align: center; line-height: 1.4; }   /* no background; centered; bullet-sized italic annotation */
+  .sl-subcap-sum { width: fit-content; margin-left: auto; margin-right: auto; text-align: left; }            /* arithmetic-sum block, centered under the box */
+  .sl-sum-rule { border-top: 1px solid #94a3b8; margin: 4px 0; }
+  .sl-human  { background: #dbe5f3; border: 1.5px solid #2a4d7a; }                            /* light blue / navy */
+  .sl-human h3 { margin: 0 0 4px; font-size: 17.5px; color: #1e3a5f; }
+  .sl-human ul { margin: 0; padding-left: 18px; font-size: 14.5px; line-height: 1.5; color: #1e3a5f; }
+  .sl-product { background: #dcfce7; border: 2px solid #15803d; }                             /* pale green / green */
+  .sl-product h3 { margin: 0 0 3px; font-size: 17.5px; color: #14532d; }
+  .sl-product p { margin: 0; font-size: 15px; color: #14532d; font-weight: 600; }
+  .sl-env { flex: 1 1 auto; position: relative; border: 2.5px solid #334155; background: #f7f8fa; border-radius: 13px; padding: 25px 14px 15px; margin: 0 2px; }   /* very light gray / dark slate; slim side margins */
+  .sl-env-tab { position: absolute; top: -13px; left: 18px; background: #e2e8f0; color: #334155; border: 1px solid #94a3b8; font-size: 13px; font-weight: 600; padding: 3px 12px; border-radius: 6px; }
+  .sl-inner { display: flex; align-items: stretch; }
+  .sl-box { border-radius: 9px; padding: 11px 13px; flex: 1 1 0; min-width: 0; }
+  .sl-box h4 { margin: 0 0 7px; font-size: 16.5px; letter-spacing: -0.01em; line-height: 1.15; }
+  .sl-box ul { margin: 0; padding-left: 17px; font-size: 13.5px; line-height: 1.5; }
+  .sl-box ul li { margin-bottom: 2px; }
+  .sl-substrate, .sl-controls { background: #eef1f5; border: 1.5px solid #64748b; }           /* pale slate / slate */
+  .sl-substrate h4, .sl-substrate ul, .sl-controls h4, .sl-controls ul { color: #334155; }
+  .sl-agents { background: #e6e3f6; border: 2px solid #4338ca; flex: 1.25 1 0; }              /* pale blue-violet / dark blue */
+  .sl-agents h4 { color: #312e81; }
+  .sl-orch-sub { font-size: 13px; font-weight: 700; color: #312e81; margin: 0 0 7px; }
+  .sl-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .sl-tile { background: white; border: 1.3px solid #4338ca; border-radius: 5px; padding: 5px 2px; text-align: center; font-size: 12px; line-height: 1.15; color: #312e81; }
+  .sl-tile b { display: block; font-size: 12.5px; }
+  .sl-arrow, .sl-arrow2 { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .sl-arrow { flex-basis: 104px; }                                                            /* tighter human<->env gutter */
+  .sl-arrow.sl-arrow-out { flex-basis: 104px; padding: 0 6px; }                               /* env<->product gutter matched to human<->env; label wraps */
+  .sl-arrow2 { flex-basis: 38px; }                                                            /* tighter inner gutters */
+  .sl-arrow svg, .sl-arrow2 svg { display: block; }
+  .sl-arrow .lbl-top, .sl-arrow .lbl-bot { font-size: 14.5px; font-style: italic; color: #2a4d7a; text-align: center; line-height: 1.18; }
+  .sl-arrow .lbl-top { margin-bottom: 6px; }
+  .sl-arrow .lbl-bot { margin-top: 6px; }
+  .sl-fb { position: relative; height: 32px; margin: 12px 0 0; }
+  .sl-fb .fbline { position: absolute; left: 100px; right: 90px; top: 16px; border-top: 1.5px solid #64748b; }   /* lighter slate feedback */
+  .sl-fb .fbhead { position: absolute; left: 91px; top: 11px; width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-right: 10px solid #64748b; }
+  .sl-fb .fblbl { position: absolute; left: 50%; transform: translateX(-50%); top: 0; background: white; padding: 0 10px; font-size: 14.5px; font-style: italic; color: #475569; text-align: center; line-height: 1.2; }
+
+  /* ---- shared minimal icon style (stroke = currentColor; grayscale-legible) ---- */
+  .ic { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---- Icon chooser gallery (not part of the figure) ---- */
+  .icon-gallery { width: 1440px; max-width: 100%; margin: 26px auto 6px; }
+  .icon-gallery h3 { font-size: 13px; color: #475569; margin: 0 0 4px; }
+  .icon-gallery .ig-sub { font-size: 11px; color: #94a3b8; margin: 0 0 8px; }
+  .ig-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .ig-item { display: flex; flex-direction: column; align-items: center; gap: 5px; border: 1px solid #cbd5e1; border-radius: 8px; padding: 9px 16px; background: #fff; }
+  .ig-item .ic { width: 38px; height: 38px; color: #334155; }
+  .ig-item span { font-size: 11px; color: #64748b; font-weight: 600; }
+
+  /* ---- Variant M: Variant L + U-shaped return arrow + endpoint icons (polish only) ---- */
+  .figure-sm { width: 1440px; max-width: 100%; margin: 0 auto; }
+  .sm-diagram { border: 1.5px solid var(--ink); padding: 20px 18px; }
+  .sm-row { display: flex; align-items: center; }
+  .sm-end { flex: 0 0 178px; display: flex; flex-direction: column; }
+  .sm-human, .sm-product { border-radius: 10px; padding: 11px 13px; }
+  .sm-human  { background: #dbe5f3; border: 1.5px solid #2a4d7a; }                            /* light blue / navy */
+  .sm-human h3 { margin: 0 0 4px; font-size: 17.5px; color: #1e3a5f; text-align: center; }
+  .sm-human ul { margin: 0; padding-left: 18px; font-size: 14.5px; line-height: 1.5; color: #1e3a5f; }
+  .sm-product { background: #dcfce7; border: 2px solid #15803d; text-align: center; }        /* pale green / green */
+  .sm-product h3 { margin: 0 0 3px; font-size: 17.5px; color: #14532d; }
+  .sm-product p { margin: 0; font-size: 15px; color: #14532d; font-weight: 600; }
+  .sm-icon { width: 42px; height: 42px; display: block; margin: 0 auto 6px; }
+  .sm-human .sm-icon { color: #1e3a5f; }                                                      /* navy stroke */
+  .sm-product .sm-icon { color: #14532d; }                                                    /* green stroke */
+  .sm-subcap { margin-top: 9px; font-size: 13.5px; font-style: italic; color: #475569; text-align: center; line-height: 1.4; }
+  .sm-subcap-sum { width: fit-content; margin-left: auto; margin-right: auto; text-align: left; }
+  .sm-sum-rule { border-top: 1px solid #94a3b8; margin: 4px 0; }
+  .sm-env { flex: 1 1 auto; position: relative; border: 2.5px solid #334155; background: #f7f8fa; border-radius: 13px; padding: 25px 14px 15px; margin: 0 2px; }
+  .sm-env-tab { position: absolute; top: -13px; left: 18px; background: #e2e8f0; color: #334155; border: 1px solid #94a3b8; font-size: 13px; font-weight: 600; padding: 3px 12px; border-radius: 6px; }
+  .sm-inner { display: flex; align-items: stretch; }
+  .sm-box { border-radius: 9px; padding: 11px 13px; flex: 1 1 0; min-width: 0; }
+  .sm-box h4 { margin: 0 0 7px; font-size: 16.5px; letter-spacing: -0.01em; line-height: 1.15; }
+  .sm-box ul { margin: 0; padding-left: 17px; font-size: 13.5px; line-height: 1.5; }
+  .sm-box ul li { margin-bottom: 2px; }
+  .sm-substrate, .sm-controls { background: #eef1f5; border: 1.5px solid #64748b; }
+  .sm-substrate h4, .sm-substrate ul, .sm-controls h4, .sm-controls ul { color: #334155; }
+  .sm-agents { background: #e6e3f6; border: 2px solid #4338ca; flex: 1.25 1 0; }
+  .sm-agents h4 { color: #312e81; }
+  .sm-orch-sub { font-size: 13px; font-weight: 700; color: #312e81; margin: 0 0 7px; }
+  .sm-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .sm-tile { background: white; border: 1.3px solid #4338ca; border-radius: 5px; padding: 5px 2px; text-align: center; font-size: 12px; line-height: 1.15; color: #312e81; }
+  .sm-tile b { display: block; font-size: 12.5px; }
+  .sm-arrow, .sm-arrow2 { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .sm-arrow { flex-basis: 104px; }
+  .sm-arrow.sm-arrow-out { flex-basis: 104px; padding: 0 6px; }
+  .sm-arrow2 { flex-basis: 38px; }
+  .sm-arrow svg, .sm-arrow2 svg { display: block; }
+  .sm-arrow .lbl-top, .sm-arrow .lbl-bot { font-size: 14.5px; font-style: italic; color: #2a4d7a; text-align: center; line-height: 1.18; }
+  .sm-arrow .lbl-top { margin-bottom: 6px; }
+  .sm-arrow .lbl-bot { margin-top: 6px; }
+  /* U-shaped return arrow: open-top track (risers up to Product on the right, up into Human on the left) */
+  .sm-fb { position: relative; height: 62px; margin: 6px 0 0; }
+  .sm-fb-track { position: absolute; left: 88px; right: 88px; top: 8px; bottom: 22px; border: 2px solid #64748b; border-top: none; border-radius: 0 0 16px 16px; }
+  .sm-fb-head { position: absolute; left: 88px; top: 0; transform: translateX(-50%); width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 9px solid #64748b; }   /* arrowhead into Human */
+  .sm-fb-lbl { position: absolute; left: 50%; top: 40px; transform: translate(-50%, -50%); background: #fff; padding: 1px 12px; font-size: 13.5px; font-style: italic; color: #475569; text-align: center; line-height: 1.25; }
+
+  /* ---- Variant N: Variant M, but compact (J-style) fonts + serif typeface + P1->P2 product icon + centered U-arrowhead ---- */
+  .figure-sn { width: 1200px; max-width: 100%; margin: 0 auto; font-family: Georgia, "Times New Roman", serif; }
+  .sn-diagram { border: none; padding: 18px 10px 8px; }   /* top room so the env tab (top:-13px) isn't cropped */
+  .sn-row { display: flex; align-items: center; }
+  .sn-end { flex: 0 0 150px; display: flex; flex-direction: column; }
+  .sn-end.sn-end-prod { flex-basis: 225px; position: relative; top: 16px; }                    /* wider for one-line stats; nudged south */
+  .claude-mark { width: 14px; height: 14px; flex: 0 0 auto; }                                  /* Claude mark next to role-typed dispatch (transparent bg) */
+  .sn-human, .sn-product { border-radius: 9px; padding: 9px 11px; }
+  .sn-human  { background: #dbe5f3; border: 1.5px solid #2a4d7a; }                             /* light blue / navy */
+  .sn-human h3 { margin: 0 0 3px; font-size: 13px; color: #1e3a5f; text-align: center; }
+  .sn-human ul { margin: 0; padding-left: 15px; font-size: 10.5px; line-height: 1.45; color: #1e3a5f; }
+  .sn-product { background: #dcfce7; border: 2px solid #15803d; text-align: center; }         /* pale green / green */
+  .sn-product h3 { margin: 0 0 2px; font-size: 13px; color: #14532d; }
+  .sn-product p { margin: 0; font-size: 11px; color: #14532d; font-weight: 400; }
+  .sn-icon { width: 36px; height: 36px; display: block; margin: 0 auto 5px; }
+  .sn-icon-wide { width: 74px; height: 38px; display: block; margin: 0 auto 5px; }            /* P1->P2 transform glyph */
+  .sn-human .sn-icon { color: #1e3a5f; }                                                       /* navy stroke */
+  .sn-product .sn-icon-wide { color: #14532d; }                                                /* green stroke */
+  .sn-subcap { margin-top: 7px; font-size: 13px; font-style: italic; color: #111; text-align: center; line-height: 1.4; }
+  .sn-subcap-sum { width: fit-content; margin-left: auto; margin-right: auto; text-align: center; font-size: 12.5px; }
+  .sn-subcap-sum > div { white-space: nowrap; }
+  .sn-sum-rule { border-top: 1px solid #94a3b8; margin: 3px 0; }
+  .sn-mid { flex: 1 1 auto; display: flex; flex-direction: column; margin: 0 2px; }
+  .sn-env { position: relative; border: 2.5px solid #334155; background: #f7f8fa; border-radius: 12px; padding: 20px 12px 12px; }
+  .sn-env-cap { margin-top: 9px; font-size: 13px; font-style: italic; color: #111; text-align: center; line-height: 1.5; }
+  .sn-env-tab { position: absolute; top: -13px; left: 16px; background: #e2e8f0; color: #334155; border: 1px solid #94a3b8; font-size: 13px; font-weight: 600; padding: 3px 12px; border-radius: 6px; }
+  .sn-inner { display: flex; align-items: center; }   /* each box sizes to its text, centered vertically */
+  .sn-box { border-radius: 8px; padding: 8px 9px; flex: 1 1 0; min-width: 0; }
+  .sn-box h4 { margin: 0 0 4px; font-size: 11.5px; letter-spacing: -0.01em; line-height: 1.13; }
+  .sn-box ul { margin: 0; padding-left: 13px; font-size: 9.5px; line-height: 1.42; }
+  .sn-box ul li { margin-bottom: 1px; }
+  .sn-substrate, .sn-controls { background: #eef1f5; border: 1.5px solid #64748b; flex: 0.66 1 0; }   /* narrower — hug the bullets */
+  .sn-substrate h4, .sn-substrate ul, .sn-controls h4, .sn-controls ul { color: #334155; }
+  .sn-agents { background: #e6e3f6; border: 2px solid #4338ca; flex: 1.05 1 0; }
+  .sn-agents h4 { color: #312e81; }
+  .sn-orch-sub { font-size: 9px; font-weight: 700; color: #312e81; margin: 0 0 4px; display: flex; align-items: center; gap: 5px; }
+  .sn-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+  .sn-tile { background: white; border: 1.3px solid #4338ca; border-radius: 4px; padding: 3px 2px; text-align: center; font-size: 10px; line-height: 1.15; color: #312e81; white-space: nowrap; }
+  .sn-tile b { display: block; font-size: 10px; }
+  .sn-arrow, .sn-arrow2 { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .sn-arrow { flex-basis: 116px; }
+  .sn-arrow.sn-arrow-out { flex-basis: 116px; padding: 0 6px; }
+  .sn-arrow2 { flex-basis: 26px; }
+  .sn-arrow svg, .sn-arrow2 svg { display: block; margin: 0 auto; }
+  .sn-arrow .lbl-top, .sn-arrow .lbl-bot { font-size: 11.5px; font-style: italic; color: #2a4d7a; text-align: center; line-height: 1.18; }
+  .sn-arrow:not(.sn-arrow-out) .lbl-top, .sn-arrow:not(.sn-arrow-out) .lbl-bot { white-space: nowrap; }   /* keep "Designing controls" on one centered line */
+  .sn-arrow .lbl-top { margin-bottom: 4px; }
+  .sn-arrow .lbl-bot { margin-top: 4px; }
+  .sn-fb { position: relative; height: 30px; margin: 5px 0 0; }
+  .sn-fb-svg { display: block; width: 100%; height: 30px; }                                     /* U-return arrow drawn as SVG (vector path) */
+  .sn-fb-lbl { position: absolute; left: 50%; top: 21px; transform: translate(-50%, -50%); background: #fff; padding: 1px 10px; font-size: 11.5px; font-style: italic; color: #111; text-align: center; line-height: 1.2; }
+
+  .caption { margin-top: 14px; padding-top: 9px; border-top: 1px solid #999; font-size: 11px; line-height: 1.45; color: #222; }
+  .caption .tag { font-weight: 800; margin-right: 4px; }
+
+  @media print { body { padding: 0; } .figure { border-width: 1px; } .compare-note, .opt-label { display: none; } }
+</style><style>html,body{margin:0;padding:0;background:#fff} .figure-sn{margin:0 !important}</style></head><body><main aria-label="Development process figure"><h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0">Development process figure</h1><h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Process stages</h2><p id="wf-desc" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">A cyclic diagram of the human-directs-agents development loop. A human architect frames product goals, defines constraints, interprets failures, and designs controls. An orchestrator dispatches role-typed agents inside a governed engineering environment: Sonnet agents implement, repair, and run lints; an Opus agent reviews. The environment is held by three governance families — agent governance (brief-linting, docs hierarchy, dynamic context injection, an event bus, sentinel checks, role-typed dispatch), the models/MBSE bridge, and product governance (semantic lints, fidelity checks, property and fuzz tests). Failures are interpreted and fed back to refine the controls, closing the loop.</p><figure class="figure-sn" aria-describedby="wf-desc">
+    <div class="sn-diagram">
+      <div class="sn-row">
+
+        <div class="sn-end">
+          <div class="sn-human">
+            <svg class="ic sn-icon" viewBox="0 0 40 40"><circle cx="20" cy="14" r="6.5"/><path d="M8 33c0-6.6 5.4-11 12-11s12 4.4 12 11"/></svg>
+            <h3>Human architect</h3>
+            <ul>
+              <li>Frames goals</li>
+              <li>Defines constraints</li>
+              <li>Interprets failures</li>
+              <li>Designs controls</li>
+            </ul>
+          </div>
+          <div class="sn-subcap">16 years of<br>software engineering experience</div>
+        </div>
+
+        <div class="sn-arrow" aria-hidden="true">
+          <span class="lbl-top">Product goals</span>
+          <svg width="40" height="12" viewBox="0 0 40 12"><line x1="1" y1="6" x2="30" y2="6" stroke="#2a4d7a" stroke-width="2"/><polygon points="26,2 38,6 26,10" fill="#2a4d7a"/></svg>
+          <span class="lbl-bot">Designing controls</span>
+        </div>
+
+        <div class="sn-mid">
+        <div class="sn-env">
+          <span class="sn-env-tab">Governed engineering environment</span>
+          <div class="sn-inner">
+
+            <div class="sn-box sn-substrate">
+              <h4>Agent governance</h4>
+              <ul>
+                <li>Brief-linting</li>
+                <li>Docs hierarchy</li>
+                <li>Dynamic context injection</li>
+                <li>Event bus</li>
+                <li>Sentinel checks</li>
+              </ul>
+            </div>
+
+            <div class="sn-arrow2" aria-hidden="true">
+              <svg width="30" height="12" viewBox="0 0 30 12"><line x1="1" y1="6" x2="20" y2="6" stroke="#2a4d7a" stroke-width="2"/><polygon points="16,2 28,6 16,10" fill="#2a4d7a"/></svg>
+            </div>
+
+            <div class="sn-box sn-agents">
+              <h4>Orchestrator + Agents</h4>
+              <div class="sn-orch-sub"><svg class="claude-mark" viewBox="0 0 24 24" role="img" aria-label="Claude"><g stroke="#D97757" stroke-width="2.1" stroke-linecap="round"><line x1="12" y1="12" x2="12" y2="2.5"/><line x1="12" y1="12" x2="16.8" y2="3.8"/><line x1="12" y1="12" x2="20.2" y2="7.5"/><line x1="12" y1="12" x2="21.5" y2="12"/><line x1="12" y1="12" x2="20.2" y2="16.5"/><line x1="12" y1="12" x2="16.8" y2="20.2"/><line x1="12" y1="12" x2="12" y2="21.5"/><line x1="12" y1="12" x2="7.2" y2="20.2"/><line x1="12" y1="12" x2="3.8" y2="16.5"/><line x1="12" y1="12" x2="2.5" y2="12"/><line x1="12" y1="12" x2="3.8" y2="7.5"/><line x1="12" y1="12" x2="7.2" y2="3.8"/></g></svg><span>Role-typed dispatch</span></div>
+              <div class="sn-tiles">
+                <div class="sn-tile">Sonnet<b>implement</b></div>
+                <div class="sn-tile">Sonnet<b>repair</b></div>
+                <div class="sn-tile">Sonnet<b>lint-runner</b></div>
+                <div class="sn-tile">Opus<b>review</b></div>
+              </div>
+            </div>
+
+            <div class="sn-arrow2" aria-hidden="true">
+              <svg width="30" height="12" viewBox="0 0 30 12"><line x1="1" y1="6" x2="20" y2="6" stroke="#2a4d7a" stroke-width="2"/><polygon points="16,2 28,6 16,10" fill="#2a4d7a"/></svg>
+            </div>
+
+            <div class="sn-box sn-controls">
+              <h4>Product governance</h4>
+              <ul>
+                <li>MBSE</li>
+                <li>Semantic lints</li>
+                <li>Fidelity checks</li>
+                <li>Property + fuzz tests</li>
+                <li>Provenance stamps</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+        <div class="sn-env-cap">Local development: 2023 MacBook Pro, Apple M3 Pro (12&nbsp;cores), 36&nbsp;GB RAM<br>Staging and Production: Google Cloud</div>
+        </div>
+
+        <div class="sn-arrow sn-arrow-out" aria-hidden="true">
+          <span class="lbl-top">Agents modify</span>
+          <svg width="40" height="12" viewBox="0 0 40 12"><line x1="1" y1="6" x2="30" y2="6" stroke="#2a4d7a" stroke-width="2"/><polygon points="26,2 38,6 26,10" fill="#2a4d7a"/></svg>
+          <span class="lbl-bot">(environment &amp; product)</span>
+        </div>
+
+        <div class="sn-end sn-end-prod">
+          <div class="sn-product">
+            <svg class="ic sn-icon-wide" viewBox="0 0 76 40">
+              <path d="M6 8 h11 l5 5 v19 a1 1 0 0 1 -1 1 H7 a1 1 0 0 1 -1 -1 V9 a1 1 0 0 1 1 -1 z"/>
+              <path d="M17 8 v5 h5"/>
+              <line x1="28" y1="20" x2="42" y2="20"/>
+              <polygon points="39,16.5 47,20 39,23.5" fill="currentColor" stroke="none"/>
+              <path d="M53 8 h11 l5 5 v19 a1 1 0 0 1 -1 1 H54 a1 1 0 0 1 -1 -1 V9 a1 1 0 0 1 1 -1 z"/>
+              <path d="M64 8 v5 h5"/>
+              <path d="M57 22 l3 3 6-7"/>
+            </svg>
+            <h3>Product</h3>
+            <p>Accessibility remediation system</p>
+          </div>
+          <div class="sn-subcap sn-subcap-sum">
+            <div>400 KLOC product code + 1 MLOC controls</div>
+            <div class="sn-sum-rule"></div>
+            <div>3.1 M total lines + 10 K files</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sn-fb" role="img" aria-label="product insight and control gaps return to the human architect">
+        <svg class="sn-fb-svg" viewBox="0 0 1165 30" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M1065 5 V13 Q1065 21 1053 21 H87 Q75 21 75 13 V6" fill="none" stroke="#64748b" stroke-width="2"/>
+          <polygon points="75,0 70,8 80,8" fill="#64748b"/>
+        </svg>
+        <span class="sn-fb-lbl">Product insight and control gaps</span>
+      </div>
+    </div>
+  </figure></main></body></html>

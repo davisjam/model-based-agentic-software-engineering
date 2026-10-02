@@ -573,7 +573,12 @@ def emit(chapters: list[dict], extras: list[dict],
     docs = web_dir / "docs"
     if docs.exists():
         shutil.rmtree(docs)
-    docs.mkdir(parents=True)
+    # exist_ok: a hook run interrupted mid-build leaves this directory behind, and without it EVERY
+    # later commit in the repo then fails with FileExistsError regardless of what it touches -- the
+    # hook runs for minutes, so any cancelled commit arms it for everyone. Found by the Phase E agent
+    # after my own cancelled commit armed it. Same class as the non-atomic write in
+    # catalog.py's _sync_figure_census: an interrupted build must not leave the tree unusable.
+    docs.mkdir(parents=True, exist_ok=True)
 
     bodies: dict[str, str] = {}
     for c in chapters:
