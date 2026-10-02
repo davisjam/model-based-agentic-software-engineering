@@ -218,6 +218,20 @@ entities:
       human: wired
       machine: wired
 
+  save-property:
+    type: semantic-capability
+    label: "Keep a question as a persistent proposition, re-evaluated on every later revision."
+    properties:
+      human: wired
+      machine: wired
+
+  retract-property:
+    type: semantic-capability
+    label: "Stop evaluating a proposition, without pretending it was never claimed."
+    properties:
+      human: wired
+      machine: wired
+
   inspect-provenance:
     type: semantic-capability
     label: "Read where each object came from, and what its author was asked to preserve."
@@ -292,6 +306,8 @@ models:
       - create-model
       - delete-model
       - add-note
+      - save-property
+      - retract-property
       - inspect-provenance
       - create-hypothesis
       - commit-hypothesis
@@ -351,6 +367,12 @@ models:
       - { from: add-note, to: human-interface, type: afforded-by }
       - { from: add-note, to: machine-interface, type: afforded-by }
       - { from: add-note, to: service.transactions-apply, type: implemented-by }
+      - { from: save-property, to: human-interface, type: afforded-by }
+      - { from: save-property, to: machine-interface, type: afforded-by }
+      - { from: save-property, to: service.transactions-apply, type: implemented-by }
+      - { from: retract-property, to: human-interface, type: afforded-by }
+      - { from: retract-property, to: machine-interface, type: afforded-by }
+      - { from: retract-property, to: service.transactions-apply, type: implemented-by }
       - { from: inspect-provenance, to: human-interface, type: afforded-by }
       - { from: inspect-provenance, to: machine-interface, type: afforded-by }
       - { from: inspect-provenance, to: service.workspace-provenance, type: implemented-by }

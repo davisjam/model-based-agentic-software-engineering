@@ -39,7 +39,7 @@ const NO_MACHINE: readonly CapabilityId[] = [];
  *
  * An empty baseline on its own is a weak test: a capability DELETED from the registry also
  * disappears from the violation list, so silence can mean "fixed" or "removed". This list names all
- * twenty-two, so removing one to quieten UX-I1 fails here. The last two are the ones this change
+ * twenty-four, so removing one to quieten UX-I1 fails here. The last two are the ones this change
  * wired, and they are listed with the rest rather than kept apart — a capability wired two waves
  * ago needs guarding just as much.
  */
@@ -49,6 +49,9 @@ const FULLY_WIRED: readonly CapabilityId[] = [
   "create-hypothesis", "commit-hypothesis", "discard-hypothesis",
   "create-model", "delete-model", "add-note",
   "load-example", "inspect-provenance",
+  // Saving a query's result as a persistent proposition, and retracting one. §23's scenario ends
+  // with the first of these, and `delete-query` existed with no way for a person to reach it.
+  "save-property", "retract-property",
 ];
 
 test("UX-I1 violations match the recorded baseline exactly", () => {
@@ -89,6 +92,47 @@ test("every declared capability is present and wired on both sides", () => {
   // be wired-or-not with nothing watching.
   assert.deepEqual([...declared].filter((id) => !FULLY_WIRED.includes(id)), [],
     "a new capability must be added to FULLY_WIRED, or declared as a baseline gap");
+});
+
+test("the two 'property' capabilities are not the entity-attribute one", () => {
+  // "Property" is overloaded in this workbench and the two meanings sit three registry entries
+  // apart: `edit-property` changes an ENTITY ATTRIBUTE, `save-property` and `retract-property`
+  // keep and withdraw an ENGINEERING CLAIM. A reader who conflates them will wire a control to the
+  // wrong service, so the distinction is asserted rather than left to the comment beside it.
+  const byId = new Map(CAPABILITIES.map((c) => [c.id, c]));
+  const attribute = byId.get("edit-property");
+  assert.match(attribute?.summary ?? "", /property or label/);
+
+  for (const id of ["save-property", "retract-property"] as const) {
+    const c = byId.get(id);
+    assert.ok(c, `${id} must be declared`);
+    assert.equal(c.service, "transactions.apply",
+      "a property is saved by the ordinary transaction seam, not a privileged one");
+    assert.equal(c.producesEvidence, false,
+      "saving a claim produces no evidence; EVALUATING it does, and that is `analyze`");
+  }
+  // And what is saved is the question: nothing in the registry promises to store a verdict.
+  assert.match(byId.get("save-property")?.summary ?? "", /re-evaluated on every later revision/);
+});
+
+test("the property surfaces are reachable from both interfaces, over one service each", () => {
+  // UX-I5's machine half. The property list's whole content is a semantic result, so a human-only
+  // grounding would be a UX-I2 violation that UX-I1 cannot see: `analyze` would still look wired.
+  const analyze = CAPABILITIES.find((c) => c.id === "analyze");
+  assert.ok(analyze);
+  assert.ok(analyze.machine.some((a) => a.at === "window.mage.properties"),
+    "the grounded property read must have a machine affordance");
+  assert.ok(analyze.human.some((a) => a.at === "properties-section.list"));
+
+  const query = CAPABILITIES.find((c) => c.id === "query");
+  assert.ok(query);
+  assert.ok(query.human.some((a) => a.at === "properties-section.ask"),
+    "§10.1: a person must be able to execute a query without writing one");
+  assert.ok(query.machine.some((a) => a.at === "window.mage.ask"),
+    "the ad-hoc answer panel shows a grounding, so a machine client must be able to read it");
+  // Both affordances of `query` resolve to the one service; that is what UX-I1 checks by comparing
+  // the string, and a second service here would make the two interfaces diverge invisibly.
+  assert.equal(query.service, "workspace.query");
 });
 
 test("every wired affordance names ONE site, not a description of several", () => {

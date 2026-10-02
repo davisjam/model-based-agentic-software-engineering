@@ -25,6 +25,8 @@ import { validate } from "../validator/rules.ts";
 import { TransactionEngine } from "../transaction/engine.ts";
 import { collectProvenance } from "./provenance.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
+import { evaluateOne, evaluateProperties } from "./properties.ts";
+import type { EvaluatedProperty } from "./properties.ts";
 import type { EnginePort, RenderPort, RenderedView, SceneRequest } from "./ports.ts";
 
 /**
@@ -254,6 +256,38 @@ export class Workspace {
     const out = new Map<string, QueryResult>();
     for (const [id, saved] of this.#engine.system().queries) out.set(id, this.query(saved.raw));
     return out;
+  }
+
+  /**
+   * Every persistent property, with its current verdict and the models that verdict derives from.
+   *
+   * The ONE service the property list and `window.mage.properties()` both call, which is UX-I1's
+   * "both invoke the same service" for a surface that is nothing but a semantic result.
+   *
+   * Recomputed on every call, and that is the whole design rather than an implementation note. A
+   * verdict is derived state (V18), so there is no field to cache it in and no way for a stored
+   * answer to outlive the system it described — §3.3's "re-evaluated when relevant model semantics
+   * change" is then structural: the only way to read a verdict is to compute one. The re-run costs
+   * one engine pass over the saved queries, which is what `runSavedQueries` already did after every
+   * transaction.
+   */
+  properties(): readonly EvaluatedProperty[] {
+    return evaluateProperties(this.#engine.system(), this.runSavedQueries(), this.#engine.hash());
+  }
+
+  /**
+   * Run ONE query and return it as a property: verdict plus the models the verdict derives from.
+   *
+   * The grounded twin of `query()`, and the service behind both the human ask form and
+   * `window.mage.ask`. It exists so UX-I2 holds for the ad-hoc answer panel: that panel shows a
+   * grounding, so a machine client must be able to read the same grounding, and `query()`'s
+   * `QueryResult` has nowhere to put it.
+   *
+   * `id` is a label for the answer, not an identity: nothing is saved here. Saving is a separate,
+   * explicit act through `save-query`, which is the §3.4 boundary — a query is ordinarily transient.
+   */
+  evaluate(id: string, query: unknown): EvaluatedProperty {
+    return evaluateOne(this.#engine.system(), id, query, this.query(query), this.#engine.hash());
   }
 
   // -- views -----------------------------------------------------------------------------------

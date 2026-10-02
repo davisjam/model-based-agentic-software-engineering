@@ -13,7 +13,9 @@ import type { AccessibleScene, SvgNode } from "../render/types.ts";
 import { MARK_MEANINGS } from "../render/types.ts";
 import type { ExampleDescription } from "../app/examples.ts";
 import type { ProvenanceRecord } from "../app/provenance.ts";
-import type { Choice, FindingRow, QuestionRow, Row, Section, ViewModel } from "./view-model.ts";
+import type {
+  Choice, FindingRow, PrincipalModel, PropertyRow, PurposeBlock, Row, Section, ViewModel,
+} from "./view-model.ts";
 
 const el = <K extends keyof HTMLElementTagNameMap>(
   tag: K, text?: string, className?: string,
@@ -66,6 +68,29 @@ function annotationBlock(row: Row): DocumentFragment {
   return frag;
 }
 
+/**
+ * A purpose, under its own headings (UX-I4).
+ *
+ * "Asks" leads and is marked `purpose` rather than `coverage`, because the question is what the
+ * model is FOR and what every refusal cites. Represents and omits follow as a definition list —
+ * §5.1 permits them to be inspectable rather than always on screen, and a `<dl>` nested in the row
+ * is inspectable without navigating away, which is the condition it actually sets.
+ */
+function purposeDisplay(p: PurposeBlock): DocumentFragment {
+  const frag = document.createDocumentFragment();
+  frag.append(el("p", "Asks", "sublabel"));
+  frag.append(el("p", p.question, p.unstated ? "caveat" : "purpose"));
+  if (p.represents.length > 0 || p.omits.length > 0) {
+    const dl = el("dl", undefined, "prov");
+    if (p.represents.length > 0) dl.append(el("dt", "Represents"), el("dd", p.represents.join(", ")));
+    // Omits is the half a diagram cannot draw, and the half that licenses a refusal. Rendered even
+    // when represents is empty, for that reason.
+    if (p.omits.length > 0) dl.append(el("dt", "Deliberately omits"), el("dd", p.omits.join(", ")));
+    frag.append(dl);
+  }
+  return frag;
+}
+
 function rowCells(row: Row): HTMLTableRowElement {
   const tr = el("tr");
   const idCell = el("td", row.id, "id");
@@ -76,9 +101,27 @@ function rowCells(row: Row): HTMLTableRowElement {
     label.append(stateChips(row.states));
   }
   const detail = el("td", row.detail);
+  if (row.purpose !== null) detail.append(purposeDisplay(row.purpose));
   detail.append(annotationBlock(row));
   tr.append(idCell, label, el("td", row.kind), detail);
   return tr;
+}
+
+/**
+ * The principal model's purpose, beside the picture (§5.1).
+ *
+ * Plain DOM rather than a live region: it changes when the user changes the drawn subject, which is
+ * a navigation and not a consequence, and `#live` already announces the things that are.
+ */
+export function paintPrincipal(principal: PrincipalModel | null, root: HTMLElement): void {
+  root.replaceChildren();
+  if (principal === null) {
+    root.append(el("p", "No model is loaded, so no model is being viewed.", "intro"));
+    return;
+  }
+  root.append(el("h3", `${principal.label} — the model being viewed`));
+  root.append(el("p", `${principal.kind} ${principal.id}`, "id"));
+  root.append(purposeDisplay(principal.purpose));
 }
 
 function sectionTable(section: Section): HTMLElement {
@@ -107,29 +150,67 @@ function sectionTable(section: Section): HTMLElement {
   return wrap;
 }
 
-function questionBlock(q: QuestionRow): HTMLElement {
+/**
+ * One persistent property (§9.1, §9.3).
+ *
+ * The order is the reading order §9.3 asks for: proposition, status, models used, evidence,
+ * coverage, bounds, last evaluation revision. The revision is rendered for EVERY property, not only
+ * a stale one, because "which revision does this status describe" is unanswerable from a status
+ * word and is the first thing anyone auditing a claim needs.
+ *
+ * The kind chip is a WORD. §13 permits requirements to be distinguished visually; a visual-only
+ * distinction is one a screen-reader user never receives, so the word carries it and the stylesheet
+ * may do whatever it likes on top.
+ */
+export function propertyBlock(p: PropertyRow): HTMLElement {
   const article = el("article");
-  article.setAttribute("aria-label", q.question);
-  article.append(el("h3", q.question));
+  article.setAttribute("aria-label", `${p.kind}: ${p.proposition}`);
+  const heading = el("h3");
+  heading.append(el("span", p.kind, "state"), document.createTextNode(` ${p.proposition}`));
+  article.append(heading);
 
-  const outcome = el("p", q.outcome, "outcome");
-  if (q.stale) {
-    // A result describing a model the user has already changed must say so before it says anything
-    // else -- presenting it as current is the failure the hash in every result exists to prevent.
-    const warn = el("span", " — STALE: this describes an earlier revision of the model", "stale");
-    outcome.append(warn);
+  // `status` already carries the mismatch when the verdict describes another revision -- the view
+  // model demotes the verdict out of it, so this renderer cannot accidentally lead with a stale one.
+  article.append(el("p", p.status, p.stale ? "outcome stale" : "outcome"));
+  if (p.verdict !== null) article.append(el("p", p.verdict, "coverage"));
+  if (p.expectation !== null) article.append(el("p", p.expectation, "outcome"));
+
+  // UX-I5. Immediately under the status, because what established a claim is not supplementary to
+  // the claim -- a status with its grounding three paragraphs down is a status read without it.
+  if (p.grounds.length > 0) {
+    article.append(el("p", "Derived from", "sublabel"));
+    const uses = el("ul", undefined, "notes");
+    for (const line of p.grounds) uses.append(el("li", line));
+    article.append(uses);
   }
-  article.append(outcome);
+  if (p.groundsMissing !== null) article.append(el("p", p.groundsMissing, "caveat"));
 
-  if (q.coverage !== "") article.append(el("p", q.coverage, "coverage"));
-  if (q.refusal !== null) article.append(el("p", q.refusal, "refusal"));
-  for (const c of q.compilation) article.append(el("p", `To answer this: ${c}`, "compilation"));
-  if (q.evidence.length > 0) {
+  if (p.coverage !== "") article.append(el("p", p.coverage, "coverage"));
+  if (p.refusal !== null) article.append(el("p", p.refusal, "refusal"));
+  for (const c of p.compilation) article.append(el("p", `To answer this: ${c}`, "compilation"));
+  if (p.evidence.length > 0) {
+    article.append(el("p", "Evidence", "sublabel"));
     const list = el("ol", undefined, "evidence");
-    for (const line of q.evidence) list.append(el("li", line));
+    for (const line of p.evidence) list.append(el("li", line));
     article.append(list);
   }
+  article.append(el("p", p.revision, "id"));
   return article;
+}
+
+/**
+ * The ad-hoc question's answer (§10.2).
+ *
+ * Rendered with `propertyBlock`, which is the point: a transient result and a persistent property
+ * are the same thing displayed, differing only in whether the question is saved. Writing a second
+ * renderer for the answer panel would let the two drift, and then "Save as property" would change
+ * how a result reads rather than only how long it lasts.
+ */
+export function paintAnswer(answer: PropertyRow | null, problem: string, root: HTMLElement): void {
+  root.replaceChildren();
+  if (problem !== "") { root.append(el("p", problem, "caveat")); return; }
+  if (answer === null) return;
+  root.append(propertyBlock(answer));
 }
 
 function findingTable(findings: readonly FindingRow[]): HTMLElement {
@@ -350,7 +431,12 @@ export function paint(vm: ViewModel, roots: {
   readonly summary: HTMLElement;
   readonly banner: HTMLElement;
   readonly sections: HTMLElement;
-  readonly questions: HTMLElement;
+  /**
+   * The property list. Still `#question-list` in the markup: the browser tier asserts against that
+   * id and against the section ids, and it is a gate this file's owner does not own. The name is
+   * stale, the binding is not.
+   */
+  readonly properties: HTMLElement;
   readonly findings: HTMLElement;
 }): void {
   // The tab title carries the hypothesis too. A user who switched tabs and came back needs to know
@@ -365,10 +451,10 @@ export function paint(vm: ViewModel, roots: {
   }
 
   roots.sections.replaceChildren(...vm.sections.map(sectionTable));
-  roots.questions.replaceChildren(
-    ...(vm.questions.length === 0
-      ? [el("p", "This model saves no questions.", "intro")]
-      : vm.questions.map(questionBlock)),
+  roots.properties.replaceChildren(
+    ...(vm.properties.length === 0
+      ? [el("p", "This model system asserts no properties yet. Ask a question above and save it.", "intro")]
+      : vm.properties.map(propertyBlock)),
   );
   roots.findings.replaceChildren(findingTable(vm.findings));
 }

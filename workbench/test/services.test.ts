@@ -13,6 +13,7 @@ import type { Ports } from "../src/app/services.ts";
 import { ExampleCatalog, UnknownExampleError } from "../src/app/examples.ts";
 import type { AssetReader } from "../src/app/examples.ts";
 import { createAgentApi } from "../src/app/agent-api.ts";
+import { checkPropertyGrounding } from "../src/app/properties.ts";
 import { EXAMPLE_IDS, readFixture } from "../scripts/gen-example-coverage.ts";
 
 // The real renderer rather than a stub. The render port now speaks the renderer's own types, so a
@@ -144,6 +145,128 @@ test("saved queries re-run against the CURRENT system after a commit", () => {
   for (const r of second.values()) {
     assert.equal(r.systemHash, ws.state.hash, "every result must carry the hash it describes");
   }
+});
+
+// ----------------------------------------------------------------------------------------------
+// Properties through the facade and the agent API (sections 9, 10.3; UX-I2, UX-I5)
+// ----------------------------------------------------------------------------------------------
+
+test("Workspace.properties() recomputes and leaves the revision exactly where it was", () => {
+  // The whole design in one assertion. A verdict is derived state (V18), so reading every property
+  // must not move the hash -- otherwise recording the answer would change the system the answer was
+  // about, and every property would go stale the moment one was evaluated.
+  const ws = loaded();
+  const before = ws.state.hash;
+  const first = ws.properties();
+  assert.ok(first.length > 0, "the worked example saves questions, so it asserts properties");
+  assert.equal(ws.state.hash, before, "evaluating properties moved the semantic revision");
+  assert.deepEqual(ws.properties(), first, "two reads of one revision must agree");
+
+  for (const p of first) {
+    assert.equal(p.evaluatedAt, before, "a verdict must be attributed to the revision it describes");
+    assert.equal(p.currentRevision, before);
+    assert.equal(p.stale, false, "a recomputed verdict cannot be stale");
+    assert.ok(p.grounds.length > 0, `${p.id} has a status with nothing to attribute it to (UX-I5)`);
+  }
+
+  // And a commit re-attributes every verdict without anyone asking for it.
+  ws.transact({ transaction: { base: ws.state.hash,
+    operations: [{ op: "set-label", id: "gateway", value: "Changed" }] } });
+  for (const p of ws.properties()) assert.equal(p.evaluatedAt, ws.state.hash);
+});
+
+test("UX-I5 holds over every shipped example, not only the hand-written fixtures", async () => {
+  // Ground truth, which is the only thing that can tell you a derivation is right. Running this
+  // over the examples is what found the `not-answerable` case: `is-the-scheduler-fair` asks about a
+  // machine Worker Queue does not declare, so there is no model-level handle to cite -- and the
+  // first version of the check reported it as ungrounded. That was the CHECK being wrong. A refusal
+  // derives its status from the ABSENCE of vocabulary, and what it owes is the refusal sentence.
+  const ws = new Workspace(ports);
+  const catalog = new ExampleCatalog(ws, assets);
+  let evaluated = 0;
+  let refusals = 0;
+  for (const id of catalog.ids()) {
+    await catalog.load(id);
+    const properties = ws.properties();
+    assert.ok(properties.length > 0, `${id} saves no questions, so it demonstrates no properties`);
+    assert.deepEqual(checkPropertyGrounding(properties), [],
+      `${id}: a property states a verdict it cannot attribute`);
+    for (const p of properties) {
+      evaluated += 1;
+      if (p.grounds.length > 0) continue;
+      assert.equal(p.status, "not-answerable",
+        `${id}/${p.id}: only a refusal may cite nothing, and this is '${p.status}'`);
+      assert.ok((p.refusal ?? "").length > 0,
+        `${id}/${p.id}: a refusal that cites nothing must at least say which distinction is missing`);
+      refusals += 1;
+    }
+  }
+  assert.ok(evaluated >= 10, `only ${evaluated} properties were evaluated; the sweep is not running`);
+  assert.ok(refusals > 0,
+    "no example exercises the cite-nothing branch, so the exemption above is untested ground truth");
+});
+
+test("UX-I2: an agent reads the same properties, with the same grounding, as the person", () => {
+  // Object-level agreement over ONE workspace, not two code paths that look alike. The property
+  // list's whole content is a semantic result, so UX-I2 is not satisfied by `savedQueries()`
+  // alone: that returns the raw results and leaves an agent to work out which reduction produced
+  // each one, which is exactly the grounding the human surface displays.
+  const ws = loaded();
+  const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {}, new ExampleCatalog(ws, assets));
+  assert.deepEqual(api.properties(), ws.properties());
+  assert.deepEqual(api.properties().map((p) => p.id), [...ws.state.system.queries.keys()]);
+  for (const p of api.properties()) {
+    assert.ok(p.grounds.every((g) => g.why.length > 8), `${p.id} cites a model with no stated reason`);
+  }
+});
+
+test("UX-I2: window.mage.ask is the grounded twin of query, over the same service", () => {
+  const ws = loaded();
+  const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {}, new ExampleCatalog(ws, assets));
+  const question = ws.state.system.queries.get("transitive-ownership")?.raw;
+  assert.ok(question !== undefined);
+
+  const savedBefore = ws.state.system.queries.size;
+  const bare = api.query(question);
+  const grounded = api.ask(question);
+  // Same answer, read two ways. `query` stays the published wire shape; `ask` adds what the human
+  // ad-hoc panel shows, so that panel is not UI-only knowledge.
+  assert.equal(grounded.outcome, bare.outcome);
+  assert.equal(grounded.evaluatedAt, bare.systemHash);
+  assert.equal(grounded.refusal, bare.refusal);
+  assert.ok(grounded.grounds.length > 0, "the grounded twin must carry the grounding");
+  // Asking saves nothing: a query is transient until someone says otherwise (§3.4).
+  assert.equal(ws.state.system.queries.size, savedBefore, "asking must not add a saved query");
+  assert.equal(grounded.id, "(unsaved)", "an id here would look like a handle to something saved");
+});
+
+test("saving a query as a property goes through the ONE transaction seam an agent uses", () => {
+  // §23's last step before the agent arrives, and §10.3's promise: what is saved is the question.
+  const ws = loaded();
+  const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {}, new ExampleCatalog(ws, assets));
+  const before = ws.state.system.queries.size;
+  const saved = api.transact({ transaction: { base: ws.state.hash, operations: [{
+    op: "save-query", id: "gateway-reachable",
+    query: {
+      name: "The API may invoke the gateway.", kind: "graph", quantifier: "exists", expect: "holds",
+      graph: { form: "reachability", relation: "may_invoke", from: "api", to: "gateway" },
+    },
+  }] } });
+  assert.ok(saved.ok, saved.findings.map((f) => f.message).join("; "));
+  assert.equal(ws.state.system.queries.size, before + 1);
+
+  const added = ws.properties().find((p) => p.id === "gateway-reachable");
+  assert.ok(added, "a saved query must appear in the property list immediately");
+  assert.equal(added.kind, "requirement", "`expect` is the §13 declaration that satisfaction matters");
+  assert.equal(added.proposition, "The API may invoke the gateway.");
+  assert.ok(added.grounds.length > 0);
+
+  // And retracting it leaves the models alone.
+  const entities = ws.state.system.entities.size;
+  assert.ok(api.transact({ transaction: { base: ws.state.hash,
+    operations: [{ op: "delete-query", id: "gateway-reachable" }] } }).ok);
+  assert.equal(ws.properties().find((p) => p.id === "gateway-reachable"), undefined);
+  assert.equal(ws.state.system.entities.size, entities);
 });
 
 // ----------------------------------------------------------------------------------------------
