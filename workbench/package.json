@@ -12,6 +12,7 @@
     "check": "tsc --noEmit",
     "test": "node --test \"test/*.test.ts\"",
     "test:browser": "node --test \"test/browser/*.test.mjs\"",
+    "test:a11y": "node --test \"test/browser/a11y/*.test.mjs\"",
     "build": "node build.mjs",
     "all": "npm run check && npm run test && npm run build",
     "affordances": "node scripts/gen-affordances.ts"
