@@ -194,7 +194,7 @@ entities:
     label: "A quantity attached to a transition, a state or a component."
     properties:
       matrix_row: "Quantities"
-      status: { value: unavailable, domain: coverage-status }
+      status: { value: unexercised, domain: coverage-status }
 
   capability.performance:
     type: semantic-capability
@@ -209,10 +209,6 @@ entities:
     properties:
       matrix_row: "Requirements"
       status: { value: unavailable, domain: coverage-status }
-
-  construct.model-quantities:
-    type: absent-construct
-    label: "A quantity construct: a magnitude with a dimension, attached to a transition or a component."
 
   construct.model-requirements:
     type: absent-construct
@@ -259,7 +255,6 @@ models:
       - capability.quantitative-annotations
       - capability.performance
       - capability.requirements
-      - construct.model-quantities
       - construct.model-requirements
       - construct.query-path-aggregation
     relations:
@@ -284,8 +279,6 @@ models:
       - { from: example.message-bus, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.worker-queue, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.worker-queue, to: capability.bounded-coverage-reporting, type: exercises }
-      - { from: capability.quantitative-annotations, to: construct.model-quantities, type: blocked-by }
-      - { from: capability.performance, to: construct.model-quantities, type: blocked-by }
       - { from: capability.performance, to: construct.query-path-aggregation, type: blocked-by }
       - { from: capability.requirements, to: construct.model-requirements, type: blocked-by }
 
@@ -493,16 +486,6 @@ queries:
       form: predecessors
       relation: exercises
       to: capability.requirements
-
-  blocked.quantitative-annotations:
-    name: "What construct does MAGE lack that makes quantitative-annotations unreachable?"
-    kind: graph
-    quantifier: exists
-    expect: holds
-    graph:
-      form: successors
-      relation: blocked-by
-      from: capability.quantitative-annotations
 
   blocked.performance:
     name: "What construct does MAGE lack that makes performance unreachable?"

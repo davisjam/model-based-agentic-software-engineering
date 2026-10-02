@@ -562,10 +562,23 @@ test("EX-I3: the coverage model reports the gaps rather than omitting them", () 
   // it must be present and marked, not dropped.
   const report = deriveCoverage(examples());
 
+  // What EX-I3 actually requires is that these rows are PRESENT and NOT exercised. Which flavour of
+  // not-exercised they are is DERIVED and moves as phases land: `unavailable` means MAGE lacks the
+  // construct, `unexercised` means the construct exists and the shipped examples do not use it.
+  // Landing the quantity representation layer legitimately moved quantitative-annotations from the
+  // first to the second, so pinning the literal status made this test a snapshot that failed on a
+  // real advance. Assert the invariant, and let the status come from the substrate.
   for (const id of ["quantitative-annotations", "performance", "requirements"]) {
-    assert.equal(report.status.get(id), "unavailable",
-      `${id} must be reported unavailable, with the construct that blocks it named`);
-    assert.ok((report.missingConstructs.get(id) ?? []).length > 0, `${id} must name what blocks it`);
+    const status = report.status.get(id);
+    assert.ok(status !== undefined, `${id} must be present in the model, not dropped`);
+    assert.notEqual(status, "exercised",
+      `${id} is reported exercised, but no shipped example demonstrates it`);
+    // Only an `unavailable` row owes a blocking construct -- that is the claim "MAGE cannot do this
+    // yet", and an unnamed blocker makes it unfalsifiable. An `unexercised` row has nothing to name:
+    // the construct is there and the examples simply do not reach for it.
+    if (status === "unavailable") {
+      assert.ok((report.missingConstructs.get(id) ?? []).length > 0, `${id} must name what blocks it`);
+    }
   }
 
   // The negative control for the whole model: a matrix where every row is green is a matrix nobody
