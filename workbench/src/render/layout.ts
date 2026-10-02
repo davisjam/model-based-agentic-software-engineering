@@ -1,0 +1,604 @@
+/**
+ * Deterministic, incremental layout.
+ *
+ * Two properties are acceptance criteria rather than polish (PLAN.md §4.1, SEMANTICS.md §12):
+ *
+ * 1. **Determinism.** Placement is seeded by stable ids and nothing else — no clock, no random, no
+ *    insertion order, no iteration order of a Map the caller happened to build. The same model
+ *    lays out identically on every machine, in every tab, in the Worker and in `node:test`. There
+ *    is no force simulation here; a relaxation that converges to a different local minimum on a
+ *    second run would destroy the only interaction the workbench really has.
+ *
+ * 2. **Local perturbation.** Existing positions are STRONG hints: a hinted node is placed exactly
+ *    where it was and is never moved, and new nodes are fitted into the frame those hints
+ *    establish — including the rank spacing, so a new node follows the old grid rather than
+ *    imposing a new one. The core interaction is comparing a model against a hypothetical variant
+ *    of it, and that comparison is unreadable if adding one state re-ranks the world.
+ *
+ * Ranking follows the plan's two cases. An acyclic graph gets longest-path layering, which puts
+ * every node one rank past its last predecessor. A cyclic machine is ranked by breadth from its
+ * INITIAL state, and every edge that points back to an equal-or-earlier rank is routed around the
+ * primary layout instead of being allowed to fight it.
+ *
+ * No DOM. Text extents are estimated from character count (`METRICS.charAdvance`) because the
+ * module must run in a Worker and under `node:test`, where there is nothing to measure against.
+ * The estimate is deliberately generous; a too-wide box is a cosmetic flaw, a too-narrow one clips.
+ */
+import type { SceneGraph, SceneNode } from "./scene.ts";
+import type { Direction, Layout, LayoutEdge, LayoutNode, LayoutOptions, Point, Rect } from "./types.ts";
+
+/**
+ * Geometry constants. Exported so tests assert against the substrate value rather than a
+ * hand-copied snapshot of it.
+ */
+export const METRICS = {
+  fontSize: 13,
+  /** Estimated advance per character at `fontSize`, for a generic sans face. */
+  charAdvance: 7.1,
+  nodeMinWidth: 110,
+  nodeMaxWidth: 280,
+  nodeHeight: 46,
+  padX: 18,
+  /** Separation between consecutive ranks, along the rank axis. */
+  rankGap: 90,
+  /** Separation between siblings within a rank, along the lane axis. */
+  laneGap: 34,
+  margin: 28,
+  regionPadX: 20,
+  regionPadY: 16,
+  regionHeader: 28,
+  regionInnerGap: 16,
+  selfLoop: 36,
+  /** Clearance between the primary layout and the lane that backedges are routed through. */
+  detourGap: 44,
+} as const;
+
+/** Lane pitch for a standard leaf box: the bound a fresh insertion may displace a sibling by. */
+export const LANE_PITCH = METRICS.nodeHeight + METRICS.laneGap;
+
+const DEFAULT_DIRECTION: Direction = "left-to-right";
+
+// --------------------------------------------------------------------------------------------
+// Axis plumbing: one implementation, two directions
+// --------------------------------------------------------------------------------------------
+
+const isLtr = (d: Direction): boolean => d === "left-to-right";
+
+const toRect = (along: number, across: number, extAlong: number, extAcross: number, d: Direction): Rect =>
+  isLtr(d)
+    ? { x: along, y: across, w: extAlong, h: extAcross }
+    : { x: across, y: along, w: extAcross, h: extAlong };
+
+const alongOf = (r: Rect, d: Direction): number => (isLtr(d) ? r.x : r.y);
+const acrossOf = (r: Rect, d: Direction): number => (isLtr(d) ? r.y : r.x);
+const extAlongOf = (r: Rect, d: Direction): number => (isLtr(d) ? r.w : r.h);
+const extAcrossOf = (r: Rect, d: Direction): number => (isLtr(d) ? r.h : r.w);
+const toPoint = (along: number, across: number, d: Direction): Point =>
+  isLtr(d) ? { x: along, y: across } : { x: across, y: along };
+
+const overlaps = (a: Rect, b: Rect, pad: number): boolean =>
+  a.x < b.x + b.w + pad && b.x < a.x + a.w + pad && a.y < b.y + b.h + pad && b.y < a.y + a.h + pad;
+
+// --------------------------------------------------------------------------------------------
+// Sizing
+// --------------------------------------------------------------------------------------------
+
+export const labelWidth = (text: string): number =>
+  Math.min(
+    METRICS.nodeMaxWidth,
+    Math.max(METRICS.nodeMinWidth, 2 * METRICS.padX + text.length * METRICS.charAdvance),
+  );
+
+interface Size {
+  readonly w: number;
+  readonly h: number;
+}
+
+/** Leaf sizes first, then regions, which must be large enough to enclose their children. */
+function sizes(scene: SceneGraph): Map<string, Size> {
+  const out = new Map<string, Size>();
+  for (const n of scene.nodes) out.set(n.id, { w: labelWidth(n.label), h: METRICS.nodeHeight });
+  for (const n of scene.nodes) {
+    if (n.contains.length === 0) continue;
+    let row = 2 * METRICS.regionPadX;
+    let tallest: number = METRICS.nodeHeight;
+    n.contains.forEach((c, i) => {
+      const s = out.get(c) ?? { w: METRICS.nodeMinWidth, h: METRICS.nodeHeight };
+      row += s.w + (i > 0 ? METRICS.regionInnerGap : 0);
+      tallest = Math.max(tallest, s.h);
+    });
+    out.set(n.id, {
+      w: Math.max(labelWidth(n.label), row),
+      h: METRICS.regionHeader + METRICS.regionPadY * 2 + tallest,
+    });
+  }
+  return out;
+}
+
+// --------------------------------------------------------------------------------------------
+// Ranking
+// --------------------------------------------------------------------------------------------
+
+interface RankInput {
+  readonly outer: readonly string[];
+  /** Lifted to outer nodes: an edge touching a region's child is an edge touching the region. */
+  readonly succ: ReadonlyMap<string, readonly string[]>;
+  readonly pred: ReadonlyMap<string, readonly string[]>;
+}
+
+function rankInput(scene: SceneGraph, parentOf: ReadonlyMap<string, string>): RankInput {
+  const outerSet = new Set(scene.nodes.filter((n) => n.parent === null).map((n) => n.id));
+  const lift = (id: string): string => {
+    let cur = id;
+    for (let i = 0; i < 8 && !outerSet.has(cur); i += 1) {
+      const up = parentOf.get(cur);
+      if (up === undefined) return cur;
+      cur = up;
+    }
+    return cur;
+  };
+  const succ = new Map<string, string[]>();
+  const pred = new Map<string, string[]>();
+  for (const id of outerSet) {
+    succ.set(id, []);
+    pred.set(id, []);
+  }
+  const pairs = new Set<string>();
+  for (const e of scene.edges) {
+    if (e.kind === "containment") continue;
+    const a = lift(e.from);
+    const b = lift(e.to);
+    if (a === b || !outerSet.has(a) || !outerSet.has(b)) continue;
+    const key = `${a} -> ${b}`;
+    if (pairs.has(key)) continue;
+    pairs.add(key);
+    succ.get(a)?.push(b);
+    pred.get(b)?.push(a);
+  }
+  for (const list of succ.values()) list.sort();
+  for (const list of pred.values()) list.sort();
+  return { outer: [...outerSet].sort(), succ, pred };
+}
+
+function hasCycle(g: RankInput): boolean {
+  const state = new Map<string, 0 | 1 | 2>();
+  const visit = (id: string): boolean => {
+    const s = state.get(id) ?? 0;
+    if (s === 1) return true;
+    if (s === 2) return false;
+    state.set(id, 1);
+    for (const n of g.succ.get(id) ?? []) if (visit(n)) return true;
+    state.set(id, 2);
+    return false;
+  };
+  for (const id of g.outer) if (visit(id)) return true;
+  return false;
+}
+
+/** Longest-path layering. Only valid on an acyclic graph; `rankNodes` checks first. */
+function topologicalRanks(g: RankInput): Map<string, number> {
+  const rank = new Map<string, number>();
+  const indeg = new Map<string, number>();
+  for (const id of g.outer) indeg.set(id, (g.pred.get(id) ?? []).length);
+  // Lowest id first among the currently-available nodes: a deterministic Kahn order.
+  const ready = g.outer.filter((id) => (indeg.get(id) ?? 0) === 0).sort();
+  for (const id of ready) rank.set(id, 0);
+  while (ready.length > 0) {
+    const id = ready.shift() as string;
+    const r = rank.get(id) ?? 0;
+    for (const n of g.succ.get(id) ?? []) {
+      rank.set(n, Math.max(rank.get(n) ?? 0, r + 1));
+      const left = (indeg.get(n) ?? 1) - 1;
+      indeg.set(n, left);
+      if (left === 0) {
+        ready.push(n);
+        ready.sort();
+      }
+    }
+  }
+  for (const id of g.outer) if (!rank.has(id)) rank.set(id, 0);
+  return rank;
+}
+
+/**
+ * Breadth from the declared roots — a machine's initial state. A cyclic lifecycle has no
+ * topological order at all, so distance-from-initial is the ranking that actually means something:
+ * rank N is "N steps from the start", and the edges that go back are the ones to route around.
+ */
+function breadthRanks(g: RankInput, roots: readonly string[]): Map<string, number> {
+  const rank = new Map<string, number>();
+  const seeds = roots.filter((r) => g.succ.has(r));
+  const queue: string[] = [...(seeds.length > 0 ? seeds : g.outer.slice(0, 1))].sort();
+  for (const s of queue) rank.set(s, 0);
+  let i = 0;
+  while (i < queue.length) {
+    const id = queue[i] as string;
+    i += 1;
+    const r = rank.get(id) ?? 0;
+    for (const n of g.succ.get(id) ?? []) {
+      if (rank.has(n)) continue;
+      rank.set(n, r + 1);
+      queue.push(n);
+    }
+  }
+  // A disconnected remainder gets its own breadth pass rather than being piled at rank 0.
+  for (const id of g.outer) {
+    if (rank.has(id)) continue;
+    rank.set(id, 0);
+    const q = [id];
+    let j = 0;
+    while (j < q.length) {
+      const cur = q[j] as string;
+      j += 1;
+      for (const n of g.succ.get(cur) ?? []) {
+        if (rank.has(n)) continue;
+        rank.set(n, (rank.get(cur) ?? 0) + 1);
+        q.push(n);
+      }
+    }
+  }
+  return rank;
+}
+
+function rankNodes(g: RankInput, roots: readonly string[]): Map<string, number> {
+  return hasCycle(g) ? breadthRanks(g, roots) : topologicalRanks(g);
+}
+
+// --------------------------------------------------------------------------------------------
+// Within-rank order
+// --------------------------------------------------------------------------------------------
+
+/**
+ * Barycentre ordering, fixed number of passes, every tie broken by id. Fixed passes and id
+ * tie-breaks are what make this deterministic: an iterate-until-stable loop over a graph with
+ * symmetric neighbourhoods can oscillate, and "whichever order the Map yielded" is not an order.
+ */
+function orderRanks(g: RankInput, rank: ReadonlyMap<string, number>): string[][] {
+  const depth = Math.max(0, ...[...rank.values()]) + 1;
+  const ranks: string[][] = Array.from({ length: depth }, () => []);
+  for (const id of g.outer) (ranks[rank.get(id) ?? 0] as string[]).push(id);
+  for (const r of ranks) r.sort();
+
+  const indexIn = (r: number): Map<string, number> => {
+    const m = new Map<string, number>();
+    (ranks[r] ?? []).forEach((id, i) => m.set(id, i));
+    return m;
+  };
+  const sweep = (r: number, neighbours: ReadonlyMap<string, readonly string[]>, refRank: number): void => {
+    const ref = indexIn(refRank);
+    const self = indexIn(r);
+    const key = new Map<string, number>();
+    for (const id of ranks[r] ?? []) {
+      const ns = (neighbours.get(id) ?? []).map((n) => ref.get(n)).filter((v): v is number => v !== undefined);
+      key.set(id, ns.length === 0 ? (self.get(id) ?? 0) : ns.reduce((a, b) => a + b, 0) / ns.length);
+    }
+    (ranks[r] as string[]).sort((a, b) => {
+      const d = (key.get(a) ?? 0) - (key.get(b) ?? 0);
+      return d !== 0 ? d : a < b ? -1 : a > b ? 1 : 0;
+    });
+  };
+  for (let pass = 0; pass < 2; pass += 1) {
+    for (let r = 1; r < depth; r += 1) sweep(r, g.pred, r - 1);
+    for (let r = depth - 2; r >= 0; r -= 1) sweep(r, g.succ, r + 1);
+  }
+  return ranks;
+}
+
+// --------------------------------------------------------------------------------------------
+// Placement
+// --------------------------------------------------------------------------------------------
+
+interface Placement {
+  readonly rects: Map<string, Rect>;
+  readonly pinned: Set<string>;
+}
+
+function place(
+  scene: SceneGraph,
+  size: ReadonlyMap<string, Size>,
+  ranks: readonly (readonly string[])[],
+  rank: ReadonlyMap<string, number>,
+  d: Direction,
+  hints: ReadonlyMap<string, Point> | undefined,
+): Placement {
+  const ext = (id: string): Size => size.get(id) ?? { w: METRICS.nodeMinWidth, h: METRICS.nodeHeight };
+  const extAlong = (id: string): number => (isLtr(d) ? ext(id).w : ext(id).h);
+  const extAcross = (id: string): number => (isLtr(d) ? ext(id).h : ext(id).w);
+
+  const rankExtent = ranks.map((r) => Math.max(METRICS.nodeHeight, ...r.map(extAlong)));
+  const alongGrid: number[] = [];
+  let cursor = METRICS.margin;
+  for (let r = 0; r < ranks.length; r += 1) {
+    alongGrid.push(cursor);
+    cursor += (rankExtent[r] ?? METRICS.nodeHeight) + METRICS.rankGap;
+  }
+  const acrossGrid = new Map<string, number>();
+  for (const r of ranks) {
+    let lane = METRICS.margin;
+    for (const id of r) {
+      acrossGrid.set(id, lane);
+      lane += extAcross(id) + METRICS.laneGap;
+    }
+  }
+
+  const rects = new Map<string, Rect>();
+  const pinned = new Set<string>();
+
+  // (1) Hinted nodes land exactly on their hint and are never considered again. This is the whole
+  //     stability guarantee: a pre-existing node's displacement is zero by construction.
+  for (const r of ranks) {
+    for (const id of r) {
+      const h = hints?.get(id);
+      if (h === undefined) continue;
+      rects.set(id, { x: h.x, y: h.y, w: ext(id).w, h: ext(id).h });
+      pinned.add(id);
+    }
+  }
+
+  // (2) A fresh node adopts the pinned frame's rank spacing rather than the fresh grid's, so it
+  //     appears beside the nodes it belongs with instead of at a coordinate from another layout.
+  const pinnedAlong = new Map<number, number>();
+  for (const id of pinned) {
+    const r = rank.get(id) ?? 0;
+    const a = alongOf(rects.get(id) as Rect, d);
+    pinnedAlong.set(r, Math.min(pinnedAlong.get(r) ?? a, a));
+  }
+  const step = (r: number): number => (rankExtent[r] ?? METRICS.nodeHeight) + METRICS.rankGap;
+  const alongForRank = (r: number): number => {
+    const here = pinnedAlong.get(r);
+    if (here !== undefined) return here;
+    for (let k = r - 1; k >= 0; k -= 1) {
+      const a = pinnedAlong.get(k);
+      if (a === undefined) continue;
+      let acc = a;
+      for (let i = k; i < r; i += 1) acc += step(i);
+      return acc;
+    }
+    for (let k = r + 1; k < ranks.length; k += 1) {
+      const a = pinnedAlong.get(k);
+      if (a === undefined) continue;
+      let acc = a;
+      for (let i = r; i < k; i += 1) acc -= step(i);
+      return acc;
+    }
+    return alongGrid[r] ?? METRICS.margin;
+  };
+
+  // (3) Everything else, in (rank, lane) order, nudged along the lane axis until it is clear.
+  //     Only unpinned nodes ever move, and only by whole lane pitches.
+  for (let r = 0; r < ranks.length; r += 1) {
+    for (const id of ranks[r] ?? []) {
+      if (pinned.has(id)) continue;
+      const along = alongForRank(r);
+      const base = acrossGrid.get(id) ?? METRICS.margin;
+      const pitch = extAcross(id) + METRICS.laneGap;
+      let chosen = toRect(along, base, extAlong(id), extAcross(id), d);
+      for (let k = 0; k <= 24; k += 1) {
+        const candidates = k === 0 ? [0] : [k, -k];
+        let done = false;
+        for (const sign of candidates) {
+          const cand = toRect(along, base + sign * pitch, extAlong(id), extAcross(id), d);
+          if (![...rects.values()].some((o) => overlaps(cand, o, 8))) {
+            chosen = cand;
+            done = true;
+            break;
+          }
+        }
+        if (done) break;
+      }
+      rects.set(id, chosen);
+    }
+  }
+
+  // (4) Region children are derived from the region's own rect, so a pinned region pins its
+  //     contents too. Containment is drawn as enclosure; the twin restates it as a relation.
+  for (const n of scene.nodes) {
+    if (n.contains.length === 0) continue;
+    const box = rects.get(n.id);
+    if (box === undefined) continue;
+    let x = box.x + METRICS.regionPadX;
+    const y = box.y + METRICS.regionHeader + METRICS.regionPadY;
+    for (const c of n.contains) {
+      const s = ext(c);
+      rects.set(c, { x, y, w: s.w, h: s.h });
+      x += s.w + METRICS.regionInnerGap;
+    }
+  }
+  return { rects, pinned };
+}
+
+// --------------------------------------------------------------------------------------------
+// Edge routing
+// --------------------------------------------------------------------------------------------
+
+const forwardFace = (r: Rect, d: Direction): Point =>
+  toPoint(alongOf(r, d) + extAlongOf(r, d), acrossOf(r, d) + extAcrossOf(r, d) / 2, d);
+const backwardFace = (r: Rect, d: Direction): Point =>
+  toPoint(alongOf(r, d), acrossOf(r, d) + extAcrossOf(r, d) / 2, d);
+const detourFace = (r: Rect, d: Direction, shift: number): Point =>
+  toPoint(alongOf(r, d) + extAlongOf(r, d) / 2 + shift, acrossOf(r, d) + extAcrossOf(r, d), d);
+
+function dedupe(points: readonly Point[]): readonly Point[] {
+  const out: Point[] = [];
+  for (const p of points) {
+    const last = out[out.length - 1];
+    if (last !== undefined && last.x === p.x && last.y === p.y) continue;
+    out.push(p);
+  }
+  return out;
+}
+
+function route(
+  scene: SceneGraph,
+  rects: ReadonlyMap<string, Rect>,
+  rank: ReadonlyMap<string, number>,
+  parentOf: ReadonlyMap<string, string>,
+  d: Direction,
+): LayoutEdge[] {
+  const rankOf = (id: string): number => rank.get(id) ?? rank.get(parentOf.get(id) ?? "") ?? 0;
+  const detourBase =
+    Math.max(METRICS.margin, ...[...rects.values()].map((r) => acrossOf(r, d) + extAcrossOf(r, d))) +
+    METRICS.detourGap;
+
+  // Detour lanes are assigned by sorted edge id so two backedges never share a lane, and so the
+  // assignment does not depend on the order the scene happened to list them in.
+  const detourIds = scene.edges
+    .filter((e) => e.kind !== "containment" && e.from !== e.to && rankOf(e.to) <= rankOf(e.from))
+    .map((e) => e.id)
+    .sort();
+
+  return scene.edges.map((e): LayoutEdge => {
+    const src = rects.get(e.from);
+    const tgt = rects.get(e.to);
+    const base = {
+      id: e.id,
+      kind: e.kind,
+      from: e.from,
+      to: e.to,
+      label: e.label,
+      via: e.via,
+    };
+    if (e.kind === "containment" || src === undefined || tgt === undefined) {
+      return { ...base, backedge: false, selfLoop: false, points: [] };
+    }
+    if (e.from === e.to) {
+      const c = alongOf(src, d) + extAlongOf(src, d) / 2;
+      const edge = acrossOf(src, d) + extAcrossOf(src, d);
+      return {
+        ...base,
+        backedge: false,
+        selfLoop: true,
+        points: [
+          toPoint(c - 14, edge, d),
+          toPoint(c - 14, edge + METRICS.selfLoop, d),
+          toPoint(c + 14, edge + METRICS.selfLoop, d),
+          toPoint(c + 14, edge, d),
+        ],
+      };
+    }
+    const backward = rankOf(e.to) < rankOf(e.from);
+    if (rankOf(e.to) <= rankOf(e.from)) {
+      // Routed AROUND the primary layout, not through it: out of the lane-max face, along a
+      // dedicated detour lane below (right of, for top-to-bottom) everything, and back in.
+      const lane = detourBase + METRICS.detourGap * Math.max(0, detourIds.indexOf(e.id));
+      const a = detourFace(src, d, -10);
+      const b = detourFace(tgt, d, 10);
+      return {
+        ...base,
+        backedge: backward,
+        selfLoop: false,
+        points: dedupe([
+          a,
+          toPoint(isLtr(d) ? a.x : a.y, lane, d),
+          toPoint(isLtr(d) ? b.x : b.y, lane, d),
+          b,
+        ]),
+      };
+    }
+    const a = forwardFace(src, d);
+    const b = backwardFace(tgt, d);
+    const mid = (alongOf(src, d) + extAlongOf(src, d) + alongOf(tgt, d)) / 2;
+    return {
+      ...base,
+      backedge: false,
+      selfLoop: false,
+      points: dedupe([
+        a,
+        toPoint(mid, isLtr(d) ? a.y : a.x, d),
+        toPoint(mid, isLtr(d) ? b.y : b.x, d),
+        b,
+      ]),
+    };
+  });
+}
+
+// --------------------------------------------------------------------------------------------
+
+function bounds(rects: Iterable<Rect>, edges: readonly LayoutEdge[]): Rect {
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  const see = (x: number, y: number): void => {
+    minX = Math.min(minX, x);
+    minY = Math.min(minY, y);
+    maxX = Math.max(maxX, x);
+    maxY = Math.max(maxY, y);
+  };
+  for (const r of rects) {
+    see(r.x, r.y);
+    see(r.x + r.w, r.y + r.h);
+  }
+  for (const e of edges) for (const p of e.points) see(p.x, p.y);
+  if (!Number.isFinite(minX)) return { x: 0, y: 0, w: METRICS.nodeMinWidth, h: METRICS.nodeHeight };
+  return {
+    x: minX - METRICS.margin,
+    y: minY - METRICS.margin,
+    w: maxX - minX + 2 * METRICS.margin,
+    h: maxY - minY + 2 * METRICS.margin,
+  };
+}
+
+/**
+ * The layout seam: a pure function from a scene to coordinates.
+ *
+ * Swapping engines is a module change, not a rewrite. The built-in engine is `layoutScene` below;
+ * an external engine (ELK's layered algorithm is the candidate) plugs in here.
+ *
+ * **Note the signature is synchronous, and why that is not a constraint on ELK.** elkjs is
+ * promise-based and is meant to run in a Worker, so it cannot implement this type directly — and
+ * it does not need to. A cold external layout is just a COMPLETE hint set: run the engine
+ * upstream, hand its coordinates in as `LayoutOptions.hints`, and the pinning pass honours every
+ * one of them exactly. That keeps `renderView` synchronous, keeps `SceneRequest` serializable, and
+ * makes the incremental story the same code path as the cold one. See DONE-phase-E.md §8.
+ */
+export type LayoutEngine = (scene: SceneGraph, opts: LayoutOptions) => Layout;
+
+export function layoutScene(scene: SceneGraph, opts: LayoutOptions = {}): Layout {
+  const d = opts.direction ?? DEFAULT_DIRECTION;
+  const byId = new Map<string, SceneNode>(scene.nodes.map((n) => [n.id, n]));
+  const parentOf = new Map<string, string>();
+  for (const n of scene.nodes) if (n.parent !== null) parentOf.set(n.id, n.parent);
+
+  const size = sizes(scene);
+  const g = rankInput(scene, parentOf);
+  const rank = rankNodes(g, scene.roots);
+  const ranks = orderRanks(g, rank);
+  const { rects, pinned } = place(scene, size, ranks, rank, d, opts.hints);
+  const edges = route(scene, rects, rank, parentOf, d);
+
+  const order = new Map<string, number>();
+  for (const r of ranks) r.forEach((id, i) => order.set(id, i));
+
+  const nodes = new Map<string, LayoutNode>();
+  for (const n of scene.nodes) {
+    const rect = rects.get(n.id);
+    if (rect === undefined) continue;
+    const effectiveRank = n.parent === null ? (rank.get(n.id) ?? 0) : (rank.get(n.parent) ?? 0);
+    nodes.set(n.id, {
+      id: n.id,
+      kind: n.kind,
+      label: n.label,
+      rect,
+      rank: effectiveRank,
+      order: order.get(n.id) ?? (n.parent === null ? 0 : (byId.get(n.parent)?.contains.indexOf(n.id) ?? 0)),
+      parent: n.parent,
+      initial: n.initial,
+      pinned: pinned.has(n.id),
+    });
+  }
+
+  return {
+    direction: d,
+    nodes,
+    edges,
+    bounds: bounds(rects.values(), edges),
+    ranks: ranks.map((r) => [...r]),
+  };
+}
+
+/**
+ * The engine in use when a caller names none. Referenced by name rather than inlined at the call
+ * site so the default is one edit to change, and so a test can assert which engine ran.
+ */
+export const defaultLayoutEngine: LayoutEngine = layoutScene;
