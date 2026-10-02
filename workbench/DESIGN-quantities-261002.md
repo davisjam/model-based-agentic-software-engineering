@@ -220,3 +220,102 @@ which is excluded by invariant A1. Those two facts sit side by side and are easy
 saying *"gateway latency is probably 200 ms"* cannot change a latency query, while a declared
 quantity of `200 ms` must. That contrast is the clearest statement of where the formal boundary lies,
 and it belongs in the semantics document next to both.
+
+---
+
+## 10. Evaluator decisions — appended after the Q2/Q3 rulings (src/quant/)
+
+The rulings above are implemented in `src/quant/` and pinned by `test/quant-eval.test.ts`. The
+ruled parts are unchanged; this section records only what building the evaluator forced us to
+decide, with the load-bearing one first.
+
+### 10.1 The trace-step-to-entity correspondence
+
+> Every accounted entity has one behavioral counterpart, a (machine, state) pair, found by two
+> routes with the explicit one first: (1) the entity's `executes_in_state` property names the
+> lifecycle state during whose occupancy it runs, resolved under the V27 discipline (qualified, or
+> bare only when unambiguous); (2) absent that declaration, a state spelling the entity's id IS
+> the entity — shared identity in its literal sense. A trace step is an occurrence of `e` exactly
+> when it ENTERS `e`'s counterpart state on some moving instance, and the initial configuration
+> counts as visited. A declaration REPLACES the identity route for its entity; two live routes on
+> one entity would be the double-counting shape the accounting ruling refuses.
+
+This is the join the Q2 ruling writes as
+`behavioral execution --shared identity--> performance component`, made mechanical. A retry
+re-enters `remediating`, so `Remediate` — and the gateway, which declares the same state — is
+charged again: the occurrence count comes from the trace, never from arithmetic across kinds.
+
+**The oracle encounter, recorded because it changed this design.** The evaluator was first built
+on route (2) alone. Document Processing — authored concurrently as the first model against
+V35–V37 — landed with route (1): entity ids that do NOT spell state names (`parser` / `parsing`),
+and two components (`remediation`, `model-gateway`) executing in ONE state, which id-equality
+cannot express at all. The declared property is strictly more expressive and still fully authored,
+so it became the primary route; identity remains the fallback because it is the composition
+doctrine's own join and costs nothing to honor. After the revision the evaluator reproduces every
+hand-derived figure in the example's `expected-results.yaml`: maximum publishing latency 2,750 ms
+(1×50 + 4×100 + 4×500 + 4×75), retry-free 725 ms, peak memory 384 MB during remediation against
+the 128 MB baseline, and the flagship expected-latency refusal — pinned by the oracle tests in
+`test/quant-eval.test.ts`. One scope note: the evaluator's maximum ranges over ALL executions,
+the fixture's question over publishing ones; they coincide on this model because the
+retries-exhausted dead end charges exactly what the publishing path charges, and the test says so
+rather than conflating the questions.
+
+Two alternatives were rejected:
+
+- **The V6 `machine.entity` link as the join.** It is machine-granular: one lifecycle machine maps
+  to one entity, so `Parse 50 ms` and `Remediate 100 ms` cannot be told apart, and a component
+  machine's return-to-idle move would count a visit that is not one. §2 of SEMANTICS.md presents
+  that link as a navigation affordance; it stays one.
+- **An explicit `when:`-style clause on latency quantities, mirroring memory.** V37 makes
+  `residency:`/`when:` findings on anything not configuration-scoped, and the ruling's latency
+  form carries neither. The example put the declaration on the ENTITY instead — where it describes
+  the component once, not per quantity — and the evaluator follows it.
+
+Consequence, enforced at the evaluator seam: an accounted quantity whose entity has **no
+counterpart on either route** can never be visited, which is exactly the validated-but-inert state
+the governing principle forbids — so building the charge table REFUSES it, naming the missing
+correspondence. [LINT] follow-up: this is statically decidable and belongs in the V-rule family
+(a V36 companion), as is `executes_in_state` resolution itself, today checked only by the
+example's own suite; not landed here because SEMANTICS.md and the validator are owned elsewhere
+this wave.
+
+### 10.2 Q1 operationalized — ends are selected by the operator, never both
+
+Requirements accept `<=` and `<`, which select the UPPER end of any declared range (the worst
+case). Any other operator, and any question wanting a single number from a ranged quantity
+(`traceMetric(..., "point")`), refuses by name: both cite interval arithmetic as the thing the
+ruling defers to SMT. The refusal names the quantity, its two ends, and the worst-case
+alternative.
+
+### 10.3 Q5 confirmed — `refuted` + `lasso` carries the cycle witness
+
+It works in practice, with no new outcome word. A positive charge on an edge inside a strongly
+connected component is the witness; the evidence is the existing lasso shape with
+`role: "counterexample"` (`steps` = prefix, `cycle` = the repeating segment), since the cycle
+refutes every finite bound by repetition. The complement matters as much: a ZERO-charge
+repeatable cycle does not unbound the maximum, so the finite maximum is a DP over the SCC
+condensation — wandering inside a component provably gains nothing once every positive
+in-component edge has been ruled out.
+
+### 10.4 Coverage — analyses are faithful, requirements follow V22
+
+`maxOverExecutions` and `peakMemory` carry the walk's own coverage: a maximum over a truncated
+walk is a maximum over the explored region and says `bounded`. Requirement verdicts follow
+behavior.ts's V22 discipline: a violating trace, configuration or cycle settles `refuted` on its
+own evidence; `holds` needs the complete space; truncated-and-unviolated reads `inconclusive`
+under `bounded` coverage.
+
+### 10.5 Q4 — two refusals, different facts
+
+No `ratio` declared: *"Not answerable. The model represents the costs of the alternatives but
+deliberately omits their frequencies"* — `missing-distinction`, naming the frequency to model
+(§5.6's flagship case). Frequency declared: still refused, as `reserved-feature` — expectation is
+probability composition over paths, and the named interim route is the two-hypothesis comparison
+(all-hit / all-miss) the hypothesis machinery already supports.
+
+### 10.6 Parity note
+
+`validate.py` mirrors the V27–V37 validation half only; nothing on the Python side evaluates a
+quantity. The evaluator is TypeScript-only for now, and its oracle is the Document Processing
+example's hand-derived arithmetic — recorded here so the gap is a known one rather than a silent
+one.
