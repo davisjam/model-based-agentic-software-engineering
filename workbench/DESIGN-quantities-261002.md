@@ -220,3 +220,84 @@ which is excluded by invariant A1. Those two facts sit side by side and are easy
 saying *"gateway latency is probably 200 ms"* cannot change a latency query, while a declared
 quantity of `200 ms` must. That contrast is the clearest statement of where the formal boundary lies,
 and it belongs in the semantics document next to both.
+
+---
+
+## 10. Evaluator decisions — appended after the Q2/Q3 rulings (src/quant/)
+
+The rulings above are implemented in `src/quant/` and pinned by `test/quant-eval.test.ts`. The
+ruled parts are unchanged; this section records only what building the evaluator forced us to
+decide, with the load-bearing one first.
+
+### 10.1 The trace-step-to-entity correspondence
+
+> A trace step is an occurrence of accounted entity `e` exactly when the step ENTERS a state whose
+> id is `e`'s id, on some moving instance. The initial configuration counts: an execution begins
+> already visiting its initial states.
+
+This is the join the Q2 ruling writes as
+`behavioral execution --shared identity--> performance component`, made mechanical. Shared
+identity in MAGE means the SAME id naming the same conceptual thing in two purposeful reductions
+(the RDF ruling's `remediation mayInvoke gateway` / `remediation deployedOn workerPool` join), so
+the lifecycle state `remediate` and the performance entity `remediate` are one thing, and entering
+the stage is visiting the entity. A retry enters `remediate` twice, so `remediate` is charged
+twice — the occurrence count comes from the trace, never from arithmetic across kinds.
+
+Two alternatives were rejected:
+
+- **The V6 `machine.entity` link as the join.** It is machine-granular: one lifecycle machine maps
+  to one entity, so `Parse 50 ms` and `Remediate 100 ms` cannot be told apart, and a component
+  machine's return-to-idle move would count a visit that is not one. §2 of SEMANTICS.md presents
+  that link as a navigation affordance; it stays one.
+- **An explicit `when:`-style clause on latency quantities, mirroring memory.** V37 makes
+  `residency:`/`when:` findings on anything not configuration-scoped, and the ruling's latency
+  form carries neither — the occurrence join is identity, not an authored predicate. Memory needed
+  `when` because *activation* is a predicate over configurations; a visit needs no predicate.
+
+Consequence, enforced at the evaluator seam: an accounted quantity whose entity shares identity
+with **no declared state** can never be visited, which is exactly the validated-but-inert state
+the governing principle forbids — so building the charge table REFUSES it, naming the missing
+correspondence. [LINT] follow-up: this is statically decidable and belongs in the V-rule family
+(a V36 companion) so it fails at validation rather than at first evaluation; not landed here
+because SEMANTICS.md and the validator are owned elsewhere this wave.
+
+### 10.2 Q1 operationalized — ends are selected by the operator, never both
+
+Requirements accept `<=` and `<`, which select the UPPER end of any declared range (the worst
+case). Any other operator, and any question wanting a single number from a ranged quantity
+(`traceMetric(..., "point")`), refuses by name: both cite interval arithmetic as the thing the
+ruling defers to SMT. The refusal names the quantity, its two ends, and the worst-case
+alternative.
+
+### 10.3 Q5 confirmed — `refuted` + `lasso` carries the cycle witness
+
+It works in practice, with no new outcome word. A positive charge on an edge inside a strongly
+connected component is the witness; the evidence is the existing lasso shape with
+`role: "counterexample"` (`steps` = prefix, `cycle` = the repeating segment), since the cycle
+refutes every finite bound by repetition. The complement matters as much: a ZERO-charge
+repeatable cycle does not unbound the maximum, so the finite maximum is a DP over the SCC
+condensation — wandering inside a component provably gains nothing once every positive
+in-component edge has been ruled out.
+
+### 10.4 Coverage — analyses are faithful, requirements follow V22
+
+`maxOverExecutions` and `peakMemory` carry the walk's own coverage: a maximum over a truncated
+walk is a maximum over the explored region and says `bounded`. Requirement verdicts follow
+behavior.ts's V22 discipline: a violating trace, configuration or cycle settles `refuted` on its
+own evidence; `holds` needs the complete space; truncated-and-unviolated reads `inconclusive`
+under `bounded` coverage.
+
+### 10.5 Q4 — two refusals, different facts
+
+No `ratio` declared: *"Not answerable. The model represents the costs of the alternatives but
+deliberately omits their frequencies"* — `missing-distinction`, naming the frequency to model
+(§5.6's flagship case). Frequency declared: still refused, as `reserved-feature` — expectation is
+probability composition over paths, and the named interim route is the two-hypothesis comparison
+(all-hit / all-miss) the hypothesis machinery already supports.
+
+### 10.6 Parity note
+
+`validate.py` mirrors the V27–V37 validation half only; nothing on the Python side evaluates a
+quantity. The evaluator is TypeScript-only for now, and its oracle is the Document Processing
+example's hand-derived arithmetic — recorded here so the gap is a known one rather than a silent
+one.
