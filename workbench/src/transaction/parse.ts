@@ -12,7 +12,8 @@
  * vocabulary reaches the user whatever rejected their input.
  */
 import type { Finding, Scalar } from "../ir/types.ts";
-import type { Operation, OpName, Transaction } from "./types.ts";
+import { NOTE_KINDS, isNoteKind } from "./types.ts";
+import type { NoteDraft, Operation, OpName, Transaction } from "./types.ts";
 
 type Obj = Readonly<Record<string, unknown>>;
 
@@ -91,6 +92,45 @@ class Shape {
     this.bad(`'${key}' must be an object when present.`, `.${key}`);
     return undefined;
   }
+}
+
+/**
+ * The `note` block of `add-note`.
+ *
+ * Findings are located under `…note.<field>` through a nested `Shape`, so an agent is told which
+ * field of which op is wrong rather than being handed the op's index and left to guess.
+ *
+ * Empty text is refused rather than written. Canonicalization DROPS a note whose text is empty, so
+ * an op that accepted one would report a commit and store nothing — the quiet success that is worse
+ * than a refusal.
+ */
+function noteDraft(o: Obj, parent: Shape): NoteDraft | null {
+  const raw = o["note"];
+  if (!isObj(raw)) {
+    parent.bad("'note' is required and must be an object.", ".note");
+    return null;
+  }
+  const s = new Shape(`${parent.where}.note`);
+  const kindRaw = raw["kind"];
+  const kind = typeof kindRaw === "string" && isNoteKind(kindRaw) ? kindRaw : null;
+  if (kind === null) s.bad(`'kind' must be one of ${Object.keys(NOTE_KINDS).join(", ")}.`, ".kind");
+
+  const textRaw = raw["text"];
+  const text = typeof textRaw === "string" && textRaw.trim() !== "" ? textRaw : null;
+  if (text === null) {
+    s.bad("'text' is required and must be a non-empty string: a note with no text is dropped on load.", ".text");
+  }
+
+  const id = s.optStr(raw, "id");
+  if (id !== undefined && (!ID.test(id) || id.length > 160)) {
+    s.bad(`'id': '${id}' is not a legal id.`, ".id");
+  }
+  const draft: NoteDraft = {
+    kind: kind ?? "comment", text: text ?? "",
+    id, author: s.optStr(raw, "author"), at: s.optStr(raw, "at"),
+  };
+  parent.findings.push(...s.findings);
+  return s.findings.length > 0 ? null : draft;
 }
 
 /**
@@ -219,6 +259,46 @@ const OP_PARSERS: Readonly<Record<OpName, (o: Obj, s: Shape) => Operation | null
       represents: s.optStrArr(o, "represents"),
       omits: s.optStrArr(o, "omits"),
     };
+  },
+
+  "add-model": (o, s) => {
+    const id = s.id(o, "id");
+    return id === null ? null : {
+      op: "add-model", id, label: s.optStr(o, "label"), entities: s.optStrArr(o, "entities"),
+    };
+  },
+
+  "delete-model": (o, s) => {
+    const id = s.id(o, "id");
+    return id === null ? null : { op: "delete-model", id };
+  },
+
+  "add-note": (o, s) => {
+    const scope = o["scope"];
+    if (scope !== "entity" && scope !== "model" && scope !== "relation") {
+      s.bad("'scope' must be 'entity', 'model' or 'relation' — the three objects that carry annotation.", ".scope");
+      return null;
+    }
+    const note = noteDraft(o, s);
+    if (note === null) return null;
+
+    if (scope !== "relation") {
+      const id = s.id(o, "id");
+      return id === null ? null : { op: "add-note", scope, id, note };
+    }
+    // A relation lives under the model that asserts it, and is addressed by its own id or by its
+    // endpoints — the same two forms delete-relation takes, for the same reason: two relations may
+    // share endpoints, and guessing annotates the wrong edge.
+    const model = s.id(o, "model");
+    if (model === null) return null;
+    const id = s.optStr(o, "id");
+    const from = s.optStr(o, "from");
+    const to = s.optStr(o, "to");
+    if (id === undefined && (from === undefined || to === undefined)) {
+      s.bad("add-note on a relation needs 'id', or both 'from' and 'to'.");
+      return null;
+    }
+    return { op: "add-note", scope, model, id, from, to, type: s.optStr(o, "type"), note };
   },
 
   "save-query": (o, s) => {

@@ -10,9 +10,39 @@
  * is on: the parser builds these objects from loosely-typed input and needs to be able to assign a
  * missing field without a conditional spread at every site.
  */
-import type { Finding, Scalar } from "../ir/types.ts";
+import type { Finding, NoteKind, Scalar } from "../ir/types.ts";
 import type { CanonicalSystem } from "../ir/types.ts";
 import type { MageDocument } from "../yaml/document.ts";
+
+/**
+ * The note vocabulary as a value, so a parser and a form can both enumerate it.
+ *
+ * Typed `Record<NoteKind, true>` rather than an array: the compiler then refuses this file if the
+ * IR's `NoteKind` union gains a member, which an array of strings would not. The union itself lives
+ * beside `Note` in the IR, where it belongs; the kernel exports no value, so the closed set is
+ * named here once and imported by both the transaction parser and the editing forms.
+ */
+export const NOTE_KINDS: Readonly<Record<NoteKind, true>> = {
+  comment: true, rationale: true, assumption: true, question: true, todo: true,
+};
+
+export const isNoteKind = (v: string): v is NoteKind => v in NOTE_KINDS;
+
+/**
+ * A note an operation will write.
+ *
+ * Nested under the op's `note` key rather than flattened into it, because `id` at the top level
+ * addresses the TARGET and a note has an id of its own. Two meanings for one key is how an agent
+ * annotates the wrong object.
+ */
+export interface NoteDraft {
+  readonly kind: NoteKind;
+  readonly text: string;
+  readonly id?: string | undefined;
+  /** "human" | "agent" — which side wrote it. Not an identity claim. */
+  readonly author?: string | undefined;
+  readonly at?: string | undefined;
+}
 
 export type Operation =
   | { readonly op: "set-label"; readonly id: string; readonly value: string }
@@ -53,6 +83,23 @@ export type Operation =
       readonly op: "set-purpose"; readonly scope: "model" | "machine"; readonly id: string;
       readonly question?: string | undefined; readonly represents?: readonly string[] | undefined;
       readonly omits?: readonly string[] | undefined;
+    }
+  | {
+      readonly op: "add-model"; readonly id: string; readonly label?: string | undefined;
+      readonly entities?: readonly string[] | undefined;
+    }
+  /** No `cascade`: a model's relations are claims, not pointers. See `modelReferences`. */
+  | { readonly op: "delete-model"; readonly id: string }
+  /**
+   * Non-semantic by A1, so this commits without advancing the revision. Addressing mirrors
+   * `delete-relation` for scope `relation`: by the relation's id, or by its endpoints.
+   */
+  | {
+      readonly op: "add-note"; readonly scope: "entity" | "model" | "relation";
+      readonly note: NoteDraft;
+      readonly id?: string | undefined; readonly model?: string | undefined;
+      readonly from?: string | undefined; readonly to?: string | undefined;
+      readonly type?: string | undefined;
     }
   | { readonly op: "save-query"; readonly id: string; readonly query: Readonly<Record<string, unknown>> }
   | { readonly op: "delete-query"; readonly id: string };

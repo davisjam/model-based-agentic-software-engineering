@@ -16,6 +16,7 @@
  */
 import type { Annotated, CanonicalSystem, Finding, QueryResult, Scalar } from "../ir/types.ts";
 import type { SceneSubject } from "../render/types.ts";
+import { NOTE_KINDS, isNoteKind } from "../transaction/types.ts";
 import type { Operation } from "../transaction/types.ts";
 
 export interface ViewModel {
@@ -153,6 +154,18 @@ export interface EditOptions {
   readonly relations: readonly Choice[];
   /** Property names already in use somewhere, offered as a hint beside the free-text field. */
   readonly propertyNames: readonly string[];
+  /**
+   * What a note may be attached to: entities, models and relations, encoded by
+   * `annotationTargetValue`.
+   *
+   * Those three and no more, because those three are the objects the IR gives an `annotation` field.
+   * Offering a machine or a transition would be offering to write a note the loader then drops.
+   */
+  readonly annotatable: readonly Choice[];
+  /** Entity ids, offered as a datalist beside the free-text entity list on the model form. */
+  readonly entityIds: readonly string[];
+  /** The note vocabulary, derived from the closed set the transaction layer declares. */
+  readonly noteKinds: readonly Choice[];
 }
 
 // --------------------------------------------------------------------------------------------
@@ -181,21 +194,38 @@ export type EditRequest =
       readonly form: "set-property"; readonly id: string; readonly name: string;
       readonly value: string; readonly valueKind: "string" | "integer" | "boolean";
       readonly domain: string; readonly unset: boolean;
+    }
+  | {
+      readonly form: "add-model"; readonly id: string; readonly label: string;
+      /** Required by this form, though `add-model` itself does not carry one. See `planEdit`. */
+      readonly question: string;
+      /** Comma-separated entity ids, as the free-text field yields them. */
+      readonly entities: string;
+    }
+  | { readonly form: "delete-model"; readonly model: string }
+  | {
+      readonly form: "add-note"; readonly target: string;
+      readonly kind: string; readonly text: string;
     };
 
 /**
- * Either the operation to send, or a sentence explaining what is missing.
+ * Either the operations to send, or a sentence explaining what is missing.
  *
  * The UI refuses an empty id itself rather than forwarding it, because the transaction parser's
  * answer — "'id' is required and must be a string" — is written for an agent reading a schema, and
  * a person who left a box blank deserves to be told that instead.
+ *
+ * A LIST, because one form produces one transaction and a transaction is a list of operations.
+ * Every form but one sends a single operation; `add-model` sends `add-model` plus `set-purpose`,
+ * composing with the op that already owns the purpose block instead of duplicating it. Atomicity
+ * then makes the pair indivisible, so a question-less model is never committed.
  */
 export type EditPlan =
-  | { readonly ok: true; readonly operation: Operation }
+  | { readonly ok: true; readonly operations: readonly Operation[] }
   | { readonly ok: false; readonly problem: string };
 
 const no = (problem: string): EditPlan => ({ ok: false, problem });
-const yes = (operation: Operation): EditPlan => ({ ok: true, operation });
+const yes = (...operations: readonly Operation[]): EditPlan => ({ ok: true, operations });
 
 /** `entity:<id>` / `state:<machine>:<state>`. Legal ids cannot contain a colon, so this is unambiguous. */
 export type ElementRef =
@@ -246,6 +276,34 @@ export function parseRelationValue(value: string): RelationRef | null {
       && p[2] !== undefined && p[3] !== undefined && p[4] !== undefined && p[5] !== undefined) {
     return { kind: "ends", model: p[2], from: p[3], to: p[4], type: p[5] };
   }
+  return null;
+}
+
+/**
+ * What a note may be attached to: `entity:<id>`, `model:<id>`, or either relation encoding above.
+ *
+ * One select rather than a scope select plus a target select whose contents depend on it. A
+ * dependent pair is two controls to keep in step and a repaint that can empty the second one under
+ * the user's caret; a single list of everything annotatable has neither problem.
+ */
+export type AnnotationTarget =
+  | { readonly kind: "entity"; readonly id: string }
+  | { readonly kind: "model"; readonly id: string }
+  | { readonly kind: "relation"; readonly ref: RelationRef };
+
+export const annotationTargetValue = (target: AnnotationTarget): string =>
+  target.kind === "relation" ? relationValue(target.ref) : `${target.kind}:${target.id}`;
+
+export function parseAnnotationTarget(value: string): AnnotationTarget | null {
+  if (value.startsWith("rel:")) {
+    const ref = parseRelationValue(value);
+    return ref === null ? null : { kind: "relation", ref };
+  }
+  const parts = value.split(":");
+  const id = parts[1];
+  if (parts.length !== 2 || id === undefined || id === "") return null;
+  if (parts[0] === "entity") return { kind: "entity", id };
+  if (parts[0] === "model") return { kind: "model", id };
   return null;
 }
 
@@ -327,6 +385,57 @@ export function planEdit(req: EditRequest): EditPlan {
         value = raw === "true";
       }
       return yes({ op: "set-property", id, name, value, domain: blank(req.domain), unset: undefined });
+    }
+
+    case "add-model": {
+      const id = req.id.trim();
+      if (id === "") return no("A model needs an id. Ids are immutable, so choose it deliberately.");
+      // The question is required HERE and optional in the op, and that asymmetry is the point: an
+      // agent may build a model in stages, but a person creating one is being taught the habit the
+      // workbench exists to teach. A reduction with no question cannot say what it may leave out.
+      const question = req.question.trim();
+      if (question === "") {
+        return no("A model needs the engineering question it answers. Without one it is a container, "
+          + "not a purposeful reduction, and nothing can say which facts it may leave out.");
+      }
+      const entities = req.entities.split(",").map((s) => s.trim()).filter((s) => s !== "");
+      return yes(
+        {
+          op: "add-model", id, label: blank(req.label),
+          entities: entities.length === 0 ? undefined : entities,
+        },
+        { op: "set-purpose", scope: "model", id, question, represents: undefined, omits: undefined },
+      );
+    }
+
+    case "delete-model": {
+      const model = req.model.trim();
+      if (model === "") return no("Choose the model to remove.");
+      return yes({ op: "delete-model", id: model });
+    }
+
+    case "add-note": {
+      const target = parseAnnotationTarget(req.target);
+      if (target === null) return no("Choose what the note is about.");
+      if (!isNoteKind(req.kind)) return no("Choose what kind of note this is.");
+      const text = req.text.trim();
+      if (text === "") {
+        return no("A note needs text. An empty one is dropped when the file loads rather than stored.");
+      }
+      // `author: human` is stamped rather than asked for: the field records WHICH SIDE wrote the
+      // note, not who, and this side is known. `at` is left unset — reading the clock here would
+      // make the same form produce different bytes on every click and this function untestable.
+      const note = { kind: req.kind, text, author: "human", id: undefined, at: undefined };
+      if (target.kind === "relation") {
+        const ref = target.ref;
+        return yes(ref.kind === "id"
+          ? { op: "add-note", scope: "relation", model: ref.model, id: ref.id, note }
+          : {
+              op: "add-note", scope: "relation", model: ref.model,
+              from: ref.from, to: ref.to, type: ref.type, note,
+            });
+      }
+      return yes({ op: "add-note", scope: target.kind, id: target.id, note });
     }
   }
 }
@@ -633,6 +742,26 @@ function buildEditOptions(system: CanonicalSystem): EditOptions {
     [...system.entities.values()].flatMap((e) => [...e.properties.keys()]),
   )].sort();
 
+  const annotatable: Choice[] = [
+    ...[...system.entities.keys()].map((id): Choice => ({
+      value: annotationTargetValue({ kind: "entity", id }),
+      label: `Entity: ${entityChoice(id).label}`,
+    })),
+    ...[...system.models.values()].map((m): Choice => ({
+      value: annotationTargetValue({ kind: "model", id: m.id }),
+      label: `Model: ${m.label}`,
+    })),
+    ...system.relations.map((r): Choice => ({
+      value: annotationTargetValue({
+        kind: "relation",
+        ref: r.id !== null
+          ? { kind: "id", model: r.model, id: r.id }
+          : { kind: "ends", model: r.model, from: r.from, to: r.to, type: r.type },
+      }),
+      label: `Relation: ${r.model}: ${r.from} → ${r.to} (${r.type})`,
+    })),
+  ];
+
   return {
     entities: [...system.entities.keys()].map(entityChoice),
     machines: [...system.machines.keys()].map((id) => ({ value: id, label: id })),
@@ -653,5 +782,10 @@ function buildEditOptions(system: CanonicalSystem): EditOptions {
     ],
     relations,
     propertyNames,
+    annotatable,
+    entityIds: [...system.entities.keys()],
+    // Derived from the closed record the transaction layer declares, so the form cannot offer a
+    // kind the parser would refuse, and a new kind reaches the select without an edit here.
+    noteKinds: Object.keys(NOTE_KINDS).map((kind) => ({ value: kind, label: kind })),
   };
 }

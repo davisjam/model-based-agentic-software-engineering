@@ -54,12 +54,16 @@ const selects = {
   propertyTarget: sel("set-property-target"),
   propertyKind: sel("set-property-kind"),
   propertyDomain: sel("set-property-domain"),
+  deleteModel: sel("delete-model-target"),
+  noteTarget: sel("add-note-target"),
+  noteKind: sel("add-note-kind"),
 };
 
 /** The forms that may only be used once a model is loaded. Disabling the fieldset disables all of it. */
 const editForms = [
   "edit-mode", "form-add-entity", "form-add-state", "form-delete-element",
   "form-add-relation", "form-delete-relation", "form-set-label", "form-set-property",
+  "form-add-model", "form-delete-model", "form-add-note",
 ].map((id) => byId<HTMLFieldSetElement>(id));
 
 /**
@@ -155,17 +159,33 @@ function repaint(): void {
   fillSelect(selects.labelTarget, vm.edit.labelled);
   fillSelect(selects.propertyTarget, vm.edit.entities);
   fillSelect(selects.propertyDomain, [{ value: "", label: "none" }, ...vm.edit.domains]);
-  byId("property-names").replaceChildren(...vm.edit.propertyNames.map((name) => {
-    const option = document.createElement("option");
-    option.value = name;
-    return option;
-  }));
+  fillSelect(selects.deleteModel, vm.edit.models);
+  fillSelect(selects.noteTarget, vm.edit.annotatable);
+  fillSelect(selects.noteKind, vm.edit.noteKinds);
+  fillDatalist(byId("property-names"), vm.edit.propertyNames);
+  fillDatalist(byId("entity-ids"), vm.edit.entityIds);
   refreshRelationEndpoints();
 
   for (const form of editForms) form.disabled = !state.loaded;
   hypothesisBar.hidden = state.hypothesis === null;
   byId<HTMLButtonElement>("undo").disabled = !state.canUndo;
   byId<HTMLButtonElement>("redo").disabled = !state.canRedo;
+}
+
+/**
+ * Refill a `<datalist>` of bare ids. A hint beside a free-text field, not a constraint — the
+ * transaction still validates, and V3 names an id the system does not declare.
+ *
+ * Takes the element rather than its id, mirroring `fillSelect`, so every id in this file stays a
+ * literal `byId(...)` call site — which is what the page-contract test scans to prove index.html
+ * carries every element the composition root demands.
+ */
+function fillDatalist(root: HTMLElement, values: readonly string[]): void {
+  root.replaceChildren(...values.map((value) => {
+    const option = document.createElement("option");
+    option.value = value;
+    return option;
+  }));
 }
 
 /**
@@ -280,7 +300,7 @@ function submitEdit(request: EditRequest): void {
       // transaction with a message about the rationale rather than applying the edit. Found by the
       // test that drives a planned operation through the real Workspace.
       ...(rationale === "" ? {} : { rationale }),
-      operations: [plan.operation],
+      operations: plan.operations,
     },
   };
 
@@ -288,17 +308,23 @@ function submitEdit(request: EditRequest): void {
     ? workspace.openHypothesis(label, transaction)
     : workspace.transact(transaction);
 
+  const applied = plan.operations.map((o) => o.op).join(" + ");
   if (result.ok) {
     paintEditResult(editResult, "", []);
+    // An annotation-only edit commits WITHOUT advancing the semantic revision (A1), which is
+    // surprising enough that the announcement says so. A user who edits and sees the hash stand
+    // still should be told why rather than left to suspect the click was lost.
+    const annotationOnly = plan.operations.every((o) => o.op === "add-note");
     announce(asHypothesis
       ? `Hypothesis "${label}" is open. The authoritative model is unchanged until you accept it.`
-      : `${plan.operation.op} applied. ${workspace.state.findings.length} validation finding(s).`);
+      : `${applied} applied. ${workspace.state.findings.length} validation finding(s).`
+        + (annotationOnly ? " The model's revision is unchanged: a note is context, not a constraint." : ""));
     return;
   }
   // A rejection carries the findings that explain it, and losing them leaves a person staring at a
   // control that did nothing. They are reported here rather than in the Validation section, which
   // describes the model as it stands — not an edit that never happened.
-  paintEditResult(editResult, `Rejected: ${plan.operation.op} changed nothing.`, result.findings);
+  paintEditResult(editResult, `Rejected: ${applied} changed nothing.`, result.findings);
   announce(`Edit rejected. ${result.findings[0]?.message ?? "No reason was reported."}`);
 }
 
@@ -352,6 +378,26 @@ byId("set-property-go").addEventListener("click", () => {
     unset: input("set-property-unset").checked,
   });
 });
+
+byId("add-model-go").addEventListener("click", () => submitEdit({
+  form: "add-model",
+  id: input("add-model-id").value,
+  label: input("add-model-label").value,
+  question: input("add-model-question").value,
+  entities: input("add-model-entities").value,
+}));
+
+byId("delete-model-go").addEventListener("click", () => submitEdit({
+  form: "delete-model",
+  model: selects.deleteModel.value,
+}));
+
+byId("add-note-go").addEventListener("click", () => submitEdit({
+  form: "add-note",
+  target: selects.noteTarget.value,
+  kind: selects.noteKind.value,
+  text: input("add-note-text").value,
+}));
 
 // -- the hypothesis bar -----------------------------------------------------------------------
 

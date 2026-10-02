@@ -63,6 +63,9 @@
         { "$ref": "#/$defs/opAddRelation" },
         { "$ref": "#/$defs/opDeleteRelation" },
         { "$ref": "#/$defs/opSetPurpose" },
+        { "$ref": "#/$defs/opAddModel" },
+        { "$ref": "#/$defs/opDeleteModel" },
+        { "$ref": "#/$defs/opAddNote" },
         { "$ref": "#/$defs/opSaveQuery" },
         { "$ref": "#/$defs/opDeleteQuery" }
       ]
@@ -218,6 +221,80 @@
           "description": "Checked against the model's actual vocabulary on validation, not merely asserted (V24). A transaction that declares an omission the model contradicts FAILS.",
           "type": "array",
           "items": { "type": "string" }
+        }
+      }
+    },
+    "opAddModel": {
+      "description": "Add a purposeful model. It takes NO purpose block: set-purpose already owns question/represents/omits, and a second writer of those three fields would be a second source of truth. Send add-model and set-purpose in one transaction -- atomicity makes the pair indivisible, so a question-less model is never committed. Entity ids are checked by V3 at the validation stage, as they are for add-relation.",
+      "type": "object",
+      "required": ["op", "id"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "add-model" },
+        "id": { "$ref": "#/$defs/id" },
+        "label": { "type": "string" },
+        "entities": {
+          "description": "Ids of system-level entities this model includes. Models reference; they never redeclare (V3).",
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" }
+        }
+      }
+    },
+    "opDeleteModel": {
+      "description": "Remove a purposeful model. There is deliberately no cascade: relations are flattened across models and carry their owning model, so a relation is not a pointer the model could tidy away -- it is a claim the model makes. Deleting a claim and refusing to delete it assert different things, so the transaction FAILS while the model still asserts any relation, naming each. Delete them explicitly, in the same transaction if you like, and the diff shows which claims went.",
+      "type": "object",
+      "required": ["op", "id"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "delete-model" },
+        "id": { "$ref": "#/$defs/id" }
+      }
+    },
+    "opAddNote": {
+      "description": "Attach a note to an entity, a model or a relation -- the three objects that carry annotation. NON-SEMANTIC (A1): the canonical hash excludes annotation, so this commits WITHOUT advancing the semantic revision and does not invalidate a pending transaction. An assumption written as a note is context, not a constraint; to bind an analysis result it must be represented as a property, a variable or a guard.",
+      "type": "object",
+      "required": ["op", "scope", "note"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "add-note" },
+        "scope": { "enum": ["entity", "model", "relation"] },
+        "id": {
+          "description": "The entity or model id. For scope 'relation' this is the relation's own id, when it was given one.",
+          "$ref": "#/$defs/id"
+        },
+        "model": {
+          "description": "Required for scope 'relation': relations live under the model that asserts them.",
+          "$ref": "#/$defs/id"
+        },
+        "from": { "$ref": "#/$defs/id" },
+        "to": { "$ref": "#/$defs/id" },
+        "type": { "$ref": "#/$defs/id" },
+        "note": { "$ref": "#/$defs/noteDraft" }
+      }
+    },
+    "noteDraft": {
+      "description": "One note to write. CLOSED, unlike the note in mage-model.schema.json: that one is open because an unquoted comma in YAML flow style truncates a hand-written note and leaves a stray key, which the ANNOTATION rule reports. An op builds the note programmatically, so a stray key here is a caller's bug and is refused rather than written and then reported.",
+      "type": "object",
+      "required": ["kind", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Addressing handle for the note; an ANNOTATION finding cites it. Defaults to note-<n> for the next free n at this target.",
+          "$ref": "#/$defs/id"
+        },
+        "kind": { "enum": ["comment", "rationale", "assumption", "question", "todo"] },
+        "text": {
+          "description": "Non-empty: canonicalization DROPS a note with empty text, so writing one would report success and store nothing.",
+          "type": "string",
+          "minLength": 1
+        },
+        "author": {
+          "description": "Which side wrote it -- human or agent. Not an identity claim.",
+          "type": "string"
+        },
+        "at": {
+          "description": "Timestamp, QUOTED. A bare one is coerced by a YAML 1.1 loader (SEMANTICS.md 10.1).",
+          "type": "string"
         }
       }
     },

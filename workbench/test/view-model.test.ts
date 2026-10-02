@@ -17,8 +17,8 @@ import { renderView } from "../src/render/index.ts";
 import { Workspace } from "../src/app/services.ts";
 import type { Ports } from "../src/app/services.ts";
 import {
-  buildViewModel, elementValue, parseElementValue, parseRelationValue, planEdit,
-  relationValue, resolveSubject, subjectValue,
+  annotationTargetValue, buildViewModel, elementValue, parseAnnotationTarget, parseElementValue,
+  parseRelationValue, planEdit, relationValue, resolveSubject, subjectValue,
 } from "../src/ui/view-model.ts";
 import type { EditRequest } from "../src/ui/view-model.ts";
 import type { QueryResult } from "../src/ir/types.ts";
@@ -309,8 +309,86 @@ test("each form produces exactly the operation an agent would send", () => {
   for (const [req, expected] of cases) {
     const p = plan(req);
     assert.ok(p.ok, `${req.form} should plan, got: ${p.ok ? "" : p.problem}`);
-    assert.deepEqual(p.operation, expected);
+    assert.deepEqual(p.operations, [expected]);
   }
+});
+
+test("the model form requires the question the op does not, and sends two operations", () => {
+  // The asymmetry is deliberate. `add-model` carries no purpose, because `set-purpose` owns that
+  // block; an agent may therefore build a model in stages. A PERSON creating one is taught the
+  // habit instead: the form will not submit without the engineering question, and sends both ops in
+  // one transaction so a question-less model is never committed.
+  const p = plan({
+    form: "add-model", id: "ownership", label: "Ownership",
+    question: "Who owns the parser?", entities: " remediation , parser ",
+  });
+  assert.ok(p.ok, p.ok ? "" : p.problem);
+  assert.deepEqual(p.operations, [
+    { op: "add-model", id: "ownership", label: "Ownership", entities: ["remediation", "parser"] },
+    {
+      op: "set-purpose", scope: "model", id: "ownership",
+      question: "Who owns the parser?", represents: undefined, omits: undefined,
+    },
+  ]);
+
+  const noQuestion = plan({ form: "add-model", id: "ownership", label: "", question: "  ", entities: "" });
+  assert.equal(noQuestion.ok, false);
+  assert.match(noQuestion.ok ? "" : noQuestion.problem, /container, not a purposeful reduction/);
+
+  // An empty entity list is omitted rather than written as an empty sequence, and the label too.
+  const bare = plan({ form: "add-model", id: "sketch", label: "", question: "What is here?", entities: " , " });
+  assert.ok(bare.ok);
+  assert.deepEqual(bare.operations[0], { op: "add-model", id: "sketch", label: undefined, entities: undefined });
+});
+
+test("the note form stamps which side wrote the note and leaves the clock alone", () => {
+  // `author` records the SIDE, not the person, and this side is known -- so it is stamped rather
+  // than asked for. `at` is not: reading the clock here would make one form produce different bytes
+  // on every click, and would make this function untestable.
+  const p = plan({
+    form: "add-note",
+    target: annotationTargetValue({ kind: "model", id: "service-flow" }),
+    kind: "assumption", text: "  Latency is probably 200 ms.  ",
+  });
+  assert.ok(p.ok, p.ok ? "" : p.problem);
+  assert.deepEqual(p.operations, [{
+    op: "add-note", scope: "model", id: "service-flow",
+    note: { kind: "assumption", text: "Latency is probably 200 ms.", author: "human", id: undefined, at: undefined },
+  }]);
+
+  // A relation note keeps whichever addressing the relation itself was written with.
+  const byEnds = plan({
+    form: "add-note",
+    target: annotationTargetValue({
+      kind: "relation", ref: { kind: "ends", model: "flow", from: "api", to: "gateway", type: "data_flow" },
+    }),
+    kind: "comment", text: "Direct flow only.",
+  });
+  assert.ok(byEnds.ok);
+  assert.deepEqual(byEnds.operations[0], {
+    op: "add-note", scope: "relation", model: "flow", from: "api", to: "gateway", type: "data_flow",
+    note: { kind: "comment", text: "Direct flow only.", author: "human", id: undefined, at: undefined },
+  });
+
+  for (const req of [
+    { form: "add-note", target: "", kind: "comment", text: "x" },
+    { form: "add-note", target: "entity:api", kind: "warning", text: "x" },
+    { form: "add-note", target: "entity:api", kind: "comment", text: "   " },
+  ] satisfies EditRequest[]) {
+    const bad = plan(req);
+    assert.equal(bad.ok, false, `${JSON.stringify(req)} must be refused`);
+    assert.ok((bad.ok ? "" : bad.problem).length > 12, "the refusal must be a sentence, not a code");
+  }
+});
+
+test("the model-removal form sends one operation and no cascade", () => {
+  // There is no cascade checkbox beside this one, unlike the element form, and that absence is the
+  // decision: a model's relations are claims rather than dangling pointers, so nothing offers to
+  // drop them for you.
+  const p = plan({ form: "delete-model", model: "service-flow" });
+  assert.ok(p.ok);
+  assert.deepEqual(p.operations, [{ op: "delete-model", id: "service-flow" }]);
+  assert.equal(plan({ form: "delete-model", model: " " }).ok, false);
 });
 
 test("a blank field is refused in the UI's own words, not the schema's", () => {
@@ -337,10 +415,12 @@ test("a property's kind is explicit, and a value that is not of that kind is ref
   // Guessing between the string "3" and the number 3 is how a model acquires a fact nobody wrote.
   const int = plan({ form: "set-property", id: "api", name: "retries", value: "3", valueKind: "integer", domain: "", unset: false });
   assert.ok(int.ok);
-  assert.deepEqual(int.operation, { op: "set-property", id: "api", name: "retries", value: 3, domain: undefined, unset: undefined });
+  assert.deepEqual(int.operations, [{ op: "set-property", id: "api", name: "retries", value: 3, domain: undefined, unset: undefined }]);
 
   const text = plan({ form: "set-property", id: "api", name: "retries", value: "3", valueKind: "string", domain: "", unset: false });
-  assert.ok(text.ok && text.operation.op === "set-property" && text.operation.value === "3",
+  assert.ok(text.ok, "the same keystrokes as text must still plan");
+  assert.deepEqual(text.operations,
+    [{ op: "set-property", id: "api", name: "retries", value: "3", domain: undefined, unset: undefined }],
     "the same keystrokes as text must stay text");
 
   const real = plan({ form: "set-property", id: "api", name: "retries", value: "3.5", valueKind: "integer", domain: "", unset: false });
@@ -353,7 +433,7 @@ test("a property's kind is explicit, and a value that is not of that kind is ref
 test("clearing a property is a distinct operation from setting it to nothing", () => {
   const cleared = plan({ form: "set-property", id: "api", name: "accepts", value: "", valueKind: "string", domain: "", unset: true });
   assert.ok(cleared.ok);
-  assert.deepEqual(cleared.operation, { op: "set-property", id: "api", name: "accepts", value: undefined, domain: undefined, unset: true });
+  assert.deepEqual(cleared.operations, [{ op: "set-property", id: "api", name: "accepts", value: undefined, domain: undefined, unset: true }]);
 });
 
 test("a relation is addressed the way it was written: by id, or by its endpoints", () => {
@@ -361,12 +441,12 @@ test("a relation is addressed the way it was written: by id, or by its endpoints
   // two relations share endpoints.
   const byId = plan({ form: "delete-relation", relation: relationValue({ kind: "id", model: "flow", id: "a-g" }) });
   assert.ok(byId.ok);
-  assert.deepEqual(byId.operation, { op: "delete-relation", model: "flow", id: "a-g", from: undefined, to: undefined, type: undefined });
+  assert.deepEqual(byId.operations, [{ op: "delete-relation", model: "flow", id: "a-g", from: undefined, to: undefined, type: undefined }]);
 
   const byEnds = plan({ form: "delete-relation", relation: relationValue({ kind: "ends", model: "flow", from: "api", to: "gateway", type: "may_invoke" }) });
   assert.ok(byEnds.ok);
-  assert.deepEqual(byEnds.operation,
-    { op: "delete-relation", model: "flow", id: undefined, from: "api", to: "gateway", type: "may_invoke" });
+  assert.deepEqual(byEnds.operations,
+    [{ op: "delete-relation", model: "flow", id: undefined, from: "api", to: "gateway", type: "may_invoke" }]);
 
   assert.equal(plan({ form: "delete-relation", relation: "" }).ok, false);
 });
@@ -387,6 +467,19 @@ test("the select encodings round-trip, and reject anything else", () => {
   for (const junk of ["", "api", "entity:", "state:document", "rel:", "rel:id:flow", "rel:ends:flow:api"]) {
     assert.ok(parseElementValue(junk) === null || !junk.startsWith("entity"), `'${junk}' must not parse as an element`);
     assert.equal(parseRelationValue(junk), null, `'${junk}' must not parse as a relation`);
+  }
+  // Annotation targets span three namespaces in ONE select, so the encoding has to tell them apart.
+  // A relation reuses the relation encoding rather than inventing a third spelling of the same ref.
+  for (const target of [
+    { kind: "entity", id: "api" },
+    { kind: "model", id: "service-flow" },
+    { kind: "relation", ref: { kind: "id", model: "flow", id: "a-g" } },
+    { kind: "relation", ref: { kind: "ends", model: "flow", from: "api", to: "gateway", type: "may_invoke" } },
+  ] as const) {
+    assert.deepEqual(parseAnnotationTarget(annotationTargetValue(target)), target);
+  }
+  for (const junk of ["", "api", "model:", "machine:document", "state:document:waiting", "rel:id:flow"]) {
+    assert.equal(parseAnnotationTarget(junk), null, `'${junk}' must not parse as an annotation target`);
   }
 });
 
@@ -420,6 +513,26 @@ test("the deletable list spans both namespaces, and says which", () => {
   const elements = vm().edit.elements;
   assert.ok(elements.some((c) => c.value === "entity:gateway" && c.label.startsWith("Entity:")));
   assert.ok(elements.some((c) => c.value === "state:document:waiting" && c.label.startsWith("State:")));
+});
+
+test("a note may only be attached to something that can carry one", () => {
+  // Entities, models and relations: the three objects the IR gives an `annotation` field. A machine
+  // or a transition is not offered, because a note written there is dropped on the next load --
+  // and a control that appears to work and silently loses the text is worse than no control.
+  const edit = vm().edit;
+  for (const prefix of ["Entity:", "Model:", "Relation:"]) {
+    assert.ok(edit.annotatable.some((c) => c.label.startsWith(prefix)), `${prefix} must be offered`);
+  }
+  assert.ok(edit.annotatable.every((c) => parseAnnotationTarget(c.value) !== null),
+    "every offered target must parse back into an addressable object");
+  assert.ok(!edit.annotatable.some((c) => c.value.startsWith("machine:") || c.value.startsWith("state:")),
+    "a machine and a state carry no annotation, so neither may be offered");
+  // The kinds come from the closed set the transaction layer declares, so the form cannot offer one
+  // the parser refuses.
+  assert.deepEqual(edit.noteKinds.map((c) => c.value).sort(),
+    ["assumption", "comment", "question", "rationale", "todo"]);
+  // And the model form's entity hints are real declared ids, not free invention.
+  assert.ok(edit.entityIds.length > 0 && edit.entityIds.every((id) => sys().entities.has(id)));
 });
 
 test("set-label offers all three namespaces it can address", () => {
@@ -551,8 +664,8 @@ test("positions round-trip, so adding one node does not re-rank the world", () =
  * the parser refuses a present-but-non-string value, so the transaction came back complaining about
  * the rationale instead of applying the operation. The schema is right and the call site was wrong.
  */
-const envelope = (base: string, operation: unknown, target = "main") =>
-  ({ transaction: { base, target, operations: [operation] } });
+const envelope = (base: string, operations: readonly unknown[], target = "main") =>
+  ({ transaction: { base, target, operations } });
 
 test("an operation planned from form input COMMITS through the same service window.mage calls", () => {
   // This is the whole UX-I3 claim, end to end and without a browser: what a click produces is a
@@ -563,7 +676,7 @@ test("an operation planned from form input COMMITS through the same service wind
   const before = ws.state.hash;
   const p = planEdit({ form: "set-label", id: "gateway", label: "Public Model Gateway" });
   assert.ok(p.ok);
-  const result = ws.transact(envelope(before, p.operation));
+  const result = ws.transact(envelope(before, p.operations));
   assert.ok(result.ok, `expected a commit, got: ${result.findings.map((f) => f.message).join("; ")}`);
   assert.equal(ws.state.system.entities.get("gateway")?.label, "Public Model Gateway");
   assert.notEqual(ws.state.hash, before);
@@ -576,7 +689,7 @@ test("a rejected edit changes nothing and hands back findings to show the user",
   const before = ws.state.hash;
   const p = planEdit({ form: "add-entity", id: "gateway", type: "", label: "" });
   assert.ok(p.ok, "the UI cannot know the id is taken; the engine is what refuses it");
-  const result = ws.transact(envelope(before, p.operation));
+  const result = ws.transact(envelope(before, p.operations));
   assert.equal(result.ok, false);
   assert.ok(result.findings.length > 0, "a rejection must carry the findings that explain it");
   assert.equal(ws.state.hash, before, "a rejected transaction leaves the system unchanged");
@@ -588,7 +701,7 @@ test("the same planned operation opens a hypothesis, and discarding it restores 
   const p = planEdit({ form: "add-entity", id: "cache", type: "service", label: "Cache" });
   assert.ok(p.ok);
 
-  const opened = ws.openHypothesis("add a cache", envelope(before, p.operation, "add a cache"));
+  const opened = ws.openHypothesis("add a cache", envelope(before, p.operations, "add a cache"));
   assert.ok(opened.ok, `expected the hypothesis to open, got: ${opened.findings.map((f) => f.message).join("; ")}`);
   assert.equal(ws.state.hypothesis, "add a cache");
   assert.ok(ws.state.system.entities.has("cache"), "the branch must show the proposed change");
@@ -605,11 +718,67 @@ test("the same planned operation opens a hypothesis, and discarding it restores 
   assert.ok(!ws.state.system.entities.has("cache"));
 });
 
+test("the model form's two operations commit as one act through the same service", () => {
+  // UX-I3 for the only form that sends a pair. What the click produces is one transaction object,
+  // and it goes to the same `Workspace.transact` `window.mage.transact` calls -- so the model and
+  // its question arrive together or not at all.
+  const ws = loaded();
+  const p = planEdit({
+    form: "add-model", id: "ownership", label: "Ownership",
+    question: "Who owns the parser?", entities: "remediation, parser",
+  });
+  assert.ok(p.ok);
+  const result = ws.transact(envelope(ws.state.hash, p.operations));
+  assert.ok(result.ok, `expected a commit, got: ${result.findings.map((f) => f.message).join("; ")}`);
+
+  const m = ws.state.system.models.get("ownership");
+  assert.equal(m?.purpose.question, "Who owns the parser?");
+  assert.deepEqual(m?.entities, ["remediation", "parser"]);
+});
+
+test("the note form reaches the service, and the revision does not move (A1)", () => {
+  // The human half of the invariant. A person attaching a note through the UI must get the same
+  // outcome an agent gets through `transact`: a commit, and a hash that stands still. If the hash
+  // moved here, every pending agent transaction would be invalidated by someone typing a comment.
+  const ws = loaded();
+  const before = ws.state.hash;
+  const p = planEdit({
+    form: "add-note", target: annotationTargetValue({ kind: "entity", id: "gateway" }),
+    kind: "assumption", text: "Public-only, as far as we know.",
+  });
+  assert.ok(p.ok);
+  assert.ok(ws.transact(envelope(before, p.operations)).ok);
+
+  assert.equal(ws.state.hash, before, "the human path moved the hash: A1 is broken in the UI");
+  const notes = ws.state.system.entities.get("gateway")?.annotation.notes ?? [];
+  assert.equal(notes[0]?.text, "Public-only, as far as we know.");
+  assert.equal(notes[0]?.author, "human");
+  // And the inspector shows it as a note, under its own label, never as a finding.
+  const row = buildViewModel(ws.state.system, ws.state.findings, new Map(),
+    { hypothesis: null, currentHash: ws.state.hash, selection: [] })
+    .sections.flatMap((s) => s.rows).find((r) => r.id === "gateway");
+  assert.equal(row?.notes[0]?.text, "Public-only, as far as we know.");
+  assert.match(row?.notesCaveat ?? "", /context, not a constraint/);
+});
+
+test("the model-removal form is refused while the model still asserts a claim", () => {
+  // The refusal a person sees, with the findings that explain it -- not a dead button.
+  const ws = loaded();
+  const before = ws.state.hash;
+  const p = planEdit({ form: "delete-model", model: "service-flow" });
+  assert.ok(p.ok);
+  const result = ws.transact(envelope(before, p.operations));
+  assert.equal(result.ok, false);
+  assert.equal(result.findings.length, 3, "one finding per claim the deletion would have taken");
+  assert.equal(ws.state.hash, before);
+  assert.ok(ws.state.system.models.has("service-flow"));
+});
+
 test("committing a hypothesis makes it authoritative", () => {
   const ws = loaded();
   const p = planEdit({ form: "add-entity", id: "cache", type: "service", label: "Cache" });
   assert.ok(p.ok);
-  assert.ok(ws.openHypothesis("add a cache", envelope(ws.state.hash, p.operation, "add a cache")).ok);
+  assert.ok(ws.openHypothesis("add a cache", envelope(ws.state.hash, p.operations, "add a cache")).ok);
   assert.ok(ws.applyHypothesis());
   assert.equal(ws.state.hypothesis, null);
   assert.ok(ws.state.system.entities.has("cache"), "accepting keeps the change");

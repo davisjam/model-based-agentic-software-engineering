@@ -9,6 +9,7 @@ import { readFileSync } from "node:fs";
 import { TransactionEngine } from "../src/transaction/engine.ts";
 import { OP_NAMES } from "../src/transaction/parse.ts";
 import { parseTransaction } from "../src/transaction/parse.ts";
+import { validate } from "../src/validator/rules.ts";
 import type { Operation, TransactionResult } from "../src/transaction/types.ts";
 
 const EXAMPLE = "examples/docable.mage.yaml";
@@ -62,7 +63,7 @@ test("the op table and the schema's op list cannot drift apart", () => {
     .map(([, d]) => d.properties?.op?.const)
     .filter((v): v is string => typeof v === "string");
 
-  assert.ok(declared.length >= 13, `found only ${declared.length} ops in the schema`);
+  assert.ok(declared.length >= 16, `found only ${declared.length} ops in the schema`);
   assert.deepEqual([...declared].sort(), [...OP_NAMES].sort());
 });
 
@@ -272,6 +273,253 @@ test("delete-state refuses when a guard elsewhere tests it, even with cascade", 
   assert.match(
     rejects(e, { op: "delete-state", machine: "worker", state: "held", cascade: true }).rejection?.message ?? "",
     /cascade cannot repair a guard/);
+});
+
+// ------------------------------------------------------------------------------------------------
+// Models and notes
+//
+// The three operations UX-I1 was waiting on. Each had no affordance on EITHER side, which was the
+// diagnosis rather than a UI gap: there was no op to bind.
+// ------------------------------------------------------------------------------------------------
+
+test("add-model carries no purpose, and composes with the op that owns one", () => {
+  // Two ops in one transaction rather than one op with a purpose block. `set-purpose` already
+  // writes question/represents/omits and V24 already checks `omits` against the model's real
+  // vocabulary; a second writer of those fields would be the duplication this project removes
+  // elsewhere. Atomicity is what makes the pair indistinguishable from a combined op.
+  const e = engine();
+  commits(e,
+    { op: "add-model", id: "ownership", label: "Ownership", entities: ["remediation", "parser"] },
+    { op: "set-purpose", scope: "model", id: "ownership", question: "Who owns the parser?" });
+
+  const m = e.system().models.get("ownership");
+  assert.equal(m?.label, "Ownership");
+  assert.equal(m?.purpose.question, "Who owns the parser?");
+  assert.deepEqual(m?.entities, ["remediation", "parser"]);
+  // `type: graph` is written for the author rather than asked for: it is the only model type the
+  // schema allows, so a field for it would be a question with one answer.
+  const block = e.toText().slice(e.toText().indexOf("  ownership:"));
+  assert.match(block, /^ {2}ownership:\n(?: {4}.*\n)* {4}type: graph\n/);
+});
+
+test("add-model refuses an id that is taken, because ids are immutable", () => {
+  const r = rejects(engine(), { op: "add-model", id: "service-flow", label: "Second" });
+  assert.match(r.rejection?.message ?? "", /already exists; ids are immutable \(V2\)/);
+});
+
+test("add-model leaves unknown entity ids to V3, exactly as add-relation does", () => {
+  // Not pre-checked in the op. Models reference system-level entities and never redeclare them, and
+  // V3 is the rule that says so -- duplicating the check here would be a second place to fix it.
+  const r = rejects(engine(), { op: "add-model", id: "ghosts", entities: ["api", "phantom"] });
+  assert.equal(r.rejection?.kind, "validation-failed");
+  assert.ok(r.rejection?.findings.some((f) => f.rule === "V3" && f.where === "models.ghosts.entities"));
+});
+
+test("a purpose that lies takes the whole model with it", () => {
+  // The composition's real test: when set-purpose fails validation, add-model is discarded too. A
+  // combined op would have the same outcome; two ops in one transaction must not be weaker.
+  const e = engine();
+  const r = rejects(e,
+    { op: "add-model", id: "ownership", entities: ["remediation", "parser"] },
+    { op: "add-relation", model: "ownership", from: "remediation", to: "parser", type: "owns" },
+    { op: "set-purpose", scope: "model", id: "ownership", omits: ["owns"] });
+  assert.equal(r.rejection?.kind, "validation-failed");
+  assert.ok(r.rejection?.findings.some((f) => f.rule === "V24"));
+  assert.equal(e.system().models.has("ownership"), false, "the model survived a rejected transaction");
+});
+
+test("delete-model refuses while the model still asserts a relation, and names every one", () => {
+  // The decision this op exists to get right. Relations are flattened across models and carry the
+  // model that asserts them, so a relation is a CLAIM rather than a pointer: deleting it and
+  // declining to delete it assert different things, and only the author can say which. So there is
+  // no cascade to offer -- unlike delete-entity, where dropping a dangling reference is mechanical.
+  const e = engine();
+  const r = rejects(e, { op: "delete-model", id: "service-flow" });
+  assert.equal(r.rejection?.kind, "operation-failed");
+  assert.equal(r.rejection?.findings.length, 3, "one finding per claim, so the author sees the cost");
+  for (const id of ["api-remediation", "remediation-gateway", "remediation-owns-parser"]) {
+    assert.ok(r.rejection?.findings.some((f) => f.message.includes(id)), `${id} was not named`);
+  }
+  assert.match(r.rejection?.message ?? "", /Delete that relation explicitly/);
+  assert.doesNotMatch(r.rejection?.message ?? "", /cascade/,
+    "delete-model has no cascade, so its refusal must not suggest one");
+});
+
+test("delete-model succeeds once the claims are gone, and prunes the views that listed it", () => {
+  const e = engine();
+  const beforeViews = e.toText().includes("models: [service-flow]");
+  assert.ok(beforeViews, "the fixture must have a view naming the model, or this proves nothing");
+
+  commits(e,
+    { op: "delete-relation", model: "service-flow", id: "api-remediation" },
+    { op: "delete-relation", model: "service-flow", id: "remediation-gateway" },
+    { op: "delete-relation", model: "service-flow", id: "remediation-owns-parser" },
+    { op: "delete-model", id: "service-flow" });
+
+  const s = e.system();
+  assert.equal(s.models.has("service-flow"), false);
+  assert.equal(s.relations.some((r) => r.model === "service-flow"), false);
+  // Entities are system-level: models reference them, so a deleted model leaves every one standing.
+  for (const id of ["api", "remediation", "gateway", "parser", "repair-engine"]) {
+    assert.ok(s.entities.has(id), `deleting a model took entity '${id}' with it`);
+  }
+  // A view is presentation, outside the IR and outside the hash, so a stale mention is pruned
+  // rather than refused -- there is no op to edit `views`, and refusing would be a dead end.
+  assert.ok(!e.toText().includes("service-flow"), `a dangling view reference survived:\n${e.toText()}`);
+  assert.ok(e.toText().includes("models: [data-classification]"), "the sibling view entry was damaged");
+});
+
+test("delete-model on a model that is not there says so", () => {
+  assert.match(rejects(engine(), { op: "delete-model", id: "no-such-model" }).rejection?.message ?? "",
+    /no model 'no-such-model'/);
+});
+
+test("add-note commits WITHOUT advancing the semantic revision (A1)", () => {
+  // The invariant, pinned. `systemHash` projects semantics and annotation is not in the projection,
+  // so two systems differing only in notes are the SAME system. If this assertion ever fails, the
+  // symptom in the product is that attaching a note invalidates every pending agent transaction.
+  const e = engine();
+  const before = e.hash();
+  const r = commits(e, {
+    op: "add-note", scope: "entity", id: "api",
+    note: { kind: "assumption", text: "Gateway latency is probably 200 ms." },
+  });
+
+  assert.equal(e.hash(), before, "a note moved the system hash: A1 is broken");
+  assert.equal(r.systemHash, before);
+  assert.equal(r.baseHash, before);
+  assert.equal(r.revision?.hash, before);
+  // Committed, though — the file changed and the note is in the IR. "No new revision identity" is
+  // not "nothing happened".
+  assert.equal(r.outcome, "committed");
+  assert.notEqual(e.toText(), raw());
+  const notes = e.system().entities.get("api")?.annotation.notes ?? [];
+  assert.equal(notes.length, 1);
+  assert.equal(notes[0]?.kind, "assumption");
+  assert.equal(notes[0]?.id, "note-1");
+});
+
+test("a note does not invalidate a pending agent transaction", () => {
+  // The consequence that makes A1 worth holding structurally. An agent computes against a hash, a
+  // person annotates the model while it thinks, and the agent's work still applies -- the same
+  // argument that kept view positions out of the IR.
+  const e = engine();
+  const pending = e.hash();
+  commits(e, {
+    op: "add-note", scope: "model", id: "service-flow",
+    note: { kind: "question", text: "Should the repair engine be in this reduction at all?" },
+  });
+  const r = e.apply({ transaction: { base: pending, operations: [{ op: "set-label", id: "api", value: "Doc API" }] } });
+  assert.equal(r.outcome, "committed", `a note invalidated a pending transaction: ${r.rejection?.message}`);
+  assert.equal(e.system().entities.get("api")?.label, "Doc API");
+  // And the note survived the later commit.
+  assert.equal(e.system().models.get("service-flow")?.annotation.notes.length, 1);
+});
+
+test("a note reaches each of the three objects that carry annotation", () => {
+  // Entities, models and relations, and no others: those are the three the IR gives an `annotation`
+  // field, so offering a machine or a transition would be offering to write something the loader
+  // drops on the next read.
+  const e = engine();
+  commits(e,
+    { op: "add-note", scope: "entity", id: "gateway", note: { kind: "todo", text: "Confirm what it accepts." } },
+    { op: "add-note", scope: "model", id: "data-classification", note: { kind: "rationale", text: "Flow only." } },
+    {
+      op: "add-note", scope: "relation", model: "service-flow", id: "remediation-owns-parser",
+      note: { kind: "comment", text: "Ownership, not invocation." },
+    });
+
+  const s = e.system();
+  assert.equal(s.entities.get("gateway")?.annotation.notes[0]?.text, "Confirm what it accepts.");
+  assert.equal(s.models.get("data-classification")?.annotation.notes[0]?.kind, "rationale");
+  const owns = s.relations.find((r) => r.id === "remediation-owns-parser");
+  assert.equal(owns?.annotation.notes[0]?.text, "Ownership, not invocation.");
+  // Three notes, and the hash still has not moved.
+  assert.equal(e.hash(), engine().hash());
+});
+
+test("a relation note is addressed by id or by endpoints, and refuses to guess", () => {
+  const e = engine();
+  commits(e, { op: "add-relation", model: "service-flow", from: "api", to: "remediation", type: "may_invoke" });
+  // Two relations now share endpoints and type, so the triple no longer identifies one. Annotating
+  // the wrong edge is the quiet failure, so the op refuses and asks for an id.
+  const r = rejects(e, {
+    op: "add-note", scope: "relation", model: "service-flow",
+    from: "api", to: "remediation", type: "may_invoke",
+    note: { kind: "comment", text: "Which one?" },
+  });
+  assert.match(r.rejection?.message ?? "", /2 items match/);
+
+  commits(e, {
+    op: "add-note", scope: "relation", model: "service-flow", id: "api-remediation",
+    note: { kind: "comment", text: "The one that was written first." },
+  });
+  const named = e.system().relations.find((x) => x.id === "api-remediation");
+  assert.equal(named?.annotation.notes[0]?.text, "The one that was written first.");
+});
+
+test("add-note refuses a note the loader would silently drop", () => {
+  const e = engine();
+  for (const note of [{ kind: "comment", text: "" }, { kind: "comment", text: "   " }]) {
+    const r = rejects(e, { op: "add-note", scope: "entity", id: "api", note } as never);
+    assert.equal(r.rejection?.kind, "malformed");
+    assert.match(r.rejection?.findings.map((f) => f.message).join(" ") ?? "", /dropped on load/);
+  }
+  // And a kind outside the vocabulary, which would canonicalize to `comment` and mean something
+  // the caller did not write.
+  const bad = rejects(e, {
+    op: "add-note", scope: "entity", id: "api", note: { kind: "warning", text: "Careful." },
+  } as never);
+  assert.ok(bad.rejection?.findings.some((f) => f.where === "transaction.operations[0].note.kind"));
+});
+
+test("add-note refuses to shadow a note id a finding could cite", () => {
+  const e = engine();
+  commits(e, {
+    op: "add-note", scope: "entity", id: "api", note: { id: "latency", kind: "assumption", text: "200 ms." },
+  });
+  const r = rejects(e, {
+    op: "add-note", scope: "entity", id: "api", note: { id: "latency", kind: "comment", text: "Or 300." },
+  });
+  assert.match(r.rejection?.message ?? "", /already carries a note with id 'latency'/);
+
+  // A generated id steps over a taken name rather than colliding with it, and stays deterministic.
+  commits(e, { op: "add-note", scope: "entity", id: "api", note: { kind: "comment", text: "Second." } });
+  commits(e, { op: "add-note", scope: "entity", id: "api", note: { kind: "comment", text: "Third." } });
+  assert.deepEqual((e.system().entities.get("api")?.annotation.notes ?? []).map((n) => n.id),
+    ["latency", "note-2", "note-3"]);
+});
+
+test("add-note writes a note's own keys and nothing else, so ANNOTATION stays quiet", () => {
+  // `Note.unexpectedKeys` and the ANNOTATION rule exist for a hand-written note an unquoted comma
+  // truncated. An op builds the note, so a stray key would be this module's bug -- the parser
+  // refuses one rather than writing it and then reporting it.
+  const e = engine();
+  commits(e, {
+    op: "add-note", scope: "entity", id: "api",
+    note: { kind: "rationale", text: "One service deliberately.", author: "agent", at: "2026-10-02T14:32:00-04:00" },
+  });
+  const note = e.system().entities.get("api")?.annotation.notes[0];
+  assert.deepEqual(note?.unexpectedKeys, []);
+  assert.equal(note?.author, "agent");
+  assert.equal(note?.at, "2026-10-02T14:32:00-04:00");
+  // A bare timestamp is a date to a YAML 1.1 loader, so it must have gone out quoted (SEMANTICS 10.1).
+  assert.ok(e.toText().includes('at: "2026-10-02T14:32:00-04:00"'), `the timestamp went out bare:\n${e.toText()}`);
+  assert.equal(validate(e.system()).filter((f) => f.rule === "ANNOTATION").length, 0);
+});
+
+test("add-note on something that is not there says what it looked for", () => {
+  const e = engine();
+  assert.match(
+    rejects(e, { op: "add-note", scope: "entity", id: "phantom", note: { kind: "comment", text: "x" } })
+      .rejection?.message ?? "", /no entity 'phantom'/);
+  assert.match(
+    rejects(e, { op: "add-note", scope: "model", id: "phantom", note: { kind: "comment", text: "x" } })
+      .rejection?.message ?? "", /no model 'phantom'/);
+  assert.match(
+    rejects(e, {
+      op: "add-note", scope: "relation", model: "phantom", id: "a-b", note: { kind: "comment", text: "x" },
+    }).rejection?.message ?? "", /no model 'phantom'/);
 });
 
 // ------------------------------------------------------------------------------------------------
