@@ -14,9 +14,17 @@
  * that model editing and query execution be possible without touching the diagram, so the diagram
  * is the second view and this is the first.
  */
-import type { Annotated, CanonicalSystem, Finding, QueryResult, Scalar } from "../ir/types.ts";
+import type {
+  Annotated, CanonicalSystem, Coverage, Evidence, Finding, Purpose, Scalar,
+} from "../ir/types.ts";
 import { provenanceFields } from "../app/provenance.ts";
+import { STATUS_TEXT } from "../app/properties.ts";
+import type { EvaluatedProperty, Ground } from "../app/properties.ts";
 import type { SceneSubject } from "../render/types.ts";
+// The graph forms, from the array the engine derives its own type from. A hand-written list of
+// forms in a select is a second source of truth that `tsc` would not catch drifting: a `GraphForm[]`
+// missing a member is a legal subset. The engine's own header says so where the array is declared.
+import { GRAPH_FORMS } from "../engine/types.ts";
 import { NOTE_KINDS, isNoteKind } from "../transaction/types.ts";
 import type { Operation } from "../transaction/types.ts";
 
@@ -28,11 +36,28 @@ export interface ViewModel {
   readonly banner: Banner | null;
   readonly sections: readonly Section[];
   readonly findings: readonly FindingRow[];
-  readonly questions: readonly QuestionRow[];
+  /**
+   * The persistent property list (§9.1), requirements first (§13).
+   *
+   * There is ONE list rather than a property list beside a query-result list, because in this
+   * workbench there is one persistent object — the saved query — and the two lists would be two
+   * renderings of it, free to disagree. A property row therefore carries everything §10.2 asks of a
+   * query result AND everything §9.3 asks of a property inspection.
+   */
+  readonly properties: readonly PropertyRow[];
   /** What the editing forms may offer. Derived from the model, so a control cannot offer a lie. */
   readonly edit: EditOptions;
   /** Drawable subjects for the diagram: one per purposeful model and per machine. */
   readonly subjects: readonly Choice[];
+  /**
+   * The purpose of the model the diagram is currently drawing (§5.1, UX-I4).
+   *
+   * §5.1 is specific: whenever a model is the PRINCIPAL model being viewed, its purpose is
+   * displayed with it. The models table states every model's purpose, but the picture used to be
+   * drawn with nothing but a subject name beside it — so the one place a model is singled out as
+   * the thing being looked at was the one place it did not say what it was for.
+   */
+  readonly principal: PrincipalModel | null;
 }
 
 /** The hypothesis / validity banner. Never colour alone — `text` always says it. */
@@ -54,6 +79,18 @@ export interface Row {
   readonly label: string;
   readonly kind: string;
   readonly detail: string;
+  /**
+   * The engineering purpose, as its OWN labelled block rather than a clause of `detail` (UX-I4).
+   *
+   * It used to be the first fragment of the ` · `-joined detail string, which satisfied "visible"
+   * and not "a primary part of its human presentation": syntactically indistinguishable from
+   * `over 4 entities`, unlabelled, and therefore exactly the "metadata hidden in an inspector" that
+   * §3.2 and UX-I4 both name. Notes and provenance already get their own labelled blocks; purpose
+   * is the field §5.1 singles out, so it gets one too.
+   *
+   * Null for a row with no purpose-bearing object behind it — a transition, a relation, an entity.
+   */
+  readonly purpose: PurposeBlock | null;
   /** Textual status badges. "initial", "selected", "evidence", "violation" — words, not hues. */
   readonly states: readonly string[];
   /**
@@ -105,17 +142,74 @@ export interface FindingRow {
   readonly message: string;
 }
 
-export interface QuestionRow {
-  readonly id: string;
+/**
+ * A model's purpose, for display beside the model (§5.1, UX-I4).
+ *
+ * `question` is a sentence either way: a model that states none says so, because silence and "this
+ * reduction has no stated question" look identical on screen and only one of them is a finding
+ * waiting to be written. §5.1 allows `represents` and `omits` to be inspectable rather than
+ * permanently on screen; they are carried here so the choice is the renderer's, not a data loss.
+ */
+export interface PurposeBlock {
   readonly question: string;
-  /** The outcome word, verbatim. Deliberately not a tick or a colour. */
-  readonly outcome: string;
-  /** "exhaustive, 37 configurations" / "bounded at 1000000 — INCONCLUSIVE". */
+  /** True when the model states no question — so a reader is told, rather than shown a gap. */
+  readonly unstated: boolean;
+  readonly represents: readonly string[];
+  readonly omits: readonly string[];
+}
+
+/** The model the diagram is drawing, with its purpose (§5.1). */
+export interface PrincipalModel {
+  /** "model" or "machine" — both carry a purpose and both can be the drawn subject. */
+  readonly kind: string;
+  readonly id: string;
+  readonly label: string;
+  readonly purpose: PurposeBlock;
+}
+
+/**
+ * One persistent property: the claim, its verdict, and what established it (§9.1, §9.3, §13).
+ *
+ * Every field is TEXT by the time it gets here, which is what makes FR-A11Y-2 checkable and is why
+ * the §9.1 icons are absent: they are nonnormative there and "SHALL NOT be the sole means", and the
+ * cheapest way to honour that is to ship no icon at all.
+ */
+export interface PropertyRow {
+  readonly id: string;
+  /** What the claim says. §10.3's proposition, in the author's words. */
+  readonly proposition: string;
+  /** "property" or "requirement" — a WORD, because §13 lets the UX distinguish them visually and
+   * a visual-only distinction is one a screen-reader user never receives. */
+  readonly kind: string;
+  /**
+   * What the UI leads with. The §9.1 status word for a current property; for a stale one, the
+   * MISMATCH — see `verdict`.
+   */
+  readonly status: string;
+  /**
+   * The last computed verdict, present only when it is NOT the current status.
+   *
+   * This is the `QueryResult.systemHash` decision, made in the view model so no renderer can get it
+   * wrong: when the result describes another revision, the verdict is demoted out of `status` and
+   * labelled as what it is. A reader who quotes `status` then cannot quote a stale answer as the
+   * current one, and the honest "we do not know yet" is what they get instead of a silently
+   * refreshed number.
+   */
+  readonly verdict: string | null;
+  /** "exhaustive over 37 configurations" / "bounded after 1000000 — no conclusion is licensed". */
   readonly coverage: string;
+  /** §9.2's "Uses:", with the reason each model is cited (UX-I5). */
+  readonly grounds: readonly string[];
+  /** Stated, not omitted, when nothing could be cited — an empty block reads as "no dependence". */
+  readonly groundsMissing: string | null;
   readonly evidence: readonly string[];
   readonly refusal: string | null;
   /** Disclosed rewrites, e.g. an added history variable (V23). */
   readonly compilation: readonly string[];
+  /** §13's declaration that satisfaction matters, and whether it is satisfied. */
+  readonly expectation: string | null;
+  /** §9.3's "last evaluation revision", always shown: a status with no revision cannot be audited. */
+  readonly revision: string;
   readonly stale: boolean;
 }
 
@@ -167,6 +261,19 @@ export interface EditOptions {
   readonly entityIds: readonly string[];
   /** The note vocabulary, derived from the closed set the transaction layer declares. */
   readonly noteKinds: readonly Choice[];
+  /** Graph query forms, from the engine's own array. The ask form offers these and nothing else. */
+  readonly graphForms: readonly Choice[];
+  /**
+   * The two quantifiers, with what each takes as evidence.
+   *
+   * There is no default and no blank option. V21: the engine refuses to infer a quantifier because
+   * the two take different evidence, so offering "(choose)" would only move the refusal later.
+   */
+  readonly quantifiers: readonly Choice[];
+  /** Outcome words a requirement may declare as its `expect` (§13), plus "no expectation". */
+  readonly expectations: readonly Choice[];
+  /** Existing properties, for retraction. Labelled by proposition, valued by id. */
+  readonly properties: readonly Choice[];
 }
 
 // --------------------------------------------------------------------------------------------
@@ -207,7 +314,85 @@ export type EditRequest =
   | {
       readonly form: "add-note"; readonly target: string;
       readonly kind: string; readonly text: string;
-    };
+    }
+  | {
+      readonly form: "save-property"; readonly id: string; readonly proposition: string;
+      /** The outcome word the engineer declares must hold, or "" for a descriptive property. */
+      readonly expect: string;
+      readonly ask: AskRequest;
+    }
+  | { readonly form: "retract-property"; readonly id: string };
+
+/**
+ * What the ask form yields: one graph query, from structured controls (§10.1).
+ *
+ * Graph only, and the form says so. A behavioural query carries a state PREDICATE — a nested
+ * conjunction over machine references with comparison operators — and a set of selects that could
+ * build one would be a query language with a worse grammar than the YAML it replaces. Behavioural
+ * questions therefore arrive through structured source or `window.mage.query`, which is a limit of
+ * the FORM and not of the capability: `query` has a wired human affordance either way, so this is a
+ * narrower control rather than a UX-I1 gap, and the hint beside it names the boundary.
+ */
+export interface AskRequest {
+  readonly form: string;
+  readonly relation: string;
+  readonly from: string;
+  readonly to: string;
+  readonly quantifier: string;
+  readonly maxHops: string;
+}
+
+export type AskPlan =
+  | { readonly ok: true; readonly query: Readonly<Record<string, unknown>> }
+  | { readonly ok: false; readonly problem: string };
+
+/**
+ * The ask form's input -> one query document.
+ *
+ * ONE builder, called by the Ask button and again by `planEdit`'s `save-property`. That is what
+ * makes §10.3's "SHALL preserve the proposition's semantics rather than merely saving the displayed
+ * answer" structural: the saved query is built by the same function that built the query whose
+ * answer is on screen, so it cannot be an approximation of it. Two builders would be two
+ * approximations, and the drift would show up as a property that answers a different question from
+ * the one the user saved.
+ *
+ * Keys are the WIRE spelling (`max-hops`), because the object is both run through `parseQuery` and
+ * written into the document by `save-query`, and the document is what a person later reads.
+ */
+export function planAsk(req: AskRequest, proposition?: string): AskPlan {
+  const form = req.form.trim();
+  const relation = req.relation.trim();
+  if (form === "") return { ok: false, problem: "Choose the shape of the question." };
+  if (relation === "") {
+    return { ok: false, problem: "Choose the relation type to traverse. Only types this model system declares are offered." };
+  }
+  if (req.quantifier !== "exists" && req.quantifier !== "forall") {
+    return { ok: false, problem: "Choose the quantifier. 'exists' is established by a witness; "
+      + "'forall' by exhaustive satisfaction. The engine will not infer it, because the two take "
+      + "different evidence." };
+  }
+  const from = req.from.trim();
+  const to = req.to.trim();
+  const hops = req.maxHops.trim();
+  if (hops !== "" && !INTEGER.test(hops)) {
+    return { ok: false, problem: `A hop limit is a whole number, not '${hops}'.` };
+  }
+  // Refused here as well as in the engine, because the engine's sentence arrives only after a run
+  // and this one arrives before: a question that names neither endpoint and no constraint has no
+  // answer to compute, and `where` clauses are not offered by this form.
+  if (from === "" && to === "") {
+    return { ok: false, problem: "Name at least one endpoint. A question with neither has nothing to "
+      + "answer, and this form offers no 'where' clause to constrain them — write one in structured "
+      + "source for that." };
+  }
+  const graph: Record<string, unknown> = { form, relation };
+  if (from !== "") graph["from"] = from;
+  if (to !== "") graph["to"] = to;
+  if (hops !== "") graph["max-hops"] = Number.parseInt(hops, 10);
+  const query: Record<string, unknown> = { kind: "graph", quantifier: req.quantifier, graph };
+  if (proposition !== undefined && proposition.trim() !== "") query["name"] = proposition.trim();
+  return { ok: true, query };
+}
 
 /**
  * Either the operations to send, or a sentence explaining what is missing.
@@ -438,6 +623,39 @@ export function planEdit(req: EditRequest): EditPlan {
       }
       return yes({ op: "add-note", scope: target.kind, id: target.id, note });
     }
+
+    case "save-property": {
+      const id = req.id.trim();
+      if (id === "") {
+        return no("A property needs an id. It is how every later revision addresses the same claim, "
+          + "and ids are immutable, so choose it deliberately.");
+      }
+      // Required here, optional in the schema, and the asymmetry is the same one `add-model` makes
+      // for a model's question: an agent may save a query by id alone, but a person saving a
+      // proposition is being asked to state the CLAIM. §10.3's example turns "Can restricted data
+      // reach Analytics?" into "Restricted data cannot reach Analytics" — a property is an
+      // assertion, and `restricted-reaches-analytics` is not one.
+      const proposition = req.proposition.trim();
+      if (proposition === "") {
+        return no("State the claim this property makes. A property is an assertion about the system, "
+          + "not a question id — and it is what the status word will be read against.");
+      }
+      const planned = planAsk(req.ask, proposition);
+      if (!planned.ok) return no(planned.problem);
+      const query = req.expect.trim() === ""
+        ? planned.query
+        // `expect` is the declaration that satisfaction MATTERS (§13): with it the property is a
+        // requirement and a differing outcome is a build failure, without it the property is
+        // descriptive and any outcome is reported without judgement.
+        : { ...planned.query, expect: req.expect.trim() };
+      return yes({ op: "save-query", id, query });
+    }
+
+    case "retract-property": {
+      const id = req.id.trim();
+      if (id === "") return no("Choose the property to stop evaluating.");
+      return yes({ op: "delete-query", id });
+    }
   }
 }
 
@@ -516,19 +734,27 @@ function annotated(a: Annotated): Pick<Row, "notes" | "provenance" | "notesCavea
 const UNANNOTATED: Pick<Row, "notes" | "provenance" | "notesCaveat"> =
   { notes: [], provenance: null, notesCaveat: null };
 
-/** Outcome word plus what it MEANS, because "refuted" alone is jargon to a student. */
-function outcomeText(r: QueryResult): string {
-  switch (r.outcome) {
-    case "holds": return "HOLDS — established";
-    case "refuted": return "REFUTED — does not hold";
-    case "inconclusive": return "INCONCLUSIVE — the search was bounded, so this is not a 'no'";
-    case "unlicensed": return "NOT ANSWERABLE from this model";
-    default: return r.outcome;
-  }
+/**
+ * A purpose, as the block UX-I4 asks for.
+ *
+ * The question is NEVER an empty string: a model with no stated question gets a sentence saying so,
+ * because that absence is the thing V24 and every refusal message depend on, and an empty line
+ * beside a model name reads as a rendering bug rather than as a fact about the model.
+ */
+export function purposeBlock(p: Purpose): PurposeBlock {
+  const stated = p.question !== null && p.question.trim() !== "";
+  return {
+    question: stated
+      ? (p.question ?? "")
+      : "States no engineering question, so nothing can say which facts it may leave out.",
+    unstated: !stated,
+    represents: p.represents,
+    omits: p.omits,
+  };
 }
 
-function coverageText(r: QueryResult): string {
-  const c = r.coverage;
+function coverageText(c: Coverage | null): string {
+  if (c === null) return "";
   if (c.kind === "not-applicable") return "coverage not applicable";
   if (c.kind === "bounded") {
     return `bounded after ${plural(c.statesExplored, "configuration")}` +
@@ -537,8 +763,7 @@ function coverageText(r: QueryResult): string {
   return `exhaustive over ${plural(c.statesExplored, "configuration")}`;
 }
 
-function evidenceText(r: QueryResult): readonly string[] {
-  const ev = r.evidence;
+function evidenceText(ev: Evidence | null): readonly string[] {
   if (ev === null) return [];
   if (ev.shape === "path" && ev.nodes !== null) {
     return [`${ev.role}: ${ev.nodes.join(" → ")}`];
@@ -554,11 +779,84 @@ function evidenceText(r: QueryResult): readonly string[] {
   return [`${ev.role} (${ev.shape}):`, ...lines];
 }
 
+/** §9.2's "Uses:" line, with the reason — a bare model name does not identify a dependence. */
+const groundText = (g: Ground): string => `${g.label} (${g.kind} ${g.id}) — ${g.why}`;
+
+/**
+ * One property row.
+ *
+ * The staleness branch is the only place in the UI where a verdict is deliberately NOT the headline,
+ * and it is decided here rather than in the renderer so that every surface that reads `status` gets
+ * the same answer. See `PropertyRow.verdict`.
+ */
+export function propertyRow(p: EvaluatedProperty): PropertyRow {
+  const expectation = p.expectation === null
+    ? null
+    : p.expectation.problem !== null
+      ? `REQUIREMENT — the declared expectation could not be read: ${p.expectation.problem}`
+      : p.expectation.met
+        ? `REQUIREMENT MET — the engineer declared this must be '${p.expectation.declared}', and it is`
+        : `REQUIREMENT UNMET — the engineer declared this must be '${p.expectation.declared}', `
+          + `and the outcome is '${p.outcome ?? "unknown"}'`;
+
+  return {
+    id: p.id,
+    proposition: p.proposition,
+    kind: p.kind === "requirement" ? "requirement" : "property",
+    status: p.stale
+      ? `NOT CURRENT — the last verdict was computed against revision ${p.evaluatedAt ?? "unknown"}, `
+        + `and this model system is at ${p.currentRevision}. Re-run the questions.`
+      : STATUS_TEXT[p.status],
+    verdict: p.stale && p.status !== "not-evaluated"
+      ? `Last computed verdict, for the earlier revision only: ${STATUS_TEXT[p.status]}`
+      : null,
+    coverage: coverageText(p.coverage),
+    grounds: p.grounds.map(groundText),
+    // UX-I5's honest-empty cases, and they are two different facts. For a REFUSAL, citing nothing is
+    // the answer: no model declares what the question names, which is exactly why it cannot be
+    // answered. For a CONCLUSION it is a finding about the result, and saying so is the difference
+    // between an unestablished claim and an empty "Derived from" block a reader takes for "none".
+    groundsMissing: p.grounds.length > 0 || p.status === "not-evaluated"
+      ? null
+      : p.status === "not-answerable"
+        ? "No model or machine declares the vocabulary this question names. That absence IS the "
+          + "answer, and the refusal below says which distinction is missing."
+        : "No model or machine could be identified as the basis of this status, so the status is not "
+          + "grounded. Treat it as unestablished until the question names vocabulary a model declares.",
+    evidence: evidenceText(p.evidence),
+    refusal: p.refusal,
+    compilation: p.compilation,
+    expectation,
+    revision: p.evaluatedAt === null
+      ? `not evaluated; the model system is at ${p.currentRevision}`
+      : `evaluated at ${p.evaluatedAt}`,
+    stale: p.stale,
+  };
+}
+
+/**
+ * Everything the UI shows.
+ *
+ * `properties` arrives already evaluated, from `Workspace.properties()`. It is NOT a map of raw
+ * results any more, and the change is load-bearing: a verdict's grounding has to be computed
+ * alongside the verdict (UX-I5), and a view model that received bare results would have to derive
+ * the grounding here — in the UI layer, where the agent API could not reach it, so the two
+ * interfaces would ground the same verdict in two places. The caller that computes the verdict
+ * computes the grounding, and both surfaces read one answer.
+ *
+ * The current revision came out of `options` with it. It lives on every `EvaluatedProperty`, and a
+ * second copy here was a second thing for a caller to get wrong.
+ */
 export function buildViewModel(
   system: CanonicalSystem,
   findings: readonly Finding[],
-  results: ReadonlyMap<string, QueryResult>,
-  options: { readonly hypothesis: string | null; readonly currentHash: string; readonly selection: readonly string[] },
+  properties: readonly EvaluatedProperty[],
+  options: {
+    readonly hypothesis: string | null;
+    readonly selection: readonly string[];
+    /** The drawn subject, so §5.1's principal model can state its purpose beside the picture. */
+    readonly principal?: SceneSubject | null;
+  },
 ): ViewModel {
   const selected = new Set(options.selection);
 
@@ -585,6 +883,9 @@ export function buildViewModel(
         where.length > 0 ? `appears in ${where.join(", ")}` : null,
       ].filter((s): s is string => s !== null).join(" · ") || "no further detail",
       states: selected.has(e.id) ? ["selected"] : [],
+      // An entity is not a purposeful reduction; the models it appears in are, and `detail` names
+      // them. Giving it a purpose block would be inventing one.
+      purpose: null,
       ...annotated(e.annotation),
     };
   });
@@ -602,11 +903,16 @@ export function buildViewModel(
           ? `variables: ${[...m.variables.values()].map((v) => `${v.id} ∈ {${v.domain.join(", ")}}`).join("; ")}`
           : null,
         // Purpose is what licenses or refuses a question, so it belongs beside the machine rather
-        // than only inside a refusal message the user may never provoke.
+        // than only inside a refusal message the user may never provoke. It stays in `detail` as
+        // well as in the block below: `detail` is what the existing tests read as prose, and the
+        // block is what UX-I4 requires as a labelled field.
         m.purpose.question !== null ? `asks: ${m.purpose.question}` : null,
         m.purpose.omits.length > 0 ? `deliberately omits ${m.purpose.omits.join(", ")}` : null,
       ].filter((s): s is string => s !== null).join(" · "),
       states: selected.has(m.id) ? ["selected"] : [],
+      // A machine is a purposeful reduction too: it carries its own `purpose` block, it is drawn as
+      // its own subject, and a behavioural property grounds in it. UX-I4 covers it.
+      purpose: purposeBlock(m.purpose),
       ...UNANNOTATED,
     };
     const transitions: Row[] = m.transitions.map((t) => ({
@@ -620,6 +926,7 @@ export function buildViewModel(
         t.effects.length > 0 ? `sets ${t.effects.map((e) => `${e.variable} := ${e.expression}`).join(", ")}` : null,
       ].filter((s): s is string => s !== null).join(" · ") || "unconditional",
       states: t.from === m.initial ? ["from initial state"] : [],
+      purpose: null,
       ...UNANNOTATED,
     }));
     return [head, ...transitions];
@@ -636,9 +943,14 @@ export function buildViewModel(
         // The ABSENCE is often the more important half, and it is invisible in a diagram.
         rt?.absence !== null && rt?.absence !== undefined ? `Absence means: ${rt.absence}` : null,
         rt?.pathComposition === "forbidden" ? "multi-hop questions over this relation are NOT licensed" : null,
+        // UX-I7, at the grain where it is actually load-bearing. Adjacency is the UNION across every
+        // model, so a query joins edges from two reductions -- and the relation still says WHICH
+        // model asserts it. That is the difference between a linked view over two models and one
+        // unified semantic model, and dropping this line is how the second would appear.
         `in model ${r.model}`,
       ].filter((s): s is string => s !== null).join(" · "),
       states: [],
+      purpose: null,
       ...annotated(r.annotation),
     };
   });
@@ -655,6 +967,7 @@ export function buildViewModel(
       `over ${plural(m.entities.length, "entity", "entities")}`,
     ].filter((s): s is string => s !== null).join(" · "),
     states: selected.has(m.id) ? ["selected"] : [],
+    purpose: purposeBlock(m.purpose),
     ...annotated(m.annotation),
   }));
 
@@ -665,24 +978,21 @@ export function buildViewModel(
     { id: "machines", heading: "Machines and transitions", intro: "Behaviour. A synchronized transition fires together with its event's other participants.", rows: machineRows },
   ].filter((s) => s.rows.length > 0);
 
-  const questions: QuestionRow[] = [...system.queries.keys()].map((id) => {
-    const r = results.get(id);
-    const name = (system.queries.get(id)?.raw as { name?: unknown } | undefined)?.name;
-    if (r === undefined) {
-      return { id, question: typeof name === "string" ? name : id, outcome: "not yet run", coverage: "", evidence: [], refusal: null, compilation: [], stale: false };
-    }
-    return {
-      id,
-      question: typeof name === "string" ? name : id,
-      outcome: outcomeText(r),
-      coverage: coverageText(r),
-      evidence: evidenceText(r),
-      refusal: r.refusal,
-      compilation: r.compilation.map((c) => c.explanation),
-      // A result whose hash no longer matches describes a model the user has already changed.
-      stale: r.systemHash !== options.currentHash,
-    };
-  });
+  // Requirements first (§13). A requirement is a claim the engineer declared matters, so burying it
+  // among descriptive properties in authoring order is the one ordering that loses information.
+  // Stable within each group: the author's own key order.
+  const rows = properties.map(propertyRow);
+  const propertyRows: PropertyRow[] = [
+    ...rows.filter((p) => p.kind === "requirement"),
+    ...rows.filter((p) => p.kind !== "requirement"),
+  ];
+
+  const subject = options.principal ?? null;
+  const principalPurpose: Purpose | null = subject === null
+    ? null
+    : subject.kind === "model"
+      ? system.models.get(subject.id)?.purpose ?? null
+      : system.machines.get(subject.id)?.purpose ?? null;
 
   return {
     title: system.name,
@@ -696,12 +1006,25 @@ export function buildViewModel(
     banner,
     sections,
     findings: findings.map((f) => ({ rule: f.rule, where: f.where, message: f.message })),
-    questions,
+    properties: propertyRows,
     edit: buildEditOptions(system),
+    // One subject per model and one per machine, and never a composed one. That is UX-I7 held by
+    // the shape of the data: there is no value here that names two models, so no selection can
+    // present them as a single thing. `checkModelPlurality` walks this list for exactly that.
     subjects: [
       ...[...system.models.values()].map((m) => ({ value: `model:${m.id}`, label: `Model: ${m.label}` })),
       ...[...system.machines.keys()].map((id) => ({ value: `machine:${id}`, label: `Machine: ${id}` })),
     ],
+    principal: subject === null || principalPurpose === null
+      ? null
+      : {
+          kind: subject.kind,
+          id: subject.id,
+          label: subject.kind === "model"
+            ? system.models.get(subject.id)?.label ?? subject.id
+            : subject.id,
+          purpose: purposeBlock(principalPurpose),
+        },
   };
 }
 
@@ -783,5 +1106,24 @@ function buildEditOptions(system: CanonicalSystem): EditOptions {
     // Derived from the closed record the transaction layer declares, so the form cannot offer a
     // kind the parser would refuse, and a new kind reaches the select without an edit here.
     noteKinds: Object.keys(NOTE_KINDS).map((kind) => ({ value: kind, label: kind })),
+    graphForms: GRAPH_FORMS.map((form) => ({ value: form, label: form })),
+    quantifiers: [
+      { value: "exists", label: "exists — a witness establishes it; exhaustive absence refutes it" },
+      { value: "forall", label: "forall — exhaustive satisfaction establishes it; a counterexample refutes it" },
+    ],
+    // The outcome vocabulary, never true/false: a bare boolean in this field is a YAML coercion bug
+    // (V25), so the control cannot offer one. The empty option is a DESCRIPTIVE property, which is
+    // the §13 distinction stated as a choice rather than hidden in whether a key was typed.
+    expectations: [
+      { value: "", label: "no expectation — a descriptive property, reported without judgement" },
+      { value: "holds", label: "holds — this must be established" },
+      { value: "refuted", label: "refuted — this must NOT hold" },
+      { value: "inconclusive", label: "inconclusive" },
+      { value: "unlicensed", label: "unlicensed — the models must decline to answer this" },
+    ],
+    properties: [...system.queries.entries()].map(([id, saved]) => {
+      const name = (saved.raw as { name?: unknown }).name;
+      return { value: id, label: typeof name === "string" && name !== "" ? `${name} (${id})` : id };
+    }),
   };
 }

@@ -117,6 +117,16 @@
   .coverage, .refusal, .compilation { color: var(--muted); font-size: .92rem; }
   .evidence { font-family: var(--mono); font-size: .85rem; margin: .3rem 0 0; padding-inline-start: 1.1rem; }
   .stale { font-weight: 700; }
+  /*
+    A model's engineering question, set apart. Same treatment as p.prompt above and for the same
+    reason: it is what the model is FOR, and UX-I4 asks for it as a primary part of the model's
+    presentation rather than one clause among several. The emphasis is not the only channel -- the
+    markup labels it "Asks" above, in words, so a reader who sees no rule still gets the field.
+  */
+  p.purpose {
+    margin: .1rem 0 .4rem; padding-inline-start: .7rem; border-inline-start: 3px solid var(--accent);
+    max-width: 46rem;
+  }
 
   figure { margin: 0; }
   figure svg { max-width: 100%; height: auto; background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; }
@@ -442,12 +452,87 @@
     </div>
   </section>
 
+  <!--
+    Properties. One list, not a property list beside a query-result list: a saved question IS the
+    persistent object here, so two lists would be two renderings of the same claims, free to
+    disagree. Each entry therefore carries what a query result owes (status, coverage, evidence) and
+    what a property owes (the claim, the models it derives from, the revision it was evaluated at).
+
+    The element id is still `question-list`. The browser tier asserts against that id and against
+    this section's id, and that gate belongs to another agent's file; a rename would break a check
+    to improve a name.
+  -->
   <section id="questions" aria-labelledby="questions-h">
-    <h2 id="questions-h">Questions</h2>
+    <h2 id="questions-h">Properties and requirements</h2>
     <p class="intro">
-      Saved questions re-run when the model changes. Every answer carries its coverage: a bounded
-      search is reported as inconclusive, never as a no.
+      A property is a persistent claim about the system. Its verdict is <strong>recomputed</strong>
+      every time the model changes and is stored nowhere, so what you read is always this revision's
+      answer. Every verdict says which models and machines established it; a bounded search is
+      reported as inconclusive, never as a no.
     </p>
+
+    <!--
+      Ask, then save. The question is transient until someone says otherwise, which is why the Ask
+      button saves nothing and the Save button is a separate, explicit act.
+    -->
+    <fieldset id="form-ask">
+      <legend>Ask a question</legend>
+      <p class="hint">
+        Graph questions only, from these controls. A behavioural question carries a state predicate —
+        a nested conjunction over machine references — and a set of menus that could build one would
+        be a worse query language than the structured source it replaces; write those in the file or
+        send them through <code>window.mage.query</code>. Only relation types this model system
+        declares are offered.
+      </p>
+      <label class="field" for="ask-form"><span>Shape of the question</span>
+        <select id="ask-form"></select></label>
+      <label class="field" for="ask-relation"><span>Relation to traverse</span>
+        <select id="ask-relation"></select></label>
+      <label class="field" for="ask-from"><span>From</span>
+        <select id="ask-from"></select></label>
+      <label class="field" for="ask-to"><span>To</span>
+        <select id="ask-to"></select></label>
+      <label class="field" for="ask-quantifier"><span>Quantifier</span>
+        <select id="ask-quantifier"></select></label>
+      <label class="field" for="ask-max-hops"><span>Hop limit (optional)</span>
+        <input type="text" id="ask-max-hops" inputmode="numeric" autocomplete="off"></label>
+      <button type="button" id="ask-go" class="primary">Ask</button>
+      <!--
+        The answer, rendered by the SAME function that renders a saved property. Plain DOM: #live is
+        the one announcer and it already says the verdict and how many models established it.
+      -->
+      <div id="ask-answer"></div>
+    </fieldset>
+
+    <fieldset id="form-save-property">
+      <legend>Save the question above as a property</legend>
+      <p class="hint">
+        What is saved is the <strong>question</strong>, never the answer: the verdict is recomputed on
+        every later revision. State the claim as an assertion — "Restricted data cannot reach
+        Analytics", not "Can restricted data reach Analytics?" — because the status word is read
+        against it. Declaring an expectation makes it a requirement: a differing outcome then counts
+        as a failure rather than a finding.
+      </p>
+      <label class="field" for="save-property-id"><span>Id (immutable)</span>
+        <input type="text" id="save-property-id" autocomplete="off"></label>
+      <label class="field" for="save-property-proposition"><span>The claim</span>
+        <input type="text" id="save-property-proposition" autocomplete="off"></label>
+      <label class="field" for="save-property-expect"><span>Expectation</span>
+        <select id="save-property-expect"></select></label>
+      <button type="button" id="save-property-go">Save as property</button>
+    </fieldset>
+
+    <fieldset id="form-retract-property">
+      <legend>Stop evaluating a property</legend>
+      <p class="hint">
+        The claim is removed from the model system, so no later revision evaluates it. The models it
+        was about are untouched.
+      </p>
+      <label class="field" for="retract-property-target"><span>Property</span>
+        <select id="retract-property-target"></select></label>
+      <button type="button" id="retract-property-go">Retract the property</button>
+    </fieldset>
+
     <div id="question-list"></div>
   </section>
 
@@ -488,6 +573,14 @@
     </p>
     <label class="field" for="diagram-subject"><span>Draw</span>
       <select id="diagram-subject"></select></label>
+    <!--
+      UX-I4 / section 5.1: whenever a model is the PRINCIPAL model being viewed, its purpose is
+      displayed with it. This is the one place a single model is singled out as the thing under
+      inspection, and it used to show a name and a picture -- so the requirement failed exactly
+      where it was written to apply. Above the picture, in words, so it reaches a reader who never
+      sees the canvas.
+    -->
+    <div id="principal-purpose"></div>
     <!--
       The diagram in words: the renderer's own structured twin, not a summary of the picture
       written by this file. It carries what the SVG encodes visually — reading order, what each

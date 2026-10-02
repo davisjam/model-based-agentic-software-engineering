@@ -82,6 +82,26 @@ jobs:
           SIZE=$(wc -c < dist/workbench.js)
           test "$SIZE" -ge 51200 || { echo "ERROR: workbench bundle is $SIZE bytes, under the 51200-byte floor — an empty or truncated emit"; exit 1; }
           echo "workbench bundle: $SIZE bytes"
+      # ── UX-I1 as a hard CI failure (requirements-human-ux section 22) ───────────────────────────
+      # "CI SHALL fail when a public semantic capability lacks either a human or machine affordance."
+      # It can land blocking now because the count is zero: a new BLOCKING check that finds nothing
+      # at HEAD breaks nobody, which is the exit condition for audit-only-first. A gap means an agent
+      # can change the model in a way no person can see or reverse, so this is asserted hard rather
+      # than ratcheted against a baseline.
+      #
+      # A separate step from the gates above on purpose. `npm test` already asserts zero, but it
+      # asserts it among 478 other things; a failure HERE names the invariant in the step title and
+      # prints the one-sided capabilities, which is what the person reading a red build needs.
+      - name: Model Workbench UX-I1 affordance parity (CI fails on a one-sided capability)
+        working-directory: workbench
+        run: |
+          node --input-type=module --eval '
+            import { CAPABILITIES, checkAffordanceParity } from "./src/app/capabilities.ts";
+            const violations = checkAffordanceParity();
+            console.log(`UX-I1: ${violations.length} violation(s) over ${CAPABILITIES.length} capabilities`);
+            for (const v of violations) console.error(`  ${v.capability}: ${v.problem}`);
+            process.exit(violations.length === 0 ? 0 : 1);
+          '
       # book/ node tooling must be installed BEFORE `catalog.py build`: the build renders every ```mermaid
       # fence to a static inline SVG at build time via mermaid-cli (mmdc), which lives in book/node_modules.
       # `npm ci` in book/ also downloads mermaid-cli's + Puppeteer's bundled Chromium (no

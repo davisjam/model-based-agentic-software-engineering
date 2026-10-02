@@ -39,7 +39,8 @@ export type CapabilityId =
   | "undo" | "redo"
   | "import" | "export"
   | "load-example"
-  | "add-note" | "inspect-provenance";
+  | "add-note" | "inspect-provenance"
+  | "save-property" | "retract-property";
 
 /**
  * How complete an affordance is. `wired` means it reaches the service; `refusing` means the path
@@ -77,7 +78,7 @@ export interface Capability {
 const wired = (at: string): Affordance => ({ at, status: "wired" });
 
 /**
- * The registry. Reflects what is actually built as of 261002 — all twenty-two capabilities are
+ * The registry. Reflects what is actually built as of 261002 — all twenty-four capabilities are
  * wired on both sides, and UX-I1 reports nothing.
  *
  * The last two came from the §20 capability table rather than from a developer noticing a gap:
@@ -149,23 +150,34 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "query",
     summary: "Run one graph or behavioural query and return outcome, coverage and evidence.",
     service: "workspace.query",
-    human: [wired("header.run-all"), wired("questions-section")],
-    machine: [wired("window.mage.query")],
+    // `properties-section.ask` is the §10.1 requirement: a person asks a supported question through
+    // structured controls, without writing a query document. It is a second affordance of `query`
+    // rather than a capability of its own because it ends at the same `workspace.query` an agent
+    // calls -- the controls narrow what can be ASKED, they do not add a way to answer.
+    human: [wired("header.run-all"), wired("properties-section.ask")],
+    // `ask` is the grounded twin of `query`: the same service, returning the verdict WITH the models
+    // it derives from. Two machine affordances rather than a changed return type, because `query`'s
+    // `QueryResult` is the published wire shape and widening it would break every reader of it.
+    machine: [wired("window.mage.query"), wired("window.mage.ask")],
     producesEvidence: true,
   },
   {
     id: "analyze",
     summary: "Re-run every saved question against the current system.",
     service: "workspace.runSavedQueries",
-    human: [wired("header.run-all")],
-    machine: [wired("window.mage.savedQueries")],
+    // The property list IS the human surface for re-evaluation: it is what a person reads after an
+    // edit to see which claims moved. `window.mage.properties` is the machine twin of that same
+    // read -- the verdict with the models and evidence it derives from (UX-I5), which satisfies
+    // UX-I2 for a surface whose whole content is a semantic result.
+    human: [wired("header.run-all"), wired("properties-section.list")],
+    machine: [wired("window.mage.savedQueries"), wired("window.mage.properties")],
     producesEvidence: true,
   },
   {
     id: "inspect-evidence",
     summary: "Read a witness, counterexample or lasso as ordered steps.",
     service: "workspace.query",
-    human: [wired("questions-section.evidence-list")],
+    human: [wired("properties-section.evidence-list")],
     machine: [wired("window.mage.evidence")],
     producesEvidence: true,
   },
@@ -277,6 +289,40 @@ export const CAPABILITIES: readonly Capability[] = [
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
+  // ---- properties. The question is semantic; the verdict is not, and is stored nowhere. --------
+  //
+  // "Property" is overloaded in this workbench and the two meanings sit three entries apart, so:
+  // `edit-property` changes an ENTITY ATTRIBUTE (`classification: RESTRICTED`); these two save and
+  // retract an ENGINEERING CLAIM about the system (§3.3, "Publication requires validation"). Only
+  // the second meaning is a persistent proposition with a verdict.
+
+  {
+    id: "save-property",
+    summary: "Keep a question as a persistent proposition, re-evaluated on every later revision.",
+    service: "transactions.apply",
+    // §10.3 is explicit that what is saved is the proposition's SEMANTICS and not the displayed
+    // answer, so this writes the query and nothing else: one `save-query` op, no verdict field to
+    // write it into, and the status is recomputed from the query the next time anyone looks. That
+    // is V18's rule for derived values, and the reason there is no `set-status` op to pair with it.
+    //
+    // The form and the agent send the same operation, and the human form builds its query with the
+    // same function that built the one it just ran — so the property a person saves has the
+    // semantics of the result they were looking at rather than a re-typed approximation of it.
+    human: [wired("properties-section.save")],
+    machine: [wired("window.mage.transact")],
+    producesEvidence: false,
+  },
+  {
+    id: "retract-property",
+    summary: "Stop evaluating a proposition, without pretending it was never claimed.",
+    service: "transactions.apply",
+    // The pair of the one above. A claim you cannot withdraw is a claim the model system cannot
+    // stop asserting, and `delete-query` already existed with no way for a person to reach it.
+    human: [wired("properties-section.retract")],
+    machine: [wired("window.mage.transact")],
+    producesEvidence: false,
+  },
+
   {
     id: "inspect-provenance",
     summary: "Read where each object came from, and what its author was asked to preserve.",
@@ -330,6 +376,28 @@ export const CAPABILITIES: readonly Capability[] = [
 export interface ParityViolation {
   readonly invariant: "UX-I1" | "UX-I2" | "UX-I3";
   readonly capability: CapabilityId;
+  readonly problem: string;
+}
+
+/**
+ * A violation of a UX invariant whose subject is not a capability.
+ *
+ * UX-I4, UX-I5 and UX-I7 constrain MODELS and PROPERTIES, not the capability registry: a model that
+ * hides its purpose, a property that cannot say what established it, a presentation that fuses two
+ * models into one. So `subject` is a model id, a machine id or a property id, and keeping it a
+ * separate field from `ParityViolation.capability` is deliberate — a single widened `subject: string`
+ * across both would let a UX-I1 violation name something that is not a declared capability, which
+ * is the one thing UX-I1's whole closure check is for.
+ *
+ * The checkers live with the thing they check: `checkPropertyGrounding` in `properties.ts` (UX-I5
+ * reads an evaluated property), `checkPurposeVisibility` and `checkModelPlurality` in
+ * `ui/invariants.ts` (UX-I4 and UX-I7 read the human presentation, which is what they constrain).
+ * Only the shape is shared, and it is shared from here because this is where "the invariants, as
+ * functions" already lives.
+ */
+export interface UxViolation {
+  readonly invariant: "UX-I4" | "UX-I5" | "UX-I7";
+  readonly subject: string;
   readonly problem: string;
 }
 

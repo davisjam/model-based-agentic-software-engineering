@@ -23,6 +23,7 @@ import type { Finding, QueryResult } from "../ir/types.ts";
 import type { Workspace } from "./services.ts";
 import type { ExampleCatalog, ExampleDescription } from "./examples.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
+import type { EvaluatedProperty } from "./properties.ts";
 import { CAPABILITIES, checkAffordanceParity } from "./capabilities.ts";
 
 /** Bumped on a breaking change to this surface. Implementation internals are not API. */
@@ -36,7 +37,28 @@ export interface MageAgentApi {
   transact(transaction: unknown): TransactionOutcome;
   hypothesis: HypothesisApi;
   query(query: unknown): QueryResult;
+  /**
+   * Run one query and get it back as a property: the verdict PLUS the models and evidence it
+   * derives from (UX-I5).
+   *
+   * The machine twin of the human ask form. `query()` returns the schema-shaped result and stays
+   * the stable wire contract; this returns the same answer with its grounding, which is what the
+   * human panel displays — so UX-I2 holds for that panel rather than the grounding being
+   * UI-only knowledge.
+   */
+  ask(query: unknown): EvaluatedProperty;
   savedQueries(): Record<string, QueryResult>;
+  /**
+   * Every persistent property: proposition, status, the models and evidence the status derives
+   * from, and the revision it was computed against (§9.3, UX-I5).
+   *
+   * The machine half of UX-I2 for the property list. `savedQueries()` returns the raw results and
+   * leaves an agent to work out which reduction produced each one; this returns the grounding the
+   * human surface shows, so neither side holds a conclusion the other cannot see.
+   *
+   * Recomputed per call. There is no cached verdict here any more than there is one in the IR.
+   */
+  properties(): readonly EvaluatedProperty[];
   evidence(queryId: string): QueryResult | null;
   view: ViewApi;
   undo(): boolean;
@@ -283,12 +305,18 @@ export function createAgentApi(
 
     query: (q) => workspace.query(q),
 
+    // "(unsaved)" rather than a generated id: an id here would look like a handle an agent could
+    // pass to `evidence()` or `retract`, and nothing was saved.
+    ask: (q) => workspace.evaluate("(unsaved)", q),
+
     savedQueries: () => {
       const results = workspace.runSavedQueries();
       lastResults.clear();
       for (const [id, r] of results) lastResults.set(id, r);
       return Object.fromEntries(results);
     },
+
+    properties: () => workspace.properties(),
 
     evidence: (queryId) => lastResults.get(queryId) ?? null,
 

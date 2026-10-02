@@ -5,7 +5,7 @@
  * root, so the dependency edges the component model asserts all terminate here rather than tangling
  * between modules. Everything below it depends inward on the IR.
  */
-import { runQuery, runSavedQueries } from "../engine/index.ts";
+import { runQuery } from "../engine/index.ts";
 import { renderView } from "../render/index.ts";
 import type { Point, RenderedView } from "../render/types.ts";
 import { NEW_SYSTEM, Workspace } from "../app/services.ts";
@@ -14,11 +14,13 @@ import { ExampleCatalog } from "../app/examples.ts";
 import type { ExampleDescription } from "../app/examples.ts";
 import { AGENT_API_VERSION, createAgentApi } from "../app/agent-api.ts";
 import type { ViewState } from "../app/agent-api.ts";
-import { buildViewModel, planEdit, resolveSubject, subjectValue } from "./view-model.ts";
-import type { EditOptions, EditRequest } from "./view-model.ts";
 import {
-  fillSelect, paint, paintDiagram, paintEditResult, paintExampleDescription, paintExampleProblem,
-  paintProvenance,
+  buildViewModel, planAsk, planEdit, propertyRow, resolveSubject, subjectValue,
+} from "./view-model.ts";
+import type { AskRequest, EditOptions, EditRequest, PropertyRow } from "./view-model.ts";
+import {
+  fillSelect, paint, paintAnswer, paintDiagram, paintEditResult, paintExampleDescription,
+  paintExampleProblem, paintPrincipal, paintProvenance,
 } from "./render-dom.ts";
 import modelSchema from "../../mage-model.schema.json" with { type: "json" };
 import querySchema from "../../mage-query.schema.json" with { type: "json" };
@@ -34,7 +36,9 @@ const roots = {
   summary: byId("summary"),
   banner: byId("banner"),
   sections: byId("sections"),
-  questions: byId("question-list"),
+  // The property list. The element id stays `question-list` because the browser tier asserts
+  // against it and against the section ids, and that gate belongs to another file's owner.
+  properties: byId("question-list"),
   findings: byId("finding-list"),
 };
 const live = byId("live");
@@ -44,6 +48,8 @@ const editResult = byId("edit-result");
 const hypothesisBar = byId("hypothesis-bar");
 const provenanceList = byId("provenance-list");
 const exampleDescription = byId("example-description");
+const askAnswer = byId("ask-answer");
+const principalPurpose = byId("principal-purpose");
 
 const sel = (id: string): HTMLSelectElement => byId<HTMLSelectElement>(id);
 const input = (id: string): HTMLInputElement => byId<HTMLInputElement>(id);
@@ -65,6 +71,13 @@ const selects = {
   deleteModel: sel("delete-model-target"),
   noteTarget: sel("add-note-target"),
   noteKind: sel("add-note-kind"),
+  askForm: sel("ask-form"),
+  askRelation: sel("ask-relation"),
+  askFrom: sel("ask-from"),
+  askTo: sel("ask-to"),
+  askQuantifier: sel("ask-quantifier"),
+  saveExpect: sel("save-property-expect"),
+  retractTarget: sel("retract-property-target"),
 };
 
 /** The forms that may only be used once a model is loaded. Disabling the fieldset disables all of it. */
@@ -72,19 +85,43 @@ const editForms = [
   "edit-mode", "form-add-entity", "form-add-state", "form-delete-element",
   "form-add-relation", "form-delete-relation", "form-set-label", "form-set-property",
   "form-add-model", "form-delete-model", "form-add-note",
+  "form-ask", "form-save-property", "form-retract-property",
 ].map((id) => byId<HTMLFieldSetElement>(id));
 
 /**
- * FR-A11Y-3: announce consequential changes politely, and DEBOUNCE them.
+ * FR-A11Y-3: announce consequential changes politely, DEBOUNCE them, and COMPOSE them.
  *
  * Without the debounce, re-running a dozen saved queries would queue a dozen announcements and bury
  * the user — the "announcement storm" the requirement names. One message describing the settled
  * state is what a screen-reader user can actually use.
+ *
+ * Two senders rather than one, because a model edit has two consequences and a screen-reader user
+ * needs both: the edit itself, and which PROPERTY VERDICTS it moved. One edit can re-evaluate every
+ * property at once, which is the worst storm in the application, and the two are reported as one
+ * sentence rather than racing: whichever fires first no longer loses to the other, because the timer
+ * renders both and then clears them.
+ *
+ * Property news is also what makes an AGENT's edit perceivable. `window.mage.transact` repaints
+ * without going through any human handler, so before this there was no announcement at all for a
+ * change the human is supposed to be watching (§23).
  */
 let announceTimer = 0;
-const announce = (message: string): void => {
+let pendingAction = "";
+let pendingPropertyNews = "";
+
+function flushAnnouncement(): void {
   window.clearTimeout(announceTimer);
-  announceTimer = window.setTimeout(() => { live.textContent = message; }, 250);
+  announceTimer = window.setTimeout(() => {
+    live.textContent = [pendingAction, pendingPropertyNews].filter((s) => s !== "").join(" ");
+    pendingAction = "";
+    pendingPropertyNews = "";
+  }, 250);
+}
+
+const announce = (message: string): void => { pendingAction = message; flushAnnouncement(); };
+const announceProperties = (message: string): void => {
+  pendingPropertyNews = message;
+  flushAnnouncement();
 };
 
 // -- ports ------------------------------------------------------------------------------------
@@ -141,26 +178,55 @@ let positionHints: ReadonlyMap<string, Point> = new Map();
 
 // -- repaint ----------------------------------------------------------------------------------
 
+/**
+ * The status of each property at the last paint, for the change announcement.
+ *
+ * This is a view-layer memo for an ANNOUNCEMENT, and it is deliberately not a cache of verdicts: it
+ * holds the previous status word and nothing is ever read out of it to display. Nothing downstream
+ * can present a status from here, because `repaint` recomputes every verdict from
+ * `workspace.properties()` before this map is consulted.
+ */
+let lastStatus = new Map<string, string>();
+
+/** One sentence naming what moved. At most three, because a sentence listing twelve is not read. */
+function propertyNews(rows: readonly PropertyRow[]): string {
+  const changed: string[] = [];
+  for (const p of rows) {
+    const before = lastStatus.get(p.id);
+    if (before !== undefined && before !== p.status) changed.push(`${p.proposition} is now ${p.status}`);
+  }
+  const dropped = [...lastStatus.keys()].filter((id) => !rows.some((p) => p.id === id));
+  lastStatus = new Map(rows.map((p) => [p.id, p.status]));
+  const parts: string[] = [];
+  if (changed.length > 0) {
+    parts.push(`${changed.length} property verdict(s) changed: `
+      + `${changed.slice(0, 3).join("; ")}${changed.length > 3 ? `; and ${changed.length - 3} more` : ""}.`);
+  }
+  if (dropped.length > 0) parts.push(`${dropped.length} property(ies) are no longer asserted.`);
+  return parts.join(" ");
+}
+
 function repaint(): void {
   const state = workspace.state;
-  let results = new Map<string, ReturnType<typeof runQuery>["result"]>();
-  try {
-    results = new Map([...runSavedQueries(state.system)].map(([id, a]) => [id, a.result]));
-  } catch {
-    // A saved query that cannot even be parsed must not take the whole page down with it; the
-    // validation section already reports why the model is unhappy.
-  }
-  const vm = buildViewModel(state.system, state.findings, results, {
+  // Through `workspace.properties()`, which is the same call `window.mage.properties()` makes. Every
+  // verdict here was computed just now against `state.hash`: a verdict is derived state, so it is
+  // recomputed and stored nowhere, and §3.3's "re-evaluated when relevant model semantics change"
+  // holds because there is no other way to obtain one.
+  const properties = workspace.properties();
+  const vm = buildViewModel(state.system, state.findings, properties, {
     hypothesis: state.hypothesis,
-    currentHash: state.hash,
     selection: viewState.selection,
+    principal: resolveSubject(state.system, viewState.target),
   });
   paint(vm, roots);
   currentEditOptions = vm.edit;
 
+  const news = propertyNews(vm.properties);
+  if (news !== "") announceProperties(news);
+
   // -- the diagram. One subject at a time, chosen by the user or by `window.mage.view.focus`.
   //
-  // No evidence is passed: the questions section answers every saved query at once, so there is no
+  // No evidence is passed: the property list answers every saved question at once, so there is no
   // single "current result" to emphasise, and picking one would be the UI inventing a focus the
   // user did not ask for.
   const subject = resolveSubject(state.system, viewState.target);
@@ -173,6 +239,8 @@ function repaint(): void {
     });
     positionHints = view.positions;
   }
+  // §5.1: the model being viewed states its purpose beside the picture, above the picture, in text.
+  paintPrincipal(vm.principal, principalPurpose);
   paintDiagram(view?.accessible ?? null, view?.tree ?? null, { text: diagramText, canvas });
 
   // Through `workspace.provenance()`, the same call `window.mage.provenance()` makes. Reading it
@@ -193,6 +261,16 @@ function repaint(): void {
   fillSelect(selects.deleteModel, vm.edit.models);
   fillSelect(selects.noteTarget, vm.edit.annotatable);
   fillSelect(selects.noteKind, vm.edit.noteKinds);
+  fillSelect(selects.askForm, vm.edit.graphForms);
+  fillSelect(selects.askRelation, vm.edit.relationTypes);
+  // An endpoint may be left unspecified -- the engine then takes every node on that side -- so the
+  // empty option is first and says what it means rather than reading as a missing choice.
+  const anyEndpoint = { value: "", label: "any entity" };
+  fillSelect(selects.askFrom, [anyEndpoint, ...vm.edit.entities]);
+  fillSelect(selects.askTo, [anyEndpoint, ...vm.edit.entities]);
+  fillSelect(selects.askQuantifier, vm.edit.quantifiers);
+  fillSelect(selects.saveExpect, vm.edit.expectations);
+  fillSelect(selects.retractTarget, vm.edit.properties);
   fillDatalist(byId("property-names"), vm.edit.propertyNames);
   fillDatalist(byId("entity-ids"), vm.edit.entityIds);
   refreshRelationEndpoints();
@@ -348,7 +426,9 @@ byId("export").addEventListener("click", () => {
 byId("run").addEventListener("click", () => {
   repaint();
   const n = workspace.state.system.queries.size;
-  announce(n === 0 ? "This model saves no questions." : `Re-ran ${n} question(s).`);
+  announce(n === 0
+    ? "This model system asserts no properties yet."
+    : `Re-evaluated ${n} propert${n === 1 ? "y" : "ies"} against the current revision.`);
 });
 
 byId("undo").addEventListener("click", () => {
@@ -490,6 +570,52 @@ byId("add-note-go").addEventListener("click", () => submitEdit({
   target: selects.noteTarget.value,
   kind: selects.noteKind.value,
   text: input("add-note-text").value,
+}));
+
+// -- properties: ask, save, retract (sections 9, 10, 13) ---------------------------------------
+//
+// The §23 flow, in order: ask a question, read the answer with its grounding, save the proposition
+// as a property. The answer panel and the property list use ONE renderer, so a saved property reads
+// exactly as the answer did -- saving changes how long the claim lasts, not how it reads.
+
+/** The ask form's current contents. Read in one place, so the Ask and Save buttons cannot disagree. */
+const askRequest = (): AskRequest => ({
+  form: selects.askForm.value,
+  relation: selects.askRelation.value,
+  from: selects.askFrom.value,
+  to: selects.askTo.value,
+  quantifier: selects.askQuantifier.value,
+  maxHops: input("ask-max-hops").value,
+});
+
+byId("ask-go").addEventListener("click", () => {
+  const proposition = input("save-property-proposition").value.trim();
+  const planned = planAsk(askRequest(), proposition);
+  if (!planned.ok) {
+    paintAnswer(null, planned.problem, askAnswer);
+    announce(planned.problem);
+    return;
+  }
+  // `workspace.evaluate` is the SAME service `window.mage.ask` calls, so the grounding a person
+  // reads here is the grounding an agent reads -- UX-I2 for a panel whose whole content is a
+  // semantic result. Nothing is saved: a query is transient until someone says otherwise (§3.4).
+  const answer = workspace.evaluate(proposition === "" ? "(unsaved)" : proposition, planned.query);
+  paintAnswer(propertyRow(answer), "", askAnswer);
+  announce(`Answered: ${answer.status.replace(/-/g, " ")}. `
+    + `${answer.grounds.length} model(s) or machine(s) establish it. Nothing is saved yet.`);
+});
+
+byId("save-property-go").addEventListener("click", () => submitEdit({
+  form: "save-property",
+  id: input("save-property-id").value,
+  proposition: input("save-property-proposition").value,
+  expect: selects.saveExpect.value,
+  ask: askRequest(),
+}));
+
+byId("retract-property-go").addEventListener("click", () => submitEdit({
+  form: "retract-property",
+  id: selects.retractTarget.value,
 }));
 
 // -- the hypothesis bar -----------------------------------------------------------------------
