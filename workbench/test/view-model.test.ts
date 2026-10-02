@@ -814,9 +814,12 @@ test("the diagram stays last in document order, below the structural sections", 
     assert.notEqual(i, -1, `index.html has no #${id}`);
     return i;
   };
-  for (const id of ["model", "edit", "questions", "findings"]) {
+  for (const id of ["start", "model", "edit", "questions", "findings", "provenance"]) {
     assert.ok(at(id) < at("diagram"), `#${id} must come before the diagram`);
   }
+  // Where a reader meets the application. The ways IN come first, then the model: a new visitor who
+  // has loaded nothing should not have to scroll past four empty sections to find the example menu.
+  assert.ok(at("start") < at("model"), "the ways in must precede the model they produce");
   assert.ok(at("diagram-text") < at("canvas"), "the twin must precede the picture it describes");
   assert.match(html.slice(at("canvas") - 200, at("canvas") + 200), /aria-hidden="true"/,
     "the canvas is hidden from assistive technology because the twin above is the representation");

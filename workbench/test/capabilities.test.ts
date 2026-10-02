@@ -1,12 +1,17 @@
 // The capability registry and the UX invariants it enforces.
 //
-// UX-I1 now reports nothing over 20 capabilities. The baselines below are therefore EMPTY, and the
+// UX-I1 now reports nothing over 22 capabilities. The baselines below are therefore EMPTY, and the
 // assertion is no longer aspirational: it earned the right to read zero by starting at twelve,
 // dropping to six, and being driven down by the work each violation named.
 //
 // An empty baseline alone would be a weak test — a registry with no capabilities at all would pass
 // it. `FULLY_WIRED` is the positive control that closes that hole: every capability must be PRESENT
 // and wired on both sides, so deleting one to silence a violation fails here instead.
+//
+// And a hole both of those leave open, which the §20 coverage test at the end closes: a capability
+// the registry never DECLARES cannot violate UX-I1. `load-example` and `inspect-provenance` sat in
+// the specification's capability table for two waves while the gate read zero, because the gate can
+// only check rows it has been told about. The specification is now the list.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -14,6 +19,7 @@ import {
   CAPABILITIES, checkAffordanceParity, checkRegistryClosure, generateAffordanceModel,
 } from "../src/app/capabilities.ts";
 import type { Affordance, CapabilityId } from "../src/app/capabilities.ts";
+import { ExampleCatalog } from "../src/app/examples.ts";
 
 /**
  * Capabilities with NO wired human affordance. Empty, and it took three waves to get there.
@@ -33,7 +39,7 @@ const NO_MACHINE: readonly CapabilityId[] = [];
  *
  * An empty baseline on its own is a weak test: a capability DELETED from the registry also
  * disappears from the violation list, so silence can mean "fixed" or "removed". This list names all
- * twenty, so removing one to quieten UX-I1 fails here. The last three are the ones this change
+ * twenty-two, so removing one to quieten UX-I1 fails here. The last two are the ones this change
  * wired, and they are listed with the rest rather than kept apart — a capability wired two waves
  * ago needs guarding just as much.
  */
@@ -42,6 +48,7 @@ const FULLY_WIRED: readonly CapabilityId[] = [
   "create-element", "delete-element", "create-relation", "delete-relation", "edit-property",
   "create-hypothesis", "commit-hypothesis", "discard-hypothesis",
   "create-model", "delete-model", "add-note",
+  "load-example", "inspect-provenance",
 ];
 
 test("UX-I1 violations match the recorded baseline exactly", () => {
@@ -146,6 +153,84 @@ test("§26 closure: an affordance reaching the model without a capability is a v
   assert.ok(drifted.some((v) => v.problem.includes("window.mage.backdoor")));
 });
 
+// ----------------------------------------------------------------------------------------------
+// §20 coverage — the specification's table is the list, not this file
+// ----------------------------------------------------------------------------------------------
+
+/**
+ * Rows whose capability name does not slugify to a registry id. Each needs a reason, not an entry.
+ *
+ * Three, and all three are the specification writing one row where the registry has one or two
+ * capabilities. Nothing here may map a row to a capability that does something else — that would
+ * turn this test from a gate into a rubber stamp.
+ */
+const ROW_ALIASES: Record<string, readonly CapabilityId[]> = {
+  // The registry splits these, because undo and redo are separately reachable and separately
+  // breakable: `canUndo` and `canRedo` are different bits of state and either button can rot alone.
+  "Undo/redo": ["undo", "redo"],
+  // Likewise. Reading a model system and writing one back are different services, and export is the
+  // one that has to preserve comments and key order.
+  "Import/export": ["import", "export"],
+  // "Inspect model" is the registry's `inspect`. The spec names the OBJECT; the registry names the
+  // act, and every other row names the act.
+  "Inspect model": ["inspect"],
+};
+
+/** Capability names from the §20 table, read out of the specification. */
+function specificationRows(): readonly string[] {
+  const spec = readFileSync("requirements-human-ux-261002.md", "utf8");
+  const header = "Capability\tHuman affordance\tMachine affordance";
+  const start = spec.indexOf(header);
+  assert.notEqual(start, -1, "the §20 capability table has moved; this test reads it by its header");
+  const rows: string[] = [];
+  for (const line of spec.slice(start + header.length).split("\n").slice(1)) {
+    // The table ends at the first line that is not three tab-separated cells.
+    if (line.split("\t").length !== 3) break;
+    rows.push((line.split("\t")[0] ?? "").trim());
+  }
+  return rows;
+}
+
+/** §20 rows the registry does not declare. Takes the registry, so a control can shrink it. */
+function uncoveredRows(registry: readonly CapabilityId[]): readonly string[] {
+  const declared = new Set(registry);
+  const out: string[] = [];
+  for (const row of specificationRows()) {
+    const ids = ROW_ALIASES[row] ?? [row.toLowerCase().replace(/ /g, "-") as CapabilityId];
+    for (const id of ids) {
+      if (!declared.has(id)) out.push(`§20 row "${row}" expects capability '${id}'`);
+    }
+  }
+  return out;
+}
+
+test("every capability in the §20 table is declared in the registry", () => {
+  // The hole UX-I1 cannot see. A capability the registry does not declare has no affordances to
+  // check, so the gate reads zero violations and the capability is simply missing — which is how
+  // `load-example` and `inspect-provenance` stayed unbuilt while the registry looked complete.
+  // Reading the specification's own table is what turns "we think we covered it" into a check.
+  const rows = specificationRows();
+  assert.ok(rows.length >= 16, `read ${rows.length} rows from the §20 table; the parse is wrong`);
+  assert.ok(rows.includes("Load example") && rows.includes("Inspect provenance"),
+    "the two rows this wave closed must be readable from the table");
+
+  const uncovered = uncoveredRows(CAPABILITIES.map((c) => c.id));
+  assert.deepEqual(uncovered, [],
+    `the §20 table names capabilities the registry does not:\n  ${uncovered.join("\n  ")}`);
+});
+
+test("§20 coverage fires on a dropped capability — negative control", () => {
+  // The real predicate, against the registry this wave inherited: without `load-example` and
+  // `inspect-provenance` it must report exactly those two rows. A check that could only pass is not
+  // a check, and this one has to still work for the next row someone adds to the specification.
+  const before = CAPABILITIES.map((c) => c.id)
+    .filter((id) => id !== "load-example" && id !== "inspect-provenance");
+  assert.deepEqual(uncoveredRows(before), [
+    "§20 row \"Inspect provenance\" expects capability 'inspect-provenance'",
+    "§20 row \"Load example\" expects capability 'load-example'",
+  ], "dropping a capability must surface the specification row it leaves unanswered");
+});
+
 test("the generated affordance model is in sync with the registry", () => {
   // The model is GENERATED, so a stale committed copy is the drift the registry exists to prevent.
   // Regenerating and comparing is how the single source of truth stays single.
@@ -180,7 +265,8 @@ test("describe() derives its operations from the registry, and reports the gaps"
     render: { render: renderView },
   };
   const ws = new Workspace(noop as never);
-  const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {});
+  const catalogue = new ExampleCatalog(ws, (path) => Promise.resolve(readFileSync(path, "utf8")));
+  const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {}, catalogue);
   const d = api.describe();
 
   assert.equal(d.operations.length, CAPABILITIES.length,
@@ -201,4 +287,11 @@ test("describe() derives its operations from the registry, and reports the gaps"
   const note = d.operations.find((o) => o.name === "add-note");
   assert.ok(note, "describe() must advertise add-note now that both interfaces can reach it");
   assert.match(note.summary, /without changing what the model asserts/);
+
+  // The two this wave added. They are advertised because the registry declares them, not because
+  // anything here lists them -- which is the derivation the test above pins, checked at the two
+  // names a reader would go looking for.
+  assert.ok(d.operations.some((o) => o.name === "load-example"),
+    "adding the capability must advertise it, with no edit to agent-api.ts");
+  assert.ok(d.operations.some((o) => o.name === "inspect-provenance"));
 });

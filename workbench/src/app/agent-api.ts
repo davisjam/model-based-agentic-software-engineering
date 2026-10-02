@@ -21,6 +21,8 @@
  */
 import type { Finding, QueryResult } from "../ir/types.ts";
 import type { Workspace } from "./services.ts";
+import type { ExampleCatalog, ExampleDescription } from "./examples.ts";
+import type { ProvenanceRecord } from "./provenance.ts";
 import { CAPABILITIES, checkAffordanceParity } from "./capabilities.ts";
 
 /** Bumped on a breaking change to this surface. Implementation internals are not API. */
@@ -41,6 +43,22 @@ export interface MageAgentApi {
   redo(): boolean;
   load(text: string): WorkspaceContext;
   export(): string;
+  /**
+   * What the workbench ships, described from the examples themselves.
+   *
+   * A promise because the description is read out of the shipped bytes. The synchronous alternative
+   * is a copy of each example's title, models and questions in code, free to drift from the file it
+   * describes -- so an agent awaits instead.
+   */
+  examples(): Promise<readonly ExampleDescription[]>;
+  /**
+   * Load one. After this an agent holds an ORDINARY workspace: `inspect`, `query`, `transact` and
+   * `hypothesis` behave exactly as they do for an imported file, and there is no example-specific
+   * method for editing or querying what was loaded (EX-I1).
+   */
+  loadExample(id: string): Promise<WorkspaceContext>;
+  /** Where each object came from. Read-only: provenance cannot alter semantics (UX-I6). */
+  provenance(): readonly ProvenanceRecord[];
 }
 
 export interface ApiDescription {
@@ -159,6 +177,10 @@ export function createAgentApi(
   viewState: ViewState,
   schemas: Readonly<Record<string, unknown>>,
   onViewChange: () => void,
+  // The SAME catalogue the human menu holds. Passed in rather than constructed here, because the
+  // catalogue needs an asset reader and the page and a test disagree about how to read a file --
+  // and because one instance is what makes the two interfaces converge rather than agree by luck.
+  examples: ExampleCatalog,
 ): MageAgentApi {
   const lastResults = new Map<string, QueryResult>();
 
@@ -281,5 +303,11 @@ export function createAgentApi(
     redo: () => workspace.redo(),
     load: (text) => { workspace.load(text); return context(); },
     export: () => workspace.export(),
+
+    examples: () => examples.describeAll(),
+    // Returns the ordinary context, deliberately. There is nothing else to hand back: the result of
+    // loading an example is a workspace, and an agent reads it with the methods above.
+    loadExample: async (id) => { await examples.load(id); return context(); },
+    provenance: () => workspace.provenance(),
   };
 }

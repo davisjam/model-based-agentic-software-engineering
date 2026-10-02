@@ -8,13 +8,18 @@
 import { runQuery, runSavedQueries } from "../engine/index.ts";
 import { renderView } from "../render/index.ts";
 import type { Point, RenderedView } from "../render/types.ts";
-import { Workspace } from "../app/services.ts";
+import { NEW_SYSTEM, Workspace } from "../app/services.ts";
 import type { Ports } from "../app/services.ts";
+import { ExampleCatalog } from "../app/examples.ts";
+import type { ExampleDescription } from "../app/examples.ts";
 import { AGENT_API_VERSION, createAgentApi } from "../app/agent-api.ts";
 import type { ViewState } from "../app/agent-api.ts";
 import { buildViewModel, planEdit, resolveSubject, subjectValue } from "./view-model.ts";
 import type { EditOptions, EditRequest } from "./view-model.ts";
-import { fillSelect, paint, paintDiagram, paintEditResult } from "./render-dom.ts";
+import {
+  fillSelect, paint, paintDiagram, paintEditResult, paintExampleDescription, paintExampleProblem,
+  paintProvenance,
+} from "./render-dom.ts";
 import modelSchema from "../../mage-model.schema.json" with { type: "json" };
 import querySchema from "../../mage-query.schema.json" with { type: "json" };
 import transactionSchema from "../../mage-transaction.schema.json" with { type: "json" };
@@ -37,11 +42,14 @@ const canvas = byId("canvas");
 const diagramText = byId("diagram-text");
 const editResult = byId("edit-result");
 const hypothesisBar = byId("hypothesis-bar");
+const provenanceList = byId("provenance-list");
+const exampleDescription = byId("example-description");
 
 const sel = (id: string): HTMLSelectElement => byId<HTMLSelectElement>(id);
 const input = (id: string): HTMLInputElement => byId<HTMLInputElement>(id);
 
 const selects = {
+  exampleChoice: sel("example-choice"),
   subject: sel("diagram-subject"),
   addStateMachine: sel("add-state-machine"),
   deleteElement: sel("delete-element-target"),
@@ -104,6 +112,25 @@ const workspace = new Workspace(ports);
 const viewState: ViewState = { target: null, selection: [] };
 
 /**
+ * The example catalogue, over `fetch`.
+ *
+ * ONE instance, shared with `window.mage` below. The human menu and the agent's `loadExample` are
+ * then the same call on the same object, which is UX-I1's "both invoke the same service" as an
+ * object reference rather than as a claim about two code paths.
+ *
+ * The reader throws on a non-OK response. A reader that returned the 404 body would describe the
+ * example as having no models, which is a lie the user would have no way to see through.
+ */
+const examples = new ExampleCatalog(workspace, async (path) => {
+  const response = await fetch(`./${path}`);
+  if (!response.ok) throw new Error(`${path}: ${response.status} ${response.statusText}`);
+  return response.text();
+});
+
+/** Descriptions, read once at boot. Selecting an example then costs nothing. */
+const descriptions = new Map<string, ExampleDescription>();
+
+/**
  * Node positions from the last render, fed back in as hints.
  *
  * Incremental layout never moves a hinted node, so adding one state perturbs the picture locally
@@ -147,6 +174,10 @@ function repaint(): void {
     positionHints = view.positions;
   }
   paintDiagram(view?.accessible ?? null, view?.tree ?? null, { text: diagramText, canvas });
+
+  // Through `workspace.provenance()`, the same call `window.mage.provenance()` makes. Reading it
+  // here cannot move the model: the service hands back records and no writer (UX-I6).
+  paintProvenance(workspace.provenance(), provenanceList);
 
   fillSelect(selects.subject, vm.subjects);
   if (subject !== null) selects.subject.value = subjectValue(subject);
@@ -231,15 +262,77 @@ byId("file").addEventListener("change", (event) => {
   });
 });
 
-byId("example").addEventListener("click", () => {
-  void fetch("./examples/docable.mage.yaml")
-    .then((r) => r.text())
-    .then((text) => {
-      const r = workspace.load(text);
-      announce(r.ok ? "Loaded the DocAble example." : "The example failed to parse.");
-    })
-    .catch(() => announce("Could not load the example; open a .mage.yaml instead."));
+// -- the three ways in (section 3) -------------------------------------------------------------
+//
+// Create, load an example, import. All three end at `Workspace.load`, which is why the registry
+// treats the first as a second affordance of `import` and the second as a capability whose service
+// delegates to it. There is no fourth path, and an example does not get one.
+
+byId("new-system").addEventListener("click", () => {
+  const r = workspace.load(NEW_SYSTEM);
+  announce(r.ok
+    ? "New, empty model system. Add a model and the engineering question it answers."
+    : `The new system did not load: ${r.findings.map((f) => f.message).join("; ")}`);
 });
+
+/** Show the chosen example's description. Section 3 asks for it before or as the example loads. */
+function showExampleDescription(): void {
+  paintExampleDescription(descriptions.get(selects.exampleChoice.value) ?? null, exampleDescription);
+}
+
+selects.exampleChoice.addEventListener("change", () => {
+  showExampleDescription();
+  const chosen = descriptions.get(selects.exampleChoice.value);
+  if (chosen !== undefined) {
+    announce(`${chosen.title}. ${chosen.summary} ${chosen.models.length} model(s). `
+      + "Press Load this example to open it.");
+  }
+});
+
+byId("example-load").addEventListener("click", () => {
+  const id = selects.exampleChoice.value;
+  const chosen = descriptions.get(id);
+  if (chosen === undefined) {
+    announce("No example is available to load; open a .mage.yaml instead.");
+    return;
+  }
+  void examples.load(id)
+    .then((r) => {
+      // Loading an example replaces the whole model, which is as consequential as an edit gets --
+      // so it is announced, and the announcement says the result is an ordinary workspace rather
+      // than a demonstration the user cannot touch.
+      announce(r.ok
+        ? `Loaded ${chosen.title}: ${workspace.state.system.models.size} model(s), `
+          + `${workspace.state.findings.length} validation finding(s). `
+          + "This is an ordinary editable workspace."
+        : `${chosen.title} did not load: ${r.findings.map((f) => f.message).join("; ")}`);
+    })
+    .catch((error: unknown) => {
+      const problem = `${chosen.title} could not be read: ${String(error)}`;
+      paintExampleProblem(problem, exampleDescription);
+      announce(problem);
+    });
+});
+
+/**
+ * Fill the menu from the examples themselves.
+ *
+ * The option labels are each example's own title, so the menu cannot name an example one thing while
+ * its description names it another. The cost is one read per example at boot; the alternative is a
+ * hand-written label beside a derived description, which is the drift this avoids.
+ */
+void examples.describeAll()
+  .then((all) => {
+    for (const d of all) descriptions.set(d.id, d);
+    fillSelect(selects.exampleChoice, all.map((d) => ({ value: d.id, label: d.title })));
+    showExampleDescription();
+  })
+  .catch((error: unknown) => {
+    const problem = "The shipped examples could not be read, so none is offered: "
+      + `${String(error)}. Create a new model system or open a .mage.yaml instead.`;
+    paintExampleProblem(problem, exampleDescription);
+    announce(problem);
+  });
 
 byId("export").addEventListener("click", () => {
   const text = workspace.export();
@@ -425,6 +518,7 @@ const api = createAgentApi(
   viewState,
   { model: modelSchema, query: querySchema, transaction: transactionSchema },
   () => repaint(),
+  examples,
 );
 
 Object.defineProperty(window, "mage", { value: api, writable: false, configurable: false });

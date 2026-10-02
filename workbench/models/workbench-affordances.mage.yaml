@@ -36,6 +36,10 @@ entities:
     type: interface
     label: Machine interface (window.mage)
 
+  service.examples-load:
+    type: application-service
+    label: "examples.load"
+
   service.transactions-apply:
     type: application-service
     label: "transactions.apply"
@@ -64,6 +68,10 @@ entities:
     type: application-service
     label: "workspace.openHypothesis"
 
+  service.workspace-provenance:
+    type: application-service
+    label: "workspace.provenance"
+
   service.workspace-query:
     type: application-service
     label: "workspace.query"
@@ -86,7 +94,14 @@ entities:
 
   import:
     type: semantic-capability
-    label: "Open a .mage.yaml model system."
+    label: "Open a .mage.yaml model system, or start an empty one."
+    properties:
+      human: wired
+      machine: wired
+
+  load-example:
+    type: semantic-capability
+    label: "Load a shipped example, as an ordinary editable workspace."
     properties:
       human: wired
       machine: wired
@@ -203,6 +218,13 @@ entities:
       human: wired
       machine: wired
 
+  inspect-provenance:
+    type: semantic-capability
+    label: "Read where each object came from, and what its author was asked to preserve."
+    properties:
+      human: wired
+      machine: wired
+
   create-hypothesis:
     type: semantic-capability
     label: "Open a what-if branch through the same validated transaction path as any edit."
@@ -238,6 +260,7 @@ models:
     entities:
       - human-interface
       - machine-interface
+      - service.examples-load
       - service.transactions-apply
       - service.validator-validate
       - service.workspace-applyHypothesis
@@ -245,12 +268,14 @@ models:
       - service.workspace-export
       - service.workspace-load
       - service.workspace-openHypothesis
+      - service.workspace-provenance
       - service.workspace-query
       - service.workspace-redo
       - service.workspace-runSavedQueries
       - service.workspace-state
       - service.workspace-undo
       - import
+      - load-example
       - export
       - inspect
       - validate
@@ -267,6 +292,7 @@ models:
       - create-model
       - delete-model
       - add-note
+      - inspect-provenance
       - create-hypothesis
       - commit-hypothesis
       - discard-hypothesis
@@ -274,6 +300,9 @@ models:
       - { from: import, to: human-interface, type: afforded-by }
       - { from: import, to: machine-interface, type: afforded-by }
       - { from: import, to: service.workspace-load, type: implemented-by }
+      - { from: load-example, to: human-interface, type: afforded-by }
+      - { from: load-example, to: machine-interface, type: afforded-by }
+      - { from: load-example, to: service.examples-load, type: implemented-by }
       - { from: export, to: human-interface, type: afforded-by }
       - { from: export, to: machine-interface, type: afforded-by }
       - { from: export, to: service.workspace-export, type: implemented-by }
@@ -322,6 +351,9 @@ models:
       - { from: add-note, to: human-interface, type: afforded-by }
       - { from: add-note, to: machine-interface, type: afforded-by }
       - { from: add-note, to: service.transactions-apply, type: implemented-by }
+      - { from: inspect-provenance, to: human-interface, type: afforded-by }
+      - { from: inspect-provenance, to: machine-interface, type: afforded-by }
+      - { from: inspect-provenance, to: service.workspace-provenance, type: implemented-by }
       - { from: create-hypothesis, to: human-interface, type: afforded-by }
       - { from: create-hypothesis, to: machine-interface, type: afforded-by }
       - { from: create-hypothesis, to: service.workspace-openHypothesis, type: implemented-by }
