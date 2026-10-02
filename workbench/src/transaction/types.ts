@@ -1,0 +1,121 @@
+/**
+ * The transaction vocabulary — a typed mirror of `mage-transaction.schema.json`.
+ *
+ * **Ids are immutable (V2), so there is no rename op** and this union deliberately has no shape for
+ * one. `set-label` changes the human-readable label; changing identity is `delete-entity` plus
+ * `add-entity`, which makes the consequences — every relation and model list that referenced the
+ * old id — visible in the diff instead of silently rewritten.
+ *
+ * Optionals are written `?: T | undefined` rather than `?: T` because `exactOptionalPropertyTypes`
+ * is on: the parser builds these objects from loosely-typed input and needs to be able to assign a
+ * missing field without a conditional spread at every site.
+ */
+import type { Finding, Scalar } from "../ir/types.ts";
+import type { CanonicalSystem } from "../ir/types.ts";
+import type { MageDocument } from "../yaml/document.ts";
+
+export type Operation =
+  | { readonly op: "set-label"; readonly id: string; readonly value: string }
+  | {
+      readonly op: "set-property"; readonly id: string; readonly name: string;
+      readonly value?: Scalar | undefined; readonly domain?: string | undefined;
+      readonly unset?: true | undefined;
+    }
+  | {
+      readonly op: "add-entity"; readonly id: string; readonly type?: string | undefined;
+      readonly label?: string | undefined; readonly contains?: readonly string[] | undefined;
+    }
+  | { readonly op: "delete-entity"; readonly id: string; readonly cascade?: boolean | undefined }
+  | { readonly op: "add-state"; readonly machine: string; readonly state: string; readonly label?: string | undefined }
+  | {
+      readonly op: "delete-state"; readonly machine: string; readonly state: string;
+      readonly cascade?: boolean | undefined;
+    }
+  | {
+      readonly op: "add-transition"; readonly machine: string; readonly from: string; readonly to: string;
+      readonly label?: string | undefined; readonly sync?: string | undefined;
+      readonly requires?: Readonly<Record<string, unknown>> | undefined;
+      readonly effects?: Readonly<Record<string, string>> | undefined;
+    }
+  | {
+      readonly op: "delete-transition"; readonly machine: string; readonly index?: number | undefined;
+      readonly from?: string | undefined; readonly to?: string | undefined; readonly sync?: string | undefined;
+    }
+  | {
+      readonly op: "add-relation"; readonly model: string; readonly from: string; readonly to: string;
+      readonly type: string; readonly id?: string | undefined; readonly label?: string | undefined;
+    }
+  | {
+      readonly op: "delete-relation"; readonly model: string; readonly id?: string | undefined;
+      readonly from?: string | undefined; readonly to?: string | undefined; readonly type?: string | undefined;
+    }
+  | {
+      readonly op: "set-purpose"; readonly scope: "model" | "machine"; readonly id: string;
+      readonly question?: string | undefined; readonly represents?: readonly string[] | undefined;
+      readonly omits?: readonly string[] | undefined;
+    }
+  | { readonly op: "save-query"; readonly id: string; readonly query: Readonly<Record<string, unknown>> }
+  | { readonly op: "delete-query"; readonly id: string };
+
+export type OpName = Operation["op"];
+
+export interface Transaction {
+  /** Hash of the canonical IR these ops were computed against. Never a file hash. */
+  readonly base: string;
+  /** `main` is authoritative; any other name is a hypothesis branch. */
+  readonly target: string;
+  readonly rationale: string | null;
+  readonly operations: readonly Operation[];
+}
+
+// ----------------------------------------------------------------------------------------------
+// Results
+// ----------------------------------------------------------------------------------------------
+
+/**
+ * Why a transaction did not commit. One case per stage of the fixed pipeline, so a caller can tell
+ * "your premise is stale" from "your op is impossible" from "the result would be an invalid model"
+ * — three very different things for an agent to do next.
+ */
+export type RejectionKind =
+  | "malformed"          // the transaction object itself does not conform
+  | "base-mismatch"      // computed against a system that is no longer current
+  | "operation-failed"   // an op could not apply (missing target, ambiguous match, blocked delete)
+  | "validation-failed"; // the resulting system violates the semantic rules
+
+export interface Rejection {
+  readonly kind: RejectionKind;
+  /** Human-facing sentence. Its structured twin is `kind` + `where` + `findings` (FR-A11Y-2). */
+  readonly message: string;
+  /** `operations[3]` / `transaction.base` / null. */
+  readonly where: string | null;
+  /** Rule-tagged findings, same shape and ids the validator and `validate.py` use. */
+  readonly findings: readonly Finding[];
+}
+
+/** A committed state. The history is a stack of THESE, never of inverse operations. */
+export interface Revision {
+  readonly document: MageDocument;
+  readonly system: CanonicalSystem;
+  readonly hash: string;
+  readonly rationale: string | null;
+  /** Ops that produced this revision from its predecessor; empty for the loaded baseline. */
+  readonly operations: readonly Operation[];
+}
+
+export type TransactionOutcome = "committed" | "rejected";
+
+/**
+ * There is no boolean here either. `outcome` names what happened, `rejection` carries why, and
+ * `systemHash` is the hash of the system that is current NOW — which equals `baseHash` on every
+ * rejection, because a rejected transaction leaves the system byte-identical.
+ */
+export interface TransactionResult {
+  readonly outcome: TransactionOutcome;
+  readonly revision: Revision | null;
+  readonly rejection: Rejection | null;
+  /** Hash of the system the engine held when the transaction arrived. */
+  readonly baseHash: string;
+  /** Hash of the system the engine holds now. Unchanged from `baseHash` iff rejected. */
+  readonly systemHash: string;
+}
