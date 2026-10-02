@@ -73,6 +73,33 @@ UNIT_DIMENSIONS = {u: d for d in DIMENSION_IDS for u in DIMENSIONS[d]["units"]}
 
 TARGET_KINDS = ("transition", "relation", "entity", "state", "parameter", "model")
 
+# Kinds an accounting rule has an opinion about: the ones that occur INSIDE an execution or a
+# configuration. `model` addresses a whole model, so it is a declared TOTAL that a requirement is
+# compared against rather than an occurrence something accumulates; `parameter` resolves to nothing
+# (V27). Mirrors src/ir/types.ts ACCOUNTABLE_TARGET_KINDS / AGGREGATE_TARGET_KIND.
+ACCOUNTABLE_TARGET_KINDS = ("transition", "relation", "entity", "state")
+AGGREGATE_TARGET_KIND = "model"
+
+# The declared accounting model (SEMANTICS.md §5.3). Mirrors src/ir/types.ts.
+#
+# A metric is not a dimension: the ruling writes `accounting.latency` over quantities whose dimension
+# is `duration`, because `latency` names the ANALYSIS and `duration` the unit algebra. Membership is
+# DERIVED -- a metric is path-aggregated exactly when its dimension's scope is `execution` -- and
+# test/quantities.test.ts walks DIMENSIONS to assert the two agree.
+ACCOUNTED_METRICS = {"latency": "duration", "cost": "cost"}
+ACCOUNTED_METRIC_IDS = ("latency", "cost")
+
+# Both vocabularies are CLOSED at one member for v0.1, and closed is the point: adding `transitions`
+# accounting, or a second residency, is then a deliberate act. The ruling rejected a permissive `all`
+# basis because "double counting then becomes an authoring problem with no principled answer", and a
+# permissive vocabulary cannot be narrowed later without breaking every model that relied on it.
+ACCOUNTING_BASES = ("entities",)
+BASIS_TARGET_KINDS = {"entities": ("entity",)}
+RESIDENCIES = ("resident",)
+
+# The only key a `when` block carries in v0.1.
+WHEN_KEYS = frozenset({"state"})
+
 METRIC_NAMESPACE = "metrics"
 METRIC_NAMES = ("state_count", "transition_count", "entity_count", "relation_count")
 
@@ -435,8 +462,8 @@ def check_meaning(doc: dict, f: Findings, verbose: bool = True) -> None:
                       f"'{g.get('relation')}' is UNLICENSED by design -- the engine must return "
                       f"outcome=unlicensed with a refusal, not an answer.")
 
-    # V27-V31 -- quantities. Last, and through this one entry point so every caller gets them; the
-    # pass stays a separate function because it has its own subject and its own tests.
+    # V27-V31, V35-V37 -- quantities. Last, and through this one entry point so every caller gets
+    # them; the pass stays a separate function because it has its own subject and its own tests.
     check_quantities(doc, f)
 
     # V24 -- omits is checked against the model's real vocabulary, not merely asserted.
@@ -451,11 +478,12 @@ def check_meaning(doc: dict, f: Findings, verbose: bool = True) -> None:
 
 
 # ---------------------------------------------------------------------------------------------
-# V27-V31 -- quantities. Mirrors src/validator/rules.ts checkQuantities.
+# V27-V31, V35-V37 -- quantities. Mirrors src/validator/rules.ts checkQuantities.
 #
-# Five subjects, one each: the references resolve (V27), the dimension and the literals are readable
-# (V28), the magnitudes are in bounds (V29), the dimensions agree (V30), and the reserved `metrics`
-# namespace is not shadowed (V31).
+# Eight subjects, one each: the references resolve (V27), the dimension and the literals are readable
+# (V28), the magnitudes are in bounds (V29), the dimensions agree (V30), the reserved `metrics`
+# namespace is not shadowed (V31), the accounting basis is declared (V35), each quantity contributes
+# through that basis (V36), and a configuration-scoped quantity declares when it is charged (V37).
 # ---------------------------------------------------------------------------------------------
 
 
@@ -568,6 +596,33 @@ def _target(raw: object) -> tuple[str, str | None, str]:
     return text, head if head in TARGET_KINDS else None, text[colon + 1:].strip()
 
 
+def _state_fault(doc: dict, subject: str, ref: str, qualify_prefix: str) -> str | None:
+    """Where a state reference points, or the reason it points nowhere.
+
+    ONE resolver for both of a quantity's state references -- its `target: state:...` and its
+    `when: { state: ... }`. They are the same question, so a second resolver would be two rules
+    drifting apart: the bare-name ambiguity refusal would be fixed in one and not the other.
+    """
+    machines = doc.get("machines") or {}
+    dot = ref.rfind(".")
+    if 0 < dot < len(ref) - 1:
+        head, name = ref[:dot], ref[dot + 1:]
+        if head not in machines:
+            return f"{subject}: '{head}' is not a declared machine."
+        states = _ids_of((machines[head] or {}).get("states"))
+        return None if name in states else f"{subject}: '{head}' declares no state '{name}'."
+    # A bare state name resolves only when unambiguous, which is how src/engine/refs.ts treats a
+    # bare variable: refuse the ambiguity rather than pick a machine.
+    owners = [mid for mid, m in machines.items()
+              if isinstance(m, dict) and ref in _ids_of(m.get("states"))]
+    if len(owners) == 1:
+        return None
+    if not owners:
+        return f"{subject}: no machine declares a state '{ref}'."
+    return (f"{subject}: {len(owners)} machines declare a state '{ref}'. Qualify it as "
+            f"{qualify_prefix}<machine>.{ref}.")
+
+
 def _target_fault(doc: dict, target: tuple[str, str | None, str]) -> str | None:
     """Where a quantity's target points, or the reason it points nowhere (V27)."""
     raw, kind, ref = target
@@ -588,23 +643,7 @@ def _target_fault(doc: dict, target: tuple[str, str | None, str]) -> str | None:
         return (f"target '{raw}': no relation declares id '{ref}'. A quantity addresses a relation "
                 f"through its own 'id:', which an unidentified relation does not have.")
     if kind == "state":
-        dot = ref.rfind(".")
-        if 0 < dot < len(ref) - 1:
-            head, name = ref[:dot], ref[dot + 1:]
-            if head not in machines:
-                return f"target '{raw}': '{head}' is not a declared machine."
-            states = _ids_of((machines[head] or {}).get("states"))
-            return None if name in states else f"target '{raw}': '{head}' declares no state '{name}'."
-        # A bare state name resolves only when unambiguous, which is how src/engine/refs.ts treats a
-        # bare variable: refuse the ambiguity rather than pick a machine.
-        owners = [mid for mid, m in machines.items()
-                  if isinstance(m, dict) and ref in _ids_of(m.get("states"))]
-        if len(owners) == 1:
-            return None
-        if not owners:
-            return f"target '{raw}': no machine declares a state '{ref}'."
-        return (f"target '{raw}': {len(owners)} machines declare a state '{ref}'. Qualify it as "
-                f"state:<machine>.{ref}.")
+        return _state_fault(doc, f"target '{raw}'", ref, "state:")
     if kind == "transition":
         # Transitions carry no id, and label: carries no semantics (V1) -- addressing one by label
         # would make a documentation string load-bearing. Machine plus index is the stable handle,
@@ -784,6 +823,222 @@ def _check_expression(doc: dict, f: Findings, qid: str, dimension: str, source: 
               f"expression '{source}' has dimension {first}, but the quantity declares {dimension}.")
 
 
+# ---------------------------------------------------------------------------------------------
+# V35-V37 -- the declared accounting model. Mirrors src/validator/rules.ts.
+#
+# One principle runs through all three: a quantitative annotation that cannot participate
+# unambiguously in the accounting semantics of its metric is INVALID, rather than silently inert. If
+# MAGE accepts a quantity as meaningful there must be a defined route from it to the analyses its
+# dimension is intended for; otherwise the type system claims more than the semantics provide.
+#
+# Nothing here evaluates anything. Participation is a property of a quantity's DECLARATION -- its
+# dimension, its target kind, its residency -- so these rules read declared data and never sum a
+# trace, which is what keeps them in the validator and out of the analysis layer.
+# ---------------------------------------------------------------------------------------------
+
+
+def _metric_for(dimension: str) -> str | None:
+    """The metric that accounts for a dimension, or None when it is not path-aggregated."""
+    return next((m for m in ACCOUNTED_METRIC_IDS if ACCOUNTED_METRICS[m] == dimension), None)
+
+
+def _is_accountable_target(kind: str | None) -> bool:
+    """True when an accounting rule has an opinion about this target.
+
+    False for `model:` (an aggregate, not an occurrence) and for every kind that does not resolve,
+    where V27 has already named the real defect and a second finding would send the author to the
+    wrong line.
+    """
+    return kind in ACCOUNTABLE_TARGET_KINDS
+
+
+def _declared_basis(doc: dict, metric: str) -> str | None:
+    """The readable basis declared for a metric. None when absent OR unreadable -- V35 owns both."""
+    entry = (doc.get("accounting") or {}).get(metric)
+    basis = entry.get("basis") if isinstance(entry, dict) else None
+    basis = basis.strip() if isinstance(basis, str) else ""
+    return basis if basis in ACCOUNTING_BASES else None
+
+
+def _residency_raw(spec: dict) -> str | None:
+    """`residency:` as written, or None when the key is ABSENT.
+
+    Presence and readability are separate facts: `residency: transient` is a declaration the author
+    made and got wrong, which is a different V37 finding from declaring nothing.
+    """
+    if "residency" not in spec:
+        return None
+    value = spec["residency"]
+    return value.strip() if isinstance(value, str) else ""
+
+
+def _when(spec: dict) -> tuple[str | None, list[str]] | None:
+    """(state, unexpected_keys), or None when the key is absent. Mirrors canonicalize.ts."""
+    if "when" not in spec:
+        return None
+    block = spec["when"] if isinstance(spec["when"], dict) else {}
+    state = block.get("state")
+    state = state.strip() if isinstance(state, str) else ""
+    return (state or None), sorted(str(k) for k in block if str(k) not in WHEN_KEYS)
+
+
+def check_accounting(doc: dict, f: Findings) -> None:
+    """V35 -- each path-aggregated metric with annotations declares exactly one accounting basis.
+
+    The requirement is triggered by the PRESENCE of a quantity the basis would charge, not declared
+    unconditionally: a system with no duration annotation has nothing that could over-claim, and a
+    mandatory declaration about nothing is noise rather than a control.
+    """
+    declared = doc.get("accounting") or {}
+    for metric, spec in declared.items():
+        spec = spec if isinstance(spec, dict) else {}
+        where = f"accounting.{metric}"
+        if metric not in ACCOUNTED_METRIC_IDS:
+            tail = ""
+            if metric in DIMENSION_IDS:
+                tail = (f" '{metric}' names a DIMENSION, and a metric is not a dimension -- only the "
+                        f"execution-scoped dimensions are summed along a path. A {metric} quantity "
+                        f"declares where it is charged with 'residency:' or 'when:' instead (V37).")
+            f.add("V35", where,
+                  f"'{metric}' is not a path-aggregated metric. Declared: "
+                  f"{', '.join(ACCOUNTED_METRIC_IDS)}.{tail}")
+            continue
+        basis = spec.get("basis")
+        basis = basis.strip() if isinstance(basis, str) else ""
+        if basis not in ACCOUNTING_BASES:
+            f.add("V35", where,
+                  f"basis '{basis}' is not one of {', '.join(ACCOUNTING_BASES)}. The vocabulary is "
+                  f"closed at one member for v0.1, so adding transition or relation accounting later "
+                  f"is a deliberate act rather than a permissive union that cannot be narrowed again.")
+
+    for metric in ACCOUNTED_METRIC_IDS:
+        if metric in declared:
+            continue
+        dimension = ACCOUNTED_METRICS[metric]
+        subjects = sorted(
+            qid for qid, spec in (doc.get("quantities") or {}).items()
+            if isinstance(spec, dict) and spec.get("dimension") == dimension
+            and _is_accountable_target(_target(spec.get("target"))[1]))
+        if not subjects:
+            continue
+        one = len(subjects) == 1
+        f.add("V35", "accounting",
+              f"{len(subjects)} {dimension} quantit{'y' if one else 'ies'} "
+              f"({', '.join(subjects)}) {'is' if one else 'are'} annotated, but no accounting basis "
+              f"is declared for '{metric}'. Write "
+              f"'accounting: {{ {metric}: {{ basis: entities }} }}'. Until it is declared those "
+              f"quantities reach no analysis, and a quantity that validates and then reaches nothing "
+              f"is the type system claiming more than the semantics provide.")
+
+
+def check_participation(doc: dict, f: Findings, qid: str, spec: dict, dimension: str) -> None:
+    """V36 -- a quantity contributes to its metric only through the declared basis.
+
+    Why this is not merely tidier: summing every kind indiscriminately "makes the meaning of a model
+    depend on whether the author happened to represent the same operation in multiple linked models.
+    Shared identity should let us connect purposeful models, not cause their annotations to be
+    accumulated." A retry is charged twice because the behavioral trace visits the operation twice,
+    never because a state duration and a transition duration were added up.
+    """
+    metric = _metric_for(dimension)
+    raw, kind, _ref = _target(spec.get("target"))
+    if metric is None or not _is_accountable_target(kind):
+        return
+    basis = _declared_basis(doc, metric)
+    # V35 already said the declaration is missing or unreadable; a participation complaint on top of
+    # it would describe a basis nobody chose.
+    if basis is None:
+        return
+    charged = BASIS_TARGET_KINDS[basis]
+    if kind in charged:
+        return
+    f.add("V36", f"quantities.{qid}",
+          f"target '{raw}' is a {kind}, and '{metric}' declares basis '{basis}', which charges only "
+          f"{', '.join(k + ':' for k in charged)} targets. An execution's {metric} is the sum over "
+          f"each occurrence of an accounted entity along it, so this annotation contributes to "
+          f"nothing -- move it to the entity whose occurrence it costs, or declare a basis that "
+          f"accounts for {kind} targets.")
+
+
+def check_residency(doc: dict, f: Findings, qid: str, spec: dict, dimension: str) -> None:
+    """V37 -- a configuration-scoped quantity declares exactly one of `residency:` or `when:`.
+
+    memory(c) is the sum of resident quantities plus the sum of those whose behavioral thing is
+    active in c. Both summands are keyed on a declaration, and the ruling refused to supply a default
+    for either: "I would not say 'idle service memory stays resident' or 'idle service memory
+    disappears.' Neither is something MAGE can infer from 'service.'" A memory quantity declaring
+    neither enters no summand, so it is invalid rather than inert.
+
+    The last stage resolves `when.state` through the SAME resolver as a `state:` target and reports
+    it as V27 -- a reference that does not resolve is V27's subject whichever field carries it.
+    """
+    where = f"quantities.{qid}"
+    scope = DIMENSIONS[dimension]["scope"]
+    residency = _residency_raw(spec)
+    when = _when(spec)
+    both = ("Declare exactly one of 'residency: resident' or "
+            "'when: { state: <machine>.<state> }'.")
+
+    if scope != "configuration":
+        if residency is not None or when is not None:
+            f.add("V37", where,
+                  f"declares residency, but {dimension} is {scope}-scoped. Residency says which "
+                  f"configurations a quantity is charged in, which is a question only a "
+                  f"configuration-scoped dimension asks -- a {dimension} is aggregated along an "
+                  f"execution and its accounting is the declared basis (V35).")
+        return
+
+    raw, kind, _ref = _target(spec.get("target"))
+    if kind == AGGREGATE_TARGET_KIND:
+        if residency is not None or when is not None:
+            f.add("V37", where,
+                  f"target '{raw}' addresses a whole model, so this is a declared TOTAL rather than a "
+                  f"charge on one entity. memory(c) sums over entities; a model-level total is "
+                  f"compared against it, never a summand of it. Drop the residency declaration, or "
+                  f"target the entity it charges.")
+        return
+    # An unresolvable target leaves the requirement itself undecidable: whether a residency is wanted
+    # depends on what the quantity annotates. V27 has named that, and it is the thing to fix first.
+    if not _is_accountable_target(kind):
+        return
+
+    if residency is not None and when is not None:
+        f.add("V37", where,
+              f"declares both 'residency: {residency}' and a 'when:' clause. They are the two "
+              f"summands of memory(c) and a quantity enters one of them: resident means charged in "
+              f"every configuration where the entity exists, 'when' means charged exactly while the "
+              f"named state is active. {both}")
+        return
+    if residency is None and when is None:
+        f.add("V37", where,
+              f"is a {dimension} quantity with no declared residency, so it enters neither summand of "
+              f"memory(c) and no configuration charges it. Residency is not inferred from the kind of "
+              f"thing annotated -- \"idle service memory stays resident\" and \"idle service memory "
+              f"disappears\" are both guesses MAGE refuses to make. {both}")
+        return
+    if residency is not None and residency not in RESIDENCIES:
+        f.add("V37", where,
+              f"residency '{residency}' is not one of {', '.join(RESIDENCIES)}. The vocabulary is "
+              f"closed at one member for v0.1; a quantity charged only while something is active says "
+              f"so with 'when:' instead.")
+        return
+    if when is not None and when[0] is None:
+        stray = ""
+        if when[1]:
+            stray = f" It carries {', '.join(repr(k) for k in when[1])} instead."
+        f.add("V37", where,
+              f"the 'when:' clause declares no 'state:', so nothing identifies the behavioral thing "
+              f"whose activation charges this quantity -- and activation is never inferred.{stray} "
+              f"Write 'when: {{ state: <machine>.<state> }}'.")
+        return
+    if when is not None and when[0] is not None:
+        fault = _state_fault(doc, f"when.state '{when[0]}'", when[0], "")
+        # Reported at `.when` rather than at the quantity, so a broken target and a broken `when` are
+        # two distinguishable V27 findings instead of two lines about the same place.
+        if fault is not None:
+            f.add("V27", f"{where}.when", fault)
+
+
 def check_quantities(doc: dict, f: Findings) -> None:
     machines = doc.get("machines") or {}
 
@@ -807,6 +1062,9 @@ def check_quantities(doc: dict, f: Findings) -> None:
         reserve(f"machines.{mid}.derived", m.get("derived") or {})
         reserve(f"machines.{mid}.states", m.get("states") or {})
 
+    # V35 -- the accounting declaration itself, before any quantity is read against it.
+    check_accounting(doc, f)
+
     for qid, spec in (doc.get("quantities") or {}).items():
         spec = spec if isinstance(spec, dict) else {}
         where = f"quantities.{qid}"
@@ -824,6 +1082,11 @@ def check_quantities(doc: dict, f: Findings) -> None:
                   f"the quantity's type, so nothing else about it can be checked without one.")
             continue
         dimension = declared
+
+        # V36 / V37 -- can this annotation reach the analysis its dimension is for? Both read the
+        # DECLARATION only, so neither needs a trace or a sum.
+        check_participation(doc, f, qid, spec, dimension)
+        check_residency(doc, f, qid, spec, dimension)
 
         def literal(mag: tuple, part: str) -> bool:
             v28 = _fault_message(mag, dimension, part)
@@ -1161,6 +1424,24 @@ def self_test() -> int:
         # V31: a user entity named `metrics` would shadow the reserved namespace, and §10's
         # distinction between a fact FROM the model and one ABOUT the system stops being visible.
         ("V31", {**base, "entities": {"metrics": {}}}),
+        # V35: a duration annotation with no declared accounting basis reaches no analysis, and the
+        # governing principle makes that invalid rather than inert.
+        ("V35", {**base, "entities": {"parse": {}},
+                 "quantities": {"q": {"target": "entity:parse", "dimension": "duration",
+                                      "value": "50 ms"}}}),
+        # V36: entity accounting charges entity targets. A duration on a transition contributes to
+        # nothing, and summing it anyway would make meaning depend on representational accident.
+        ("V36", {**base, "entities": {"parse": {}},
+                 "accounting": {"latency": {"basis": "entities"}},
+                 "machines": {"document": {"initial": "a", "states": {"a": None, "b": None},
+                                           "transitions": [{"from": "a", "to": "b"}]}},
+                 "quantities": {"q": {"target": "transition:document#0", "dimension": "duration",
+                                      "value": "50 ms"}}}),
+        # V37: a memory quantity with neither residency nor when enters neither summand of memory(c).
+        # Residency is declared, never inferred from the kind of thing annotated.
+        ("V37", {**base, "entities": {"cache": {}},
+                 "quantities": {"q": {"target": "entity:cache", "dimension": "memory",
+                                      "value": "128 MB"}}}),
     ]
     failures = 0
     for expect, doc in cases:

@@ -8,7 +8,7 @@ This is the authoritative semantics. The JSON Schemas beside it
 [`mage-transaction.schema.json`](mage-transaction.schema.json)) constrain *shape*; this document
 fixes *meaning*. Where a question is about what a model asserts, this file decides it.
 
-Validation rules are numbered **V1…V34** so implementations, tests, and error messages can cite them.
+Validation rules are numbered **V1…V37** so implementations, tests, and error messages can cite them.
 Numbers are append-only: a new rule takes the next free one and lands in the section that owns its
 subject, so the sequence stays stable rather than sorted.
 
@@ -370,14 +370,23 @@ A quantity is evaluated **over** a configuration, a transition, a path or the mo
 is never a coordinate of a configuration. So
 
 ```yaml
+accounting:
+  latency: { basis: entities }
+
 quantities:
-  parse-latency:   { target: transition:document#0,   dimension: duration, value: 20 ms }
-  gateway-latency: { target: relation:remediation-gateway, dimension: duration, range: [100 ms, 500 ms] }
-  cache-memory:    { target: entity:cache,            dimension: memory,   value: 128 MB }
-  hit-rate:        { target: entity:cache,            dimension: ratio,    value: 0.80 }
+  parse-latency:   { target: entity:parser, dimension: duration, value: 20 ms }
+  gateway-latency: { target: entity:gateway, dimension: duration, range: [100 ms, 500 ms] }
+  cache-memory:    { target: entity:cache,  dimension: memory,   value: 128 MB, residency: resident }
+  hit-rate:        { target: entity:cache,  dimension: ratio,    value: 0.80 }
 ```
 
-leaves the reachable configuration space exactly the size it was. This is the hard boundary of the
+leaves the reachable configuration space exactly the size it was.
+
+⚠️ This illustration changed with the accounting ruling (§5.3) and the change is worth noticing,
+because it is the clearest demonstration of what the ruling costs. The pre-ruling version annotated
+latency on `transition:document#0` and on `relation:remediation-gateway`; under `basis: entities`
+both are findings (V36), and a `memory` quantity with no `residency` is a finding too (V37). The
+earlier spelling is not merely discouraged now — it does not validate. This is the hard boundary of the
 feature, and it is the one place where a convenience shortcut would be unrecoverable: a real-valued
 annotation in the state vector makes the space infinite while the walk keeps reporting
 `Coverage.kind: "exhaustive"`, and that flag licenses the strongest claims the workbench makes.
@@ -415,6 +424,12 @@ two scopes; the IR carries a third, `structural`, for `ratio` and `count`. A hit
 along neither axis — filing it under `execution` would license *summing hit rates along a path*,
 which is exactly the error a typed scope exists to refuse.
 
+Scope now decides more than aggregation: it selects which accounting declaration a quantity owes
+(§5.3). An execution-scoped dimension is accounted by a declared **basis**; a configuration-scoped
+one by a declared **residency**. That is why the metric set and the residency requirement are both
+read off this table rather than listed by hand — a dimension that changes scope changes what its
+annotations must declare, and deriving it means the rules change with it.
+
 #### Addressing
 
 Every quantity targets `<kind>:<ref>` over a closed kind set: `transition:`, `relation:`, `entity:`,
@@ -431,6 +446,8 @@ Every quantity targets `<kind>:<ref>` over a closed kind set: `transition:`, `re
   machine, matching how a bare variable reference resolves in §4.1.
 - `parameter:` is **reserved**. v0.1 represents no parameters, so the finding says so rather than
   reporting a missing declaration the author cannot write — the treatment V15 gives `ref` variables.
+- `model:` addresses the whole model rather than anything inside it, which makes it the one kind no
+  accounting rule charges (§5.3). A `model:` quantity is a declared total to compare against.
 
 #### Model metrics live in a reserved namespace
 
@@ -455,13 +472,15 @@ Expressions are **dimensionally typed, never evaluated**. `ratio` and `count` co
 dimensionless under arithmetic — a proportion and a tally are both pure numbers — which is what makes
 `metrics.state_count * 2 ms` a duration without making `ms * ms` legal.
 
-#### The five rules
+#### The rules
 
 - **V27 — every reference a quantity makes resolves.** A quantity whose `target` does not exist is an
-  error, and so is an expression naming an undeclared quantity or a `metrics.*` value that is not one
-  of the four. No dangling annotations (ruling §9). The failure is V26's one layer up: an annotation
-  pointing at a deleted transition is not invalid, it is *wrong*, and nothing reports it unless a
-  rule does.
+  error, and so is an expression naming an undeclared quantity, a `metrics.*` value that is not one
+  of the four, or a `when.state` naming a state no machine declares (§5.3). No dangling annotations
+  (ruling §9). The failure is V26's one layer up: an annotation pointing at a deleted transition is
+  not invalid, it is *wrong*, and nothing reports it unless a rule does. The `target: state:…` and
+  `when: { state: … }` references go through ONE resolver, so the bare-name ambiguity refusal cannot
+  be fixed in one and forgotten in the other.
 - **V28 — the dimension and every literal are readable.** The dimension MUST be one of the five. A
   literal MUST carry a unit of that dimension where the dimension has units, MUST NOT where it does
   not, and MUST be written as a plain decimal. The spelling restriction is not fussiness: measured,
@@ -481,28 +500,147 @@ dimensionless under arithmetic — a proportion and a tally are both pure number
 - **V31 — `metrics` is reserved.** No entity, model, machine, state, variable, derived value, event,
   relation type, domain or quantity may be named `metrics`. A shadow would make `metrics.state_count`
   read as that object's member, and the §10 distinction would stop being visible on the page.
+- **V35, V36, V37 — the declared accounting model.** §5.3, below. They are the rules that make a
+  validated-but-unreachable quantity impossible.
 
 Each rule declines once an earlier one has spoken about the same object, which is V26's discipline
 applied inside this family. A quantity with an unreadable dimension draws no magnitude complaints —
 every one of them would be a consequence. An expression with an unresolvable operand draws no
 dimension complaint, because a guessed dimension mismatch sends the author hunting for the wrong
-defect.
+defect. A quantity whose `target` does not resolve draws no accounting complaint either, because
+which accounting a quantity needs depends on what it annotates.
+
+### 5.3 The accounting model is declared, and MAGE refuses to guess
+
+> A quantitative annotation that cannot participate unambiguously in the accounting semantics of its
+> metric is **invalid**, rather than silently inert. — ruling, 2026-10-02
+
+This is the governing principle of the whole quantity layer, and it is stronger than tidiness. If
+MAGE accepts a quantity as meaningful there must be a defined route from that quantity to the
+analyses its dimension is intended for; otherwise the type system is claiming more than the semantics
+provide. A quantity that typechecks, validates, and then reaches nothing is the worst available
+outcome, because nothing looks wrong. V35, V36 and V37 exist to make that state unreachable.
+
+Two declarations do the work, and both are **authored** rather than inferred.
+
+#### Path aggregation declares a basis (V35, V36)
+
+```yaml
+accounting:
+  latency:
+    basis: entities
+```
+
+**V35 — each path-aggregated metric with annotations declares one accounting basis.** A *metric* is
+not a dimension: `latency` names the analysis, `duration` names the unit algebra. The path-aggregated
+metrics are exactly those whose dimension is execution-scoped — `latency` (duration) and `cost` — and
+that membership is derived from the dimension table rather than listed by hand. The basis vocabulary
+is `entities`, a **closed set of one**: transition and relation accounting can be added deliberately
+later, and a permissive union cannot be narrowed again without breaking every model that relied on
+it. The ruling rejected an `all` basis for exactly that reason — with it, *"double counting then
+becomes an authoring problem with no principled answer."* The requirement is triggered by the
+presence of a quantity the basis would charge; a system with no duration annotation has nothing that
+could over-claim, so a mandatory declaration about nothing would be noise rather than a control.
+
+**V36 — a quantity contributes to its metric only through the declared basis.** An execution's
+latency is the sum of the latency assigned to each **occurrence** of an accounted entity along the
+execution. Latency annotations on other semantic kinds SHALL NOT implicitly contribute, and are
+rejected when associated with that metric — so under `basis: entities`, a `duration` on a
+`transition:`, `relation:` or `state:` target is a finding.
+
+Why this is not merely arithmetic hygiene: indiscriminate summing *"makes the meaning of a model
+depend on whether the author happened to represent the same operation in multiple linked models.
+Shared identity should let us connect purposeful models, not cause their annotations to be
+accumulated."* A retry is charged twice because **the behavioral trace visits that operation again**,
+never because a state duration and a transition duration were added together. The join is:
+
+```
+behavioral execution --shared identity--> performance component --> duration
+```
+
+The lifecycle model decides which stages execute and how often; the performance model decides what
+each execution costs.
+
+⚠️ `model:` is **exempt**, and that is a judgement this version makes explicitly rather than by
+omission. A `model:` quantity is a declared TOTAL — *path latency is `metrics.state_count * 2 ms`* —
+which a requirement is compared against, never accumulated per occurrence. No basis charges it, so
+nothing sums it implicitly and the governing principle is satisfied: the route from a model-level
+total to an analysis is comparison, not aggregation. Without the exemption there would be no way to
+state a model-level total at all.
+
+#### Configuration-scoped quantities declare when they are charged (V37)
+
+```yaml
+quantities:
+  # charged exactly while that behavioral state is active
+  remediation-memory:
+    target: entity:remediation
+    dimension: memory
+    value: 256 MB
+    when: { state: document.remediating }
+
+  # charged in every configuration where the entity exists
+  cache-memory:
+    target: entity:gateway-cache
+    dimension: memory
+    value: 128 MB
+    residency: resident
+```
+
+⚠️ The ruling illustrates these as a list of `{ target: remediation, quantity: memory }` entries. The
+addressing above is this version's, unchanged: `quantities` is a map, `target` carries its kind
+prefix (§5.2), and the field is `dimension`. The two declarations are the ruling's; only the
+surrounding syntax is ours.
+
+Together they give a mechanical predicate:
+
+```
+memory(c) = Σ  memory(e)  for e ∈ Resident
+          + Σ  memory(e)  for e where active(e, c)
+```
+
+**`active(e, c)` is never guessed.** The annotation identifies the behavioral thing whose activation
+licenses the charge, through shared identity or an explicit `when`.
+
+**V37 — a configuration-scoped quantity declares exactly one of `residency:` or `when:`.** Neither is
+a finding: such a quantity enters neither summand, so no configuration charges it. Both is a finding
+too, because a quantity enters one summand and accepting both would either double-charge or silently
+pick a winner. `residency` is closed at `resident`; `when.state` resolves like every other reference
+(V27). Declaring either on a quantity that is not configuration-scoped is a finding — residency says
+which *configurations* charge a quantity, which only a configuration-scoped dimension asks — and so
+is declaring either on a `model:` target, for the same reason `model:` is exempt above: `memory(c)`
+sums over entities, and a whole-model figure is compared against it rather than being a summand.
+
+The ruling's reason for refusing to infer is the part that generalizes:
+
+> I would not say "idle service memory stays resident" or "idle service memory disappears." Neither
+> is something MAGE can infer from "service." That's exactly the sort of apparently reasonable
+> implicit semantics that will bite us later.
+
+Both candidate defaults were implicit semantics dressed as a default. Making residency authored
+removes the question instead of answering it badly.
+
+**The declarations are semantic, so they enter the hash.** They decide which analyses a quantity can
+participate in, so two systems differing in them are not the same system — the contrast with
+annotation, which invariant A1 excludes from the hash entirely, is the sharpest statement of where
+the formal boundary lies. A note saying *"this cache is always resident"* cannot change a memory
+analysis; `residency: resident` must.
 
 #### What this version represents and does not compute
 
-Quantities are **represented and validated**; they are not yet evaluated. Two questions the ruling
-leaves open block the analysis layer, and both are recorded in
-[`DESIGN-quantities-261002.md`](DESIGN-quantities-261002.md) §8 rather than guessed at:
+Quantities and their accounting are **represented and validated**; they are not yet **evaluated**.
+The split is deliberate and the ruling states the order: the validation half *"is what makes an
+over-claiming quantity impossible, and it needs no decision the rulings have not already made."* It
+also needs no arithmetic, which is what keeps it in the validator — participation is a property of a
+quantity's declaration (its dimension, its target kind, its residency), exactly as a dimension is a
+property of an expression's operands rather than of their values.
 
-- **The accounting model for latency.** §8 sums transition, entity and relation latency *"according
-  to the declared accounting model"* without saying where that is declared or what the choices are.
-  Summing all three double-counts a pipeline carrying latency on both a stage and the edge into it.
-- **The predicate behind `memory(c)`.** §8 offers *retained memory of active states/entities plus
-  temporary memory of the active operation*, and says "approximately". "Active" carries the weight
-  and is undefined.
+Unbuilt, and blocked on nothing but work:
 
-A representation that is right outranks an evaluator built on a guess, because the guess would be
-baked into fixtures and then into expectations.
+- **Summing a path's latency** per occurrence along a behavioral trace, with the occurrence count
+  coming from the trace the engine already produces.
+- **Computing `memory(c)`** by the predicate above, and `peak_memory` as its maximum over reachable
+  configurations.
 
 ---
 

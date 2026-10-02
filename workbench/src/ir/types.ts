@@ -391,6 +391,110 @@ export interface QuantityTarget {
 }
 
 /**
+ * Kinds an accounting rule has an opinion about: the ones that occur INSIDE an execution or a
+ * configuration, so a basis either charges them or refuses them.
+ *
+ * `model` is excluded deliberately and `parameter` is excluded because it resolves to nothing (V27).
+ * See AGGREGATE_TARGET_KIND.
+ */
+export const ACCOUNTABLE_TARGET_KINDS: readonly TargetKind[] = ["transition", "relation", "entity", "state"];
+
+/**
+ * The kind that addresses a whole model rather than an occurrence within one.
+ *
+ * A `model:` quantity is a declared TOTAL — `path latency is metrics.state_count * 2 ms` — which a
+ * requirement is compared against. It is never accumulated per occurrence, so no basis accounts for
+ * it and V36/V37 leave it alone. Without this exemption the only way to state a model-level total
+ * would be to invent a kind for it.
+ */
+export const AGGREGATE_TARGET_KIND: TargetKind = "model";
+
+// --------------------------------------------------------------------------------------------
+// The declared accounting model (§5.3) — how a quantity reaches an analysis
+// --------------------------------------------------------------------------------------------
+
+/**
+ * How a path-aggregated metric charges its annotations.
+ *
+ * A CLOSED set of one for v0.1, and closed is the point: adding `transitions` later is then a
+ * deliberate act. A permissive union such as `all` was rejected by the ruling because "double
+ * counting then becomes an authoring problem with no principled answer" — and a permissive basis
+ * cannot be narrowed later without breaking every model that relied on it.
+ */
+export type AccountingBasis = "entities";
+
+export const ACCOUNTING_BASES: readonly AccountingBasis[] = ["entities"];
+
+/** Which target kinds a basis charges. `entities` charges one occurrence of an entity. */
+export const BASIS_TARGET_KINDS: Readonly<Record<AccountingBasis, readonly TargetKind[]>> = {
+  entities: ["entity"],
+};
+
+/**
+ * The path-aggregated metrics, and the dimension each one accounts for.
+ *
+ * A metric is not a dimension: the ruling writes `accounting.latency` over quantities whose
+ * dimension is `duration`, because `latency` names the ANALYSIS and `duration` names the unit
+ * algebra. Keeping the two vocabularies apart is what lets `cost` be a metric and a dimension
+ * without the identity being an assumption.
+ *
+ * Do not confuse this with METRIC_NAMESPACE below. `metrics.state_count` is a fact computed FROM the
+ * model (§10); an accounted metric is an analysis OVER declared quantities. Both live in the
+ * quantity layer, so the distinction is stated rather than left to the reader.
+ *
+ * The membership is DERIVED, not chosen: a metric is path-aggregated exactly when its dimension's
+ * scope is `execution`. `test/quantities.test.ts` walks DIMENSIONS and asserts the two agree, so a
+ * dimension that becomes execution-scoped without a metric fails the gate instead of silently
+ * acquiring quantities nothing accounts for.
+ */
+export type AccountedMetric = "latency" | "cost";
+
+export const ACCOUNTED_METRICS: Readonly<Record<AccountedMetric, Dimension>> = {
+  latency: "duration",
+  cost: "cost",
+};
+
+export const ACCOUNTED_METRIC_IDS: readonly AccountedMetric[] = ["latency", "cost"];
+
+/** One `accounting:` entry, as written. Both `null`s are V35's findings. */
+export interface CanonAccounting {
+  /** The metric name as written, which is the map key. */
+  readonly metric: string;
+  /** The dimension this metric accounts for; null when the name is not a path-aggregated metric. */
+  readonly dimension: Dimension | null;
+  /** The basis as written, so the finding can quote the author's own text. */
+  readonly basisRaw: string;
+  /** Null when `basisRaw` is not in the closed vocabulary. */
+  readonly basis: AccountingBasis | null;
+}
+
+/**
+ * When a configuration-scoped quantity is charged, declared and never inferred.
+ *
+ * The ruling refused both available defaults: "I would not say 'idle service memory stays resident'
+ * or 'idle service memory disappears.' Neither is something MAGE can infer from 'service.'" So
+ * residency is authored, and a memory quantity declaring neither form is INVALID rather than inert
+ * (V37) — it cannot appear in `memory(c)` under either summand.
+ *
+ * Closed at one member for the same reason as AccountingBasis.
+ */
+export type Residency = "resident";
+
+export const RESIDENCIES: readonly Residency[] = ["resident"];
+
+/** `when: { state: … }` — the behavioral thing whose activation licenses the charge. */
+export interface QuantityWhen {
+  /** The state reference as written; null when the block declares no readable `state:` (V37). */
+  readonly state: string | null;
+  /**
+   * Keys the block carries that are not `state`. Kept rather than dropped for the reason
+   * `Note.unexpectedKeys` is: a `when` that silently declares nothing charges the quantity nowhere,
+   * and nothing looks wrong.
+   */
+  readonly unexpectedKeys: readonly string[];
+}
+
+/**
  * A quantitative annotation.
  *
  * NOT in `Configuration`, and that exclusion is the hard boundary of §6: a real-valued annotation
@@ -410,6 +514,17 @@ export interface CanonQuantity {
   /** Derived from `dimension`, never authored. Null follows a null dimension. */
   readonly scope: QuantityScope | null;
   readonly value: QuantityValue;
+  /**
+   * `residency:` as written, or null when the key is ABSENT.
+   *
+   * Presence and readability are separate facts, and V37 needs both: `residency: transient` is a
+   * declaration the author made and got wrong, which is a different finding from declaring nothing.
+   */
+  readonly residencyRaw: string | null;
+  /** Null when absent OR unreadable; `residencyRaw` tells the two apart. */
+  readonly residency: Residency | null;
+  /** Null when the key is absent. A present-but-empty block is an object with a null `state`. */
+  readonly when: QuantityWhen | null;
   readonly annotation: Annotated;
 }
 
@@ -459,6 +574,14 @@ export interface CanonicalSystem {
   readonly instances: readonly MachineInstance[];
   readonly events: ReadonlyMap<string, CanonEvent>;
   readonly quantities: ReadonlyMap<string, CanonQuantity>;
+  /**
+   * The declared accounting model, keyed by metric name as written.
+   *
+   * v0.1 has exactly one quantitative model per system — the `quantities:` map — so the ruling's
+   * "declared per quantitative model" is a top-level block. When quantities are scoped to a model,
+   * this declaration moves with them.
+   */
+  readonly accounting: ReadonlyMap<string, CanonAccounting>;
   readonly queries: ReadonlyMap<string, SavedQuery>;
 }
 

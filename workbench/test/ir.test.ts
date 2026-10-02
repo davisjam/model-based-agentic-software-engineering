@@ -75,6 +75,36 @@ test("quantities canonicalize into base units, or not at all", () => {
   assert.deepEqual(bad.value.magnitude, { raw: "128 whatsits", unit: "whatsits", base: null, fault: "unit-unknown" });
 });
 
+test("a residency declaration survives canonicalization as presence AND readability", () => {
+  // Two facts, and V37 needs both: `residency: transient` is a declaration the author made and got
+  // wrong, which is a different finding from declaring nothing. Collapsing them to one nullable
+  // field would make the two indistinguishable downstream, so the IR carries the written text beside
+  // the parsed value -- the same arrangement `dimension` / `dimensionRaw` already uses.
+  const s = canonicalize({
+    mage: 1, system: { id: "t" }, entities: { cache: {} },
+    accounting: { latency: { basis: "entities" } },
+    machines: { document: { initial: "idle", states: { idle: null, busy: null }, transitions: [] } },
+    quantities: {
+      absent: { target: "entity:cache", dimension: "memory", value: "1 MB" },
+      resident: { target: "entity:cache", dimension: "memory", value: "1 MB", residency: "resident" },
+      unreadable: { target: "entity:cache", dimension: "memory", value: "1 MB", residency: "transient" },
+      active: { target: "entity:cache", dimension: "memory", value: "1 MB", when: { state: "document.busy" } },
+      empty: { target: "entity:cache", dimension: "memory", value: "1 MB", when: { configuration: "c" } },
+    },
+  });
+  const q = (id: string) => s.quantities.get(id);
+  assert.deepEqual([q("absent")?.residencyRaw, q("absent")?.residency, q("absent")?.when], [null, null, null]);
+  assert.deepEqual([q("resident")?.residencyRaw, q("resident")?.residency], ["resident", "resident"]);
+  assert.deepEqual([q("unreadable")?.residencyRaw, q("unreadable")?.residency], ["transient", null]);
+  assert.deepEqual(q("active")?.when, { state: "document.busy", unexpectedKeys: [] });
+  // A `when` block that declares nothing is PRESENT with a null state, so V37 can say the charge is
+  // declared nowhere instead of this guessing that the stray key was the state.
+  assert.deepEqual(q("empty")?.when, { state: null, unexpectedKeys: ["configuration"] });
+
+  assert.equal(s.accounting.get("latency")?.dimension, "duration");
+  assert.equal(s.accounting.get("latency")?.basis, "entities");
+});
+
 test("hash is stable across cosmetic change and moves on semantic change", () => {
   const raw = readFileSync("examples/docable.mage.yaml", "utf8");
   const base = systemHash(canonicalize(parse(raw)));
