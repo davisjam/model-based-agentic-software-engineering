@@ -23,6 +23,7 @@
     "typescript": "^5.7.0"
   },
   "dependencies": {
+    "sparqljs": "^3.7.4",
     "yaml": "^2.6.0"
   },
   "allowScripts": {
