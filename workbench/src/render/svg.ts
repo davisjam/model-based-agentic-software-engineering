@@ -23,7 +23,8 @@
 import { systemHash } from "../ir/hash.ts";
 import type { CanonicalSystem } from "../ir/types.ts";
 import { buildAccessibleScene, deriveEvidenceEmphasis } from "./accessible.ts";
-import { METRICS, layoutScene } from "./layout.ts";
+import { METRICS, defaultLayoutEngine } from "./layout.ts";
+import type { LayoutEngine } from "./layout.ts";
 import { buildScene } from "./scene.ts";
 import type {
   EmphasisAssignment,
@@ -340,15 +341,32 @@ function legendStrip(kinds: readonly EmphasisKind[], x: number, y: number): read
 // --------------------------------------------------------------------------------------------
 
 /**
+ * Injected capabilities, kept OUT of `SceneRequest` deliberately.
+ *
+ * `SceneRequest` is plain data — JSON-serializable, so it can cross a `postMessage` boundary to the
+ * Worker and be handed to `window.mage` by a CDP-attached agent. A function cannot be serialized,
+ * so the layout engine travels separately rather than contaminating the request shape.
+ */
+export interface RenderOptions {
+  /** Defaults to the built-in deterministic engine. See `LayoutEngine` for the ELK integration. */
+  readonly engine?: LayoutEngine | undefined;
+}
+
+/**
  * Render one view of one system.
  *
  * The returned `RenderedView` is indivisible on purpose: `svg` and `accessible` describe the same
  * facts, derived from the same scene, in the same call. A caller cannot take the picture and skip
  * the twin.
  */
-export function renderView(system: CanonicalSystem, req: SceneRequest): RenderedView {
+export function renderView(
+  system: CanonicalSystem,
+  req: SceneRequest,
+  options: RenderOptions = {},
+): RenderedView {
   const scene = buildScene(system, req.subject);
-  const layout = layoutScene(scene, {
+  const engine = options.engine ?? defaultLayoutEngine;
+  const layout = engine(scene, {
     ...(req.direction !== undefined ? { direction: req.direction } : {}),
     ...(req.hints !== undefined ? { hints: req.hints } : {}),
   });
@@ -439,5 +457,8 @@ export function renderView(system: CanonicalSystem, req: SceneRequest): Rendered
     ],
   );
 
-  return { svg: serialize(tree), tree, accessible, layout };
+  const positions = new Map<string, Point>(
+    [...layout.nodes.values()].map((n) => [n.id, { x: n.rect.x, y: n.rect.y }]),
+  );
+  return { svg: serialize(tree), tree, accessible, layout, positions };
 }

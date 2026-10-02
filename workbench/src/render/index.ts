@@ -10,7 +10,9 @@
  * output on its own.
  */
 export { renderView, serialize, el } from "./svg.ts";
-export { layoutScene, labelWidth, METRICS, LANE_PITCH } from "./layout.ts";
+export type { RenderOptions } from "./svg.ts";
+export { layoutScene, defaultLayoutEngine, labelWidth, METRICS, LANE_PITCH } from "./layout.ts";
+export type { LayoutEngine } from "./layout.ts";
 export { buildScene, buildGraphScene, buildMachineScene } from "./scene.ts";
 export type { SceneGraph, SceneNode, SceneEdge } from "./scene.ts";
 export {

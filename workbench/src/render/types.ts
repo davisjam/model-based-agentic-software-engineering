@@ -319,6 +319,16 @@ export interface RenderedView {
   readonly tree: SvgNode;
   readonly accessible: AccessibleScene;
   readonly layout: Layout;
+  /**
+   * Node id -> top-left corner, which is exactly the shape `LayoutOptions.hints` accepts. This is
+   * the round-trip: persist it with the view, hand it back on the next render, and every node that
+   * still exists keeps its position. It is also how an EXTERNAL layout engine integrates — a cold
+   * layout computed elsewhere is just a complete hint set.
+   *
+   * Region children appear here (a caller hit-testing wants them) but are ignored on the way back
+   * in: their geometry is derived from the enclosing region, so pinning the region pins them.
+   */
+  readonly positions: ReadonlyMap<string, Point>;
 }
 
 // --------------------------------------------------------------------------------------------

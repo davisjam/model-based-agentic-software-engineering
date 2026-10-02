@@ -58,7 +58,9 @@ test("the renderer cannot hand back a picture without its twin", () => {
   assert.equal(typeof view.svg, "string");
   assert.ok(view.accessible.nodes.length > 0);
   assert.ok(view.accessible.summary.length > 0);
-  assert.equal(Object.keys(view).sort().join(","), "accessible,layout,svg,tree");
+  // Every field of the return type, pinned: adding a visual output without a semantic one would
+  // have to change this line, which is the point.
+  assert.equal(Object.keys(view).sort().join(","), "accessible,layout,positions,svg,tree");
 });
 
 test("containment is restated as a relation, not carried by enclosure alone", () => {

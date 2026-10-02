@@ -159,6 +159,36 @@ test("selection is a treatment of its own and survives alongside evidence", () =
   assert.equal(view.accessible.legend.map((l) => l.kind).includes("selected"), true);
 });
 
+test("de-emphasis dims by opacity and weight, not by washing out a colour", () => {
+  const view = renderView(docableSystem(), {
+    subject: { kind: "machine", id: "document" },
+    emphasis: [{ target: "failed", kind: "deemphasized", reason: "outside the current focus", step: null }],
+  });
+  const shape = walk(view.tree).find(
+    (n) => n.tag === "rect" && String(n.attrs["data-emphasis"] ?? "") === "deemphasized",
+  );
+  assert.ok(shape, "the de-emphasized node must carry the treatment on its shape");
+  assert.equal(shape.attrs["opacity"], MARKS.deemphasized.opacity);
+  assert.equal(shape.attrs["stroke-width"], MARKS.deemphasized.strokeWidth);
+  // Still fully present in the twin: de-emphasis is a visual focus device, not a removal.
+  const node = view.accessible.nodes.find((n) => n.id === "failed");
+  assert.ok(node);
+  assert.match(node.description, /outside the current focus/);
+});
+
+test("an unnumbered evidence assignment still gets a non-colour channel", () => {
+  // A caller may emphasize without an ordinal; stroke weight must still carry the distinction.
+  const view = renderView(docableSystem(), {
+    subject: { kind: "machine", id: "document" },
+    emphasis: [{ target: "reviewed", kind: "evidence", reason: "named in the result", step: null }],
+  });
+  const shape = walk(view.tree).find(
+    (n) => n.tag === "rect" && String(n.attrs["data-emphasis"] ?? "") === "evidence",
+  );
+  assert.equal(shape?.attrs["stroke-width"], MARKS.evidence.strokeWidth);
+  assert.notEqual(MARKS.evidence.strokeWidth, PLAIN_MARK.strokeWidth);
+});
+
 test("the legend is drawn only when a treatment is in use, and matches the twin", () => {
   const plain = machineView();
   assert.equal(plain.accessible.legend.length, 0);

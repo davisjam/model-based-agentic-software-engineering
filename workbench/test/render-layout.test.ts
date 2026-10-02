@@ -13,8 +13,9 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
-import { LANE_PITCH, METRICS, buildScene, layoutScene } from "../src/render/index.ts";
-import type { Layout, Point } from "../src/render/index.ts";
+import { LANE_PITCH, METRICS, buildScene, layoutScene, renderView } from "../src/render/index.ts";
+import type { Layout, LayoutEngine, Point } from "../src/render/index.ts";
+import { docableSystem } from "./render-fixtures.ts";
 
 const docableDoc = (): Record<string, unknown> =>
   parse(readFileSync("examples/docable.mage.yaml", "utf8")) as Record<string, unknown>;
@@ -270,4 +271,78 @@ test("a self-loop is routed as a loop rather than a degenerate zero-length edge"
   assert.ok(loop.points.length >= 4);
   const span = Math.max(...loop.points.map((p) => p.y)) - Math.min(...loop.points.map((p) => p.y));
   assert.equal(span, METRICS.selfLoop);
+});
+
+// -------------------------------------------------------------------------------------------
+// The layout seam
+// -------------------------------------------------------------------------------------------
+
+test("the layout engine is swappable", () => {
+  // A stub engine stands in for an external one (ELK). If `renderView` reached past the seam to
+  // the built-in engine, these coordinates could not appear.
+  const stub: LayoutEngine = (scene) => ({
+    direction: "left-to-right",
+    nodes: new Map(
+      scene.nodes.map((n, i) => [
+        n.id,
+        {
+          id: n.id,
+          kind: n.kind,
+          label: n.label,
+          rect: { x: i * 1000, y: 7, w: 100, h: 40 },
+          rank: i,
+          order: 0,
+          parent: n.parent,
+          initial: n.initial,
+          pinned: false,
+        },
+      ]),
+    ),
+    edges: [],
+    bounds: { x: 0, y: 0, w: 5000, h: 100 },
+    ranks: scene.nodes.map((n) => [n.id]),
+  });
+  const view = renderView(docableSystem(), { subject: { kind: "machine", id: "document" } }, { engine: stub });
+  assert.equal(view.layout.nodes.get("failed")?.rect.y, 7);
+  assert.deepEqual([...view.positions.values()].map((p) => p.y), [7, 7, 7, 7, 7]);
+  // The twin is built from whatever the engine produced, so swapping engines cannot desynchronize
+  // the picture from its accessible representation.
+  assert.equal(view.accessible.nodes.length, 5);
+});
+
+test("an external cold layout enters through the hint mechanism, exactly", () => {
+  // This is the sanctioned ELK integration: run the engine upstream, pass its coordinates in as a
+  // COMPLETE hint set. Every node must land exactly where the external engine put it.
+  const elkish = new Map<string, Point>([
+    ["waiting", { x: 10, y: 400 }],
+    ["processing", { x: 300, y: 390 }],
+    ["reviewed", { x: 620, y: 250 }],
+    ["failed", { x: 615, y: 540 }],
+    ["published", { x: 940, y: 240 }],
+  ]);
+  const cold = machineLayout(docableDoc(), "document", elkish);
+  for (const [id, p] of elkish) {
+    assert.deepEqual({ x: cold.nodes.get(id)?.rect.x, y: cold.nodes.get(id)?.rect.y }, p);
+    assert.equal(cold.nodes.get(id)?.pinned, true);
+  }
+  // And the incremental property still holds on top of an externally-computed frame.
+  const after = machineLayout(withExtraState(), "document", elkish);
+  assert.equal(maxDisplacement(elkish, positions(after)), 0);
+  assert.ok(after.nodes.get("archived"));
+});
+
+test("positions round-trip as hints without drift", () => {
+  const first = renderView(docableSystem(), { subject: { kind: "machine", id: "document" } });
+  const second = renderView(docableSystem(), {
+    subject: { kind: "machine", id: "document" },
+    hints: first.positions,
+  });
+  assert.deepEqual([...second.positions.entries()].sort(), [...first.positions.entries()].sort());
+  // Idempotent: feeding a layout back into itself is a fixed point, so repeated renders of an
+  // unchanged model never creep.
+  const third = renderView(docableSystem(), {
+    subject: { kind: "machine", id: "document" },
+    hints: second.positions,
+  });
+  assert.equal(third.svg, second.svg);
 });
