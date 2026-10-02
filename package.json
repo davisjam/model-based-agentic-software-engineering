@@ -14,5 +14,8 @@
     "chromedriver": "150.0.1",
     "html-validate": "11.5.5",
     "selenium-webdriver": "4.44.0"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

@@ -43,10 +43,14 @@ jobs:
           python-version: "3.x"
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          # html-validate 11.x calls fs.globSync (added in Node 22). On Node 20 it throws at startup, the
-          # T2 validity check catches it and SKIPs — so the HTML-validity gate silently doesn't run. Pin
-          # the runner to 22 so html-validate actually executes.
-          node-version: "22"
+          # Single source of truth for the Node version: .nvmrc, which `nvm use` also reads, so CI and a
+          # developer's shell cannot drift. package.json `engines` carries the FLOOR (>=22) separately.
+          #
+          # Why the floor is 22: html-validate 11.x calls fs.globSync, added in Node 22. On Node 20 it
+          # throws at startup, the T2 validity check catches the throw and SKIPs, and the HTML-validity
+          # gate silently does not run while the summary still reads "0 failed". A pin is the only thing
+          # standing between that check and a false green.
+          node-version-file: .nvmrc
       - name: Install pinned test tooling (axe-core + html-validate, exact tree from lockfile)
         run: npm ci
       # book/ node tooling must be installed BEFORE `catalog.py build`: the build renders every ```mermaid
