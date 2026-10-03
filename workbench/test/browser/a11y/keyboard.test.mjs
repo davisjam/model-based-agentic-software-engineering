@@ -347,7 +347,12 @@ describe("section 19, operations 6-10: inspection and analysis", () => {
     await activateByKeyboard(page, "run", { settleMs: 600 });
 
     const { rendered, saved, withoutVerdict } = await page.evaluate(() => {
-      const rows = [...document.getElementById("question-list").children];
+      // The rows the rail declares, by the claim id each carries. Wave 1a made the property list a
+      // RAIL: the host's children are now one list wrapper, and one of the rail's rows is `+
+      // Property`, which is navigation rather than a claim. `data-property` is the row's own
+      // statement of which saved query it shows, so the set is addressed rather than counted by
+      // position — and a row that rendered no claim is not silently included.
+      const rows = [...document.querySelectorAll("#question-list [data-property]")];
       const words = /ESTABLISHED|REFUTED|INCONCLUSIVE|NOT ANSWERABLE/i;
       return {
         rendered: rows.length,

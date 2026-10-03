@@ -7,7 +7,10 @@ __pycache__/
 /_site/
 .claude/
 plugin/**/*.html
-node_modules/
+# No trailing slash, the lesson workbench/.gitignore already records: in a parallel worktree
+# node_modules is a SYMLINK to the main checkout's, and a trailing slash matches only a real
+# directory -- so it showed untracked on every status in the very trees that need it.
+node_modules
 
 # local-only marketplace-submission blurb (not published, not committed)
 /SUBMISSION.md
@@ -92,8 +95,8 @@ book/_design/*-brief*.md
 /handbook/dist/
 
 # Node build tooling for the PDF render (Puppeteer). package.json + package-lock.json ARE tracked (CI
-# runs `npm ci`); the installed tree is not.
-/book/node_modules/
+# runs `npm ci`); the installed tree is not. No trailing slash, for the reason above.
+/book/node_modules
 
 # scratch axe/screenshot helper — never ship
 /book/_shot.mjs

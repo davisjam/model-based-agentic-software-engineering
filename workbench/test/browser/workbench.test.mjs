@@ -194,11 +194,19 @@ describe("UX-I2 / UX-I3: the human and agent surfaces report one authoritative s
     // sees what the agent sees. Counted rather than string-matched, because the human surface words
     // outcomes for reading ("NOT ANSWERABLE from this model") instead of echoing the enum, and
     // pinning that wording would make a copy edit a test failure.
-    const { rendered, saved } = await page.evaluate(() => ({
-      rendered: document.querySelectorAll("#question-list > *").length,
-      saved: Object.keys(window.mage.savedQueries()).length,
+    //
+    // Counted by the id each row CARRIES, not by position. Wave 1a turned the flat list into the
+    // properties rail, so the host's direct children are now one list wrapper, and the rail has a
+    // `+ Property` row that is navigation rather than a claim. `data-property` is the row's own
+    // declaration of which saved query it shows, which also lets the set be compared by id — a
+    // stronger claim than a count, and the one that catches a rail rendering one property twice.
+    const { renderedIds, saved } = await page.evaluate(() => ({
+      renderedIds: [...document.querySelectorAll("#question-list [data-property]")]
+        .map((e) => e.dataset.property ?? ""),
+      saved: Object.keys(window.mage.savedQueries()),
     }));
-    assert.equal(rendered, saved, `${saved} saved questions but ${rendered} rendered — the human surface is hiding results`);
+    assert.deepEqual([...renderedIds].sort(), [...saved].sort(),
+      `${saved.length} saved questions and ${renderedIds.length} rendered — the human surface is hiding results`);
   });
 });
 
@@ -343,6 +351,35 @@ describe("F-5: every readout names itself, instead of borrowing a section's name
   const INTERACTIVE = "button, input, select, textarea, a[href]";
 
   it("each readout computes the role its tag promises, and a non-empty name", async () => {
+    // **A readout behind a disclosure is checked OPEN, and SH-I2 is what licenses that.** Wave 1a
+    // put each property's full reading — witness list included — inside a `<details>` in the
+    // properties rail, and a closed `<details>` renders nothing: Chrome computes no role and no
+    // name for an element that is not rendered, which is the correct answer about a collapsed
+    // region and tells us nothing about the readout.
+    //
+    // So the claim is split rather than weakened. First, every readout that is not currently
+    // rendered must sit behind a real disclosure control — that IS SH-I2 ("no semantic content is
+    // CSS-hidden without a control that reveals it"), and a readout hidden with no summary above it
+    // fails here. Then every disclosure is opened and the name/role claims run over all of them, so
+    // a disclosed readout is held to exactly the standard a visible one is.
+    //
+    // READOUTS only, the same filter the rest of this test uses: a CONTROL in an unmounted region —
+    // Start's Load with a system loaded, the hypothesis bar's two buttons with no hypothesis open —
+    // is not rendered because its whole region is `hidden`, which is SH-I1 working rather than
+    // content hidden from somebody.
+    const hidden = await page.evaluate((interactive) =>
+      [...document.querySelectorAll("[data-affordance]")]
+        .filter((e) => !e.matches(interactive))
+        .filter((e) => !e.checkVisibility())
+        .filter((e) => e.closest("details")?.querySelector(":scope > summary") == null)
+        .map((e) => `${e.dataset.affordance ?? "(unstamped)"} (<${e.tagName.toLowerCase()}>)`), INTERACTIVE);
+    assert.deepEqual(hidden, [],
+      `${hidden.length} readout(s) are not rendered and sit behind no disclosure control, so nothing reveals them (SH-I2): ${hidden.join("; ")}`);
+
+    await page.evaluate(() => {
+      for (const d of document.querySelectorAll("details")) d.open = true;
+    });
+
     const hosts = await page.$$("[data-affordance]");
     const readouts = [];
     for (const handle of hosts) {
@@ -357,6 +394,12 @@ describe("F-5: every readout names itself, instead of borrowing a section's name
       const snap = await page.accessibility.snapshot({ root: handle, interestingOnly: false });
       readouts.push({ ...meta, role: snap?.role ?? null, name: (snap?.name ?? "").trim() });
     }
+    // Put the page back as it was found, before any assertion can throw past it. The suite shares
+    // one page, and a later test reading a page this one left expanded would be reading a state no
+    // user produced.
+    await page.evaluate(() => {
+      for (const d of document.querySelectorAll("details")) d.open = false;
+    });
 
     // Non-vacuity: the flagship example is loaded, so the property list, the model tables, the
     // provenance records and at least one witness list are all rendered and stamped.

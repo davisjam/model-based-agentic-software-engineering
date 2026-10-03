@@ -19,7 +19,7 @@ import type {
 } from "../ir/types.ts";
 import { provenanceFields } from "../app/provenance.ts";
 import { STATUS_TEXT } from "../app/properties.ts";
-import type { EvaluatedProperty, Ground } from "../app/properties.ts";
+import type { EvaluatedProperty, Ground, PropertyStatus } from "../app/properties.ts";
 import type { SceneSubject } from "../render/types.ts";
 // The graph forms, from the array the engine derives its own type from. A hand-written list of
 // forms in a select is a second source of truth that `tsc` would not catch drifting: a `GraphForm[]`
@@ -201,6 +201,19 @@ export interface PropertyRow {
    */
   readonly status: string;
   /**
+   * The same status as the TYPED value, for a surface that must branch on it.
+   *
+   * `status` is a sentence, and the properties rail needs a three-valued summary mark beside the
+   * claim. Reading that out of the sentence would be the `checkModelPlurality` defect verbatim —
+   * an invariant that matched `/\bin model \S/` against prose, so a copy edit broke it
+   * (`DESIGN-shell-261002.md` §10). The structure carries the fact; `status` renders it. The rail's
+   * mark is then a `Record<PropertyStatus, …>`, which the compiler holds exhaustive.
+   *
+   * NOT demoted when the verdict is stale: `stale` is its own field, and a rail that needs both
+   * reads both. Collapsing the two here would hide which verdict went stale.
+   */
+  readonly statusKey: PropertyStatus;
+  /**
    * The last computed verdict, present only when it is NOT the current status.
    *
    * This is the `QueryResult.systemHash` decision, made in the view model so no renderer can get it
@@ -214,6 +227,16 @@ export interface PropertyRow {
   readonly coverage: string;
   /** §9.2's "Uses:", with the reason each model is cited (UX-I5). */
   readonly grounds: readonly string[];
+  /**
+   * The same grounds as DRAWABLE SUBJECTS — `model:<id>` / `machine:<id>`, in `grounds` order.
+   *
+   * Correction 6 asks that activating a property change the workspace to explain it, and the models
+   * a claim derives from are the ones worth showing. `grounds` is display prose (`label (kind id) —
+   * why`), so a navigating surface that parsed it back into an id would be re-deriving a structure
+   * this function was handed. Spelled as `subjectValue` writes it, so the string is assignable to
+   * `ViewState.target` with nothing in between to disagree.
+   */
+  readonly groundSubjects: readonly string[];
   /** Stated, not omitted, when nothing could be cited — an empty block reads as "no dependence". */
   readonly groundsMissing: string | null;
   readonly evidence: readonly string[];
@@ -825,6 +848,7 @@ export function propertyRow(p: EvaluatedProperty): PropertyRow {
     id: p.id,
     proposition: p.proposition,
     kind: p.kind === "requirement" ? "requirement" : "property",
+    statusKey: p.status,
     status: p.stale
       ? `NOT CURRENT — the last verdict was computed against revision ${p.evaluatedAt ?? "unknown"}, `
         + `and this model system is at ${p.currentRevision}. Re-run the questions.`
@@ -834,6 +858,7 @@ export function propertyRow(p: EvaluatedProperty): PropertyRow {
       : null,
     coverage: coverageText(p.coverage),
     grounds: p.grounds.map(groundText),
+    groundSubjects: p.grounds.map((g) => subjectValue({ kind: g.kind, id: g.id })),
     // UX-I5's honest-empty cases, and they are two different facts. For a REFUSAL, citing nothing is
     // the answer: no model declares what the question names, which is exactly why it cannot be
     // answered. For a CONCLUSION it is a finding about the result, and saying so is the difference
