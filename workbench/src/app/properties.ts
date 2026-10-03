@@ -301,10 +301,15 @@ function expectationOf(raw: unknown, result: QueryResult | undefined): Expectati
  * `results` is passed IN rather than computed here, which is what keeps this function pure and
  * testable and keeps the engine out of the dependency edge. It is also the reason `stale` is
  * reachable: every production caller hands over results it just computed against `currentHash`, so
- * the hashes agree and no property is ever stale through `Workspace.properties()` — but
- * `window.mage.evidence(id)` hands out a cached result that outlives its system, and the first
- * person to "optimise" the UI by caching verdicts will hand a stale map here. On that day this
- * reports a mismatch instead of the UI quietly presenting last revision's answer as this one's.
+ * the hashes agree and no property is ever stale through `Workspace.properties()`. `stale` guards
+ * the day somebody "optimises" a surface by caching verdicts and hands a stale map here — on that
+ * day this reports a mismatch instead of quietly presenting last revision's answer as this one's.
+ *
+ * `window.mage.evidence(id)` WAS that surface: it read a Map an earlier `savedQueries()` call had
+ * filled, so it handed out a result that outlived its system. It now recomputes per call, like this
+ * function (`DECISIONS-RULED-agent-evidence-261002.md`), which makes the hazard prospective rather
+ * than shipped — and leaves `stale` reachable, because `evaluateOne` is exported and takes whatever
+ * results its caller holds.
  *
  * Order follows the saved-query key order, which is the order the author wrote them in.
  */
