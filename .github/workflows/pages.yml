@@ -398,6 +398,12 @@ jobs:
           test -f _site/workbench/index.html || { echo "ERROR: workbench/index.html missing from site artifact"; exit 1; }
           test -f _site/workbench/dist/workbench.js || { echo "ERROR: workbench/dist/workbench.js missing from site artifact — the bundle did not ride into _site"; exit 1; }
           test -f _site/workbench/examples/docable.mage.yaml || { echo "ERROR: workbench example model missing from site artifact — the shell's 'Load the example' button fetches it"; exit 1; }
+          # The shared MAGE design tokens + the favicon, both tracked under workbench/assets/ and both
+          # <link>ed by index.html and learn.html. A missing stylesheet is the quietest failure on this
+          # list: the page still returns 200 and still renders, with every custom property undefined —
+          # unstyled black-on-white, no accent, no panels, and nothing in the log to say why.
+          test -f _site/workbench/assets/mage-tokens.css || { echo "ERROR: workbench/assets/mage-tokens.css missing from site artifact — both pages would render with every design token undefined"; exit 1; }
+          test -f _site/workbench/assets/favicon.svg || { echo "ERROR: workbench/assets/favicon.svg missing from site artifact — the pages link it as their icon"; exit 1; }
       # ── Publish the MAGE book at /book/mage-book/ + finish the /book/ layout ──────────────────────
       # Copy the MkDocs-built book site (strict-built above) into its published home — flat
       # `<slug>.html` stems identical to the retired hand-rolled pages, so every pre-swap URL +
