@@ -57,19 +57,25 @@ not edited; the design documents above are where they become implementable.
 
 ### 0.2 Open questions index
 
-D1–D6 are ruled. Nine questions are open, and **the split matters more than the count**: six are
-engineering judgment a Phase can resolve, two need the author, and one is empirical.
+D1–D6 are ruled, and **eight of the nine questions below are now settled** — four by author
+ruling, two by implementation, one by measurement, one by delegation. **Only Q9 still wants the
+author.**
+
+This paragraph has been wrong twice, both times in the same direction: it over-reported what was
+open, because a question got answered in a design section or in code and nobody came back to the
+index. Q1 and Q5 were listed as blocking Phase I analysis while `src/quant/` already implemented
+both. If you edit a row below, edit this sentence.
 
 | # | Question | Who resolves | Blocks |
 |---|---|---|---|
-| Q1 | Interval arithmetic, or worst-case bounds only? | recommended: worst-case | Phase I analysis |
+| Q1 | Interval arithmetic, or worst-case bounds only? | **RESOLVED** — worst-case; the requirement's operator selects the end | — |
 | Q2 | What declares the latency accounting model? | **RULED** — declared basis; `entities` for v0.1 | — |
 | Q3 | What precise predicate is `memory(c)`? | **RULED** — `residency` / `when`, never inferred | — |
-| Q4 | Is expectation in scope for v0.1? | recommended: no | the cache what-if |
-| Q5 | Outcome shape for an unbounded additive maximum | likely `refuted` + lasso | Phase I analysis |
+| Q4 | Is expectation in scope for v0.1? | **ANSWERED — YES, by implementation** (`src/quant/requirement.ts`); the recommendation was overturned by what shipped, and the G3 ruling presupposes it | — |
+| Q5 | Outcome shape for an unbounded additive maximum | **RESOLVED** — `refuted` + lasso; no new outcome word | — |
 | Q6 | Do quantities project to RDF? | **RESOLVED** — structured resources | — |
 | Q7 | Can Comunica ship on static Pages at all? | **ANSWERED — NO**, by measurement | — |
-| Q8 | SPARQL in the Worker or the main thread? | delegated to the evaluator wave | — |
+| Q8 | SPARQL in the Worker or the main thread? | **ANSWERED — BOTH**: main thread at the interactive bound (`src/app/agent-api.ts:72`), Worker arm for the escalated bound (`src/worker/protocol.ts:85`) | — |
 | Q9 | Is "run arbitrary SPARQL" a semantic capability under UX-I1? | author; recommended: no | the query surface |
 
 **Four of the nine are now settled, and three were settled by something other than argument.**
