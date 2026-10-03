@@ -143,3 +143,7 @@ tools/pptx-validate-harness/obj/
 
 # Archived third-party readings — kept locally against linkrot, NOT redistributed
 /_local-readings/
+
+# The MIT Press contract for the MAGE book. Executed legal document: kept
+# beside the book for convenience, never in git history.
+book/_contract/
