@@ -223,7 +223,15 @@ export const CAPABILITIES: readonly Capability[] = [
     // structured controls, without writing a query document. It is a second affordance of `query`
     // rather than a capability of its own because it ends at the same `workspace.query` an agent
     // calls -- the controls narrow what can be ASKED, they do not add a way to answer.
-    human: [control("header.run-all", "run"), control("properties-section.ask", "ask-go")],
+    // `askbar.ask` is the PRIMARY surface since the shell's wave 1c: one line, and beside it the
+    // deterministic questions this system can answer. `properties-section.ask` is the same
+    // capability's Advanced spelling, which keeps the questions the catalogue cannot state — a hop
+    // limit, two named endpoints, an explicit quantifier. Both end at `workspace.query`.
+    human: [
+      control("header.run-all", "run"),
+      control("askbar.ask", "ask-submit"),
+      control("properties-section.ask", "ask-go"),
+    ],
     // `ask` is the grounded twin of `query`: the same service, returning the verdict WITH the models
     // it derives from. Two machine affordances rather than a changed return type, because `query`'s
     // `QueryResult` is the published wire shape and widening it would break every reader of it.
@@ -462,7 +470,10 @@ export const CAPABILITIES: readonly Capability[] = [
     // The form and the agent send the same operation, and the human form builds its query with the
     // same function that built the one it just ran — so the property a person saves has the
     // semantics of the result they were looking at rather than a re-typed approximation of it.
-    human: [control("properties-section.save", "save-property-go")],
+    // `askbar.track` is correction 7's one-field act: the claim, and nothing else. The id is derived
+    // from the claim and the expectation control stays in Advanced, where `properties-section.save`
+    // keeps the full form — a tracked claim becomes a REQUIREMENT by a second, deliberate act.
+    human: [control("askbar.track", "ask-track-go"), control("properties-section.save", "save-property-go")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },

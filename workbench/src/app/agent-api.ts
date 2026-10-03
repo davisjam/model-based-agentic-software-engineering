@@ -313,6 +313,51 @@ export interface NoSuchQuestion {
   readonly savedQuestions: readonly string[];
 }
 
+/**
+ * The reading for an id that names nothing.
+ *
+ * Module-level and exported because the ask bar reaches this arm for real: its catalogue is painted
+ * from one revision, and an agent can retract a question between the paint and the click. Two
+ * callers, one sentence — the alternative was the ask bar wording its own, and then a caller would
+ * meet two answers to "why is there nothing here" from one workbench.
+ */
+export const noSuchQuestion = (
+  queryId: string, savedQuestions: readonly string[],
+): NoSuchQuestion => ({
+  found: false, queryId, cause: "no-such-question", result: null, savedQuestions,
+  prose: `no saved question is named "${queryId}". `
+    + `\`savedQuestions\` lists what this system saves; a question becomes one through a `
+    + `\`save-query\` transaction.`,
+});
+
+/**
+ * One answered question, read as evidence: the witness, or the cause of its absence.
+ *
+ * Shared by `window.mage.evidence(id)` and the ask bar's "Inspect evidence", which is what keeps
+ * the three situations apart on BOTH surfaces — a refusal is not a missing witness, and an
+ * exhaustive universal with nothing to show is an ordinary result. A second classifier in the UI
+ * would have been a second opinion about which of those a reader is looking at.
+ */
+export function classifyEvidence(
+  queryId: string, result: QueryResult, savedQuestions: readonly string[],
+): EvidenceFound | EvidenceWithheld {
+  const evidence = result.evidence;
+  if (evidence !== null) return { found: true, queryId, result, evidence };
+  if (result.outcome === "unlicensed") {
+    return {
+      found: false, queryId, cause: "unlicensed-by-model", result, savedQuestions,
+      // The engine's sentence, passed through. A refusal always carries one, and re-wording it
+      // here would be a second answer to "why can this not be answered" from one model.
+      prose: result.refusal ?? `the model does not license "${queryId}".`,
+    };
+  }
+  return {
+    found: false, queryId, cause: "no-witness", result, savedQuestions,
+    prose: `"${queryId}" was answered — ${result.outcome} — and that answer shows no witness, `
+      + `counterexample or lasso. Read the verdict and its grounding through \`ask\`.`,
+  };
+}
+
 export interface TransactionOutcome {
   readonly ok: boolean;
   readonly findings: readonly Finding[];
@@ -365,30 +410,8 @@ export function createAgentApi(
     const system = workspace.state.system;
     const savedQuestions = [...system.queries.keys()];
     const saved = system.queries.get(queryId);
-    if (saved === undefined) {
-      return {
-        found: false, queryId, cause: "no-such-question", result: null, savedQuestions,
-        prose: `no saved question is named "${queryId}". `
-          + `\`savedQuestions\` lists what this system saves; a question becomes one through a `
-          + `\`save-query\` transaction.`,
-      };
-    }
-    const result = workspace.query(saved.raw);
-    const evidence = result.evidence;
-    if (evidence !== null) return { found: true, queryId, result, evidence };
-    if (result.outcome === "unlicensed") {
-      return {
-        found: false, queryId, cause: "unlicensed-by-model", result, savedQuestions,
-        // The engine's sentence, passed through. A refusal always carries one, and re-wording it
-        // here would be a second answer to "why can this not be answered" from one model.
-        prose: result.refusal ?? `the model does not license "${queryId}".`,
-      };
-    }
-    return {
-      found: false, queryId, cause: "no-witness", result, savedQuestions,
-      prose: `"${queryId}" was answered — ${result.outcome} — and that answer shows no witness, `
-        + `counterexample or lasso. Read the verdict and its grounding through \`ask\`.`,
-    };
+    if (saved === undefined) return noSuchQuestion(queryId, savedQuestions);
+    return classifyEvidence(queryId, workspace.query(saved.raw), savedQuestions);
   };
 
   const context = (): WorkspaceContext => {
