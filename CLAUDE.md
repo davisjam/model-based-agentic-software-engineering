@@ -164,6 +164,23 @@ re-deriving these, so they live here:**
   dead agent's closing sentence describes its INTENT at the moment the process stopped, which is a
   statement about its plan and not about the disk.
 
+- **A failed Pages run: read the STEP NAME from the API, then reproduce locally — the logs are 403.**
+  `catalog.py deploy github` and a plain `git push` both hand off to GitHub Actions, and when that
+  fails the instinct is to read the log. You cannot: `/actions/jobs/<id>/logs` and
+  `/actions/runs/<id>/logs` both return **403 without a token**, so the error TEXT is unavailable.
+  What IS public is enough to work with —
+  `curl -s .../actions/runs?per_page=3` gives `head_sha` / `status` / `conclusion`, and
+  `curl -s .../actions/runs/<id>/jobs` gives every step with its conclusion, so the FAILING STEP'S
+  NAME is one call away. Take that name, find the step's `run:` block in
+  `.github/workflows/pages.yml`, and execute exactly that command locally. Three failures on 261003
+  were diagnosed this way and each had a different cause: a Python install ordered after the suite
+  that shells out to it; a gate asserting zero where the local suite accepted a known violation; and
+  a tier that passes locally and fails on the runner. **The third is the one to expect** — when a
+  step passes here and fails there, suspect what the runner does NOT have (fonts are the first
+  candidate: the workflow installs none, and any assertion pinned to a layout that depends on text
+  metrics is pinned to the developer's font stack). Watch the run to CONCLUSION rather than reporting
+  the push: a clean push proves the pre-push hook ran, nothing more.
+
 - **Drafting parallelizes; infrastructure serializes.** Split a big job into (a) SEQUENTIAL INFRASTRUCTURE —
   `catalog.py` / `book/build_book.py` / `book/book_typst.py` renderers, packers, migrations (shared
   files, one writer) — and (b) PARALLEL CONTENT DRAFTING — prose, blurbs, notes — that writes to DRAFT files
