@@ -48,10 +48,34 @@ export const ORIGIN = `http://127.0.0.1:${PORT}`;
 
 /**
  * `node --test` runs test FILES in parallel, so every suite that calls `startServer` needs its own
- * port or the second one binds a busy socket and fails for a reason that has nothing to do with the
- * page. 8143 is the original browser tier; the FR-A11Y suites claim 8144 and 8145.
+ * port or the second one binds a busy socket. The per-tier constants that used to answer that
+ * (8144 for axe, 8145 for keyboard, 8146 for smoke) are gone -- see `startServerOnFreePort` for
+ * what they could not do and what replaced them. 8143 remains only as `PORT` above, for the one
+ * suite still on the default.
  */
 export const originFor = (port) => `http://127.0.0.1:${port}`;
+
+/**
+ * A server on a port the OS chose, and the origin that reaches it.
+ *
+ * Use this, not a hard-coded port. Distinct constants per tier solve collisions between FILES in
+ * one process and do nothing about collisions between PROCESSES, which is the normal state in this
+ * repo: several agents and the orchestrator can each be running a browser tier at the same moment.
+ *
+ * And the failure mode is not merely a noisy red. Measured 261002 on `main`: a concurrent run
+ * reported **8 passing, 0 failing** for `npm run test:a11y`, when the keyboard file alone declares
+ * 22 tests; a re-run surfaced `EADDRINUSE 127.0.0.1:8145`. A `before` that dies on the bind can
+ * take its whole file's tests out of the count while the runner still prints success, so the
+ * collision reads as a GREEN GATE THAT MEASURED LESS. A false red costs an hour. That nearly
+ * shipped.
+ *
+ * Port 0 asks the kernel for a free port, so concurrent runs cannot contend at all. Anything that
+ * needs the address reads it from the returned origin rather than from a constant.
+ */
+export async function startServerOnFreePort(root = WORKBENCH_DIR) {
+  const server = await startServer(root, 0);
+  return { server, origin: originFor(server.address().port) };
+}
 
 const MIME = new Map(Object.entries({
   ".html": "text/html; charset=utf-8",

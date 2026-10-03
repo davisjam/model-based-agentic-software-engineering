@@ -42,6 +42,38 @@ const el = <K extends keyof HTMLElementTagNameMap>(
 let figureCount = 0;
 
 /**
+ * Re-scope the embedded SVG's `aria-labelledby` pair to this figure.
+ *
+ * The renderer derives those ids from the SUBJECT: `mage-title-<subjectId>` and
+ * `mage-desc-<subjectId>` (src/render/svg.ts). That is right for the standalone export, and it is
+ * unique on the Workspace page, which draws one subject at a time. This page draws four figures
+ * and two of them draw the same subject — the structural-graph exemplar and the data-policy use
+ * are both `data-policy` — so both SVGs carried the same `<title id>`/`<desc id>` and both
+ * `aria-labelledby` references resolved to whichever came FIRST. axe reports it `duplicate-id-aria`
+ * at CRITICAL. The name happened to be right here because the two figures share a subject; the
+ * mechanism was broken either way, and a future pair that does not share one would read the wrong
+ * diagram's description.
+ *
+ * Fixed at the embedder, because the embedder is what makes it ambiguous: a page that drops N
+ * standalone SVGs into one document owns uniqueness within that document. The durable fix belongs
+ * in the renderer, which already has the right pattern next door — `ariaId` in src/ui/render-dom.ts
+ * counts instead of deriving, for this exact reason, and says so in its comment.
+ */
+function scopeDiagramAriaIds(canvas: HTMLElement, figureIndex: number): void {
+  const svg = canvas.querySelector("svg");
+  if (svg === null) return;
+  const referenced: string[] = [];
+  // Order is the claim: title then desc, the order the renderer puts in `aria-labelledby`.
+  for (const tag of ["title", "desc"]) {
+    const node = svg.querySelector(`:scope > ${tag}`);
+    if (node === null) continue;
+    node.id = `learn-figure-${figureIndex}-${tag}`;
+    referenced.push(node.id);
+  }
+  if (referenced.length > 0) svg.setAttribute("aria-labelledby", referenced.join(" "));
+}
+
+/**
  * One rendered subject with a keyboard-operable node picker.
  *
  * The picker is a `<select>` rather than making SVG shapes focusable: the twin below the picture
@@ -83,6 +115,7 @@ function figure(
     });
     hints = view.positions;
     paintDiagram(view.accessible, view.tree, { text: twinBody, canvas });
+    scopeDiagramAriaIds(canvas, n);
     canvas.querySelectorAll("[data-node-id]").forEach((g) => {
       const id = g.getAttribute("data-node-id");
       const node = view.accessible.nodes.find((x) => x.id === id);
