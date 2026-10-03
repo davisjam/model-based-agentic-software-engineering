@@ -44,7 +44,14 @@ export interface ShellContext {
 export interface ShellFrame {
   readonly vm: ViewModel;
   readonly state: WorkspaceState;
-  /** Read once by the root: the provenance region renders it and the announcer counts it. */
+  /**
+   * Read once by the root, for the provenance region to render.
+   *
+   * The announcer used to COUNT these as its annotation-change detector, and no longer does: a
+   * provenance record exists only for an object whose source declares `provenance`, while a note
+   * lands in `notes`, so the count could not see any shipped annotation edit. It reads
+   * `annotationHash` instead — see `announcer.ts`'s `ModelMemo`.
+   */
   readonly provenance: readonly ProvenanceRecord[];
   /**
    * The evaluated properties this paint was built from.

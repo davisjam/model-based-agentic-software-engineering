@@ -680,6 +680,77 @@ describe("FR-A11Y-3: a change the AGENT makes is announced, not only one that mo
       `the property channel did not report the drop: "${live.text}"`);
   });
 
+  it("an annotation-only commit announces, including the SECOND note on one object", async () => {
+    /**
+     * F-1's annotation branch, which §9f recorded as detected through a PROXY.
+     *
+     * `add-note` leaves the semantic hash where it was (invariant A1: a note is context, not a
+     * constraint), so it is the one agent commit the hash diff cannot see — and the announcer's
+     * fallback counted PROVENANCE RECORDS. The residue report said attaching a note to an object
+     * that already carried one was therefore silent. Measured here, it was worse: a provenance
+     * record exists only for an object whose source declares `provenance`, and `add-note` writes
+     * into `notes`, so the count never moved and EVERY annotation-only commit was silent.
+     *
+     * Two notes on ONE object, because the first note alone would pass against any detector that
+     * counts something. The claim is that the detector sees the CHANGE, so the second note — same
+     * object, no new count of anything — has to announce too.
+     */
+    const entity = await agentPage.evaluate(() => window.mage.inspect().entities[0].id);
+    const attach = (text) => agentPage.evaluate((t, id) => window.mage.transact({
+      transaction: {
+        base: window.mage.context().hash,
+        operations: [{ op: "add-note", scope: "entity", id, note: { kind: "comment", text: t } }],
+      },
+    }), text, entity);
+
+    /** Attach one note and assert the live region said so, with the revision clause. */
+    const attachAndExpectAnnounced = async (ordinal, text) => {
+      const hashBefore = await agentPage.evaluate(() => window.mage.context().hash);
+      await watchLive();
+      const result = await attach(text);
+      assert.equal(result.ok, true,
+        `attaching the ${ordinal} note was refused: ${JSON.stringify(result.findings)}`);
+      const hashAfter = await agentPage.evaluate(() => window.mage.context().hash);
+      assert.equal(hashAfter, hashBefore,
+        `the ${ordinal} note moved the semantic hash, so this is no longer the annotation-only case `
+        + "A1 describes and the test is measuring something else");
+      const live = await liveWrites();
+      assert.ok(live.writes.length > 0,
+        `the ${ordinal} annotation-only commit wrote nothing to #live. The region still reads: `
+        + `"${live.text}"`);
+      assert.match(live.text, /note/i,
+        `the ${ordinal} annotation-only commit announced "${live.text}", which does not say a note `
+        + "was attached — a screen-reader user working beside a CDP-attached agent misses the edit");
+      assert.match(live.text, /revision is unchanged/i,
+        `the ${ordinal} announcement does not say the revision stood still: "${live.text}". That `
+        + "clause is the whole reason this commit is announced separately from a semantic one.");
+    };
+
+    await attachAndExpectAnnounced("first", "a11y probe note one");
+
+    // A SEMANTIC commit in between, and it is not decoration. The two note announcements are the
+    // same sentence, and Chromium emits no mutation record for assigning `textContent` a string
+    // identical to the one already in the node — the limitation this suite's own fixture comment
+    // names. So without a different announcement in between, the second note reads as unannounced
+    // when it was merely unobservable, which is the probe-describes-itself failure. This is also
+    // the realistic sequence: an agent annotates, edits, annotates again.
+    const between = await agentPage.evaluate(() => window.mage.transact({
+      transaction: {
+        base: window.mage.context().hash,
+        operations: [{ op: "add-entity", id: "a11y-note-probe-spacer", type: "service" }],
+      },
+    }));
+    assert.equal(between.ok, true,
+      `the interleaved semantic commit was refused: ${JSON.stringify(between.findings)}`);
+    const spacerLive = await liveWrites();
+    assert.match(spacerLive.text, /The model changed/,
+      `the interleaved semantic commit announced "${spacerLive.text}", so #live does not hold a `
+      + "sentence different from the note one and the second case below cannot observe its write");
+
+    // THE RESIDUE: a second note on the object that already carries one. No count of anything moves.
+    await attachAndExpectAnnounced("second", "a11y probe note two");
+  });
+
   it("a human control's own sentence is not doubled by the derived one", async () => {
     // Both channels fire for a human edit: the handler says what it did, and `repaint()` derives
     // that the model changed. Announcing both would read the one event twice, so a pending human

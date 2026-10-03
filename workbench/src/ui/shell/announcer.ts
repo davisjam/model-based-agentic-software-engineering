@@ -50,6 +50,7 @@
  * handle, three pending slots, and two memos of the previous paint. A second instance would be a
  * second voice in one live region, so the root makes exactly one.
  */
+import { annotationHash } from "../../ir/hash.ts";
 import type { PropertyRow } from "../view-model.ts";
 import type { ShellFrame } from "./context.ts";
 
@@ -68,8 +69,20 @@ interface ModelMemo {
   readonly hash: string;
   readonly counts: ReadonlyMap<string, number>;
   readonly findings: number;
-  /** Objects carrying an origin or a note. The one surface an annotation-only edit moves. */
-  readonly annotated: number;
+  /**
+   * The digest of every note and provenance block in the system — `annotationHash`, the complement
+   * of the semantic `hash` above.
+   *
+   * **This was a COUNT, and the count could not see the change.** An annotation-only commit leaves
+   * `hash` where it was by construction (A1), so this is the only field that can report one. The
+   * first version counted provenance RECORDS and read a rise as "a note was attached", which fails
+   * twice over: a provenance record exists only for an object whose source declares `provenance`
+   * while `add-note` writes into `notes`, so the count never moved for any shipped note at all; and
+   * a count cannot distinguish a second note on one object from no edit. Measured in the browser
+   * tier: the FIRST annotation-only agent commit wrote zero times to `#live`. A digest sees the
+   * change rather than a proxy for it.
+   */
+  readonly annotation: string;
 }
 
 /** `"3 models, 11 entities"` — the nouns whose count is not zero, so a sentence names what is there. */
@@ -121,7 +134,7 @@ export class Announcer {
         ["saved questions", state.system.queries.size],
       ]),
       findings: state.findings.length,
-      annotated: frame.provenance.length,
+      annotation: annotationHash(state.system),
     });
     if (changed !== "") {
       this.pendingModelNews = changed;
@@ -174,9 +187,13 @@ export class Announcer {
    *
    *   - a different system — the whole workspace was replaced, so name it and size it;
    *   - a moved hash — a semantic edit, so name the counts that moved and the finding total;
-   *   - a standing hash with more annotated objects — A1 keeps notes out of the semantic projection,
-   *     so this is the one commit that leaves the revision where it was, and saying so is the whole
-   *     reason it is announced;
+   *   - a standing hash with a MOVED ANNOTATION DIGEST — A1 keeps notes out of the semantic
+   *     projection, so this is the one commit that leaves the revision where it was, and saying so
+   *     is the whole reason it is announced. `add-note` is the only operation the transaction
+   *     vocabulary has that reaches annotation (there is no delete-note and no set-provenance), so
+   *     a moved digest under a standing hash is an attached note and the sentence can say so
+   *     without hedging. A vocabulary that gains a note-removing op has to reword this branch, and
+   *     the browser-tier case that pins it names the clause it asserts;
    *   - nothing — a repaint for a view change, which is not news.
    */
   private modelNews(now: ModelMemo): string {
@@ -193,7 +210,7 @@ export class Announcer {
       return `Loaded ${now.title}: ${countPhrase(now.counts)}. ${findings}`;
     }
     if (now.hash === before.hash) {
-      if (now.annotated > before.annotated) {
+      if (now.annotation !== before.annotation) {
         return "A note was attached. The model's revision is unchanged: a note is context, "
           + "not a constraint.";
       }

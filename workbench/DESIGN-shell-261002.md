@@ -1025,3 +1025,38 @@ watched a proxy, one is a ruling that had been made and not executed.
   button that returns to disabled KEEPS the last selection's wording rather than the generic label
   the markup ships. That is pre-existing, unchanged here, and recorded rather than folded into a
   change about the prefill encoding.
+
+- **RESIDUE 2 — the annotation channel watched a PROXY, and the proxy was blind to every note, not
+  only the second.** §9f's own words were "an annotation-only agent commit is detected through the
+  provenance record COUNT, so attaching a note to an object that already carried one is still
+  silent." Measured in the browser tier before the fix: the FIRST annotation-only agent commit wrote
+  **zero** times to `#live`. A provenance record exists only for an object whose source declares a
+  `provenance` block, and `add-note` writes into `notes` — so the count never moved for any shipped
+  note, and the branch that says "A note was attached. The model's revision is unchanged" was
+  unreachable on the agent path. The residue was real and understated; recording the stronger version
+  matters because "only the second note is silent" would have licensed a one-line fix to the
+  comparison.
+
+  **What it looks at now: `annotationHash`, the complement of `systemHash`** (`src/ir/hash.ts`). The
+  two are a declared pair — one digests exactly what the semantic projection includes, the other
+  exactly what it excludes (notes and provenance, on all four IR objects that carry an `Annotated`).
+  A1 is why the pair is needed at all: an annotation-only commit leaves the semantic revision
+  standing BY CONSTRUCTION, so the one channel that reports agent actions to assistive technology has
+  no semantic diff to describe for this class, and a digest over the excluded half is the smallest
+  thing that sees the change itself rather than a stand-in for it. Deliberately MORE sensitive than
+  `systemHash`: that hash normalizes everything cosmetic because a false mismatch costs an agent a
+  recomputed transaction, while this one's error directions are asymmetric — an extra announcement is
+  noise, a missing one is an agent edit a screen-reader user never hears. It must never become a
+  transaction base, and a node-tier test says so in those words.
+
+  Pinned the way the others are pinned: a browser-tier case in the FR-A11Y-3 suite, driving
+  `window.mage.transact` on a page nobody has touched and observing `#live`. **The pin needed an
+  interleaved semantic commit between the two notes, and that is an instrument fact worth recording.**
+  Both notes announce the identical sentence, and Chromium emits no mutation record for assigning
+  `textContent` a string identical to the one already in the node — the limitation this suite's own
+  fixture comment names for its own reason. Without a different announcement in between, the second
+  note reads as unannounced when it is merely unobservable: the probe describing itself. The
+  interleave is also the realistic agent sequence. Two node-tier cases carry the pure-function half,
+  including one that asserts the fixture reproduces the residue (the provenance-record count must
+  stand still across the second note, or the counting detector would have caught it and the digest
+  would be unnecessary).
