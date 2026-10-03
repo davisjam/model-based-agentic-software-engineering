@@ -259,14 +259,14 @@ entities:
 
   commit-hypothesis:
     type: semantic-capability
-    label: "Accept a hypothesis as authoritative."
+    label: "Accept a reviewed change as authoritative."
     properties:
       human: wired
       machine: wired
 
   discard-hypothesis:
     type: semantic-capability
-    label: "Throw a hypothesis away; the authoritative model was never touched."
+    label: "Throw a reviewed change away; the authoritative model was never touched."
     properties:
       human: wired
       machine: wired

@@ -578,6 +578,12 @@ export function mountEditDialogs(ctx: ShellContext, submitEdit: SubmitEdit): Edi
     // Focus returns to the opener by the platform. Saying so is the point of the announcement: a
     // dismissed dialog that says nothing reads as a control that did nothing.
     ctx.announce("Dialog closed.");
+    // And a repaint, because closing this dialog can be what RELEASES another surface to open. An
+    // edit held for review (G3) lands on a branch while this modal is still up, and the review
+    // surface refuses to open over it — two modals stacked is a focus ordering the platform does
+    // not define. Its opening condition is therefore re-evaluated the moment this one closes,
+    // declaratively on the next paint rather than on a timer.
+    ctx.repaint();
   });
 
   for (const form of ADD_MENU) {
@@ -678,8 +684,10 @@ export function mountEditDialogs(ctx: ShellContext, submitEdit: SubmitEdit): Edi
       .filter((f) => f.kind === "choice")
       .map((f) => ({ field: f, node: sel(legacyId(a, f)) })));
 
+  // `edit-mode` is NOT in this list any more: correction 8 deleted the branch-choosing fieldset,
+  // and the review surface decides where a change lands.
   const legacyFieldsets = [
-    "edit-mode", "form-add-entity", "form-add-state", "form-delete-element",
+    "form-add-entity", "form-add-state", "form-delete-element",
     "form-add-relation", "form-delete-relation", "form-set-label", "form-set-property",
     "form-add-model", "form-delete-model", "form-add-note",
   ].map((id) => byId<HTMLFieldSetElement>(id));

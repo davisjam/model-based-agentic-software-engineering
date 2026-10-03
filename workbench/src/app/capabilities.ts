@@ -570,21 +570,32 @@ export const CAPABILITIES: readonly Capability[] = [
     producesEvidence: false,
   },
 
-  // ---- the hypothesis bar. Opening one routes through the SAME validated transaction path. -----
+  // ---- the REVIEW CHANGE surface. Opening one routes through the SAME validated transaction path.
 
   {
     id: "create-hypothesis",
     summary: "Open a what-if branch through the same validated transaction path as any edit.",
     service: "workspace.openHypothesis",
-    // The editing forms choose the branch; there is no separate what-if mechanism, because a
-    // second mutation path is where the bugs would live.
-    human: [control("edit-section.hypothesis-target", "target-hypothesis")],
+    // MOVED by correction 8, and the move is the substance of the correction rather than a
+    // renaming. The human site was `target-hypothesis`, one of a radio pair that made every user
+    // choose a branch before every edit — "exposing internal architecture", because a transaction
+    // is an architectural guarantee and not a thing to be configured per keystroke. Two routes
+    // replace it, and only one of them is a control:
+    //
+    //   - A CONSEQUENTIAL edit becomes a branch by itself. `DECISIONS-RULED-shell-261002.md` G3:
+    //     an edit that would move a requirement is evaluated hypothetically first, which opens one.
+    //     That route has no control of its own — it is every editing control — which is exactly
+    //     why it cannot be the declared site: one element cannot carry ten stamps.
+    //   - `whatif-arm` is the DELIBERATE route, for a user who wants to try something without
+    //     committing it even though no obligation is at stake. One toggle, off by default, so the
+    //     normal user edits normally.
+    human: [control("review.whatif", "whatif-arm")],
     machine: [wired("window.mage.hypothesis.open")],
     producesEvidence: true,
   },
   {
     id: "commit-hypothesis",
-    summary: "Accept a hypothesis as authoritative.",
+    summary: "Accept a reviewed change as authoritative.",
     service: "workspace.applyHypothesis",
     human: [control("hypothesis-bar.accept", "hypothesis-apply")],
     machine: [wired("window.mage.hypothesis.apply")],
@@ -592,7 +603,7 @@ export const CAPABILITIES: readonly Capability[] = [
   },
   {
     id: "discard-hypothesis",
-    summary: "Throw a hypothesis away; the authoritative model was never touched.",
+    summary: "Throw a reviewed change away; the authoritative model was never touched.",
     service: "workspace.discardHypothesis",
     human: [control("hypothesis-bar.discard", "hypothesis-discard")],
     machine: [wired("window.mage.hypothesis.discard")],

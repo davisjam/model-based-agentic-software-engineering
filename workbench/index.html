@@ -350,6 +350,22 @@
     pristine walk (test/browser/a11y/keyboard.test.mjs) does not grow a sixth.
   -->
   <button id="palette-open" type="button" disabled>Commands (⌘K)</button>
+  <!--
+    The deliberate route to a what-if, and `create-hypothesis`'s human affordance since correction 8
+    deleted the radio pair that used to carry it.
+
+    ONE toggle, OFF by default, so the normal user edits normally: a transaction is an architectural
+    guarantee and not a per-edit question. Armed, the next edit opens as a what-if the REVIEW CHANGE
+    surface shows rather than committing — which is what a user wants when they mean "try this",
+    even in a system where no obligation is at stake. A consequential edit does not need this: it
+    becomes a branch by itself (DECISIONS-RULED-shell-261002.md G3).
+
+    `aria-pressed` carries the state, and the LABEL changes with it too, because a pressed state no
+    sighted user can read from a button's styling is a state half the users do not get. Ships
+    DISABLED for the reason Export, Run and Commands do: with nothing loaded there is nothing to
+    branch, and a disabled control is not a tab stop — the five-stop pristine walk does not grow.
+  -->
+  <button id="whatif-arm" type="button" aria-pressed="false" disabled>Start a what-if…</button>
 </header>
 
 <!--
@@ -363,15 +379,39 @@
   <div id="banner"></div>
 
   <!--
-    The `review` surface. Static markup, shown when a hypothesis is open, because a control that is
-    created and destroyed on every repaint takes the user's focus with it. The banner above says IN
-    WORDS that the authoritative model is unchanged; these are the two ways out of that state.
-    Wave 2c replaces the pair with the REVIEW CHANGE surface at this same id.
+    The `review` surface: REVIEW CHANGE (correction 8), at the id §5 pinned for it.
+
+    A native modal `<dialog>`, following the palette, so the focus trap, the inertness behind it,
+    `aria-modal` and focus-return come from the platform rather than from a second hand-rolled modal.
+    It opens when a change is waiting on a decision: an agent's hypothesis, a what-if the user armed,
+    or a human edit that would move a requirement. The grouped change list, the property impact and
+    the requirement line are rendered per open and EMPTIED on close, so a closed review ships no
+    buttons for the page's button sweep to find.
+
+    `#hypothesis-apply` and `#hypothesis-discard` are the two capabilities the old bar carried, kept
+    at their ids. `hidden` is kept in sync with `open` by the module, so the one spelling for "this
+    region is not part of the current state" still reads true here. Escape is refused: the two ways
+    out are these two buttons, and dismissing the surface would leave a change pending with nothing
+    on the page offering a route back to it.
   -->
-  <div id="hypothesis-bar" hidden>
-    <button id="hypothesis-apply" type="button" class="primary">Accept this hypothesis as authoritative</button>
-    <button id="hypothesis-discard" type="button">Discard this hypothesis</button>
-  </div>
+  <dialog id="hypothesis-bar" tabindex="-1" aria-labelledby="review-h"
+          aria-describedby="review-headline" hidden>
+    <h2 id="review-h">Review change</h2>
+    <p id="review-headline"></p>
+    <h3 id="review-changes-h">Changes</h3>
+    <ul id="review-changes" aria-labelledby="review-changes-h"></ul>
+    <h3 id="review-impact-h">Property impact</h3>
+    <ul id="review-impact" aria-labelledby="review-impact-h"></ul>
+    <h3 id="review-requirements-h">Requirements</h3>
+    <p id="review-requirements"></p>
+    <!--
+      Where Inspect lands. Not a live region: #live is the one polite announcer, and a second would
+      talk over it. The module announces the arm of the reading; this is where it is READ.
+    -->
+    <div id="review-evidence"></div>
+    <button id="hypothesis-discard" type="button">Discard this change</button>
+    <button id="hypothesis-apply" type="button" class="primary">Commit this change</button>
+  </dialog>
 
   <!--
     The `start` surface, and correction 1: Start is an EMPTY-workspace experience. It is mounted iff
@@ -732,25 +772,18 @@
       lists below offer only what this model system declares.
     </p>
 
-    <fieldset id="edit-mode">
-      <legend>Apply the next edit to</legend>
-      <div class="check">
-        <input type="radio" id="target-main" name="edit-target" value="main" checked>
-        <label for="target-main">the authoritative model</label>
-      </div>
-      <div class="check">
-        <input type="radio" id="target-hypothesis" name="edit-target" value="hypothesis">
-        <label for="target-hypothesis">a hypothesis, left for review before it becomes authoritative</label>
-      </div>
-      <label class="field" for="hypothesis-label">
-        <span>Hypothesis name</span>
-        <input type="text" id="hypothesis-label" autocomplete="off" placeholder="direct publish">
-      </label>
-      <label class="field" for="edit-rationale">
-        <span>Why (optional, recorded with the revision)</span>
-        <input type="text" id="edit-rationale" autocomplete="off">
-      </label>
-    </fieldset>
+    <!--
+      `#edit-mode` was HERE, and correction 8 deleted it. It was a radio pair asking "Apply the next
+      edit to ○ the authoritative model ○ a hypothesis, left for review…", plus a name field and a
+      rationale field, in front of every edit a person made. The author's objection: it "is exposing
+      internal architecture". A transaction is an architectural guarantee, not a thing to configure
+      per keystroke, and the user who renames a label should not have to say where the rename goes.
+
+      What decides it now: `shell/review.ts`. An edit that would move a REQUIREMENT is evaluated
+      hypothetically first and held in the REVIEW CHANGE surface below; anything else commits and
+      announces, with undo one keystroke away (DECISIONS-RULED-shell-261002.md G3). A user who wants
+      a branch on purpose arms one with `#whatif-arm` in the toolbar.
+    -->
 
     <!--
       Where a refusal lands. A div, not a p, because a rejection carries a LIST of findings and a
