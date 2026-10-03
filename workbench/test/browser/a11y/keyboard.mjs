@@ -88,14 +88,30 @@ export async function tabSequence(page, count) {
  * focusable controls.
  */
 export async function reachByTab(page, id, { max = 300 } = {}) {
+  return reachBySelector(page, `#${id}`, { max });
+}
+
+/**
+ * The same walk for a control that has no `id`.
+ *
+ * Generalised rather than copied. The pages carry focusable controls the registry never names and
+ * so never gave an id -- the Learn page's two header nav links, its four figure disclosures, its
+ * gallery cards -- and the 2.4.7 focus-ring measurement has to reach exactly those. A second
+ * selector-shaped walk beside the id-shaped one would be two copies of the Tab loop and of the
+ * diagnostics that make its failure readable, so `reachByTab` now delegates here.
+ */
+export async function reachBySelector(page, selector, { max = 300 } = {}) {
+  const matches = (sel) => page.evaluate(
+    (s) => document.activeElement !== null && document.activeElement.matches(s), selector,
+  );
   await releaseFocus(page);
   for (let i = 1; i <= max; i += 1) {
     await pressTab(page);
-    if (await focusedId(page) === id) return i;
+    if (await matches(selector)) return i;
   }
   const ended = await focusedDescription(page);
   const why = await page.evaluate((target) => {
-    const e = document.getElementById(target);
+    const e = document.querySelector(target);
     if (e === null) return "no such element";
     const cs = getComputedStyle(e);
     return JSON.stringify({
@@ -104,9 +120,9 @@ export async function reachByTab(page, id, { max = 300 } = {}) {
       disabledFieldset: e.closest("fieldset[disabled]")?.id ?? null,
       display: cs.display, visibility: cs.visibility,
     });
-  }, id);
-  assert.fail(`#${id} is NOT reachable by Tab in ${max} presses -- keyboard-unreachable. `
-    + `The walk ended on ${ended}. State of #${id}: ${why}`);
+  }, selector);
+  assert.fail(`${selector} is NOT reachable by Tab in ${max} presses -- keyboard-unreachable. `
+    + `The walk ended on ${ended}. State of ${selector}: ${why}`);
 }
 
 /** Replace a text field's contents by keyboard: Home, select to End, type over the selection. */

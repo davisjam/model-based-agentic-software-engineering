@@ -677,3 +677,177 @@ simultaneous runs of the tier now both complete 37/37 on four different OS-assig
   change this wave did not measure. FR-A11Y-3 is the pattern to follow.
 - **`header nav a[aria-current="page"]` measures 4.55:1.** Bold ochre on `--panel`. It passes, by
   five hundredths, and is reported because the margin is a hair rather than a decision.
+
+**F-6's three unknowns are measured.** Appended by the F-6 wave. §6 F-6 named visible focus
+indication (2.4.7), contrast (1.4.3), and reflow with 2-D focus divergence (1.4.10, D-2) as
+UNMEASURED, each with the reason. All three now have numbers, on BOTH served pages and in BOTH
+themes. The probes live in `test/browser/a11y/wcag-f6.mjs`, the gate in `wcag-f6.test.mjs` (+16
+tests, the FR-A11Y tier goes 37 → 53), and the reporting surface in
+`scripts/measure-wcag-f6.mjs`, which prints the per-element ratios the assertions only range over.
+Both themes throughout, because the one 1.4.3 defect this project has shipped was dark-theme-only
+and a light-only probe would have measured the page and missed it.
+
+**2.4.7 — the ring renders on 12 of 13 control kinds, and the one that does not is a defect.** Per
+control: a screenshot unfocused, a Tab press, a screenshot of the same clip focused, and the count
+of pixels that changed in the band OUTSIDE the control's own box — the only place an `outline` with
+a positive offset can land. Controls are reached by pressing Tab, never `.focus()`, because
+`:focus-visible` is exactly the selector that distinguishes the two.
+
+| Page | Control kinds | Ring renders (light) | Ring renders (dark) |
+|---|---|---|---|
+| `index.html` | 9 | **8** | **8** |
+| `learn.html` | 4 | **4** | **4** |
+
+The ring measures `3px solid rgb(11, 95, 255)` in light and `rgb(138, 180, 255)` in dark on both
+pages, so the `--focus` token switches and the switch reaches the screen. The skip link is indicated
+by MOVING onto the page rather than by an outline alone — recorded as `moved`, which satisfies 2.4.7
+and is a different fact from a ring.
+
+**The failure: the file-open control has no visible focus indication, in either theme.**
+`index.html:308` puts `<input id="file" class="sr-only">` inside `<label class="file">`. The label
+is styled as a button (`index.html:112`) and is what a sighted user sees; the input it labels is a
+1×1 clipped box. So focus lands on the clipped box, `:focus-visible` MATCHES, the computed outline
+IS `solid 3px rgb(11, 95, 255)` — and **0 of 289 pixels change, maximum channel delta 0**, in both
+themes [measured]. This is the exact shape F-6 warned about: the rule is authored, the rule applies,
+and nothing is painted. A keyboard user tabbing to position 2 gets no indication of where they are.
+
+- **Element:** `label.file` / `input#file`.
+- **Measured:** 0 of 288 band pixels changed; `maxDelta` 0; element box 1×1 at (972.6, 21).
+- **Required:** a focus indicator the user can see on the control they are focused on (2.4.7).
+- **Suggested fix:** give the label the ring, since the label is the affordance —
+  `label.file:has(:focus-visible) { outline: 3px solid var(--focus); outline-offset: 2px; }`.
+  A WRITE-UP, not an edit: `index.html` was held by another wave.
+
+**1.4.3 — every ratio measured, nothing under its floor.** The walk computes contrast from computed
+styles rather than trusting axe, because axe returns `color-contrast` as INCOMPLETE for SVG text and
+an INCOMPLETE rule beside "zero violations" reads, in a summary line, exactly like a clean page. The
+ground comes from the ancestor chain with translucent layers composited, not ignored. SVG text is
+measured by the existing `svgTextContrast` probe, whose root selector the F-6 run reuses rather than
+copies.
+
+| Page | Theme | HTML texts | SVG texts | Under floor | Worst measured |
+|---|---|---|---|---|---|
+| `index.html` | light | 463 | 20 | **0** | 6.62:1 (`#skip`, 16px) |
+| `index.html` | dark | 463 | 20 | **0** | 6.36:1 (`#summary`, 16px) |
+| `learn.html` | light | 253 | 81 | **0** | 6.18:1 (`header nav a`, 16px) |
+| `learn.html` | dark | 253 | 81 | **0** | 6.33:1 (`header nav a`, 16px) |
+
+Two things that number rests on. The thresholds are WCAG's literal ones — 3:1 at 18pt (24px) or 14pt
+(18.66px) bold, 4.5:1 otherwise — which are STRICTER than the `>= 18px` / `>= 14px` bold the SVG
+probe in `axe.mjs` uses; the run reports both verdicts and they agree at **0** on both pages in both
+themes, so the looser threshold is not currently hiding anything. And the diagram ground reads
+`rgb(255, 255, 255)` in the dark theme on both pages, which is the fix §8 already records, now
+confirmed from the other side of the page.
+
+**One axe violation, in a state the axe suite does not scan.** `scrollable-region-focusable` on
+`#nav`, in BOTH themes, on the loaded-and-selected workspace at 1440×1000 [measured]. `#nav` is a
+`<section>` with `max-height: 80vh; overflow-y: auto`, `scrollHeight` 4024 against `clientHeight`
+718, and **zero focusable descendants** — so axe judges its content keyboard-unreachable. Two facts
+go with it, and they point in opposite directions.
+
+- **The gate never sees it.** `axe.test.mjs` runs every state's scan and THEN calls
+  `diagram.emphasise`, which is what selects a node. So the selected state — the one a reader who
+  came for one model sits in — is scanned by nothing. That is the same class as "a gate exists and
+  the runner does not reach it", one layer down: the state the gate reaches is not the state the
+  check is about.
+- **The keyboard walk refutes it.** At 1025px the tab walk stops on `section#nav` [measured]:
+  Chromium puts a keyboard-scrollable container in the tab order when it holds no focusable child,
+  which axe's rule does not model. So a keyboard user CAN scroll the rail, and axe is reporting a
+  false positive here. Worth recording as the mirror image of the INCOMPLETE story — the tool is
+  wrong in both directions, and only a measurement tells you which.
+
+Neither is edited here: the state list belongs to `axe.test.mjs`, and adding the selected state
+would land that suite red on a finding whose resolution is a judgement about `#nav`'s markup. The
+F-6 gate holds the measurement instead.
+
+**1.4.10 — no horizontal scrolling at 320 CSS px, or at any width either page's CSS defines.** The
+widths are PARSED from the served stylesheets rather than guessed: each `@media (max-width: N)`
+probed at N and N+1, and each `repeat(auto-fit, minmax(N, 1fr))` probed at roughly one, two and
+three columns. The second kind is what D-2 is about and carries no `@media` at all.
+
+| Page | Widths probed | Overflow | Elements inspected per width |
+|---|---|---|---|
+| `index.html` | 320, 368, 672, 976, 1024, 1025 | **0 px at every one** | 783 |
+| `learn.html` | 320, 576, 832 | **0 px at every one** | 564 |
+
+The pages earn that: wide tables sit inside `.scroll { overflow-x: auto }`, which 1.4.10 permits, and
+the probe does not count an element whose overflow a scrolling ancestor contains — counting them
+would report the fix as the defect.
+
+**D-2 — the divergence is real, and it is the `auto-fit` grid.** Focus order against the order a
+sighted reader's eye takes, derived from geometry at each width: stops grouped into rows by vertical
+overlap, each row read left to right, and an INVERSION counted for every pair the two orders disagree
+about.
+
+| Page | 320 | 368 | 576 | 672 | 832 | 976 | 1024 | 1025 |
+|---|---|---|---|---|---|---|---|---|
+| `index.html` inversions | 0 | 0 | — | **29** | — | **77** | **75** | **75** |
+| `index.html` widest visual row | 2 | 2 | — | 4 | — | 3 | 3 | 3 |
+| `learn.html` inversions | 0 | — | 0 | — | 0 | — | — | — |
+| `learn.html` widest visual row | 2 | — | 3 | — | 3 | — | — | — |
+
+D-2 predicted this and could not settle it: `.forms { grid-template-columns: repeat(auto-fit,
+minmax(19rem, 1fr)) }` lays the Edit section's eleven forms out in however many columns fit, read
+across, while Tab goes down the source. One column, zero inversions; two columns, 29; three, 77.
+Measured examples: `select#add-state-machine` is read before `input#add-entity-label` and tabbed
+after it; `select#delete-element-target` is read before `input#add-state-id` and tabbed after it.
+
+`learn.html` carries a multi-column card grid too (`repeat(auto-fit, minmax(16rem, 1fr))`, widest
+visual row 3) and measures **zero** at every width, because each card holds exactly one control. So
+the divergence is not a property of grids; it is a property of a grid whose CELLS each contain an
+ordered run of controls.
+
+- **Required:** 2.4.3 asks that focus order preserve meaning and operability. Eleven independent
+  forms arguably each preserve their own meaning, which is why this is reported with a number rather
+  than as a verdict.
+- **Suggested fix, if it is taken:** one column per *row* of the grid in source order (`grid-auto-flow:
+  row dense` does not fix it; the honest options are a single column, or a source order that matches
+  the painted columns). A WRITE-UP: `index.html` was held by another wave.
+
+**How each of these is known to have RUN.** The record's own standard, applied to the instrument.
+Every assertion is paired with a count derived from the page — control kinds found, HTML texts
+examined, SVG nodes handed to the other probe, elements inspected per width, widest visual row — so
+a zero beside "0 examined" cannot pass as clean. Three assertions are negative controls that sabotage
+the page and REQUIRE the probe to go red: every outline suppressed (the ring verdict must flip), one
+real paragraph inked one shade off its ground (the walk must return exactly one finding and must name
+`#summary`), a 2000px block appended at a 320px viewport (the reflow probe must report >1000px and
+must name the element). The tier writes a receipt at `WB_WCAG_F6_RECEIPT`, the pattern
+`WB_AXE_RECEIPT` already establishes — a glob that matches no file also prints "pass 0".
+
+**Four probe defects, each reported by a tool as a fact about the page.** Stated because every one
+produced a specific, plausible, wrong finding first, and a later re-measurement will meet them.
+
+1. **A clip in viewport coordinates.** CDP's screenshot clip takes PAGE coordinates;
+   `getBoundingClientRect` is viewport-relative. For any control below the fold the clip intersected
+   the visible region empty, which CDP reports as `Cannot take screenshot with 0 height`. (Its
+   sibling: the keys are `width`/`height`, not `w`/`h` — spelled wrongly, the protocol answers
+   `Failed to deserialize params.clip.width`.)
+2. **`color` read on SVG glyphs.** The ink of an SVG glyph is its `fill`. Reading `color` returns the
+   page's inherited ink, which in the dark theme is a near-white the renderer never paints — **23
+   fabricated 1.23:1 failures on the workspace page and 8 on Learn**, every one naming a real
+   element, every one on a figure whose ground is correctly white. The HTML walk now hands SVG to
+   `svgTextContrast` and counts what it handed over, so neither half can be silently empty.
+   Unpainted elements (`<style>`, an SVG `<title>`/`<desc>`) went the same way.
+3. **Container boxes in a reading-order comparison.** Chromium puts a keyboard-scrollable container
+   in the tab order when it holds no focusable child, so a tab walk contains stops that are not
+   controls — a table's `overflow-x` wrapper, a pane with its own `max-height`. A 1600px-tall
+   container's box spans a dozen visual rows, which produced **40 inversions at 320px on a page laid
+   out in one column**. Container stops are now classified and reported separately; whether each is
+   reachable is 2.1.1's question, not 2.4.3's.
+4. **A selector that matched two elements.** The focus targets are derived from the page, and a
+   classless `<a>` first derived to the bare selector `a` — which also matches the skip link, the
+   first anchor in the document. The walk stopped on the skip link and compared it against a clip
+   taken from the nav link's box: "0 of 1808 band pixels changed", a focus-ring FAILURE on a control
+   the probe never focused. **Two of the four Learn verdicts were that bug**, and with it fixed Learn
+   is 4 of 4. Selectors are now unique `:nth-child` paths and the gate asserts each matched exactly
+   one element.
+
+The pattern across all four: the probe was wrong, the tool reported it as a page defect, and the
+report was specific enough to have sent someone to edit a correct file.
+
+**Still open after this wave.** `explore-space` has no human affordance (F-4). The file-open
+control's missing focus indication and the Edit section's 2-D focus divergence are measured and
+written up, not fixed — both live in `index.html`. The axe suite does not scan the selected state,
+so `scrollable-region-focusable` on `#nav` is caught by the F-6 gate alone. And the F-6 receipt is
+not yet hard-asserted by the publishing workflow the way the axe and keyboard receipts are; until it
+is, a renamed directory would make this tier a green gate that ran nothing.
