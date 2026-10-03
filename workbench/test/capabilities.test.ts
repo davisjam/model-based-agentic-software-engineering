@@ -24,8 +24,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
-  CAPABILITIES, affordanceParityGate, boundHumanAffordances, checkAffordanceParity,
-  checkRegistryClosure, generateAffordanceModel,
+  CAPABILITIES, CHROME_CONTROLS, affordanceParityGate, boundHumanAffordances,
+  checkAffordanceParity, checkRegistryClosure, generateAffordanceModel,
 } from "../src/app/capabilities.ts";
 import type { Affordance, CapabilityId } from "../src/app/capabilities.ts";
 import { ExampleCatalog } from "../src/app/examples.ts";
@@ -309,7 +309,12 @@ test("every button index.html ships is a declared affordance site", () => {
   const buttons = [...html.matchAll(/<button\b([^>]*)>/g)].map((m) => m[1] as string);
   assert.ok(buttons.length > 10, `only ${buttons.length} <button> found — the scan is wrong, not the page`);
 
-  const declared = new Set(boundHumanAffordances().map((a) => a.element.id));
+  const declared = new Set([
+    ...boundHumanAffordances().map((a) => a.element.id),
+    // The named exemption, read from the registry rather than listed here: the browser sweep reads
+    // the same constant, so the two tiers cannot disagree about what is chrome.
+    ...CHROME_CONTROLS.map((c) => c.id),
+  ]);
   const undeclared = buttons
     .map((attrs) => /\bid="([a-zA-Z0-9-]+)"/.exec(attrs)?.[1] ?? null)
     // A button with no id cannot be stamped at all — the binder reaches an element by id — so it is
@@ -318,7 +323,7 @@ test("every button index.html ships is a declared affordance site", () => {
     .map((id) => id ?? "(no id)");
   assert.deepEqual(undeclared, [],
     `${undeclared.length} button(s) no capability declares: ${undeclared.join(", ")}. Declare the `
-    + "capability, or name the exemption here and in the browser tier's button sweep.");
+    + "capability, or add it to CHROME_CONTROLS with a reason.");
 });
 
 test("an undeclared button is caught — negative control", () => {

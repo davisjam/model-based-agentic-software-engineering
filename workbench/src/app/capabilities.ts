@@ -130,6 +130,34 @@ export interface Capability {
   readonly producesEvidence: boolean;
 }
 
+/**
+ * The page's chrome controls: buttons that are NOT capability affordances, and why each one is not.
+ *
+ * `test/capabilities.test.ts` and `test/browser/workbench.test.mjs` both assert that every button
+ * the page ships is a declared affordance site, in the markup and in the served DOM. The browser
+ * sweep's own comment anticipated this wave: "The shell adds disclosure and menu buttons, and
+ * whoever lands them owns the decision to declare them or to name an exemption here." These four
+ * are the exemption, named once and read by both tiers, because two hand-written copies of one
+ * exemption list is the drift the affordance binding exists to retire.
+ *
+ * The test both sweeps apply: a chrome control cannot reach `Workspace` at all. Opening a dialog,
+ * closing one, and cancelling out of one mutate nothing; `#edit-dialog-confirm` is the only
+ * borderline member and it is the terminal of whichever operation is currently open, so it is one
+ * element that would have to carry ten stamps. The operation's affordance is the control that
+ * OPENS it — which is also where correction 4 put it: "expose the operation where the user
+ * naturally encounters its object."
+ */
+export const CHROME_CONTROLS: readonly { readonly id: string; readonly why: string }[] = [
+  { id: "palette-open", why: "opens the command palette; navigation, and it mutates nothing" },
+  { id: "palette-close", why: "dismisses the palette" },
+  {
+    id: "edit-dialog-confirm",
+    why: "the terminal of whichever operation is open — one element cannot carry ten stamps, so the "
+      + "affordance is the menu / inspector / palette control that opened the dialog",
+  },
+  { id: "edit-dialog-cancel", why: "dismisses the edit dialog without submitting" },
+];
+
 /** A machine affordance: a callable on `window.mage`, which has no element to bind. */
 const wired = (at: string): Affordance => ({ at, status: "wired" });
 
@@ -377,7 +405,17 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "create-element",
     summary: "Add an entity, state or machine.",
     service: "transactions.apply",
-    human: [control("edit-section.add-entity", "add-entity-go"), control("edit-section.add-state", "add-state-go")],
+    // THREE SITES EACH SINCE WAVE 2a, and the multiplicity is the redesign rather than redundancy.
+    // Correction 4 replaced one always-visible fieldset with the place a person meets the operation:
+    // the `+ Add` menu on the workspace toolbar for the additive ones, and ⌘K for anyone who knows
+    // what they want. The `edit-section.*` site is the flat fieldset, still shipped because six §19
+    // keyboard drives reach it; it goes when `test/browser/a11y/keyboard.test.mjs` is re-derived
+    // from declared paths (wave 2d). The palette is NOT a site: its rows are rendered per open, so
+    // an element to stamp exists only while it is up — the opener is `header.palette`.
+    human: [
+      control("add-menu.entity", "add-menu-entity"), control("add-menu.state", "add-menu-state"),
+      control("edit-section.add-entity", "add-entity-go"), control("edit-section.add-state", "add-state-go"),
+    ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -388,7 +426,10 @@ export const CAPABILITIES: readonly Capability[] = [
     // The reference check that refuses a delete while something still points at the target lives in
     // the transaction engine. The form offers the cascade as an explicit opt-in rather than
     // reimplementing the check, so both interfaces get the same refusal for the same reason.
-    human: [control("edit-section.delete-element", "delete-element-go")],
+    human: [
+      control("inspector.delete-element", "act-delete-element"),
+      control("edit-section.delete-element", "delete-element-go"),
+    ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -399,7 +440,13 @@ export const CAPABILITIES: readonly Capability[] = [
     // Licensing is what the form narrows: only relation types the system declares, and only
     // endpoints the chosen model contains -- an edge between entities a model does not contain is
     // an edge no view of that model would draw.
-    human: [control("edit-section.add-relation", "add-relation-go")],
+    human: [
+      control("add-menu.relation", "add-menu-relation"),
+      // The contextual one, which is where correction 4 wanted it: "Connect Analytics to…" from
+      // the selected entity, with the endpoint already filled in from the selection.
+      control("inspector.connect", "act-connect"),
+      control("edit-section.add-relation", "add-relation-go"),
+    ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -407,7 +454,10 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "delete-relation",
     summary: "Remove a relation.",
     service: "transactions.apply",
-    human: [control("edit-section.delete-relation", "delete-relation-go")],
+    human: [
+      control("inspector.delete-relation", "act-delete-relation"),
+      control("edit-section.delete-relation", "delete-relation-go"),
+    ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -415,7 +465,10 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "edit-property",
     summary: "Change a property or label through the same transaction any other edit uses.",
     service: "transactions.apply",
-    human: [control("edit-section.set-label", "set-label-go"), control("edit-section.set-property", "set-property-go")],
+    human: [
+      control("inspector.rename", "act-rename"), control("inspector.set-property", "act-set-property"),
+      control("edit-section.set-label", "set-label-go"), control("edit-section.set-property", "set-property-go"),
+    ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -428,7 +481,10 @@ export const CAPABILITIES: readonly Capability[] = [
     // `add-model` plus `set-purpose` in one transaction, composing with the op that already owns the
     // purpose block. Atomicity makes the pair indivisible, so a question-less model never commits —
     // and the habit the workbench exists to teach is enforced by the control rather than suggested.
-    human: [control("edit-section.add-model", "add-model-go")],
+    human: [
+      control("add-menu.model", "add-menu-model"),
+      control("edit-section.add-model", "add-model-go"),
+    ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -439,7 +495,10 @@ export const CAPABILITIES: readonly Capability[] = [
     // No cascade on either side, deliberately. Relations are flattened across models and carry the
     // model that asserts them, so a relation is a claim rather than a pointer; dropping it as a
     // side effect would shrink the architecture and tell no one.
-    human: [control("edit-section.delete-model", "delete-model-go")],
+    human: [
+      control("inspector.delete-model", "act-delete-model"),
+      control("edit-section.delete-model", "delete-model-go"),
+    ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -451,7 +510,10 @@ export const CAPABILITIES: readonly Capability[] = [
     // outside the semantic projection (A1), so this commits WITHOUT advancing the revision and does
     // not invalidate a pending agent transaction. Both affordances say so: the form in words, and
     // `describe()` through the schema's own description of the op.
-    human: [control("edit-section.add-note", "add-note-go")],
+    human: [
+      control("add-menu.note", "add-menu-note"), control("inspector.note", "act-note"),
+      control("edit-section.add-note", "add-note-go"),
+    ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },

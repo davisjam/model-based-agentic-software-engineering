@@ -339,6 +339,17 @@
   <button id="run" type="button" class="primary" disabled>Run all questions</button>
   <button id="undo" type="button" disabled>Undo</button>
   <button id="redo" type="button" disabled>Redo</button>
+  <!--
+    The command palette's opener, and the reason it is a VISIBLE control and not only a shortcut.
+    A keystroke nobody can see is not an affordance: UX-I1 asks for a human-accessible path, and
+    "press Command-K" is documentation. So the shortcut has a button, the button names the
+    shortcut, and the two open the same dialog.
+
+    Ships DISABLED for the reason Export and Run do: with nothing loaded every command in it is
+    unavailable, and a disabled control is not a tab stop — which is also why the five-stop
+    pristine walk (test/browser/a11y/keyboard.test.mjs) does not grow a sixth.
+  -->
+  <button id="palette-open" type="button" disabled>Commands (⌘K)</button>
 </header>
 
 <!--
@@ -439,6 +450,32 @@
     <label class="field" for="diagram-subject"><span>Draw</span>
       <select id="diagram-subject"></select></label>
     <!--
+      Correction 4's `+ Add` menu, on the workspace toolbar.
+
+      A `details`/`summary` disclosure rather than a button that toggles a panel, for two reasons
+      that both come down to not hand-rolling what the browser owns: a `summary` is in the tab
+      order and announces its own expanded state without any ARIA (SH-I2's spelling, the same one
+      the ask bar's Advanced uses), and it means the menu adds no button that is chrome rather than
+      a capability — every `button` inside it submits one operation and is a declared affordance
+      site (`test/capabilities.test.ts` holds that shut in both directions).
+
+      These five are the ADDITIVE operations, which is what makes them a menu on blank canvas
+      rather than inspector actions: none of them needs anything selected. The destructive and
+      modifying ones live on the object they concern, in the inspector.
+    -->
+    <details id="add-menu">
+      <summary id="add-menu-summary">+ Add</summary>
+      <p class="hint">
+        Each one opens a small dialog for just that operation. Everything else — renaming, setting a
+        property, connecting, deleting — is an action on the thing it concerns, in the Inspector.
+      </p>
+      <button id="add-menu-entity" type="button">Entity…</button>
+      <button id="add-menu-state" type="button">State…</button>
+      <button id="add-menu-relation" type="button">Relation…</button>
+      <button id="add-menu-model" type="button">Model…</button>
+      <button id="add-menu-note" type="button">Note…</button>
+    </details>
+    <!--
       UX-I4 / section 5.1: whenever a model is the PRINCIPAL model being viewed, its purpose is
       displayed with it. This is the one place a single model is singled out as the thing under
       inspection, and it used to show a name and a picture -- so the requirement failed exactly
@@ -466,6 +503,34 @@
   <section id="inspector" aria-labelledby="inspector-h" hidden>
     <h2 id="inspector-h">Inspector</h2>
     <div id="inspector-body"></div>
+    <!--
+      Correction 4's per-selection actions: "the human UX should expose the operation where the
+      user naturally encounters its object."
+
+      SEVEN STABLE BUTTONS, not a list rebuilt per selection, and the reason is UX-I1's binding
+      rather than rendering convenience. The page stamps `data-affordance` from the registry on
+      every paint, so an affordance's element has to be findable by id at every paint — a button
+      that exists only while an entity is selected is a declared site bound to nothing in most
+      states, which reads to the closure gate as the control having been deleted. So each action
+      has one element for its lifetime and reports its own availability by `disabled`, which is
+      also what takes it out of the tab order when it cannot act.
+
+      `Edit purpose` for a model and `Edit` for a relation are deliberately ABSENT. The transaction
+      vocabulary has no operation that rewrites a model's engineering question and none that
+      changes a relation in place; offering either would be a control that cannot work. The gap is
+      recorded in DESIGN-shell-261002.md §9c rather than papered over with a disabled button.
+    -->
+    <div id="inspector-actions">
+      <h3 id="inspector-actions-h">Actions</h3>
+      <p class="hint" id="inspector-actions-hint"></p>
+      <button id="act-rename" type="button" disabled>Rename…</button>
+      <button id="act-set-property" type="button" disabled>Set property…</button>
+      <button id="act-connect" type="button" disabled>Connect…</button>
+      <button id="act-note" type="button" disabled>Attach note…</button>
+      <button id="act-delete-element" type="button" disabled>Delete…</button>
+      <button id="act-delete-relation" type="button" disabled>Delete relation…</button>
+      <button id="act-delete-model" type="button" disabled>Delete model…</button>
+    </div>
   </section>
 
   <!--
@@ -640,9 +705,22 @@
     operation through the same `transact` call `window.mage.transact` makes, so there is one
     mutation path rather than a human one and an agent one.
 
-    Correction 4 replaces the ten fieldsets with a + Add menu, per-selection actions and a command
-    palette (wave 2a), and correction 8 deletes the authoritative-vs-hypothesis radios in favour of
-    the review surface (wave 2c). Until then they are what a person edits with.
+    Correction 4's replacements LANDED in wave 2a: the + Add menu is on the workspace toolbar, the
+    per-selection actions are in the Inspector, and `<dialog id="palette">` lists every operation
+    with its precondition. Nothing new is routed through the fieldsets below, and no module binds
+    them any more except the one block in `shell/edit-dialogs.ts` that says so.
+
+    THEY ARE STILL HERE, and the reason is a pin rather than an oversight. Six of the thirteen §19
+    keyboard drives in `test/browser/a11y/keyboard.test.mjs` (13.2, 13.3, 13.5, 13.6, 13.15, and the
+    announcement-storm test) reach these operations by typing into `#add-entity-id`, choosing in
+    `#delete-element-target`, and pressing `#add-entity-go` — fields that are inside a closed
+    `<dialog>` in the new surfaces and therefore not focusable. Deleting this markup turns six
+    passing accessibility drives red, and re-deriving them belongs to the wave that owns that file
+    (DESIGN-shell-261002.md §9, wave 2d, which generates drives from declared paths). So: logic
+    drained, markup pinned, and the pin named where a reader of the markup will find it.
+
+    Correction 8 deletes the authoritative-vs-hypothesis radios in favour of the review surface
+    (wave 2c), which is also what retires `#edit-mode` and `#edit-result`.
 
     The option lists are refreshed from the model on every repaint; the markup is not rebuilt, so
     the caret stays where the user put it.
@@ -762,8 +840,7 @@
         <label class="field" for="set-property-target"><span>Entity</span>
           <select id="set-property-target"></select></label>
         <label class="field" for="set-property-name"><span>Property name</span>
-          <input type="text" id="set-property-name" list="property-names" autocomplete="off">
-          <datalist id="property-names"></datalist></label>
+          <input type="text" id="set-property-name" list="property-names" autocomplete="off"></label>
         <label class="field" for="set-property-kind"><span>Kind</span>
           <select id="set-property-kind">
             <option value="string">text</option>
@@ -796,8 +873,7 @@
                  placeholder="Which services may invoke which other services?"></label>
         <label class="field" for="add-model-entities">
           <span>Entities (optional, separated by commas)</span>
-          <input type="text" id="add-model-entities" list="entity-ids" autocomplete="off">
-          <datalist id="entity-ids"></datalist></label>
+          <input type="text" id="add-model-entities" list="entity-ids" autocomplete="off"></label>
         <button type="button" id="add-model-go">Add the model</button>
       </fieldset>
 
@@ -903,6 +979,76 @@
     <section id="provenance-list" aria-labelledby="provenance-list-h"></section>
   </section>
 </main>
+
+<!--
+  ========================================================================================
+  The two dialogs. Both are native `<dialog>` opened with `showModal()`, and that choice is the
+  whole accessibility argument rather than a styling preference.
+
+  A modal `dialog` gives us, from the platform and not from code we would have to get right:
+  `role="dialog"` with `aria-modal="true"`; a focus trap over the subtree; Escape to dismiss;
+  inertness of everything behind it, so a screen reader cannot wander out of the open dialog into a
+  page that is not currently operable; and focus returned to the element that opened it on close. A
+  `div` styled to look like a palette has none of those, and every one of them is a WCAG failure a
+  sighted mouse user never notices.
+
+  What the platform does NOT give us, and the modules therefore do: a NAME (each dialog carries
+  `aria-labelledby`), and an ANNOUNCEMENT, because opening a dialog moves focus and FR-A11Y-3 asks
+  for consequential changes to be narrated — the one polite `#live` region says what opened and
+  what it is for.
+  ========================================================================================
+-->
+
+<!--
+  The command palette (correction 4's "perhaps one command palette").
+
+  A filter input and a list of commands, where a command is one editing operation plus the
+  PRECONDITION it needs. Listing the unavailable ones, named and explained, is the point: a palette
+  that silently omits "Delete the relation" until a relation is selected teaches nobody that
+  relations can be deleted. Availability is shown as a word, never as colour or position alone.
+
+  The list is rebuilt from the registry of actions on open and on every keystroke, and EMPTIED on
+  close — so a closed palette ships no buttons for the page's button sweep to find, and an open one
+  has exactly the commands it says it has.
+-->
+<dialog id="palette" aria-labelledby="palette-h">
+  <h2 id="palette-h">Commands</h2>
+  <label class="field" for="palette-filter"><span>Filter commands</span>
+    <input type="text" id="palette-filter" autocomplete="off" aria-describedby="palette-count"></label>
+  <p class="hint" id="palette-count" role="status" aria-live="polite"></p>
+  <ul id="palette-list"></ul>
+  <button id="palette-close" type="button">Close</button>
+</dialog>
+
+<!--
+  One small focused dialog per operation. Correction 4: "Each action opens one small focused
+  dialog and submits through the existing `planEdit` into the one `submitEdit` funnel."
+
+  The FIELDS are built per operation and the two buttons are shipped, which splits the difference
+  the shell's mounting rule asks for: listeners bind once to markup the page ships, and only the
+  parameter form — which is genuinely different for each of ten operations — is rendered. The
+  refusal lands INSIDE the dialog (`#edit-dialog-problem`), because a person looking at a modal
+  cannot see `#edit-result` behind it, and a dialog that closes on a rejected edit loses both the
+  reason and everything the user typed.
+-->
+<dialog id="edit-dialog" aria-labelledby="edit-dialog-h" aria-describedby="edit-dialog-hint">
+  <h2 id="edit-dialog-h"></h2>
+  <p class="hint" id="edit-dialog-hint"></p>
+  <div id="edit-dialog-fields"></div>
+  <!--
+    Not a live region: `#live` is the one polite announcer and a second would talk over it. The
+    funnel announces the refusal; this is where it is READ.
+  -->
+  <div id="edit-dialog-problem"></div>
+  <button id="edit-dialog-confirm" type="button" class="primary">Apply</button>
+  <button id="edit-dialog-cancel" type="button">Cancel</button>
+  <!--
+    The two type-ahead hints the editing forms offer. Datalists are referenced by id from anywhere
+    in the document, so they live beside the dialog that generates the fields that use them.
+  -->
+  <datalist id="property-names"></datalist>
+  <datalist id="entity-ids"></datalist>
+</dialog>
 
 <script type="module" src="./dist/workbench.js"></script>
 </body>
