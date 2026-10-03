@@ -19,9 +19,11 @@ import { runQuery, runSavedQueries } from "../src/engine/index.ts";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import { GRAPH_FORMS, type GraphForm } from "../src/engine/types.ts";
 import {
-  admit, directionsOf, licensesTraversal, traversalOf,
+  admit, answerSparql, directionsOf, licensesTraversal, traversalOf,
   type LicensedQuestion, type QueryScope, type SeamQuestion, type SubsetVerdict, type Traversal,
 } from "../src/sparql/index.ts";
+import { entityIri, modelGraphIri, relationTypeIri } from "../src/rdf/iri.ts";
+import { project } from "../src/rdf/project.ts";
 import { EXAMPLE_IDS, exampleText } from "../scripts/gen-example-coverage.ts";
 import type { CanonicalSystem } from "../src/ir/types.ts";
 import { build, docable } from "./engine-fixtures.ts";
@@ -278,6 +280,151 @@ test("no shipped example's saved graph query gets two different refusal causes",
   assert.ok(compared > 0, "the sweep compared nothing; a vacuous agreement test is the defect itself");
   assert.ok(causes.has("missing-distinction"),
     `no shipped example exercised the omission rung, so this sweep proves nothing about it: ${[...causes]}`);
+});
+
+// --------------------------------------------------------------------------------------------
+// The substrate-absence rung — the model-type registry, at the second seam
+// --------------------------------------------------------------------------------------------
+
+/**
+ * A system that declares relation types and entities and NO models.
+ *
+ * The natural intermediate state of an authoring session, and the one the rung is about: every name
+ * the question uses resolves, the relation type licenses composition, the subset accepts the query,
+ * and there is no structural model for any of it to be true of.
+ */
+const modelless = (): CanonicalSystem => build({
+  "relation-types": {
+    may_invoke: { description: "d", composition: { path: "allowed" } },
+  },
+  entities: { api: null, gateway: null },
+});
+
+test("a relational question over a system declaring no model is refused, not answered false", () => {
+  // What this seam did before the rung: `admit` LICENSED it, the evaluator ran over a dataset with
+  // no relation edge in it, and `ASK` came back `false`. A confident NO about a system that models
+  // no structure is the `latency: 0 ms` defect wearing relational clothes — an answer that looks
+  // measured and was computed over nothing. The engine refused the same question.
+  const s = modelless();
+  for (const traversal of ["direct", "composing"] as const) {
+    const refusal = seamRefusalFor(s, relational("may_invoke", traversal));
+    assert.equal(refusal.cause, "missing-model-type", `${traversal} should reach the rung`);
+    assert.deepEqual(refusal.missing, ["structural model"]);
+    assert.match(refusal.wouldLicense, /declare a model under `models:`/);
+  }
+});
+
+test("the absent-type refusal is the engine's sentence, not a second wording of it", () => {
+  // V32 taken literally again, and the byte comparison is the same instrument the omission rung
+  // uses. The arrangement is stronger here than there: the engine EXPORTS this sentence from the
+  // model-type registry, so there is no copy to drift — this test pins that the seam generates it
+  // rather than retyping it, which a `prose` edit on either side would otherwise hide.
+  const s = modelless();
+  const engine = engineRefusalFor(s,
+    { kind: "graph", quantifier: "exists", graph: { form: "direct", relation: "may_invoke", from: "api", to: "gateway" } });
+  const seam = seamRefusalFor(s, relational("may_invoke", "direct"));
+  assert.equal(engine.reason, "missing-model-type", "fixture drift: the engine should reach the rung");
+  assert.equal(seam.reason, engine.reason);
+  assert.equal(seam.prose, engine.prose);
+  // And the sentence does the two jobs the rung exists for: it names the absent TYPE rather than a
+  // name to go hunting for, and it names the authoring move.
+  assert.match(seam.prose, /declares no structural model/);
+  assert.doesNotMatch(seam.prose, /is not declared by this system/);
+});
+
+test("a behavioral question over a machineless system is refused, not routed to the engine", () => {
+  // Rung 4's objection pointed at rung 1. Routing says "the analysis engine answers it", and over a
+  // machineless system the engine refuses in the next breath — so the route would send a reader to
+  // collect an answer that does not exist. The sentence is the state-machine entry's, so the two
+  // interfaces say one thing about the absent machine too.
+  const s = modelless();
+  const admission = admit(s, { kind: "behavioral", asked: "can the document reach published?" });
+  assert.equal(admission.kind, "refused");
+  if (admission.kind !== "refused") return;
+  assert.equal(admission.refusal.cause, "missing-model-type");
+  assert.deepEqual(admission.refusal.missing, ["state machine"]);
+
+  const engine = engineRefusalFor(s, { kind: "behavior", quantifier: "exists", behavior: { form: "deadend" } });
+  assert.equal(admission.refusal.prose, engine.prose);
+
+  // The negative control: a system WITH a machine still routes, so the rung has not swallowed the
+  // route it sits above.
+  const routed = admit(docable(), { kind: "behavioral", asked: "can the document reach published?" });
+  assert.equal(routed.kind, "routed");
+});
+
+test("a containment question follows the engine into the refusal, rather than answering alone", () => {
+  // The seam COULD answer this: `project.ts` puts the entity `contains` tree in the default graph,
+  // which a system with no models still has. The engine cannot, because `containment` is one of its
+  // graph forms and its registry rung declines the whole dialect. One decision, two interfaces
+  // (V32) — so the nicer answer loses to the agreeing one, and `QUERY_KIND` says so in code.
+  const s = build({
+    "relation-types": { may_invoke: { description: "d", composition: { path: "allowed" } } },
+    entities: { api: { contains: ["handler"] }, handler: null },
+  });
+  const seam = seamRefusalFor(s, { kind: "containment", entity: "handler", scope: UNION, subset: WITHIN });
+  const engine = engineRefusalFor(s,
+    { kind: "graph", quantifier: "exists", graph: { form: "containment", relation: "may_invoke", to: "handler" } });
+  assert.equal(seam.cause, "missing-model-type");
+  assert.equal(seam.prose, engine.prose);
+});
+
+test("the rung outranks vocabulary and licensing, which is the order the engine uses", () => {
+  // Precedence, and it is not cosmetic: the engine consults the registry ahead of its evaluators
+  // AND ahead of resolving any name, so a seam that checked names first would answer a misspelling
+  // where the engine answers an absent type — one model, two explanations, which is the whole of
+  // what V32 forbids. Three questions that each have a SECOND thing wrong with them; all three must
+  // still report the type.
+  const s = modelless();
+  const cases: [string, SeamQuestion][] = [
+    ["a misspelled relation type", relational("ownz", "direct")],
+    ["a scope naming no model", relational("may_invoke", "direct", { scope: { kind: "model", model: "ghost" } })],
+    ["an undeclared entity", { kind: "containment", entity: "ghost", scope: UNION, subset: WITHIN }],
+  ];
+  for (const [label, question] of cases) {
+    assert.equal(seamRefusalFor(s, question).cause, "missing-model-type", label);
+  }
+
+  // The subset verdict is the one thing that still wins, and `translate` is why: a clause the walker
+  // rejected is a fault in the TEXT, and the author can point at it without knowing anything about
+  // the model. `admit` keeps the same order the engine does for everything that IS about the model.
+  const engineSaysSame = engineRefusalFor(s,
+    { kind: "graph", quantifier: "exists", graph: { form: "direct", relation: "ownz", from: "api", to: "gateway" } });
+  assert.equal(engineSaysSame.reason, "missing-model-type",
+    "if the engine ever reports vocabulary first here, this seam must follow it, not lead");
+});
+
+test("the text path refuses before it resolves a graph IRI, so a scoped query hears the type", () => {
+  // The site `admit` alone could not reach. `translate` derives the scope from the query's named
+  // graphs BEFORE admitting anything, and over a system with no models every graph IRI names an
+  // undeclared model — so the author of an empty `models:` section got "model 'x' is not declared",
+  // a misspelling to hunt for. Both spellings of the question now hear the same thing.
+  const s = modelless();
+  const dataset = project(s);
+  const P = relationTypeIri(s.systemId, "may_invoke").value;
+  const [api, gateway] = [entityIri(s.systemId, "api").value, entityIri(s.systemId, "gateway").value];
+  const scoped = modelGraphIri(s.systemId, "service-flow").value;
+
+  for (const [label, text] of [
+    ["unscoped ASK", `ASK { GRAPH ?g { <${api}> <${P}> <${gateway}> } }`],
+    ["unscoped SELECT", `SELECT ?x WHERE { GRAPH ?g { <${api}> <${P}> ?x } }`],
+    ["model-scoped ASK", `ASK { GRAPH <${scoped}> { <${api}> <${P}> <${gateway}> } }`],
+  ] as const) {
+    const { answer } = answerSparql(s, dataset, text);
+    assert.equal(answer.kind, "refused", `${label}: answered instead of refusing`);
+    if (answer.kind !== "refused") continue;
+    assert.equal(answer.refusal.cause, "missing-model-type", label);
+  }
+
+  // The negative control, and it is the one that matters most: a system that DOES declare a model
+  // answers. A rung that refused every SPARQL question would pass every assertion above.
+  const live = docable();
+  const liveP = relationTypeIri(live.systemId, "may_invoke").value;
+  const { answer } = answerSparql(live, project(live),
+    `SELECT ?x WHERE { GRAPH ?g { <${entityIri(live.systemId, "api").value}> <${liveP}> ?x } }`);
+  assert.equal(answer.kind, "select-result");
+  if (answer.kind !== "select-result") return;
+  assert.ok(answer.rows.length > 0, "the control answered nothing, so it controls nothing");
 });
 
 test("the gate reads the engine's own composing-form set, so neither list can drift", () => {

@@ -23,7 +23,7 @@ export {
   type RelationalQuestion, type SeamQuestion, type SubsetVerdict, type Traversal,
 } from "./licensing.ts";
 export {
-  asEngineRefusal, isSupported, noSubjectDeclared, outsideSubset, routeToEngine,
+  absentModelType, asEngineRefusal, isSupported, noSubjectDeclared, outsideSubset, routeToEngine,
   SUPPORTED_CONSTRUCTS, undeclaredVocabulary, unknownVocabulary, unlicensedByModel,
   type EngineRoute, type RefusalCause, type RouteReason, type SeamRefusal,
   type SupportedConstruct, type VocabularySubject,

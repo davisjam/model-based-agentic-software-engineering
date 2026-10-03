@@ -1301,6 +1301,32 @@ CAUSE_UNKNOWN_VOCABULARY = "unknown-vocabulary"
 CAUSE_COMPOSITION_FORBIDDEN = "composition-forbidden"
 CAUSE_UNSUPPORTED_FORM = "unsupported-form"
 CAUSE_MISSING_DISTINCTION = "missing-distinction"
+CAUSE_MISSING_MODEL_TYPE = "missing-model-type"
+
+# The substrate-absence sentence, for a system declaring no structural model.
+#
+# This tool answered such a question instead of refusing it, and the answer was a confident NO: with
+# `relation-types:` and `entities:` declared and `models:` empty -- the ordinary middle of an
+# authoring session -- `direct`, `reachability` and `successors` all returned `refuted` and the run
+# printed `clean`. "No, api does not reach gateway" about a system that models no structure is the
+# same class as the `where`-clause bug above, reached from a different direction: a definite answer
+# computed over nothing. The engine's own report of the same defect was a latency of 0 ms over an
+# empty charge table.
+#
+# The words are the engine's `absentSubstrateProse` for the structural-model entry of its model-type
+# registry (src/engine/model-types.ts), reproduced because neither tool can import the other's, and
+# rendered in this file's dash convention. That registry is the authority a drift would be measured
+# against; what `test/parity.test.ts` holds is the CAUSE, as it does for every other cause here.
+#
+# Only the STRUCTURAL arm can arise in this tool. It evaluates graph queries and nothing else, so an
+# absent `machines:` or `quantities:` section has no question here to be absent for -- `check_queries`
+# skips both dialects and says so.
+ABSENT_STRUCTURAL_MODEL = (
+    "this system declares no structural model, and a 'graph' question is answered over one -- it "
+    'asks "What is connected to what?", which only a structural model represents. To make it '
+    "answerable, declare a model under `models:` with its purpose and relations; the structural "
+    "query forms read the typed edges it asserts."
+)
 
 
 def _refuse(cause: str, sentence: str) -> dict:
@@ -1405,6 +1431,15 @@ def run_graph_query(doc: dict, q: dict) -> dict:
     """Evaluate one graph query. Returns a result object shaped per mage-query.schema.json."""
     g = q.get("graph") or {}
     form, rel = g.get("form"), g.get("relation")
+
+    # The substrate-absence rung, ahead of every other check including the vocabulary one. The
+    # engine orders it the same way (`runTypedQuery` consults the registry before it resolves any
+    # name), and the order is what keeps the two tools from explaining one absence two ways: asked
+    # about a misspelled relation type over a modelless system, a vocabulary-first tool reports a
+    # typo to hunt where the engine reports the absent type.
+    if not (doc.get("models") or {}):
+        return _refuse(CAUSE_MISSING_MODEL_TYPE, ABSENT_STRUCTURAL_MODEL)
+
     rel_spec = (doc.get("relation-types") or {}).get(rel)
 
     if rel_spec is None:
@@ -1737,6 +1772,11 @@ def graph_outcomes(doc: dict) -> list[dict]:
     about the answer to three of its six questions, because no example declares `expect`, so no
     disagreement became a finding and the parity test compared findings. An outcome is a result in
     its own right and now travels on the wire as one.
+
+    `refusal` travels beside the cause because a cause is a bucket and a sentence is what the reader
+    gets. The two interfaces of the TypeScript side are already held to one WORDING for an absence
+    (test/sparql-seam.test.ts compares byte for byte), and nothing held this side to anything but the
+    bucket -- so a drifted explanation of a shared cause had no gate at all.
     """
     out = []
     for qid, q in (doc.get("queries") or {}).items():
@@ -1745,6 +1785,7 @@ def graph_outcomes(doc: dict) -> list[dict]:
         res = run_graph_query(doc, q)
         out.append({"id": qid, "form": (q.get("graph") or {}).get("form"),
                     "outcome": res["outcome"], "cause": res.get("cause"),
+                    "refusal": res.get("refusal"),
                     "where": bool((q.get("graph") or {}).get("where"))})
     return sorted(out, key=lambda r: r["id"])
 

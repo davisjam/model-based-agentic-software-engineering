@@ -93,6 +93,8 @@ interface PyQueryOutcome {
   readonly outcome: string;
   /** The engine's `RefusalReason` spelling, or null when the query was answered. */
   readonly cause: string | null;
+  /** The sentence a reader gets. Null when the query was answered. */
+  readonly refusal: string | null;
   readonly where: boolean;
 }
 
@@ -114,17 +116,35 @@ const pyFindings = (yamlText: string): Finding[] => pyRun(yamlText).findings;
 const tsFindings = (yamlText: string): readonly Finding[] => validate(canonicalize(parse(yamlText)));
 
 /** The engine's answer to every GRAPH query, keyed the way the Python side keys its own. */
-const tsQueries = (yamlText: string): Map<string, { outcome: string; cause: string | null }> => {
+const tsQueries = (
+  yamlText: string,
+): Map<string, { outcome: string; cause: string | null; prose: string | null }> => {
   const system = canonicalize(parse(yamlText));
-  const out = new Map<string, { outcome: string; cause: string | null }>();
+  const out = new Map<string, { outcome: string; cause: string | null; prose: string | null }>();
   for (const [id, answer] of runSavedQueries(system)) {
     const raw = system.queries.get(id)?.raw;
     const kind = (raw as { kind?: unknown } | undefined)?.kind;
     if (kind !== "graph") continue;
-    out.set(id, { outcome: answer.result.outcome, cause: answer.refusal?.reason ?? null });
+    out.set(id, {
+      outcome: answer.result.outcome,
+      cause: answer.refusal?.reason ?? null,
+      prose: answer.refusal?.prose ?? null,
+    });
   }
   return out;
 };
+
+/**
+ * One refusal sentence, with the two files' dash conventions folded together.
+ *
+ * `validate.py` carries no em-dash anywhere and writes `--`; the TypeScript writes `—`. That is a
+ * house convention per file, not a disagreement about the model, so comparing the sentences means
+ * normalizing it. Everything else is compared literally, because everything else is content: a
+ * reworded explanation of a shared cause is the drift this folds in to catch, and the two
+ * TypeScript interfaces are already held to byte equality on exactly that
+ * (`test/sparql-seam.test.ts`).
+ */
+const oneDash = (prose: string): string => prose.replaceAll("—", "--");
 
 const key = (f: Finding): string => `${f.rule} @ ${f.where}`;
 const inParity = (f: Finding): boolean => PARITY.has(f.rule);
@@ -204,6 +224,12 @@ test("repo models get the same ANSWERS, not merely the same findings", () => {
       assert.equal(theirs.cause, row.cause,
         `${label}/${row.id}: both refused, for different reasons -- validate.py '${String(row.cause)}' ` +
         `against the engine's '${String(theirs.cause)}'`);
+      if (row.refusal !== null && theirs.prose !== null) {
+        assert.equal(oneDash(theirs.prose), row.refusal,
+          `${label}/${row.id}: one cause, two explanations. validate.py says "${row.refusal}"; the ` +
+          `engine says "${theirs.prose}". A reader who asks both tools about one absence must hear ` +
+          `one sentence, which is the property the SPARQL seam is already held to.`);
+      }
       compared += 1;
     }
   }
@@ -437,6 +463,72 @@ test("the purposeful-omission rung agrees, including where it declines to match"
     assert.equal(py.get(id), cause, `${id}: validate.py said '${String(py.get(id))}'`);
     assert.equal(ts.get(id)?.cause, cause, `${id}: the engine said '${String(ts.get(id)?.cause)}'`);
   }
+});
+
+test("a system declaring no model gets one answer from both tools, and it is a refusal", () => {
+  // The gap this closes was a WRONG ANSWER a user could reach, not a latent parity risk. `models:`
+  // empty with `relation-types:` and `entities:` declared is the ordinary middle of an authoring
+  // session, and `python3 validate.py` on it answered `refuted` to `direct`, `reachability` and
+  // `successors`, then printed `clean`. "No, api does not reach gateway" about a system that models
+  // no structure is the same class as this tool's `latency: 0 ms` over an empty charge table: a
+  // definite answer computed over nothing.
+  //
+  // The model is NOT in `repoModels()` and could not be -- every committed model declares `models:`,
+  // which is why the ruling that landed the engine's rung recorded this as unobservable. It was
+  // unobservable to the SWEEP. It was not unobservable to a reader.
+  //
+  // `containment` is in the cases because it is the one where the two tools had different wrong
+  // answers: validate.py refused it as `unsupported-form` with no `where` clause, which the sweep
+  // above would have reported as an unexplained exemption rather than as the real disagreement.
+  const doc = {
+    ...base,
+    "relation-types": { may_invoke: { description: "d", composition: { path: "allowed" } } },
+    entities: { api: { contains: ["handler"] }, gateway: {}, handler: {} },
+    queries: {
+      "direct-call": { kind: "graph", quantifier: "exists", graph: { form: "direct", relation: "may_invoke", from: "api", to: "gateway" } },
+      "can-reach": { kind: "graph", quantifier: "exists", graph: { form: "reachability", relation: "may_invoke", from: "api", to: "gateway" } },
+      "who-calls": { kind: "graph", quantifier: "exists", graph: { form: "successors", relation: "may_invoke", from: "api" } },
+      nests: { kind: "graph", quantifier: "exists", graph: { form: "containment", relation: "may_invoke", to: "handler" } },
+      // A misspelling on top, because the rung outranks vocabulary on both sides: a reader of a
+      // modelless system must hear about the absent type, not be sent hunting a typo.
+      "typo-too": { kind: "graph", quantifier: "exists", graph: { form: "direct", relation: "ownz", from: "api", to: "gateway" } },
+    },
+  };
+  const text = stringify(doc);
+  const py = new Map(pyRun(text).queries.map((r) => [r.id, r]));
+  const ts = tsQueries(text);
+
+  assert.equal(py.size, 5, "the Python side skipped a query");
+  for (const id of Object.keys(doc.queries)) {
+    const theirs = py.get(id);
+    const ours = ts.get(id);
+    assert.ok(theirs !== undefined && ours !== undefined, `${id}: one side has no answer`);
+    assert.equal(ours.outcome, "unlicensed", `${id}: the engine answered a modelless system`);
+    assert.equal(theirs.outcome, "unlicensed", `${id}: validate.py answered a modelless system`);
+    assert.equal(ours.cause, "missing-model-type", id);
+    assert.equal(theirs.cause, "missing-model-type", id);
+    assert.equal(oneDash(ours.prose ?? ""), theirs.refusal, `${id}: two explanations of one absence`);
+  }
+
+  // The negative control: declare ONE model and the same five questions get answered again (bar the
+  // typo, which is now genuinely a vocabulary miss). A rung that refused every graph query would
+  // satisfy every assertion above.
+  const live = stringify({
+    ...doc,
+    models: {
+      "service-flow": {
+        type: "graph", entities: ["api", "gateway"],
+        relations: [{ from: "api", to: "gateway", type: "may_invoke" }],
+      },
+    },
+  });
+  assert.deepEqual(pyRun(live).findings, [], "the control must be a clean model, or it controls nothing");
+  const livePy = new Map(pyRun(live).queries.map((r) => [r.id, r]));
+  const liveTs = tsQueries(live);
+  assert.equal(livePy.get("direct-call")?.outcome, "holds");
+  assert.equal(liveTs.get("direct-call")?.outcome, "holds");
+  assert.equal(livePy.get("typo-too")?.cause, "unknown-vocabulary");
+  assert.equal(liveTs.get("typo-too")?.cause, "unknown-vocabulary");
 });
 
 test("asymmetric rules still fire on the side that owns them", () => {
