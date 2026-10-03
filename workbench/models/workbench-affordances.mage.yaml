@@ -130,7 +130,7 @@ entities:
 
   validate:
     type: semantic-capability
-    label: "Report findings against the numbered rules V1-V26."
+    label: "Ask whether the model is well formed, and get each violated rule with what to repair."
     properties:
       human: wired
       machine: wired
