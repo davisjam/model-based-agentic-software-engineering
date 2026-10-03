@@ -904,3 +904,116 @@ a11y 59. Every tier 0 fail, 0 cancelled.
 report **`cancelled`**, and a first pass of this wave reported "54 / 38 pass / 1 fail" and left 15
 unaccounted: the hook aborts were in the `cancelled` line, which went unread. A count that does not
 add up is the tell, and the honest reading is 41 + 1 + 15 = 57.
+
+---
+
+## 14. As built — M3, and where §6 was wrong
+
+M3 landed `workspace.validate()` / `window.mage.validate()`, `src/validator/result.ts`
+(`ValidationRule`, `SEVERITY`, `SPEC_SECTION`, `ValidationFinding`, `ValidationResult`,
+`VALIDATION_AUTHORITY`), the `subjects` drain across all sixty rungs, the `validate` capability
+row's re-point, and MQ-I6 / MQ-I9. The gap §6 names is real and the operation closes it. Six things
+about §6 did not survive applying it.
+
+**(1) `context().findings` is NOT a stale snapshot, and the gap is a different one.** §6.1 says the
+`validate` row's machine affordance is "a SNAPSHOT of the last load/transact" and that "an agent
+reading it after another client's edits reads stale findings and cannot tell." Read the code:
+`Workspace.state` computes `findings: validate(system)` on every access (`services.ts:179`), and
+`context()` reads `workspace.state`. So those findings always describe the current revision. The
+design diagnosed a staleness bug that does not exist — and the ruling's gap survives the correction
+intact, because it was never about freshness. Three things are missing from `context().findings`, and
+each is in the ruling's own sentence: it is **not an operation** (a field of another operation's
+result, so an agent asks for a context and reads a member), it is **not actionable** (the bare three
+wire fields: no severity, no subjects, no spec join), and it **does not say who decided it**. An
+agent could always see the findings; it could never ASK, and what it saw was a sentence. Had M3
+trusted §6.1, the fix would have been a cache-invalidation that nothing needed.
+
+**(2) The severity table is total by the COMPILER, not by MQ-I9's test.** §6.4 and MQ-I9 plan a node
+test that runs a violation corpus and asserts every finding's rule has a severity row — which holds
+only for rules the corpus happens to drive, so a rule with no corpus case could ship with no
+severity. Narrowing `Collector.add`'s first parameter from `string` to a closed `ValidationRule`
+union, and writing both tables as mapped types over it, makes a rule without a row a compile error.
+The corpus sweep stayed, demoted to what it honestly is: the net under a future cast. This is M1's
+§12(3) lesson applied one module over — totality is cheap when a union is already closed, and a
+registry that is total refuses to hide an oversight as a decision.
+
+**(3) `subjects` landed REQUIRED, which means there is no migration.** §6.4 plans "an optional
+subjects argument" with rungs "not yet draining" reporting `[]` and a test holding the drained set so
+coverage only grows. An optional field cannot distinguish a rung that considered its subjects and
+found none from one that never considered them, which is the same defect the `evidence()` nullable
+was — so the parameter is required and all **sixty** call sites were drained in one pass. `[]` is now
+a statement rather than a default, and no coverage ledger is needed because coverage is total.
+(§6.4's prose also says the rungs "grow an optional subjects argument" on `Collector`, which is
+`rules.ts:40` — the cite is right; §6.1's `services.ts:204,242` cites are the load/transact
+side-effect sites and still land, but the load-time `validate` is `:179` in `get state()`.)
+
+**(4) `subjects` and `where` answer different questions, and the design never said so.** §6.4
+describes `subjects` only negatively — "never parsed out of `where` or `message`". Working the rungs
+produced the positive statement: `where` is the dotted address of the SITE TO EDIT, `subjects` are
+the OBJECTS THE FINDING IS ABOUT, and for several rules they are disjoint. V5 is reported at the
+claiming entity and is about the child plus the parent that claimed it first — two ids `where` does
+not contain. V13 is reported at the event and is about two machines and a variable the sentence
+names, plus the event the sentence does not. Those two cases are now the tests that prove the field
+is populated rather than derived: a parse of `where` could not produce V5's set, and a parse of the
+message could not produce V13's. A second, smaller finding: a DANGLING reference contributes its name
+*as written* (`ghost`, `m.ghost`), which §6.4's "the declared ids" would have excluded — and the
+unresolved name is the one id a repair needs.
+
+**(5) The result must SAY who decided it, so it says so in a field.** §6.3 rules the authority split
+and §6.4 specifies a result with no place to record it, which leaves the ruling's requirement —
+*"A `validate(model)` operation must say which implementation is authoritative for its result"* —
+discharged by a design document the agent cannot read. `ValidationResult.authority` carries
+`VALIDATION_AUTHORITY`: the implementation, the cross-check and the control that holds it, the
+enrichment fields outside the compared surface, `ratified: false`, and the §G3 cite. One constant,
+carried by reference, is also the reversibility §G3 needs: moving authority is one edit.
+
+**PROVISIONAL, and what changes if §G3 is ruled the other way.** The operation serves `rules.ts` and
+never consults `validate.py`. Under §G3(b) — parity itself normative, the TS answer an implementation
+fact — no behaviour changes: `VALIDATION_AUTHORITY` is reworded (`implementation` becomes the serving
+side rather than the deciding one, `ratified` flips true) and the test that reads it follows. Under a
+reading that made PYTHON authoritative, the operation would need a Python answer in a browser, which
+there is no path to — that is the reading §6.3 rejects and the as-built agrees.
+
+**(6) `validate()` had to keep the three wire fields, or three uncompared fields joined the parity
+surface by accident.** §6.3 states the rule and §6.4's shape breaks it: if the enriched findings flow
+through the existing `validate(s)` used by `load`, `transact` and `state`, they reach
+`test/parity.test.ts`'s comparison objects, where `Finding` is the shape `validate.py` emits. So
+`validate(s)` narrows to `{rule, where, message}` and `validateModel(s)` publishes the enrichment —
+one pass over the rungs, two projections of it. A test asserts the narrowing, and another asserts the
+enrichment field set EQUALS `authority.outsideCrossCheck`, so a fourth enrichment cannot be added
+without declaring it uncompared.
+
+**`spec` needed a nested read of SEMANTICS.md.** The join test walks the spec's headings and asserts
+each cited section exists verbatim AND mentions its rule. A flat heading list reports V27-V31 as
+filed under the wrong section, because they are stated under `#### The rules` INSIDE §5.2 — so a
+section's body includes its subsections. The allowance for a rule introduced outside its section by a
+line citing it by number is what `ANNOTATION` needs: the preamble introduces it as "reports a
+malformed note (§5.1)". And the table itself was wrong once: V1 is stated in §1, where `sync:`
+syntactic visibility is fixed, not in §2 — found by the test, not by inspection.
+
+**No human affordance was owed, and the reasoning is the opposite of `check`'s.** §5.4's lesson was
+that a declared absence is usually work in disguise; this capability is the case where the asymmetry
+runs the other way and is still right. The findings table repaints from `state.findings`, which
+recomputes, so a person has always SEEN the verdict for the current revision — there is no question a
+person can ask that the panel does not already answer. A machine client has no panel, which is why
+for it the operation IS the affordance. UX-I1 reads **`0 violation(s) over 26`**.
+
+**What M3 did not change.** `validate.py` needed no edit and no parity-set change: no finding moved,
+no message changed, and the three enrichment fields sit outside the compared surface by the rule §6.3
+sets. `AGENT_API_VERSION` stays `0.2.0` — the operation is additive and `context().findings` survives
+(with a doc-comment that now says what it honestly is); M4 owns the 0.3.0 bump.
+
+**One generated artifact had to be regenerated, and a test caught it.** The capability row's `summary`
+changed, and `models/workbench-affordances.mage.yaml` is generated from `CAPABILITIES` and held to it
+byte-for-byte (`test/capabilities.test.ts:526`). `npm run affordances`. Worth recording because the
+node tier is the only thing that notices.
+
+**Gates at the landing tree:** `tsc --noEmit` clean · `check:parity` `UX-I1: 0 violation(s) over 26
+capabilities` · node **802** (785 at the fork + 17) · smoke **3** · browser **36**. Every tier 0 fail,
+0 cancelled. The a11y tier was not run: five of its cases are a sibling wave's, being re-pointed after
+wave 2c removed the hypothesis radios they drove.
+
+**The worktree-setup gaps §13 recorded are still gaps.** `git worktree add` created no
+`workbench/node_modules`, no ROOT `node_modules` and no `book/node_modules`, so the browser and smoke
+tiers cannot run until all three symlinks exist and `npm run build` has run. Three for three with
+§13's count.
