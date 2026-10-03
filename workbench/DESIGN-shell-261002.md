@@ -583,3 +583,62 @@ otherwise.
 - **Consequence of ruling otherwise.** (b) extends wave 2b by roughly its own size and adds the
   first pointer-only input the registry would need to justify (the parity story stays intact —
   `canvas.connect` would register beside the dialog affordance — but it must be SAID).
+
+### 9c. Wave 2a as built — one catalogue, three surfaces, and three things the kernel cannot do
+
+Appended by wave 2a after landing. §9a asked wave 2a to drain `edit-forms.ts`; this records how far
+that got and what stopped it, because the stopping point is a pin in a file wave 2a does not own.
+
+- **An operation is declared once and every surface derives from it.** `EDIT_ACTIONS`
+  (`src/ui/shell/edit-dialogs.ts`) is one row per editing operation: its fields, their option
+  sources, the precondition it needs, the licensing hint the old fieldset carried, and a `build`
+  that produces the `EditRequest`. The `+ Add` menu renders the additive rows; the inspector renders
+  the rows a selection makes applicable, prefilled with it; the ⌘K palette lists all of them with
+  their preconditions; the dialog builds the parameter form. Four surfaces that each spelled their
+  own option lists would be four places to fix one defect — which the ten fieldsets already were.
+- **`edit-forms.ts` went from 249 lines to 124, and what is left is exactly wave 2c's target.** The
+  ten `*-go` bindings, every `fillSelect`, the datalists and the relation-endpoint narrowing moved
+  out. What remains is `submitEdit` plus correction 8's radios, hypothesis name, rationale and
+  `#edit-result`. `submitEdit` now RETURNS an `EditOutcome`: a modal cannot report a refusal by
+  painting a readout behind itself, and a dialog that closed on a rejected edit would lose both the
+  reason and everything the user typed.
+- **The ten fieldsets' MARKUP is still in `index.html`, and that is a pin rather than an omission.**
+  Six §19 drives in `test/browser/a11y/keyboard.test.mjs` (13.2, 13.3, 13.5, 13.6, 13.15, and the
+  announcement-storm test at ~line 645) reach these operations by typing into `#add-entity-id`,
+  choosing in `#delete-element-target` and pressing `#add-entity-go`. A field inside a closed
+  `<dialog>` is not focusable, so deleting the markup turns six passing accessibility drives red —
+  and that file belongs to the wave that generates drives from declared paths (wave 2d). The
+  bindings for it are one clearly-marked block in `edit-dialogs.ts` that submits through the same
+  `EditAction.build` the dialog uses, so the fieldsets cannot drift from the dialogs while they
+  wait, and the deletion is that block plus the markup.
+- **Three things correction 4 asks for, that the transaction vocabulary cannot do.** Said plainly
+  rather than faked with a control that cannot work:
+  1. *Selected model → Edit purpose.* No operation rewrites a model's engineering question.
+     `add-model` composes `add-model` + `set-purpose` at creation; there is no `set-purpose` form
+     for an existing model, and `set-label` reaches the LABEL. `test/shell-edit.test.ts` pins the
+     absence, so the first thing that fails when the op lands is the test asking for the action.
+  2. *Selected relation → Edit.* No operation changes a relation in place. The honest contextual
+     set for a relation is Attach note and Delete; editing one means deleting it and connecting
+     again, which is a different act and should look like one.
+  3. *Selected model → Add element.* No operation adds an entity to an existing model. The nearest
+     licensed act is asserting a relation IN that model, which is what the model's Connect action
+     does (prefilled with the model), and it is offered under that name rather than as "Add
+     element".
+- **The palette is a surface, not an affordance site.** Its rows are rendered per open and emptied
+  on close, so there is no element for the registry to stamp — and a declared site bound to nothing
+  in every state but one reads to the closure gate as a deleted control. The palette's registry
+  presence is therefore its OPENER, and even that is chrome: `CHROME_CONTROLS` in
+  `capabilities.ts` is the four-button exemption (palette open/close, dialog confirm/cancel), read
+  by both the node-tier markup sweep and the browser-tier served-page sweep from one constant.
+- **What wave 1d must declare, one `path` per new control.** All from the default loaded workspace:
+  `+ Add` menu items → `[{surface:"workspace", via:"disclose"}, {surface:"workspace", via:"menu"}]`
+  (the `<details>` is in the workspace region; opening it is the disclosure step). Inspector actions
+  → `[{surface:"inspector", via:"activate", requires:"<the kind>"}]`, where the precondition is the
+  action's own `needs`: `selection:element` for `inspector.rename` / `inspector.set-property` /
+  `inspector.connect` / `inspector.note` / `inspector.delete-element`, `selection:relation` for
+  `inspector.delete-relation`, `selection:model` for `inspector.delete-model`. Note that
+  `ActionPrecondition` is deliberately the same closed vocabulary as `NavPrecondition` narrowed to
+  five members, so 1d can read the condition off the catalogue instead of re-deriving it — and a
+  `selection:machine` member exists for the machine rename, which the action bar offers through
+  `inspector.rename`. The surviving `edit-section.*` sites keep an empty path: they are still
+  visible in the default loaded workspace, below the shell, until the markup goes.

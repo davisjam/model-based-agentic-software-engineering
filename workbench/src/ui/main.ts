@@ -42,6 +42,8 @@ import { mountWorkspace } from "./shell/workspace.ts";
 import { mountInspector } from "./shell/inspector.ts";
 import { mountAskBar } from "./shell/askbar.ts";
 import { mountEditForms } from "./shell/edit-forms.ts";
+import { mountEditDialogs } from "./shell/edit-dialogs.ts";
+import { mountPalette } from "./shell/palette.ts";
 import { mountReview } from "./shell/review.ts";
 import { mountStatus } from "./shell/status.ts";
 import { mountSystemBrowser } from "./shell/browser.ts";
@@ -140,9 +142,13 @@ const ctx: ShellContext = {
 // -- the regions ------------------------------------------------------------------------------
 //
 // Mounted once, in document order, because mounting binds listeners to markup the page ships. The
-// editing forms are mounted first only because they own `submitEdit`, the one mutation funnel the
-// ask bar also sends through — one operation, one envelope, one `Workspace.transact`.
+// editing funnel is mounted first only because it owns `submitEdit`, the one mutation funnel the
+// ask bar and every editing dialog also send through — one operation, one envelope, one
+// `Workspace.transact`.
 const editForms = mountEditForms(ctx);
+// And the contextual editing surfaces second, because the palette dispatches into the dialogs: one
+// `open` function, so ⌘K and a `+ Add` item reach the same form the same way.
+const editDialogs = mountEditDialogs(ctx, editForms.submitEdit);
 const regions: readonly ShellRegion[] = [
   mountHeader(ctx),
   mountStart(ctx),
@@ -153,6 +159,8 @@ const regions: readonly ShellRegion[] = [
   mountStatus(ctx),
   mountSystemBrowser(ctx),
   editForms,
+  editDialogs,
+  mountPalette(ctx, editDialogs.open),
   mountReview(ctx),
 ];
 

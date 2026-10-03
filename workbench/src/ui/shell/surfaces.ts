@@ -73,9 +73,10 @@ const built = (
  * The table. Every member of `NavSurface` appears exactly once — a test holds that shut, because a
  * surface missing from the table is a surface a path could cite with nothing to check it against.
  *
- * The three planned rows are honest about wave 0's boundary. The palette does not exist; the
- * review surface and the advanced query are the flat page's hypothesis bar and query builder,
- * standing where they stood, which is why they are `built` and the palette is not.
+ * Every row is `built` since wave 2a, which landed the palette — the one surface wave 0 had to
+ * declare `planned` because nothing in the page opened one. `PlannedSurface` stays in the type: the
+ * honest declaration of an unbuilt region is the thing that let this row be a work list rather than
+ * a lie, and the next surface a design adds needs it on day one.
  */
 export const SURFACES: readonly Surface[] = [
   built("header", "header", "landmark"),
@@ -88,13 +89,10 @@ export const SURFACES: readonly Surface[] = [
   built("inspector", "inspector"),
   built("askbar", "askbar"),
   built("statusbar", "statusbar"),
-  {
-    surface: "palette",
-    status: "planned",
-    note: "the command palette is the editing wave's (DESIGN-shell-261002.md §9, wave 2a). Nothing "
-      + "in the page opens one yet, so a navigation path through it would name a region that does "
-      + "not exist.",
-  },
+  // The command palette, landed by wave 2a. A `control` rather than a `landmark`: it is a modal
+  // `<dialog>`, so a harness does not Tab to it — it presses ⌘K or `#palette-open`, and everything
+  // behind it is inert until it closes.
+  built("palette", "palette", "control"),
   // The review surface, as the flat page built it: a banner plus the two ways out of a hypothesis.
   // Wave 2c replaces it with the REVIEW CHANGE surface at the same id.
   built("review", "hypothesis-bar"),

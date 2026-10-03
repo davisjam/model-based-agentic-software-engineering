@@ -27,7 +27,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import {
-  CAPABILITIES, boundHumanAffordances, checkAffordanceParity, checkRegistryClosure,
+  CAPABILITIES, CHROME_CONTROLS, boundHumanAffordances, checkAffordanceParity, checkRegistryClosure,
 } from "../../src/app/capabilities.ts";
 import {
   startServer, launchBrowser, shutdown, openWorkbench, loadFlagshipExample,
@@ -308,10 +308,15 @@ describe("UX-I1: every declared human affordance site is bound to a live element
     // all 21 of its buttons are capability affordances, because the page has no navigation chrome.
     // The shell adds disclosure and menu buttons, and whoever lands them owns the decision to
     // declare them or to name an exemption here — not to delete this.
-    const unstamped = await page.evaluate(() =>
+    // The exemption comes from the registry, not from a list typed here: `test/capabilities.test.ts`
+    // reads the same constant over the markup, so the file sweep and the served-page sweep cannot
+    // disagree about which buttons are chrome. Four at this commit — the palette's opener and
+    // close, and the edit dialog's confirm and cancel.
+    const chrome = CHROME_CONTROLS.map((c) => c.id);
+    const unstamped = await page.evaluate((exempt) =>
       [...document.querySelectorAll("button")]
-        .filter((b) => b.dataset.affordance === undefined)
-        .map((b) => `#${b.id || "(no id)"}: ${b.textContent.trim().slice(0, 40)}`));
+        .filter((b) => b.dataset.affordance === undefined && !exempt.includes(b.id))
+        .map((b) => `#${b.id || "(no id)"}: ${b.textContent.trim().slice(0, 40)}`), chrome);
     assert.deepEqual(unstamped, [], `${unstamped.length} unregistered button(s): ${unstamped.join(" | ")}`);
   });
 
