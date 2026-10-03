@@ -184,6 +184,23 @@ jobs:
       #
       # Two receipts, hard-asserted for the same reason as the one above: each suite is its own file,
       # so each could be the one whose glob silently matched nothing.
+      #
+      # The smoke tier covers BOTH served pages — index.html and learn.html — as a post-condition:
+      # no fallback string appears AND an expected content shape IS present. It is the only gate that
+      # looks at learn.html as a page rather than as a module, so without it a Learn gallery that
+      # rendered an empty card list would pass every other check here.
+      #
+      # It was added to `npm run all` when it landed and NOT to this workflow, which is the third
+      # instance today of one failure class: a gate exists and the path meant to run it does not reach
+      # it. The first cost a duplicate-landmark defect that reached main; the second failed this
+      # pipeline on a Python install ordered after the suite that needs it. A gate nobody runs reports
+      # green.
+      - name: Model Workbench smoke tier (both served pages boot, no fallback strings)
+        working-directory: workbench
+        run: |
+          test -f dist/workbench.js || { echo "ERROR: workbench bundle missing — the smoke tier would load a page with no app"; exit 1; }
+          test -f dist/learn.js || { echo "ERROR: learn bundle missing — the smoke tier would load a gallery with no app"; exit 1; }
+          npm run test:smoke
       - name: Model Workbench FR-A11Y tier (axe-core over four states + section 19 by keyboard) + receipt assertions
         working-directory: workbench
         env:
