@@ -7,7 +7,9 @@
  *  - `maxOverExecutions` — the worst case over all executions, or the Q5 cycle witness;
  *  - `memoryOf` / `peakMemory` — memory(c) by the Q3 predicate, and its reachable maximum;
  *  - `evaluateRequirement` — a bound judged into Outcome + Coverage + Evidence, nothing new;
- *  - `expectedMetric`    — always a refusal, naming what is missing or what is deferred (Q4).
+ *  - `expectedMetric`    — always a refusal, naming what is missing or what is deferred (Q4);
+ *  - `runQuantityQuery`  — the query form over all of the above: aggregation derived from the
+ *                          dimension's scope, the figure on `result.magnitude` with its dimension.
  */
 export {
   buildChargeTable, ChargeAccumulator, resolveStateRef, stepCharge,
@@ -23,6 +25,7 @@ export {
   defaultRequirementOptions, evaluateRequirement, expectedMetric, REQUIREMENT_METRICS,
   type QuantRequirement, type RequirementMetric, type RequirementOptions,
 } from "./requirement.ts";
+export { runQuantityQuery } from "./query.ts";
 export {
   parseBound, quantityMagnitude,
   type Charge, type ConfigurationMemory, type MemoryContribution, type PathExtremum,

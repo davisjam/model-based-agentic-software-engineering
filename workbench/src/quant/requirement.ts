@@ -18,7 +18,7 @@
  * arithmetic is what the ruling defers to SMT rather than having us maintain a weaker semantics.
  */
 import { systemHash } from "../ir/hash.ts";
-import type { CanonicalSystem, Coverage, Evidence } from "../ir/types.ts";
+import type { CanonicalSystem, Configuration, Coverage, Evidence, ResultMagnitude } from "../ir/types.ts";
 import { ACCOUNTED_METRICS, DIMENSIONS, type Dimension } from "../ir/types.ts";
 import {
   detail, exhaustive, result, unlicensed, type Fail, type Verdict,
@@ -44,10 +44,16 @@ export interface QuantRequirement {
 
 export interface RequirementOptions {
   readonly limit: number;
+  /** Path metrics only: restrict the worst case to executions reaching this. See PathOptions.target. */
+  readonly target: ((cfg: Configuration) => boolean) | null;
 }
 
 export const defaultRequirementOptions = (): RequirementOptions =>
-  ({ limit: defaultPathOptions().limit });
+  ({ limit: defaultPathOptions().limit, target: null });
+
+/** The magnitude a decided bound reports: the observed figure, in the dimension's base unit. */
+const magnitudeOf = (dimension: Dimension, observed: number | null): ResultMagnitude | null =>
+  observed === null ? null : { value: observed, dimension, unit: DIMENSIONS[dimension].base };
 
 const fromVerdict = (v: Verdict): QuantAnswer =>
   ({ result: v.result, refusal: v.refusal, analysis: null });
@@ -108,14 +114,40 @@ type Operator = typeof WORST_CASE_OPERATORS[number];
 const violates = (observed: number, operator: Operator, bound: number): boolean =>
   operator === "<=" ? observed > bound : observed >= bound;
 
-function evaluatePath(
+/** Exported for the quantity query form, which decides the same bound from a declared ceiling. */
+export function evaluatePath(
   system: CanonicalSystem, hash: string, interpretedAs: string, metric: PathMetric,
   dimension: Dimension, unit: string, operator: Operator, bound: number, boundRaw: string,
   options: RequirementOptions,
 ): QuantAnswer {
-  const max = maxOverExecutions(system, metric, { limit: options.limit, end: "upper" });
+  const max = maxOverExecutions(system, metric, { limit: options.limit, end: "upper", target: options.target });
   if (!max.ok) return refuse(hash, max, interpretedAs);
   const analysisBase = { metric, dimension, unit, bound };
+
+  if (max.value.kind === "none") {
+    // Only a target selection can produce this: no explored execution reaches the selected
+    // configurations. Under a complete walk the universal claim holds VACUOUSLY — disclosed,
+    // because a vacuous holds that looks earned is the failure this suite has shipped once
+    // already. Under a truncated walk nothing is established either way (V22).
+    const vacuous = max.value.coverage.kind !== "bounded";
+    return {
+      result: result({
+        outcome: vacuous ? "holds" : "inconclusive",
+        coverage: max.value.coverage, systemHash: hash, interpretedAs,
+        compilation: asCompilation([
+          ...max.value.notes,
+          vacuous
+            ? `No execution reaches the selected configurations, so the bound holds vacuously — ` +
+              `there is nothing to charge. If the selection was meant to be reachable, that ` +
+              `absence is the finding.`
+            : `No execution in the explored region reaches the selected configurations, and the ` +
+              `walk was truncated — nothing is established either way.`,
+        ]),
+      }),
+      refusal: null,
+      analysis: { ...analysisBase, observed: null, unbounded: false, charges: null },
+    };
+  }
 
   if (max.value.kind === "unbounded") {
     // The Q5 shape: a positive repeatable cycle refutes EVERY finite bound, so the cycle witness
@@ -148,6 +180,7 @@ function evaluatePath(
       result: result({
         outcome: "refuted", coverage: exhaustive(coverageStates(coverage)), systemHash: hash,
         evidence, interpretedAs, compilation: asCompilation(notes),
+        magnitude: magnitudeOf(dimension, total),
       }),
       refusal: null,
       analysis: { ...analysisBase, observed: total, unbounded: false, charges },
@@ -156,7 +189,8 @@ function evaluatePath(
   return withinBound(hash, interpretedAs, coverage, notes, { ...analysisBase, observed: total, unbounded: false, charges });
 }
 
-function evaluatePeak(
+/** Exported for the quantity query form — see evaluatePath. */
+export function evaluatePeak(
   system: CanonicalSystem, hash: string, interpretedAs: string, metric: RequirementMetric,
   dimension: Dimension, unit: string, operator: Operator, bound: number, _boundRaw: string,
   options: RequirementOptions,
@@ -175,6 +209,7 @@ function evaluatePeak(
       result: result({
         outcome: "refuted", coverage: exhaustive(coverageStates(coverage)), systemHash: hash,
         evidence, interpretedAs, compilation: asCompilation(notes),
+        magnitude: magnitudeOf(dimension, observed),
       }),
       refusal: null,
       analysis,
@@ -198,6 +233,7 @@ function withinBound(
           `outstanding, so the bound is established only over the explored region. The sound ` +
           `statement is "not exceeded within the explored region", never "satisfied".`,
         ]),
+        magnitude: magnitudeOf(analysis.dimension, analysis.observed),
       }),
       refusal: null,
       analysis,
@@ -206,6 +242,7 @@ function withinBound(
   return {
     result: result({
       outcome: "holds", coverage, systemHash: hash, interpretedAs, compilation: asCompilation(notes),
+      magnitude: magnitudeOf(analysis.dimension, analysis.observed),
     }),
     refusal: null,
     analysis,

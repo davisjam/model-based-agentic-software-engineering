@@ -8,12 +8,12 @@
 # omitted, because a coverage model that claims a capability the product lacks is worse than none.
 #
 # All three default examples ship. Document Processing declares quantities, declares their
-# accounting, and states both performance numbers -- so the Quantities rows are exercised. The
-# Performance row still reports unavailable, and the difference is deliberate: MAGE represents and
-# validates quantities but evaluates none of them. No query aggregates a quantity along an
-# execution and no result field could carry the magnitude, so a latency or memory requirement
-# reaches no verdict. Requirements is unavailable for a plainer reason -- there is no requirement
-# construct, and the examples carry their requirements in their fixtures.
+# accounting, and states both performance numbers -- and the Performance row is exercised: the
+# `kind: quantity` query form aggregates each metric (the aggregation derived from the
+# dimension's scope), decides the declared ceilings, and reports the figure on the result's
+# magnitude field, which the schema probe finds. Requirements stays unavailable for a plainer
+# reason -- there is no requirement construct, and the examples carry their requirements in
+# their fixtures.
 
 mage: 1
 
@@ -234,7 +234,7 @@ entities:
     label: "A latency or memory requirement DECIDED by the product: a query that aggregates quantities over the executions a behavioral model supplies, and a result that carries the number."
     properties:
       matrix_row: "Performance"
-      status: { value: unavailable, domain: coverage-status }
+      status: { value: exercised, domain: coverage-status }
 
   capability.requirements:
     type: semantic-capability
@@ -246,10 +246,6 @@ entities:
   construct.model-requirements:
     type: absent-construct
     label: "A requirement construct: a named, checkable obligation the model is judged against."
-
-  construct.query-path-aggregation:
-    type: absent-construct
-    label: "A query that aggregates a quantity over an execution path, and somewhere in the result shape to report the number it computes."
 
 models:
 
@@ -293,7 +289,6 @@ models:
       - capability.performance
       - capability.requirements
       - construct.model-requirements
-      - construct.query-path-aggregation
     relations:
       - { from: example.message-bus, to: capability.structural-models, type: exercises }
       - { from: example.document-processing, to: capability.structural-models, type: exercises }
@@ -331,7 +326,7 @@ models:
       - { from: example.document-processing, to: capability.declared-accounting, type: exercises }
       - { from: example.document-processing, to: capability.path-quantity-accounting, type: exercises }
       - { from: example.document-processing, to: capability.configuration-memory-accounting, type: exercises }
-      - { from: capability.performance, to: construct.query-path-aggregation, type: blocked-by }
+      - { from: example.document-processing, to: capability.performance, type: exercises }
       - { from: capability.requirements, to: construct.model-requirements, type: blocked-by }
 
 # One assertion per capability. `expect` makes a saved query a CI gate: re-running them
@@ -553,7 +548,7 @@ queries:
     name: "Which shipped example exercises performance -- performance?"
     kind: graph
     quantifier: exists
-    expect: refuted
+    expect: holds
     graph:
       form: predecessors
       relation: exercises
@@ -568,16 +563,6 @@ queries:
       form: predecessors
       relation: exercises
       to: capability.requirements
-
-  blocked.performance:
-    name: "What construct does MAGE lack that makes performance unreachable?"
-    kind: graph
-    quantifier: exists
-    expect: holds
-    graph:
-      form: successors
-      relation: blocked-by
-      from: capability.performance
 
   blocked.requirements:
     name: "What construct does MAGE lack that makes requirements unreachable?"

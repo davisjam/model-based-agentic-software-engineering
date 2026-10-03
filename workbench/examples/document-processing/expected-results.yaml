@@ -7,15 +7,12 @@
 # generated ids, no state counts. `path` pins an ORDERED node sequence where the sequence IS the
 # answer; `nodes_include` is an unordered subset where the engine's answer is a set.
 #
-# ## The quantitative half is HAND-DERIVED, and says so
+# ## The quantitative half is HAND-DERIVED, and the product now reproduces it
 #
-# Nothing in src/ sums a latency along a trace, computes memory(c), computes peak memory, or decides
-# a declared requirement. The quantity layer is REPRESENTED and VALIDATED (V27-V31, V35-V37); it is
-# not evaluated. SEMANTICS.md 5.3 says so outright, and `scripts/gen-example-coverage.ts` probes the
-# published query schema and finds no result field that could carry a computed magnitude.
-#
-# So `quantitative_expectations` below carries numbers derived BY HAND, with the arithmetic written
-# out, and every entry is flagged `hand_derived: true`. What the suite does and does not check:
+# `quantitative_expectations` below carries numbers derived BY HAND, with the arithmetic written
+# out, and every entry is flagged `hand_derived: true` — they are the ORACLE, derived before any
+# evaluator existed precisely so the product could be checked against them rather than against
+# itself. What the suite checks:
 #
 #   CHECKED   each entry's premises. Occurrence counts come from the engine's own witness trace;
 #             per-occurrence charges come from the model's normalized magnitudes; the resident and
@@ -23,13 +20,15 @@
 #             the `model:` quantity that declares it. A premise that drifts fails the build.
 #   CHECKED   each entry's arithmetic adds up, as a statement about the FIXTURE's own numbers. A
 #             typo in a sum does not ship.
-#   INERT     that the PRODUCT computes any of it. Three tests are skipped with a stated reason, so
-#             the gap shows up in `npm test` output rather than only in a commit message.
+#   CHECKED   that the PRODUCT computes it: a `kind: quantity` query aggregates each metric (the
+#             aggregation derived from the dimension's scope, SEMANTICS.md 5.3) and reports the
+#             figure on `result.magnitude`. test/examples.test.ts re-runs every figure through the
+#             query form and compares against these numbers; a disagreement is a FINDING about one
+#             side, never something to paper over by editing the other.
 #
-# A requirement whose verdict needs the evaluator carries `status: pending-evaluator` and a
-# `hand_verdict`. It does not claim `satisfied` or `violated` on the strength of arithmetic a human
-# did, because a fixture that reads as machine-verified when it is not is the "validated but
-# unreachable" confusion V35-V37 exist to prevent, one layer up.
+# The two quantitative requirements carried `status: pending-evaluator` while no code could decide
+# them — a hand-derived figure must not read as machine-verified. The quantity query form decides
+# them now, so each records the verdict the product reaches, and the suite asserts the agreement.
 
 example: document-processing
 system: system.mage.yaml
@@ -55,8 +54,9 @@ models:
 #   decided_by    a `quantitative_expectations` entry decides it, and `declared_as` names the
 #                 `model:` quantity carrying the ceiling so the number has one source of truth.
 #
-# The latency and memory requirements take the second route and stop at `pending-evaluator`:
-# declaring a ceiling is representation, and comparing a computed total against it is evaluation.
+# The latency and memory requirements take the second route. Their statuses are the verdicts the
+# quantity query form reaches — `within: <declared_as>` decided against the computed total — and
+# test/examples.test.ts re-derives both through the product and fails on a disagreement.
 # ---------------------------------------------------------------------------
 requirements:
 
@@ -77,12 +77,12 @@ requirements:
     declared_as: latency-requirement
     limit_ms: 750
     decided_by: max-publishing-latency
-    status: pending-evaluator
-    blocked_by: >
-      No query aggregates a quantity along an execution, and no field of the query result shape can
-      carry the magnitude one would compute.
+    status: violated
     note: >
-      The hand verdict is VIOLATED, and the configuration that decides it is the retry policy. The
+      Violated — decided by the product: a quantity query within 'latency-requirement' answers
+      refuted, with the three-retry execution as the counterexample and 2,750 ms on the result's
+      magnitude. The hand derivation below reached the same figure first, and the configuration
+      that decides it is the retry policy. The
       retry-free execution costs 725 ms at the gateway's worst case, inside the ceiling with 25 ms
       to spare; every permitted retry adds another remediation pass and another validation, and
       three of them reach 2,750 ms. The ceiling governs the pipeline only when nothing retries,
@@ -94,12 +94,11 @@ requirements:
     declared_as: peak-memory-requirement
     limit_mb: 512
     decided_by: peak-memory
-    status: pending-evaluator
-    blocked_by: >
-      No code computes memory(c) over a configuration, and none takes the maximum over the reachable
-      ones.
+    status: satisfied
     note: >
-      The hand verdict is SATISFIED, with 128 MB of headroom. The configuration that decides it is
+      Satisfied — decided by the product: a quantity query within 'peak-memory-requirement' answers
+      holds under exhaustive coverage, 384 MB on the result's magnitude, 128 MB of headroom. The
+      hand derivation below reached the same figure first. The configuration that decides it is
       any one where the document is remediating: the cache is resident at 128 MB and the remediation
       charge adds 256 MB while that state is active, for 384 MB. Outside remediation only the cache
       is charged, so memory never falls below 128 MB either.
@@ -107,10 +106,11 @@ requirements:
 # ---------------------------------------------------------------------------
 # Hand-derived quantitative expectations.
 #
-# The oracle for the evaluator wave that is building the analysis half. Each entry states the
-# execution it is about, every premise it rests on, the arithmetic, and the number -- so a
-# disagreement between this file and a future evaluator localizes to one premise rather than to "the
-# answer is different".
+# The oracle the evaluator is checked against. Each entry states the execution it is about, every
+# premise it rests on, the arithmetic, and the number -- so a disagreement between this file and the
+# evaluator localizes to one premise rather than to "the answer is different". This cross-check has
+# caught a wrong join once already; if the product disagrees with a figure here, the disagreement is
+# the finding -- do not adjust this file to match the code.
 #
 # `charge_ms` and the memory values are in BASE UNITS, plainly. Writing them as `50 ms` would need a
 # second magnitude parser in the fixture reader, and a second parser of the one thing V28 exists to

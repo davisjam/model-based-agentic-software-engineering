@@ -8,7 +8,7 @@ This is the authoritative semantics. The JSON Schemas beside it
 [`mage-transaction.schema.json`](mage-transaction.schema.json)) constrain *shape*; this document
 fixes *meaning*. Where a question is about what a model asserts, this file decides it.
 
-Validation rules are numbered **V1…V38** so implementations, tests, and error messages can cite them.
+Validation rules are numbered **V1…V39** so implementations, tests, and error messages can cite them.
 Numbers are append-only: a new rule takes the next free one and lands in the section that owns its
 subject, so the sequence stays stable rather than sorted.
 
@@ -524,6 +524,9 @@ dimensionless under arithmetic — a proportion and a tally are both pure number
   validated-but-unreachable quantity impossible.
 - **V38 — `executes_in_state` resolves.** §5.3, below. The join those three charge *through*, held to
   the same reference discipline as the references they check.
+- **V39 — a quantity query's ceiling resolves.** §5.3, below. The one reference a saved *query* makes
+  into the quantities map — `quantity.within`, naming the `model:`-targeted total it decides against
+  — held to the same no-dangling-references discipline as V27.
 
 Each rule declines once an earlier one has spoken about the same object, which is V26's discipline
 applied inside this family. A quantity with an unreadable dimension draws no magnitude complaints —
@@ -704,21 +707,46 @@ annotation, which invariant A1 excludes from the hash entirely, is the sharpest 
 the formal boundary lies. A note saying *"this cache is always resident"* cannot change a memory
 analysis; `residency: resident` must.
 
-#### What this version represents and does not compute
+#### The quantity query form — asking for what the evaluator computes
 
-Quantities and their accounting are **represented and validated**; they are not yet **evaluated**.
-The split is deliberate and the ruling states the order: the validation half *"is what makes an
-over-claiming quantity impossible, and it needs no decision the rulings have not already made."* It
-also needs no arithmetic, which is what keeps it in the validator — participation is a property of a
-quantity's declaration (its dimension, its target kind, its residency), exactly as a dimension is a
-property of an expression's operands rather than of their values.
+Quantities and their accounting are represented, validated (V27–V38), **evaluated** (`src/quant/`),
+and — the last seam — **askable**: a query of `kind: quantity` reaches the evaluator through the
+same engine facade every other question uses.
 
-Unbuilt, and blocked on nothing but work:
+```yaml
+max-publishing-latency:
+  kind: quantity
+  quantifier: forall
+  quantity:
+    metric: latency                  # latency | cost | peak_memory — the ANALYSIS vocabulary
+    within: latency-requirement      # the declared model:-targeted ceiling to decide against
+```
 
-- **Summing a path's latency** per occurrence along a behavioral trace, with the occurrence count
-  coming from the trace the engine already produces.
-- **Computing `memory(c)`** by the predicate above, and `peak_memory` as its maximum over reachable
-  configurations.
+Two shapes, told apart by `within`. With it, the query DECIDES the declared ceiling — a universal
+claim (`quantifier: forall`), answered in the existing Outcome/Coverage/Evidence vocabulary under
+the V22 discipline: a violating execution or configuration refutes on its own evidence, `holds`
+needs the whole space, a truncated unviolated walk reads `inconclusive`. Without it, the query
+MEASURES — the worst case over the selected executions, or the peak of `memory(c)` — established by
+the witness that attains it (`quantifier: exists`). Either way the computed figure travels on
+`result.magnitude` as `{ value, dimension, unit }`: the dimension rides WITH the number for the
+reason the RDF projection keeps it, because a bare number lets a consumer add milliseconds to
+megabytes, which V30 forbids at the validation layer.
+
+**There is no aggregation parameter, and that absence is the design.** The aggregation is DERIVED
+from the metric's dimension scope (§8): `latency` and `cost` are worst-case sums along executions,
+`peak_memory` is the maximum of `memory(c)` over the reachable set. What a caller may select is
+*which executions* (`target:`, a reach predicate the selected executions end at) — paths and traces
+stay distinguished from analyses over them, which is §29 refinement ①, and the `max|min|named`
+selector it rejected cannot reappear as a query field. Asking for a configuration-scoped quantity
+along executions (`peak_memory` with a `target:`) is a **category error, refused by name** — never
+a wrong answer something computes.
+
+**V39 — a quantity query's `within` resolves to a declared quantity.** The dangling-reference
+discipline of V27, applied to the one reference a query makes into the quantities map. Both
+implementations enforce it; the engine additionally refuses, at ask time, a ceiling that is not
+`model:`-targeted (a summand is not a bound) or whose dimension differs from the metric's (V30's
+class, at the query surface). A ceiling declared as a `range:` or an expression refuses under Q1's
+worst-case-only rule — interval arithmetic stays deferred to SMT.
 
 ---
 

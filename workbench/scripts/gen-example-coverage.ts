@@ -190,13 +190,13 @@ export interface FixtureRequirement {
 export type QuantitativeMetric = "latency" | "memory";
 
 /**
- * One hand-derived quantitative expectation, and the oracle for the evaluator that will replace it.
+ * One hand-derived quantitative expectation — the oracle the evaluator is checked against.
  *
- * MAGE v0.1 represents and validates quantities; it does not evaluate them. Nothing sums a latency
- * along a trace, computes `memory(c)`, or takes a peak over reachable configurations. So the numbers
- * come from a human, and every PREMISE they rest on is stated separately so the suite can check it
- * against the model and the engine. A future evaluator that disagrees then disagrees about one
- * premise rather than about "the answer".
+ * The numbers come from a human, derived before any evaluator existed, and every PREMISE they rest
+ * on is stated separately so the suite can check it against the model and the engine. The quantity
+ * query form now computes the same figures and test/examples.test.ts compares the two; a
+ * disagreement localizes to one premise rather than to "the answer", and the cross-check has
+ * caught a wrong join once already.
  *
  * Magnitudes here are plain numbers in the metric's BASE unit. Writing `50 ms` would need a second
  * magnitude parser in the fixture reader, and the one thing V28 exists to protect is the last place
@@ -885,15 +885,13 @@ export const CAPABILITY_ROWS: readonly CapabilityRow[] = [
       (e) => e.metric === "memory" && e.residentMb.size > 0 && e.whenChargedMb.size > 0),
   },
   {
-    // The row the three above do NOT cover, and keeping it separate is the honest part. Document
-    // Processing declares the quantities, declares the accounting, and states both numbers -- and
-    // the PRODUCT still answers neither question. Nothing in src/ sums a trace's latency or
-    // computes memory(c); the query result shape has no field that could carry the magnitude. So
-    // this row reports `unavailable` while its three neighbours report exercised, and that
-    // difference is the status of the quantity layer stated precisely.
-    //
-    // Detected from the fixture rather than hardcoded false, so it flips when the evaluator lands:
-    // a quantitative requirement that reaches a real verdict is exactly what is missing.
+    // The row that separated "represented and validated" from "evaluated", and the one that
+    // reported `unavailable` while nothing in src/ could decide a quantitative requirement. The
+    // `kind: quantity` query form closed that gap: the probe finds `magnitude` on the published
+    // result shape, and the fixture's quantitative requirements record verdicts the product
+    // reaches -- test/examples.test.ts re-derives them through the query form. Because both the
+    // probe and this detector read what actually ships, the row flipped by landing the mechanism,
+    // not by editing this table.
     id: "performance",
     label:
       "A latency or memory requirement DECIDED by the product: a query that aggregates quantities " +
@@ -982,12 +980,12 @@ export function generateExampleCoverageModel(
     "# omitted, because a coverage model that claims a capability the product lacks is worse than none.",
     "#",
     "# All three default examples ship. Document Processing declares quantities, declares their",
-    "# accounting, and states both performance numbers -- so the Quantities rows are exercised. The",
-    "# Performance row still reports unavailable, and the difference is deliberate: MAGE represents and",
-    "# validates quantities but evaluates none of them. No query aggregates a quantity along an",
-    "# execution and no result field could carry the magnitude, so a latency or memory requirement",
-    "# reaches no verdict. Requirements is unavailable for a plainer reason -- there is no requirement",
-    "# construct, and the examples carry their requirements in their fixtures.",
+    "# accounting, and states both performance numbers -- and the Performance row is exercised: the",
+    "# `kind: quantity` query form aggregates each metric (the aggregation derived from the",
+    "# dimension's scope), decides the declared ceilings, and reports the figure on the result's",
+    "# magnitude field, which the schema probe finds. Requirements stays unavailable for a plainer",
+    "# reason -- there is no requirement construct, and the examples carry their requirements in",
+    "# their fixtures.",
     "",
     "mage: 1",
     "",

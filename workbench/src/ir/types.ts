@@ -661,6 +661,20 @@ export interface Compilation {
   readonly explanation: string;
 }
 
+/**
+ * A computed figure on a result, in the BASE unit of its dimension.
+ *
+ * The dimension travels WITH the number for the reason the RDF projection keeps it: a bare number
+ * lets a consumer add milliseconds to megabytes, which V30 forbids at the validation layer — a
+ * result field that lost the dimension would permit at the query surface what validation refuses.
+ * `unit` is the dimension's base unit, null exactly when the dimension is dimensionless.
+ */
+export interface ResultMagnitude {
+  readonly value: number;
+  readonly dimension: Dimension;
+  readonly unit: string | null;
+}
+
 export interface QueryResult {
   readonly outcome: Outcome;
   readonly coverage: Coverage;
@@ -670,6 +684,12 @@ export interface QueryResult {
   readonly interpretedAs: string | null;
   /** Disclosed rewrites, e.g. the history variable added for a past-time question (V23). */
   readonly compilation: readonly Compilation[];
+  /**
+   * The figure a quantity query computed — a worst-case total, a peak — with its dimension. Null on
+   * every non-quantitative result, and null when the maximum is unbounded (the lasso evidence is
+   * the answer then, and no finite number could stand in for it).
+   */
+  readonly magnitude: ResultMagnitude | null;
   /**
    * The canonical hash of the system this result describes. A result outliving its model is the
    * failure the analysis-execution model exists to prevent: the UI must never present a result for

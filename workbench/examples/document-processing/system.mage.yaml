@@ -55,12 +55,13 @@
 # `provenance:`. Both keys now appear in mage-model.schema.json and `python3 validate.py` reports all
 # three examples clean, so those two headers are stale. This one does not repeat the claim.
 #
-# MAGE v0.1 has no requirement construct and no query that aggregates a quantity along a path. The
-# two requirements are therefore declared as `model:`-targeted quantities, which is what the
-# `model:` exemption in SEMANTICS.md 5.3 exists for: a declared TOTAL that a requirement is compared
-# against, charged by no basis. Nothing in src/ performs the comparison yet. expected-results.yaml
-# carries the arithmetic by hand, marked as hand-derived, and test/examples.test.ts leaves the
-# verdict assertions inert with a stated reason rather than silently absent.
+# MAGE v0.1 has no requirement construct. The two requirements are therefore declared as
+# `model:`-targeted quantities, which is what the `model:` exemption in SEMANTICS.md 5.3 exists
+# for: a declared TOTAL that a requirement is compared against, charged by no basis. A
+# `kind: quantity` query decides each one -- `within:` names the ceiling, the aggregation is
+# derived from the dimension's scope, and the computed figure travels on `result.magnitude`.
+# expected-results.yaml still carries the arithmetic by hand, as the oracle the product's answers
+# are compared against.
 
 mage: 1
 
@@ -295,8 +296,8 @@ quantities:
   #
   # MAGE v0.1 has no `requirements:` construct, and a `model:` quantity is what the semantics offer
   # instead: a declared TOTAL that a requirement is compared against, exempt from every accounting
-  # basis because nothing sums it per occurrence (SEMANTICS.md 5.3). Declaring the ceiling is
-  # representation. Deciding whether the model meets it is evaluation, and no code does that yet.
+  # basis because nothing sums it per occurrence (SEMANTICS.md 5.3). A `kind: quantity` query with
+  # `within:` naming one of these decides it against the computed total.
   latency-requirement:
     target: model:pipeline-performance
     dimension: duration
