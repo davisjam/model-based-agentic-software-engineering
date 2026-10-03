@@ -271,3 +271,121 @@ two `missing-distinction` refusals the shipped examples reach.
   `controlAtom` resolution fails, which refuses — but as a vocabulary miss, which is the typo hunt
   the rung replaces. **[FIX]** when it acquires a caller. Left alone here: `src/engine/` was out
   of this change's scope beyond exporting a sentence, and nothing needed exporting.
+
+---
+
+# RULED — the last two seams (follow-up, 2026-10-02)
+
+**Status: ruled and landed.** The seam-parity wave above closed three doors and listed two it did
+not: the Worker's `explore` arm and `runPastTimeQuery`. Both are closed here. One of them needed a
+keep-or-delete ruling rather than a patch, and the other turned out to be reachable today through a
+door nobody was watching.
+
+## Both answers, driven rather than read
+
+| Site | Before (driven) | Reachable today? | After | Pinned by |
+|---|---|---|---|---|
+| Worker `explore` arm | **`ok-space`: 1 state, `complete: true`, 1 dead end** | **Yes — `window.mage.analysis.explore()`** | `failed`, carrying the registry's sentence | `test/worker.test.ts:530` |
+| `runPastTimeQuery` | **`unlicensed` / `unknown-vocabulary`** | No — no caller in `src/` | `unlicensed` / `missing-model-type` | `test/engine-history.test.ts:176` |
+
+Each number above came from a call through the real seam — the Worker's on a
+`node:worker_threads` thread, the past-time query through the engine's own export — not from
+reading the code and reasoning about what it would do.
+
+**The Worker's arm is a bug, not hygiene, and the reason is the machine door.** The previous wave
+hedged it ("the call is arguable"), and the hedge was about the NUMBER: a machineless system's
+configuration space genuinely is one empty configuration with no successors, so "1 dead end"
+describes the space. What settles it is who can ask. No human control walks the space — the
+capability registry already records that as an `absent` human affordance — but the page installs
+`window.mage`, the agent API publishes `analysis.explore`, and the facade routes it to this arm. So
+a CDP-attached agent asks today and is told its system has a dead end. That is a confident
+structural claim computed over a system that models no behaviour, which is the `latency: 0 ms`
+defect in the explorer's clothing, and the fact that a human cannot reach it yet only means the
+first reader will be a machine.
+
+**`runPastTimeQuery` is latent, and the previous wave's word for it was right.** Nothing in `src/`
+builds a `PastTimeQuery`; the published query schema's `kind` enum has three members and
+`additionalProperties: false`, so no authored file can express the question either. Its only
+callers are its own tests.
+
+## Ruled: `runPastTimeQuery` is KEPT and wired, not deleted
+
+Dead exported code that bypasses an invariant is worse than absent code, and this project updates
+call sites rather than preserving shims — so delete was the live alternative and it had to be
+argued down rather than waved off. Three facts decide it:
+
+- **`SEMANTICS.md` §7.3 specifies the compilation, with a MUST.** "Such a query is compiled into a
+  safety property over an auxiliary history variable… **V23.** The compilation MUST be disclosed in
+  the result." §11's non-goal list names past-time *operators*, which is a different thing: there is
+  no past-time operator in the predicate language, and the rewrite is the sanctioned substitute.
+  `compileHistory` is that clause's only implementation.
+- **The published result schema carries its disclosure.** `mage-query.schema.json`'s
+  `compilation.kind` enum includes `history-variable`. Delete the compiler and the wire format
+  declares a shape nothing can produce.
+- **A test suite reaches it.** `test/engine-history.test.ts` drives the rewrite, the disclosure, the
+  hash discipline, the fresh-name rule and four refusal shapes.
+
+What is missing is a **wire-format query kind**, not an intent. So this is an implemented normative
+clause waiting for its authoring surface, and deleting it to close a bypass removes the clause and
+keeps the gap. **Rejected: delete.** It would have been the cheaper diff and the wrong half of the
+problem — and it would have put a future wave in the position of re-deriving §7.3 from scratch in
+order to re-add what this one removed.
+
+The rung now runs ahead of `compileHistory`, in the same precedence `runTypedQuery` uses: registry
+before name resolution. Over a machineless system the old answer came out of `controlAtom` —
+"'document.state' names nothing in this system" — a misspelling to hunt for, about a system with no
+machine for any state name to live in.
+
+## Where the sentence lives, and what holds it
+
+Nothing new had to be exported for the Worker. It uses the two registry functions the engine already
+published and the SPARQL seam already uses — `modelTypeForQueryKind` plus `absentSubstrateProse` —
+and wraps the generated sentence in its own carrier
+(`src/worker/analysis.worker.ts:158`). Three interfaces, one wording, no copy.
+
+**One new export, and it is a CONSOLIDATION rather than an addition.** `absentSubstrateVerdict`
+(`src/engine/model-types.ts:223`) is the rung as a verdict-or-null, shaped exactly like the seam's
+`absentModelType`. It exists because the engine now reaches the rung at two entry points
+(`src/engine/index.ts:81`, `src/engine/history.ts:160`), and those four lines carry the refusal
+CAUSE as well as the prose — the `missing-model-type` detail an agent reads and `src/app/learn.ts`
+resolves to a Learn section. A copy would have left the sentence generated from one place and the
+cause typed in two. Extracted on the second consumer, not the third.
+
+The Worker's refusal travels as a **finding**, which is how a refusal already crosses that boundary:
+the compile failure in the same arm carries its sentence that way, and the host's `failed` arm exists
+for "the analysis did not happen, and this says why". **Rejected: a new `refused` reply arm.** It
+would teach the protocol, the host and the UI a shape for one case, and the UI is held by another
+agent; the existing carrier reaches the reader unchanged.
+
+## Every seam checked, including the clean ones
+
+Five doors evaluate a question; the rung is now at all five.
+
+- **`runTypedQuery` / `runQuery` / `runSavedQueries`** — rung present since Ruling 3. Clean.
+- **`admit` / `translate` / `answerSparql`** — closed by the previous wave. Clean.
+- **`validate.py check_queries`** — closed by the previous wave, structural arm only. Clean.
+- **Worker `analyze`, `analyze-saved`, `sparql` arms** — reach `runQuery`, `runSavedQueries` and
+  `admit`. Clean by inheritance, verified by reading each handler.
+- **Worker `explore` arm** — gap, closed here.
+- **`runPastTimeQuery`** — gap, closed here.
+- **`runBehaviorQuery` / `runGraphQuery` / `runQuantityQuery`** — exported from the engine's index,
+  and reached from nowhere outside it (`src/ui/main.ts`'s engine port goes through `runQuery`).
+  Clean, and the clean-ness is by call graph rather than by a check: each is one layer below the
+  rung on purpose, since `runTypedQuery` is what consults the registry before dispatching to them.
+- **`src/quant/` evaluators** (`evaluateRequirement`, `evaluatePath`, `evaluatePeak`,
+  `expectedMetric`, `peakMemory`, `traceMetric`) — exported, and no caller outside `src/quant/`.
+  Sealed behind `runQuantityQuery`, which sits behind the rung. Clean.
+- **`exploreSpace`** — takes a COMPILED system and never sees a `CanonicalSystem`, which is why the
+  Worker's arm had to carry the rung rather than the walker. Deliberately not a consultation site.
+- **`src/app/properties.ts` (`evaluateProperties`, `evaluateOne`)** — consume results; they evaluate
+  no question. Clean.
+- **`ports.engine.explore` (`src/ui/main.ts`)** — returns no configurations rather than fabricating
+  a space, which was already the honest answer. Clean.
+
+## Follow-up filed
+
+- **[DESIGN]** the past-time question has no wire form. `mage-query.schema.json`'s `kind` enum has
+  three members, so an author cannot save the one question `SEMANTICS.md` §7.3 works through, and
+  `compileHistory` stays reachable only from a test. Either a fourth query kind lands (with its
+  registry consultation, which `runPastTimeQuery` now performs) or §7.3 should say the question is
+  specified and not yet askable.

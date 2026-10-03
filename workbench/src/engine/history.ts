@@ -20,6 +20,7 @@ import type {
   CanonMachine, CanonTransition, CanonVariable, CanonicalSystem, Compilation,
 } from "../ir/types.ts";
 import { runBehaviorQuery } from "./behavior.ts";
+import { absentSubstrateVerdict } from "./model-types.ts";
 import { describePredicate } from "./predicate.ts";
 import { buildScope, resolveRef } from "./refs.ts";
 import {
@@ -143,10 +144,22 @@ export function compileHistory(system: CanonicalSystem, q: PastTimeQuery): Res<H
  * `systemHash` is the hash of the ORIGINAL system, never the rewritten one. The rewrite is an
  * internal artifact; the result describes the model the user actually has, and a result that named
  * a system the user cannot see would be worse than one that named none.
+ *
+ * **The substrate-absence rung comes first, as it does in `runTypedQuery`.** This entry point does
+ * not go through that dispatcher — it compiles its own behavioural query and hands it straight to
+ * `runBehaviorQuery` — so until the call below it was the one door into the configuration space
+ * with no registry consultation in front of it. Over a machineless system the old answer came out
+ * of `controlAtom`: "'document.state' names nothing in this system", a misspelling to go hunting
+ * for, about a system that declares no machine for any state name to be in. That is the typo hunt
+ * the rung replaces, one rung lower than the question deserves. The kind is `behavior` because that
+ * is what the rewrite produces and what the answer is computed over.
  */
 export function runPastTimeQuery(
   system: CanonicalSystem, q: PastTimeQuery, systemHash: string,
 ): Verdict {
+  const absent = absentSubstrateVerdict(system, "behavior", systemHash);
+  if (absent !== null) return absent;
+
   const compiled = compileHistory(system, q);
   if (!compiled.ok) return unlicensed(systemHash, compiled.refusal, null, compiled.detail);
 

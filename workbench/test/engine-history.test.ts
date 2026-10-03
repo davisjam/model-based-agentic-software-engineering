@@ -5,6 +5,8 @@ import assert from "node:assert/strict";
 import { systemHash } from "../src/ir/hash.ts";
 import { compileHistory, runPastTimeQuery } from "../src/engine/history.ts";
 import type { PastTimeQuery } from "../src/engine/history.ts";
+import { absentSubstrateProse, modelTypeForQueryKind } from "../src/engine/model-types.ts";
+import { runQuery } from "../src/engine/index.ts";
 import type { Predicate } from "../src/engine/types.ts";
 import { build, docable } from "./engine-fixtures.ts";
 
@@ -159,4 +161,60 @@ test("an antecedent naming an undeclared state is refused", () => {
   }, systemHash(s));
   assert.equal(answer.result.outcome, "unlicensed");
   assert.match(answer.result.refusal ?? "", /'approved' is not a declared state/);
+});
+
+// ---------------------------------------------------------------------------------------------
+// The substrate-absence rung, at the entry point that used to go around it
+// ---------------------------------------------------------------------------------------------
+
+/** Relation types and entities, no `machines:`. The half-authored middle of a session. */
+const machineless = () => build({
+  "relation-types": { may_invoke: { description: "d", composition: { path: "allowed" } } },
+  entities: { api: null, gateway: null },
+});
+
+test("a past-time question over a machineless system names the absent type, not a reference", () => {
+  // What this entry point did before the rung: `controlAtom` resolved the antecedent first and
+  // refused with "'document.state' names nothing in this system" — a misspelling to go hunting for,
+  // about a system that declares no machine for any state name to live in. That is the typo hunt
+  // the rung replaces, and `runPastTimeQuery` was the last engine door around it: it compiles its
+  // own behavioural query and calls `runBehaviorQuery`, so `runTypedQuery`'s consultation never ran.
+  const s = machineless();
+  const answer = runPastTimeQuery(s, publishedWithoutReview(), systemHash(s));
+  const t = modelTypeForQueryKind("behavior");
+  assert.equal(answer.result.outcome, "unlicensed");
+  assert.equal(answer.refusal?.reason, "missing-model-type");
+  assert.deepEqual(answer.refusal?.missing, [t.label]);
+  assert.equal(answer.result.refusal, absentSubstrateProse(t),
+    "the sentence must be the registry's own, so this door and the dispatcher agree word for word");
+  assert.doesNotMatch(answer.result.refusal ?? "", /names nothing in this system/);
+
+  // The rung outranks the rewrite as well as the reference: nothing was compiled, so nothing is
+  // disclosed. A refusal carrying a history-variable explanation would describe a rewrite of a
+  // machine that does not exist.
+  assert.deepEqual(answer.result.compilation, []);
+  assert.equal(answer.result.interpretedAs, null);
+});
+
+test("the rung is the same one the dispatcher reaches, asked through the other door", () => {
+  // V32's rule, pointed inward: one model, one answer, whichever entry point asks. The dispatcher's
+  // behavioural arm and the past-time compiler are two doors into the configuration space, and the
+  // byte comparison is what holds them to one sentence rather than two wordings of one idea.
+  const s = machineless();
+  const hash = systemHash(s);
+  const dispatched = runQuery(s, {
+    kind: "behavior", quantifier: "exists", behavior: { form: "deadend" },
+  });
+  const pastTime = runPastTimeQuery(s, publishedWithoutReview(), hash);
+  assert.equal(pastTime.refusal?.reason, dispatched.refusal?.reason);
+  assert.equal(pastTime.result.refusal, dispatched.result.refusal);
+});
+
+test("a machine present still reaches the rewrite: the rung has not swallowed the feature", () => {
+  // The control without which every assertion above would pass on a function that refused
+  // everything. `docable` declares machines, so the compilation runs and is disclosed (V23).
+  const s = docable();
+  const answer = runPastTimeQuery(s, publishedWithoutReview(), systemHash(s));
+  assert.notEqual(answer.refusal?.reason, "missing-model-type");
+  assert.equal(answer.result.compilation[0]?.kind, "history-variable");
 });

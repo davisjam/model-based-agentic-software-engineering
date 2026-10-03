@@ -21,7 +21,8 @@ import { MageDocument } from "../yaml/document.ts";
 import { systemHash } from "../ir/hash.ts";
 import type { CanonicalSystem, Finding } from "../ir/types.ts";
 import {
-  compileSystem, defaultOptions, exploreSpace, runQuery, runSavedQueries,
+  absentSubstrateProse, compileSystem, defaultOptions, exploreSpace, modelTypeForQueryKind,
+  runQuery, runSavedQueries,
 } from "../engine/index.ts";
 import { project } from "../rdf/project.ts";
 import { admit, evaluate, noSubjectDeclared } from "../sparql/index.ts";
@@ -139,6 +140,29 @@ function handle(request: WorkerRequest): void {
     }
 
     if (request.kind === "explore") {
+      // The substrate-absence rung, which this arm used to be the last door around. `exploreSpace`
+      // is handed a COMPILED system, so it never sees the registry, and the three analysis arms
+      // beside this one inherit the rung from `runQuery` / `runSavedQueries`. Over a machineless
+      // system the walk therefore succeeded and reported one state, `complete: true`, and ONE DEAD
+      // END — and a reader shown "1 dead end" reads a finding about their system. The number is
+      // arguably true of the space (one empty configuration, no successors) and that is exactly why
+      // it is dangerous: it is a confident structural claim computed over nothing, the shape of the
+      // `latency: 0 ms` defect the rung exists to refuse. The sentence is GENERATED from the
+      // registry entry, as the SPARQL seam's is, so the three interfaces cannot word one absence
+      // three ways.
+      //
+      // It leaves as a FINDING because that is how a refusal already crosses this boundary: the
+      // compile failure below carries its refusal sentence the same way, the host's `failed` arm
+      // exists for "the analysis did not happen, and this says why", and a `LicensedQuestion`-style
+      // new reply arm would need the host and the UI to learn a shape for one case.
+      const machines = modelTypeForQueryKind("behavior");
+      if (!machines.presentIn(system)) {
+        post({
+          kind: "failed", id, systemHash: actual,
+          findings: [finding("explore", absentSubstrateProse(machines))],
+        });
+        return;
+      }
       const compiled = compileSystem(system);
       if (!compiled.ok) {
         // A compile failure is a refusal sentence about the MODEL, carried as a finding rather than

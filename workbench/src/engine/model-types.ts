@@ -36,7 +36,9 @@
  * bound to a kernel type declared here. Ruling: `DECISIONS-RULED-model-types-261002.md`.
  */
 import type { CanonicalSystem } from "../ir/types.ts";
-import { BEHAVIOR_FORMS, GRAPH_FORMS, type Query } from "./types.ts";
+import {
+  BEHAVIOR_FORMS, GRAPH_FORMS, detail, unlicensed, type Query, type Verdict,
+} from "./types.ts";
 import { REQUIREMENT_METRICS } from "../quant/requirement.ts";
 
 /** Every public model type. The list is closed; adding one is a deliberate act. */
@@ -204,4 +206,25 @@ export function absentSubstrateProse(t: ModelType): string {
     `it asks "${t.question}", which only a ${t.label} represents. To make it answerable, ` +
     t.wouldLicense
   );
+}
+
+/**
+ * The rung itself, as a verdict: the refusal a question of this kind earns over a system declaring
+ * no substrate of its type, or `null` when the substrate is there.
+ *
+ * Extracted on the SECOND engine consumer rather than the third. `runTypedQuery` reached the rung
+ * first and `runPastTimeQuery` bypassed it entirely, and the tempting fix was four lines copied into
+ * the second entry point. Those four lines carry the refusal CAUSE as well as the sentence — the
+ * `missing-model-type` detail an agent reads and `src/app/learn.ts` resolves to a Learn section — so
+ * a copy would put the cause in two places while the prose stayed generated from one. The seam's own
+ * constructor (`absentModelType`, `src/sparql/refusal.ts`) is shaped the same way and for the same
+ * reason: refusal-or-null, one per interface, each wording nothing itself.
+ */
+export function absentSubstrateVerdict(
+  system: CanonicalSystem, kind: Query["kind"], hash: string,
+): Verdict | null {
+  const t = modelTypeForQueryKind(kind);
+  return t.presentIn(system)
+    ? null
+    : unlicensed(hash, absentSubstrateProse(t), null, detail("missing-model-type", [t.label], []));
 }
