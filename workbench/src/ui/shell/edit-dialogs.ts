@@ -601,7 +601,7 @@ export function mountEditDialogs(ctx: ShellContext, submitEdit: SubmitEdit): Edi
       const form = button.dataset["form"];
       if (form === undefined) return;
       const filled = new Map<string, string>();
-      for (const pair of (button.dataset["prefill"] ?? "").split(" ")) {
+      for (const pair of (button.dataset["prefill"] ?? "").split("\u0000")) {
         const at = pair.indexOf("=");
         if (at > 0) filled.set(pair.slice(0, at), pair.slice(at + 1));
       }
@@ -729,7 +729,7 @@ export function mountEditDialogs(ctx: ShellContext, submitEdit: SubmitEdit): Edi
         }
         button.textContent = offered.label;
         button.dataset["form"] = offered.form;
-        button.dataset["prefill"] = [...offered.prefill].map(([k, v]) => `${k}=${v}`).join(" ");
+        button.dataset["prefill"] = [...offered.prefill].map(([k, v]) => `${k}=${v}`).join("\u0000");
       }
       // The bar says WHY it is empty, because seven disabled buttons with no sentence beside them
       // read as a broken region rather than as a surface waiting for a selection.
