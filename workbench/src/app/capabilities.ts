@@ -148,7 +148,7 @@ export const CAPABILITIES: readonly Capability[] = [
   },
   {
     id: "query",
-    summary: "Run one graph or behavioural query and return outcome, coverage and evidence.",
+    summary: "Run one graph, behavioural or SPARQL query and return outcome, coverage and evidence.",
     service: "workspace.query",
     // `properties-section.ask` is the §10.1 requirement: a person asks a supported question through
     // structured controls, without writing a query document. It is a second affordance of `query`
@@ -158,7 +158,27 @@ export const CAPABILITIES: readonly Capability[] = [
     // `ask` is the grounded twin of `query`: the same service, returning the verdict WITH the models
     // it derives from. Two machine affordances rather than a changed return type, because `query`'s
     // `QueryResult` is the published wire shape and widening it would break every reader of it.
-    machine: [wired("window.mage.query"), wired("window.mage.ask")],
+    //
+    // `window.mage.sparql` is the third, and it is this row's rather than its own capability —
+    // DESIGN-sparql-261002.md §6 Q9's first reading, implemented. `query` is the capability and
+    // SPARQL is a syntax for it: §11 says a student normally does not write SPARQL, an agent
+    // translates the question into it, and both spellings ask one thing of one system and get an
+    // answer carrying coverage and the hash it describes. §1's answer-path table is then a routing
+    // rule INSIDE the capability — a binding set to the SPARQL evaluator, a path witness and
+    // anything behavioral to the engine — which is why a second row would report a capability the
+    // product did not gain, exactly as `analysis` reports no row for running a query off-thread.
+    //
+    // Two costs, stated rather than discovered later. **The suggested-question set bounds what a
+    // person can ask while an agent is unbounded**: `properties-section.ask` offers the supported
+    // forms, so a person asks a relational question but not an ARBITRARY one. That asymmetry is the
+    // same decision as having no raw YAML editor, and it is a decision, not an oversight — the
+    // author still owns Q9's ruling, and if they rule otherwise what changes is this row, not the
+    // wiring. **And `service` names the capability's canonical seam, not each affordance's
+    // function**: `window.mage.sparql` ends at `workspace.sparql`, as `window.mage.ask` already
+    // ends at `workspace.evaluate` and `header.run-all` at `workspace.runSavedQueries`. A human
+    // SPARQL console is deliberately NOT added to buy a tidier row: an accurate affordance beats a
+    // control nobody asked for.
+    machine: [wired("window.mage.query"), wired("window.mage.ask"), wired("window.mage.sparql")],
     producesEvidence: true,
   },
   {
