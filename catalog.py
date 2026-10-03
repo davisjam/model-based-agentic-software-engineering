@@ -1237,6 +1237,13 @@ def cmd_validate(_args) -> int:
         print("  [tokens] web-theme/overrides/assets/stylesheets/mage-family.css generated block is "
               "STALE — run `python3 book-models/design_tokens.py emit-material`")
         n_issues += 1
+    # WORKBENCH TOKEN FRESHNESS — BLOCKING (same discipline, third consumer). The standalone Workbench
+    # app links workbench/assets/mage-tokens.css, a Material-free projection of the same tokens; a
+    # token edit without a re-emit would fork the family palette at the one consumer with no Material.
+    if not _dtokens.workbench_css_is_fresh():
+        print("  [tokens] workbench/assets/mage-tokens.css is "
+              "STALE — run `python3 book-models/design_tokens.py emit-workbench`")
+        n_issues += 1
     # FIGURE-FAMILY-BUDGET — AUDIT-ONLY. The figure colour-LANGUAGE consistency gate: every house SVG using a
     # role colour (green=modeling / rust=governance / blue=agent / gray=neutral / red=failure, the
     # figure_semantics block in design-tokens.json) must DECLARE its allowed families in a one-line

@@ -10,6 +10,9 @@
  * The token block below is PROJECTED from book-models/design-tokens.json by
  * `python3 book-models/design_tokens.py emit-material` — the family accent has ONE home.
  * Hand-authored rules reference the projected vars only; `catalog.py validate` gates freshness.
+ *
+ * Non-MkDocs consumers do not read this file: the same SSOT projects a Material-free sibling,
+ * workbench/assets/mage-tokens.css (`design_tokens.py emit-workbench`), for standalone pages.
  */
 
 /* BEGIN GENERATED (design_tokens.py emit-material) — do not hand-edit this block. */
