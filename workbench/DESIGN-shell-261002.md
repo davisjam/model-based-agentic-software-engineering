@@ -705,3 +705,60 @@ surrounding gates had to say about it.
   {surface:"workspace", via:"menu"}]`. What 1d DOES owe this region is one step on the structured
   reading, because it is now collapsed by default and §2.3's drive has to open it:
   `[{surface:"workspace", via:"disclose"}]` for anything declared at `#diagram-text` or below.
+
+### 9e. Wave 2c as built — the pen is empty, and G3 fires in the a11y suite's own fixture
+
+Appended by wave 2c after landing. Two of these change what a later wave will find; the third is a
+list wave 2d needs before it re-derives a drive.
+
+- **The holding pen is drained, and two things stayed.** `edit-forms.ts` kept `submitEdit` and the
+  `#edit` region's mounting, nothing else. The funnel stayed because it is the one thing every
+  editing surface shares — the ask bar's Save and Retract, every dialog, the pinned fieldsets — so
+  moving it into any one of them would make that surface the mutation path for the others. The
+  region and `#edit-result` stayed because the fieldsets' markup is still pinned (§9c) and
+  `#edit-result` is where those forms report a refusal; a §19 drive reads its text to say WHY it
+  failed, so deleting the element turns a passing assertion into a TypeError in its own message.
+  Routing moved out: the funnel hands the envelope to `ReviewSurface.land`, which decides.
+- **The review surface is a `<dialog>` at `#hypothesis-bar`, and `hidden` tracks `open`.** §5 pins
+  the bar's ids and two §19 drives read `document.getElementById("hypothesis-bar").hidden`, so the
+  dialog carries the id and the module sets `hidden` with every open and close. 13.13 and 13.14 pass
+  unchanged: an agent's hypothesis opens the modal, both ways out are reachable by Tab inside it,
+  and Discard closes it. Escape is refused (`cancel` → `preventDefault`), because the two ways out
+  are the two buttons and dismissing the surface would leave a change pending with no route back.
+- **A probe is DISCARDED and re-applied, not accepted.** `applyHypothesis` keeps the branch engine,
+  whose history begins at the load, so accepting a branch collapses the authoritative undo stack to
+  one step. An edit the user never asked to branch must not silently shorten undo, so the interposed
+  path discards the probe and re-applies the identical operations through `transact`. `transact`
+  stays the single authoritative mutator. An agent hypothesis and an armed what-if still commit by
+  accepting the branch — there the branch IS what is being accepted, and no envelope was retained.
+- **`create-hypothesis`'s human affordance is `#whatif-arm`, a header toggle, off and disabled by
+  default.** The radios carried it and correction 8 deletes them. The route G3 creates — a
+  consequential edit becoming a branch by itself — has no control of its own, because it is every
+  editing control, so it cannot be the declared site. The toggle is the deliberate route for a user
+  who wants to try something where no obligation is at stake. UX-I1 stays at 0 over 25.
+- **No shipped example declares an `expect:`, so on shipped content the interposition is LATENT.**
+  Measured, and pinned by `test/shell-review.test.ts`. Every human edit to Message Bus, Worker Queue
+  or Document Processing commits and announces — which is the author's own limit, satisfied by the
+  content rather than by a threshold. The day an example gains an expectation, that test fails and
+  the surface starts interposing for it.
+- **Four a11y drives move, and three of them are wave 2d's to re-derive.** Run at this tree, the
+  a11y tier reports these beyond the standing focus-order pin:
+  1. **13.15 ACCEPT IT** fails at `chooseRadioByKeyboard(page, "edit-target", …)`. That route is
+     the one correction 8 deletes. Its replacement is `#whatif-arm` (Tab, Enter) followed by the
+     ordinary edit and then Enter on `#hypothesis-apply` inside the modal — the same three
+     keystroke classes, one fewer radio group.
+  2. **"every one of section 19's thirteen operations was driven, by name"** fails as 13.15's
+     cascade; it asserts the census, not a behaviour.
+  3. **The announcement-storm drive** fails because the feature FIRED, and this is the instructive
+     one. 13.9 earlier in the same file saves `audit-subscribers-exist` as a requirement expecting
+     `holds`; the storm drive's cascade delete of `order-created` breaks it; so G3 interposes, the
+     change is held for review, and the announcement is the review surface's rather than
+     `delete-entity applied`. The suite built the first requirement this workbench has ever had and
+     then measured a page that no longer commits that edit unreviewed. The drive needs to either
+     commit from the surface and then assert, or move its storm to an edit that moves no obligation.
+  4. **"Tab reaches Explore configuration space"** fails as (3)'s cascade: the suite leaves a change
+     pending, the review modal is open, and everything behind a modal is inert.
+  Two pieces of the tier cannot run in an agent worktree at all — `axe-core` resolves from the
+  repository root and `puppeteer` from `book/`, neither of which a fresh `git worktree add` has.
+  Symlinking both from the main checkout is the fix, and it is the orchestrator's step rather than
+  the agent's (CLAUDE.md: never `npm install` in a worktree).

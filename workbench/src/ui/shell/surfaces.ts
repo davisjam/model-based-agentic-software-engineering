@@ -93,9 +93,11 @@ export const SURFACES: readonly Surface[] = [
   // `<dialog>`, so a harness does not Tab to it — it presses ⌘K or `#palette-open`, and everything
   // behind it is inert until it closes.
   built("palette", "palette", "control"),
-  // The review surface, as the flat page built it: a banner plus the two ways out of a hypothesis.
-  // Wave 2c replaces it with the REVIEW CHANGE surface at the same id.
-  built("review", "hypothesis-bar"),
+  // The REVIEW CHANGE surface, landed by wave 2c at the id §5 pinned for it. A `control` rather
+  // than a `landmark`, for the palette's reason: it is a modal `<dialog>`, so a harness does not Tab
+  // to it — a change held for review opens it, and everything behind it is inert until the reviewer
+  // chooses Discard or Commit.
+  built("review", "hypothesis-bar", "control"),
   // The exhaustive entity/relation tables, still always visible. Wave 3 puts them behind the
   // System Browser menu entry; the region they live in is already its own.
   built("system-browser", "system-browser"),

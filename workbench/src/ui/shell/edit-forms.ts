@@ -1,20 +1,31 @@
 /**
- * The one mutation funnel, and the two controls that choose which branch it lands on.
+ * The one mutation funnel, and the legacy Edit section it still mounts.
  *
- * **This module is what is LEFT of a holding pen.** Wave 0 moved the ten always-visible editing
- * fieldsets here so that `main.ts` would not become the file waves 2a and 2c both had to edit. Wave
- * 2a drained them: correction 4's `+ Add` menu, per-selection inspector actions and ⌘K palette are
- * in `edit-dialogs.ts` and `palette.ts`, the ten operations are declared once as `EDIT_ACTIONS`,
- * and the legacy fieldsets' bindings went with them — so nothing in this file knows an operation's
- * fields any more. What remains is the funnel plus correction 8's deletion target: the
- * authoritative-vs-hypothesis radios, the hypothesis name, the rationale, and the `#edit-result`
- * readout. Wave 2c replaces those with the REVIEW CHANGE surface and this module goes with them.
+ * **The holding pen is drained.** Wave 0 moved the ten always-visible editing fieldsets here so
+ * that `main.ts` would not become the file waves 2a and 2c both had to edit. Wave 2a took the ten
+ * operations out, declaring each once as `EDIT_ACTIONS` and giving them the `+ Add` menu, the
+ * inspector's action bar and the ⌘K palette. Wave 2c took correction 8's deletion target out: the
+ * authoritative-vs-hypothesis radios, the hypothesis name field and the rationale field are gone,
+ * and the REVIEW CHANGE surface in `review.ts` decides which branch a change lands on.
  *
- * **`submitEdit` is the funnel, and it is exported.** That single funnel is UX-I3 —
- * authoritative-state convergence — in the UI: one operation, one envelope, handed to the same
- * `Workspace.transact` that `window.mage.transact` calls, so there is no human mutation path beside
- * the agent one. The ask bar's Save and Retract go through it, and so does every dialog. Routing to
- * a hypothesis changes WHICH branch the transaction lands on, never how it is validated.
+ * **Two things are left, and neither has a better home.**
+ *
+ *   - **`submitEdit`, the funnel.** It is the one thing every editing surface shares — the ask
+ *     bar's Save and Retract, every dialog, the pinned fieldsets — so moving it INTO any one of
+ *     those surfaces would make that surface the mutation path for all the others. It is UX-I3 in
+ *     the UI: one operation, one envelope, handed to the same `Workspace` call `window.mage.transact`
+ *     reaches, so there is no human mutation path beside the agent one.
+ *   - **The `#edit` region and `#edit-result`.** The ten fieldsets' MARKUP is still in
+ *     `index.html`, pinned by six §19 keyboard drives that type into its fields by id
+ *     (`DESIGN-shell-261002.md` §9c), and `#edit-result` is where those flat forms report a
+ *     refusal — a drive that fails reads its text to say why. Both go when the markup goes, which
+ *     is the wave that re-derives those drives from declared paths.
+ *
+ * **Routing is the review surface's call, not a control's.** `submitEdit` builds the envelope and
+ * hands it to `ReviewSurface.land`, which lands it authoritatively unless a requirement would move
+ * (`DECISIONS-RULED-shell-261002.md` G3). The old sentence here still holds and is worth keeping
+ * exactly: a hypothesis changes WHICH branch the transaction lands on, never how it is validated.
+ * The review surface changes how a change is PRESENTED and CONFIRMED, never how it is CHECKED.
  *
  * **It returns an outcome, which wave 2a added and a dialog is why.** A form on the page could
  * report a refusal by painting `#edit-result` beside itself. A modal cannot: `#edit-result` is
@@ -27,8 +38,9 @@
 import { paintEditResult } from "../render-dom.ts";
 import { planEdit } from "../view-model.ts";
 import type { EditRequest } from "../view-model.ts";
-import { byId, input, mountIf } from "./context.ts";
+import { byId, mountIf } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
+import type { ReviewSurface } from "./review.ts";
 import type { Finding } from "../../ir/types.ts";
 
 /**
@@ -38,6 +50,10 @@ import type { Finding } from "../../ir/types.ts";
  * layer saw it ("an entity needs an id") and a transaction the engine rejected are both "not
  * applied, here is why", and a caller deciding whether to stay open does not branch on which. The
  * findings carry the engine's reasons when there were any.
+ *
+ * A change HELD FOR REVIEW reports `ok: true`, and that is the right collapse for this caller's one
+ * question. The dialog asks "may I close?", and the answer is yes: the change was accepted, it is
+ * on a branch, and the review surface now owns it. Nothing the dialog holds is needed again.
  */
 export type EditOutcome =
   | { readonly ok: true }
@@ -50,7 +66,7 @@ export interface EditForms extends ShellRegion {
   readonly submitEdit: SubmitEdit;
 }
 
-export function mountEditForms(ctx: ShellContext): EditForms {
+export function mountEditForms(ctx: ShellContext, review: ReviewSurface): EditForms {
   const region = byId("edit");
   const editResult = byId("edit-result");
 
@@ -64,61 +80,42 @@ export function mountEditForms(ctx: ShellContext): EditForms {
       return { ok: false, problem: plan.problem, findings: [] };
     }
 
-    const asHypothesis = input("target-hypothesis").checked;
-    const label = input("hypothesis-label").value.trim();
-    if (asHypothesis && label === "") {
-      const problem = "A hypothesis needs a name, so you can tell which one you are reviewing.";
-      paintEditResult(editResult, problem, []);
-      ctx.announce(problem);
-      return { ok: false, problem, findings: [] };
-    }
-    const rationale = input("edit-rationale").value.trim();
-    const transaction = {
-      transaction: {
-        base: ctx.workspace.state.hash,
-        target: asHypothesis ? label : "main",
-        // OMITTED when empty, not sent as null. The schema types `rationale` as a string, and the
-        // parser refuses a present-but-non-string value — so an explicit null rejects the whole
-        // transaction with a message about the rationale rather than applying the edit. Found by the
-        // test that drives a planned operation through the real Workspace.
-        ...(rationale === "" ? {} : { rationale }),
-        operations: plan.operations,
-      },
-    };
-
-    const result = asHypothesis
-      ? ctx.workspace.openHypothesis(label, transaction)
-      : ctx.workspace.transact(transaction);
-
     const applied = plan.operations.map((o) => o.op).join(" + ");
-    if (result.ok) {
-      paintEditResult(editResult, "", []);
-      // An annotation-only edit commits WITHOUT advancing the semantic revision (A1), which is
-      // surprising enough that the announcement says so. A user who edits and sees the hash stand
-      // still should be told why rather than left to suspect the click was lost.
-      const annotationOnly = plan.operations.every((o) => o.op === "add-note");
-      ctx.announce(asHypothesis
-        ? `Hypothesis "${label}" is open. The authoritative model is unchanged until you accept it.`
-        : `${applied} applied. ${ctx.workspace.state.findings.length} validation finding(s).`
-          + (annotationOnly ? " The model's revision is unchanged: a note is context, not a constraint." : ""));
+    const result = review.land({
+      base: ctx.workspace.state.hash,
+      operations: plan.operations,
+      applied,
+    });
+
+    if (result.kind === "rejected") {
+      // A rejection carries the findings that explain it, and losing them leaves a person staring at
+      // a control that did nothing. They are reported here rather than in the Validation section,
+      // which describes the model as it stands — not an edit that never happened.
+      paintEditResult(editResult, `Rejected: ${applied} changed nothing.`, result.findings);
+      ctx.announce(`Edit rejected. ${result.findings[0]?.message ?? "No reason was reported."}`);
+      return { ok: false, problem: `Rejected: ${applied} changed nothing.`, findings: result.findings };
+    }
+
+    paintEditResult(editResult, "", []);
+    if (result.kind === "reviewing") {
+      // The review surface announces what it is showing when it opens, and it opens on the next
+      // paint. Saying "held for review" here as well would be two sentences for one event through
+      // the one polite announcer.
       return { ok: true };
     }
-    // A rejection carries the findings that explain it, and losing them leaves a person staring at a
-    // control that did nothing. They are reported here rather than in the Validation section, which
-    // describes the model as it stands — not an edit that never happened.
-    paintEditResult(editResult, `Rejected: ${applied} changed nothing.`, result.findings);
-    ctx.announce(`Edit rejected. ${result.findings[0]?.message ?? "No reason was reported."}`);
-    return { ok: false, problem: `Rejected: ${applied} changed nothing.`, findings: result.findings };
+    // An annotation-only edit commits WITHOUT advancing the semantic revision (A1), which is
+    // surprising enough that the announcement says so. A user who edits and sees the hash stand
+    // still should be told why rather than left to suspect the click was lost.
+    const annotationOnly = plan.operations.every((o) => o.op === "add-note");
+    ctx.announce(`${applied} applied. ${ctx.workspace.state.findings.length} validation finding(s).`
+      + (annotationOnly ? " The model's revision is unchanged: a note is context, not a constraint." : ""));
+    return { ok: true };
   };
-
 
   return {
     submitEdit,
     paint: (frame: ShellFrame) => {
       mountIf(region, frame.state.loaded);
-      // `#edit-mode`'s own enabling. The ten fieldsets' is `edit-dialogs.ts`'s, with the bindings
-      // that reach them — one module per thing that must be deleted together.
-      byId<HTMLFieldSetElement>("edit-mode").disabled = !frame.state.loaded;
     },
   };
 }

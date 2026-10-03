@@ -31,6 +31,7 @@
 import { EDIT_ACTIONS, satisfies } from "./edit-dialogs.ts";
 import type { EditForm, OpenDialog } from "./edit-dialogs.ts";
 import { byId } from "./context.ts";
+import { regionHost } from "./surfaces.ts";
 import { selectionKind } from "./selection.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
 import type { CanonicalSystem } from "../../ir/types.ts";
@@ -191,7 +192,12 @@ export function mountPalette(ctx: ShellContext, open: OpenDialog): ShellRegion {
   // surface it is already on resets what the user typed.
   document.addEventListener("keydown", (event) => {
     if (!isPaletteShortcut(event)) return;
-    if (opener.disabled || dialog.open || byId<HTMLDialogElement>("edit-dialog").open) return;
+    // Refused over any open dialog, the review surface included: a change held for review is
+    // waiting on Discard or Commit, and opening the command palette over it would stack a second
+    // modal on a decision the user has not made.
+    if (opener.disabled || dialog.open) return;
+    if (byId<HTMLDialogElement>("edit-dialog").open) return;
+    if (regionHost("review").hasAttribute("open")) return;
     // Prevented, because ⌘K is the browser's search-bar focus in some configurations and a
     // shortcut that does both does neither predictably.
     event.preventDefault();

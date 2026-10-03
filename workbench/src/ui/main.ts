@@ -141,11 +141,14 @@ const ctx: ShellContext = {
 
 // -- the regions ------------------------------------------------------------------------------
 //
-// Mounted once, in document order, because mounting binds listeners to markup the page ships. The
-// editing funnel is mounted first only because it owns `submitEdit`, the one mutation funnel the
-// ask bar and every editing dialog also send through — one operation, one envelope, one
-// `Workspace.transact`.
-const editForms = mountEditForms(ctx);
+// Mounted once, in document order, because mounting binds listeners to markup the page ships.
+//
+// Three of them are mounted ahead of the list, and the ORDER of those three is a dependency chain
+// rather than a preference: the review surface decides whether a change lands authoritatively or is
+// held (G3), the funnel hands every change to that decision, and the dialogs submit through the
+// funnel. Each needs the one before it, and none needs the one after.
+const review = mountReview(ctx);
+const editForms = mountEditForms(ctx, review);
 // And the contextual editing surfaces second, because the palette dispatches into the dialogs: one
 // `open` function, so ⌘K and a `+ Add` item reach the same form the same way.
 const editDialogs = mountEditDialogs(ctx, editForms.submitEdit);
@@ -163,7 +166,7 @@ const regions: readonly ShellRegion[] = [
   editForms,
   editDialogs,
   mountPalette(ctx, editDialogs.open),
-  mountReview(ctx),
+  review,
 ];
 
 // -- repaint ----------------------------------------------------------------------------------
@@ -187,7 +190,10 @@ function repaint(): void {
   // record set is the one surface an annotation-only commit moves (A1 holds the hash still).
   const provenance = workspace.provenance();
 
-  const frame: ShellFrame = { vm, state, provenance };
+  // The evaluated properties ride on the frame beside their rendering: the review surface compares
+  // one revision's verdicts against another's, which is a comparison of typed statuses and not of
+  // the sentences `vm.properties` carries.
+  const frame: ShellFrame = { vm, state, provenance, properties };
 
   paint(vm, roots);
   // The provenance readout has no region of its own this wave. Correction 9 moves provenance onto

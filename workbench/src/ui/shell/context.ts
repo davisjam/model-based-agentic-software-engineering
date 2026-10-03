@@ -16,6 +16,7 @@ import type { Workspace, WorkspaceState } from "../../app/services.ts";
 import type { ViewState } from "../../app/agent-api.ts";
 import type { ExampleCatalog } from "../../app/examples.ts";
 import type { ProvenanceRecord } from "../../app/provenance.ts";
+import type { EvaluatedProperty } from "../../app/properties.ts";
 import type { ViewModel } from "../view-model.ts";
 
 /**
@@ -45,6 +46,16 @@ export interface ShellFrame {
   readonly state: WorkspaceState;
   /** Read once by the root: the provenance region renders it and the announcer counts it. */
   readonly provenance: readonly ProvenanceRecord[];
+  /**
+   * The evaluated properties this paint was built from.
+   *
+   * The root already computes these to build the view model, and `ViewModel.properties` is their
+   * RENDERING — status as a sentence, grounds as prose. The review surface needs the semantic
+   * objects: it compares a revision's verdicts against another revision's, and comparing two
+   * sentences is the `checkModelPlurality` defect waiting to happen. Carried on the frame rather
+   * than fetched by the region, so every surface in one paint describes one observation (UX-I3).
+   */
+  readonly properties: readonly EvaluatedProperty[];
 }
 
 /**
