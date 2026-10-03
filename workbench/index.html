@@ -192,6 +192,90 @@
     font-size: .82rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted);
     margin: .9rem 0 .2rem;
   }
+  /*
+    CORRECTION 10, and it is one declaration: the workspace region is a ONE-COLUMN grid whose named
+    rows paint the canvas ABOVE the structured reading that precedes it in the document.
+
+    The flat page reached "Diagram" last, after the whole textual database. The diagram is the
+    centre of the application and the structured text is its accessible counterpart, so the picture
+    is painted directly under the model's question and the reading sits beneath it behind a
+    disclosure. Nothing moved in the DOM: `#model-reading` is still before `#canvas` in the source,
+    which is the order assistive technology receives and the order Tab follows.
+
+    WHY `grid-template-areas` RATHER THAN `order` OR `flex-direction: column-reverse`. All three
+    reorder visually and none reorders the DOM, so any of them would satisfy a reader of the screen.
+    Named areas are the one of the three that states the intent in words a later author can read,
+    and they are already the mechanism the shell grid above uses for exactly this separation — one
+    spelling for "visual position is declared here, accessibility order is declared in the markup",
+    rather than two.
+
+    ONE COLUMN, deliberately, and the a11y tier is why. The FR-A11Y-2 focus-order probe asserts that
+    a region laid out in one column never diverges between reading order and tab order, at any
+    width. A one-column region cannot diverge: every visual row holds one stop, so the two orders
+    are identical by construction. Moving a row that holds no focusable element — and the canvas
+    holds none, by SH-I4 — therefore cannot move the focus order at all. Laying this region out in
+    two columns to put the reading beside the picture would put `#workspace` into the 2-D class the
+    probe reports on, for a cosmetic gain; it is not worth spending that invariant.
+
+    THE ROW ORDER STILL MATCHES DOM ORDER FOR EVERY ROW THAT HOLDS A CONTROL, and that is not a
+    coincidence -- the probe rejected the first arrangement, which painted the represents/omits
+    disclosures below the reading while the markup declares them above it. One column with a control
+    in each of two rows, read in one order and tabbed in the other, is a 2.4.3 divergence however
+    few pairs it is. So only `wcanvas` moves, because the figure is the one row with nothing
+    focusable in it (SH-I4) and therefore the one row whose position the keyboard cannot observe.
+    The resulting order is also the author's own sketch: question, picture, then represents / omits.
+
+    `:not([hidden])`, and the pristine page is why. The `hidden` attribute is a UA `display: none`
+    rule, and an author `display: grid` on the same element OUTRANKS it -- the region unhid itself,
+    SH-I1's unmounted half stopped holding, and `#diagram-subject` reappeared in the pristine tab
+    walk as a sixth stop [measured: the §19 walk went red before this selector existed]. Any region
+    that gains a `display` of its own owes the same guard.
+  */
+  #workspace:not([hidden]) {
+    display: grid;
+    grid-template-areas: "wtitle" "wtools" "wmenu" "wpurpose" "wcanvas" "wdetail" "wreading";
+  }
+  #workspace-h { grid-area: wtitle; }
+  #workspace > label.field { grid-area: wtools; }
+  #add-menu { grid-area: wmenu; }
+  #principal-purpose { grid-area: wpurpose; }
+  #canvas { grid-area: wcanvas; }
+  #model-detail { grid-area: wdetail; }
+  #model-reading { grid-area: wreading; }
+
+  /*
+    The picture reads as the subject of the pane: its own frame, and the drawing scaled to fit it.
+
+    SCALED, not scrolled. A scrollable container with no focusable descendant is an axe violation
+    (`scrollable-region-focusable`) and the obvious fix -- a tabbable wrapper -- is forbidden here
+    by SH-I4, because this subtree is `aria-hidden` and a caret inside it lands where a screen
+    reader says nothing. So the SVG gets `max-width: 100%`, which also keeps 1.4.10 at zero
+    horizontal overflow at 320px.
+  */
+  #canvas {
+    margin: .6rem 0 0; min-height: 4rem;
+    border: 1px solid var(--rule); border-radius: var(--mage-radius-chip);
+  }
+  #canvas svg { display: block; max-width: 100%; height: auto; }
+
+  /* A tree row is a row, not a chip: full width, left-aligned, the selected one marked by a word. */
+  #model-contents ul { list-style: none; padding-inline-start: .6rem; }
+  #model-contents button { text-align: left; }
+  #model-contents button[aria-current="true"] { border-color: var(--accent, currentColor); font-weight: 600; }
+
+  /*
+    The context menu, positioned over the figure rather than in the flow.
+    `position: fixed` against the pointer's viewport coordinates, so it does not depend on the
+    canvas's own scroll offset. The workspace establishes no containing block for it on purpose.
+  */
+  #canvas-menu {
+    position: fixed; z-index: 20; min-width: 13rem; max-width: 20rem;
+    border: 1px solid var(--rule); border-radius: var(--mage-radius-chip);
+    background: var(--panel); padding: .35rem; box-shadow: 0 .4rem 1.2rem rgba(0, 0, 0, .18);
+  }
+  #canvas-menu p { margin: .1rem .3rem .3rem; }
+  #canvas-menu button { display: block; width: 100%; text-align: left; margin: .1rem 0; }
+
   @media (max-width: 64rem) {
     #shell {
       grid-template-columns: minmax(0, 1fr);
@@ -440,10 +524,12 @@
     The `workspace` surface: the principal model. Its purpose in words, its structured reading, then
     the picture. Mounted iff a system is loaded (SH-I1's other half).
 
-    The reading PRECEDES the canvas in the DOM, which is AT order, and the canvas is the visual
-    centre -- the two orderings correction 10 separates. aria-hidden stays on the figure: every fact
-    in the picture is in the reading above it, and duplicating the model into the accessibility tree
-    is the announcement storm FR-A11Y-2 and -3 both guard against.
+    The reading PRECEDES the canvas in the DOM, which is AT order, and the canvas is PAINTED above
+    it -- the two orderings correction 10 separates, now actually separated: the region is a grid of
+    named rows (see the stylesheet) and the figure takes the row under the model's question, while
+    the reading it describes keeps its place in the source. aria-hidden stays on the figure: every
+    fact in the picture is in the reading above it, and duplicating the model into the accessibility
+    tree is the announcement storm FR-A11Y-2 and -3 both guard against.
   -->
   <section id="workspace" aria-labelledby="workspace-h" hidden>
     <h2 id="workspace-h">Workspace</h2>
@@ -484,14 +570,62 @@
     -->
     <div id="principal-purpose"></div>
     <!--
-      The diagram in words: the renderer's own structured twin, not a summary of the picture written
-      by this file. It carries what the SVG encodes visually — reading order, what each emphasis
-      marker means, which nodes carry one — which is the half the System Browser tables do NOT
-      state. Plain DOM, not a live region: it must be readable, not announced on every repaint.
-      Wave 2b grows the model contents tree here.
+      Correction 2: the purpose stays visible, the supporting epistemic machinery is one click away.
+      `paintPrincipal` writes the question above and the represents/omits disclosures here.
     -->
-    <div id="diagram-text"></div>
+    <div id="model-detail"></div>
+    <!--
+      The structured reading, correction 10's "accessible and inspectable counterpart".
+
+      BEHIND ONE DISCLOSURE, and that is the whole of what correction 10 licenses: "the
+      accessibility requirement does not mean we must visually render the entire screen-reader
+      representation. A semantic model tree can provide equivalent keyboard/AT access while sighted
+      users get progressive disclosure." The `summary` is in the tab order and announces its own
+      state (SH-I2), so a keyboard user and a sighted user open the same thing by the same act —
+      which is what separates this from §3.1's two failures. It is NOT `display:none` with no
+      control, and it is NOT the whole flat page kept for screen readers alone.
+
+      It stays BEFORE the canvas in the document, which is AT order. The canvas is painted above it
+      by `grid-template-areas` (see the stylesheet). Two orderings of the same facts.
+    -->
+    <details id="model-reading">
+      <summary id="model-reading-summary">The model in words</summary>
+      <!--
+        The model contents tree (DESIGN-shell-261002.md §3.2): a keyboard-navigable reading of the
+        principal model's entities, relations, machines, states and transitions, rendered from the
+        renderer's own `AccessibleScene`. An interaction surface, not a caption — activating a row
+        is the same act as clicking the canvas node, and both set the one selection.
+      -->
+      <div id="model-contents"></div>
+      <!--
+        The diagram in words: the renderer's structured twin, not a summary of the picture written
+        by this file. It carries what the SVG encodes visually — reading order, what each emphasis
+        marker means, which nodes carry one — which is the half the System Browser tables do NOT
+        state. Plain DOM, not a live region: it must be readable, not announced on every repaint.
+      -->
+      <div id="diagram-text"></div>
+    </details>
     <figure id="canvas" aria-hidden="true"></figure>
+    <!--
+      The canvas context menu (ruled: DECISIONS-RULED-shell-261002.md G4).
+
+      ROWS RENDERED PER OPEN, from the one `EDIT_ACTIONS` catalogue, which is why this element ships
+      empty and why it declares no affordance site. §9c settled the shape on the palette: a row that
+      exists in one state only is a declared site bound to nothing in every other, and reads to the
+      closure gate as a deleted control. The declared site for each operation stays the stable button
+      in the Inspector's action bar; this menu is a redundant POINTER route to the same catalogue.
+
+      Outside the figure, never inside it. A focusable element inside the `aria-hidden` canvas is an
+      axe violation and a keyboard trap (SH-I4), so the menu is the figure's sibling and is positioned
+      over it. It carries no role=menu: a hand-rolled menu widget owes arrow-key management and a
+      roving tabindex, and the keyboard path to every one of these operations is already the contents
+      tree, the Inspector and ⌘K (§3.4). Pointer chrome, said as pointer chrome.
+
+      No `aria-label` either: `aria-label` on a generic `div` is prohibited by ARIA and flagged by
+      axe, and a label on a container nobody navigates to buys nothing. The menu names itself in a
+      visible heading it renders.
+    -->
+    <div id="canvas-menu" hidden></div>
   </section>
 
   <!--

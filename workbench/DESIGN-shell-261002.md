@@ -642,3 +642,66 @@ that got and what stopped it, because the stopping point is a pin in a file wave
   `selection:machine` member exists for the machine rename, which the action bar offers through
   `inspector.rename`. The surviving `edit-section.*` sites keep an empty path: they are still
   visible in the default loaded workspace, below the shell, until the markup goes.
+
+### 9d. Wave 2b as built — one declaration, one guard, and the invariant that rejected the first draft
+
+Appended by wave 2b after landing. Correction 10 is the one the author called the largest visual
+mistake, and the thing worth recording is how little code the inversion needed and how much the
+surrounding gates had to say about it.
+
+- **The inversion is seven words of CSS, and nothing moved in the DOM.** `#workspace` became a
+  one-column grid of named rows — `wtitle wtools wmenu wpurpose wcanvas wdetail wreading` — and
+  `#canvas` took the row under the model's question. `#model-reading` keeps its place in the source,
+  before the figure, which is the order assistive technology receives and the order Tab follows.
+  `grid-template-areas` over `order` or `column-reverse` for a reason that is not technical: all
+  three reorder visually and none reorders the DOM, and named areas are the one of the three that
+  states the intent in words, in the mechanism the shell grid above already uses for exactly this
+  separation.
+- **The structured reading went behind one disclosure, which is the whole of what correction 10
+  licenses.** "The accessibility requirement does not mean we must visually render the entire
+  screen-reader representation." So `#model-reading` is a `details`/`summary`: in the tab order,
+  announcing its own state, opened by the same act for both users. That is SH-I2's spelling and it
+  is what separates this from §3.1's two failures — not `display:none` with no control, and not a
+  flat page kept for screen readers alone.
+- **The one-column focus-order invariant rejected the first arrangement, correctly.** The first draft
+  painted the represents/omits disclosures BELOW the reading while the markup declares them above
+  it: one column, a control in each of two rows, read in one order and tabbed in the other. The
+  probe named the pair (`model-reading-summary` read before `What this model represents`, tabbed
+  after it) and the fix was to stop moving a row that holds a control. Only `wcanvas` moves now,
+  because the figure is the one row with nothing focusable in it (SH-I4) and therefore the one row
+  whose position the keyboard cannot observe. The arrangement that satisfies the invariant is also
+  the author's own sketch: question, picture, then represents / omits.
+- **An author `display` on a region OUTRANKS the `hidden` attribute, and that broke SH-I1 silently.**
+  `hidden` is a UA `display: none` rule; `#workspace { display: grid }` beat it, the region unhid
+  itself on the pristine page, and `#diagram-subject` reappeared as a sixth stop in a five-stop tab
+  walk. The rule is `#workspace:not([hidden])`, and the general form belongs in whatever wave gives
+  another region a display of its own: `mountIf` writes an attribute whose effect a stylesheet can
+  revoke.
+- **The contents tree reads the renderer's scene, and its rows are chrome.** `modelContents` is pure
+  — scene plus system to a typed reading — so the node tier asserts the product rather than a
+  stylesheet, the way `navRails` does. Its rows are `button`s inside lists rather than a
+  `role="tree"`: a real tree widget owes arrow keys, a roving `tabindex` and `aria-selected`
+  management, all hand-written, and the claim §3.2 makes is that activating a row SELECTS, not that
+  it reproduces a desktop control. Activating one sets `ViewState.selection`, which §4's first
+  ruling puts outside semantic state, so the rows are navigation and `CHROME_HOSTS` (new, beside
+  `CHROME_CONTROLS`) exempts them by HOST — one button per drawn element leaves no id to name.
+- **Two things the kernel and the encoding cannot do, recorded rather than faked.**
+  1. *A containment edge and a transition are not selectable.* `selectionKind` has no member for
+     either, so a row offering one would be a control that cannot work. They are read in the tree and
+     are not activatable there; `test/shell-workspace.test.ts` pins the null, so the first thing that
+     fails when the encoding grows a member is the test asking for the row.
+  2. *A property cannot become the workspace's subject.* Wave 1a left this to 2b, and it is still
+     unbuilt: `SceneSubject` is `model | machine`, and representing a property needs either a third
+     axis in `ViewState` or a subject union the renderer does not have. Activating a claim still
+     navigates to the first model its verdict derives from. This is a design fork, not an
+     oversight, and it is the one open item correction 6 names.
+- **What wave 1d must declare, one `path` per canvas affordance.** All from the default loaded
+  workspace. The contents tree's rows get NO path, because they register no affordance — they are
+  chrome, and 1d should read `CHROME_HOSTS` rather than discover them. The canvas's own gestures get
+  no path either, and that is G4's consequence rather than a gap: a right-click on an object offers
+  operations whose declared sites stay the Inspector's `act-*` buttons, so the path 1d declares for
+  each is the inspector path §9c already specifies; a right-click on blank canvas discloses
+  `#add-menu`, whose five sites already have `[{surface:"workspace", via:"disclose"},
+  {surface:"workspace", via:"menu"}]`. What 1d DOES owe this region is one step on the structured
+  reading, because it is now collapsed by default and §2.3's drive has to open it:
+  `[{surface:"workspace", via:"disclose"}]` for anything declared at `#diagram-text` or below.

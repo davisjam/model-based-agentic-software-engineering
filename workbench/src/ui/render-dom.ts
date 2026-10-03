@@ -93,18 +93,53 @@ function annotationBlock(row: Row): DocumentFragment {
  * §5.1 permits them to be inspectable rather than always on screen, and a `<dl>` nested in the row
  * is inspectable without navigating away, which is the condition it actually sets.
  */
-function purposeDisplay(p: PurposeBlock): DocumentFragment {
+/** The question, which stays visible wherever a purpose is shown (UX-I4 §5.1). */
+function purposeQuestion(p: PurposeBlock): DocumentFragment {
   const frag = document.createDocumentFragment();
   frag.append(el("p", "Asks", "sublabel"));
   frag.append(el("p", p.question, p.unstated ? "caveat" : "purpose"));
-  if (p.represents.length > 0 || p.omits.length > 0) {
-    const dl = el("dl", undefined, "prov");
-    if (p.represents.length > 0) dl.append(el("dt", "Represents"), el("dd", p.represents.join(", ")));
-    // Omits is the half a diagram cannot draw, and the half that licenses a refusal. Rendered even
-    // when represents is empty, for that reason.
-    if (p.omits.length > 0) dl.append(el("dt", "Deliberately omits"), el("dd", p.omits.join(", ")));
-    frag.append(dl);
-  }
+  return frag;
+}
+
+/** The grounds, flat. The System Browser's rows read a purpose in full, in one cell. */
+function purposeGrounds(p: PurposeBlock): HTMLElement | null {
+  if (p.represents.length === 0 && p.omits.length === 0) return null;
+  const dl = el("dl", undefined, "prov");
+  if (p.represents.length > 0) dl.append(el("dt", "Represents"), el("dd", p.represents.join(", ")));
+  // Omits is the half a diagram cannot draw, and the half that licenses a refusal. Rendered even
+  // when represents is empty, for that reason.
+  if (p.omits.length > 0) dl.append(el("dt", "Deliberately omits"), el("dd", p.omits.join(", ")));
+  return dl;
+}
+
+/**
+ * The grounds, one disclosure deep — correction 2's "▸ What this model represents / ▸ omits".
+ *
+ * `details`/`summary`, which is SH-I2's one spelling: the control is in the tab order and announces
+ * its own expanded state with no ARIA, so a sighted user and a keyboard user open the same thing by
+ * the same act. Two disclosures rather than one, because the author numbered them separately and
+ * because "what it omits" is the half that licenses a refusal — a reader hunting that sentence
+ * should not have to open a block named after its opposite.
+ */
+export function purposeDisclosures(p: PurposeBlock): DocumentFragment {
+  const frag = document.createDocumentFragment();
+  const block = (label: string, items: readonly string[]): HTMLElement => {
+    const d = el("details");
+    d.append(el("summary", label));
+    const ul = el("ul", undefined, "notes");
+    for (const item of items) ul.append(el("li", item));
+    d.append(ul);
+    return d;
+  };
+  if (p.represents.length > 0) frag.append(block("What this model represents", p.represents));
+  if (p.omits.length > 0) frag.append(block("What this model deliberately omits", p.omits));
+  return frag;
+}
+
+function purposeDisplay(p: PurposeBlock): DocumentFragment {
+  const frag = purposeQuestion(p);
+  const grounds = purposeGrounds(p);
+  if (grounds !== null) frag.append(grounds);
   return frag;
 }
 
@@ -130,15 +165,26 @@ function rowCells(row: Row): HTMLTableRowElement {
  * Plain DOM rather than a live region: it changes when the user changes the drawn subject, which is
  * a navigation and not a consequence, and `#live` already announces the things that are.
  */
-export function paintPrincipal(principal: PrincipalModel | null, root: HTMLElement): void {
+export function paintPrincipal(
+  principal: PrincipalModel | null, root: HTMLElement, detail?: HTMLElement,
+): void {
   root.replaceChildren();
+  detail?.replaceChildren();
   if (principal === null) {
     root.append(el("p", "No model is loaded, so no model is being viewed.", "intro"));
     return;
   }
   root.append(el("h3", `${principal.label} — the model being viewed`));
   root.append(el("p", `${principal.kind} ${principal.id}`, "id"));
-  root.append(purposeDisplay(principal.purpose));
+  // With a `detail` root the grounds go there, behind disclosures; without one they stay flat
+  // beneath the question. ONE module still decides how a purpose reads — the caller chooses the
+  // depth, not the wording — which is the arrangement wave 1a settled on for a property row.
+  if (detail === undefined) {
+    root.append(purposeDisplay(principal.purpose));
+    return;
+  }
+  root.append(purposeQuestion(principal.purpose));
+  detail.append(purposeDisclosures(principal.purpose));
 }
 
 function sectionTable(section: Section): HTMLElement {

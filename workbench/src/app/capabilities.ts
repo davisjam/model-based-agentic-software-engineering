@@ -158,6 +158,31 @@ export const CHROME_CONTROLS: readonly { readonly id: string; readonly why: stri
   { id: "edit-dialog-cancel", why: "dismisses the edit dialog without submitting" },
 ];
 
+/**
+ * Chrome identified by WHERE it is, for controls rendered from the model and therefore id-less.
+ *
+ * `CHROME_CONTROLS` exempts a named element. That cannot reach the model contents tree: its rows
+ * are one button per entity, relation, state and transition of whichever model is drawn, so there
+ * is no id to write down and no fixed number of them. The exemption therefore names the HOST, and
+ * the host is the narrowest one that exists — a selector matching a region, not a tag.
+ *
+ * **A tree row is navigation, which is the same test the palette's opener passes.** Activating one
+ * sets `ViewState.selection`, and the shell's §4 ruling puts selection outside semantic state
+ * deliberately: not in the IR, not hashed, not in undo history. UX-I1 censuses SEMANTIC
+ * capabilities, so a control that moves only the view is not a capability missing from the census —
+ * it is a control the census is not about. The operations a selected object can be edited with keep
+ * their declared sites in the Inspector's action bar, where the registry already stamps them.
+ *
+ * Deliberately NOT a general escape. Each member is one region, with the reason it is navigation.
+ */
+export const CHROME_HOSTS: readonly { readonly selector: string; readonly why: string }[] = [
+  {
+    selector: "#model-contents button",
+    why: "the model contents tree's rows: one per drawn element, activating one sets the view's "
+      + "selection and mutates no model state (DESIGN-shell-261002.md section 4, ruling 1)",
+  },
+];
+
 /** A machine affordance: a callable on `window.mage`, which has no element to bind. */
 const wired = (at: string): Affordance => ({ at, status: "wired" });
 
