@@ -11,10 +11,11 @@
     "types": "json2ts -i mage-model.schema.json -o src/ir/schema-model.ts --additionalProperties false && json2ts -i mage-query.schema.json -o src/ir/schema-query.ts --additionalProperties false && json2ts -i mage-transaction.schema.json -o src/ir/schema-transaction.ts --additionalProperties false",
     "check": "tsc --noEmit",
     "test": "node --test \"test/*.test.ts\"",
+    "test:smoke": "node --test test/browser/smoke.test.mjs",
     "test:browser": "node --test \"test/browser/*.test.mjs\"",
     "test:a11y": "node --test \"test/browser/a11y/*.test.mjs\"",
     "build": "node build.mjs",
-    "all": "npm run check && npm run test && npm run build",
+    "all": "npm run check && npm run test && npm run build && npm run test:smoke",
     "affordances": "node scripts/gen-affordances.ts"
   },
   "devDependencies": {
