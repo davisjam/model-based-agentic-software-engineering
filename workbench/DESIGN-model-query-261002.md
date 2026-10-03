@@ -728,3 +728,67 @@ otherwise.
 - **Consequence of ruling otherwise.** (c): the `Query` union gains a composite arm, `check`
   must admit compositions (admission becomes recursive), and the line must be redrawn one step
   further out — the step after a pipe is a join.
+
+---
+
+## 12. As built — M1, and where §3 was wrong
+
+M1 landed `QuerySemantics` and the three concrete declarations. Four things differ from §3, each
+because applying the design surfaced a problem the design could not see from the outside. M2 reads
+this field for `check`'s alternatives (§5.3), so the shape below is what it will find.
+
+**The landed shape.** `forms` and `composing` as specified, by reference. `licensedBy` as specified.
+`subjects` as specified, plus a `declaredBy` citation per subject and a typed `QueryNoun`. Then
+`interpretedBy` (new), `primitives` (replacing `derived`), `predicates` (reshaped), `joins` (plus
+`with` and `declaredBy`). `derivedPrimitives(query)` computes Extension 1's "transitive or derived
+relations" from the classification rather than storing a second list beside it.
+
+**(1) No prose meaning on a primitive — the engine already owns it.** §3.1's `DerivedRelation`
+carried `meaning: string`. Each form's plain-language meaning already exists, once, as the engine's
+own `interpretation(query)` (`src/engine/graph.ts:626`, `src/engine/behavior.ts:347`) — a switch
+TOTAL over the form union by the compiler, and parameterized by the question actually asked, which
+is strictly more than a type-level sentence can say. A registry `meaning` would have been a second,
+coarser copy of that prose held by a weaker control. `QuerySemantics.interpretedBy` cites it, which
+also gives the human and machine affordances one text source rather than two.
+
+**(2) `gate` is typed, not prose.** §3.1's `gate: string` ran to `"none — licensed by V8
+independently of V7"`, which serves a human affordance and tells a machine affordance nothing it can
+act on. `PrimitiveGate` is now `{ kind: "declared"; by: SchemaAuthority } | { kind:
+"by-construction"; why: string }` — so a caller knows whether to go and read the IR at all, and the
+declared arm's citation is the type's own `licensedBy` entry BY IDENTITY (shared object, pinned by a
+test). The design's stated load-bearing property — every field a reference or a citation — did not
+survive its own `DerivedRelation` sketch; this is the repair.
+
+**(3) The classification is TOTAL over `forms`.** §3.1 listed only the derived relations, which
+leaves a form absent for two indistinguishable reasons: a decision, or an oversight. Totality makes
+a form added to an engine vocabulary with no registry entry fail the build, and it pays twice —
+`composing` and the per-instance gates now cross-check, because `GRAPH_COMPOSING` must equal exactly
+the forms whose gate is `declared`, and those two facts come from different modules.
+
+**(4) `PredicateSemantics` could not be filled honestly for the quantitative type.** §3.1 specified
+one shape: `equality: string` plus `order: { ops, scopedBy }`. A quantitative question chooses no
+comparison operator — it decides a magnitude against a declared ceiling — and the evaluator
+implements no equality over magnitudes at all. Filling the specified shape would have advertised
+four order operators and an `eq` that refuse, which is the brochure failure the registry exists to
+prevent. So `equality` is nullable and `order` has two arms, `operator` and `declared-ceiling`.
+Generalizing: **§3.1's predicate shape was derived from the two types whose questions share the
+guard-op grammar, and the third type's predicates are not its own** — a quantity question borrows
+the machine's predicate through the registered join (`QuantityQuery.target`). A design that reads
+two of three instances will mint a field the third cannot fill.
+
+**Two smaller corrections to §10's M1 row.** Its footprint named `test/learn.test.ts`, which does
+not exist — the Learn derivation tests live in `test/model-types.test.ts` and `test/learn-content.test.ts`
+— and it missed `src/learn/main.ts:214`, the one real consumer of the field being renamed. The wave
+touched that one line.
+
+**The falsification count holds.** A fourth type still changes §8's ten files and no eleventh: every
+vocabulary M1 added (`QueryNoun`, `SubjectSelector`, `AnswerBasis`, `PrimitiveGate`) lives in
+`src/engine/model-types.ts`, already file #4, and a fourth type's `interpretedBy` cites its own
+evaluator, already file #6. Nothing M1 landed contains SPARQL text. The registry entry is forced
+harder than before: the fourth type cannot ship a form it has not classified.
+
+**One flag for the shell effort, sharpening §8's.** `src/ui/shell/askbar.ts:127` derives its
+contextual slots from `GRAPH_FORMS` directly — `CONTEXT_SLOT` is total over that array by type, so
+it does not rot — but it reads the engine rather than `QuerySemantics.forms`, and it is
+structural-graph only. The derivation MQ-I8's human half needs is per loaded TYPE, which means
+reading the registry; that re-point is the shell's, not M1's.
