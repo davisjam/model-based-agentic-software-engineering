@@ -487,10 +487,12 @@ test("a stale verdict is NOT the property's status — the mismatch is", () => {
   // `status` entirely rather than annotated: a reader who quotes the status cannot quote a stale
   // answer, and "we have not evaluated this revision" is the honest headline.
   //
-  // Reachable because `buildViewModel` takes results from its caller and `window.mage.evidence()`
-  // hands out a cached result that outlives its system. Every production caller recomputes, so no
-  // property is stale through `Workspace.properties()` -- the check is for the first person who
-  // "optimises" that by caching verdicts.
+  // Reachable because `buildViewModel` takes results from its caller, so a caller holding an old
+  // result can hand one over. Every production caller recomputes -- `window.mage.evidence()` used
+  // to be the exception and no longer is
+  // (`DECISIONS-RULED-agent-evidence-261002.md`) -- so no property is stale through
+  // `Workspace.properties()`, and this check is for the first person who "optimises" that by
+  // caching verdicts.
   const m = vm(new Map([["publish-requires-review", result({ systemHash: "fnv1a64:0000000000000000" })]]));
   const p = m.properties.find((x) => x.id === "publish-requires-review");
   assert.ok(p);
