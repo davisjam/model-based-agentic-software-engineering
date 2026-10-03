@@ -60,6 +60,61 @@ export interface Affordance {
   readonly note?: string;
 }
 
+/**
+ * Where a human affordance lands in the page, so `at` can be CHECKED instead of asserted.
+ *
+ * Until this field existed, a wired human site was a sentence an author wrote and nothing read.
+ * Nothing mapped the 29 site strings to elements, so a control could be renamed, removed or made
+ * unreachable and UX-I1 would stay green — the defect recorded as F-3 in
+ * `BASELINE-a11y-261002.md` §6. The site string stays the stable name a document can cite; this
+ * says which element carries it.
+ *
+ * **The element id lives HERE rather than beside the markup, and that is the whole argument for the
+ * shape.** A `data-affordance="header.export"` hand-typed into `index.html` next to a hand-typed
+ * `"header.export"` in this file would be two copies of one fact, which is the same defect one
+ * layer down. So the page does not author the attribute at all: the UI stamps it from this
+ * declaration on every paint, and a test asserts the markup contains no literal `data-affordance`.
+ * One source of truth, and the DOM is its projection.
+ */
+export interface AffordanceElement {
+  /** The `id` the page must present this site as. Checked against `index.html` by the node tier. */
+  readonly id: string;
+  /**
+   * A descendant selector, for a site rendered INSIDE another site's host.
+   *
+   * One case today: the evidence list is `.evidence` inside `#question-list`, which also hosts
+   * `properties-section.list`. The host is what the binder requires — a question list with no
+   * evidence in it is an ordinary state, not a missing control — so the selector's teeth come from
+   * the browser tier, which drives a fixture known to render one.
+   */
+  readonly within?: string;
+}
+
+/**
+ * A HUMAN affordance. Wired or refusing means a real element; absent means a stated reason.
+ *
+ * Two members rather than one interface with an optional `element`, because the compiler then holds
+ * the invariant the node tier would otherwise have to re-check: a human affordance cannot claim to
+ * be wired without naming the element that carries it. `DESIGN-shell-261002.md` §2.2 widens this
+ * field into a declared NAVIGATION PATH that a generated keyboard drive walks; an element id is the
+ * same claim about a flat page, and the shell replaces it rather than having to undo it.
+ */
+export type HumanAffordance = BoundAffordance | AbsentAffordance;
+
+export interface BoundAffordance {
+  readonly at: string;
+  readonly status: "wired" | "refusing";
+  readonly note?: string;
+  readonly element: AffordanceElement;
+}
+
+export interface AbsentAffordance {
+  readonly at: string;
+  readonly status: "absent";
+  /** Required here, not optional: an absence with no reason is an aspiration, not a declaration. */
+  readonly note: string;
+}
+
 export interface Capability {
   readonly id: CapabilityId;
   /** What it does, in the user's terms. Shown by `describe()`. */
@@ -69,13 +124,18 @@ export interface Capability {
    * comparing this string, so it must name a real seam, not a category.
    */
   readonly service: string;
-  readonly human: readonly Affordance[];
+  readonly human: readonly HumanAffordance[];
   readonly machine: readonly Affordance[];
   /** Does invoking this produce a semantic RESULT that UX-I2 governs? */
   readonly producesEvidence: boolean;
 }
 
+/** A machine affordance: a callable on `window.mage`, which has no element to bind. */
 const wired = (at: string): Affordance => ({ at, status: "wired" });
+
+/** A wired human affordance and the element that carries it. */
+const control = (at: string, id: string): BoundAffordance =>
+  ({ at, status: "wired", element: { id } });
 
 /**
  * The registry. Reflects what is actually built as of 261002.
@@ -115,7 +175,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // semantics are identical to an existing one would make the registry longer without making it
     // say more. `header.load-example` used to sit in this list, and moved out when loading a shipped
     // example became a capability with its own service.
-    human: [wired("header.file-input"), wired("header.new-system")],
+    human: [control("header.file-input", "file"), control("header.new-system", "new-system")],
     machine: [wired("window.mage.load")],
     producesEvidence: false,
   },
@@ -127,7 +187,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // `workspace.load` -- the import seam -- so there is no privileged path and no example mode. The
     // capability earns its own row because the SELECTION and the description are semantics `import`
     // does not have: an agent asking what it may load gets an answer here and nowhere else.
-    human: [wired("start.load-example")],
+    human: [control("start.load-example", "example-load")],
     machine: [wired("window.mage.loadExample"), wired("window.mage.examples")],
     producesEvidence: false,
   },
@@ -135,7 +195,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "export",
     summary: "Write the model system back out, comments and key order preserved.",
     service: "workspace.export",
-    human: [wired("header.export")],
+    human: [control("header.export", "export")],
     machine: [wired("window.mage.export")],
     producesEvidence: false,
   },
@@ -143,7 +203,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "inspect",
     summary: "Read every modelled fact: entities, relations, machines, purpose, omissions.",
     service: "workspace.state",
-    human: [wired("model-section.tables")],
+    human: [control("model-section.tables", "sections")],
     machine: [wired("window.mage.inspect")],
     producesEvidence: false,
   },
@@ -151,7 +211,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "validate",
     summary: "Report findings against the numbered rules V1-V26.",
     service: "validator.validate",
-    human: [wired("validation-section.table")],
+    human: [control("validation-section.table", "finding-list")],
     machine: [wired("window.mage.context.findings")],
     producesEvidence: true,
   },
@@ -163,7 +223,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // structured controls, without writing a query document. It is a second affordance of `query`
     // rather than a capability of its own because it ends at the same `workspace.query` an agent
     // calls -- the controls narrow what can be ASKED, they do not add a way to answer.
-    human: [wired("header.run-all"), wired("properties-section.ask")],
+    human: [control("header.run-all", "run"), control("properties-section.ask", "ask-go")],
     // `ask` is the grounded twin of `query`: the same service, returning the verdict WITH the models
     // it derives from. Two machine affordances rather than a changed return type, because `query`'s
     // `QueryResult` is the published wire shape and widening it would break every reader of it.
@@ -212,7 +272,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // edit to see which claims moved. `window.mage.properties` is the machine twin of that same
     // read -- the verdict with the models and evidence it derives from (UX-I5), which satisfies
     // UX-I2 for a surface whose whole content is a semantic result.
-    human: [wired("header.run-all"), wired("properties-section.list")],
+    human: [control("header.run-all", "run"), control("properties-section.list", "question-list")],
     machine: [wired("window.mage.savedQueries"), wired("window.mage.properties")],
     producesEvidence: true,
   },
@@ -262,7 +322,16 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "inspect-evidence",
     summary: "Read a witness, counterexample or lasso as ordered steps.",
     service: "workspace.query",
-    human: [wired("properties-section.evidence-list")],
+    // `.evidence`, not `ul.evidence`: the renderer emits an ORDERED list, because a witness is a
+    // sequence of steps. The first attempt to bind this site in a measurement script asked for
+    // `ul.evidence`, found nothing, and recorded the evidence list as unreadable — a wrong selector
+    // reported as a page defect, which is the argument for the selector living next to the site it
+    // names rather than in a reader's private notes.
+    human: [{
+      at: "properties-section.evidence-list",
+      status: "wired",
+      element: { id: "question-list", within: ".evidence" },
+    }],
     machine: [wired("window.mage.evidence")],
     producesEvidence: true,
   },
@@ -270,7 +339,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "undo",
     summary: "Return to the previous semantic revision.",
     service: "workspace.undo",
-    human: [wired("header.undo")],
+    human: [control("header.undo", "undo")],
     machine: [wired("window.mage.undo")],
     producesEvidence: false,
   },
@@ -278,7 +347,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "redo",
     summary: "Re-apply an undone revision.",
     service: "workspace.redo",
-    human: [wired("header.redo")],
+    human: [control("header.redo", "redo")],
     machine: [wired("window.mage.redo")],
     producesEvidence: false,
   },
@@ -296,7 +365,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "create-element",
     summary: "Add an entity, state or machine.",
     service: "transactions.apply",
-    human: [wired("edit-section.add-entity"), wired("edit-section.add-state")],
+    human: [control("edit-section.add-entity", "add-entity-go"), control("edit-section.add-state", "add-state-go")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -307,7 +376,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // The reference check that refuses a delete while something still points at the target lives in
     // the transaction engine. The form offers the cascade as an explicit opt-in rather than
     // reimplementing the check, so both interfaces get the same refusal for the same reason.
-    human: [wired("edit-section.delete-element")],
+    human: [control("edit-section.delete-element", "delete-element-go")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -318,7 +387,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // Licensing is what the form narrows: only relation types the system declares, and only
     // endpoints the chosen model contains -- an edge between entities a model does not contain is
     // an edge no view of that model would draw.
-    human: [wired("edit-section.add-relation")],
+    human: [control("edit-section.add-relation", "add-relation-go")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -326,7 +395,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "delete-relation",
     summary: "Remove a relation.",
     service: "transactions.apply",
-    human: [wired("edit-section.delete-relation")],
+    human: [control("edit-section.delete-relation", "delete-relation-go")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -334,7 +403,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "edit-property",
     summary: "Change a property or label through the same transaction any other edit uses.",
     service: "transactions.apply",
-    human: [wired("edit-section.set-label"), wired("edit-section.set-property")],
+    human: [control("edit-section.set-label", "set-label-go"), control("edit-section.set-property", "set-property-go")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -347,7 +416,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // `add-model` plus `set-purpose` in one transaction, composing with the op that already owns the
     // purpose block. Atomicity makes the pair indivisible, so a question-less model never commits —
     // and the habit the workbench exists to teach is enforced by the control rather than suggested.
-    human: [wired("edit-section.add-model")],
+    human: [control("edit-section.add-model", "add-model-go")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -358,7 +427,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // No cascade on either side, deliberately. Relations are flattened across models and carry the
     // model that asserts them, so a relation is a claim rather than a pointer; dropping it as a
     // side effect would shrink the architecture and tell no one.
-    human: [wired("edit-section.delete-model")],
+    human: [control("edit-section.delete-model", "delete-model-go")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -370,7 +439,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // outside the semantic projection (A1), so this commits WITHOUT advancing the revision and does
     // not invalidate a pending agent transaction. Both affordances say so: the form in words, and
     // `describe()` through the schema's own description of the op.
-    human: [wired("edit-section.add-note")],
+    human: [control("edit-section.add-note", "add-note-go")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -393,7 +462,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // The form and the agent send the same operation, and the human form builds its query with the
     // same function that built the one it just ran — so the property a person saves has the
     // semantics of the result they were looking at rather than a re-typed approximation of it.
-    human: [wired("properties-section.save")],
+    human: [control("properties-section.save", "save-property-go")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -403,7 +472,7 @@ export const CAPABILITIES: readonly Capability[] = [
     service: "transactions.apply",
     // The pair of the one above. A claim you cannot withdraw is a claim the model system cannot
     // stop asserting, and `delete-query` already existed with no way for a person to reach it.
-    human: [wired("properties-section.retract")],
+    human: [control("properties-section.retract", "retract-property-go")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -419,7 +488,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // `prompt` is the field that earns the feature: with an agent-authored model it answers why the
     // object has this shape, which reading the object cannot. A prompt nobody finds is a prompt
     // nobody reads.
-    human: [wired("provenance-section.records")],
+    human: [control("provenance-section.records", "provenance-list")],
     machine: [wired("window.mage.provenance")],
     producesEvidence: false,
   },
@@ -432,7 +501,7 @@ export const CAPABILITIES: readonly Capability[] = [
     service: "workspace.openHypothesis",
     // The editing forms choose the branch; there is no separate what-if mechanism, because a
     // second mutation path is where the bugs would live.
-    human: [wired("edit-section.hypothesis-target")],
+    human: [control("edit-section.hypothesis-target", "target-hypothesis")],
     machine: [wired("window.mage.hypothesis.open")],
     producesEvidence: true,
   },
@@ -440,7 +509,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "commit-hypothesis",
     summary: "Accept a hypothesis as authoritative.",
     service: "workspace.applyHypothesis",
-    human: [wired("hypothesis-bar.accept")],
+    human: [control("hypothesis-bar.accept", "hypothesis-apply")],
     machine: [wired("window.mage.hypothesis.apply")],
     producesEvidence: false,
   },
@@ -448,7 +517,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "discard-hypothesis",
     summary: "Throw a hypothesis away; the authoritative model was never touched.",
     service: "workspace.discardHypothesis",
-    human: [wired("hypothesis-bar.discard")],
+    human: [control("hypothesis-bar.discard", "hypothesis-discard")],
     machine: [wired("window.mage.hypothesis.discard")],
     producesEvidence: false,
   },
@@ -519,11 +588,28 @@ export function checkAffordanceParity(
 }
 
 /**
+ * Every human affordance that claims an element, with the element it claims.
+ *
+ * The binder in `ui/affordances.ts` walks this to stamp the DOM, and both tiers walk it to check
+ * the stamping — so the site→element map has exactly one reader-visible home.
+ */
+export function boundHumanAffordances(
+  registry: readonly Capability[] = CAPABILITIES,
+): readonly BoundAffordance[] {
+  return registry.flatMap((c) => c.human.filter((a): a is BoundAffordance => a.status !== "absent"));
+}
+
+/**
  * The §26 CI assertions, both directions.
  *
  * A capability without an affordance is the obvious failure. An affordance without a capability is
  * the one that catches drift: a button or an API method that reaches the model without being a
  * declared semantic capability is exactly how a UI-only or agent-only path appears.
+ *
+ * For two waves both callers passed literals, so the real page's control set was never the input
+ * and this function could only ever confirm the test's own arithmetic (F-3). The browser tier now
+ * collects `data-affordance` off the served page and passes THAT, which is what makes the
+ * unregistered-site direction mean something.
  */
 export function checkRegistryClosure(
   declaredHumanSites: readonly string[],

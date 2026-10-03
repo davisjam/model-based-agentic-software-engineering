@@ -22,7 +22,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
-  CAPABILITIES, checkAffordanceParity, checkRegistryClosure, generateAffordanceModel,
+  CAPABILITIES, boundHumanAffordances, checkAffordanceParity, checkRegistryClosure,
+  generateAffordanceModel,
 } from "../src/app/capabilities.ts";
 import type { Affordance, CapabilityId } from "../src/app/capabilities.ts";
 import { ExampleCatalog } from "../src/app/examples.ts";
@@ -224,6 +225,55 @@ test("UX-I1 fires when a capability loses an affordance — negative control", (
   const v = checkAffordanceParity(broken);
   assert.ok(v.some((x) => x.capability === "query" && x.problem.includes("HUMAN")),
     "removing query's human affordance must be caught");
+});
+
+// ----------------------------------------------------------------------------------------------
+// The DOM binding — F-3. `wired` stops being an author's assertion.
+// ----------------------------------------------------------------------------------------------
+
+/**
+ * Every element id a human affordance claims must exist in `index.html`.
+ *
+ * This is the cheap rung of the three that hold F-3 shut, and the one that fires without a browser:
+ * the compiler already refuses a wired human affordance with no element, and the browser tier
+ * compares the SERVED page's stamped set against the registry. This catches the common motion —
+ * someone renames a control — at commit time, in a second.
+ */
+test("every human affordance site names an element index.html declares", () => {
+  const html = readFileSync("index.html", "utf8");
+  const present = new Set([...html.matchAll(/id="([a-zA-Z0-9-]+)"/g)].map((m) => m[1] as string));
+  const bound = boundHumanAffordances();
+  assert.ok(bound.length > CAPABILITIES.length / 2,
+    `only ${bound.length} human affordances declare an element — the registry scan is wrong`);
+  const missing = bound
+    .filter((a) => !present.has(a.element.id))
+    .map((a) => `${a.at} → #${a.element.id}`);
+  assert.deepEqual(missing, [], `index.html declares no element for: ${missing.join(", ")}`);
+});
+
+test("a renamed control is caught — negative control", () => {
+  // The predicate, driven against a registry whose element was renamed out from under it. Without
+  // this the test above passes for a registry that declares nothing.
+  const html = readFileSync("index.html", "utf8");
+  const present = new Set([...html.matchAll(/id="([a-zA-Z0-9-]+)"/g)].map((m) => m[1] as string));
+  const renamed = CAPABILITIES.map((c) => c.id === "export"
+    ? { ...c, human: [{ at: "header.export", status: "wired" as const, element: { id: "export-v2" } }] }
+    : c);
+  assert.deepEqual(
+    boundHumanAffordances(renamed).filter((a) => !present.has(a.element.id)).map((a) => a.at),
+    ["header.export"],
+    "renaming the element a wired site claims must be caught",
+  );
+});
+
+test("index.html authors no data-affordance of its own", () => {
+  // The attribute has exactly ONE author: the binder, reading the registry. A hand-typed
+  // `data-affordance="header.export"` beside the registry's own `"header.export"` would be two
+  // copies of one fact — the registry's failure class reproduced one layer down — and a closure
+  // check comparing one copy to the other would pass on a page whose button had moved.
+  const html = readFileSync("index.html", "utf8");
+  assert.ok(!/\sdata-affordance\s*=/.test(html),
+    "index.html hand-authors a data-affordance attribute; the registry is the only source for it");
 });
 
 test("§26 closure: an affordance reaching the model without a capability is a violation", () => {
