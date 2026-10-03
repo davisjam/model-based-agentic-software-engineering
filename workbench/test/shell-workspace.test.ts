@@ -76,6 +76,32 @@ test("the contents tree reads every node and every edge the picture draws", () =
   }
 });
 
+test("the tree's subject row selects the drawn model, which is what wave 1d could not reach", () => {
+  // THE PIN FOR SH-I8's HARD FLIP. `inspector.delete-model`'s button is enabled only for a
+  // `selection:model`, and for one wave nothing a person could press produced one — the registry
+  // carried it as the single member of `WIRED_WITHOUT_A_WALKED_PATH`. The subject row is what
+  // drained that set, so the thing to hold shut is not "a row exists" but that its encoding
+  // resolves, through the SAME `selectionKind` the action bar branches on, to the kind whose
+  // precondition the button declares. A row that resolved `unresolved` would re-open the finding
+  // while the registry claimed it closed.
+  for (const { id, system, scene } of scenes()) {
+    const contents = modelContents(scene, system);
+    assert.notEqual(contents.subject.select, null,
+      `${id}/${scene.subject.id}: the subject row offers no selection, so no human act produces a `
+      + "model or machine selection and inspector.delete-model is unreachable again");
+    assert.equal(
+      selectionKind(system, [contents.subject.select as string]),
+      scene.subject.kind,
+      `${id}/${scene.subject.id}: the subject row encodes '${contents.subject.select}', which does `
+      + `not resolve as a ${scene.subject.kind}`,
+    );
+    // And it is the FIRST row of the reading, which is the claim the heading makes: a containment
+    // tree names the container before its contents.
+    assert.ok(contents.subjectHeading !== "",
+      `${id}/${scene.subject.id}: the subject group has no heading, so a reader meets an unlabelled row`);
+  }
+});
+
 test("every selection a tree row offers resolves to the kind the row is", () => {
   // The oracle is `selectionKind`, which is what the inspector and the contextual action bar
   // branch on. A row offering a value those two read as `unresolved` would populate an empty

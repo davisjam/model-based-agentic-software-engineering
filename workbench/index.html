@@ -1107,6 +1107,31 @@
   <section id="system-browser" aria-labelledby="system-browser-h" hidden>
     <h2 id="system-browser-h">System Browser</h2>
     <!--
+      THE EXHAUSTIVE VIEW IS NOW ON DEMAND, which is the whole of wave 3's correction-3 work.
+
+      The tables were the first thing a reader met on the flat page; waves 0-2 gave them a region of
+      their own and left them always open. Correction 3 licenses an "advanced System Browser for
+      people who really want the 11-entity/18-relation tabular view" — advanced meaning the reader
+      ASKS, not that the view is hidden from them. So the content sits behind one disclosure and the
+      region's heading stays outside it: a reader learns the Browser exists by reading the page, and
+      pays for the exhaustive readout only by opening it.
+
+      The disclosure is INSIDE the labelled `<section>` rather than replacing it. A `<details>` has
+      no landmark role, so making the region itself a disclosure would have taken the System Browser
+      out of an AT's landmark list to put it behind a control — fixing the visual complaint by
+      creating an accessibility one, which is §3.1's first failure mode wearing new clothes. This
+      way the landmark is navigable in every state and the tables are a Tab and an Enter away.
+
+      §10 assigns this surface the path `⋯ menu → System Browser → …`. There is no ⋯ menu and
+      inventing one for three readouts would be a region nobody designed; a `<details>` is the same
+      act — the reader discloses an advanced surface — in the mechanism the shell already uses
+      everywhere else (SH-I2). The declared paths gain a `disclose` step either way, which is the
+      form the design's own promise took: "prepends a menu step rather than relocating the control."
+    -->
+    <details id="system-browser-detail">
+      <!-- The summary carries an id so a drive can Tab to it by name rather than by position. -->
+      <summary id="system-browser-detail-summary">Show the exhaustive tables</summary>
+    <!--
       THE READOUT HOSTS NAME THEMSELVES. #sections, #question-list, #finding-list and
       #provenance-list each hold a table or a list a person reads. Every one of them used to be a
       plain `<div>`: computed role `generic`, computed name empty, and its whole AT identity
@@ -1163,8 +1188,9 @@
       by construction -- the service hands back records and no writer, so inspecting an origin
       cannot move a hash or a result (UX-I6).
     -->
-    <h3 id="provenance-list-h">Recorded origins</h3>
-    <section id="provenance-list" aria-labelledby="provenance-list-h"></section>
+      <h3 id="provenance-list-h">Recorded origins</h3>
+      <section id="provenance-list" aria-labelledby="provenance-list-h"></section>
+    </details>
   </section>
 </main>
 
