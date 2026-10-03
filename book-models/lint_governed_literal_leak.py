@@ -18,6 +18,17 @@ DENYLIST (mechanically derived from the ledger at lint time — stable-lint-read
   * every DISTINCTIVE `data-claims.json` `holds[]` literal → owed `[data:slug]`;
   * a curated set of canonical STALE word-forms the design names (forty-seven-fold, two years, …) → the
     token that should replace them.
+
+THE REMEDY IS PER-SITE, NOT PER-LITERAL (ANCHOR-AWARE). A `[data:slug]` marker renders a footnote-style
+cross-ref INTO the chapter that reports the datum, so it only reads as a reference from a chapter that is
+NOT that one. Inside the anchoring chapter itself — the chapter the claim's `source` names — the marker
+would cross-reference its own section, and the finding would close on a nonsense link. So a holds[] leak
+is reported two ways: `[data:slug]` when the leak sits in a CONSUMING chapter (a genuine cross-ref), and
+"tokenize via metrics.json" when it sits in the ANCHORING chapter, where pinning delegates to the token
+registry instead. Both the scanned path and the claim's source chapter are known at lint time, so the
+split is deterministic; the chapter path for a `source` label resolves through the chapter-identity
+meta-file. A refactor-cost leak in §5.2 was closed the wrong way once by following the unconditional
+`[data:]` suggestion, which is what earned this split.
 Bare small integers and common single words are deliberately EXCLUDED (they are indistinguishable from
 legitimate prose numerals) — that keeps the gate deterministic and low-false-positive, so it can graduate
 to BLOCKING once the current sites drain.
@@ -71,10 +82,31 @@ def _is_distinctive(value: str) -> bool:
     return bool(_DISTINCTIVE_RE.search(value))
 
 
-def build_denylist() -> "dict[str, str]":
-    """literal → the token/slug that should carry it. Distinctive metrics values + distinctive
-    data-claims holds[] + the curated stale word-forms."""
+def _anchor_paths() -> "dict[str, str]":
+    """data-claim slug → the repo-relative chapter path its `source` label anchors. Resolved through the
+    chapter-identity meta-file, the same map the renderer walks, so a renamed chapter cannot strand this.
+    A `source` that names no declared label drops out — the claims model polices that separately."""
+    decl_path = os.path.join(_ROOT, "book-models", "chapter_identity_declared.json")
+    with open(decl_path, encoding="utf-8") as fh:
+        decl = json.load(fh)
+    by_label = {c["label"]: "book/" + c["filename"] for c in decl.get("chapters", [])}
+    paths: "dict[str, str]" = {}
+    for slug, entry in _load_json("data-claims.json").items():
+        if slug.startswith("_") or not isinstance(entry, dict):
+            continue
+        path = by_label.get(entry.get("source", ""))
+        if path:
+            paths[slug] = path
+    return paths
+
+
+def build_denylist_with_owners() -> "tuple[dict[str, str], dict[str, str]]":
+    """`(deny, holds_owner)`. `deny` maps literal → the token/slug that should carry it: distinctive
+    metrics values + distinctive data-claims holds[] + the curated stale word-forms. `holds_owner` maps
+    each HOLDS-derived literal to its claim slug, so the report can swap the `[data:]` remedy for the
+    tokenize remedy when the leak sits in that claim's own anchoring chapter."""
     deny: "dict[str, str]" = {}
+    holds_owner: "dict[str, str]" = {}
     metrics = _load_json("metrics.json")
     for key, value in metrics.items():
         if key.startswith("_") or not isinstance(value, str):
@@ -87,10 +119,18 @@ def build_denylist() -> "dict[str, str]":
             continue
         for literal in entry.get("holds", []) or []:
             if isinstance(literal, str) and (_is_distinctive(literal) or " " in literal):
-                deny.setdefault(literal, f"[data:{slug}]")
+                if literal not in deny:  # a metrics value already owns it — that token wins
+                    deny[literal] = f"[data:{slug}]"
+                    holds_owner.setdefault(literal, slug)
     for form, owed in _STALE_WORD_FORMS.items():
         deny.setdefault(form, owed)
-    return deny
+    return deny, holds_owner
+
+
+def build_denylist() -> "dict[str, str]":
+    """literal → the token/slug that should carry it (the denylist half of
+    `build_denylist_with_owners`)."""
+    return build_denylist_with_owners()[0]
 
 
 def _chapter_md_files() -> "list[str]":
@@ -106,8 +146,11 @@ def _find_raw(literal: str, stripped: str) -> bool:
     return bool(pat.search(stripped))
 
 
-def scan_chapter_prose(deny: "dict[str, str]") -> "list[str]":
+def scan_chapter_prose(deny: "dict[str, str]",
+                       holds_owner: "dict[str, str] | None" = None) -> "list[str]":
     findings: "list[str]" = []
+    holds_owner = holds_owner or {}
+    anchors = _anchor_paths()
     # Longest literals first so a superstring form is reported over its substring.
     ordered = sorted(deny.items(), key=lambda kv: len(kv[0]), reverse=True)
     for path in _chapter_md_files():
@@ -122,7 +165,13 @@ def scan_chapter_prose(deny: "dict[str, str]") -> "list[str]":
                     if any(literal in s and literal != s for s in seen):
                         continue  # already covered by a longer superstring literal on this line
                     if _find_raw(literal, stripped):
-                        findings.append(f"{rel}:{lineno} — raw governed value {literal!r} — should be {owed}")
+                        slug = holds_owner.get(literal)
+                        if slug and anchors.get(slug) == rel:
+                            remedy = (f"a {{{{token}}}} in metrics.json — this chapter ANCHORS "
+                                      f"[data:{slug}], so that marker would cross-ref itself")
+                        else:
+                            remedy = owed
+                        findings.append(f"{rel}:{lineno} — raw governed value {literal!r} — should be {remedy}")
                         seen.add(literal)
     return findings
 
@@ -147,8 +196,8 @@ def scan_data_claims_glosses() -> "list[str]":
 
 
 def audit_findings() -> "list[str]":
-    deny = build_denylist()
-    return scan_chapter_prose(deny) + scan_data_claims_glosses()
+    deny, holds_owner = build_denylist_with_owners()
+    return scan_chapter_prose(deny, holds_owner) + scan_data_claims_glosses()
 
 
 def summary_line(findings: "list[str]") -> str:
@@ -158,7 +207,7 @@ def summary_line(findings: "list[str]") -> str:
 def main(argv: "list[str] | None" = None) -> int:
     ap = argparse.ArgumentParser(description="AUDIT-ONLY governed-literal-leak gate.")
     ap.parse_args(argv)
-    deny = build_denylist()
+    deny, _ = build_denylist_with_owners()
     print(f"governed-literal-leak: scanning {len(_chapter_md_files())} chapter file(s) + "
           f"data-claims gloss/observable against {len(deny)} denylist literal(s) "
           f"(AUDIT-ONLY — never gates).")
