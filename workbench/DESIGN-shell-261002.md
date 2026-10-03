@@ -859,3 +859,117 @@ flipping `BoundAffordance.path` to required is a one-character change once a mod
 selectable. `explore-space`'s path gains a menu step rather than moving its control, as §10 and the
 registry's own comment both promise. And the `edit` surface row plus the ten `edit-section.*` paths
 go with the markup — ten declarations to delete, which is the shape a relocation should have.
+
+### 9g. Wave 3 as built — six places the spec was wrong, and the set that reached zero
+
+Appended by wave 3 after landing. This is the last shell wave, and its job was to make the earlier
+waves' promises true. Four of these change what a reader of §9 would otherwise believe; the second
+is the one the whole migration was for.
+
+- **THERE IS NO DEAD FORM CODE IN `view-model.ts` OR `render-dom.ts`, and the wave-3 row in §9 is
+  wrong about it.** The row names that deletion as a third of this wave's scope. Measured at this
+  tree: every export of both files is live, and so is every FIELD of the one shape that looked like
+  residue. `EditOptions`' seventeen option lists are all read, through `edit-dialogs.ts`'s
+  `optionsFor` over the declarative `OptionSource` union — including the three (`domains`,
+  `machines`, `relations`) that no call site names directly, because the catalogue indexes into the
+  record by a declared field name rather than reading properties. `render-dom.ts`'s two
+  zero-external-reference exports (`purposeDisclosures`, `svgElement`) are recursive helpers of
+  `paintPrincipal` and `paintDiagram`. The residue §9 expected was drained INCREMENTALLY and by the
+  waves that owned it: 1a took the property rail's root out of `paint` (three roots, not four), 2a
+  took the ten `*-go` bindings and every `fillSelect` out of the holding pen, 2c took correction 8's
+  radios. A plan that assigns a cleanup to the last wave and a drain to each earlier one gets the
+  cleanup done early and then reads as incomplete — which is a scheduling artefact, not a finding,
+  and the honest record is that this third of the row was already finished.
+
+- **The path-less set reached zero through a ROW, and SH-I8 is flipped hard.** §9f's single member
+  was `inspector.delete-model`, whose precondition is `selection:model` and whose finding was that
+  no human act produced one. The drain is `ModelContents.subject`: the contents tree now opens with
+  the thing it is a reading OF — the drawn model or machine, selectable as `model:<id>` /
+  `machine:<id>`, with the engineering question as its disclosed detail. `BoundAffordance.path` is
+  REQUIRED, `WIRED_WITHOUT_A_WALKED_PATH` is empty, and `checkNavPaths`' path-less branch is DELETED
+  rather than left behind the required field: a check whose condition the type system has made
+  unreachable is dead code that reads like defence. 44 declared paths, 44 walked, 0 excused.
+  The flip's first consequence was the compiler rejecting a test fixture in
+  `capabilities.test.ts:360` that fabricated a path-less affordance — the rung-above-a-check working
+  on the day it landed.
+
+- **§9f offered the System Browser's model table OR the contents tree's model heading, and the tree
+  is the right one for a reason §9f could not have had.** The Browser looked like the obvious site:
+  it is the exhaustive model view, and selecting any model there would reach a model the workspace is
+  not drawing. Two things rule against it. Its model table is painted by `paint`'s generic
+  `sectionTable` from `vm.sections`, so selectable rows mean either a second painter for one table
+  or a widened binder — and the contents tree ALREADY is the selection surface, with a
+  `CHROME_HOSTS` exemption, a selection encoder and a drive routine. And the coverage loss is
+  nil: `#diagram-subject` navigates to any model by keyboard, so every model is two acts away, which
+  is what the Browser's table would also have cost. Extract at the existing seam rather than build a
+  second one.
+
+- **The ⋯ menu is a `<details>`, and the heading stays outside it.** §10 and `browser.ts` both
+  promise `⋯ menu → System Browser → Explore space` with the step PREPENDED rather than the controls
+  relocated. There is no ⋯ menu and inventing one for three readouts would be a region nobody
+  designed, so the step is a disclosure — the same act in the mechanism SH-I2 already governs
+  everywhere else in this shell. What the design did not say, and what the markup now records: the
+  `<details>` is INSIDE the labelled `<section>`, not in place of it. A `<details>` carries no
+  landmark role, so making the region itself the disclosure would have answered correction 3's
+  visual complaint by removing the System Browser from an AT's landmark list — §3.1's first failure
+  mode with a tidier diff. Three sites gained a `disclose` step and no element id moved.
+
+- **The drive's row lookups were POSITIONAL, and wave 3 is the change that proves it.** The
+  `selection:element` routine reached `#model-contents button` — the first one — and
+  `selection:relation` found the row whose rendered text contains an arrow. Adding a row above them
+  broke the first immediately; the second was the parse-the-presentation failure
+  `checkModelPlurality` was written about, waiting. `treeRow` now stamps `data-select` from the same
+  value its click handler sends, and all four selection routines read the encoding. §10's
+  "`ViewState.selection` is untyped ids" lesson applies to the TEST's handles on it as much as to
+  the field.
+
+- **One hand-written a11y drive went red on the disclosure, and the fix is an Enter, not an
+  exemption.** "Tab reaches Explore configuration space" reported `the walk ended on summary` — the
+  button behind a closed `<details>`, named exactly. It was given the disclosure step, like the
+  declared path. The two tiers now agree about the route and disagree about the claim, which is the
+  arrangement §9f set up: the generated drive asserts ARRIVAL, and this one asserts that Enter
+  produces an honest readout.
+
+- **`npm run build` is a PRECONDITION of all three browser tiers, and no wave recorded it.** A fresh
+  worktree has no `dist/build-manifest.json`, so `smoke`, `browser` and `a11y` all fail in `before`
+  with the harness's own (good) message. At the fork that reads as 3 failing, 36 failing and 110
+  failing — a red that looks like the tree and is the bundle. Worth one line here because the first
+  measurement a wave takes is its baseline, and this one costs a confused ten minutes.
+
+**The three follow-ups wave 1d filed, triaged.**
+
+1. `[FIX]` the unreachable `delete-model` control — **DONE**, above.
+2. `[FIX]` the dual `ViewState.selection` encodings — **REAL, NOT MINE, and now narrower.**
+   `askCatalogue` resolves the selected entity with `selection.find((id) => system.entities.has(id))`
+   — a bare id — while the tree writes `entity:<id>`, so a tree selection leaves the ask bar's
+   contextual questions empty. Still true at this tree. The fix is to widen `askCatalogue` to parse
+   the prefixed encoding (`parseElementValue`, which the shell already exports), in `askbar.ts`,
+   which is **wave 1c's file and the surface three gates read** — the same reason §9f gave for not
+   widening `advanced-query` from 1d. Routed there, with the drive as the thing that fails if it is
+   not done: `paths.mjs`'s `answer-present` routine carries a comment naming the defect and walks
+   the inspector's bare-id link to work around it, so the workaround is the regression test.
+   Wave 3 made it narrower, not wider: the tree's rows now declare their encoding in
+   `data-select`, so the widened `askCatalogue` has a typed thing to read rather than a prefix to
+   guess.
+3. `[DESIGN]` `advanced-query` names one of three fieldsets — **RULED: widen the row to
+   `#ask-advanced`.** The surface's job in a declared path is to CONTAIN the control, and a surface
+   that holds one of three siblings forces the other two to cite a region that does not contain them
+   — which is what `askbar.save` and `askbar.retract` do today. §9f deferred it because three gates
+   read `#form-ask`; that is an argument about who changes it, not about which is right. The row
+   should name the disclosure and the three fieldsets inside it should be one surface, because they
+   are one disclosure to a person. Left to whoever owns those three gates rather than taken here:
+   wave 3's footprint is the registry and the shell, and re-pointing `#form-ask`'s three readers is
+   wave 1c's file plus three test files, which is a different change with a different blast radius.
+
+**What is deliberately NOT deleted, and why.** The ten `edit-section.*` fieldsets, their markup, the
+`edit` surface row, and `edit-forms.ts`'s `submitEdit` + `#edit-result`. §9f says the first three
+"go with the markup"; the markup cannot go in this wave. Seven keyboard drives reach these
+operations by typing into their fields — the six §19 drives §9c enumerated, plus `paths.mjs`'s own
+`edited` routine, which establishes the precondition `header.undo` and `header.redo` depend on — and
+a field inside a closed `<dialog>` is not focusable, so deleting the markup turns seven passing
+accessibility drives red. Re-deriving them through the dialogs is wave 2d's declared scope and was
+not landed with 1d's path drive. `edit-section.delete-model` additionally still matters: it is
+`delete-model`'s second site, and while it exists UX-I1's zero does not depend on a single control.
+`submitEdit` stays for §9e's reason, unchanged and still correct — it is the one thing every editing
+surface shares, so moving it into any one of them would make that surface the mutation path for the
+others.
