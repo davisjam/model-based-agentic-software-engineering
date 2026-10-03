@@ -35,6 +35,7 @@ import { createServer } from "node:http";
 import { readFile, writeFile } from "node:fs/promises";
 import { join, normalize, extname, dirname } from "node:path";
 import { createRequire } from "node:module";
+import { CAPABILITIES } from "../src/app/capabilities.ts";
 
 const HERE = import.meta.dirname;
 const WORKBENCH_DIR = join(HERE, "..");
@@ -97,50 +98,103 @@ const loadPuppeteer = async () => {
 };
 
 // ------------------------------------------------------------------------------------------------
-// The capability -> DOM map.
+// How to DRIVE each site. The site -> element binding comes from the registry.
 //
-// `capabilities.ts` declares each affordance as a logical SITE string (`header.file-input`,
-// `edit-section.add-entity`). Nothing in the codebase binds those strings to DOM ids -- the
-// registry's `wired` is an author's assertion, and `checkRegistryClosure` is only ever called with
-// literals in a unit test. This table is that binding, written by reading the page, and it is the
-// weakest link in this measurement: a wrong row measures the wrong element. Each row therefore
-// names the site verbatim so a reader can check it against the registry.
+// This table carried the element ids too, and that was right exactly once. When it was written
+// nothing in the product bound the registry's site strings to elements -- `wired` was an author's
+// sentence and `checkRegistryClosure` had only ever been handed literals -- so reading the page and
+// writing the map down here was the only way to measure anything (F-3).
+//
+// The product owns that binding now. `BoundAffordance.element` names the id, the page stamps
+// `data-affordance` from the registry on every paint, and three rungs check it. Keeping a second
+// copy here would be the drift this script exists to detect, hand-maintained, inside the
+// instrument: a renamed control would leave the registry, the page and the gates agreeing, and this
+// script measuring an element that no longer exists.
+//
+// So what survives is the half the registry does not know -- whether a site is a CONTROL a person
+// activates, a READOUT a person reads, or one member of a radio group, and which key drives it.
+// Those describe the measurement, not the product, and nothing else in the tree declares them.
+//
+// `declared-absent` is not a row here either: the registry already distinguishes an absent
+// affordance from a bound one in its TYPE, so a row saying so would be a third copy.
 // ------------------------------------------------------------------------------------------------
 
-const SITES = {
-  "header.file-input": { id: "file", kind: "control", key: "Enter", skipActivate: "a native file picker cannot be driven by any automation protocol; reachability is measured, activation is not" },
-  "header.new-system": { id: "new-system", kind: "control", key: "Enter" },
-  "start.load-example": { id: "example-load", kind: "control", key: "Enter" },
-  "header.export": { id: "export", kind: "control", key: "Enter" },
-  "model-section.tables": { id: "sections", kind: "readout" },
-  "validation-section.table": { id: "finding-list", kind: "readout" },
-  "header.run-all": { id: "run", kind: "control", key: "Enter" },
-  "properties-section.ask": { id: "ask-go", kind: "control", key: "Enter" },
-  "properties-section.list": { id: "question-list", kind: "readout" },
-  // `.evidence`, not `ul.evidence`: the renderer emits an ORDERED list, because a witness is a
-  // sequence of steps. The first run of this script asked for `ul.evidence`, got nothing, and
-  // recorded the evidence list as not AT-readable -- a wrong selector reported as a page defect.
-  "properties-section.evidence-list": { id: "question-list", kind: "readout", within: ".evidence" },
-  "analysis-section.explore": { id: null, kind: "declared-absent" },
-  "header.undo": { id: "undo", kind: "control", key: "Enter" },
-  "header.redo": { id: "redo", kind: "control", key: "Enter" },
-  "edit-section.add-entity": { id: "add-entity-go", kind: "control", key: "Enter" },
-  "edit-section.add-state": { id: "add-state-go", kind: "control", key: "Enter" },
-  "edit-section.delete-element": { id: "delete-element-go", kind: "control", key: "Enter" },
-  "edit-section.add-relation": { id: "add-relation-go", kind: "control", key: "Enter" },
-  "edit-section.delete-relation": { id: "delete-relation-go", kind: "control", key: "Enter" },
-  "edit-section.set-label": { id: "set-label-go", kind: "control", key: "Enter" },
-  "edit-section.set-property": { id: "set-property-go", kind: "control", key: "Enter" },
-  "edit-section.add-model": { id: "add-model-go", kind: "control", key: "Enter" },
-  "edit-section.delete-model": { id: "delete-model-go", kind: "control", key: "Enter" },
-  "edit-section.add-note": { id: "add-note-go", kind: "control", key: "Enter" },
-  "properties-section.save": { id: "save-property-go", kind: "control", key: "Enter" },
-  "properties-section.retract": { id: "retract-property-go", kind: "control", key: "Enter" },
-  "provenance-section.records": { id: "provenance-list", kind: "readout" },
-  "edit-section.hypothesis-target": { id: "target-hypothesis", kind: "radio", group: "edit-target" },
-  "hypothesis-bar.accept": { id: "hypothesis-apply", kind: "control", key: "Enter", needs: "hypothesis" },
-  "hypothesis-bar.discard": { id: "hypothesis-discard", kind: "control", key: "Enter", needs: "hypothesis" },
+const DRIVE = {
+  "header.file-input": { kind: "control", key: "Enter", skipActivate: "a native file picker cannot be driven by any automation protocol; reachability is measured, activation is not" },
+  "header.new-system": { kind: "control", key: "Enter" },
+  "start.load-example": { kind: "control", key: "Enter" },
+  "header.export": { kind: "control", key: "Enter" },
+  "model-section.tables": { kind: "readout" },
+  "validation-section.table": { kind: "readout" },
+  "header.run-all": { kind: "control", key: "Enter" },
+  "properties-section.ask": { kind: "control", key: "Enter" },
+  "properties-section.list": { kind: "readout" },
+  // The registry supplies the `.evidence` descendant selector. It is `.evidence`, not
+  // `ul.evidence`: the renderer emits an ORDERED list, because a witness is a sequence of steps.
+  // The first run of this script asked for `ul.evidence`, got nothing, and recorded the evidence
+  // list as not AT-readable -- a wrong selector reported as a page defect.
+  "properties-section.evidence-list": { kind: "readout" },
+  "header.undo": { kind: "control", key: "Enter" },
+  "header.redo": { kind: "control", key: "Enter" },
+  "edit-section.add-entity": { kind: "control", key: "Enter" },
+  "edit-section.add-state": { kind: "control", key: "Enter" },
+  "edit-section.delete-element": { kind: "control", key: "Enter" },
+  "edit-section.add-relation": { kind: "control", key: "Enter" },
+  "edit-section.delete-relation": { kind: "control", key: "Enter" },
+  "edit-section.set-label": { kind: "control", key: "Enter" },
+  "edit-section.set-property": { kind: "control", key: "Enter" },
+  "edit-section.add-model": { kind: "control", key: "Enter" },
+  "edit-section.delete-model": { kind: "control", key: "Enter" },
+  "edit-section.add-note": { kind: "control", key: "Enter" },
+  "properties-section.save": { kind: "control", key: "Enter" },
+  "properties-section.retract": { kind: "control", key: "Enter" },
+  "provenance-section.records": { kind: "readout" },
+  "edit-section.hypothesis-target": { kind: "radio", group: "edit-target" },
+  "hypothesis-bar.accept": { kind: "control", key: "Enter", needs: "hypothesis" },
+  "hypothesis-bar.discard": { kind: "control", key: "Enter", needs: "hypothesis" },
 };
+
+/**
+ * Join the registry's declared human affordances to the drive specs above.
+ *
+ * Both directions fail loudly. A registry site with no drive spec would otherwise be skipped
+ * silently, and a sweep that measures 28 of 29 sites and prints three aggregate numbers reports a
+ * smaller page as a complete one -- which is the failure mode of every count in this record. A
+ * drive spec naming no registry site is a stale row surviving a rename.
+ */
+function resolveSites() {
+  const human = CAPABILITIES.flatMap((c) => c.human);
+  const sites = {};
+  const problems = [];
+  for (const a of human) {
+    // One entry per SITE. `header.run-all` is an affordance of both `query` and `analyze`, and Run
+    // all questions is still one button.
+    if (a.status === "absent") {
+      sites[a.at] = { kind: "declared-absent", id: null, notes: a.note };
+      continue;
+    }
+    const drive = DRIVE[a.at];
+    if (drive === undefined) {
+      problems.push(`the registry declares '${a.at}' and this script has no drive spec for it`);
+      continue;
+    }
+    sites[a.at] = {
+      ...drive,
+      id: a.element.id,
+      ...(a.element.within === undefined ? {} : { within: a.element.within }),
+    };
+  }
+  const declared = new Set(human.map((a) => a.at));
+  for (const at of Object.keys(DRIVE)) {
+    if (!declared.has(at)) problems.push(`this script drives '${at}' and the registry declares no such site`);
+  }
+  if (problems.length > 0) {
+    throw new Error(`the site table and the capability registry disagree:\n  ${problems.join("\n  ")}`);
+  }
+  return sites;
+}
+
+const SITES = resolveSites();
 
 // ------------------------------------------------------------------------------------------------
 // Keyboard primitives. Pressed keys only.
@@ -217,9 +271,20 @@ async function reachByTab(page, id, max = 400) {
   return { presses: null, why };
 }
 
-/** Chrome's OWN computed name and role for one element. Not the markup's spelling. */
-async function computedAx(page, id) {
-  const el = await page.evaluateHandle((t) => document.getElementById(t), id);
+/**
+ * Chrome's OWN computed name and role for one element. Not the markup's spelling.
+ *
+ * `within` resolves to the DESCENDANT, not the host. The first version of this function took an id
+ * alone, so the one site the registry declares as a descendant selector -- the evidence list inside
+ * the question list -- was measured as its host and reported the host's name and role. Two rows of
+ * §2 carried the same two values and neither described the evidence list. An instrument that cannot
+ * address the element it names measures the wrong thing and says nothing about it.
+ */
+async function computedAx(page, id, within = null) {
+  const el = await page.evaluateHandle((t, sel) => {
+    const host = document.getElementById(t);
+    return sel === null ? host : host?.querySelector(sel) ?? null;
+  }, id, within);
   const asElement = el.asElement?.() ?? null;
   if (asElement === null) return { name: null, role: null, note: "element not found" };
   const snap = await page.accessibility.snapshot({ root: asElement, interestingOnly: false });
@@ -311,20 +376,24 @@ async function measureSite(page, site, spec, { activate = true, walk = [] } = {}
     const r = await page.evaluate((s) => {
       const host = document.getElementById(s.id);
       if (host === null) return { exists: false };
+      // Scoped to the element the row NAMES, not to its host. The evidence row used to count the
+      // whole question list's tables and headings, so it reported structure that belonged to its
+      // sibling row.
       const scope = s.within ? host.querySelector(s.within) : host;
+      if (scope === null) return { exists: true, hostOnly: true, textLength: 0 };
       return {
         exists: true,
-        textLength: (scope?.textContent ?? "").replace(/\s+/g, " ").trim().length,
-        tables: host.querySelectorAll("table").length,
-        headers: host.querySelectorAll("th").length,
-        headings: host.querySelectorAll("h3,h4,h5").length,
-        lists: host.querySelectorAll("ul,ol,dl").length,
-        ariaHiddenAncestor: host.closest("[aria-hidden='true']") !== null,
+        textLength: (scope.textContent ?? "").replace(/\s+/g, " ").trim().length,
+        tables: scope.querySelectorAll("table").length,
+        headers: scope.querySelectorAll("th").length,
+        headings: scope.querySelectorAll("h3,h4,h5").length,
+        lists: scope.querySelectorAll("ul,ol,dl").length + (scope.matches("ul,ol,dl") ? 1 : 0),
+        ariaHiddenAncestor: scope.closest("[aria-hidden='true']") !== null,
       };
     }, { id: spec.id, within: spec.within ?? null });
     row.reachable = "n/a (readout)";
     row.operable = "n/a (readout)";
-    const ax = await computedAx(page, spec.id);
+    const ax = await computedAx(page, spec.id, spec.within ?? null);
     row.name = ax.name; row.role = ax.role;
     row.readout = r;
     row.atReadable = r.exists === true && r.textLength > 0 && r.ariaHiddenAncestor === false;

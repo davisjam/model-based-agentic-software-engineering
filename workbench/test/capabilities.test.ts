@@ -266,6 +266,51 @@ test("a renamed control is caught — negative control", () => {
   );
 });
 
+/**
+ * No `<section>` in the markup is an unnamed landmark, and no label points at nothing.
+ *
+ * The cheap rung under F-5. A named `<section>` computes as a `region` landmark and an unnamed one
+ * collapses to `generic`, which AT does not list under any name — so an unlabelled section is a
+ * region a screen-reader user cannot navigate to, and a label whose IDREF is absent is the same
+ * defect wearing correct-looking markup. Both are mechanically visible in the file, in a
+ * millisecond, without a browser.
+ *
+ * It does not replace the browser pass, which is what asserts the name COMPUTES to something. A
+ * heading that exists in the markup and is emptied by a renderer passes here and fails there.
+ */
+test("every section in index.html is labelled, and every label resolves", () => {
+  // COMMENTS STRIPPED FIRST. `index.html` argues for its own structure in long HTML comments, and
+  // those comments quote the markup they argue about — so a naive scan read `<section>` out of a
+  // sentence and reported three unnamed landmarks that do not exist. The file's prose is not its
+  // markup.
+  const html = readFileSync("index.html", "utf8").replace(/<!--[\s\S]*?-->/g, "");
+  const ids = new Set([...html.matchAll(/id="([a-zA-Z0-9-]+)"/g)].map((m) => m[1] as string));
+  const sections = [...html.matchAll(/<section\b([^>]*)>/g)].map((m) => m[1] as string);
+  assert.ok(sections.length > 1, `only ${sections.length} <section> found — the scan is wrong, not the page`);
+
+  const unlabelled = sections
+    .filter((attrs) => !/\baria-labelledby="/.test(attrs) && !/\baria-label="/.test(attrs))
+    .map((attrs) => attrs.trim().slice(0, 60));
+  assert.deepEqual(unlabelled, [],
+    `${unlabelled.length} <section> is an unnamed landmark: ${unlabelled.join(" | ")}`);
+
+  const dangling = [...html.matchAll(/aria-labelledby="([a-zA-Z0-9-]+)"/g)]
+    .map((m) => m[1] as string)
+    .filter((ref) => !ids.has(ref));
+  assert.deepEqual(dangling, [],
+    `aria-labelledby points at ids index.html never declares: ${dangling.join(", ")}`);
+});
+
+test("an unlabelled section is caught — negative control", () => {
+  // The predicate, driven against markup that has the defect. Without this the test above passes
+  // for a scan that matches nothing.
+  const broken = '<section id="x" aria-labelledby="x-h"></section><section id="y"></section>';
+  const found = [...broken.matchAll(/<section\b([^>]*)>/g)]
+    .map((m) => m[1] as string)
+    .filter((attrs) => !/\baria-labelledby="/.test(attrs) && !/\baria-label="/.test(attrs));
+  assert.equal(found.length, 1, "an unnamed section must be reported");
+});
+
 test("index.html authors no data-affordance of its own", () => {
   // The attribute has exactly ONE author: the binder, reading the registry. A hand-typed
   // `data-affordance="header.export"` beside the registry's own `"header.export"` would be two

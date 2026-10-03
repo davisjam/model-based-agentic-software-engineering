@@ -307,6 +307,104 @@ describe("UX-I1: every declared human affordance site is bound to a live element
   });
 });
 
+describe("F-5: every readout names itself, instead of borrowing a section's name", () => {
+  /**
+   * The measured defect: `#sections`, `#question-list`, `#finding-list` and `#provenance-list` were
+   * plain `<div>`s — computed role `generic`, computed name empty — and their whole AT identity came
+   * from the `<section aria-labelledby>` each happened to sit inside. A `generic` with no name is
+   * not in an AT's landmark list under any name, so a readout that lands outside its labelled
+   * section becomes unreachable by the navigation a screen-reader user actually uses. The three-pane
+   * shell moves these readouts into panes, which is why it was worth closing before the move.
+   *
+   * **Computed, not read.** A node-tier test can see `aria-labelledby` in the markup and the sibling
+   * test below does; it cannot see what the name computes to. A dangling IDREF, a label on an
+   * element whose role forbids naming, or a heading emptied by a renderer all leave correct-looking
+   * markup and an empty name. So the claim is asserted against Chrome's own accessibility tree.
+   *
+   * **The readout set is DERIVED from the served page.** Every stamped `data-affordance` element
+   * that is not an interactive control is a readout, so a fifth one landing in the shell is covered
+   * the day it lands rather than the day someone remembers to list it here. That also makes the
+   * expected role derivable: the tag says what the element should compute as, and a readout whose
+   * tag this gate has no rule for fails rather than passing unexamined.
+   */
+  const ROLE_BY_TAG = { section: "region", ol: "list" };
+  const INTERACTIVE = "button, input, select, textarea, a[href]";
+
+  it("each readout computes the role its tag promises, and a non-empty name", async () => {
+    const hosts = await page.$$("[data-affordance]");
+    const readouts = [];
+    for (const handle of hosts) {
+      const meta = await handle.evaluate((e, interactive) => ({
+        site: e.dataset.affordance ?? "(unstamped)",
+        tag: e.tagName.toLowerCase(),
+        interactive: e.matches(interactive),
+      }), INTERACTIVE);
+      if (meta.interactive) continue;
+      // `interestingOnly: false`, because an unnamed generic is exactly what axe-style filtering
+      // prunes — and it is the thing being measured.
+      const snap = await page.accessibility.snapshot({ root: handle, interestingOnly: false });
+      readouts.push({ ...meta, role: snap?.role ?? null, name: (snap?.name ?? "").trim() });
+    }
+
+    // Non-vacuity: the flagship example is loaded, so the property list, the model tables, the
+    // provenance records and at least one witness list are all rendered and stamped.
+    assert.ok(readouts.length > 0,
+      "no readout was found on a page with the flagship example loaded — the stamping or the filter is wrong");
+
+    const unnamed = readouts.filter((r) => r.name === "")
+      .map((r) => `${r.site} (<${r.tag}>, role ${r.role})`);
+    assert.deepEqual(unnamed, [],
+      `${unnamed.length} readout(s) compute no accessible name, so AT cannot reach them by name: ${unnamed.join("; ")}`);
+
+    const wrongRole = readouts
+      .filter((r) => r.role !== ROLE_BY_TAG[r.tag])
+      .map((r) => ROLE_BY_TAG[r.tag] === undefined
+        ? `${r.site}: <${r.tag}> is a readout shape this gate has no expected role for — declare it`
+        : `${r.site}: <${r.tag}> computes ${r.role}, not ${ROLE_BY_TAG[r.tag]}`);
+    assert.deepEqual(wrongRole, [],
+      `a readout does not compute the role its element promises: ${wrongRole.join("; ")}`);
+  });
+
+  it("a readout's name is text a sighted user also reads, and a region's is a heading", async () => {
+    // The mechanism, not only the outcome. `aria-label` would satisfy the test above and hand a
+    // screen-reader user a name nobody else can see — two audiences reading different products. So
+    // every readout points at real text in the document, and the four region hosts point at a
+    // visible HEADING, which is also what lets a reader jump between them.
+    //
+    // The evidence list is deliberately not held to the heading rule: its name is the visible
+    // "Evidence" sublabel inside the property it belongs to, and promoting that to a heading would
+    // put one per witness into the page's heading outline.
+    const sources = await page.evaluate((interactive) =>
+      [...document.querySelectorAll("[data-affordance]")]
+        .filter((e) => !e.matches(interactive))
+        .map((e) => {
+          const ref = e.getAttribute("aria-labelledby");
+          const target = ref === null ? null : document.getElementById(ref);
+          return {
+            site: e.dataset.affordance ?? "(unstamped)",
+            tag: e.tagName.toLowerCase(),
+            labelledBy: ref,
+            ariaLabel: e.getAttribute("aria-label"),
+            targetTag: target?.tagName.toLowerCase() ?? null,
+            targetText: (target?.textContent ?? "").trim(),
+          };
+        }), INTERACTIVE);
+
+    const invented = sources.filter((s) => s.labelledBy === null)
+      .map((s) => `${s.site} (aria-label=${JSON.stringify(s.ariaLabel)})`);
+    assert.deepEqual(invented, [],
+      `a readout is named by something no sighted user reads: ${invented.join("; ")}`);
+    const dangling = sources.filter((s) => s.targetText === "").map((s) => `${s.site} → #${s.labelledBy}`);
+    assert.deepEqual(dangling, [],
+      `a readout's aria-labelledby points at nothing, or at empty text: ${dangling.join("; ")}`);
+    const notAHeading = sources
+      .filter((s) => s.tag === "section" && !/^h[1-6]$/.test(s.targetTag ?? ""))
+      .map((s) => `${s.site} → #${s.labelledBy} is a <${s.targetTag}>`);
+    assert.deepEqual(notAHeading, [],
+      `a readout region is named by something that is not a heading: ${notAHeading.join("; ")}`);
+  });
+});
+
 describe("FR-A11Y-3: a change the AGENT makes is announced, not only one that moves a verdict", () => {
   /**
    * F-1, pinned where it failed. The measured defect was not "no announcer runs on the agent path":

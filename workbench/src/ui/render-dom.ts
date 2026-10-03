@@ -26,6 +26,23 @@ const el = <K extends keyof HTMLElementTagNameMap>(
   return node;
 };
 
+/**
+ * A unique DOM id, for an element that must be referenced by an ARIA attribute.
+ *
+ * Counted rather than derived from the model, because a model id is author-supplied text and two
+ * blocks can legitimately carry the same one — the ad-hoc answer panel renders through the same
+ * `propertyBlock` as the saved list, and its id is the proposition the user typed. Duplicate ids
+ * under an `aria-labelledby` resolve to whichever came first, which is an accessibility defect axe
+ * reports and a reader cannot see. A counter cannot collide with anything a user writes.
+ */
+const ariaId = (() => {
+  let n = 0;
+  return (prefix: string): string => {
+    n += 1;
+    return `${prefix}-${n}`;
+  };
+})();
+
 const stateChips = (states: readonly string[]): DocumentFragment => {
   const frag = document.createDocumentFragment();
   for (const s of states) frag.append(el("span", s, "state"));
@@ -189,10 +206,16 @@ export function propertyBlock(p: PropertyRow): HTMLElement {
   if (p.refusal !== null) article.append(el("p", p.refusal, "refusal"));
   for (const c of p.compilation) article.append(el("p", `To answer this: ${c}`, "compilation"));
   if (p.evidence.length > 0) {
-    article.append(el("p", "Evidence", "sublabel"));
+    // The witness list is a declared readout site of its own (`properties-section.evidence-list`),
+    // so it carries a name rather than relying on the sublabel happening to sit above it. The name
+    // IS the sublabel: one visible word, read by both audiences, and a screen-reader user jumping
+    // by list lands on something that says what it holds.
+    const label = el("p", "Evidence", "sublabel");
+    label.id = ariaId("evidence-label");
     const list = el("ol", undefined, "evidence");
+    list.setAttribute("aria-labelledby", label.id);
     for (const line of p.evidence) list.append(el("li", line));
-    article.append(list);
+    article.append(label, list);
   }
   article.append(el("p", p.revision, "id"));
   return article;
@@ -450,7 +473,14 @@ export function paint(vm: ViewModel, roots: {
     roots.banner.append(el("p", vm.banner.text, `banner ${vm.banner.tone}`));
   }
 
-  roots.sections.replaceChildren(...vm.sections.map(sectionTable));
+  // The empty state is a sentence, not nothing. `#sections` now sits under its own visible heading
+  // so a reader can name the region it lands in; a named heading over blank space reads as a
+  // rendering failure, and the other three readouts already say what their emptiness means.
+  roots.sections.replaceChildren(
+    ...(vm.sections.length === 0
+      ? [el("p", "No model system is loaded. Create one, open a file, or load an example above.", "intro")]
+      : vm.sections.map(sectionTable)),
+  );
   roots.properties.replaceChildren(
     ...(vm.properties.length === 0
       ? [el("p", "This model system asserts no properties yet. Ask a question above and save it.", "intro")]
