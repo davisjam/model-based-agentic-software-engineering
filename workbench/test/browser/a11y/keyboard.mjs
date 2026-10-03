@@ -180,6 +180,24 @@ export async function chooseByKeyboard(page, id, value) {
   assert.equal(got, value, `type-ahead "${prefix}" on #${id} selected "${got}", not "${value}"`);
 }
 
+/**
+ * Press an `aria-pressed` BUTTON toggle to a wanted state with Enter, and assert the state moved.
+ *
+ * Distinct from `toggleByKeyboard` because the thing being read is distinct: a checkbox carries its
+ * state in `.checked` and answers Space, a button toggle carries it in `aria-pressed` and answers
+ * Enter. Writing this as a second verb rather than widening the first keeps each one's assertion
+ * exact -- a helper that fell back from `.checked` to `aria-pressed` would pass on a checkbox whose
+ * `aria-pressed` was stale, which is the defect either verb exists to catch.
+ */
+export async function pressToggleByKeyboard(page, id, wanted) {
+  const read = () => page.evaluate((i) => document.getElementById(i).getAttribute("aria-pressed"), id);
+  if (await read() === String(wanted)) return;
+  await activateByKeyboard(page, id, { settleMs: 200 });
+  const after = await read();
+  assert.equal(after, String(wanted),
+    `Enter on #${id} left aria-pressed="${after}", wanted "${wanted}"`);
+}
+
 /** Tick or untick a checkbox with Space, and assert it moved. */
 export async function toggleByKeyboard(page, id, wanted) {
   await reachByTab(page, id);
@@ -189,28 +207,12 @@ export async function toggleByKeyboard(page, id, wanted) {
   assert.equal(after, wanted, `Space on #${id} left checked=${after}`);
 }
 
-/**
- * Move within a radio group with the arrow keys -- the native behaviour, and the only keyboard
- * route there is: a radio group exposes ONE tab stop (the checked radio), so Tab alone can never
- * reach the unchecked member.
- */
-export async function chooseRadioByKeyboard(page, groupName, id) {
-  const checked = await page.evaluate((name) => {
-    const el = document.querySelector(`input[name="${name}"]:checked`);
-    return el?.id ?? null;
-  }, groupName);
-  assert.ok(checked, `radio group "${groupName}" has no checked member, so it has no tab stop`);
-  if (checked === id) return;
-  await reachByTab(page, checked);
-  const members = await page.evaluate((name) =>
-    [...document.querySelectorAll(`input[name="${name}"]`)].map((e) => e.id), groupName);
-  for (let i = 0; i < members.length; i += 1) {
-    await page.keyboard.press("ArrowDown");
-    await settle(60);
-    if (await page.evaluate((t) => document.getElementById(t).checked, id)) return;
-  }
-  assert.fail(`ArrowDown never reached #${id} in radio group "${groupName}" (members ${members.join(", ")})`);
-}
+// `chooseRadioByKeyboard` was HERE: an ArrowDown walk within a radio group, which is the only
+// keyboard route to a group's unchecked member because a group exposes one tab stop. It is deleted
+// rather than kept, because neither served page has a radio group left -- correction 8 removed the
+// last one, the authoritative-vs-hypothesis pair in front of every edit -- so it was a verb for a
+// control that no longer exists. If one returns, the walk is five lines and this comment says what
+// it has to do; a kept-but-uncalled helper would be five lines every reader has to check for callers.
 
 /** Reach a control and activate it with Enter. */
 export async function activateByKeyboard(page, id, { key = "Enter", settleMs = 400 } = {}) {
