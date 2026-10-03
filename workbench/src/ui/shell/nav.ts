@@ -294,6 +294,11 @@ function modelNode(row: ModelRailRow): HTMLLIElement {
 
 function propertyNode(row: PropertyRailRow): HTMLLIElement {
   const li = el("li");
+  // The claim's id, on the row that shows it. Not decoration: the convergence gate counts the rows
+  // the human surface renders against `savedQueries()`, and it used to count every direct child of
+  // the host because every direct child WAS a property. A rail has a `+ Property` row and a list
+  // wrapper too, so the set needs a name rather than a position.
+  li.dataset["property"] = row.id;
   const head = el("p");
   // The glyph is hidden from the accessibility tree. A screen reader announces "✓" as "check mark"
   // or as nothing at all depending on the pairing, and the word beside it already carries the
