@@ -20,8 +20,9 @@
  *             learn.html   253 HTML + 81 SVG texts, 0 under the floor, both themes
  *     1.4.10  index.html   no horizontal overflow at 320 / 368 / 672 / 976 / 1024 / 1025 px
  *             learn.html   no horizontal overflow at 320 / 576 / 832 px
- *     D-2     index.html   0 inversions at 1 column; 29 at 2 columns, 77 at 3
+ *     D-2     index.html   0 within-region inversions at 1 column; 30 at 2 columns, 77 at 3
  *             learn.html   0 inversions at every width its CSS defines
+ *             both pages   no two sibling regions share any pixels, at any width
  *
  * TWO findings are enumerated rather than asserted to zero, because both fixes live in
  * `index.html`, which this change does not own. Each is pinned as an exact set, so a NEW instance
@@ -43,7 +44,7 @@ import {
 import { svgTextContrast, contrastFailures } from "./axe.mjs";
 import {
   applyTheme, focusRingDiff, ringRendered, contrastWalk, contrastFailuresHtml,
-  cssReflowWidths, reflowAt, focusOrderAt,
+  cssReflowWidths, reflowAt, focusOrderAt, overlappingRegionsAt,
 } from "./wcag-f6.mjs";
 import { PAGES } from "./wcag-f6-pages.mjs";
 
@@ -105,16 +106,34 @@ const KNOWN_UNINDICATED = {
 };
 
 /**
- * D-2, as a number per page: how many focus-order inversions each width may carry.
+ * D-2, as a number per page: how many focus-order inversions each width may carry, WITHIN a region.
  *
  * `index.html`'s Edit section is `repeat(auto-fit, minmax(19rem, 1fr))`, so its eleven forms lay
  * out in however many columns fit and are read across while Tab goes down. That is the divergence
- * D-2 predicted and never measured; the fix is a layout decision in a file this change does not
- * own, so the measured counts are pinned exactly. `learn.html` carries a multi-column card grid and
- * still measures zero, because each card holds exactly one control.
+ * D-2 predicted and never measured; the fix is a layout decision, so the measured counts are pinned
+ * exactly. `learn.html` carries a multi-column card grid and still measures zero, because each card
+ * holds exactly one control.
+ *
+ * **Within-region, not total, and the difference is the finding this pin was rewritten for.** The
+ * first version pinned the TOTAL, measured on a one-column-plus-three-column page. Two waves later
+ * the shell grew navigation rails, and at 1025px -- the one width where three columns are side by
+ * side -- the total went 75 to 189 while the Edit grid's own divergence did not move at all. A
+ * three-column shell tabs through one whole region before the next, and an eye scanning ROWS crosses
+ * all three; every one of those 114 pairs has its two controls in different landmarks. That is a
+ * property of the column layout, not of any region's source order, and a gate that counts it fires
+ * on a rail gaining a link. The cross-region count is reported in the receipt and asserted
+ * STRUCTURALLY below (it may be non-zero only where the layout is actually multi-column) rather than
+ * pinned to a number that no markup change is responsible for.
+ *
+ * The numbers below are what `72d4816e`'s run measured, re-measured after the rails: 320 and 368
+ * unchanged at 0, 976 and 1024 unchanged at 77 and 75, 1025 unchanged at 75 once the cross-region
+ * pairs are separated. 672 moved 29 to 30. `#edit`'s markup is byte-identical to that commit and
+ * the move survives hiding the one control a sibling wave added nearby [measured], so the extra pair
+ * is the `auto-fit` packing itself: the cells are sized by the intrinsic width of selects whose
+ * options are painted from the model-type registry, which a sibling wave rewrote.
  */
 const EXPECTED_INVERSIONS = {
-  "index.html": { 320: 0, 368: 0, 672: 29, 976: 77, 1024: 75, 1025: 75 },
+  "index.html": { 320: 0, 368: 0, 672: 30, 976: 77, 1024: 75, 1025: 75 },
   "learn.html": { 320: 0, 576: 0, 832: 0 },
 };
 
@@ -133,9 +152,11 @@ async function measure(def) {
   const widths = cssReflowWidths(css);
   const reflow = [];
   const order = [];
+  const overlaps = [];
   for (const { width, why } of widths) {
     reflow.push({ width, why, ...await reflowAt(page, width) });
     order.push({ why, ...await focusOrderAt(page, width) });
+    overlaps.push({ width, ...await overlappingRegionsAt(page, width) });
   }
   await page.setViewport({ width: 1440, height: 1000, deviceScaleFactor: 1 });
 
@@ -152,7 +173,7 @@ async function measure(def) {
     const svg = def.diagram === undefined ? null : await svgTextContrast(page, def.diagram.root);
     themes[theme] = { focus, html, svg };
   }
-  measurements.set(def.name, { widths, reflow, order, themes, targets, page });
+  measurements.set(def.name, { widths, reflow, order, overlaps, themes, targets, page });
   return page;
 }
 
@@ -194,6 +215,8 @@ after(async () => {
         }])),
         reflow: m.reflow.map((r) => ({ width: r.width, overflow: r.horizontalOverflowPx, inspected: r.inspected })),
         inversions: Object.fromEntries(m.order.map((o) => [o.width, o.inversions])),
+        inversionsWithinRegion: Object.fromEntries(m.order.map((o) => [o.width, o.inversionsWithinRegion])),
+        regionOverlaps: Object.fromEntries(m.overlaps.map((o) => [o.width, o.overlaps])),
       }])),
     }, RECEIPT_PATH);
     console.log(`FR-A11Y F-6 receipt: ${path}`);
@@ -325,17 +348,64 @@ describe("1.4.10 and D-2: reflow, and focus order against visual order", () => {
 
     it(`${def.name}: focus order diverges from visual order exactly where it is known to`, () => {
       const m = measurements.get(def.name);
-      const measured = Object.fromEntries(m.order.map((o) => [o.width, o.inversions]));
+      const measured = Object.fromEntries(m.order.map((o) => [o.width, o.inversionsWithinRegion]));
       assert.deepEqual(measured, EXPECTED_INVERSIONS[def.name],
-        `${def.name}'s focus-order divergence changed. The non-zero entries are D-2, measured: a `
-        + "multi-column `auto-fit` grid is read across and tabbed down. See EXPECTED_INVERSIONS. "
-        + `Examples at the worst width: ${JSON.stringify(m.order.at(-1).examples)}`);
+        `${def.name}'s within-region focus-order divergence changed. The non-zero entries are D-2, `
+        + "measured: a multi-column `auto-fit` grid is read across and tabbed down. See "
+        + "EXPECTED_INVERSIONS. Examples at the worst width: "
+        + `${JSON.stringify(m.order.at(-1).withinRegionExamples)}`);
       // The comparison is only meaningful if the layout actually went multi-column somewhere.
       assert.ok(m.order.some((o) => o.widestRow > 1),
         `no width put two controls in one visual row on ${def.name}, so every zero above is the `
         + "answer for a one-column page and says nothing about 2-D divergence");
     });
+
+    it(`${def.name}: no two sibling regions occupy the same pixels`, () => {
+      // The precondition the pin above rests on, and the defect that forced it to be written down.
+      //
+      // `#edit` and `#system-browser` both carried `grid-area: extra` against ONE `"extra extra
+      // extra"` row. Two items in one named area share the cell: the Edit forms were painted over
+      // the System Browser's tables in every loaded state at every width. What the focus-order
+      // probe said about that was "40 inversions at 320px" -- which is exactly the number probe
+      // defect #3 had once FABRICATED on a one-column page, so the first reading of the red gate
+      // was that the probe had regressed again. It had not. The page had, and a reading-order
+      // number cannot say so in a way anyone can act on.
+      const m = measurements.get(def.name);
+      assert.ok(m.overlaps.length === m.widths.length,
+        `region overlap was measured at ${m.overlaps.length} of ${m.widths.length} widths`);
+      for (const o of m.overlaps) {
+        assert.ok(o.regions > 3,
+          `only ${o.regions} region(s) found on ${def.name} at ${o.width}px, so the zero below is `
+          + "the answer for a page that did not paint");
+        assert.deepEqual(o.overlaps, [],
+          `${def.name} paints two sibling regions on top of each other at ${o.width}px. Every `
+          + "visual-order number for this page is measured against a layout where a control's "
+          + "position does not say where a reader finds it.");
+      }
+    });
   }
+
+  it("the region-overlap probe goes RED when two regions are put in one grid cell", async () => {
+    // The negative control for the check above, written in the shape of the defect it found: not a
+    // synthetic absolutely-positioned box, but the actual CSS mistake -- two regions assigned the
+    // same named grid area, under a stylesheet that claims they stack.
+    const page = await sabotagePage();
+    try {
+      assert.deepEqual((await overlappingRegionsAt(page, 1025)).overlaps, [],
+        "the page used for this control already overlaps");
+      await page.addStyleTag({
+        content: "#shell { grid-template-areas: 'banner banner banner' 'review review review' "
+          + "'start start start' 'nav work inspect' 'ask ask ask' 'status status status' "
+          + "'extra extra extra' !important; } "
+          + "#edit, #system-browser { grid-area: extra !important; }",
+      });
+      const broken = await overlappingRegionsAt(page, 1025);
+      assert.ok(broken.overlaps.length > 0,
+        "two regions share one grid cell and the probe reports no overlap");
+      assert.ok(broken.overlaps.some((o) => o.includes("#edit") && o.includes("#system-browser")),
+        `the probe saw an overlap and did not name the pair: ${JSON.stringify(broken.overlaps)}`);
+    } finally { await page.close(); }
+  });
 
   it("the reflow probe goes RED on an element that overflows", async () => {
     const page = await sabotagePage();

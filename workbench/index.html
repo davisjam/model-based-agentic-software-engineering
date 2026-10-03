@@ -144,7 +144,8 @@
       "nav    work   inspect"
       "ask    ask    ask"
       "status status status"
-      "extra  extra  extra";
+      "edit   edit   edit"
+      "browse browse browse";
   }
   #banner { grid-area: banner; }
   #hypothesis-bar { grid-area: review; }
@@ -154,8 +155,27 @@
   #inspector { grid-area: inspect; }
   #askbar { grid-area: ask; }
   #statusbar { grid-area: status; }
-  #edit, #system-browser { grid-area: extra; }
-  /* The transitional band stacks inside its own area, so two regions can share it. */
+  /*
+    The transitional band: two full-width regions below the shell proper, each in a row of its own.
+
+    ONE AREA EACH, and the distinction is the whole rule. Both regions used to carry
+    `grid-area: extra` against a single `"extra extra extra"` row, under a comment claiming they
+    "stack inside their own area". Two grid items assigned to ONE named area do not stack -- they
+    occupy the same cell and PAINT ON TOP OF EACH OTHER. Measured at 320px before the fix: `#edit`
+    at y=6095 running 3833px and `#system-browser` at y=6079 running 15799px, so every Edit form was
+    rendered over the System Browser's prose and tables, in every loaded state at every width.
+
+    Two named rows rather than auto-placement, which was tried and is wrong here: a full-width
+    auto-placed item takes the first row with room, and `banner` and `review` are empty whenever the
+    page carries no banner and no hypothesis bar -- which put the Edit section ABOVE the rails
+    [measured]. An explicit row cannot drift with the contents of another region.
+
+    The F-6 focus-order probe is what caught it, and the shape of the catch is worth a line: a
+    control's VISUAL position only means anything if the regions do not overlap, so a reading-order
+    comparison is a geometry check that happens to be about the keyboard.
+  */
+  #edit { grid-area: edit; }
+  #system-browser { grid-area: browse; }
   #shell > #edit { margin-block-start: 1rem; }
 
   /* A pane reads as a pane: its own panel, its own rule, scrolling inside itself. */
@@ -175,7 +195,8 @@
   @media (max-width: 64rem) {
     #shell {
       grid-template-columns: minmax(0, 1fr);
-      grid-template-areas: "banner" "review" "start" "nav" "work" "inspect" "ask" "status" "extra";
+      grid-template-areas:
+        "banner" "review" "start" "nav" "work" "inspect" "ask" "status" "edit" "browse";
     }
     #nav, #inspector { max-height: none; }
   }
