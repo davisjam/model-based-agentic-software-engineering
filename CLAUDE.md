@@ -189,6 +189,21 @@ re-deriving these, so they live here:**
   fix was not to pad the stub but to use the real renderer the stub stood in for; a stub in a module
   named `realPorts` was the actual defect, and it silently voided the accessible-view requirement at the
   one seam that produces it.
+- **A gate exists and the path meant to run it does not reach it — so check the WIRING, not the gate.**
+  Three instances on 261002–261003, every one silent. `npm run all` reached neither the browser nor the
+  a11y tier, so a wave that broke four a11y assertions ran the default gate, saw green, reported "tsc and
+  build clean" (true of the node tier, and of nothing else), and landed a duplicate-landmark defect on
+  `main`. The publishing workflow never ran the smoke tier it gained the same day, the only gate that
+  loads `learn.html` as a page rather than as a module. And that workflow ran the node suite before
+  installing the Python the suite shells out to, which failed a published build. The class points two
+  ways: a gate the runner never INVOKES, and a gate it invokes before the gate can RUN. Patch one costume
+  and the other stays free, which is how three of these landed in two days. The rule: when you add a
+  gate, wire it into every runner that should reach it, and DECLARE the runners that deliberately do not.
+  A measured reason to exclude a tier is fine; an undeclared exclusion is not, because from a script list
+  alone an excluded gate and a forgotten one look the same. Both halves are now held —
+  `workbench/test/gate-reachability.test.ts` walks the default gate and the workflow against a gate set
+  derived from `package.json`, and `tests/ci.py` holds an install ahead of the suite that needs it.
+  Checking a runner you have not watched fail is worth little: sabotage it, see the red, restore.
 - **A worktree's `node_modules` may be a SYMLINK to the main checkout's — never `npm install` in one.**
   Parallel agents share that one directory, so an install mutates every live agent at once: silently, and
   blamed on whichever one fails next. A brief that needs a package to *measure* something must say to

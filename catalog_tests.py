@@ -91,6 +91,10 @@ from tests.citations import (
     check_handbook_reading_citations,
     check_scholar_meta,
 )
+from tests.ci import (
+    check_ci_dependency_rule_fires,
+    check_ci_installs_what_the_suite_shells_out_to,
+)
 from tests.common import FAIL, PASS, SKIP, changed_vs_origin
 from tests.deploy import check_deploy_publishable
 from tests.external import check_axe, check_axe_coverage_set, check_claude_validate, check_html_valid, check_lab_logo_url
@@ -207,6 +211,15 @@ CHECKS = [
           lambda strict: check_deploy_publishable()),
     Check("hooks: pre-commit resolves its root from the COMMITTING tree and stages only under it", 1,
           lambda strict: check_hook_operates_on_committing_tree()),
+    # BLOCKING (green at landing): the CI step that runs the workbench node suite installs the Python
+    # that suite shells out to, EARLIER in its own run block. The 261002 push failed on exactly this —
+    # the packages were in the workflow twice, both times in later steps, so the parity suite reached
+    # validate.py before anything installed what it imports. The required set is DERIVED from
+    # validate.py's own imports, so a new dependency there is demanded here with no edit.
+    Check("ci: the step running the workbench suite installs its Python dependencies first", 1,
+          lambda strict: check_ci_installs_what_the_suite_shells_out_to()),
+    Check("ci: that dependency-ordering rule fires on a late install — negative control", 1,
+          lambda strict: check_ci_dependency_rule_fires()),
     Check("markdown: schema + md-link existence", 1, lambda strict: check_markdown_schema()),
     Check("course: module pages conform to module-schema.json (Premise + model list)", 1,
           lambda strict: check_course_module_schema()),
