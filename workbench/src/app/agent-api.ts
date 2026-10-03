@@ -22,7 +22,7 @@
 import type { Finding, QueryResult } from "../ir/types.ts";
 import type { PendingResult } from "./ports.ts";
 import type { ExhaustedResult, QueryAlgebra, SeamQuestion } from "../sparql/index.ts";
-import type { Workspace } from "./services.ts";
+import type { SparqlAnswer, Workspace } from "./services.ts";
 import type { ExampleCatalog, ExampleDescription } from "./examples.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
 import type { EvaluatedProperty } from "./properties.ts";
@@ -49,6 +49,21 @@ export interface MageAgentApi {
    * UI-only knowledge.
    */
   ask(query: unknown): EvaluatedProperty;
+  /**
+   * Ask a SPARQL question of the RDF projection: text in, solutions or a structured refusal out.
+   *
+   * §11's shape, taken literally — a student normally does not write SPARQL, an agent does. So this
+   * is the machine syntax of the `query` capability rather than a capability of its own, and it is
+   * registered as a third machine affordance of `query` in `capabilities.ts`, where the reasoning
+   * and its cost are recorded. It adds no privileged path: it delegates to `workspace.sparql`, which
+   * is the same facade every other method here goes through, and the licensing gate inside
+   * `translate` decides what the model licenses before anything is evaluated.
+   *
+   * A SELECT's rows arrive as `Map`s, like the configuration maps inside a behavioural witness from
+   * `query()`. `WorkerEvaluation` is the flattened spelling, for the message port that needs one;
+   * this returns the facade's own object so that an agent and the page read ONE value.
+   */
+  sparql(text: string, budget?: number): SparqlAnswer;
   savedQueries(): Record<string, QueryResult>;
   /**
    * Every persistent property: proposition, status, the models and evidence the status derives
@@ -349,6 +364,11 @@ export function createAgentApi(
     // "(unsaved)" rather than a generated id: an id here would look like a handle an agent could
     // pass to `evidence()` or `retract`, and nothing was saved.
     ask: (q) => workspace.evaluate("(unsaved)", q),
+
+    // Straight through, like `analysis` below: the facade holds the system, the projection and the
+    // gate, so there is nothing for this method to decide.
+    sparql: (text, budget) =>
+      budget === undefined ? workspace.sparql(text) : workspace.sparql(text, budget),
 
     savedQueries: () => {
       const results = workspace.runSavedQueries();

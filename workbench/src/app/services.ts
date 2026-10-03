@@ -30,7 +30,9 @@ import type { EvaluatedProperty } from "./properties.ts";
 import type {
   AnalysisPort, EnginePort, PendingResult, RenderPort, RenderedView, SceneRequest,
 } from "./ports.ts";
-import type { ExhaustedResult, QueryAlgebra, SeamQuestion } from "../sparql/index.ts";
+import { answerSparql, DEFAULT_STEP_BUDGET } from "../sparql/index.ts";
+import type { Answer, ExhaustedResult, QueryAlgebra, SeamQuestion } from "../sparql/index.ts";
+import { project } from "../rdf/project.ts";
 import { WORKER_STATE_LIMIT, WORKER_STEP_BUDGET } from "../worker/protocol.ts";
 
 /**
@@ -86,6 +88,63 @@ export const NEW_SYSTEM = [
   "  name: Untitled model system",
   "",
 ].join("\n");
+
+/**
+ * A SPARQL answer, carrying the two things every answer in this workbench carries.
+ *
+ * `answer` is the SPARQL layer's own union, unchanged: solutions, a boolean with `evidence: null`,
+ * a structured refusal, a spent budget, or a route to the engine. It is not flattened here —
+ * `WorkerEvaluation` already owns the flattened spelling for the port that needs one, and a second
+ * flattener in this layer would be the same conversion written twice.
+ */
+export interface SparqlAnswer {
+  readonly answer: Answer;
+  /**
+   * What the answer covers, and what it does not.
+   *
+   * Prose, not the IR's `Coverage`: that type counts CONFIGURATIONS and a relational query explores
+   * none, while its `reason` has no arm for a spent STEP budget — so every value it could hold here
+   * is either empty or a word that misnames the bound. `AskResult.coverage` is already prose for
+   * that reason, and this field is where the other four arms answer the same question, so a caller
+   * reads coverage without first switching on the arm.
+   */
+  readonly coverage: string;
+  /**
+   * The system this answer describes. Same contract as `QueryResult.systemHash`: a result for
+   * revision N must never be presented as though it described N+1.
+   */
+  readonly systemHash: string;
+}
+
+const SELECT_COVERAGE =
+  "every solution over the quads the query's own scope made visible. The rows ARE the evidence " +
+  "(DESIGN-sparql-261002.md §1): a binding set is its own witness, and no path witness is implied.";
+
+/**
+ * Coverage per arm, derived on every call.
+ *
+ * Three arms already carry the sentence that states their own coverage, and those are reported
+ * verbatim. Re-wording them here would be a second sentence for one fact, which is the failure
+ * `refusal.ts` names: a user who gets two explanations of one refusal learns that one of them is
+ * guessing.
+ */
+function sparqlCoverage(answer: Answer): string {
+  switch (answer.kind) {
+    case "select-result":
+      return SELECT_COVERAGE;
+    case "ask-result":
+      return answer.coverage;
+    case "exhausted":
+      return answer.prose;
+    // Neither arm covers anything, and they are distinguished because one means the model declines
+    // and the other means ask the engine. "No answer" for a routed question would be the collapse
+    // §4 forbids: it teaches a reader that a licensing refusal and a redirection are one thing.
+    case "refused":
+      return `no answer: ${answer.refusal.prose}`;
+    case "routed":
+      return `no answer from this interface: ${answer.route.prose}`;
+  }
+}
 
 export class Workspace {
   #engine: TransactionEngine;
@@ -298,6 +357,41 @@ export class Workspace {
    */
   evaluate(id: string, query: unknown): EvaluatedProperty {
     return evaluateOne(this.#engine.system(), id, query, this.query(query), this.#engine.hash());
+  }
+
+  /**
+   * Ask a SPARQL question of the RDF projection of the current system (§11).
+   *
+   * `answerSparql` was exported and nothing outside `src/sparql/` imported it, so the layer was
+   * tree-shaken out of both bundles and no caller could ask a SPARQL question. This is the method
+   * that closes that, and it is HERE because the facade is the single seam: `window.mage.sparql`
+   * delegates to this, and a second path reaching `src/sparql/` directly would be the agent-specific
+   * answer path FR-AGENT-1 forbids.
+   *
+   * **The §1 answer-path table is honoured by the layer, not re-decided here.** A relational
+   * question whose binding set IS its evidence is answered; a behavioral one has no SPARQL spelling
+   * at all, so the text path refuses it rather than inventing a relational reading of it; and when
+   * the translator returns the engine route this method passes the route through with its sentence.
+   * Collapsing a route into an empty answer would teach a caller that the workbench cannot answer
+   * what it answers through `query` — the distinction `refusal.ts` exists to protect.
+   *
+   * **The projection is rebuilt per call**, exactly as `provenance()` derives its records per call
+   * and for the same reason: a cached dataset would be a second copy of model state that a committed
+   * transaction could leave stale, and a query answered from a stale projection is a confidently
+   * wrong answer rather than a visible error.
+   *
+   * **The budget is the Q8 ruling, not a tuning knob.** Evaluation is synchronous and bounded; a
+   * question that spends the budget comes back `exhausted`, which is neither empty nor refused.
+   * Re-issuing it to the Worker is NOT reachable from here yet: `resolveExhausted` needs the
+   * unbranded `SeamQuestion`, and `translate` returns the branded `LicensedQuestion` instead — the
+   * brand cannot cross `postMessage`, and the derivation that built it is private to `parse.ts`. So
+   * the escalation named in the `exhausted` prose is a seam gap in `TranslatedQuery`, recorded here
+   * rather than papered over with a question rebuilt by guesswork on this side.
+   */
+  sparql(text: string, budget: number = DEFAULT_STEP_BUDGET): SparqlAnswer {
+    const system = this.#engine.system();
+    const answer = answerSparql(system, project(system), text, budget);
+    return { answer, coverage: sparqlCoverage(answer), systemHash: systemHash(system) };
   }
 
   // -- long analysis ---------------------------------------------------------------------------

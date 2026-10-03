@@ -9,7 +9,8 @@ import { readFileSync } from "node:fs";
 import { runQuery } from "../src/engine/index.ts";
 import { renderView } from "../src/render/index.ts";
 import { NEW_SYSTEM, Workspace } from "../src/app/services.ts";
-import type { Ports } from "../src/app/services.ts";
+import type { Ports, SparqlAnswer } from "../src/app/services.ts";
+import { CAPABILITIES, checkAffordanceParity } from "../src/app/capabilities.ts";
 import { ExampleCatalog, UnknownExampleError } from "../src/app/examples.ts";
 import type { AssetReader } from "../src/app/examples.ts";
 import { createAgentApi } from "../src/app/agent-api.ts";
@@ -614,4 +615,214 @@ test("an agent reads the same provenance and the same examples the person does",
   const edited = api.transact({ transaction: { base: context.hash,
     operations: [{ op: "set-label", id: "worker-pool", value: "Pool" }] } });
   assert.ok(edited.ok, `an example must be editable through window.mage: ${edited.findings.map((f) => f.message).join("; ")}`);
+});
+
+// ----------------------------------------------------------------------------------------------
+// SPARQL through the facade (DESIGN-sparql-261002.md §1, §6 Q8, §6 Q9; UX-I1, UX-I3)
+// ----------------------------------------------------------------------------------------------
+//
+// The gap these close has the Worker's shape exactly: the layer shipped tested, `answerSparql` was
+// exported, and nothing outside `src/sparql/` imported it -- so esbuild tree-shook the whole path
+// out of both bundles and neither a person nor an agent could ask a SPARQL question. A facade test
+// is where that shows, because the facade is the only door a caller has.
+
+/** Prefixes derived from the minting functions, so a URN scheme change in `iri.ts` moves them. */
+const DOC_PREFIXES =
+  `PREFIX ent: <${entityIri("docable", "").value}>\n` +
+  `PREFIX rt: <${relationTypeIri("docable", "").value}>\n`;
+const SERVICE_FLOW = modelGraphIri("docable", "service-flow").value;
+const DATA_CLASSIFICATION = modelGraphIri("docable", "data-classification").value;
+const docEnt = (id: string): string => entityIri("docable", id).value;
+
+/** The closure `docable`'s service-flow model licenses: `may_invoke` declares composition allowed. */
+const REACHED_FROM_API =
+  `${DOC_PREFIXES}SELECT ?x WHERE { GRAPH <${SERVICE_FLOW}> { ent:api rt:may_invoke+ ?x } }`;
+
+/** The `?x` column, asserting the arm rather than reading through it. */
+function column(out: SparqlAnswer): readonly string[] {
+  const { answer } = out;
+  assert.equal(answer.kind, "select-result",
+    answer.kind === "refused" ? `unexpected refusal: ${answer.refusal.prose}` : `got ${answer.kind}`);
+  if (answer.kind !== "select-result") return [];
+  return answer.rows.map((row) => {
+    const x = row.get("x");
+    assert.ok(x !== undefined, "every row of this query binds ?x");
+    return x.value;
+  });
+}
+
+/** The refusal, asserting the arm rather than reading through it. */
+function refusal(out: SparqlAnswer): { readonly cause: string; readonly missing: readonly string[]; readonly prose: string; readonly wouldLicense: string } {
+  assert.equal(out.answer.kind, "refused", `expected a refusal, got ${out.answer.kind}`);
+  if (out.answer.kind !== "refused") throw new Error("unreachable");
+  return out.answer.refusal;
+}
+
+test("a SELECT asked as TEXT through the facade returns the solutions, the coverage and the hash", () => {
+  // `may_invoke+` from the API: one hop to remediation, a second to the gateway. The row set is
+  // pinned rather than counted -- §7's lesson from the measurement, where a count of 13-of-13 ok
+  // hid an engine answering `false` to a modelled fact.
+  const ws = loaded();
+  const out = ws.sparql(REACHED_FROM_API);
+  assert.deepEqual(column(out), [docEnt("gateway"), docEnt("remediation")],
+    "the closure must reach both services the example declares, in canonical row order");
+  assert.equal(out.systemHash, ws.state.hash,
+    "a SPARQL answer carries the hash of the system it describes, like every other result");
+  assert.match(out.coverage, /rows ARE the evidence/,
+    "a SELECT's coverage must say that the bindings are the witness");
+});
+
+test("UX-I3: window.mage.sparql is the same seam, and hands back the same answer", () => {
+  // One service, two callers -- the invariant the whole facade exists for. Object equality over ONE
+  // workspace, so the agent cannot be reading a second projection that happens to agree.
+  const ws = loaded();
+  const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {}, new ExampleCatalog(ws, assets));
+  assert.deepEqual(api.sparql(REACHED_FROM_API), ws.sparql(REACHED_FROM_API));
+  // And the budget travels, so an agent can ask the bounded question the page asks (Q8).
+  assert.deepEqual(api.sparql(REACHED_FROM_API, 2), ws.sparql(REACHED_FROM_API, 2));
+});
+
+test("the two interfaces answer the same one-hop relational question the same way", () => {
+  // Agreement between the SPARQL evaluator and the engine on a question §1 does not split: one hop
+  // needs no path witness and composes nothing. Both sides are LOOKED UP rather than snapshotted --
+  // the engine's own answer is the oracle, so a change in the example cannot leave this stale.
+  const ws = loaded();
+  const engine = ws.query({
+    name: "which services may the API invoke directly?", kind: "graph", quantifier: "exists",
+    graph: { form: "successors", relation: "may_invoke", from: "api" },
+  });
+  assert.equal(engine.outcome, "holds");
+  const reached = (engine.evidence?.nodes ?? []).filter((id) => id !== "api").map(docEnt);
+  assert.ok(reached.length > 0, "the engine must witness at least one successor for this to compare");
+
+  // `GRAPH ?g` is the right spelling for an engine-agreement claim at ONE hop: it unions the
+  // per-graph evaluations, and a single triple never had to cross a graph boundary. A CLOSURE asked
+  // this way would not agree, and §7.2 measured why -- that one needs a dataset clause.
+  const sparql = ws.sparql(`${DOC_PREFIXES}SELECT ?x WHERE { GRAPH ?g { ent:api rt:may_invoke ?x } }`);
+  assert.deepEqual([...column(sparql)].sort(), [...reached].sort(),
+    "one relation, one hop, two interfaces: the answers must be the same set");
+});
+
+test("§1: an existence question needing a path witness is the ENGINE's, and SPARQL invents none", () => {
+  // The table's second row, both halves in one test. The engine returns the nodes it travelled;
+  // SPARQL answers the same existence and says in its coverage that it has no witness to offer,
+  // because SPARQL 1.1 dropped path variables. The failure this forbids is a fabricated path.
+  const ws = loaded();
+  const saved = ws.state.system.queries.get("restricted-reaches-public")?.raw;
+  assert.ok(saved !== undefined, "docable saves the data_flow path question this compares against");
+  const engine = ws.query(saved);
+  assert.equal(engine.evidence?.shape, "path", "the engine answers a path question WITH the path");
+  assert.ok((engine.evidence?.nodes ?? []).length > 0);
+
+  const out = ws.sparql(
+    `${DOC_PREFIXES}ASK { GRAPH <${DATA_CLASSIFICATION}> { ent:api rt:data_flow+ ent:gateway } }`);
+  assert.equal(out.answer.kind, "ask-result");
+  if (out.answer.kind !== "ask-result") return;
+  assert.equal(out.answer.value, true, "the flow the engine travelled must exist for SPARQL too");
+  assert.equal(out.answer.evidence, null, "an ASK that cannot bind intermediates carries no evidence");
+  assert.match(out.coverage, /existence only/, "and the coverage must say so rather than leave it inferred");
+  assert.match(out.coverage, /analysis engine returns one/,
+    "a reader must be told where the witness comes from, not left to infer it from an absence");
+});
+
+test("§1: a behavioral question is not answered by SPARQL, and the engine answers it", () => {
+  // The table's third row. Behaviour is not expressible at all -- the dataset holds structure, not
+  // executions -- so the two halves are: `admit` ROUTES a behavioral subject rather than refusing
+  // it, and the engine answers the example's own behavioral question with a trace.
+  const ws = loaded();
+  const routed = admit(ws.state.system, { kind: "behavioral", asked: "can a document be published without review?" });
+  assert.equal(routed.kind, "routed", "a behavioral subject belongs to the other interface");
+  if (routed.kind !== "routed") return;
+  assert.match(routed.route.prose, /analysis engine/, "the route must name where the answer comes from");
+
+  const saved = ws.state.system.queries.get("document-can-return-to-waiting")?.raw;
+  assert.ok(saved !== undefined);
+  // A LASSO: a prefix plus the repeating cycle. An execution, which is precisely the thing a
+  // projection of structure has no quad for -- so this is not a gap in the subset, it is the row.
+  assert.equal(ws.query(saved).evidence?.shape, "lasso", "the engine answers it, over the state space");
+
+  // And the text path cannot be talked into answering one. A machine lives in the DEFAULT graph, so
+  // the nearest SPARQL spelling states no scope -- which §7.1 refuses by name rather than answering
+  // with the confident empty set that a default-graph pattern over relation edges would produce.
+  const attempt = ws.sparql("SELECT ?s WHERE { <urn:mage:mach:docable:document> <urn:mage:v:state> ?s }");
+  assert.deepEqual(refusal(attempt).missing, ["bare WHERE without FROM or GRAPH"]);
+});
+
+test("an out-of-subset query is refused BY NAME at the facade, not inside src/sparql/", () => {
+  // §3's rule, observable from where a caller stands: the construct is named, the query is not
+  // rewritten to fit, and the refusal says what the subset does accept.
+  const ws = loaded();
+  const out = ws.sparql(
+    `${DOC_PREFIXES}SELECT DISTINCT ?x WHERE { GRAPH <${SERVICE_FLOW}> { ent:api rt:may_invoke ?x } }`);
+  const r = refusal(out);
+  assert.equal(r.cause, "outside-supported-subset");
+  assert.deepEqual(r.missing, ["DISTINCT"], "the refusal must name the clause that offended");
+  assert.match(r.wouldLicense, /SELECT, ASK/, "and must cite the subset it does accept");
+  assert.match(out.coverage, /^no answer:/, "a refused query must not look like an empty answer");
+});
+
+test("a licensing refusal survives the trip, word for word with the engine's", () => {
+  // V7 at the facade. `owns` declares `composition.path: forbidden`, and docable saves the engine's
+  // spelling of this very question as its refusal case -- so the two interfaces can be compared
+  // rather than trusted. Two sentences for one refusal would teach a reader that one is guessing.
+  const ws = loaded();
+  const out = ws.sparql(
+    `${DOC_PREFIXES}ASK { GRAPH <${SERVICE_FLOW}> { ent:api rt:owns+ ent:parser } }`);
+  const r = refusal(out);
+  assert.equal(r.cause, "unlicensed-by-model");
+  assert.match(r.wouldLicense, /composition\.path: allowed/,
+    "a refusal must name the semantic claim that would license the question");
+
+  const engine = ws.query(ws.state.system.queries.get("transitive-ownership")?.raw);
+  assert.equal(engine.outcome, "unlicensed");
+  assert.equal(r.prose, engine.refusal,
+    "one licensing rule, one sentence: the SPARQL refusal must be the engine's own");
+});
+
+test("a spent step budget is neither empty nor refused, and its coverage routes onward", () => {
+  // Q8's fourth arm, at the facade. A caller that read `exhausted` as "no" would have learned the
+  // Comunica lesson backwards, so the arm is distinct and the coverage names the budget.
+  const ws = loaded();
+  const out = ws.sparql(REACHED_FROM_API, 2);
+  assert.equal(out.answer.kind, "exhausted", "a 2-step budget cannot finish a one-or-more path");
+  if (out.answer.kind !== "exhausted") return;
+  // The step that overran is counted before the budget is reported spent, so the count reaches the
+  // budget rather than stopping short of it. Asserted as a bound, because the exact number is the
+  // evaluator's business and pinning it here would make this test fail on a faster walk order.
+  assert.ok(out.answer.steps >= 2, `expected the budget to be spent, got ${out.answer.steps} steps`);
+  assert.match(out.coverage, /2-step budget/);
+  assert.match(out.coverage, /analysis Worker/, "and must say where the question can still be answered");
+  assert.equal(out.systemHash, ws.state.hash, "an exhausted answer still describes a system");
+});
+
+test("a SPARQL answer cannot outlive the system it describes", () => {
+  // The same contract `QueryResult.systemHash` carries, asserted across a commit: the hash moves,
+  // and the next answer carries the new one. A result for revision N must never read as N+1.
+  const ws = loaded();
+  const before = ws.sparql(REACHED_FROM_API);
+  ws.transact({ transaction: { base: ws.state.hash,
+    operations: [{ op: "set-label", id: "gateway", value: "Gateway" }] } });
+  const after = ws.sparql(REACHED_FROM_API);
+  assert.notEqual(after.systemHash, before.systemHash, "the commit must move the hash the answer carries");
+  assert.equal(after.systemHash, ws.state.hash);
+  assert.deepEqual(column(after), column(before), "and a label edit must not change the solutions");
+});
+
+test("Q9: wiring the machine affordance leaves UX-I1 reporting nothing over 24 capabilities", () => {
+  // The registry's own gate, run from here because this wave is what added the affordance. Reading
+  // zero is only meaningful alongside the count: a registry that lost a row would also read zero.
+  assert.deepEqual(checkAffordanceParity(), [],
+    `UX-I1: ${checkAffordanceParity().map((v) => `${v.capability} ${v.problem}`).join("; ")}`);
+  assert.equal(CAPABILITIES.length, 24, "no capability was added or removed to reach that zero");
+
+  // And Q9's reading, as the registry records it: `query` is the capability, SPARQL is a syntax for
+  // it, so the affordance lands on that row and no new row was minted.
+  const query = CAPABILITIES.find((c) => c.id === "query");
+  assert.ok(query);
+  assert.ok(query.machine.some((a) => a.at === "window.mage.sparql" && a.status === "wired"),
+    "the SPARQL affordance must be declared, or §26's closure check cannot see it");
+  assert.equal(query.service, "workspace.query", "the row still names the capability's canonical seam");
+  assert.deepEqual(CAPABILITIES.filter((c) => c.id !== "query").flatMap((c) =>
+    [...c.human, ...c.machine].filter((a) => a.at.includes("sparql")).map((a) => a.at)), [],
+    "no other capability claims a SPARQL affordance");
 });
