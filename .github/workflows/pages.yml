@@ -102,19 +102,22 @@ jobs:
       # can change the model in a way no person can see or reverse, so this is asserted hard rather
       # than ratcheted against a baseline.
       #
-      # A separate step from the gates above on purpose. `npm test` already asserts zero, but it
-      # asserts it among 478 other things; a failure HERE names the invariant in the step title and
-      # prints the one-sided capabilities, which is what the person reading a red build needs.
+      # A separate step from the gates above on purpose. `npm test` already asserts this, but it
+      # asserts it among seven hundred other things; a failure HERE names the invariant in the step
+      # title and prints the one-sided capabilities, which is what the person reading a red build
+      # needs. The isolation is the benefit, and it survives the step carrying no logic.
+      #
+      # This step used to run that logic inline — a `node --eval` importing the registry and deciding
+      # `violations.length === 0` for itself, while the unit suite compared the same list against a
+      # recorded BASELINE that accepted one standing violation. One invariant, two implementations,
+      # two thresholds, and the stricter one lived where nobody could run it: two pushes failed here
+      # after a local suite reported green. The threshold is now `PARITY_VIOLATION_CEILING` in
+      # `workbench/src/app/capabilities.ts`, the verdict is `affordanceParityGate()`, and both this
+      # step and the unit suite read it from there. `tests/ci.py` holds the structural half — no step
+      # in this workflow may embed a program instead of invoking a named script.
       - name: Model Workbench UX-I1 affordance parity (CI fails on a one-sided capability)
         working-directory: workbench
-        run: |
-          node --input-type=module --eval '
-            import { CAPABILITIES, checkAffordanceParity } from "./src/app/capabilities.ts";
-            const violations = checkAffordanceParity();
-            console.log(`UX-I1: ${violations.length} violation(s) over ${CAPABILITIES.length} capabilities`);
-            for (const v of violations) console.error(`  ${v.capability}: ${v.problem}`);
-            process.exit(violations.length === 0 ? 0 : 1);
-          '
+        run: npm run check:parity
       # book/ node tooling must be installed BEFORE `catalog.py build`: the build renders every ```mermaid
       # fence to a static inline SVG at build time via mermaid-cli (mmdc), which lives in book/node_modules.
       # `npm ci` in book/ also downloads mermaid-cli's + Puppeteer's bundled Chromium (no

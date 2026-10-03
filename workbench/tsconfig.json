@@ -20,5 +20,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src", "test", "build.mjs"]
+  "// why scripts": "`scripts/` holds a GATE entrypoint now (check-parity.ts), not just generators. An untypechecked gate is a gate whose wiring to the threshold nobody verifies — the single-source argument for the threshold only holds if the compiler sees both ends. Measured clean when added, 261003.",
+  "include": ["src", "test", "scripts", "build.mjs"]
 }
