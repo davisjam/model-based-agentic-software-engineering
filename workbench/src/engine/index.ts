@@ -16,10 +16,13 @@
  *   - No booleans. The vocabulary is `holds | refuted | inconclusive | unlicensed`, and bounded
  *     coverage reads `inconclusive` (V22).
  *
- * Dependencies point inward: this module reaches `../ir/` and its own siblings, and nothing else.
+ * Dependencies point inward: this module reaches `../ir/`, its own siblings, and the quantitative
+ * evaluator (`../quant/`) — which itself reaches only this package's internals and the IR, so the
+ * analysis layer stays a strict layer over the kernel with no view in sight.
  */
 import { systemHash } from "../ir/hash.ts";
 import type { CanonicalSystem, QueryResult, SavedQuery } from "../ir/types.ts";
+import { runQuantityQuery } from "../quant/query.ts";
 import { runBehaviorQuery } from "./behavior.ts";
 import { runGraphQuery, type GraphAnswer } from "./graph.ts";
 import { narrate, type Narration } from "./narrate.ts";
@@ -37,10 +40,11 @@ export { narrate, type Delta, type NarratedStep, type Narration } from "./narrat
 export { compilePredicate, describePredicate } from "./predicate.ts";
 export { buildScope, resolveRef, type Ref, type RefScope } from "./refs.ts";
 export {
-  parseBehaviorQuery, parseGraphQuery, parsePredicate, parseQuery,
+  parseBehaviorQuery, parseGraphQuery, parsePredicate, parseQuantityQuery, parseQuery,
   type BehaviorForm, type BehaviorQuery, type GraphForm, type GraphQuery, type Predicate,
-  type Quantifier, type Query, type Refusal, type RefusalReason, type Verdict,
+  type Quantifier, type QuantityQuery, type Query, type Refusal, type RefusalReason, type Verdict,
 } from "./types.ts";
+export { runQuantityQuery } from "../quant/query.ts";
 
 /**
  * A verdict plus the structured non-visual twin.
@@ -65,7 +69,9 @@ export function runTypedQuery(system: CanonicalSystem, q: Query): Answer {
   const hash = systemHash(system);
   const v: Verdict = q.kind === "graph"
     ? (runGraphQuery(system, q.graph, q.quantifier, hash) satisfies GraphAnswer)
-    : runBehaviorQuery(system, q.behavior, q.quantifier, hash);
+    : q.kind === "behavior"
+      ? runBehaviorQuery(system, q.behavior, q.quantifier, hash)
+      : runQuantityQuery(system, q.quantity, q.quantifier, hash);
   return withNarration(v);
 }
 

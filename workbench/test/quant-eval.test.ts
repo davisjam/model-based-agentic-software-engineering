@@ -282,7 +282,7 @@ test("a refuted requirement carries a counterexample trace; a holding one carrie
 });
 
 test("a requirement under a truncated walk with no violation reads inconclusive, bounded (V22)", () => {
-  const r = evaluateRequirement(pipeline(), { id: "n", metric: "latency", operator: "<=", bound: "750 ms" }, { limit: 2 });
+  const r = evaluateRequirement(pipeline(), { id: "n", metric: "latency", operator: "<=", bound: "750 ms" }, { limit: 2, target: null });
   assert.equal(r.result.outcome, "inconclusive");
   assert.equal(r.result.coverage.kind, "bounded");
   assert.equal(r.result.coverage.reason, "state-limit");

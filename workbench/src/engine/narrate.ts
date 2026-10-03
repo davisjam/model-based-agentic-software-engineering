@@ -15,7 +15,7 @@
  * the services facade is flagged in the report.
  */
 import type {
-  Configuration, EvidenceRole, EvidenceShape, QueryResult, Scalar, Step,
+  Configuration, EvidenceRole, EvidenceShape, QueryResult, ResultMagnitude, Scalar, Step,
 } from "../ir/types.ts";
 
 export interface Delta {
@@ -52,6 +52,8 @@ export interface Narration {
   readonly refusal: string | null;
   readonly disclosures: readonly string[];
   readonly systemHash: string;
+  /** The computed figure, carried structurally — the headline speaks it, this field IS it. */
+  readonly magnitude: ResultMagnitude | null;
   readonly evidence: NarratedEvidence | null;
 }
 
@@ -124,14 +126,19 @@ export function narrate(res: QueryResult): Narration {
         `${(ev.nodes ?? []).join(" -> ")}.`
       : `A ${ev.role} of ${steps.length} step${steps.length === 1 ? "" : "s"}.`;
 
+  const figure = res.magnitude === null
+    ? ""
+    : ` The computed figure is ${res.magnitude.value}${res.magnitude.unit === null ? "" : ` ${res.magnitude.unit}`} (${res.magnitude.dimension}).`;
+
   return {
     outcome: res.outcome,
-    headline: OUTCOME_SENTENCE[res.outcome],
+    headline: `${OUTCOME_SENTENCE[res.outcome]}${figure}`,
     coverage: coverageSentence(res.coverage),
     interpretedAs: res.interpretedAs,
     refusal: res.refusal,
     disclosures: res.compilation.map((c) => c.explanation),
     systemHash: res.systemHash,
+    magnitude: res.magnitude,
     evidence: ev === null ? null : {
       shape: ev.shape, role: ev.role, summary, steps, nodes: ev.nodes,
     },

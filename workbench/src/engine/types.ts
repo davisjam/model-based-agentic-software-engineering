@@ -12,7 +12,7 @@
  * Optionals are modelled as `| null`, never `?`. `exactOptionalPropertyTypes` makes the two
  * genuinely different, and a single representation of absence is one fewer thing to get wrong.
  */
-import type { Coverage, Evidence, GuardOp, Outcome, QueryResult, Scalar } from "../ir/types.ts";
+import type { Coverage, Evidence, GuardOp, Outcome, QueryResult, ResultMagnitude, Scalar } from "../ir/types.ts";
 
 // --------------------------------------------------------------------------------------------
 // Result plumbing
@@ -48,7 +48,14 @@ export type RefusalReason =
   /** An effect or derived expression outside the deliberately tiny grammars (expr.ts). */
   | "unsupported-expression"
   /** V14 / V15 — legal to write, reserved for a future version, refused rather than misread. */
-  | "reserved-feature";
+  | "reserved-feature"
+  /**
+   * §8 — the question pairs a quantity with the aggregation axis its scope does not have. The
+   * aggregation is DERIVED from the dimension's scope, never chosen per query, so asking for a
+   * configuration-scoped quantity along an execution denotes nothing: it is refused as a category
+   * error rather than computed as a wrong answer.
+   */
+  | "category-error";
 
 export interface Refusal {
   readonly reason: RefusalReason;
@@ -207,9 +214,30 @@ export interface BehaviorQuery {
   readonly limit: number | null;
 }
 
+/**
+ * A quantitative question. Deliberately, there is NO aggregation parameter: the aggregation is
+ * DERIVED from the named metric's dimension scope (§8) — an execution-scoped metric is the
+ * worst-case sum along executions, a configuration-scoped one is the peak of memory(c) over the
+ * reachable set — so the `max|min|named` selector the §29 refinement rejected cannot reappear as a
+ * query field. What a caller MAY say is which executions the question is about (`target`, the reach
+ * predicate the selected executions end at) and which declared ceiling to decide against
+ * (`within`, a `model:`-targeted quantity). A `target` on a configuration-scoped metric is a
+ * category error the evaluator refuses by name.
+ */
+export interface QuantityQuery {
+  /** The analysis name, as written. The evaluator holds it to its closed vocabulary. */
+  readonly metric: string;
+  /** Execution-scoped metrics only: the executions measured are those REACHING this predicate. */
+  readonly target: Predicate | null;
+  /** The `model:`-targeted quantity declaring the ceiling to decide against; null = report the figure. */
+  readonly within: string | null;
+  readonly limit: number | null;
+}
+
 export type Query =
   | { readonly kind: "graph"; readonly quantifier: Quantifier; readonly name: string | null; readonly graph: GraphQuery }
-  | { readonly kind: "behavior"; readonly quantifier: Quantifier; readonly name: string | null; readonly behavior: BehaviorQuery };
+  | { readonly kind: "behavior"; readonly quantifier: Quantifier; readonly name: string | null; readonly behavior: BehaviorQuery }
+  | { readonly kind: "quantity"; readonly quantifier: Quantifier; readonly name: string | null; readonly quantity: QuantityQuery };
 
 // --------------------------------------------------------------------------------------------
 // Normalization from a loaded query object
@@ -343,6 +371,25 @@ export function parseBehaviorQuery(raw: unknown): Res<BehaviorQuery> {
   });
 }
 
+/**
+ * Parse a quantity query. Non-validating, like its two siblings: the metric travels as written and
+ * the EVALUATOR holds it to the closed vocabulary, so an unknown metric refuses with a sentence
+ * naming the choices rather than becoming a parse error with no model context.
+ */
+export function parseQuantityQuery(raw: unknown): Res<QuantityQuery> {
+  const g = isObj(raw) ? raw : {};
+  const metric = str(g["metric"]);
+  if (metric === null) {
+    return fail("a quantity query must name the metric it computes: latency, cost, or peak_memory.");
+  }
+  return ok({
+    metric,
+    target: parsePredicate(g["target"]),
+    within: str(g["within"]),
+    limit: posInt(g["limit"]),
+  });
+}
+
 export function parseQuery(raw: unknown): Res<Query> {
   const q = isObj(raw) ? raw : {};
   const name = str(q["name"]);
@@ -363,7 +410,11 @@ export function parseQuery(raw: unknown): Res<Query> {
     const b = parseBehaviorQuery(q["behavior"]);
     return b.ok ? ok({ kind: "behavior", quantifier, name, behavior: b.value }) : b;
   }
-  return fail(`query kind '${String(q["kind"])}' is not 'graph' or 'behavior'.`);
+  if (q["kind"] === "quantity") {
+    const qu = parseQuantityQuery(q["quantity"]);
+    return qu.ok ? ok({ kind: "quantity", quantifier, name, quantity: qu.value }) : qu;
+  }
+  return fail(`query kind '${String(q["kind"])}' is not 'graph', 'behavior' or 'quantity'.`);
 }
 
 // --------------------------------------------------------------------------------------------
@@ -390,6 +441,7 @@ export function result(fields: {
   readonly refusal?: string | null;
   readonly interpretedAs?: string | null;
   readonly compilation?: readonly QueryResult["compilation"][number][];
+  readonly magnitude?: ResultMagnitude | null;
 }): QueryResult {
   return {
     outcome: fields.outcome,
@@ -398,6 +450,7 @@ export function result(fields: {
     refusal: fields.refusal ?? null,
     interpretedAs: fields.interpretedAs ?? null,
     compilation: fields.compilation ?? [],
+    magnitude: fields.magnitude ?? null,
     systemHash: fields.systemHash,
   };
 }

@@ -13,7 +13,7 @@
  * produced. Coverage is carried faithfully: a maximum over a truncated walk is a maximum over the
  * explored region, and the result says so rather than rounding up to a claim about the system.
  */
-import type { CanonicalSystem, Coverage, Step } from "../ir/types.ts";
+import type { CanonicalSystem, Configuration, Coverage, Step } from "../ir/types.ts";
 import {
   compileSystem, DEFAULT_STATE_LIMIT, defaultOptions, exploreSpace, pathBetween, traceTo,
   type SpaceEdge, type StateSpace,
@@ -25,9 +25,17 @@ import type { PathExtremum, RangeEnd, TraceCharges } from "./types.ts";
 export interface PathOptions {
   readonly limit: number;
   readonly end: RangeEnd;
+  /**
+   * Restricts the maximum to executions ENDING at a configuration this accepts; null ranges over
+   * all executions. A selection of WHICH executions, never of how they aggregate — the aggregation
+   * stays derived from the dimension's scope (§8), which is what keeps the §29-rejected
+   * `max|min|named` selector out of the query surface.
+   */
+  readonly target: ((cfg: Configuration) => boolean) | null;
 }
 
-export const defaultPathOptions = (): PathOptions => ({ limit: DEFAULT_STATE_LIMIT, end: "upper" });
+export const defaultPathOptions = (): PathOptions =>
+  ({ limit: DEFAULT_STATE_LIMIT, end: "upper", target: null });
 
 export type PathMetric = "latency" | "cost";
 
@@ -69,9 +77,47 @@ export function maxOverExecutions(
 
   const scc = stronglyConnected(space);
 
+  // The target selection, resolved to node sets up front. `reachesTarget` is a reverse BFS from
+  // every qualifying node, because both later decisions need it: a positive cycle unbounds the
+  // SELECTED maximum only if an execution can pump it and still reach the target, and a selection
+  // nothing reaches is a `none` rather than a zero.
+  const qualifies = (node: number): boolean => {
+    const cfg = space.configs[node];
+    return cfg !== undefined && (options.target === null || options.target(cfg));
+  };
+  let reachesTarget: readonly boolean[] | null = null;
+  if (options.target !== null) {
+    const mark = new Array<boolean>(space.configs.length).fill(false);
+    const queue: number[] = [];
+    for (let i = 0; i < space.configs.length; i += 1) {
+      if (qualifies(i)) {
+        mark[i] = true;
+        queue.push(i);
+      }
+    }
+    const reverse: number[][] = Array.from({ length: space.configs.length }, () => []);
+    for (let u = 0; u < space.configs.length; u += 1) {
+      for (const edge of space.edges[u] ?? []) reverse[edge.to]?.push(u);
+    }
+    while (queue.length > 0) {
+      const n = queue.pop() ?? 0;
+      for (const p of reverse[n] ?? []) {
+        if (mark[p] !== true) {
+          mark[p] = true;
+          queue.push(p);
+        }
+      }
+    }
+    // Node 0 is the initial configuration, so mark[0] says whether ANY execution reaches the
+    // selection — every explored node is reachable from it by construction.
+    if (mark[0] !== true) return ok({ kind: "none", coverage, notes: space.notes });
+    reachesTarget = mark;
+  }
+
   // A positive charge on an edge inside a component is a repeatable cycle that accrues: the Q5
   // shape. The witness is built around THAT edge, so the evidence charges what the claim says.
   for (let u = 0; u < space.configs.length; u += 1) {
+    if (reachesTarget !== null && reachesTarget[u] !== true) continue;
     for (const edge of space.edges[u] ?? []) {
       if (scc.of[u] !== scc.of[edge.to]) continue;
       if (stepCharge(table.value, edge.step) <= 0) continue;
@@ -113,10 +159,27 @@ export function maxOverExecutions(
     }
   }
 
-  let best = initialScc;
-  for (let c = 0; c < count; c += 1) {
-    if ((dist[c] ?? Number.NEGATIVE_INFINITY) > (dist[best] ?? Number.NEGATIVE_INFINITY)) best = c;
+  // Per component, the first qualifying node in member order — the deterministic end the selected
+  // maximum's trace must finish at. Null entries mean the component contains no selected node.
+  const targetNodeOf: (number | null)[] = new Array<number | null>(count).fill(null);
+  if (options.target !== null) {
+    for (let c = 0; c < count; c += 1) {
+      for (const n of scc.members[c] ?? []) {
+        if (qualifies(n)) {
+          targetNodeOf[c] = n;
+          break;
+        }
+      }
+    }
   }
+
+  let best = options.target === null ? initialScc : -1;
+  for (let c = 0; c < count; c += 1) {
+    if ((dist[c] ?? Number.NEGATIVE_INFINITY) === Number.NEGATIVE_INFINITY) continue;
+    if (options.target !== null && targetNodeOf[c] === null) continue;
+    if (best === -1 || (dist[c] ?? Number.NEGATIVE_INFINITY) > (dist[best] ?? Number.NEGATIVE_INFINITY)) best = c;
+  }
+  if (best === -1) return ok({ kind: "none", coverage, notes: space.notes }); // mark[0] already said reachable; guard anyway
 
   // Reconstruct: predecessor chain between components, stitched with zero-charge wandering from
   // each component's entry node to the node the best edge leaves. Any such path stays inside the
@@ -131,6 +194,13 @@ export function maxOverExecutions(
     const wander = entryNode === link.viaNode ? [] : pathBetween(space, entryNode, link.viaNode) ?? [];
     segments.unshift([...wander, link.edge.step]);
     at = from;
+  }
+  // Under a selection the trace must END at a selected node, so a final zero-charge wander extends
+  // it from the best component's entry to that node — same stays-inside-the-component argument.
+  const endNode = targetNodeOf[best] ?? null;
+  if (endNode !== null) {
+    const entryNode = entry[best] ?? 0;
+    if (entryNode !== endNode) segments.push(pathBetween(space, entryNode, endNode) ?? []);
   }
   const trace = segments.flat();
 

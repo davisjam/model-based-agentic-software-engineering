@@ -63,11 +63,18 @@ export interface PeakMemory {
 }
 
 /**
- * The maximum additive metric over executions. Two shapes, because the Q5 ruling makes an
- * unbounded maximum EVIDENCE rather than an error: a positive repeatable cycle is a concrete
- * witness that every finite bound is exceeded.
+ * The maximum additive metric over executions. Three shapes. The first two are the Q5 ruling's —
+ * an unbounded maximum is EVIDENCE rather than an error: a positive repeatable cycle is a concrete
+ * witness that every finite bound is exceeded. `none` arises only under a target selection: no
+ * explored execution reaches the selected configurations, so there is nothing to maximize over —
+ * reported as a fact about the selection, never rounded to a zero.
  */
 export type PathExtremum =
+  | {
+      readonly kind: "none";
+      readonly coverage: Coverage;
+      readonly notes: readonly string[];
+    }
   | {
       readonly kind: "finite";
       readonly total: number;

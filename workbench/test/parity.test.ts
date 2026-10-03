@@ -51,7 +51,12 @@ const PARITY = new Set([
   // and because both sides resolve it through the resolver they already share with V27 -- so a
   // drifted bare-name or ambiguity rule surfaces here rather than as two tools disagreeing about
   // which entity a trace step charges.
-  "V35", "V36", "V37", "V38",
+  //
+  // V39 is the same dangling-reference class pointed the other way: a QUERY's `quantity.within`
+  // resolving into the quantities map. Only the TypeScript engine EVALUATES a quantity query, but
+  // both sides validate the reference, so an authored dangling ceiling is one finding, not a
+  // refusal one tool explains and the other never sees.
+  "V35", "V36", "V37", "V38", "V39",
   // Not a V-rule: A1 holds annotation outside semantics, so a V-number would contradict the
   // invariant the feature rests on. Both sides implement it, so it belongs in the parity set.
   "ANNOTATION",
@@ -373,6 +378,13 @@ test("violations agree, rule by rule", () => {
     ["V38 a non-string executes_in_state, which names no state on either side", {
       ...base, entities: { parse: { properties: { executes_in_state: 3 } } },
       machines: { document: { initial: "a", states: { a: null }, transitions: [] } },
+    }],
+    ["V39 a quantity query whose ceiling names no declared quantity", {
+      ...base,
+      queries: { "under-ceiling": {
+        kind: "quantity", quantifier: "forall",
+        quantity: { metric: "latency", within: "ghost" },
+      } },
     }],
   ];
   for (const [label, doc] of cases) {

@@ -33,10 +33,11 @@ import { ExampleCatalog } from "../src/app/examples.ts";
 import type { AssetReader } from "../src/app/examples.ts";
 import { createAgentApi } from "../src/app/agent-api.ts";
 import type { CanonQuantity, CanonicalSystem, Evidence, QueryResult, Scalar } from "../src/ir/types.ts";
+import { DIMENSIONS } from "../src/ir/types.ts";
 import {
   CAPABILITY_ROWS, EXAMPLE_IDS, deriveCoverage, exampleText, generateExampleCoverageModel,
   loadExample, machineVocabulary, purposefulModels, realPorts, sharedIdentities,
-  type EvidenceExpectation, type LoadedExample, type QueryExpectation,
+  type EvidenceExpectation, type LoadedExample, type QuantitativeExpectation, type QueryExpectation,
 } from "../scripts/gen-example-coverage.ts";
 
 const examples = (): readonly LoadedExample[] => EXAMPLE_IDS.map(loadExample);
@@ -293,10 +294,11 @@ test("a requirement's status agrees with whatever decides it", () => {
   // Two routes, and the fixture reader already refuses a requirement declaring both or neither:
   //
   //   expressedAs  a saved query decides it. The outcome must agree with `satisfiedWhen`.
-  //   decidedBy    a hand-derived quantitative expectation decides it. Nothing in src/ performs the
-  //                comparison, so the status is `pending-evaluator` and the check is that it does
-  //                NOT claim a verdict -- plus that the ceiling it states is the one the model
-  //                declares, which is checked against `declaredAs` further down.
+  //   decidedBy    the quantity query form decides it, run RIGHT HERE: `within:` the declared
+  //                ceiling, the metric from the hand-derived expectation that is its oracle. These
+  //                statuses carried `pending-evaluator` while nothing in src/ could decide them —
+  //                a hand-derived figure must not read as machine-verified — and they read as
+  //                verdicts now because the product reaches them.
   for (const ex of examples()) {
     assert.ok(ex.fixture.requirements.length > 0, `${ex.id}: section 2 asks for at least one requirement`);
     for (const req of ex.fixture.requirements) {
@@ -312,10 +314,21 @@ test("a requirement's status agrees with whatever decides it", () => {
       const decider = ex.fixture.quantitativeExpectations.find((e) => e.id === req.decidedBy);
       assert.ok(decider !== undefined,
         `${ex.id}/${req.id}: names expectation '${String(req.decidedBy)}', which is not supplied`);
-      assert.equal(req.status, "pending-evaluator",
-        `${ex.id}/${req.id}: '${decider.id}' is hand-derived, so the requirement must not claim a verdict`);
       assert.ok(decider.handDerived,
-        `${ex.id}/${req.id}: a pending-evaluator requirement must be decided by a hand-derived expectation`);
+        `${ex.id}/${req.id}: the deciding expectation is the hand-derived oracle, and says so`);
+      assert.ok(req.declaredAs !== null, `${ex.id}/${req.id}: a decided requirement names its declared ceiling`);
+      const res = ex.workspace.query({
+        kind: "quantity", quantifier: "forall",
+        quantity: {
+          metric: decider.metric === "memory" ? "peak_memory" : "latency",
+          within: req.declaredAs,
+        },
+      });
+      const verdict = res.outcome === "refuted" ? "violated"
+        : res.outcome === "holds" ? "satisfied" : res.outcome;
+      assert.equal(req.status, verdict,
+        `${ex.id}/${req.id}: the fixture records '${req.status}'; the product decides '${res.outcome}'. ` +
+        `The disagreement is the finding — do not adjust the fixture to match the code.`);
     }
   }
 });
@@ -692,8 +705,8 @@ test("document-processing: each requirement's ceiling is the one the model decla
 test("document-processing: the hand arithmetic adds up", () => {
   // A statement about the FIXTURE's own numbers, not about the product: given these charges and
   // these occurrence counts, does the stated total follow? It catches a typo in a sum that the
-  // commit message also carries, and it catches nothing else. The product computing any of this is
-  // the skipped test below.
+  // commit message also carries, and it catches nothing else. The product computing the same
+  // figures is "the product computes a path latency" and its two siblings below.
   const ex = loadExample("document-processing");
   const system = ex.workspace.state.system;
   // Which quantity charges which entity is the MODEL's fact -- a quantity's `target` -- so the two
@@ -720,22 +733,110 @@ test("document-processing: the hand arithmetic adds up", () => {
   }
 });
 
-// --- Inert: what the product cannot do -------------------------------------------------------
+// --- The three formerly-skipped assertions, live --------------------------------------------
 //
-// Skipped rather than absent. The gap belongs in `npm test` output, where the next person to read
-// the suite sees it, and not only in a commit message they will never open. Each reason names the
-// missing mechanism, so the evaluator wave can delete the skip and keep the assertion.
+// Each sat inert with a skip reason naming the missing mechanism: no query aggregated a quantity,
+// and `$defs.result` carried no field for a magnitude. The `kind: quantity` query form is that
+// mechanism — aggregation derived from the dimension's scope, the figure on `result.magnitude`
+// with its dimension — so the skips are deleted and the assertions kept, against the fixture's
+// hand-derived figures. A disagreement between the two is a FINDING about one side, never
+// something to resolve by editing the other.
 
-test("the product computes a path latency", { skip: "no query aggregates a quantity along an execution, and $defs.result carries no field for a magnitude -- expected-results.yaml carries the number by hand" }, () => {
-  assert.fail("unreachable while skipped");
+/** The hand-derived oracle entry behind a figure, fetched loudly. */
+const expectationOf = (ex: LoadedExample, id: string): QuantitativeExpectation => {
+  const e = ex.fixture.quantitativeExpectations.find((x) => x.id === id);
+  assert.ok(e !== undefined, `${ex.id}: no quantitative expectation '${id}'`);
+  return e;
+};
+
+test("the product computes a path latency", () => {
+  const ex = loadExample("document-processing");
+  const maxOracle = expectationOf(ex, "max-publishing-latency");
+  const freeOracle = expectationOf(ex, "retry-free-latency");
+
+  // The maximum, selected the way the question is asked: executions publishing on the last
+  // permitted retry. 2,750 ms can only arise from four remediation passes charged per VISIT, so
+  // the magnitude pins the occurrence accounting, not just a sum.
+  const max = ex.workspace.query({
+    kind: "quantity", quantifier: "exists",
+    quantity: {
+      metric: "latency",
+      target: { "document-lifecycle.state": "published", "document-lifecycle.retry_count": 3 },
+    },
+  });
+  assert.equal(max.outcome, "holds");
+  assert.equal(max.coverage.kind, "exhaustive");
+  assert.deepEqual(max.magnitude,
+    { value: maxOracle.expected, dimension: "duration", unit: DIMENSIONS.duration.base },
+    "the magnitude must carry the figure AND its dimension");
+  assert.equal(max.evidence?.role, "witness");
+
+  // The retry-free execution, inside the declared ceiling — what makes the counterexample above
+  // informative: the ceiling is broken by the retry policy, not by a hopelessly slow pipeline.
+  const free = ex.workspace.query({
+    kind: "quantity", quantifier: "exists",
+    quantity: {
+      metric: "latency",
+      target: { "document-lifecycle.state": "published", "document-lifecycle.retry_count": 0 },
+    },
+  });
+  assert.equal(free.outcome, "holds");
+  assert.equal(free.magnitude?.value, freeOracle.expected);
+  assert.equal(free.magnitude?.dimension, "duration");
+  const latencyReq = ex.fixture.requirements.find((r) => r.decidedBy === maxOracle.id);
+  assert.ok(latencyReq !== undefined && latencyReq.limit !== null);
+  assert.ok(freeOracle.expected <= latencyReq.limit,
+    "the retry-free execution must sit inside the declared ceiling, or the example's lesson is gone");
+  const last = free.evidence?.steps.at(-1);
+  assert.equal(last?.to.control.get("document-lifecycle"), "published",
+    "the witness must END at the selected configuration, or the figure is about something else");
 });
 
-test("the product computes memory(c) and a peak over reachable configurations", { skip: "nothing in src/ implements memory(c) = resident + active, nor the max over reachable configurations" }, () => {
-  assert.fail("unreachable while skipped");
+test("the product computes memory(c) and a peak over reachable configurations", () => {
+  const ex = loadExample("document-processing");
+  const oracle = expectationOf(ex, "peak-memory");
+  const res = ex.workspace.query({
+    kind: "quantity", quantifier: "exists", quantity: { metric: "peak_memory" },
+  });
+  assert.equal(res.outcome, "holds");
+  assert.equal(res.coverage.kind, "exhaustive");
+  // memory(c) = resident + active, and the peak is their sum — both summands read from the
+  // fixture's own declarations rather than re-stated here.
+  const resident = [...oracle.residentMb.values()].reduce((a, b) => a + b, 0);
+  const active = [...oracle.whenChargedMb.values()].reduce((a, b) => a + b, 0);
+  assert.deepEqual(res.magnitude,
+    { value: resident + active, dimension: "memory", unit: DIMENSIONS.memory.base });
+  assert.equal(res.magnitude?.value, oracle.expected);
+  assert.equal(res.evidence?.steps.at(-1)?.to.control.get("document-lifecycle"), "remediating",
+    "the witness is the configuration where the when-charged quantity is active");
 });
 
-test("the product decides a declared requirement against its model: ceiling", { skip: "a model: quantity is a declared total and nothing compares a computed total against one; both quantitative requirements rest at pending-evaluator" }, () => {
-  assert.fail("unreachable while skipped");
+test("the product decides a declared requirement against its model: ceiling", () => {
+  const ex = loadExample("document-processing");
+  const decided = ex.fixture.requirements.filter((r) => r.decidedBy !== null);
+  assert.ok(decided.length > 0, "the example must carry a quantitative requirement");
+
+  for (const req of decided) {
+    const oracle = expectationOf(ex, req.decidedBy ?? "");
+    assert.ok(req.declaredAs !== null, `${req.id}: must name the model: quantity carrying its ceiling`);
+    const res = ex.workspace.query({
+      kind: "quantity", quantifier: "forall",
+      quantity: {
+        metric: oracle.metric === "memory" ? "peak_memory" : "latency",
+        within: req.declaredAs,
+      },
+    });
+    assert.equal(res.outcome, req.status === "violated" ? "refuted" : "holds",
+      `${req.id}: the fixture records '${req.status}'; the product decides '${res.outcome}'`);
+    assert.equal(res.magnitude?.value, oracle.expected,
+      `${req.id}: the product computes ${String(res.magnitude?.value)}; the hand-derived oracle ` +
+      `says ${oracle.expected}. The disagreement is the finding — do not adjust the fixture.`);
+    if (res.outcome === "refuted") {
+      assert.equal(res.evidence?.role, "counterexample",
+        `${req.id}: a violated ceiling must carry the execution that breaks it`);
+      assert.ok((res.evidence?.steps.length ?? 0) > 0);
+    }
+  }
 });
 
 test("worker-queue: every non-free lease state is claimed by exactly one worker entity", () => {
@@ -826,14 +927,15 @@ test("EX-I3: the coverage model reports the gaps rather than omitting them", () 
     }
   }
 
-  // `performance` is the row to watch, and it stays unavailable on purpose. Document Processing
-  // declares the quantities, declares their accounting and states both numbers -- and MAGE still
-  // decides neither requirement, because no query aggregates a quantity along an execution and no
-  // result field could carry the magnitude. The three neighbouring rows report what IS exercised,
-  // so the matrix distinguishes "represented and validated" from "evaluated" instead of blurring
-  // them into one green cell.
-  assert.equal(report.status.get("performance"), "unavailable",
-    "performance must stay unavailable while no query aggregates a quantity along an execution");
+  // `performance` was the row to watch, and it reported `unavailable` for as long as no query
+  // could aggregate a quantity and no result field could carry the magnitude -- the matrix
+  // distinguished "represented and validated" from "evaluated" instead of blurring them into one
+  // green cell. The `kind: quantity` query form closed exactly that gap: the schema probe finds
+  // `magnitude` on the result shape, and the fixture's quantitative requirements carry verdicts
+  // the product reaches. EX-I3 -- the example set collectively demonstrating quantitative
+  // performance reasoning -- is satisfied for the first time, and this assertion is the flip.
+  assert.equal(report.status.get("performance"), "exercised",
+    "performance regressed to unavailable/unexercised -- EX-I3 was satisfied and must stay so");
   for (const id of ["quantitative-annotations", "declared-accounting",
     "path-quantity-accounting", "configuration-memory-accounting"]) {
     assert.equal(report.status.get(id), "exercised",

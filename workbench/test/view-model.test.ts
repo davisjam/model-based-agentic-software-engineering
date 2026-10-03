@@ -95,7 +95,7 @@ test("guards and effects are legible", () => {
 const result = (over: Partial<QueryResult>): QueryResult => ({
   outcome: "refuted",
   coverage: { kind: "exhaustive", statesExplored: 37, reason: null },
-  evidence: null, refusal: null, interpretedAs: null, compilation: [],
+  evidence: null, refusal: null, interpretedAs: null, compilation: [], magnitude: null,
   systemHash: systemHash(sys()), ...over,
 });
 

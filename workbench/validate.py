@@ -1012,6 +1012,33 @@ def check_executes_in_state(doc: dict, f: Findings) -> None:
                   f"quantity charging it reaches no analysis.")
 
 
+def check_query_quantities(doc: dict, f: Findings) -> None:
+    """V39 -- a quantity query's ceiling resolves to a declared quantity.
+
+    The dangling-reference class V27 handles for a quantity's own references, applied to the one
+    reference a QUERY now makes into the quantities map: `quantity.within` names the model:-targeted
+    total the query decides against. A saved query naming a deleted ceiling re-runs on every model
+    change and refuses every time; this says why at authoring time. Resolution is a lookup against
+    the declared map, the machinery every V27 reference uses. What the resolved quantity must BE
+    (model:-targeted, the metric's dimension) is the engine's refusal, because it depends on the
+    metric asked.
+    """
+    quantities = doc.get("quantities") or {}
+    for qid, q in (doc.get("queries") or {}).items():
+        if not isinstance(q, dict) or q.get("kind") != "quantity":
+            continue
+        inner = q.get("quantity")
+        if not isinstance(inner, dict):
+            continue
+        within = inner.get("within")
+        if not isinstance(within, str) or not within:
+            continue
+        if within not in quantities:
+            f.add("V39", f"queries.{qid}.quantity.within",
+                  f"names quantity '{within}', which this system does not declare. A ceiling is a "
+                  f"declared 'model:'-targeted quantity; declare it, or name one that exists.")
+
+
 def check_residency(doc: dict, f: Findings, qid: str, spec: dict, dimension: str) -> None:
     """V37 -- a configuration-scoped quantity declares exactly one of `residency:` or `when:`.
 
@@ -1119,6 +1146,9 @@ def check_quantities(doc: dict, f: Findings) -> None:
 
     # V38 -- the join the basis charges through, before the quantities that ride on it.
     check_executes_in_state(doc, f)
+
+    # V39 -- the one reference a saved QUERY makes into the quantities map.
+    check_query_quantities(doc, f)
 
     for qid, spec in (doc.get("quantities") or {}).items():
         spec = spec if isinstance(spec, dict) else {}
@@ -1478,7 +1508,7 @@ def check_queries(doc: dict, f: Findings, verbose: bool = True) -> None:
     for qid, q in (doc.get("queries") or {}).items():
         if q.get("kind") != "graph":
             if verbose and "expect" in q:
-                print(f"  [skip] {qid}: behavioral queries are evaluated by the workbench engine, not here")
+                print(f"  [skip] {qid}: behavioral and quantity queries are evaluated by the workbench engine, not here")
             continue
         res = run_graph_query(doc, q)
         outcome, expect = res["outcome"], q.get("expect")
@@ -1635,6 +1665,11 @@ def self_test() -> int:
         ("V37", {**base, "entities": {"cache": {}},
                  "quantities": {"q": {"target": "entity:cache", "dimension": "memory",
                                       "value": "128 MB"}}}),
+        # V39: a quantity query whose ceiling names no declared quantity. The query re-runs on every
+        # model change and refuses every time; the rule says why at authoring time.
+        ("V39", {**base, "queries": {"under-ceiling": {
+            "kind": "quantity", "quantifier": "forall",
+            "quantity": {"metric": "latency", "within": "ghost"}}}}),
     ]
     failures = 0
     for expect, doc in cases:

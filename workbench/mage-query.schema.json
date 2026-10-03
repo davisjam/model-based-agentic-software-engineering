@@ -17,7 +17,7 @@
           "description": "Human-facing question. Saved queries re-run on model change.",
           "type": "string"
         },
-        "kind": { "enum": ["behavior", "graph"] },
+        "kind": { "enum": ["behavior", "graph", "quantity"] },
         "expect": {
           "description": "Expected outcome, for a saved query used as a CI gate. Present means the query is an ASSERTION: a run whose outcome differs is a build failure. Absent means the query is exploratory and any outcome is reported without judgement. Values are holds/refuted/... and never true/false -- a bare boolean here is a YAML-coercion bug (V25).",
           "enum": ["holds", "refuted", "inconclusive", "unlicensed"]
@@ -27,7 +27,8 @@
           "enum": ["exists", "forall"]
         },
         "behavior": { "$ref": "#/$defs/behaviorQuery" },
-        "graph": { "$ref": "#/$defs/graphQuery" }
+        "graph": { "$ref": "#/$defs/graphQuery" },
+        "quantity": { "$ref": "#/$defs/quantityQuery" }
       },
       "allOf": [
         {
@@ -37,6 +38,10 @@
         {
           "if": { "properties": { "kind": { "const": "graph" } } },
           "then": { "required": ["graph"] }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "quantity" } } },
+          "then": { "required": ["quantity"] }
         }
       ]
     },
@@ -117,6 +122,32 @@
           }
         }
       ]
+    },
+
+    "quantityQuery": {
+      "description": "A quantitative question. There is deliberately NO aggregation parameter: the aggregation is DERIVED from the metric's dimension scope (SEMANTICS.md section 8) -- latency and cost are worst-case sums along executions, peak_memory is the maximum of memory(c) over reachable configurations -- so the max|min|named selector the section 29 refinement rejected cannot reappear here. `target` selects WHICH executions (those reaching it); `within` names the declared model:-targeted ceiling to decide against. A target on a configuration-scoped metric is a category error, refused by name. With `within` the quantifier must be forall (a ceiling claim is universal); without it, exists (a measurement is established by the witness that attains it). The computed figure travels on result.magnitude, dimension attached.",
+      "type": "object",
+      "required": ["metric"],
+      "additionalProperties": false,
+      "properties": {
+        "metric": {
+          "description": "The analysis, not a dimension: latency and cost account executions under the declared basis (V35); peak_memory is memory(c)'s reachable maximum. Kept in parity with REQUIREMENT_METRICS in src/quant/requirement.ts by test/quant-query.test.ts.",
+          "enum": ["latency", "cost", "peak_memory"]
+        },
+        "target": {
+          "description": "Execution-scoped metrics only: measure the executions REACHING a configuration satisfying this predicate. On a configuration-scoped metric this is a category error, refused rather than computed.",
+          "$ref": "#/$defs/predicate"
+        },
+        "within": {
+          "description": "The model:-targeted quantity declaring the ceiling to decide against. A name that resolves to no declared quantity is a V39 finding at authoring time and a refusal at ask time.",
+          "$ref": "#/$defs/id"
+        },
+        "limit": {
+          "description": "Max configurations to explore. Exceeding it yields coverage.kind=bounded, and therefore result=inconclusive (V22).",
+          "type": "integer",
+          "minimum": 1
+        }
+      }
     },
 
     "graphQuery": {
@@ -212,6 +243,20 @@
           ]
         },
         "evidence": { "$ref": "#/$defs/evidence" },
+        "magnitude": {
+          "description": "The figure a quantity query computed -- a worst-case total or a peak -- in the BASE unit of its dimension. The dimension travels WITH the number for the reason the RDF projection keeps it: a bare number lets a consumer add milliseconds to megabytes, which V30 forbids at the validation layer. Null/absent on non-quantitative results, and when a maximum is unbounded (the lasso evidence is the answer then).",
+          "type": "object",
+          "required": ["value", "dimension"],
+          "additionalProperties": false,
+          "properties": {
+            "value": { "type": "number" },
+            "dimension": { "enum": ["duration", "memory", "cost", "ratio", "count"] },
+            "unit": {
+              "description": "The dimension's base unit; null when the dimension is dimensionless.",
+              "type": ["string", "null"]
+            }
+          }
+        },
         "refusal": {
           "description": "Why the model does not license the question. Required when outcome=unlicensed.",
           "type": "string"

@@ -379,13 +379,13 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
 }
 
 // ---------------------------------------------------------------------------------------------
-// V27–V31, V35–V37 — quantities.
+// V27–V31, V35–V39 — quantities.
 //
-// Eight subjects, one each: the references resolve (V27), the dimension and the literals are
+// Ten subjects, one each: the references resolve (V27), the dimension and the literals are
 // readable (V28), the magnitudes are in bounds (V29), the dimensions agree (V30), the reserved
 // `metrics` namespace is not shadowed (V31), the accounting basis is declared (V35), each quantity
-// contributes through that basis (V36), and a configuration-scoped quantity declares when it is
-// charged (V37).
+// contributes through that basis (V36), a configuration-scoped quantity declares when it is
+// charged (V37), `executes_in_state` resolves (V38), and a quantity query's ceiling resolves (V39).
 // ---------------------------------------------------------------------------------------------
 
 const listUnits = (d: Dimension): string => Object.keys(DIMENSIONS[d].units).join(", ");
@@ -739,7 +739,36 @@ function checkExecutesInState(c: Collector, s: CanonicalSystem): void {
 }
 
 /**
- * V27–V31 and V35–V38 for one system.
+ * V39 — a quantity query's ceiling resolves to a declared quantity.
+ *
+ * The dangling-reference class V27 handles for a quantity's own references, applied to the one
+ * reference a QUERY now makes into the quantity map: `quantity.within` names the `model:`-targeted
+ * total the query decides against. A saved query naming a deleted ceiling is not invalid, it is
+ * WRONG — it re-runs on every model change and refuses every time, and nothing says why at
+ * authoring time unless a rule does. Resolution is a lookup against the declared map, the same
+ * machinery every V27 reference uses; what the resolved quantity must BE (model:-targeted, same
+ * dimension as the metric) is the engine's refusal, because it depends on the metric asked.
+ */
+function checkQueryQuantities(c: Collector, s: CanonicalSystem): void {
+  for (const [id, saved] of s.queries) {
+    const raw = saved.raw;
+    if (typeof raw !== "object" || raw === null || Array.isArray(raw)) continue;
+    const q = raw as Record<string, unknown>;
+    if (q["kind"] !== "quantity") continue;
+    const inner = q["quantity"];
+    if (typeof inner !== "object" || inner === null || Array.isArray(inner)) continue;
+    const within = (inner as Record<string, unknown>)["within"];
+    if (typeof within !== "string" || within === "") continue;
+    if (!s.quantities.has(within)) {
+      c.add("V39", `queries.${id}.quantity.within`,
+        `names quantity '${within}', which this system does not declare. A ceiling is a declared ` +
+        `'model:'-targeted quantity; declare it, or name one that exists.`);
+    }
+  }
+}
+
+/**
+ * V27–V31 and V35–V39 for one system.
  *
  * Each quantity is checked in stages and a stage DECLINES once an earlier one spoke about the same
  * object — V26's discipline, applied inside this family. A quantity whose dimension is unreadable
@@ -779,6 +808,9 @@ export function checkQuantities(s: CanonicalSystem): readonly Finding[] {
 
   // V38 — the join the basis charges through, before the quantities that ride on it.
   checkExecutesInState(c, s);
+
+  // V39 — the one reference a saved QUERY makes into the quantity map.
+  checkQueryQuantities(c, s);
 
   for (const q of s.quantities.values()) {
     const where = `quantities.${q.id}`;
