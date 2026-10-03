@@ -293,7 +293,15 @@ test("UX-I7: every model stays independently inspectable, and every relation nam
   assert.deepEqual(new Set(models?.rows.map((r) => r.id)).size, models?.rows.length,
     "two rows claiming one model would make it inspectable as two objects");
   for (const r of m.sections.find((s) => s.id === "relations")?.rows ?? []) {
-    assert.match(r.detail, /\bin model \S/, `relation ${r.id} must name the model that asserts it`);
+    // The FIELD is the claim; the sentence is the rendering of it. Asserting both, with the
+    // rendering derived from the field rather than from a pattern typed here, so a row cannot
+    // satisfy the structural half while displaying a different model to a reader.
+    assert.ok(r.assertedBy !== null && r.assertedBy !== "",
+      `relation ${r.id} names no asserting model, so the union across models reads as one graph`);
+    assert.ok(sys().models.has(r.assertedBy),
+      `relation ${r.id} is asserted by '${r.assertedBy}', which is not a model of this system`);
+    assert.ok(r.detail.includes(`in model ${r.assertedBy}`),
+      `relation ${r.id} states its asserting model in the structure but not where a reader sees it: "${r.detail}"`);
   }
   // The forward guard: no drawable subject names more than one model. The day Linked mode lands,
   // the check below fires and the fix is to make each pane independently inspectable.
@@ -314,7 +322,7 @@ test("UX-I7 fires on a merged subject and on a relation that hides its model —
     ...m,
     sections: m.sections.map((s) => s.id !== "relations"
       ? s
-      : { ...s, rows: s.rows.map((r) => ({ ...r, detail: "permitted invocation" })) }),
+      : { ...s, rows: s.rows.map((r) => ({ ...r, assertedBy: null, detail: "permitted invocation" })) }),
   };
   const dropped = checkModelPlurality(flattened);
   assert.equal(dropped.length, sys().relations.length,

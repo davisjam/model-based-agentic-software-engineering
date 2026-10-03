@@ -116,8 +116,12 @@ export function checkModelPlurality(vm: ViewModel): readonly UxViolation[] {
     seen.add(row.id);
   }
 
+  // READ AS STRUCTURE, not as prose. This used to match `/\bin model \S/` against the rendered
+  // detail sentence, which made the invariant a grep over presentation: a copy edit to the phrasing
+  // failed UX-I7, and a row that named its model in other words satisfied nothing. `Row.assertedBy`
+  // carries the asserting model as a field, so the check now reads the claim the invariant is about.
   for (const relation of vm.sections.find((s) => s.id === "relations")?.rows ?? []) {
-    if (!/\bin model \S/.test(relation.detail)) {
+    if (relation.assertedBy === null || relation.assertedBy.trim() === "") {
       out.push({
         invariant: "UX-I7", subject: relation.id,
         problem: `relation '${relation.id}' does not name the model that asserts it, so the union `
