@@ -97,7 +97,25 @@ test("every .html at the served root has a registered smoke gate", async () => {
 async function smokePage(pageDef, readyWhen) {
   const t0 = Date.now();
   const { page, diagnostics } = await openServedPage(browser, pageDef.path, ORIGIN);
-  await page.waitForFunction(readyWhen, { timeout: 30_000 });
+
+  // Readiness raced against the page's own crash. A module that throws at top level never sets
+  // its ready mark, so waiting on the mark alone turns "broken bundle" into a 30s timeout whose
+  // message names the wrong thing (verified by sabotaging dist/learn.js: red, but slow and mute).
+  // The pageerror recorder already holds the real story; poll it and lose the race on purpose.
+  let settled = false;
+  const ready = page.waitForFunction(readyWhen, { timeout: 30_000 })
+    .finally(() => { settled = true; });
+  const crashed = (async () => {
+    while (!settled && diagnostics.pageErrors.length === 0) {
+      await new Promise((r) => setTimeout(r, 100));
+    }
+    return diagnostics.pageErrors.length > 0;
+  })();
+  const sawCrash = await Promise.race([ready.then(() => false), crashed]);
+  ready.catch(() => { /* raced out by the crash branch — reported just below */ });
+  assert.ok(!sawCrash,
+    `${pageDef.path} threw during evaluation and never settled: ${diagnostics.pageErrors.join("; ")}`);
+  await ready;
 
   // (a) the closed fallback tuple, against the whole rendered text.
   const text = await page.evaluate(() => document.body.innerText);
