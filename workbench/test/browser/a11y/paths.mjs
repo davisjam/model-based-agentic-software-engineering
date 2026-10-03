@@ -59,8 +59,57 @@ const DEPENDS = {
   "answer-present": ["selection:relation"],
   "selection:element": ["loaded"],
   "selection:relation": ["loaded"],
+  /**
+   * NEW IN WAVE 3, and the reason it can exist is a row rather than a harness trick.
+   *
+   * This precondition had no routine for a wave because the page had no act that produced a model
+   * selection — the finding `WIRED_WITHOUT_A_WALKED_PATH` carried. The contents tree's subject row
+   * produces one now, so the routine is the ordinary tree-selection one against a different
+   * encoding, and `inspector.delete-model` walks like every other inspector action.
+   */
+  "selection:model": ["loaded"],
+  "selection:machine": ["loaded"],
   "hypothesis-open": ["loaded"],
 };
+
+/**
+ * The contents-tree row whose selection carries one of these encodings, as a selector.
+ *
+ * Read off `data-select`, which `treeRow` stamps from the same value the click handler sends. The
+ * two earlier spellings of this lookup were the row's INDEX (`#model-contents button`, the first
+ * one) and its rendered prose (the edge row was the one containing "→"), and wave 3 broke the first
+ * of those by adding a row above it — which is the positional-handle failure arriving on schedule.
+ */
+const treeRowWithSelection = (page, prefixes) => page.evaluate((wanted) => {
+  const path = (el) => {
+    const parts = [];
+    for (let n = el; n !== null && n !== document.documentElement; n = n.parentElement) {
+      const parent = n.parentElement;
+      if (parent === null) break;
+      parts.unshift(`${n.tagName.toLowerCase()}:nth-child(${[...parent.children].indexOf(n) + 1})`);
+    }
+    return parts.join(" > ");
+  };
+  const found = [...document.querySelectorAll("#model-contents button[data-select]")]
+    .find((b) => wanted.some((p) => (b.dataset.select ?? "").startsWith(p)));
+  return found === undefined ? null : { selector: path(found), select: found.dataset.select };
+}, prefixes);
+
+/** Open the collapsed structured reading, activate the row carrying one of `prefixes`, assert it. */
+async function selectInTree(page, prefixes, what) {
+  await activateByKeyboard(page, "model-reading-summary", { settleMs: 200 });
+  const row = await treeRowWithSelection(page, prefixes);
+  assert.ok(row !== null,
+    `the contents tree renders no row whose data-select starts with one of `
+    + `${JSON.stringify(prefixes)}, so no keyboard route selects ${what}`);
+  await reachBySelector(page, row.selector);
+  await page.keyboard.press("Enter");
+  await settle(400);
+  const selection = await page.evaluate(() => window.mage.view.selection());
+  assert.ok(selection.some((v) => prefixes.some((p) => v.startsWith(p))),
+    `Enter on the ${what} row (data-select="${row.select}") left the selection at `
+    + `${JSON.stringify(selection)}`);
+}
 
 /** A `<summary>`'s own selector, so a disclosure with no id is still reachable by Tab. */
 const cssPathOfSummary = (page, detailsPath) => page.evaluate((p) => {
@@ -274,44 +323,40 @@ const ROUTINE = {
    * is opened first, by keyboard.
    */
   "selection:element": async (page) => {
-    await activateByKeyboard(page, "model-reading-summary", { settleMs: 200 });
-    await reachBySelector(page, "#model-contents button");
-    await page.keyboard.press("Enter");
-    await settle(400);
-    const selection = await page.evaluate(() => window.mage.view.selection());
-    assert.ok(selection.some((v) => v.startsWith("entity:") || v.startsWith("state:")),
-      `Enter on the first contents-tree row selected ${JSON.stringify(selection)}, not an element`);
+    await selectInTree(page, ["entity:", "state:"], "an element");
+  },
+
+  /** A relation is selected, through the tree's edge rows. */
+  "selection:relation": async (page) => {
+    await selectInTree(page, ["rel:"], "a relation");
   },
 
   /**
-   * A relation is selected. The tree's edge rows carry the relation encoding; the row is found by
-   * its own rendered label rather than by an index, so a re-ordered tree does not silently drive a
-   * different row.
+   * A MODEL is selected, through the row wave 3 added — the one act that unblocked SH-I8.
+   *
+   * Nothing here special-cases the model: the subject row is a tree row like any other, which is
+   * the whole point of draining the path-less set with a row instead of an exception.
    */
-  "selection:relation": async (page) => {
-    await activateByKeyboard(page, "model-reading-summary", { settleMs: 200 });
-    const row = await page.evaluate(() => {
-      const path = (el) => {
-        const parts = [];
-        for (let n = el; n !== null && n !== document.documentElement; n = n.parentElement) {
-          const parent = n.parentElement;
-          if (parent === null) break;
-          parts.unshift(`${n.tagName.toLowerCase()}:nth-child(${[...parent.children].indexOf(n) + 1})`);
-        }
-        return parts.join(" > ");
-      };
-      const found = [...document.querySelectorAll("#model-contents button")]
-        .find((b) => (b.textContent ?? "").includes("→"));
-      return found === undefined ? null : path(found);
+  "selection:model": async (page) => {
+    await selectInTree(page, ["model:"], "a model");
+  },
+
+  /**
+   * A MACHINE is selected. The subject row carries whichever kind is drawn, so this needs the
+   * workspace pointed at a machine first — through `#diagram-subject`, by keyboard.
+   */
+  "selection:machine": async (page) => {
+    const machine = await page.evaluate(() => {
+      const select = document.getElementById("diagram-subject");
+      const option = [...(select?.options ?? [])].find((o) => o.value.startsWith("machine:"));
+      return option === undefined ? null : option.value;
     });
-    assert.ok(row !== null,
-      "the contents tree renders no edge row, so no keyboard route selects a relation");
-    await reachBySelector(page, row);
-    await page.keyboard.press("Enter");
+    assert.ok(machine !== null,
+      "#diagram-subject offers no machine, so no keyboard route draws one and the subject row "
+      + "cannot carry a machine selection");
+    await chooseByKeyboard(page, "diagram-subject", machine);
     await settle(400);
-    const selection = await page.evaluate(() => window.mage.view.selection());
-    assert.ok(selection.some((v) => v.startsWith("rel:")),
-      `Enter on an edge row selected ${JSON.stringify(selection)}, not a relation`);
+    await selectInTree(page, ["machine:"], "a machine");
   },
 
   /**

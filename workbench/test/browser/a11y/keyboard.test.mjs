@@ -771,6 +771,15 @@ describe("UX-I1: the configuration space is walkable by a person, not only by an
    * exhaustively in the node tier over both arms, where it costs no browser.
    */
   it("Tab reaches Explore configuration space, and Enter answers or says why it cannot", async () => {
+    // ONE DISCLOSURE FIRST, since wave 3 made the System Browser's exhaustive content on demand
+    // (correction 3). This drive went red on the change with "The walk ended on summary", which is
+    // the gate reporting the truth: the button was behind a closed `<details>` and a keyboard could
+    // not arrive at it without opening that. The step is added rather than the disclosure removed —
+    // the declared path in `capabilities.ts` gained the same step, and the generated drive in
+    // `paths.test.mjs` walks it. This test's remaining job is the stronger one: that Enter on the
+    // button produces an HONEST readout, which no generated arrival check asserts.
+    await reachByTab(page, "system-browser-detail-summary");
+    await page.keyboard.press("Enter");
     const reachedAt = await reachByTab(page, "explore-space-go");
     assert.ok(reachedAt > 0);
 

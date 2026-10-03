@@ -172,10 +172,14 @@ export interface BoundAffordance {
    * two ways into the workbench in the header. Everything else names at least one step, because
    * every other region is `hidden`, disabled or collapsed until something is true.
    *
-   * Optional during the §2.4 migration. A wired human affordance with no path must appear in
-   * `WIRED_WITHOUT_A_WALKED_PATH` with its reason; the final shell wave removes the `?`.
+   * REQUIRED since wave 3, which is SH-I8 flipped hard. The field landed optional in wave 1d with
+   * an exactly-enumerated path-less set, because the one member of that set was a control no human
+   * could reach and declaring its obvious-but-unwalkable path would have landed a blocking gate
+   * red. Wave 3 gave a model a selectable row in the contents tree, the set emptied, and the `?`
+   * came off: a wired human affordance that declares no route now fails to COMPILE rather than
+   * failing a check, which is the rung above the one the migration could reach.
    */
-  readonly path?: readonly NavStep[];
+  readonly path: readonly NavStep[];
 }
 
 export interface AbsentAffordance {
@@ -254,33 +258,25 @@ export const CHROME_HOSTS: readonly { readonly selector: string; readonly why: s
 ];
 
 /**
- * Wired human affordance sites that declare no walked path, each with the reason and the wave that
- * drains it. EXACTLY enumerated, and a test asserts the registry's path-less set equals this one.
+ * Wired human affordance sites that declare no walked path. **EMPTY, and it cannot be otherwise.**
  *
- * §2.4's migration shape, and the house pattern behind it: an accurate violation over a comfortable
- * number. The alternative was to declare a path for the one member below and let the browser drive
- * fail, which lands a blocking gate red — a thing this repo has already paid for once.
+ * §2.4's migration list, drained. It held exactly one member for one wave —
+ * `inspector.delete-model`, whose precondition is a model selection that no human control produced
+ * — and wave 3 drained it by giving the contents tree a selectable subject row rather than by
+ * re-siting the button. The list's whole value was that it was an accurate violation instead of a
+ * comfortable number, and a drained list is the outcome that was supposed to prove.
  *
- * One member. It is not "nobody wrote the path down": the path is obvious and unwalkable, which is
- * a sharper finding than a missing declaration.
+ * **Why the constant survives its last member.** `BoundAffordance.path` is now required, so a
+ * path-less wired site cannot be written at all and no member can be legitimately added — the
+ * compiler holds what this list was tracking. What the list still does is arithmetic and
+ * rejection: rung 3 in `test/browser/a11y/paths.test.mjs` asserts `walked + excused = every wired
+ * site`, so the denominator needs a term even when the term is zero; and `checkNavPaths`'s
+ * reverse direction reports any member as a violation, which is how an excuse smuggled back in
+ * fails rather than quietly shrinking the drive's coverage.
  */
 export const WIRED_WITHOUT_A_WALKED_PATH: readonly {
   readonly at: string; readonly why: string; readonly drainedBy: string;
-}[] = [
-  {
-    at: "inspector.delete-model",
-    why: "its precondition is `selection:model`, and NO human control in the page produces one. The "
-      + "contents tree is the only surface that writes `ViewState.selection`, and its row encoders "
-      + "(`nodeSelection` / `edgeSelection` in `ui/shell/workspace.ts`) return an `entity:`, a "
-      + "`state:` or a `rel:` value and null for anything else — there is no model row. An agent "
-      + "reaches a model selection through `view.select('model:x')`; a person cannot reach it at "
-      + "all, so the button is enabled only for a state no keyboard can produce. The capability "
-      + "`delete-model` is NOT affected: its second site, the pinned `edit-section.delete-model` "
-      + "fieldset, declares a walked path, so UX-I1 stays honest at zero.",
-    drainedBy: "the wave that gives a model a selectable row — the contents tree's model heading, or "
-      + "the System Browser's model table in wave 3",
-  },
-];
+}[] = [];
 
 /** A machine affordance: a callable on `window.mage`, which has no element to bind. */
 const wired = (at: string): Affordance => ({ at, status: "wired" });
@@ -343,6 +339,20 @@ const advanced = (
 const readout = (
   at: string, id: string, surface: NavSurface, requires: NavPrecondition = "loaded",
 ): BoundAffordance => control(at, id, [step(surface, "read", requires)]);
+
+/**
+ * The route to anything inside the System Browser, which wave 3 put behind one disclosure.
+ *
+ * Correction 3's advanced surface, built: the region's heading stays visible and its exhaustive
+ * content sits in a `<details>`, so every site in there gains a `disclose` step ahead of whatever
+ * it was. §10 promised the step would be a ⋯ menu hop; it is a disclosure, which is the same act in
+ * the mechanism SH-I2 already governs — and the promise that mattered was that the step would be
+ * PREPENDED rather than the controls relocated, which is what happened.
+ */
+const inBrowser = (
+  at: string, id: string, via: NavStep["via"],
+): BoundAffordance =>
+  control(at, id, [step("system-browser", "disclose", "loaded"), step("system-browser", via)]);
 
 /**
  * The registry. Reflects what is actually built as of 261002.
@@ -411,7 +421,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "inspect",
     summary: "Read every modelled fact: entities, relations, machines, purpose, omissions.",
     service: "workspace.state",
-    human: [readout("model-section.tables", "sections", "system-browser")],
+    human: [inBrowser("model-section.tables", "sections", "read")],
     machine: [wired("window.mage.inspect")],
     producesEvidence: false,
   },
@@ -575,12 +585,14 @@ export const CAPABILITIES: readonly Capability[] = [
     // have left the registry pointing at a region nobody can navigate to, which is the unverifiable
     // declaration `DESIGN-shell-261002.md` §2.1 refuses.
     //
-    // **Sited where the design rules, not where the menu is.** §10 assigns this capability the path
-    // `⋯ menu → System Browser → Explore space` in wave 3. Wave 3 is undispatched and the ⋯ menu does
-    // not exist (`palette` is a `planned` surface), so the control lands at the ruled DESTINATION
-    // without the hop: the System Browser is a built surface, always present once a system is loaded,
-    // and Tab reaches the button today. Wave 3 then prepends a menu step to the declared navigation
-    // path rather than relocating the control.
+    // **Sited where the design rules, and wave 3 added the hop it promised.** §10 assigns this
+    // capability the path `⋯ menu → System Browser → Explore space`. Wave 2a landed the control at
+    // the ruled DESTINATION with no hop, because the ⋯ menu did not exist; wave 3 put the Browser's
+    // exhaustive content behind one disclosure and PREPENDED that step to the declared path, which
+    // is the promise kept in the mechanism the shell has rather than in the one §10 imagined. The
+    // control never moved. That is why siting it at the destination was worth doing a wave early:
+    // a control parked somewhere convenient would have had to be relocated, and a relocation is
+    // what breaks a declared path.
     //
     // The alternative, when the row was opened, was to leave it out and keep the zero. A count that
     // reads zero because something is missing from the census is worse than one that reads one: the
@@ -588,8 +600,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // accurate violation over a comfortable number — `create-model`, `delete-model` and `add-note`
     // were declared before they were buildable — and each time the violation named the work that
     // closed it. This is the third closure.
-    human: [control("system-browser.explore", "explore-space-go",
-      [step("system-browser", "activate", "loaded")])],
+    human: [inBrowser("system-browser.explore", "explore-space-go", "activate")],
     machine: [wired("window.mage.analysis.explore")],
     producesEvidence: true,
   },
@@ -741,11 +752,12 @@ export const CAPABILITIES: readonly Capability[] = [
     // model that asserts them, so a relation is a claim rather than a pointer; dropping it as a
     // side effect would shrink the architecture and tell no one.
     human: [
-      // NO `path`, and the only such site in the registry. `WIRED_WITHOUT_A_WALKED_PATH` carries
-      // the reason: the button's precondition is a model selection, and nothing a person can press
-      // produces one. Declaring the obvious path and letting the browser drive fail would land a
-      // blocking gate red; declaring it absent names the work instead.
-      { at: "inspector.delete-model", status: "wired", element: { id: "act-delete-model" } },
+      // WALKED SINCE WAVE 3, and the declaration is now the ordinary one. For a wave this was the
+      // registry's only path-less site: the button's precondition is a model selection and nothing
+      // a person could press produced one. The fix was a row, not a re-siting — the contents tree's
+      // subject row selects the drawn model — so the control stayed where correction 4 put it and
+      // the route it always implied became one a keyboard walks.
+      inspectorAction("inspector.delete-model", "act-delete-model", "selection:model"),
       editSection("edit-section.delete-model", "delete-model-go"),
     ],
     machine: [wired("window.mage.transact")],
@@ -814,11 +826,24 @@ export const CAPABILITIES: readonly Capability[] = [
     // The read-only twin of `add-note`, and governed by the same invariant (A1 / UX-I6). The service
     // returns records and no writer, so inspecting an origin cannot move a hash or a result.
     //
-    // It gets a prominent section rather than a row in the inspector's detail column because the
-    // `prompt` is the field that earns the feature: with an agent-authored model it answers why the
-    // object has this shape, which reading the object cannot. A prompt nobody finds is a prompt
-    // nobody reads.
-    human: [readout("provenance-section.records", "provenance-list", "system-browser")],
+    // ---- THIS COMMENT ARGUED THE POSITION THE AUTHOR REVERSED, and here is the amendment -------
+    //
+    // It used to read: "It gets a prominent section rather than a row in the inspector's detail
+    // column because the `prompt` is the field that earns the feature… A prompt nobody finds is a
+    // prompt nobody reads." Correction 9 reversed that, and `DESIGN-shell-261002.md` §7's ledger
+    // records what it became: "the discoverability concern is answered by PLACEMENT (History one
+    // disclosure from the purpose), not by prominence." Prominence was never the mechanism that
+    // made a prompt findable — a full-page list of every object's origin is the exhaustive page the
+    // shell exists to retire, and a reader looking for ONE object's provenance was being handed
+    // all of them.
+    //
+    // So provenance has two surfaces and they are not rivals. The selected object's inspector
+    // carries its own Provenance block, one disclosure down (wave 1b) — that is where a reader with
+    // a question about an object goes. This site is the whole-system readout, and it belongs with
+    // the other exhaustive readouts in the System Browser, now behind its disclosure. Keeping the
+    // old sentence here while the page did the opposite is precisely the misleading-prose class
+    // §8.3 named: a requirement reversed by a ruling and never amended.
+    human: [inBrowser("provenance-section.records", "provenance-list", "read")],
     machine: [wired("window.mage.provenance")],
     producesEvidence: false,
   },
@@ -1001,7 +1026,7 @@ export function navPaths(
   const seen = new Set<string>();
   const out: { at: string; element: AffordanceElement; path: readonly NavStep[] }[] = [];
   for (const a of registry.flatMap((c) => c.human)) {
-    if (a.status !== "wired" || a.path === undefined) continue;
+    if (a.status !== "wired") continue;
     // One route per SITE, not per capability row. `header.run-all` is an affordance of both `query`
     // and `analyze`; it is one button and walking it twice would inflate rung 3's count.
     if (seen.has(a.at)) continue;
@@ -1029,20 +1054,14 @@ export function checkNavPaths(
   const excused = new Set(WIRED_WITHOUT_A_WALKED_PATH.map((e) => e.at));
   const declared = new Map<string, string>();
 
+  // The "wired and declares no path" branch is GONE, and its absence is the hard flip. It was this
+  // function's first check for one wave; `BoundAffordance.path` is now required, so the state it
+  // reported cannot be written — the compiler rejects it at the declaration instead of this gate
+  // reporting it at the end. A check whose condition the type system has made unreachable is dead
+  // code that reads like defence, which is worse than no check at all.
   for (const c of registry) {
     for (const a of c.human) {
       if (a.status !== "wired") continue;
-      if (a.path === undefined) {
-        if (!excused.has(a.at)) {
-          out.push({
-            invariant: "UX-I1", capability: c.id,
-            problem: `human affordance '${a.at}' is wired and declares no navigation path; under `
-              + "G1 a wired human affordance must declare a route from the default workspace, or be "
-              + "enumerated in WIRED_WITHOUT_A_WALKED_PATH with its reason",
-          });
-        }
-        continue;
-      }
       // Two rows naming one button must agree about how to reach it. They are the same element, so
       // a disagreement is two answers to one question and the drive would walk an arbitrary one.
       const prior = declared.get(a.at);
@@ -1078,22 +1097,13 @@ export function checkNavPaths(
   const wiredSites = new Set(
     registry.flatMap((c) => c.human).filter((a) => a.status === "wired").map((a) => a.at),
   );
-  const pathless = new Set(
-    registry.flatMap((c) => c.human)
-      .filter((a) => a.status === "wired" && a.path === undefined).map((a) => a.at),
-  );
   for (const e of WIRED_WITHOUT_A_WALKED_PATH) {
-    if (!wiredSites.has(e.at)) {
-      out.push({
-        invariant: "UX-I1", capability: "inspect",
-        problem: `WIRED_WITHOUT_A_WALKED_PATH names '${e.at}', which is not a wired human affordance`,
-      });
-    } else if (!pathless.has(e.at)) {
-      out.push({
-        invariant: "UX-I1", capability: "inspect",
-        problem: `WIRED_WITHOUT_A_WALKED_PATH names '${e.at}', which now declares a path — remove the excuse`,
-      });
-    }
+    out.push({
+      invariant: "UX-I1", capability: "inspect",
+      problem: `WIRED_WITHOUT_A_WALKED_PATH names '${e.at}', and the list is drained — every wired `
+        + "human affordance declares a path, so an excuse is an affordance removed from the "
+        + `drive's coverage. ${wiredSites.has(e.at) ? "Delete the entry." : "The site is not even a wired human affordance."}`,
+    });
   }
   return out;
 }

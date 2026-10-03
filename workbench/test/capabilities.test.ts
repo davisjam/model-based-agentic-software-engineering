@@ -353,8 +353,18 @@ test("a renamed control is caught — negative control", () => {
   // this the test above passes for a registry that declares nothing.
   const html = readFileSync("index.html", "utf8");
   const present = new Set([...html.matchAll(/id="([a-zA-Z0-9-]+)"/g)].map((m) => m[1] as string));
+  // The fixture carries a `path`, which it did not have to before wave 3 flipped SH-I8 hard. That
+  // is the flip's first consequence and it is the one worth having: a fabricated affordance cannot
+  // be written without a route either, so a test can no longer construct a shape the registry is
+  // forbidden to hold.
   const renamed = CAPABILITIES.map((c) => c.id === "export"
-    ? { ...c, human: [{ at: "header.export", status: "wired" as const, element: { id: "export-v2" } }] }
+    ? {
+        ...c,
+        human: [{
+          at: "header.export", status: "wired" as const, element: { id: "export-v2" },
+          path: [{ surface: "header" as const, via: "activate" as const }],
+        }],
+      }
     : c);
   assert.deepEqual(
     boundHumanAffordances(renamed).filter((a) => !present.has(a.element.id)).map((a) => a.at),

@@ -105,8 +105,25 @@ export interface ContentsRow {
   readonly select: string | null;
 }
 
-/** The principal model as structure: its nodes, then its edges. */
+/** The principal model as structure: the subject itself, then its nodes, then its edges. */
 export interface ModelContents {
+  /**
+   * The drawn subject, as a selectable row — the model or machine the tree is the contents OF.
+   *
+   * **This row exists because wave 1d found a control nobody could reach.**
+   * `inspector.delete-model`'s button is enabled only for a `selection:model`, and until this row
+   * there was no human act that produced one: the tree encoded entities, states and relations and
+   * null for everything else, so a person could delete an entity, a relation or a note and could
+   * not delete a model, while an agent could through `view.select("model:x")`. That asymmetry was
+   * the single member of the registry's path-less set (`DESIGN-shell-261002.md` §9f).
+   *
+   * It is the FIRST row, not an appendix, because the tree is a containment reading and the
+   * container is what it is a reading of — "this model, and here is what is in it". Selecting it
+   * also reaches the machine case (`selection:machine`), which the editing catalogue's rename
+   * action already declared a precondition for and no route established.
+   */
+  readonly subject: ContentsRow;
+  readonly subjectHeading: string;
   readonly nodeHeading: string;
   readonly edgeHeading: string;
   readonly nodes: readonly ContentsRow[];
@@ -126,7 +143,25 @@ export function modelContents(
 ): ModelContents {
   const subject = scene.subject;
   const machine = subject.kind === "machine";
+  // The label comes from the system rather than from the scene, because the scene names what it
+  // DREW and the row names what the reader may act ON — and the one act the row licenses, deleting
+  // a model, is addressed by id. Falling back to the id keeps the row selectable for a subject the
+  // renderer drew from a revision the system has since left.
+  const subjectLabel = machine
+    ? system.machines.get(subject.id)?.id ?? subject.id
+    : system.models.get(subject.id)?.label ?? subject.id;
+  const question = (machine ? system.machines.get(subject.id) : system.models.get(subject.id))
+    ?.purpose.question ?? "";
   return {
+    subjectHeading: machine ? "This machine" : "This model",
+    subject: {
+      label: subjectLabel,
+      // The engineering question, which is the one fact about a model that is not in any row below
+      // it. UX-I4's claim is that a model viewed is a model whose purpose is visible; the row says
+      // it again in the place a reader is deciding whether to act on the whole model.
+      detail: question,
+      select: subjectValue(subject),
+    },
     nodeHeading: `${machine ? "States" : "Entities"} — ${scene.nodes.length}`,
     edgeHeading: `${machine ? "Transitions" : "Relations"} — ${scene.edges.length}`,
     nodes: scene.nodes.map((n) => {
@@ -165,6 +200,14 @@ function treeRow(
   } else {
     const button = el("button", label);
     button.type = "button";
+    // The ENCODING, stamped where a reader of the page can see it. Not decoration: the generated
+    // path drive has to establish `selection:element`, `selection:relation` and `selection:model`,
+    // and before this attribute its only handles were the row's INDEX (the first button) and its
+    // rendered prose (an edge row was the one containing "→"). Both are the parse-the-presentation
+    // failure `checkModelPlurality` was written about, and both break the day a row is added —
+    // which adding the subject row above is exactly the case of. One attribute, and the routines
+    // read structure.
+    button.dataset.select = value;
     // `aria-current` rather than `aria-selected`: the latter is only meaningful inside a widget
     // role this list deliberately does not claim. A screen reader announces "current" here.
     if (selected) {
@@ -202,6 +245,8 @@ function paintContents(
     }
     root.append(ul);
   };
+  // The subject first: the thing the tree is a reading OF, before the things in it.
+  group(contents.subjectHeading, [contents.subject]);
   group(contents.nodeHeading, contents.nodes);
   group(contents.edgeHeading, contents.edges);
 }

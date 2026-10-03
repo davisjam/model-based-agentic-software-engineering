@@ -7,26 +7,30 @@
  * System Browser for people who really want the 11-entity/18-relation tabular view." So they move
  * here, whole, at their own ids.
  *
- * Wave 0 moves them and changes nothing: the region is still always present once a model is loaded,
- * rather than opening from the ⋯ menu. Wave 3 makes it on demand and re-sites `inspect`'s tabular
- * affordance onto it; the affordance's element (`#sections`) does not move, which is why that wave
- * can do it without touching the registry's element ids.
+ * **ON DEMAND SINCE WAVE 3, and the heading is not.** Wave 0 moved the tables here and changed
+ * nothing: the region was always open once a model loaded. Wave 3 put its exhaustive content behind
+ * one `<details>` and left the `<h2>` outside it, so the Browser is still a named landmark an AT
+ * lists in every state while the eleven-entity readout costs a Tab and an Enter. The alternative —
+ * making the region itself the disclosure — would have answered correction 3's visual complaint by
+ * removing a landmark, which is §3.1's first failure mode with a tidier diff. No element id moved,
+ * so the registry's sites are the ones they were; what changed is that each declares a `disclose`
+ * step ahead of itself.
  *
- * **Provenance is parked here, and the design puts it elsewhere.** Correction 9 moves provenance
- * onto the selected object — the inspector's disclosed Provenance block — and that is wave 1b's.
- * Until then the page-long Recorded-origins readout has to live somewhere, and it is an exhaustive
- * tabular readout of the whole system, which is this region's genre. Parking it beside the tables
- * keeps the three-pane shell free of it without inventing a home that a later wave would have to
- * dismantle.
+ * **Provenance LIVES here, and it is no longer parked.** Correction 9 moved provenance onto the
+ * selected object, and wave 1b built that: the inspector carries the selected object's own
+ * Provenance block, one disclosure down. What stayed is the whole-system Recorded-origins readout,
+ * which is an exhaustive tabular readout of every object at once — this region's genre, and not a
+ * rival to the inspector's block but the other half of a pair. A reader with a question about ONE
+ * object goes to the inspector; a reader auditing where a system came from opens the Browser. The
+ * registry's comment on `inspect-provenance` carries the ledger entry for the prose this replaced.
  *
- * **Exploring the configuration space lives here, and the siting is a ruling.** `DESIGN-shell-261002.md`
- * §10 assigns `explore-space` the path `⋯ menu → System Browser → Explore space` — "statistics belong
- * with the exhaustive view" — and registers it in wave 3. Wave 3 is not dispatched, and the ⋯ menu does
- * not exist (the `palette` surface is `planned`). So the control lands at the design's DESTINATION
- * without the hop that has not been built: this region, which wave 0 already made a named surface, is
- * where a reader asking how big the behaviour is would look, and it is reachable by Tab today. Wave 3
- * then prepends a menu step to the declared path rather than moving the control, which is the whole
- * reason to put it at the ruled destination instead of parking it somewhere a later wave must undo.
+ * **Exploring the configuration space lives here, and the siting was a ruling that held.**
+ * `DESIGN-shell-261002.md` §10 assigns `explore-space` the path `⋯ menu → System Browser → Explore
+ * space` — "statistics belong with the exhaustive view". Wave 2a landed the control at that
+ * destination with no hop, because the ⋯ menu did not exist; wave 3 prepended the disclosure step
+ * and the button did not move. The control sits ABOVE the tables inside the disclosure for the
+ * reason the markup gives: "how big is this model's behaviour, and did the walk finish" is one line,
+ * and the tables are a scroll.
  */
 import { byId, mountIf } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
