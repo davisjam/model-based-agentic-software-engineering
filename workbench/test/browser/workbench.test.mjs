@@ -30,8 +30,8 @@ import {
   CAPABILITIES, boundHumanAffordances, checkAffordanceParity, checkRegistryClosure,
 } from "../../src/app/capabilities.ts";
 import {
-  startServer, stopServer, loadPuppeteer, openWorkbench, loadFlagshipExample,
-  measureForReceipt, writeReceipt, PORT, ORIGIN, WORKBENCH_DIR,
+  startServer, launchBrowser, shutdown, openWorkbench, loadFlagshipExample,
+  advanceVirtualTime, measureForReceipt, writeReceipt, PORT, ORIGIN, WORKBENCH_DIR,
 } from "./harness.mjs";
 
 /** One browser and one page for the whole suite: the convergence test needs both interfaces in ONE process. */
@@ -44,8 +44,7 @@ let measured;
 
 before(async () => {
   server = await startServer();
-  const puppeteer = loadPuppeteer();
-  browser = await puppeteer.launch({ headless: true, args: ["--no-sandbox"] });
+  browser = await launchBrowser();
   ({ page, diagnostics } = await openWorkbench(browser));
   loaded = await loadFlagshipExample(page);
   measured = await measureForReceipt(page);
@@ -58,8 +57,7 @@ after(async () => {
     const path = await writeReceipt({ origin: ORIGIN, ranAt: new Date().toISOString(), ...measured, diagnostics });
     console.log(`browser tier receipt: ${path}`);
   }
-  if (browser) await browser.close();
-  if (server) await stopServer(server);
+  await shutdown({ browser, server });
 });
 
 describe("FR-AGENT: the agent surface is reachable from the page context", () => {
@@ -448,9 +446,13 @@ describe("FR-A11Y-3: a change the AGENT makes is announced, not only one that mo
   });
 
   const liveWrites = async () => {
-    // The announcer debounces at 250ms and composes what is pending; 1500ms is well clear of it
-    // without being a sleep that hides a race — the assertion is on the writes, not on the wait.
-    await agentPage.evaluate(() => new Promise((r) => setTimeout(r, 1500)));
+    // The announcer debounces at 250ms and composes what is pending; 1500ms of VIRTUAL time is
+    // well clear of it. Fast-forwarded, not slept: the four calls below used to cost 6s of real
+    // wall-clock, and a real sleep only GUESSES the debounce landed inside it where the virtual
+    // budget guarantees every pending timer fired. The grant freezes this page's task clock
+    // between calls — safe here because `agentPage` belongs to this suite alone and its only
+    // waits are these grants (see `advanceVirtualTime` in the harness for the full caveat).
+    await advanceVirtualTime(agentPage, 1500);
     return agentPage.evaluate(() => ({
       writes: [...(window.__writes ?? [])],
       text: document.getElementById("live")?.textContent ?? "",

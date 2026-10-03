@@ -41,7 +41,7 @@ import { readFile, mkdtemp, readdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
-  startServer, stopServer, loadPuppeteer, openWorkbench, writeReceipt,
+  startServer, launchBrowser, shutdown, openWorkbench, writeReceipt,
   WORKBENCH_DIR, originFor, KEYBOARD_RECEIPT_PATH,
 } from "../harness.mjs";
 import {
@@ -68,8 +68,7 @@ const sectionsText = () => page.evaluate(() => document.getElementById("sections
 
 before(async () => {
   server = await startServer(WORKBENCH_DIR, PORT);
-  const puppeteer = loadPuppeteer();
-  browser = await puppeteer.launch({ headless: true, args: ["--no-sandbox"] });
+  browser = await launchBrowser();
   ({ page } = await openWorkbench(browser, ORIGIN));
   // Tall enough that a control near the foot of the page is scrolled into view by focus rather than
   // left outside the layout viewport.
@@ -89,8 +88,7 @@ after(async () => {
     }, KEYBOARD_RECEIPT_PATH);
     console.log(`FR-A11Y keyboard receipt: ${path}`);
   }
-  if (browser) await browser.close();
-  if (server) await stopServer(server);
+  await shutdown({ browser, server });
   if (downloads) await rm(downloads, { recursive: true, force: true });
 });
 
