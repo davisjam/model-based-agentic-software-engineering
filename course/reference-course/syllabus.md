@@ -135,3 +135,11 @@ Students need access to:
 - a capable generative-AI system suitable for software engineering.
 
 Specific tools and vendors are left to the course offering.
+
+## MAGE Workbench
+
+The MAGE Workbench is an interactive environment for applying the models and engineering activities
+introduced in this course. You will use it to construct and inspect engineering models, work through
+selected course examples, and experiment with MAGE concepts directly.
+
+The Workbench is available from the **MAGE Workbench** link in the left-hand navigation.
