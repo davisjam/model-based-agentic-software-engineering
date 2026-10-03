@@ -481,6 +481,21 @@ export interface Verdict {
 export const verdict = (res: QueryResult, nodeSets: readonly (readonly string[])[] = []): Verdict =>
   ({ result: res, refusal: null, nodeSets });
 
+/**
+ * The outcome of ADMITTING a question: the plan a licensed one gets to use, or the verdict a
+ * refused one earns.
+ *
+ * One shape for all three query kinds, because `check` reports over all three and a shape per kind
+ * would be three ways to say "refused" for one interface to normalise. The plan is per kind and
+ * deliberately opaque here: it is whatever that kind's admission resolved, and only that kind's
+ * evaluator reads it.
+ */
+export type Admission<P> =
+  | { readonly admitted: true; readonly plan: P }
+  | { readonly admitted: false; readonly verdict: Verdict };
+
+export const refusedAdmission = <P>(v: Verdict): Admission<P> => ({ admitted: false, verdict: v });
+
 /** The one shape a refusal takes: a successful result that reports what the model does not license. */
 export function unlicensed(
   systemHash: string, prose: string, interpretedAs: string | null = null,

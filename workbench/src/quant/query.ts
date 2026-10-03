@@ -16,16 +16,20 @@
  * computed — the §29 refinement's `max|min|named` selector stays rejected.
  */
 import { systemHash } from "../ir/hash.ts";
-import type { CanonicalSystem, Configuration, Dimension, Evidence } from "../ir/types.ts";
+import type {
+  CanonicalSystem, Configuration, Dimension, Evidence, QuantityScope,
+} from "../ir/types.ts";
 import { ACCOUNTED_METRICS, AGGREGATE_TARGET_KIND, DIMENSIONS } from "../ir/types.ts";
 import { buildScope } from "../engine/refs.ts";
 import { compilePredicate, describePredicate } from "../engine/predicate.ts";
 import { DEFAULT_STATE_LIMIT } from "../engine/explore.ts";
 import {
-  detail, result, unlicensed,
-  type QuantityQuery, type Quantifier, type RefusalDetail, type Verdict,
+  detail, refusedAdmission as refused, result, unlicensed,
+  type Admission, type QuantityQuery, type Quantifier, type RefusalDetail, type Verdict,
 } from "../engine/types.ts";
-import { evaluatePath, evaluatePeak, REQUIREMENT_METRICS } from "./requirement.ts";
+import {
+  evaluatePath, evaluatePeak, REQUIREMENT_METRICS, type RequirementMetric,
+} from "./requirement.ts";
 import { maxOverExecutions, type PathMetric } from "./latency.ts";
 import { peakMemory } from "./memory.ts";
 import { quantityMagnitude } from "./types.ts";
@@ -40,16 +44,57 @@ const refuse = (
 /** One compilation note, in the shape the schema requires. */
 const note = (explanation: string): { kind: "other"; explanation: string } => ({ kind: "other", explanation });
 
-export function runQuantityQuery(
-  system: CanonicalSystem, q: QuantityQuery, quantifier: Quantifier, hash: string = systemHash(system),
-): Verdict {
+/** The declared ceiling a `within` query decides against, once resolved. */
+export interface QuantityCeiling {
+  readonly value: number;
+  readonly raw: string;
+  readonly id: string;
+}
+
+/**
+ * What a licensed quantitative question gets to use.
+ *
+ * The whole of `runQuantityQuery`'s former prefix is here: the metric resolved against the closed
+ * vocabulary, the dimension and scope DERIVED from it, the ceiling resolved against the system's
+ * declarations, the execution selection compiled. Nothing below decides any of it again.
+ */
+export interface QuantityPlan {
+  readonly query: QuantityQuery;
+  readonly metric: RequirementMetric;
+  readonly dimension: Dimension;
+  /** Derived from the dimension, never chosen per query (§8). The aggregation axis follows it. */
+  readonly scope: QuantityScope;
+  readonly unit: string;
+  readonly limit: number;
+  /** Non-null exactly when the question decides a declared ceiling rather than reporting a figure. */
+  readonly ceiling: QuantityCeiling | null;
+  readonly target: ((cfg: Configuration) => boolean) | null;
+  /** The selection clause, for the interpretation sentence. Empty when no target was given. */
+  readonly selection: string;
+}
+
+/**
+ * Admit one quantitative question.
+ *
+ * Every refusal here is decided from declarations alone — the metric vocabulary, the dimension
+ * scope, the ceiling's target kind and dimension, the forced quantifier, the predicate's
+ * vocabulary. Nothing walks an execution. This is the function `check` calls and
+ * `runQuantityQuery` calls first (`DESIGN-model-query-261002.md` §5.2).
+ *
+ * The refusals pass `interpretedAs: null`, as they did when they were inline: a question whose
+ * metric did not resolve has no interpretation to report, and the sentence is built per branch
+ * below from the metric that did.
+ */
+export function admitQuantityQuery(
+  system: CanonicalSystem, q: QuantityQuery, quantifier: Quantifier, hash: string,
+): Admission<QuantityPlan> {
   const metric = REQUIREMENT_METRICS.find((m) => m === q.metric);
   if (metric === undefined) {
-    return refuse(hash,
+    return refused(refuse(hash,
       `quantity metric '${q.metric}' is not one of ${REQUIREMENT_METRICS.join(", ")}. The metric ` +
       `names the ANALYSIS, not a dimension: 'latency' and 'cost' are worst-case sums along ` +
       `executions, 'peak_memory' is the maximum of memory(c) over reachable configurations.`,
-      null, detail("unknown-vocabulary", [`metric '${q.metric}'`]));
+      null, detail("unknown-vocabulary", [`metric '${q.metric}'`])));
   }
   const dimension: Dimension = metric === "peak_memory" ? "memory" : ACCOUNTED_METRICS[metric];
   const scope = DIMENSIONS[dimension].scope;
@@ -59,65 +104,68 @@ export function runQuantityQuery(
   // The category error, refused before anything explores. The aggregation axis is derived from the
   // scope, so there is no reading of "peak_memory along these executions" to compute.
   if (scope === "configuration" && q.target !== null) {
-    return refuse(hash,
+    return refused(refuse(hash,
       `'${metric}' is ${dimension}, a configuration-scoped dimension: memory(c) is evaluated AT ` +
       `configurations and its maximum ranges over the reachable set (§8). A target selects ` +
       `executions, which is the axis a configuration-scoped quantity does not aggregate along — ` +
       `the question is a category error, not a computation. Drop 'target:', or ask an ` +
       `execution-scoped metric (latency, cost).`,
-      null, detail("category-error", [], []));
+      null, detail("category-error", [], [])));
   }
 
   // The ceiling, when the query decides one: a declared `model:` total of the metric's dimension.
-  let bound: { readonly value: number; readonly raw: string; readonly id: string } | null = null;
+  let ceiling: QuantityCeiling | null = null;
   if (q.within !== null) {
     const declared = system.quantities.get(q.within);
     if (declared === undefined) {
       // The validator's V39 is the same finding at authoring time; the engine refuses at ask time.
-      return refuse(hash,
+      return refused(refuse(hash,
         `'within' names quantity '${q.within}', which this system does not declare (V39). A ` +
         `ceiling is a declared 'model:'-targeted quantity — declare it, or name one that exists.`,
-        null, detail("unknown-vocabulary", [`quantity '${q.within}'`]));
+        null, detail("unknown-vocabulary", [`quantity '${q.within}'`])));
     }
     if (declared.target.kind !== AGGREGATE_TARGET_KIND) {
-      return refuse(hash,
+      return refused(refuse(hash,
         `'within' names '${q.within}', which targets '${declared.target.raw}'. A ceiling is a ` +
         `declared TOTAL — a 'model:'-targeted quantity exempt from every accounting basis — and ` +
         `a ${String(declared.target.kind)}-targeted quantity is a summand of the analysis, not a ` +
         `bound on it.`,
-        null, detail("unknown-vocabulary", [`a model:-targeted ceiling for ${metric}`]));
+        null, detail("unknown-vocabulary", [`a model:-targeted ceiling for ${metric}`])));
     }
     if (declared.dimension !== dimension) {
-      return refuse(hash,
+      return refused(refuse(hash,
         `'within' names '${q.within}', which declares dimension ` +
         `'${String(declared.dimension ?? declared.dimensionRaw)}', and '${metric}' accounts ` +
         `${dimension}. Comparing a ${dimension} total against a ` +
         `${String(declared.dimension ?? declared.dimensionRaw)} ceiling is the cross-dimension ` +
         `arithmetic V30 refuses in the model, refused here for the same reason.`,
-        null, detail("category-error", [], []));
+        null, detail("category-error", [], [])));
     }
     const value = quantityMagnitude(declared, "point");
-    if (!value.ok) return refuse(hash, `ceiling '${q.within}': ${value.refusal}`, null, value.detail ?? detail("reserved-feature"));
+    if (!value.ok) {
+      return refused(refuse(hash, `ceiling '${q.within}': ${value.refusal}`, null,
+        value.detail ?? detail("reserved-feature")));
+    }
     const raw = declared.value.kind === "point" ? declared.value.magnitude.raw : `${value.value} ${unit}`;
-    bound = { value: value.value, raw, id: q.within };
+    ceiling = { value: value.value, raw, id: q.within };
   }
 
   // The quantifier is FORCED by the question's shape, so a mismatch is refused rather than
   // reinterpreted: a ceiling claim is universal over the selected space, a measurement is
   // established by the witness that attains it.
-  if (bound !== null && quantifier !== "forall") {
-    return refuse(hash,
+  if (ceiling !== null && quantifier !== "forall") {
+    return refused(refuse(hash,
       `a 'within' query claims every ${scope === "configuration" ? "reachable configuration" : "selected execution"} ` +
       `stays at or under the declared ceiling — a universal claim, refuted by one counterexample. ` +
       `Declare 'quantifier: forall'.`,
-      null, detail("quantifier-mismatch"));
+      null, detail("quantifier-mismatch")));
   }
-  if (bound === null && quantifier !== "exists") {
-    return refuse(hash,
+  if (ceiling === null && quantifier !== "exists") {
+    return refused(refuse(hash,
       `a measurement reports the worst case actually attained, and the evidence is the witness ` +
       `that attains it — existential evidence. Declare 'quantifier: exists', or add 'within:' to ` +
       `decide a declared ceiling universally.`,
-      null, detail("quantifier-mismatch"));
+      null, detail("quantifier-mismatch")));
   }
 
   // The execution selection, compiled against the system's own vocabulary before anything runs.
@@ -125,10 +173,33 @@ export function runQuantityQuery(
   let selection = "";
   if (q.target !== null) {
     const p = compilePredicate(buildScope(system), q.target);
-    if (!p.ok) return refuse(hash, p.refusal, null, p.detail ?? detail("unknown-vocabulary"));
+    if (!p.ok) return refused(refuse(hash, p.refusal, null, p.detail ?? detail("unknown-vocabulary")));
     target = p.value;
     selection = ` reaching ${describePredicate(q.target)}`;
   }
+
+  return {
+    admitted: true,
+    plan: { query: q, metric, dimension, scope, unit, limit, ceiling, target, selection },
+  };
+}
+
+/**
+ * Run one quantitative query: admit, then compute.
+ *
+ * Two statements, and the computation is unreachable for a question the admission declined —
+ * MQ-I1 on this path. `evaluateQuantity` is not exported, so the admission is the only way in.
+ */
+export function runQuantityQuery(
+  system: CanonicalSystem, q: QuantityQuery, quantifier: Quantifier, hash: string = systemHash(system),
+): Verdict {
+  const admission = admitQuantityQuery(system, q, quantifier, hash);
+  return admission.admitted ? evaluateQuantity(system, admission.plan, hash) : admission.verdict;
+}
+
+/** NOT exported: the only route in is `runQuantityQuery`, which admits first. */
+function evaluateQuantity(system: CanonicalSystem, p: QuantityPlan, hash: string): Verdict {
+  const { metric, dimension, unit, limit, ceiling: bound, target, selection } = p;
 
   if (bound !== null) {
     const interpretedAs = metric === "peak_memory"

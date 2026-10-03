@@ -29,9 +29,9 @@ import type { CanonDomain, CanonicalSystem, Evidence, GuardOp, QueryResult, Scal
 import { undeclared } from "./omission.ts";
 import {
   bounded, detail, exhaustive, fail, GRAPH_COMPOSING, NOT_APPLICABLE, ok, ORDER_OPS, result,
-  unlicensed, verdict,
-  type Comparison, type GraphQuery, type GraphWhere, type PropConstraint, type Quantifier, type Res,
-  type Verdict,
+  refusedAdmission as refused, unlicensed, verdict,
+  type Admission, type Comparison, type GraphQuery, type GraphWhere, type PropConstraint,
+  type Quantifier, type Res, type Verdict,
 } from "./types.ts";
 
 /**
@@ -438,19 +438,6 @@ export interface GraphPlan {
   readonly maxHops: number;
   readonly subject: GraphSubject;
 }
-
-/**
- * Admitted with its plan, or refused with the verdict a caller reads.
- *
- * One shape for all three kinds (`behavior.ts`, `quant/query.ts` instantiate it too), because the
- * `check` operation reports over all three and a second shape per kind would be three ways to say
- * "refused" for one interface to normalise.
- */
-export type Admission<P> =
-  | { readonly admitted: true; readonly plan: P }
-  | { readonly admitted: false; readonly verdict: Verdict };
-
-const refused = <P>(verdict: Verdict): Admission<P> => ({ admitted: false, verdict });
 
 /**
  * Admit one graph question: every refusal that can be decided before a walk, and nothing else.

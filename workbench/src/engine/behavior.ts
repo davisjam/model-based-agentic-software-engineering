@@ -31,14 +31,14 @@
 import type { CanonicalSystem, Compilation, Evidence, Step } from "../ir/types.ts";
 import {
   compileSystem, cycleThrough, DEFAULT_STATE_LIMIT, defaultOptions, exploreSpace, pathBetween,
-  traceTo, type ExploreOptions, type StateSpace,
+  traceTo, type CompiledSystem, type ExploreOptions, type StateSpace,
 } from "./explore.ts";
 import { compilePredicate, describePredicate, type CompiledPredicate } from "./predicate.ts";
 import type { RefScope } from "./refs.ts";
 import {
-  bounded, detail, exhaustive, result, unlicensed, verdict,
-  type BehaviorForm, type BehaviorQuery, type Predicate, type Quantifier, type TransitionSelector,
-  type Verdict,
+  bounded, detail, exhaustive, refusedAdmission as refused, result, unlicensed, verdict,
+  type Admission, type BehaviorForm, type BehaviorQuery, type Predicate, type Quantifier,
+  type TransitionSelector, type Verdict,
 } from "./types.ts";
 
 /**
@@ -67,86 +67,185 @@ const lasso = (prefix: readonly Step[], cycle: readonly Step[]): Evidence =>
 const asCompilation = (notes: readonly string[]): readonly Compilation[] =>
   notes.map((explanation) => ({ kind: "other", explanation }));
 
-export function runBehaviorQuery(
+// --------------------------------------------------------------------------------------------
+// Admission — every pre-evaluation decision, in one place, consumed by the evaluator
+// --------------------------------------------------------------------------------------------
+
+/** The four forms whose subject is a set of CONFIGURATIONS picked out by a compiled predicate. */
+type PredicateForm = "reach" | "invariant" | "recurrence" | "repeatable-cycle";
+
+/**
+ * What the question turned out to be about, once admission resolved it.
+ *
+ * The three arms partition `BEHAVIOR_FORMS`. `invariant` sits beside `reach` because both compile
+ * ONE predicate over configurations; the difference — whether a satisfying configuration is a
+ * witness or a counterexample — is the evaluator's, and it is not a licensing decision.
+ */
+export type BehaviorSubject =
+  | { readonly on: "configurations"; readonly form: PredicateForm; readonly predicate: CompiledPredicate }
+  | { readonly on: "whole-space"; readonly form: "deadend" }
+  | {
+      readonly on: "transition"; readonly form: "transition-live";
+      readonly selector: TransitionSelector;
+      readonly matches: (step: Step) => boolean;
+    };
+
+/**
+ * What a licensed behavioural question gets to use.
+ *
+ * `compiled` is the compiled configuration space — admission already had to build it to know
+ * whether the system was explorable at all, so handing it on is what stops the evaluator compiling
+ * a second time from the same declarations. `options` carries the state limit and the `avoid`
+ * predicate; the per-form STOP condition stays the evaluator's, because stopping early is a search
+ * strategy and not a licensing decision.
+ */
+export interface BehaviorPlan {
+  readonly query: BehaviorQuery;
+  readonly interpretedAs: string;
+  readonly compiled: CompiledSystem;
+  readonly options: ExploreOptions;
+  readonly subject: BehaviorSubject;
+}
+
+/**
+ * Admit one behavioural question: the quantifier pairing, the system's explorability, and every
+ * field the chosen form requires — decided before a single configuration is walked.
+ *
+ * The function `check` calls and `runBehaviorQuery` calls first (`DESIGN-model-query-261002.md`
+ * §5.2). `evaluateBehavior` below is not exported, so the only route into evaluation is through the
+ * admission.
+ */
+export function admitBehaviorQuery(
   system: CanonicalSystem, q: BehaviorQuery, quantifier: Quantifier, systemHash: string,
-): Verdict {
+): Admission<BehaviorPlan> {
   const interpretedAs = interpretation(q);
 
   const expected = NATURAL_QUANTIFIER[q.form];
   if (quantifier !== expected) {
     const other = q.form === "invariant" ? "reach" : "invariant";
-    return unlicensed(systemHash,
+    return refused(unlicensed(systemHash,
       `form '${q.form}' is ${expected === "exists" ? "existential" : "universal"}: it is ` +
       `established by ${expected === "exists" ? "a witness, and refuted by exhaustive absence" :
         "exhaustive satisfaction, and refuted by a counterexample"}. Declared quantifier ` +
       `'${quantifier}' asks for the other kind of evidence entirely, so the engine will not ` +
       `reinterpret it. Use quantifier: ${expected}, or form: ${other}.`,
-      interpretedAs, detail("quantifier-mismatch"));
+      interpretedAs, detail("quantifier-mismatch")));
   }
 
   const compiled = compileSystem(system);
   // A system the engine cannot explore — a reserved feature, an unsupported expression, an id that
   // resolves to nothing — refuses with the cause the compiler named, structured where it knew it.
-  if (!compiled.ok) return unlicensed(systemHash, compiled.refusal, interpretedAs, compiled.detail);
+  if (!compiled.ok) return refused(unlicensed(systemHash, compiled.refusal, interpretedAs, compiled.detail));
   const scope = compiled.value.scope;
 
   const avoid = compileOptional(scope, q.avoid);
-  if (!avoid.ok) return unlicensed(systemHash, `avoid: ${avoid.refusal}`, interpretedAs);
+  if (!avoid.ok) return refused(unlicensed(systemHash, `avoid: ${avoid.refusal}`, interpretedAs));
 
   const limit = q.limit ?? DEFAULT_STATE_LIMIT;
-  const base: ExploreOptions = { ...defaultOptions(limit), avoid: avoid.value };
+  const options: ExploreOptions = { ...defaultOptions(limit), avoid: avoid.value };
+  const plan = (subject: BehaviorSubject): Admission<BehaviorPlan> =>
+    ({ admitted: true, plan: { query: q, interpretedAs, compiled: compiled.value, options, subject } });
+
+  /** The `target`/`predicate` rung: the field the form requires, compiled against this system. */
+  const onPredicate = (
+    form: PredicateForm, field: "target" | "predicate", raw: Predicate | null,
+  ): Admission<BehaviorPlan> => {
+    if (raw === null) {
+      return refused(unlicensed(systemHash,
+        `a '${form}' query must carry a '${field}' predicate.`, interpretedAs));
+    }
+    const compiledPredicate = compilePredicate(scope, raw);
+    if (!compiledPredicate.ok) {
+      return refused(unlicensed(systemHash, `${field}: ${compiledPredicate.refusal}`, interpretedAs));
+    }
+    return plan({ on: "configurations", form, predicate: compiledPredicate.value });
+  };
 
   switch (q.form) {
-    case "reach": {
-      if (q.target === null) {
-        return unlicensed(systemHash, "a 'reach' query must carry a 'target' predicate.", interpretedAs);
+    case "reach":
+    case "recurrence":
+    case "repeatable-cycle":
+      return onPredicate(q.form, "target", q.target);
+    case "invariant":
+      return onPredicate(q.form, "predicate", q.predicate);
+    case "deadend":
+      return plan({ on: "whole-space", form: q.form });
+    case "transition-live": {
+      const selector = q.transition;
+      if (selector === null || (selector.machine === null && selector.from === null
+        && selector.to === null && selector.sync === null)) {
+        return refused(unlicensed(systemHash,
+          "a 'transition-live' query must name the transition it is about, by machine, from, to " +
+          "or sync.", interpretedAs));
       }
-      const target = compilePredicate(scope, q.target);
-      if (!target.ok) return unlicensed(systemHash, `target: ${target.refusal}`, interpretedAs);
-      const space = exploreSpace(compiled.value, { ...base, stopAtConfig: target.value });
-      const at = space.hit?.kind === "config" ? space.hit.config : null;
-      if (at !== null) {
-        return settled(space, systemHash, interpretedAs, "holds", trace(traceTo(space, at), "witness"));
+      if (!declaresMatching(system, selector)) {
+        // Not `refuted`: refuting would claim the transition is never executable, when in fact the
+        // model declares no such transition for the claim to be about.
+        return refused(unlicensed(systemHash,
+          `no declared transition matches ${describeSelector(selector)}. The question is not ` +
+          `about this model's vocabulary.`,
+          interpretedAs, detail("unknown-vocabulary", [describeSelector(selector)])));
       }
-      return unsettled(space, systemHash, interpretedAs, "refuted");
+      return plan({
+        on: "transition", form: q.form, selector,
+        matches: (step: Step): boolean => stepMatches(scope, selector, step),
+      });
+    }
+  }
+}
+
+/**
+ * Evaluate one behavioural query: admit, then walk.
+ *
+ * Two statements, and the walk is unreachable for a question the admission declined — MQ-I1 on this
+ * path, held by the call graph rather than by a brand (§5.2: there is no second caller for a brand
+ * to defend against, because `evaluateBehavior` has no second caller at all).
+ */
+export function runBehaviorQuery(
+  system: CanonicalSystem, q: BehaviorQuery, quantifier: Quantifier, systemHash: string,
+): Verdict {
+  const admission = admitBehaviorQuery(system, q, quantifier, systemHash);
+  return admission.admitted ? evaluateBehavior(admission.plan, systemHash) : admission.verdict;
+}
+
+/** NOT exported: the only route in is `runBehaviorQuery`, which admits first. */
+function evaluateBehavior(p: BehaviorPlan, systemHash: string): Verdict {
+  const { compiled, options: base, interpretedAs, subject } = p;
+
+  switch (subject.on) {
+    case "configurations": {
+      const target = subject.predicate;
+      switch (subject.form) {
+        case "reach": {
+          const space = exploreSpace(compiled, { ...base, stopAtConfig: target });
+          const at = space.hit?.kind === "config" ? space.hit.config : null;
+          if (at !== null) {
+            return settled(space, systemHash, interpretedAs, "holds", trace(traceTo(space, at), "witness"));
+          }
+          return unsettled(space, systemHash, interpretedAs, "refuted");
+        }
+
+        case "invariant": {
+          const violates: CompiledPredicate = (cfg) => !target(cfg);
+          const space = exploreSpace(compiled, { ...base, stopAtConfig: violates });
+          const at = space.hit?.kind === "config" ? space.hit.config : null;
+          if (at !== null) {
+            // A counterexample refutes a universal claim on its own evidence.
+            return settled(space, systemHash, interpretedAs, "refuted",
+              trace(traceTo(space, at), "counterexample"));
+          }
+          return unsettled(space, systemHash, interpretedAs, "holds");
+        }
+
+        case "repeatable-cycle":
+          return repeatableCycle(exploreSpace(compiled, base), target, systemHash, interpretedAs);
+        case "recurrence":
+          return recurrence(exploreSpace(compiled, base), target, systemHash, interpretedAs);
+      }
     }
 
-    case "invariant": {
-      if (q.predicate === null) {
-        return unlicensed(systemHash, "an 'invariant' query must carry a 'predicate'.", interpretedAs);
-      }
-      const pred = compilePredicate(scope, q.predicate);
-      if (!pred.ok) return unlicensed(systemHash, `predicate: ${pred.refusal}`, interpretedAs);
-      const violates: CompiledPredicate = (cfg) => !pred.value(cfg);
-      const space = exploreSpace(compiled.value, { ...base, stopAtConfig: violates });
-      const at = space.hit?.kind === "config" ? space.hit.config : null;
-      if (at !== null) {
-        // A counterexample refutes a universal claim on its own evidence.
-        return settled(space, systemHash, interpretedAs, "refuted",
-          trace(traceTo(space, at), "counterexample"));
-      }
-      return unsettled(space, systemHash, interpretedAs, "holds");
-    }
-
-    case "repeatable-cycle": {
-      if (q.target === null) {
-        return unlicensed(systemHash, "a 'repeatable-cycle' query must carry a 'target' predicate.", interpretedAs);
-      }
-      const target = compilePredicate(scope, q.target);
-      if (!target.ok) return unlicensed(systemHash, `target: ${target.refusal}`, interpretedAs);
-      return repeatableCycle(exploreSpace(compiled.value, base), target.value, systemHash, interpretedAs);
-    }
-    case "recurrence": {
-      if (q.target === null) {
-        return unlicensed(systemHash, "a 'recurrence' query must carry a 'target' predicate.", interpretedAs);
-      }
-      const target = compilePredicate(scope, q.target);
-      if (!target.ok) return unlicensed(systemHash, `target: ${target.refusal}`, interpretedAs);
-      return recurrence(exploreSpace(compiled.value, base), target.value, systemHash, interpretedAs);
-    }
-
-    case "deadend": {
-      const space = exploreSpace(compiled.value, { ...base, stopAtDeadEnd: true });
+    case "whole-space": {
+      const space = exploreSpace(compiled, { ...base, stopAtDeadEnd: true });
       const at = space.deadEnds[0];
       if (at !== undefined) {
         return settled(space, systemHash, interpretedAs, "holds", trace(traceTo(space, at), "witness"));
@@ -154,24 +253,8 @@ export function runBehaviorQuery(
       return unsettled(space, systemHash, interpretedAs, "refuted");
     }
 
-    case "transition-live": {
-      const selector = q.transition;
-      if (selector === null || (selector.machine === null && selector.from === null
-        && selector.to === null && selector.sync === null)) {
-        return unlicensed(systemHash,
-          "a 'transition-live' query must name the transition it is about, by machine, from, to " +
-          "or sync.", interpretedAs);
-      }
-      if (!declaresMatching(system, selector)) {
-        // Not `refuted`: refuting would claim the transition is never executable, when in fact the
-        // model declares no such transition for the claim to be about.
-        return unlicensed(systemHash,
-          `no declared transition matches ${describeSelector(selector)}. The question is not ` +
-          `about this model's vocabulary.`,
-          interpretedAs, detail("unknown-vocabulary", [describeSelector(selector)]));
-      }
-      const matcher = (step: Step): boolean => stepMatches(scope, selector, step);
-      const space = exploreSpace(compiled.value, { ...base, stopAtEdge: matcher });
+    case "transition": {
+      const space = exploreSpace(compiled, { ...base, stopAtEdge: subject.matches });
       const hit = space.hit;
       if (hit?.kind === "edge" && hit.edge !== null) {
         const steps = [...traceTo(space, hit.config), hit.edge.step];
