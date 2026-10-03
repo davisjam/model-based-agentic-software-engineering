@@ -28,7 +28,9 @@ import { MODEL_TYPES } from "../src/engine/model-types.ts";
 import { learnHrefForType } from "../src/app/learn.ts";
 import { parseGraphQuery } from "../src/engine/index.ts";
 import type { CanonicalSystem } from "../src/ir/types.ts";
-import { planAsk } from "../src/ui/view-model.ts";
+import { planAsk, resolveSelection, selectionValue } from "../src/ui/view-model.ts";
+import { renderView } from "../src/render/svg.ts";
+import { modelContents } from "../src/ui/shell/workspace.ts";
 import {
   absentTypeFor, askCatalogue, askEvidenceReading, contextualQuestions, derivePropertyId,
   evidenceLines, filterCatalogue, filterState, labelFor, learnLinkForAbsentType, savedQuestions,
@@ -142,14 +144,14 @@ test("nothing is offered for a selection the system does not declare", () => {
   const system = load("message-bus");
   assert.deepEqual(contextualQuestions(system, "no-such-entity"), []);
   // And the catalogue falls back to the saved questions rather than to nothing.
-  const catalogue = askCatalogue(system, ["no-such-entity"]);
+  const catalogue = askCatalogue(system, resolveSelection(system, "no-such-entity"));
   assert.equal(catalogue.length, savedQuestions(system).length);
   assert.equal(savedQuestions(system).length, system.queries.size);
 });
 
 test("typed text FILTERS; an English question it does not hold matches nothing", () => {
   const system = load("message-bus");
-  const catalogue = askCatalogue(system, [busiestEntity(system)]);
+  const catalogue = askCatalogue(system, resolveSelection(system, busiestEntity(system)));
   assert.ok(catalogue.length > 1, "the fixture offers too little to filter");
 
   // A question in the author's own words, from the spec's own sketch. The catalogue holds no such
@@ -250,5 +252,74 @@ test("a saved question is offered but never offered for tracking — it is track
     assert.equal(item.savedId, null);
     assert.ok(item.ask !== null, "a derived question with no ask request cannot be tracked");
     assert.equal(labelFor(item.ask), item.label);
+  }
+});
+
+// --------------------------------------------------------------------------------------------
+// The join to the selection surfaces — the defect wave 1d filed and §10 predicted
+// --------------------------------------------------------------------------------------------
+
+test("a TREE selection reaches the contextual catalogue, through the row's own encoding", () => {
+  // The oracle is the contents tree itself. `modelContents` is the reading the tree paints, and
+  // `select` is the very value its click handler sends — so this test asks the question a person
+  // asks by clicking, rather than a question about a string that resembles what the tree writes.
+  //
+  // THE DEFECT: `askCatalogue` resolved its entity with
+  // `selection.find((id) => system.entities.has(id))`, which answers only for the BARE spelling,
+  // while the tree writes `entity:<id>`. So selecting a node in the tree left this catalogue at
+  // the saved questions alone — no "Can anything reach Analytics?", and no Track box either,
+  // because that opens only for an untracked answer. Two encodings in one field, three readers,
+  // three answers. Pinned both ways below: the tree's spelling and the agent's bare one must
+  // produce the SAME catalogue.
+  const system = load("message-bus");
+  const model = [...system.models.values()][0];
+  assert.ok(model !== undefined, "the fixture declares no model to read contents of");
+  const { accessible } = renderView(system, { subject: { kind: "model", id: model.id } });
+  const contents = modelContents(accessible, system);
+
+  const entityRows = contents.nodes.filter((r) => r.select?.kind === "entity");
+  assert.ok(entityRows.length > 0, "the tree offers no entity row, so this join cannot be driven");
+
+  let asked = 0;
+  for (const row of entityRows) {
+    const ref = row.select;
+    if (ref === null || ref.kind !== "entity") continue;
+    const viaTree = askCatalogue(system, resolveSelection(system, selectionValue(ref)));
+    // The agent route, which worked all along, is the control: it is what the author's correction 5
+    // describes ("Analytics selected → Ask: Can anything reach Analytics?") and what the walked
+    // path in the a11y drive had to go the long way round to reach.
+    const viaAgent = askCatalogue(system, resolveSelection(system, ref.id));
+    assert.deepEqual(viaTree.map((i) => i.label), viaAgent.map((i) => i.label),
+      `the tree's '${selectionValue(ref)}' and the agent's '${ref.id}' offer different catalogues`);
+
+    const contextual = contextualQuestions(system, ref.id);
+    if (contextual.length === 0) continue;
+    asked += 1;
+    assert.equal(viaTree.length, savedQuestions(system).length + contextual.length,
+      `selecting ${ref.id} in the tree offers no contextual question`);
+    // And the item that makes `askbar.track` reachable: a contextual question carries an `ask`,
+    // which is what the Track box opens behind. A catalogue of saved questions alone carries none.
+    assert.ok(viaTree.some((i) => i.ask !== null),
+      "a tree selection offers nothing askable, so the Track box can never open from one");
+  }
+  assert.ok(asked > 0,
+    "no entity in the tree has contextual questions, so this test proved nothing — pick a fixture "
+    + "whose model declares relations over its entities");
+});
+
+test("every tree row's encoding resolves to the kind the row is, through the sole decoder", () => {
+  // The companion claim: the ask bar is one reader of a selection and the inspector, the action bar
+  // and the palette are others. They all branch on `Selection.kind` now, so a row whose encoding
+  // resolved to the wrong kind would mis-serve all four at once.
+  const system = load("message-bus");
+  for (const model of system.models.values()) {
+    const { accessible } = renderView(system, { subject: { kind: "model", id: model.id } });
+    const contents = modelContents(accessible, system);
+    for (const row of [contents.subject, ...contents.nodes, ...contents.edges]) {
+      if (row.select === null) continue;
+      assert.equal(resolveSelection(system, selectionValue(row.select)).kind, row.select.kind,
+        `the row '${row.label}' encodes ${selectionValue(row.select)}, which does not resolve as a `
+        + `${row.select.kind} — so the ask bar, the inspector and the action bar all mis-read it`);
+    }
   }
 });

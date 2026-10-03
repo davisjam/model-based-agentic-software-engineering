@@ -62,8 +62,8 @@ import { classifyEvidence, noSuchQuestion } from "../../app/agent-api.ts";
 import type { EvidenceReading } from "../../app/agent-api.ts";
 import type { EvaluatedProperty } from "../../app/properties.ts";
 import { fillSelect, paintAnswer } from "../render-dom.ts";
-import { planAsk, propertyRow } from "../view-model.ts";
-import type { AskRequest, Choice } from "../view-model.ts";
+import { planAsk, propertyRow, resolveSelection } from "../view-model.ts";
+import type { AskRequest, Choice, Selection } from "../view-model.ts";
 import type { QueryCheckResult } from "../../engine/check.ts";
 import { byId, input, mountIf, sel } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
@@ -210,12 +210,23 @@ export function savedQuestions(system: CanonicalSystem): readonly AskItem[] {
   });
 }
 
-/** Everything offerable now: the system's saved questions, then the selection's own. */
-export function askCatalogue(system: CanonicalSystem, selection: readonly string[]): readonly AskItem[] {
-  const selected = selection.find((id) => system.entities.has(id));
+/**
+ * Everything offerable now: the system's saved questions, then the selection's own.
+ *
+ * **It takes a resolved `Selection`, and that is the fix for the defect this surface was the
+ * victim of.** It used to take the wire strings and resolve the entity itself with
+ * `selection.find((id) => system.entities.has(id))` — a test that answers only for the BARE
+ * spelling. The contents tree writes the prefixed one, so clicking a node in the tree left this
+ * catalogue at the saved questions alone: no "Can anything reach Analytics?", and since the Track
+ * box opens only for an untracked answer, `askbar.track` was unreachable from a tree selection
+ * altogether. The pane is not allowed to re-derive the meaning of a selection any more; it is
+ * handed one, and `entity` is the only kind that carries contextual questions because the
+ * contextual set is built from an entity's relations.
+ */
+export function askCatalogue(system: CanonicalSystem, selected: Selection): readonly AskItem[] {
   return [
     ...savedQuestions(system),
-    ...(selected === undefined ? [] : contextualQuestions(system, selected)),
+    ...(selected.kind === "entity" ? contextualQuestions(system, selected.id) : []),
   ];
 }
 
@@ -554,7 +565,8 @@ export function mountAskBar(ctx: ShellContext, submitEdit: SubmitEdit): ShellReg
   }
 
   function repaintCatalogue(frame: ShellFrame): void {
-    catalogue = askCatalogue(frame.state.system, ctx.viewState.selection);
+    catalogue = askCatalogue(
+      frame.state.system, resolveSelection(frame.state.system, ctx.viewState.selection[0]));
     const matched = filterCatalogue(catalogue, askText.value);
     const choices: readonly Choice[] = matched.map((i) => ({ value: i.key, label: i.label }));
     fillSelect(askChoice, choices);

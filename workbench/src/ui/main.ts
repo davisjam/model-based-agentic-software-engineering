@@ -29,7 +29,7 @@ import { AGENT_API_VERSION, createAgentApi } from "../app/agent-api.ts";
 import type { ViewState } from "../app/agent-api.ts";
 import { createLazyAnalysisPort } from "../worker/port.ts";
 import { bindAffordances } from "./affordances.ts";
-import { buildViewModel, resolveSubject } from "./view-model.ts";
+import { buildViewModel, resolveSelections, resolveSubject } from "./view-model.ts";
 import { paint, paintProvenance } from "./render-dom.ts";
 import { byId } from "./shell/context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./shell/context.ts";
@@ -180,7 +180,9 @@ function repaint(): void {
   const properties = workspace.properties();
   const vm = buildViewModel(state.system, state.findings, properties, {
     hypothesis: state.hypothesis,
-    selection: viewState.selection,
+    // RESOLVED here, once per paint: the view model badges rows by kind and id, not by
+    // string equality against a wire value that may be in either spelling.
+    selection: resolveSelections(state.system, viewState.selection),
     principal: resolveSubject(state.system, viewState.target),
   });
 

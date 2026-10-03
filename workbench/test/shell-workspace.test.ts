@@ -20,9 +20,9 @@ import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import { renderView } from "../src/render/index.ts";
 import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
-import { resolveSubject } from "../src/ui/view-model.ts";
+import { resolveSelection, resolveSubject, selectionValue } from "../src/ui/view-model.ts";
+import type { SelectionRef } from "../src/ui/view-model.ts";
 import { modelContents } from "../src/ui/shell/workspace.ts";
-import { selectionKind } from "../src/ui/shell/selection.ts";
 import type { CanonicalSystem } from "../src/ir/types.ts";
 import type { AccessibleScene, SceneSubject } from "../src/render/types.ts";
 
@@ -90,7 +90,7 @@ test("the tree's subject row selects the drawn model, which is what wave 1d coul
       `${id}/${scene.subject.id}: the subject row offers no selection, so no human act produces a `
       + "model or machine selection and inspector.delete-model is unreachable again");
     assert.equal(
-      selectionKind(system, [contents.subject.select as string]),
+      resolveSelection(system, selectionValue(contents.subject.select as SelectionRef)).kind,
       scene.subject.kind,
       `${id}/${scene.subject.id}: the subject row encodes '${contents.subject.select}', which does `
       + `not resolve as a ${scene.subject.kind}`,
@@ -112,12 +112,12 @@ test("every selection a tree row offers resolves to the kind the row is", () => 
     const wantNode = scene.subject.kind === "machine" ? "state" : "entity";
     for (const row of contents.nodes) {
       if (row.select === null) continue;
-      assert.equal(selectionKind(system, [row.select]), wantNode,
+      assert.equal(resolveSelection(system, selectionValue(row.select)).kind, wantNode,
         `${id}/${scene.subject.id}: '${row.select}' does not resolve as a ${wantNode}`);
     }
     for (const row of contents.edges) {
       if (row.select === null) continue;
-      assert.equal(selectionKind(system, [row.select]), "relation",
+      assert.equal(resolveSelection(system, selectionValue(row.select)).kind, "relation",
         `${id}/${scene.subject.id}: '${row.select}' does not resolve as a relation`);
     }
   }

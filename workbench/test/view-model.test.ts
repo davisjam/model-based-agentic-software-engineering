@@ -16,10 +16,7 @@ import { runQuery } from "../src/engine/index.ts";
 import { renderView } from "../src/render/index.ts";
 import { Workspace } from "../src/app/services.ts";
 import type { Ports } from "../src/app/services.ts";
-import {
-  annotationTargetValue, buildViewModel, elementValue, parseAnnotationTarget, parseElementValue,
-  parseRelationValue, planAsk, planEdit, propertyRow, relationValue, resolveSubject, subjectValue,
-} from "../src/ui/view-model.ts";
+import { annotationTargetValue, buildViewModel, elementValue, parseAnnotationTarget, parseElementValue, parseRelationValue, planAsk, planEdit, propertyRow, relationValue, resolveSelections, resolveSubject, subjectValue } from "../src/ui/view-model.ts";
 import type { AskRequest, EditRequest } from "../src/ui/view-model.ts";
 import { checkModelPlurality, checkPurposeVisibility } from "../src/ui/invariants.ts";
 import { SURFACES, builtSurfaces, surfaceElement } from "../src/ui/shell/surfaces.ts";
@@ -40,7 +37,9 @@ const sys = () => canonicalize(parse(readFileSync("examples/docable.mage.yaml", 
 const vm = (results: ReadonlyMap<string, QueryResult> = new Map(), selection: string[] = []) => {
   const s = sys();
   return buildViewModel(s, validate(s), evaluateProperties(s, results, systemHash(s)), {
-    hypothesis: null, selection,
+    // Through the SOLE decoder, exactly as the page does. The helper keeps taking wire strings so
+    // a test can say what a surface wrote, in either spelling, and watch the badge follow.
+    hypothesis: null, selection: resolveSelections(s, selection),
   });
 };
 

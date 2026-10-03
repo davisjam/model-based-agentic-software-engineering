@@ -502,6 +502,142 @@ export function parseRelationValue(value: string): RelationRef | null {
   return null;
 }
 
+// --------------------------------------------------------------------------------------------
+// The selection, as one representation (SH-I5)
+// --------------------------------------------------------------------------------------------
+
+/**
+ * WHAT IS SELECTED — a value that names its own kind, built from the composite refs above.
+ *
+ * **This type exists because a `string` meant two things and two panes disagreed about which.**
+ * `ViewState.selection` is a wire of strings, and it has to stay one: `view.select` takes entity
+ * ids because that is what the agent examples pass. But the strings arrived in TWO spellings — the
+ * contents tree wrote `entity:<id>`, the inspector's own navigate links wrote a bare `<id>` — and
+ * every consumer re-derived the meaning for itself. `askCatalogue` resolved the selected entity
+ * with `selection.find((id) => system.entities.has(id))`, which answers only for the bare
+ * spelling, so a tree selection left the ask bar's contextual questions empty and `askbar.track`
+ * unreachable. `contextualActions` branched correctly and then used the raw string as the SUBJECT,
+ * so a tree-selected entity offered "Rename entity:analytics…" and prefilled that as the `id` of
+ * an edit. `buildViewModel` marked rows with `new Set(selection).has(e.id)`, bare-only, so the row
+ * badge did not light either. Three readers, three answers, one field — which is the shape the
+ * design flagged in §10 ("`ViewState.selection` is untyped ids") before anyone drove it.
+ *
+ * The fix is not a fourth parser. `resolveSelection` is the SOLE decoder and it is the only place
+ * in the shell where a selection string is read at all; everything downstream receives a
+ * `Selection` and so cannot ask the question wrongly — there is no raw string left for it to
+ * mis-test. `selectionValue` is the sole encoder, so every writer emits the prefixed spelling and
+ * the bare one survives only as an input the agent API promises to accept.
+ *
+ * Relations stay addressed by the composite `RelationRef` rather than by a minted id, which is
+ * what the design meant by refusing to invent relation ids.
+ */
+export type SelectionRef =
+  | ElementRef
+  | { readonly kind: "relation"; readonly ref: RelationRef }
+  | { readonly kind: "model"; readonly id: string }
+  | { readonly kind: "machine"; readonly id: string };
+
+/**
+ * A selection as the panes see it: a resolved ref, nothing, or a value this system does not
+ * declare.
+ *
+ * `unresolved` is a member on purpose and is NOT folded into `none`. A transaction can delete the
+ * selected element and an agent can select a misspelling; reporting either as "nothing is
+ * selected" describes the pane instead of the model, and it would make the action bar offer the
+ * additive operations as though the user had deliberately cleared their selection. It carries the
+ * offending `value` so the inspector can quote it back.
+ */
+export type Selection =
+  | { readonly kind: "none" }
+  | { readonly kind: "unresolved"; readonly value: string }
+  | SelectionRef;
+
+/**
+ * The kind, DERIVED from the union rather than restated beside it.
+ *
+ * A hand-written twin of these members is a second source of truth that drifts the day a sixth
+ * selectable thing appears — which is how a containment edge and a transition came to have no
+ * member at all.
+ */
+export type SelectionKind = Selection["kind"];
+
+/** The sole encoder: a ref to the one wire spelling. Every writer goes through it. */
+export const selectionValue = (ref: SelectionRef): string =>
+  ref.kind === "relation"
+    ? relationValue(ref.ref)
+    : ref.kind === "model" || ref.kind === "machine"
+      ? `${ref.kind}:${ref.id}`
+      : elementValue(ref);
+
+/**
+ * The sole decoder: one wire value, resolved against the authoritative system.
+ *
+ * Prefixes are unambiguous because a legal id cannot contain a colon. The BARE spelling is read
+ * last and ONLY here — it is the agent API's documented input, not an internal encoding, and the
+ * precedence (entity, then machine, then model) is the one `inspector.ts` established and the
+ * agent examples assume.
+ */
+export function resolveSelection(system: CanonicalSystem, value: string | undefined): Selection {
+  if (value === undefined || value === "") return { kind: "none" };
+  const unresolved: Selection = { kind: "unresolved", value };
+
+  if (value.startsWith("rel:")) {
+    const ref = parseRelationValue(value);
+    if (ref === null) return unresolved;
+    const found = system.relations.some((r) =>
+      r.model === ref.model
+      && (ref.kind === "id"
+        ? r.id === ref.id
+        : r.from === ref.from && r.to === ref.to && r.type === ref.type));
+    return found ? { kind: "relation", ref } : unresolved;
+  }
+  if (value.startsWith("state:")) {
+    const ref = parseElementValue(value);
+    if (ref === null || ref.kind !== "state") return unresolved;
+    return system.machines.get(ref.machine)?.states.includes(ref.state) === true ? ref : unresolved;
+  }
+  if (value.startsWith("entity:")) {
+    const ref = parseElementValue(value);
+    if (ref === null || ref.kind !== "entity") return unresolved;
+    return system.entities.has(ref.id) ? ref : unresolved;
+  }
+  const colon = value.indexOf(":");
+  if (colon !== -1) {
+    const kind = value.slice(0, colon);
+    const id = value.slice(colon + 1);
+    if (kind === "model") return system.models.has(id) ? { kind: "model", id } : unresolved;
+    if (kind === "machine") return system.machines.has(id) ? { kind: "machine", id } : unresolved;
+    return unresolved;
+  }
+  if (system.entities.has(value)) return { kind: "entity", id: value };
+  if (system.machines.has(value)) return { kind: "machine", id: value };
+  if (system.models.has(value)) return { kind: "model", id: value };
+  return unresolved;
+}
+
+/**
+ * The whole wire selection, resolved — the principal first.
+ *
+ * One pane inspects one thing, so most consumers take only `[0]`. The row badges in the view model
+ * honour every member, because `view.select([a, b])` is a legal agent act and a badge that marked
+ * only the first would make the tables disagree with `view.selection()`.
+ */
+export const resolveSelections = (
+  system: CanonicalSystem, values: readonly string[],
+): readonly Selection[] => values.map((v) => resolveSelection(system, v));
+
+/**
+ * The scene-node id a selection highlights, or null when the picture has no node for it.
+ *
+ * The renderer's `SceneRequest.selection` is a list of SCENE NODE IDS — an entity id, or a bare
+ * state name within the drawn machine — which is a different vocabulary from the wire encoding
+ * above. Converting here rather than widening the renderer keeps the picture out of the shell's
+ * addressing scheme, and it is the third place the dual encoding showed: a tree selection reached
+ * the renderer as `entity:analytics`, matched no node, and drew no emphasis.
+ */
+export const sceneNodeIdFor = (selected: Selection): string | null =>
+  selected.kind === "entity" ? selected.id : selected.kind === "state" ? selected.state : null;
+
 /**
  * What a note may be attached to: `entity:<id>`, `model:<id>`, or either relation encoding above.
  *
@@ -900,12 +1036,23 @@ export function buildViewModel(
   properties: readonly EvaluatedProperty[],
   options: {
     readonly hypothesis: string | null;
-    readonly selection: readonly string[];
+    /**
+     * RESOLVED selections, not wire strings. The rows used to be badged from
+     * `new Set(options.selection).has(e.id)`, which answered only for the bare spelling and so
+     * left a tree-selected row unbadged — see `Selection`.
+     */
+    readonly selection: readonly Selection[];
     /** The drawn subject, so §5.1's principal model can state its purpose beside the picture. */
     readonly principal?: SceneSubject | null;
   },
 ): ViewModel {
-  const selected = new Set(options.selection);
+  // One set per selectable kind, because an entity id and a machine id can collide and a single
+  // set of strings could not tell a selected entity from a machine of the same name.
+  const idsWhere = (pick: (s: Selection) => string | null): ReadonlySet<string> =>
+    new Set(options.selection.map(pick).filter((id): id is string => id !== null));
+  const selectedEntities = idsWhere((s) => (s.kind === "entity" ? s.id : null));
+  const selectedModels = idsWhere((s) => (s.kind === "model" ? s.id : null));
+  const selectedMachines = idsWhere((s) => (s.kind === "machine" ? s.id : null));
 
   const banner: Banner | null =
     options.hypothesis !== null
@@ -929,7 +1076,7 @@ export function buildViewModel(
         props.length > 0 ? props.join("; ") : null,
         where.length > 0 ? `appears in ${where.join(", ")}` : null,
       ].filter((s): s is string => s !== null).join(" · ") || "no further detail",
-      states: selected.has(e.id) ? ["selected"] : [],
+      states: selectedEntities.has(e.id) ? ["selected"] : [],
       // An entity is not a purposeful reduction; the models it appears in are, and `detail` names
       // them. Giving it a purpose block would be inventing one.
       purpose: null,
@@ -959,7 +1106,7 @@ export function buildViewModel(
         m.purpose.question !== null ? `asks: ${m.purpose.question}` : null,
         m.purpose.omits.length > 0 ? `deliberately omits ${m.purpose.omits.join(", ")}` : null,
       ].filter((s): s is string => s !== null).join(" · "),
-      states: selected.has(m.id) ? ["selected"] : [],
+      states: selectedMachines.has(m.id) ? ["selected"] : [],
       // A machine is a purposeful reduction too: it carries its own `purpose` block, it is drawn as
       // its own subject, and a behavioural property grounds in it. UX-I4 covers it.
       purpose: purposeBlock(m.purpose),
@@ -1021,7 +1168,7 @@ export function buildViewModel(
       m.purpose.omits.length > 0 ? `deliberately omits ${m.purpose.omits.join(", ")}` : null,
       `over ${plural(m.entities.length, "entity", "entities")}`,
     ].filter((s): s is string => s !== null).join(" · "),
-    states: selected.has(m.id) ? ["selected"] : [],
+    states: selectedModels.has(m.id) ? ["selected"] : [],
     purpose: purposeBlock(m.purpose),
     // The row IS the model; a model does not assert itself.
     assertedBy: null,

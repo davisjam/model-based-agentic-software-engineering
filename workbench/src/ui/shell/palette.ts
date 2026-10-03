@@ -32,8 +32,9 @@ import { EDIT_ACTIONS, satisfies } from "./edit-dialogs.ts";
 import type { EditForm, OpenDialog } from "./edit-dialogs.ts";
 import { byId } from "./context.ts";
 import { regionHost } from "./surfaces.ts";
-import { selectionKind } from "./selection.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
+import { resolveSelection } from "../view-model.ts";
+import type { Selection } from "../view-model.ts";
 import type { CanonicalSystem } from "../../ir/types.ts";
 
 /**
@@ -74,10 +75,10 @@ const PRECONDITION_WORDS: Readonly<Record<string, readonly [met: string, unmet: 
  * catalogue appears here or the test says which one did not.
  */
 export function paletteCommands(
-  system: CanonicalSystem | null, selection: readonly string[],
+  system: CanonicalSystem | null, selected: Selection,
 ): readonly PaletteCommand[] {
   const loaded = system !== null;
-  const kind = loaded ? selectionKind(system, selection) : "none";
+  const kind = loaded ? selected.kind : "none";
   return EDIT_ACTIONS.map((a) => {
     const available = satisfies(a.needs, loaded, kind);
     const words = PRECONDITION_WORDS[a.needs] ?? (["ready", "unavailable"] as const);
@@ -215,7 +216,8 @@ export function mountPalette(ctx: ShellContext, open: OpenDialog): ShellRegion {
   return {
     paint: (frame: ShellFrame) => {
       commands = paletteCommands(
-        frame.state.loaded ? frame.state.system : null, ctx.viewState.selection);
+        frame.state.loaded ? frame.state.system : null,
+        resolveSelection(frame.state.system, ctx.viewState.selection[0]));
       if (dialog.open) render();
     },
   };
