@@ -720,7 +720,15 @@ function noteLines(a: Annotated): readonly NoteLine[] {
   }));
 }
 
-const CAVEAT = "An assumption written as a note is context, not a constraint: analysis does not use "
+/**
+ * The A1 boundary, in one sentence, with one author.
+ *
+ * Exported because the inspector states it too (`shell/inspector.ts`): under correction 3 the
+ * selected object's notes are read in the inspector, and the boundary has to be said wherever an
+ * assumption is shown. Two wordings of one boundary is how a reader learns to distrust both, so the
+ * second site imports this rather than writing its own.
+ */
+export const CAVEAT = "An assumption written as a note is context, not a constraint: analysis does not use "
   + "it. To make an assumption bind a result, represent it as a property, a variable or a guard.";
 
 /**
