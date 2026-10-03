@@ -59,7 +59,7 @@
 // that hook's owner instead of asserted here.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 
 /** The script the default gate hangs from. `npm run <this>` is what an agent is told to run. */
 const ROOT_GATE = "all";
@@ -133,13 +133,18 @@ const MIN_REASON = 40;
 /**
  * True for a script that produces a VERDICT — the ones a green report is implicitly a claim about.
  *
- * A predicate, not a list, so a new `test:*` script joins the policed set by existing. `types`,
- * `build` and `affordances` produce artifacts instead of verdicts; `build` is reachable from the
- * root gate anyway, and `check` and `test` are named because that is what this package calls its
+ * A predicate, not a list, so a new `test:*` or `check:*` script joins the policed set by existing.
+ * `types`, `build` and `affordances` produce artifacts instead of verdicts; `build` is reachable from
+ * the root gate anyway, and `check` and `test` are named because that is what this package calls its
  * typecheck and its unit tier.
+ *
+ * The `check:` prefix arrived with `check:parity`, the UX-I1 gate lifted out of an inline `node
+ * --eval` in the publishing workflow. A gate that is a script must be policed like one, on both
+ * axes — otherwise lifting logic out of YAML into a script nobody invokes trades one costume of this
+ * failure for another.
  */
 const isGate = (name: string): boolean =>
-  name === "check" || name === "test" || name.startsWith("test:");
+  name === "check" || name === "test" || name.startsWith("test:") || name.startsWith("check:");
 
 /**
  * Script names a command invokes.
@@ -396,4 +401,250 @@ test("the check fires on each defect it exists to catch — negative control", (
   // And the shorthand, which both CI and hooks/pre-push use.
   const shorthand = { check: "tsc --noEmit", test: "node --test", all: "npm run check && npm test" };
   assert.deepEqual(audit(shorthand, {}, tscOnly, full), [], "`npm test` reaches the `test` script");
+});
+
+// ----------------------------------------------------------------------------------------------
+// The axis the walk above cannot see: TWO runners of the SAME gate, disagreeing
+// ----------------------------------------------------------------------------------------------
+//
+// Everything above asks whether a runner ARRIVES at a gate. It never asks whether two runners that
+// both arrive are checking the same thing, and that is the hole the sixth instance walked through.
+//
+// UX-I1 affordance parity was asserted in two places with two thresholds. `test/capabilities.test.ts`
+// compared the violation list against a recorded BASELINE, which accepted one standing violation and
+// passed. The publishing workflow ran an inline `node --eval` that imported the registry and decided
+// the threshold for itself. Both runners reached a gate; the gate was not the same gate. Two pushes
+// failed at the stricter copy, because the local suite reported green against the weaker claim and
+// the stricter claim lived in YAML where nobody runs it. Unlike the five instances before it, nothing
+// here was unwired — the two gates CONTRADICTED each other.
+//
+// HOW FAR THIS HONESTLY GENERALISES: not far, and the narrow version is deliberate. Comparing
+// thresholds across a TypeScript test and a YAML-embedded script is not something a check can do in
+// general — it would have to understand both programs. So the structural property is split in two,
+// and each half is checkable on its own:
+//
+//   - The GENERAL half lives in `tests/ci.py`: no workflow step may import a package's source. A
+//     runner that imports the source is a second implementation by construction, whatever the
+//     invariant, so that rule makes the second threshold impossible to WRITE in the workflow. It
+//     holds for every gate, present and future.
+//   - The NARROW half is below, and covers exactly one invariant: UX-I1's threshold is declared in
+//     one file, no file compares a parity count against a literal, and the publishing step invokes
+//     the script rather than naming the functions.
+//
+// What neither half covers, stated rather than implied: two npm scripts inside this package could
+// still carry two thresholds for one invariant, and a runner could still re-derive a verdict in bash
+// (`test "$(grep -c …)" -eq 0`) without importing anything. A control nobody can trust is worse than
+// a missing one, so the claim stops where the checking does.
+//
+// PROSE IS NOT CODE, and this file argues about the pattern it forbids. Both scans run over
+// comment-stripped text, the same lesson `test/capabilities.test.ts` learned when a naive sweep read
+// `<section>` out of an HTML comment and reported three landmarks that did not exist. The fixtures in
+// the negative control go further and BUILD the banned text rather than spelling it, because a string
+// literal is not a comment and the audit reads this file along with every other.
+
+/** The threshold constant, by name — so moving it without updating this goes red. */
+const THRESHOLD_TOKEN = "PARITY_VIOLATION_CEILING";
+
+/**
+ * Its DECLARATION, which is what may exist once.
+ *
+ * A declaration rather than a mention, because a mention is what prose and this file's own fixtures
+ * are made of. `const PARITY_VIOLATION_CEILING` can only be the thing itself.
+ */
+const THRESHOLD_DECL = new RegExp(String.raw`\b(?:const|let|var)\s+${THRESHOLD_TOKEN}\b`);
+
+/** The one module allowed to declare it, package-relative. */
+const THRESHOLD_OWNER = "src/app/capabilities.ts";
+
+/** The exported verdict function both runners must reach through, rather than deciding for themselves. */
+const VERDICT_FN = "affordanceParityGate";
+
+/** The raw reporter. A runner naming it is a runner carrying the gate. */
+const REPORTER_FN = "checkAffordanceParity";
+
+/** The script that is the gate's only command. */
+const PARITY_SCRIPT = "check:parity";
+
+/**
+ * A parity count compared against a LITERAL — the shape a re-derived threshold always takes.
+ *
+ * The owning module's own comparison reads `violations.length <= PARITY_VIOLATION_CEILING`, whose
+ * right side is a name, so the owner does not trip its own ban. That is the rule in one line: the
+ * number may appear once, under a name, in one file.
+ */
+const LITERAL_THRESHOLD = /\bviolations\.length\s*(?:===|!==|==|>=|<=|>|<)\s*\d/;
+
+/** Comments out: line and block comments for TypeScript, hash comments for YAML. */
+const stripComments = (text: string, kind: "ts" | "yaml"): string =>
+  kind === "ts"
+    ? text.replace(/\/\*[\s\S]*?\*\//g, " ").replace(/\/\/.*$/gm, " ")
+    : text.replace(/#.*$/gm, " ");
+
+/** One file the audit reads: its package-relative path and its code, comments already out. */
+interface SourceFile {
+  readonly path: string;
+  readonly code: string;
+}
+
+/**
+ * The rule, over supplied files, so the negative control can drive it with the defect.
+ *
+ * `runnerCode` is the publishing workflow's text with comments stripped, or null when it cannot be
+ * read — which is a finding, never a skip.
+ */
+function auditSingleThreshold(
+  files: readonly SourceFile[],
+  runnerCode: string | null,
+  scripts: Readonly<Record<string, string>>,
+): readonly string[] {
+  const issues: string[] = [];
+
+  const declaring = files.filter((f) => THRESHOLD_DECL.test(f.code)).map((f) => f.path);
+  if (declaring.length === 0) {
+    issues.push(`no file among the ${files.length} scanned declares \`${THRESHOLD_TOKEN}\`. Either the `
+      + `threshold moved — in which case say where, here — or it dissolved back into a literal, which `
+      + `is the state this check exists to leave behind.`);
+  }
+  for (const path of declaring) {
+    if (path === THRESHOLD_OWNER) continue;
+    issues.push(`\`${path}\` declares \`${THRESHOLD_TOKEN}\`, which only \`${THRESHOLD_OWNER}\` may. `
+      + `A threshold with two homes IS the defect: UX-I1 had one in a test baseline and one in the `
+      + `publishing workflow, they disagreed, and the copy nobody could run locally failed the push.`);
+  }
+
+  for (const file of files) {
+    if (LITERAL_THRESHOLD.test(file.code)) {
+      issues.push(`\`${file.path}\` compares a parity violation count against a literal. Call `
+        + `\`${VERDICT_FN}()\` and read its \`passed\` field — a second number is a second definition `
+        + `of passing, and two definitions drift silently because neither mentions the other.`);
+    }
+  }
+
+  if (runnerCode === null) {
+    issues.push(`\`${PUBLISH_RUNNER}\` cannot be read, so whether it invokes the gate or reimplements `
+      + `it is unknown — and unknown must never read as a pass.`);
+    return issues;
+  }
+  if (!runnerCode.includes(`npm run ${PARITY_SCRIPT}`)) {
+    issues.push(`\`${PUBLISH_RUNNER}\` does not run \`npm run ${PARITY_SCRIPT}\`. The publishing axis `
+      + `is where UX-I1 is specified to fail hard, and a gate it does not invoke does not gate the site.`);
+  }
+  if (runnerCode.includes(VERDICT_FN) || runnerCode.includes(REPORTER_FN)) {
+    issues.push(`\`${PUBLISH_RUNNER}\` names this package's parity functions in a command. A runner `
+      + `that reaches into the source carries the gate instead of invoking it, which is how the `
+      + `threshold came to exist twice. Invoke \`npm run ${PARITY_SCRIPT}\`; the step keeps its title `
+      + `and its isolated, named failure either way.`);
+  }
+  if (scripts[PARITY_SCRIPT] === undefined) {
+    issues.push(`package.json declares no \`${PARITY_SCRIPT}\` script, so the one command both runners `
+      + `are supposed to share does not exist.`);
+  }
+  return issues;
+}
+
+/** Every `.ts`/`.mjs` file under the package's source, test and script trees, comments stripped. */
+const packageSources = (): readonly SourceFile[] => {
+  const out: SourceFile[] = [];
+  for (const dir of ["src", "test", "scripts"]) {
+    if (!existsSync(dir)) continue;
+    for (const entry of readdirSync(dir, { recursive: true, encoding: "utf8" })) {
+      const path = `${dir}/${entry}`;
+      if (!/\.(ts|mjs)$/.test(path) || !statSync(path).isFile()) continue;
+      out.push({ path, code: stripComments(readFileSync(path, "utf8"), "ts") });
+    }
+  }
+  return out;
+};
+
+test("the UX-I1 parity threshold is declared once, and both runners reach it through the script", () => {
+  const files = packageSources();
+  // A probe that finds nothing is usually the probe. This audit's force is the breadth of the scan,
+  // so the breadth is asserted before the rule reads it.
+  assert.ok(files.length > 20, `scanned ${files.length} source file(s) — the tree walk is wrong`);
+  assert.ok(files.some((f) => f.path === "scripts/check-parity.ts"),
+    "the gate's command must be in the scanned set; it is the file most likely to grow a second number");
+  assert.ok(files.some((f) => f.path === THRESHOLD_OWNER), `${THRESHOLD_OWNER} must be in the scanned set`);
+
+  const workflow = readRepoFile(PUBLISH_RUNNER);
+  const issues = auditSingleThreshold(
+    files, workflow === null ? null : stripComments(workflow, "yaml"), manifestScripts());
+  assert.deepEqual(issues, [], `UX-I1 threshold:\n  ${issues.join("\n  ")}\n`);
+});
+
+test("the single-threshold audit fires on each way the number comes back — negative control", () => {
+  // BUILT, not spelled. The audit reads every file under src/, test/ and scripts/ — this one
+  // included — so a fixture containing the banned text verbatim would make this control the first
+  // thing the check above reports. Comment-stripping does not help: a string literal is not a comment.
+  const compare = (op: string, n: number): string => `violations.length ${op} ${n}`;
+  const declare = (name: string): string => `const ${name} = 0;`;
+
+  const owner: SourceFile = {
+    path: THRESHOLD_OWNER,
+    code: `${declare(THRESHOLD_TOKEN)}\nexport function ${VERDICT_FN}() {\n`
+      + `  return { passed: violations.length <= ${THRESHOLD_TOKEN} };\n}\n`,
+  };
+  const cleanRunner = `      - name: UX-I1 affordance parity\n        run: npm run ${PARITY_SCRIPT}\n`;
+  const scripts = { all: "x", [PARITY_SCRIPT]: "node scripts/check-parity.ts" };
+  const pad = (n: number): readonly SourceFile[] =>
+    Array.from({ length: n }, (_, i) => ({ path: `src/pad-${i}.ts`, code: "export const x = 1;\n" }));
+  const base = [owner, ...pad(24)];
+
+  // The patched shape passes. Asserted first, because everything below is a DELTA against it and a
+  // control whose baseline is already red proves nothing about the deltas.
+  assert.deepEqual(auditSingleThreshold(base, cleanRunner, scripts), [], "the unified shape must pass");
+  // The owner's named comparison must not trip the literal ban, or the rule is unsatisfiable.
+  assert.ok(!LITERAL_THRESHOLD.test(owner.code),
+    "a comparison against the NAMED ceiling must be allowed; otherwise there is nowhere legal for it");
+
+  // The sabotage this instance actually was: the runner decides for itself.
+  const inlineRunner = "      - name: UX-I1\n        run: |\n          node --eval '\n"
+    + `            const v = ${REPORTER_FN}();\n`
+    + `            process.exit(${compare("===", 0)} ? 0 : 1);'\n`;
+  const reimplemented = auditSingleThreshold(base, inlineRunner, scripts);
+  assert.ok(reimplemented.some((m) => /does not run `npm run check:parity`/.test(m)),
+    `a runner that skips the script must be reported: ${reimplemented.join("; ")}`);
+  assert.ok(reimplemented.some((m) => /names this package's parity functions/.test(m)),
+    "a runner that carries the gate must be reported");
+
+  // A second DECLARATION inside the package — the half the workflow rule cannot see.
+  const secondHome = [...base,
+    { path: "test/elsewhere.test.ts", code: `${declare(THRESHOLD_TOKEN)}\n` }];
+  assert.match(auditSingleThreshold(secondHome, cleanRunner, scripts)[0] ?? "", /two homes/,
+    "a second file declaring the threshold must be reported");
+
+  // And the same number WITHOUT the name, which is how it got in last time.
+  const literal = [...base,
+    { path: "test/elsewhere.test.ts", code: `assert.ok(${compare("===", 0)});\n` }];
+  assert.match(auditSingleThreshold(literal, cleanRunner, scripts)[0] ?? "", /against a literal/,
+    "a parity count compared to a literal must be reported");
+  // Including a tolerant one. A ratchet is a threshold too, and two ratchets drift the same way —
+  // the baseline this instance started from accepted exactly one standing violation.
+  const ratchet = [...base,
+    { path: "test/elsewhere.test.ts", code: `assert.ok(${compare("<=", 1)});\n` }];
+  assert.match(auditSingleThreshold(ratchet, cleanRunner, scripts)[0] ?? "", /against a literal/,
+    "a tolerant literal is still a second definition of passing");
+
+  // Prose about the ban must not read as the ban. Without comment-stripping, every file that explains
+  // this rule reports itself, which is how a control gets deleted for crying wolf.
+  const prose = [...base, {
+    path: "test/elsewhere.test.ts",
+    code: stripComments(`// the old step asserted ${compare("===", 0)} inline\nexport const y = 1;\n`, "ts"),
+  }];
+  assert.deepEqual(auditSingleThreshold(prose, cleanRunner, scripts), [],
+    "a comment quoting the banned comparison must not be reported as the comparison");
+
+  // The threshold dissolving back into a literal, with nothing left to point at.
+  const dissolved = [{ path: THRESHOLD_OWNER, code: `export const ok = () => ${compare("===", 0)};\n` },
+    ...pad(24)];
+  const gone = auditSingleThreshold(dissolved, cleanRunner, scripts);
+  assert.ok(gone.some((m) => /no file among the \d+ scanned declares/.test(m)),
+    `a vanished threshold must be reported: ${gone.join("; ")}`);
+
+  // A missing script: the one command both runners share does not exist.
+  assert.ok(auditSingleThreshold(base, cleanRunner, { all: "x" })
+    .some((m) => /declares no `check:parity` script/.test(m)), "a missing gate script must be reported");
+
+  // An unreadable runner must not read as a pass.
+  assert.match(auditSingleThreshold(base, null, scripts)[0] ?? "", /cannot be read/,
+    "a missing workflow must be reported, never skipped");
 });

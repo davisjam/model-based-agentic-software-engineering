@@ -93,7 +93,9 @@ from tests.citations import (
 )
 from tests.ci import (
     check_ci_dependency_rule_fires,
+    check_ci_embedded_gate_rule_fires,
     check_ci_installs_what_the_suite_shells_out_to,
+    check_ci_steps_invoke_gates_rather_than_embedding_them,
 )
 from tests.common import FAIL, PASS, SKIP, changed_vs_origin
 from tests.deploy import check_deploy_publishable
@@ -220,6 +222,16 @@ CHECKS = [
           lambda strict: check_ci_installs_what_the_suite_shells_out_to()),
     Check("ci: that dependency-ordering rule fires on a late install — negative control", 1,
           lambda strict: check_ci_dependency_rule_fires()),
+    # BLOCKING (green at landing, 0 findings): no workflow step reimplements a gate inline. The
+    # 261003 instance is the sharp one — UX-I1 affordance parity was asserted TWICE with two
+    # thresholds, once in the workbench suite against a tolerant baseline and once as a `node --eval`
+    # in this workflow asserting zero. Two pushes failed at the stricter copy, which nobody could run
+    # locally. A step that imports a package's source is a second implementation by construction, so
+    # that is what this forbids; the sanctioned surface is a named package script.
+    Check("ci: no workflow step reimplements a gate inline — it invokes the script that owns it", 1,
+          lambda strict: check_ci_steps_invoke_gates_rather_than_embedding_them()),
+    Check("ci: that embedded-gate rule fires on the inline parity step — negative control", 1,
+          lambda strict: check_ci_embedded_gate_rule_fires()),
     Check("markdown: schema + md-link existence", 1, lambda strict: check_markdown_schema()),
     Check("course: module pages conform to module-schema.json (Premise + model list)", 1,
           lambda strict: check_course_module_schema()),

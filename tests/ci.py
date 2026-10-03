@@ -1,8 +1,10 @@
-"""A CI step that runs a suite installs that suite's dependencies, earlier in the same block.
+"""Two rules about the publishing workflow's steps: they can run their gates, and they do not BE them.
 
-THE FAILURE CLASS, second costume. Its first costume — a gate the runner never invokes — is held in the
-workbench's own suite (`workbench/test/gate-reachability.test.ts`). This is the other direction: the
-runner DOES reach the gate and the gate cannot execute, because what it needs is not there yet.
+THE FAILURE CLASS, second and third costumes. Its first — a gate the runner never invokes — is held in
+the workbench's own suite (`workbench/test/gate-reachability.test.ts`). The second is below: the runner
+DOES reach the gate and the gate cannot execute, because what it needs is not there yet. The third is
+`check_ci_steps_invoke_gates_rather_than_embedding_them`, at the end of this file: the runner reaches
+the gate by REIMPLEMENTING it, which is how one invariant comes to have two thresholds.
 
 The instance, 261002. `workbench/test/parity.test.ts` holds the TypeScript rule set against
 `workbench/validate.py` — the independent second implementation of the same rules — by shelling out to
@@ -302,5 +304,123 @@ def check_ci_dependency_rule_fires():
                     "          npm run test:browser\n")
     if "no step" not in (_findings(browser_only, required) or [""])[0]:
         issues.append("`npm run test:browser` must not be read as the node suite")
+
+    return (FAIL if issues else PASS), issues
+
+
+# ----------------------------------------------------------------------------------------------
+# Third costume: a step that does not INVOKE a gate but IS one, in YAML
+# ----------------------------------------------------------------------------------------------
+
+#: A relative module specifier inside a workflow's `run:` block — `from "./src/x.ts"`,
+#: `require("../lib/y.js")`. An inline program reaching into a source tree this way is a second
+#: implementation of something the package already has a script for.
+#:
+#: Relative only, deliberately. A bare specifier (`import yaml`, `from "node:fs"`) names a package or
+#: a stdlib module and says nothing about reimplementing a gate; a relative one can only resolve
+#: inside the repo. Narrow and true beats broad and arguable.
+SOURCE_IMPORT = re.compile(r"""(?:\bfrom\s+|\brequire\s*\(\s*)["'](\.{1,2}/[^"']+)["']""")
+
+#: How a `run:` block opens an inline program. Reported alongside the import, because it is what the
+#: author must replace with a script name.
+INLINE_LAUNCH = re.compile(r"--eval|--input-type|\bnode\s+-e\b|\bpython3?\s+-c\b")
+
+
+def _embedded_gate_findings(workflow_text: str) -> list[str]:
+    """Steps whose `run:` block imports a source module. Takes text, so the control can drive it."""
+    issues: list[str] = []
+    for step in _steps(workflow_text):
+        for line in step.body:
+            found = SOURCE_IMPORT.search(line)
+            if not found:
+                continue
+            launch = next((ln.strip() for ln in step.body if INLINE_LAUNCH.search(ln)), None)
+            issues.append(
+                f"{WORKFLOW}:{step.lineno} step {step.name!r} runs an inline program that imports "
+                f"{found.group(1)!r}"
+                + (f" (launched by `{launch}`)" if launch else "")
+                + ". A runner that imports a package's source is a SECOND implementation of whatever "
+                "that source gates, and the two drift on the number nobody can see: UX-I1 was "
+                "asserted here as `violations.length === 0` while the package's own suite compared "
+                "the same list against a baseline that tolerated one standing violation. Two pushes "
+                "failed at a threshold that had never been run locally. Move the logic into the "
+                "package, give it a script, and invoke the script — the step keeps its name and its "
+                "isolated failure, and loses only the second number.")
+    return issues
+
+
+def check_ci_steps_invoke_gates_rather_than_embedding_them():
+    """No workflow step reimplements a gate inline; it invokes the package script that owns it."""
+    path = os.path.join(ROOT, WORKFLOW)
+    if not os.path.isfile(path):
+        return FAIL, [f"{WORKFLOW} is missing — the publishing workflow cannot be checked"]
+    with open(path, encoding="utf-8") as fh:
+        text = fh.read()
+
+    issues: list[str] = []
+    # A probe that finds nothing is usually a broken probe. Both guards below fail loudly rather than
+    # letting a parse that reads zero steps report a clean workflow.
+    steps = _steps(text)
+    if len(steps) < 5:
+        issues.append(f"read {len(steps)} `run:` block(s) from {WORKFLOW} — the step scanner has gone "
+                      f"stale, and a rule over no steps passes by examining nothing")
+    if not any("npm run" in line for step in steps for line in step.body):
+        issues.append(f"no step in {WORKFLOW} invokes `npm run` — either the workflow stopped using "
+                      f"package scripts or this scan is not reading the blocks")
+    issues += _embedded_gate_findings(text)
+    return (FAIL if issues else PASS), issues
+
+
+def check_ci_embedded_gate_rule_fires():
+    """Negative control: the rule reports the inline parity step this repo used to ship."""
+    issues: list[str] = []
+
+    # The step as it actually was, before `npm run check:parity` replaced it. Verbatim shape: an
+    # `--input-type=module --eval` importing the registry and deciding the threshold on the spot.
+    was = ("jobs:\n  build:\n    steps:\n      - name: UX-I1 affordance parity\n"
+           "        run: |\n"
+           "          node --input-type=module --eval '\n"
+           "            import { CAPABILITIES, checkAffordanceParity } from \"./src/app/capabilities.ts\";\n"
+           "            const violations = checkAffordanceParity();\n"
+           "            process.exit(violations.length === 0 ? 0 : 1);\n"
+           "          '\n")
+    found = _embedded_gate_findings(was)
+    if len(found) != 1:
+        issues.append(f"the inline parity step must be reported exactly once, got {len(found)}: {found}")
+    elif "capabilities.ts" not in found[0] or "UX-I1 affordance parity" not in found[0]:
+        issues.append(f"the report must name the module and the step, got {found[0]!r}")
+
+    # The patched shape — the one this repo now ships — must pass.
+    now = ("jobs:\n  build:\n    steps:\n      - name: UX-I1 affordance parity\n"
+           "        run: npm run check:parity\n")
+    if _embedded_gate_findings(now):
+        issues.append(f"invoking the script must pass, got {_embedded_gate_findings(now)}")
+
+    # `require` is the other spelling, and a step that reaches a sibling tree is the same defect.
+    req = ("jobs:\n  build:\n    steps:\n      - name: Audit\n        run: |\n"
+           "          node -e 'const g = require(\"../lib/gate.js\"); process.exit(g.ok() ? 0 : 1)'\n")
+    if len(_embedded_gate_findings(req)) != 1:
+        issues.append("a `require` of a relative path must be reported too")
+
+    # What the rule deliberately does NOT flag, asserted so a later wave does not "fix" it into a
+    # broad ban that goes red at HEAD. A bare specifier names a package or the stdlib, and reading a
+    # DATA file is not reimplementing a gate — the handbook's chapter-PDF assertion does exactly that.
+    benign = ("jobs:\n  build:\n    steps:\n      - name: Chapters\n        run: |\n"
+              "          python3 - <<'EOF'\n"
+              "          import pathlib, yaml\n"
+              "          book = yaml.safe_load(open(\"handbook/book.yaml\", encoding=\"utf-8\"))\n"
+              "          raise SystemExit(0)\n"
+              "          EOF\n"
+              "      - name: Name\n        run: |\n"
+              "          PDF=$(python3 -c \"import json; print(json.load(open('m.json'))['f'])\")\n")
+    if _embedded_gate_findings(benign):
+        issues.append(f"a data-reading inline program must not be flagged, got "
+                      f"{_embedded_gate_findings(benign)}")
+
+    # And a workflow the scanner cannot read must not read as clean. `_steps` finds nothing in flow
+    # style, which is why the live check guards on a step floor rather than trusting an empty result.
+    flow = "jobs: {build: {steps: [{name: Suite, run: npm test}]}}\n"
+    if _steps(flow):
+        issues.append("flow style was expected to defeat the block scanner; the guard's premise moved")
 
     return (FAIL if issues else PASS), issues
