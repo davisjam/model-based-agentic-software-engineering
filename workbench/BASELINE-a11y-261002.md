@@ -557,3 +557,34 @@ sequence is updated with the reason.
 host is still an unnamed `generic`, and the two WCAG properties §6 declined to measure are still
 unmeasured. F-5 is the one the shell makes urgent: it moves readouts into panes, and a readout that
 lands outside its labelled section has no name at all.
+
+**The pristine tab walk moved again: 6 stops to 5, and the shell is why.** Appended by the shell's
+wave 0. The sixth stop was `#diagram-subject`, the Draw menu of the always-present Diagram section.
+SH-I1 mounts the workspace region iff a system is loaded, so on a fresh page that menu is inside a
+`hidden` region — out of the accessibility tree and out of the tab order together. The walk is now
+the skip link, `#file`, `#new-system`, `#example-choice`, `#example-load`.
+
+The change is in the right direction and worth saying why rather than only recording the number: a
+keyboard user on an empty workbench reached a control for choosing which model to draw before there
+was a model, which is the same defect F-2 named in Export and Run. The keyboard suite's pinned
+opening sequence did not change — it already listed those five — so a second test pins the ABSENCE
+of the sixth with its cause, because a pin that happens to still pass records nothing.
+
+Two more lines of §3 and §8 moved with it.
+
+- **The skip link's target is now derived, not fixed.** It was `#model`. The shell has two principal
+  surfaces and exactly one is mounted, so a constant href would point into a `hidden` region half
+  the time: it lands on `#start` with nothing loaded and `#workspace` once something is. Still never
+  the canvas.
+- **F-5 is closed, and the shell is what made it urgent.** Every readout host (`#sections`,
+  `#question-list`, `#finding-list`, `#provenance-list`) is a `<section>` named by its own visible
+  heading, computed against Chrome's accessibility tree by the browser tier. The four then travelled
+  into four different regions in this wave, which is exactly the move that would have orphaned them
+  as unnamed `generic`s.
+
+**UNMEASURED, and named so the next browser run closes it.** This wave had no resolvable Chromium,
+so every browser-tier change it made is reasoned and un-run: the SH-I1 mount matrix, the rewritten
+canvas-placement assertion, the two keyboard pins above, and the axe empty-state rule count. That
+last one is a real gap rather than a formality — the pristine page is now the header plus Start, so
+the 40 rules axe passed on the old empty page cannot hold, and the floor was lowered to 20 with the
+reason written at the assertion. The first run with a browser owes that line a measured number.

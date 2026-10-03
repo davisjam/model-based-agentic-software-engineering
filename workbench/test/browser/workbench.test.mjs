@@ -218,25 +218,39 @@ describe("FR-A11Y section 19: the accessible surface of the loaded page", () => 
     assert.deepEqual(unlabelled, [], `${unlabelled.length} unlabelled control(s): ${unlabelled.join(" | ")}`);
   });
 
-  it("the diagram stays hidden from assistive technology and stays last", async () => {
+  it("the diagram stays hidden from assistive technology, and its reading comes first", async () => {
+    // REWRITTEN BY THE SHELL WAVE, and the reason is correction 10 rather than a convenience. This
+    // used to assert that `#canvas` was the last element of the last section of the page — the
+    // picture as an epilogue after the whole textual database. The shell moves it into the
+    // `workspace` region at the visual centre, so "last in the document" stops being the property
+    // worth pinning and "the structured reading precedes it, inside the same region" starts.
+    //
+    // What did NOT change: the figure stays `aria-hidden`, every fact in it is in the reading above
+    // it, and nothing focusable is inside it. Those are the claims that make hiding it honest.
     const placement = await page.evaluate(() => {
       const canvas = document.getElementById("canvas");
-      const sections = [...document.querySelectorAll("main > section")];
-      const last = sections.at(-1);
+      const workspace = document.getElementById("workspace");
+      const text = document.getElementById("diagram-text");
       return {
         ariaHidden: canvas?.getAttribute("aria-hidden") ?? null,
         hasSvg: !!canvas?.querySelector("svg"),
-        inLastSection: !!(last && canvas && last.contains(canvas)),
-        isLastChild: last?.lastElementChild === canvas,
-        sectionIds: sections.map((s) => s.id),
+        inWorkspace: !!(workspace && canvas && workspace.contains(canvas)),
+        readingFirst: !!(text && canvas
+          && (text.compareDocumentPosition(canvas) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0),
+        focusableInside: canvas === null
+          ? -1
+          : canvas.querySelectorAll("a[href], button, input, select, textarea, [tabindex]").length,
       };
     });
-    // The prose is the authoritative account and the picture is the convenience. A change that
-    // promoted the canvas up the page to look better in a screenshot would silently invert that,
-    // and nothing else in the suite would notice.
-    assert.equal(placement.ariaHidden, "true", "#canvas lost aria-hidden — the structured view above is the accessible representation");
-    assert.ok(placement.inLastSection, `#canvas is not in the last section; sections are ${placement.sectionIds.join(", ")}`);
-    assert.ok(placement.isLastChild, "#canvas is no longer the last element of the last section");
+    assert.equal(placement.ariaHidden, "true",
+      "#canvas lost aria-hidden — the structured reading above it is the accessible representation");
+    assert.ok(placement.inWorkspace, "#canvas is not inside the workspace region");
+    assert.ok(placement.readingFirst,
+      "#diagram-text no longer precedes #canvas — DOM order is AT order, and the reading is the account");
+    // SH-I4. A focusable descendant of an `aria-hidden` subtree is an axe violation and a keyboard
+    // trap: the caret lands somewhere a screen reader refuses to describe.
+    assert.equal(placement.focusableInside, 0,
+      "the aria-hidden figure contains a focusable element — a caret can land where AT says nothing");
     assert.ok(placement.hasSvg, "#canvas drew nothing after a load — the diagram is not rendering at all");
   });
 
@@ -517,6 +531,63 @@ describe("FR-A11Y-3: a change the AGENT makes is announced, not only one that mo
     assert.ok(live.writes.length > 0, "Enter on #run announced nothing — the human channel regressed");
     assert.doesNotMatch(live.text, /The model changed/,
       `a human action was described twice, once by its handler and once by the model diff: "${live.text}"`);
+  });
+});
+
+describe("SH-I1: Start and the workspace are never both mounted", () => {
+  /**
+   * Correction 1, as a gate. Start is an empty-workspace experience: the flat page kept it on
+   * screen after a model loaded, so a user who had just opened Message Bus went on reading three
+   * explanations of how to open something. The shell mounts Start iff nothing is loaded and the
+   * workspace iff something is, which makes the claim a property of one field — and a browser is
+   * the only tier that can see whether a region is in the accessibility tree and the tab order.
+   *
+   * Driven on its OWN page, because the suite's main page has the flagship loaded and the empty
+   * half of the matrix cannot be recovered from it.
+   */
+  let freshPage;
+
+  before(async () => {
+    ({ page: freshPage } = await openWorkbench(browser));
+  }, { timeout: 120_000 });
+
+  /** Whether each named region is mounted, as a browser sees it — not as the markup reads. */
+  const mounted = () => freshPage.evaluate((ids) => Object.fromEntries(ids.map((id) => {
+    const el = document.getElementById(id);
+    return [id, el === null ? null : !el.hidden && el.offsetParent !== null];
+  })), ["start", "workspace", "nav", "inspector", "askbar", "statusbar"]);
+
+  it("a pristine page is Start, and the workspace is not there at all", async () => {
+    const now = await mounted();
+    assert.equal(now.start, true, "Start is not mounted on an empty workspace — there is no way in");
+    assert.equal(now.workspace, false,
+      "the workspace is mounted with nothing loaded; Start and the workspace are both on the page");
+    // The skip link follows the mounted surface. A bypass that lands in a `hidden` region is worse
+    // than no bypass, so it is derived rather than fixed.
+    const skip = await freshPage.evaluate(() => {
+      const a = document.getElementById("skip");
+      const target = document.getElementById((a?.getAttribute("href") ?? "#").slice(1));
+      return { href: a?.getAttribute("href") ?? null, targetHidden: target === null ? null : target.hidden };
+    });
+    assert.equal(skip.href, "#start", "the skip link does not land on the mounted principal surface");
+    assert.equal(skip.targetHidden, false, "the skip link points at a hidden region");
+  });
+
+  it("loading a model unmounts Start and mounts the workspace", async () => {
+    const yaml = await readFile(join(WORKBENCH_DIR, "examples", "message-bus", "system.mage.yaml"), "utf8");
+    await freshPage.evaluate((text) => window.mage.load(text), yaml);
+    await freshPage.waitForFunction(() => document.getElementById("start")?.hidden === true, { timeout: 30_000 });
+
+    const now = await mounted();
+    assert.equal(now.start, false, "Start survived a load — 'there is no reason to keep explaining the three ways in'");
+    assert.equal(now.workspace, true, "the workspace did not mount when a model arrived");
+    // The rest of the shell arrives with it: two empty rails and an empty inspector beside Start
+    // would have been furniture, so they are gated on the same field.
+    for (const id of ["nav", "inspector", "askbar", "statusbar"]) {
+      assert.equal(now[id], true, `#${id} is not mounted on a loaded page`);
+    }
+    const skip = await freshPage.evaluate(() => document.getElementById("skip")?.getAttribute("href") ?? null);
+    assert.equal(skip, "#workspace", "the skip link still points at Start after a model loaded");
   });
 });
 

@@ -7,7 +7,7 @@
  * claim rests on, and it only ever looked at ONE state.
  *
  * Four states, because an a11y defect in this page is far likelier to be in a state than in the
- * markup: the empty workbench disables every editing fieldset, a loaded model fills nine option
+ * markup: the empty workbench is Start alone (SH-I1 unmounts every other region), a loaded model fills nine option
  * lists and three tables, an open hypothesis unhides a button bar and paints a banner, and a
  * populated property list adds evidence lists and status chips. A boot-time-only scan would see the
  * first and miss the rest.
@@ -151,9 +151,18 @@ describe("FR-A11Y-1: axe-core finds nothing in any of the four states", () => {
       // Every offending node named with its rule id and selector, so a failure is a work list.
       assert.deepEqual(describeFindings(scan.violations), [],
         `axe found ${scan.violations.length} violation(s) in the ${state} state`);
-      // A scan that evaluated nothing also reports zero violations. 40 rules passed in the emptiest
-      // state at this commit; the floor is well under it so growth does not fail the gate.
-      assert.ok(scan.passes >= 30,
+      // A scan that evaluated nothing also reports zero violations, so each state asserts that axe
+      // actually matched something.
+      //
+      // The empty state's floor is LOWER than the others, and the asymmetry is the shell's doing
+      // rather than a weakened gate: SH-I1 reduces a pristine page to the header plus Start, so the
+      // tables, the option lists, the property blocks and the editing fieldsets that made the old
+      // empty page score 40 are simply not in the document until a model arrives. The number is
+      // UNMEASURED at this commit — the wave that gated the regions had no resolvable Chromium —
+      // and the first run with a browser owes this line a measured value, the way §3's tab walk was
+      // re-pinned when F-2 moved it.
+      const floor = state === "empty" ? 20 : 30;
+      assert.ok(scan.passes >= floor,
         `only ${scan.passes} rules passed in the ${state} state -- axe ran but matched almost nothing`);
     });
   }
