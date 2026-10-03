@@ -24,6 +24,13 @@
  * over every relation type in the worked example; that test exists because two implementations of one
  * licensing rule that disagree are worse than either alone.
  *
+ * Agreement on the ANSWER was never the whole of it. The two agreed that
+ * `cache_hit_frequency` could not be answered and disagreed about WHY: the engine named the
+ * distinction the model had declared omitted, and this gate called the same name a lookup miss. So
+ * the agreement sweep now compares the refusal CAUSE and the refusal SENTENCE, over docable and over
+ * every shipped example's saved graph queries, and `undeclaredVocabulary` is the one rung every name
+ * that fails to resolve passes through.
+ *
  * ## Symmetry is traversed, never materialized
  *
  * Layer 1 materializes no inverse term: `contains` has no `containedBy`, and `vocabulary.ts` gives
@@ -44,7 +51,7 @@ import type { CanonRelationType, CanonicalSystem } from "../ir/types.ts";
 import { modelsDeclaring } from "../engine/graph.ts";
 import { GRAPH_COMPOSING, type GraphForm } from "../engine/types.ts";
 import {
-  outsideSubset, routeToEngine, unknownVocabulary, unlicensedByModel,
+  outsideSubset, routeToEngine, undeclaredVocabulary, unlicensedByModel,
   type EngineRoute, type SeamRefusal,
 } from "./refusal.ts";
 
@@ -233,7 +240,7 @@ const refused = (refusal: SeamRefusal): Admission => ({ kind: "refused", refusal
 function checkScope(system: CanonicalSystem, scope: QueryScope): SeamRefusal | null {
   if (scope.kind === "system-union") return null;
   if (system.models.has(scope.model)) return null;
-  return unknownVocabulary("model", scope.model,
+  return undeclaredVocabulary(system, "model", scope.model,
     `scope the question to a declared model, or to the system union when the claim must hold ` +
     `across every model.`);
 }
@@ -251,6 +258,13 @@ function checkScope(system: CanonicalSystem, scope: QueryScope): SeamRefusal | n
  *     author.
  *  4. **Licensing before routing.** A question the model declines is declined by both interfaces;
  *     routing it to the engine would promise an answer that does not exist.
+ *
+ * That order is BY SUBJECT, and SEMANTICS.md §7.6 governs what happens within one: a declared
+ * decision outranks a bare absence, so every name that fails to resolve goes through
+ * `undeclaredVocabulary` rather than reporting `unknown-vocabulary` from here. All three rungs, not
+ * the one the audit named — the engine learned this at five rungs and this seam at none, which is
+ * how a purposeful omission came to read as a misspelling through SPARQL and as a decision through
+ * the engine.
  */
 export function admit(system: CanonicalSystem, question: SeamQuestion): Admission {
   if (question.kind === "behavioral") {
@@ -259,7 +273,7 @@ export function admit(system: CanonicalSystem, question: SeamQuestion): Admissio
 
   if (question.kind === "containment") {
     if (!system.entities.has(question.entity)) {
-      return refused(unknownVocabulary("entity", question.entity,
+      return refused(undeclaredVocabulary(system, "entity", question.entity,
         "name an entity the system declares."));
     }
     const scopeFault = checkScope(system, question.scope);
@@ -277,7 +291,7 @@ export function admit(system: CanonicalSystem, question: SeamQuestion): Admissio
 
   const relType = system.relationTypes.get(question.relation);
   if (relType === undefined) {
-    return refused(unknownVocabulary("relation type", question.relation,
+    return refused(undeclaredVocabulary(system, "relation type", question.relation,
       "declare the relation type, with its `description`, its `absence` meaning, and whether path " +
       "composition is allowed."));
   }
