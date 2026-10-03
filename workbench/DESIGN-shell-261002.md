@@ -1060,3 +1060,28 @@ watched a proxy, one is a ruling that had been made and not executed.
   including one that asserts the fixture reproduces the residue (the provenance-record count must
   stand still across the second note, or the counting detector would have caught it and the digest
   would be unnecessary).
+
+- **RESIDUE 3 — RULED and now EXECUTED: `advanced-query` names the disclosure, not one of the three
+  fieldsets inside it.** §9g already made this ruling in words ("the row should name the disclosure
+  and the three fieldsets inside it should be one surface, because they are one disclosure to a
+  person") and left the edit to whoever owned the readers, because §9f had deferred it on the ground
+  that three gates read `#form-ask`. **Re-measured before taking it, that reason no longer holds:**
+  the only remaining mention of `#form-ask` outside the markup is the ask bar region's own
+  fieldset-disable list, which reads the markup and not the surfaces table. A deferral's reason is a
+  fact about a tree, and this one had expired — which is the argument for re-measuring a cited reason
+  rather than inheriting it.
+
+  So the row names `ask-advanced`, and `properties-section.save` / `.retract` stop citing `askbar`
+  for their second step. **The `advanced` helper lost its `surface` parameter in the same change**:
+  all four callers now want the same surface, and a parameter with one value is a decision nobody is
+  making. `control` rather than `landmark`, for the reason §9g gave the System Browser's own
+  disclosure — a `<details>` carries no landmark role, so it is a thing a keyboard reaches and
+  activates rather than a region an AT jumps to.
+
+  **UX-I1 stays at 0 over 26 capabilities and the drive is what holds the widening honest.** Rung 2's
+  CONTAINMENT assertion is exactly the check this row was failing to satisfy, so the narrow row was
+  sabotaged back in with the paths left pointing at `advanced-query`, and the drive named both sites:
+  "step 2 names 'advanced-query' (#form-ask), which does not contain '#save-property-go'. The route
+  passes through a region the control does not live in." Restored, 44 of 44 paths walk. No element id
+  moved, so SH-I8's hard flip is untouched: this is a declaration catching up with a page that was
+  always built this way.

@@ -102,16 +102,22 @@ export const SURFACES: readonly Surface[] = [
   // The exhaustive entity/relation tables, still always visible. Wave 3 puts them behind the
   // System Browser menu entry; the region they live in is already its own.
   built("system-browser", "system-browser"),
-  // The structured query builder, still where the flat page had it. Wave 1c moves it under a
-  // disclosure; the surface is the fieldset either way.
+  // The Advanced query DISCLOSURE, not one of the three fieldsets inside it.
   //
-  // IT UNDER-COVERS THE DISCLOSURE IT SITS IN, and wave 1d found this by declaring paths against it.
-  // `<details id="ask-advanced">` holds THREE fieldsets — the query builder, Save as property, and
-  // Retract — and this row names only the first. So the save and retract sites are inside the
-  // Advanced disclosure and outside this surface, and their declared paths cite `askbar` for both
-  // steps rather than naming a region that does not contain them. Widening the row to `ask-advanced`
-  // was the alternative and it is wave 1c's call, not 1d's: three gates read `#form-ask`.
-  built("advanced-query", "form-ask", "control"),
+  // This row used to name `form-ask`, the query builder, which is one of the three fieldsets
+  // `<details id="ask-advanced">` holds — the builder, Save as property, and Retract. Wave 1d found
+  // the consequence by declaring paths against it: the save and retract sites were inside the
+  // Advanced disclosure and OUTSIDE the surface meant to describe it, so their paths cited `askbar`
+  // for both steps rather than a region that contains them. §9g ruled to widen and left the edit to
+  // whoever owned the readers; measured again before taking it, the deferral's reason ("three gates
+  // read `#form-ask`") no longer holds — the only remaining mention is this region's own
+  // fieldset-disable list in `askbar.ts`, which reads the markup and not this table.
+  //
+  // A surface's job in a declared path is to CONTAIN the control, and the three fieldsets are one
+  // disclosure to a person: one act opens all three. `control` rather than `landmark` for the
+  // System Browser's reason (§9g) — a `<details>` carries no landmark role, so it is a thing the
+  // keyboard reaches and activates, not a region an AT jumps to.
+  built("advanced-query", "ask-advanced", "control"),
   // The ten pinned editing fieldsets. §5 gives them no region and §9a records why — correction 4
   // replaces them with the `+ Add` menu, the inspector's actions and the palette, so the finished
   // shell has nowhere to put them. The markup ships anyway, because six §19 keyboard drives reach
