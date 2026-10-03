@@ -158,3 +158,130 @@ Two consequences for the design:
   being adopted as a syntax — but its **operation vocabulary and the constraints it learned the hard
   way** are available at naming-convention cost, and a design that re-derives them from scratch has
   skipped the cheapest available review. Say explicitly what was taken and what was deliberately not.
+
+---
+
+## Extension 1 — a model type carries its QUERY SEMANTICS, not just its structure
+
+> **Metamodel consequence.** Model types should carry their query semantics as part of their
+> definition. Queryability should not be inferred merely from whatever RDF triples happen to encode
+> an instance.
+>
+> For each model type, the metamodel should be able to declare at least: which element types and
+> properties are queryable; which relationships may be traversed, and in which directions; which
+> predicates or comparisons are meaningful for attributes; which transitive or derived relations are
+> semantically defined; which constraints can be evaluated as queries; which cross-model traces or
+> joins are meaningful; which standard query operations the model type supports.
+>
+> This should be understood as part of the semantics of a model type, analogous to the way a
+> systems-modeling metamodel defines the kinds of elements and relationships that may exist. The
+> metamodel should tell the Workbench not only what can be represented, but also **what questions can
+> meaningfully be asked of what is represented.**
+
+**Not UI flags.** The author is explicit: *"Do not make this a collection of ad hoc UI flags such as
+`searchable: true`. Prefer a typed queryability description from which both human and agent
+affordances can be derived."* The worked example is the test of whether a declaration is rich enough:
+declaring a relationship as a queryable directed relation should enable **both** a Workbench action
+like *Show dependencies* **and** an agent operation like `related(element, DEPENDS_ON, OUTGOING)` —
+one declaration, two affordances, derived rather than written twice.
+
+```
+model type definition
+  → structural semantics + query semantics
+    → model query interface
+      → human and agent affordances
+        → SPARQL execution over RDF
+```
+
+### The nuance that keeps this from becoming a disaster
+
+> I would not make every permissible query an attribute of the model type. That will become a
+> horrible declarative query-language-in-YAML. The metamodel should carry the **semantic primitives**
+> from which legitimate queries can be composed. That's the MBSE-like move: define what `satisfies`,
+> `allocatedTo`, `dependsOn`, containment, traceability etc. MEAN; the query layer composes questions
+> over those declared semantics.
+
+So the model type declares **meanings**, and the query layer composes **questions**. A model type
+enumerating its permitted queries has mistaken itself for the query layer.
+
+### The falsification test
+
+> If adding a new model type requires hand-writing unrelated SPARQL throughout the Workbench, the
+> abstraction has failed.
+
+This is the design's acceptance criterion and it is mechanically checkable: add a model type, count
+the SPARQL sites that had to change. The answer should be zero.
+
+---
+
+## Extension 2 — three operations, and they answer different questions
+
+> Agents must be able to validate both the model and a proposed model query directly. They should not
+> reproduce either form of semantic checking themselves.
+
+| Operation | Question | Shape |
+|---|---|---|
+| **Model validation** | Is this model well formed according to its model type? | `validate(model) → ValidationResult` |
+| **Query checking** | Is this a meaningful and permitted question for this model type? | `check(query, model_type) → QueryCheckResult` |
+| **Query execution** | What answer does this model give to that question? | the model query interface above |
+
+**Model validation.** Defined by the model type and its metamodel, which therefore carries its
+**validation semantics**: required structure, cardinalities, typing rules, permitted relationships,
+constraints, and model-type-specific well-formedness conditions. `ValidationResult` must identify the
+violated rule, the affected model elements, severity, and evidence *sufficient for a human or an agent
+to inspect and repair the problem* — actionable, not a verdict.
+
+**Query checking.** *"A query being executable against the RDF representation does not imply that it
+is a meaningful model query."* `check` determines whether a proposed query is well formed under the
+model query interface and licensed by the type's declared query semantics — referenced element and
+relationship types, permitted traversal and composition, directionality, predicates, cross-model
+operations, and type-specific restrictions. `QueryCheckResult` must, on rejection, identify **the
+offending portion of the query, the violated semantic rule, and where possible the permitted
+alternatives**, so an agent can revise rather than merely learn that it failed.
+
+The sanctioned flow:
+
+```
+construct query → check query → execute query → return result + evidence
+```
+
+> **The checker and executor must share one semantics.** A query accepted by the checker must not
+> subsequently acquire different meaning in the SPARQL/RDF execution layer.
+
+### Three classes of semantics per model type
+
+- **structural semantics** — what can be represented
+- **query semantics** — what questions can meaningfully be asked
+- **validation semantics** — what constitutes a well-formed model
+
+Human Workbench and agent interface expose these same capabilities through different interaction
+surfaces. SPARQL stays an implementation mechanism beneath the boundary, never the authority on
+whether a model question is meaningful.
+
+---
+
+## What is already built, verified 261002 — and it is more than the ruling assumes
+
+The author's read was that *"the existing design already contains a query checker implicitly. We're
+making it an explicit, agent-accessible semantic operation."* That is correct, and the existing form
+is stronger than "implicit" suggests:
+
+- **The checker/executor single-semantics requirement is ALREADY HELD BY THE COMPILER.** `admit`
+  produces a `LicensedQuestion`, a branded type, and `evaluate` accepts *only* that type
+  (`src/sparql/eval.ts:6,834`; `src/sparql/index.ts:13`). A question the checker did not admit
+  **cannot reach the executor at all** — not by discipline, by type. So `check` is not a new gate to
+  build; it is an existing structural gate to **name, expose, and give a structured result**. The
+  design must not weaken this: any agent-facing `check` must return the same admission the executor
+  consumes, or the two semantics fork at exactly the seam the ruling exists to protect.
+- **This is the V7 case the author cited.** RDF cannot know that `composition.path` is forbidden, so
+  the gate is driven from the IR rather than from the representation — which is the ruling's whole
+  architecture, already load-bearing at one seam.
+- **Validation exists but is NOT an operation.** `src/validator/rules.ts` holds the rule set, and
+  findings are returned as a *side effect* of `load` and `transact` (`src/app/agent-api.ts:400,478`).
+  There is no `validate(model)` an agent can call on demand, so an agent that wants to know whether a
+  model is well formed must mutate or reload it to find out. That is the gap the ruling names, and it
+  is a real one.
+- **`validate.py` is a second implementation** of the rule set, held to the TypeScript by an explicit
+  parity test with declared `PARITY` and `ASYMMETRIC` sets. A `validate(model)` operation must say
+  which implementation is authoritative for its result, or the parity discipline acquires a third
+  party silently.
