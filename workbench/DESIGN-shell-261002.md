@@ -973,3 +973,55 @@ not landed with 1d's path drive. `edit-section.delete-model` additionally still 
 `submitEdit` stays for §9e's reason, unchanged and still correct — it is the one thing every editing
 surface shares, so moving it into any one of them would make that surface the mutation path for the
 others.
+
+### 9h. The three recorded residues, closed
+
+Appended by the wave that drained the three findings §9f and §9g left on the floor, each filed by a
+wave that deliberately did not widen its own scope. One is a coverage hole, one is a detection that
+watched a proxy, one is a ruling that had been made and not executed.
+
+- **RESIDUE 1 — the prefill round-trip had no coverage, and the fix removes the encoding rather than
+  escaping it.** `edit-dialogs.ts` flattened each inspector action's prefill onto its button as
+  `key=value` pairs joined by a NUL and split it back in the button's click handler. A control-byte
+  gate flagged the raw separator; the first repair DELETED it, which turns `split(SEP)` into
+  `split("")` and leaves every dialog field empty — **and the suite reported 749 of 749 passing**,
+  because no tier looked at what the dialog received. The gate guarded the file's bytes; nothing
+  guarded the behaviour those bytes implemented.
+
+  The gate that was missing is three cases in the browser tier (`workbench.test.mjs`, "correction 4:
+  what a selection determines arrives in the dialog's own fields"): select an object through
+  `window.mage.view.select`, press the real `#act-rename` / `#act-note` button, and read the value
+  out of the `<select>` the dialog generated. Two actions rather than one, because `set-label`'s `id`
+  is a BARE entity id and `add-note`'s `target` is the `elementValue`-prefixed spelling under a
+  different field name — so a handler that paired the wrong key with the wrong value fails here.
+  Both terminals being `<select>`s makes the assertion stronger than a string compare: a `<select>`
+  accepts a value only when it names one of its own options.
+
+  **The first draft of that test passed the sabotage, and that is the part worth carrying forward.**
+  It selected the example's FIRST entity, which is also the first option of both selects — so with
+  the prefill dropped entirely the field still read that id as the browser's default, and the
+  assertion could not distinguish a delivered prefill from none. The subject is now the LAST entity
+  and each case also asserts the expected value is NOT the field's own default, so a fixture reorder
+  cannot quietly make the gate vacuous again. Watched red under the original deletion, with the
+  message naming both ids, before restoring.
+
+  **Ruling on the separator: it does not need to be a control byte, because it does not need to
+  exist.** The question §9f's residue poses is whether the values are constrained enough for a
+  printable separator. They are not — the keys are the catalogue's own field names, but the values
+  are entity and model ids a person types into `add-entity`, so no printable character is safe and
+  the NUL was load-bearing for as long as the encoding was. What makes the encoding unnecessary is
+  that these seven are SHIPPED buttons with a listener each, not generated rows behind a delegated
+  one: the prefill can travel from `paint` to the handler as a `ReadonlyMap<string, string>` in a
+  `let` with exactly the lifetime `options` and `current` in the same module already have — latest
+  paint wins, nothing captured — which is also what the canvas context menu already does
+  (`workspace.ts` calls `openDialog(action.form, action.prefill)`). So `data-prefill` and the
+  inspector's `data-form` are gone and the hazard with them. The palette KEEPS its `data-form`,
+  because its rows are generated per render and read by one delegated listener, which is the case
+  that genuinely needs the row to declare its operation.
+
+  Found while in there, unmentioned by the residue report: **every current contextual action
+  prefills exactly ONE pair**, so the separator was never emitted by any shipped path — the
+  deletion broke the single-pair case through `indexOf("=")`, not through a mis-split. And an action
+  button that returns to disabled KEEPS the last selection's wording rather than the generic label
+  the markup ships. That is pre-existing, unchanged here, and recorded rather than folded into a
+  change about the prefill encoding.
