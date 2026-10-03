@@ -211,7 +211,7 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   }
 
   section.append(sub("Properties you can measure"));
-  section.append(el("p", `Question forms the engine answers over a ${s.entry.label}: ${s.entry.propertyFamilies.join(", ")}.`, "intro"));
+  section.append(el("p", `Question forms the engine answers over a ${s.entry.label}: ${s.entry.forms.join(", ")}.`, "intro"));
   if (s.questions.length > 0) {
     section.append(el("p", "Asked of this exemplar, as its authors saved them:", "intro"));
     section.append(questionList(s.questions));

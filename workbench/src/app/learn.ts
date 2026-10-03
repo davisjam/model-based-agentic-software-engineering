@@ -3,10 +3,15 @@
  *
  * UX-I9: every public model type SHALL have a Learn entry derived from the same model-type
  * definition the workbench uses. This module is that derivation and nothing else — no DOM, no
- * prose of its own about what a type supports. The question, the property families, the schema
+ * prose of its own about what a type supports. The question, the question forms, the schema
  * authorities, the omissions and the composition all come from `src/engine/model-types.ts`, the
  * registry the kernel's query dispatch consults; a Learn page rendered from these entries
  * therefore cannot describe a capability the kernel does not gate on.
+ *
+ * The forms this card lists are now `query.forms` — the registry's query semantics, where the
+ * field used to be a `propertyFamilies` of its own. The card reads a declaration the kernel's
+ * dispatcher, the agent facade and the inspector's contextual actions read too, which is what
+ * makes "one declaration, two affordances" a fact about the code rather than a hope.
  *
  * ## The four-cards question, settled on a second axis
  *
@@ -38,7 +43,8 @@ export interface LearnEntry {
   readonly id: ModelTypeId;
   readonly label: string;
   readonly question: string;
-  readonly propertyFamilies: readonly string[];
+  /** The question forms the type answers, held BY REFERENCE to `ModelType.query.forms`. */
+  readonly forms: readonly string[];
   readonly schema: readonly SchemaAuthority[];
   readonly omits: readonly string[];
   readonly combineWith: {
@@ -60,7 +66,7 @@ const entryOf = (t: ModelType): LearnEntry => {
     id: t.id,
     label: t.label,
     question: t.question,
-    propertyFamilies: t.propertyFamilies,
+    forms: t.query.forms,
     schema: t.schema,
     omits: t.omits,
     combineWith: {
