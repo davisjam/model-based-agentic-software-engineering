@@ -30,7 +30,8 @@
  */
 export type NavSurface =
   | "header" | "start" | "nav-models" | "nav-properties" | "workspace" | "inspector"
-  | "askbar" | "statusbar" | "palette" | "review" | "system-browser" | "advanced-query";
+  | "askbar" | "statusbar" | "palette" | "review" | "system-browser" | "advanced-query"
+  | "edit";
 
 /**
  * What the surface is, so a generated keyboard drive knows how to arrive at it.
@@ -103,7 +104,26 @@ export const SURFACES: readonly Surface[] = [
   built("system-browser", "system-browser"),
   // The structured query builder, still where the flat page had it. Wave 1c moves it under a
   // disclosure; the surface is the fieldset either way.
+  //
+  // IT UNDER-COVERS THE DISCLOSURE IT SITS IN, and wave 1d found this by declaring paths against it.
+  // `<details id="ask-advanced">` holds THREE fieldsets — the query builder, Save as property, and
+  // Retract — and this row names only the first. So the save and retract sites are inside the
+  // Advanced disclosure and outside this surface, and their declared paths cite `askbar` for both
+  // steps rather than naming a region that does not contain them. Widening the row to `ask-advanced`
+  // was the alternative and it is wave 1c's call, not 1d's: three gates read `#form-ask`.
   built("advanced-query", "form-ask", "control"),
+  // The ten pinned editing fieldsets. §5 gives them no region and §9a records why — correction 4
+  // replaces them with the `+ Add` menu, the inspector's actions and the palette, so the finished
+  // shell has nowhere to put them. The markup ships anyway, because six §19 keyboard drives reach
+  // these operations by typing into fields a closed `<dialog>` would make unfocusable.
+  //
+  // A surface for a region a later wave DELETES, and that is the honest entry rather than the tidy
+  // one. Ten wired affordance sites live here; a person loads a system and Tabs to them. The
+  // vocabulary had no member for the region, so their only declarable path was the empty one —
+  // which claims they are reachable on the PRISTINE page, and `#edit` is `hidden` there. A table
+  // that admits a `planned` row for a region nobody built should admit a row for a region
+  // everybody can walk to. Wave 3 removes the row with the markup.
+  built("edit", "edit"),
 ];
 
 /** Every surface the page builds, with its element. The binder and both test tiers walk this. */

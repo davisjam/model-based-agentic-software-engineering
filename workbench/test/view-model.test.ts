@@ -1476,6 +1476,11 @@ test("the surfaces table covers the closed vocabulary exactly once", () => {
   const vocabulary: readonly NavSurface[] = [
     "header", "start", "nav-models", "nav-properties", "workspace", "inspector",
     "askbar", "statusbar", "palette", "review", "system-browser", "advanced-query",
+    // `edit` joined in wave 1d. The ten pinned editing fieldsets are wired affordance sites a
+    // person really walks to, and until the vocabulary had a member for their region their only
+    // declarable path was the empty one — which would have claimed they are reachable with nothing
+    // loaded. Wave 3 deletes the member with the markup.
+    "edit",
   ];
   const listed = SURFACES.map((s) => s.surface);
   assert.deepEqual([...listed].sort(), [...vocabulary].sort(),
