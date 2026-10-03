@@ -19,7 +19,7 @@
  * `describe()` ships the schemas, `inspect()` ships purpose and omissions, and every result ships
  * coverage and the system hash it describes.
  */
-import type { Finding, QueryResult } from "../ir/types.ts";
+import type { Evidence, Finding, QueryResult } from "../ir/types.ts";
 import type { PendingResult } from "./ports.ts";
 import type { ExhaustedEscalation } from "../sparql/index.ts";
 import type { SparqlAnswer, Workspace } from "./services.ts";
@@ -28,8 +28,14 @@ import type { ProvenanceRecord } from "./provenance.ts";
 import type { EvaluatedProperty } from "./properties.ts";
 import { CAPABILITIES, checkAffordanceParity } from "./capabilities.ts";
 
-/** Bumped on a breaking change to this surface. Implementation internals are not API. */
-export const AGENT_API_VERSION = "0.1.0";
+/**
+ * Bumped on a breaking change to this surface. Implementation internals are not API.
+ *
+ * 0.2.0 — `evidence(queryId)` returns an `EvidenceReading` instead of `QueryResult | null`. The
+ * nullable was the defect, not the spelling: one value carried "no witness" and "nobody primed the
+ * cache this method read", so no caller could tell them apart.
+ */
+export const AGENT_API_VERSION = "0.2.0";
 
 export interface MageAgentApi {
   readonly version: string;
@@ -76,7 +82,21 @@ export interface MageAgentApi {
    * Recomputed per call. There is no cached verdict here any more than there is one in the IR.
    */
   properties(): readonly EvaluatedProperty[];
-  evidence(queryId: string): QueryResult | null;
+  /**
+   * Read one saved question's witness, counterexample or lasso — recomputed, and never nullable.
+   *
+   * Recomputed for the reason `properties()` is, two lines above: a verdict is derived state (V18),
+   * so the only honest way to read one is to compute one. This method used to read a Map that
+   * `savedQueries()` filled, which made its answer depend on call ORDER and let it describe a
+   * revision the system had already left.
+   *
+   * **Never nullable, because the null was the worse half of the defect.** `null` meant "no witness"
+   * and "nothing has been computed yet" at the same address, and a caller cannot tell those apart
+   * from one value however carefully it asks. So an absence is reported as data: a cause, the
+   * sentence a person reads, the answer when there was a question to answer, and the ids this system
+   * actually saves.
+   */
+  evidence(queryId: string): EvidenceReading;
   view: ViewApi;
   undo(): boolean;
   redo(): boolean;
@@ -227,6 +247,72 @@ export interface MachineInspection {
   }[];
 }
 
+/**
+ * What `evidence(queryId)` found, or why it found nothing — a typed result rather than a nullable.
+ *
+ * The vocabulary follows the house pattern for "this cannot be answered": the SPARQL seam reports
+ * `outcome: unlicensed` with a cause and the change that would license the question, and the engine
+ * ranks a declared omission above a bare lookup miss. The same discipline applies one layer up. A
+ * reader asking for a witness has three situations to tell apart, and collapsing any two of them
+ * teaches a falsehood:
+ *
+ *  - **the question is not saved** — a typo, or a question nobody has saved yet. Nothing ran.
+ *  - **the model declines** — the question is refused, so no interface has a witness for it.
+ *  - **the question was answered and has no witness** — a universal that holds exhaustively shows
+ *    no single trace, and that is an ordinary result rather than a gap.
+ *
+ * Reporting the first as the third sends a caller hunting for a modelling gap that does not exist;
+ * reporting the second as the third teaches it that the workbench cannot do what it declines to do
+ * on purpose.
+ */
+export type EvidenceReading = EvidenceFound | EvidenceWithheld | NoSuchQuestion;
+
+/** Why a reading carries no witness. Never inferred from prose — this is the field to switch on. */
+export type EvidenceAbsence = "no-such-question" | "unlicensed-by-model" | "no-witness";
+
+export interface EvidenceFound {
+  readonly found: true;
+  readonly queryId: string;
+  /** The answer, recomputed. Its `systemHash` is the revision this reading describes. */
+  readonly result: QueryResult;
+  /**
+   * The witness itself, already narrowed.
+   *
+   * `result.evidence` is the same object. It is surfaced here so the found arm *is* the proof that
+   * there is something to read: a caller that has checked `found` does not then re-check a nullable
+   * field, which is where a nullable return would simply have moved the problem.
+   */
+  readonly evidence: Evidence;
+}
+
+export interface EvidenceWithheld {
+  readonly found: false;
+  readonly queryId: string;
+  readonly cause: "unlicensed-by-model" | "no-witness";
+  /** The sentence a person reads. The engine's own refusal when there is one — never a reword. */
+  readonly prose: string;
+  /** The answer, which is still worth handing back: a refusal and a verdict are both results. */
+  readonly result: QueryResult;
+  readonly savedQuestions: readonly string[];
+}
+
+/**
+ * The id names no saved question, so nothing ran.
+ *
+ * A separate member rather than a `result: QueryResult | null` on the arm above, so the compiler
+ * holds the invariant: a question nobody asked cannot carry an answer. `savedQuestions` is the
+ * field that fixes the diagnosis — a caller reading an absence sees what this system DOES save, and
+ * tells a misspelled id from a question that genuinely is not there without a second call.
+ */
+export interface NoSuchQuestion {
+  readonly found: false;
+  readonly queryId: string;
+  readonly cause: "no-such-question";
+  readonly prose: string;
+  readonly result: null;
+  readonly savedQuestions: readonly string[];
+}
+
 export interface TransactionOutcome {
   readonly ok: boolean;
   readonly findings: readonly Finding[];
@@ -265,7 +351,45 @@ export function createAgentApi(
   // and because one instance is what makes the two interfaces converge rather than agree by luck.
   examples: ExampleCatalog,
 ): MageAgentApi {
-  const lastResults = new Map<string, QueryResult>();
+  /**
+   * One saved question's witness, computed now against the authoritative system.
+   *
+   * No cache, and the absence of one is the design. The alternative considered and rejected was a
+   * Map keyed by `(queryId, systemHash)`, which would make a stale hit impossible — but a verdict
+   * is derived state, so the project's answer for this value class is already "recompute, never
+   * store", and reading ONE saved question costs strictly less than the pass `savedQueries()` and
+   * `properties()` each make over all of them. A hash-keyed cache would also miss on exactly the
+   * call an agent makes most: ask, edit, ask again.
+   */
+  const readEvidence = (queryId: string): EvidenceReading => {
+    const system = workspace.state.system;
+    const savedQuestions = [...system.queries.keys()];
+    const saved = system.queries.get(queryId);
+    if (saved === undefined) {
+      return {
+        found: false, queryId, cause: "no-such-question", result: null, savedQuestions,
+        prose: `no saved question is named "${queryId}". `
+          + `\`savedQuestions\` lists what this system saves; a question becomes one through a `
+          + `\`save-query\` transaction.`,
+      };
+    }
+    const result = workspace.query(saved.raw);
+    const evidence = result.evidence;
+    if (evidence !== null) return { found: true, queryId, result, evidence };
+    if (result.outcome === "unlicensed") {
+      return {
+        found: false, queryId, cause: "unlicensed-by-model", result, savedQuestions,
+        // The engine's sentence, passed through. A refusal always carries one, and re-wording it
+        // here would be a second answer to "why can this not be answered" from one model.
+        prose: result.refusal ?? `the model does not license "${queryId}".`,
+      };
+    }
+    return {
+      found: false, queryId, cause: "no-witness", result, savedQuestions,
+      prose: `"${queryId}" was answered — ${result.outcome} — and that answer shows no witness, `
+        + `counterexample or lasso. Read the verdict and its grounding through \`ask\`.`,
+    };
+  };
 
   const context = (): WorkspaceContext => {
     const s = workspace.state;
@@ -375,16 +499,11 @@ export function createAgentApi(
     sparql: (text, budget) =>
       budget === undefined ? workspace.sparql(text) : workspace.sparql(text, budget),
 
-    savedQueries: () => {
-      const results = workspace.runSavedQueries();
-      lastResults.clear();
-      for (const [id, r] of results) lastResults.set(id, r);
-      return Object.fromEntries(results);
-    },
+    savedQueries: () => Object.fromEntries(workspace.runSavedQueries()),
 
     properties: () => workspace.properties(),
 
-    evidence: (queryId) => lastResults.get(queryId) ?? null,
+    evidence: readEvidence,
 
     view: {
       select: (ids) => { viewState.selection = [...ids]; onViewChange(); },
