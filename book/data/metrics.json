@@ -1,15 +1,11 @@
 {
   "_provenance": "AUTHORED source of truth for the book's headline numbers. Referenced from chapter prose via {{token}} substitution in build_book.py. A later pass refreshes the repo-derived figures from history-mining; the cost-model and policy figures are the book's canonical estimates. Edit here, never in the prose.",
-
   "_loc_provenance": "LoC tokens (prod_loc, support_loc, iac_loc, system_model_loc, total_loc, support_ratio) are POINT-IN-TIME source-tree category counts measured 2026-08-03 on the system's repository (parent repo, HEAD ce0bde110fbb at measurement) via a categorized line-count tool. Category map: prod_loc=Production Code (491,090); support_loc=support-apparatus rollup (1,501,907 = tests + lints + load-bearing docs + agent infrastructure + tools; support_ratio 3.0 = support_loc/prod_loc); iac_loc=Infrastructure as Code (35,323); system_model_loc=System-model meta-files (28,507); total_loc=whole-tree code, raw (2,824,878; the tool also reports a semantic total of 2,083,089 that excludes snapshot/history docs — total_loc keeps the raw whole-tree definition the 2026-07-23 baseline used). NOTE on the iac/system-model jump vs the 2026-07-23 baseline (8,446 / 7,380): a category re-partition landed in the count tool late on 2026-07-23 (after the baseline run) that carved previously-UNCOUNTED deploy/** production source and top-level system-models/*.py modules into these two categories — the jump is a coverage fix in the tool, not organic growth. These are source-tree counts, NOT the 15.7M engineering-line churn figure from a repo-activity histogram over the git history (which measures added+deleted lines over time). D1/D2 RECONCILIATION (Part-5 assembly, 260806): prod_loc/support_loc are set to the delta-consistent 'now' snapshot (491,090 / 1,501,907) that reproduces the +45%/+21% support-ratio-curve growth deltas and equals the support-ratio table 'now — Aug 3' row; the earlier (higher) measurement is superseded and must not reappear. The EXACT canonical figure (choice of canonical SHA; design recommends 07af718a) is finalized at the read-only metrics-miner run and remains user-gated — these token values are the authoritative in-tree snapshot pending that confirmation.",
-
   "_commit_provenance": "Commit tokens (commits_total, commits_per_week, commits_per_day, peak_week_commits, study_weeks) from a repo-activity histogram over the git history (commits metric) on the parent repo, measured 2026-08-03 at HEAD ce0bde110fbb (20 full weeks, 2026-03-12 -> 2026-07-23 week-starts, i.e. through 2026-07-29). commits_total=23,215 over 20 weeks; sustained rate ~200 commits/day (~1,000-1,400/week; 20-week mean 1,161/week); peak_week_commits=3,329 (week of 2026-05-21). commits_per_day was corrected 500 -> 200 (500/day implied ~3,500/week, a rate only the single peak week approached).",
-
   "study_weeks": "20",
   "study_window": "March–July 2026",
   "model_vendor": "Anthropic Claude (Opus and Sonnet, March–July 2026)",
   "peak_accounts": "four",
-
   "prod_loc": "491,090",
   "support_loc": "1,501,907",
   "iac_loc": "35,323",
@@ -23,10 +19,8 @@
   "agents_parallel": "six to eight",
   "serverless_commits": "400",
   "serverless_phase_count": "27",
-
   "corpus_decks": "~100 slide decks",
   "corpus_pdfs": "~300 PDFs",
-
   "deck_issue_count": "42",
   "hours_per_document": "3",
   "documents_per_course": "100",
@@ -34,18 +28,14 @@
   "_workweeks_note": "Displayed rounded UP to a whole week for readability (the reader needn't do fractions): the underlying estimate is hours_per_course 300 / a 40-hour week = 7.5, presented as ~8.",
   "workweeks_per_course": "8",
   "diy_cost_per_course": "$20,000",
-
   "vendor_cost_per_page": "$3 to $40",
   "vendor_cost_per_course_low": "$5,000",
   "vendor_cost_per_course_high": "$50,000",
-
   "per_deck_process_time": "about a minute",
   "per_deck_process_cost": "about a dollar",
   "dev_cost_total": "about sixty thousand dollars",
-
   "product_name": "DocAble",
   "product_url": "https://scholaccess.com",
-
   "_model_count_note": "The Model Zoo census: 7 general model types (G1-G7) + 19 real typed system-models (M1-M19) + 3 split-out sub-models (M18a, M18b, M14a) = 29 named models. Presented as EVIDENCE for the 4+1 thesis (a zoo large enough that one view is never enough), not as a target to hit.",
   "model_count": "twenty-nine",
   "real_model_count": "nineteen",
@@ -53,12 +43,10 @@
   "model_zoo_chapter_count": "six",
   "_mechanism_count_note": "Tracks the companion catalogue census (the <!--census:controls--> macro / INDEX total). Word-form, kept approximate ('around ...') so small drift as new mechanisms land does not falsify the prose. Update when the census crosses a round number. Census at last sync: 83.",
   "mechanism_count": "eighty",
-
   "_missing_model_pilot_note": "The Missing Model Metric pilot (the missing-model-metric pilot, Phase 1). Ran a code->model tracer over 144 tests in the dispatch/orchestration subsystem — deliberately the most heavily-modelled slice. missing_model_pilot_fraction=0.56: 56% of those tests exercise production code that traces to no invariant, state machine, or service edge. missing_model_pilot_test_count=144. The number is a LOWER bound (import-reach over-counts DETAILS_NODE). Sharpening finding: every orphan reached code anchored at the coarse Component level but with no fine behavioral model — a granularity gap. Surfaced three genuine candidate missing-models, down-weighted two missing-anchor clusters.",
   "missing_model_pilot_fraction": "0.56",
   "missing_model_pilot_percent": "56%",
   "missing_model_pilot_test_count": "144",
-
   "prod_growth_multiple": "eighteen-fold",
   "orphan_after_first_epic": "39%",
   "project_elapsed_period": "about five months",
@@ -66,14 +54,12 @@
   "intensive_build_period": "the mechanization-and-hardening core",
   "measurement_snapshot": "2026-08-03",
   "faculty_loaded_hourly_cost": "$67",
-
   "ada_title_ii_since": "1990",
   "doj_web_rule_year": "2024",
   "doj_technical_standard": "WCAG 2.1 Level AA",
   "doj_remediation_window": "two-year",
   "doj_deadline": "April 24, 2026",
   "lawsuit_settlement_range": "thousands to millions of dollars",
-
   "_ledger_note": "Per-metric provenance ledger (§VII schema: metric ID / snapshot date / category def / source cmd / displayed rounding / consumers). `_`-prefixed so the loader strips it from {{token}} substitution — metadata only, zero renderer change. Miner-INDEPENDENT tokens land here now; the prod_loc/support_loc snapshot reconciliation to ONE canonical SHA (D1/D2) and prod_growth_multiple's exact decimal are miner-gated and land at Part-5 assembly.",
   "_ledger": {
     "prod_growth_multiple": {
@@ -81,21 +67,86 @@
       "category_def": "now-prod / prototype-prod (26,956), Production Code category",
       "source_cmd": "derived: prod_loc / prototype-prod",
       "rounding": "word-form 'eighteen-fold' — miner-independent (both 18.2x and 18.6x round to ~18x); the EXACT decimal (18.2 vs 18.6) rides the canonical prod_loc snapshot (D1) and is miner-gated",
-      "consumers": ["5.2#support-ratio", "data-claims:support-ratio-curve.gloss"]
+      "consumers": [
+        "5.2#support-ratio",
+        "data-claims:support-ratio-curve.gloss"
+      ]
     },
     "orphan_after_first_epic": {
       "snapshot_date": "2026-08-03",
       "category_def": "Missing-Model-Metric orphan rate after the first modeling wave (waypoint 'wave-1' of the nine-run drain, part2/2.5)",
       "source_cmd": "part2/2.5 mmm-drain-table; data-claims:mmm-drain",
       "rounding": "exact percent",
-      "consumers": ["5.4#orphan-waypoints"]
+      "consumers": [
+        "5.4#orphan-waypoints"
+      ]
     },
-    "project_elapsed_period": {"snapshot_date": "2026-08-03", "category_def": "first feasibility probe -> measurement snapshot (~March-August 2026)", "source_cmd": "study calendar span", "rounding": "word-form", "consumers": ["6.2"]},
-    "focused_study_period": {"snapshot_date": "2026-08-03", "category_def": "the measured window (2026-03-12 -> 2026-07-29, study_weeks=20)", "source_cmd": "commit histogram window", "rounding": "word-form", "consumers": ["5.2"]},
-    "intensive_build_period": {"snapshot_date": "2026-08-03", "category_def": "the hardest build stretch (mechanization + hardening core)", "source_cmd": "study windows", "rounding": "descriptive", "consumers": ["5.2", "5.4"]},
-    "measurement_snapshot": {"snapshot_date": "2026-08-03", "category_def": "the LoC / commit census date", "source_cmd": "categorized line-count + commit histogram", "rounding": "ISO date", "consumers": ["5.2"]},
-    "faculty_loaded_hourly_cost": {"snapshot_date": "2026-08-03", "category_def": "loaded (salary + benefits/overhead) research-faculty hourly cost; a book ESTIMATE derived to reconcile diy_cost_per_course ($20,000 / hours_per_course 300 = ~$67) — confirm salary-only vs loaded basis at Part-5 assembly", "source_cmd": "derived: diy_cost_per_course / hours_per_course", "rounding": "nearest dollar", "consumers": ["5.1#cost-inset"]},
-    "doj_deadline": {"category_def": "Title II web-content compliance deadline (large orgs; Purdue qualifies)", "source_cmd": "manuscript ch2:129/211 (DOJTitleIIWebMobileAccessibility2024)", "rounding": "exact date", "consumers": ["5.1", "5.2"]},
-    "lawsuit_settlement_range": {"category_def": "higher-ed ADA settlement cost range", "source_cmd": "manuscript ch2:93 (CarlsonHigherEdAccessibilityLawsuits)", "rounding": "word-form range", "consumers": ["5.1"]}
-  }
+    "project_elapsed_period": {
+      "snapshot_date": "2026-08-03",
+      "category_def": "first feasibility probe -> measurement snapshot (~March-August 2026)",
+      "source_cmd": "study calendar span",
+      "rounding": "word-form",
+      "consumers": [
+        "6.2"
+      ]
+    },
+    "focused_study_period": {
+      "snapshot_date": "2026-08-03",
+      "category_def": "the measured window (2026-03-12 -> 2026-07-29, study_weeks=20)",
+      "source_cmd": "commit histogram window",
+      "rounding": "word-form",
+      "consumers": [
+        "5.2"
+      ]
+    },
+    "intensive_build_period": {
+      "snapshot_date": "2026-08-03",
+      "category_def": "the hardest build stretch (mechanization + hardening core)",
+      "source_cmd": "study windows",
+      "rounding": "descriptive",
+      "consumers": [
+        "5.2",
+        "5.4"
+      ]
+    },
+    "measurement_snapshot": {
+      "snapshot_date": "2026-08-03",
+      "category_def": "the LoC / commit census date",
+      "source_cmd": "categorized line-count + commit histogram",
+      "rounding": "ISO date",
+      "consumers": [
+        "5.2"
+      ]
+    },
+    "faculty_loaded_hourly_cost": {
+      "snapshot_date": "2026-08-03",
+      "category_def": "loaded (salary + benefits/overhead) research-faculty hourly cost; a book ESTIMATE derived to reconcile diy_cost_per_course ($20,000 / hours_per_course 300 = ~$67) — confirm salary-only vs loaded basis at Part-5 assembly",
+      "source_cmd": "derived: diy_cost_per_course / hours_per_course",
+      "rounding": "nearest dollar",
+      "consumers": [
+        "5.1#cost-inset"
+      ]
+    },
+    "doj_deadline": {
+      "category_def": "Title II web-content compliance deadline (large orgs; Purdue qualifies)",
+      "source_cmd": "manuscript ch2:129/211 (DOJTitleIIWebMobileAccessibility2024)",
+      "rounding": "exact date",
+      "consumers": [
+        "5.1",
+        "5.2"
+      ]
+    },
+    "lawsuit_settlement_range": {
+      "category_def": "higher-ed ADA settlement cost range",
+      "source_cmd": "manuscript ch2:93 (CarlsonHigherEdAccessibilityLawsuits)",
+      "rounding": "word-form range",
+      "consumers": [
+        "5.1"
+      ]
+    }
+  },
+  "_refactor_cost_provenance": "refactor_files / refactor_lines / refactor_hours are the three figures the refactor-cost data-claims entry holds, moved into the token registry so the chapter prose carries no raw digit for the governed-literal-leak pin to match. Same delegation metrics.json already documents for the reporting section's figures. Source per data-claims: one agent-run cross-format migration on the DocAble repo, measured from the landing commit's diffstat and the agent session's wall-clock log. RESIDUE: section 5.2 also spells 'fifty-eight files' twice in word form for emphasis; those are NOT token-rendered, so a change here must update them by hand. Left as the author's prose rather than flattened.",
+  "refactor_files": "58",
+  "refactor_lines": "5,000",
+  "refactor_hours": "5"
 }
