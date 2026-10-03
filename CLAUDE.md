@@ -229,10 +229,17 @@ re-deriving these, so they live here:**
   - **`git worktree add` does not create that symlink — the orchestrator does, as a second step.** A
     fresh worktree has NO `workbench/node_modules`, so the agent's first `npx tsc` or `npm test` fails
     on a missing package and its likely next move is the `npm install` banned above. Create the link
-    when you create the worktree, not when the agent reports a failure:
-    `ln -s <main-checkout>/workbench/node_modules <worktree>/workbench/node_modules`, then confirm a
-    binary resolves through it (`ls <worktree>/workbench/node_modules/.bin/tsc`). Done three times on
-    261002; the third time is what earned it a line here.
+    when you create the worktree, not when the agent reports a failure.
+  - **It is THREE symlinks, not one** — corrected 261003 after a wave reported the gap and created the
+    two the procedure had missed. The browser and a11y tiers resolve across the whole tree: the root
+    `node_modules` holds axe-core, `book/node_modules` holds Puppeteer, and `workbench/node_modules`
+    holds the workbench's own dev deps. A worktree with only the third gets a green `tsc` and a green
+    node suite, and the browser tiers cannot start — which reads as infrastructure trouble rather than
+    as a missing link. Create all three:
+    `for d in node_modules book/node_modules workbench/node_modules; do ln -s <main>/$d <worktree>/$d; done`
+    then confirm one binary resolves through each (`.bin/tsc`, and that Puppeteer's entry file exists).
+    Verify they are SYMLINKS afterwards: a real directory there means someone ran the banned install,
+    and the lockfiles are the place to check for damage.
 - **The `pre-commit` hook stages MAIN-CHECKOUT files into a worktree agent's commit.** `core.hooksPath`
   points at the main checkout, so the hook runs with that `cwd` and its `git add` of regenerated `*.html`
   + `book-models/*` inherits `GIT_INDEX_FILE` — the files ride into the agent's commit snapshot even
