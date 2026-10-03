@@ -268,7 +268,7 @@ is stronger than "implicit" suggests:
 
 - **The checker/executor single-semantics requirement is ALREADY HELD BY THE COMPILER.** `admit`
   produces a `LicensedQuestion`, a branded type, and `evaluate` accepts *only* that type
-  (`src/sparql/eval.ts:6,834`; `src/sparql/index.ts:13`). A question the checker did not admit
+  (`src/sparql/eval.ts:6`; `src/sparql/index.ts:13`). A question the checker did not admit
   **cannot reach the executor at all** — not by discipline, by type. So `check` is not a new gate to
   build; it is an existing structural gate to **name, expose, and give a structured result**. The
   design must not weaken this: any agent-facing `check` must return the same admission the executor
@@ -277,7 +277,7 @@ is stronger than "implicit" suggests:
   the gate is driven from the IR rather than from the representation — which is the ruling's whole
   architecture, already load-bearing at one seam.
 - **Validation exists but is NOT an operation.** `src/validator/rules.ts` holds the rule set, and
-  findings are returned as a *side effect* of `load` and `transact` (`src/app/agent-api.ts:400,478`).
+  findings are returned as a *side effect* of `load` and `transact` (`src/app/services.ts:177,204`).
   There is no `validate(model)` an agent can call on demand, so an agent that wants to know whether a
   model is well formed must mutate or reload it to find out. That is the gap the ruling names, and it
   is a real one.
