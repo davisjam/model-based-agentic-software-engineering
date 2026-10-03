@@ -55,6 +55,7 @@ import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
 import { CAPABILITIES } from "../src/app/capabilities.ts";
 import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
+import { MODEL_TYPES } from "../src/engine/model-types.ts";
 import { BEHAVIOR_FORMS, GRAPH_FORMS } from "../src/engine/types.ts";
 
 /** A fact a test can import instead of copying. */
@@ -97,6 +98,15 @@ const SOURCES: readonly DerivableSource[] = [
     cardinality: "BEHAVIOR_FORMS.length",
     list: "BEHAVIOR_FORMS",
     members: BEHAVIOR_FORMS,
+  },
+  // Three members, so the cardinality rule's floor passes over it and only the member-list rule
+  // polices it — the SHIPPED_EXAMPLE_IDS situation, accepted for the same reason.
+  {
+    name: "MODEL_TYPES",
+    module: "src/engine/model-types.ts",
+    cardinality: "MODEL_TYPES.length",
+    list: "MODEL_TYPES.map((t) => t.id)",
+    members: MODEL_TYPES.map((t) => t.id),
   },
 ];
 

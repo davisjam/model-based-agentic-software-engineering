@@ -41,6 +41,16 @@ export type RefusalReason =
   | "missing-distinction"
   /** The question names an entity, state, variable or relation this system does not declare. */
   | "unknown-vocabulary"
+  /**
+   * The system declares NO substrate of the model type the question interrogates — no machine for
+   * a behavioural question, no quantities for a quantitative one. Coarser than
+   * `missing-distinction` (which presumes a model that chose its reductions) and than
+   * `unknown-vocabulary` (which sends the reader hunting for a misspelling that is not the
+   * problem). The prose names the missing type from the model-type registry
+   * (`src/engine/model-types.ts`), so the refusal and the Learn entry it points toward cannot
+   * describe different capabilities.
+   */
+  | "missing-model-type"
   /** The form exists in the schema but this version does not evaluate it. */
   | "unsupported-form"
   /** §7 — the declared quantifier asks for evidence the form cannot produce. */

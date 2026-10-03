@@ -25,8 +25,9 @@ import type { CanonicalSystem, QueryResult, SavedQuery } from "../ir/types.ts";
 import { runQuantityQuery } from "../quant/query.ts";
 import { runBehaviorQuery } from "./behavior.ts";
 import { runGraphQuery, type GraphAnswer } from "./graph.ts";
+import { absentSubstrateProse, modelTypeForQueryKind } from "./model-types.ts";
 import { narrate, type Narration } from "./narrate.ts";
-import { parseQuery, unlicensed, type Query, type Refusal, type Verdict } from "./types.ts";
+import { detail, parseQuery, unlicensed, type Query, type Refusal, type Verdict } from "./types.ts";
 
 export { runBehaviorQuery } from "./behavior.ts";
 export { runGraphQuery, type GraphAnswer } from "./graph.ts";
@@ -36,6 +37,10 @@ export {
   type ExploreOptions, type SpaceHit, type StateSpace, type StopReason,
 } from "./explore.ts";
 export { compileHistory, runPastTimeQuery, type HistoryCompilation, type PastTimeQuery } from "./history.ts";
+export {
+  absentSubstrateProse, MODEL_TYPES, modelTypeForQueryKind,
+  type ModelType, type ModelTypeId, type SchemaAuthority,
+} from "./model-types.ts";
 export { narrate, type Delta, type NarratedStep, type Narration } from "./narrate.ts";
 export { compilePredicate, describePredicate } from "./predicate.ts";
 export { buildScope, resolveRef, type Ref, type RefScope } from "./refs.ts";
@@ -67,6 +72,17 @@ const withNarration = (v: Verdict): Answer =>
 
 export function runTypedQuery(system: CanonicalSystem, q: Query): Answer {
   const hash = systemHash(system);
+  // The model-type registry's consultation rung, ahead of every evaluator. A question asked of a
+  // substrate the system does not declare used to fall through to whatever the evaluator computed
+  // over nothing: a latency of 0 ms that looked measured, a deadend that held over the one empty
+  // configuration, an unknown-vocabulary refusal that read as a typo hunt. The registry names the
+  // absent TYPE instead, with the authoring move that would license the question — the same
+  // decision-over-absence precedence the purposeful-omission rung established.
+  const modelType = modelTypeForQueryKind(q.kind);
+  if (!modelType.presentIn(system)) {
+    return withNarration(unlicensed(hash, absentSubstrateProse(modelType), null,
+      detail("missing-model-type", [modelType.label], [])));
+  }
   const v: Verdict = q.kind === "graph"
     ? (runGraphQuery(system, q.graph, q.quantifier, hash) satisfies GraphAnswer)
     : q.kind === "behavior"
