@@ -251,6 +251,55 @@ test("every human affordance site names an element index.html declares", () => {
   assert.deepEqual(missing, [], `index.html declares no element for: ${missing.join(", ")}`);
 });
 
+/**
+ * And the other direction, in the markup: every `<button>` the page ships is a declared site.
+ *
+ * **Why this is not already covered.** The three rungs the binder's header names run
+ * declared-to-element: the compiler refuses a wired site with no element, the test above checks the
+ * id against the markup, the browser tier compares the served page's stamped set to the registry.
+ * The reverse — an element reaching the model that NO capability declares — had one rung only, the
+ * browser tier's button sweep, and a browser sweep sees the states its fixture drives. That sweep
+ * is total today by the coincidence of two unrelated facts: every control is static markup, and
+ * `mountIf` hides a region with the `hidden` attribute instead of removing it, so a hidden
+ * region's buttons are still in the document. Either fact could change in a wave that had no idea
+ * it was holding a gate up — and the gate would go on passing, over a page it no longer sees all of.
+ *
+ * So the correspondence is asserted here too, where it is a fact about the FILE and no state has to
+ * be reached to see it. A button that is genuinely not a capability — navigation chrome, a
+ * disclosure toggle — fails this and the browser sweep together, which makes declaring it or naming
+ * it an exemption a decision somebody makes on purpose rather than an omission nobody notices.
+ */
+test("every button index.html ships is a declared affordance site", () => {
+  // Comments stripped, for the reason the section scan below learned the hard way: this file argues
+  // for its own structure in HTML comments that quote the markup they argue about.
+  const html = readFileSync("index.html", "utf8").replace(/<!--[\s\S]*?-->/g, "");
+  const buttons = [...html.matchAll(/<button\b([^>]*)>/g)].map((m) => m[1] as string);
+  assert.ok(buttons.length > 10, `only ${buttons.length} <button> found — the scan is wrong, not the page`);
+
+  const declared = new Set(boundHumanAffordances().map((a) => a.element.id));
+  const undeclared = buttons
+    .map((attrs) => /\bid="([a-zA-Z0-9-]+)"/.exec(attrs)?.[1] ?? null)
+    // A button with no id cannot be stamped at all — the binder reaches an element by id — so it is
+    // reported under its attributes rather than silently skipped.
+    .filter((id) => id === null || !declared.has(id))
+    .map((id) => id ?? "(no id)");
+  assert.deepEqual(undeclared, [],
+    `${undeclared.length} button(s) no capability declares: ${undeclared.join(", ")}. Declare the `
+    + "capability, or name the exemption here and in the browser tier's button sweep.");
+});
+
+test("an undeclared button is caught — negative control", () => {
+  // The predicate against markup carrying the defect, so the test above cannot pass on a scan that
+  // matches nothing or a registry that declares everything.
+  const broken = '<button id="export" type="button"></button><button id="chrome-menu"></button><button></button>';
+  const declared = new Set(["export"]);
+  const found = [...broken.matchAll(/<button\b([^>]*)>/g)]
+    .map((m) => /\bid="([a-zA-Z0-9-]+)"/.exec(m[1] as string)?.[1] ?? null)
+    .filter((id) => id === null || !declared.has(id))
+    .map((id) => id ?? "(no id)");
+  assert.deepEqual(found, ["chrome-menu", "(no id)"], "an undeclared button and an id-less one must both be reported");
+});
+
 test("a renamed control is caught — negative control", () => {
   // The predicate, driven against a registry whose element was renamed out from under it. Without
   // this the test above passes for a registry that declares nothing.
