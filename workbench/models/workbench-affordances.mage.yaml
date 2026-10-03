@@ -137,7 +137,7 @@ entities:
 
   query:
     type: semantic-capability
-    label: "Run one graph, behavioural or SPARQL query and return outcome, coverage and evidence."
+    label: "Run one graph, behavioural or quantitative model query and return outcome, coverage and evidence."
     properties:
       human: wired
       machine: wired

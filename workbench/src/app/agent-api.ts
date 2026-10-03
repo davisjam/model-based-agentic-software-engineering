@@ -28,7 +28,7 @@ import type { ValidationResult } from "../validator/result.ts";
 import type { ExampleCatalog, ExampleDescription } from "./examples.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
 import type { EvaluatedProperty } from "./properties.ts";
-import { CAPABILITIES, checkAffordanceParity } from "./capabilities.ts";
+import { CAPABILITIES, ESCAPE_HATCHES, SPARQL_HATCH_RENAME, checkAffordanceParity } from "./capabilities.ts";
 
 /**
  * Bumped on a breaking change to this surface. Implementation internals are not API.
@@ -36,8 +36,15 @@ import { CAPABILITIES, checkAffordanceParity } from "./capabilities.ts";
  * 0.2.0 — `evidence(queryId)` returns an `EvidenceReading` instead of `QueryResult | null`. The
  * nullable was the defect, not the spelling: one value carried "no witness" and "nobody primed the
  * cache this method read", so no caller could tell them apart.
+ *
+ * 0.3.0 — `sparql(text)` moves to `debug.sparql(text)`. The method is unchanged; what changed is
+ * its STATUS. It is no longer a machine affordance of the `query` capability but a fenced escape
+ * hatch outside the semantic interface (`DECISIONS-RULED-model-query-261002.md`), and the namespace
+ * is what makes that legible at the call site. **PROVISIONAL** — see `SPARQL_HATCH_RENAME` in
+ * `capabilities.ts`, which is the one place the rename is recorded and the one place it reverts
+ * from if §G2 is declined. The version constant is read from it rather than written here twice.
  */
-export const AGENT_API_VERSION = "0.2.0";
+export const AGENT_API_VERSION: string = SPARQL_HATCH_RENAME.apiVersion;
 
 export interface MageAgentApi {
   readonly version: string;
@@ -90,20 +97,15 @@ export interface MageAgentApi {
    */
   ask(query: unknown): EvaluatedProperty;
   /**
-   * Ask a SPARQL question of the RDF projection: text in, solutions or a structured refusal out.
+   * The fenced escape hatches: surfaces OUTSIDE the semantic interface. Not for normal workflows.
    *
-   * §11's shape, taken literally — a student normally does not write SPARQL, an agent does. So this
-   * is the machine syntax of the `query` capability rather than a capability of its own, and it is
-   * registered as a third machine affordance of `query` in `capabilities.ts`, where the reasoning
-   * and its cost are recorded. It adds no privileged path: it delegates to `workspace.sparql`, which
-   * is the same facade every other method here goes through, and the licensing gate inside
-   * `translate` decides what the model licenses before anything is evaluated.
-   *
-   * A SELECT's rows arrive as `Map`s, like the configuration maps inside a behavioural witness from
-   * `query()`. `WorkerEvaluation` is the flattened spelling, for the message port that needs one;
-   * this returns the facade's own object so that an agent and the page read ONE value.
+   * Reachable from `window.mage` because a debugging surface an operator cannot reach is not a
+   * debugging surface. Namespaced because the ruling fences it, and a fence only the registry can
+   * see is invisible at the one place a dependency forms. `describe().outsideSemanticInterface`
+   * names every member with its reason and the ruling that fenced it, so an agent learns the
+   * boundary from the API rather than from a reviewer.
    */
-  sparql(text: string, budget?: number): SparqlAnswer;
+  readonly debug: DebugApi;
   savedQueries(): Record<string, QueryResult>;
   /**
    * Every persistent property: proposition, status, the models and evidence the status derives
@@ -165,9 +167,10 @@ export interface MageAgentApi {
    * workbench can do" — holds for `resolveExhausted` and fails for `explore`:
    *
    *  - `resolveExhausted` re-asks a question the caller already asked, with a bigger budget, and
-   *    hands back the same four arms `sparql` does. Same capability, different bound — so it is
-   *    registered as a machine affordance of `query`, beside `window.mage.sparql`, which is the same
-   *    row for the same reason (one capability, several spellings).
+   *    hands back the same four arms the hatch does. Same capability, different bound — so it is
+   *    registered as a machine affordance of `query`. It stays a `query` affordance rather than
+   *    joining `debug` because its handle is obtainable only from an `exhausted` answer, so it is
+   *    reachable only downstream of a deliberate hatch use and needs no fence of its own.
    *  - `explore` answers a question nothing else in the workbench answers: how big is the reachable
    *    configuration space, and did the walk finish. The result is a `SpaceSummary`, a shape no other
    *    capability produces. Off-thread-ness is not the capability; the summary is. So it earns the
@@ -175,6 +178,33 @@ export interface MageAgentApi {
    *    no human control reaches it.
    */
   analysis: AnalysisApi;
+}
+
+/**
+ * The escape hatches, as an API surface. One member.
+ *
+ * **This is not part of the model query interface, and that is the ruling, not a style note.** A
+ * syntactically valid SPARQL query can ask questions the RDF representation permits and the MAGE
+ * metamodel does not license, so routine dependence on this would let an agent bypass the model
+ * abstraction and couple its reasoning to the storage representation. Agents reason over models,
+ * not over their storage representation; `query`, `ask` and `check` are where they do it.
+ *
+ * The hatch is outside the semantic interface, NOT outside the gate: it still delegates to
+ * `workspace.sparql`, whose `translate` → `admit` path enforces metamodel licensing on every text
+ * it accepts. What the fence governs is status and dependence, not permission.
+ */
+export interface DebugApi {
+  /**
+   * Ask a SPARQL question of the RDF projection: text in, solutions or a structured refusal out.
+   *
+   * For debugging the projection and the licensing seam. It adds no privileged path — it delegates
+   * to `workspace.sparql`, the same facade every method on `window.mage` goes through.
+   *
+   * A SELECT's rows arrive as `Map`s, like the configuration maps inside a behavioural witness from
+   * `query()`. `WorkerEvaluation` is the flattened spelling, for the message port that needs one;
+   * this returns the facade's own object so that an agent and the page read ONE value.
+   */
+  sparql(text: string, budget?: number): SparqlAnswer;
 }
 
 /**
@@ -209,8 +239,30 @@ export interface ApiDescription {
    * converge, rather than discovering it by making a change no human can see or reverse.
    */
   readonly affordanceGaps: readonly string[];
+  /**
+   * The surfaces that exist but are NOT part of the semantic interface, each with its reason and
+   * the ruling that fenced it.
+   *
+   * The FR-AGENT-2 pattern applied to a boundary rather than to a limit: an agent that reads this
+   * learns that `debug.sparql` exists, what it is for, and that depending on it is depending on
+   * something the architecture declared outside. The alternative is an agent that discovers the
+   * status from a code review, which is to say never.
+   *
+   * Deliberately NOT folded into `operations`, and not into `notSupported` either. `operations` is
+   * the semantic interface, which is the one thing a hatch is defined as being outside of;
+   * `notSupported` names things the workbench CANNOT do, and this one it can.
+   */
+  readonly outsideSemanticInterface: readonly EscapeHatchDescription[];
   /** Named limitations, so an agent learns the boundary from the API instead of from a wrong answer. */
   readonly notSupported: readonly string[];
+}
+
+/** One fenced surface, as `describe()` publishes it. The registry's `EscapeHatch`, on the wire. */
+export interface EscapeHatchDescription {
+  readonly at: string;
+  readonly reason: string;
+  /** The ruling document that put it outside the semantic interface. */
+  readonly fencedBy: string;
 }
 
 export interface OperationDescription {
@@ -496,6 +548,12 @@ export function createAgentApi(
       // capabilities it cannot currently reach a human affordance for -- an agent that edits a model
       // nobody can edit by hand has created a divergence the user cannot inspect or undo.
       affordanceGaps: checkAffordanceParity().map((v) => `${v.capability}: ${v.problem}`),
+      // DERIVED from `ESCAPE_HATCHES`, for the reason `operations` is derived from `CAPABILITIES`:
+      // a hand-listed copy here would be a second declaration of the fence, free to say the
+      // console is outside the interface while the registry had put it back inside.
+      outsideSemanticInterface: ESCAPE_HATCHES.map((h) => ({
+        at: h.at, reason: h.reason, fencedBy: h.fencedBy,
+      })),
       notSupported: [
         "fairness and liveness: 'can it reach X' is in scope, 'will it eventually reach X' is not",
         "past-time temporal operators: such a query is compiled to a safety property over a disclosed history variable",
@@ -571,9 +629,12 @@ export function createAgentApi(
     ask: (q) => workspace.evaluate("(unsaved)", q),
 
     // Straight through, like `analysis` below: the facade holds the system, the projection and the
-    // gate, so there is nothing for this method to decide.
-    sparql: (text, budget) =>
-      budget === undefined ? workspace.sparql(text) : workspace.sparql(text, budget),
+    // gate, so there is nothing for this method to decide. The namespace is the fence; the
+    // delegation is exactly what it was before the fence existed.
+    debug: {
+      sparql: (text, budget) =>
+        budget === undefined ? workspace.sparql(text) : workspace.sparql(text, budget),
+    },
 
     savedQueries: () => Object.fromEntries(workspace.runSavedQueries()),
 
