@@ -27,7 +27,8 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import {
-  CAPABILITIES, CHROME_CONTROLS, boundHumanAffordances, checkAffordanceParity, checkRegistryClosure,
+  CAPABILITIES, CHROME_CONTROLS, CHROME_HOSTS, boundHumanAffordances, checkAffordanceParity,
+  checkRegistryClosure,
 } from "../../src/app/capabilities.ts";
 import {
   startServer, launchBrowser, shutdown, openWorkbench, loadFlagshipExample,
@@ -417,11 +418,18 @@ describe("UX-I1: every declared human affordance site is bound to a live element
     // reads the same constant over the markup, so the file sweep and the served-page sweep cannot
     // disagree about which buttons are chrome. Four at this commit — the palette's opener and
     // close, and the edit dialog's confirm and cancel.
+    //
+    // `CHROME_HOSTS` is the second exemption shape, and it exists because the model contents tree's
+    // rows are one button per drawn element: there is no id to name and no fixed count of them. It
+    // names the HOST instead, so the exemption is still one declared place with one stated reason
+    // rather than a predicate this file invents.
     const chrome = CHROME_CONTROLS.map((c) => c.id);
-    const unstamped = await page.evaluate((exempt) =>
+    const hosts = CHROME_HOSTS.map((h) => h.selector);
+    const unstamped = await page.evaluate((exempt, hostSelectors) =>
       [...document.querySelectorAll("button")]
-        .filter((b) => b.dataset.affordance === undefined && !exempt.includes(b.id))
-        .map((b) => `#${b.id || "(no id)"}: ${b.textContent.trim().slice(0, 40)}`), chrome);
+        .filter((b) => b.dataset.affordance === undefined && !exempt.includes(b.id)
+          && !hostSelectors.some((s) => b.matches(s)))
+        .map((b) => `#${b.id || "(no id)"}: ${b.textContent.trim().slice(0, 40)}`), chrome, hosts);
     assert.deepEqual(unstamped, [], `${unstamped.length} unregistered button(s): ${unstamped.join(" | ")}`);
   });
 

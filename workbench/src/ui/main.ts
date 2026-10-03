@@ -153,7 +153,9 @@ const regions: readonly ShellRegion[] = [
   mountHeader(ctx),
   mountStart(ctx),
   mountNav(ctx),
-  mountWorkspace(ctx),
+  // `open` again, because the canvas context menu dispatches into the same dialogs the palette and
+  // the `+ Add` menu do: one catalogue of operations, one way to open one of them.
+  mountWorkspace(ctx, editDialogs.open),
   mountInspector(ctx),
   mountAskBar(ctx, editForms.submitEdit),
   mountStatus(ctx),
