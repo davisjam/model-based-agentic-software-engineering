@@ -603,6 +603,47 @@ export function checkAffordanceParity(
 }
 
 /**
+ * How many UX-I1 violations the gate tolerates, and the only place that number lives.
+ *
+ * It was in two places. `test/capabilities.test.ts` compared the violation list against a recorded
+ * BASELINE — which accepted one standing violation and passed — while the publishing workflow ran an
+ * inline `node --eval` asserting ZERO. One invariant, two implementations, two definitions of
+ * passing, and the CI copy was logic embedded in YAML where nobody runs it. Two pushes failed at a
+ * gate that had never gone red locally, because the local suite reported green against the weaker
+ * claim. Neither side was wrong about the invariant; they disagreed about the threshold, which is a
+ * thing only one of them can own.
+ */
+const PARITY_VIOLATION_CEILING = 0;
+
+/** The UX-I1 gate's whole output: what it found, how to say so, and whether that passes. */
+export interface ParityGateVerdict {
+  readonly violations: readonly ParityViolation[];
+  /** One line naming the invariant and the count — what a red build's reader needs first. */
+  readonly headline: string;
+  readonly passed: boolean;
+}
+
+/**
+ * UX-I1 as a GATE: the violations plus the verdict on them.
+ *
+ * `checkAffordanceParity` reports; this decides. The split matters because several callers want the
+ * report and must not each invent a verdict — `describe()` publishes the gaps to an agent, the
+ * registry tests assert WHICH capabilities are one-sided and in which direction, and the baseline
+ * lists record a declared-before-buildable gap. Only two callers need the pass/fail bit: the unit
+ * suite and the publishing workflow, and they now read it from here.
+ */
+export function affordanceParityGate(
+  registry: readonly Capability[] = CAPABILITIES,
+): ParityGateVerdict {
+  const violations = checkAffordanceParity(registry);
+  return {
+    violations,
+    headline: `UX-I1: ${violations.length} violation(s) over ${registry.length} capabilities`,
+    passed: violations.length <= PARITY_VIOLATION_CEILING,
+  };
+}
+
+/**
  * Every human affordance that claims an element, with the element it claims.
  *
  * The binder in `ui/affordances.ts` walks this to stamp the DOM, and both tiers walk it to check

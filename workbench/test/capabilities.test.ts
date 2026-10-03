@@ -24,8 +24,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
-  CAPABILITIES, boundHumanAffordances, checkAffordanceParity, checkRegistryClosure,
-  generateAffordanceModel,
+  CAPABILITIES, affordanceParityGate, boundHumanAffordances, checkAffordanceParity,
+  checkRegistryClosure, generateAffordanceModel,
 } from "../src/app/capabilities.ts";
 import type { Affordance, CapabilityId } from "../src/app/capabilities.ts";
 import { ExampleCatalog } from "../src/app/examples.ts";
@@ -100,10 +100,33 @@ test("UX-I1 violations match the recorded baseline exactly", () => {
     "a capability gained or lost a human affordance; update NO_HUMAN deliberately");
   assert.deepEqual(machine, [...NO_MACHINE].sort(),
     "a capability gained or lost a machine affordance; update NO_MACHINE deliberately");
-  // The whole picture, as one list, so a reader sees the shape and not just the counts. Nothing is
-  // unreachable by a person, nothing by a machine, and no capability fails for want of a named
-  // service. This is the assertion the published CI step runs, spelled the same way.
-  assert.deepEqual(violations.map((v) => v.capability), []);
+  // The verdict, read from the gate rather than re-decided here.
+  //
+  // It used to be `assert.deepEqual(violations.map((v) => v.capability), [])` — the publishing step's
+  // assertion "spelled the same way", which is exactly the trouble: spelled the same is not the same.
+  // The baselines above are a RATCHET and could accept a standing violation; the CI step was a hard
+  // zero. Both claims were defensible and only one could be the threshold, so the threshold moved
+  // into `PARITY_VIOLATION_CEILING` and both runners now call `affordanceParityGate()`. Admitting a
+  // standing violation is still possible — it means raising that ceiling, in one place, which raises
+  // it for CI in the same edit. That is the property the two literals could not have.
+  //
+  // The baselines stay, because they say WHICH capability is one-sided and in which direction, and
+  // `FULLY_WIRED` is the positive control that stops a violation being silenced by deletion. What
+  // they no longer are is a second way to pass.
+  const gate = affordanceParityGate();
+  assert.ok(gate.passed, `${gate.headline}\n  ${gate.violations.map((v) => `${v.capability}: ${v.problem}`).join("\n  ")}`);
+  assert.deepEqual(gate.violations, violations, "the gate must report the checker's findings, unfiltered");
+});
+
+test("the parity gate's verdict tracks the registry it is given — negative control", () => {
+  // The threshold has one home now, so it has to be watched there. A gate that cannot go red is
+  // worth nothing to either of the two runners that depend on it.
+  const broken = CAPABILITIES.map((c) =>
+    c.id === "import" ? { ...c, machine: [{ at: "gone", status: "absent" as const, note: "removed for the test" }] } : c);
+  const red = affordanceParityGate(broken);
+  assert.equal(red.passed, false, "a one-sided capability must fail the gate");
+  assert.match(red.headline, /UX-I1: 1 violation\(s\) over \d+ capabilities/);
+  assert.ok(affordanceParityGate().passed, "and the real registry must pass it");
 });
 
 test("no capability is agent-only", () => {
