@@ -16,8 +16,9 @@
      src/ui/shell/surfaces.ts is the table that says which id carries which surface. A region's
      id therefore appears exactly twice: here, as the attribute a browser needs, and there, as the
      fact the shell and its gates read. Nothing else may spell it.
-  2. Self-contained: no CDN, no webfont, no remote image. The page is served as static assets and a
-     fetch to another host would simply fail.
+  2. Self-contained: no CDN, no webfont, no remote image. Every request this page makes resolves
+     inside its own directory tree (`assets/`, `dist/`, `examples/`), so a published copy of
+     `workbench/` serves with no siblings; a fetch to another host would simply fail.
   3. Theme-aware in both directions, because the host may stamp a theme or the OS may report one.
 -->
 <!doctype html>
@@ -27,50 +28,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MAGE Model Workbench</title>
 <!--
-  The favicon, inline. A browser requests /favicon.ico whether or not a page asks it to, and the
-  404 it gets is the only console error on an otherwise clean load. An icon FILE would fix the
-  console and add an asset every published copy of this page has to carry; a data URI fixes it with
-  no network request at all, which also keeps the self-contained rule above intact.
-
-  An M in the project's accent brown, on a transparent ground, so it reads in either theme.
+  The favicon, as a file. A browser requests /favicon.ico whether or not a page asks it to, and the
+  404 it gets is the only console error on an otherwise clean load. The mallet is the Workbench's
+  own mark, rendered legible at 16/32/64 (_design/favicon-261002/); the data URI it replaces drew
+  an M that both wore the forked ochre accent and collided with the book's M-monogram identity.
+  It ships beside the page, so it resolves in a standalone copy of this directory.
 -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Ctext%20x='8'%20y='13'%20font-family='serif'%20font-size='15'%20font-weight='700'%20text-anchor='middle'%20fill='%238e6f3e'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="assets/favicon.svg">
+<!--
+  The MAGE family design tokens, emitted from the one source of truth by
+  `book-models/design_tokens.py emit-workbench` and gated stale by `catalog.py validate`.
+  This page used to recreate them inline, and the copy had drifted: an ochre accent beside the
+  family rust, a pure-white panel beside the family's warm paper (DESIGN-visual-identity-261002.md
+  §3). The :root block below now ALIASES them, which keeps the page's own var names -- so every
+  `var(--bg)` in the rules stays as written -- while the values come from the family.
+-->
+<link rel="stylesheet" href="assets/mage-tokens.css">
 <style>
   :root {
     color-scheme: light dark;
-    --bg: #fbfaf7;
-    --panel: #ffffff;
-    --ink: #1d1b16;
-    --muted: #5c5750;
-    --rule: #ddd6c7;
-    --accent: #8e6f3e;
-    --accent-ink: #ffffff;
+    --bg: var(--mage-paper);
+    --panel: var(--mage-panel);
+    --ink: var(--mage-ink);
+    --muted: var(--mage-muted);
+    --rule: var(--mage-rule);
+    --accent: var(--mage-accent);
+    --accent-ink: var(--mage-on-accent);
+    --mono: var(--mage-font-mono);
+    /*
+      Workbench-specific, ruled NOT family drift (DESIGN-visual-identity-261002.md §4), and so
+      declared here rather than aliased. The blue focus ring stays visible against an
+      accent-coloured control, which an accent-coloured ring would not, and the family names no
+      focus token. warn/danger are AA-tuned ink-on-fill status pairs in both schemes; the family's
+      nearest neighbour is a figure palette with no text pairing. These three keep their per-scheme
+      re-declarations below, because the shared file carries scheme switching only for what it owns.
+    */
     --warn-bg: #fff6e0;
     --warn-ink: #6b4a00;
     --danger-bg: #fdeceb;
     --danger-ink: #8a1c13;
     --focus: #0b5fff;
-    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #17160f; --panel: #201e16; --ink: #f2eee4; --muted: #b3aa98;
-      --rule: #3a362a; --accent: #c8a564; --accent-ink: #17160f;
       --warn-bg: #3a2f12; --warn-ink: #f0d9a0;
       --danger-bg: #3d1a16; --danger-ink: #f6bdb6;
       --focus: #8ab4ff;
     }
   }
-  /* The host's toggle stamps data-theme on the root, and it must win in BOTH directions. */
+  /* The host's toggle stamps data-theme on the root, and it must win in BOTH directions. The
+     adopted tokens get the same treatment inside assets/mage-tokens.css. */
   :root[data-theme="dark"] {
-    --bg: #17160f; --panel: #201e16; --ink: #f2eee4; --muted: #b3aa98;
-    --rule: #3a362a; --accent: #c8a564; --accent-ink: #17160f;
     --warn-bg: #3a2f12; --warn-ink: #f0d9a0;
     --danger-bg: #3d1a16; --danger-ink: #f6bdb6; --focus: #8ab4ff;
   }
   :root[data-theme="light"] {
-    --bg: #fbfaf7; --panel: #ffffff; --ink: #1d1b16; --muted: #5c5750;
-    --rule: #ddd6c7; --accent: #8e6f3e; --accent-ink: #ffffff;
     --warn-bg: #fff6e0; --warn-ink: #6b4a00;
     --danger-bg: #fdeceb; --danger-ink: #8a1c13; --focus: #0b5fff;
   }
@@ -78,7 +90,10 @@
   * { box-sizing: border-box; }
   body {
     margin: 0; background: var(--bg); color: var(--ink);
-    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    /* 1.5, not the family's --mage-lh-body (1.62): that is reading-column rhythm for long-form
+       prose, and this is an application shell of tables and forms. A named decision now, where it
+       used to be an accident of the fork (DESIGN-visual-identity-261002.md §4). */
+    font: 16px/1.5 var(--mage-font-body);
   }
   /* A visible focus ring is a requirement, not a default to be overridden. */
   :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
@@ -96,7 +111,7 @@
   header h1 { font-size: 1.05rem; margin: 0 auto 0 0; font-weight: 700; }
   button, label.file {
     font: inherit; padding: .4rem .7rem; border: 1px solid var(--rule);
-    border-radius: 4px; background: var(--panel); color: var(--ink); cursor: pointer;
+    border-radius: var(--mage-radius-chip); background: var(--panel); color: var(--ink); cursor: pointer;
   }
   button[disabled] { opacity: .5; cursor: not-allowed; }
   button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
@@ -145,7 +160,7 @@
 
   /* A pane reads as a pane: its own panel, its own rule, scrolling inside itself. */
   #nav, #workspace, #inspector, #askbar, #statusbar {
-    border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .8rem .8rem;
+    border: 1px solid var(--rule); border-radius: var(--mage-radius-chip); padding: .6rem .8rem .8rem;
     background: var(--panel); margin-block-end: 1rem;
   }
   #nav, #inspector { max-height: 80vh; overflow-y: auto; }
@@ -179,7 +194,7 @@
     display: inline-block; font-size: .78rem; padding: .05rem .4rem; margin-inline-end: .25rem;
     border: 1px solid var(--rule); border-radius: 999px; color: var(--muted); white-space: nowrap;
   }
-  .banner { padding: .6rem .8rem; border-radius: 4px; border: 1px solid var(--rule); margin-block-end: 1rem; }
+  .banner { padding: .6rem .8rem; border-radius: var(--mage-radius-chip); border: 1px solid var(--rule); margin-block-end: 1rem; }
   .banner.warning { background: var(--warn-bg); color: var(--warn-ink); }
   .banner.danger { background: var(--danger-bg); color: var(--danger-ink); }
   .outcome { font-weight: 700; }
@@ -193,7 +208,7 @@
     markup labels it "Asks" above, in words, so a reader who sees no rule still gets the field.
   */
   p.purpose {
-    margin: .1rem 0 .4rem; padding-inline-start: .7rem; border-inline-start: 3px solid var(--accent);
+    margin: .1rem 0 .4rem; padding-inline-start: .7rem; border-inline-start: var(--mage-border-accent-bar) solid var(--accent);
     max-width: 46rem;
   }
 
@@ -214,7 +229,7 @@
     ancestor's paint -- so the page scored zero violations throughout. Measured and pinned by
     test/browser/a11y/axe.test.mjs instead.
   */
-  figure svg { max-width: 100%; height: auto; background: #ffffff; border: 1px solid var(--rule); border-radius: 4px; }
+  figure svg { max-width: 100%; height: auto; background: #ffffff; border: 1px solid var(--rule); border-radius: var(--mage-radius-chip); }
 
   /*
     Editing forms. Native fieldset/legend/label/select throughout: a real <legend> is announced as
@@ -223,7 +238,7 @@
   */
   .forms { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); }
   fieldset {
-    margin: 0; border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .8rem .8rem;
+    margin: 0; border: 1px solid var(--rule); border-radius: var(--mage-radius-chip); padding: .6rem .8rem .8rem;
     background: var(--panel);
   }
   fieldset[disabled] { opacity: .55; }
@@ -233,7 +248,7 @@
   .field > span { display: block; font-size: .85rem; color: var(--muted); }
   .field input[type="text"], .field select {
     font: inherit; width: 100%; padding: .3rem .4rem; border: 1px solid var(--rule);
-    border-radius: 4px; background: var(--bg); color: var(--ink);
+    border-radius: var(--mage-radius-chip); background: var(--bg); color: var(--ink);
   }
   .check { display: flex; gap: .4rem; align-items: baseline; margin-block-end: .5rem; font-size: .9rem; }
 
@@ -252,11 +267,11 @@
     not the only channel: the markup labels it "Asked for" above, in words.
   */
   p.prompt {
-    margin: .1rem 0 .5rem; padding-inline-start: .7rem; border-inline-start: 3px solid var(--accent);
+    margin: .1rem 0 .5rem; padding-inline-start: .7rem; border-inline-start: var(--mage-border-accent-bar) solid var(--accent);
     font-size: 1.02rem; max-width: 46rem;
   }
   .caveat { font-size: .85rem; color: var(--warn-ink); background: var(--warn-bg);
-    padding: .25rem .4rem; border-radius: 3px; margin: .3rem 0 0; }
+    padding: .25rem .4rem; border-radius: var(--mage-radius-chip); margin: .3rem 0 0; }
   .note-warning { font-weight: 700; }
 
   /* Visually hidden but present for assistive technology. */

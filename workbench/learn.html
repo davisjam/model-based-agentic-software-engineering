@@ -6,8 +6,10 @@
   this file asserts a capability, so nothing in this file can drift from one.
 
   The stylesheet trims index.html's: same custom properties, same chrome, only the rules the Learn
-  page uses. The duplication is noted for the shell wave — when the header becomes shared chrome,
-  these tokens should move to one stylesheet both pages load.
+  page uses. The VALUES no longer live here — both pages alias assets/mage-tokens.css, the MAGE
+  family projection, so the two surfaces of one application cannot drift apart from each other or
+  from the family (DESIGN-visual-identity-261002.md). What remains duplicated is the chrome's
+  RULES; that is still the shell wave's job.
 -->
 <!doctype html>
 <html lang="en">
@@ -15,34 +17,35 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Learn MAGE models</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Ctext%20x='8'%20y='13'%20font-family='serif'%20font-size='15'%20font-weight='700'%20text-anchor='middle'%20fill='%238e6f3e'%3EM%3C/text%3E%3C/svg%3E">
+<!-- The mallet, same mark and same file as the Workspace page: one application, one identity. -->
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/mage-tokens.css">
 <style>
   :root {
     color-scheme: light dark;
-    --bg: #fbfaf7; --panel: #ffffff; --ink: #1d1b16; --muted: #5c5750;
-    --rule: #ddd6c7; --accent: #8e6f3e; --accent-ink: #ffffff;
+    --bg: var(--mage-paper);
+    --panel: var(--mage-panel);
+    --ink: var(--mage-ink);
+    --muted: var(--mage-muted);
+    --rule: var(--mage-rule);
+    --accent: var(--mage-accent);
+    --accent-ink: var(--mage-on-accent);
+    --mono: var(--mage-font-mono);
+    /* Workbench-specific, ruled not family drift: the family names no focus token, and a blue
+       ring stays visible against an accent-coloured control. See index.html. */
     --focus: #0b5fff;
-    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #17160f; --panel: #201e16; --ink: #f2eee4; --muted: #b3aa98;
-      --rule: #3a362a; --accent: #c8a564; --accent-ink: #17160f; --focus: #8ab4ff;
-    }
+    :root { --focus: #8ab4ff; }
   }
-  :root[data-theme="dark"] {
-    --bg: #17160f; --panel: #201e16; --ink: #f2eee4; --muted: #b3aa98;
-    --rule: #3a362a; --accent: #c8a564; --accent-ink: #17160f; --focus: #8ab4ff;
-  }
-  :root[data-theme="light"] {
-    --bg: #fbfaf7; --panel: #ffffff; --ink: #1d1b16; --muted: #5c5750;
-    --rule: #ddd6c7; --accent: #8e6f3e; --accent-ink: #ffffff; --focus: #0b5fff;
-  }
+  :root[data-theme="dark"] { --focus: #8ab4ff; }
+  :root[data-theme="light"] { --focus: #0b5fff; }
 
   * { box-sizing: border-box; }
   body {
     margin: 0; background: var(--bg); color: var(--ink);
-    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    /* 1.5, not the family's 1.62 — an application page, not a reading column. See index.html. */
+    font: 16px/1.5 var(--mage-font-body);
   }
   :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
@@ -93,12 +96,12 @@
      workbench page: the renderer's palette is theme-invariant because the SVG also exports
      standalone, and its ink needs a light ground. */
   figure { margin: 0; }
-  figure svg { max-width: 100%; height: auto; background: #ffffff; border: 1px solid var(--rule); border-radius: 4px; }
+  figure svg { max-width: 100%; height: auto; background: #ffffff; border: 1px solid var(--rule); border-radius: var(--mage-radius-chip); }
   figcaption { color: var(--muted); font-size: .9rem; margin-block: .3rem .5rem; }
   .learn-figure-controls { display: flex; gap: .5rem; align-items: baseline; margin-block: .5rem .2rem; }
   .learn-figure-controls select {
     font: inherit; padding: .3rem .4rem; border: 1px solid var(--rule);
-    border-radius: 4px; background: var(--bg); color: var(--ink);
+    border-radius: var(--mage-radius-chip); background: var(--bg); color: var(--ink);
   }
   details { margin-block: .5rem; }
   summary { cursor: pointer; color: var(--muted); }
