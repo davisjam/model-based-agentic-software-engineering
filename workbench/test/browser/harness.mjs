@@ -19,11 +19,15 @@
 //
 // Running it locally: `npm run build` in workbench/, `npm ci` in book/ (once — it fetches the
 // bundled Chromium), then `npm run test:browser`. CI does exactly those three things in that order.
+// The build step is CHECKED rather than merely stated: `startServer` refuses to serve a bundle that
+// was not built from this tree, because this tier reads its registries from source and a stale
+// bundle reports itself as a defect in the page. See `assertBundleBuiltFromThisTree`.
 //
 // The FR-A11Y tier in test/browser/a11y/ shares this fixture and runs as `npm run test:a11y`. It
 // additionally needs `npm ci` at the REPO ROOT, where axe-core is pinned -- resolved there, like
 // Puppeteer from book/, rather than added to this package.
 import { createRequire } from "node:module";
+import { createHash } from "node:crypto";
 import { createServer } from "node:http";
 import { existsSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
@@ -65,11 +69,60 @@ const MIME = new Map(Object.entries({
 }));
 
 /**
+ * Refuse to serve a bundle that was not built from this tree.
+ *
+ * **The failure this closes.** Every suite in this tier compares the page against something it
+ * imported from TypeScript SOURCE — the capability registry, the model-type registry, the example
+ * catalogue — while the page itself runs `dist/workbench.js`. When the bundle lags the source, the
+ * gate reports the gap as a defect in the PRODUCT, in the product's own vocabulary. On 261002 a
+ * bundle one wave old made UX-I1 announce "2 unregistered button(s): #ask-submit: Ask |
+ * #ask-track-go: Track" and "2 declared human affordance site(s) bound to nothing" — about a page
+ * whose source stamps both from the registry, correctly, on every paint. The source was right, the
+ * gate was red, and the message named two element ids and a module to go and edit. A false RED that
+ * is specific costs more than a vague one, because the obvious fix for it is to write a real defect
+ * into a correct module.
+ *
+ * The ordering that prevents it — build, then serve — was already written down in this file's own
+ * header and in three CI steps. Written down is not enforced, and the one reader who most needs it
+ * is an agent that opened a fresh worktree where `dist/` is gitignored and absent.
+ *
+ * **Why it lives in `startServer`.** Three tiers drive this fixture (browser, FR-A11Y, smoke) and
+ * all three reach the page through this function, so one check here covers every present and future
+ * suite. Per-suite `test -f` guards are the alternative, and CI already has three of them: they
+ * catch an ABSENT bundle and say nothing about a stale one.
+ *
+ * **Content, not mtime.** `git worktree add`, a branch switch and a checkout all rewrite source
+ * mtimes without changing a byte. An mtime comparison would therefore manufacture the same false
+ * RED this check exists to kill, which is a poor trade for two lines saved.
+ */
+async function assertBundleBuiltFromThisTree(root) {
+  const manifestPath = join(root, "dist", "build-manifest.json");
+  if (!existsSync(manifestPath)) {
+    throw new Error(`${manifestPath} is missing — run \`npm run build\` in workbench/ before the browser `
+      + "tier. Serving an absent or stale bundle makes this tier report source-vs-bundle drift as a "
+      + "defect in the page.");
+  }
+  const { inputs } = JSON.parse(await readFile(manifestPath, "utf8"));
+  for (const [path, expected] of Object.entries(inputs)) {
+    // A deleted input and a changed one are the same finding: the bundle no longer corresponds to
+    // the tree. Reading rather than stat-ing, because the hash is the whole claim.
+    const actual = await readFile(join(root, path))
+      .then((body) => createHash("sha256").update(body).digest("hex").slice(0, 16), () => null);
+    if (actual === expected) continue;
+    throw new Error(`the served bundle is stale: ${path} ${actual === null ? "no longer exists" : "has changed"} `
+      + "since `npm run build` last ran. Rebuild in workbench/ and re-run. (This tier imports the "
+      + "registries from source and drives a page running dist/workbench.js, so a stale bundle "
+      + "reports itself as a product defect — see this function's note.)");
+  }
+}
+
+/**
  * Static file server over one directory. It must return a real 404 for a missing path: the 404
  * assertion in the suite is only meaningful if the server reports absence instead of papering over
  * it with an index.html fallback, which is what every SPA dev server does by default.
  */
 export async function startServer(root = WORKBENCH_DIR, port = PORT) {
+  await assertBundleBuiltFromThisTree(root);
   const server = createServer((req, res) => {
     const url = new URL(req.url ?? "/", ORIGIN);
     const rel = normalize(decodeURIComponent(url.pathname)).replace(/^(\.\.[/\\])+/, "");
