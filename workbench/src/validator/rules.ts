@@ -18,6 +18,8 @@ import {
   AGGREGATE_TARGET_KIND, BASIS_TARGET_KINDS, DIMENSIONS, DIMENSION_IDS, EXECUTES_IN_STATE,
   METRIC_NAMES, METRIC_NAMESPACE, RESIDENCIES, TARGET_KINDS,
 } from "../ir/types.ts";
+import type { SubjectedFinding, ValidationFinding, ValidationRule } from "./result.ts";
+import { enrich } from "./result.ts";
 
 /**
  * YAML 1.1 implicit-types these bare scalars. A key or id among them was read as a boolean or null
@@ -35,10 +37,23 @@ const YAML_COERCED: ReadonlySet<string> = new Set([
 
 const looksNumeric = (s: string): boolean => s.trim() !== "" && Number.isFinite(Number(s));
 
+/**
+ * The findings of one pass.
+ *
+ * `rule` is typed to the closed `ValidationRule` union rather than to `string`, which is what makes
+ * the severity and spec tables total by the compiler instead of by a corpus sweep: a rung cannot
+ * emit an id those tables have no row for.
+ *
+ * `subjects` is REQUIRED. Every rung states the declared ids its finding is about, and a rung with
+ * none says so with `[]` — the distinction an optional field would erase, since a rung that never
+ * considered its subjects would look exactly like one that found none. Nothing here parses a name
+ * back out of `where` or `message`: the rung is already holding the ids, and recovering structure
+ * from prose is the defect this project removes on sight.
+ */
 class Collector {
-  readonly findings: Finding[] = [];
-  add(rule: string, where: string, message: string): void {
-    this.findings.push({ rule, where, message });
+  readonly findings: SubjectedFinding[] = [];
+  add(rule: ValidationRule, where: string, message: string, subjects: readonly string[]): void {
+    this.findings.push({ rule, where, message, subjects });
   }
 }
 
@@ -49,16 +64,16 @@ class Collector {
  * downstream finding is suspect. It is also the message that matters — a bare schema complaint
  * ("'true' does not match pattern") is exactly what V25 exists to replace.
  */
-export function checkCoercion(s: CanonicalSystem): readonly Finding[] {
+export function checkCoercion(s: CanonicalSystem): readonly SubjectedFinding[] {
   const c = new Collector();
   const sweep = (scope: string, ids: Iterable<string>): void => {
     for (const id of ids) {
       if (YAML_COERCED.has(id)) {
         c.add("V25", `${scope}.${id}`,
           `id '${id}' is in YAML's implicit-boolean/null set; a loader reads it as a boolean or null. ` +
-          `Rename it — the workbench refuses to load a different model than you wrote.`);
+          `Rename it — the workbench refuses to load a different model than you wrote.`, [id]);
       } else if (looksNumeric(id)) {
-        c.add("V25", `${scope}.${id}`, `id '${id}' parses as a number; rename it or quote it everywhere.`);
+        c.add("V25", `${scope}.${id}`, `id '${id}' parses as a number; rename it or quote it everywhere.`, [id]);
       }
     }
   };
@@ -73,7 +88,7 @@ export function checkCoercion(s: CanonicalSystem): readonly Finding[] {
       if (YAML_COERCED.has(st)) {
         c.add("V25", `machines.${m.id}.states`,
           `state id '${st}' would be coerced by a YAML loader; rename it. A machine with states ` +
-          `'on' and 'off' is the canonical example and the canonical casualty.`);
+          `'on' and 'off' is the canonical example and the canonical casualty.`, [m.id, st]);
       }
     }
   }
@@ -147,21 +162,21 @@ function guardDomain(s: CanonicalSystem, ref: string): GuardDomain | null {
 const listed = (values: readonly Scalar[]): string => values.map((v) => String(v)).join(", ");
 
 /** V1–V24 and V26–V31 — meaning, once the loaded model is known to be the written one. */
-export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
+export function checkMeaning(s: CanonicalSystem): readonly SubjectedFinding[] {
   const c = new Collector();
 
   // V3 — models reference system-level entities; they never redeclare them.
   for (const m of s.models.values()) {
     for (const id of m.entities) {
-      if (!s.entities.has(id)) c.add("V3", `models.${m.id}.entities`, `'${id}' is not a declared system entity.`);
+      if (!s.entities.has(id)) c.add("V3", `models.${m.id}.entities`, `'${id}' is not a declared system entity.`, [m.id, id]);
     }
   }
   for (const r of s.relations) {
     for (const [side, id] of [["from", r.from], ["to", r.to]] as const) {
-      if (!s.entities.has(id)) c.add("V3", `models.${r.model}.relations`, `${side}: '${id}' is not a declared entity.`);
+      if (!s.entities.has(id)) c.add("V3", `models.${r.model}.relations`, `${side}: '${id}' is not a declared entity.`, [r.model, id]);
     }
     if (!s.relationTypes.has(r.type)) {
-      c.add("V3", `models.${r.model}.relations`, `type: '${r.type}' is not a declared relation-type.`);
+      c.add("V3", `models.${r.model}.relations`, `type: '${r.type}' is not a declared relation-type.`, [r.model, r.type]);
     }
   }
 
@@ -173,12 +188,12 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
   const firstParent = new Map<string, string>();
   for (const e of s.entities.values()) {
     for (const child of e.contains) {
-      if (!s.entities.has(child)) c.add("V3", `entities.${e.id}.contains`, `'${child}' is not a declared entity.`);
+      if (!s.entities.has(child)) c.add("V3", `entities.${e.id}.contains`, `'${child}' is not a declared entity.`, [e.id, child]);
       const held = firstParent.get(child);
       if (held === undefined) firstParent.set(child, e.id);
       else {
         c.add("V5", `entities.${e.id}.contains`,
-          `'${child}' already contained by '${held}' — containment is single-parent.`);
+          `'${child}' already contained by '${held}' — containment is single-parent.`, [e.id, child, held]);
       }
     }
   }
@@ -188,7 +203,7 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
     while (cur !== null) {
       const next: string | null = s.entities.get(cur)?.parent ?? null;
       if (next === start || (next !== null && seen.has(next))) {
-        c.add("V4", `entities.${start}`, "containment cycle.");
+        c.add("V4", `entities.${start}`, "containment cycle.", [start]);
         break;
       }
       if (next !== null) seen.add(next);
@@ -219,7 +234,7 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
       const cyc = walk(node);
       if (cyc) {
         c.add("V8", `relation-types.${rt.id}`,
-          `declares acyclic but a cycle exists: ${cyc.join(" -> ")}.`);
+          `declares acyclic but a cycle exists: ${cyc.join(" -> ")}.`, [rt.id, ...cyc]);
         break;
       }
     }
@@ -230,24 +245,24 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
   for (const m of s.machines.values()) {
     const states = new Set(m.states);
     if (m.entity !== null && !s.entities.has(m.entity)) {
-      c.add("V6", `machines.${m.id}.entity`, `'${m.entity}' is not a declared entity.`);
+      c.add("V6", `machines.${m.id}.entity`, `'${m.entity}' is not a declared entity.`, [m.id, m.entity]);
     }
     if (!states.has(m.initial)) {
-      c.add("V9", `machines.${m.id}.initial`, `'${m.initial}' is not a declared state of this machine.`);
+      c.add("V9", `machines.${m.id}.initial`, `'${m.initial}' is not a declared state of this machine.`, [m.id, m.initial]);
     }
     for (const t of m.transitions) {
       for (const [side, st] of [["from", t.from], ["to", t.to]] as const) {
         if (!states.has(st)) {
-          c.add("V10", `machines.${m.id}.transitions[${t.index}]`, `${side}: '${st}' is not a declared state.`);
+          c.add("V10", `machines.${m.id}.transitions[${t.index}]`, `${side}: '${st}' is not a declared state.`, [m.id, st]);
         }
       }
       if (t.sync !== null) {
         const ev = s.events.get(t.sync);
         if (ev === undefined) {
-          c.add("V1", `machines.${m.id}.transitions[${t.index}].sync`, `'${t.sync}' is not a declared event.`);
+          c.add("V1", `machines.${m.id}.transitions[${t.index}].sync`, `'${t.sync}' is not a declared event.`, [m.id, t.sync]);
         } else if (!ev.participants.includes(m.id)) {
           c.add("V12", `machines.${m.id}.transitions[${t.index}].sync`,
-            `machine is not listed among '${t.sync}' participants.`);
+            `machine is not listed among '${t.sync}' participants.`, [m.id, t.sync]);
         }
       }
       // V11 — a guard may not reference a multiply-instantiated machine: there is no participant
@@ -256,7 +271,7 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
         const head = g.ref.split(".")[0] ?? "";
         if (multi.has(head)) {
           c.add("V11", `machines.${m.id}.transitions[${t.index}].requires`,
-            `guard references multiply-instantiated machine '${head}'; there is no participant selection in v0.1.`);
+            `guard references multiply-instantiated machine '${head}'; there is no participant selection in v0.1.`, [m.id, head]);
         }
       }
       // V26 — the guard's value must be something its reference can actually hold. A guard against
@@ -277,12 +292,12 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
           if (typeof g.value !== "number" || g.value < lo || g.value > hi) {
             c.add("V26", where,
               `guard '${g.ref} ${g.op} ${String(g.value)}' compares against a value outside the ` +
-              `range of ${dom.subject} (${lo}..${hi}), so it is decided before the model runs.`);
+              `range of ${dom.subject} (${lo}..${hi}), so it is decided before the model runs.`, [m.id, g.ref]);
           }
         } else if (!dom.values.includes(g.value)) {
           c.add("V26", where,
             `guard '${g.ref} ${g.op} ${String(g.value)}': '${String(g.value)}' is not in the domain ` +
-            `of ${dom.subject}. Declared: ${listed(dom.values)}.`);
+            `of ${dom.subject}. Declared: ${listed(dom.values)}.`, [m.id, g.ref]);
         }
       }
       // V13 — two transitions joined by one event must not assign the same variable. Checked from
@@ -295,7 +310,7 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
             for (const e of t.effects) {
               if (ot.effects.some((oe) => oe.variable === e.variable)) {
                 c.add("V13", `events.${t.sync}`,
-                  `'${m.id}' and '${other.id}' both assign '${e.variable}' in one atomic step.`);
+                  `'${m.id}' and '${other.id}' both assign '${e.variable}' in one atomic step.`, [t.sync, m.id, other.id, e.variable]);
               }
             }
           }
@@ -306,7 +321,7 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
     for (const v of m.variables.values()) {
       if (v.domain.length === 0) {
         c.add("V17", `machines.${m.id}.variables.${v.id}`,
-          "no finite domain: an integer needs a range, an enum needs values, or name a declared domain.");
+          "no finite domain: an integer needs a range, an enum needs values, or name a declared domain.", [m.id, v.id]);
       }
     }
     // V19 — the derived dependency graph must be acyclic.
@@ -315,7 +330,7 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
     for (const [name, expr] of m.derived) {
       deps.set(name, new Set(expr.split(/[^A-Za-z0-9_.]+/).filter((tok) => names.has(tok) && tok !== name)));
       if (expr.split(/[^A-Za-z0-9_.]+/).includes(name)) {
-        c.add("V19", `machines.${m.id}.derived.${name}`, "derived value references itself.");
+        c.add("V19", `machines.${m.id}.derived.${name}`, "derived value references itself.", [m.id, name]);
       }
     }
     for (const start of names) {
@@ -324,7 +339,7 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
       while (stack.length) {
         const cur = stack.pop() as string;
         if (cur === start) {
-          c.add("V19", `machines.${m.id}.derived.${start}`, "derived value participates in a cycle.");
+          c.add("V19", `machines.${m.id}.derived.${start}`, "derived value participates in a cycle.", [m.id, start]);
           break;
         }
         if (seen.has(cur)) continue;
@@ -339,17 +354,17 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
     for (const part of ev.participants) {
       const m = s.machines.get(part);
       if (m === undefined) {
-        c.add("V12", `events.${ev.id}.participants`, `'${part}' is not a declared machine.`);
+        c.add("V12", `events.${ev.id}.participants`, `'${part}' is not a declared machine.`, [ev.id, part]);
         continue;
       }
       if (m.instances > 1) {
         c.add("V14", `events.${ev.id}.participants`,
           `'${ev.id}' synchronizes with multiply-instantiated machine '${part}'. Participant selection ` +
-          `is not supported by this version. Model the participants explicitly, or use a single instance.`);
+          `is not supported by this version. Model the participants explicitly, or use a single instance.`, [ev.id, part]);
       }
       if (!m.transitions.some((t) => t.sync === ev.id)) {
         c.add("V12", `events.${ev.id}.participants`,
-          `'${part}' never declares a transition with sync: ${ev.id} — a participant that never participates.`);
+          `'${part}' never declares a transition with sync: ${ev.id} — a participant that never participates.`, [ev.id, part]);
       }
     }
   }
@@ -366,7 +381,7 @@ export function checkMeaning(s: CanonicalSystem): readonly Finding[] {
     for (const omitted of m.purpose.omits) {
       if (vocab.has(omitted)) {
         c.add("V24", `models.${m.id}.purpose.omits`,
-          `'${omitted}' is declared omitted but appears in this model — the declaration would lie to a reader.`);
+          `'${omitted}' is declared omitted but appears in this model — the declaration would lie to a reader.`, [m.id, omitted]);
       }
     }
   }
@@ -561,14 +576,14 @@ function checkAccounting(c: Collector, s: CanonicalSystem): void {
           ? ` '${a.metric}' names a DIMENSION, and a metric is not a dimension — only the ` +
             `execution-scoped dimensions are summed along a path. A ${a.metric} quantity declares ` +
             `where it is charged with 'residency:' or 'when:' instead (V37).`
-          : ""));
+          : ""), [a.metric]);
       continue;
     }
     if (a.basis === null) {
       c.add("V35", where,
         `basis '${a.basisRaw}' is not one of ${listBases()}. The vocabulary is closed at one member ` +
         `for v0.1, so adding transition or relation accounting later is a deliberate act rather than ` +
-        `a permissive union that cannot be narrowed again.`);
+        `a permissive union that cannot be narrowed again.`, [a.metric]);
     }
   }
 
@@ -585,7 +600,7 @@ function checkAccounting(c: Collector, s: CanonicalSystem): void {
       `accounting basis is declared for '${metric}'. Write ` +
       `'accounting: { ${metric}: { basis: entities } }'. Until it is declared those quantities reach ` +
       `no analysis, and a quantity that validates and then reaches nothing is the type system ` +
-      `claiming more than the semantics provide.`);
+      `claiming more than the semantics provide.`, [metric, ...subjects.map((q) => q.id).sort()]);
   }
 }
 
@@ -613,7 +628,7 @@ function checkParticipation(c: Collector, s: CanonicalSystem, q: CanonQuantity, 
     `'${declared.basis}', which charges only ${listKinds(charged)} targets. An execution's ${metric} ` +
     `is the sum over each occurrence of an accounted entity along it, so this annotation contributes ` +
     `to nothing — move it to the entity whose occurrence it costs, or declare a basis that accounts ` +
-    `for ${q.target.kind} targets.`);
+    `for ${q.target.kind} targets.`, [q.id, metric]);
 }
 
 /**
@@ -641,7 +656,7 @@ function checkResidency(c: Collector, s: CanonicalSystem, q: CanonQuantity, dime
         `declares residency, but ${dimension} is ${scope}-scoped. Residency says which ` +
         `configurations a quantity is charged in, which is a question only a configuration-scoped ` +
         `dimension asks — a ${dimension} is aggregated along an execution and its accounting is the ` +
-        `declared basis (V35).`);
+        `declared basis (V35).`, [q.id]);
     }
     return;
   }
@@ -650,7 +665,7 @@ function checkResidency(c: Collector, s: CanonicalSystem, q: CanonQuantity, dime
       c.add("V37", where,
         `target '${q.target.raw}' addresses a whole model, so this is a declared TOTAL rather than a ` +
         `charge on one entity. memory(c) sums over entities; a model-level total is compared against ` +
-        `it, never a summand of it. Drop the residency declaration, or target the entity it charges.`);
+        `it, never a summand of it. Drop the residency declaration, or target the entity it charges.`, [q.id]);
     }
     return;
   }
@@ -662,7 +677,7 @@ function checkResidency(c: Collector, s: CanonicalSystem, q: CanonQuantity, dime
     c.add("V37", where,
       `declares both 'residency: ${q.residencyRaw}' and a 'when:' clause. They are the two summands ` +
       `of memory(c) and a quantity enters one of them: resident means charged in every configuration ` +
-      `where the entity exists, 'when' means charged exactly while the named state is active. ${both}`);
+      `where the entity exists, 'when' means charged exactly while the named state is active. ${both}`, [q.id]);
     return;
   }
   if (!declared && when === null) {
@@ -670,14 +685,14 @@ function checkResidency(c: Collector, s: CanonicalSystem, q: CanonQuantity, dime
       `is a ${dimension} quantity with no declared residency, so it enters neither summand of ` +
       `memory(c) and no configuration charges it. Residency is not inferred from the kind of thing ` +
       `annotated — "idle service memory stays resident" and "idle service memory disappears" are ` +
-      `both guesses MAGE refuses to make. ${both}`);
+      `both guesses MAGE refuses to make. ${both}`, [q.id]);
     return;
   }
   if (declared && q.residency === null) {
     c.add("V37", where,
       `residency '${q.residencyRaw}' is not one of ${RESIDENCIES.join(", ")}. The vocabulary is ` +
       `closed at one member for v0.1; a quantity charged only while something is active says so ` +
-      `with 'when:' instead.`);
+      `with 'when:' instead.`, [q.id]);
     return;
   }
   if (when !== null && when.state === null) {
@@ -687,14 +702,14 @@ function checkResidency(c: Collector, s: CanonicalSystem, q: CanonQuantity, dime
     c.add("V37", where,
       `the 'when:' clause declares no 'state:', so nothing identifies the behavioral thing whose ` +
       `activation charges this quantity — and activation is never inferred.${stray} Write ` +
-      `'when: { state: <machine>.<state> }'.`);
+      `'when: { state: <machine>.<state> }'.`, [q.id]);
     return;
   }
   if (when !== null && when.state !== null) {
     const fault = stateFault(s, `when.state '${when.state}'`, when.state, "");
     // Reported at `.when` rather than at the quantity, so a broken target and a broken `when` are
     // two distinguishable V27 findings instead of two lines about the same place.
-    if (fault !== null) c.add("V27", `${where}.when`, fault);
+    if (fault !== null) c.add("V27", `${where}.when`, fault, [q.id, when.state]);
   }
 }
 
@@ -725,7 +740,7 @@ function checkExecutesInState(c: Collector, s: CanonicalSystem): void {
       c.add("V38", where,
         `declares ${EXECUTES_IN_STATE} as ${JSON.stringify(declared.value)}, which names no state. ` +
         `The value is a state reference — '<machine>.<state>', or a bare state name exactly one ` +
-        `machine declares.`);
+        `machine declares.`, [e.id]);
       continue;
     }
     const fault = stateFault(s, `${EXECUTES_IN_STATE} '${declared.value}'`, declared.value, "");
@@ -733,7 +748,7 @@ function checkExecutesInState(c: Collector, s: CanonicalSystem): void {
       c.add("V38", where,
         `${fault} This property is the join entity accounting charges through, so a reference that ` +
         `resolves nowhere means no execution ever visits '${e.id}' and every quantity charging it ` +
-        `reaches no analysis.`);
+        `reaches no analysis.`, [e.id, String(declared.value)]);
     }
   }
 }
@@ -762,7 +777,7 @@ function checkQueryQuantities(c: Collector, s: CanonicalSystem): void {
     if (!s.quantities.has(within)) {
       c.add("V39", `queries.${id}.quantity.within`,
         `names quantity '${within}', which this system does not declare. A ceiling is a declared ` +
-        `'model:'-targeted quantity; declare it, or name one that exists.`);
+        `'model:'-targeted quantity; declare it, or name one that exists.`, [id, within]);
     }
   }
 }
@@ -775,7 +790,7 @@ function checkQueryQuantities(c: Collector, s: CanonicalSystem): void {
  * gets no magnitude complaints, because every one of them would be a consequence; an expression with
  * an unresolvable operand gets no dimension complaint, because the operand is the bug.
  */
-export function checkQuantities(s: CanonicalSystem): readonly Finding[] {
+export function checkQuantities(s: CanonicalSystem): readonly SubjectedFinding[] {
   const c = new Collector();
 
   // V31 — `metrics` is reserved. A user id that shadows it would make `metrics.state_count` read as
@@ -786,7 +801,7 @@ export function checkQuantities(s: CanonicalSystem): readonly Finding[] {
       if (id === METRIC_NAMESPACE) {
         c.add("V31", scope,
           `'${METRIC_NAMESPACE}' is the reserved model-metric namespace (${METRIC_NAMES.join(", ")}); ` +
-          `it cannot also name a ${scope.split(".")[0] ?? scope} object. Rename it.`);
+          `it cannot also name a ${scope.split(".")[0] ?? scope} object. Rename it.`, [id]);
       }
     }
   };
@@ -818,12 +833,12 @@ export function checkQuantities(s: CanonicalSystem): readonly Finding[] {
     // V27 — no dangling annotations (§9). A quantity pointing at a deleted transition is not
     // invalid, it is WRONG, and nothing says so unless a rule does.
     const fault = targetFault(s, q);
-    if (fault !== null) c.add("V27", where, fault);
+    if (fault !== null) c.add("V27", where, fault, [q.id]);
 
     if (q.dimension === null) {
       c.add("V28", where,
         `dimension '${q.dimensionRaw}' is not one of ${DIMENSION_IDS.join(", ")}. The dimension is the ` +
-        `quantity's type, so nothing else about it can be checked without one.`);
+        `quantity's type, so nothing else about it can be checked without one.`, [q.id]);
       continue;
     }
     const dimension = q.dimension;
@@ -835,9 +850,9 @@ export function checkQuantities(s: CanonicalSystem): readonly Finding[] {
 
     const literal = (m: Magnitude, part: string): boolean => {
       const v28 = faultMessage(m, dimension, part);
-      if (v28 !== null) c.add("V28", where, v28);
+      if (v28 !== null) c.add("V28", where, v28, [q.id]);
       const v30 = foreignMessage(m, dimension, part);
-      if (v30 !== null) c.add("V30", where, v30);
+      if (v30 !== null) c.add("V30", where, v30, [q.id]);
       return m.base !== null;
     };
 
@@ -847,13 +862,13 @@ export function checkQuantities(s: CanonicalSystem): readonly Finding[] {
     const bounds = (m: Magnitude, part: string): void => {
       if (m.base === null) return;
       if (m.base < 0) {
-        c.add("V29", where, `${part} normalizes to ${m.base}; no v0.1 dimension admits a negative magnitude.`);
+        c.add("V29", where, `${part} normalizes to ${m.base}; no v0.1 dimension admits a negative magnitude.`, [q.id]);
       }
       const max = DIMENSIONS[dimension].maximum;
       if (max !== null && m.base > max) {
         c.add("V29", where,
           `${part} normalizes to ${m.base}, above the maximum ${max} for ${dimension} — a ratio is a ` +
-          `proportion of one, so 80% is 0.8.`);
+          `proportion of one, so 80% is 0.8.`, [q.id]);
       }
     };
 
@@ -868,10 +883,10 @@ export function checkQuantities(s: CanonicalSystem): readonly Finding[] {
       if (lowOk && highOk && (v.low.base ?? 0) > (v.high.base ?? 0)) {
         c.add("V29", where,
           `range [${v.low.raw}, ${v.high.raw}] is reversed: ${v.low.base} > ${v.high.base} in ` +
-          `${String(DIMENSIONS[dimension].base ?? dimension)}.`);
+          `${String(DIMENSIONS[dimension].base ?? dimension)}.`, [q.id]);
       }
     } else if (v.kind === "absent") {
-      c.add("V28", where, "has no value. Declare 'value:' or 'range:'.");
+      c.add("V28", where, "has no value. Declare 'value:' or 'range:'.", [q.id]);
     } else {
       checkExpression(c, s, q, dimension, where);
     }
@@ -903,7 +918,7 @@ function checkExpression(
   const v = q.value;
   if (v.kind !== "expression") return;
   if (v.terms.length === 0) {
-    c.add("V28", where, `expression '${v.source}' has no operands.`);
+    c.add("V28", where, `expression '${v.source}' has no operands.`, [q.id]);
     return;
   }
 
@@ -916,20 +931,20 @@ function checkExpression(
         c.add("V28", where,
           `expression operand '${o.text}' is not a magnitude, a model metric, or a declared quantity. ` +
           `Operators stand alone between spaces, parentheses are not v0.1 syntax, and an expression ` +
-          `may not end with an operator.`);
+          `may not end with an operator.`, [q.id]);
       } else if (o.kind === "metric") {
         if (o.name === "") {
           unresolved += 1;
-          c.add("V27", where, `'${METRIC_NAMESPACE}' names a namespace, not a value. Write ${METRIC_NAMESPACE}.${METRIC_NAMES[0]}.`);
+          c.add("V27", where, `'${METRIC_NAMESPACE}' names a namespace, not a value. Write ${METRIC_NAMESPACE}.${METRIC_NAMES[0]}.`, [q.id]);
         } else if (!(METRIC_NAMES as readonly string[]).includes(o.name)) {
           unresolved += 1;
           c.add("V27", where,
-            `'${METRIC_NAMESPACE}.${o.name}' is not a model metric. Declared: ${METRIC_NAMES.join(", ")}.`);
+            `'${METRIC_NAMESPACE}.${o.name}' is not a model metric. Declared: ${METRIC_NAMES.join(", ")}.`, [q.id]);
         }
       } else if (o.kind === "quantity") {
         if (!s.quantities.has(o.id)) {
           unresolved += 1;
-          c.add("V27", where, `expression references '${o.id}', which is not a declared quantity.`);
+          c.add("V27", where, `expression references '${o.id}', which is not a declared quantity.`, [q.id, o.id]);
         } else if (s.quantities.get(o.id)?.dimension === null) {
           // Its own V28 already names the cause; a dimension complaint here would send the author
           // to the wrong quantity.
@@ -938,7 +953,7 @@ function checkExpression(
       } else if (o.magnitude.fault !== null) {
         unresolved += 1;
         const v28 = faultMessage(o.magnitude, o.dimension ?? dimension, `expression operand`);
-        if (v28 !== null) c.add("V28", where, v28);
+        if (v28 !== null) c.add("V28", where, v28, [q.id]);
       }
     }
   }
@@ -958,14 +973,14 @@ function checkExpression(
     if (divisor !== undefined) {
       c.add("V30", where,
         `expression '${v.source}' divides by a ${classOf(operandDimension(s, divisor.operand))} ` +
-        `operand; a divisor must be dimensionless.`);
+        `operand; a divisor must be dimensionless.`, [q.id]);
       return;
     }
     if (carried.length > 1) {
       c.add("V30", where,
         `expression '${v.source}' multiplies ${carried.length} dimensioned operands ` +
         `(${carried.map((f) => classOf(operandDimension(s, f.operand))).join(" x ")}); v0.1 has no ` +
-        `compound dimensions.`);
+        `compound dimensions.`, [q.id]);
       return;
     }
     termClasses.push(carried[0] === undefined ? "dimensionless" : classOf(operandDimension(s, carried[0].operand)));
@@ -976,12 +991,12 @@ function checkExpression(
   if (clash !== undefined) {
     c.add("V30", where,
       `expression '${v.source}' adds ${first} to ${clash}. §7 forbids silently coercing one dimension ` +
-      `into another.`);
+      `into another.`, [q.id]);
     return;
   }
   if (first !== classOf(dimension)) {
     c.add("V30", where,
-      `expression '${v.source}' has dimension ${first}, but the quantity declares ${dimension}.`);
+      `expression '${v.source}' has dimension ${first}, but the quantity declares ${dimension}.`, [q.id]);
   }
 }
 
@@ -997,7 +1012,7 @@ function checkExpression(
  * Canonicalization keeps the leftover keys precisely so this can say which text got cut; without the
  * key name the author knows a note is broken but not where to put the quotes.
  */
-export function checkAnnotation(s: CanonicalSystem): readonly Finding[] {
+export function checkAnnotation(s: CanonicalSystem): readonly SubjectedFinding[] {
   const c = new Collector();
   const sweep = (scope: string, a: Annotated): void => {
     for (const n of a.notes) {
@@ -1005,7 +1020,7 @@ export function checkAnnotation(s: CanonicalSystem): readonly Finding[] {
       c.add("ANNOTATION", `${scope}.notes.${n.id}`,
         `unexpected key(s) ${n.unexpectedKeys.map((k) => `'${k}'`).join(", ")}: the signature of an ` +
         `unquoted comma in YAML flow style, which ends the value and makes the rest a key. The text ` +
-        `reads '${n.text}' and the remainder is gone. Quote it.`);
+        `reads '${n.text}' and the remainder is gone. Quote it.`, [n.id]);
     }
   };
   for (const e of s.entities.values()) sweep(`entities.${e.id}`, e.annotation);
@@ -1023,7 +1038,22 @@ export function checkAnnotation(s: CanonicalSystem): readonly Finding[] {
  * because past that point we cannot trust that the model we loaded is the model that was written.
  */
 export function validate(s: CanonicalSystem): readonly Finding[] {
+  // Narrowed to the wire three fields on purpose. `Finding` is the shape `validate.py` emits and
+  // `test/parity.test.ts` compares; handing the enriched objects to every existing caller would put
+  // three uncompared fields on the parity surface by accident (§6.3). The operation is
+  // `validateModel` below, and it is where the enrichment is published.
+  return validateModel(s).map(({ rule, where, message }) => ({ rule, where, message }));
+}
+
+/**
+ * The same pass, enriched — the source for `validate(model)` the operation.
+ *
+ * One pass, not two: these are the findings the rungs wrote, with severity and spec joined on the
+ * rule id. A second traversal here would be a second implementation of the rule set, which is the
+ * one thing the authority split (`result.ts`, `VALIDATION_AUTHORITY`) exists to keep at two parties.
+ */
+export function validateModel(s: CanonicalSystem): readonly ValidationFinding[] {
   const coercion = checkCoercion(s);
-  if (coercion.length > 0) return coercion;
-  return [...checkMeaning(s), ...checkAnnotation(s)];
+  if (coercion.length > 0) return coercion.map(enrich);
+  return [...checkMeaning(s), ...checkAnnotation(s)].map(enrich);
 }
