@@ -313,7 +313,8 @@ test("a relation's endpoints are selectable, so inspection runs both ways", () =
   // And the round trip lands on the endpoint rather than on something that merely resolves.
   for (const id of [r.from, r.to]) {
     const landed = object(inspectSelection(system, [id]));
-    assert.ok(landed.title.includes(id) || landed.title.includes(system.entities.get(id)?.label ?? " "),
+    const label = system.entities.get(id)?.label;
+    assert.ok(landed.title.includes(id) || (label !== undefined && landed.title.includes(label)),
       `selecting the ${id} endpoint inspected '${landed.title}' instead`);
   }
 });

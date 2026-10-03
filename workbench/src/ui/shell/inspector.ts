@@ -49,7 +49,8 @@ import { CAVEAT as ASSUMPTION_CAVEAT, parseElementValue, parseRelationValue, rel
 import type { RelationRef } from "../view-model.ts";
 import { byId, mountIf } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
-import { regionHost } from "./surfaces.ts";
+import { regionHost, surfaceElement } from "./surfaces.ts";
+import type { NavSurface } from "./surfaces.ts";
 
 // --------------------------------------------------------------------------------------------
 // The reading
@@ -492,11 +493,24 @@ const el = <K extends keyof HTMLElementTagNameMap>(
   return node;
 };
 
-/** Where a navigation link LANDS. A link needs a real destination, not a handler and a dead href. */
-const DESTINATION: Readonly<Record<InspectorAction["kind"], string>> = {
+/**
+ * Which SURFACE a navigation link lands on. A link needs a real destination, not a handler beside a
+ * dead href — following it moves the reader to the region that is about to change.
+ *
+ * Named as surfaces and resolved through the table, so the element ids are not written here as well.
+ * Throws rather than emitting `href="#"`: a surface this pane links to and nobody built is a defect
+ * at mount, and a silent empty href is the unverifiable declaration §2.1 refuses.
+ */
+const DESTINATION: Readonly<Record<InspectorAction["kind"], NavSurface>> = {
   target: "workspace",
   select: "inspector",
 };
+
+function href(kind: InspectorAction["kind"]): string {
+  const id = surfaceElement(DESTINATION[kind]);
+  if (id === null) throw new Error(`the inspector links to surface '${DESTINATION[kind]}', which SURFACES declares planned`);
+  return `#${id}`;
+}
 
 function lineNode(l: InspectorLine): HTMLLIElement {
   const li = el("li");
@@ -505,7 +519,7 @@ function lineNode(l: InspectorLine): HTMLLIElement {
     return li;
   }
   const link = el("a", l.text);
-  link.href = `#${DESTINATION[l.action.kind]}`;
+  link.href = href(l.action.kind);
   link.dataset["action"] = l.action.kind;
   link.dataset["arg"] = l.action.kind === "target" ? l.action.subject : l.action.selection;
   li.append(link);
