@@ -403,6 +403,40 @@ wave**, and ids in §5's "stable ids kept" column do not change at all.
 Wave boundaries: 0 → {1a,1b,1c,1d} → {2a,2b,2c,2d} → 3. Every wave lands with `tsc --noEmit`
 clean AND the full suite — the 261002 lesson that a clean merge can type-break a green test tree.
 
+### 9a. Wave 0 as built — four places the table above was wrong
+
+Appended by wave 0 after landing, because waves 1a–1d read this table to know which file is theirs
+and three of these would otherwise be discovered as a surprise.
+
+- **`src/ui/shell/edit-forms.ts` exists, and §5 gives it no row.** The ten always-visible editing
+  fieldsets have no region in the finished shell — correction 4 replaces them with a `+ Add` menu,
+  inspector actions and a palette — so the table assigns them nowhere. Leaving their handlers in the
+  composition root would have made `main.ts` the file waves 2a and 2c both edit, which is the hotspot
+  wave 0 exists to break. They have a module of their own, declared a holding pen in its own header,
+  and waves 2a and 2c drain and delete it. The `submitEdit` funnel is exported from there; the ask
+  bar's Save and Retract send through it.
+- **`NavSurface` lives in `src/ui/shell/surfaces.ts`, not in `capabilities.ts`.** §2.2 sketches the
+  union beside `NavStep` in the registry, and §2.3 asks the shell to export the SURFACES table. Those
+  two cannot both happen without splitting one fact across two files owned by two waves, and the
+  registry importing a VALUE from `src/ui/` would invert the layering. So the vocabulary sits with
+  the table, and wave 1d's `NavStep` takes it by `import type` — no runtime dependency from
+  `src/app/` on `src/ui/`. The table also carries a `planned` member, because the palette does not
+  exist and a table that implied it did would be the unverifiable declaration §2.1 refuses.
+- **Wave 1a's footprint is bigger than `nav.ts`.** The view-model-to-DOM binder (`render-dom.ts`'s
+  `paint`) writes all four readouts, including the property rail's rows, and wave 3 owns that file.
+  So wave 1a cannot change how a property row reads without either growing a renderer inside
+  `nav.ts` or editing a wave-3 file. Wave 0 left the binder whole rather than splitting a file it
+  does not own; whoever takes 1a should decide which, early, and say so.
+- **The exhaustive readouts went to `system-browser` together, provenance included.** Correction 9
+  sends provenance to the inspector (wave 1b), so it needed a holding pen for one wave. It is an
+  exhaustive tabular readout of the whole system, which is the System Browser's genre, so it waits
+  in that region's markup rather than in a pane wave 1b would have to clear out. The root paints it,
+  not `browser.ts` — a module that never claimed it is a module nobody has to strip it from.
+
+What wave 0 did NOT do, to be explicit: no `NavStep`/`path` field, no closure check over the table
+(that is 1d's), no contents tree, no disclosures, no palette, no ask input, no inspector content.
+`inspector.ts` and `nav-models` land as named regions reporting the one fact each can know.
+
 ## 10. What the redesign revealed in the existing code
 
 - **The DEFECT-1 fix is correction 1's deletion target.** `f74cd538` replaced false prose with a
