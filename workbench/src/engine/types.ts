@@ -108,7 +108,22 @@ export const detail = (
 // Queries
 // --------------------------------------------------------------------------------------------
 
-export type Quantifier = "exists" | "forall";
+/**
+ * The two quantifiers, and what each takes as evidence.
+ *
+ * The table is the sentence's source, not a second copy of it: `parseQuery`'s refusal below builds
+ * its prose from these two strings, and `check` lists them as the alternatives a quantifier-less
+ * query may choose between. One fact, two readers — the arrangement `GRAPH_FORMS` already uses for
+ * the form vocabulary.
+ */
+export const QUANTIFIERS = ["exists", "forall"] as const;
+
+export type Quantifier = typeof QUANTIFIERS[number];
+
+export const QUANTIFIER_EVIDENCE: Readonly<Record<Quantifier, string>> = {
+  exists: "a witness establishes it, exhaustive absence refutes it",
+  forall: "exhaustive satisfaction establishes it, a counterexample refutes it",
+};
 
 /**
  * Legal `GraphQuery`/`BehaviorQuery` forms, and the sole source of truth for them.
@@ -408,9 +423,9 @@ export function parseQuery(raw: unknown): Res<Query> {
     // V21 in its sharpest form: the quantifier determines what counts as evidence, so guessing it
     // would be guessing the question. Refuse and name both readings.
     return fail(
-      "every query must declare its quantifier: 'exists' (a witness establishes it, exhaustive " +
-      "absence refutes it) or 'forall' (exhaustive satisfaction establishes it, a counterexample " +
-      "refutes it). The engine does not infer it, because the two take different evidence.");
+      `every query must declare its quantifier: 'exists' (${QUANTIFIER_EVIDENCE.exists}) or ` +
+      `'forall' (${QUANTIFIER_EVIDENCE.forall}). The engine does not infer it, because the two ` +
+      `take different evidence.`);
   }
   if (q["kind"] === "graph") {
     const g = parseGraphQuery(q["graph"]);
@@ -480,6 +495,21 @@ export interface Verdict {
 
 export const verdict = (res: QueryResult, nodeSets: readonly (readonly string[])[] = []): Verdict =>
   ({ result: res, refusal: null, nodeSets });
+
+/**
+ * The outcome of ADMITTING a question: the plan a licensed one gets to use, or the verdict a
+ * refused one earns.
+ *
+ * One shape for all three query kinds, because `check` reports over all three and a shape per kind
+ * would be three ways to say "refused" for one interface to normalise. The plan is per kind and
+ * deliberately opaque here: it is whatever that kind's admission resolved, and only that kind's
+ * evaluator reads it.
+ */
+export type Admission<P> =
+  | { readonly admitted: true; readonly plan: P }
+  | { readonly admitted: false; readonly verdict: Verdict };
+
+export const refusedAdmission = <P>(v: Verdict): Admission<P> => ({ admitted: false, verdict: v });
 
 /** The one shape a refusal takes: a successful result that reports what the model does not license. */
 export function unlicensed(

@@ -52,6 +52,10 @@ entities:
     type: application-service
     label: "workspace.applyHypothesis"
 
+  service.workspace-check:
+    type: application-service
+    label: "workspace.check"
+
   service.workspace-discardHypothesis:
     type: application-service
     label: "workspace.discardHypothesis"
@@ -134,6 +138,13 @@ entities:
   query:
     type: semantic-capability
     label: "Run one graph, behavioural or SPARQL query and return outcome, coverage and evidence."
+    properties:
+      human: wired
+      machine: wired
+
+  check-query:
+    type: semantic-capability
+    label: "Ask whether a question is meaningful and permitted for its model type, without running it."
     properties:
       human: wired
       machine: wired
@@ -289,6 +300,7 @@ models:
       - service.transactions-apply
       - service.validator-validate
       - service.workspace-applyHypothesis
+      - service.workspace-check
       - service.workspace-discardHypothesis
       - service.workspace-explore
       - service.workspace-export
@@ -306,6 +318,7 @@ models:
       - inspect
       - validate
       - query
+      - check-query
       - analyze
       - explore-space
       - inspect-evidence
@@ -344,6 +357,9 @@ models:
       - { from: query, to: human-interface, type: afforded-by }
       - { from: query, to: machine-interface, type: afforded-by }
       - { from: query, to: service.workspace-query, type: implemented-by }
+      - { from: check-query, to: human-interface, type: afforded-by }
+      - { from: check-query, to: machine-interface, type: afforded-by }
+      - { from: check-query, to: service.workspace-check, type: implemented-by }
       - { from: analyze, to: human-interface, type: afforded-by }
       - { from: analyze, to: machine-interface, type: afforded-by }
       - { from: analyze, to: service.workspace-runSavedQueries, type: implemented-by }

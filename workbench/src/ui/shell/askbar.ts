@@ -64,6 +64,7 @@ import type { EvaluatedProperty } from "../../app/properties.ts";
 import { fillSelect, paintAnswer } from "../render-dom.ts";
 import { planAsk, propertyRow } from "../view-model.ts";
 import type { AskRequest, Choice } from "../view-model.ts";
+import type { QueryCheckResult } from "../../engine/check.ts";
 import { byId, input, mountIf, sel } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
 import { regionHost } from "./surfaces.ts";
@@ -347,6 +348,42 @@ export function evidenceLines(reading: EvidenceReading): readonly string[] {
   ];
 }
 
+/**
+ * The sentences a check report reads as, one per arm.
+ *
+ * Derived from the report, never re-decided: the refused arm's sentence is the ENGINE's own, passed
+ * through, because a second wording of one refusal teaches a reader that one of them is guessing —
+ * the discipline `refusal.ts` names, and the reason the agent surface and this surface hand back
+ * the same `QueryCheckResult` rather than each describing it.
+ */
+function checkReportLines(report: QueryCheckResult): {
+  readonly headline: string; readonly detail: readonly string[]; readonly alternatives: readonly string[];
+} {
+  switch (report.outcome) {
+    case "licensed":
+      return {
+        headline: "Askable. This is a meaningful and permitted question for this model system.",
+        detail: [
+          `It interrogates the ${typeFor(report.kind).label}, and running it will answer it.`,
+          "A check does not predict the answer — Ask for that.",
+        ],
+        alternatives: [],
+      };
+    case "refused":
+      return {
+        headline: "Not askable as written. The models decline this question.",
+        detail: [report.refusal.prose],
+        alternatives: report.alternatives,
+      };
+    case "malformed":
+      return {
+        headline: "Not a question yet.",
+        detail: [report.prose],
+        alternatives: report.alternatives,
+      };
+  }
+}
+
 // --------------------------------------------------------------------------------------------
 // The region
 // --------------------------------------------------------------------------------------------
@@ -354,6 +391,7 @@ export function evidenceLines(reading: EvidenceReading): readonly string[] {
 export function mountAskBar(ctx: ShellContext, submitEdit: SubmitEdit): ShellRegion {
   const region = regionHost("askbar");
   const askAnswer = byId("ask-answer");
+  const checkReport = byId("ask-check-report");
   const askText = input("ask-text");
   const askChoice = sel("ask-choice");
   const filterLine = byId("ask-filter-state");
@@ -399,6 +437,39 @@ export function mountAskBar(ctx: ShellContext, submitEdit: SubmitEdit): ShellReg
     quantifier: askQuantifier.value,
     maxHops: input("ask-max-hops").value,
   });
+
+  /**
+   * Paint one check report. Plain DOM, and `#live` announces the headline — the one announcer, so a
+   * screen-reader user learns the verdict without having to go and read the region.
+   */
+  function paintCheck(report: QueryCheckResult): void {
+    const lines = checkReportLines(report);
+    const nodes: HTMLElement[] = [];
+    const headline = document.createElement("p");
+    headline.className = report.outcome === "licensed" ? "hint" : "refusal";
+    headline.textContent = lines.headline;
+    nodes.push(headline);
+    for (const sentence of lines.detail) {
+      const p = document.createElement("p");
+      p.textContent = sentence;
+      nodes.push(p);
+    }
+    if (lines.alternatives.length > 0) {
+      const h = document.createElement("p");
+      h.className = "hint";
+      h.textContent = "What this model system does license instead:";
+      nodes.push(h);
+      const list = document.createElement("ul");
+      for (const alternative of lines.alternatives) {
+        const li = document.createElement("li");
+        li.textContent = alternative;
+        list.append(li);
+      }
+      nodes.push(list);
+    }
+    checkReport.replaceChildren(...nodes);
+    ctx.announce(lines.headline);
+  }
 
   function clearAnswerSurfaces(): void {
     answered = null;
@@ -560,6 +631,18 @@ export function mountAskBar(ctx: ShellContext, submitEdit: SubmitEdit): ShellReg
       planned.query,
       ctx.workspace.evaluate(label, planned.query),
     );
+  });
+
+  byId("ask-check-go").addEventListener("click", () => {
+    const request = advancedRequest();
+    const planned = planAsk(request);
+    if (!planned.ok) {
+      // The form's own pre-flight, not the engine's. Reported in the same host, because "you have
+      // not finished composing" and "the models decline this" are both answers to "is this askable".
+      paintCheck({ outcome: "malformed", prose: planned.problem, alternatives: [] });
+      return;
+    }
+    paintCheck(ctx.workspace.check(planned.query));
   });
 
   byId("save-property-go").addEventListener("click", () => submitEdit({

@@ -167,6 +167,111 @@ describe("examples section 4.5: the flagship journey through window.mage.load", 
   });
 });
 
+describe("UX-I1: check(query) is reachable by a PERSON, over the same service an agent calls", () => {
+  // The assertion the registry cannot make for itself. `check-query` declares
+  // `properties-section.check` wired to `#ask-check-go`, and the node tier proves the element exists
+  // in the markup — which is not the same claim as "clicking it reports what `window.mage.check`
+  // reports". `explore-space` is the precedent for driving a newly-wired control here rather than
+  // trusting the declaration, and this session's lesson is that a control nobody drives is the next
+  // false green.
+  //
+  // Driven through the Advanced query surface, because that is the surface where a person can
+  // compose a question the models decline: a hop limit, two named endpoints, an explicit quantifier.
+  // The ask bar's catalogue cannot build one, which is why Check is not sited there.
+
+  /**
+   * Fill the Advanced form, click Check, and read the rendered report.
+   *
+   * Virtual time is advanced between the click and the read, because the live region SETTLES rather
+   * than firing per event — the same discipline the FR-A11Y-3 block below drives. Reading `#live` in
+   * the click's own tick measured the announcer's debounce, not the announcement.
+   */
+  const check = async (form, relation, from, to, quantifier) => {
+    await page.evaluate((f, r, fr, t, q) => {
+      document.querySelector("#ask-advanced").open = true;
+      const set = (id, value) => {
+        const el = document.getElementById(id);
+        el.value = value;
+        el.dispatchEvent(new Event("change", { bubbles: true }));
+      };
+      set("ask-form", f); set("ask-relation", r); set("ask-from", fr); set("ask-to", t);
+      set("ask-quantifier", q);
+      document.getElementById("ask-check-go").click();
+    }, form, relation, from, to, quantifier);
+    await advanceVirtualTime(page, 1200);
+    return page.evaluate(() => {
+      const host = document.getElementById("ask-check-report");
+      return {
+        text: host.textContent,
+        items: [...host.querySelectorAll("li")].map((li) => li.textContent),
+        live: document.getElementById("live").textContent,
+      };
+    });
+  };
+
+  it("a licensed question reports askable, and does not predict the answer", async () => {
+    // The relation type and endpoint are LOOKED UP, not assumed: a composing question is licensed
+    // only over a type that declares path composition, and which of the example's types does is the
+    // model's fact rather than this test's. The first attempt hard-coded `subscribes`, which
+    // forbids composition — so the control was correct and the fixture was wrong.
+    const pick = await page.evaluate(() => {
+      const inspection = window.mage.inspect();
+      const type = inspection.relationTypes.find((r) => r.pathComposition === "allowed");
+      const model = inspection.models.find((m) => m.relations.some((rel) => rel.type === type?.id));
+      const edge = model?.relations.find((rel) => rel.type === type?.id);
+      return { relation: type?.id ?? null, from: edge?.from ?? null };
+    });
+    assert.ok(pick.relation && pick.from,
+      "the flagship example must declare a composing relation type for this case to mean anything");
+    const report = await check("reachability", pick.relation, pick.from, "", "exists");
+    assert.match(report.text, /Askable/,
+      `the Check control did not report a licensed question: ${report.text}`);
+    assert.match(report.text, /does not predict the answer/,
+      "a check must not read as a weak answer");
+    assert.deepEqual(report.items, [], "a licensed question has no alternatives to offer");
+    assert.match(report.live, /Askable/, "the verdict must announce, not only paint");
+  });
+
+  it("a refused question reports the ENGINE's sentence and the alternatives it derives", async () => {
+    // `publishes` declares no path composition in the flagship example, so a multi-hop question
+    // over it is the V7 refusal — the one a person composing in Advanced can actually reach.
+    const report = await check("reachability", "publishes", "checkout", "", "exists");
+    assert.match(report.text, /Not askable as written/, report.text);
+    assert.match(report.text, /path.composition/i,
+      "the refusal must name its cause, and the sentence must be the engine's own");
+    assert.ok(report.items.length > 0,
+      "a refusal with no alternatives is the half of `check` that justifies its own row");
+    assert.ok(report.items.every((i) => /^form '/.test(i)),
+      `alternatives must be derived forms, not prose: ${JSON.stringify(report.items)}`);
+  });
+
+  it("the human control and window.mage.check agree, which is what UX-I1 means by one service", async () => {
+    // Both surfaces, one process, one workspace. The registry claims they converge on
+    // `workspace.check`; this is the claim being checked rather than asserted.
+    const agent = await page.evaluate(() => window.mage.check({
+      kind: "graph", quantifier: "exists",
+      graph: { form: "reachability", relation: "publishes", from: "checkout" },
+    }));
+    assert.equal(agent.outcome, "refused");
+    const human = await check("reachability", "publishes", "checkout", "", "exists");
+    assert.ok(human.text.includes(agent.refusal.prose),
+      "the rendered report must carry the engine's sentence verbatim, not a reword of it");
+    for (const alternative of agent.alternatives) {
+      assert.ok(human.items.includes(alternative),
+        `the human surface dropped an alternative the agent surface reports: ${alternative}`);
+    }
+  });
+
+  it("an unfinished question is reported, not silently ignored — negative control", async () => {
+    // The form's own pre-flight, in the same host: "you have not finished composing" and "the
+    // models decline this" are both answers to "is this askable", and a control that did nothing
+    // for the first would read as broken.
+    const report = await check("reachability", "publishes", "", "", "exists");
+    assert.match(report.text, /Not a question yet/, report.text);
+    assert.match(report.text, /endpoint/i, "the pre-flight must say what is missing");
+  });
+});
+
 describe("UX-I2 / UX-I3: the human and agent surfaces report one authoritative state", () => {
   it("#summary reports the counts context() gives", async () => {
     // The assertion the node tier structurally cannot make: both interfaces observed in ONE

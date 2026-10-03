@@ -590,9 +590,9 @@ Two findings about this design, from working the count:
 
 | ID | Statement | Pinned by |
 |---|---|---|
-| MQ-I1 | Every evaluation is preceded by the same admission the checker reports: the seam by the `LicensedQuestion` brand (`src/sparql/licensing.ts:183`, as-built), the engine path by the evaluator's head calling `admitTyped`. | the brand (compiler) + a node test asserting each evaluator refuses pre-evaluation on each admission cause. UNTESTED until the §10 M2 wave |
-| MQ-I2 | `check(q)` and execution agree on refusal cause and sentence at the same hash, for every shipped saved question plus a battery with ≥1 case per `RefusalReason`. | NEW agreement test, the engine-vs-seam sweep pattern (`src/sparql/licensing.ts:25-32`). UNTESTED until M2 |
-| MQ-I3 | `QuerySemantics.forms` / `.composing` are the engine's own arrays by identity, per type. | extends the existing registry identity test (the `propertyFamilies` pattern, `src/engine/model-types.ts:70-74`). UNTESTED until M1 |
+| MQ-I1 | Every evaluation is preceded by the same admission the checker reports: the seam by the `LicensedQuestion` brand (`src/sparql/licensing.ts:183`, as-built), the engine path by the evaluator's head calling `admitTyped`. | the brand (compiler) + `evaluate*` being module-private so admission is the only route in (compiler) + `test/engine-check.test.ts`, which asserts each evaluator's answer IS the admission's verdict, object-equal, for every cause on all three kinds. TESTED (M2) |
+| MQ-I2 | `check(q)` and execution agree on refusal cause and sentence at the same hash, for every shipped saved question plus a battery with ≥1 case per `RefusalReason`. | `test/engine-check.test.ts` — every shipped example's saved questions plus a per-cause battery; the `malformed` arm's mapping is pinned separately because it is not an identity (§13(4)). TESTED (M2) |
+| MQ-I3 | `QuerySemantics.forms` / `.composing` are the engine's own arrays by identity, per type. | the registry identity tests in `test/model-types.test.ts`. TESTED (M1) |
 | MQ-I4 | `ESCAPE_HATCHES` and capability affordances are disjoint; every machine site is in exactly one; `describe().operations` names no hatch. | extended `checkRegistryClosure` + node test. UNTESTED until M4 |
 | MQ-I5 | No shipped example question, suggested question, or Learn artifact is SPARQL text; hatch references close over the declared file set. | NEW node test (§7.3). UNTESTED until M4 |
 | MQ-I6 | `validate()` recomputes: its `hash` equals the current system hash, and its findings derive from `rules.ts` alone. | NEW node test: transact, validate, compare hashes; assert no cached path. UNTESTED until M3 |
@@ -792,3 +792,115 @@ contextual slots from `GRAPH_FORMS` directly — `CONTEXT_SLOT` is total over th
 it does not rot — but it reads the engine rather than `QuerySemantics.forms`, and it is
 structural-graph only. The derivation MQ-I8's human half needs is per loaded TYPE, which means
 reading the registry; that re-point is the shell's, not M1's.
+
+---
+
+## 13. As built — M2, and where §5 was wrong
+
+M2 landed `admitGraphQuery` / `admitBehaviorQuery` / `admitQuantityQuery`, `check` on the facade and
+on `window.mage`, the `check-query` capability row, and MQ-I1/MQ-I2. The semantics §5 specified
+survived; six things about it did not, each because applying the design surfaced a problem it could
+not see from outside.
+
+**(1) The admission returns a PLAN, and that is what makes the identity structural.** §5.2 said the
+rungs "factor into one exported function per kind, and the evaluator's first act becomes calling
+it" — which describes a refusal-or-nothing function and leaves the evaluator free to re-derive the
+data it needs. It would then hold a second copy of the resolution logic even with the refusals
+hoisted out: the adjacency, the compiled predicate, the resolved ceiling. So the licensed arm
+carries a `Plan` — `GraphPlan`, `BehaviorPlan`, `QuantityPlan` — and `evaluateGraph`,
+`evaluateBehavior` and `evaluateQuantity` are module-PRIVATE, taking only the plan. The call-graph
+identity §5.2 claimed is therefore held by the compiler: there is no route into evaluation that does
+not pass through admission, because the only data evaluation can run on is admission's output.
+
+**(2) The plan is the brand's analogue, and dropping it is the seam's rule — not a convenience.**
+§5.3 argued at length that `QueryCheckResult` must not carry `LicensedQuestion`, and §5.2 ruled the
+engine path needs no brand. Both are right and together they leave a hole: once admission produces a
+plan, the plan IS the thing a caller could present to skip the gate. `admitTyped` discards it, and
+`check` never sees one. That is the same rule — publish the gate's input, never its output — applied
+one layer in from where §5.3 applied it, and the design did not notice it had created a second place
+to apply it.
+
+**(3) `check` must not go through `EnginePort`.** §5.4 placed `check` on the facade beside `query`
+and said nothing about the route, and `Workspace.query` goes through `EnginePort.graphQuery`. The
+port is a SUBSTITUTION seam — the page, four test files and the worker each supply their own — so a
+port literal could supply a checker that admits what its evaluator refuses. That is exactly the
+second semantics §5 exists to prevent, at the one place it would be invisible. `Workspace.check`
+imports the engine's `checkQuery` directly. The pre-existing residue, recorded rather than fixed:
+`query` still routes through the port, so a test fake's evaluator could in principle disagree with
+`check`. Every port literal in the tree is `runQuery`, so nothing diverges today.
+
+**(4) Check and execute do NOT agree on the cause for a malformed query, and §5.3 implied they
+would.** MQ-I2 is stated as agreement "on the same refusal cause and the same sentence", and §5.3
+gives `malformed` an arm with no `RefusalReason` — correctly, since a document that parses as no
+question has no model type to be refused by. But execution routes a parse failure through
+`unlicensed(...)` with no detail, which DEFAULTS the cause to `unknown-vocabulary`. So the sentence
+agrees on both paths and the cause does not. MQ-I2's test pins the mapping explicitly instead of
+asserting an agreement that is false. A smaller finding behind it: `unknown-vocabulary` is the wrong
+cause for "this names no query kind" — nothing was misspelled — but it is the pre-existing wire
+behaviour and changing it is a parity question, not M2's.
+
+**(5) `alternatives` needed one new closed vocabulary, and building it removed a copy.** §5.3's
+derivation list included "a missing quantifier lists both quantifiers with their evidence rules",
+and the evidence rules existed only inside `parseQuery`'s refusal sentence as one blob of prose.
+`QUANTIFIER_EVIDENCE` is now the table, `QUANTIFIERS` the array `Quantifier` derives from, and
+`parseQuery` builds its sentence from the table — the emitted string is byte-identical, and the
+`check` alternatives and the refusal now read one source. The remaining arms needed nothing new:
+the by-construction primitives, the registry's `subjects` resolved against the system's own
+declarations, the registry filtered by `presentIn`, the form vocabulary, the metric and dimension
+tables, and the type's `predicates`. One arm is honestly empty — a `QueryNoun` of `execution` has no
+declared names, because an execution is selected by a predicate rather than named.
+
+**(6) §10's M2 footprint named the wrong quantitative file.** The row says
+`src/quant/requirement.ts`; the admission rungs are the first ninety lines of `src/quant/query.ts`,
+and `requirement.ts` was not touched. Same class of error as §10's M1 row naming a
+`test/learn.test.ts` that does not exist.
+
+**Naming, departing from §5.2 deliberately.** §5.2 calls the per-kind function `admitTyped`. Three
+modules each exporting `admitTyped` would need aliasing at every import site, so the per-kind
+functions are `admitGraphQuery` / `admitBehaviorQuery` / `admitQuantityQuery` — the parallel
+`runGraphQuery` / `runTypedQuery` already draws — and `admitTyped` is the kind DISPATCHER, the
+function `check` calls.
+
+**UX-I1 reads zero over 26, and `check` has a human affordance — §5.4 was wrong to plan for the
+gap.** §5.4 ruled the human half out of scope and predicted UX-I1 would report `check-query` until a
+later wave; the row landed that way and a review reversed it. Three things make the reversal right.
+The ruling says the human Workbench and the agent interface expose THE SAME semantic capabilities
+through different interaction surfaces, so "no person needs this" would have been a claim about users
+defended by a claim about scope. `explore-space` had just closed, which changes what its precedent
+MEANS: a one-sided capability is closed by building the affordance, not by recording the absence.
+And the surface decides it — the ask bar's catalogue offers only questions the loaded models
+license, so a check there always says yes, but the **Advanced query form** states a hop limit, two
+named endpoints and an explicit quantifier, which are exactly the fields that produce a
+quantifier-mismatch or a V7 refusal. A person composing there can write a question the models
+decline, and before this they learned it only by running it — getting the sentence and not the
+alternatives, which are the half of `check` that justifies its own row.
+
+So the control is `properties-section.check` → `#ask-check-go`, beside Ask, ending at
+`workspace.check`. It renders the report in its own host rather than in `#ask-answer`: a verdict with
+its grounding and "was this askable at all" are different claims, and overwriting one with the other
+would teach that a check is a weak answer. Four browser-tier cases drive it — licensed, refused with
+derived alternatives, agreement with `window.mage.check` in one process over one workspace, and the
+form's own pre-flight — and all four go red when the control stops painting.
+
+**The threshold is not negotiable from here, and that is new too.** `PARITY_VIOLATION_CEILING` in
+`capabilities.ts` is now the single home for the number both the default gate and CI read
+(`npm run check:parity`). The baselines in `test/capabilities.test.ts` say WHICH capability is
+one-sided and in which direction; they are no longer a second way to pass. Admitting a standing
+violation means raising that ceiling, in one place, which raises it for CI in the same edit.
+
+**What M2 did not change.** No answer moved, so `validate.py` parity needed no update: the three
+refactors are behaviour-identical (the node tier held at 728 across all three), and `check` adds a
+read-only report. The SPARQL seam is untouched — `admit`, the brand, and `evaluate`'s signature are
+exactly as M1 left them.
+
+**Gates at the landing tree, counted after rebasing onto main:** `tsc --noEmit` clean ·
+`check:parity` `UX-I1: 0 violation(s) over 26 capabilities` · node 760 · smoke 3 · browser 36 ·
+a11y 59. Every tier 0 fail, 0 cancelled.
+
+**Three worktree-setup gaps, because each one reads as a product defect.** The browser tiers need
+`npm run build` first, a `book/node_modules` symlink (puppeteer), and a ROOT `node_modules` symlink
+(axe-core). `git worktree add` makes none of them. Without the first two every browser test fails in
+`before` — 0 pass / 3 fail, which looks like a broken page. Without the third, fifteen a11y tests
+report **`cancelled`**, and a first pass of this wave reported "54 / 38 pass / 1 fail" and left 15
+unaccounted: the hook aborts were in the `cancelled` line, which went unread. A count that does not
+add up is the tell, and the honest reading is 41 + 1 + 15 = 57.

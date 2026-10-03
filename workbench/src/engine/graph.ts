@@ -29,9 +29,9 @@ import type { CanonDomain, CanonicalSystem, Evidence, GuardOp, QueryResult, Scal
 import { undeclared } from "./omission.ts";
 import {
   bounded, detail, exhaustive, fail, GRAPH_COMPOSING, NOT_APPLICABLE, ok, ORDER_OPS, result,
-  unlicensed, verdict,
-  type Comparison, type GraphQuery, type GraphWhere, type PropConstraint, type Quantifier, type Res,
-  type Verdict,
+  refusedAdmission as refused, unlicensed, verdict,
+  type Admission, type Comparison, type GraphQuery, type GraphWhere, type PropConstraint,
+  type Quantifier, type Res, type Verdict,
 } from "./types.ts";
 
 /**
@@ -64,7 +64,7 @@ export function modelsDeclaring(system: CanonicalSystem, relation: string): read
 // Adjacency
 // --------------------------------------------------------------------------------------------
 
-interface Adjacency {
+export interface Adjacency {
   readonly out: ReadonlyMap<string, readonly string[]>;
   readonly into: ReadonlyMap<string, readonly string[]>;
   /** Every entity touched by an edge of this type. */
@@ -320,7 +320,7 @@ function comparisonHolds(system: CanonicalSystem, cmp: CompiledComparison, src: 
   return l >= r;
 }
 
-interface Endpoints {
+export interface Endpoints {
   readonly sources: readonly string[];
   readonly targets: readonly string[];
   readonly pairOk: (src: string, dst: string) => boolean;
@@ -398,8 +398,55 @@ const refuseUndeclared = (
   return answer(unlicensed(systemHash, f.refusal, interpretedAs, f.detail));
 };
 
+// --------------------------------------------------------------------------------------------
+// Admission — every pre-evaluation decision, in one place, consumed by the evaluator
+// --------------------------------------------------------------------------------------------
+
+/** The five forms that relate a source SET to a target set under the `where` join. */
+type EndpointForm = "direct" | "reachability" | "path" | "shortest-path" | "all-paths";
+/** The forms that are about ONE named entity, and therefore refuse without a declared one. */
+type EntityForm = "predecessors" | "successors" | "containment" | "components";
+/** The forms about the whole relation graph. `components` lands here when it names no focus. */
+type WholeGraphForm = "cycles" | "components";
+
 /**
- * Evaluate one graph query.
+ * What the question turned out to be ABOUT, once admission resolved it.
+ *
+ * The three arms partition `GRAPH_FORMS`, and each carries the narrowed form — so the evaluator
+ * switches on the arm and then on a form union the compiler knows is exhaustive. The narrowed
+ * `form` is derived from `query.form` inside `admitGraphQuery` and nowhere else; a test asserts the
+ * two agree, which is what keeps a narrowing from becoming a second fact.
+ */
+export type GraphSubject =
+  | { readonly on: "endpoints"; readonly form: EndpointForm; readonly ends: Endpoints }
+  | { readonly on: "entity"; readonly form: EntityForm; readonly entity: string }
+  | { readonly on: "relation-graph"; readonly form: WholeGraphForm };
+
+/**
+ * What a licensed graph question gets to use — the admission's product, and the evaluator's only
+ * route to it.
+ *
+ * Nothing here is a decision; every decision was already taken, and the refusals are gone by the
+ * time a plan exists. The adjacency, the hop bound, the resolved endpoints and the interpretation
+ * sentence are built ONCE, by the admission, so `evaluateGraph` holds no copy of the resolution
+ * logic it would otherwise re-run — which is the property MQ-I1 is about.
+ */
+export interface GraphPlan {
+  readonly query: GraphQuery;
+  readonly interpretedAs: string;
+  readonly adjacency: Adjacency;
+  readonly maxHops: number;
+  readonly subject: GraphSubject;
+}
+
+/**
+ * Admit one graph question: every refusal that can be decided before a walk, and nothing else.
+ *
+ * This is the function `check` calls and the function `runGraphQuery` calls first — the executor's
+ * own head, exposed, rather than a second implementation that could drift from it
+ * (`DESIGN-model-query-261002.md` §5.2). `evaluateGraph` is deliberately NOT exported: the only way
+ * to reach evaluation from outside this module is through `runGraphQuery`, which admits first, so
+ * "the evaluator calls the checker" is held by module privacy rather than by discipline.
  *
  * Order of refusals is deliberate: the relation type must exist, then composition must license the
  * form, then the endpoints must make sense. A user who misspelled a relation type should not first
@@ -412,23 +459,23 @@ const refuseUndeclared = (
  * `unknown-vocabulary`. The two halves compose and never compete: `composition-forbidden`
  * presupposes a relation type that resolved, and the omission rung presupposes one that did not.
  */
-export function runGraphQuery(
+export function admitGraphQuery(
   system: CanonicalSystem, q: GraphQuery, quantifier: Quantifier, systemHash: string,
-): GraphAnswer {
+): Admission<GraphPlan> {
   const relType = system.relationTypes.get(q.relation);
 
   // Containment is not a relation type: §2 declares it on the entity and it yields hierarchical
   // paths by construction, so it is licensed without consulting `composition.path`.
   if (q.form !== "containment" && relType === undefined) {
-    return refuseUndeclared(system, systemHash,
-      `relation type '${q.relation}' is not declared by this system`, q.relation);
+    return refused(refuseUndeclared(system, systemHash,
+      `relation type '${q.relation}' is not declared by this system`, q.relation));
   }
 
   if (quantifier === "forall") {
     // Every graph form in v0.1 is existential ("is there a path / a cycle / a successor"). A
     // universal graph claim has no declared form, and the quantifier determines what counts as
     // evidence, so this is refused rather than reinterpreted (§7, V21).
-    return answer(unlicensed(systemHash,
+    return refused(unlicensed(systemHash,
       `graph form '${q.form}' is existential: it is established by a witness. There is no ` +
       `universal graph form in v0.1, so quantifier 'forall' has no reading here. Use ` +
       `quantifier: exists, or ask a behavior query.`,
@@ -441,7 +488,7 @@ export function runGraphQuery(
     //
     // The structured half names the distinction the model would need, so an agent can propose
     // `composition.path: allowed` instead of re-asking the same question.
-    return answer(unlicensed(systemHash,
+    return refused(unlicensed(systemHash,
       `'${q.relation}' is declared as a direct relation without path-composition semantics. ` +
       `A multi-hop '${q.relation}' query is not licensed by this model.`,
       interpretation(q),
@@ -450,156 +497,233 @@ export function runGraphQuery(
         modelsDeclaring(system, q.relation))));
   }
 
-  const adj = adjacency(system, q.relation);
-  const maxHops = q.maxHops ?? DEFAULT_MAX_HOPS;
+  const adjacent = adjacency(system, q.relation);
   const interpretedAs = interpretation(q);
+  const plan = (subject: GraphSubject): Admission<GraphPlan> => ({
+    admitted: true,
+    plan: { query: q, interpretedAs, adjacency: adjacent, maxHops: q.maxHops ?? DEFAULT_MAX_HOPS, subject },
+  });
 
-  if (q.form === "containment") return containment(system, q, systemHash, interpretedAs);
+  switch (q.form) {
+    case "direct":
+    case "reachability":
+    case "path":
+    case "shortest-path":
+    case "all-paths": {
+      const ends = endpoints(system, q, adjacent, q.where);
+      if (!ends.ok) return refused(unlicensed(systemHash, ends.refusal, interpretedAs, ends.detail));
+      return plan({ on: "endpoints", form: q.form, ends: ends.value });
+    }
 
-  if (q.form === "direct") {
-    const ends = endpoints(system, q, adj, q.where);
-    if (!ends.ok) return answer(unlicensed(systemHash, ends.refusal, interpretedAs, ends.detail));
-    for (const src of ends.value.sources) {
-      for (const dst of ends.value.targets) {
-        if (!ends.value.pairOk(src, dst)) continue;
-        if (neighbours(adj, src).includes(dst)) {
+    case "predecessors":
+    case "successors": {
+      // `successors` reads `from`; `predecessors` reads `to`, falling back to `from` because
+      // "predecessors, from: X" is the natural writing and means the predecessors OF X.
+      const focus = q.form === "successors" ? (q.from ?? q.to) : (q.to ?? q.from);
+      if (focus === null) {
+        return refused(unlicensed(systemHash,
+          `a ${q.form} query must name the entity it is about.`, interpretedAs));
+      }
+      if (!system.entities.has(focus)) {
+        return refused(refuseUndeclared(system, systemHash,
+          `'${focus}' is not a declared entity of this system`, focus, interpretedAs));
+      }
+      return plan({ on: "entity", form: q.form, entity: focus });
+    }
+
+    case "containment": {
+      const focus = q.to ?? q.from;
+      if (focus === null) {
+        return refused(unlicensed(systemHash, "a containment query must name an entity.", interpretedAs));
+      }
+      if (!system.entities.has(focus)) {
+        return refused(refuseUndeclared(system, systemHash,
+          `'${focus}' is not a declared entity of this system`, focus, interpretedAs));
+      }
+      return plan({ on: "entity", form: q.form, entity: focus });
+    }
+
+    case "cycles":
+      return plan({ on: "relation-graph", form: q.form });
+
+    case "components": {
+      if (q.from === null) return plan({ on: "relation-graph", form: q.form });
+      if (!system.entities.has(q.from)) {
+        return refused(refuseUndeclared(system, systemHash,
+          `'${q.from}' is not a declared entity of this system`, q.from, interpretedAs));
+      }
+      return plan({ on: "entity", form: q.form, entity: q.from });
+    }
+  }
+}
+
+/**
+ * Evaluate one graph query: admit, then answer.
+ *
+ * Two statements, and the second is unreachable for a question the admission declined. That is the
+ * whole of MQ-I1 on this path — there is no second implementation of the licensing decisions,
+ * because the evaluator below consumes the admission's plan and derives nothing itself.
+ */
+export function runGraphQuery(
+  system: CanonicalSystem, q: GraphQuery, quantifier: Quantifier, systemHash: string,
+): GraphAnswer {
+  const admission = admitGraphQuery(system, q, quantifier, systemHash);
+  return admission.admitted
+    ? evaluateGraph(system, admission.plan, systemHash)
+    : answer(admission.verdict);
+}
+
+/**
+ * Answer an admitted graph question.
+ *
+ * NOT exported, deliberately. The only route into it from outside this module is `runGraphQuery`,
+ * which admits first — so "the executor runs the checker" is a fact about the call graph that the
+ * compiler holds, rather than a convention a future caller could skip. It also takes no
+ * `quantifier`: the quantifier was a licensing question and admission settled it.
+ */
+function evaluateGraph(system: CanonicalSystem, p: GraphPlan, systemHash: string): GraphAnswer {
+  const { query: q, adjacency: adj, maxHops, interpretedAs, subject } = p;
+
+  switch (subject.on) {
+    case "endpoints": {
+      const ends = subject.ends;
+      switch (subject.form) {
+        case "direct": {
+          for (const src of ends.sources) {
+            for (const dst of ends.targets) {
+              if (!ends.pairOk(src, dst)) continue;
+              if (neighbours(adj, src).includes(dst)) {
+                return answer(result({
+                  outcome: "holds", coverage: exhaustive(adj.nodes.length), systemHash,
+                  evidence: witness([src, dst]), interpretedAs,
+                }));
+              }
+            }
+          }
           return answer(result({
-            outcome: "holds", coverage: exhaustive(adj.nodes.length), systemHash,
-            evidence: witness([src, dst]), interpretedAs,
+            outcome: "refuted", coverage: exhaustive(adj.nodes.length), systemHash, interpretedAs,
           }));
+        }
+
+        case "reachability":
+        case "path":
+        case "shortest-path": {
+          let best: readonly string[] | null = null;
+          let visited = 0;
+          let truncated = false;
+          for (const src of ends.sources) {
+            for (const dst of ends.targets) {
+              if (!ends.pairOk(src, dst)) continue;
+              const found = shortestPath(adj, src, dst, maxHops);
+              visited += found.visited;
+              truncated = truncated || found.truncated;
+              if (found.path !== null && (best === null || found.path.length < best.length)) best = found.path;
+            }
+          }
+          if (best !== null) {
+            // A witness settles an existential claim on its own; the hop bound denied us nothing.
+            return answer(result({
+              outcome: "holds", coverage: exhaustive(visited), systemHash,
+              evidence: witness(best), interpretedAs,
+            }));
+          }
+          if (truncated) {
+            // V22 — a bounded search that found nothing is INCONCLUSIVE. "No path exists" would be
+            // sound only if the whole graph had been walked.
+            return answer(result({
+              outcome: "inconclusive", coverage: bounded(visited, "depth-limit"), systemHash, interpretedAs,
+            }));
+          }
+          return answer(result({ outcome: "refuted", coverage: exhaustive(visited), systemHash, interpretedAs }));
+        }
+
+        case "all-paths": {
+          const found: (readonly string[])[] = [];
+          let truncated = false;
+          for (const src of ends.sources) {
+            for (const dst of ends.targets) {
+              if (!ends.pairOk(src, dst)) continue;
+              const paths = allSimplePaths(adj, src, dst, maxHops);
+              truncated = truncated || paths.truncated;
+              found.push(...paths.paths);
+            }
+          }
+          found.sort((a, b) => a.length - b.length || a.join(">").localeCompare(b.join(">")));
+          const first = found[0];
+          if (first !== undefined) {
+            return answer(result({
+              outcome: "holds", coverage: exhaustive(found.length), systemHash,
+              evidence: witness(first), interpretedAs,
+            }), found);
+          }
+          return answer(result(truncated
+            ? { outcome: "inconclusive", coverage: bounded(0, "depth-limit"), systemHash, interpretedAs }
+            : { outcome: "refuted", coverage: exhaustive(adj.nodes.length), systemHash, interpretedAs }));
         }
       }
     }
-    return answer(result({
-      outcome: "refuted", coverage: exhaustive(adj.nodes.length), systemHash, interpretedAs,
-    }));
-  }
 
-  if (q.form === "reachability" || q.form === "path" || q.form === "shortest-path") {
-    const ends = endpoints(system, q, adj, q.where);
-    if (!ends.ok) return answer(unlicensed(systemHash, ends.refusal, interpretedAs, ends.detail));
-    let best: readonly string[] | null = null;
-    let visited = 0;
-    let truncated = false;
-    for (const src of ends.value.sources) {
-      for (const dst of ends.value.targets) {
-        if (!ends.value.pairOk(src, dst)) continue;
-        const found = shortestPath(adj, src, dst, maxHops);
-        visited += found.visited;
-        truncated = truncated || found.truncated;
-        if (found.path !== null && (best === null || found.path.length < best.length)) best = found.path;
+    case "entity": {
+      const focus = subject.entity;
+      switch (subject.form) {
+        case "predecessors":
+        case "successors": {
+          const nodes = subject.form === "successors" ? (adj.out.get(focus) ?? []) : (adj.into.get(focus) ?? []);
+          const unique = sorted(new Set(nodes));
+          return answer(result({
+            outcome: unique.length > 0 ? "holds" : "refuted",
+            coverage: exhaustive(adj.nodes.length), systemHash,
+            evidence: unique.length > 0 ? witness([focus, ...unique]) : null,
+            interpretedAs,
+          }), unique.length > 0 ? [unique] : []);
+        }
+
+        case "containment":
+          return containment(system, q, systemHash, interpretedAs, focus);
+
+        case "components": {
+          const comp = adj.nodes.includes(focus) ? component(adj, focus) : [focus];
+          return answer(result({
+            outcome: comp.length > 1 ? "holds" : "refuted",
+            coverage: exhaustive(adj.nodes.length), systemHash,
+            evidence: comp.length > 1 ? witness(comp) : null,
+            interpretedAs,
+          }), [comp]);
+        }
       }
     }
-    if (best !== null) {
-      // A witness settles an existential claim on its own; the hop bound did not deny us anything.
-      return answer(result({
-        outcome: "holds", coverage: exhaustive(visited), systemHash,
-        evidence: witness(best), interpretedAs,
-      }));
-    }
-    if (truncated) {
-      // V22 — a bounded search that found nothing is INCONCLUSIVE. "No path exists" would be
-      // sound only if the whole graph had been walked.
-      return answer(result({
-        outcome: "inconclusive", coverage: bounded(visited, "depth-limit"), systemHash, interpretedAs,
-      }));
-    }
-    return answer(result({ outcome: "refuted", coverage: exhaustive(visited), systemHash, interpretedAs }));
-  }
 
-  if (q.form === "all-paths") {
-    const ends = endpoints(system, q, adj, q.where);
-    if (!ends.ok) return answer(unlicensed(systemHash, ends.refusal, interpretedAs, ends.detail));
-    const found: (readonly string[])[] = [];
-    let truncated = false;
-    for (const src of ends.value.sources) {
-      for (const dst of ends.value.targets) {
-        if (!ends.value.pairOk(src, dst)) continue;
-        const paths = allSimplePaths(adj, src, dst, maxHops);
-        truncated = truncated || paths.truncated;
-        found.push(...paths.paths);
+    case "relation-graph": {
+      switch (subject.form) {
+        case "cycles": {
+          const cycle = findCycle(adj);
+          return answer(result({
+            outcome: cycle !== null ? "holds" : "refuted",
+            coverage: exhaustive(adj.nodes.length), systemHash,
+            evidence: cycle !== null ? witness(cycle) : null,
+            interpretedAs,
+          }), cycle !== null ? [cycle] : []);
+        }
+
+        case "components": {
+          const groups = allComponents(adj);
+          const largest = [...groups].sort((a, b) => b.length - a.length || (a[0] ?? "").localeCompare(b[0] ?? ""))[0];
+          return answer(result({
+            outcome: groups.length > 0 ? "holds" : "refuted",
+            coverage: exhaustive(adj.nodes.length), systemHash,
+            evidence: largest !== undefined ? witness(largest) : null,
+            interpretedAs,
+          }), groups);
+        }
       }
     }
-    found.sort((a, b) => a.length - b.length || a.join(">").localeCompare(b.join(">")));
-    const first = found[0];
-    if (first !== undefined) {
-      return answer(result({
-        outcome: "holds", coverage: exhaustive(found.length), systemHash,
-        evidence: witness(first), interpretedAs,
-      }), found);
-    }
-    return answer(result(truncated
-      ? { outcome: "inconclusive", coverage: bounded(0, "depth-limit"), systemHash, interpretedAs }
-      : { outcome: "refuted", coverage: exhaustive(adj.nodes.length), systemHash, interpretedAs }));
   }
-
-  if (q.form === "predecessors" || q.form === "successors") {
-    // `successors` reads `from`; `predecessors` reads `to`, falling back to `from` because
-    // "predecessors, from: X" is the natural writing and means the predecessors OF X.
-    const focus = q.form === "successors" ? (q.from ?? q.to) : (q.to ?? q.from);
-    if (focus === null) {
-      return answer(unlicensed(systemHash,
-        `a ${q.form} query must name the entity it is about.`, interpretedAs));
-    }
-    if (!system.entities.has(focus)) {
-      return refuseUndeclared(system, systemHash,
-        `'${focus}' is not a declared entity of this system`, focus, interpretedAs);
-    }
-    const nodes = q.form === "successors" ? (adj.out.get(focus) ?? []) : (adj.into.get(focus) ?? []);
-    const unique = sorted(new Set(nodes));
-    return answer(result({
-      outcome: unique.length > 0 ? "holds" : "refuted",
-      coverage: exhaustive(adj.nodes.length), systemHash,
-      evidence: unique.length > 0 ? witness([focus, ...unique]) : null,
-      interpretedAs,
-    }), unique.length > 0 ? [unique] : []);
-  }
-
-  if (q.form === "cycles") {
-    const cycle = findCycle(adj);
-    return answer(result({
-      outcome: cycle !== null ? "holds" : "refuted",
-      coverage: exhaustive(adj.nodes.length), systemHash,
-      evidence: cycle !== null ? witness(cycle) : null,
-      interpretedAs,
-    }), cycle !== null ? [cycle] : []);
-  }
-
-  // components
-  const groups = allComponents(adj);
-  if (q.from !== null) {
-    if (!system.entities.has(q.from)) {
-      return refuseUndeclared(system, systemHash,
-        `'${q.from}' is not a declared entity of this system`, q.from, interpretedAs);
-    }
-    const comp = adj.nodes.includes(q.from) ? component(adj, q.from) : [q.from];
-    return answer(result({
-      outcome: comp.length > 1 ? "holds" : "refuted",
-      coverage: exhaustive(adj.nodes.length), systemHash,
-      evidence: comp.length > 1 ? witness(comp) : null,
-      interpretedAs,
-    }), [comp]);
-  }
-  const largest = [...groups].sort((a, b) => b.length - a.length || (a[0] ?? "").localeCompare(b[0] ?? ""))[0];
-  return answer(result({
-    outcome: groups.length > 0 ? "holds" : "refuted",
-    coverage: exhaustive(adj.nodes.length), systemHash,
-    evidence: largest !== undefined ? witness(largest) : null,
-    interpretedAs,
-  }), groups);
 }
 
+/** The focus is resolved and declared: `admitGraphQuery` settled both before this runs. */
 function containment(
-  system: CanonicalSystem, q: GraphQuery, systemHash: string, interpretedAs: string,
+  system: CanonicalSystem, q: GraphQuery, systemHash: string, interpretedAs: string, focus: string,
 ): GraphAnswer {
-  const focus = q.to ?? q.from;
-  if (focus === null) {
-    return answer(unlicensed(systemHash, "a containment query must name an entity.", interpretedAs));
-  }
-  if (!system.entities.has(focus)) {
-    return refuseUndeclared(system, systemHash,
-      `'${focus}' is not a declared entity of this system`, focus, interpretedAs);
-  }
   const chain = containmentPath(system, focus);
   if (q.from !== null && q.to !== null) {
     const at = chain.indexOf(q.from);

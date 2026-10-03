@@ -29,8 +29,14 @@ import { absentSubstrateVerdict } from "./model-types.ts";
 import { narrate, type Narration } from "./narrate.ts";
 import { parseQuery, unlicensed, type Query, type Refusal, type Verdict } from "./types.ts";
 
-export { runBehaviorQuery } from "./behavior.ts";
-export { runGraphQuery, type GraphAnswer } from "./graph.ts";
+export { admitBehaviorQuery, runBehaviorQuery, type BehaviorPlan, type BehaviorSubject } from "./behavior.ts";
+export {
+  admitTyped, alternatives, checkQuery, type QueryCheckResult, type TypedAdmission,
+} from "./check.ts";
+export {
+  admitGraphQuery, runGraphQuery,
+  type GraphAnswer, type GraphPlan, type GraphSubject,
+} from "./graph.ts";
 export {
   compileSystem, cycleThrough, DEFAULT_STATE_LIMIT, defaultOptions, exploreSpace,
   findConfigurationCycle, pathBetween, traceTo,
@@ -39,17 +45,19 @@ export {
 export { compileHistory, runPastTimeQuery, type HistoryCompilation, type PastTimeQuery } from "./history.ts";
 export {
   absentSubstrateProse, absentSubstrateVerdict, MODEL_TYPES, modelTypeForQueryKind,
-  type ModelType, type ModelTypeId, type SchemaAuthority,
+  type ModelType, type ModelTypeId, type QueryNoun, type SchemaAuthority,
 } from "./model-types.ts";
 export { narrate, type Delta, type NarratedStep, type Narration } from "./narrate.ts";
 export { compilePredicate, describePredicate } from "./predicate.ts";
 export { buildScope, resolveRef, type Ref, type RefScope } from "./refs.ts";
 export {
   parseBehaviorQuery, parseGraphQuery, parsePredicate, parseQuantityQuery, parseQuery,
-  type BehaviorForm, type BehaviorQuery, type GraphForm, type GraphQuery, type Predicate,
-  type Quantifier, type QuantityQuery, type Query, type Refusal, type RefusalReason, type Verdict,
+  QUANTIFIERS, QUANTIFIER_EVIDENCE,
+  type Admission, type BehaviorForm, type BehaviorQuery, type GraphForm, type GraphQuery,
+  type Predicate, type Quantifier, type QuantityQuery, type Query, type Refusal,
+  type RefusalReason, type Verdict,
 } from "./types.ts";
-export { runQuantityQuery } from "../quant/query.ts";
+export { admitQuantityQuery, runQuantityQuery, type QuantityPlan } from "../quant/query.ts";
 
 /**
  * A verdict plus the structured non-visual twin.

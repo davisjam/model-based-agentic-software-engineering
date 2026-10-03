@@ -22,6 +22,8 @@ import type { CanonicalSystem, Finding, QueryResult } from "../ir/types.ts";
 import { canonicalize } from "../ir/canonicalize.ts";
 import { systemHash } from "../ir/hash.ts";
 import { validate } from "../validator/rules.ts";
+import { checkQuery } from "../engine/check.ts";
+import type { QueryCheckResult } from "../engine/check.ts";
 import { TransactionEngine } from "../transaction/engine.ts";
 import { collectProvenance } from "./provenance.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
@@ -323,6 +325,28 @@ export class Workspace {
       ? this.#ports.engine.graphQuery(system, query)
       : this.#ports.engine.behaviorQuery(system, query);
     return { ...raw, systemHash: systemHash(system) };
+  }
+
+  /**
+   * Check one query without running it: is this a meaningful and permitted question for the model
+   * type it interrogates?
+   *
+   * The ruling's second operation (`DECISIONS-RULED-model-query-261002.md`), and it answers a
+   * different question from `query()` — which is why it is a capability row of its own rather than
+   * a second spelling of `query`.
+   *
+   * **It reaches the engine's `checkQuery` directly, NOT through `EnginePort`, and that is the
+   * decision rather than an oversight.** The port is a substitution seam: a page, a test and a
+   * worker each supply their own `graphQuery`/`behaviorQuery`, so a port literal could supply a
+   * checker that admits what its evaluator refuses — the second semantics §5 exists to prevent,
+   * reintroduced at the one place it would be invisible. Routing `check` to the engine's own
+   * admission makes "there is one gate" a fact about the import graph.
+   *
+   * Advisory, not load-bearing: executing an unchecked query is safe, because each evaluator admits
+   * the question itself as its first act. Nothing a caller does with this result can skip that.
+   */
+  check(query: unknown): QueryCheckResult {
+    return checkQuery(this.#engine.system(), query);
   }
 
   /** Every saved query, re-run. This is "changing the model reruns the questions". */
