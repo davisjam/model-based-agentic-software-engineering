@@ -496,3 +496,64 @@ assertions. Then:
 
 A redesign that holds 23 / 21 / 23 and closes F-1 is better than this page. One that holds 23 /
 21 / 23 and reports "equivalent" without re-running the probe has measured nothing.
+
+---
+
+## 8. What was fixed after this record, and what pins it
+
+**Appended 261002, after the measurement.** The sections above are a dated record and stand as
+measured — the numbers in §2 and §5 describe the tree at `197db2ef` and are not rewritten here.
+This section says which of §6's findings are closed and by what, so a later reader does not have to
+re-derive it from commit messages.
+
+**F-3 — closed, and the gate is BLOCKING.** The registry's `wired` is no longer an author's
+assertion. A human affordance declares the element that carries it, and the type refuses the
+omission: `HumanAffordance` splits into a bound member that requires an element and an absent
+member that requires a reason, so "wired with nowhere to be" does not compile. The page stamps
+`data-affordance` onto each declared element from the registry on every paint, and the browser tier
+feeds the served page's stamped set to `checkRegistryClosure` in both directions
+(`test/browser/workbench.test.mjs`, the UX-I1 suite). The attribute is NOT authored in `index.html`
+— a hand-typed one beside a hand-typed registry string would be two copies of one fact, and a test
+asserts the markup contains none.
+
+**The binding found no mismatches.** §6 suggested it might; it did not. All 28 distinct declared
+sites bind to a live element on the loaded page, and all 21 of the page's buttons are registered
+capability affordances. So the gate lands hard rather than as a known set. What the binding DID
+surface is smaller and worth recording: `header.run-all` is declared by two capabilities (`query`
+and `analyze`), so the registry holds 29 human affordance entries over 28 distinct sites — the
+closure check de-duplicates, because Run all questions is still one button.
+
+Three rungs now hold it, cheapest first: the compiler; a node-tier test that every declared element
+id appears in `index.html`, with a negative control that renames one; and the browser pass above.
+The `SITES` table in `measure-a11y-baseline.mjs` is now a second copy of a fact the registry owns —
+a re-measurement should read the registry instead of maintaining it.
+
+**F-1 — closed.** `repaint()` diffs the authoritative model against the last paint and composes a
+third pending channel into the existing debounced sender, so an agent edit that moves no verdict is
+announced. It names the consequence rather than re-reading the summary: a replacement says what
+loaded and how big it is, an edit says which count moved, an annotation-only commit says the
+revision stood still. A pending human action suppresses the derived sentence, so a human edit is not
+described twice. Politeness stays `polite`, argued at the sender: an agent mutation is consequential
+and not an emergency.
+
+Pinned by four browser-tier tests driven through `window.mage` on an untouched page, in the
+FR-A11Y-3 suite of `test/browser/workbench.test.mjs` — `load()` announces by name and size,
+`transact()` announces the count it moved, a keyboard-driven human edit is not doubled, and the
+verdict channel §5 left UNMEASURED on the agent path is now measured: retracting a saved question
+through `delete-query` still reports the drop.
+
+Two residues, stated rather than left to be rediscovered. An annotation-only agent commit is
+detected through the provenance record COUNT, so attaching a note to an object that already carried
+one is still silent. And the comment at `main.ts` that §6 called overstated now describes all three
+senders and which slice each carries.
+
+**F-2 — closed.** Export and Run are `disabled` in the markup and re-enabled from
+`workspace.state.loaded` on every paint, the pattern Undo and Redo already used. The pristine tab
+walk in §3 therefore drops from **8 stops to 6** — the skip link, `#file`, `#new-system`,
+`#example-choice`, `#example-load`, `#diagram-subject`. The keyboard suite's pinned opening
+sequence is updated with the reason.
+
+**F-4, F-5 and F-6 are untouched.** `explore-space` still has no human affordance, every readout
+host is still an unnamed `generic`, and the two WCAG properties §6 declined to measure are still
+unmeasured. F-5 is the one the shell makes urgent: it moves readouts into panes, and a readout that
+lands outside its labelled section has no name at all.
