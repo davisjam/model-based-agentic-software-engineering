@@ -973,3 +973,115 @@ not landed with 1d's path drive. `edit-section.delete-model` additionally still 
 `submitEdit` stays for §9e's reason, unchanged and still correct — it is the one thing every editing
 surface shares, so moving it into any one of them would make that surface the mutation path for the
 others.
+
+### 9h. The three recorded residues, closed
+
+Appended by the wave that drained the three findings §9f and §9g left on the floor, each filed by a
+wave that deliberately did not widen its own scope. One is a coverage hole, one is a detection that
+watched a proxy, one is a ruling that had been made and not executed.
+
+- **RESIDUE 1 — the prefill round-trip had no coverage, and the fix removes the encoding rather than
+  escaping it.** `edit-dialogs.ts` flattened each inspector action's prefill onto its button as
+  `key=value` pairs joined by a NUL and split it back in the button's click handler. A control-byte
+  gate flagged the raw separator; the first repair DELETED it, which turns `split(SEP)` into
+  `split("")` and leaves every dialog field empty — **and the suite reported 749 of 749 passing**,
+  because no tier looked at what the dialog received. The gate guarded the file's bytes; nothing
+  guarded the behaviour those bytes implemented.
+
+  The gate that was missing is three cases in the browser tier (`workbench.test.mjs`, "correction 4:
+  what a selection determines arrives in the dialog's own fields"): select an object through
+  `window.mage.view.select`, press the real `#act-rename` / `#act-note` button, and read the value
+  out of the `<select>` the dialog generated. Two actions rather than one, because `set-label`'s `id`
+  is a BARE entity id and `add-note`'s `target` is the `elementValue`-prefixed spelling under a
+  different field name — so a handler that paired the wrong key with the wrong value fails here.
+  Both terminals being `<select>`s makes the assertion stronger than a string compare: a `<select>`
+  accepts a value only when it names one of its own options.
+
+  **The first draft of that test passed the sabotage, and that is the part worth carrying forward.**
+  It selected the example's FIRST entity, which is also the first option of both selects — so with
+  the prefill dropped entirely the field still read that id as the browser's default, and the
+  assertion could not distinguish a delivered prefill from none. The subject is now the LAST entity
+  and each case also asserts the expected value is NOT the field's own default, so a fixture reorder
+  cannot quietly make the gate vacuous again. Watched red under the original deletion, with the
+  message naming both ids, before restoring.
+
+  **Ruling on the separator: it does not need to be a control byte, because it does not need to
+  exist.** The question §9f's residue poses is whether the values are constrained enough for a
+  printable separator. They are not — the keys are the catalogue's own field names, but the values
+  are entity and model ids a person types into `add-entity`, so no printable character is safe and
+  the NUL was load-bearing for as long as the encoding was. What makes the encoding unnecessary is
+  that these seven are SHIPPED buttons with a listener each, not generated rows behind a delegated
+  one: the prefill can travel from `paint` to the handler as a `ReadonlyMap<string, string>` in a
+  `let` with exactly the lifetime `options` and `current` in the same module already have — latest
+  paint wins, nothing captured — which is also what the canvas context menu already does
+  (`workspace.ts` calls `openDialog(action.form, action.prefill)`). So `data-prefill` and the
+  inspector's `data-form` are gone and the hazard with them. The palette KEEPS its `data-form`,
+  because its rows are generated per render and read by one delegated listener, which is the case
+  that genuinely needs the row to declare its operation.
+
+  Found while in there, unmentioned by the residue report: **every current contextual action
+  prefills exactly ONE pair**, so the separator was never emitted by any shipped path — the
+  deletion broke the single-pair case through `indexOf("=")`, not through a mis-split. And an action
+  button that returns to disabled KEEPS the last selection's wording rather than the generic label
+  the markup ships. That is pre-existing, unchanged here, and recorded rather than folded into a
+  change about the prefill encoding.
+
+- **RESIDUE 2 — the annotation channel watched a PROXY, and the proxy was blind to every note, not
+  only the second.** §9f's own words were "an annotation-only agent commit is detected through the
+  provenance record COUNT, so attaching a note to an object that already carried one is still
+  silent." Measured in the browser tier before the fix: the FIRST annotation-only agent commit wrote
+  **zero** times to `#live`. A provenance record exists only for an object whose source declares a
+  `provenance` block, and `add-note` writes into `notes` — so the count never moved for any shipped
+  note, and the branch that says "A note was attached. The model's revision is unchanged" was
+  unreachable on the agent path. The residue was real and understated; recording the stronger version
+  matters because "only the second note is silent" would have licensed a one-line fix to the
+  comparison.
+
+  **What it looks at now: `annotationHash`, the complement of `systemHash`** (`src/ir/hash.ts`). The
+  two are a declared pair — one digests exactly what the semantic projection includes, the other
+  exactly what it excludes (notes and provenance, on all four IR objects that carry an `Annotated`).
+  A1 is why the pair is needed at all: an annotation-only commit leaves the semantic revision
+  standing BY CONSTRUCTION, so the one channel that reports agent actions to assistive technology has
+  no semantic diff to describe for this class, and a digest over the excluded half is the smallest
+  thing that sees the change itself rather than a stand-in for it. Deliberately MORE sensitive than
+  `systemHash`: that hash normalizes everything cosmetic because a false mismatch costs an agent a
+  recomputed transaction, while this one's error directions are asymmetric — an extra announcement is
+  noise, a missing one is an agent edit a screen-reader user never hears. It must never become a
+  transaction base, and a node-tier test says so in those words.
+
+  Pinned the way the others are pinned: a browser-tier case in the FR-A11Y-3 suite, driving
+  `window.mage.transact` on a page nobody has touched and observing `#live`. **The pin needed an
+  interleaved semantic commit between the two notes, and that is an instrument fact worth recording.**
+  Both notes announce the identical sentence, and Chromium emits no mutation record for assigning
+  `textContent` a string identical to the one already in the node — the limitation this suite's own
+  fixture comment names for its own reason. Without a different announcement in between, the second
+  note reads as unannounced when it is merely unobservable: the probe describing itself. The
+  interleave is also the realistic agent sequence. Two node-tier cases carry the pure-function half,
+  including one that asserts the fixture reproduces the residue (the provenance-record count must
+  stand still across the second note, or the counting detector would have caught it and the digest
+  would be unnecessary).
+
+- **RESIDUE 3 — RULED and now EXECUTED: `advanced-query` names the disclosure, not one of the three
+  fieldsets inside it.** §9g already made this ruling in words ("the row should name the disclosure
+  and the three fieldsets inside it should be one surface, because they are one disclosure to a
+  person") and left the edit to whoever owned the readers, because §9f had deferred it on the ground
+  that three gates read `#form-ask`. **Re-measured before taking it, that reason no longer holds:**
+  the only remaining mention of `#form-ask` outside the markup is the ask bar region's own
+  fieldset-disable list, which reads the markup and not the surfaces table. A deferral's reason is a
+  fact about a tree, and this one had expired — which is the argument for re-measuring a cited reason
+  rather than inheriting it.
+
+  So the row names `ask-advanced`, and `properties-section.save` / `.retract` stop citing `askbar`
+  for their second step. **The `advanced` helper lost its `surface` parameter in the same change**:
+  all four callers now want the same surface, and a parameter with one value is a decision nobody is
+  making. `control` rather than `landmark`, for the reason §9g gave the System Browser's own
+  disclosure — a `<details>` carries no landmark role, so it is a thing a keyboard reaches and
+  activates rather than a region an AT jumps to.
+
+  **UX-I1 stays at 0 over 26 capabilities and the drive is what holds the widening honest.** Rung 2's
+  CONTAINMENT assertion is exactly the check this row was failing to satisfy, so the narrow row was
+  sabotaged back in with the paths left pointing at `advanced-query`, and the drive named both sites:
+  "step 2 names 'advanced-query' (#form-ask), which does not contain '#save-property-go'. The route
+  passes through a region the control does not live in." Restored, 44 of 44 paths walk. No element id
+  moved, so SH-I8's hard flip is untouched: this is a declaration catching up with a page that was
+  always built this way.

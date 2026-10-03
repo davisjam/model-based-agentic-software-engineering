@@ -600,24 +600,42 @@ export function mountEditDialogs(ctx: ShellContext, submitEdit: SubmitEdit): Edi
    * The inspector's action bar: seven stable buttons, each carrying whichever contextual action
    * claims its element this paint.
    *
-   * The handler reads a dataset written by `paint` rather than closing over the frame it was bound
-   * in, which is the inspector's own arrangement and for the same reason: a listener that captured
-   * a selection would act on the one that was current when the page loaded.
+   * The handler reads what `paint` last recorded rather than closing over the frame it was bound in,
+   * which is the inspector's own arrangement and for the same reason: a listener that captured a
+   * selection would act on the one that was current when the page loaded.
+   *
+   * **It is a map and not a dataset round-trip, and the deleted separator is why that matters.** The
+   * prefill used to be flattened onto the button as `key=value` pairs joined by a NUL and read back
+   * by splitting on it. A control-byte gate flagged the raw separator in the source; the first
+   * repair DELETED it, which turns `split(SEP)` into `split("")` and empties every dialog field —
+   * and the whole suite stayed green, because nothing exercised the round trip. Escaping the byte
+   * fixed the instance. NOT SERIALIZING AT ALL removes the hazard: a `ReadonlyMap<string, string>`
+   * travels from `paint` to the handler through a `let` with exactly the lifetime `options` and
+   * `current` above already have — latest paint wins, nothing is captured — so there is no separator
+   * to choose, no escaping to get right, and no id a user could type that breaks the parse. Which
+   * answers the standing question about the separator itself: the keys are the catalogue's own field
+   * names, but the VALUES are entity and model ids a person types into `add-entity`, so NO printable
+   * separator was safe and the control byte was load-bearing for as long as the encoding existed.
+   * The dialog takes the map directly, as the canvas context menu already did (`workspace.ts` calls
+   * `openDialog(action.form, action.prefill)`) — the second site adopting one shape, not a third one.
+   *
+   * The palette keeps its `data-form`, and that is not an inconsistency: its rows are GENERATED per
+   * render and read by one delegated listener, so each row must declare which operation it offers.
+   * These seven are shipped markup with a listener each, so the attribute carried nothing the
+   * closure could not.
    */
   const actionButtons = ["act-rename", "act-set-property", "act-connect", "act-note",
     "act-delete-element", "act-delete-relation", "act-delete-model"]
     .map((id) => byId<HTMLButtonElement>(id));
 
+  /** Which contextual action claims each action-bar element, as of the last paint. */
+  let offeredByElement: ReadonlyMap<string, ContextualAction> = new Map();
+
   for (const button of actionButtons) {
     button.addEventListener("click", () => {
-      const form = button.dataset["form"];
-      if (form === undefined) return;
-      const filled = new Map<string, string>();
-      for (const pair of (button.dataset["prefill"] ?? "").split("\u0000")) {
-        const at = pair.indexOf("=");
-        if (at > 0) filled.set(pair.slice(0, at), pair.slice(at + 1));
-      }
-      open(form as EditForm, filled);
+      const offered = offeredByElement.get(button.id);
+      if (offered === undefined) return;
+      open(offered.form, offered.prefill);
     });
   }
 
@@ -732,18 +750,17 @@ export function mountEditDialogs(ctx: ShellContext, submitEdit: SubmitEdit): Edi
       const contextual = loaded
         ? contextualActions(resolveSelection(frame.state.system, ctx.viewState.selection[0]))
         : [];
-      const byElement = new Map(contextual.map((c) => [c.element, c]));
+      offeredByElement = new Map(contextual.map((c) => [c.element, c]));
       for (const button of actionButtons) {
-        const offered = byElement.get(button.id);
+        const offered = offeredByElement.get(button.id);
         button.disabled = offered === undefined;
-        if (offered === undefined) {
-          delete button.dataset["form"];
-          delete button.dataset["prefill"];
-          continue;
-        }
-        button.textContent = offered.label;
-        button.dataset["form"] = offered.form;
-        button.dataset["prefill"] = [...offered.prefill].map(([k, v]) => `${k}=${v}`).join("\u0000");
+        // The label is the only thing the DOM needs now: `disabled` says whether the button is on
+        // offer, and WHICH action it offers is read out of the map above. Behaviour here is
+        // unchanged from the dataset version, stale label included — a button that goes back to
+        // disabled keeps the last selection's wording rather than returning to the generic one the
+        // markup ships. That is pre-existing and recorded in the as-built rather than fixed inside a
+        // change about the prefill encoding.
+        if (offered !== undefined) button.textContent = offered.label;
       }
       // The bar says WHY it is empty, because seven disabled buttons with no sentence beside them
       // read as a broken region rather than as a surface waiting for a selection.

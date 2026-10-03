@@ -412,11 +412,20 @@ const inspectorAction = (
 const addMenuItem = (at: string, id: string): BoundAffordance =>
   control(at, id, [step("workspace", "disclose", "loaded"), step("workspace", "activate")]);
 
-/** The route to a control inside the ask bar's collapsed Advanced query disclosure. */
+/**
+ * The route to a control inside the ask bar's collapsed Advanced query disclosure.
+ *
+ * **The second step's surface is no longer a parameter**, and that is residue 3 of the shell waves
+ * closed. `advanced-query` named `#form-ask`, one of the three fieldsets inside
+ * `<details id="ask-advanced">`, so the Save and Retract sites lived in the disclosure and outside
+ * the surface that describes it — and passed `"askbar"` here, naming a region two steps wide for
+ * a step that is one fieldset deep. The surfaces table now names the disclosure, every caller wants
+ * the same surface, and a parameter with one value is a decision nobody is making.
+ */
 const advanced = (
-  at: string, id: string, surface: NavSurface, requires: NavPrecondition = "loaded",
+  at: string, id: string, requires: NavPrecondition = "loaded",
 ): BoundAffordance =>
-  control(at, id, [step("askbar", "disclose", requires), step(surface, "activate")]);
+  control(at, id, [step("askbar", "disclose", requires), step("advanced-query", "activate")]);
 
 /**
  * A READOUT: an affordance whose use is reading it, not activating it.
@@ -552,7 +561,7 @@ export const CAPABILITIES: readonly Capability[] = [
     human: [
       header("header.run-all", "run", "loaded"),
       control("askbar.ask", "ask-submit", [step("askbar", "activate", "loaded")]),
-      advanced("properties-section.ask", "ask-go", "advanced-query"),
+      advanced("properties-section.ask", "ask-go"),
     ],
     // `ask` is the grounded twin of `query`: the same service, returning the verdict WITH the models
     // it derives from. Two machine affordances rather than a changed return type, because `query`'s
@@ -629,7 +638,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // different interaction surfaces, so "no person needs this" would have been a claim about users
     // defended by a claim about scope. `explore-space` was the last capability in this shape, and it
     // turned out to be one a person obviously should have had.
-    human: [advanced("properties-section.check", "ask-check-go", "advanced-query")],
+    human: [advanced("properties-section.check", "ask-check-go")],
     machine: [wired("window.mage.check")],
     // A check result is a semantic result: it reports what the model licenses, with the cause and
     // the alternatives. UX-I2 governs it, which is part of what the missing human control owes.
@@ -896,7 +905,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // keeps the full form — a tracked claim becomes a REQUIREMENT by a second, deliberate act.
     human: [
       control("askbar.track", "ask-track-go", [step("askbar", "activate", "answer-present")]),
-      advanced("properties-section.save", "save-property-go", "askbar"),
+      advanced("properties-section.save", "save-property-go"),
     ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
@@ -907,7 +916,7 @@ export const CAPABILITIES: readonly Capability[] = [
     service: "transactions.apply",
     // The pair of the one above. A claim you cannot withdraw is a claim the model system cannot
     // stop asserting, and `delete-query` already existed with no way for a person to reach it.
-    human: [advanced("properties-section.retract", "retract-property-go", "askbar", "property-exists")],
+    human: [advanced("properties-section.retract", "retract-property-go", "property-exists")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },

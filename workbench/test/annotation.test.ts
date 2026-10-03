@@ -12,7 +12,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
-import { systemHash } from "../src/ir/hash.ts";
+import { annotationHash, systemHash } from "../src/ir/hash.ts";
 import { runQuery } from "../src/engine/index.ts";
 import { checkAnnotation, checkMeaning } from "../src/validator/rules.ts";
 
@@ -85,6 +85,48 @@ test("A1: annotation does not change the semantic revision", () => {
   // pending agent transaction -- the same reason view positions stay out of the IR.
   assert.equal(systemHash(sys(annotated)), systemHash(sys(base)),
     "two systems differing ONLY in annotation must be the same system");
+});
+
+test("annotationHash is the COMPLEMENT of systemHash, and it sees what no count can", () => {
+  // The other half of A1, and the reason it has a function at all. Keeping annotation out of the
+  // semantic hash is correct and it leaves one class of commit invisible: an `add-note` moves
+  // nothing `systemHash` projects, so the shell's announcer -- the channel FR-A11Y-3 requires for
+  // agent actions -- has no semantic diff to describe. Its first detector counted PROVENANCE
+  // RECORDS, which cannot see a note at all (a note lands in `notes`; a record needs a declared
+  // `provenance` block) and cannot see a SECOND note on an object under any encoding. So the two
+  // digests are a pair: one must stand still across an annotation edit and the other must move.
+  assert.notEqual(annotationHash(sys(annotated)), annotationHash(sys(base)),
+    "two systems differing ONLY in annotation must have different annotation digests, or the "
+    + "announcer has nothing to detect an annotation-only commit with");
+
+  // A SECOND note on an object that already carries one. This is the case the count could not
+  // reach: no object becomes newly annotated, so every count of annotated objects stands still.
+  const twice = annotated.replace(
+    `      - { id: n1, kind: rationale, text: "The entry point, modelled as one service deliberately." }`,
+    `      - { id: n1, kind: rationale, text: "The entry point, modelled as one service deliberately." }
+      - { id: n1b, kind: comment, text: "A second note on the object that already carried one." }`,
+  );
+  assert.notEqual(twice, annotated, "the fixture edit did not apply -- the anchor line moved");
+  assert.equal(systemHash(sys(twice)), systemHash(sys(annotated)),
+    "a second note moved the semantic revision, so A1's structural half has broken");
+  assert.equal(
+    [...sys(twice).entities.values()].filter((e) => e.annotation.provenance !== null).length,
+    [...sys(annotated).entities.values()].filter((e) => e.annotation.provenance !== null).length,
+    "the fixture does not reproduce the residue: the provenance-record count moved, so a counting "
+    + "detector would have caught this case and the digest would be unnecessary",
+  );
+  assert.notEqual(annotationHash(sys(twice)), annotationHash(sys(annotated)),
+    "a second note on an already-annotated object left the annotation digest unmoved -- the "
+    + "detector is watching a proxy again");
+});
+
+test("annotationHash is not a transaction base: a SEMANTIC edit need not move it", () => {
+  // Stated as a test because the two digests are easy to confuse once both exist. `matchesBase`
+  // compares `systemHash`; an annotation-sensitive base would make attaching a note invalidate
+  // every pending agent transaction, which is exactly what A1 exists to prevent.
+  const extra = `${base}\nquantities: []\n`;
+  assert.equal(annotationHash(sys(extra)), annotationHash(sys(base)),
+    "the annotation digest moved on a change that carries no annotation");
 });
 
 test("A1: an assumption note cannot change a query result", () => {

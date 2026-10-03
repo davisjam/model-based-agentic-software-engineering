@@ -680,6 +680,77 @@ describe("FR-A11Y-3: a change the AGENT makes is announced, not only one that mo
       `the property channel did not report the drop: "${live.text}"`);
   });
 
+  it("an annotation-only commit announces, including the SECOND note on one object", async () => {
+    /**
+     * F-1's annotation branch, which §9f recorded as detected through a PROXY.
+     *
+     * `add-note` leaves the semantic hash where it was (invariant A1: a note is context, not a
+     * constraint), so it is the one agent commit the hash diff cannot see — and the announcer's
+     * fallback counted PROVENANCE RECORDS. The residue report said attaching a note to an object
+     * that already carried one was therefore silent. Measured here, it was worse: a provenance
+     * record exists only for an object whose source declares `provenance`, and `add-note` writes
+     * into `notes`, so the count never moved and EVERY annotation-only commit was silent.
+     *
+     * Two notes on ONE object, because the first note alone would pass against any detector that
+     * counts something. The claim is that the detector sees the CHANGE, so the second note — same
+     * object, no new count of anything — has to announce too.
+     */
+    const entity = await agentPage.evaluate(() => window.mage.inspect().entities[0].id);
+    const attach = (text) => agentPage.evaluate((t, id) => window.mage.transact({
+      transaction: {
+        base: window.mage.context().hash,
+        operations: [{ op: "add-note", scope: "entity", id, note: { kind: "comment", text: t } }],
+      },
+    }), text, entity);
+
+    /** Attach one note and assert the live region said so, with the revision clause. */
+    const attachAndExpectAnnounced = async (ordinal, text) => {
+      const hashBefore = await agentPage.evaluate(() => window.mage.context().hash);
+      await watchLive();
+      const result = await attach(text);
+      assert.equal(result.ok, true,
+        `attaching the ${ordinal} note was refused: ${JSON.stringify(result.findings)}`);
+      const hashAfter = await agentPage.evaluate(() => window.mage.context().hash);
+      assert.equal(hashAfter, hashBefore,
+        `the ${ordinal} note moved the semantic hash, so this is no longer the annotation-only case `
+        + "A1 describes and the test is measuring something else");
+      const live = await liveWrites();
+      assert.ok(live.writes.length > 0,
+        `the ${ordinal} annotation-only commit wrote nothing to #live. The region still reads: `
+        + `"${live.text}"`);
+      assert.match(live.text, /note/i,
+        `the ${ordinal} annotation-only commit announced "${live.text}", which does not say a note `
+        + "was attached — a screen-reader user working beside a CDP-attached agent misses the edit");
+      assert.match(live.text, /revision is unchanged/i,
+        `the ${ordinal} announcement does not say the revision stood still: "${live.text}". That `
+        + "clause is the whole reason this commit is announced separately from a semantic one.");
+    };
+
+    await attachAndExpectAnnounced("first", "a11y probe note one");
+
+    // A SEMANTIC commit in between, and it is not decoration. The two note announcements are the
+    // same sentence, and Chromium emits no mutation record for assigning `textContent` a string
+    // identical to the one already in the node — the limitation this suite's own fixture comment
+    // names. So without a different announcement in between, the second note reads as unannounced
+    // when it was merely unobservable, which is the probe-describes-itself failure. This is also
+    // the realistic sequence: an agent annotates, edits, annotates again.
+    const between = await agentPage.evaluate(() => window.mage.transact({
+      transaction: {
+        base: window.mage.context().hash,
+        operations: [{ op: "add-entity", id: "a11y-note-probe-spacer", type: "service" }],
+      },
+    }));
+    assert.equal(between.ok, true,
+      `the interleaved semantic commit was refused: ${JSON.stringify(between.findings)}`);
+    const spacerLive = await liveWrites();
+    assert.match(spacerLive.text, /The model changed/,
+      `the interleaved semantic commit announced "${spacerLive.text}", so #live does not hold a `
+      + "sentence different from the note one and the second case below cannot observe its write");
+
+    // THE RESIDUE: a second note on the object that already carries one. No count of anything moves.
+    await attachAndExpectAnnounced("second", "a11y probe note two");
+  });
+
   it("a human control's own sentence is not doubled by the derived one", async () => {
     // Both channels fire for a human edit: the handler says what it did, and `repaint()` derives
     // that the model changed. Announcing both would read the one event twice, so a pending human
@@ -694,6 +765,145 @@ describe("FR-A11Y-3: a change the AGENT makes is announced, not only one that mo
     assert.ok(live.writes.length > 0, "Enter on #run announced nothing — the human channel regressed");
     assert.doesNotMatch(live.text, /The model changed/,
       `a human action was described twice, once by its handler and once by the model diff: "${live.text}"`);
+  });
+});
+
+describe("correction 4: what a selection determines arrives in the dialog's own fields", () => {
+  /**
+   * The prefill ROUND-TRIP, pinned at the seam that carries it — and the near-miss that proves the
+   * seam needed a gate rather than a reviewer.
+   *
+   * `edit-dialogs.ts` paints each inspector action's prefill onto its stable button and reads it
+   * back in the button's own click handler. A control-byte gate flagged the separator's raw bytes
+   * in the source, and the first repair DELETED them — which turns `split(SEP)` into `split("")`,
+   * splits every character of `id=analytics` into its own "pair", and leaves every dialog field
+   * empty. **The gate went green and the whole suite reported 749 of 749 passing**, because no test
+   * in any tier looked at what the dialog received. The bytes had a gate; the behaviour those bytes
+   * implement had none. This is that gate.
+   *
+   * **Why it drives the page and not the two functions.** Packing a map and unpacking it next to
+   * each other passes whether or not the packed value ever reaches an element, so it would have
+   * passed the deletion too had the serialization been a pure pair. The claim is about the PAINT
+   * and the HANDLER agreeing through the DOM, so the test selects an object, presses the real
+   * button, and reads the value out of the field the dialog generated.
+   *
+   * **Two cases, because one would pin "something arrived".** Rename's `id` is a bare entity id and
+   * Attach-a-note's `target` is the prefixed `entity:<id>` encoding, under two different field
+   * names — so a handler that paired the wrong key with the wrong value fails here. Both terminals
+   * are `<select>`s, which makes the assertion stronger than a string compare: a `<select>` takes a
+   * value only when it names one of its own options, so the prefill must also be a choice the
+   * catalogue actually offers.
+   *
+   * **The first draft of this test passed the sabotage, and the reason is worth a paragraph.** It
+   * selected the example's FIRST entity, which is also the first option of both selects — so with
+   * the prefill dropped entirely the field still read that id, as a browser's default, and the
+   * assertion could not tell a delivered prefill from no prefill at all. The subject is now the
+   * LAST entity, and every case additionally asserts that the expected value is NOT the field's own
+   * default. Without that second assertion a fixture reorder turns this gate vacuous again, and a
+   * vacuous gate over this exact seam is the thing that let 749 of 749 pass.
+   *
+   * The KEYBOARD route to these buttons is not this test's claim — the generated path drive
+   * (`test/browser/a11y/paths.test.mjs`) walks every `inspector.*` affordance by Tab and asserts
+   * arrival. This one presses the control with a real mouse event and asserts what it CARRIED.
+   */
+  let editPage;
+  let entityId;
+
+  before(async () => {
+    ({ page: editPage } = await openWorkbench(browser));
+    await loadFlagshipExample(editPage);
+    // The example's own LAST entity, not a name typed here: a fixture change renames entities and a
+    // hard-coded id would then fail as though the seam had broken. Last rather than first, because
+    // the option lists are built in entity order and the first option is what an unfilled select
+    // shows — see the paragraph above.
+    entityId = await editPage.evaluate(() => {
+      const entities = window.mage.inspect().entities;
+      return entities[entities.length - 1]?.id ?? null;
+    });
+    assert.ok(entityId, "the flagship example declares no entity, so no selection prefills anything");
+  }, { timeout: 120_000 });
+
+  /** Select one object, press the inspector button that offers `buttonId`, return its label. */
+  const selectAndPress = async (selection, buttonId) => {
+    await editPage.evaluate((sel) => window.mage.view.select([sel]), selection);
+    await editPage.waitForFunction(
+      (id) => {
+        const button = document.getElementById(id);
+        return button !== null && button.disabled === false;
+      },
+      { timeout: 10_000 },
+      buttonId,
+    );
+    const label = await editPage.evaluate((id) => document.getElementById(id).textContent ?? "", buttonId);
+    await editPage.click(`#${buttonId}`);
+    await editPage.waitForFunction(
+      () => document.getElementById("edit-dialog").open === true, { timeout: 10_000 },
+    );
+    return label;
+  };
+
+  const closeDialog = async () => {
+    await editPage.click("#edit-dialog-cancel");
+    await editPage.waitForFunction(
+      () => document.getElementById("edit-dialog").open === false, { timeout: 10_000 },
+    );
+  };
+
+  /** The dialog's heading, and what the named generated field holds. `null` when it is not there. */
+  const dialogField = (field) => editPage.evaluate((id) => {
+    const node = document.getElementById(id);
+    return {
+      heading: document.getElementById("edit-dialog-h").textContent ?? "",
+      present: node !== null,
+      tag: node === null ? null : node.tagName,
+      value: node === null ? null : node.value,
+      options: node === null || node.tagName !== "SELECT" ? null : [...node.options].map((o) => o.value),
+    };
+  }, field);
+
+  it("the dialog's fields do not exist until one is opened — the negative control", async () => {
+    // The field is built per open, so its ABSENCE here is what makes the two assertions below
+    // statements about this press rather than about markup that was already filled in.
+    const before = await dialogField(`edit-dialog-set-label-id`);
+    assert.equal(before.present, false,
+      "#edit-dialog-set-label-id exists on a pristine page, so a later assertion about its value "
+      + "would not be evidence that pressing the inspector's Rename carried anything");
+  });
+
+  it("Rename on a selected entity opens with that entity already chosen", async () => {
+    const label = await selectAndPress(`entity:${entityId}`, "act-rename");
+    assert.ok(label.includes(entityId),
+      `#act-rename offers "${label}", which does not name the selected entity ${entityId}`);
+    const field = await dialogField("edit-dialog-set-label-id");
+    assert.equal(field.present, true,
+      `the Rename dialog built no 'id' field. Its heading reads "${field.heading}"`);
+    assert.notEqual(field.options[0], entityId,
+      `the 'id' field's DEFAULT option is already ${entityId}, so the assertion below cannot tell a `
+      + "delivered prefill from no prefill. Select an entity that is not the first option.");
+    assert.equal(field.value, entityId,
+      `Rename opened with 'id' = ${JSON.stringify(field.value)} rather than the selected `
+      + `${entityId}. The prefill the paint wrote did not survive the trip to the dialog, which is `
+      + "correction 4's whole promise: the user met the object, so the dialog must not ask them to "
+      + `find it again. The field offers ${JSON.stringify(field.options)}.`);
+    await closeDialog();
+  });
+
+  it("Attach a note carries the PREFIXED encoding under its own field name", async () => {
+    const label = await selectAndPress(`entity:${entityId}`, "act-note");
+    assert.ok(label.includes(entityId), `#act-note offers "${label}", which does not name ${entityId}`);
+    const field = await dialogField("edit-dialog-add-note-target");
+    assert.equal(field.present, true,
+      `the note dialog built no 'target' field. Its heading reads "${field.heading}"`);
+    assert.notEqual(field.options[0], `entity:${entityId}`,
+      `the 'target' field's DEFAULT option is already entity:${entityId}, so the assertion below `
+      + "cannot tell a delivered prefill from no prefill. Select an entity that is not first.");
+    // `entity:<id>`, not the bare id: the annotatable list is encoded by `elementValue` because a
+    // note's target names a namespace as well as an id. A handler that mixed up which pair goes
+    // with which key would put the bare id here and pass the Rename case above.
+    assert.equal(field.value, `entity:${entityId}`,
+      `the note dialog opened with 'target' = ${JSON.stringify(field.value)} rather than the `
+      + `encoded entity:${entityId}. The field offers ${JSON.stringify(field.options)}.`);
+    await closeDialog();
   });
 });
 
