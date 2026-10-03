@@ -115,12 +115,21 @@ re-deriving these, so they live here:**
   re-check the handle immediately before writing — a confirmation that the file was closed goes stale
   in minutes.
 - **Never infer from a fragment when the whole is a command away — this governs reading ARTIFACTS as
-  much as agents.** The failure class is one thing wearing three costumes, all seen on 260930–261001:
+  much as agents.** The failure class is one thing wearing four costumes, all seen on 260930–261002:
   a live unit judged dead from transcript quiet; a dense ten-finding review judged empty from a
-  one-word closing line; and a slide paragraph reported as clipped because a single `<a:t>` run was
-  read as though it were the line. In the third case the claim was false and shipped in a commit
-  message before it was caught. Whenever you are about to characterise something, ask what the SMALLEST
+  one-word closing line; a slide paragraph reported as clipped because a single `<a:t>` run was
+  read as though it were the line; and a shipped fix nearly reported BROKEN because a probe read
+  `result.refusal` when the refusal lives at `result.answer.refusal` — three `null`s that described
+  the probe, not the seam. In the third case the claim was false and shipped in a commit message
+  before it was caught. Whenever you are about to characterise something, ask what the SMALLEST
   unit is that could carry the whole meaning, and read THAT. The concrete rules that follow, below.
+  - **A probe that returns nothing has two explanations, and the likelier one is the probe.** Absent
+    fields and empty results are the expected output of reading the wrong path, the wrong file, or
+    the wrong revision — so before reporting an absence as a finding, dump the WHOLE object (or
+    `ls` the directory, or `git show` the revision) and confirm the thing you were looking for is
+    genuinely not in it. A verification that cannot distinguish "not there" from "I looked in the
+    wrong place" reports the second as the first, and that direction of error is expensive: it
+    condemns working code and sends someone to fix what is not broken.
 - **Reading OOXML text: runs are not lines. Join the runs inside each `<a:p>` before you compare
   anything.** PowerPoint splits a single sentence across arbitrarily many `<a:t>` runs and re-splits
   them on every save, so a run routinely begins mid-word — the 261001 instance was a run starting
@@ -173,6 +182,13 @@ re-deriving these, so they live here:**
   blamed on whichever one fails next. A brief that needs a package to *measure* something must say to
   install it in an isolated `/tmp` directory with its own `package.json`. Check `pwd` before invoking a
   package manager.
+  - **`git worktree add` does not create that symlink — the orchestrator does, as a second step.** A
+    fresh worktree has NO `workbench/node_modules`, so the agent's first `npx tsc` or `npm test` fails
+    on a missing package and its likely next move is the `npm install` banned above. Create the link
+    when you create the worktree, not when the agent reports a failure:
+    `ln -s <main-checkout>/workbench/node_modules <worktree>/workbench/node_modules`, then confirm a
+    binary resolves through it (`ls <worktree>/workbench/node_modules/.bin/tsc`). Done three times on
+    261002; the third time is what earned it a line here.
 - **The `pre-commit` hook stages MAIN-CHECKOUT files into a worktree agent's commit.** `core.hooksPath`
   points at the main checkout, so the hook runs with that `cwd` and its `git add` of regenerated `*.html`
   + `book-models/*` inherits `GIT_INDEX_FILE` — the files ride into the agent's commit snapshot even
