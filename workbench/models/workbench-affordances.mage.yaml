@@ -56,6 +56,10 @@ entities:
     type: application-service
     label: "workspace.discardHypothesis"
 
+  service.workspace-explore:
+    type: application-service
+    label: "workspace.explore"
+
   service.workspace-export:
     type: application-service
     label: "workspace.export"
@@ -139,6 +143,13 @@ entities:
     label: "Re-run every saved question against the current system."
     properties:
       human: wired
+      machine: wired
+
+  explore-space:
+    type: semantic-capability
+    label: "Walk the reachable configuration space and report its size, and whether it finished."
+    properties:
+      human: not-wired
       machine: wired
 
   inspect-evidence:
@@ -279,6 +290,7 @@ models:
       - service.validator-validate
       - service.workspace-applyHypothesis
       - service.workspace-discardHypothesis
+      - service.workspace-explore
       - service.workspace-export
       - service.workspace-load
       - service.workspace-openHypothesis
@@ -295,6 +307,7 @@ models:
       - validate
       - query
       - analyze
+      - explore-space
       - inspect-evidence
       - undo
       - redo
@@ -334,6 +347,8 @@ models:
       - { from: analyze, to: human-interface, type: afforded-by }
       - { from: analyze, to: machine-interface, type: afforded-by }
       - { from: analyze, to: service.workspace-runSavedQueries, type: implemented-by }
+      - { from: explore-space, to: machine-interface, type: afforded-by }
+      - { from: explore-space, to: service.workspace-explore, type: implemented-by }
       - { from: inspect-evidence, to: human-interface, type: afforded-by }
       - { from: inspect-evidence, to: machine-interface, type: afforded-by }
       - { from: inspect-evidence, to: service.workspace-query, type: implemented-by }

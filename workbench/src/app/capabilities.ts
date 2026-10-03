@@ -34,7 +34,7 @@ export type CapabilityId =
   | "edit-property"
   | "inspect"
   | "validate"
-  | "query" | "analyze" | "inspect-evidence"
+  | "query" | "analyze" | "explore-space" | "inspect-evidence"
   | "create-hypothesis" | "commit-hypothesis" | "discard-hypothesis"
   | "undo" | "redo"
   | "import" | "export"
@@ -78,8 +78,17 @@ export interface Capability {
 const wired = (at: string): Affordance => ({ at, status: "wired" });
 
 /**
- * The registry. Reflects what is actually built as of 261002 — all twenty-four capabilities are
- * wired on both sides, and UX-I1 reports nothing.
+ * The registry. Reflects what is actually built as of 261002.
+ *
+ * **UX-I1 reports one violation, and the violation is the registry working.** Twenty-four
+ * capabilities are wired on both sides; the twenty-fifth, `explore-space`, has a machine affordance
+ * and no human one, so the gate names it. The alternative on the table was to fold exploration of
+ * the configuration space into `analyze` — which would have left the count at zero, because
+ * `analyze` has a wired human affordance for a different reason. That is the worst of the three
+ * outcomes: not a gap, not a declared gap, but a gap laundered through a row that is green on other
+ * business.
+ *
+ * The honest zero is the one nobody is holding up. This one would have been.
  *
  * The last two came from the §20 capability table rather than from a developer noticing a gap:
  * `load-example` and `inspect-provenance` were rows in the specification with no registry entry, so
@@ -92,9 +101,9 @@ const wired = (at: string): Affordance => ({ at, status: "wired" });
  * controls second. Writing a control for an op that does not exist would have cleared the violation
  * by making the registry lie, which is worse than a violation that is true.
  *
- * `refusing` and `absent` now have no users. They stay in `AffordanceStatus` because the next
- * capability someone declares will need them before it needs `wired` — and because a registry that
- * can only say "finished" is not a gate.
+ * `refusing` has no users. It stays in `AffordanceStatus` because the next capability someone
+ * declares may need it before it needs `wired` — and because a registry that can only say
+ * "finished" is not a gate. `absent` has one user, which is what that sentence predicted.
  */
 export const CAPABILITIES: readonly Capability[] = [
   {
@@ -178,7 +187,21 @@ export const CAPABILITIES: readonly Capability[] = [
     // ends at `workspace.evaluate` and `header.run-all` at `workspace.runSavedQueries`. A human
     // SPARQL console is deliberately NOT added to buy a tidier row: an accurate affordance beats a
     // control nobody asked for.
-    machine: [wired("window.mage.query"), wired("window.mage.ask"), wired("window.mage.sparql")],
+    //
+    // `window.mage.analysis.resolveExhausted` is the fourth, and it is this row's for the same
+    // reason `sparql` is: it re-asks a question the caller already asked, with the Worker's budget
+    // instead of the interactive one, and hands back the same four arms. A bound is not a capability
+    // — a second row would report that the workbench gained the ability to answer something, when
+    // what it gained was permission to spend longer on the same question.
+    //
+    // It is machine-only, and that is inside the asymmetry this row already declares rather than a
+    // new one: the escalation handle comes from an `exhausted` SPARQL answer, and a person cannot
+    // write SPARQL here. `properties-section.ask` offers the supported forms, which are the forms
+    // that do not exhaust. A human control for escalating would need a human way to exhaust first.
+    machine: [
+      wired("window.mage.query"), wired("window.mage.ask"), wired("window.mage.sparql"),
+      wired("window.mage.analysis.resolveExhausted"),
+    ],
     producesEvidence: true,
   },
   {
@@ -191,6 +214,48 @@ export const CAPABILITIES: readonly Capability[] = [
     // UX-I2 for a surface whose whole content is a semantic result.
     human: [wired("header.run-all"), wired("properties-section.list")],
     machine: [wired("window.mage.savedQueries"), wired("window.mage.properties")],
+    producesEvidence: true,
+  },
+  {
+    id: "explore-space",
+    summary: "Walk the reachable configuration space and report its size, and whether it finished.",
+    service: "workspace.explore",
+    // ---- the question this row settles, because it is a question about what a capability IS -----
+    //
+    // Does `analyze` cover this? No, and the argument is `analyze`'s own two strings. Its service is
+    // `workspace.runSavedQueries` and it summarises as re-running saved questions; walking the
+    // configuration space is not that. Folding exploration in would have meant rewriting both — a
+    // row describing two semantics, whose `service` could then name a seam only half its affordances
+    // reach, which is the one job that string has (UX-I1 compares it to check convergence).
+    //
+    // The `query` row's precedent does not reach here. `sparql` is a SYNTAX for asking a query and
+    // `ask` is the same answer with its grounding; both ask one thing of one system and get an
+    // answer carrying coverage and a hash. Exploration answers a different question and returns a
+    // shape — `SpaceSummary`: states explored, complete, stop reason, dead ends, disclosed rewrites
+    // — that no other capability produces. One capability, several spellings is the precedent; this
+    // is two capabilities.
+    //
+    // ---- and what the row costs, stated rather than discovered -----------------------------------
+    //
+    // No human control reaches it, so UX-I1 reports this capability and the count is no longer zero.
+    // That is the registry doing its job. The page composes the Worker port and the facade offers
+    // `explore()`; nothing in the UI calls it, and `ports.engine.explore` returns no configurations
+    // on purpose rather than fabricating a space. Wiring a control is a UI change in another file.
+    //
+    // The alternative was to leave the row out and keep the zero. A count that reads zero because
+    // something is missing from the census is worse than one that reads one: the first is unfalsifiable
+    // and the second is a work item. This project has twice chosen an accurate violation over a
+    // comfortable number — `create-model`, `delete-model` and `add-note` were declared before they
+    // were buildable — and each time the violation named the work that closed it.
+    human: [{
+      at: "analysis-section.explore",
+      status: "absent",
+      note: "no human control walks the configuration space. The facade offers `explore()` and the "
+        + "page wires the Worker port, but nothing in the UI calls it, so a person reads a state "
+        + "count only as the coverage line of a behavioural query they asked for another reason. "
+        + "Closing this is a control that calls `workspace.explore` and renders the SpaceSummary.",
+    }],
+    machine: [wired("window.mage.analysis.explore")],
     producesEvidence: true,
   },
   {

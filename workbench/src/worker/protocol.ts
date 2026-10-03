@@ -71,16 +71,22 @@ export type WorkerRequest =
       /**
        * A licensed question over the RDF projection, re-issued with the Worker's step budget.
        *
-       * The question arrives UNBRANDED — a `LicensedQuestion` cannot cross `postMessage`, because
+       * The questions arrive UNBRANDED — a `LicensedQuestion` cannot cross `postMessage`, because
        * its brand is a `unique symbol` no serializer can carry. So the worker runs `admit` itself,
        * which makes the licensing gate run once per thread that evaluates rather than once per
        * question. A gate that could be transferred would be a gate a caller could strip.
+       *
+       * **Plural, because a SPARQL query may traverse several relation types and the gate decides
+       * each one.** The field was `question: SeamQuestion` while nothing could build one, and a
+       * single question would have made this thread's gate weaker than the one on the thread that
+       * sent the request: a licensed type would carry an unlicensed type into evaluation beside it.
+       * An EMPTY list is refused rather than waved through — see `noSubjectDeclared`.
        */
       readonly kind: "sparql";
       readonly id: number;
       readonly systemHash: string;
       readonly source: string;
-      readonly question: SeamQuestion;
+      readonly questions: readonly SeamQuestion[];
       readonly query: QueryAlgebra;
       readonly budget: number;
     }

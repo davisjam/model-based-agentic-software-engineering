@@ -155,6 +155,16 @@ export type SeamQuestion =
     readonly asked: string;
   };
 
+/**
+ * The relational arm, named so a producer that only ever builds that one can say so in its type.
+ *
+ * `parse.ts` is the producer: a text query's subjects are always relational — the containment arm is
+ * unreachable from text (`deriveScope`'s cost, §7 of the design) and a behavioral subject has no
+ * SPARQL spelling. Naming the arm lets `TranslatedQuery` publish the gate's inputs without every
+ * reader of them re-narrowing a union that cannot vary.
+ */
+export type RelationalQuestion = Extract<SeamQuestion, { readonly kind: "relational" }>;
+
 // --------------------------------------------------------------------------------------------
 // The licensed question — unobtainable except through the gate
 // --------------------------------------------------------------------------------------------
@@ -174,6 +184,13 @@ export type Directions = "forward" | "both";
  * The brand is the control. An evaluator declares this as its parameter type and therefore cannot be
  * called with a question that skipped the gate — the licensing check becomes unforgettable rather
  * than merely documented.
+ *
+ * **Publishing the gate's INPUT does not weaken it.** `TranslatedQuery` reports the `SeamQuestion`s
+ * it admitted, and a `WorkerRequest` carries them across `postMessage`, because a `SeamQuestion` is
+ * what you hand a checker, not what a checker hands back. The certificate is this type, it is
+ * obtainable only from `admit`, and its brand cannot be serialized — so every thread that evaluates
+ * must run the gate itself. That is why the licensing check runs once per evaluating thread rather
+ * than once per question, and it is a property to keep rather than an inefficiency to remove.
  */
 export interface LicensedQuestion {
   readonly [LICENSED]: true;

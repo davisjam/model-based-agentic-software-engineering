@@ -357,3 +357,105 @@ that and is a separate, cheap decision.
   N admissions, would make the certificate say what was actually checked.
 - **`sparqljs` is deprecated on npm** and `parse.ts` is its only importer, reaching it through one
   narrow local declaration. Replacing or vendoring it is a bounded job confined to that seam.
+
+---
+
+## 8. The `exhausted` route, and what a capability is (261002, WB-EXHAUST)
+
+Two gaps, both left open on purpose by waves that declined to guess. One was a seam detail; the
+other was a question about the registry's own vocabulary.
+
+### 8.1 Closing the route: publish the gate's INPUT, never its output
+
+`exhausted` is the fourth arm of `evaluate`, and its prose said to route the question to the analysis
+Worker. The Worker was wired and running, and the route still did not exist. §7.7 recorded why:
+`resolveExhausted` needs an unbranded `SeamQuestion`, `translate` returned the branded
+`LicensedQuestion`, the brand is a `unique symbol` no serializer carries, and the derivation that
+built it was private to `parse.ts`. The facade could see that a question had exhausted and could not
+say which question it was.
+
+`TranslatedQuery.questions: readonly RelationalQuestion[]` closes it, and the distinction that makes
+the field safe is the one worth writing down: **a `SeamQuestion` is what you hand a checker; a
+`LicensedQuestion` is what the checker hands back.** Publishing the first weakens nothing. The
+certificate is still obtainable only from `admit`, `license` is still the one cast and still
+module-private, and the brand still cannot be serialized — so every thread that evaluates runs the
+gate itself. The licensing gate running once per *evaluating thread* rather than once per question
+is a property nobody designed; it falls out of a symbol not surviving `postMessage`, and it is kept.
+`test/worker.test.ts` asserts it three ways: the cast is unique, the protocol does not import the
+branded type, and the Worker refuses a question the model declines after it crossed.
+
+Three consequences followed, each a correction rather than an addition:
+
+- **The protocol arm went plural.** `question: SeamQuestion` became
+  `questions: readonly SeamQuestion[]`, because a SPARQL query may traverse several relation types
+  and `translate` admits every one. A single-question request would have made the Worker's gate
+  *weaker* than the gate on the thread that sent it: a licensed type would carry an unlicensed type
+  into evaluation beside it. An **empty** list is refused rather than waved through — the dangerous
+  reading of "no subject" is "nothing objected", which is an ungated evaluation wearing a satisfied
+  check's clothes. The wire is an unchecked cast (`event.data as WorkerRequest`), so the type cannot
+  be the control there; `noSubjectDeclared()` is, and it is the same refusal the translator already
+  used for a query that traverses nothing.
+- **`relations: readonly string[]` was deleted.** It reported the same derivation with four of its
+  five fields discarded. Two views of one derivation is the drift this layer removes on sight, and
+  the relation ids are `questions.map((q) => q.relation)`.
+- **Three arguments became one handle.** `resolveExhausted(spent, question, query)` became
+  `resolveExhausted(escalation)`. `ExhaustedEscalation` is issued by `answerSparql` **only** on the
+  exhausted path, which keeps the Worker's budget the escalation of a question that ran out rather
+  than a fast lane around the interactive one — and removes the hazard the three arguments carried,
+  since a spent result beside another query's algebra type-checks and answers the wrong question
+  with a bigger budget.
+
+**Three outcomes stay three.** `exhausted`, a refusal, and an empty result tell a caller different
+things — this path ran out of budget; the model does not license this; no solutions exist — and only
+the first has anywhere to go. So only the first carries a handle, and `test/services.test.ts` pins
+all four arms at the facade. Collapsing any two would reproduce in our own code the defect that
+ruled Comunica out.
+
+### 8.2 Does `analyze` cover configuration-space exploration? No.
+
+The previous wave declined to settle this and its argument was sound: `analyze` names
+`workspace.runSavedQueries` as its service and summarises as re-running saved questions, which
+walking the configuration space is not. Settled here as **exploration is its own capability**, on
+three grounds.
+
+**The `query` row's precedent does not reach.** `window.mage.sparql` is a *syntax* for asking a
+query; `window.mage.ask` is the same answer *with its grounding*; `window.mage.analysis.
+resolveExhausted` is the same question under a *larger bound*. All three ask one thing of one system
+and get back an answer carrying coverage and a hash, which is why all three sit on the `query` row
+and none mints a capability — a bound is not a capability. Exploration answers a different question
+and returns a shape no other capability produces: a `SpaceSummary` of states explored, completeness,
+stop reason, dead ends and the explorer's disclosed rewrites. One capability with several spellings
+is the precedent; this is two capabilities.
+
+**Folding it in would have broken the one job `service` has.** UX-I1 compares that string to check
+that both interfaces converge on one seam. A row covering both re-running saved questions and
+walking the space can name only one of `workspace.runSavedQueries` and `workspace.explore`, so the
+string would stop describing half its own affordances.
+
+**And the fold would have laundered the gap.** No human control reaches exploration — the facade
+offers `explore()`, the page composes the Worker port, and nothing in the UI calls it. Inside
+`analyze`, that gap is invisible: `analyze` has a wired human affordance for a different reason, so
+UX-I1 would read zero while exploration stayed human-unreachable. **UX-I1 now reports one violation
+over twenty-five capabilities**, and the violation is `explore-space` with its human affordance
+declared `absent` and a note saying what would close it. A count that reads zero because something
+is missing from the census is unfalsifiable; a count that reads one is a work item. This project has
+twice chosen an accurate violation over a comfortable number — `create-model`, `delete-model` and
+`add-note` were declared before they were buildable, and each violation named the work that closed
+it.
+
+`describe()` therefore advertises `explore-space` and lists the gap. That is FR-AGENT-2 both ways: an
+agent learns the capability exists, and learns it is reachable from no human control, so it knows
+that using it creates a divergence the user cannot inspect.
+
+### 8.3 Findings for other units
+
+- **The §20 capability table has no exploration row.** Its `Analyze` row names "analysis API", which
+  is `window.mage.analysis` — both methods, under one name. The registry splits them for the reasons
+  above, so a registry row now has no specification row. That is a finding about
+  `requirements-human-ux-261002.md`, which is not this unit's file; `test/capabilities.test.ts`
+  records it beside the §20 coverage check rather than leaving the check's silence to look like
+  cover.
+- **`explore-space`'s human affordance is one control away.** Something that calls
+  `workspace.explore` and renders the `SpaceSummary` — states explored, complete, stop reason, dead
+  ends, notes. The facade and the Worker are both already there; the registry note names the site as
+  `analysis-section.explore` so the closure check will recognise it when it lands.

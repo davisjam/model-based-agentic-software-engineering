@@ -21,7 +21,7 @@
  */
 import type { Finding, QueryResult } from "../ir/types.ts";
 import type { PendingResult } from "./ports.ts";
-import type { ExhaustedResult, QueryAlgebra, SeamQuestion } from "../sparql/index.ts";
+import type { ExhaustedEscalation } from "../sparql/index.ts";
 import type { SparqlAnswer, Workspace } from "./services.ts";
 import type { ExampleCatalog, ExampleDescription } from "./examples.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
@@ -106,13 +106,19 @@ export interface MageAgentApi {
    * read the same figures, that would be a human-only conclusion — which is the half of UX-I2 this
    * project usually fails in the other direction.
    *
-   * It is NOT a new semantic capability, and deliberately earns no row in the capability registry.
-   * `analyze` already names `workspace.query` as its service and has wired affordances on both
-   * sides; running a long one off-thread changes WHERE the engine runs, not what the workbench can
-   * do. Inventing a capability for it would make the registry report a capability the product did
-   * not gain. What the registry does owe is `window.mage.analysis.explore` as a second machine
-   * affordance on the `analyze` row — a one-line edit in `capabilities.ts`, named rather than made,
-   * because that file belongs to another wave.
+   * **The two methods are not one capability, and the registry now says so.** The claim this note
+   * used to make — "running a long one off-thread changes WHERE the engine runs, not what the
+   * workbench can do" — holds for `resolveExhausted` and fails for `explore`:
+   *
+   *  - `resolveExhausted` re-asks a question the caller already asked, with a bigger budget, and
+   *    hands back the same four arms `sparql` does. Same capability, different bound — so it is
+   *    registered as a machine affordance of `query`, beside `window.mage.sparql`, which is the same
+   *    row for the same reason (one capability, several spellings).
+   *  - `explore` answers a question nothing else in the workbench answers: how big is the reachable
+   *    configuration space, and did the walk finish. The result is a `SpaceSummary`, a shape no other
+   *    capability produces. Off-thread-ness is not the capability; the summary is. So it earns the
+   *    `explore-space` row, and `capabilities.ts` records what that costs — UX-I1 reports it, because
+   *    no human control reaches it.
    */
   analysis: AnalysisApi;
 }
@@ -128,12 +134,11 @@ export interface AnalysisApi {
   /**
    * Re-issue a question whose interactive step budget ran out.
    *
-   * Takes the spent result, so the Worker's larger budget is reachable only as the escalation of an
-   * exhausted question rather than as a way around the interactive bound.
+   * Takes the handle off the exhausted answer — `sparql(text).escalation` — so the Worker's larger
+   * budget is reachable only as the escalation of a question that ran out, and never as a way around
+   * the interactive bound. An agent asks, reads `exhausted`, and hands back what it was given.
    */
-  resolveExhausted(
-    spent: ExhaustedResult, question: SeamQuestion, query: QueryAlgebra, budget?: number,
-  ): Promise<PendingResult>;
+  resolveExhausted(escalation: ExhaustedEscalation, budget?: number): Promise<PendingResult>;
   /** Request ids currently running, so an agent can report and cancel them. */
   inFlight(): readonly number[];
   cancel(id: number): void;
@@ -403,10 +408,10 @@ export function createAgentApi(
     // exploration is the same call the page makes, against the same IR, over the same Worker.
     analysis: {
       explore: (limit) => (limit === undefined ? workspace.explore() : workspace.explore(limit)),
-      resolveExhausted: (spent, question, query, budget) =>
+      resolveExhausted: (escalation, budget) =>
         budget === undefined
-          ? workspace.resolveExhausted(spent, question, query)
-          : workspace.resolveExhausted(spent, question, query, budget),
+          ? workspace.resolveExhausted(escalation)
+          : workspace.resolveExhausted(escalation, budget),
       inFlight: () => workspace.analysisInFlight(),
       cancel: (id) => workspace.cancelAnalysis(id),
     },

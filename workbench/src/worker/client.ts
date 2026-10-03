@@ -156,15 +156,15 @@ export class AnalysisClient {
   /**
    * Re-issue a licensed question with the Worker's step budget.
    *
-   * The question is re-admitted on the other side; see the `sparql` request arm for why that is the
-   * gate working rather than a duplicated check.
+   * Every subject of the query travels, and each is re-admitted on the other side; see the `sparql`
+   * request arm for why that is the gate working rather than a duplicated check.
    */
   evaluateQuestion(
-    source: string, systemHash: string, question: SeamQuestion, query: QueryAlgebra,
+    source: string, systemHash: string, questions: readonly SeamQuestion[], query: QueryAlgebra,
     budget: number = WORKER_STEP_BUDGET,
   ): Promise<PendingResult> {
     const id = this.#next++;
-    return this.#send({ kind: "sparql", id, systemHash, source, question, query, budget }, systemHash);
+    return this.#send({ kind: "sparql", id, systemHash, source, questions, query, budget }, systemHash);
   }
 
   cancel(id: number): void {

@@ -146,7 +146,7 @@ test("a SECOND exhaustion in the Worker is bounded, never an empty answer", asyn
   // caller would read "no solutions" from "we ran out of budget" -- the exact dead end the fourth
   // result arm exists to prevent, reintroduced one layer up.
   const { worker, client, states } = harness();
-  const p = client.evaluateQuestion("", "h", BEHAVIORAL, SELECT_X);
+  const p = client.evaluateQuestion("", "h", [BEHAVIORAL], SELECT_X);
   worker.reply({
     kind: "evaluation", id: worker.lastId(), systemHash: "h",
     evaluation: { kind: "exhausted", steps: 20_000_000, budget: 20_000_000, prose: "spent" },
@@ -374,7 +374,7 @@ test("an exhausted question reaches the Worker and comes back RESOLVED", async (
   const thread = onThread();
   try {
     const out = await thread.client.evaluateQuestion(
-      DOCABLE, systemHash(system), COMPOSING, SELECT_X, WORKER_STEP_BUDGET);
+      DOCABLE, systemHash(system), [COMPOSING], SELECT_X, WORKER_STEP_BUDGET);
     assert.equal(out.status, "ok-evaluation",
       `expected an evaluation, got ${out.status}${out.status === "failed" ? `: ${out.messages.join("; ")}` : ""}`);
     if (out.status !== "ok-evaluation") return;
@@ -403,7 +403,7 @@ test("the licensing gate runs on the worker thread too, because the brand cannot
     assert.equal(admit(system, forbidden).kind, "refused", "owns forbids path composition");
 
     const out = await thread.client.evaluateQuestion(
-      DOCABLE, systemHash(system), forbidden, SELECT_X);
+      DOCABLE, systemHash(system), [forbidden], SELECT_X);
     assert.equal(out.status, "ok-evaluation");
     if (out.status !== "ok-evaluation") return;
     assert.equal(out.evaluation.kind, "refused",
@@ -414,6 +414,76 @@ test("the licensing gate runs on the worker thread too, because the brand cannot
   } finally {
     thread.stop();
   }
+});
+
+test("the worker admits EVERY subject it was sent, not the first one", async () => {
+  // The gate on this thread has to be as strong as the gate on the other one. A licensed subject
+  // first and an unlicensed one second is the arrangement that passes a worker which admits
+  // `questions[0]` and stops -- and a SPARQL query traversing two relation types produces exactly
+  // that list.
+  const thread = onThread();
+  try {
+    const system = docableSystem();
+    const forbidden: SeamQuestion = { ...COMPOSING, relation: "owns" };
+    const out = await thread.client.evaluateQuestion(
+      DOCABLE, systemHash(system), [COMPOSING, forbidden], SELECT_X, WORKER_STEP_BUDGET);
+    assert.equal(out.status, "ok-evaluation");
+    if (out.status !== "ok-evaluation") return;
+    assert.equal(out.evaluation.kind, "refused",
+      "a licensed subject must not carry an unlicensed one into evaluation beside it");
+    if (out.evaluation.kind !== "refused") return;
+    assert.deepEqual(out.evaluation.refusal.missing,
+      ["path-composition semantics for relation type 'owns'"]);
+  } finally {
+    thread.stop();
+  }
+});
+
+test("a request with NO subject is refused on the worker thread, not evaluated", async () => {
+  // The empty list, at the real boundary. `event.data as WorkerRequest` is an unchecked cast, so the
+  // type cannot be the control here: a wire message carrying `questions: []` would run the loop zero
+  // times, refuse nothing, and evaluate behind a gate that was never consulted.
+  const thread = onThread();
+  try {
+    const system = docableSystem();
+    const out = await thread.client.evaluateQuestion(
+      DOCABLE, systemHash(system), [], SELECT_X, WORKER_STEP_BUDGET);
+    assert.equal(out.status, "ok-evaluation");
+    if (out.status !== "ok-evaluation") return;
+    assert.equal(out.evaluation.kind, "refused", "nothing to gate is not a licence to evaluate");
+    if (out.evaluation.kind !== "refused") return;
+    assert.equal(out.evaluation.refusal.cause, "unknown-vocabulary");
+    assert.ok(out.evaluation.refusal.wouldLicense.length > 0);
+  } finally {
+    thread.stop();
+  }
+});
+
+test("the brand cannot be forged: evaluation is unreachable without admit", () => {
+  // The control, read off the source rather than argued. `evaluate`'s question parameter is the
+  // branded type; `license` is the only cast that produces one and it is module-private to
+  // `licensing.ts`; `admit` is the only exported function that returns one. If a second producer
+  // appeared, this fails -- which is the whole value of the brand being unforgeable by construction
+  // rather than by everyone remembering to call the gate.
+  const licensing = readFileSync("src/sparql/licensing.ts", "utf8");
+  assert.match(licensing, /declare const LICENSED: unique symbol;/,
+    "the brand must stay a declared-never-defined unique symbol, which no module can write");
+  assert.deepEqual([...licensing.matchAll(/as LicensedQuestion/g)].length, 1,
+    "exactly one cast may produce the brand");
+  assert.match(licensing, /const license = /,
+    "and it must be inside `license`, which is not exported");
+  assert.deepEqual([...licensing.matchAll(/^export (?:function|const) \w+/gm)]
+    .map((m) => m[0]).filter((d) => d.includes("license")), ["export const licensesTraversal"],
+    "`license` itself must not be exported; only the predicate with a similar name is");
+
+  // And the other half: the protocol carries the gate's INPUT, never its output. A `LicensedQuestion`
+  // in a request arm would be a brand a sender could claim without having passed the gate. Checked
+  // over the IMPORTS, not the prose -- the module's own doc comment explains why the brand cannot
+  // cross, and a field cannot be typed with a type the module never imported.
+  assert.doesNotMatch(PROTOCOL_SOURCE, /import[^;]*\bLicensedQuestion\b/,
+    "the wire protocol must not import the branded type: the gate runs per thread, by re-admission");
+  assert.match(PROTOCOL_SOURCE, /import[^;]*\bSeamQuestion\b/,
+    "it imports the UNBRANDED question instead, which is what a checker takes");
 });
 
 test("a worker failure arrives as a finding, not as an empty result", async () => {

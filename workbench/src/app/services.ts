@@ -31,7 +31,7 @@ import type {
   AnalysisPort, EnginePort, PendingResult, RenderPort, RenderedView, SceneRequest,
 } from "./ports.ts";
 import { answerSparql, DEFAULT_STEP_BUDGET } from "../sparql/index.ts";
-import type { Answer, ExhaustedResult, QueryAlgebra, SeamQuestion } from "../sparql/index.ts";
+import type { Answer, ExhaustedEscalation, SparqlOutcome } from "../sparql/index.ts";
 import { project } from "../rdf/project.ts";
 import { WORKER_STATE_LIMIT, WORKER_STEP_BUDGET } from "../worker/protocol.ts";
 
@@ -90,15 +90,20 @@ export const NEW_SYSTEM = [
 ].join("\n");
 
 /**
- * A SPARQL answer, carrying the two things every answer in this workbench carries.
+ * A SPARQL answer: the layer's own outcome, plus the two things every answer in this workbench
+ * carries.
  *
  * `answer` is the SPARQL layer's own union, unchanged: solutions, a boolean with `evidence: null`,
  * a structured refusal, a spent budget, or a route to the engine. It is not flattened here —
  * `WorkerEvaluation` already owns the flattened spelling for the port that needs one, and a second
  * flattener in this layer would be the same conversion written twice.
+ *
+ * It EXTENDS `SparqlOutcome` rather than restating its two fields, so `escalation`'s contract — the
+ * handle exists exactly when the budget ran out — is held by the compiler at the one place it is
+ * decided. `RenderPort` is the cautionary tale: a narrower restatement of a contract silently threw
+ * away the substance of what the implementation returned.
  */
-export interface SparqlAnswer {
-  readonly answer: Answer;
+export interface SparqlAnswer extends SparqlOutcome {
   /**
    * What the answer covers, and what it does not.
    *
@@ -381,17 +386,17 @@ export class Workspace {
    * wrong answer rather than a visible error.
    *
    * **The budget is the Q8 ruling, not a tuning knob.** Evaluation is synchronous and bounded; a
-   * question that spends the budget comes back `exhausted`, which is neither empty nor refused.
-   * Re-issuing it to the Worker is NOT reachable from here yet: `resolveExhausted` needs the
-   * unbranded `SeamQuestion`, and `translate` returns the branded `LicensedQuestion` instead — the
-   * brand cannot cross `postMessage`, and the derivation that built it is private to `parse.ts`. So
-   * the escalation named in the `exhausted` prose is a seam gap in `TranslatedQuery`, recorded here
-   * rather than papered over with a question rebuilt by guesswork on this side.
+   * question that spends the budget comes back `exhausted`, which is neither empty nor refused —
+   * three things to tell a caller, and collapsing any two would reproduce the defect this layer
+   * exists to avoid. The fourth arm now also comes back with an `escalation`, which is the route the
+   * prose names: hand it to `resolveExhausted` and the Worker re-asks the same question with forty
+   * times the budget. Nothing on this side rebuilds the question — `TranslatedQuery` reports the
+   * subjects the gate admitted, and the Worker admits them again on its own thread.
    */
   sparql(text: string, budget: number = DEFAULT_STEP_BUDGET): SparqlAnswer {
     const system = this.#engine.system();
-    const answer = answerSparql(system, project(system), text, budget);
-    return { answer, coverage: sparqlCoverage(answer), systemHash: systemHash(system) };
+    const outcome = answerSparql(system, project(system), text, budget);
+    return { ...outcome, coverage: sparqlCoverage(outcome.answer), systemHash: systemHash(system) };
   }
 
   // -- long analysis ---------------------------------------------------------------------------
@@ -459,19 +464,27 @@ export class Workspace {
    * Re-issuing also keeps the two components apart. `eval.ts` names its budget and says to route the
    * question onward; it does not know a Worker exists, and it does not acquire a dependency on one.
    *
-   * The spent result is a PARAMETER rather than documentation. A caller cannot reach the big budget
-   * without one in hand, so the Worker is the escalation path for an exhausted question and not a
-   * general-purpose fast lane around the interactive budget.
+   * **The escalation handle is the parameter, and `sparql()` issues one only on the exhausted
+   * path.** A caller cannot reach the big budget without an exhausted answer in hand, so the Worker
+   * is the escalation of a question that ran out and not a general-purpose fast lane around the
+   * interactive budget. It is ONE value rather than the three this used to take, because the three
+   * had to be paired correctly and nothing checked the pairing: a spent result beside another
+   * query's algebra type-checks and answers the wrong question with a bigger budget.
+   *
+   * **The gate runs again on the other thread, and that is the point.** The handle carries the
+   * UNBRANDED subjects, every one of them; `LicensedQuestion`'s brand is a `unique symbol` no
+   * serializer carries, so the Worker calls `admit` itself and a question this model declines is
+   * declined on both threads. A gate that could be transferred would be a gate a caller could strip.
    */
   async resolveExhausted(
-    spent: ExhaustedResult, question: SeamQuestion, query: QueryAlgebra,
-    budget: number = WORKER_STEP_BUDGET,
+    escalation: ExhaustedEscalation, budget: number = WORKER_STEP_BUDGET,
   ): Promise<PendingResult> {
     const analysis = this.#ports.analysis;
     if (analysis === undefined) {
-      return Workspace.#noWorker(`the question that exhausted ${spent.steps} steps`);
+      return Workspace.#noWorker(`the question that exhausted ${escalation.spent.steps} steps`);
     }
-    return analysis.evaluateQuestion(this.#engine.toText(), this.#engine.hash(), question, query, budget);
+    return analysis.evaluateQuestion(
+      this.#engine.toText(), this.#engine.hash(), escalation.questions, escalation.query, budget);
   }
 
   /** What is running, so a caller can show it and offer cancellation. Empty without a Worker. */

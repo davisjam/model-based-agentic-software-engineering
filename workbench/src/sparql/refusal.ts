@@ -114,6 +114,22 @@ export const unknownVocabulary = (
   );
 
 /**
+ * A question with nothing for the gate to decide about.
+ *
+ * Two sites reach it, and they are one situation: the translator, when a scoped query traverses no
+ * declared relation type, and the Worker, when a `sparql` request arrives carrying an empty question
+ * list. Both mean the licensing gate was handed nothing, and the dangerous reading of that is "no
+ * subject, no objection, evaluate it" — an ungated evaluation wearing a vacuous check's clothes. So
+ * it is a refusal, and it is ONE refusal: a reader who meets it from either side is told the same
+ * thing, which is the rule the rest of this module is built on.
+ */
+export const noSubjectDeclared = (): SeamRefusal =>
+  unknownVocabulary("relation type", "(none declared)",
+    "declare a relation type, with its `description`, its `absence` meaning, and whether path " +
+    "composition is allowed. A scoped query reads relation edges, and the licensing gate decides " +
+    "from the relation type the IR declares.");
+
+/**
  * The SPARQL 1.1 subset v0.1 accepts (SEMANTICS.md §11.1, DESIGN-sparql-261002.md §3).
  *
  * Closed, and closed in code, for the reason `Dimension` is: the refusal must cite the same list the

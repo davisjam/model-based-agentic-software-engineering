@@ -24,7 +24,7 @@
  */
 import { describe, it, before, after } from "node:test";
 import assert from "node:assert/strict";
-import { CAPABILITIES } from "../../src/app/capabilities.ts";
+import { CAPABILITIES, checkAffordanceParity } from "../../src/app/capabilities.ts";
 import {
   startServer, stopServer, loadPuppeteer, openWorkbench, loadFlagshipExample,
   measureForReceipt, writeReceipt, PORT, ORIGIN,
@@ -89,12 +89,20 @@ describe("FR-AGENT: the agent surface is reachable from the page context", () =>
     assert.ok(d.limitations > 0, "notSupported is empty — an agent would learn the boundary from a wrong answer");
   });
 
-  it("reports zero affordance gaps (UX-I1)", async () => {
+  it("reports the registry's affordance gaps, and no others (UX-I1)", async () => {
     const gaps = await page.evaluate(() => window.mage.describe().affordanceGaps);
-    // Asserted hard at zero because it is currently satisfied. A gap means an agent can change the
-    // model in a way no human can see or reverse, so a regression here is a real loss, not a
-    // known-gap count to be ratcheted.
-    assert.deepEqual(gaps, [], `${gaps.length} capability(ies) have no human affordance: ${gaps.join("; ")}`);
+    // DERIVED from the registry, like the operation count above, and for the same reason: a literal
+    // zero was right while zero was the truth, and failed on the wave that declared
+    // `explore-space` — a capability whose human side is genuinely absent. Comparing the served
+    // page's list to the registry's is the assertion that means something at any gap count: it
+    // catches a page that invents a gap, hides one, or stops projecting the registry at all.
+    //
+    // A gap still means an agent can do something no human can see or reverse. That is why it must
+    // reach the API rather than be quietly held at zero — and why the gap LIST is pinned in
+    // test/capabilities.test.ts, where changing it is a deliberate edit to a named baseline.
+    const expected = checkAffordanceParity().map((v) => `${v.capability}: ${v.problem}`);
+    assert.deepEqual(gaps, expected,
+      `the page reports ${gaps.length} gap(s) and the registry has ${expected.length}: ${gaps.join("; ")}`);
   });
 
   it("context() returns the system hash", async () => {

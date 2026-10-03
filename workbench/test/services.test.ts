@@ -16,11 +16,9 @@ import type { AssetReader } from "../src/app/examples.ts";
 import { createAgentApi } from "../src/app/agent-api.ts";
 import { checkPropertyGrounding } from "../src/app/properties.ts";
 import { EXAMPLE_IDS, readFixture } from "../scripts/gen-example-coverage.ts";
-import { admit, evaluate } from "../src/sparql/index.ts";
-import type { SeamQuestion, SelectQuery } from "../src/sparql/index.ts";
+import { admit } from "../src/sparql/index.ts";
+import type { ExhaustedEscalation, SeamQuestion } from "../src/sparql/index.ts";
 import { entityIri, modelGraphIri, relationTypeIri } from "../src/rdf/iri.ts";
-import { project } from "../src/rdf/project.ts";
-import { variable } from "../src/sparql/index.ts";
 import { onThread } from "./worker-fixtures.ts";
 
 // The real renderer rather than a stub. The render port now speaks the renderer's own types, so a
@@ -200,61 +198,6 @@ test("a long exploration reaches the Worker and leaves the model EXACTLY where i
     assert.equal(ws.state.hash, before, "a Worker round trip must not advance the semantic revision");
     assert.equal(ws.export(), text, "nor change a byte of the document");
     assert.equal(ws.state.canUndo, false, "and must leave no revision to undo");
-  } finally {
-    stop();
-  }
-});
-
-// docable declares `may_invoke` with `composition.path: allowed`, and `owns` forbidden -- the pair
-// this question set needs.
-const COMPOSING: SeamQuestion = {
-  kind: "relational", relation: "may_invoke", traversal: "composing", evidence: "bindings",
-  scope: { kind: "system-union" }, subset: { kind: "within-subset" },
-};
-
-/** `SELECT ?x WHERE { GRAPH <service-flow> { <api> may_invoke+ ?x } }`. */
-const REACHES: SelectQuery = {
-  kind: "select", select: [variable("x")], from: null,
-  where: [{
-    kind: "graph", name: modelGraphIri("docable", "service-flow"),
-    patterns: [{
-      kind: "bgp",
-      triples: [{
-        subject: entityIri("docable", "api"),
-        predicate: { kind: "path-one-or-more", path: relationTypeIri("docable", "may_invoke") },
-        object: variable("x"),
-      }],
-    }],
-  }],
-  groupBy: null, orderBy: null, limit: null,
-};
-
-test("an exhausted question routes through the facade to the Worker, and resolves", async () => {
-  // The second gap, end to end. `exhausted` said "route it to the analysis Worker" and there was no
-  // route; this is the route, and `resolveExhausted` takes the spent result so the Worker's budget
-  // is the escalation of an exhausted question rather than a way around the interactive bound.
-  const { ws, stop } = withWorker();
-  try {
-    const system = ws.state.system;
-    const before = ws.state.hash;
-    const admission = admit(system, COMPOSING);
-    assert.equal(admission.kind, "licensed");
-    if (admission.kind !== "licensed") return;
-
-    const spent = evaluate(project(system), REACHES, admission.question, 2);
-    assert.equal(spent.kind, "exhausted", "a 2-step budget cannot finish a one-or-more path");
-    if (spent.kind !== "exhausted") return;
-
-    const out = await ws.resolveExhausted(spent, COMPOSING, REACHES);
-    assert.equal(out.status, "ok-evaluation",
-      `expected an evaluation, got ${out.status}${out.status === "failed" ? `: ${out.messages.join("; ")}` : ""}`);
-    if (out.status !== "ok-evaluation") return;
-    assert.equal(out.evaluation.kind, "select", "the Worker's budget resolves what the page's could not");
-    if (out.evaluation.kind !== "select") return;
-    assert.equal(out.evaluation.rows.length, 2, "api may_invoke+ reaches remediation and gateway");
-    assert.equal(ws.state.hash, before, "resolving a question must not advance the revision");
-    assert.equal(ws.state.system, system,
-      "nor rebuild the IR: the workspace is holding the same object it held before the round trip");
   } finally {
     stop();
   }
@@ -802,6 +745,196 @@ test("a spent step budget is neither empty nor refused, and its coverage routes 
   assert.equal(out.systemHash, ws.state.hash, "an exhausted answer still describes a system");
 });
 
+// ---- the `exhausted` route, from the facade to the Worker and back ---------------------------
+//
+// `exhausted` named the Worker in its prose and there was no route: `resolveExhausted` needed the
+// unbranded `SeamQuestion`, `translate` returned the branded `LicensedQuestion`, and its derivation
+// was private to `parse.ts`. `TranslatedQuery.questions` and the escalation handle close that, and
+// these drive it the way a caller does -- as TEXT, through `sparql()`, with no value rebuilt here.
+
+/**
+ * An unlicensed subject, for the smuggling test. `owns` is docable's `composition.path: forbidden`
+ * relation, included in the worked example for exactly this.
+ */
+const OWNS_COMPOSING: SeamQuestion = {
+  kind: "relational", relation: "owns", traversal: "composing", evidence: "bindings",
+  scope: { kind: "system-union" }, subset: { kind: "within-subset" },
+};
+
+test("an exhausted question routes through the facade to the Worker, and resolves", async () => {
+  // The route, driven the way a caller drives it: ASK AS TEXT, read `exhausted`, hand back the
+  // handle the answer came with. Nothing here builds a `SeamQuestion` or a `QueryAlgebra` — that was
+  // the previous version of this test, and it was testing a route no caller could take, because the
+  // facade had no way to produce either value. `escalation` is what closed that.
+  //
+  // The oracle is the SYNCHRONOUS path on the same question with a budget it can finish, so the two
+  // answers are comparable rather than merely both plausible.
+  const { ws, stop } = withWorker();
+  try {
+    const system = ws.state.system;
+    const before = ws.state.hash;
+
+    const spent = ws.sparql(REACHED_FROM_API, 2);
+    assert.equal(spent.answer.kind, "exhausted", "a 2-step budget cannot finish a one-or-more path");
+    assert.ok(spent.escalation !== null, "an exhausted answer must carry the route its prose names");
+    if (spent.escalation === null) return;
+    assert.equal(spent.escalation.spent, spent.answer,
+      "the handle carries the spent result itself, not a second copy of it");
+
+    const out = await ws.resolveExhausted(spent.escalation);
+    assert.equal(out.status, "ok-evaluation",
+      `expected an evaluation, got ${out.status}${out.status === "failed" ? `: ${out.messages.join("; ")}` : ""}`);
+    if (out.status !== "ok-evaluation") return;
+    assert.equal(out.evaluation.kind, "select", "the Worker's budget resolves what the page's could not");
+    if (out.evaluation.kind !== "select") return;
+
+    const synchronous = ws.sparql(REACHED_FROM_API);
+    const fromWorker = out.evaluation.rows
+      .map((row) => row.find(([name]) => name === "x")?.[1].value).sort();
+    assert.deepEqual(fromWorker, [...column(synchronous)].sort(),
+      "the Worker and the page must answer the same question with the same rows");
+    assert.deepEqual(fromWorker, [docEnt("gateway"), docEnt("remediation")].sort(),
+      "and the rows are the two services api may_invoke+ reaches");
+
+    assert.equal(ws.state.hash, before, "resolving a question must not advance the revision");
+    assert.equal(ws.state.system, system,
+      "nor rebuild the IR: the workspace is holding the same object it held before the round trip");
+  } finally {
+    stop();
+  }
+});
+
+/** A licensed closure that reaches nothing: the gateway is the end of the flow, so zero rows. */
+const REACHED_FROM_GATEWAY =
+  `${DOC_PREFIXES}SELECT ?x WHERE { GRAPH <${SERVICE_FLOW}> { ent:gateway rt:may_invoke+ ?x } }`;
+
+test("exhausted, refused and empty are three different answers at the facade", () => {
+  // Three things to tell a caller -- this path ran out of budget; the model does not license this;
+  // no solutions exist -- and collapsing any two reproduces in our own code the defect that ruled
+  // Comunica out. Asserted on all three at once, from the one door a caller has, because the
+  // distinction is only worth anything where somebody reads it.
+  const ws = loaded();
+
+  const spent = ws.sparql(REACHED_FROM_API, 2);
+  assert.equal(spent.answer.kind, "exhausted");
+  assert.match(spent.coverage, /budget/, "the bound must be named, not implied by a short answer");
+
+  const declined = ws.sparql(`${DOC_PREFIXES}ASK { GRAPH <${SERVICE_FLOW}> { ent:api rt:owns+ ent:parser } }`);
+  assert.equal(declined.answer.kind, "refused");
+  assert.equal(refusal(declined).cause, "unlicensed-by-model");
+
+  const empty = ws.sparql(REACHED_FROM_GATEWAY);
+  assert.equal(empty.answer.kind, "select-result", "an empty answer is still an ANSWER");
+  assert.deepEqual(column(empty), [], "and the gateway invokes nothing, so it has no rows");
+  assert.match(empty.coverage, /rows ARE the evidence/,
+    "its coverage says the rows are the witness -- of which there are none, which IS the finding");
+
+  // No two of the three agree on any field a caller would switch on.
+  assert.equal(new Set([spent.answer.kind, declined.answer.kind, empty.answer.kind]).size, 3);
+  assert.equal(new Set([spent.coverage, declined.coverage, empty.coverage]).size, 3);
+});
+
+test("only an exhausted answer carries the escalation, so the Worker is not a fast lane", () => {
+  // The handle is the control. If every answer carried one, an agent could ask any question with
+  // forty times the interactive budget and the Q8 ruling would be a suggestion. The three arms above
+  // carry none; the fourth is the one with somewhere to go.
+  const ws = loaded();
+  assert.equal(ws.sparql(REACHED_FROM_API).escalation, null, "a SELECT that finished has nowhere to go");
+  assert.equal(ws.sparql(REACHED_FROM_GATEWAY).escalation, null, "nor has an empty one: the budget was never the bound");
+  assert.equal(ws.sparql(`${DOC_PREFIXES}SELECT DISTINCT ?x WHERE { GRAPH <${SERVICE_FLOW}> { ent:api rt:may_invoke ?x } }`).escalation,
+    null, "a bigger budget licenses nothing the SUBSET declined");
+  assert.equal(ws.sparql(`${DOC_PREFIXES}ASK { GRAPH <${SERVICE_FLOW}> { ent:api rt:owns+ ent:parser } }`).escalation,
+    null, "nor anything the MODEL declined");
+  assert.ok(ws.sparql(REACHED_FROM_API, 2).escalation !== null, "and the one arm that has a route carries it");
+});
+
+test("the Worker re-admits every subject, so an escalation cannot smuggle an unlicensed one", async () => {
+  // The property that is load-bearing and invisible: the brand does not cross `postMessage`, so the
+  // worker runs `admit` on its own thread. Asserted by handing it a question the model declines,
+  // which is the only way to observe a gate from outside.
+  //
+  // And asserted for EVERY subject, not the first. `may_invoke` is licensed composing and `owns` is
+  // not, so a worker that admitted only `questions[0]` would evaluate this and answer it.
+  const { ws, stop } = withWorker();
+  try {
+    const spent = ws.sparql(REACHED_FROM_API, 2);
+    assert.ok(spent.escalation !== null);
+    if (spent.escalation === null) return;
+    const smuggled: ExhaustedEscalation = {
+      ...spent.escalation,
+      questions: [...spent.escalation.questions, OWNS_COMPOSING],
+    };
+    const out = await ws.resolveExhausted(smuggled);
+    assert.equal(out.status, "ok-evaluation");
+    if (out.status !== "ok-evaluation") return;
+    assert.equal(out.evaluation.kind, "refused",
+      "the worker must decide licensing itself, for every subject the request carries");
+    if (out.evaluation.kind !== "refused") return;
+    assert.deepEqual(out.evaluation.refusal.missing,
+      ["path-composition semantics for relation type 'owns'"],
+      "and must name the type that declined, in the engine's own words");
+  } finally {
+    stop();
+  }
+});
+
+test("an escalation carrying NO subject is refused, not waved through", async () => {
+  // The empty-list case, which is the one a loop gets wrong by falling out of: `admit` is never
+  // called, nothing refuses, and the query evaluates ungated behind a check that looked satisfied.
+  // The wire is untyped -- `event.data as WorkerRequest` -- so the type cannot be the control here.
+  const { ws, stop } = withWorker();
+  try {
+    const spent = ws.sparql(REACHED_FROM_API, 2);
+    assert.ok(spent.escalation !== null);
+    if (spent.escalation === null) return;
+    const out = await ws.resolveExhausted({ ...spent.escalation, questions: [] });
+    assert.equal(out.status, "ok-evaluation");
+    if (out.status !== "ok-evaluation") return;
+    assert.equal(out.evaluation.kind, "refused", "no subject means nothing was gated, not nothing to gate");
+    if (out.evaluation.kind !== "refused") return;
+    assert.equal(out.evaluation.refusal.cause, "unknown-vocabulary");
+    assert.deepEqual(out.evaluation.refusal.missing, ["relation type '(none declared)'"],
+      "and the sentence is the translator's own, for the same situation");
+  } finally {
+    stop();
+  }
+});
+
+test("UX-I2: an agent escalates the same exhausted question, over the same Worker", async () => {
+  // The machine affordance the `query` row declares, exercised. The agent's handle comes from the
+  // agent's own answer, and the two settle on the same rows.
+  const { ws, stop } = withWorker();
+  try {
+    const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {}, new ExampleCatalog(ws, assets));
+    const spent = api.sparql(REACHED_FROM_API, 2);
+    assert.equal(spent.answer.kind, "exhausted");
+    assert.ok(spent.escalation !== null, "an agent must be able to reach the route the prose names");
+    if (spent.escalation === null) return;
+    const out = await api.analysis.resolveExhausted(spent.escalation);
+    assert.equal(out.status, "ok-evaluation",
+      `expected an evaluation, got ${out.status}${out.status === "failed" ? `: ${out.messages.join("; ")}` : ""}`);
+    if (out.status !== "ok-evaluation") return;
+    assert.equal(out.evaluation.kind, "select");
+  } finally {
+    stop();
+  }
+});
+
+test("without a Worker, an escalation REFUSES and names the steps it spent", async () => {
+  // The same honesty `explore()` owes. Not an empty solution set -- which a caller cannot tell from
+  // "no rows match" -- and not a silent pend.
+  const ws = loaded();
+  const spent = ws.sparql(REACHED_FROM_API, 2);
+  assert.ok(spent.escalation !== null);
+  if (spent.escalation === null) return;
+  const out = await ws.resolveExhausted(spent.escalation);
+  assert.equal(out.status, "failed");
+  if (out.status !== "failed") return;
+  assert.match(out.messages[0] ?? "", /no analysis worker is wired/);
+  assert.match(out.messages[0] ?? "", /exhausted \d+ steps/,
+    "the refusal must say which question had nowhere to run");
+});
+
 test("a SPARQL answer cannot outlive the system it describes", () => {
   // The same contract `QueryResult.systemHash` carries, asserted across a commit: the hash moves,
   // and the next answer carries the new one. A result for revision N must never read as N+1.
@@ -815,29 +948,45 @@ test("a SPARQL answer cannot outlive the system it describes", () => {
   assert.deepEqual(column(after), column(before), "and a label edit must not change the solutions");
 });
 
-test("Q9: wiring the machine affordance leaves UX-I1 reporting nothing over 24 capabilities", () => {
-  // The registry's own gate, run from here because this wave is what added the affordance. Reading
-  // zero is only meaningful alongside the count: a registry that lost a row would also read zero.
-  assert.deepEqual(checkAffordanceParity(), [],
-    `UX-I1: ${checkAffordanceParity().map((v) => `${v.capability} ${v.problem}`).join("; ")}`);
-  // The intent here was right and the mechanism was not. Guarding "the zero was not reached by
-  // DELETING a capability" needs evidence that the hard ones are still present -- not a count, which
-  // moves legitimately the moment a capability is added and then fails on progress. These three were
-  // the last to be wired and the only ones that were ever violating on BOTH sides, so their presence
-  // is what the zero is worth.
-  for (const id of ["create-model", "delete-model", "add-note"] as const) {
-    assert.ok(CAPABILITIES.some((c) => c.id === id),
-      `${id} is gone from the registry — a zero reached by deletion is not a zero`);
-  }
-
-  // And Q9's reading, as the registry records it: `query` is the capability, SPARQL is a syntax for
-  // it, so the affordance lands on that row and no new row was minted.
+test("Q9: SPARQL and the budget escalation are spellings of `query`, and exploration is not", () => {
+  // Q9's reading, as the registry records it: `query` is the capability, SPARQL is a syntax for it,
+  // and re-asking with the Worker's budget is the same question under a different bound. Both land
+  // on that row; neither mints one.
   const query = CAPABILITIES.find((c) => c.id === "query");
   assert.ok(query);
-  assert.ok(query.machine.some((a) => a.at === "window.mage.sparql" && a.status === "wired"),
-    "the SPARQL affordance must be declared, or §26's closure check cannot see it");
+  for (const at of ["window.mage.sparql", "window.mage.analysis.resolveExhausted"] as const) {
+    assert.ok(query.machine.some((a) => a.at === at && a.status === "wired"),
+      `${at} must be declared, or §26's closure check cannot see it`);
+  }
   assert.equal(query.service, "workspace.query", "the row still names the capability's canonical seam");
   assert.deepEqual(CAPABILITIES.filter((c) => c.id !== "query").flatMap((c) =>
     [...c.human, ...c.machine].filter((a) => a.at.includes("sparql")).map((a) => a.at)), [],
     "no other capability claims a SPARQL affordance");
+
+  // And the other side of the same ruling. Exploration is NOT a spelling of anything: it answers
+  // what the configuration space's size is, which no other capability answers, so it has its own
+  // row and its own service. `analyze` keeps the strings that made it the wrong home — folding
+  // exploration in would have meant rewriting both of them to describe two semantics at once.
+  const analyze = CAPABILITIES.find((c) => c.id === "analyze");
+  assert.ok(analyze);
+  assert.equal(analyze.service, "workspace.runSavedQueries");
+  assert.match(analyze.summary, /Re-run every saved question/);
+  assert.deepEqual([...analyze.human, ...analyze.machine].filter((a) => a.at.includes("explore")), [],
+    "`analyze` must not claim an exploration affordance: re-running saved questions is not walking a space");
+
+  const explore = CAPABILITIES.find((c) => c.id === "explore-space");
+  assert.ok(explore, "exploration must be declared, even though its human side is absent");
+  assert.equal(explore.service, "workspace.explore");
+  assert.ok(explore.machine.some((a) => a.at === "window.mage.analysis.explore" && a.status === "wired"));
+
+  // UX-I1 therefore reports one, and reports exactly that one. A count is not the guard — it moves
+  // legitimately the moment a capability is added — so what is checked is WHICH rows are whole. The
+  // three below were the last to be wired and the only ones ever violating on both sides, so their
+  // presence is what the rest of the list is worth.
+  assert.deepEqual(checkAffordanceParity().map((v) => v.capability), ["explore-space"],
+    `UX-I1: ${checkAffordanceParity().map((v) => `${v.capability} ${v.problem}`).join("; ")}`);
+  for (const id of ["create-model", "delete-model", "add-note"] as const) {
+    assert.ok(CAPABILITIES.some((c) => c.id === id),
+      `${id} is gone from the registry — a short violation list reached by deletion is not progress`);
+  }
 });

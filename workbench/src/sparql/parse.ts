@@ -54,14 +54,21 @@ import { Parser } from "sparqljs";
 import type { CanonicalSystem } from "../ir/types.ts";
 import { modelGraphIri, relationTypeIri } from "../rdf/iri.ts";
 import { iri, type Dataset, type Iri, type Term } from "../rdf/terms.ts";
-import { admit, type LicensedQuestion, type QueryScope, type SubsetVerdict, type Traversal } from "./licensing.ts";
-import { outsideSubset, unknownVocabulary, type EngineRoute, type SeamRefusal } from "./refusal.ts";
+import {
+  admit,
+  type LicensedQuestion, type QueryScope, type RelationalQuestion, type SeamQuestion,
+  type SubsetVerdict, type Traversal,
+} from "./licensing.ts";
+import {
+  noSubjectDeclared, outsideSubset, unknownVocabulary,
+  type EngineRoute, type SeamRefusal,
+} from "./refusal.ts";
 import { variable } from "./algebra.ts";
 import type {
   Aggregate, AggregateBinding, AskQuery, ComparisonOp, Expression, GraphPattern, OrderComparator,
   PathNode, PatternTerm, PropertyPath, QueryAlgebra, SelectItem, SelectQuery, TriplePattern, Variable,
 } from "./algebra.ts";
-import { DEFAULT_STEP_BUDGET, evaluate, type Evaluation } from "./eval.ts";
+import { DEFAULT_STEP_BUDGET, evaluate, type Evaluation, type ExhaustedResult } from "./eval.ts";
 
 // --------------------------------------------------------------------------------------------
 // Results
@@ -70,16 +77,27 @@ import { DEFAULT_STEP_BUDGET, evaluate, type Evaluation } from "./eval.ts";
 /**
  * A translated query: the algebra, the licensed question, and the derivation a caller can audit.
  *
- * `scope` and `relations` are reported rather than kept private because they are DERIVED from the
- * text by the rules in `deriveScope` below, and a derivation a caller cannot see is a derivation
- * nobody tests. `relations` is every relation type the query traverses — each one passed the gate.
+ * `scope` and `questions` are reported rather than kept private because they are DERIVED from the
+ * text by the rules in `deriveScope` and `deriveSubjects` below, and a derivation a caller cannot
+ * see is a derivation nobody tests.
+ *
+ * **`questions` is every subject the gate admitted, in sorted order** — one per relation type the
+ * query traverses, each carrying the traversal, evidence need, scope and subset verdict it was
+ * admitted under. It replaces a `relations: readonly string[]` that reported the same list with
+ * four of its five fields thrown away; two views of one derivation is the drift this layer removes
+ * on sight, and the relation ids are `questions.map((q) => q.relation)`.
+ *
+ * It is also what closes the `exhausted` route. `resolveExhausted` re-asks the question on the
+ * Worker's thread and the Worker runs `admit` itself, so it needs the gate's INPUT — which this
+ * field is. `question` below is the gate's OUTPUT, branded and unserializable, and stays private to
+ * the evaluator for exactly that reason.
  */
 export interface TranslatedQuery {
   readonly kind: "query";
   readonly query: QueryAlgebra;
   readonly question: LicensedQuestion;
   readonly scope: QueryScope;
-  readonly relations: readonly string[];
+  readonly questions: readonly RelationalQuestion[];
 }
 
 /**
@@ -93,8 +111,41 @@ export type Translation =
   | { readonly kind: "refused"; readonly refusal: SeamRefusal }
   | { readonly kind: "routed"; readonly route: EngineRoute };
 
-/** What `answerSparql` returns: the evaluator's arms, plus the engine route `admit` can produce. */
+/** The evaluator's arms, plus the engine route `admit` can produce. */
 export type Answer = Evaluation | { readonly kind: "routed"; readonly route: EngineRoute };
+
+/**
+ * The handle an exhausted answer carries: everything needed to re-ask the question with a bigger
+ * budget, and nothing that would let a caller ask a FRESH question with one.
+ *
+ * **Why the handle rather than a documented pair of arguments.** `resolveExhausted` used to take
+ * `(spent, question, query)`, and nothing could call it: the question was branded, the algebra was
+ * private to this module, and a facade that rebuilt either by guesswork would be asserting what the
+ * translator derived. One value, produced only on the exhausted path, replaces three a caller had
+ * to pair correctly — and the pairing was the hazard, since a `spent` from one query beside the
+ * algebra of another type-checks and answers the wrong question with a bigger budget.
+ *
+ * `spent` is the SAME object as the `answer` it travelled beside, not a copy of it.
+ */
+export interface ExhaustedEscalation {
+  readonly spent: ExhaustedResult;
+  /** The gate's inputs. Unbranded, so they cross `postMessage` and the other thread re-admits. */
+  readonly questions: readonly SeamQuestion[];
+  readonly query: QueryAlgebra;
+}
+
+/**
+ * What `answerSparql` returns: the answer, and the escalation handle when there is one.
+ *
+ * `escalation` is non-null exactly when `answer.kind === "exhausted"`. Not when the answer is a
+ * refusal (nothing would be licensed by a bigger budget), not when it is empty (the budget was
+ * never the bound), and not when it succeeded — because the Worker's budget is the escalation of an
+ * exhausted question and must not become a general-purpose fast lane around the interactive one.
+ */
+export interface SparqlOutcome {
+  readonly answer: Answer;
+  readonly escalation: ExhaustedEscalation | null;
+}
 
 // --------------------------------------------------------------------------------------------
 // Refusal signals — both routes unwind to one catch in `translate`
@@ -901,9 +952,12 @@ function deriveSubjects(
  * question handed on is the first by sorted id, because `evaluate` reads `scope` off it and the
  * scope is one derivation shared by all of them.
  *
- * That last sentence is a seam finding rather than a comfortable fact — see §7 of the design doc.
- * `LicensedQuestion` names ONE relation type, and a SPARQL query may traverse several, so the brand
- * under-describes a text query even though the check it certifies did run for each.
+ * **The brand under-describes a text query, and `questions` is what says so out loud.**
+ * `LicensedQuestion` names ONE relation type and a SPARQL query may traverse several, so the
+ * certificate handed to `evaluate` describes the first by sorted id while the check it certifies ran
+ * for every one. `evaluate` reads only `scope` off it, which is shared, so nothing is wrong — but a
+ * caller re-asking this question elsewhere must gate all of them, and `questions` is the list that
+ * lets it. §7.7 of the design doc recorded this as a finding; §8 records it as closed.
  */
 export function translate(system: CanonicalSystem, text: string): Translation {
   try {
@@ -931,41 +985,29 @@ export function translate(system: CanonicalSystem, text: string): Translation {
       };
     }
     const subjects = deriveSubjects(vocabulary, system, query);
-    if (subjects.length === 0) {
-      return {
-        kind: "refused",
-        refusal: unknownVocabulary("relation type", "(none declared)",
-          "declare a relation type, with its `description`, its `absence` meaning, and whether " +
-          "path composition is allowed. A scoped query reads relation edges, and the licensing " +
-          "gate decides from the relation type the IR declares."),
-      };
-    }
+    if (subjects.length === 0) return { kind: "refused", refusal: noSubjectDeclared() };
+
+    const questions: readonly RelationalQuestion[] = subjects.map(([relation, traversal]) => ({
+      kind: "relational",
+      relation,
+      traversal,
+      // SPARQL 1.1 has no path variables, so no text query can ask for a path witness: a SELECT's
+      // rows ARE its evidence. The `path-witness` need belongs to the engine's own interface.
+      evidence: "bindings",
+      scope,
+      subset: verdict,
+    }));
 
     let licensed: LicensedQuestion | null = null;
-    for (const [relation, traversal] of subjects) {
-      const admission = admit(system, {
-        kind: "relational",
-        relation,
-        traversal,
-        // SPARQL 1.1 has no path variables, so no text query can ask for a path witness: a SELECT's
-        // rows ARE its evidence. The `path-witness` need belongs to the engine's own interface.
-        evidence: "bindings",
-        scope,
-        subset: verdict,
-      });
+    for (const question of questions) {
+      const admission = admit(system, question);
       if (admission.kind === "refused") return { kind: "refused", refusal: admission.refusal };
       if (admission.kind === "routed") return { kind: "routed", route: admission.route };
       if (licensed === null) licensed = admission.question;
     }
     if (licensed === null) throw new Error("unreachable: a non-empty subject list admitted nothing");
 
-    return {
-      kind: "query",
-      query,
-      question: licensed,
-      scope,
-      relations: subjects.map(([relation]) => relation),
-    };
+    return { kind: "query", query, question: licensed, scope, questions };
   } catch (e) {
     if (e instanceof RefusalSignal) return { kind: "refused", refusal: e.refusal };
     throw e;
@@ -1005,15 +1047,29 @@ function parseText(text: string): Node {
  * The whole point of the layer, and the one function a caller needs. Licensing runs inside
  * `translate`, before `evaluate` is reached, and the brand on `LicensedQuestion` is what makes that
  * ordering structural rather than a convention this function happens to follow.
+ *
+ * **Four outcomes, and no two of them collapse.** Solutions, a structured refusal, an engine route,
+ * and a spent budget. The fourth is the one with somewhere else to go, so it is the only one that
+ * comes back with an escalation handle — see `SparqlOutcome`.
  */
 export function answerSparql(
   system: CanonicalSystem,
   dataset: Dataset,
   text: string,
   budget: number = DEFAULT_STEP_BUDGET,
-): Answer {
+): SparqlOutcome {
   const translation = translate(system, text);
-  if (translation.kind === "refused") return { kind: "refused", refusal: translation.refusal };
-  if (translation.kind === "routed") return { kind: "routed", route: translation.route };
-  return evaluate(dataset, translation.query, translation.question, budget);
+  if (translation.kind === "refused") {
+    return { answer: { kind: "refused", refusal: translation.refusal }, escalation: null };
+  }
+  if (translation.kind === "routed") {
+    return { answer: { kind: "routed", route: translation.route }, escalation: null };
+  }
+  const answer = evaluate(dataset, translation.query, translation.question, budget);
+  return {
+    answer,
+    escalation: answer.kind === "exhausted"
+      ? { spent: answer, questions: translation.questions, query: translation.query }
+      : null,
+  };
 }
