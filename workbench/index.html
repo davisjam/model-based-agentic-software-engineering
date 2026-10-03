@@ -639,6 +639,27 @@
         <input type="text" id="ask-max-hops" inputmode="numeric" autocomplete="off"></label>
       <button type="button" id="ask-go" class="primary">Ask</button>
       <!--
+        CHECK, beside Ask, and this is the surface where it earns its place.
+
+        The ask bar above cannot build an unaskable question: its catalogue offers only questions the
+        loaded models license, so checking one would always say yes. THIS form can. It states a hop
+        limit, two named endpoints and an explicit quantifier — exactly the fields that produce a
+        quantifier mismatch or a path-composition refusal — so a person composing here can write a
+        question the models decline, and today learns that only by running it.
+
+        What Check adds over running it is the part a refusal cannot carry: the permitted
+        ALTERNATIVES, derived from the model-type registry's closed lists. "This relation declares no
+        path composition" is the sentence; "here are the forms you can ask of it instead" is the
+        revision. Same `workspace.check` an agent calls through `window.mage.check`.
+      -->
+      <button type="button" id="ask-check-go">Check</button>
+      <!--
+        The check report hosts HERE rather than in #ask-answer, because the two say different things
+        and overwriting one with the other would teach that a check is a weak answer. #ask-answer
+        carries a verdict with its grounding; this carries whether the question was askable at all.
+      -->
+      <div id="ask-check-report"></div>
+      <!--
         The answer renders in #ask-answer above, which is the ask bar's one answer host. A second
         `<div id="ask-answer">` stood here until wave 1c: two elements with one id, where every
         lookup resolved to the first and this one was painted by nobody.

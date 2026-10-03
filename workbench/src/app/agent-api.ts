@@ -23,6 +23,7 @@ import type { Evidence, Finding, QueryResult } from "../ir/types.ts";
 import type { PendingResult } from "./ports.ts";
 import type { ExhaustedEscalation } from "../sparql/index.ts";
 import type { SparqlAnswer, Workspace } from "./services.ts";
+import type { QueryCheckResult } from "../engine/check.ts";
 import type { ExampleCatalog, ExampleDescription } from "./examples.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
 import type { EvaluatedProperty } from "./properties.ts";
@@ -45,6 +46,24 @@ export interface MageAgentApi {
   transact(transaction: unknown): TransactionOutcome;
   hypothesis: HypothesisApi;
   query(query: unknown): QueryResult;
+  /**
+   * Ask whether a question is MEANINGFUL AND PERMITTED for the model type it interrogates, without
+   * running it — the ruling's second operation, beside `validate(model)` and execution.
+   *
+   * Takes the same untyped query document `query()` takes, so an agent checks the thing it is about
+   * to send. It returns a licensed/refused/malformed report: the cause from the engine's own closed
+   * refusal vocabulary, the offending portion, and the permitted alternatives derived from the
+   * model-type registry's closed lists — which is what lets an agent REVISE rather than re-ask.
+   *
+   * **A `licensed` result is a report, not a certificate.** It carries no token and skips nothing:
+   * each evaluator admits the question itself as its own first act, so an unchecked query is safe
+   * and a checked one is re-checked. The arrangement is the SPARQL seam's, applied here — publish
+   * the gate's input, never its output.
+   *
+   * It does NOT accept SPARQL text. SPARQL is not a model query under the ruling; the console keeps
+   * its own gate inside the translator, outside the semantic interface.
+   */
+  check(query: unknown): QueryCheckResult;
   /**
    * Run one query and get it back as a property: the verdict PLUS the models and evidence it
    * derives from (UX-I5).
@@ -512,6 +531,11 @@ export function createAgentApi(
     },
 
     query: (q) => workspace.query(q),
+
+    // Straight through, like `query`. The facade holds the system and the engine's own admission,
+    // so there is nothing for this method to decide -- which is the point: a second decision here
+    // would be a third opinion about what the model licenses.
+    check: (q) => workspace.check(q),
 
     // "(unsaved)" rather than a generated id: an id here would look like a handle an agent could
     // pass to `evidence()` or `retract`, and nothing was saved.

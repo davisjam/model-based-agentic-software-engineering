@@ -33,15 +33,20 @@ import { ExampleCatalog } from "../src/app/examples.ts";
 /**
  * Capabilities with NO wired human affordance. Empty.
  *
- * It held `explore-space` for one wave, and that entry was unlike the three before it: create-model,
- * delete-model and add-note had no MACHINE affordance either, and the identity of the two lists WAS
- * the diagnosis (the transaction schema had no op, so there was nothing to bind on either side).
- * `explore-space` was one-sided — an agent could walk the configuration space and a person could
- * not — and it is closed the only way a one-sided gap can honestly be closed: a control, not a
- * re-reading of what counts.
+ * `check-query` was here for the length of one review: M2 declared it machine-only, and the answer
+ * was to build the control rather than to record the absence. The Check control sits beside Ask in
+ * the Advanced query surface, which is the surface where a person can compose a question the models
+ * decline — so the capability a person was missing was a real one.
  *
- * Empty is not a weak assertion here. `FULLY_WIRED` below names all twenty-five, so a capability
- * deleted to silence a violation fails there rather than vanishing from this list unnoticed.
+ * This list held `explore-space` before, and that entry was unlike the three before it:
+ * create-model, delete-model and add-note had no MACHINE affordance either, and the identity of the
+ * two lists WAS the diagnosis (the transaction schema had no op, so there was nothing to bind on
+ * either side). `explore-space` was one-sided, and it closed the only way a one-sided gap honestly
+ * can: a control, not a re-reading of what counts. `check-query` was the same shape and took the
+ * same closure.
+ *
+ * `FULLY_WIRED` below names the twenty-five that are whole, so a capability deleted to silence a
+ * violation fails there rather than vanishing from this list unnoticed.
  */
 const NO_HUMAN: readonly CapabilityId[] = [];
 
@@ -64,6 +69,9 @@ const NO_MACHINE: readonly CapabilityId[] = [];
  */
 const FULLY_WIRED: readonly CapabilityId[] = [
   "import", "export", "inspect", "validate", "query", "analyze", "inspect-evidence", "undo", "redo",
+  // The model query interface's `check`: `window.mage.check` and the Check control beside Ask in
+  // the Advanced query surface, both ending at `workspace.check`.
+  "check-query",
   // Walking the configuration space, wired in the System Browser. It is in this list rather than in
   // `BASELINE_GAP` because the control exists, Tab reaches it, and it ends at `workspace.explore` —
   // the same seam `window.mage.analysis.explore` calls.
@@ -85,9 +93,11 @@ const FULLY_WIRED: readonly CapabilityId[] = [
  * anyone editing the baseline that records it. A registry entry can be wrong in two directions and
  * only one of them was watched.
  *
- * It is empty because the one gap it held is closed. The list stays, because the next capability
- * someone declares before it is buildable belongs here rather than in a comment — and because an
- * empty list is the shape that says "nothing is owed", which a deleted list cannot say.
+ * Empty, and it has now been empty across two capabilities that could have sat here. The list stays,
+ * because the next capability someone declares before it is buildable belongs here rather than in a
+ * comment — and because an empty list is the shape that says "nothing is owed", which a deleted list
+ * cannot say. What it is NOT is a place to park a capability whose affordance is merely inconvenient
+ * to build: `check-query` was moved out of it by building the control.
  */
 const BASELINE_GAP: readonly CapabilityId[] = [];
 
@@ -557,7 +567,7 @@ test("describe() derives its operations from the registry, and reports the gaps"
   assert.deepEqual(d.affordanceGaps, checkAffordanceParity().map((v) => `${v.capability}: ${v.problem}`));
   // Empty, and the emptiness is the claim FR-AGENT-2 wanted: there is no capability an agent can use
   // that the user cannot see or reverse, so there is no divergence for this list to warn about. It
-  // held `explore-space` for a wave and the warning was the honest thing to publish then.
+  // held `explore-space` for a wave, and `check-query` for one review.
   assert.deepEqual(d.affordanceGaps, []);
 
   // The other half of the same obligation, and the one `affordanceGaps` cannot discharge: an agent

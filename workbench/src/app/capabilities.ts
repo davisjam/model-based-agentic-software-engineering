@@ -34,7 +34,7 @@ export type CapabilityId =
   | "edit-property"
   | "inspect"
   | "validate"
-  | "query" | "analyze" | "explore-space" | "inspect-evidence"
+  | "query" | "check-query" | "analyze" | "explore-space" | "inspect-evidence"
   | "create-hypothesis" | "commit-hypothesis" | "discard-hypothesis"
   | "undo" | "redo"
   | "import" | "export"
@@ -299,6 +299,43 @@ export const CAPABILITIES: readonly Capability[] = [
       wired("window.mage.query"), wired("window.mage.ask"), wired("window.mage.sparql"),
       wired("window.mage.analysis.resolveExhausted"),
     ],
+    producesEvidence: true,
+  },
+  {
+    id: "check-query",
+    summary: "Ask whether a question is meaningful and permitted for its model type, without running it.",
+    service: "workspace.check",
+    // ---- why this is a row and not a fifth spelling of `query` ----------------------------------
+    //
+    // The `query` row's own test, applied: a second row must report a capability the product
+    // GAINED. `sparql` and `resolveExhausted` fail that test — one is a syntax for asking, the
+    // other a bigger budget for the same question, and both hand back the same four arms. `check`
+    // passes it twice over. It answers a DIFFERENT question (is this askable, rather than what is
+    // the answer), and it returns `QueryCheckResult` — a shape no other capability produces,
+    // carrying the refusal cause as data plus the permitted alternatives derived from the
+    // model-type registry. That is the `explore-space` test, and `explore-space` won its row on it.
+    //
+    // ---- and where its human half lands --------------------------------------------------------
+    //
+    // `properties-section.check` — a *Check* control beside *Ask* in the Advanced query surface,
+    // ending at the same `workspace.check` an agent reaches through `window.mage.check`.
+    //
+    // The surface is the argument. The ask bar's catalogue offers only questions the loaded models
+    // license, so checking one there would always answer yes; the Advanced form states a hop limit,
+    // two named endpoints and an explicit quantifier, which are exactly the fields that produce a
+    // quantifier mismatch or a V7 path-composition refusal. A person composing there CAN write a
+    // question the models decline — and what Check adds over running it is the part a refusal cannot
+    // carry: the permitted alternatives, derived from this registry's own closed lists.
+    //
+    // The declared-absent alternative was considered and rejected on the ruling's own words: the
+    // human Workbench and the agent interface expose THE SAME semantic capabilities through
+    // different interaction surfaces, so "no person needs this" would have been a claim about users
+    // defended by a claim about scope. `explore-space` was the last capability in this shape, and it
+    // turned out to be one a person obviously should have had.
+    human: [control("properties-section.check", "ask-check-go")],
+    machine: [wired("window.mage.check")],
+    // A check result is a semantic result: it reports what the model licenses, with the cause and
+    // the alternatives. UX-I2 governs it, which is part of what the missing human control owes.
     producesEvidence: true,
   },
   {
