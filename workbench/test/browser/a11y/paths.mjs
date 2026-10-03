@@ -268,31 +268,33 @@ const ROUTINE = {
    * the untracked/tracked distinction, read off the substrate instead of guessed from a label.
    */
   "answer-present": async (page) => {
-    // ONE MORE KEYBOARD ACT, and the reason it is needed is a DEFECT this drive found rather than a
-    // property of the design. `askCatalogue` resolves the selected entity with
-    // `selection.find((id) => system.entities.has(id))` — a BARE entity id. The contents tree
-    // writes the prefixed encoding `entity:<id>` (`nodeSelection`, wave 2b), so a tree selection
-    // matches no entity and the contextual half of the catalogue stays empty. The inspector's own
-    // navigate links still carry bare ids (`{ kind: "select", selection: r.from }`), so activating
-    // one re-selects the same object in the encoding the ask bar understands. That is the route a
-    // person has, and it is the route walked here; the two encodings are the finding, reported in
-    // `DESIGN-shell-261002.md` §9f rather than smoothed over by setting `.hidden` from a probe.
-    const bare = await page.evaluate(() => {
-      const link = [...document.querySelectorAll("#inspector a[data-action='select']")]
-        .find((a) => !(a.dataset.arg ?? "").includes(":"));
-      if (link === undefined) return null;
+    // ONE MORE KEYBOARD ACT: an entity has to be selected before the catalogue offers a
+    // contextual question, and only a contextual question is UNTRACKED.
+    //
+    // **This step used to walk a WORKAROUND, and the workaround is gone.** `askCatalogue` resolved
+    // the selected entity with `selection.find((id) => system.entities.has(id))` — a BARE id —
+    // while the contents tree wrote `entity:<id>`, so a tree selection left the contextual half of
+    // the catalogue empty and this routine had to find an inspector link that still carried a bare
+    // id and activate THAT. `ViewState.selection` now has one encoding (`SelectionRef`, decoded by
+    // `resolveSelection`), both spellings reach the same catalogue, and the bare-id link no longer
+    // exists to find. So the drive walks the route a person actually takes: the contents tree's own
+    // entity row, located by the `data-select` encoding wave 3 stamped on it rather than by
+    // position or by rendered prose.
+    const row = await page.evaluate(() => {
+      const button = [...document.querySelectorAll("#model-contents button[data-select]")]
+        .find((b) => (b.dataset.select ?? "").startsWith("entity:"));
+      if (button === undefined) return null;
       const parts = [];
-      for (let n = link; n !== null && n !== document.documentElement; n = n.parentElement) {
+      for (let n = button; n !== null && n !== document.documentElement; n = n.parentElement) {
         const parent = n.parentElement;
         if (parent === null) break;
         parts.unshift(`${n.tagName.toLowerCase()}:nth-child(${[...parent.children].indexOf(n) + 1})`);
       }
-      return { selector: parts.join(" > "), arg: link.dataset.arg };
+      return { selector: parts.join(" > "), arg: button.dataset.select };
     });
-    assert.ok(bare !== null,
-      "the inspector offers no link that selects an entity by its bare id, so no keyboard route "
-      + "produces a selection the ask bar's catalogue recognises (the two-encoding defect, §9f)");
-    await reachBySelector(page, bare.selector);
+    assert.ok(row !== null,
+      "the contents tree offers no entity row, so no keyboard route produces an entity selection");
+    await reachBySelector(page, row.selector);
     await page.keyboard.press("Enter");
     await settle(400);
     const untracked = await page.evaluate(() => {

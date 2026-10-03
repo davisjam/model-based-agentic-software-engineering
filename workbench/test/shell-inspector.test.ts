@@ -24,9 +24,11 @@ import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
 import { modelsDeclaring } from "../src/engine/graph.ts";
 import { licensesTraversal } from "../src/sparql/licensing.ts";
 import { unlicensedByModel } from "../src/sparql/refusal.ts";
-import { CAVEAT, relationValue } from "../src/ui/view-model.ts";
+import { CAVEAT, relationValue, resolveSelection, selectionValue } from "../src/ui/view-model.ts";
 import { inspectSelection } from "../src/ui/shell/inspector.ts";
-import type { Inspection, InspectorBlock, InspectorView } from "../src/ui/shell/inspector.ts";
+import type {
+  Inspection, InspectorAction, InspectorBlock, InspectorView,
+} from "../src/ui/shell/inspector.ts";
 
 const load = (path: string): CanonicalSystem => canonicalize(parse(readFileSync(path, "utf8")));
 
@@ -41,6 +43,17 @@ const relationSelection = (r: CanonRelation): string =>
   relationValue(r.id !== null
     ? { kind: "id", model: r.model, id: r.id }
     : { kind: "ends", model: r.model, from: r.from, to: r.to, type: r.type });
+
+/**
+ * The wire value a navigate line would write, or null for a line that is read.
+ *
+ * The oracle is `selectionValue` — the shell's SOLE encoder — rather than a prefix typed into this
+ * file. A navigate action carries a `SelectionRef` now, so a test that spelled the string itself
+ * would be asserting its own copy of the encoding, which is the second source of truth the ref
+ * exists to remove.
+ */
+const selectedValue = (a: InspectorAction | null): string | null =>
+  a === null || a.kind !== "select" ? null : selectionValue(a.ref);
 
 function object(view: InspectorView): Inspection {
   assert.equal(view.state, "object", `expected an inspection, got ${view.state}`);
@@ -63,7 +76,7 @@ const textOf = (b: InspectorBlock): string =>
 // --------------------------------------------------------------------------------------------
 
 test("nothing selected reads as nothing selected, and says what selecting does", () => {
-  const view = inspectSelection(messageBus(), []);
+  const view = inspectSelection(messageBus(), { kind: "none" });
   assert.equal(view.state, "empty");
   if (view.state !== "empty") throw new Error("unreachable");
   // The empty pane is the one place the pane explains itself. Blank would read as a broken region.
@@ -75,7 +88,7 @@ test("a selection the system does not declare reads as unresolved, not as empty"
   // selected element and an agent can `view.select` a misspelling; reporting either as "nothing is
   // selected" describes the PANE instead of the model, which is the collapsed-absence defect the
   // evidence ruling spent a document on.
-  const view = inspectSelection(messageBus(), ["no-such-service"]);
+  const view = inspectSelection(messageBus(), resolveSelection(messageBus(), "no-such-service"));
   assert.equal(view.state, "unresolved");
   if (view.state !== "unresolved") throw new Error("unreachable");
   assert.match(view.message, /no-such-service/, "the unresolved name must be quoted back");
@@ -88,17 +101,17 @@ test("an entity deleted under the selection stops resolving", () => {
   const system = messageBus();
   const victim = [...system.entities.keys()][0];
   assert.ok(victim !== undefined);
-  assert.equal(inspectSelection(system, [victim]).state, "object");
+  assert.equal(inspectSelection(system, resolveSelection(system, victim)).state, "object");
   const entities = new Map(system.entities);
   entities.delete(victim);
-  assert.equal(inspectSelection({ ...system, entities }, [victim]).state, "unresolved");
+  assert.equal(inspectSelection({ ...system, entities }, resolveSelection({ ...system, entities }, victim)).state, "unresolved");
 });
 
 test("one pane inspects one thing, and names the rest of the selection", () => {
   const system = messageBus();
   const ids = [...system.entities.keys()].slice(0, 3);
   assert.ok(ids.length > 1, "this fixture needs at least two entities for a multi-selection");
-  const i = object(inspectSelection(system, ids));
+  const i = object(inspectSelection(system, resolveSelection(system, ids[0]), ids.slice(1)));
   const first = ids[0] as string;
   assert.ok(i.title.includes(first) || i.title.includes(system.entities.get(first)?.label ?? ""),
     "the first selected object is the one inspected");
@@ -116,7 +129,7 @@ test("an entity's declared type and properties reach the pane as text", () => {
   // owns which one that is.
   const entity = [...system.entities.values()].find((e) => e.properties.size > 0);
   assert.ok(entity, "this fixture needs an entity with a property");
-  const i = object(inspectSelection(system, [entity.id]));
+  const i = object(inspectSelection(system, resolveSelection(system, entity.id)));
   assert.equal(i.type, entity.type ?? "entity");
   const properties = textOf(blockNamed(i, "Properties"));
   for (const [name, value] of entity.properties) {
@@ -132,7 +145,7 @@ test("Appears in lists exactly the models that select the entity, and each one n
   const system = messageBus();
   for (const entity of system.entities.values()) {
     const expected = [...system.models.values()].filter((m) => m.entities.includes(entity.id));
-    const appears = blockNamed(object(inspectSelection(system, [entity.id])), "Appears in");
+    const appears = blockNamed(object(inspectSelection(system, resolveSelection(system, entity.id))), "Appears in");
     assert.deepEqual(appears.lines.map((l) => l.text), expected.map((m) => m.label),
       `Appears in disagrees with the models declaring ${entity.id}`);
     for (const [n, l] of appears.lines.entries()) {
@@ -149,7 +162,7 @@ test("an entity with no model is told so, rather than shown a blank block", () =
   const system = messageBus();
   const id = [...system.entities.keys()][0];
   assert.ok(id !== undefined);
-  const i = object(inspectSelection({ ...system, models: new Map() }, [id]));
+  const i = object(inspectSelection({ ...system, models: new Map() }, resolveSelection(system, id)));
   const appears = blockNamed(i, "Appears in");
   assert.equal(appears.lines.length, 0);
   assert.ok((appears.empty ?? "").length > 20, "an empty Appears in must say what the emptiness means");
@@ -159,15 +172,15 @@ test("every relation naming an entity is listed, and selecting one inspects that
   const system = messageBus();
   for (const entity of system.entities.values()) {
     const expected = system.relations.filter((r) => r.from === entity.id || r.to === entity.id);
-    const relations = blockNamed(object(inspectSelection(system, [entity.id])), "Relations");
+    const relations = blockNamed(object(inspectSelection(system, resolveSelection(system, entity.id))), "Relations");
     assert.equal(relations.lines.length, expected.length,
       `the Relations block for ${entity.id} does not match the relations that name it`);
     for (const [n, l] of relations.lines.entries()) {
       const r = expected[n] as CanonRelation;
-      assert.deepEqual(l.action, { kind: "select", selection: relationSelection(r) });
+      assert.equal(selectedValue(l.action), relationSelection(r));
       // The navigation has to land: the value the line carries must resolve back to the relation it
       // was built from, which is the half a hand-written selector would get wrong silently.
-      const landed = object(inspectSelection(system, [relationSelection(r)]));
+      const landed = object(inspectSelection(system, resolveSelection(system, relationSelection(r))));
       assert.equal(landed.type, r.type);
     }
   }
@@ -180,7 +193,7 @@ test("an entity whose relations are empty is not told the two services are uncon
   const system = messageBus();
   const id = [...system.entities.keys()][0];
   assert.ok(id !== undefined);
-  const i = object(inspectSelection({ ...system, relations: [] }, [id]));
+  const i = object(inspectSelection({ ...system, relations: [] }, resolveSelection(system, id)));
   const relations = blockNamed(i, "Relations");
   assert.equal(relations.lines.length, 0);
   assert.match(relations.empty ?? "", /Absence means/,
@@ -196,7 +209,7 @@ test("Meaning is the relation type's declared description, not a restatement of 
   for (const r of system.relations) {
     const declared = system.relationTypes.get(r.type);
     assert.ok(declared, `the fixture declares relation type '${r.type}'`);
-    const meaning = textOf(blockNamed(object(inspectSelection(system, [relationSelection(r)])), "Meaning"));
+    const meaning = textOf(blockNamed(object(inspectSelection(system, resolveSelection(system, relationSelection(r)))), "Meaning"));
     assert.equal(meaning, declared.description,
       "Meaning must be the declaration verbatim — a second wording is a second source of truth");
   }
@@ -211,7 +224,7 @@ test("Absence means is the declared absence, verbatim", () => {
   assert.ok(declaringAbsence.length > 0, "this fixture should declare absence semantics");
   for (const r of declaringAbsence) {
     const absence = system.relationTypes.get(r.type)?.absence;
-    const shown = textOf(blockNamed(object(inspectSelection(system, [relationSelection(r)])), "Absence means"));
+    const shown = textOf(blockNamed(object(inspectSelection(system, resolveSelection(system, relationSelection(r)))), "Absence means"));
     assert.equal(shown, absence);
   }
 });
@@ -228,7 +241,7 @@ test("a relation type that declares no absence meaning is reported as declaring 
   const relationTypes = new Map(system.relationTypes);
   relationTypes.set(r.type, { ...declared, absence: null });
   const shown = textOf(blockNamed(
-    object(inspectSelection({ ...system, relationTypes }, [relationSelection(r)])), "Absence means"));
+    object(inspectSelection({ ...system, relationTypes }, resolveSelection(system, relationSelection(r)))), "Absence means"));
   assert.match(shown, /declares no absence meaning/);
   assert.match(shown, /licenses no conclusion/,
     "the sentence must decline to conclude, not conclude that nothing is there");
@@ -248,7 +261,7 @@ test("Composition for a forbidden type is the seam's own refusal, word for word"
   assert.ok(forbidden.length > 0, "the message-bus fixture forbids composition on publishes/subscribes");
   for (const r of forbidden) {
     const expected = unlicensedByModel(r.type, modelsDeclaring(system, r.type));
-    const shown = blockNamed(object(inspectSelection(system, [relationSelection(r)])), "Composition");
+    const shown = blockNamed(object(inspectSelection(system, resolveSelection(system, relationSelection(r)))), "Composition");
     assert.equal(shown.lines[0]?.text, expected.prose);
     // Never a refusal with no direction: the remedy the seam names rides along.
     assert.ok((shown.lines[1]?.text ?? "").includes(expected.wouldLicense),
@@ -264,7 +277,7 @@ test("Composition for a licensed type says so, and carries no refusal", () => {
   });
   assert.ok(allowed.length > 0, "the message-bus fixture licenses composition on calls/may_propagate_to");
   for (const r of allowed) {
-    const shown = textOf(blockNamed(object(inspectSelection(system, [relationSelection(r)])), "Composition"));
+    const shown = textOf(blockNamed(object(inspectSelection(system, resolveSelection(system, relationSelection(r)))), "Composition"));
     assert.match(shown, /allowed/);
     assert.doesNotMatch(shown, /not licensed/,
       "a licensed composition must not read like the refusal of a forbidden one");
@@ -283,7 +296,7 @@ test("flipping path composition flips the Composition reading", () => {
   const relationTypes = new Map(system.relationTypes);
   relationTypes.set(r.type, { ...declared, pathComposition: "allowed" });
   const shown = textOf(blockNamed(
-    object(inspectSelection({ ...system, relationTypes }, [relationSelection(r)])), "Composition"));
+    object(inspectSelection({ ...system, relationTypes }, resolveSelection(system, relationSelection(r)))), "Composition"));
   assert.match(shown, /licensed by this model/);
   assert.doesNotMatch(shown, /not licensed/);
 });
@@ -294,7 +307,7 @@ test("a relation says which model asserts it, and that model is navigable", () =
   // Dropping this line is how a linked view over two models comes to look like one unified model.
   const system = messageBus();
   for (const r of system.relations) {
-    const asserted = blockNamed(object(inspectSelection(system, [relationSelection(r)])), "Asserted by");
+    const asserted = blockNamed(object(inspectSelection(system, resolveSelection(system, relationSelection(r)))), "Asserted by");
     assert.deepEqual(asserted.lines.map((l) => l.action),
       [{ kind: "target", subject: `model:${r.model}` }]);
     assert.equal(asserted.lines[0]?.text, system.models.get(r.model)?.label ?? r.model);
@@ -305,14 +318,17 @@ test("a relation's endpoints are selectable, so inspection runs both ways", () =
   const system = messageBus();
   const r = system.relations[0];
   assert.ok(r !== undefined);
-  const ends = blockNamed(object(inspectSelection(system, [relationSelection(r)])), "Endpoints");
-  assert.deepEqual(ends.lines.map((l) => l.action), [
-    { kind: "select", selection: r.from },
-    { kind: "select", selection: r.to },
+  const ends = blockNamed(object(inspectSelection(system, resolveSelection(system, relationSelection(r)))), "Endpoints");
+  // The endpoints now carry the CANONICAL prefixed encoding. They used to carry the bare id, and
+  // that was the inspector's own half of the dual-encoding defect: the one route that reached a
+  // working ask-bar catalogue did so by writing the spelling the catalogue happened to understand.
+  assert.deepEqual(ends.lines.map((l) => selectedValue(l.action)), [
+    selectionValue({ kind: "entity", id: r.from }),
+    selectionValue({ kind: "entity", id: r.to }),
   ]);
   // And the round trip lands on the endpoint rather than on something that merely resolves.
   for (const id of [r.from, r.to]) {
-    const landed = object(inspectSelection(system, [id]));
+    const landed = object(inspectSelection(system, resolveSelection(system, id)));
     const label = system.entities.get(id)?.label;
     assert.ok(landed.title.includes(id) || (label !== undefined && landed.title.includes(label)),
       `selecting the ${id} endpoint inspected '${landed.title}' instead`);
@@ -332,7 +348,7 @@ test("Notes and Provenance are the disclosed blocks, and the semantic lines are 
   const r = system.relations[0];
   assert.ok(r !== undefined);
   for (const selection of [[...system.entities.keys()][0] as string, relationSelection(r)]) {
-    const i = object(inspectSelection(system, [selection]));
+    const i = object(inspectSelection(system, resolveSelection(system, selection)));
     const disclosed = i.blocks.filter((b) => b.disclosed).map((b) => b.label);
     assert.deepEqual(disclosed, ["Notes", "Provenance"],
       "only the human-context blocks are collapsed; the declared semantics stay open");
@@ -348,7 +364,7 @@ test("provenance renders on the selected object — correction 9's new home for 
     ?? [...system.entities.values()].find((e) => e.annotation.provenance !== null);
   assert.ok(withProvenance, "the shipped fixture records provenance on at least one object");
   const selection = system.models.has(withProvenance.id) ? `model:${withProvenance.id}` : withProvenance.id;
-  const provenance = blockNamed(object(inspectSelection(system, [selection])), "Provenance");
+  const provenance = blockNamed(object(inspectSelection(system, resolveSelection(system, selection))), "Provenance");
   assert.ok(provenance.lines.length > 0, "the object records an origin and the pane shows none");
 });
 
@@ -372,7 +388,7 @@ test("an assumption note carries the A1 boundary in the one wording the tables u
   };
   const entities = new Map(system.entities);
   entities.set(entity.id, annotated);
-  const notes = textOf(blockNamed(object(inspectSelection({ ...system, entities }, [entity.id])), "Notes"));
+  const notes = textOf(blockNamed(object(inspectSelection({ ...system, entities }, resolveSelection(system, entity.id))), "Notes"));
   assert.ok(notes.includes(CAVEAT), "the assumption boundary must be stated, in the shared wording");
 });
 
@@ -387,19 +403,19 @@ test("every entity and every relation of every shipped example resolves to an in
   // relation would have deleted a fact rather than relocated it.
   for (const system of everySystem()) {
     for (const id of system.entities.keys()) {
-      assert.equal(inspectSelection(system, [id]).state, "object", `entity '${id}' does not resolve`);
+      assert.equal(inspectSelection(system, resolveSelection(system, id)).state, "object", `entity '${id}' does not resolve`);
     }
     for (const r of system.relations) {
-      const view = inspectSelection(system, [relationSelection(r)]);
+      const view = inspectSelection(system, resolveSelection(system, relationSelection(r)));
       assert.equal(view.state, "object", `relation ${r.from}->${r.to} (${r.type}) does not resolve`);
     }
     for (const id of system.models.keys()) {
-      assert.equal(inspectSelection(system, [`model:${id}`]).state, "object", `model '${id}' does not resolve`);
+      assert.equal(inspectSelection(system, resolveSelection(system, `model:${id}`)).state, "object", `model '${id}' does not resolve`);
     }
     for (const m of system.machines.values()) {
-      assert.equal(inspectSelection(system, [`machine:${m.id}`]).state, "object", `machine '${m.id}' does not resolve`);
+      assert.equal(inspectSelection(system, resolveSelection(system, `machine:${m.id}`)).state, "object", `machine '${m.id}' does not resolve`);
       for (const state of m.states) {
-        assert.equal(inspectSelection(system, [`state:${m.id}:${state}`]).state, "object",
+        assert.equal(inspectSelection(system, resolveSelection(system, `state:${m.id}:${state}`)).state, "object",
           `state '${m.id}/${state}' does not resolve`);
       }
     }
@@ -417,7 +433,7 @@ test("no block is shown with nothing in it and nothing to say about that", () =>
       ...[...system.machines.keys()].map((id) => `machine:${id}`),
     ];
     for (const selection of selections) {
-      for (const b of object(inspectSelection(system, [selection])).blocks) {
+      for (const b of object(inspectSelection(system, resolveSelection(system, selection))).blocks) {
         assert.ok(b.lines.length > 0 || (b.empty ?? "").length > 0,
           `'${b.label}' on '${selection}' would render as an empty heading`);
       }
@@ -434,7 +450,7 @@ test("every declared relation type's semantics are reachable through one of its 
   for (const system of everySystem()) {
     const covered = new Set<string>();
     for (const r of system.relations) {
-      const i = object(inspectSelection(system, [relationSelection(r)]));
+      const i = object(inspectSelection(system, resolveSelection(system, relationSelection(r))));
       const t = system.relationTypes.get(r.type);
       assert.ok(t, `relation ${r.from}->${r.to} names undeclared type '${r.type}'`);
       if (t.absence !== null) {

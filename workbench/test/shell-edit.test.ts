@@ -19,8 +19,7 @@ import type { CanonicalSystem } from "../src/ir/types.ts";
 import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
 import { CAPABILITIES, CHROME_CONTROLS, boundHumanAffordances } from "../src/app/capabilities.ts";
 import { SURFACES } from "../src/ui/shell/surfaces.ts";
-import { elementValue, relationValue } from "../src/ui/view-model.ts";
-import { selectionKind } from "../src/ui/shell/selection.ts";
+import { elementValue, relationValue, resolveSelection } from "../src/ui/view-model.ts";
 import { ADD_MENU, EDIT_ACTIONS, contextualActions, satisfies } from "../src/ui/shell/edit-dialogs.ts";
 import type { EditForm } from "../src/ui/shell/edit-dialogs.ts";
 import {
@@ -101,7 +100,7 @@ test("the + Add menu offers exactly the operations that need nothing selected", 
 test("an entity offers rename, set property, connect, note and delete — prefilled with itself", () => {
   const system = messageBus();
   const id = [...system.entities.keys()][0] as string;
-  const actions = contextualActions(system, [id]);
+  const actions = contextualActions(resolveSelection(system, id));
   assert.deepEqual([...forms(actions)].sort(),
     ["add-note", "add-relation", "delete-element", "set-label", "set-property"]);
   // The prefill is the whole point: "the human UX should expose the operation where the user
@@ -121,7 +120,7 @@ test("a relation offers note and delete, and the delete carries its composite ad
   const value = relationValue(r.id !== null
     ? { kind: "id", model: r.model, id: r.id }
     : { kind: "ends", model: r.model, from: r.from, to: r.to, type: r.type });
-  const actions = contextualActions(system, [value]);
+  const actions = contextualActions(resolveSelection(system, value));
   assert.deepEqual([...forms(actions)].sort(), ["add-note", "delete-relation"]);
   const del = actions.find((a) => a.form === "delete-relation");
   // Relations have no ids of their own, so the action has to carry the model-plus-endpoints
@@ -132,7 +131,7 @@ test("a relation offers note and delete, and the delete carries its composite ad
 test("a model offers rename, connect-within, note and delete — and NOT an 'edit purpose'", () => {
   const system = messageBus();
   const id = [...system.models.keys()][0] as string;
-  const actions = contextualActions(system, [`model:${id}`]);
+  const actions = contextualActions(resolveSelection(system, `model:${id}`));
   assert.deepEqual([...forms(actions)].sort(), ["add-note", "add-relation", "delete-model", "set-label"]);
   assert.equal(actions.find((a) => a.form === "add-relation")?.prefill.get("model"), id,
     "connecting from a selected model must assert the relation in THAT model");
@@ -150,24 +149,24 @@ test("a state offers delete; a machine offers rename", () => {
   const system = everySystem().find((s) => s.machines.size > 0);
   assert.ok(system, "no shipped example declares a machine — this test needs one");
   const [id, machine] = [...system.machines.entries()][0] as [string, { states: readonly string[] }];
-  assert.deepEqual([...forms(contextualActions(system, [`machine:${id}`]))], ["set-label"]);
+  assert.deepEqual([...forms(contextualActions(resolveSelection(system, `machine:${id}`)))], ["set-label"]);
   const state = machine.states[0];
   assert.ok(state !== undefined, "this machine declares no state");
   // Through `elementValue`, not a hand-spelled `state:…`: the encoding is the view model's and a
   // test that spelled its own would pass over a selection the product cannot produce.
   assert.deepEqual(
-    [...forms(contextualActions(system, [elementValue({ kind: "state", machine: id, state })]))],
+    [...forms(contextualActions(resolveSelection(system, elementValue({ kind: "state", machine: id, state }))))],
     ["delete-element"]);
 });
 
 test("nothing selected and a dangling selection both offer no contextual action", () => {
   const system = messageBus();
-  assert.deepEqual(contextualActions(system, []), []);
+  assert.deepEqual(contextualActions({ kind: "none" }), []);
   // SH-I5's editing half. A transaction can delete the selected element; offering "Delete audit-log"
   // for an audit-log that no longer exists is a control that cannot work, and offering the ADDITIVE
   // operations instead would read as the user having cleared their selection on purpose.
-  assert.equal(selectionKind(system, ["no-such-thing"]), "unresolved");
-  assert.deepEqual(contextualActions(system, ["no-such-thing"]), []);
+  assert.equal(resolveSelection(system, "no-such-thing").kind, "unresolved");
+  assert.deepEqual(contextualActions(resolveSelection(system, "no-such-thing")), []);
 });
 
 test("every contextual action across every shipped system names a button index.html ships", () => {
@@ -186,7 +185,7 @@ test("every contextual action across every shipped system names a button index.h
         : { kind: "ends", model: r.model, from: r.from, to: r.to, type: r.type })),
     ];
     for (const s of selections) {
-      for (const a of contextualActions(system, [s])) {
+      for (const a of contextualActions(resolveSelection(system, s))) {
         seen.add(a.element);
         assert.ok(present.has(a.element), `#${a.element} is not in index.html (${a.form})`);
       }
@@ -202,7 +201,7 @@ test("every contextual action across every shipped system names a button index.h
 
 test("the palette lists every operation, available or not, with a reason either way", () => {
   const system = messageBus();
-  const commands = paletteCommands(system, []);
+  const commands = paletteCommands(system, { kind: "none" });
   assert.deepEqual([...forms(commands)].sort(), [...forms(EDIT_ACTIONS)].sort(),
     "the palette is not the catalogue — a command list that omits an operation hides it");
   for (const c of commands) {
@@ -213,7 +212,7 @@ test("the palette lists every operation, available or not, with a reason either 
 });
 
 test("with nothing loaded no command is available, and every row says why", () => {
-  const commands = paletteCommands(null, []);
+  const commands = paletteCommands(null, { kind: "none" });
   assert.deepEqual(commands.filter((c) => c.available).map((c) => c.form), []);
   for (const c of commands) assert.match(c.why, /loaded/);
 });
@@ -225,12 +224,12 @@ test("availability tracks the selection, by the same predicate the action bar us
     "selection:machine"] as const) {
     assert.equal(satisfies(need, false, "none"), false, `${need} is satisfied with nothing loaded`);
   }
-  assert.equal(satisfies("selection:element", true, selectionKind(system, [entity])), true);
-  assert.equal(satisfies("selection:relation", true, selectionKind(system, [entity])), false);
+  assert.equal(satisfies("selection:element", true, resolveSelection(system, entity).kind), true);
+  assert.equal(satisfies("selection:relation", true, resolveSelection(system, entity).kind), false);
 });
 
 test("the filter narrows by label and by operation name, and says what it left", () => {
-  const commands = paletteCommands(messageBus(), []);
+  const commands = paletteCommands(messageBus(), { kind: "none" });
   assert.equal(filterCommands("", commands).length, commands.length);
   // Both vocabularies reach the same row: the UI's word for the act and the transaction's word for
   // the operation. A user may know either.

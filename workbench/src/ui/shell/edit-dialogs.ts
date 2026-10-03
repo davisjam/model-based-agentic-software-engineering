@@ -28,13 +28,13 @@
  * module decides which operation and with what arguments, and hands it over.
  */
 import { fillSelect } from "../render-dom.ts";
-import type { Choice, EditOptions, EditRequest } from "../view-model.ts";
+import { elementValue, relationValue, resolveSelection } from "../view-model.ts";
+import type {
+  Choice, EditOptions, EditRequest, Selection, SelectionKind,
+} from "../view-model.ts";
 import { byId, mountIf, sel } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
-import { selectionKind } from "./selection.ts";
-import type { SelectionKind } from "./selection.ts";
 import type { EditOutcome, SubmitEdit } from "./edit-forms.ts";
-import type { CanonicalSystem } from "../../ir/types.ts";
 
 /** The ten editing operations the transaction vocabulary offers a form for. */
 export type EditForm =
@@ -300,45 +300,50 @@ const prefill = (...pairs: readonly (readonly [string, string])[]): ReadonlyMap<
  * disabled button or a dialog that quietly deleted and re-added would both be worse than the
  * absence: one is a control that cannot work, the other is an edit the user did not ask for.
  */
-export function contextualActions(
-  system: CanonicalSystem, selection: readonly string[],
-): readonly ContextualAction[] {
-  const kind = selectionKind(system, selection);
-  const subject = selection[0] ?? "";
-  switch (kind) {
-    case "entity":
+export function contextualActions(selected: Selection): readonly ContextualAction[] {
+  switch (selected.kind) {
+    case "entity": {
+      // The ID, from the ref — never the wire string. This case used to read `selection[0]`, so a
+      // tree selection (`entity:analytics`) offered "Rename entity:analytics…" and prefilled that
+      // as the `id` of the edit, while the agent's bare `analytics` offered the right one. The
+      // model and machine cases stripped their prefix by hand and this one forgot; a typed ref
+      // leaves nothing to forget.
+      const id = selected.id;
       return [
-        { form: "set-label", label: `Rename ${subject}…`, prefill: prefill(["id", subject]), element: "act-rename" },
+        { form: "set-label", label: `Rename ${id}…`, prefill: prefill(["id", id]), element: "act-rename" },
         {
-          form: "set-property", label: `Set a property on ${subject}…`,
-          prefill: prefill(["id", subject]), element: "act-set-property",
+          form: "set-property", label: `Set a property on ${id}…`,
+          prefill: prefill(["id", id]), element: "act-set-property",
         },
         {
-          form: "add-relation", label: `Connect ${subject} to…`,
-          prefill: prefill(["from", subject]), element: "act-connect",
+          form: "add-relation", label: `Connect ${id} to…`,
+          prefill: prefill(["from", id]), element: "act-connect",
         },
         {
-          form: "add-note", label: `Attach a note to ${subject}…`,
-          prefill: prefill(["target", `entity:${subject}`]), element: "act-note",
+          form: "add-note", label: `Attach a note to ${id}…`,
+          prefill: prefill(["target", elementValue(selected)]), element: "act-note",
         },
         {
-          form: "delete-element", label: `Delete ${subject}…`,
-          prefill: prefill(["element", `entity:${subject}`]), element: "act-delete-element",
+          form: "delete-element", label: `Delete ${id}…`,
+          prefill: prefill(["element", elementValue(selected)]), element: "act-delete-element",
         },
       ];
-    case "relation":
+    }
+    case "relation": {
+      const value = relationValue(selected.ref);
       return [
         {
           form: "add-note", label: "Attach a note to this relation…",
-          prefill: prefill(["target", subject]), element: "act-note",
+          prefill: prefill(["target", value]), element: "act-note",
         },
         {
           form: "delete-relation", label: "Delete this relation…",
-          prefill: prefill(["relation", subject]), element: "act-delete-relation",
+          prefill: prefill(["relation", value]), element: "act-delete-relation",
         },
       ];
+    }
     case "model": {
-      const id = subject.replace(/^model:/, "");
+      const id = selected.id;
       return [
         { form: "set-label", label: `Rename ${id}…`, prefill: prefill(["id", id]), element: "act-rename" },
         {
@@ -355,17 +360,18 @@ export function contextualActions(
         },
       ];
     }
-    case "machine": {
-      const id = subject.replace(/^machine:/, "");
+    case "machine":
       return [
-        { form: "set-label", label: `Rename ${id}…`, prefill: prefill(["id", id]), element: "act-rename" },
+        {
+          form: "set-label", label: `Rename ${selected.id}…`,
+          prefill: prefill(["id", selected.id]), element: "act-rename",
+        },
       ];
-    }
     case "state":
       return [
         {
           form: "delete-element", label: "Delete this state…",
-          prefill: prefill(["element", subject]), element: "act-delete-element",
+          prefill: prefill(["element", elementValue(selected)]), element: "act-delete-element",
         },
       ];
     case "none":
@@ -724,7 +730,7 @@ export function mountEditDialogs(ctx: ShellContext, submitEdit: SubmitEdit): Edi
       byId<HTMLButtonElement>("palette-open").disabled = !loaded;
 
       const contextual = loaded
-        ? contextualActions(frame.state.system, ctx.viewState.selection)
+        ? contextualActions(resolveSelection(frame.state.system, ctx.viewState.selection[0]))
         : [];
       const byElement = new Map(contextual.map((c) => [c.element, c]));
       for (const button of actionButtons) {

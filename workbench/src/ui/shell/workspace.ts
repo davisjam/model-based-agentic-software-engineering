@@ -28,7 +28,10 @@ import type {
   AccessibleEdge, AccessibleNode, AccessibleScene, Point, RenderedView, SceneSubject,
 } from "../../render/types.ts";
 import { paintDiagram, paintPrincipal, fillSelect } from "../render-dom.ts";
-import { resolveSubject, subjectValue } from "../view-model.ts";
+import {
+  resolveSelection, resolveSelections, resolveSubject, sceneNodeIdFor, selectionValue, subjectValue,
+} from "../view-model.ts";
+import type { SelectionRef } from "../view-model.ts";
 import { byId, mountIf, sel } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
 import { contextualActions } from "./edit-dialogs.ts";
@@ -57,9 +60,9 @@ const el = <K extends keyof HTMLElementTagNameMap>(
  * the entity. Colons are safe as separators for the same reason the rest of the shell assumes: a
  * legal id cannot contain one.
  */
-function nodeSelection(subject: SceneSubject, node: AccessibleNode): string | null {
-  if (node.role === "entity") return `entity:${node.id}`;
-  if (subject.kind === "machine") return `state:${subject.id}:${node.id}`;
+function nodeSelection(subject: SceneSubject, node: AccessibleNode): SelectionRef | null {
+  if (node.role === "entity") return { kind: "entity", id: node.id };
+  if (subject.kind === "machine") return { kind: "state", machine: subject.id, state: node.id };
   return null;
 }
 
@@ -77,14 +80,17 @@ function nodeSelection(subject: SceneSubject, node: AccessibleNode): string | nu
  */
 function edgeSelection(
   system: CanonicalSystem, subject: SceneSubject, edge: AccessibleEdge,
-): string | null {
+): SelectionRef | null {
   if (edge.kind !== "relation" || subject.kind !== "model") return null;
   const match = system.relations.find((r) =>
     r.model === subject.id && r.from === edge.from && r.to === edge.to && r.type === edge.via);
   if (match === undefined) return null;
-  return match.id !== null
-    ? `rel:id:${subject.id}:${match.id}`
-    : `rel:ends:${subject.id}:${match.from}:${match.to}:${match.type}`;
+  return {
+    kind: "relation",
+    ref: match.id !== null
+      ? { kind: "id", model: subject.id, id: match.id }
+      : { kind: "ends", model: subject.id, from: match.from, to: match.to, type: match.type },
+  };
 }
 
 // --------------------------------------------------------------------------------------------
@@ -102,7 +108,15 @@ function edgeSelection(
 export interface ContentsRow {
   readonly label: string;
   readonly detail: string;
-  readonly select: string | null;
+  /**
+   * What activating the row selects, or null for a row the selection encoding cannot address —
+   * which is a fact about the kernel and is therefore a field rather than an omission.
+   *
+   * A `SelectionRef`, so a row cannot be built with a half-encoded value. `selectionValue` turns
+   * it into the `data-select` attribute and into what the click handler sends, which is one
+   * spelling by construction rather than two by habit.
+   */
+  readonly select: SelectionRef | null;
 }
 
 /** The principal model as structure: the subject itself, then its nodes, then its edges. */
@@ -160,7 +174,7 @@ export function modelContents(
       // it. UX-I4's claim is that a model viewed is a model whose purpose is visible; the row says
       // it again in the place a reader is deciding whether to act on the whole model.
       detail: question,
-      select: subjectValue(subject),
+      select: { kind: subject.kind, id: subject.id },
     },
     nodeHeading: `${machine ? "States" : "Entities"} — ${scene.nodes.length}`,
     edgeHeading: `${machine ? "Transitions" : "Relations"} — ${scene.edges.length}`,
@@ -191,11 +205,12 @@ export function modelContents(
  * because it reproduces a desktop control.
  */
 function treeRow(
-  label: string, detail: string, value: string | null, selected: boolean,
-  onSelect: (value: string) => void,
+  label: string, detail: string, ref: SelectionRef | null, selected: boolean,
+  onSelect: (ref: SelectionRef) => void,
 ): HTMLElement {
   const li = el("li");
-  if (value === null) {
+  const value = ref === null ? null : selectionValue(ref);
+  if (value === null || ref === null) {
     li.append(el("span", label, "sublabel"));
   } else {
     const button = el("button", label);
@@ -214,7 +229,7 @@ function treeRow(
       button.setAttribute("aria-current", "true");
       button.className = "selected";
     }
-    button.addEventListener("click", () => { onSelect(value); });
+    button.addEventListener("click", () => { onSelect(ref); });
     li.append(button);
   }
   if (detail !== "") {
@@ -228,7 +243,7 @@ function treeRow(
 /** The reading, as DOM. The structure is `modelContents`'s; this decides only how it looks. */
 function paintContents(
   scene: AccessibleScene | null, system: CanonicalSystem | null, selection: readonly string[],
-  root: HTMLElement, onSelect: (value: string) => void,
+  root: HTMLElement, onSelect: (ref: SelectionRef) => void,
 ): void {
   root.replaceChildren();
   if (scene === null || system === null) {
@@ -236,12 +251,20 @@ function paintContents(
     return;
   }
   const contents = modelContents(scene, system);
-  const current = selection[0] ?? "";
+  // Compared as the ENCODED value, which is the whole point of there being one encoder: the row
+  // marked current is the row whose ref spells the same thing the wire holds, whichever surface
+  // wrote it. The bare agent spelling resolves through `resolveSelection` first, so
+  // `view.select(["analytics"])` lights the tree row the human click would have lit.
+  const selected = resolveSelection(system, selection[0]);
+  const current = selected.kind === "none" || selected.kind === "unresolved"
+    ? null
+    : selectionValue(selected);
   const group = (heading: string, rows: readonly ContentsRow[]): void => {
     root.append(el("p", heading, "sublabel"));
     const ul = el("ul", undefined, "notes");
     for (const r of rows) {
-      ul.append(treeRow(r.label, r.detail, r.select, r.select === current, onSelect));
+      const value = r.select === null ? null : selectionValue(r.select);
+      ul.append(treeRow(r.label, r.detail, r.select, value !== null && value === current, onSelect));
     }
     root.append(ul);
   };
@@ -296,8 +319,10 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
 
   const closeMenu = (): void => { canvasMenu.hidden = true; canvasMenu.replaceChildren(); };
 
-  const select = (value: string): void => {
-    ctx.viewState.selection = [value];
+  const select = (ref: SelectionRef): void => {
+    // The WIRE is strings — `view.selection()` returns them and an agent passes them — so the one
+    // encoder runs here, at the single boundary between the shell's typed refs and that wire.
+    ctx.viewState.selection = [selectionValue(ref)];
     closeMenu();
     ctx.repaint();
   };
@@ -312,7 +337,7 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
   });
 
   /** The selection value for whatever the pointer hit, or null for blank canvas. */
-  const hitSelection = (target: EventTarget | null): string | null => {
+  const hitSelection = (target: EventTarget | null): SelectionRef | null => {
     const h = hit(target);
     if (h === null || painted === null) return null;
     if (h.kind === "node") {
@@ -351,12 +376,12 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
       ctx.announce("Blank canvas: the Add menu is open.");
       return;
     }
-    ctx.viewState.selection = [value];
+    select(value);
     ctx.repaint();
     if (painted === null) return;
-    const actions = contextualActions(painted.system, [value]);
+    const actions = contextualActions(value);
     canvasMenu.replaceChildren();
-    canvasMenu.append(el("p", value, "id"));
+    canvasMenu.append(el("p", selectionValue(value), "id"));
     if (actions.length === 0 || openDialog === undefined) {
       canvasMenu.append(el("p", "No operation applies to this object.", "hint"));
     }
@@ -403,9 +428,16 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
       // the user did not ask for.
       let view: RenderedView | null = null;
       if (subject !== null) {
+        // The renderer's `selection` is SCENE NODE IDS, a different vocabulary from the wire
+        // encoding — so it is converted rather than forwarded. Forwarding is what used to happen,
+        // and a tree selection arrived as `entity:analytics`, matched no node, and drew no
+        // emphasis at all.
+        const nodeIds = resolveSelections(frame.state.system, ctx.viewState.selection)
+          .map(sceneNodeIdFor)
+          .filter((id): id is string => id !== null);
         view = ctx.workspace.renderView({
           subject,
-          selection: ctx.viewState.selection,
+          selection: nodeIds,
           hints: positionHints,
         });
         positionHints = view.positions;

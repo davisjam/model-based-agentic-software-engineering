@@ -45,8 +45,10 @@ import { provenanceFields } from "../../app/provenance.ts";
 import { licensesTraversal } from "../../sparql/licensing.ts";
 import { unlicensedByModel } from "../../sparql/refusal.ts";
 import type { Annotated, CanonRelation, CanonTransition, CanonicalSystem } from "../../ir/types.ts";
-import { CAVEAT as ASSUMPTION_CAVEAT, parseElementValue, parseRelationValue, relationValue } from "../view-model.ts";
-import type { RelationRef } from "../view-model.ts";
+import {
+  CAVEAT as ASSUMPTION_CAVEAT, relationValue, resolveSelection, selectionValue,
+} from "../view-model.ts";
+import type { RelationRef, Selection, SelectionRef } from "../view-model.ts";
 import { byId, mountIf } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
 import { regionHost, surfaceElement } from "./surfaces.ts";
@@ -63,8 +65,16 @@ import type { NavSurface } from "./surfaces.ts";
 export type InspectorAction =
   /** Make this model or machine the workspace's subject — `subjectValue`'s encoding. */
   | { readonly kind: "target"; readonly subject: string }
-  /** Move the selection, so this pane inspects something else. One encoded selection value. */
-  | { readonly kind: "select"; readonly selection: string };
+  /**
+   * Move the selection, so this pane inspects something else.
+   *
+   * A `SelectionRef`, NOT an encoded string. This field held raw ids and was the shell's second
+   * writer of the bare spelling — `{ kind: "select", selection: r.from }` for a relation's
+   * endpoints, while the contents tree wrote `entity:<id>` — which is how one field came to carry
+   * two encodings. A ref cannot be written in two spellings, and `selectionValue` encodes it once
+   * on the way to the DOM.
+   */
+  | { readonly kind: "select"; readonly ref: SelectionRef };
 
 export interface InspectorLine {
   readonly text: string;
@@ -202,7 +212,7 @@ function entityInspection(system: CanonicalSystem, id: string): Inspection {
   const containment: InspectorLine[] = [];
   if (e.parent !== null) containment.push(line(`inside ${entityName(system, e.parent)}`));
   for (const child of e.contains) {
-    containment.push(navigate(`contains ${entityName(system, child)}`, { kind: "select", selection: child }));
+    containment.push(navigate(`contains ${entityName(system, child)}`, { kind: "select", ref: { kind: "entity", id: child } }));
   }
 
   const appearsIn = [...system.models.values()]
@@ -213,7 +223,7 @@ function entityInspection(system: CanonicalSystem, id: string): Inspection {
     .filter((r) => r.from === e.id || r.to === e.id)
     .map((r) => navigate(
       `${relationPhrase(system, r)} · in ${modelName(system, r.model)}`,
-      { kind: "select", selection: relationValue(refOf(r)) },
+      { kind: "select", ref: { kind: "relation", ref: refOf(r) } },
     ));
 
   const machines = [...system.machines.values()]
@@ -301,8 +311,8 @@ function relationInspection(system: CanonicalSystem, r: CanonRelation): Inspecti
         navigate(modelName(system, r.model), { kind: "target", subject: `model:${r.model}` }),
       ]),
       block("Endpoints", [
-        navigate(`from ${entityName(system, r.from)}`, { kind: "select", selection: r.from }),
-        navigate(`to ${entityName(system, r.to)}`, { kind: "select", selection: r.to }),
+        navigate(`from ${entityName(system, r.from)}`, { kind: "select", ref: { kind: "entity", id: r.from } }),
+        navigate(`to ${entityName(system, r.to)}`, { kind: "select", ref: { kind: "entity", id: r.to } }),
       ]),
       ...annotationBlocks(r.annotation),
     ],
@@ -330,7 +340,7 @@ function modelInspection(system: CanonicalSystem, id: string): Inspection {
       block("Draw it", [navigate(`Show ${m.label} in the workspace`,
         { kind: "target", subject: `model:${m.id}` })]),
       block("Selects", m.entities.map((e) =>
-        navigate(entityName(system, e), { kind: "select", selection: e })), {
+        navigate(entityName(system, e), { kind: "select", ref: { kind: "entity", id: e } })), {
         empty: "This model selects no entity, so it reduces nothing.",
       }),
       ...annotationBlocks(m.annotation),
@@ -353,10 +363,10 @@ function machineInspection(system: CanonicalSystem, id: string): Inspection {
         { kind: "target", subject: `machine:${id}` })]),
       block("States", m.states.map((s) => navigate(
         s === m.initial ? `${s} — initial` : s,
-        { kind: "select", selection: `state:${id}:${s}` },
+        { kind: "select", ref: { kind: "state", machine: id, state: s } },
       ))),
       ...(m.entity === null ? [] : [block("Models", [
-        navigate(entityName(system, m.entity), { kind: "select", selection: m.entity }),
+        navigate(entityName(system, m.entity), { kind: "select", ref: { kind: "entity", id: m.entity } }),
       ])]),
       // No Notes or Provenance: `CanonMachine` carries no `annotation` field, so a machine has
       // nowhere to record either, and a disclosure over a structural absence is a dead control.
@@ -365,9 +375,16 @@ function machineInspection(system: CanonicalSystem, id: string): Inspection {
 }
 
 /** One state of one machine. The transitions that reach it and leave it, in words. */
-function stateInspection(system: CanonicalSystem, machine: string, state: string): Inspection | null {
+function stateInspection(system: CanonicalSystem, machine: string, state: string): Inspection {
   const m = system.machines.get(machine);
-  if (m === undefined || !m.states.includes(state)) return null;
+  // `resolveSelection` hands back a `state` ref only for a state this machine declares, so the
+  // existence check lives there now and an absence here means the system moved mid-paint. It
+  // throws rather than returning null, because a null would have to be rendered as "nothing is
+  // selected" over a live object — the same reason wave 3 deleted `checkNavPaths`' path-less
+  // branch instead of leaving it behind the required field.
+  if (m === undefined || !m.states.includes(state)) {
+    throw new Error(`state ${machine}/${state} resolved and then vanished`);
+  }
   const describe = (t: CanonTransition): string =>
     `${t.from} → ${t.to}`
     + (t.sync !== null ? ` · fires together with the other participants of ${t.sync}` : "")
@@ -405,10 +422,9 @@ function stateInspection(system: CanonicalSystem, machine: string, state: string
  * named — hiding them would make the pane disagree with `view.selection()` silently.
  */
 export function inspectSelection(
-  system: CanonicalSystem, selection: readonly string[],
+  system: CanonicalSystem, selected: Selection, alsoSelected: readonly string[] = [],
 ): InspectorView {
-  const first = selection[0];
-  if (first === undefined) {
+  if (selected.kind === "none") {
     return {
       state: "empty",
       message: "Nothing is selected. Select an entity or a relation — in the models rail, the "
@@ -416,17 +432,15 @@ export function inspectSelection(
         + "the models it appears in, and what its absence would mean.",
     };
   }
-  const rest = selection.slice(1);
-  const inspection = resolve(system, first);
-  if (inspection === null) {
+  if (selected.kind === "unresolved") {
     return {
       state: "unresolved",
-      message: `"${first}" is selected and this model system declares nothing by that name. An edit `
-        + "may have deleted it, or the name may be a misspelling; either way nothing is being "
-        + "inspected. Select something the system declares.",
+      message: `"${selected.value}" is selected and this model system declares nothing by that `
+        + "name. An edit may have deleted it, or the name may be a misspelling; either way nothing "
+        + "is being inspected. Select something the system declares.",
     };
   }
-  return { state: "object", inspection: prune({ ...inspection, alsoSelected: rest }) };
+  return { state: "object", inspection: prune({ ...resolve(system, selected), alsoSelected }) };
 }
 
 /**
@@ -442,42 +456,26 @@ const prune = (i: Inspection): Inspection => ({
   blocks: i.blocks.filter((b) => b.lines.length > 0 || b.empty !== null),
 });
 
-function resolve(system: CanonicalSystem, value: string): Inspection | null {
-  if (value.startsWith("rel:")) {
-    const ref = parseRelationValue(value);
-    if (ref === null) return null;
-    const found = system.relations.find((r) =>
-      r.model === ref.model
-      && (ref.kind === "id"
-        ? r.id === ref.id
-        : r.from === ref.from && r.to === ref.to && r.type === ref.type));
-    return found === undefined ? null : relationInspection(system, found);
+function resolve(system: CanonicalSystem, ref: SelectionRef): Inspection {
+  switch (ref.kind) {
+    case "relation": {
+      const r = ref.ref;
+      const found = system.relations.find((x) =>
+        x.model === r.model
+        && (r.kind === "id"
+          ? x.id === r.id
+          : x.from === r.from && x.to === r.to && x.type === r.type));
+      // `resolveSelection` already found this relation to hand back a `relation` ref at all, so an
+      // absence here would mean the system changed between resolving and rendering within one
+      // paint. Throwing says so rather than rendering "nothing is selected" over a live object.
+      if (found === undefined) throw new Error(`relation ${relationValue(r)} resolved and then vanished`);
+      return relationInspection(system, found);
+    }
+    case "state": return stateInspection(system, ref.machine, ref.state);
+    case "entity": return entityInspection(system, ref.id);
+    case "model": return modelInspection(system, ref.id);
+    case "machine": return machineInspection(system, ref.id);
   }
-  if (value.startsWith("state:")) {
-    const ref = parseElementValue(value);
-    return ref === null || ref.kind !== "state" ? null : stateInspection(system, ref.machine, ref.state);
-  }
-  if (value.startsWith("entity:")) {
-    const ref = parseElementValue(value);
-    return ref === null || ref.kind !== "entity" || !system.entities.has(ref.id)
-      ? null
-      : entityInspection(system, ref.id);
-  }
-  const colon = value.indexOf(":");
-  if (colon !== -1) {
-    const kind = value.slice(0, colon);
-    const id = value.slice(colon + 1);
-    if (kind === "model") return system.models.has(id) ? modelInspection(system, id) : null;
-    if (kind === "machine") return system.machines.has(id) ? machineInspection(system, id) : null;
-    return null;
-  }
-  // A bare name. Entities are what an agent selects and what the canvas will select, so they win the
-  // unprefixed form; a machine id is accepted too, because `subjects` numbers machines beside models
-  // and a caller that passed one meant it.
-  if (system.entities.has(value)) return entityInspection(system, value);
-  if (system.machines.has(value)) return machineInspection(system, value);
-  if (system.models.has(value)) return modelInspection(system, value);
-  return null;
 }
 
 // --------------------------------------------------------------------------------------------
@@ -521,7 +519,7 @@ function lineNode(l: InspectorLine): HTMLLIElement {
   const link = el("a", l.text);
   link.href = href(l.action.kind);
   link.dataset["action"] = l.action.kind;
-  link.dataset["arg"] = l.action.kind === "target" ? l.action.subject : l.action.selection;
+  link.dataset["arg"] = l.action.kind === "target" ? l.action.subject : selectionValue(l.action.ref);
   li.append(link);
   return li;
 }
@@ -617,7 +615,9 @@ export function mountInspector(ctx: ShellContext): ShellRegion {
   return {
     paint: (frame: ShellFrame) => {
       mountIf(region, frame.state.loaded);
-      const view = inspectSelection(frame.state.system, ctx.viewState.selection);
+      const wire = ctx.viewState.selection;
+      const view = inspectSelection(
+        frame.state.system, resolveSelection(frame.state.system, wire[0]), wire.slice(1));
       const signature = JSON.stringify(view);
       if (signature === rendered) return;
       rendered = signature;
