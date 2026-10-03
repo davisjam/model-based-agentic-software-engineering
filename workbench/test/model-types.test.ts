@@ -20,10 +20,12 @@ import { existsSync, readFileSync } from "node:fs";
 import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import {
-  absentSubstrateProse, MODEL_TYPES, modelTypeForQueryKind,
+  absentSubstrateProse, derivedPrimitives, MODEL_TYPES, modelTypeForQueryKind,
 } from "../src/engine/model-types.ts";
 import { runQuery } from "../src/engine/index.ts";
-import { BEHAVIOR_FORMS, GRAPH_FORMS, type Query } from "../src/engine/types.ts";
+import {
+  BEHAVIOR_FORMS, GRAPH_COMPOSING, GRAPH_FORMS, ORDER_OPS, type Query,
+} from "../src/engine/types.ts";
 import { REQUIREMENT_METRICS } from "../src/quant/requirement.ts";
 import { deriveLearnEntries, MODEL_TYPE_USES, presentTypes } from "../src/app/learn.ts";
 
@@ -49,18 +51,43 @@ test("one model type per query kind, and the published schema's kind enum agrees
   }
 });
 
-test("property families are the engine's own arrays, by reference — no copy to drift", () => {
-  // The source each kind's families must BE (not merely equal): the engine vocabulary the
-  // evaluator of that kind actually checks against.
+test("question forms are the engine's own arrays, by reference — no copy to drift (MQ-I3)", () => {
+  // The source each kind's forms must BE (not merely equal): the engine vocabulary the evaluator
+  // of that kind actually checks against.
   const source: Record<Query["kind"], readonly string[]> = {
     graph: GRAPH_FORMS,
     behavior: BEHAVIOR_FORMS,
     quantity: REQUIREMENT_METRICS,
   };
   for (const t of MODEL_TYPES) {
-    assert.equal(t.propertyFamilies, source[t.queryKind],
-      `${t.id}: propertyFamilies is a copy of its source, not a reference to it`);
+    assert.equal(t.query.forms, source[t.queryKind],
+      `${t.id}: query.forms is a copy of its source, not a reference to it`);
   }
+});
+
+test("the composing set is the engine's own, by reference, and null only where none exists (MQ-I3)", () => {
+  // `GRAPH_COMPOSING` is the one such set the engine owns. The other two types declare null, and
+  // the registry's comment says why — not "nothing composes", but "no shared set to point at".
+  const source: Record<Query["kind"], ReadonlySet<string> | null> = {
+    graph: GRAPH_COMPOSING,
+    behavior: null,
+    quantity: null,
+  };
+  for (const t of MODEL_TYPES) {
+    assert.equal(t.query.composing, source[t.queryKind],
+      `${t.id}: query.composing must BE the engine's set, or null where the engine owns none`);
+  }
+});
+
+test("order comparisons reference the engine's own operator set, never a restatement", () => {
+  for (const t of MODEL_TYPES) {
+    const order = t.query.predicates.order;
+    if (order === null || order.by !== "operator") continue;
+    assert.equal(order.ops, ORDER_OPS,
+      `${t.id}: predicates.order.ops is a copy of ORDER_OPS, not a reference to it`);
+  }
+  // Not vacuous: at least one type chooses its comparison from the operator set.
+  assert.ok(MODEL_TYPES.some((t) => t.query.predicates.order?.by === "operator"));
 });
 
 test("every composition partner is a registered type, and not the type itself", () => {
@@ -77,16 +104,136 @@ test("every composition partner is a registered type, and not the type itself", 
 // (2) The citations resolve
 // ---------------------------------------------------------------------------------------------
 
-test("every schema authority names a file that exists and contains the cited symbol", () => {
-  const cited = [
-    ...MODEL_TYPES.flatMap((t) => t.schema.map((s) => ({ owner: t.id, ...s }))),
-    ...MODEL_TYPE_USES.flatMap((u) => u.enabledBy.map((s) => ({ owner: u.id, ...s }))),
-  ];
+/**
+ * Every citation reachable from a registry entry, found by WALKING the entry rather than by
+ * enumerating the fields that hold one.
+ *
+ * The enumeration this replaces listed `schema` and `enabledBy`, which was total when it was
+ * written and stopped being total the moment the query semantics landed — citations now also sit on
+ * `query.licensedBy`, on every subject's `declaredBy`, on each `declared` gate, on the predicate
+ * scoping facts, on `interpretedBy` and on every join. An enumerating test would have passed while
+ * covering a fraction of them, which is the shape of an undeclared gap. The walk covers a field
+ * nobody has written yet.
+ */
+const collectAuthorities = (
+  value: unknown, where: string, out: { owner: string; file: string; symbol: string }[],
+): void => {
+  if (Array.isArray(value)) {
+    value.forEach((v, i) => collectAuthorities(v, `${where}[${i}]`, out));
+    return;
+  }
+  if (typeof value !== "object" || value === null || value instanceof Set || value instanceof Map) return;
+  const rec = value as Record<string, unknown>;
+  if (typeof rec["file"] === "string" && typeof rec["symbol"] === "string"
+    && typeof rec["role"] === "string") {
+    out.push({ owner: where, file: rec["file"], symbol: rec["symbol"] });
+    return;
+  }
+  for (const [k, v] of Object.entries(rec)) collectAuthorities(v, `${where}.${k}`, out);
+};
+
+test("every schema authority anywhere in the registry resolves to a real file and symbol", () => {
+  const cited: { owner: string; file: string; symbol: string }[] = [];
+  for (const t of MODEL_TYPES) collectAuthorities(t, t.id, cited);
+  for (const u of MODEL_TYPE_USES) collectAuthorities(u, u.id, cited);
+
   assert.ok(cited.length > 0, "no citations at all would make this test vacuous");
+  // The walk must reach deeper than the old enumeration did, or it is the enumeration in disguise.
+  assert.ok(cited.some((c) => c.owner.includes("query.")),
+    "the walk found no citation inside query semantics — it is not reaching the new fields");
+
   for (const c of cited) {
     assert.ok(existsSync(c.file), `${c.owner}: cited file '${c.file}' does not exist`);
     assert.ok(readFileSync(c.file, "utf8").includes(c.symbol),
       `${c.owner}: '${c.file}' does not contain '${c.symbol}' — the authority moved or was renamed`);
+  }
+});
+
+// ---------------------------------------------------------------------------------------------
+// Query semantics — primitives and citations, never a catalogue of permitted queries
+// ---------------------------------------------------------------------------------------------
+
+test("the primitive classification is TOTAL over the type's forms, and names nothing else", () => {
+  // Totality is the control. A form added to an engine vocabulary with no classification here
+  // would otherwise ship un-gated and un-described, and from a registry entry alone a deliberate
+  // exclusion and a forgotten one look the same.
+  for (const t of MODEL_TYPES) {
+    const classified = t.query.primitives.map((p) => p.form);
+    assert.equal(new Set(classified).size, classified.length, `${t.id}: a form is classified twice`);
+    assert.deepEqual([...classified].sort(), [...t.query.forms].sort(),
+      `${t.id}: the classification and the form vocabulary disagree`);
+  }
+});
+
+test("a per-instance gate CITES the declaration it reads, and the citation is the type's own", () => {
+  // The registry says what KIND of gate a primitive has and where its facts live; the IR decides
+  // (V32). Identity — not equality — between a gate's citation and a `licensedBy` entry is what
+  // makes that one object rather than two literals agreeing by luck.
+  let declared = 0;
+  for (const t of MODEL_TYPES) {
+    for (const p of t.query.primitives) {
+      if (p.gate.kind === "by-construction") {
+        assert.ok(p.gate.why.length > 30,
+          `${t.id}/${p.form}: a by-construction gate owes a real reason, not a placeholder`);
+        continue;
+      }
+      declared += 1;
+      assert.ok(t.query.licensedBy.includes(p.gate.by),
+        `${t.id}/${p.form}: the gate's citation is not one of the type's licensedBy entries, by identity`);
+    }
+  }
+  assert.ok(declared > 0, "no per-instance gate at all would make this test vacuous");
+});
+
+test("a form that only reads a declaration is never gated per instance", () => {
+  for (const t of MODEL_TYPES) {
+    for (const p of t.query.primitives) {
+      if (p.basis !== "declared") continue;
+      assert.equal(p.gate.kind, "by-construction",
+        `${t.id}/${p.form}: a declaration-reading form claims a per-instance license it cannot need`);
+    }
+  }
+});
+
+test("where the engine owns a composing set, it is exactly the per-instance-gated forms", () => {
+  // The two facts come from different places — `GRAPH_COMPOSING` from the engine, the gates from
+  // this registry — so their agreement is a real cross-check rather than a tautology. A form added
+  // to the engine's set without a gate here, or gated here without entering the set, fails.
+  let checked = 0;
+  for (const t of MODEL_TYPES) {
+    const composing = t.query.composing;
+    if (composing === null) continue;
+    checked += 1;
+    const gated = t.query.primitives.filter((p) => p.gate.kind === "declared").map((p) => p.form);
+    assert.deepEqual([...gated].sort(), [...composing].sort(),
+      `${t.id}: the engine's composing set and the registry's per-instance gates disagree`);
+  }
+  assert.ok(checked > 0, "no type declared a composing set — the cross-check ran on nothing");
+});
+
+test("the derived primitives are computed, and they are the non-declaration-reading forms", () => {
+  for (const t of MODEL_TYPES) {
+    const derived = derivedPrimitives(t.query);
+    assert.deepEqual(derived.map((p) => p.form),
+      t.query.primitives.filter((p) => p.basis !== "declared").map((p) => p.form),
+      `${t.id}: derivedPrimitives disagrees with the classification it reads`);
+    assert.ok(derived.length > 0, `${t.id}: a model type that derives nothing answers no question`);
+  }
+});
+
+test("every query subject names a distinct noun, and a join's partner is a registered type", () => {
+  const ids = new Set(MODEL_TYPES.map((t) => t.id));
+  for (const t of MODEL_TYPES) {
+    const nouns = t.query.subjects.map((s) => s.noun);
+    assert.ok(nouns.length > 0, `${t.id}: a type whose questions name no noun is unaskable`);
+    assert.equal(new Set(nouns).size, nouns.length, `${t.id}: two subjects claim one noun`);
+    for (const j of t.query.joins) {
+      if (j.with !== null) {
+        assert.ok(ids.has(j.with), `${t.id}/${j.name}: joins with unregistered '${j.with}'`);
+        assert.notEqual(j.with, t.id, `${t.id}/${j.name}: joins with itself across types`);
+      }
+      assert.ok(j.meaning.length > 30, `${t.id}/${j.name}: the join's meaning is a placeholder`);
+    }
   }
 });
 
@@ -176,7 +323,7 @@ test("Learn entries are the registry, projected: one card per type, fields from 
     const t = MODEL_TYPES[i];
     assert.ok(t !== undefined);
     assert.equal(e.question, t.question);
-    assert.equal(e.propertyFamilies, t.propertyFamilies, `${e.id}: the card must hold the same array`);
+    assert.equal(e.forms, t.query.forms, `${e.id}: the card must hold the registry's own array`);
     assert.equal(e.combineWith.partnerLabel, modelTypeForQueryKind(
       MODEL_TYPES.find((m) => m.id === e.combineWith.partner)?.queryKind ?? t.queryKind).label);
   }
