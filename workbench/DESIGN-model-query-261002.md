@@ -1,0 +1,730 @@
+# The model query interface: design
+
+The authority is `DECISIONS-RULED-model-query-261002.md` — the Q9 ruling and its two extensions.
+This document designs what that ruling obliges: a model query interface whose operations are
+defined over the MAGE metamodel, a `check` operation naming the gate that already exists, a
+`validate` operation closing the gap the ruling names, query semantics attached to the model-type
+registry, and the SPARQL console fenced outside the semantic interface where the registry can see
+it. The design does not re-litigate the ruling, and nothing here is implementation — waves are
+sequenced in §10.
+
+What this design does NOT touch: the SPARQL evaluator's semantics (`src/sparql/eval.ts`), the RDF
+projection (`src/rdf/`), the transaction pipeline, and `src/ui/` (a sibling agent is live there;
+the human halves of new operations ride the shell waves, §10). Where a ruling obligation looks
+like it needs those, the relevant section shows it does not.
+
+The architecture, fixed by the ruling and used as this document's spine:
+
+```
+model type definition
+  → structural semantics + query semantics + validation semantics
+    → model query interface  (construct → check → execute → result + evidence)
+      → human and agent affordances
+        → SPARQL execution over RDF   (implementation, never authority)
+```
+
+---
+
+## 1. Genre check — OCL, and what was taken
+
+The genre is model query and constraint over a metamodel. The canonical best-in-class is **OCL**
+(OMG, over UML/MOF), with Eclipse OCL / Papyrus / Capella as the adjacent tooling, QVT as the
+transformation sibling, VIATRA as the declared-graph-pattern approach over EMF, and the SysML v2
+API's query services as the recent REST-shaped instance.
+
+**Taken, at naming-convention cost:**
+
+- **The operation vocabulary.** OCL's `allInstances()` becomes `elements` (§2.2, scoped — see the
+  departure below); association-end navigation becomes relation traversal over a declared relation
+  type with a direction; OCL 2.4's `closure()` is the composing traversal family
+  (`reachability`, already licensed per relation type); `select`/`reject` over a collection is the
+  `where`/predicate grammar already in `src/engine/types.ts:183,205`; an invariant evaluated
+  against a model is a saved property with an expectation — the construct the workbench already
+  has. The author's five example shapes all land in this vocabulary (§2.2).
+- **Context-typed well-formedness.** Every OCL expression is typed against a classifier context
+  and checked before evaluation. That is `check` (§5): a question is admitted against the
+  metamodel before anything evaluates, and ill-typed questions are a *static* answer, not a
+  runtime surprise.
+- **Side-effect freedom.** OCL constraints may not mutate the model. Held here more strongly than
+  OCL holds it: queries are read-only by construction, and verdicts are derived state that is
+  recomputed, never stored (the V18 discipline).
+- **Explicit absence semantics.** OCL's `invalid`/`null` taught the genre that partial functions
+  over models need a defined absence value. The workbench already exceeds the lesson: a refusal is
+  a typed object carrying cause, missing distinctions, and the remedy (`src/engine/types.ts:70`,
+  `src/sparql/refusal.ts:83`).
+
+**Deliberately not taken, and why:**
+
+- **The textual language.** The ruling defers it; the trigger is measured need (§4).
+- **Unlicensed navigation.** OCL navigates any association, in either direction, by default. MAGE
+  licenses traversal per relation type (`composition.path`, V7; `symmetric`, V8) and refuses the
+  rest by name. This is the sharpest departure, and it is the ruling's own boundary: the model
+  decides what questions mean, not the representation's mechanical navigability.
+- **Unscoped `allInstances()`.** OCL's is global. Here every relational question states its scope
+  (V34, `src/sparql/licensing.ts:106`): one model's purposeful reduction, or the system union.
+- **`iterate` and general collection folds.** The point where OCL became a general-purpose
+  language inside a constraint language, and the best-documented source of unanalyzable OCL. This
+  is where the composition line is drawn (§4): no folds, no result piping.
+- **Declared named patterns per type (VIATRA's shape).** A per-type catalogue of permitted
+  queries is exactly the "declarative query-language-in-YAML" the author forbade. The metamodel
+  declares meanings; the query layer composes questions.
+
+## 2. The interface — what exists, what is named, what is added
+
+### 2.1 The seed is already planted
+
+The ruling says to start from what is there, and what is there is most of the interface:
+
+- `window.mage.query()` / `ask()` are typed, model-semantic, and return outcome + coverage +
+  evidence + the hash they describe (`src/app/agent-api.ts:47,57`).
+- The operation inventory's substrate is the form vocabularies: `GRAPH_FORMS` (10 forms),
+  `BEHAVIOR_FORMS` (6), `REQUIREMENT_METRICS` (3) (`src/engine/types.ts:127,134`;
+  `src/quant/requirement.ts:31`).
+- The substrate-absence rung already runs ahead of every evaluator and is registry-worded
+  (`src/engine/index.ts:73` → `absentSubstrateVerdict`, `src/engine/model-types.ts:223`).
+- The SPARQL seam's gate already holds the single-semantics requirement by type: `admit` is the
+  only producer of the branded `LicensedQuestion` (`src/sparql/licensing.ts:183,294`), and
+  `evaluate` accepts only that type (`src/sparql/eval.ts:831`).
+
+So the design adds exactly four things: the `QuerySemantics` declaration on the registry (§3),
+the `check` operation (§5), the `validate` operation (§6), and the fence (§7). Plus one new query
+operation (§2.2) and a derived facade spelling (§2.3).
+
+### 2.2 The operation inventory, derived
+
+The ruling requires the inventory be derived from what the kernel can answer, not enumerated by
+hand. The kernel answers: the three form vocabularies, element enumeration (`inspect`), and
+saved-question evaluation. The author's five example shapes map onto that substrate as follows —
+four exist, one is new:
+
+| Author's shape | Operation | Substrate | Status |
+|---|---|---|---|
+| elements of a given type | `elements` | the IR's entity table + the `PropConstraint` grammar | **NEW** (§2.4) |
+| following a relationship | graph `direct` / `predecessors` / `successors` | `GRAPH_FORMS` | exists |
+| computing reachability | graph `reachability` / `components`, licensed per relation type | `GRAPH_FORMS` ∩ `GRAPH_COMPOSING` | exists |
+| tracing between model elements | graph `path` (witness-bearing) + the `appears-in` cross-model join (`agent-api.ts:214`) | `GRAPH_FORMS`, entity identity | exists |
+| identifying violations of a model constraint | `validate` (model well-formedness, §6) + `properties()` (declared claims with expectations) | `rules.ts`, saved queries | `properties` exists; `validate` is §6 |
+
+Behavioural and quantitative questions are already operations (`BEHAVIOR_FORMS`,
+`REQUIREMENT_METRICS`) and need no renaming. The inventory is therefore not a new list anyone
+maintains: it IS the form vocabularies plus `elements`, and §3 makes the registry say so per
+type, by reference.
+
+### 2.3 One declaration, two affordances — and the agent spelling
+
+The Extension-1 test: declaring a relationship as a queryable directed relation must yield both a
+Workbench action (*Show dependencies*) and an agent operation (`related(element, DEPENDS_ON,
+OUTGOING)`), derived from one declaration.
+
+The machine side keeps `query()` as the stable wire contract, and gains a **derived facade**:
+`window.mage.model.*`, a namespace of thin constructors — `elements`, `related`, `reachable`,
+`path`, `violations` — each of which builds a typed `Query` (or calls `validate`) and delegates to
+the same `workspace.query` seam. The facade adds no semantics: a derivation test (MQ-I8) holds
+that every facade operation maps onto a form the registry's `QuerySemantics` declares, so the
+facade cannot offer what the kernel refuses. It is registered as additional machine affordances of
+the `query` capability — the `ask`/`sparql` precedent: one capability, several spellings
+(`src/app/capabilities.ts:219`).
+
+The human side derives from the same declaration: the inspector's contextual actions for a
+selected element are generated per declared traversable relation (*Show depends_on →*), and the
+ask bar's contextual question catalogue is generated from `QuerySemantics.forms` for the types the
+loaded system declares. Those surfaces are shell territory; §10 sequences them, and each owes a
+declared navigation path under the ratified G1 reading (`DECISIONS-RULED-shell-261002.md`).
+
+### 2.4 `elements` — the one new operation
+
+`elements({ type?, where? }) → { ids, hash }`: the entities the system declares, filtered by
+declared type and by the existing `PropConstraint` grammar (`src/engine/types.ts:170`). It reads
+the IR directly — it is a representation question, not an analysis — and it is licensed by the
+structural-graph type's presence rung like any graph question. It exists because every one of the
+author's other shapes takes element ids as input, and today an agent gets them only by filtering
+the whole of `inspect()` client-side. Scope note: `where` uses the same operator rules as
+everywhere else — order comparisons only over a declared ordered domain (V20,
+`src/engine/types.ts:168`).
+
+## 3. Query semantics on the model type
+
+### 3.1 The shape: primitives and citations, never permitted queries
+
+`ModelType` (`src/engine/model-types.ts:60`) gains one field:
+
+```ts
+export interface ModelType {
+  // ... existing fields ...
+  /** What questions can meaningfully be asked of this type. Primitives, never query catalogues. */
+  readonly query: QuerySemantics;
+}
+
+export interface QuerySemantics {
+  /**
+   * The question forms this type answers — the engine's own array BY REFERENCE (MQ-I3).
+   * Replaces `propertyFamilies`, which was this fact wearing a Learn-page field name.
+   */
+  readonly forms: readonly string[];
+  /**
+   * Forms whose answer is derived by composing edges or steps, and which are therefore gated by a
+   * per-instance licensing declaration. Null when composition is not a concept the type has.
+   */
+  readonly composing: ReadonlySet<string> | null;
+  /**
+   * Where per-INSTANCE licensing is DECLARED, as citations. The registry points; the IR decides
+   * (V32). Restating `pathComposition: forbidden` here would be a second copy of a per-system
+   * fact, which is the drift this registry exists to prevent.
+   */
+  readonly licensedBy: readonly SchemaAuthority[];
+  /** The nouns a question of this type may name, each with the selector grammar that applies. */
+  readonly subjects: readonly QuerySubject[];
+  /** Which comparisons are meaningful over this type's attributes, and what scopes them. */
+  readonly predicates: PredicateSemantics;
+  /** Transitive or derived relations the type defines semantically, each with its gate. */
+  readonly derived: readonly DerivedRelation[];
+  /** Cross-model traces or joins that are meaningful for this type. */
+  readonly joins: readonly JoinSemantics[];
+}
+
+export interface QuerySubject {
+  readonly noun: string;                    // "entity", "relation type", "state", "quantity"
+  readonly selector: "by-id" | "property-constraints" | "predicate";
+}
+export interface PredicateSemantics {
+  /** What equality/membership applies to. */
+  readonly equality: string;
+  /** Order comparisons, and the declared structure that licenses them. Null: no ordering concept. */
+  readonly order: { readonly ops: ReadonlySet<string>; readonly scopedBy: string } | null;
+}
+export interface DerivedRelation {
+  readonly name: string;
+  readonly meaning: string;
+  /** The per-instance declaration that gates it, or "none" when derived by construction. */
+  readonly gate: string;
+}
+export interface JoinSemantics {
+  readonly name: string;
+  readonly meaning: string;
+}
+```
+
+This is the author's Extension-1 list — queryable elements and properties, traversable
+relationships and directions, meaningful predicates, defined transitive relations, evaluable
+constraints, meaningful cross-model joins, supported operations — as a typed description. The
+load-bearing property: **every field is either a reference to an engine-owned vocabulary or a
+citation of where the IR declares the fact.** Nothing enumerates permitted queries; nothing
+restates a per-system declaration. The gate keeps reading the IR; the registry says what KIND of
+gate each primitive has and where its facts live. Constraint evaluability needs no field of its
+own: a constraint-as-query is a saved property, and the forms it may use are `forms`.
+
+### 3.2 The three kernel types, declared
+
+**structural-graph:**
+
+```ts
+query: {
+  forms: GRAPH_FORMS,                       // identity-asserted, not spread
+  composing: GRAPH_COMPOSING,               // the five composing forms, by reference
+  licensedBy: [
+    { file: "src/ir/types.ts", symbol: "CanonRelationType",
+      role: "per-relation licensing: composition.path gates composing forms (V7); symmetric fixes traversal directions (V8)" },
+  ],
+  subjects: [
+    { noun: "entity", selector: "property-constraints" },
+    { noun: "relation type", selector: "by-id" },
+    { noun: "model", selector: "by-id" },   // scope, stated per question (V34)
+  ],
+  predicates: {
+    equality: "any scalar entity property",
+    order: { ops: ORDER_OPS, scopedBy: "a shared declared ordered domain (V20)" },
+  },
+  derived: [
+    { name: "reachability", meaning: "transitive closure of one licensed relation type",
+      gate: "composition.path" },
+    { name: "connected components", meaning: "reachability classes", gate: "composition.path" },
+    { name: "containment ancestry", meaning: "the entity contains tree, hierarchical by construction (§2)",
+      gate: "none" },
+    { name: "cycles", meaning: "declared-acyclicity check", gate: "none — licensed by V8 independently of V7" },
+  ],
+  joins: [
+    { name: "appears-in", meaning: "one entity's identity across purposeful models (§8)" },
+  ],
+}
+```
+
+**state-machine:** `forms: BEHAVIOR_FORMS`; `composing: null` — behavioural questions compose
+configurations, not edges, and the state space is the type's own semantics rather than a gated
+privilege; `licensedBy` cites `CanonMachine`/`CanonTransition` (guards, sync) as what fixes the
+configuration space; `subjects`: state (by-id inside a predicate), machine variable (predicate),
+transition (selector); `predicates`: equality on variables over their finite domains, order only
+over declared ordered domains; `derived`: configuration reachability (gate: none — it is what the
+type IS), repeatable cycles / lassos; `joins`: the machine↔entity binding (`CanonMachine.entity`),
+which is what lets a behavioural answer name the structural element it concerns.
+
+**quantitative-model:** `forms: REQUIREMENT_METRICS`; `composing: null`; `licensedBy` cites
+`CanonAccounting` (the declared basis is what licenses path aggregation) and `DIMENSIONS` (the
+closed table comparisons normalize against); `subjects`: quantity (by-id), target predicate,
+declared ceiling (`within`, by-id); `predicates`: order comparisons scoped by one shared dimension
+— cross-dimension comparison is a category error, refused by name; `derived`: path-aggregated
+worst case (gate: `accounting` basis), configuration peak (gate: dimension scope); `joins`: the
+composition with the state machine the registry already declares (`combineWith`) — a quantity
+question selects executions by a behavioural predicate (`QuantityQuery.target`), which is the one
+cross-type composition built today.
+
+### 3.3 What consults it
+
+Four consumers, which is what keeps the declaration from being a brochure:
+
+1. **The dispatcher** keeps consulting `presentIn` at the substrate rung (unchanged).
+2. **`check`** (§5) reports refusal alternatives from `forms`, `subjects`, and `predicates` —
+   the closed lists a revising agent needs.
+3. **The derived facade and the human contextual actions** (§2.3) are generated from `forms` and
+   `derived` — MQ-I8.
+4. **Learn** projects `forms` where it projected `propertyFamilies` (`src/app/learn.ts` changes
+   one field read; its derivation discipline is unchanged).
+
+## 4. Composition without a language
+
+### 4.1 The line
+
+Three sanctioned composition sites, and no fourth:
+
+1. **Within one operation: the closed combinator grammars.** Predicates compose by
+   `all-of`/`any-of`/`not` (`src/engine/types.ts:205`); graph questions carry endpoint property
+   constraints and cross-property comparisons (`GraphWhere`, `:183`); quantity questions compose a
+   behavioural target predicate with a metric and a declared ceiling. These grammars are typed,
+   closed, and already shipped.
+2. **Across model types: registered compositions only.** A cross-type question exists when the
+   registry declares the pair (`combineWith`) and an operation implements it —
+   `QuantityQuery.target` is the built instance. A new cross-type composition is a deliberate
+   registry + engine act, never an emergent property of chaining.
+3. **In the caller.** An agent iterates: run `elements`, loop, run `related` per element. That
+   costs round trips and is the intended cost — the caller composes RESULTS in its own language,
+   not queries in ours.
+
+**Ruled out, by name:** piping one operation's result set into another operation as input; joins
+over two result sets inside the interface; universal quantification over a result set as one call
+("for every element matching P, does Q hold" — the caller loops, or models the claim as a saved
+`forall` property where a form supports it); aggregation beyond the declared forms (no generic
+GROUP BY); disjunction ACROSS operations; folds (`iterate`) of any kind. Each of these is a query
+language wearing an API's clothes, and together they are how typed operations become one by
+accident.
+
+### 4.2 The revisit trigger, made measurable
+
+The ruling's trigger for a textual language is measured need. Measured means recorded: a question
+is evidence when it (a) arises in a shipped example, curriculum exercise, or recorded agent
+workflow, and (b) cannot be expressed as one typed operation plus caller-side iteration, and (c)
+drove someone to the escape hatch (§7). MQ-I5's test keeps shipped artifacts off the hatch, so
+every hit of (c) is deliberate and reportable. When such questions accumulate, the composition
+decision reopens with data; §G5 asks the author to ratify this as the trigger's definition.
+
+## 5. `check` — naming the gate that exists
+
+### 5.1 What `check` is, and is not
+
+`check(query) → QueryCheckResult` answers: *is this a meaningful and permitted question for this
+model type?* It takes the same untyped query document `query()` takes. It does not predict the
+answer, the outcome, or coverage — those are execution's. And it is advisory for efficiency, not
+load-bearing for safety: executing an unchecked query is permitted and safe, because the executor
+runs the same admission itself. The `construct → check → execute` flow exists so an agent can
+revise cheaply, not so the executor can trust its caller.
+
+`check` does NOT accept SPARQL text. SPARQL is not a model query under the ruling; the console
+keeps its own internal gate (`translate`, `src/sparql/parse.ts:963`, which is already
+check-then-compile), outside the semantic interface (§7).
+
+### 5.2 One semantics, held two ways — and why not one
+
+The ruling: a query accepted by the checker must not acquire a different meaning at execution.
+Two structural arrangements hold it, one per path, each already native to its layer:
+
+- **The SPARQL seam: the brand.** `admit` is the sole producer of `LicensedQuestion`; `evaluate`
+  consumes only that type; the brand cannot be serialized, so every evaluating thread runs the
+  gate itself (`src/sparql/licensing.ts:197-201`). Unchanged by this design, and deliberately so.
+- **The engine path: the executor calls the checker.** Each evaluator's pre-evaluation decision
+  rungs — vocabulary resolution, endpoint existence, licensing, category errors — are factored
+  into one exported function per kind, `admitTyped(system, query) → TypedAdmission`, and the
+  evaluator's first act becomes calling it. Today those rungs run at the head of each evaluator
+  but interleaved per form (`src/engine/graph.ts:431-512`); the factoring moves code, not
+  decisions. `check` calls `parseQuery` → `absentSubstrateVerdict` → `admitTyped`; `execute`
+  calls the same three and then evaluates. The checker is not a second implementation — it is the
+  executor's own head, exposed.
+
+Why not brand the engine path too: the brand earns its keep at the seam because translation and
+evaluation are separate modules on separate threads, so an ungated path could exist. On the
+engine path, `admitTyped` and evaluation live in one function's body; the call-graph identity is
+the guarantee, and a brand would be ceremony with no second caller to defend against. MQ-I2 pins
+the agreement regardless of arrangement: for every saved question in every shipped example, plus
+a violation battery, `check` and `execute` report the same refusal cause and the same sentence at
+the same hash.
+
+### 5.3 `QueryCheckResult`
+
+```ts
+export type QueryCheckResult =
+  | { readonly outcome: "licensed";
+      readonly kind: Query["kind"];
+      readonly modelType: ModelTypeId;     // what the question interrogates
+      readonly hash: string }              // the system this admission describes
+  | { readonly outcome: "refused";
+      readonly refusal: Refusal;           // reason, prose, missing, models — the engine's own shape
+      readonly alternatives: readonly string[];
+      readonly hash: string }
+  | { readonly outcome: "malformed";       // parseQuery failed: not a question of any type
+      readonly prose: string;
+      readonly alternatives: readonly string[] };
+```
+
+The refused arm carries the three things the ruling demands. The offending portion is
+`refusal.missing` (the engine's existing field: the named relation type, the rejected construct,
+the absent distinction). The violated rule is `refusal.reason` — the existing closed
+`RefusalReason` vocabulary (`src/engine/types.ts:30`), which already spans both interfaces. The
+**permitted alternatives** are the new field, and they are derived from closed vocabularies, never
+written per site: an unknown form lists the type's `forms`; an unknown relation type lists the
+system's declared relation types; an unlicensed traversal quotes `wouldLicense`; an unknown metric
+lists `REQUIREMENT_METRICS`; a missing quantifier lists both quantifiers with their evidence
+rules. A refusal that names alternatives from anywhere other than a closed list is a drift site,
+and MQ-I2's battery includes one case per `RefusalReason` to keep the derivation honest.
+
+Relation to `LicensedQuestion`, stated exactly: **`QueryCheckResult` is a report derived from the
+same admission call; it is not the certificate, and never carries it.** The brand stays
+unserializable and internal. A caller cannot present a `licensed` check result to skip the gate —
+execution re-admits, structurally. This is the arrangement the seam already chose for the Worker
+boundary ("publish the gate's INPUT, never its output", `DESIGN-sparql-261002.md` §8.1), applied
+to the agent boundary.
+
+### 5.4 Where it lands
+
+`workspace.check(raw)` on the facade (`src/app/services.ts`), `window.mage.check(raw)` on the
+agent API. It is a **new capability row**, `check-query`: it answers a different question than
+`query` and returns a shape no other capability produces — the `explore-space` precedent
+(`src/app/capabilities.ts:288`). Its human affordance: a *Check* control beside *Ask* in the
+Advanced query surface, same service, declared `absent` with a note until the shell wave wires it
+(the house pattern: an accurate violation over a comfortable number). UX-I1 will therefore report
+`check-query` until that wave lands; that is the registry doing its job.
+
+## 6. `validate(model)` — the operation, and the authority ruling
+
+### 6.1 The gap, confirmed at the registry itself
+
+The rule set exists (`src/validator/rules.ts:1025`) and runs inside `load` and `transact`
+(`src/app/services.ts:204,242`; relayed at `src/app/agent-api.ts:499,540` — the ruling's cites at
+`agent-api.ts:400,478` have drifted). There is no on-demand call: an agent that wants to know
+whether the current model is well formed must mutate or reload it. The capability registry
+records the gap in its own terms — the `validate` row's machine affordance is
+`window.mage.context.findings` (`src/app/capabilities.ts:216`), a SNAPSHOT of the last
+load/transact rather than an operation. An agent reading it after another client's edits reads
+stale findings and cannot tell.
+
+### 6.2 The operation
+
+`workspace.validate()` on the facade; `window.mage.validate()` on the agent API. It recomputes
+from the current system — the V18 discipline for derived state, the same reason `properties()`
+recomputes (`src/app/agent-api.ts:84`). The `validate` capability row re-points its machine
+affordance to `window.mage.validate`; `context().findings` survives as what it honestly is, the
+last transition's findings, and its doc-comment says so. The human affordance (the findings list
++ the shell's status chip) is unchanged — the human side never had the gap.
+
+### 6.3 Authority: `rules.ts` decides; `validate.py` stays the cross-check
+
+**The TypeScript implementation is authoritative for the operation's result.** It is the one
+wired into the live workspace, the transaction pipeline, and the agent API; the operation is a
+new CONSUMER of it, not a third implementation. `validate.py` keeps exactly the role it has: the
+independent second implementation held to the first by `test/parity.test.ts`'s declared `PARITY`
+and `ASYMMETRIC` sets (`test/parity.test.ts:40,66`), and the no-page validation path. The
+operation never consults it. The rule that keeps parity two-party: **any semantic enrichment of
+findings lands in `rules.ts` and enters the parity comparison only when `validate.py` implements
+it too**; until then the enrichment fields (§6.4) sit outside the compared surface, which remains
+(rule, where) agreement plus the answers sweep. §G3 asks the author to ratify this split.
+
+### 6.4 `ValidationResult`, actionable
+
+```ts
+export interface ValidationResult {
+  readonly ok: boolean;                       // no error-severity findings
+  readonly hash: string;                      // the revision this result describes
+  readonly findings: readonly ValidationFinding[];
+}
+
+export interface ValidationFinding {
+  readonly rule: string;                      // "V12" — the shared spec identifier
+  readonly severity: "error" | "warning";
+  readonly where: string;                     // the dotted address rules.ts already writes
+  /** The declared ids the finding is about — structured, so an agent selects rather than parses. */
+  readonly subjects: readonly string[];
+  readonly message: string;                   // the repair-sufficient sentence, as today
+  readonly spec: string;                      // the SEMANTICS.md section the rule id joins to
+}
+```
+
+Three fields are new, and each has a derivation rather than a second author:
+
+- **`severity`** comes from a closed rule→severity table in `rules.ts`, total over every emitted
+  rule id (MQ-I9 pins totality). Every current V-rule is `error`; the vocabulary exists because
+  the ruling names severity and because the first advisory rule should not force a schema change.
+  §G4 asks whether the author wants the field at all yet.
+- **`subjects`** is populated by each rung as it fires — the `Collector` (`rules.ts:40`) grows an
+  optional subjects argument. It is never parsed out of `where` or `message`: deriving structure
+  from prose is the move this repo bans. Migration: rungs not yet draining report `[]`, and a
+  test holds the drained set so coverage only grows.
+- **`spec`** is derived from the rule id against the SEMANTICS.md section map — the same
+  join-by-identifier that makes the parity test meaningful (`rules.ts:4-7`).
+
+`ok` is derived (`findings.every(f => f.severity !== "error")`), never stored.
+
+## 7. Registry consequences — the capability map, and the fence
+
+### 7.1 `model-query` is not a new capability; `query` is extended
+
+The ruling left open whether `model-query` stands beside `query` or extends it. Ruled: **extend.**
+The model query interface and today's `query` capability resolve to the same service
+(`workspace.query`) and the same semantics; a second row would report a capability the product
+did not gain — the test the registry already applies (`src/app/capabilities.ts:296-304`). The
+changes to the map:
+
+| Capability | Change |
+|---|---|
+| `query` | gains the `window.mage.model.*` facade methods as machine affordances (§2.3); gains `elements`; **loses `window.mage.sparql`** (§7.2) |
+| `check-query` | NEW row (§5.4) |
+| `validate` | machine affordance re-pointed to `window.mage.validate` (§6.2) |
+
+### 7.2 The escape hatch, declared where the registry can see it
+
+`window.mage.sparql` is registered today as a third machine affordance of `query`
+(`src/app/capabilities.ts:269`, with a long rationale implementing Q9's first reading —
+`DESIGN-sparql-261002.md` §6 Q9). The ruling reverses that reading; the registration is now
+wrong, and the fix is typed, not prose:
+
+```ts
+/** A surface that exists for debugging and development, OUTSIDE the semantic interface. */
+export interface EscapeHatch {
+  readonly at: string;                        // "window.mage.debug.sparql"
+  readonly reason: string;                    // why it exists at all
+  /** The ruling that fences it. A hatch with no fence citation fails the registry test. */
+  readonly fencedBy: string;                  // "DECISIONS-RULED-model-query-261002.md"
+}
+
+export const ESCAPE_HATCHES: readonly EscapeHatch[] = [
+  { at: "window.mage.debug.sparql",
+    reason: "raw SPARQL over the RDF projection, for debugging the projection and the seam",
+    fencedBy: "DECISIONS-RULED-model-query-261002.md" },
+];
+```
+
+Consequences, each mechanical:
+
+- **The method moves to `window.mage.debug.sparql`** — the namespace makes the status legible at
+  every call site, which is the cheapest fence that cannot rot. Breaking change;
+  `AGENT_API_VERSION` bumps to 0.3.0 (`src/app/agent-api.ts:38`). §G2 asks the author to ratify
+  the rename. The wiring beneath is untouched: it still delegates to `workspace.sparql`
+  (`src/app/services.ts:396`), whose internal gate (`translate` → `admit`) keeps enforcing
+  metamodel licensing — the hatch is outside the semantic interface, not outside the gate.
+- **`checkRegistryClosure` consumes both lists** (`src/app/capabilities.ts:625`): a machine site
+  must be registered to a capability OR declared a hatch; a site in both lists is a violation
+  (disjointness); a hatch owes no human affordance — UX-I1 does not govern it, which is exactly
+  what "outside the semantic interface" means, now as a checked property rather than a sentence.
+- **`describe()` stops advertising it.** `operations` derives from `CAPABILITIES` and loses the
+  row automatically; a new `describe().outsideSemanticInterface` field names each hatch with its
+  reason and fence, so an agent learns the boundary from the API rather than from a refusal
+  (the FR-AGENT-2 pattern).
+- **`analysis.resolveExhausted` stays a `query` affordance.** Its handle is obtainable only from
+  an exhausted answer (`src/app/services.ts:467`), so once the hatch is the only SPARQL producer,
+  escalation is reachable only downstream of a deliberate hatch use — no separate fencing needed.
+
+### 7.3 What verifies "normal agent workflows do not depend on it"
+
+The ruling's second obligation is a usage claim no type can hold. The checks, each cheap:
+
+1. **Shipped artifacts.** A node test asserts every shipped example's saved questions and the
+   ask catalogue's suggested/contextual questions are typed query documents (they validate against
+   `mage-query.schema.json`) — none is SPARQL text. Structurally true today; the test keeps it so.
+2. **The API's own description.** `describe().operations` contains no hatch site (MQ-I4's second
+   clause) — so no agent following the API's self-description can land on the hatch.
+3. **Reference closure.** A node test walks the source tree and asserts `workspace.sparql` /
+   `debug.sparql` are referenced only from `src/app/agent-api.ts`, `src/app/services.ts`, the
+   worker plumbing, and `test/`. A UI surface or example generator that grows a dependency on the
+   hatch turns the gate red. (A grep-level check is acceptable here because it checks USAGE, not
+   semantics — the semantics are held by the types above.)
+
+## 8. The falsification test, worked
+
+*If adding a new model type requires hand-writing unrelated SPARQL throughout the Workbench, the
+abstraction has failed.* Worked for a hypothetical fourth kernel type — an **allocation model**
+(entities allocated to deployment nodes; questions: "where does X run", "what shares a node with
+X"), with its own substrate section, query kind, and form vocabulary. Every file that changes:
+
+| # | File | Why it changes | Contains SPARQL? |
+|---|---|---|---|
+| 1 | `src/ir/types.ts` + `src/ir/canonicalize.ts` | the substrate — structural semantics | no |
+| 2 | `mage-model.schema.json` | the authored wire shape | no |
+| 3 | `SEMANTICS.md` | normative semantics | no |
+| 4 | `src/engine/model-types.ts` | THE registry entry: structural + query + validation attachment, `presentIn`, `wouldLicense` | no |
+| 5 | `src/engine/types.ts` | the new form array, the `Query` union arm, its parser | no |
+| 6 | `src/engine/allocation.ts` (new) | `admitTyped` + the evaluator for the kind | no |
+| 7 | `mage-query.schema.json` | the published query kind (held by the engine-forms parity test) | no |
+| 8 | `src/validator/rules.ts` + `validate.py` | the type's validation rules, both sides + parity sets | no |
+| 9 | `src/rdf/project.ts` | projecting the new substrate into the dataset | no — term emission, zero query text |
+| 10 | tests | pins for all of the above | no |
+
+**SPARQL sites that change: zero.** The one RDF-adjacent change (#9) is the projection — the
+implementation layer beneath the boundary, which is where the ruling says RDF work belongs. If the
+new type's questions should ALSO be expressible through the debug hatch, `QUERY_KIND` in
+`src/sparql/licensing.ts:252` gains one row and the parse walker a subject derivation — optional,
+localized, and still not hand-written query text.
+
+What does NOT change, because it derives: `agent-api.ts` (dispatch is by kind through
+`runTypedQuery`), `capabilities.ts` (`query` covers every kind), `learn.ts` (projects the
+registry), the refusal substrate (`absentSubstrateVerdict` is registry-worded), the derived
+facade and human contextual actions (generated from `QuerySemantics`, MQ-I8).
+
+Two findings about this design, from working the count:
+
+- **Two files on the path have no compile-time forcing:** `mage-query.schema.json` and
+  `validate.py`. Both are held by existing parity tests (`test/engine-forms.test.ts`,
+  `test/parity.test.ts`) — controls, not compilers. The registry itself IS forced: widening
+  `Query["kind"]` without a registry entry fails the registry's 1:1 test and the
+  `modelTypeForQueryKind` throw (`src/engine/model-types.ts:184-192`).
+- **The ask catalogue is the one site that could silently become a hand-maintained brochure.**
+  If the shell's wave 1c hand-lists contextual questions per type instead of deriving them from
+  `QuerySemantics.forms`, a fourth type ships with no human questions and nothing goes red.
+  Flagged to the shell effort in §9's coordination note; MQ-I8's human half is the pin.
+
+## 9. Invariants
+
+| ID | Statement | Pinned by |
+|---|---|---|
+| MQ-I1 | Every evaluation is preceded by the same admission the checker reports: the seam by the `LicensedQuestion` brand (`src/sparql/licensing.ts:183`, as-built), the engine path by the evaluator's head calling `admitTyped`. | the brand (compiler) + a node test asserting each evaluator refuses pre-evaluation on each admission cause. UNTESTED until the §10 M2 wave |
+| MQ-I2 | `check(q)` and execution agree on refusal cause and sentence at the same hash, for every shipped saved question plus a battery with ≥1 case per `RefusalReason`. | NEW agreement test, the engine-vs-seam sweep pattern (`src/sparql/licensing.ts:25-32`). UNTESTED until M2 |
+| MQ-I3 | `QuerySemantics.forms` / `.composing` are the engine's own arrays by identity, per type. | extends the existing registry identity test (the `propertyFamilies` pattern, `src/engine/model-types.ts:70-74`). UNTESTED until M1 |
+| MQ-I4 | `ESCAPE_HATCHES` and capability affordances are disjoint; every machine site is in exactly one; `describe().operations` names no hatch. | extended `checkRegistryClosure` + node test. UNTESTED until M4 |
+| MQ-I5 | No shipped example question, suggested question, or Learn artifact is SPARQL text; hatch references close over the declared file set. | NEW node test (§7.3). UNTESTED until M4 |
+| MQ-I6 | `validate()` recomputes: its `hash` equals the current system hash, and its findings derive from `rules.ts` alone. | NEW node test: transact, validate, compare hashes; assert no cached path. UNTESTED until M3 |
+| MQ-I7 | Adding a model type changes no SPARQL query text (§8's count stays zero). | the §8 enumeration is the audit; partially held by MQ-I8's derivation tests. UNTESTED as a mechanical gate — see §G5-adjacent note in §11 |
+| MQ-I8 | Every derived-facade operation and every generated contextual question maps onto a form the loaded types' `QuerySemantics` declares. | NEW derivation test (machine half, M5); the human half rides the shell's path-walking gate. UNTESTED until M5 |
+| MQ-I9 | The severity table is total over every rule id `rules.ts` emits. | NEW node test: run the violation corpus, assert every finding's rule has a severity row. UNTESTED until M3 |
+
+## 10. Waves
+
+`src/app/agent-api.ts` is the shared hotspot (M2-M5 all touch it); those waves serialize on it.
+`src/ui/` is a live sibling's tree — nothing here touches it; the human halves (Check control,
+contextual actions, ask-catalogue derivation) are handed to the shell effort as requirements with
+declared G1 paths, not implemented by these waves.
+
+| Wave | Scope | Footprint (exclusive) | Serializes? |
+|---|---|---|---|
+| M1 | `QuerySemantics` + three declarations; absorb `propertyFamilies`; MQ-I3 | `src/engine/model-types.ts`, `src/app/learn.ts`, `test/model-types.test.ts`, `test/learn.test.ts` | no |
+| M2 | `admitTyped` factoring per kind; `check` on facade + agent API; MQ-I1/I2 | `src/engine/{graph,behavior}.ts`, `src/quant/requirement.ts`, `src/engine/index.ts`, `src/app/services.ts`, `src/app/agent-api.ts`, tests | after M1 (reads `QuerySemantics` for alternatives) |
+| M3 | `validate()` + `ValidationFinding` enrichment; capability row re-point; MQ-I6/I9 | `src/validator/rules.ts`, `src/app/services.ts`, `src/app/agent-api.ts`, `src/app/capabilities.ts`, tests | after M2 (agent-api hotspot) |
+| M4 | `ESCAPE_HATCHES`; `debug.sparql` rename + 0.3.0; closure extension; MQ-I4/I5 | `src/app/capabilities.ts`, `src/app/agent-api.ts`, tests | after M3 (agent-api + capabilities hotspots); needs §G2 ruled |
+| M5 | `elements` + the derived facade; MQ-I8 (machine half) | `src/engine/` (elements), `src/app/agent-api.ts`, tests | after M4; needs §G1 ruled |
+
+Every wave lands with `tsc --noEmit` clean AND the full suite — the standing lesson that a clean
+merge can type-break a green test tree.
+
+## 11. What the design revealed in the existing code
+
+- **The `validate` capability's machine affordance is a stale snapshot** (§6.1) — the ruling's
+  gap, recorded in the registry's own row. The row is honest about its service but not about its
+  staleness; M3 fixes both.
+- **`capabilities.ts:238-268` argues the position the author reversed.** The `query` row's
+  rationale implements Q9's first reading ("SPARQL is a syntax for the query capability") and even
+  anticipates this: *"the author still owns Q9's ruling, and if they rule otherwise what changes
+  is this row, not the wiring."* Correct prediction; M4 changes that row and rewrites the comment.
+  This is a ledger entry in the shell design's sense (`DESIGN-shell-261002.md` §7).
+- **`propertyFamilies` is query semantics wearing a Learn field's name** (§3.1). The absorption
+  is a rename plus one projection change, and it makes the "one declaration, two affordances"
+  requirement literal: the dispatcher, the facade, the contextual actions, and Learn all read one
+  field.
+- **The engine's admission rungs are interleaved with evaluation per form**
+  (`src/engine/graph.ts:431-512`) — the real as-built distance between "the design already
+  contains a query checker implicitly" and a callable `check`. The factoring (M2) moves code, not
+  decisions; MQ-I2 is the net under the move.
+- **The ruling's line cites have drifted** (`eval.ts:6,834` → `:831`; `agent-api.ts:400,478` →
+  the findings side effects live in `services.ts:204,242`). Cosmetic, but worth recording: this
+  design's own cites are as of branch `wb-mquery-261002`.
+- **MQ-I7 has no mechanical gate.** "No SPARQL text outside `src/sparql/` + `test/`" is checkable
+  by a reference-closure test like §7.3's, and nothing runs it today. Filed as a follow-up in
+  M4's wave rather than invented ad hoc here.
+
+---
+
+## G. Open questions
+
+Five fields per question: Question · Context · Options · Recommendation · Consequence of ruling
+otherwise.
+
+### G1 — The agent spelling: derived facade, or typed documents only?
+
+- **Question.** Does the agent surface gain `window.mage.model.*` (`elements`, `related`,
+  `reachable`, `path`, `violations`) as thin, derivation-tested constructors over `query()` —
+  or does the typed query document stay the only spelling?
+- **Context.** Extension 1's worked example names `related(element, DEPENDS_ON, OUTGOING)` as the
+  agent affordance. The typed `Query` document already expresses it (`{kind:"graph",
+  graph:{form:"direct", relation, from}}`), so the facade is ergonomics plus a visible noun
+  vocabulary, not capability. MQ-I8 keeps it derived from `QuerySemantics`, so it cannot offer
+  what the kernel refuses.
+- **Options.** (a) Ship the facade, registered as additional `query` machine affordances.
+  (b) Documents only; the "operation vocabulary" lives in `describe()` and the docs.
+- **Recommendation.** (a). The ruling's interface should be nameable by its nouns, and the
+  facade is where an agent meets them; (b) leaves the model query interface implicit in a JSON
+  shape, which is most of how the current surface came to read as storage-shaped.
+- **Consequence of ruling otherwise.** (b) drops M5's facade half; `elements` still lands (it is
+  a kernel operation, not sugar); `describe()` carries the noun vocabulary alone.
+
+### G2 — Ratify the `window.mage.debug.sparql` rename
+
+- **Question.** Does the console move to a `debug` namespace (breaking, 0.3.0), or keep its name
+  with the fence held by the registry alone?
+- **Context.** §7.2. The registry's `ESCAPE_HATCHES` entry is the normative fence either way;
+  the rename makes the status legible at call sites and in transcripts, at the cost of breaking
+  any existing agent script that calls `window.mage.sparql`.
+- **Options.** (a) Rename + version bump. (b) Keep the name; registry-only fencing.
+- **Recommendation.** (a). The API versions for exactly this; pre-1.0 is when the rename is
+  cheap; and a fence only the registry can see is invisible at the one place dependence forms —
+  the call site.
+- **Consequence of ruling otherwise.** (b): MQ-I4/I5 hold unchanged, `describe()` still
+  declassifies it, and every future reader of an agent transcript must know the registry to know
+  the call is a hatch.
+
+### G3 — Ratify the validation authority split
+
+- **Question.** Is `rules.ts` authoritative for `validate()`'s result, with `validate.py` the
+  CI cross-check that never serves the operation — and enrichment fields outside the parity
+  surface until implemented on both sides?
+- **Context.** §6.3. The alternative reading — Python authoritative because it is the
+  no-page/CI gate — would make the operation's authority a tool the browser cannot run.
+- **Options.** (a) As stated. (b) Declare the parity test itself the authority (both sides
+  normative, disagreement a spec bug) with the operation serving the TS answer as an
+  implementation fact.
+- **Recommendation.** (a); it is (b) with one sentence less ambiguity about what an agent was
+  served. The parity discipline already treats disagreement as failure either way.
+- **Consequence of ruling otherwise.** (b) changes no code — only what a future
+  parity-disagreement incident report says the agent's answer WAS.
+
+### G4 — Severity now, or when the first warning exists?
+
+- **Question.** Does `ValidationFinding.severity` land now (every current rule `error`), or wait
+  for the first advisory rule?
+- **Context.** §6.4. The ruling names severity as a required `ValidationResult` element; today's
+  rule set has no non-error rule, so the field would be constant at birth.
+- **Options.** (a) Land it now, constant, with MQ-I9's totality pin. (b) Defer; add on first use.
+- **Recommendation.** (a). The ruling asks for it; a constant field with a totality test is
+  cheap; and adding it later is a wire change to a published result shape.
+- **Consequence of ruling otherwise.** (b) trims §6.4 and MQ-I9; the first advisory rule pays
+  the schema change, and `ok` is `findings.length === 0` until then.
+
+### G5 — Ratify the composition line and its revisit trigger
+
+- **Question.** Is §4.1 the line — closed in-operation grammars, registered cross-type
+  compositions, caller-side iteration; no piping, joining, folding, or cross-operation
+  quantification — with §4.2's recorded-and-inexpressible-without-the-hatch definition as the
+  measured trigger for revisiting?
+- **Context.** The ruling names this the design's hardest question and defers a language to
+  measured need; §4.2 is this design's proposal for what "measured" means, since an unmeasurable
+  trigger never fires.
+- **Options.** (a) Ratify both. (b) Ratify the line, define the trigger differently (e.g. a
+  count threshold of hatch uses, or author-curated exemplar questions). (c) Widen the line now —
+  admit one pipe step (result set as the next operation's element set).
+- **Recommendation.** (a). (c) is the first clause of a query language, and nothing shipped
+  today needs it; the quantity query's target predicate already covers the one cross-type
+  composition in real use.
+- **Consequence of ruling otherwise.** (c): the `Query` union gains a composite arm, `check`
+  must admit compositions (admission becomes recursive), and the line must be redrawn one step
+  further out — the step after a pipe is a join.
