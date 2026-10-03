@@ -14,10 +14,11 @@
  *     (UX-I3). A region that observed for itself would be a second reader of the same truth.
  *   - **The announcer.** Its model and property channels are DIFFS over the whole system, and a
  *     region sees one slice; the argument is written out in `shell/announcer.ts`.
- *   - **The view-model-to-DOM binder.** `paint()` writes four readouts that now live in four
- *     different regions. Splitting it is the closure wave's (`render-dom.ts` is wave 3's file), so
- *     the root calls it with the hosts resolved from the surfaces table and the regions own where
- *     those hosts are rather than how a row inside one reads.
+ *   - **The view-model-to-DOM binder.** `paint()` writes the readouts that live in several
+ *     different regions. Splitting it wholesale is the closure wave's (`render-dom.ts` is wave 3's
+ *     file), so the root calls it and the regions own where those hosts are rather than how a row
+ *     inside one reads. Wave 1a took exactly one root off it — the property list, whose rail rows
+ *     are a new rendering rather than a restyled block — and left the rest whole.
  */
 import { runQuery } from "../engine/index.ts";
 import { renderView } from "../render/index.ts";
@@ -32,7 +33,7 @@ import { buildViewModel, resolveSubject } from "./view-model.ts";
 import { paint, paintProvenance } from "./render-dom.ts";
 import { byId } from "./shell/context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./shell/context.ts";
-import { regionHost, surfaceElement } from "./shell/surfaces.ts";
+import { surfaceElement } from "./shell/surfaces.ts";
 import { Announcer } from "./shell/announcer.ts";
 import { mountHeader } from "./shell/header.ts";
 import { mountStart } from "./shell/start.ts";
@@ -49,17 +50,20 @@ import querySchema from "../../mage-query.schema.json" with { type: "json" };
 import transactionSchema from "../../mage-transaction.schema.json" with { type: "json" };
 
 /**
- * The four readouts the one binder writes, each in the region that now holds it.
+ * The readouts the one binder still writes, each in the region that now holds it.
  *
- * Resolved through the surfaces table where the host IS a region, so the element id is not written
- * twice. `#summary`, `#banner` and `#finding-list` are readouts inside regions rather than regions
+ * Four when the shell split the page up; three since wave 1a, which took the property list off the
+ * binder and gave the rail's rows to `shell/nav.ts`. The binder keeps the readouts whose rendering
+ * no region has changed — and keeps `propertyBlock`, which the rail imports for the full reading it
+ * discloses, so there is still one author for how a property reads in full.
+ *
+ * `#summary`, `#banner` and `#finding-list` are readouts inside regions rather than regions
  * themselves, so they are looked up by id — which the page-contract test scans.
  */
 const roots = {
   summary: byId("summary"),
   banner: byId("banner"),
   sections: byId("sections"),
-  properties: regionHost("nav-properties"),
   findings: byId("finding-list"),
 };
 

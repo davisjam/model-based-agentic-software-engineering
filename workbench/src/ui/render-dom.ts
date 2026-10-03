@@ -454,12 +454,6 @@ export function paint(vm: ViewModel, roots: {
   readonly summary: HTMLElement;
   readonly banner: HTMLElement;
   readonly sections: HTMLElement;
-  /**
-   * The property list. Still `#question-list` in the markup: the browser tier asserts against that
-   * id and against the section ids, and it is a gate this file's owner does not own. The name is
-   * stale, the binding is not.
-   */
-  readonly properties: HTMLElement;
   readonly findings: HTMLElement;
 }): void {
   // The tab title carries the hypothesis too. A user who switched tabs and came back needs to know
@@ -481,10 +475,13 @@ export function paint(vm: ViewModel, roots: {
       ? [el("p", "No model system is loaded. Create one, open a file, or load an example above.", "intro")]
       : vm.sections.map(sectionTable)),
   );
-  roots.properties.replaceChildren(
-    ...(vm.properties.length === 0
-      ? [el("p", "This model system asserts no properties yet. Ask a question above and save it.", "intro")]
-      : vm.properties.map(propertyBlock)),
-  );
+  // The property list is NOT written here any more. Wave 1a turned the flat list into the
+  // properties RAIL — a status word and the claim, with the full reading one disclosure down — and
+  // a rail row is a different rendering, not a restyled `propertyBlock`. So `shell/nav.ts` renders
+  // the rows and `propertyBlock` stays this file's, with `paintAnswer` as its remaining caller.
+  //
+  // Dropping the root rather than leaving it written is the half that matters: two writers of
+  // `#question-list` would race on paint order, and which one won would be a fact about the order
+  // of two statements in the composition root.
   roots.findings.replaceChildren(findingTable(vm.findings));
 }
