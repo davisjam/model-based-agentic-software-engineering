@@ -861,22 +861,46 @@ functions are `admitGraphQuery` / `admitBehaviorQuery` / `admitQuantityQuery` �
 `runGraphQuery` / `runTypedQuery` already draws — and `admitTyped` is the kind DISPATCHER, the
 function `check` calls.
 
-**UX-I1 reads one, and the one is `check-query`.** §5.4 predicted this exactly ("UX-I1 will
-therefore report `check-query` until that wave lands; that is the registry doing its job"), and it
-is the right call for the reason the `explore-space` row already records: the two ways to read zero
-here are a census that wires both sides of every row, and a census that omits or launders the row it
-cannot answer. Folding `check` into `query` would have shown zero immediately — a gap hidden in a row
-that is green on other business. The human half is the shell effort's: a *Check* control beside *Ask*
-in the Advanced query surface, ending at `workspace.check`. `BASELINE_GAP` asserts the gap is STILL
-open, so the wave that lands the control must edit the baseline to go green.
+**UX-I1 reads zero over 26, and `check` has a human affordance — §5.4 was wrong to plan for the
+gap.** §5.4 ruled the human half out of scope and predicted UX-I1 would report `check-query` until a
+later wave; the row landed that way and a review reversed it. Three things make the reversal right.
+The ruling says the human Workbench and the agent interface expose THE SAME semantic capabilities
+through different interaction surfaces, so "no person needs this" would have been a claim about users
+defended by a claim about scope. `explore-space` had just closed, which changes what its precedent
+MEANS: a one-sided capability is closed by building the affordance, not by recording the absence.
+And the surface decides it — the ask bar's catalogue offers only questions the loaded models
+license, so a check there always says yes, but the **Advanced query form** states a hop limit, two
+named endpoints and an explicit quantifier, which are exactly the fields that produce a
+quantifier-mismatch or a V7 refusal. A person composing there can write a question the models
+decline, and before this they learned it only by running it — getting the sentence and not the
+alternatives, which are the half of `check` that justifies its own row.
+
+So the control is `properties-section.check` → `#ask-check-go`, beside Ask, ending at
+`workspace.check`. It renders the report in its own host rather than in `#ask-answer`: a verdict with
+its grounding and "was this askable at all" are different claims, and overwriting one with the other
+would teach that a check is a weak answer. Four browser-tier cases drive it — licensed, refused with
+derived alternatives, agreement with `window.mage.check` in one process over one workspace, and the
+form's own pre-flight — and all four go red when the control stops painting.
+
+**The threshold is not negotiable from here, and that is new too.** `PARITY_VIOLATION_CEILING` in
+`capabilities.ts` is now the single home for the number both the default gate and CI read
+(`npm run check:parity`). The baselines in `test/capabilities.test.ts` say WHICH capability is
+one-sided and in which direction; they are no longer a second way to pass. Admitting a standing
+violation means raising that ceiling, in one place, which raises it for CI in the same edit.
 
 **What M2 did not change.** No answer moved, so `validate.py` parity needed no update: the three
 refactors are behaviour-identical (the node tier held at 728 across all three), and `check` adds a
 read-only report. The SPARQL seam is untouched — `admit`, the brand, and `evaluate`'s signature are
 exactly as M1 left them.
 
-**Gates at the landing tree, counted:** `tsc --noEmit` clean, node 739 (728 + 11 new), smoke 3,
-browser 32. The browser tiers need `npm run build` first AND a `book/node_modules` symlink the
-worktree did not have — puppeteer resolves through it, and without the link every browser test fails
-in `before`, which reads as 0 pass / 3 fail and looks like a page defect rather than a missing
-package.
+**Gates at the landing tree, counted after rebasing onto main:** `tsc --noEmit` clean ·
+`check:parity` `UX-I1: 0 violation(s) over 26 capabilities` · node 760 · smoke 3 · browser 36 ·
+a11y 59. Every tier 0 fail, 0 cancelled.
+
+**Three worktree-setup gaps, because each one reads as a product defect.** The browser tiers need
+`npm run build` first, a `book/node_modules` symlink (puppeteer), and a ROOT `node_modules` symlink
+(axe-core). `git worktree add` makes none of them. Without the first two every browser test fails in
+`before` — 0 pass / 3 fail, which looks like a broken page. Without the third, fifteen a11y tests
+report **`cancelled`**, and a first pass of this wave reported "54 / 38 pass / 1 fail" and left 15
+unaccounted: the hook aborts were in the `cancelled` line, which went unread. A count that does not
+add up is the tell, and the honest reading is 41 + 1 + 15 = 57.
