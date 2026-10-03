@@ -1,17 +1,23 @@
 // The capability registry and the UX invariants it enforces.
 //
-// UX-I1 now reports nothing over 22 capabilities. The baselines below are therefore EMPTY, and the
-// assertion is no longer aspirational: it earned the right to read zero by starting at twelve,
-// dropping to six, and being driven down by the work each violation named.
+// UX-I1 reports ONE violation over twenty-five capabilities, and the one is `explore-space`: no
+// human control walks the configuration space. The baseline was empty for two waves and goes back to
+// one here, which is the gate working rather than a regression. Walking the configuration space was
+// reachable by an agent and by nobody else for as long as the registry declined to declare it; the
+// zero was true of the rows that existed and silent about the one that did not.
 //
 // An empty baseline alone would be a weak test — a registry with no capabilities at all would pass
 // it. `FULLY_WIRED` is the positive control that closes that hole: every capability must be PRESENT
-// and wired on both sides, so deleting one to silence a violation fails here instead.
+// and wired on both sides, so deleting one to silence a violation fails here instead. `BASELINE_GAP`
+// is its counterpart for a capability that is declared and honestly incomplete: it must be present
+// AND still violating, so closing the gap without updating the baseline fails too. Progress and
+// regression both have to be deliberate.
 //
-// And a hole both of those leave open, which the §20 coverage test at the end closes: a capability
+// And a hole all of those leave open, which the §20 coverage test at the end closes: a capability
 // the registry never DECLARES cannot violate UX-I1. `load-example` and `inspect-provenance` sat in
 // the specification's capability table for two waves while the gate read zero, because the gate can
-// only check rows it has been told about. The specification is now the list.
+// only check rows it has been told about. The specification is now the list — for the rows it has.
+// `explore-space` is not among them, which is the §20 table's own gap and recorded as such below.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -22,26 +28,33 @@ import type { Affordance, CapabilityId } from "../src/app/capabilities.ts";
 import { ExampleCatalog } from "../src/app/examples.ts";
 
 /**
- * Capabilities with NO wired human affordance. Empty, and it took three waves to get there.
+ * Capabilities with NO wired human affordance.
  *
- * The last three — create-model, delete-model, add-note — were not a UI gap. Each also had no
- * MACHINE affordance, and that identity was the diagnosis: the transaction schema had no op for
- * adding a model, deleting one or attaching a note, so there was nothing to bind on either side.
- * Adding the three ops is what made the controls possible, in that order.
+ * It was empty for two waves. `explore-space` puts one back, and the reason is worth stating because
+ * it is not the reason the previous entries were here: the earlier three — create-model,
+ * delete-model, add-note — had no MACHINE affordance either, and that identity was the diagnosis
+ * (the transaction schema had no op, so there was nothing to bind on either side). This one is
+ * one-sided. An agent can walk the configuration space and a person cannot, because the facade
+ * offers `explore()` and nothing in the UI calls it.
  */
-const NO_HUMAN: readonly CapabilityId[] = [];
+const NO_HUMAN: readonly CapabilityId[] = ["explore-space"];
 
-/** Identical to NO_HUMAN, and that identity still carries the claim: no gap is one-sided. */
+/**
+ * Capabilities with no wired machine affordance. Empty.
+ *
+ * It used to be IDENTICAL to NO_HUMAN, and that identity carried a claim — no gap is one-sided.
+ * The claim no longer holds, and the lists diverging is how the registry says so: the asymmetry
+ * UX-I1 exists to catch is exactly the one now present.
+ */
 const NO_MACHINE: readonly CapabilityId[] = [];
 
 /**
- * Every capability, asserted present AND wired on both sides.
+ * Every capability asserted present AND wired on both sides.
  *
  * An empty baseline on its own is a weak test: a capability DELETED from the registry also
- * disappears from the violation list, so silence can mean "fixed" or "removed". This list names all
- * twenty-four, so removing one to quieten UX-I1 fails here. The last two are the ones this change
- * wired, and they are listed with the rest rather than kept apart — a capability wired two waves
- * ago needs guarding just as much.
+ * disappears from the violation list, so silence can mean "fixed" or "removed". This list names the
+ * twenty-four that are whole, so removing one to quieten UX-I1 fails here. A capability wired two
+ * waves ago needs guarding just as much as one wired today, so none is kept apart.
  */
 const FULLY_WIRED: readonly CapabilityId[] = [
   "import", "export", "inspect", "validate", "query", "analyze", "inspect-evidence", "undo", "redo",
@@ -54,6 +67,16 @@ const FULLY_WIRED: readonly CapabilityId[] = [
   "save-property", "retract-property",
 ];
 
+/**
+ * Capabilities declared and honestly incomplete, each asserted PRESENT and STILL VIOLATING.
+ *
+ * The mirror of `FULLY_WIRED`, and it exists for the mirror reason. `FULLY_WIRED` stops a violation
+ * being silenced by deleting its row; this stops a gap being closed — or appearing to close — without
+ * anyone editing the baseline that records it. A registry entry can be wrong in two directions and
+ * only one of them was watched.
+ */
+const BASELINE_GAP: readonly CapabilityId[] = ["explore-space"];
+
 test("UX-I1 violations match the recorded baseline exactly", () => {
   const violations = checkAffordanceParity();
   const human = violations.filter((v) => v.problem.includes("HUMAN")).map((v) => v.capability).sort();
@@ -63,35 +86,53 @@ test("UX-I1 violations match the recorded baseline exactly", () => {
     "a capability gained or lost a human affordance; update NO_HUMAN deliberately");
   assert.deepEqual(machine, [...NO_MACHINE].sort(),
     "a capability gained or lost a machine affordance; update NO_MACHINE deliberately");
-  // Stated outright, now that it is true: no capability is reachable through one interface only,
-  // and none of the twenty fails for want of a named service.
-  assert.deepEqual(violations, [],
-    `UX-I1: ${violations.map((v) => `${v.capability} ${v.problem}`).join("; ")}`);
+  // The whole picture, as one list, so a reader sees the shape and not just the counts. One
+  // violation, and it is the one the baselines above name — no capability fails for want of a named
+  // service, and nothing is unreachable by a machine.
+  assert.deepEqual(violations.map((v) => v.capability), ["explore-space"]);
+  assert.match(violations[0]?.problem ?? "", /no wired HUMAN affordance/);
+  assert.match(violations[0]?.problem ?? "", /analysis-section\.explore: absent/,
+    "the violation must name the site that is missing, not merely that one is");
 });
 
-test("no capability is reachable by an agent but not by a person", () => {
-  // The asymmetry UX-I1 exists to catch, asserted directly rather than inferred from two lists.
-  // A capability with a machine affordance and no human one means an agent can make a change the
-  // user can neither see the control for nor reverse by hand.
+test("the one agent-only capability is the one the baseline declares", () => {
+  // The asymmetry UX-I1 exists to catch, computed directly rather than inferred from two lists. A
+  // capability with a machine affordance and no human one means an agent can do something the user
+  // has no control for — which is TRUE of `explore-space` and is why it has a row.
+  //
+  // Asserted against the baseline rather than against zero. Zero was the right assertion while it
+  // was true; asserting it now would mean either omitting the capability from the registry or
+  // pretending a control exists, and both of those make the gate report a product that does not
+  // exist. The list is the work item.
   const violations = checkAffordanceParity();
   const noHuman = new Set(violations.filter((v) => v.problem.includes("HUMAN")).map((v) => v.capability));
   const noMachine = new Set(violations.filter((v) => v.problem.includes("MACHINE")).map((v) => v.capability));
   const agentOnly = [...noHuman].filter((id) => !noMachine.has(id)).sort();
-  assert.deepEqual(agentOnly, [],
+  assert.deepEqual(agentOnly, [...BASELINE_GAP].sort(),
     `agent-only capabilities: ${agentOnly.join(", ")} — an agent can do these and a person cannot`);
 });
 
-test("every declared capability is present and wired on both sides", () => {
+test("every declared capability is either fully wired or a declared gap", () => {
   const violating = new Set(checkAffordanceParity().map((v) => v.capability));
   const declared = new Set(CAPABILITIES.map((c) => c.id));
   for (const id of FULLY_WIRED) {
     assert.ok(declared.has(id), `${id} is no longer in the registry; the baseline cannot vouch for it`);
     assert.ok(!violating.has(id), `${id} should be wired on both sides but is not`);
   }
-  // Both directions: a capability ADDED to the registry and left out of this list would otherwise
+  // The mirror. A declared gap must be PRESENT and still violating, so closing it — or deleting it —
+  // fails here until someone edits the baseline that records it.
+  for (const id of BASELINE_GAP) {
+    assert.ok(declared.has(id), `${id} is no longer in the registry; a gap cannot be closed by deletion`);
+    assert.ok(violating.has(id),
+      `${id} no longer violates UX-I1 — move it from BASELINE_GAP to FULLY_WIRED and say what wired it`);
+  }
+  // Both directions: a capability ADDED to the registry and left out of both lists would otherwise
   // be wired-or-not with nothing watching.
-  assert.deepEqual([...declared].filter((id) => !FULLY_WIRED.includes(id)), [],
-    "a new capability must be added to FULLY_WIRED, or declared as a baseline gap");
+  const accounted = new Set([...FULLY_WIRED, ...BASELINE_GAP]);
+  assert.deepEqual([...declared].filter((id) => !accounted.has(id)), [],
+    "a new capability must be added to FULLY_WIRED, or declared in BASELINE_GAP");
+  assert.deepEqual(FULLY_WIRED.filter((id) => BASELINE_GAP.includes(id)), [],
+    "a capability cannot be both whole and a gap");
 });
 
 test("the two 'property' capabilities are not the entity-attribute one", () => {
@@ -261,6 +302,17 @@ test("every capability in the §20 table is declared in the registry", () => {
   const uncovered = uncoveredRows(CAPABILITIES.map((c) => c.id));
   assert.deepEqual(uncovered, [],
     `the §20 table names capabilities the registry does not:\n  ${uncovered.join("\n  ")}`);
+
+  // The direction this test does NOT check, named so a reader does not take its silence for cover.
+  // `explore-space` is declared by the registry and absent from the table: the spec's `Analyze` row
+  // says "analysis API", which is `window.mage.analysis` — both methods on it, under one name. The
+  // registry splits them, because one is a spelling of `query` and the other answers a question
+  // nothing else answers. A registry row with no spec row is a finding about the SPECIFICATION, and
+  // the specification is not this unit's file to edit.
+  assert.ok(!rows.includes("Explore configuration space"),
+    "if §20 grew the row, delete this assertion and let the coverage check above carry it");
+  assert.ok(CAPABILITIES.some((c) => c.id === "explore-space"),
+    "the registry declares it regardless: a capability the registry hides cannot violate UX-I1");
 });
 
 test("§20 coverage fires on a dropped capability — negative control", () => {
@@ -318,14 +370,24 @@ test("describe() derives its operations from the registry, and reports the gaps"
   const names = new Set(d.operations.map((o) => o.name));
   for (const c of CAPABILITIES) assert.ok(names.has(c.id), `${c.id} missing from describe()`);
 
-  // And it must admit where the workbench falls short of its own registry. The example in this
-  // assertion has now moved twice — first `create-hypothesis`, then `add-note` — because each time
-  // the gap it named got built. There is nothing left to name, so what is pinned is the DERIVATION:
-  // describe() reports exactly what checkAffordanceParity() reports, whatever that is. An agent
-  // reading an empty list is being told the truth rather than being told nothing.
+  // And it must admit where the workbench falls short of its own registry. What is pinned is the
+  // DERIVATION: describe() reports exactly what checkAffordanceParity() reports, whatever that is.
   assert.deepEqual(d.affordanceGaps, checkAffordanceParity().map((v) => `${v.capability}: ${v.problem}`));
-  assert.deepEqual(d.affordanceGaps, [],
-    "no capability is one-sided, so describe() has no gap to report");
+  // The list is non-empty again, and an agent reading it learns the one thing it must: that walking
+  // the configuration space is reachable from here and from no human control. FR-AGENT-2 is why that
+  // has to be in the API — an agent that uses a capability the user cannot see has created a
+  // divergence the user cannot inspect, and this is the sentence that warns it.
+  assert.deepEqual(d.affordanceGaps.map((g) => g.split(":")[0]), ["explore-space"]);
+
+  // The other half of the same obligation, and the one `affordanceGaps` cannot discharge: an agent
+  // that reads this API must learn exploration EXISTS. A capability omitted from the registry to
+  // keep the gap list empty would be absent from both, and the thing that exists to inform an agent
+  // would have misinformed it.
+  const explore = d.operations.find((o) => o.name === "explore-space");
+  assert.ok(explore, "describe() must advertise exploration, which window.mage.analysis.explore runs");
+  assert.match(explore.summary, /configuration space/);
+  assert.equal(explore.returns, "a result carrying outcome, coverage and evidence",
+    "a space summary is a semantic result, so UX-I2 governs it");
   // add-note is the surprising one, so the agent must be able to learn its A1 consequence from the
   // API rather than from a hash that did not move.
   const note = d.operations.find((o) => o.name === "add-note");

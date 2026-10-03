@@ -24,7 +24,8 @@ import {
   compileSystem, defaultOptions, exploreSpace, runQuery, runSavedQueries,
 } from "../engine/index.ts";
 import { project } from "../rdf/project.ts";
-import { admit, evaluate } from "../sparql/index.ts";
+import { admit, evaluate, noSubjectDeclared } from "../sparql/index.ts";
+import type { LicensedQuestion } from "../sparql/index.ts";
 import type { WorkerEvaluation, WorkerReply, WorkerRequest } from "./protocol.ts";
 
 /** Requests the host has asked us to abandon. Checked before replying, never mid-walk. */
@@ -63,11 +64,27 @@ function evaluateQuestion(
 ): WorkerEvaluation {
   // The gate, again, on this thread. The brand cannot cross a message port, so re-admitting is the
   // only way to hold a licensed question here — which is the control working, not a duplicated check.
-  const admission = admit(system, request.question);
-  if (admission.kind === "refused") return { kind: "refused", refusal: admission.refusal };
-  if (admission.kind === "routed") return { kind: "routed", route: admission.route };
+  //
+  // EVERY subject, and all must pass, in the order the translator admitted them. One licensed type
+  // must not carry an unlicensed one into evaluation beside it, which is the rule the thread that
+  // sent this request follows; a second gate that checked less than the first would be theatre.
+  //
+  // An empty list is the case that has to be stated rather than fallen through: `admit` would never
+  // be called, the loop would end with nothing refused, and the query would evaluate ungated behind
+  // a check that looked satisfied.
+  if (request.questions.length === 0) return { kind: "refused", refusal: noSubjectDeclared() };
+  let licensed: LicensedQuestion | null = null;
+  for (const question of request.questions) {
+    const admission = admit(system, question);
+    if (admission.kind === "refused") return { kind: "refused", refusal: admission.refusal };
+    if (admission.kind === "routed") return { kind: "routed", route: admission.route };
+    // The first by the sender's order, matching `translate`: `evaluate` reads only `scope` off the
+    // certificate, and the scope is one derivation shared by every subject of one query.
+    if (licensed === null) licensed = admission.question;
+  }
+  if (licensed === null) throw new Error("unreachable: a non-empty question list admitted nothing");
 
-  const outcome = evaluate(project(system), request.query, admission.question, request.budget);
+  const outcome = evaluate(project(system), request.query, licensed, request.budget);
   switch (outcome.kind) {
     case "select-result":
       return {

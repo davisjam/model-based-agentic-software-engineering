@@ -136,8 +136,9 @@ function refusalOf(result: Answer | Translation): { cause: string; missing: read
 const ORACLE_SYSTEM = oracleSystem();
 const ORACLE_STORE: Dataset = project(ORACLE_SYSTEM);
 
+/** The answer alone. The escalation handle beside it is the facade's business; `services.test.ts` drives it. */
 const ask = (system: CanonicalSystem, dataset: Dataset, text: string): Answer =>
-  answerSparql(system, dataset, text);
+  answerSparql(system, dataset, text).answer;
 
 // --------------------------------------------------------------------------------------------
 // The conformance oracle, through the text path
@@ -609,7 +610,18 @@ test("every relation type a query traverses is admitted, not just the first", ()
     `SELECT ?c WHERE { GRAPH <${G_ONE}> { ent:a rt:calls ?b . ?b rt:owns ?c } }`;
   const translation = translate(system, mixed);
   assert.equal(translation.kind, "query", "both types are direct here, so both are licensed");
-  if (translation.kind === "query") assert.deepEqual(translation.relations, ["calls", "owns"]);
+  if (translation.kind === "query") {
+    assert.deepEqual(translation.questions.map((q) => q.relation), ["calls", "owns"]);
+    // And the reported subjects are the gate's own INPUTS, not a list of ids beside them: a caller
+    // re-asking this question elsewhere has to gate both types, and needs the traversal each was
+    // admitted under to do it.
+    assert.deepEqual(translation.questions.map((q) => q.traversal), ["direct", "direct"]);
+    for (const q of translation.questions) {
+      assert.deepEqual(q.scope, translation.scope, "one scope derivation, shared by every subject");
+      assert.deepEqual(q.subset, { kind: "within-subset" });
+      assert.equal(q.evidence, "bindings", "no text query can ask for a path witness");
+    }
+  }
 
   // Make one of them composing and the whole query is refused, named for the type that declined.
   const refusal = refusalOf(ask(system, dataset, PREFIXES +
@@ -626,7 +638,8 @@ test("a variable predicate is admitted for every declared relation type, at dire
     `${PREFIXES}SELECT ?p WHERE { GRAPH <${G_ONE}> { ent:a ?p ?x } }`);
   assert.equal(translation.kind, "query");
   if (translation.kind !== "query") return;
-  assert.deepEqual(translation.relations, ["calls", "owns", "peers"]);
+  assert.deepEqual(translation.questions.map((q) => q.relation), ["calls", "owns", "peers"]);
+  assert.deepEqual(translation.questions.map((q) => q.traversal), ["direct", "direct", "direct"]);
 });
 
 test("an undeclared relation type refuses as unknown vocabulary, before any modeling critique", () => {

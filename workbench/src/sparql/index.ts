@@ -20,11 +20,11 @@
 export {
   admit, directionsOf, licensesTraversal, traversalOf,
   type Admission, type Directions, type EvidenceNeed, type LicensedQuestion, type QueryScope,
-  type SeamQuestion, type SubsetVerdict, type Traversal,
+  type RelationalQuestion, type SeamQuestion, type SubsetVerdict, type Traversal,
 } from "./licensing.ts";
 export {
-  asEngineRefusal, isSupported, outsideSubset, routeToEngine, SUPPORTED_CONSTRUCTS,
-  unknownVocabulary, unlicensedByModel,
+  asEngineRefusal, isSupported, noSubjectDeclared, outsideSubset, routeToEngine,
+  SUPPORTED_CONSTRUCTS, unknownVocabulary, unlicensedByModel,
   type EngineRoute, type RefusalCause, type RouteReason, type SeamRefusal,
   type SupportedConstruct,
 } from "./refusal.ts";
@@ -41,5 +41,6 @@ export {
 } from "./eval.ts";
 export {
   answerSparql, translate,
-  type Answer, type TranslatedQuery, type Translation,
+  type Answer, type ExhaustedEscalation, type SparqlOutcome, type TranslatedQuery,
+  type Translation,
 } from "./parse.ts";
