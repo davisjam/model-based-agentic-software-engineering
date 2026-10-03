@@ -21,6 +21,7 @@
     color-scheme: light dark;
     --bg: #fbfaf7; --panel: #ffffff; --ink: #1d1b16; --muted: #5c5750;
     --rule: #ddd6c7; --accent: #8e6f3e; --accent-ink: #ffffff;
+    --link: #9a3f12;
     --focus: #0b5fff;
     --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   }
@@ -28,15 +29,18 @@
     :root {
       --bg: #17160f; --panel: #201e16; --ink: #f2eee4; --muted: #b3aa98;
       --rule: #3a362a; --accent: #c8a564; --accent-ink: #17160f; --focus: #8ab4ff;
+      --link: #e2a077;
     }
   }
   :root[data-theme="dark"] {
     --bg: #17160f; --panel: #201e16; --ink: #f2eee4; --muted: #b3aa98;
     --rule: #3a362a; --accent: #c8a564; --accent-ink: #17160f; --focus: #8ab4ff;
+    --link: #e2a077;
   }
   :root[data-theme="light"] {
     --bg: #fbfaf7; --panel: #ffffff; --ink: #1d1b16; --muted: #5c5750;
     --rule: #ddd6c7; --accent: #8e6f3e; --accent-ink: #ffffff; --focus: #0b5fff;
+    --link: #9a3f12;
   }
 
   * { box-sizing: border-box; }
@@ -65,7 +69,14 @@
   h1 { font-size: 1.5rem; margin-block-end: .1rem; }
   h2 { font-size: 1.15rem; border-block-end: 1px solid var(--rule); padding-block-end: .3rem; }
   .intro { color: var(--muted); margin-block: .25rem 1rem; }
-  a { color: var(--accent); }
+  /* Prose links take `--link`, NOT `--accent`. The accent is a FILL token — index.html uses it
+     behind `--accent-ink` on the skip link and primary buttons, and as a 3px bar — and it does not
+     survive promotion to ink on the page ground: axe measured the ochre at 4.47:1 on `--bg`, three
+     hundredths under AA, on the "See …s" back link. `--link` carries the values the project's own
+     token sheet (assets/mage-tokens.css) already ships as `--mage-link` for exactly this role:
+     6.5:1 light, and a lifted terracotta in dark. This page is the first to style prose links at
+     all, so nothing in index.html had to change with it. */
+  a { color: var(--link); }
 
   .scroll { overflow-x: auto; }
   table { border-collapse: collapse; width: 100%; min-width: 34rem; }
