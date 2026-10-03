@@ -10,7 +10,9 @@ import { runQuery } from "../src/engine/index.ts";
 import { renderView } from "../src/render/index.ts";
 import { NEW_SYSTEM, Workspace } from "../src/app/services.ts";
 import type { Ports, SparqlAnswer } from "../src/app/services.ts";
-import { CAPABILITIES, checkAffordanceParity } from "../src/app/capabilities.ts";
+import {
+  CAPABILITIES, ESCAPE_HATCHES, SPARQL_HATCH_RENAME, checkAffordanceParity,
+} from "../src/app/capabilities.ts";
 import { ExampleCatalog, UnknownExampleError } from "../src/app/examples.ts";
 // The configuration-space readout, imported for its WORDS. The module touches the DOM only inside
 // `mountSystemBrowser`, so the two describers are reachable from a node tier with no browser.
@@ -626,14 +628,17 @@ test("a SELECT asked as TEXT through the facade returns the solutions, the cover
     "a SELECT's coverage must say that the bindings are the witness");
 });
 
-test("UX-I3: window.mage.sparql is the same seam, and hands back the same answer", () => {
+test("UX-I3: the SPARQL hatch is the same seam, and hands back the same answer", () => {
   // One service, two callers -- the invariant the whole facade exists for. Object equality over ONE
   // workspace, so the agent cannot be reading a second projection that happens to agree.
+  //
+  // Fencing the console changed its STATUS, not its wiring: it is outside the semantic interface
+  // and still inside the gate, which is what this test is now the pin for.
   const ws = loaded();
   const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {}, new ExampleCatalog(ws, assets));
-  assert.deepEqual(api.sparql(REACHED_FROM_API), ws.sparql(REACHED_FROM_API));
+  assert.deepEqual(api.debug.sparql(REACHED_FROM_API), ws.sparql(REACHED_FROM_API));
   // And the budget travels, so an agent can ask the bounded question the page asks (Q8).
-  assert.deepEqual(api.sparql(REACHED_FROM_API, 2), ws.sparql(REACHED_FROM_API, 2));
+  assert.deepEqual(api.debug.sparql(REACHED_FROM_API, 2), ws.sparql(REACHED_FROM_API, 2));
 });
 
 test("the two interfaces answer the same one-hop relational question the same way", () => {
@@ -910,7 +915,7 @@ test("UX-I2: an agent escalates the same exhausted question, over the same Worke
   const { ws, stop } = withWorker();
   try {
     const api = createAgentApi(ws, { target: null, selection: [] }, {}, () => {}, new ExampleCatalog(ws, assets));
-    const spent = api.sparql(REACHED_FROM_API, 2);
+    const spent = api.debug.sparql(REACHED_FROM_API, 2);
     assert.equal(spent.answer.kind, "exhausted");
     assert.ok(spent.escalation !== null, "an agent must be able to reach the route the prose names");
     if (spent.escalation === null) return;
@@ -952,20 +957,31 @@ test("a SPARQL answer cannot outlive the system it describes", () => {
   assert.deepEqual(column(after), column(before), "and a label edit must not change the solutions");
 });
 
-test("Q9: SPARQL and the budget escalation are spellings of `query`, and exploration is not", () => {
-  // Q9's reading, as the registry records it: `query` is the capability, SPARQL is a syntax for it,
-  // and re-asking with the Worker's budget is the same question under a different bound. Both land
-  // on that row; neither mints one.
+test("Q9 AS RULED: the budget escalation is a spelling of `query`, SPARQL is not, and exploration is not", () => {
+  // **This test used to assert the opposite**, and that is worth recording rather than quietly
+  // rewriting. It pinned Q9's FIRST reading — `query` is the capability, SPARQL is a syntax for it,
+  // so `window.mage.sparql` lands on that row. `DECISIONS-RULED-model-query-261002.md` reversed it:
+  // arbitrary SPARQL is not a semantic capability under UX-I1, because a valid SPARQL query can ask
+  // questions the RDF representation permits and the metamodel does not license. A test pinning a
+  // superseded ruling is worse than no test: it defends the thing the ruling removed.
   const query = CAPABILITIES.find((c) => c.id === "query");
   assert.ok(query);
-  for (const at of ["window.mage.sparql", "window.mage.analysis.resolveExhausted"] as const) {
-    assert.ok(query.machine.some((a) => a.at === at && a.status === "wired"),
-      `${at} must be declared, or §26's closure check cannot see it`);
-  }
+  assert.ok(query.machine.some((a) => a.at === "window.mage.analysis.resolveExhausted" && a.status === "wired"),
+    "a bigger budget for the same question is the same capability, so it stays on this row");
   assert.equal(query.service, "workspace.query", "the row still names the capability's canonical seam");
-  assert.deepEqual(CAPABILITIES.filter((c) => c.id !== "query").flatMap((c) =>
-    [...c.human, ...c.machine].filter((a) => a.at.includes("sparql")).map((a) => a.at)), [],
-    "no other capability claims a SPARQL affordance");
+  // No capability anywhere claims a SPARQL site. Swept over the WHOLE registry rather than over
+  // "every row but `query`", which is the assertion the old reading could not make.
+  assert.deepEqual(CAPABILITIES.flatMap((c) =>
+    [...c.human, ...c.machine].filter((a) => a.at.includes("sparql")).map((a) => `${c.id}: ${a.at}`)), [],
+    "a SPARQL affordance on any capability puts arbitrary SPARQL back inside the semantic interface");
+  // And the hatch list is where it went. The site is read from the declaration, not spelled here:
+  // §G2's rename is provisional, and a literal would make this test part of its revert surface.
+  assert.deepEqual(ESCAPE_HATCHES.map((h) => h.at), [SPARQL_HATCH_RENAME.at],
+    "the console must be declared SOMEWHERE the registry can see it, or the fence is prose");
+  // The summary is part of the declaration: `describe()` publishes it, so a row still advertising
+  // SPARQL would advertise the hatch through the semantic interface's own self-description.
+  assert.doesNotMatch(query.summary, /sparql/i,
+    "the `query` row's summary must not offer SPARQL: describe() publishes it verbatim");
 
   // And the other side of the same ruling. Exploration is NOT a spelling of anything: it answers
   // what the configuration space's size is, which no other capability answers, so it has its own

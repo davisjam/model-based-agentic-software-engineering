@@ -424,9 +424,15 @@ export class Workspace {
    *
    * `answerSparql` was exported and nothing outside `src/sparql/` imported it, so the layer was
    * tree-shaken out of both bundles and no caller could ask a SPARQL question. This is the method
-   * that closes that, and it is HERE because the facade is the single seam: `window.mage.sparql`
-   * delegates to this, and a second path reaching `src/sparql/` directly would be the agent-specific
-   * answer path FR-AGENT-1 forbids.
+   * that closes that, and it is HERE because the facade is the single seam: the fenced escape hatch
+   * on `window.mage` delegates to this, and a second path reaching `src/sparql/` directly would be
+   * the agent-specific answer path FR-AGENT-1 forbids.
+   *
+   * **This method is beneath the fence, not inside it.** `DECISIONS-RULED-model-query-261002.md`
+   * removed arbitrary SPARQL from the semantic interface; what it fenced is the PUBLIC surface, and
+   * SPARQL stays the implementation mechanism for querying the RDF representation. So the hatch's
+   * status lives in `ESCAPE_HATCHES`, and this method keeps its licensing gate unchanged: the hatch
+   * is outside the semantic interface, not outside `translate` → `admit`.
    *
    * **The §1 answer-path table is honoured by the layer, not re-decided here.** A relational
    * question whose binding set IS its evidence is answered; a behavioral one has no SPARQL spelling

@@ -278,6 +278,95 @@ export const WIRED_WITHOUT_A_WALKED_PATH: readonly {
   readonly at: string; readonly why: string; readonly drainedBy: string;
 }[] = [];
 
+// ----------------------------------------------------------------------------------------------
+// The escape hatches — surfaces that exist OUTSIDE the semantic interface
+// ----------------------------------------------------------------------------------------------
+
+/**
+ * Which ruling fences a hatch. CLOSED, so an invented or empty citation is a COMPILE error.
+ *
+ * `DESIGN-model-query-261002.md` §7.2 types this field `string`, which would let a hatch declare
+ * `fencedBy: ""` and pass — the same defect the design elsewhere spends pages avoiding, and the
+ * reason M3 narrowed `Collector.add`'s rule id to a union (§14(2)). A hatch is only outside the
+ * semantic interface because a ruling put it there; there is exactly one such ruling today, and a
+ * second one has to be added here before a second hatch can cite it.
+ *
+ * The string is also a path a test resolves: `test/escape-hatch.test.ts` reads the cited file and
+ * asserts it contains the sentence that does the fencing. A closed union cannot be forged; a
+ * citation to a file that does not say what is claimed can be, so the join is checked too.
+ */
+export type FenceCitation = "DECISIONS-RULED-model-query-261002.md";
+
+/**
+ * A surface that exists for debugging and development, OUTSIDE the semantic interface.
+ *
+ * The ruling's words: *"A raw SPARQL console may still exist as an advanced, debugging, or
+ * development escape hatch. If retained, it should be explicitly outside the normal UX-I1 semantic
+ * interface and should not become an interface on which normal agent workflows depend."*
+ *
+ * A hatch is **not** a `Capability` with a missing human side, and that distinction is the whole
+ * point of a separate list. UX-I1 governs capabilities: every one owes a wired affordance on both
+ * sides and a navigation path for the human one. A hatch owes neither — "outside the semantic
+ * interface" means precisely that UX-I1 does not reach it — so declaring the console as a
+ * one-sided capability would have made the gate report a violation that is a decision, and raising
+ * `PARITY_VIOLATION_CEILING` to absorb it would have blinded the gate to every real one.
+ */
+export interface EscapeHatch {
+  /** Where it is called: a `window.mage` path, like a machine affordance's `at`. */
+  readonly at: string;
+  /** Why it exists at all. Checked non-empty: a hatch with no stated reason is an accident. */
+  readonly reason: string;
+  /** The ruling that fences it. A hatch cannot be declared without one. */
+  readonly fencedBy: FenceCitation;
+}
+
+/**
+ * **PROVISIONAL — `DESIGN-model-query-261002.md` §G2 is NOT RULED.**
+ *
+ * The design recommends moving the console to a `debug` namespace and bumping the API version,
+ * because a fence only the registry can see is invisible at the one place a dependency forms: the
+ * call site. The author has not ruled it, so it is recorded the way M3 recorded §G3's authority
+ * split — one constant, carried by reference, so that reverting is one edit rather than an
+ * archaeology exercise (§14(5)).
+ *
+ * **The fence does not depend on this.** Every mechanical control in this wave keys off
+ * `ESCAPE_HATCHES[].at`, whatever string that is: the disjointness check, the closure check,
+ * `describe().outsideSemanticInterface`, and the reference-closure test all read the declaration.
+ * Taking §G2 adds legibility at call sites and in agent transcripts; it adds no enforcement. So if
+ * the author declines, what changes is `at` and `apiVersion` here, the `debug` block on
+ * `MageAgentApi` and its one-line implementation, and nothing else — the tests spell no site name.
+ */
+export const SPARQL_HATCH_RENAME = {
+  at: "window.mage.debug.sparql",
+  previously: "window.mage.sparql",
+  apiVersion: "0.3.0",
+  previousApiVersion: "0.2.0",
+  /** False until the author rules §G2. A ratified rename is no longer provisional. */
+  ratified: false,
+  question: "DESIGN-model-query-261002.md §G2",
+  reverts:
+    "`at` and `apiVersion` above, the `debug` namespace on MageAgentApi and its delegation in "
+    + "createAgentApi, and AGENT_API_VERSION's doc-comment. No test names the site as a literal.",
+} as const;
+
+/**
+ * Every surface declared outside the semantic interface. The list is closed; adding one is a
+ * deliberate act that needs a ruling to cite.
+ *
+ * One member. The raw SPARQL console: the ruling reversed `DESIGN-sparql-261002.md` §6 Q9's first
+ * reading, under which it was registered as a third machine affordance of `query`.
+ */
+export const ESCAPE_HATCHES: readonly EscapeHatch[] = [
+  {
+    at: SPARQL_HATCH_RENAME.at,
+    reason:
+      "raw SPARQL over the RDF projection, for debugging the projection and the licensing seam. "
+      + "Outside the semantic interface because a syntactically valid SPARQL query can ask "
+      + "questions the RDF representation permits and the MAGE metamodel does not license.",
+    fencedBy: "DECISIONS-RULED-model-query-261002.md",
+  },
+];
+
 /** A machine affordance: a callable on `window.mage`, which has no element to bind. */
 const wired = (at: string): Affordance => ({ at, status: "wired" });
 
@@ -450,7 +539,7 @@ export const CAPABILITIES: readonly Capability[] = [
   },
   {
     id: "query",
-    summary: "Run one graph, behavioural or SPARQL query and return outcome, coverage and evidence.",
+    summary: "Run one graph, behavioural or quantitative model query and return outcome, coverage and evidence.",
     service: "workspace.query",
     // `properties-section.ask` is the §10.1 requirement: a person asks a supported question through
     // structured controls, without writing a query document. It is a second affordance of `query`
@@ -469,38 +558,42 @@ export const CAPABILITIES: readonly Capability[] = [
     // it derives from. Two machine affordances rather than a changed return type, because `query`'s
     // `QueryResult` is the published wire shape and widening it would break every reader of it.
     //
-    // `window.mage.sparql` is the third, and it is this row's rather than its own capability —
-    // DESIGN-sparql-261002.md §6 Q9's first reading, implemented. `query` is the capability and
-    // SPARQL is a syntax for it: §11 says a student normally does not write SPARQL, an agent
-    // translates the question into it, and both spellings ask one thing of one system and get an
-    // answer carrying coverage and the hash it describes. §1's answer-path table is then a routing
-    // rule INSIDE the capability — a binding set to the SPARQL evaluator, a path witness and
-    // anything behavioral to the engine — which is why a second row would report a capability the
-    // product did not gain, exactly as `analysis` reports no row for running a query off-thread.
+    // ---- the SPARQL console is NO LONGER an affordance of this row ------------------------------
     //
-    // Two costs, stated rather than discovered later. **The suggested-question set bounds what a
-    // person can ask while an agent is unbounded**: `properties-section.ask` offers the supported
-    // forms, so a person asks a relational question but not an ARBITRARY one. That asymmetry is the
-    // same decision as having no raw YAML editor, and it is a decision, not an oversight — the
-    // author still owns Q9's ruling, and if they rule otherwise what changes is this row, not the
-    // wiring. **And `service` names the capability's canonical seam, not each affordance's
-    // function**: `window.mage.sparql` ends at `workspace.sparql`, as `window.mage.ask` already
-    // ends at `workspace.evaluate` and `header.run-all` at `workspace.runSavedQueries`. A human
-    // SPARQL console is deliberately NOT added to buy a tidier row: an accurate affordance beats a
-    // control nobody asked for.
+    // This comment used to argue the opposite, at length: `window.mage.sparql` was a third machine
+    // affordance here, on the reading that `query` is the capability and SPARQL is a syntax for it
+    // (`DESIGN-sparql-261002.md` §6 Q9, first reading). **The author reversed that reading.**
     //
-    // `window.mage.analysis.resolveExhausted` is the fourth, and it is this row's for the same
-    // reason `sparql` is: it re-asks a question the caller already asked, with the Worker's budget
-    // instead of the interactive one, and hands back the same four arms. A bound is not a capability
-    // — a second row would report that the workbench gained the ability to answer something, when
-    // what it gained was permission to spend longer on the same question.
+    // `DECISIONS-RULED-model-query-261002.md`: *"'Run arbitrary SPARQL' should not be a semantic
+    // capability under UX-I1, and arbitrary SPARQL should not be the normal query interface for
+    // either humans or agents."* The old argument's load-bearing premise — that both spellings ask
+    // one thing of one system — is what the ruling denies: a syntactically valid SPARQL query can
+    // ask questions the RDF representation permits and the metamodel does not license, so the two
+    // spellings do not have one semantics, and registering them as one capability let an agent
+    // couple its reasoning to the storage representation while the registry called that a feature.
     //
-    // It is machine-only, and that is inside the asymmetry this row already declares rather than a
-    // new one: the escalation handle comes from an `exhausted` SPARQL answer, and a person cannot
-    // write SPARQL here. `properties-section.ask` offers the supported forms, which are the forms
-    // that do not exhaust. A human control for escalating would need a human way to exhaust first.
+    // The console survives as a fenced escape hatch, declared in `ESCAPE_HATCHES` above where the
+    // closure check can see it. The old comment's own hedge — "the author still owns Q9's ruling,
+    // and if they rule otherwise what changes is this row, not the wiring" — was right about the
+    // wiring: `workspace.sparql` is untouched, and its internal `translate` → `admit` gate still
+    // decides licensing. The hatch is outside the semantic interface, not outside the gate.
+    //
+    // ---- what is still this row's, and why ------------------------------------------------------
+    //
+    // `window.mage.ask` is the grounded twin of `query`: same service, same question, the verdict
+    // returned WITH the models it derives from.
+    //
+    // `window.mage.analysis.resolveExhausted` re-asks a question the caller already asked, with the
+    // Worker's budget instead of the interactive one, and hands back the same four arms. A bound is
+    // not a capability — a second row would report that the workbench gained the ability to answer
+    // something, when what it gained was permission to spend longer on the same question.
+    //
+    // It is machine-only, and once the hatch is the only SPARQL producer that asymmetry gets
+    // *narrower* rather than wider: the escalation handle is obtainable only from an `exhausted`
+    // answer, so escalation is now reachable only downstream of a deliberate hatch use. It needs no
+    // separate fencing because it cannot be reached without passing through one.
     machine: [
-      wired("window.mage.query"), wired("window.mage.ask"), wired("window.mage.sparql"),
+      wired("window.mage.query"), wired("window.mage.ask"),
       wired("window.mage.analysis.resolveExhausted"),
     ],
     producesEvidence: true,
@@ -933,6 +1026,7 @@ const anyWired = (as: readonly Affordance[]): boolean => as.some((a) => a.status
  */
 export function checkAffordanceParity(
   registry: readonly Capability[] = CAPABILITIES,
+  hatches: readonly EscapeHatch[] = ESCAPE_HATCHES,
 ): readonly ParityViolation[] {
   const out: ParityViolation[] = [];
   for (const c of registry) {
@@ -957,6 +1051,56 @@ export function checkAffordanceParity(
   // second implementation of UX-I1 with its own definition of passing failed two pushes at a gate
   // that had never gone red locally.
   out.push(...checkNavPaths(registry));
+  out.push(...checkEscapeHatchFence(registry, hatches));
+  return out;
+}
+
+/**
+ * The fence, as a check: a declared hatch is **not** also a capability affordance.
+ *
+ * The ruling's first obligation — *"the console's exclusion must be declared where the registry can
+ * see it, not merely asserted in prose"* — is discharged by `ESCAPE_HATCHES` existing. This is the
+ * half that keeps it from rotting: a declaration that is ALSO a capability affordance declares
+ * nothing, because the capability's own machine list would put the site right back inside the
+ * semantic interface while the hatch list claimed it was outside. "Every machine site is in exactly
+ * one list" is the property, and both halves of it have teeth — this function holds disjointness,
+ * `checkRegistryClosure` holds exhaustiveness over the sites a live surface actually presents.
+ *
+ * It runs inside `checkAffordanceParity`, which means the 0-violation gate (`npm run check:parity`)
+ * is what goes red. That placement is deliberate and it is the `PARITY_VIOLATION_CEILING` lesson
+ * applied forwards: a fence checked only by a node test would be a second definition of passing,
+ * with the blocking gate green while the invariant was broken.
+ *
+ * The violation is reported against the capability that WRONGLY CLAIMS the site, rather than
+ * against a filler id, because that is the row an author has to edit.
+ */
+export function checkEscapeHatchFence(
+  registry: readonly Capability[] = CAPABILITIES,
+  hatches: readonly EscapeHatch[] = ESCAPE_HATCHES,
+): readonly ParityViolation[] {
+  const out: ParityViolation[] = [];
+  for (const h of hatches) {
+    for (const c of registry) {
+      const side = [...c.human].some((a) => a.at === h.at) ? "human"
+        : [...c.machine].some((a) => a.at === h.at) ? "machine" : null;
+      if (side !== null) {
+        out.push({
+          invariant: "UX-I1", capability: c.id,
+          problem: `'${h.at}' is declared an escape hatch (fenced by ${h.fencedBy}) AND registered `
+            + `as a ${side} affordance of '${c.id}'. A site inside the semantic interface is not `
+            + "outside it; delete one declaration.",
+        });
+      }
+    }
+    // `fencedBy` is held by the compiler; `reason` cannot be, and a hatch with no stated reason is
+    // an accident that acquired a fence rather than a decision that needed one.
+    if (h.reason.trim() === "") {
+      out.push({
+        invariant: "UX-I1", capability: "query",
+        problem: `escape hatch '${h.at}' states no reason for existing`,
+      });
+    }
+  }
   return out;
 }
 
@@ -992,8 +1136,9 @@ export interface ParityGateVerdict {
  */
 export function affordanceParityGate(
   registry: readonly Capability[] = CAPABILITIES,
+  hatches: readonly EscapeHatch[] = ESCAPE_HATCHES,
 ): ParityGateVerdict {
-  const violations = checkAffordanceParity(registry);
+  const violations = checkAffordanceParity(registry, hatches);
   return {
     violations,
     headline: `UX-I1: ${violations.length} violation(s) over ${registry.length} capabilities`,
@@ -1119,11 +1264,19 @@ export function checkNavPaths(
  * and this function could only ever confirm the test's own arithmetic (F-3). The browser tier now
  * collects `data-affordance` off the served page and passes THAT, which is what makes the
  * unregistered-site direction mean something.
+ *
+ * **A machine site is legal if it is registered to a capability OR declared an escape hatch**, and
+ * the hatch list is the second input for exactly that reason. Without it, fencing the SPARQL
+ * console would have made the console an unregistered machine site — so the only two ways to pass
+ * would have been to put it back inside the semantic interface, or to stop enumerating machine
+ * sites at all. "Outside the semantic interface" has to be a thing the closure check can be TOLD,
+ * or it is a thing the closure check reports as drift.
  */
 export function checkRegistryClosure(
   declaredHumanSites: readonly string[],
   declaredMachineSites: readonly string[],
   registry: readonly Capability[] = CAPABILITIES,
+  hatches: readonly EscapeHatch[] = ESCAPE_HATCHES,
 ): readonly ParityViolation[] {
   const out: ParityViolation[] = [];
   const known = (pick: (c: Capability) => readonly Affordance[]): Set<string> =>
@@ -1139,14 +1292,17 @@ export function checkRegistryClosure(
     }
   }
   const machineKnown = known((c) => c.machine);
+  const hatchSites = new Set(hatches.map((h) => h.at));
   for (const site of declaredMachineSites) {
-    if (!machineKnown.has(site)) {
+    if (!machineKnown.has(site) && !hatchSites.has(site)) {
       out.push({
         invariant: "UX-I1", capability: "inspect",
-        problem: `machine affordance '${site}' reaches the model but is not registered to any capability`,
+        problem: `machine site '${site}' reaches the model but is neither registered to a `
+          + "capability nor declared an escape hatch",
       });
     }
   }
+  out.push(...checkEscapeHatchFence(registry, hatches));
   return out;
 }
 

@@ -593,8 +593,8 @@ Two findings about this design, from working the count:
 | MQ-I1 | Every evaluation is preceded by the same admission the checker reports: the seam by the `LicensedQuestion` brand (`src/sparql/licensing.ts:183`, as-built), the engine path by the evaluator's head calling `admitTyped`. | the brand (compiler) + `evaluate*` being module-private so admission is the only route in (compiler) + `test/engine-check.test.ts`, which asserts each evaluator's answer IS the admission's verdict, object-equal, for every cause on all three kinds. TESTED (M2) |
 | MQ-I2 | `check(q)` and execution agree on refusal cause and sentence at the same hash, for every shipped saved question plus a battery with ≥1 case per `RefusalReason`. | `test/engine-check.test.ts` — every shipped example's saved questions plus a per-cause battery; the `malformed` arm's mapping is pinned separately because it is not an identity (§13(4)). TESTED (M2) |
 | MQ-I3 | `QuerySemantics.forms` / `.composing` are the engine's own arrays by identity, per type. | the registry identity tests in `test/model-types.test.ts`. TESTED (M1) |
-| MQ-I4 | `ESCAPE_HATCHES` and capability affordances are disjoint; every machine site is in exactly one; `describe().operations` names no hatch. | extended `checkRegistryClosure` + node test. UNTESTED until M4 |
-| MQ-I5 | No shipped example question, suggested question, or Learn artifact is SPARQL text; hatch references close over the declared file set. | NEW node test (§7.3). UNTESTED until M4 |
+| MQ-I4 | `ESCAPE_HATCHES` and capability affordances are disjoint; every machine site is in exactly one; `describe()` names a hatch ONLY under `outsideSemanticInterface` (amended from §7.3's `operations` clause, which was unfalsifiable — §15(3)). | `checkEscapeHatchFence` inside `checkAffordanceParity` — so the BLOCKING `check:parity` gate holds it (compiler holds `fencedBy`) — plus `checkRegistryClosure` and `test/escape-hatch.test.ts`, whose describe() check blanks the one permitted field and asserts over the rest. TESTED (M4), each arm watched failing |
+| MQ-I5 | No shipped example question and no question the ask catalogue OFFERS is SPARQL text — each validates against `mage-query.schema.json`'s own `query` definition, read at test time, AND is admitted by `parseQuery`; hatch CALLS close over one declared file (§15(4)) and the hatch SITE STRING has one author (§15(5)). | `test/escape-hatch.test.ts`. TESTED (M4), each arm watched failing on the real tree |
 | MQ-I6 | `validate()` recomputes: its `hash` equals the current system hash, and its findings derive from `rules.ts` alone. | NEW node test: transact, validate, compare hashes; assert no cached path. UNTESTED until M3 |
 | MQ-I7 | Adding a model type changes no SPARQL query text (§8's count stays zero). | the §8 enumeration is the audit; partially held by MQ-I8's derivation tests. UNTESTED as a mechanical gate — see §G5-adjacent note in §11 |
 | MQ-I8 | Every derived-facade operation and every generated contextual question maps onto a form the loaded types' `QuerySemantics` declares. | NEW derivation test (machine half, M5); the human half rides the shell's path-walking gate. UNTESTED until M5 |
@@ -682,6 +682,11 @@ otherwise.
 - **Consequence of ruling otherwise.** (b): MQ-I4/I5 hold unchanged, `describe()` still
   declassifies it, and every future reader of an agent transcript must know the registry to know
   the call is a hatch.
+- **Status after M4: IMPLEMENTED, PROVISIONAL.** (a) landed behind `SPARQL_HATCH_RENAME`
+  (`ratified: false`). M4 confirms the §G2 analysis on one point and sharpens it on another: the
+  rename buys legibility and NO enforcement, because every control keys off `ESCAPE_HATCHES[].at`
+  — so the (b) reading is cheaper than this question implies. The exact revert surface is §15's
+  PROVISIONAL paragraph; no test spells the site.
 
 ### G3 — Ratify the validation authority split
 
@@ -1017,3 +1022,115 @@ wave 2c removed the hypothesis radios they drove.
 `workbench/node_modules`, no ROOT `node_modules` and no `book/node_modules`, so the browser and smoke
 tiers cannot run until all three symlinks exist and `npm run build` has run. Three for three with
 §13's count.
+
+---
+
+## 15. As built — M4, and where §7 was wrong
+
+M4 landed `EscapeHatch` / `FenceCitation` / `ESCAPE_HATCHES` / `SPARQL_HATCH_RENAME`,
+`checkEscapeHatchFence`, the hatch list as a second input to `checkRegistryClosure`,
+`describe().outsideSemanticInterface`, the `window.mage.debug.sparql` rename with
+`AGENT_API_VERSION` 0.3.0, and MQ-I4 / MQ-I5 in `test/escape-hatch.test.ts`. The fence §7 specified
+is real and holds. Six things about §7 did not survive applying it.
+
+**(1) `fencedBy: string` would have made the fence forgeable, and the fix is a closed union.** §7.2
+types the field `string`, and the sentence beside it — *"a hatch with no fence citation fails the
+registry test"* — concedes that a test is what would catch an empty one. `FenceCitation` is a closed
+union of ruling filenames instead, so `fencedBy: ""` and `fencedBy: "whatever.md"` are both compile
+errors, and a second hatch cannot be declared until a second ruling is added to the union. This is
+M3's §14(2) lesson one module over: totality is cheap when the set is already closed. What a test
+can still usefully do is the JOIN — a closed union cannot be forged, but a citation to a real
+document that says nothing about fencing can be, so the test reads the cited file and asserts it
+calls something an escape hatch and says it is *explicitly outside* the semantic interface.
+
+**(2) The fence belongs in the BLOCKING gate, and §7.2 put it only in the closure check.** §7.2
+assigns disjointness to `checkRegistryClosure`, which is called by two tests. `check:parity` — the
+0-violation gate CI reads — calls `checkAffordanceParity`, and would have stayed green with the
+console registered in both lists. That is precisely the `PARITY_VIOLATION_CEILING` incident in
+advance: one invariant, two definitions of passing, the weaker one local. So
+`checkEscapeHatchFence` is ONE function with two consumers — `checkAffordanceParity` (the gate) and
+`checkRegistryClosure` (whose stated invariant is "every machine site is in exactly one list", of
+which disjointness is half). Re-registering the hatch as a `query` affordance now reads
+`UX-I1: 1 violation(s) over 26 capabilities`, named against the row an author has to edit.
+
+**(3) `describe().operations` never advertised the hatch, so §7.3's second check could not fail.**
+§7.2 says *"`operations` derives from `CAPABILITIES` and loses the row automatically"* and §7.3 makes
+"`describe().operations` contains no hatch site" check 2. Read the code: `operations` is
+`CAPABILITIES.map(c => ({name: c.id, …}))` — one entry per CAPABILITY ID, never a call site. It
+named no affordance before this wave and names none now. The clause was true at birth and
+unfalsifiable, which is the same defect class as the tier that reported `8 pass / 0 fail` on 27
+tests. What an agent can actually be routed by is the whole object, so the landed check serialises
+`describe()`, blanks `outsideSemanticInterface`, and asserts no hatch site — and no mention of
+SPARQL at all — survives in what is left. That check DOES fail: a `notSupported` entry naming the
+site turns it red, and so does the `query` row's old summary, which said *"Run one graph,
+behavioural or SPARQL query"* and is now *"…or quantitative model query"*. §7.2 did not notice that
+the row's own summary was the one place `describe()` really did advertise the console.
+
+**(4) §7.3's declared file set was wrong about three of its four members.** The reference-closure
+check is named over `src/app/agent-api.ts`, `src/app/services.ts`, "the worker plumbing" and
+`test/`. Exactly one file CALLS the seam: `agent-api.ts`, which delegates. `services.ts` *defines*
+`Workspace.sparql` and never calls it — a different relation, and not an allowance a closure check
+should grant, because granting it would license a future internal self-call. `src/analysis.worker.ts`
+and `src/sparql/worker-eval.ts` contain no reference to the seam at all: the escalation path carries
+a `TranslatedQuery` off an exhausted answer and the worker admits it again on its own thread. Three
+allowances for nothing, each of which would have hidden a real dependency the day that file grew
+one. The REVERSE direction of the check is what found them — the same shape as
+`WIRED_WITHOUT_A_WALKED_PATH`'s drained-list rejection, and the reason it is asserted rather than
+assumed.
+
+**(5) One check §7.3 did not ask for, because the closure it specified has a hole.** A grep for
+calls catches a module that *invokes* the hatch. It does not catch a module that hand-types the
+site: a doc page offering the string, a palette entry naming it, a second affordance list
+re-declaring it. So there is a second closure — the site string `window.mage.debug.sparql` is
+authored in `capabilities.ts` and nowhere else across `src/`, `scripts/`, `index.html`, `examples/`
+and `models/`. Everything else learns the string from `describe()`. This is also what keeps §G2
+cheap: no consumer spells it, so renaming it again touches one line.
+
+**(6) `query` keeps three machine affordances, and `resolveExhausted`'s asymmetry got NARROWER.**
+§7.2 predicts `resolveExhausted` needs no separate fencing because the hatch becomes the only SPARQL
+producer. True, and the direction is worth stating positively: its handle is obtainable only from an
+`exhausted` answer, so escalation is now reachable only *downstream of a deliberate hatch use*. It
+is less exposed after the fence than before it, not merely no more exposed.
+
+**PROVISIONAL, and what changes if §G2 is declined.** The rename landed with `AGENT_API_VERSION`
+reading `SPARQL_HATCH_RENAME.apiVersion`, so the version constant and the site string are one
+record carrying `ratified: false` and the §G2 cite. **The fence does not depend on the rename.**
+Every control keys off `ESCAPE_HATCHES[].at`: the disjointness check, the closure check,
+`describe().outsideSemanticInterface`, both reference closures, and every test (no test spells the
+site — they read it from the declaration, which is rule-42 discipline doing double duty as a
+reversibility budget). Declining §G2 therefore reverts: `at` and `apiVersion` in
+`SPARQL_HATCH_RENAME`, the `debug: DebugApi` member on `MageAgentApi` and its one-line delegation in
+`createAgentApi`, and three call sites in `test/services.test.ts`. Nothing about the fence's teeth
+moves. Taking the rename buys legibility at the call site and in agent transcripts; it buys no
+enforcement.
+
+**Every obligation-2 check was watched failing, on the real tree.** The in-test negative controls
+are permanent, but they assert against literals, so each check was also sabotaged live and reverted:
+a shipped example's saved question given a `sparql:` key (checks (a) red — both the saved-question
+sweep and the catalogue sweep, because the catalogue offers saved questions too); a `notSupported`
+entry naming the site (check (b) red, plus the site-authorship closure); a `.sparql(` call added to
+`src/ui/shell/askbar.ts` (check (c) red, and the site-authorship check correctly stayed green — it
+is a different hole); and the hatch re-registered on the `query` row, which is the pre-wave state
+(`check:parity` red at 1/26, plus three node tests).
+
+**The test that pinned the superseded ruling had to be inverted, not deleted.** `test/services.test.ts`
+held *"Q9: SPARQL and the budget escalation are spellings of `query`"*, which asserted
+`window.mage.sparql` was a declared machine affordance. A test defending a reversed ruling is worse
+than no test, so it is now *"Q9 AS RULED"* and sweeps the WHOLE registry for a SPARQL affordance
+rather than every row but `query` — the assertion the old reading could not make — plus the hatch
+declaration and the summary. The comment records that it used to say the opposite.
+
+**What M4 did not change.** `workspace.sparql` is untouched: same signature, same budget, same
+`translate` → `admit` gate. The hatch is outside the semantic interface, not outside the gate.
+`validate.py` needed no edit (no finding moved) and no human affordance was owed — the console has
+no human surface and never had one, so the a11y tier's 43 declared routes are unchanged. SH-I8 is
+respected trivially: no wired human site was added.
+
+**Gates at the landing tree:** `tsc --noEmit` clean · `check:parity`
+`UX-I1: 0 violation(s) over 26 capabilities` (exit 0) · node **811** (803 at the fork + 8) · smoke
+**3** · browser **36** · a11y **111**. Every tier 0 fail, 0 cancelled, 0 skipped.
+
+**The worktree-setup gaps are a gap no longer, because the orchestrator pre-made them.** All three
+symlinks (`workbench/node_modules`, root, `book/`) existed at fork. §13 and §14 recorded them as
+`git worktree add` omissions twice; the third wave got them by hand. The defect is unfixed — it has
+just been routed around a third time.
