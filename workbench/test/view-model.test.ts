@@ -7,7 +7,7 @@
 // canvas-first design cannot be checked this way, which is a large part of why it fails in practice.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
@@ -22,6 +22,8 @@ import {
 } from "../src/ui/view-model.ts";
 import type { AskRequest, EditRequest } from "../src/ui/view-model.ts";
 import { checkModelPlurality, checkPurposeVisibility } from "../src/ui/invariants.ts";
+import { SURFACES, builtSurfaces, surfaceElement } from "../src/ui/shell/surfaces.ts";
+import type { NavSurface } from "../src/ui/shell/surfaces.ts";
 import { checkPropertyGrounding, evaluateProperties } from "../src/app/properties.ts";
 import type { QueryResult } from "../src/ir/types.ts";
 
@@ -1431,41 +1433,122 @@ test("committing a hypothesis makes it authoritative", () => {
 // The page contract
 // --------------------------------------------------------------------------------------------
 
-test("every element main.ts requires is present in index.html", () => {
+/** Every `.ts` the shell is made of: the composition root plus one module per region. */
+const shellSources = (): string => [
+  "src/ui/main.ts",
+  ...readdirSync("src/ui/shell").filter((f) => f.endsWith(".ts")).map((f) => `src/ui/shell/${f}`),
+].map((path) => readFileSync(path, "utf8")).join("\n");
+
+test("every element the shell requires is present in index.html", () => {
   // `byId` throws at module load when an id is missing, so a typo here does not break one control:
   // it blanks the whole application before the first paint. Nothing else catches that headlessly.
-  const main = readFileSync("src/ui/main.ts", "utf8");
+  //
+  // The scan reads EVERY shell module, not just `main.ts`. The region split moved most of the
+  // lookups out of the composition root, and a scan that still read only `main.ts` would have gone
+  // on passing while covering seven ids out of fifty — which is what it did, for one commit, before
+  // this line was widened.
+  const sources = shellSources();
   const html = readFileSync("index.html", "utf8");
-  const wanted = new Set([...main.matchAll(/\b(?:byId|sel|txt|box)(?:<[^>]*>)?\("([a-z0-9-]+)"\)/g)]
+  const wanted = new Set([...sources.matchAll(/\b(?:byId|sel|input)(?:<[^>]*>)?\("([a-z0-9-]+)"\)/g)]
     .map((m) => m[1] as string));
-  // The fieldset ids are a list mapped over byId, so they are not call sites the pattern above sees.
-  for (const m of main.matchAll(/"(form-[a-z-]+|edit-mode)"/g)) wanted.add(m[1] as string);
-  assert.ok(wanted.size > 20, `expected to find the element ids, found ${wanted.size} — the scan is wrong`);
+  // The fieldset ids are lists mapped over byId, so they are not call sites the pattern above sees.
+  for (const m of sources.matchAll(/"(form-[a-z-]+|edit-mode)"/g)) wanted.add(m[1] as string);
+  // And every region host, resolved through the surfaces table rather than typed again here.
+  for (const surface of builtSurfaces()) wanted.add(surface.element);
+  assert.ok(wanted.size > 40, `expected to find the element ids, found ${wanted.size} — the scan is wrong`);
 
   const present = new Set([...html.matchAll(/id="([a-zA-Z0-9-]+)"/g)].map((m) => m[1] as string));
   const missing = [...wanted].filter((id) => !present.has(id)).sort();
   assert.deepEqual(missing, [], `index.html is missing: ${missing.join(", ")}`);
 });
 
-test("the diagram stays last in document order, below the structural sections", () => {
-  // FR-A11Y-2: model editing and query execution must be possible without touching the canvas, so
-  // the prose is the authoritative account and the picture is the convenience. Promoting the canvas
-  // to make a screenshot look better is the regression this pins.
+test("the surfaces table covers the closed vocabulary exactly once", () => {
+  // The table is what makes a declared navigation path checkable (DESIGN-shell-261002.md §2.3): a
+  // path step names a surface, and the closure check resolves the surface to an element the page
+  // declares. A member of the union that the table omits is a surface a path could cite with
+  // nothing to check it against, and a member listed twice is two answers to one question.
+  //
+  // The vocabulary is read off the TABLE and compared against the type's members as a set, which is
+  // the only direction a test can take without a reflection facility — so the literal list below is
+  // the type, and `tsc` fails if it drifts from `NavSurface`.
+  const vocabulary: readonly NavSurface[] = [
+    "header", "start", "nav-models", "nav-properties", "workspace", "inspector",
+    "askbar", "statusbar", "palette", "review", "system-browser", "advanced-query",
+  ];
+  const listed = SURFACES.map((s) => s.surface);
+  assert.deepEqual([...listed].sort(), [...vocabulary].sort(),
+    "SURFACES does not list every NavSurface exactly once");
+  assert.equal(new Set(listed).size, listed.length, "a surface is listed twice");
+
+  // Planned rows say which wave builds them. An unexplained planned surface is an aspiration.
+  for (const surface of SURFACES) {
+    if (surface.status === "planned") {
+      assert.ok(surface.note.length > 20,
+        `surface '${surface.surface}' is planned with no reason — the table must be a work list, not a gap`);
+      assert.equal(surfaceElement(surface.surface), null,
+        `surface '${surface.surface}' is planned and still resolves to an element`);
+    }
+  }
+});
+
+test("a surface that resolves to nothing in the markup is caught — negative control", () => {
+  // The predicate the test above relies on, driven against a table whose element was renamed out
+  // from under it. Without this, closure passes for a table that declares nothing.
   const html = readFileSync("index.html", "utf8");
+  const present = new Set([...html.matchAll(/id="([a-zA-Z0-9-]+)"/g)].map((m) => m[1] as string));
+  const renamed = builtSurfaces().map((s) => s.surface === "workspace" ? { ...s, element: "workspace-v2" } : s);
+  assert.deepEqual(
+    renamed.filter((s) => !present.has(s.element)).map((s) => s.surface),
+    ["workspace"],
+    "renaming the element a built surface claims must be caught",
+  );
+});
+
+test("the shell's regions sit in the order a screen reader walks them", () => {
+  // Document order IS accessibility order, and the grid's visual order is a separate statement
+  // (`grid-template-areas`). Correction 10 separates the two deliberately, so this pins the one
+  // that assistive technology receives: the ways in, then navigation, then the model under
+  // inspection with its structured reading BEFORE its picture, then the selected object, then the
+  // ask surface and the status, and last the transitional surfaces later waves relocate.
+  const html = readFileSync("index.html", "utf8").replace(/<!--[\s\S]*?-->/g, "");
   const at = (id: string): number => {
     const i = html.indexOf(`id="${id}"`);
     assert.notEqual(i, -1, `index.html has no #${id}`);
     return i;
   };
-  for (const id of ["start", "model", "edit", "questions", "findings", "provenance"]) {
-    assert.ok(at(id) < at("diagram"), `#${id} must come before the diagram`);
+  const order = ["skip", "header", "live", "start", "nav", "workspace", "inspector", "askbar",
+    "statusbar", "edit", "system-browser"];
+  for (let i = 1; i < order.length; i += 1) {
+    assert.ok(at(order[i - 1] as string) < at(order[i] as string),
+      `#${order[i - 1]} must precede #${order[i]} in the document`);
   }
-  // Where a reader meets the application. The ways IN come first, then the model: a new visitor who
-  // has loaded nothing should not have to scroll past four empty sections to find the example menu.
-  assert.ok(at("start") < at("model"), "the ways in must precede the model they produce");
+  // Inside the workspace: the structured twin precedes the picture it describes, and the picture
+  // does not escape the region. FR-A11Y-2 — editing and query execution without the canvas — rests
+  // on the reading being the authoritative account.
+  assert.ok(at("workspace") < at("principal-purpose"), "the purpose must be inside the workspace region");
+  assert.ok(at("principal-purpose") < at("diagram-text"), "§5.1: the purpose is stated above the reading");
   assert.ok(at("diagram-text") < at("canvas"), "the twin must precede the picture it describes");
+  assert.ok(at("canvas") < at("inspector"), "the canvas has left the workspace region");
   assert.match(html.slice(at("canvas") - 200, at("canvas") + 200), /aria-hidden="true"/,
     "the canvas is hidden from assistive technology because the twin above is the representation");
+});
+
+test("SH-I1: the markup ships Start mounted and the workspace unmounted", () => {
+  // The invariant is that Start and the workspace are never both mounted, and the BOOT state is the
+  // half a browser-free test can see: a fresh page has nothing loaded, so Start is present and the
+  // workspace is `hidden`. Shipping the workspace visible would flash an empty three-pane shell
+  // before the first paint, which is the state correction 1 exists to remove.
+  const html = readFileSync("index.html", "utf8").replace(/<!--[\s\S]*?-->/g, "");
+  const tag = (id: string): string => {
+    const m = new RegExp(`<section id="${id}"([^>]*)>`).exec(html);
+    assert.ok(m, `index.html has no <section id="${id}">`);
+    return m[1] as string;
+  };
+  assert.doesNotMatch(tag("start"), /\bhidden\b/, "Start must ship mounted: a fresh page has no model");
+  for (const id of ["workspace", "nav", "inspector", "askbar", "statusbar", "edit", "system-browser"]) {
+    assert.match(tag(id), /\bhidden\b/,
+      `#${id} must ship unmounted — nothing is loaded at boot, so it has nothing to show`);
+  }
 });
 
 test("every control added for editing is labelled and keyboard-operable", () => {
