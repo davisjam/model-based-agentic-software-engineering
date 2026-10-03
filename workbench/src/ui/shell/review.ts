@@ -684,33 +684,48 @@ export function mountReview(ctx: ShellContext): ReviewSurface {
 
     const label = armed ? `what-if ${whatIfs + 1}` : PROBE;
     deciding = true;
+    let result: LandResult;
     try {
-      const opened = ctx.workspace.openHypothesis(label, envelope(change, label));
-      if (!opened.ok) return { kind: "rejected", findings: opened.findings };
-
-      if (armed) {
-        whatIfs += 1;
-        setArmed(false);
-        pending = null;
-        return { kind: "reviewing" };
-      }
-
-      // The hypothetical evaluation: every saved query re-run on the branch, which is what
-      // `properties()` already does for whichever branch is current.
-      const impact = propertyImpact(base?.properties ?? [], ctx.workspace.properties());
-      if (impact.movedRequirements.length > 0) {
-        pending = change;
-        return { kind: "reviewing" };
-      }
-      // No obligation moved. Commit-and-announce, G3's other half: discard the probe and apply the
-      // same operations authoritatively so the undo stack is untouched.
-      ctx.workspace.discardHypothesis();
-      const result = ctx.workspace.transact(envelope(change, "main"));
-      return result.ok ? { kind: "committed" } : { kind: "rejected", findings: result.findings };
+      result = decide(change, label, base?.properties ?? []);
     } finally {
       deciding = false;
     }
+    // A repaint, because the surface opens from `paint` and nothing else was going to call one.
+    // `openHypothesis` DID repaint — while `deciding` was still true, which is deliberate: a
+    // half-decided change must not flash a review surface it may be about to discard. So the paint
+    // that opens it is this one. A caller that is itself a modal will find the condition still
+    // refused and its own close handler repaints again, which is how the two never stack.
+    if (result.kind === "reviewing") ctx.repaint();
+    return result;
   };
+
+  /** The decision itself, with the probe open. Separated so `land` owns the flag and the repaint. */
+  function decide(
+    change: Change, label: string, base: readonly EvaluatedProperty[],
+  ): LandResult {
+    const opened = ctx.workspace.openHypothesis(label, envelope(change, label));
+    if (!opened.ok) return { kind: "rejected", findings: opened.findings };
+
+    if (armed) {
+      whatIfs += 1;
+      setArmed(false);
+      pending = null;
+      return { kind: "reviewing" };
+    }
+
+    // The hypothetical evaluation: every saved query re-run on the branch, which is what
+    // `properties()` already does for whichever branch is current.
+    const impact = propertyImpact(base, ctx.workspace.properties());
+    if (impact.movedRequirements.length > 0) {
+      pending = change;
+      return { kind: "reviewing" };
+    }
+    // No obligation moved. Commit-and-announce, G3's other half: discard the probe and apply the
+    // same operations authoritatively so the undo stack is untouched.
+    ctx.workspace.discardHypothesis();
+    const result = ctx.workspace.transact(envelope(change, "main"));
+    return result.ok ? { kind: "committed" } : { kind: "rejected", findings: result.findings };
+  }
 
   setArmed(false);
 
