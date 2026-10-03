@@ -3,7 +3,8 @@
 **Status:** live. Updated as phases land. This file is the durable record; the orchestrator's todo
 list is a view of it, not the source.
 
-Semantics: [`SEMANTICS.md`](SEMANTICS.md) (rules V1–V25; V22 generalized and §7.2a added 261002).
+Semantics: [`SEMANTICS.md`](SEMANTICS.md) — the numbered rules. That file is the authority on how
+many there are and what each says; quoting a range here would be one more count with no gate.
 Open decisions: [`OPEN-DECISIONS.md`](OPEN-DECISIONS.md) — **all six ruled 261002**.
 Architecture: [`models/workbench-components.mage.yaml`](models/workbench-components.mage.yaml)
 — and its asserted queries are a build gate, not documentation.
@@ -28,10 +29,10 @@ Architecture: [`models/workbench-components.mage.yaml`](models/workbench-compone
 | J | RDF projection + query evaluator + structured not-answerable | **landed** `c21c46e0`, `96010d5f`, `408c2388`, `f032fb81`; `sparqljs` text front-end pending |
 | M | Default example systems as the end-to-end suite | **landed** `2ebddc63`; Document Processing in flight |
 
-**UX-I1 is ZERO over 22 capabilities** — every public semantic capability is reachable from the page
+**UX-I1 is ZERO** — every public semantic capability is reachable from the page
 and from an attached agent, and both reach it through the same service. It began the day at 17
-violations over 19 capabilities, ten of them missing a human affordance. The three that held out
-longest (`add-model`, `delete-model`, `add-note`) were violating on BOTH sides, which is what told us
+violations, ten of them missing a human affordance. The three that held out longest
+(`create-model`, `delete-model`, `add-note`) were violating on BOTH sides, which is what told us
 they were a missing transaction operation rather than an interface gap — the registry reported that
 rather than quietly dropping the rows.
 
@@ -41,16 +42,16 @@ guidance that gc agents must share `main` was written before anyone tried it.
 
 ### 0.1 Companion documents
 
-This plan is the spine; four documents carry detail it should not duplicate.
+This plan is the spine; these documents carry detail it should not duplicate.
 
 | Document | What it holds |
 |---|---|
-| `SEMANTICS.md` | Authoritative semantics. The numbered rules V1–V26. |
+| `SEMANTICS.md` | Authoritative semantics, and the authority on its own rule set. |
 | `OPEN-DECISIONS.md` | D1–D6, **all ruled.** Kept as the record of what was decided and why. |
 | `DESIGN-quantities-261002.md` | Phase I design. Representation is determined; the analysis layer is not. |
 | `DESIGN-sparql-261002.md` | Phase J layer 2 design. SPARQL as an interface, per the D3 ruling. |
 
-Plus five verbatim requirement documents (`requirements-*-261002.md`) — CDP agent operability,
+Plus the verbatim requirement documents (`requirements-*-261002.md`) — CDP agent operability,
 accessibility, RDF/SPARQL/SMT, UX, and default example systems. Those are the author's text and are
 not edited; the design documents above are where they become implementable.
 
@@ -108,22 +109,25 @@ surface, the flagship journey's three outcomes, the human/agent convergence, and
 properties. It writes a receipt the CI step asserts, because a gate that silently skips reports
 coverage it does not have.
 
-⚠️ **Known gaps as built:**
+⚠️ **Known gaps: see [`AUDIT-v0.1-261002.md`](AUDIT-v0.1-261002.md), not this file.**
 
-- **No quantitative evaluator.** The representation and accounting layers are landed and validated
-  (V27–V31, V35–V37), so a quantity's shape and its accounting are enforced; nothing computes a
-  path's latency or `memory(c)` yet. Q2 and Q3 are ruled, so this is now build work rather than a
-  decision.
-- **The accounting rules have never been run against a model an author wrote.** All six models in
-  the repo declare zero quantities, so their zero-findings result has an empty subject population —
-  a clean result on weak evidence. Document Processing is the first real test.
-- **`sparqljs` text → algebra is unwired.** The evaluator takes a typed algebra; SPARQL text cannot
-  be submitted yet.
-- **Properties are not first-class** (UX-I5), and **UX-I4 / UX-I7 have no checkable assertion**.
-- **The RDF projection omits the accounting fields**, so the dataset and the validator disagree about
-  how much they know about a quantity.
-- **EX-I3 unsatisfied** until Document Processing ships; the coverage model reports its rows as
-  `unavailable` / `unexercised` rather than omitting them.
+This section used to carry the gap list inline. It was refreshed three times in one day and was
+stale within the hour each time — at its worst it named six gaps that had all since closed, which
+is the failure mode the audit identified as the project's real one:
+
+> The commit log oversells nothing this audit could find. The misleading artifacts are the standing
+> prose — the requirement transcripts that later rulings reversed without amendment, and the
+> self-descriptions that the product outran.
+
+A commit message describes a delta and stays true. A gap list asserts the PRESENT TENSE about a
+system that keeps moving, so it is false the moment the system moves and nothing re-reads it. Every
+mechanical claim in this product has a gate; a prose claim has only a reader's goodwill.
+
+So the list lives in the audit, which is **dated, re-runnable, and says how each finding was
+measured.** Re-run it rather than trusting either document: the audit is a snapshot too, and the
+difference is that it says so and shows its method. Its own findings at the time of writing were
+five defects, none in the semantics — a prose/derived mismatch on the page (fixed), this list, a V32
+refusal-parity break at the SPARQL seam, and two claims with no gate to keep them current.
 
 ## 1. The two new top-level requirements
 
