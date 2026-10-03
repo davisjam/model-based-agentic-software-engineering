@@ -942,3 +942,99 @@ written up, not fixed — both live in `index.html`. The axe suite does not scan
 so `scrollable-region-focusable` on `#nav` is caught by the F-6 gate alone. And the F-6 receipt is
 not yet hard-asserted by the publishing workflow the way the axe and keyboard receipts are; until it
 is, a renamed directory would make this tier a green gate that ran nothing.
+
+**The F-6 D-2 pin measured the measuring machine, and that is why Pages stopped deploying.**
+Appended by the CI-fonts wave. The FR-A11Y tier passed **57/57** locally at `8b701b61` and failed
+the Pages workflow at that same commit, in the step that runs `npm run test:a11y`; the `deploy` job
+is gated on `build`, so the live site stayed on an older commit. The failing assertion was
+`EXPECTED_INVERSIONS`, which pinned within-region focus-order inversions as exact counts at exact
+pixel widths: `index.html` `{ 320: 0, 368: 0, 672: 30, 976: 77, 1024: 75, 1025: 75 }`.
+
+**The cause, measured rather than argued.** `assets/mage-tokens.css` declares
+`--mage-font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`. This
+machine has Source Sans 3 installed (`fc-list` returns 18 entries,
+`~/Library/Fonts/SourceSans3[wght].ttf`); a GitHub Ubuntu runner has none of those four families and
+`.github/workflows/pages.yml` installs no font, so it resolves the generic tail. The mono stack
+names nothing this machine has either, so it already falls back identically in both places and is
+not implicated. One variable, then: the body font. `scripts/measure-f6-font-sensitivity.mjs`
+perturbs it one condition at a time, each with a witness that the substitution took effect (the
+rendered width of a fixed string, and the resolved family):
+
+| condition | 320 | 368 | 672 | 976 | 1024 | 1025 | witness |
+|---|---|---|---|---|---|---|---|
+| declared (this machine) | 0 | 0 | 30 | 76 | 74 | 75 | 286.15px, `"Source Sans 3", …` |
+| **without Source Sans 3** | 0 | 0 | **29** | **81** | **81** | **81** | 315.5px, `-apple-system, …` |
+| `sans-serif` | 0 | 0 | 31 | 81 | 76 | 76 | 309.52px |
+| `serif` | 0 | 0 | 28 | 73 | 73 | 75 | 284.8px |
+| 15px classic scrollbar | 0 | 0 | 30 | **30** | 74 | 74 | unchanged font |
+
+So the hypothesis held: **four of the six pinned entries move under the one font difference that
+separates the two machines.** The hypothesis was also incomplete, which is the more useful half of
+the measurement. The last row re-measures the same widths 15px narrower, because Linux Chromium
+paints a classic scrollbar that consumes layout width where macOS paints an overlay one that does
+not — and `976` moves from 76 to 30 with the font held fixed. **Installing the font on the runner
+would have fixed half of a two-variable problem**, and the half it left would have read exactly like
+this failure the next time anyone looked.
+
+**The zeros move under nothing.** Not under any font, not under the scrollbar delta. At 320 and
+368px the Edit grid is one column, every visual row holds one stop, and the two orders are identical
+by construction. That is the line the fix follows: the zeros are a claim about the page and are
+kept; the non-zero numbers were a count of how many columns happened to fit on one developer's
+machine and were never a property of anything the gate was built to protect.
+
+**What replaced them, and what each assertion now claims.** `focusOrderAt` reports, per region,
+whether that region is laid out in more than one column and whether its reading order and its tab
+order disagree **at all** — both computed from the region's own rows, because a control in the
+column beside it can bridge two of its rows and make a one-column region read as two. Three
+assertions, none of which a font can move:
+
+1. **A region laid out in ONE column never diverges, at any width.** A strict generalisation of the
+   old `320: 0` and `368: 0` entries — now claimed of every region at every width — and the
+   assertion that earns its keep: it is the shape that caught `#edit` and `#system-browser` sharing
+   one named grid area, a defect whose only previous symptom was the sentence "40 inversions at
+   320px".
+2. **No region outside `KNOWN_2D_DIVERGENCE` diverges.** A new 2-D divergence is a 2.4.3 regression
+   and names the region.
+3. **The known region still diverges wherever it IS multi-column.** The D-2 finding is held, not
+   drained: eleven `auto-fit` cells read across and tabbed down must invert some pair at any column
+   count above one. This is the honest form of what the counts were trying to say.
+
+The counts stay in the receipt beside the structural verdict, where a number that moves with the
+environment is a record rather than a gate.
+
+**A fourth negative control, because a boolean needs one more than a number does.** A count that
+moves on its own looks measured even when it is measuring the wrong thing; a boolean that is always
+`true` is indistinguishable from a probe that returns `true`. So the new control forces `#edit` to
+one column and then to three at a single viewport and requires the verdict to follow in both
+directions.
+
+**Proved both ways, and re-provable.** `WB_F6_SIMULATE_CI_FONTS=1 npm run test:a11y` runs the whole
+tier with Source Sans 3 suppressed, and a test asserts the substitution actually applied — a
+simulated run that silently rendered in the author's font would report "CI-equivalent, green" and be
+the same class of defect as the four probe defects §8 above enumerates, one level up. The tier is
+green under both conditions, and the two receipts show the counts moving (672/976/1024/1025 =
+30/76/74/75 against 29/81/81/81) while every structural verdict is byte-identical.
+
+**The pin had already moved twice in one evening, from two unrelated waves** — the shell's
+navigation rails, then wave 2a's command palette and per-selection actions, which took the page from
+76 control stops to 83. Both broke it; neither was a defect. A pin on absolute inversion counts is
+re-broken by every wave that adds a control and costs the next reader the same investigation, which
+is design evidence and not merely a chore: the structural claim survives new controls and font
+differences alike, and the two things it would still fail on — a one-column region that diverges, a
+new region that does — are the two things worth being told about.
+
+**The rest of the tier was audited for the same class, and one other assertion is of this kind.**
+1.4.10's `horizontalOverflowPx === 0` is genuinely font-sensitive: a wider fallback font is exactly
+what could push an unbreakable run past 320px. It is a real claim about the page and stays hard; it
+was re-measured at **0 under all four font conditions at every width** and is reported in the
+sensitivity script so the next change to the body stack re-checks it rather than assuming. Nothing
+else in the a11y or browser tiers pins a machine-dependent value as a page property: the focus-ring
+verdict is a FRACTION of the band (5%) rather than a pixel count; the contrast walk reads tokens and
+CSS-declared sizes; axe asserts `passes >= floor` per state rather than an exact rule count; the
+keyboard walk pins DOM order; and the browser tier makes no geometric assertion at all. The counts
+that remain are floors, which is the shape a count should take when its job is to prove the probe
+was not empty.
+
+The tier goes **57 → 59** (`+1` column-count negative control, `+1` CI-font-simulation witness).
+tsc clean, node 749, browser 32, smoke 3, a11y 59 under both font conditions, 0 skipped,
+`check:parity` 0 violations over 25 capabilities.
