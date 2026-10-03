@@ -28,7 +28,7 @@
  *     index.html  empty workbench        0 violations   39 rules passed
  *     index.html  loaded example         0 violations   48 rules passed
  *     index.html  properties populated   0 violations   48 rules passed
- *     index.html  hypothesis open        0 violations   48 rules passed
+ *     index.html  hypothesis open        0 violations   20 rules passed   (modal scope)
  *     learn.html  landing                0 violations   45 rules passed
  *     learn.html  node selected          0 violations   45 rules passed
  *     learn.html  twins open             0 violations   45 rules passed
@@ -38,6 +38,15 @@
  * The workspace's loaded states are 48 here where the record above this wave said 47. Nothing in
  * this change touched that page; a sibling wave made one more rule applicable, and the number is
  * re-measured rather than left as the older run's claim.
+ *
+ * The hypothesis state's 20 is the one number that FELL, and it is a change of SCOPE rather than a
+ * regression: wave 2c replaced the hypothesis banner with a native modal `<dialog>`, so the page
+ * behind it is blocked from the accessibility tree and axe reports the dialog. The same open
+ * hypothesis measures 48 as a non-modal dialog. Because a rule count at modal scope cannot tell a
+ * full review surface (20) from one with its lists emptied (19) or its two buttons deleted (17),
+ * that state now carries a `covers` post-condition naming the content axe must have been able to
+ * reach, and its floor is demoted to the only thing a number can still honestly claim there --
+ * that axe ran. Nothing is excluded and no violation is tolerated; the zero stays a zero.
  *
  * That incomplete was load-bearing. axe cannot resolve an SVG `fill` against an SVG ancestor's
  * paint, so it declines to judge the diagram's labels -- and the diagram's labels were the one
@@ -68,7 +77,10 @@ import {
   startServerOnFreePort, launchBrowser, shutdown, openServedPage, writeReceipt,
   WORKBENCH_DIR, AXE_RECEIPT_PATH,
 } from "../harness.mjs";
-import { loadAxeSource, runAxe, describeFindings, svgTextContrast, contrastFailures } from "./axe.mjs";
+import {
+  loadAxeSource, runAxe, describeFindings, svgTextContrast, contrastFailures,
+  auditableNodes, unauditable,
+} from "./axe.mjs";
 
 /**
  * The server's port comes from the OS, read back after it binds. The hard-coded 8144 this replaces
@@ -123,10 +135,37 @@ const PAGES = [
         },
       },
       {
-        // 4. a hypothesis open -- the banner state, which unhides a pair of buttons no other state
-        //    has.
+        // 4. a hypothesis open -- the REVIEW CHANGE surface, which carries a pair of buttons no
+        //    other state has.
+        //
+        // This state's floor is 15 where every other loaded state's is 30, and the asymmetry is the
+        // audited SCOPE rather than a weakened gate. Wave 2c made this surface a native modal
+        // `<dialog>` (DESIGN-shell-261002.md §9e), so the page behind it is blocked from the
+        // accessibility tree and `axe.run(document)` reports the dialog. Measured here: the same
+        // open hypothesis scores 48 rules as a non-modal dialog and 20 as the modal it now is. A
+        // floor of 30 is therefore unreachable by construction, and the earlier record of "48 rules
+        // passed" in this file's header described a banner that no longer exists.
+        //
+        // The floor is not what guards this state against vacuity any more, because at modal scope
+        // it cannot: emptying the change and impact lists scores 19, deleting both buttons too
+        // scores 17, and no number separates those from 20. `covers` is the guard instead -- the
+        // state names the content axe must have been able to see, and `auditableNodes` checks each
+        // against the top layer. The number stays only as a floor under "axe ran at all".
         name: "hypothesis",
-        floor: 30,
+        floor: 15,
+        covers: [
+          // The dialog itself, open and in the top layer.
+          "#hypothesis-bar[open]",
+          // Both ways out. A review surface audited without its Discard is the trap §5 names.
+          "#hypothesis-apply",
+          "#hypothesis-discard",
+          // The rendered review, which is emptied on close -- so these matching is the proof that
+          // this scan saw an OPEN review and not the shell of one.
+          "#review-changes li",
+          "#review-impact li",
+          "#review-headline",
+          "#review-requirements",
+        ],
         drive: async (page) => {
           await page.evaluate(() => window.mage.hypothesis.open("axe-audit", {
             transaction: {
@@ -245,7 +284,12 @@ async function auditPage(def) {
 
   for (const state of def.states) {
     await state.drive(page);
-    scans.set(`${def.name}/${state.name}`, { ...await runAxe(page, axe.source), floor: state.floor });
+    // Coverage is read BEFORE the scan and from the same settled page, so the two describe one
+    // observation: a probe taken after axe had run would be answering about a DOM axe did not see.
+    const coverage = state.covers === undefined ? [] : await auditableNodes(page, state.covers);
+    scans.set(`${def.name}/${state.name}`, {
+      ...await runAxe(page, axe.source), floor: state.floor, coverage,
+    });
   }
 
   if (def.diagram !== undefined) {
@@ -285,6 +329,9 @@ after(async () => {
         violations: describeFindings(r.violations),
         incomplete: describeFindings(r.incomplete),
         rulesPassed: r.passes,
+        // What the state claimed axe could reach, and what it actually could. Recorded because a
+        // narrowed-scope state's rule count no longer carries that fact on its own.
+        coverage: r.coverage,
       }])),
       svgTextContrast: Object.fromEntries([...diagrams].map(([name, d]) => [name, {
         hosts: d.hosts,
@@ -311,6 +358,13 @@ describe("FR-A11Y-1: axe-core finds nothing in any state of any served page", ()
         assert.ok(scan.passes >= scan.floor,
           `only ${scan.passes} rules passed in ${def.name}'s ${state.name} state -- axe ran but `
           + "matched almost nothing");
+        // And the sharper half of the same guard, for a state whose audited scope is narrower than
+        // the page: the content the state is NAMED after had to be inside it. A rule count cannot
+        // tell a full modal from a gutted one (see `auditableNodes`), so a state that narrows the
+        // scope declares what the scan must have covered and this is where the claim is checked.
+        assert.deepEqual(unauditable(scan.coverage), [],
+          `${def.name}'s ${state.name} state declares content axe could not reach, so its scan is `
+          + "not of the state it is named after");
       });
     }
   }

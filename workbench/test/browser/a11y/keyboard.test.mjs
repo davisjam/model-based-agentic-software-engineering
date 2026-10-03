@@ -17,14 +17,18 @@
  * agent -- "review an agent hypothesis" has to have an agent open one.
  *
  * The verdict, measured at this commit: all thirteen are reachable and operable by keyboard alone.
- * Two are reachable only by a route Tab alone does not offer, and both are correct native
- * behaviour rather than defects, which is worth writing down because a naive Tab-only audit would
- * have reported them as failures:
+ * One is reachable only by a route Tab alone does not offer, and it is correct native behaviour
+ * rather than a defect, which is worth writing down because a naive Tab-only audit would have
+ * reported it as a failure:
  *
- *   - `#target-hypothesis` is in a radio GROUP, which exposes one tab stop -- the checked member.
- *     The unchecked one is reached with ArrowDown. `chooseRadioByKeyboard` does that.
  *   - `#undo` / `#redo` leave the tab order while disabled, because a disabled button is not
  *     focusable. They return when there is something to undo.
+ *
+ * There used to be a second, and its disappearance is a route getting SIMPLER rather than a check
+ * getting weaker: creating a hypothesis meant reaching `#target-hypothesis` inside a radio group,
+ * which exposes one tab stop, so the unchecked member needed an ArrowDown walk. Correction 8 deleted
+ * that pair for exposing internal architecture, and `#whatif-arm` -- an ordinary toolbar toggle, one
+ * tab stop, answering Enter -- carries the operation now. 13.15 drives it.
  *
  * And one seam no browser automation can cross: a native file picker. `#file` is reached and
  * activated by keyboard; the BYTES are handed over with `uploadFile`, which fires the same `change`
@@ -45,7 +49,7 @@ import {
   WORKBENCH_DIR, KEYBOARD_RECEIPT_PATH,
 } from "../harness.mjs";
 import {
-  reachByTab, tabSequence, typeInto, chooseByKeyboard, toggleByKeyboard, chooseRadioByKeyboard,
+  reachByTab, tabSequence, typeInto, chooseByKeyboard, toggleByKeyboard, pressToggleByKeyboard,
   activateByKeyboard, releaseFocus, pressShiftTab, watchLiveRegion, liveWrites, liveText, settle,
   ANNOUNCE_DEBOUNCE_MS,
 } from "./keyboard.mjs";
@@ -500,11 +504,20 @@ describe("section 19, operations 11-13: hypotheses, and getting the model back o
   });
 
   it("13.15 ACCEPT IT: a hypothesis created by keyboard, then accepted by keyboard", async () => {
-    // Creating one is itself keyboard-only, and the route is not Tab: `#target-hypothesis` shares a
-    // radio group with `#target-main`, so the group has ONE tab stop and the arrow keys move within
-    // it. A Tab-only audit reports this as unreachable; native radio behaviour is why it is not.
-    await chooseRadioByKeyboard(page, "edit-target", "target-hypothesis");
-    await typeInto(page, "hypothesis-label", "keyboard-proposal");
+    // The ROUTE here changed in wave 2c and the requirement did not. Creating a hypothesis used to
+    // mean pre-selecting `#target-hypothesis` in a radio pair before editing -- "Apply the next edit
+    // to ○ the authoritative model ○ a hypothesis" -- and correction 8 deleted that pair for
+    // exposing internal architecture (DESIGN-shell-261002.md §9e). What replaced it is ONE toggle in
+    // the toolbar, `#whatif-arm`, and the route is strictly simpler for a keyboard: Tab and Enter on
+    // the toggle, then the ordinary edit, then Enter on Commit inside the review surface. The same
+    // three keystroke classes with one fewer radio group, and no step that is not a tab stop.
+    //
+    // Arming is NECESSARY here rather than decorative, which is worth stating because it looks like
+    // ceremony. G3 interposes the review surface only when an edit would move a REQUIREMENT
+    // (DECISIONS-RULED-shell-261002.md G3); adding an entity moves none, so an unarmed edit would
+    // commit straight to the authoritative branch and there would be no hypothesis to accept. The
+    // toggle is how a user says "try this" where no obligation is at stake.
+    await pressToggleByKeyboard(page, "whatif-arm", true);
     await typeInto(page, "add-entity-id", "kbd-cache");
     await typeInto(page, "add-entity-type", "");
     await typeInto(page, "add-entity-label", "");
@@ -513,6 +526,14 @@ describe("section 19, operations 11-13: hypotheses, and getting the model back o
     assert.equal(await page.evaluate(() => document.getElementById("hypothesis-bar").hidden), false,
       `the keyboard edit did not open a hypothesis; #edit-result says `
       + `"${await page.evaluate(() => document.getElementById("edit-result").textContent?.trim())}"`);
+    // The branch the toggle created, NAMED, and read from the banner a person actually gets. An
+    // armed what-if is labelled by the surface rather than by a name field the user had to fill in
+    // (the deleted radio pair carried one), so the label is the evidence that the TOGGLE routed this
+    // edit rather than something else having opened a hypothesis.
+    const whatIfBanner = (await page.evaluate(() =>
+      document.getElementById("banner").textContent ?? "")).replace(/\s+/g, " ");
+    assert.match(whatIfBanner, /what-if/i,
+      `the banner does not name a what-if branch, so the toggle did not route this edit: "${whatIfBanner}"`);
 
     const beforeApply = await context();
     await activateByKeyboard(page, "hypothesis-apply", { settleMs: 500 });
@@ -523,10 +544,13 @@ describe("section 19, operations 11-13: hypotheses, and getting the model back o
     assert.equal((await context()).hash, beforeApply.hash,
       "accepting changed the hash -- the accepted branch IS the model, so it must carry the same hash");
 
-    // Put the edit target back, so a later test is not silently editing a hypothesis.
-    await chooseRadioByKeyboard(page, "edit-target", "target-main");
+    // The toggle is one-shot and disarms itself on the edit it routes. Asserted rather than assumed,
+    // because a toggle that stayed armed would silently branch the next test's edit -- which is the
+    // hazard the deleted radio pair had, and the reason that pair needed resetting here.
+    assert.equal(await page.evaluate(() => document.getElementById("whatif-arm").getAttribute("aria-pressed")),
+      "false", "#whatif-arm stayed armed after the edit it routed, so the next edit would branch too");
     prove("accept a hypothesis",
-      "ArrowDown selected the hypothesis target, a keyboard edit opened keyboard-proposal, Enter on Accept made kbd-cache authoritative");
+      "Enter on #whatif-arm armed a what-if, a keyboard edit opened it, Enter on Commit made kbd-cache authoritative");
   });
 
   it("13.16 EXPORT: Enter on Export writes the authoritative serialization to disk", async () => {
@@ -649,6 +673,18 @@ describe("FR-A11Y-3: announced, and announced once", () => {
     // Measured on this example: deleting order-created with cascade moves
     // checkout-event-reaches-fulfillment and restricted-data-reaches-impermitted-subscriber from
     // established to refuted, and who-publishes/who-subscribes-to-order-created to not-answerable.
+    //
+    // THE ROUTE CHANGED, AND IT CHANGED BECAUSE THIS SUITE SUCCEEDED. 13.9 above saves
+    // `audit-subscribers-exist` as a REQUIREMENT, which is the first requirement this workbench has
+    // ever had; the cascade below breaks it; so G3 interposes the REVIEW CHANGE surface rather than
+    // committing (DECISIONS-RULED-shell-261002.md G3). The storm therefore arrives in two acts now
+    // -- the surface announcing what it is holding, then the commit announcing what it did -- and
+    // the measurement follows the act that actually carries FR-A11Y-3's composition claim.
+    //
+    // Driving it through the surface rather than moving the storm to an obligation-free edit, for
+    // one reason: on any model system that declares a requirement, THIS is the path a cascade delete
+    // takes. A storm measured on the uninterposed path would be measuring a route this example no
+    // longer uses.
     const before = await page.evaluate(() =>
       Object.fromEntries(window.mage.properties().map((p) => [p.id, p.status])));
 
@@ -660,6 +696,23 @@ describe("FR-A11Y-3: announced, and announced once", () => {
     await watchLiveRegion(page);
     await activateByKeyboard(page, "delete-element-go", { settleMs: 900 });
 
+    // Act one: held, not committed. Asserted rather than assumed, because if the interposition ever
+    // stopped firing this test would otherwise quietly go back to measuring the direct path and the
+    // requirement G3 exists to protect would be committed through unreviewed.
+    assert.equal(await page.evaluate(() => document.getElementById("hypothesis-bar").hidden), false,
+      "the cascade that breaks audit-subscribers-exist committed without a review -- G3 did not fire");
+    const held = await liveWrites(page);
+    assert.equal(held.length, 1,
+      `opening the review surface produced ${held.length} announcements: ${JSON.stringify(held)}`);
+    assert.match(held[0].text, /Review change/i,
+      `the review surface did not announce what it is holding: "${held[0].text}"`);
+
+    // Act two: Enter on Commit, inside the modal. This is the write the composition claim is about.
+    await watchLiveRegion(page);
+    await activateByKeyboard(page, "hypothesis-apply", { settleMs: 900 });
+    assert.equal(await page.evaluate(() => document.getElementById("hypothesis-bar").hidden), true,
+      "the review surface is still open after Enter on Commit");
+
     const after = await page.evaluate(() =>
       Object.fromEntries(window.mage.properties().map((p) => [p.id, p.status])));
     const moved = Object.keys(before).filter((id) => before[id] !== after[id]);
@@ -669,16 +722,19 @@ describe("FR-A11Y-3: announced, and announced once", () => {
 
     const writes = await liveWrites(page);
     assert.equal(writes.length, 1,
-      `an edit that moved ${moved.length} verdicts produced ${writes.length} announcements: ${JSON.stringify(writes)}`);
+      `an edit that moved ${moved.length} verdicts produced ${writes.length} announcements on commit: `
+      + JSON.stringify(writes));
     // This count DOES discriminate, and it is the test that carries FR-A11Y-3's "excessive
     // announcements" clause: the edit and the verdict news come from two different senders with two
     // different texts, so an undebounced page writes twice -- and the second overwrites the first,
-    // leaving the user with half of what happened.
+    // leaving the user with half of what happened. The commit path makes that strictly harder,
+    // because it discards the probe branch and re-applies through `transact`, so the verdicts move
+    // TWICE inside one turn and an undebounced page would write three times rather than two.
     //
     // ONE sentence carrying BOTH consequences. Either half alone is a regression: the edit without
     // the verdicts hides the analysis, the verdicts without the edit hide the cause.
     const announced = writes[0].text;
-    assert.match(announced, /delete-entity applied/i, `the announcement omits the edit: "${announced}"`);
+    assert.match(announced, /delete-entity committed/i, `the announcement omits the edit: "${announced}"`);
     assert.match(announced, /property verdict\(s\) changed/i,
       `the announcement omits the verdict movement: "${announced}"`);
     assert.match(announced, new RegExp(`\\b${moved.length} property verdict`),

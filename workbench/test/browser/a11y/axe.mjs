@@ -80,6 +80,36 @@ export const describeFindings = (findings) =>
   findings.flatMap((v) => v.nodes.map((n) => `${v.id} [${v.impact ?? "n/a"}] @ ${n.target}`));
 
 /**
+ * For each selector: was there a node, and was it inside the scope `runAxe` actually audited?
+ *
+ * This exists because a RULE COUNT stopped being able to answer "did axe see the thing this state is
+ * named after". A native modal `<dialog>` takes the top layer and everything behind it is blocked
+ * from the accessibility tree, so `axe.run(document)` on a page with one open reports the DIALOG --
+ * correctly, and at a rule count a gutted dialog also clears. Measured on the review surface: the
+ * full modal passes 20 rules, the same modal with its change list and impact list emptied passes 19,
+ * and with both of its buttons deleted as well, 17. No floor separates those, so the floor cannot be
+ * the vacuity guard for a modal state and a named-content post-condition has to be.
+ *
+ * `checkVisibility` plus the top-layer containment test is exactly axe's own reachability question:
+ * a node that is painted, and either not behind a modal or inside the one that is open.
+ */
+export const auditableNodes = (page, selectors) => page.evaluate((list) => {
+  const modal = document.querySelector(":modal");
+  return list.map((selector) => {
+    const nodes = [...document.querySelectorAll(selector)];
+    const auditable = nodes.filter((n) =>
+      n.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true })
+      && (modal === null || modal.contains(n) || modal === n));
+    return { selector, found: nodes.length, auditable: auditable.length };
+  });
+}, selectors);
+
+/** The selectors a state CLAIMED axe could see and axe could not. One line each, naming the cause. */
+export const unauditable = (coverage) => coverage
+  .filter((c) => c.auditable === 0)
+  .map((c) => `${c.selector}: ${c.found} node(s) in the document, 0 of them in the audited scope`);
+
+/**
  * Contrast of every text in the rendered diagram against the thing actually painted behind it.
  *
  * This exists because axe returns `color-contrast` as INCOMPLETE for SVG text -- it cannot resolve
