@@ -283,6 +283,11 @@ describe("section 19, operations 1-5: authoring", () => {
 
 describe("section 19, operations 6-10: inspection and analysis", () => {
   it("13.7 EXECUTE A QUERY: the ask form answers, with its grounding", async () => {
+    // The structured builder is the ADVANCED surface since the shell's wave 1c, behind a
+    // disclosure. Opened BY KEYBOARD here, which is the stronger drive: the declared path to the
+    // formal controls is now `askbar -> disclose -> the fieldset`, and this walks it. A `summary`
+    // is in the tab order and Enter toggles it, so no new mechanism is needed to reach the form.
+    await activateByKeyboard(page, "ask-advanced-summary", { settleMs: 150 });
     await chooseByKeyboard(page, "ask-form", "direct");
     await chooseByKeyboard(page, "ask-relation", "subscribes");
     await chooseByKeyboard(page, "ask-from", "");
@@ -589,6 +594,12 @@ describe("FR-A11Y-3: announced, and announced once", () => {
     // The Ask first is the instrument, not the subject: the previous test left the Run message in
     // the region, and re-announcing a string already there writes nothing at all. Asking puts a
     // DIFFERENT sentence there so the storm's settled write is observable.
+    // The Advanced disclosure is open from 13.7 above; asserted rather than assumed, because this
+    // test uses Ask as an INSTRUMENT and a closed disclosure would read as a debounce failure.
+    await page.evaluate(() => {
+      const box = document.getElementById("ask-advanced");
+      if (box !== null && !box.open) box.open = true;
+    });
     await activateByKeyboard(page, "ask-go", { settleMs: 700 });
     assert.match(await liveText(page), /Answered/i,
       "the Ask preamble did not announce, so the storm's settled write would be unobservable");
