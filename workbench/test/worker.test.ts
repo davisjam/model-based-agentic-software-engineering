@@ -21,7 +21,9 @@ import type { AnalysisState, WorkerReply, WorkerRequest } from "../src/worker/pr
 import { WORKER_STEP_BUDGET } from "../src/worker/protocol.ts";
 import type { QueryResult } from "../src/ir/types.ts";
 import { MageDocument } from "../src/yaml/document.ts";
-import { compileSystem, defaultOptions, exploreSpace } from "../src/engine/index.ts";
+import {
+  absentSubstrateProse, compileSystem, defaultOptions, exploreSpace, modelTypeForQueryKind,
+} from "../src/engine/index.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { admit, evaluate, variable } from "../src/sparql/index.ts";
 import type { SeamQuestion, SelectQuery } from "../src/sparql/index.ts";
@@ -497,6 +499,77 @@ test("a worker failure arrives as a finding, not as an empty result", async () =
     if (out.status !== "failed") return;
     assert.ok(out.messages.length > 0, "and the failure must say what was wrong");
     assert.ok((out.messages[0] ?? "").length > 10);
+  } finally {
+    thread.stop();
+  }
+});
+
+// ----------------------------------------------------------------------------------------------
+// The substrate-absence rung, at the arm that walked the space without consulting it
+// ----------------------------------------------------------------------------------------------
+
+/**
+ * Source declaring relation types and entities and NO `machines:`.
+ *
+ * Text rather than an IR, because the Worker takes bytes: this fixture has to cross the port and be
+ * canonicalized on the other thread, which is the only version of this test that proves anything.
+ */
+const MACHINELESS = `mage: 1
+system:
+  id: t
+relation-types:
+  may_invoke:
+    description: The design permits the source to invoke the target.
+    composition:
+      path: allowed
+entities:
+  api: null
+  gateway: null
+`;
+
+test("exploring a machineless system refuses, rather than reporting one dead end", async () => {
+  // What this arm answered before the rung, driven: `ok-space` with one state, `complete: true`,
+  // and ONE DEAD END. The count is arguably true of the space -- a machineless system has one empty
+  // configuration and no successors -- and that is what made it dangerous. A reader shown "1 dead
+  // end" reads a finding about their system, so the number is a confident structural claim computed
+  // over a system that models no behaviour: the `latency: 0 ms` defect in the explorer's clothing.
+  //
+  // The three analysis arms beside this one inherit the rung from `runQuery` / `runSavedQueries`.
+  // This one called `exploreSpace` with a COMPILED system, which never sees the registry.
+  const system = MageDocument.load(MACHINELESS).document?.system();
+  assert.ok(system !== undefined, "the fixture must parse");
+  assert.equal(system.machines.size, 0, "fixture drift: the point of it is the absent machines");
+
+  const thread = onThread();
+  try {
+    const out = await thread.client.explore(MACHINELESS, systemHash(system), 1_000);
+    assert.equal(out.status, "failed",
+      `expected a refusal, got ${out.status}${out.status === "ok-space" ? ` with ${out.space.deadEnds} dead ends` : ""}`);
+    if (out.status !== "failed") return;
+
+    // The sentence is the ENGINE's, generated from the registry entry rather than retyped here --
+    // the same arrangement the SPARQL seam uses, and the reason a reader meets one wording of one
+    // absence through all three doors. The finding's prefix is the carrier; the sentence is the claim.
+    const expected = absentSubstrateProse(modelTypeForQueryKind("behavior"));
+    assert.equal(out.messages.length, 1);
+    assert.ok((out.messages[0] ?? "").endsWith(expected),
+      `the refusal must be the registry's own sentence, got: ${out.messages[0] ?? ""}`);
+  } finally {
+    thread.stop();
+  }
+});
+
+test("a system WITH machines still explores, so the rung has not swallowed the arm", async () => {
+  // The control. Every assertion above would pass against an arm that refused everything, and the
+  // equivalence test earlier in this file is about agreement rather than about the rung.
+  const thread = onThread();
+  try {
+    const system = docableSystem();
+    assert.ok(system.machines.size > 0);
+    const out = await thread.client.explore(DOCABLE, systemHash(system), 5_000);
+    assert.equal(out.status, "ok-space");
+    if (out.status !== "ok-space") return;
+    assert.ok(out.space.statesExplored > 1);
   } finally {
     thread.stop();
   }
