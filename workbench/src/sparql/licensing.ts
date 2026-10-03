@@ -49,9 +49,9 @@
  */
 import type { CanonRelationType, CanonicalSystem } from "../ir/types.ts";
 import { modelsDeclaring } from "../engine/graph.ts";
-import { GRAPH_COMPOSING, type GraphForm } from "../engine/types.ts";
+import { GRAPH_COMPOSING, type GraphForm, type Query } from "../engine/types.ts";
 import {
-  outsideSubset, routeToEngine, undeclaredVocabulary, unlicensedByModel,
+  absentModelType, outsideSubset, routeToEngine, undeclaredVocabulary, unlicensedByModel,
   type EngineRoute, type SeamRefusal,
 } from "./refusal.ts";
 
@@ -236,6 +236,25 @@ export type Admission =
 
 const refused = (refusal: SeamRefusal): Admission => ({ kind: "refused", refusal });
 
+/**
+ * The model type each seam subject interrogates — the join from this vocabulary to the kernel's
+ * registry, written once here rather than at the three branches of `admit`.
+ *
+ * `containment` maps to `graph` and that is a decision, not an oversight: the projection puts the
+ * entity `contains` tree in the DEFAULT graph, so this seam could answer a containment question
+ * over a system with no models at all. The engine cannot — `containment` is one of its graph forms,
+ * so its registry rung declines it — and V32 asks the two interfaces for one decision. A seam that
+ * answered what the engine refuses is the disagreement, whichever of the two answers is nicer.
+ *
+ * There is no `quantity` row because there is no quantitative subject: quantities annotate the
+ * model rather than joining it, and nothing in the accepted subset asks for a cost.
+ */
+const QUERY_KIND: Readonly<Record<SeamQuestion["kind"], Query["kind"]>> = {
+  relational: "graph",
+  containment: "graph",
+  behavioral: "behavior",
+};
+
 /** The model a scope names, or a refusal. `system-union` names none, so it has nothing to resolve. */
 function checkScope(system: CanonicalSystem, scope: QueryScope): SeamRefusal | null {
   if (scope.kind === "system-union") return null;
@@ -250,7 +269,13 @@ function checkScope(system: CanonicalSystem, scope: QueryScope): SeamRefusal | n
  *
  * Order of decisions, and each one has a reason:
  *
- *  1. **Behavioral subjects route first.** They name no relation type, so there is nothing to license.
+ *  0. **Substrate absence before every other question, including the behavioral route.** The engine
+ *     consults the model-type registry ahead of its evaluators AND ahead of its own vocabulary
+ *     resolution, so a seam that asked about names first would answer a misspelling where the
+ *     engine answers an absent type. It also keeps a behavioral subject over a MACHINELESS system
+ *     from routing: "the analysis engine answers it" is a promise the engine declines in the next
+ *     breath, which is rung 4's objection pointed at rung 1.
+ *  1. **Behavioral subjects route next.** They name no relation type, so there is nothing to license.
  *  2. **Vocabulary before anything else.** A user who misspelled a relation type should not first be
  *     told about path composition — `runGraphQuery` orders it the same way, for the same reason.
  *  3. **The subset before the model's licensing.** A query the subset does not accept was never a
@@ -267,6 +292,9 @@ function checkScope(system: CanonicalSystem, scope: QueryScope): SeamRefusal | n
  * the engine.
  */
 export function admit(system: CanonicalSystem, question: SeamQuestion): Admission {
+  const absent = absentModelType(system, QUERY_KIND[question.kind]);
+  if (absent !== null) return refused(absent);
+
   if (question.kind === "behavioral") {
     return { kind: "routed", route: routeToEngine("behavioral") };
   }

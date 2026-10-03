@@ -31,13 +31,24 @@
  * two answers to "why can this not be answered" from one model, which is what V32 exists to prevent.
  * `undeclaredVocabulary` is the single rung both interfaces now pass through.
  *
+ * `missing-model-type` is a sixth, and it is a FOURTH kind of thing rather than a variant of the
+ * three above. The question is well-formed, the subset accepts it, the model licenses it, and it is
+ * expressible as a relational question — the system simply represents nothing of the kind it
+ * interrogates. Keeping it apart from the other three matters for the reason cause 1 and route 3 are
+ * kept apart: "the author declined to license this" sends a reader to a relation type's
+ * declaration, "that name resolves nowhere" sends them to a spell-check, and neither is what an
+ * author of a system with an empty `models:` section needs to hear. `absentModelType` is the one
+ * constructor, and its sentence comes from the kernel's model-type registry rather than from this
+ * module, so the seam and the engine cannot word one absence two ways.
+ *
  * Every cause carries the engine's own `RefusalReason`, so one agent-readable vocabulary spans both
  * interfaces. `asEngineRefusal` is the conversion, and nothing here re-words a sentence the engine
  * already has.
  */
 import type { CanonicalSystem } from "../ir/types.ts";
+import { absentSubstrateProse, modelTypeForQueryKind } from "../engine/model-types.ts";
 import { undeclared } from "../engine/omission.ts";
-import type { Refusal, RefusalReason } from "../engine/types.ts";
+import type { Query, Refusal, RefusalReason } from "../engine/types.ts";
 
 /** Why the seam declined, as data. String matching on `prose` is not an acceptable substitute. */
 export type RefusalCause =
@@ -51,7 +62,14 @@ export type RefusalCause =
    * §7.6 / V24 — nothing declares the name AND a `purpose.omits` covers it, so the absence is a
    * decision somebody recorded. Outranks `unknown-vocabulary` on the same subject.
    */
-  | "missing-distinction";
+  | "missing-distinction"
+  /**
+   * The system declares no substrate of the model type the question interrogates — an empty
+   * `models:` section under a relational question, no `machines:` under a behavioral one. Coarser
+   * than every cause above it: those presume a system that models this KIND of thing and differ
+   * about one name or one semantic claim.
+   */
+  | "missing-model-type";
 
 /** Reasons in the engine's vocabulary, one per cause. Derived, so the two cannot drift. */
 const ENGINE_REASON: Readonly<Record<RefusalCause, RefusalReason>> = {
@@ -59,6 +77,7 @@ const ENGINE_REASON: Readonly<Record<RefusalCause, RefusalReason>> = {
   "outside-supported-subset": "unsupported-form",
   "unknown-vocabulary": "unknown-vocabulary",
   "missing-distinction": "missing-distinction",
+  "missing-model-type": "missing-model-type",
 };
 
 export interface SeamRefusal {
@@ -203,6 +222,36 @@ export function undeclaredVocabulary(
     ? refusal("unknown-vocabulary", f.refusal, [`${subject} '${name}'`], [], wouldLicense)
     : refusal("missing-distinction", f.refusal, omitted.missing, omitted.models,
       reconsiderOmission(omitted.missing));
+}
+
+/**
+ * The substrate-absence rung: refuse when the system declares nothing of the type the question
+ * interrogates, or null when it does.
+ *
+ * **The sentence is generated, not copied.** `absentSubstrateProse` is the kernel's, read off the
+ * model-type registry, and the registry is also where a Learn page gets its capability claims — so
+ * the three surfaces that describe one absent type describe it identically by construction. The two
+ * ABSENCE clauses above are copied from `src/engine/graph.ts` and held by an agreement test, which
+ * is the weaker arrangement available when the engine words a sentence inline; here the engine
+ * exports the sentence, so there is nothing to copy and nothing to drift.
+ *
+ * The engine reached this rung first (`runTypedQuery`, ahead of every evaluator) and this seam did
+ * not, so one question got two answers depending on the door: a relational question over a system
+ * with an empty `models:` section refused through the engine and returned `ASK → false` through
+ * SPARQL. A confident NO about a system that models no structure is the `latency: 0 ms` defect in
+ * relational clothing, and it is the reason this constructor exists rather than a comment saying the
+ * case cannot arise.
+ *
+ * `wouldLicense` is the registry's own authoring move, for the same reason the prose is: the remedy
+ * a refusal names and the remedy a Learn entry teaches must be one remedy.
+ */
+export function absentModelType(
+  system: CanonicalSystem, kind: Query["kind"],
+): SeamRefusal | null {
+  const t = modelTypeForQueryKind(kind);
+  return t.presentIn(system)
+    ? null
+    : refusal("missing-model-type", absentSubstrateProse(t), [t.label], [], t.wouldLicense);
 }
 
 /**

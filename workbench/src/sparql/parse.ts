@@ -60,7 +60,7 @@ import {
   type SubsetVerdict, type Traversal,
 } from "./licensing.ts";
 import {
-  noSubjectDeclared, outsideSubset, undeclaredVocabulary,
+  absentModelType, noSubjectDeclared, outsideSubset, undeclaredVocabulary,
   type EngineRoute, type SeamRefusal,
 } from "./refusal.ts";
 import { variable } from "./algebra.ts";
@@ -972,6 +972,16 @@ export function translate(system: CanonicalSystem, text: string): Translation {
     if (verdict.kind === "outside-subset") {
       return { kind: "refused", refusal: outsideSubset(verdict.construct) };
     }
+
+    // The substrate-absence rung, ahead of everything that resolves a name against the system.
+    // `admit` runs it too, and this is not a second copy of the decision — one predicate, two call
+    // sites, the arrangement `undeclaredVocabulary` already has. The site is needed because a SCOPED
+    // query resolves its named graph in `deriveScope` BELOW, and over a system declaring no model
+    // every graph IRI fails to resolve: the author of an empty `models:` section would be sent to
+    // hunt a misspelled model name, which is the typo hunt this rung replaces. A text query's
+    // subjects are always relational, so the type interrogated is the structural model.
+    const absent = absentModelType(system, "graph");
+    if (absent !== null) return { kind: "refused", refusal: absent };
 
     const vocabulary = new Vocabulary(system);
     const scope = deriveScope(vocabulary, query);
