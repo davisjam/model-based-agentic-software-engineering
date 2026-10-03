@@ -24,6 +24,7 @@ import type { PendingResult } from "./ports.ts";
 import type { ExhaustedEscalation } from "../sparql/index.ts";
 import type { SparqlAnswer, Workspace } from "./services.ts";
 import type { QueryCheckResult } from "../engine/check.ts";
+import type { ValidationResult } from "../validator/result.ts";
 import type { ExampleCatalog, ExampleDescription } from "./examples.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
 import type { EvaluatedProperty } from "./properties.ts";
@@ -64,6 +65,20 @@ export interface MageAgentApi {
    * its own gate inside the translator, outside the semantic interface.
    */
   check(query: unknown): QueryCheckResult;
+  /**
+   * Ask whether the loaded model is WELL FORMED — the ruling's first operation, beside `check` and
+   * execution.
+   *
+   * An agent no longer reproduces the rule set or infers validity from a query that happens to
+   * refuse: it asks. The result is actionable rather than descriptive — each finding carries its
+   * rule id, a severity from a closed table, the model ids it is about, the sentence a person reads,
+   * and the SEMANTICS.md section that states the rule — and it says which implementation decided it
+   * (`authority`), so the TypeScript/Python parity discipline does not quietly gain a third party.
+   *
+   * **Recomputed, against the current revision, and `hash` is that revision.** `context().findings`
+   * answers a narrower question and keeps doing so (see below); this is the operation.
+   */
+  validate(): ValidationResult;
   /**
    * Run one query and get it back as a property: the verdict PLUS the models and evidence it
    * derives from (UX-I5).
@@ -208,6 +223,15 @@ export interface WorkspaceContext {
   readonly systemId: string;
   readonly hash: string;
   readonly hypothesis: string | null;
+  /**
+   * The current revision's findings, in the bare wire shape `validate.py` also emits.
+   *
+   * Recomputed on every read, so it is not stale — but it is not the validation OPERATION either.
+   * It is a field of a context read, carrying no severity, no subjects, no spec join and no
+   * statement of which implementation decided it, which is the half the ruling asks for. An agent
+   * asking "is this model well formed, and what do I repair" calls `validate()`; this field stays
+   * for a caller who wants the count beside the hash and the undo state.
+   */
   readonly findings: readonly Finding[];
   readonly counts: Readonly<Record<string, number>>;
   readonly canUndo: boolean;
@@ -536,6 +560,11 @@ export function createAgentApi(
     // so there is nothing for this method to decide -- which is the point: a second decision here
     // would be a third opinion about what the model licenses.
     check: (q) => workspace.check(q),
+
+    // Straight through, like `check`. The facade holds the system and the one rule set, so there
+    // is nothing for this method to decide — a decision here would be the third party the
+    // authority declaration exists to forbid.
+    validate: () => workspace.validate(),
 
     // "(unsaved)" rather than a generated id: an id here would look like a handle an agent could
     // pass to `evidence()` or `retract`, and nothing was saved.

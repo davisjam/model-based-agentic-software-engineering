@@ -21,7 +21,9 @@
 import type { CanonicalSystem, Finding, QueryResult } from "../ir/types.ts";
 import { canonicalize } from "../ir/canonicalize.ts";
 import { systemHash } from "../ir/hash.ts";
-import { validate } from "../validator/rules.ts";
+import { validate, validateModel } from "../validator/rules.ts";
+import { VALIDATION_AUTHORITY, wellFormed } from "../validator/result.ts";
+import type { ValidationResult } from "../validator/result.ts";
 import { checkQuery } from "../engine/check.ts";
 import type { QueryCheckResult } from "../engine/check.ts";
 import { TransactionEngine } from "../transaction/engine.ts";
@@ -347,6 +349,35 @@ export class Workspace {
    */
   check(query: unknown): QueryCheckResult {
     return checkQuery(this.#engine.system(), query);
+  }
+
+  /**
+   * Is this model well formed according to its model type?
+   *
+   * The ruling's FIRST operation (`DECISIONS-RULED-model-query-261002.md` Extension 2). Validation
+   * ran here before this method existed, but only as a side effect of `load` and `transact` and only
+   * as the bare three-field `Finding` — so an agent that wanted to know whether the model was well
+   * formed had to mutate or reload it, and then got a sentence rather than something to act on. This
+   * is the same rule set, asked directly, answering with the rule, its severity, the ids it is
+   * about, and the section of the spec that states it.
+   *
+   * **It recomputes.** `findings` is derived state (V18), so the only honest way to read it is to
+   * compute it — the discipline `properties()` and `evidence()` already follow, and `evidence()`
+   * followed only after a UI-side cache taught a caller that "no result" and "nobody primed the
+   * cache" were one value. There is nothing to cache here anyway: `state.findings` recomputes on
+   * every read too.
+   *
+   * `authority` says which implementation decided the answer, because the ruling requires the
+   * operation to say so — see `VALIDATION_AUTHORITY`, which is PROVISIONAL under §G3.
+   */
+  validate(): ValidationResult {
+    const findings = validateModel(this.#engine.system());
+    return {
+      ok: wellFormed(findings),
+      hash: this.#engine.hash(),
+      authority: VALIDATION_AUTHORITY,
+      findings,
+    };
   }
 
   /** Every saved query, re-run. This is "changing the model reruns the questions". */

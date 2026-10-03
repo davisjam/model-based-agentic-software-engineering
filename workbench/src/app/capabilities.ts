@@ -263,10 +263,25 @@ export const CAPABILITIES: readonly Capability[] = [
   },
   {
     id: "validate",
-    summary: "Report findings against the numbered rules V1-V26.",
+    summary: "Ask whether the model is well formed, and get each violated rule with what to repair.",
     service: "validator.validate",
+    // The human side never had the gap the ruling names: the findings table repaints from
+    // `state.findings`, which recomputes on every read, so a person has always been able to SEE the
+    // verdict for the current revision. What it lacks is a way to ASK — and that asymmetry is the
+    // right way round for this capability. A person reads a panel that is already correct; a machine
+    // client has no panel, so for it the operation IS the affordance.
     human: [control("validation-section.table", "finding-list")],
-    machine: [wired("window.mage.context.findings")],
+    // RE-POINTED by the model-query ruling's Extension 2. The row used to name
+    // `window.mage.context.findings`, which is a FIELD OF ANOTHER OPERATION'S RESULT rather than an
+    // operation: an agent could read findings only by asking for the context, and what it got back
+    // carried no severity, no subjects, no spec join and no statement of which implementation
+    // decided it. `window.mage.validate` is the operation, and `service` names the seam both sides
+    // reach — `workspace.validate` and the table's `state.findings` run the same `rules.ts` pass.
+    //
+    // `context().findings` is not listed as a second spelling. It survives, and its doc-comment says
+    // what it honestly is, but a field of a context read is not an affordance OF this capability —
+    // registering it as one is how the gap hid in a green registry for as long as it did.
+    machine: [wired("window.mage.validate")],
     producesEvidence: true,
   },
   {
