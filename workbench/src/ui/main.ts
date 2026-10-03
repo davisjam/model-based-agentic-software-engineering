@@ -15,6 +15,7 @@ import type { ExampleDescription } from "../app/examples.ts";
 import { AGENT_API_VERSION, createAgentApi } from "../app/agent-api.ts";
 import type { ViewState } from "../app/agent-api.ts";
 import { createLazyAnalysisPort } from "../worker/port.ts";
+import { bindAffordances } from "./affordances.ts";
 import {
   buildViewModel, planAsk, planEdit, propertyRow, resolveSubject, subjectValue,
 } from "./view-model.ts";
@@ -96,30 +97,54 @@ const editForms = [
  * the user — the "announcement storm" the requirement names. One message describing the settled
  * state is what a screen-reader user can actually use.
  *
- * Two senders rather than one, because a model edit has two consequences and a screen-reader user
- * needs both: the edit itself, and which PROPERTY VERDICTS it moved. One edit can re-evaluate every
- * property at once, which is the worst storm in the application, and the two are reported as one
- * sentence rather than racing: whichever fires first no longer loses to the other, because the timer
- * renders both and then clears them.
+ * **Three senders, and the third is the one FR-A11Y-3 turns on.** A model change has consequences a
+ * screen-reader user needs from different places:
  *
- * Property news is also what makes an AGENT's edit perceivable. `window.mage.transact` repaints
- * without going through any human handler, so before this there was no announcement at all for a
- * change the human is supposed to be watching (§23).
+ *   - `pendingAction` — what the human control the user just pressed did. Written by the handlers.
+ *   - `pendingModelNews` — what changed in the AUTHORITATIVE MODEL, derived in `repaint()` by
+ *     diffing the system against the last paint. This is the agent channel: `window.mage.load` and
+ *     `window.mage.transact` repaint without passing through any handler, so nothing else in this
+ *     file knows they happened.
+ *   - `pendingPropertyNews` — which PROPERTY VERDICTS moved. One edit can re-evaluate every property
+ *     at once, which is the worst storm in the application, and no handler knows the outcome.
+ *
+ * Property news used to carry the agent channel alone, and it carried one slice of it: it speaks
+ * only when a verdict changes or a property is dropped, so an agent adding an entity, a relation, a
+ * model or a note repainted the human surface and announced NOTHING. Measured at zero writes to
+ * `#live` for both `load()` and `transact()` (`BASELINE-a11y-261002.md` §5, F-1).
+ *
+ * The three compose into ONE sentence rather than racing, because the timer renders what is pending
+ * and then clears it. One exclusion: a pending human action SUPPRESSES the derived model news, since
+ * "add-entity applied" and "entities 11 to 12" describe the same event and a user does not want it
+ * twice. Property news is additive and always composes.
+ *
+ * **Politeness: `polite`, deliberately, including for the agent channel.** An agent mutation is
+ * consequential, not an emergency. `assertive` interrupts the sentence the user is currently
+ * hearing — including a sentence about the thing they are doing themselves — and a collaborator's
+ * edit arriving mid-word is worse than the same edit announced a quarter-second later. There is one
+ * live region and it stays `polite`; nothing here needs a second, louder one.
  */
 let announceTimer = 0;
 let pendingAction = "";
+let pendingModelNews = "";
 let pendingPropertyNews = "";
 
 function flushAnnouncement(): void {
   window.clearTimeout(announceTimer);
   announceTimer = window.setTimeout(() => {
-    live.textContent = [pendingAction, pendingPropertyNews].filter((s) => s !== "").join(" ");
+    const model = pendingAction === "" ? pendingModelNews : "";
+    live.textContent = [pendingAction, model, pendingPropertyNews].filter((s) => s !== "").join(" ");
     pendingAction = "";
+    pendingModelNews = "";
     pendingPropertyNews = "";
   }, 250);
 }
 
 const announce = (message: string): void => { pendingAction = message; flushAnnouncement(); };
+const announceModel = (message: string): void => {
+  pendingModelNews = message;
+  flushAnnouncement();
+};
 const announceProperties = (message: string): void => {
   pendingPropertyNews = message;
   flushAnnouncement();
@@ -223,6 +248,76 @@ function propertyNews(rows: readonly PropertyRow[]): string {
   return parts.join(" ");
 }
 
+/**
+ * What the authoritative model looked like at the last paint, for the agent-path announcement.
+ *
+ * A memo for an ANNOUNCEMENT and nothing else, exactly as `lastStatus` above is: no projection reads
+ * a value out of here, and `repaint` derives every number it stores from `workspace.state` on the
+ * same pass. The counts are the ones `window.mage.context()` publishes, so the sentence a
+ * screen-reader user hears and the object an agent reads describe one system.
+ */
+interface ModelMemo {
+  readonly loaded: boolean;
+  readonly systemId: string;
+  readonly title: string;
+  readonly hash: string;
+  readonly counts: ReadonlyMap<string, number>;
+  readonly findings: number;
+  /** Objects carrying an origin or a note. The one surface an annotation-only edit moves. */
+  readonly annotated: number;
+}
+
+let lastModel: ModelMemo | null = null;
+
+/** `"3 models, 11 entities"` — the nouns whose count is not zero, so a sentence names what is there. */
+const countPhrase = (counts: ReadonlyMap<string, number>): string =>
+  [...counts].filter(([, n]) => n > 0).map(([noun, n]) => `${n} ${noun}`).join(", ");
+
+/**
+ * One sentence naming what changed in the model, or `""` when nothing did.
+ *
+ * FR-A11Y-3's first listed subject is "agent actions", and this is the channel for them. The shape of
+ * the sentence follows the requirement's "without excessive announcements": it names the operation's
+ * CONSEQUENCE rather than re-reading the summary, so a load says what loaded and an edit says which
+ * count moved. Four outcomes, in the order a reader meets them:
+ *
+ *   - a different system — the whole workspace was replaced, so name it and size it;
+ *   - a moved hash — a semantic edit, so name the counts that moved and the finding total;
+ *   - a standing hash with more annotated objects — A1 keeps notes out of the semantic projection,
+ *     so this is the one commit that leaves the revision where it was, and saying so is the whole
+ *     reason it is announced;
+ *   - nothing — a repaint for a view change, which is not news.
+ */
+function modelNews(now: ModelMemo): string {
+  const before = lastModel;
+  lastModel = now;
+  // The boot paint. `window.mage` is not installed yet and the ready announcement follows it, so
+  // there is no change to report and nothing to report it to.
+  if (before === null) return "";
+  if (!now.loaded) {
+    return before.loaded ? "The workspace is empty again; no model is loaded." : "";
+  }
+  const findings = `${now.findings} validation finding(s).`;
+  if (now.systemId !== before.systemId || now.title !== before.title || !before.loaded) {
+    return `Loaded ${now.title}: ${countPhrase(now.counts)}. ${findings}`;
+  }
+  if (now.hash === before.hash) {
+    if (now.annotated > before.annotated) {
+      return "A note was attached. The model's revision is unchanged: a note is context, "
+        + "not a constraint.";
+    }
+    return "";
+  }
+  const moved = [...now.counts]
+    .filter(([noun, n]) => n !== before.counts.get(noun))
+    .map(([noun, n]) => `${noun} ${before.counts.get(noun) ?? 0} to ${n}`);
+  // A moved hash with no moved count is an edit in place — a relabel, a property value, a purpose.
+  // Saying the revision advanced is still the thing the user could not otherwise tell.
+  return moved.length === 0
+    ? `The model changed in place; no count moved. ${findings}`
+    : `The model changed: ${moved.join(", ")}. ${findings}`;
+}
+
 function repaint(): void {
   const state = workspace.state;
   // Through `workspace.properties()`, which is the same call `window.mage.properties()` makes. Every
@@ -237,6 +332,30 @@ function repaint(): void {
   });
   paint(vm, roots);
   currentEditOptions = vm.edit;
+
+  // Through `workspace.provenance()`, the same call `window.mage.provenance()` makes. Reading it
+  // here cannot move the model: the service hands back records and no writer (UX-I6). Read once and
+  // used twice — the Provenance section renders it, and the announcement counts it, because the
+  // record set is the one surface an annotation-only commit moves (A1 holds the hash still).
+  const provenance = workspace.provenance();
+
+  const changed = modelNews({
+    loaded: state.loaded,
+    systemId: state.system.systemId,
+    title: state.system.name,
+    hash: state.hash,
+    counts: new Map([
+      ["models", state.system.models.size],
+      ["entities", state.system.entities.size],
+      ["relations", state.system.relations.length],
+      ["machines", state.system.machines.size],
+      ["machine instances", state.system.instances.length],
+      ["saved questions", state.system.queries.size],
+    ]),
+    findings: state.findings.length,
+    annotated: provenance.length,
+  });
+  if (changed !== "") announceModel(changed);
 
   const news = propertyNews(vm.properties);
   if (news !== "") announceProperties(news);
@@ -260,9 +379,7 @@ function repaint(): void {
   paintPrincipal(vm.principal, principalPurpose);
   paintDiagram(view?.accessible ?? null, view?.tree ?? null, { text: diagramText, canvas });
 
-  // Through `workspace.provenance()`, the same call `window.mage.provenance()` makes. Reading it
-  // here cannot move the model: the service hands back records and no writer (UX-I6).
-  paintProvenance(workspace.provenance(), provenanceList);
+  paintProvenance(provenance, provenanceList);
 
   fillSelect(selects.subject, vm.subjects);
   if (subject !== null) selects.subject.value = subjectValue(subject);
@@ -296,6 +413,23 @@ function repaint(): void {
   hypothesisBar.hidden = state.hypothesis === null;
   byId<HTMLButtonElement>("undo").disabled = !state.canUndo;
   byId<HTMLButtonElement>("redo").disabled = !state.canRedo;
+  // Export and Run need a model, exactly as Undo needs a revision to go back to. Both shipped
+  // enabled on a pristine page, so a keyboard user reached two controls that could do nothing
+  // before reaching the one that could (`BASELINE-a11y-261002.md` §6, F-2). The page already had
+  // the pattern — `disabled` on Undo, `fieldset[disabled]` over the whole Edit section — and these
+  // two were the exception rather than a different judgement.
+  byId<HTMLButtonElement>("export").disabled = !state.loaded;
+  byId<HTMLButtonElement>("run").disabled = !state.loaded;
+
+  // The registry's human affordance sites, stamped onto the elements that carry them. Last, so
+  // every host this paint created is in the document. A site whose host is missing is a registry
+  // claiming a control the page does not have: `console.error` is the channel because the browser
+  // tier already asserts the page logs none of its own, so the drift reds an existing gate instead
+  // of waiting for someone to add one.
+  const unbound = bindAffordances(document);
+  if (unbound.length > 0) {
+    console.error(`UX-I1: human affordance site(s) with no element on the page: ${unbound.join("; ")}`);
+  }
 }
 
 /**

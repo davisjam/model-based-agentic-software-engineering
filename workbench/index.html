@@ -208,8 +208,14 @@
     <input id="file" type="file" accept=".yaml,.yml,.json" class="sr-only">
   </label>
   <button id="new-system" type="button">Create new model system</button>
-  <button id="export" type="button">Export</button>
-  <button id="run" type="button" class="primary">Run all questions</button>
+  <!--
+    Export and Run ship DISABLED for the same reason Undo and Redo do: with nothing loaded there is
+    nothing to write out and no question to run. A control that is enabled and cannot work costs a
+    keyboard user two stops before the one that can, and reads to a parity table as present. The
+    composition root re-enables all four from `workspace.state` on every paint.
+  -->
+  <button id="export" type="button" disabled>Export</button>
+  <button id="run" type="button" class="primary" disabled>Run all questions</button>
   <button id="undo" type="button" disabled>Undo</button>
   <button id="redo" type="button" disabled>Redo</button>
 </header>

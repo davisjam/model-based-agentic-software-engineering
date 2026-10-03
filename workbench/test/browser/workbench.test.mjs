@@ -24,10 +24,14 @@
  */
 import { describe, it, before, after } from "node:test";
 import assert from "node:assert/strict";
-import { CAPABILITIES, checkAffordanceParity } from "../../src/app/capabilities.ts";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import {
+  CAPABILITIES, boundHumanAffordances, checkAffordanceParity, checkRegistryClosure,
+} from "../../src/app/capabilities.ts";
 import {
   startServer, stopServer, loadPuppeteer, openWorkbench, loadFlagshipExample,
-  measureForReceipt, writeReceipt, PORT, ORIGIN,
+  measureForReceipt, writeReceipt, PORT, ORIGIN, WORKBENCH_DIR,
 } from "./harness.mjs";
 
 /** One browser and one page for the whole suite: the convergence test needs both interfaces in ONE process. */
@@ -242,6 +246,179 @@ describe("FR-A11Y section 19: the accessible surface of the loaded page", () => 
       return el ? { role: el.getAttribute("role"), live: el.getAttribute("aria-live") } : null;
     });
     assert.deepEqual(live, { role: "status", live: "polite" });
+  });
+});
+
+describe("UX-I1: every declared human affordance site is bound to a live element", () => {
+  /**
+   * The gate F-3 said was missing. `checkRegistryClosure` was written to catch drift in both
+   * directions and had only ever been handed literals by a unit test, so the real page's control
+   * set was never its input and a renamed or deleted control left UX-I1 green.
+   *
+   * The page stamps `data-affordance` from the registry on every paint, so this is the served
+   * page's own account of where its capabilities live. Both directions are asserted, and neither
+   * list is written out here: a literal would be the copy the binding exists to retire.
+   */
+  it("the page's stamped set is exactly the registry's declared set", async () => {
+    const stamped = await page.evaluate(() =>
+      [...document.querySelectorAll("[data-affordance]")].map((e) => e.dataset.affordance));
+    const unique = [...new Set(stamped)].sort();
+
+    // Direction one: an element claiming a site no capability declares — a control reaching the
+    // model outside the census, which is how a UI-only path appears.
+    const unregistered = checkRegistryClosure(unique, []);
+    assert.deepEqual(unregistered.map((v) => v.problem), [],
+      `the page claims affordance site(s) the registry does not declare: ${unregistered.map((v) => v.problem).join("; ")}`);
+
+    // Direction two: a declared site with nothing on the page carrying it. De-duplicated, because
+    // one site can serve two capabilities — `header.run-all` is an affordance of both `query` and
+    // `analyze`, and Run all questions is still one button.
+    const declared = [...new Set(boundHumanAffordances().map((a) => a.at))].sort();
+    const missing = declared.filter((at) => !unique.includes(at));
+    assert.deepEqual(missing, [],
+      `${missing.length} declared human affordance site(s) bound to nothing in the served page: ${missing.join(", ")}`);
+    // And the count, derived, so a binder that stamped one element with every site would fail.
+    assert.equal(unique.length, declared.length,
+      `the page stamps ${unique.length} distinct sites, the registry declares ${declared.length}`);
+  });
+
+  it("every button on the page is a declared capability affordance", async () => {
+    // The non-vacuous half of direction one. The binder can only stamp what the registry declares,
+    // so an unstamped button is a control nobody registered. Measured at zero on the flat page:
+    // all 21 of its buttons are capability affordances, because the page has no navigation chrome.
+    // The shell adds disclosure and menu buttons, and whoever lands them owns the decision to
+    // declare them or to name an exemption here — not to delete this.
+    const unstamped = await page.evaluate(() =>
+      [...document.querySelectorAll("button")]
+        .filter((b) => b.dataset.affordance === undefined)
+        .map((b) => `#${b.id || "(no id)"}: ${b.textContent.trim().slice(0, 40)}`));
+    assert.deepEqual(unstamped, [], `${unstamped.length} unregistered button(s): ${unstamped.join(" | ")}`);
+  });
+
+  it("the evidence list binds through its host's selector, not by luck", async () => {
+    // `properties-section.evidence-list` is the one site declared as a descendant selector
+    // (`.evidence` inside `#question-list`). The flagship example answers four questions with a
+    // witness, so this fixture is where that selector gets its teeth: the node tier cannot see it
+    // and the binder treats a host with no evidence in it as an ordinary state.
+    const evidence = await page.evaluate(() =>
+      document.querySelectorAll('#question-list [data-affordance="properties-section.evidence-list"]').length);
+    assert.ok(evidence > 0,
+      "no evidence list was stamped on a page whose flagship example returns witnesses — the declared selector no longer matches the renderer's output");
+  });
+});
+
+describe("FR-A11Y-3: a change the AGENT makes is announced, not only one that moves a verdict", () => {
+  /**
+   * F-1, pinned where it failed. The measured defect was not "no announcer runs on the agent path":
+   * `repaint()` did announce, and only when a property VERDICT moved. So `window.mage.load()` of a
+   * three-model system and `window.mage.transact()` adding an entity each repainted the human
+   * surface and wrote ZERO times to `#live`.
+   *
+   * It is driven through the agent surface on a page nobody has touched, because that is the whole
+   * claim: calling the announce function proves nothing about the channel that was missing. A fresh
+   * page also matters for the instrument — Chromium emits no mutation record for assigning
+   * `textContent` a string identical to the one already there, so an announcement is observable
+   * here only because `#live` starts out holding the boot message.
+   */
+  let agentPage;
+
+  before(async () => {
+    ({ page: agentPage } = await openWorkbench(browser));
+  }, { timeout: 120_000 });
+
+  /** Record every write to `#live` from now on, and return what they said. */
+  const watchLive = () => agentPage.evaluate(() => {
+    const live = document.getElementById("live");
+    window.__writes = [];
+    window.__observer?.disconnect();
+    window.__observer = new MutationObserver(() => window.__writes.push(live.textContent ?? ""));
+    window.__observer.observe(live, { childList: true, characterData: true, subtree: true });
+  });
+
+  const liveWrites = async () => {
+    // The announcer debounces at 250ms and composes what is pending; 1500ms is well clear of it
+    // without being a sleep that hides a race — the assertion is on the writes, not on the wait.
+    await agentPage.evaluate(() => new Promise((r) => setTimeout(r, 1500)));
+    return agentPage.evaluate(() => ({
+      writes: [...(window.__writes ?? [])],
+      text: document.getElementById("live")?.textContent ?? "",
+    }));
+  };
+
+  it("window.mage.load announces what loaded, by name and by size", async () => {
+    const yaml = await readFile(join(WORKBENCH_DIR, "examples", "message-bus", "system.mage.yaml"), "utf8");
+    await watchLive();
+    await agentPage.evaluate((text) => window.mage.load(text), yaml);
+    const live = await liveWrites();
+
+    assert.ok(live.writes.length > 0,
+      `window.mage.load() wrote nothing to #live. The region still reads: "${live.text}"`);
+    // The system's own name, read from the page's other projection of the same field (the document
+    // title) rather than typed here: an announcement that re-read "3 models, 11 entities" at a user
+    // would pass a weaker assertion and tell them nothing about WHAT arrived.
+    const title = await agentPage.evaluate(() => (document.title.split(" — ")[0] ?? "").trim());
+    assert.ok(title.length > 0, "the flagship example has no name to announce — the fixture changed");
+    assert.ok(live.text.includes(title),
+      `the announcement does not name the system that loaded ("${title}"): "${live.text}"`);
+    const counts = await agentPage.evaluate(() => window.mage.context().counts);
+    assert.match(live.text, new RegExp(`\\b${counts.models} models\\b`),
+      `the announcement does not size what loaded: "${live.text}"`);
+  });
+
+  it("window.mage.transact announces the count it moved", async () => {
+    const before = await agentPage.evaluate(() => window.mage.context().counts.entities);
+    await watchLive();
+    const result = await agentPage.evaluate(() => window.mage.transact({
+      transaction: {
+        base: window.mage.context().hash,
+        operations: [{ op: "add-entity", id: "a11y-probe-entity", type: "service" }],
+      },
+    }));
+    assert.equal(result.ok, true, `the probe transaction was refused: ${JSON.stringify(result.findings)}`);
+    const live = await liveWrites();
+
+    assert.ok(live.writes.length > 0,
+      `window.mage.transact() wrote nothing to #live. The region still reads: "${live.text}"`);
+    const after = await agentPage.evaluate(() => window.mage.context().counts.entities);
+    assert.equal(after, before + 1, "the probe did not add an entity, so there is no move to announce");
+    assert.match(live.text, new RegExp(`entities ${before} to ${after}`),
+      `the announcement does not say which count moved: "${live.text}"`);
+  });
+
+  it("a dropped property still announces through the property channel", async () => {
+    // The channel F-1 extends rather than replaces, and the baseline recorded it as UNMEASURED on
+    // the agent path. Retracting a saved question through `delete-query` is `propertyNews`' DROPPED
+    // branch, driven by an agent: the sentence must still carry the property news as well as the
+    // model news. A fix that routed everything through the new sender would pass the two tests
+    // above and silently lose this one.
+    await watchLive();
+    const result = await agentPage.evaluate(() => {
+      const id = Object.keys(window.mage.savedQueries())[0];
+      return window.mage.transact({
+        transaction: { base: window.mage.context().hash, operations: [{ op: "delete-query", id }] },
+      });
+    });
+    assert.equal(result.ok, true, `retracting a saved question was refused: ${JSON.stringify(result.findings)}`);
+    const live = await liveWrites();
+    assert.ok(live.writes.length > 0, "retracting a property through the agent announced nothing");
+    assert.match(live.text, /no longer asserted/,
+      `the property channel did not report the drop: "${live.text}"`);
+  });
+
+  it("a human control's own sentence is not doubled by the derived one", async () => {
+    // Both channels fire for a human edit: the handler says what it did, and `repaint()` derives
+    // that the model changed. Announcing both would read the one event twice, so a pending human
+    // action suppresses the derived description. Driven by keyboard, through the real control.
+    await watchLive();
+    for (let i = 0; i < 40; i += 1) {
+      await agentPage.keyboard.press("Tab");
+      if (await agentPage.evaluate(() => document.activeElement?.id ?? "") === "run") break;
+    }
+    await agentPage.keyboard.press("Enter");
+    const live = await liveWrites();
+    assert.ok(live.writes.length > 0, "Enter on #run announced nothing — the human channel regressed");
+    assert.doesNotMatch(live.text, /The model changed/,
+      `a human action was described twice, once by its handler and once by the model diff: "${live.text}"`);
   });
 });
 

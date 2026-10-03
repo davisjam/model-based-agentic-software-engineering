@@ -97,13 +97,14 @@ after(async () => {
 describe("the tab order itself", () => {
   it("opens on the skip link and then the toolbar, with no unreachable stop in between", async () => {
     await releaseFocus(page);
-    const forward = await tabSequence(page, 7);
-    // Pinned from a FRESH page, where undo/redo are disabled and the hypothesis bar is hidden, so
-    // neither appears. The sequence is the document order of the markup, which is the requirement:
-    // the ways IN come first, then the model.
+    const forward = await tabSequence(page, 5);
+    // Pinned from a FRESH page. Undo, Redo, Export and Run are all disabled with no model loaded,
+    // so none appears. Export and Run joined that list when F-2 was fixed: they shipped enabled,
+    // which put two controls that could do nothing ahead of the one that could. The remaining
+    // sequence is the document order of the markup, which is the requirement: the ways IN come
+    // first, then the model.
     assert.deepEqual(forward, [
-      "a#", "input#file", "button#new-system", "button#export", "button#run",
-      "select#example-choice", "button#example-load",
+      "a#", "input#file", "button#new-system", "select#example-choice", "button#example-load",
     ], "the opening tab order changed");
     // Backwards too: a one-way tab order traps a keyboard user at the end of the page.
     await pressShiftTab(page);
