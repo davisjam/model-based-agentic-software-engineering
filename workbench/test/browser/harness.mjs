@@ -25,6 +25,7 @@
 // Puppeteer from book/, rather than added to this package.
 import { createRequire } from "node:module";
 import { createServer } from "node:http";
+import { existsSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, normalize, extname } from "node:path";
@@ -99,11 +100,86 @@ export function loadPuppeteer() {
 }
 
 /**
- * Open the shipped page and attach the diagnostic recorders BEFORE navigation, so a pageerror
+ * Launch headless Chromium, discovering the browser before asking Puppeteer to.
+ *
+ * Puppeteer launches ITS OWN pinned Chromium, downloaded by `npm ci` in book/ — there is no
+ * system-Chrome hunt here because a system Chrome would float while the pin holds still. What CAN
+ * go wrong is the download never having happened (a fresh worktree, a skipped postinstall), and
+ * `launch()` then fails with a cache path that reads like corruption. Resolving the executable
+ * first turns that into the one sentence that says what to run.
+ */
+export async function launchBrowser() {
+  const puppeteer = loadPuppeteer();
+  const executable = puppeteer.executablePath();
+  if (!existsSync(executable)) {
+    throw new Error(`Chromium is not installed at ${executable} — run \`npm ci\` in book/ `
+      + "(its postinstall downloads the pinned browser).");
+  }
+  return puppeteer.launch({ headless: true, args: ["--no-sandbox"] });
+}
+
+/**
+ * Close the browser and the server with a hard floor under the close.
+ *
+ * A wedged renderer can hang `browser.close()` forever, and a hung after-hook leaks the whole
+ * Chromium process group plus its temp profile — the standard failure of this kind of suite, and
+ * one that then holds the suite's port against every later run. So the close races a SIGKILL of
+ * the browser process: on the normal path Puppeteer also removes its temp `--user-data-dir`; on
+ * the kill path the leak is bounded to one profile dir in the OS tmpdir rather than a live
+ * process. Both arguments are optional so a `before` that failed halfway cleans up whatever it
+ * actually made.
+ */
+export async function shutdown({ browser, server } = {}) {
+  if (browser) {
+    const killTimer = setTimeout(() => {
+      try { browser.process()?.kill("SIGKILL"); } catch { /* already exited — nothing to kill */ }
+    }, 5_000);
+    killTimer.unref();
+    await browser.close().catch(() => {
+      try { browser.process()?.kill("SIGKILL"); } catch { /* already exited — nothing to kill */ }
+    });
+    clearTimeout(killTimer);
+  }
+  if (server) await stopServer(server);
+}
+
+/**
+ * Fast-forward the page's timer clock by `budgetMs` of VIRTUAL time, deterministically.
+ *
+ * This is Chrome's `--virtual-time-budget` reached through CDP: every pending `setTimeout` /
+ * debounce inside the budget fires in order, immediately, and the call returns when the budget is
+ * spent. A wall-clock sleep of the same length is both slower and weaker — it waits real seconds
+ * and still only GUESSES that the timer landed inside them, where the budget is a guarantee.
+ *
+ * The cost to know before using it: when the budget expires the page's task clock is PAUSED.
+ * Timers scheduled afterwards do not fire until the next grant, so this belongs only on a page
+ * whose every later wait is also a grant (the FR-A11Y-3 agent page is the model: act, grant,
+ * assert, repeat). Granting on a page that other suites will drive with real-time waits would
+ * freeze exactly the timers they wait on.
+ */
+export async function advanceVirtualTime(page, budgetMs) {
+  const client = await page.createCDPSession();
+  try {
+    const expired = new Promise((resolve) => client.once("Emulation.virtualTimeBudgetExpired", resolve));
+    await client.send("Emulation.setVirtualTimePolicy", { policy: "advance", budget: budgetMs });
+    await expired;
+  } finally {
+    await client.detach().catch(() => { /* session already gone with the page */ });
+  }
+}
+
+/**
+ * Open any served page and attach the diagnostic recorders BEFORE navigation, so a pageerror
  * thrown during module evaluation is still caught. Recording from page creation onward also means
  * the console assertion covers everything the suite does to the page, not just its first paint.
+ *
+ * Page-agnostic on purpose: the workbench serves more than one page now, and a per-page opener
+ * would re-type these four listeners for each — the smoke tier walks EVERY served page through
+ * this one function. Readiness is the caller's: each page marks module-evaluation completion its
+ * own way (`window.mage` on index, `window.mageLearn` on Learn), and `networkidle0` implies
+ * neither.
  */
-export async function openWorkbench(browser, origin = ORIGIN) {
+export async function openServedPage(browser, pathname, origin = ORIGIN) {
   const page = await browser.newPage();
   const diagnostics = { pageErrors: [], consoleErrors: [], notFound: [], requestFailures: [] };
 
@@ -112,8 +188,13 @@ export async function openWorkbench(browser, origin = ORIGIN) {
   page.on("response", (r) => { if (r.status() === 404) diagnostics.notFound.push(new URL(r.url()).pathname); });
   page.on("requestfailed", (r) => diagnostics.requestFailures.push(`${new URL(r.url()).pathname}: ${r.failure()?.errorText}`));
 
-  await page.goto(`${origin}/index.html`, { waitUntil: "networkidle0", timeout: 60_000 });
-  // window.mage is installed at the end of module evaluation; networkidle0 does not imply it ran.
+  await page.goto(`${origin}/${pathname}`, { waitUntil: "networkidle0", timeout: 60_000 });
+  return { page, diagnostics };
+}
+
+/** The workbench page, settled: `window.mage` is installed at the end of module evaluation. */
+export async function openWorkbench(browser, origin = ORIGIN) {
+  const { page, diagnostics } = await openServedPage(browser, "index.html", origin);
   await page.waitForFunction(() => typeof window.mage === "object", { timeout: 30_000 });
   return { page, diagnostics };
 }
@@ -159,6 +240,7 @@ export const RECEIPT_PATH = process.env.WB_BROWSER_RECEIPT ?? join(tmpdir(), "wb
 export const AXE_RECEIPT_PATH = process.env.WB_AXE_RECEIPT ?? join(tmpdir(), "wb-axe-receipt.json");
 export const KEYBOARD_RECEIPT_PATH =
   process.env.WB_KEYBOARD_RECEIPT ?? join(tmpdir(), "wb-keyboard-receipt.json");
+export const SMOKE_RECEIPT_PATH = process.env.WB_SMOKE_RECEIPT ?? join(tmpdir(), "wb-smoke-receipt.json");
 
 /** Everything the gate measured, in one page round trip, for the receipt. */
 export async function measureForReceipt(page) {

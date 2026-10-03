@@ -44,7 +44,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import {
-  startServer, stopServer, loadPuppeteer, openWorkbench, writeReceipt,
+  startServer, launchBrowser, shutdown, openWorkbench, writeReceipt,
   WORKBENCH_DIR, originFor, AXE_RECEIPT_PATH,
 } from "../harness.mjs";
 import { loadAxeSource, runAxe, describeFindings, svgTextContrast, contrastFailures } from "./axe.mjs";
@@ -61,13 +61,10 @@ let axe;
 const scans = new Map();
 let contrast = { light: null, dark: null };
 
-const settle = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 before(async () => {
   axe = await loadAxeSource();
   server = await startServer(WORKBENCH_DIR, PORT);
-  const puppeteer = loadPuppeteer();
-  browser = await puppeteer.launch({ headless: true, args: ["--no-sandbox"] });
+  browser = await launchBrowser();
   ({ page } = await openWorkbench(browser, ORIGIN));
 
   // 1. the empty workbench -- every editing fieldset disabled, no model, no tables.
@@ -97,7 +94,9 @@ before(async () => {
   await page.waitForFunction(() => document.getElementById("hypothesis-bar").hidden === false, { timeout: 30_000 });
   scans.set("hypothesis", await runAxe(page, axe.source));
   await page.evaluate(() => window.mage.hypothesis.discard());
-  await settle(300);
+  // Settled on the observable consequence, not a timer: the discard is done when the banner is
+  // hidden again. The 300ms sleep this replaces passed on speed, not on knowledge.
+  await page.waitForFunction(() => document.getElementById("hypothesis-bar").hidden === true, { timeout: 30_000 });
 
   // The diagram's text, in both themes.
   //
@@ -115,7 +114,10 @@ before(async () => {
   contrast.light = await svgTextContrast(page);
   await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "dark" }]);
   await page.evaluate(() => document.documentElement.setAttribute("data-theme", "dark"));
-  await settle(200);
+  // No wait: the theme is pure CSS custom properties (index.html has no matchMedia listener and
+  // no JS re-render on theme change), so the computed styles the contrast probe reads are already
+  // the dark ones — getComputedStyle forces the recomputation it needs. The 200ms sleep this
+  // replaces was insurance against an async repaint that does not exist.
   contrast.dark = await svgTextContrast(page);
   await page.evaluate(() => document.documentElement.removeAttribute("data-theme"));
   await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "light" }]);
@@ -139,8 +141,7 @@ after(async () => {
     }, AXE_RECEIPT_PATH);
     console.log(`FR-A11Y axe receipt: ${path}`);
   }
-  if (browser) await browser.close();
-  if (server) await stopServer(server);
+  await shutdown({ browser, server });
 });
 
 describe("FR-A11Y-1: axe-core finds nothing in any of the four states", () => {
