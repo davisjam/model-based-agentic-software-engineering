@@ -102,7 +102,8 @@
   button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 
   main { padding: 1rem; max-width: 84rem; margin: 0 auto; }
-  section { margin-block-end: 2rem; }
+  /* #nav-models is a <nav> (landmark-unique fix) but keeps a section's rhythm in the rail. */
+  section, #nav-models { margin-block-end: 2rem; }
 
   /*
     The shell, as a grid. GEOMETRY IS NON-NORMATIVE (requirements-human-ux-261002.md §4) -- what the
@@ -364,7 +365,17 @@
   <section id="nav" aria-labelledby="nav-h" hidden>
     <h2 id="nav-h">Navigate</h2>
     <h3 id="nav-models-h">Models</h3>
-    <section id="nav-models" aria-labelledby="nav-models-h"></section>
+    <!--
+      A <nav>, not a <section>. The System Browser already presents a region named "Models" (its
+      model table, named by its own visible heading per F-5), so a second region with the same name
+      hands a screen-reader user two indistinguishable landmark entries — axe's landmark-unique,
+      found by the browser tier after the shell landed. The rail IS navigation
+      (DESIGN-shell-261002.md §6 correction 2: "Models are navigation"), so the honest role is also
+      the one that makes the role+name pair unique. The property rail stays a <section>: it doubles
+      as the stamped readout host F-5 pins as a heading-named region, and its name collides with
+      nothing.
+    -->
+    <nav id="nav-models" aria-labelledby="nav-models-h"></nav>
     <!--
       The property rail. One list, not a property list beside a query-result list: a saved question
       IS the persistent object here, so two lists would be two renderings of the same claims, free

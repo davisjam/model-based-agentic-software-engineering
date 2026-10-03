@@ -103,8 +103,16 @@ describe("the tab order itself", () => {
     // which put two controls that could do nothing ahead of the one that could. The remaining
     // sequence is the document order of the markup, which is the requirement: the ways IN come
     // first, then the model.
+    //
+    // The first stop reads `a#skip`, not the anonymous `a#` this pin recorded at baseline. The id
+    // is the shell's and it is load-bearing: SH-I1 makes the bypass target a QUESTION (#start
+    // empty, #workspace loaded), so the composition root resolves #skip to retarget the href and
+    // rewrite the words on every mount change. The walk itself — five stops, same order — did not
+    // move; only the identifier of a stop the page now needs a handle on. The shell wave updated
+    // the page without a runnable browser (BASELINE-a11y-261002.md §8 "UNMEASURED") and this pin
+    // was the line it owed the first measured run.
     assert.deepEqual(forward, [
-      "a#", "input#file", "button#new-system", "select#example-choice", "button#example-load",
+      "a#skip", "input#file", "button#new-system", "select#example-choice", "button#example-load",
     ], "the opening tab order changed");
     // Backwards too: a one-way tab order traps a keyboard user at the end of the page.
     await pressShiftTab(page);

@@ -588,3 +588,26 @@ canvas-placement assertion, the two keyboard pins above, and the axe empty-state
 last one is a real gap rather than a formality — the pristine page is now the header plus Start, so
 the 40 rules axe passed on the old empty page cannot hold, and the floor was lowered to 20 with the
 reason written at the assertion. The first run with a browser owes that line a measured number.
+
+**The first measured run after the shell, and what it found.** Appended by the browser-gate wave,
+the first to run the a11y tier against the shell at all — `npm run all` does not include the
+browser tiers, so the shell's wave verified the node tier truthfully and nobody ran this one. Two
+failures, one on each side of the page/test line.
+
+- **A real defect: duplicate "Models" landmarks (axe `landmark-unique`, moderate), in every loaded
+  state.** The shell's `#nav-models` rail landed as a `<section>` named by its visible "Models"
+  heading — the same role and name the System Browser's model table already computes (named by its
+  own heading since F-5 closed). A screen-reader user's landmark list held two indistinguishable
+  "Models" entries. Fixed in the page: the rail is now a `<nav>`, which the design already argues
+  ("Models are navigation", correction 2), so the role+name pair is unique and the rail reads as
+  what it is. The property rail stays a `<section>`: it is the stamped readout host the F-5 gate
+  pins as a heading-named region, and its name collides with nothing.
+- **A stale pin: the first tab stop is `a#skip`, not `a#`.** The shell gave the skip link an id so
+  the composition root can retarget the bypass per SH-I1 (the href and the words follow the mounted
+  surface). The walk is still five stops in the same order; only the identifier of the first stop
+  changed, and the pin — written without a runnable browser — kept the baseline's anonymous
+  anchor. The pin is updated with the reason at the assertion.
+
+The number §8 owed is now measured: the pristine page passes **39** axe rules (the floor at the
+assertion stays 20, the loaded states pass 47), and the SH-I1 mount matrix, the canvas-placement
+assertion and both keyboard pins from the UNMEASURED list above all ran and held.
