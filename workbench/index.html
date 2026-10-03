@@ -279,7 +279,34 @@
   <section id="model" aria-labelledby="model-h">
     <h2 id="model-h">Model</h2>
     <p class="intro" id="summary"></p>
-    <div id="sections"></div>
+    <!--
+      THE FOUR READOUT HOSTS NAME THEMSELVES. This one, #question-list, #finding-list and
+      #provenance-list each hold a table or a list a person reads. Every one of them used to be a
+      plain `<div>`: computed role `generic`, computed name empty, and its whole AT identity
+      borrowed from the enclosing `<section aria-labelledby>` above it (F-5 in
+      `BASELINE-a11y-261002.md` §6). That works while the readout stays inside the section whose
+      heading names it, and the three-pane shell in `DESIGN-shell-261002.md` §5 moves it out: a
+      region with no accessible name does not appear in an AT's landmark list by any name, which is
+      how a screen-reader user navigates. So each host is a `<section>` labelled by its OWN visible
+      heading, and the restructure inherits named regions instead of orphaning four of them.
+
+      Three choices worth the words.
+
+      `<section>` rather than `role="region"`: a named `<section>` computes as `region` natively, and
+      an authored role would be a second spelling of something the element already says.
+
+      `aria-labelledby` at a real heading rather than `aria-label`: a sighted user reads the same
+      words AT announces. The headings also do sighted work the page lacked -- the model tables and
+      the property list both used to start with no visible break from the prose above them.
+
+      The heading sits BEFORE the host rather than inside it, because the renderers call
+      `replaceChildren` on these hosts: a child heading would be wiped on the first paint, and
+      moving the paint target down a level would silently change what `#question-list > *` counts,
+      which three existing gates read. The cost is that heading and host must travel together; the
+      browser-tier name check is what fails loudly if one is left behind.
+    -->
+    <h3 id="sections-h">Model tables</h3>
+    <section id="sections" aria-labelledby="sections-h"></section>
   </section>
 
   <!--
@@ -555,12 +582,14 @@
       <button type="button" id="retract-property-go">Retract the property</button>
     </fieldset>
 
-    <div id="question-list"></div>
+    <h3 id="question-list-h">Saved properties</h3>
+    <section id="question-list" aria-labelledby="question-list-h"></section>
   </section>
 
   <section id="findings" aria-labelledby="findings-h">
     <h2 id="findings-h">Validation</h2>
-    <div id="finding-list"></div>
+    <h3 id="finding-list-h">Findings</h3>
+    <section id="finding-list" aria-labelledby="finding-list-h"></section>
   </section>
 
   <!--
@@ -579,7 +608,8 @@
       rather than constraint: reading it cannot change an answer, and recording it does not advance
       the model's revision.
     </p>
-    <div id="provenance-list"></div>
+    <h3 id="provenance-list-h">Recorded origins</h3>
+    <section id="provenance-list" aria-labelledby="provenance-list-h"></section>
   </section>
 
   <!--
