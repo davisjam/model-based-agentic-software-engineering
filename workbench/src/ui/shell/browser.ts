@@ -40,7 +40,7 @@ import type { PendingResult } from "../../app/ports.ts";
  * better answer than widening the facade's export surface for one readout: the shape stays defined
  * exactly once, in the Worker protocol, and this module cannot drift from it.
  */
-type Space = Extract<PendingResult, { readonly status: "ok-space" }>["space"];
+export type Space = Extract<PendingResult, { readonly status: "ok-space" }>["space"];
 
 /**
  * What stopped the walk, in a sentence a person can act on.
@@ -68,7 +68,7 @@ const STOP_REASON: Record<Space["stopReason"], string> = {
  * something false by a control that reported honestly. So `complete` becomes the first word, and the
  * ceiling is named whenever it bit.
  */
-function describeSpace(space: Space): string {
+export function describeSpaceSummary(space: Space): string {
   const ends = `${space.deadEnds} with no outgoing step`;
   const head = space.complete
     ? `Complete — ${space.statesExplored} reachable configuration(s), ${ends}.`
@@ -81,10 +81,18 @@ function describeSpace(space: Space): string {
   return `${head} ${STOP_REASON[space.stopReason]}${notes}`;
 }
 
-/** Every arm answered, because the one arm with no sentence is the silent-failure this union exists to prevent. */
-function describeResult(result: PendingResult): string {
+/**
+ * Every arm answered, because the one arm with no sentence is the silent-failure this union exists
+ * to prevent.
+ *
+ * Exported with `describeSpaceSummary` so the node tier can pin the WORDING without a browser. The
+ * exhausted-vs-bounded distinction is semantic, not cosmetic — it is the difference between "the
+ * space is N" and "the space is at least N" — and a distinction that only a browser run can check
+ * is one that gets checked rarely.
+ */
+export function describeExploreResult(result: PendingResult): string {
   switch (result.status) {
-    case "ok-space": return describeSpace(result.space);
+    case "ok-space": return describeSpaceSummary(result.space);
     case "failed": return `The walk did not run: ${result.messages.join(" ")}`;
     case "stale": return "The model changed while the walk was running, so its answer describes a revision "
       + "that is no longer loaded. Run it again.";
@@ -119,7 +127,7 @@ export function mountSystemBrowser(ctx: ShellContext): ShellRegion {
     describedHash = ctx.workspace.state.hash;
     const walked = describedHash;
     void ctx.workspace.explore().then((result) => {
-      const sentence = describeResult(result);
+      const sentence = describeExploreResult(result);
       // The model may have moved while the Worker ran. The readout belongs to the revision that was
       // asked about, so a result for a superseded one says so rather than being presented as current.
       const current = ctx.workspace.state.hash;

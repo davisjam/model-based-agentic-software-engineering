@@ -47,6 +47,7 @@ import {
 import {
   reachByTab, tabSequence, typeInto, chooseByKeyboard, toggleByKeyboard, chooseRadioByKeyboard,
   activateByKeyboard, releaseFocus, pressShiftTab, watchLiveRegion, liveWrites, liveText, settle,
+  ANNOUNCE_DEBOUNCE_MS,
 } from "./keyboard.mjs";
 
 /**
@@ -684,5 +685,95 @@ describe("FR-A11Y-3: announced, and announced once", () => {
     });
     assert.equal(live.focused, false, "the live region took focus -- FR-A11Y-3 forbids moving the caret to announce");
     assert.equal(live.role, "status");
+  });
+});
+
+describe("UX-I1: the configuration space is walkable by a person, not only by an agent", () => {
+  /**
+   * The drive that makes `explore-space`'s human affordance mean something.
+   *
+   * The registry declaring `control("system-browser.explore", "explore-space-go")` is a claim about
+   * wiring; this is the claim about REACHABILITY, which is the half UX-I1 was just made
+   * compiler-backed to stop anyone skipping. An affordance declared and unreachable is the exact
+   * defect — and it is the defect this capability shipped with for a wave, as a declared absence.
+   *
+   * Keyboard only, like everything else in this file: Tab until the button has focus, Enter, then an
+   * assertion about the READOUT rather than about focus. `window.mage` appears once, as the oracle
+   * that confirms the agent-side call answers about the same system.
+   *
+   * **What this page can honestly answer, and why the assertion is shaped around it.** The flagship
+   * example declares no state machine, so the reachable configuration space is not a thing it has —
+   * and the engine says so, naming `machines:` and what to declare. That refusal IS the right answer
+   * here, so the assertion admits exactly two shapes and NEITHER of them is silence: a summary that
+   * commits to Complete or Bounded, or a refusal that says what the system would need. The wording of
+   * the summary arm — exhausted versus bounded, the dead ends, the disclosed rewrites — is pinned
+   * exhaustively in the node tier over both arms, where it costs no browser.
+   */
+  it("Tab reaches Explore configuration space, and Enter answers or says why it cannot", async () => {
+    const reachedAt = await reachByTab(page, "explore-space-go");
+    assert.ok(reachedAt > 0);
+
+    const before = await page.evaluate(() =>
+      document.getElementById("explore-space-result").textContent ?? "");
+    assert.match(before, /Not walked yet/,
+      `the readout does not start idle, so a stale sentence could pass this test: "${before}"`);
+
+    await watchLiveRegion(page);
+    await page.keyboard.press("Enter");
+    // The walk runs off the main thread and the Worker is spawned lazily on this first call, so the
+    // wait is for the READOUT to stop saying it is working rather than for a fixed delay.
+    await page.waitForFunction(
+      () => {
+        const text = document.getElementById("explore-space-result").textContent ?? "";
+        return text !== "" && !/Walking/.test(text);
+      },
+      { timeout: 60_000 },
+    );
+    const after = (await page.evaluate(() =>
+      document.getElementById("explore-space-result").textContent ?? "")).replace(/\s+/g, " ");
+
+    // One of the two honest shapes, and nothing else. A readout that neither commits to an answer
+    // nor says why there is none is the ceremonial button this capability was wired to avoid.
+    const summary = /^(Complete|Bounded)\b/.test(after);
+    const refusal = /^The walk did not run:/.test(after);
+    assert.ok(summary || refusal,
+      `the readout neither reports a space nor says why it cannot: "${after}"`);
+    assert.doesNotMatch(after, /undefined|NaN|\[object/,
+      `the readout rendered a value it could not describe: "${after}"`);
+    if (summary) {
+      assert.match(after, /\d+ (reachable )?configuration\(s\)/,
+        `the readout commits to an answer and reports no state count: "${after}"`);
+    } else {
+      // The refusal has to be ACTIONABLE, which is this project's standing rule for a declined
+      // question: the flagship declares no machine, so the sentence names what a machine is declared
+      // under rather than reporting a space of zero and letting a reader conclude the model is inert.
+      assert.match(after, /machines:/,
+        `the refusal does not say what the system would need to have a configuration space: "${after}"`);
+    }
+    // Re-enabled, so the control is usable twice. A button that runs once and stays dead is a worse
+    // affordance than none, because the page still says it is there.
+    assert.equal(await page.evaluate(() => document.getElementById("explore-space-go").disabled), false,
+      "the Explore button stayed disabled after the walk settled");
+
+    // FR-A11Y-3: the result is consequential, so it reaches a screen-reader user through the page's
+    // ONE live region rather than only as text somebody has to go back and find.
+    await settle(ANNOUNCE_DEBOUNCE_MS + 400);
+    const writes = await liveWrites(page);
+    assert.ok(writes.some((w) => /Configuration space/i.test(w.text)),
+      `the walk's result was never announced: ${JSON.stringify(writes)}`);
+
+    // UX-I1's "both sides invoke the same service", as an observation rather than a claim: the agent
+    // asks the same question of the same system and gets the same KIND of answer back, which is what
+    // one seam means. A human refusal beside an agent summary would be two explorers.
+    const agent = await page.evaluate(() => window.mage.analysis.explore());
+    assert.equal(agent.status === "ok-space", summary,
+      `the human readout and window.mage.analysis.explore() disagree about the same system: `
+      + `the page says "${after}" and the agent says '${agent.status}' — they are not on one seam`);
+    if (agent.status === "ok-space") {
+      assert.ok(after.includes(String(agent.space.statesExplored)),
+        `the two sides disagree about the size of the space: "${after}" vs ${agent.space.statesExplored} states`);
+    }
+    prove("explore the configuration space",
+      `Tab reached #explore-space-go at stop ${reachedAt}; Enter produced "${after}"`);
   });
 });
