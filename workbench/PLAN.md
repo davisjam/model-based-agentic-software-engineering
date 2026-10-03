@@ -76,7 +76,7 @@ both. If you edit a row below, edit this sentence.
 | Q6 | Do quantities project to RDF? | **RESOLVED** — structured resources | — |
 | Q7 | Can Comunica ship on static Pages at all? | **ANSWERED — NO**, by measurement | — |
 | Q8 | SPARQL in the Worker or the main thread? | **ANSWERED — BOTH**: main thread at the interactive bound (`src/app/agent-api.ts:72`), Worker arm for the escalated bound (`src/worker/protocol.ts:85`) | — |
-| Q9 | Is "run arbitrary SPARQL" a semantic capability under UX-I1? | author; recommended: no | the query surface |
+| Q9 | Is "run arbitrary SPARQL" a semantic capability under UX-I1? | **RULED — NO**, and it obliges a *model query interface*; see `DECISIONS-RULED-model-query-261002.md` | the query surface |
 
 **Four of the nine are now settled, and three were settled by something other than argument.**
 Q2 and Q3 were ruled by the author — see `DECISIONS-RULED-quantities-261002.md`, which records both
