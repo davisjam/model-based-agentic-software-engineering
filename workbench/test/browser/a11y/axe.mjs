@@ -90,16 +90,21 @@ export const describeFindings = (findings) =>
  *      is also exported standalone, so it cannot read the page's custom properties.
  *   2. `figure svg`'s background comes from the page. Point it at a theme variable and the dark
  *      theme paints #11151c ink on a #201e16 ground.
- *   3. `#canvas` is `aria-hidden`, which hides the diagram from assistive technology and changes
- *      nothing for a sighted low-vision reader. 1.4.3 still applies.
+ *   3. On the workspace page `#canvas` is `aria-hidden`, which hides the diagram from assistive
+ *      technology and changes nothing for a sighted low-vision reader. 1.4.3 still applies.
  *
  * Measurement, not inference. Each text is scrolled into the viewport and hit-tested, because
  * `elementsFromPoint` only answers for points it can see, and the diagram sits at the foot of a
  * long page. Text drawn with `paint-order: stroke` and a stroke wide enough to form a halo is
  * measured against the HALO -- that is the colour under the glyph, and the renderer uses it
  * deliberately for edge labels crossing open ground.
+ *
+ * The root selector is a PARAMETER because the renderer now paints on two pages with different
+ * hosts: the workspace's single `#canvas`, and the Learn gallery's four `.canvas` divs, one per
+ * figure. Measuring all matches rather than the first is the point — the gallery's four diagrams
+ * are four grounds, and a per-figure stylesheet mistake would hide behind figure one.
  */
-export const SVG_TEXT_CONTRAST = `(() => {
+export const SVG_TEXT_CONTRAST = `((rootSelector) => {
   const srgb = (c) => { const s = c / 255; return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4); };
   const parse = (value) => { const m = String(value).match(/[\\d.]+/g); return m && m.length >= 3 ? m.slice(0, 3).map(Number) : null; };
   const luminance = (rgb) => 0.2126 * srgb(rgb[0]) + 0.7152 * srgb(rgb[1]) + 0.0722 * srgb(rgb[2]);
@@ -111,12 +116,14 @@ export const SVG_TEXT_CONTRAST = `(() => {
   };
   const opaque = (value) => { const m = String(value).match(/rgba?\\([^)]*\\)/); return parse(value) !== null && !/,\\s*0\\s*\\)$/.test(m ? m[0] : ""); };
 
-  const svg = document.querySelector("#canvas svg");
-  if (svg === null) return { drew: false, texts: [] };
-  const svgBackground = getComputedStyle(svg).backgroundColor;
+  const svgs = [...document.querySelectorAll(rootSelector + " svg")];
+  if (svgs.length === 0) return { drew: false, diagrams: 0, texts: [] };
+  // One ground per figure, but reported as one value: every host takes its background from the
+  // same page rule, and a divergence would show up as a failing text rather than a quiet number.
+  const svgBackground = getComputedStyle(svgs[0]).backgroundColor;
 
   const texts = [];
-  for (const node of document.querySelectorAll("#canvas text")) {
+  for (const node of document.querySelectorAll(rootSelector + " text")) {
     const style = getComputedStyle(node);
     node.scrollIntoView({ block: "center" });
     const box = node.getBoundingClientRect();
@@ -145,10 +152,15 @@ export const SVG_TEXT_CONTRAST = `(() => {
       required, size,
     });
   }
-  return { drew: true, svgBackground, texts };
-})()`;
+  return { drew: true, diagrams: svgs.length, svgBackground, texts };
+})`;
 
-export const svgTextContrast = (page) => page.evaluate(SVG_TEXT_CONTRAST);
+/**
+ * `page.evaluate` ignores extra arguments when handed a STRING, so the selector is baked into the
+ * call expression rather than passed. `JSON.stringify` is what keeps that from being injection.
+ */
+export const svgTextContrast = (page, rootSelector = "#canvas") =>
+  page.evaluate(`(${SVG_TEXT_CONTRAST})(${JSON.stringify(rootSelector)})`);
 
 /** The failing texts, deduplicated by class and ground -- one line per distinct cause. */
 export function contrastFailures(measurement) {
