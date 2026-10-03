@@ -169,5 +169,105 @@ deliberately assigned elsewhere). Nothing in the registry presumes either answer
   surfaces the quantitative model those vocabularies cannot express.
 - **[FIX]** `generateAffordanceModel` emits `type: graph` on a model — a key the kernel drops;
   remove or document it (blocked on `capabilities.ts` ownership).
-- **[DESIGN]** extend `validate.py` with the substrate-absence cause before any committed model
-  ships saved graph queries without `models:` (the parity asymmetry above).
+- ~~**[DESIGN]** extend `validate.py` with the substrate-absence cause before any committed model
+  ships saved graph queries without `models:` (the parity asymmetry above).~~ **CLOSED** — ruled and
+  landed; see the follow-up section at the foot of this document. The premise was too generous: the
+  wrong answer did not wait for a committed model, it shipped to anyone running the CLI.
+
+---
+
+# RULED — the rung at the other two seams (follow-up, 2026-10-02)
+
+**Status: ruled and landed.** Ruling 3 deferred two things: the SPARQL seam ("extending both
+sides is a follow-up with its own tests") and `validate.py` (implement the rung, or excuse its
+cause). Both are now closed. This section records what the seams actually did before the change,
+the one ruling that had to be made, and the seams that turned out to be fine.
+
+## The gap was a reachable wrong answer, not a latent parity risk
+
+Driven, not grepped. Over a system declaring `relation-types:` and `entities:` with an empty
+`models:` section — the ordinary middle of an authoring session:
+
+| Seam | Before | After | Pinned by |
+|---|---|---|---|
+| `runTypedQuery` | `unlicensed` / `missing-model-type` | unchanged | `test/model-types.test.ts:133` |
+| `admit` (relational, containment) | **`licensed`** | `missing-model-type` | `test/sparql-seam.test.ts:303` |
+| `admit` (behavioral, machineless) | **`routed` to the engine** | `missing-model-type` | `test/sparql-seam.test.ts:335` |
+| `answerSparql` (text) | **`ASK → false`, `SELECT → 0 rows`** | `missing-model-type` | `test/sparql-seam.test.ts:397` |
+| `validate.py` graph queries | **`refuted`, run reported `clean`** | `missing-model-type` | `test/parity.test.ts:468` |
+
+The two bold rows are the finding worth stating plainly. **A user reaches a wrong answer today
+through two of the three doors**, and Ruling 3's note that the asymmetry was "unobservable" is
+true only of the answer-parity SWEEP: no committed model has an empty `models:` section, so the
+sweep never reached the rung. A reader running `python3 validate.py` on their own file did. "No,
+`api` does not reach `gateway`" about a system that models no structure is the `latency: 0 ms`
+defect in relational clothing — a definite answer computed over nothing.
+
+## Ruled: `validate.py` IMPLEMENTS the rung; the `ASYMMETRIC` entry is refused
+
+The deciding question is whether a user can reach a wrong answer through the Python path, and the
+code answers yes: `validate.py` is a CLI, `run_graph_query` evaluates over `_edges`, and with no
+models that adjacency is empty, so `direct`, `reachability` and `successors` all return a
+confident `refuted` with an empty findings list. The `containment` query was worse than a
+mismatch — it refused as `unsupported-form` with no `where` clause, which is the one shape
+`test/parity.test.ts`'s own exemption assertion rejects, so the parity test would have failed
+rather than diverged quietly.
+
+**Rejected: adding the cause to `ASYMMETRIC`.** That table is the honest record of rules only ONE
+side CAN implement — no RDF projection, no state space, no join evaluator. This side can:
+`run_graph_query` already reads `doc["models"]`, so the rung is a presence check and one constant.
+An entry would have been an excuse wearing a record's clothes, and it would have left the wrong
+answer shipping.
+
+Only the structural arm lands there. `check_queries` skips behavioral and quantity dialects
+outright, so an absent `machines:` or `quantities:` section has no question in that tool to be
+absent for; the constant says so where it lives.
+
+## One decision inside the seam, and it costs the nicer answer
+
+A `containment` subject refuses, even though the seam could answer it: `project.ts` puts the
+entity `contains` tree in the DEFAULT graph, which a system with no models still has. The engine
+cannot, because `containment` is one of its graph forms and the registry rung declines the whole
+dialect. V32 asks the two interfaces for one decision, so the nicer answer loses to the agreeing
+one, and `QUERY_KIND` in `licensing.ts` states that rather than leaving it to a reader to notice.
+
+A behavioral subject over a machineless system also refuses instead of routing. "The analysis
+engine answers it" is a promise the engine declines in the next breath — the same objection that
+already puts licensing ahead of routing, pointed one rung higher.
+
+## Where the sentence lives, and what holds it
+
+`absentModelType` (`src/sparql/refusal.ts`) is the one constructor, and it GENERATES the sentence
+from `absentSubstrateProse` rather than copying it. Nothing new had to be exported: the engine
+already published the registry. That makes this arrangement stronger than the omission rung's
+beside it, where two ABSENCE clauses are copies held by an agreement test — here there is no copy.
+Two call sites, one predicate: `admit`, and `translate` ahead of scope derivation, because a
+model-scoped text query resolves its named graph first and over a modelless system that resolution
+sends the author hunting a misspelled model name.
+
+`validate.py` reproduces the words (neither tool can import the other's) in its own dash
+convention — it carries no em-dash anywhere. The parity test now compares the refusal SENTENCE
+beside its cause, folding only that dash: a cause is a bucket, a sentence is what the reader gets,
+and nothing held the Python side to anything but the bucket. The new assertion already binds the
+two `missing-distinction` refusals the shipped examples reach.
+
+## Every seam checked, including the clean ones
+
+- **`runTypedQuery` / `runQuery` / `runSavedQueries`** — rung present since Ruling 3. Clean.
+- **`admit` + `answerSparql`** — gap, closed here. The Worker's `sparql` arm re-admits on its own
+  thread and inherits it; `Workspace.sparql` and `window.mage.sparql` pass through.
+- **`validate.py`** — gap, closed here.
+- **Worker `analyze-saved` and the default query arm** — reach `runSavedQueries` / `runQuery`.
+  Clean by inheritance, verified by reading the handler rather than assumed.
+- **Worker `explore` arm** — calls `exploreSpace` directly. Over a machineless system it reports
+  one state, `complete: true`, and **one dead end**. Not fixed, and the call is arguable: the
+  configuration space of a machineless system genuinely IS one empty configuration with no
+  successors, so the number describes the space rather than making an architectural claim. But a
+  reader shown "1 dead end" will read it as a finding about their system, and the UI that shows it
+  is held by another agent. **[FIX]** worth a look.
+- **`runPastTimeQuery` (`src/engine/history.ts`)** — bypasses `runTypedQuery` and calls
+  `runBehaviorQuery` directly. Exported from the engine's index with no caller anywhere in `src/`
+  or `index.html`, so it is latent rather than reachable; over a machineless system its
+  `controlAtom` resolution fails, which refuses — but as a vocabulary miss, which is the typo hunt
+  the rung replaces. **[FIX]** when it acquires a caller. Left alone here: `src/engine/` was out
+  of this change's scope beyond exporting a sentence, and nothing needed exporting.
