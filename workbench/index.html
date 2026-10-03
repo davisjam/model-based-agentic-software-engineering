@@ -6,8 +6,16 @@
 
   1. FR-A11Y: real landmarks, real headings, real tables. The structured model view is the PRIMARY
      editing surface, not a fallback for the diagram — model editing and query execution must be
-     possible without touching the canvas, so the canvas is last in the document order and the
-     structure is first.
+     possible without touching the canvas. Two orderings, which used to be one: the structured
+     reading is first in DOM and therefore first in AT order, and the canvas is the sighted user's
+     primary surface at the visual centre of the workspace. The old form of this sentence said the
+     canvas was last in the document and left the picture an epilogue to a textual database
+     (DESIGN-shell-261002.md correction 10); document order is unchanged, the visual claim is not.
+
+  1b. The page is a SHELL of named regions, one per surface of DESIGN-shell-261002.md §5, and
+     src/ui/shell/surfaces.ts is the table that says which id carries which surface. A region's
+     id therefore appears exactly twice: here, as the attribute a browser needs, and there, as the
+     fact the shell and its gates read. Nothing else may spell it.
   2. Self-contained: no CDN, no webfont, no remote image. The page is served as static assets and a
      fetch to another host would simply fail.
   3. Theme-aware in both directions, because the host may stamp a theme or the OS may report one.
@@ -93,8 +101,68 @@
   button[disabled] { opacity: .5; cursor: not-allowed; }
   button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 
-  main { padding: 1rem; max-width: 72rem; margin: 0 auto; }
+  main { padding: 1rem; max-width: 84rem; margin: 0 auto; }
   section { margin-block-end: 2rem; }
+
+  /*
+    The shell, as a grid. GEOMETRY IS NON-NORMATIVE (requirements-human-ux-261002.md §4) -- what the
+    specification fixes is the hierarchy, and the grid is how this page spells it: two navigation
+    rails on the left, the principal model in the centre, the selected object on the right, the ask
+    bar and the status across the foot.
+
+    Named areas rather than source order, because DOM order carries the accessibility order and the
+    two are different requirements (correction 10). Moving a pane visually must never move it in the
+    tab sequence, and `grid-template-areas` is the one layout mechanism where that separation is
+    explicit rather than a side effect.
+
+    One column below 64rem. A three-pane shell on a phone is three unreadable columns; the regions
+    then stack in DOM order, which is the order a screen-reader user already gets.
+  */
+  #shell {
+    display: grid; gap: 0 1.5rem; align-items: start;
+    grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr) minmax(13rem, 20rem);
+    grid-template-areas:
+      "banner banner banner"
+      "review review review"
+      "start  start  start"
+      "nav    work   inspect"
+      "ask    ask    ask"
+      "status status status"
+      "extra  extra  extra";
+  }
+  #banner { grid-area: banner; }
+  #hypothesis-bar { grid-area: review; }
+  #start { grid-area: start; }
+  #nav { grid-area: nav; }
+  #workspace { grid-area: work; }
+  #inspector { grid-area: inspect; }
+  #askbar { grid-area: ask; }
+  #statusbar { grid-area: status; }
+  #edit, #system-browser { grid-area: extra; }
+  /* The transitional band stacks inside its own area, so two regions can share it. */
+  #shell > #edit { margin-block-start: 1rem; }
+
+  /* A pane reads as a pane: its own panel, its own rule, scrolling inside itself. */
+  #nav, #workspace, #inspector, #askbar, #statusbar {
+    border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .8rem .8rem;
+    background: var(--panel); margin-block-end: 1rem;
+  }
+  #nav, #inspector { max-height: 80vh; overflow-y: auto; }
+  #nav h2, #workspace h2, #inspector h2, #askbar h2, #statusbar h2 {
+    font-size: .82rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted);
+    border: 0; margin: 0 0 .4rem; padding: 0;
+  }
+  #nav h3 {
+    font-size: .82rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted);
+    margin: .9rem 0 .2rem;
+  }
+  @media (max-width: 64rem) {
+    #shell {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "banner" "review" "start" "nav" "work" "inspect" "ask" "status" "extra";
+    }
+    #nav, #inspector { max-height: none; }
+  }
   h2 { font-size: 1.15rem; border-block-end: 1px solid var(--rule); padding-block-end: .3rem; }
   .intro { color: var(--muted); margin-block: .25rem 1rem; }
 
@@ -199,10 +267,26 @@
 </style>
 </head>
 <body>
-<a class="skip" href="#model">Skip to the model</a>
+<!--
+  The skip link's target follows SH-I1: Start on an empty workspace, the model workspace once
+  something is loaded. A fixed target would point at a `hidden` region half the time, which is worse
+  than no bypass at all. The composition root sets both the href and the words from the surfaces
+  table; the markup ships the loaded-state wording so the control reads correctly before first paint.
+-->
+<a class="skip" id="skip" href="#workspace">Skip to the model workspace</a>
 
-<header role="banner">
+<!--
+  The `header` surface. Title, the system's name and size, the two ways in that stay reachable after
+  a load, and the four controls that need a model. The menu DESIGN-shell-261002.md §5 gathers these
+  under is a later wave's; the buttons are where they were.
+-->
+<header role="banner" id="header">
   <h1>MAGE Model Workbench</h1>
+  <!--
+    The system's name and size, beside the title rather than as the first paragraph of a Model
+    section. It is what the workspace IS, so it belongs in the chrome that names the workspace.
+  -->
+  <p class="intro" id="summary"></p>
   <label class="file">
     Open a .mage.yaml
     <input id="file" type="file" accept=".yaml,.yml,.json" class="sr-only">
@@ -212,7 +296,7 @@
     Export and Run ship DISABLED for the same reason Undo and Redo do: with nothing loaded there is
     nothing to write out and no question to run. A control that is enabled and cannot work costs a
     keyboard user two stops before the one that can, and reads to a parity table as present. The
-    composition root re-enables all four from `workspace.state` on every paint.
+    header region re-enables all four from `workspace.state` on every paint.
   -->
   <button id="export" type="button" disabled>Export</button>
   <button id="run" type="button" class="primary" disabled>Run all questions</button>
@@ -227,13 +311,14 @@
 -->
 <p id="live" role="status" aria-live="polite" class="sr-only"></p>
 
-<main>
+<main id="shell">
   <div id="banner"></div>
 
   <!--
-    The hypothesis bar. Static markup, shown when a hypothesis is open, because a control that is
+    The `review` surface. Static markup, shown when a hypothesis is open, because a control that is
     created and destroyed on every repaint takes the user's focus with it. The banner above says IN
     WORDS that the authoritative model is unchanged; these are the two ways out of that state.
+    Wave 2c replaces the pair with the REVIEW CHANGE surface at this same id.
   -->
   <div id="hypothesis-bar" hidden>
     <button id="hypothesis-apply" type="button" class="primary">Accept this hypothesis as authoritative</button>
@@ -241,12 +326,11 @@
   </div>
 
   <!--
-    The three ways in (default-examples section 3): create, load an example, import. Create and
-    import are the first two buttons in the toolbar above and stay reachable after a model is
-    loaded; the example menu lives here because it comes with a description, and a description is
-    not a toolbar control.
+    The `start` surface, and correction 1: Start is an EMPTY-workspace experience. It is mounted iff
+    nothing is loaded (SH-I1), so a user who has just opened Message Bus is not still reading three
+    explanations of how to open something.
 
-    All three end at the same `Workspace.load`. Loading an example gives an ordinary editable
+    All three ways in end at the same `Workspace.load`. Loading an example gives an ordinary editable
     workspace -- there is no example execution mode (EX-I1) -- and the prose says so, because a
     first-time reader has no other way to know that modifying the example is expected.
   -->
@@ -259,12 +343,7 @@
     </p>
     <fieldset>
       <legend>Load an example</legend>
-      <p class="hint">
-          Their titles, models and suggested questions below are read from the example files
-          themselves rather than written here &mdash; which is why this paragraph no longer says how
-          many there are. It said &ldquo;two&rdquo; beside a list of three for part of a day: the count
-          was prose while the list was derived, so one moved and the other did not.
-      </p>
+
       <label class="field" for="example-choice"><span>Example</span>
         <select id="example-choice"></select></label>
       <!--
@@ -276,38 +355,172 @@
     </fieldset>
   </section>
 
-  <section id="model" aria-labelledby="model-h">
-    <h2 id="model-h">Model</h2>
-    <p class="intro" id="summary"></p>
+  <!--
+    The three-pane band: navigation, the model under inspection, the selected object. Grid areas,
+    not floats, and the geometry is non-normative (requirements-human-ux-261002.md §4) -- the
+    NORMATIVE part is the hierarchy, which is that Models and Properties are the two navigation
+    objects and the principal model occupies the centre.
+  -->
+  <section id="nav" aria-labelledby="nav-h" hidden>
+    <h2 id="nav-h">Navigate</h2>
+    <h3 id="nav-models-h">Models</h3>
+    <section id="nav-models" aria-labelledby="nav-models-h"></section>
     <!--
-      THE FOUR READOUT HOSTS NAME THEMSELVES. This one, #question-list, #finding-list and
-      #provenance-list each hold a table or a list a person reads. Every one of them used to be a
-      plain `<div>`: computed role `generic`, computed name empty, and its whole AT identity
-      borrowed from the enclosing `<section aria-labelledby>` above it (F-5 in
-      `BASELINE-a11y-261002.md` §6). That works while the readout stays inside the section whose
-      heading names it, and the three-pane shell in `DESIGN-shell-261002.md` §5 moves it out: a
-      region with no accessible name does not appear in an AT's landmark list by any name, which is
-      how a screen-reader user navigates. So each host is a `<section>` labelled by its OWN visible
-      heading, and the restructure inherits named regions instead of orphaning four of them.
+      The property rail. One list, not a property list beside a query-result list: a saved question
+      IS the persistent object here, so two lists would be two renderings of the same claims, free
+      to disagree. Each entry carries what a query result owes (status, coverage, evidence) and what
+      a property owes (the claim, the models it derives from, the revision it was evaluated at).
 
-      Three choices worth the words.
-
-      `<section>` rather than `role="region"`: a named `<section>` computes as `region` natively, and
-      an authored role would be a second spelling of something the element already says.
-
-      `aria-labelledby` at a real heading rather than `aria-label`: a sighted user reads the same
-      words AT announces. The headings also do sighted work the page lacked -- the model tables and
-      the property list both used to start with no visible break from the prose above them.
-
-      The heading sits BEFORE the host rather than inside it, because the renderers call
-      `replaceChildren` on these hosts: a child heading would be wiped on the first paint, and
-      moving the paint target down a level would silently change what `#question-list > *` counts,
-      which three existing gates read. The cost is that heading and host must travel together; the
-      browser-tier name check is what fails loudly if one is left behind.
+      The element id is still `question-list`. DESIGN-shell-261002.md §5 pins it -- the browser tier
+      asserts against it -- so the rail inherits the name rather than improving it.
     -->
-    <h3 id="sections-h">Model tables</h3>
-    <section id="sections" aria-labelledby="sections-h"></section>
+    <h3 id="question-list-h">Properties</h3>
+    <section id="question-list" aria-labelledby="question-list-h"></section>
   </section>
+
+  <!--
+    The `workspace` surface: the principal model. Its purpose in words, its structured reading, then
+    the picture. Mounted iff a system is loaded (SH-I1's other half).
+
+    The reading PRECEDES the canvas in the DOM, which is AT order, and the canvas is the visual
+    centre -- the two orderings correction 10 separates. aria-hidden stays on the figure: every fact
+    in the picture is in the reading above it, and duplicating the model into the accessibility tree
+    is the announcement storm FR-A11Y-2 and -3 both guard against.
+  -->
+  <section id="workspace" aria-labelledby="workspace-h" hidden>
+    <h2 id="workspace-h">Workspace</h2>
+    <label class="field" for="diagram-subject"><span>Draw</span>
+      <select id="diagram-subject"></select></label>
+    <!--
+      UX-I4 / section 5.1: whenever a model is the PRINCIPAL model being viewed, its purpose is
+      displayed with it. This is the one place a single model is singled out as the thing under
+      inspection, and it used to show a name and a picture -- so the requirement failed exactly
+      where it was written to apply. Above the picture, in words, so it reaches a reader who never
+      sees the canvas.
+    -->
+    <div id="principal-purpose"></div>
+    <!--
+      The diagram in words: the renderer's own structured twin, not a summary of the picture written
+      by this file. It carries what the SVG encodes visually — reading order, what each emphasis
+      marker means, which nodes carry one — which is the half the System Browser tables do NOT
+      state. Plain DOM, not a live region: it must be readable, not announced on every repaint.
+      Wave 2b grows the model contents tree here.
+    -->
+    <div id="diagram-text"></div>
+    <figure id="canvas" aria-hidden="true"></figure>
+  </section>
+
+  <!--
+    The `inspector` surface. Correction 3: the enormous global Entities and Relations tables are
+    useful inspection surfaces and a terrible home page, so rich semantics are asked for by
+    selecting the thing they concern. Wave 1b builds that; wave 0 lands the named region, reporting
+    the one fact it can know.
+  -->
+  <section id="inspector" aria-labelledby="inspector-h" hidden>
+    <h2 id="inspector-h">Inspector</h2>
+    <div id="inspector-body"></div>
+  </section>
+
+  <!--
+    The `askbar` surface, and `advanced-query` inside it. Correction 5 makes a persistent input the
+    primary question surface and demotes the structured builder to Advanced; wave 1c builds the
+    input, so until then the builder is the ask surface and stays in the tab order. Demoting it
+    behind a disclosure first would have removed the only way to ask a question.
+  -->
+  <section id="askbar" aria-labelledby="askbar-h" hidden>
+    <h2 id="askbar-h">Ask about the model system</h2>
+    <p class="intro">
+      A property is a persistent claim about the system. Its verdict is <strong>recomputed</strong>
+      every time the model changes and is stored nowhere, so what you read is always this revision's
+      answer. Every verdict says which models and machines established it; a bounded search is
+      reported as inconclusive, never as a no.
+    </p>
+    <!--
+      The answer, rendered by the SAME function that renders a saved property. Plain DOM: #live is
+      the one announcer and it already says the verdict and how many models established it.
+    -->
+    <div id="ask-answer"></div>
+    <fieldset id="form-ask">
+      <legend>Ask a question</legend>
+      <p class="hint">
+        Graph questions only, from these controls. A behavioural question carries a state predicate —
+        a nested conjunction over machine references — and a set of menus that could build one would
+        be a worse query language than the structured source it replaces; write those in the file or
+        send them through <code>window.mage.query</code>. Only relation types this model system
+        declares are offered.
+      </p>
+      <label class="field" for="ask-form"><span>Shape of the question</span>
+        <select id="ask-form"></select></label>
+      <label class="field" for="ask-relation"><span>Relation to traverse</span>
+        <select id="ask-relation"></select></label>
+      <label class="field" for="ask-from"><span>From</span>
+        <select id="ask-from"></select></label>
+      <label class="field" for="ask-to"><span>To</span>
+        <select id="ask-to"></select></label>
+      <label class="field" for="ask-quantifier"><span>Quantifier</span>
+        <select id="ask-quantifier"></select></label>
+      <label class="field" for="ask-max-hops"><span>Hop limit (optional)</span>
+        <input type="text" id="ask-max-hops" inputmode="numeric" autocomplete="off"></label>
+      <button type="button" id="ask-go" class="primary">Ask</button>
+      <!--
+        The answer, rendered by the SAME function that renders a saved property. Plain DOM: #live is
+        the one announcer and it already says the verdict and how many models established it.
+      -->
+      <div id="ask-answer"></div>
+    </fieldset>
+
+    <fieldset id="form-save-property">
+      <legend>Save the question above as a property</legend>
+      <p class="hint">
+        What is saved is the <strong>question</strong>, never the answer: the verdict is recomputed on
+        every later revision. State the claim as an assertion — "Restricted data cannot reach
+        Analytics", not "Can restricted data reach Analytics?" — because the status word is read
+        against it. Declaring an expectation makes it a requirement: a differing outcome then counts
+        as a failure rather than a finding.
+      </p>
+      <label class="field" for="save-property-id"><span>Id (immutable)</span>
+        <input type="text" id="save-property-id" autocomplete="off"></label>
+      <label class="field" for="save-property-proposition"><span>The claim</span>
+        <input type="text" id="save-property-proposition" autocomplete="off"></label>
+      <label class="field" for="save-property-expect"><span>Expectation</span>
+        <select id="save-property-expect"></select></label>
+      <button type="button" id="save-property-go">Save as property</button>
+    </fieldset>
+
+    <fieldset id="form-retract-property">
+      <legend>Stop evaluating a property</legend>
+      <p class="hint">
+        The claim is removed from the model system, so no later revision evaluates it. The models it
+        was about are untouched.
+      </p>
+      <label class="field" for="retract-property-target"><span>Property</span>
+        <select id="retract-property-target"></select></label>
+      <button type="button" id="retract-property-go">Retract the property</button>
+    </fieldset>
+  </section>
+
+  <!--
+    The `statusbar` surface. Correction 9: validation is quiet when it succeeds. The chip is a WORD,
+    derived from the same findings the list below renders, so it cannot read Valid over a list of
+    problems. Activating it to OPEN the findings panel is a later wave; until then the list is
+    below rather than behind a control, because hiding semantic content with nothing to reveal it
+    is the failure §3.1 names.
+  -->
+  <section id="statusbar" aria-labelledby="statusbar-h" hidden>
+    <h2 id="statusbar-h">Status</h2>
+    <p><span class="state" id="status-chip"></span></p>
+    <h3 id="finding-list-h">Findings</h3>
+    <section id="finding-list" aria-labelledby="finding-list-h"></section>
+  </section>
+
+  <!--
+    ======================================================================================
+    The transitional band. Every surface below is one a later wave of DESIGN-shell-261002.md
+    relocates or deletes, and it stands here unchanged so that wave is a relocation rather than a
+    rebuild. Keeping them BELOW the shell is the point of correction 1 through 10 in one line: the
+    machinery is still reachable, and it is no longer the first thing a reader meets.
+    ======================================================================================
+  -->
 
   <!--
     The editing surface, and the reason it is HTML rather than canvas gestures: every workflow has
@@ -315,10 +528,14 @@
     operation through the same `transact` call `window.mage.transact` makes, so there is one
     mutation path rather than a human one and an agent one.
 
+    Correction 4 replaces the ten fieldsets with a + Add menu, per-selection actions and a command
+    palette (wave 2a), and correction 8 deletes the authoritative-vs-hypothesis radios in favour of
+    the review surface (wave 2c). Until then they are what a person edits with.
+
     The option lists are refreshed from the model on every repaint; the markup is not rebuilt, so
     the caret stays where the user put it.
   -->
-  <section id="edit" aria-labelledby="edit-h">
+  <section id="edit" aria-labelledby="edit-h" hidden>
     <h2 id="edit-h">Edit</h2>
     <p class="intro">
       Every edit is one validated transaction. A rejected edit changes nothing and says why. The
@@ -502,145 +719,53 @@
   </section>
 
   <!--
-    Properties. One list, not a property list beside a query-result list: a saved question IS the
-    persistent object here, so two lists would be two renderings of the same claims, free to
-    disagree. Each entry therefore carries what a query result owes (status, coverage, evidence) and
-    what a property owes (the claim, the models it derives from, the revision it was evaluated at).
+    The `system-browser` surface. Correction 3's other half, in the author's own words: "There can
+    be an advanced System Browser for people who really want the 11-entity/18-relation tabular
+    view." The tables move here whole, at their own ids. Wave 3 puts the region behind the ⋯ menu.
 
-    The element id is still `question-list`. The browser tier asserts against that id and against
-    this section's id, and that gate belongs to another agent's file; a rename would break a check
-    to improve a name.
+    Provenance is parked here too, and correction 9 sends it elsewhere: it belongs under the
+    selected object's Provenance block (wave 1b). It is an exhaustive tabular readout of the whole
+    system, which is this region's genre, so this is where it waits rather than in a pane a later
+    wave would have to clear out.
   -->
-  <section id="questions" aria-labelledby="questions-h">
-    <h2 id="questions-h">Properties and requirements</h2>
-    <p class="intro">
-      A property is a persistent claim about the system. Its verdict is <strong>recomputed</strong>
-      every time the model changes and is stored nowhere, so what you read is always this revision's
-      answer. Every verdict says which models and machines established it; a bounded search is
-      reported as inconclusive, never as a no.
-    </p>
+  <section id="system-browser" aria-labelledby="system-browser-h" hidden>
+    <h2 id="system-browser-h">System Browser</h2>
+    <!--
+      THE READOUT HOSTS NAME THEMSELVES. #sections, #question-list, #finding-list and
+      #provenance-list each hold a table or a list a person reads. Every one of them used to be a
+      plain `<div>`: computed role `generic`, computed name empty, and its whole AT identity
+      borrowed from the enclosing `<section aria-labelledby>` above it (F-5 in
+      `BASELINE-a11y-261002.md` §6). That worked while the readout stayed inside the section whose
+      heading named it, and this shell is the restructure that moved them apart: a region with no
+      accessible name does not appear in an AT's landmark list by any name, which is how a
+      screen-reader user navigates. So each host is a `<section>` labelled by its OWN visible
+      heading, and the four readouts travelled into four different regions already named.
+
+      Three choices worth the words.
+
+      `<section>` rather than `role="region"`: a named `<section>` computes as `region` natively, and
+      an authored role would be a second spelling of something the element already says.
+
+      `aria-labelledby` at a real heading rather than `aria-label`: a sighted user reads the same
+      words AT announces. The headings also do sighted work the page lacked -- the model tables and
+      the property list both used to start with no visible break from the prose above them.
+
+      The heading sits BEFORE the host rather than inside it, because the renderers call
+      `replaceChildren` on these hosts: a child heading would be wiped on the first paint, and
+      moving the paint target down a level would silently change what `#question-list > *` counts,
+      which three existing gates read. The cost is that heading and host must travel together; the
+      browser-tier name check is what fails loudly if one is left behind.
+    -->
+    <h3 id="sections-h">Model tables</h3>
+    <section id="sections" aria-labelledby="sections-h"></section>
 
     <!--
-      Ask, then save. The question is transient until someone says otherwise, which is why the Ask
-      button saves nothing and the Save button is a separate, explicit act.
+      Provenance: where each object came from, and what its author was asked to preserve. Read-only
+      by construction -- the service hands back records and no writer, so inspecting an origin
+      cannot move a hash or a result (UX-I6).
     -->
-    <fieldset id="form-ask">
-      <legend>Ask a question</legend>
-      <p class="hint">
-        Graph questions only, from these controls. A behavioural question carries a state predicate —
-        a nested conjunction over machine references — and a set of menus that could build one would
-        be a worse query language than the structured source it replaces; write those in the file or
-        send them through <code>window.mage.query</code>. Only relation types this model system
-        declares are offered.
-      </p>
-      <label class="field" for="ask-form"><span>Shape of the question</span>
-        <select id="ask-form"></select></label>
-      <label class="field" for="ask-relation"><span>Relation to traverse</span>
-        <select id="ask-relation"></select></label>
-      <label class="field" for="ask-from"><span>From</span>
-        <select id="ask-from"></select></label>
-      <label class="field" for="ask-to"><span>To</span>
-        <select id="ask-to"></select></label>
-      <label class="field" for="ask-quantifier"><span>Quantifier</span>
-        <select id="ask-quantifier"></select></label>
-      <label class="field" for="ask-max-hops"><span>Hop limit (optional)</span>
-        <input type="text" id="ask-max-hops" inputmode="numeric" autocomplete="off"></label>
-      <button type="button" id="ask-go" class="primary">Ask</button>
-      <!--
-        The answer, rendered by the SAME function that renders a saved property. Plain DOM: #live is
-        the one announcer and it already says the verdict and how many models established it.
-      -->
-      <div id="ask-answer"></div>
-    </fieldset>
-
-    <fieldset id="form-save-property">
-      <legend>Save the question above as a property</legend>
-      <p class="hint">
-        What is saved is the <strong>question</strong>, never the answer: the verdict is recomputed on
-        every later revision. State the claim as an assertion — "Restricted data cannot reach
-        Analytics", not "Can restricted data reach Analytics?" — because the status word is read
-        against it. Declaring an expectation makes it a requirement: a differing outcome then counts
-        as a failure rather than a finding.
-      </p>
-      <label class="field" for="save-property-id"><span>Id (immutable)</span>
-        <input type="text" id="save-property-id" autocomplete="off"></label>
-      <label class="field" for="save-property-proposition"><span>The claim</span>
-        <input type="text" id="save-property-proposition" autocomplete="off"></label>
-      <label class="field" for="save-property-expect"><span>Expectation</span>
-        <select id="save-property-expect"></select></label>
-      <button type="button" id="save-property-go">Save as property</button>
-    </fieldset>
-
-    <fieldset id="form-retract-property">
-      <legend>Stop evaluating a property</legend>
-      <p class="hint">
-        The claim is removed from the model system, so no later revision evaluates it. The models it
-        was about are untouched.
-      </p>
-      <label class="field" for="retract-property-target"><span>Property</span>
-        <select id="retract-property-target"></select></label>
-      <button type="button" id="retract-property-go">Retract the property</button>
-    </fieldset>
-
-    <h3 id="question-list-h">Saved properties</h3>
-    <section id="question-list" aria-labelledby="question-list-h"></section>
-  </section>
-
-  <section id="findings" aria-labelledby="findings-h">
-    <h2 id="findings-h">Validation</h2>
-    <h3 id="finding-list-h">Findings</h3>
-    <section id="finding-list" aria-labelledby="finding-list-h"></section>
-  </section>
-
-  <!--
-    Provenance. Its own section rather than a row in the inspector's detail column, because the
-    PROMPT is the field that earns the feature: with an agent-authored model it answers why the
-    object has this shape and what its author was asked to preserve, which reading the model cannot.
-    Buried in a metadata list, nobody finds it.
-
-    Read-only by construction: the service hands back records and no writer, so inspecting an origin
-    cannot move a hash or a result (UX-I6).
-  -->
-  <section id="provenance" aria-labelledby="provenance-h">
-    <h2 id="provenance-h">Provenance</h2>
-    <p class="intro">
-      Where each object came from, and what its author was asked to preserve. Provenance is context
-      rather than constraint: reading it cannot change an answer, and recording it does not advance
-      the model's revision.
-    </p>
     <h3 id="provenance-list-h">Recorded origins</h3>
     <section id="provenance-list" aria-labelledby="provenance-list-h"></section>
-  </section>
-
-  <!--
-    The diagram is LAST in document order, deliberately. It is a second view over the same facts;
-    everything in it is above, in prose. aria-hidden because the structured view is the accessible
-    representation and duplicating it here would produce an announcement storm.
-  -->
-  <section id="diagram" aria-labelledby="diagram-h">
-    <h2 id="diagram-h">Diagram</h2>
-    <p class="intro">
-      A second view over one model or machine at a time. Every fact in the picture is also above, in
-      words; what the picture adds is emphasis, and the reading below states that too.
-    </p>
-    <label class="field" for="diagram-subject"><span>Draw</span>
-      <select id="diagram-subject"></select></label>
-    <!--
-      UX-I4 / section 5.1: whenever a model is the PRINCIPAL model being viewed, its purpose is
-      displayed with it. This is the one place a single model is singled out as the thing under
-      inspection, and it used to show a name and a picture -- so the requirement failed exactly
-      where it was written to apply. Above the picture, in words, so it reaches a reader who never
-      sees the canvas.
-    -->
-    <div id="principal-purpose"></div>
-    <!--
-      The diagram in words: the renderer's own structured twin, not a summary of the picture
-      written by this file. It carries what the SVG encodes visually — reading order, what each
-      emphasis marker means, which nodes carry one — which is the half the model tables above do
-      NOT state. Plain DOM, not a live region: it must be readable, not announced on every repaint.
-    -->
-    <div id="diagram-text"></div>
-    <figure id="canvas" aria-hidden="true"></figure>
   </section>
 </main>
 

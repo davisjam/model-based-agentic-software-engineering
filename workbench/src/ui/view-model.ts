@@ -91,6 +91,20 @@ export interface Row {
    * Null for a row with no purpose-bearing object behind it — a transition, a relation, an entity.
    */
   readonly purpose: PurposeBlock | null;
+  /**
+   * The model that ASSERTS this row's fact, for a row whose fact belongs to one model (UX-I7).
+   *
+   * A field rather than a clause of `detail`, because UX-I7's checker used to read the prose: it
+   * matched `/\bin model \S/` against the detail string, so a copy edit to the sentence failed the
+   * invariant and a row that stated the model in different words passed nothing. The claim being
+   * constrained is structural — a relation row knows which reduction asserts it — so the structure
+   * carries it and `detail` renders it. `DESIGN-shell-261002.md` §10 assigns this to the shell's
+   * first wave for exactly that reason.
+   *
+   * Null where no single model asserts the row: an entity belongs to the one identity namespace, a
+   * model row IS the model, and a machine is its own subject.
+   */
+  readonly assertedBy: string | null;
   /** Textual status badges. "initial", "selected", "evidence", "violation" — words, not hues. */
   readonly states: readonly string[];
   /**
@@ -886,6 +900,9 @@ export function buildViewModel(
       // An entity is not a purposeful reduction; the models it appears in are, and `detail` names
       // them. Giving it a purpose block would be inventing one.
       purpose: null,
+      // An entity is declared by the SYSTEM, not by a model: models reference it. So no single
+      // model asserts the row, and `detail` names every model it appears in instead.
+      assertedBy: null,
       ...annotated(e.annotation),
     };
   });
@@ -913,6 +930,7 @@ export function buildViewModel(
       // A machine is a purposeful reduction too: it carries its own `purpose` block, it is drawn as
       // its own subject, and a behavioural property grounds in it. UX-I4 covers it.
       purpose: purposeBlock(m.purpose),
+      assertedBy: null,
       ...UNANNOTATED,
     };
     const transitions: Row[] = m.transitions.map((t) => ({
@@ -927,6 +945,9 @@ export function buildViewModel(
       ].filter((s): s is string => s !== null).join(" · ") || "unconditional",
       states: t.from === m.initial ? ["from initial state"] : [],
       purpose: null,
+      // A transition belongs to its machine, which is a subject of its own rather than a model
+      // asserting a fact about shared entities.
+      assertedBy: null,
       ...UNANNOTATED,
     }));
     return [head, ...transitions];
@@ -951,6 +972,7 @@ export function buildViewModel(
       ].filter((s): s is string => s !== null).join(" · "),
       states: [],
       purpose: null,
+      assertedBy: r.model,
       ...annotated(r.annotation),
     };
   });
@@ -968,6 +990,8 @@ export function buildViewModel(
     ].filter((s): s is string => s !== null).join(" · "),
     states: selected.has(m.id) ? ["selected"] : [],
     purpose: purposeBlock(m.purpose),
+    // The row IS the model; a model does not assert itself.
+    assertedBy: null,
     ...annotated(m.annotation),
   }));
 

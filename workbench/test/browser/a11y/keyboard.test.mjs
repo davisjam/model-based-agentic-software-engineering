@@ -112,13 +112,51 @@ describe("the tab order itself", () => {
       "Shift+Tab does not walk back -- focus is one-way");
   });
 
-  it("the skip link is the first stop and targets the model", async () => {
-    // 2.4.1. First in the tab order AND pointing at the structured view, not at the canvas.
+  it("the pristine walk ENDS at Start -- six stops became five when the shell gated the workspace", async () => {
+    // THE PIN, UPDATED, WITH THE REASON. `BASELINE-a11y-261002.md` §3 measured the pristine walk at
+    // eight stops; F-2's fix took it to six by disabling Export and Run with nothing loaded; the
+    // sixth was `#diagram-subject`, the Draw menu in the old always-present Diagram section.
+    //
+    // SH-I1 removes it. The workspace is mounted iff a system is loaded, so on a fresh page the
+    // subject chooser is inside a `hidden` region: not in the accessibility tree, not in the tab
+    // order, and — the point — not a control a keyboard user reaches before there is anything to
+    // draw. Five stops: the skip link, the file input, Create, the example menu, Load.
+    //
+    // Asserted as ABSENCE-plus-cause rather than by pressing a sixth Tab, because what the browser
+    // does at the end of a document's tab ring is the browser's business and not this page's claim.
+    const subject = await page.evaluate(() => {
+      const el = document.getElementById("diagram-subject");
+      const region = document.getElementById("workspace");
+      return el === null ? null : {
+        inTabOrder: el.offsetParent !== null && !el.disabled,
+        regionHidden: region?.hidden ?? null,
+      };
+    });
+    assert.ok(subject, "#diagram-subject has left the page entirely -- the Draw menu is the workspace's");
+    assert.equal(subject.regionHidden, true, "the workspace region is mounted on an empty workspace (SH-I1)");
+    assert.equal(subject.inTabOrder, false,
+      "#diagram-subject is still a tab stop on a pristine page -- the pristine walk is six stops, not five");
+  });
+
+  it("the skip link is the first stop and lands on the mounted principal surface", async () => {
+    // 2.4.1, and SH-I1 makes the target a question rather than a constant. It used to be `#model`,
+    // the structured section of the flat page. The shell has two principal surfaces and exactly one
+    // is mounted, so a fixed href would point into a `hidden` region half the time: Start on an
+    // empty workspace, the workspace once something is loaded. Still never the canvas.
     const skip = await page.evaluate(() => {
       const a = document.querySelector("a.skip");
-      return { href: a?.getAttribute("href") ?? null, text: a?.textContent?.trim() ?? null };
+      const href = a?.getAttribute("href") ?? null;
+      const target = href === null ? null : document.getElementById(href.slice(1));
+      return {
+        href,
+        text: a?.textContent?.trim() ?? null,
+        targetHidden: target === null ? null : target.hidden,
+        isCanvas: href === "#canvas",
+      };
     });
-    assert.equal(skip.href, "#model");
+    assert.equal(skip.href, "#start", "a pristine page's bypass does not land on Start");
+    assert.equal(skip.targetHidden, false, "the skip link points at an unmounted region");
+    assert.equal(skip.isCanvas, false, "the bypass must not land on the aria-hidden figure");
     assert.ok(skip.text && skip.text.length > 0, "the skip link has no accessible name");
   });
 });
