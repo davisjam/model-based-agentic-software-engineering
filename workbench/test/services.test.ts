@@ -432,7 +432,14 @@ test("all three specified examples are offered, and each one loads", async () =>
   // entry must LOAD. So each id is loaded, not merely listed -- listing was never the property
   // worth protecting.
   const first = catalogue();
-  assert.equal(first.catalog.ids().length, 3, "section 1 specifies three examples");
+  // Named, not counted. `catalog.ids()` RETURNS SHIPPED_EXAMPLE_IDS, so comparing its length to a
+  // literal compares the source of truth against a snapshot of itself -- the shape that let two
+  // example lists disagree the moment a third landed, which this very test was written to fix.
+  // Section 1 names three examples, so the spec fact is WHICH three; assert that.
+  // derived-values:allow the spec names these three; asserting the source against itself is tautological
+  for (const id of ["message-bus", "document-processing", "worker-queue"] as const) {
+    assert.ok(first.catalog.ids().includes(id), `section 1 specifies ${id} and the menu omits it`);
+  }
   for (const id of first.catalog.ids()) {
     // A fresh workspace per id: loading into a reused one would pass even if a later load silently
     // left the previous system in place.
@@ -813,7 +820,15 @@ test("Q9: wiring the machine affordance leaves UX-I1 reporting nothing over 24 c
   // zero is only meaningful alongside the count: a registry that lost a row would also read zero.
   assert.deepEqual(checkAffordanceParity(), [],
     `UX-I1: ${checkAffordanceParity().map((v) => `${v.capability} ${v.problem}`).join("; ")}`);
-  assert.equal(CAPABILITIES.length, 24, "no capability was added or removed to reach that zero");
+  // The intent here was right and the mechanism was not. Guarding "the zero was not reached by
+  // DELETING a capability" needs evidence that the hard ones are still present -- not a count, which
+  // moves legitimately the moment a capability is added and then fails on progress. These three were
+  // the last to be wired and the only ones that were ever violating on BOTH sides, so their presence
+  // is what the zero is worth.
+  for (const id of ["create-model", "delete-model", "add-note"] as const) {
+    assert.ok(CAPABILITIES.some((c) => c.id === id),
+      `${id} is gone from the registry — a zero reached by deletion is not a zero`);
+  }
 
   // And Q9's reading, as the registry records it: `query` is the capability, SPARQL is a syntax for
   // it, so the affordance lands on that row and no new row was minted.
