@@ -975,15 +975,19 @@ test("Q9: SPARQL and the budget escalation are spellings of `query`, and explora
     "`analyze` must not claim an exploration affordance: re-running saved questions is not walking a space");
 
   const explore = CAPABILITIES.find((c) => c.id === "explore-space");
-  assert.ok(explore, "exploration must be declared, even though its human side is absent");
+  assert.ok(explore, "exploration must be declared: a capability the registry hides cannot violate UX-I1");
   assert.equal(explore.service, "workspace.explore");
   assert.ok(explore.machine.some((a) => a.at === "window.mage.analysis.explore" && a.status === "wired"));
+  // Its own row AND both sides of it. The row was one-sided for a wave; a human control that ends at
+  // the same `workspace.explore` is what closed it, which is the only closure UX-I1 accepts — the
+  // alternative, folding the capability into `analyze`, is what the assertions above forbid.
+  assert.ok(explore.human.some((a) => a.at === "system-browser.explore" && a.status === "wired"),
+    "exploration needs a human affordance over its own service, not a borrowed one");
 
-  // UX-I1 therefore reports one, and reports exactly that one. A count is not the guard — it moves
-  // legitimately the moment a capability is added — so what is checked is WHICH rows are whole. The
-  // three below were the last to be wired and the only ones ever violating on both sides, so their
-  // presence is what the rest of the list is worth.
-  assert.deepEqual(checkAffordanceParity().map((v) => v.capability), ["explore-space"],
+  // UX-I1 therefore reports nothing. A count is not the guard — it moves legitimately the moment a
+  // capability is added — so what is checked is WHICH rows are whole. The three below were the last
+  // to be wired on both sides at once, so their presence is what the rest of the list is worth.
+  assert.deepEqual(checkAffordanceParity().map((v) => v.capability), [],
     `UX-I1: ${checkAffordanceParity().map((v) => `${v.capability} ${v.problem}`).join("; ")}`);
   for (const id of ["create-model", "delete-model", "add-note"] as const) {
     assert.ok(CAPABILITIES.some((c) => c.id === id),

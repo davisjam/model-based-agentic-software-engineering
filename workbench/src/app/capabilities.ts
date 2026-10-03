@@ -140,15 +140,16 @@ const control = (at: string, id: string): BoundAffordance =>
 /**
  * The registry. Reflects what is actually built as of 261002.
  *
- * **UX-I1 reports one violation, and the violation is the registry working.** Twenty-four
- * capabilities are wired on both sides; the twenty-fifth, `explore-space`, has a machine affordance
- * and no human one, so the gate names it. The alternative on the table was to fold exploration of
- * the configuration space into `analyze` — which would have left the count at zero, because
- * `analyze` has a wired human affordance for a different reason. That is the worst of the three
- * outcomes: not a gap, not a declared gap, but a gap laundered through a row that is green on other
- * business.
+ * **UX-I1 reports zero violations over twenty-five capabilities, and the zero is honest.** It read
+ * one for a wave: `explore-space` had a machine affordance and no human one, and the gate named it
+ * rather than letting the registry describe a workbench that did not exist. The alternative on the
+ * table then was to fold exploration of the configuration space into `analyze` — which would have
+ * shown zero immediately, because `analyze` has a wired human affordance for a different reason.
+ * That is the worst of the three outcomes: not a gap, not a declared gap, but a gap laundered
+ * through a row that is green on other business.
  *
- * The honest zero is the one nobody is holding up. This one would have been.
+ * The zero now standing is the other kind — every row wired on both sides over one named service,
+ * and the one that was not is closed by a control a person can reach, not by a quieter census.
  *
  * The last two came from the §20 capability table rather than from a developer noticing a gap:
  * `load-example` and `inspect-provenance` were rows in the specification with no registry entry, so
@@ -303,26 +304,29 @@ export const CAPABILITIES: readonly Capability[] = [
     // — that no other capability produces. One capability, several spellings is the precedent; this
     // is two capabilities.
     //
-    // ---- and what the row costs, stated rather than discovered -----------------------------------
+    // ---- and how the row was closed, since it was declared open for a reason ----------------------
     //
-    // No human control reaches it, so UX-I1 reports this capability and the count is no longer zero.
-    // That is the registry doing its job. The page composes the Worker port and the facade offers
-    // `explore()`; nothing in the UI calls it, and `ports.engine.explore` returns no configurations
-    // on purpose rather than fabricating a space. Wiring a control is a UI change in another file.
+    // It was `absent` at `analysis-section.explore` for one wave, and the violation did the job the
+    // comment below predicted: it named the work, and the work is a control in the System Browser
+    // that calls `workspace.explore` and renders the SpaceSummary. The site string MOVED with the
+    // control — the section the old one named is one the shell deletes, so keeping the string would
+    // have left the registry pointing at a region nobody can navigate to, which is the unverifiable
+    // declaration `DESIGN-shell-261002.md` §2.1 refuses.
     //
-    // The alternative was to leave the row out and keep the zero. A count that reads zero because
-    // something is missing from the census is worse than one that reads one: the first is unfalsifiable
-    // and the second is a work item. This project has twice chosen an accurate violation over a
-    // comfortable number — `create-model`, `delete-model` and `add-note` were declared before they
-    // were buildable — and each time the violation named the work that closed it.
-    human: [{
-      at: "analysis-section.explore",
-      status: "absent",
-      note: "no human control walks the configuration space. The facade offers `explore()` and the "
-        + "page wires the Worker port, but nothing in the UI calls it, so a person reads a state "
-        + "count only as the coverage line of a behavioural query they asked for another reason. "
-        + "Closing this is a control that calls `workspace.explore` and renders the SpaceSummary.",
-    }],
+    // **Sited where the design rules, not where the menu is.** §10 assigns this capability the path
+    // `⋯ menu → System Browser → Explore space` in wave 3. Wave 3 is undispatched and the ⋯ menu does
+    // not exist (`palette` is a `planned` surface), so the control lands at the ruled DESTINATION
+    // without the hop: the System Browser is a built surface, always present once a system is loaded,
+    // and Tab reaches the button today. Wave 3 then prepends a menu step to the declared navigation
+    // path rather than relocating the control.
+    //
+    // The alternative, when the row was opened, was to leave it out and keep the zero. A count that
+    // reads zero because something is missing from the census is worse than one that reads one: the
+    // first is unfalsifiable and the second is a work item. This project has three times chosen an
+    // accurate violation over a comfortable number — `create-model`, `delete-model` and `add-note`
+    // were declared before they were buildable — and each time the violation named the work that
+    // closed it. This is the third closure.
+    human: [control("system-browser.explore", "explore-space-go")],
     machine: [wired("window.mage.analysis.explore")],
     producesEvidence: true,
   },

@@ -1,10 +1,12 @@
 // The capability registry and the UX invariants it enforces.
 //
-// UX-I1 reports ONE violation over twenty-five capabilities, and the one is `explore-space`: no
-// human control walks the configuration space. The baseline was empty for two waves and goes back to
-// one here, which is the gate working rather than a regression. Walking the configuration space was
-// reachable by an agent and by nobody else for as long as the registry declined to declare it; the
-// zero was true of the rows that existed and silent about the one that did not.
+// UX-I1 reports ZERO violations over twenty-five capabilities, and the zero is the one nobody had to
+// hold up. It read one for a wave — `explore-space`, reachable by an agent and by nobody else — and
+// the baseline below recorded that rather than hiding it. The gap is closed by a control in the
+// System Browser that walks the configuration space and renders the summary, which is what the
+// violation named when it was filed. Two zeroes are possible here and only one is worth having: the
+// zero of a census that declares every capability and wires both sides of each, and the zero of a
+// census that omits the row it cannot answer. This is the first.
 //
 // An empty baseline alone would be a weak test — a registry with no capabilities at all would pass
 // it. `FULLY_WIRED` is the positive control that closes that hole: every capability must be PRESENT
@@ -29,16 +31,19 @@ import type { Affordance, CapabilityId } from "../src/app/capabilities.ts";
 import { ExampleCatalog } from "../src/app/examples.ts";
 
 /**
- * Capabilities with NO wired human affordance.
+ * Capabilities with NO wired human affordance. Empty.
  *
- * It was empty for two waves. `explore-space` puts one back, and the reason is worth stating because
- * it is not the reason the previous entries were here: the earlier three — create-model,
- * delete-model, add-note — had no MACHINE affordance either, and that identity was the diagnosis
- * (the transaction schema had no op, so there was nothing to bind on either side). This one is
- * one-sided. An agent can walk the configuration space and a person cannot, because the facade
- * offers `explore()` and nothing in the UI calls it.
+ * It held `explore-space` for one wave, and that entry was unlike the three before it: create-model,
+ * delete-model and add-note had no MACHINE affordance either, and the identity of the two lists WAS
+ * the diagnosis (the transaction schema had no op, so there was nothing to bind on either side).
+ * `explore-space` was one-sided — an agent could walk the configuration space and a person could
+ * not — and it is closed the only way a one-sided gap can honestly be closed: a control, not a
+ * re-reading of what counts.
+ *
+ * Empty is not a weak assertion here. `FULLY_WIRED` below names all twenty-five, so a capability
+ * deleted to silence a violation fails there rather than vanishing from this list unnoticed.
  */
-const NO_HUMAN: readonly CapabilityId[] = ["explore-space"];
+const NO_HUMAN: readonly CapabilityId[] = [];
 
 /**
  * Capabilities with no wired machine affordance. Empty.
@@ -59,6 +64,10 @@ const NO_MACHINE: readonly CapabilityId[] = [];
  */
 const FULLY_WIRED: readonly CapabilityId[] = [
   "import", "export", "inspect", "validate", "query", "analyze", "inspect-evidence", "undo", "redo",
+  // Walking the configuration space, wired in the System Browser. It is in this list rather than in
+  // `BASELINE_GAP` because the control exists, Tab reaches it, and it ends at `workspace.explore` —
+  // the same seam `window.mage.analysis.explore` calls.
+  "explore-space",
   "create-element", "delete-element", "create-relation", "delete-relation", "edit-property",
   "create-hypothesis", "commit-hypothesis", "discard-hypothesis",
   "create-model", "delete-model", "add-note",
@@ -69,14 +78,18 @@ const FULLY_WIRED: readonly CapabilityId[] = [
 ];
 
 /**
- * Capabilities declared and honestly incomplete, each asserted PRESENT and STILL VIOLATING.
+ * Capabilities declared and honestly incomplete, each asserted PRESENT and STILL VIOLATING. Empty.
  *
  * The mirror of `FULLY_WIRED`, and it exists for the mirror reason. `FULLY_WIRED` stops a violation
  * being silenced by deleting its row; this stops a gap being closed — or appearing to close — without
  * anyone editing the baseline that records it. A registry entry can be wrong in two directions and
  * only one of them was watched.
+ *
+ * It is empty because the one gap it held is closed. The list stays, because the next capability
+ * someone declares before it is buildable belongs here rather than in a comment — and because an
+ * empty list is the shape that says "nothing is owed", which a deleted list cannot say.
  */
-const BASELINE_GAP: readonly CapabilityId[] = ["explore-space"];
+const BASELINE_GAP: readonly CapabilityId[] = [];
 
 test("UX-I1 violations match the recorded baseline exactly", () => {
   const violations = checkAffordanceParity();
@@ -87,24 +100,21 @@ test("UX-I1 violations match the recorded baseline exactly", () => {
     "a capability gained or lost a human affordance; update NO_HUMAN deliberately");
   assert.deepEqual(machine, [...NO_MACHINE].sort(),
     "a capability gained or lost a machine affordance; update NO_MACHINE deliberately");
-  // The whole picture, as one list, so a reader sees the shape and not just the counts. One
-  // violation, and it is the one the baselines above name — no capability fails for want of a named
-  // service, and nothing is unreachable by a machine.
-  assert.deepEqual(violations.map((v) => v.capability), ["explore-space"]);
-  assert.match(violations[0]?.problem ?? "", /no wired HUMAN affordance/);
-  assert.match(violations[0]?.problem ?? "", /analysis-section\.explore: absent/,
-    "the violation must name the site that is missing, not merely that one is");
+  // The whole picture, as one list, so a reader sees the shape and not just the counts. Nothing is
+  // unreachable by a person, nothing by a machine, and no capability fails for want of a named
+  // service. This is the assertion the published CI step runs, spelled the same way.
+  assert.deepEqual(violations.map((v) => v.capability), []);
 });
 
-test("the one agent-only capability is the one the baseline declares", () => {
+test("no capability is agent-only", () => {
   // The asymmetry UX-I1 exists to catch, computed directly rather than inferred from two lists. A
   // capability with a machine affordance and no human one means an agent can do something the user
-  // has no control for — which is TRUE of `explore-space` and is why it has a row.
+  // has no control for, and `explore-space` was exactly that for a wave.
   //
-  // Asserted against the baseline rather than against zero. Zero was the right assertion while it
-  // was true; asserting it now would mean either omitting the capability from the registry or
-  // pretending a control exists, and both of those make the gate report a product that does not
-  // exist. The list is the work item.
+  // Asserted against the baseline rather than against a literal zero, and that stays true now the
+  // baseline is empty: the comparison is what lets the next declared-before-buildable capability be
+  // recorded instead of pretended away. A literal here would have to be edited twice — once to open
+  // the gap and once to close it — and the second edit is the one people forget.
   const violations = checkAffordanceParity();
   const noHuman = new Set(violations.filter((v) => v.problem.includes("HUMAN")).map((v) => v.capability));
   const noMachine = new Set(violations.filter((v) => v.problem.includes("MACHINE")).map((v) => v.capability));
@@ -517,11 +527,10 @@ test("describe() derives its operations from the registry, and reports the gaps"
   // And it must admit where the workbench falls short of its own registry. What is pinned is the
   // DERIVATION: describe() reports exactly what checkAffordanceParity() reports, whatever that is.
   assert.deepEqual(d.affordanceGaps, checkAffordanceParity().map((v) => `${v.capability}: ${v.problem}`));
-  // The list is non-empty again, and an agent reading it learns the one thing it must: that walking
-  // the configuration space is reachable from here and from no human control. FR-AGENT-2 is why that
-  // has to be in the API — an agent that uses a capability the user cannot see has created a
-  // divergence the user cannot inspect, and this is the sentence that warns it.
-  assert.deepEqual(d.affordanceGaps.map((g) => g.split(":")[0]), ["explore-space"]);
+  // Empty, and the emptiness is the claim FR-AGENT-2 wanted: there is no capability an agent can use
+  // that the user cannot see or reverse, so there is no divergence for this list to warn about. It
+  // held `explore-space` for a wave and the warning was the honest thing to publish then.
+  assert.deepEqual(d.affordanceGaps, []);
 
   // The other half of the same obligation, and the one `affordanceGaps` cannot discharge: an agent
   // that reads this API must learn exploration EXISTS. A capability omitted from the registry to

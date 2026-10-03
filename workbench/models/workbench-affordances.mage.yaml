@@ -149,7 +149,7 @@ entities:
     type: semantic-capability
     label: "Walk the reachable configuration space and report its size, and whether it finished."
     properties:
-      human: not-wired
+      human: wired
       machine: wired
 
   inspect-evidence:
@@ -347,6 +347,7 @@ models:
       - { from: analyze, to: human-interface, type: afforded-by }
       - { from: analyze, to: machine-interface, type: afforded-by }
       - { from: analyze, to: service.workspace-runSavedQueries, type: implemented-by }
+      - { from: explore-space, to: human-interface, type: afforded-by }
       - { from: explore-space, to: machine-interface, type: afforded-by }
       - { from: explore-space, to: service.workspace-explore, type: implemented-by }
       - { from: inspect-evidence, to: human-interface, type: afforded-by }

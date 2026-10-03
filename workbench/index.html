@@ -847,6 +847,29 @@
       which three existing gates read. The cost is that heading and host must travel together; the
       browser-tier name check is what fails loudly if one is left behind.
     -->
+    <!--
+      Explore the configuration space. `DESIGN-shell-261002.md` §10 rules that this belongs with the
+      exhaustive view -- "statistics belong with the exhaustive view" -- behind the ⋯ menu in wave 3.
+      The menu is unbuilt; the region is not, so the control lands at the ruled destination and wave 3
+      adds the menu hop to its declared path rather than moving the button.
+
+      It sits ABOVE the tables on purpose: "how big is this model's behaviour, and did the walk
+      finish" is the question a reader brings to an exhaustive view, and it is answerable in one line
+      where the tables take a scroll.
+
+      No aria-live here. The result reaches a screen-reader user through the page's ONE live region
+      (#live, via the announcer), because a second live region is how a page announces the same
+      sentence twice.
+    -->
+    <h3 id="explore-space-h">Configuration space</h3>
+    <p class="intro">
+      Walk every configuration the system's machines can reach, and report how many there are — and
+      whether the walk finished or stopped at its ceiling. Runs off the main thread; a large system
+      takes a moment.
+    </p>
+    <p><button type="button" id="explore-space-go">Explore configuration space</button></p>
+    <p id="explore-space-result" class="coverage">Not walked yet.</p>
+
     <h3 id="sections-h">Model tables</h3>
     <section id="sections" aria-labelledby="sections-h"></section>
 
