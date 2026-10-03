@@ -65,14 +65,18 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import {
-  startServer, launchBrowser, shutdown, openServedPage, writeReceipt,
-  WORKBENCH_DIR, originFor, AXE_RECEIPT_PATH,
+  startServerOnFreePort, launchBrowser, shutdown, openServedPage, writeReceipt,
+  WORKBENCH_DIR, AXE_RECEIPT_PATH,
 } from "../harness.mjs";
 import { loadAxeSource, runAxe, describeFindings, svgTextContrast, contrastFailures } from "./axe.mjs";
 
-/** 8143 is the landed browser tier's. `node --test` runs files in parallel. */
-const PORT = 8144;
-const ORIGIN = originFor(PORT);
+/**
+ * The server's port comes from the OS, read back after it binds. The hard-coded 8144 this replaces
+ * separated the tiers inside one process and contended with every concurrent run of the same tier,
+ * and a lost bind is not merely a red: it can take a whole file's tests out of the count while the
+ * runner prints success. See `startServerOnFreePort`.
+ */
+let ORIGIN;
 
 /**
  * Every served page, with how to reach each of its states.
@@ -264,7 +268,7 @@ async function auditPage(def) {
 
 before(async () => {
   axe = await loadAxeSource();
-  server = await startServer(WORKBENCH_DIR, PORT);
+  ({ server, origin: ORIGIN } = await startServerOnFreePort(WORKBENCH_DIR));
   browser = await launchBrowser();
   // Sequentially: the pages share one Chromium, and two tabs laying out diagrams at once would
   // make the hit-tested contrast measurement race its own scroll.

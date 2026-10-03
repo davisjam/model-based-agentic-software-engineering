@@ -41,17 +41,20 @@ import { readFile, mkdtemp, readdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
-  startServer, launchBrowser, shutdown, openWorkbench, writeReceipt,
-  WORKBENCH_DIR, originFor, KEYBOARD_RECEIPT_PATH,
+  startServerOnFreePort, launchBrowser, shutdown, openWorkbench, writeReceipt,
+  WORKBENCH_DIR, KEYBOARD_RECEIPT_PATH,
 } from "../harness.mjs";
 import {
   reachByTab, tabSequence, typeInto, chooseByKeyboard, toggleByKeyboard, chooseRadioByKeyboard,
   activateByKeyboard, releaseFocus, pressShiftTab, watchLiveRegion, liveWrites, liveText, settle,
 } from "./keyboard.mjs";
 
-/** 8143 is the landed browser tier, 8144 the axe tier. */
-const PORT = 8145;
-const ORIGIN = originFor(PORT);
+/**
+ * The server's port is the OS's choice, read back after it binds. A hard-coded 8145 contended
+ * with every concurrent run of this tier, and a lost bind can drop this whole file's 22 tests
+ * from a run that still prints success -- see `startServerOnFreePort`.
+ */
+let ORIGIN;
 const FLAGSHIP = join(WORKBENCH_DIR, "examples", "message-bus", "system.mage.yaml");
 
 let server;
@@ -67,7 +70,7 @@ const context = () => page.evaluate(() => window.mage.context());
 const sectionsText = () => page.evaluate(() => document.getElementById("sections").textContent ?? "");
 
 before(async () => {
-  server = await startServer(WORKBENCH_DIR, PORT);
+  ({ server, origin: ORIGIN } = await startServerOnFreePort(WORKBENCH_DIR));
   browser = await launchBrowser();
   ({ page } = await openWorkbench(browser, ORIGIN));
   // Tall enough that a control near the foot of the page is scrolled into view by focus rather than

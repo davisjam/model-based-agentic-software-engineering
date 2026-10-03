@@ -26,7 +26,7 @@ import { test, before, after } from "node:test";
 import { readdir } from "node:fs/promises";
 
 import {
-  WORKBENCH_DIR, originFor, startServer, launchBrowser, shutdown, openServedPage,
+  WORKBENCH_DIR, startServerOnFreePort, launchBrowser, shutdown, openServedPage,
   writeReceipt, SMOKE_RECEIPT_PATH,
 } from "./harness.mjs";
 
@@ -37,9 +37,12 @@ import { SHIPPED_EXAMPLE_IDS } from "../../src/app/examples.ts";
 import { MODEL_TYPES } from "../../src/engine/model-types.ts";
 import { MODEL_TYPE_USES, anchorForType, anchorForUse } from "../../src/app/learn.ts";
 
-/** 8143/8144/8145 belong to the browser and FR-A11Y tiers; the smoke tier claims its own. */
-const PORT = 8146;
-const ORIGIN = originFor(PORT);
+/**
+ * The OS picks the port. Claiming 8146 only avoided the other tiers IN THIS PROCESS; it did
+ * nothing about a second agent running the same tier, and a lost bind can leave a run reporting
+ * fewer tests and zero failures -- see `startServerOnFreePort`.
+ */
+let ORIGIN;
 
 /**
  * Every page the workbench serves, with its closed fallback-string tuple. The strings are the
@@ -72,7 +75,7 @@ const measured = { pages: {} };
 const startedAt = Date.now();
 
 before(async () => {
-  server = await startServer(WORKBENCH_DIR, PORT);
+  ({ server, origin: ORIGIN } = await startServerOnFreePort(WORKBENCH_DIR));
   browser = await launchBrowser();
 }, { timeout: 60_000 });
 
