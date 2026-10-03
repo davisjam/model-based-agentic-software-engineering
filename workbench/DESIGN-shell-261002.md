@@ -437,6 +437,46 @@ What wave 0 did NOT do, to be explicit: no `NavStep`/`path` field, no closure ch
 (that is 1d's), no contents tree, no disclosures, no palette, no ask input, no inspector content.
 `inspector.ts` and `nav-models` land as named regions reporting the one fact each can know.
 
+### 9b. Wave 1a as built — the §9a decision, and what it leaves for 1d and 3
+
+Appended by wave 1a after landing. §9a asked whoever took this wave to decide early whether the
+rails grow a renderer or edit the binder, and to say so.
+
+- **Both, in one direction: the renderer is in `nav.ts`, and the binder gave up one root.** The
+  rail's ROW is a new rendering — a mark, a status word, the claim, a disclosure — not a restyled
+  `propertyBlock`, so there was nothing to lift out of the binder. But leaving `paint` writing
+  `#question-list` would make two authors race on paint order, so `paint`'s `roots` lost
+  `properties` and the composition root stopped resolving it. `propertyBlock` stays exported from
+  `render-dom.ts` and the rail imports it for the full reading it discloses: one module still
+  decides how a property reads in full. **Wave 3 inherits a `paint` with three roots, not four** —
+  a removal in the direction that wave's own work already runs, and NOT the four-readouts split
+  wave 0 refused.
+- **Two typed fields landed on `PropertyRow`** (`view-model.ts`): `statusKey`, the status as the
+  typed `PropertyStatus` the rail's three-valued mark branches on, and `groundSubjects`, the
+  UX-I5 grounds as `subjectValue`-shaped targets. Both exist so the rail reads STRUCTURE instead of
+  parsing the display prose — §10's `checkModelPlurality` lesson, applied before it bit again.
+- **The property rail's full reading stays inside `#question-list`, and that was forced.** The
+  registry declares `inspect-evidence`'s human site as `.evidence` *within* `#question-list`
+  (`capabilities.ts:341`), so moving the full block to another host would have broken a binding this
+  wave cannot edit. The disclosure is therefore in the rail rather than in a holding pen.
+- **Correction 6's "the workspace changes to explain that property" is HALF built, deliberately.**
+  Activating a claim moves the workspace to the first model the verdict derives from — navigation
+  this wave owns, because it only writes `viewState.target`. The property-as-workspace-SUBJECT view
+  (claim, status, models used, evidence occupying the centre) is a surface in `workspace.ts`, which
+  is **wave 2b's file**, and a property is not a `SceneSubject`: representing one needs either a
+  third axis in `ViewState` or a subject union the renderer does not have. Wave 2b owns that call.
+- **What wave 1d must declare**, one `path` per rail affordance, all from the default workspace:
+  `nav-models` activate → `[{surface:"nav-models", via:"activate"}]` for drawing a model and for
+  `+ Model`; `nav-properties` activate → `[{surface:"nav-properties", via:"activate"}]` for a
+  claim's explain link and for `+ Property`; and the claim's full reading → the same surface with
+  `via:"disclose"`. None need a `requires`: both rails are in the default loaded workspace, which
+  is what makes them the two principal navigation objects. The `+` rows navigate to the element the
+  registry ALREADY declares for `create-model` and `save-property` (resolved at paint, first site
+  present and enabled), so 1d is extending those two sites' paths rather than registering new ones.
+- **The pristine tab walk did not move.** The rails live in `#nav`, which is `hidden` until a system
+  loads, so the five-stop pin at `keyboard.test.mjs:112` is untouched. The LOADED walk gains the
+  rail links and one `<summary>` per claim; no pin measures it.
+
 ## 10. What the redesign revealed in the existing code
 
 - **The DEFECT-1 fix is correction 1's deletion target.** `f74cd538` replaced false prose with a
