@@ -26,6 +26,12 @@
  * then six, then none, and each drop was a wave of work the invariant had named in advance.
  */
 
+// The surface vocabulary comes from the shell, which owns the regions and knows which are built.
+// TYPE-ONLY, and that is the layering: `src/app/` gains no runtime dependency on `src/ui/`, so the
+// registry still loads in a node test with no DOM. `DESIGN-shell-261002.md` §9a settled this —
+// declaring the union here and the SURFACES table there would split one fact across two files.
+import type { NavSurface } from "../ui/shell/surfaces.ts";
+
 /** Every public semantic capability. The list is closed; adding one is a deliberate act. */
 export type CapabilityId =
   | "create-model" | "delete-model"
@@ -91,6 +97,59 @@ export interface AffordanceElement {
 }
 
 /**
+ * What must already be true before a navigation step can be taken. CLOSED, so a harness can set
+ * every member up — a precondition nothing can establish is a path nothing can walk.
+ *
+ * Eleven members. `DESIGN-shell-261002.md` §2.2 sketched seven and the page needed four more; each
+ * addition is a measured fact about a control the sketch did not look at, recorded in §9f.
+ *
+ * `selection:*` repeats the five members of `ActionPrecondition` in `ui/shell/edit-dialogs.ts`,
+ * which §9c made deliberate: a navigation path to an inspector action reads its condition off the
+ * editing catalogue instead of re-deriving it. The two are not unified into one type because the
+ * editing catalogue's five are the conditions an OPERATION needs and these eleven are the
+ * conditions a ROUTE needs, and only the overlap is a coincidence worth keeping aligned.
+ */
+export type NavPrecondition =
+  /**
+   * A model system is loaded. The baseline is the PRISTINE page — what a browser hands a
+   * first-time visitor — so this is a declared step and not an assumption, and every shell region
+   * but the header and Start is `hidden` without it.
+   */
+  | "loaded"
+  | "selection:element" | "selection:relation" | "selection:model" | "selection:machine"
+  /** At least one saved question exists, so the property rail and its evidence have content. */
+  | "property-exists"
+  /** A hypothesis is open, so the REVIEW CHANGE dialog is up and everything behind it is inert. */
+  | "hypothesis-open"
+  /** A bounded search returned `exhausted`. No human route reaches this; see §9f. */
+  | "exhausted-answer"
+  /** An edit has been committed, so there is something to undo. `#undo` is disabled without it. */
+  | "edited"
+  /** An edit has been undone, so there is something to redo. */
+  | "undone"
+  /** An answer is on screen: `#ask-track-box` is `hidden` until the ask bar has answered. */
+  | "answer-present";
+
+/**
+ * One step of a declared navigation path: a surface, and the act that takes you through it.
+ *
+ * `read` is the fifth `via` and the design's §2.3 did not have it. Five affordance sites are
+ * READOUTS — the model tables, the findings list, the property list, the evidence list, the
+ * provenance list — and a readout is a `<section>` or an `<ol>` with `tabindex="-1"`. Rung 2's
+ * "exists, is focusable, and is enabled" can never hold for one, so a drive that applied it to all
+ * thirty-six sites would have had to be weakened to pass, which is how a gate stops meaning
+ * anything. Declaring the terminal's KIND instead keeps both assertions exact and makes the
+ * declaration falsifiable in both directions: a readout that becomes focusable fails, and a control
+ * declared `read` fails too.
+ */
+export interface NavStep {
+  readonly surface: NavSurface;
+  /** How the step is taken: activate a control, open a disclosure, open a menu, a shortcut, read. */
+  readonly via: "activate" | "disclose" | "menu" | "shortcut" | "read";
+  readonly requires?: NavPrecondition;
+}
+
+/**
  * A HUMAN affordance. Wired or refusing means a real element; absent means a stated reason.
  *
  * Two members rather than one interface with an optional `element`, because the compiler then holds
@@ -106,6 +165,17 @@ export interface BoundAffordance {
   readonly status: "wired" | "refusing";
   readonly note?: string;
   readonly element: AffordanceElement;
+  /**
+   * HUMAN affordances only: the declared route from the PRISTINE page to the control.
+   *
+   * An empty path means "already there, with nothing to establish" — true of exactly two sites, the
+   * two ways into the workbench in the header. Everything else names at least one step, because
+   * every other region is `hidden`, disabled or collapsed until something is true.
+   *
+   * Optional during the §2.4 migration. A wired human affordance with no path must appear in
+   * `WIRED_WITHOUT_A_WALKED_PATH` with its reason; the final shell wave removes the `?`.
+   */
+  readonly path?: readonly NavStep[];
 }
 
 export interface AbsentAffordance {
@@ -183,12 +253,96 @@ export const CHROME_HOSTS: readonly { readonly selector: string; readonly why: s
   },
 ];
 
+/**
+ * Wired human affordance sites that declare no walked path, each with the reason and the wave that
+ * drains it. EXACTLY enumerated, and a test asserts the registry's path-less set equals this one.
+ *
+ * §2.4's migration shape, and the house pattern behind it: an accurate violation over a comfortable
+ * number. The alternative was to declare a path for the one member below and let the browser drive
+ * fail, which lands a blocking gate red — a thing this repo has already paid for once.
+ *
+ * One member. It is not "nobody wrote the path down": the path is obvious and unwalkable, which is
+ * a sharper finding than a missing declaration.
+ */
+export const WIRED_WITHOUT_A_WALKED_PATH: readonly {
+  readonly at: string; readonly why: string; readonly drainedBy: string;
+}[] = [
+  {
+    at: "inspector.delete-model",
+    why: "its precondition is `selection:model`, and NO human control in the page produces one. The "
+      + "contents tree is the only surface that writes `ViewState.selection`, and its row encoders "
+      + "(`nodeSelection` / `edgeSelection` in `ui/shell/workspace.ts`) return an `entity:`, a "
+      + "`state:` or a `rel:` value and null for anything else — there is no model row. An agent "
+      + "reaches a model selection through `view.select('model:x')`; a person cannot reach it at "
+      + "all, so the button is enabled only for a state no keyboard can produce. The capability "
+      + "`delete-model` is NOT affected: its second site, the pinned `edit-section.delete-model` "
+      + "fieldset, declares a walked path, so UX-I1 stays honest at zero.",
+    drainedBy: "the wave that gives a model a selectable row — the contents tree's model heading, or "
+      + "the System Browser's model table in wave 3",
+  },
+];
+
 /** A machine affordance: a callable on `window.mage`, which has no element to bind. */
 const wired = (at: string): Affordance => ({ at, status: "wired" });
 
-/** A wired human affordance and the element that carries it. */
-const control = (at: string, id: string): BoundAffordance =>
-  ({ at, status: "wired", element: { id } });
+const step = (
+  surface: NavSurface, via: NavStep["via"], requires?: NavPrecondition,
+): NavStep => (requires === undefined ? { surface, via } : { surface, via, requires });
+
+/** A wired human affordance, the element that carries it, and the route to it. */
+const control = (at: string, id: string, path: readonly NavStep[]): BoundAffordance =>
+  ({ at, status: "wired", element: { id }, path });
+
+/**
+ * The route to a control in the header, which is present on the pristine page but disabled until
+ * `requires` holds. Four of the five header capabilities ship disabled for exactly this reason.
+ */
+const header = (at: string, id: string, requires?: NavPrecondition): BoundAffordance =>
+  control(at, id, [step("header", "activate", requires)]);
+
+/**
+ * The route to one of the ten pinned editing fieldsets: load a system, act in the `edit` region.
+ *
+ * `edit` is a surface the design's §5 gives no row, because correction 4 replaces the fieldsets
+ * with the `+ Add` menu, inspector actions and the palette. It is in the table anyway — see
+ * `ui/shell/surfaces.ts` — because the markup ships and a person really can walk to it, and a path
+ * is the wrong place to be delicate about a region's future.
+ */
+const editSection = (at: string, id: string): BoundAffordance =>
+  control(at, id, [step("edit", "activate", "loaded")]);
+
+/** The route to an inspector action: select the thing, act on it where it is. */
+const inspectorAction = (
+  at: string, id: string, needs: NavPrecondition,
+): BoundAffordance => control(at, id, [step("inspector", "activate", needs)]);
+
+/**
+ * The route to one of the five `+ Add` menu items: open the workspace's disclosure, act in it.
+ *
+ * TWO steps, where §9c declared three acts in two steps (`disclose` then `menu`). The built menu is
+ * one `<details>`, so a second disclosure step describes an act the page does not have — and the
+ * drive counts declared disclosures against the collapsed ancestors it finds, so the over-declared
+ * version fails rather than passing vacuously. Nothing declares `via: "menu"` today.
+ */
+const addMenuItem = (at: string, id: string): BoundAffordance =>
+  control(at, id, [step("workspace", "disclose", "loaded"), step("workspace", "activate")]);
+
+/** The route to a control inside the ask bar's collapsed Advanced query disclosure. */
+const advanced = (
+  at: string, id: string, surface: NavSurface, requires: NavPrecondition = "loaded",
+): BoundAffordance =>
+  control(at, id, [step("askbar", "disclose", requires), step(surface, "activate")]);
+
+/**
+ * A READOUT: an affordance whose use is reading it, not activating it.
+ *
+ * The five of these are why `via` has a `read` member. The host is a `<section>` or an `<ol>` with
+ * `tabindex="-1"`, so it is not a tab stop and never will be; what a keyboard user needs is the
+ * REGION, named and reachable, with content in it.
+ */
+const readout = (
+  at: string, id: string, surface: NavSurface, requires: NavPrecondition = "loaded",
+): BoundAffordance => control(at, id, [step(surface, "read", requires)]);
 
 /**
  * The registry. Reflects what is actually built as of 261002.
@@ -229,7 +383,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // semantics are identical to an existing one would make the registry longer without making it
     // say more. `header.load-example` used to sit in this list, and moved out when loading a shipped
     // example became a capability with its own service.
-    human: [control("header.file-input", "file"), control("header.new-system", "new-system")],
+    human: [control("header.file-input", "file", []), control("header.new-system", "new-system", [])],
     machine: [wired("window.mage.load")],
     producesEvidence: false,
   },
@@ -241,7 +395,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // `workspace.load` -- the import seam -- so there is no privileged path and no example mode. The
     // capability earns its own row because the SELECTION and the description are semantics `import`
     // does not have: an agent asking what it may load gets an answer here and nowhere else.
-    human: [control("start.load-example", "example-load")],
+    human: [control("start.load-example", "example-load", [step("start", "activate")])],
     machine: [wired("window.mage.loadExample"), wired("window.mage.examples")],
     producesEvidence: false,
   },
@@ -249,7 +403,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "export",
     summary: "Write the model system back out, comments and key order preserved.",
     service: "workspace.export",
-    human: [control("header.export", "export")],
+    human: [header("header.export", "export", "loaded")],
     machine: [wired("window.mage.export")],
     producesEvidence: false,
   },
@@ -257,7 +411,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "inspect",
     summary: "Read every modelled fact: entities, relations, machines, purpose, omissions.",
     service: "workspace.state",
-    human: [control("model-section.tables", "sections")],
+    human: [readout("model-section.tables", "sections", "system-browser")],
     machine: [wired("window.mage.inspect")],
     producesEvidence: false,
   },
@@ -270,7 +424,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // verdict for the current revision. What it lacks is a way to ASK — and that asymmetry is the
     // right way round for this capability. A person reads a panel that is already correct; a machine
     // client has no panel, so for it the operation IS the affordance.
-    human: [control("validation-section.table", "finding-list")],
+    human: [readout("validation-section.table", "finding-list", "statusbar")],
     // RE-POINTED by the model-query ruling's Extension 2. The row used to name
     // `window.mage.context.findings`, which is a FIELD OF ANOTHER OPERATION'S RESULT rather than an
     // operation: an agent could read findings only by asking for the context, and what it got back
@@ -297,9 +451,9 @@ export const CAPABILITIES: readonly Capability[] = [
     // capability's Advanced spelling, which keeps the questions the catalogue cannot state — a hop
     // limit, two named endpoints, an explicit quantifier. Both end at `workspace.query`.
     human: [
-      control("header.run-all", "run"),
-      control("askbar.ask", "ask-submit"),
-      control("properties-section.ask", "ask-go"),
+      header("header.run-all", "run", "loaded"),
+      control("askbar.ask", "ask-submit", [step("askbar", "activate", "loaded")]),
+      advanced("properties-section.ask", "ask-go", "advanced-query"),
     ],
     // `ask` is the grounded twin of `query`: the same service, returning the verdict WITH the models
     // it derives from. Two machine affordances rather than a changed return type, because `query`'s
@@ -372,7 +526,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // different interaction surfaces, so "no person needs this" would have been a claim about users
     // defended by a claim about scope. `explore-space` was the last capability in this shape, and it
     // turned out to be one a person obviously should have had.
-    human: [control("properties-section.check", "ask-check-go")],
+    human: [advanced("properties-section.check", "ask-check-go", "advanced-query")],
     machine: [wired("window.mage.check")],
     // A check result is a semantic result: it reports what the model licenses, with the cause and
     // the alternatives. UX-I2 governs it, which is part of what the missing human control owes.
@@ -386,7 +540,10 @@ export const CAPABILITIES: readonly Capability[] = [
     // edit to see which claims moved. `window.mage.properties` is the machine twin of that same
     // read -- the verdict with the models and evidence it derives from (UX-I5), which satisfies
     // UX-I2 for a surface whose whole content is a semantic result.
-    human: [control("header.run-all", "run"), control("properties-section.list", "question-list")],
+    human: [
+      header("header.run-all", "run", "loaded"),
+      readout("properties-section.list", "question-list", "nav-properties"),
+    ],
     machine: [wired("window.mage.savedQueries"), wired("window.mage.properties")],
     producesEvidence: true,
   },
@@ -431,7 +588,8 @@ export const CAPABILITIES: readonly Capability[] = [
     // accurate violation over a comfortable number — `create-model`, `delete-model` and `add-note`
     // were declared before they were buildable — and each time the violation named the work that
     // closed it. This is the third closure.
-    human: [control("system-browser.explore", "explore-space-go")],
+    human: [control("system-browser.explore", "explore-space-go",
+      [step("system-browser", "activate", "loaded")])],
     machine: [wired("window.mage.analysis.explore")],
     producesEvidence: true,
   },
@@ -448,6 +606,12 @@ export const CAPABILITIES: readonly Capability[] = [
       at: "properties-section.evidence-list",
       status: "wired",
       element: { id: "question-list", within: ".evidence" },
+      // Two steps on one surface: the claim's own `<details>` in the property rail, then the list.
+      // §9b asked 1d for "the claim's full reading → the same surface with `via:"disclose"`"; the
+      // measured page needs the READ step after it, because the terminal is an `<ol>` and not a
+      // control. The precondition is `property-exists` rather than `loaded`: with no saved question
+      // there is no claim row, so there is no disclosure to open.
+      path: [step("nav-properties", "disclose", "property-exists"), step("nav-properties", "read")],
     }],
     machine: [wired("window.mage.evidence")],
     producesEvidence: true,
@@ -456,7 +620,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "undo",
     summary: "Return to the previous semantic revision.",
     service: "workspace.undo",
-    human: [control("header.undo", "undo")],
+    human: [header("header.undo", "undo", "edited")],
     machine: [wired("window.mage.undo")],
     producesEvidence: false,
   },
@@ -464,7 +628,7 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "redo",
     summary: "Re-apply an undone revision.",
     service: "workspace.redo",
-    human: [control("header.redo", "redo")],
+    human: [header("header.redo", "redo", "undone")],
     machine: [wired("window.mage.redo")],
     producesEvidence: false,
   },
@@ -490,8 +654,10 @@ export const CAPABILITIES: readonly Capability[] = [
     // from declared paths (wave 2d). The palette is NOT a site: its rows are rendered per open, so
     // an element to stamp exists only while it is up — the opener is `header.palette`.
     human: [
-      control("add-menu.entity", "add-menu-entity"), control("add-menu.state", "add-menu-state"),
-      control("edit-section.add-entity", "add-entity-go"), control("edit-section.add-state", "add-state-go"),
+      addMenuItem("add-menu.entity", "add-menu-entity"),
+      addMenuItem("add-menu.state", "add-menu-state"),
+      editSection("edit-section.add-entity", "add-entity-go"),
+      editSection("edit-section.add-state", "add-state-go"),
     ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
@@ -504,8 +670,8 @@ export const CAPABILITIES: readonly Capability[] = [
     // the transaction engine. The form offers the cascade as an explicit opt-in rather than
     // reimplementing the check, so both interfaces get the same refusal for the same reason.
     human: [
-      control("inspector.delete-element", "act-delete-element"),
-      control("edit-section.delete-element", "delete-element-go"),
+      inspectorAction("inspector.delete-element", "act-delete-element", "selection:element"),
+      editSection("edit-section.delete-element", "delete-element-go"),
     ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
@@ -518,11 +684,11 @@ export const CAPABILITIES: readonly Capability[] = [
     // endpoints the chosen model contains -- an edge between entities a model does not contain is
     // an edge no view of that model would draw.
     human: [
-      control("add-menu.relation", "add-menu-relation"),
+      addMenuItem("add-menu.relation", "add-menu-relation"),
       // The contextual one, which is where correction 4 wanted it: "Connect Analytics to…" from
       // the selected entity, with the endpoint already filled in from the selection.
-      control("inspector.connect", "act-connect"),
-      control("edit-section.add-relation", "add-relation-go"),
+      inspectorAction("inspector.connect", "act-connect", "selection:element"),
+      editSection("edit-section.add-relation", "add-relation-go"),
     ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
@@ -532,8 +698,8 @@ export const CAPABILITIES: readonly Capability[] = [
     summary: "Remove a relation.",
     service: "transactions.apply",
     human: [
-      control("inspector.delete-relation", "act-delete-relation"),
-      control("edit-section.delete-relation", "delete-relation-go"),
+      inspectorAction("inspector.delete-relation", "act-delete-relation", "selection:relation"),
+      editSection("edit-section.delete-relation", "delete-relation-go"),
     ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
@@ -543,8 +709,10 @@ export const CAPABILITIES: readonly Capability[] = [
     summary: "Change a property or label through the same transaction any other edit uses.",
     service: "transactions.apply",
     human: [
-      control("inspector.rename", "act-rename"), control("inspector.set-property", "act-set-property"),
-      control("edit-section.set-label", "set-label-go"), control("edit-section.set-property", "set-property-go"),
+      inspectorAction("inspector.rename", "act-rename", "selection:element"),
+      inspectorAction("inspector.set-property", "act-set-property", "selection:element"),
+      editSection("edit-section.set-label", "set-label-go"),
+      editSection("edit-section.set-property", "set-property-go"),
     ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
@@ -559,8 +727,8 @@ export const CAPABILITIES: readonly Capability[] = [
     // purpose block. Atomicity makes the pair indivisible, so a question-less model never commits —
     // and the habit the workbench exists to teach is enforced by the control rather than suggested.
     human: [
-      control("add-menu.model", "add-menu-model"),
-      control("edit-section.add-model", "add-model-go"),
+      addMenuItem("add-menu.model", "add-menu-model"),
+      editSection("edit-section.add-model", "add-model-go"),
     ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
@@ -573,8 +741,12 @@ export const CAPABILITIES: readonly Capability[] = [
     // model that asserts them, so a relation is a claim rather than a pointer; dropping it as a
     // side effect would shrink the architecture and tell no one.
     human: [
-      control("inspector.delete-model", "act-delete-model"),
-      control("edit-section.delete-model", "delete-model-go"),
+      // NO `path`, and the only such site in the registry. `WIRED_WITHOUT_A_WALKED_PATH` carries
+      // the reason: the button's precondition is a model selection, and nothing a person can press
+      // produces one. Declaring the obvious path and letting the browser drive fail would land a
+      // blocking gate red; declaring it absent names the work instead.
+      { at: "inspector.delete-model", status: "wired", element: { id: "act-delete-model" } },
+      editSection("edit-section.delete-model", "delete-model-go"),
     ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
@@ -588,8 +760,9 @@ export const CAPABILITIES: readonly Capability[] = [
     // not invalidate a pending agent transaction. Both affordances say so: the form in words, and
     // `describe()` through the schema's own description of the op.
     human: [
-      control("add-menu.note", "add-menu-note"), control("inspector.note", "act-note"),
-      control("edit-section.add-note", "add-note-go"),
+      addMenuItem("add-menu.note", "add-menu-note"),
+      inspectorAction("inspector.note", "act-note", "selection:element"),
+      editSection("edit-section.add-note", "add-note-go"),
     ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
@@ -616,7 +789,10 @@ export const CAPABILITIES: readonly Capability[] = [
     // `askbar.track` is correction 7's one-field act: the claim, and nothing else. The id is derived
     // from the claim and the expectation control stays in Advanced, where `properties-section.save`
     // keeps the full form — a tracked claim becomes a REQUIREMENT by a second, deliberate act.
-    human: [control("askbar.track", "ask-track-go"), control("properties-section.save", "save-property-go")],
+    human: [
+      control("askbar.track", "ask-track-go", [step("askbar", "activate", "answer-present")]),
+      advanced("properties-section.save", "save-property-go", "askbar"),
+    ],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -626,7 +802,7 @@ export const CAPABILITIES: readonly Capability[] = [
     service: "transactions.apply",
     // The pair of the one above. A claim you cannot withdraw is a claim the model system cannot
     // stop asserting, and `delete-query` already existed with no way for a person to reach it.
-    human: [control("properties-section.retract", "retract-property-go")],
+    human: [advanced("properties-section.retract", "retract-property-go", "askbar", "property-exists")],
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
@@ -642,7 +818,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // `prompt` is the field that earns the feature: with an agent-authored model it answers why the
     // object has this shape, which reading the object cannot. A prompt nobody finds is a prompt
     // nobody reads.
-    human: [control("provenance-section.records", "provenance-list")],
+    human: [readout("provenance-section.records", "provenance-list", "system-browser")],
     machine: [wired("window.mage.provenance")],
     producesEvidence: false,
   },
@@ -666,7 +842,7 @@ export const CAPABILITIES: readonly Capability[] = [
     //   - `whatif-arm` is the DELIBERATE route, for a user who wants to try something without
     //     committing it even though no obligation is at stake. One toggle, off by default, so the
     //     normal user edits normally.
-    human: [control("review.whatif", "whatif-arm")],
+    human: [header("review.whatif", "whatif-arm", "loaded")],
     machine: [wired("window.mage.hypothesis.open")],
     producesEvidence: true,
   },
@@ -674,7 +850,8 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "commit-hypothesis",
     summary: "Accept a reviewed change as authoritative.",
     service: "workspace.applyHypothesis",
-    human: [control("hypothesis-bar.accept", "hypothesis-apply")],
+    human: [control("hypothesis-bar.accept", "hypothesis-apply",
+      [step("review", "activate", "hypothesis-open")])],
     machine: [wired("window.mage.hypothesis.apply")],
     producesEvidence: false,
   },
@@ -682,7 +859,8 @@ export const CAPABILITIES: readonly Capability[] = [
     id: "discard-hypothesis",
     summary: "Throw a reviewed change away; the authoritative model was never touched.",
     service: "workspace.discardHypothesis",
-    human: [control("hypothesis-bar.discard", "hypothesis-discard")],
+    human: [control("hypothesis-bar.discard", "hypothesis-discard",
+      [step("review", "activate", "hypothesis-open")])],
     machine: [wired("window.mage.hypothesis.discard")],
     producesEvidence: false,
   },
@@ -749,6 +927,11 @@ export function checkAffordanceParity(
       out.push({ invariant: "UX-I1", capability: c.id, problem: "names no application service" });
     }
   }
+  // G1's amended reading, folded into the same list rather than gated separately. One invariant,
+  // one count, one threshold — the lesson `PARITY_VIOLATION_CEILING` below was written for: a
+  // second implementation of UX-I1 with its own definition of passing failed two pushes at a gate
+  // that had never gone red locally.
+  out.push(...checkNavPaths(registry));
   return out;
 }
 
@@ -803,6 +986,116 @@ export function boundHumanAffordances(
   registry: readonly Capability[] = CAPABILITIES,
 ): readonly BoundAffordance[] {
   return registry.flatMap((c) => c.human.filter((a): a is BoundAffordance => a.status !== "absent"));
+}
+
+/**
+ * Every wired human affordance that declares a walked path, with the element and the route.
+ *
+ * The browser tier's generated drive reads THIS and nothing else — no hand-written list of routes
+ * beside the registry's, which is the F-3 defect one layer out. `WIRED_WITHOUT_A_WALKED_PATH` is
+ * excluded, so the drive's count is the count rung 3 asserts.
+ */
+export function navPaths(
+  registry: readonly Capability[] = CAPABILITIES,
+): readonly { readonly at: string; readonly element: AffordanceElement; readonly path: readonly NavStep[] }[] {
+  const seen = new Set<string>();
+  const out: { at: string; element: AffordanceElement; path: readonly NavStep[] }[] = [];
+  for (const a of registry.flatMap((c) => c.human)) {
+    if (a.status !== "wired" || a.path === undefined) continue;
+    // One route per SITE, not per capability row. `header.run-all` is an affordance of both `query`
+    // and `analyze`; it is one button and walking it twice would inflate rung 3's count.
+    if (seen.has(a.at)) continue;
+    seen.add(a.at);
+    out.push({ at: a.at, element: a.element, path: a.path });
+  }
+  return out;
+}
+
+/**
+ * G1's static rung: every wired human affordance declares a walkable route, or says it cannot.
+ *
+ * `DESIGN-shell-261002.md` §2.3 rung 1, less the surface-closure half — that one needs the shell's
+ * SURFACES table, which is a VALUE in `src/ui/`, and importing it here would invert the layering
+ * §9a settled. The closure check runs in `test/capabilities.test.ts`, which may import both.
+ *
+ * Reported as UX-I1 violations, not a new invariant number: G1 amends UX-I1's reading of "human
+ * affordance" rather than adding a claim beside it, so a path-less wired site IS a parity failure.
+ * Keeping it under UX-I1 also means the one gate the default run and CI both invoke covers it.
+ */
+export function checkNavPaths(
+  registry: readonly Capability[] = CAPABILITIES,
+): readonly ParityViolation[] {
+  const out: ParityViolation[] = [];
+  const excused = new Set(WIRED_WITHOUT_A_WALKED_PATH.map((e) => e.at));
+  const declared = new Map<string, string>();
+
+  for (const c of registry) {
+    for (const a of c.human) {
+      if (a.status !== "wired") continue;
+      if (a.path === undefined) {
+        if (!excused.has(a.at)) {
+          out.push({
+            invariant: "UX-I1", capability: c.id,
+            problem: `human affordance '${a.at}' is wired and declares no navigation path; under `
+              + "G1 a wired human affordance must declare a route from the default workspace, or be "
+              + "enumerated in WIRED_WITHOUT_A_WALKED_PATH with its reason",
+          });
+        }
+        continue;
+      }
+      // Two rows naming one button must agree about how to reach it. They are the same element, so
+      // a disagreement is two answers to one question and the drive would walk an arbitrary one.
+      const prior = declared.get(a.at);
+      const spelling = JSON.stringify(a.path);
+      if (prior !== undefined && prior !== spelling) {
+        out.push({
+          invariant: "UX-I1", capability: c.id,
+          problem: `human affordance '${a.at}' declares two different paths across capability rows`,
+        });
+      }
+      declared.set(a.at, spelling);
+
+      // A `read` step ends the route: reading a readout is the arrival, so a step after it would
+      // describe an act on something the declaration just called not-a-control.
+      const readAt = a.path.findIndex((s) => s.via === "read");
+      if (readAt !== -1 && readAt !== a.path.length - 1) {
+        out.push({
+          invariant: "UX-I1", capability: c.id,
+          problem: `human affordance '${a.at}' takes a step after a 'read' step; reading is the arrival`,
+        });
+      }
+      if (a.path.length === 0 && excused.has(a.at)) {
+        out.push({
+          invariant: "UX-I1", capability: c.id,
+          problem: `human affordance '${a.at}' both declares a path and is excused from declaring one`,
+        });
+      }
+    }
+  }
+
+  // The other direction: an excuse for a site that is not a wired human affordance is an excuse for
+  // nothing, and it would hide a real violation the day the site came back wired.
+  const wiredSites = new Set(
+    registry.flatMap((c) => c.human).filter((a) => a.status === "wired").map((a) => a.at),
+  );
+  const pathless = new Set(
+    registry.flatMap((c) => c.human)
+      .filter((a) => a.status === "wired" && a.path === undefined).map((a) => a.at),
+  );
+  for (const e of WIRED_WITHOUT_A_WALKED_PATH) {
+    if (!wiredSites.has(e.at)) {
+      out.push({
+        invariant: "UX-I1", capability: "inspect",
+        problem: `WIRED_WITHOUT_A_WALKED_PATH names '${e.at}', which is not a wired human affordance`,
+      });
+    } else if (!pathless.has(e.at)) {
+      out.push({
+        invariant: "UX-I1", capability: "inspect",
+        problem: `WIRED_WITHOUT_A_WALKED_PATH names '${e.at}', which now declares a path — remove the excuse`,
+      });
+    }
+  }
+  return out;
 }
 
 /**

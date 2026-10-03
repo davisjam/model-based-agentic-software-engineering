@@ -762,3 +762,100 @@ list wave 2d needs before it re-derives a drive.
   repository root and `puppeteer` from `book/`, neither of which a fresh `git worktree add` has.
   Symlinking both from the main checkout is the fix, and it is the orchestrator's step rather than
   the agent's (CLAUDE.md: never `npm install` in a worktree).
+
+### 9f. Wave 1d as built — the seven corrections the drive forced, and the one control nobody can reach
+
+Appended by wave 1d after landing. §2.2 sketched the shapes and §2.3 the three rungs; building the
+drive measured the page against both, and the page won seven arguments. Three of these change what
+a later wave finds; the fourth is the finding this wave exists to produce.
+
+- **The baseline is the PRISTINE page, and that is the ruling the sketch could not have made.** G1
+  says "from the default loaded workspace", so the obvious reading is that a drive loads an example
+  and starts there. It cannot. `start.load-example` is the control that CREATES the loaded
+  workspace, and `#start` is `hidden` once a system loads (SH-I1) — so from a loaded workspace it
+  has no path, and no member of §2.2's precondition set can un-load a system. Making the baseline
+  the fresh page costs one word and fixes it: `loaded` becomes a DECLARED step with a keyboard
+  routine of its own, 34 of the 43 paths name it, and §2.2's "an empty path means visible in the
+  default workspace" becomes literally true of exactly the two controls it is true of —
+  `header.file-input` and `header.new-system`. The drive establishes `loaded` through Start's own
+  example control, by keyboard, rather than through `window.mage.load`: it is the precondition
+  everything else depends on, and establishing it with the agent API would mean the whole suite ran
+  against a state no keyboard produced.
+
+- **Four preconditions were missing, and §2.2's own example was one of them.** The sketch offers
+  "header Undo" as an empty path. `#undo` and `#redo` ship disabled and a disabled button is not
+  focusable, so neither is reachable until there is history — `edited` and `undone`, with routines
+  that add an entity by keyboard and then undo it. `#ask-track-box` is `hidden` until the ask bar
+  has answered: `answer-present`. And `selection:machine` exists in the editing catalogue's
+  `ActionPrecondition` and not in `NavPrecondition`, which §9c asked 1d to read the condition off —
+  a narrowing that was not a subset. Eleven members now; `exhausted-answer` still has no human
+  route at all, because escalating a bounded search starts from a SPARQL answer and a person cannot
+  write SPARQL here (the `query` row's own asymmetry, and §G Q9's stake).
+
+- **`via` needed a fifth member, because five affordance sites are not controls.** The model tables,
+  the findings list, the property list, the evidence list and the provenance list are a `<section>`
+  or an `<ol>` with `tabindex="-1"`. Rung 2's "exists, is focusable, and is enabled" can never hold
+  for one, and a drive that applied it to all 43 would have had to be weakened to pass — which is
+  how a gate stops meaning anything. `via: "read"` declares the terminal's KIND, and the drive then
+  asserts the two things a reader needs instead: the region is not hidden and carries an accessible
+  name, and the readout has content. Falsifiable both ways: a readout that becomes focusable fails,
+  and a control declared `read` fails too, because a control the drive never Tabs to is coverage
+  lost silently.
+
+- **THE FINDING: `inspector.delete-model` is a wired human affordance no person can reach.** Its
+  button is enabled only for a model selection, and nothing a person can press produces one. The
+  contents tree is the only surface that writes `ViewState.selection` from a human act, and its row
+  encoders (`nodeSelection` / `edgeSelection`) return `entity:`, `state:` or `rel:` and null for
+  everything else — §9d recorded the nulls for containment edges and transitions and did not notice
+  that a MODEL has no row either. An agent reaches a model selection through
+  `view.select("model:x")`; a person cannot reach it at all. It is the single member of
+  `WIRED_WITHOUT_A_WALKED_PATH`, which carries the reason and names the wave that drains it. The
+  capability is unaffected — `delete-model`'s pinned fieldset site declares a walked path — so
+  UX-I1's zero stays honest rather than laundered, and a test holds that distinction shut: a
+  capability whose EVERY wired site is excused is a violation wearing a known-set costume.
+
+- **`ViewState.selection` carries two encodings, and the ask bar understands only one.**
+  `askCatalogue` resolves the selected entity with `selection.find((id) => system.entities.has(id))`
+  — a BARE id — while the contents tree writes `entity:<id>`. So selecting a node in the tree leaves
+  the ask bar's contextual questions empty, and since the unselected catalogue is exactly the
+  already-saved questions and the Track box opens only for an UNTRACKED item, `askbar.track` is
+  unreachable from a tree selection. The walked route goes through a RELATION's inspector, whose
+  navigate links still carry bare ids (`{ kind: "select", selection: r.from }`). §10 predicted this
+  class — "`ViewState.selection` is untyped ids" — and the shell has now shipped both spellings in
+  one field. Whoever widens it should widen `askCatalogue` in the same change; the drive is what
+  fails if they do not.
+
+- **§9c's two-step `+ Add` declaration over-declares, and §9b's rail declarations under-declare.**
+  The built menu is one `<details>`, so `[{disclose}, {menu}]` describes an act the page does not
+  have; the drive counts declared disclosures against the collapsed ancestors it finds, so the extra
+  step fails rather than passing vacuously. Nothing declares `via: "menu"` today. And §9b asked for
+  `[{surface:"nav-properties", via:"disclose"}]` for a claim's full reading, which is half the route:
+  the terminal is an `<ol>`, so a `read` step follows, and the precondition is `property-exists`
+  rather than nothing — with no saved question there is no claim row and no disclosure to open.
+
+- **The `advanced-query` surface under-covers the disclosure it sits in, and `edit` had no surface at
+  all.** `advanced-query` names `#form-ask`, one of three fieldsets inside `<details id="ask-advanced">`,
+  so the Save and Retract sites are inside the Advanced disclosure and outside the surface; their
+  paths cite `askbar` for both steps instead. Widening the row is wave 1c's call — three gates read
+  `#form-ask`. The ten pinned editing fieldsets had a worse problem: §5 gives them no region, so
+  their only declarable path was the empty one, which claims they are reachable on the pristine page
+  while `#edit` is `hidden` there. `NavSurface` gained an `edit` member and `SURFACES` a built row
+  for it. A table that admits a `planned` row for a region nobody built should admit a row for a
+  region everybody can walk to; wave 3 deletes the member with the markup.
+
+**What the drive proves, and what it does not.** 43 declared paths, each walked from a fresh page:
+38 control terminals reached by Tab and asserted enabled, 5 readouts asserted named and non-empty,
+10 disclosures opened with Enter on their own `<summary>`, 8 of the 11 preconditions exercised. The
+walks stop at ARRIVAL — reached, focusable, enabled — which is deliberately the weaker claim.
+`keyboard.test.mjs` drives §19's thirteen operations through to an assertion about the MODEL, and
+those stay as a verbatim floor: two tiers of one requirement, with the thirteen as the stronger one.
+Five sabotages were run and watched red before restoring — an under-declared disclosure, a readout
+declared as a control, a surface that does not contain its control, a control disabled in the markup
+with the declaration untouched, and a drive that walks without recording, which rung 3 caught by
+name.
+
+**What wave 3 inherits.** The `path` field is still optional and the known set still has one member;
+flipping `BoundAffordance.path` to required is a one-character change once a model becomes
+selectable. `explore-space`'s path gains a menu step rather than moving its control, as §10 and the
+registry's own comment both promise. And the `edit` surface row plus the ten `edit-section.*` paths
+go with the markup — ten declarations to delete, which is the shape a relocation should have.

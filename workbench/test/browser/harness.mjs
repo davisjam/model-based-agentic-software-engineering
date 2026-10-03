@@ -318,6 +318,13 @@ export const AXE_RECEIPT_PATH = process.env.WB_AXE_RECEIPT ?? join(tmpdir(), "wb
 export const KEYBOARD_RECEIPT_PATH =
   process.env.WB_KEYBOARD_RECEIPT ?? join(tmpdir(), "wb-keyboard-receipt.json");
 export const SMOKE_RECEIPT_PATH = process.env.WB_SMOKE_RECEIPT ?? join(tmpdir(), "wb-smoke-receipt.json");
+/**
+ * The declared-path drives (`a11y/paths.test.mjs`), which need their own for a sharper reason than
+ * the glob hazard: the suite GENERATES one drive per declared path, so a registry that declared
+ * none would produce a file of zero tests and `node --test` would print a green tier. The receipt
+ * carries the walked count, and the suite asserts that count against the registry's own.
+ */
+export const PATHS_RECEIPT_PATH = process.env.WB_PATHS_RECEIPT ?? join(tmpdir(), "wb-paths-receipt.json");
 
 /** Everything the gate measured, in one page round trip, for the receipt. */
 export async function measureForReceipt(page) {
