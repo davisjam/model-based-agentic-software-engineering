@@ -422,24 +422,88 @@
   </section>
 
   <!--
-    The `askbar` surface, and `advanced-query` inside it. Correction 5 makes a persistent input the
-    primary question surface and demotes the structured builder to Advanced; wave 1c builds the
-    input, so until then the builder is the ask surface and stays in the tab order. Demoting it
-    behind a disclosure first would have removed the only way to ask a question.
+    The `askbar` surface, and `advanced-query` inside it.
+
+    Correction 5: one line, "Ask about the model system…", with the questions this system can answer
+    beside it, and the formal builder demoted to Advanced. Three structural decisions, each the
+    answer to a way this surface could have lied.
+
+    THE TYPED TEXT IS A FILTER, not a parser (ruled: DECISIONS-RULED-shell-261002.md G2). It narrows
+    the catalogue of questions the engine can actually answer. Unmatched text is answered by pointing
+    at the coding agent or at Advanced query -- never by guessing which formal question an English
+    sentence meant, which would fabricate precision the engine never had.
+
+    THE CATALOGUE IS A SELECT, not a listbox of buttons. The options are the deterministic questions
+    themselves, so a keyboard and a screen-reader user get the browser's own listbox semantics rather
+    than a hand-rolled combobox, and the surface adds two buttons rather than one per question.
+
+    THE DISCLOSURES ARE `details`, so a collapsed region is reached by a control that is in the tab
+    order and announces its own state (SH-I2). Advanced query, the evidence reading and the formal
+    builder all use the one spelling.
   -->
   <section id="askbar" aria-labelledby="askbar-h" hidden>
     <h2 id="askbar-h">Ask about the model system</h2>
-    <p class="intro">
-      A property is a persistent claim about the system. Its verdict is <strong>recomputed</strong>
-      every time the model changes and is stored nowhere, so what you read is always this revision's
-      answer. Every verdict says which models and machines established it; a bounded search is
-      reported as inconclusive, never as a no.
+    <p class="intro" id="ask-help">
+      Type to <strong>filter</strong> the questions this model system can answer; the list offers
+      only questions its own models license. What you type is not read as English — for a question
+      in your own words, ask your coding agent (it drives the same workbench through
+      <code>window.mage.ask</code>), or open Advanced query below and state the question formally.
+      A verdict is recomputed on every revision and stored nowhere, and it always says which models
+      established it; a bounded search is reported as inconclusive, never as a no.
     </p>
+    <label class="field" for="ask-text"><span>Ask about the model system…</span>
+      <input type="text" id="ask-text" autocomplete="off" aria-describedby="ask-help"></label>
+    <label class="field" for="ask-choice"><span>Questions this system can answer</span>
+      <select id="ask-choice"></select></label>
+    <p id="ask-filter-state" class="hint"></p>
+    <button type="button" id="ask-submit" class="primary">Ask</button>
     <!--
-      The answer, rendered by the SAME function that renders a saved property. Plain DOM: #live is
-      the one announcer and it already says the verdict and how many models established it.
+      The answer, rendered by the SAME function that renders a saved property -- a transient result
+      and a persistent property differ in how long they last, not in how they read. Plain DOM: #live
+      is the one announcer and it already says the verdict and how many models established it.
     -->
     <div id="ask-answer"></div>
+    <!--
+      NOT ANSWERABLE, routed to Learn. The panel appears when the asked question's KIND needs a
+      model type this system does not declare -- the same registry predicate the engine's own
+      dispatch gate consults, so the page cannot offer a Learn link for a refusal the kernel would
+      not have given.
+    -->
+    <div id="ask-absent" hidden>
+      <p id="ask-absent-prose" class="refusal"></p>
+      <p><a id="ask-absent-learn" href="learn.html"></a></p>
+    </div>
+    <!--
+      Correction 7: after an answer, inspect the evidence and keep the claim. Tracking exposes the
+      CLAIM and nothing else -- no immutable id, no quantifier, no expectation control. Those are
+      Advanced's, below, and the id is derived from the claim.
+    -->
+    <details id="ask-evidence-box" hidden>
+      <summary id="ask-evidence-summary">Inspect evidence</summary>
+      <h3 id="ask-evidence-h">Evidence reading</h3>
+      <section id="ask-evidence" aria-labelledby="ask-evidence-h"></section>
+    </details>
+    <div id="ask-track-box" hidden>
+      <h3 id="ask-track-h">Track this claim</h3>
+      <p class="hint">
+        State it as an assertion — "Restricted data cannot reach Analytics", not "Can restricted
+        data reach Analytics?" — because the status word is read against it. What is kept is the
+        QUESTION; the verdict is recomputed on every later revision.
+      </p>
+      <label class="field" for="ask-track-claim"><span>Claim</span>
+        <input type="text" id="ask-track-claim" autocomplete="off"></label>
+      <button type="button" id="ask-track-go">Track</button>
+    </div>
+
+    <!--
+      The `advanced-query` surface. §7's ledger: the structured builder is DEMOTED, not removed --
+      the SHALL it carried ("execute supported queries without writing SPARQL") is satisfied by the
+      ask bar above, and the builder keeps the questions the ask bar's catalogue cannot spell: a
+      chosen hop limit, a question over two named endpoints, an explicit quantifier, an expectation
+      that makes a property a requirement, and retraction.
+    -->
+    <details id="ask-advanced">
+      <summary id="ask-advanced-summary">Advanced query</summary>
     <fieldset id="form-ask">
       <legend>Ask a question</legend>
       <p class="hint">
@@ -463,10 +527,10 @@
         <input type="text" id="ask-max-hops" inputmode="numeric" autocomplete="off"></label>
       <button type="button" id="ask-go" class="primary">Ask</button>
       <!--
-        The answer, rendered by the SAME function that renders a saved property. Plain DOM: #live is
-        the one announcer and it already says the verdict and how many models established it.
+        The answer renders in #ask-answer above, which is the ask bar's one answer host. A second
+        `<div id="ask-answer">` stood here until wave 1c: two elements with one id, where every
+        lookup resolved to the first and this one was painted by nobody.
       -->
-      <div id="ask-answer"></div>
     </fieldset>
 
     <fieldset id="form-save-property">
@@ -497,6 +561,7 @@
         <select id="retract-property-target"></select></label>
       <button type="button" id="retract-property-go">Retract the property</button>
     </fieldset>
+    </details>
   </section>
 
   <!--
