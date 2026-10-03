@@ -49,6 +49,43 @@ export async function applyTheme(page, theme) {
   // either page -- so the next getComputedStyle already reads the new values.
 }
 
+/**
+ * Render the page the way a CI runner does: without the one declared font this machine has.
+ *
+ * `WB_F6_SIMULATE_CI_FONTS=1 npm run test:a11y` runs the whole tier under it. The point is to make
+ * "it passes on my machine" a falsifiable claim rather than a venue.
+ *
+ * `assets/mage-tokens.css` asks for `--mage-font-body: "Source Sans 3", -apple-system,
+ * BlinkMacSystemFont, "Segoe UI", sans-serif`. A GitHub Ubuntu runner has NONE of those four
+ * families and `.github/workflows/pages.yml` installs no font, so it resolves the generic tail. This
+ * machine has Source Sans 3 installed, so it resolves the first entry. That one difference moved
+ * four of the six numbers the D-2 pin used to assert, and a gate green only under the fonts its
+ * author happened to have is a gate that measures the author.
+ *
+ * Only the BODY font is substituted. The mono stack (`"IBM Plex Mono", "SF Mono", Menlo, Consolas,
+ * monospace`) names nothing this machine has either [measured: `fc-list` returns 0 for the first
+ * three], so it already falls back here exactly as it does there and substituting it would simulate
+ * a divergence that does not exist.
+ *
+ * `addStyleTag` rather than a launch flag: `--disable-remote-fonts` governs `@font-face`, and these
+ * families are LOCAL. Suppressing a locally-installed family through Chromium's own font config is
+ * not reachable from Puppeteer on macOS, and overriding the token reproduces the thing that
+ * actually differs -- which family the body text resolves to.
+ */
+export const SIMULATE_CI_FONTS = process.env.WB_F6_SIMULATE_CI_FONTS === "1";
+
+/** The declared body stack minus the one family a runner would miss. */
+const RUNNER_BODY_STACK = '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+
+export async function applyRunnerFonts(page) {
+  if (!SIMULATE_CI_FONTS) return null;
+  await page.addStyleTag({ content: `:root { --mage-font-body: ${RUNNER_BODY_STACK} !important; }` });
+  // The witness. A substitution that silently failed to apply would make every verdict below read
+  // "CI-equivalent" while measuring this machine -- the exact failure this whole suite's record is
+  // a list of. The caller asserts the family changed.
+  return page.evaluate(() => getComputedStyle(document.body).fontFamily);
+}
+
 // ------------------------------------------------------------------------------------------------
 // 2.4.7 -- the focus ring, in pixels
 // ------------------------------------------------------------------------------------------------
@@ -498,6 +535,78 @@ export async function overlappingRegionsAt(page, width, height = 900) {
 }
 
 /**
+ * Focus stops grouped into visual ROWS, top to bottom, each read left to right.
+ *
+ * Two stops share a row when their boxes overlap vertically by more than half the shorter one.
+ * Extracted from `focusOrderAt` so the identical rule groups the whole page AND each region on its
+ * own: a region's column count has to be computed from that region's own stops, because a control
+ * in the column beside it can bridge two of its rows and make a one-column region read as two.
+ */
+function groupRows(stops) {
+  const rows = [];
+  for (const s of stops) {
+    const row = rows.find((r) => r.some((o) => {
+      const overlap = Math.min(o.top + o.h, s.top + s.h) - Math.max(o.top, s.top);
+      return overlap > Math.min(o.h, s.h) / 2;
+    }));
+    if (row === undefined) rows.push([s]); else row.push(s);
+  }
+  rows.sort((a, b) => Math.min(...a.map((s) => s.top)) - Math.min(...b.map((s) => s.top)));
+  return rows.map((row) => [...row].sort((a, b) => a.left - b.left));
+}
+
+/**
+ * The SHAPE of each region's divergence, which is the part of D-2 that is a property of the page.
+ *
+ * The count of inverted pairs is not. It is a function of how many columns an `auto-fit` grid
+ * happened to pack, which is a function of text metrics, which is a function of which font
+ * resolved -- and the font that resolved differs between this machine and a CI runner [measured:
+ * `scripts/measure-f6-font-sensitivity.mjs`, 672/976/1024/1025 move 30/77/75/75 to 29/81/81/81
+ * when `"Source Sans 3"` is dropped from the stack, and 976 moves to 30 under a 15px classic
+ * scrollbar]. So this returns, per region: whether it is laid out in more than one column, and
+ * whether its reading order and its tab order disagree at all. Both are invariant to metrics; the
+ * number of disagreements is not.
+ *
+ * Reading order is derived from the region's OWN rows, not from the page's: within one region that
+ * is what "read across" means, and it is the only grouping a change to that region's markup is
+ * responsible for.
+ */
+function regionShapes(controls, tabIndexOf) {
+  const byRegion = new Map();
+  for (const s of controls) {
+    if (!byRegion.has(s.region)) byRegion.set(s.region, []);
+    byRegion.get(s.region).push(s);
+  }
+  const out = {};
+  for (const [name, list] of byRegion) {
+    const rows = groupRows(list);
+    const reading = rows.flat();
+    const pairs = [];
+    for (let i = 0; i < reading.length; i += 1) {
+      for (let j = i + 1; j < reading.length; j += 1) {
+        if (tabIndexOf.get(reading[i].key) > tabIndexOf.get(reading[j].key)) {
+          pairs.push(`${reading[i].label} is read before ${reading[j].label} but tabbed after it`);
+        }
+      }
+    }
+    out[name] = {
+      controls: list.length,
+      visualRows: rows.length,
+      widestRow: Math.max(0, ...rows.map((r) => r.length)),
+      // The invariant-bearing pair. A region in one column cannot diverge -- every row holds one
+      // stop and the two orders are identical by construction -- so `multiColumn === false` with
+      // `diverges === true` is a defect in the page or in this probe, and never a font.
+      multiColumn: rows.some((r) => r.length > 1),
+      diverges: pairs.length > 0,
+      // Reported for the receipt and for a human reading a red gate. NOT asserted: see above.
+      divergentPairs: pairs.length,
+      examples: pairs.slice(0, 3),
+    };
+  }
+  return out;
+}
+
+/**
  * D-2: the tab order against the order a sighted reader's eye takes, at one viewport.
  *
  * Reading order is derived from geometry, not assumed: the stops are grouped into ROWS by vertical
@@ -604,16 +713,8 @@ export async function focusOrderAt(page, width, height = 900, { max = 200 } = {}
 
   // Rows by vertical overlap, over the CONTROL stops only.
   const controls = stops.filter((s) => s.container === false);
-  const rows = [];
-  for (const s of controls) {
-    const row = rows.find((r) => r.some((o) => {
-      const overlap = Math.min(o.top + o.h, s.top + s.h) - Math.max(o.top, s.top);
-      return overlap > Math.min(o.h, s.h) / 2;
-    }));
-    if (row === undefined) rows.push([s]); else row.push(s);
-  }
-  rows.sort((a, b) => Math.min(...a.map((s) => s.top)) - Math.min(...b.map((s) => s.top)));
-  const reading = rows.flatMap((row) => [...row].sort((a, b) => a.left - b.left));
+  const rows = groupRows(controls);
+  const reading = rows.flat();
 
   const tabIndexOf = new Map(controls.map((s, i) => [s.key, i]));
   const inversions = [];
@@ -641,6 +742,9 @@ export async function focusOrderAt(page, width, height = 900, { max = 200 } = {}
     multiStopRows: rows.filter((r) => r.length > 1).length,
     widestRow: Math.max(0, ...rows.map((r) => r.length)),
     inversions: inversions.length,
+    // Per region: is it laid out in 2-D, and do its two orders disagree. The ASSERTED shape of
+    // D-2 -- see `regionShapes` for why the pair count beside it is reported and not pinned.
+    regions: regionShapes(controls, tabIndexOf),
     // The share of the divergence that is one region's own source order against its own layout --
     // the question 2.4.3 asks of a region whose controls form one operable sequence. The remainder
     // is cross-region, which on this shell means "the keyboard walks column 1 entirely before
