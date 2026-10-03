@@ -34,8 +34,13 @@ const common = {
 await build({ ...common, entryPoints: ["src/ui/main.ts"], outfile: `${outdir}/workbench.js` });
 await build({ ...common, entryPoints: ["src/worker/analysis.worker.ts"], outfile: `${outdir}/analysis.worker.js` });
 
+// The Learn page (learn.html) is its own entry: documentation and exploration, not another editing
+// surface, so it must not ride in the workbench bundle every workspace visitor pays for. It runs
+// no Worker — its renders are small exemplar scenes on the main thread.
+await build({ ...common, entryPoints: ["src/learn/main.ts"], outfile: `${outdir}/learn.js` });
+
 // dist/ holds bundles ONLY. The served page is workbench/index.html, which loads
 // `./dist/workbench.js`; a copy of that file inside dist/ resolves the same relative src to
 // dist/dist/workbench.js, so the copy is a page that cannot work. It was also a second .html under
 // workbench/, which the site's reachability gate reads as an orphan once workbench/ enters the walk.
-console.log(`build: ${outdir}/workbench.js + ${outdir}/analysis.worker.js`);
+console.log(`build: ${outdir}/workbench.js + ${outdir}/analysis.worker.js + ${outdir}/learn.js`);

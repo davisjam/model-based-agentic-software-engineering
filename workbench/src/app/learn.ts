@@ -31,6 +31,7 @@ import type { CanonicalSystem } from "../ir/types.ts";
 import {
   MODEL_TYPES, type ModelType, type ModelTypeId, type SchemaAuthority,
 } from "../engine/model-types.ts";
+import type { RefusalDetail } from "../engine/types.ts";
 
 /** One Learn gallery card for a model TYPE. A projection of the registry entry, field for field. */
 export interface LearnEntry {
@@ -128,3 +129,48 @@ export const MODEL_TYPE_USES: readonly ModelTypeUse[] = [
  */
 export const presentTypes = (system: CanonicalSystem): readonly ModelTypeId[] =>
   MODEL_TYPES.filter((t) => t.presentIn(system)).map((t) => t.id);
+
+// --------------------------------------------------------------------------------------------
+// Addresses on the Learn page — declared beside the derivation, so the page and every caller
+// that links into it (the gallery nav, the NOT ANSWERABLE panel) share one spelling.
+// --------------------------------------------------------------------------------------------
+
+/** The Learn page, relative to the served workbench root. */
+export const LEARN_PAGE = "learn.html";
+
+/** The fragment id of a type's section on the Learn page. */
+export const anchorForType = (id: ModelTypeId): string => `type-${id}`;
+
+/** The fragment id of a use's section on the Learn page. */
+export const anchorForUse = (id: string): string => `use-${id}`;
+
+/** A link from anywhere in the workbench to one Learn entry. */
+export const learnHrefForType = (id: ModelTypeId): string => `${LEARN_PAGE}#${anchorForType(id)}`;
+
+/** What a NOT ANSWERABLE panel renders when the refusal names an absent model type. */
+export interface LearnLink {
+  readonly typeId: ModelTypeId;
+  /** "Learn about quantitative models" — the requirement's own link text, from the registry label. */
+  readonly text: string;
+  readonly href: string;
+}
+
+/**
+ * The refusal-to-Learn join (UX-I9's NOT ANSWERABLE sketch).
+ *
+ * A `missing-model-type` refusal carries the absent type's label in `missing` — put there by
+ * `runTypedQuery` from the same registry entry a Learn section renders. This resolves the label
+ * back to the entry, so the panel that shows the refusal can link to the one page that says what
+ * declaring the type takes. Returns null for every other refusal: a typo hunt or a purposeful
+ * omission has its own remedy, and a Learn link there would misdirect.
+ */
+export function learnLinkForRefusal(detail: RefusalDetail | null): LearnLink | null {
+  if (detail === null || detail.reason !== "missing-model-type") return null;
+  const t = MODEL_TYPES.find((m) => detail.missing.includes(m.label));
+  if (t === undefined) return null;
+  return {
+    typeId: t.id,
+    text: `Learn about ${t.label}s`,
+    href: learnHrefForType(t.id),
+  };
+}
