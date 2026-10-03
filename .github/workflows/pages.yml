@@ -72,7 +72,20 @@ jobs:
       # truncated emit cannot clear while leaving room for the bundle to shrink legitimately.
       - name: Model Workbench gates + bundle (tsc, unit suite, esbuild -> workbench/dist/)
         working-directory: workbench
+        # `validate.py` is the INDEPENDENT second implementation of the rule set, and
+        # `test/parity.test.ts` holds the two together by shelling out to it — so the unit suite below
+        # has a Python dependency even though it is a Node suite. `pyRun` uses `execFileSync`, which
+        # THROWS on a non-zero exit, and validate.py exits 2 with "missing dependency" when PyYAML is
+        # absent; there is no skip path, by design. A parity suite that silently skipped when its
+        # second implementation could not start would report green while checking nothing, which is
+        # worse than a red build.
+        #
+        # These installs must happen HERE rather than in the later book/site steps that also install
+        # PyYAML (further down this file): those run after this one, so the workbench suite reached
+        # validate.py before anything had installed its dependencies. That is what broke the first
+        # push of the shell work.
         run: |
+          python3 -m pip install "pyyaml>=6,<7" jsonschema
           npm ci
           npx tsc --noEmit
           npm test
