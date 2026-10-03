@@ -44,6 +44,7 @@ import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
 import { parseQuery } from "../src/engine/types.ts";
 import { askCatalogue } from "../src/ui/shell/askbar.ts";
 import { planAsk } from "../src/ui/view-model.ts";
+import type { Selection } from "../src/ui/view-model.ts";
 import { realPorts, exampleText } from "../scripts/gen-example-coverage.ts";
 
 const assets: AssetReader = (path: string) => Promise.resolve(readFileSync(path.replace(/^\.\//, ""), "utf8"));
@@ -224,7 +225,14 @@ test("MQ-I5: every question the ask catalogue OFFERS is a typed query document",
     const system = loadedExample(id).state.system;
     // Every entity in turn as the selection, so the contextual items are actually produced rather
     // than the saved half being swept twice under a different name.
-    for (const selection of [[], ...[...system.entities.keys()].map((e) => [e])]) {
+    // One Selection per entity, plus the empty one. Wave `wb-selection` replaced the bare
+    // `string[]` this loop was written against with the discriminated `Selection` — a bare array no
+    // longer type-checks, which is the unification working rather than a break to route around.
+    const selections: Selection[] = [
+      { kind: "none" },
+      ...[...system.entities.keys()].map((id): Selection => ({ kind: "entity", id })),
+    ];
+    for (const selection of selections) {
       for (const item of askCatalogue(system, selection)) {
         if (item.ask === null) {
           assert.ok(item.savedId !== null, `catalogue item '${item.key}' offers neither a request nor a saved id`);
