@@ -60,7 +60,7 @@ import {
   type SubsetVerdict, type Traversal,
 } from "./licensing.ts";
 import {
-  noSubjectDeclared, outsideSubset, unknownVocabulary,
+  noSubjectDeclared, outsideSubset, undeclaredVocabulary,
   type EngineRoute, type SeamRefusal,
 } from "./refusal.ts";
 import { variable } from "./algebra.ts";
@@ -643,9 +643,10 @@ class Vocabulary {
   /**
    * The model whose graph this IRI is.
    *
-   * An IRI inside the namespace naming an undeclared model is `unknown-vocabulary`, the same cause
-   * `admit`'s own `checkScope` reports for an undeclared model — a user who misspelled a graph and
-   * one who misspelled a model should not be told two different things about one mistake.
+   * An IRI inside the namespace naming an undeclared model goes through the same rung `admit`'s own
+   * `checkScope` uses — a user who misspelled a graph and one who misspelled a model should not be
+   * told two different things about one mistake. That rung carries §7.6's precedence, so this site
+   * cannot report a bare absence where a `purpose.omits` recorded a decision either.
    */
   model(graph: Iri): string {
     if (!graph.value.startsWith(this.#graphPrefix)) {
@@ -655,7 +656,7 @@ class Vocabulary {
     }
     const id = decodeURIComponent(graph.value.slice(this.#graphPrefix.length));
     if (!this.#system.models.has(id)) {
-      throw new RefusalSignal(unknownVocabulary("model", id,
+      throw new RefusalSignal(undeclaredVocabulary(this.#system, "model", id,
         `name a model this system declares, as the graph IRI's last segment. The query scoped ` +
         `itself to <${graph.value}>, which no declared model owns.`));
     }

@@ -651,6 +651,52 @@ test("an undeclared relation type refuses as unknown vocabulary, before any mode
   assert.deepEqual(refusal.missing, ["relation type 'ownz'"]);
 });
 
+/** A model that declares what it leaves out, so the text path can reach §7.6's omission rung. */
+const omittingSystem = (): CanonicalSystem => build({
+  "relation-types": { calls: { description: "d", composition: { path: "allowed" } } },
+  entities: { a: null, b: null },
+  models: {
+    one: {
+      purpose: {
+        question: "Which services may call which others?",
+        represents: ["permitted invocation"],
+        omits: ["observed call frequency", "encryption in transit"],
+      },
+      relations: [{ from: "a", to: "b", type: "calls" }],
+    },
+  },
+});
+
+test("a relation-type IRI the model declares omitted refuses as a decision, not a misspelling", () => {
+  // §7.6's within-subject ruling, reached through SPARQL TEXT. The cause the seam used to report
+  // here was `unknown-vocabulary`, which is true and reads as a typo — so a reader who asked the
+  // engine the same question heard "the model decided not to represent this" and a reader who asked
+  // SPARQL went hunting a spelling mistake that does not exist.
+  const refusal = refusalOf(translate(omittingSystem(),
+    `${PREFIXES}SELECT ?x WHERE { GRAPH <${G_ONE}> { ent:a rt:call_frequency ?x } }`));
+  assert.equal(refusal.cause, "missing-distinction");
+  assert.deepEqual(refusal.missing, ["observed call frequency"]);
+  assert.match(refusal.prose, /There is no misspelling to hunt for/);
+
+  // The negative control, which is the boundary §8 draws: `rest` is a word the omission does not
+  // have, so the rung declines to guess and the honest absence stands.
+  const honest = refusalOf(translate(omittingSystem(),
+    `${PREFIXES}SELECT ?x WHERE { GRAPH <${G_ONE}> { ent:a rt:encryption_at_rest ?x } }`));
+  assert.equal(honest.cause, "unknown-vocabulary");
+  assert.deepEqual(honest.missing, ["relation type 'encryption_at_rest'"]);
+});
+
+test("scope mapping reaches the omission rung too, so one mistake stays one word", () => {
+  // `Namespace.model` and `admit`'s `checkScope` are one rung by intent — a user who misspelled a
+  // graph IRI and one who misspelled a model must not be told two different things. That intent is
+  // only kept if BOTH carry §7.6's precedence, so a graph IRI naming a model the purpose declared
+  // omitted says so here as well.
+  const refusal = refusalOf(translate(omittingSystem(),
+    `${PREFIXES}SELECT ?x WHERE { GRAPH <${modelGraphIri(SYS, "call_frequency").value}> { ?s rt:calls ?x } }`));
+  assert.equal(refusal.cause, "missing-distinction");
+  assert.deepEqual(refusal.missing, ["observed call frequency"]);
+});
+
 test("every refusal names what would license the question", () => {
   // `refusal.ts` makes `wouldLicense` required and non-empty: a refusal that only declines is a
   // dead end, while one naming the modeling claim the author would have to make is a direction.

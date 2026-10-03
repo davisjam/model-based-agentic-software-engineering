@@ -908,7 +908,10 @@ to the refusal sentence; a user who asks both and hears two explanations learns 
 not a sentence: `outcome: unlicensed` plus the cause as data, the distinction the model lacks, and the
 change that would make the question answerable. A refusal that only declines is a dead end.
 
-Three causes, which a caller MUST be able to tell apart without reading English:
+Three causes V33 introduces, which a caller MUST be able to tell apart without reading English. The
+vocabulary rung carries two more that predate this clause — a name nothing declares is
+`unknown-vocabulary`, and one some `purpose.omits` covers is `missing-distinction`, which §7.6 ranks
+above it:
 
 | Cause | What it means | What it offers |
 |---|---|---|
@@ -968,15 +971,25 @@ which makes what its endpoints name moot. The same endpoint on a `direct` query 
 **The ruling binds every rung, not the one a bug report named.** The engine has five places where a
 name fails to resolve — the relation type, a `from`/`to` endpoint, the focus of
 `predecessors`/`successors`, the focus of `components`, the focus of `containment` — and they route
-through one refusal builder so the rule holds at all five.
+through one refusal builder so the rule holds at all five. The SPARQL seam has four of its own: the
+relation type, a containment entity, V34's model scope, and the graph IRI that scope arrives as. They
+route through one builder too, and that builder CALLS the engine's coverage predicate rather than
+restating it. One predicate, because the first thing two copies of a matching rule produce is one
+interface saying "deliberately omitted" where the other says "not declared" — which is the defect
+this section exists to rule out, and which is how the seam came to lack the rung in the first place.
 
-⚠️ **As-built: the SPARQL seam does not yet apply this rule.** §7.5's V32 requires two interfaces over
-one model to decide a licensing question identically, "down to the refusal sentence."
-`src/sparql/licensing.ts` refuses an undeclared relation type or entity as `unknown-vocabulary` with
-no omission rung, so the same purposeful omission asked through SPARQL still reads as a lookup miss.
-The fix is the one this section describes, applied at that seam's two vocabulary refusals; until it
-lands, a reader who asks both interfaces hears two explanations, which is the thing V32 exists to
-prevent.
+**"Down to the refusal sentence" is literal, and it holds at every rung the two interfaces share.**
+The relation type and the containment entity are subjects both of them have, and both produce the
+same sentence byte for byte — the structural clause and the omission clause alike. The agreement test
+compares the two strings for EQUALITY rather than for a shared substring, because the failure it
+guards against is two explanations of one absence, and a substring match cannot see that.
+
+One seam rung has no counterpart to agree with: V34's model scope exists only in the SPARQL
+interface, since the engine and `validate.py` union across every model by construction and therefore
+have no model name to fail to resolve. The ruling still binds it — a scope naming a model nothing
+declares, where some purpose covers the name, refuses as `missing-distinction` and quotes the
+declaration — but the testable invariant there is the cause plus the named omission, because there is
+no second sentence in existence to match.
 
 ---
 
@@ -1007,10 +1020,10 @@ Checked, "cannot answer" becomes a derived claim with the same standing as every
 result.
 
 **`omits` is read at query time, not only at validation.** A declaration nothing consults is prose
-with a rule attached. So when a query names something the system does not declare, the engine
-consults every model's and machine's `omits` before refusing, and a covered need refuses with cause
-`missing-distinction` quoting the declaration (§7.6 rules the precedence). This is what makes
-Document Processing's §5.6 case answerable: the engine said *"relation type `cache_hit_frequency` is
+with a rule attached. So when a query names something the system does not declare, **both
+interfaces** consult every model's and machine's `omits` before refusing, and a covered need refuses
+with cause `missing-distinction` quoting the declaration (§7.6 rules the precedence). This is what
+makes Document Processing's §5.6 case answerable: the engine said *"relation type `cache_hit_frequency` is
 not declared by this system"*, which is true and reads as a typo, where the model had already
 recorded *"deliberately omits cache hit frequency"* — a modelling decision. Both facts now travel in
 one refusal, with the decision as the cause.

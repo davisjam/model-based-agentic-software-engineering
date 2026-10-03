@@ -24,9 +24,9 @@ export {
 } from "./licensing.ts";
 export {
   asEngineRefusal, isSupported, noSubjectDeclared, outsideSubset, routeToEngine,
-  SUPPORTED_CONSTRUCTS, unknownVocabulary, unlicensedByModel,
+  SUPPORTED_CONSTRUCTS, undeclaredVocabulary, unknownVocabulary, unlicensedByModel,
   type EngineRoute, type RefusalCause, type RouteReason, type SeamRefusal,
-  type SupportedConstruct,
+  type SupportedConstruct, type VocabularySubject,
 } from "./refusal.ts";
 export {
   variable,

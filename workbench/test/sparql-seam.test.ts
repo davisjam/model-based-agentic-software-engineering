@@ -1,18 +1,28 @@
 // The SPARQL seam: the licensing gate (V32) and the structured refusals (V33, V34).
 //
-// The agreement test is the one that matters, and it is third: the seam and `src/engine/graph.ts`
-// decide one licensing rule, so a disagreement between them is worse than either implementation
-// alone. The rest of the file guards the ways that decision can rot — a gate that refuses everything,
-// a refusal that declines without direction, a scope that acquires a default, and the collapse of
-// "the model declines" into "ask the other interface".
+// The agreement tests are the ones that matter, and they are fourth onward: the seam and
+// `src/engine/graph.ts` decide one licensing rule, so a disagreement between them is worse than
+// either implementation alone. The rest of the file guards the ways that decision can rot — a gate
+// that refuses everything, a refusal that declines without direction, a scope that acquires a
+// default, and the collapse of "the model declines" into "ask the other interface".
+//
+// Agreement on WHICH answer was never the whole of it. The v0.1 audit's DEFECT-3 was agreement on
+// the answer and disagreement on the REASON: a purposeful omission refused here as a lookup miss and
+// in the engine as a recorded decision, so a reader who asked both went hunting a typo that does not
+// exist. §7.6's omission rung is therefore swept too, over docable and over every shipped example,
+// and the sentence is compared by byte equality rather than by substring — the gap was two
+// explanations of one absence, and a substring match is blind to exactly that.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { runQuery } from "../src/engine/index.ts";
+import { parse } from "yaml";
+import { runQuery, runSavedQueries } from "../src/engine/index.ts";
+import { canonicalize } from "../src/ir/canonicalize.ts";
 import { GRAPH_FORMS, type GraphForm } from "../src/engine/types.ts";
 import {
   admit, directionsOf, licensesTraversal, traversalOf,
   type LicensedQuestion, type QueryScope, type SeamQuestion, type SubsetVerdict, type Traversal,
 } from "../src/sparql/index.ts";
+import { EXAMPLE_IDS, exampleText } from "../scripts/gen-example-coverage.ts";
 import type { CanonicalSystem } from "../src/ir/types.ts";
 import { build, docable } from "./engine-fixtures.ts";
 
@@ -116,10 +126,12 @@ function seamDecision(system: CanonicalSystem, form: GraphForm, relation: string
 
 test("the licensing decision agrees with src/engine/graph.ts on every form and relation type", () => {
   const s = docable();
-  // Two allowed types, one forbidden, and one the system does not declare at all. `ghost` is in the
-  // sweep because agreeing about a misspelled relation type is as load-bearing as agreeing about a
-  // forbidden one: both interfaces must reach for the same word.
-  const relations = ["may_invoke", "data_flow", "owns", "ghost"];
+  // Two allowed types, one forbidden, one the system does not declare at all, and one it declares
+  // OMITTED. `ghost` is in the sweep because agreeing about a misspelled relation type is as
+  // load-bearing as agreeing about a forbidden one: both interfaces must reach for the same word.
+  // `call_frequency` is the omission rung — `service-flow` declares `omits: [call frequency]`, and
+  // this seam used to call that a lookup miss while the engine called it a decision.
+  const relations = ["may_invoke", "data_flow", "owns", "ghost", "call_frequency"];
   const seen = new Set<string>();
   for (const relation of relations) {
     for (const form of GRAPH_FORMS) {
@@ -129,10 +141,143 @@ test("the licensing decision agrees with src/engine/graph.ts on every form and r
       seen.add(engine);
     }
   }
-  // The sweep must actually have exercised both refusals and the licensed case, or it agrees about
+  // The sweep must actually have exercised every refusal and the licensed case, or it agrees about
   // nothing. This is the assertion that makes the loop above a test rather than a formality.
-  assert.deepEqual([...seen].sort(),
-    ["licensed", "refused:composition-forbidden", "refused:unknown-vocabulary"]);
+  assert.deepEqual([...seen].sort(), [
+    "licensed", "refused:composition-forbidden", "refused:missing-distinction",
+    "refused:unknown-vocabulary",
+  ]);
+});
+
+// --------------------------------------------------------------------------------------------
+// The omission rung (§7.6) — the audit's DEFECT-3
+// --------------------------------------------------------------------------------------------
+
+/** The engine's refusal to a question naming `relation`, or null when it answered. */
+const engineRefusalFor = (s: CanonicalSystem, raw: unknown): { reason: string; prose: string } => {
+  const answer = runQuery(s, raw);
+  assert.ok(answer.refusal !== null, `the engine answered ${JSON.stringify(raw)}; expected a refusal`);
+  return { reason: answer.refusal.reason, prose: answer.refusal.prose };
+};
+
+/** The seam's refusal to the same question, or a failure if it licensed one. */
+const seamRefusalFor = (s: CanonicalSystem, question: SeamQuestion) => {
+  const admission = admit(s, question);
+  assert.equal(admission.kind, "refused", `the seam admitted ${JSON.stringify(question)}`);
+  if (admission.kind !== "refused") throw new Error("unreachable");
+  return admission.refusal;
+};
+
+test("a purposeful omission refuses the same way through both interfaces, down to the sentence", () => {
+  // The defect this closes: `cache_hit_frequency` asked of the engine said "the model decided not to
+  // represent this" and asked of this seam said "that name is not declared", which reads as a typo.
+  // One model, two interfaces, two different answers to WHY it cannot be answered — the thing V32
+  // exists to prevent, open at the seam while §7.6 carried the warning.
+  //
+  // Two rungs, because both interfaces have both subjects. docable's `service-flow` declares
+  // `omits: [call frequency]` and its `worker` machine declares `omits: [queue depth]`.
+  const s = docable();
+
+  const rel = engineRefusalFor(s,
+    { kind: "graph", quantifier: "exists", graph: { form: "direct", relation: "call_frequency", from: "api", to: "gateway" } });
+  const relSeam = seamRefusalFor(s, relational("call_frequency", "direct"));
+  assert.equal(rel.reason, "missing-distinction", "fixture drift: the engine should reach the rung");
+  assert.equal(relSeam.cause, "missing-distinction");
+  assert.equal(relSeam.reason, rel.reason);
+  assert.deepEqual(relSeam.missing, ["call frequency"], "the omission is quoted in the author's words");
+  assert.deepEqual(relSeam.models, ["service-flow"], "and says where the distinction would go");
+  // "Down to the refusal sentence" (§7.5, V32), taken literally. This is byte equality and not a
+  // substring match, because the gap it closes was two different EXPLANATIONS of one absence.
+  assert.equal(relSeam.prose, rel.prose);
+
+  const ent = engineRefusalFor(s,
+    { kind: "graph", quantifier: "exists", graph: { form: "containment", relation: "owns", to: "queue_depth" } });
+  const entSeam = seamRefusalFor(s,
+    { kind: "containment", entity: "queue_depth", scope: UNION, subset: WITHIN });
+  assert.equal(ent.reason, "missing-distinction");
+  assert.equal(entSeam.cause, "missing-distinction");
+  assert.deepEqual(entSeam.missing, ["queue depth"]);
+  assert.equal(entSeam.prose, ent.prose);
+
+  // And the remedy is a DECISION, not a lookup. The other three causes send the author to a
+  // declaration; this one sends them to the question of what the model is for.
+  assert.match(entSeam.wouldLicense, /decide whether this model should represent 'queue depth'/);
+  assert.match(entSeam.wouldLicense, /purpose\.omits/);
+});
+
+test("the seam declines to guess, on exactly the boundary §8 draws", () => {
+  // The negative control, and the reason there must be ONE coverage predicate: the rule is word
+  // coverage in one direction, so `encryption_at_rest` against `omits: [encryption in transit]`
+  // contributes `rest`, which the omission does not have. A looser rule would tell an author the
+  // model decided something it never considered, which is the same wrong-reason defect inverted.
+  //
+  // `src/engine/omission.ts` owns that predicate and this seam calls it rather than carrying a
+  // second copy. A second copy is how the engine and this seam drifted apart to begin with.
+  const s = docable();
+  const uncovered = engineRefusalFor(s,
+    { kind: "graph", quantifier: "exists", graph: { form: "direct", relation: "encryption_at_rest", from: "api", to: "gateway" } });
+  const seam = seamRefusalFor(s, relational("encryption_at_rest", "direct"));
+  assert.equal(uncovered.reason, "unknown-vocabulary", "the omission must not cover this need");
+  assert.equal(seam.cause, "unknown-vocabulary");
+  assert.equal(seam.prose, uncovered.prose, "the honest absence is one sentence too");
+
+  // And the covered spelling of the SAME omission does fire, so the control above is a boundary
+  // rather than a rung that never runs.
+  assert.equal(seamRefusalFor(s, relational("encryption_in_transit", "direct")).cause,
+    "missing-distinction");
+});
+
+test("the omission rung reaches the scope subject too, which the engine has no counterpart for", () => {
+  // §7.6: "the ruling binds every rung, not the one a bug report named." The seam has three rungs
+  // where a name fails to resolve and the audit named two; V34's model scope is the third, and it is
+  // the one asymmetry worth recording — the engine and validate.py union across every model by
+  // construction, so neither has a model name to fail to resolve. There is therefore no engine
+  // sentence to match here, and the invariant is the cause plus the quoted omission.
+  const s = docable();
+  const scoped = seamRefusalFor(s, relational("may_invoke", "direct",
+    { scope: { kind: "model", model: "queue_depth" } }));
+  assert.equal(scoped.cause, "missing-distinction");
+  assert.deepEqual(scoped.missing, ["queue depth"]);
+  assert.match(scoped.prose, /model 'queue_depth' is not declared by this system/);
+  assert.match(scoped.prose, /deliberately omits 'queue depth'/);
+
+  // A scope that names nothing anybody spoke about still reports the bare absence.
+  assert.equal(seamRefusalFor(s, relational("may_invoke", "direct",
+    { scope: { kind: "model", model: "ghost-model" } })).cause, "unknown-vocabulary");
+});
+
+test("no shipped example's saved graph query gets two different refusal causes", () => {
+  // The audit's defect was found in one query of one example. This is the sweep that would have
+  // found it: every saved graph query of every shipped example, asked of both interfaces, compared
+  // on the CAUSE. Two of them refuse as `missing-distinction` (document-processing's flagship §5.6
+  // cache question and message-bus's `observed_delivery`), and before this landed the seam called
+  // both of those lookup misses.
+  let compared = 0;
+  const causes = new Set<string>();
+  for (const id of EXAMPLE_IDS) {
+    const system = canonicalize(parse(exampleText(id)));
+    for (const [qid, answer] of runSavedQueries(system)) {
+      const raw = system.queries.get(qid)?.raw;
+      const q = raw as { kind?: string; graph?: { form: GraphForm; relation: string; from?: string; to?: string } };
+      if (q?.kind !== "graph" || q.graph === undefined) continue;
+      const g = q.graph;
+      const question: SeamQuestion = g.form === "containment"
+        ? { kind: "containment", entity: g.to ?? g.from ?? "", scope: UNION, subset: WITHIN }
+        : relational(g.relation, traversalOf(g.form));
+      const admission = admit(system, question);
+      // The engine's endpoints are a subject the seam does not have (`parse.ts` cannot produce one),
+      // so an engine refusal ABOUT an endpoint would be a licensed question here. No shipped example
+      // has one; if one lands, this is the assertion that says so rather than quietly excusing it.
+      const engine = answer.result.outcome === "unlicensed" ? String(answer.refusal?.reason) : "answered";
+      const seam = admission.kind === "refused" ? admission.refusal.reason : "answered";
+      assert.equal(seam, engine, `${id}/${qid} ('${g.form}'): the engine says '${engine}', the seam says '${seam}'`);
+      causes.add(engine);
+      compared += 1;
+    }
+  }
+  assert.ok(compared > 0, "the sweep compared nothing; a vacuous agreement test is the defect itself");
+  assert.ok(causes.has("missing-distinction"),
+    `no shipped example exercised the omission rung, so this sweep proves nothing about it: ${[...causes]}`);
 });
 
 test("the gate reads the engine's own composing-form set, so neither list can drift", () => {
@@ -240,13 +385,19 @@ test("a scope naming an undeclared model is refused, not quietly widened to the 
 // Task 3 — structured refusals
 // --------------------------------------------------------------------------------------------
 
-test("the three causes are distinguishable as data, with no string matching", () => {
+test("the causes are distinguishable as data, with no string matching", () => {
   const s = docable();
 
   const declined = admit(s, relational("owns", "composing"));
   const outside = admit(s, relational("may_invoke", "composing",
     { subset: { kind: "outside-subset", construct: "SERVICE" } }));
   const behavioral = admit(s, { kind: "behavioral", asked: "can the document reach published?" });
+
+  // The vocabulary rungs are two causes and not one, and the whole of DEFECT-3 is that a caller must
+  // be able to tell them apart without reading English: `unknown-vocabulary` sends a reader to a
+  // spell-check and `missing-distinction` sends them to a modelling decision.
+  assert.equal(seamRefusalFor(s, relational("ghost", "direct")).cause, "unknown-vocabulary");
+  assert.equal(seamRefusalFor(s, relational("call_frequency", "direct")).cause, "missing-distinction");
 
   // Cause 3 is a different ARM of the union, not a third value of `cause`. That is the point of
   // keeping it separate: "the model declines" and "ask the other interface" are different facts, and
@@ -290,6 +441,11 @@ test("every refusal the gate can produce carries a non-empty wouldLicense", () =
     relational("may_invoke", "direct", { subset: { kind: "outside-subset", construct: "SERVICE" } }),
     relational("may_invoke", "direct", { scope: { kind: "model", model: "ghost-model" } }),
     { kind: "containment", entity: "ghost-entity", scope: UNION, subset: WITHIN },
+    // The omission rung, at all three of its subjects. Its remedy is a decision rather than a
+    // declaration, so it is the one most likely to land as a placeholder.
+    relational("call_frequency", "direct"),
+    relational("may_invoke", "direct", { scope: { kind: "model", model: "queue_depth" } }),
+    { kind: "containment", entity: "queue_depth", scope: UNION, subset: WITHIN },
   ];
   for (const question of refusals) {
     const admission = admit(s, question);
