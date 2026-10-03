@@ -611,3 +611,69 @@ failures, one on each side of the page/test line.
 The number §8 owed is now measured: the pristine page passes **39** axe rules (the floor at the
 assertion stays 20, the loaded states pass 47), and the SH-I1 mount matrix, the canvas-placement
 assertion and both keyboard pins from the UNMEASURED list above all ran and held.
+
+**The Learn page was audited for the first time, and the gate now covers every served page.**
+Appended by the axe-coverage wave. `learn.html` landed with a smoke test that proves it boots and
+with no conformance measurement at all: `axe.test.mjs` opened `index.html` and nothing else. The
+requirement was never narrower — FR-A11Y-1 says "the entire MAGE Workbench" — so this was a gap
+between the requirement and its enforcement, not a scope the project had chosen. Three states of
+the gallery are now audited (the landing paint; a node selected in every figure, which is what makes
+the renderer emit the legend and glyph that sit on bare ground; and the text twins expanded, since
+axe does not audit what a closed `<details>` hides), and the suite is parameterised over a page
+list rather than forked per page.
+
+**Two real defects, both drained, so the gate landed hard.**
+
+- **`duplicate-id-aria`, CRITICAL, in every Learn state.** The renderer derives the SVG's
+  `title`/`desc` ids from the subject (`mage-title-<subjectId>`). That holds for a standalone export
+  and on the workspace page, which draws one subject at a time. The gallery draws four figures and
+  two of them draw `data-policy`, so both SVGs carried the same pair of ids and both
+  `aria-labelledby` references resolved to the FIRST figure's nodes. The computed name was
+  coincidentally right, because the two figures share a subject; nothing would have made it right
+  for a pair that did not. Fixed at the embedder — a page that drops N standalone SVGs into one
+  document owns uniqueness within it.
+- **`color-contrast`, SERIOUS, light theme only.** Learn is the first page to style prose links and
+  pointed them at `--accent`. That token is a FILL: `index.html` puts `--accent-ink` on top of it
+  and never uses it as ink. As ink on `--bg` it measures **4.47:1**, three hundredths under AA, on
+  the "See <type>s" back link. Prose links now take a `--link` token carrying the values
+  `assets/mage-tokens.css` already ships as `--mage-link` — 6.5:1 light, a lifted terracotta in
+  dark. `index.html` needed no change.
+
+**The id defect belongs to the shared renderer, and this wave only contained it.** `src/render/`
+was out of scope, so the fix re-scopes the ids after paint. The minting itself —
+`src/render/svg.ts`, deriving a document-global ARIA-referenced id from author-supplied text — is
+latent on `index.html` for exactly as long as that page draws one subject at a time, and the right
+pattern already sits one file away: `ariaId` in `src/ui/render-dom.ts` counts instead of deriving,
+for this precise reason, and says so in its comment. A renderer wave should take it.
+
+**The diagram contrast measurement now runs on both pages.** `learn.html` already pins
+`figure svg`'s ground to `#ffffff` with the same 1.4.3 reasoning the workspace page carries, and it
+is right: all four figures measure **8.55:1 at worst** in both themes. The probe's root selector
+became a parameter (one `#canvas` versus four `.canvas` hosts), and it asserts that the number of
+SVGs it measured equals the number of hosts the page rendered — a selector matching only the first
+of four would otherwise pass every contrast assertion while measuring a quarter of the page.
+
+**A number §8 owed, re-measured and corrected: the workspace's loaded states pass 48 axe rules, not
+47.** Nothing in this wave touched that page. A sibling wave made one more rule applicable, and the
+line above is left as the older run's measurement with this as its correction, per the rule that
+the dated record stands.
+
+**The port constants were a FALSE-GREEN hazard, and they are gone.** Reported by a concurrent
+agent, measured on `main`: a concurrent `npm run test:a11y` reported 8 passing and 0 failing, where
+the keyboard file alone declares 22 tests; the re-run surfaced `EADDRINUSE 127.0.0.1:8145`. A
+`before` that dies on the bind can take its whole file's tests out of the count while the runner
+prints success — so the collision reads as a passing gate that measured less. Per-tier constants
+separated the files inside one process and did nothing about concurrent processes, which is this
+repo's normal state. `startServerOnFreePort` binds port 0 and reads the address back; two
+simultaneous runs of the tier now both complete 37/37 on four different OS-assigned ports.
+`workbench.test.mjs` still uses the 8143 default and is the one remaining instance.
+
+**Two residues, named rather than left to be rediscovered.**
+
+- **Learn's figure status line is not announced.** Selecting a node writes the accessible twin's
+  description of it into a plain `<p>`, which a screen-reader user never hears; the same `<p>` is
+  also written on `pointerenter`, so a naive `aria-live` would make a low-vision mouse user's hover
+  chatter. The fix is a `role="status"` region written on *change* only, and it is a behaviour
+  change this wave did not measure. FR-A11Y-3 is the pattern to follow.
+- **`header nav a[aria-current="page"]` measures 4.55:1.** Bold ochre on `--panel`. It passes, by
+  five hundredths, and is reported because the margin is a hair rather than a decision.
