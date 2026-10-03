@@ -15,6 +15,16 @@ const common = {
   format: "esm",
   target: "es2022",
   sourcemap: true,
+  // MINIFIED, measured rather than assumed. The SPARQL wave reported that minifying recovers most of
+  // its 55 KB gzipped delta -- 98220 -> 137064 for the same before/after where the unminified build
+  // read 141349 -> 196422 -- and left it as "one flag in a file this wave does not own". This is that
+  // file and that flag. Every visitor pays the main bundle on first load, so the recovery is not a
+  // micro-optimisation; it is most of a feature's cost handed back.
+  //
+  // Safe because the gates check the SERVED artifact rather than the source: the browser tier loads
+  // the built page in Chromium and the a11y tier runs axe over it, so a minifier that broke a name
+  // the page depends on would fail those rather than ship.
+  minify: true,
   logLevel: "info",
 };
 
