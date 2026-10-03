@@ -152,6 +152,18 @@ re-deriving these, so they live here:**
   corollary for whoever holds the tree: a live unit's staged work sits in the SAME index you are
   about to commit from, which is the second reason `git add -A` is banned here — stage named paths,
   or you will author a commit containing another writer's in-flight work.
+- **An agent killed mid-task has usually FINISHED more than its last line says — verify and commit on
+  its behalf before redoing the work.** Two waves died to a session limit on 261002 with zero
+  commits, each ending on a line like "Now the node-tier test." Both were in fact COMPLETE,
+  including the tests they said they were about to write: `tsc --noEmit` was clean and the suites
+  were green at the recovered trees (634 and 642). The recovery is cheap and the rework is not, so
+  the order is: probe the worktree (`git status --porcelain` for the surface, `git diff --cached`
+  for anything staged), run the FULL gate set yourself at that tree, then stage named paths and
+  commit on the agent's behalf — noting in the message that the orchestrator recovered it and what
+  was verified, since the commit is not the author's own claim. Only redo work the gates reject. A
+  dead agent's closing sentence describes its INTENT at the moment the process stopped, which is a
+  statement about its plan and not about the disk.
+
 - **Drafting parallelizes; infrastructure serializes.** Split a big job into (a) SEQUENTIAL INFRASTRUCTURE —
   `catalog.py` / `book/build_book.py` / `book/book_typst.py` renderers, packers, migrations (shared
   files, one writer) — and (b) PARALLEL CONTENT DRAFTING — prose, blurbs, notes — that writes to DRAFT files
