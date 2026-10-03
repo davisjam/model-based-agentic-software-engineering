@@ -12,6 +12,10 @@ import { NEW_SYSTEM, Workspace } from "../src/app/services.ts";
 import type { Ports, SparqlAnswer } from "../src/app/services.ts";
 import { CAPABILITIES, checkAffordanceParity } from "../src/app/capabilities.ts";
 import { ExampleCatalog, UnknownExampleError } from "../src/app/examples.ts";
+// The configuration-space readout, imported for its WORDS. The module touches the DOM only inside
+// `mountSystemBrowser`, so the two describers are reachable from a node tier with no browser.
+import { describeExploreResult, describeSpaceSummary } from "../src/ui/shell/browser.ts";
+import type { Space } from "../src/ui/shell/browser.ts";
 import type { AssetReader } from "../src/app/examples.ts";
 import { createAgentApi } from "../src/app/agent-api.ts";
 import { checkPropertyGrounding } from "../src/app/properties.ts";
@@ -975,18 +979,114 @@ test("Q9: SPARQL and the budget escalation are spellings of `query`, and explora
     "`analyze` must not claim an exploration affordance: re-running saved questions is not walking a space");
 
   const explore = CAPABILITIES.find((c) => c.id === "explore-space");
-  assert.ok(explore, "exploration must be declared, even though its human side is absent");
+  assert.ok(explore, "exploration must be declared: a capability the registry hides cannot violate UX-I1");
   assert.equal(explore.service, "workspace.explore");
   assert.ok(explore.machine.some((a) => a.at === "window.mage.analysis.explore" && a.status === "wired"));
+  // Its own row AND both sides of it. The row was one-sided for a wave; a human control that ends at
+  // the same `workspace.explore` is what closed it, which is the only closure UX-I1 accepts — the
+  // alternative, folding the capability into `analyze`, is what the assertions above forbid.
+  assert.ok(explore.human.some((a) => a.at === "system-browser.explore" && a.status === "wired"),
+    "exploration needs a human affordance over its own service, not a borrowed one");
 
-  // UX-I1 therefore reports one, and reports exactly that one. A count is not the guard — it moves
-  // legitimately the moment a capability is added — so what is checked is WHICH rows are whole. The
-  // three below were the last to be wired and the only ones ever violating on both sides, so their
-  // presence is what the rest of the list is worth.
-  assert.deepEqual(checkAffordanceParity().map((v) => v.capability), ["explore-space"],
+  // UX-I1 therefore reports nothing. A count is not the guard — it moves legitimately the moment a
+  // capability is added — so what is checked is WHICH rows are whole. The three below were the last
+  // to be wired on both sides at once, so their presence is what the rest of the list is worth.
+  assert.deepEqual(checkAffordanceParity().map((v) => v.capability), [],
     `UX-I1: ${checkAffordanceParity().map((v) => `${v.capability} ${v.problem}`).join("; ")}`);
   for (const id of ["create-model", "delete-model", "add-note"] as const) {
     assert.ok(CAPABILITIES.some((c) => c.id === id),
       `${id} is gone from the registry — a short violation list reached by deletion is not progress`);
+  }
+});
+
+// --------------------------------------------------------------------------------------------
+// The configuration-space readout's WORDS.
+//
+// `explore-space`'s human affordance renders a `SpaceSummary`, and the one thing that readout must
+// never do is let an exhausted walk and a bounded one read the same. The count means "the space is
+// N" after a complete walk and "at least N" after one that hit its ceiling, and a reader who cannot
+// tell them apart has been handed a false claim by a control that reported honestly. That makes the
+// wording semantic, so it is pinned here rather than only in a browser run.
+// --------------------------------------------------------------------------------------------
+
+/** A summary, with the one field each test varies. */
+const summary = (over: Partial<Space>): Space => ({
+  statesExplored: 24, complete: true, stopReason: "complete", deadEnds: 3, notes: [], limit: 1_000,
+  ...over,
+});
+
+test("a complete walk reports the space's SIZE; a bounded one reports a floor", () => {
+  const complete = describeSpaceSummary(summary({}));
+  assert.match(complete, /^Complete/, "the exhausted/bounded distinction must be the first word, not a clause");
+  assert.match(complete, /24 reachable configuration\(s\)/);
+  assert.doesNotMatch(complete, /at least/, "a finished walk knows the size, so hedging it understates the answer");
+
+  const bounded = describeSpaceSummary(summary({ complete: false, stopReason: "state-limit", statesExplored: 1_000 }));
+  assert.match(bounded, /^Bounded/);
+  assert.match(bounded, /at least 1000 configuration\(s\)/,
+    "a bounded walk must report a FLOOR: the same number read as a total is a false claim");
+  assert.match(bounded, /ceiling was 1000/, "the bound that bit must be named, or the floor has no explanation");
+  assert.match(bounded, /true size is unknown/);
+  // The sharp end: the two answers must not be confusable by a reader skimming for the number.
+  assert.notEqual(complete.split(" ")[0], bounded.split(" ")[0]);
+});
+
+test("dead ends and disclosed rewrites both reach the reader", () => {
+  // A dead end is a configuration with no outgoing step, which is a behavioural fact about the model
+  // and not an artefact of the walk. And a rewrite the explorer disclosed is a semantic decision it
+  // made on the model's behalf -- dropping it is the quiet-decision failure the project refuses.
+  const text = describeSpaceSummary(summary({ deadEnds: 7, notes: ["A step was not taken: it would leave x's declared domain."] }));
+  assert.match(text, /7 with no outgoing step/);
+  assert.match(text, /would leave x's declared domain/,
+    "a disclosed rewrite is a semantic decision and must not be dropped from the readout");
+});
+
+test("every stop reason has a sentence, and every reply arm has one too", () => {
+  // The closed sets, walked. A stop reason with no sentence reaches a reader as a bare identifier;
+  // a reply arm with no sentence reaches them as a blank, which is the silent-failure mode the
+  // Worker's reply union was made closed to prevent.
+  const reasons: readonly Space["stopReason"][] =
+    ["complete", "state-limit", "config-hit", "edge-hit", "dead-end-hit", "initial-avoided"];
+  for (const stopReason of reasons) {
+    const text = describeSpaceSummary(summary({ stopReason }));
+    assert.ok(text.length > 60, `stop reason '${stopReason}' produced no explanation: "${text}"`);
+    assert.doesNotMatch(text, new RegExp(`\\b${stopReason}\\b`),
+      `stop reason '${stopReason}' reached the reader as its own identifier rather than as a sentence`);
+  }
+  assert.match(describeExploreResult({ status: "failed", messages: ["no worker is wired."] }),
+    /did not run: no worker is wired\./);
+  assert.match(describeExploreResult({ status: "stale" }), /Run it again/);
+  assert.match(describeExploreResult({ status: "cancelled" }), /cancelled/);
+  // And the arms that belong to the Worker's other two analyses: reported as a routing defect, not
+  // rendered as nothing.
+  assert.match(describeExploreResult({ status: "ok-many", results: new Map() }),
+    /not a configuration-space summary/);
+});
+
+test("over a system that HAS machines, the readout a person sees is a real walk's answer", async () => {
+  // The composition, end to end, over the real worker thread: a machine-bearing example in, the
+  // Worker's `SpaceSummary` out, and the sentence the System Browser's readout renders from it. The
+  // two tests above pin the words against constructed summaries, which is where the exhausted-versus-
+  // bounded distinction is checked exhaustively; this one pins that the words describe a WALK — a
+  // readout that formats correctly over a value no explorer produces is a readout of nothing.
+  const thread = onThread();
+  try {
+    const ws = new Workspace({ ...ports, analysis: thread.client });
+    assert.ok(ws.load(readFileSync("examples/worker-queue/system.mage.yaml", "utf8")).ok,
+      "the worker-queue example must load — it is the one with state machines");
+    const out = await ws.explore();
+    assert.equal(out.status, "ok-space",
+      `a system with machines must yield a space: ${JSON.stringify(out)}`);
+    if (out.status !== "ok-space") return;
+
+    const sentence = describeExploreResult(out);
+    assert.match(sentence, /^(Complete|Bounded)\b/, `the readout hedges on a real walk: "${sentence}"`);
+    assert.ok(out.space.statesExplored > 1,
+      `the walk found ${out.space.statesExplored} configuration(s) — a space of one is not a behaviour `
+      + "and this test would be pinning the readout over an empty answer");
+    assert.ok(sentence.includes(String(out.space.statesExplored)),
+      `the sentence does not carry the count the walk reported: "${sentence}"`);
+  } finally {
+    thread.stop();
   }
 });
