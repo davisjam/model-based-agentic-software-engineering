@@ -442,6 +442,62 @@ export async function reflowAt(page, width, height = 512) {
 }
 
 /**
+ * Do any two landmark regions occupy the same pixels?
+ *
+ * The precondition the comparison below rests on, promoted to its own measurement. `focusOrderAt`
+ * derives reading order from where controls SIT, which is only meaningful if the regions holding
+ * them are laid out one after another. When two are not, every number it returns is a report about
+ * a broken page in the vocabulary of the keyboard.
+ *
+ * It happened: `#edit` and `#system-browser` both carried `grid-area: extra` against a single
+ * `"extra extra extra"` row, under a comment claiming they would "stack inside their own area".
+ * Two grid items assigned to ONE named area do not stack -- they share the cell. The Edit forms
+ * were painted over the System Browser's tables in every loaded state at every width, and what the
+ * probe reported was "40 focus-order inversions at 320px", which is both true and the least useful
+ * sentence available about it.
+ *
+ * Direct geometry rather than an inference from the walk: a sibling check that looked for
+ * cross-region inversions on a one-column page needs the page to BE one column, and this one never
+ * quite is -- two header buttons share a row at 320px. Comparing region boxes needs no such luck,
+ * and reads the same at every width.
+ */
+export async function overlappingRegionsAt(page, width, height = 900) {
+  await page.setViewport({ width, height, deviceScaleFactor: 1 });
+  return page.evaluate(() => {
+    const boxes = [];
+    for (const el of document.querySelectorAll("header, nav, main, aside, footer, section")) {
+      // Only SIBLING regions: a region nested inside another is contained by construction, and
+      // flagging that would report every well-formed document as broken.
+      if (el.closest("[hidden]") !== null) continue;
+      const cs = getComputedStyle(el);
+      if (cs.display === "none" || cs.visibility === "hidden") continue;
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) continue;
+      boxes.push({
+        path: el.id !== "" ? `#${el.id}` : el.tagName.toLowerCase(),
+        parent: el.parentElement, el,
+        top: r.top + window.scrollY, bottom: r.bottom + window.scrollY, left: r.left, right: r.right,
+      });
+    }
+    const overlaps = [];
+    for (let i = 0; i < boxes.length; i += 1) {
+      for (let j = i + 1; j < boxes.length; j += 1) {
+        const [a, b] = [boxes[i], boxes[j]];
+        if (a.parent !== b.parent) continue;
+        if (a.el.contains(b.el) || b.el.contains(a.el)) continue;
+        const dy = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+        const dx = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+        // A one-pixel touch is a rounded border, not an overlap.
+        if (dy > 1 && dx > 1) {
+          overlaps.push(`${a.path} and ${b.path} share ${Math.round(dx)}x${Math.round(dy)}px`);
+        }
+      }
+    }
+    return { regions: boxes.length, overlaps };
+  });
+}
+
+/**
  * D-2: the tab order against the order a sighted reader's eye takes, at one viewport.
  *
  * Reading order is derived from geometry, not assumed: the stops are grouped into ROWS by vertical
@@ -477,10 +533,57 @@ export async function focusOrderAt(page, width, height = 900, { max = 200 } = {}
       if (e === null || e === document.body) return null;
       e.scrollIntoView({ block: "nearest" });
       const r = e.getBoundingClientRect();
+      // Every scroll offset between this element and the document, so a position does not depend on
+      // where the walk happened to have scrolled when it arrived.
+      //
+      // `window.scrollY` alone is NOT enough, and the gap is not academic: the shell's `#nav` rail
+      // is `max-height: 80vh; overflow-y: auto` over 1571px of content, and focusing a link inside
+      // it scrolls the RAIL, not the page. `getBoundingClientRect` then reports where that link sits
+      // in the rail's VIEWPORT, which moves under the walk -- the seventeen rail stops came back
+      // with tops 217, 345, 473, 601, 693, 805, then 460, 548, 612, 724, 759, then 472 ... a column
+      // of links in one straight line, measured as a zig-zag [measured, 1025px]. Reading order
+      // derived from those is derived from the walk's own scrolling. Adding each ancestor's
+      // `scrollTop` back recovers the position in the unscrolled layout, which is what a reader
+      // scrolling that rail actually sees: 217, 345, 473, 601, 693, 805, 870, 958, 1022, 1134 ...
+      // monotonic, one column, zero inversions among themselves.
+      //
+      // The document scroller is excluded from the sum because `window.scrollY` already carries it;
+      // adding `documentElement.scrollTop` too would double it.
+      let scrollUp = 0; let scrollLeft = 0; let insideScrolled = false;
+      for (let n = e.parentElement; n !== null && n !== document.documentElement && n !== document.body;
+        n = n.parentElement) {
+        if (n.scrollTop !== 0 || n.scrollLeft !== 0) insideScrolled = true;
+        scrollUp += n.scrollTop; scrollLeft += n.scrollLeft;
+      }
       return {
         id: e.id, tag: e.tagName.toLowerCase(),
+        // A name for an element with no id. `a#` and `summary#` identify nothing, and the walk is
+        // full of both -- the rails render id-less links. An inversion naming two of them is a
+        // finding nobody can act on, and reads exactly like probe defect #4 (a selector that matched
+        // the wrong element) to the next person who meets it.
+        label: e.id !== "" ? `${e.tagName.toLowerCase()}#${e.id}`
+          : `${e.tagName.toLowerCase()}[${(e.textContent ?? "").trim().replace(/\s+/g, " ").slice(0, 32)
+          || e.getAttribute("aria-label") || e.getAttribute("href") || "?"}]`,
+        insideScrolled,
+        // The landmark this control lives in. A multi-column shell lays its regions out side by
+        // side and tabs through them one WHOLE region at a time, so a row-by-row eye scan
+        // interleaves three columns that the keyboard visits in series. Those pairs are a property
+        // of the column layout; a pair INSIDE one region is a property of that region's own
+        // source order, which is what D-2 is about. Counting them together produces one number that
+        // answers neither question -- see `inversionsWithinRegion` below.
+        // LANDMARKS only -- not `form` or `fieldset`. The grouping has to be coarse enough that
+        // D-2's own finding stays INSIDE one region: the Edit section's eleven forms are eleven
+        // `<fieldset>`s in one `auto-fit` grid, and their divergence is a pair taken from two
+        // different cells. Group by fieldset and every D-2 inversion is "cross-region" and the
+        // split measures nothing [measured: within-region went to 0 at every width].
+        region: (() => {
+          const host = e.closest("header, nav, main, aside, footer, section");
+          if (host === null) return "-";
+          return host.id !== "" ? `#${host.id}` : host.tagName.toLowerCase();
+        })(),
         // Page coordinates, so a stop's position does not depend on where the walk scrolled to.
-        top: Math.round(r.top + window.scrollY), left: Math.round(r.left + window.scrollX),
+        top: Math.round(r.top + window.scrollY + scrollUp),
+        left: Math.round(r.left + window.scrollX + scrollLeft),
         h: Math.round(r.height), w: Math.round(r.width),
         // Chromium puts a keyboard-scrollable container in the tab order when it holds no focusable
         // child, so a tab walk contains stops that are not controls: a table's `overflow-x` wrapper,
@@ -494,7 +597,7 @@ export async function focusOrderAt(page, width, height = 900, { max = 200 } = {}
       };
     });
     if (here === null) break;
-    const key = `${here.tag}#${here.id}@${here.top},${here.left}`;
+    const key = `${here.label}@${here.top},${here.left}`;
     if (stops.length > 0 && key === stops[0].key) break;          // wrapped
     stops.push({ ...here, key });
   }
@@ -514,11 +617,13 @@ export async function focusOrderAt(page, width, height = 900, { max = 200 } = {}
 
   const tabIndexOf = new Map(controls.map((s, i) => [s.key, i]));
   const inversions = [];
+  const withinRegion = [];
   for (let i = 0; i < reading.length; i += 1) {
     for (let j = i + 1; j < reading.length; j += 1) {
       if (tabIndexOf.get(reading[i].key) > tabIndexOf.get(reading[j].key)) {
-        inversions.push(`${reading[i].tag}#${reading[i].id} is read before `
-          + `${reading[j].tag}#${reading[j].id} but tabbed after it`);
+        const pair = `${reading[i].label} is read before ${reading[j].label} but tabbed after it`;
+        inversions.push(pair);
+        if (reading[i].region === reading[j].region) withinRegion.push(`${reading[i].region}: ${pair}`);
       }
     }
   }
@@ -528,11 +633,22 @@ export async function focusOrderAt(page, width, height = 900, { max = 200 } = {}
     // scrolls a pane, and one that is scrollable WITHOUT a tab stop is a 2.1.1 defect. Both
     // numbers belong in the record.
     containerStops: stops.filter((s) => s.container)
-      .map((s) => `${s.tag}#${s.id}${s.scrollable ? " (scrollable)" : ""}`),
+      .map((s) => `${s.label}${s.scrollable ? " (scrollable)" : ""}`),
+    // How many stops the scroll correction above applied to. A zero here means the correction did
+    // nothing at this width, so a reader of the numbers knows whether it is load-bearing -- it is
+    // at 1025px, where the rail scrolls, and is not at 320px, where nothing has a `max-height`.
+    stopsInsideScrolledContainer: stops.filter((s) => s.insideScrolled).length,
     multiStopRows: rows.filter((r) => r.length > 1).length,
     widestRow: Math.max(0, ...rows.map((r) => r.length)),
     inversions: inversions.length,
+    // The share of the divergence that is one region's own source order against its own layout --
+    // the question 2.4.3 asks of a region whose controls form one operable sequence. The remainder
+    // is cross-region, which on this shell means "the keyboard walks column 1 entirely before
+    // column 2, and an eye scanning rows does not". Both are reported; only this one is pinned,
+    // because only this one moves when a region's markup changes.
+    inversionsWithinRegion: withinRegion.length,
     examples: inversions.slice(0, 6),
-    order: stops.map((s) => `${s.tag}#${s.id}`),
+    withinRegionExamples: withinRegion.slice(0, 6),
+    order: stops.map((s) => s.label),
   };
 }

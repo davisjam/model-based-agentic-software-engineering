@@ -845,6 +845,97 @@ produced a specific, plausible, wrong finding first, and a later re-measurement 
 The pattern across all four: the probe was wrong, the tool reported it as a page defect, and the
 report was specific enough to have sent someone to edit a correct file.
 
+**The F-6 pin went red two waves later, and the page was what had broken.** Appended by the
+focus-order wave. The gate reported 54 tests, 53 passing, and one failure: `index.html`'s focus-order
+divergence measured `{320: 40, 368: 40, 672: 70, 976: 118, 1024: 115, 1025: 228}` against a pin of
+`{320: 0, 368: 0, 672: 29, 976: 77, 1024: 75, 1025: 75}`.
+
+**The first reading was wrong, and it is worth saying why it was plausible.** Probe defect #3 above
+records that a container stop in a reading-order comparison once produced **40 inversions at 320px on
+a page laid out in one column**. The failing run reported 40 at 320px. The tree had also grown
+navigation rails since the probe forked (`72d4816e`, before wave 1a), and a rail is
+`max-height: 80vh; overflow-y: auto` — exactly the shape #3 describes. Every visible sign said the
+classifier had stopped covering a new case. It had not: the three container stops at 320px are the
+tables' `overflow-x` wrappers, correctly classified and correctly excluded, and the forty inversions
+were between real controls.
+
+**What settled it was a static control.** One pass over the page at 320px with no focus, no tabbing
+and no scrolling, reading each focusable's document position directly. It returned the same numbers
+the tab walk did — `#explore-space-go` at y=6330, `#target-main` at 6307, `#add-note-go` at 9876 —
+so the walk's geometry was not fabricated and the question moved to the page. Asking why the last tab
+stop sits two thirds of the way up the document answers itself: `#edit` spans y=6095 for 3833px and
+`#system-browser` spans y=6079 for 15799px. **They overlap.**
+
+**A real defect, in every loaded state at every width: two regions shared one grid cell.** `#edit`
+and `#system-browser` both carried `grid-area: extra` against a single `"extra extra extra"` row,
+under a comment stating that "the transitional band stacks inside its own area, so two regions can
+share it". Two grid items assigned to one named area do not stack — they occupy the same cell and
+paint on top of each other. A screenshot at 1025px shows the Edit section's fieldsets rendered
+through the System Browser's prose and tables, both legible enough to be read as one ruined column.
+Each region now has its own row (`edit`, `browse`). Auto-placement was tried first and is wrong here:
+a full-width auto-placed item takes the first row with room, and `banner` and `review` are empty
+whenever the page carries no banner and no hypothesis bar, which put the Edit section above the
+rails.
+
+**With the page fixed, four of the six widths return exactly the pinned number.** 320 and 368 go to
+0, 976 to 77, 1024 to 75. So the 40 at one column were entirely the overlap, and the pin was not
+stale there — it was right, and the page had moved away from it.
+
+**Three probe defects, all surfaced by the same red gate, and the fifth, sixth and seventh of this
+record.**
+
+5. **A position measured through a scrolling ancestor.** The walk took `getBoundingClientRect().top +
+   window.scrollY`, which is the document position only when the document is the one thing that
+   scrolls. `#nav` holds 1571px of rails in a 718px box, so focusing a link scrolls the RAIL and the
+   rect reports where the link sits in the rail's own viewport — which moves under the walk. The
+   seventeen rail stops came back at 217, 345, 473, 601, 693, 805, then 460, 548, 612, 724, 759, then
+   472: a straight column of links measured as a zig-zag [measured, 1025px]. Reading order derived
+   from that is derived from the walk's own scrolling. Adding each ancestor's `scrollTop` back
+   recovers the unscrolled layout — 217, 345, 473, 601, 693, 805, 870, 958, 1022, 1134, monotonic —
+   and collapses the widest visual row from 8 to 3. It changed the inversion COUNT by one, which is
+   the useful part of the story: a defect can corrupt the entire shape of a measurement and barely
+   move its headline number.
+6. **Inversions that name nothing.** The report formatted every stop as `tag#id`, so the rails'
+   id-less links and the inspector's `<summary>` elements all arrived as `a#` and `summary#`. "select
+   #diagram-subject is read before a# but tabbed after it" is unactionable, and reads exactly like
+   probe defect #4 — a selector that matched the wrong element — to the next person who meets it. It
+   was not that: the elements are real, unique and correctly walked. Label-less stops now carry their
+   first 32 characters of text.
+7. **One number for two questions.** The pin counted ALL inversions. At 1025px — the only width where
+   the shell's three columns sit side by side — the total is 189 and the Edit grid's own divergence is
+   75. The other 114 pairs each have their two controls in DIFFERENT landmarks: a keyboard walks one
+   whole region before the next, an eye scanning rows crosses all three, and that is a property of the
+   column layout rather than of any region's source order. A gate counting it fires whenever a rail
+   gains a link. The pin is now the within-region count; the cross-region count is reported in the
+   receipt.
+
+**What the within-region number is, after all three.** `{320: 0, 368: 0, 672: 30, 976: 77, 1024: 75,
+1025: 75}` — the pin unchanged at five of six widths. 672 moved 29 → 30. `#edit`'s markup is
+byte-identical to `72d4816e` (`git diff` over `index.html` is 23 added lines, none of them a
+control), and the move survives hiding `#explore-space-go`, the one control a sibling wave added
+nearby [measured]. So the extra pair is the `auto-fit` packing itself: the grid's cells are sized by
+the intrinsic width of selects whose options are painted from the model-type registry, which a
+sibling wave rewrote. Reported as a measured +1 rather than explained away.
+
+**Are the 75 acceptable under 2.4.3?** The same answer D-2 gave, now narrowed by the split. Every one
+is inside `#edit`, between two of the eleven independent forms of a `repeat(auto-fit, minmax(19rem,
+1fr))` grid read across and tabbed down. Each form preserves its own meaning and operability, which
+is why this stays a number rather than a verdict; what the split adds is that NO inversion outside
+that grid survives the page fix, so there is exactly one thing here to decide about. The honest fixes
+are unchanged: a single column, or a source order matching the painted columns.
+
+**Region overlap is now its own measurement, with its own negative control.** A reading-order count
+cannot say "two of your regions are painted on top of each other" in a way anyone can act on — it
+says 40 and names two controls that are both fine. `overlappingRegionsAt` compares sibling landmark
+boxes directly and asserts no two share more than a pixel, at every width both pages define. Its
+negative control is the defect itself rather than a synthetic one: it reinstates `grid-area: extra`
+on both regions and requires the probe to name the pair. A sibling check that looked for cross-region
+inversions on a one-column page was written first and discarded — neither page is ever quite one
+column, because two header buttons share a row at 320px.
+
+The tier goes **54 → 57** (`+1` region-overlap check per page, `+1` negative control). tsc clean,
+node 728, browser 32, smoke 3, all green.
+
 **Still open after this wave.** `explore-space` has no human affordance (F-4). The file-open
 control's missing focus indication and the Edit section's 2-D focus divergence are measured and
 written up, not fixed — both live in `index.html`. The axe suite does not scan the selected state,
