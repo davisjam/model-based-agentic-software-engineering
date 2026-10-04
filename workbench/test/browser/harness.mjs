@@ -27,12 +27,16 @@
 // additionally needs `npm ci` at the REPO ROOT, where axe-core is pinned -- resolved there, like
 // Puppeteer from book/, rather than added to this package.
 import { createRequire } from "node:module";
-import { createHash } from "node:crypto";
 import { createServer } from "node:http";
 import { existsSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, normalize, extname } from "node:path";
+// The hash and the manifest path are DEFINED in scripts/build-manifest.ts, which build.mjs also
+// imports. This file used to carry its own copy of the sha256-sliced-to-16 expression; two hash
+// implementations that must agree is a parity hazard in the one place a staleness check has to be
+// trusted absolutely, and a third consumer was about to copy it again.
+import { hashInput, MANIFEST_PATH } from "../../scripts/build-manifest.ts";
 
 const HERE = import.meta.dirname;
 export const WORKBENCH_DIR = join(HERE, "..", "..");
@@ -120,7 +124,7 @@ const MIME = new Map(Object.entries({
  * RED this check exists to kill, which is a poor trade for two lines saved.
  */
 async function assertBundleBuiltFromThisTree(root) {
-  const manifestPath = join(root, "dist", "build-manifest.json");
+  const manifestPath = join(root, MANIFEST_PATH);
   if (!existsSync(manifestPath)) {
     throw new Error(`${manifestPath} is missing — run \`npm run build\` in workbench/ before the browser `
       + "tier. Serving an absent or stale bundle makes this tier report source-vs-bundle drift as a "
@@ -131,7 +135,7 @@ async function assertBundleBuiltFromThisTree(root) {
     // A deleted input and a changed one are the same finding: the bundle no longer corresponds to
     // the tree. Reading rather than stat-ing, because the hash is the whole claim.
     const actual = await readFile(join(root, path))
-      .then((body) => createHash("sha256").update(body).digest("hex").slice(0, 16), () => null);
+      .then((body) => hashInput(body), () => null);
     if (actual === expected) continue;
     throw new Error(`the served bundle is stale: ${path} ${actual === null ? "no longer exists" : "has changed"} `
       + "since `npm run build` last ran. Rebuild in workbench/ and re-run. (This tier imports the "

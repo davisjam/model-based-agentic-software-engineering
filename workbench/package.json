@@ -4,22 +4,34 @@
   "private": true,
   "description": "Browser-native modeling workbench for MAGE model systems. Pure client-side: no server, no account, no install.",
   "type": "module",
+  "// why engines": "The FLOOR, not the pin, and the two are deliberately separate. `engines.node` is the oldest Node that works: 22, because the gates load .ts entry points directly (Node strips types from 22 onward) and because html-validate 11.x calls fs.globSync, added in 22. The PIN — what `nvm use` selects and what CI installs via `node-version-file: .nvmrc` — lives in .nvmrc at the repo root and says 24. Collapsing them would delete a distinction the publishing workflow uses; copying either number anywhere else would be a second source of truth. `npm run check:node` reads BOTH from their own files and asserts the pin satisfies the floor. Note that npm does not enforce this field without engine-strict, so the preflight is the enforcement and this is the declaration.",
   "engines": {
     "node": ">=22"
   },
   "scripts": {
     "types": "json2ts -i mage-model.schema.json -o src/ir/schema-model.ts --additionalProperties false && json2ts -i mage-query.schema.json -o src/ir/schema-query.ts --additionalProperties false && json2ts -i mage-transaction.schema.json -o src/ir/schema-transaction.ts --additionalProperties false",
     "check": "tsc --noEmit",
+    "check:node": "node scripts/preflight-node.mjs",
     "check:parity": "node scripts/check-parity.ts",
     "check:published": "node scripts/check-published.ts",
-    "test": "node --test \"test/*.test.ts\"",
+    "test": "node --test \"test/*.test.ts\" \"test/*.test.mjs\"",
     "test:smoke": "node --test test/browser/smoke.test.mjs",
     "test:browser": "node --test \"test/browser/*.test.mjs\"",
     "test:a11y": "node --test \"test/browser/a11y/*.test.mjs\"",
     "build": "node build.mjs",
-    "all": "npm run check && npm run check:parity && npm run test && npm run build && npm run test:smoke",
-    "affordances": "node scripts/gen-affordances.ts"
+    "all": "npm run check:node && npm run check && npm run check:parity && npm run test && npm run build && npm run test:smoke",
+    "affordances": "node scripts/gen-affordances.ts",
+    "precheck": "npm run --silent check:node",
+    "pretest": "npm run --silent check:node",
+    "prebuild": "npm run --silent check:node",
+    "precheck:parity": "npm run --silent check:node",
+    "precheck:published": "npm run --silent check:node",
+    "preaffordances": "npm run --silent check:node",
+    "pretest:smoke": "npm run --silent check:node",
+    "pretest:browser": "npm run --silent check:node",
+    "pretest:a11y": "npm run --silent check:node"
   },
+  "// why the pre hooks": "npm runs a `pre<name>` script automatically, which is the only Node wiring here that does not depend on someone remembering it — and a gate you have to remember is what the 261003 failures walked past. Every gate above either loads a .ts entry point or imports one (build.mjs does), so each dies under Node 20 with ERR_UNKNOWN_FILE_EXTENSION: a module-load TypeError that reads like broken code. The preflight costs ~30ms and runs first, so the failure says WRONG NODE and names the fix instead. `check` is wired too, even though tsc runs anywhere: someone on the wrong Node should learn it from the first gate they run rather than the third.",
   "devDependencies": {
     "@types/node": "^26.6.4",
     "esbuild": "^0.25.0",
