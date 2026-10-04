@@ -73,6 +73,17 @@
  * resolution would be machinery for a case that does not exist. A silent skip would be the hole; a
  * finding says the gate cannot see the edge and names the line.
  *
+ * NOT RESOLVED, and ASSERTED ABSENT instead: a specifier aliased through a tsconfig `paths` entry or
+ * a package.json `imports` map. `resolveSpecifier` reads relative specifiers and hands back null for
+ * everything else, so this scan's universe of discourse is "relative specifiers under the current
+ * resolution config" — and the second half of that was an unstated assumption until it was
+ * mutation-proven editable (`REAUDIT-system-models-261004.md` M4: two lines of tsconfig let the
+ * kernel import the UI with tsc clean and the node tier green at 935/935). Teaching the scan to
+ * follow aliases is a larger job that buys nothing while the tree writes none, so this gate asserts
+ * the config declares none instead — `ALIAS_CHANNELS` below, checked rather than assumed. Turning
+ * aliasing on is then a red gate that names the channel, rather than a scanner that quietly starts
+ * measuring a subset of the imports.
+ *
  * NOT COVERED and not reported: `declare module` augmentation and `/// <reference types="…" />`,
  * neither of which names a path inside the scan root.
  */
@@ -479,7 +490,10 @@ function auditImportGraph(
         continue;
       }
       const resolved = resolveSpecifier(specifier.file, specifier.text);
-      if (resolved === null) continue;  // A bare package specifier: not a component of this system.
+      // A bare package specifier: not a component of this system. True only while the resolution
+      // config declares no alias, which `ALIAS_CHANNELS` asserts separately — without that
+      // assertion this line is where an aliased kernel-to-view import gets dropped in silence.
+      if (resolved === null) continue;
       if (!/\.[A-Za-z0-9]+$/.test(specifier.text)) {
         findings.push(`\`${at}\` imports \`${specifier.text}\`, which carries no file extension. `
           + `Resolution here is lexical — this package writes explicit extensions everywhere and has `
@@ -725,6 +739,237 @@ test("the three allowed non-component imports are the schema documents, and noth
     assert.ok(readFileSync(path, "utf8").includes("$schema"),
       `\`${path}\` is allowed as a JSON Schema document and does not declare \`$schema\``);
   }
+});
+
+// ----------------------------------------------------------------------------------------------
+// The resolution config: the channel this scan does not resolve, asserted shut
+// ----------------------------------------------------------------------------------------------
+
+/**
+ * A resolution-config key that would carry a real dependency past this gate, and must stay absent.
+ *
+ * `resolveSpecifier` resolves relative specifiers and returns null for everything else, so every
+ * claim in this file is a claim about relative specifiers. That was an unstated assumption until
+ * 261004 proved it editable: adding `"baseUrl": "."` and `"paths": { "#view/*": ["src/ui/*"] }` to
+ * tsconfig.json let `src/ir/types.ts` import `#view/invariants.ts` — a used, type-checked,
+ * kernel-to-view import — with tsc clean, the node tier at 935/935 and `validate.py` at zero
+ * (`REAUDIT-system-models-261004.md` M4). Two lines of config defeated every assertion above.
+ *
+ * What this is: an ASSERTION, not a resolver. Teaching the scan to follow `paths` is a larger job
+ * and buys nothing today, because the tree writes no aliased specifier. What the tree needs is for
+ * the day someone turns aliasing on to be the day this gate goes red and names the channel. So each
+ * row below names a key whose PRESENCE opens it, and the absence of all of them is the precondition
+ * under which this file's coverage claim is total rather than merely narrow.
+ *
+ * PRESENCE is the trigger, not contents: `"paths": {}` maps nothing today and is a mapping table
+ * someone will fill. Shaped like `OUTSIDE_ROOT` for the same cause — a declaration that names a
+ * literal another file must (here: must not) contain reads as a cross-file assertion rather than as
+ * a comment that rots.
+ */
+interface AliasChannel {
+  /** Package-relative path of the config file that could open the channel. */
+  readonly configIn: string;
+  /** Key path into the parsed config, outermost first. Printed dotted in the finding. */
+  readonly key: readonly string[];
+  readonly reason: string;
+}
+
+const ALIAS_CHANNELS: readonly AliasChannel[] = [
+  {
+    configIn: "tsconfig.json",
+    key: ["compilerOptions", "paths"],
+    reason: "A `paths` entry maps a specifier prefix onto a directory, and tsc and esbuild both "
+      + "honour it — esbuild reads tsconfig.json by default and this package passes it no override — "
+      + "so an alias is a real edge in the shipped bundle rather than a type-level convenience.",
+  },
+  {
+    configIn: "tsconfig.json",
+    key: ["compilerOptions", "baseUrl"],
+    reason: "`baseUrl` makes every non-relative specifier resolvable against the package root, so "
+      + "`src/ui/invariants.ts` becomes importable under exactly that spelling from anywhere in the "
+      + "tree with no mapping table at all. It is the same channel with nothing to read.",
+  },
+  {
+    configIn: "package.json",
+    key: ["imports"],
+    reason: "A package.json `imports` map resolves `#`-prefixed specifiers for node and esbuild "
+      + "alike, so it carries value imports and not only types, and tsconfig is not involved. "
+      + "Asserting on tsconfig alone would leave half of this channel open.",
+  },
+  {
+    configIn: "tsconfig.json",
+    key: ["extends"],
+    reason: "`extends` puts `compilerOptions` in a file this gate does not read, so an inherited "
+      + "`paths` or `baseUrl` would be invisible to the two rows above. Reported rather than "
+      + "followed: this check reads one file lexically, and the honest move is to fail until "
+      + "someone drops the inheritance or teaches the check to resolve it.",
+  },
+];
+
+/** A key path walked tolerantly. `undefined` when any step is absent or not an object. */
+function atKey(root: unknown, key: readonly string[]): unknown {
+  const last = key[key.length - 1];
+  if (last === undefined) return undefined;
+  let at: unknown = root;
+  for (const step of key.slice(0, -1)) at = asRecord(at)[step];
+  return asRecord(at)[last];
+}
+
+/**
+ * Every declared channel that is open, as a finding naming what it opens and what to do about it.
+ *
+ * Pure over the config TEXT, which is what lets the control below drive it with a config that
+ * declares `paths` and watch it go red. An assertion over a condition that is currently true is
+ * untested by its own passing, and this one passes at every tree the repo has ever had.
+ *
+ * The parse is `typescript`'s own, for the reason the import scan uses that parser rather than a
+ * pattern: tsconfig.json carries `//` comments, so `JSON.parse` throws on it outright, and a text
+ * search for `"paths"` would match the word inside a comment and miss a key written across lines.
+ */
+function auditResolutionConfig(
+  texts: Readonly<Record<string, string>>,
+  channels: readonly AliasChannel[] = ALIAS_CHANNELS,
+): readonly string[] {
+  const findings: string[] = [];
+  const parsed = new Map<string, unknown>();
+  for (const path of [...new Set(channels.map((c) => c.configIn))].sort()) {
+    const text = texts[path];
+    if (text === undefined) {
+      findings.push(`\`${path}\` declares part of the module resolution this gate's scan depends on `
+        + `and was not read, so the precondition below is unchecked rather than true. That is the `
+        + `one state worse than aliasing: nothing fails, and nothing is being held either.`);
+      continue;
+    }
+    const result = ts.parseConfigFileTextToJson(path, text);
+    if (result.error !== undefined) {
+      findings.push(`\`${path}\` did not parse as JSON-with-comments `
+        + `(${ts.flattenDiagnosticMessageText(result.error.messageText, " ")}), so this gate cannot `
+        + `tell whether it declares a path alias. Failing closed: an unreadable resolution config `
+        + `carries the same risk as an aliasing one, because the scan resolves relative specifiers `
+        + `only and would skip an aliased import without a word.`);
+      continue;
+    }
+    parsed.set(path, result.config);
+  }
+
+  for (const channel of channels) {
+    const dotted = channel.key.join(".");
+    if (channel.reason.trim().length < MIN_REASON) {
+      findings.push(`the \`${channel.configIn}\` \`${dotted}\` channel is declared with a `
+        + `${channel.reason.trim().length}-character reason; at least ${MIN_REASON} are required. `
+        + `Say what the key does and why its absence is what makes this gate's scan total.`);
+    }
+    if (!parsed.has(channel.configIn)) continue;  // Already reported as unread or unparseable.
+    if (atKey(parsed.get(channel.configIn), channel.key) === undefined) continue;
+    findings.push(`\`${channel.configIn}\` declares \`${dotted}\`. This gate resolves RELATIVE `
+      + `specifiers only — \`resolveSpecifier\` returns null for anything else and the scan counts `
+      + `it as a bare package and moves on — so a specifier resolving through this key, or through `
+      + `a key it brings in, creates a dependency no assertion in this file can see. `
+      + `${channel.reason} Remove the key, or teach \`resolveSpecifier\` to resolve it FIRST: until `
+      + `the scanner reads the resolution config, every claim here about the kernel's out-degree is `
+      + `a claim about relative specifiers alone.`);
+  }
+  return [...new Set(findings)];
+}
+
+/** The real configs, read from disk under the paths the channel table names. */
+const configTexts = (): Readonly<Record<string, string>> => Object.fromEntries(
+  [...new Set(ALIAS_CHANNELS.map((c) => c.configIn))].sort()
+    .map((path) => [path, readFileSync(path, "utf8")]));
+
+test("the resolution config declares no alias, which is what makes the relative-only scan total", () => {
+  // The table must span both config files. One of them alone asserts half the precondition, and a
+  // half-asserted precondition reads exactly like a whole one from a green run.
+  const spanned = [...new Set(ALIAS_CHANNELS.map((c) => c.configIn))].sort();
+  assert.deepEqual(spanned, ["package.json", "tsconfig.json"],
+    `the channel spans tsconfig \`paths\`/\`baseUrl\` AND a package.json \`imports\` map; this table `
+    + `names ${spanned.join(", ")}`);
+
+  const findings = auditResolutionConfig(configTexts());
+  assert.deepEqual(findings, [],
+    `the resolution config opens a channel this gate's scan does not resolve:\n  `
+    + `${findings.join("\n  ")}\n`);
+});
+
+test("the resolution-config assertion fires on every channel it declares — negative control", () => {
+  const real = configTexts();
+  assert.deepEqual(auditResolutionConfig(real), [],
+    "the baseline must be clean, or the deltas below measure against a red one");
+
+  // The hole is real before it is asserted shut: M4's specifier is exactly what the scan drops. If
+  // the scanner ever learns to resolve aliases, THIS is the assertion that should fail and be
+  // rewritten — the channel table above would then be machinery for a case that no longer exists.
+  assert.equal(resolveSpecifier("src/ir/types.ts", "#view/invariants.ts"), null,
+    "an aliased specifier must be unresolvable here; that is the gap these channels cover");
+
+  /** The real tsconfig with keys injected into its `compilerOptions`, comments and all. */
+  const withTsconfig = (inject: string): Readonly<Record<string, string>> => {
+    const before = real["tsconfig.json"] ?? "";
+    const after = before.replace('"compilerOptions": {', `"compilerOptions": {\n    ${inject}`);
+    assert.notEqual(after, before, `the injection \`${inject}\` did not change tsconfig.json`);
+    return { ...real, "tsconfig.json": after };
+  };
+
+  // M4 verbatim: the mutation that carried a kernel-to-view import past every gate in this file.
+  const m4 = auditResolutionConfig(
+    withTsconfig('"baseUrl": ".",\n    "paths": { "#view/*": ["src/ui/*"] },'));
+  assert.ok(m4.some((m) => /`tsconfig\.json` declares `compilerOptions\.paths`/.test(m)),
+    `M4's \`paths\` must be named: ${m4.join("; ")}`);
+  assert.ok(m4.some((m) => /`tsconfig\.json` declares `compilerOptions\.baseUrl`/.test(m)),
+    `and its \`baseUrl\` separately, since either one opens the channel alone: ${m4.join("; ")}`);
+
+  // The message has to tell a stranger what is wrong and what to do, which is this repo's whole
+  // standard for a finding. Three things: aliasing is on, the scan reads relative specifiers only,
+  // and the scanner must learn resolution before aliasing can be used.
+  assert.ok(m4.every((m) => /resolves RELATIVE specifiers only/.test(m)),
+    `every finding must state the scan's limit: ${m4.join("; ")}`);
+  assert.ok(m4.every((m) => /teach `resolveSpecifier` to resolve it FIRST/.test(m)),
+    `and name the order of work, or the natural fix is to widen the scan's claim: ${m4.join("; ")}`);
+
+  // Each channel alone. `paths` works without `baseUrl` under `moduleResolution: bundler`, so a
+  // table that only fired on the pair would miss the cheaper half of the mutation.
+  for (const [inject, key] of [
+    ['"paths": { "#view/*": ["src/ui/*"] },', "compilerOptions.paths"],
+    ['"baseUrl": ".",', "compilerOptions.baseUrl"],
+    ['"paths": {},', "compilerOptions.paths"],
+  ] as const) {
+    const one = auditResolutionConfig(withTsconfig(inject));
+    assert.ok(one.some((m) => m.includes(`declares \`${key}\``)),
+      `\`${inject}\` must be reported as \`${key}\`: ${one.join("; ")}`);
+  }
+
+  // `extends` is not aliasing; it is this check losing sight of the file that would declare it.
+  const inherited = auditResolutionConfig({
+    ...real,
+    "tsconfig.json": '{ "extends": "./tsconfig.base.json", "compilerOptions": {} }',
+  });
+  assert.ok(inherited.some((m) => /declares `extends`/.test(m)),
+    `an inherited config must be reported, not followed: ${inherited.join("; ")}`);
+
+  // The other half of the channel, and the half tsconfig says nothing about: node and esbuild both
+  // resolve `#`-prefixed specifiers from package.json, so this one carries values, not just types.
+  const subpath = auditResolutionConfig({
+    ...real,
+    "package.json": (real["package.json"] ?? "").replace(
+      '"type": "module",', '"type": "module",\n  "imports": { "#view/*": "./src/ui/*" },'),
+  });
+  assert.ok(subpath.some((m) => /`package\.json` declares `imports`/.test(m)),
+    `a package.json subpath import map must be reported: ${subpath.join("; ")}`);
+
+  // Fail CLOSED on a config this check cannot read. An unparseable or missing config is not an
+  // absent alias, and reading it as one is how an assertion becomes decoration.
+  const broken = auditResolutionConfig({ ...real, "tsconfig.json": "{ this is not json" });
+  assert.ok(broken.some((m) => /did not parse as JSON-with-comments/.test(m)),
+    `an unparseable config must fail closed: ${broken.join("; ")}`);
+  const missing = auditResolutionConfig({ "package.json": real["package.json"] ?? "" });
+  assert.ok(missing.some((m) => /`tsconfig\.json` declares part of the module resolution/.test(m)),
+    `an unread config must fail closed: ${missing.join("; ")}`);
+
+  // A thin reason, the same floor the allowance map carries: a declaration nobody justified is how
+  // this table would turn into a list of keys someone can shorten their way out of.
+  const thin = auditResolutionConfig(real, ALIAS_CHANNELS.map((c) => ({ ...c, reason: "config" })));
+  assert.ok(thin.some((m) => /character reason; at least \d+ are required/.test(m)),
+    `a reason under the floor must be reported: ${thin.join("; ")}`);
 });
 
 // ----------------------------------------------------------------------------------------------

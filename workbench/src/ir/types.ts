@@ -9,7 +9,16 @@
  * that is `test/import-graph.test.ts`, which parses every specifier under `src/`, resolves each to
  * the entity owning its path, and fails on an import the model does not declare. It holds this
  * module's out-degree at zero against the observed graph specifically, so editing the model to
- * permit an edge does not buy one. An import added here now goes red.
+ * permit an edge does not buy one.
+ *
+ * The bound, stated because this sentence has twice claimed more than it held. A
+ * RELATIVE-SPECIFIER import added here goes red, and that is every import this package writes. The
+ * gate resolves no path aliases, so an aliased specifier slips its scan: `#view/invariants.ts`
+ * reads as a bare package name, and `REAUDIT-system-models-261004.md` M4 drove exactly that import
+ * from this file with tsc clean and the node tier green. What closes the channel is a separate
+ * assertion inside the same gate rather than its scan. `ALIAS_CHANNELS` fails if `tsconfig.json`
+ * declares `paths` or `baseUrl`, or `package.json` an `imports` map, so an alias added here trips
+ * the precondition instead of being read as an edge, and aliasing cannot be switched on quietly.
  *
  * Everything is `readonly`. The IR is produced once by canonicalize() and never mutated in place:
  * a transaction builds a NEW system and swaps it, which is what makes undo/redo and hypothesis
