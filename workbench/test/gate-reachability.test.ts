@@ -752,15 +752,20 @@ const testFiles = (dir = "test"): readonly string[] => {
 };
 
 /**
- * The gate files this wave added, declared so DELETING one is a failure rather than a quieter gate.
+ * Coverage gates declared BY NAME, so deleting one is a failure rather than a quieter suite.
  *
  * The glob audit below is the general control and it cannot make this claim: a file that no longer
  * exists is matched by no pattern and reported by nothing, so a coverage gate could be removed and
- * every check in this file would stay green. These two carry FR-AGENT's only mechanical coverage —
- * the operation census over `window.mage` and the CDP attach path — so their existence is the claim
- * worth pinning, alongside the script whose glob is supposed to reach them.
+ * every check in this file would stay green. These three are the repo's coverage MEASURES — the
+ * operation census over `window.mage`, the CDP attach path, and the per-model verdict census — and
+ * each is the sole mechanical holder of what it measures, so its existence is the claim worth
+ * pinning alongside the script whose glob is supposed to reach it.
+ *
+ * It was `AGENT_SURFACE_GATES` while both entries were browser-tier agent gates. The third entry is
+ * a node-tier model gate, so the name now says what the list is for; the `script` field already
+ * carried the tier and no entry changed.
  */
-const AGENT_SURFACE_GATES: readonly { readonly file: string; readonly script: string; readonly reason: string }[] = [
+const PINNED_GATE_FILES: readonly { readonly file: string; readonly script: string; readonly reason: string }[] = [
   {
     file: "test/browser/agent-coverage.test.mjs",
     script: "test:browser",
@@ -775,6 +780,16 @@ const AGENT_SURFACE_GATES: readonly { readonly file: string; readonly script: st
     reason: "FR-AGENT-1's transport: two independent clients attached over CDP to a browser neither "
       + "launched. Every other suite reaches the page through `puppeteer.launch`, so attach could "
       + "break outright and the browser tier would stay green.",
+  },
+  {
+    file: "test/model-coverage.test.ts",
+    script: "test",
+    reason: "The per-model verdict census: every saved query carrying `expect` in every tracked "
+      + "model, evaluated through the facade. It is the ONLY CI holder of those expectations — "
+      + "`validate.py` evaluates them too and is reachable from `hooks/pre-push` alone, and "
+      + "`test/parity.test.ts` compares the two engines' answers to each other rather than to "
+      + "`expect`. Delete this file and a model may assert one verdict while the engine answers "
+      + "another, which is the state a mutation proved CI could not see.",
   },
 ];
 
@@ -862,9 +877,9 @@ test("the glob audit fires on each defect it exists to catch — negative contro
     `a recursive glob must be reported: ${recursive.join("; ")}`);
 });
 
-test("the agent-surface gates exist, and the script declared for each one reaches it", () => {
+test("the pinned coverage gates exist, and the script declared for each one reaches it", () => {
   const scripts = manifestScripts();
-  for (const gate of AGENT_SURFACE_GATES) {
+  for (const gate of PINNED_GATE_FILES) {
     assert.ok(gate.reason.trim().length >= MIN_REASON,
       `${gate.file} is registered with a ${gate.reason.trim().length}-character reason; at least `
       + `${MIN_REASON} are required. Say what the gate holds, or the registration is a filename.`);

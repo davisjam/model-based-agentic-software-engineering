@@ -417,3 +417,894 @@ models:
       - { from: discard-hypothesis, to: human-interface, type: afforded-by }
       - { from: discard-hypothesis, to: machine-interface, type: afforded-by }
       - { from: discard-hypothesis, to: service.workspace-discardHypothesis, type: implemented-by }
+
+# The model's own assertions. One per capability per interface, one per capability for the
+# application service it routes through -- the three conjuncts of the purpose question above --
+# plus a refutation control and a refusal control. GENERATED with everything else: an assertion
+# someone could edit without touching the registry would be the second source of truth again.
+#
+# `expect` RECORDS what the registry says. A capability with no wired affordance emits
+# `expect: refuted` for that interface, because that is then what this model says; the judgement
+# that `refuted` is a UX-I1 VIOLATION belongs to `npm run check:parity`, which reads the registry
+# directly and fails the build. Two different claims, both true at once.
+queries:
+
+  afforded-by.human.import:
+    name: "Open a .mage.yaml model system, or start an empty one. is reachable through the human interface -- import"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: import
+      to: human-interface
+
+  afforded-by.machine.import:
+    name: "Open a .mage.yaml model system, or start an empty one. is reachable through the machine interface (window.mage) -- import"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: import
+      to: machine-interface
+
+  implemented-by.import:
+    name: "import resolves to the workspace.load service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: import
+      to: service.workspace-load
+
+  afforded-by.human.load-example:
+    name: "Load a shipped example, as an ordinary editable workspace. is reachable through the human interface -- load-example"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: load-example
+      to: human-interface
+
+  afforded-by.machine.load-example:
+    name: "Load a shipped example, as an ordinary editable workspace. is reachable through the machine interface (window.mage) -- load-example"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: load-example
+      to: machine-interface
+
+  implemented-by.load-example:
+    name: "load-example resolves to the examples.load service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: load-example
+      to: service.examples-load
+
+  afforded-by.human.export:
+    name: "Write the model system back out, comments and key order preserved. is reachable through the human interface -- export"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: export
+      to: human-interface
+
+  afforded-by.machine.export:
+    name: "Write the model system back out, comments and key order preserved. is reachable through the machine interface (window.mage) -- export"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: export
+      to: machine-interface
+
+  implemented-by.export:
+    name: "export resolves to the workspace.export service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: export
+      to: service.workspace-export
+
+  afforded-by.human.inspect:
+    name: "Read every modelled fact: entities, relations, machines, purpose, omissions. is reachable through the human interface -- inspect"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: inspect
+      to: human-interface
+
+  afforded-by.machine.inspect:
+    name: "Read every modelled fact: entities, relations, machines, purpose, omissions. is reachable through the machine interface (window.mage) -- inspect"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: inspect
+      to: machine-interface
+
+  implemented-by.inspect:
+    name: "inspect resolves to the workspace.state service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: inspect
+      to: service.workspace-state
+
+  afforded-by.human.validate:
+    name: "Ask whether the model is well formed, and get each violated rule with what to repair. is reachable through the human interface -- validate"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: validate
+      to: human-interface
+
+  afforded-by.machine.validate:
+    name: "Ask whether the model is well formed, and get each violated rule with what to repair. is reachable through the machine interface (window.mage) -- validate"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: validate
+      to: machine-interface
+
+  implemented-by.validate:
+    name: "validate resolves to the validator.validate service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: validate
+      to: service.validator-validate
+
+  afforded-by.human.query:
+    name: "Run one graph, behavioural or quantitative model query and return outcome, coverage and evidence. is reachable through the human interface -- query"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: query
+      to: human-interface
+
+  afforded-by.machine.query:
+    name: "Run one graph, behavioural or quantitative model query and return outcome, coverage and evidence. is reachable through the machine interface (window.mage) -- query"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: query
+      to: machine-interface
+
+  implemented-by.query:
+    name: "query resolves to the workspace.query service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: query
+      to: service.workspace-query
+
+  afforded-by.human.check-query:
+    name: "Ask whether a question is meaningful and permitted for its model type, without running it. is reachable through the human interface -- check-query"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: check-query
+      to: human-interface
+
+  afforded-by.machine.check-query:
+    name: "Ask whether a question is meaningful and permitted for its model type, without running it. is reachable through the machine interface (window.mage) -- check-query"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: check-query
+      to: machine-interface
+
+  implemented-by.check-query:
+    name: "check-query resolves to the workspace.check service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: check-query
+      to: service.workspace-check
+
+  afforded-by.human.analyze:
+    name: "Re-run every saved question against the current system. is reachable through the human interface -- analyze"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: analyze
+      to: human-interface
+
+  afforded-by.machine.analyze:
+    name: "Re-run every saved question against the current system. is reachable through the machine interface (window.mage) -- analyze"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: analyze
+      to: machine-interface
+
+  implemented-by.analyze:
+    name: "analyze resolves to the workspace.runSavedQueries service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: analyze
+      to: service.workspace-runSavedQueries
+
+  afforded-by.human.explore-space:
+    name: "Walk the reachable configuration space and report its size, and whether it finished. is reachable through the human interface -- explore-space"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: explore-space
+      to: human-interface
+
+  afforded-by.machine.explore-space:
+    name: "Walk the reachable configuration space and report its size, and whether it finished. is reachable through the machine interface (window.mage) -- explore-space"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: explore-space
+      to: machine-interface
+
+  implemented-by.explore-space:
+    name: "explore-space resolves to the workspace.explore service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: explore-space
+      to: service.workspace-explore
+
+  afforded-by.human.inspect-evidence:
+    name: "Read a witness, counterexample or lasso as ordered steps. is reachable through the human interface -- inspect-evidence"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: inspect-evidence
+      to: human-interface
+
+  afforded-by.machine.inspect-evidence:
+    name: "Read a witness, counterexample or lasso as ordered steps. is reachable through the machine interface (window.mage) -- inspect-evidence"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: inspect-evidence
+      to: machine-interface
+
+  implemented-by.inspect-evidence:
+    name: "inspect-evidence resolves to the workspace.query service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: inspect-evidence
+      to: service.workspace-query
+
+  afforded-by.human.undo:
+    name: "Return to the previous semantic revision. is reachable through the human interface -- undo"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: undo
+      to: human-interface
+
+  afforded-by.machine.undo:
+    name: "Return to the previous semantic revision. is reachable through the machine interface (window.mage) -- undo"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: undo
+      to: machine-interface
+
+  implemented-by.undo:
+    name: "undo resolves to the workspace.undo service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: undo
+      to: service.workspace-undo
+
+  afforded-by.human.redo:
+    name: "Re-apply an undone revision. is reachable through the human interface -- redo"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: redo
+      to: human-interface
+
+  afforded-by.machine.redo:
+    name: "Re-apply an undone revision. is reachable through the machine interface (window.mage) -- redo"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: redo
+      to: machine-interface
+
+  implemented-by.redo:
+    name: "redo resolves to the workspace.redo service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: redo
+      to: service.workspace-redo
+
+  afforded-by.human.create-element:
+    name: "Add an entity, state or machine. is reachable through the human interface -- create-element"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: create-element
+      to: human-interface
+
+  afforded-by.machine.create-element:
+    name: "Add an entity, state or machine. is reachable through the machine interface (window.mage) -- create-element"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: create-element
+      to: machine-interface
+
+  implemented-by.create-element:
+    name: "create-element resolves to the transactions.apply service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: create-element
+      to: service.transactions-apply
+
+  afforded-by.human.delete-element:
+    name: "Remove an entity, state or machine, refusing if anything still references it. is reachable through the human interface -- delete-element"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: delete-element
+      to: human-interface
+
+  afforded-by.machine.delete-element:
+    name: "Remove an entity, state or machine, refusing if anything still references it. is reachable through the machine interface (window.mage) -- delete-element"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: delete-element
+      to: machine-interface
+
+  implemented-by.delete-element:
+    name: "delete-element resolves to the transactions.apply service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: delete-element
+      to: service.transactions-apply
+
+  afforded-by.human.create-relation:
+    name: "Connect two entities with a licensed relation type. is reachable through the human interface -- create-relation"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: create-relation
+      to: human-interface
+
+  afforded-by.machine.create-relation:
+    name: "Connect two entities with a licensed relation type. is reachable through the machine interface (window.mage) -- create-relation"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: create-relation
+      to: machine-interface
+
+  implemented-by.create-relation:
+    name: "create-relation resolves to the transactions.apply service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: create-relation
+      to: service.transactions-apply
+
+  afforded-by.human.delete-relation:
+    name: "Remove a relation. is reachable through the human interface -- delete-relation"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: delete-relation
+      to: human-interface
+
+  afforded-by.machine.delete-relation:
+    name: "Remove a relation. is reachable through the machine interface (window.mage) -- delete-relation"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: delete-relation
+      to: machine-interface
+
+  implemented-by.delete-relation:
+    name: "delete-relation resolves to the transactions.apply service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: delete-relation
+      to: service.transactions-apply
+
+  afforded-by.human.edit-property:
+    name: "Change a property or label through the same transaction any other edit uses. is reachable through the human interface -- edit-property"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: edit-property
+      to: human-interface
+
+  afforded-by.machine.edit-property:
+    name: "Change a property or label through the same transaction any other edit uses. is reachable through the machine interface (window.mage) -- edit-property"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: edit-property
+      to: machine-interface
+
+  implemented-by.edit-property:
+    name: "edit-property resolves to the transactions.apply service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: edit-property
+      to: service.transactions-apply
+
+  afforded-by.human.create-model:
+    name: "Add a purposeful model, with its question. is reachable through the human interface -- create-model"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: create-model
+      to: human-interface
+
+  afforded-by.machine.create-model:
+    name: "Add a purposeful model, with its question. is reachable through the machine interface (window.mage) -- create-model"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: create-model
+      to: machine-interface
+
+  implemented-by.create-model:
+    name: "create-model resolves to the transactions.apply service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: create-model
+      to: service.transactions-apply
+
+  afforded-by.human.delete-model:
+    name: "Remove a purposeful model, refusing while it still asserts a relation. is reachable through the human interface -- delete-model"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: delete-model
+      to: human-interface
+
+  afforded-by.machine.delete-model:
+    name: "Remove a purposeful model, refusing while it still asserts a relation. is reachable through the machine interface (window.mage) -- delete-model"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: delete-model
+      to: machine-interface
+
+  implemented-by.delete-model:
+    name: "delete-model resolves to the transactions.apply service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: delete-model
+      to: service.transactions-apply
+
+  afforded-by.human.add-note:
+    name: "Attach a note to an object, without changing what the model asserts. is reachable through the human interface -- add-note"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: add-note
+      to: human-interface
+
+  afforded-by.machine.add-note:
+    name: "Attach a note to an object, without changing what the model asserts. is reachable through the machine interface (window.mage) -- add-note"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: add-note
+      to: machine-interface
+
+  implemented-by.add-note:
+    name: "add-note resolves to the transactions.apply service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: add-note
+      to: service.transactions-apply
+
+  afforded-by.human.save-property:
+    name: "Keep a claim as a persistent statement, re-evaluated on every later revision. is reachable through the human interface -- save-property"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: save-property
+      to: human-interface
+
+  afforded-by.machine.save-property:
+    name: "Keep a claim as a persistent statement, re-evaluated on every later revision. is reachable through the machine interface (window.mage) -- save-property"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: save-property
+      to: machine-interface
+
+  implemented-by.save-property:
+    name: "save-property resolves to the transactions.apply service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: save-property
+      to: service.transactions-apply
+
+  afforded-by.human.retract-property:
+    name: "Stop evaluating a statement, without pretending it was never claimed. is reachable through the human interface -- retract-property"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: retract-property
+      to: human-interface
+
+  afforded-by.machine.retract-property:
+    name: "Stop evaluating a statement, without pretending it was never claimed. is reachable through the machine interface (window.mage) -- retract-property"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: retract-property
+      to: machine-interface
+
+  implemented-by.retract-property:
+    name: "retract-property resolves to the transactions.apply service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: retract-property
+      to: service.transactions-apply
+
+  afforded-by.human.inspect-provenance:
+    name: "Read where each object came from, and what its author was asked to preserve. is reachable through the human interface -- inspect-provenance"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: inspect-provenance
+      to: human-interface
+
+  afforded-by.machine.inspect-provenance:
+    name: "Read where each object came from, and what its author was asked to preserve. is reachable through the machine interface (window.mage) -- inspect-provenance"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: inspect-provenance
+      to: machine-interface
+
+  implemented-by.inspect-provenance:
+    name: "inspect-provenance resolves to the workspace.provenance service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: inspect-provenance
+      to: service.workspace-provenance
+
+  afforded-by.human.create-hypothesis:
+    name: "Open a what-if branch through the same validated transaction path as any edit. is reachable through the human interface -- create-hypothesis"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: create-hypothesis
+      to: human-interface
+
+  afforded-by.machine.create-hypothesis:
+    name: "Open a what-if branch through the same validated transaction path as any edit. is reachable through the machine interface (window.mage) -- create-hypothesis"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: create-hypothesis
+      to: machine-interface
+
+  implemented-by.create-hypothesis:
+    name: "create-hypothesis resolves to the workspace.openHypothesis service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: create-hypothesis
+      to: service.workspace-openHypothesis
+
+  afforded-by.human.commit-hypothesis:
+    name: "Accept a reviewed change as authoritative. is reachable through the human interface -- commit-hypothesis"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: commit-hypothesis
+      to: human-interface
+
+  afforded-by.machine.commit-hypothesis:
+    name: "Accept a reviewed change as authoritative. is reachable through the machine interface (window.mage) -- commit-hypothesis"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: commit-hypothesis
+      to: machine-interface
+
+  implemented-by.commit-hypothesis:
+    name: "commit-hypothesis resolves to the workspace.applyHypothesis service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: commit-hypothesis
+      to: service.workspace-applyHypothesis
+
+  afforded-by.human.discard-hypothesis:
+    name: "Throw a reviewed change away; the authoritative model was never touched. is reachable through the human interface -- discard-hypothesis"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: discard-hypothesis
+      to: human-interface
+
+  afforded-by.machine.discard-hypothesis:
+    name: "Throw a reviewed change away; the authoritative model was never touched. is reachable through the machine interface (window.mage) -- discard-hypothesis"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: afforded-by
+      from: discard-hypothesis
+      to: machine-interface
+
+  implemented-by.discard-hypothesis:
+    name: "discard-hypothesis resolves to the workspace.discardHypothesis service both interfaces invoke"
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: implemented-by
+      from: discard-hypothesis
+      to: service.workspace-discardHypothesis
+
+  control.interfaces-do-not-afford-each-other:
+    name: "CONTROL: the human interface is afforded by the machine interface"
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph:
+      form: direct
+      relation: afforded-by
+      from: human-interface
+      to: machine-interface
+
+  control.afforded-by-does-not-compose:
+    name: "CONTROL: import reaches the machine interface through a chain of afforded-by edges"
+    kind: graph
+    quantifier: exists
+    expect: unlicensed
+    graph:
+      form: reachability
+      relation: afforded-by
+      from: import
+      to: machine-interface
