@@ -57,7 +57,7 @@ requirements:
 queries:
 
   - id: who-publishes-order-created
-    label: What publishes OrderCreated?
+    label: Checkout publishes OrderCreated
     suggested: false
     models: [event-flow]
     expected:
@@ -73,7 +73,7 @@ queries:
       `publishes` does not gate it: asking who points AT an entity is one hop by construction.
 
   - id: who-subscribes-to-order-created
-    label: Which services subscribe to OrderCreated?
+    label: Analytics, Billing and Inventory subscribe to OrderCreated
     suggested: true
     models: [event-flow]
     expected:
@@ -89,7 +89,7 @@ queries:
       subscribes to PaymentCompleted, not to OrderCreated.
 
   - id: subscribes-chain-checkout-to-fulfillment
-    label: Is Fulfillment reachable from Checkout through a chain of subscriptions?
+    label: Fulfillment is reachable from Checkout through a chain of subscriptions
     suggested: true
     models: [event-flow]
     expected:
@@ -103,7 +103,7 @@ queries:
       would assert that no such chain exists -- a claim event-flow never made.
 
   - id: checkout-event-reaches-fulfillment
-    label: Can an event originating at Checkout eventually cause an event to reach Fulfillment?
+    label: Events originating at Checkout eventually reach Fulfillment
     suggested: true
     models: [event-propagation]
     expected:
@@ -120,7 +120,7 @@ queries:
       early return, which is how this project once shipped a vacuous holds.
 
   - id: restricted-data-reaches-impermitted-subscriber
-    label: Can restricted data reach Analytics?
+    label: Restricted data reaches Analytics
     suggested: true
     models: [event-flow, data-policy]
     expected:
@@ -142,7 +142,7 @@ queries:
       shipping-address, which the data-policy model represents as a `carries_field` edge.
 
   - id: did-analytics-receive-it-at-2-04
-    label: Did Analytics actually receive OrderCreated at 2:04 PM?
+    label: Analytics received OrderCreated at 2:04 PM
     suggested: true
     models: [event-flow]
     expected:

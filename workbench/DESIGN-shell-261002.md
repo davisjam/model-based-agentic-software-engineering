@@ -1196,3 +1196,116 @@ Gates at the final tree, every tier, nothing skipped: `check` clean, `check:pari
 26 capabilities, node tier **815/815**, `build` clean, smoke **3/3**, browser **50/50** (40 before
 this wave), a11y **111/111** — and the a11y count was measured at **111 with this wave's CSS
 reverted as well**, so full width cost that tier nothing.
+
+### 9j. Properties are propositions as built — the brief's own trap caught the brief
+
+The ruling: a property states a declarative proposition, never asks a question; internally it
+carries a `statement`; and the authoring UX normalizes an interrogative rather than rejecting it.
+Landed. Below is where the brief was wrong, and the two defects the rewrite exposed.
+
+**The brief fell into the trap it wrote.** Its RENAME list named `view-model.ts:926`
+(`p.question !== null`) as a property's text. That line is `purposeBlock(p: Purpose)` — a MODEL's
+purpose, the brief's own KEEP category. Renaming it would have erased exactly the distinction the
+ruling exists to create. Left alone.
+
+**There was no `question` field on a property to rename.** The property's text was already
+`proposition` (`EvaluatedProperty`, `PropertyRow`, the `save-property` request, the
+`save-property-proposition` input). So the rename was `proposition` → `statement`, not
+`question` → `statement`, and the ruling's "never a `question`" already held at the field level. What
+was genuinely wrong was the PROSE: `properties.ts`'s header asserted "a saved query is a question. A
+property is a question PLUS its current verdict", and roughly a dozen grounding and refusal strings
+called a property's text "the question". Those moved.
+
+**The fixture format had already chosen `statement`, and the brief did not know.** Every
+`expected-results.yaml` carries a `requirements:` block whose field is literally `statement`, holding
+a declarative sentence, with polarity in a separate `satisfied_when`. That is independent
+corroboration for `statement` over `proposition` — and the model for how to phrase a safety claim
+(below).
+
+**Two shipped properties had INVERTED polarity, and the interrogative was hiding it.** Both are
+`forall` / `invariant` over a negated conjunction, where `holds` means NEVER:
+
+- `worker-queue` `lease-held-while-processing` asked "Is the job ever in processing while no worker
+  holds its lease?" and records `holds`. Read together that asserts the breach exists.
+- `docable` `processing-implies-custody` asked "Is the document ever processing while the worker is
+  idle?" and records `refuted` — and `engine-behavior.test.ts` proves it CAN happen.
+
+Both now state the invariant ("The job is never in processing while no worker holds its lease"), so
+the status word and the sentence agree. Neither query's semantics changed; only the sentence that
+was being graded against them. A declarative statement is checkable against its own verdict in a way
+an interrogative is not, which is a sharper argument for the ruling than grammar.
+
+**The author's phrasing #3 would have inverted a third one.** "Events carrying restricted data
+CANNOT reach services not permitted to process it" applied to
+`restricted-data-reaches-impermitted-subscriber` — an existential whose `holds` IS the safety breach
+— would have made ESTABLISHED mean the opposite of the truth. The negative phrasing belongs to the
+REQUIREMENT that the query refutes, and the fixture already states it there. The query's own text is
+the positive existential: "An event carrying restricted data reaches a service not permitted to
+process it". Same resolution for the nine `workbench-components` queries carrying `expect: refuted`:
+the statement says what the query decides, and `expect` carries the polarity.
+
+**Two generated models reverted the edit until their generators were fixed.**
+`models/example-coverage.mage.yaml` is emitted by `scripts/gen-example-coverage.ts` and
+`models/workbench-affordances.mage.yaml` by `scripts/gen-affordances.ts`; both are re-generated and
+compared by the suite. The capability-summary edits tripped the second one, which is the drift gate
+doing its job. The generators carry the new phrasings now.
+
+**Normalization, and what it refuses.** `normalizeToStatement` undoes subject-auxiliary inversion
+only where the subject is unambiguous — a single token, or the expletive `there` — and drops
+do-support onto the main verb, skipping `-ly` adverbs and handling the four irregular present forms
+(`be`/`have`/`do`/`go`). It covers the author's target #4 and three of the composer's four yes/no
+templates. It REFUSES, keeping the user's text verbatim:
+
+- **wh-questions** — they ask for a value, so there is no proposition to state without inventing the
+  answer.
+- **determiner-headed subjects** — bounding them needs a parser, and guessing flips quantifiers.
+  "Is ANY entity reachable from Checkout?" asks whether SOME is; "Any entity is reachable from
+  Checkout" claims they all are, and the composer emits that exact shape for an unbounded endpoint.
+  This is also why the author's "Can an event originating at Checkout eventually cause…" is not
+  normalized: the participial post-modifier puts the subject boundary out of reach, and det+noun
+  would strand "originating" after the modal.
+- **`Did …`** — irregular pasts are not a closed set; four irregular presents are.
+
+A closed verb lexicon would have reached the determiner cases, and was rejected: an unlisted verb
+fails safe (no rewrite) but a MISLISTED one mangles, and tokens like `run`, `cause` and `cache` are
+both verbs and head nouns here. A mangled statement reads as the author's own words, so nobody goes
+looking for the tool that produced it.
+
+**Inversion does not re-case the subject, and that is a trade.** "Does parsing run before
+validation?" becomes "parsing runs before validation." — a lowercase sentence start. `api`,
+`checkout`, `dead_letter` and `parsing` all arrive as lowercase tokens and only the last is a word,
+so sentence-casing would rename a declared entity or state inside a claim about it. The first draft
+capitalized and its own tests caught it. Renaming a declared object is the worse error.
+
+Normalization runs at BOTH authoring paths and is idempotent: the ask bar normalizes before
+`derivePropertyId` so a tracked property is not addressed as
+`is-fulfillment-reachable-from-checkout` forever, and `planEdit` normalizes the saved text. The Track
+box is PREFILLED with the composer's interrogative label (`askbar.ts`), so this runs on text the
+workbench wrote as much as on text a person typed.
+
+**Deliberately NOT renamed.** `NoSuchQuestion` and `EvidenceReading.savedQuestions` enumerate saved
+query IDs to diagnose a misspelled id; an id list is not a statement, and the IR object genuinely is
+a query document (`kind`, `quantifier`, a `graph`/`behavior` form, the `save-query` / `delete-query`
+ops, `mage-query.schema.json`). Renaming the IR concept is a larger ruling than the one given. The
+user-visible COUNT did move — the summary and the announcer said "6 saved questions" about six
+properties — because the ruling's stated motive is the distinction the UI shows. `richerQuestion`,
+`ModelType.question` and every `purpose.question` stay interrogative; an ask is upstream inquiry.
+Learn's `SavedQuestion` became `SavedStatement` because its `label` IS a property's text, and leaving
+it divergent from `properties.ts` would be the mixed vocabulary the ruling warns against.
+
+**Quantitative expectations keep their question marks, on purpose.** "What is the peak modeled memory
+over reachable configurations?" is a `quantitative_expectations` entry — a hand-derived value with
+arithmetic, never read by `readPresentation` and never rendered as property text. Its answer is a
+number, not a verdict. Asserting a specific value in the sentence would claim an ESTABLISHED the
+engine never checked.
+
+**The gate.** `test/properties.test.ts` holds both halves: no shipped query `name` and no fixture
+`label` is interrogative (trailing `?` or a leading auxiliary / wh-word), and — asserted positively —
+every shipped `purpose.question` and every `ModelType.question` / `richerQuestion` DOES ask. The
+positive half is the one that matters: a skip-the-purposes test would stay green if somebody
+flattened a model's purpose into a statement to satisfy the first half, erasing the same distinction
+from the other side. Both halves carry a floor on how much they read, so a walk that finds nothing
+fails instead of passing vacuously.
+
+Gates: `check` clean, `check:parity` 0 violations over 26 capabilities, node 829 (815 + 14 new),
+smoke 3, browser 40, a11y 111 — every tier 0 skipped.

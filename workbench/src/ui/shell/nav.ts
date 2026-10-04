@@ -111,9 +111,9 @@ export interface NavRails {
  * vocabulary then fails to compile here, which is the point of taking the typed status rather than
  * reading the word out of the sentence.
  *
- * `conditional` takes `?` and not `✓`. It holds of a REWRITTEN question, so a tick would claim the
- * question as asked was answered; the word beside it says which, and the disclosure says what the
- * rewrite was.
+ * `conditional` takes `?` and not `✓`. It holds of a REWRITTEN form of the statement, so a tick
+ * would claim the statement as written was established; the word beside it says which, and the
+ * disclosure says what the rewrite was.
  */
 const GLYPH: Readonly<Record<PropertyStatus, string>> = {
   established: "✓",
@@ -185,7 +185,7 @@ export function navRails(
   const properties: PropertyRailRow[] = vm.properties.map((row) => ({
     id: row.id,
     mark: markOf(row),
-    claim: row.proposition,
+    claim: row.statement,
     kind: row.kind,
     explains: row.groundSubjects[0] ?? null,
     full: row,

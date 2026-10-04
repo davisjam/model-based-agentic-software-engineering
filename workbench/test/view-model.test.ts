@@ -682,14 +682,14 @@ test("the ask form refuses what the engine would refuse, before running it", () 
 });
 
 test("save-as-property writes the QUESTION, by the same builder that ran it (section 10.3)", () => {
-  // §10.3: "The system SHALL preserve the proposition's semantics rather than merely saving the
+  // §10.3: "The system SHALL preserve the statement's semantics rather than merely saving the
   // displayed answer." That is structural here rather than a promise: one builder produces the
   // query that was run and the query that is saved, so the saved property cannot be an
   // approximation of the question whose answer is on screen.
   const request = ask();
   const plan = planEdit({
     form: "save-property", id: "api-reaches-gateway",
-    proposition: "The API may invoke the gateway.", expect: "holds", ask: request,
+    statement: "The API may invoke the gateway.", expect: "holds", ask: request,
   });
   assert.ok(plan.ok);
   assert.equal(plan.operations.length, 1, "one question saved is one operation");
@@ -702,7 +702,7 @@ test("save-as-property writes the QUESTION, by the same builder that ran it (sec
 
   // No expectation declared: a descriptive property, and nothing extra is written.
   const descriptive = planEdit({
-    form: "save-property", id: "q", proposition: "Something holds.", expect: "", ask: request,
+    form: "save-property", id: "q", statement: "Something holds.", expect: "", ask: request,
   });
   assert.ok(descriptive.ok);
   const plain = descriptive.operations[0];
@@ -718,20 +718,20 @@ test("save-as-property writes the QUESTION, by the same builder that ran it (sec
 
 test("save-as-property insists on the CLAIM, because the status word is read against it", () => {
   const noProposition = planEdit({
-    form: "save-property", id: "q", proposition: "   ", expect: "", ask: ask(),
+    form: "save-property", id: "q", statement: "   ", expect: "", ask: ask(),
   });
   assert.equal(noProposition.ok, false);
   assert.match(noProposition.ok ? "" : noProposition.problem, /assertion about the system/);
 
   const noId = planEdit({
-    form: "save-property", id: "", proposition: "The API may invoke the gateway.", expect: "", ask: ask(),
+    form: "save-property", id: "", statement: "The API may invoke the gateway.", expect: "", ask: ask(),
   });
   assert.equal(noId.ok, false);
   assert.match(noId.ok ? "" : noId.problem, /ids are immutable/);
 
   // A bad question is refused before an id or a claim can paper over it.
   const badQuery = planEdit({
-    form: "save-property", id: "q", proposition: "A claim.", expect: "", ask: ask({ relation: "" }),
+    form: "save-property", id: "q", statement: "A claim.", expect: "", ask: ask({ relation: "" }),
   });
   assert.equal(badQuery.ok, false);
 });
@@ -769,7 +769,7 @@ test("saving and retracting a property go through the real Workspace, and re-eva
 
   const plan = planEdit({
     form: "save-property", id: "api-reaches-gateway",
-    proposition: "The API may invoke the gateway.", expect: "holds", ask: ask(),
+    statement: "The API may invoke the gateway.", expect: "holds", ask: ask(),
   });
   assert.ok(plan.ok);
   const saved = ws.transact({

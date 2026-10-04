@@ -336,7 +336,7 @@ test("saving a query as a property goes through the ONE transaction seam an agen
   const added = ws.properties().find((p) => p.id === "gateway-reachable");
   assert.ok(added, "a saved query must appear in the property list immediately");
   assert.equal(added.kind, "requirement", "`expect` is the §13 declaration that satisfaction matters");
-  assert.equal(added.proposition, "The API may invoke the gateway.");
+  assert.equal(added.statement, "The API may invoke the gateway.");
   assert.ok(added.grounds.length > 0);
 
   // And retracting it leaves the models alone.

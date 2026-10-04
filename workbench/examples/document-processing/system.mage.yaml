@@ -497,7 +497,7 @@ queries:
   # Section 5.3's safety query. `refuted` under exhaustive coverage establishes it: no reachable
   # execution reaches published while avoiding validating, because index 3 is the only edge in.
   publish-without-validating:
-    name: Can a document be published without reaching validating?
+    name: A document can be published without reaching validating
     kind: behavior
     quantifier: exists
     behavior:
@@ -513,7 +513,7 @@ queries:
   #
   # That is an exhaustive statement about a finite transition system. It is not temporal liveness.
   retry-forever:
-    name: Can processing continue retrying indefinitely?
+    name: Processing can continue retrying indefinitely
     kind: behavior
     quantifier: exists
     behavior:
@@ -524,7 +524,7 @@ queries:
   # The honest companion. A document CAN return to remediating -- that is re-entry, and the evidence
   # is a lasso. It cannot do so forever.
   document-returns-to-remediating:
-    name: Can a document return to remediating after a failed validation?
+    name: A document can return to remediating after a failed validation
     kind: behavior
     quantifier: exists
     behavior:
@@ -535,7 +535,7 @@ queries:
   # The retry-free execution. Its witness trace is the one whose latency the 750 ms ceiling is meant
   # to govern, and expected-results.yaml pins the per-stage occurrence counts along it.
   document-publishes:
-    name: Can a document reach published?
+    name: A document can reach published
     kind: behavior
     quantifier: exists
     behavior:
@@ -548,7 +548,7 @@ queries:
   # which is the execution the maximum-latency question is about. The lifecycle supplies the trace;
   # the performance model supplies what each visit costs; neither alone is sufficient.
   publishes-after-three-retries:
-    name: Can a document publish having used every permitted retry?
+    name: A document can publish having used every permitted retry
     kind: behavior
     quantifier: exists
     behavior:
@@ -562,7 +562,7 @@ queries:
   # clause; this asks the lifecycle whether that state is reachable. Cross-model by construction:
   # the quantity is the performance model's and the state is the lifecycle's.
   remediation-memory-is-charged:
-    name: Is the 256 MB remediation charge ever incurred?
+    name: The 256 MB remediation charge is incurred on some reachable execution
     kind: behavior
     quantifier: exists
     behavior:
@@ -574,7 +574,7 @@ queries:
   # `stage_of` forbids composition, and `predecessors` is not a composing form, so asking who points
   # AT the document is one hop by construction.
   stages-of-this-document:
-    name: Which components perform a stage of this document's processing?
+    name: The parser, remediation, model gateway and validator perform a stage of this document's processing
     kind: graph
     quantifier: exists
     graph:
@@ -585,7 +585,7 @@ queries:
   # Pipeline order, over the one relation type that licenses composition. The witness is a two-hop
   # path, which is how you can tell the answer is not the degenerate src == dst one.
   parse-runs-before-validate:
-    name: Does parsing run before validation?
+    name: Parsing runs before validation
     kind: graph
     quantifier: exists
     graph:
@@ -607,7 +607,7 @@ queries:
   # back with cause `missing-distinction` and the model's own words -- "deliberately omits 'cache hit
   # frequency'" -- rather than a bare report that a lookup missed.
   expected-latency-with-the-cache:
-    name: Does the cache improve expected latency without violating the memory requirement?
+    name: The cache improves expected latency without violating the memory requirement
     kind: graph
     quantifier: exists
     graph:

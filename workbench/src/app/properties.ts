@@ -1,12 +1,21 @@
 /**
  * Properties — a persistent engineering claim, its current verdict, and what established it.
  *
+ * ## A property STATES something; it does not ask
+ *
+ * A property is a declarative proposition over the models — an obligation the engineering team
+ * cares about establishing — and the grammar says so. The MODEL asks the question ("What is
+ * connected to what?"); the property asserts a claim that is either established, refuted, or not
+ * presently answerable from the models available. So a property carries a `statement`, never a
+ * `question`, and the interrogative that motivated it belongs upstream as inquiry rather than in
+ * the field. `normalizeToStatement` holds that boundary for text a person types.
+ *
  * ## A property is not a saved query, and it is not a new IR object either
  *
- * A saved query is a question. A property is a question PLUS its current verdict PLUS the grounding
- * of that verdict (§3.3, §9). The question is already semantic and already persisted:
- * `CanonicalSystem.queries`. What this module adds is the other two, and the decision that governs
- * the whole design is **where they are allowed to live**.
+ * A property is a STATEMENT plus its current verdict PLUS the grounding of that verdict (§3.3, §9).
+ * The statement is already semantic and already persisted as the saved query's `name`, alongside
+ * the query form that decides it: `CanonicalSystem.queries`. What this module adds is the other
+ * two, and the decision that governs the whole design is **where they are allowed to live**.
  *
  * Nowhere. A verdict is derived state, so it is recomputed on every read and stored in no file, no
  * field of the IR, and no cache. The project already settled this twice:
@@ -34,7 +43,7 @@
  * four outcomes, deliberately (`holds | refuted | inconclusive | unlicensed`), and CONDITIONAL is
  * not a fifth one waiting to be added. It is a conclusive outcome that carries a disclosed
  * condition — and the one condition this workbench can actually detect is V23's rewrite: when the
- * engine had to compile the question into a different one to answer it, "holds" holds of the
+ * engine had to compile the statement into a different one to decide it, "holds" holds of the
  * rewritten system. That is reported as CONDITIONAL rather than as ESTABLISHED, because a reader
  * who is told "established" will not go looking for the disclosure.
  *
@@ -58,8 +67,15 @@ export type PropertyStatus =
 export const STATUS_TEXT: Readonly<Record<PropertyStatus, string>> = {
   established: "ESTABLISHED — this claim holds",
   refuted: "REFUTED — this claim does not hold",
-  conditional: "CONDITIONAL — it holds of a rewritten question, and the rewrite is disclosed below",
-  "not-answerable": "NOT ANSWERABLE — the models deliberately do not represent what this asks",
+  conditional: "CONDITIONAL — it holds of a rewritten form of this statement, and the rewrite is "
+    + "disclosed below",
+  // The author's own words for this one, and they say something the earlier copy did not: the
+  // limit is on the WORKBENCH's ability to decide, given these models. "The models deliberately do
+  // not represent what this asks" named the cause but left the reader to infer the consequence,
+  // and it kept the property in the interrogative ("what this asks") the ruling removes. Which
+  // distinction is missing is the refusal sentence's job, not the status word's.
+  "not-answerable": "NOT ANSWERABLE — the Workbench cannot determine whether this statement is true "
+    + "or false from the models currently available",
   inconclusive: "INCONCLUSIVE — the search was bounded, so this is not a 'no'",
   "not-evaluated": "NOT EVALUATED — no result has been computed for this revision",
 };
@@ -94,8 +110,11 @@ export interface Expectation {
 export interface EvaluatedProperty {
   /** The saved-query id. Immutable, and how every other surface addresses this property. */
   readonly id: string;
-  /** What the claim SAYS, in the author's words. The query's `name`, or the id when it has none. */
-  readonly proposition: string;
+  /**
+   * What the claim SAYS, in the author's words — a declarative proposition, never an interrogative.
+   * The query's `name`, or the id when it has none.
+   */
+  readonly statement: string;
   /** A requirement is a property whose satisfaction the engineer declared matters (§13). */
   readonly kind: "property" | "requirement";
   readonly status: PropertyStatus;
@@ -119,6 +138,148 @@ export interface EvaluatedProperty {
    * the mismatch rather than the word. See `evaluateProperties` for why it is reachable at all.
    */
   readonly stale: boolean;
+}
+
+// --------------------------------------------------------------------------------------------
+// Normalizing an interrogative into a statement
+// --------------------------------------------------------------------------------------------
+
+/**
+ * The result of trying to turn typed text into a declarative statement.
+ *
+ * `rewritten` is false both for text that was ALREADY declarative and for an interrogative this
+ * function declined to touch, and `why` is what tells those apart. Two outcomes rather than three
+ * because the caller treats them identically — it saves `statement` either way — while a test and
+ * a reader need to know which happened.
+ */
+export interface Normalization {
+  /** What to save. The rewritten statement, or the input verbatim. */
+  readonly statement: string;
+  readonly rewritten: boolean;
+  /** Why the text was left verbatim; null when it was rewritten. */
+  readonly why: string | null;
+}
+
+/** Subject-auxiliary inversion is only undone for these, and `did` is deliberately absent. */
+const COPULA_MODALS = new Set(["is", "are", "was", "were", "can", "could", "may", "might", "will",
+  "would", "shall", "should", "must"]);
+const DO_SUPPORT = new Set(["does", "do"]);
+
+/**
+ * A leading determiner means the subject runs past the token after the auxiliary, and this function
+ * will not guess where it ends. `any` is the sharpest reason why: "Is ANY entity reachable from
+ * Checkout?" asks whether SOME entity is, and "Any entity is reachable from Checkout" claims they
+ * all are. Inverting a determiner-headed subject can therefore invert the QUANTIFIER, which is a
+ * worse failure than leaving a question mark on screen.
+ */
+const DETERMINERS = new Set(["a", "an", "the", "any", "every", "each", "no", "some", "all", "both",
+  "either", "neither", "this", "that", "these", "those", "two", "three", "many", "most", "several"]);
+
+const WH_WORDS = new Set(["what", "which", "who", "whom", "whose", "where", "when", "why", "how"]);
+
+/** The only 3rd-person-singular forms English does not build by suffix. */
+const IRREGULAR_3SG: Readonly<Record<string, string>> = {
+  be: "is", have: "has", do: "does", go: "goes",
+};
+
+const isAdverb = (token: string): boolean => /^[a-z]+ly$/.test(token);
+
+/** Bare infinitive -> 3rd person singular, by the orthographic rules plus the four irregulars. */
+function thirdPersonSingular(verb: string): string {
+  const irregular = IRREGULAR_3SG[verb.toLowerCase()];
+  if (irregular !== undefined) return irregular;
+  if (/(s|sh|ch|x|z|o)$/i.test(verb)) return `${verb}es`;
+  if (/[^aeiou]y$/i.test(verb)) return `${verb.slice(0, -1)}ies`;
+  return `${verb}s`;
+}
+
+/**
+ * The subject, verbatim. Inversion moves a token to the front of a sentence and does NOT re-case it.
+ *
+ * Sentence-casing would read better for a common-noun subject — "Parsing runs before validation."
+ * — and there is no way to tell one from a declared name without the system in hand: `api`,
+ * `checkout` and `dead_letter` are entity and state ids, and `parsing` is a word, and all of them
+ * arrive as lowercase tokens. Renaming a declared object in the text of a claim about it is the
+ * worse error of the two, and it is the one this project refuses elsewhere for the same reason
+ * (`machineOfRef` will not guess which machine a bare name belongs to). So the author's spelling
+ * survives, and a lowercase sentence start is the visible price.
+ */
+const subjectOf = (token: string): string => token;
+
+/**
+ * Typed text -> the declarative statement a property records.
+ *
+ * The authoring UX lets a person type "Is Fulfillment reachable from Checkout through a chain of
+ * subscriptions?" and records "Fulfillment is reachable from Checkout through a chain of
+ * subscriptions." The interrogative was the inquiry; the property is the proposition it motivated.
+ * The ask bar's own composer produces interrogatives too, and the Track box is PREFILLED with one,
+ * so this runs on text the workbench wrote as much as on text a person did.
+ *
+ * **What it refuses matters more than what it rewrites.** A mangled statement is worse than an
+ * un-normalized one: it reads as the author's own words, so nobody goes looking for the tooling
+ * that produced it, whereas a surviving question mark is visibly un-normalized. So the only
+ * inversion undone here is the one whose SUBJECT is unambiguous — a single token after the
+ * auxiliary, or the expletive `there`. Everything else keeps the user's text:
+ *
+ *   - **A wh-question** asks for a value, not a yes/no verdict. "What is the shortest path from A
+ *     to B?" has no declarative form that does not invent the answer.
+ *   - **A determiner-headed subject** needs a parser to bound, and guessing can flip a quantifier
+ *     (see `DETERMINERS`).
+ *   - **`Did …`** needs a past-tense lexicon. Four irregular present forms are a closed set worth
+ *     encoding; irregular pasts are not.
+ *
+ * Idempotent, which is what lets the ask bar normalize for the derived id and `planEdit` normalize
+ * again for the saved text without the second pass changing the first's output: a statement carries
+ * no trailing question mark, so it takes the already-declarative exit.
+ */
+export function normalizeToStatement(text: string): Normalization {
+  const trimmed = text.trim();
+  const keep = (why: string): Normalization => ({ statement: trimmed, rewritten: false, why });
+
+  if (!trimmed.endsWith("?")) return keep("already declarative — no interrogative to normalize");
+
+  const body = trimmed.slice(0, -1).trim();
+  const tokens = body.split(/\s+/).filter((t) => t !== "");
+  if (tokens.length < 3) return keep("too short to invert without inventing words");
+
+  const aux = tokens[0]!.toLowerCase();
+  if (WH_WORDS.has(aux)) {
+    return keep("a wh-question asks for a value, so it has no yes/no proposition to state");
+  }
+
+  const done = (statement: string): Normalization => ({ statement, rewritten: true, why: null });
+
+  // The expletive. "Is there a direct 'calls' relation from A to B?" -> "There is a direct ...".
+  // Unambiguous because `there` fills the subject slot itself, so nothing has to be bounded.
+  if ((aux === "is" || aux === "are" || aux === "was" || aux === "were")
+      && tokens[1]!.toLowerCase() === "there") {
+    return done(`There ${aux} ${tokens.slice(2).join(" ")}.`);
+  }
+
+  const subject = tokens[1]!;
+  if (DETERMINERS.has(subject.toLowerCase())) {
+    return keep("the subject is determiner-headed, and bounding it would risk changing the claim");
+  }
+
+  if (COPULA_MODALS.has(aux)) {
+    return done(`${subjectOf(subject)} ${aux} ${tokens.slice(2).join(" ")}.`);
+  }
+
+  if (DO_SUPPORT.has(aux)) {
+    // Do-support carries the tense, so dropping it means putting the tense back on the main verb.
+    // Adverbs may sit between subject and verb ("Does A transitively contain B?"), and they stay
+    // where the author put them.
+    const rest = tokens.slice(2);
+    const verbAt = rest.findIndex((t) => !isAdverb(t.toLowerCase()));
+    if (verbAt === -1) return keep("no main verb follows the subject, so there is nothing to tense");
+    const verb = rest[verbAt]!;
+    if (!/^[A-Za-z]+$/.test(verb)) return keep(`'${verb}' is not a plain verb this can tense`);
+    const inflected = aux === "does" ? thirdPersonSingular(verb) : verb;
+    const tail = [...rest.slice(0, verbAt), inflected, ...rest.slice(verbAt + 1)];
+    return done(`${subjectOf(subject)} ${tail.join(" ")}.`);
+  }
+
+  return keep(`'${tokens[0]}' is not an auxiliary this knows how to un-invert`);
 }
 
 // --------------------------------------------------------------------------------------------
@@ -196,8 +357,8 @@ class Grounds {
 /**
  * Which models and machines the status derives from (UX-I5).
  *
- * Two sources, deliberately both: the QUESTION'S vocabulary and the EVIDENCE. The question alone
- * would name models the answer never touched; the evidence alone would ground nothing at all for a
+ * Two sources, deliberately both: the STATEMENT'S vocabulary and the EVIDENCE. The statement alone
+ * would name models the verdict never touched; the evidence alone would ground nothing at all for a
  * refusal or an exhaustive absence, which are the two results where a reader most needs to know
  * which reduction produced them.
  *
@@ -220,7 +381,7 @@ export function groundsFor(
       const relation = parsed.value.relation;
       const declaring = new Set(modelsDeclaring(system, relation));
       for (const model of declaring) {
-        g.model(model, `declares the ${relation} relations this question traverses`);
+        g.model(model, `declares the ${relation} relations this statement traverses`);
       }
       // An endpoint's models are cited too, and the reason SAYS which kind of dependence it is. A
       // model that declares the relation carries the answer; a model that merely contains the
@@ -231,7 +392,7 @@ export function groundsFor(
       for (const [side, id] of [["from", parsed.value.from], ["to", parsed.value.to]] as const) {
         if (id === null) continue;
         g.entity(id, (model) => declaring.has(model)
-          ? `contains ${id}, the '${side}' endpoint of the question`
+          ? `contains ${id}, the '${side}' endpoint of the statement`
           : `contains ${id}, the '${side}' endpoint, but declares no ${relation} relations`);
       }
     }
@@ -244,10 +405,10 @@ export function groundsFor(
       ];
       for (const ref of refs) {
         const machine = machineOfRef(system, ref);
-        if (machine !== null) g.machine(machine, `the question constrains ${ref}`);
+        if (machine !== null) g.machine(machine, `the statement constrains ${ref}`);
       }
       if (b.transition?.machine !== null && b.transition?.machine !== undefined) {
-        g.machine(b.transition.machine, "the question names a transition of this machine");
+        g.machine(b.transition.machine, "the statement names a transition of this machine");
       }
     }
   }
@@ -325,7 +486,7 @@ export function evaluateProperties(
 /**
  * One property, from one query and one result.
  *
- * Exported because a question that has not been SAVED yet is still a proposition with a verdict and
+ * Exported because a statement that has not been SAVED yet is still a proposition with a verdict and
  * a grounding, and §10.3's "Save as Property" only makes sense if what gets saved reads exactly as
  * it did before it was saved. The ad-hoc answer panel and the persistent property list therefore go
  * through this same function: saving a property changes how long the claim lasts, not how it reads.
@@ -346,7 +507,7 @@ export function evaluateOne(
   const expectation = expectationOf(raw, result);
   return {
     id,
-    proposition: typeof name === "string" && name.trim() !== "" ? name : id,
+    statement: typeof name === "string" && name.trim() !== "" ? name : id,
     kind: expectation === null ? "property" : "requirement",
     status: statusOf(result),
     outcome: result?.outcome ?? null,
@@ -418,7 +579,7 @@ export function checkPropertyGrounding(
       } else if ((p.refusal ?? "").trim() === "") {
         out.push({
           invariant: "UX-I5", subject: p.id,
-          problem: "refuses the question, cites no model, and gives no reason, so nothing identifies "
+          problem: "refuses the statement, cites no model, and gives no reason, so nothing identifies "
             + "what the status derives from",
         });
       }

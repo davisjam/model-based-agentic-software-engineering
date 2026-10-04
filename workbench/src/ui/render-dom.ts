@@ -31,7 +31,7 @@ const el = <K extends keyof HTMLElementTagNameMap>(
  *
  * Counted rather than derived from the model, because a model id is author-supplied text and two
  * blocks can legitimately carry the same one — the ad-hoc answer panel renders through the same
- * `propertyBlock` as the saved list, and its id is the proposition the user typed. Duplicate ids
+ * `propertyBlock` as the saved list, and its id is the statement the user typed. Duplicate ids
  * under an `aria-labelledby` resolve to whichever came first, which is an accessibility defect axe
  * reports and a reader cannot see. A counter cannot collide with anything a user writes.
  */
@@ -216,7 +216,7 @@ function sectionTable(section: Section): HTMLElement {
 /**
  * One persistent property (§9.1, §9.3).
  *
- * The order is the reading order §9.3 asks for: proposition, status, models used, evidence,
+ * The order is the reading order §9.3 asks for: statement, status, models used, evidence,
  * coverage, bounds, last evaluation revision. The revision is rendered for EVERY property, not only
  * a stale one, because "which revision does this status describe" is unanswerable from a status
  * word and is the first thing anyone auditing a claim needs.
@@ -227,9 +227,9 @@ function sectionTable(section: Section): HTMLElement {
  */
 export function propertyBlock(p: PropertyRow): HTMLElement {
   const article = el("article");
-  article.setAttribute("aria-label", `${p.kind}: ${p.proposition}`);
+  article.setAttribute("aria-label", `${p.kind}: ${p.statement}`);
   const heading = el("h3");
-  heading.append(el("span", p.kind, "state"), document.createTextNode(` ${p.proposition}`));
+  heading.append(el("span", p.kind, "state"), document.createTextNode(` ${p.statement}`));
   article.append(heading);
 
   // `status` already carries the mismatch when the verdict describes another revision -- the view

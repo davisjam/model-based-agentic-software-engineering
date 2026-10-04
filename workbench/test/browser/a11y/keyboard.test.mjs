@@ -306,7 +306,7 @@ describe("section 19, operations 6-10: inspection and analysis", () => {
     await chooseByKeyboard(page, "ask-relation", "subscribes");
     await chooseByKeyboard(page, "ask-from", "");
     await chooseByKeyboard(page, "ask-to", "order-created");
-    await typeInto(page, "save-property-proposition", "Some service subscribes to OrderCreated");
+    await typeInto(page, "save-property-statement", "Some service subscribes to OrderCreated");
     await activateByKeyboard(page, "ask-go", { settleMs: 600 });
 
     const answer = (await page.evaluate(() =>

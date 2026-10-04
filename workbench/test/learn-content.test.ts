@@ -30,7 +30,7 @@ import {
   presentTypes,
 } from "../src/app/learn.ts";
 import {
-  buildTypeSections, buildUseSections, propertyJoinQuestions, quantityRows, savedQuestions,
+  buildTypeSections, buildUseSections, propertyJoinStatements, quantityRows, savedStatements,
   type LoadedSystems,
 } from "../src/learn/content.ts";
 import { REQUIREMENT_METRICS } from "../src/quant/requirement.ts";
@@ -98,13 +98,13 @@ test("'try asking' lists are the exemplar's saved questions of the type's own qu
     assert.ok(system !== undefined);
     const kind = modelTypeForQueryKind(
       MODEL_TYPES.find((t) => t.id === s.entry.id)?.queryKind ?? "graph").queryKind;
-    for (const q of s.questions) {
+    for (const q of s.statements) {
       const saved = system.queries.get(q.id);
       assert.ok(saved !== undefined, `${s.entry.id}: question '${q.id}' is not a saved query`);
       const raw = saved.raw as Record<string, unknown>;
       assert.equal(raw["kind"], kind, `${s.entry.id}: question '${q.id}' is of another type's kind`);
     }
-    assert.deepEqual(s.questions, savedQuestions(system, kind));
+    assert.deepEqual(s.statements, savedStatements(system, kind));
   }
 });
 
@@ -169,17 +169,17 @@ test("structural graph + data policy: the shipped property join ANSWERS on the u
   for (const s of useSections) {
     const system = systems.get(s.visual.example);
     assert.ok(system !== undefined);
-    assert.ok(s.questions.length > 0,
+    assert.ok(s.statements.length > 0,
       `use '${s.use.id}': no shipped saved question joins entity properties — the use card would `
       + `be describing a purpose with no executable instance`);
-    for (const q of s.questions) {
+    for (const q of s.statements) {
       const saved: unknown = system.queries.get(q.id)?.raw;
       assert.ok(saved !== undefined);
       const a = runQuery(system, saved);
       assert.notEqual(a.result.outcome, "unlicensed",
         `use '${s.use.id}': saved question '${q.id}' refused — the page must not present it as the use at work`);
     }
-    assert.deepEqual(s.questions, propertyJoinQuestions(system));
+    assert.deepEqual(s.statements, propertyJoinStatements(system));
   }
 });
 
@@ -199,7 +199,7 @@ test("a missing-model-type refusal resolves to the Learn section the page builds
       .map((id) => systems.get(id))
       .find((sys): sys is CanonicalSystem => sys !== undefined && t.presentIn(sys));
     assert.ok(donor !== undefined, `${t.id}: no shipped example declares the type at all`);
-    const savedDonor = savedQuestions(donor, t.queryKind)[0];
+    const savedDonor = savedStatements(donor, t.queryKind)[0];
     const question: unknown = savedDonor !== undefined
       ? donor.queries.get(savedDonor.id)?.raw
       : composedQuantityQuery(donor, "the donor example");

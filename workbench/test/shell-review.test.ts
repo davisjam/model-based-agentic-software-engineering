@@ -354,7 +354,7 @@ test("create-hypothesis's human affordance moved to a control that exists and is
 /** A minimal evaluated property. Only the fields the impact function reads are meaningful. */
 function property(id: string, status: PropertyStatus): EvaluatedProperty {
   return {
-    id, proposition: id, kind: "property", status, outcome: null, coverage: null, evidence: null,
+    id, statement: id, kind: "property", status, outcome: null, coverage: null, evidence: null,
     refusal: null, compilation: [], grounds: [], expectation: null,
     evaluatedAt: "r1", currentRevision: "r1", stale: false,
   };

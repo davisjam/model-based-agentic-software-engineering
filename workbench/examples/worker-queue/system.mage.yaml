@@ -293,7 +293,7 @@ models:
 queries:
 
   completed-is-reachable:
-    name: Can a job reach completed?
+    name: A job can reach completed
     kind: behavior
     quantifier: exists
     behavior:
@@ -302,7 +302,7 @@ queries:
         job-lifecycle.state: completed
 
   dead-letter-is-reachable:
-    name: Can a job reach dead_letter?
+    name: A job can reach dead_letter
     kind: behavior
     quantifier: exists
     behavior:
@@ -314,7 +314,7 @@ queries:
   # BOUNDED search that found nothing reads `inconclusive`, never "no". The sound statement is "not
   # within the explored region", and the result discloses the bound that stopped it.
   dead-letter-within-a-tiny-budget:
-    name: Is dead_letter reachable within a two-configuration search budget?
+    name: dead_letter is reachable within a two-configuration search budget
     kind: behavior
     quantifier: exists
     behavior:
@@ -329,7 +329,7 @@ queries:
   #
   # That is an exhaustive statement about a finite transition system. It is not temporal liveness.
   job-can-retry-forever:
-    name: Can a job stay in the retry loop indefinitely?
+    name: A job can stay in the retry loop indefinitely
     kind: behavior
     quantifier: exists
     behavior:
@@ -340,7 +340,7 @@ queries:
   # The honest companion to the question above, and the reason the engine has two forms. The job CAN
   # return to queued -- that is re-entry, and the evidence is a lasso. It cannot do so forever.
   job-returns-to-queued:
-    name: Can a job return to queued after failing?
+    name: A job can return to queued after failing
     kind: behavior
     quantifier: exists
     behavior:
@@ -352,7 +352,7 @@ queries:
   # supplies `free`; neither alone can state the property. Universal, so exhaustive satisfaction
   # establishes it and a counterexample refutes it -- which is what the section 6.7 modification does.
   lease-held-while-processing:
-    name: Is the job ever in processing while no worker holds its lease?
+    name: The job is never in processing while no worker holds its lease
     kind: behavior
     quantifier: forall
     behavior:
@@ -368,7 +368,7 @@ queries:
   # structure was consulted. Read it as "the lease model cannot express dual ownership", which is a
   # stronger statement than "it does not happen" and a weaker one than "two owners were checked for".
   two-workers-own-one-job:
-    name: Can two workers simultaneously own the same job?
+    name: Two workers can simultaneously own the same job
     kind: behavior
     quantifier: exists
     behavior:
@@ -382,7 +382,7 @@ queries:
   # system declares neither. The engine refuses and names the missing vocabulary rather than
   # answering from a model that does not hold the distinction.
   is-the-scheduler-fair:
-    name: Does the scheduler give both workers a turn?
+    name: The scheduler gives both workers a turn
     kind: behavior
     quantifier: exists
     behavior:

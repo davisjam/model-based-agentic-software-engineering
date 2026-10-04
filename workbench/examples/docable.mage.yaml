@@ -231,12 +231,12 @@ models:
         type: data_flow
 
 # ---------------------------------------------------------------------------
-# Engineering questions are versioned artifacts alongside the models that answer them.
+# Property statements are versioned artifacts alongside the models that decide them.
 # ---------------------------------------------------------------------------
 queries:
 
   publish-requires-review:
-    name: Can a document be published without being reviewed?
+    name: A document can be published without being reviewed
     kind: behavior
     # Existential: a witness trace would prove it CAN happen.
     quantifier: exists
@@ -248,7 +248,7 @@ queries:
         document.state: reviewed
 
   processing-implies-custody:
-    name: Is the document ever processing while the worker is idle?
+    name: The document is never processing while the worker is idle
     kind: behavior
     # Universal: exhaustive satisfaction proves it; a counterexample refutes it.
     quantifier: forall
@@ -261,7 +261,7 @@ queries:
             - worker.state: idle
 
   document-can-return-to-waiting:
-    name: Can the document return to waiting after failing?
+    name: The document can return to waiting after failing
     kind: behavior
     quantifier: exists
     behavior:
@@ -271,7 +271,7 @@ queries:
         document.state: waiting
 
   restricted-reaches-public:
-    name: Can restricted content reach a public-only service?
+    name: Restricted content reaches a public-only service
     kind: graph
     quantifier: exists
     graph:
@@ -287,7 +287,7 @@ queries:
   # so this query returns outcome=unlicensed with a refusal message (V7) -- a successful
   # result that reports what the model does not authorize.
   transitive-ownership:
-    name: Does the API transitively own the parser?
+    name: The API transitively owns the parser
     kind: graph
     quantifier: exists
     graph:

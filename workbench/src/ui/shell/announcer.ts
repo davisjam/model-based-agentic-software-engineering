@@ -131,7 +131,7 @@ export class Announcer {
         ["relations", state.system.relations.length],
         ["machines", state.system.machines.size],
         ["machine instances", state.system.instances.length],
-        ["saved questions", state.system.queries.size],
+        ["saved properties", state.system.queries.size],
       ]),
       findings: state.findings.length,
       annotation: annotationHash(state.system),
@@ -164,7 +164,7 @@ export class Announcer {
     const changed: string[] = [];
     for (const p of rows) {
       const before = this.lastStatus.get(p.id);
-      if (before !== undefined && before !== p.status) changed.push(`${p.proposition} is now ${p.status}`);
+      if (before !== undefined && before !== p.status) changed.push(`${p.statement} is now ${p.status}`);
     }
     const dropped = [...this.lastStatus.keys()].filter((id) => !rows.some((p) => p.id === id));
     this.lastStatus = new Map(rows.map((p) => [p.id, p.status]));

@@ -55,7 +55,7 @@ requirements:
 queries:
 
   - id: completed-is-reachable
-    label: Can a job reach completed?
+    label: A job can reach completed
     suggested: true
     models: [job-lifecycle, job-lease]
     expected:
@@ -75,7 +75,7 @@ queries:
       free as the job completes, in the same step.
 
   - id: dead-letter-is-reachable
-    label: Can a job reach dead_letter?
+    label: A job can reach dead_letter
     suggested: true
     models: [job-lifecycle, job-lease]
     expected:
@@ -97,7 +97,7 @@ queries:
       and the total is an artifact of how the trace reaches the counter.
 
   - id: dead-letter-within-a-tiny-budget
-    label: Is dead_letter reachable within a two-configuration search budget?
+    label: dead_letter is reachable within a two-configuration search budget
     suggested: false
     models: [job-lifecycle]
     expected:
@@ -116,7 +116,7 @@ queries:
       "not found" and "not there" is one a student has to see the workbench make.
 
   - id: job-can-retry-forever
-    label: Can a job stay in the retry loop indefinitely?
+    label: A job can stay in the retry loop indefinitely
     suggested: true
     models: [job-lifecycle]
     expected:
@@ -129,7 +129,7 @@ queries:
       an exhaustive statement about a finite space and nothing stronger.
 
   - id: job-returns-to-queued
-    label: Can a job return to queued after failing?
+    label: A job can return to queued after failing
     suggested: false
     models: [job-lifecycle, job-lease]
     expected:
@@ -148,7 +148,7 @@ queries:
       start -- which is exactly why the same loop is not repeatable.
 
   - id: lease-held-while-processing
-    label: Is the job ever in processing while no worker holds its lease?
+    label: The job is never in processing while no worker holds its lease
     suggested: true
     models: [job-lifecycle, job-lease]
     expected:
@@ -162,7 +162,7 @@ queries:
       reachable, and the modification below produces the counterexample on demand.
 
   - id: two-workers-own-one-job
-    label: Can two workers simultaneously own the same job?
+    label: Two workers can simultaneously own the same job
     suggested: false
     models: [job-lease]
     expected:
@@ -178,7 +178,7 @@ queries:
       a correct answer.
 
   - id: is-the-scheduler-fair
-    label: Does the scheduler give both workers a turn?
+    label: The scheduler gives both workers a turn
     suggested: true
     models: [job-lifecycle, job-lease, worker-pool]
     expected:
