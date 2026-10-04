@@ -116,7 +116,23 @@
   button[disabled] { opacity: .5; cursor: not-allowed; }
   button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 
-  main { padding: 1rem; max-width: 84rem; margin: 0 auto; }
+  /*
+    FULL WIDTH. The `max-width: 84rem` that used to sit here is the defect, not the margin it
+    bought: it made the application a ~1344px page centred in whatever the browser gave it, so at a
+    1600px viewport 256px went to dead gutter while the model itself got 656px [measured]. A
+    modeling workbench's subject is the model, so the shell takes the viewport and keeps a gutter
+    only wide enough to stop the panes touching the glass.
+
+    The gutter is PADDING rather than a max-width, and that is the whole substitution: padding
+    shrinks with the viewport, a max-width does not, so one declaration serves 320px and 1920px
+    without a second rule.
+
+    THE SHELL'S CAP IS THE ONLY ONE REMOVED. The reading-measure caps on prose -- `p.purpose` and
+    `p.prompt` at 46rem -- are element-scoped, they do not pass through this selector, and they
+    stay: a 1560px line of body text is unreadable, so widening those would be a different change
+    wearing this one's clothes.
+  */
+  main { padding: 1rem 1.25rem; }
   /* #nav-models is a <nav> (landmark-unique fix) but keeps a section's rhythm in the rail. */
   section, #nav-models { margin-block-end: 2rem; }
 
@@ -131,12 +147,32 @@
     tab sequence, and `grid-template-areas` is the one layout mechanism where that separation is
     explicit rather than a side effect.
 
-    One column below 64rem. A three-pane shell on a phone is three unreadable columns; the regions
-    then stack in DOM order, which is the order a screen-reader user already gets.
+    One column below 74rem. A three-pane shell on a phone is three unreadable columns; the regions
+    then stack in DOM order, which is the order a screen-reader user already gets. Why 74 and not
+    the 64 that stood here, see the breakpoint arithmetic at the media query below.
+
+    THE TRACK RATIO IS 22 / 56 / 22, and the side columns are no longer CAPPED. They used to end at
+    18rem and 20rem, which made removing the `main` max-width above a half-fix: the freed width had
+    nowhere to go but the centre, so Properties and Inspector stayed exactly as cramped as before
+    [measured at 1600px: 288px and 320px, both pinned to their caps, at every viewport above
+    1136px]. The centre gets the larger share because the model is the subject and the rails
+    support it; the rails get a real share because a relation name that wraps every second word is
+    not a readable rail.
+
+    `fr`, NOT `%`, and the gaps are why. A percentage track resolves against the grid container's
+    content box and knows nothing about `gap`, so `22% 56% 22%` asks for 100% of the width AND two
+    1.5rem gutters -- 48px more than exists, which overflows the shell and takes 1.4.10 with it. An
+    `fr` distributes what remains AFTER the gaps are taken out, so the ratio holds at every width
+    without a calc().
+
+    The minimums (260 / 550 / 280px, expressed in rem so they scale with a user's root font size)
+    are floors, not targets. Where a floor binds it wins and the ratio bends around it, which is
+    what should happen: below about 1440px the Inspector's floor is the active constraint and the
+    centre yields to it.
   */
   #shell {
     display: grid; gap: 0 1.5rem; align-items: start;
-    grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr) minmax(13rem, 20rem);
+    grid-template-columns: minmax(16.25rem, 22fr) minmax(34.375rem, 56fr) minmax(17.5rem, 22fr);
     grid-template-areas:
       "banner banner banner"
       "review review review"
@@ -249,14 +285,39 @@
     SCALED, not scrolled. A scrollable container with no focusable descendant is an axe violation
     (`scrollable-region-focusable`) and the obvious fix -- a tabbable wrapper -- is forbidden here
     by SH-I4, because this subtree is `aria-hidden` and a caret inside it lands where a screen
-    reader says nothing. So the SVG gets `max-width: 100%`, which also keeps 1.4.10 at zero
-    horizontal overflow at 320px.
+    reader says nothing. So the SVG is sized by its box and never by a scroll offset, which also
+    keeps 1.4.10 at zero horizontal overflow at 320px.
+
+    `width: 100%` RATHER THAN `max-width: 100%`, and that one word is the Event Flow correction.
+    The renderer writes the content's own extent onto the root element as `width` and `height`
+    attributes (src/render/svg.ts), so with only a `max-width` the picture could SHRINK below its
+    intrinsic size and never grow past it: the flagship model drew 445px wide inside a 628px frame
+    at a 1600px viewport and would have drawn 445px inside an 845px frame after the shell went
+    full-width [measured]. The figure was the one part of the page that got nothing from the extra
+    space. `width: 100%` makes the frame the authority on size and the attributes merely the
+    aspect ratio, so the drawing grows with the Workspace.
+
+    BOUNDED BY HEIGHT, because width alone is not a size. This graph is taller than it is wide
+    (445 x 582), so filling an 845px frame on width would compute a 1105px-tall figure and push the
+    structured reading, the ask bar and the status line off the bottom of the screen -- the model
+    would use the width by costing the reader everything under it. `max-height: 80vh` caps the
+    figure at the viewport, and the default `preserveAspectRatio` then fits the drawing inside the
+    frame without distorting it. 80vh is the same ceiling the two rails already use, so the three
+    panes agree on how tall a pane may get.
+
+    WHAT THIS DOES NOT DO is re-rank the graph, and the distinction is worth recording because the
+    ruling asked for a re-layout. Horizontal extent in a left-to-right layered layout is set by the
+    number of RANKS, which is a property of the model's edges and not of the viewport, so no width
+    hint can make this graph wider -- it can only make it bigger. Spreading ranks to fill a measured
+    width would mean passing viewport geometry into a layout module that is deliberately pure and
+    deterministic (it runs in a Worker and under `node:test`, with no DOM to measure), and that is a
+    renderer change rather than a stylesheet one. Recorded in DESIGN-shell-261002.md §9i.
   */
   #canvas {
     margin: .6rem 0 0; min-height: 4rem;
     border: 1px solid var(--rule); border-radius: var(--mage-radius-chip);
   }
-  #canvas svg { display: block; max-width: 100%; height: auto; }
+  #canvas svg { display: block; width: 100%; max-width: 100%; height: auto; max-height: 80vh; }
 
   /* A tree row is a row, not a chip: full width, left-aligned, the selected one marked by a word. */
   #model-contents ul { list-style: none; padding-inline-start: .6rem; }
@@ -276,7 +337,27 @@
   #canvas-menu p { margin: .1rem .3rem .3rem; }
   #canvas-menu button { display: block; width: 100%; text-align: left; margin: .1rem 0; }
 
-  @media (max-width: 64rem) {
+  /*
+    THE COLLAPSE POINT IS DERIVED FROM THE TRACK MINIMUMS, which is why it moved from 64rem to
+    74rem when those minimums arrived. Add up what three columns now demand:
+
+        16.25rem + 34.375rem + 17.5rem   = 68.125rem   track floors (260 + 550 + 280px)
+                     2 x 1.5rem          =     3rem    the two column gaps
+                     2 x 1.25rem         =   2.5rem    main's left and right padding
+                                           --------
+                                           73.625rem   = 1178px of viewport, minimum
+
+    Left at 64rem, every viewport between 1024px and 1178px would have rendered three columns whose
+    floors do not fit, and a grid track that cannot reach its minimum OVERFLOWS -- which is a
+    horizontal scrollbar on the document and a 1.4.10 failure, caused by a breakpoint rather than by
+    any content. 74rem (1184px) clears the sum with 6px to spare, so the three-column layout only
+    ever applies where it fits.
+
+    Nothing about the collapse ITSELF changed: one track, the regions stacked in DOM order, and the
+    rails released from their 80vh scroll box. The page reflows to one column and never scrolls
+    sideways, at 320px as before.
+  */
+  @media (max-width: 74rem) {
     #shell {
       grid-template-columns: minmax(0, 1fr);
       grid-template-areas:
@@ -341,7 +422,16 @@
     the group name, and a disabled <fieldset> disables every control inside it, which is how the
     whole editing surface turns off before a model is loaded without tracking each input.
   */
-  .forms { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); }
+  /*
+    `min(19rem, 100%)` RATHER THAN A BARE `19rem`, because a track minimum that outgrows its
+    container does not wrap -- it OVERFLOWS, and this one was one pixel from doing so. At 320px the
+    forms column demanded 304px inside a 288px content box and fitted only because the shell's old
+    1rem gutter left it exactly 320px to the document's edge; widening that gutter to 1.25rem put
+    the fieldsets 4px past the viewport and took 1.4.10 with them [measured]. The `min()` caps the
+    floor at the space that exists, so the column can no longer overflow at any width and the
+    reflow invariant stops depending on an exact arithmetic coincidence between two unrelated rules.
+  */
+  .forms { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr)); }
   fieldset {
     margin: 0; border: 1px solid var(--rule); border-radius: var(--mage-radius-chip); padding: .6rem .8rem .8rem;
     background: var(--panel);
