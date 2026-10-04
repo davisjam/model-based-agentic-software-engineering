@@ -177,6 +177,48 @@ const PAGES = [
           await page.waitForFunction(() => document.getElementById("hypothesis-bar").hidden === false, { timeout: 30_000 });
         },
       },
+      {
+        // 5. the Add-model dialog, open -- the only state in which the model-type picker and its
+        //    Learn escape are in the document at all.
+        //
+        // IT IS HERE BECAUSE THE SURFACE WAS OTHERWISE OUTSIDE EVERY STATE THIS FILE SWEEPS. The
+        // contextual Learn routes added three buttons and a link inside `#edit-dialog`, and a
+        // control in a closed `<dialog>` is in no accessibility tree — so the tier would have
+        // reported 111 passing over a surface it never looked at. That is the repo's own
+        // "a gate exists and the path meant to run it does not reach it" class, read from the
+        // other side: a new surface has to be brought into the gate's reach, not merely not break
+        // it.
+        //
+        // The floor is 15 for the hypothesis state's reason, unchanged: this is a native modal, so
+        // `axe.run(document)` audits the dialog and the page behind it is blocked from the tree. The
+        // number is a floor under "axe ran at all"; `covers` is what gives the state teeth.
+        name: "add-model-dialog",
+        floor: 15,
+        covers: [
+          "#edit-dialog[open]",
+          // The picker's rows, which the registry's count owns. A selector matching zero would mean
+          // axe swept an open dialog with no picker in it — the defect, not the state.
+          "#edit-dialog-type-rows button.type-choice",
+          // The Learn escape. A link audited for its accessible name is the point of listing it:
+          // "Learn about model types" has to BE the name, not a title attribute.
+          "#edit-dialog-learn",
+          // And the field the picker fills, so the state covers the thing it is guidance for.
+          "#edit-dialog-add-model-question",
+        ],
+        drive: async (page) => {
+          // The hypothesis modal first: two stacked dialogs is a focus ordering the platform does
+          // not define, and this suite must audit ONE top layer rather than whichever won.
+          await page.evaluate(() => window.mage.hypothesis.discard());
+          await page.waitForFunction(() => document.getElementById("hypothesis-bar").hidden === true,
+            { timeout: 30_000 });
+          // Through the human controls, because the menu's disclosure and the row's listener are
+          // part of what a keyboard user walks to reach this dialog.
+          await page.click("#add-menu-summary");
+          await page.click("#add-menu-model");
+          await page.waitForFunction(() => document.getElementById("edit-dialog")?.open === true,
+            { timeout: 30_000 });
+        },
+      },
     ],
     diagram: {
       hosts: "#canvas",
@@ -192,6 +234,15 @@ const PAGES = [
         // Settled on the observable consequence, not a timer: the discard is done when the banner
         // is hidden again. The 300ms sleep this replaces passed on speed, not on knowledge.
         await page.waitForFunction(() => document.getElementById("hypothesis-bar").hidden === true, { timeout: 30_000 });
+        // And the edit dialog the last state left open, for a reason the hypothesis discard above
+        // only half covers: a `<dialog>` in the top layer paints a `::backdrop` over the page, and
+        // this measurement reads the colour actually behind each glyph. Measured when the
+        // add-model state landed — the dark theme's diagram labels went from clearing AA to failing
+        // it, with no change to the renderer. Closing through the dialog's own Cancel rather than
+        // `close()`, so the state the measurement runs in is one a user can also be standing in.
+        await page.click("#edit-dialog-cancel");
+        await page.waitForFunction(() => document.getElementById("edit-dialog")?.open === false,
+          { timeout: 30_000 });
         await page.evaluate(() => window.mage.view.select(["analytics", "order-created"]));
         await page.waitForFunction(() => document.querySelector("#canvas .mage-legend") !== null, { timeout: 30_000 });
       },

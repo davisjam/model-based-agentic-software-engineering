@@ -462,6 +462,21 @@
   }
   .check { display: flex; gap: .4rem; align-items: baseline; margin-block-end: .5rem; font-size: .9rem; }
 
+  /*
+    The add-model picker. One button per registered model type, the type above the question it
+    answers — the sketch's two columns, stacked, because a dialog is narrow and the question is the
+    longer and more important of the two strings.
+  */
+  #edit-dialog-type-rows { display: grid; gap: .3rem; margin-block-end: .5rem; }
+  button.type-choice {
+    font: inherit; text-align: start; display: block; width: 100%; padding: .35rem .5rem;
+    border: 1px solid var(--rule); border-radius: var(--mage-radius-chip);
+    background: var(--bg); color: var(--ink); cursor: pointer;
+  }
+  button.type-choice:hover { border-color: var(--accent); }
+  .type-choice-label { display: block; font-size: .78rem; color: var(--muted); }
+  .type-choice-question { display: block; }
+
   /* Notes and provenance inside an inspector row. Labelled, so a note never reads as a finding. */
   .sublabel {
     margin: .5rem 0 .15rem; font-size: .78rem; text-transform: uppercase;
@@ -1409,6 +1424,33 @@
 <dialog id="edit-dialog" aria-labelledby="edit-dialog-h" aria-describedby="edit-dialog-hint">
   <h2 id="edit-dialog-h"></h2>
   <p class="hint" id="edit-dialog-hint"></p>
+  <!--
+    The model-type picker, and the Learn escape under it. `requirements-learn-261002.md` sketches
+    the shape: a row per model type naming the type and the engineering question it answers, then
+    "Not sure?" and a link to the model-type gallery. Read the sketch there — it is not reproduced
+    here, for the reason in the next paragraph.
+
+    Only `add-model` shows it (it is the one operation that asks for an engineering question), so
+    the host ships `hidden` and `shell/edit-dialogs.ts` reveals it per open.
+
+    The ROWS ARE EMPTY HERE ON PURPOSE. The question beside each type is `ModelType.question` from
+    the model-type registry, and typing the three questions into this file would be the drift UX-I9
+    exists to prevent: a fourth registered type would then be a type the picker does not offer, and
+    an edited question would be two questions, one of them in front of the user. That holds for a
+    COMMENT as much as for markup, and measurably so: two of the three questions in the
+    requirement's sketch are already shorter than the ones the registry now declares, so a file
+    that quoted the sketch beside this host would stand a stale question six lines above the live
+    one. The escape's href IS shipped, so the link works before the bundle evaluates, and the
+    module re-assigns it from `src/app/learn.ts` — which keeps "where Learn lives" one value
+    rather than three.
+  -->
+  <div id="edit-dialog-types" hidden>
+    <p class="sublabel">Which question are you asking?</p>
+    <div id="edit-dialog-type-rows"></div>
+    <p class="hint">
+      Not sure? <a id="edit-dialog-learn" href="learn.html">Learn about model types</a>
+    </p>
+  </div>
   <div id="edit-dialog-fields"></div>
   <!--
     Not a live region: `#live` is the one polite announcer and a second would talk over it. The

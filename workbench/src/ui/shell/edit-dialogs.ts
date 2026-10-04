@@ -26,7 +26,19 @@
  * **What it does NOT own.** The mutation funnel stays in `edit-forms.ts`: one operation, one
  * envelope, one `Workspace.transact`, shared with the ask bar's Save and Retract (UX-I3). This
  * module decides which operation and with what arguments, and hands it over.
+ *
+ * **One dialog also carries a route INTO Learn, and that is the first of the two contextual routes
+ * `requirements-learn-261002.md` asks for.** `add-model` is the only operation that asks for an
+ * engineering question, so it is the only one where the registry's model types belong: the picker
+ * offers them BY QUESTION — the author's framing throughout Learn is question first, not a
+ * taxonomy of MAGE's internal types — and under them sits the "Not sure?" escape to the gallery.
+ * The questions are `ModelType.question`, projected (`MODEL_TYPE_CHOICES`), never typed here. That
+ * is UX-I9 one layer in from the Learn page: a hand-written question in this dialog would drift
+ * away from what the kernel actually gates on the first time a registry entry moved, and the
+ * drifted copy is the one a person creating a model would read.
  */
+import { MODEL_TYPES, type ModelTypeId } from "../../engine/model-types.ts";
+import { LEARN_PAGE } from "../../app/learn.ts";
 import { fillSelect } from "../render-dom.ts";
 import { elementValue, relationValue, resolveSelection } from "../view-model.ts";
 import type {
@@ -88,7 +100,49 @@ export interface EditAction {
   readonly hint: string;
   readonly fields: readonly Field[];
   readonly build: (values: FieldValues) => EditRequest;
+  /**
+   * The text field a model-type choice fills — and, by its presence, the switch that puts the
+   * registry's model types in front of this operation's fields.
+   *
+   * ONE declaration rather than a boolean beside a field name: the picker writes into the field
+   * this names, so the renderer never spells `"question"` itself and a test can check the name
+   * against the action's own `fields` list. Absent on the other nine operations, which ask for no
+   * engineering question and have nothing for a model type to narrow.
+   */
+  readonly questionField?: string;
 }
+
+/**
+ * One row of the add-model picker: a registered model type, named and asked.
+ *
+ * **Projected, never written.** UX-I9's constraint on this surface is that the question beside a
+ * model type come from the same registry entry the kernel's dispatch gate consults
+ * (`ModelType.question`), so a new entry in `MODEL_TYPES` appears in the dialog with no edit here
+ * and an edited question moves both. The field is carried BY IDENTITY from the registry — the
+ * reason this is a projection of three fields rather than a list of three objects — because the
+ * author's standing objection to a hand-maintained Learn surface is that it "will drift away from
+ * what MAGE actually supports", and a dialog with the questions typed into it is that drift one
+ * layer in from the Learn page.
+ */
+export interface ModelTypeChoice {
+  readonly id: ModelTypeId;
+  readonly label: string;
+  readonly question: string;
+}
+
+/** The picker's rows, in registry order. The registry owns the count. */
+export const MODEL_TYPE_CHOICES: readonly ModelTypeChoice[] =
+  MODEL_TYPES.map((t) => ({ id: t.id, label: t.label, question: t.question }));
+
+/**
+ * Where "Not sure?" goes: the GALLERY, not one type's section.
+ *
+ * `requirements-learn-261002.md` sketches the escape as `[Learn about model types]` under a "Not
+ * sure?", and the plural is the whole of the design — a reader who cannot tell which of three
+ * questions they are asking is the one reader a per-type deep link misdirects. `learnHrefForType`
+ * is the right call from the inspector, where the type is already known; here it is the wrong one.
+ */
+export const LEARN_GALLERY_HREF = LEARN_PAGE;
 
 const text = (v: FieldValues, name: string): string => v.text.get(name) ?? "";
 
@@ -167,6 +221,11 @@ export const EDIT_ACTIONS: readonly EditAction[] = [
       form: "add-model", id: text(v, "id"), label: text(v, "label"),
       question: text(v, "question"), entities: text(v, "entities"),
     }),
+    // The one operation that asks for an engineering question, so the one dialog where the
+    // registry's model types belong: the Learn requirement's picker offers them BY QUESTION, and
+    // choosing one fills this field. Nothing else about the operation changes — `add-model` still
+    // declares a purposeful model and still sends `add-model` plus `set-purpose`.
+    questionField: "question",
   },
   {
     form: "add-note",
@@ -432,6 +491,13 @@ export function mountEditDialogs(ctx: ShellContext, submitEdit: SubmitEdit): Edi
   const heading = byId("edit-dialog-h");
   const hint = byId("edit-dialog-hint");
   const fieldHost = byId("edit-dialog-fields");
+  const typesHost = byId("edit-dialog-types");
+  const typeRows = byId("edit-dialog-type-rows");
+  // The destination comes from `src/app/learn.ts`, exactly as the header entry's does, so "where
+  // Learn lives" stays one value. The markup ships the same string — the escape works before the
+  // bundle evaluates — which is what makes this assignment a check of one fact rather than two
+  // hand-typed copies agreeing.
+  byId<HTMLAnchorElement>("edit-dialog-learn").href = LEARN_GALLERY_HREF;
   const problem = byId("edit-dialog-problem");
   const confirm = byId<HTMLButtonElement>("edit-dialog-confirm");
   const addMenu = byId<HTMLDetailsElement>("add-menu");
@@ -517,6 +583,71 @@ export function mountEditDialogs(ctx: ShellContext, submitEdit: SubmitEdit): Edi
     return { text: values, checked };
   }
 
+  /**
+   * The model-type picker, built ONCE at mount.
+   *
+   * Not per open, because `MODEL_TYPES` is a compile-time registry and nothing in a session can
+   * change it — unlike the parameter fields, which differ per operation and carry a prefill. So
+   * this is shipped-shaped content in a generated host, and the one listener below binds to the
+   * host rather than to the three buttons.
+   *
+   * Each row is ONE button whose accessible name is the type followed by its question, which is
+   * the sketch's own row shape. A second control per row linking to that type's Learn section was
+   * considered and dropped: the inspector already offers the per-type route from the object, and
+   * six controls in a dialog whose job is four fields crowds the surface the escape below answers
+   * in one.
+   */
+  function renderTypeChoices(): void {
+    const frag = document.createDocumentFragment();
+    for (const c of MODEL_TYPE_CHOICES) {
+      const pick = document.createElement("button");
+      pick.type = "button";
+      pick.className = "type-choice";
+      // The question travels on the element that was clicked, so the handler needs no closure over
+      // the row it was built in — the same arrangement the action bar's prefill map has, for the
+      // same reason. It is a registry string, not a user-typed id, so there is nothing to escape.
+      pick.dataset["question"] = c.question;
+      const name = document.createElement("span");
+      name.className = "type-choice-label";
+      name.textContent = c.label;
+      const asks = document.createElement("span");
+      asks.className = "type-choice-question";
+      asks.textContent = c.question;
+      pick.append(name, asks);
+      frag.append(pick);
+    }
+    typeRows.replaceChildren(frag);
+  }
+  renderTypeChoices();
+
+  /**
+   * Choosing a question. The field is the action's own declared one, so nothing here spells it.
+   *
+   * It FILLS rather than commits: the question stays editable and the user still presses the
+   * confirm button, because a model's purpose is usually narrower than the type's generic question
+   * and a picker that submitted would teach the opposite of what the field exists to teach.
+   */
+  typeRows.addEventListener("click", (event) => {
+    const a = current;
+    const from = event.target;
+    if (a === null || a.questionField === undefined || !(from instanceof Element)) return;
+    const pick = from.closest<HTMLButtonElement>("button[data-question]");
+    const question = pick?.dataset["question"];
+    if (question === undefined) return;
+    const field = a.fields.find((f) => f.name === a.questionField);
+    if (field === undefined) {
+      // Unreachable while the node tier holds `questionField` to a name in `fields`; the throw is
+      // for the day someone renames the field and leaves the declaration behind, when a loud
+      // failure beats a picker that silently does nothing.
+      throw new Error(`'${a.form}' declares questionField '${a.questionField}', which is not one of its fields`);
+    }
+    const box = document.getElementById(fieldId(a, field));
+    if (!(box instanceof HTMLInputElement)) return;
+    box.value = question;
+    box.focus();
+    ctx.announce(`The question is now “${question}”. Edit it to say what this model in particular asks.`);
+  });
+
   const open: OpenDialog = (form, filled) => {
     const a = action(form);
     current = a;
@@ -525,6 +656,10 @@ export function mountEditDialogs(ctx: ShellContext, submitEdit: SubmitEdit): Edi
     problem.replaceChildren();
     confirm.textContent = a.verb;
     renderFields(a, filled ?? new Map());
+    // Hidden rather than absent for the other nine: `hidden` takes the picker out of the tab order
+    // and the accessibility tree together, which is the one property a class that hides does not
+    // have.
+    mountIf(typesHost, a.questionField !== undefined);
     addMenu.open = false;
     dialog.showModal();
     // The platform traps focus and returns it on close; it does not CHOOSE where focus lands or say
@@ -532,7 +667,15 @@ export function mountEditDialogs(ctx: ShellContext, submitEdit: SubmitEdit): Edi
     // and one polite sentence, because opening a modal is exactly the consequential change
     // FR-A11Y-3 asks to be narrated.
     fieldHost.querySelector<HTMLElement>("input, select")?.focus();
-    ctx.announce(`${a.label}. ${a.fields.length} field(s), then ${a.verb}. Escape closes without editing.`);
+    // The picker is announced because it stands BEFORE the fields in the tab order and focus starts
+    // after it: a keyboard user who is not told would have to shift-tab backwards to discover three
+    // controls and a Learn link. The count comes from the registry, like the rows.
+    const offered = a.questionField === undefined
+      ? ""
+      : ` ${MODEL_TYPE_CHOICES.length} kinds of model are offered first, each by the question it `
+        + "answers, with a Learn link for choosing between them.";
+    ctx.announce(`${a.label}.${offered} ${a.fields.length} field(s), then ${a.verb}. `
+      + "Escape closes without editing.");
   };
 
   /** Show a refusal inside the dialog, and keep it open with everything the user typed intact. */

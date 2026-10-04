@@ -1661,3 +1661,134 @@ hint can still take an edge across the diagram, because honouring an arbitrary u
 routing cleanly are in genuine tension and the pinning contract wins — the old code had the same
 property. Stating it: incremental layouts are stable, not collision-free, and no gate claims
 otherwise.
+
+### 9m. The two contextual Learn routes — specified, unbuilt, and unasserted
+
+Appended by the wave that built the `+ Model` picker and the per-object route into Learn.
+§9k landed the persistent header entry and recorded the diagnosis; **the same requirement asks for
+two more routes, and both were still missing.** `requirements-learn-261002.md` sketches a picker
+that presents model types by the engineering question each answers, with a `Not sure?` escape, and
+an `About <Type>s` / `Possible combinations` pair offered from the object you are looking at. Neither
+existed. Verified before the wave rather than assumed: no `Not sure` string anywhere in `src/`, and
+`inspector.ts` carrying no Learn route at all.
+
+- **The diagnosis is §9k's, one turn of the screw further.** §9k found a page that was perfectly
+  derived and perfectly unreachable, and closed the reachability gap with a link plus a check. What
+  it did not do was ask how many OTHER routes the requirement names. Four; two landed. The reason
+  both survived a whole redesign is the one §9k already named and did not generalise: UX-I9
+  constrains what Learn *says*, and nothing constrained where the application *offers* it. So the
+  lesson is not "add a gate for the header entry" but "a requirement that enumerates routes needs a
+  test per route", which is why this wave's node tier is organised by route rather than by module.
+
+- **The picker presents QUESTIONS, and the questions come from the registry.** `MODEL_TYPE_CHOICES`
+  in `shell/edit-dialogs.ts` projects `MODEL_TYPES` — id, label, question — and the dialog renders a
+  button per row. A fourth registered type appears in the picker with no edit to the dialog, which
+  is the property UX-I9 exists for one layer in from the Learn page: the author's objection to a
+  hand-maintained surface is that it drifts from what the kernel supports, and a question typed into
+  a dialog is that drift in front of the person creating a model.
+
+- **It FILLS the question field rather than selecting a type, because `add-model` carries no type.**
+  The operation declares a purposeful model in `system.models` and sends `add-model` plus
+  `set-purpose`; there is no type parameter for a picker to set, and a control that appeared to
+  choose between three substrates while producing one would be worse than no picker. So the row
+  writes its type's question into the field the action itself names — one new `EditAction` field,
+  `questionField`, present on `add-model` and absent on the other nine, which is also the switch
+  that decides whether the picker is shown. The question stays editable and the user still presses
+  the confirm button: a model's purpose is usually narrower than its type's generic question, and a
+  picker that submitted would teach the opposite of what the field exists to teach.
+
+- **The escape goes to the gallery, and that is a design claim rather than a default.**
+  `learnHrefForType` was right there and is the wrong call here — a reader who cannot tell which of
+  three questions they are asking is the one reader a per-type deep link misdirects. Per-row Learn
+  links were considered and dropped for the same economy: the inspector now offers the per-type
+  route from the object, and six controls in a dialog whose job is four fields crowds the surface
+  the escape answers in one. The escape's href ships in the markup so it works before the bundle
+  evaluates, and `edit-dialogs.ts` re-assigns it from `src/app/learn.ts` — the header entry's own
+  arrangement, so "where Learn lives" stays one value.
+
+- **The per-object route lives in the inspector, and the pane's rule needed one word changed.** The
+  inspector is the pane that describes the selected thing, so it is where "what kind of model is
+  this?" is asked. Its standing rule — nothing here is a command, everything navigates — already
+  covers a Learn line, so the route is a third `InspectorAction`, `learn`, carrying its own href
+  because its destination is not a surface of this page. `DESTINATION` stays total over the two
+  in-page kinds by subtraction (`Exclude<InspectorAction, { kind: "learn" }>`), so a fourth in-page
+  action is still a compile error until it declares a surface. A Learn line writes no `data-arg`,
+  and that absence is the mechanism by which the pane's one delegated listener steps aside and lets
+  the browser follow the link.
+
+- **The type comes from the registry's own 1:1 with the query dialect, not from a type id written in
+  the pane.** `LEARN_ROUTE_FOR` maps a selection kind to a `Query["kind"]`, and
+  `modelTypeForQueryKind` resolves that to the registered type — the same function the dispatch gate
+  and the ask bar's NOT ANSWERABLE route use. The label is `ModelType.label`, so the line reads
+  "About state machines" as the registry spells it, the derivation `learnLinkForRefusal` already
+  used for its link text. `Possible combinations` names the declared partner and the question the
+  PAIR answers, from `combineWith`; every declared USE of the type follows, at `anchorForUse`'s
+  spelling. The table is read at exactly ONE site, so "which objects offer the route" is one
+  declaration rather than a judgement repeated in five inspection functions.
+
+- **Three selections deliberately offer nothing, and one of them is the interesting case.** An
+  ENTITY has no Learn block: identity is shared across every reduction, so an entity belongs to all
+  three types and to none, and a block claiming one would contradict the `Appears in` list directly
+  above it. A relation and a state are parts of a typed subject rather than subjects of their own.
+  And **the quantitative type is reachable from no selection at all** — `SelectionRef` has no member
+  for a quantity. That is a gap in the SELECTION vocabulary, not in this block, and it is left
+  recorded rather than papered over; the ask bar's refusal route already carries a reader to that
+  section from the question they asked.
+
+- **The capability registry gained an exemption, not a capability, and the reasoning is worth
+  keeping.** `npm run affordances` emits an unchanged model and UX-I1 still reports 0 over 26 — Learn
+  is navigation, exactly as §9k found. But the served-page sweep asserts every `<button>` is a
+  declared affordance, and the picker's rows are one button per registry entry: no id to write down
+  and no fixed count. That is the `CHROME_HOSTS` shape, so `#edit-dialog-type-rows button` joins it
+  with its reason. The constant's doc comment said each member is exempt because its controls are
+  *navigation*; that was true of its one member and is not the general rule, so it now says what the
+  rule actually is — the control moves something the census is not about. The contents tree moves the
+  view's selection; a picker row moves the open dialog's own unsubmitted field. Neither reaches the
+  IR.
+
+- **The drift pin is a SOURCE scan, because comparing values proves nothing about derivation.** Two
+  of the node-tier tests compare `MODEL_TYPE_CHOICES` against `MODEL_TYPES` field by field, and two
+  equal strings are equal whether they were derived or copied. So a third test reads
+  `edit-dialogs.ts`, `inspector.ts`, `index.html` and ITSELF, and asserts no registered type's
+  question or label appears as a literal in any of them. **Its first run went red on three sites,
+  all of them prose quoting the requirement's own sketch** — and the sketch is already behind the
+  registry for two of the three types, so those comments would have stood a stale question six lines
+  above the live one. The comments now give the shape and cite the requirements file for the words.
+  A comment is not a surface; a comment beside the host that renders the real thing is read first.
+
+- **The a11y tier gained a page state, because the surface was otherwise outside every state it
+  sweeps.** Three buttons and a link inside a closed `<dialog>` are in no accessibility tree, so the
+  tier would have reported its old 111 passing over a surface it never looked at — the repo's
+  "a gate exists and the path meant to run it does not reach it" class, read from the other side. So
+  `axe.test.mjs` declares a fifth `index.html` state, `add-model-dialog`, driven through the human
+  controls, with `covers` naming the rows, the escape and the field they fill; at modal scope the
+  floor is 15 for the hypothesis state's reason, and `covers` is what gives the state teeth. **It
+  surfaced a latent fragility in the suite, which is recorded because the next person to add a modal
+  state will meet it:** a `<dialog>` in the top layer paints a `::backdrop`, and the diagram's
+  contrast measurement reads the colour actually behind each glyph — so the dark theme's labels went
+  from clearing AA to failing it with no change to the renderer. The fix is one line in
+  `diagram.emphasise`, which already existed to undo the previous state's modal and now closes this
+  one too, through the dialog's own Cancel.
+
+- **Every new test was sabotaged once and the red read.** Twelve sabotages: dropping a type from the
+  projection, typing a registry question into the dialog, detaching the Learn block in `resolve`,
+  turning the escape into a deep link, rotting the shipped href, pointing `About <Type>s` at the
+  partner, hand-assembling a use anchor, never revealing the picker, rendering no rows, filling
+  nothing on press, and — against the axe state — no rows and no escape link. Each reds at least one
+  new test and the right one. Two gaps are worth naming rather than claiming total coverage: the
+  smoke rung asserts the rows EXIST (it is zero-interaction, and the picker is built at mount), so a
+  picker that renders and is never revealed reds only the deep tiers; and detaching the Learn block
+  leaves the `LEARN_ROUTE_FOR` table test green, since that test audits the declaration rather than
+  its effect. Five other tests catch that one.
+
+- **The numbers.** Node 851 → 864, browser 61 → 69, a11y 111 → 112, smoke 3 (extended in place, 2.9s
+  against its 8s budget), UX-I1 0 violations over 26 capabilities unchanged, `tsc` and `build` clean,
+  0 skipped anywhere. The a11y count rose by the one state; nothing dropped.
+
+- **Left undone, deliberately.** The ⋯ menu still does not exist and this wave did not invent it: the
+  requirement's sketch puts `About <Type>s` under one, and §9k already ruled that the header entry is
+  persistent rather than behind an overflow. Putting the per-object route in the pane that describes
+  the object is the same reasoning applied one surface over. And the sketch's three questions are
+  shorter than the registry's three; the registry is the authority, so the picker shows the longer
+  ones. Whoever updates `requirements-learn-261002.md` should re-cut the sketch from
+  `MODEL_TYPES` rather than the reverse.

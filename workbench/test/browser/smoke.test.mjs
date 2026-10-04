@@ -177,6 +177,32 @@ test("index.html: boots, and the example menu is the shipped registry", async ()
   assert.deepEqual(learn, { visible: true, href: LEARN_PAGE, inBanner: true, resolves: true },
     "the persistent Learn entry is not a rendered banner link to the served Learn page");
 
+  // And the CONTEXTUAL route into Learn from the Add-model dialog, on the same pristine page.
+  //
+  // THE CHEAP RUNG under `test/browser/learn-contextual.test.mjs`, duplicated here for the reason
+  // the entry above is: that route was specified and never built, and the gate that would have said
+  // so is the one an agent runs before reporting. Zero interaction and no extra page, because the
+  // dialog's picker is built at MOUNT — `MODEL_TYPES` is a compile-time registry, so the rows exist
+  // inside the closed `<dialog>` before anything is loaded or clicked. Opening the menu, pressing a
+  // row, filling the question and following the hrefs stay in the deep tier.
+  const picker = await page.evaluate((learnPage) => {
+    const rows = [...document.querySelectorAll("#edit-dialog-type-rows button.type-choice")];
+    const escape = document.getElementById("edit-dialog-learn");
+    return {
+      questions: rows.map((b) => b.querySelector(".type-choice-question")?.textContent ?? null),
+      // Not `checkVisibility`: these live inside a closed modal, where invisible is correct.
+      inDialog: escape?.closest("#edit-dialog") !== null,
+      resolves: escape !== null && escape.href === new URL(learnPage, document.baseURI).href,
+    };
+  }, LEARN_PAGE);
+  assert.deepEqual(picker.questions, MODEL_TYPES.map((t) => t.question),
+    "the add-model picker does not present the registered model types by their registry questions "
+    + '— requirements-learn-261002.md asks for "+ Model" to offer the types BY QUESTION, and UX-I9 '
+    + "requires the question text to come from the definition the kernel gates on");
+  assert.ok(picker.inDialog, "index.html ships no #edit-dialog-learn inside the edit dialog");
+  assert.ok(picker.resolves,
+    `the "Not sure?" escape does not resolve to the served ${LEARN_PAGE}`);
+
   await page.close();
 });
 
