@@ -51,7 +51,7 @@
  * fabrication this project refuses, and an unused status word is cheaper than a wrong one.
  */
 import { checkExpectation, parseBehaviorQuery, parseGraphQuery } from "../engine/index.ts";
-import type { Predicate } from "../engine/index.ts";
+import type { ExpectationVerdict, Predicate } from "../engine/index.ts";
 import { modelsDeclaring } from "../engine/graph.ts";
 import type { CanonicalSystem, Coverage, Evidence, QueryResult } from "../ir/types.ts";
 import type { UxViolation } from "./capabilities.ts";
@@ -99,10 +99,27 @@ export interface Ground {
   readonly why: string;
 }
 
+/**
+ * How a pin stands, in the engine's own arms minus `exploratory` — which is the absence of a pin
+ * rather than a standing, and is modelled as `Expectation | null`.
+ *
+ * DERIVED from `ExpectationVerdict` rather than restated, so the projection cannot name a standing
+ * the engine does not produce and cannot miss one it does. A new arm in the engine is a type error
+ * in every surface that switches on this.
+ */
+export type ExpectationStanding = Exclude<ExpectationVerdict["kind"], "exploratory">;
+
 /** The engineer's declaration that satisfaction matters (§13) — a saved query's `expect`. */
 export interface Expectation {
   readonly declared: string;
-  readonly met: boolean;
+  /**
+   * This field REPLACED a `met: boolean`, and the boolean was where the defect lived. Two values
+   * over four outcomes meant every answer that was not the predicted one — a bounded search, a
+   * refusal — read as the one answer that is an accusation. A surface asking `!met` cannot tell
+   * "your model breaches this" from "the walk ran out of budget", so the boolean is gone rather
+   * than kept alongside: anything that reads it would reintroduce the negation.
+   */
+  readonly standing: ExpectationStanding;
   /** Set when `expect` did not survive YAML as an outcome word — a coercion bug (V25), not a verdict. */
   readonly problem: string | null;
 }
@@ -443,16 +460,30 @@ function statusOf(result: QueryResult | undefined): PropertyStatus {
   }
 }
 
+/**
+ * The pin, projected. The standing is the engine's own arm — carried through, never recomputed, so
+ * there is no second place where an outcome could be read as a failure.
+ *
+ * Total over `ExpectationVerdict` by the compiler. `declared` is the word the engineer WROTE, which
+ * is why every falling-short arm reads `v.expected` rather than the outcome: a surface that showed
+ * the answer where the declaration belongs would tell the engineer they asked for what they got.
+ */
 function expectationOf(raw: unknown, result: QueryResult | undefined): Expectation | null {
   if (result === undefined) return null;
   const v = checkExpectation(raw, result);
   switch (v.kind) {
     case "exploratory": return null;
-    case "met": return { declared: v.outcome, met: true, problem: null };
-    case "unmet": return { declared: v.expected, met: false, problem: null };
+    case "met": return { declared: v.outcome, standing: v.kind, problem: null };
+    case "unmet": return { declared: v.expected, standing: v.kind, problem: null };
+    // Neither of these is a shortfall of the system under design, and neither may be presented as
+    // one: `unsettled` means the search was bounded, `declined` means the models do not represent
+    // what the pin names. The refusal sentence a `declined` owes its reader is already on the
+    // property as `refusal`, which is the same object this is built from.
+    case "unsettled": return { declared: v.expected, standing: v.kind, problem: null };
+    case "declined": return { declared: v.expected, standing: v.kind, problem: null };
     // A coerced `expect` is not an unmet requirement — it is a claim nobody managed to state. Held
-    // as a requirement with `met: false` and the reason, so it cannot read as satisfied.
-    case "coerced": return { declared: "(unreadable)", met: false, problem: v.message };
+    // as a requirement with its own standing and the reason, so it cannot read as satisfied.
+    case "coerced": return { declared: "(unreadable)", standing: v.kind, problem: v.message };
   }
 }
 

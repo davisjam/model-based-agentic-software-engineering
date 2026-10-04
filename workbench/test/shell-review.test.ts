@@ -17,7 +17,7 @@ import { canonicalize } from "../src/ir/canonicalize.ts";
 import type { CanonicalSystem } from "../src/ir/types.ts";
 import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
 import { STATUS_TEXT } from "../src/app/properties.ts";
-import type { EvaluatedProperty, PropertyStatus } from "../src/app/properties.ts";
+import type { EvaluatedProperty, ExpectationStanding, PropertyStatus } from "../src/app/properties.ts";
 import { Workspace } from "../src/app/services.ts";
 import { runQuery } from "../src/engine/index.ts";
 import { CAPABILITIES } from "../src/app/capabilities.ts";
@@ -232,7 +232,7 @@ test("declaring an expectation on an existing claim MOVES it, because it becomes
   // that compared only statuses would wave it through.
   const before = property("p", "established");
   const after: EvaluatedProperty = {
-    ...before, kind: "requirement", expectation: { declared: "holds", met: true, problem: null },
+    ...before, kind: "requirement", expectation: { declared: "holds", standing: "met", problem: null },
   };
   const impact = propertyImpact([before], [after]);
   assert.equal(impact.notable[0]?.moved, true);
@@ -252,8 +252,8 @@ test("G3: a moved PROPERTY is not a moved requirement, so nothing is interposed 
 });
 
 test("G3: a moved REQUIREMENT is what interposes, and the reading says it is no longer satisfied", () => {
-  const before = requirement("obligation", "refuted", "refuted", true);
-  const after = requirement("obligation", "established", "refuted", false);
+  const before = requirement("obligation", "refuted", "refuted", "met");
+  const after = requirement("obligation", "established", "refuted", "unmet");
   const impact = propertyImpact([before], [after]);
   assert.equal(impact.movedRequirements.length, 1);
   assert.equal(impact.movedRequirements[0]?.breaks, true);
@@ -267,7 +267,7 @@ test("G3 over the real engine: the edit that breaks an obligation is the edit th
   const ws = workspace(WITH_REQUIREMENT);
   const base = ws.properties();
   assert.equal(requirements(base).length, 1, "the fixture must declare exactly one obligation");
-  assert.equal(base[0]?.expectation?.met, true, "the obligation holds before the edit");
+  assert.equal(base[0]?.expectation?.standing, "met", "the obligation holds before the edit");
 
   const opened = ws.openHypothesis("pending review", BREAKS_IT(ws.state.hash));
   assert.ok(opened.ok, opened.findings.map((f) => f.message).join("; "));
@@ -279,7 +279,7 @@ test("G3 over the real engine: the edit that breaks an obligation is the edit th
   // And the authoritative model was never touched, which is what makes the probe safe to run on
   // every consequential edit rather than something to ask permission for.
   assert.ok(ws.discardHypothesis());
-  assert.equal(ws.properties()[0]?.expectation?.met, true);
+  assert.equal(ws.properties()[0]?.expectation?.standing, "met");
 });
 
 test("G3 over the real engine: a harmless edit moves no obligation, so it commits unreviewed", () => {
@@ -360,9 +360,11 @@ function property(id: string, status: PropertyStatus): EvaluatedProperty {
   };
 }
 
-/** The same, declared as an obligation: an expectation, and whether this revision meets it. */
+/** The same, declared as an obligation: an expectation, and how it stands this revision. */
 function requirement(
-  id: string, status: PropertyStatus, declared: string, met: boolean,
+  id: string, status: PropertyStatus, declared: string, standing: ExpectationStanding,
 ): EvaluatedProperty {
-  return { ...property(id, status), kind: "requirement", expectation: { declared, met, problem: null } };
+  return {
+    ...property(id, status), kind: "requirement", expectation: { declared, standing, problem: null },
+  };
 }

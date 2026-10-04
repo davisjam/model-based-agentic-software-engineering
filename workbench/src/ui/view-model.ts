@@ -243,7 +243,10 @@ export interface PropertyRow {
   readonly refusal: string | null;
   /** Disclosed rewrites, e.g. an added history variable (V23). */
   readonly compilation: readonly string[];
-  /** §13's declaration that satisfaction matters, and whether it is satisfied. */
+  /**
+   * §13's declaration that satisfaction matters, and how it stands — five readings, not two. Only
+   * one of them reports a shortfall of the system under design; see `expectationLine`.
+   */
   readonly expectation: string | null;
   /** §9.3's "last evaluation revision", always shown: a status with no revision cannot be audited. */
   readonly revision: string;
@@ -975,15 +978,51 @@ const groundText = (g: Ground): string => `${g.label} (${g.kind} ${g.id}) — ${
  * and it is decided here rather than in the renderer so that every surface that reads `status` gets
  * the same answer. See `PropertyRow.verdict`.
  */
+/**
+ * The REQUIREMENT line, TOTAL over `ExpectationStanding` by the compiler.
+ *
+ * Three of these five arms used to share one sentence, because the standing beneath them was a
+ * boolean: a bounded search and a declined question both read "REQUIREMENT UNMET". This text
+ * reaches the DOM (`render-dom.ts` appends it as the row's outcome paragraph), so it is the
+ * accessible prose a screen reader speaks for the verdict — which is the reason the two
+ * non-findings say in terms that nothing here reports the requirement broken, rather than leaving
+ * a reader to infer it from the absence of the word.
+ *
+ * Each sentence names the REMEDY, because that is what the engineer acts on and the three remedies
+ * do not overlap: a contradicted pin wants a model change, a bounded search wants a budget, a
+ * refusal wants vocabulary.
+ */
+function expectationLine(p: EvaluatedProperty): string | null {
+  const e = p.expectation;
+  if (e === null) return null;
+  const declared = `the engineer declared this must be '${e.declared}'`;
+  const outcome = p.outcome ?? "unknown";
+  switch (e.standing) {
+    case "met":
+      return `REQUIREMENT MET — ${declared}, and it is`;
+    case "unmet":
+      return `REQUIREMENT UNMET — ${declared}, and the outcome is '${outcome}'`;
+    case "unsettled": {
+      // The limit is read off the coverage this very row renders, so the sentence and the coverage
+      // line cannot disagree about which budget ran out.
+      const limit = p.coverage?.reason ?? null;
+      return `REQUIREMENT NOT SETTLED — ${declared}, and the answer is '${outcome}'`
+        + `${limit === null ? "" : ` because the search hit the ${limit}`}. A bounded search is not `
+        + `a 'no': nothing here says the requirement is broken. The remedy is a larger budget, not `
+        + `a change to the system.`;
+    }
+    case "declined":
+      return `REQUIREMENT NOT ANSWERABLE — ${declared}, and these models decline the question. `
+        + `Nothing here says the requirement is broken; the refusal below says which distinction is `
+        + `missing. The remedy is a model, not a budget.`;
+    case "coerced":
+      return `REQUIREMENT — the declared expectation could not be read: `
+        + `${e.problem ?? "no reason was reported"}`;
+  }
+}
+
 export function propertyRow(p: EvaluatedProperty): PropertyRow {
-  const expectation = p.expectation === null
-    ? null
-    : p.expectation.problem !== null
-      ? `REQUIREMENT — the declared expectation could not be read: ${p.expectation.problem}`
-      : p.expectation.met
-        ? `REQUIREMENT MET — the engineer declared this must be '${p.expectation.declared}', and it is`
-        : `REQUIREMENT UNMET — the engineer declared this must be '${p.expectation.declared}', `
-          + `and the outcome is '${p.outcome ?? "unknown"}'`;
+  const expectation = expectationLine(p);
 
   return {
     id: p.id,

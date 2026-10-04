@@ -911,6 +911,19 @@ test("the coverage model loads clean and answers its own question", () => {
       case "unmet":
         unmet.push(`${id}: ${verdict.outcome}, expected ${verdict.expected}`);
         continue;
+      // Both of these are still gate failures — a coverage assertion that did not get an answer is
+      // not a passing assertion — but each names its own cause, because the remedies differ. A
+      // generated row reaching here does not mean the product contradicts the matrix.
+      case "unsettled":
+        unmet.push(`${id}: expected ${verdict.expected} and the search did not settle it `
+          + `(${verdict.outcome}${verdict.limit === null ? "" : `, ${verdict.limit}`}). `
+          + `The remedy is the budget, not the expectation.`);
+        continue;
+      case "declined":
+        unmet.push(`${id}: expected ${verdict.expected} and these models decline the question `
+          + `(${verdict.refusal ?? "no refusal sentence"}). The remedy is a model, not the `
+          + `expectation.`);
+        continue;
       case "coerced":
         unmet.push(`${id}: ${verdict.message}`);
         continue;
