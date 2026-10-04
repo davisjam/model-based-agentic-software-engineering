@@ -17,11 +17,18 @@
 # (validate.py:1738-1747); that path runs from `hooks/pre-push`. There is no `--queries` flag; it has
 # never existed.
 #
-# **Nothing checks the model against the code.** Every query below is answered over the relations
-# DECLARED here. No gate derives the real `src/` import graph and compares it, so a genuine
-# kernel-to-view import in code passes the typecheck, the whole node tier and parity — established by
-# mutation, not inferred (`AUDIT-system-models-261004.md` gap 1). Until that gate lands, a green
-# model-coverage run says the model is self-consistent and says nothing about `src/`.
+# **And the model is checked against the code, since 261004.** `test/import-graph.test.ts` parses
+# every import specifier under `src/` — value, `import type`, `export … from`, dynamic, and the rest
+# of the list in its own header — resolves each to the entity owning its path by the two rules below,
+# and compares the result against the `depends-on` edges declared here. BOTH directions: an import
+# this file does not declare breaks the `absence` clause, and an edge declared here that no import
+# creates is drift the other way, which would otherwise let the positive control pass on a path the
+# code no longer has. The kernel's out-degree is held at zero against the OBSERVED graph as well, so
+# editing this file to permit an edge does not buy one. That gate closed
+# `AUDIT-system-models-261004.md` gap 1, where a real kernel-to-view import was shown by mutation to
+# pass the typecheck, the whole node tier, parity and `--self-test`; the mutation is now a control in
+# the gate's own file. What a green model-coverage run still does not say anything about is the code
+# — read the two gates together.
 #
 # ## The file-to-entity join
 #
@@ -37,9 +44,11 @@
 #     is checked as `query-engine → model-ir`, and `src/quant → src/engine` is internal to one
 #     component and checked against nothing.
 #
-# Checked by hand at this commit, by reading the import specifiers of every `src/**/*.ts`. The
-# `dependencies` model carries that as a `correspondence` record rather than repeating it on sixteen
-# entities.
+# Read by hand when this model was re-founded, and mechanised the next day:
+# `test/import-graph.test.ts` implements exactly these two rules and re-derives the whole edge set on
+# every node-tier run. The `dependencies` model carries that as a `correspondence` record rather than
+# repeating it on sixteen entities. The gate reads the scan root from that record, so moving `src`
+# moves the gate rather than breaking it.
 #
 # ## Re-founded on the observed import graph, 261004
 #
@@ -363,12 +372,18 @@ models:
           The import specifiers of every `src/**/*.ts`, resolved to the entity owning each path by
           the longest-prefix rule in this file's header.
       correspondence:
-        kind: asserted
+        # `checked` rather than `asserted`: the schema reserves the stronger kinds for where tooling
+        # earns the trust, and `test/import-graph.test.ts` now re-derives this edge set from the
+        # import specifiers on every node-tier run. Not `derived` — the edges below are written by
+        # hand and the gate refutes them; nothing generates them.
+        kind: checked
         checked: "2026-10-04"   # quoted: YAML 1.1 would hand the loader a date object, and JSON has no date type
         note: >
-          Edge set read by hand from today's import graph, both value and type imports, and every
+          Edge set read by hand from the 261004 import graph, both value and type imports, and every
           module's SCCs computed to confirm the only remaining cycle is the one containment
-          resolves. Nothing re-derives this; the import-graph gate is gap 1 and does not exist yet.
+          resolves. `test/import-graph.test.ts` re-derives it in CI and fails in both directions, so
+          the date below records when the hand-reading happened rather than when the claim was last
+          true.
     relations:
       # --- the kernel, and what reads it ------------------------------------------------------
       # `model-ir` has no out-edge. That is the model's central claim and `src/ir/` satisfies it.

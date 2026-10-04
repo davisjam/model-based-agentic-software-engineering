@@ -2,11 +2,14 @@
  * Canonical IR — the authoritative semantic representation.
  *
  * Per the component model this module depends on NOTHING: no YAML, no DOM, no renderer, no agent.
- * `workbench/models/workbench-components.mage.yaml` declares that, and `validate.py` evaluates it
- * and catches a violation injected into the model (`--self-test`) — but only from the pre-push
- * hook. No CI step runs that check, and no gate yet derives this file's real import graph and
- * compares it to the model, so a dependency added here would pass `tsc` and every test today with
- * nothing to say otherwise. Keep the imports here empty regardless.
+ * `workbench/models/workbench-components.mage.yaml` declares that, and three gates hold it.
+ * `test/model-coverage.test.ts` answers the model's kernel queries in CI; `validate.py` answers
+ * them again independently and `--self-test` catches a violation injected into the model, from the
+ * pre-push hook. Both read the model's DECLARED edges, so neither would see an import added here —
+ * that is `test/import-graph.test.ts`, which parses every specifier under `src/`, resolves each to
+ * the entity owning its path, and fails on an import the model does not declare. It holds this
+ * module's out-degree at zero against the observed graph specifically, so editing the model to
+ * permit an edge does not buy one. An import added here now goes red.
  *
  * Everything is `readonly`. The IR is produced once by canonicalize() and never mutated in place:
  * a transaction builds a NEW system and swaps it, which is what makes undo/redo and hypothesis

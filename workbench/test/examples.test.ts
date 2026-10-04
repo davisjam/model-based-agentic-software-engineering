@@ -29,6 +29,7 @@ import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { Workspace } from "../src/app/services.ts";
+import { checkExpectation } from "../src/engine/index.ts";
 import { ExampleCatalog } from "../src/app/examples.ts";
 import type { AssetReader } from "../src/app/examples.ts";
 import { createAgentApi } from "../src/app/agent-api.ts";
@@ -893,11 +894,32 @@ test("the coverage model loads clean and answers its own question", () => {
 
   const unmet: string[] = [];
   for (const [id, saved] of ws.state.system.queries) {
-    const raw = saved.raw as { expect?: unknown };
-    const expect = typeof raw.expect === "string" ? raw.expect : null;
-    assert.ok(expect !== null, `${id}: a generated coverage query must carry an expect`);
-    const res = ws.query(saved.raw);
-    if (res.outcome !== expect) unmet.push(`${id}: ${res.outcome}, expected ${expect}`);
+    const raw = saved.raw as { readonly expect?: unknown };
+    // The generator's own claim, kept because it is about the GENERATOR rather than about any one
+    // verdict: every row it writes carries an expectation. Keyed on the field being PRESENT, not on
+    // it being a string — a `true` that a YAML 1.1 loader coerced is an expect of the wrong type,
+    // and reporting it as missing would send a reader to the generator instead of to V25.
+    assert.ok(raw.expect !== undefined && raw.expect !== null,
+      `${id}: a generated coverage query must carry an expect`);
+    // `checkExpectation` rather than `res.outcome !== expect`: it is the engine's own function, the
+    // one `validate.py`'s CI gate mirrors, and it names two cases the raw comparison mis-reports —
+    // a coerced boolean, and an `expect` that is not an outcome word at all.
+    const verdict = checkExpectation(saved.raw, ws.query(saved.raw));
+    switch (verdict.kind) {
+      case "met":
+        continue;
+      case "unmet":
+        unmet.push(`${id}: ${verdict.outcome}, expected ${verdict.expected}`);
+        continue;
+      case "coerced":
+        unmet.push(`${id}: ${verdict.message}`);
+        continue;
+      case "exploratory":
+        unmet.push(`${id}: carries no expect, and the assertion above should have said so first`);
+        continue;
+      default:
+        unmet.push(`${id}: unrecognised verdict arm — checkExpectation grew a case this loop does not`);
+    }
   }
   assert.deepEqual(unmet, [], `coverage assertions unmet:\n  ${unmet.join("\n  ")}`);
 });

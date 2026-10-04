@@ -2301,3 +2301,121 @@ check", which §9o made wrong, and `src/engine/types.ts:4-8` says the same of
 `engine-must-not-reach-yaml`. The audit scheduled those headers for after gaps 1–2 and gap 1 has not
 landed, so they are reported rather than edited — one file, one owner. Gap 1 itself is now unblocked:
 the model matches the tree, and the refs give a scanner somewhere to join to.
+
+### 9q. The import graph derived from `src/` — as built
+
+Audit gap 1, and the one the audit ranked first. `test/import-graph.test.ts` parses every module
+specifier under `src/`, resolves each to the entity that owns its path, and compares the result
+against the components model's declared `depends-on` edges. §9p landed the join; this landed the
+reader.
+
+**The first run agreed with the hand-check, exactly.** 46 observed edges over 454 module specifiers
+across 87 files; 46 declared; zero undeclared imports, zero declared edges nothing creates, kernel
+out-degree 0. The model's `correspondence` note said the edge set had been "read by hand from today's
+import graph, both value and type imports" — that claim is now measured, and it was true. Nothing on
+either side needed changing to get there, which is worth recording because the brief anticipated the
+opposite and asked which of the two would turn out wrong.
+
+#### The gate is red when the defect is present, proven three ways
+
+The audit's mutation is reproduced as a control against an in-memory copy of the tree: the real
+model, the real other 86 files, and `src/ir/types.ts` with
+`import { checkPurposeVisibility } from "../ui/invariants.ts"` prepended. It reports two findings —
+the undeclared `model-ir → ui` edge, and the kernel's out-degree separately — each citing
+`src/ir/types.ts:1`. The same mutation written as `import type` and as `export … from` is driven too,
+because those are the two spellings a value-only or line-anchored scan walks past.
+
+Once, on disk, to prove the wiring from the filesystem rather than only the audit function: three of
+the nine tests went red, and `tsc` reported nothing but TS6133 for the unused binding — make the
+import *used* and the typecheck is clean again, which is the audit's finding reproduced in one
+command. The file was restored from a copy, and the shipped control does not touch disk.
+
+And the inverse sabotage, which the audit did not ask for: deleting the `learn-ui` declaration from
+the model surfaces `learn-page → ui` as an undeclared import, naming `src/learn/main.ts`. A gate that
+only reads the code cannot tell a removed declaration from a new import; this one reports the pair.
+
+#### Both directions are failures, and the second one took an argument
+
+`observed ⊆ declared` is the prohibition and needed no defending. The reverse — a declared edge no
+import creates — reads at first like a report, since nothing in the code is wrong. It is asserted
+anyway, on three grounds, and the finding carries them:
+
+- **Reachability is monotone in edges.** The four kernel queries and `ui-can-reach-kernel` are
+  answered over the declared graph, so a stale edge can carry the positive control along a path the
+  code no longer has. That is the vacuous pass this project keeps meeting in new costumes, and §9o's
+  gate would not see it.
+- **A stale edge widens the permitted set silently**, so the next import of that shape lands with
+  nothing to say — gap 1 again, one edge at a time.
+- **The model claims equality, not containment.** Its `correspondence` record says so. A gate weaker
+  than the claim leaves the claim unchecked.
+
+The practical half settled it: both sets are 46 and identical, so asserting equality lands green and
+the repo's drain-then-promote rule has nothing to drain.
+
+#### What the measurement found that the brief had not
+
+- **The kernel is DERIVED, not named.** Writing `model-ir` in the test would have made the spine a
+  second copy, and then editing the model's spine away would leave the gate asserting a fact the
+  model had dropped. The derivation is the model's own sentence read as a predicate: an uncontained
+  entity at `layer: kernel` with no declared out-edge. Exactly one satisfies it, and a separate
+  assertion requires that the derived entity be the subject of at least three refuted reachability
+  queries — the prohibitions are what make it the kernel.
+- **That derivation catches a mutation the subset check cannot.** Edit the model AND the code
+  together — add `model-ir → ui` to both — and `observed ⊆ declared` is satisfied. The spine is held
+  against the OBSERVED graph independently, so the both-sides edit reports "no uncontained entity at
+  `layer: kernel` has zero declared out-edges." A control drives exactly that.
+- **`provenance.subject.ref` is not in the canonical IR.** The loader's `Provenance` carries
+  `created_by`, `prompt` and `history`; `subject` and `correspondence` are dropped. So a ref with a
+  typo validates clean, and the gate parses the YAML itself rather than reading the facade. Two
+  checks close the hole that opens: every scanned file must have an owner, and every entity's ref
+  must own at least one real file. A third asserts the YAML read and the canonicalized relation list
+  describe the same edge set, so the gate cannot end up policing a graph the queries are not
+  answered over.
+- **Three imports leave the scan root, and they are data.** `src/ui/main.ts` loads
+  `mage-{model,query,transaction}.schema.json` from the package root. No entity owns them, correctly:
+  a schema document is an input the `types` script generates from, not a component. Each is declared
+  with the evidence that `package.json` names it in a `json2ts -i` flag, and an unused allowance is
+  itself a finding — without that, the map is where a real undeclared edge would go to be forgotten.
+- **A scanner's coverage claim is its whole worth, so the claim is tested row by row.** Sixteen
+  fixtures, one per covered syntax: `import`, `import type`, inline `{ type X }`, bare
+  `import "./x"`, import attributes, multiline specifiers, `export … from`, `export type … from`,
+  `export *`, `export * as`, dynamic `import()`, `import x = require()`, `require()`, and a
+  `/// <reference path>` directive. The tree uses six of these; the other ten are covered so a later
+  file cannot hide an edge in a spelling nobody anticipated. Two forms are NOT resolvable and are
+  REPORTED rather than skipped — a dynamic specifier that is not a string literal, and a relative
+  specifier with no extension. A silent skip is what makes a coverage list false by omission.
+- **The parse is TypeScript's own**, from the existing devDependency. No new package.
+
+#### Two headers corrected, and one claim promoted
+
+§9p left `src/ir/types.ts:4-9` and `src/engine/types.ts:4-8` for after gap 1 — the first said "no gate
+yet derives this file's real import graph," which was the sentence this wave exists to falsify. Both
+now name the three gates and say which reads declarations and which reads imports.
+
+The model's `correspondence.kind` moved from `asserted` to `checked`. The schema reserves the
+stronger kinds for "where later tooling earns trust rather than claiming it"
+(`mage-model.schema.json:550`), and the tooling now exists. Not `derived` — the edges are written by
+hand and the gate refutes them; nothing generates them.
+
+#### The unmigrated call site
+
+`test/examples.test.ts` hand-rolled `res.outcome !== expect` while the engine exposes
+`checkExpectation` and `test/model-coverage.test.ts` already used it. Migrated, and not for tidiness:
+the raw comparison coerced a non-string `expect` to `null` and then reported *"must carry an
+expect"* — false, since it carries one of the wrong type — and reported an invalid outcome word as a
+plain mismatch rather than as a word that is not an outcome. The generator's own claim survives
+beside it, re-keyed on the field being PRESENT rather than on it being a string: that a generated
+coverage query must carry an expectation is a statement about the generator, and reporting a coerced
+boolean as a missing field would send a reader to the generator instead of to V25.
+
+**Gates at this tree:** `tsc` clean; node **935/935** (926 + 9), 0 skipped; `check:parity` 0
+violations over 26 capabilities; build clean; smoke 3/3; browser 114/114; a11y 112/112.
+`python3 validate.py models/workbench-components.mage.yaml` clean, 13 asserted queries evaluated;
+`--self-test` PASS; model-coverage census still `workbench-components 13/13`.
+
+**Left for the author.** The components model is the only tracked model with a code join. The other
+three have none: `workbench-affordances` is held to its generator and, transitively, to the registry
+through `check:parity`; `example-coverage` is generated from the examples it measures; docable's
+subject refs name a tree this repo does not ship. Whether any of those wants a join is a scope
+question, not an oversight, and `NOT_PROVEN` in `test/model-coverage.test.ts` now says so in the
+receipt rather than implying the gap is universal.

@@ -12,10 +12,14 @@
  * genuine kernel-to-view import passes this gate, the typecheck, and the rest of the node tier.
  * That was established by mutation, not inferred: a real
  * `import { checkPurposeVisibility } from "../ui/invariants.ts"` added to `src/ir/types.ts` passed
- * everything everywhere. The model's queries evaluate the model's DECLARED relations. Closing that
- * is a separate import-graph gate, and until it lands nobody may read this file's green as
- * architectural alignment. The receipt below carries both sentences out of the process so the
- * number travels with its limit.
+ * everything everywhere. The model's queries evaluate the model's DECLARED relations.
+ *
+ * `test/import-graph.test.ts` is what closes that, for the components model only: it parses every
+ * specifier under `src/`, resolves each to the entity owning its path, and fails in both directions.
+ * So the two gates are complementary and neither substitutes for the other — this one holds a
+ * model's verdicts, that one holds one model's edge set to the tree. The other tracked models still
+ * have no code join, and this file's green is not alignment for any of them. The receipt below
+ * carries both sentences out of the process so the number travels with its limit.
  *
  * ## The failure class this closes
  *
@@ -118,8 +122,8 @@ const CLAIM = "Every saved query carrying `expect` in every tracked model outsid
 /** What it does not. Shipped beside the claim, because the number is read without the file. */
 const NOT_PROVEN = "This does NOT prove any model corresponds to the code. No gate here derives the "
   + "import graph from src/, and a real kernel-to-view import was shown by mutation to pass the "
-  + "whole node tier. Correspondence needs a separate import-graph gate; do not read this green as "
-  + "architectural alignment.";
+  + "whole node tier. The components model alone has a code join, held by test/import-graph.test.ts; "
+  + "every other tracked model has none, so do not read this green as architectural alignment.";
 
 // ----------------------------------------------------------------------------------------------
 // The denominator
