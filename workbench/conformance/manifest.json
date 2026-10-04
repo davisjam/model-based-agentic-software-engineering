@@ -1,0 +1,122 @@
+{
+  "corpus": "MAGE Workbench borrowed-semantics conformance fixtures",
+  "authority": "DESIGN-v02-semantics-261004.md section 35 (the rule), section 35.4 (the mapping), section 35.6 (the fixture shape)",
+  "generatedAt": "2026-10-04",
+  "methods": {
+    "oracle-executed": "The SysML v2 Pilot Implementation actually ran the standard-side model and its verdict is transcribed, with the implementation's version.",
+    "normative-artifact": "The correspondence is decided by OMG's normative MACHINE-READABLE material -- declared structure, declared multiplicities, declared values, declared invariants -- with no prose step between the artifact and the claim.",
+    "spec-inspected": "The correspondence is established by reading specification prose. The decisive step is a sentence."
+  },
+  "methodDiscipline": "A fixture's `method` reports the WEAKEST rung the pinned interpretation depends on, and `evidence[]` lists every component with its own rung. The three are never collapsed, and a spec-inspected fixture is not executable conformance.",
+  "ceiling": "No method on this list yields `checked` for the correspondence. Per section 35.5 rung 3, `checked` requires a gate that re-derives the claim per run, and with no runtime dependency nothing in CI can execute the reference implementation. The correspondence half of every row below is `asserted`.",
+  "status": "checked by 3 fixtures: 0 oracle-executed, 2 normative-artifact, 1 spec-inspected",
+  "fixtures": [
+    {
+      "id": "kerml/association-link-typing-001",
+      "mageConstruct": "a relation type and the typed relations declared against it (entities / relation-types / models[].relations)",
+      "semanticBasis": {
+        "owner": "MODEL_TYPES['structural-graph'].semanticBasis",
+        "declaredIn": "src/engine/model-types.ts",
+        "kind": "borrowed",
+        "standard": "KerML",
+        "concept": "the typed-element, relationship and feature subsets"
+      },
+      "standardConcept": "Association -- a Relationship that is also a Classifier, classifying the links between the things at its ends",
+      "normativeDocument": {
+        "title": "Kernel Modeling Language (KerML), Version 1.0",
+        "omgDocumentNumber": "formal/2026-03-01",
+        "date": "March 2026",
+        "url": "https://www.omg.org/spec/KerML/1.0/"
+      },
+      "normativeLocation": [
+        { "kind": "clause", "ref": "KerML 1.0, 8.3.4.4.2 Association" },
+        { "kind": "clause", "ref": "KerML 1.0, 8.3.3.2.2 Classifier" },
+        { "kind": "artifact", "ref": "https://www.omg.org/spec/KerML/20250201/KerML.xmi", "locator": "Kernel-Associations-Association" },
+        { "kind": "artifact", "ref": "https://www.omg.org/spec/KerML/20250201/Semantic-Library.kpar", "locator": "Kernel Semantic Library/Links.kerml" }
+      ],
+      "standardSideModel": "kerml/association-link-typing-001/source.kerml",
+      "mageModel": "kerml/association-link-typing-001/model.mage.yaml",
+      "expectedCorrespondence": "A relation type classifies its links, so a question naming one relation type ranges over the links that relation type classifies and over no others.",
+      "method": "spec-inspected",
+      "oracle": null,
+      "establishedBy": "MAGE Workbench conformance-fixtures wave (agent)",
+      "establishedAt": "2026-10-04",
+      "reviewedByPerson": null
+    },
+    {
+      "id": "sysml/transition-guard-occurrence-001",
+      "mageConstruct": "a machine, its states, and a guarded transition (machines; the guard is a transition's requires:)",
+      "semanticBasis": {
+        "owner": "MODEL_TYPES['state-machine'].semanticBasis",
+        "declaredIn": "src/engine/model-types.ts",
+        "kind": "borrowed",
+        "standard": "SysML v2",
+        "concept": "the behavioral, state and succession subsets"
+      },
+      "standardConcept": "TransitionUsage and the Succession it owns -- a transition that occurs, and so orders its source before its target in time, only when its guard holds",
+      "normativeDocument": {
+        "title": "OMG Systems Modeling Language (SysML), Version 2.0, Part 1: Language Specification",
+        "omgDocumentNumber": "formal/2026-03-02",
+        "date": "March 2026",
+        "url": "https://www.omg.org/spec/SysML/2.0/"
+      },
+      "normativeLocation": [
+        { "kind": "clause", "ref": "SysML v2.0, 8.3.18.9 TransitionUsage" },
+        { "kind": "clause", "ref": "KerML 1.0, 9.2.10 Transition Performances" },
+        { "kind": "artifact", "ref": "https://www.omg.org/spec/KerML/20250201/Semantic-Library.kpar", "locator": "Kernel Semantic Library/TransitionPerformances.kerml" },
+        { "kind": "artifact", "ref": "https://www.omg.org/spec/SysML/20250201/Systems-Library.kpar", "locator": "Systems Library/Actions.sysml" },
+        { "kind": "artifact", "ref": "https://www.omg.org/spec/SysML/20250201/SysML.xmi", "locator": "Systems-States-TransitionUsage" }
+      ],
+      "standardSideModel": "sysml/transition-guard-occurrence-001/source.sysml",
+      "mageModel": "sysml/transition-guard-occurrence-001/model.mage.yaml",
+      "expectedCorrespondence": "A transition's guard conditions whether the transition occurs at all, so a declared transition that no reachable configuration can enable contributes no step and its target is not entered by that route.",
+      "method": "normative-artifact",
+      "oracle": null,
+      "establishedBy": "MAGE Workbench conformance-fixtures wave (agent)",
+      "establishedAt": "2026-10-04",
+      "reviewedByPerson": null
+    },
+    {
+      "id": "sysml/quantity-unit-magnitude-001",
+      "mageConstruct": "a quantity -- a declared magnitude carrying a dimension and a unit (quantities; normalization in DIMENSIONS)",
+      "semanticBasis": {
+        "owner": "MODEL_TYPES['quantitative-model'].semanticBasis",
+        "declaredIn": "src/engine/model-types.ts",
+        "kind": "borrowed",
+        "standard": "SysML v2",
+        "concept": "a subset of the Quantities and Units library"
+      },
+      "standardConcept": "a quantity value -- a number paired with exactly one measurement reference of the value's own dimension",
+      "normativeDocument": {
+        "title": "OMG Systems Modeling Language (SysML), Version 2.0, Part 1: Language Specification",
+        "omgDocumentNumber": "formal/2026-03-02",
+        "date": "March 2026",
+        "url": "https://www.omg.org/spec/SysML/2.0/"
+      },
+      "normativeLocation": [
+        { "kind": "clause", "ref": "SysML v2.0, 9.8 Quantities and Units Domain Library; ISQ base quantities at 9.8.3" },
+        { "kind": "artifact", "ref": "https://www.omg.org/spec/SysML/20250201/Quantities-and-Units-Domain-Library.kpar", "locator": "Quantities and Units/ISQBase.sysml, SI.sysml, SIPrefixes.sysml, MeasurementReferences.sysml" }
+      ],
+      "standardSideModel": "sysml/quantity-unit-magnitude-001/source.sysml",
+      "mageModel": "sysml/quantity-unit-magnitude-001/model.mage.yaml",
+      "expectedCorrespondence": "A magnitude is a number paired with exactly one unit of its dimension, so a ceiling comparison is decided by the magnitudes and not by the unit tokens the author wrote.",
+      "method": "normative-artifact",
+      "oracle": null,
+      "establishedBy": "MAGE Workbench conformance-fixtures wave (agent)",
+      "establishedAt": "2026-10-04",
+      "reviewedByPerson": null
+    }
+  ],
+  "owed": [
+    {
+      "row": "binding",
+      "standard": "KerML",
+      "reason": "Out of scope, and a fixture would be fiction: section 14's bindings/compositions split has not landed, so there is no MAGE binding construct to correspond. Verified 2026-10-04 -- no binding: key in either JSON schema, in src/ir/types.ts, or in src/engine/model-types.ts."
+    },
+    {
+      "row": "requirement, verification",
+      "standard": "SysML v2",
+      "reason": "Out of scope for the same reason: section 20 has not landed. Verified 2026-10-04 -- no verification construct anywhere in src/ir/types.ts or mage-model.schema.json. A requirement is spelled today as a model:-targeted quantity (SEMANTICS.md 5.3), which is a workaround rather than the construct."
+    }
+  ]
+}

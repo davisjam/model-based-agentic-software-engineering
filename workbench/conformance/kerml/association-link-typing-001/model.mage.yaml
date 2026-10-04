@@ -1,0 +1,117 @@
+# CONFORMANCE FIXTURE. The MAGE half of one correspondence claim; `claim.md` states the claim and
+# `oracle.json` records how it was checked. Read those two before reading this file.
+#
+# The claim this model exists to make falsifiable: a relation type CLASSIFIES its links, so a
+# question naming one relation type ranges over the links that relation type classifies and over no
+# others. The two queries below are the pair that says it. `conveys` reaches `beta` in one hop and
+# does NOT reach `gamma`, even though a `gamma` is one further hop away along an edge of a DIFFERENT
+# type. A reading under which a relation type were a display label would answer `holds` to both.
+#
+# Nothing here is a shipped example and nothing imports it. It is as small as the claim allows: three
+# entities, two relation types, two edges.
+
+mage: 1
+
+system:
+  id: kerml-association-link-typing
+  name: Link typing under two relation types
+  description: >
+    Two typed relations over one three-entity namespace, arranged so that a two-hop chain exists in
+    the model and no single relation type spans it.
+
+relation-types:
+
+  conveys:
+    description: The source hands its output directly to the target.
+    absence: No direct handoff is represented. Absence says nothing about any other relation.
+    # Composition is ALLOWED, so `reachability` is licensed and a `refuted` below is an answer
+    # rather than a refusal. Without this the fixture would pin V7's unlicensed verdict instead of
+    # the typing claim, which is a different statement entirely.
+    composition:
+      path: allowed
+    properties:
+      symmetric: false
+      acyclic: true
+
+  records:
+    description: The source writes a record of its work to the target.
+    absence: No record-writing is represented.
+    composition:
+      path: allowed
+    properties:
+      symmetric: false
+      acyclic: true
+
+entities:
+
+  alpha:
+    type: component
+    label: Alpha
+
+  beta:
+    type: component
+    label: Beta
+
+  gamma:
+    type: store
+    label: Gamma
+
+models:
+
+  handoff:
+    type: graph
+    label: Handoff
+    purpose:
+      question: What reaches what, under which relation type?
+      represents: [component identity, direct handoff, record writing]
+      omits: [execution order, how long a handoff takes, failure handling]
+    entities: [alpha, beta, gamma]
+    relations:
+      - id: alpha-conveys-beta
+        from: alpha
+        to: beta
+        type: conveys
+      # The hop that makes the fixture discriminating: it continues the chain and it is of the
+      # OTHER type. Retyping this one edge to `conveys` is the mutation the conformance test
+      # applies, and it is what flips `conveys-does-not-span-the-chain` to `holds`.
+      - id: beta-records-gamma
+        from: beta
+        to: gamma
+        type: records
+
+queries:
+
+  # THE pinned claim. Two hops separate alpha from gamma and `conveys` classifies only the first,
+  # so under `conveys` there is no path and the search is exhaustive over the model's own edges.
+  conveys-does-not-span-the-chain:
+    name: Alpha reaches Gamma through conveyed handoff
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph:
+      form: reachability
+      relation: conveys
+      from: alpha
+      to: gamma
+
+  # The positive control, and it is not decoration: without it a `refuted` above is consistent with
+  # `reachability` answering `refuted` to everything. This asks the same form, the same relation
+  # type and the same source, and differs only in the target being one hop away along an edge
+  # `conveys` DOES classify.
+  conveys-reaches-its-own-target:
+    name: Alpha reaches Beta through conveyed handoff
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: reachability
+      relation: conveys
+      from: alpha
+      to: beta
+
+views:
+
+  chain:
+    label: Chain
+    models: [handoff]
+    direction: left-to-right
