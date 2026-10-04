@@ -671,8 +671,24 @@ export interface Coverage {
   readonly reason: "state-limit" | "time-limit" | "depth-limit" | null;
 }
 
+/**
+ * A disclosed rewrite or caveat on a result, in a closed vocabulary a renderer can branch on.
+ *
+ * `vacuous` carries the one caveat that an `Outcome` cannot. A universal over an empty selected set
+ * is TRUE, so the sound verdict is `holds` and stays `holds` — and a reader who sees that green
+ * verdict has been answered correctly and misled, because the claim was never charged against
+ * anything. There is no fifth `Outcome` to reach for: `DESIGN-v02-ltl-foundation-261004.md:592`
+ * bans one, and a vacuous universal genuinely does hold. So the disclosure travels here instead,
+ * typed, beside the prose that already said it — `magnitude: null` next to `outcome: "holds"` was
+ * the only structural tell, and no consumer reads an absence as a reason.
+ *
+ * The arm binds forward. Any universal added later — a structural `all` over a selected set, a
+ * count under exhaustive coverage — emits this same kind rather than re-deriving the disclosure in
+ * its own dialect. `mage-query.schema.json` carries the same enum for the wire format, and
+ * `test/quant-query.test.ts` reads it rather than restating it.
+ */
 export interface Compilation {
-  readonly kind: "history-variable" | "symmetry-reduction" | "other";
+  readonly kind: "history-variable" | "symmetry-reduction" | "vacuous" | "other";
   readonly explanation: string;
 }
 
