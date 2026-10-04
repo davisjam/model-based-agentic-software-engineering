@@ -31,6 +31,13 @@
  *    are the reporting half of a capability rather than the capability. An operation-only gate reads
  *    26 of 26 while nine callables go untouched.
  *
+ *    It also catches a SECOND spelling of a row that IS driven, which is the M5 case: the five
+ *    `model.*` facade methods all belong to capability rows the operation axis already covers, so
+ *    `describe().operations` could not have noticed them arriving. The callable axis reported all
+ *    five as undriven the moment they landed. Their drives therefore live inside the `inspect`,
+ *    `query` and `validate` drivers — beside the spellings they are twins of, where the assertion
+ *    that matters is that the two agree.
+ *
  * The second axis is measured by INSTRUMENTATION rather than declaration: the suite wraps every
  * function on `window.mage` in a recorder before the drives run, and reads back the set that was
  * called. A declared mapping from drive to path would be a third list to maintain, and it would
@@ -305,7 +312,27 @@ const DRIVERS = {
     assert.ok(inspection.entities > 0 && inspection.models > 0, "inspect() reported an empty system");
     assert.equal(inspection.purposeful, inspection.models,
       "a model came back with no question, so inspect() is not carrying purpose");
-    return inspection;
+
+    // `window.mage.model.elements` is the second machine affordance of this row — the same
+    // `workspace.state` read, filtered by the model rather than by the caller. Driven against the
+    // unfiltered `inspect()` above, which is the comparison that matters: `elements` exists because
+    // an agent's only route to these ids was to pull the whole table over and filter it itself, so
+    // the two must agree about what the system declares.
+    const selected = await page.evaluate(() => {
+      const all = window.mage.model.elements();
+      const type = window.mage.inspect().entities.find((e) => e.type !== null).type;
+      const byType = window.mage.model.elements({ type });
+      return { all, byType, type, declared: window.mage.inspect().entities.map((e) => e.id).sort() };
+    });
+    assert.equal(selected.all.selected, true,
+      `an enumeration over the flagship was refused: ${JSON.stringify(selected.all)}`);
+    assert.deepEqual(selected.all.ids, selected.declared,
+      "`elements` and `inspect` disagree about which entities this system declares");
+    assert.equal(selected.all.hash, inspection.hash, "`elements` names a revision `inspect` is not on");
+    assert.ok(selected.byType.ids.length > 0 && selected.byType.ids.length < selected.all.ids.length,
+      `the '${selected.type}' filter selected ${selected.byType.ids.length} of ${selected.all.ids.length}`
+      + " — selecting all or none would not show it filtering");
+    return { ...inspection, selected: selected.all.ids.length, byType: selected.byType.ids.length };
   },
 
   async validate() {
@@ -320,6 +347,15 @@ const DRIVERS = {
       "the served page reports a different validation authority than the module that declares it");
     assert.equal(result.hash, await page.evaluate(() => window.mage.context().hash),
       "validate() describes a revision the workspace is not on");
+
+    // `window.mage.model.violations` is the facade's noun for this operation and the row's second
+    // machine affordance. Object equality is the assertion: a facade that re-decided anything would
+    // be the second party the authority declaration exists to forbid.
+    const bySpelling = await page.evaluate(() => ({
+      operation: window.mage.validate(), noun: window.mage.model.violations(),
+    }));
+    assert.deepEqual(bySpelling.noun, bySpelling.operation,
+      "`model.violations` and `validate` disagree about the same model at the same revision");
     return { ok: result.ok, findings: result.findings.length,
       authority: result.authority.implementation };
   },
@@ -346,7 +382,58 @@ const DRIVERS = {
     assert.equal(answers.property.outcome, answers.result.outcome,
       "`ask` and `query` disagree about the same question over the same system");
     assert.ok(answers.property.grounds.length > 0, "`ask` returned a verdict with no grounding (UX-I5)");
-    return { outcome: answers.result.outcome, grounds: answers.property.grounds.length };
+
+    // The three facade spellings of this row — `model.related`, `model.reachable`, `model.path`.
+    // Each is driven against the typed document it constructs, and the assertion is OBJECT EQUALITY:
+    // the facade is a vocabulary over `workspace.query`, so a difference here is the facade having
+    // acquired semantics of its own, which is what MQ-I8 exists to forbid. The node tier holds the
+    // derivation statically; this holds it in the served bundle.
+    const facade = await page.evaluate(() => {
+      const inspection = window.mage.inspect();
+      const allowed = inspection.relationTypes.find((r) => r.pathComposition === "allowed");
+      const forbidden = inspection.relationTypes.find((r) => r.pathComposition === "forbidden");
+      const edge = (type) => inspection.models
+        .flatMap((m) => m.relations).find((e) => e.type === type);
+      const open = edge(allowed.id);
+      const shut = edge(forbidden.id);
+      return {
+        related: window.mage.model.related(open.from, allowed.id, "outgoing"),
+        relatedDocument: window.mage.query({
+          kind: "graph", quantifier: "exists",
+          graph: { form: "successors", relation: allowed.id, from: open.from },
+        }),
+        reachable: window.mage.model.reachable(open.from, allowed.id, open.to),
+        reachableDocument: window.mage.query({
+          kind: "graph", quantifier: "exists",
+          graph: { form: "reachability", relation: allowed.id, from: open.from, to: open.to },
+        }),
+        path: window.mage.model.path(open.from, open.to, allowed.id),
+        pathDocument: window.mage.query({
+          kind: "graph", quantifier: "exists",
+          graph: { form: "path", relation: allowed.id, from: open.from, to: open.to },
+        }),
+        // V7, through the facade: a relation declared without path semantics must refuse the
+        // composing spelling here exactly as it refuses a typed document.
+        refusedByV7: window.mage.model.reachable(shut.from, forbidden.id, shut.to),
+        steppedByV7: window.mage.model.related(shut.from, forbidden.id, "outgoing"),
+        neighbour: open.to,
+      };
+    });
+    assert.deepEqual(facade.related, facade.relatedDocument,
+      "`model.related` and the typed document it builds disagree about one question");
+    assert.deepEqual(facade.reachable, facade.reachableDocument, "`model.reachable` disagrees with its document");
+    assert.deepEqual(facade.path, facade.pathDocument, "`model.path` disagrees with its document");
+    assert.equal(facade.related.outcome, "holds",
+      `one step along a declared edge answered ${facade.related.outcome}`);
+    assert.ok(facade.related.evidence?.nodes?.includes(facade.neighbour),
+      "the traversal's witness does not name the neighbour the model declares");
+    assert.equal(facade.refusedByV7.outcome, "unlicensed",
+      `composing a path-forbidden relation answered ${facade.refusedByV7.outcome}; V7 refuses it`);
+    assert.equal(facade.steppedByV7.outcome, "holds",
+      "one step along a path-forbidden relation is licensed; only composition is not");
+    return { outcome: answers.result.outcome, grounds: answers.property.grounds.length,
+      facade: { related: facade.related.outcome, reachable: facade.reachable.outcome,
+        path: facade.path.outcome, refusedByV7: facade.refusedByV7.outcome } };
   },
 
   async "check-query"() {

@@ -25,14 +25,18 @@
  * answers on two shipped examples; the reference now evaluates both, since a one-step read of an
  * adjacency it has already built needs nothing it lacks.
  */
-import type { CanonDomain, CanonicalSystem, Evidence, GuardOp, QueryResult, Scalar } from "../ir/types.ts";
+import type { CanonDomain, CanonicalSystem, Evidence, GuardOp, QueryResult } from "../ir/types.ts";
 import { undeclared } from "./omission.ts";
 import {
   bounded, detail, exhaustive, fail, GRAPH_COMPOSING, NOT_APPLICABLE, ok, ORDER_OPS, result,
   refusedAdmission as refused, unlicensed, verdict,
-  type Admission, type Comparison, type GraphQuery, type GraphWhere, type PropConstraint,
+  type Admission, type Comparison, type GraphQuery, type GraphWhere,
   type Quantifier, type Res, type Verdict,
 } from "./types.ts";
+// The property-constraint matcher, which `elements` is the second caller of (§2.4). It moved to
+// that module rather than being copied into it: one grammar, one matcher, so a traversal's endpoint
+// narrowing and an enumeration of the same entities can never disagree about a constraint.
+import { propertyValue, satisfiesConstraints } from "./elements.ts";
 
 /**
  * A graph answer: the schema-shaped result, the structured refusal, and the node sets `Evidence`
@@ -287,20 +291,6 @@ function compileComparison(system: CanonicalSystem, cmp: Comparison): Res<Compil
       `Partial orders are out of scope for v0.1.`);
   }
   return ok({ leftProp: left.value.property, rightProp: right.value.property, op: cmp.op, domain });
-}
-
-function propertyValue(system: CanonicalSystem, entity: string, property: string): Scalar | undefined {
-  return system.entities.get(entity)?.properties.get(property)?.value;
-}
-
-function satisfiesConstraints(system: CanonicalSystem, entity: string, cs: readonly PropConstraint[]): boolean {
-  return cs.every((c) => {
-    const value = propertyValue(system, entity, c.property);
-    if (value === undefined) return false;
-    if (c.op === "eq") return c.values.some((v) => v === value);
-    if (c.op === "ne") return c.values.every((v) => v !== value);
-    return c.values.some((v) => v === value);
-  });
 }
 
 function comparisonHolds(system: CanonicalSystem, cmp: CompiledComparison, src: string, dst: string): boolean {

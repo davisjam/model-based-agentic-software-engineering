@@ -38,6 +38,10 @@ export {
   type GraphAnswer, type GraphPlan, type GraphSubject,
 } from "./graph.ts";
 export {
+  interpretElementSelector, parseElementSelector, selectElements,
+  type ElementSelection, type ElementSelector,
+} from "./elements.ts";
+export {
   compileSystem, cycleThrough, DEFAULT_STATE_LIMIT, defaultOptions, exploreSpace,
   findConfigurationCycle, pathBetween, traceTo,
   type ExploreOptions, type SpaceHit, type StateSpace, type StopReason,
@@ -45,17 +49,17 @@ export {
 export { compileHistory, runPastTimeQuery, type HistoryCompilation, type PastTimeQuery } from "./history.ts";
 export {
   absentSubstrateProse, absentSubstrateVerdict, MODEL_TYPES, modelTypeForQueryKind,
-  type ModelType, type ModelTypeId, type QueryNoun, type SchemaAuthority,
+  type ModelType, type ModelTypeId, type QueryNoun, type SchemaAuthority, type SubjectSelector,
 } from "./model-types.ts";
 export { narrate, type Delta, type NarratedStep, type Narration } from "./narrate.ts";
 export { compilePredicate, describePredicate } from "./predicate.ts";
 export { buildScope, resolveRef, type Ref, type RefScope } from "./refs.ts";
 export {
-  parseBehaviorQuery, parseGraphQuery, parsePredicate, parseQuantityQuery, parseQuery,
-  QUANTIFIERS, QUANTIFIER_EVIDENCE,
+  parseBehaviorQuery, parseGraphQuery, parsePredicate, parsePropConstraints, parseQuantityQuery,
+  parseQuery, QUANTIFIERS, QUANTIFIER_EVIDENCE,
   type Admission, type BehaviorForm, type BehaviorQuery, type GraphForm, type GraphQuery,
-  type Predicate, type Quantifier, type QuantityQuery, type Query, type Refusal,
-  type RefusalReason, type Verdict,
+  type Predicate, type PropConstraint, type Quantifier, type QuantityQuery, type Query,
+  type Refusal, type RefusalReason, type Verdict,
 } from "./types.ts";
 export { admitQuantityQuery, runQuantityQuery, type QuantityPlan } from "../quant/query.ts";
 

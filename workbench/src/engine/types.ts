@@ -327,7 +327,16 @@ export function parsePredicate(raw: unknown): Predicate | null {
   return atoms.length === 0 ? null : { kind: "atoms", atoms };
 }
 
-function parsePropConstraints(raw: unknown): readonly PropConstraint[] {
+/**
+ * Read a `{ property: value }` / `{ property: { ne | in } }` object as constraints.
+ *
+ * Exported since `elements` (§2.4) is the second caller: a graph question narrows its endpoints with
+ * this grammar and an element selector narrows the entity table with it, and one grammar wants one
+ * parser. Returns an empty list for anything it cannot read; the CALLER decides whether an empty
+ * list means "no constraints" or "unreadable selector", because only the caller knows whether the
+ * field was present.
+ */
+export function parsePropConstraints(raw: unknown): readonly PropConstraint[] {
   const out: PropConstraint[] = [];
   for (const [property, cond] of sortedEntries(raw)) {
     if (isScalar(cond)) out.push({ property, op: "eq", values: [cond] });

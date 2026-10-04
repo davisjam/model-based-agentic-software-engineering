@@ -24,6 +24,11 @@ import type { PendingResult } from "./ports.ts";
 import type { ExhaustedEscalation } from "../sparql/index.ts";
 import type { SparqlAnswer, Workspace } from "./services.ts";
 import type { QueryCheckResult } from "../engine/check.ts";
+import { selectElements } from "../engine/elements.ts";
+import type { ElementSelection } from "../engine/elements.ts";
+import type { ModelTypeId, QueryNoun, SubjectSelector } from "../engine/model-types.ts";
+import type { GraphForm } from "../engine/types.ts";
+import { VALIDATION_AUTHORITY } from "../validator/result.ts";
 import type { ValidationResult } from "../validator/result.ts";
 import type { ExampleCatalog, ExampleDescription } from "./examples.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
@@ -40,9 +45,15 @@ import { CAPABILITIES, ESCAPE_HATCHES, SPARQL_HATCH_RENAME, checkAffordanceParit
  * 0.3.0 — `sparql(text)` moves to `debug.sparql(text)`. The method is unchanged; what changed is
  * its STATUS. It is no longer a machine affordance of the `query` capability but a fenced escape
  * hatch outside the semantic interface (`DECISIONS-RULED-model-query-261002.md`), and the namespace
- * is what makes that legible at the call site. **PROVISIONAL** — see `SPARQL_HATCH_RENAME` in
- * `capabilities.ts`, which is the one place the rename is recorded and the one place it reverts
- * from if §G2 is declined. The version constant is read from it rather than written here twice.
+ * advertises that at the call site and in an agent transcript.
+ *
+ * **RATIFIED** — `DESIGN-model-query-261002.md` §G2, ruled (a) on 261004, recorded in
+ * `SPARQL_HATCH_RENAME` in `capabilities.ts`. What the author ratified is the rename's LEGIBILITY
+ * and nothing more: the namespace correctly advertises "you have now left the supported semantic
+ * interface," even though the namespace itself is not an enforcement mechanism. Every control keys
+ * off `ESCAPE_HATCHES[].at`, so the fence does not depend on the name and ratification gives the
+ * name no teeth it lacked. The version constant is read from the declaration rather than written
+ * here twice.
  */
 export const AGENT_API_VERSION: string = SPARQL_HATCH_RENAME.apiVersion;
 
@@ -96,6 +107,30 @@ export interface MageAgentApi {
    * UI-only knowledge.
    */
   ask(query: unknown): EvaluatedProperty;
+  /**
+   * The model query interface by its NOUNS — `elements`, `related`, `reachable`, `path`,
+   * `violations` — rather than by the shape of a serialized query document.
+   *
+   * Why this exists when `query()` already expresses every one of them: the typed document is the
+   * stable wire contract and it stays that, but it leaves the interface's vocabulary implicit in a
+   * JSON shape. An agent reading `{kind:"graph", graph:{form:"successors", relation, from}}` has to
+   * reconstruct the fact that what it is doing is traversing a declared relation. The facade gives
+   * the operations their names, which is most of what made the earlier surface read as storage.
+   *
+   * **It is DERIVED, so it cannot offer what the kernel refuses (MQ-I8).** Every method here names
+   * a kernel declaration — a form in some model type's `QuerySemantics.forms`, a subject in its
+   * `subjects`, or the one validation authority — and `MODEL_FACADE` below records which, in a table
+   * the derivation test holds against the registry in both directions. Nothing here evaluates
+   * anything: each method builds the document `query()` takes, or calls `validate()`, and the
+   * engine's own admission decides. A question this model declines is declined identically here.
+   *
+   * **No composition, and that is a ruling rather than an omission.** There is no piping of one
+   * operation's result set into another, no join across two result sets, no fold, and no
+   * cross-operation quantification. `DESIGN-model-query-261002.md` §4.1 draws the line and §G5 is
+   * held pending the author's semantics discussion, so a caller composes RESULTS in its own
+   * language: run `elements`, loop, run `related` per id.
+   */
+  readonly model: ModelQueryApi;
   /**
    * The fenced escape hatches: surfaces OUTSIDE the semantic interface. Not for normal workflows.
    *
@@ -178,6 +213,206 @@ export interface MageAgentApi {
    *    no human control reaches it.
    */
   analysis: AnalysisApi;
+}
+
+// ----------------------------------------------------------------------------------------------
+// The derived facade — `window.mage.model.*`
+// ----------------------------------------------------------------------------------------------
+
+/**
+ * Which way a traversal reads a declared edge.
+ *
+ * Two members, and the direction is a parameter rather than two methods because it is one question
+ * asked of one relation type — V8's `symmetric` is what decides whether both readings are
+ * meaningful, and that decision belongs to the IR, not to the method list.
+ */
+export type TraversalDirection = "outgoing" | "incoming";
+
+/**
+ * The graph form each traversal direction is asking for. ONE place the pair is written.
+ *
+ * `related` could have spelled "successors" inside an `if`, and then the derivation table below
+ * would have carried a second copy of the same two words. A record keyed by the direction means the
+ * constructor and the declaration read the same value, so a facade method cannot drift from what it
+ * declares it derives from.
+ */
+const RELATED_FORM: Readonly<Record<TraversalDirection, GraphForm>> = {
+  outgoing: "successors",
+  incoming: "predecessors",
+};
+
+const REACHABLE_FORM: GraphForm = "reachability";
+const PATH_FORM: GraphForm = "path";
+
+/**
+ * The wire document a facade constructor builds — the shape `query()` accepts, not the engine's
+ * internal `Query`.
+ *
+ * Deliberately the WIRE shape. Building the internal type and handing it over would let the facade
+ * skip `parseQuery`, and then the derivation test would be comparing an object with itself instead
+ * of checking that what the facade emits is a document the published parser admits.
+ *
+ * `quantifier` is fixed to `exists` because every graph form in v0.1 is existential — a universal
+ * graph claim has no form, and `admitGraphQuery` refuses `forall` by name. Exposing the parameter
+ * would offer a choice with one legal value.
+ */
+export interface GraphQueryDocument {
+  readonly kind: "graph";
+  readonly quantifier: "exists";
+  readonly graph: {
+    readonly form: GraphForm;
+    readonly relation: string;
+    readonly from: string | null;
+    readonly to: string | null;
+  };
+}
+
+/** Traverse one declared relation, one step, in the named direction. */
+export const relatedQuery = (
+  from: string, relation: string, direction: TraversalDirection,
+): GraphQueryDocument => ({
+  kind: "graph", quantifier: "exists",
+  // `successors` reads `from` and `predecessors` reads `to`; the engine falls back across the pair,
+  // and naming the field the form reads keeps the document readable on its own.
+  graph: direction === "outgoing"
+    ? { form: RELATED_FORM.outgoing, relation, from, to: null }
+    : { form: RELATED_FORM.incoming, relation, from: null, to: from },
+});
+
+/**
+ * Compose the relation transitively from one element — to a named target, or to anything.
+ *
+ * `to` omitted is still ONE question, not a composition: `reachability` with an unpinned target is
+ * the form asking "does this element reach anything through this relation", which the engine
+ * answers with the shortest witness it finds. What it is not is a result set to feed somewhere else.
+ */
+export const reachableQuery = (
+  from: string, relation: string, to: string | null,
+): GraphQueryDocument =>
+  ({ kind: "graph", quantifier: "exists", graph: { form: REACHABLE_FORM, relation, from, to } });
+
+/** Trace between two named elements. Witness-bearing: the answer carries the path it found. */
+export const pathQuery = (from: string, to: string, relation: string): GraphQueryDocument =>
+  ({ kind: "graph", quantifier: "exists", graph: { form: PATH_FORM, relation, from, to } });
+
+export type FacadeOperationName = "elements" | "related" | "reachable" | "path" | "violations";
+
+/**
+ * What a facade operation derives FROM — and the three arms are the honest count.
+ *
+ * MQ-I8 was written as "maps onto a form the loaded types' `QuerySemantics` declares", which covers
+ * three of the five operations and not the other two. `elements` enumerates a SUBJECT (the `entity`
+ * noun with the property-constraint selector); `violations` is validation semantics, which the
+ * registry does not carry at all. Widening "form" to mean all three would have made the invariant
+ * unfalsifiable for exactly the two operations that need it most, so the union names each kind of
+ * declaration and the test resolves each arm against its own source.
+ */
+export type FacadeDerivation =
+  /** A member of that model type's `QuerySemantics.forms`. */
+  | { readonly from: "query-form"; readonly modelType: ModelTypeId; readonly form: string }
+  /** A `{noun, selector}` pair in that model type's `QuerySemantics.subjects`. */
+  | {
+      readonly from: "query-subject"; readonly modelType: ModelTypeId;
+      readonly noun: QueryNoun; readonly selector: SubjectSelector;
+    }
+  /** The one implementation that decides well-formedness. Not query semantics; said so. */
+  | { readonly from: "validation-authority"; readonly implementation: string };
+
+export interface FacadeOperation {
+  readonly operation: FacadeOperationName;
+  readonly derivesFrom: readonly FacadeDerivation[];
+}
+
+/** Where a facade operation is called. Computed, so the name is written once. */
+export const facadeSite = (operation: FacadeOperationName): string =>
+  `window.mage.model.${operation}`;
+
+/**
+ * Every facade operation and the kernel declaration it derives from — MQ-I8's machine half.
+ *
+ * The table is the facade's claim about itself, and `test/model-facade.test.ts` is what makes it a
+ * claim rather than a comment. Three checks, in both directions:
+ *
+ *   1. every `query-form` derivation names a form in that type's own `forms` array, and every
+ *      `query-subject` derivation a pair in its own `subjects` — so a method cannot declare a form
+ *      the kernel does not have;
+ *   2. the table is TOTAL over the callables `window.mage.model` presents, and names no operation
+ *      the facade does not implement — the drained-list direction, which is what caught three dead
+ *      allowances in the hatch's own closure check (§15(4));
+ *   3. the document each constructor emits carries the form its row declares, and the engine's
+ *      verdict on that document is the verdict on the hand-written equivalent.
+ *
+ * Together those say the thing MQ-I8 is for: the facade is a spelling of the kernel's declarations,
+ * so there is no question it can ask that a typed document could not, and none the gate would let
+ * through here and refuse there.
+ */
+export const MODEL_FACADE: readonly FacadeOperation[] = [
+  {
+    operation: "elements",
+    derivesFrom: [{
+      from: "query-subject", modelType: "structural-graph",
+      noun: "entity", selector: "property-constraints",
+    }],
+  },
+  {
+    operation: "related",
+    // Both directions, because both are the operation: a row naming one form would leave the other
+    // undeclared and the totality check would be measuring half of what `related` can emit.
+    derivesFrom: Object.values(RELATED_FORM).map((form) => ({
+      from: "query-form" as const, modelType: "structural-graph" as const, form,
+    })),
+  },
+  {
+    operation: "reachable",
+    derivesFrom: [{ from: "query-form", modelType: "structural-graph", form: REACHABLE_FORM }],
+  },
+  {
+    operation: "path",
+    derivesFrom: [{ from: "query-form", modelType: "structural-graph", form: PATH_FORM }],
+  },
+  {
+    operation: "violations",
+    derivesFrom: [{
+      from: "validation-authority", implementation: VALIDATION_AUTHORITY.implementation,
+    }],
+  },
+];
+
+/**
+ * The model query interface, spelled as operations over the metamodel's nouns.
+ *
+ * Every method is a constructor plus a delegation and holds no decision of its own. Three return
+ * `QueryResult` — the published wire shape, unchanged, because a facade that returned a richer
+ * result would be a second answer shape for one question; `violations` returns the validation
+ * operation's own result; and `elements` returns the one shape this interface adds, because it is
+ * the one operation the kernel did not already have (§2.4).
+ */
+export interface ModelQueryApi {
+  /**
+   * The entities this system declares, filtered by declared type and by the property-constraint
+   * grammar: `{ type?: string, where?: { prop: value | { ne } | { in: [...] } } }`.
+   *
+   * A representation question — it reads the IR's entity table and walks no edges — and it exists
+   * because every other operation here takes element ids as input, and an agent's only route to
+   * them was to pull the whole of `inspect()` across the boundary and filter it in its own
+   * language. Licensed by the structural-graph type's presence rung, like a graph question.
+   */
+  elements(selector?: unknown): ElementSelection;
+  /** One step along a declared relation. `evidence.nodes` carries the neighbours it found. */
+  related(from: string, relation: string, direction: TraversalDirection): QueryResult;
+  /**
+   * The relation composed transitively from one element — gated per relation type by
+   * `composition.path` (V7), so a relation declared without path semantics refuses here exactly as
+   * it refuses a hand-written `reachability` document.
+   */
+  reachable(from: string, relation: string, to?: string): QueryResult;
+  /** Trace between two named elements, with the path as the witness. Composing, so V7 gates it. */
+  path(from: string, to: string, relation: string): QueryResult;
+  /**
+   * The model's well-formedness violations — the same operation `validate()` is, under the noun
+   * §2.2's table names it by. One service, two spellings; no second rule set and no second verdict.
+   */
+  violations(): ValidationResult;
 }
 
 /**
@@ -627,6 +862,20 @@ export function createAgentApi(
     // "(unsaved)" rather than a generated id: an id here would look like a handle an agent could
     // pass to `evidence()` or `retract`, and nothing was saved.
     ask: (q) => workspace.evaluate("(unsaved)", q),
+
+    // The derived facade. Each method is a constructor and a delegation to the SAME seam the typed
+    // document reaches, so there is no second admission, no second result shape and nothing here to
+    // decide. `elements` reads the system the way `inspect` reads it, one line up, because it is a
+    // representation question rather than an analysis -- which is also why the registry records it
+    // as a second machine affordance of `inspect` rather than of `query`.
+    model: {
+      elements: (selector) => selectElements(workspace.state.system, selector),
+      related: (from, relation, direction) => workspace.query(relatedQuery(from, relation, direction)),
+      reachable: (from, relation, to) =>
+        workspace.query(reachableQuery(from, relation, to ?? null)),
+      path: (from, to, relation) => workspace.query(pathQuery(from, to, relation)),
+      violations: () => workspace.validate(),
+    },
 
     // Straight through, like `analysis` below: the facade holds the system, the projection and the
     // gate, so there is nothing for this method to decide. The namespace is the fence; the

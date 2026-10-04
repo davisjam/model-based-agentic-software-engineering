@@ -333,32 +333,34 @@ export interface EscapeHatch {
 }
 
 /**
- * **PROVISIONAL — `DESIGN-model-query-261002.md` §G2 is NOT RULED.**
+ * **RATIFIED — `DESIGN-model-query-261002.md` §G2, ruled (a) on 261004.**
  *
- * The design recommends moving the console to a `debug` namespace and bumping the API version,
- * because a fence only the registry can see is invisible at the one place a dependency forms: the
- * call site. The author has not ruled it, so it is recorded the way M3 recorded §G3's authority
- * split — one constant, carried by reference, so that reverting is one edit rather than an
- * archaeology exercise (§14(5)).
+ * The console lives at `window.mage.debug.sparql` and `AGENT_API_VERSION` reads 0.3.0 from here.
+ * The author's ruling states what the rename buys, and the qualification is part of the ruling
+ * rather than a hedge on it: the namespace **correctly advertises "you have now left the supported
+ * semantic interface," even though the namespace itself is not an enforcement mechanism.**
  *
- * **The fence does not depend on this.** Every mechanical control in this wave keys off
- * `ESCAPE_HATCHES[].at`, whatever string that is: the disjointness check, the closure check,
- * `describe().outsideSemanticInterface`, and the reference-closure test all read the declaration.
- * Taking §G2 adds legibility at call sites and in agent transcripts; it adds no enforcement. So if
- * the author declines, what changes is `at` and `apiVersion` here, the `debug` block on
- * `MageAgentApi` and its one-line implementation, and nothing else — the tests spell no site name.
+ * So ratification changes the STATUS of a decision and nothing about the fence's teeth. Every
+ * mechanical control keys off `ESCAPE_HATCHES[].at`, whatever string that is: the disjointness
+ * check, the closure check, `describe().outsideSemanticInterface`, both reference closures, and
+ * every test (none spells the site — they read it from this declaration). A call site that reads
+ * `debug.sparql` is legible, not fenced; what fences it is the declaration below.
+ *
+ * The independent support the author cited: `SEMANTICS.md` §7.5 already holds that SPARQL is an
+ * INTERFACE and not the semantic foundation, with V32 fixing licensing authority in the IR for every
+ * interface. The rename makes that existing position visible where a dependency forms.
+ *
+ * `previously` and `previousApiVersion` stay. They are what an agent script written against 0.2.0
+ * is diagnosed by, and a ratified rename still has a before.
  */
 export const SPARQL_HATCH_RENAME = {
   at: "window.mage.debug.sparql",
   previously: "window.mage.sparql",
   apiVersion: "0.3.0",
   previousApiVersion: "0.2.0",
-  /** False until the author rules §G2. A ratified rename is no longer provisional. */
-  ratified: false,
-  question: "DESIGN-model-query-261002.md §G2",
-  reverts:
-    "`at` and `apiVersion` above, the `debug` namespace on MageAgentApi and its delegation in "
-    + "createAgentApi, and AGENT_API_VERSION's doc-comment. No test names the site as a literal.",
+  /** True since §G2 was ruled (a). The decision, not a trial. */
+  ratified: true,
+  question: "DESIGN-model-query-261002.md §G2 — ruled (a), 261004",
 } as const;
 
 /**
@@ -532,7 +534,19 @@ export const CAPABILITIES: readonly Capability[] = [
     summary: "Read every modelled fact: entities, relations, machines, purpose, omissions.",
     service: "workspace.state",
     human: [inBrowser("model-section.tables", "sections", "read")],
-    machine: [wired("window.mage.inspect")],
+    // `window.mage.model.elements` is the SECOND spelling of this read, and this row rather than
+    // `query` is where it belongs — which corrects `DESIGN-model-query-261002.md` §7.1, whose table
+    // put `elements` on `query`. UX-I1 compares the row's `service` string to check the two
+    // interfaces converge, and `elements` reaches `workspace.state`: it filters the IR's entity
+    // table and walks no edges. Registering it under `query` would have made `workspace.query` a
+    // seam only some of that row's affordances reach, which is the one job that string has — and it
+    // is the same defect as the `validate` row's stale machine affordance two rows down.
+    //
+    // It is not a capability of its own either. §2.4 is explicit that an agent could already get
+    // these ids, by pulling the whole of `inspect()` over and filtering it client-side; what
+    // `elements` adds is that the model answers the question instead of the caller. A new row would
+    // report a capability the product gained, and it gained a spelling.
+    machine: [wired("window.mage.inspect"), wired("window.mage.model.elements")],
     producesEvidence: false,
   },
   {
@@ -555,7 +569,11 @@ export const CAPABILITIES: readonly Capability[] = [
     // `context().findings` is not listed as a second spelling. It survives, and its doc-comment says
     // what it honestly is, but a field of a context read is not an affordance OF this capability —
     // registering it as one is how the gap hid in a green registry for as long as it did.
-    machine: [wired("window.mage.validate")],
+    // `window.mage.model.violations` is the same operation under the noun §2.2's table names it by —
+    // "identifying violations of a model constraint" — and it delegates to the same
+    // `workspace.validate`. A second spelling, not a second rule set: there is one `rules.ts` pass
+    // and one authority, and the facade adds a word rather than a party.
+    machine: [wired("window.mage.validate"), wired("window.mage.model.violations")],
     producesEvidence: true,
   },
   {
@@ -613,9 +631,26 @@ export const CAPABILITIES: readonly Capability[] = [
     // *narrower* rather than wider: the escalation handle is obtainable only from an `exhausted`
     // answer, so escalation is now reachable only downstream of a deliberate hatch use. It needs no
     // separate fencing because it cannot be reached without passing through one.
+    //
+    // ---- and the three facade spellings, added by M5 ---------------------------------------------
+    //
+    // `window.mage.model.{related,reachable,path}` are thin constructors: each builds the document
+    // `window.mage.query` takes and hands it to the same `workspace.query`. They earn a place on this
+    // row by the test the row already applies — a second ROW must report a capability the product
+    // gained, and these report none. What they add is a vocabulary: an agent that reads `reachable`
+    // knows it is composing a declared relation, where an agent handed
+    // `{form:"reachability", relation, from}` has to work that out.
+    //
+    // They cannot widen what this row answers, and that is held rather than asserted:
+    // `MODEL_FACADE` in `agent-api.ts` declares which `QuerySemantics` form each one names, and the
+    // derivation test (MQ-I8) resolves every declaration against the model-type registry and checks
+    // the emitted document carries the form it declared. `elements` is NOT here — see the `inspect`
+    // row, which is the seam it actually reaches.
     machine: [
       wired("window.mage.query"), wired("window.mage.ask"),
       wired("window.mage.analysis.resolveExhausted"),
+      wired("window.mage.model.related"), wired("window.mage.model.reachable"),
+      wired("window.mage.model.path"),
     ],
     producesEvidence: true,
   },
