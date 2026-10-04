@@ -368,7 +368,7 @@ export class Workspace {
    * every read too.
    *
    * `authority` says which implementation decided the answer, because the ruling requires the
-   * operation to say so — see `VALIDATION_AUTHORITY`, which is PROVISIONAL under §G3.
+   * operation to say so — see `VALIDATION_AUTHORITY`, ratified under §G3 on 261004 (`PLAN.md` §0.2a).
    */
   validate(): ValidationResult {
     const findings = validateModel(this.#engine.system());

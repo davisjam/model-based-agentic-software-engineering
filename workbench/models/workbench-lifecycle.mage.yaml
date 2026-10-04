@@ -1,0 +1,891 @@
+# The workbench's own LIFECYCLE model — the fourth self-model, and the first with machines.
+#
+# `PLAN.md` §0.2a records the ruling that admitted it (ACCEPTED 261004) and the reason, which is
+# also this file's whole justification: the three graph self-models state propositions over STATIC
+# RELATIONAL STRUCTURE, and the claims below are propositions over EXECUTIONS. "A transaction never
+# commits against a system its base does not name" and "content a discarded hypothesis produced is
+# never what the authoritative workbench serves" quantify over interleavings of components that step
+# independently. No graph reachability query states them, and no point-wise test states them either:
+# a test fixes one ordering and asserts the outcome of that one ordering.
+#
+# ## WHAT THIS MODEL'S CORRESPONDENCE TO THE CODE IS, AND WHAT IT IS NOT
+#
+# **Correspondence is ASSERTED BY READING, on 2026-10-04, and nothing checks it.** Every entity
+# below carries `provenance.correspondence.kind: asserted` with that date, which is the schema's
+# weakest kind on purpose — SEMANTICS.md §8.1 reserves `checked`/`derived`/`generated` for tooling
+# that earns the claim. Concretely: one reader opened `src/transaction/engine.ts`,
+# `src/app/services.ts`, `src/app/agent-api.ts` and `src/ui/shell/edit-forms.ts`, and wrote the
+# states, guards and events below to match what those files do. A later edit to any of them can
+# falsify every statement in this file and no gate will say so.
+#
+# **What WOULD check it, named rather than gestured at.** `test/import-graph.test.ts` is the existing
+# pattern for a model↔code join: it parses every import specifier under `src/`, resolves each to the
+# entity owning its path, and fails in BOTH directions. The analogue here cannot read imports; it
+# would have to decide control-flow facts. Three of them, which together are everything this model
+# asserts about the code:
+#
+#   1. `TransactionEngine.apply` has exactly one route to `outcome: "committed"`, and that route is
+#      dominated by the `tx.base !== hash` rejection.
+#   2. Every method of `Workspace` that reassigns `#engine` calls `#emit()` before returning. That is
+#      the whole content of the `presentation` machine's participation in every event.
+#   3. `discardHypothesis` assigns `#engine` from `#authoritative` and from nothing else.
+#
+# Each is a single-function property a Roslyn-style query over the TypeScript AST could decide. None
+# is built, none is in scope for this wave, and until one exists the sentences in this file are one
+# reader's claim about four files.
+#
+# **What IS held, so the two are not confused.** `test/model-coverage.test.ts` evaluates every
+# `expect:` below through the facade on every node run. That is verdict-sensitivity: an edit to this
+# file that changes an outcome breaks the build. It is not correspondence. Reading the one as the
+# other is the failure class `AUDIT-system-models-261004.md` gap 1 established by mutation and
+# `REAUDIT-system-models-261004.md` re-measured — and three comments in this repo claimed enforcement
+# they did not have and were corrected in one day.
+#
+# **ONE implementation decides these verdicts, not two — and that differs from the components model.**
+# `validate.py` checks this file's shape and meaning and then DECLINES every query for scope: it has
+# no exploration engine, so a `kind: behavior` query reports `[skip] … evaluated by the workbench
+# engine, not here`. Measured by running it on this file. The components model's graph queries are
+# decided twice and held equal by parity; these are decided once. `docable`'s
+# `restricted-reaches-public` is the existing precedent for a query only the engine answers, and its
+# comment says so for the same reason this one does.
+#
+# `test/lifecycle-model.test.ts` adds the half an `expect:` cannot carry. For each load-bearing
+# statement it MUTATES this model — deletes half of one base guard, takes `presentation` out of a
+# commit event and repaints locally instead, makes `discard_hypothesis` keep the branch, serializes
+# the other party behind the agent — and asserts the verdict flips. It also pins the reachable
+# configuration count, which was 70 on 2026-10-04 against docable's 39. Without those controls a
+# `refuted` earned by a guard and a `refuted` over an unreachable situation are the same row.
+#
+# ## The abstraction: content identity, and the three bounds it forces
+#
+# Everything turns on content identity, because the base-hash check is the mechanism under test.
+# `MageDocument.hash()` is modelled by the `revision` domain: five values, not a hash. That is what
+# keeps the space finite, and it forces three bounds. Each is stated with its consequence, because a
+# bound whose consequence is left to a reader is how a model comes to be read as a claim it never
+# made.
+#
+#   1. **The authoritative chain is two revisions that CYCLE.** `commit_auth_0` moves `auth_0 →
+#      auth_1`; `commit_auth_1` moves `auth_1 → auth_0`. The cycle is not a shortcut. The base check
+#      is content-addressed, so a transaction whose operations restore earlier content yields the
+#      earlier hash and an older base becomes current again — staleness is NOT monotone. A monotone
+#      counter would model a stricter discipline than the implementation has, and the properties
+#      below would then hold for a reason the code does not supply.
+#   2. **A hypothesis branch is ONE content identity while it is open.** `openHypothesis` already
+#      applies a transaction to the branch engine, so `branch` means "content the open branch is
+#      serving", and the branch's own revision chain is collapsed. Consequence, stated because it is
+#      a real weakening: within this model a base captured on the branch stays current across a
+#      further branch commit, which the implementation's per-revision hash would not permit. Every
+#      base property below is stated over the authoritative chain, which is NOT collapsed.
+#   3. **Adopted branch content gets its own identity, `adopted`, and the implementation does not
+#      rename it.** `applyHypothesis` keeps the branch engine, so in the code the adopted content's
+#      hash IS the branch's hash. The model separates them because the question the model exists to
+#      answer — can a DISCARDED branch's content end up serving authoritatively? — is undecidable
+#      when the two are one value: the first draft of this file conflated them, and a trace that
+#      opened a hypothesis over already-adopted content, then discarded it, restored the parked
+#      `branch` value and read as a counterexample. The cost of separating them is one false
+#      refusal, named here and claimed nowhere: a base captured on the branch before `apply` reads
+#      as stale afterwards, where the implementation would accept it.
+#
+# Undo and redo are absent. They are revision navigation over a stack of whole systems, and bound 1
+# already supplies their only effect on a captured base — the serving content returning to an earlier
+# value.
+#
+# ## What is NOT modelled, and why — read this before adding a machine
+#
+# The brief that founded this file named a third machine: workspace/view state, with SH-I5 (dangling
+# selection) and SH-I6 (mutation-never-navigates) as its invariants (`DESIGN-shell-261002.md` §8).
+# Both were examined and BOTH WERE DECLINED, for different reasons, and a `presentation` machine
+# stands in the slot instead.
+#
+# **SH-I6 is step-shaped, not configuration-shaped.** "A committed transaction changes no view state"
+# relates a pre-state to a post-state. Every query form this engine has — `reach`, `invariant`,
+# `recurrence`, `repeatable-cycle`, `deadend`, `transition-live` — is a predicate over configurations
+# or over traces of them, so SH-I6 has no form here. The sanctioned encoding of a past-time question
+# is a history variable (V23), and the honest version of that encoding would be a variable set by no
+# transition in this file — an assertion about this model's own transition table rather than about
+# its executions. SH-I6 stays with its node test.
+#
+# **SH-I5 is a totality property of a type, held by the compiler.** §4's prose says
+# "`view.selection()` never returns an id the current system lacks", and the code does not do that:
+# `viewState.selection` is never pruned (`src/app/agent-api.ts:646-647` is the only writer besides
+# two shell panes, and it stores what it is handed), and a vanished id is resolved per paint to the
+# `unresolved` member of `Selection` (`src/ui/view-model.ts`). There is no stale-reference window to
+# quantify over, because nothing is cached to go stale: `resolveSelection` is total and recomputed.
+# Modelling it would restate a discriminated union as control states. The §4 sentence is corrected in
+# `DESIGN-shell-261002.md` §"As-built: the lifecycle model, 261004".
+#
+# **What replaced it is the same surface's one genuinely execution-shaped claim.** `QueryResult`
+# carries `systemHash` under an explicit contract — "a result for revision N must never be presented
+# as though it described N+1" (`src/app/services.ts`). That IS a proposition over interleavings: the
+# presented answer and the serving revision are maintained by different code, and what keeps them
+# equal is that every `Workspace` method which reassigns `#engine` calls `#emit()` in the same
+# synchronous call. The `presentation` machine states exactly that, by participating in all nine
+# events that move the serving revision; `presented-answer-is-current` is the invariant it buys.
+#
+# ## Why the commit events are named per revision
+#
+# `commit_auth_0` and `commit_auth_1` look like one event split in two. They are not. An event step
+# applies every participant's effects atomically FROM THE PRE-STATE, so a participant whose new value
+# must reflect the POST-state cannot read it: `presentation` has to write the literal revision the
+# step lands on, and naming the event per revision is what makes that literal available. The same
+# pre-state rule is why `transaction` can record `committed_from: workspace.serving` and get the
+# revision it committed AGAINST rather than the one its commit produced — which is the whole reason
+# `stale-base-commit` below is decidable from a configuration at all.
+#
+# A second, duller reason the equality is written out as guards rather than computed: the
+# derived-value grammar compares a reference to a LITERAL (`parseDerived`, `src/engine/expr.ts`), so
+# `base == workspace.serving` is not expressible. Equality over a four-value domain is therefore four
+# guarded transitions. That is a real v0.x expressiveness bound and it belongs in the record rather
+# than in a reader's surprise.
+
+mage: 1
+
+system:
+  id: mage-workbench-lifecycle
+  name: MAGE Model Workbench — Lifecycle
+  description: >
+    The workbench's transaction / hypothesis / presentation lifecycle, as four composed machines.
+    Its claims are propositions over executions; the three graph self-models state propositions over
+    static structure. Correspondence to the code is asserted by reading and is not mechanically
+    checked — this file's header names the three control-flow facts a checker would have to decide.
+
+# ---------------------------------------------------------------------------
+# ONE domain, shared by every content-identity variable.
+#
+# Shared rather than declared five times because `effects: { parked: serving }` and
+# `effects: { base: workspace.serving }` are COPIES between variables, and a copy whose value falls
+# outside the target's declared domain is silently not taken (the walk's saturation rule). One domain
+# makes that impossible instead of unlikely.
+#
+# `enum`, not `ordered-enum`: revisions are content identities and one hash is not greater than
+# another. V20 would admit `<` on an ordered domain, and admitting it here would license a
+# meaningless comparison.
+# ---------------------------------------------------------------------------
+domains:
+  revision:
+    type: enum
+    values: [unset, auth_0, auth_1, branch, adopted]
+    description: >
+      Content identity — the abstraction of MageDocument.hash(). auth_0/auth_1 are the two
+      authoritative contents the model cycles between; branch is what an OPEN hypothesis serves;
+      adopted is branch-derived content that applyHypothesis made authoritative; unset is "no base
+      captured yet". Underscores, not hyphens: an effect right-hand side is tokenized before it is
+      read as a literal, and `auth-0` parses as the offset `auth - 0`.
+
+entities:
+
+  transaction-engine:
+    type: component
+    label: Transaction engine
+    description: >
+      The fixed pipeline parse → verify base → apply to a candidate → validate the whole resulting
+      system → commit, plus the revision history it owns.
+    provenance:
+      subject:
+        kind: repository
+        ref: src/transaction/engine.ts
+      correspondence:
+        kind: asserted
+        checked: "2026-10-04"   # quoted: YAML 1.1 hands an unquoted date to the loader as a date object, and JSON has no date type
+        note: >
+          Read by hand on this date. The `transaction` machine's states are the pipeline's OUTCOMES,
+          not its stages: parse, apply and validate-whole collapse into the single unguarded `refuse`
+          transition, because every question here is about the base check and the other four refusal
+          causes are indistinguishable from it in a configuration. NOT checked by any gate — the
+          header names the control-flow fact a checker would have to decide.
+
+  workspace-facade:
+    type: component
+    label: Workspace facade
+    description: >
+      The single seam every edit path normalises through. Owns which engine serves and the parked
+      authoritative engine while a hypothesis is open.
+    provenance:
+      subject:
+        kind: repository
+        ref: src/app/services.ts
+      correspondence:
+        kind: asserted
+        checked: "2026-10-04"
+        note: >
+          Read by hand on this date: openHypothesis parks `#engine` and serves a separate engine
+          loaded from the same text; applyHypothesis keeps the branch and clears the parked handle;
+          discardHypothesis restores the parked handle and touches nothing else. NOT checked by any
+          gate.
+
+  presented-answer:
+    type: component
+    label: Presented answer
+    description: >
+      What the human surface and `window.mage` are currently showing, and the revision that answer
+      describes. One component because UX-I3 makes it one: both interfaces read the same facade and
+      the same per-paint evaluation.
+    provenance:
+      subject:
+        kind: repository
+        ref: src/app/properties.ts
+      correspondence:
+        kind: asserted
+        checked: "2026-10-04"
+        note: >
+          Read by hand on this date across three files rather than one — `src/app/services.ts` (every
+          mutator calls #emit), `src/ui/main.ts` (repaint re-derives the view model from the facade's
+          state), and `src/app/agent-api.ts` (readEvidence recomputes a saved question's verdict with
+          no cache, and says why). The machine's single control state is that reading: the
+          presentation has no lifecycle, only the revision its content describes. NOT checked by any
+          gate.
+
+  shell-edit-funnel:
+    type: component
+    label: Shell edit funnel
+    description: >
+      The human's mutation path. It computes `transaction.base` from the facade at submit time
+      (`edit-forms.ts`), which is why it is modelled as a party that never holds a stale base — and
+      why it is the SECOND mutator this model needs.
+    provenance:
+      subject:
+        kind: repository
+        ref: src/ui/shell/edit-forms.ts
+      correspondence:
+        kind: asserted
+        checked: "2026-10-04"
+        note: >
+          Read by hand on this date. ONE known divergence, stated rather than smoothed: when the
+          review surface interposes under G3, the Commit handler re-sends the HELD change — the base
+          captured at submit (`src/ui/shell/review.ts`, `Change.base`) — after restoring the parked
+          engine. The restore returns exactly the parked content, so that base is still current
+          unless some other mutator committed authoritatively while the dialog was open, which an
+          agent calling `window.mage.transact` can do. A narrow window, not a wide one, and this
+          model does not represent it: `second_author` holds no base and commits against whatever is
+          serving. The window the model does represent is the agent's, which is the one the author's
+          ruling named. NOT checked by any gate.
+
+# ---------------------------------------------------------------------------
+# Nine events. Each is ONE system transition, applied atomically.
+#
+# The atomicity is not decoration — it IS the correspondence claim. `Workspace.transact` calls
+# `#engine.apply(...)` and then `#emit()` inside one synchronous call, so no observer can see a
+# configuration between the commit and the repaint. An event step is the only construct in the
+# semantics that says that. Local transitions on each machine would admit an interleaving the code
+# does not have, and `presented-answer-is-current` would then be refuted by a model artefact.
+#
+# `transaction` is NOT a participant in the four hypothesis and concurrent-commit events. That
+# absence is the whole model: a transaction holding a captured base survives every one of them
+# untouched, which is the interleaving the two named claims are about.
+# ---------------------------------------------------------------------------
+events:
+
+  commit_auth_0:
+    participants: [transaction, workspace, presentation]
+    description: >
+      A transaction based on auth_0 commits while auth_0 is serving. The authoritative content
+      becomes auth_1 and the presented answer describes auth_1, atomically.
+
+  commit_auth_1:
+    participants: [transaction, workspace, presentation]
+    description: >
+      The mirror step, auth_1 → auth_0. Content-addressing rather than a shortcut: operations that
+      restore earlier content yield the earlier hash, so staleness is not monotone.
+
+  commit_branch:
+    participants: [transaction, workspace, presentation]
+    description: >
+      A transaction based on the open branch commits while the branch is serving. Bound 2 collapses
+      the branch's revision chain, so the serving revision is unchanged and only the presented
+      answer is restated.
+
+  commit_adopted:
+    participants: [transaction, workspace, presentation]
+    description: >
+      A transaction based on adopted branch content commits authoritatively. Its successor re-enters
+      the two-value authoritative cycle; which of the two it lands on is immaterial, because bound 1
+      already makes those identities recur. Without this event the model would wedge after an
+      applied hypothesis, claiming the product cannot be edited again — which is false.
+
+  concurrent_commit_auth_0:
+    participants: [second_author, workspace, presentation]
+    description: >
+      The OTHER party commits: the human's edit funnel, or a second agent turn. `transaction` is
+      absent, which is what opens the staleness window — an agent read hash(), and someone else
+      moved the system before it called transact. Modelled on the authoritative chain only: a
+      concurrent commit over branch or adopted content opens the same window and adds no
+      distinguishable configuration.
+
+  concurrent_commit_auth_1:
+    participants: [second_author, workspace, presentation]
+    description: The mirror of the above, auth_1 → auth_0.
+
+  open_hypothesis:
+    participants: [workspace, presentation]
+    description: >
+      The authoritative engine is parked and a separate engine, loaded from the same text and
+      carrying one applied transaction, begins to serve.
+
+  discard_hypothesis:
+    participants: [workspace, presentation]
+    description: >
+      The parked engine is restored. Nothing is inverted and nothing of the branch is kept — which is
+      the claim `discarded-branch-content-serves` refutes over every reachable configuration.
+
+  apply_hypothesis:
+    participants: [workspace, presentation]
+    description: >
+      The branch becomes authoritative. This is the step that makes the claim above a statement about
+      DISPOSAL rather than about branch-derived content, and `applied-branch-becomes-authoritative`
+      is the witness that the distinction is real rather than a reading of the invariant.
+
+machines:
+
+  # -------------------------------------------------------------------------
+  # One transaction's life, from an agent's read of hash() to the verdict.
+  #
+  # The interesting window is `based`: the base is captured, the verdict is not in, and every other
+  # machine is free to step. That window is where both of the author's named claims live.
+  # -------------------------------------------------------------------------
+  transaction:
+    entity: transaction-engine
+    purpose:
+      question: Can a transaction commit against a system that is not the one its base names?
+      represents:
+        - the captured base, as a content identity
+        - the revision a commit actually landed against
+        - commit versus refusal as the pipeline's two outcomes
+      omits:
+        - the four refusal causes other than a stale base
+        - operation contents and the per-operation apply loop
+        - the baseline-findings set a candidate system is measured against
+        - undo and redo
+    initial: idle
+    states:
+      idle:
+        description: No transaction in flight. An agent has not yet read hash().
+      based:
+        description: >
+          A base is captured and the verdict is not in — the implementation's gap between
+          `window.mage` handing out `context().hash` and the agent calling `transact`.
+      committed:
+        description: The pipeline reached stage 5 and adopted the candidate.
+      refused:
+        description: >
+          The pipeline rejected. One state for all five causes: this model distinguishes only the
+          base check, and the others are not separable in a configuration.
+    variables:
+      base:
+        type: enum
+        domain: revision
+        initial: unset
+        description: The value of `transaction.base` — what the agent read from hash().
+      committed_from:
+        type: enum
+        domain: revision
+        initial: unset
+        description: >
+          The serving revision a commit landed AGAINST, recorded by the commit event from the
+          pre-state. This is what makes `stale-base-commit` decidable from a configuration: the same
+          step advances the serving revision, so the post-state cannot be compared against it.
+    transitions:
+
+      # The agent reads hash(). A copy, not a literal: whatever is serving at this instant is what
+      # the agent is handed — including a branch hash while a hypothesis is open, which is the
+      # implementation's behaviour and the premise of the second named claim.
+      - from: idle
+        to: based
+        label: capture_base
+        effects:
+          base: workspace.serving
+
+      # THE base check, written out four times because the derived grammar cannot compare two
+      # references (see the header). Each guard is `tx.base !== hash` for one value of the domain,
+      # and together they are that line exactly.
+      - from: based
+        to: committed
+        sync: commit_auth_0
+        requires:
+          base: auth_0
+          workspace.serving: auth_0
+        effects:
+          committed_from: workspace.serving
+
+      - from: based
+        to: committed
+        sync: commit_auth_1
+        requires:
+          base: auth_1
+          workspace.serving: auth_1
+        effects:
+          committed_from: workspace.serving
+
+      - from: based
+        to: committed
+        sync: commit_branch
+        requires:
+          base: branch
+          workspace.serving: branch
+        effects:
+          committed_from: workspace.serving
+
+      - from: based
+        to: committed
+        sync: commit_adopted
+        requires:
+          base: adopted
+          workspace.serving: adopted
+        effects:
+          committed_from: workspace.serving
+
+      # UNGUARDED, and that is faithful rather than lazy. The pipeline refuses for five causes, four
+      # of which — malformed, operation-failed, validation-failed, reparse-failed — fire on a base
+      # that is perfectly current. A guarded refusal would claim the engine refuses only stale
+      # transactions, which is false.
+      - from: based
+        to: refused
+        label: refuse
+
+      - from: committed
+        to: idle
+        label: next_transaction
+        effects:
+          base: unset
+          committed_from: unset
+
+      - from: refused
+        to: idle
+        label: next_transaction
+        effects:
+          base: unset
+          committed_from: unset
+
+  # -------------------------------------------------------------------------
+  # Which engine serves, and what becomes of a branch.
+  #
+  # The fate of a hypothesis is carried by the CONTENT IDENTITY rather than by a flag, because the
+  # question is which content serves and a content identity is the thing that answers it. An earlier
+  # draft used a `disposed` boolean with one value for all branch-derived content; it reported a
+  # counterexample that was a conflation of two hashes. Header bound 3 is that finding.
+  # -------------------------------------------------------------------------
+  workspace:
+    entity: workspace-facade
+    purpose:
+      question: Can content a discarded hypothesis produced become what the workbench serves?
+      represents:
+        - which engine's content hash() answers from
+        - the parked authoritative content while a hypothesis is open
+        - whether branch-derived content was adopted or thrown away
+      omits:
+        - the hypothesis label, and the already-open refusal it guards
+        - the branch's own revision chain
+        - findings, provenance, rendering and the query seams
+        - undo and redo
+    initial: authoritative
+    states:
+      authoritative:
+        description: No hypothesis open. `#authoritative` is null and `#engine` is the only engine.
+      hypothetical:
+        description: A hypothesis is open. `#engine` is the branch; `#authoritative` is parked.
+    variables:
+      serving:
+        type: enum
+        domain: revision
+        initial: auth_0
+        description: The content identity hash() currently returns.
+      parked:
+        type: enum
+        domain: revision
+        initial: unset
+        description: >
+          The parked authoritative content. `unset` on the authoritative branch, which is exactly
+          `#authoritative === null`.
+    transitions:
+
+      - from: authoritative
+        to: authoritative
+        sync: commit_auth_0
+        requires:
+          serving: auth_0
+        effects:
+          serving: auth_1
+
+      - from: authoritative
+        to: authoritative
+        sync: commit_auth_1
+        requires:
+          serving: auth_1
+        effects:
+          serving: auth_0
+
+      # No effect: bound 2 collapses the open branch's revision chain to one identity.
+      - from: hypothetical
+        to: hypothetical
+        sync: commit_branch
+        requires:
+          serving: branch
+
+      - from: authoritative
+        to: authoritative
+        sync: commit_adopted
+        requires:
+          serving: adopted
+        effects:
+          serving: auth_0
+
+      - from: authoritative
+        to: authoritative
+        sync: concurrent_commit_auth_0
+        requires:
+          serving: auth_0
+        effects:
+          serving: auth_1
+
+      - from: authoritative
+        to: authoritative
+        sync: concurrent_commit_auth_1
+        requires:
+          serving: auth_1
+        effects:
+          serving: auth_0
+
+      # `parked: serving` is a copy from the PRE-state, which is what makes park-then-switch one step
+      # rather than two. Both reads happen before either write.
+      - from: authoritative
+        to: hypothetical
+        sync: open_hypothesis
+        effects:
+          parked: serving
+          serving: branch
+
+      - from: hypothetical
+        to: authoritative
+        sync: discard_hypothesis
+        effects:
+          serving: parked
+          parked: unset
+
+      # `applyHypothesis` clears `#authoritative` and leaves `#engine` alone, so branch-derived
+      # content is what the workbench now serves authoritatively. `adopted` names it; bound 3 says
+      # why it is not simply `branch`.
+      - from: hypothetical
+        to: authoritative
+        sync: apply_hypothesis
+        effects:
+          serving: adopted
+          parked: unset
+
+  # -------------------------------------------------------------------------
+  # The shared human/agent surface — ONE state, deliberately.
+  #
+  # A single control state is the honest shape. The presentation has no lifecycle:
+  # `src/app/properties.ts` re-evaluates every saved property on every paint and `readEvidence`
+  # recomputes a verdict with no cache, so there is no "stale" mode to be in. What it has is the
+  # revision its content describes, and the claim worth stating is that this value tracks the serving
+  # revision across every interleaving — which it does because it participates in all nine events,
+  # and because the code it stands for calls #emit() inside every mutator.
+  #
+  # The invariant it buys is structurally unviolable IN THIS MODEL, and that is exactly why
+  # `test/lifecycle-model.test.ts` turns one commit event into a local step and asserts the verdict
+  # flips. A vacuously-holding invariant and a load-bearing one look identical in a results table.
+  # -------------------------------------------------------------------------
+  presentation:
+    entity: presented-answer
+    purpose:
+      question: Can an answer for one revision be presented as though it described another?
+      represents:
+        - the revision the presented answer describes
+      omits:
+        - selection, target, and every other field of ViewState
+        - disclosure state, which the shell rules is not semantic
+        - the content of the answer, and which question was asked
+    initial: painted
+    states:
+      painted:
+        description: >
+          The one state. Not a placeholder: a loaded workspace always presents something, because the
+          paint path evaluates every saved property unconditionally.
+    variables:
+      answer_of:
+        type: enum
+        domain: revision
+        initial: auth_0
+        description: >
+          The revision the presented answer describes — `QueryResult.systemHash`, abstracted. Starts
+          at auth_0 because the first paint happens on the loaded system.
+    transitions:
+
+      # Each writes the LITERAL revision its event lands on. It cannot read it: an event's effects
+      # are all computed from the pre-state, so `answer_of: workspace.serving` would record the
+      # revision the step replaced. This is why the commit events are named per revision.
+      - from: painted
+        to: painted
+        sync: commit_auth_0
+        effects:
+          answer_of: auth_1
+
+      - from: painted
+        to: painted
+        sync: commit_auth_1
+        effects:
+          answer_of: auth_0
+
+      - from: painted
+        to: painted
+        sync: commit_branch
+        effects:
+          answer_of: branch
+
+      - from: painted
+        to: painted
+        sync: commit_adopted
+        effects:
+          answer_of: auth_0
+
+      - from: painted
+        to: painted
+        sync: concurrent_commit_auth_0
+        effects:
+          answer_of: auth_1
+
+      - from: painted
+        to: painted
+        sync: concurrent_commit_auth_1
+        effects:
+          answer_of: auth_0
+
+      - from: painted
+        to: painted
+        sync: open_hypothesis
+        effects:
+          answer_of: branch
+
+      # The one that CAN be read, and must be: a discard restores the parked content, so the
+      # post-state serving revision is the pre-state `parked` — available, unlike a post-state read.
+      - from: painted
+        to: painted
+        sync: discard_hypothesis
+        effects:
+          answer_of: workspace.parked
+
+      - from: painted
+        to: painted
+        sync: apply_hypothesis
+        effects:
+          answer_of: adopted
+
+  # -------------------------------------------------------------------------
+  # The other party on the shared surface.
+  #
+  # One state and no variables, which is the point: this machine contributes nothing to the
+  # configuration and everything to the TRANSITION RELATION. Without a second mutator the serving
+  # revision cannot move while a transaction sits in `based`, because the only committer would be the
+  # transaction itself — and `superseded-base-is-reachable` would then answer `refuted` for a reason
+  # about the model's population rather than about the product. That was measured, not predicted: the
+  # first draft of this file had three machines and that query came back refuted.
+  #
+  # It holds no base because the human path computes one at submit time. The review surface's held
+  # base is a real second window and is named in `shell-edit-funnel`'s correspondence note rather
+  # than modelled.
+  # -------------------------------------------------------------------------
+  second_author:
+    entity: shell-edit-funnel
+    purpose:
+      question: Can another party move the system under a base an agent has already captured?
+      represents:
+        - a commit by a party that is not the agent holding a base
+      omits:
+        - the review surface's held base, and the staleness window it opens
+        - which of the human funnel and a second agent turn is acting
+        - everything the other party's own transaction does before it commits
+    initial: ready
+    states:
+      ready:
+        description: >
+          The one state. The other party's compose-and-submit is atomic from this model's point of
+          view, because its base is read from the facade at submit.
+    transitions:
+      - from: ready
+        to: ready
+        sync: concurrent_commit_auth_0
+      - from: ready
+        to: ready
+        sync: concurrent_commit_auth_1
+
+# ---------------------------------------------------------------------------
+# The statements. Every one carries `expect`, and every verdict below was MEASURED by running it:
+# `test/model-coverage.test.ts` re-derives all of them through the facade on every node run.
+#
+# The nine split three ways, and the split is the discipline rather than a taxonomy:
+#
+#   - FOUR are the claims this model exists to make — `stale-base-commit`,
+#     `branch-base-never-commits-authoritatively`, `discarded-branch-content-serves`,
+#     `presented-answer-is-current`.
+#   - FOUR are VACUITY WITNESSES for them. A `refuted` over an unreachable situation and a `refuted`
+#     earned by a guard are the same row in a results table, and the difference is the whole value of
+#     the row. Each witness establishes that the situation its partner refutes is REACHABLE, so the
+#     refutation is about the mechanism.
+#   - ONE is a soundness check on the model itself, `lifecycle-has-no-dead-end`. A wedged
+#     configuration would silently weaken every `refuted` above it.
+#
+# What is NOT here: anything expressible as graph reachability. `workbench-components.mage.yaml`
+# already states the structural claims about these modules, and restating them over machines would be
+# two sources for one fact.
+# ---------------------------------------------------------------------------
+queries:
+
+  stale-base-commit:
+    name: A transaction commits against a system that is not the one its base names
+    kind: behavior
+    # Existential: a witness trace would BE a stale commit. The name states the bad thing, so the
+    # healthy answer is `refuted` — docable's inverted-polarity lesson, applied.
+    quantifier: exists
+    expect: refuted
+    behavior:
+      form: reach
+      # Complete rather than representative: "committed, and NOT (base and committed_from agree)"
+      # covers every disagreeing pair by negating the four agreeing ones. `base` is never `unset` in
+      # `committed`, because capture_base is the only route into `based`.
+      target:
+        all-of:
+          - transaction.state: committed
+          - not:
+              any-of:
+                - all-of:
+                    - base: auth_0
+                    - committed_from: auth_0
+                - all-of:
+                    - base: auth_1
+                    - committed_from: auth_1
+                - all-of:
+                    - base: branch
+                    - committed_from: branch
+                - all-of:
+                    - base: adopted
+                    - committed_from: adopted
+
+  fresh-base-commit-is-reachable:
+    name: A transaction whose base is current does commit
+    kind: behavior
+    quantifier: exists
+    # The positive control for the statement above. Without it, `stale-base-commit: refuted` would be
+    # equally satisfied by a model in which nothing ever commits at all.
+    expect: holds
+    behavior:
+      form: reach
+      target:
+        transaction.state: committed
+
+  superseded-base-is-reachable:
+    name: The serving revision can move while a captured base is held
+    kind: behavior
+    quantifier: exists
+    # The vacuity witness for `stale-base-commit`, and the author's FIRST named claim read from the
+    # other side: the window between reading hash() and calling transact is real, and another party
+    # can commit inside it. This is the query that forced `second_author` into the model — with three
+    # machines it answered `refuted`, because the only committer was the transaction itself.
+    expect: holds
+    behavior:
+      form: reach
+      target:
+        all-of:
+          - transaction.state: based
+          - base: auth_0
+          - workspace.serving: auth_1
+
+  branch-base-never-commits-authoritatively:
+    name: A transaction based on a hypothesis branch commits against the authoritative system
+    kind: behavior
+    quantifier: exists
+    # The author's second named claim in its transaction form — "a disposed hypothesis never reaches
+    # the authoritative engine". `refuted` is that holding. `committed_from` is restricted to the two
+    # authoritative-origin revisions on purpose: committing against ADOPTED branch content is the
+    # feature, not the hazard, and `commit_adopted` is how the model admits it.
+    expect: refuted
+    behavior:
+      form: reach
+      target:
+        all-of:
+          - transaction.state: committed
+          - base: branch
+          - any-of:
+              - committed_from: auth_0
+              - committed_from: auth_1
+
+  branch-base-outlives-its-branch:
+    name: A base captured on a hypothesis is still held after the hypothesis is gone
+    kind: behavior
+    quantifier: exists
+    # The vacuity witness for the statement above: the dangerous SITUATION is reachable, so the
+    # refutation is about the base guard and not about the situation being impossible to set up.
+    expect: holds
+    behavior:
+      form: reach
+      target:
+        all-of:
+          - transaction.state: based
+          - base: branch
+          - workspace.state: authoritative
+
+  discarded-branch-content-serves:
+    name: Content of a hypothesis branch is what the authoritative workbench serves
+    kind: behavior
+    quantifier: exists
+    # The author's second claim in its pure facade form, and the reason the whole model has a
+    # `workspace` machine. There are exactly two ways out of `hypothetical`: restore the parked
+    # content, or rename the branch's content to `adopted`. `refuted` says neither leaves the OPEN
+    # branch's content serving on the authoritative branch, in any interleaving.
+    expect: refuted
+    behavior:
+      form: reach
+      target:
+        all-of:
+          - workspace.state: authoritative
+          - workspace.serving: branch
+
+  applied-branch-becomes-authoritative:
+    name: Content a hypothesis produced becomes authoritative when the hypothesis is applied
+    kind: behavior
+    quantifier: exists
+    # The vacuity witness for the refutation above, and the sharper point: that refutation is about
+    # DISPOSAL. Branch-derived content reaching the authoritative branch is the feature. `holds` here
+    # is what stops the refutation being read as "branch content is quarantined", which would be
+    # false of the product.
+    expect: holds
+    behavior:
+      form: reach
+      target:
+        all-of:
+          - workspace.state: authoritative
+          - workspace.serving: adopted
+
+  presented-answer-is-current:
+    name: The presented answer always describes the revision the workbench is serving
+    kind: behavior
+    # Universal: exhaustive satisfaction establishes it, a counterexample refutes it.
+    quantifier: forall
+    expect: holds
+    behavior:
+      form: invariant
+      # Stated as a disjunction over AGREEMENT rather than a negated disagreement: four pairs instead
+      # of sixteen, and it reads as the contract `QueryResult.systemHash` carries.
+      predicate:
+        any-of:
+          - all-of:
+              - presentation.answer_of: auth_0
+              - workspace.serving: auth_0
+          - all-of:
+              - presentation.answer_of: auth_1
+              - workspace.serving: auth_1
+          - all-of:
+              - presentation.answer_of: branch
+              - workspace.serving: branch
+          - all-of:
+              - presentation.answer_of: adopted
+              - workspace.serving: adopted
+
+  lifecycle-has-no-dead-end:
+    name: Some configuration of the lifecycle has no enabled step
+    kind: behavior
+    quantifier: exists
+    # A soundness check on the MODEL, not a claim about the product. A dead end would mean some
+    # interleaving wedges, and every `refuted` above it would then be partly an artefact of a space
+    # that stops early. `refuted` says the composition always has a next step.
+    expect: refuted
+    behavior:
+      form: deadend

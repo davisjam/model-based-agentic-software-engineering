@@ -319,7 +319,7 @@ test("every rule is stated under the section it cites", () => {
 });
 
 // ---------------------------------------------------------------------------------------------
-// The authority declaration — §G3, PROVISIONAL
+// The authority declaration — §G3, RATIFIED 261004
 // ---------------------------------------------------------------------------------------------
 
 test("the result says which implementation decided it", () => {
@@ -330,8 +330,12 @@ test("the result says which implementation decided it", () => {
   assert.ok(r.authority.crossCheckedBy.includes("validate.py"));
   assert.ok(r.authority.crossCheckedBy.includes("parity.test.ts"),
     "naming the second implementation without naming the control that holds it is half a claim");
-  assert.equal(r.authority.ratified, false, "§G3 is recommended, not ruled");
+  // Ruled 261004 (PLAN.md §0.2a). The field exists so a reader can tell a recommendation from a
+  // ruling, so it is pinned either way rather than deleted once the answer stopped being provisional.
+  assert.equal(r.authority.ratified, true, "§G3 was ruled on 261004");
   assert.ok(r.authority.declaredBy.includes("G3"), "and the value says where to go and read why");
+  assert.ok(r.authority.declaredBy.includes("ratified"),
+    "a ratified authority must say so in the value a caller is handed, not only in a document");
 });
 
 test("the fields the cross-check does not compare are the fields that are declared", () => {

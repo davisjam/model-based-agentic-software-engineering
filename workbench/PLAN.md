@@ -96,11 +96,13 @@ with a *correct* column, is now the conformance oracle for the evaluator we writ
 Recorded 261004 from `AUDIT-system-models-261004.md`, so the omissions below read as decisions
 rather than as gaps a later wave should "complete."
 
-**Three self-models exist:** `models/workbench-components.mage.yaml` (hand-written architecture
+**Four self-models exist:** `models/workbench-components.mage.yaml` (hand-written architecture
 constraint), `models/workbench-affordances.mage.yaml` (generated projection of the capability
-registry), `models/example-coverage.mage.yaml` (generated capability x example matrix). The two
-generated ones are byte-exact staleness-gated in CI; the hand-written one is not held to the code by
-anything, which is the audit's central finding and is being closed separately.
+registry), `models/example-coverage.mage.yaml` (generated capability x example matrix), and
+`models/workbench-lifecycle.mage.yaml` (hand-written machine composition, added 261004 by the ruling
+below). The two generated ones are byte-exact staleness-gated in CI; `workbench-components` gained a
+code join the same day (`test/import-graph.test.ts`); `workbench-lifecycle` has none, and its own
+header names the three control-flow facts a checker would have to decide.
 
 **No quantitative self-model, deliberately.** The project does measure real quantities -- the bundle
 floor asserted in `.github/workflows/pages.yml`, tier counts, a11y durations -- and MAGE has the
@@ -110,13 +112,46 @@ be a second source of truth with no consumer. **Revisit when a gate can derive i
 the model**; until that seam exists, adding the model would be decoration. This is a reasoned
 omission, not an oversight.
 
-**No machine in any self-model yet, but one is earned.** The transaction lifecycle
-(`src/transaction/engine.ts`) composed with the hypothesis branch (`src/app/services.ts`) and the
-shared human/agent workspace state is a genuine cross-component stateful lifecycle, pinned today
-only point-wise by node tests. A machine self-model there could assert interleaving-level claims no
-current single test states. That is an earned addition awaiting a ruling on the model set -- not a
-defect. The hypothesis lifecycle alone and the five-value outcome vocabulary do **not** earn
-machines: the first is held by types and the facade, the second is an enum, not a lifecycle.
+**The machine self-model: ACCEPTED, 261004.** Audit gap 7 / re-audit gap 6, ruled (a) and dated.
+`models/workbench-lifecycle.mage.yaml` composes the transaction lifecycle
+(`src/transaction/engine.ts`), the hypothesis branch (`src/app/services.ts`), the presented answer,
+and the other party on the shared surface. The reason is a second semantic domain, not better
+documentation: a machine gives the workbench TRACES beside static relational structure, and "a
+stale-base transaction is refused in every interleaving" and "a disposed hypothesis never reaches the
+authoritative engine" are propositions over executions that no graph query states and no point-wise
+test states either. Nine statements, measured: four claims, four vacuity witnesses, one soundness
+check; 70 reachable configurations against docable's 39. Verdicts held by
+`test/model-coverage.test.ts`; each claim additionally driven against a mutation control in
+`test/lifecycle-model.test.ts`, because a `refuted` earned by a guard and a `refuted` over an
+unreachable situation are the same row in a results table. The hypothesis lifecycle alone and the
+five-value outcome vocabulary still do **not** earn machines: the first is held by types and the
+facade, the second is an enum, not a lifecycle. Two invariants the founding brief proposed were
+DECLINED on reading and the reasons are in the model's header — SH-I6 is step-shaped and has no query
+form here, and SH-I5 is a totality property of a discriminated union that the compiler holds.
+
+**Model-widening review discipline: DECLINED as a mechanism, 261004.** Re-audit gaps 2 and 5 asked
+for a gate holding future `depends-on` widenings to the discipline the 261004 re-founding used — a
+CODEOWNERS-style review pin, or a lint asserting each relation row carries a provenance tag. Ruled
+(c), declined, in the author's words:
+
+> You cannot mechanize "Jamie has exercised engineering judgment and approves this new architectural
+> edge" by requiring a provenance string. That is theater. The model is an authoritative engineering
+> artifact; changing its intended architecture is legitimately a review-governed operation. The
+> mechanism should enforce conformance to the model, not pretend to determine whether the model
+> itself was wisely changed.
+
+The resulting bound, stated so it is not rediscovered as a gap: **no gate distinguishes a ruled
+widening from a smuggled one.** `test/import-graph.test.ts` holds the code to whatever
+`models/workbench-components.mage.yaml` declares, in both directions; it has nothing to say about
+whether the declaration should have changed. An edit that adds a `depends-on` row and the import to match passes every gate. That is the
+intended division of labour, not an omission.
+
+**§G3 validation authority: RATIFIED, 261004.** `src/validator/rules.ts` is authoritative for
+`validate()`'s result; `workbench/validate.py` is the CI cross-check that never serves the operation,
+with enrichment fields outside the compared surface until implemented on both sides. This changes no
+behaviour — it fixes what a future parity-disagreement report says the agent's answer WAS.
+`VALIDATION_AUTHORITY.ratified` flips to `true` accordingly, since that field exists to let a reader
+tell a recommendation from a ruling.
 
 ### 0.3 As-built, verified by running it
 

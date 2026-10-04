@@ -131,8 +131,11 @@ export interface ValidationFinding extends SubjectedFinding {
  * an agent is handed, rather than in a document the agent cannot read — and this constant is the ONE
  * place the answer is written, so moving authority is one edit and not a sweep of call sites.
  *
- * **PROVISIONAL.** `DESIGN-model-query-261002.md` §G3 recommends this split and the author has not
- * ruled it. `ratified: false` says so in the value; it flips when §G3 is ruled.
+ * **RATIFIED 261004** (`PLAN.md` §0.2a). §G3's recommendation is now the ruling, so `ratified` is
+ * true and `declaredBy` names the ruling rather than the recommendation. What that buys is narrow and
+ * worth saying plainly: it changes no behaviour, and it fixes what a future parity-disagreement
+ * report says the agent's answer WAS. `outsideCrossCheck` is unaffected — those fields leave the list
+ * when validate.py implements them, which is a separate fact from who is authoritative.
  */
 export interface ValidationAuthority {
   /** The implementation whose answer this result IS. */
@@ -141,7 +144,7 @@ export interface ValidationAuthority {
   readonly crossCheckedBy: string;
   /** Fields this implementation emits that the cross-check does not yet compare. */
   readonly outsideCrossCheck: readonly string[];
-  /** False while §G3 is unratified. A reader can tell a recommendation from a ruling. */
+  /** A reader can tell a recommendation from a ruling. True since §G3 was ruled, 261004. */
   readonly ratified: boolean;
   readonly declaredBy: string;
 }
@@ -152,8 +155,8 @@ export const VALIDATION_AUTHORITY: ValidationAuthority = {
   // §6.3's rule for keeping parity TWO-party: an enrichment enters the compared surface when
   // validate.py implements it too. Until then it is named here rather than quietly uncompared.
   outsideCrossCheck: ["severity", "subjects", "spec"],
-  ratified: false,
-  declaredBy: "DESIGN-model-query-261002.md §G3 — recommended, not ruled",
+  ratified: true,
+  declaredBy: "DESIGN-model-query-261002.md §G3, ratified 261004 — PLAN.md §0.2a",
 };
 
 /**
