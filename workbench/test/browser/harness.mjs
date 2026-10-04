@@ -27,9 +27,10 @@
 // additionally needs `npm ci` at the REPO ROOT, where axe-core is pinned -- resolved there, like
 // Puppeteer from book/, rather than added to this package.
 import { createRequire } from "node:module";
+import { spawn } from "node:child_process";
 import { createServer } from "node:http";
 import { existsSync } from "node:fs";
-import { readFile, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, normalize, extname } from "node:path";
 // The hash and the manifest path are DEFINED in scripts/build-manifest.ts, which build.mjs also
@@ -200,6 +201,117 @@ export async function launchBrowser() {
 }
 
 /**
+ * How long to wait for a spawned browser to publish its debugging port, and how often to look.
+ *
+ * Measured 261003 on the author's machine: the port file appears in 356 ms under `--headless` and
+ * 718 ms under `--headless=new`. The ceiling is two orders above that because a cold start on a
+ * loaded CI runner is the case that must not flake, and the only cost of a generous ceiling is how
+ * long a genuinely dead browser takes to be reported.
+ */
+const PORT_FILE_TIMEOUT_MS = 30_000;
+const PORT_FILE_POLL_MS = 50;
+
+/** The line Chromium prints when the debugging endpoint is up. The fallback source for the port. */
+const DEVTOOLS_LINE = /ws:\/\/127\.0\.0\.1:(\d+)\//;
+
+/**
+ * Start a Chromium that NOBODY'S PUPPETEER CLIENT LAUNCHED, and report the debugging URL it chose.
+ *
+ * **Why this exists beside `launchBrowser`.** FR-AGENT-1 specifies an agent "attached to the user's
+ * existing Chromium browser through Chrome DevTools Protocol", and says the CDP transport is the
+ * execution environment's responsibility rather than MAGE's. `puppeteer.launch` cannot exercise
+ * that: a client that started the browser holds a pipe or an endpoint it was handed, so it never
+ * performs the discovery-and-attach an operator's agent performs. Launch-only coverage therefore
+ * stays green with `puppeteer.connect` completely broken.
+ *
+ * So the browser is spawned as an ordinary child process, with the page URL as an argument — the
+ * browser opens the tab itself, and every client that later attaches is attaching to a session it
+ * did not create.
+ *
+ * **The port is chosen by the OS, and then READ.** `--remote-debugging-port=0` asks the kernel for
+ * a free port, for the reason `startServerOnFreePort` gives at length: a fixed port collides
+ * between PROCESSES, which is the normal state here with several agents and the orchestrator each
+ * able to run a browser tier, and a bind collision has already produced a green gate that measured
+ * less. The actual port comes from the profile's `DevToolsActivePort` file, with Chromium's own
+ * "DevTools listening on" line as the fallback — two sources because each has failed to appear in
+ * one of the two headless modes on some platform, and neither is worth a flake.
+ *
+ * The caller owns the returned handle and must pass it to `killSpawnedBrowser`.
+ */
+export async function spawnDebuggableBrowser(url) {
+  const puppeteer = loadPuppeteer();
+  const executable = puppeteer.executablePath();
+  if (!existsSync(executable)) {
+    throw new Error(`Chromium is not installed at ${executable} — run \`npm ci\` in book/ `
+      + "(its postinstall downloads the pinned browser).");
+  }
+  // Its own profile, in the OS tmpdir: the port file lives in the user-data-dir, and a shared
+  // profile would also make two concurrent spawns fight over a singleton lock.
+  const profile = await mkdtemp(join(tmpdir(), "wb-attach-"));
+  const child = spawn(executable, [
+    "--remote-debugging-port=0",
+    `--user-data-dir=${profile}`,
+    "--headless=new",
+    "--no-sandbox",
+    "--no-first-run",
+    "--no-default-browser-check",
+    url,
+  ], { stdio: ["ignore", "pipe", "pipe"] });
+
+  let output = "";
+  child.stdout.on("data", (chunk) => { output += String(chunk); });
+  child.stderr.on("data", (chunk) => { output += String(chunk); });
+  let exited = null;
+  child.on("exit", (code, signal) => { exited = `exit ${code ?? "null"} signal ${signal ?? "null"}`; });
+
+  const handle = { child, profile, browserURL: null, port: null, output: () => output };
+  const portFile = join(profile, "DevToolsActivePort");
+  const deadline = Date.now() + PORT_FILE_TIMEOUT_MS;
+  while (Date.now() < deadline) {
+    const fromFile = await readFile(portFile, "utf8").then(
+      (text) => (text.split("\n")[0] ?? "").trim(), () => "");
+    const port = /^\d+$/.test(fromFile) ? Number(fromFile) : Number(DEVTOOLS_LINE.exec(output)?.[1] ?? NaN);
+    if (Number.isInteger(port) && port > 0) {
+      handle.port = port;
+      handle.browserURL = `http://127.0.0.1:${port}`;
+      return handle;
+    }
+    if (exited !== null) break;
+    await new Promise((resolve) => { setTimeout(resolve, PORT_FILE_POLL_MS); });
+  }
+  await killSpawnedBrowser(handle);
+  throw new Error(`the spawned Chromium published no debugging port within ${PORT_FILE_TIMEOUT_MS}ms`
+    + `${exited === null ? "" : ` (the process ended: ${exited})`}. Neither ${portFile} nor the `
+    + `browser's own output carried one. Output was: ${output.slice(0, 600) || "(empty)"}`);
+}
+
+/**
+ * Attach a client to a browser it did not start. One line, and it is the subject under test.
+ *
+ * Named so the attach tier reads as attaching rather than as a Puppeteer call that happens to take
+ * a URL — and so a second caller cannot reach for `connect({ browserWSEndpoint })` instead, which
+ * would skip the `/json/version` discovery hop the browser-URL form performs.
+ */
+export async function connectToBrowser(browserURL) {
+  return loadPuppeteer().connect({ browserURL });
+}
+
+/**
+ * End a spawned browser and remove its profile, on every exit path including a failed `before`.
+ *
+ * SIGKILL rather than a graceful close, for the reason `shutdown` races a kill timer: this browser
+ * has no Puppeteer client that owns its lifetime, a wedged renderer would otherwise outlive the
+ * suite, and a leaked Chromium on a shared dev machine with several agents running is a real cost.
+ * Every step is independently guarded so one failure cannot strand the next — a profile left in the
+ * tmpdir because the kill threw is the bounded version of this failure, not the acceptable one.
+ */
+export async function killSpawnedBrowser(handle) {
+  if (!handle) return;
+  try { handle.child.kill("SIGKILL"); } catch { /* already exited — nothing to kill */ }
+  await rm(handle.profile, { recursive: true, force: true }).catch(() => { /* tmpdir will reap it */ });
+}
+
+/**
  * Close the browser and the server with a hard floor under the close.
  *
  * A wedged renderer can hang `browser.close()` forever, and a hung after-hook leaks the whole
@@ -329,6 +441,16 @@ export const SMOKE_RECEIPT_PATH = process.env.WB_SMOKE_RECEIPT ?? join(tmpdir(),
  * carries the walked count, and the suite asserts that count against the registry's own.
  */
 export const PATHS_RECEIPT_PATH = process.env.WB_PATHS_RECEIPT ?? join(tmpdir(), "wb-paths-receipt.json");
+/**
+ * The CDP attach tier and the agent-coverage gate, each with the same glob hazard and one sharper
+ * one: the coverage gate's whole output is three numbers — operations described, operations driven,
+ * operations exempted — and a gate that reports coverage it does not have is worse than no gate. The
+ * receipt carries those numbers out of the process so the CI log publishes what was measured
+ * instead of only that nothing failed.
+ */
+export const ATTACH_RECEIPT_PATH = process.env.WB_ATTACH_RECEIPT ?? join(tmpdir(), "wb-attach-receipt.json");
+export const AGENT_COVERAGE_RECEIPT_PATH =
+  process.env.WB_AGENT_COVERAGE_RECEIPT ?? join(tmpdir(), "wb-agent-coverage-receipt.json");
 
 /** Everything the gate measured, in one page round trip, for the receipt. */
 export async function measureForReceipt(page) {

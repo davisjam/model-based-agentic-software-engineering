@@ -1792,3 +1792,158 @@ existed. Verified before the wave rather than assumed: no `Not sure` string anyw
   shorter than the registry's three; the registry is the authority, so the picker shows the longer
   ones. Whoever updates `requirements-learn-261002.md` should re-cut the sketch from
   `MODEL_TYPES` rather than the reverse.
+
+### 9n. The agent surface gets the gate the human surface already had — as built
+
+Appended by the wave that drove `window.mage` from `describe()` and attached to a browser over CDP.
+The author's ask: *"one agent opens a chromium headless to local instance of this; another acts as
+the agent; they confirm the interaction works (and this should be fully automatable w/o any agents,
+too, to confirm the devtools interaction works)… I want full feature coverage following our
+model-based approach here for the workbench."* Two holes, both verified before the wave rather than
+assumed: `test/browser/harness.mjs` only ever called `puppeteer.launch`, and nothing anywhere
+compared what `describe()` advertises against what any test drives.
+
+- **Fully automatable means NO AGENT IN THE LOOP, and that reading is the design.** The attach tier
+  is one node process that spawns a browser and opens two CDP clients against it. Nothing asks a
+  model for anything, so the interaction is checked on every run of the browser tier rather than
+  demonstrated once by hand — which is what the two existing FR-AGENT assertions had been, by the
+  browser suite's own admission in its header.
+
+- **The attach path has nothing in common with the launch path except the protocol that runs
+  afterwards.** FR-AGENT-1 specifies an agent attached to *the user's existing* Chromium and makes
+  the transport the environment's responsibility; `puppeteer.launch` hands its caller an endpoint it
+  was given, so it never performs the discovery-and-attach an operator's agent performs. The
+  consequence measured before the wave: `puppeteer.connect` could be broken outright and the browser
+  tier stayed green at 69. So `spawnDebuggableBrowser` starts Chromium as an ordinary child process
+  with the page URL as an argument — the BROWSER opens the tab — and two independent clients attach
+  to a session neither created. The agent client mutates; the student client, over its own socket,
+  is where the assertions read. A call that merely returns would prove the method exists.
+
+- **The port is chosen by the kernel and then READ BACK, which is not a detail.** The spawn passes
+  `--remote-debugging-port=0` and the suite reads the profile's `DevToolsActivePort` file, with
+  Chromium's own "DevTools listening on" line as the fallback. The reasoning is
+  `startServerOnFreePort`'s, applied one layer out: a fixed port collides between PROCESSES, which
+  is the normal state in this repo, and the failure mode is not a noisy red but a green gate that
+  measured less — the 261002 a11y run that reported 8 passing when the keyboard file alone declares
+  22. Two sources for the port rather than one because neither has been reliable on every platform,
+  and the ceiling is 30 s against a measured 718 ms because a cold start on a loaded runner is the
+  case that must not flake.
+
+- **What attach does NOT prove, stated rather than implied.** It covers the transport MAGE claims to
+  support, reached the way an operator's environment reaches it. It does not cover a REMOTE
+  operator's network — a tunnel, a forwarded port, an agent on another host — and it is not supposed
+  to: §FR-AGENT-1 makes that the execution environment's job, and MAGE opens no port, discovers no
+  agent and holds no socket. What is in scope is that the surface behaves identically when reached
+  by a client that did not start the browser.
+
+- **The coverage gate's denominator is the page's own self-description, read at run time.** The
+  human side has had a real census for several waves — `npm run check:parity`, zero violations over
+  26 capabilities, failing on a one-sided change. The agent side had none: `describe()` advertised an
+  operation list, the browser tier drove a couple of dozen `window.mage` paths, and nothing compared
+  them. So an operation could be advertised to agents and never once executed, which is how an
+  FR-AGENT regression ships silently. The gate reads `describe().operations` out of the served page
+  and compares it against a table of drives keyed by the same names. A hand-written expected list
+  was rejected for the reason this project keeps rejecting them, and the direction of its failure is
+  the specific one: a newly registered operation joins `describe()` and never joins the list, so the
+  gate would report full coverage of a smaller surface.
+
+- **TWO axes, because the operation axis structurally cannot see nine callables.**
+  `describe().operations` names CAPABILITIES, and the API has functions that belong to no capability
+  row by deliberate decision: the four `view.*` methods are non-semantic by construction and
+  therefore outside the census §4 rules on, `debug.sparql` is fenced OUTSIDE the semantic interface
+  by a ruling, and `analysis.inFlight` / `analysis.cancel` / `analysis.resolveExhausted` are the
+  reporting and escalation halves of capabilities rather than capabilities. An operation-only gate
+  reads 26 of 26 while those nine go untouched. The second axis therefore walks the live
+  `window.mage` object and measures what was called — by INSTRUMENTATION, not by declaration: the
+  suite wraps every function on the object in a recorder before the drives run. A declared mapping
+  from drive to path would be a third list to maintain, recording what the author believed a drive
+  calls rather than what it called.
+
+- **The instrumentation asserts its own integrity, because a lost recorder reads as a coverage
+  gap.** Each wrapper is tagged with the path it records; the readout asserts the recorder is still
+  installed and that every callable the page presents is one it wrapped. A method installed after the
+  recorder ran is therefore reported as unmeasurable rather than silently counted as uncovered for
+  the wrong reason. The non-function members are pinned as an exact set (`version`, one member), so a
+  new data member cannot escape both axes by being neither an operation nor a callable.
+
+- **The numbers, and they are the point of the wave: 26 described, 26 driven, 0 exempt; 31 callables,
+  31 invoked, 0 exempt.** Both exemption maps are EMPTY. That outcome was not assumed — the drives
+  were probed one at a time first, and the single capability that resisted was `explore-space`, which
+  needs a system with a state machine and was being driven against the flagship, which declares none.
+  The fix is the house rule rather than a spelled example id: the drive LOOKS UP a shipped example
+  whose `counts.machines` is non-zero. The same discipline runs through every drive — the entity to
+  annotate, the model to add a relation to, the composing relation type, the saved question to read
+  evidence from, and the SPARQL text that exhausts a one-step budget are all derived from `inspect()`,
+  `savedQueries()` or `examples()` at run time.
+
+- **Exemptions are reasoned, capped, and the cap is zero.** A reason must clear the 40-character
+  floor `gate-reachability` already uses, and `EXEMPTION_CEILING` is zero, so adding an exemption is
+  two deliberate edits. The reasoning is the one `PARITY_VIOLATION_CEILING` records: a gate that
+  exempts its way to green reports coverage that does not exist, which is worse than no gate because
+  the number looks like evidence. The audit is a pure function and the negative control drives all
+  six of its findings — undriven, thin reason, over the ceiling, exempted-yet-driven, naming
+  something that no longer exists, and an EMPTY denominator, which would otherwise make every
+  comparison trivially true and print a green tier having measured nothing.
+
+- **The gate found two defects in its own drives, which is the only evidence that it works.** The
+  first draft sent `set-label` with a `label` field; the operation's field is `value`, and the
+  transaction engine refused the whole transaction with a SCHEMA finding. The second asserted
+  `validate().authority` was a non-empty string; it is a `ValidationAuthority` record. Both read as
+  red operation-coverage findings naming the capability — `edit-property` and `validate` advertised
+  and undriven — which is exactly the message the gate exists to produce. The authority assertion was
+  then strengthened rather than repaired: it now deep-equals `VALIDATION_AUTHORITY` imported from
+  source, so a served bundle whose answer has drifted from the one constant that writes it fails.
+
+- **The human→agent direction, which was the half nobody held.** FR-AGENT-1 claims agent and human
+  share "the same application services and authoritative client-side state", and only the
+  agent→human direction was pinned: `workbench.test.mjs:643` drives `window.mage.transact` and
+  asserts `#live` moved. A shared-state claim is two-directional, and a UI that wrote through a
+  second path would have passed every agent→human assertion in the suite. So the reverse is driven
+  through a REAL control — the workspace's `+ Add` disclosure, its menu item, and the dialog's Apply,
+  which is the route the registry declares for that site — and then read through the agent surface:
+  the count moved, the hash advanced, `inspect()` carries the label the person typed, and `canUndo`
+  flipped, so the two surfaces share one history rather than two. It is asserted twice, once on one
+  page and once ACROSS the two attached CDP clients, because those are different claims.
+
+- **A third reachability axis, found while registering the gate.** `test/gate-reachability.test.ts`
+  reasons about SCRIPT NAMES; `node --test` takes GLOBS. So a gate can land in a file no pattern
+  matches, and a pattern can match nothing at all — in both cases every name is wired and nothing
+  runs, which is instances 1 and 3 of that file's own failure class one level down. The second
+  direction is the sharper one: `node --test` over a glob matching no file exits 0 and prints
+  "pass 0". Both are now audited over patterns DERIVED from `package.json`, with a negative control
+  per direction, and `*` is confined to one path segment with `**` reported rather than
+  approximated — an over-reaching matcher would have called the orphan case reached.
+
+- **Registered by NAME as well, because the glob audit cannot assert existence.** A gate file that is
+  deleted is matched by no pattern and reported by nothing, so both new tiers are declared in
+  `AGENT_SURFACE_GATES` with the runner whose glob must reach them and a reason over the floor.
+
+- **The numbers.** Node 921, browser 69 → 114, a11y 112, smoke 3, `check:parity` 0 violations over
+  26 capabilities, `tsc` and `build` clean, 0 skipped anywhere. The browser tier grew by 45: six
+  attach assertions and thirty-nine in the coverage gate.
+
+- **One finding this wave did not cause and is not fixing: the FR-A11Y-3 debounce test is
+  load-sensitive.** `test/browser/a11y/keyboard.test.mjs`'s "the announcement WAITS for the state to
+  settle" reads the live region ONCE "well inside" the 250 ms debounce window and asserts nothing has
+  been written yet. Under machine load the READ itself lands outside the window — the test took 6.8 s
+  on one run and 16.8 s on another, against a 250 ms subject — so the settled write is already there
+  and the assertion reports a debounce that is working as one firing per keystroke. Measured four
+  times this session: 112 of 112 at the branch point on a quiet machine; 111 of 112 three times
+  running with many agents live, in the full tier and with the file run alone; then 112 of 112 again
+  once the machine quieted, against the identical bundle. Pass and fail over the same bytes is the
+  definition of the flake, and the failing run reports a delay of 264 ms against a 250 ms debounce —
+  the test is measuring its own CDP round trip. This wave's diff cannot reach it (no `src/`, no `index.html`, no a11y test touched; the only line removed anywhere
+  is one `import` replaced by a superset), so it is reported to that file's owner rather than
+  adjusted from here. The fix shape is a MEASURED window rather than a wall-clock guess: the suite
+  already has `advanceVirtualTime`, which makes the timer clock deterministic, and reading the region
+  after a virtual grant SHORTER than the debounce would hold the same claim without racing the CDP
+  round trip.
+
+- **Left undone, deliberately.** The publishing workflow hard-asserts the browser, axe, keyboard,
+  smoke and declared-path receipts into its artifact; the two receipts this wave writes
+  (`wb-attach-receipt.json`, `wb-agent-coverage-receipt.json`) are not yet among them. The tiers
+  themselves run in CI — both files sit under the `test:browser` glob, which the workflow invokes
+  unconditionally — so what is missing is the receipt assertion that publishes the measured numbers
+  into the CI log, not the run. It is left to whoever owns the workflow this session rather than
+  edited from here, and the coverage numbers are the ones most worth publishing, because three
+  numbers are this gate's entire output.
