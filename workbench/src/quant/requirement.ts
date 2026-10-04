@@ -18,7 +18,9 @@
  * arithmetic is what the ruling defers to SMT rather than having us maintain a weaker semantics.
  */
 import { systemHash } from "../ir/hash.ts";
-import type { CanonicalSystem, Configuration, Coverage, Evidence, ResultMagnitude } from "../ir/types.ts";
+import type {
+  CanonicalSystem, Compilation, Configuration, Coverage, Evidence, ResultMagnitude,
+} from "../ir/types.ts";
 import { ACCOUNTED_METRICS, DIMENSIONS, type Dimension } from "../ir/types.ts";
 import {
   detail, exhaustive, result, unlicensed, type Fail, type Verdict,
@@ -63,6 +65,16 @@ const refuse = (hash: string, f: Fail, interpretedAs: string | null): QuantAnswe
 
 const asCompilation = (notes: readonly string[]): { kind: "other"; explanation: string }[] =>
   notes.map((explanation) => ({ kind: "other", explanation }));
+
+/**
+ * One note under a named kind, for the disclosures whose kind is the point rather than the prose.
+ *
+ * `asCompilation` above flattens an inherited note list to `other`, which is right for notes that
+ * only narrate. A vacuous holds is not narration: it changes what the verdict means, and a renderer
+ * that branches on `outcome` alone cannot tell it from an earned one.
+ */
+const disclose = (kind: Compilation["kind"], explanation: string): Compilation =>
+  ({ kind, explanation });
 
 export function evaluateRequirement(
   system: CanonicalSystem, req: QuantRequirement, options: RequirementOptions = defaultRequirementOptions(),
@@ -129,20 +141,27 @@ export function evaluatePath(
     // configurations. Under a complete walk the universal claim holds VACUOUSLY — disclosed,
     // because a vacuous holds that looks earned is the failure this suite has shipped once
     // already. Under a truncated walk nothing is established either way (V22).
+    //
+    // The prose said this before the kind existed and still says it; the kind is what a consumer
+    // can act on. Only the vacuous arm is typed `vacuous`: the truncated arm already reads as
+    // unsettled from `outcome: "inconclusive"` beside `coverage.kind: "bounded"`, and nothing
+    // there holds, vacuously or otherwise — that is bounded absence, not vacuity.
     const vacuous = max.value.coverage.kind !== "bounded";
     return {
       result: result({
         outcome: vacuous ? "holds" : "inconclusive",
         coverage: max.value.coverage, systemHash: hash, interpretedAs,
-        compilation: asCompilation([
-          ...max.value.notes,
+        compilation: [
+          ...asCompilation(max.value.notes),
           vacuous
-            ? `No execution reaches the selected configurations, so the bound holds vacuously — ` +
+            ? disclose("vacuous",
+              `No execution reaches the selected configurations, so the bound holds vacuously — ` +
               `there is nothing to charge. If the selection was meant to be reachable, that ` +
-              `absence is the finding.`
-            : `No execution in the explored region reaches the selected configurations, and the ` +
-              `walk was truncated — nothing is established either way.`,
-        ]),
+              `absence is the finding.`)
+            : disclose("other",
+              `No execution in the explored region reaches the selected configurations, and the ` +
+              `walk was truncated — nothing is established either way.`),
+        ],
       }),
       refusal: null,
       analysis: { ...analysisBase, observed: null, unbounded: false, charges: null },

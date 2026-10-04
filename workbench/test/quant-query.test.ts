@@ -176,6 +176,81 @@ test("a ceiling decided over SELECTED executions: forall + within + target, all 
   assert.equal(everything.magnitude?.value, 400);
 });
 
+// ---------------------------------------------------------------------------------------------
+// Vacuity — the verdict stays `holds`, and the result says how it was reached
+// ---------------------------------------------------------------------------------------------
+
+/** The kinds the published wire format admits, read from the schema rather than restated here. */
+const publishedCompilationKinds = (): readonly string[] => {
+  const schema = JSON.parse(readFileSync("mage-query.schema.json", "utf8")) as {
+    $defs: { result: { properties: { compilation: { items: { properties: {
+      kind: { enum: string[] } } } } } } };
+  };
+  const kinds = schema.$defs.result.properties.compilation.items.properties.kind.enum;
+  assert.ok(kinds.length > 0, "the schema declares no compilation kinds; the join below is vacuous");
+  return kinds;
+};
+
+test("a ceiling over an empty selected set holds VACUOUSLY, and says so in a typed channel", () => {
+  // `DESIGN-v02-quantification-261004.md` §3.1. A universal over an empty set is true, which is
+  // the trap: `holds` is the sound answer and a reader takes it for an earned one. The ruling is
+  // not to re-verdict it and not to add a fifth `Outcome` — it is that the result must disclose
+  // how it was reached, in something a renderer and an agent can branch on.
+  //
+  // `ge: 9` is outside retry_count's declared [0, 1] domain, so no configuration satisfies the
+  // selection and no execution reaches it. Same shape as the refuted existential at :104, opposite
+  // polarity: absence refutes an existential and satisfies a universal.
+  const vacuous = runQuery(pipeline(), quantityQuery("forall", {
+    metric: "latency", within: "latency-ceiling", target: { "document.retry_count": { ge: 9 } },
+  })).result;
+
+  // The verdict is UNCHANGED by this phase, and pinned so a later one cannot quietly re-verdict it.
+  assert.equal(vacuous.outcome, "holds");
+  assert.equal(vacuous.coverage.kind, "exhaustive");
+  assert.equal(vacuous.magnitude, null, "nothing was charged, so there is no figure to report");
+
+  // The disclosure, typed. REACHABILITY: this comes out of `runQuery` — the same entry a saved
+  // query or an agent uses — so the arm is emitted by a live path and not merely declared in the
+  // union. A union member no code path produces is the same vacuity one level up.
+  const note = vacuous.compilation.find((c) => c.kind === "vacuous");
+  assert.ok(note, "a vacuous holds carries no typed disclosure: `outcome` alone cannot say this");
+  // The prose stays BESIDE the kind rather than being replaced by it — a consumer that branches on
+  // the kind still has something to show a person.
+  assert.match(note.explanation, /holds vacuously/);
+  assert.match(note.explanation, /absence is the finding/);
+  // And the kind must be representable on the wire, or the type and the published schema disagree
+  // about a vocabulary they both own.
+  assert.ok(publishedCompilationKinds().includes("vacuous"),
+    "`vacuous` is in the TypeScript union and not in mage-query.schema.json's enum");
+
+  // The pair, because a disclosure everything carries discloses nothing. The SAME ceiling over the
+  // retry-free executions is charged against a real 225 ms and earned; it must not be tagged.
+  const earned = runQuery(pipeline(), quantityQuery("forall", {
+    metric: "latency", within: "latency-ceiling",
+    target: { "document.state": "published", "document.retry_count": 0 },
+  })).result;
+  assert.equal(earned.outcome, "holds", "same verdict, so the kind is the only thing separating them");
+  assert.ok(earned.magnitude !== null, "an earned holds charged the bound against something");
+  assert.equal(earned.compilation.find((c) => c.kind === "vacuous"), undefined,
+    "an earned holds must not claim vacuity, or the channel tags everything and tells nothing");
+});
+
+test("an empty selection under a TRUNCATED walk is bounded absence, not vacuity", () => {
+  // §3.2's line, kept distinct from §3.1's. Under a bound the selected set is empty only in the
+  // explored region, so nothing holds — vacuously or otherwise — and the honest answer is
+  // `inconclusive`. Tagging this `vacuous` would read as "true of nothing" where the truth is
+  // "not looked at", which is the stronger claim and the wrong one.
+  const res = runQuery(pipeline(), quantityQuery("forall", {
+    metric: "latency", within: "latency-ceiling",
+    target: { "document.retry_count": { ge: 9 } }, limit: 2,
+  })).result;
+  assert.equal(res.outcome, "inconclusive");
+  assert.equal(res.coverage.kind, "bounded");
+  assert.equal(res.compilation.find((c) => c.kind === "vacuous"), undefined);
+  assert.ok(res.compilation.some((c) => /truncated/.test(c.explanation)),
+    "the truncation must still be disclosed in prose");
+});
+
 test("a within query that holds carries exhaustive coverage and the observed figure", () => {
   const res = runQuery(pipeline(),
     quantityQuery("forall", { metric: "peak_memory", within: "memory-ceiling" })).result;

@@ -269,7 +269,7 @@
             "required": ["kind", "explanation"],
             "additionalProperties": false,
             "properties": {
-              "kind": { "enum": ["history-variable", "symmetry-reduction", "other"] },
+              "kind": { "enum": ["history-variable", "symmetry-reduction", "vacuous", "other"] },
               "explanation": { "type": "string" }
             }
           }
