@@ -35,12 +35,14 @@ import type {
   AccessibleScene,
   AccessibleStep,
   EmphasisAssignment,
+  ArrowForm,
   EmphasisKind,
+  KeyEntry,
   Layout,
   LegendEntry,
   SceneRequest,
 } from "./types.ts";
-import { MARKS, MARK_MEANINGS } from "./types.ts";
+import { ARROW_FORMS, MARKS, MARK_MEANINGS, RELATION_CLASSES, SHAPE_MEANINGS } from "./types.ts";
 
 const quote = (s: string): string => `"${s}"`;
 
@@ -230,6 +232,47 @@ const LEGEND_ORDER: readonly EmphasisKind[] = [
   "deemphasized",
 ];
 
+/** `may_propagate_to` -> `may propagate to`. The id stays the join key; this is for reading. */
+const humanize = (id: string): string => id.replace(/[_-]+/g, " ").trim();
+
+/**
+ * The diagram's visual vocabulary, derived from what the scene actually contains.
+ *
+ * **This is where the repeated edge text went.** A relation type written on every edge is one fact
+ * restated N times; here it is stated once, against the arrowhead form and stroke class that carry
+ * it in the picture. Node SHAPES get rows too — three outlines have been drawn since Wave 0 with
+ * nothing anywhere saying what they mean, which is the cheaper half of the same omission.
+ *
+ * Relation types are sorted, so the form/class assignment is a function of the model rather than of
+ * the order the author happened to declare its relations in.
+ */
+function keyFor(scene: SceneGraph): readonly KeyEntry[] {
+  const out: KeyEntry[] = [];
+
+  const types = [
+    ...new Set(
+      scene.edges
+        .filter((e) => e.kind === "relation" && e.via !== null)
+        .map((e) => e.via as string),
+    ),
+  ].sort();
+  types.forEach((id, i) => {
+    out.push({
+      channel: "relation",
+      id,
+      form: ARROW_FORMS[i % ARROW_FORMS.length] as ArrowForm,
+      className: RELATION_CLASSES[i % RELATION_CLASSES.length] as string,
+      meaning: humanize(id),
+    });
+  });
+
+  const kinds = [...new Set(scene.nodes.map((n) => n.kind))].sort();
+  for (const kind of kinds) {
+    out.push({ channel: "shape", id: kind, form: kind, className: `mage-shape-${kind}`, meaning: SHAPE_MEANINGS[kind] });
+  }
+  return out;
+}
+
 function legendFor(used: ReadonlySet<EmphasisKind>): readonly LegendEntry[] {
   return LEGEND_ORDER.filter((k) => used.has(k)).map((kind) => ({
     kind,
@@ -413,5 +456,6 @@ export function buildAccessibleScene(
     coverage: req.coverage ?? null,
     refusal: req.refusal ?? null,
     legend: legendFor(used),
+    key: keyFor(scene),
   };
 }

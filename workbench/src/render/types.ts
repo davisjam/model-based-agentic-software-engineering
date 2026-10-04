@@ -84,6 +84,17 @@ export interface LayoutEdge {
   readonly selfLoop: boolean;
   /** Polyline, already routed. Empty for containment, whose geometry IS the parent's region. */
   readonly points: readonly Point[];
+  /**
+   * Where this edge's text belongs, when it has text.
+   *
+   * The author's requirement is that text in the graph PARTICIPATES in layout rather than being
+   * painted afterward where it can collide. A label drawn at the polyline's middle vertex is the
+   * "afterward" case: two edges whose midpoints coincide paint two words at one point, which is
+   * how `invokes` and `stage_of` came to share the coordinate (401.3, 45). So the engine reserves
+   * a sized box for the label during layout and reports where it reserved it; the painter obeys
+   * rather than guesses. Null when the edge carries no label, or when no engine claimed a spot.
+   */
+  readonly labelPoint: Point | null;
 }
 
 export interface Layout {
@@ -179,6 +190,40 @@ export const MARKS: Readonly<Record<EmphasisKind, MarkStyle>> = {
   deemphasized: { strokeWidth: 1, dashArray: null, glyph: null, opacity: 0.35, className: "mage-deemphasized" },
 };
 
+/**
+ * Arrowhead forms in assignment order. A diagram's relation types take them in sorted-type order,
+ * so the same model always gets the same mapping and two diagrams of the same model agree.
+ *
+ * Four, deliberately. The maximum relation-type count in any shipped diagram is four, and a fifth
+ * form would have to be either a colour (banned as a sole channel) or a shape too close to one of
+ * these to tell apart at an arrowhead's size. A diagram with five relation types should be told it
+ * has outgrown one picture rather than handed an unreadable key.
+ */
+export const ARROW_FORMS: readonly ArrowForm[] = ["triangle", "open", "diamond", "square"];
+
+/**
+ * Relation-type stroke classes, paired positionally with `ARROW_FORMS`. The hues behind them are
+ * the Okabe–Ito subset that clears 3:1 against the figure ground, so the colour is a usable extra
+ * channel rather than a decorative one — but the arrowhead carries the same fact, and removing
+ * every hue loses nothing.
+ */
+export const RELATION_CLASSES: readonly string[] = ["mage-rel-a", "mage-rel-b", "mage-rel-c", "mage-rel-d"];
+
+/**
+ * What each node outline means. Closed, because `NodeKind` is closed.
+ *
+ * **Kept SHORT on purpose.** A key row is drawn inside the diagram's own viewBox, so the longest
+ * meaning sets the canvas width — and a sentence long enough to be thorough made a 445-unit
+ * teaching diagram 561 units wide, shrinking the picture inside a fixed reading column to make
+ * room for prose about itself. The row names the thing; the structured twin's key list is where the
+ * fuller sentence goes, and it has no width to spend.
+ */
+export const SHAPE_MEANINGS: Readonly<Record<NodeKind, string>> = {
+  entity: "entity (a service or component)",
+  region: "entity containing those drawn inside it",
+  state: "one control state of a machine",
+};
+
 /** Human-readable meaning per kind. Rendered as a legend AND carried in the twin. */
 export const MARK_MEANINGS: Readonly<Record<EmphasisKind, string>> = {
   selected: "currently selected",
@@ -268,6 +313,38 @@ export interface LegendEntry {
 }
 
 /**
+ * The closed set of arrowhead forms. A relation type's identity is carried by stroke hue AND by
+ * arrowhead shape, so the mapping survives greyscale and the common colour-vision deficiencies —
+ * the ruling's "do not rely on colour alone where ambiguity matters: keep shape, line style, or
+ * arrow form". Four forms, because the maximum relation-type count in any shipped diagram is four.
+ */
+export type ArrowForm = "triangle" | "open" | "diamond" | "square";
+
+/**
+ * One row of the diagram's VOCABULARY key — what a shape or an arrow means.
+ *
+ * Deliberately NOT merged into `LegendEntry`. The two keys answer different questions and have
+ * different lifetimes: `legend` explains the EMPHASIS treatments a particular query produced and is
+ * empty until something is emphasised, while `key` explains the diagram's standing visual
+ * vocabulary and is present whenever the diagram has shapes and arrows in it. Collapsing them would
+ * make "the legend appears only under emphasis" false, which is a property the a11y tier relies on
+ * to prove a picker's change reached its render.
+ *
+ * This is also where the repeated edge text went. `may_propagate_to` written on all six edges of a
+ * diagram is a type label restated six times; one row here says it once.
+ */
+export interface KeyEntry {
+  readonly channel: "relation" | "shape";
+  /** The relation type id, or the `NodeKind` whose outline this row explains. */
+  readonly id: string;
+  /** What a reader sees: the arrowhead form for a relation, the outline for a shape. */
+  readonly form: ArrowForm | NodeKind;
+  /** Stable class name, so the stylesheet can add hue as a redundant extra channel. */
+  readonly className: string;
+  readonly meaning: string;
+}
+
+/**
  * The equivalent accessible representation of everything the SVG shows. Not a summary of the
  * picture: the same facts, from the same source, assembled by the component that knows what it
  * drew and why.
@@ -289,6 +366,12 @@ export interface AccessibleScene {
   readonly coverage: Coverage | null;
   readonly refusal: string | null;
   readonly legend: readonly LegendEntry[];
+  /**
+   * The visual vocabulary, stated rather than only drawn. A sighted reader learns "a rounded box is
+   * a control state" from the picture; this is the same fact for a reader who does not get the
+   * picture, which is the whole of FR-A11Y-2's claim on the legend.
+   */
+  readonly key: readonly KeyEntry[];
 }
 
 // --------------------------------------------------------------------------------------------

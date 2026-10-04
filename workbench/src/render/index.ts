@@ -5,14 +5,23 @@
  * structured twin together. That is deliberate: FR-A11Y-2 makes the renderer a second view over the
  * same semantic state, never the primary one, so there is no export that yields a bare SVG string.
  *
- * `layoutScene` and `buildScene` are exported for layout-stability tests and for a caller that
- * needs positions without a picture (persisting view hints, hit-testing). Neither produces visual
- * output on its own.
+ * `dagreLayoutEngine` and `buildScene` are exported for layout-stability tests and for a caller
+ * that needs positions without a picture (persisting view hints, hit-testing). Neither produces
+ * visual output on its own. `defaultLayoutEngine` names the one `renderView` uses when a caller
+ * supplies none, so a test can assert WHICH engine ran rather than assuming.
  */
 export { renderView, serialize, el } from "./svg.ts";
 export type { RenderOptions } from "./svg.ts";
-export { layoutScene, defaultLayoutEngine, labelWidth, METRICS, LANE_PITCH } from "./layout.ts";
-export type { LayoutEngine } from "./layout.ts";
+export { dagreLayoutEngine, defaultLayoutEngine } from "./layout-dagre.ts";
+export {
+  labelWidth,
+  textExtent,
+  METRICS,
+  LANE_PITCH,
+  TEXT_SIZES,
+} from "./layout.ts";
+export { assembleLayout, bounds, liftToOuter, place, sizes } from "./layout.ts";
+export type { LayoutEngine, LiftedEdge, Placement, Size, TextClass } from "./layout.ts";
 export { buildScene, buildGraphScene, buildMachineScene } from "./scene.ts";
 export type { SceneGraph, SceneNode, SceneEdge } from "./scene.ts";
 export {
@@ -36,6 +45,8 @@ export type {
   Layout,
   LayoutEdge,
   LayoutNode,
+  ArrowForm,
+  KeyEntry,
   LayoutOptions,
   LegendEntry,
   MarkStyle,
