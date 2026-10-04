@@ -2792,3 +2792,88 @@ passed by reading nothing.
 **Gates at this tree:** `tsc` clean; node **951/951** (937 + 14), 0 skipped; `check:parity`
 0 violations over 26 capabilities; build clean; smoke 3/3; browser 114/114 — agent-coverage reporting
 26 of 26 operations and **36 of 36 callables** (31 before this wave), 0 exempt; a11y 112/112.
+
+---
+
+## As-built: the lifecycle model, and a §4 sentence it falsified — 261004
+
+`models/workbench-lifecycle.mage.yaml` landed on 261004 under the ruling recorded in `PLAN.md` §0.2a.
+Its founding brief named this document's SH-I5 and SH-I6 as the two invariants a workspace/view
+machine would carry. Reading the code to write that machine falsified one of them and showed the other
+has no form in the query language. Both findings belong here, next to the prose they correct.
+
+### SH-I5's §4 prose overstates what the code does
+
+§4 says, of a transaction that deletes the selected element:
+
+> a vanished selected element collapses selection to its model; a vanished target falls back to the
+> first model; `view.selection()` never returns an id the current system lacks.
+
+**The third clause is false and the first is not what the code does.** `viewState.selection` is never
+pruned. Its writers are `src/app/agent-api.ts`'s `view.select` (which stores what it is handed),
+`src/ui/shell/workspace.ts`'s canvas select, and `src/ui/shell/inspector.ts`'s navigate links; nothing
+removes an id when a transaction deletes the thing it names, and `view.selection()` returns the stored
+array verbatim. So an agent that selects `audit-log` and then deletes it reads `["entity:audit-log"]`
+back.
+
+**What the code does instead is better, and §4's own §10 flagged the design that made it so.**
+Selection is RESOLVED per paint rather than pruned per commit: `resolveSelection` is the sole decoder,
+it is total, and a vanished id resolves to the `unresolved` member of `Selection` — a member kept
+deliberately distinct from `none`, because reporting a deleted selection as "nothing is selected"
+describes the pane instead of the model. The inspector surfaces that as its own `unresolved` view
+state and quotes the offending value back; `test/shell-inspector.test.ts` and
+`test/shell-edit.test.ts` pin both halves.
+
+The two readings differ in what a reader should expect, which is why this is a correction rather than
+a wording nit. Under the §4 prose, a selection survives only as long as its object, and the collapse
+is a mutation of view state. Under the code, the selection string survives the object and the
+resolution is recomputed — so an undo, or a transaction that restores the deleted entity, makes the
+same stored id resolve again. **§4's clauses are superseded by this section**; the invariant SH-I5
+states in §8 ("view state never dangles: after every repaint, `selection ⊆ current system`, `target`
+resolves") is sound read as a statement about the RESOLVED selection the panes receive, and unsound
+read as a statement about `ViewState`'s contents.
+
+### Neither SH-I5 nor SH-I6 earned a machine, and the reasons differ
+
+- **SH-I6 is step-shaped.** "A committed transaction changes no view state" relates a pre-state to a
+  post-state. Every form the engine has — `reach`, `invariant`, `recurrence`, `repeatable-cycle`,
+  `deadend`, `transition-live` — is a predicate over configurations or over traces of them. The
+  sanctioned encoding of a past-time question is a history variable (SEMANTICS.md V23), and the honest
+  version of that encoding here would be a variable set by no transition, which asserts something
+  about a model's own transition table rather than about its executions. SH-I6 stays with its node
+  test.
+- **SH-I5 is a totality property of a type.** Once selection is resolved per paint and `unresolved` is
+  a member of the union, there is no stale-reference window to quantify over: nothing is cached, so
+  nothing goes stale. The compiler holds it. A machine would restate a discriminated union as control
+  states.
+
+### What took the slot instead
+
+The shared human/agent surface does carry one genuinely execution-shaped claim, and the lifecycle
+model states it: **the presented answer always describes the revision the workbench is serving.**
+`QueryResult.systemHash` carries that contract explicitly, the presented answer and the serving
+revision are maintained by different code, and what keeps them equal is that every `Workspace` method
+which reassigns `#engine` calls `#emit()` in the same synchronous call. The model's `presentation`
+machine says so by participating in all nine events that move the serving revision; a control in
+`test/lifecycle-model.test.ts` takes it out of one event, repaints locally instead, and the invariant
+goes `refuted` — which is what distinguishes it from an invariant nothing could violate.
+
+The model's second mutator, `second_author`, corresponds to the shell edit funnel
+(`src/ui/shell/edit-forms.ts`). It carries one divergence worth recording here because it is a shell
+fact rather than a model one: **the human path holds a base across the review dialog.** `submitEdit`
+captures `base: ctx.workspace.state.hash` and hands it to `review.land`; when G3 interposes, the
+Commit handler calls `discardHypothesis()` and then re-sends that same held `Change` rather than one
+read at confirm. The discard restores exactly the parked content, so the held base is normally still
+current — the window opens only if some other mutator commits authoritatively while the dialog is up,
+which an agent calling `window.mage.transact` can do. Narrow, then, and real. The lifecycle model does
+not represent it — it models the agent's window, which is the one the ruling named — and
+`models/workbench-lifecycle.mage.yaml` says so in the funnel entity's correspondence note. Whether
+Commit should re-read the hash, or rely on the engine's base rejection to refuse and re-plan, is an
+open question for a shell wave and not a defect this wave fixed.
+
+**Gates at this tree:** `tsc` clean; node **943/943** (937 + the 6 controls in
+`test/lifecycle-model.test.ts`), 0 skipped; `check:parity` 0 violations over 26 capabilities; build
+clean; smoke 3/3; browser 114/114; a11y 112/112. `python3 validate.py models/workbench-lifecycle.mage.yaml` clean —
+and it declines all nine queries for scope, because it has no exploration engine, so the TypeScript
+engine is the only implementation that decides them. Model-coverage census: `workbench-lifecycle 9/9`,
+0 exempt; 70 reachable configurations, 0 dead ends.

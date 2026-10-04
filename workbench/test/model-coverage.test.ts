@@ -661,6 +661,10 @@ test("the subject set contains the self-models and the exemplar, and not the exa
     "the components model is the one this gate was built for and it is not in the subject set");
   assert.ok(paths.includes("models/workbench-affordances.mage.yaml"));
   assert.ok(paths.includes("models/example-coverage.mage.yaml"));
+  // The lifecycle model is the only tracked model whose queries are `kind: behavior`, so it is also
+  // the only one `validate.py` declines for scope — this gate is the sole decider of its verdicts.
+  assert.ok(paths.includes("models/workbench-lifecycle.mage.yaml"),
+    "the lifecycle model is not in the subject set, and no other implementation answers its queries");
   assert.ok(paths.includes("examples/docable.mage.yaml"),
     "docable has no fixture file, so `expect` is the only holder its verdicts have");
   for (const id of SHIPPED_EXAMPLE_IDS) {

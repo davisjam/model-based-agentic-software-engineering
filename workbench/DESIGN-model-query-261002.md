@@ -722,6 +722,8 @@ otherwise.
   served. The parity discipline already treats disagreement as failure either way.
 - **Consequence of ruling otherwise.** (b) changes no code — only what a future
   parity-disagreement incident report says the agent's answer WAS.
+- **RULED (a), 261004** (`PLAN.md` §0.2a). `VALIDATION_AUTHORITY.ratified` is now `true` and
+  `declaredBy` names the ruling; `test/validate-operation.test.ts` pins both. No behaviour moved.
 
 ### G4 — Severity now, or when the first warning exists?
 
