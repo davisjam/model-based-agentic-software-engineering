@@ -130,6 +130,21 @@ re-deriving these, so they live here:**
     genuinely not in it. A verification that cannot distinguish "not there" from "I looked in the
     wrong place" reports the second as the first, and that direction of error is expensive: it
     condemns working code and sends someone to fix what is not broken.
+  - **A brief's `file:line` facts are claims, and the orchestrator is the worst-placed person to
+    trust them.** The same failure recurred SIX times on 261004, always by the same mechanism: a
+    `file:line` asserted into a brief from a grep hit, without reading enough around it.
+    `view-model.ts:926` was cited as a property's text when it is a model's PURPOSE — the brief's own
+    exempt category; "~82 API members" conflated an interface's declared members with the 31-callable
+    live surface; a model was called ungated when three test files load it; a sanctioned-consumer set
+    named an entity a refactor had deleted; and a composition was declared absent that the registry
+    declares (`machine-of-entity`). A seventh brief drew five corrections at once. Every instance was
+    caught — by the agent, which is the system working, but at the cost of a round trip and an agent
+    that had to argue with its own instructions.
+    The fix is a step, not more care: **before dispatch, re-read each cited line with its
+    surroundings and each cited symbol's definition.** Grep locates; it does not characterise. The
+    two instances caught BEFORE dispatch on 261004 were both caught by exactly that step, which is
+    the evidence it works. And say in the brief that its ground truth is a starting point the agent
+    must verify — the reports that corrected these briefs all came from agents told to do so.
 - **Reading OOXML text: runs are not lines. Join the runs inside each `<a:p>` before you compare
   anything.** PowerPoint splits a single sentence across arbitrarily many `<a:t>` runs and re-splits
   them on every save, so a run routinely begins mid-word — the 261001 instance was a run starting
