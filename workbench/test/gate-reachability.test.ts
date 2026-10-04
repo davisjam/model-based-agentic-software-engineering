@@ -791,6 +791,17 @@ const PINNED_GATE_FILES: readonly { readonly file: string; readonly script: stri
       + "`expect`. Delete this file and a model may assert one verdict while the engine answers "
       + "another, which is the state a mutation proved CI could not see.",
   },
+  {
+    file: "test/import-graph.test.ts",
+    script: "test",
+    reason: "The architecture model's correspondence with the code: every import specifier under "
+      + "`src/`, parsed, resolved to the entity owning each path, and compared against the declared "
+      + "`depends-on` edge set in both directions. It is the ONLY mechanical holder of that claim — "
+      + "`test/model-coverage.test.ts` answers the model's queries over its own DECLARED relations, "
+      + "and a real kernel-to-view import was proven by mutation to pass that, the typecheck and the "
+      + "whole node tier. Delete this file and the model's `absence` clause binds a reader again and "
+      + "nothing else.",
+  },
 ];
 
 /** One glob a gate script hands to `node --test`, and which script hands it over. */

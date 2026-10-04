@@ -3,9 +3,13 @@
  *
  * Dependencies point inward: this module imports the kernel (`../ir/`) and `quant` (the quantity
  * evaluator), nothing else — no YAML, no DOM, no renderer. The model's `engine-must-not-reach-yaml`
- * query asserts the YAML half of that for `query-engine`; `validate.py` evaluates it and
- * `--self-test` catches an injected violation — but only from the pre-push hook, never CI, and
- * nothing yet checks this file's actual imports against the model.
+ * query asserts the YAML half of that for `query-engine`, and it is answered twice: by
+ * `test/model-coverage.test.ts` in CI, and by `validate.py` from the pre-push hook, whose
+ * `--self-test` catches an injected violation. Both read the model's declared edges;
+ * `test/import-graph.test.ts` is what reads this file's actual imports, resolving each specifier to
+ * the entity owning its path. `src/quant/` lifts into `query-engine` there — the model contains it
+ * — so the two directories importing each other is internal rather than a cycle, and a new YAML
+ * import from either would surface as an undeclared `query-engine → yaml-adapter` edge.
  *
  * The normalizers mirror `canonicalize`'s discipline: total, deterministic, and NOT validating.
  * A malformed field becomes a null and the evaluator refuses with a message naming the cause, which
