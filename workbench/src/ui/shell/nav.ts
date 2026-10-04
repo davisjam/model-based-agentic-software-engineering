@@ -201,8 +201,12 @@ export function navRails(
       ? null
       // The lifecycle the author drew, named where the user is standing: ask, then track. The old
       // sentence said "above", which stopped being true when the ask bar moved to the bottom.
+      //
+      // The lifecycle stays; what a property IS — a saved question, re-evaluated on every later
+      // revision — moved to Learn (`src/learn/workbench-guide.ts`, "What a property is"). A rail
+      // row is where a reader learns the next act, not the semantics of the object it produces.
       : "This model system asserts no claims yet. Ask a question in the ask bar, then track the "
-        + "answer, and it becomes a property evaluated against every later revision.",
+        + "answer.",
   };
 }
 

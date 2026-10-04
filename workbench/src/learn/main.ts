@@ -25,6 +25,7 @@ import {
   buildTypeSections, buildUseSections,
   type LearnTypeSection, type LearnUseSection, type SavedStatement,
 } from "./content.ts";
+import { WORKBENCH_GUIDE, type GuideSection } from "./workbench-guide.ts";
 
 const el = <K extends keyof HTMLElementTagNameMap>(
   tag: K, text?: string, className?: string,
@@ -303,6 +304,29 @@ function useSection(s: LearnUseSection, systems: ReadonlyMap<ShippedExampleId, C
   return section;
 }
 
+/**
+ * A guide section: the explanatory prose the operational panes used to carry.
+ *
+ * Built exactly like a gallery section — a labelled `<section>`, an `h2` that names it, the same
+ * `sublabel` and `notes` spellings — because to a reader it IS one more entry on this page, and
+ * giving it a second visual grammar would say it came from somewhere else. What distinguishes it is
+ * that nothing in the kernel derives it, which is why its anchors are declared rather than computed
+ * and why the suite polices the surfaces it vacated instead of a registry row.
+ */
+function guideSection(s: GuideSection): HTMLElement {
+  const section = el("section");
+  section.id = s.anchor;
+  const h = el("h2", s.heading);
+  h.id = `${s.anchor}-h`;
+  section.setAttribute("aria-labelledby", h.id);
+  section.append(h, el("p", s.intro, "intro"));
+  for (const block of s.blocks) {
+    if (block.kind === "prose") { section.append(el("p", block.text)); continue; }
+    section.append(sub(block.label), bulletList(block.items));
+  }
+  return section;
+}
+
 // --------------------------------------------------------------------------------------------
 // Gallery
 // --------------------------------------------------------------------------------------------
@@ -338,16 +362,40 @@ async function boot(): Promise<void> {
     cards.append(galleryCard(s.anchor, s.use.question, `${s.use.label} — a ${s.ofTypeLabel}`));
   }
   nav.append(cards);
-  main.append(nav);
+
+  // The route to the guide, beside the gallery and not inside it. The cards answer "which model do
+  // I need", which is a question about the kernel; the guide answers "how does this application
+  // work", which is not — mixing them into one card grid would offer the two as the same kind of
+  // choice. A list of links rather than a sentence with one link in it, so a reader can go straight
+  // to the part they want and a keyboard user reaches each by Tab.
+  const guideNav = el("nav");
+  guideNav.setAttribute("aria-label", "About the workbench");
+  guideNav.append(el("p", "New to the workbench? These explain the panes, what a property is, and "
+    + "how asking works — the account the operational panes used to carry inline.", "intro"));
+  const guideList = el("ul", undefined, "notes");
+  for (const s of WORKBENCH_GUIDE) {
+    const li = el("li");
+    const a = el("a", s.heading);
+    a.href = `#${s.anchor}`;
+    li.append(a);
+    guideList.append(li);
+  }
+  guideNav.append(guideList);
+
+  main.append(nav, guideNav);
 
   for (const s of typeSections) main.append(typeSection(s, systems));
   for (const s of useSections) main.append(useSection(s, systems));
+  // LAST, after the gallery. The landing is the gallery — "choose a model by the engineering
+  // question you need to answer" — so the guide sits under it rather than between a reader and it.
+  for (const s of WORKBENCH_GUIDE) main.append(guideSection(s));
 
   // The browser tier waits on this rather than on network idle: it marks the derivation complete.
   (window as unknown as Record<string, unknown>)["mageLearn"] = {
     ready: true,
     types: typeSections.map((s) => s.entry.id),
     uses: useSections.map((s) => s.use.id),
+    guide: WORKBENCH_GUIDE.map((s) => s.anchor),
   };
 }
 

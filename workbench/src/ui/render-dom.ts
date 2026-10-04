@@ -171,7 +171,16 @@ export function paintPrincipal(
   root.replaceChildren();
   detail?.replaceChildren();
   if (principal === null) {
-    root.append(el("p", "No model is loaded, so no model is being viewed.", "intro"));
+    // CONCRETE, and corrected. The old sentence read "No model is loaded, so no model is being
+    // viewed", which is false in the one state that reaches it: `resolveSubject` falls back to the
+    // first model or machine the system declares, so a null principal means a model system IS
+    // loaded and declares neither. That is the state a reader lands in after Create new model
+    // system — the empty state the ruling is about — and the pane told them nothing to do in it.
+    //
+    // What the pane owes here is the next act, with the control that performs it named. What a
+    // model IS, and why its question is required, is Learn's (`src/learn/workbench-guide.ts`).
+    root.append(el("p", "This model system declares no model yet. Add one under + Add above, and it "
+      + "appears here with the engineering question it answers.", "intro"));
     return;
   }
   root.append(el("h3", `${principal.label} — the model being viewed`));

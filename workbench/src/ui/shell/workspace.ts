@@ -247,7 +247,10 @@ function paintContents(
 ): void {
   root.replaceChildren();
   if (scene === null || system === null) {
-    root.append(el("p", "No model is loaded, so there are no contents to read.", "intro"));
+    // "No model is loaded" was wrong here for the reason `paintPrincipal`'s note gives: the state
+    // that reaches this branch is a loaded system declaring no model. The purpose block above
+    // already names the next act, so this says only why the reading is empty.
+    root.append(el("p", "No model is being viewed, so there are no contents to read.", "intro"));
     return;
   }
   const contents = modelContents(scene, system);

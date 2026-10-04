@@ -35,7 +35,8 @@ import {
 // while the registry drifts, and a drifting gallery is exactly what UX-I9 forbids.
 import { SHIPPED_EXAMPLE_IDS } from "../../src/app/examples.ts";
 import { MODEL_TYPES } from "../../src/engine/model-types.ts";
-import { MODEL_TYPE_USES, anchorForType, anchorForUse } from "../../src/app/learn.ts";
+import { LEARN_PAGE, MODEL_TYPE_USES, anchorForType, anchorForUse } from "../../src/app/learn.ts";
+import { GUIDE_ANCHORS } from "../../src/learn/workbench-guide.ts";
 
 /**
  * The OS picks the port. Claiming 8146 only avoided the other tiers IN THIS PROCESS; it did
@@ -153,6 +154,29 @@ test("index.html: boots, and the example menu is the shipped registry", async ()
   assert.deepEqual(options, [...SHIPPED_EXAMPLE_IDS],
     "the example menu does not offer exactly the shipped examples");
 
+  // And the persistent Learn entry, on the PRISTINE page this gate already has open.
+  //
+  // THE CHEAP RUNG under `test/browser/learn-reachable.test.mjs`, and the reason it is duplicated
+  // here rather than left to that file: the deep tier is declared out of `npm run all`, so the
+  // requirement that was dropped once would have been protected only by a gate CI runs and an agent
+  // does not. Three assertions and no extra page — present, rendered, and pointing at the page the
+  // registry says Learn lives on. The keyboard walk, the navigation and the model-less state stay in
+  // the deep tier, where the budget for them is.
+  const learn = await page.evaluate((id, learnPage) => {
+    const a = document.getElementById(id);
+    return a === null ? null : {
+      visible: a.checkVisibility(),
+      href: a.getAttribute("href"),
+      inBanner: a.closest("header[role=banner]") !== null,
+      resolves: a.href === new URL(learnPage, document.baseURI).href,
+    };
+  }, "learn", LEARN_PAGE);
+  assert.notEqual(learn, null,
+    'index.html ships no #learn. requirements-learn-261002.md: "The global header SHALL contain a '
+    + 'persistent Learn entry" — and the empty state is when a reader most needs it.');
+  assert.deepEqual(learn, { visible: true, href: LEARN_PAGE, inBanner: true, resolves: true },
+    "the persistent Learn entry is not a rendered banner link to the served Learn page");
+
   await page.close();
 });
 
@@ -167,19 +191,27 @@ test("learn.html: boots, and the gallery is the model-type registry", async () =
   // (b) the content shape, derived both ways (UX-I9): every registered model type and declared
   // use has its section AND its gallery card, at the anchor spelling the producers share — and
   // nothing else does, so a card for an unregistered "type" is as red as a missing one.
-  const expectedAnchors = [
+  const galleryAnchors = [
     ...MODEL_TYPES.map((t) => anchorForType(t.id)),
     ...MODEL_TYPE_USES.map((u) => anchorForUse(u.id)),
   ].sort();
+
+  // The page also builds the workbench GUIDE — the explanatory prose the operational panes used to
+  // carry inline. Those sections are DECLARED rather than derived, because no part of a model
+  // kernel knows how a pane reads, so they are added to the expected set from their own declaration
+  // and kept out of the GALLERY claim below. Splitting the two is the point: the 1:1 correspondence
+  // with the registry stays exactly as strict as it was, and a guide section cannot quietly stand in
+  // for a missing model-type entry.
+  const expectedSections = [...galleryAnchors, ...GUIDE_ANCHORS].sort();
 
   const rendered = await page.evaluate(() => ({
     sectionIds: [...document.querySelectorAll("#learn-main > section[id]")].map((s) => s.id).sort(),
     cardHrefs: [...document.querySelectorAll(".learn-cards a")].map((a) => a.getAttribute("href")).sort(),
     cardQuestions: [...document.querySelectorAll(".learn-card-question")].map((q) => q.textContent),
   }));
-  assert.deepEqual(rendered.sectionIds, expectedAnchors,
-    "the Learn sections do not correspond 1:1 to the registry's types and uses");
-  assert.deepEqual(rendered.cardHrefs, expectedAnchors.map((a) => `#${a}`),
+  assert.deepEqual(rendered.sectionIds, expectedSections,
+    "the Learn sections are not the registry's types and uses plus the declared guide sections");
+  assert.deepEqual(rendered.cardHrefs, galleryAnchors.map((a) => `#${a}`),
     "the gallery cards do not correspond 1:1 to the registry's types and uses");
 
   // Each card leads with its registry QUESTION — the gallery's organizing principle ("choose a
