@@ -28,8 +28,9 @@
 // exact vocabulary copy is a clean signal where its length is not.
 //
 // WHAT THAT GIVES UP, stated so nobody rediscovers it as a surprise:
-//   - `SHIPPED_EXAMPLE_IDS` has three members, so its count is below the floor and only its member
-//     list is policed. One live instance escapes because of this — see UNCAUGHT below.
+//   - `SHIPPED_EXAMPLE_IDS` has four members, so its count is below the floor and only its member
+//     list is policed. The floor was raised to keep it there, and `MIN_CARDINALITY` carries the
+//     measurement and the cost.
 //   - Recurrence 4 is not covered by either rule. A pin of the single word "unavailable" is
 //     indistinguishable from any other string, at any precision this file can reach.
 //   - The scan covers `test/` and `scripts/`, not `src/`. A test or a generator has no reason to
@@ -46,10 +47,11 @@
 // `SOURCES` below imports the real declarations, so there is no copy to drift. One consumer, one
 // home; extract on the second.
 //
-// UNCAUGHT, found while measuring and left for its owner: `test/services.test.ts:434` asserts
-// `first.catalog.ids().length, 3` where `catalog.ids()` returns `SHIPPED_EXAMPLE_IDS`. That is
-// recurrence 3's exact shape, still live. It is below the cardinality floor and so is not reported
-// here; another agent owns that file.
+// The UNCAUGHT note that stood here is CLOSED, and not by this file: `test/services.test.ts` pinned
+// `first.catalog.ids().length` against a literal — recurrence 3's exact shape, below the floor and
+// so unreported — and its owner rewrote the assertion to name WHICH examples the spec requires
+// rather than how many. The shape is gone from the suite, which is the better outcome than a rule
+// reaching far enough to report it.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
@@ -114,8 +116,25 @@ const SOURCES: readonly DerivableSource[] = [
  * The floor under the cardinality rule, chosen from the measured distribution rather than taste:
  * 151 of the suite's 179 cardinality-vs-literal sites compare against 0, 1, 2 or 3. Lowering this
  * trades one more covered source for thirteen false positives, which is how a check gets disabled.
+ *
+ * RAISED 4 → 5 on 261004, when `SHIPPED_EXAMPLE_IDS` reached four members and crossed the old
+ * floor. The test below is the tripwire that caught the crossing and it asks for a re-measurement
+ * rather than an opinion, so here is the measurement: the suite holds exactly ONE
+ * cardinality-vs-literal site comparing against 4 — `test/engine-explore.test.ts:248`, a 2 x 2
+ * interleaving whose four configurations have nothing to do with how many examples ship — and no
+ * source has five members, so the four sites comparing against 5 are never consulted. Policing 4
+ * therefore means a rule whose only firing on that count is wrong, held open by a permanent
+ * suppression in an engine test that never mentions examples. That is the shape the paragraph above
+ * calls "how a check gets disabled".
+ *
+ * WHAT THIS GIVES UP, so the next reader can choose differently with the numbers rather than
+ * rediscovering them: `SHIPPED_EXAMPLE_IDS` stops being policed by COUNT at exactly the size where
+ * counting it became possible, which reopens recurrence 3's shape — an `ids().length` pinned to a
+ * literal escapes again. The member-LIST rule still covers an exact copy of the four ids, which is
+ * the same partial coverage already accepted for `MODEL_TYPES`. The alternative was the suppression;
+ * it was weighed and declined on the measured precision, not on convenience.
  */
-const MIN_CARDINALITY = 4;
+const MIN_CARDINALITY = 5;
 
 /**
  * A cardinality compared to an integer by EQUALITY.

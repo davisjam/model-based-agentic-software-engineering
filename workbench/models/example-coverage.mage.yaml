@@ -7,13 +7,21 @@
 # MAGE has no construct for carries a `blocked-by` edge naming what is missing -- reported, never
 # omitted, because a coverage model that claims a capability the product lacks is worse than none.
 #
-# All three default examples ship. Document Processing declares quantities, declares their
-# accounting, and states both performance numbers -- and the Performance row is exercised: the
-# `kind: quantity` query form aggregates each metric (the aggregation derived from the
-# dimension's scope), decides the declared ceilings, and reports the figure on the result's
-# magnitude field, which the schema probe finds. Requirements stays unavailable for a plainer
-# reason -- there is no requirement construct, and the examples carry their requirements in
-# their fixtures.
+# How many examples ship is the `example.*` rows below and is deliberately not restated here;
+# the sentence that used to count them went stale the day a fourth landed.
+#
+# Document Processing declares quantities, declares their accounting, and states both
+# performance numbers -- and the Performance row is exercised: the `kind: quantity` query form
+# aggregates each metric (the aggregation derived from the dimension's scope), decides the
+# declared ceilings, and reports the figure on the result's magnitude field, which the schema
+# probe finds. Requirements stays unavailable for a plainer reason -- there is no requirement
+# construct, and the examples carry their requirements in their fixtures.
+#
+# Transaction Workspace adds no row, and that is worth reading rather than skipping: every
+# capability it exercises was already exercised elsewhere. It earns its place as the BEHAVIOR
+# flagship (DESIGN-v02-semantics-261004.md §31 example B) and as the example whose `omits` lists
+# make a binding visibly not a merge, and this matrix measures neither of those. A coverage
+# model is not a quality model.
 
 mage: 1
 
@@ -64,6 +72,14 @@ entities:
     properties:
       purposeful_models: 3
       supplied_queries: 6
+      suggested_queries: 5
+
+  example.transaction-workspace:
+    type: default-example
+    label: "Transaction Workspace"
+    properties:
+      purposeful_models: 2
+      supplied_queries: 9
       suggested_queries: 5
 
   example.document-processing:
@@ -263,6 +279,7 @@ models:
         - the order in which a reader should work through the examples
     entities:
       - example.message-bus
+      - example.transaction-workspace
       - example.document-processing
       - example.worker-queue
       - capability.structural-models
@@ -291,34 +308,46 @@ models:
       - construct.model-requirements
     relations:
       - { from: example.message-bus, to: capability.structural-models, type: exercises }
+      - { from: example.transaction-workspace, to: capability.structural-models, type: exercises }
       - { from: example.document-processing, to: capability.structural-models, type: exercises }
       - { from: example.worker-queue, to: capability.structural-models, type: exercises }
       - { from: example.message-bus, to: capability.typed-relationships, type: exercises }
+      - { from: example.transaction-workspace, to: capability.typed-relationships, type: exercises }
       - { from: example.document-processing, to: capability.typed-relationships, type: exercises }
+      - { from: example.transaction-workspace, to: capability.state-machines, type: exercises }
       - { from: example.document-processing, to: capability.state-machines, type: exercises }
       - { from: example.worker-queue, to: capability.state-machines, type: exercises }
       - { from: example.worker-queue, to: capability.synchronized-events, type: exercises }
       - { from: example.message-bus, to: capability.cross-model-identity, type: exercises }
+      - { from: example.transaction-workspace, to: capability.cross-model-identity, type: exercises }
       - { from: example.document-processing, to: capability.cross-model-identity, type: exercises }
       - { from: example.worker-queue, to: capability.cross-model-identity, type: exercises }
       - { from: example.message-bus, to: capability.model-composition, type: exercises }
+      - { from: example.transaction-workspace, to: capability.model-composition, type: exercises }
       - { from: example.document-processing, to: capability.model-composition, type: exercises }
       - { from: example.worker-queue, to: capability.model-composition, type: exercises }
       - { from: example.message-bus, to: capability.graph-reachability, type: exercises }
+      - { from: example.transaction-workspace, to: capability.graph-reachability, type: exercises }
       - { from: example.document-processing, to: capability.graph-reachability, type: exercises }
+      - { from: example.transaction-workspace, to: capability.safety, type: exercises }
       - { from: example.worker-queue, to: capability.safety, type: exercises }
       - { from: example.message-bus, to: capability.safety-as-existential-dual, type: exercises }
+      - { from: example.transaction-workspace, to: capability.reachability, type: exercises }
       - { from: example.document-processing, to: capability.reachability, type: exercises }
       - { from: example.worker-queue, to: capability.reachability, type: exercises }
+      - { from: example.transaction-workspace, to: capability.bounded-progress, type: exercises }
       - { from: example.document-processing, to: capability.bounded-progress, type: exercises }
       - { from: example.worker-queue, to: capability.bounded-progress, type: exercises }
       - { from: example.document-processing, to: capability.bounded-cycles, type: exercises }
       - { from: example.worker-queue, to: capability.bounded-cycles, type: exercises }
       - { from: example.message-bus, to: capability.witnesses, type: exercises }
+      - { from: example.transaction-workspace, to: capability.witnesses, type: exercises }
       - { from: example.document-processing, to: capability.witnesses, type: exercises }
       - { from: example.worker-queue, to: capability.witnesses, type: exercises }
+      - { from: example.transaction-workspace, to: capability.counterexamples, type: exercises }
       - { from: example.worker-queue, to: capability.counterexamples, type: exercises }
       - { from: example.message-bus, to: capability.purposeful-non-answerability, type: exercises }
+      - { from: example.transaction-workspace, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.document-processing, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.worker-queue, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.worker-queue, to: capability.bounded-coverage-reporting, type: exercises }

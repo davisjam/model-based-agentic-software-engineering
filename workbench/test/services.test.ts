@@ -385,7 +385,13 @@ test("all three specified examples are offered, and each one loads", async () =>
   // literal compares the source of truth against a snapshot of itself -- the shape that let two
   // example lists disagree the moment a third landed, which this very test was written to fix.
   // Section 1 names three examples, so the spec fact is WHICH three; assert that.
-  // derived-values:allow the spec names these three; asserting the source against itself is tautological
+  //
+  // FOUR ship as of 261004, and this list is deliberately not one of them -- it is
+  // requirements-default-examples-261002.md §1's membership, asserted by PRESENCE, so the menu
+  // gaining Transaction Workspace (DESIGN-v02-semantics-261004.md §31's example B) leaves it true.
+  // The `derived-values:allow` that used to sit here is gone with the reason for it: the list is no
+  // longer the member set of SHIPPED_EXAMPLE_IDS, so the member-list rule no longer reads it and a
+  // suppression would be claiming a check ran.
   for (const id of ["message-bus", "document-processing", "worker-queue"] as const) {
     assert.ok(first.catalog.ids().includes(id), `section 1 specifies ${id} and the menu omits it`);
   }

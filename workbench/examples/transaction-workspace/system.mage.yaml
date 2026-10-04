@@ -1,0 +1,577 @@
+# Transaction Workspace -- MAGE default example 2 of 4, and the BEHAVIOR flagship.
+#
+# Central lesson: a structural model says which components take part in applying a change; a
+# behavioral model says what can happen to one change over time. A binding states that the second
+# describes the first. It does NOT merge them -- each keeps its own question and its own omissions,
+# and the `omits` lists below are the proof, because neither list is a subset of the other.
+#
+# Two purposeful models over one identity namespace:
+#
+#   change-pipeline        a graph. Which components take part in applying a candidate change, and
+#                          which of them can write to the authoritative store?
+#   transaction-lifecycle  a state machine. What can happen to one proposed change over time, and
+#                          can it commit against a base that is no longer current?
+#
+# They join on the `transaction-engine` entity -- the machine's `entity:` names it -- and on the
+# lifecycle's state names, because `validator` declares the state during whose occupancy it runs.
+# Those are two DIFFERENT registered correspondences, and naming them is the point of §8 of the
+# Learn guidance: `machine-of-entity` (a machine describing a structural element's behaviour) and
+# `state-of-entity` (an entity property naming a state). Both are declared in
+# `src/engine/model-types.ts`; neither is invented here.
+#
+# ## Where the machine comes from
+#
+# `DESIGN-v02-semantics-261004.md` §6, verbatim in shape: states `idle`, `proposed`, `valid`,
+# `committed`, `refused`, with `propose`, `validate` and `commit` as the author wrote them. Three
+# additions, each with a reason the spec itself supplies:
+#
+#   reject         §30's P2 requires `refused` to be reachable, and §6's sketch has no edge into it.
+#                  Validation that fails is the first route, and the Learn guidance's §5 figure
+#                  branches the second one off `valid`.
+#   refuse_stale   §30's P3 -- "stale-base transactions never commit" -- needs staleness to be
+#                  representable and a refusal to be the alternative. `base_current` carries it.
+#   await_adoption §27's worked counterexample is `idle -> proposed -> valid -> valid -> valid -> ...`,
+#                  and no edge in §6's sketch can produce it. See the machine's own comment: this is
+#                  the step that makes the spec's counterexample a reachable execution rather than a
+#                  picture, and deleting it is one of the declared modifications below.
+#
+# §31 calls this example "Transaction/workspace" and assigns it behavior, states, transitions,
+# bindings, LTL and counterexamples. Five of those six ship here. LTL does not.
+#
+# ## What this example CANNOT be asked yet, said plainly
+#
+# §31's key property for this example is `G(proposed -> F(committed or refused))`, and no saved query
+# below states it. The LTL layer landed its formula and automaton construction
+# (`DESIGN-v02-ltl-foundation-261004.md`) with no verdict path, so a query carrying that formula
+# would be a question the engine cannot answer -- and a shipped example whose saved query comes back
+# unanswerable claims more than it holds.
+#
+# What ships instead is the reachability half the guidance's §5 asks for first ("Can a transaction
+# reach Committed? Can it reach Refused?"), plus the two things the engine can say about the
+# starvation execution without an infinite-trace operator:
+#
+#   `validated-transaction-can-wait-indefinitely` HOLDS, with a lasso whose cycle is the
+#   `await_adoption` step. The repeated configuration §27's counterexample needs EXISTS.
+#
+#   `verdict-is-eventually-forced` is REFUSED, and the refusal names the vocabulary that would
+#   license it: this system declares no deadline machine, so nothing in it can force a verdict.
+#
+# Those two together are the honest statement of P5's shape: the counterexample's configuration is
+# reachable, and the temporal claim it would refute is not yet expressible. When the LTL evaluator
+# lands, P5 is asked of THIS machine and the author's §30 tension gets its verdict -- the comment on
+# `await_adoption` names which way it will go and why.
+#
+# ## No quantities, and that is a declaration
+#
+# This example declares no `quantities:` and no `accounting:`. Cost is Document Processing's subject
+# (§31's example C), and the lifecycle here deliberately represents no duration -- which is exactly
+# why `verdict-is-eventually-forced` has no reading over it. Adding a timeout quantity would delete
+# the lesson without making the temporal question answerable.
+
+mage: 1
+
+system:
+  id: transaction-workspace
+  name: Transaction Workspace
+  description: >
+    One proposed change to a shared workspace, modeled twice: as the components that take part in
+    applying it, and as the states the change itself passes through on the way to a verdict.
+
+relation-types:
+
+  submits_to:
+    description: The source hands a candidate change to the target to be applied.
+    absence: >
+      The source submits no candidate change to the target. Absence says nothing about whether the
+      source can READ the target's model -- reading is not submitting.
+    composition:
+      # A submission of a submission is not a thing. The target of `submits_to` is the engine, and
+      # the engine submits to nobody, so a multi-hop question comes back unlicensed rather than false.
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
+  hands_to:
+    description: The source passes the candidate change to the target as the next stage of applying it.
+    absence: >
+      No hand-off between the two is represented. It does NOT follow that they are unrelated: this
+      model represents the route a candidate takes, not every call either component makes.
+    composition:
+      # The route composes: if the engine hands to the validator and the validator hands to the
+      # store, the candidate reaches the store. That is a meaningful question, and the only
+      # composing one this model licenses.
+      path: allowed
+    properties:
+      symmetric: false
+      acyclic: true
+
+  records_in:
+    description: The source writes an entry the target keeps.
+    absence: No entry written by the source is represented in that target.
+    composition:
+      # A record of a record is not represented here, and composing two of these edges would assert
+      # nothing.
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
+# ---------------------------------------------------------------------------
+# THE identity namespace. Ids are immutable (V2).
+#
+# `transaction-engine` is the entity BOTH models name: the graph model lists it among the components
+# and the machine declares `entity: transaction-engine`. That is the `machine-of-entity`
+# correspondence, and it is what the Learn guidance's §8 draws as one connecting line.
+#
+# `validator` carries the second correspondence. `executes_in_state` names the lifecycle state during
+# whose occupancy the validator runs, so a structural answer can name a behavioral state -- the
+# `state-of-entity` entry in the graph dialect's census, checked by V38 on both implementations.
+# The reference is written in its qualified form because that is the form that cannot become
+# ambiguous when a second machine lands.
+# ---------------------------------------------------------------------------
+entities:
+
+  transaction-engine:
+    type: service
+    label: Transaction Engine
+    notes:
+      # The machine's rationale lives here. `CanonMachine` has no `annotation` field, so `notes:` on
+      # a machine would load as nothing -- the honest workaround document-processing and worker-queue
+      # already use, not the intended home.
+      - id: transaction-lifecycle-rationale
+        kind: rationale
+        text: >
+          The transaction-lifecycle machine represents what can happen to one proposed change: the
+          states it passes through, validation as the only route to a verdict, and whether the base
+          it captured is still current when the verdict is taken. It represents no duration and no
+          deadline, so no question about when a verdict arrives has a reading here. That is not an
+          oversight -- MAGE declares no fairness assumption (DESIGN-v02-semantics-261004.md §11), so
+          a model that forced a verdict would have to declare the thing that forces it.
+      - id: change-pipeline-rationale
+        kind: rationale
+        text: >
+          The change-pipeline model represents the components one candidate change passes through and
+          the order of the hand-off. It has no notion of a verdict and cannot say whether a candidate
+          is ever adopted; asking it whether a transaction commits is a category error, because
+          commitment is a property of an execution and this model represents no executions.
+      - id: shared-identity
+        kind: comment
+        text: >
+          Both models name this entity. The machine declares `entity: transaction-engine` and the
+          graph model lists it among the pipeline's components, which is what makes the two
+          reductions of one engine rather than two unrelated diagrams.
+      - id: a-binding-is-not-a-merge
+        kind: comment
+        text: >
+          The binding states a correspondence and nothing more. The graph model still omits the
+          order a transaction passes through its states, and the machine still omits which components
+          exist -- and neither omission is repaired by the other model being present. A reader who
+          expects the pair to answer every question either one answers has read the binding as a
+          merge.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Model one transaction against a shared workspace twice -- as the components a candidate
+        change passes through, and as the lifecycle the change itself follows -- so that a state
+        machine describes a structural entity, so that a stale base refusing to commit is a checkable
+        safety property, and so that the starvation execution the specification draws is a reachable
+        configuration rather than a picture.
+      rationale: MAGE-provided example, transaction-workspace, version 1.
+
+  proposer:
+    type: agent
+    label: Proposer
+    notes:
+      - id: proposer-is-either-party
+        kind: comment
+        text: >
+          A human or an agent; the model does not distinguish them, because the question it answers
+          -- who may submit a candidate change -- has the same answer either way. The distinction
+          lives in the workbench's capability registry, not here.
+
+  validator:
+    type: service
+    label: Validator
+    properties:
+      # The `state-of-entity` join: the validator runs while the transaction occupies `proposed`.
+      # V38 resolves this on both implementations, so a reference that named no state is a finding
+      # rather than a silently inert property.
+      executes_in_state: transaction-lifecycle.proposed
+
+  workspace-store:
+    type: store
+    label: Workspace Store
+    notes:
+      - id: store-holds-the-authoritative-system
+        kind: comment
+        text: >
+          What the workbench serves. It is the end of the hand-off route, and the reason
+          `commit-requires-validation` is worth pinning: a candidate that reached this store without
+          passing validation would be an unvalidated authoritative model.
+
+  audit-log:
+    type: store
+    label: Audit Log
+    notes:
+      - id: audit-log-is-not-a-stage
+        kind: comment
+        text: >
+          Written by the engine on every verdict, and deliberately NOT on the hand-off route: a
+          candidate does not pass THROUGH the audit log on its way to the store. `records_in` forbids
+          path composition for that reason, so a multi-hop question through it comes back unlicensed
+          rather than inventing a route.
+
+machines:
+
+  # -------------------------------------------------------------------------
+  # One proposed change, from submission to verdict.
+  #
+  # Five states and one boolean, which is the whole state vector. The interesting window is `valid`:
+  # the candidate has passed validation and the verdict is not yet taken, and that window is where
+  # both of the specification's hard questions live -- P3 (can a stale base commit?) and P5 (does
+  # every proposal eventually reach a verdict?).
+  # -------------------------------------------------------------------------
+  transaction-lifecycle:
+    entity: transaction-engine
+    purpose:
+      question: >
+        What can happen to one proposed change over time, and can it commit against a base that is
+        no longer current?
+      represents:
+        - the states one proposed change passes through
+        - validation as the only route to a verdict
+        - commit and refusal as the two verdicts
+        - whether the base the change captured is still current
+        - that a validated change is adopted by a separate step, which nothing in the model forces
+      # NOTE: V24 checks `omits` only against a GRAPH model's vocabulary -- `checkMeaning` iterates
+      # `system.models` and never `system.machines`. test/examples.test.ts implements the missing
+      # check for these examples so this list cannot decay into decoration.
+      omits:
+        - how long any state lasts, and any deadline on the verdict
+        - the refusal causes other than a stale base and a failed validation
+        - the operations the change carries, and the per-operation apply loop
+        - undo, redo and the hypothesis branch
+        - concurrent changes and their interleaving
+        - which components exist, and which of them writes the authoritative store
+    initial: idle
+    states:
+      idle:
+        description: No change proposed. Nothing has been submitted.
+      proposed:
+        description: >
+          A candidate change is submitted and the base it was computed against is captured.
+          Validation runs during this state, which is what `validator` declares.
+      valid:
+        description: >
+          The candidate passed validation and the verdict is not yet taken. The window §27's
+          counterexample sits in.
+      committed:
+        description: The candidate was adopted. Terminal -- this model follows one change, not a session.
+      refused:
+        description: The candidate was rejected. Terminal, for the same reason.
+    variables:
+      base_current:
+        type: boolean
+        initial: true
+        description: >
+          Is the base this change captured still the one the workspace serves? A finite domain is
+          mandatory (V17) and a boolean is the smallest one that makes the P3 question decidable: it
+          says whether the premise the change was computed against still holds, and nothing more.
+          Which revision it was is Document Processing's kind of question, not this one's.
+    transitions:
+
+      # Index 0. The proposer submits and the base is captured in the same step. Capturing it
+      # separately would add a configuration this model has no question about.
+      - from: idle
+        to: proposed
+        label: propose
+
+      # Index 1. The workspace moves on underneath an in-flight change. GUARDED so it can fire at
+      # most once: `base_current` is a boolean, so a second advance would assert nothing new, and the
+      # guard is what makes `base-can-keep-advancing` answer refuted. That pairing -- one self-loop
+      # that is not repeatable and one that is -- is the lesson `repeatable-cycle` exists for.
+      - from: proposed
+        to: proposed
+        label: base_advances
+        requires:
+          base_current: true
+        effects:
+          # QUOTED. The published schema types an effect as a STRING expression, and a bare `false`
+          # is a schema finding `python3 validate.py` reports while the TypeScript side accepts it:
+          # `canonicalize` stringifies a scalar effect, so the two agree about the MEANING and
+          # disagree about the shape. `src/engine/expr.ts` reads "false" as the boolean, which is the
+          # case its header calls out.
+          base_current: "false"
+
+      # Index 2. §6's `validate`, unchanged.
+      - from: proposed
+        to: valid
+        label: validate
+
+      # Index 3. Validation failed. §30's P2 needs `refused` reachable and §6's sketch has no edge
+      # into it; this is the first of the two, and it is reachable with the base still current --
+      # so a refusal is NOT evidence of staleness.
+      - from: proposed
+        to: refused
+        label: reject
+
+      # Index 4. THE step §27's counterexample repeats, and the one addition here that is a modeling
+      # DECISION rather than a gap being filled.
+      #
+      # Unguarded and effect-free, on purpose. It represents the system continuing to run with a
+      # validated change unadopted -- the gap between `window.mage` handing out a verdict-less
+      # transaction and anything taking the verdict. MAGE assumes no fairness and this model declares
+      # no deadline, so nothing forces the next step to be `commit`. A machine WITHOUT this edge
+      # would silently assert that a validated change is adopted immediately, which is a claim about
+      # scheduling that no part of this model is entitled to make.
+      #
+      # Two consequences, both deliberate. `validated-transaction-can-wait-indefinitely` holds, with
+      # a lasso, because the configuration genuinely repeats. And when the LTL evaluator lands, §30's
+      # P5 -- G(proposed -> F(committed or refused)) -- is REFUTED over this machine, with this edge
+      # as the counterexample: §11 admits every execution and assumes no fairness, so the trace that
+      # takes this step forever is admitted. The author's §30 tension says a starvation
+      # counterexample a student can see is the stronger lesson. This edge is what makes it visible.
+      - from: valid
+        to: valid
+        label: await_adoption
+
+      # Index 5. §6's `commit`, with the guard P3 is about. The ONLY edge into `committed`, which is
+      # what makes `commit-requires-validation` decidable: a candidate reaches the store through
+      # validation or not at all.
+      - from: valid
+        to: committed
+        label: commit
+        requires:
+          base_current: true
+
+      # Index 6. The Learn guidance's §5 figure branches `commit` and `refuse` off `valid`, and this
+      # is the second branch. Guarded as the exact complement of index 5, which is what makes the
+      # pair total: a validated change whose base has moved has a verdict available, and it is this
+      # one.
+      - from: valid
+        to: refused
+        label: refuse_stale
+        requires:
+          base_current: false
+
+models:
+
+  change-pipeline:
+    type: graph
+    label: Change Pipeline
+    purpose:
+      question: >
+        Which components take part in applying a proposed change, and which of them can write to the
+        authoritative workspace?
+      represents:
+        - the components one candidate change passes through
+        - who may submit a candidate, and to whom
+        - the hand-off order from the engine to the authoritative store
+        - which component runs during the lifecycle's validating state
+        - the audit entries the engine writes on a verdict
+      # Checked against this model's real vocabulary (V24). The first entry is the purposeful
+      # omission that makes the pairing with the machine necessary rather than decorative: this
+      # model draws the route and says nothing about whether a candidate ever travels it.
+      omits:
+        - whether a candidate change is ever adopted, and in what order its states occur
+        - what a candidate change contains
+        - how long any hand-off takes
+        - concurrent changes and their interleaving
+        - what the store does with a candidate once it is adopted
+    entities: [proposer, transaction-engine, validator, workspace-store, audit-log]
+    notes:
+      - id: change-pipeline-is-a-route-not-a-schedule
+        kind: comment
+        text: >
+          Every relation here is a design fact that does not change as a transaction runs: who may
+          submit, which component is handed the candidate next, where the engine writes its entries.
+          Nothing here moves. That is why the pair of models is needed for any question about a
+          verdict, and why the machine is the one that carries `base_current`.
+      - id: audit-log-is-off-the-route
+        kind: comment
+        text: >
+          The engine writes to the audit log and hands the candidate to the validator, and those are
+          different relation types with different composition declarations. A reader asking whether
+          the candidate reaches the store must get the hand-off route, not a route that passes
+          through a log, and `records_in` forbidding path composition is what guarantees it.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Declare the components a candidate change passes through and the order of the hand-off, tie
+        the validating component to the lifecycle state during which it runs, and keep the audit
+        entries off the hand-off route so a composed question cannot travel through them.
+      rationale: MAGE-provided example, transaction-workspace, version 1.
+    relations:
+
+      - id: proposer-submits-to-engine
+        from: proposer
+        to: transaction-engine
+        type: submits_to
+
+      - id: engine-hands-to-validator
+        from: transaction-engine
+        to: validator
+        type: hands_to
+      - id: validator-hands-to-store
+        from: validator
+        to: workspace-store
+        type: hands_to
+
+      - id: engine-records-in-audit-log
+        from: transaction-engine
+        to: audit-log
+        type: records_in
+
+# ---------------------------------------------------------------------------
+# Saved queries. Expected outcomes live in expected-results.yaml -- one source of truth, because the
+# fixture also carries the models each question needs and the evidence it must produce.
+#
+# Every form used below ships a verdict path today: `reach`, `invariant`, `repeatable-cycle`,
+# `transition-live` and the graph `path`. No query carries an LTL formula, a requirement construct or
+# a quantity aggregation -- see the header's "What this example CANNOT be asked yet".
+# ---------------------------------------------------------------------------
+queries:
+
+  # The Learn guidance's §5, first question, and §30's P1. `holds` with a trace witness: the student
+  # sees the execution, not just the word.
+  transaction-can-commit:
+    name: A proposed change can reach Committed
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        transaction-lifecycle.state: committed
+
+  # §5's second question, and §30's P2. Reachable by two routes -- a failed validation and a stale
+  # base -- which is why the fixture pins the state and not the path.
+  transaction-can-be-refused:
+    name: A proposed change can reach Refused
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        transaction-lifecycle.state: refused
+
+  # The safety question, asked as reachability with `avoid`. `refuted` under exhaustive coverage
+  # establishes it: `commit` is the only edge into `committed` and it leaves from `valid`, so no
+  # reachable execution gets there while avoiding validation. The first declared modification adds a
+  # second edge and the answer flips -- which is the guidance's §10 climax, as a transaction.
+  commit-without-validating:
+    name: A proposed change can be committed without ever being Valid
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        transaction-lifecycle.state: committed
+      avoid:
+        transaction-lifecycle.state: valid
+
+  # §30's P3, in the form that denotes a universal claim over every reachable configuration. The
+  # spec files P3 under safety LTL; `invariant` is the shipped form with the same meaning over a
+  # finite transition system, and it is what the acceptance suite can state today.
+  #
+  # Held non-vacuously: `committed` is reachable and `base_current: false` is reachable, so the
+  # conjunction is satisfiable in the state vector and the transition structure is what rules it out.
+  committed-base-is-current:
+    name: A change never commits against a base that is no longer current
+    kind: behavior
+    quantifier: forall
+    behavior:
+      form: invariant
+      predicate:
+        not:
+          all-of:
+            - transaction-lifecycle.state: committed
+            - transaction-lifecycle.base_current: false
+
+  # §27's counterexample configuration, asked in the only form that denotes it today.
+  # `repeatable-cycle` asks for a genuinely repeated CONFIGURATION, and `await_adoption` repeats one:
+  # unguarded, effect-free, so the post-state equals the pre-state.
+  #
+  # This is NOT the temporal claim. It says the configuration §27 draws is reachable and repeatable;
+  # it does not say an execution stays there forever, because MAGE has no infinite-trace operator
+  # yet. The two statements get the same counterexample picture and different evidence.
+  validated-transaction-can-wait-indefinitely:
+    name: A validated change can sit unadopted indefinitely
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: repeatable-cycle
+      target:
+        transaction-lifecycle.state: valid
+
+  # The honest companion, and the reason one machine ships both answers. `base_advances` is also a
+  # self-loop, and it is NOT repeatable: it advances a bounded variable, so the configuration after
+  # it differs from the configuration before and the guard refuses a second pass. Same form, same
+  # machine, opposite answer -- which is how a reader learns that `repeatable-cycle` is a question
+  # about configurations rather than about edges.
+  base-can-keep-advancing:
+    name: The base can go on being superseded while one change is in flight
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: repeatable-cycle
+      target:
+        transaction-lifecycle.state: proposed
+
+  # THE cross-model question, and the one neither model answers alone. Which component runs during
+  # `proposed` is the pipeline's fact, declared as `validator`'s `executes_in_state`; whether
+  # `proposed` is reachable at all is the lifecycle's. The join is the `state-of-entity`
+  # correspondence, and the engine resolves it the same way V38 validates it.
+  validator-runs-on-some-execution:
+    name: The component that validates a candidate runs on some reachable execution
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        transaction-lifecycle.state: proposed
+
+  # Structural, over the one relation type here that licenses composition. The witness is a two-hop
+  # path, which is how a reader can tell the answer is not the degenerate src == dst one -- and it
+  # travels through the validator rather than through the audit log, because `records_in` forbids
+  # composition.
+  candidate-reaches-the-authoritative-store:
+    name: A candidate change reaches the authoritative workspace store
+    kind: graph
+    quantifier: exists
+    graph:
+      form: path
+      relation: hands_to
+      from: transaction-engine
+      to: workspace-store
+
+  # The purposeful omission, made executable -- and it is the TEMPORAL one, which is what makes it
+  # worth shipping here rather than in a unit test.
+  #
+  # "Does every proposed change eventually reach a verdict?" has no reading over this system, and the
+  # reason is structural rather than a missing feature: §11 admits every execution with no fairness
+  # assumption, so an eventually-claim needs something in the MODEL that forces the step. A deadline
+  # would be that something. This system declares no deadline machine, the engine refuses, and the
+  # refusal names the vocabulary a reader would have to add.
+  verdict-is-eventually-forced:
+    name: Something forces a verdict on a validated change
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: transition-live
+      transition:
+        machine: verdict-deadline
+        sync: deadline_expires
+
+views:
+
+  lifecycle:
+    label: Transaction lifecycle
+    machines: [transaction-lifecycle]
+    direction: top-to-bottom
+
+  pipeline:
+    label: Change pipeline
+    models: [change-pipeline]
+    direction: left-to-right
+    show-properties: [executes_in_state]
