@@ -19,6 +19,19 @@ Node 24, from `.nvmrc`:
     npm run build        # esbuild -> dist/workbench.js + dist/analysis.worker.js
     npm run all          # the three above, in that order
 
+One gate is MANUAL, because it reads the network:
+
+    npm run check:published   # every URL we publish serves, at the base DERIVED from `origin`
+
+It refuses to guess its target: the base comes from the `origin` remote (a `CNAME` wins if one is ever
+published), never from an argument, because a hand-typed base once returned 404 on all five pages of a
+healthy site. `--base <url>` overrides it for a preview and says loudly that the result is not about
+the published site. Both `npm run all` and the Pages workflow exclude it deliberately — it measures
+the deploy that already shipped rather than the tree being gated, and a hermetic tier must not go red
+on a DNS failure. Those exclusions are declared in `test/gate-reachability.test.ts`; the URL list and
+the base-URL derivation live in `scripts/published-pages.ts`, and adding a published page means adding
+a row there.
+
 Two more gates live outside npm. `validate.py --self-test` asserts that each semantic rule still fires
 on a model that violates it; `validate.py <model>` validates one `.mage.yaml`. The `pre-push` hook runs
 all of them when a push touches `workbench/`, and the Pages workflow runs them on every push to main.

@@ -80,11 +80,38 @@ interface Exemption {
 }
 
 /**
+ * The published-site probe, which NO runner invokes — the one gate here whose coverage claim is a
+ * documented manual command rather than another runner. Declared once and used on BOTH axes, because
+ * its two reasons compose rather than conflict.
+ *
+ * It fetches the LIVE published site. That disqualifies it from the default gate, which must stay
+ * hermetic and offline-runnable, and from the publishing workflow, which is the run that DEPLOYS the
+ * site — probing the live site from inside it either races CDN propagation or asserts the previous
+ * deploy. Neither axis has a step to point at, so the evidence is the README's gate section, the
+ * place a human is told to run it. If it is later wired in as a post-deploy step, DELETE the
+ * publishing-axis entry: an exemption for a gate that is reached is itself reported.
+ *
+ * Its hermetic half is not exempt and needs no entry. The base-URL derivation, the content-shape rule
+ * and the negative control live in `test/published-pages.test.ts`, which both axes already run.
+ */
+const MANUAL_PUBLISHED_PROBE: Exemption = {
+  evidenceIn: "workbench/README.md",
+  evidence: "npm run check:published",
+  reason: "It fetches the live published site, so it cannot sit in a hermetic tier — the default gate "
+    + "must not go red because a DNS lookup failed — and it measures the deploy that already shipped "
+    + "rather than the tree under test. The publishing workflow is the run that deploys, so probing "
+    + "the live site from inside it races the Pages CDN. No runner invokes it: the evidence is the "
+    + "README gate section where a human is told to, and whether it belongs in CI as a post-deploy "
+    + "step is an open decision rather than an oversight.",
+};
+
+/**
  * Gates the DEFAULT gate deliberately does not reach.
  *
- * Both need Puppeteer and a bundled Chromium resolved from `book/node_modules`, which this package
- * does not and will not depend on: `workbench/node_modules` is a symlink shared across parallel
- * agent worktrees, so an install here mutates trees this package does not own.
+ * The two browser tiers need Puppeteer and a bundled Chromium resolved from `book/node_modules`,
+ * which this package does not and will not depend on: `workbench/node_modules` is a symlink shared
+ * across parallel agent worktrees, so an install here mutates trees this package does not own. The
+ * third entry is excluded for an unrelated reason — it reads the network; see its declaration above.
  */
 const EXEMPT_FROM_ALL: Readonly<Record<string, Exemption>> = {
   "test:browser": {
@@ -102,17 +129,19 @@ const EXEMPT_FROM_ALL: Readonly<Record<string, Exemption>> = {
       + "both the book/ Chromium and axe-core from the repo-root node_modules. Runs unconditionally "
       + "in CI with receipt assertions on both suites.",
   },
+  "check:published": MANUAL_PUBLISHED_PROBE,
 };
 
 /**
  * Gates the PUBLISHING runner does not invoke by name.
  *
- * One entry, and it is the case a naive name-matching rule gets wrong in both directions: CI runs
- * the typecheck as `npx tsc --noEmit` rather than `npm run check`. Matching names would flag it
- * while passing a workflow that named a script whose body had been gutted, so the evidence is the
- * command, not the name.
+ * `check` is the case a naive name-matching rule gets wrong in both directions: CI runs the typecheck
+ * as `npx tsc --noEmit` rather than `npm run check`. Matching names would flag it while passing a
+ * workflow that named a script whose body had been gutted, so the evidence is the command, not the
+ * name. `check:published` is the other shape — a gate no runner carries at all; see its declaration.
  */
 const EXEMPT_FROM_PUBLISH: Readonly<Record<string, Exemption>> = {
+  "check:published": MANUAL_PUBLISHED_PROBE,
   check: {
     evidenceIn: PUBLISH_RUNNER,
     evidence: "npx tsc --noEmit",
