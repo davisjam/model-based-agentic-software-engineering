@@ -378,8 +378,17 @@ Depends only on the landed kernel. Owns no DOM, no YAML, no rendering.
    history variable, and the rewrite is **disclosed** in `result.compilation` (V23). No past-time
    operators in the engine.
 
-**Must not:** implement fairness or liveness (explicit non-goal); add a fourth outcome; return a
-bare boolean anywhere.
+**Must not:** implement fairness (still an explicit non-goal — `DESIGN-v02-semantics-261004.md` §11);
+add a fourth outcome; return a bare boolean anywhere.
+
+> **SUPERSEDED on liveness, 261004.** This line read "implement fairness **or liveness**" and the
+> liveness half no longer holds: the v0.2 semantics specification requires LTL including liveness
+> (`DESIGN-v02-semantics-261004.md` §8, §30). Fairness remains out of scope, which is why the two were
+> separated rather than both struck — and §11 accepts the consequence openly: with every execution
+> admitted, a liveness property can be refuted by a trace that postpones an enabled transition
+> forever, and the counterexample is the lesson. The outcome ban stands: LTL verdicts use the existing
+> four-valued `Outcome`, and `exhausted` stays the SPARQL evaluator's word (`src/sparql/eval.ts:71`),
+> not a fifth.
 
 ## 3. Phase D — YAML adapter + transactions  *(disjoint: `src/yaml/**`, `src/transaction/**`)*
 

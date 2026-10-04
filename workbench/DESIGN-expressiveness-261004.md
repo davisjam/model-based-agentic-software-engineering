@@ -254,7 +254,14 @@ this section is written to be foldable into it.
    finding the two-query idiom confusing — observable once refused asks are logged. The
    starvation lasso this form would surface is itself the best fairness lesson a teaching tool can
    give.
-5. **[REJECTED for v0.x] Full LTL/Büchi plus fairness declarations.** Re-open only if MAGE models
+5. **[SUPERSEDED 261004 — LTL now REQUIRED; fairness still rejected] Full LTL/Büchi plus fairness
+   declarations.** `DESIGN-v02-semantics-261004.md` §8 requires real LTL with Büchi as *implementation
+   machinery rather than a model form* (§9), and §11 keeps fairness out of scope — so this row's
+   verdict splits: the LTL half is reversed, the fairness half stands. The reasoning below remains the
+   honest cost accounting and the measurements elsewhere in this paper are unaffected. What the
+   analysis undervalued is pedagogy: §27 makes an animated counterexample trace a headline feature,
+   which is a benefit this section weighed only as implementation cost. Original text follows.
+   **[ORIGINAL VERDICT: REJECTED for v0.x]** Re-open only if MAGE models
    grow protocol-like machines where response properties are the *primary* question and rung 4's
    fairness-free refutations prove insufficient in practice. That is a different tool posture;
    it requires rewriting SEMANTICS §7/§11 and PLAN's must-not before any code, and it drags the full
