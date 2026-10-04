@@ -1327,6 +1327,18 @@ export function checkRegistryClosure(
   return out;
 }
 
+/** An entity id from a service name: the dots a service path carries are not id syntax here. */
+const serviceEntity = (service: string): string => `service.${service.replace(/\./g, "-")}`;
+
+/**
+ * A query `name`, as a YAML scalar.
+ *
+ * `JSON.stringify`, because a summary may contain `": "` — a mapping indicator that would make the
+ * emitted file unparseable — and a JSON string is a valid YAML double-quoted scalar. The same reason
+ * the entity labels above are emitted this way.
+ */
+const queryName = (text: string): string => JSON.stringify(text);
+
 /**
  * The affordance model, generated from the registry (§21).
  *
@@ -1334,6 +1346,42 @@ export function checkRegistryClosure(
  * that drifts — the failure the registry exists to prevent. Emitting a `.mage.yaml` means the
  * workbench's own architecture is queryable in the workbench, which is the dogfooding claim made
  * real rather than asserted.
+ *
+ * ## Why it emits QUERIES, and what they are for
+ *
+ * It did not, for its first two days, and an audit named the consequence exactly: forty-four
+ * entities, eighty-one edges, and nothing that could be refuted. A projection with no assertion is
+ * held to its generator by the staleness gate and to nothing else, so the model could be read as a
+ * claim about the product while making none.
+ *
+ * The queries below are that model's own voice. One per capability per interface, plus one per
+ * capability for the service it routes through — the three conjuncts of the question the model's
+ * `purpose` already declares ("both a human and a machine affordance over the same application
+ * service") — and two controls. `test/model-coverage.test.ts` evaluates every one of them through
+ * the engine on every run, so a capability that loses an affordance now changes what this file
+ * ASSERTS and not merely what it describes.
+ *
+ * **It does not move UX-I1's authority.** `npm run check:parity` reads the registry directly, holds
+ * the violation count under `PARITY_VIOLATION_CEILING`, and fails the publishing workflow. That stays
+ * where it is, and it is the gate that decides whether a one-sided capability may ship. What the
+ * model adds is a second, independent reading of the same fact through the IR — so a generator bug
+ * that emitted the wrong edge would be caught by the query that disagrees with it, which the
+ * registry-side gate cannot see because it never looks at the emitted file.
+ *
+ * **An `expect` here RECORDS the registry's state; it does not endorse it.** A capability with no
+ * wired human affordance emits `expect: refuted` for that interface, because that is what the model
+ * then says, and a model whose assertions contradicted its own content would be unusable. The
+ * judgement that `refuted` is a VIOLATION lives in `checkAffordanceParity` above. Both are true at
+ * once and they are different claims.
+ *
+ * **`direct`, not `predecessors`.** The sibling generator (`scripts/gen-example-coverage.ts`) asks
+ * `predecessors` of a capability, and that is right there: each capability is its own query's target,
+ * so one witness answers one question. Here the shared node is the INTERFACE — twenty-six
+ * capabilities point at `human-interface` — so `predecessors` of `human-interface` would be satisfied
+ * by any single surviving edge and would report full coverage of a one-capability surface. That is
+ * the vacuous pass the components model keeps a positive control against. `direct` with both
+ * endpoints named asks about one capability and one interface, and it is single-hop, so
+ * `afforded-by`'s `composition.path: forbidden` does not refuse it.
  */
 export function generateAffordanceModel(registry: readonly Capability[] = CAPABILITIES): string {
   const lines: string[] = [
@@ -1379,7 +1427,7 @@ export function generateAffordanceModel(registry: readonly Capability[] = CAPABI
 
   const services = [...new Set(registry.map((c) => c.service))].sort();
   for (const svc of services) {
-    lines.push(`  service.${svc.replace(/\./g, "-")}:`, "    type: application-service",
+    lines.push(`  ${serviceEntity(svc)}:`, "    type: application-service",
       // JSON.stringify, because a label may contain ": " -- a YAML mapping indicator that would
       // make the emitted file unparseable. JSON strings are valid YAML double-quoted scalars.
       `    label: ${JSON.stringify(svc)}`, "");
@@ -1399,7 +1447,7 @@ export function generateAffordanceModel(registry: readonly Capability[] = CAPABI
     "      omits: [individual buttons, keyboard shortcuts, visual layout, pointer gestures]",
     "    entities:");
   for (const e of ["human-interface", "machine-interface",
-    ...services.map((s) => `service.${s.replace(/\./g, "-")}`), ...registry.map((c) => c.id)]) {
+    ...services.map(serviceEntity), ...registry.map((c) => c.id)]) {
     lines.push(`      - ${e}`);
   }
   lines.push("    relations:");
@@ -1410,8 +1458,97 @@ export function generateAffordanceModel(registry: readonly Capability[] = CAPABI
     if (anyWired(c.machine)) {
       lines.push(`      - { from: ${c.id}, to: machine-interface, type: afforded-by }`);
     }
-    lines.push(`      - { from: ${c.id}, to: service.${c.service.replace(/\./g, "-")}, type: implemented-by }`);
+    lines.push(`      - { from: ${c.id}, to: ${serviceEntity(c.service)}, type: implemented-by }`);
   }
-  lines.push("");
+
+  // One assertion per capability per interface, one per capability for the service it routes
+  // through, and two controls. `expect` makes a saved query an ASSERTION: `test/model-coverage.test.ts`
+  // evaluates every one through the engine, so a registry change that reaches this file changes what
+  // the model CLAIMS rather than only what it describes. See generateAffordanceModel's doc comment
+  // for why these are `direct` rather than `predecessors`, and for what UX-I1 authority this does and
+  // does not carry.
+  lines.push("",
+    "# The model's own assertions. One per capability per interface, one per capability for the",
+    "# application service it routes through -- the three conjuncts of the purpose question above --",
+    "# plus a refutation control and a refusal control. GENERATED with everything else: an assertion",
+    "# someone could edit without touching the registry would be the second source of truth again.",
+    "#",
+    "# `expect` RECORDS what the registry says. A capability with no wired affordance emits",
+    "# `expect: refuted` for that interface, because that is then what this model says; the judgement",
+    "# that `refuted` is a UX-I1 VIOLATION belongs to `npm run check:parity`, which reads the registry",
+    "# directly and fails the build. Two different claims, both true at once.",
+    "queries:",
+    "");
+
+  for (const c of registry) {
+    for (const side of [
+      { key: "human", entity: "human-interface", label: "human interface", wired: anyWired(c.human) },
+      { key: "machine", entity: "machine-interface", label: "machine interface (window.mage)", wired: anyWired(c.machine) },
+    ]) {
+      lines.push(
+        `  afforded-by.${side.key}.${c.id}:`,
+        `    name: ${queryName(`${c.summary} is reachable through the ${side.label} -- ${c.id}`)}`,
+        "    kind: graph",
+        "    quantifier: exists",
+        `    expect: ${side.wired ? "holds" : "refuted"}`,
+        "    graph:",
+        "      form: direct",
+        "      relation: afforded-by",
+        `      from: ${c.id}`,
+        `      to: ${side.entity}`,
+        "");
+    }
+    lines.push(
+      `  implemented-by.${c.id}:`,
+      `    name: ${queryName(`${c.id} resolves to the ${c.service} service both interfaces invoke`)}`,
+      "    kind: graph",
+      "    quantifier: exists",
+      "    expect: holds",
+      "    graph:",
+      "      form: direct",
+      "      relation: implemented-by",
+      `      from: ${c.id}`,
+      `      to: ${serviceEntity(c.service)}`,
+      "");
+  }
+
+  // The refutation control. Every assertion above that a wired capability generates is a `holds`, and
+  // a `holds` is carried by a witness -- so an adjacency bug that answered `holds` for any pair at
+  // all would satisfy all fifty-two of them and look like full parity. This pair is deliberately
+  // unrelated: one interface does not afford the other, and nothing in the registry can ever draw
+  // that edge. It is the counterpart of `ui-can-reach-kernel` in the components model, inverted.
+  lines.push(
+    "  control.interfaces-do-not-afford-each-other:",
+    `    name: ${queryName("CONTROL: the human interface is afforded by the machine interface")}`,
+    "    kind: graph",
+    "    quantifier: exists",
+    "    expect: refuted",
+    "    graph:",
+    "      form: direct",
+    "      relation: afforded-by",
+    "      from: human-interface",
+    "      to: machine-interface",
+    "");
+
+  // The refusal control. `afforded-by` declares `composition.path: forbidden` and the prose above it
+  // explains what a missing edge means -- both are inert claims unless something asks a multi-hop
+  // question and is refused. `from` is the registry's first capability, so this tracks the registry
+  // rather than naming a capability that could be deleted out from under it.
+  const first = registry[0];
+  if (first !== undefined) {
+    lines.push(
+      "  control.afforded-by-does-not-compose:",
+      `    name: ${queryName(`CONTROL: ${first.id} reaches the machine interface through a chain of afforded-by edges`)}`,
+      "    kind: graph",
+      "    quantifier: exists",
+      "    expect: unlicensed",
+      "    graph:",
+      "      form: reachability",
+      "      relation: afforded-by",
+      `      from: ${first.id}`,
+      "      to: machine-interface",
+      "");
+  }
+
   return lines.join("\n");
 }

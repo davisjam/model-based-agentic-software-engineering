@@ -232,6 +232,27 @@ models:
 
 # ---------------------------------------------------------------------------
 # Property statements are versioned artifacts alongside the models that decide them.
+#
+# Every query here carries `expect`, which makes it an ASSERTION rather than an exploration: the
+# statement and the verdict it must produce live on the same five lines, and `test/model-coverage.test.ts`
+# re-derives each outcome through the engine on every run. Two reasons the exemplar demonstrates
+# this rather than leaving the verdicts to its tests.
+#
+#   Co-location catches an INVERTED POLARITY. `publish-requires-review` is a name that reads like the
+#   invariant and a statement that asserts its negation -- the question form is "can a document be
+#   published unreviewed", so the healthy answer is `refuted`. Two queries in this project's
+#   declarative-properties wave had exactly that inversion, and what surfaced them was writing the
+#   expected verdict beside the statement. A reader who sees `expect: refuted` under this name has to
+#   reconcile the two, which is the work that finds the inversion.
+#
+#   The DENOMINATOR becomes derived. `test/engine-behavior.test.ts` and `test/engine-graph.test.ts`
+#   pin these same five by hand, naming each one -- so a sixth query added here would be answered by
+#   nobody and nothing would say so. Those literals stay: they pin evidence SHAPE (a lasso's cycle, a
+#   counterexample's final configuration, a refusal's structured cause), which no `expect` can carry.
+#
+# The three example SYSTEMS under examples/*/ do the opposite deliberately -- their outcomes live in
+# `expected-results.yaml` beside the evidence each must produce. docable has no fixture file, so for
+# this one `expect` is the only place a verdict can live.
 # ---------------------------------------------------------------------------
 queries:
 
@@ -240,6 +261,9 @@ queries:
     kind: behavior
     # Existential: a witness trace would prove it CAN happen.
     quantifier: exists
+    # And none exists: `published` is reachable only out of `reviewed`, so avoiding `reviewed` makes
+    # it unreachable and the search is EXHAUSTIVE. `refuted` here is the review requirement holding.
+    expect: refuted
     behavior:
       form: reach
       target:
@@ -252,6 +276,11 @@ queries:
     kind: behavior
     # Universal: exhaustive satisfaction proves it; a counterexample refutes it.
     quantifier: forall
+    # The counterexample is real: `acquire` moves both, then the worker releases on its own while the
+    # document is still processing. This model VIOLATES the custody invariant, and recording that as
+    # `refuted` is the honest reading -- an exemplar whose every statement held would teach nothing
+    # about what a counterexample looks like.
+    expect: refuted
     behavior:
       form: invariant
       predicate:
@@ -264,6 +293,11 @@ queries:
     name: The document can return to waiting after failing
     kind: behavior
     quantifier: exists
+    # `holds`, with a lasso as the witness. Note what the pair with `repeatable-cycle` establishes:
+    # the retry loop is RE-ENTERED and is not repeatable, because `retry_count` strictly advances --
+    # so the same target under the other form answers `refuted`. The verdict belongs beside the form
+    # for that reason: it is the form, not the target, that decides the question being asked.
+    expect: holds
     behavior:
       # Evidence is a LASSO: a prefix plus the repeating cycle.
       form: recurrence
@@ -274,6 +308,11 @@ queries:
     name: Restricted content reaches a public-only service
     kind: graph
     quantifier: exists
+    # `holds`: remediation carries `classification: restricted` and flows to gateway, which declares
+    # `accepts: public`, and restricted outranks public in the shared ordered domain (V20). A leak the
+    # model finds, stated as a leak. `validate.py` declines this one for scope -- it has no join
+    # evaluator -- so the engine is the only side that decides it, and this `expect` is what holds it.
+    expect: holds
     graph:
       form: path
       relation: data_flow
@@ -290,6 +329,10 @@ queries:
     name: The API transitively owns the parser
     kind: graph
     quantifier: exists
+    # `unlicensed`, and that is the pedagogy: an `expect` may name a REFUSAL, so "the model declines
+    # to answer" is an assertable verdict rather than a failure to get one. `refuted` would claim no
+    # ownership chain exists, which this model never says either way.
+    expect: unlicensed
     graph:
       form: reachability
       relation: owns

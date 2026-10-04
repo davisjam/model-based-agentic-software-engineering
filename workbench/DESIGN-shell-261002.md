@@ -1947,3 +1947,151 @@ compared what `describe()` advertises against what any test drives.
   into the CI log, not the run. It is left to whoever owns the workflow this session rather than
   edited from here, and the coverage numbers are the ones most worth publishing, because three
   numbers are this gate's entire output.
+
+### 9o. Every model's own assertions, evaluated in CI — as built
+
+Appended by the wave that closed gaps 2, 5 and 6 of `AUDIT-system-models-261004.md`. The audit's
+finding is the premise and it was re-verified at this tree before anything was written: a
+`model-ir → ui` edge injected into `models/workbench-components.mage.yaml` passes the entire CI gate
+set. Exit 0, every node test green. The nine `expect:` assertions that are the components model's
+whole reason to exist were enforced by `validate.py` from `hooks/pre-push` — the author's laptop, on
+a path a hurried commit skips — and by nothing a push had to clear.
+
+- **The hole was in the parity test's SHAPE, not in either tool.** `validate.py` evaluates every
+  graph query carrying `expect` and emits a failing `QUERY` finding on a mismatch; it works.
+  `test/parity.test.ts` runs it on every push and compares the two engines' ANSWERS per query, which
+  is a strong check and the wrong one for this: it declares `QUERY` a Python-only asymmetry, filters
+  it out of the cleanliness assertion, and compares TS against Python rather than either against
+  `expect`. Two tools agreeing on a verdict nobody expected was a passing build. So the fix is not a
+  second validator — it is one test that compares each outcome to the file's own declared
+  expectation, which the parity suite had deliberately never done.
+
+- **`test/model-coverage.test.ts` generalises `test/examples.test.ts:893`,** the pattern the audit
+  called the strongest in the repo, from one generated model to every tracked one. Denominator from
+  `git ls-files '*.mage.yaml'`, minus the three shipped example systems. Every subject's saved queries
+  are answered through `Workspace` on `realPorts`, and `checkExpectation` — the engine's own
+  function, the one `validate.py` mirrors — decides met-or-not. **First run:**
+
+  | model | queries | asserted | met | exempt | outcomes |
+  |---|---|---|---|---|---|
+  | `examples/docable.mage.yaml` | 5 | 5 | 5 | 0 | holds 2, refuted 2, unlicensed 1 |
+  | `models/example-coverage.mage.yaml` | 24 | 24 | 24 | 0 | holds 22, refuted 2 |
+  | `models/workbench-affordances.mage.yaml` | 80 | 80 | 80 | 0 | holds 78, refuted 1, unlicensed 1 |
+  | `models/workbench-components.mage.yaml` | 9 | 9 | 9 | 0 | holds 1, refuted 7, unlicensed 1 |
+
+  The components model's nine PASS, which was the prediction: the audit measured them passing under
+  `validate.py`, and the gap was that CI never asked. What changed is that asking is now on the
+  protected path — under mutation the gate names five of the nine by id with both verdicts, because
+  one injected kernel edge breaks every isolation claim downstream of it at once.
+
+- **`checkExpectation` rather than `outcome === expect`, and the difference is one arm.** A
+  hand-written comparison reads `expect: true` as an unmet expectation of the string `"true"`. The
+  engine's function names it as V25 — a YAML 1.1 loader coerced a word into a boolean — which is a
+  YAML problem wearing a semantics costume, and the negative control drives that arm specifically.
+
+- **A model with zero queries is a FINDING.** That is gap 6's enforcement, and it is why the fix had
+  to be a gate rather than a note: `workbench-affordances` carried 44 entities, 81 edges and nothing
+  refutable, held to its generator by a byte-exact staleness gate and to nothing else. An empty
+  numerator over an empty denominator reads as full coverage, which is the vacuous pass this project
+  keeps finding in new costumes.
+
+- **The exclusions carry EVIDENCE, like `gate-reachability`'s exemptions.** The three example systems
+  keep their verdicts in `expected-results.yaml`, beside the coverage kind and evidence shape each
+  query must produce — a richer pin than `expect` can hold. Each system file says so in its own prose,
+  and that sentence is the exclusion's evidence, so dropping the fixture discipline fails this gate
+  even though no path moved. The set derives from `SHIPPED_EXAMPLE_IDS`, so a fourth example is
+  excluded by landing. `examples/docable.mage.yaml` is deliberately NOT excluded: it has no fixture
+  file, so `expect` is the only holder its verdicts can have.
+
+- **`EXEMPTION_CEILING = 0`, measured.** Every query in every subject model carries `expect`, so the
+  honest ceiling is zero and raising it is a deliberate edit to a named constant — the discipline
+  `PARITY_VIOLATION_CEILING` and `test/browser/agent-coverage.test.mjs` already hold. Nothing here
+  was exempted to reach green.
+
+- **What a green run does NOT prove, and why that sentence is shipped rather than commented.** It
+  proves verdict-sensitivity of each model's own queries. It does not prove any model corresponds to
+  the code: nothing derives the import graph from `src/`, and the audit showed by mutation that a
+  real `import { checkPurposeVisibility } from "../ui/invariants.ts"` in `src/ir/types.ts` passes
+  everything everywhere. That is audit gap 1 and a later wave. Because a reader meets this gate as
+  three numbers in a CI log, the limit travels in the receipt beside the claim and a test asserts
+  both are present — a disclaimer only a source comment carries is a disclaimer that does not reach
+  the person reading the number.
+
+#### Gap 5 — docable's five verdicts, re-derived rather than copied
+
+The audit's table predicted refuted / refuted / holds / unlicensed / holds. Measured by running them:
+`publish-requires-review` **refuted**, `processing-implies-custody` **refuted**,
+`document-can-return-to-waiting` **holds**, `restricted-reaches-public` **holds**,
+`transitive-ownership` **unlicensed**. Every one agrees with the audit and with the literals in
+`test/engine-behavior.test.ts` and `test/engine-graph.test.ts`. **No third inverted polarity.** Those
+literals stay: they pin evidence SHAPE — a lasso's cycle, a counterexample's final configuration, a
+refusal's structured cause and `missing` list — which no `expect` can carry.
+
+`publish-requires-review` is worth naming because it looks like an inversion and is not. The name
+reads as the invariant and the statement asserts its negation, so the healthy verdict is `refuted` —
+exactly the reconciliation work co-location forces on a reader, and the work that surfaced the two
+real inversions in §9j.
+
+- **And adding the fifth `expect` found a defect in `validate.py`.** `restricted-reaches-public`
+  carries a `where` clause, which that tool declines for scope — it has no join evaluator — and the
+  decline is reported through the same `outcome: unlicensed` channel a genuine V7 refusal uses.
+  `check_queries` compared it against `expect` anyway and reported `expected holds, got unlicensed`,
+  failing the pre-push model pass. So a correct expectation could not be written at all, on the one
+  query where the engine is the only side that decides. The fix is one branch: `unsupported-form`
+  means *I did not evaluate this*, and an unevaluated query is skipped rather than judged.
+  `test/parity.test.ts` already encodes that rule — it excuses exactly the `unsupported-form` rows
+  and requires each to carry the `where` clause explaining itself — so this makes the two agree.
+  Every other refusal cause is still compared: `composition-forbidden` is a verdict `validate.py`
+  decides, and `transitive-ownership` asserting `unlicensed` is held by it on both sides.
+
+#### Gap 6 — the model that asserted nothing now carries 80 assertions
+
+`generateAffordanceModel()` emits them with everything else, because an assertion someone could edit
+without touching the registry is the second source of truth the generator exists to remove. One per
+capability per interface (52), one per capability for the service it routes through (26), and two
+controls — the three conjuncts of the question the model's `purpose` already declared, which it had
+never answered.
+
+- **`direct`, not the `predecessors` the audit suggested.** The suggestion is right for
+  `gen-example-coverage.ts`, where each capability is its own query's target, so one witness answers
+  one question. Here the shared node is the INTERFACE: twenty-six capabilities point at
+  `human-interface`, so `predecessors` of `human-interface` is satisfied by any single surviving edge
+  and would report full parity of a one-capability surface. `direct` names both endpoints, asks about
+  one capability and one interface, and is single-hop — so `afforded-by`'s
+  `composition.path: forbidden` does not refuse it.
+
+- **Two controls, because fifty-two `holds` assertions share one failure mode.** A `holds` is carried
+  by a witness, so an adjacency bug answering `holds` for any pair at all would satisfy every one of
+  them and look like full parity. `control.interfaces-do-not-afford-each-other` asserts `refuted` over
+  a pair the registry can never draw — the inverse of the components model's `ui-can-reach-kernel`
+  positive control. `control.afforded-by-does-not-compose` asserts `unlicensed` over a multi-hop
+  question, which makes the relation type's `composition.path: forbidden` and its `absence` prose
+  into live claims rather than inert ones.
+
+- **It does not move UX-I1's authority, and the `expect` values say what they mean.**
+  `npm run check:parity` still reads the registry directly, still holds the count under
+  `PARITY_VIOLATION_CEILING`, and still fails the publishing workflow. A capability with no wired
+  affordance would emit `expect: refuted` for that interface, because that is then what the model
+  says — the judgement that `refuted` is a VIOLATION belongs to `checkAffordanceParity`. Two
+  different claims, both true at once. What the model adds is a second reading of the same fact
+  through the IR, so a generator bug emitting a wrong edge is caught by the query that disagrees with
+  it — which the registry-side gate cannot see, because it never reads the emitted file.
+  `validate.py` evaluates all 80 independently and agrees with the engine on every one.
+
+- **Registered by name in `test/gate-reachability.test.ts`.** `AGENT_SURFACE_GATES` became
+  `PINNED_GATE_FILES` on its third entry: the list is the repo's coverage MEASURES, and two of the
+  three were browser-tier agent gates only by accident of which wave landed first. The glob audit
+  beside it cannot make this claim — a deleted file is matched by no pattern and reported by nothing —
+  so each entry pins existence plus the script whose glob reaches it.
+
+**Gates at this tree:** `tsc` clean; node **926/926** (921 + this file's 5), 0 skipped; `check:parity`
+0 violations over 26 capabilities; build clean; smoke 3/3; browser 114/114; a11y **112/112** — the
+load-sensitive `keyboard.test.mjs` debounce test passed here, so this wave saw the quiet-machine
+outcome §9n describes rather than the flake. `validate.py` clean on all seven tracked models and
+`--self-test` PASS.
+
+**Left for the author.** This wave did not touch `models/workbench-components.mage.yaml`: gap 3's
+re-founding and gap 4's header are held for a ruling. Its nine queries are now evaluated in CI, which
+is gap 2 closed against the model as it stands — and the honest reading is that the gate holds the
+model to ITSELF, so the drift between the model and today's imports that the audit enumerated is
+untouched and still invisible to every gate. Gap 1 is the one that closes it.

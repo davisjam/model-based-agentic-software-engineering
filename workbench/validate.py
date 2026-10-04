@@ -1538,6 +1538,18 @@ def check_queries(doc: dict, f: Findings, verbose: bool = True) -> None:
 
     A query WITHOUT `expect` is exploratory: reported, never failed. A query WITH `expect` is an
     assertion about the architecture, and a mismatch is a build failure.
+
+    A query this tool DECLINES FOR SCOPE is a third case, and conflating it with the second was a
+    defect. `unsupported-form` means "I did not evaluate this" -- an unevaluated form, or a `where`
+    clause, whose join belongs to the workbench engine -- and the decline is reported through the
+    same `outcome: unlicensed` channel a genuine V7 refusal uses. Comparing that against `expect`
+    reads the decline as the model's answer, so docable's `restricted-reaches-public` was reported as
+    `expected holds, got unlicensed` while the engine answered `holds` and two engine tests pinned it.
+    The result was that a correct `expect:` could not be written at all: adding one failed the
+    pre-push model pass. `test/parity.test.ts` already encodes the right rule -- it excuses exactly
+    the `unsupported-form` rows and requires each to carry the `where` clause explaining itself -- and
+    this now agrees with it. Every other refusal cause is still compared: `composition-forbidden` is a
+    verdict this tool decides, and `transitive-ownership` asserting `unlicensed` is held by it.
     """
     asserted = 0
     for qid, q in (doc.get("queries") or {}).items():
@@ -1546,6 +1558,10 @@ def check_queries(doc: dict, f: Findings, verbose: bool = True) -> None:
                 print(f"  [skip] {qid}: behavioral and quantity queries are evaluated by the workbench engine, not here")
             continue
         res = run_graph_query(doc, q)
+        if res.get("cause") == CAUSE_UNSUPPORTED_FORM:
+            if verbose and "expect" in q:
+                print(f"  [skip] {qid}: declined for scope -- {res['refusal']}")
+            continue
         outcome, expect = res["outcome"], q.get("expect")
         if isinstance(expect, bool):
             # YAML 1.1 again: a bare `expect: false` arrives as a Python bool, never matching an
