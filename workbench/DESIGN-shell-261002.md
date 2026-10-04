@@ -1085,3 +1085,120 @@ watched a proxy, one is a ruling that had been made and not executed.
   passes through a region the control does not live in." Restored, 44 of 44 paths walk. No element id
   moved, so SH-I8's hard flip is untouched: this is a declaration catching up with a page that was
   always built this way.
+
+### 9j. The persistent Learn entry — a requirement that fell between two waves
+
+Appended by the wave that landed the header entry `requirements-learn-261002.md` specifies, moved
+the operational panes' explanatory prose onto Learn, and wrote the check that would have caught the
+gap. **§9i is left for whichever of the two sibling waves live in these files at the time lands
+first;** this section takes the next letter after it rather than racing for one.
+
+- **Nothing regressed. A requirement was dropped, and the diagnosis matters more than the fix.** The
+  Learn page landed whole — `learn.html`, the derivation under `src/learn/`, the gallery built from
+  the model-type registry, the UX-I9 content checks. The NOT ANSWERABLE route landed too. The
+  requirement's own first sentence did not: "The global header SHALL contain a persistent Learn
+  entry: `MAGE  Workspace  Learn … ⋯`". This file's §5 put Learn inside a ⋯ menu alongside Export,
+  Run all, System Browser and Advanced query; `index.html` and `src/ui/shell/header.ts` both carried
+  a comment saying that menu "is a later wave's"; **that wave never ran, and the menu does not
+  exist.** So Learn was not hidden behind an overflow. There was no overflow. The only route from the
+  application to the page was `#ask-absent-learn`, inside `#askbar`, which SH-I1 unmounts on a
+  pristine page — reachable only after loading a model and asking a question the system's declared
+  types cannot answer.
+
+- **The ⋯ menu was the wrong home for it, and the requirement says so.** `persistent` and `inside a
+  collapsed overflow` are contradictory. The menu stays a later wave's for the other four controls;
+  Learn comes out of that list, and §5's table should be read as four entries rather than five.
+
+- **Why every gate stayed green, which is the finding.** UX-I9 constrains what the Learn page SAYS —
+  one section per registry entry, every visual the real renderer, every suggested composition one
+  the kernel evaluates — and `test/learn-content.test.ts` plus the smoke tier hold that tightly.
+  Nothing asserted the page is REACHABLE. The capability registry could not have caught it either:
+  Learn is navigation, not a semantic capability, so UX-I1 has no opinion about it, and
+  `npm run affordances` emits an unchanged model after this change. A page can be perfectly derived
+  and perfectly unreachable, and the suite had no axis on which to notice.
+
+- **What landed: a link, in the bar, in every state.** `<a id="learn" href="learn.html">` inside a
+  `<nav class="pages">` beside the title, with `Workspace` as its sibling and `aria-current="page"`
+  on whichever page is open — the same two-entry nav `learn.html` already shipped, so the two pages
+  hold one bar between them rather than one page having chrome the other invented. A LINK and not a
+  button, because it navigates: middle-click, ⌘-click and the context menu all have to behave, and a
+  click handler on a button gives none of that. It is never `disabled`, which is the substance of
+  `persistent` — Export, Run all, Undo, Redo, Commands and the what-if toggle are all dimmed with
+  nothing loaded (F-2), and the empty state is precisely when a reader needs the surface that
+  explains what a model system is.
+
+- **`src/ui/shell/header.ts` owns it, and owning it is three things.** It resolves `#learn` through
+  `byId` at mount, so a rename blanks the page before first paint and the node tier's page-contract
+  scan covers the id with no list to maintain. It sets the href from `LEARN_PAGE` in
+  `src/app/learn.ts` — the module the refusal panel's link already derives from — so where Learn
+  lives is one value. And its paint calls `assertLearnReachable`, which reports to `console.error`
+  when the entry is hidden, inside a `hidden` ancestor, or no longer pointing at the Learn page. That
+  channel is `main.ts`'s for unbound affordances and for its reason: the browser tier already asserts
+  the page logs no errors of its own, so losing the entry reds a gate that exists. Measured: hiding
+  the nav reds the smoke tier on "index.html logged console errors" as well as on the direct check.
+
+- **The check that was missing, and it is the deliverable.**
+  `test/browser/learn-reachable.test.mjs` drives the rendered page in BOTH empty states — pristine,
+  and the model-less system "Create new model system" produces, which is the state the ruling's
+  screenshot shows — and asserts present, in the banner, rendered (`checkVisibility`), named, not
+  inside a `hidden` ancestor, pointing at `LEARN_PAGE`, reached by Tab, and activated by Enter onto a
+  Learn page that reaches `window.mageLearn.ready` with a non-empty gallery. A last suite asserts the
+  asymmetry the dropped requirement left behind: on a pristine page the refusal route is unreachable
+  and the header entry is not. **Sabotaged four ways before being trusted**, because a grep for the
+  string "Learn" in `index.html` passes all four: the entry deleted (9 of 11 red); the entry moved
+  inside a collapsed `<details>` overflow, which is the shape §5 originally specified (7 red); the
+  entry given `tabindex="-1"`, present and visible and keyboard-unreachable (4 red); the nav
+  `hidden`, which is the author's complaint exactly (7 red, plus the runtime guard).
+
+- **The cheapest three assertions are duplicated into the smoke tier, deliberately.**
+  `test:browser` is declared out of `npm run all` with CI as its evidence
+  (`test/gate-reachability.test.ts`), which would have left a requirement dropped once protected only
+  by a gate an agent does not run before reporting. So presence, renderedness and the href also sit
+  in `smoke.test.mjs`, on a page that gate already has open — no extra browser, no extra page. The
+  keyboard walk, the navigation and the model-less state stay in the deep tier. The `tabindex="-1"`
+  sabotage is the one of the four the cheap rung does not catch, which is the honest boundary of a
+  three-assertion check.
+
+- **The prose moved, and `src/learn/workbench-guide.ts` is where it went.** The ruling: "much of
+  that explanatory prose can probably move into Learn, making the operational panes considerably
+  quieter." Three declared sections — how the workbench is laid out, what a property is, how asking
+  works — built by `src/learn/main.ts` with the same grammar as a gallery section and appended AFTER
+  it, because the landing is the gallery. The division held to: **a pane says what to do HERE; Learn
+  says what it MEANS.** So the models rail keeps "No purposeful model yet. Add one, and state the
+  engineering question it answers" with its `+ Model` row, and the account of what the Inspector
+  shows, what a verdict is, what a bounded search reports, and where each kind of operation lives is
+  on Learn. Four surfaces went quieter: `#ask-help` from five sentences to two, the `+ Add` hint from
+  two to one, the Inspector's empty sentence and its action bar's, and the properties rail's.
+
+- **The move is checked as a MOVE.** Each guide section declares the surface it took prose off and a
+  phrase that must no longer be in it, and `test/workbench-guide.test.ts` reads those files. A copy
+  fails on the day it lands; a later wave restoring the verbose sentence fails then, while Learn is
+  still claiming to own it. That is the control for a change a type system cannot see, and the shape
+  generalises to any "move this text" instruction.
+
+- **One empty state had nothing honest to say, and it was also wrong.** `paintPrincipal`'s null
+  branch read "No model is loaded, so no model is being viewed" — false in the only state that
+  reaches it, because `resolveSubject` falls back to the first model or machine the system declares,
+  so a null principal means a system IS loaded and declares neither. That is the model-less state the
+  ruling is about, and the pane named no next act in it. It now reads "This model system declares no
+  model yet. Add one under + Add above, and it appears here with the engineering question it
+  answers." Nothing was invented: the control it names is the one already on that toolbar.
+
+- **The a11y numbers moved in one place and dropped in none.** Two links join the pristine tab order,
+  so the opening walk pin goes from five stops to seven — `a#skip, a#, a#learn, input#file,
+  button#new-system, select#example-choice, button#example-load` — and the focusable count on the
+  loaded page goes 117 → 119. Everything else held: axe reports 0 violations and the SAME
+  rules-passed in all seven states (39 / 41 / 41 / 20 / 45 / 45 / 45) with identical incompletes, 17
+  keyboard operations proved, 44 of 44 declared paths walked, UX-I1 at 0 over 26. The two added stops
+  are site navigation rather than controls, they sit between the bypass and the ways in because that
+  is where page chrome belongs, and the skip link exists to skip exactly them. The pin that used to
+  be titled "six stops became five" is retitled: what it asserts is that the walk does not reach into
+  the unmounted workspace, and that claim never depended on the number.
+
+- **Left for a later wave, measured rather than guessed.** The ⋯ menu still does not exist and the
+  other four controls still stand in the bar; this change does not open that surface. The banner's
+  CSS rules are still written twice, once per page — `nav.pages` is now the same selector in both, so
+  the duplication is at least spelled identically. And the axe suite's header comment records
+  `index.html` loaded at 48 rules passed where the receipt measures 41; that gap predates this wave
+  and belongs to whichever change made a rule inapplicable, but it is the kind of stale number this
+  file's own discipline says to re-measure rather than inherit.

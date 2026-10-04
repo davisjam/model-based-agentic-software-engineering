@@ -108,7 +108,22 @@
     display: flex; flex-wrap: wrap; gap: .75rem; align-items: center;
     padding: .75rem 1rem; border-bottom: 1px solid var(--rule); background: var(--panel);
   }
-  header h1 { font-size: 1.05rem; margin: 0 auto 0 0; font-weight: 700; }
+  header h1 { font-size: 1.05rem; margin: 0; font-weight: 700; }
+  /*
+    The persistent page nav. `margin-inline-end: auto` moved off the title and onto this, so the
+    brand and the two page entries read as one group at the start of the bar while the toolbar
+    controls stay at the end -- the arrangement `requirements-learn-261002.md` sketches as
+    `MAGE  Workspace  Learn … ⋯`.
+
+    The same three rules over the same markup in learn.html. That duplication is the chrome's, not
+    this nav's: the two pages still each carry their own copy of the banner rules, and sharing them
+    is the shell wave's job the page's own header comment already records.
+  */
+  header nav.pages { margin-inline-end: auto; }
+  header nav.pages a { color: var(--ink); margin-inline-start: .75rem; }
+  /* Accent as INK, which the Learn page measured safe on this ground: `--panel`, not `--bg`. The
+     4.47:1 failure its comment records was the accent on the page ground, behind prose. */
+  header nav.pages a[aria-current="page"] { font-weight: 700; color: var(--accent); }
   button, label.file {
     font: inherit; padding: .4rem .7rem; border: 1px solid var(--rule);
     border-radius: var(--mage-radius-chip); background: var(--panel); color: var(--ink); cursor: pointer;
@@ -397,12 +412,44 @@
 <a class="skip" id="skip" href="#workspace">Skip to the model workspace</a>
 
 <!--
-  The `header` surface. Title, the system's name and size, the two ways in that stay reachable after
-  a load, and the four controls that need a model. The menu DESIGN-shell-261002.md §5 gathers these
-  under is a later wave's; the buttons are where they were.
+  The `header` surface. Title, the persistent page nav, the system's name and size, the two ways in
+  that stay reachable after a load, and the four controls that need a model. The menu
+  DESIGN-shell-261002.md §5 gathers these under is a later wave's; the buttons are where they were.
 -->
 <header role="banner" id="header">
   <h1>MAGE Model Workbench</h1>
+  <!--
+    THE PERSISTENT LEARN ENTRY. `requirements-learn-261002.md`: "The global header SHALL contain a
+    persistent Learn entry: MAGE  Workspace  Learn … ⋯". Learn landed as a page, and the refusal
+    panel below learned to link to it, and this -- the entry the requirement actually specifies --
+    did not: the comment above used to say the ⋯ menu that was to gather Export, Run all, System
+    Browser, Advanced query and Learn "is a later wave's", that wave never ran, and so the only
+    route from the application to Learn was a NOT ANSWERABLE refusal nobody can reach without first
+    loading a model and asking the wrong question. Nothing regressed. A requirement fell between
+    two waves, and no gate noticed, because UX-I9 constrains the Learn page's CONTENT and nothing
+    asserted Learn is REACHABLE from here (§9j).
+
+    NOT behind the ⋯ menu, which is the opposite of what the requirement asks for and is why it is
+    not deferred a second time: `persistent` and `inside an overflow` are contradictory, and the
+    menu is a separate design surface this wave does not open.
+
+    LINKS, not buttons, and never `disabled`. These navigate, so middle-click, ⌘-click, Enter and
+    the context menu all have to do what they do everywhere else -- a button with a click handler
+    gets none of that. And they carry no state: Export, Run, Undo, Redo, Commands and the what-if
+    toggle are all dimmed with nothing loaded (F-2), and the empty state is exactly when a reader
+    needs to understand what a model system is, so the one surface that explains it must be the one
+    control the empty state does not take away.
+
+    TWO ENTRIES, mirroring learn.html's own nav rather than inventing a second spelling for the
+    same bar: the current page is named as well as the other, so a reader can see where they are
+    and `aria-current` says it to AT. A `<nav>` is the honest role and its name is unique against
+    the rail's "Models" (axe landmark-unique, the defect the shell wave shipped and the browser
+    tier found).
+  -->
+  <nav class="pages" aria-label="Workbench pages">
+    <a href="index.html" aria-current="page">Workspace</a>
+    <a id="learn" href="learn.html">Learn</a>
+  </nav>
   <!--
     The system's name and size, beside the title rather than as the first paragraph of a Model
     section. It is what the workspace IS, so it belongs in the chrome that names the workspace.
@@ -591,9 +638,14 @@
     -->
     <details id="add-menu">
       <summary id="add-menu-summary">+ Add</summary>
+      <!--
+        Quieter. The hint explained the whole division of operations — additive here, everything
+        else on the object in the Inspector — from inside a menu of five additive ones. The division
+        is now stated once, on Learn (`src/learn/workbench-guide.ts`, "How the workbench is laid
+        out"), and the menu says only what pressing a row does.
+      -->
       <p class="hint">
-        Each one opens a small dialog for just that operation. Everything else — renaming, setting a
-        property, connecting, deleting — is an action on the thing it concerns, in the Inspector.
+        Each one opens a small dialog for just that operation.
       </p>
       <button id="add-menu-entity" type="button">Entity…</button>
       <button id="add-menu-state" type="button">State…</button>
@@ -729,13 +781,32 @@
   -->
   <section id="askbar" aria-labelledby="askbar-h" hidden>
     <h2 id="askbar-h">Ask about the model system</h2>
+    <!--
+      Quieter, and this one was the loudest: five sentences of semantics above a one-line text
+      field, describing how a verdict is computed to a reader who has not yet asked anything.
+
+      WHAT STAYS is the part that is load-bearing AT THIS FIELD. That the box filters rather than
+      parses, because a reader who types a sentence and gets nothing needs to know why; and the two
+      routes that DO take a sentence, because without them the filter is a dead end. Both are
+      `aria-describedby` for `#ask-text`, so they are read to a screen-reader user on arrival --
+      which is another reason to keep this short.
+
+      WHAT MOVED is the account of what a verdict is and what a bounded search reports: Learn,
+      `src/learn/workbench-guide.ts`, "How asking works" and "What a property is". The ask bar's own
+      answer block still states the grounding and the coverage of every verdict it gives (UX-I5), so
+      nothing a reader needs about a REAL answer depended on this paragraph.
+
+      AND NO LINK INTO LEARN FROM HERE, deliberately. This paragraph is `#ask-text`'s
+      `aria-describedby` target, and a description is flattened to text when it is announced: a link
+      inside one is read as its words with its interactivity dropped, while still standing as a tab
+      stop between the help and the field it describes. Learn is reachable from the header in every
+      state, which is what the persistent entry is for.
+    -->
     <p class="intro" id="ask-help">
       Type to <strong>filter</strong> the questions this model system can answer; the list offers
-      only questions its own models license. What you type is not read as English — for a question
-      in your own words, ask your coding agent (it drives the same workbench through
-      <code>window.mage.ask</code>), or open Advanced query below and state the question formally.
-      A verdict is recomputed on every revision and stored nowhere, and it always says which models
-      established it; a bounded search is reported as inconclusive, never as a no.
+      only questions its own models license. A question in your own words goes to your coding agent
+      (it drives this same workbench through <code>window.mage.ask</code>) or to Advanced query
+      below.
     </p>
     <label class="field" for="ask-text"><span>Ask about the model system…</span>
       <input type="text" id="ask-text" autocomplete="off" aria-describedby="ask-help"></label>

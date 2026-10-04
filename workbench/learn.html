@@ -63,9 +63,13 @@
     display: flex; flex-wrap: wrap; gap: .75rem; align-items: center;
     padding: .75rem 1rem; border-bottom: 1px solid var(--rule); background: var(--panel);
   }
-  header p.wordmark { font-size: 1.05rem; margin: 0 auto 0 0; font-weight: 700; }
-  header nav a { color: var(--ink); margin-inline-start: .75rem; }
-  header nav a[aria-current="page"] { font-weight: 700; color: var(--accent); }
+  header p.wordmark { font-size: 1.05rem; margin: 0; font-weight: 700; }
+  /* `nav.pages`, the same selector index.html carries since the persistent Learn entry landed
+     there. The two pages hold one bar between them, so they spell its rules the same way; the
+     duplication itself is the chrome's, and sharing it is still the shell wave's job. */
+  header nav.pages { margin-inline-end: auto; }
+  header nav.pages a { color: var(--ink); margin-inline-start: .75rem; }
+  header nav.pages a[aria-current="page"] { font-weight: 700; color: var(--accent); }
 
   main { padding: 1rem; max-width: 72rem; margin: 0 auto; }
   section { margin-block-end: 2.5rem; }
@@ -144,7 +148,7 @@
 
 <header role="banner">
   <p class="wordmark">MAGE Model Workbench</p>
-  <nav aria-label="Workbench pages">
+  <nav class="pages" aria-label="Workbench pages">
     <a href="index.html">Workspace</a>
     <a href="learn.html" aria-current="page">Learn</a>
   </nav>

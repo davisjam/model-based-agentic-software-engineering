@@ -1,22 +1,63 @@
 /**
- * The `header` region: the system's name, the two ways in that stay reachable, and Undo/Redo.
+ * The `header` region: the system's name, the persistent page nav, the two ways in that stay
+ * reachable, and Undo/Redo.
  *
  * It owns the toolbar controls and their enabled state, and nothing else. The ⋯ menu
- * `DESIGN-shell-261002.md` §5 puts here — Export, Run all, System Browser, Advanced query, Learn —
- * is a later wave's; the controls it will gather are the buttons below, standing where the flat
- * page had them.
+ * `DESIGN-shell-261002.md` §5 puts here — Export, Run all, System Browser, Advanced query — is a
+ * later wave's; the controls it will gather are the buttons below, standing where the flat page
+ * had them. **Learn is no longer on that list.** `requirements-learn-261002.md` calls its header
+ * entry PERSISTENT, which is the opposite of behind an overflow, so it is a link in the bar and
+ * this module holds it there — see `assertLearnReachable`.
  *
  * What it deliberately does NOT own: the example chooser (Start's, and it travels with a
  * description), the hypothesis bar (the review surface's), and the summary's wording (the view
  * model's). It paints `#summary` because the system's name and size belong beside the title, not
  * because it computes them.
  */
+import { LEARN_PAGE } from "../../app/learn.ts";
 import { NEW_SYSTEM } from "../../app/services.ts";
 import { byId } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
 
+/**
+ * The invariant the dropped requirement cost us: Learn is reachable from this page, in every state.
+ *
+ * `requirements-learn-261002.md` asks for a PERSISTENT entry, and "persistent" is a claim about
+ * every state rather than about the markup — a link the page ships and then hides, dims, or buries
+ * in a region `mountIf` unmounts satisfies the file and not the requirement. The empty state is
+ * where it matters: a reader with no model is the reader who needs to know what a model system is,
+ * and it is also the state in which this bar dims six of its other controls.
+ *
+ * `console.error` is the channel, following `main.ts`'s unbound-affordance report and for its
+ * reason: the browser tier already asserts the page logs no errors of its own, so a header that
+ * loses Learn reds a gate that exists instead of waiting for one to be written. The gate that
+ * states the claim positively, from the rendered page, is `test/browser/learn-reachable.test.mjs`;
+ * this is the runtime half, and it fires in the states no suite thought to drive.
+ */
+function assertLearnReachable(learn: HTMLAnchorElement): void {
+  // `hidden` on the link, `hidden` on any ancestor (a region `mountIf` took away), or an href that
+  // no longer leaves this page. Not `checkVisibility()`: layout is the browser tier's to measure,
+  // and a paint-time reflow read would be a per-frame cost for a claim a probe makes better.
+  const unreachable = learn.hidden
+    || learn.closest("[hidden]") !== null
+    || learn.getAttribute("href") !== LEARN_PAGE;
+  if (!unreachable) return;
+  console.error(`the persistent Learn entry is not reachable from this state — requirements-learn-261002.md `
+    + `asks for a persistent header entry, and #learn is hidden or no longer points at ${LEARN_PAGE}`);
+}
+
 export function mountHeader(ctx: ShellContext): ShellRegion {
   const summary = byId("summary");
+  // Resolved at mount, so a renamed or deleted entry blanks the page before first paint instead of
+  // shipping a header with no route to Learn — and so the node tier's page-contract scan, which
+  // reads every `byId` call site in the shell against index.html, covers the id without anyone
+  // adding it to a list.
+  const learn = byId<HTMLAnchorElement>("learn");
+  // The destination comes from `src/app/learn.ts`, the module the refusal panel's link already
+  // derives its href from — so "where Learn lives" is one value and not three. The markup ships the
+  // same string so the entry works before the bundle evaluates; this is what makes the guard's
+  // href comparison a check of ONE fact rather than of two hand-typed copies agreeing.
+  learn.href = LEARN_PAGE;
   const undo = byId<HTMLButtonElement>("undo");
   const redo = byId<HTMLButtonElement>("redo");
   const exportButton = byId<HTMLButtonElement>("export");
@@ -79,6 +120,10 @@ export function mountHeader(ctx: ShellContext): ShellRegion {
       // before reaching the one that could (`BASELINE-a11y-261002.md` §6, F-2).
       exportButton.disabled = !frame.state.loaded;
       run.disabled = !frame.state.loaded;
+      // And Learn is NOT in that list, which is the whole of what the requirement asks for. Checked
+      // rather than merely omitted: the failure this entry exists to close was a surface nobody
+      // could reach, and an omission is invisible while a check is not.
+      assertLearnReachable(learn);
     },
   };
 }

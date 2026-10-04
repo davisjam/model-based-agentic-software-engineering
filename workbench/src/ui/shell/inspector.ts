@@ -427,9 +427,12 @@ export function inspectSelection(
   if (selected.kind === "none") {
     return {
       state: "empty",
+      // QUIETER, not muter. The instruction and all three routes to it stay; the account of what
+      // the pane then shows moved to Learn (`src/learn/workbench-guide.ts`, "How the workbench is
+      // laid out"), because it describes the application rather than telling a reader standing in
+      // front of an empty pane what to do next.
       message: "Nothing is selected. Select an entity or a relation — in the models rail, the "
-        + "workspace, or through the agent API — and this pane shows what it is, what it carries, "
-        + "the models it appears in, and what its absence would mean.",
+        + "workspace, or through the agent API.",
     };
   }
   if (selected.kind === "unresolved") {

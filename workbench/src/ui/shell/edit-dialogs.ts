@@ -764,10 +764,14 @@ export function mountEditDialogs(ctx: ShellContext, submitEdit: SubmitEdit): Edi
       }
       // The bar says WHY it is empty, because seven disabled buttons with no sentence beside them
       // read as a broken region rather than as a surface waiting for a selection.
+      //
+      // The empty wording said a second time what the pane's own empty sentence says, and then
+      // explained the division of operations between here and `+ Add`. The division moved to Learn
+      // ("How the workbench is laid out"); what is left is the one thing a reader needs at this
+      // spot, which is that the bar is waiting for a selection and additive work is elsewhere.
       actionHint.textContent = contextual.length > 0
         ? "These act on what is selected. Each opens a small dialog for just that operation."
-        : "Select an entity, a relation or a model — here, in the models rail, or in the workspace "
-          + "— and the operations that apply to it appear. Additive operations are under + Add.";
+        : "Waiting for a selection. Additive operations are under + Add.";
 
       for (const { field, node } of legacySelects) {
         const choices = optionsFor(field.source ?? "entities", frame.vm.edit, "");

@@ -103,7 +103,7 @@ after(async () => {
 describe("the tab order itself", () => {
   it("opens on the skip link and then the toolbar, with no unreachable stop in between", async () => {
     await releaseFocus(page);
-    const forward = await tabSequence(page, 5);
+    const forward = await tabSequence(page, 7);
     // Pinned from a FRESH page. Undo, Redo, Export and Run are all disabled with no model loaded,
     // so none appears. Export and Run joined that list when F-2 was fixed: they shipped enabled,
     // which put two controls that could do nothing ahead of the one that could. The remaining
@@ -117,8 +117,16 @@ describe("the tab order itself", () => {
     // move; only the identifier of a stop the page now needs a handle on. The shell wave updated
     // the page without a runnable browser (BASELINE-a11y-261002.md §8 "UNMEASURED") and this pin
     // was the line it owed the first measured run.
+    //
+    // TWO STOPS JOINED, and they are site navigation rather than controls: the persistent page nav
+    // `requirements-learn-261002.md` specifies — `MAGE  Workspace  Learn` — which landed in the
+    // banner after the wave that was to put Learn behind a ⋯ menu never ran. They stand between the
+    // bypass and the ways in because that is where page chrome belongs and because the bypass exists
+    // to skip exactly this; a keyboard user who wants the model presses Enter on the skip link, as
+    // the test below pins. The ways in still come before the model, which is the ordering claim.
     assert.deepEqual(forward, [
-      "a#skip", "input#file", "button#new-system", "select#example-choice", "button#example-load",
+      "a#skip", "a#", "a#learn", "input#file", "button#new-system", "select#example-choice",
+      "button#example-load",
     ], "the opening tab order changed");
     // Backwards too: a one-way tab order traps a keyboard user at the end of the page.
     await pressShiftTab(page);
@@ -126,7 +134,7 @@ describe("the tab order itself", () => {
       "Shift+Tab does not walk back -- focus is one-way");
   });
 
-  it("the pristine walk ENDS at Start -- six stops became five when the shell gated the workspace", async () => {
+  it("the pristine walk ENDS at Start -- the workspace's own controls are not in it", async () => {
     // THE PIN, UPDATED, WITH THE REASON. `BASELINE-a11y-261002.md` §3 measured the pristine walk at
     // eight stops; F-2's fix took it to six by disabling Export and Run with nothing loaded; the
     // sixth was `#diagram-subject`, the Draw menu in the old always-present Diagram section.
@@ -134,7 +142,9 @@ describe("the tab order itself", () => {
     // SH-I1 removes it. The workspace is mounted iff a system is loaded, so on a fresh page the
     // subject chooser is inside a `hidden` region: not in the accessibility tree, not in the tab
     // order, and — the point — not a control a keyboard user reaches before there is anything to
-    // draw. Five stops: the skip link, the file input, Create, the example menu, Load.
+    // draw. That took the walk to five; the persistent page nav took it to seven, and the two it
+    // added are navigation rather than controls (see the pin above). What this test asserts is
+    // unchanged by either number: the walk does not reach into the unmounted workspace.
     //
     // Asserted as ABSENCE-plus-cause rather than by pressing a sixth Tab, because what the browser
     // does at the end of a document's tab ring is the browser's business and not this page's claim.
@@ -149,7 +159,7 @@ describe("the tab order itself", () => {
     assert.ok(subject, "#diagram-subject has left the page entirely -- the Draw menu is the workspace's");
     assert.equal(subject.regionHidden, true, "the workspace region is mounted on an empty workspace (SH-I1)");
     assert.equal(subject.inTabOrder, false,
-      "#diagram-subject is still a tab stop on a pristine page -- the pristine walk is six stops, not five");
+      "#diagram-subject is still a tab stop on a pristine page -- the walk reaches into the unmounted workspace");
   });
 
   it("the skip link is the first stop and lands on the mounted principal surface", async () => {

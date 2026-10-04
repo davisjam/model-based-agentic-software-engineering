@@ -20,8 +20,10 @@ export const PAGES = [
     ready: () => typeof window.mage === "object",
     /**
      * The loaded workspace, with a selection. Loaded, because SH-I1 unmounts every region but
-     * Start on a fresh page -- a pristine workbench has five tab stops and one grid column, so it
-     * can exhibit neither the focus-ring variety nor the 2-D divergence D-2 is about. Selected,
+     * Start on a fresh page -- a pristine workbench has a handful of tab stops and one grid
+     * column, so it can exhibit neither the focus-ring variety nor the 2-D divergence D-2 is
+     * about. (It gained two with the persistent page nav; the argument does not turn on the
+     * count.) Selected,
      * because the renderer draws the un-haloed legend and glyph only under emphasis, and those two
      * texts are the ones the dark theme broke.
      */
