@@ -47,6 +47,7 @@ This plan is the spine; these documents carry detail it should not duplicate.
 | Document | What it holds |
 |---|---|
 | `SEMANTICS.md` | Authoritative semantics, and the authority on its own rule set. |
+| `DESIGN-v02-semantics-261004.md` | **NORMATIVE for v0.2.** The author's verbatim semantics and modeling strategy (§1–§34), plus §35's ruling on how the Workbench stands toward SysML v2 and KerML and §36's corrections to the verbatim text. |
 | `OPEN-DECISIONS.md` | D1–D6, **all ruled.** Kept as the record of what was decided and why. |
 | `DESIGN-quantities-261002.md` | Phase I design. Representation is determined; the analysis layer is not. |
 | `DESIGN-sparql-261002.md` | Phase J layer 2 design. SPARQL as an interface, per the D3 ruling. |
@@ -152,6 +153,38 @@ with enrichment fields outside the compared surface until implemented on both si
 behaviour — it fixes what a future parity-disagreement report says the agent's answer WAS.
 `VALIDATION_AUTHORITY.ratified` flips to `true` accordingly, since that field exists to let a reader
 tell a recommendation from a ruling.
+
+### 0.2b Project-level non-goals, and where the full list lives
+
+`DESIGN-v02-semantics-261004.md` §32 carries the v0.2 non-goal list, and most of it bounds the
+*language* — no CTL\*, no timed automata, no user-defined semantic domains, no generic cross-model
+joins. That list is not duplicated here; §32 is its home. Three of its entries are **project-level
+commitments** rather than language scope, and they belong in the standing record because a later
+wave would otherwise read them as work someone forgot to do.
+
+**No claim that evaluating pinned properties proves model↔implementation correspondence.** §32 names
+it and the 261004 audits touched it directly from both ends. The coverage gate ships the disclaimer
+beside its own numbers (`test/model-coverage.test.ts:118`, `:123`), a test holds the disclaimer in
+place so the count cannot travel without it (`:491`), and §0.2a's model-widening ruling draws the
+same line from the other side: the mechanism enforces conformance to the model and says nothing about
+whether the model was wisely changed. One model has a code join (`workbench-components`, via
+`test/import-graph.test.ts`); every other tracked model has none. Full account:
+`SEMANTICS.md` §13.3 (K1–K5) and §13.5.
+
+**No full information-flow analysis.** The gates hold *edge* properties — a reference or an authority
+exists or is absent. Nothing reasons about which value crosses a sanctioned edge, and a one-line
+re-export through a sanctioned intermediary moves a parse path with both declared edges untouched.
+The bound is stated where it bites, in the components model's sixth query, and recorded in
+`SEMANTICS.md` §13.4. A value-flow control is an open follow-up with its own design owed, not a gap
+in this plan.
+
+**No SysML v2 subset import or export in v0.2 — dated, with a trigger.** Recorded 261004.
+`DESIGN-v02-semantics-261004.md` §35.7 holds the statement; the trigger in short form is **both** of:
+a conformance corpus covering every borrowed construct with at least one fixture, at least one of
+them executed against the reference implementation; **and** a named consumer asking for it. **Review
+at v0.3 planning** whether or not either condition holds. Import ahead of demonstrated
+correspondence is the unsafe order — it would reinterpret someone else's engineering silently, which
+is §10.1's failure shape one layer up.
 
 ### 0.3 As-built, verified by running it
 
@@ -388,7 +421,9 @@ add a fourth outcome; return a bare boolean anywhere.
 > admitted, a liveness property can be refuted by a trace that postpones an enabled transition
 > forever, and the counterexample is the lesson. The outcome ban stands: LTL verdicts use the existing
 > four-valued `Outcome`, and `exhausted` stays the SPARQL evaluator's word (`src/sparql/eval.ts:71`),
-> not a fifth.
+> not a fifth. The v0.2 specification's §17 listed `exhausted` among query results; that is ruled a
+> category slip and corrected in `DESIGN-v02-semantics-261004.md` §36.1, so this must-not stands
+> unqualified.
 
 ## 3. Phase D — YAML adapter + transactions  *(disjoint: `src/yaml/**`, `src/transaction/**`)*
 

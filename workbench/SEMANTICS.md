@@ -1205,6 +1205,20 @@ genuinely open, it is listed in §13.6 rather than decided here.
 This section is part inventory, and an inventory is dated: **the as-built statements below are
 read at commit `7cd9e1e0` (2026-10-04)** and say so where a change in flight would move them.
 
+**Citation staleness, found 261004 at `f3a9991c` and bounded rather than swept.** Three of the files
+this section cites by line changed after `7cd9e1e0` — `test/import-graph.test.ts` (+24/−291),
+`models/workbench-components.mage.yaml` (+48/−13) and `DESIGN-model-query-261002.md` (+56/−13) — so
+**line anchors into those three no longer resolve** and must be re-read before reuse. The symbols and
+the claims hold; the numbers moved. Three are re-verified at `f3a9991c` because the argument leans on
+them: the K1 equality assertion is `test/import-graph.test.ts:363`, the one `checked` record is
+`models/workbench-components.mage.yaml:376-381`, and §G5's heading is
+`DESIGN-model-query-261002.md:753`. The remaining anchors into those three files are left as read at
+`7cd9e1e0` rather than silently renumbered, because a re-pointed citation nobody re-read is the same
+defect wearing a fresher number. Anchors into the other cited files — `src/ir/types.ts`,
+`src/sparql/eval.ts`, `src/ir/canonicalize.ts`, `test/model-coverage.test.ts`,
+`test/capabilities.test.ts`, `test/examples.test.ts`, `validate.py`, `../hooks/pre-push` — were
+re-read at `f3a9991c` and hold.
+
 ### 13.1 The correspondence vocabulary
 
 §8.1 gives the record; the schema admits `kind: asserted | checked | derived | generated` and fixes
@@ -1268,7 +1282,7 @@ does NOT cover"), restated here as the declared contract they were written to be
 **K1 — Mechanically checked (one claim today).** The `dependencies` model's `depends-on` edge set
 corresponds to the observed import graph of `src/`. The gate asserts *equality*, both directions:
 an undeclared import fails, and a declared edge no import creates fails
-(`test/import-graph.test.ts:618`). The scan is a real TypeScript parse with its syntax coverage
+(`test/import-graph.test.ts:363`, re-verified at `f3a9991c`). The scan is a real TypeScript parse with its syntax coverage
 enumerated and its not-covered cases reported rather than skipped (the file's header). The warrant
 is per-run: at every node-tier run, observed = declared. Its bounds:
 
@@ -1372,7 +1386,9 @@ Recorded because deciding them here would be the overreach this section exists t
   while its own note says the *date* records a hand-reading. If a second record ever wants
   `checked` on the strength of re-reading alone, the word is ambiguous between gate-checked and
   human-re-checked. Whatever value is admitted next should be worth exactly what a named mechanism
-  can hold — the schema's sentence, applied to the vocabulary itself.
+  can hold — the schema's sentence, applied to the vocabulary itself. §13.7 adds a third candidate
+  that fits neither sense: a result transcribed from an external oracle nothing in CI can run, whose
+  evidence a reader can reproduce by hand. It is recorded as input here and mints no enum value.
 - **OQ4 — where this bears on §G5, which it does not decide.** §G5
   (`DESIGN-model-query-261002.md:718`) is a layer-2 question: what algebra, if any, composes query
   denotations. The composition line is held by the author pending an explicit semantics discussion,
@@ -1381,3 +1397,36 @@ Recorded because deciding them here would be the overreach this section exists t
   the models it reads, so if composition is ever admitted, the result shape will need somewhere for
   correspondence to travel — as coverage travels with every result today (§7.1). Nothing here
   presumes an answer to §G5 itself.
+
+### 13.7 A second correspondence axis: construct to standard
+
+Every kind above relates a model to the **engineered system**. The 261004 ruling on SysML v2 opens a
+second axis that the same vocabulary measures but the five kinds do not cover: the correspondence
+between a Workbench **construct** and the **standard concept** it realizes. The authority is
+`DESIGN-v02-semantics-261004.md` §35, which carries the ruling, the construct-by-construct mapping,
+and the fixture shape. Recorded here because §13 is where a correspondence claim's worth is stated,
+and a reader asking "what is a MAGE relation, and who says so" needs the axis named.
+
+The ruling in one line: the OMG specifications are normative semantic sources, the official Pilot
+Implementation and standard libraries are reference conformance material, and **the Workbench takes
+no runtime dependency on either**. Its rule — *borrowed semantics must have provenance* — has a
+second half that this section is the natural home for: an extension must be labelled an extension
+and MUST NOT be attributed to SysML or KerML. The relational query vocabulary, the LTL query form and
+the pinned-property mechanism are extensions, and §35.4 says so row by row.
+
+**What this axis is worth today, in the vocabulary above: `asserted`.** A borrowed construct's claim
+that the cited concept means what we say is a person reading a specification on a date — K4 exactly,
+and the house form applies unchanged: state the bound with the claim. It cannot reach `checked`,
+because `checked` requires a gate that re-derives the claim per run, and with no runtime dependency
+nothing in CI can execute the reference implementation. **Borrowed-semantics provenance is `asserted`
+until a conformance fixture exists**, and a fixture then splits the claim rather than promoting it:
+the Workbench half becomes verdict-checked by landing a tracked model with `expect` (K2, via
+`test/model-coverage.test.ts:171`), while the correspondence to the standard stays `asserted` with a
+transcribed warrant. §35.5 works the three enforcement rungs through; §35.6 gives the fixture shape,
+including the field that records whether a correspondence was checked by executing the oracle or by
+reading the specification.
+
+**The axis makes no claim about `src/` today.** Verified at `f3a9991c`: `SysML`, `KerML` and
+`semantic_basis` appear nowhere under `src/`, `test/`, `models/`, or either JSON schema. So §35's
+first effect is to introduce attribution where there is none — the complement of §13.5's list, where
+an absence is recorded so it reads as a ruling.
