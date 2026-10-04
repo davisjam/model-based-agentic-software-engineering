@@ -618,3 +618,49 @@ All other load-bearing premises verified at `f3a9991c`: `Outcome` four-valued at
 `src/ir/types.ts:666`; `exhausted` at `src/sparql/eval.ts:71`; the Worker placement; the SMT
 blocker; the §7.2a one-denotation rule; the no-fairness lines; the superseded-liveness note in
 `PLAN.md:383-391`.
+
+---
+
+## 12. As-built: the P1–P5 suite, and two places this document's expectations were off **[measured]**
+
+§9.4's last bullet and §9.6's gate both require the P1–P5 acceptance suite pinned. It landed at
+`test/acceptance-p1-p5.test.ts`, asked of **two** machines rather than one — the lifecycle model
+§5.2 names, and `examples/transaction-workspace/`, whose machine is the spec's §6 sketch plus the
+three edges §30 itself required. Asking each property of both is what lets the suite catch a model
+drifting from the product: two models of one product that disagreed about an acceptance property
+would be a finding in a model.
+
+**The verdicts, all measured, none read out of §30's prose.** P1 `holds`, P2 `holds`, P3 `holds`,
+P4 `holds`, P5 **`refuted`** — on both machines wherever both can express the property. P5's
+refutation is §5.2's ruling re-established independently on a second machine, which is the strongest
+confirmation available: a different model of the same product, a different starvation cycle, the same
+verdict. The suite is verified sensitive by five sabotages.
+
+Two of this document's expectations did not survive the measurement. Neither changes a ruling.
+
+1. **§5.2 attributes P5's refutation to the concurrent-commit cycle; the lifecycle model admits more
+   than one.** §5.2 reads the counterexample as "the agent's transaction sits holding its base while
+   the second author commits forever." The engine returns a different cycle — the hypothesis
+   open/apply loop — which §5.2's own minimality non-goal anticipated. What follows and is now
+   measured: **no single-edge removal flips P5 over this machine.** Removing `apply_hypothesis`'s
+   adopt effect leaves it refuted, and removing one of `second_author`'s two edges does not compile
+   at all (V12 refuses a declared participant that never participates). So P5 over the lifecycle
+   model has no mutation control, and the suite declares that rather than omitting it. The example
+   machine is where the control lives instead: deleting `await_adoption` flips P5 from `refuted` to
+   `holds`, which turns that edge's own comment — written before the evaluator existed — into a
+   checked claim.
+2. **§9.1's deadend row is exercised by a shipped machine, not only by a hand fixture.** §9.4 asks
+   for "a dead end satisfying t" as a hand-written case, and `test/ltl-bridge.test.ts` declares the
+   halt disjunct unexercised by shipped *saved queries* — still true, because both shipped
+   `repeatable-cycle` targets name states that are never dead ends. But `committed` **is** a
+   reachable dead end on the transaction-workspace machine, which follows one change rather than a
+   session. Ask the question directly and the one sanctioned divergence appears on real shipped data:
+   `repeatable-cycle committed` is refuted on the un-closed graph while `F G ¬committed` is refuted
+   through the biconditional's *second* disjunct. Pinned in the suite.
+
+**P4 has no reading over the example, and that is a verdict rather than a gap.** The example's
+machine declares "undo, redo and the hypothesis branch" among its omissions, so P4's subject is not
+in its vocabulary. Asked anyway, the engine answers `unlicensed` with the missing vocabulary named —
+it does not evaluate an unresolvable atom as false and report `holds` over a question that cannot
+arise. The suite pins the refusal, because that failure mode is the vacuous pass in its purest form:
+a property passing against a model where it cannot be asked.
