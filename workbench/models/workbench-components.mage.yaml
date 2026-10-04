@@ -1,12 +1,17 @@
 # The workbench's own component-dependency model.
 #
 # This is model (1) of the eight. It is not an example for students: it is the architectural
-# constraint the implementation answers to, and `validate.py --queries` enforces it in CI.
+# constraint the implementation answers to. `validate.py` evaluates every query below that carries
+# `expect` and reports a `QUERY` finding on mismatch (validate.py:1536); `--self-test` injects a
+# kernel-to-ui edge and asserts the catch (validate.py:1738-1747). That enforcement is real and it
+# works -- and today it runs only from the pre-push hook (hooks/pre-push:32,194-196), never from CI.
+# There is no `--queries` flag; it has never existed.
 #
 # The whole point is one claim: EVERYTHING DEPENDS INWARD ON THE SEMANTIC KERNEL. `model-ir` is the
 # kernel; it must not reach the UI, the YAML adapter, the renderer, or the agent adapter. If that
-# edge ever appears, a saved query below fails and the build goes red -- before any human notices
-# that the kernel has quietly grown a dependency on a view.
+# edge is ever declared in THIS model, a saved query below catches it on the next push. Nothing yet
+# derives the actual `src/` import graph and checks it against these declarations, so a real
+# kernel-to-view import in code passes untouched today (AUDIT-system-models-261004.md gap 1).
 
 mage: 1
 

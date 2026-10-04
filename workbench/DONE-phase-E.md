@@ -201,6 +201,12 @@ the visual diff the user is performing.
 
 ### 7.3 Recommendation: hybrid, and the integration is already free
 
+> **Superseded 2026-10-03:** the author ruled for `@dagrejs/dagre` instead, behind the same
+> `LayoutEngine` seam (commits `05df440d`, `1b74d89c`) — synchronous and DOM-free, which disqualified
+> ELK's promise-based API outright rather than weighing it against the built-in engine as the
+> analysis below does. The reasoning that follows was correct when written and is kept as the
+> record of why ELK led at the time; it no longer describes the shipped layout engine.
+
 Take ELK for **cold** layout and keep the pinning pass for everything after. That is the
 coordinator's option 2, and the integration cost turned out to be near zero, because an external
 cold layout is **just a complete hint set**:
@@ -229,10 +235,13 @@ hand). On the eight example models those limits are not visible; on a student's 
 will be.
 
 **What it costs:** bundle size is the real one — elkjs is on the order of a megabyte or two
-minified, against a current `dist` of a few tens of kilobytes, in an artifact that must be
-self-contained (no CDN, so it ships in the bundle). Loading it only in the Worker, and only for a
-cold layout, confines that cost; it is still the largest single thing in the project. Second cost:
-it is a J2CL transpile of a Java codebase, so when it misbehaves the stack is not readable.
+minified, against a current `dist` of a few tens of kilobytes [superseded 2026-10-04: `dist/workbench.js`
+is 612 KB raw (598 KiB) / ~189 KB gzipped (`gzip -9`) as built from this worktree today — the
+comparison's scale has shifted well past "a few tens of kilobytes," independent of the ELK-vs-dagre
+decision above], in an artifact that must be self-contained (no CDN, so it ships in the bundle).
+Loading it only in the Worker, and only for a cold layout, confines that cost; it is still the
+largest single thing in the project. Second cost: it is a J2CL transpile of a Java codebase, so when
+it misbehaves the stack is not readable.
 
 **My recommendation, concretely:** adopt ELK for cold layout, behind the hint seam, in a phase of
 its own after G — not now. The built-in engine is good enough for the eight example models, the

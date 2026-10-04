@@ -252,7 +252,7 @@ does, so comments, whitespace, key order and view layout do not change semantic 
 | RDF store | RDF/JS + N3.js | in-memory store; Turtle/TriG export comes nearly free as a debug format |
 | SPARQL | Comunica | queries RDF/JS sources directly; *"start with Comunica rather than writing even a 'small' SPARQL evaluator"* |
 | SMT | z3-solver (WASM) | **feasibility risk — see below** |
-| Layout | ELK.js | layered layouts, ports, Web Worker; computes coordinates only. **Not** Mermaid or PlantUML |
+| Layout | `@dagrejs/dagre` | synchronous, DOM-free; computes rank + order, not pixel coordinates. Landed (`05df440d`, `1b74d89c`), replacing the hand-rolled placer. **Not** ELK.js (promise-only — disqualified by the synchronous-render contract), Graphviz-WASM (async WASM init), or Mermaid/PlantUML |
 | Persistence | IndexedDB | a wrapper is optional and not architecturally important |
 
 ### 1a.2 ⚠️ z3-on-Pages is a verified blocker, not just a spike
