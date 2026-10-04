@@ -52,8 +52,15 @@ test("V23: the compilation is disclosed in the result, first", () => {
   assert.equal(first?.kind, "history-variable");
   assert.match(first?.explanation ?? "", /I added a history variable 'document\.seen_reviewed'/);
   assert.match(first?.explanation ?? "", /set to true on entry to 'document\.reviewed'/);
-  // The cost of the rewrite is stated too, because the coverage figure is otherwise unreadable.
-  assert.match(first?.explanation ?? "", /doubles the configuration space/);
+  // The cost is stated as a BOUND, not a certainty. It used to read "it also doubles the
+  // configuration space", which is a worst-case bound asserted as a fact: measured on this very
+  // model the rewrite grows the space 39 -> 39, because `seen_failed` is implied by
+  // `retry_count >= 1` on every reachable configuration. V23 exists to be honest about the cost of
+  // a rewrite the user did not ask for, so overstating it fails V23 by V23's own standard. The
+  // regex pins "at most" because a bare /doubles the configuration space/ matched the false claim
+  // and the corrected one equally — it never distinguished them.
+  assert.match(first?.explanation ?? "", /at most doubles the configuration space/);
+  assert.match(first?.explanation ?? "", /coverage figure carries the actual count/);
 });
 
 test("the displayed interpretation states the SAFETY property, so `holds` reads correctly", () => {

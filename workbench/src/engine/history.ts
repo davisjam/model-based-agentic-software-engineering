@@ -131,8 +131,8 @@ export function compileHistory(system: CanonicalSystem, q: PastTimeQuery): Res<H
       `${variable.initial}, set to true on entry to '${machineId}.${state}', and the past-time ` +
       `question was rewritten as the safety invariant: in every reachable configuration, ` +
       `${describePredicate(q.consequent)} implies ${reference}. v0.1 has no past-time operators, ` +
-      `so this rewrite is how the question is answered at all. It also doubles the configuration ` +
-      `space${copies}, which the coverage figure reflects.`,
+      `so this rewrite is how the question is answered at all. It at most doubles the configuration ` +
+      `space${copies}; the coverage figure carries the actual count.`,
   };
 
   return ok({ system: rewritten, query, compilation, reference });
