@@ -1,17 +1,108 @@
 # The workbench's own component-dependency model.
 #
-# This is model (1) of the eight. It is not an example for students: it is the architectural
-# constraint the implementation answers to. `validate.py` evaluates every query below that carries
-# `expect` and reports a `QUERY` finding on mismatch (validate.py:1536); `--self-test` injects a
-# kernel-to-ui edge and asserts the catch (validate.py:1738-1747). That enforcement is real and it
-# works -- and today it runs only from the pre-push hook (hooks/pre-push:32,194-196), never from CI.
-# There is no `--queries` flag; it has never existed.
+# This is not an example for students: it is the architectural constraint the implementation answers
+# to. `PLAN.md` §0.2a records which self-models exist and which omissions are deliberate.
 #
-# The whole point is one claim: EVERYTHING DEPENDS INWARD ON THE SEMANTIC KERNEL. `model-ir` is the
-# kernel; it must not reach the UI, the YAML adapter, the renderer, or the agent adapter. If that
-# edge is ever declared in THIS model, a saved query below catches it on the next push. Nothing yet
-# derives the actual `src/` import graph and checks it against these declarations, so a real
-# kernel-to-view import in code passes untouched today (AUDIT-system-models-261004.md gap 1).
+# The claim the model exists to make is one sentence: EVERYTHING DEPENDS INWARD ON THE SEMANTIC
+# KERNEL. `model-ir` is the kernel. It must not reach the UI, the YAML adapter, the renderer, or the
+# agent adapter, and its declared out-degree is zero.
+#
+# ## What holds this model, and what still does not
+#
+# **Its own assertions are evaluated twice, and one of those runs in CI.**
+# `test/model-coverage.test.ts` answers every query below through the engine on every run of the node
+# tier, and the publishing workflow runs that tier (`.github/workflows/pages.yml`). `validate.py`
+# evaluates them again, independently — `check_queries` (validate.py:1536) emits a failing `QUERY`
+# finding on a mismatch, and `--self-test` injects a kernel-to-ui edge and asserts the catch
+# (validate.py:1738-1747); that path runs from `hooks/pre-push`. There is no `--queries` flag; it has
+# never existed.
+#
+# **Nothing checks the model against the code.** Every query below is answered over the relations
+# DECLARED here. No gate derives the real `src/` import graph and compares it, so a genuine
+# kernel-to-view import in code passes the typecheck, the whole node tier and parity — established by
+# mutation, not inferred (`AUDIT-system-models-261004.md` gap 1). Until that gate lands, a green
+# model-coverage run says the model is self-consistent and says nothing about `src/`.
+#
+# ## The file-to-entity join
+#
+# Every entity below carries `provenance.subject.ref`: the path, relative to `workbench/`, of the
+# code it stands for. That is the join the import-graph gate needs, and it is why the refs are not
+# decoration. Two rules make the mapping total and unambiguous:
+#
+#   - **Longest prefix wins.** `src/app/agent-api.ts` resolves to `agent-adapter`, not to
+#     `app-services`, even though it sits inside `src/app/`. A component is a unit of architecture;
+#     which directory holds it is a filing decision.
+#   - **A contained entity's edges lift to its container.** `quant-evaluator` is contained by
+#     `query-engine` and declares no relations of its own, so an observed `src/quant → src/ir` import
+#     is checked as `query-engine → model-ir`, and `src/quant → src/engine` is internal to one
+#     component and checked against nothing.
+#
+# Checked by hand at this commit, by reading the import specifiers of every `src/**/*.ts`. The
+# `dependencies` model carries that as a `correspondence` record rather than repeating it on sixteen
+# entities.
+#
+# ## Re-founded on the observed import graph, 261004
+#
+# The nine entities this model used to carry were drawn before `src/app/`, `src/transaction/`,
+# `src/learn/`, `src/rdf/`, `src/sparql/` and `src/quant/` existed. Six modules had no entity, the
+# worker was declared to depend on one thing and imported five, and `persistence` named no code at
+# all. The drift is measured in `AUDIT-system-models-261004.md` gap 3; what follows is what the
+# re-founding decided, since each decision is the kind a later reader would otherwise re-litigate.
+#
+# **`analysis-worker → yaml-adapter` is architecture, not a violation** (author's ruling, 261004).
+# The worker loads YAML because it derives the IR itself: a message port would flatten the IR's Maps
+# and object identity, so both sides parse the same bytes and the travelling hash proves they agree
+# (`src/worker/analysis.worker.ts`). The worker is a HOST; its own imports are its business.
+#
+#   - **`engine-must-not-reach-yaml` is unchanged.** The prohibition is about the ENGINE's own
+#     dependency closure, as the query is literally written. `query-engine`'s only out-edge is
+#     `→ model-ir`, the kernel has none, and `analysis-worker → query-engine` points UPSTREAM — so
+#     declaring the worker's YAML edge does not make `query-engine` reach `yaml-adapter`. Measured at
+#     this commit: still `refuted`.
+#   - **What the undeclared edge actually violated was the `absence` clause**, not any query. Read
+#     `depends-on`'s `absence` below: an edge not drawn here is an edge the implementation may not
+#     create. Four real worker imports were absent from this model, so the model forbade them while
+#     the code made them. No query could have caught that, because queries read the declarations.
+#     This is the distinction worth carrying away — the queries police the SHAPE of the declared
+#     graph; the `absence` clause is what makes the declared graph a claim about the code.
+#   - **The worker's dangerous direction is held by a test, not by this model.**
+#     `test/worker.test.ts` reads `src/worker/analysis.worker.ts`'s own bytes and asserts it imports
+#     no `../transaction/` and no `../ui/`, reads `protocol.ts`'s reply union and asserts no arm
+#     carries a system, a document or source text back, and drives a negative control through the
+#     same predicate. That is the control. This model points at it and does not duplicate it.
+#
+# **`quant-evaluator` is CONTAINED by `query-engine`, not a peer entity.** `src/engine/` and
+# `src/quant/` import each other (`src/engine/index.ts:25`, `src/engine/check.ts:41-42`,
+# `src/engine/model-types.ts:48` against `src/quant/query.ts`, `requirement.ts`), which at module
+# granularity is a cycle and `depends-on` declares `acyclic: true`. Two ways out, and the measurement
+# picks one: `src/quant/` has exactly ONE importer in the whole tree, `src/engine/`, and it imports
+# back. A module whose only consumer is the module it consumes is not a component in its own right;
+# it is the quantitative half of one. Containment says that, and the alternatives do not — a peer
+# entity would require declaring the cycle, and deleting the entity would lose the subject ref the
+# gate needs to route `src/quant/`.
+#
+# **`shell-surfaces` and `worker-wiring` are entities because the code already treats them as
+# seams.** The directory graph has a second cycle the audit did not reach: `src/app/`, `src/ui/` and
+# `src/worker/` form one strongly-connected component. Both back-edges are type-only and deliberate,
+# and each lands in a file whose own header names it as a boundary — `src/ui/shell/surfaces.ts` is
+# the one table of region identity (it imports nothing, and ten modules under `src/ui/` plus the
+# capability registry read it), and `src/worker/port.ts` is the single touch of the `Worker`
+# constructor, which is what lets every other file in `src/worker/` stay DOM-free and drivable from a
+# node test. Naming them is what keeps two shared declarations from reading as a layering inversion.
+# Stated plainly, because the cycle is what sent anyone looking: the split was prompted by the cycle,
+# and it survives on the independent ground that each file is a declaration seam with its own
+# documented reason.
+#
+# **`persistence` is deleted.** It named no code. There is no `src/persistence/`, no IndexedDB and no
+# localStorage anywhere in `src/` (`AUDIT-v0.1-261002.md:113`); file export is one shell control in
+# `src/ui/shell/header.ts` and file import is another, both routed through `app-services`. Reload
+# persistence is an unsatisfied requirement, recorded there. An entity with no code and two false
+# edges is the brochure this project refuses, and the design intent survives as this paragraph.
+#
+# **`layer` is descriptive.** Seven values — kernel, projection, adapter, authority, host, facade,
+# view. They do not form a total order and the model does not claim one: `app-services` reads a view
+# module's type and `worker-wiring` reads the facade's. The ordering claim the model makes is the
+# narrow one the queries check — the kernel's out-degree is zero and nothing reaches back into it.
 
 mage: 1
 
@@ -27,10 +118,14 @@ relation-types:
 
   depends-on:
     description: >
-      Source may reference target at build time: an import, a type reference, a direct call.
+      Source may reference target at build time: an import, a type reference, a direct call. A
+      type-only import counts, which is why the two deliberate type-only back-edges in `src/` are
+      drawn here rather than argued away.
     absence: >
       No build-time dependency is permitted. The absence is the load-bearing half of this model:
-      an edge that is not drawn here is an edge the implementation may not create.
+      an edge that is not drawn here is an edge the implementation may not create. Nothing yet
+      derives `src/`'s imports and checks them against this edge set, so today the absence binds a
+      reader and an agent, not a build.
     composition:
       # Multi-hop IS the question. "Can model-ir reach ui?" is the architectural invariant, and it
       # is about the transitive closure, not about a single declared edge.
@@ -41,7 +136,11 @@ relation-types:
       acyclic: true
 
   may_mutate:
-    description: Source may mutate the target's state in place.
+    description: >
+      Source may change the target's state: an in-place edit, or making a different value the
+      committed one. Both arms are needed because the IR is immutable per object — a transaction
+      builds a NEW system and swaps it, so "mutates the model" means "decides which system is
+      authoritative", while the YAML document really is edited in place.
     absence: Target is immutable from the source's perspective.
     composition:
       # Mutation authority does not compose: A mutating B, and B mutating C, does not license A to
@@ -58,9 +157,12 @@ entities:
     label: Model IR
     description: >
       The canonical semantic representation, and the only semantic input to analysis. Depends on
-      nothing. Every other component depends on it.
+      nothing: `src/ir/` imports nothing outside itself, verified at this commit. Every other
+      component depends on it.
     properties:
       layer: kernel
+    provenance:
+      subject: { kind: repository, ref: src/ir }
 
   validator:
     type: component
@@ -68,47 +170,121 @@ entities:
     description: Shape pass plus the numbered semantic rules. Reads the IR; never mutates it.
     properties:
       layer: kernel
+    provenance:
+      subject: { kind: repository, ref: src/validator }
 
   query-engine:
     type: component
     label: Query Engine
     description: >
       State-space construction and query execution. Consumes canonical IR only -- never YAML, so
-      formatting cannot reach a result.
+      formatting cannot reach a result. Its quantitative half lives in a sibling directory and is
+      contained here rather than drawn as a peer.
+    contains: [quant-evaluator]
     properties:
       layer: kernel
+    provenance:
+      subject: { kind: repository, ref: src/engine }
+
+  quant-evaluator:
+    type: component
+    label: Quantity Evaluator
+    description: >
+      Aggregates numbers over the configuration space the engine owns: worst-case ends, charges,
+      latency, memory, requirement metrics. Part of the query engine rather than a component beside
+      it -- `src/engine/` is its only importer in the tree, and it imports `src/engine/` back.
+      Declares no relations of its own; its imports are checked as the engine's.
+    properties:
+      layer: kernel
+    provenance:
+      subject: { kind: repository, ref: src/quant }
+
+  rdf-projection:
+    type: component
+    label: RDF Projection
+    description: >
+      Projects the typed IR to an RDF dataset and N-Quads, per `RDF-VOCABULARY.md`. Downstream of
+      the IR and upstream of SPARQL: it reads `CanonicalSystem` and nothing else, and nothing in the
+      kernel knows it exists.
+    properties:
+      layer: projection
+    provenance:
+      subject: { kind: repository, ref: src/rdf }
+
+  sparql-interface:
+    type: component
+    label: SPARQL Interface
+    description: >
+      The licensing gate and the refusal vocabulary, plus a typed query algebra over the projection.
+      The IR decides which questions are licensed, and a refusal names what would license the
+      question -- the two things a raw endpoint over the projection would lose.
+    properties:
+      layer: projection
+    provenance:
+      subject: { kind: repository, ref: src/sparql }
 
   yaml-adapter:
     type: component
     label: YAML Adapter
     description: >
       Concrete syntax boundary. Parses to canonical IR and serializes back with comments and key
-      order preserved. The only component that knows YAML exists.
+      order preserved. The only component that knows YAML exists. It derives an IR; it does not
+      mutate one.
     properties:
       layer: adapter
+    provenance:
+      subject: { kind: repository, ref: src/yaml }
 
-  persistence:
+  transaction-engine:
     type: component
-    label: Persistence
-    description: File import/export plus convenience browser storage. Portable file is the truth.
+    label: Transaction Engine
+    description: >
+      The fixed atomic pipeline -- parse, verify base, apply to a candidate, validate the WHOLE
+      resulting system, commit -- and the revision history that makes undo a pointer move. The only
+      component that decides which system is authoritative.
     properties:
-      layer: adapter
+      layer: authority
+    provenance:
+      subject: { kind: repository, ref: src/transaction }
 
   agent-adapter:
     type: component
     label: Agent Adapter
     description: >
-      Translates between natural language and the command algebra. Emits Transaction, Query or
-      Clarification; it has no privileged write path to the IR.
+      `window.mage`: the live interface a coding agent drives over CDP. Every method delegates to
+      the one facade, so an agent's `transact` is the same call the human toolbar makes and goes
+      through the same validation. It has no privileged write path to the IR. A component inside
+      `src/app/`, resolved ahead of the facade by the longest-prefix rule.
     properties:
       layer: adapter
+    provenance:
+      subject: { kind: repository, ref: src/app/agent-api.ts }
 
   analysis-worker:
     type: component
     label: Analysis Worker
-    description: Web Worker host for the query engine, so exploration never blocks the UI thread.
+    description: >
+      Web Worker host for the engine, so exploration never blocks the UI thread. It derives the IR
+      itself from source text rather than receiving one, which is why it depends on the YAML reader,
+      the RDF projection and the SPARQL interface as well as the engine. It imports no transaction
+      path and returns no model: `test/worker.test.ts` asserts both over this module's own bytes.
     properties:
       layer: host
+    provenance:
+      subject: { kind: repository, ref: src/worker }
+
+  worker-wiring:
+    type: component
+    label: Worker Wiring
+    description: >
+      The page's one line of Worker wiring: the single touch of the `Worker` constructor, the
+      DOM-event adapter, the load-failure listener, and the lazy spawn. Separate from the worker it
+      spawns because everything else under `src/worker/` is DOM-free, which is what lets the
+      boundary be driven by a fake and by a real thread in a node test.
+    properties:
+      layer: adapter
+    provenance:
+      subject: { kind: repository, ref: src/worker/port.ts }
 
   renderer:
     type: component
@@ -116,13 +292,58 @@ entities:
     description: Produces SVG from the IR. Reads only; layout hints are view metadata, never semantics.
     properties:
       layer: view
+    provenance:
+      subject: { kind: repository, ref: src/render }
+
+  shell-surfaces:
+    type: component
+    label: Shell Surfaces
+    description: >
+      The closed surface vocabulary and the one table saying which regions the page builds and which
+      element carries each. Imports nothing. Read by ten modules under `src/ui/` for region identity
+      and by the capability registry for the `NavSurface` type, so a declared navigation path cannot
+      cite a surface nobody built.
+    properties:
+      layer: view
+    provenance:
+      subject: { kind: repository, ref: src/ui/shell/surfaces.ts }
 
   ui:
     type: component
     label: UI
-    description: Editing, selection, navigation, inspection. Depends inward; nothing depends on it.
+    description: >
+      Editing, selection, navigation, inspection: the composition root and the shell's regions.
+      Depends inward, through the facade for every state change. Only the Learn page depends on it,
+      and only for its DOM binders.
     properties:
       layer: view
+    provenance:
+      subject: { kind: repository, ref: src/ui }
+
+  learn-page:
+    type: component
+    label: Learn Page
+    description: >
+      The second page: a gallery of model types with every fact derived and every visual produced by
+      the workbench's own renderer over a shipped example. Nothing depends on it. It reuses the
+      shell's DOM binders rather than copying them, which is the one edge into the view layer.
+    properties:
+      layer: view
+    provenance:
+      subject: { kind: repository, ref: src/learn }
+
+  app-services:
+    type: component
+    label: Application Services
+    description: >
+      The single seam. Human controls, file import and `window.mage` call this and nothing else,
+      which is what makes "there SHALL NOT be an agent-specific model copy" structural rather than a
+      promise. Holds the capability registry -- one typed source of truth for what the workbench can
+      do -- and delegates every state change to the transaction engine.
+    properties:
+      layer: facade
+    provenance:
+      subject: { kind: repository, ref: src/app }
 
 models:
 
@@ -131,27 +352,108 @@ models:
     label: Component dependencies
     purpose:
       question: Which workbench components may depend on which others?
-      represents: [component identity, permitted build-time dependency, mutation authority]
-      omits: [runtime call frequency, module file layout, bundle chunking, test doubles]
-    entities: [model-ir, validator, query-engine, yaml-adapter, persistence, agent-adapter, analysis-worker, renderer, ui]
+      represents: [component identity, component containment, permitted build-time dependency, mutation authority]
+      omits: [runtime call frequency, per-file import sites, value-vs-type import kind, bundle chunking, test doubles]
+    entities: [model-ir, validator, query-engine, quant-evaluator, rdf-projection, sparql-interface, yaml-adapter, transaction-engine, agent-adapter, analysis-worker, worker-wiring, renderer, shell-surfaces, ui, learn-page, app-services]
+    provenance:
+      subject:
+        kind: repository
+        ref: src
+        description: >
+          The import specifiers of every `src/**/*.ts`, resolved to the entity owning each path by
+          the longest-prefix rule in this file's header.
+      correspondence:
+        kind: asserted
+        checked: "2026-10-04"   # quoted: YAML 1.1 would hand the loader a date object, and JSON has no date type
+        note: >
+          Edge set read by hand from today's import graph, both value and type imports, and every
+          module's SCCs computed to confirm the only remaining cycle is the one containment
+          resolves. Nothing re-derives this; the import-graph gate is gap 1 and does not exist yet.
     relations:
-      # --- inward dependencies on the kernel -------------------------------------------------
-      - { id: ui-ir,        from: ui,              to: model-ir,     type: depends-on }
-      - { id: ui-renderer,  from: ui,              to: renderer,     type: depends-on }
-      - { id: ui-agent,     from: ui,              to: agent-adapter, type: depends-on }
-      - { id: ui-worker,    from: ui,              to: analysis-worker, type: depends-on }
-      - { id: ui-persist,   from: ui,              to: persistence,  type: depends-on }
-      - { id: yaml-ir,      from: yaml-adapter,    to: model-ir,     type: depends-on }
-      - { id: val-ir,       from: validator,       to: model-ir,     type: depends-on }
-      - { id: rend-ir,      from: renderer,        to: model-ir,     type: depends-on }
-      - { id: qe-ir,        from: query-engine,    to: model-ir,     type: depends-on }
-      - { id: worker-qe,    from: analysis-worker, to: query-engine, type: depends-on }
-      - { id: agent-ir,     from: agent-adapter,   to: model-ir,     type: depends-on }
-      - { id: persist-yaml, from: persistence,     to: yaml-adapter, type: depends-on }
-      # --- mutation authority ----------------------------------------------------------------
-      # Exactly one component may mutate the authoritative IR, and it is reached only through the
-      # validated transaction path. Note what is ABSENT: no renderer, no agent-adapter, no ui.
-      - { id: yaml-mut-ir,  from: yaml-adapter,    to: model-ir,     type: may_mutate }
+      # --- the kernel, and what reads it ------------------------------------------------------
+      # `model-ir` has no out-edge. That is the model's central claim and `src/ir/` satisfies it.
+      - { id: val-ir,          from: validator,          to: model-ir,           type: depends-on }
+      - { id: qe-ir,           from: query-engine,       to: model-ir,           type: depends-on }
+      - { id: rend-ir,         from: renderer,           to: model-ir,           type: depends-on }
+      - { id: yaml-ir,         from: yaml-adapter,       to: model-ir,           type: depends-on }
+      # --- the projection layer ---------------------------------------------------------------
+      - { id: rdf-ir,          from: rdf-projection,     to: model-ir,           type: depends-on }
+      - { id: sparql-ir,       from: sparql-interface,   to: model-ir,           type: depends-on }
+      - { id: sparql-qe,       from: sparql-interface,   to: query-engine,       type: depends-on }
+      - { id: sparql-rdf,      from: sparql-interface,   to: rdf-projection,     type: depends-on }
+      # --- the mutation path ------------------------------------------------------------------
+      # The engine validates the whole candidate system, so it reaches the validator directly
+      # rather than through the facade.
+      - { id: tx-ir,           from: transaction-engine, to: model-ir,           type: depends-on }
+      - { id: tx-val,          from: transaction-engine, to: validator,          type: depends-on }
+      - { id: tx-yaml,         from: transaction-engine, to: yaml-adapter,       type: depends-on }
+      # --- the analysis host ------------------------------------------------------------------
+      # `worker-yaml` is the edge the 261004 ruling sanctioned: the worker re-derives the IR from
+      # source text (src/worker/analysis.worker.ts), so it holds the reader. It holds no transaction
+      # path, and test/worker.test.ts is what asserts that over the file's bytes.
+      - { id: worker-ir,       from: analysis-worker,    to: model-ir,           type: depends-on }
+      - { id: worker-qe,       from: analysis-worker,    to: query-engine,       type: depends-on }
+      - { id: worker-rdf,      from: analysis-worker,    to: rdf-projection,     type: depends-on }
+      - { id: worker-sparql,   from: analysis-worker,    to: sparql-interface,   type: depends-on }
+      - { id: worker-yaml,     from: analysis-worker,    to: yaml-adapter,       type: depends-on }
+      # `wiring-app` is a type-only edge: src/worker/port.ts returns the `AnalysisPort` the facade
+      # declares, imported rather than restated, because a second declaration of a contract is the
+      # drift `RenderPort` paid for once already.
+      - { id: wiring-worker,   from: worker-wiring,      to: analysis-worker,    type: depends-on }
+      - { id: wiring-app,      from: worker-wiring,      to: app-services,       type: depends-on }
+      # --- the facade -------------------------------------------------------------------------
+      # `app-surf` is the other type-only edge: src/app/capabilities.ts takes `NavSurface` from the
+      # shell's table, so `src/app/` gains no RUNTIME dependency on `src/ui/` and the registry still
+      # loads in a node test with no DOM. Build-time it is a dependency, so it is drawn.
+      - { id: app-ir,          from: app-services,       to: model-ir,           type: depends-on }
+      - { id: app-val,         from: app-services,       to: validator,          type: depends-on }
+      - { id: app-qe,          from: app-services,       to: query-engine,       type: depends-on }
+      - { id: app-rdf,         from: app-services,       to: rdf-projection,     type: depends-on }
+      - { id: app-sparql,      from: app-services,       to: sparql-interface,   type: depends-on }
+      - { id: app-tx,          from: app-services,       to: transaction-engine, type: depends-on }
+      - { id: app-worker,      from: app-services,       to: analysis-worker,    type: depends-on }
+      - { id: app-rend,        from: app-services,       to: renderer,           type: depends-on }
+      - { id: app-surf,        from: app-services,       to: shell-surfaces,     type: depends-on }
+      # --- the agent interface ----------------------------------------------------------------
+      - { id: agent-ir,        from: agent-adapter,      to: model-ir,           type: depends-on }
+      - { id: agent-val,       from: agent-adapter,      to: validator,          type: depends-on }
+      - { id: agent-qe,        from: agent-adapter,      to: query-engine,       type: depends-on }
+      - { id: agent-sparql,    from: agent-adapter,      to: sparql-interface,   type: depends-on }
+      - { id: agent-app,       from: agent-adapter,      to: app-services,       type: depends-on }
+      # --- the view ---------------------------------------------------------------------------
+      # `ui-tx` is the Operation and note vocabulary the review surface and the view model read
+      # (src/ui/view-model.ts, src/ui/shell/review.ts) -- types, not an apply path: every state
+      # change goes through `ui-app`. Note what is ABSENT and real: no ui -> yaml-adapter (the
+      # export control gets its text from the facade, so the view holds no second parse path), no
+      # ui -> rdf-projection, no ui -> validator.
+      - { id: ui-ir,           from: ui,                 to: model-ir,           type: depends-on }
+      - { id: ui-qe,           from: ui,                 to: query-engine,       type: depends-on }
+      - { id: ui-sparql,       from: ui,                 to: sparql-interface,   type: depends-on }
+      - { id: ui-tx,           from: ui,                 to: transaction-engine, type: depends-on }
+      - { id: ui-agent,        from: ui,                 to: agent-adapter,      type: depends-on }
+      - { id: ui-wiring,       from: ui,                 to: worker-wiring,      type: depends-on }
+      - { id: ui-rend,         from: ui,                 to: renderer,           type: depends-on }
+      - { id: ui-surf,         from: ui,                 to: shell-surfaces,     type: depends-on }
+      - { id: ui-app,          from: ui,                 to: app-services,       type: depends-on }
+      # `learn-ui` is the one edge into the shell: the Learn page paints through the workbench's own
+      # DOM binders (src/learn/main.ts -> src/ui/render-dom.ts) so a fix to how a diagram or its
+      # accessible twin paints reaches that page without anyone remembering to port it.
+      - { id: learn-ir,        from: learn-page,         to: model-ir,           type: depends-on }
+      - { id: learn-qe,        from: learn-page,         to: query-engine,       type: depends-on }
+      - { id: learn-rend,      from: learn-page,         to: renderer,           type: depends-on }
+      - { id: learn-ui,        from: learn-page,         to: ui,                 type: depends-on }
+      - { id: learn-app,       from: learn-page,         to: app-services,       type: depends-on }
+      # --- mutation authority -----------------------------------------------------------------
+      # Exactly one component decides which system is authoritative, and it does so only at the end
+      # of the validated pipeline. `tx-mut-yaml` is the system's only in-place mutation: the engine
+      # clones the committed document and edits the clone, and `MageDocument.seal()` makes a
+      # committed revision throw on edit rather than merely discourage it.
+      #
+      # Note what is ABSENT: no renderer, no agent-adapter, no ui, and -- corrected 261004 -- no
+      # yaml-adapter. The adapter DERIVES an IR from text; it never changes which one is committed.
+      # The previous edge said otherwise and predated `TransactionEngine`.
+      - { id: tx-mut-ir,       from: transaction-engine, to: model-ir,           type: may_mutate }
+      - { id: tx-mut-yaml,     from: transaction-engine, to: yaml-adapter,       type: may_mutate }
 
 queries:
 
@@ -191,12 +493,28 @@ queries:
 
   # The query engine's semantic input is canonical IR only. If it ever depends on the YAML adapter,
   # then YAML formatting can reach an analysis result -- the exact slop the pipeline model forbids.
+  #
+  # Left exactly as written through the 261004 re-founding, on the author's ruling. The prohibition
+  # is about the ENGINE's dependency closure; `analysis-worker -> yaml-adapter` points the other way
+  # and does not widen it. Re-measured after the redraw: still refuted.
   engine-must-not-reach-yaml:
     name: The query engine reaches the YAML adapter
     kind: graph
     quantifier: exists
     expect: refuted
     graph: { form: reachability, relation: depends-on, from: query-engine, to: yaml-adapter }
+
+  # The view holds no second parse path: the export control gets its text from the facade, so a
+  # formatting decision cannot be made in the shell. Note the form, and why it is not reachability.
+  # Asked as reachability this is `holds`, measured -- and legitimately so, because every edit is a
+  # document edit and `ui -> transaction-engine -> yaml-adapter` is the sanctioned route. The claim
+  # worth asserting is the direct one: the view does not import the adapter itself.
+  ui-must-not-import-yaml:
+    name: The UI depends on the YAML adapter directly
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph: { form: direct, relation: depends-on, from: ui, to: yaml-adapter }
 
   # The renderer reads the IR and does not write it.
   renderer-must-not-mutate-ir:
@@ -214,6 +532,24 @@ queries:
     expect: refuted
     graph: { form: direct, relation: may_mutate, from: agent-adapter, to: model-ir }
 
+  # The third name in the ABSENT list above, asserted rather than only written down.
+  ui-must-not-mutate-ir:
+    name: The UI may mutate the model IR directly
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph: { form: direct, relation: may_mutate, from: ui, to: model-ir }
+
+  # The correction of record. Until 261004 this model declared the opposite, and the declaration
+  # predated `TransactionEngine`. The adapter parses and serializes; it does not decide which
+  # system is committed.
+  yaml-must-not-mutate-ir:
+    name: The YAML adapter may mutate the model IR
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph: { form: direct, relation: may_mutate, from: yaml-adapter, to: model-ir }
+
   # Positive control. If this one ever returns false, the model is broken rather than the code --
   # a suite of only-negative expectations passes just as well against an empty graph.
   ui-can-reach-kernel:
@@ -222,6 +558,16 @@ queries:
     quantifier: exists
     expect: holds
     graph: { form: reachability, relation: depends-on, from: ui, to: model-ir }
+
+  # The may_mutate half of that control, and it was missing. Four prohibitions above are answered
+  # over the may_mutate graph; with no positive edge they would all be refuted by vacuity. This one
+  # names the component that really does hold the authority, so emptying the relation fails here.
+  transaction-engine-is-the-mutator:
+    name: The transaction engine may mutate the model IR
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph: { form: direct, relation: may_mutate, from: transaction-engine, to: model-ir }
 
   # Refusal control. may_mutate declares composition.path: forbidden, so a multi-hop question over
   # it is UNLICENSED -- a successful result reporting what the model does not authorize, not an

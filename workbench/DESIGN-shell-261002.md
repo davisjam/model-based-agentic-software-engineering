@@ -1979,6 +1979,9 @@ a path a hurried commit skips — and by nothing a push had to clear.
   | `models/workbench-affordances.mage.yaml` | 80 | 80 | 80 | 0 | holds 78, refuted 1, unlicensed 1 |
   | `models/workbench-components.mage.yaml` | 9 | 9 | 9 | 0 | holds 1, refuted 7, unlicensed 1 |
 
+  This row is the first run's record. §9p re-founded the components model on the observed import
+  graph and it now carries 13 queries (holds 2, refuted 10, unlicensed 1), all met.
+
   The components model's nine PASS, which was the prediction: the audit measured them passing under
   `validate.py`, and the gap was that CI never asked. What changed is that asking is now on the
   protected path — under mutation the gate names five of the nine by id with both verdicts, because
@@ -2095,3 +2098,206 @@ re-founding and gap 4's header are held for a ruling. Its nine queries are now e
 is gap 2 closed against the model as it stands — and the honest reading is that the gate holds the
 model to ITSELF, so the drift between the model and today's imports that the audit enumerated is
 untouched and still invisible to every gate. Gap 1 is the one that closes it.
+
+### 9p. The components model re-founded on today's imports — as built
+
+Gap 3 of `AUDIT-system-models-261004.md`. The model was drawn before six of today's thirteen `src/`
+modules existed, so it declared an architecture the code had stopped having. §9o closed gap 2 and
+said so plainly: the gate holds the model to itself. This wave makes the model describe the tree, and
+lands the join gap 1's import-graph gate needs. It does not build that gate.
+
+**Measurement first, then the model.** Every claim below came from reading the import specifiers of
+all 87 files under `src/`, both value and `import type`, resolving each to the module it names, and
+computing the strongly-connected components. The audit's line numbers were a starting point; each was
+re-checked at this tree and all held.
+
+#### What the measurement found that the audit had not
+
+- **A second cycle.** The audit flagged `engine ↔ quant`. There is another: `app`, `ui` and `worker`
+  form one strongly-connected component. Both back-edges are type-only and both are deliberate —
+  `src/app/capabilities.ts` takes `NavSurface` from `src/ui/shell/surfaces.ts` so the registry gains
+  no runtime dependency on the shell, and `src/worker/port.ts` takes `AnalysisPort` from
+  `src/app/ports.ts` rather than restating a contract. `depends-on` counts a type reference, so
+  neither can be argued away.
+- **`persistence` named no code.** No `src/persistence/`, no IndexedDB, no localStorage — the
+  condition `AUDIT-v0.1-261002.md:113` already recorded. Its two declared edges were both false.
+- **`ui → analysis-worker` was declared and is now a two-hop path.** The shell's only worker import
+  is `src/ui/main.ts → ../worker/port.ts`, which is the wiring, not the worker.
+
+#### The decisions, and why each went the way it did
+
+- **`analysis-worker → yaml-adapter` is architecture** (author's ruling, 261004), so the edge is
+  declared and `engine-must-not-reach-yaml` is untouched. Verified rather than assumed:
+  `query-engine`'s only out-edge is `→ model-ir`, the kernel has none, and `analysis-worker →
+  query-engine` points upstream — the query measures `refuted` after the redraw, so the ruling cost
+  the prohibition nothing. **What the undeclared edge violated was the `absence` clause, not the
+  query.** The queries police the shape of the declared graph; `absence` is what makes the declared
+  graph a claim about the code. Four real worker imports were missing from the model, which no query
+  could catch, because queries read declarations. The model's header now says this in terms.
+- **The worker's dangerous direction is pointed at, not duplicated.** `test/worker.test.ts:208-241`
+  reads `analysis.worker.ts`'s own bytes, asserts no `../transaction/` and no `../ui/` specifier,
+  slices `protocol.ts`'s reply union and asserts no arm carries a system, document or source text
+  back, and drives a negative control through the same predicate. That is the control. The model
+  cites it and asserts no competing version of it.
+- **`quant` is CONTAINED by `query-engine`.** The measurement decides it: `src/quant/` has exactly
+  one importer in the tree, `src/engine/`, and imports it back. A module whose only consumer is the
+  module it consumes is the quantitative half of one component, not a component beside it. A peer
+  entity would have required declaring a cycle against `acyclic: true`; deleting the entity would
+  have lost the subject ref that routes `src/quant/` for the gate.
+- **`shell-surfaces` and `worker-wiring` became entities.** Each is a declaration seam its own header
+  already names: `surfaces.ts` imports nothing and is the one table of region identity, read by
+  ten modules under `src/ui/` and by the registry for a type; `port.ts` is the single touch of the `Worker`
+  constructor, which is what keeps every other file under `src/worker/` DOM-free and drivable from a
+  node test. Stated candidly because it matters to how the call should be reviewed: the cycle is what
+  sent anyone looking at those two files, and the entities survive on the independent ground that
+  each is a seam with a documented reason. Splitting them is also the only decomposition that leaves
+  the graph acyclic without collapsing the facade, the view and the host into one component.
+- **`persistence` deleted.** An entity with no code and two false edges is the brochure class this
+  project refuses. The design intent — portable file is the truth — survives as a paragraph in the
+  model's header naming where export and import actually live and that reload persistence is an
+  unsatisfied requirement.
+- **`may_mutate` re-pointed at the transaction path.** The model used to name `yaml-adapter` as the
+  sole IR mutator, which predated `TransactionEngine`. As built, `src/transaction/engine.ts` holds
+  the authoritative revision pointer and is the only thing that swaps it, and `applyOperation` edits
+  an unsealed `MageDocument` clone in place while `seal()` makes a committed revision throw. So two
+  edges, both from `transaction-engine`: `→ model-ir` (decides which system is committed) and
+  `→ yaml-adapter` (the system's only in-place mutation). The relation-type description grew the
+  second arm, because "mutates the model" cannot mean an in-place edit of an immutable object.
+- **`layer` is descriptive, and the model says so.** Seven values now. They do not form a total
+  order and the model does not claim one — `app-services` reads a view module's type. The ordering
+  claim is the narrow one the queries check: the kernel's out-degree is zero.
+
+#### The edge set
+
+| | before | after |
+|---|---|---|
+| entities | 9 | 16 (6 new modules + 2 declaration seams, − `persistence`) |
+| `depends-on` edges | 12 | 46 |
+| `may_mutate` edges | 1 (`yaml-adapter → model-ir`) | 2 (both from `transaction-engine`) |
+| containment | none | `query-engine contains quant-evaluator` |
+| queries | 9 | 13 |
+| `src/` modules with no entity | 6 of 13 | 0 of 13 |
+
+The 46 declared edges reconcile exactly with the 49 observed: the three not drawn are
+`query-engine → quant-evaluator` and `quant-evaluator → query-engine`, internal to one component, and
+`quant-evaluator → model-ir`, which lifts to the declared `qe-ir`.
+
+#### The join gap 1 needs
+
+Every entity carries `provenance.subject.ref` — docable's own pattern at
+`examples/docable.mage.yaml:79-86`, which this model used nowhere. Two rules in the header make the
+file→entity map total and unambiguous, and an import-graph gate should implement both:
+
+- **Longest prefix wins**, so `src/app/agent-api.ts` resolves to `agent-adapter` rather than to
+  `app-services`. A component is a unit of architecture; which directory holds it is filing.
+- **A contained entity's edges lift to its container**, so an observed `src/quant → src/ir` is
+  checked as `query-engine → model-ir` and `src/quant → src/engine` is checked against nothing.
+
+The `dependencies` model carries one `correspondence: {kind: asserted, checked: "2026-10-04"}` record
+rather than sixteen copies of the same sentence. It should become `derived` when the gate lands —
+that is the point of the kind.
+
+#### Which absences are still asserted claims
+
+`depends-on`'s `absence` clause binds every pair not drawn, and the redraw did not weaken it; it made
+the drawn set true, so the clause now forbids something real. The absences worth naming, each
+verified at this tree:
+
+- **`model-ir` depends on nothing.** `src/ir/` imports only itself. The spine, and the four
+  `kernel-must-not-reach-*` queries are its assertion.
+- **`query-engine` reaches only `model-ir`** (plus its contained half). No YAML, no DOM, no renderer.
+- **`validator`, `renderer`, `rdf-projection`, `yaml-adapter` reach only `model-ir`.** Four separate
+  one-edge components, each a real constraint on a file an agent will touch.
+- **`ui` reaches no `yaml-adapter`, no `rdf-projection`, no `validator` directly.** The view holds no
+  second parse path; the export control gets its text from the facade.
+- **`analysis-worker` reaches no `app-services`, no `ui`, no `renderer`, no `transaction-engine`** —
+  and the last of those is the one with a test behind it rather than only an absence.
+- **`shell-surfaces` depends on nothing**, which is what lets the registry reference it without
+  taking on the DOM.
+- **Nothing depends on `learn-page`.** The old model said that of `ui`, and it was false: `learn-page
+  → ui` is real (`src/learn/main.ts:23` value-imports `../ui/render-dom.ts`), and so is
+  `app-services → shell-surfaces` (`src/app/capabilities.ts:33`). The corrected sentence is that only
+  the Learn page depends on the shell, and only for its DOM binders.
+
+#### Every `expect:` measured, not predicted
+
+Thirteen queries, all met, in both implementations — `test/model-coverage.test.ts` through the engine
+and `python3 validate.py models/workbench-components.mage.yaml` through the Python rule set. Kept
+unchanged: the four `kernel-must-not-reach-*`, `engine-must-not-reach-yaml` (per the ruling),
+`renderer-must-not-mutate-ir`, `agent-must-not-mutate-ir`, `ui-can-reach-kernel` (the positive
+control), `transitive-mutation-is-unlicensed` (the refusal control). Added, with measured verdicts:
+
+| query | expect | measured |
+|---|---|---|
+| `ui-must-not-import-yaml` | refuted | refuted |
+| `ui-must-not-mutate-ir` | refuted | refuted |
+| `yaml-must-not-mutate-ir` | refuted | refuted |
+| `transaction-engine-is-the-mutator` | holds | holds |
+
+`transaction-engine-is-the-mutator` closes a vacuity hole that predates this wave. Four prohibitions
+are answered over the `may_mutate` graph and there was no positive control on it, so emptying the
+relation would have passed all four. The model's own comment warns about exactly this for
+`depends-on` and had no equivalent for mutation.
+
+**The one query the gate caught, and what the catch was worth.** `ui-must-not-reach-yaml` was written
+as a reachability claim and measured `holds`. The UI does reach the YAML adapter — through
+`ui → transaction-engine → yaml-adapter`, which is the sanctioned route, because every edit is a
+document edit. The architectural fact meant was narrower and it is a direct-edge claim: the view does
+not import the adapter itself. The query is now `ui-must-not-import-yaml` with `form: direct`, and the
+comment records the reachability verdict so the next reader does not re-ask. This is the gate working
+on a query thirty minutes old.
+
+**Where the temptation was, and what was done instead.** Once, and not on a pre-existing prohibition:
+the `ui`-to-YAML query above was authored in this wave, measured false, and corrected to state the
+fact that is true rather than kept at a strength the code does not support. No inherited query was
+weakened — `engine-must-not-reach-yaml` kept its text, its endpoints and its polarity under a ruling
+that could have been read as licence to re-point it, and the measurement confirmed it did not need
+re-pointing. Both cycles were resolved by naming components more precisely, never by relaxing
+`acyclic: true`.
+
+#### Proposed and NOT landed — the author's call
+
+The orchestrator floated a sharper statement of what the analysis path must not reach: not the YAML
+adapter specifically, which the worker legitimately reads, but any *mutator*. Written and measured,
+deliberately not added to the model:
+
+```yaml
+no-mutator-reachable-from-analysis:
+  name: The analysis worker reaches the component that may mutate the model
+  kind: graph
+  quantifier: exists
+  expect: refuted
+  graph: { form: reachability, relation: depends-on, from: analysis-worker, to: transaction-engine }
+```
+
+**Measured: `refuted`** — it would land green. One nuance the measurement surfaced and a ratifying
+author should see: the same question asked from `worker-wiring` measures **`holds`**, because the
+page-side spawn file returns the facade's port type and the facade reaches the transaction engine. So
+the claim is about the analysis thread, not about `src/worker/`, and the scope has to say
+`analysis-worker` to be true. Adding it unilaterally would enshrine an unratified invariant, which is
+why it is here rather than in the model.
+
+#### Two header corrections
+
+- **"This is model (1) of the eight" is deleted** (author's ruling, 261004). The phrase had no
+  referent in any tracked file or any reachable commit, and the founding commit carried it unbacked
+  too. Not replaced with "three": the three the author named are model TYPES (`MODEL_TYPES` at
+  `src/engine/model-types.ts:338`), while this file is one of the SELF-models — different axes, and
+  the coincidence of count is not a fact to enshrine. The header points at `PLAN.md` §0.2a, which
+  enumerates the self-model set and will stay true as that set changes.
+- **"never from CI" is now false and was corrected.** §9o landed `test/model-coverage.test.ts`, so
+  the header names both evaluations — the node-tier gate CI runs, and `validate.py` plus `--self-test`
+  from the pre-push hook — and then says the thing that still matters: neither establishes
+  correspondence with `src/`.
+
+**Gates at this tree:** `tsc` clean; node **926/926**, 0 skipped; `check:parity` 0 violations over 26
+capabilities; build clean; smoke 3/3; browser 114/114; a11y 112/112. `python3 validate.py
+models/workbench-components.mage.yaml` clean, 13 asserted queries evaluated; `--self-test` PASS,
+including the injected `model-ir → ui` edge still being caught against the redrawn graph.
+
+**Left for the author.** Gap 4's other two instances were not touched, and one of them is now
+measurably false: `src/ir/types.ts:4-9` says "only from the pre-push hook. No CI step runs that
+check", which §9o made wrong, and `src/engine/types.ts:4-8` says the same of
+`engine-must-not-reach-yaml`. The audit scheduled those headers for after gaps 1–2 and gap 1 has not
+landed, so they are reported rather than edited — one file, one owner. Gap 1 itself is now unblocked:
+the model matches the tree, and the refs give a scanner somewhere to join to.
