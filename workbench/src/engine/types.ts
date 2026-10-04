@@ -1,9 +1,11 @@
 /**
  * Engine-facing query types, and the normalizers that turn a loosely-typed query object into them.
  *
- * Dependencies point inward: this module imports the kernel (`../ir/`) and nothing else. No YAML, no
- * DOM, no renderer — `models/workbench-components.mage.yaml` asserts it and `validate.py` fails the
- * build if it stops being true.
+ * Dependencies point inward: this module imports the kernel (`../ir/`) and `quant` (the quantity
+ * evaluator), nothing else — no YAML, no DOM, no renderer. The model's `engine-must-not-reach-yaml`
+ * query asserts the YAML half of that for `query-engine`; `validate.py` evaluates it and
+ * `--self-test` catches an injected violation — but only from the pre-push hook, never CI, and
+ * nothing yet checks this file's actual imports against the model.
  *
  * The normalizers mirror `canonicalize`'s discipline: total, deterministic, and NOT validating.
  * A malformed field becomes a null and the evaluator refuses with a message naming the cause, which

@@ -2,8 +2,11 @@
  * Canonical IR — the authoritative semantic representation.
  *
  * Per the component model this module depends on NOTHING: no YAML, no DOM, no renderer, no agent.
- * That is enforced by `workbench/models/workbench-components.mage.yaml`, whose asserted queries
- * fail the build if the kernel grows a dependency on a view. Keep the imports here empty.
+ * `workbench/models/workbench-components.mage.yaml` declares that, and `validate.py` evaluates it
+ * and catches a violation injected into the model (`--self-test`) — but only from the pre-push
+ * hook. No CI step runs that check, and no gate yet derives this file's real import graph and
+ * compares it to the model, so a dependency added here would pass `tsc` and every test today with
+ * nothing to say otherwise. Keep the imports here empty regardless.
  *
  * Everything is `readonly`. The IR is produced once by canonicalize() and never mutated in place:
  * a transaction builds a NEW system and swaps it, which is what makes undo/redo and hypothesis
