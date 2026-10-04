@@ -1085,3 +1085,114 @@ watched a proxy, one is a ruling that had been made and not executed.
   passes through a region the control does not live in." Restored, 44 of 44 paths walk. No element id
   moved, so SH-I8's hard flip is untouched: this is a declaration catching up with a page that was
   always built this way.
+
+### 9i. The full-width correction as built — one bug in two halves, and the figure that could only shrink
+
+Appended by the wave that executed the author's full-width ruling: *"this is wasting an enormous
+amount of horizontal space… at this viewport the application is effectively a ~1000px fixed-width
+page sitting inside a ~1600px browser."* A layout correction, not a redesign — the three-column
+hierarchy, the named grid areas, the DOM-order-is-AT-order separation and every pane's styling are
+untouched. What changed is four declarations and what they were allowed to reach.
+
+**THE BUG HAD TWO HALVES AND EITHER ONE ALONE DEFEATS THE FIX.** `main { max-width: 84rem }` made
+the shell a 1344px page centred in the viewport. Removing it alone would have handed every freed
+pixel to the centre, because the side tracks were `minmax(14rem, 18rem)` and
+`minmax(13rem, 20rem)` — **capped**, not floored, so above about 1136px of content box Properties
+sat at exactly 288px and the Inspector at exactly 320px no matter how wide the browser was. The
+ruling asks for width *at* those rails ("relation names and actions do not wrap nearly as
+aggressively"), so a cap is the half of the defect that a reader of the `main` rule alone would
+never find.
+
+Measured at a 1600px viewport, before and after:
+
+| | before | after |
+|---|---|---|
+| `main` | 1344px, 128px of dead gutter each side | 1600px, 20px gutter |
+| Properties (`#nav`) | 288px (at its cap) | 333px |
+| Workspace (`#workspace`) | 656px (51.9%) | 847px (56.0%) |
+| Inspector (`#inspector`) | 320px (at its cap) | 333px |
+| ratio | 22.8 / 51.9 / 25.3 | **22.0 / 56.0 / 22.0** |
+| Event Flow figure | 445px inside a 628px frame | 817px inside an 819px frame |
+
+The tracks are now `minmax(16.25rem, 22fr) minmax(34.375rem, 56fr) minmax(17.5rem, 22fr)` — the
+ruled 22/56/22 over the ruled 260/550/280px floors.
+
+**`fr` RATHER THAN `%`, and the gaps are the reason.** A percentage track resolves against the grid
+container's content box and knows nothing about `gap`, so `22% 56% 22%` asks for the full width
+*and* two 1.5rem gutters — 48px more than exists, which overflows the shell and takes 1.4.10 with
+it. An `fr` distributes what remains after the gaps come out, so the ratio holds at every width with
+no `calc()`. The floors are rem so they track a user's root font size rather than pinning to 16px.
+
+**THE COLLAPSE BREAKPOINT IS DERIVED, AND IT HAD TO MOVE — 64rem to 74rem.** The floors plus the two
+column gaps plus main's two gutters come to 73.625rem (1178px). Left at 64rem, every viewport between
+1024px and 1178px would have drawn three columns whose floors do not fit, and **a grid track that
+cannot reach its minimum overflows** — a horizontal scrollbar and a 1.4.10 failure caused by a
+breakpoint rather than by any content. This is a consequence of the author's own minimums, not a
+second opinion about them: 260 + 550 + 280 cannot be shown above 1024px. Verified at both sides of
+the new boundary — 1185px draws three columns at 260/557/280 with zero overflow, 1184px draws one.
+The collapse itself is unchanged: one track, regions stacked in DOM order, rails released from their
+80vh box.
+
+**THE FIGURE COULD ONLY EVER SHRINK, which is a different bug from the one the ruling describes.**
+The ruling calls the Event Flow canvas "a small fixed-size canvas", and the fixed size is not a
+`viewBox` — the renderer's viewBox follows its content correctly. It is that `src/render/svg.ts`
+writes the content's extent onto the root element as `width` and `height` **attributes**, and the
+page styled it `max-width: 100%`. Intrinsic size plus a maximum means the drawing shrinks on a phone
+and never grows on a desktop: 445px in a 628px frame before, and it would have been 445px in an
+845px frame after the shell went full-width — the figure was the one part of the page that would
+have gained nothing. One word fixes it: `width: 100%`, which makes the frame the authority on size
+and the attributes merely the aspect ratio.
+
+**Bounded by `max-height: 80vh`, because width alone is not a size.** This graph is taller than it is
+wide (445 × 582), so filling an 845px frame on width computes a 1105px-tall figure that pushes the
+structured reading, the ask bar and the status line off the bottom — using the width by costing the
+reader everything under it. 80vh is the ceiling the two rails already use, so the three panes agree
+on how tall a pane may get.
+
+**WHAT THIS DELIBERATELY DOES NOT DO is re-rank the graph, and the ruling did ask for a re-layout.**
+Horizontal extent in a left-to-right layered layout is set by the number of RANKS, which is a
+property of the model's edges and not of the viewport. No width hint can make this graph *wider*; it
+can only make it *bigger*. The evidence is the measurement above — the flagship model draws 445 × 582,
+taller than wide, **despite** the layout already running left-to-right. Spreading ranks to fill a
+measured width would mean passing viewport geometry into a layout module that is deliberately pure
+and deterministic (it runs in a Worker and under `node:test`, with no DOM to measure against, and
+its determinism and local-perturbation properties are acceptance criteria rather than polish). That
+is a renderer change, not a stylesheet one, and it is recorded here rather than attempted.
+
+**A FOURTH DECLARATION CHANGED, AND IT IS THE ONE WORTH WARNING ABOUT.** Widening main's gutter from
+1rem to 1.25rem put the editing forms 4px past the right edge of a 320px viewport — a 1.4.10
+regression introduced by this wave and caught by its own measurement before it was committed. The
+cause is `.forms`, whose `minmax(19rem, 1fr)` demanded a 304px track inside a 288px content box and
+fitted only because the old 16px gutter left it *exactly* 320px to the document's edge. **The
+reflow invariant was resting on an arithmetic coincidence between two unrelated rules**, and the
+repair is the floor rather than the gutter: `minmax(min(19rem, 100%), 1fr)` caps the floor at the
+space that exists, so the column can no longer overflow at any width. Keeping a 16px gutter would
+have hidden the landmine for the next author to tread on.
+
+**WHAT PINS IT: `test/browser/shell-geometry.test.mjs`, 10 cases in the browser tier.** A CSS value
+is exactly the kind of thing that regresses in silence — nothing in the node tier can see a
+stylesheet, the a11y tier asks only whether the page reflows, and every other browser assertion is
+about structure rather than size, which is how an 84rem cap survived Waves 0 through 3 with no gate
+holding an opinion. So this file **measures `getBoundingClientRect` on the rendered page** and never
+reads the stylesheet: a grep for `max-width: 84rem` passes while the page is broken in both
+directions, since the cap can return under another spelling and the ratio can rot with no cap
+present at all.
+
+It asserts the gutter is ≤24px, the shell reaches the viewport, the three shares sit within 1.5
+points of 22/56/22 at 1600px and 1920px, the centre outweighs both rails together, every floor holds
+at the breakpoint's upper side and above, the figure fills its frame and grows between 1280px and
+1920px, the figure stays under 80vh, the grid collapses to one track at and below 1184px, and the
+document never scrolls sideways at ten widths from 320px up. **The ratio is checked only where it is
+free** — below about 1440px the Inspector's floor legitimately binds and the ratio bends around it,
+so asserting 22/56/22 at 1280px would pin arithmetic nobody ruled on.
+
+**Watched red before it was trusted.** Each of the four declarations was reverted in turn and the
+gate failed on the matching assertion: the `main` cap took 3 cases, the side-column caps 3 (including
+the floors, since a capped rail starves the centre below its 550px floor near the breakpoint), the
+figure's `max-width` 2, and the forms floor the overflow case. Against HEAD's whole `index.html`,
+8 of the 10 fail. Restored, 10 of 10 pass.
+
+Gates at the final tree, every tier, nothing skipped: `check` clean, `check:parity` 0 violations over
+26 capabilities, node tier **815/815**, `build` clean, smoke **3/3**, browser **50/50** (40 before
+this wave), a11y **111/111** — and the a11y count was measured at **111 with this wave's CSS
+reverted as well**, so full width cost that tier nothing.
