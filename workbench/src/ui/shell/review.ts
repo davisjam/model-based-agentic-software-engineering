@@ -71,7 +71,7 @@
  */
 import { classifyEvidence, noSuchQuestion } from "../../app/agent-api.ts";
 import type { EvidenceReading } from "../../app/agent-api.ts";
-import type { EvaluatedProperty, PropertyStatus } from "../../app/properties.ts";
+import type { EvaluatedProperty, Expectation, PropertyStatus } from "../../app/properties.ts";
 import { byId } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
 import { regionHost } from "./surfaces.ts";
@@ -300,8 +300,26 @@ export interface PropertyChange {
   readonly moved: boolean;
   /** "ESTABLISHED → REFUTED" / "unchanged: NOT ANSWERABLE" / "newly tracked: ESTABLISHED". */
   readonly reading: string;
-  /** Does an obligation break here? Only a requirement can, and only in that direction. */
+  /**
+   * Does an obligation break here? Only a requirement can, and only in that direction.
+   *
+   * `breaks` means BECAME CONTRADICTED. It used to mean "stopped being met", over a two-valued
+   * `met`, and that was the only definition the projection offered — so widening the state space
+   * past the search budget, or deleting a relation the query traverses, both told the engineer they
+   * had broken a safety requirement. `lostEvidence` carries those, and the two read differently
+   * because the remedies differ.
+   */
   readonly breaks: boolean;
+  /**
+   * Did a requirement LEAVE met without being contradicted — the search stopped settling it, the
+   * models stopped licensing the question, or the declaration stopped being readable?
+   *
+   * A demonstration was lost, which is worth interposing for and is not a breach. One residue is
+   * recorded rather than designed: a requirement already contradicted that then becomes unreadable
+   * sets neither flag, because no breach newly arrived. The change still shows as a move; naming it
+   * needs the normative field, which this layer does not have yet.
+   */
+  readonly lostEvidence: boolean;
 }
 
 export interface PropertyImpact {
@@ -316,6 +334,31 @@ export interface PropertyImpact {
 }
 
 const statusWord = (s: PropertyStatus | null): string => (s === null ? "not tracked" : STATUS_WORD[s]);
+
+/** What leaving `met` was: a breach, or a demonstration lost. `none` when it did not leave. */
+type RequirementMove = "none" | "breaks" | "lost-evidence";
+
+/**
+ * Which of the two it is, TOTAL over `ExpectationStanding` by the compiler.
+ *
+ * A standing added to the projection cannot default into "breaks" here — the switch has no
+ * `default`, so it is a type error until someone decides whether the new standing is a breach.
+ */
+function requirementMove(before: Expectation | null, after: Expectation | null): RequirementMove {
+  if (before === null || before.standing !== "met") return "none";
+  // No longer tracked: the claim was being demonstrated and now is not demonstrated at all. That
+  // is a lost demonstration rather than a breach — retracting a requirement asserts nothing about
+  // the system under design.
+  if (after === null) return "lost-evidence";
+  switch (after.standing) {
+    case "met": return "none";
+    case "unmet": return "breaks";
+    case "unsettled":
+    case "declined":
+    case "coerced":
+      return "lost-evidence";
+  }
+}
 
 /**
  * What one change does to every tracked claim.
@@ -370,9 +413,13 @@ export function propertyImpact(
           : `${statusWord(beforeStatus)} → ${statusWord(afterStatus)}`)
       : `unchanged: ${statusWord(afterStatus)}`;
 
+    const move = kind === "requirement"
+      ? requirementMove(b?.expectation ?? null, a?.expectation ?? null)
+      : "none";
     notable.push({
       id, statement, kind, before: beforeStatus, after: afterStatus, moved, reading,
-      breaks: kind === "requirement" && b?.expectation?.met === true && a?.expectation?.met !== true,
+      breaks: move === "breaks",
+      lostEvidence: move === "lost-evidence",
     });
   }
 
@@ -392,9 +439,14 @@ export function requirementsReading(impact: PropertyImpact): string {
       : `${impact.steadyRequirements} requirement(s) read exactly as they did.`;
   }
   const broken = impact.movedRequirements.filter((c) => c.breaks).length;
+  // Reported SEPARATELY from the broken count, and never folded into it: a requirement whose
+  // demonstration was lost has not been shown to fail, and a reader who is told it is "no longer
+  // satisfied" goes looking for a defect that the budget or the vocabulary explains.
+  const lost = impact.movedRequirements.filter((c) => c.lostEvidence).length;
   return `${impact.movedRequirements.length} requirement(s) move`
-    + (broken > 0 ? `, ${broken} of them no longer satisfied.` : ".")
-    + ` ${impact.steadyRequirements} unchanged.`;
+    + (broken > 0 ? `, ${broken} of them no longer satisfied` : "")
+    + (lost > 0 ? `, ${lost} of them no longer demonstrable` : "")
+    + `. ${impact.steadyRequirements} unchanged.`;
 }
 
 // --------------------------------------------------------------------------------------------

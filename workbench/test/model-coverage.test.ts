@@ -83,6 +83,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { Workspace } from "../src/app/services.ts";
 import { checkExpectation } from "../src/engine/index.ts";
+import type { ExpectationVerdict } from "../src/engine/index.ts";
 import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
 import { realPorts } from "../scripts/gen-example-coverage.ts";
 
@@ -190,9 +191,9 @@ interface QueryRow {
   /** The declared expectation, or null for an exploratory query. */
   readonly expect: string | null;
   readonly outcome: string;
-  /** `checkExpectation`'s arm: met, unmet, exploratory, or coerced. */
-  readonly verdict: string;
-  /** The coercion message, for the one arm that carries one. */
+  /** `checkExpectation`'s arm. Typed from the engine's union, so a new arm reaches the switch below. */
+  readonly verdict: ExpectationVerdict["kind"];
+  /** The coercion message, or the cause the non-settling arms carry. */
   readonly note: string | null;
 }
 
@@ -202,6 +203,24 @@ interface ModelReport {
   readonly parsed: boolean;
   readonly findings: readonly string[];
   readonly rows: readonly QueryRow[];
+}
+
+/**
+ * The cause an arm carries, for the three arms that carry one. TOTAL over `ExpectationVerdict` by
+ * the compiler, so an arm added to the engine cannot reach the report with its cause dropped.
+ */
+function noteOf(v: ExpectationVerdict): string | null {
+  switch (v.kind) {
+    case "coerced": return v.message;
+    case "unsettled":
+      return `answered '${v.outcome}'`
+        + `${v.limit === null ? "" : ` after hitting the ${v.limit}`}.`;
+    case "declined": return v.refusal ?? "no refusal sentence was reported.";
+    case "met":
+    case "unmet":
+    case "exploratory":
+      return null;
+  }
 }
 
 /**
@@ -237,7 +256,7 @@ function evaluateModel(path: string, text: string): ModelReport {
       expect: typeof raw.expect === "string" ? raw.expect : null,
       outcome: res.outcome,
       verdict: verdict.kind,
-      note: verdict.kind === "coerced" ? verdict.message : null,
+      note: noteOf(verdict),
     });
   }
   return {
@@ -311,6 +330,20 @@ function auditCoverage(
             + `Either the model changed and the expectation is now wrong, or the model says something `
             + `its author did not intend — and the second is why the expectation lives beside the `
             + `statement rather than in a test file.`);
+          continue;
+        // Separated from `unmet` deliberately. Both are uncovered assertions and both are issues,
+        // but neither says the model contradicts its author: one ran out of search budget and the
+        // other asked something these models do not represent. Reporting either as a contradiction
+        // would send a reader to rewrite a correct expectation.
+        case "unsettled":
+          issues.push(`\`${key}\` expects '${String(row.expect)}' and the search did not settle it: `
+            + `${String(row.note)} The expectation is not refuted — raise the budget, or state why `
+            + `this model cannot be walked exhaustively.`);
+          continue;
+        case "declined":
+          issues.push(`\`${key}\` expects '${String(row.expect)}' and these models decline the `
+            + `question: ${String(row.note)} The expectation is not refuted — the vocabulary it `
+            + `names is missing, so the remedy is a model rather than an edit to the expectation.`);
           continue;
         case "coerced":
           issues.push(`\`${key}\` carries an \`expect\` the engine cannot read: ${String(row.note)} `

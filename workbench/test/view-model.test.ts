@@ -635,7 +635,8 @@ test("a coerced `expect` is held as a requirement that cannot read as satisfied 
   const p = evaluateProperties({ ...s, queries: patched }, results, systemHash(s))
     .find((x) => x.id === "transitive-ownership");
   assert.equal(p?.kind, "requirement");
-  assert.equal(p?.expectation?.met, false);
+  assert.equal(p?.expectation?.standing, "coerced",
+    "a claim nobody managed to state must not be reported in the vocabulary of one that failed");
   assert.match(p?.expectation?.problem ?? "", /coerced/);
   assert.match(propertyRow(p!).expectation ?? "", /could not be read/);
 });
@@ -781,7 +782,7 @@ test("saving and retracting a property go through the real Workspace, and re-eva
   assert.equal(refuted.length, 1);
   assert.equal(refuted[0]?.kind, "requirement");
   assert.equal(refuted[0]?.status, "refuted", "no may_invoke edge exists yet, so the claim does not hold");
-  assert.equal(refuted[0]?.expectation?.met, false);
+  assert.equal(refuted[0]?.expectation?.standing, "unmet");
   assert.ok((refuted[0]?.grounds.length ?? 0) > 0, "even a refuted claim must say what it rests on");
   assert.equal(refuted[0]?.stale, false, "a recomputed verdict is never stale");
   assert.equal(refuted[0]?.evaluatedAt, ws.state.hash);
@@ -796,7 +797,7 @@ test("saving and retracting a property go through the real Workspace, and re-eva
   }).ok);
   const established = ws.properties();
   assert.equal(established[0]?.status, "established", "§3.3: a property re-evaluates when semantics change");
-  assert.equal(established[0]?.expectation?.met, true);
+  assert.equal(established[0]?.expectation?.standing, "met");
   assert.notEqual(established[0]?.evaluatedAt, refuted[0]?.evaluatedAt,
     "the verdict is attributed to the NEW revision, not the one it was saved at");
 

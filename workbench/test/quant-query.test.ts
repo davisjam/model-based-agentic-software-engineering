@@ -144,6 +144,38 @@ test("a within query decides the declared ceiling: refuted with the counterexamp
   assert.match(res.interpretedAs ?? "", /latency-ceiling/);
 });
 
+test("a ceiling decided over SELECTED executions: forall + within + target, all three", () => {
+  // "Are all SUCCESSFUL executions under the declared ceiling?" — `learn-1.md` §7's second quantity
+  // question, and the one composition the three fields admit together that nothing pinned. The
+  // ceiling and the selection resolve independently and both reach `evaluatePath`, so the triple was
+  // implemented and unexercised: `DESIGN-v02-quantification-261004.md` §4.3 found it by probing.
+  //
+  // Pinned as a PAIR against the same ceiling, because the pair is the property. Over every
+  // execution the 300 ms ceiling is refuted at 400 (one retry: 50 + 2·100 + 2·75). Over the
+  // retry-free executions alone it holds at 225. Same metric, same ceiling, opposite verdict —
+  // decided by `target` and by nothing else. A single-verdict pin would pass with the selection
+  // silently ignored, which is the failure this shape exists to catch.
+  const selected = runQuery(pipeline(), quantityQuery("forall", {
+    metric: "latency",
+    within: "latency-ceiling",
+    target: { "document.state": "published", "document.retry_count": 0 },
+  })).result;
+  assert.equal(selected.outcome, "holds");
+  assert.equal(selected.coverage.kind, "exhaustive");
+  assert.deepEqual(selected.magnitude,
+    { value: 225, dimension: "duration", unit: DIMENSIONS.duration.base });
+  // The ceiling and the selection must BOTH be disclosed, or a reader cannot tell which executions
+  // the verdict is about.
+  assert.match(selected.interpretedAs ?? "", /latency-ceiling/);
+  assert.match(selected.interpretedAs ?? "", /published/);
+
+  const everything = runQuery(pipeline(),
+    quantityQuery("forall", { metric: "latency", within: "latency-ceiling" })).result;
+  assert.equal(everything.outcome, "refuted",
+    "without the selection the same ceiling must be refuted, or the target changed nothing");
+  assert.equal(everything.magnitude?.value, 400);
+});
+
 test("a within query that holds carries exhaustive coverage and the observed figure", () => {
   const res = runQuery(pipeline(),
     quantityQuery("forall", { metric: "peak_memory", within: "memory-ceiling" })).result;
