@@ -1052,12 +1052,17 @@ provenance:
     ref: src/services/remediation
   correspondence:
     kind: asserted          # asserted | checked | derived | generated
-    checked: 2026-10-02
+    checked: "2026-10-02"   # quoted: a bare date is implicit-typed (§10.1)
 ```
 
-`kind` names how the correspondence between model and world was established. v0.1 permits `asserted`
-and optional opaque references; the stronger kinds are the natural place for later tooling to earn
-trust rather than claim it.
+`kind` names how the correspondence between model and world was established. The schema admits four
+values and defines none of them beyond one sentence: *"v0.1 permits `asserted`; the stronger kinds
+are where later tooling earns trust rather than claiming it"*
+([`mage-model.schema.json`](mage-model.schema.json), the `correspondence` definition). One record
+has since earned `checked` — a gate re-derives its claim from the code on every run. What each kind
+is worth, what reads the record, and what the workbench itself claims under this vocabulary is §13's
+subject: the record is part of a model, but its *meaning* is a statement about engineering, not
+about the model.
 
 ---
 
@@ -1171,3 +1176,208 @@ placement; existing positions are strong hints for incremental layout; a hypothe
 *same* layout with added, deleted and changed elements visually distinguished. The core interaction is
 comparing before against after, and that comparison is unreadable if one added state re-ranks the
 whole graph.
+
+---
+
+## 13. Engineering semantics: what a claim about the world is worth
+
+The workbench involves three semantic layers, and the first two are fixed above. **Model semantics**
+(§1–§6) says what a MAGE model means — relations, machines, the reachable set — independent of how
+anyone queries it. **Query semantics** (§7) says what propositions can be evaluated over a model and
+what `holds` / `refuted` / `inconclusive` / `unlicensed` mean; §7.2a's rule that each form has
+exactly one denotation closes that layer. Both layers end at the model's edge: a verdict is a fact
+about the *model*. **Engineering semantics** — this section — is the third layer: what
+correspondence is claimed between those propositions and the actual engineered system, and with
+what warrant. This is where `asserted`, a mechanically checked architecture edge, a value-flow
+control, and an eventual machine↔code correspondence differ from one another.
+
+The layer existed before this section did — as schema prose, gate headers, model comments and one
+audit's certification — and leaving it scattered had a measured cost: sentences kept claiming
+correspondence the gates never held. The repo's own exemplars record the defect class.
+`src/ir/types.ts` states its enforcement bound "because this sentence has twice claimed more than
+it held" (`src/ir/types.ts:14`), and the sixth kernel query's comment records that an earlier
+version claimed a value-flow property its form cannot check
+(`models/workbench-components.mage.yaml:528-535`). Neither failure was a layer-1 or layer-2 defect
+— the models validated and the queries answered correctly. What failed had no vocabulary, so this
+section writes the existing claims down. It records; it rules on nothing. Where a judgment is
+genuinely open, it is listed in §13.6 rather than decided here.
+
+This section is part inventory, and an inventory is dated: **the as-built statements below are
+read at commit `7cd9e1e0` (2026-10-04)** and say so where a change in flight would move them.
+
+### 13.1 The correspondence vocabulary
+
+§8.1 gives the record; the schema admits `kind: asserted | checked | derived | generated` and fixes
+one discipline in its description: *the stronger kinds are where later tooling earns trust rather
+than claiming it.* The schema defines no kind beyond that sentence. The definitions in use are read
+off the records that exist, which is all the definition v0.1 has:
+
+| `kind` | In use | Meaning, as used | The record |
+|---|---|---|---|
+| `asserted` | yes | a person read the model and the world together, on a date; the `note` bounds how far the reading went | `examples/docable.mage.yaml:83-86` — "internals checked by inspection only" |
+| `checked` | yes, once | a named gate re-derives the claim from the code on every run and fails on drift in both directions | `models/workbench-components.mage.yaml:374-386` |
+| `derived` | no | — admitted by the enum, defined by no use | — |
+| `generated` | no | — admitted by the enum, defined by no use | — |
+
+**The earn-discipline has one worked instance.** The `checked` record follows the schema's
+sentence exactly: its comment names the gate that earned the word (`test/import-graph.test.ts`
+re-derives the edge set on every node-tier run) and rules out the stronger `derived` — "the edges
+below are written by hand and the gate refutes them; nothing generates them." Until 261004 that
+record said `asserted`; the gate landing is what moved it. The discipline itself is prose: nothing
+mechanical checks that a stronger kind has a mechanism behind it (§13.2).
+
+**The vocabulary has not caught up with the gates in one place.** The two *generated* self-models —
+`models/workbench-affordances.mage.yaml` (from the capability registry) and
+`models/example-coverage.mage.yaml` (from the shipped examples) — carry byte-exact staleness gates
+(`test/capabilities.test.ts:532-538`, `test/examples.test.ts:878-885`), which is the strongest
+correspondence in the repository: the committed bytes must equal a fresh generation from the code.
+Yet neither model carries a `provenance.correspondence` record at all, so `generated` sits unused
+in the enum while the two models it describes say nothing. Recorded as a gap, not closed here: the
+generators own those bytes, so admitting the record is the generator owners' edit (§13.6, OQ2).
+
+### 13.2 What reads the record — the enforcement status of the vocabulary itself
+
+A vocabulary is worth what consults it. The honest inventory:
+
+- **Shape is enforced.** `validate.py`'s shape pass validates every model against
+  `mage-model.schema.json` (Draft 2020-12, `validate.py:259-260`), so a `kind` outside the enum is
+  a finding. The pre-push hook runs it over every tracked `*.mage.yaml`
+  (`../hooks/pre-push:194-205`).
+- **The loader drops it.** Canonicalization reads `created_by`, `created_at`, `prompt`,
+  `rationale` and `history` out of a provenance block and nothing else
+  (`src/ir/canonicalize.ts:66-88`); the IR's `Provenance` has no subject and no correspondence
+  field (`src/ir/types.ts:152-159`). The record therefore never reaches the engine, the hash, or
+  any query — it is annotation in A1's sense (§5.1), carried, not interpreted. One visible
+  consequence: a provenance block containing *only* `subject` and `correspondence` reaches the UI
+  flagged `unreadable` — the source declares provenance the IR could read nothing out of
+  (`src/app/provenance.ts`) — because every field the IR carries is empty.
+- **One gate reads `subject.ref`.** `test/import-graph.test.ts` parses the model YAML directly —
+  precisely because the IR does not carry the field — to get its scan root and the per-entity
+  file-to-entity join (`test/import-graph.test.ts:29-33`).
+- **No gate reads `kind`.** A model could claim `checked` with no gate behind it and every gate
+  would stay green. The earn-discipline of §13.1 is held by review and by the one record's own
+  comment — not by mechanism (§13.6, OQ1).
+
+### 13.3 The claim kinds in practice, and the warrant each carries
+
+The enum describes model records; the repository's correspondence claims are wider than its model
+records. Five kinds are observed, each with a warrant and a bound. The bounds on the first kind are
+the re-audit's certification bounds (`REAUDIT-system-models-261004.md`, "What this certification
+does NOT cover"), restated here as the declared contract they were written to become.
+
+**K1 — Mechanically checked (one claim today).** The `dependencies` model's `depends-on` edge set
+corresponds to the observed import graph of `src/`. The gate asserts *equality*, both directions:
+an undeclared import fails, and a declared edge no import creates fails
+(`test/import-graph.test.ts:618`). The scan is a real TypeScript parse with its syntax coverage
+enumerated and its not-covered cases reported rather than skipped (the file's header). The warrant
+is per-run: at every node-tier run, observed = declared. Its bounds:
+
+- **B1 — the universe of discourse is relative specifiers, with the alias channel closed by
+  precondition, not resolved.** The scan resolves relative specifiers only; a tsconfig
+  `paths`/`baseUrl` or package.json `imports` map would carry a real dependency past it
+  (re-audit M4). A separate assertion in the same gate holds those config keys absent
+  (`ALIAS_CHANNELS`, `test/import-graph.test.ts:777-807`; the real config asserted clean at
+  `:896-897`). The equality
+  claim is therefore *conditional*: it is total while that precondition test is green, and turning
+  aliasing on is a red gate that names the channel, not a silent narrowing of the scan.
+- **B2 — edge granularity, not value flow.** §13.4.
+- **B3 — containment edits are structurally unguarded.** The only check on `contains:` is
+  non-emptiness of the contained set (`test/import-graph.test.ts:726`); a `contains:` edit can
+  merge two entities' checking domains with no gate naming the move (re-audit M6). The quant
+  containment's sole-importer justification is prose in the model, checked by nothing.
+- **B4 — the gate checks consistency, not goodness.** A real import plus its declared edge, landed
+  together on a pair no query prohibits, passes silently (re-audit M5). The 13 asserted queries
+  are defense-in-depth on the pairs they cover (a queried pair survives even a consistent
+  both-sides edit, re-audit M11); for every other pair the model is the authority and editing it is
+  reviewed by no machine. Certification covers the mechanism, not future model edits.
+
+**K2 — Verdict-checked.** Every saved query carrying `expect`, in every tracked model outside the
+shipped examples, is evaluated through the engine in CI and its outcome must match
+(`test/model-coverage.test.ts`); the measure is mutation-verified by four distinct routes (re-audit
+M1, M9a–M9c). This is a layer-2 warrant — the model answers what it says it answers — and the gate
+says so itself: its receipt pairs the claim with "This does NOT prove any model corresponds to the
+code" and a test holds the disclaimer in place so the numbers cannot travel without it
+(`test/model-coverage.test.ts:118-126`, `:491-501`). Verdict-checking becomes engineering warrant
+only where a K1 join exists; today that is the components model alone.
+
+**K3 — Generated from the code.** The affordances and example-coverage models: regenerate and
+compare, byte-exact, on every run (`test/capabilities.test.ts:532-538`,
+`test/examples.test.ts:878-885`). The warrant is exactly as strong as the generator's reading of
+the code at HEAD — staleness is impossible; a generator bug is not. Neither model declares this in
+the correspondence vocabulary (§13.1's gap).
+
+**K4 — Asserted by reading.** A person, a date, and a note that bounds the reading
+(`examples/docable.mage.yaml:83-86`). This is also the honest classification of every
+correspondence sentence in model prose and code comments not named above: an assertion's warrant is
+its author's reading at its date, and the house form is to state the bound with the claim — the
+pattern `src/ir/types.ts:4-22` now follows after twice overclaiming.
+
+**K5 — Declined, with the reason recorded.** `PLAN.md` §0.2a records what the workbench
+deliberately does not model about itself: no quantities self-model until a gate can derive a
+threshold from a model, and no transaction×hypothesis×workspace machine — earned, awaiting a ruling
+on the model set. A declined claim is a correspondence decision too: recording it is what makes the
+absence read as a ruling rather than a gap, the same move `omits:` makes inside a model (§8).
+
+### 13.4 Granularity: what an edge can and cannot say
+
+The components model speaks at **edge granularity** over typed relations, and the relation
+vocabulary drew the distinction before it bit: `depends-on` (build-time reference; path composition
+allowed; `models/workbench-components.mage.yaml:127-145`) is not `may_mutate` (authority to change
+state; path composition forbidden; `:147-160`). An edge can express that a reference or an
+authority exists or is absent, and — through §7's forms — what is reachable over the declared set.
+
+What an edge cannot express is **which value crosses a sanctioned edge**. The model's sixth query is
+where the two readings diverged in practice (`models/workbench-components.mage.yaml:523-547`). Asked
+as reachability, `ui → yaml-adapter` *holds*, and legitimately — every edit is a document edit, and
+the route through the transaction engine is the sanctioned one — so the assertable claim is
+`form: direct`, no direct edge. And the re-audit's M10 shows what `direct` cannot hold: a one-line
+re-export through the sanctioned intermediary moves the whole parse path into the view with both
+declared edges untouched and every gate green. The model says this of itself — its `omits:` row
+names `per-file import sites` and `value-vs-type import kind`
+(`models/workbench-components.mage.yaml:365`), and the sixth query's comment states the bound and
+records the byte-level control as a deliberate non-build, an open follow-up with its own design
+owed (`:537-541`). At `7cd9e1e0` no value-flow control exists; a sibling wave is working exactly
+this seam, so that sentence is the one in this section most likely to be true for the shortest
+time.
+
+### 13.5 What is not claimed
+
+The complement, in §11's register:
+
+- **No machine↔code correspondence.** No self-model carries a state machine (`PLAN.md` §0.2a), and
+  no gate anywhere relates any declared machine to any code path. A machine's optional `entity:`
+  link (V6) is correspondence *within* the model, not to the world.
+- **No value-flow or information-flow analysis.** §13.4. The gates hold edge properties; nothing
+  reasons about what flows across an edge.
+- **No claim that every meaningful property of the implementation is modelled.**
+  `test/model-coverage.test.ts`'s denominator is tracked model files and their queries, not the
+  implementation's properties; the prose-invariant census outside the models (re-audit Q2) stays
+  held by tests and code, and its green says nothing a model said.
+- **No claim about future edits.** K1's warrant holds at each run under its preconditions (B1) and
+  rules no future model widening good (B4).
+
+### 13.6 Open questions
+
+Recorded because deciding them here would be the overreach this section exists to prevent.
+
+- **OQ1 — should the earn-discipline become a validation rule?** "A `correspondence.kind` stronger
+  than `asserted` names the mechanism that earned it" is today schema prose plus one disciplined
+  use, tested by nothing. It is *not* minted as V40 here: every V-rule in this document is
+  implemented and citable by error messages, and an unimplemented V-number would itself be a claim
+  of enforcement nothing holds.
+- **OQ2 — should the generated models declare `kind: generated`?** The enum anticipates them;
+  nothing writes it; the generators own those bytes, so the edit belongs to their owners, not to a
+  prose wave.
+- **OQ3 — is `checked` one kind or two?** The one record uses `checked` for "a gate refutes drift,"
+  while its own note says the *date* records a hand-reading. If a second record ever wants
+  `checked` on the strength of re-reading alone, the word is ambiguous between gate-checked and
+  human-re-checked. Whatever value is admitted next should be worth exactly what a named mechanism
+  can hold — the schema's sentence, applied to the vocabulary itself.
+- **OQ4 — where this bears on §G5, which it does not decide.** §G5
+  (`DESIGN-model-query-261002.md:718`) is a layer-2 question: what algebra, if any, composes query
+  denotations. The composition line is held by the author pending an explicit semantics discussion,
+  and this section is input to it, not a substitute. Layer 3 contributes one observation: a
+  composite verdict's engineering warrant can be no stronger than the weakest correspondence among
+  the models it reads, so if composition is ever admitted, the result shape will need somewhere for
+  correspondence to travel — as coverage travels with every result today (§7.1). Nothing here
+  presumes an answer to §G5 itself.
