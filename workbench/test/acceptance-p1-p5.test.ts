@@ -628,7 +628,10 @@ test("P5's counterexample on the lifecycle model is a genuine cycle, and the §5
   assert.ok(cycle.length > 0, "a liveness counterexample needs a cycle");
   assert.deepEqual(cycle.filter(isStutterStep), [],
     "the P5 counterexample must be a real loop, not a halt dressed as one");
-  assert.ok(cycle.every((s) => s.label !== null || s.sync !== null),
+  // `label` rather than `label ?? sync`: a synchronized step carries the event name in BOTH, which
+  // was measured rather than assumed, so the weaker disjunction would buy nothing and hide a step
+  // that arrived with neither.
+  assert.ok(cycle.every((s) => s.label !== null),
     "every step of the cycle is a transition the model declares and a student can point at");
 });
 

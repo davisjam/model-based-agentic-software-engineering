@@ -20,9 +20,6 @@
 // The fixtures are the foundation's section 9.4 list, each named for the ruling it pins.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
-import { parse } from "yaml";
-import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import type { CanonicalSystem, Evidence } from "../src/ir/types.ts";
 import { configKey } from "../src/ir/types.ts";
@@ -487,47 +484,19 @@ test("an existential LTL question is refused with the dual named, not reinterpre
 });
 
 // ----------------------------------------------------------------------------------------------
-// P5 on the acceptance machine
+// P5 on the acceptance machine -- MOVED
 // ----------------------------------------------------------------------------------------------
-
-test("P5 is refuted on the lifecycle model, by a genuine cycle rather than a stuttering artifact", () => {
-  // The foundation's flagship ruling, re-established through the LTL path rather than by hand.
-  // Section 5.2 measured it with a `repeatable-cycle` + `avoid` query -- a strictly stronger
-  // question, since it forbids a decision on the prefix too -- and ruled that `refuted` is the
-  // intended teaching outcome: nothing forces an agent that captured a base to ever decide, and
-  // nothing stops other parties committing meanwhile. That is section 11's starvation shape, and
-  // under no-fairness semantics the trace is as real as any other.
-  //
-  // Section 9.1's closing sentence makes the pair an obligation: "the `repeatable-cycle`+`avoid`
-  // query and phi_P5 must agree forever." This is that sentence as a test.
-  const system = canonicalize(parse(readFileSync("models/workbench-lifecycle.mage.yaml", "utf8")));
-  const based = holds("transaction.state", "based");
-  const decided: Predicate = {
-    kind: "any-of",
-    operands: [
-      holds("transaction.state", "committed"),
-      holds("transaction.state", "refused"),
-    ],
-  };
-  const p5 = alwaysOf(impliesOf(proposition(based), eventuallyOf(proposition(decided))));
-
-  const answer = assertRefuted(system, p5, "P5 on the lifecycle model");
-  assert.equal(behavior(system, "repeatable-cycle", { target: based, avoid: decided }), "holds",
-    "the hand-run query of section 5.2 must still answer holds, or the two have stopped agreeing");
-
-  // A GENUINE cycle, which section 9.4 asks for by name. Asserted two ways: the model has no dead
-  // end for a stutter to sit on, and no step of the returned cycle is one.
-  const compiled = compileSystem(system);
-  assert.ok(compiled.ok);
-  assert.deepEqual([...exploreSpace(compiled.value, defaultOptions()).deadEnds], [],
-    "the acceptance machine has no dead end, so no counterexample over it may stutter");
-  const cycle = answer.evidence?.cycle ?? [];
-  assert.ok(cycle.length > 0);
-  assert.deepEqual(cycle.filter(isStutterStep), [],
-    "the P5 counterexample must be a real loop, not a halt dressed as one");
-  assert.ok(cycle.every((s) => s.label !== null),
-    "every step of the cycle is a transition the model declares and a student can point at");
-});
+//
+// The P5 pin landed here first, because this was the only file that could ask it. It now lives in
+// `test/acceptance-p1-p5.test.ts` with its four siblings, where it gained what a lone pin could
+// not have: the same formula asked of the transaction-workspace machine as well, an
+// `await_adoption` flip control, and the measured finding that no single-edge removal flips P5 over
+// the lifecycle model. Everything the version here asserted is asserted there -- the section 5.2
+// `repeatable-cycle`+`avoid` pair that section 9.1 makes a standing obligation, the no-dead-end
+// check, the no-stutter check, and the labelled-step check.
+//
+// Moved rather than copied. Two files asserting one property drift apart, and the drift surfaces as
+// one of them quietly asserting less.
 
 test("an atom naming nothing refuses before a trace exists", () => {
   const sys = flipFlop();
