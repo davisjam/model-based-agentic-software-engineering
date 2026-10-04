@@ -222,7 +222,7 @@ quantitative_expectations:
 queries:
 
   - id: publish-without-validating
-    label: Can a document be published without reaching validating?
+    label: A document can be published without reaching validating
     suggested: true
     models: [document-lifecycle]
     expected:
@@ -238,7 +238,7 @@ queries:
       exactly what was asked.
 
   - id: retry-forever
-    label: Can processing continue retrying indefinitely?
+    label: Processing can continue retrying indefinitely
     suggested: true
     models: [document-lifecycle]
     expected:
@@ -253,7 +253,7 @@ queries:
       latency exist -- an unbounded retry policy would have no maximum to report.
 
   - id: document-returns-to-remediating
-    label: Can a document return to remediating after a failed validation?
+    label: A document can return to remediating after a failed validation
     suggested: false
     models: [document-lifecycle]
     expected:
@@ -272,7 +272,7 @@ queries:
       "re-entry" and "forever" are different claims needing different evidence.
 
   - id: document-publishes
-    label: Can a document reach published?
+    label: A document can reach published
     suggested: false
     models: [document-lifecycle]
     expected:
@@ -296,7 +296,7 @@ queries:
       one. Its occurrence counts feed the `retry-free-latency` expectation.
 
   - id: publishes-after-three-retries
-    label: Can a document publish having used every permitted retry?
+    label: A document can publish having used every permitted retry
     suggested: true
     models: [document-lifecycle, pipeline-performance]
     expected:
@@ -322,7 +322,7 @@ queries:
       expectation catches it.
 
   - id: remediation-memory-is-charged
-    label: Is the 256 MB remediation charge ever incurred?
+    label: The 256 MB remediation charge is incurred on some reachable execution
     suggested: false
     models: [document-lifecycle, pipeline-performance]
     expected:
@@ -341,7 +341,7 @@ queries:
       summand is real -- and the reachability half is the part the engine already answers.
 
   - id: stages-of-this-document
-    label: Which components perform a stage of this document's processing?
+    label: The parser, remediation, model gateway and validator perform a stage of this document's processing
     suggested: false
     models: [pipeline-performance]
     expected:
@@ -375,7 +375,7 @@ queries:
       §3.1.
 
   - id: parse-runs-before-validate
-    label: Does parsing run before validation?
+    label: Parsing runs before validation
     suggested: false
     models: [pipeline-performance]
     expected:
@@ -391,7 +391,7 @@ queries:
       vacuous holds looks from outside, which this project has shipped once already.
 
   - id: expected-latency-with-the-cache
-    label: Does the cache improve expected latency without violating the memory requirement?
+    label: The cache improves expected latency without violating the memory requirement
     suggested: true
     models: [pipeline-performance]
     expected:

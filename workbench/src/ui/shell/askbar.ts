@@ -46,7 +46,7 @@
  *
  * An item carries an `AskRequest` — what the Advanced form yields — rather than a finished query
  * document. `planAsk` then builds the query for Ask, and `planEdit`'s `save-property` builds it
- * again from the same request for Track. That is §10.3's "preserve the proposition's semantics"
+ * again from the same request for Track. That is §10.3's "preserve the statement's semantics"
  * held structurally: the property kept is built by the function that built the answer on screen.
  */
 import { parseGraphQuery } from "../../engine/index.ts";
@@ -60,6 +60,7 @@ import type { LearnLink } from "../../app/learn.ts";
 import type { CanonicalSystem, QueryResult } from "../../ir/types.ts";
 import { classifyEvidence, noSuchQuestion } from "../../app/agent-api.ts";
 import type { EvidenceReading } from "../../app/agent-api.ts";
+import { normalizeToStatement } from "../../app/properties.ts";
 import type { EvaluatedProperty } from "../../app/properties.ts";
 import { fillSelect, paintAnswer } from "../render-dom.ts";
 import { planAsk, propertyRow, resolveSelection } from "../view-model.ts";
@@ -188,13 +189,13 @@ export function contextualQuestions(system: CanonicalSystem, entity: string): re
 }
 
 /**
- * The system's own saved questions, offered as the suggestions a loaded example arrives with.
+ * The system's own saved properties, offered as the suggestions a loaded example arrives with.
  *
- * Read from `system.queries` rather than from the example's metadata file: the saved questions are
- * what this REVISION asks, so a question an agent saved a moment ago is offered and a retracted one
- * is not. The label is the author's proposition, or the id when the question carries no name.
+ * Read from `system.queries` rather than from the example's metadata file: the saved properties
+ * are what this REVISION claims, so one an agent saved a moment ago is offered and a retracted one
+ * is not. The label is the author's statement, or the id when the saved query carries no name.
  */
-export function savedQuestions(system: CanonicalSystem): readonly AskItem[] {
+export function savedProperties(system: CanonicalSystem): readonly AskItem[] {
   return [...system.queries].map(([id, saved]) => {
     const raw = saved.raw;
     const name = typeof raw === "object" && raw !== null && !Array.isArray(raw)
@@ -211,13 +212,13 @@ export function savedQuestions(system: CanonicalSystem): readonly AskItem[] {
 }
 
 /**
- * Everything offerable now: the system's saved questions, then the selection's own.
+ * Everything offerable now: the system's saved properties, then the selection's own questions.
  *
  * **It takes a resolved `Selection`, and that is the fix for the defect this surface was the
  * victim of.** It used to take the wire strings and resolve the entity itself with
  * `selection.find((id) => system.entities.has(id))` — a test that answers only for the BARE
  * spelling. The contents tree writes the prefixed one, so clicking a node in the tree left this
- * catalogue at the saved questions alone: no "Can anything reach Analytics?", and since the Track
+ * catalogue at the saved properties alone: no "Can anything reach Analytics?", and since the Track
  * box opens only for an untracked answer, `askbar.track` was unreachable from a tree selection
  * altogether. The pane is not allowed to re-derive the meaning of a selection any more; it is
  * handed one, and `entity` is the only kind that carries contextual questions because the
@@ -225,7 +226,7 @@ export function savedQuestions(system: CanonicalSystem): readonly AskItem[] {
  */
 export function askCatalogue(system: CanonicalSystem, selected: Selection): readonly AskItem[] {
   return [
-    ...savedQuestions(system),
+    ...savedProperties(system),
     ...(selected.kind === "entity" ? contextualQuestions(system, selected.id) : []),
   ];
 }
@@ -612,13 +613,19 @@ export function mountAskBar(ctx: ShellContext, submitEdit: SubmitEdit): ShellReg
       ctx.announce("State the claim this property makes. A property is an assertion about the system.");
       return;
     }
+    // Normalized HERE as well as in `planEdit`, so the derived id comes from the statement the
+    // property will actually carry rather than from the question that was on screen. The Track box
+    // is prefilled with the composer's interrogative label, so without this the commonest tracked
+    // property would be addressed as `is-fulfillment-reachable-from-checkout` for the rest of its
+    // life. `normalizeToStatement` is idempotent, so `planEdit` normalizing again is a no-op.
+    const statement = normalizeToStatement(claim).statement;
     // No id field and no expectation control, per correction 7: the id is derived from the claim and
     // a tracked claim is a plain property until somebody declares an expectation on it. The same
     // `save-property` envelope the Advanced form sends, through the one mutation funnel.
     submitEdit({
       form: "save-property",
-      id: derivePropertyId(claim, new Set(frame.state.system.queries.keys())),
-      proposition: claim,
+      id: derivePropertyId(statement, new Set(frame.state.system.queries.keys())),
+      statement,
       expect: "",
       ask: state.item.ask,
     });
@@ -628,16 +635,16 @@ export function mountAskBar(ctx: ShellContext, submitEdit: SubmitEdit): ShellReg
   // -- Advanced query -------------------------------------------------------------------------
 
   byId("ask-go").addEventListener("click", () => {
-    const proposition = input("save-property-proposition").value.trim();
+    const statement = input("save-property-statement").value.trim();
     const request = advancedRequest();
-    const planned = planAsk(request, proposition);
+    const planned = planAsk(request, statement);
     if (!planned.ok) {
       paintAnswer(null, planned.problem, askAnswer);
       clearAnswerSurfaces();
       ctx.announce(planned.problem);
       return;
     }
-    const label = proposition === "" ? (labelFor(request) ?? "(unsaved)") : proposition;
+    const label = statement === "" ? (labelFor(request) ?? "(unsaved)") : statement;
     showAnswer(
       { key: "advanced", label, source: "contextual", savedId: null, ask: request },
       planned.query,
@@ -660,7 +667,7 @@ export function mountAskBar(ctx: ShellContext, submitEdit: SubmitEdit): ShellReg
   byId("save-property-go").addEventListener("click", () => submitEdit({
     form: "save-property",
     id: input("save-property-id").value,
-    proposition: input("save-property-proposition").value,
+    statement: input("save-property-statement").value,
     expect: saveExpect.value,
     ask: advancedRequest(),
   }));

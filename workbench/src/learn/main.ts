@@ -23,7 +23,7 @@ import type { Point, RenderedView, SceneSubject } from "../render/types.ts";
 import { paintDiagram } from "../ui/render-dom.ts";
 import {
   buildTypeSections, buildUseSections,
-  type LearnTypeSection, type LearnUseSection, type SavedQuestion,
+  type LearnTypeSection, type LearnUseSection, type SavedStatement,
 } from "./content.ts";
 
 const el = <K extends keyof HTMLElementTagNameMap>(
@@ -152,9 +152,9 @@ function figure(
 // Shared section fragments
 // --------------------------------------------------------------------------------------------
 
-function questionList(questions: readonly SavedQuestion[]): HTMLElement {
+function statementList(statements: readonly SavedStatement[]): HTMLElement {
   const ul = el("ul", undefined, "notes");
-  for (const q of questions) ul.append(el("li", q.label));
+  for (const s of statements) ul.append(el("li", s.label));
   return ul;
 }
 
@@ -211,10 +211,10 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   }
 
   section.append(sub("Properties you can measure"));
-  section.append(el("p", `Question forms the engine answers over a ${s.entry.label}: ${s.entry.forms.join(", ")}.`, "intro"));
-  if (s.questions.length > 0) {
-    section.append(el("p", "Asked of this exemplar, as its authors saved them:", "intro"));
-    section.append(questionList(s.questions));
+  section.append(el("p", `Query forms the engine decides over a ${s.entry.label}: ${s.entry.forms.join(", ")}.`, "intro"));
+  if (s.statements.length > 0) {
+    section.append(el("p", "Claimed of this exemplar, as its authors stated them:", "intro"));
+    section.append(statementList(s.statements));
   }
 
   section.append(sub("What it deliberately does not tell you"));
@@ -292,9 +292,9 @@ function useSection(s: LearnUseSection, systems: ReadonlyMap<ShippedExampleId, C
   }
   section.append(dl);
 
-  if (s.questions.length > 0) {
-    section.append(sub("A property join, shipped and answerable"));
-    section.append(questionList(s.questions));
+  if (s.statements.length > 0) {
+    section.append(sub("A property join, shipped and decidable"));
+    section.append(statementList(s.statements));
   }
   if (s.purpose !== null && s.purpose.omits.length > 0) {
     section.append(sub("What it deliberately does not tell you"));

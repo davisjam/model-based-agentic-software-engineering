@@ -290,7 +290,7 @@ export function changeHeadline(groups: readonly ChangeGroup[]): string {
 /** One property whose reading this change moves, or deliberately does not. */
 export interface PropertyChange {
   readonly id: string;
-  readonly proposition: string;
+  readonly statement: string;
   /** "requirement" when either revision declares an expectation on it (§13). */
   readonly kind: "property" | "requirement";
   /** null when the claim is not tracked in that revision. */
@@ -353,7 +353,7 @@ export function propertyImpact(
     const beforeStatus = b?.status ?? null;
     const afterStatus = a?.status ?? null;
     const moved = beforeStatus !== afterStatus || (b !== undefined && a !== undefined && b.kind !== a.kind);
-    const proposition = a?.proposition ?? b?.proposition ?? id;
+    const statement = a?.statement ?? b?.statement ?? id;
 
     if (!moved && afterStatus !== null && CONCLUSIVE.has(afterStatus)) {
       unchangedCount += 1;
@@ -371,7 +371,7 @@ export function propertyImpact(
       : `unchanged: ${statusWord(afterStatus)}`;
 
     notable.push({
-      id, proposition, kind, before: beforeStatus, after: afterStatus, moved, reading,
+      id, statement, kind, before: beforeStatus, after: afterStatus, moved, reading,
       breaks: kind === "requirement" && b?.expectation?.met === true && a?.expectation?.met !== true,
     });
   }
@@ -506,7 +506,7 @@ export function mountReview(ctx: ShellContext): ReviewSurface {
       const item = document.createElement("li");
       const label = document.createElement("span");
       label.textContent = `${change.kind === "requirement" ? "Requirement" : "Property"} `
-        + `${change.proposition} — ${change.reading}`;
+        + `${change.statement} — ${change.reading}`;
       item.append(label);
       // Inspect is offered for a claim that MOVED, because the witness is what explains the move.
       // An unchanged NOT-ANSWERABLE claim has a refusal, not a witness, and its own row says so.

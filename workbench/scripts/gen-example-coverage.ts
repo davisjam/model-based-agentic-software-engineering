@@ -1109,7 +1109,7 @@ export function generateExampleCoverageModel(
     const st = report.status.get(row.id) ?? "unexercised";
     lines.push(
       `  exercised-by.${row.id}:`,
-      `    name: ${q(`Which shipped example exercises ${row.matrixRow.toLowerCase()} -- ${row.id}?`)}`,
+      `    name: ${q(`Some shipped example exercises ${row.matrixRow.toLowerCase()} -- ${row.id}`)}`,
       "    kind: graph",
       "    quantifier: exists",
       `    expect: ${st === "exercised" ? "holds" : "refuted"}`,
@@ -1123,7 +1123,7 @@ export function generateExampleCoverageModel(
     if ((report.missingConstructs.get(row.id) ?? []).length === 0) continue;
     lines.push(
       `  blocked.${row.id}:`,
-      `    name: ${q(`What construct does MAGE lack that makes ${row.id} unreachable?`)}`,
+      `    name: ${q(`MAGE lacks a construct, so ${row.id} is unreachable`)}`,
       "    kind: graph",
       "    quantifier: exists",
       "    expect: holds",

@@ -38,8 +38,8 @@ export interface ExemplarVisual {
   readonly subject: SceneSubject;
 }
 
-/** One saved question of the exemplar, by the name its author gave it. */
-export interface SavedQuestion {
+/** One saved property of the exemplar, by the statement its author gave it. */
+export interface SavedStatement {
   readonly id: string;
   readonly label: string;
 }
@@ -61,8 +61,8 @@ export interface LearnTypeSection {
   readonly visual: ExemplarVisual | null;
   /** The exemplar subject's declared purpose: its question, represents, omits. */
   readonly purpose: Purpose | null;
-  /** The exemplar example's saved questions of this type's query kind. */
-  readonly questions: readonly SavedQuestion[];
+  /** The exemplar example's saved properties of this type's query kind. */
+  readonly statements: readonly SavedStatement[];
   /** Non-empty only for the quantitative type: the annotations its exemplar declares. */
   readonly quantities: readonly QuantityRow[];
   /** The refusal the kernel produces when this type is absent — the NOT ANSWERABLE sentence. */
@@ -80,8 +80,8 @@ export interface LearnUseSection {
   readonly purpose: Purpose | null;
   /** Entity property names in the exemplar model, surfaced on the diagram. */
   readonly showProperties: readonly string[];
-  /** Saved graph questions of the exemplar example that join entity properties — the use at work. */
-  readonly questions: readonly SavedQuestion[];
+  /** Saved graph properties of the exemplar example that join entity properties — the use at work. */
+  readonly statements: readonly SavedStatement[];
 }
 
 const queryKindOf = (id: ModelTypeId): Query["kind"] => {
@@ -96,12 +96,12 @@ const isObject = (v: unknown): v is Record<string, unknown> =>
 /**
  * The exemplar's saved questions of one query kind, by authored name.
  *
- * Read from `SavedQuery.raw` with guards rather than re-parsed: a question with no `name` is shown
+ * Read from `SavedQuery.raw` with guards rather than re-parsed: a property with no `name` is shown
  * by id, and a raw that is not an object is skipped — the examples suite validates the fixtures;
  * this is presentation.
  */
-export function savedQuestions(system: CanonicalSystem, kind: Query["kind"]): readonly SavedQuestion[] {
-  const out: SavedQuestion[] = [];
+export function savedStatements(system: CanonicalSystem, kind: Query["kind"]): readonly SavedStatement[] {
+  const out: SavedStatement[] = [];
   for (const [id, q] of system.queries) {
     if (!isObject(q.raw) || q.raw["kind"] !== kind) continue;
     const name = q.raw["name"];
@@ -110,10 +110,10 @@ export function savedQuestions(system: CanonicalSystem, kind: Query["kind"]): re
   return out;
 }
 
-/** Saved graph questions whose `where` joins entity properties — the data-policy use, executable. */
-export function propertyJoinQuestions(system: CanonicalSystem): readonly SavedQuestion[] {
-  const joins: SavedQuestion[] = [];
-  for (const q of savedQuestions(system, "graph")) {
+/** Saved graph properties whose `where` joins entity properties — the data-policy use, executable. */
+export function propertyJoinStatements(system: CanonicalSystem): readonly SavedStatement[] {
+  const joins: SavedStatement[] = [];
+  for (const q of savedStatements(system, "graph")) {
     const raw = system.queries.get(q.id)?.raw;
     if (!isObject(raw) || !isObject(raw["graph"])) continue;
     const where = raw["graph"]["where"];
@@ -201,7 +201,7 @@ export function buildTypeSections(systems: LoadedSystems): readonly LearnTypeSec
       anchor: anchorForType(entry.id),
       visual,
       purpose: visual === null || system === undefined ? null : purposeOf(system, visual.subject),
-      questions: system === undefined ? [] : savedQuestions(system, queryKindOf(entry.id)),
+      statements: system === undefined ? [] : savedStatements(system, queryKindOf(entry.id)),
       quantities:
         entry.id === "quantitative-model" && system !== undefined ? quantityRows(system) : [],
       refusalProse: absentSubstrateProse(t),
@@ -237,7 +237,7 @@ export function buildUseSections(systems: LoadedSystems): readonly LearnUseSecti
       visual: { example: shipped, subject },
       purpose: purposeOf(system, subject),
       showProperties: [...names].sort(),
-      questions: propertyJoinQuestions(system),
+      statements: propertyJoinStatements(system),
     };
   });
 }

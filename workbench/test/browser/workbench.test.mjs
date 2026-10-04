@@ -10,7 +10,7 @@
  *
  * Every number asserted below was MEASURED against this commit's tree, by running the suite's own
  * harness and printing what the page reported: 0 affordance gaps, 0 unlabelled
- * controls, 11 entities / 3 models / 18 relations / 6 saved questions in the flagship example.
+ * controls, 11 entities / 3 models / 18 relations / 6 saved properties in the flagship example.
  * None is a guess.
  *
  * What is deliberately NOT asserted: the focusable-control count, measured at 52. It will grow as
@@ -291,7 +291,7 @@ describe("UX-I2 / UX-I3: the human and agent surfaces report one authoritative s
         `#summary does not report ${counts[key]} ${noun} as context() does: "${summary}"`,
       );
     }
-    assert.match(summary, new RegExp(`\\b${counts.savedQueries} saved questions?\\b`), `#summary omits the saved-question count: "${summary}"`);
+    assert.match(summary, new RegExp(`\\b${counts.savedQueries} saved propert(y|ies)\\b`), `#summary omits the saved-property count: "${summary}"`);
     assert.match(summary, new RegExp(`\\b${counts.instances} machine instances?\\b`), `#summary omits the instance count: "${summary}"`);
   });
 

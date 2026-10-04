@@ -335,7 +335,7 @@ models:
 queries:
 
   exercised-by.structural-models:
-    name: "Which shipped example exercises relations -- structural-models?"
+    name: "Some shipped example exercises relations -- structural-models"
     kind: graph
     quantifier: exists
     expect: holds
@@ -345,7 +345,7 @@ queries:
       to: capability.structural-models
 
   exercised-by.typed-relationships:
-    name: "Which shipped example exercises relations -- typed-relationships?"
+    name: "Some shipped example exercises relations -- typed-relationships"
     kind: graph
     quantifier: exists
     expect: holds
@@ -355,7 +355,7 @@ queries:
       to: capability.typed-relationships
 
   exercised-by.state-machines:
-    name: "Which shipped example exercises state machine -- state-machines?"
+    name: "Some shipped example exercises state machine -- state-machines"
     kind: graph
     quantifier: exists
     expect: holds
@@ -365,7 +365,7 @@ queries:
       to: capability.state-machines
 
   exercised-by.synchronized-events:
-    name: "Which shipped example exercises state machine -- synchronized-events?"
+    name: "Some shipped example exercises state machine -- synchronized-events"
     kind: graph
     quantifier: exists
     expect: holds
@@ -375,7 +375,7 @@ queries:
       to: capability.synchronized-events
 
   exercised-by.cross-model-identity:
-    name: "Which shipped example exercises composition -- cross-model-identity?"
+    name: "Some shipped example exercises composition -- cross-model-identity"
     kind: graph
     quantifier: exists
     expect: holds
@@ -385,7 +385,7 @@ queries:
       to: capability.cross-model-identity
 
   exercised-by.model-composition:
-    name: "Which shipped example exercises composition -- model-composition?"
+    name: "Some shipped example exercises composition -- model-composition"
     kind: graph
     quantifier: exists
     expect: holds
@@ -395,7 +395,7 @@ queries:
       to: capability.model-composition
 
   exercised-by.graph-reachability:
-    name: "Which shipped example exercises composition -- graph-reachability?"
+    name: "Some shipped example exercises composition -- graph-reachability"
     kind: graph
     quantifier: exists
     expect: holds
@@ -405,7 +405,7 @@ queries:
       to: capability.graph-reachability
 
   exercised-by.safety:
-    name: "Which shipped example exercises safety -- safety?"
+    name: "Some shipped example exercises safety -- safety"
     kind: graph
     quantifier: exists
     expect: holds
@@ -415,7 +415,7 @@ queries:
       to: capability.safety
 
   exercised-by.safety-as-existential-dual:
-    name: "Which shipped example exercises safety -- safety-as-existential-dual?"
+    name: "Some shipped example exercises safety -- safety-as-existential-dual"
     kind: graph
     quantifier: exists
     expect: holds
@@ -425,7 +425,7 @@ queries:
       to: capability.safety-as-existential-dual
 
   exercised-by.reachability:
-    name: "Which shipped example exercises liveness -- reachability?"
+    name: "Some shipped example exercises liveness -- reachability"
     kind: graph
     quantifier: exists
     expect: holds
@@ -435,7 +435,7 @@ queries:
       to: capability.reachability
 
   exercised-by.bounded-progress:
-    name: "Which shipped example exercises liveness -- bounded-progress?"
+    name: "Some shipped example exercises liveness -- bounded-progress"
     kind: graph
     quantifier: exists
     expect: holds
@@ -445,7 +445,7 @@ queries:
       to: capability.bounded-progress
 
   exercised-by.bounded-cycles:
-    name: "Which shipped example exercises state machine -- bounded-cycles?"
+    name: "Some shipped example exercises state machine -- bounded-cycles"
     kind: graph
     quantifier: exists
     expect: holds
@@ -455,7 +455,7 @@ queries:
       to: capability.bounded-cycles
 
   exercised-by.witnesses:
-    name: "Which shipped example exercises composition -- witnesses?"
+    name: "Some shipped example exercises composition -- witnesses"
     kind: graph
     quantifier: exists
     expect: holds
@@ -465,7 +465,7 @@ queries:
       to: capability.witnesses
 
   exercised-by.counterexamples:
-    name: "Which shipped example exercises safety -- counterexamples?"
+    name: "Some shipped example exercises safety -- counterexamples"
     kind: graph
     quantifier: exists
     expect: holds
@@ -475,7 +475,7 @@ queries:
       to: capability.counterexamples
 
   exercised-by.purposeful-non-answerability:
-    name: "Which shipped example exercises not-answerable -- purposeful-non-answerability?"
+    name: "Some shipped example exercises not-answerable -- purposeful-non-answerability"
     kind: graph
     quantifier: exists
     expect: holds
@@ -485,7 +485,7 @@ queries:
       to: capability.purposeful-non-answerability
 
   exercised-by.bounded-coverage-reporting:
-    name: "Which shipped example exercises not-answerable -- bounded-coverage-reporting?"
+    name: "Some shipped example exercises not-answerable -- bounded-coverage-reporting"
     kind: graph
     quantifier: exists
     expect: holds
@@ -495,7 +495,7 @@ queries:
       to: capability.bounded-coverage-reporting
 
   exercised-by.containment-hierarchy:
-    name: "Which shipped example exercises relations -- containment-hierarchy?"
+    name: "Some shipped example exercises relations -- containment-hierarchy"
     kind: graph
     quantifier: exists
     expect: refuted
@@ -505,7 +505,7 @@ queries:
       to: capability.containment-hierarchy
 
   exercised-by.quantitative-annotations:
-    name: "Which shipped example exercises quantities -- quantitative-annotations?"
+    name: "Some shipped example exercises quantities -- quantitative-annotations"
     kind: graph
     quantifier: exists
     expect: holds
@@ -515,7 +515,7 @@ queries:
       to: capability.quantitative-annotations
 
   exercised-by.declared-accounting:
-    name: "Which shipped example exercises quantities -- declared-accounting?"
+    name: "Some shipped example exercises quantities -- declared-accounting"
     kind: graph
     quantifier: exists
     expect: holds
@@ -525,7 +525,7 @@ queries:
       to: capability.declared-accounting
 
   exercised-by.path-quantity-accounting:
-    name: "Which shipped example exercises performance -- path-quantity-accounting?"
+    name: "Some shipped example exercises performance -- path-quantity-accounting"
     kind: graph
     quantifier: exists
     expect: holds
@@ -535,7 +535,7 @@ queries:
       to: capability.path-quantity-accounting
 
   exercised-by.configuration-memory-accounting:
-    name: "Which shipped example exercises performance -- configuration-memory-accounting?"
+    name: "Some shipped example exercises performance -- configuration-memory-accounting"
     kind: graph
     quantifier: exists
     expect: holds
@@ -545,7 +545,7 @@ queries:
       to: capability.configuration-memory-accounting
 
   exercised-by.performance:
-    name: "Which shipped example exercises performance -- performance?"
+    name: "Some shipped example exercises performance -- performance"
     kind: graph
     quantifier: exists
     expect: holds
@@ -555,7 +555,7 @@ queries:
       to: capability.performance
 
   exercised-by.requirements:
-    name: "Which shipped example exercises requirements -- requirements?"
+    name: "Some shipped example exercises requirements -- requirements"
     kind: graph
     quantifier: exists
     expect: refuted
@@ -565,7 +565,7 @@ queries:
       to: capability.requirements
 
   blocked.requirements:
-    name: "What construct does MAGE lack that makes requirements unreachable?"
+    name: "MAGE lacks a construct, so requirements is unreachable"
     kind: graph
     quantifier: exists
     expect: holds

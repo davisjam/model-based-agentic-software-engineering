@@ -80,7 +80,7 @@ const FULLY_WIRED: readonly CapabilityId[] = [
   "create-hypothesis", "commit-hypothesis", "discard-hypothesis",
   "create-model", "delete-model", "add-note",
   "load-example", "inspect-provenance",
-  // Saving a query's result as a persistent proposition, and retracting one. §23's scenario ends
+  // Saving a query's result as a persistent statement, and retracting one. §23's scenario ends
   // with the first of these, and `delete-query` existed with no way for a person to reach it.
   "save-property", "retract-property",
 ];

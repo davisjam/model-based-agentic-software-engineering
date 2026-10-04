@@ -11,7 +11,7 @@ const behavior = (
 
 test("reach: the showcase question is refuted, exhaustively", () => {
   const s = docable();
-  // "Can a document be published without being reviewed?" `published` is reachable only out of
+  // "A document can be published without being reviewed." `published` is reachable only out of
   // `reviewed`, so avoiding `reviewed` makes it unreachable.
   const answer = runQuery(s, savedQuery(s, "publish-requires-review"));
   assert.equal(answer.result.outcome, "refuted");
@@ -33,8 +33,8 @@ test("reach: without the avoid clause the same target is reached, with a trace",
 
 test("invariant: a violated universal yields a COUNTEREXAMPLE, not an absence", () => {
   const s = docable();
-  // "Is the document ever processing while the worker is idle?" It is: acquire moves both, then
-  // the worker releases on its own while the document is still processing.
+  // "The document is never processing while the worker is idle" is REFUTED: acquire moves both,
+  // then the worker releases on its own while the document is still processing.
   const answer = runQuery(s, savedQuery(s, "processing-implies-custody"));
   assert.equal(answer.result.outcome, "refuted");
   assert.equal(answer.result.evidence?.role, "counterexample");

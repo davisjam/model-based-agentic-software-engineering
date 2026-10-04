@@ -108,7 +108,7 @@ export interface MageAgentApi {
   readonly debug: DebugApi;
   savedQueries(): Record<string, QueryResult>;
   /**
-   * Every persistent property: proposition, status, the models and evidence the status derives
+   * Every persistent property: statement, status, the models and evidence the status derives
    * from, and the revision it was computed against (§9.3, UX-I5).
    *
    * The machine half of UX-I2 for the property list. `savedQueries()` returns the raw results and

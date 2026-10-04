@@ -18,7 +18,7 @@ import type {
   Annotated, CanonicalSystem, Coverage, Evidence, Finding, Purpose, Scalar,
 } from "../ir/types.ts";
 import { provenanceFields } from "../app/provenance.ts";
-import { STATUS_TEXT } from "../app/properties.ts";
+import { STATUS_TEXT, normalizeToStatement } from "../app/properties.ts";
 import type { EvaluatedProperty, Ground, PropertyStatus } from "../app/properties.ts";
 import type { SceneSubject } from "../render/types.ts";
 // The graph forms, from the array the engine derives its own type from. A hand-written list of
@@ -190,8 +190,8 @@ export interface PrincipalModel {
  */
 export interface PropertyRow {
   readonly id: string;
-  /** What the claim says. §10.3's proposition, in the author's words. */
-  readonly proposition: string;
+  /** What the claim says — a declarative proposition, in the author's words (§10.3). */
+  readonly statement: string;
   /** "property" or "requirement" — a WORD, because §13 lets the UX distinguish them visually and
    * a visual-only distinction is one a screen-reader user never receives. */
   readonly kind: string;
@@ -309,7 +309,7 @@ export interface EditOptions {
   readonly quantifiers: readonly Choice[];
   /** Outcome words a requirement may declare as its `expect` (§13), plus "no expectation". */
   readonly expectations: readonly Choice[];
-  /** Existing properties, for retraction. Labelled by proposition, valued by id. */
+  /** Existing properties, for retraction. Labelled by statement, valued by id. */
   readonly properties: readonly Choice[];
 }
 
@@ -353,7 +353,7 @@ export type EditRequest =
       readonly kind: string; readonly text: string;
     }
   | {
-      readonly form: "save-property"; readonly id: string; readonly proposition: string;
+      readonly form: "save-property"; readonly id: string; readonly statement: string;
       /** The outcome word the engineer declares must hold, or "" for a descriptive property. */
       readonly expect: string;
       readonly ask: AskRequest;
@@ -387,7 +387,7 @@ export type AskPlan =
  * The ask form's input -> one query document.
  *
  * ONE builder, called by the Ask button and again by `planEdit`'s `save-property`. That is what
- * makes §10.3's "SHALL preserve the proposition's semantics rather than merely saving the displayed
+ * makes §10.3's "SHALL preserve the statement's semantics rather than merely saving the displayed
  * answer" structural: the saved query is built by the same function that built the query whose
  * answer is on screen, so it cannot be an approximation of it. Two builders would be two
  * approximations, and the drift would show up as a property that answers a different question from
@@ -396,10 +396,10 @@ export type AskPlan =
  * Keys are the WIRE spelling (`max-hops`), because the object is both run through `parseQuery` and
  * written into the document by `save-query`, and the document is what a person later reads.
  */
-export function planAsk(req: AskRequest, proposition?: string): AskPlan {
+export function planAsk(req: AskRequest, statement?: string): AskPlan {
   const form = req.form.trim();
   const relation = req.relation.trim();
-  if (form === "") return { ok: false, problem: "Choose the shape of the question." };
+  if (form === "") return { ok: false, problem: "Choose the shape of the claim." };
   if (relation === "") {
     return { ok: false, problem: "Choose the relation type to traverse. Only types this model system declares are offered." };
   }
@@ -415,10 +415,10 @@ export function planAsk(req: AskRequest, proposition?: string): AskPlan {
     return { ok: false, problem: `A hop limit is a whole number, not '${hops}'.` };
   }
   // Refused here as well as in the engine, because the engine's sentence arrives only after a run
-  // and this one arrives before: a question that names neither endpoint and no constraint has no
+  // and this one arrives before: a claim that names neither endpoint and no constraint has no
   // answer to compute, and `where` clauses are not offered by this form.
   if (from === "" && to === "") {
-    return { ok: false, problem: "Name at least one endpoint. A question with neither has nothing to "
+    return { ok: false, problem: "Name at least one endpoint. A claim with neither has nothing to "
       + "answer, and this form offers no 'where' clause to constrain them — write one in structured "
       + "source for that." };
   }
@@ -427,7 +427,7 @@ export function planAsk(req: AskRequest, proposition?: string): AskPlan {
   if (to !== "") graph["to"] = to;
   if (hops !== "") graph["max-hops"] = Number.parseInt(hops, 10);
   const query: Record<string, unknown> = { kind: "graph", quantifier: req.quantifier, graph };
-  if (proposition !== undefined && proposition.trim() !== "") query["name"] = proposition.trim();
+  if (statement !== undefined && statement.trim() !== "") query["name"] = statement.trim();
   return { ok: true, query };
 }
 
@@ -805,15 +805,20 @@ export function planEdit(req: EditRequest): EditPlan {
       }
       // Required here, optional in the schema, and the asymmetry is the same one `add-model` makes
       // for a model's question: an agent may save a query by id alone, but a person saving a
-      // proposition is being asked to state the CLAIM. §10.3's example turns "Can restricted data
+      // statement is being asked to state the CLAIM. §10.3's example turns "Can restricted data
       // reach Analytics?" into "Restricted data cannot reach Analytics" — a property is an
       // assertion, and `restricted-reaches-analytics` is not one.
-      const proposition = req.proposition.trim();
-      if (proposition === "") {
+      const typed = req.statement.trim();
+      if (typed === "") {
         return no("State the claim this property makes. A property is an assertion about the system, "
-          + "not a question id — and it is what the status word will be read against.");
+          + "not a question — and it is what the status word will be read against.");
       }
-      const planned = planAsk(req.ask, proposition);
+      // The authoring boundary. A person may type the interrogative that motivated the property;
+      // this records the proposition instead, and keeps the text verbatim when it cannot convert
+      // one confidently. Refusing the interrogative outright would be the worse trade: the user's
+      // wording is the claim, and a validation error is not a place to teach grammar.
+      const statement = normalizeToStatement(typed).statement;
+      const planned = planAsk(req.ask, statement);
       if (!planned.ok) return no(planned.problem);
       const query = req.expect.trim() === ""
         ? planned.query
@@ -982,12 +987,12 @@ export function propertyRow(p: EvaluatedProperty): PropertyRow {
 
   return {
     id: p.id,
-    proposition: p.proposition,
+    statement: p.statement,
     kind: p.kind === "requirement" ? "requirement" : "property",
     statusKey: p.status,
     status: p.stale
       ? `NOT CURRENT — the last verdict was computed against revision ${p.evaluatedAt ?? "unknown"}, `
-        + `and this model system is at ${p.currentRevision}. Re-run the questions.`
+        + `and this model system is at ${p.currentRevision}. Re-evaluate the properties.`
       : STATUS_TEXT[p.status],
     verdict: p.stale && p.status !== "not-evaluated"
       ? `Last computed verdict, for the earlier revision only: ${STATUS_TEXT[p.status]}`
@@ -996,16 +1001,16 @@ export function propertyRow(p: EvaluatedProperty): PropertyRow {
     grounds: p.grounds.map(groundText),
     groundSubjects: p.grounds.map((g) => subjectValue({ kind: g.kind, id: g.id })),
     // UX-I5's honest-empty cases, and they are two different facts. For a REFUSAL, citing nothing is
-    // the answer: no model declares what the question names, which is exactly why it cannot be
-    // answered. For a CONCLUSION it is a finding about the result, and saying so is the difference
+    // the answer: no model declares what the statement names, which is exactly why it cannot be
+    // decided. For a CONCLUSION it is a finding about the result, and saying so is the difference
     // between an unestablished claim and an empty "Derived from" block a reader takes for "none".
     groundsMissing: p.grounds.length > 0 || p.status === "not-evaluated"
       ? null
       : p.status === "not-answerable"
-        ? "No model or machine declares the vocabulary this question names. That absence IS the "
+        ? "No model or machine declares the vocabulary this statement names. That absence IS the "
           + "answer, and the refusal below says which distinction is missing."
         : "No model or machine could be identified as the basis of this status, so the status is not "
-          + "grounded. Treat it as unestablished until the question names vocabulary a model declares.",
+          + "grounded. Treat it as unestablished until the statement names vocabulary a model declares.",
     evidence: evidenceText(p.evidence),
     refusal: p.refusal,
     compilation: p.compilation,
@@ -1205,7 +1210,7 @@ export function buildViewModel(
       `${plural(system.machines.size, "machine")}, ` +
       `${plural(system.instances.length, "machine instance")}, ` +
       `${plural(system.relations.length, "relation")}, ` +
-      `${plural(system.queries.size, "saved question")}.`,
+      `${plural(system.queries.size, "saved property", "saved properties")}.`,
     hypothesis: options.hypothesis,
     banner,
     sections,

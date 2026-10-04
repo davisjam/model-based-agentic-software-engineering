@@ -33,7 +33,7 @@ import { renderView } from "../src/render/svg.ts";
 import { modelContents } from "../src/ui/shell/workspace.ts";
 import {
   absentTypeFor, askCatalogue, askEvidenceReading, contextualQuestions, derivePropertyId,
-  evidenceLines, filterCatalogue, filterState, labelFor, learnLinkForAbsentType, savedQuestions,
+  evidenceLines, filterCatalogue, filterState, labelFor, learnLinkForAbsentType, savedProperties,
   type AskItem,
 } from "../src/ui/shell/askbar.ts";
 
@@ -145,8 +145,8 @@ test("nothing is offered for a selection the system does not declare", () => {
   assert.deepEqual(contextualQuestions(system, "no-such-entity"), []);
   // And the catalogue falls back to the saved questions rather than to nothing.
   const catalogue = askCatalogue(system, resolveSelection(system, "no-such-entity"));
-  assert.equal(catalogue.length, savedQuestions(system).length);
-  assert.equal(savedQuestions(system).length, system.queries.size);
+  assert.equal(catalogue.length, savedProperties(system).length);
+  assert.equal(savedProperties(system).length, system.queries.size);
 });
 
 test("typed text FILTERS; an English question it does not hold matches nothing", () => {
@@ -195,7 +195,7 @@ test("a question whose model type this system lacks routes to that type's Learn 
 test("the evidence reading keeps a refusal, a witness and a missing question apart", () => {
   // One system per arm, each chosen by what its saved questions DO, measured here.
   const system = load("worker-queue");
-  const saved = savedQuestions(system);
+  const saved = savedProperties(system);
   const arms = new Map<string, AskItem>();
   for (const item of saved) {
     const reading = askEvidenceReading(system, (raw) => runQuery(system, raw).result, item,
@@ -242,7 +242,7 @@ test("a tracked claim gets an id derived from the claim, and never one already t
 
 test("a saved question is offered but never offered for tracking — it is tracked already", () => {
   const system = load("message-bus");
-  for (const item of savedQuestions(system)) {
+  for (const item of savedProperties(system)) {
     assert.equal(item.ask, null,
       `saved question '${item.savedId}' carries a re-derived ask request, which would be a second `
       + "spelling of a question the model file already states");
@@ -295,7 +295,7 @@ test("a TREE selection reaches the contextual catalogue, through the row's own e
     const contextual = contextualQuestions(system, ref.id);
     if (contextual.length === 0) continue;
     asked += 1;
-    assert.equal(viaTree.length, savedQuestions(system).length + contextual.length,
+    assert.equal(viaTree.length, savedProperties(system).length + contextual.length,
       `selecting ${ref.id} in the tree offers no contextual question`);
     // And the item that makes `askbar.track` reachable: a contextual question carries an `ask`,
     // which is what the Track box opens behind. A catalogue of saved questions alone carries none.

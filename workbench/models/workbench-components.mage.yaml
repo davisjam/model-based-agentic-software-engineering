@@ -157,28 +157,28 @@ queries:
   # ---------------------------------------------------------------------------------------------
 
   kernel-must-not-reach-ui:
-    name: Can the semantic kernel reach the UI through dependencies?
+    name: The semantic kernel reaches the UI through dependencies
     kind: graph
     quantifier: exists
     expect: refuted
     graph: { form: reachability, relation: depends-on, from: model-ir, to: ui }
 
   kernel-must-not-reach-renderer:
-    name: Can the semantic kernel reach the renderer through dependencies?
+    name: The semantic kernel reaches the renderer through dependencies
     kind: graph
     quantifier: exists
     expect: refuted
     graph: { form: reachability, relation: depends-on, from: model-ir, to: renderer }
 
   kernel-must-not-reach-yaml:
-    name: Can the semantic kernel reach the YAML adapter through dependencies?
+    name: The semantic kernel reaches the YAML adapter through dependencies
     kind: graph
     quantifier: exists
     expect: refuted
     graph: { form: reachability, relation: depends-on, from: model-ir, to: yaml-adapter }
 
   kernel-must-not-reach-agent:
-    name: Can the semantic kernel reach the agent adapter through dependencies?
+    name: The semantic kernel reaches the agent adapter through dependencies
     kind: graph
     quantifier: exists
     expect: refuted
@@ -187,7 +187,7 @@ queries:
   # The query engine's semantic input is canonical IR only. If it ever depends on the YAML adapter,
   # then YAML formatting can reach an analysis result -- the exact slop the pipeline model forbids.
   engine-must-not-reach-yaml:
-    name: Can the query engine reach the YAML adapter?
+    name: The query engine reaches the YAML adapter
     kind: graph
     quantifier: exists
     expect: refuted
@@ -195,7 +195,7 @@ queries:
 
   # The renderer reads the IR and does not write it.
   renderer-must-not-mutate-ir:
-    name: May the renderer mutate the model IR?
+    name: The renderer may mutate the model IR
     kind: graph
     quantifier: exists
     expect: refuted
@@ -203,7 +203,7 @@ queries:
 
   # Agent output reaches the authoritative model only through validation.
   agent-must-not-mutate-ir:
-    name: May the agent adapter mutate the model IR directly?
+    name: The agent adapter may mutate the model IR directly
     kind: graph
     quantifier: exists
     expect: refuted
@@ -212,7 +212,7 @@ queries:
   # Positive control. If this one ever returns false, the model is broken rather than the code --
   # a suite of only-negative expectations passes just as well against an empty graph.
   ui-can-reach-kernel:
-    name: Can the UI reach the semantic kernel? (it must)
+    name: The UI reaches the semantic kernel
     kind: graph
     quantifier: exists
     expect: holds
@@ -222,7 +222,7 @@ queries:
   # it is UNLICENSED -- a successful result reporting what the model does not authorize, not an
   # answer. Keeps that path exercised.
   transitive-mutation-is-unlicensed:
-    name: Can the UI transitively mutate the model IR?
+    name: The UI may transitively mutate the model IR
     kind: graph
     quantifier: exists
     expect: unlicensed

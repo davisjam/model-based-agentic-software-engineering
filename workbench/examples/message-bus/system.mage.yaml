@@ -430,7 +430,7 @@ models:
 queries:
 
   who-publishes-order-created:
-    name: What publishes OrderCreated?
+    name: Checkout publishes OrderCreated
     kind: graph
     quantifier: exists
     graph:
@@ -439,7 +439,7 @@ queries:
       to: order-created
 
   who-subscribes-to-order-created:
-    name: Which services subscribe to OrderCreated?
+    name: Analytics, Billing and Inventory subscribe to OrderCreated
     kind: graph
     quantifier: exists
     graph:
@@ -451,7 +451,7 @@ queries:
   # two-hop `subscribes` question is answered `unlicensed` with a refusal sentence -- not `refuted`,
   # which would assert that no such chain exists.
   subscribes-chain-checkout-to-fulfillment:
-    name: Is Fulfillment reachable from Checkout through a chain of subscriptions?
+    name: Fulfillment is reachable from Checkout through a chain of subscriptions
     kind: graph
     quantifier: exists
     graph:
@@ -463,7 +463,7 @@ queries:
   # The same shape of question, asked of the model that licenses it. The witness is a four-hop path,
   # which is how you can tell the answer is not the degenerate src == dst one.
   checkout-event-reaches-fulfillment:
-    name: Can an event originating at Checkout eventually cause an event to reach Fulfillment?
+    name: Events originating at Checkout eventually reach Fulfillment
     kind: graph
     quantifier: exists
     graph:
@@ -477,7 +477,7 @@ queries:
   #
   # `holds` here IS the safety violation: the question is existential, so a witness is a breach.
   restricted-data-reaches-impermitted-subscriber:
-    name: Can an event carrying restricted data reach a service not permitted to process it?
+    name: An event carrying restricted data reaches a service not permitted to process it
     kind: graph
     quantifier: exists
     graph:
@@ -493,7 +493,7 @@ queries:
   # there is no vocabulary in which to ask what arrived and when. The engine refuses and names the
   # cause rather than pretending the distinction is there.
   did-analytics-receive-it-at-2-04:
-    name: Did Analytics actually receive OrderCreated at 2:04 PM?
+    name: Analytics received OrderCreated at 2:04 PM
     kind: graph
     quantifier: exists
     graph:

@@ -881,18 +881,18 @@ export const CAPABILITIES: readonly Capability[] = [
     machine: [wired("window.mage.transact")],
     producesEvidence: false,
   },
-  // ---- properties. The question is semantic; the verdict is not, and is stored nowhere. --------
+  // ---- properties. The statement is semantic; the verdict is not, and is stored nowhere. ------
   //
   // "Property" is overloaded in this workbench and the two meanings sit three entries apart, so:
   // `edit-property` changes an ENTITY ATTRIBUTE (`classification: RESTRICTED`); these two save and
   // retract an ENGINEERING CLAIM about the system (§3.3, "Publication requires validation"). Only
-  // the second meaning is a persistent proposition with a verdict.
+  // the second meaning is a persistent statement with a verdict.
 
   {
     id: "save-property",
-    summary: "Keep a question as a persistent proposition, re-evaluated on every later revision.",
+    summary: "Keep a claim as a persistent statement, re-evaluated on every later revision.",
     service: "transactions.apply",
-    // §10.3 is explicit that what is saved is the proposition's SEMANTICS and not the displayed
+    // §10.3 is explicit that what is saved is the statement's SEMANTICS and not the displayed
     // answer, so this writes the query and nothing else: one `save-query` op, no verdict field to
     // write it into, and the status is recomputed from the query the next time anyone looks. That
     // is V18's rule for derived values, and the reason there is no `set-status` op to pair with it.
@@ -912,7 +912,7 @@ export const CAPABILITIES: readonly Capability[] = [
   },
   {
     id: "retract-property",
-    summary: "Stop evaluating a proposition, without pretending it was never claimed.",
+    summary: "Stop evaluating a statement, without pretending it was never claimed.",
     service: "transactions.apply",
     // The pair of the one above. A claim you cannot withdraw is a claim the model system cannot
     // stop asserting, and `delete-query` already existed with no way for a person to reach it.
