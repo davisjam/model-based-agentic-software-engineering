@@ -26,7 +26,8 @@
  *
  * **Nothing in this pane is a command, so nothing in this pane is a button.** Every control here
  * navigates: an appears-in row moves the workspace to that model, a relation row moves the selection
- * to that relation. Selection and target are non-semantic view state (§4), so these are links to
+ * to that relation, and a Learn row leaves for the page that explains the kind of model you are
+ * looking at. Selection and target are non-semantic view state (§4), so these are links to
  * places, and `<a href>` is what a place is reached by. The contextual EDITING actions correction 4
  * sketches — Rename, Set property, Connect, Delete — are commands, they are wave 2a's, and each will
  * need a capability-registry entry before it can land: the browser tier reads an unstamped `<button>`
@@ -41,6 +42,11 @@
  * things by the same act.
  */
 import { modelsDeclaring } from "../../engine/graph.ts";
+import { modelTypeForQueryKind } from "../../engine/model-types.ts";
+import type { Query } from "../../engine/types.ts";
+import {
+  LEARN_PAGE, MODEL_TYPE_USES, anchorForUse, deriveLearnEntries, learnHrefForType,
+} from "../../app/learn.ts";
 import { provenanceFields } from "../../app/provenance.ts";
 import { licensesTraversal } from "../../sparql/licensing.ts";
 import { unlicensedByModel } from "../../sparql/refusal.ts";
@@ -74,7 +80,19 @@ export type InspectorAction =
    * two encodings. A ref cannot be written in two spellings, and `selectionValue` encodes it once
    * on the way to the DOM.
    */
-  | { readonly kind: "select"; readonly ref: SelectionRef };
+  | { readonly kind: "select"; readonly ref: SelectionRef }
+  /**
+   * Leave the workbench for the Learn page — the second contextual route
+   * `requirements-learn-261002.md` asks for ("when looking at a state machine: About State
+   * Machines / Possible combinations ... takes you directly to that Learn page").
+   *
+   * It carries its own `href` because, unlike the other two, the destination is not a surface of
+   * this page: the addresses are declared in `src/app/learn.ts` beside the derivation they index,
+   * so a line here resolves through that module rather than through the SURFACES table. The
+   * delegated handler leaves these alone — the browser follows the link, which is what a route to
+   * another page means.
+   */
+  | { readonly kind: "learn"; readonly href: string };
 
 export interface InspectorLine {
   readonly text: string;
@@ -154,6 +172,63 @@ const modelName = (system: CanonicalSystem, id: string): string =>
  */
 const relationPhrase = (system: CanonicalSystem, r: CanonRelation): string =>
   `${entityName(system, r.from)} —${r.type}→ ${entityName(system, r.to)}`;
+
+const learn = (text: string, href: string): InspectorLine =>
+  ({ text, action: { kind: "learn", href } });
+
+/**
+ * The Learn block for the type of thing being inspected — the requirement's second route.
+ *
+ * It is offered from the object, which is the point: a reader looking at a machine should not have
+ * to work out that MAGE calls it a state machine, go to the header, open the gallery and find the
+ * section. **Every string is registry-derived.** The type comes from `modelTypeForQueryKind`, the
+ * registry's own 1:1 between a model type and the query dialect that interrogates it — so a
+ * machine's block names the type that answers behavioural questions rather than a type id written
+ * here. The label is `ModelType.label` (hence "About state machines", lower-cased as the registry
+ * spells it, the same derivation `learnLinkForRefusal` uses for its link text). The combinations
+ * are the registry's declared composition partner with the richer question the PAIR answers, plus
+ * every declared USE of this type — the gallery's second axis, which is where a use card says what
+ * it is underneath.
+ *
+ * **Two deliberate absences.** An ENTITY gets no block: identity is shared across every reduction,
+ * so an entity is not of one model type and a block claiming otherwise would teach the opposite of
+ * what `Appears in` right above it teaches. And the quantitative type is reachable from no
+ * selection at all, because a quantity is not selectable — `SelectionRef` has no member for one.
+ * That is a gap in the SELECTION vocabulary rather than in this block, and the ask bar's
+ * NOT ANSWERABLE route already carries a reader to that section from the question they asked.
+ */
+function learnBlock(kind: Query["kind"]): InspectorBlock {
+  const t = modelTypeForQueryKind(kind);
+  const entry = deriveLearnEntries().find((e) => e.id === t.id);
+  if (entry === undefined) {
+    // Unreachable: `deriveLearnEntries` maps over the same registry `modelTypeForQueryKind` reads.
+    throw new Error(`model type '${t.id}' has no Learn entry`);
+  }
+  const uses = MODEL_TYPE_USES.filter((u) => u.ofType === t.id);
+  return block("Learn", [
+    learn(`About ${t.label}s`, learnHrefForType(t.id)),
+    learn(
+      `Possible combinations: with ${entry.combineWith.partnerLabel}, to ask `
+      + `“${entry.combineWith.richerQuestion}”`,
+      learnHrefForType(entry.combineWith.partner),
+    ),
+    ...uses.map((u) =>
+      learn(`${u.label}: ${u.question}`, `${LEARN_PAGE}#${anchorForUse(u.id)}`)),
+  ]);
+}
+
+/**
+ * Which selection kinds ARE a model of a registered type, and which dialect interrogates each.
+ *
+ * Partial on purpose, and the compiler holds the keys to real members of `SelectionRef["kind"]`:
+ * an omitted kind is a declared absence, and `resolve` below is the ONE site that reads this, so
+ * "which objects offer the Learn route" is one table rather than a judgement repeated in five
+ * inspection functions. The three omissions have reasons, given on `learnBlock` above.
+ */
+export const LEARN_ROUTE_FOR: Partial<Record<SelectionRef["kind"], Query["kind"]>> = {
+  model: "graph",
+  machine: "behavior",
+};
 
 const refOf = (r: CanonRelation): RelationRef =>
   r.id !== null
@@ -459,7 +534,20 @@ const prune = (i: Inspection): Inspection => ({
   blocks: i.blocks.filter((b) => b.lines.length > 0 || b.empty !== null),
 });
 
+/**
+ * The reading, plus the Learn route the kind of thing earns.
+ *
+ * Appended HERE rather than inside each inspection, so the five readings stay about the model and
+ * one site decides which of them leads out to Learn. Last in the block order: it is where to read
+ * more, which belongs after everything this pane can say itself.
+ */
 function resolve(system: CanonicalSystem, ref: SelectionRef): Inspection {
+  const i = inspectionOf(system, ref);
+  const kind = LEARN_ROUTE_FOR[ref.kind];
+  return kind === undefined ? i : { ...i, blocks: [...i.blocks, learnBlock(kind)] };
+}
+
+function inspectionOf(system: CanonicalSystem, ref: SelectionRef): Inspection {
   switch (ref.kind) {
     case "relation": {
       const r = ref.ref;
@@ -502,12 +590,22 @@ const el = <K extends keyof HTMLElementTagNameMap>(
  * Throws rather than emitting `href="#"`: a surface this pane links to and nobody built is a defect
  * at mount, and a silent empty href is the unverifiable declaration §2.1 refuses.
  */
-const DESTINATION: Readonly<Record<InspectorAction["kind"], NavSurface>> = {
+const DESTINATION: Readonly<Record<InPageAction["kind"], NavSurface>> = {
   target: "workspace",
   select: "inspector",
 };
 
-function href(kind: InspectorAction["kind"]): string {
+/**
+ * The two actions that land on a surface of THIS page.
+ *
+ * Exhaustive by subtraction, so the table above stays total: adding a fourth in-page action is a
+ * compile error until it declares a destination, which is the property the closed `DESTINATION`
+ * record was written for and which a hand-listed key set would have quietly lost when `learn`
+ * joined the union.
+ */
+type InPageAction = Exclude<InspectorAction, { kind: "learn" }>;
+
+function href(kind: InPageAction["kind"]): string {
   const id = surfaceElement(DESTINATION[kind]);
   if (id === null) throw new Error(`the inspector links to surface '${DESTINATION[kind]}', which SURFACES declares planned`);
   return `#${id}`;
@@ -520,8 +618,15 @@ function lineNode(l: InspectorLine): HTMLLIElement {
     return li;
   }
   const link = el("a", l.text);
-  link.href = href(l.action.kind);
   link.dataset["action"] = l.action.kind;
+  if (l.action.kind === "learn") {
+    // A route to another page: the href is the whole of it, and no `data-arg` is written — which is
+    // also what keeps the delegated handler below off it without a second condition to maintain.
+    link.href = l.action.href;
+    li.append(link);
+    return li;
+  }
+  link.href = href(l.action.kind);
   link.dataset["arg"] = l.action.kind === "target" ? l.action.subject : selectionValue(l.action.ref);
   li.append(link);
   return li;
@@ -591,6 +696,10 @@ export function mountInspector(ctx: ShellContext): ShellRegion {
     if (!(from instanceof Element)) return;
     const link = from.closest<HTMLAnchorElement>("a[data-action]");
     if (link === null) return;
+    // A Learn line carries no `data-arg`, so this is where the handler steps aside and lets the
+    // browser follow the link to the other page. Said explicitly rather than left to the absent
+    // attribute: a reader deleting this early return would otherwise find nothing that says the
+    // omission was the mechanism.
     const arg = link.dataset["arg"];
     if (arg === undefined) return;
     const name = link.textContent ?? arg;

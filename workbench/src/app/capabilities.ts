@@ -247,13 +247,25 @@ export const CHROME_CONTROLS: readonly { readonly id: string; readonly why: stri
  * it is a control the census is not about. The operations a selected object can be edited with keep
  * their declared sites in the Inspector's action bar, where the registry already stamps them.
  *
- * Deliberately NOT a general escape. Each member is one region, with the reason it is navigation.
+ * Deliberately NOT a general escape. Each member is one region, with the reason its controls are
+ * outside the census — which is always that they move something the census is not about. For the
+ * contents tree that is the VIEW's selection; for the add-model picker it is the open dialog's own
+ * unsubmitted field. Neither reaches the IR, so neither is a semantic capability missing from the
+ * registry.
  */
 export const CHROME_HOSTS: readonly { readonly selector: string; readonly why: string }[] = [
   {
     selector: "#model-contents button",
     why: "the model contents tree's rows: one per drawn element, activating one sets the view's "
       + "selection and mutates no model state (DESIGN-shell-261002.md section 4, ruling 1)",
+  },
+  {
+    selector: "#edit-dialog-type-rows button",
+    why: "the add-model dialog's model-type picker: one row per entry in the model-type registry, "
+      + "so there is no id to write down and no fixed count of them. Pressing one writes the "
+      + "type's registry question into the dialog's own question field and submits nothing — the "
+      + "operation still terminates at `edit-dialog-confirm`, whose exemption above says why the "
+      + "dialog's terminal carries no stamp of its own",
   },
 ];
 
