@@ -1,5 +1,13 @@
 # DESIGN — query expressiveness: variables, Büchi, and where the honest boundary sits (261004)
 
+> **Citations re-verified 261004 against `src/ir/types.ts` at commit `095612fa`.** Every
+> `src/ir/types.ts` line reference in this document drifted by roughly nine lines when the
+> alias-channel wave added the bound to that file's header (`7cd9e1e0`); `:657`, cited here as
+> the four-valued `Outcome`, had come to hold an unrelated comment. Line citations into a file
+> under active edit rot silently, so they are dated here rather than left to be trusted. The
+> symbols are `Outcome`, `Coverage`, `CanonVariable`, `GuardOp` and `CanonTransition`; prefer
+> grepping the symbol over following the number.
+
 The commission, verbatim: *"comment on what kinds of queries we can support, and whether we should
 be thinking about state machines including variables / Büchi automata, etc."*
 
@@ -49,7 +57,7 @@ Three structural facts about this table:
   walk (`src/engine/explore.ts:465`) — so each is really "…while never passing through a forbidden
   region," which matters in §2.
 - **The honesty substrate already covers partial knowledge.** `Outcome` is
-  `holds | refuted | inconclusive | unlicensed` (`src/ir/types.ts:657`); `Coverage` is
+  `holds | refuted | inconclusive | unlicensed` (`src/ir/types.ts:666`); `Coverage` is
   `exhaustive | bounded | not-applicable` with `statesExplored` and a closed `reason` enum
   (`:659-663`); evidence is `trace | lasso | path | none` (`:639`). A witness settles an existential
   claim at any coverage; absence settles it only under exhaustive coverage (V22,
@@ -121,14 +129,14 @@ has already answered: **variables are a shipped, author-declared primitive.**
 - The wire schema: `"variables": "THE state vector. Every variable must have a FINITE domain
   (V17)"` (`mage-model.schema.json:185-190`).
 - The IR: `CanonVariable` with its domain *enumerated as a list* — "Finiteness is not a hope here;
-  it is a list" (`src/ir/types.ts:40-47`). A configuration is control states plus variable values
+  it is a list" (`src/ir/types.ts:49-56`). A configuration is control states plus variable values
   and nothing else (`:623-628`).
-- Guards: `GuardOp` (`src/ir/types.ts:189`) is six comparison operators used in three places —
+- Guards: `GuardOp` (`src/ir/types.ts:198`) is six comparison operators used in three places —
   transition guards (`:191-196`), behavior-predicate atoms (`src/engine/types.ts:220-230`), and
   graph `where` comparisons (`:197-208`). Order comparisons require a declared ordered domain (V20,
   `src/engine/types.ts:188-189`).
 - Updates: `Effect` expressions are restricted to `<var> <+|-> <int>` or a literal
-  (`src/ir/types.ts:198-202`).
+  (`src/ir/types.ts:207-211`).
 - Shipped usage: `retry_count` with `range: [0, 3]` in two examples
   (`examples/worker-queue/system.mage.yaml:158-163`, `examples/docable.mage.yaml:129-133`).
 
@@ -173,7 +181,7 @@ call over a space the engine already built.
 3. **Unbounded domains — never.** Two unbounded counters make reachability undecidable (Minsky-machine
    reduction; textbook CS, not a fact about this repo). V17 is the right wall, its refusal already
    names itself, and `Coverage.kind: "exhaustive"` — the flag that licenses the engine's strongest
-   claims (`src/ir/types.ts:614-621`) — is only sound because domains arrive as lists.
+   claims (`src/ir/types.ts:623-630`) — is only sound because domains arrive as lists.
 
 ## 4. Büchi / ω-automata: what full machinery would add beyond what ships
 
@@ -181,7 +189,7 @@ call over a space the engine already built.
 "∃ a reachable cycle through a target configuration" — which is `repeatable-cycle`
 (`src/engine/behavior.ts:356-379`) — is exactly non-emptiness of the model read as a Büchi automaton
 whose acceptance set is the target (CS statement). The evidence is a lasso, which the IR has carried
-from the start (`src/ir/types.ts:639-647`; SEMANTICS.md:843-845). `recurrence` is deliberately
+from the start (`src/ir/types.ts:648-656`; SEMANTICS.md:843-845). `recurrence` is deliberately
 weaker — re-entry, a reachability-class fact — and the two are separate forms precisely so each
 denotes one question (SEMANTICS.md:847-866).
 
@@ -267,7 +275,7 @@ Checked as directed; four corrections and one refinement:
 
 1. **"Variables already exist as a COMPILATION, not a primitive" — wrong.** They are an
    author-declared primitive: `mage-model.schema.json:185-190` ("THE state vector"), `CanonVariable`
-   (`src/ir/types.ts:40-47`), guards/effects on transitions (`:191-214`), shipped `retry_count`
+   (`src/ir/types.ts:49-56`), guards/effects on transitions (`:200-223`), shipped `retry_count`
    declarations (`examples/worker-queue/system.mage.yaml:158-163`). `history.ts` is a compilation
    that *adds an auxiliary* variable for past-time questions; it is the disclosure precedent, not
    the variables story.
@@ -276,17 +284,17 @@ Checked as directed; four corrections and one refinement:
    (a genuinely repeated configuration). `recurrence` deliberately means finite re-entry — a
    reachability-class property — and the spec forbids conflating them (SEMANTICS.md:847-866).
 3. **"the outcome vocabulary includes `inconclusive` and `exhausted`" — `exhausted` is not an engine
-   outcome.** `Outcome` is four-valued (`src/ir/types.ts:657`; PLAN.md:346 bans a fourth… fifth).
+   outcome.** `Outcome` is four-valued (`src/ir/types.ts:666`; PLAN.md:346 bans a fourth… fifth).
    `exhausted` belongs to the SPARQL evaluator's separate answer vocabulary
    (`src/sparql/eval.ts:71`), with its own escalation handle (`src/sparql/parse.ts:118-143`).
-4. **The `Coverage` citation — right shape, wrong file.** The type lives at `src/ir/types.ts:659-663`;
+4. **The `Coverage` citation — right shape, wrong file.** The type lives at `src/ir/types.ts:668-672`;
    `src/engine/types.ts:455-461` holds its constructor helpers. And `reason` is a closed enum
    (`"state-limit" | "time-limit" | "depth-limit"`), not free prose.
 5. **"Sixteen forms" undercounts by a kind.** Sixteen graph+behavior forms, plus three quantity
    metrics (`src/quant/requirement.ts:31`) under the third query kind: nineteen.
 
 Verified as stated: `GRAPH_FORMS` at `:148`, `BEHAVIOR_FORMS` at `:155`; `GuardOp` at
-`src/ir/types.ts:189`; the SMT blocker (`PLAN.md:285-307`); the Worker placement
+`src/ir/types.ts:198`; the SMT blocker (`PLAN.md:285-307`); the Worker placement
 (`src/worker/analysis.worker.ts:1-19`).
 
 ---
