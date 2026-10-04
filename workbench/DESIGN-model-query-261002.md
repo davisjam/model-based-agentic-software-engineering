@@ -597,7 +597,7 @@ Two findings about this design, from working the count:
 | MQ-I5 | No shipped example question and no question the ask catalogue OFFERS is SPARQL text — each validates against `mage-query.schema.json`'s own `query` definition, read at test time, AND is admitted by `parseQuery`; hatch CALLS close over one declared file (§15(4)) and the hatch SITE STRING has one author (§15(5)). | `test/escape-hatch.test.ts`. TESTED (M4), each arm watched failing on the real tree |
 | MQ-I6 | `validate()` recomputes: its `hash` equals the current system hash, and its findings derive from `rules.ts` alone. | NEW node test: transact, validate, compare hashes; assert no cached path. UNTESTED until M3 |
 | MQ-I7 | Adding a model type changes no SPARQL query text (§8's count stays zero). | the §8 enumeration is the audit; partially held by MQ-I8's derivation tests. UNTESTED as a mechanical gate — see §G5-adjacent note in §11 |
-| MQ-I8 | Every derived-facade operation and every generated contextual question maps onto a form the loaded types' `QuerySemantics` declares. | NEW derivation test (machine half, M5); the human half rides the shell's path-walking gate. UNTESTED until M5 |
+| MQ-I8 | Every derived-facade operation and every generated contextual question maps onto a DECLARATION the loaded types carry — amended from "a form", which covered three of the facade's five operations and left `elements` (a `subjects` entry) and `violations` (validation semantics, which the registry does not hold) unfalsifiable (`DESIGN-shell-261002.md` §9s(2)). `MODEL_FACADE` declares each operation's derivation; the audit resolves `query-form` against that type's `forms`, `query-subject` against its `subjects`, and the one validation row against `VALIDATION_AUTHORITY`. Total in both directions over the namespace's callables and over the registry's `window.mage.model.*` affordances, and the emitted document carries the form its row declared. | `test/model-facade.test.ts` (machine half) — static resolution, both-way totality, and verdict identity against the hand-written document including the V7 refusal; every arm driven by a sabotaged table in the negative control. The human half rides the shell's path-walking gate. TESTED (M5), machine half; human half UNTESTED |
 | MQ-I9 | The severity table is total over every rule id `rules.ts` emits. | NEW node test: run the violation corpus, assert every finding's rule has a severity row. UNTESTED until M3 |
 
 ## 10. Waves
@@ -613,7 +613,7 @@ declared G1 paths, not implemented by these waves.
 | M2 | `admitTyped` factoring per kind; `check` on facade + agent API; MQ-I1/I2 | `src/engine/{graph,behavior}.ts`, `src/quant/requirement.ts`, `src/engine/index.ts`, `src/app/services.ts`, `src/app/agent-api.ts`, tests | after M1 (reads `QuerySemantics` for alternatives) |
 | M3 | `validate()` + `ValidationFinding` enrichment; capability row re-point; MQ-I6/I9 | `src/validator/rules.ts`, `src/app/services.ts`, `src/app/agent-api.ts`, `src/app/capabilities.ts`, tests | after M2 (agent-api hotspot) |
 | M4 | `ESCAPE_HATCHES`; `debug.sparql` rename + 0.3.0; closure extension; MQ-I4/I5 | `src/app/capabilities.ts`, `src/app/agent-api.ts`, tests | after M3 (agent-api + capabilities hotspots); needs §G2 ruled |
-| M5 | `elements` + the derived facade; MQ-I8 (machine half) | `src/engine/` (elements), `src/app/agent-api.ts`, tests | after M4; needs §G1 ruled |
+| M5 | `elements` + the derived facade; MQ-I8 (machine half) | `src/engine/` (elements), `src/app/agent-api.ts`, `src/app/capabilities.ts`, tests | after M4. §G1 ruled (a) 261004; LANDED — as built in `DESIGN-shell-261002.md` §9s |
 
 Every wave lands with `tsc --noEmit` clean AND the full suite — the standing lesson that a clean
 merge can type-break a green test tree.
@@ -667,6 +667,13 @@ otherwise.
   shape, which is most of how the current surface came to read as storage-shaped.
 - **Consequence of ruling otherwise.** (b) drops M5's facade half; `elements` still lands (it is
   a kernel operation, not sugar); `describe()` carries the noun vocabulary alone.
+- **Ruled (a), 261004. Status after M5: IMPLEMENTED.** The author's reason is the specification the
+  wave was built to: the facade is valuable *precisely because it gives agents a semantic vocabulary
+  (`reachable`, `path`, `violations`) rather than forcing them to think in serialized query-document
+  syntax.* `window.mage.model.*` ships with all five operations, `MODEL_FACADE` declares what each
+  derives from, and MQ-I8's machine half is TESTED (`test/model-facade.test.ts`). One correction
+  this question's own §7.1 table needed: `elements` is registered on the `inspect` row, not `query`
+  — see `DESIGN-shell-261002.md` §9s(1).
 
 ### G2 — Ratify the `window.mage.debug.sparql` rename
 
@@ -687,6 +694,19 @@ otherwise.
   rename buys legibility and NO enforcement, because every control keys off `ESCAPE_HATCHES[].at`
   — so the (b) reading is cheaper than this question implies. The exact revert surface is §15's
   PROVISIONAL paragraph; no test spells the site.
+- **Ruled (a), 261004. Status after M5: IMPLEMENTED, RATIFIED.** `SPARQL_HATCH_RENAME.ratified` is
+  `true` and the record is the decision rather than a trial; the revert surface §15 enumerated is no
+  longer a budget anyone is holding open. The author ratified it **with M4's own qualification
+  attached, not against it**: `debug.sparql` correctly advertises "you have now left the supported
+  semantic interface," *even though the namespace itself is not an enforcement mechanism.* So
+  ratification changes the status of a decision and nothing about the fence's teeth — the teeth are
+  `ESCAPE_HATCHES[].at` and were never the name. The independent support the author cited:
+  `SEMANTICS.md` §7.5 ("Many interfaces, one semantics") already holds that SPARQL is an INTERFACE
+  and not the semantic foundation, with V32 fixing licensing authority in the IR for every
+  interface; the rename makes that existing position visible where a dependency forms. The
+  zero-enforcement half is now a CHECKED property rather than a sentence: a test re-declares the
+  hatch at a different site and asserts the fence holds there and still catches a re-registration
+  under that other name (`test/escape-hatch.test.ts`).
 
 ### G3 — Ratify the validation authority split
 
@@ -1092,17 +1112,25 @@ producer. True, and the direction is worth stating positively: its handle is obt
 `exhausted` answer, so escalation is now reachable only *downstream of a deliberate hatch use*. It
 is less exposed after the fence than before it, not merely no more exposed.
 
-**PROVISIONAL, and what changes if §G2 is declined.** The rename landed with `AGENT_API_VERSION`
-reading `SPARQL_HATCH_RENAME.apiVersion`, so the version constant and the site string are one
-record carrying `ratified: false` and the §G2 cite. **The fence does not depend on the rename.**
-Every control keys off `ESCAPE_HATCHES[].at`: the disjointness check, the closure check,
-`describe().outsideSemanticInterface`, both reference closures, and every test (no test spells the
-site — they read it from the declaration, which is rule-42 discipline doing double duty as a
-reversibility budget). Declining §G2 therefore reverts: `at` and `apiVersion` in
-`SPARQL_HATCH_RENAME`, the `debug: DebugApi` member on `MageAgentApi` and its one-line delegation in
-`createAgentApi`, and three call sites in `test/services.test.ts`. Nothing about the fence's teeth
-moves. Taking the rename buys legibility at the call site and in agent transcripts; it buys no
-enforcement.
+**RATIFIED 261004 — and the revert surface this paragraph enumerated is closed.** The rename landed
+with `AGENT_API_VERSION` reading `SPARQL_HATCH_RENAME.apiVersion`, so the version constant and the
+site string are one record; §G2 was ruled (a) and the record now reads `ratified: true`. What the
+reversibility budget bought is worth keeping on the page even though it was not spent: the whole
+revert was `at` and `apiVersion` in `SPARQL_HATCH_RENAME`, the `debug: DebugApi` member on
+`MageAgentApi` with its one-line delegation in `createAgentApi`, and three call sites in
+`test/services.test.ts` — because no test spells the site, which is rule-42 discipline doing double
+duty.
+
+**The fence does not depend on the rename, and ratification did not change that.** Every control keys
+off `ESCAPE_HATCHES[].at`: the disjointness check, the closure check,
+`describe().outsideSemanticInterface`, both reference closures, and every test. The author's ruling
+says so in terms — `debug.sparql` correctly advertises "you have now left the supported semantic
+interface," **even though the namespace itself is not an enforcement mechanism** — so the rename buys
+legibility at the call site and in agent transcripts, and it buys no enforcement. M5 turned that from
+a claim into a check: `test/escape-hatch.test.ts` re-declares the hatch at `window.mage.someOtherName`
+and asserts the fence holds there, then asserts it still catches a re-registration under that other
+name, so the first assertion cannot have passed by reading nothing. A comment implying the namespace
+fences anything would be the fourth such comment this repo has had to correct.
 
 **Every obligation-2 check was watched failing, on the real tree.** The in-test negative controls
 are permanent, but they assert against literals, so each check was also sabotaged live and reverted:

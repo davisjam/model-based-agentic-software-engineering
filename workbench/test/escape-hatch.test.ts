@@ -36,7 +36,7 @@ import {
   checkEscapeHatchFence, checkRegistryClosure,
 } from "../src/app/capabilities.ts";
 import type { Capability, EscapeHatch } from "../src/app/capabilities.ts";
-import { createAgentApi } from "../src/app/agent-api.ts";
+import { AGENT_API_VERSION, createAgentApi } from "../src/app/agent-api.ts";
 import { Workspace } from "../src/app/services.ts";
 import { ExampleCatalog } from "../src/app/examples.ts";
 import type { AssetReader } from "../src/app/examples.ts";
@@ -74,6 +74,33 @@ test("MQ-I4: every hatch's fence citation resolves to a file that actually fence
       `${h.fencedBy} does not state that the hatch is outside the semantic interface`);
     assert.ok(h.reason.trim().length > 20, `${h.at}'s reason is too short to be a reason`);
   }
+});
+
+test("§G2 is ratified, and ratification bought legibility rather than enforcement", () => {
+  // The ruling, 261004: the rename stands. Pinned because a `ratified` flag nothing reads is a field
+  // that drifts back — and `AGENT_API_VERSION` is derived from this record, so the version and the
+  // decision cannot disagree.
+  assert.equal(SPARQL_HATCH_RENAME.ratified, true, "§G2 was ruled (a); the record must say so");
+  assert.equal(AGENT_API_VERSION, SPARQL_HATCH_RENAME.apiVersion,
+    "the published version must be the one the rename record declares");
+  assert.notEqual(SPARQL_HATCH_RENAME.at, SPARQL_HATCH_RENAME.previously,
+    "a rename whose before and after agree renamed nothing");
+
+  // And the qualification the author attached, as a CHECKED property rather than a sentence in a
+  // comment: the namespace is not an enforcement mechanism. Every control keys off the DECLARATION,
+  // so a hatch declared at any other string is fenced exactly as well — which is why the fence
+  // survives the site being changed out from under it, and why the rename's teeth are zero.
+  const elsewhere: readonly EscapeHatch[] = ESCAPE_HATCHES
+    .map((h) => ({ ...h, at: "window.mage.someOtherName" }));
+  assert.deepEqual(checkEscapeHatchFence(CAPABILITIES, elsewhere), [],
+    "the fence must hold for a hatch declared at any site; if it depends on the name, the name is "
+    + "doing enforcement work the ruling says it does not do");
+  const reRegistered: readonly Capability[] = CAPABILITIES.map((c) => (c.id === "query"
+    ? { ...c, machine: [...c.machine, { at: "window.mage.someOtherName", status: "wired" as const }] }
+    : c));
+  assert.equal(checkEscapeHatchFence(reRegistered, elsewhere).length, 1,
+    "and it must still CATCH a hatch re-registered inside the interface under that other name — "
+    + "otherwise the assertion above passed because the check reads nothing");
 });
 
 test("MQ-I4: a hatch is in exactly one list, and the BLOCKING gate is what notices", () => {

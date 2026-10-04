@@ -2560,3 +2560,132 @@ still relative specifiers, and that is now asserted instead of assumed.
 violations over 26 capabilities; build clean; smoke 3/3; browser 114/114; a11y 112/112.
 `python3 validate.py models/workbench-components.mage.yaml` clean, 13 asserted queries evaluated;
 `--self-test` PASS; model-coverage census still `workbench-components 13/13`, 0 exempt.
+
+### 9s. The derived facade as built — where §7.1 put a method on the wrong row, and what MQ-I8 could not see
+
+M5 landed `window.mage.model.*` — `elements`, `related`, `reachable`, `path`, `violations` — plus the
+`elements` kernel operation beneath it, the five sites in the capability registry, MQ-I8's machine
+half in `test/model-facade.test.ts`, and §G2's ratification.
+`DESIGN-model-query-261002.md` §G1 was ruled (a) on 261004 for the reason the facade was designed
+around: it gives agents a semantic vocabulary rather than making them think in serialized
+query-document syntax. The facade is thin exactly as specified — each method builds the document
+`query()` already takes, or calls `validate()`, and the engine's own admission decides. Seven things
+about applying it are worth the page.
+
+**(1) `elements` belongs on the `inspect` row, and §7.1's table put it on `query`.** The table reads
+*"`query` gains the `window.mage.model.*` facade methods as machine affordances; gains `elements`"*,
+and the second clause cannot be honoured. UX-I1 checks that a capability's two interfaces converge by
+comparing the row's one `service` string, and `elements` reaches `workspace.state`: it filters the
+IR's entity table and walks no edge. Registering it under `query` would have made `workspace.query` a
+seam only some of that row's affordances reach, which is the single job that string has — and it is
+the same defect as the `validate` row's stale machine affordance that §6.1 found by reading the
+registry rather than trusting it. So `elements` is `inspect`'s second machine affordance and the
+other four sit on `query` and `validate`. A test asserts which row each site landed on, because the
+placement is the argument and a reader should not have to re-derive it.
+
+It is not a row of its own either, and §2.4 supplies the reason: an agent could already obtain these
+ids by pulling the whole of `inspect()` across the boundary and filtering it client-side. A new row
+reports a capability the product GAINED; this one gained a spelling, and the model answering the
+question instead of the caller.
+
+**(2) MQ-I8 said "a form", which covered three of the five operations.** The invariant as written is
+*every derived-facade operation maps onto a form the loaded types' `QuerySemantics` declares*.
+`related`, `reachable` and `path` do. `elements` does not — it enumerates a SUBJECT, the `entity`
+noun with the `property-constraints` selector — and `violations` does not even interrogate query
+semantics: well-formedness is validation semantics, which the model-type registry deliberately does
+not carry (the registry's own header says three classes, two of them here). Widening "form" to mean
+all three kinds of declaration would have made the invariant unfalsifiable for precisely the two
+operations most able to smuggle a capability in, which is the defect class of the `describe().operations`
+clause §15(3) had to delete.
+
+So the derivation is a typed union with three arms — `query-form`, `query-subject`,
+`validation-authority` — declared per operation in `MODEL_FACADE` and resolved by the audit against
+its own source: a form against that type's `forms` array, a `{noun, selector}` pair against its
+`subjects`, the authority against `VALIDATION_AUTHORITY`. The amended invariant is stronger than the
+original because each arm can fail on its own terms.
+
+**(3) The derivation test's teeth are the directions it asserts, not the membership it checks.**
+Membership alone would pass a facade that declared one true derivation and grew six undeclared
+methods beside it. So the table is total BOTH ways — against the callables the live
+`window.mage.model` namespace presents, and against the `window.mage.model.*` machine affordances the
+capability registry declares — which is the drained-list direction that found three allowances for
+nothing in the hatch's own closure check (§15(4)). And the dynamic half closes the gap a static table
+cannot see: a row may declare `reachability` while the constructor emits `all-paths`. Each
+constructor's document is handed to the published `parseQuery`, and the form the PARSER read is
+compared against the form the TABLE declared — comparing the constructor's own literal would have
+been comparing the facade with itself.
+
+The strongest single assertion is object equality: `api.model.reachable(from, rel, to)` deep-equals
+`api.query(reachableQuery(from, rel, to))`, including when the relation declares
+`composition.path: forbidden` and both come back `unlicensed` with the same structured refusal. A
+matching `outcome` would not have been enough — two implementations agreeing on `holds` can still
+differ on coverage, on `interpretedAs`, or on which witness they found.
+
+**(4) The property-constraint matcher moved; it was not copied.** `satisfiesConstraints` was
+module-private in `graph.ts`, where `endpoints` narrows candidate sources and targets with it.
+`elements` is the second site, so it was extracted on the second rather than the third: one grammar,
+one matcher, and a test asserts the two agree about one constraint — an enumeration and a traversal
+narrowed by the same clause must not disagree about which entities satisfy it. A copy would have
+passed every other test in the file.
+
+**(5) `elements` returns two fields §2.4 did not ask for, and each answers a question an empty array
+cannot.** The spec says `{ ids, hash }`. The landed shape adds `interpretedAs`, because V21 holds for
+this answer as much as for any other and a refusal that cannot say what it refused sends the reader
+back to guess at their own input; and `declaredTypes`, on both arms, because a selector naming a type
+nothing declares returns no ids and so does a real type with no matching entities. A caller holding
+only the empty array cannot tell a typo from a true absence — the collapse `NoSuchQuestion.savedQuestions`
+exists to prevent one layer up.
+
+A third decision in the same place: an unreadable `where` clause is REFUSED, not read as "no
+constraints". Reading it as empty would answer a question nobody asked with the whole entity table.
+
+**(6) The recorded residue: §2.4's two sentences disagree, and the author owns which wins.** §2.4 says
+`elements` *"reads the IR directly — it is a representation question, not an analysis"* and, in the
+same breath, that it *"is licensed by the structural-graph type's presence rung like any graph
+question."* Those pull opposite ways, because the IR declares entities at system level while
+`structural-graph.presentIn` reads `models`. The rung is implemented as specified, and for the empty
+system it gives the better answer by a distance: the registry's own sentence names the absent type AND
+the authoring move, where an empty list would be indistinguishable from a model whose entities failed
+to match.
+
+The wart is one state: a system holding entities and no purposeful model refuses an enumeration of
+entities `inspect()` will happily list, and one `add-entity` on a new system reaches it. The
+behaviour is pinned by a test that says in its own message that a flip is a decision, so reversing it
+is visible rather than a drift. **Author's call, open.**
+
+**(7) Two gates bit and one could not, which is a fact about the generator rather than about the
+change.** The brief expected `check:parity` and the affordances-model staleness gate to fire if a
+side was missed. Neither did, and neither should have: `generateAffordanceModel` projects one
+`afforded-by` edge per capability per interface from `anyWired(c.machine)`, so additional affordances
+on a row that was already wired change nothing it emits. `npm run affordances` produced a byte-identical
+file. The gate that DID bite is the agent-coverage tier's callable axis, which reported all five
+`model.*` methods as undriven the moment they landed — and it is the only axis that could, since every
+one of them belongs to a capability row the operation axis already covers at 26 of 26. Their drives
+therefore live inside the `inspect`, `query` and `validate` drivers, beside the spellings they are
+twins of, where the assertion worth making is that the two agree. No exemption was added; the ceiling
+stays 0.
+
+**What wanted composition, as evidence for §G5.** One case, and it is the obvious one: the first
+thing a reader of this facade will try is to feed `elements`' ids into `related`. `related` takes
+`from: string` and not `readonly string[]`, deliberately, so the caller loops — §4.1's sanctioned
+caller-side iteration, at one round trip per element. The pull is real and it is exactly the pipe step
+§G5's option (c) would admit. Not built, not worked around; recorded.
+
+A second, weaker observation from the same place: the facade exposes no `where` clause on `related` /
+`reachable` / `path`, though the typed document supports endpoint property constraints on every
+endpoint form. That is in-operation composition the engine already licenses, so adding it would widen
+no line — it is a facade-surface question rather than a semantics one, and it is left for the author
+since the five operations are §2.3's named set.
+
+**§G2, ratified.** `SPARQL_HATCH_RENAME.ratified` is `true`; the rename is the decision, not a trial,
+and `AGENT_API_VERSION` keeps reading 0.3.0 from the one record. The author ratified it with M4's own
+finding attached rather than against it: `debug.sparql` correctly advertises "you have now left the
+supported semantic interface," **even though the namespace itself is not an enforcement mechanism.**
+Nothing in this wave implies otherwise, and the zero-enforcement half is now checked rather than
+asserted — a test re-declares the hatch at a different site, asserts the fence holds there, and then
+asserts it still catches a re-registration under that other name, so the first assertion cannot have
+passed by reading nothing.
+
+**Gates at this tree:** `tsc` clean; node **951/951** (937 + 14), 0 skipped; `check:parity`
+0 violations over 26 capabilities; build clean; smoke 3/3; browser 114/114 — agent-coverage reporting
+26 of 26 operations and **36 of 36 callables** (31 before this wave), 0 exempt; a11y 112/112.
