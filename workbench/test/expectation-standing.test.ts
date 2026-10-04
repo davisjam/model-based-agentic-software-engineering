@@ -22,11 +22,33 @@
 // about the system under design. That is the same shape `test/joins-census.test.ts` uses: derive
 // the input independently, and hold the table against it.
 //
+// ## The probe's own failure mode, and the control that holds it
+//
+// Reading a declaration out of source has one quiet way to be wrong. The path moves, or the
+// declaration is renamed, the parse finds nothing, and the table below is then asserted TOTAL over
+// an empty set. Green would mean "we looked in the wrong place." So the subject is asserted rather
+// than assumed, at both steps: the file must exist, and the alias must be found. Then
+// `the Outcome probe cannot pass by finding nothing` drives every way of finding nothing — an
+// absent file, a renamed alias, a union of non-literals — and catches each throw. Reading an
+// assert is not the same as watching it fire, which is this repo's standing lesson about a probe
+// whose empty result describes the probe rather than its subject.
+//
+// ## A shared source-probe helper was assessed on 261004 and declined
+//
+// Two other files reach for the TypeScript compiler, and neither asks this question.
+// `test/component-model.ts` enumerates every import and export in text it is HANDED, so it has no
+// path to resolve and no named declaration to miss; its consumers state the floor where the counts
+// are known, as `files.length > 50` and `specifiers > 300`. `test/import-graph.test.ts` parses
+// `tsconfig.json` through the compiler's JSON-with-comments reader, and already fails CLOSED on a
+// config it cannot read. That leaves one `createSourceFile` call as the whole overlap, and a helper
+// carrying it would unify boilerplate across three different subjects. The contract worth sharing
+// is the one below — assert the subject was FOUND — and stating it costs less than a module.
+//
 // The negative control matters as much as the pins. A check that cannot tell an accusation from a
 // non-accusation would pass either way, so `readsAsAnAccusation` is driven in both directions.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import ts from "typescript";
 import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
@@ -42,16 +64,22 @@ import type { Coverage, Outcome, QueryResult } from "../src/ir/types.ts";
 // The outcome vocabulary, read off its own declaration
 // ---------------------------------------------------------------------------------------------
 
+/** The file whose `Outcome` declaration IS the vocabulary. Read, never restated. */
+const OUTCOME_SOURCE = "src/ir/types.ts";
+
 /**
- * The members of `export type Outcome = …` in `src/ir/types.ts`.
+ * The members of `export type Outcome = …`, parsed out of the text this is given.
  *
  * A real parse rather than a pattern over text: the union is a one-line alias today and a regex
  * would read it, but it would also read a comment mentioning the words, and it would stop reading
  * the day somebody wraps the alias across lines.
+ *
+ * It takes the TEXT so the control can drive it with source declaring no `Outcome` and with source
+ * declaring a non-literal one. An assertion whose subject is always present is untested by its own
+ * passing, which is the shape the mutation controls in the two sibling gates are built to avoid.
  */
-function declaredOutcomes(): readonly string[] {
-  const path = "src/ir/types.ts";
-  const source = ts.createSourceFile(path, readFileSync(path, "utf8"), ts.ScriptTarget.ES2022, true);
+function outcomesIn(path: string, text: string): readonly string[] {
+  const source = ts.createSourceFile(path, text, ts.ScriptTarget.ES2022, true);
   const found: string[] = [];
   for (const statement of source.statements) {
     if (!ts.isTypeAliasDeclaration(statement) || statement.name.text !== "Outcome") continue;
@@ -67,6 +95,16 @@ function declaredOutcomes(): readonly string[] {
   }
   assert.ok(found.length > 0, `no 'Outcome' type alias found in ${path} — the parse is wrong`);
   return found;
+}
+
+/** The vocabulary as the shipped kernel declares it. The path is asserted, not trusted. */
+function declaredOutcomes(path: string = OUTCOME_SOURCE): readonly string[] {
+  assert.ok(existsSync(path),
+    `${path} does not exist, so the Outcome vocabulary would be read from nothing. This file holds `
+    + `STANDING_PER_OUTCOME TOTAL over that declaration, and a parse with no subject makes the `
+    + `claim vacuous. If the kernel's types moved, point this probe at the file that declares `
+    + `\`Outcome\` now.`);
+  return outcomesIn(path, readFileSync(path, "utf8"));
 }
 
 /**
@@ -126,6 +164,29 @@ test("the standing table is TOTAL over the declared Outcome union, and nothing e
     "an outcome word was added or renamed without anyone deciding what a pin against it means. "
     + "Add the row, with the reason, and the compiler's switch in src/engine/index.ts will tell "
     + "you whether the engine agrees.");
+});
+
+test("the Outcome probe cannot pass by finding nothing — negative control", () => {
+  // The test above asserts the table is TOTAL over whatever this probe returns, so a probe that
+  // returned nothing would carry it vacuously. Each way of finding nothing is driven here and the
+  // throw is caught, because a check nobody has watched fail is a check nobody knows can.
+  assert.throws(() => declaredOutcomes("src/ir/no-such-file.ts"), /does not exist/,
+    "a probe aimed at a path that is not there must say so rather than read an empty vocabulary");
+  assert.throws(() => outcomesIn(OUTCOME_SOURCE, `export type Verdict = "holds" | "refuted";\n`),
+    /no 'Outcome' type alias found/,
+    "a renamed or relocated declaration must be reported as the parse being wrong, which is the "
+    + "failure a green run would otherwise spell as 'the vocabulary is empty'");
+  assert.throws(() => outcomesIn(OUTCOME_SOURCE, `export type Outcome = Conclusive | Unsettled;\n`),
+    /non-literal member/,
+    "a union this parse cannot read must fail rather than hand back the members it managed");
+
+  // And the default still reads the shipped kernel. Without this, the parameter the three arms
+  // above need would become the way the real assertion gets quietly pointed at a fixture.
+  assert.equal(OUTCOME_SOURCE, "src/ir/types.ts");
+  const real = declaredOutcomes();
+  assert.ok(real.length >= 4,
+    `the default probe found ${real.length} outcome(s) (${real.join(", ")}); the kernel declares at `
+    + `least the four this file carries rows for`);
 });
 
 test("every outcome gets the standing the table declares, under BOTH polarities", () => {
