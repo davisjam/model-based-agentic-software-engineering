@@ -152,6 +152,20 @@ re-deriving these, so they live here:**
   corollary for whoever holds the tree: a live unit's staged work sits in the SAME index you are
   about to commit from, which is the second reason `git add -A` is banned here — stage named paths,
   or you will author a commit containing another writer's in-flight work.
+- **A read-only agent must write its report to a scratch file — "your final message is the
+  deliverable" loses the work.** The bullet above says to read the report BODY and never the final
+  message; a read-only survey has no body, so there is nothing to read. On 261003 a layout-engine
+  survey spent 15 minutes, 68 tool calls and 207K tokens, and its completion arrived as the single
+  word `Complete.` — every finding gone, despite a brief that said in terms "return your findings
+  inline as your final message — that text IS the deliverable." The transcript is no fallback: it is
+  the full subagent JSONL and reading it overflows the orchestrator's context. Recovery exists —
+  `SendMessage` by name resumes a completed agent from its transcript and a prioritised, word-capped
+  request gets the findings — but it costs a second round trip of the same length. So: when the
+  deliverable is analysis rather than code, have the agent **write the report to a scratch file
+  outside the repo working tree** (the session scratchpad or `/tmp`) and reply with only that path
+  plus three lines. It stays read-only with respect to the tree — no worktree, no collision with
+  in-flight writers — and the deliverable becomes durable and selectively readable. A file is the
+  artifact; a final message is a courtesy.
 - **An agent killed mid-task has usually FINISHED more than its last line says — verify and commit on
   its behalf before redoing the work.** Two waves died to a session limit on 261002 with zero
   commits, each ending on a line like "Now the node-tier test." Both were in fact COMPLETE,
