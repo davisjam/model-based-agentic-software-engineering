@@ -91,6 +91,33 @@ block — the exact construct this design prescribes, since layer 1 materializes
 symmetry is `(p|^p)`) and each model's relations live in a named graph. Its ten-row table of patterns,
 with a *correct* column, is now the conformance oracle for the evaluator we write instead.
 
+### 0.2a Self-models: what we model about ourselves, and what we deliberately do not
+
+Recorded 261004 from `AUDIT-system-models-261004.md`, so the omissions below read as decisions
+rather than as gaps a later wave should "complete."
+
+**Three self-models exist:** `models/workbench-components.mage.yaml` (hand-written architecture
+constraint), `models/workbench-affordances.mage.yaml` (generated projection of the capability
+registry), `models/example-coverage.mage.yaml` (generated capability x example matrix). The two
+generated ones are byte-exact staleness-gated in CI; the hand-written one is not held to the code by
+anything, which is the audit's central finding and is being closed separately.
+
+**No quantitative self-model, deliberately.** The project does measure real quantities -- the bundle
+floor asserted in `.github/workflows/pages.yml`, tier counts, a11y durations -- and MAGE has the
+quantity construct (V27-V39, exercised by the `document-processing` example). But that enforcement
+lives in CI assertions the workflow could not read out of a model, so a quantities self-model would
+be a second source of truth with no consumer. **Revisit when a gate can derive its threshold from
+the model**; until that seam exists, adding the model would be decoration. This is a reasoned
+omission, not an oversight.
+
+**No machine in any self-model yet, but one is earned.** The transaction lifecycle
+(`src/transaction/engine.ts`) composed with the hypothesis branch (`src/app/services.ts`) and the
+shared human/agent workspace state is a genuine cross-component stateful lifecycle, pinned today
+only point-wise by node tests. A machine self-model there could assert interleaving-level claims no
+current single test states. That is an earned addition awaiting a ruling on the model set -- not a
+defect. The hypothesis lifecycle alone and the five-value outcome vocabulary do **not** earn
+machines: the first is held by types and the facade, the second is an enum, not a lifecycle.
+
 ### 0.3 As-built, verified by running it
 
 Verified 261002 by serving the page and attaching headless Chromium over CDP, rather than by reading
