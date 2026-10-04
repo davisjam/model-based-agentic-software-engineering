@@ -24,16 +24,33 @@
  * `affordanceParityGate()`'s own headline, including a non-zero violation count if one appears.
  * `question-omissions` quotes the refusals the shipped questions actually earn.
  *
- * ## Why the guidance's §12 is absent
+ * ## Where the standards section comes from
  *
- * "Where these semantics come from" wants the SysML v2 / KerML grounding, and the registry carries
- * no attribution: `semanticBasis` is a RECOMMENDATION in `DESIGN-v02-semantics-261004.md`
- * §35.5, not a field, and the strings `SysML` and `KerML` appear nowhere under `src/`. A section
- * here would therefore be hand-written capability prose claiming standards standing the code does
- * not claim — the one thing UX-I9 exists to prevent. It arrives when the field does.
- * `DESIGN-learn-questions-261004.md` §6 records the assessment and §7 the follow-up.
+ * The previous wave omitted the guidance's §12 — "these ideas have established foundations" —
+ * because the registry carried no attribution at all and a page claiming standards grounding while
+ * `src/` claimed none is the capability claim UX-I9 forbids
+ * (`DESIGN-learn-questions-261004.md` §6). `semanticBasis` closed that gap, so `question-foundations`
+ * is derived from it: every standard named on the page is a standard a registry row names, every
+ * count is counted now, and the constructs the registry declares as the Workbench's own are
+ * rendered as such. A reader is told what is borrowed, what is grounded elsewhere, and what is
+ * ours — and the page cannot say more than the registry does, which is the only reason it is
+ * allowed to say anything.
+ *
+ * `question-omissions` gained the standards-relative half of the guidance's §13 box from the same
+ * field: a borrowed construct realizes a declared SUBSET, so the reduction is per construct rather
+ * than asserted in prose.
+ *
+ * **What is NOT on the page, deliberately.** The guidance's §13 also sketches a muted list of
+ * specification features the Workbench does not represent. Nothing in the repository enumerates
+ * those, and the field records which concept each construct subsets rather than what the standard
+ * carries beyond it. Writing the list by hand would be a claim about a specification's contents
+ * made from memory — the same failure §35.4 refuses when it leaves its own clause column unfilled,
+ * pointed the other way.
  */
-import { MODEL_TYPES, type SchemaAuthority } from "../engine/model-types.ts";
+import {
+  CLAUSE_OWED, MODEL_TYPES,
+  type ModelType, type SchemaAuthority, type SemanticBasis,
+} from "../engine/model-types.ts";
 import { QUANTIFIERS, QUANTIFIER_EVIDENCE } from "../engine/types.ts";
 import { runQuery } from "../engine/index.ts";
 import type { CanonicalSystem, Evidence, QueryResult } from "../ir/types.ts";
@@ -166,6 +183,32 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
     ],
   },
   {
+    anchor: "question-foundations",
+    heading: "Where do these ideas come from?",
+    lede: "A small educational vocabulary — and for each part of it, either the established idea it "
+      + "realizes a subset of, or the plain statement that it is the workbench's own.",
+    derivedFrom: [
+      {
+        file: "src/engine/model-types.ts", symbol: "export type SemanticBasis",
+        role: "where each construct's semantics come from: the standard concept it is borrowed "
+          + "from, the foundation outside this project it is grounded in, or the reason it is the "
+          + "workbench's own — required on every registry row, so nothing is attributed by omission",
+      },
+      {
+        file: "DESIGN-v02-semantics-261004.md",
+        symbol: "## 35. Borrowed semantics must have provenance",
+        role: "the ruling this section renders: a borrowed construct must identify the standard "
+          + "concept, and an extension must be identified as an extension and NOT attributed to "
+          + "SysML or KerML",
+      },
+      {
+        file: "SEMANTICS.md", symbol: "### 13.7 A second correspondence axis: construct to standard",
+        role: "what a construct-to-standard claim is worth, in the house correspondence vocabulary: "
+          + "`asserted`, until a conformance fixture exists",
+      },
+    ],
+  },
+  {
     anchor: "question-omissions",
     heading: "What does the workbench leave out?",
     lede: "Each model is a purposeful reduction, and so is the workbench. Asking past the edge gets "
@@ -184,6 +227,12 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
       {
         file: "src/app/capabilities.ts", symbol: "export const ESCAPE_HATCHES",
         role: "the surfaces deliberately OUTSIDE the semantic interface, each with what fences it",
+      },
+      {
+        file: "src/engine/model-types.ts", symbol: "readonly semanticBasis",
+        role: "the standards-relative half of the reduction: each borrowed construct names the "
+          + "standard concept it realizes a SUBSET of, so the boundary is recorded per construct "
+          + "rather than claimed in prose",
       },
     ],
   },
@@ -282,6 +331,108 @@ function shippedCounterexample(systems: LoadedSystems): {
     return { example, metric: composed.metric, ceiling: composed.ceiling, result };
   }
   return null;
+}
+
+// ---------------------------------------------------------------------------------------------
+// Readers over the semantic-basis field
+//
+// One row per claim the registry makes, at the registry's own granularity: a substrate row per
+// model type, and a form row per SHARED basis object. The grouping is by object identity rather
+// than by equal content, which is what makes the page's granularity the ruling table's — the ten
+// structural query forms realize one claim and appear as one row, because they share one object.
+// ---------------------------------------------------------------------------------------------
+
+interface AttributionRow {
+  /** What the row is about: a substrate, or the forms sharing one claim. */
+  readonly what: string;
+  /** The model form the claim sits inside, or null when the row IS the model form's substrate. */
+  readonly askedOf: string | null;
+  readonly basis: SemanticBasis;
+}
+
+type BorrowedBasis = Extract<SemanticBasis, { readonly kind: "borrowed" }>;
+
+const substrateRows = (): readonly AttributionRow[] =>
+  MODEL_TYPES.map((t) => ({
+    what: `what a ${t.label} represents`, askedOf: null, basis: t.semanticBasis,
+  }));
+
+function formRows(): readonly AttributionRow[] {
+  const out: AttributionRow[] = [];
+  for (const t of MODEL_TYPES) {
+    const shared = new Map<SemanticBasis, string[]>();
+    for (const p of t.query.primitives) {
+      const forms = shared.get(p.semanticBasis);
+      if (forms === undefined) shared.set(p.semanticBasis, [p.form]);
+      else forms.push(p.form);
+    }
+    for (const [basis, forms] of shared) {
+      out.push({ what: forms.join(", "), askedOf: t.label, basis });
+    }
+  }
+  return out;
+}
+
+/** The borrowed substrate rows, narrowed — the only rows that may name a standard. */
+const borrowedSubstrates = (): readonly { readonly of: ModelType; readonly basis: BorrowedBasis }[] =>
+  MODEL_TYPES.flatMap((t) => (t.semanticBasis.kind === "borrowed"
+    ? [{ of: t, basis: t.semanticBasis }]
+    : []));
+
+/** Every standard any row actually names. Derived, so an unborrowed registry names none. */
+const standardsNamed = (): readonly string[] => [...new Set(
+  [...substrateRows(), ...formRows()]
+    .flatMap((r) => (r.basis.kind === "borrowed" ? [r.basis.standard] : [])))];
+
+/** A list in prose: "A and B", "A, B or C". */
+const inProse = (items: readonly string[], conjunction = "and"): string =>
+  items.length <= 1
+    ? (items[0] ?? "")
+    : `${items.slice(0, -1).join(", ")} ${conjunction} ${items[items.length - 1] ?? ""}`;
+
+/** Where one row's semantics come from, as the page states it. */
+const basisAccount = (basis: SemanticBasis): string => {
+  switch (basis.kind) {
+    case "borrowed": return `borrowed from ${basis.standard}: ${basis.concept}`;
+    case "extension-grounded": return basis.why;
+    case "extension": return basis.why;
+  }
+};
+
+/** What a reader can open to check the row. A borrowed row's clause is owed until a fixture fills it. */
+const basisCitation = (basis: SemanticBasis): string => {
+  switch (basis.kind) {
+    case "borrowed":
+      return basis.clause === CLAUSE_OWED ? `clause ${CLAUSE_OWED}` : basis.clause;
+    case "extension-grounded":
+      return `${basis.foundation.file} (${basis.foundation.symbol.replace(/^#+\s*/, "")})`;
+    case "extension": return "—";
+  }
+};
+
+/**
+ * The not-attributed list: every construct no standard backs, said once.
+ *
+ * Merged by (model form, class, foundation) rather than printed per basis object, because the list
+ * states the rule's second half and nothing else — a construct is an extension, and here is the
+ * foundation if it has one outside this project. The per-construct reasons are in the table above,
+ * and repeating them here would turn the rule into a second copy of the detail.
+ */
+function notAttributedItems(): readonly string[] {
+  const groups = new Map<string, { readonly tail: string; readonly subjects: string[] }>();
+  for (const row of [...substrateRows(), ...formRows()]) {
+    if (row.basis.kind === "borrowed") continue;
+    const grounding = row.basis.kind === "extension-grounded" ? row.basis.foundation : null;
+    const key = `${row.askedOf ?? ""}|${row.basis.kind}|${grounding?.file ?? ""}|${grounding?.symbol ?? ""}`;
+    const tail = (row.askedOf === null ? "" : ` (asked of a ${row.askedOf})`)
+      + (grounding === null
+        ? " — extension: the workbench claims no standard here."
+        : ` — extension, grounded in ${grounding.role}.`);
+    const group = groups.get(key);
+    if (group === undefined) groups.set(key, { tail, subjects: [row.what] });
+    else group.subjects.push(row.what);
+  }
+  return [...groups.values()].map((g) => `${g.subjects.join(", ")}${g.tail}`);
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -538,6 +689,112 @@ function agentBlocks(): readonly QuestionBlock[] {
   return blocks;
 }
 
+/**
+ * The guidance's §12, derived — and its register is restrained on purpose.
+ *
+ * Not "About SysML". The section's job is to tell a student that the vocabulary they have been
+ * using stands on established work, name what that work is per construct, and say plainly where it
+ * stands on nothing but this project. Understanding SysML is not made a prerequisite for anything:
+ * the section sits near the end of the page, after every question has already been asked and
+ * answered without it.
+ */
+function foundationBlocks(): readonly QuestionBlock[] {
+  const forms = formRows();
+  const borrowed = borrowedSubstrates();
+  const standards = standardsNamed();
+  const primitives = MODEL_TYPES.flatMap((t) => t.query.primitives);
+  const countOf = (kind: SemanticBasis["kind"]): number =>
+    primitives.filter((p) => p.semanticBasis.kind === kind).length;
+
+  const blocks: QuestionBlock[] = [
+    {
+      kind: "prose",
+      // The claim is built from the standards the registry actually names, so a registry that
+      // borrowed nothing could not produce this sentence — it would say so instead.
+      text: standards.length === 0
+        ? "The workbench uses a small educational modeling vocabulary, and its registry currently "
+          + "attributes none of it to a published standard. Every construct below is the "
+          + "workbench's own or grounded outside any standard it borrows from."
+        : "The workbench uses a small educational modeling vocabulary. What each model form "
+          + `REPRESENTS is a declared subset of ${inProse(standards)} concepts; what you can ASK of `
+          + "it is a mix of established verification ideas and the workbench's own analysis "
+          + "semantics. The rows below say which, construct by construct, and name a standard only "
+          + "where something is actually borrowed.",
+    },
+  ];
+
+  if (borrowed.length > 0) {
+    blocks.push({
+      kind: "rows",
+      label: "What each model form represents, and the standard concept it realizes a subset of",
+      columns: ["Model form", "Standard", "The concept it realizes a subset of", "Clause", "Conformance fixture"],
+      rows: borrowed.map(({ of, basis }) => [
+        of.label, basis.standard, basis.concept, basis.clause, basis.fixture ?? CLAUSE_OWED,
+      ]),
+    });
+  }
+
+  blocks.push({
+    kind: "rows",
+    label: "Where each question form's semantics come from",
+    columns: ["Question forms", "Asked of", "Where their semantics come from", "Cited at"],
+    rows: forms.map((r) => [r.what, r.askedOf ?? "—", basisAccount(r.basis), basisCitation(r.basis)]),
+  });
+
+  const ours = notAttributedItems();
+  if (ours.length > 0) {
+    blocks.push({
+      kind: "bullets",
+      // The rule's second half, rendered rather than promised: over-attribution and
+      // under-attribution are symmetric failures, so the constructs with no standard behind them
+      // get the same visibility as the ones that have one.
+      label: standards.length === 0
+        ? "Attributed to no standard"
+        : `Not attributed to ${inProse(standards, "or")}`,
+      items: ours,
+    });
+  }
+
+  blocks.push({
+    kind: "pairs",
+    label: "The attribution, counted now",
+    pairs: [
+      ["Model-form substrates borrowed from a standard",
+        `${borrowed.length} of ${MODEL_TYPES.length}`],
+      ["Question forms borrowed from a standard",
+        `${countOf("borrowed")} of ${primitives.length}`],
+      ["Question forms grounded outside this project",
+        `${countOf("extension-grounded")} of ${primitives.length}`],
+      ["Question forms that are the workbench's own",
+        `${countOf("extension")} of ${primitives.length}`],
+      ["Conformance fixtures demonstrating a borrowed correspondence",
+        `${borrowed.filter((b) => b.basis.fixture !== null).length} of ${borrowed.length}`],
+      // Rung 3, as a value a reader and a test can both address by its term.
+      ["What a borrowed correspondence is worth today", "asserted"],
+    ],
+  });
+
+  blocks.push({
+    kind: "prose",
+    text: "Every borrowed row above is `asserted`, which is a specific and limited claim: a person "
+      + "read the specification and the model together, on a date. Nothing re-derives it on every "
+      + "run. The workbench takes no runtime dependency on the SysML v2 reference implementation, "
+      + "so no gate here checks a correspondence against the standard, and none is implied — the "
+      + "conformance fixtures that would let a reader reproduce one by hand are owed, and the table "
+      + "says so rather than leaving the cell blank.",
+  });
+
+  blocks.push({
+    kind: "prose",
+    text: "None of this is a prerequisite. Every question on this page was asked and answered "
+      + "without it. Students who go on into model-based systems engineering, formal methods or "
+      + "graduate study will meet the fuller versions of these ideas, and will find the small "
+      + "vocabulary here sits inside them rather than beside them.",
+  });
+
+  return blocks;
+}
+
 function omissionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
   // The refusals the shipped questions actually earn, with the live prose. Stronger than a list of
   // non-goals: a refusal names what is absent AND what declaring it would take, which is the
@@ -569,6 +826,32 @@ function omissionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
     label: "Deliberately outside the semantic interface",
     items: ESCAPE_HATCHES.map((h) => `${h.at} — ${h.reason} Fenced by ${h.fencedBy}.`),
   });
+
+  // The guidance's §13 wants the box to be standards-relative as well as workbench-relative, and
+  // that half needs the attribution field. One table and one sentence: the recursion is the
+  // teaching point, and the guidance says in terms not to belabour it.
+  const borrowed = borrowedSubstrates();
+  const standards = standardsNamed();
+  if (borrowed.length > 0) {
+    blocks.push({
+      // A readout rather than a table, and short on purpose: the concept each construct subsets is
+      // already named once on this page, under "Where do these ideas come from?". Saying it twice
+      // is the belabouring the guidance warns against.
+      kind: "pairs",
+      label: "And the vocabulary itself is a reduction — each borrowed construct realizes a subset",
+      pairs: borrowed.map(({ of, basis }) =>
+        [of.label, `a declared subset of ${basis.standard}`] as const),
+    });
+    blocks.push({
+      kind: "prose",
+      text: `Each of those is a subset claim, which is the same thing as saying ${inProse(standards)} `
+        + "carry more than the workbench exposes. What they carry beyond it is not listed here: the "
+        + "registry records which concept each construct subsets, not what the specification holds "
+        + "around it, and a list written from anywhere else would be a claim about a standard made "
+        + "from memory.",
+    });
+  }
+
   blocks.push({
     kind: "prose",
     text: "The workbench is itself a purposeful reduction. It carries the concepts its engineering "
@@ -593,6 +876,7 @@ export function buildQuestionSections(
       case "question-properties": return { section, blocks: propertyBlocks(systems, fixtures) };
       case "question-requirements": return { section, blocks: requirementBlocks(systems, fixtures) };
       case "question-agents": return { section, blocks: agentBlocks() };
+      case "question-foundations": return { section, blocks: foundationBlocks() };
       case "question-omissions": return { section, blocks: omissionBlocks(systems) };
       default:
         throw new Error(`question section '${section.anchor}' is declared with no builder`);

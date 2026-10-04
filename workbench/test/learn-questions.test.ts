@@ -21,8 +21,11 @@
 //       section teach a rule rather than an instance.
 //   (4) AGENTS — the headline is the gate's own, and every listed capability produces evidence and
 //       names one service both sides invoke.
-//   (5) OMISSIONS — every refusal shown is a refusal a shipped question earns, with the engine's
-//       own prose.
+//   (5) FOUNDATIONS — every standard the page names is one a registry row borrows from, every
+//       count is counted now, and the not-attributed list is exactly the rows no standard backs.
+//       Rung 3 is `asserted` and the section says so in that word.
+//   (6) OMISSIONS — every refusal shown is a refusal a shipped question earns, with the engine's
+//       own prose; and the standards half of the box is the registry's own subset claims.
 //
 // What this file deliberately does NOT do: assert any outcome word as a literal. `refuted` appears
 // below only as a value read back out of a fixture or an engine result. A test that hardcoded
@@ -32,7 +35,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { parse } from "yaml";
 import type { CanonicalSystem } from "../src/ir/types.ts";
-import { MODEL_TYPES } from "../src/engine/model-types.ts";
+import { MODEL_TYPES, type SemanticBasis } from "../src/engine/model-types.ts";
 import { QUANTIFIERS, QUANTIFIER_EVIDENCE } from "../src/engine/types.ts";
 import { runQuery } from "../src/engine/index.ts";
 import { Workspace } from "../src/app/services.ts";
@@ -371,7 +374,168 @@ test("every capability the agent section lists produces evidence and names one s
 });
 
 // ---------------------------------------------------------------------------------------------
-// (5) Omissions — the registry's own omits, and refusals shipped questions really earn
+// (5) Foundations — the registry's attribution, and the rule's SECOND half rendered
+//
+// The first half is the easy one to hold: a borrowed row names a standard, and the test re-derives
+// which. The second half is the one these tests exist for — an extension must read as an extension
+// and must NOT be attributed to SysML or KerML — and it is held structurally rather than by
+// grepping the prose for "SysML", because several of the registry's own extension reasons say the
+// word in order to DISCLAIM it. So: the standards the page names are exactly the standards some
+// row borrows from; the not-attributed list is exactly the non-borrowed rows; and no non-borrowed
+// row is shown with a clause citation.
+// ---------------------------------------------------------------------------------------------
+
+/** Every basis in the registry, substrate rows and form rows alike. */
+const EVERY_BASIS: readonly SemanticBasis[] = [
+  ...MODEL_TYPES.map((t) => t.semanticBasis),
+  ...MODEL_TYPES.flatMap((t) => t.query.primitives.map((p) => p.semanticBasis)),
+];
+
+const BORROWED_STANDARDS: ReadonlySet<string> = new Set(
+  EVERY_BASIS.flatMap((b) => (b.kind === "borrowed" ? [b.standard] : [])));
+
+test("the substrate table is every borrowed substrate, with the registry's own concept and clause", () => {
+  const table = rowsLabelled(sectionAt("question-foundations"), "What each model form represents");
+  const borrowed = MODEL_TYPES.filter((t) => t.semanticBasis.kind === "borrowed");
+  assert.equal(table.rows.length, borrowed.length,
+    "the substrate table is not the borrowed substrates — a row was added or dropped");
+  for (const t of borrowed) {
+    const basis = t.semanticBasis;
+    assert.ok(basis.kind === "borrowed");
+    const row = table.rows.find((r) => r[0] === t.label);
+    assert.ok(row !== undefined, `'${t.id}' is borrowed and the section omits it`);
+    assert.equal(row[1], basis.standard, `'${t.id}' is shown against the wrong standard`);
+    assert.equal(row[2], basis.concept, `'${t.id}' is shown with prose the registry does not carry`);
+    assert.equal(row[3], basis.clause, `'${t.id}' is shown with a clause the registry does not carry`);
+    // A fixture that does not exist must not be shown as one; the registry's null reads as owed.
+    assert.equal(row[4], basis.fixture ?? "owed",
+      `'${t.id}' is shown a fixture the registry does not name`);
+  }
+});
+
+test("the form table covers every question form exactly once, grouped by shared basis", () => {
+  const table = rowsLabelled(sectionAt("question-foundations"), "Where each question form");
+  const shown = table.rows.flatMap((r) => (r[0] ?? "").split(", "));
+  const declared = MODEL_TYPES.flatMap((t) => t.query.primitives.map((p) => p.form));
+  assert.deepEqual([...shown].sort(), [...declared].sort(),
+    "the form table is not the registry's forms — a form is missing, duplicated, or invented");
+
+  // Every form in one row shares ONE basis object, which is what the grouping claims.
+  for (const row of table.rows) {
+    const bases = (row[0] ?? "").split(", ").map((form) => {
+      const p = MODEL_TYPES.flatMap((t) => t.query.primitives).find((x) => x.form === form);
+      assert.ok(p !== undefined, `the table lists '${form}', which is not a registered form`);
+      return p.semanticBasis;
+    });
+    assert.equal(new Set(bases).size, 1,
+      `the row '${row[0] ?? ""}' groups forms that do not share one semantic-basis object`);
+  }
+});
+
+test("the page names exactly the standards the registry borrows from, and nowhere else", () => {
+  const section = sectionAt("question-foundations");
+  const substrate = rowsLabelled(section, "What each model form represents");
+  assert.deepEqual(new Set(substrate.rows.map((r) => r[1])), BORROWED_STANDARDS,
+    "the substrate table's standards are not the standards the registry borrows from");
+
+  // The form table today borrows nothing, so no form row may carry a clause citation — that
+  // column is where an over-attribution would surface, since a clause is a standard's own address.
+  const forms = rowsLabelled(section, "Where each question form");
+  for (const row of forms.rows) {
+    const form = (row[0] ?? "").split(", ")[0] ?? "";
+    const primitive = MODEL_TYPES.flatMap((t) => t.query.primitives).find((p) => p.form === form);
+    assert.ok(primitive !== undefined);
+    if (primitive.semanticBasis.kind === "borrowed") continue;
+    assert.ok(!(row[3] ?? "").startsWith("clause"),
+      `'${row[0] ?? ""}' is not borrowed and is shown with a clause citation: '${row[3] ?? ""}'`);
+  }
+});
+
+test("the not-attributed list names every construct no standard backs — the rule's second half", () => {
+  const items = bulletsLabelled(sectionAt("question-foundations"), "Not attributed to");
+
+  // Re-derived from the registry: every construct whose basis is not `borrowed` must be NAMED in
+  // the list, and every bullet must read as an extension. The list merges constructs that share a
+  // class and a foundation, so this is a coverage claim over names rather than a row count —
+  // the row count is the table's job, two assertions up.
+  const unattributed: string[] = [];
+  for (const t of MODEL_TYPES) {
+    if (t.semanticBasis.kind !== "borrowed") unattributed.push(`a ${t.label} represents`);
+    for (const p of t.query.primitives) {
+      if (p.semanticBasis.kind !== "borrowed") unattributed.push(p.form);
+    }
+  }
+  assert.ok(unattributed.length > 0, "every construct is borrowed — this check ran on nothing");
+  const joined = items.join("\n");
+  for (const subject of unattributed) {
+    assert.ok(joined.includes(subject),
+      `'${subject}' is attributed to no standard and the not-attributed list does not name it`);
+  }
+  for (const item of items) {
+    assert.ok(item.includes("extension"), `'${item}' does not read as an extension`);
+  }
+
+  // And nothing BORROWED appears here. A borrowed construct in this list would be the symmetric
+  // failure: a real correspondence disclaimed.
+  for (const t of MODEL_TYPES) {
+    const basis = t.semanticBasis;
+    if (basis.kind !== "borrowed") continue;
+    assert.ok(!joined.includes(`a ${t.label} represents`),
+      `'${t.id}' is borrowed from ${basis.standard} and the list disclaims it`);
+  }
+});
+
+test("the census is counted from the registry, not written down", () => {
+  const cell = readoutLabelled(sectionAt("question-foundations"), "The attribution, counted now");
+  const primitives = MODEL_TYPES.flatMap((t) => t.query.primitives);
+  const forms = (kind: SemanticBasis["kind"]): number =>
+    primitives.filter((p) => p.semanticBasis.kind === kind).length;
+
+  assert.equal(cell("Model-form substrates borrowed from a standard"),
+    `${MODEL_TYPES.filter((t) => t.semanticBasis.kind === "borrowed").length} of ${MODEL_TYPES.length}`);
+  assert.equal(cell("Question forms borrowed from a standard"),
+    `${forms("borrowed")} of ${primitives.length}`);
+  assert.equal(cell("Question forms grounded outside this project"),
+    `${forms("extension-grounded")} of ${primitives.length}`);
+  assert.equal(cell("Question forms that are the workbench's own"),
+    `${forms("extension")} of ${primitives.length}`);
+
+  const borrowed = EVERY_BASIS.filter((b) => b.kind === "borrowed");
+  const withFixture = borrowed.filter((b) => b.kind === "borrowed" && b.fixture !== null).length;
+  assert.equal(cell("Conformance fixtures demonstrating a borrowed correspondence"),
+    `${withFixture} of ${MODEL_TYPES.filter((t) => t.semanticBasis.kind === "borrowed").length}`);
+});
+
+test("rung 3 is stated as asserted, in that word, and no gate is claimed", () => {
+  // The whole reason this section is allowed to exist is that the registry carries the attribution.
+  // The reason it must not read as a conformance claim is that nothing re-derives the standard's
+  // half. So the page's own word for what a borrowed correspondence is worth must be a kind the
+  // published schema admits, and must not be one of the three that would imply a mechanism.
+  const section = sectionAt("question-foundations");
+  const cell = readoutLabelled(section, "The attribution, counted now");
+  const worth = cell("What a borrowed correspondence is worth today");
+
+  const schema = JSON.parse(readFileSync("mage-model.schema.json", "utf8")) as {
+    $defs: { provenance: { properties: { correspondence: { properties: { kind: { enum: string[] } } } } } };
+  };
+  const kinds = schema.$defs.provenance.properties.correspondence.properties.kind.enum;
+  assert.ok(kinds.includes(worth),
+    `the page claims '${worth}', which is not a correspondence kind the schema admits`);
+  for (const stronger of ["checked", "derived", "generated"]) {
+    assert.notEqual(worth, stronger,
+      `the page claims '${worth}', which asserts a mechanism re-derives the correspondence; nothing `
+      + "here does, because the workbench takes no runtime dependency on the reference implementation");
+  }
+
+  const prose = section.blocks.filter((b) => b.kind === "prose").map((b) => b.text).join(" ");
+  assert.ok(prose.includes(worth), `the section never says '${worth}' in prose, only in a table cell`);
+  assert.ok(prose.includes("no gate"),
+    "the section does not tell a reader that no gate checks these rows — a derived standards "
+    + "section that stays silent on its own ceiling reads as though one does");
+});
+
+// ---------------------------------------------------------------------------------------------
+// (6) Omissions — the registry's own omits, and refusals shipped questions really earn
 // ---------------------------------------------------------------------------------------------
 
 test("the omissions bullets are the registry's own omits, one per type per omission", () => {
@@ -409,6 +573,25 @@ test("every refusal shown is one a shipped question earns, with the engine's own
     assert.ok(prose !== undefined, `the section shows a refusal for '${row[0] ?? ""}', which is not refused`);
     assert.equal(row[2], prose, `'${row[0] ?? ""}' is shown with prose the engine does not produce`);
   }
+});
+
+test("the omissions box's standards half is the registry's subset claims, not prose", () => {
+  // The guidance's §13 wants the reduction stated against the standards as well as against the
+  // workbench. That half is derived from the same field §12 is, so it moves when the field moves.
+  const cell = readoutLabelled(sectionAt("question-omissions"), "And the vocabulary itself");
+  let borrowed = 0;
+  for (const t of MODEL_TYPES) {
+    const basis = t.semanticBasis;
+    if (basis.kind !== "borrowed") continue;
+    borrowed += 1;
+    // The standard named is the registry's own, and the claim is a SUBSET rather than parity.
+    const value = cell(t.label);
+    assert.ok(value.includes(basis.standard),
+      `'${t.id}' subsets ${basis.standard} and the box reads '${value}'`);
+    assert.ok(value.includes("subset"),
+      `'${t.id}' is shown without the subset claim, so the box reads as parity with the standard`);
+  }
+  assert.ok(borrowed > 0, "nothing is borrowed — the standards half of the box has no content");
 });
 
 test("the escape hatches shown are the declared ones, each with what fences it", () => {

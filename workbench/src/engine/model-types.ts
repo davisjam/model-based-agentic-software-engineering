@@ -34,6 +34,22 @@
  * semantics (what counts as well formed). The first is cited — `schema`. The second is declared —
  * `query`, see `QuerySemantics` below. Ruling: `DECISIONS-RULED-model-query-261002.md` Extension 1.
  *
+ * **Where the semantics come from, per construct.** `semanticBasis` carries §35's rule — *borrowed
+ * semantics must have provenance* — on the two objects whose granularity matches §35.4's table: the
+ * model type for a substrate row, the query primitive for a form row. The field is REQUIRED, which
+ * is the whole of rung 1: a new model type or question form cannot land unattributed, because the
+ * compiler will not let it. The union makes "this is ours" a statable value rather than an
+ * omission, so a deliberate extension and a forgotten attribution no longer look alike.
+ *
+ * **What the attribution is worth: `asserted`, and nothing here implies a gate.** A borrowed row
+ * claims the cited standard concept means what we say it means. That is a person reading a
+ * specification and a model together on a date — `asserted` in `SEMANTICS.md` §13's vocabulary
+ * (§13.3's K4), and it stays `asserted` until a conformance fixture exists (`SEMANTICS.md` §13.7,
+ * `DESIGN-v02-semantics-261004.md` §35.5 rung 3). The Workbench takes no runtime dependency on the
+ * SysML v2 reference implementation, so nothing in CI can re-derive the standard's half. What IS
+ * held mechanically is narrower and worth stating exactly: presence, by the compiler, and
+ * non-placeholder content, by `test/model-types.test.ts`.
+ *
  * **Three types, not four.** The author's Learn sketch shows a fourth card, "Data / Policy Model".
  * The kernel has no such type: Message Bus's `data-policy` is an entry in `system.models` whose
  * contribution is properties over an ordered-enum domain — a structural graph used for a policy
@@ -62,6 +78,61 @@ export interface SchemaAuthority {
   readonly symbol: string;
   readonly role: string;
 }
+
+// --------------------------------------------------------------------------------------------
+// Semantic basis — where a construct's semantics come from (§35)
+// --------------------------------------------------------------------------------------------
+
+/** The standards the Workbench borrows from. Closed: a third would be a ruling, not an edit. */
+export type Standard = "SysML v2" | "KerML";
+
+/**
+ * The clause citation a borrowed row owes until a conformance fixture supplies one.
+ *
+ * §35.4 leaves the clause column deliberately unfilled and says why: *"a clause citation written
+ * from memory is precisely the false attribution the rule forbids, dressed as rigour — and a wrong
+ * clause number is worse than an absent one, because it reads as checked."* So the sentinel is the
+ * truthful value, not a placeholder, and `test/model-types.test.ts` holds the pair: a row is
+ * `owed` exactly while it names no fixture.
+ */
+export const CLAUSE_OWED = "owed";
+
+/**
+ * Where one construct's semantics come from — the attribution half of §35's rule.
+ *
+ * **Both halves of the rule, by construction.** A construct derived from SysML v2 or KerML names
+ * the standard and the concept; an extension says it is an extension and CANNOT name a standard,
+ * because `standard` sits on the `borrowed` arm alone. Over-attribution and under-attribution are
+ * symmetric failures (§35.3), so the class is a field on every row rather than a footnote on the
+ * exceptions.
+ *
+ * **The third arm is not a hedge.** LTL and the behavioural forms that bridge to it sit outside
+ * SysML and KerML by choice, and their semantics are not invented here either — they are standard
+ * linear temporal logic, which is a stronger warrant than "ours" and a different one from "borrowed
+ * from SysML". `foundation` is a `SchemaAuthority` rather than a free string, so the grounding is a
+ * citation the registry's existing resolution test already walks.
+ *
+ * `fixture` is `null` while the §35.6 obligation is owed. A non-nullable field would read better
+ * and would block the attribution from landing until a corpus exists, which gets the order wrong:
+ * the attribution is useful immediately and the fixture is the slower half.
+ */
+export type SemanticBasis =
+  | {
+    readonly kind: "borrowed";
+    readonly standard: Standard;
+    /** The standard concept this construct realizes a subset of, as the 261004 ruling names it. */
+    readonly concept: string;
+    /** A clause citation, or `CLAUSE_OWED` while no fixture has supplied one. */
+    readonly clause: string;
+    /** The conformance fixture directory (§35.6), or null while the obligation is still owed. */
+    readonly fixture: string | null;
+  }
+  | { readonly kind: "extension"; readonly why: string }
+  | {
+    readonly kind: "extension-grounded";
+    readonly foundation: SchemaAuthority;
+    readonly why: string;
+  };
 
 // --------------------------------------------------------------------------------------------
 // Query semantics — what questions can meaningfully be asked of a type
@@ -141,6 +212,17 @@ export interface QueryPrimitive {
   readonly form: string;
   readonly basis: AnswerBasis;
   readonly gate: PrimitiveGate;
+  /**
+   * Where this form's semantics come from (§35.4's form rows). Required, so a new form cannot land
+   * unattributed — and the two controls compose: the compiler holds a basis per primitive, the
+   * `primitives` totality rule holds a primitive per form, so a form added to an engine vocabulary
+   * reaches both without anyone writing a second test.
+   *
+   * Forms that share one §35.4 row share one OBJECT, by identity, rather than carrying ten
+   * paraphrases of a single claim — and the Learn derivation groups on that identity, so the page's
+   * granularity is the table's.
+   */
+  readonly semanticBasis: SemanticBasis;
 }
 
 /**
@@ -264,6 +346,15 @@ export interface ModelType {
   readonly queryKind: Query["kind"];
   /** Where the shape is defined. Pointers, never restatements. */
   readonly schema: readonly SchemaAuthority[];
+  /**
+   * Where this type's SUBSTRATE semantics come from (§35.4's substrate rows) — what the type can
+   * represent, as distinct from what can be asked of it. Required, per rung 1.
+   *
+   * Two homes rather than one, because §35.4's rows sit at two granularities and the
+   * borrowed/extension split runs INSIDE a single model type: the structural type's substrate is
+   * borrowed while its query forms are the Workbench's own, and one field could not say both.
+   */
+  readonly semanticBasis: SemanticBasis;
   /** What questions can meaningfully be asked of this type. Primitives, never query catalogues. */
   readonly query: QuerySemantics;
   /** What this type deliberately does not tell you — the purposeful-reduction half of a Learn page. */
@@ -335,6 +426,42 @@ const DIMENSION_TABLE: SchemaAuthority = {
     "two it is a category error",
 };
 
+// --------------------------------------------------------------------------------------------
+// The semantic-basis rows shared across forms
+//
+// §35.4's table has ONE row for the relational query vocabulary and one for the quantity metrics,
+// so the forms that realize each row share one object. Shared by identity, which is what lets the
+// Learn derivation group ten forms into the one claim the table makes about them instead of
+// printing ten paraphrases of it.
+// --------------------------------------------------------------------------------------------
+
+/**
+ * The foundation the externally grounded behavioural forms stand on.
+ *
+ * Deliberately not a standard: LTL sits outside SysML v2 and KerML by choice. Also not "ours": the
+ * satisfaction relation is textbook, and the bridges from the shipped forms to it are small lemmas
+ * the cited document works out rather than claims.
+ */
+const LTL_FOUNDATION: SchemaAuthority = {
+  file: "DESIGN-v02-ltl-foundation-261004.md", symbol: "### 3.1 The relation",
+  role: "the satisfaction relation of linear temporal logic, from the textbook definition rather " +
+    "than from any OMG specification",
+};
+
+const RELATIONAL_QUERY_BASIS: SemanticBasis = {
+  kind: "extension",
+  why: "the relational query vocabulary is the Workbench's own analysis semantics — it reads the " +
+    "borrowed structural substrate and asks questions of it that no standard defines, and a reader " +
+    "who goes looking for these forms in SysML v2 or KerML will not find them (§35.4)",
+};
+
+const QUANTITY_METRIC_BASIS: SemanticBasis = {
+  kind: "extension",
+  why: "the metric vocabulary is the Workbench's own analysis layer over a borrowed substrate: the " +
+    "standard settles what a magnitude carrying a dimension and a unit means, and aggregating " +
+    "charges along an execution into latency, cost or peak memory is ours",
+};
+
 export const MODEL_TYPES: readonly ModelType[] = [
   {
     id: "structural-graph",
@@ -348,6 +475,17 @@ export const MODEL_TYPES: readonly ModelType[] = [
       { file: "mage-model.schema.json", symbol: "\"models\"", role: "the authored form, in the published wire schema" },
       { file: "SEMANTICS.md", symbol: "## 3. Graphs: entities and typed relations", role: "normative semantics" },
     ],
+    // §35.4's first row names both standards. `standard` admits one, so it names the layer where
+    // the three concepts are DEFINED — typed elements, relationships and features are KerML's
+    // kernel vocabulary, and SysML v2 specializes them rather than introducing them. Naming SysML
+    // v2 here would attribute a concept to the layer that inherits it.
+    semanticBasis: {
+      kind: "borrowed", standard: "KerML",
+      concept: "the typed-element, relationship and feature subsets — the kernel vocabulary SysML " +
+        "v2 builds its own structural constructs on, of which a MAGE entity, typed relation and " +
+        "property are a restricted realization",
+      clause: CLAUSE_OWED, fixture: null,
+    },
     query: {
       forms: GRAPH_FORMS,
       composing: GRAPH_COMPOSING,
@@ -357,16 +495,16 @@ export const MODEL_TYPES: readonly ModelType[] = [
       },
       licensedBy: [PATH_LICENSE, DIRECTION_LICENSE],
       primitives: [
-        { form: "direct", basis: "declared", gate: { kind: "by-construction", why: "it reads one declared edge of the named relation type; no composition is claimed, so nothing licenses it beyond the declaration itself" } },
-        { form: "predecessors", basis: "declared", gate: { kind: "by-construction", why: "the adjacency read one step inwards — a declaration, not an inference" } },
-        { form: "successors", basis: "declared", gate: { kind: "by-construction", why: "the adjacency read one step outwards — a declaration, not an inference" } },
-        { form: "reachability", basis: "composed", gate: { kind: "declared", by: PATH_LICENSE } },
-        { form: "path", basis: "composed", gate: { kind: "declared", by: PATH_LICENSE } },
-        { form: "shortest-path", basis: "composed", gate: { kind: "declared", by: PATH_LICENSE } },
-        { form: "all-paths", basis: "composed", gate: { kind: "declared", by: PATH_LICENSE } },
-        { form: "components", basis: "composed", gate: { kind: "declared", by: PATH_LICENSE } },
-        { form: "cycles", basis: "composed", gate: { kind: "by-construction", why: "a relation type's declared `acyclic` property is checkable even where path composition is forbidden, so cycle detection is licensed independently of it (V8, not V7)" } },
-        { form: "containment", basis: "composed", gate: { kind: "by-construction", why: "it walks the entity `contains` tree, whose paths are hierarchical by construction rather than a relation type's composed edges" } },
+        { form: "direct", basis: "declared", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "by-construction", why: "it reads one declared edge of the named relation type; no composition is claimed, so nothing licenses it beyond the declaration itself" } },
+        { form: "predecessors", basis: "declared", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "by-construction", why: "the adjacency read one step inwards — a declaration, not an inference" } },
+        { form: "successors", basis: "declared", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "by-construction", why: "the adjacency read one step outwards — a declaration, not an inference" } },
+        { form: "reachability", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "declared", by: PATH_LICENSE } },
+        { form: "path", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "declared", by: PATH_LICENSE } },
+        { form: "shortest-path", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "declared", by: PATH_LICENSE } },
+        { form: "all-paths", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "declared", by: PATH_LICENSE } },
+        { form: "components", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "declared", by: PATH_LICENSE } },
+        { form: "cycles", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "by-construction", why: "a relation type's declared `acyclic` property is checkable even where path composition is forbidden, so cycle detection is licensed independently of it (V8, not V7)" } },
+        { form: "containment", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "by-construction", why: "it walks the entity `contains` tree, whose paths are hierarchical by construction rather than a relation type's composed edges" } },
       ],
       subjects: [
         {
@@ -451,6 +589,13 @@ export const MODEL_TYPES: readonly ModelType[] = [
       { file: "mage-model.schema.json", symbol: "\"machines\"", role: "the authored form, in the published wire schema" },
       { file: "SEMANTICS.md", symbol: "## 4. State machines", role: "normative semantics" },
     ],
+    semanticBasis: {
+      kind: "borrowed", standard: "SysML v2",
+      concept: "the behavioral, state and succession subsets — occupancy of a named state and the " +
+        "declared succession from one to the next, of which a MAGE machine is a restricted " +
+        "realization over finite variable domains",
+      clause: CLAUSE_OWED, fixture: null,
+    },
     query: {
       forms: BEHAVIOR_FORMS,
       // The engine owns no behavioural analogue of `GRAPH_COMPOSING`, and it should not: a
@@ -463,13 +608,75 @@ export const MODEL_TYPES: readonly ModelType[] = [
         role: "each behavioural form's meaning in plain language, parameterized by the question asked (V21)",
       },
       licensedBy: [CONFIGURATION_SPACE, VARIABLE_DOMAIN],
+      // The behavioural forms are where the attribution is least uniform, and the unevenness is the
+      // ground truth rather than a gap in the record. `DESIGN-v02-ltl-foundation-261004.md` §9.1
+      // works out which shipped forms bridge to a temporal-logic formula and names the two that do
+      // NOT: `transition-live`, because its propositions would have to range over steps rather than
+      // configurations, and `recurrence`, because re-entry is a reachability class and not an
+      // ω-property. Claiming LTL for all six would be the flattering failure §35.3 names, applied
+      // to a foundation instead of to a standard.
       primitives: [
-        { form: "reach", basis: "composed", gate: { kind: "by-construction", why: "arrival at a configuration satisfying a predicate is what a state machine MEANS; no declaration withholds it" } },
-        { form: "invariant", basis: "composed", gate: { kind: "by-construction", why: "a claim over every reachable configuration, decided on the same closure `reach` walks" } },
-        { form: "recurrence", basis: "composed", gate: { kind: "by-construction", why: "re-entry of a target configuration, which the closure exhibits or does not" } },
-        { form: "repeatable-cycle", basis: "composed", gate: { kind: "by-construction", why: "a genuinely repeating configuration — a lasso — which the closure exhibits or does not" } },
-        { form: "deadend", basis: "composed", gate: { kind: "by-construction", why: "a reachable configuration with no enabled step; the transition declarations decide, and nothing gates asking" } },
-        { form: "transition-live", basis: "composed", gate: { kind: "by-construction", why: "whether a declared transition is executable somewhere in the closure; an undeclared one is unlicensed as a typo, not refuted" } },
+        {
+          form: "reach", basis: "composed",
+          semanticBasis: {
+            kind: "extension-grounded", foundation: LTL_FOUNDATION,
+            why: "an existential reachability question, and the bridge is an equivalence: `reach p` " +
+              "holds exactly when LTL `G not p` is refuted, with the refuting trace's prefix as the " +
+              "witness (LTL foundation §9.1)",
+          },
+          gate: { kind: "by-construction", why: "arrival at a configuration satisfying a predicate is what a state machine MEANS; no declaration withholds it" },
+        },
+        {
+          form: "invariant", basis: "composed",
+          semanticBasis: {
+            kind: "extension-grounded", foundation: LTL_FOUNDATION,
+            why: "LTL `G p`, and the bridge is an identity rather than an analogy: every reachable " +
+              "configuration lies on a trace and every trace configuration is reachable (LTL " +
+              "foundation §9.1)",
+          },
+          gate: { kind: "by-construction", why: "a claim over every reachable configuration, decided on the same closure `reach` walks" },
+        },
+        {
+          form: "recurrence", basis: "composed",
+          semanticBasis: {
+            kind: "extension",
+            why: "re-entry of a target configuration is a reachability class, not an ω-property, so " +
+              "the LTL foundation asserts no bridge for it and asserting one would re-conflate what " +
+              "§7.2a separates (LTL foundation §9.1) — the form is the Workbench's own",
+          },
+          gate: { kind: "by-construction", why: "re-entry of a target configuration, which the closure exhibits or does not" },
+        },
+        {
+          form: "repeatable-cycle", basis: "composed",
+          semanticBasis: {
+            kind: "extension-grounded", foundation: LTL_FOUNDATION,
+            why: "non-emptiness of the model read as a Büchi automaton whose single acceptance set " +
+              "is the target predicate; the lasso it returns visits that predicate infinitely often, " +
+              "which is LTL `F G not t` refuted (LTL foundation §1, §9.1)",
+          },
+          gate: { kind: "by-construction", why: "a genuinely repeating configuration — a lasso — which the closure exhibits or does not" },
+        },
+        {
+          form: "deadend", basis: "composed",
+          semanticBasis: {
+            kind: "extension",
+            why: "a reachable configuration with no enabled step. The LTL foundation asserts only a " +
+              "one-directional bridge for it, at the stutter-closure boundary where the closed and " +
+              "un-closed trace domains differ (§9.1), so no temporal-logic equivalence grounds the " +
+              "form and it is claimed as the Workbench's own",
+          },
+          gate: { kind: "by-construction", why: "a reachable configuration with no enabled step; the transition declarations decide, and nothing gates asking" },
+        },
+        {
+          form: "transition-live", basis: "composed",
+          semanticBasis: {
+            kind: "extension",
+            why: "the LTL foundation excludes it deliberately: its atomic propositions range over " +
+              "configurations, and a step-labelled proposition is a later question rather than a gap " +
+              "(§9.1). So there is no bridge, and the form is the Workbench's own",
+          },
+          gate: { kind: "by-construction", why: "whether a declared transition is executable somewhere in the closure; an undeclared one is unlicensed as a typo, not refuted" },
+        },
       ],
       subjects: [
         {
@@ -536,6 +743,13 @@ export const MODEL_TYPES: readonly ModelType[] = [
       { file: "mage-model.schema.json", symbol: "\"quantities\"", role: "the authored form, in the published wire schema" },
       { file: "SEMANTICS.md", symbol: "### 5.2 Quantities annotate the model; they are not part of it", role: "normative semantics" },
     ],
+    semanticBasis: {
+      kind: "borrowed", standard: "SysML v2",
+      concept: "a subset of the Quantities and Units library — a magnitude that carries its " +
+        "dimension and unit rather than being a bare number, which is what makes a comparison " +
+        "across two dimensions a category error instead of arithmetic",
+      clause: CLAUSE_OWED, fixture: null,
+    },
     query: {
       forms: REQUIREMENT_METRICS,
       // Null for the same reason as the state machine's, and NOT because nothing composes here: a
@@ -548,9 +762,9 @@ export const MODEL_TYPES: readonly ModelType[] = [
       },
       licensedBy: [ACCOUNTING_BASIS, RESIDENCY_DECLARATION, DIMENSION_TABLE],
       primitives: [
-        { form: "latency", basis: "aggregated", gate: { kind: "declared", by: ACCOUNTING_BASIS } },
-        { form: "cost", basis: "aggregated", gate: { kind: "declared", by: ACCOUNTING_BASIS } },
-        { form: "peak_memory", basis: "aggregated", gate: { kind: "declared", by: RESIDENCY_DECLARATION } },
+        { form: "latency", basis: "aggregated", semanticBasis: QUANTITY_METRIC_BASIS, gate: { kind: "declared", by: ACCOUNTING_BASIS } },
+        { form: "cost", basis: "aggregated", semanticBasis: QUANTITY_METRIC_BASIS, gate: { kind: "declared", by: ACCOUNTING_BASIS } },
+        { form: "peak_memory", basis: "aggregated", semanticBasis: QUANTITY_METRIC_BASIS, gate: { kind: "declared", by: RESIDENCY_DECLARATION } },
       ],
       subjects: [
         {
