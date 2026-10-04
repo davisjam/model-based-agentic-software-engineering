@@ -631,14 +631,24 @@ describe("FR-A11Y-3: announced, and announced once", () => {
   });
 
   it("the announcement WAITS for the state to settle rather than firing per keystroke", async () => {
-    // Five activations inside the window, and the measurement that discriminates: the region is
-    // written ONCE, and not until the debounce has elapsed. An undebounced `announce` writes
-    // synchronously inside the click handler, so its first write would land within a millisecond or
-    // two of the first Enter -- which is the difference between a settled sentence and a queue.
+    // Five activations inside one window, and the measurement that discriminates: the region is
+    // written ONCE, and that write lands a debounce after the LAST keystroke rather than beside the
+    // first. An undebounced `announce` writes synchronously inside the handler, so its write would
+    // land within a millisecond or two of a keystroke -- which is the difference between a settled
+    // sentence and a queue.
     //
-    // The timing assertion carries this test, not the count. Five identical Run messages produce
-    // one mutation whether or not they were debounced (see keyboard.mjs on identical writes), so a
-    // count alone would pass on a page with no debounce at all.
+    // The INTERVAL carries this test, not the count. Five identical Run messages produce one
+    // mutation whether or not they were debounced (see keyboard.mjs on identical writes), so a
+    // count alone would pass on a page with no debounce at all; the count states the coalescing
+    // claim beside the interval rather than carrying it.
+    //
+    // Both stamps come off the PAGE's clock and the assertion is on the DIFFERENCE between them,
+    // which is what makes this load-independent. The version this replaces read the live region
+    // from the test process and required that read to land inside the 250ms window -- so under load
+    // the read's own round trip outlived the window and a CORRECT page failed (measured: a 264ms
+    // delay against the 250ms subject; 111/112 three times with the machine busy, 112/112 once it
+    // quieted, same bundle). No wall-clock read is fixable by widening it; a wider sleep only moves
+    // the load at which it breaks. An interval between two page-clock stamps does not move at all.
     //
     // The Ask first is the instrument, not the subject: the previous test left the Run message in
     // the region, and re-announcing a string already there writes nothing at all. Asking puts a
@@ -654,24 +664,82 @@ describe("FR-A11Y-3: announced, and announced once", () => {
       "the Ask preamble did not announce, so the storm's settled write would be unobservable");
 
     await reachByTab(page, "run");
-    await watchLiveRegion(page);
+    // One recorder, both axes, one clock: every Enter the PAGE receives and every write to the live
+    // region, each stamped by `performance.now()` inside the page. Keydown is taken on the capture
+    // phase at the document so the stamp is "when the input arrived", independent of which handler
+    // answers it.
+    await page.evaluate(() => {
+      const live = document.getElementById("live");
+      window.__stormObserver?.disconnect();
+      window.__storm = { keys: [], writes: [] };
+      window.__stormKeys = (e) => { if (e.key === "Enter") window.__storm.keys.push(performance.now()); };
+      document.addEventListener("keydown", window.__stormKeys, true);
+      window.__stormObserver = new MutationObserver(() => {
+        window.__storm.writes.push({ at: performance.now(), text: live.textContent ?? "" });
+      });
+      window.__stormObserver.observe(live, { childList: true, characterData: true, subtree: true });
+    });
     for (let i = 0; i < 5; i += 1) await page.keyboard.press("Enter");
-    // Read once well inside the window: nothing may have been written yet.
-    const earlyWrites = await liveWrites(page);
-    await settle(900);
-    const writes = await liveWrites(page);
+    // Wait for the settled write to ARRIVE, rather than sleeping a span chosen in advance: a
+    // condition wait takes as long as the machine needs and no longer, so load changes this test's
+    // DURATION and never its verdict.
+    //
+    // `advanceVirtualTime` would be the stronger instrument and it cannot be used here. It was
+    // tried: the storm test passes under it in ~970ms, and the two tests after it fail, because a
+    // spent virtual-time budget leaves the page's task clock PAUSED and this file shares one page
+    // across its tests in a deliberate order (see the header). The next test's own announcement
+    // never fires -- "opening the review surface produced 0 announcements" -- and the Tab walk
+    // after it never settles. The harness names this caveat on `advanceVirtualTime` itself: it
+    // belongs only on a page whose every later wait is also a grant. This page's are not.
+    // The cause is carried rather than swallowed: a wait that ends without a write has two
+    // explanations -- the page announced nothing, or the probe itself broke -- and a message that
+    // reports only the first sends the reader to the wrong half of the system.
+    await page.waitForFunction(() => (window.__storm?.writes.length ?? 0) > 0,
+      { timeout: 30_000, polling: 50 }).catch((cause) => {
+      throw new Error("five activations of Run produced no write to the live region within 30s, so "
+        + `there is no announcement to time (underlying: ${cause})`, { cause });
+    });
+    // One further debounce, so a SECOND announcement -- the per-keystroke queue this test exists to
+    // catch -- has room to land and be counted rather than being missed by an early read.
+    //
+    // WHERE THIS TEST'S TIME GOES, measured with phase timers under the concurrent tier rather than
+    // guessed: everything from the Tab walk to the readout costs ~955ms (walk 129, five presses 67,
+    // the debounce firing 257, this straggler window 502). The test REPORTS ~11.7s under tier
+    // concurrency, so ~10.8s of it is the Ask preamble above -- `ask-go` and the query it runs --
+    // which is also what makes the reported duration swing with load (~1.7s for this file alone).
+    // That preamble is the instrument, untouched by this repair. Trimming the waits below would buy
+    // half a second against a ten-second cost that is somewhere else.
+    await settle(ANNOUNCE_DEBOUNCE_MS * 2);
+    const storm = await page.evaluate(() => {
+      window.__stormObserver.disconnect();
+      document.removeEventListener("keydown", window.__stormKeys, true);
+      const { keys, writes } = window.__storm;
+      return {
+        keys: keys.length,
+        writes: writes.map((w) => ({
+          text: w.text,
+          // The interval that IS the debounce: this write against the last keystroke the page
+          // received at or before it. Two stamps from one clock, so neither this process's latency
+          // nor the machine's load appears in the difference.
+          afterLastKeyMs: Math.round(w.at - keys.filter((k) => k <= w.at).at(-1)),
+        })),
+      };
+    });
 
-    assert.equal(writes.length, 1,
-      `five rapid activations produced ${writes.length} announcements: ${JSON.stringify(writes)}`);
-    assert.match(writes[0].text, /Re-evaluated/i);
-    assert.deepEqual(earlyWrites, [],
-      `the live region was written ${earlyWrites.length} time(s) before the debounce elapsed: `
-      + `${JSON.stringify(earlyWrites)} -- announcements are firing per keystroke`);
-    // 200ms rather than 250ms: scheduler jitter can only make the observed delay LONGER, so the
-    // floor is the safe side, and an undebounced write measures in single-digit milliseconds.
-    assert.ok(writes[0].delayMs >= 200,
-      `the announcement landed ${writes[0].delayMs}ms after the first keystroke -- the 250ms debounce `
-      + "in main.ts is not in the path");
+    // Asserted before the interval, because an undriven storm would make the interval measure
+    // nothing: no keystrokes means no denominator, and `afterLastKeyMs` would read NaN.
+    assert.equal(storm.keys, 5,
+      `the page received ${storm.keys} Enter keydown(s) rather than 5, so the storm was never driven`);
+    assert.equal(storm.writes.length, 1,
+      `five rapid activations produced ${storm.writes.length} announcements: ${JSON.stringify(storm.writes)}`);
+    assert.match(storm.writes[0].text, /Re-evaluated/i);
+    // A floor 50ms under the declared debounce: a busy page makes the interval LONGER (a timer
+    // fires late, never early), so the floor is the safe side -- and an undebounced write lands
+    // within single-digit milliseconds of its keystroke, nowhere near this.
+    assert.ok(storm.writes[0].afterLastKeyMs >= ANNOUNCE_DEBOUNCE_MS - 50,
+      `the announcement landed ${storm.writes[0].afterLastKeyMs}ms after the last keystroke -- the `
+      + `${ANNOUNCE_DEBOUNCE_MS}ms debounce in the shell's announcer (its \`flush\`) is not in the `
+      + "path, so announcements are firing per keystroke");
   });
 
   it("one edit that moves four verdicts announces once, naming both the edit and the verdicts", async () => {
