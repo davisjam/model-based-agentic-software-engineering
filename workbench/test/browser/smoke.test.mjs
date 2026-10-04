@@ -37,6 +37,7 @@ import { SHIPPED_EXAMPLE_IDS } from "../../src/app/examples.ts";
 import { MODEL_TYPES } from "../../src/engine/model-types.ts";
 import { LEARN_PAGE, MODEL_TYPE_USES, anchorForType, anchorForUse } from "../../src/app/learn.ts";
 import { GUIDE_ANCHORS } from "../../src/learn/workbench-guide.ts";
+import { QUESTION_ANCHORS } from "../../src/learn/questions.ts";
 
 /**
  * The OS picks the port. Claiming 8146 only avoided the other tiers IN THIS PROCESS; it did
@@ -222,13 +223,18 @@ test("learn.html: boots, and the gallery is the model-type registry", async () =
     ...MODEL_TYPE_USES.map((u) => anchorForUse(u.id)),
   ].sort();
 
-  // The page also builds the workbench GUIDE — the explanatory prose the operational panes used to
-  // carry inline. Those sections are DECLARED rather than derived, because no part of a model
-  // kernel knows how a pane reads, so they are added to the expected set from their own declaration
-  // and kept out of the GALLERY claim below. Splitting the two is the point: the 1:1 correspondence
-  // with the registry stays exactly as strict as it was, and a guide section cannot quietly stand in
-  // for a missing model-type entry.
-  const expectedSections = [...galleryAnchors, ...GUIDE_ANCHORS].sort();
+  // The page also builds two NON-GALLERY families, each added to the expected set from its own
+  // declaration and each kept out of the GALLERY claim below. Splitting them off is the point: the
+  // 1:1 correspondence with the registry stays exactly as strict as it was, and neither family can
+  // quietly stand in for a missing model-type entry.
+  //
+  //   GUIDE_ANCHORS     the explanatory prose the operational panes used to carry inline. DECLARED
+  //                     rather than derived, because no part of a model kernel knows how a pane reads.
+  //   QUESTION_ANCHORS  the reframe's own sections — evidence, properties, requirements, agents,
+  //                     omissions. Their anchors are declared; their CONTENT is built by running the
+  //                     kernel over the shipped examples, which is why they are not gallery cards:
+  //                     they answer "what can I do with a model", not "which model form do I need".
+  const expectedSections = [...galleryAnchors, ...GUIDE_ANCHORS, ...QUESTION_ANCHORS].sort();
 
   const rendered = await page.evaluate(() => ({
     sectionIds: [...document.querySelectorAll("#learn-main > section[id]")].map((s) => s.id).sort(),
