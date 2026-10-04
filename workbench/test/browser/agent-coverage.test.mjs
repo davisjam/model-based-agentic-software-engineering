@@ -332,7 +332,37 @@ const DRIVERS = {
     assert.ok(selected.byType.ids.length > 0 && selected.byType.ids.length < selected.all.ids.length,
       `the '${selected.type}' filter selected ${selected.byType.ids.length} of ${selected.all.ids.length}`
       + " — selecting all or none would not show it filtering");
-    return { ...inspection, selected: selected.all.ids.length, byType: selected.byType.ids.length };
+
+    // `window.mage.model.count` is this row's THIRD machine affordance — the same `workspace.state`
+    // read, reported as a cardinality instead of a list. Driven against the enumeration above
+    // rather than against a number written here: a recorded figure would pass while agreeing with
+    // nothing, and the property worth holding over the served bundle is that the two spellings of
+    // one read do not disagree about how many.
+    const counted = await page.evaluate(() => {
+      const type = window.mage.inspect().entities.find((e) => e.type !== null).type;
+      return {
+        all: window.mage.model.count(),
+        byType: window.mage.model.count({ type }),
+        refused: window.mage.model.count("not-a-selector"),
+      };
+    });
+    assert.equal(counted.all.counted, true,
+      `a count over the flagship was refused: ${JSON.stringify(counted.all)}`);
+    assert.deepEqual(counted.all.count, { exact: true, value: selected.all.ids.length, basis: "entity-table" },
+      "`count` and `elements` disagree about how many entities this system declares");
+    assert.equal(counted.byType.counted && counted.byType.count.value, selected.byType.ids.length,
+      "the filtered count disagrees with the filtered enumeration");
+    assert.equal(counted.all.hash, inspection.hash, "`count` names a revision `inspect` is not on");
+    // The §3.2 holding, over the served bundle: a refusal reports no figure at all, so a caller
+    // reading the field without branching finds nothing to misread as a total.
+    assert.equal(counted.refused.counted, false, "an unreadable selector was counted anyway");
+    assert.equal(Object.hasOwn(counted.refused, "count"), false,
+      "a refused count carried a figure; the engine established no selection to count");
+
+    return {
+      ...inspection, selected: selected.all.ids.length, byType: selected.byType.ids.length,
+      counted: counted.all.count.value,
+    };
   },
 
   async validate() {

@@ -38,8 +38,8 @@ export {
   type GraphAnswer, type GraphPlan, type GraphSubject,
 } from "./graph.ts";
 export {
-  interpretElementSelector, parseElementSelector, selectElements,
-  type ElementSelection, type ElementSelector,
+  countElements, interpretElementSelector, parseElementSelector, selectElements,
+  type Cardinality, type ElementCount, type ElementSelection, type ElementSelector,
 } from "./elements.ts";
 export {
   compileSystem, cycleThrough, DEFAULT_STATE_LIMIT, defaultOptions, exploreSpace,

@@ -107,6 +107,32 @@ export function satisfiesConstraints(
 }
 
 /**
+ * How many, and the read that makes the figure exact.
+ *
+ * `DESIGN-v02-quantification-261004.md` §3.2 rules that a count reports a number only under
+ * exhaustive coverage, and names the consequence: *"it is the reason `count` is not simply
+ * `ids.length` handed to the caller."* A bare integer carries no statement of its own exactness, so
+ * a reader supplies one — and the reader's assumption is "exact", which is the truncated-search
+ * failure wearing an arithmetic costume. Here the figure states its own standing instead.
+ *
+ * `basis` names the domain whose exhaustive read earns `exact`. One member today, because Phase 1
+ * counts one domain: the IR entity table, finite and fully read (`selectElements` below walks
+ * `system.entities` with no limit, so no bound can truncate it). §3.2 reserves the bounded case for
+ * the domains that have one — configurations under a state limit, where the figure is a floor.
+ *
+ * The widening is deliberately a BREAKING one. A later phase counting a bounded domain adds a
+ * second arm carrying a floor rather than a value, and every reader of `value` stops compiling
+ * until it decides what to do with a count that is not a count. That is the ruling held by the
+ * compiler rather than by this comment, and it is the reason the type is a union of one rather than
+ * an interface with an `exact` flag a reader can ignore.
+ */
+export type Cardinality = {
+  readonly exact: true;
+  readonly value: number;
+  readonly basis: "entity-table";
+};
+
+/**
  * The ids this system declares, filtered — or the refusal the question earned.
  *
  * `declaredTypes` is on BOTH arms, and it is what keeps an empty answer diagnosable. A selector
@@ -114,17 +140,48 @@ export function satisfiesConstraints(
  * type with no matching entities returns; a caller holding only the empty array cannot tell a typo
  * from a true absence. The house pattern for this is `NoSuchQuestion.savedQuestions` — report what
  * the system DOES declare, so the diagnosis costs no second call.
+ *
+ * `count` rides the SELECTED arm only, and that placement is §3.2's ruling made structural. A
+ * refusal established no selection, so there is no cardinality to report and no field to misread; a
+ * count the engine could not earn cannot be constructed here rather than being suppressed by a
+ * caller who remembers to check. The figure comes off the same `ids` array the arm returns, so the
+ * two cannot disagree about one selection.
  */
 export type ElementSelection =
   | {
       readonly selected: true;
       readonly ids: readonly string[];
+      readonly count: Cardinality;
       readonly hash: string;
       readonly interpretedAs: string;
       readonly declaredTypes: readonly string[];
     }
   | {
       readonly selected: false;
+      readonly refusal: Refusal;
+      readonly hash: string;
+      readonly interpretedAs: string;
+      readonly declaredTypes: readonly string[];
+    };
+
+/**
+ * How many entities the selector picked out — the same answer, without the list.
+ *
+ * It carries no `ids`, which is the one thing that distinguishes it from `ElementSelection` and the
+ * whole reason it exists: an agent asking "how many" over a large table should not have to receive
+ * the table to find out. Every other field is the selection's own, projected rather than recomputed
+ * (`countElements` below), so this cannot become a second answer to one question.
+ */
+export type ElementCount =
+  | {
+      readonly counted: true;
+      readonly count: Cardinality;
+      readonly hash: string;
+      readonly interpretedAs: string;
+      readonly declaredTypes: readonly string[];
+    }
+  | {
+      readonly counted: false;
       readonly refusal: Refusal;
       readonly hash: string;
       readonly interpretedAs: string;
@@ -199,5 +256,35 @@ export function selectElements(system: CanonicalSystem, raw: unknown): ElementSe
     if (selector.type !== null && system.entities.get(id)?.type !== selector.type) return false;
     return satisfiesConstraints(system, id, selector.where);
   });
-  return { selected: true, ids, hash, interpretedAs, declaredTypes: types };
+  // The whole table was walked — `sorted(system.entities.keys())` reads every key and the filter
+  // short-circuits no iteration — so the figure is exact and says so. Taken off `ids` rather than
+  // tallied in the filter above: a second counter would be a second answer to "how many did this
+  // select", and the day the two disagreed the disagreement would be inside one return value.
+  return {
+    selected: true, ids, hash, interpretedAs, declaredTypes: types,
+    count: { exact: true, value: ids.length, basis: "entity-table" },
+  };
+}
+
+/**
+ * Count the selection, by making it and dropping the list.
+ *
+ * `DESIGN-v02-quantification-261004.md` §3.4 rules `count` *"the cardinality of a subject
+ * enumeration — the same derivation arm, one step further"*, and this is that step spelled as a
+ * function rather than as a second traversal. It adds no form, no query kind and no quantifier: a
+ * count makes no claim, so there is nothing for a witness or a counterexample to establish, and it
+ * never reaches `parseQuery` or the dispatcher.
+ *
+ * Calling `selectElements` is the point, not an implementation convenience. A `count` that walked
+ * the entity table itself would be a second matcher over one grammar — the defect this module's
+ * header extracted `satisfiesConstraints` to prevent — and it could report a number for a selector
+ * the selection refuses. Projecting instead means the refusals, the interpreted sentence, the
+ * revision hash and the exactness all arrive already decided.
+ */
+export function countElements(system: CanonicalSystem, raw: unknown): ElementCount {
+  const selection = selectElements(system, raw);
+  const { hash, interpretedAs, declaredTypes } = selection;
+  return selection.selected
+    ? { counted: true, count: selection.count, hash, interpretedAs, declaredTypes }
+    : { counted: false, refusal: selection.refusal, hash, interpretedAs, declaredTypes };
 }

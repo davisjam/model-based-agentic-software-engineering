@@ -24,8 +24,8 @@ import type { PendingResult } from "./ports.ts";
 import type { ExhaustedEscalation } from "../sparql/index.ts";
 import type { SparqlAnswer, Workspace } from "./services.ts";
 import type { QueryCheckResult } from "../engine/check.ts";
-import { selectElements } from "../engine/elements.ts";
-import type { ElementSelection } from "../engine/elements.ts";
+import { countElements, selectElements } from "../engine/elements.ts";
+import type { ElementCount, ElementSelection } from "../engine/elements.ts";
 import type { ModelTypeId, QueryNoun, SubjectSelector } from "../engine/model-types.ts";
 import type { GraphForm } from "../engine/types.ts";
 import { VALIDATION_AUTHORITY } from "../validator/result.ts";
@@ -295,7 +295,8 @@ export const reachableQuery = (
 export const pathQuery = (from: string, to: string, relation: string): GraphQueryDocument =>
   ({ kind: "graph", quantifier: "exists", graph: { form: PATH_FORM, relation, from, to } });
 
-export type FacadeOperationName = "elements" | "related" | "reachable" | "path" | "violations";
+export type FacadeOperationName =
+  "elements" | "count" | "related" | "reachable" | "path" | "violations";
 
 /**
  * What a facade operation derives FROM — and the three arms are the honest count.
@@ -355,6 +356,23 @@ export const MODEL_FACADE: readonly FacadeOperation[] = [
     }],
   },
   {
+    operation: "count",
+    // The SAME subject arm as `elements`, not a sibling of it, and the repetition is the claim:
+    // `count` is the cardinality of that enumeration, so it derives from the declaration the
+    // enumeration derives from. `DESIGN-v02-quantification-261004.md` §3.4 ruling 2 — "not a
+    // twentieth form either ... the same derivation arm, one step further." A row naming a form
+    // would assert this question walks edges, and it reads one table.
+    //
+    // It also stays inside §G5's composition line. A pipe would hand `elements`' RESULT to a second
+    // operation; `countElements` re-derives the selection and drops the list, so there is no
+    // intermediate result travelling between two operations and nothing for `check` to admit
+    // recursively.
+    derivesFrom: [{
+      from: "query-subject", modelType: "structural-graph",
+      noun: "entity", selector: "property-constraints",
+    }],
+  },
+  {
     operation: "related",
     // Both directions, because both are the operation: a row naming one form would leave the other
     // undeclared and the totality check would be measuring half of what `related` can emit.
@@ -398,6 +416,16 @@ export interface ModelQueryApi {
    * language. Licensed by the structural-graph type's presence rung, like a graph question.
    */
   elements(selector?: unknown): ElementSelection;
+  /**
+   * How many entities that selector picks out, without the list of them.
+   *
+   * The same read as `elements` and the same refusals, counted. The figure arrives as a
+   * `Cardinality` rather than a number because a bare integer invites a reader to assume
+   * exactness: here the entity table is finite and fully walked, so the value states the basis
+   * that earns it, and a later count over a bounded domain cannot borrow that standing silently
+   * (`DESIGN-v02-quantification-261004.md` §3.2).
+   */
+  count(selector?: unknown): ElementCount;
   /** One step along a declared relation. `evidence.nodes` carries the neighbours it found. */
   related(from: string, relation: string, direction: TraversalDirection): QueryResult;
   /**
@@ -870,6 +898,7 @@ export function createAgentApi(
     // as a second machine affordance of `inspect` rather than of `query`.
     model: {
       elements: (selector) => selectElements(workspace.state.system, selector),
+      count: (selector) => countElements(workspace.state.system, selector),
       related: (from, relation, direction) => workspace.query(relatedQuery(from, relation, direction)),
       reachable: (from, relation, to) =>
         workspace.query(reachableQuery(from, relation, to ?? null)),
