@@ -20,7 +20,8 @@ import { existsSync, readFileSync } from "node:fs";
 import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import {
-  absentSubstrateProse, derivedPrimitives, MODEL_TYPES, modelTypeForQueryKind,
+  absentSubstrateProse, CLAUSE_OWED, derivedPrimitives, MODEL_TYPES, modelTypeForQueryKind,
+  type SemanticBasis,
 } from "../src/engine/model-types.ts";
 import { runQuery } from "../src/engine/index.ts";
 import {
@@ -219,6 +220,79 @@ test("the derived primitives are computed, and they are the non-declaration-read
       `${t.id}: derivedPrimitives disagrees with the classification it reads`);
     assert.ok(derived.length > 0, `${t.id}: a model type that derives nothing answers no question`);
   }
+});
+
+// ---------------------------------------------------------------------------------------------
+// Semantic basis — rung 2 only, and the file says so
+//
+// Rung 1 (PRESENCE) is the compiler: `semanticBasis` is required on `ModelType` and on
+// `QueryPrimitive`, so a new model type or question form cannot land unattributed and no test is
+// needed to say it. Rung 2 is below — the content is not a placeholder. Rung 3, that a borrowed
+// row's correspondence to the standard is actually RIGHT, is `asserted` and is held by nothing
+// here: the Workbench takes no runtime dependency on the SysML v2 reference implementation, so
+// nothing in CI can re-derive the standard's half of the claim. These tests must not be read as a
+// conformance gate, and they are deliberately not written as one.
+// ---------------------------------------------------------------------------------------------
+
+/** Every basis in the registry, with the construct that carries it, for a per-row message. */
+const everyBasis = (): readonly { readonly owner: string; readonly basis: SemanticBasis }[] =>
+  MODEL_TYPES.flatMap((t) => [
+    { owner: `${t.id} (substrate)`, basis: t.semanticBasis },
+    ...t.query.primitives.map((p) => ({ owner: `${t.id}/${p.form}`, basis: p.semanticBasis })),
+  ]);
+
+test("no semantic basis is a placeholder — the content owes a real claim (rung 2)", () => {
+  // Omission is rung 1's job and the compiler already has it. The realistic failure is decay into
+  // `concept: "SysML"`, which is why these are content floors rather than presence checks. The
+  // floors mirror the ones the `by-construction` gates and the join meanings already carry.
+  const seen = new Set<SemanticBasis["kind"]>();
+  for (const { owner, basis } of everyBasis()) {
+    seen.add(basis.kind);
+    switch (basis.kind) {
+      case "borrowed":
+        assert.ok(basis.concept.length > 20,
+          `${owner}: the borrowed concept is too short to name anything — 'SysML' is not a concept`);
+        assert.ok(basis.clause.length > 0, `${owner}: a borrowed row owes a clause or the owed sentinel`);
+        break;
+      case "extension":
+        assert.ok(basis.why.length > 30,
+          `${owner}: an extension owes a real reason it is ours, not a placeholder`);
+        break;
+      case "extension-grounded":
+        assert.ok(basis.why.length > 30,
+          `${owner}: an externally grounded extension owes a real account of the grounding`);
+        assert.ok(basis.foundation.role.length > 20,
+          `${owner}: the foundation citation's role says nothing about what it grounds`);
+        break;
+    }
+  }
+  // A union arm no row uses is a shape nothing holds. All three of §35.4's classes ship.
+  assert.deepEqual([...seen].sort(), ["borrowed", "extension", "extension-grounded"],
+    "a semantic-basis class is declared and unused, or one in use is missing");
+});
+
+test("a clause is owed exactly while no fixture names it, and a fixture that is named exists", () => {
+  // §35.4: the clause cell is filled FROM the fixture rather than the reverse, so the two move
+  // together. That biconditional is what makes the owed sentinel a commitment instead of an escape
+  // — and it is what refuses `clause: "TODO"`, which a bare non-empty check would accept.
+  let borrowed = 0;
+  for (const { owner, basis } of everyBasis()) {
+    if (basis.kind !== "borrowed") continue;
+    borrowed += 1;
+    if (basis.fixture === null) {
+      assert.equal(basis.clause, CLAUSE_OWED,
+        `${owner}: no fixture names this correspondence, so the clause must be the owed sentinel ` +
+        `rather than '${basis.clause}' — a clause written from memory reads as checked`);
+      continue;
+    }
+    assert.notEqual(basis.clause, CLAUSE_OWED,
+      `${owner}: a fixture is named and the clause is still owed; the fixture's claim.md supplies it`);
+    assert.match(basis.clause, /[0-9]/,
+      `${owner}: '${basis.clause}' cites no clause number`);
+    assert.ok(existsSync(basis.fixture),
+      `${owner}: the conformance fixture directory '${basis.fixture}' does not exist`);
+  }
+  assert.ok(borrowed > 0, "nothing is borrowed at all — this check ran on nothing");
 });
 
 test("every query subject names a distinct noun, and a join's partner is a registered type", () => {
