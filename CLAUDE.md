@@ -145,6 +145,27 @@ re-deriving these, so they live here:**
     two instances caught BEFORE dispatch on 261004 were both caught by exactly that step, which is
     the evidence it works. And say in the brief that its ground truth is a starting point the agent
     must verify — the reports that corrected these briefs all came from agents told to do so.
+  - **A negative claim is only as wide as the search that produced it, and the step above cannot
+    catch one.** The dual of the bullet above, and the more dangerous half: that step says *re-read
+    each cited line*, which is unavailable when the finding IS that nothing matched. Twice on 261004
+    the orchestrator asserted an absence from a shaped search. A grep of `models/` — the four
+    SELF-models — found no `executes_in_state` and produced the conclusion that the property was
+    unused; it lives in `examples/document-processing/system.mage.yaml`, and `src/quant/charge.ts`
+    calls it "the join entity accounting runs on", so the brief that nearly shipped would have sent
+    an agent to delete a live feature. Then a grep for `sum`/`min`/`max` as operator names found none
+    and produced "quantity aggregation is machinery we do not have" — it ships and runs in CI, and
+    the operators are absent because the FORM fixes the aggregation while the query selects the set
+    (`a target selects WHICH executions — never how they aggregate`). A design question was put to
+    the author on that false premise and had to be withdrawn.
+    Both misses were structural, not careless: the first was scoped to the wrong subtree, the second
+    searched for a spelling the design deliberately does not use. **So before writing an absence into
+    a brief, widen it on all three axes — PATH (is the subtree the whole corpus?), SPELLING (would the
+    codebase name this differently?), and SHAPE (could the capability exist without the token you
+    searched for?).** Then write the negative as a premise to refute and name the search that produced
+    it, so the agent can widen what you narrowed. That is what caught both: the joins brief said "if
+    any part of this does not survive your own reading, say so and stop", and the quantification brief
+    asked for evidence either way — the first was confirmed, the second refuted the premise it was
+    sent to check.
 - **Reading OOXML text: runs are not lines. Join the runs inside each `<a:p>` before you compare
   anything.** PowerPoint splits a single sentence across arbitrarily many `<a:t>` runs and re-splits
   them on every save, so a run routinely begins mid-word — the 261001 instance was a run starting
