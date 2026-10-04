@@ -384,6 +384,58 @@ function rightFold(connective: BooleanWord, operands: readonly Formula[]): Formu
   return acc;
 }
 
+// ----------------------------------------------------------------------------------------------
+// The object grammar
+// ----------------------------------------------------------------------------------------------
+
+/**
+ * Lift a shipped configuration predicate to an atomic proposition, and combine propositions.
+ *
+ * The text surface above builds single-atom predicates; these build a `ParsedFormula` from the
+ * `Predicate` objects the six behavior forms already carry. That is §2.2's claim made operational —
+ * "an atomic proposition is exactly a shipped configuration predicate" — and it is what the §9.1
+ * bridge needs: `invariant` carries a nested `not`/`any-of`/`all-of` predicate, and the bridge must
+ * ask LTL about THAT predicate rather than about a re-typed approximation of it. A re-typed one
+ * would make a disagreement ambiguous between the two implementations and the transcription.
+ *
+ * No parser, no precedence, no refusal: the inputs are already-typed trees, so the only work is
+ * merging the atom tables. Resolution still happens in `resolveFormula`, so an atom naming nothing
+ * refuses on this path exactly as it does on the text path.
+ */
+export const proposition = (pred: Predicate): ParsedFormula => {
+  const key = atomKey(pred);
+  return { formula: { kind: "atom", key }, atoms: new Map([[key, pred]]), source: describePredicate(pred) };
+};
+
+const mergedAtoms = (parts: readonly ParsedFormula[]): ReadonlyMap<string, Predicate> => {
+  const out = new Map<string, Predicate>();
+  for (const part of parts) for (const [key, pred] of part.atoms) out.set(key, pred);
+  return out;
+};
+
+const unaryOf = (kind: "not" | "next" | "eventually" | "always") =>
+  (operand: ParsedFormula): ParsedFormula => ({
+    formula: { kind, operand: operand.formula },
+    atoms: operand.atoms,
+    source: `${kind} (${operand.source})`,
+  });
+
+const binaryOf = (kind: "and" | "or" | "implies" | "until") =>
+  (left: ParsedFormula, right: ParsedFormula): ParsedFormula => ({
+    formula: { kind, left: left.formula, right: right.formula },
+    atoms: mergedAtoms([left, right]),
+    source: `(${left.source}) ${kind} (${right.source})`,
+  });
+
+export const notOf = unaryOf("not");
+export const nextOf = unaryOf("next");
+export const eventuallyOf = unaryOf("eventually");
+export const alwaysOf = unaryOf("always");
+export const andOf = binaryOf("and");
+export const orOf = binaryOf("or");
+export const impliesOf = binaryOf("implies");
+export const untilOf = binaryOf("until");
+
 export function parseFormula(text: string): Res<ParsedFormula> {
   const trimmed = text.trim();
   if (trimmed === "") return fail("an empty formula states nothing.", detail("unsupported-expression"));

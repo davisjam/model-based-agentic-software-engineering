@@ -399,6 +399,63 @@ function eventMoves(ev: CompiledEvent, cfg: Configuration): readonly (readonly C
   return combos;
 }
 
+/** One outgoing step, with the declared transitions that carried it. */
+export interface Successor {
+  readonly step: Step;
+  readonly transitions: readonly { readonly machine: string; readonly index: number }[];
+}
+
+/** Every enabled step out of one configuration, plus whatever the attempt had to disclose. */
+export interface Successors {
+  readonly steps: readonly Successor[];
+  readonly notes: readonly string[];
+}
+
+/**
+ * The step relation T of §6, at one configuration — local moves then synchronized events.
+ *
+ * Extracted because the LTL product walk is the second reader of "what are the steps from here",
+ * and two copies would be two step relations: a model would denote one set of executions to
+ * `exploreSpace` and another to the product, which is the §7.2a defect class with a different
+ * costume. So this is the ONE definition, and it is the UN-closed relation: a configuration with no
+ * enabled step returns an empty list, reported here as a dead end and nothing else. The stutter
+ * self-loop LTL's infinite traces need belongs to the product successor alone
+ * (`ltl-product.ts`), which is why it cannot be added here.
+ *
+ * `avoid` is deliberately NOT applied: it is the caller's restriction on which successors to FOLLOW,
+ * and `exploreSpace` needs the unfiltered count to tell a dead end from a configuration whose only
+ * successors were avoided.
+ */
+export function successorsOf(compiled: CompiledSystem, cfg: Configuration): Successors {
+  const candidates: { readonly moves: readonly CompiledTransition[]; readonly sync: string | null }[] = [];
+  for (const t of compiled.locals) if (enabled(t, cfg)) candidates.push({ moves: [t], sync: null });
+  for (const ev of compiled.events) {
+    for (const moves of eventMoves(ev, cfg)) candidates.push({ moves, sync: ev.id });
+  }
+
+  const steps: Successor[] = [];
+  const notes: string[] = [];
+  for (const candidate of candidates) {
+    const applied = applyWrites(cfg, candidate.moves);
+    if (applied.kind === "saturated") {
+      for (const note of applied.notes) notes.push(note);
+      continue;
+    }
+    const first = candidate.moves[0];
+    steps.push({
+      step: {
+        instances: candidate.moves.map((m) => m.instance),
+        sync: candidate.sync,
+        label: candidate.sync !== null ? candidate.sync : (first?.label ?? null),
+        from: cfg,
+        to: applied.cfg,
+      },
+      transitions: candidate.moves.map((m) => ({ machine: m.machine, index: m.index })),
+    });
+  }
+  return { steps, notes };
+}
+
 export function exploreSpace(compiled: CompiledSystem, options: ExploreOptions): StateSpace {
   const configs: Configuration[] = [];
   const edges: SpaceEdge[][] = [];
@@ -448,42 +505,25 @@ export function exploreSpace(compiled: CompiledSystem, options: ExploreOptions):
     const cfg = configs[here];
     if (cfg === undefined) continue;
 
-    const candidates: { readonly moves: readonly CompiledTransition[]; readonly sync: string | null }[] = [];
-    for (const t of compiled.locals) if (enabled(t, cfg)) candidates.push({ moves: [t], sync: null });
-    for (const ev of compiled.events) {
-      for (const moves of eventMoves(ev, cfg)) candidates.push({ moves, sync: ev.id });
-    }
+    const out = successorsOf(compiled, cfg);
+    for (const note of out.notes) noteSet.add(note);
 
-    let outgoing = 0;
-    for (const candidate of candidates) {
-      const applied = applyWrites(cfg, candidate.moves);
-      if (applied.kind === "saturated") {
-        for (const note of applied.notes) noteSet.add(note);
-        continue;
-      }
-      outgoing += 1;
-      if (options.avoid?.(applied.cfg) === true) continue;
+    // Dead-endness is about the step relation, not about the caller's `avoid`: a configuration whose
+    // only successors were avoided still HAS an enabled step and is not a dead end.
+    const outgoing = out.steps.length;
+    for (const candidate of out.steps) {
+      if (options.avoid?.(candidate.step.to) === true) continue;
 
-      const first = candidate.moves[0];
-      const step: Step = {
-        instances: candidate.moves.map((m) => m.instance),
-        sync: candidate.sync,
-        label: candidate.sync !== null ? candidate.sync : (first?.label ?? null),
-        from: cfg,
-        to: applied.cfg,
-      };
-      const known = index.get(configKey(applied.cfg));
+      const step = candidate.step;
+      const known = index.get(configKey(step.to));
       const fresh = known === undefined;
       if (fresh && configs.length >= options.limit) {
         // The ceiling tripped with work outstanding: a BOUNDED search (V22).
         stopReason = "state-limit";
         break outer;
       }
-      const to = admit(applied.cfg);
-      const edge: SpaceEdge = {
-        to, step,
-        transitions: candidate.moves.map((m) => ({ machine: m.machine, index: m.index })),
-      };
+      const to = admit(step.to);
+      const edge: SpaceEdge = { to, step, transitions: candidate.transitions };
       edges[here]?.push(edge);
       if (fresh) {
         parentOf[to] = here;
@@ -494,7 +534,7 @@ export function exploreSpace(compiled: CompiledSystem, options: ExploreOptions):
         hit = { kind: "edge", config: here, edge };
         break outer;
       }
-      if (fresh && options.stopAtConfig?.(applied.cfg) === true) {
+      if (fresh && options.stopAtConfig?.(step.to) === true) {
         stopReason = "config-hit";
         hit = { kind: "config", config: to, edge };
         break outer;
