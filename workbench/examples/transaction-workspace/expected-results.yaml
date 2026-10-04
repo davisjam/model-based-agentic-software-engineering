@@ -1,0 +1,343 @@
+# Expected results for the transaction-workspace example. Read by test/examples.test.ts, which
+# drives the real application seams -- Workspace.load, Workspace.query, openHypothesis,
+# createAgentApi -- and compares.
+#
+# ## Fixture discipline (section 10)
+#
+# Semantic outcomes only: the outcome, the coverage KIND, the final configuration, and label counts
+# that carry the bound. Never an exact step count, never the number of configurations explored, never
+# a rendering coordinate. `path` pins an ORDERED node sequence where the sequence IS the answer;
+# `nodes_include` is an unordered subset where the engine's answer is a set.
+#
+# ## No quantitative_expectations block, and that is the honest shape
+#
+# The example declares no quantities, so there is no arithmetic to hand-derive and no oracle to
+# carry. A `quantitative_expectations` entry here would have to be invented, and the fixture reader
+# would then check premises against a model that declares none. Cost is Document Processing's
+# subject; this example's two requirements are both decided by a saved query the engine answers.
+#
+# ## What is absent on purpose
+#
+# §31 of DESIGN-v02-semantics-261004.md assigns this example `G(proposed -> F(committed or refused))`
+# and §30 lists it as P5. No requirement below states it. The LTL layer landed its formula and
+# automaton construction with no verdict path, so a pinned property carrying that formula would
+# record a status no code can reach -- the shape the `pending-evaluator` status exists to mark, and
+# the shape this project has already decided not to ship for a QUERY. `verdict-is-eventually-forced`
+# is the executable stand-in: it asks what would have to be modeled for an eventually-claim to have a
+# reading, and is refused by name.
+
+example: transaction-workspace
+system: system.mage.yaml
+title: Transaction Workspace
+summary: >
+  Explore one proposed change to a shared workspace through the components that apply it and the
+  lifecycle it follows, and see where a binding stops being a merge.
+
+# Purposeful models, for the EX-I2 check. A machine carries a `purpose` exactly as a graph model
+# does, so both count.
+models:
+  - id: change-pipeline
+    kind: graph
+  - id: transaction-lifecycle
+    kind: machine
+
+# ---------------------------------------------------------------------------
+# Requirements (section 2: "at least one requirement").
+#
+# MAGE v0.1 has no requirement construct. Both of these take the `expressed_as` route -- a saved
+# query decides it, and `satisfied_when` is the outcome that means it holds. Neither takes the
+# `decided_by` route, because that route names a hand-derived quantitative expectation and this
+# example declares no quantities.
+#
+# The polarity discipline is visible in the pair, deliberately: the first requirement is satisfied
+# when its query is REFUTED (the query states the breach positively), and the second is satisfied
+# when its query HOLDS (the query states the universal claim directly). Both readings are legitimate
+# and the fixture records which one each requirement uses, so a reader cannot mistake one for the
+# other -- the confusion §11 of the Learn guidance is written to prevent.
+# ---------------------------------------------------------------------------
+requirements:
+
+  - id: commit-requires-validation
+    statement: >
+      No proposed change is committed without passing through Valid.
+    expressed_as: commit-without-validating
+    satisfied_when: refuted
+    status: satisfied
+    note: >
+      Satisfied, and not vacuously: the declared modification adds a proposed-to-committed shortcut
+      and the answer flips to holds. `commit` is the only edge into `committed` and it leaves from
+      `valid`, which is the structural reason -- a safety property that no modification can break may
+      be holding for a reason nobody checked.
+
+  - id: no-stale-base-commit
+    statement: >
+      A change never commits against a base that is no longer the one the workspace serves.
+    expressed_as: committed-base-is-current
+    satisfied_when: holds
+    status: satisfied
+    note: >
+      P3 of DESIGN-v02-semantics-261004.md §30, stated as a universal over every reachable
+      configuration and established by exhaustive exploration. The spec files P3 under safety LTL;
+      `invariant` carries the same meaning over a finite transition system, and it is the form the
+      acceptance suite can state today.
+
+      What carries it is the GUARD on `commit`, not the absence of an edge: the same modification
+      that breaks the requirement above also breaks this one, by adding an unguarded edge into
+      `committed` from a state the base can already have moved under. One shortcut, two properties.
+
+queries:
+
+  - id: transaction-can-commit
+    label: A proposed change can reach Committed
+    suggested: true
+    models: [transaction-lifecycle]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 3
+        labels_at_least:
+          propose: 1
+          validate: 1
+          commit: 1
+        final:
+          transaction-lifecycle.state: committed
+          transaction-lifecycle.base_current: true
+    note: >
+      The Learn guidance's §5 first question and §30's P1. Pinned on the final configuration rather
+      than the length: `base_current` is true at commitment, which is what identifies this as the
+      route the guard permits and not merely a short one. The labels are pinned because the three
+      named steps are the spec's own §6 transitions, so a witness that reached `committed` by some
+      other route would be about a machine this example did not author.
+
+  - id: transaction-can-be-refused
+    label: A proposed change can reach Refused
+    suggested: true
+    models: [transaction-lifecycle]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 2
+        final:
+          transaction-lifecycle.state: refused
+    note: >
+      §5's second question and §30's P2, which §6's sketch cannot answer -- it declares `refused` and
+      no edge into it. Two routes reach it here: a failed validation, with the base still current,
+      and a stale base after validation passed. The fixture pins the state and not the route, because
+      both are real answers and a reader who saw only one would conclude that a refusal implies
+      staleness.
+
+  - id: commit-without-validating
+    label: A proposed change can be committed without ever being Valid
+    suggested: true
+    models: [transaction-lifecycle]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      The safety question, asked as reachability with `avoid`. Coverage is exhaustive over the PRUNED
+      space -- `avoid` is part of the question, not a search budget -- so the sound statement is "no
+      execution avoiding Valid reaches Committed", which is exactly what was asked.
+
+      This is the query the Learn guidance's §10 climax runs on: the model changes, the query does
+      not, and the verdict moves.
+
+  - id: committed-base-is-current
+    label: A change never commits against a base that is no longer current
+    suggested: false
+    models: [transaction-lifecycle]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      §30's P3. Universal, so exhaustive satisfaction establishes it and a counterexample refutes it.
+      Held NON-VACUOUSLY, which is the part worth checking: `committed` is reachable
+      (`transaction-can-commit`) and `base_current: false` is reachable (`base_advances` fires), so
+      the conjunction is satisfiable in the state vector and the transition structure is what rules
+      it out. A refuted conjunction that was merely unsatisfiable would be a weaker claim wearing the
+      same word -- worker-queue's `two-workers-own-one-job` is the shipped example of that trap.
+
+  - id: validated-transaction-can-wait-indefinitely
+    label: A validated change can sit unadopted indefinitely
+    suggested: true
+    models: [transaction-lifecycle]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: lasso
+        role: witness
+        cycle_min_steps: 1
+        labels_at_least:
+          await_adoption: 1
+    note: >
+      §27's worked counterexample, as far as the engine can state it today. `repeatable-cycle` asks
+      for a genuinely repeated CONFIGURATION, and `await_adoption` repeats one: unguarded and
+      effect-free, so the post-state equals the pre-state. The evidence is a lasso whose cycle is
+      that single step.
+
+      Read it exactly. It says the configuration §27 draws is reachable and can be repeated. It does
+      NOT say an execution remains there forever: that is `G(proposed -> F(committed or refused))`
+      refuted, a temporal claim over infinite traces, and the LTL layer has no verdict path yet. The
+      two statements share a picture and need different evidence, and conflating them is the overclaim
+      this example set is careful not to make.
+
+  - id: base-can-keep-advancing
+    label: The base can go on being superseded while one change is in flight
+    suggested: false
+    models: [transaction-lifecycle]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      The honest companion, and the reason one machine ships both answers to one form.
+      `base_advances` is also a self-loop on `proposed`, and it is not repeatable: it advances a
+      bounded variable and its guard refuses a second pass, so the configuration after the step
+      differs from the configuration before it. Same form, same machine, opposite answer -- which is
+      how a reader learns that `repeatable-cycle` asks about configurations rather than about edges.
+
+  - id: validator-runs-on-some-execution
+    label: The component that validates a candidate runs on some reachable execution
+    suggested: false
+    models: [change-pipeline, transaction-lifecycle]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 1
+        final:
+          transaction-lifecycle.state: proposed
+    note: >
+      THE cross-model question, and the one neither model answers alone. Which component runs during
+      `proposed` is the pipeline's fact -- `validator` declares
+      `executes_in_state: transaction-lifecycle.proposed` -- and whether `proposed` is reachable at
+      all is the lifecycle's. The join is the `state-of-entity` correspondence the graph dialect's
+      census declares, and V38 validates the reference on both implementations, so a property naming
+      no state fails the build instead of quietly describing nothing.
+
+      A `when`-charged quantity on the validator would make this question decide whether its charge is
+      ever incurred, which is how Document Processing uses the same join. This example declares no
+      quantity, so the question stops at reachability -- which is the whole of what it claims.
+
+  - id: candidate-reaches-the-authoritative-store
+    label: A candidate change reaches the authoritative workspace store
+    suggested: false
+    models: [change-pipeline]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [transaction-engine, validator, workspace-store]
+    note: >
+      The composing structural question, over the one relation type here that licenses composition.
+      The ordered two-hop witness is pinned because the hop count IS the evidence: a one-node path is
+      how a vacuous holds looks from outside, which this project has shipped once already.
+
+      The route travels through the validator and not through the audit log. That is `records_in`
+      forbidding path composition doing its job -- the engine declines to compose a route through a
+      log rather than reporting one that does not exist.
+
+  - id: verdict-is-eventually-forced
+    label: Something forces a verdict on a validated change
+    suggested: true
+    models: [transaction-lifecycle, change-pipeline]
+    expected:
+      outcome: unlicensed
+      coverage: not-applicable
+      refusal_contains: "verdict-deadline"
+      no_evidence: true
+    note: >
+      The purposeful omission, executed -- and it is the TEMPORAL one, which is why it ships as a
+      supplied question rather than living in a unit test.
+
+      "Does every proposed change eventually reach a verdict?" has no reading over this system, and
+      the reason is structural rather than a missing feature. §11 admits every execution and assumes
+      no fairness, so an eventually-claim needs something IN THE MODEL that forces the step. A
+      deadline would be that something. This system declares no deadline machine, so the engine
+      refuses and names the vocabulary a reader would have to add.
+
+      Two things this is NOT. It is not a claim that verdicts are never forced in a real
+      implementation. And it is not derived from the `omits` lists -- the behavioral refusal path
+      reports the absent vocabulary, and the omission-aware cause belongs to the graph path (see
+      document-processing's `expected-latency-with-the-cache`, which does consult `purpose.omits`).
+
+# ---------------------------------------------------------------------------
+# Useful modifications (section 2). Each is a real transaction driven through
+# openHypothesis / discardHypothesis, and each must CHANGE a recorded answer and then change back.
+#
+# `base` is omitted: it must equal the live system hash, which the test fills in. A hash written
+# down here would be stale the moment the example changed.
+# ---------------------------------------------------------------------------
+modifications:
+
+  - id: commit-without-validating-shortcut
+    label: Add a shortcut from Proposed straight to Committed
+    rationale: >
+      The Learn guidance's §10 climax, as a transaction, and a finding about how much one edge
+      carries. Both safety properties rest on `commit` being the only edge into `committed`: it is
+      what makes validation unavoidable, and it is where the base-currency guard sits. One unguarded
+      shortcut breaks both at once -- an unvalidated change can be adopted, and a change whose base
+      has already moved can be adopted -- so the two requirements were never independent, and
+      shipping the modification is what shows it.
+    transaction:
+      operations:
+        - op: add-transition
+          machine: transaction-lifecycle
+          from: proposed
+          to: committed
+          label: commit_unvalidated
+    changes:
+      - query: commit-without-validating
+        from: refuted
+        to: holds
+      - query: committed-base-is-current
+        from: holds
+        to: refuted
+    counterexample:
+      shape: trace
+      role: counterexample
+      min_steps: 2
+      labels_at_least:
+        base_advances: 1
+        commit_unvalidated: 1
+      final:
+        transaction-lifecycle.state: committed
+        transaction-lifecycle.base_current: false
+
+  - id: force-immediate-adoption
+    label: Delete the waiting step, so adoption follows validation at once
+    rationale: >
+      The repair in reverse, on the axis §27 cares about. Deleting the `await_adoption` self-loop
+      makes `valid` offer only the two verdicts, and the repeated configuration disappears -- so the
+      starvation execution the specification draws stops existing.
+
+      It is the wrong repair, and that is why it ships. The edge is not a defect to remove; it
+      represents the system continuing to run with a validated change unadopted, and a machine
+      without it asserts that adoption follows validation immediately. MAGE declares no fairness
+      assumption and this model declares no deadline, so nothing in it entitles that assertion. A
+      student who deletes the edge has not made the property true; they have stopped being able to
+      ask the question.
+    transaction:
+      operations:
+        # Selected by endpoint rather than by index, so the operation survives a reordering of the
+        # transitions list. `valid -> valid` is unique: `base_advances` self-loops on `proposed`.
+        - op: delete-transition
+          machine: transaction-lifecycle
+          from: valid
+          to: valid
+    changes:
+      - query: validated-transaction-can-wait-indefinitely
+        from: holds
+        to: refuted

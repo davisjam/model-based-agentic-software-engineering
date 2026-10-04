@@ -56,8 +56,25 @@ import { Workspace } from "./services.ts";
  * It now loads a complete model system whose quantitative REQUIREMENTS are declared and whose
  * verdicts are still hand-derived — so the example is honest about itself and the coverage model
  * states the remaining gap where it can be queried.
+ *
+ * Transaction Workspace sits SECOND, and the position is the decision rather than an accident. Two
+ * documents order these, and they disagree about the membership:
+ * `requirements-default-examples-261002.md` §18 gives a three-example progression (relations →
+ * behavior-acquires-quantities → behavior itself), while `DESIGN-v02-semantics-261004.md` §31 names
+ * its own three flagships — message bus, transaction/workspace, processing pipeline — and the v0.2
+ * spec supersedes the v0.1 framing where the two conflict. Index 1 satisfies both: it is §31's B
+ * slot, and §18's progression survives as a subsequence. The consequence a reader should know about
+ * is that `src/learn/content.ts`'s `exemplarFor` takes the FIRST shipped example instantiating a
+ * type, so this order is what makes the behavior card's exemplar the transaction lifecycle rather
+ * than Document Processing's document lifecycle — which is what the Learn guidance asks for ("use
+ * the transaction example, not a toy traffic light"). Appending instead would have shipped the
+ * example and left the card unchanged.
+ *
+ * What is NOT resolved here: §31 drops Worker Queue from its three while §18 keeps it, and nothing
+ * in this wave adjudicated that. Four ship.
  */
-export const SHIPPED_EXAMPLE_IDS = ["message-bus", "document-processing", "worker-queue"] as const;
+export const SHIPPED_EXAMPLE_IDS =
+  ["message-bus", "transaction-workspace", "document-processing", "worker-queue"] as const;
 
 export type ShippedExampleId = (typeof SHIPPED_EXAMPLE_IDS)[number];
 
