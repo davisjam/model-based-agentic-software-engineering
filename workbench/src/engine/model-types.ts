@@ -405,6 +405,26 @@ export const MODEL_TYPES: readonly ModelType[] = [
             role: "`entities` — a model's membership, which is what shared identity joins across",
           },
         },
+        {
+          // The census answered "three" to a question whose answer is four, and the omitted edge is
+          // the one entity accounting charges through — the under-reporting shape V35–V37 exist to
+          // refuse, reproduced in the registry that describes them. It sits HERE, on the graph side,
+          // for the reason `machine-of-entity` sits on the machine side: the reference is made by
+          // the construct that hosts the join, and this one is made by an ENTITY (V38's own
+          // distinction from V27). The graph dialect reaches it too — `executes_in_state` is an
+          // ordinary property, so an entity selector's property constraints narrow on it.
+          name: "state-of-entity", with: "state-machine",
+          meaning: "an entity property naming a state, so a structural answer can name the " +
+            "lifecycle state during whose occupancy that entity runs — and so the quantitative " +
+            "evaluator can charge a trace step entering that state to that entity",
+          declaredBy: {
+            file: "src/ir/types.ts", symbol: "EXECUTES_IN_STATE",
+            role: "`executes_in_state` — the kernel's spelling of the property, read by the " +
+              "validator (V38 resolves it through the resolver a quantity's `state:` target uses) " +
+              "and by the quantitative evaluator; a model may spell the same shape per-entity, and " +
+              "then only that model's own suite holds the reference",
+          },
+        },
       ],
     },
     omits: [
