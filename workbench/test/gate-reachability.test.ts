@@ -802,6 +802,16 @@ const PINNED_GATE_FILES: readonly { readonly file: string; readonly script: stri
       + "whole node tier. Delete this file and the model's `absence` clause binds a reader again and "
       + "nothing else.",
   },
+  {
+    file: "test/adapter-reexport.test.ts",
+    script: "test",
+    reason: "The one property the component model's edges cannot express: no file re-exports a "
+      + "YAML-adapter symbol unless the adapter owns that file. It is the ONLY mechanical holder of "
+      + "that claim — the model's queries and `test/import-graph.test.ts` both reason about EDGES, "
+      + "and a one-line re-export through a sanctioned intermediary was proven by mutation to move "
+      + "the whole parse path into the view with every one of them green. Delete this file and that "
+      + "channel reopens with nothing naming what happened.",
+  },
 ];
 
 /** One glob a gate script hands to `node --test`, and which script hands it over. */

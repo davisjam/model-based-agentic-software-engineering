@@ -2560,3 +2560,106 @@ still relative specifiers, and that is now asserted instead of assumed.
 violations over 26 capabilities; build clean; smoke 3/3; browser 114/114; a11y 112/112.
 `python3 validate.py models/workbench-components.mage.yaml` clean, 13 asserted queries evaluated;
 `--self-test` PASS; model-coverage census still `workbench-components 13/13`, 0 exempt.
+
+### 9s. The mutation prohibition stated, and the one property edges cannot hold — as built
+
+Two author rulings of 261004, landed together because they are one discovery seen from two sides: the
+components model speaks in EDGES, and not every property worth asserting is edge-shaped. Q2 ruled (a)
+on the first — state the proposition the edge set was encoding by accident. Q6 ruled (a) on the
+second — build the narrow control for the property the edge set cannot express at all.
+
+#### `no-mutator-reachable-from-analysis`, re-measured before it was trusted
+
+The query §9p wrote and deliberately did not add is now the fourteenth in the model. Re-measured here
+rather than taken from the as-built, through the facade and then independently through `validate.py`:
+**`refuted` from `analysis-worker`**, which is what §9p recorded. The nuance §9p flagged for a
+ratifying author reproduces too, and it is now in the query's own comment: the same question asked
+from `worker-wiring` measures **`holds`**, because `src/worker/port.ts` returns the `AnalysisPort`
+type the facade declares and the facade reaches the transaction engine. So the claim is about the
+analysis THREAD and not about `src/worker/`, and a version of it scoped to the directory would have
+to be withdrawn rather than merely re-pointed.
+
+`engine-must-not-reach-yaml` kept its text, its endpoints and its polarity, per the earlier ruling.
+The new query generalises the intent — the analysis path reaches no MUTATOR, not merely no YAML
+reader — and the two coexist because the narrower one is about the engine's own closure.
+
+What the query does NOT buy, stated beside it in the model: it is answered over the DECLARED graph, so
+an undeclared import would satisfy it. `test/worker.test.ts` reads the worker module's own bytes and
+is the stronger half. Read together.
+
+#### The value-flow control: `test/adapter-reexport.test.ts`
+
+M10 proved a channel open with every gate green — one line in `src/transaction/parse.ts` re-exporting
+`MageDocument` put the whole YAML parse path into the view, `tsc` clean, the node tier green,
+`validate.py` at zero, both declared edges untouched. The author's scope was explicit: install the
+cheapest adequate control, do not answer a granularity problem by growing the modelling language into
+generic information-flow analysis. So there is no new relation type here and no flow vocabulary —
+there is a byte-level assertion over `src/`, following the shape `test/worker.test.ts` already uses on
+a module's own source.
+
+**The rule, and the one the brief first wrote.** The gate holds: *no file re-exports a YAML-adapter
+symbol unless the adapter itself owns that file.* The brief — and the re-audit's own gap-4 "smallest
+sound fix" — wrote the weaker version, "unless its owning entity declares that edge," and that
+version closes nothing. M10's intermediary is `transaction-engine`, which DOES declare `tx-yaml`, so
+a rule exempting declaring entities exempts the exact line that defeated every gate. The distinction
+the weaker rule misses is the one the control turns on: a declared edge licenses an entity to IMPORT
+the adapter, and an import binds a name locally. A re-export REPUBLISHES it under the importing
+component's own path, where every entity permitted to depend on THAT component can take it without
+declaring anything, and no declared edge changes. The mandatory negative control is what forced the
+correction — a gate that must go red on M10 cannot exempt M10's intermediary.
+
+One consequence came free and is worth having on purpose: because only the adapter is exempt, a CHAIN
+of re-exports cannot form. Two-hop laundering needs a first hop, and the first hop is a finding.
+
+**The sanctioned set is derived, and the direction is the trap.** The entities permitted to hold the
+adapter's surface are read out of the model — those declaring a `depends-on` edge whose TARGET is
+`yaml-adapter`. Measured at this tree: **`analysis-worker` (`worker-yaml`) and `transaction-engine`
+(`tx-yaml`)**. The brief's first draft said "`persistence` and `analysis-worker`", which the
+re-founding had already made wrong; `persistence` named no code and was deleted. Deriving rather than
+transcribing is what makes that class of error impossible to repeat here, and it means a new
+sanctioned consumer becomes sanctioned by declaring the edge — which `test/import-graph.test.ts` then
+holds against the actual imports — rather than by editing a list in a test. A test pins the direction
+specifically: `yaml-ir` runs FROM the adapter to the kernel, so a filter on "this row mentions
+yaml-adapter" would sanction `model-ir` and hand the kernel a licence to republish the adapter's
+surface, which inverts the model's central claim from one sloppy predicate.
+
+**The negative control, driven both in memory and on disk.** M10's line was applied to a copy of the
+real tree and the gate goes red naming the site, the symbol, the import-versus-republish distinction
+and the mutation id. It was then applied to `src/transaction/parse.ts` on disk, which confirmed the
+rest of the certification: `tsc` CLEAN and `test/import-graph.test.ts` **11/11 green** with the
+laundering in place, and only the new gate red. Every re-export syntax is driven separately — named,
+renamed (`as`), type-only, `export *`, `export * as ns` — because `export *` takes the whole surface
+and a gate reading only named clauses would be a green run over the broadest possible laundering. A
+positive control drives the three shapes the model permits: the adapter publishing its own names, a
+sanctioned consumer IMPORTING the adapter, and a re-export of some other component's symbol.
+
+**What it does not cover, stated in the gate's header so nobody over-reads the green.** It is a
+re-export check over declared symbols, not information-flow analysis. Four shapes move the capability
+past it: a re-WRAPPED symbol (`export const load = (t) => MageDocument.load(t)`), which is the
+largest hole and is open; a value laundered through an untyped intermediary, where the symbol has no
+identity left to read; a dynamic `import()`, which is a call expression and not an export clause; and
+an aliased specifier, which `resolveSpecifier` does not resolve and which `ALIAS_CHANNELS` in the
+import-graph gate asserts SHUT rather than following. The model's `ui-must-not-import-yaml` comment no
+longer claims the follow-up is unbuilt, and it carries the same four-item bound by reference rather
+than by copy.
+
+**The join moved rather than being copied.** `test/adapter-reexport.test.ts` became the second gate to
+read the architecture through the model's two documented rules — longest prefix wins, and a contained
+entity's edges lift to its container — so those rules and the TypeScript-parser scan now live in
+`test/component-model.ts`, which carries no `test()` call and is not matched by the node tier's glob.
+`test/import-graph.test.ts` imports them and its 11 tests pass unchanged, which is the behaviour
+identity worth recording: the extraction moved code and changed no verdict. A second copy of a join
+read from the model's own prose would have been free to drift from the first while both stayed green.
+The new gate is registered in `PINNED_GATE_FILES`, beside the import-graph gate and for the same
+reason — a file that no longer exists is matched by no pattern and reported by nothing.
+
+**What this wave got wrong going in.** Two things, both in the brief and both corrected by
+measurement rather than argument: the sanctioned set was stated as "`persistence` and
+`analysis-worker`" and is `transaction-engine` and `analysis-worker`; and the rule was stated in the
+form that would have exempted the mutation it was built to catch.
+
+**Gates at this tree:** `tsc` clean; node **945/945** (937 + 8 new), 0 skipped; `check:parity` 0
+violations over 26 capabilities; build clean; smoke 3/3; browser 114/114; a11y 112/112.
+`python3 validate.py models/workbench-components.mage.yaml` clean, **14 asserted queries** evaluated,
+`no-mutator-reachable-from-analysis: refuted` among them; model-coverage census
+**`workbench-components 14/14`**, 0 exempt.
