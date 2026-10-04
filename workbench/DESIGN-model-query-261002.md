@@ -736,6 +736,19 @@ otherwise.
   cheap; and adding it later is a wire change to a published result shape.
 - **Consequence of ruling otherwise.** (b) trims §6.4 and MQ-I9; the first advisory rule pays
   the schema change, and `ok` is `findings.length === 0` until then.
+- **Status: RATIFIED (a), 261004 — and already shipped, held by the compiler.** The ruling confirms
+  work M3 landed rather than commissioning any. `severity` is on `ValidationFinding`
+  (`src/validator/result.ts:121`) over a closed two-valued `Severity`
+  (`"error" | "warning"`, `:42`), assigned in one place by `enrich` (`:177`). The totality MQ-I9 asks
+  for is **stronger than a test**: `SEVERITY` is a mapped type
+  `{ readonly [R in ValidationRule]: Severity }` (`:56`), so a new rule id without a severity row is
+  a `tsc` error, not a red test. MQ-I9's corpus test
+  (`test/validate-operation.test.ts:181`) holds the runtime half — every finding the validator emits
+  has a severity AND a spec section, asserted over the violation corpus rather than over a literal
+  list. Note what option (b) would have cost, since it is the argument for ruling (a) early:
+  `validate.py` does not emit `severity`, so the field sits outside the parity surface by §G3's
+  enrichment rule — adding it later would have been a wire change to a published result shape on a
+  surface two implementations must agree about.
 
 ### G5 — Ratify the composition line and its revisit trigger
 
