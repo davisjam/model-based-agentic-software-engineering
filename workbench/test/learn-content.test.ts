@@ -19,7 +19,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { parse } from "yaml";
-import { ACCOUNTED_METRICS, type CanonicalSystem } from "../src/ir/types.ts";
+import type { CanonicalSystem } from "../src/ir/types.ts";
 import { MODEL_TYPES, modelTypeForQueryKind } from "../src/engine/model-types.ts";
 import { runQuery } from "../src/engine/index.ts";
 import { renderView } from "../src/render/index.ts";
@@ -30,7 +30,9 @@ import {
   presentTypes,
 } from "../src/app/learn.ts";
 import {
-  buildTypeSections, buildUseSections, propertyJoinStatements, quantityRows, savedStatements,
+  buildTypeSections, buildUseSections,
+  composedQuantityQuery as shippedComposedQuantityQuery,
+  propertyJoinStatements, quantityRows, savedStatements,
   type LoadedSystems,
 } from "../src/learn/content.ts";
 import { REQUIREMENT_METRICS } from "../src/quant/requirement.ts";
@@ -127,21 +129,19 @@ test("every combine-with pairing is grounded in a shipped example declaring both
 });
 
 /**
- * The quantity question a declared ceiling licenses, derived from the system: a model-targeted
- * quantity names the ceiling, and its metric comes from the engine's own dimension table — the
- * reverse of the lookup the evaluator performs — falling back to the configuration metric for a
- * dimension no path metric accounts. No shipped example SAVES a quantity query (the fixtures
- * decide requirements through the suite), so the composed shape is derived here, from declared
- * content only.
+ * The quantity question a declared ceiling licenses — the SHIPPED derivation, asserted.
+ *
+ * The derivation itself moved to `src/learn/content.ts` when the question sections became a second
+ * caller: no shipped example SAVES a quantity query (the fixtures decide requirements through the
+ * suite), so both the page and this file need the composed shape, and two derivations of one
+ * question would be free to disagree the day a second ceiling lands. This wrapper keeps the
+ * assertion — a system with no model-targeted ceiling is a broken fixture, not a null to handle —
+ * so the proof below reads as it did.
  */
 function composedQuantityQuery(system: CanonicalSystem, where: string): unknown {
-  const ceiling = [...system.quantities.values()].find((q) => q.target.kind === "model");
-  assert.ok(ceiling !== undefined, `'${where}' declares no model-targeted ceiling to decide against`);
-  const metric =
-    REQUIREMENT_METRICS.find((m) => m in ACCOUNTED_METRICS
-      && ACCOUNTED_METRICS[m as keyof typeof ACCOUNTED_METRICS] === ceiling.dimension)
-    ?? "peak_memory";
-  return { kind: "quantity", quantifier: "forall", quantity: { metric, within: ceiling.id } };
+  const composed = shippedComposedQuantityQuery(system, REQUIREMENT_METRICS);
+  assert.ok(composed !== null, `'${where}' declares no model-targeted ceiling to decide against`);
+  return composed.query;
 }
 
 test("state machine + quantitative model: the composed question ANSWERS on the grounded example", () => {

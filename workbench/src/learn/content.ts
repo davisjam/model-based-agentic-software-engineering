@@ -13,13 +13,21 @@
  *     read from the canonical system, never restated;
  *   - the composition grounding: the shipped examples that declare BOTH members of a pairing,
  *     computed by `presentTypes` — a pairing with no shipped grounding renders without a
- *     "see it live" pointer rather than with an invented one.
+ *     "see it live" pointer rather than with an invented one;
+ *   - the shipped examples' own fixtures, through `src/learn/fixtures.ts`: the requirement
+ *     statements and the declared modifications the question sections (`src/learn/questions.ts`)
+ *     need. This is the FIFTH source and it is not a widening — `src/app/examples.ts:12-29`
+ *     established it, with the rationale that an example's `title` and `summary` are read rather
+ *     than restated because a restatement is "free to drift from the thing it describes". Both
+ *     blocks read there are CI-verified (`test/examples.test.ts`), so a figure quoted from one is a
+ *     figure a gate re-derives.
  *
- * What is NOT derived, stated plainly: section labels ("Properties you can measure", "Combine
- * with") and operating instructions for the page's own controls. Those name page furniture, not
- * kernel capability. Anything that claims what MAGE supports comes from the sources above.
+ * What is NOT derived, stated plainly: the section HEADINGS (the engineering questions the page is
+ * organised around), the four-part progression's labels, and operating instructions for the page's
+ * own controls. Those name page furniture, not kernel capability. Anything that claims what MAGE
+ * supports comes from the sources above.
  */
-import type { CanonicalSystem, Purpose } from "../ir/types.ts";
+import { ACCOUNTED_METRICS, type AccountedMetric, type CanonicalSystem, type Purpose } from "../ir/types.ts";
 import type { Query } from "../engine/types.ts";
 import { absentSubstrateProse, MODEL_TYPES, type ModelTypeId } from "../engine/model-types.ts";
 import type { SceneSubject } from "../render/types.ts";
@@ -188,6 +196,50 @@ export function groundedIn(a: ModelTypeId, b: ModelTypeId, systems: LoadedSystem
     const present = presentTypes(system);
     return present.includes(a) && present.includes(b);
   });
+}
+
+/**
+ * The quantitative question a system's OWN declared ceiling licenses, derived from the system.
+ *
+ * No shipped example SAVES a quantity query — the fixtures decide quantitative requirements through
+ * the suite — so a page that wanted to show one had two choices: write the question by hand, or
+ * derive it from what the system declares. This derives it: a `model:`-targeted quantity names the
+ * ceiling, and the metric comes from the engine's own dimension table (`ACCOUNTED_METRICS`), which
+ * is the REVERSE of the lookup the evaluator performs. A dimension no path metric accounts falls
+ * back to the metric that accounts none, which is how the configuration-scoped metric is reached
+ * without naming it.
+ *
+ * `metrics` is passed IN rather than imported so the caller supplies the registry's own
+ * `query.forms` for the quantitative type — the array the engine dispatches on, by reference. A
+ * literal list here would be the copy this module's header forbids.
+ *
+ * `ceilingId` names WHICH declared ceiling to decide against, for a caller that has one in hand —
+ * a requirement naming its own. Omitted, the first `model:`-targeted quantity is taken, which is
+ * what a caller asking "what can this system be asked about cost at all" means. The metric is
+ * derived from the chosen ceiling either way, so a named ceiling of a different dimension gets the
+ * metric that accounts ITS dimension rather than the first one's.
+ *
+ * Extracted on the SECOND site rather than the third: `test/learn-content.test.ts` derived this
+ * shape first, with a comment explaining why it had to be derived. The page needs the same
+ * question, and two derivations of one question shape would be two answers to "what can this system
+ * be asked about cost" — free to disagree on the day a second ceiling lands.
+ */
+export function composedQuantityQuery(
+  system: CanonicalSystem, metrics: readonly string[], ceilingId?: string,
+): { readonly query: unknown; readonly metric: string; readonly ceiling: string } | null {
+  const ceiling = [...system.quantities.values()].find(
+    (q) => q.target.kind === "model" && (ceilingId === undefined || q.id === ceilingId));
+  if (ceiling === undefined) return null;
+  const accounts = (m: string): boolean => m in ACCOUNTED_METRICS;
+  const metric =
+    metrics.find((m) => accounts(m) && ACCOUNTED_METRICS[m as AccountedMetric] === ceiling.dimension)
+    ?? metrics.find((m) => !accounts(m));
+  if (metric === undefined) return null;
+  return {
+    query: { kind: "quantity", quantifier: "forall", quantity: { metric, within: ceiling.id } },
+    metric,
+    ceiling: ceiling.id,
+  };
 }
 
 export function buildTypeSections(systems: LoadedSystems): readonly LearnTypeSection[] {

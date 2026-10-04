@@ -1,6 +1,30 @@
 /**
- * The Learn page: a gallery of model types, every fact derived (UX-I9), every visual the
+ * The Learn page: three kinds of engineering question, every fact derived (UX-I9), every visual the
  * workbench's own renderer over a shipped example.
+ *
+ * ## The page's job, and what it is NOT
+ *
+ * Not "here are the model forms the workbench supports". The page teaches three QUESTIONS — what is
+ * connected to what, what behaviour can occur over time, what an execution costs — and each model
+ * form follows because it is the appropriate purposeful reduction for its question. So a model
+ * form's section leads with its question, not its name, and every section uses the same four-part
+ * progression: the question, the model, what the model lets you ask, what it leaves out. The
+ * repetition is the pedagogy (`PART` below declares the labels once for that reason).
+ *
+ * The questions and the forms come from the model-type registry, which has carried a `question`
+ * field all along; the reframe is which of a section's facts leads, not a new source.
+ *
+ * ## Three kinds of section, and the distinction is which source derives them
+ *
+ *   - **TYPE and USE sections** (`content.ts`) — the model-type registry and its declared uses, one
+ *     per registry row, the count owned by the registry.
+ *   - **QUESTION sections** (`questions.ts`) — the reframe's own: evidence, properties,
+ *     requirements, agents, omissions. Declared anchors, BUILT content: each one runs the kernel
+ *     over shipped examples and renders what comes back, so it cannot claim a verdict the engine
+ *     stopped producing.
+ *   - **GUIDE sections** (`workbench-guide.ts`) — how the application is laid out. Nothing in a
+ *     model kernel knows how a pane reads, so these are declared rather than derived, and the
+ *     suite polices the surfaces they vacated instead of a registry row.
  *
  * Composition root only. The content comes from `content.ts`; the pictures come from
  * `renderView` — the same seam the workbench binds, returning the SVG and its accessible twin
@@ -25,6 +49,8 @@ import {
   buildTypeSections, buildUseSections,
   type LearnTypeSection, type LearnUseSection, type SavedStatement,
 } from "./content.ts";
+import { fixturePathFor, readFixture, type ExampleFixture } from "./fixtures.ts";
+import { buildQuestionSections, type BuiltQuestionSection } from "./questions.ts";
 import { WORKBENCH_GUIDE, type GuideSection } from "./workbench-guide.ts";
 
 const el = <K extends keyof HTMLElementTagNameMap>(
@@ -167,6 +193,47 @@ function bulletList(items: readonly string[]): HTMLElement {
 
 const sub = (text: string): HTMLElement => el("p", text, "sublabel");
 
+/**
+ * A table in a horizontal-scroll container, with its header row.
+ *
+ * Extracted on the second site, not the third: the quantitative section built one inline and the
+ * question sections need the same thing. Two copies would be two answers to "how does a table on
+ * this page scroll at 320px", and the a11y tier pins that it does not overflow the page.
+ */
+function rowsTable(columns: readonly string[], rows: readonly (readonly string[])[]): HTMLElement {
+  const scroll = el("div", undefined, "scroll");
+  const table = el("table");
+  const head = el("thead");
+  const hr = el("tr");
+  for (const col of columns) hr.append(el("th", col));
+  head.append(hr);
+  const body = el("tbody");
+  for (const row of rows) {
+    const tr = el("tr");
+    for (const cell of row) tr.append(el("td", cell));
+    body.append(tr);
+  }
+  table.append(head, body);
+  scroll.append(table);
+  return scroll;
+}
+
+/**
+ * The four-part progression every model form's section uses, in the same order and under the same
+ * labels (the author's §3).
+ *
+ * Furniture, and deliberately identical across the three sections: the repetition is the pedagogy,
+ * so the labels are declared once here rather than written three times. What goes UNDER each label
+ * is derived; the label itself names a slot.
+ */
+const PART = {
+  model: "The model",
+  ask: "What this model lets you ask",
+  omits: "What this model leaves out",
+  next: "Try next",
+  missing: "When this model is missing",
+} as const;
+
 // --------------------------------------------------------------------------------------------
 // Sections
 // --------------------------------------------------------------------------------------------
@@ -174,64 +241,66 @@ const sub = (text: string): HTMLElement => el("p", text, "sublabel");
 function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId, CanonicalSystem>): HTMLElement {
   const section = el("section");
   section.id = s.anchor;
+  // PART 1 — the engineering question. It is the heading, which is the reframe: a reader chooses a
+  // model form by the question they need answered, not by a format name.
   const h = el("h2", s.entry.question);
   h.id = `${s.anchor}-h`;
   section.setAttribute("aria-labelledby", h.id);
-  section.append(h, el("p", `The ${s.entry.label} answers it.`, "intro"));
+  section.append(h, el("p",
+    `A ${s.entry.label} is the purposeful reduction that answers it.`, "intro"));
 
+  // PART 2 — the model. A real subject from a shipped example, drawn by the workbench's renderer.
   if (s.visual !== null) {
     const system = systems.get(s.visual.example);
     if (system !== undefined) {
+      section.append(sub(PART.model));
       const what = s.visual.subject.kind === "model" ? "model" : "machine";
       section.append(figure(system, s.visual.subject,
         `${what} '${s.visual.subject.id}' from the shipped example “${system.name}”, drawn by the workbench's renderer.`));
       if (s.purpose !== null && s.purpose.represents.length > 0) {
-        section.append(sub("What this exemplar preserves — its own declaration"));
+        section.append(el("p", "What this exemplar preserves, in its own words:", "intro"));
         section.append(bulletList(s.purpose.represents));
       }
     }
   }
 
   if (s.quantities.length > 0) {
-    section.append(sub("The quantitative model itself: annotations over the subject above"));
-    const scroll = el("div", undefined, "scroll");
-    const table = el("table");
-    const head = el("thead");
-    const hr = el("tr");
-    for (const col of ["Quantity", "Annotates", "Dimension", "Declared value"]) hr.append(el("th", col));
-    head.append(hr);
-    const body = el("tbody");
-    for (const q of s.quantities) {
-      const tr = el("tr");
-      tr.append(el("td", q.id, "id"), el("td", q.target, "id"), el("td", q.dimension), el("td", q.value));
-      body.append(tr);
-    }
-    table.append(head, body);
-    scroll.append(table);
-    section.append(scroll);
+    section.append(el("p", "The quantities themselves: annotations over the subject above.", "intro"));
+    section.append(rowsTable(
+      ["Quantity", "Annotates", "Dimension", "Declared value"],
+      s.quantities.map((q) => [q.id, q.target, q.dimension, q.value]),
+    ));
   }
 
-  section.append(sub("Properties you can measure"));
-  section.append(el("p", `Query forms the engine decides over a ${s.entry.label}: ${s.entry.forms.join(", ")}.`, "intro"));
+  // PART 3 — what the model lets you ask.
+  section.append(sub(PART.ask));
+  section.append(el("p", `Question forms the engine decides over a ${s.entry.label}: ${s.entry.forms.join(", ")}.`, "intro"));
   if (s.statements.length > 0) {
-    section.append(el("p", "Claimed of this exemplar, as its authors stated them:", "intro"));
+    section.append(el("p", "Asked of this exemplar, as its authors stated them:", "intro"));
     section.append(statementList(s.statements));
   }
 
-  section.append(sub("What it deliberately does not tell you"));
+  // PART 4 — what the model leaves out. The purposeful-reduction half, and the transition to the
+  // next form: each omission here is a question some other form answers.
+  section.append(sub(PART.omits));
   section.append(bulletList(s.entry.omits));
   if (s.purpose !== null && s.purpose.omits.length > 0) {
     section.append(el("p", "And this exemplar's own declared omissions:", "intro"));
     section.append(bulletList(s.purpose.omits));
   }
 
-  section.append(sub("Combine with"));
+  // The pairing, DEMOTED to navigation (the author's §15: "combineWith is navigation/pedagogy", not
+  // semantic terminology a student has to learn). It used to sit between parts 3 and 4 under the
+  // field's own name, which read as one more thing the model system declares. It is now a "try
+  // next" pointer after the progression, and the registry field is unchanged — renaming it is a
+  // registry change this wave does not own.
+  section.append(sub(PART.next));
   const combine = el("div", undefined, "learn-combine");
-  combine.append(el("p", s.entry.combineWith.partnerLabel, "outcome"));
-  combine.append(el("p", `Together you can ask: “${s.entry.combineWith.richerQuestion}”`));
+  combine.append(el("p", `Add a ${s.entry.combineWith.partnerLabel} to this system.`, "outcome"));
+  combine.append(el("p", `Then you can ask: “${s.entry.combineWith.richerQuestion}”`));
   if (s.combinedIn.length > 0) {
     const where = el("p", undefined, "intro");
-    where.append(document.createTextNode("Both declared in "));
+    where.append(document.createTextNode("Both are declared in "));
     s.combinedIn.forEach((id, i) => {
       if (i > 0) where.append(document.createTextNode(", "));
       const a = el("a", systems.get(id)?.name ?? id);
@@ -243,7 +312,7 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   }
   section.append(combine);
 
-  section.append(sub("When this model is missing"));
+  section.append(sub(PART.missing));
   // The sentence is the kernel's own `missing-model-type` refusal, generated from the same
   // registry entry this section renders — the NOT ANSWERABLE panel links back here.
   section.append(el("p", `Ask without one and the workbench answers NOT ANSWERABLE with: “${s.refusalProse}”`, "refusal"));
@@ -282,7 +351,8 @@ function useSection(s: LearnUseSection, systems: ReadonlyMap<ShippedExampleId, C
       s.showProperties));
   }
   if (s.purpose !== null && s.purpose.represents.length > 0) {
-    section.append(sub("What this exemplar preserves — its own declaration"));
+    section.append(sub(PART.model));
+    section.append(el("p", "What this exemplar preserves, in its own words:", "intro"));
     section.append(bulletList(s.purpose.represents));
   }
 
@@ -294,13 +364,62 @@ function useSection(s: LearnUseSection, systems: ReadonlyMap<ShippedExampleId, C
   section.append(dl);
 
   if (s.statements.length > 0) {
-    section.append(sub("A property join, shipped and decidable"));
+    section.append(sub(PART.ask));
     section.append(statementList(s.statements));
   }
   if (s.purpose !== null && s.purpose.omits.length > 0) {
-    section.append(sub("What it deliberately does not tell you"));
+    section.append(sub(PART.omits));
     section.append(bulletList(s.purpose.omits));
   }
+  return section;
+}
+
+/**
+ * A question section: the reframe's own sections, every block BUILT rather than declared.
+ *
+ * Same visual grammar as a gallery section — a labelled `<section>`, an `h2` that is the engineering
+ * question, the same `sublabel` / `notes` / `scroll` spellings — because to a reader it is one more
+ * answer to "what can I ask here". What distinguishes it from a guide section is that its content
+ * comes from running the kernel rather than from prose, which is why the citations are rendered:
+ * a reader can open the authority instead of trusting this page.
+ */
+function questionSection(s: BuiltQuestionSection): HTMLElement {
+  const section = el("section");
+  section.id = s.section.anchor;
+  const h = el("h2", s.section.heading);
+  h.id = `${s.section.anchor}-h`;
+  section.setAttribute("aria-labelledby", h.id);
+  section.append(h, el("p", s.section.lede, "intro"));
+
+  for (const block of s.blocks) {
+    if (block.kind === "prose") { section.append(el("p", block.text)); continue; }
+    if (block.kind === "bullets") {
+      section.append(sub(block.label), bulletList(block.items));
+      continue;
+    }
+    if (block.kind === "pairs") {
+      // A readout is a description list, not a two-column table. The a11y tier settled this: a
+      // table whose header cells have nothing to say reports `empty-table-header`, because the
+      // markup claims a data grid for what is a term-and-value list. `dl.prov` is the spelling this
+      // page already uses for exactly that shape.
+      section.append(sub(block.label));
+      const dl = el("dl", undefined, "prov");
+      for (const [term, value] of block.pairs) dl.append(el("dt", term), el("dd", value));
+      section.append(dl);
+      continue;
+    }
+    section.append(sub(block.label), rowsTable(block.columns, block.rows));
+  }
+
+  // WHERE IT COMES FROM, rendered. The `derivedFrom` citations are this section's answer to the
+  // question a type card answers with its schema authorities: a capability claim on this page is
+  // checkable at a file and a symbol, not asserted.
+  section.append(sub("Where this comes from"));
+  const dl = el("dl", undefined, "prov");
+  for (const c of s.section.derivedFrom) {
+    dl.append(el("dt", `${c.file} — ${c.symbol}`), el("dd", c.role));
+  }
+  section.append(dl);
   return section;
 }
 
@@ -345,14 +464,24 @@ async function boot(): Promise<void> {
   if (main === null) throw new Error("learn.html did not provide #learn-main");
 
   const systems = new Map<ShippedExampleId, CanonicalSystem>();
+  // The fixtures ride along with the systems — same directory, same fetch wave. The question
+  // sections read the requirement statements and the declared modifications out of them; see
+  // `fixtures.ts` for why that is a derivation rather than a copy.
+  const fixtures = new Map<ShippedExampleId, ExampleFixture>();
   await Promise.all(SHIPPED_EXAMPLE_IDS.map(async (id) => {
-    const res = await fetch(`examples/${id}/system.mage.yaml`);
-    if (!res.ok) throw new Error(`examples/${id}/system.mage.yaml: HTTP ${res.status}`);
-    systems.set(id, Workspace.canonicalizeOnly(parse(await res.text())));
+    const [system, fixture] = await Promise.all([
+      fetch(`examples/${id}/system.mage.yaml`),
+      fetch(fixturePathFor(id)),
+    ]);
+    if (!system.ok) throw new Error(`examples/${id}/system.mage.yaml: HTTP ${system.status}`);
+    if (!fixture.ok) throw new Error(`${fixturePathFor(id)}: HTTP ${fixture.status}`);
+    systems.set(id, Workspace.canonicalizeOnly(parse(await system.text())));
+    fixtures.set(id, readFixture(id, await fixture.text()));
   }));
 
   const typeSections = buildTypeSections(systems);
   const useSections = buildUseSections(systems);
+  const questionSections = buildQuestionSections(systems, fixtures);
 
   const nav = el("nav");
   nav.setAttribute("aria-label", "Model gallery");
@@ -362,6 +491,24 @@ async function boot(): Promise<void> {
     cards.append(galleryCard(s.anchor, s.use.question, `${s.use.label} — a ${s.ofTypeLabel}`));
   }
   nav.append(cards);
+
+  // The reframe's own sections, routed BESIDE the model gallery rather than inside it. The cards
+  // answer "which model form do I need"; these answer "what can I do with one once I have it", and
+  // offering the two as one card grid would say they are the same kind of choice. The questions are
+  // the link text, for the same reason the cards lead with theirs.
+  const questionNav = el("nav");
+  questionNav.setAttribute("aria-label", "Asking, evidence and properties");
+  questionNav.append(el("p", "Once you have a model, these are the questions that make it "
+    + "engineering knowledge rather than a diagram.", "intro"));
+  const questionList = el("ul", undefined, "notes");
+  for (const s of questionSections) {
+    const li = el("li");
+    const a = el("a", s.section.heading);
+    a.href = `#${s.section.anchor}`;
+    li.append(a);
+    questionList.append(li);
+  }
+  questionNav.append(questionList);
 
   // The route to the guide, beside the gallery and not inside it. The cards answer "which model do
   // I need", which is a question about the kernel; the guide answers "how does this application
@@ -382,12 +529,17 @@ async function boot(): Promise<void> {
   }
   guideNav.append(guideList);
 
-  main.append(nav, guideNav);
+  main.append(nav, questionNav, guideNav);
 
+  // READING ORDER, and it is the author's §16. The three model forms first, in the registry's own
+  // order — structure, behaviour, quantity — because each form's omissions are the next form's
+  // question. Then the uses, which are purposes OF those forms. Then the question sections: how you
+  // know, what happens when the model changes, what must be true, whether an agent can join, and
+  // what the whole thing leaves out. The guide stays last, because it explains the application
+  // rather than the modelling.
   for (const s of typeSections) main.append(typeSection(s, systems));
   for (const s of useSections) main.append(useSection(s, systems));
-  // LAST, after the gallery. The landing is the gallery — "choose a model by the engineering
-  // question you need to answer" — so the guide sits under it rather than between a reader and it.
+  for (const s of questionSections) main.append(questionSection(s));
   for (const s of WORKBENCH_GUIDE) main.append(guideSection(s));
 
   // The browser tier waits on this rather than on network idle: it marks the derivation complete.
@@ -395,6 +547,7 @@ async function boot(): Promise<void> {
     ready: true,
     types: typeSections.map((s) => s.entry.id),
     uses: useSections.map((s) => s.use.id),
+    questions: questionSections.map((s) => s.section.anchor),
     guide: WORKBENCH_GUIDE.map((s) => s.anchor),
   };
 }
