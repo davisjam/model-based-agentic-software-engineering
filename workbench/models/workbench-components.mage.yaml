@@ -33,7 +33,7 @@
 # ## The file-to-entity join
 #
 # Every entity below carries `provenance.subject.ref`: the path, relative to `workbench/`, of the
-# code it stands for. That is the join the import-graph gate needs, and it is why the refs are not
+# code it stands for. That is the join both code-facing gates need, and it is why the refs are not
 # decoration. Two rules make the mapping total and unambiguous:
 #
 #   - **Longest prefix wins.** `src/app/agent-api.ts` resolves to `agent-adapter`, not to
@@ -44,11 +44,13 @@
 #     is checked as `query-engine → model-ir`, and `src/quant → src/engine` is internal to one
 #     component and checked against nothing.
 #
-# Read by hand when this model was re-founded, and mechanised the next day:
-# `test/import-graph.test.ts` implements exactly these two rules and re-derives the whole edge set on
-# every node-tier run. The `dependencies` model carries that as a `correspondence` record rather than
-# repeating it on sixteen entities. The gate reads the scan root from that record, so moving `src`
-# moves the gate rather than breaking it.
+# Read by hand when this model was re-founded, and mechanised the next day: `test/component-model.ts`
+# implements exactly these two rules, and `test/import-graph.test.ts` re-derives the whole edge set
+# through them on every node-tier run. The join lives in its own module because a second gate
+# (`test/adapter-reexport.test.ts`) now reads the architecture through it, and two copies of these two
+# rules would be free to drift while both stayed green. The `dependencies` model carries the
+# correspondence as a `correspondence` record rather than repeating it on sixteen entities, and the
+# gates read the scan root from that record, so moving `src` moves them rather than breaking them.
 #
 # ## Re-founded on the observed import graph, 261004
 #
@@ -520,6 +522,31 @@ queries:
     expect: refuted
     graph: { form: reachability, relation: depends-on, from: query-engine, to: yaml-adapter }
 
+  # The analysis path reaches no MUTATOR. This states the architectural proposition directly rather
+  # than leaving it encoded accidentally through which edges happen to be drawn: the worker holds a
+  # second copy of the IR on another thread, and what makes that safe is not that it avoids the YAML
+  # reader -- it reads YAML, by ruling -- but that nothing it can reach decides which system is
+  # committed. `engine-must-not-reach-yaml` above keeps its own text and its own narrower subject;
+  # this generalises the intent, and neither replaces the other.
+  #
+  # SCOPE: `analysis-worker`, and the scope is the measurement rather than a preference. The same
+  # question asked from `worker-wiring` measures `holds` -- `src/worker/port.ts` returns the
+  # `AnalysisPort` type the facade declares, and the facade reaches the transaction engine -- so the
+  # claim is about the ANALYSIS THREAD and not about `src/worker/`. Written from `worker-wiring` it
+  # would be false, and written as a prohibition over the whole directory it would have to be
+  # withdrawn. Measured at this commit: `refuted` from `analysis-worker`, `holds` from
+  # `worker-wiring`.
+  #
+  # `test/worker.test.ts` holds the same prohibition over the worker module's own bytes, and that is
+  # the stronger half: this query is answered over the DECLARED graph, so it would survive an
+  # undeclared import. Read the two together.
+  no-mutator-reachable-from-analysis:
+    name: The analysis worker reaches the component that may mutate the model
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph: { form: reachability, relation: depends-on, from: analysis-worker, to: transaction-engine }
+
   # The view does not import the YAML adapter itself. Note the form, and why it is not reachability.
   # Asked as reachability this is `holds`, measured -- and legitimately so, because every edit is a
   # document edit and `ui -> transaction-engine -> yaml-adapter` is the sanctioned route. The claim
@@ -531,14 +558,22 @@ queries:
   # second parse path, so a formatting decision cannot be made in the shell" -- and that is
   # mutation-proven false (`REAUDIT-system-models-261004.md` M10): one line in
   # `src/transaction/parse.ts` re-exporting `MageDocument` from the adapter puts the entire parse
-  # path in the UI with every gate green and both declared edges untouched. A formatting decision
-  # CAN be made in the shell today.
+  # path in the UI with every gate green and both declared edges untouched. Nothing this query says
+  # would change; it is the wrong instrument for the claim, and that is a fact about granularity
+  # rather than a fault in the query.
   #
-  # Closing that needs a byte-level re-export assertion over `src/ui`, the shape
-  # `test/worker.test.ts` already uses on a module's own source. That is a new control wanting its
-  # own design rather than a change to this comment, so it is deliberately NOT built here. It is
-  # recorded as the open follow-up in `REAUDIT-system-models-261004.md` gap 4 and in
-  # `DESIGN-shell-261002.md`, so the gap stays visible instead of being closed in prose.
+  # CLOSED, 261004, and not by this query. `test/adapter-reexport.test.ts` holds the value half at
+  # symbol granularity: no file re-exports a YAML-adapter symbol unless the adapter owns that file.
+  # M10's own line is its negative control, and the gate goes red on it. Note which rule that is —
+  # the weaker one ("unless the owning entity declares the edge") would have exempted M10, whose
+  # intermediary is `transaction-engine` and DOES declare `tx-yaml`; a declared edge licenses an
+  # IMPORT, and republishing is a different act. The sanctioned set is derived from the `to:
+  # yaml-adapter` edges in this file, so a new consumer declares an edge rather than editing a list.
+  #
+  # The bound still matters, because the new gate is narrow too: it reads `export … from` clauses, so
+  # a re-WRAPPED symbol (`export const load = (t) => MageDocument.load(t)`), an untyped intermediary,
+  # a dynamic `import()`, and an aliased specifier each slip it. That list is in the gate's own
+  # header, which is where it can stay true.
   ui-must-not-import-yaml:
     name: The UI depends on the YAML adapter directly
     kind: graph
