@@ -546,7 +546,18 @@ export const CAPABILITIES: readonly Capability[] = [
     // these ids, by pulling the whole of `inspect()` over and filtering it client-side; what
     // `elements` adds is that the model answers the question instead of the caller. A new row would
     // report a capability the product gained, and it gained a spelling.
-    machine: [wired("window.mage.inspect"), wired("window.mage.model.elements")],
+    //
+    // `window.mage.model.count` lands here for the same reason and passes the same test. It reaches
+    // `workspace.state` — `countElements` calls `selectElements` and drops the list, so it reads the
+    // one entity table and walks no edges — and it reports no capability the product gained: an
+    // agent holding `elements()` could already read `ids.length`. What it adds is the question asked
+    // in its own words, and a figure that states the read which makes it exact
+    // (`DESIGN-v02-quantification-261004.md` §3.2). Registering it under `query` would repeat the
+    // §7.1 mistake the paragraph above corrects.
+    machine: [
+      wired("window.mage.inspect"), wired("window.mage.model.elements"),
+      wired("window.mage.model.count"),
+    ],
     producesEvidence: false,
   },
   {

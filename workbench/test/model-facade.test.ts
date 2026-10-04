@@ -1,8 +1,10 @@
 // The derived facade — MQ-I8's machine half, and the `elements` operation it is built on.
 //
 // `DESIGN-model-query-261002.md` §2.3 and §2.4; §G1 ruled (a) on 261004. The facade gives the model
-// query interface a noun vocabulary — `elements`, `related`, `reachable`, `path`, `violations` —
-// instead of asking an agent to think in serialized query-document syntax. Everything below exists
+// query interface a noun vocabulary — `elements`, `count`, `related`, `reachable`, `path`,
+// `violations` — instead of asking an agent to think in serialized query-document syntax, with
+// `count` added by `DESIGN-v02-quantification-261004.md` Phase 1 and pinned in
+// `test/element-count.test.ts`. Everything below exists
 // to hold the one property that makes it a FACADE rather than a second interface:
 //
 //   MQ-I8 — every facade operation maps onto a declaration the kernel already carries, so the facade
@@ -172,9 +174,13 @@ test("MQ-I8: the facade table is TOTAL over the callables the namespace presents
   assert.deepEqual(declared, callables,
     "`MODEL_FACADE` and the live `window.mage.model` namespace disagree about which operations exist");
 
-  // And the §2.3 five, named, because §G5 holds the composition line: a sixth operation is a
-  // deliberate edit to this assertion rather than a method that quietly appeared.
-  assert.deepEqual(callables, ["elements", "path", "reachable", "related", "violations"],
+  // The operation set, named, because §G5 holds the composition line: a new operation is a
+  // deliberate edit to this assertion rather than a method that quietly appeared. `count` is the
+  // one such edit so far — `DESIGN-v02-quantification-261004.md` Phase 1, authorized as the
+  // cardinality of the enumeration `elements` already performs. It clears §G5 because it pipes
+  // nothing: `countElements` re-derives the selection rather than consuming `elements`' result, so
+  // no intermediate answer crosses between two operations.
+  assert.deepEqual(callables, ["count", "elements", "path", "reachable", "related", "violations"],
     "the facade's operation set changed; §4.1's line and §G5's hold make that an author's decision");
 });
 
@@ -196,6 +202,10 @@ test("MQ-I8: every facade site is a declared machine affordance, and every such 
   const rowOf = (at: string): string =>
     registered.find((a) => a.at === at)?.capability ?? "(unregistered)";
   assert.equal(rowOf(facadeSite("elements")), "inspect");
+  // `count` joins `elements` on the `inspect` row rather than earning one of its own: it reaches
+  // the same `workspace.state` read, and a second row has to report a capability the product
+  // GAINED, which reading `ids.length` was never blocked on.
+  assert.equal(rowOf(facadeSite("count")), "inspect");
   assert.equal(rowOf(facadeSite("related")), "query");
   assert.equal(rowOf(facadeSite("reachable")), "query");
   assert.equal(rowOf(facadeSite("path")), "query");
