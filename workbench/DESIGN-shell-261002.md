@@ -2208,8 +2208,10 @@ verified at this tree:
 - **`query-engine` reaches only `model-ir`** (plus its contained half). No YAML, no DOM, no renderer.
 - **`validator`, `renderer`, `rdf-projection`, `yaml-adapter` reach only `model-ir`.** Four separate
   one-edge components, each a real constraint on a file an agent will touch.
-- **`ui` reaches no `yaml-adapter`, no `rdf-projection`, no `validator` directly.** The view holds no
-  second parse path; the export control gets its text from the facade.
+- **`ui` reaches no `yaml-adapter`, no `rdf-projection`, no `validator` directly.** The export
+  control gets its text from the facade. An edge property rather than a value-flow one: a re-export
+  through a sanctioned intermediary still lands the adapter's types in the view (261004 M10; see the
+  as-built at the foot of this file).
 - **`analysis-worker` reaches no `app-services`, no `ui`, no `renderer`, no `transaction-engine`** —
   and the last of those is the one with a test behind it rather than only an absence.
 - **`shell-surfaces` depends on nothing**, which is what lets the registry reference it without
@@ -2419,3 +2421,142 @@ through `check:parity`; `example-coverage` is generated from the examples it mea
 subject refs name a tree this repo does not ship. Whether any of those wants a join is a scope
 question, not an oversight, and `NOT_PROVEN` in `test/model-coverage.test.ts` now says so in the
 receipt rather than implying the gap is universal.
+
+### 9r. The alias channel asserted shut, and two claims bounded — as built
+
+`REAUDIT-system-models-261004.md` certified the self-model layer with four explicit bounds, and the
+first one was a hole in the gate built the day before to close a hole. A tsconfig `paths` alias
+carried a real kernel-to-view dependency past every gate: the kernel imported the UI with tsc clean
+and the node tier at 935/935 (its M4). This wave landed its gaps 1, 3, and the bounding half of 4.
+One move in three places: **make each claim match the mechanism that holds it.**
+
+#### Gap 1 — the resolution config is asserted, not resolved
+
+`test/import-graph.test.ts` now declares `ALIAS_CHANNELS`, a closed table of four config keys whose
+PRESENCE opens the channel, and `auditResolutionConfig` reports every one that is present. The rows:
+`tsconfig.json` `compilerOptions.paths`, `tsconfig.json` `compilerOptions.baseUrl`, `package.json`
+`imports`, and `tsconfig.json` `extends`.
+
+- **An assertion, not a resolver, and the distinction is load-bearing.** The scan still resolves
+  relative specifiers only. Under the M4 mutation the kernel-out-degree test still PASSES; the red
+  comes from the precondition. So the gate refuses to certify rather than detecting the edge, which
+  is the fail-closed shape the re-audit prescribed and is cheap for exactly that reason. Teaching
+  `resolveSpecifier` to follow `paths` is a larger job and buys nothing while the tree writes no
+  aliased specifier.
+- **`baseUrl` and `paths` are separate rows because either opens the channel alone.** Under
+  `moduleResolution: bundler` a `paths` entry needs no `baseUrl`, so a table firing only on the pair
+  would miss the cheaper half of the mutation.
+- **`package.json` `imports` is the half tsconfig says nothing about.** Node and esbuild both resolve
+  `#`-prefixed specifiers from it, so that row carries value imports, not only types.
+- **`extends` is not aliasing; it is this check losing sight of the file that would declare it.**
+  Reported rather than followed. The check reads one file lexically, so an inherited `paths` would be
+  invisible to the other rows, and the honest move is to fail until someone drops the inheritance or
+  teaches the check to resolve it.
+- **Presence is the trigger, not contents.** `"paths": {}` maps nothing today and is a mapping table
+  someone will fill.
+- **The parse is TypeScript's own** (`ts.parseConfigFileTextToJson`), for the reason the import scan
+  uses that parser rather than a pattern: tsconfig.json carries `//` comments, so `JSON.parse` throws
+  on it outright, and a text search for `"paths"` would match the word inside a comment and miss a
+  key written across lines. Fail-closed keys on `result.error`, not on a missing config object — a
+  malformed config returns `{}` with an error, and reading that as "no alias declared" is how an
+  assertion becomes decoration.
+- **The reason floor is the allowance map's**, re-used at 40 characters, so a row cannot be shortened
+  into a bare key list.
+
+**The precondition was verified before it was asserted**, as the brief required: neither `baseUrl`
+nor `paths` is set, there is no `imports` map, there is no `extends`, and `tsconfig.json` is the only
+tsconfig in the package. `build.mjs` passes esbuild no `alias` and no `tsconfig` override, so esbuild
+reads the same one file, and the four rows cover both resolvers rather than only tsc.
+
+#### The negative control, because a true assertion is untested by its own passing
+
+Driven two ways. In-memory, `auditResolutionConfig` is pure over the config TEXT, so the control
+injects keys into the REAL tsconfig and package.json rather than into a toy, and the JSONC parse is
+exercised against the real file's comments. It fires on M4 verbatim (both keys named separately),
+each key alone, `"paths": {}`, an `extends`, a `package.json` `imports` map, an unparseable config, a
+missing config, and a reason under the floor. Two assertions pin the message rather than the count:
+every finding must state the scan's limit and must name the order of work, because the natural wrong
+fix for this red is to widen the scan's claim instead of the scan.
+
+**And end to end on disk, which is the part the in-memory control cannot prove** — that
+`configTexts()` reads the real files. Applying M4 to `tsconfig.json` on disk turns the gate red and
+names the channel:
+
+> `tsconfig.json` declares `compilerOptions.paths`. This gate resolves RELATIVE specifiers only …
+> so a specifier resolving through this key, or through a key it brings in, creates a dependency no
+> assertion in this file can see. … Remove the key, or teach `resolveSpecifier` to resolve it FIRST.
+
+Then the whole of M4, config plus a used, type-only `import type { checkPurposeVisibility } from
+"#view/invariants.ts"` in `src/ir/types.ts`: `tsc --noEmit` exits 0, as the re-audit said, and the
+node tier now goes red where it was 935/935 before. Both mutations were applied to the real tree and
+reverted; `git status` clean after each.
+
+**One refinement to the re-audit's M4.** The mutation reproduces only in its TYPE-ONLY form. Written
+as a value import it dies at node module load with `ERR_MODULE_NOT_FOUND`, because node reads no
+tsconfig `paths` and the specifier survives type-stripping. So the slip was narrower than "a real
+dependency": tsc and esbuild resolve the alias, node does not, and a value import through `paths`
+would have broken the node tier on load rather than passing it. The type-only form is the one that
+was green everywhere, and it is the one the new assertion covers. A `package.json` `imports` map
+would carry the value form too, which is why that row is not optional.
+
+#### Gap 3 — the `src/ir/types.ts` sentence, bounded
+
+Third revision of an enforcement claim on this file in two days: false, then an honest admission of
+having none, then this overclaim. Bounded rather than kept broad, on the brief's reasoning that a
+sentence true only because of a separate assertion elsewhere should say so.
+
+- **Before:** "An import added here now goes red."
+- **After:** "The bound, stated because this sentence has twice claimed more than it held. A
+  RELATIVE-SPECIFIER import added here goes red, and that is every import this package writes. The
+  gate resolves no path aliases, so an aliased specifier slips its scan: `#view/invariants.ts` reads
+  as a bare package name, and `REAUDIT-system-models-261004.md` M4 drove exactly that import from
+  this file with tsc clean and the node tier green. What closes the channel is a separate assertion
+  inside the same gate rather than its scan. `ALIAS_CHANNELS` fails if `tsconfig.json` declares
+  `paths` or `baseUrl`, or `package.json` an `imports` map, so an alias added here trips the
+  precondition instead of being read as an edge, and aliasing cannot be switched on quietly."
+
+The gate's own header gained the matching row. Its NOT-COVERED list enumerated the dynamic and
+extensionless cases honestly and did not name this channel; there is now a NOT RESOLVED / ASSERTED
+ABSENT paragraph that does. The bare-specifier skip at the `resolved === null` line also carries the
+dependency in a comment, since that line is where an aliased kernel-to-view import would be dropped.
+
+#### Gap 4 — bounded to the edge property, and the stronger control deliberately not built
+
+The model promised a value-flow property and the gates hold an edge property. M10 proved the gap:
+one line in `src/transaction/parse.ts` re-exporting `MageDocument` from the adapter puts the whole
+parse path in the UI with every gate green and both declared edges untouched.
+
+- **Before:** "The view holds no second parse path: the export control gets its text from the facade,
+  so a formatting decision cannot be made in the shell."
+- **After:** "The view does not import the YAML adapter itself" as the claim, followed by an explicit
+  BOUND paragraph: `form: direct` checks that no declared `depends-on` runs from ui to yaml-adapter
+  and says nothing about what VALUE crosses a sanctioned edge; the earlier wording is named as
+  mutation-proven false, with M10 cited and the consequence stated plainly — a formatting decision
+  CAN be made in the shell today.
+
+**The byte-level re-export assertion was NOT built, deliberately.** The re-audit offered it as the
+alternative fix and the brief scoped it out: it is a new control wanting its own design, and bundling
+it here would have made a truth-in-comments change into a design change. It is recorded in three
+places so it stays visible rather than closing in prose — the model comment, this section, and the
+re-audit's gap table. The shape it would take is the one `test/worker.test.ts` already uses: assert
+over a module's own bytes that no file outside `src/yaml` and its sanctioned consumers re-exports a
+yaml-adapter symbol. **Open follow-up, owner unassigned.**
+
+**Scope correction to the brief.** The brief cited `models/workbench-components.mage.yaml:522-527`,
+and the same falsified claim sat in two more places: the relations-block comment at line 442 of the
+same model, and the absence list in this document. Bounding one copy and leaving two would be the
+failure this repo's own notes warn about, where patching one costume leaves the others free, so all
+three are bounded. The two secondary sites get a clause naming the edge/value-flow distinction and a
+pointer to the query comment, not a restatement.
+
+#### What this does not close
+
+The certification's other three bounds stand untouched and were not this wave's work: declared-
+architecture goodness (M5), containment edits (M6), and value flow itself (M10). Gap 1 narrows the
+first bound to a checked precondition rather than removing it — the scan's universe of discourse is
+still relative specifiers, and that is now asserted instead of assumed.
+
+**Gates at this tree:** `tsc` clean; node **937/937** (935 + 2 new), 0 skipped; `check:parity` 0
+violations over 26 capabilities; build clean; smoke 3/3; browser 114/114; a11y 112/112.
+`python3 validate.py models/workbench-components.mage.yaml` clean, 13 asserted queries evaluated;
+`--self-test` PASS; model-coverage census still `workbench-components 13/13`, 0 exempt.

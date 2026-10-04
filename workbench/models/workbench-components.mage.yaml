@@ -439,8 +439,9 @@ models:
       # `ui-tx` is the Operation and note vocabulary the review surface and the view model read
       # (src/ui/view-model.ts, src/ui/shell/review.ts) -- types, not an apply path: every state
       # change goes through `ui-app`. Note what is ABSENT and real: no ui -> yaml-adapter (the
-      # export control gets its text from the facade, so the view holds no second parse path), no
-      # ui -> rdf-projection, no ui -> validator.
+      # export control gets its text from the facade; that absence is an EDGE property and not a
+      # value-flow one, bounded under `ui-must-not-import-yaml` below), no ui -> rdf-projection,
+      # no ui -> validator.
       - { id: ui-ir,           from: ui,                 to: model-ir,           type: depends-on }
       - { id: ui-qe,           from: ui,                 to: query-engine,       type: depends-on }
       - { id: ui-sparql,       from: ui,                 to: sparql-interface,   type: depends-on }
@@ -519,11 +520,25 @@ queries:
     expect: refuted
     graph: { form: reachability, relation: depends-on, from: query-engine, to: yaml-adapter }
 
-  # The view holds no second parse path: the export control gets its text from the facade, so a
-  # formatting decision cannot be made in the shell. Note the form, and why it is not reachability.
+  # The view does not import the YAML adapter itself. Note the form, and why it is not reachability.
   # Asked as reachability this is `holds`, measured -- and legitimately so, because every edit is a
   # document edit and `ui -> transaction-engine -> yaml-adapter` is the sanctioned route. The claim
-  # worth asserting is the direct one: the view does not import the adapter itself.
+  # worth asserting is the direct one.
+  #
+  # BOUND, and the bound is the whole point of the form. `form: direct` checks one thing: that no
+  # declared `depends-on` runs from ui to yaml-adapter. It says nothing about what VALUE crosses a
+  # sanctioned edge. An earlier version of this comment claimed it did -- that "the view holds no
+  # second parse path, so a formatting decision cannot be made in the shell" -- and that is
+  # mutation-proven false (`REAUDIT-system-models-261004.md` M10): one line in
+  # `src/transaction/parse.ts` re-exporting `MageDocument` from the adapter puts the entire parse
+  # path in the UI with every gate green and both declared edges untouched. A formatting decision
+  # CAN be made in the shell today.
+  #
+  # Closing that needs a byte-level re-export assertion over `src/ui`, the shape
+  # `test/worker.test.ts` already uses on a module's own source. That is a new control wanting its
+  # own design rather than a change to this comment, so it is deliberately NOT built here. It is
+  # recorded as the open follow-up in `REAUDIT-system-models-261004.md` gap 4 and in
+  # `DESIGN-shell-261002.md`, so the gap stays visible instead of being closed in prose.
   ui-must-not-import-yaml:
     name: The UI depends on the YAML adapter directly
     kind: graph
