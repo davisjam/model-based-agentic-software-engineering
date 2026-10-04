@@ -13,6 +13,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import { existsSync } from "node:fs";
 import {
   deriveBase,
   probePages,
@@ -223,6 +224,50 @@ test("every declared page carries a distinct path and a content shape with a sta
     assert.ok(page.why.trim().length >= 40,
       `\`${page.path}\` does not say why its content shape identifies it. An unexplained shape gets `
       + `"fixed" by whoever it fails on next.`);
+  }
+});
+
+test("a verbatim-served page names a committed file that exists, and the pair is comparable", () => {
+  // `verbatimFrom` is the CURRENCY half of a row: a page the deploy rsyncs unchanged can have its
+  // served bytes compared against HEAD, which is the only way a stale APP SHELL is detected (no
+  // bundle input covers index.html, and that is the file the 261003 staleness was first seen in). A
+  // row naming a file that is not there would silently contribute no currency signal at all.
+  const verbatim = PUBLISHED_PAGES.filter((p) => p.verbatimFrom !== null);
+  assert.ok(verbatim.length >= 2,
+    `only ${verbatim.length} page(s) are declared verbatim-served; the two workbench shells are, and `
+    + `they are the pages this package owns`);
+  for (const page of verbatim) {
+    const source = page.verbatimFrom ?? "";
+    assert.ok(!source.startsWith("/") && !source.startsWith(".."),
+      `\`${source}\` must be repo-root-relative, which is how check-published resolves it`);
+    assert.ok(existsSync(`../${source}`),
+      `\`${page.path}\` claims to be served verbatim from \`${source}\`, which does not exist`);
+  }
+});
+
+test("the shells this package owns are the ones declared verbatim", () => {
+  // Pinned by ROLE rather than by count: a page built in CI (catalog.py's landing, MkDocs's course,
+  // Typst's book) has no committed bytes to compare, so declaring one verbatim would compare a
+  // generator's artifact and report permanent false drift.
+  const sources = PUBLISHED_PAGES.map((p) => p.verbatimFrom).filter((s) => s !== null);
+  for (const shell of ["workbench/index.html", "workbench/learn.html"]) {
+    assert.ok(sources.includes(shell),
+      `${shell} is hand-authored and rsynced unchanged, so its staleness is detectable; it must be `
+      + `declared verbatim or the currency check is blind to the app shell`);
+  }
+});
+
+test("a served page's body is hashed only when the right page arrived", async () => {
+  // The hash feeds the currency comparison. Hashing a 404 body would compare GitHub's 404 page
+  // against our shell and report drift forever, so a failed verdict carries null instead.
+  const live = await probePages(BASE, PUBLISHED_PAGES, healthySite(PUBLISHED_PAGES, BASE));
+  for (const verdict of live) {
+    assert.notEqual(verdict.bodyHash, null, `${verdict.url} passed, so its body must be hashed`);
+  }
+  const wrong: Fetcher = async () => ({ status: 404, body: "<title>Page not found</title>" });
+  for (const verdict of await probePages(BASE, PUBLISHED_PAGES, wrong)) {
+    assert.equal(verdict.bodyHash, null,
+      `${verdict.url} did not arrive, so there is nothing whose hash means anything`);
   }
 });
 

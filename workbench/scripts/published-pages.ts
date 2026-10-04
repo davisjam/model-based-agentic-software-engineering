@@ -19,6 +19,15 @@
 // Everything here is pure: no network, no filesystem, no `git`. The entry point `check-published.ts`
 // gathers those inputs and injects them, which is what lets the negative control drive this logic
 // with a wrong-but-live site in the offline test tier.
+//
+// LIVENESS ONLY, and that is the second lesson rather than an omission. On 261003 this probe reported
+// `6/6 declared pages live` over pages that were all the PREVIOUS build. Every assertion here was
+// true: a server answered, and the page that answered was the right page. Which REVISION arrived is a
+// different question, and the content shapes above are deliberately stable literals so a copy edit
+// cannot fail them — which is precisely what makes them blind to staleness. `published-currency.ts`
+// answers currency, from the build manifest the site itself serves, and the report keeps the two
+// verdicts separate so neither green line can be read as the other's answer.
+import { hashInput } from "./build-manifest.ts";
 
 /** One page the site publishes, paired with the evidence that the right page arrived. */
 export interface PublishedPage {
@@ -28,6 +37,22 @@ export interface PublishedPage {
   readonly mustContain: string;
   /** Why that string identifies this page, so a later reader can tell drift from breakage. */
   readonly why: string;
+  /**
+   * The repo-root-relative file this URL is served BYTE-FOR-BYTE from, or null when it is not.
+   *
+   * This is the CURRENCY half of the row, and it is separate from `mustContain` because the two
+   * answer different questions: the content shape says the right PAGE arrived, this says the right
+   * REVISION of it did. `mustContain` is a stable literal on purpose — a title, a landmark id — so
+   * that a copy edit does not fail the probe, which is exactly why it cannot detect staleness.
+   *
+   * Non-null only where the publishing workflow rsyncs a committed file into the artifact unchanged.
+   * A page BUILT in CI — catalog.py regenerates the landing from its markdown, MkDocs builds the
+   * course, Typst renders the book — has no committed bytes to compare against, and comparing the
+   * committed artifact of a generator would assert the generator's determinism rather than the
+   * deploy's currency. Required rather than optional so that a new row has to DECIDE: an absent
+   * field reads as "not verbatim" and as "nobody looked" at the same time.
+   */
+  readonly verbatimFrom: string | null;
 }
 
 /**
@@ -43,36 +68,50 @@ export const PUBLISHED_PAGES: readonly PublishedPage[] = [
     mustContain: "<title>MAGE — Model-Based Agentic Engineering</title>",
     why: "the landing page's own title. Another site serving this path has a different one, and the "
       + "GitHub Pages 404 page has its own.",
+    // `catalog.py build` regenerates this file from index.md in CI, so the committed copy is a build
+    // artifact rather than the served bytes. Its header says DO NOT EDIT.
+    verbatimFrom: null,
   },
   {
     path: "workbench/",
     mustContain: "<title>MAGE Model Workbench</title>",
     why: "the workbench shell's title, hand-authored in index.html rather than rendered, so it moves "
       + "only when someone renames the app.",
+    // Hand-authored, and `workbench` is in catalog.py's NON_SITE_DIRS, so the render never touches
+    // it and the rsync copies it unchanged. This is the file the 261003 staleness was first SEEN in,
+    // and no bundle input covers it — esbuild never reads the shell.
+    verbatimFrom: "workbench/index.html",
   },
   {
     path: "workbench/learn.html",
     mustContain: "id=\"learn-main\"",
     why: "the Learn page's main landmark. A structural element rather than prose, so a copy edit to "
       + "the gallery does not fail this check.",
+    verbatimFrom: "workbench/learn.html",
   },
   {
     path: "teach/reference-course/syllabus/",
     mustContain: "<title>Syllabus - Teach with MAGE</title>",
     why: "MkDocs builds this page into the site artifact at /teach. The title proves that build ran, "
       + "not merely that the path resolves to something.",
+    // MkDocs emits it into _site/teach; nothing committed holds the served bytes.
+    verbatimFrom: null,
   },
   {
     path: "book/",
     mustContain: "mage-book/index.html",
     why: "this path serves a meta-refresh STUB, not the book, so its content shape is the destination "
       + "it points at. Asserting a title here would assert the stub's title and read as the book.",
+    verbatimFrom: null,
   },
   {
     path: "book/mage-book/index.html",
     mustContain: "<h1>Model-Based Agentic Engineering",
     why: "the book's real front page, which /book/ only redirects to and the landing links directly. "
       + "Checking the stub alone passes with the entire book missing.",
+    // The publish step copies the BUILT book/web tree into _site/book/mage-book/; the source tree is
+    // excluded from the artifact.
+    verbatimFrom: null,
   },
 ];
 
@@ -161,6 +200,15 @@ export interface PageVerdict {
   readonly ok: boolean;
   /** Empty when ok; otherwise what was wrong, in one line. */
   readonly problem: string;
+  /**
+   * `hashInput` of the body, or null when nothing arrived (status 0, or a non-200).
+   *
+   * Carried on the LIVENESS verdict so the CURRENCY check needs no second request: one fetch answers
+   * both questions, and a second pass could see a different revision mid-deploy and compare the two
+   * halves of its own report against different sites. A failed body is null rather than hashed —
+   * the hash of a 404 page is a number about GitHub's 404 page.
+   */
+  readonly bodyHash: string | null;
 }
 
 /**
@@ -180,18 +228,19 @@ export async function probePages(
     const url = `${base}${page.path}`;
     const res = await get(url);
     if (res.status === 0) {
-      verdicts.push({ url, ok: false, problem: `the request did not complete: ${res.body}` });
+      verdicts.push({ url, ok: false, problem: `the request did not complete: ${res.body}`, bodyHash: null });
     } else if (res.status !== 200) {
-      verdicts.push({ url, ok: false, problem: `HTTP ${res.status}` });
+      verdicts.push({ url, ok: false, problem: `HTTP ${res.status}`, bodyHash: null });
     } else if (!res.body.includes(page.mustContain)) {
       verdicts.push({
         url,
         ok: false,
         problem: `HTTP 200, but the body does not contain \`${page.mustContain}\` — ${page.why} A `
           + `server answered; the page we publish did not arrive.`,
+        bodyHash: null,
       });
     } else {
-      verdicts.push({ url, ok: true, problem: "" });
+      verdicts.push({ url, ok: true, problem: "", bodyHash: hashInput(res.body) });
     }
   }
   return verdicts;

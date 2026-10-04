@@ -5,10 +5,18 @@
 // Pages host both forbid external fetches -- so a bundler's dev-time conveniences buy nothing
 // here, and every dependency is one more thing to upgrade.
 import { build } from "esbuild";
-import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { dirname } from "node:path";
+// The hash is DEFINED there, not here. This file writes the manifest; the browser harness and the
+// published-site check read it, and all three must agree to the character — a producer slicing 16 hex
+// digits and a consumer slicing 12 would report drift in every file forever and blame the tree. One
+// definition, three importers, and `test/published-currency.test.ts` asserts no copy grows back.
+import { hashInput, MANIFEST_PATH } from "./scripts/build-manifest.ts";
 
-const outdir = "dist";
+// DERIVED from the manifest path, not spelled twice. The manifest must land beside the bundles —
+// the browser harness and the published-site check both resolve it as `<package>/dist/…` — so a
+// second literal here could put the bundles somewhere the manifest does not describe.
+const outdir = dirname(MANIFEST_PATH);
 await mkdir(outdir, { recursive: true });
 
 const common = {
@@ -72,11 +80,11 @@ const inputs = {};
 for (const result of [ui, worker, learn]) {
   for (const path of Object.keys(result.metafile.inputs)) {
     if (path.includes("node_modules/") || path in inputs) continue;
-    inputs[path] = createHash("sha256").update(await readFile(path)).digest("hex").slice(0, 16);
+    inputs[path] = hashInput(await readFile(path));
   }
 }
 await writeFile(
-  `${outdir}/build-manifest.json`,
+  MANIFEST_PATH,
   `${JSON.stringify({ builtAt: new Date().toISOString(), inputs }, null, 1)}\n`,
 );
-console.log(`build: ${outdir}/build-manifest.json over ${Object.keys(inputs).length} source inputs`);
+console.log(`build: ${MANIFEST_PATH} over ${Object.keys(inputs).length} source inputs`);

@@ -142,6 +142,22 @@ const EXEMPT_FROM_ALL: Readonly<Record<string, Exemption>> = {
  */
 const EXEMPT_FROM_PUBLISH: Readonly<Record<string, Exemption>> = {
   "check:published": MANUAL_PUBLISHED_PROBE,
+  // The Node preflight. It is reached from `all` and from an npm `pre` hook on every gate that loads
+  // a .ts entry point, so the default-gate axis needs no entry — but CI has no step to point at, and
+  // does not need one: the runner's Node is INSTALLED from the same `.nvmrc` this check derives its
+  // pin from, so the version CI runs cannot be wrong in the way a developer's shell can. The
+  // evidence is that pin, which means dropping `node-version-file` from the workflow fails this
+  // check even though no script name moved. If CI is ever given a step that runs the preflight,
+  // DELETE this entry: an exemption for a gate that is reached is itself reported.
+  "check:node": {
+    evidenceIn: PUBLISH_RUNNER,
+    evidence: "node-version-file: .nvmrc",
+    reason: "The preflight exists for a shell whose Node is wrong — on 261003 a Node 20 shell made "
+      + "two gates die with ERR_UNKNOWN_FILE_EXTENSION, which reads like broken code and cost two "
+      + "actors time. CI cannot have that problem: actions/setup-node installs the version named in "
+      + "`.nvmrc`, the same file the preflight reads its pin from, so a step invoking the preflight "
+      + "would assert what the setup step already guarantees. The evidence below is that pin.",
+  },
   check: {
     evidenceIn: PUBLISH_RUNNER,
     evidence: "npx tsc --noEmit",
