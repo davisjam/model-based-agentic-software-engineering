@@ -107,9 +107,15 @@ export function buildGraphScene(system: CanonicalSystem, modelId: string): Scene
     edges.push({
       id: uniqueId(r.id ?? `r:${r.type}:${r.from}:${r.to}`),
       kind: "relation",
+      // **No label. The TYPE is not per-edge information** — it is the diagram's vocabulary, and
+      // writing it on every edge restates one fact N times. Six edges reading `may_propagate_to`
+      // told a reader nothing the arrowheads did not, and cost six text runs competing for the
+      // same gaps between boxes. `via` keeps the type as the join key, so the key strip names it
+      // once, the arrowhead form carries it in the picture, and the twin's edge description still
+      // says `"checkout" may_propagate_to "order-created"` for every single edge.
+      label: null,
       from: r.from,
       to: r.to,
-      label: r.type,
       via: r.type,
       detail: [],
     });
@@ -186,6 +192,12 @@ export function buildMachineScene(system: CanonicalSystem, machineId: string): S
     kind: "transition" as const,
     from: t.from,
     to: t.to,
+    // **KEPT, unlike a relation's type.** An event name is not a repeated type label: `acquire` and
+    // `retry` name DIFFERENT events on different transitions, so the text is topology-bearing and a
+    // key strip cannot carry it — there is nothing to say once. Two states joined by two
+    // transitions are distinguishable only by these words. Reading "do not write relation
+    // semantics on every edge" as "delete all edge text" would strip real content from behaviour
+    // diagrams; what makes it safe to keep is that the engine now reserves a sized box for each one.
     label: t.label ?? t.sync,
     via: t.sync,
     detail: transitionDetail(t),

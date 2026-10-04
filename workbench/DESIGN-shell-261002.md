@@ -1426,3 +1426,238 @@ first;** this section takes the next letter after it rather than racing for one.
   `index.html` loaded at 48 rules passed where the receipt measures 41; that gap predates this wave
   and belongs to whichever change made a rule inapplicable, but it is the kind of stale number this
   file's own discipline says to re-measure rather than inherit.
+
+### 9l. A real layout engine as built — the suite that could not see the collisions it was for
+
+Appended by the wave that executed the author's ruling: *"the Workbench should not manually position
+graph elements in ways that permit nodes, edges, or labels to collide… replace it rather than
+continuing to patch individual collision cases"*, plus *"put relation/type semantics in a legend, not
+repeated labels."* The hand-rolled placer is gone; `@dagrejs/dagre` lays out behind the
+`LayoutEngine` seam that already existed.
+
+**THE SUITE WAS THE REAL FINDING, not the engine choice.** Eighteen layout tests were green on a tree
+that drew five distinct collisions in the shipped examples. The reason is that every geometry
+assertion read `Layout` and the collisions were in what got PAINTED, and that one of them tested the
+wrong predicate:
+
+- `pipeline-performance` painted `invokes` and `stage_of` at the **identical point** (401.3, 45).
+- `event-propagation` painted six edge labels carrying **one** distinct word, four of them over node
+  boxes.
+- A rank-skipping edge `a→d` drew **one straight run at y=51 through the centres of `b` and `c`** —
+  and the backedge test could not see it, because it asked whether a polyline VERTEX landed inside a
+  box. A straight edge crosses a box *between* two vertices, so the vertex form is blind to exactly
+  the geometry it exists to forbid.
+- The initial-state marker drew at **x = −3 against a viewBox starting at 0**, in all five machine
+  diagrams.
+- The emphasis legend's longest row reached **x ≈ 490 inside a viewBox 420 wide**.
+
+The last two share one cause: `bounds()` saw rects and edge points and nothing else. Text, markers
+and the legend are ink, and ink the viewBox does not know about is ink the browser cuts off. The
+marker's offset and radius were literals inside the painter — `26` and `5`, known to that function
+and to nothing else — so no extent calculation *could* have reserved room for them.
+
+So Step 0 was to strengthen the suite first, against the unchanged tree, and watch it go red:
+**5 failing of 23**, with the counts above as the failure messages. Only then was the engine swapped.
+Without that order the swap would have been an act of faith.
+
+**What the new properties assert**, over a corpus derived from the examples directory — every model
+and every machine of every shipped example, 12 subjects, with a floor assertion so a glob that
+matched nothing fails instead of passing vacuously:
+
+| Property | Reads | Caught at HEAD |
+|---|---|---|
+| no edge crosses a node box it neither leaves nor enters | Liang–Barsky, segment vs rect | 10 crossings |
+| no two node boxes overlap | rects | 0 — it already held |
+| every painted text run and marker is inside the viewBox | the rendered TREE | 5 clipped markers |
+| no label overlaps a label or a node box | the rendered TREE | 23 collisions |
+| a rank-skipping edge routes around what it skips | the sharpest case for the segment form | 1 |
+
+`no two node boxes overlap` passing at HEAD is worth recording: the old placer's nudge loop did its
+job, and the ruling's first clause was the one requirement already met.
+
+**Engine: dagre, and the choice is derived rather than preferred.** Layout must be synchronous and
+DOM-free, and both are held by gates rather than by taste — the shell's paint callbacks return
+`void`, the render port returns its result rather than a promise, and a test asserts the renderer
+runs exactly once per paint, so render-measure-render is forbidden. That eliminates elkjs
+(promise-only; and its incremental mode preserves layer and order but not coordinates, failing the
+zero-displacement property this feature exists to protect), Graphviz-WASM (async init, Béziers where
+the contract says polyline), and Mermaid (whose layout *is* dagre plus elkjs, and which measures text
+against a DOM). Dagre is synchronous, DOM-free, a multigraph so parallel edges separate, routes
+around nodes through dummy nodes, and **treats edge labels as sized boxes** — which is the ruling's
+"text must participate in layout", obtained from the library instead of hand-rolled.
+
+**`layout.ts:542-554` argued the opposite and is now superseded.** It said an external engine should
+enter UPSTREAM as a complete hint set, deliberately bypassing the seam, because elkjs cannot
+implement a synchronous signature. That reasoning was sound *for elkjs* and does not generalise: a
+synchronous engine can implement the seam directly, and routing through hints would have meant the
+renderer could never see an engine's EDGE geometry — only its node positions — so every collision
+above would have survived the integration. The hint path is not removed; it is still the cold-layout
+contract and still pinned. It is no longer the sanctioned route for an engine that can be called.
+
+**Four traps, three of which the brief predicted and one it did not.**
+
+- **Ids are inserted sorted and prefixed `n:`.** Graphlib keeps nodes in a plain object, so a model
+  whose entities are named `1`, `2`, `10` would be iterated in *numeric* order by JavaScript itself
+  and lay out differently from one named `a`, `b`, `c`. The prefix makes every key non-numeric.
+- **Cycles are broken here, not by dagre's `acyclicer`.** Depth-first search seeded from
+  `scene.roots` — a machine's declared initial state. Dagre's greedy heuristic answers a different
+  question; a lifecycle should rank by distance from the state the author declared as the start, and
+  `retry` should be the backwards edge because it *is* the backwards edge.
+- **Region children never enter the graph.** A child's rect is derived from its parent's, so an
+  engine ranking it as a peer would be ranking a coordinate it does not control. Only outer nodes go
+  in, with each region sized to hold its contents — which is what keeps region pinning and
+  containment passing untouched.
+- **NOT predicted: `width`/`height`, not `w`/`h`.** Dagre reads those exact keys for an edge label
+  and silently treats an unknown-size label as *no label* — reserving nothing and reporting no
+  position. The first draft passed the internal `{w, h}` shape, so every label fell back to the
+  polyline midpoint and the collisions came straight back. It typechecked, because the label object
+  is an index signature. This is why `labelBox` is one named function with the spelling in its
+  doc comment.
+
+**`DAGRE REPRODUCES THE FIVE EXACT RANK INTEGERS.** The brief flagged
+`render-layout.test.ts:164` as the one genuinely open risk and the survey could not verify it.** It
+reproduces them exactly — `waiting` 0, `processing` 1, `reviewed` 2, `failed` 2, `published` 3 — and
+so does the exact `ranks` array at `:177`, `[["api"], ["remediation"], ["gateway"]]`. Both tests are
+unchanged. The reason is not luck: on these DAGs every edge has minimum length 1, so network simplex
+and longest-path agree. But it required one correction. **Dagre's node ranks are always EVEN** —
+`makeSpaceForEdgeLabels` doubles every edge's minimum length so a label dummy can sit in the
+half-rank between two real ranks, whether or not any edge carries a label — so the raw output is
+0, 2, 4, 6. `Layout.ranks` is an ordinal index that the twin turns into reading order, so the engine
+compresses distinct ranks back to 0, 1, 2, … Without that, the exact-rank tests would have failed and
+the twin would have announced ranks no reader could count.
+
+**Of the ~6 brittle coordinate tests the brief predicted, 4 survived unchanged and 2 needed
+rewriting.** Survived: `:164` five exact ranks, `:177` the exact `ranks` array, `:133`'s 1000–1400
+window, `:110`'s `LANE_PITCH` negative control. Rewritten, each to the property it was approximating:
+
+- **`:182` detour-lane clearance.** It required a vertex below every node box by a fixed clearance
+  constant. That is not the requirement — it is one implementation's choice of WHICH SIDE to detour
+  on, and dagre routes this backedge *above* the flow. It now asserts what the old form was
+  protecting: exactly one backwards edge, it is `failed → waiting` (so the cycle broke at the
+  declared initial state and not wherever a heuristic found cheapest), it is flagged `backedge` so
+  the picture can mark it, it travels backwards along the rank axis, it detours rather than running
+  straight, and — by the corpus property — it crosses no box.
+- **`:259` `span === METRICS.selfLoop`.** An equality against one engine's chosen loop height, a
+  number no requirement names. It now asserts the loop encloses area on both axes, escapes the box
+  it returns to (the property that makes it visible at all), stays local to its state, and crosses
+  no other node.
+
+Both constants those tests named — the self-loop height and the detour clearance — were left dead in
+`METRICS` by the removal and are deleted. A dead constant in a shared metrics table tells the next
+reader there is a detour lane to find.
+
+**The legend, and A CORRECTION TO THE RULING'S PREMISE.** Relation TYPE labels are gone from the
+edges: `scene.ts` sets a relation's `label` to null and keeps `via`, so the type is still the join
+key, still in every edge's description in the twin, and now stated ONCE in a key row. **Per-edge
+EVENT NAMES on state-machine transitions are KEPT.** `acquire` and `retry` are not a repeated type
+label — they name *different* events on different transitions, so the text is topology-bearing, a key
+strip has nothing to say once, and two states joined by two transitions are distinguishable only by
+those words. Reading "do not write relation semantics on every edge" as "delete all edge text" would
+strip real content from behaviour diagrams. What makes keeping them safe is that the engine now
+reserves a sized box for each one.
+
+**The key is a SECOND strip, not an extension of the emphasis legend**, and the separation is
+load-bearing rather than tidy. The two have different lifetimes: the vocabulary key is present
+whenever a diagram has shapes and arrows, while the emphasis legend appears only once a query has
+emphasised something — and the a11y tier uses *exactly that* ("a legend appears only under
+emphasis") to prove a picker's change reached its render. Merging them would have made that property
+false and broken the proof. So `data-layer="key"` with `mage-key`, beside `data-layer="legend"` with
+`mage-legend`, and `AccessibleScene.key` beside `.legend`.
+
+**Encoding.** Emphasis already owned the stroke hue, so it moved to a wide translucent underlay
+polyline painted beneath the edge, which frees the stroke for relation type. A type gets a hue AND a
+distinct arrowhead form — the ruling's redundant channel — assigned by sorted type order so the
+mapping is a function of the model rather than of authoring order. Four forms (triangle, open,
+diamond, square) and four hues, the Okabe–Ito subset clearing 3:1 against the fixed `#ffffff` figure
+ground: `#0072B2` (5.19:1), `#D55E00` (3.87), `#009E73` (3.42), `#CC79A7` (3.06). The three Okabe–Ito
+entries that fail that floor are deliberately absent — `#E69F00` (2.25), `#56B4E9` (2.31), `#F0E442`
+(1.32) — which is also why there are four forms rather than eight; the maximum relation-type count in
+any shipped diagram is four. **Node type adds no colour**: an entity's `type` is unbounded, so a
+categorical palette over it is unsound. The three node SHAPES get key rows instead, which is the
+cheap half of the same omission — they had been drawn since Wave 0 with nothing anywhere saying what
+they mean. `MarkStyle` still declares no colour field at all.
+
+**Shape-key prose had to be cut back, and the reason is a measurement.** A key row is drawn inside
+the diagram's own viewBox, so the longest meaning sets the canvas width. The first draft's thorough
+sentence ("a square-cornered box is an entity: a service, component or other named part") made a
+445-unit teaching diagram **561** units wide — the picture shrinking inside a fixed reading column to
+make room for prose about itself. The rows now name the thing in a few words and the fuller sentence
+lives in the twin's key list, which has no width to spend. Measured after: 445.
+
+**Canvas fill and resize — §9i had already done the part that was doable, and its refusal stands.**
+That section's `width: 100%` plus `max-height: 80vh` is what makes the figure fill its frame and
+respond to size, and it is untouched here. Its stated refusal — that spreading ranks to fill a
+measured viewport would mean passing viewport geometry into a module that is deliberately pure,
+synchronous and DOM-free, whose determinism is an acceptance criterion — is **correct and not
+revisited**; horizontal extent in a layered layout is a property of the model's edges, and no engine
+changes that. What this wave contributes to the same complaint is the half §9i could not reach: the
+viewBox now accounts for every piece of ink, so the frame is filled by a COMPLETE drawing rather than
+one whose marker and legend hung outside it. The flat `max(bounds.w, 420)` guess is replaced by a
+measured union over the strips, using the same no-DOM estimator the layout uses. One bug of my own
+was caught by re-measuring: taking the margin on the union instead of on the strips alone added 28
+units of empty canvas to the right of every diagram.
+
+**What the geometry change costs, measured.** Rank COUNTS are identical on all 12 subjects — the
+logical structure is preserved exactly. Model diagrams keep their width (or narrow slightly) and gain
+the key strip's height. Machine diagrams widen 18–24% (`docable:document` 766 → 917,
+`document-lifecycle` 970 → 1175) because edge labels now get reserved boxes between ranks instead of
+being painted over whatever was there. `data-policy` goes 445 × 582 → 445 × 746: dagre packs its 11
+nodes into 2 ranks more tall than the old grid did, and in Learn's 46rem column that figure is
+height-capped by `max-height: 80vh`, so it renders ~22% narrower than before. That is the honest
+price of not overlapping anything, and it is a layout trade rather than a defect.
+
+**Reading order is unchanged on two of three sampled diagrams and changes on one, by design.**
+`machine:document` and `model:service-flow` produce byte-identical reading orders. `event-propagation`
+rank 2 goes from `analytics, billing, inventory` to `inventory, billing, analytics` — the old order
+was a barycentre pass with an alphabetical tie-break, the new one is dagre's crossing-minimised lane
+order. Reading order is specified as "rank then lane", so following the picture's actual lanes is
+what the specification asks for; the twin and the diagram still agree, which is the property that
+matters.
+
+**LEARN RENDERS THROUGH THIS SEAM AND WAS VERIFIED SEPARATELY.** `src/learn/main.ts` calls the same
+`renderView` and re-renders with a `selection` plus position hints when a node is picked, so every
+diagram on the page changed. Its exemplar subjects are drawn from the shipped examples, which means
+the corpus properties already cover them — checked rather than assumed. All four figures: key rows
+present, emphasis legend appearing only under selection, and **zero nodes displaced on select**, which
+is the hint round-trip holding through Learn's own interaction path. `learn.js` is a separate bundle,
+so it was rebuilt before the browser tiers.
+
+**Four gates added for the ruling, and all four watched red before being trusted.** Nothing held any
+of this: the author's complaint about `may_propagate_to` on six edges was true of a tree whose whole
+suite was green. Reverting relation labels fails 2 tests; deleting transition event names fails 1;
+dropping the initial marker from the extent calculation fails 1. **The fourth attempt failed to
+fail, and that is the useful part.** "Edge text is placed where the engine reserved room for it"
+passed when the painter was reverted to the polyline midpoint — because dagre reserves a label's box
+by inserting a dummy NODE into the edge, so its label position *is* the middle vertex and the two
+readings agree by construction. Asserting it against the real engine proves nothing. It now tests the
+painter against a stub engine that puts the label where the polyline never goes, which is the
+contract that matters, and it fails on that sabotage.
+
+**A finding from one of the new gates.** "Every emitted class has a stylesheet rule" found
+`mage-plain` — emitted on every unemphasized shape, with no rule anywhere. Harmless by design
+(`PLAIN_MARK` exists so `MARKS` can be compared against a named baseline and carries no treatment),
+so it is exempted by name rather than by a loose predicate, which leaves a SECOND unstyled class
+still failing.
+
+**Bundle cost, measured before and after by building HEAD in an isolated copy** rather than trusting
+the prior doc's number (the brief's "554 KB raw / 168 KB gz" was right, and is `workbench.js`):
+
+| | before | after | delta |
+|---|---|---|---|
+| `workbench.js` | 556,201 raw / 169,239 gz | 609,187 / 188,060 | +52,986 / **+18,821 (+11.1%)** |
+| `learn.js` | 395,259 / 120,739 | 448,512 / 139,630 | +53,253 / +18,891 |
+| `analysis.worker.js` | 312,293 / 93,430 | unchanged | 0 |
+
+dagre plus graphlib is 48,199 bytes of the minified bundle, 7.9%. The Worker bundle is untouched,
+which is the kernel/host boundary doing its job — layout is a host concern and never reaches the
+analysis engine.
+
+Gates at the final tree, every tier, nothing skipped: `check` clean, `check:parity` 0 violations over
+26 capabilities, node tier **862** (851 before, +5 collision properties +6 legend gates), `build`
+clean, smoke **3**, browser **61**, a11y **111**.
+
+**Recorded residue.** The corpus properties run on COLD layouts only. A node pinned at an arbitrary
+hint can still take an edge across the diagram, because honouring an arbitrary user position and
+routing cleanly are in genuine tension and the pinning contract wins — the old code had the same
+property. Stating it: incremental layouts are stable, not collision-free, and no gate claims
+otherwise.

@@ -368,6 +368,23 @@ export function paintDiagram(
     roots.text.append(marks);
   }
 
+  // The VOCABULARY key, before the emphasis legend: a reader needs to know what an arrow means
+  // before being told which arrows are highlighted. This is the half of the legend ruling that
+  // FR-A11Y-2 actually bites on — the relation type left the edges, so if it did not arrive here
+  // the picture would carry a distinction (four arrowheads) that the text view never explains.
+  if (scene.key.length > 0) {
+    roots.text.append(el("p", "What the shapes and arrows mean", "sublabel"));
+    const dl = el("dl", undefined, "prov");
+    for (const entry of scene.key) {
+      const how =
+        entry.channel === "relation"
+          ? `drawn as an arrow with a ${entry.form} head`
+          : `drawn as a ${entry.form === "state" ? "pill" : entry.form === "region" ? "large enclosing frame" : "box"}`;
+      dl.append(el("dt", entry.id), el("dd", `${entry.meaning} — ${how}`));
+    }
+    roots.text.append(dl);
+  }
+
   if (scene.legend.length > 0) {
     roots.text.append(el("p", "What the markers mean", "sublabel"));
     const dl = el("dl", undefined, "prov");

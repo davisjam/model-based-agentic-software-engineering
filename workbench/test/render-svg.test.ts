@@ -11,7 +11,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { MARKS, PLAIN_MARK, renderView, serialize } from "../src/render/index.ts";
-import type { EmphasisKind, MarkStyle, SvgNode } from "../src/render/index.ts";
+import type { EmphasisKind, LayoutEngine, MarkStyle, Point, SvgNode } from "../src/render/index.ts";
 import { BOUNDED, EXHAUSTIVE, docableSystem, publishTrace } from "./render-fixtures.ts";
 
 const walk = (n: SvgNode, out: SvgNode[] = []): SvgNode[] => {
@@ -272,4 +272,177 @@ test("the initial state is marked in the picture as well as stated in the twin",
   assert.equal(group?.attrs["data-initial"], "true");
   assert.ok(group?.children.some((c) => c.tag === "circle"), "an initial marker must be drawn");
   assert.equal(view.accessible.nodes.find((n) => n.id === "waiting")?.initial, true);
+});
+
+// -------------------------------------------------------------------------------------------
+// The legend ruling: type semantics in a key, not repeated on every edge
+//
+// Nothing held any of this before. The author's complaint — `may_propagate_to` written on all six
+// edges of a diagram — was true of a tree whose whole suite was green, and the three node shapes
+// had been drawn since Wave 0 with nothing anywhere saying what they mean. A ruling with no gate
+// behind it is a ruling the next wave reverts by accident, so these pin the shape of the fix in
+// BOTH directions: the type labels must stay off the edges, and the event names must stay on.
+// -------------------------------------------------------------------------------------------
+
+const edgeTexts = (view: ReturnType<typeof renderView>, kind: string): readonly string[] =>
+  walk(view.tree)
+    .filter((n) => n.attrs["data-edge-kind"] === kind)
+    .flatMap((g) => walk(g))
+    .filter((n) => n.tag === "text" && typeof n.attrs["class"] === "string" && String(n.attrs["class"]).includes("mage-edge-label"))
+    .map((n) => n.text ?? "");
+
+test("a relation's TYPE is not written on the edge — it is one key row", () => {
+  const view = renderView(docableSystem(), { subject: { kind: "model", id: "service-flow" } });
+  const types = [...new Set(view.layout.edges.filter((e) => e.kind === "relation").map((e) => e.via))];
+  assert.ok(types.length > 0, "service-flow must actually have relation types to key");
+
+  assert.deepEqual(edgeTexts(view, "relation"), [], "a relation edge must carry no text");
+  // Removed from the picture, NOT from the representation: the type is still the join key on the
+  // edge, still in the key strip, and still in every edge's own description.
+  for (const e of view.layout.edges.filter((x) => x.kind === "relation")) {
+    assert.ok(e.via !== null, `relation ${e.id} lost its type`);
+  }
+  for (const t of types) {
+    assert.ok(
+      view.accessible.key.some((k) => k.channel === "relation" && k.id === t),
+      `relation type ${String(t)} has no key row`,
+    );
+    assert.ok(
+      view.accessible.edges.some((e) => e.kind === "relation" && e.via === t && e.description.includes(String(t))),
+      `relation type ${String(t)} is not stated in any edge description`,
+    );
+  }
+});
+
+test("a transition's EVENT NAME is kept on the edge, because it is not a repeated type label", () => {
+  // The correction to the ruling's premise. `acquire` and `retry` name different events on
+  // different transitions: the text is topology-bearing, a key strip has nothing to say once, and
+  // two states joined by two transitions are distinguishable only by these words.
+  const view = machineView();
+  const labelled = view.layout.edges.filter((e) => e.kind === "transition" && e.label !== null);
+  assert.ok(labelled.length >= 2, "the document machine must have labelled transitions");
+  const painted = edgeTexts(view, "transition");
+  assert.deepEqual([...painted].sort(), labelled.map((e) => e.label as string).sort());
+});
+
+test("edge text is placed where the engine reserved room for it, not at a polyline vertex", () => {
+  // "Text participates in layout" made checkable, and it took two attempts. Asserting this against
+  // the real engine proves NOTHING: dagre reserves a label's box by inserting a dummy NODE into
+  // the edge, so its label position IS the polyline's middle vertex and the two readings agree by
+  // construction. Reverting the painter to the midpoint left this green — watched, on purpose.
+  //
+  // So the painter is tested against a STUB engine that puts the label somewhere the polyline
+  // never goes. That is the contract that matters: the painter obeys the engine rather than
+  // re-deriving a position, which is what makes a future engine's spacing decisions effective.
+  const away: Point = { x: 4242, y: 2424 };
+  const stub: LayoutEngine = (scene) => ({
+    direction: "left-to-right",
+    nodes: new Map(
+      scene.nodes.map((n, i) => [
+        n.id,
+        { id: n.id, kind: n.kind, label: n.label, rect: { x: i * 200, y: 0, w: 110, h: 46 }, rank: i, order: 0, parent: n.parent, initial: n.initial, pinned: false },
+      ]),
+    ),
+    edges: scene.edges
+      .filter((e) => e.kind === "transition")
+      .map((e) => ({
+        id: e.id,
+        kind: e.kind,
+        from: e.from,
+        to: e.to,
+        label: e.label,
+        via: e.via,
+        backedge: false,
+        selfLoop: false,
+        points: [{ x: 0, y: 0 }, { x: 100, y: 0 }, { x: 200, y: 0 }],
+        labelPoint: away,
+      })),
+    bounds: { x: 0, y: 0, w: 5000, h: 3000 },
+    ranks: scene.nodes.map((n) => [n.id]),
+  });
+  const view = renderView(docableSystem(), { subject: { kind: "machine", id: "document" } }, { engine: stub });
+  const labelled = view.layout.edges.filter((e) => e.label !== null);
+  assert.ok(labelled.length >= 2, "the fixture must have labelled transitions to place");
+  for (const e of labelled) {
+    const group = walk(view.tree).find((n) => n.attrs["data-edge-id"] === e.id);
+    const text = walk(group as SvgNode).find((n) => n.tag === "text" && String(n.attrs["class"] ?? "").includes("mage-edge-label"));
+    assert.ok(text, `${e.id} has a label but paints no text`);
+    assert.equal(Number(text.attrs["x"]), away.x, `${e.id}'s text ignored the reserved spot`);
+    assert.ok(Math.abs(Number(text.attrs["y"]) - away.y) <= 6, `${e.id}'s text is not on the reserved baseline`);
+  }
+
+  // And against the real engine: every labelled edge gets a reserved spot at all. An engine that
+  // returned `labelPoint: null` would silently fall back to the midpoint for every edge.
+  for (const e of machineView().layout.edges) {
+    if (e.label === null || e.points.length < 2) continue;
+    assert.ok(e.labelPoint !== null, `${e.id} carries text but the engine reserved no spot for it`);
+  }
+});
+
+test("the key explains the vocabulary in the picture AND in the twin, and is drawn without emphasis", () => {
+  for (const view of [machineView(), graphView()]) {
+    assert.ok(view.accessible.key.length > 0, "every diagram with shapes has a vocabulary to key");
+    const layer = walk(view.tree).find((n) => n.attrs["data-layer"] === "key");
+    assert.ok(layer, "the key must be DRAWN, not only carried in the twin");
+    assert.deepEqual(
+      layer.children.map((g) => `${String(g.attrs["data-key-channel"])}:${String(g.attrs["data-key-id"])}`),
+      view.accessible.key.map((k) => `${k.channel}:${k.id}`),
+      "the drawn key and the twin's key must be the same list, in the same order",
+    );
+    // Every node shape actually used gets a row; an unused shape must not be keyed.
+    const kinds = new Set([...view.layout.nodes.values()].map((n) => n.kind));
+    assert.deepEqual(
+      view.accessible.key.filter((k) => k.channel === "shape").map((k) => k.id).sort(),
+      [...kinds].sort(),
+    );
+    // The EMPHASIS legend is a different key with a different lifetime: absent until something is
+    // emphasised, which is the property the a11y tier uses to prove a change reached its render.
+    assert.equal(view.accessible.legend.length, 0);
+    assert.equal(walk(view.tree).some((n) => n.attrs["data-layer"] === "legend"), false);
+  }
+});
+
+test("relation types are distinguished by arrowhead FORM, so colour is never the only channel", () => {
+  const view = renderView(docableSystem(), { subject: { kind: "model", id: "service-flow" } });
+  const rows = view.accessible.key.filter((k) => k.channel === "relation");
+  assert.ok(rows.length >= 2, "service-flow must have at least two relation types to confuse");
+  // Distinct form AND distinct class per type: either channel alone identifies the type.
+  assert.equal(new Set(rows.map((r) => r.form)).size, rows.length, "two relation types share an arrowhead form");
+  assert.equal(new Set(rows.map((r) => r.className)).size, rows.length, "two relation types share a stroke class");
+  // And the form the key advertises is the form the edge is actually drawn with.
+  for (const row of rows) {
+    const edge = view.layout.edges.find((e) => e.kind === "relation" && e.via === row.id);
+    const group = walk(view.tree).find((n) => n.attrs["data-edge-id"] === edge?.id);
+    assert.equal(group?.attrs["data-arrow-form"], row.form);
+    assert.ok(
+      String(walk(group as SvgNode).find((n) => n.tag === "polyline" && String(n.attrs["class"]).includes("mage-edge"))?.attrs["marker-end"]).includes(String(row.form)),
+      `the ${row.id} edge does not use the ${row.form} head its key row promises`,
+    );
+  }
+});
+
+test("every class the renderer emits has a stylesheet rule, including the new key and relation ones", () => {
+  // The 'class: null' incident shipped black boxes because a class reached no element; the mirror
+  // failure is an element reaching no rule. Both directions now have a gate.
+  const view = renderView(docableSystem(), {
+    subject: { kind: "model", id: "service-flow" },
+    emphasis: [{ target: "api", kind: "violation", reason: "r", step: null }],
+  });
+  const style = walk(view.tree).find((n) => n.tag === "style")?.text ?? "";
+  const emitted = new Set(
+    walk(view.tree)
+      .flatMap((n) => String(n.attrs["class"] ?? "").split(/\s+/))
+      .filter((c) => c.startsWith("mage-")),
+  );
+  // `mage-plain` is the ONE deliberate exception, and this gate found it. `PLAIN_MARK` exists so
+  // `MARKS` can be compared against a named baseline; its class carries no treatment on purpose,
+  // so an empty rule would be noise. Exempted by name rather than by a loose predicate, so a
+  // SECOND unstyled class still fails here.
+  assert.equal(PLAIN_MARK.className, "mage-plain");
+  for (const c of [...emitted].sort()) {
+    if (c === PLAIN_MARK.className) continue;
+    assert.ok(style.includes(`.${c}`), `class ${c} is emitted but has no stylesheet rule`);
+  }
+  assert.ok(emitted.has("mage-key"), "the key's text class must actually be emitted");
+  assert.ok([...emitted].some((c) => /^mage-rel-[a-d]$/.test(c)), "a relation stroke class must be emitted");
 });

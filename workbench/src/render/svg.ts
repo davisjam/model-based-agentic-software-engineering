@@ -23,12 +23,21 @@
 import { systemHash } from "../ir/hash.ts";
 import type { CanonicalSystem } from "../ir/types.ts";
 import { buildAccessibleScene, deriveEvidenceEmphasis } from "./accessible.ts";
-import { METRICS, defaultLayoutEngine } from "./layout.ts";
+import {
+  METRICS,
+  TEXT_SIZES,
+  initialMarkerCentre,
+  initialMarkerTarget,
+  textExtent,
+} from "./layout.ts";
 import type { LayoutEngine } from "./layout.ts";
+import { defaultLayoutEngine } from "./layout-dagre.ts";
 import { buildScene } from "./scene.ts";
 import type {
+  ArrowForm,
   EmphasisAssignment,
   EmphasisKind,
+  KeyEntry,
   Layout,
   LayoutEdge,
   LayoutNode,
@@ -38,7 +47,7 @@ import type {
   SceneRequest,
   SvgNode,
 } from "./types.ts";
-import { MARKS, MARK_MEANINGS, PLAIN_MARK } from "./types.ts";
+import { ARROW_FORMS, MARKS, MARK_MEANINGS, PLAIN_MARK, RELATION_CLASSES } from "./types.ts";
 
 // --------------------------------------------------------------------------------------------
 // Tree construction and serialization
@@ -160,6 +169,25 @@ const STYLE = `
 .mage-glyph { font-size: ${METRICS.fontSize}px; font-weight: 700; fill: #11151c; }
 .mage-initial { fill: #11151c; stroke: #11151c; }
 .mage-legend { font-size: ${METRICS.fontSize - 2}px; fill: #11151c; }
+.mage-key { font-size: ${METRICS.fontSize - 2}px; fill: #11151c; }
+.mage-key-title { font-size: ${METRICS.fontSize - 2}px; fill: #434b5a; font-weight: 700; }
+.mage-arrowhead path { fill: #2a3242; }
+/* RELATION TYPE: hue plus arrowhead form, which the key strip states. The Okabe-Ito subset that
+   clears 3:1 against the figure ground -- 5.19, 3.87, 3.42 and 3.06 to one on #ffffff. The three
+   Okabe-Ito entries that fail that floor (#E69F00 at 2.25, #56B4E9 at 2.31, #F0E442 at 1.32) are
+   deliberately absent, which is also why there are four forms and not eight. */
+.mage-rel-a { stroke: #0072B2; }
+.mage-rel-b { stroke: #D55E00; }
+.mage-rel-c { stroke: #009E73; }
+.mage-rel-d { stroke: #CC79A7; }
+.mage-rel-a-head path { fill: #0072B2; }
+.mage-rel-b-head path { fill: #D55E00; }
+.mage-rel-c-head path { fill: #009E73; }
+.mage-rel-d-head path { fill: #CC79A7; }
+/* The EMPHASIS underlay. Emphasis used to own the stroke hue, which left nothing for relation type
+   to use; it is now a wide translucent band BEHIND the edge, so the two channels coexist and
+   neither depends on the other being legible. */
+.mage-underlay { fill: none; opacity: 0.3; stroke-linecap: round; }
 /* Hue is a REDUNDANT channel. Every rule below repeats information already carried by stroke
    weight, dash pattern, opacity or the ASCII glyph in MARKS. */
 .mage-selected { stroke: #0b4f9e; }
@@ -173,13 +201,51 @@ const STYLE = `
 @media (prefers-contrast: more) { .mage-box, .mage-state, .mage-edge { stroke: #000; } }
 `.trim();
 
+/**
+ * One marker per arrowhead form. The form is a REDUNDANT channel beside the relation-type stroke
+ * hue: the ruling asks for colour plus shape, so a reader who cannot separate `#0072B2` from
+ * `#009E73` still reads a triangle against a diamond, and a greyscale print loses nothing.
+ *
+ * `markerUnits: userSpaceOnUse` keeps the head a fixed size rather than scaling with the stroke
+ * weight an emphasis sets, so an emphasised edge does not grow a different-looking head and
+ * accidentally read as a different relation type.
+ */
+const ARROW_PATHS: Readonly<Record<ArrowForm, string>> = {
+  triangle: "M0,0 L10,4 L0,8 z",
+  open: "M0,0 L10,4 L0,8 L3,4 z",
+  diamond: "M0,4 L5,0 L10,4 L5,8 z",
+  square: "M1,1 L9,1 L9,7 L1,7 z",
+};
+
+const markerId = (form: ArrowForm): string => `mage-arrow-${form}`;
+
 const defs = (): SvgNode =>
   el("defs", {}, [
     el("style", { type: "text/css" }, [], STYLE),
+    // `ARROW_FORMS[i]` and `RELATION_CLASSES[i]` are assigned to a relation type by the same index,
+    // so each form's head is tinted to match the stroke it terminates without a second mapping.
+    ...ARROW_FORMS.map((form, i) =>
+      el(
+        "marker",
+        {
+          id: markerId(form),
+          markerWidth: 10,
+          markerHeight: 8,
+          refX: 9,
+          refY: 4,
+          orient: "auto-start-reverse",
+          markerUnits: "userSpaceOnUse",
+          class: `mage-arrowhead ${RELATION_CLASSES[i] ?? ""}-head`.trim(),
+        },
+        [el("path", { d: ARROW_PATHS[form] })],
+      ),
+    ),
+    // The plain head, for transitions and containment — a machine has one edge kind, so its arrows
+    // need no vocabulary and must not borrow a relation type's form.
     el(
       "marker",
       { id: "mage-arrow", markerWidth: 10, markerHeight: 8, refX: 9, refY: 4, orient: "auto-start-reverse", markerUnits: "userSpaceOnUse" },
-      [el("path", { d: "M0,0 L10,4 L0,8 z", fill: "#2a3242" })],
+      [el("path", { d: ARROW_PATHS.triangle, fill: "#2a3242" })],
     ),
   ]);
 
@@ -202,17 +268,22 @@ function nodeShape(node: LayoutNode, r: Resolved): SvgNode {
   return el("rect", { ...common, rx: 6, class: `mage-box ${r.mark.className}`.trim(), ...markAttrs(r) });
 }
 
-/** Initial-state marker: a filled dot and a stub arrow entering the backward face. */
+/**
+ * Initial-state marker: a filled dot and a stub arrow entering the backward face.
+ *
+ * The dot's offset and radius come from `METRICS` through `initialMarkerCentre`, NOT from literals
+ * here. They used to be the literals `26` and `5`, known to this function and to nothing else — so
+ * `bounds` could not reserve room for the dot and the viewBox cut it in half in every machine
+ * diagram the project ships. One definition, two readers.
+ */
 function initialMarker(node: LayoutNode, layout: Layout): readonly SvgNode[] {
   if (!node.initial) return [];
-  const ltr = layout.direction === "left-to-right";
-  const cx = ltr ? node.rect.x - 26 : node.rect.x + node.rect.w / 2;
-  const cy = ltr ? node.rect.y + node.rect.h / 2 : node.rect.y - 26;
-  const to: Point = ltr
-    ? { x: node.rect.x, y: node.rect.y + node.rect.h / 2 }
-    : { x: node.rect.x + node.rect.w / 2, y: node.rect.y };
+  const c = initialMarkerCentre(node.rect, layout.direction);
+  const cx = c.x;
+  const cy = c.y;
+  const to: Point = initialMarkerTarget(node.rect, layout.direction);
   return [
-    el("circle", { cx, cy, r: 5, class: "mage-initial" }),
+    el("circle", { cx, cy, r: METRICS.initialMarkerRadius, class: "mage-initial" }),
     el("line", {
       x1: cx,
       y1: cy,
@@ -285,25 +356,44 @@ function nodeGroup(
   );
 }
 
-function edgeGroup(edge: LayoutEdge, r: Resolved): SvgNode | null {
+function edgeGroup(edge: LayoutEdge, r: Resolved, key: ReadonlyMap<string, KeyEntry>): SvgNode | null {
   if (edge.points.length < 2) return null;
-  const mid = edge.points[Math.floor(edge.points.length / 2)] as Point;
-  const children: SvgNode[] = [
+  // The label goes WHERE THE ENGINE RESERVED ROOM FOR IT. The polyline-midpoint fallback is for an
+  // engine that claimed no spot; it is the behaviour that painted two words at one coordinate.
+  const anchor = edge.labelPoint ?? (edge.points[Math.floor(edge.points.length / 2)] as Point);
+
+  const rel = edge.kind === "relation" && edge.via !== null ? key.get(`relation:${edge.via}`) : undefined;
+  const form = rel === undefined ? null : (rel.form as ArrowForm);
+  const children: SvgNode[] = [];
+
+  // The emphasis band is painted FIRST and underneath, so it reads as a highlight over the edge
+  // rather than as a recolouring of it — which is what frees the stroke hue for relation type.
+  if (r.kind !== null) {
+    children.push(
+      el("polyline", {
+        points: polyline(edge.points),
+        class: `mage-underlay ${r.mark.className}`,
+        "stroke-width": r.mark.strokeWidth * 3,
+        fill: "none",
+      }),
+    );
+  }
+  children.push(
     el("polyline", {
       points: polyline(edge.points),
-      class: `mage-edge ${r.mark.className}`.trim(),
-      "marker-end": "url(#mage-arrow)",
+      class: `mage-edge ${rel?.className ?? ""} ${r.mark.className}`.replace(/\s+/g, " ").trim(),
+      "marker-end": form === null ? "url(#mage-arrow)" : `url(#${markerId(form)})`,
       fill: "none",
       ...markAttrs(r),
     }),
-  ];
+  );
   if (edge.label !== null) {
     children.push(
-      el("text", { x: mid.x, y: mid.y - 6, "text-anchor": "middle", class: "mage-edge-label" }, [], edge.label),
+      el("text", { x: anchor.x, y: anchor.y + 4, "text-anchor": "middle", class: "mage-edge-label" }, [], edge.label),
     );
   }
   if (r.glyph !== null) {
-    children.push(el("text", { x: mid.x, y: mid.y + 13, "text-anchor": "middle", class: "mage-glyph" }, [], r.glyph));
+    children.push(el("text", { x: anchor.x, y: anchor.y + 17, "text-anchor": "middle", class: "mage-glyph" }, [], r.glyph));
   }
   return el(
     "g",
@@ -314,6 +404,7 @@ function edgeGroup(edge: LayoutEdge, r: Resolved): SvgNode | null {
       "data-from": edge.from,
       "data-to": edge.to,
       "data-via": edge.via,
+      "data-arrow-form": form,
       "data-backedge": edge.backedge ? "true" : null,
       "data-emphasis": r.kind,
     },
@@ -329,7 +420,7 @@ function edgeGroup(edge: LayoutEdge, r: Resolved): SvgNode | null {
 function legendStrip(kinds: readonly EmphasisKind[], x: number, y: number): readonly SvgNode[] {
   return kinds.map((kind, i) => {
     const m = MARKS[kind];
-    const row = y + i * 18;
+    const row = y + i * ROW_PITCH;
     return el("g", { "data-legend-kind": kind }, [
       el("line", {
         x1: x,
@@ -343,6 +434,52 @@ function legendStrip(kinds: readonly EmphasisKind[], x: number, y: number): read
       }),
       el("text", { x: x + 42, y: row + 4, class: "mage-glyph" }, [], m.glyph ?? "1,2"),
       el("text", { x: x + 72, y: row + 4, class: "mage-legend" }, [], MARK_MEANINGS[kind]),
+    ]);
+  });
+}
+
+const ROW_PITCH = 18;
+/** Where a key row's meaning text starts, measured from the strip's left edge. */
+const KEY_TEXT_X = 48;
+
+/**
+ * The VOCABULARY key: one row per relation type, one per node shape.
+ *
+ * This is the author's "put relation/type semantics in a legend, not repeated labels", and it is
+ * the reason an edge no longer carries its type as text. A row shows the SAMPLE — a stroke in the
+ * type's hue ending in the type's arrowhead form, or the shape's own outline — beside the words,
+ * so the mapping is learned from the key rather than guessed from the picture.
+ *
+ * Drawn in its own `data-layer`, separate from the emphasis legend, because the two have different
+ * lifetimes: this one is present whenever the diagram has a vocabulary, and the emphasis legend
+ * appears only once a query has emphasised something.
+ */
+function keyStrip(entries: readonly KeyEntry[], x: number, y: number): readonly SvgNode[] {
+  return entries.map((entry, i) => {
+    const row = y + i * ROW_PITCH;
+    const sample =
+      entry.channel === "relation"
+        ? el("line", {
+            x1: x,
+            y1: row,
+            x2: x + 30,
+            y2: row,
+            class: `mage-edge ${entry.className}`,
+            "stroke-width": 2,
+            "marker-end": `url(#${markerId(entry.form as ArrowForm)})`,
+          })
+        : el("rect", {
+            x,
+            y: row - 6,
+            width: 30,
+            height: 12,
+            rx: entry.form === "state" ? 6 : entry.form === "region" ? 4 : 2,
+            class: entry.form === "region" ? "mage-region" : entry.form === "state" ? "mage-state" : "mage-box",
+            "stroke-width": 1.5,
+          });
+    return el("g", { "data-key-channel": entry.channel, "data-key-id": entry.id, "data-key-form": entry.form }, [
+      sample,
+      el("text", { x: x + KEY_TEXT_X, y: row + 4, class: "mage-key" }, [], entry.meaning),
     ]);
   });
 }
@@ -403,8 +540,9 @@ export function renderView(
   const readingIndex = new Map(accessible.nodes.map((n) => [n.id, n.readingIndex]));
   const show = new Set(req.showProperties ?? []);
 
+  const keyByChannel = new Map(accessible.key.map((k) => [`${k.channel}:${k.id}`, k]));
   const edgeNodes = layout.edges
-    .map((e) => edgeGroup(e, resolve(byTarget.get(e.id) ?? [])))
+    .map((e) => edgeGroup(e, resolve(byTarget.get(e.id) ?? []), keyByChannel))
     .filter((n): n is SvgNode => n !== null);
 
   // Regions first so their children draw on top of the enclosing frame.
@@ -420,13 +558,40 @@ export function renderView(
     return nodeGroup(n, layout, resolve(byTarget.get(n.id) ?? []), subs, readingIndex.get(n.id) ?? 0);
   });
 
+  // --- the strips below the diagram, and the viewBox that must contain all of it ---------------
+  //
+  // The viewBox used to be `layout.bounds` widened to a flat 420 whenever a legend existed. That
+  // number was a guess at how wide a row of legend text would be, and it was wrong: the longest
+  // emphasis meaning reaches past x = 490 on its own, so the strip was simply cut off. Every strip
+  // is now MEASURED with the same no-DOM estimator the layout uses, and the viewBox is the union.
   const legendKinds = accessible.legend.map((l) => l.kind);
-  const legendHeight = legendKinds.length === 0 ? 0 : legendKinds.length * 18 + 20;
+  const keyEntries = accessible.key;
+  const stripX = layout.bounds.x + METRICS.margin;
+  const keyTop = layout.bounds.y + layout.bounds.h + ROW_PITCH;
+  const keyRows = keyEntries.length === 0 ? [] : keyStrip(keyEntries, stripX, keyTop);
+  const legendTop = keyTop + (keyEntries.length === 0 ? 0 : keyEntries.length * ROW_PITCH + ROW_PITCH);
+  const legendRows = legendKinds.length === 0 ? [] : legendStrip(legendKinds, stripX, legendTop);
+
+  // `layout.bounds` already carries a margin on all four sides, so only the STRIP extents get one
+  // added. Taking the margin on the union instead inflated every diagram by 28 units of empty
+  // canvas on the right — a small thing that nonetheless shrinks the picture inside a fixed frame.
+  const stripRight = Math.max(
+    0,
+    ...keyEntries.map((e) => stripX + KEY_TEXT_X + textExtent(e.meaning, "mage-key").w),
+    ...legendKinds.map((k) => stripX + 72 + textExtent(MARK_MEANINGS[k], "mage-legend").w),
+  );
+  const stripBottom =
+    legendKinds.length > 0
+      ? legendTop + (legendKinds.length - 1) * ROW_PITCH + TEXT_SIZES["mage-legend"]
+      : keyEntries.length > 0
+        ? keyTop + (keyEntries.length - 1) * ROW_PITCH + TEXT_SIZES["mage-key"]
+        : 0;
+
   const view = {
     x: layout.bounds.x,
     y: layout.bounds.y,
-    w: Math.max(layout.bounds.w, legendKinds.length === 0 ? 0 : 420),
-    h: layout.bounds.h + legendHeight,
+    w: Math.max(layout.bounds.x + layout.bounds.w, stripRight + METRICS.margin) - layout.bounds.x,
+    h: Math.max(layout.bounds.y + layout.bounds.h, stripBottom + METRICS.margin) - layout.bounds.y,
   };
 
   const titleId = `mage-title-${scene.subject.id}`;
@@ -456,15 +621,8 @@ export function renderView(
       defs(),
       el("g", { "data-layer": "edges" }, edgeNodes),
       el("g", { "data-layer": "nodes" }, nodeNodes),
-      ...(legendKinds.length === 0
-        ? []
-        : [
-            el(
-              "g",
-              { "data-layer": "legend" },
-              legendStrip(legendKinds, view.x + METRICS.margin, layout.bounds.y + layout.bounds.h + 16),
-            ),
-          ]),
+      ...(keyRows.length === 0 ? [] : [el("g", { "data-layer": "key" }, keyRows)]),
+      ...(legendRows.length === 0 ? [] : [el("g", { "data-layer": "legend" }, legendRows)]),
     ],
   );
 
