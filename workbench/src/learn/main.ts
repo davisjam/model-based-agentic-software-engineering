@@ -199,9 +199,17 @@ const sub = (text: string): HTMLElement => el("p", text, "sublabel");
  * Extracted on the second site, not the third: the quantitative section built one inline and the
  * question sections need the same thing. Two copies would be two answers to "how does a table on
  * this page scroll at 320px", and the a11y tier pins that it does not overflow the page.
+ *
+ * `tabindex="0"` is not decoration: a region that scrolls must be reachable by keyboard, or a
+ * keyboard-only reader cannot see the columns past the fold (WCAG 2.1.1, axe
+ * `scrollable-region-focusable`). It is set UNCONDITIONALLY because whether this container actually
+ * overflows depends on viewport and font metrics — CI's headless browser overflowed it while a
+ * local run did not, which is precisely why the structural invariant is pinned by
+ * `learn-scroll-focusable.test.ts` rather than left to the viewport-dependent axe tier to catch.
  */
 function rowsTable(columns: readonly string[], rows: readonly (readonly string[])[]): HTMLElement {
   const scroll = el("div", undefined, "scroll");
+  scroll.setAttribute("tabindex", "0");
   const table = el("table");
   const head = el("thead");
   const hr = el("tr");
