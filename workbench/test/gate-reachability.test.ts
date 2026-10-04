@@ -26,6 +26,11 @@
 // the second lets a defect reach the published site. Neither axis implies the other, and holding
 // only one would have missed one of the two instances.
 //
+// A THIRD axis sits at the foot of this file, and it is the same failure one level down. Both axes
+// above reason about SCRIPT NAMES; a test runner takes GLOBS. So a gate can land in a file no
+// pattern matches, or a pattern can match nothing at all — in both cases every name is wired and
+// nothing runs. See "the axis both of the above are blind to".
+//
 // DECLARED EXCLUSIONS, not mandatory coverage. The browser and a11y tiers are out of `all` for a
 // measured reason: 10.5s and 36.3s against 9.9s for the whole node tier, and both need a Chromium
 // resolved from `book/node_modules` that this package deliberately does not depend on. A fresh
@@ -692,4 +697,186 @@ test("the single-threshold audit fires on each way the number comes back — neg
   // An unreadable runner must not read as a pass.
   assert.match(auditSingleThreshold(base, null, scripts)[0] ?? "", /cannot be read/,
     "a missing workflow must be reported, never skipped");
+});
+
+// ----------------------------------------------------------------------------------------------
+// The axis both of the above are blind to: a gate in a FILE no runner's glob matches
+// ----------------------------------------------------------------------------------------------
+//
+// Everything above reasons about SCRIPT NAMES. A test runner does not take names, it takes globs —
+// `node --test "test/browser/*.test.mjs"` — and the two failures that follow are invisible to a
+// name walk:
+//
+//   - A gate lands in a FILE no gate script's pattern matches. Nothing is unwired by name; the file
+//     is simply never handed to a runner. From `scripts` alone it is indistinguishable from a file
+//     that runs, which is the same indistinguishability instances 1 and 3 turned on.
+//   - A pattern matches NOTHING. `node --test` over a glob that matches no file exits 0 and prints
+//     "pass 0", so a renamed directory reads as a green tier that ran nothing. The harness already
+//     works around the consequence with hard-asserted receipts; this catches the cause.
+//
+// Both directions, over patterns DERIVED from `package.json` — the same discipline the name walk
+// uses, for the same reason. A literal list of globs here would be a second copy of the manifest.
+//
+// `**` is deliberately unsupported and ASSERTED absent rather than approximated: a matcher that
+// under-approximates a recursive glob would report files as unreached that a runner does reach,
+// and a false red on a wiring check is how a wiring check gets deleted.
+
+/** Test files are these two shapes. `.mjs` for the browser tiers, `.ts` for the typed node tier. */
+const TEST_FILE = /\.test\.(ts|mjs)$/;
+
+/** Patterns a command hands to `node --test`, with the shell quoting taken off. */
+const testPatterns = (command: string): readonly string[] => {
+  const tail = /node\s+--test\s+(.+)$/.exec(command)?.[1];
+  if (tail === undefined) return [];
+  return [...tail.matchAll(/"([^"]+)"|'([^']+)'|(\S+)/g)]
+    .map((m) => m[1] ?? m[2] ?? m[3] ?? "")
+    .filter((token) => token.length > 0 && !token.startsWith("-"));
+};
+
+/** A glob over one path, with `*` confined to a single segment. */
+const globToRegExp = (pattern: string): RegExp => {
+  const body = pattern.split("/")
+    .map((segment) => segment.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^/]*"))
+    .join("/");
+  return new RegExp(`^${body}$`);
+};
+
+/** Every test file under `test/`, package-relative, in the spelling a pattern would match. */
+const testFiles = (dir = "test"): readonly string[] => {
+  const out: string[] = [];
+  for (const entry of readdirSync(dir, { recursive: true, encoding: "utf8" })) {
+    const path = `${dir}/${entry}`;
+    if (TEST_FILE.test(path) && statSync(path).isFile()) out.push(path);
+  }
+  return out.sort();
+};
+
+/**
+ * The gate files this wave added, declared so DELETING one is a failure rather than a quieter gate.
+ *
+ * The glob audit below is the general control and it cannot make this claim: a file that no longer
+ * exists is matched by no pattern and reported by nothing, so a coverage gate could be removed and
+ * every check in this file would stay green. These two carry FR-AGENT's only mechanical coverage —
+ * the operation census over `window.mage` and the CDP attach path — so their existence is the claim
+ * worth pinning, alongside the script whose glob is supposed to reach them.
+ */
+const AGENT_SURFACE_GATES: readonly { readonly file: string; readonly script: string; readonly reason: string }[] = [
+  {
+    file: "test/browser/agent-coverage.test.mjs",
+    script: "test:browser",
+    reason: "The agent surface's coverage census: every operation `describe()` advertises is driven, "
+      + "and every callable on `window.mage` is invoked. It is the agent-side counterpart of "
+      + "`check:parity`, and it is a TEST rather than a script because the numbers it reports come "
+      + "from a served page in a real browser.",
+  },
+  {
+    file: "test/browser/attach.test.mjs",
+    script: "test:browser",
+    reason: "FR-AGENT-1's transport: two independent clients attached over CDP to a browser neither "
+      + "launched. Every other suite reaches the page through `puppeteer.launch`, so attach could "
+      + "break outright and the browser tier would stay green.",
+  },
+];
+
+/** One glob a gate script hands to `node --test`, and which script hands it over. */
+interface TierPattern {
+  readonly pattern: string;
+  readonly script: string;
+}
+
+/** Both directions, over supplied inputs, so the negative control can drive each defect. */
+function auditTestFileReachability(
+  files: readonly string[], patterns: readonly TierPattern[],
+): readonly string[] {
+  const issues: string[] = [];
+  for (const { pattern, script } of patterns) {
+    if (!pattern.includes("**")) continue;
+    issues.push(`\`${script}\` uses a recursive glob (${pattern}), which this matcher does not `
+      + `model. Either teach it \`**\` or keep the patterns one segment deep — an approximated glob `
+      + `reports files as unreached that the runner reaches, and a false red on a wiring check is `
+      + `how a wiring check gets deleted.`);
+  }
+  const matchers = patterns.map((p) => ({ ...p, re: globToRegExp(p.pattern) }));
+  for (const file of files) {
+    if (matchers.some((m) => m.re.test(file))) continue;
+    issues.push(`\`${file}\` is a test file and no gate script's glob matches it, so no runner ever `
+      + `hands it to \`node --test\`. Nothing is unwired by NAME — which is why the two audits above `
+      + `cannot see this, and why an unreached file and a running one look identical from \`scripts\`.`);
+  }
+  for (const { pattern, script, re } of matchers) {
+    if (files.some((file) => re.test(file))) continue;
+    issues.push(`\`${script}\` runs \`node --test ${pattern}\` and nothing matches it. \`node --test\` `
+      + `over a glob that matches no file exits 0 and reports "pass 0", so this is a green tier that `
+      + `measured nothing.`);
+  }
+  return issues;
+}
+
+/** Every glob the gate scripts hand to `node --test`, with the script that hands it over. */
+const tierPatterns = (scripts: Readonly<Record<string, string>>): readonly TierPattern[] =>
+  Object.keys(scripts).filter(isGate)
+    .flatMap((script) => testPatterns(scripts[script] ?? "").map((pattern) => ({ pattern, script })));
+
+test("every test file is matched by a gate script's glob, and every glob matches a file", () => {
+  const patterns = tierPatterns(manifestScripts());
+  const files = testFiles();
+  // Both inputs asserted before the rule reads them: a probe that finds nothing is usually the
+  // probe, and this audit passes trivially over an empty file list or an empty pattern list.
+  assert.ok(patterns.length >= 4,
+    `found ${patterns.length} test pattern(s) across the gate scripts; this package runs more tiers than that`);
+  assert.ok(files.length > 40, `walked ${files.length} test file(s) — the tree walk is wrong`);
+  const issues = auditTestFileReachability(files, patterns);
+  assert.deepEqual(issues, [], `test-file reachability:\n  ${issues.join("\n  ")}\n`);
+});
+
+test("the glob audit fires on each defect it exists to catch — negative control", () => {
+  const tiers: readonly TierPattern[] = [
+    { pattern: "test/*.test.ts", script: "test" },
+    { pattern: "test/browser/*.test.mjs", script: "test:browser" },
+  ];
+  const reached = ["test/ir.test.ts", "test/browser/workbench.test.mjs"];
+  assert.deepEqual(auditTestFileReachability(reached, tiers), [],
+    "the wired shape must pass, or every delta below is measured against a red baseline");
+
+  // The failure a name walk cannot see: a gate lands one directory deeper than any pattern reaches.
+  const orphaned = auditTestFileReachability([...reached, "test/browser/deep/agent.test.mjs"], tiers);
+  assert.equal(orphaned.length, 1, `one finding expected, got ${orphaned.length}: ${orphaned.join("; ")}`);
+  assert.match(orphaned[0] ?? "", /deep\/agent\.test\.mjs/, "the finding must name the file");
+  assert.match(orphaned[0] ?? "", /no gate script's glob matches it/);
+
+  // A `*` must not cross a segment boundary, or the matcher would call the orphan above reached.
+  assert.ok(!globToRegExp("test/browser/*.test.mjs").test("test/browser/deep/agent.test.mjs"),
+    "the glob matcher lets `*` cross a path separator, so it over-reports coverage");
+
+  // The other direction: the pattern that matches nothing, which prints a green tier having run
+  // nothing at all.
+  const empty = auditTestFileReachability(reached,
+    [...tiers, { pattern: "test/perf/*.test.mjs", script: "test:perf" }]);
+  assert.ok(empty.some((m) => /matched nothing|nothing matches it/.test(m)),
+    `a pattern matching no file must be reported: ${empty.join("; ")}`);
+
+  // And the unsupported recursive glob, reported rather than approximated.
+  const recursive = auditTestFileReachability(reached,
+    [{ pattern: "test/**/*.test.mjs", script: "test:all" }, ...tiers]);
+  assert.ok(recursive.some((m) => /recursive glob/.test(m)),
+    `a recursive glob must be reported: ${recursive.join("; ")}`);
+});
+
+test("the agent-surface gates exist, and the script declared for each one reaches it", () => {
+  const scripts = manifestScripts();
+  for (const gate of AGENT_SURFACE_GATES) {
+    assert.ok(gate.reason.trim().length >= MIN_REASON,
+      `${gate.file} is registered with a ${gate.reason.trim().length}-character reason; at least `
+      + `${MIN_REASON} are required. Say what the gate holds, or the registration is a filename.`);
+    assert.ok(existsSync(gate.file),
+      `${gate.file} is registered as a gate and does not exist. ${gate.reason}`);
+    assert.ok(statSync(gate.file).size > 0, `${gate.file} is empty`);
+    const command = scripts[gate.script];
+    assert.ok(command !== undefined,
+      `${gate.file} names \`${gate.script}\` as its runner and package.json has no such script`);
+    const reaches = testPatterns(command).some((pattern) => globToRegExp(pattern).test(gate.file));
+    assert.ok(reaches,
+      `\`${gate.script}\` is declared as the runner for ${gate.file} and its patterns `
+      + `(${testPatterns(command).join(", ")}) do not match it`);
+  }
 });
