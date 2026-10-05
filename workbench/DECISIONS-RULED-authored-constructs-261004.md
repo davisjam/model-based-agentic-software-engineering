@@ -143,5 +143,14 @@ can never be discharged is a bad trigger.
   is real and is recorded rather than dismissed: V39 is the same dangling-reference class pointed at
   a quantity ceiling and IS a validator rule, on the argument that a dangling authored reference
   should be one finding rather than a refusal one tool explains and the other never sees. Adding
-  V41 would cost a mirrored rule in `validate.py`, a parity-set entry, a `SEMANTICS.md` heading the
-  `SPEC_SECTION` table can cite, and a third copy of the proposition vocabulary. Floated, not built.
+  such a rule would cost a mirrored rule in `validate.py`, a parity-set entry, a `SEMANTICS.md`
+  heading the `SPEC_SECTION` table can cite, and a third copy of the proposition vocabulary.
+  Floated, not built.
+
+  **No ID is reserved for it, deliberately** — this paragraph said "V41" when written, and on
+  261005 the multi-machine wave landed V41 (vacuity disclosure) and V42 (the composition) in
+  `SEMANTICS.md`, which at the time topped out at V40. A floated rule must not hold an invariant
+  number: IDs are the join key tests and audits cite, they are allocated by whoever LANDS first,
+  and a prospective one sitting in prose becomes a collision the moment a sibling wave reaches for
+  the next free integer. Whoever builds this rule assigns its ID then, from the highest landed
+  heading in `SEMANTICS.md`.
