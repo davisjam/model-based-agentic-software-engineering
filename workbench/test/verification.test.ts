@@ -46,6 +46,8 @@ import { evaluationOf } from "../src/ir/types.ts";
 import type {
   Coverage, EvaluationStatus, Outcome, PropositionValue, QueryEvaluation, QueryResult,
 } from "../src/ir/types.ts";
+import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
+import { fixturePathFor } from "../src/learn/fixtures.ts";
 import { declaredUnion, unionMembersIn } from "./union-probe.ts";
 
 const IR_SOURCE = "src/ir/types.ts";
@@ -166,8 +168,8 @@ test("the corpus's shipped requirements all parse, under BOTH polarities", () =>
   // would enshrine a constraint the example corpus does not have.
   const seen = new Set<PropositionValue>();
   let count = 0;
-  for (const file of ["message-bus", "transaction-workspace", "document-processing", "worker-queue"]) {
-    const path = `examples/${file}/expected-results.yaml`;
+  for (const example of SHIPPED_EXAMPLE_IDS) {
+    const path = fixturePathFor(example);
     const doc = parse(readFileSync(path, "utf8")) as { requirements?: readonly unknown[] };
     for (const raw of doc.requirements ?? []) {
       // The quantitative route (`decided_by` + `declared_as`) carries no `satisfied_when` and is
