@@ -2,18 +2,18 @@
 title: Modeling
 sessions:
   - "Modeling: Purposeful Reduction"
-  - "Modeling: Systems of Models"
+  - "Modeling: Degrees of Semantic Commitment"
 readings:
   groups:
     - heading: The Modeling principle
       items:
         - cite: davis2026mage
-          locator: '§2.1 and §2.5'
-          annotation: '{mage:2.1} and {mage:2.5} Davis, 2026. The spine of the unit, assigned by lecture. Read §2.1 for Lecture 1: it develops models as purposeful reductions, and its questions are the ones to carry into every example — *what must this model preserve, and what can it safely leave out?* Read §2.5 for Lecture 2: it treats what happens when models accumulate — semantics, correspondence, shared identities, authority, and the joins that answer questions no single model contains. §§2.2–2.4 are a repertoire, not a taxonomy to memorize; consult them as reference.'
+          locator: '§2.1, especially §2.1.4'
+          annotation: '{mage:2.1} Davis, 2026. The spine of the unit, assigned by lecture. Read §2.1 for Lecture 1: it develops models as purposeful reductions, and its questions are the ones to carry into every example — *what must this model preserve, and what can it safely leave out?* Return to §2.1.4 for Lecture 2: it names semantic commitment — how much of a representation''s meaning the representation itself carries — and develops what stronger commitment buys, what it costs, and why neither detail nor precision is free. {mage:2.5} treats what happens when models accumulate — correspondence, shared identities, authority; consult it as the laboratory raises those questions. §§2.2–2.4 are a repertoire, not a taxonomy to memorize; consult them as reference.'
     - heading: The size of the Modeling repertoire
       items:
         - cite: visualparadigm-uml-guide
-          annotation: '["The Complete Guide to UML Diagram Types."](readings/visual-paradigm-uml-diagram-types.pdf) Browse, do not memorize. For each diagram type, ask the questions the lecture teaches: what question does this representation make easier to answer, what does it preserve, and what does it deliberately leave out? The point is not UML syntax; it is how much accumulated knowledge already exists about reducing a system for a purpose. (Source: [visual-paradigm.com/guide](https://www.visual-paradigm.com/guide/the-complete-guide-to-uml-diagrams-all-14-types-explained-with-practical-examples).)'
+          annotation: '["The Complete Guide to UML Diagram Types."](readings/visual-paradigm-uml-diagram-types.pdf) Browse, do not memorize — but browse with Lecture 2''s question in hand. UML is the spectrum''s middle ground in semantic commitment: standardized notation that establishes substantial shared meaning while still relying on human interpretation and project convention. For each diagram type, ask what the notation itself defines, what the reader must still supply, and what a tool could reliably do with the diagram. The point is not UML syntax; it is seeing how much meaning a standardized notation carries — and how much it leaves to its interpreter. (Source: [visual-paradigm.com/guide](https://www.visual-paradigm.com/guide/the-complete-guide-to-uml-diagrams-all-14-types-explained-with-practical-examples).)'
     - heading: Models as engineering artifacts
       items:
         - cite: madni2018mbse
@@ -33,7 +33,7 @@ status: ready
 materials:
   - title: "Lecture 1 slides — Modeling: Purposeful Reduction"
     src: 2-2-Modeling-1-Purposeful-Reduction.pptx
-  - title: "Lecture 2 slides — Modeling: Systems of Models"
+  - title: "Lecture 2 slides — Modeling: Degrees of Semantic Commitment"
     src: 2-2-Modeling-2-Systems-of-Models.pptx
 ---
 
@@ -45,14 +45,14 @@ Informed control requires more than possessing an implementation: an engineer mu
 
 Modeling is therefore an act of purposeful reduction. We decide what a question requires us to preserve, what can remain free, and how to represent what remains. The objective is not to reproduce the system in another notation. It is to preserve enough of the system that consequential questions become cheap to answer.
 
-## Two lectures, three activities
+## Two lectures, one laboratory
 
 The unit spans two lectures because the problem splits in two:
 
 - **Lecture 1 — Purposeful Reduction** asks *what must the model preserve?* One model, one question: from engineering question to reduction, repertoire, degrees of freedom and parsimony, representation, and interpretation.
-- **Lecture 2 — Systems of Models** asks *how do several purposeful reductions become dependable engineering knowledge?* Many models, connected to a real system: semantics, correspondence, identity and authority, composition.
+- **Lecture 2 — Degrees of Semantic Commitment** shows *how models carry different amounts of their own meaning.* We move from informal diagrams through standardized notation to semantically defined models, then use the MAGE Workbench to construct and interrogate a model. The objective is not to learn a modeling language exhaustively. It is to experience what stronger semantic commitment makes possible, and what it costs.
 
-Three classroom activities exercise three progressively harder judgments: Reduce and Interpret in the first lecture, Join in the second. Reduce → Interpret → Join is the sequence of activities, not a theory of Modeling.
+The first lecture uses the Reduce and Interpret activities to practice choosing what a model should preserve and recognizing ambiguity in its representation. The second is primarily a modeling laboratory: students Model → Query → Revise. They construct enough semantics to answer an engineering question, discover a question their model cannot answer, and decide whether strengthening the model is worth the additional commitment.
 
 ## Questions come first
 
@@ -75,7 +75,7 @@ The unit turns that decision into a discipline. For every model, ask four questi
 
 The reduction rarely needs to be invented. Software engineering and its neighboring disciplines have accumulated model forms for recurring questions: dependency graphs for structural questions, state machines for behavioral ones, quantitative models for capacity and cost. Do not invent a representation merely because you can. Start from the repertoire and select for the question.
 
-UML is the industry-standard starting point for software modeling, providing established structural and behavioral views for many recurring engineering questions. Not every useful software model fits within UML, and some questions call for representations from other engineering traditions. But before inventing a new representation, ask whether an established form already serves the question. Model-based systems engineering broadens the repertoire further, treating requirements, interfaces, structure, and allocations as explicit engineering artifacts. The assigned readings ask you to browse this breadth, not memorize it. Selecting among models is itself an engineering decision.
+UML is the industry-standard starting point for software modeling, providing established structural and behavioral views for many recurring engineering questions. It is also, as Lecture 2 develops, the middle ground in semantic commitment: a normative specification and a machine-readable metamodel give the notation substantial shared meaning, while much interpretation still rests on human convention and project context. Model-based systems engineering reaches further along the same axis — SysML v2 and its semantic foundation, KerML, define model semantics explicitly enough that tools can interpret, query, and compose the model. Not every useful software model fits within these traditions, and some questions call for representations from elsewhere. But before inventing a new representation, ask whether an established form already serves the question, and how much semantic commitment the question actually requires. The assigned readings ask you to browse this breadth, not memorize it. Selecting among models is itself an engineering decision.
 
 ## Reducing a real system
 
@@ -132,25 +132,56 @@ We can state the idea probabilistically. For an intended engineering claim *c* a
 
 The representation is part of the interface between engineer and agent, and delegation succeeds only if the agent interprets the model as intended. Parsimony gains a probabilistic reading too: a representation can fail by omitting a necessary distinction or by burying it among irrelevant ones. And the fourth question becomes concrete: *does the representation make the consequential interpretation sufficiently likely?* Good Modeling reduces freedom of interpretation where meaning matters while preserving freedom of realization where it does not. Later units use this probabilistic view systematically; for now, the seed is enough.
 
-## Models are engineered artifacts
+## Representations carry different amounts of meaning
 
-One model makes one engineering question tractable; a production system needs many, built for different questions and maintained in different places. Lecture 2 asks how those models retain meaning and stay connected to the system they describe. Engineering with models comes to resemble programming: schemas constrain interpretation the way types do, model elements need stable identities the way names do, and the DRY principle warns about duplicated knowledge in both. Four requirements accumulate as models become a system: meaning, correspondence, identity, and composition.
+A representation does more than make a model visible. It also determines how much of the model's meaning must be supplied by the person or machine interpreting it.
 
-**Meaning.** Consider the simplest architectural diagram: an arrow from A to B. As a structural claim it says *A calls B*. As a decision claim it says *A may call B*. As an observation it says *A was observed calling B*. Same nodes, same arrow, different engineering claims. The semantics diverge hardest at the absent edge: in a structural model an absent edge represents nothing, while in a decision model it may state a prohibition. The probability seed returns as diagnosis: an unlabeled, overloaded arrow can leave correct interpretation unlikely even though the diagram looks tidy. The fix is not more detail but better semantics; a compact typed edge can be interpreted more reliably than a longer ambiguous description.
+Consider a box labeled *Parser* with an arrow to a box labeled *Renderer*. The drawing may be useful to a team that already shares its meaning. But the marks alone do not tell us whether the arrow means *calls*, *may call*, *depends on*, *sends data to*, or *was observed calling*. The same visual syntax can therefore support several different engineering claims.
 
-**Correspondence.** A model makes claims about a territory, and engineering must maintain the correspondence. Where the implementation owns the truth, *derive* the model from it. Where the model owns the truth, *generate* the downstream artifact from it. Where neither fully determines the other, *trace and check* the correspondences a machine can decide. And correspondence is not correctness: a model and an implementation can agree perfectly and both be wrong for the engineering question.
+Engineering representations differ in how much of this meaning they make explicit. An informal architecture sketch may rely heavily on shared human understanding. UML supplies standardized modeling concepts and relationships for recurring software-engineering views. Structured interface and schema languages such as OpenAPI and JSON Schema make selected meanings directly machine-readable. SysML v2 and its semantic foundation, KerML, go further toward treating the model as a semantically defined engineering artifact whose elements and relationships can be interpreted, queried, composed, and analyzed by tools.
 
-**Identity and authority.** Once several models describe one system, they meet at shared elements. In DocAble, a computation identity lets measured latency and cost join the computation graph; a service identity connects flow policy, deployment, and access control. The rule is not *never duplicate bytes*; projections, caches, diagrams, and agent-facing views may duplicate freely. The rule is: do not independently maintain the same engineering fact in several places. Give model elements stable identities, give each consequential fact an authoritative source, and derive or join the rest. Here the model-versus-representation distinction pays off: several representations may legitimately expose the same fact.
+Call this difference **semantic commitment**: how much of the intended meaning of a representation is made explicit by the representation and its modeling language rather than supplied by its interpreter.
 
-**Composition without collapse.** DocAble's composition case starts from a single declared relation: one service may call another. That edge participates in questions no single model answers. Is the communication permitted? Where is the callee deployed? What runtime identity invokes it, and what invocation grant must exist? Does the deployed topology correspond to the declared one? The declared edges are held in exact correspondence with the deployment edge set, and deployment derives the cloud invocation grants from those declared edges. No single artifact contains that deployment plan; joining purposeful reductions through shared identities produces it.
+More semantic commitment is not automatically better. Precision has costs. A notation that machines can interpret reliably may demand more from its authors and more from human readers. A quick sketch may be exactly right when several engineers need to communicate an architectural idea to one another or to an agent for a prototype. A semantically richer model may earn its cost when a consequential property must be queried, composed across views, checked mechanically, or handed repeatedly between humans and agents. Choose enough semantic commitment for the engineering work the model must support.
 
-The temptation after joins is obvious: put everything into one universal model. Sometimes that is worthwhile: a unified model can make cross-cutting questions easier to state and analyze. But unification also creates a larger artifact whose semantics and correspondences must be maintained. Often, shared identities and explicit relationships are enough to connect purposeful reductions without collapsing them into one representation. There need not be a grand model. How much to unify is itself a modeling decision.
+| Representation | Example | Where meaning lives | What it buys | What remains free |
+|---|---|---|---|---|
+| Informal | box-and-arrow architecture sketch | largely in shared human context | very cheap communication | almost everything not understood by convention |
+| Standardized notation | UML 2.5.1 | notation + human/project interpretation | shared modeling vocabulary | most realization choices |
+| Machine-readable structure | OpenAPI 3.1, JSON Schema | explicit types, fields, constraints, references | reliable machine inspection and transformation | implementation behind the represented boundary |
+| Semantically defined engineering model | SysML v2 + KerML | explicit modeling language semantics | query, composition, analysis, tool-supported reasoning | everything the model deliberately leaves unspecified |
 
-## Three activities, three judgments
+These are examples, not maturity levels. Semantic precision and amount specified are different dimensions. A semantically precise model can deliberately leave enormous realization freedom.
+
+Semantic commitment matters especially in agentic engineering. A human teammate can often recover the intended meaning of an informal drawing by asking questions, relying on convention, or drawing on shared history. An agent can sometimes do the same, but then successful interpretation depends on probabilistic reconstruction. Making types, relationships, constraints, and identities explicit moves selected reasoning out of reconstruction and into the engineering environment. The agent may still exercise substantial freedom in realization; it simply has less freedom to reinterpret the facts the model was intended to state.
+
+## Stronger semantics enable model operations
+
+One model makes one engineering question tractable; a production system needs many, built for different questions and maintained in different places. Once model elements have explicit types, relationships, and identities, a model becomes more than a picture to inspect. Tools can ask questions of it.
+
+**Meaning** is what makes that possible. Consider the simplest architectural diagram: an arrow from A to B. As a structural claim it says *A calls B*. As a decision claim it says *A may call B*. As an observation it says *A was observed calling B*. Same nodes, same arrow, different engineering claims — and the semantics diverge hardest at the absent edge: in a structural model an absent edge represents nothing, while in a decision model it may state a prohibition. The probability seed returns as diagnosis: an unlabeled, overloaded arrow can leave correct interpretation unlikely even though the diagram looks tidy. The fix is not more detail but better semantics; a compact typed edge can be interpreted more reliably than a longer ambiguous description.
+
+With sufficient semantics, model operations follow. A component can be identified as the same component across several views. A relationship can mean *contains*, *depends on*, or *allocates to* rather than merely appearing as an arrow. A constraint can be evaluated over model properties. Several purposeful reductions can be joined through shared identities to answer questions that none answers alone.
+
+These capabilities do not require one universal model. Nor do they establish that the model is correct. They depend on two further engineering obligations: **correspondence** — whether the model remains related appropriately to the territory it describes — and **authority** — which artifact owns a consequential fact when several representations contain it. We will encounter both while working with models rather than treating them as reasons to maximize model formality.
+
+## From diagrams to a model we can interrogate
+
+Lecture 2 uses the MAGE Workbench to make the distinction concrete. We will work with a semantically defined model rather than drawing a diagram of a system. Model elements have identities and types; relationships have declared meanings; properties can be attached to the elements they describe; and questions can be evaluated against that structure.
+
+**[Open the MAGE Workbench →](https://davisjam.github.io/model-based-agentic-software-engineering/workbench/)**
+
+The laboratory follows one rule from Lecture 1: do not model everything. Begin with an engineering question and construct only the distinctions needed to answer it. Then ask a question the model cannot yet answer. The failure is useful: it identifies a distinction the current reduction does not preserve. Decide whether that distinction matters enough to add.
+
+An embedded-systems sequence shows the progression. *What components exist?* Then: *where are they allocated?* Then: *how much memory does each consume?* Finally: *can this configuration fit?* The first model is not wrong when it cannot answer the memory question. It simply does not preserve the quantities that question requires — Lecture 1's lesson, arriving as a discovery rather than a slide.
+
+This makes semantic modeling an engineering choice rather than a documentation exercise. Every additional property, type, or relationship should buy some reasoning capability. If it does not help a human, an agent, or a tool answer a consequential question, it may not belong in the model.
+
+## Activities and judgments
 
 - **Reduce** (Lecture 1). Groups receive the same small system but different engineering questions. *What must your model preserve? What may it omit? What property should become expressible?* The debrief carries the lesson: different questions about the same territory produce different reductions, and each group defends its model as parsimonious.
 - **Interpret** (Lecture 1). Groups receive several small representations, including the same A-to-B drawing under different semantics and two different representations intended to express the same model. For each: *what model does this representation appear to express, what claim does it make, and what remains ambiguous?* The exercise makes the probability of correct interpretation tangible without estimating a number.
-- **Join** (Lecture 2). Groups receive small model fragments sharing identities — service flow, deployment, runtime identity and access, measurements — and a question none answers alone. They identify the join the question requires, the answer it supports, and what still cannot be concluded.
+- **Model → Query → Revise** (Lecture 2). In the Workbench, students construct enough semantics to answer an engineering question, query the model to answer it, then meet a question the model cannot answer and decide whether the distinction it needs is worth adding. The activity closes with the unit's second judgment: *how much semantic commitment does this work require?*
 
 ## From Modeling to Alignment
 
