@@ -134,9 +134,12 @@ relation-types:
       drawn here rather than argued away.
     absence: >
       No build-time dependency is permitted. The absence is the load-bearing half of this model:
-      an edge that is not drawn here is an edge the implementation may not create. Nothing yet
-      derives `src/`'s imports and checks them against this edge set, so today the absence binds a
-      reader and an agent, not a build.
+      an edge that is not drawn here is an edge the implementation may not create. Since 261004 that
+      binds a BUILD and not only a reader: `test/import-graph.test.ts` derives `src/`'s imports with
+      a real TypeScript parse and holds them against this edge set in both directions, so an
+      undrawn edge an import creates is a red gate. This field read "nothing yet derives `src/`'s
+      imports" until the gate landed; it is corrected rather than deleted because the sentence it
+      replaces is the one a reader would otherwise act on by building the control a second time.
     composition:
       # Multi-hop IS the question. "Can model-ir reach ui?" is the architectural invariant, and it
       # is about the transitive closure, not about a single declared edge.
@@ -168,8 +171,10 @@ entities:
     label: Model IR
     description: >
       The canonical semantic representation, and the only semantic input to analysis. Depends on
-      nothing: `src/ir/` imports nothing outside itself, verified at this commit. Every other
-      component depends on it.
+      nothing: `src/ir/` imports nothing outside itself. Held per run rather than verified once —
+      `test/import-graph.test.ts` asserts the kernel's out-degree is zero over the OBSERVED import
+      graph as well as the declared one, so editing this file to permit an edge does not buy one.
+      Every other component depends on it.
     properties:
       layer: kernel
     provenance:
@@ -538,8 +543,10 @@ queries:
   # `worker-wiring`.
   #
   # `test/worker.test.ts` holds the same prohibition over the worker module's own bytes, and that is
-  # the stronger half: this query is answered over the DECLARED graph, so it would survive an
-  # undeclared import. Read the two together.
+  # the stronger half: this query is answered over the DECLARED graph, so on its own it would survive
+  # an undeclared import. Since 261004 that loophole is closed from the other side too —
+  # `test/import-graph.test.ts` fails on any import this file does not declare — so the three are
+  # defense in depth rather than one claim and two restatements. Read them together.
   no-mutator-reachable-from-analysis:
     name: The analysis worker reaches the component that may mutate the model
     kind: graph
