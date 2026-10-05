@@ -178,6 +178,11 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
       // where a reader expects a definition. The role still ships, under the provenance disclosure.
       s.entry.subjects.map((x) => [x.noun, x.selector.replace(/-/g, " "), x.means]),
     ));
+    // The restriction goes BESIDE the table, as a proposition. Folded into a cell it would teach
+    // the distinction by implication, which is what the schema-gloss column used to do.
+    if (s.entry.namingRestriction !== null) {
+      section.append(el("p", s.entry.namingRestriction, "walk-define"));
+    }
   }
   if (s.statements.length > 0) {
     section.append(el("p", "Questions asked of this model", "intro"));

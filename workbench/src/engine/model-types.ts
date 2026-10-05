@@ -348,6 +348,16 @@ export interface QuerySemantics {
   /** Every form, classified. Total over `forms`, so a new form cannot ship unclassified. */
   readonly primitives: readonly QueryPrimitive[];
   readonly subjects: readonly QuerySubject[];
+  /**
+   * The one restriction a student must carry away about naming things of this kind, stated as a
+   * PROPOSITION rather than folded into a subject's definition.
+   *
+   * It belongs beside the subject table and not inside it: "an unknown relation type is an invalid
+   * question, not evidence the relationship is absent" is a claim about the whole naming surface,
+   * and a table cell that tried to carry it taught the distinction by implication. Null where the
+   * kind genuinely has no such restriction -- an absent sentence is a fact, not an omission.
+   */
+  readonly namingRestriction: string | null;
   readonly predicates: PredicateSemantics;
 }
 
@@ -930,6 +940,8 @@ export const MODEL_TYPES: readonly ModelType[] = [
           },
         },
       ],
+      namingRestriction:
+        "A question can use only relation types the model declares. An unknown relation type is therefore an invalid question, not evidence that the relationship is absent.",
       predicates: {
         equality: ENTITY_PROPERTIES,
         order: { by: "operator", ops: ORDER_OPS, scopedBy: ORDERED_DOMAIN },
@@ -1152,6 +1164,8 @@ export const MODEL_TYPES: readonly ModelType[] = [
           },
         },
       ],
+      namingRestriction:
+        "Machine variables have explicitly enumerated finite domains, and a state is named inside a predicate rather than selected on its own.",
       predicates: {
         equality: VARIABLE_DOMAIN,
         order: { by: "operator", ops: ORDER_OPS, scopedBy: VARIABLE_DOMAIN },
@@ -1294,6 +1308,8 @@ export const MODEL_TYPES: readonly ModelType[] = [
           },
         },
       ],
+      namingRestriction:
+        "A comparison normalizes within one dimension. Quantities of different dimensions are not comparable, and the engine refuses rather than converting.",
       predicates: {
         // No equality arm: a magnitude is decided against a declared ceiling, never matched against
         // a value, and the evaluator implements no `eq` over quantities. Declaring one would
