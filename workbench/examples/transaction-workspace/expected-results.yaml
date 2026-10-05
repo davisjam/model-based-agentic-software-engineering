@@ -16,15 +16,27 @@
 # would then check premises against a model that declares none. Cost is Document Processing's
 # subject; this example's two requirements are both decided by a saved query the engine answers.
 #
-# ## What is absent on purpose
+# ## The temporal properties are measured, and they are not in this file
 #
 # §31 of DESIGN-v02-semantics-261004.md assigns this example `G(proposed -> F(committed or refused))`
-# and §30 lists it as P5. No requirement below states it. The LTL layer landed its formula and
-# automaton construction with no verdict path, so a pinned property carrying that formula would
-# record a status no code can reach -- the shape the `pending-evaluator` status exists to mark, and
-# the shape this project has already decided not to ship for a QUERY. `verdict-is-eventually-forced`
-# is the executable stand-in: it asks what would have to be modeled for an eventually-claim to have a
-# reading, and is refused by name.
+# and §30 lists it as P5. It is asked, and it answers `refuted` with a lasso. Its safety sibling,
+# `G(refused -> G not committed)`, is asked too and answers `holds`.
+#
+# Neither appears below, and the reason is this file's own shape rather than a missing verdict. Every
+# `queries` entry names a SAVED query in `system.mage.yaml`, and no behavior form carries a formula:
+# the LTL checker produces a verdict value and is not wired to the query facade. A `queries` row for
+# a formula would therefore name an id that does not exist, and a `requirements` row expressed as one
+# would be decided by nothing -- which is exactly the inert claim the `pending-evaluator` status
+# exists to mark rather than to hide.
+#
+# So the two formulas are pinned in `test/example-transaction-temporal.test.ts`, which asks them of
+# the shipped file through the registered evaluator, and carried for a reader in two `kind: question`
+# notes on `transaction-engine`. That test also asserts the notes name the measured verdict, so the
+# prose and the machine cannot come apart.
+#
+# `verdict-is-eventually-forced` still ships, still refused, and for a corrected reason: the
+# eventually-claim IS expressible now, and what the model still declares nothing of is a mechanism
+# that forces the step.
 
 example: transaction-workspace
 system: system.mage.yaml
@@ -185,9 +197,12 @@ queries:
 
       Read it exactly. It says the configuration §27 draws is reachable and can be repeated. It does
       NOT say an execution remains there forever: that is `G(proposed -> F(committed or refused))`
-      refuted, a temporal claim over infinite traces, and the LTL layer has no verdict path yet. The
-      two statements share a picture and need different evidence, and conflating them is the overclaim
-      this example set is careful not to make.
+      refuted, a temporal claim over infinite traces, measured separately and pinned in
+      `test/example-transaction-temporal.test.ts`. Both verdicts now affirm the same starvation
+      story, and they remain different claims on different evidence -- this query's witness is a
+      repeatable configuration, the temporal one's is an accepting lasso in a product with the
+      automaton of the negated formula. Reading either as the other is the overclaim this example set
+      is careful not to make.
 
   - id: base-can-keep-advancing
     label: The base can go on being superseded while one change is in flight
@@ -259,14 +274,19 @@ queries:
       refusal_contains: "verdict-deadline"
       no_evidence: true
     note: >
-      The purposeful omission, executed -- and it is the TEMPORAL one, which is why it ships as a
-      supplied question rather than living in a unit test.
+      The purposeful omission, executed. Re-examined when the LTL verdict path landed: the refusal
+      is still correct, and the reason it was shipped with is not.
 
-      "Does every proposed change eventually reach a verdict?" has no reading over this system, and
-      the reason is structural rather than a missing feature. §11 admits every execution and assumes
-      no fairness, so an eventually-claim needs something IN THE MODEL that forces the step. A
-      deadline would be that something. This system declares no deadline machine, so the engine
-      refuses and names the vocabulary a reader would have to add.
+      The retired reason: that "does every proposed change eventually reach a verdict?" had no
+      reading over this system. It has one. That is `G(proposed -> F(committed or refused))`, and
+      over this machine it answers `refuted` with a lasso.
+
+      The standing reason: this query does not ask the temporal claim. It asks whether a MECHANISM
+      that forces the step exists -- a `deadline_expires` transition in a `verdict-deadline`
+      machine. §11 admits every execution and assumes no fairness, so the temporal claim can only
+      answer `holds` if the model declares something that takes the verdict, and this model declares
+      nothing of the kind. The engine refuses by name rather than evaluating an absent transition as
+      dead, so what a reader gets is the shape of the repair.
 
       Two things this is NOT. It is not a claim that verdicts are never forced in a real
       implementation. And it is not derived from the `omits` lists -- the behavioral refusal path
@@ -329,6 +349,11 @@ modifications:
       assumption and this model declares no deadline, so nothing in it entitles that assertion. A
       student who deletes the edge has not made the property true; they have stopped being able to
       ask the question.
+
+      One measured consequence beyond the change recorded below, and it is what makes this the
+      baseline the NEXT modification builds on: under this hypothesis
+      `G(proposed -> F(committed or refused))` answers `holds`. That is the only arrangement of this
+      machine in which it does.
     transaction:
       operations:
         # Selected by endpoint rather than by index, so the operation survives a reordering of the
@@ -341,3 +366,87 @@ modifications:
       - query: validated-transaction-can-wait-indefinitely
         from: holds
         to: refuted
+
+  - id: linger-in-validation
+    label: Close the adoption window, then let validation retry forever
+    rationale: >
+      The §10.4 exercise of the examples specification, staged so its lesson is visible over THIS
+      machine. The exercise asks a student to add a transition permitting a transaction to linger
+      indefinitely in a validation/retry state, recheck the response property, and find that every
+      ordinary destination state is still reachable while the property has gone false.
+
+      Two operations, because one cannot carry it here. This machine already admits starvation at
+      HEAD -- `await_adoption` is exactly such an edge, in the adoption window rather than the
+      validation window -- so adding a `proposed -> proposed` retry loop on its own moves the
+      response property from `refuted` to `refuted` and the exercise's "goes false" has nothing to
+      go false from. Measured, not assumed. So this modification first deletes `await_adoption`,
+      which is the one arrangement where the property holds, and then opens the validation loop.
+
+      What was measured under the hypothesis: `idle`, `proposed`, `valid`, `committed` and `refused`
+      are all still reachable, every one of them, and
+      `G(proposed -> F(committed or refused))` answers `refuted` again -- with the counterexample's
+      repeating step now `revalidate` in the validation window instead of `await_adoption` in the
+      adoption window. Reachability did not move. Liveness did. That is the lesson, and the chain
+      HEAD -> force-immediate-adoption -> here is how a student watches it move in both directions.
+
+      The two recorded changes below are the saved queries that see it. A third consequence has no
+      saved query to land on, because no behavior form carries a formula -- it is pinned in
+      `test/example-transaction-temporal.test.ts` instead.
+    transaction:
+      operations:
+        - op: delete-transition
+          machine: transaction-lifecycle
+          from: valid
+          to: valid
+        # Unguarded and effect-free, exactly as `await_adoption` is, so the configuration genuinely
+        # repeats. A guarded retry would advance something and the loop would not be repeatable --
+        # which is the distinction `base-can-keep-advancing` was shipped to teach.
+        - op: add-transition
+          machine: transaction-lifecycle
+          from: proposed
+          to: proposed
+          label: revalidate
+    changes:
+      # The adoption window closes, so the configuration this query asks about stops repeating.
+      - query: validated-transaction-can-wait-indefinitely
+        from: holds
+        to: refuted
+      # And the validation window opens. Same form, same target, and the answer flips because a NEW
+      # edge repeats the configuration -- which is the reading of `repeatable-cycle` this query's own
+      # note argues for: a question about configurations, not about edges.
+      - query: base-can-keep-advancing
+        from: refuted
+        to: holds
+
+  - id: retry-after-refusal
+    label: Let a refused change be proposed again
+    rationale: >
+      The §10.5 exercise: add `refused -> proposed` as an explicit retry, then ask which existing
+      property now needs reconsidering.
+
+      Measured answer, and it is two properties rather than one. `G(refused -> G not committed)` --
+      "once refused, a change never commits" -- goes from `holds` to `refuted`, and that is the
+      intended one: it was carried entirely by `refused` having no outgoing transition, and this
+      edge is that transition. And `base-can-keep-advancing` flips from `refuted` to `holds`,
+      because `reject` followed by `retry` returns the machine to the configuration it left.
+
+      Neither red is a bug. A protocol that permits a retry has a different intended requirement: a
+      refusal is no longer final, so a property stating that it is has stopped describing the thing
+      being modeled. §10.5 says this in terms -- do not tell a student that every red property is a
+      defect. What the student owes is a decision about which claim they meant, not a patch.
+
+      The second flip is the one worth not skipping past, because nothing in this modification is
+      about the base advancing. The query asks whether the `proposed` configuration can repeat, the
+      retry loop repeats it, and the honest reading is that the query's NAME was always narrower
+      than its question.
+    transaction:
+      operations:
+        - op: add-transition
+          machine: transaction-lifecycle
+          from: refused
+          to: proposed
+          label: retry
+    changes:
+      - query: base-can-keep-advancing
+        from: refuted
+        to: holds
