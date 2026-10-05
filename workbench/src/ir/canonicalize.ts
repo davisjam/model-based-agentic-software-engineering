@@ -13,13 +13,15 @@
 import type {
   AccountedMetric, AccountingBasis, Annotated, CanonAccounting, CanonDomain, CanonEntity, CanonEvent,
   CanonMachine, CanonModel, CanonQuantity, CanonRelation, CanonRelationType, CanonTransition,
-  CanonVariable, CanonicalSystem, Dimension, Effect, ExprFactor, ExprOperand, ExprTerm, Guard,
+  CanonQuantitativeModel, CanonVariable, CanonicalSystem, Dimension, Effect, ExprFactor,
+  ExprOperand, ExprTerm, Guard,
   GuardOp, HistoryEntry, MachineInstance, Magnitude, MagnitudeFault, Note, NoteKind, PropertyValue,
   Provenance, Purpose, QuantityTarget, QuantityValue, QuantityWhen, Residency, SavedQuery, Scalar,
   TargetKind,
 } from "./types.ts";
 import {
-  ACCOUNTED_METRICS, ACCOUNTED_METRIC_IDS, ACCOUNTING_BASES, DIMENSION_IDS, DIMENSIONS,
+  ACCOUNTABLE_TARGET_KINDS, ACCOUNTED_METRICS, ACCOUNTED_METRIC_IDS, ACCOUNTING_BASES,
+  AGGREGATE_TARGET_KIND, DIMENSION_IDS, DIMENSIONS,
   METRIC_NAMESPACE, NO_ANNOTATION, RESIDENCIES, TARGET_KINDS, UNIT_DIMENSIONS, isPlainDecimal,
 } from "./types.ts";
 
@@ -507,6 +509,48 @@ function quantities(raw: unknown): Map<string, CanonQuantity> {
 }
 
 /**
+ * The quantitative models the declared annotations constitute — one per dimension present.
+ *
+ * Derived, not authored, and in the same register as `instances` below: a projection of what was
+ * declared, computed once so that every consumer reads one grouping instead of re-deriving it.
+ * `CanonQuantitativeModel` carries the reasoning; the mechanics are three facts per dimension.
+ *
+ * On a second `model:`-targeted quantity of the same dimension: the first by sorted id wins, which
+ * is deterministic because `quantities` is built from `sortedEntries`. Two declared totals for one
+ * dimension is an authoring error — picking a winner here is not a ruling on it, it is refusing to
+ * let an ambiguity decide the grouping silently. The validator is what should complain.
+ */
+function quantitativeModels(qs: ReadonlyMap<string, CanonQuantity>): Map<Dimension, CanonQuantitativeModel> {
+  const out = new Map<Dimension, CanonQuantitativeModel>();
+  const accountable = new Set<TargetKind>(ACCOUNTABLE_TARGET_KINDS);
+  for (const q of qs.values()) {
+    const d = q.dimension;
+    // A quantity whose dimension did not resolve belongs to no model; V28 is the finding, and
+    // guessing a dimension here would put it in one.
+    if (d === null) continue;
+    const isBudget = q.target.kind === AGGREGATE_TARGET_KIND;
+    if (!isBudget && !accountable.has(q.target.kind as TargetKind)) continue;
+    const existing = out.get(d);
+    if (existing === undefined) {
+      out.set(d, {
+        dimension: d,
+        scope: DIMENSIONS[d].scope,
+        budget: isBudget ? q.id : null,
+        host: isBudget ? q.target.ref : null,
+        allocations: isBudget ? [] : [q.id],
+      });
+      continue;
+    }
+    out.set(d, {
+      ...existing,
+      ...(isBudget && existing.budget === null ? { budget: q.id, host: q.target.ref } : {}),
+      allocations: isBudget ? existing.allocations : [...existing.allocations, q.id],
+    });
+  }
+  return out;
+}
+
+/**
  * The declared accounting model. Shape only: V35 says whether the metric and the basis are known.
  *
  * The metric name is kept as written even when it names nothing, because the finding quotes it —
@@ -534,6 +578,7 @@ function accounting(raw: unknown): Map<string, CanonAccounting> {
 
 export function canonicalize(doc: unknown): CanonicalSystem {
   const d = isObj(doc) ? doc : {};
+  const qs = quantities(d["quantities"]);
   const sys = isObj(d["system"]) ? d["system"] : {};
   const dom = domains(d["domains"]);
   const { models: ms, relations } = models(d["models"]);
@@ -566,7 +611,8 @@ export function canonicalize(doc: unknown): CanonicalSystem {
     machines: mach,
     instances: expand(mach),
     events,
-    quantities: quantities(d["quantities"]),
+    quantities: qs,
+    quantitativeModels: quantitativeModels(qs),
     accounting: accounting(d["accounting"]),
     queries,
   };

@@ -1,0 +1,346 @@
+# Embedded Sensor Node -- the resource-budget example.
+#
+# Central lesson: a quantity is an engineering instrument, not arithmetic. A battery-powered sensor
+# node has 256 KiB of SRAM and nine things that want some of it. The model says what each one takes,
+# the budget says what there is, and the margin between them is the whole design problem. Double one
+# queue and a pinned requirement fails -- which is the point: the number moves the verdict.
+#
+# ## One purposeful model, deliberately
+#
+#   sensor-firmware   a graph. Which firmware component owns which buffer, what each allocation
+#                     costs in SRAM, and the declared 256 KiB ceiling the total is decided against.
+#
+# The specification is explicit that the first view must not be overloaded with CPU, energy, flash
+# and timing at once, so this file represents SRAM and nothing else. Every other resource is a
+# declared omission on the model's purpose, where a reader can see it.
+#
+# ## The unit, and a labelling defect worth knowing about
+#
+# The budget is 256 KiB and this file writes `256 KB`. That is not a rounding. The memory dimension's
+# unit table is `{ KB: 0.0009765625, MB: 1, GB: 1024 }` -- `0.0009765625` is exactly `1/1024`, so the
+# token `KB` denotes a KIBIbyte and `256 KB` is exactly 262144 bytes, the budget the specification
+# means. There is no `KiB` token, and a `256 KiB` literal refuses as an unnormalized magnitude (V28).
+#
+# So the table computes kibibytes and spells them the JEDEC way. Renaming the token reaches the
+# published schema, the unit pins and every example that writes `MB`, which is not this example's
+# change to make. It is recorded here because the next reader will otherwise assume the conversion
+# is decimal and conclude the arithmetic below is wrong by 2.4%.
+#
+# ## Why every allocation is resident, and what that costs the example
+#
+# A memory quantity declares exactly one of `residency: resident` or `when: { state: ... }`; neither
+# is a V37 finding, because the annotation would then enter neither summand of memory(c). This model
+# has no state machine, so `when:` has nothing to name and every allocation is resident.
+#
+# That is the honest Phase 1 model and it is also a REDUCTION, stated on the purpose as an omission:
+# it answers "what if everything is live at once", and it cannot answer "is everything live at
+# once". The second question needs operating modes -- Sleeping, Sampling, Inferring, Transmitting --
+# and resource lifetimes tied to them, and the peak over modeled behaviour then differs from the sum
+# below. That is the earned transition to Behavior, and it is deliberately not in this file: the
+# specification requires the resource-lifetime semantics to be designed and registered as a general
+# Behavior-to-Quantity composition before the example may use it, and no example-specific "peak
+# memory" function is permitted.
+#
+# ## The arithmetic, so a reader can check the fixture by hand
+#
+#   mcu-runtime           24 KB
+#   sensor-driver          8 KB
+#   radio-stack           36 KB
+#   inference-engine      12 KB
+#   telemetry-queue       32 KB
+#   packet-buffer         12 KB
+#   model-weights         72 KB
+#   inference-workspace   28 KB
+#   logging-buffer         8 KB
+#                       ------
+#   total                232 KB     budget 256 KB     margin 24 KB  (9.375%)
+#
+# Largest single allocation: model-weights, at 72 KB -- 31% of the budget on its own.
+#
+# Doubling telemetry-queue to 64 KB takes the total to 264 KB and the pinned requirement fails by
+# 8 KB. Restoring a 20% margin needs the total at or under 204.8 KB, which several changes achieve
+# and several near-misses do not; that search is the design activity, not a lookup.
+
+mage: 1
+
+system:
+  id: embedded-sensor-node
+  name: Embedded Sensor Node
+
+domains: {}
+
+entities:
+
+  mcu-runtime:
+    type: firmware
+    label: MCU runtime
+    properties:
+      criticality: essential
+    notes:
+      - id: sram-budget-rationale
+        kind: rationale
+        text: >
+          The 256 KiB ceiling is a physical fact about the part, not a policy. It is declared as a
+          `model:`-targeted quantity because MAGE v0.1 has no requirement construct: a `model:`
+          total is charged by no accounting basis and exists to be compared against, which is
+          exactly what a budget is.
+      - id: one-resource-at-a-time
+        kind: comment
+        text: >
+          Flash, CPU cycles, energy per sample and radio airtime are all real constraints on this
+          part and none is represented. The first view of a resource problem should make one
+          resource obvious rather than four illegible, and the model's purpose lists them as
+          omissions so the reduction is visible instead of implied.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Model a battery-powered embedded sensor node's SRAM allocations against a 256 KiB physical
+        budget, so that the total, the largest allocation and the remaining margin are all askable,
+        a pinned requirement decides the budget, and doubling one queue breaks it.
+      rationale: MAGE-provided example, embedded-sensor-node, version 1.
+
+  sensor-driver:
+    type: firmware
+    label: Sensor driver
+    properties:
+      criticality: essential
+
+  radio-stack:
+    type: firmware
+    label: Radio stack
+    properties:
+      criticality: essential
+
+  inference-engine:
+    type: firmware
+    label: Inference engine
+    properties:
+      criticality: optional
+
+  telemetry-queue:
+    type: buffer
+    label: Telemetry queue
+    properties:
+      criticality: essential
+
+  packet-buffer:
+    type: buffer
+    label: Packet buffer
+    properties:
+      criticality: essential
+
+  model-weights:
+    type: buffer
+    label: Model weights
+    properties:
+      criticality: optional
+
+  inference-workspace:
+    type: buffer
+    label: Inference workspace
+    properties:
+      criticality: optional
+
+  logging-buffer:
+    type: buffer
+    label: Logging buffer
+    properties:
+      criticality: diagnostic
+
+relation-types:
+
+  owns_buffer:
+    description: The firmware component owns this buffer and its SRAM allocation is held for it.
+    absence: >
+      No component in this model owns the buffer. Absence does not mean the buffer is free -- an
+      allocation with no owner is a finding about the model, not a saving.
+    composition:
+      # A buffer owns nothing, so a multi-hop ownership question has no reading. Unlicensed beats
+      # false.
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
+models:
+
+  sensor-firmware:
+    type: graph
+    label: Sensor Firmware SRAM
+    purpose:
+      question: Does the modeled firmware fit in the 256 KiB SRAM budget, and with how much margin?
+      represents:
+        - firmware component and buffer identity
+        - which component owns which buffer
+        - each allocation's SRAM size in KiB
+        - the declared 256 KiB SRAM ceiling
+        - whether each allocation is held for the whole run
+      # Checked against this model's real vocabulary. The first two are the flagship purposeful
+      # omissions: without operating modes the model can answer "what if everything is live at once"
+      # and cannot answer "is everything live at once", and that gap is what motivates expanding it.
+      omits:
+        - operating modes, so no allocation's lifetime is represented
+        - whether two allocations are ever live at the same moment
+        - flash, CPU cycles, energy per sample and radio airtime
+        - allocator fragmentation and alignment padding
+        - stack depth under interrupt nesting
+    entities:
+      - mcu-runtime
+      - sensor-driver
+      - radio-stack
+      - inference-engine
+      - telemetry-queue
+      - packet-buffer
+      - model-weights
+      - inference-workspace
+      - logging-buffer
+    relations:
+
+      - id: radio-owns-telemetry-queue
+        from: radio-stack
+        to: telemetry-queue
+        type: owns_buffer
+      - id: radio-owns-packet-buffer
+        from: radio-stack
+        to: packet-buffer
+        type: owns_buffer
+      - id: inference-owns-weights
+        from: inference-engine
+        to: model-weights
+        type: owns_buffer
+      - id: inference-owns-workspace
+        from: inference-engine
+        to: inference-workspace
+        type: owns_buffer
+      - id: mcu-owns-logging-buffer
+        from: mcu-runtime
+        to: logging-buffer
+        type: owns_buffer
+
+    notes:
+      - id: sensor-firmware-rationale
+        kind: rationale
+        text: >
+          This model represents what each component holds and what there is to hold it in. It
+          represents no order of occurrence and no operating behaviour, so it cannot say when an
+          allocation is live -- only that the model declares it. The total it supports is therefore
+          the worst case under the assumption that everything is resident, which is the assumption
+          every allocation here states for itself.
+      - id: residency-is-authored
+        kind: comment
+        text: >
+          Every memory annotation declares `residency: resident`. That is a claim about this
+          firmware, not a default: MAGE refuses to infer either "idle component memory stays
+          resident" or "idle component memory disappears", so the annotation says which, and an
+          annotation declaring neither charges nothing anywhere.
+
+quantities:
+
+  mcu-runtime-sram:
+    target: entity:mcu-runtime
+    dimension: memory
+    value: 24 KB
+    residency: resident
+    description: Stack, interrupt vectors and the scheduler's own state. Held for the whole run.
+
+  sensor-driver-sram:
+    target: entity:sensor-driver
+    dimension: memory
+    value: 8 KB
+    residency: resident
+    description: Driver state and one sample-conversion scratch block.
+
+  radio-stack-sram:
+    target: entity:radio-stack
+    dimension: memory
+    value: 36 KB
+    residency: resident
+    description: Link-layer state, session keys and retransmission bookkeeping.
+
+  inference-engine-sram:
+    target: entity:inference-engine
+    dimension: memory
+    value: 12 KB
+    residency: resident
+    description: Interpreter state and the operator dispatch table. Excludes weights and workspace.
+
+  telemetry-queue-sram:
+    target: entity:telemetry-queue
+    dimension: memory
+    value: 32 KB
+    residency: resident
+    # The allocation the example's Q5 doubles. 32 KB is 64 records of 512 B; doubling the depth
+    # doubles the allocation and takes the total 8 KB over the ceiling.
+    description: Queued telemetry records awaiting transmission, at the modeled queue depth.
+
+  packet-buffer-sram:
+    target: entity:packet-buffer
+    dimension: memory
+    value: 12 KB
+    residency: resident
+    description: One radio frame in each direction, plus the encryption scratch block.
+
+  model-weights-sram:
+    target: entity:model-weights
+    dimension: memory
+    value: 72 KB
+    residency: resident
+    description: Quantized weights for the on-device classifier. The largest single allocation.
+
+  inference-workspace-sram:
+    target: entity:inference-workspace
+    dimension: memory
+    value: 28 KB
+    residency: resident
+    description: Activation tensors for the widest layer of the classifier.
+
+  logging-buffer-sram:
+    target: entity:logging-buffer
+    dimension: memory
+    value: 8 KB
+    residency: resident
+    description: Ring buffer for diagnostic records retrieved on service visits.
+
+  sram-budget:
+    target: model:sensor-firmware
+    dimension: memory
+    value: 256 KB
+    # A `model:`-targeted total: charged by no accounting basis, and the one thing a `within:` query
+    # may name. 256 KB in this table's binary units is exactly the part's 256 KiB of SRAM.
+    description: The part's physical SRAM. The ceiling every allocation above is decided against.
+
+queries:
+
+  # The example's pinned requirement, and the one query here that makes a CLAIM. `forall` is forced
+  # by the question's shape: a ceiling claim is universal over the reachable configurations and one
+  # counterexample refutes it. With no state machine there is exactly one configuration, so the
+  # decision is over the resident sum -- 232 KB against 256 KB.
+  sram-fits-budget:
+    name: The modeled firmware fits in the 256 KiB SRAM budget
+    kind: quantity
+    quantifier: forall
+    quantity:
+      metric: peak_memory
+      within: sram-budget
+
+  # The measurement. No `within:`, so `exists` is forced and the figure travels on the result's
+  # magnitude with the witness configuration attached.
+  sram-total:
+    name: What SRAM does the modeled firmware hold
+    kind: quantity
+    quantifier: exists
+    quantity:
+      metric: peak_memory
+
+  # The structural companion, and it is here to make a point rather than to pad the set: the
+  # quantitative model says WHAT each allocation costs and the structural model says WHO holds it.
+  # "Which buffers does the radio stack own" is answerable only by the second, and "what do they
+  # cost" only by the first.
+  radio-owns-which-buffers:
+    name: Which buffers the radio stack owns
+    kind: graph
+    quantifier: exists
+    graph:
+      form: successors
+      relation: owns_buffer
+      from: radio-stack
