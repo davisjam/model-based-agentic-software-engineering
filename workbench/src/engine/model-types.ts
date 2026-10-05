@@ -891,7 +891,8 @@ export const MODEL_TYPES: readonly ModelType[] = [
           declaredBy: {
             file: "src/engine/types.ts", symbol: "QuantityQuery",
             role: "`target` — the reach predicate selecting which executions are measured; the " +
-              "predicate grammar is the state machine's, which is what the registered join is for",
+              "predicate grammar is the state machine's, which is what the registered " +
+              "`executions-selected-by-behaviour` COMPOSITION is for",
           },
         },
         {

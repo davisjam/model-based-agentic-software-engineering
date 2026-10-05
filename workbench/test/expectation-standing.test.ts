@@ -19,7 +19,7 @@
 // here and not from the engine's own runtime table, which is the thing a drifted list would
 // agree with. `STANDING_PER_OUTCOME` below is then asserted TOTAL over what the parse found, so a
 // fifth outcome word cannot land until someone has decided, in this file, whether it is a finding
-// about the system under design. That is the same shape `test/joins-census.test.ts` uses: derive
+// about the system under design. That is the same shape `test/bindings-census.test.ts` uses: derive
 // the input independently, and hold the table against it.
 //
 // ## The probe's own failure mode, and the control that holds it

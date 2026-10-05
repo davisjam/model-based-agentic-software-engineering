@@ -36,7 +36,7 @@ import { REQUIREMENT_METRICS } from "../src/quant/requirement.ts";
 import { deriveLearnEntries, MODEL_TYPE_USES, presentTypes } from "../src/app/learn.ts";
 
 // ---------------------------------------------------------------------------------------------
-// (1) The registry's joins
+// (1) The registry's own relations
 // ---------------------------------------------------------------------------------------------
 
 test("one model type per query kind, and the published schema's kind enum agrees", () => {
@@ -283,7 +283,7 @@ const everyBasis = (): readonly { readonly owner: string; readonly basis: Semant
 test("no semantic basis is a placeholder — the content owes a real claim (rung 2)", () => {
   // Omission is rung 1's job and the compiler already has it. The realistic failure is decay into
   // `concept: "SysML"`, which is why these are content floors rather than presence checks. The
-  // floors mirror the ones the `by-construction` gates and the join meanings already carry.
+  // floors mirror the ones the `by-construction` gates and the interpretations already carry.
   const seen = new Set<SemanticBasis["kind"]>();
   for (const { owner, basis } of everyBasis()) {
     seen.add(basis.kind);
