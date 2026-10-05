@@ -52,6 +52,34 @@ const row = (block: Block, key: string, what: string): Obj => {
   return found;
 };
 
+/**
+ * The authored census: every shipped obligation, keyed `example/requirement`, read from the YAML.
+ *
+ * Two pins below need to know which obligations ship. Deriving that by calling
+ * `verifySystemRequirements` would make each pin a statement about its own subject — a join that
+ * enumerated nothing would also derive an expectation of nothing, and the two would agree about
+ * having done nothing. So the census comes from the authored `requirements:` blocks, and the join's
+ * enumeration is compared against it. The figure is never written into this file: a count written
+ * against a corpus the project keeps growing is the defect this helper exists to remove.
+ */
+const authoredRequirements = (): readonly string[] =>
+  SHIPPED_EXAMPLE_IDS.flatMap((id) =>
+    Object.keys(requirementsOf(doc(id)) ?? {}).map((req) => `${id}/${req}`));
+
+/**
+ * The authored obligations a `kind: quantity` query decides, by the `expressed_as` join in the YAML.
+ * Derived from the declaration rather than from a verdict, so it classifies a requirement the same
+ * way whether the engine answers it or not.
+ */
+const authoredQuantityDecided = (): readonly string[] =>
+  SHIPPED_EXAMPLE_IDS.flatMap((id) => {
+    const d = doc(id);
+    const queries = queriesOf(d) ?? {};
+    return Object.entries(requirementsOf(d) ?? {})
+      .filter(([, r]) => queries[String(r["expressed_as"])]?.["kind"] === "quantity")
+      .map(([req]) => `${id}/${req}`);
+  });
+
 /** Verify through the PRODUCTION join — the path a surface calls. */
 const verified = (d: Obj, id: string): Verification => {
   const v = verifySystemRequirements(canonicalize(d)).get(id);
@@ -283,26 +311,98 @@ test("both sound shipped quantity-decided chains derive exactly what they derive
     assert.ok(v.status === "satisfied" || v.status === "violated");
     assert.equal(v.verdict, verdict, `${example}/${req}: the verdict must not move either`);
   }
-  assert.equal(sound.length, 2, "two quantity-decided requirements ship; a changed count means re-census");
+
+  // The assertion this replaces read `sound.length === 2`, and `sound` is the literal three lines
+  // up — so it asserted a property of the fixture while its message promised it noticed corpus
+  // growth. It could not fail unless someone edited the array, and when the capstone added two
+  // quantity-decided requirements it stayed green. Growth is visible only against the corpus, so
+  // that is what the pinned rows are now compared to.
+  const derived = authoredQuantityDecided();
+  const pinned = sound.map(([example, req]) => `${example}/${req}`);
+  assert.ok(derived.length > 0,
+    "no shipped requirement is quantity-decided, so the rows above are pinned against nothing and "
+    + "the `expressed_as` join this reads has moved");
+  for (const key of pinned) {
+    assert.ok(derived.includes(key),
+      `${key} is pinned here as a quantity-decided chain and the corpus no longer declares it as `
+      + `one. Either its query changed kind or the row is stale. Quantity-decided at HEAD: `
+      + `${derived.join(", ")}`);
+  }
+
+  // SUBSET, not equality, and the ruling is recorded because the trade is not obvious. Requiring
+  // every quantity-decided requirement to be pinned here would guarantee a red suite on every future
+  // example that authors one — a gate that fires on correct work, which teaches readers to edit the
+  // list rather than read the test. It would also duplicate coverage: the census pin below already
+  // polices ALL authored obligations for the `inconclusive`/`vacuous` reading these rows guard
+  // against, generically and without a list. What these rows uniquely carry is a HAND-DERIVED
+  // status-and-verdict oracle, and that job does not scale with the corpus — two chains of opposite
+  // polarity prove the rule neither softens an earned pass nor softens a genuine breach, and a third
+  // would prove it again. So the pinned set stays a subset, and the unpinned remainder is named in
+  // the message above when a pin goes stale.
+  //
+  // What the subset reading gives up is noticing a NEW quantity-decided requirement, so the one
+  // property that must not erode is pinned directly: both polarities stay covered. This is a claim
+  // about the fixture rather than the corpus, which is exactly what the broken assertion was — the
+  // difference is that this one says so, and fires for a reason (a row deleted, leaving the control
+  // unable to distinguish "preserves passes" from "preserves breaches").
+  assert.deepEqual([...new Set(sound.map(([, , status]) => status))].sort(), ["satisfied", "violated"],
+    "this control needs one EARNED pass and one genuine breach among its pinned rows; with a single "
+    + "polarity it cannot tell a rule that preserves verdicts from one that softens everything into "
+    + "the status that happens to be pinned");
 });
 
-test("no shipped requirement moves — eight obligations, zero vacuity findings at HEAD", () => {
-  // Forward-policing, measured. The rule lands green on the corpus: exactly one shipped query
-  // discloses vacuity and no requirement names it. This pin is what notices when that stops being
-  // true — and if someone authors the worker-queue obligation above, THIS is what fires.
+test("no shipped requirement moves — every authored obligation enumerated, zero vacuity findings", () => {
+  // Forward-policing, measured. The rule lands green on the corpus: the shipped queries that DO
+  // disclose vacuity are named by no requirement, so none DECIDES an obligation. This pin is what
+  // notices when that stops being true — and if someone authors the worker-queue obligation above,
+  // THIS is what fires.
   //
-  // VACUITY: the corpus size is pinned, so a probe that enumerated nothing cannot carry the
-  // zero-findings assertion vacuously. That is the exact failure mode this file is named for.
+  // VACUITY: the enumeration is compared against the census derived from the authored YAML, so a
+  // probe that enumerated nothing cannot carry the zero-findings assertion vacuously — an empty
+  // enumeration fails the comparison against a non-empty census. That is the exact failure mode this
+  // file is named for, and the reason the census is NOT computed by calling `verifySystemRequirements`
+  // a second time: a figure derived from the thing under test agrees with it about having done
+  // nothing, and cannot witness it.
+  //
+  // The census was formerly the literal `8`, which fired on the sixth example's arrival at 14 — a
+  // correct reading of a number written against a set this project keeps growing. The comparison is
+  // now set-valued rather than a count, which also catches the join DROPPING one obligation while
+  // gaining another.
   const found: string[] = [];
-  let counted = 0;
+  const enumerated: string[] = [];
   for (const id of SHIPPED_EXAMPLE_IDS) {
     for (const [req, v] of verifySystemRequirements(canonicalize(doc(id)))) {
-      counted += 1;
+      enumerated.push(`${id}/${req}`);
       if (v.status === "inconclusive" && v.because.kind === "vacuous") found.push(`${id}/${req}`);
     }
   }
   assert.deepEqual(found, [], `a shipped requirement is decided by a vacuous query: ${found.join(", ")}`);
-  assert.equal(counted, 8, "eight authored requirements ship; a changed count means re-census");
+
+  const authored = authoredRequirements();
+  assert.ok(authored.length > 0,
+    "the authored census is EMPTY, so the zero-findings assertion above proved nothing. The probe is "
+    + "reading the wrong corpus, and this is the vacuity the file is named for turned on itself");
+  assert.deepEqual([...enumerated].sort(), [...authored].sort(),
+    "the join must enumerate exactly the obligations the corpus authors — no count is written here, "
+    + "so a seventh example grows both sides together and only a real divergence fires");
+
+  // And the MECHANISM, derived rather than asserted in prose: no requirement may NAME a query that
+  // discloses vacuity. This is strictly stronger than the zero-findings assertion above, because a
+  // requirement over a vacuous query whose polarity is ALSO inverted reads `error` by the precedence
+  // rule at the bottom of this file — §4 returns before `verify` is reached, so `found` would stay
+  // empty while a shipped obligation rested on a contradiction.
+  for (const id of SHIPPED_EXAMPLE_IDS) {
+    const d = doc(id);
+    const vacuous = new Set([...runSavedQueries(canonicalize(d))]
+      .filter(([, a]) => a.result.compilation.some((c) => c.kind === "vacuous"))
+      .map(([q]) => q));
+    for (const [req, r] of Object.entries(requirementsOf(d) ?? {})) {
+      assert.ok(!vacuous.has(String(r["expressed_as"])),
+        `${id}/${req} is decided by '${String(r["expressed_as"])}', a query that discloses vacuity. `
+        + `The obligation rests on a selection nothing can satisfy rather than on the design, and no `
+        + `polarity of satisfied_when makes it decidable`);
+    }
+  }
 });
 
 test("OVER-FIRING control: a lenient-but-REAL ceiling still reads satisfied", () => {
