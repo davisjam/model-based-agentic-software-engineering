@@ -123,6 +123,34 @@ function rowResolves(row: Section354Row, authored: readonly string[]): string | 
     : `VERIFICATION_TEXT's keys are ${words.join(", ")}, not §5.3's four`;
 }
 
+/**
+ * The row-resolve lookup fires — negative control.
+ *
+ * `rowResolves` is what keeps the owed-row test honest now that `owed` is empty: with nothing to
+ * iterate, it is the only thing in that test still reading the tree. A lookup nobody has watched
+ * fail is worth little, so each arm is driven here against a doctored input rather than trusted.
+ * The real tree is never mutated to prove this — `authored` is a parameter precisely so the schema
+ * arm can be exercised without editing the published schema out from under a concurrent writer.
+ */
+test("the row-resolve lookup fires on a missing construct — negative control", () => {
+  const real = authoredConstructs();
+  assert.ok(real.includes("requirements"),
+    "the schema no longer declares `requirements`, so the positive case below is not the positive case");
+
+  // The arm that would have caught the 261004 rot if it had existed: the authored key is gone.
+  const without = real.filter((k) => k !== "requirements");
+  const missing = rowResolves("requirement, verification", without);
+  assert.ok(missing !== null && missing.includes("requirements"),
+    `a schema with no \`requirements\` property must not resolve the row that stands on it, and the `
+    + `reason must name the key: ${String(missing)}`);
+
+  // And the live tree resolves every row, which is the assertion the owed-row test makes. Checked
+  // here too so a reader sees the control and the claim in one place.
+  for (const row of SECTION_35_4_ROWS) {
+    assert.equal(rowResolves(row, real), null, `§35.4's '${row}' row does not resolve at HEAD`);
+  }
+});
+
 const fixtureFile = (id: string, name: string): string => `conformance/${id}/${name}`;
 const read = (id: string, name: string): string => readFileSync(fixtureFile(id, name), "utf8");
 
