@@ -1,0 +1,57 @@
+{
+  "fixture": "kerml/binding-connector-identity-001",
+  "method": "spec-inspected",
+  "methodWhy": "The STRUCTURAL half is declared: two ownedRule constraints on the BindingConnector metaclass in KerML.xmi force it to be binary and to specialize Links::selfLinks, and the Kernel Semantic Library declares SelfLink's two ends as mutually subsetting. The DECISIVE step -- that mutually subsetting ends identify the same things -- is a SENTENCE, in clause 8.4.4.6.2 and in the library's own doc comment. KerML's Subsetting metaclass (Core-Features-Subsetting) carries three ownedRule constraints -- validateSubsettingConstantConformance, validateSubsettingUniquenessConformance, validateSubsettingFeaturingTypes -- and none declares extension containment, so the step cannot be taken from declared OCL alone. Per the corpus methodDiscipline the headline reports the WEAKEST rung the pinned interpretation depends on, so this reads spec-inspected with the declared chain visible below.",
+  "standard": "KerML",
+  "normativeDocument": {
+    "title": "Kernel Modeling Language (KerML), Version 1.0",
+    "omgDocumentNumber": "formal/26-03-01",
+    "date": "March 2026",
+    "url": "https://www.omg.org/spec/KerML/1.0/"
+  },
+  "clause": "KerML 1.0, 8.3.4.5.2 Binding Connector (abstract syntax, p.185) and 8.4.4.6.2 Binding Connectors (semantics, p.262); grounded in Kernel Semantic Library 9.2.3.2.5 SelfLink (p.288) and 9.2.3.2.6 selfLinks (p.289)",
+  "retrieval": {
+    "fetchedAt": "2026-10-05",
+    "what": "Every citation below was located in bytes fetched on that date, not recalled. KerML.xmi 962254 bytes from https://www.omg.org/spec/KerML/20250201/KerML.xmi; Semantic-Library.kpar 33031 bytes from https://www.omg.org/spec/KerML/20250201/Semantic-Library.kpar (a zip; Links.kerml extracted from it); the normative PDF 1821407 bytes / 454 pages from https://www.omg.org/spec/KerML/1.0/PDF. The OMG File ID formal/26-03-01 was read off the KerML 1.0 specification page rather than assumed; the three shipped fixtures spell the same number formal/2026-03-01, and that four-digit-year spelling is a corpus convention rather than OMG's own.",
+    "clauseNumbersVerifiedBy": "Locating each heading in the extracted PDF text: '8.3.4.5.2 Binding Connector', '8.4.4.6.2 Binding Connectors', '9.2.3.2.5 SelfLink', '9.2.3.2.6 selfLinks'. No clause number here is quoted from memory."
+  },
+  "evidence": [
+    {
+      "rung": "normative-artifact",
+      "source": "https://www.omg.org/spec/KerML/20250201/KerML.xmi",
+      "locator": "packagedElement xmi:id=\"Kernel-Connectors-BindingConnector\", its two ownedRule constraints",
+      "what": "DECLARED invariants on the metaclass, so they hold of every BindingConnector rather than being exhibited by an example. validateBindingConnectorIsBinary: body=\"relatedFeature->size() = 2\". checkBindingConnectorSpecialization: body=\"specializesFromLibrary('Links::selfLinks')\". Both language=\"OCL2.0\". The element's sole generalization is Kernel-Connectors-Connector."
+    },
+    {
+      "rung": "normative-artifact",
+      "source": "https://www.omg.org/spec/KerML/20250201/Semantic-Library.kpar",
+      "locator": "Kernel Semantic Library/Links.kerml lines 32-41 (SelfLink) and 57-65 (selfLinks)",
+      "what": "DECLARED: 'assoc all SelfLink specializes BinaryLink' whose two ends subset each other -- 'end feature thisThing: Anything redefines source subsets sameThing crosses sameThing.self' and 'end self2 [1] feature sameThing: Anything redefines target subsets thisThing'. This is the structural form of the identity, and lines 57-65 declare the selfLinks Feature that the constraint above names."
+    },
+    {
+      "rung": "spec-inspected",
+      "source": "KerML 1.0 formal/26-03-01, clause 8.4.4.6.2 Binding Connectors, p.262 (same sentence not present in KerML.xmi; the library's Links.kerml doc comment states it in other words)",
+      "locator": "second sentence of the clause",
+      "what": "DECISIVE prose: 'SelfLink has two associationEnds that subset each other, meaning they identify the same things (have the same values), which then also applies to BindingConnector connectorEnds that redefine the associationEnds of SelfLink.' This is the step from declared mutual subsetting to identity, and it is what makes the fixture's method spec-inspected."
+    },
+    {
+      "rung": "spec-inspected",
+      "source": "KerML 1.0 formal/26-03-01, clause 8.3.4.5.2 Binding Connector, p.185 (identical text in the KerML.xmi ownedComment of Kernel-Connectors-BindingConnector)",
+      "locator": "the Description",
+      "what": "CORROBORATING prose: 'A BindingConnector is a binary Connector that requires its relatedFeatures to identify the same things (have the same values).' Listed separately so the record does not present a comment as declared structure."
+    }
+  ],
+  "oracle": null,
+  "oracleWhy": "No reference implementation was executed. The Workbench takes no runtime dependency on the SysML v2 Pilot Implementation (DESIGN-v02-semantics-261004.md section 35.1), and this wave added none. source.kerml Part B has not been parsed by any tool.",
+  "establishedBy": "MAGE Workbench conformance-fixtures wave (agent)",
+  "establishedAt": "2026-10-05",
+  "reviewedByPerson": null,
+  "reviewedByPersonWhy": "Section 35.6's template field is spelled read_by: <person>, and no person has read this fixture. Recorded as null rather than filled with the wave's name.",
+  "bound": "Pins the `appears-in` binding ONLY, and says nothing about `machine-of-entity`, `state-of-entity` or completeness (section 35.6). Claims co-denotation of ONE element, not value identity: nothing transports a property value across the correspondence, which is the first exclusion the registry's own basis names. Claims nothing about an author-declarable binding -- source.kerml Part B must write a `binding` connector to make two packages' features co-denote, MAGE has no such declaration and by the 261004 ruling never will, so the two mechanisms agree on the assertion and differ on who makes it. Does not exercise multiplicity or cardinality on a binding's ends. Does not establish that reachability composes across models in general; it establishes that the junction is the shared id, by moving it.",
+  "substitutionAgainstRuling": {
+    "what": "DECISIONS-RULED-authored-constructs-261004.md section 2 specifies this fixture as built from a machine's `entity:` key for `machine-of-entity`, with the pinned interpretation that the two ends denote the same thing. This fixture pins `appears-in` instead.",
+    "why": "That interpretation is not available for that row. The registry's own `interpretation` for machine-of-entity reads 'this behavioural model DESCRIBES this structural entity'; src/rdf/vocabulary.ts comments the projected correspondence MAGE.describes as 'Optional correspondence, not identity'; and no MAGE seam treats a machine and its entity as interchangeable -- a behavioural query names <machine>.state, never <entity>.state. Identity is not an optional part of a BindingConnector: checkBindingConnectorSpecialization forces specialization of Links::selfLinks, whose ends are declared mutually subsetting. Pinning machine-of-entity against it would assert an identity MAGE does not claim, which is the over-attribution section 35.3 forbids.",
+    "whatIsPreserved": "The ruling's governing principle: the fixture is built from an AUTHORED FIELD that licenses one binding, not from a declaration key. For `appears-in` that field is a model's `entities:` membership list -- the witness the ruling's own table gives the row (`shared-membership`). No authored `bindings:` key is proposed, used or owed.",
+    "reportedTo": "The wave's report, as a correction the ruling should absorb. The registry text (src/engine/model-types.ts) was out of this wave's scope and still presents all three rows under one identity sentence."
+  }
+}

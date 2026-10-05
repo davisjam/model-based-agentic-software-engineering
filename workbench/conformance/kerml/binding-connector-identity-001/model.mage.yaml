@@ -1,0 +1,151 @@
+# CONFORMANCE FIXTURE. The MAGE half of one correspondence claim; `claim.md` states the claim and
+# `oracle.json` records how it was checked. Read those two before reading this file.
+#
+# The claim this model exists to make falsifiable: one entity id denotes ONE entity across every
+# purposeful model that lists it, so two models' edge sets meet at a shared id and a question
+# answered over the system crosses the junction. `alpha` is related only inside `upstream`, `omega`
+# only inside `downstream`, and the sole thing joining them is that both models name `shared`. A
+# reading under which an entity id were model-local -- a label scoped to the document that wrote it
+# -- predicts `refuted` for the pinned query, because the two models would be two disjoint graphs.
+#
+# The binding under test is `appears-in` (`BINDINGS`, src/engine/model-types.ts). It is pinned
+# instead of `machine-of-entity` deliberately, and `claim.md` gives the argument: `appears-in` is
+# the one registered binding whose correspondence IS the identity assertion KerML's
+# BindingConnector declares. Per section 35.6 this pins ONE binding and says nothing about the
+# other two or about completeness.
+#
+# Nothing here is a shipped example and nothing imports it. It is as small as the claim allows:
+# four entities, one relation type, two models, two edges.
+
+mage: 1
+
+system:
+  id: kerml-binding-connector-identity
+  name: One entity named by two purposeful models
+  description: >
+    Two graph models over one entity namespace. Neither model contains a path from the first
+    entity to the last; the system does, because both models name the entity in the middle.
+
+relation-types:
+
+  conveys:
+    description: The source hands its output directly to the target.
+    absence: No direct handoff is represented. Absence says nothing about any other relation.
+    # Composition is ALLOWED so `reachability` is licensed and a verdict below is an answer rather
+    # than a refusal. Without this the fixture would pin V7's unlicensed verdict instead of the
+    # identity claim, which is a different statement entirely.
+    composition:
+      path: allowed
+    properties:
+      symmetric: false
+      acyclic: true
+
+entities:
+
+  alpha:
+    type: component
+    label: Alpha
+
+  # THE shared denotation. Listed by both models below. Nothing marks it as shared: being named
+  # twice in one namespace is the whole of the correspondence, which is why `appears-in` is
+  # licensed `by-construction` and no authored key spells it.
+  shared:
+    type: component
+    label: Shared
+
+  omega:
+    type: component
+    label: Omega
+
+  # The negative control's target. Declared, listed by both models, and the endpoint of no
+  # relation -- so a `refuted` about it shows `reachability` discriminates rather than answering
+  # `holds` to every question put to it.
+  isolated:
+    type: component
+    label: Isolated
+
+models:
+
+  upstream:
+    type: graph
+    label: Upstream
+    purpose:
+      question: What hands off to what on the way in?
+      represents: [component identity, direct handoff]
+      omits: [execution order, how long a handoff takes, what happens downstream]
+    entities: [alpha, shared, isolated]
+    relations:
+      - id: alpha-conveys-shared
+        from: alpha
+        to: shared
+        type: conveys
+
+  downstream:
+    type: graph
+    label: Downstream
+    purpose:
+      question: What hands off to what on the way out?
+      represents: [component identity, direct handoff]
+      omits: [execution order, how long a handoff takes, what happened upstream]
+    entities: [shared, omega, isolated]
+    relations:
+      # The hop that makes the fixture discriminating. Its source is the id `upstream` also names,
+      # and that coincidence of SPELLING is the entire mechanism joining the two models.
+      # Retargeting this one endpoint to `isolated` -- a declared entity, so nothing is added and
+      # no other line moves -- is the mutation the conformance test applies, and it is what flips
+      # the pinned query to `refuted`.
+      - id: shared-conveys-omega
+        from: shared
+        to: omega
+        type: conveys
+
+queries:
+
+  # THE pinned claim. Two edges separate `alpha` from `omega` and they live in DIFFERENT models, so
+  # a path exists only if the `shared` of `upstream` and the `shared` of `downstream` are one
+  # entity.
+  handoff-spans-the-two-models:
+    name: Alpha reaches Omega through conveyed handoff
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: reachability
+      relation: conveys
+      from: alpha
+      to: omega
+
+  # The negative control. Without it the `holds` above is consistent with `reachability` answering
+  # `holds` to everything, which would make this fixture pass by construction. Same form, same
+  # relation type, same source; the target is the entity no edge touches.
+  handoff-does-not-reach-the-unconnected-entity:
+    name: Alpha reaches Isolated through conveyed handoff
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph:
+      form: reachability
+      relation: conveys
+      from: alpha
+      to: isolated
+
+  # The positive control, which must SURVIVE the mutation. It asks only about the hop inside
+  # `upstream`, so the junction is irrelevant to it and a mutation that broke it would have broken
+  # the model rather than the correspondence.
+  handoff-reaches-its-own-model-target:
+    name: Alpha reaches Shared through conveyed handoff
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: reachability
+      relation: conveys
+      from: alpha
+      to: shared
+
+views:
+
+  junction:
+    label: Junction
+    models: [upstream, downstream]
+    direction: left-to-right
