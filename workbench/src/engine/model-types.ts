@@ -471,6 +471,84 @@ export interface CompositionSemantics {
   readonly semanticBasis: SemanticBasis;
 }
 
+// --------------------------------------------------------------------------------------------
+// Render strategy — how a model type's picture is produced, or why it has none (§22.4)
+// --------------------------------------------------------------------------------------------
+
+/**
+ * The IR construct a projection can be a projection OF.
+ *
+ * **Kernel vocabulary, and that is a measured constraint rather than a preference.** The declared
+ * component graph asserts EQUALITY between the `depends-on` edge set and the observed imports, in
+ * both directions, and there is no `query-engine → renderer` edge. So this field may not hold a
+ * renderer function, and may not name the renderer's own `SceneSubjectKind` either — a type-only
+ * import is drawn the same as a value one. Each member below names a map on `CanonicalSystem`
+ * instead: `models`, `machines`, `quantitativeModels`. The renderer maps a construct to the
+ * projection that draws it; the engine stays unaware that a renderer exists.
+ *
+ * Three members, because the IR now has three things a picture can be of. It had two until
+ * `CanonQuantitativeModel` landed, and that ordering is the point: a projection cannot be registered
+ * against a subject that is not addressable, so the subject came first.
+ */
+export type RenderConstruct = "model" | "machine" | "quantitative-model";
+
+/**
+ * How a model type's picture is produced, or why it has none.
+ *
+ * **The field this type annotates is REQUIRED, which is the whole of rung 1.** A new model type
+ * cannot land without declaring a projection or declaring itself nonvisual, because the compiler
+ * will not let it — the same structure `semanticBasis` uses, and the registry header's sentence
+ * about that field applies here unchanged. What differs is what the declaration is WORTH:
+ * `semanticBasis` claims a correspondence to an external standard the workbench takes no runtime
+ * dependency on, so its top rung is unholdable; a render strategy's correspondent is the
+ * workbench's own renderer, which CI holds in its hand. `test/render-strategy.test.ts` re-derives
+ * every row against the code that draws it on every run.
+ *
+ * **Two arms, not three.** `DESIGN-render-rules-261004.md` §B.3 proposed a third, `annotates`, for a
+ * type whose picture is hosted on another type's subject — the shape that would have converted the
+ * quantitative type's positional fallback from a silent heuristic into a declared claim. Events
+ * settled §I's first open question instead of a ruling: the fallback is gone and the quantitative
+ * type has its own projection over its own construct, so an `annotates` arm would carry no row and
+ * model a state the tree no longer has. The arm is recoverable from the design if a hosted
+ * projection ever lands; carrying it empty now would be aspiration dressed as a type.
+ *
+ * **`nonvisual` carries no row either, and stays.** The difference is that it is the escape the
+ * required field needs to stay honest: without it, a type with nothing to draw must either fake a
+ * projection or hold the field hostage. A zero-row arm whose job is to be available is forward
+ * policing; a zero-row arm whose job is to describe today is not.
+ *
+ * **No `semanticBasis` here, deliberately.** §4.4 requires one for bindings and compositions. A
+ * projection is the workbench's own presentation choice; no standard defines one, so every row
+ * would carry the same "this is ours" reason, and a field constant across every row records
+ * nothing. §35's rule attaches attribution where borrowing is possible, and rendering is not
+ * borrowed. Recording the judgment here is what keeps it from being re-read as an omission.
+ *
+ * **No evidence field, for the same reason.** §B.3's `projected` arm proposed an `evidence`
+ * projection beside `projection`. §F's own statement of what the registry must express names three
+ * things and that is not one of them; emphasis reaches every projection through one filter, so the
+ * field would say one thing three times.
+ */
+export type RenderStrategy =
+  | {
+    readonly kind: "projected";
+    /** The IR construct this type's own picture is a projection of. */
+    readonly construct: RenderConstruct;
+    /**
+     * What the projection preserves of this type's semantics, and what it drops.
+     *
+     * The same job `omits` does for a model, at the granularity of the picture: a resource-oriented
+     * view of memory preserves allocation and margin and drops connectivity, and a structural view
+     * of the same entities does the reverse. Both are legitimate pictures of overlapping facts, and
+     * this is the field that says which reduction a reader is looking at.
+     */
+    readonly projection: string;
+  }
+  | {
+    readonly kind: "nonvisual";
+    /** Why this type has no picture — a reason, never a placeholder. A test holds that. */
+    readonly why: string;
+  };
+
 /**
  * The transitive or derived relations a type defines semantically — Extension 1's own item,
  * computed from the classification rather than stored beside it.
@@ -503,6 +581,22 @@ export interface ModelType {
   readonly query: QuerySemantics;
   /** What this type deliberately does not tell you — the purposeful-reduction half of a Learn page. */
   readonly omits: readonly string[];
+  /**
+   * How this type's picture is produced, or why it has none. REQUIRED, per rung 1.
+   *
+   * This closes the gap `DESIGN-render-rules-261004.md` §A.2 measured: *"`src/engine/model-types.ts`
+   * declares three model types and says nothing about rendering; `src/render/` knows two subject
+   * kinds and nothing about model types. The two vocabularies have never been related."* Before this
+   * field the relation existed twice, in two layers, written by hand and free to disagree — and it
+   * DID disagree: the Learn page drew a budget for the quantitative type while the cross-model
+   * canvas refused it as having no picture at all, each stating its own reason. One declaration,
+   * read by both.
+   *
+   * Where the per-INSTANCE facts come from is not a field here. `schema` above already cites them,
+   * which is §B.3's own answer and the registry's standing discipline: the registry points, the IR
+   * decides. A budget's ceiling belongs to the quantity that declares it, never to the renderer.
+   */
+  readonly renderStrategy: RenderStrategy;
   /**
    * A NAVIGATION hint for the Learn page: which other type to reach for, and the question the pair
    * would answer. **Not a semantic relationship** — §4.1 is explicit: *"combineWith, if retained,
@@ -692,6 +786,17 @@ export const MODEL_TYPES: readonly ModelType[] = [
       "what behaviour can occur over time, or in what order",
       "what an execution costs in time, memory or money",
     ],
+    renderStrategy: {
+      kind: "projected",
+      construct: "model",
+      projection:
+        "entities as boxes and declared relations as typed edges, over one model's own entity set. " +
+        "Containment is drawn twice — as an enclosing region and as an explicit edge — because " +
+        "enclosure alone would leave position the sole carrier of a containment claim. It preserves " +
+        "which things exist, which are related and by which declared relation type, and the " +
+        "direction of each. It drops every magnitude and every order of occurrence: an edge says a " +
+        "relation is declared, never that anything traverses it or what doing so costs.",
+    },
     combineWith: {
       partner: "quantitative-model",
       richerQuestion: "Can restricted data reach a service, and what does carrying it there cost?",
@@ -834,6 +939,18 @@ export const MODEL_TYPES: readonly ModelType[] = [
       "how long an execution takes, or what it costs",
       "which services are connected to which, outside the states it steps",
     ],
+    renderStrategy: {
+      kind: "projected",
+      construct: "machine",
+      projection:
+        "declared control states as nodes and transitions as edges, seeded from the initial state " +
+        "rather than from in-degree zero, because a lifecycle is usually cyclic and would offer no " +
+        "seed. An event name stays written on its edge, unlike a relation type: two states joined " +
+        "by two transitions are distinguishable only by those words. It preserves which states " +
+        "exist, which steps are declared between them and on what event. It drops the " +
+        "configuration space the declarations span — a drawn state is one declared state, never a " +
+        "reachable configuration — and it drops variable valuations entirely.",
+    },
     combineWith: {
       partner: "quantitative-model",
       richerQuestion: "Can a document reach Published within the declared latency ceiling?",
@@ -915,6 +1032,19 @@ export const MODEL_TYPES: readonly ModelType[] = [
       "which executions are possible at all — that is the state machine's claim",
       "what is connected to what — that is a structural model's claim",
     ],
+    renderStrategy: {
+      kind: "projected",
+      construct: "quantitative-model",
+      projection:
+        "one dimension's accounting as extent against a threshold: each allocation's declared " +
+        "magnitude, the total they charge, the declared ceiling and the margin between. It " +
+        "preserves every figure and the verdict, and it preserves a member that charges nothing — " +
+        "an annotation reaching no summand is still a member, because a total that silently " +
+        "dropped it would read as measured over a complete model. It drops topology: nothing here " +
+        "says what is connected to what, or in what order anything runs. That is the reduction, " +
+        "and it is why forcing these facts through the structural extractor drew a dependency " +
+        "graph where a budget belonged.",
+    },
     combineWith: {
       partner: "state-machine",
       richerQuestion: "Which reachable execution attains the worst-case latency, and does it stay under the ceiling?",
