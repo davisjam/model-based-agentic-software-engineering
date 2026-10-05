@@ -106,9 +106,20 @@ re-deriving these, so they live here:**
   `check`, `check:parity`, `test`, `build` — plus `test:browser` and `test:a11y` if anything reaches the
   page — **before** pushing. Likewise: tell each agent to **measure its own baseline**; a count quoted
   from an orchestrator brief is stale the moment a sibling lands.
-- **Push under `run_in_background`.** The `pre-push` gate rebuilds the site and runs the Typst renders;
-  it regularly exceeds a 120 s foreground call and gets killed mid-gate. Log to a file and verify by
-  reading `main -> main` out of it. Related, and cheap to get wrong: `git commit -m "msg" -- <paths>` —
+- **Push under `run_in_background`, and verify by `origin`'s SHA — never by the gate's output.** The
+  `pre-push` gate rebuilds the site and runs the Typst renders; it regularly exceeds a 120 s
+  foreground call and gets killed mid-gate.
+  - **The gate runs BEFORE the transfer, so its verdict says nothing about whether anything shipped.**
+    On 261004 three consecutive pushes printed a clean `82 passed, 0 failed` and exited **141**
+    (SIGPIPE) with `origin/main` unmoved — five merges sat local while every surface said success.
+    The only honest check is `git rev-parse origin/main`.
+  - **Cause, diagnosed rather than guessed:** git opens the SSH connection first, the hook then runs
+    for minutes, and GitHub closes the idle session — in the measured case at line 240 of a
+    1077-line push log, with the hook still working for another 800 lines. `git ls-remote` succeeded
+    throughout, so it is idle-timeout, not connectivity.
+  - **Fix, repo-local so nothing outside the working tree is touched:**
+    `git config core.sshCommand "ssh -o ServerAliveInterval=20 -o ServerAliveCountMax=30"`.
+    Reverts with `git config --unset core.sshCommand`. Related, and cheap to get wrong: `git commit -m "msg" -- <paths>` —
   the message must come **before** `--`, or git reads it as a pathspec and fails with "did not match any
   file(s) known to git".
 - **Do not mix isolation modes in one wave.** If some agents in a wave get worktrees, they all do. On
