@@ -8,7 +8,7 @@ This is the authoritative semantics. The JSON Schemas beside it
 [`mage-transaction.schema.json`](mage-transaction.schema.json)) constrain *shape*; this document
 fixes *meaning*. Where a question is about what a model asserts, this file decides it.
 
-Validation rules are numbered **V1…V43** so implementations, tests, and error messages can cite them.
+Validation rules are numbered **V1…V44** so implementations, tests, and error messages can cite them.
 Numbers are append-only: a new rule takes the next free one and lands in the section that owns its
 subject, so the sequence stays stable rather than sorted.
 
@@ -974,6 +974,16 @@ is what let a soundly authored ceiling requirement report **satisfied at 2,750 m
   budget makes an unreachable selection reachable — a model defect reported as an evidence shortfall.
 - The rule MUST NOT be conditioned on coverage. It reads the disclosure and nothing else, so the
   obligation's status cannot depend on how far the walk got.
+- **It applies when the evaluation reached no verdict at all.** The disclosure belongs to the RESULT,
+  not to a verdict, so a truncated evaluation can carry one; V44 decides vacuity before the walk
+  begins, which is what puts the two facts on one result. An implementation MUST keep the disclosure
+  reachable through whatever it projects a result onto, and MUST prefer the vacuity cause over the
+  budget one whenever both apply. A projection that carries the budget alone leaves this layer only
+  the budget to name, and the author is sent to raise a bound that cannot help — which is the same
+  model-defect-as-evidence-shortfall collapse the bullet above forbids, arriving through the
+  implementation rather than through the rule. The wording "the verdict deciding it" invited exactly
+  that reading, and it is corrected here rather than restated: the rule reads the RESULT's
+  disclosure, at any coverage, settled or not.
 - No new status word. The distinction travels as a CAUSE, which is where the requirements design sent
   the fifth word it declined to mint.
 
