@@ -144,6 +144,16 @@ const DECLINED: Readonly<Record<string, string>> = {
     "against a model element, so walking it here would attribute it to the wrong place — and after " +
     "the 261004 split it is out of this file's obligation by TYPE, since the obligation runs " +
     "against bindings and a composition is not one",
+  requirements: "authored OBLIGATIONS. A requirement declares no model element — it PRESCRIBES over " +
+    "a saved question — and its one reference, `expressed_as`, names a saved query by id, which " +
+    "this walk already declines one entry above. The exclusion is not a judgement that could " +
+    "quietly be wrong, either: `verifyDeclaration` resolves `expressed_as` against the system's " +
+    "declared query ids and nothing else, so the key cannot come to carry a reference into another " +
+    "model type without that function changing first. Unclassified until 261005, and invisibly so " +
+    "— the construct landed on 261004 and this gate reads only the keys TRACKED MODELS USE, so it " +
+    "stayed silent for a day until the examples authored one. That is the gap this classification " +
+    "closes, and it is the same gap in miniature that the migration closed: a construct nothing " +
+    "authors is invisible to the governance over it, not merely unused",
   views: "presentation — which machines and models a diagram draws, asserting nothing about the model",
 };
 

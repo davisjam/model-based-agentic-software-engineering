@@ -56,10 +56,11 @@ models:
 # ---------------------------------------------------------------------------
 # Requirements (section 2: "at least one requirement").
 #
-# MAGE v0.1 has no requirement construct. Both of these take the `expressed_as` route -- a saved
-# query decides it, and `satisfied_when` is the outcome that means it holds. Neither takes the
-# `decided_by` route, because that route names a hand-derived quantitative expectation and this
-# example declares no quantities.
+# Both DECLARATIONS live in `system.mage.yaml`'s `requirements:` block; what this block carries is
+# the `status` each one derives, which is the oracle the gate checks the derivation against. Both
+# take the `expressed_as` route -- a saved query decides it, and `satisfied_when` is the outcome
+# that means it holds. Neither takes the `decided_by` route, because that route names a hand-derived
+# quantitative expectation and this example declares no quantities.
 #
 # The polarity discipline is visible in the pair, deliberately: the first requirement is satisfied
 # when its query is REFUTED (the query states the breach positively), and the second is satisfied

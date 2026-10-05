@@ -33,12 +33,17 @@ models:
 # ---------------------------------------------------------------------------
 # Requirements (section 2: "at least one requirement").
 #
-# MAGE v0.1 has NO requirement construct -- no `requirements:` key in mage-model.schema.json, no
-# `CanonRequirement` in the IR. A requirement is therefore carried here, joined to the saved query
-# that decides it. `satisfied_when` is the outcome that would mean the requirement holds; `status` is
-# what the shipped system actually does. The test asserts the join: the query's recorded expected
-# outcome must agree with `status`, so a requirement cannot claim to be satisfied by a query that
-# refutes it.
+# The DECLARATION lives in the model, not here. `requirements:` landed as a top-level schema key on
+# 261004 and `system.mage.yaml` authors this obligation; what remains here is `status`, which has no
+# authored home because a verification is derived per read and stored nowhere.
+#
+# So this block is the ORACLE, and the fields beside `status` are a second copy the gate holds equal
+# to the model's. `status` is what the shipped system actually does; the test re-derives it twice —
+# once from the authored model against a live query run, once from this fixture's recorded outcome —
+# and both must agree, so a requirement cannot claim to be satisfied by a query that refutes it.
+#
+# The copy is not redundancy for its own sake: the Learn page reads a requirement's statement from
+# the fixture, and `test/examples.test.ts` asserts the two copies state the same obligation.
 # ---------------------------------------------------------------------------
 requirements:
   - id: no-restricted-data-to-an-impermitted-subscriber

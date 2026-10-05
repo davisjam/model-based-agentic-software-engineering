@@ -14,12 +14,16 @@
 # performance numbers -- and the Performance row is exercised: the `kind: quantity` query form
 # aggregates each metric (the aggregation derived from the dimension's scope), decides the
 # declared ceilings, and reports the figure on the result's magnitude field, which the schema
-# probe finds. Requirements reads UNEXERCISED rather than unavailable since 261004: the
-# `requirements:` construct landed, so the row is reachable, and no shipped example authors one
-# yet -- every example still carries its requirements in its fixture. Unexercised is the honest
-# word for that and the row is detected off the AUTHORED model to keep it so; detecting off the
-# fixture would read `exercised` the moment the construct landed, on evidence from a file that
-# is not the model.
+# probe finds. Requirements reads EXERCISED since 261005, and the row's two-step history is the
+# reason the detection is worth reading: `unavailable` while no `requirements:` key existed,
+# `unexercised` once the construct landed and no model authored one, `exercised` now that every
+# shipped example authors its obligations. The row detects off the AUTHORED model and not off
+# the fixture, which is what kept the middle step honest -- a fixture reading would have flipped
+# the row the moment the construct landed, on evidence from a file that is not the model.
+#
+# Two of Document Processing's four requirements stay in its fixture, and that costs this row
+# nothing: `expressed_as` is a join to a SAVED query by id, and those two are decided by a
+# question composed from a declared ceiling at analysis time, which nothing saves.
 #
 # Transaction Workspace adds no row, and that is worth reading rather than skipping: every
 # capability it exercises was already exercised elsewhere. It earns its place as the BEHAVIOR
@@ -269,7 +273,7 @@ entities:
     label: "A requirement as a first-class object the model is judged against, not prose beside it."
     properties:
       matrix_row: "Requirements"
-      status: { value: unexercised, domain: coverage-status }
+      status: { value: exercised, domain: coverage-status }
 
 models:
 
@@ -372,6 +376,11 @@ models:
       - { from: example.document-processing, to: capability.path-quantity-accounting, type: exercises }
       - { from: example.document-processing, to: capability.configuration-memory-accounting, type: exercises }
       - { from: example.document-processing, to: capability.performance, type: exercises }
+      - { from: example.message-bus, to: capability.requirements, type: exercises }
+      - { from: example.transaction-workspace, to: capability.requirements, type: exercises }
+      - { from: example.document-processing, to: capability.requirements, type: exercises }
+      - { from: example.worker-queue, to: capability.requirements, type: exercises }
+      - { from: example.embedded-sensor-node, to: capability.requirements, type: exercises }
 
 # One assertion per capability. `expect` makes a saved query a CI gate: re-running them
 # re-derives the matrix, so the answer to the model's question is executable rather than read off
@@ -602,7 +611,7 @@ queries:
     name: "Some shipped example exercises requirements -- requirements"
     kind: graph
     quantifier: exists
-    expect: refuted
+    expect: holds
     graph:
       form: predecessors
       relation: exercises

@@ -9,8 +9,10 @@
 // The gap was measurable rather than arguable. `src/engine/verification.ts` has carried §5.3's
 // vocabulary since 261004, and `mage-model.schema.json` had twelve top-level keys, none of them
 // `requirements` — so the engine knew what a requirement MEANS and no document could contain one.
-// The example corpus says so in its own file: *"MAGE v0.1 has NO requirement construct ... A
-// requirement is therefore carried here"* (`examples/message-bus/expected-results.yaml:36-38`).
+// The example corpus said so in its own file, in a header that is now gone: *"MAGE v0.1 has NO
+// requirement construct ... A requirement is therefore carried here"* (`examples/message-bus/
+// expected-results.yaml`, at 5ed8975a). Quoted from history, not from the tree — the migration on
+// 261005 moved every shipped example's declaration into its model, so the corpus no longer says it.
 //
 // ## What is pinned, and why each one earns its place
 //
@@ -51,8 +53,10 @@ const REQUIREMENT = "no-restricted-data-to-an-impermitted-subscriber";
  * A model that authors the construct, in the shape message-bus carries in its fixture.
  *
  * Small on purpose and not a shipped example: P0 holds that an example may USE the construct and
- * must not know about it specially, so moving message-bus's declaration out of its fixture is the
- * follow-up and not this file's business. The shape is the shipped one — an ordered-enum sensitivity
+ * must not know about it specially. Message-bus's declaration DID move out of its fixture on 261005,
+ * and this probe stays anyway — the shipped example exercises the construct, while this file drives
+ * the paths a shipped example must not have to exhibit: a required key deleted in turn, a dangling
+ * join, a prescribed non-proposition. The shape is the shipped one — an ordered-enum sensitivity
  * domain, a service that permits less than the event it subscribes to, and an existential `direct`
  * query whose `where` compares the two — so the polarity under test is the polarity that ships.
  *

@@ -48,7 +48,10 @@ models:
 # ---------------------------------------------------------------------------
 # Requirements (section 2: "at least one requirement").
 #
-# MAGE v0.1 has no requirement construct. Two routes exist, and this example uses both:
+# Two of these four DECLARATIONS live in `system.mage.yaml`'s `requirements:` block and two do not,
+# and the split is a fact about the construct: `expressed_as` is a join to a SAVED query by id, so
+# a requirement decided by a question COMPOSED from a ceiling at analysis time has nothing to name.
+# Two routes exist here, and this example uses both:
 #
 #   expressed_as  a saved query decides it. `satisfied_when` is the outcome that means it holds.
 #   decided_by    a `quantitative_expectations` entry decides it, and `declared_as` names the

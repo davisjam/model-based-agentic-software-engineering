@@ -906,12 +906,15 @@ export const CAPABILITY_ROWS: readonly CapabilityRow[] = [
     label: "A requirement as a first-class object the model is judged against, not prose beside it.",
     matrixRow: "Requirements",
     requires: ["model.requirements"],
-    // The AUTHORED model, not the fixture. While the construct was absent this distinction cost
-    // nothing — `requires` pinned the row to `unavailable` whatever `detect` said — so the fixture
-    // reading was free and wrong at the same time. The day `requirements:` landed it would have
-    // flipped the row to `exercised` on the strength of `expected-results.yaml`, which is where a
-    // requirement lives when the model CANNOT hold one. That is the capability this row claims
-    // exercised by the example suite, so the evidence has to be the example's own model.
+    // The AUTHORED model, not the fixture — and the row's history is what shows the choice paid.
+    // While the construct was absent the distinction cost nothing: `requires` pinned the row to
+    // `unavailable` whatever `detect` said, so a fixture reading was free and wrong at once. The day
+    // `requirements:` landed, a fixture reading would have flipped the row to `exercised` on the
+    // strength of `expected-results.yaml`, which is where a requirement lived while the model could
+    // not hold one — and the row would have read covered for a day during which nothing authored a
+    // requirement. It read `unexercised` for that day instead, and went green on 261005 when the
+    // examples authored theirs. The capability this row claims is exercised by the example suite,
+    // so the evidence has to be the example's own model.
     detect: (ctx) => ctx.system.requirements.size > 0,
   },
 ];
@@ -992,12 +995,16 @@ export function generateExampleCoverageModel(
     "# performance numbers -- and the Performance row is exercised: the `kind: quantity` query form",
     "# aggregates each metric (the aggregation derived from the dimension's scope), decides the",
     "# declared ceilings, and reports the figure on the result's magnitude field, which the schema",
-    "# probe finds. Requirements reads UNEXERCISED rather than unavailable since 261004: the",
-    "# `requirements:` construct landed, so the row is reachable, and no shipped example authors one",
-    "# yet -- every example still carries its requirements in its fixture. Unexercised is the honest",
-    "# word for that and the row is detected off the AUTHORED model to keep it so; detecting off the",
-    "# fixture would read `exercised` the moment the construct landed, on evidence from a file that",
-    "# is not the model.",
+    "# probe finds. Requirements reads EXERCISED since 261005, and the row's two-step history is the",
+    "# reason the detection is worth reading: `unavailable` while no `requirements:` key existed,",
+    "# `unexercised` once the construct landed and no model authored one, `exercised` now that every",
+    "# shipped example authors its obligations. The row detects off the AUTHORED model and not off",
+    "# the fixture, which is what kept the middle step honest -- a fixture reading would have flipped",
+    "# the row the moment the construct landed, on evidence from a file that is not the model.",
+    "#",
+    "# Two of Document Processing's four requirements stay in its fixture, and that costs this row",
+    "# nothing: `expressed_as` is a join to a SAVED query by id, and those two are decided by a",
+    "# question composed from a declared ceiling at analysis time, which nothing saves.",
     "#",
     "# Transaction Workspace adds no row, and that is worth reading rather than skipping: every",
     "# capability it exercises was already exercised elsewhere. It earns its place as the BEHAVIOR",

@@ -116,9 +116,10 @@ entities:
         kind: rationale
         text: >
           The 256 KiB ceiling is a physical fact about the part, not a policy. It is declared as a
-          `model:`-targeted quantity because MAGE v0.1 has no requirement construct: a `model:`
-          total is charged by no accounting basis and exists to be compared against, which is
-          exactly what a budget is.
+          `model:`-targeted quantity because a budget is a NUMBER: a `model:` total is charged by no
+          accounting basis and exists to be compared against. The OBLIGATION that cites it is a
+          separate declaration in this file's `requirements:` block, which names the query that
+          decides it rather than restating the figure.
       - id: one-resource-at-a-time
         kind: comment
         text: >

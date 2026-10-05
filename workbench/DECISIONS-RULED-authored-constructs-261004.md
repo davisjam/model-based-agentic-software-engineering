@@ -112,17 +112,29 @@ can never be discharged is a bad trigger.
   `construct.model-requirements` absent-construct entity, its `blocked-by` edge and the
   `blocked.requirements` CI query drop out with it. 21 exercised / 2 unexercised / 0 unavailable,
   from 21 / 1 / 1. `unexercised` and not `exercised`, because the row is now detected off the
-  AUTHORED model and no shipped example authors one yet.
+  AUTHORED model and no shipped example authors one yet. (⚠️ **261005:** the examples authored theirs,
+  so the row reads `exercised` and the triple is 22 / 1 / 0. The one remaining `unexercised` row is
+  `containment-hierarchy`, which is unrelated.)
 - **Both `owed` conformance rows: `blockedBy: clause-and-fixture`**, zero rows blocked on an absent
   construct. Neither is waiting on subject matter; each owes a clause and a fixture.
 - **Test count: 1259 → 1274.**
 
 ## 4. What is NOT done, and is the follow-up
 
-- **No shipped example authors a `requirements:` block.** Every one still carries its requirements in
-  `expected-results.yaml`, joined by a test comparing two recorded strings. Migrating them is what
+- ~~**No shipped example authors a `requirements:` block.** Every one still carries its requirements
+  in `expected-results.yaml`, joined by a test comparing two recorded strings. Migrating them is what
   turns `capability.requirements` green and what retires the join gate; it is also what §9.4's Q4
-  activity needs.
+  activity needs.~~ **DONE 261005.** All five examples author theirs, and
+  `capability.requirements` reads `exercised` (22 / 1 / 0). Two corrections to the sentence above,
+  both of which the migration turned up. First, the join gate was **strengthened, not retired**: the
+  derived arm asserts the `VerificationStatus` that `verifySystemRequirements` computes from the
+  authored model against a live query run, and the recorded-outcome arm is KEPT beside it because it
+  pins the fixture's coverage kind, on which `verify` is coverage-sensitive — the two catch different
+  drift. Second, nine of eleven requirements migrated, not eleven: `expressed_as` joins to a SAVED
+  query by id, and document-processing's two `decided_by` requirements are decided by a question
+  COMPOSED from a declared ceiling at analysis time, which no `queries:` entry saves. The authored
+  shape has nowhere to name a ceiling instead of a query, so those two keep their fixture
+  declaration and the gate's live composed-query arm keeps deciding them.
 - **Neither conformance fixture is built.** Both need normative OMG citations, and a clause written
   from memory reads as checked — which is §35.4's standing reason and not something this pass could
   honestly discharge.

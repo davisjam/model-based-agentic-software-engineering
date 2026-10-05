@@ -91,7 +91,7 @@
 # failure path that CHARGES differently -- a component executing in a state only the failure path
 # visits -- which is model content this example does not have.
 #
-# MAGE v0.1 has no requirement construct. Each quantitative requirement is therefore declared as a
+# A CEILING is not a requirement, and the two are declared separately. Each ceiling is a
 # `model:`-targeted quantity, which is what the `model:` exemption in SEMANTICS.md 5.3 exists for:
 # a declared TOTAL that a requirement is compared against, charged by no basis. Three of them ship
 # -- 750 ms on normal processing, 512 MB on peak memory, 2 s on an execution that publishes -- and
@@ -99,6 +99,11 @@
 # from the dimension's scope, and the computed figure travels on `result.magnitude`.
 # expected-results.yaml still carries the arithmetic by hand, as the oracle the product's answers
 # are compared against.
+#
+# The OBLIGATIONS that cite those ceilings are a separate declaration, in the `requirements:` block
+# at the foot of this file. Two of the four are there; the two decided by a question composed from a
+# ceiling at analysis time keep their fixture declaration, because `expressed_as` names a saved
+# query and no `queries:` entry saves a composed one. The block's own comment says which and why.
 
 mage: 1
 
@@ -495,7 +500,9 @@ models:
           `latency-requirement`, `peak-memory-requirement` and `successful-latency-requirement`
           target `model:`, which exempts them from every accounting basis -- nothing charges them
           per occurrence, because a requirement is compared against a computed total rather than
-          summed into it. They are the closest thing v0.1 offers to a requirement construct.
+          summed into it. A ceiling is the NUMBER an obligation cites, never the obligation: the
+          obligations are in this file's `requirements:` block, and each names the query that
+          decides it.
       - id: a-selection-is-not-an-aggregation
         kind: comment
         text: >

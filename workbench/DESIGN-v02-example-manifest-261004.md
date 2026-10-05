@@ -3,6 +3,16 @@
 Designs `DESIGN-v02-examples-and-semantic-completion-261004.md` §15 (lines 1527–1561) and §16
 (lines 1565–1582). Measured against HEAD on 261004. Every claim carries a `file:line`.
 
+> ⚠️ **SUPERSEDED on the requirement construct (261005).** Every EXISTS claim below that reads *"there
+> is no `requirements` key"* or *"requirements live in fixtures"* was true when measured and is false
+> now. `requirements:` landed as a top-level schema key on 261004, and on 261005 all five shipped
+> examples author their graph and behaviour obligations in their own models — so C4's subject has
+> already moved, exactly as §5 predicted it would. The two document-processing requirements decided
+> by a ceiling question composed at analysis time remain fixture-side, because `expressed_as` joins
+> to a SAVED query by id and nothing saves a composed one. The measured claims are left as written
+> rather than edited: this document is a record of a tree, and rewriting its measurements would
+> destroy the record while fixing nothing a reader of this note still gets wrong.
+
 Three labels run through the document. **EXISTS** is a fact about the tree at this commit.
 **SPEC** is what §15 or §16 asks for. **RULING** is what this design decides. Where a SPEC and an
 EXISTS collide, the ruling says which wins and why.
@@ -336,6 +346,12 @@ the right place for it today and the wrong place once a sibling's requirement co
 (`DESIGN-v02-requirements-261004.md`). Write C4 against the fixture, and note in the test that the
 subject moves when the construct arrives.
 
+> ⚠️ **The subject moved (261005).** The key exists, the quoted fixture header no longer says this,
+> and `test/examples.test.ts` now derives each verification from the AUTHORED model against a live
+> query run. C4 written against the fixture is the pre-migration form. The one claim here that still
+> holds: a requirement decided by a ceiling question composed at analysis time has no saved query for
+> `expressed_as` to name, so two of document-processing's four stay fixture-side.
+
 ---
 
 ## 6. One gap the ranking exposed
@@ -493,6 +509,8 @@ Eleven corrections, ordered by consequence.
 8. **§16 clause 4 presumes a requirement construct that does not exist at HEAD.**
    `mage-model.schema.json` has no `requirements` key. Requirements live in fixtures, joined to the
    query that decides them (`examples/message-bus/expected-results.yaml:36-41`).
+   ⚠️ **Closed 261004–261005:** the key landed, then the examples authored it. §16 clause 4's
+   presumption is now satisfied rather than unmet, and this finding is history.
 
 9. **§15 and §17 say five examples; four ship, and the membership disagrees.** The spec's five
    (lines 218-222) include an Embedded Sensor Node and an Autonomous Delivery System that do not
@@ -544,6 +562,10 @@ Nothing here needs a new file.
 Steps 1–6 are gate and schema work over the existing corpus and do not wait on §17. Step 7 waits on
 the cards. Nothing waits on the requirement construct or on LTL; C4 and C8 are written against what
 ships and move when the substrate does.
+
+> ⚠️ **261005:** the requirement half of that last sentence has come due. C4's substrate moved twice
+> — the construct on 261004, the authored examples on 261005 — so a C4 still written against the
+> fixture join is checking the shape the corpus has left behind. C8 (LTL) is unchanged.
 
 ---
 
