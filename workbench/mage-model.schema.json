@@ -270,6 +270,7 @@
         "type": "object",
         "additionalProperties": false,
         "required": ["statement", "expressed_as", "satisfied_when"],
+        "$comment": "A requirement carries no `notes:`, deliberately. The declaration enters systemHash (it is authored content that changes what the system prescribes), and a note inside it would hash with it -- which invariant A1 forbids, since annotation never alters interpretation or an analysis result. The prescription's own prose is `statement`, so nothing is lost.",
         "properties": {
           "statement": {
             "description": "The obligation in the modal voice -- \"Restricted data must not reach an impermitted subscriber.\" Prescriptive, where a query's `name` is descriptive and a model's `purpose.question` is interrogative; the three are distinct sentences and none is derived from another.",
@@ -283,8 +284,7 @@
           "satisfied_when": {
             "description": "Shape only -- a string. The two-word vocabulary (`holds`, `refuted`) lives in the engine, which is also where a YAML 1.1 loader's coercion of `no` to a boolean gets the sentence citing V25.",
             "type": "string"
-          },
-          "notes": { "$ref": "#/$defs/notes" }
+          }
         }
       }
     },
