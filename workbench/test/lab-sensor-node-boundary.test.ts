@@ -129,7 +129,7 @@ describe("the boundary, exposed as an engineering object (Section H Q12-Q14)", (
    * (`vacuityNotes` uses it), so the wanted shape is: when a configuration-scoped metric is
    * evaluated over a system with NO machines, the result carries a note stating the boundary.
    */
-  it("WANTED (red at HEAD): the peak answer states its own premise — no machines, so the peak IS "
+  it("WANTED — now GREEN, keep as the premise-note regression:: the peak answer states its own premise — no machines, so the peak IS "
     + "the resident sum and lifetimes are outside this model", () => {
     const r = ws.query(peakQuery);
     const notes = (r.compilation ?? []).map((n: { explanation: string }) => n.explanation).join(" | ");
