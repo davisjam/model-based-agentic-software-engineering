@@ -61,22 +61,69 @@ type Obj = Record<string, unknown>;
 
 const isObj = (v: unknown): v is Obj => typeof v === "object" && v !== null && !Array.isArray(v);
 
+// ----------------------------------------------------------------------------------------------
+// The consumed-fields channel — OBSERVE, never alter
+// ----------------------------------------------------------------------------------------------
+
+/**
+ * Which authored fields a fixture read ASKED FOR, recorded as the reader asks for them.
+ *
+ * A coverage gate elsewhere disposes every authored fixture key as `compared`, `shape` or `prose`,
+ * and a disposition of `compared` is that gate's CLAIM about a sibling control rather than a
+ * derivation from one. A key the reader stopped asking for cannot reach any control at all, and
+ * without this channel it would go on reading `compared` while nothing read it. So the reader
+ * reports what it was asked for and the gate derives the claim instead of asserting it.
+ *
+ * STRICTLY an observer, and the constraint is the reason for the shape:
+ *
+ *   - Every recording site appends a string and returns nothing. No helper's return value, refusal
+ *     or control flow depends on the channel, so a caller reads exactly what it read before.
+ *   - The paths recorded are the `where` strings the strict helpers ALREADY carry for their error
+ *     messages. Nothing new is computed and no second spelling of a key path is introduced.
+ *   - The cursor is saved and restored around each read, so a nested or failed read cannot
+ *     mis-attribute a key or leave recording on.
+ *
+ * The strings are raw `where` spellings — file-prefixed and index-bearing. Normalizing them into
+ * key PATHS is the consumer's job: the reader should not know how a gate spells a denominator.
+ */
+const ASKED_FOR = new Map<string, Set<string>>();
+
+let recording: Set<string> | null = null;
+
+const asked = (where: string): void => {
+  if (recording !== null) recording.add(where);
+};
+
+/**
+ * The raw `where` spellings the last read of this example's fixture asked for.
+ *
+ * Empty when the fixture has not been read, which a consumer must treat as a stale premise rather
+ * than as a reader that asked for nothing — the two are indistinguishable from the set alone.
+ */
+export function fieldsAskedFor(exampleId: string): ReadonlySet<string> {
+  return ASKED_FOR.get(exampleId) ?? new Set<string>();
+}
+
 function need<T>(value: T | undefined | null, where: string, what: string): T {
+  asked(where);
   if (value === undefined || value === null) throw new FixtureError(`${where}: missing ${what}`);
   return value;
 }
 
 function obj(v: unknown, where: string): Obj {
+  asked(where);
   if (!isObj(v)) throw new FixtureError(`${where}: expected a mapping`);
   return v;
 }
 
 function str(v: unknown, where: string): string {
+  asked(where);
   if (typeof v !== "string" || v.trim() === "") throw new FixtureError(`${where}: expected a non-empty string`);
   return v;
 }
 
 function arr(v: unknown, where: string): readonly unknown[] {
+  asked(where);
   if (!Array.isArray(v)) throw new FixtureError(`${where}: expected a sequence`);
   return v;
 }
@@ -86,6 +133,7 @@ function strs(v: unknown, where: string): readonly string[] {
 }
 
 function posInt(v: unknown, where: string): number {
+  asked(where);
   if (typeof v !== "number" || !Number.isInteger(v) || v < 0) {
     throw new FixtureError(`${where}: expected a non-negative integer`);
   }
@@ -93,6 +141,7 @@ function posInt(v: unknown, where: string): number {
 }
 
 function bool(v: unknown, where: string): boolean {
+  asked(where);
   if (typeof v !== "boolean") throw new FixtureError(`${where}: expected a boolean`);
   return v;
 }
@@ -270,10 +319,14 @@ function readEvidence(raw: unknown, where: string): EvidenceExpectation {
   const role = need(
     (["witness", "counterexample"] as const).find((r) => r === e["role"]), `${where}.role`, "a role");
   const labels = new Map<string, number>();
+  // Recorded on the MAP, because its members are author-chosen names rather than key paths and an
+  // empty map reaches no member site at all.
+  asked(`${where}.labels_at_least`);
   for (const [k, v] of Object.entries(isObj(e["labels_at_least"]) ? e["labels_at_least"] : {})) {
     labels.set(k, posInt(v, `${where}.labels_at_least.${k}`));
   }
   const final = new Map<string, Scalar>();
+  asked(`${where}.final`);
   for (const [k, v] of Object.entries(isObj(e["final"]) ? e["final"] : {})) {
     if (typeof v !== "string" && typeof v !== "number" && typeof v !== "boolean") {
       throw new FixtureError(`${where}.final.${k}: expected a scalar`);
@@ -292,6 +345,21 @@ function readEvidence(raw: unknown, where: string): EvidenceExpectation {
 }
 
 export function readFixture(exampleId: string): Fixture {
+  const outer = recording;
+  const mine = new Set<string>();
+  recording = mine;
+  try {
+    return readFixtureFields(exampleId);
+  } finally {
+    // Restored rather than cleared, and stored even on a refusal: a read that threw asked for
+    // everything up to the refusal, and a consumer comparing against a partial set is better served
+    // by the partial truth than by the previous read's.
+    recording = outer;
+    ASKED_FOR.set(exampleId, mine);
+  }
+}
+
+function readFixtureFields(exampleId: string): Fixture {
   const path = `examples/${exampleId}/expected-results.yaml`;
   const doc = obj(parse(readFileSync(path, "utf8")), path);
 
@@ -348,6 +416,7 @@ export function readFixture(exampleId: string): Fixture {
     const metric = need((["latency", "memory"] as const).find((m) => m === o["metric"]),
       `${w}.metric`, "latency or memory");
     const amounts = (key: string): ReadonlyMap<string, number> => {
+      asked(`${w}.${key}`);
       const out = new Map<string, number>();
       for (const [k, v] of Object.entries(isObj(o[key]) ? o[key] : {})) out.set(k, posInt(v, `${w}.${key}.${k}`));
       return out;

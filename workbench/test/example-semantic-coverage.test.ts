@@ -96,7 +96,7 @@ import { parse, stringify } from "yaml";
 import { SHIPPED_EXAMPLE_IDS, ExampleCatalog } from "../src/app/examples.ts";
 import type { ShippedExampleId } from "../src/app/examples.ts";
 import { Workspace } from "../src/app/services.ts";
-import { DIMENSIONS, evaluationOf } from "../src/ir/types.ts";
+import { DIMENSIONS, UNIT_DIMENSIONS, evaluationOf } from "../src/ir/types.ts";
 import type {
   CanonicalSystem, CanonQuantity, Dimension, Magnitude, QueryResult,
 } from "../src/ir/types.ts";
@@ -110,11 +110,11 @@ import {
   untilOf,
 } from "../src/engine/ltl.ts";
 import type { ParsedFormula } from "../src/engine/ltl.ts";
-import { quantityMagnitude } from "../src/quant/types.ts";
+import { parseBound, quantityMagnitude } from "../src/quant/types.ts";
 import type { RangeEnd } from "../src/quant/types.ts";
-import { exampleText, loadExample, realPorts } from "../scripts/gen-example-coverage.ts";
+import { exampleText, fieldsAskedFor, loadExample, realPorts } from "../scripts/gen-example-coverage.ts";
 import type {
-  EvidenceExpectation, Fixture, QuantitativeExpectation,
+  EvidenceExpectation, Fixture, FixtureRequirement, QuantitativeExpectation,
 } from "../scripts/gen-example-coverage.ts";
 
 // ----------------------------------------------------------------------------------------------
@@ -170,6 +170,13 @@ interface Example {
   readonly fixture: Fixture;
   /** The fixture document, as written — the subject of the authored-key walk. */
   readonly fixtureRaw: Raw;
+  /**
+   * The authored key paths the SHARED READER asked for, as its own channel reports them.
+   *
+   * Read from the reader rather than described here, so a field the reader stopped asking for leaves
+   * this set without anyone editing this file. The disposition table below rests on it.
+   */
+  readonly askedFor: ReadonlySet<string>;
   /** The questions a student is PRESENTED, through the application's own catalogue. */
   readonly presented: readonly string[];
   readonly workspace: Workspace;
@@ -196,6 +203,7 @@ async function corpus(): Promise<Corpus> {
     const described = await catalogue.describe(id);
     built.push({
       id, raw, fixtureRaw,
+      askedFor: consumedKeyPaths(id),
       system: loaded.workspace.state.system,
       fixture: loaded.fixture,
       presented: described.tryAsking,
@@ -207,6 +215,31 @@ async function corpus(): Promise<Corpus> {
 }
 
 const fixturePath = (id: string): string => `examples/${id}/expected-results.yaml`;
+
+/**
+ * The reader's raw `where` spellings, folded into the key paths the authored walk produces.
+ *
+ * The reader records the strings it already carries for its refusals and says nothing about how a
+ * denominator is spelled; the folding lives here, beside the walk it has to agree with, and reuses
+ * that walk's own `VALUE_MAPS` rather than a second list of author-chosen maps. Each step answers a
+ * difference between a refusal path and a key path: the file prefix goes, every array index collapses
+ * to `[]`, and a path descending into an author-chosen map is cut at the map.
+ */
+function consumedKeyPaths(id: string): ReadonlySet<string> {
+  const prefix = fixturePath(id);
+  const out = new Set<string>();
+  for (const raw of fieldsAskedFor(id)) {
+    if (!raw.startsWith(prefix)) continue;
+    let path = raw.slice(prefix.length).replace(/^\./, "").replace(/\[\d+\]/g, "[]");
+    if (path === "") continue;
+    for (const map of VALUE_MAPS) {
+      const at = path.indexOf(`.${map}.`);
+      if (at >= 0) path = path.slice(0, at + 1 + map.length);
+    }
+    out.add(path);
+  }
+  return out;
+}
 
 /** One authored row, asserted present before it is read — a probe reading `undefined` is vacuous. */
 function rowOf(block: Raw, key: string, what: string): Raw {
@@ -358,15 +391,32 @@ function auditQuestionRegistration(c: Corpus): Audit {
  * claim nobody made, and the fixture layer exists precisely so that a recorded answer cannot be
  * quietly absent.
  *
+ * ## `compared` and `shape` are now DERIVED from a reader that reports what it read
+ *
+ * `compared` and `shape` each assert that something downstream receives the key: a control compares
+ * the value, or the reader enforces its presence and type. Both claims entail that SOMEONE asks for
+ * the key, and until 261005 neither was checked — the disposition was this file's claim about a
+ * sibling. The shared reader now reports the fields it was asked for, and this audit requires every
+ * `compared` and every `shape` path to appear in that report, or in the small set this gate consumes
+ * itself. `prose` is left unconstrained in that direction: the reader does read some prose fields
+ * strictly, so "no machine claim is made" does not imply "nobody opens it".
+ *
+ * The inert case cannot pass. An empty or broken channel leaves every `compared` path unaccounted
+ * for and the audit reports all of them, so the arm fails loudly rather than going quiet — which is
+ * the opposite of how the disposition claim failed before.
+ *
  * VACUITY: the walk's output is compared against the TYPED fixture the reader produced — if the walk
  * found no `queries[].expected.outcome` while the reader produced queries, the walk is reading the
  * wrong document and says so, rather than reporting an empty denominator as a clean one.
  *
- * PASSES WHILE VIOLATED: a key disposed `compared` here whose comparing control is later deleted.
- * The disposition is this file's claim about a sibling, not a derivation from it, so a key would go
- * on reading `compared` while nothing compared it. Closing that needs the comparison to name the key
- * it consumes — a reader instrumented to report which fields it was asked for — and that is a change
- * to the shared fixture reader rather than to this gate.
+ * PASSES WHILE VIOLATED: a key the reader still asks for whose COMPARATOR is deleted. Reading a key
+ * is necessary for comparing it and not sufficient, so the channel closes the case where the key
+ * reaches no control at all and leaves the case where it reaches the typed fixture and the
+ * comparison beside it is gone. `queries[].expected.outcome` would keep its `compared` disposition
+ * if `test/examples.test.ts` stopped asserting on the outcome it reads, because the reader would go
+ * on parsing the field either way. Closing THAT needs the comparator's own consumption observed
+ * across a file boundary — a sibling test's reads, not a shared reader's — and the honest derivation
+ * available here stops at the reader.
  */
 const DISPOSITIONS: Readonly<Record<string, "compared" | "shape" | "prose">> = {
   "example": "compared",
@@ -469,11 +519,41 @@ function authoredKeyPaths(doc: unknown, at = ""): readonly string[] {
   return out;
 }
 
+/**
+ * One authored key THIS GATE consumes, read through the accessor that records the consumption.
+ *
+ * `system` and `example` are compared here rather than by the shared reader, so the reader's channel
+ * cannot speak for them. Reading them through this records the consumption at the point of the
+ * comparison: delete the comparison and the recording goes with it, which is what makes the
+ * disposition a derivation rather than a second claim in a different file.
+ */
+function taking(raw: Raw, key: string, into: Set<string>): unknown {
+  into.add(key);
+  return raw[key];
+}
+
 function auditClaimFields(c: Corpus): Audit {
   const subjects: string[] = [];
   const findings: string[] = [];
   const residues: Residue[] = [];
   for (const ex of c) {
+    // Read FIRST, so the consumption is recorded before the dispositions are read against it.
+    const consumed = new Set(ex.askedFor);
+    // `system:` names the document the fixture describes. Compared by reading the file it names and
+    // requiring it to be the bytes the loader loads, so no filename is written here.
+    const named = taking(ex.fixtureRaw, "system", consumed);
+    assert.equal(typeof named, "string", `${ex.id}: the fixture names no system document`);
+    const text = readFileSync(`examples/${ex.id}/${String(named)}`, "utf8");
+    if (text !== exampleText(ex.id)) {
+      findings.push(
+        `${ex.id}: the fixture says it describes '${String(named)}' and that file is not the one the `
+        + `loader reads, so every claim in it is about a different document`);
+    }
+    const ownId = taking(ex.fixtureRaw, "example", consumed);
+    if (String(ownId) !== ex.id) {
+      findings.push(`${ex.id}: the fixture's own \`example\` key says '${String(ownId)}'`);
+    }
+
     for (const path of new Set(authoredKeyPaths(ex.fixtureRaw))) {
       subjects.push(`${ex.id}:${path}`);
       const disposition = DISPOSITIONS[path];
@@ -482,6 +562,16 @@ function auditClaimFields(c: Corpus): Audit {
           `${ex.id}: '${path}' is authored and this gate knows no disposition for it. Either the `
           + `fixture reader carries it and the table below must say what compares it, or the reader `
           + `drops it — in which case the claim is indistinguishable from a typo`);
+        continue;
+      }
+      // The disposition, derived. `compared` and `shape` both say something downstream receives the
+      // key; a path nobody asks for receives it nowhere, whatever the table claims.
+      if (disposition !== "prose" && !consumed.has(path)) {
+        findings.push(
+          `${ex.id}: '${path}' is disposed '${disposition}', and neither the shared fixture reader `
+          + `nor this gate asked for it. A key nothing reads reaches no comparator, so the `
+          + `disposition is claiming a control that is gone — re-dispose it 'prose' if the claim was `
+          + `retired, or restore the reader's use of it if the claim is still meant`);
         continue;
       }
       if (disposition !== "compared") {
@@ -493,19 +583,6 @@ function auditClaimFields(c: Corpus): Audit {
         });
       }
     }
-    // `system:` names the document the fixture describes. Compared by reading the file it names and
-    // requiring it to be the bytes the loader loads, so no filename is written here.
-    const named = ex.fixtureRaw["system"];
-    assert.equal(typeof named, "string", `${ex.id}: the fixture names no system document`);
-    const text = readFileSync(`examples/${ex.id}/${String(named)}`, "utf8");
-    if (text !== exampleText(ex.id)) {
-      findings.push(
-        `${ex.id}: the fixture says it describes '${String(named)}' and that file is not the one the `
-        + `loader reads, so every claim in it is about a different document`);
-    }
-    if (String(ex.fixtureRaw["example"]) !== ex.id) {
-      findings.push(`${ex.id}: the fixture's own \`example\` key says '${String(ex.fixtureRaw["example"])}'`);
-    }
   }
 
   // The walk's premise, asserted: the reader produced claims, so the walk must have found their keys.
@@ -514,7 +591,8 @@ function auditClaimFields(c: Corpus): Audit {
     "the authored-key walk found no recorded outcome anywhere in the corpus, so it is reading the "
     + "wrong document and the zero-findings claim above rests on nothing");
   return audit(subjects,
-    "the walk's output is checked to contain the recorded-outcome key the typed reader also produces",
+    "the walk's output is checked to contain the recorded-outcome key the typed reader also produces, "
+    + "and each disposition is read against the fields the reader's own channel reports asking for",
     findings, residues);
 }
 
@@ -658,6 +736,66 @@ function auditPinnedProperties(c: Corpus): Audit {
 // ----------------------------------------------------------------------------------------------
 
 /**
+ * A magnitude a statement WRITES, under the model's own unit vocabulary and nobody else's.
+ *
+ * A numeral followed by a token, where the token is one the dimension tables own. The tables supply
+ * the vocabulary — `UNIT_DIMENSIONS` maps each token to the single dimension that owns it — and
+ * `parseBound` does the arithmetic, so prose is normalized by the production parser a requirement's
+ * own bound goes through rather than by a second unit table written for prose. That is the condition
+ * on this check being a value join instead of a reading of English.
+ */
+function statementMagnitudes(statement: string): readonly (readonly [string, Dimension, number])[] {
+  const out: (readonly [string, Dimension, number])[] = [];
+  for (const match of statement.matchAll(/(\d+(?:\.\d+)?)\s+([A-Za-z]+)\b/g)) {
+    const numeral = match[1];
+    const token = match[2];
+    if (numeral === undefined || token === undefined) continue;
+    const dimension = UNIT_DIMENSIONS.get(token);
+    if (dimension === undefined) continue;
+    const parsed = parseBound(dimension, `${numeral} ${token}`);
+    assert.ok(parsed.ok,
+      `'${numeral} ${token}' came from the dimension tables' own token set and a plain decimal, and `
+      + `parseBound refused it (${parsed.ok ? "" : parsed.refusal}). The scan and the parser have `
+      + `diverged, so this check is no longer reading prose through the production discipline`);
+    out.push([`${numeral} ${token}`, dimension, parsed.value]);
+  }
+  return out;
+}
+
+/**
+ * Every magnitude a requirement can REACH, by either route to a ceiling.
+ *
+ * `declared_as` names the ceiling quantity directly. `expressed_as` reaches one indirectly, through
+ * the saved query's `within:` — which is the route the capstone's duration budget takes and the
+ * reason its figure was joined to nothing: the existing ceiling join fires only where the FIXTURE
+ * declares a limit, and a `within:` requirement declares none.
+ */
+function reachableCeilings(ex: Example, req: FixtureRequirement): readonly (readonly [string, Dimension, number])[] {
+  const out: (readonly [string, Dimension, number])[] = [];
+  const add = (id: string, via: string): void => {
+    const q = ex.system.quantities.get(id);
+    if (q === undefined || q.dimension === null) return;
+    // Every end, because a ceiling declared as a range reaches both of its own; a point quantity
+    // reports the same number at each end and the comparison below is a membership test.
+    for (const end of ["point", "lower", "upper"] as const) {
+      const m = quantityMagnitude(q, end);
+      if (m.ok) out.push([`${via} ${id}`, q.dimension, m.value]);
+    }
+  };
+  if (req.declaredAs !== null) add(req.declaredAs, "declared_as");
+  if (req.expressedAs !== null) {
+    const saved = ex.system.queries.get(req.expressedAs);
+    if (saved !== undefined) {
+      const parsed = parseQuery(saved.raw);
+      if (parsed.ok && parsed.value.kind === "quantity" && parsed.value.quantity.within !== null) {
+        add(parsed.value.quantity.within, "within");
+      }
+    }
+  }
+  return out;
+}
+
+/**
  * Both routes a requirement can take to a verdict, each checked to its end.
  *
  * `expressed_as` must name a registered query and declare a `satisfied_when` the production parse
@@ -667,15 +805,64 @@ function auditPinnedProperties(c: Corpus): Audit {
  * a quantity the model declares, and the fixture's limit must BE that quantity's magnitude in base
  * units. That last join was held for one example by name; it is held for the corpus here.
  *
+ * ## A statement's figure is joined to a ceiling the requirement can reach — THE DOMAIN, RULED
+ *
+ * A statement used to carry its number past every gate. `Every delivery completes within the 900 s
+ * of mission time one battery charge sustains` declared 900 s in prose while the ceiling lived in a
+ * saved query's `within:` quantity, and the existing join fires only where the FIXTURE declares a
+ * limit — which a `within:` requirement never does. So the statement could have said 900 s against a
+ * 600 s ceiling and every check stayed green.
+ *
+ * The join now runs, over a domain drawn narrowly and on purpose:
+ *
+ *   - A SUBJECT is a (requirement, dimension) pair where the requirement reaches a ceiling of that
+ *     dimension — through `declared_as`, or through `expressed_as` to a quantity query's `within:` —
+ *     AND its statement writes at least one magnitude of that same dimension.
+ *   - A MAGNITUDE is a numeral followed by a token the dimension tables own, normalized by
+ *     `parseBound`. The model's vocabulary decides what counts; no prose unit table exists.
+ *   - A FINDING is a subject where none of the statement's magnitudes of that dimension equals any
+ *     magnitude the requirement reaches.
+ *
+ * Why that produces no finding on a sound statement. A numeral that is not a ceiling — a count, a
+ * date, a step index, an identifier — carries no unit token and never becomes a magnitude. A figure
+ * in a dimension the requirement declares no ceiling for is never compared, so a latency statement
+ * mentioning a memory figure is left alone. And the test is existential rather than universal: a
+ * statement that quotes its ceiling and some other magnitude of the same dimension passes, because
+ * one of its figures matches. What remains is the case the corpus does not contain and a reader
+ * should know about — a statement writing its ceiling in a spelling the tables reject while writing
+ * some OTHER same-dimension figure in a spelling they accept would be reported. That is the one
+ * shape this domain can be wrong about, and it is a sentence worth a second look in any case.
+ *
+ * What the domain EXCLUDES, measured rather than estimated, because the exclusions outnumber the
+ * subjects. A ceiling statement written in a spelling the dimension tables do not own contributes no
+ * magnitude and raises nothing: `1.25 GiB` on the compute carve-out, `256 KiB` on the part's SRAM,
+ * `2 seconds` spelled out. Each is better prose than the table's binary `MB` would be, and the models
+ * that write them say so in terms. Reaching them needs a prose spelling table — a second vocabulary
+ * for the one thing the normalization discipline exists to keep single — so they stay out, and a
+ * future ceiling written in IEC units gets no join. The check holds the statements written in the
+ * model's own units and claims nothing about the rest, which is why the exclusions are listed here
+ * rather than left for a reader to infer from a green run.
+ *
+ * This does not reopen the closing prohibition's ruling at `prose-capability`. That clause asks
+ * whether a sentence IMPLIES a capability, which is a judgement; this compares a number against a
+ * number through the model's own parser, and the comparison is as mechanical as the ceiling join
+ * beside it.
+ *
  * VACUITY: the denominator is the union of the authored `requirements:` block and the fixture's
  * rows, two documents read separately, and a requirement present in one and not the other is itself
- * a finding — so neither side can be empty without the comparison failing.
+ * a finding — so neither side can be empty without the comparison failing. The figure join adds its
+ * own subjects and the controls below drive it from BOTH sides — the statement moved, and the
+ * model's declared ceiling moved — so a green reading is not the arm being unreachable. It went
+ * green on its first run over every shipped example, which deserves saying: the join found no
+ * disagreement because the statements inside its domain were already right, not because it had
+ * nothing to compare.
  *
- * PASSES WHILE VIOLATED: a `statement` quoting a figure no `declared_as` names. The ceiling join
- * fires only where the fixture declares one; `every delivery completes within the 900 s one battery
- * charge sustains` carries its number in prose and in the query's `within:` quantity, and nothing
- * joins the two. `test/vacuous-verification.test.ts` records the same residue from the other side —
- * "the statement's figure and the query's ceiling are two declarations and nothing joins them".
+ * PASSES WHILE VIOLATED: a statement whose ceiling figure is correct and whose SENSE is wrong.
+ * `within 900 s` and `at least 900 s` carry the same magnitude, and a statement reading `completes
+ * in at least the 900 s one charge sustains` would satisfy this join exactly while inverting the
+ * obligation. The direction of a bound lives in the words around the number, and reading it is the
+ * judgement `prose-capability` is ruled reviewable for. The number is held; the relation it stands
+ * in is not.
  */
 function auditRequirementReferences(c: Corpus): Audit {
   const subjects: string[] = [];
@@ -730,6 +917,23 @@ function auditRequirementReferences(c: Corpus): Audit {
           findings.push(`${ex.id}/${req.id}: decided_by names '${String(req.decidedBy)}', which is not supplied`);
         }
       }
+      // The statement's own figure, against a magnitude this requirement can actually reach.
+      const reachable = reachableCeilings(ex, req);
+      const written = statementMagnitudes(req.statement);
+      for (const dimension of new Set(reachable.map(([, d]) => d))) {
+        const quoted = written.filter(([, d]) => d === dimension);
+        if (quoted.length === 0) continue;
+        subjects.push(`${ex.id}/figure:${req.id}:${dimension}`);
+        const ceilings = reachable.filter(([, d]) => d === dimension);
+        if (quoted.some(([, , v]) => ceilings.some(([, , limit]) => limit === v))) continue;
+        findings.push(
+          `${ex.id}/${req.id}: the statement writes ${quoted.map(([raw]) => `'${raw}'`).join(", ")} `
+          + `and the ${dimension} ceiling it reaches is `
+          + `${ceilings.map(([via, , limit]) => `${limit} via ${via}`).join(", ")}. The prose quotes a `
+          + `figure the requirement cannot reach, so a reader is told one budget and the verdict `
+          + `decides another`);
+      }
+
       if (req.declaredAs === null) continue;
       const ceiling = ex.system.quantities.get(req.declaredAs);
       if (ceiling === undefined) {
@@ -751,7 +955,9 @@ function auditRequirementReferences(c: Corpus): Audit {
   }
   return audit(subjects,
     "the denominator unions the authored `requirements:` block with the fixture's rows, read from "
-    + "two documents, and a row in one and not the other is a finding", findings);
+    + "two documents, and a row in one and not the other is a finding; the figure subjects come from "
+    + "the statements, and the magnitudes they are joined against from the model's quantities",
+    findings);
 }
 
 // ----------------------------------------------------------------------------------------------
@@ -1705,6 +1911,43 @@ test("control: an authored fixture key with no disposition is caught", async () 
     "a fixture naming a system document other than the one the loader reads must be caught");
 });
 
+test("control: a `compared` disposition no reader asks for is caught", async () => {
+  // The arm that makes the disposition a derivation. The channel is handed to the audit as data, so
+  // a reader that stopped asking for a field is simulated by removing it — which is what deleting
+  // the reader's use of the key would do to the real channel.
+  const c = await corpus();
+  const live = c.find((ex) => ex.id === "worker-queue");
+  assert.ok(live !== undefined);
+  // DERIVED, not named: a path the table disposes `compared` and the real reader does ask for, so
+  // the control cannot pass by dropping something nobody read in the first place.
+  const abandoned = [...live.askedFor].find((path) => DISPOSITIONS[path] === "compared");
+  assert.ok(abandoned !== undefined,
+    "the reader asks for no `compared` path in worker-queue, so either the channel is inert or the "
+    + "disposition table has stopped describing it — and this control has no subject either way");
+
+  const dropped = await replacing("worker-queue", (ex) => ({
+    ...ex, askedFor: new Set([...ex.askedFor].filter((path) => path !== abandoned)),
+  }));
+  assert.match(findingsOf(auditClaimFields(dropped)),
+    new RegExp(`'${abandoned.replace(/[[\]().]/g, "\\$&")}' is disposed 'compared'`),
+    "a key the table says a control compares, which no reader asks for, must be caught — before the "
+    + "channel existed the disposition was this file's claim about a sibling and could outlive it");
+
+  // And the gate's own two keys are not covered by the reader, so the accessor that records them
+  // must be what accounts for them. An audit run with an EMPTY channel still has to account for
+  // `system` and `example`, and nothing else.
+  const blind = await replacing("worker-queue", (ex) => ({ ...ex, askedFor: new Set<string>() }));
+  const unaccounted = auditClaimFields(blind).findings.filter((f) => f.includes("asked for it"));
+  assert.ok(unaccounted.length > 0,
+    "an inert channel must leave `compared` paths unaccounted for — if it does not, the arm is "
+    + "passing on something other than the reader's report");
+  for (const key of ["system", "example"]) {
+    assert.ok(!unaccounted.some((f) => f.includes(`'${key}' is disposed`)),
+      `'${key}' is compared by this gate rather than by the reader, so the recording accessor must `
+      + `account for it even when the reader's channel reports nothing`);
+  }
+});
+
 test("control: a hand figure the engine contradicts is caught", async () => {
   const patch = (change: (e: QuantitativeExpectation) => QuantitativeExpectation) =>
     replacing("autonomous-delivery", (ex) => {
@@ -1758,6 +2001,56 @@ test("control: a requirement naming an unregistered query or a bad ceiling is ca
   });
   assert.match(findingsOf(auditRequirementReferences(shifted)), /Two figures for one ceiling/,
     "a limit that is not the declared quantity's magnitude must be caught");
+});
+
+test("control: a statement's figure that no reachable ceiling matches is caught, from both sides", async () => {
+  // The join that closes the capstone's duration residue, driven from the statement AND from the
+  // model. One side alone would not distinguish a live comparison from a check reading a literal.
+  const c = await corpus();
+  const live = c.find((ex) => ex.id === "autonomous-delivery");
+  assert.ok(live !== undefined);
+  // DERIVED: the requirement whose statement writes a magnitude the tables own and whose ceiling is
+  // reached through `expressed_as`, which is the route the existing limit join cannot see.
+  const subject = live.fixture.requirements.find((r) =>
+    r.declaredAs === null && statementMagnitudes(r.statement).length > 0
+    && reachableCeilings(live, r).length > 0);
+  assert.ok(subject !== undefined,
+    "no shipped requirement reaches its ceiling through `expressed_as` while quoting a magnitude in "
+    + "the model's own units, so this join has no subject and its residue has moved rather than closed");
+  const quoted = statementMagnitudes(subject.statement);
+  const firstQuoted = quoted[0];
+  assert.ok(firstQuoted !== undefined);
+
+  // Side one: the prose drifts. The figure is halved rather than nudged, so the mutant cannot
+  // coincide with some other magnitude the requirement reaches.
+  const misquoted = await replacing("autonomous-delivery", (ex) => ({
+    ...ex,
+    fixture: {
+      ...ex.fixture,
+      requirements: ex.fixture.requirements.map((r) => (r.id === subject.id
+        ? { ...r, statement: r.statement.replace(firstQuoted[0], `${Number(firstQuoted[0].split(" ")[0]) / 2} ${firstQuoted[0].split(" ")[1]}`) }
+        : r)),
+    },
+  }));
+  assert.match(findingsOf(auditRequirementReferences(misquoted)), /cannot reach/,
+    "a statement quoting a figure the requirement's ceiling does not carry must be caught — this is "
+    + "the case that passed every gate while the prose and the `within:` quantity were two "
+    + "declarations with nothing between them");
+
+  // Side two: the MODEL's declared ceiling drifts and the prose stands still. This is what proves
+  // the comparison reads the quantity rather than agreeing with a number written here.
+  const reached = reachableCeilings(live, subject);
+  const ceilingId = reached[0]?.[0].split(" ")[1];
+  assert.ok(ceilingId !== undefined);
+  const movedCeiling = await mutated("autonomous-delivery", (doc) => {
+    const quantities = rowOf(doc, "quantities", "autonomous-delivery");
+    const budget = quantities[ceilingId];
+    assert.ok(isObj(budget), `autonomous-delivery declares no quantity '${ceilingId}'`);
+    budget["value"] = `${Number(firstQuoted[0].split(" ")[0]) * 2} ${firstQuoted[0].split(" ")[1]}`;
+  });
+  assert.match(findingsOf(auditRequirementReferences(movedCeiling)), /cannot reach/,
+    "a ceiling the MODEL moves while the statement stands still must be caught, which is what makes "
+    + "this a join to the declaration rather than to a figure written in this file");
 });
 
 test("control: a binding referent that resolves nowhere is caught", async () => {
