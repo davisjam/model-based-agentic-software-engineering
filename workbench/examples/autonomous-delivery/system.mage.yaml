@@ -1,0 +1,1035 @@
+# Autonomous Delivery -- the capstone, and the one example where all three forms decide one question.
+#
+# Central lesson: the three forms are not three diagrams of one rover. They are three reductions that
+# SUPPLY EACH OTHER PREMISES, and two answers in this file change sign depending on whether a second
+# form is modeled at all.
+#
+# ## Five purposeful models over one rover
+#
+#   control-authority   a graph. Which subsystem may command which, and can the planner reach the
+#                       drive system without passing the safety monitor?
+#   compute-platform    a graph. Which subsystem owns which RAM buffer, and what does each hold?
+#   mission-endurance   a graph. What the battery powers, and the declared mission-duration ceiling.
+#   mission             a machine. What states a mission passes through, and the bounded recovery
+#                       policy that governs re-localization.
+#   motion-interlock    a machine. Whether the drive system is permitted to move, as two enumerated
+#                       states.
+#
+# The two machines are composed, not merged: both declare `entity: rover`, and five declared events
+# step them atomically. That composition is the explicit interleaved product of SEMANTICS.md 6 --
+# one configuration vector over both instances, local moves interleaving, declared events
+# synchronizing their participants (V42). It is authored here rather than inferred.
+#
+# ## The question whose ANSWER CHANGES because a second form is modeled
+#
+# "Does the autonomy payload fit in the compute module's 1.25 GiB?" has two different answers, and the
+# difference is the mission machine.
+#
+#   Without behavior, every allocation must declare `residency: resident` -- there is no state for a
+#   `when:` clause to name -- so memory(c) is the sum of all five:
+#
+#       192 + 256 + 512 + 640 + 384  =  1984 MB   against 1280 MB   VIOLATED by 704 MB
+#
+#   With behavior, three of the five name the mission state during which they are held, and
+#   `peak_memory` is the maximum of memory(c) over the REACHABLE set rather than a sum:
+#
+#       resident         192 + 256                        =   448 MB
+#       + max over the mission's states of the `when:` charges, because a machine occupies
+#         exactly one control state at a time:
+#           planning     448 + 512 (route solver)         =   960 MB
+#           driving      448 + 640 (perception)           =  1088 MB   <- the peak
+#           recovering   448 + 384 (relocalizer)          =   832 MB
+#           idle / delivered / aborted / fault            =   448 MB
+#
+#       peak_memory = 1088 MB   against 1280 MB   SATISFIED, with 192 MB (15%) of margin
+#
+# The behavior model did not make the rover cheaper. It supplied a premise the quantitative model
+# could not state on its own: that the route solver's workspace and the perception buffers are never
+# live at the same moment. Modeling the lifecycle REMOVED 896 MB of worst case that was never real.
+#
+# **The premise is itself a query, and it is a careful one.** `planning-and-driving-at-once` asks for
+# a configuration where the mission is planning AND driving. It reads `refuted`, and the refutation is
+# VACUOUS -- one machine holds one control state, so the conjunction is unsatisfiable in the state
+# vector and no transition structure was consulted. That is what licenses taking a maximum instead of
+# a sum, and reading it as "this was searched for and not found" would be reading it as weaker than it
+# is. See that query's note; the engine discloses the vacuity on the result's compilation (V41).
+#
+# ## Two obligations this design does NOT meet, both shipped refuted
+#
+# A capstone that reported six satisfied requirements would be teaching that modeling finds nothing.
+#
+#   every-mission-reaches-a-terminal-outcome   VIOLATED. `fault` is terminal and is neither
+#       `delivered` nor `aborted`, so a mission that faults while driving ends having promised an
+#       outcome and reached none. The witness is a trace. Recovery from a fault needs a human at the
+#       rover, which this model declares as an omission rather than inventing a transition for.
+#
+#   delivering-missions-within-the-duration-budget   VIOLATED. The nominal delivery takes 645 s
+#       against a 900 s battery, with 28% of margin. A delivery that spends its full recovery
+#       allowance takes 2,715 s, because each re-localization is followed by another full drive
+#       segment and the trace charges every occurrence. The recovery policy that FIXES termination is
+#       what BREAKS the budget, and that is the capstone's tradeoff rather than a defect in it.
+#
+# ## What this example does NOT claim
+#
+# **No liveness, and no fairness.** The engine explores a finite transition system exhaustively.
+# `recovery-can-repeat-forever` reads `refuted` because `recovery_count` strictly advances within a
+# finite domain -- an exhaustive statement about a finite space, NOT temporal liveness verification.
+# "Can it reach X" is in scope; "will it eventually reach X" is not. The bound is a DECLARED GUARD on
+# the `resume` transition, and the model says so there rather than relying on a scheduler nobody
+# declared.
+#
+# **No information-flow analysis.** `planner-commands-drive-directly` checks one graph property: that
+# no single `may_command` edge runs from `mission-planner` to `drive-system`. The planner CAN cause
+# the drive system to move -- through the monitor and the controller, which is the whole point of the
+# chain. The query refutes a BYPASS, not an influence.
+#
+# ## Energy is the quantity this example wanted and could not write
+#
+# The specification asks for mission ENERGY as the primary quantitative concern. MAGE's dimension
+# table has five members -- `duration`, `memory`, `cost`, `ratio`, `count` -- and no `energy`. `cost`
+# has the right algebra (execution-scoped, summed per occurrence) and the wrong base unit (`usd`), so
+# spelling joules as dollars would buy the example a number and cost it the dimension check that makes
+# the number mean anything.
+#
+# So the budget this file declares is DURATION: 900 s of mission time, which for a rover at a fixed
+# drive power is what the battery actually bounds. The substitution is named here, declared as an
+# omission on `mission-endurance`, and made executable by `charge-remaining-at-delivery`, which asks
+# for the battery's state of charge and is refused. Nothing here pretends to be an energy model.
+#
+# ## Two known divergences, both reported rather than worked around
+#
+# `notes:` and the IR-shaped `provenance:` are absent from mage-model.schema.json, so
+# `python3 validate.py` reports SCHEMA findings for this file while the TypeScript loader accepts it
+# and validates it clean. Same gap as message-bus and worker-queue; see those files' headers.
+#
+# A machine carries no annotation at all: `CanonMachine` has no `annotation` field, so `notes:` on a
+# machine would load as nothing. Both machines declare `entity: rover`, so the per-machine rationale
+# lives on that entity instead. An annotation slot on the machine is the fix.
+
+mage: 1
+
+system:
+  id: autonomous-delivery
+  name: Autonomous Delivery Rover
+  description: >
+    A small autonomous delivery rover: the permitted command chain, the mission lifecycle with a
+    bounded re-localization policy, the motion interlock that holds the drive system, the onboard RAM
+    the autonomy payload competes for, and the battery that bounds how long a mission may take.
+
+domains:
+
+  authority:
+    # An ORDERED enum, lowest first, because one question COMPARES two subsystems' authority across a
+    # command edge. V20's discipline: a comparison is licensed only when both operands range over one
+    # declared ordered domain, so the order is declared here rather than inferred from the spelling.
+    type: ordered-enum
+    values: [advisory, supervisory, actuating]
+
+relation-types:
+
+  may_command:
+    description: The source subsystem is permitted to issue commands to the target subsystem.
+    absence: >
+      The source may not command the target directly. Absence says nothing about influence: a
+      subsystem with no edge to the drive system may still cause motion through the chain, and this
+      model represents permission rather than causation.
+    composition:
+      # A command chain is a real thing -- the planner commands the monitor, which commands the
+      # controller, which commands the drive -- so composing edges is licensed and a multi-hop
+      # question has an answer.
+      path: allowed
+    properties:
+      symmetric: false
+      acyclic: true
+
+  owns_buffer:
+    description: The subsystem owns this RAM buffer and its allocation is held for it.
+    absence: >
+      No subsystem in this model owns the buffer. Absence does not mean the buffer is free -- an
+      allocation with no owner is a finding about the model, not a saving.
+    composition:
+      # A buffer owns nothing, so a multi-hop ownership question has no reading. Unlicensed beats
+      # false.
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
+  powers:
+    description: The battery supplies electrical power to this subsystem.
+    absence: >
+      This model draws no supply edge to the subsystem. Absence is not "it needs no power" -- it says
+      the endurance reduction does not account for it.
+    composition:
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
+entities:
+
+  rover:
+    type: rover
+    label: Delivery rover
+    notes:
+      # Machines carry no annotation in the v0.1 IR -- `CanonMachine` has no `annotation` field, so
+      # `notes:` on a machine would be silently dropped. Both machines declare `entity: rover`, so
+      # the rationale for each lives here, on the identity they share.
+      - id: mission-machine-rationale
+        kind: rationale
+        text: >
+          The mission machine represents the states one delivery passes through and the bounded
+          re-localization policy that governs retrying. It is the model every other form reads: the
+          memory charges name its states in their `when:` clauses, the duration charges name its
+          states through `executes_in_state`, and the safety invariant names its `fault` state. It
+          deliberately represents no wall-clock time, no distance, and no terrain, so no question
+          about where the rover is has a reading here.
+      - id: motion-interlock-rationale
+        kind: rationale
+        text: >
+          The motion-interlock machine represents one permission as two enumerated states: whether
+          the drive system is allowed to move. Keeping it separate from the mission machine is what
+          makes the safety property statable -- the mission supplies `fault`, the interlock supplies
+          `enabled`, and neither alone can say "motion is never enabled in a fault". Merging them
+          would turn the climax of this example into an ordinary reachability demo over a
+          hand-maintained cross product.
+      - id: why-two-machines
+        kind: comment
+        text: >
+          Two machines compose through five declared events, each stepping both participants
+          atomically, so there is no observable configuration between a fault being detected and
+          motion being inhibited. The composition is the explicit interleaved product of
+          SEMANTICS.md 6 (V42); it is authored, not inferred, and `unsynchronized-fault-path` in
+          expected-results.yaml breaks it on purpose to show what the synchronization was buying.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Model a small autonomous delivery rover so that a structural bypass, a cross-machine safety
+        property, mission termination, an onboard memory budget and a mission duration budget are
+        each separately expressible and separately checkable, and so that the memory answer depends
+        on whether the lifecycle is modeled at all.
+      rationale: MAGE-provided example, autonomous-delivery, version 1.
+
+  mission-planner:
+    type: subsystem
+    label: Mission planner
+    properties:
+      authority: { value: advisory, domain: authority }
+
+  safety-monitor:
+    type: subsystem
+    label: Safety monitor
+    properties:
+      authority: { value: supervisory, domain: authority }
+
+  motion-controller:
+    type: subsystem
+    label: Motion controller
+    properties:
+      authority: { value: supervisory, domain: authority }
+
+  drive-system:
+    type: subsystem
+    label: Drive system
+    properties:
+      authority: { value: actuating, domain: authority }
+      # The join to the mission machine: this subsystem runs while the mission is driving, so a trace
+      # step entering `driving` is an occurrence of it and charges its duration once (V38).
+      executes_in_state: mission.driving
+
+  route-planner:
+    type: subsystem
+    label: Route planner
+    properties:
+      authority: { value: advisory, domain: authority }
+      executes_in_state: mission.planning
+
+  localization:
+    type: subsystem
+    label: Localization
+    properties:
+      authority: { value: advisory, domain: authority }
+      # Localization runs continuously in the real rover. What this model charges is the
+      # RE-localization pass, which is the work the recovering state exists to represent -- so the
+      # join names `recovering` and the omission is declared on the mission machine's purpose.
+      executes_in_state: mission.recovering
+
+  autonomy-computer:
+    type: compute
+    label: Autonomy computer
+    properties:
+      authority: { value: advisory, domain: authority }
+
+  battery:
+    type: power
+    label: Battery
+
+  middleware-heap:
+    type: buffer
+    label: Middleware heap
+
+  map-tiles:
+    type: buffer
+    label: Map tiles
+
+  route-solver-workspace:
+    type: buffer
+    label: Route solver workspace
+
+  perception-buffers:
+    type: buffer
+    label: Perception buffers
+
+  relocalizer-workspace:
+    type: buffer
+    label: Relocalizer workspace
+
+events:
+
+  arm:
+    participants: [mission, motion-interlock]
+    description: >
+      The planned mission starts. One system transition: the mission enters driving and the interlock
+      enables motion, atomically. There is no observable configuration in which the mission is
+      driving and motion is still inhibited.
+
+  halt:
+    participants: [mission, motion-interlock]
+    description: >
+      Localization is lost. The mission enters recovering and motion is inhibited in the same step,
+      so the rover is never scan-matching against the map while still permitted to drive.
+
+  resume:
+    participants: [mission, motion-interlock]
+    description: >
+      Re-localization succeeded and the mission drives on. Guarded on the mission side by the
+      recovery allowance, which is what bounds the loop.
+
+  complete:
+    participants: [mission, motion-interlock]
+    description: The parcel is handed over. The mission is delivered and motion is inhibited.
+
+  fault-detected:
+    participants: [mission, motion-interlock]
+    description: >
+      The safety monitor declares a fault. THE safety-critical event: the mission enters fault and
+      motion is inhibited atomically, which is what makes `motion-inhibited-whenever-faulted` hold.
+      Deleting either half, or replacing this event with a guard, refutes it.
+
+machines:
+
+  mission:
+    entity: rover
+    purpose:
+      question: What states does one delivery pass through, and does the recovery policy bound it?
+      represents:
+        - mission lifecycle states
+        - the bounded re-localization counter
+        - the three terminal outcomes, delivered, aborted and fault
+        - which lifecycle state each timed subsystem runs in
+        - which lifecycle state each transient RAM allocation is held during
+      # NOTE: V24 checks `omits` only against a GRAPH model's vocabulary -- `checkMeaning` iterates
+      # `system.models` and never `system.machines`. A machine's omissions are therefore declared but
+      # unvalidated by the shipped validator. test/examples.test.ts implements the missing check for
+      # these examples so the list cannot decay into decoration here.
+      omits:
+        - recovery from a fault, which needs a human at the rover
+        - where the rover is, and how far it has left to travel
+        - real wall-clock scheduling and timeouts
+        - the battery's state of charge
+        - weather, terrain and obstacle population
+    initial: idle
+    states:
+      idle:
+      planning:
+      driving:
+      recovering:
+      delivered:
+      aborted:
+      fault:
+    variables:
+      recovery_count:
+        type: integer
+        # A finite domain is mandatory (V17) and it is what makes the progress claim decidable: a
+        # loop whose bounded variable strictly advances cannot repeat a configuration.
+        range: [0, 3]
+        initial: 0
+    derived:
+      # Recomputed, never stored, never part of state identity (V18).
+      recovery_exhausted: recovery_count == 3
+    transitions:
+
+      - from: idle
+        to: planning
+        label: accept-mission
+
+      # No feasible route. A mission may be refused before it ever moves, which is why `aborted` is
+      # reachable without any recovery having happened.
+      - from: planning
+        to: aborted
+        label: reject-plan
+
+      - from: planning
+        to: driving
+        sync: arm
+
+      - from: driving
+        to: recovering
+        sync: halt
+
+      - from: driving
+        to: delivered
+        sync: complete
+
+      # THE safety-critical edge, and it is an EVENT rather than a guarded local move. A guard would
+      # let the mission read the interlock's state; synchronization makes it CHANGE it. The
+      # `unsynchronized-fault-path` modification adds the local alternative and the invariant falls.
+      - from: driving
+        to: fault
+        sync: fault-detected
+
+      # The declared guard that bounds recovery. `resume` is available only while the allowance is
+      # unspent, and it spends one -- so re-localization cannot repeat forever and the progress
+      # question answers `refuted` for a structural reason rather than a hoped-for one.
+      - from: recovering
+        to: driving
+        sync: resume
+        requires:
+          recovery_count: { lt: 3 }
+        effects:
+          recovery_count: recovery_count + 1
+
+      # The other end of the same policy: once the allowance is spent, giving up is the only move out
+      # of recovering. That pairing is what makes every recovering path terminate.
+      - from: recovering
+        to: aborted
+        label: give-up
+        requires:
+          recovery_count: 3
+
+  motion-interlock:
+    entity: rover
+    purpose:
+      question: Is the drive system currently permitted to move?
+      represents:
+        - motion permission as an enumerated state
+        - the events that grant and withdraw it
+      omits:
+        - steering angle, speed and commanded torque
+        - which component withdrew permission
+        - brake hardware state and its failure modes
+        - how long a withdrawal takes to take effect
+    initial: inhibited
+    states:
+      inhibited:
+      enabled:
+    transitions:
+      - from: inhibited
+        to: enabled
+        sync: arm
+      - from: inhibited
+        to: enabled
+        sync: resume
+      - from: enabled
+        to: inhibited
+        sync: halt
+      - from: enabled
+        to: inhibited
+        sync: complete
+      - from: enabled
+        to: inhibited
+        sync: fault-detected
+
+models:
+
+  control-authority:
+    type: graph
+    label: Control Authority
+    purpose:
+      question: Which subsystem may command which, and can the planner reach the drive system without passing the safety monitor?
+      represents:
+        - subsystem identity
+        - permitted command edges
+        - how much authority the design grants each subsystem
+      omits:
+        - what any command contains, and whether it is obeyed
+        - message timing, ordering and loss
+        - information flow, so this model cannot say what a subsystem can infer
+        - which commands are issued during which mission state
+    entities: [mission-planner, safety-monitor, motion-controller, drive-system]
+    notes:
+      - id: control-authority-rationale
+        kind: rationale
+        text: >
+          This model exists so that the permitted command path is declared rather than implied by a
+          block diagram. It answers one structural question -- who may command whom -- and it is the
+          model the bypass query is asked of. Permission is a design fact that does not change as the
+          mission runs, which is why it lives in a graph and not in a machine.
+      - id: not-information-flow
+        kind: comment
+        text: >
+          The bypass query checks for the ABSENCE OF ONE EDGE, and that is the whole claim. The
+          planner can still cause the drive system to move, through the monitor and the controller;
+          the chain exists so that it must. Reading `refuted` as "the planner cannot influence
+          motion" would be reading a one-hop graph property as an information-flow result, and this
+          model declares information flow as an omission by name so the overreach has somewhere to
+          be caught.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Declare the rover's permitted command chain so that a direct planner-to-drive bypass is a
+        question with an answer, and so the answer changes when the edge is added.
+      rationale: MAGE-provided example, autonomous-delivery, version 1.
+    relations:
+      - id: planner-commands-monitor
+        from: mission-planner
+        to: safety-monitor
+        type: may_command
+      - id: monitor-commands-controller
+        from: safety-monitor
+        to: motion-controller
+        type: may_command
+      - id: controller-commands-drive
+        from: motion-controller
+        to: drive-system
+        type: may_command
+
+  compute-platform:
+    type: graph
+    label: Compute Platform RAM
+    purpose:
+      question: Which subsystem owns which RAM buffer, and does the autonomy payload fit the module?
+      represents:
+        - subsystem and buffer identity
+        - which subsystem owns which buffer
+        - each allocation's size in MB
+        - the declared 1.25 GiB RAM ceiling the peak is decided against
+        - whether each allocation is held for the whole run or only during one mission state
+      omits:
+        - flash, CPU cycles, GPU memory and interconnect bandwidth
+        - allocator fragmentation and alignment padding
+        - stack depth under interrupt nesting
+        - how long any allocation takes to fill or free
+    entities:
+      - autonomy-computer
+      - route-planner
+      - motion-controller
+      - localization
+      - middleware-heap
+      - map-tiles
+      - route-solver-workspace
+      - perception-buffers
+      - relocalizer-workspace
+    relations:
+      - id: computer-owns-middleware-heap
+        from: autonomy-computer
+        to: middleware-heap
+        type: owns_buffer
+      - id: computer-owns-map-tiles
+        from: autonomy-computer
+        to: map-tiles
+        type: owns_buffer
+      - id: route-planner-owns-solver-workspace
+        from: route-planner
+        to: route-solver-workspace
+        type: owns_buffer
+      - id: controller-owns-perception-buffers
+        from: motion-controller
+        to: perception-buffers
+        type: owns_buffer
+      - id: localization-owns-relocalizer-workspace
+        from: localization
+        to: relocalizer-workspace
+        type: owns_buffer
+    notes:
+      - id: compute-platform-rationale
+        kind: rationale
+        text: >
+          This model says what each allocation costs and who holds it. It says nothing about when an
+          allocation is live -- that fact belongs to the mission machine, and the three transient
+          buffers below reach it through a `when:` clause rather than restating it. The ownership
+          edges are what turn "640 MB is the largest allocation" into "the motion controller's
+          perception buffers are the largest allocation", which is the sentence an engineer acts on.
+      - id: residency-is-authored
+        kind: comment
+        text: >
+          Two allocations declare `residency: resident` and three declare `when:`. Neither is a
+          default: MAGE refuses to infer either "idle subsystem memory stays resident" or "idle
+          subsystem memory disappears", so each annotation says which. An annotation declaring
+          neither charges nothing anywhere, which is a quantity that validates and then reaches no
+          analysis -- the state V35-V37 exist to make unreachable.
+      - id: the-reduction-the-machine-removed
+        kind: comment
+        text: >
+          Were there no mission machine, all five allocations would have to declare
+          `residency: resident` -- there would be no state for a `when:` clause to name -- and the
+          peak would be their sum, 1984 MB against a 1280 MB ceiling. The machine is what makes the
+          peak a maximum over reachable configurations instead, at 1088 MB. The 896 MB difference is
+          worst case the design never had, and `planning-and-driving-at-once` is the query that
+          licenses discarding it.
+
+  mission-endurance:
+    type: graph
+    label: Mission Endurance
+    purpose:
+      question: What does the battery power, and how long may one mission take?
+      represents:
+        - battery identity
+        - which subsystems draw from it
+        - the declared 900 s mission-duration ceiling
+      # The first omission is the example's largest honest gap, and it is a fact about MAGE rather
+      # than about this reduction: the dimension table has no `energy` member, so a joule-denominated
+      # budget has no spelling. Duration at a fixed drive power is the proxy this model declares
+      # instead, and `charge-remaining-at-delivery` makes the gap executable.
+      omits:
+        - energy in joules or amp-hours, which MAGE declares no dimension for
+        - the battery's state of charge, and therefore how much is left at any moment
+        - temperature derating and cell ageing
+        - regenerative braking and solar top-up
+        - the power each subsystem actually draws
+    entities: [battery, drive-system, autonomy-computer]
+    relations:
+      - id: battery-powers-drive
+        from: battery
+        to: drive-system
+        type: powers
+      - id: battery-powers-computer
+        from: battery
+        to: autonomy-computer
+        type: powers
+    notes:
+      - id: mission-endurance-rationale
+        kind: rationale
+        text: >
+          This model exists to hold one number honestly. A mission-duration ceiling is a fact about
+          the battery and the duty cycle, not about the compute module, so declaring it on
+          `compute-platform` beside the RAM ceiling would overload one view with two resources -- the
+          thing the resource-budget example warns against. The two ceilings live on the two models
+          whose question each one answers.
+      - id: duration-stands-in-for-energy
+        kind: comment
+        text: >
+          The specification asks for mission energy. MAGE's five dimensions are `duration`, `memory`,
+          `cost`, `ratio` and `count`; there is no `energy`, and `cost` has the right algebra with the
+          wrong base unit. Spelling joules as dollars would pass every check and defeat the one that
+          matters, so this model budgets DURATION and names the substitution. For a rover at a fixed
+          drive power, time on the motors is what the battery bounds.
+
+accounting:
+  latency:
+    basis: entities
+
+# ---------------------------------------------------------------------------
+# Quantities (requirements section 5.4), as annotations OVER the models and never part of them.
+#
+# Eight annotations, three declarations, two exemptions:
+#
+#   three `duration` on entities    charged per occurrence along a trace (basis: entities), joined to
+#                                   the mission machine by `executes_in_state`
+#   two `memory` with `residency:`  charged in every configuration where the entity exists
+#   three `memory` with `when:`     charged exactly while that mission state is active
+#   two `model:` totals             the declared ceilings, charged by no basis
+#
+# The three `when:` charges are the capstone's quantitative point. They are the only reason
+# `peak_memory` is 1088 MB rather than 1984 MB, and they are only writable because a machine exists
+# to name.
+# ---------------------------------------------------------------------------
+quantities:
+
+  route-planning-duration:
+    target: entity:route-planner
+    dimension: duration
+    value: 45 s
+    description: One route solve over the loaded map tiles.
+
+  drive-segment-duration:
+    target: entity:drive-system
+    dimension: duration
+    value: 600 s
+    # Charged once per ENTRY into driving. A mission that recovers twice drives three segments and is
+    # charged three times, because the trace visits the operation again -- not because two annotations
+    # were added together.
+    description: One uninterrupted drive segment, from setting off to arriving or stopping.
+
+  relocalization-duration:
+    target: entity:localization
+    dimension: duration
+    value: 90 s
+    description: One re-localization pass, scan-matching against the map tiles.
+
+  middleware-heap-ram:
+    target: entity:middleware-heap
+    dimension: memory
+    value: 192 MB
+    residency: resident
+    description: Message bus, parameter server and the scheduler's own state. Held for the whole run.
+
+  map-tiles-ram:
+    target: entity:map-tiles
+    dimension: memory
+    value: 256 MB
+    residency: resident
+    description: The delivery area's map, held for the whole run because reloading it mid-mission is
+      what the memory was spent to avoid.
+
+  route-solver-workspace-ram:
+    target: entity:route-solver-workspace
+    dimension: memory
+    value: 512 MB
+    # Charged exactly while the mission is planning. Residency is never inferred: "idle subsystem
+    # memory stays resident" and "idle subsystem memory disappears" are both guesses MAGE refuses to
+    # make, so the annotation names the behavioral state whose occupancy licenses the charge.
+    when:
+      state: mission.planning
+    description: Search frontier and cost-to-go table for one route solve. Freed when the route is fixed.
+
+  perception-buffers-ram:
+    target: entity:perception-buffers
+    dimension: memory
+    value: 640 MB
+    when:
+      state: mission.driving
+    # The largest single allocation, and the one that sets the peak. The
+    # `wider-perception-buffers` modification raises it until the ceiling fails.
+    description: Camera and LIDAR frames in flight while the rover is moving.
+
+  relocalizer-workspace-ram:
+    target: entity:relocalizer-workspace
+    dimension: memory
+    value: 384 MB
+    when:
+      state: mission.recovering
+    description: Scan-match hypotheses over the map tiles, held only while re-localizing.
+
+  # The two declared ceilings. A `model:` quantity is a declared TOTAL that a requirement is compared
+  # against, exempt from every accounting basis because nothing sums it per occurrence
+  # (SEMANTICS.md 5.3), and the one thing a `within:` query may name. Each declares neither
+  # `residency:` nor `when:`, because a whole-model figure is compared against memory(c) rather than
+  # being a summand of it (V37).
+  compute-memory-budget:
+    target: model:compute-platform
+    dimension: memory
+    value: 1280 MB
+    description: >
+      The autonomy payload's carve-out of the compute module, as a declared ceiling. 1280 MB in this
+      table's binary units is exactly 1.25 GiB.
+
+  mission-duration-budget:
+    target: model:mission-endurance
+    dimension: duration
+    value: 900 s
+    description: >
+      The mission time one battery charge sustains at the modeled drive power, as a declared ceiling.
+      Written in seconds while the charges are too, so the comparison needs no conversion -- unlike
+      the pipeline example, where it does.
+
+# ---------------------------------------------------------------------------
+# Saved queries. Expected outcomes live in expected-results.yaml -- one source of truth, because the
+# fixture also carries the models each question needs and the evidence it must produce.
+#
+# Twelve questions, and they are ordered the way the activity runs: inspect, then calculate, then
+# check, then explain, then the two the modifications move.
+# ---------------------------------------------------------------------------
+queries:
+
+  # --- Structure -----------------------------------------------------------------------------------
+
+  # Q1. `may_command` declares `path: allowed`, so this is a genuine multi-hop question and the
+  # witness is the whole chain: planner -> monitor -> controller -> drive.
+  planner-can-reach-drive-through-the-chain:
+    name: The mission planner can reach the drive system through the permitted command chain
+    kind: graph
+    quantifier: exists
+    graph:
+      form: reachability
+      relation: may_command
+      from: mission-planner
+      to: drive-system
+
+  # Q2. The bypass, as a POSITIVE breach query: it asks for the thing that would be wrong, so
+  # `refuted` is the good answer and a counterexample would be the finding. One hop, deliberately --
+  # `direct` does not compose, so this cannot accidentally answer the reachability question above.
+  planner-commands-drive-directly:
+    name: The mission planner can command the drive system directly
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: may_command
+      from: mission-planner
+      to: drive-system
+
+  # A cross-cutting structural reading of the same chain, and it earns its place by needing the
+  # ordered domain rather than the edge set: does any command edge run from a subsystem the design
+  # trusts LESS to one it trusts MORE? It holds, and the witness is the planner commanding the
+  # monitor -- an advisory subsystem with a supervisory one downstream of it. That is the design's
+  # own shape, not a defect: the monitor is downstream of the planner so it can refuse.
+  lower-authority-commands-higher:
+    name: A subsystem commands one the design grants more authority
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: may_command
+      where:
+        compare:
+          - left: source.authority
+            op: lt
+            right: target.authority
+
+  # --- Behavior ------------------------------------------------------------------------------------
+
+  # Q3 and Q4. The two liveness-shaped questions the engine CAN answer: can it get there at all.
+  rover-can-start-driving:
+    name: The rover can start driving
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        mission.state: driving
+
+  rover-can-deliver:
+    name: A mission can reach delivered
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        mission.state: delivered
+
+  # Q5. THE cross-machine safety requirement, and the reason this example declares two machines. The
+  # mission model supplies `fault`; the interlock model supplies `enabled`; neither alone can state
+  # the property. Universal, so exhaustive satisfaction establishes it and one counterexample refutes
+  # it -- which is exactly what `unsynchronized-fault-path` does.
+  motion-inhibited-whenever-faulted:
+    name: Motion is never enabled while the mission is in fault
+    kind: behavior
+    quantifier: forall
+    behavior:
+      form: invariant
+      predicate:
+        not:
+          all-of:
+            - mission.state: fault
+            - motion-interlock.state: enabled
+
+  # Q6, first half. `repeatable-cycle` asks for a genuinely repeated CONFIGURATION, which is what
+  # makes a cycle actually repeatable. `refuted` under exhaustive coverage says no reachable execution
+  # re-localizes forever, and it says so for a structural reason: `resume` requires an unspent
+  # allowance and spends one, so `recovery_count` strictly advances within a finite domain.
+  #
+  # That is an exhaustive statement about a finite transition system. It is NOT temporal liveness --
+  # MAGE declares no fairness and has no infinite-trace operators. The `unlimited-recovery`
+  # modification deletes the guard and this flips, which is how you can tell the guard was load-bearing.
+  recovery-can-repeat-forever:
+    name: A mission can stay in the re-localization loop indefinitely
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: repeatable-cycle
+      target:
+        mission.state: recovering
+
+  # The honest companion, and the reason the engine has two forms. The rover CAN return to recovering
+  # after driving on -- that is re-entry, and the evidence is a lasso. It cannot do so forever.
+  recovery-can-recur:
+    name: A mission can lose localization again after recovering once
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: recurrence
+      target:
+        mission.state: recovering
+
+  # Q6, second half, and the obligation this design does NOT meet. `deadend` asks for a reachable
+  # configuration with no enabled step; `avoid` restricts the trace to one that never passes through
+  # either promised outcome. It HOLDS, and the witness ends in `fault` -- a mission that faults while
+  # driving stops forever having neither delivered nor aborted.
+  #
+  # The verdict is earned rather than predicate-decided: a trace was found, and `fault` is a dead end
+  # because recovery from a fault needs a human at the rover, which this model declares as an
+  # omission instead of inventing a transition for.
+  mission-can-strand-without-an-outcome:
+    name: A mission can stop for good without delivering or aborting
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: deadend
+      avoid:
+        any-of:
+          - mission.state: delivered
+          - mission.state: aborted
+
+  # The premise the memory answer rests on, asked rather than asserted. `refuted` here is VACUOUS:
+  # one machine occupies one control state, so the conjunction is unsatisfiable in the state vector
+  # and no transition structure was consulted. The engine discloses that on the result's compilation
+  # (V41), and the disclosure is what makes this a license rather than a coincidence.
+  #
+  # Read it as "the model cannot represent planning and driving at once" -- stronger than "it does
+  # not happen here", weaker than "both were checked for and not found together". That impossibility
+  # is precisely why `peak_memory` may take the MAXIMUM of the two charges instead of their sum, and
+  # why modeling the lifecycle removed 896 MB of worst case rather than hiding it.
+  planning-and-driving-at-once:
+    name: The mission can be planning and driving at the same time
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        all-of:
+          - mission.state: planning
+          - mission.state: driving
+
+  # --- Quantity ------------------------------------------------------------------------------------
+
+  # Q7. A MEASUREMENT, and it decides nothing: no `within:`, so `exists` is forced and the answer is
+  # a figure established by the witness that attains it. The nominal delivery is identified by
+  # `recovery_count: 0` -- not a shorter trace, a delivery that never lost localization.
+  #
+  # No requirement names this query, and that is deliberate rather than an oversight. A measurement
+  # answers HOW MUCH and discharges no obligation; a requirement naming one would read satisfied at
+  # every magnitude, forever. The ceiling question below is the one with an obligation attached.
+  nominal-mission-duration:
+    name: The delivery that never loses localization has a determinate modeled duration
+    kind: quantity
+    quantifier: exists
+    quantity:
+      metric: latency
+      target:
+        all-of:
+          - mission.state: delivered
+          - mission.recovery_count: 0
+
+  # Q8. THE behavior-to-quantity composition under a declared ceiling. A behavioral predicate selects
+  # WHICH executions -- those that deliver; the quantitative model supplies the per-occurrence
+  # charges, the sum along each selected execution, and the maximum over them. `forall` is forced: a
+  # ceiling claim is universal over the selected executions and one counterexample refutes it.
+  #
+  # It is refuted, and the counterexample IS the answer to "which delivery blows the budget" -- that
+  # question needs no separate query because the evidence already carries it.
+  delivering-missions-within-the-duration-budget:
+    name: Every delivery completes within the declared mission-duration budget
+    kind: quantity
+    quantifier: forall
+    quantity:
+      metric: latency
+      within: mission-duration-budget
+      target:
+        mission.state: delivered
+
+  # Q9. THE integrated question, and the one whose answer changes sign depending on whether the
+  # mission machine exists. `peak_memory` is the maximum of memory(c) over the reachable set, and
+  # memory(c) sums the two resident allocations plus whichever `when:`-charged allocation the current
+  # mission state licenses. No `target:` -- asking for a configuration-scoped metric along executions
+  # is a category error the evaluator refuses by name.
+  #
+  # Three forms decide it. STRUCTURE says who owns each buffer and declares the ceiling. QUANTITY
+  # says what each one costs. BEHAVIOR says which are live together, and that third premise is worth
+  # 896 MB: all-resident the peak is 1984 MB and this reads refuted; state-scoped it is 1088 MB and
+  # this holds with 15% of margin.
+  compute-payload-fits-onboard-ram:
+    name: The autonomy payload's peak RAM fits the compute module's carve-out
+    kind: quantity
+    quantifier: forall
+    quantity:
+      metric: peak_memory
+      within: compute-memory-budget
+
+  # --- A purposeful omission, made executable ------------------------------------------------------
+
+  # Fairness needs a scheduler and the battery's charge needs a dimension MAGE does not have. This
+  # asks for the second: a machine tracking state of charge, which `mission-endurance` declares as an
+  # omission by name. The engine refuses and names the missing vocabulary rather than answering from a
+  # model that does not hold the distinction.
+  #
+  # It is here because the gap it names is this example's largest, and a declared omission a reader
+  # can RUN is worth more than a sentence in a header. `cost` would have carried the algebra and
+  # `usd` the wrong unit; there is no `energy` dimension to reach for.
+  charge-remaining-at-delivery:
+    name: The battery still has charge when the parcel is handed over
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        battery-charge.state: depleted
+
+# Six obligations, four met and two not, and the two that fail are the capstone's finding rather than
+# its defect. Both quantity-decided requirements declare a ceiling query (`within:`) and
+# `satisfied_when: holds`, which is the only sound shape: a measurement query decides no obligation,
+# and `satisfied_when: refuted` against a ceiling would make the breach discharge the obligation.
+requirements:
+
+  drive-commands-pass-through-the-safety-monitor:
+    statement: >
+      No subsystem may command the drive system without the safety monitor on the path. Stated as the
+      one graph property this model can decide: no direct `may_command` edge runs from the mission
+      planner to the drive system.
+    expressed_as: planner-commands-drive-directly
+    satisfied_when: refuted
+
+  motion-is-inhibited-in-every-fault:
+    statement: >
+      The drive system is never permitted to move while the mission is in fault.
+    expressed_as: motion-inhibited-whenever-faulted
+    satisfied_when: holds
+
+  recovery-is-bounded:
+    statement: >
+      No reachable execution re-localizes forever; a mission that keeps losing localization reaches
+      aborted.
+    expressed_as: recovery-can-repeat-forever
+    satisfied_when: refuted
+
+  # VIOLATED, and shipped that way. `fault` is terminal and is neither promised outcome, so the
+  # obligation is breached by a real trace rather than by a modeling slip. Weakening the question
+  # until it passed -- dropping `avoid`, or asking only whether `delivered` is reachable -- would have
+  # bought a green verdict and taught that the rover always finishes.
+  every-mission-reaches-a-terminal-outcome:
+    statement: >
+      Every mission that stops has either delivered its parcel or aborted; none stops in a state that
+      is neither.
+    expressed_as: mission-can-strand-without-an-outcome
+    satisfied_when: refuted
+
+  compute-payload-fits-onboard-ram:
+    statement: >
+      The autonomy payload's peak RAM over all reachable mission configurations fits within the
+      compute module's 1.25 GiB carve-out.
+    expressed_as: compute-payload-fits-onboard-ram
+    satisfied_when: holds
+
+  # VIOLATED, and it is the tradeoff rather than an error. The recovery policy that satisfies
+  # `recovery-is-bounded` is what breaches this: each re-localization is followed by another full
+  # drive segment, and the trace charges every occurrence.
+  delivering-missions-within-the-duration-budget:
+    statement: >
+      Every delivery completes within the 900 s of mission time one battery charge sustains.
+    expressed_as: delivering-missions-within-the-duration-budget
+    satisfied_when: holds
+
+views:
+
+  authority:
+    label: Control authority
+    models: [control-authority]
+    show-properties: [authority]
+
+  lifecycle:
+    label: Mission lifecycle
+    machines: [mission]
+    direction: top-to-bottom
+
+  interlock:
+    label: Motion interlock
+    machines: [motion-interlock]
+    direction: left-to-right
+
+  ram:
+    label: Compute platform RAM
+    models: [compute-platform]
+
+  endurance:
+    label: Mission endurance
+    models: [mission-endurance]
