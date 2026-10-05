@@ -55,11 +55,48 @@
 # `provenance:`. Both keys now appear in mage-model.schema.json and `python3 validate.py` reports all
 # three examples clean, so those two headers are stale. This one does not repeat the claim.
 #
-# MAGE v0.1 has no requirement construct. The two requirements are therefore declared as
-# `model:`-targeted quantities, which is what the `model:` exemption in SEMANTICS.md 5.3 exists
-# for: a declared TOTAL that a requirement is compared against, charged by no basis. A
-# `kind: quantity` query decides each one -- `within:` names the ceiling, the aggregation is
-# derived from the dimension's scope, and the computed figure travels on `result.magnitude`.
+# ## The six execution-cost questions, and the two of them this model cannot be asked
+#
+# `Examples and Semantic Completion` §12.3 lists six. Four ship as saved queries above, and the
+# other two are recorded here because a question nobody can ask is worth more written down than
+# quietly dropped.
+#
+#   Q1 nominal successful latency          nominal-successful-latency                725 ms
+#   Q2 the CHEAPEST successful execution   NOT EXPRESSIBLE -- a minimum, see below
+#   Q3 maximum over any execution          max-latency-of-any-execution            2,750 ms
+#   Q4 maximum among successful ones       max-latency-among-successful-executions 2,750 ms
+#   Q5 all successful within 2 s           successful-executions-within-two-seconds refuted
+#   Q6 which execution violates it         Q5's counterexample -- no separate query
+#
+# **Q2 asks for a minimum, and the query surface offers no aggregation selector at all.** The
+# aggregation is derived from the dimension's scope -- execution-scoped metrics sum along an
+# execution and MAXIMIZE over them -- and the §29 refinement's `max|min|named` selector was
+# rejected rather than deferred, so `target` can say which executions to measure and nothing can
+# say to take their least. Declaring an API cost would not help: it would make the metric's figure
+# real and still leave it a maximum. The question is refused by the SHAPE of the surface, which is
+# a different thing from the cache's missing hit frequency below -- that one is refused by the
+# model's own declaration, and modeling the frequency would answer it.
+#
+# **Q3 and Q4 answer with the SAME figure, 2,750 ms, and §12.1's lesson predicts otherwise.** Both
+# were measured; the equality is real and it is structural. Entity accounting charges a visit to an
+# entity whose `executes_in_state` names the state the trace enters, and `publish` and `failed` are
+# both free edges out of `validating`. So the execution that exhausts its retries and the execution
+# that publishes on the last one have identical occurrence vectors, and the unselected maximum's
+# witness happens to BE a publishing execution. The selection moves the WITNESS's final
+# configuration and not the magnitude.
+#
+# The selection is not idle, though, and `test/example-pipeline-questions.test.ts` measures the
+# spread that shows it: selecting on `parsing` gives 50 ms, on `remediating` 2,675 ms, on
+# `validating`, `waiting` and `published` 2,750 ms. A reader who wants Q3 and Q4 to differ needs a
+# failure path that CHARGES differently -- a component executing in a state only the failure path
+# visits -- which is model content this example does not have.
+#
+# MAGE v0.1 has no requirement construct. Each quantitative requirement is therefore declared as a
+# `model:`-targeted quantity, which is what the `model:` exemption in SEMANTICS.md 5.3 exists for:
+# a declared TOTAL that a requirement is compared against, charged by no basis. Three of them ship
+# -- 750 ms on normal processing, 512 MB on peak memory, 2 s on an execution that publishes -- and
+# a `kind: quantity` query decides each one: `within:` names the ceiling, the aggregation is derived
+# from the dimension's scope, and the computed figure travels on `result.magnitude`.
 # expected-results.yaml still carries the arithmetic by hand, as the oracle the product's answers
 # are compared against.
 
@@ -243,7 +280,7 @@ accounting:
 #   four `duration` on entities    charged per occurrence along a trace (basis: entities)
 #   one `memory` with `when:`      charged exactly while that state is active
 #   one `memory` with `residency:` charged in every configuration where the entity exists
-#   two `model:` totals            the declared requirements, charged by no basis
+#   three `model:` totals          the declared requirements, charged by no basis
 #
 # The gateway's 100-500 ms range is the only interval here, and it is where a maximum comes from:
 # the maximum modeled latency takes its high end, every occurrence.
@@ -309,6 +346,21 @@ quantities:
     dimension: memory
     value: 512 MB
     description: Required peak memory over reachable configurations, as a declared ceiling.
+
+  # The second declared ceiling, and the one the cross-domain question is decided against.
+  #
+  # `latency-requirement` above governs NORMAL processing -- the retry-free execution, which is what
+  # its 750 ms was chosen for. This one governs the executions that PUBLISH, retries and all, and it
+  # is written in SECONDS while every charge is written in milliseconds: the comparison is 2,750 ms
+  # against 2,000 ms by the `s` conversion factor, so a reader who assumes two ceilings of one
+  # dimension must share a unit learns otherwise from the verdict.
+  successful-latency-requirement:
+    target: model:pipeline-performance
+    dimension: duration
+    value: 2 s
+    description: >
+      Required latency of an execution that reaches published, retries included, as a declared
+      ceiling.
 
 machines:
 
@@ -404,6 +456,7 @@ models:
         - per-stage latency
         - memory held while remediating, and memory held always
         - the declared latency and peak-memory ceilings
+        - the declared two-second ceiling on an execution that publishes
       # Checked against this model's real vocabulary (V24). The first entry is the flagship
       # purposeful omission: the hit and miss costs are both representable, and their FREQUENCIES
       # are deliberately absent, so an expected latency has no reading here.
@@ -439,10 +492,19 @@ models:
       - id: requirements-are-declared-totals
         kind: comment
         text: >
-          `latency-requirement` and `peak-memory-requirement` target `model:`, which exempts them
-          from every accounting basis -- nothing charges them per occurrence, because a requirement
-          is compared against a computed total rather than summed into it. They are the closest
-          thing v0.1 offers to a requirement construct.
+          `latency-requirement`, `peak-memory-requirement` and `successful-latency-requirement`
+          target `model:`, which exempts them from every accounting basis -- nothing charges them
+          per occurrence, because a requirement is compared against a computed total rather than
+          summed into it. They are the closest thing v0.1 offers to a requirement construct.
+      - id: a-selection-is-not-an-aggregation
+        kind: comment
+        text: >
+          The two latency ceilings differ in WHICH executions they govern and not in how those
+          executions are aggregated. `latency-requirement` is decided over every execution;
+          `successful-latency-requirement` is decided over the executions a lifecycle predicate
+          selects. A reader looking for where to say "take the minimum instead" will not find it,
+          and that is deliberate: the aggregation follows the dimension's scope, so a question
+          about the cheapest execution has no form here.
     provenance:
       created_by: mage-example
       prompt: >
@@ -557,6 +619,71 @@ queries:
         all-of:
           - document-lifecycle.state: published
           - document-lifecycle.retry_count: 3
+
+  # -------------------------------------------------------------------------------------------
+  # The four questions a reader asks about execution COST, saved so the example answers them
+  # itself rather than only through a suite.
+  #
+  # Each is a `kind: quantity` query, and none of them chooses an aggregation: the query surface
+  # has no such key, because the aggregation is DERIVED from the dimension's scope. `duration` is
+  # execution-scoped, so the reading is "sum along an execution, maximize over executions" -- and
+  # a `target` therefore selects WHICH executions, never how they combine.
+  #
+  # That is where the cross-domain composition lives, and it is one key wide. `target` is the
+  # behavioural half of `max-latency-among-successful-executions` below: a lifecycle predicate
+  # fixes the DOMAIN, and the quantitative dialect still returns its own kind of answer.
+  # -------------------------------------------------------------------------------------------
+
+  # The nominal successful execution. `retry_count: 0` is what identifies it -- not a shorter
+  # trace, a trace that published without ever failing validation.
+  nominal-successful-latency:
+    name: The retry-free publishing execution has a determinate modeled latency
+    kind: quantity
+    quantifier: exists
+    quantity:
+      metric: latency
+      target:
+        all-of:
+          - document-lifecycle.state: published
+          - document-lifecycle.retry_count: 0
+
+  # The maximum over EVERY execution: no selection at all. Shipped beside the selected question
+  # below because the pair is the lesson, and because the pair's measured answer is not the one
+  # the lesson predicts -- see the header.
+  max-latency-of-any-execution:
+    name: Every execution has a bounded modeled latency, and the model determines its maximum
+    kind: quantity
+    quantifier: exists
+    quantity:
+      metric: latency
+
+  # THE cross-domain composition. A behavioural predicate supplies the selection; the quantitative
+  # model supplies the per-occurrence charges, the sum along each selected execution, and the
+  # maximum over them. Neither model answers it, and no third kind of result was invented to join
+  # them: the answer is a magnitude with its dimension, which is what the quantitative dialect
+  # returns anyway.
+  max-latency-among-successful-executions:
+    name: The executions that publish have a determinate maximum modeled latency
+    kind: quantity
+    quantifier: exists
+    quantity:
+      metric: latency
+      target:
+        document-lifecycle.state: published
+
+  # The same composition under a declared ceiling, which is the requirement's own sentence. `forall`
+  # is forced: a ceiling claim is universal over the selected executions and one counterexample
+  # refutes it. The counterexample it returns IS the answer to "which execution violates the
+  # requirement" -- that question has no separate query, because the evidence already carries it.
+  successful-executions-within-two-seconds:
+    name: Every execution that publishes completes within the declared two seconds
+    kind: quantity
+    quantifier: forall
+    quantity:
+      metric: latency
+      within: successful-latency-requirement
+      target:
+        document-lifecycle.state: published
 
   # Whether the 256 MB remediation charge is ever incurred. The charge names a state in its `when:`
   # clause; this asks the lifecycle whether that state is reachable. Cross-model by construction:

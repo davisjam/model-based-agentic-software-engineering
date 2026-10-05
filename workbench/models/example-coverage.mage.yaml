@@ -87,8 +87,8 @@ entities:
     label: "Document Processing"
     properties:
       purposeful_models: 2
-      supplied_queries: 9
-      suggested_queries: 4
+      supplied_queries: 13
+      suggested_queries: 5
 
   example.worker-queue:
     type: default-example
@@ -345,6 +345,7 @@ models:
       - { from: example.document-processing, to: capability.witnesses, type: exercises }
       - { from: example.worker-queue, to: capability.witnesses, type: exercises }
       - { from: example.transaction-workspace, to: capability.counterexamples, type: exercises }
+      - { from: example.document-processing, to: capability.counterexamples, type: exercises }
       - { from: example.worker-queue, to: capability.counterexamples, type: exercises }
       - { from: example.message-bus, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.transaction-workspace, to: capability.purposeful-non-answerability, type: exercises }

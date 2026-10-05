@@ -54,9 +54,17 @@ models:
 #   decided_by    a `quantitative_expectations` entry decides it, and `declared_as` names the
 #                 `model:` quantity carrying the ceiling so the number has one source of truth.
 #
-# The latency and memory requirements take the second route. Their statuses are the verdicts the
-# quantity query form reaches — `within: <declared_as>` decided against the computed total — and
-# test/examples.test.ts re-derives both through the product and fails on a disagreement.
+# The 750 ms latency requirement and the memory requirement take the second route. Their statuses
+# are the verdicts the quantity query form reaches — `within: <declared_as>` decided against the
+# computed total — and test/examples.test.ts re-derives both through the product and fails on a
+# disagreement.
+#
+# The 2-second requirement takes the FIRST route even though it is quantitative, and the two routes
+# are not redundant. `decided_by` points at a hand-derived oracle and is how a figure nobody could
+# compute yet was kept honest; `expressed_as` points at a SAVED query, which is how a requirement
+# whose claim the product states directly gets decided by the thing a reader can re-run. The
+# 2-second ceiling claim is one saved query — `within:` names the ceiling, `target:` names the
+# executions — so the query is the decider, and no second copy of 2,000 ms exists outside the model.
 # ---------------------------------------------------------------------------
 requirements:
 
@@ -87,6 +95,33 @@ requirements:
       to spare; every permitted retry adds another remediation pass and another validation, and
       three of them reach 2,750 ms. The ceiling governs the pipeline only when nothing retries,
       which is the distinction the two models exist to separate.
+
+  - id: successful-processing-within-two-seconds
+    statement: >
+      Every execution that reaches published completes within 2 seconds, retries included.
+    # The first route, and the only requirement here that takes it on a QUANTITATIVE query: the
+    # saved query states the ceiling claim directly, so the recorded outcome decides the
+    # obligation and no second copy of the 2,000 ms figure exists outside the model.
+    expressed_as: successful-executions-within-two-seconds
+    satisfied_when: holds
+    declared_as: successful-latency-requirement
+    status: violated
+    note: >
+      Violated, measured: 2,750 ms against a 2,000 ms ceiling, with the three-retry publishing
+      execution as the counterexample. This is §12.3's Q5 and Q6 in one answer -- the verdict
+      refutes the ceiling and the evidence names the execution that refutes it.
+
+      It is also the requirement that makes the cross-domain composition carry weight rather than
+      decorate a diagram. The behavioural model supplies the selection: `target` admits only the
+      executions that reach published, and nothing else in the query says anything about
+      behaviour. The quantitative model supplies everything else -- what one visit to each
+      component costs, the sum along each selected execution, and the maximum over them. Drop the
+      `target` and the question is still well-formed and still answered; what changes is which
+      executions it is about.
+
+      The 750 ms requirement above and this one are the same analysis over different domains, and
+      both are violated by the same retry policy. The honest reading is that the retry bound, not
+      the pipeline, decides both: the retry-free execution costs 725 ms and clears each ceiling.
 
   - id: peak-memory
     statement: >
@@ -321,6 +356,122 @@ queries:
       so a trace that reached published by some shorter route would make the number wrong and this
       expectation catches it.
 
+  # ---------------------------------------------------------------------------------------------
+  # The execution-cost questions. Every outcome below was MEASURED through `Workspace.query` before
+  # it was written here, and the magnitudes are re-derived against the hand-derived oracle by
+  # test/example-pipeline-questions.test.ts -- this file pins only the semantic outcome, which is
+  # the fixture discipline the header states.
+  # ---------------------------------------------------------------------------------------------
+
+  - id: nominal-successful-latency
+    label: The retry-free publishing execution has a determinate modeled latency
+    suggested: false
+    models: [document-lifecycle, pipeline-performance]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 4
+        labels_at_least:
+          parse: 1
+          remediate: 1
+          validate: 1
+          publish: 1
+        final:
+          document-lifecycle.state: published
+          document-lifecycle.retry_count: 0
+    note: >
+      §12.3's Q1, as a saved query rather than as a figure in a suite. 725 ms, and the selection is
+      what makes it the NOMINAL execution: `retry_count: 0` at publication identifies a document
+      that never failed validation, where a shorter trace would only identify one that took fewer
+      steps. The witness ends at the selected configuration, which is how a reader can tell the
+      figure is about the execution named rather than about some prefix of it.
+
+  - id: max-latency-of-any-execution
+    label: Every execution has a bounded modeled latency, and the model determines its maximum
+    suggested: false
+    models: [document-lifecycle, pipeline-performance]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 13
+        labels_at_least:
+          retry: 3
+    note: >
+      §12.3's Q3, with no behavioural selection at all: the maximum over every execution the
+      lifecycle supplies. 2,750 ms, and the bound exists only because `retry_count` has a finite
+      domain -- an unbounded retry policy would make this an unbounded maximum, which the engine
+      reports as a repeatable cycle rather than as a number.
+
+      Shipped as the control for the composed question below, and the control returns the same
+      figure. That is measured, not expected: see the system file's header for why the equality is
+      structural and what a model would need for the two to differ.
+
+  - id: max-latency-among-successful-executions
+    label: The executions that publish have a determinate maximum modeled latency
+    suggested: true
+    models: [document-lifecycle, pipeline-performance]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 13
+        labels_at_least:
+          retry: 3
+          validate: 4
+        final:
+          document-lifecycle.state: published
+          document-lifecycle.retry_count: 3
+    note: >
+      §12.3's Q4, and the canonical cross-domain composition. Behaviour supplies the selection
+      predicate and quantity supplies the measurement and the maximum, and the division is exactly
+      one key wide: `target` is the whole behavioural contribution, and it names a lifecycle state.
+      Everything else -- which annotations charge, that a visit charges per occurrence, that the
+      sum runs along an execution and the maximum over executions -- comes from the performance
+      model and from the dimension's declared scope.
+
+      The composition the kernel registers for this is `executions-selected-by-behaviour`, and the
+      restriction it performs is named: it narrows the DOMAIN. The result stays a magnitude with
+      its dimension, which is what a quantitative question returns with or without a selection, so
+      nothing was invented to join the two models.
+
+      Compare `max-latency-of-any-execution` above: same 2,750 ms, and the witness's final
+      configuration is the only thing that moved. The selection is still load-bearing -- selecting
+      on `parsing` gives 50 ms and on `remediating` 2,675 ms -- and the spread is measured in
+      test/example-pipeline-questions.test.ts rather than asserted here.
+
+  - id: successful-executions-within-two-seconds
+    label: Every execution that publishes completes within the declared two seconds
+    suggested: false
+    models: [document-lifecycle, pipeline-performance]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: counterexample
+        min_steps: 13
+        final:
+          document-lifecycle.state: published
+          document-lifecycle.retry_count: 3
+    note: >
+      §12.3's Q5 and Q6 in one answer, and the requirement
+      `successful-processing-within-two-seconds` is discharged by it. The quantifier is FORCED to
+      `forall` by the presence of `within:` -- a ceiling claim is universal over the selected
+      executions -- so the refutation needs exactly one execution, and the evidence carries it.
+      That is Q6: "which execution violates the latency requirement" has no separate query here
+      because a refuted universal already returns the counterexample.
+
+      The ceiling is written `2 s` while every charge is written in milliseconds, so the comparison
+      runs through the declared conversion factor rather than through matching unit labels.
+
   - id: remediation-memory-is-charged
     label: The 256 MB remediation charge is incurred on some reachable execution
     suggested: false
@@ -458,6 +609,16 @@ modifications:
       - query: document-returns-to-remediating
         from: holds
         to: refuted
+      # §12.4 asks students to predict whether the 2-second property survives a validation retry,
+      # then to evaluate. The retry already ships, so the shipped transaction is the INVERSE: this
+      # row is that prediction decided in the only direction the operation vocabulary supports.
+      # Remove the retry and the 2-second ceiling goes from refuted to satisfied, because the
+      # maximum among publishing executions falls from 2,750 ms to the retry-free 725 ms. No
+      # quantity changed, and §12.5's other routes -- reducing a stage latency, tightening the
+      # retry bound -- have no operation at all.
+      - query: successful-executions-within-two-seconds
+        from: refuted
+        to: holds
 
   - id: publish-without-validating-shortcut
     label: Add a shortcut from remediating straight to published
