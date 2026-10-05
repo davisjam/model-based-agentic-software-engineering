@@ -368,10 +368,14 @@ export interface Correspondence {
  * `test/bindings-census.test.ts` derives cross-domain references from the authored models and
  * requires each to be named. Its obligation used to be per (fromType, toType), and the file names
  * the consequence as a hole: *"a SECOND, semantically different reference between an already-named
- * pair therefore satisfies the test by riding on the first."* That was live, not hypothetical —
- * `holds_lease_as` in the worker-queue example rode on `executes_in_state`'s pair. Declaring the
+ * pair therefore satisfies the test by riding on the first."* That was live, not hypothetical — one
+ * shipped example authored a second entity→state property that no entry named. Declaring the
  * authored keys moves the granularity to (fromType, toType, key) and the census checks both
  * directions, so a new reference field cannot hide behind an old one and a stale key cannot linger.
+ *
+ * `keys` declares the KERNEL's own spellings. A model-local spelling of the same correspondence is
+ * declared in that test file instead, because EX-I1 forbids an engine source from naming an example
+ * and the example's property name would be one.
  *
  * The second arm is not an escape. A SAME-domain binding corresponds two purposeful models of one
  * type, and the derivation yields cross-TYPE pairs only, so no walk over model documents can
@@ -1068,12 +1072,12 @@ export const BINDINGS: readonly BindingSemantics[] = [
       "evaluator can charge a trace step entering that state to that entity",
     licensing: { kind: "declared", by: ENTITY_STATE_PROPERTY },
     correspondence: { source: "entity", target: "state" },
-    // TWO keys, and the second is why this field exists. `holds_lease_as` (worker-queue) is a
-    // model's own spelling of the same shape: the entity's custody is represented by a lease
-    // state, and the kernel does not resolve it — only that example's suite holds the reference.
-    // Before the keys were declared it rode on `executes_in_state`'s type pair and the census was
-    // silently covering two different authored references with one entry.
-    witness: { kind: "authored-property", keys: ["executes_in_state", "holds_lease_as"] },
+    // The KERNEL's spelling, and only that. A model may spell the same correspondence under its own
+    // property name, which the kernel does not resolve — and those spellings are NOT declared here,
+    // because EX-I1 forbids an engine source naming an example and a model-local key would smuggle
+    // one in. `test/bindings-census.test.ts` declares them beside the walk, where facts about the
+    // tracked corpus already live, and holds the two sets disjoint so neither hides the other.
+    witness: { kind: "authored-property", keys: ["executes_in_state"] },
     declaredBy: ENTITY_STATE_PROPERTY,
     semanticBasis: KERML_BINDING_BASIS,
   },
