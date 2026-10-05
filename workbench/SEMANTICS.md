@@ -882,6 +882,29 @@ The engine is therefore safety-plus-reachability only. **Fairness is unsupported
 latter is not established without fairness assumptions, and the workbench must say so rather than
 guess.
 
+> **Still true of v0.1; the liveness half no longer describes the engine, 261004.** This document is
+> the frozen v0.1 kernel, and the paragraph above stands as the v0.1 statement. The engine it
+> describes has since gained an LTL foundation — `src/engine/ltl.ts`, `ltl-automaton.ts`,
+> `ltl-trace.ts`, `ltl-product.ts` — under which liveness is **in** scope and a liveness property
+> gets a verdict. Fairness remains out of scope, which is why the two are separated here rather than
+> both struck, and v0.2 accepts the consequence openly: with every execution admitted, a liveness
+> property can be refuted by a trace that postpones an enabled transition forever, and the
+> counterexample is the lesson. §30's P5 is refuted on both machines for exactly that reason. The
+> authority is `DESIGN-v02-ltl-foundation-261004.md` (§4 trace domain, §5 fairness, §8 verdicts);
+> `PLAN.md` §2 carries the matching supersession on the Phase C must-not. Past-time operators are
+> unchanged: the history-variable compilation above is still the mechanism, still disclosed under
+> V23.
+>
+> **One bound, because it is the thing most likely to be assumed.** The foundation is not yet wired
+> to any shipped surface, measured at 261004 rather than inferred. `mage-query.schema.json`'s
+> behavior `form` enum is unchanged, so **no saved query can name an LTL property**;
+> `src/engine/index.ts` re-exports nothing from the four modules; and no module under `src/` imports
+> them at all — `explore.ts` mentions `ltl-product.ts` in a comment and that is the whole of it. The
+> only importers are `test/acceptance-p1-p5.test.ts`, `test/ltl-bridge.test.ts` and the LTL suites.
+> So liveness has verdicts, and today a reader obtains one by writing a test, not by saving a query.
+> That is this wave's declared boundary — §7.4 of the foundation design enumerates what was to be
+> added and a query form is not on the list — and not an omission of this section.
+
 ### 7.4 Queries are persistent artifacts
 
 Saved queries live in the model system and re-run when the model changes. Engineering questions
@@ -1313,6 +1336,18 @@ says so itself: its receipt pairs the claim with "This does NOT prove any model 
 code" and a test holds the disclaimer in place so the numbers cannot travel without it
 (`test/model-coverage.test.ts:118-126`, `:491-501`). Verdict-checking becomes engineering warrant
 only where a K1 join exists; today that is the components model alone.
+
+**Since 261004 the kind has two strengths inside it, and the split runs along query kind.** A `graph`
+query in a tracked model is decided twice and held equal — once by the engine, once by `validate.py`
+— which is what `npm run check:parity` buys. A `behavior` query was decided once, because
+`validate.py` has no exploration engine and declines every one for scope. The LTL foundation closed
+that asymmetry without anyone editing a model: `test/ltl-bridge.test.ts` enumerates
+`models/*.mage.yaml`, and where a bridge equation makes a saved form and an LTL formula the same
+question (`invariant p == G p`; `reach p holds <=> G not-p refuted`) it compares the shipped
+evaluator against an independently implemented automaton-product walk, with disagreement a defect in
+one of them by the one-denotation rule. Eight of the lifecycle model's nine rows are covered;
+`deadend` is excluded for a stated reason. This raises the *warrant* of a K2 claim and moves nothing
+on the correspondence axis — both implementations read the same model file.
 
 **K3 — Generated from the code.** The affordances and example-coverage models: regenerate and
 compare, byte-exact, on every run (`test/capabilities.test.ts:532-538`,

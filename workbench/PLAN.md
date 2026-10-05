@@ -28,6 +28,7 @@ Architecture: [`models/workbench-components.mage.yaml`](models/workbench-compone
 | I | Quantitative models — representation + accounting | **landed** `b44b2bed` (V27–V31), `02b4761e` (V35–V37); evaluator pending |
 | J | RDF projection + query evaluator + structured not-answerable | **landed** `c21c46e0`, `96010d5f`, `408c2388`, `f032fb81`; `sparqljs` text front-end pending |
 | M | Default example systems as the end-to-end suite | **landed** `2ebddc63`; Document Processing in flight |
+| LTL | v0.2 temporal foundation: formula + parser, NNF/GNBA tableau, product walk, SCC emptiness, counterexample assembly | **landed** `src/engine/ltl{,-automaton,-trace,-product}.ts`. Liveness now gets a verdict (§30's P5 is `refuted`, ruled the intended outcome); fairness stays out of scope. **Not wired to a saved query** — `mage-query.schema.json`'s behavior `form` enum is unchanged and nothing under `src/` imports the modules, so the consumers are `test/acceptance-p1-p5.test.ts` and `test/ltl-bridge.test.ts`. A query form is a later wave's, per `DESIGN-v02-ltl-foundation-261004.md` §7.4. |
 
 **UX-I1 is ZERO** — every public semantic capability is reachable from the page
 and from an attached agent, and both reach it through the same service. It began the day at 17
@@ -124,7 +125,18 @@ test states either. Nine statements, measured: four claims, four vacuity witness
 check; 70 reachable configurations against docable's 39. Verdicts held by
 `test/model-coverage.test.ts`; each claim additionally driven against a mutation control in
 `test/lifecycle-model.test.ts`, because a `refuted` earned by a guard and a `refuted` over an
-unreachable situation are the same row in a results table. The hypothesis lifecycle alone and the
+unreachable situation are the same row in a results table.
+
+**Two consumers the LTL foundation added the same day, neither needing an edit to the model.**
+`test/ltl-bridge.test.ts` enumerates `models/*.mage.yaml` and cross-checks every bridgeable saved
+behavior query against an independently implemented automaton-product walk, which closes the
+`behavior`-query asymmetry parity could not reach — eight of the nine rows, `deadend` excluded for a
+stated reason (`SEMANTICS.md` §13.3 K2). And `test/acceptance-p1-p5.test.ts` makes this model one of
+two subjects for §30's P1–P5, where **P5 is `refuted`** — the liveness consequence of admitting every
+execution with fairness out of scope, ruled the intended teaching outcome. P5 over this model has no
+mutation control (no single-edge removal flips it; the control lives on the example machine), so it
+is the one temporal answer about the lifecycle model carried by prose rather than a pinned verdict.
+The model's own header records both. The hypothesis lifecycle alone and the
 five-value outcome vocabulary still do **not** earn machines: the first is held by types and the
 facade, the second is an enum, not a lifecycle. Two invariants the founding brief proposed were
 DECLINED on reading and the reasons are in the model's header — SH-I6 is step-shaped and has no query
@@ -185,6 +197,17 @@ them executed against the reference implementation; **and** a named consumer ask
 at v0.3 planning** whether or not either condition holds. Import ahead of demonstrated
 correspondence is the unsafe order — it would reinterpret someone else's engineering silently, which
 is §10.1's failure shape one layer up.
+
+**As-built against that trigger, 261004: the corpus now exists and the trigger is still unmet, on
+both halves.** `conformance/` ships three fixtures with a manifest (`conformance/manifest.json`),
+each pinning a tracked model with `expect` so the coverage gate decides its verdicts, and
+`test/conformance.test.ts` checks each verdict is sensitive to the meaning under test. Measured:
+**three of §35.4's five borrowed rows have a fixture, and 0 are `oracle-executed`** (2
+`normative-artifact`, 1 `spec-inspected`) — no reference implementation has run. Of the two
+uncovered rows, `binding` gained its construct with the 261004 bindings/compositions split and is
+now an implementable fixture target; `requirement, verification` has no construct to attribute yet.
+The correspondence axis stays `asserted`; `SEMANTICS.md` §13.7 carries why a fixture does not promote
+it.
 
 ### 0.3 As-built, verified by running it
 

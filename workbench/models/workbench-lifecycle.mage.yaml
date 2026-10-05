@@ -74,6 +74,26 @@
 # configuration count, which was 70 on 2026-10-04 against docable's 39. Without those controls a
 # `refuted` earned by a guard and a `refuted` over an unreachable situation are the same row.
 #
+# **A SIXTH kind of question is now asked of this machine, and one of its answers is `refuted`.**
+# `test/acceptance-p1-p5.test.ts` uses this model as one of its two subjects — the other is
+# `examples/transaction-workspace/` — and asks the five acceptance properties
+# `DESIGN-v02-semantics-261004.md` §30 names: P1 `committed` is reachable, P2 `refused` is reachable,
+# P3 stale-base transactions never commit, P4 disposed hypotheses never become authoritative, P5
+# every proposed transaction eventually commits or refuses. P1–P4 `holds`. **P5 is `refuted`**, and
+# recording that here is the point of this paragraph: a reader who sees nine met `expect:` rows below
+# would otherwise conclude every temporal question asked of this machine comes out green.
+#
+# P5's refutation is not a defect in the model and not a defect in the product. It is §5.1's ruling
+# arriving where it bites: the semantics admits EVERY execution, fairness is an explicit non-goal
+# (`SEMANTICS.md` §11), and a liveness property is therefore refuted by a trace that postpones an
+# enabled transition forever. `DESIGN-v02-ltl-foundation-261004.md` §12 rules it the intended
+# teaching outcome. Two consequences worth having in this file rather than only in that one: the
+# counterexample the engine returns is the hypothesis open/apply loop and not the concurrent-commit
+# cycle §5.2 predicted, and **P5 over this model has no mutation control** — no single-edge removal
+# flips it, because removing one of `second_author`'s two edges fails V12 outright. The control for
+# P5 lives on the example machine instead. So P5's `refuted` is the one temporal answer about this
+# model that is load-bearing prose rather than a pinned, sensitivity-checked verdict.
+#
 # ## The abstraction: content identity, and the three bounds it forces
 #
 # Everything turns on content identity, because the base-hash check is the mechanism under test.
