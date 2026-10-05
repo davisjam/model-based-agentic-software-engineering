@@ -1,5 +1,30 @@
 # Audit — the v0.2 release gate (§20) against HEAD
 
+> **DRAINED 2026-10-05, items 1–3 of the critical path in §5; two of this audit's own claims
+> corrected in the process.** Criterion 13's grade is now derived from each fixture's `evidence[]`
+> (`test/conformance.test.ts`) and `methodDiscipline` reworded to *weakest DECISIVE rung* — **no
+> fixture's grade changed**, because the fixtures were already practising the corrected rule, so the
+> two "MISMATCH" rows in §3 were mis-graded by the *sentence* and not by the corpus. Criteria 1, 4
+> and 14 are held by `test/release-gate-negatives.test.ts`. Criteria 13 and 14 are reworded in §20
+> itself, and §21 now carries the flagship mapping plus the menu-order note.
+>
+> **Two corrections to this audit, both measured:**
+>
+> - **§4's criterion-4 row says `tsc` would not complain if `"violated"` were added to `Outcome`. It
+>   does.** `OUTCOME_WORDS` in `src/engine/index.ts` is already `Readonly<Record<Outcome, true>>`, so
+>   the edit is `TS2741` on that table. The guard still earns its lines one rung along: a `TS2741`
+>   naming a lookup table is cheapest silenced by adding the key, which leaves the criterion violated
+>   and the suite green, so the assertion is what catches the accommodation.
+> - **§3 and §4 propose asserting the two unions are "disjoint". They are not, and must not be** —
+>   `inconclusive` is deliberately in both and `verify()` maps one onto the other. A disjointness
+>   assertion would land RED and the only way to green it would be deleting a word from a union. The
+>   property landed is that the intersection is **exactly** `inconclusive`, which is strictly
+>   stronger: it also catches `inconclusive` LEAVING one of them.
+>
+> **Still open:** §5 item 4, the LTL reachability hole — left for the author, as this audit asks. And
+> criterion 14's remaining gap: nothing in code names which five of six built-ins are flagships, which
+> needs a declared subset in the application's example registry. Reported rather than reached.
+
 **Base:** `4390b72c` ("the vacuity-budget ruling"), tree clean.
 **Baseline measured here, not quoted:** `npm run check` exit 0 (tsc, Node 24.21.0 on the pin);
 `npm run test` **1349 pass / 0 fail / 0 skipped / 0 todo**; `npm run check:parity` → `UX-I1: 0

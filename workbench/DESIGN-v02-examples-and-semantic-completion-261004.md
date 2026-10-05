@@ -1788,8 +1788,8 @@ Do not call this semantic regime complete until all of the following are true:
 10. Finite measured executions are distinguished from infinite LTL traces.
 11. Behavior → Quantity composition is typed and registered.
 12. All five owed SysML/KerML conformance fixture families exist.
-13. Fixture evidence method is recorded honestly.
-14. All five built-in examples ship.
+13. Each conformance fixture's evidence method is recorded honestly, and the grade is DERIVED from the fixture's own `evidence[]` rather than compared against a second copy of itself. A fixture's `method` is the weakest rung among its DECISIVE evidence; evidence marked corroborating does not set the grade.
+14. Every one of §21's five flagships ships as a built-in example, each mapped to exactly one example id; any additional built-in is declared a non-flagship with its membership question recorded.
 15. Every executable student question is backed by a registered query.
 16. Every expected answer is test-pinned.
 17. Every promised mutation is tested.
@@ -1803,6 +1803,26 @@ Do not call this semantic regime complete until all of the following are true:
 21. The intended educational progression
 
 The five examples should collectively tell one story.
+
+**Two notes a reader of this section needs, recorded here because both were discovered by reading
+code rather than by reading §20 (release-gate audit, 2026-10-05).**
+
+**The five flagships map onto six shipped built-ins.** `Secure Message Bus` → `message-bus`,
+`Transaction Protocol` → `transaction-workspace`, `Embedded Sensor Node` → `embedded-sensor-node`,
+`Processing Pipeline` → `document-processing`, `Autonomous Delivery System` → `autonomous-delivery`.
+A sixth built-in, `worker-queue`, ships as a **non-flagship**: §31 drops Worker Queue from its three
+while §18 keeps it, and nothing has adjudicated that — the open membership question is declared
+beside the shipped-id list in the application's example registry. **Nothing in code names which five
+are flagships**, so the mapping above lives only in prose and a seventh built-in would be
+indistinguishable from a sixth flagship. Criterion 14 is checkable in neither direction until the
+registry declares the subset.
+
+**This progression order is NOT the order a student sees.** The shipped menu runs Message Bus →
+Transaction Workspace → Document Processing → Worker Queue → Embedded Sensor Node → Autonomous
+Delivery, swapping the Processing Pipeline and Embedded Sensor Node slots. The inversion is
+deliberate and reasoned in the example registry: the Learn cards take the FIRST shipped example
+instantiating a model type, so menu position decides which example every card points at. The
+pedagogical sequence below and the menu are two different orders, for a stated cause.
 
 Secure Message Bus
 
