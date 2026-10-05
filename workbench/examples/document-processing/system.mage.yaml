@@ -101,9 +101,10 @@
 # are compared against.
 #
 # The OBLIGATIONS that cite those ceilings are a separate declaration, in the `requirements:` block
-# at the foot of this file. Two of the four are there; the two decided by a question composed from a
-# ceiling at analysis time keep their fixture declaration, because `expressed_as` names a saved
-# query and no `queries:` entry saves a composed one. The block's own comment says which and why.
+# at the foot of this file. All but one are there, each naming the saved query that decides it. The
+# `normal-processing-latency` obligation keeps its fixture declaration on purpose, and the block's
+# own comment says why -- the reason is what a second latency ceiling would teach a student, not a
+# limit on what `expressed_as` can name.
 
 mage: 1
 
@@ -692,6 +693,22 @@ queries:
       target:
         document-lifecycle.state: published
 
+  # The memory ceiling as the requirement's own sentence, and the sibling of the latency ceiling
+  # above. `forall` is forced for the same reason: a ceiling claim is universal, and one
+  # configuration over the ceiling refutes it.
+  #
+  # No `target:`, and that is the difference from the latency pair rather than an omission.
+  # `peak_memory` is CONFIGURATION-scoped -- the maximum of memory(c) over the reachable
+  # configurations -- so there is no reading of "the peak along these executions" for a selection to
+  # narrow. A target here would be a question the dialect does not have.
+  peak-memory-within-the-declared-ceiling:
+    name: Peak memory over reachable configurations stays within the declared ceiling
+    kind: quantity
+    quantifier: forall
+    quantity:
+      metric: peak_memory
+      within: peak-memory-requirement
+
   # Whether the 256 MB remediation charge is ever incurred. The charge names a state in its `when:`
   # clause; this asks the lifecycle whether that state is reachable. Cross-model by construction:
   # the quantity is the performance model's and the state is the lifecycle's.
@@ -750,19 +767,22 @@ queries:
       from: gateway-cache
       to: model-gateway
 
-# Two of this example's four obligations are authored here, and two are NOT. The split is a fact
-# about THIS EXAMPLE's scope, not about the construct, so it is stated where a reader meets it.
+# Most of this example's obligations are authored here. One is NOT, and which one is a fact about
+# THIS EXAMPLE's pedagogy rather than about the construct, so it is stated where a reader meets it.
 #
-# Saving the two composed questions here would make them expressible. It would also add two saved
-# queries to teach a join, which is a change to what the example is about and not a migration of it.
-# That is the whole reason, and it is a choice rather than a limit.
+# `normal-processing-latency` keeps its fixture declaration, deliberately. Saving a question over
+# the 750 ms `latency-requirement` would make it expressible -- and it would also put TWO ceilings
+# over one latency model in front of a student, 750 ms refuted beside 2 s refuted. That pair can be
+# taught on purpose; adding it as a side effect of relocating a declaration teaches it by accident.
+#
+# `peak-memory` had no such cost and moved here on 261005. Its ceiling is a different dimension from
+# the latency pair, so it crowds nothing, and the quantity-to-budget-to-requirement chain it
+# completes is already what the memory half of this example is for. The hand-derived oracle it used
+# to be decided by is untouched and still checked -- `decided_by` only ever POINTED at that oracle,
+# so the route changed and the cross-check did not.
 #
 # `expressed_as` is a join to a SAVED query by id, and the engine refuses a requirement naming a
-# query the system does not declare. Both requirements below name one. The other two —
-# `normal-processing-latency` against the 750 ms `latency-requirement`, and `peak-memory` against
-# the 512 MB `peak-memory-requirement` — have no saved query here to name, so they keep their
-# fixture declaration and the suite decides them by running the composed question against the
-# hand-derived oracle.
+# query the system does not declare. Every requirement below names one.
 #
 # What a reader must NOT conclude (corrected 261005, `DECISIONS-RULED-ceiling-requirement-261005.md`
 # §8): that a ceiling cannot be named. Naming a query IS how a ceiling is named — a `kind: quantity`
@@ -787,6 +807,15 @@ requirements:
     statement: >
       Every execution that reaches published completes within 2 seconds, retries included.
     expressed_as: successful-executions-within-two-seconds
+    satisfied_when: holds
+
+  # The memory obligation, on the same route. `holds` discharges it because the question it names
+  # states the ceiling claim directly: `within:` carries the comparison, so a refutation IS the
+  # breach and `satisfied_when: refuted` would make a found breach discharge the obligation.
+  peak-memory:
+    statement: >
+      Peak memory over reachable configurations is at most 512 MB.
+    expressed_as: peak-memory-within-the-declared-ceiling
     satisfied_when: holds
 
 views:

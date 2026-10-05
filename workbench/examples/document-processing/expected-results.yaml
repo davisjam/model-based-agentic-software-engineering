@@ -48,34 +48,37 @@ models:
 # ---------------------------------------------------------------------------
 # Requirements (section 2: "at least one requirement").
 #
-# Two of these four DECLARATIONS live in `system.mage.yaml`'s `requirements:` block and two do not.
-# The split is a fact about THIS EXAMPLE's scope, not about the construct. Saving the two composed
-# questions in `system.mage.yaml` would make them expressible; it would also add two saved queries to
-# teach a join, which is a change to what the example is about and not a migration of it. That is the
-# reason the two stay here.
+# All but one of these DECLARATIONS live in `system.mage.yaml`'s `requirements:` block. Which one
+# does not, and why, is a fact about THIS EXAMPLE's pedagogy rather than about the construct.
 #
-# Corrected 261005 (`DECISIONS-RULED-ceiling-requirement-261005.md` §8): an earlier wording said such
-# a requirement "has nothing to name." It has nothing to name IN THIS FILE's `queries:` block, which
-# is a different claim. A `kind: quantity` query names a ceiling through `within:`, and the 2-second
-# obligation below is decided by exactly such a query.
+# Corrected 261005 (`DECISIONS-RULED-ceiling-requirement-261005.md` §8): an earlier wording said a
+# ceiling requirement "has nothing to name." It has nothing to name IN THIS FILE's `queries:` block,
+# which is a different claim. A `kind: quantity` query names a ceiling through `within:`, and two
+# obligations below are decided by exactly such a query.
 #
-# Two routes exist here, and this example uses both:
+# Two routes exist here, and this example still uses both:
 #
 #   expressed_as  a saved query decides it. `satisfied_when` is the outcome that means it holds.
 #   decided_by    a `quantitative_expectations` entry decides it, and `declared_as` names the
 #                 `model:` quantity carrying the ceiling so the number has one source of truth.
 #
-# The 750 ms latency requirement and the memory requirement take the second route. Their statuses
-# are the verdicts the quantity query form reaches — `within: <declared_as>` decided against the
-# computed total — and test/examples.test.ts re-derives both through the product and fails on a
-# disagreement.
+# The 2-second requirement and the memory requirement take the FIRST route, and the memory one moved
+# there on 261005. Each names a saved question that states its ceiling claim directly — `within:`
+# carries the comparison — so the query is the decider and no second copy of its figure exists
+# outside the model. `peak-memory` cost nothing to move: its dimension collides with no other
+# ceiling, and the quantity-to-budget-to-requirement chain it completes is what the memory half of
+# this example teaches anyway.
 #
-# The 2-second requirement takes the FIRST route even though it is quantitative, and the two routes
-# are not redundant. `decided_by` points at a hand-derived oracle and is how a figure nobody could
-# compute yet was kept honest; `expressed_as` points at a SAVED query, which is how a requirement
-# whose claim the product states directly gets decided by the thing a reader can re-run. The
-# 2-second ceiling claim is one saved query — `within:` names the ceiling, `target:` names the
-# executions — so the query is the decider, and no second copy of 2,000 ms exists outside the model.
+# The 750 ms latency requirement keeps the SECOND route, and that is a judgment rather than a gap.
+# Saving a question over `latency-requirement` would work; it would also stand two ceilings over one
+# latency model in front of a student, 750 ms refuted beside 2 s refuted. Worth teaching deliberately;
+# not worth acquiring as a side effect of relocating a declaration. Its status is the verdict the
+# quantity query form reaches — `within: <declared_as>` decided against the computed total — and
+# test/examples.test.ts re-derives it through the product and fails on a disagreement.
+#
+# The two routes are not redundant. `decided_by` points at a hand-derived oracle and is how a figure
+# nobody could compute yet was kept honest; `expressed_as` points at a SAVED query, which is how a
+# requirement whose claim the product states directly gets decided by the thing a reader can re-run.
 # ---------------------------------------------------------------------------
 requirements:
 
@@ -137,17 +140,32 @@ requirements:
   - id: peak-memory
     statement: >
       Peak memory over reachable configurations is at most 512 MB.
+    expressed_as: peak-memory-within-the-declared-ceiling
+    satisfied_when: holds
     declared_as: peak-memory-requirement
-    limit_mb: 512
-    decided_by: peak-memory
     status: satisfied
     note: >
-      Satisfied — decided by the product: a quantity query within 'peak-memory-requirement' answers
-      holds under exhaustive coverage, 384 MB on the result's magnitude, 128 MB of headroom. The
-      hand derivation below reached the same figure first. The configuration that decides it is
-      any one where the document is remediating: the cache is resident at 128 MB and the remediation
-      charge adds 256 MB while that state is active, for 384 MB. Outside remediation only the cache
-      is charged, so memory never falls below 128 MB either.
+      Satisfied — derived, not recorded: the model AUTHORS this obligation, and the verification join
+      runs 'peak-memory-within-the-declared-ceiling' and interprets the answer against the
+      declaration. `holds` under exhaustive coverage, 384 MB on the result's magnitude, 128 MB of
+      headroom. The configuration that decides it is any one where the document is remediating: the
+      cache is resident at 128 MB and the remediation charge adds 256 MB while that state is active,
+      for 384 MB. Outside remediation only the cache is charged, so memory never falls below 128 MB.
+
+      Migrated off `decided_by` on 261005, and the row kept exactly what has no authored home. A
+      `status` cannot live in the model -- a declaration recording its own satisfaction is the thing
+      the construct refuses -- so it stays here as the ORACLE the derivation is checked against.
+      `limit_mb` did NOT stay: the check that joined a fixture limit to the `model:` quantity
+      carrying it reads the `decided_by` rows, so a limit on this route would be a second copy of
+      512 with nothing left comparing it to the declaration. The figure now reaches this row the way
+      it reaches the 2-second one, through the saved question's `within:`.
+
+      The hand-derived oracle below is UNCHANGED and still cross-checked. `decided_by` only ever
+      pointed at it; the oracle is declared independently of any requirement's route, so the
+      migration traded nothing away. What it gained is the other direction of the check: the §16
+      coverage gate had this expectation as a named residue -- a hand-derived total with no
+      `peak_memory` query for the engine to report a figure against -- and saving the question closes
+      it, so 384 is now compared to what the product computes rather than only to its own arithmetic.
 
 # ---------------------------------------------------------------------------
 # Hand-derived quantitative expectations.
@@ -482,6 +500,32 @@ queries:
 
       The ceiling is written `2 s` while every charge is written in milliseconds, so the comparison
       runs through the declared conversion factor rather than through matching unit labels.
+
+  - id: peak-memory-within-the-declared-ceiling
+    label: Peak memory over reachable configurations stays within the declared ceiling
+    suggested: false
+    models: [document-lifecycle, pipeline-performance]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      # A ceiling decision that holds reports the figure and no witness: the claim is universal over
+      # the reachable configurations, and a universal that holds has no single one to point at. The
+      # counterexample appears only on refutation.
+      no_evidence: true
+    note: >
+      The question the `peak-memory` requirement names, and the sibling of the latency ceiling above
+      under the same forced quantifier: `within:` makes the claim universal, so `forall` is the only
+      quantifier the shape admits and one configuration over 512 MB would refute it.
+      Both models are needed and neither is decorative -- the lifecycle decides which configurations
+      are reachable, and the performance model decides what memory each of them holds.
+
+      It differs from the latency ceiling in carrying no `target:`, which is the configuration-scoped
+      metric showing through rather than an omission. `peak_memory` is the maximum of memory(c) over
+      the reachable configurations, so there is no set of executions for a selection to narrow.
+
+      This is also the query that gives the hand-derived `peak-memory` expectation something to be
+      compared against. Before it was saved, that total was checked only against its own arithmetic
+      and the §16 coverage gate reported it as a residue for exactly that reason.
 
   - id: remediation-memory-is-charged
     label: The 256 MB remediation charge is incurred on some reachable execution

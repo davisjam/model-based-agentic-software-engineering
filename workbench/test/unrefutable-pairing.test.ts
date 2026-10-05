@@ -183,11 +183,16 @@ test("every sound quantity-decided requirement keeps deriving what it derives to
     // sound-but-VIOLATED pairing alone — because it is the case where the deciding query returns the
     // verdict that does NOT discharge the obligation.
     ["document-processing", "successful-processing-within-two-seconds", "violated", "refuted"],
-    // The capstone's two, added when autonomous-delivery landed. They raise the census from two to
-    // four and they widen it on the axis that matters: a `peak_memory` ceiling, which the other two
-    // rows do not cover at all. `measurePeak` is the arm with NO refuting case — the one whose
-    // measurement sibling reads satisfied at every magnitude forever — so a sound peak_memory
-    // pairing is the positive control that was previously missing.
+    // Added 261005, when `peak-memory` migrated from the fixture's `decided_by` route onto an
+    // authored requirement naming a saved `within:` question. It enters this census for the reason
+    // the census exists: the migration produced a new sound pairing, and a rule that started
+    // refusing it would be refusing the shape the migration was ratified to produce.
+    ["document-processing", "peak-memory", "satisfied", "holds"],
+    // The capstone's two, added when autonomous-delivery landed. They widened the census on the axis
+    // that matters: a `peak_memory` ceiling, which the latency rows do not cover at all. `measurePeak`
+    // is the arm with NO refuting case — the one whose measurement sibling reads satisfied at every
+    // magnitude forever — so a sound peak_memory pairing is the positive control that was previously
+    // missing.
     ["autonomous-delivery", "compute-payload-fits-onboard-ram", "satisfied", "holds"],
     // And the second sound-but-VIOLATED row, on `latency`: 2,715 s against a declared 900 s.
     ["autonomous-delivery", "delivering-missions-within-the-duration-budget", "violated", "refuted"],
@@ -204,7 +209,7 @@ test("every sound quantity-decided requirement keeps deriving what it derives to
       `${example}/${req}: the verdict must not move either — the status alone would not distinguish `
       + `a preserved reading from a coincidence`);
   }
-  assert.equal(sound.length, 4, "four quantity-decided requirements ship; a changed count means re-census");
+  assert.equal(sound.length, 5, "five quantity-decided requirements ship; a changed count means re-census");
 });
 
 test("every shipped requirement in the corpus is unaffected — zero findings at HEAD", () => {
@@ -222,10 +227,15 @@ test("every shipped requirement in the corpus is unaffected — zero findings at
   assert.equal(errors.length, 0, `the arm fires on a shipped requirement:\n${errors.join("\n")}`);
   // A probe that found nothing would carry the assertion above vacuously, so the corpus size is
   // pinned too. The ruling's §0.2 counted EIGHT; autonomous-delivery added six, two of them
-  // quantity-decided, and the re-read §0.2 asks for confirms the ruling's claim still holds of the
-  // wider corpus: every quantity-decided requirement declares `within:` with `satisfied_when: holds`,
-  // now four of four rather than two of two, and the arm still finds nothing.
-  assert.equal(counted, 14, "fourteen authored requirements ship; a changed count means re-read §0.2");
+  // quantity-decided, and `document-processing`'s `peak-memory` migration added the latest — an
+  // obligation that had lived in its fixture on the `decided_by` route and is now authored.
+  //
+  // The re-read §0.2 asks for CONFIRMS the ruling's claim of the wider corpus, and the migration
+  // strengthened rather than strained it: every quantity-decided requirement still declares `within:`
+  // with `satisfied_when: holds`, the newest one included, and the arm still finds nothing. The
+  // migration moved a requirement's ROUTE and changed no verdict — `peak-memory` read satisfied
+  // through its oracle and reads satisfied through the engine.
+  assert.equal(counted, 15, "fifteen authored requirements ship; a changed count means re-read §0.2");
 });
 
 test("SCOPE: satisfied_when: refuted over behavior and graph queries is ordinary, not a defect", () => {

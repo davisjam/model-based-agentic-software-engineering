@@ -1140,13 +1140,40 @@ function ceilingChains(systems: LoadedSystems, fixtures: LoadedFixtures): readon
   return out;
 }
 
+/**
+ * Whether a chain's ceiling is declared in a unit its dimension does not base at.
+ *
+ * The readout puts the DECLARATION and the COMPUTED figure side by side and claims a student can
+ * compare them by eye. A result carries its dimension's base unit, so that claim is only worth
+ * making on a chain where the two units differ — `256 KB` against a `MB`-based figure shows the
+ * conversion being done; `512 MB` against a `MB`-based figure shows nothing, because there was
+ * nothing to convert.
+ */
+const exhibitsConversion = (c: CeilingChain): boolean => {
+  const unit = c.ceiling.unit;
+  if (unit === null) return false;
+  const dimension = UNIT_DIMENSIONS.get(unit);
+  return dimension !== undefined && DIMENSIONS[dimension].base !== unit;
+};
+
 function ceilingBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): readonly QuestionBlock[] {
   const chains = ceilingChains(systems, fixtures);
-  // The worked example, chosen by a property rather than by name: the chain whose question measures
-  // every execution instead of narrowing them. The narrowed one is a COMPOSITION, and the section
-  // before last already teaches that — showing it here would make the selection look like part of
-  // the separation. Falls back to the first chain so this section cannot empty itself.
-  const worked = chains.find((c) => !c.question.selects) ?? chains[0];
+  // The worked example, chosen by PROPERTIES rather than by name, and there are two of them.
+  //
+  // First: the question must measure every execution instead of narrowing them. The narrowed one is
+  // a COMPOSITION, and the section before last already teaches that — showing it here would make
+  // the selection look like part of the separation.
+  //
+  // Second, added 261005: among those, prefer a chain that exhibits the unit conversion. Both
+  // properties are load-bearing for what this section claims, and only the first used to be
+  // expressed here — so which chain got picked depended on the order the corpus happens to ship in,
+  // and a base-unit ceiling sorting first would silently take the slot. The corpus already carried
+  // one such chain behind the chosen one; `document-processing`'s memory ceiling then arrived AHEAD
+  // of it, which is what surfaced the gap. Stating the property is cheaper than depending on order.
+  //
+  // Both preferences degrade rather than empty the section: any measuring chain, then any chain.
+  const measuring = chains.filter((c) => !c.question.selects);
+  const worked = measuring.find(exhibitsConversion) ?? measuring[0] ?? chains[0];
   const blocks: QuestionBlock[] = [
     {
       kind: "prose",

@@ -21,9 +21,12 @@
 # the fixture, which is what kept the middle step honest -- a fixture reading would have flipped
 # the row the moment the construct landed, on evidence from a file that is not the model.
 #
-# Two of Document Processing's four requirements stay in its fixture, and that costs this row
-# nothing: `expressed_as` is a join to a SAVED query by id, and those two are decided by a
-# question composed from a declared ceiling at analysis time, which nothing saves.
+# Document Processing keeps one requirement in its fixture, on the `decided_by` route, and that
+# costs this row nothing: the row detects an AUTHORED `requirements:` block and that example
+# authors one. The requirement that stays is its 750 ms latency obligation, held back on
+# pedagogical grounds rather than expressive ones — a saved question over that ceiling would put
+# a second latency ceiling in front of a student beside the 2-second one. Its memory sibling had
+# no such cost and moved to the authored route on 261005.
 #
 # Transaction Workspace adds no row, and that is worth reading rather than skipping: every
 # capability it exercises was already exercised elsewhere. It earns its place as the BEHAVIOR
@@ -95,7 +98,7 @@ entities:
     label: "Document Processing"
     properties:
       purposeful_models: 2
-      supplied_queries: 13
+      supplied_queries: 14
       suggested_queries: 5
 
   example.worker-queue:
