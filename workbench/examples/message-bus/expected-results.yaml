@@ -125,7 +125,12 @@ queries:
       early return, which is how this project once shipped a vacuous holds.
 
   - id: restricted-data-reaches-impermitted-subscriber
-    label: Restricted data reaches Analytics
+    # The saved query's own statement, verbatim. It read `Restricted data reaches Analytics`, which
+    # named a service the query never mentions: the form compares `source.permits` against
+    # `target.carries` over every `subscribes` edge, so the answer is about whichever subscriber the
+    # search reaches first. That label was true only because this model has exactly one impermitted
+    # subscriber, and it would have gone quietly false on the second.
+    label: An event carrying restricted data reaches a service not permitted to process it
     suggested: true
     models: [event-flow, data-policy]
     expected:
