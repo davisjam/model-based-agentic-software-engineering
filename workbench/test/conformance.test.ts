@@ -4,7 +4,7 @@
 // ## What this file holds, and what it cannot
 //
 // `test/model-coverage.test.ts` already drives every tracked `*.mage.yaml` through the facade and
-// compares each saved query's outcome against its `expect`, so the three fixture models' verdicts
+// compares each saved query's outcome against its `expect`, so the five fixture models' verdicts
 // are checked by their existing. That is verdict-sensitivity and it is not enough here: a verdict
 // pinned at `refuted` is also what a query answers when it is asked about nothing, and a fixture
 // whose `refuted` came from an unexplored configuration space or an empty edge set would pass the
@@ -14,9 +14,10 @@
 //
 // So every test below MUTATES a fixture model and asserts the verdict MOVES WHEN THE MEANING MOVES
 // AND HOLDS STILL WHEN IT DOES NOT. The mutations are chosen so the competing reading --
-// "a relation type is a label", "a transition is an edge", "a unit is a label" -- is the thing that
-// gets refuted. The shape is `test/lifecycle-model.test.ts`'s, which mutates its subject model and
-// asserts the verdict flips, applied to a different kind of claim.
+// "a relation type is a label", "a transition is an edge", "a unit is a label", "an entity id is
+// scoped to the document that wrote it", "a verification is a field somebody filled in" -- is the
+// thing that gets refuted. The shape is `test/lifecycle-model.test.ts`'s, which mutates its subject
+// model and asserts the verdict flips, applied to a different kind of claim.
 //
 // **What no test here holds: that the correspondence is RIGHT.** The standard's half is not
 // re-derived by anything in CI, because the Workbench takes no runtime dependency on the SysML v2
@@ -30,6 +31,11 @@ import { readFileSync } from "node:fs";
 import { Workspace } from "../src/app/services.ts";
 import { realPorts } from "../scripts/gen-example-coverage.ts";
 import { BINDINGS, MODEL_TYPES, type ModelTypeId } from "../src/engine/model-types.ts";
+import { VERIFICATION_TEXT } from "../src/engine/verification.ts";
+import { MageDocument } from "../src/yaml/document.ts";
+import { validate } from "../src/validator/rules.ts";
+import { verifySystemRequirements } from "../src/engine/index.ts";
+import type { Verification } from "../src/engine/verification.ts";
 
 // ----------------------------------------------------------------------------------------------
 // The corpus, declared once
@@ -39,10 +45,34 @@ import { BINDINGS, MODEL_TYPES, type ModelTypeId } from "../src/engine/model-typ
 const METHODS = ["oracle-executed", "normative-artifact", "spec-inspected"] as const;
 type Method = (typeof METHODS)[number];
 
+/**
+ * §35.4's five rows, each with the LOOKUP that decides whether its construct still exists.
+ *
+ * The row names are a document fact — §35.4 enumerates five — but nothing below trusts them as
+ * prose. Three rows resolve against `MODEL_TYPES`, one against `BINDINGS`, and the fifth against
+ * the published schema's top-level properties plus the verification vocabulary. So a row cannot be
+ * discharged, or stay owed, for a reason nothing checks; and a row cannot quietly leave the
+ * obligation by being deleted from the manifest, because `SECTION_35_4_ROWS` is what the partition
+ * below is taken against.
+ */
+const NON_MODEL_TYPE_ROWS = ["binding", "requirement, verification"] as const;
+type Section354Row = ModelTypeId | (typeof NON_MODEL_TYPE_ROWS)[number];
+
+/**
+ * The row set, DERIVED from the registry for the three rows that are model types.
+ *
+ * Not a snapshot of their names: `test/derived-values.test.ts` refused the frozen copy, and it was
+ * right to — the registry moves, and a second copy of a vocabulary typechecks while it disagrees
+ * with the first. Deriving also buys a trigger the frozen list did not have: register a FOURTH
+ * borrowed model type and the partition below goes red, saying §35.4 has a row with no fixture.
+ */
+const SECTION_35_4_ROWS: readonly Section354Row[] =
+  [...MODEL_TYPES.map((t) => t.id), ...NON_MODEL_TYPE_ROWS];
+
 interface Fixture {
   readonly id: string;
-  /** The registry row this fixture discharges, so the manifest cannot name a type that is gone. */
-  readonly modelType: ModelTypeId;
+  /** The §35.4 row this fixture discharges, so the manifest cannot name a row that is gone. */
+  readonly row: Section354Row;
   readonly method: Method;
 }
 
@@ -51,13 +81,63 @@ interface Fixture {
  * against rather than a second copy of it.
  */
 const CORPUS: readonly Fixture[] = [
-  { id: "kerml/association-link-typing-001", modelType: "structural-graph", method: "spec-inspected" },
-  { id: "sysml/transition-guard-occurrence-001", modelType: "state-machine", method: "normative-artifact" },
-  { id: "sysml/quantity-unit-magnitude-001", modelType: "quantitative-model", method: "normative-artifact" },
+  { id: "kerml/association-link-typing-001", row: "structural-graph", method: "spec-inspected" },
+  { id: "kerml/binding-connector-identity-001", row: "binding", method: "spec-inspected" },
+  { id: "sysml/transition-guard-occurrence-001", row: "state-machine", method: "normative-artifact" },
+  { id: "sysml/quantity-unit-magnitude-001", row: "quantitative-model", method: "normative-artifact" },
+  { id: "sysml/requirement-verification-verdict-001", row: "requirement, verification", method: "normative-artifact" },
 ];
+
+/**
+ * Whether the construct a row is about still exists, BY LOOKUP, with the reason it does not.
+ *
+ * Returns null when the row resolves. The three arms are the three places a borrowed-semantics
+ * construct can live, and the 261004 incident is why the third exists: both owed rows carried an
+ * absence reason the tree had already falsified, because the only lookup available read the SCHEMA
+ * and both constructs had landed in `src/`.
+ */
+function rowResolves(row: Section354Row, authored: readonly string[]): string | null {
+  const type = MODEL_TYPES.find((t) => t.id === row);
+  if (type !== undefined) {
+    return type.semanticBasis.kind === "borrowed"
+      ? null
+      : `'${row}' is no longer a borrowed row, so a fixture for it discharges nothing`;
+  }
+  if (row === "binding") {
+    if (BINDINGS.length === 0) return "BINDINGS is empty, so there is no binding to correspond";
+    const bases = new Set(BINDINGS.map((b) => b.semanticBasis.kind));
+    return bases.size === 1 && bases.has("borrowed")
+      ? null
+      : `BINDINGS no longer shares one borrowed basis (kinds: ${[...bases].join(", ")})`;
+  }
+  // `requirement, verification` — two halves, and only the first is an authored key. The second is
+  // derived per read and stored nowhere (V18), so it is looked up through the vocabulary the engine
+  // owns rather than through the schema, which will never declare it.
+  if (!authored.includes("requirements")) {
+    return "mage-model.schema.json declares no top-level `requirements` property";
+  }
+  const words = Object.keys(VERIFICATION_TEXT).sort();
+  const expected = ["error", "inconclusive", "satisfied", "violated"];
+  return words.join(",") === expected.join(",")
+    ? null
+    : `VERIFICATION_TEXT's keys are ${words.join(", ")}, not §5.3's four`;
+}
 
 const fixtureFile = (id: string, name: string): string => `conformance/${id}/${name}`;
 const read = (id: string, name: string): string => readFileSync(fixtureFile(id, name), "utf8");
+
+/**
+ * The authored construct set, BY LOOKUP: the published schema's top-level `properties`.
+ *
+ * Closed and enumerable, which is the property every absence claim in this file depends on — a
+ * grep could have read the wrong subtree or searched a spelling the codebase does not use.
+ */
+const authoredConstructs = (): readonly string[] => {
+  const schema = JSON.parse(readFileSync("mage-model.schema.json", "utf8")) as {
+    readonly properties: Readonly<Record<string, unknown>>;
+  };
+  return Object.keys(schema.properties).sort();
+};
 
 // ----------------------------------------------------------------------------------------------
 // Driving one model through the facade
@@ -134,7 +214,7 @@ test("every fixture ships all four files, and the manifest agrees with them", ()
   const manifest = JSON.parse(read("", "manifest.json").replace(/^/, "")) as {
     readonly status: string;
     readonly fixtures: readonly {
-      readonly id: string; readonly method: string;
+      readonly id: string; readonly method: string; readonly dischargesRow: string;
       readonly mageModel: string; readonly standardSideModel: string;
       readonly expectedCorrespondence: string; readonly oracle: unknown;
       readonly reviewedByPerson: unknown;
@@ -160,12 +240,13 @@ test("every fixture ships all four files, and the manifest agrees with them", ()
     const source = record.standardSideModel.endsWith(".kerml") ? "source.kerml" : "source.sysml";
     assert.ok(read(f.id, source).length > 400, `${fixtureFile(f.id, source)} is too short`);
 
-    // The registry row the fixture discharges must still be a registered, still-borrowed type —
-    // looked up, not snapshotted, so a registry edit reaches this test.
-    const type = MODEL_TYPES.find((t) => t.id === f.modelType);
-    assert.ok(type !== undefined, `${f.id}: '${f.modelType}' is not a registered model type`);
-    assert.equal(type.semanticBasis.kind, "borrowed",
-      `${f.id}: '${f.modelType}' is no longer a borrowed row, so this fixture discharges nothing`);
+    // The §35.4 row the fixture discharges must still resolve — looked up, not snapshotted, so a
+    // registry or schema edit reaches this test. And the manifest must name the SAME row this file
+    // does, or the two disagree about what has been discharged.
+    assert.equal(record.dischargesRow, f.row,
+      `${f.id}: the manifest says it discharges '${record.dischargesRow}' and this file says '${f.row}'`);
+    assert.equal(rowResolves(f.row, authoredConstructs()), null,
+      `${f.id}: §35.4's '${f.row}' row no longer resolves — ${rowResolves(f.row, authoredConstructs())}`);
     assert.equal(record.semanticBasis.kind, "borrowed", `${f.id}: the manifest disagrees with the registry`);
     assert.ok(record.expectedCorrespondence.length > 60,
       `${f.id}: the expected correspondence is too short to be falsifiable`);
@@ -190,10 +271,28 @@ test("every fixture ships all four files, and the manifest agrees with them", ()
     + `${n("normative-artifact")} normative-artifact, ${n("spec-inspected")} spec-inspected`;
   assert.equal(manifest.status, expected, "the manifest's status line does not describe its own corpus");
 
-  // §35.4 owes five rows and three are discharged. The remaining two must stay declared as owed
-  // rather than disappearing, which is how an unmet obligation becomes invisible.
-  assert.deepEqual(manifest.owed.map((o) => o.row).sort(), ["binding", "requirement, verification"],
-    "the owed list no longer names both undischarged rows of §35.4");
+  // §35.4 owes FIVE rows, and every one of them must be accounted for exactly once — discharged by
+  // a fixture or declared owed. This replaced an assertion that the owed list still named the two
+  // undischarged rows, which was correct while two were owed and would have had to be relaxed to
+  // `[]` the day they landed. Relaxing it is the move that turns a control into decoration: `owed`
+  // being empty is then an unchecked claim, and a row that quietly disappeared from BOTH arrays
+  // looks exactly like a row that was discharged.
+  //
+  // So the PARTITION is what is asserted. A deleted row fails here no matter which array it was
+  // deleted from, and the row set it is taken against is `SECTION_35_4_ROWS`, every member of
+  // which must independently still resolve (`rowResolves`).
+  const discharged = manifest.fixtures.map((f) => f.dischargesRow);
+  const stillOwed = manifest.owed.map((o) => o.row);
+  assert.deepEqual([...discharged].sort(), [...new Set(discharged)].sort(),
+    `two fixtures claim the same §35.4 row: ${discharged.join(", ")}`);
+  assert.deepEqual([...discharged, ...stillOwed].sort(), [...SECTION_35_4_ROWS].sort(),
+    `§35.4's five rows are not partitioned between discharged and owed.\n`
+    + `  discharged: ${discharged.join(" | ") || "(none)"}\n`
+    + `  still owed: ${stillOwed.join(" | ") || "(none)"}\n`
+    + `  §35.4:      ${SECTION_35_4_ROWS.join(" | ")}\n`
+    + `A row missing from both arrays has not been discharged — it has become invisible, which is `
+    + `the failure this assertion exists to make impossible. A row in both is claiming to be two `
+    + `things at once.`);
   for (const o of manifest.owed) {
     assert.ok(o.reason.length > 80, `owed '${o.row}': the reason is a placeholder`);
   }
@@ -242,19 +341,46 @@ test("every owed row says why it is owed, and both arms are a lookup rather than
   // other way: a row whose `blockedBy` claims the construct EXISTS must NAME something, and every
   // name must resolve — against the schema's properties for an authored key, against the binding
   // registry for a kernel correspondence. A row can no longer be owed for a reason nothing checks.
-  const schema = JSON.parse(readFileSync("mage-model.schema.json", "utf8")) as {
-    readonly properties: Readonly<Record<string, unknown>>;
-  };
-  const authored = Object.keys(schema.properties).sort();
+  const authored = authoredConstructs();
   const registered = BINDINGS.map((b) => b.name);
 
   const manifest = JSON.parse(read("", "manifest.json")) as {
     readonly authoredConstructSet: readonly string[];
     readonly owed: readonly OwedRow[];
+    readonly fixtures: readonly { readonly dischargesRow: string }[];
+    readonly dischargedRows: Readonly<Record<string, string>>;
   };
   assert.deepEqual([...manifest.authoredConstructSet].sort(), authored,
     "the manifest's record of the authored construct set is stale — re-read mage-model.schema.json's "
     + "top-level `properties`, because every absence claim below is relative to it");
+
+  // ## Why this test still has teeth with `owed` empty
+  //
+  // On 2026-10-05 the last two rows were discharged, so the loop below runs zero times. A loop that
+  // cannot fail is exactly what this file was written to avoid, so the live assertions moved to the
+  // ROW SET, which does not shrink when the obligation is met: every one of §35.4's five rows must
+  // still RESOLVE, by the same lookups that decided whether it was owed. A construct being deleted
+  // or un-borrowed goes red here whether or not anything is currently listed as owed — which is the
+  // trigger the `absentConstructs` arm gave only to rows that happened to be owed at the time.
+  for (const row of SECTION_35_4_ROWS) {
+    assert.equal(rowResolves(row, authored), null,
+      `§35.4's '${row}' row no longer resolves: ${rowResolves(row, authored)}. A fixture stands on `
+      + `this row — if the construct genuinely went away, the fixture is now fiction and must be `
+      + `retired, not left passing. Do not delete the row to quiet this.`);
+  }
+
+  // And the discharged half is a claim too, so it is read off disk rather than believed. A row the
+  // manifest calls discharged must have a fixture that names it and four files on disk.
+  const dischargedByFixture = manifest.fixtures.map((f) => f.dischargesRow).sort();
+  assert.deepEqual(Object.keys(manifest.dischargedRows).sort(), dischargedByFixture,
+    "the manifest's `dischargedRows` index and its own fixtures disagree about which §35.4 rows are "
+    + "discharged — one of the two is stale");
+  for (const row of SECTION_35_4_ROWS) {
+    const owedHere = manifest.owed.some((o) => o.row === row);
+    const dischargedHere = dischargedByFixture.includes(row);
+    assert.ok(owedHere !== dischargedHere,
+      `§35.4's '${row}' row is ${owedHere ? "both owed AND discharged" : "neither owed nor discharged"}`);
+  }
 
   for (const o of manifest.owed) {
     assert.ok((BLOCKERS as readonly string[]).includes(o.blockedBy),
@@ -461,4 +587,165 @@ test("a unit outside the declared dimension is refused by name, not coerced", ()
   assert.ok(a.findings.some((f) => f.includes("300 MB") && f.includes("duration")),
     `the finding does not quote the author's own text and name the declared dimension: `
     + `${JSON.stringify(a.findings)}`);
+});
+
+// ----------------------------------------------------------------------------------------------
+// kerml/binding-connector-identity-001 — one entity id denotes one entity across models
+// ----------------------------------------------------------------------------------------------
+
+const B_ID = "kerml/binding-connector-identity-001";
+const B_SPAN = "handoff-spans-the-two-models";
+const B_ISOLATED = "handoff-does-not-reach-the-unconnected-entity";
+const B_CONTROL = "handoff-reaches-its-own-model-target";
+
+test("a shared entity id is what joins two models, and moving it off the junction flips the span", () => {
+  const original = read(B_ID, "model.mage.yaml");
+  const base = answers(original, [B_SPAN, B_ISOLATED, B_CONTROL]);
+
+  assert.deepEqual(base.findings, [], `${B_ID} carries validation findings`);
+  assert.equal(outcome(base, B_SPAN), "holds",
+    "`alpha` does not reach `omega`, so the two models' edge sets are not composing at the shared "
+    + "id — which is the correspondence this fixture exists to pin");
+  assert.equal(outcome(base, B_ISOLATED), "refuted",
+    "`alpha` reaches `isolated`, which no edge touches — so `reachability` is answering `holds` to "
+    + "everything and the `holds` above says nothing about identity");
+  assert.equal(outcome(base, B_CONTROL), "holds",
+    "`alpha` does not reach `shared` one hop away inside one model, so the model is broken rather "
+    + "than discriminating");
+
+  // THE sensitivity test. Retarget the DOWNSTREAM edge's source from `shared` to `isolated` — a
+  // declared entity already listed by both models, so nothing is added, no entity is renamed, no
+  // model membership changes and no query moves. The two edges are the same two edges; only the id
+  // at the junction differs. Under a reading where an entity id were a model-local label, the two
+  // models would already be disjoint and this edit could not change an answer.
+  const unjoined = mutate(original, "        from: shared\n", "        from: isolated\n");
+  const after = answers(unjoined, [B_SPAN, B_ISOLATED, B_CONTROL]);
+  assert.deepEqual(after.findings, [], "the retargeted model does not validate, so its verdict is unusable");
+  assert.equal(outcome(after, B_SPAN), "refuted",
+    "the junction was moved off `shared` and `alpha` still reaches `omega` — the verdict is "
+    + "insensitive to WHICH id the two models share, which is exactly what this fixture claims it "
+    + "is not");
+  assert.equal(outcome(after, B_ISOLATED), "refuted",
+    "`isolated` is now a source but still no target of any edge, so this must hold still");
+  assert.equal(outcome(after, B_CONTROL), "holds", "the positive control must survive the mutation");
+});
+
+// ----------------------------------------------------------------------------------------------
+// sysml/requirement-verification-verdict-001 — the verdict is computed, never stored
+// ----------------------------------------------------------------------------------------------
+
+const R_ID = "sysml/requirement-verification-verdict-001";
+const R_REQ = "no-impermitted-subscription";
+const R_BREACH = "impermitted-subscription-exists";
+const R_CONTROL = "some-subscription-is-within-its-permit";
+
+/**
+ * Verify the fixture's one requirement, through the IR the way a reader would.
+ *
+ * `verifySystemRequirements` is called on a freshly sealed system every time and nothing is cached,
+ * which is the point under test: there is no stored status for a mutation to leave stale.
+ */
+function verified(text: string): { readonly verification: Verification; readonly breach: string } {
+  const loaded = MageDocument.load(text);
+  assert.ok(loaded.document !== null, `the fixture did not load: ${JSON.stringify(loaded.findings)}`);
+  const system = loaded.document.seal().system();
+  assert.deepEqual(validate(system), [],
+    "the fixture must validate clean, or every verdict below describes a broken model");
+  const v = verifySystemRequirements(system).get(R_REQ);
+  assert.ok(v !== undefined, `no verification for '${R_REQ}' — the IR dropped the declaration`);
+  const saved = system.queries.get(R_BREACH);
+  assert.ok(saved !== undefined, "the fixture declares no breach query — a mutation renamed it");
+  const ws = new Workspace(realPorts);
+  assert.ok(ws.load(text).ok);
+  return { verification: v, breach: ws.query(saved.raw).outcome };
+}
+
+test("the requirement's verdict is computed from the model and the declaration, not recorded", () => {
+  const original = read(R_ID, "model.mage.yaml");
+
+  // As shipped: no subscription breaches its permit, so the positive breach query is refuted and
+  // the obligation is discharged.
+  const base = verified(original);
+  assert.equal(base.breach, "refuted", "the breach query holds as shipped, so the fixture starts violated");
+  assert.equal(base.verification.status, "satisfied",
+    "a refuted breach query under `satisfied_when: refuted` must discharge the obligation");
+
+  // The positive control, and it is what makes `refuted` informative: the SAME form over the same
+  // relation and the same two properties DOES answer `holds` in the direction that is satisfied. An
+  // empty edge set, or a property that failed to resolve, would answer `refuted` above and
+  // demonstrate nothing.
+  const ctl = answers(original, [R_CONTROL]);
+  assert.deepEqual(ctl.findings, [], `${R_ID} carries validation findings`);
+  assert.equal(outcome(ctl, R_CONTROL), "holds",
+    "the comparison never fired, so the `refuted` breach is vacuous and this fixture pins nothing");
+
+  // MUTATION 1 — THE POLARITY. Flip the declared discharging value and touch nothing else: no
+  // entity, no property, no relation, no query. The query's answer is unchanged. Under a reading
+  // where `satisfied_when` were documentation, nothing here could move.
+  const flipped = verified(mutate(original, "    satisfied_when: refuted\n", "    satisfied_when: holds\n"));
+  assert.equal(flipped.breach, "refuted", "the mutation must not change what the models say");
+  assert.equal(flipped.verification.status, "violated",
+    "the same query answer discharged the obligation under one `satisfied_when` and must breach it "
+    + "under the other — the polarity lives in the declaration and nowhere else");
+
+  // MUTATION 2 — THE MODEL CHANGED, THE QUERY DID NOT. One property value on one entity. The
+  // requirement is byte-identical and so is the query. A stored status could not move here.
+  const breached = verified(mutate(original,
+    "      permits: { value: internal, domain: sensitivity }\n",
+    "      permits: { value: public, domain: sensitivity }\n"));
+  assert.equal(breached.breach, "holds", "lowering the permit below what the event carries must expose the breach");
+  assert.equal(breached.verification.status, "violated",
+    "the system under design changed and the verdict did not — the status is being read from "
+    + "somewhere other than the current model");
+  assert.equal(breached.verification.status === "violated" ? breached.verification.verdict : null, "holds",
+    "a violated verification must carry the evidence's direction, so a reader sees the breach was exhibited");
+});
+
+test("a question the models decline, and a declaration that cannot be read, are not breaches", () => {
+  // The arm the whole verification layer exists for, and the one a two-valued comparison gets
+  // wrong: `outcome === satisfied_when ? satisfied : violated` reports BOTH of these as `violated`,
+  // accusing the system under design of a breach when what happened is that the models declined the
+  // question or the declaration was unreadable. SysML v2 declares the same distinction structurally
+  // — `VerdictKind` has four literals, and `calc def PassIf` maps a Boolean onto only `pass` and
+  // `fail`, so `inconclusive` and `error` are reachable only by something other than a check.
+  const original = read(R_ID, "model.mage.yaml");
+
+  // MUTATION 3 — the models DECLINE. `subscribes` declares `composition: { path: forbidden }`, so
+  // asking the same comparison in the `reachability` form is unlicensed rather than false.
+  //
+  // The search text runs down to `op: lt` because BOTH queries are `form: direct` over
+  // `relation: subscribes` — the short form matched twice and `mutate`'s hit count refused it,
+  // which is the guard doing its job: the "mutated" document would have been the original for the
+  // control query too, and this test would have passed for the wrong reason.
+  const declined = verified(mutate(original,
+    "      form: direct\n      relation: subscribes\n      where:\n        compare:\n"
+    + "          - left: source.permits\n            op: lt\n",
+    "      form: reachability\n      relation: subscribes\n      where:\n        compare:\n"
+    + "          - left: source.permits\n            op: lt\n"));
+  assert.equal(declined.breach, "unlicensed", "the reachability form was answered, so this is not the declining case");
+  assert.equal(declined.verification.status, "inconclusive",
+    "a declined question was reported as something other than inconclusive — if it read `violated`, "
+    + "the layer is accusing the system under design of a breach nobody demonstrated");
+  assert.equal(declined.verification.status === "inconclusive" ? declined.verification.because.kind : null,
+    "unlicensed",
+    "the cause must be `unlicensed` and not `bounded`: the remedy is a model, not a bigger budget, "
+    + "and one word for both remedies sends half the readers the wrong way");
+
+  // MUTATION 4 — the declaration names a query that is not there. A statement about the
+  // declaration, never about the system.
+  const dangling = verified(mutate(original,
+    "    expressed_as: impermitted-subscription-exists\n", "    expressed_as: no-such-query\n"));
+  assert.equal(dangling.verification.status, "error",
+    "a dangling `expressed_as` must read `error` — there is no obligation anybody could discharge");
+
+  // MUTATION 5 — the declaration prescribes a non-proposition. `inconclusive` is an evaluation
+  // status, so it cannot be a satisfaction condition; prescribing that your own model decline to
+  // answer is not an engineering obligation.
+  const prescribed = verified(mutate(original,
+    "    satisfied_when: refuted\n", "    satisfied_when: inconclusive\n"));
+  assert.equal(prescribed.verification.status, "error",
+    "`satisfied_when: inconclusive` parsed as an obligation");
+  assert.ok(
+    prescribed.verification.status === "error" && prescribed.verification.problem.includes("inconclusive"),
+    `the error must name the word it refused: ${JSON.stringify(prescribed.verification)}`);
 });

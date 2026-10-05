@@ -1,18 +1,19 @@
 {
   "corpus": "MAGE Workbench borrowed-semantics conformance fixtures",
   "authority": "DESIGN-v02-semantics-261004.md section 35 (the rule), section 35.4 (the mapping), section 35.6 (the fixture shape)",
-  "generatedAt": "2026-10-04",
+  "generatedAt": "2026-10-05",
   "methods": {
     "oracle-executed": "The SysML v2 Pilot Implementation actually ran the standard-side model and its verdict is transcribed, with the implementation's version.",
     "normative-artifact": "The correspondence is decided by OMG's normative MACHINE-READABLE material -- declared structure, declared multiplicities, declared values, declared invariants -- with no prose step between the artifact and the claim.",
     "spec-inspected": "The correspondence is established by reading specification prose. The decisive step is a sentence."
   },
   "methodDiscipline": "A fixture's `method` reports the WEAKEST rung the pinned interpretation depends on, and `evidence[]` lists every component with its own rung. The three are never collapsed, and a spec-inspected fixture is not executable conformance.",
-  "ceiling": "No method on this list yields `checked` for the correspondence. Per section 35.5 rung 3, `checked` requires a gate that re-derives the claim per run, and with no runtime dependency nothing in CI can execute the reference implementation. The correspondence half of every row below is `asserted`.",
-  "status": "checked by 3 fixtures: 0 oracle-executed, 2 normative-artifact, 1 spec-inspected",
+  "ceiling": "No method on this list yields `checked` for the correspondence. Per section 35.5 rung 3, `checked` requires a gate that re-derives the claim per run, and with no runtime dependency nothing in CI can execute the reference implementation. The correspondence half of every row below is `asserted`. All five of section 35.4's rows now carry a fixture, and that is a statement about COUNT and not about strength: no oracle has run, two of the five rest on a sentence, and what a fixture changes is that the assertion carries a quoted source, a named artifact, a stated bound and a date. A reader who takes `5 of 5` for conformance against the standards has read the number and not the ceiling.",
+  "status": "checked by 5 fixtures: 0 oracle-executed, 3 normative-artifact, 2 spec-inspected",
   "fixtures": [
     {
       "id": "kerml/association-link-typing-001",
+      "dischargesRow": "structural-graph",
       "mageConstruct": "a relation type and the typed relations declared against it (entities / relation-types / models[].relations)",
       "semanticBasis": {
         "owner": "MODEL_TYPES['structural-graph'].semanticBasis",
@@ -44,7 +45,42 @@
       "reviewedByPerson": null
     },
     {
+      "id": "kerml/binding-connector-identity-001",
+      "dischargesRow": "binding",
+      "mageConstruct": "the `appears-in` binding -- one entity id listed by two purposeful models' memberships (models[].entities, against the system's one entity namespace)",
+      "semanticBasis": {
+        "owner": "BINDINGS['appears-in'].semanticBasis -- KERML_BINDING_BASIS, the one object all three binding rows share",
+        "declaredIn": "src/engine/model-types.ts",
+        "kind": "borrowed",
+        "standard": "KerML",
+        "concept": "the binding subset -- KerML's assertion that two model elements denote the same thing"
+      },
+      "standardConcept": "BindingConnector -- a binary Connector that requires its relatedFeatures to identify the same things (have the same values)",
+      "normativeDocument": {
+        "title": "Kernel Modeling Language (KerML), Version 1.0",
+        "omgDocumentNumber": "formal/26-03-01",
+        "date": "March 2026",
+        "url": "https://www.omg.org/spec/KerML/1.0/"
+      },
+      "normativeLocation": [
+        { "kind": "clause", "ref": "KerML 1.0, 8.3.4.5.2 Binding Connector (p.185)" },
+        { "kind": "clause", "ref": "KerML 1.0, 8.4.4.6.2 Binding Connectors (p.262)" },
+        { "kind": "clause", "ref": "KerML 1.0, 9.2.3.2.5 SelfLink (p.288); 9.2.3.2.6 selfLinks (p.289)" },
+        { "kind": "artifact", "ref": "https://www.omg.org/spec/KerML/20250201/KerML.xmi", "locator": "Kernel-Connectors-BindingConnector" },
+        { "kind": "artifact", "ref": "https://www.omg.org/spec/KerML/20250201/Semantic-Library.kpar", "locator": "Kernel Semantic Library/Links.kerml lines 32-41 (SelfLink), 57-65 (selfLinks)" }
+      ],
+      "standardSideModel": "kerml/binding-connector-identity-001/source.kerml",
+      "mageModel": "kerml/binding-connector-identity-001/model.mage.yaml",
+      "expectedCorrespondence": "One entity id denotes one entity across every purposeful model that lists it, so two models' edge sets meet at a shared id and a question answered over the system crosses the junction.",
+      "method": "spec-inspected",
+      "oracle": null,
+      "establishedBy": "MAGE Workbench conformance-fixtures wave (agent)",
+      "establishedAt": "2026-10-05",
+      "reviewedByPerson": null
+    },
+    {
       "id": "sysml/transition-guard-occurrence-001",
+      "dischargesRow": "state-machine",
       "mageConstruct": "a machine, its states, and a guarded transition (machines; the guard is a transition's requires:)",
       "semanticBasis": {
         "owner": "MODEL_TYPES['state-machine'].semanticBasis",
@@ -78,6 +114,7 @@
     },
     {
       "id": "sysml/quantity-unit-magnitude-001",
+      "dischargesRow": "quantitative-model",
       "mageConstruct": "a quantity -- a declared magnitude carrying a dimension and a unit (quantities; normalization in DIMENSIONS)",
       "semanticBasis": {
         "owner": "MODEL_TYPES['quantitative-model'].semanticBasis",
@@ -105,31 +142,54 @@
       "establishedBy": "MAGE Workbench conformance-fixtures wave (agent)",
       "establishedAt": "2026-10-04",
       "reviewedByPerson": null
+    },
+    {
+      "id": "sysml/requirement-verification-verdict-001",
+      "dischargesRow": "requirement, verification",
+      "mageConstruct": "the authored `requirements:` key (statement / expressed_as / satisfied_when) and the verification derived from it, which is authored nowhere",
+      "semanticBasis": {
+        "owner": "section 35.4's `requirement, verification` row -- no SemanticBasis object in the registry carries it, so the construct half is looked up instead: `requirements` among mage-model.schema.json's top-level properties, and VERIFICATION_TEXT's four keys in src/engine/verification.ts",
+        "declaredIn": "mage-model.schema.json (properties.requirements) + src/engine/verification.ts (VerificationStatus, VERIFICATION_TEXT, verify)",
+        "kind": "borrowed",
+        "standard": "SysML v2",
+        "concept": "the requirement and verification-case subset -- an obligation over a required constraint, discharged by a case that RETURNS a four-valued verdict rather than storing one"
+      },
+      "standardConcept": "a RequirementDefinition's required constraint, and the VerificationCase that discharges it by returning a VerdictKind",
+      "normativeDocument": {
+        "title": "OMG Systems Modeling Language (SysML), Version 2.0, Part 1: Language Specification",
+        "omgDocumentNumber": "formal/26-03-02",
+        "date": "March 2026",
+        "url": "https://www.omg.org/spec/SysML/2.0/"
+      },
+      "normativeLocation": [
+        { "kind": "clause", "ref": "SysML v2.0, 8.3.21.8 RequirementDefinition (p.357)" },
+        { "kind": "clause", "ref": "SysML v2.0, 8.3.24.3 VerificationCaseDefinition (p.375)" },
+        { "kind": "clause", "ref": "SysML v2.0, 9.2.17.2.2 VerdictKind" },
+        { "kind": "artifact", "ref": "https://www.omg.org/spec/SysML/20250201/Systems-Library.kpar", "locator": "Systems Library/Requirements.sysml lines 19-47, 49, 173-185" },
+        { "kind": "artifact", "ref": "https://www.omg.org/spec/SysML/20250201/Systems-Library.kpar", "locator": "Systems Library/VerificationCases.sysml lines 13, 22, 58-68, 70-79" },
+        { "kind": "artifact", "ref": "https://www.omg.org/spec/SysML/20250201/SysML.xmi", "locator": "Systems-Requirements-RequirementDefinition, ownedRule checkRequirementDefinitionSpecialization; Systems-VerificationCases-VerificationCaseDefinition, ownedRule checkVerificationCaseSpecialization" }
+      ],
+      "standardSideModel": "sysml/requirement-verification-verdict-001/source.sysml",
+      "mageModel": "sysml/requirement-verification-verdict-001/model.mage.yaml",
+      "expectedCorrespondence": "A requirement declares an obligation and carries no verdict; the verdict is computed when someone asks, from the deciding query's answer and the declared discharging value -- so the polarity lives in `satisfied_when` and nowhere else, the status moves when the system under design moves, and a question the models cannot settle is not a breach.",
+      "method": "normative-artifact",
+      "oracle": null,
+      "establishedBy": "MAGE Workbench conformance-fixtures wave (agent)",
+      "establishedAt": "2026-10-05",
+      "reviewedByPerson": null
     }
   ],
-  "owedEvidence": "Every owed row declares `blockedBy`, from a closed two-word vocabulary, and both arms are checked by a LOOKUP rather than trusted as prose. `absent-construct`: the construct does not exist, and each `absentConstructs` name must be missing from the authored construct set -- which is closed and enumerable, being the top-level `properties` of mage-model.schema.json, so the absence is a lookup rather than a grep that might have searched the wrong subtree or the wrong spelling. The day a construct lands, that test goes RED and says a fixture is now buildable. `clause-and-fixture`: the construct EXISTS and the row owes only the clause and the fixture, so `absentConstructs` must be empty and every name under `authoredConstructs` / `registeredBindings` must RESOLVE -- against the schema's top-level properties and against BINDINGS in src/engine/model-types.ts respectively. The second arm exists because the first one's prose rotted: on 2026-10-04 both rows below carried an absence reason that the tree had already falsified, and the test was green, because it read `absentConstructs` and never read the sentence beside it. A row can no longer claim the construct is missing without the lookup agreeing, and it can no longer claim the construct exists without naming something that does.",
+  "owedEvidence": "Section 35.4 owes five rows and all five are now discharged, so `owed` is EMPTY -- and an empty obligation list is the shape most likely to rot into a check that cannot fail, so it is the PARTITION that is asserted rather than the emptiness. Every row of section 35.4 appears exactly once across `fixtures[].dischargesRow` and `owed[].row`, and the row set itself is a lookup rather than a list: `structural-graph`, `state-machine` and `quantitative-model` must be registered MODEL_TYPES rows whose semanticBasis is still `borrowed`; `binding` must be carried by a non-empty BINDINGS whose shared basis is still `borrowed`; `requirement, verification` must find `requirements` among mage-model.schema.json's top-level properties AND the four verification words among VERIFICATION_TEXT's keys. So a row cannot leave the obligation by being deleted from both arrays, which is how a discharged obligation and a forgotten one would otherwise look identical. The two arms below remain for any row that returns. `absent-construct`: the construct does not exist, and each `absentConstructs` name must be missing from the authored construct set -- which is closed and enumerable, being the top-level `properties` of mage-model.schema.json, so the absence is a lookup rather than a grep that might have searched the wrong subtree or the wrong spelling. `clause-and-fixture`: the construct EXISTS and the row owes only the clause and the fixture, so `absentConstructs` must be empty and every name under `authoredConstructs` / `registeredBindings` must RESOLVE. The second arm exists because the first one's prose rotted: on 2026-10-04 both then-owed rows carried an absence reason the tree had already falsified, and the test was green, because it read `absentConstructs` and never read the sentence beside it. Both rows were discharged on 2026-10-05.",
   "authoredConstructSet": [
     "accounting", "domains", "entities", "events", "machines", "mage",
     "models", "quantities", "queries", "relation-types", "requirements", "system", "views"
   ],
-  "owed": [
-    {
-      "row": "binding",
-      "standard": "KerML",
-      "blockedBy": "clause-and-fixture",
-      "absentConstructs": [],
-      "authoredConstructs": [],
-      "registeredBindings": ["appears-in", "machine-of-entity", "state-of-entity"],
-      "reason": "Owed a clause and a fixture, NOT a construct -- and the absence reason this row used to carry was stale. Section 14's bindings/compositions split landed 2026-10-04: BINDINGS and COMPOSITIONS are separately typed registries in src/engine/model-types.ts, and the three binding rows share one semanticBasis declaring KerML's binding subset as borrowed with its non-borrowed parts enumerated row by row. SEMANTICS.md says the same from the other side, calling this the fourth presently implementable fixture target. What keeps the row owed is section 35.4's standing reason: `clause` is CLAUSE_OWED and `fixture` is null, because a clause written from memory reads as checked. NO AUTHORED `bindings:` KEY IS OWED, and that is a ruling rather than a remaining gap. Each registered binding is licensed by what the author already writes, or holds by construction: machine-of-entity by CanonMachine.entity, state-of-entity by the executes_in_state property, appears-in by entity ids inhabiting ONE namespace per system. A declaration key would therefore be a second source of truth for correspondences the kernel reads off existing fields, free to disagree with them -- and it would contradict the restriction the registry's own basis declares, that MAGE carries none of KerML's author-declarable connector vocabulary and that the set is closed in the registry so a model cannot introduce a fourth. The fixture is built from the AUTHORED FIELD that licenses one binding -- a machine's `entity:` key, for machine-of-entity -- against a KerML binding connector on the standard side, and per section 35.6 it pins ONE binding and says nothing about the others or about completeness."
-    },
-    {
-      "row": "requirement, verification",
-      "standard": "SysML v2",
-      "blockedBy": "clause-and-fixture",
-      "absentConstructs": [],
-      "authoredConstructs": ["requirements"],
-      "registeredBindings": [],
-      "reason": "Owed a clause and a fixture, NOT a construct -- and the absence reason this row used to carry was stale twice over. `requirements:` landed 2026-10-04 as a top-level key of mage-model.schema.json: a map keyed by id whose values declare statement / expressed_as / satisfied_when, carried into the IR as CanonicalSystem.requirements and joined to the saved queries by verifySystemRequirements. And the claim that `verif` occurs nowhere in src/ was already false when it was written -- src/engine/verification.ts carries section 5.3's four-word vocabulary (satisfied / violated / inconclusive / error), the Requirement and Verification types, and `verify`, which is total over EvaluationStatus by the compiler. THE VERIFICATION HALF WILL NEVER BECOME AN AUTHORED KEY, and that is also a ruling: a status is derived per read and stored nowhere (V18), so a `verification:` construct would record the answer and change the system the answer was about, inverting the climax the construct exists for -- the model changed, the query did not. The fixture is built from an authored `requirements:` declaration over a positive breach query, against SysML v2's requirement and the verification case that discharges it; what keeps the row owed is section 35.4's standing reason, that a clause written from memory reads as checked. The two near misses stay named so a later reader does not mistake either for the construct: src/quant/requirement.ts holds REQUIREMENT_METRICS, which is the three metric NAMES (latency, cost, peak_memory); and a quantitative requirement is still spelled as a model:-targeted ceiling (SEMANTICS.md 5.3), which declares no satisfied_when because a ceiling question is universal."
-    }
-  ]
+  "owed": [],
+  "dischargedRows": {
+    "structural-graph": "kerml/association-link-typing-001 (2026-10-04)",
+    "state-machine": "sysml/transition-guard-occurrence-001 (2026-10-04)",
+    "quantitative-model": "sysml/quantity-unit-magnitude-001 (2026-10-04)",
+    "binding": "kerml/binding-connector-identity-001 (2026-10-05) -- pins `appears-in`, not `machine-of-entity`; the substitution and its argument are in that fixture's claim.md and oracle.json",
+    "requirement, verification": "sysml/requirement-verification-verdict-001 (2026-10-05) -- the requirement half is authored, the verification half is derived per read and authored nowhere (V18)"
+  }
 }
