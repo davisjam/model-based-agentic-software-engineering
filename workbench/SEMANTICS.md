@@ -777,6 +777,29 @@ The **reachable set** is the least set containing the initial configuration and 
 There is no fairness, no priority, and no notion of time. A configuration with no enabled step is a
 **dead end** and is reported as such, not treated as an error.
 
+**V42 — the composition is this product, and nothing is composed implicitly.** Several machines
+compose in exactly one way: the explicit interleaved product above, synchronized only on declared
+events. Three obligations, and an implementation MUST hold all three:
+
+1. **`control` is total over declared machine instances.** Every instance is a coordinate of every
+   configuration, from the initial one onward. An atom naming a machine absent from the vector would
+   compare against nothing and read as false everywhere, so every predicate mentioning it would
+   answer vacuously while reporting exhaustive coverage — a proved property about nothing.
+2. **A local step moves exactly one instance** (§4.2). Guards are not steps: a transition reading
+   another machine moves its own instance alone and leaves what it read untouched (§4.1).
+3. **An event step moves exactly the participants the event declares**, atomically (§4.3).
+
+There is no other composition operator, and in particular **no implicit asynchronous product**: two
+machines interact only through a declared event or through a guard that reads state. A model needing
+synchronization the event vocabulary cannot express must say so and be refused, never approximated.
+
+The negative this forbids is specific and survives a correct-looking implementation. A product that
+enumerates one machine while carrying the others frozen at their initial states satisfies obligation
+1 structurally and defeats it in effect: every foreign atom is then decided by an initial value, and
+a cross-machine safety property reports `holds` without the design having earned it. **Walking the
+obligations therefore means checking that each machine's state actually VARIES across the explored
+space**, not merely that its key is present.
+
 ---
 
 ## 7. Queries
@@ -847,6 +870,44 @@ the same shape.
 The state limit is a **v0.1** concern, not a later one. Finite domains do not bound the product
 *usefully*: two machines, three instances and one `[0,10]` variable already reach millions of
 configurations.
+
+**V41 — a verdict decided by the PREDICATE rather than by the transition structure MUST disclose it.**
+
+Coverage answers *how much of the space was walked*. It does not answer the prior question: *could
+the predicate have been true at all?* Those come apart, and the gap has exactly the shape this spec's
+own vocabulary was built to close.
+
+A predicate is **unsatisfiable in the state vector** when no configuration the vector admits
+satisfies it — reachable or not. A machine occupies one control state, so
+`job-lease.state: held-by-0 AND job-lease.state: held-by-1` is a contradiction; a variable holds one
+value, so two values at once is another. Such a predicate is decided before the walk begins.
+
+The outcome vocabulary cannot carry the distinction, and MUST NOT be extended to:
+
+| | decided by the design | decided by the predicate |
+|---|---|---|
+| `reach` / `recurrence` / `repeatable-cycle` | `refuted` — no execution reaches a representable target | `refuted` — no state vector admits the target |
+| `invariant` | `holds` — no execution reaches a representable violation | `holds` — no state vector admits a violation |
+
+Both rows report the same `outcome`, the same `exhaustive` coverage, and no evidence. The left column
+is a statement about the system; the right is a statement about the author's predicate, and reading
+the right as the left turns a modelling error into a safety guarantee. So:
+
+- An implementation MUST emit a **`Compilation` of kind `vacuous`** when the predicate deciding the
+  verdict is unsatisfiable in the state vector. The outcome stays as it is — a vacuous universal
+  genuinely does hold, and there is no fifth `Outcome` to reach for.
+- It MUST NOT emit the disclosure when the predicate is satisfiable but unreachable. That is the
+  **earned** verdict, and a disclosure that fires on it teaches readers to ignore the one that matters.
+- Deciding satisfiability by enumeration MAY be bounded. An implementation that declines MUST report
+  a third answer distinct from both — never `satisfiable`, which is a silent false negative.
+
+**The sound reading of a vacuous refutation is that the model cannot REPRESENT the situation.** That
+is stronger than "it does not happen here" and weaker than "it was searched for and not found", and
+a reader who takes it for the last has been misled by a correct answer.
+
+Vacuity is a property of the predicate, so **truncation cannot weaken it**: the disclosure travels
+under `bounded` coverage too. This is the one place V22's asymmetry does not apply, because nothing
+here depends on absence of evidence.
 
 ### 7.2 Evidence shapes
 
