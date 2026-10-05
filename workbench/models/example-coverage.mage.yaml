@@ -114,6 +114,14 @@ entities:
       supplied_queries: 4
       suggested_queries: 3
 
+  example.autonomous-delivery:
+    type: default-example
+    label: "Autonomous Delivery Rover"
+    properties:
+      purposeful_models: 5
+      supplied_queries: 14
+      suggested_queries: 5
+
   capability.structural-models:
     type: semantic-capability
     label: "A structural model: entities and typed relations, with a declared purpose."
@@ -295,6 +303,7 @@ models:
       - example.document-processing
       - example.worker-queue
       - example.embedded-sensor-node
+      - example.autonomous-delivery
       - capability.structural-models
       - capability.typed-relationships
       - capability.state-machines
@@ -324,63 +333,83 @@ models:
       - { from: example.document-processing, to: capability.structural-models, type: exercises }
       - { from: example.worker-queue, to: capability.structural-models, type: exercises }
       - { from: example.embedded-sensor-node, to: capability.structural-models, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.structural-models, type: exercises }
       - { from: example.message-bus, to: capability.typed-relationships, type: exercises }
       - { from: example.transaction-workspace, to: capability.typed-relationships, type: exercises }
       - { from: example.document-processing, to: capability.typed-relationships, type: exercises }
       - { from: example.embedded-sensor-node, to: capability.typed-relationships, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.typed-relationships, type: exercises }
       - { from: example.transaction-workspace, to: capability.state-machines, type: exercises }
       - { from: example.document-processing, to: capability.state-machines, type: exercises }
       - { from: example.worker-queue, to: capability.state-machines, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.state-machines, type: exercises }
       - { from: example.worker-queue, to: capability.synchronized-events, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.synchronized-events, type: exercises }
       - { from: example.message-bus, to: capability.cross-model-identity, type: exercises }
       - { from: example.transaction-workspace, to: capability.cross-model-identity, type: exercises }
       - { from: example.document-processing, to: capability.cross-model-identity, type: exercises }
       - { from: example.worker-queue, to: capability.cross-model-identity, type: exercises }
       - { from: example.embedded-sensor-node, to: capability.cross-model-identity, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.cross-model-identity, type: exercises }
       - { from: example.message-bus, to: capability.model-composition, type: exercises }
       - { from: example.transaction-workspace, to: capability.model-composition, type: exercises }
       - { from: example.document-processing, to: capability.model-composition, type: exercises }
       - { from: example.worker-queue, to: capability.model-composition, type: exercises }
       - { from: example.embedded-sensor-node, to: capability.model-composition, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.model-composition, type: exercises }
       - { from: example.message-bus, to: capability.graph-reachability, type: exercises }
       - { from: example.transaction-workspace, to: capability.graph-reachability, type: exercises }
       - { from: example.document-processing, to: capability.graph-reachability, type: exercises }
       - { from: example.embedded-sensor-node, to: capability.graph-reachability, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.graph-reachability, type: exercises }
       - { from: example.transaction-workspace, to: capability.safety, type: exercises }
       - { from: example.worker-queue, to: capability.safety, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.safety, type: exercises }
       - { from: example.message-bus, to: capability.safety-as-existential-dual, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.safety-as-existential-dual, type: exercises }
       - { from: example.transaction-workspace, to: capability.reachability, type: exercises }
       - { from: example.document-processing, to: capability.reachability, type: exercises }
       - { from: example.worker-queue, to: capability.reachability, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.reachability, type: exercises }
       - { from: example.transaction-workspace, to: capability.bounded-progress, type: exercises }
       - { from: example.document-processing, to: capability.bounded-progress, type: exercises }
       - { from: example.worker-queue, to: capability.bounded-progress, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.bounded-progress, type: exercises }
       - { from: example.document-processing, to: capability.bounded-cycles, type: exercises }
       - { from: example.worker-queue, to: capability.bounded-cycles, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.bounded-cycles, type: exercises }
       - { from: example.message-bus, to: capability.witnesses, type: exercises }
       - { from: example.transaction-workspace, to: capability.witnesses, type: exercises }
       - { from: example.document-processing, to: capability.witnesses, type: exercises }
       - { from: example.worker-queue, to: capability.witnesses, type: exercises }
       - { from: example.embedded-sensor-node, to: capability.witnesses, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.witnesses, type: exercises }
       - { from: example.transaction-workspace, to: capability.counterexamples, type: exercises }
       - { from: example.document-processing, to: capability.counterexamples, type: exercises }
       - { from: example.worker-queue, to: capability.counterexamples, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.counterexamples, type: exercises }
       - { from: example.message-bus, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.transaction-workspace, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.document-processing, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.worker-queue, to: capability.purposeful-non-answerability, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.worker-queue, to: capability.bounded-coverage-reporting, type: exercises }
       - { from: example.document-processing, to: capability.quantitative-annotations, type: exercises }
       - { from: example.embedded-sensor-node, to: capability.quantitative-annotations, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.quantitative-annotations, type: exercises }
       - { from: example.document-processing, to: capability.declared-accounting, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.declared-accounting, type: exercises }
       - { from: example.document-processing, to: capability.path-quantity-accounting, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.path-quantity-accounting, type: exercises }
       - { from: example.document-processing, to: capability.configuration-memory-accounting, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.configuration-memory-accounting, type: exercises }
       - { from: example.document-processing, to: capability.performance, type: exercises }
       - { from: example.message-bus, to: capability.requirements, type: exercises }
       - { from: example.transaction-workspace, to: capability.requirements, type: exercises }
       - { from: example.document-processing, to: capability.requirements, type: exercises }
       - { from: example.worker-queue, to: capability.requirements, type: exercises }
       - { from: example.embedded-sensor-node, to: capability.requirements, type: exercises }
+      - { from: example.autonomous-delivery, to: capability.requirements, type: exercises }
 
 # One assertion per capability. `expect` makes a saved query a CI gate: re-running them
 # re-derives the matrix, so the answer to the model's question is executable rather than read off

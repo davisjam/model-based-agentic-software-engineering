@@ -167,22 +167,30 @@ test("D1: the CORRECT ceiling query with one inverted word reads error, not sati
 // 2. Positive controls — the shipped corpus must not move
 // ---------------------------------------------------------------------------------------------
 
-test("the two sound quantity-decided requirements keep deriving what they derive today", () => {
-  // Exactly two requirements in the corpus are quantity-decided, and BOTH are pinned. Enumerated
-  // from the corpus rather than read off the ruling's §0.3, which describes the Sensor Node chain as
-  // though it were the only one — the census pin below is what makes the count checkable.
+test("every sound quantity-decided requirement keeps deriving what it derives today", () => {
+  // Every quantity-decided requirement in the corpus is pinned here. Enumerated from the corpus
+  // rather than read off the ruling's §0.3, which describes the Sensor Node chain as though it were
+  // the only one — the census pin below is what makes the count checkable.
   //
-  // Both must stay sound, and the rule must leave each alone for a DIFFERENT reason. A rule that
-  // broke either is worse than the hole it closes.
+  // All must stay sound, and the rule must leave them alone for DIFFERENT reasons. A rule that broke
+  // any of them is worse than the hole it closes.
   const sound: readonly (readonly [string, string, string, string])[] = [
     // The one the commissioning brief claimed a student cannot write. Authored, shipped, and
     // discharged through the join the brief said does not exist.
     ["embedded-sensor-node", "firmware-fits-physical-sram", "satisfied", "holds"],
     // The control that carries more weight: soundly authored AND currently violated, at 2,750 ms
     // against a declared 2,000 ms. A rule that refuses mis-authored pairings must leave a
-    // sound-but-VIOLATED pairing alone — this is the only row that tests that, because it is the
-    // only one where the deciding query returns the verdict that does NOT discharge the obligation.
+    // sound-but-VIOLATED pairing alone — because it is the case where the deciding query returns the
+    // verdict that does NOT discharge the obligation.
     ["document-processing", "successful-processing-within-two-seconds", "violated", "refuted"],
+    // The capstone's two, added when autonomous-delivery landed. They raise the census from two to
+    // four and they widen it on the axis that matters: a `peak_memory` ceiling, which the other two
+    // rows do not cover at all. `measurePeak` is the arm with NO refuting case — the one whose
+    // measurement sibling reads satisfied at every magnitude forever — so a sound peak_memory
+    // pairing is the positive control that was previously missing.
+    ["autonomous-delivery", "compute-payload-fits-onboard-ram", "satisfied", "holds"],
+    // And the second sound-but-VIOLATED row, on `latency`: 2,715 s against a declared 900 s.
+    ["autonomous-delivery", "delivering-missions-within-the-duration-budget", "violated", "refuted"],
   ];
 
   for (const [example, req, status, verdict] of sound) {
@@ -196,7 +204,7 @@ test("the two sound quantity-decided requirements keep deriving what they derive
       `${example}/${req}: the verdict must not move either — the status alone would not distinguish `
       + `a preserved reading from a coincidence`);
   }
-  assert.equal(sound.length, 2, "two quantity-decided requirements ship; a changed count means re-census");
+  assert.equal(sound.length, 4, "four quantity-decided requirements ship; a changed count means re-census");
 });
 
 test("every shipped requirement in the corpus is unaffected — zero findings at HEAD", () => {
@@ -213,8 +221,11 @@ test("every shipped requirement in the corpus is unaffected — zero findings at
   }
   assert.equal(errors.length, 0, `the arm fires on a shipped requirement:\n${errors.join("\n")}`);
   // A probe that found nothing would carry the assertion above vacuously, so the corpus size is
-  // pinned too — the eight authored obligations the ruling counted in §0.2.
-  assert.equal(counted, 8, "eight authored requirements ship; a changed count means re-read §0.2");
+  // pinned too. The ruling's §0.2 counted EIGHT; autonomous-delivery added six, two of them
+  // quantity-decided, and the re-read §0.2 asks for confirms the ruling's claim still holds of the
+  // wider corpus: every quantity-decided requirement declares `within:` with `satisfied_when: holds`,
+  // now four of four rather than two of two, and the arm still finds nothing.
+  assert.equal(counted, 14, "fourteen authored requirements ship; a changed count means re-read §0.2");
 });
 
 test("SCOPE: satisfied_when: refuted over behavior and graph queries is ordinary, not a defect", () => {

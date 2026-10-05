@@ -166,6 +166,19 @@ relation-types:
       symmetric: false
       acyclic: true
 
+  carries:
+    description: The rover carries this component as part of its physical configuration.
+    absence: >
+      The component is not part of the modeled rover. Absence says nothing about whether some other
+      vehicle carries it.
+    composition:
+      # Nothing a rover carries carries anything else in this reduction, so a multi-hop question has
+      # no reading.
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
 entities:
 
   rover:
@@ -574,6 +587,7 @@ models:
     purpose:
       question: What does the battery power, and how long may one mission take?
       represents:
+        - rover identity, as the vehicle whose mission is being budgeted
         - battery identity
         - which subsystems draw from it
         - the declared 900 s mission-duration ceiling
@@ -587,8 +601,12 @@ models:
         - temperature derating and cell ageing
         - regenerative braking and solar top-up
         - the power each subsystem actually draws
-    entities: [battery, drive-system, autonomy-computer]
+    entities: [rover, battery, drive-system, autonomy-computer]
     relations:
+      - id: rover-carries-battery
+        from: rover
+        to: battery
+        type: carries
       - id: battery-powers-drive
         from: battery
         to: drive-system
@@ -598,6 +616,21 @@ models:
         to: autonomy-computer
         type: powers
     notes:
+      - id: the-rover-is-named-here-on-purpose
+        kind: rationale
+        text: >
+          This is the only graph model that names `rover`, and it names it for a reason rather than
+          for completeness. Both machines declare `entity: rover`, so the identity exists; without an
+          edge saying the battery is THIS rover's, the model would be a model of A battery, and
+          "every delivery fits the budget" would be joining a ceiling to a mission by coincidence
+          rather than by declaration. The `carries` edge is that declaration.
+
+          It also makes the identity findable. An agent asks `appearsIn` to discover an entity's
+          other representations, and that reports GRAPH models only -- so an identity shared by two
+          machines and no graph is invisible through it. Worker Queue does not expose that gap because
+          its `job` happens to sit in a graph model too. Naming the rover here is the modeling fix;
+          widening `appearsIn` to report machines is the engine fix, and it is not this example's to
+          make.
       - id: mission-endurance-rationale
         kind: rationale
         text: >

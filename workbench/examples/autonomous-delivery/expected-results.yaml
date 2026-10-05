@@ -1,0 +1,708 @@
+# Expected results for the autonomous-delivery example. Read by test/examples.test.ts, which drives
+# the real application seams and compares.
+#
+# Fixture discipline: semantic outcomes only. The outcome, the coverage KIND, and the evidence shape
+# and role -- never a step count the engine's tie-breaking could move, and never the number of
+# configurations explored, which moves if a state is added anywhere. Where a trace's SHAPE is the
+# lesson, it is pinned by `labels_at_least` and `final` rather than by length: "this delivery spent
+# all three recovery attempts" is a claim about the execution, and "this trace is nine steps long" is
+# a claim about the search.
+#
+# ## Every figure here was measured, then hand-checked, and the two agreed
+#
+# The two magnitudes and the counterfactual were taken from the engine through `Workspace.query`
+# before this file was written, and each was independently derived by hand first. All three agreed on
+# the nose:
+#
+#   peak RAM, state-scoped           1088 MB   = 448 resident + max(512, 640, 384)
+#   peak RAM, all allocations resident 1984 MB = 448 + 512 + 640 + 384
+#   worst delivery duration          2715 s    = 45 + 4x600 + 3x90
+#   nominal delivery duration         645 s    = 45 + 600
+#
+# `quantitative_expectations` below carries the arithmetic so a disagreement localizes to one premise
+# rather than to "the answer is different".
+
+example: autonomous-delivery
+system: system.mage.yaml
+title: Autonomous Delivery Rover
+summary: >
+  A delivery rover whose command chain, mission lifecycle, motion interlock, onboard RAM and battery
+  endurance are five reductions of one machine -- and where modeling the lifecycle is what turns a
+  704 MB memory overrun into 192 MB of margin.
+
+# Five purposeful models: three graphs and two machines. The two machines are the capstone's
+# structural claim -- they are composed through five declared events rather than merged into a
+# hand-maintained cross product, which is what keeps the safety property statable.
+models:
+  - id: compute-platform
+    kind: graph
+  - id: control-authority
+    kind: graph
+  - id: mission-endurance
+    kind: graph
+  - id: mission
+    kind: machine
+  - id: motion-interlock
+    kind: machine
+
+requirements:
+
+  - id: drive-commands-pass-through-the-safety-monitor
+    statement: >
+      No subsystem may command the drive system without the safety monitor on the path. Stated as the
+      one graph property this model can decide: no direct `may_command` edge runs from the mission
+      planner to the drive system.
+    expressed_as: planner-commands-drive-directly
+    satisfied_when: refuted
+    status: satisfied
+    note: >
+      A POSITIVE breach query, so the obligation is discharged by a refutation: the question asks for
+      the bypass and does not find it. The verdict is earned rather than vacuous, and the
+      `planner-can-bypass-the-monitor` modification is the proof -- adding the one edge flips it to
+      `holds` with the bypass as the witness, so the absence being reported is an absence from THIS
+      design and not from the model's vocabulary.
+
+      What this requirement does NOT establish: that the planner cannot cause motion. It can, through
+      the monitor and the controller, and the chain exists so that it must. The claim is exactly one
+      hop wide, and `control-authority` declares information flow as an omission so the wider reading
+      has somewhere to be refused.
+
+  - id: motion-is-inhibited-in-every-fault
+    statement: >
+      The drive system is never permitted to move while the mission is in fault.
+    expressed_as: motion-inhibited-whenever-faulted
+    satisfied_when: holds
+    status: satisfied
+    note: >
+      THE cross-machine property, and the reason this example declares two machines. The mission
+      model supplies `fault`; the interlock model supplies `enabled`; neither alone can state it.
+
+      Earned, not vacuous, and the two numbers that establish that: the state vector admits 7 mission
+      states x 2 interlock states x 4 values of `recovery_count` = 56 configurations, of which 4
+      satisfy the violation -- so the violating situation is REPRESENTABLE. Of the 20 reachable
+      configurations, none does. Satisfiable in the vector, unreachable in the design, which is the
+      shape of a safety property that was actually checked.
+
+      It is earned by one declared fact: `fault-detected` is an EVENT, so the mission entering fault
+      and the interlock withdrawing permission are one atomic step with no observable configuration
+      between them. The `unsynchronized-fault-path` modification adds a local transition into `fault`
+      that synchronizes with nothing, and the invariant falls with a counterexample -- which is how a
+      reader can tell the synchronization was load-bearing rather than decorative.
+
+  - id: recovery-is-bounded
+    statement: >
+      No reachable execution re-localizes forever; a mission that keeps losing localization reaches
+      aborted.
+    expressed_as: recovery-can-repeat-forever
+    satisfied_when: refuted
+    status: satisfied
+    note: >
+      An exhaustive statement about a finite transition system, NOT temporal liveness. MAGE declares
+      no fairness assumptions and has no infinite-trace operators, so this says "no reachable
+      execution repeats a configuration" and does not say "the rover will eventually finish".
+
+      The bound is a DECLARED GUARD rather than an assumption about scheduling: `resume` requires
+      `recovery_count < 3` and spends one, so the counter strictly advances within a finite domain and
+      no configuration can repeat. `unlimited-recovery` deletes that guarantee by adding an unguarded
+      `resume`, and this flips to `holds` with a lasso.
+
+      The companion `recovery-can-recur` holds, and the pair is the honest answer: the rover CAN lose
+      localization again, and it cannot do so forever.
+
+  # VIOLATED, and shipped that way deliberately. See the note.
+  - id: every-mission-reaches-a-terminal-outcome
+    statement: >
+      Every mission that stops has either delivered its parcel or aborted; none stops in a state that
+      is neither.
+    expressed_as: mission-can-strand-without-an-outcome
+    satisfied_when: refuted
+    status: violated
+    note: >
+      The obligation this design does not meet, and the capstone is more honest for reporting it than
+      it would be for six green rows. `fault` is terminal and is neither promised outcome, so a
+      mission that faults while driving stops for good having promised an outcome and reached none.
+      The witness is three steps: accept the mission, arm, fault.
+
+      Earned, and the direction of the earning matters: this is a `holds` on an existential, so a
+      WITNESS was found. A witness is coverage-insensitive and cannot be vacuous -- there is a
+      concrete trace, and `mission.state: fault` with no enabled step is a configuration the engine
+      reached rather than a predicate it decided.
+
+      Three ways to make it pass were available and all three were refused. Dropping `avoid` asks
+      whether ANY dead end exists, which `delivered` satisfies trivially. Asking only whether
+      `delivered` is reachable answers a different and easier question. Adding a `fault -> aborted`
+      transition would invent an automatic recovery the rover does not have -- recovery from a fault
+      needs a human at the machine, which `mission` declares as an omission. The refutation is the
+      finding, and the design activity is where it gets addressed.
+
+  - id: compute-payload-fits-onboard-ram
+    statement: >
+      The autonomy payload's peak RAM over all reachable mission configurations fits within the
+      compute module's 1.25 GiB carve-out.
+    expressed_as: compute-payload-fits-onboard-ram
+    satisfied_when: holds
+    status: satisfied
+    note: >
+      THE integrated question, and the one whose answer CHANGES because a second form is modeled.
+
+      Measured both ways through the real seam. With the mission machine, three allocations name the
+      state they are held during and `peak_memory` is the maximum of memory(c) over the reachable
+      set: 1088 MB against 1280 MB, SATISFIED with 192 MB of margin. With the same five allocations
+      all declared `residency: resident` -- which is the only thing an author could write if no
+      machine existed to name -- the peak is their sum, 1984 MB, and the same query reads REFUTED by
+      704 MB.
+
+      So the behavior model did not make the rover cheaper. It supplied a premise the quantitative
+      model could not state on its own: that the route solver's workspace and the perception buffers
+      are never live at the same moment. That premise is itself a query --
+      `planning-and-driving-at-once` -- and it is the one query here whose refutation is VACUOUS, by
+      design. A machine occupies one control state, so the conjunction is unsatisfiable in the state
+      vector; the engine discloses that, and the disclosure is what licenses a maximum instead of a
+      sum.
+
+      The sound shape, and the only one: a ceiling query (`within: compute-memory-budget`, which
+      forces `forall`) with `satisfied_when: holds`. A measurement query -- the same metric with no
+      `within:` -- would have read satisfied at 1984 MB, at 1984 GB, and at every magnitude forever,
+      because `measurePeak` has no refuting arm. `wider-perception-buffers` flips this one to
+      refuted on one edited number, which is what separates a property that holds from one that was
+      never tested.
+
+  # VIOLATED, and it is the tradeoff rather than an error. See the note.
+  - id: delivering-missions-within-the-duration-budget
+    statement: >
+      Every delivery completes within the 900 s of mission time one battery charge sustains.
+    expressed_as: delivering-missions-within-the-duration-budget
+    satisfied_when: holds
+    status: violated
+    note: >
+      The capstone's tradeoff, measured rather than asserted. The nominal delivery takes 645 s and
+      fits with 28% of margin. A delivery that spends its full recovery allowance takes 2,715 s,
+      because each re-localization is followed by another full drive segment and entity accounting
+      charges every occurrence along the trace rather than every annotation in the file.
+
+      So the policy that SATISFIES `recovery-is-bounded` is the policy that BREACHES this. Bounding
+      recovery at three attempts is what makes termination decidable; three attempts is also 2,070 s
+      of drive and scan-match the battery does not have. Neither requirement is wrong and no single
+      edit satisfies both, which is why the last activity is a design search rather than a lookup.
+
+      Earned: the counterexample is a concrete nine-step trace that reaches `delivered` having
+      halted and resumed three times. The 2,715 s is the engine's figure, and it matched the hand
+      derivation exactly.
+
+      What this requirement does NOT establish: anything about ENERGY. MAGE declares no `energy`
+      dimension, so the budget is mission DURATION -- the proxy a fixed drive power makes honest, and
+      named as such on `mission-endurance`'s omissions and by the refused
+      `charge-remaining-at-delivery`.
+
+queries:
+
+  # --- Structure -----------------------------------------------------------------------------------
+
+  - id: planner-can-reach-drive-through-the-chain
+    label: The mission planner can reach the drive system through the permitted command chain
+    suggested: false
+    models: [control-authority]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        # ORDERED, and the whole chain. A one-node "path" is how a vacuous holds looks from the
+        # outside, and pinning the sequence is what distinguishes the real answer from it.
+        path: [mission-planner, safety-monitor, motion-controller, drive-system]
+    note: >
+      The inspect question, and a genuine multi-hop one: `may_command` declares `path: allowed`, so
+      composing three edges is licensed and the whole chain comes back as the witness. Asked and
+      pinned together with the bypass below, because the pair is the lesson -- the planner reaches
+      the drive system, and it does not reach it directly.
+
+  - id: planner-commands-drive-directly
+    label: The mission planner can command the drive system directly
+    suggested: true
+    models: [control-authority]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      The structural safety requirement, as a POSITIVE breach query: it asks for the thing that would
+      be wrong, so `refuted` is the good answer and a witness would be the finding. One hop
+      deliberately -- `direct` does not compose, so this cannot drift into answering the reachability
+      question above.
+
+      State the graph property exactly, because the temptation to over-read it is strong: this is the
+      absence of one `may_command` edge. It is not information-flow analysis, and it does not say the
+      planner cannot cause motion. `planner-can-bypass-the-monitor` adds the edge and flips this to
+      `holds`, which is what shows the refutation is about this design rather than about the
+      vocabulary.
+
+  - id: lower-authority-commands-higher
+    label: A subsystem commands one the design grants more authority
+    suggested: false
+    models: [control-authority]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [mission-planner, safety-monitor]
+    note: >
+      Answerable from the ordered domain rather than the edge set, which is why it earns a place
+      beside two questions over the same relation. It holds, and the witness is the planner
+      commanding the monitor -- an `advisory` subsystem with a `supervisory` one downstream.
+
+      That is the design's own shape rather than a defect: the monitor sits downstream of the planner
+      precisely so it can refuse what the planner asks. The question is worth asking because in most
+      command hierarchies the answer is a finding, and reading the witness is how a student learns to
+      tell the two cases apart.
+
+  # --- Behavior ------------------------------------------------------------------------------------
+
+  - id: rover-can-start-driving
+    label: The rover can start driving
+    suggested: false
+    models: [mission, motion-interlock]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        labels_at_least: { accept-mission: 1, arm: 1 }
+        # The `arm` event steps BOTH machines, and this pins that it did: the trace ends with the
+        # mission driving and motion enabled in one configuration. A composition that silently moved
+        # only one participant would pass an outcome check and fail here.
+        final:
+          mission.state: driving
+          motion-interlock.state: enabled
+    note: >
+      The first behavioral question, and it is already cross-machine. `arm` is a declared event with
+      two participants, so there is no observable configuration in which the mission is driving and
+      motion is still inhibited -- and the pinned final configuration is what makes that claim a test
+      rather than a sentence in the header.
+
+  - id: rover-can-deliver
+    label: A mission can reach delivered
+    suggested: false
+    models: [mission, motion-interlock]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        labels_at_least: { complete: 1 }
+        final:
+          mission.state: delivered
+          motion-interlock.state: inhibited
+    note: >
+      The happy path exists, which is worth establishing before asking anything harder: a question
+      about the worst delivery is meaningless if no delivery is reachable. The witness is the
+      three-step nominal mission, and `complete` withdraws motion permission on the way in, so the
+      rover does not sit at the doorstep with the drive system still armed.
+
+  - id: motion-inhibited-whenever-faulted
+    label: Motion is never enabled while the mission is in fault
+    suggested: true
+    models: [mission, motion-interlock]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      # A universal that holds has no single configuration to point at. The counterexample appears
+      # only when it is refuted, which `unsynchronized-fault-path` arranges.
+      no_evidence: true
+    note: >
+      The cross-machine safety property. Universal, so exhaustive satisfaction establishes it over
+      the 20 reachable configurations and one counterexample refutes it.
+
+      Not vacuous, and the census says why: the violation `fault AND enabled` is satisfied by 4 of
+      the 56 configurations the state vector admits and by 0 of the 20 reachable. Representable and
+      unreached -- which is the strong reading, and distinguishable from the unsatisfiable case by
+      the engine rather than by this note. Compare `planning-and-driving-at-once` below: the two are
+      STRUCTURALLY IDENTICAL as predicates, a conjunction of two control-state atoms, and one is a
+      contradiction while the other is the property this example exists to ask. A check keyed on
+      predicate shape would call both vacuous.
+
+  - id: recovery-can-repeat-forever
+    label: A mission can stay in the re-localization loop indefinitely
+    suggested: false
+    models: [mission]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      The progress question, in the only form that denotes it. `repeatable-cycle` asks for a
+      genuinely repeated CONFIGURATION, which is what makes a cycle actually repeatable; a loop whose
+      bounded variable strictly advances answers `refuted` here while `recurrence` answers `holds`.
+
+      `refuted` under exhaustive coverage says no reachable execution re-localizes forever, and it
+      says so for a structural reason rather than a hoped-for one: `resume` requires an unspent
+      allowance and spends one, so `recovery_count` advances and no configuration can repeat. This is
+      an exhaustive statement about a finite transition system, NOT temporal liveness -- there is no
+      fairness in this engine and no infinite-trace operator.
+
+  - id: recovery-can-recur
+    label: A mission can lose localization again after recovering once
+    suggested: false
+    models: [mission, motion-interlock]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: lasso
+        role: witness
+        cycle_min_steps: 2
+        # The cycle is halt-resume, so both appear across the prefix and the loop. Pinning the labels
+        # rather than the lengths keeps the claim semantic.
+        labels_at_least: { halt: 2, resume: 1 }
+    note: >
+      The honest companion to the question above, and the reason the engine has two forms. The rover
+      CAN return to recovering after driving on -- that is re-entry, and the evidence is a lasso whose
+      cycle is the halt-resume pair. It cannot do so forever. Shipping only one of these two
+      questions would teach that "can it come back" and "can it loop indefinitely" are one question,
+      and they are not.
+
+  - id: mission-can-strand-without-an-outcome
+    label: A mission can stop for good without delivering or aborting
+    suggested: true
+    models: [mission, motion-interlock]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        labels_at_least: { fault-detected: 1 }
+        # The dead end itself, pinned: nothing is enabled from here, on either machine.
+        final:
+          mission.state: fault
+          motion-interlock.state: inhibited
+    note: >
+      The question that refutes the termination obligation, and the answer is `holds` because a
+      WITNESS was found rather than because a search came up empty. `deadend` asks for a reachable
+      configuration with no enabled step; `avoid` restricts the trace to one that never passes
+      through either promised outcome. Three steps reach it: accept, arm, fault.
+
+      The dead end is genuine on both machines. In `(fault, inhibited)` the mission offers no
+      transition, and every interlock transition is synchronized -- so no event can fire and no local
+      move exists. `fault` is terminal because recovery from a fault needs a human at the rover, and
+      `mission` declares that as an omission instead of inventing a transition for it.
+
+      This is the query a reader should try to break first, and the attempt is instructive: dropping
+      `avoid` makes `delivered` a satisfying dead end and the answer trivial.
+
+  - id: planning-and-driving-at-once
+    label: The mission can be planning and driving at the same time
+    suggested: false
+    models: [mission]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      The premise the memory answer rests on, asked rather than assumed -- and the one query in this
+      example whose verdict is decided by the PREDICATE rather than by the transition structure.
+
+      One machine occupies one control state, so no configuration the state vector admits satisfies
+      the conjunction: 0 of 56, not 0 of 20. The refutation is therefore VACUOUS, the engine discloses
+      it on the result's compilation (V41), and the sound reading is "this model cannot REPRESENT the
+      situation" -- stronger than "it does not happen here", weaker than "both were searched for and
+      not found together".
+
+      That impossibility is exactly what licenses `peak_memory` to take the MAXIMUM of the route
+      solver's 512 MB and perception's 640 MB instead of their sum. The 896 MB that modeling the
+      lifecycle removed is worst case the design never had, and this query is where a reader can
+      check that claim instead of believing it.
+
+      The fixture cannot pin the disclosure itself: `QueryExpectation` carries outcome, coverage,
+      refusal and evidence, and has no field for a `vacuous` compilation. The outcome is pinned here
+      and the disclosure is not, which is a gap in the fixture schema rather than in the engine --
+      recorded here because this example is the one that most depends on it.
+
+  # --- Quantity ------------------------------------------------------------------------------------
+
+  - id: nominal-mission-duration
+    label: The delivery that never loses localization has a determinate modeled duration
+    suggested: false
+    models: [mission, control-authority, compute-platform]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        labels_at_least: { complete: 1 }
+        # `recovery_count: 0` is the selection, so pinning it in the final configuration pins that
+        # the engine selected the execution the question named.
+        final:
+          mission.state: delivered
+          mission.recovery_count: 0
+    note: >
+      A MEASUREMENT, and it decides nothing. No `within:`, so `exists` is forced, and the answer is a
+      figure established by the witness that attains it: 645 s, which is one route solve at 45 s plus
+      one drive segment at 600 s.
+
+      No requirement names this query, and that is a decision rather than an omission. A measurement
+      answers HOW MUCH and discharges no obligation -- `measurePath`'s only refuting arm fires when
+      nothing reaches the selection, never when the figure is too large -- so a requirement naming it
+      would read satisfied at every magnitude forever. The ceiling question below is the one with an
+      obligation attached, and the pair is here so a student can see which is which.
+
+      The selection is behavioral and the charges are quantitative, so the models this question needs
+      are the mission machine plus the two graphs whose entities carry the duration annotations.
+
+  - id: delivering-missions-within-the-duration-budget
+    label: Every delivery completes within the declared mission-duration budget
+    suggested: true
+    models: [mission, control-authority, compute-platform, mission-endurance]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: counterexample
+        # Three halts and three resumes IS the counterexample's content -- a delivery that spent the
+        # whole recovery allowance. Pinned as a bound on labels, not as a step count.
+        labels_at_least: { halt: 3, resume: 3, complete: 1 }
+        final:
+          mission.state: delivered
+    note: >
+      THE behavior-to-quantity composition under a declared ceiling. A behavioral predicate selects
+      WHICH executions -- those reaching `delivered`; the quantitative model supplies the
+      per-occurrence charges, the sum along each selected execution, and the maximum over them.
+      `forall` is forced: a ceiling claim is universal over the selected executions.
+
+      Refuted at 2,715 s against 900 s, and the counterexample IS the answer to "which delivery blows
+      the budget" -- that question needs no separate query because the evidence carries it. The
+      arithmetic is one route solve, four drive segments and three scan-matches: 45 + 2400 + 270. Four
+      drive segments for three recoveries, because re-localizing returns the rover to `driving` and
+      the trace charges the occurrence again.
+
+      The declared ceiling lives once, at `quantities.mission-duration-budget.value`, and this query
+      names it by reference rather than restating it. Three roles, three places: the quantity declares
+      the number, the query compares against it, the requirement obliges.
+
+  - id: compute-payload-fits-onboard-ram
+    label: The autonomy payload's peak RAM fits the compute module's carve-out
+    suggested: true
+    models: [compute-platform, mission]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      The capstone's integrated question, and the one worth running twice. `peak_memory` is the
+      maximum of memory(c) over the reachable set, and memory(c) sums the two resident allocations
+      plus whichever `when:`-charged allocation the current mission state licenses. No `target:` --
+      asking for a configuration-scoped metric along executions is a category error the evaluator
+      refuses by name, which is worth trying once to see.
+
+      Three forms decide it, and each supplies something the others cannot. STRUCTURE says who owns
+      each buffer and declares the ceiling on the model whose question it answers. QUANTITY says what
+      each allocation costs. BEHAVIOR says which are live together -- and that third premise is worth
+      896 MB, because without it every allocation must be resident and the peak becomes a sum.
+
+      A ceiling that holds reports its figure and no witness: the claim is universal over the
+      reachable configurations, and a universal that holds has no single configuration to point at.
+
+  # --- A purposeful omission, made executable ------------------------------------------------------
+
+  - id: charge-remaining-at-delivery
+    label: The battery still has charge when the parcel is handed over
+    suggested: false
+    models: [mission-endurance, mission]
+    expected:
+      outcome: unlicensed
+      coverage: not-applicable
+      refusal_contains: "names nothing in this system"
+      no_evidence: true
+    note: >
+      Purposeful omission, executed rather than described -- and the omission it executes is this
+      example's largest. `unlicensed` is a SUCCESSFUL result reporting what the model does not
+      authorize. It is emphatically not `refuted`, which would assert the battery never runs low, a
+      claim no model here makes.
+
+      Two gaps meet in this one refusal. The first is a modeling choice: `mission-endurance` declares
+      the battery's state of charge as an omission, so no machine tracks it and the reference resolves
+      to nothing. The second is a fact about MAGE: the dimension table has `duration`, `memory`,
+      `cost`, `ratio` and `count` and no `energy`, so even with a charge machine there would be no
+      dimension to denominate a joule budget in. `cost` carries the right algebra -- execution-scoped,
+      summed per occurrence -- and the wrong base unit, `usd`.
+
+      So this example budgets DURATION and says so in three places rather than spelling joules as
+      dollars. A number that passes every check while denoting the wrong dimension is worse than a
+      question that refuses.
+
+# ---------------------------------------------------------------------------------------------------
+# The hand-derived oracle. Every number here was derived by a human from the declarations, and every
+# one was then obtained from the engine; they agreed. The premises are stated separately so a
+# disagreement localizes to one premise rather than to "the answer is different".
+#
+# NOTE on how far these are checked: `test/examples.test.ts` premise-checks the hand arithmetic for
+# `document-processing` only -- the three tests that walk charges, occurrences and ceilings all begin
+# `loadExample("document-processing")`. This block is therefore read STRICTLY by the fixture reader
+# and cross-checked against the engine by hand rather than by the suite. Reported rather than worked
+# around; generalizing those three tests over the corpus is a follow-up this example would benefit
+# from, and it is the reason every figure below is also pinned as a magnitude in the notes above.
+# ---------------------------------------------------------------------------------------------------
+quantitative_expectations:
+
+  - id: peak-autonomy-ram
+    metric: memory
+    label: Peak RAM over the reachable mission configurations
+    hand_derived: true
+    # The query that decides whether the largest `when:`-charged allocation is ever incurred at all.
+    # A charge naming an unreachable state would inflate nothing, and this is where that is checked.
+    reachability_from: rover-can-start-driving
+    resident_mb:
+      middleware-heap-ram: 192
+      map-tiles-ram: 256
+    when_charged_mb:
+      route-solver-workspace-ram: 512
+      perception-buffers-ram: 640
+      relocalizer-workspace-ram: 384
+    arithmetic: >
+      memory(c) = 192 + 256 (resident, every configuration) + whichever `when:` charge the mission's
+      current state licenses. A machine holds one control state, so at most one of the three applies:
+      planning adds 512 -> 960; driving adds 640 -> 1088; recovering adds 384 -> 832; idle,
+      delivered, aborted and fault add nothing -> 448. peak_memory is the maximum over the 20
+      reachable configurations = 1088 MB, against the declared 1280 MB ceiling, leaving 192 MB (15%).
+      Were all five resident -- the only thing writable with no machine to name -- the peak would be
+      192 + 256 + 512 + 640 + 384 = 1984 MB, which exceeds the same ceiling by 704 MB.
+    expected_mb: 1088
+    # The floor: what every configuration charges regardless of state.
+    baseline_mb: 448
+    note: >
+      The 896 MB between 1984 and 1088 is the capstone's whole claim, and it is a claim about
+      MODELING rather than about the rover. Nothing was optimized; a premise was added. The premise
+      is that a machine occupies one control state, which `planning-and-driving-at-once` reports as
+      an unsatisfiable conjunction, and it is what licenses a maximum where a sum would otherwise be
+      the only sound answer.
+
+      Both figures were taken from the engine: 1088 MB from the shipped model, 1984 MB from the same
+      model with the three `when:` clauses rewritten to `residency: resident`. The second reads
+      `refuted` on the identical query.
+
+  - id: worst-delivery-duration
+    metric: latency
+    label: Worst-case modeled duration of an execution that delivers
+    hand_derived: true
+    trace_from: delivering-missions-within-the-duration-budget
+    charges:
+      route-planning-duration: 45000
+      drive-segment-duration: 600000
+      relocalization-duration: 90000
+    occurrences:
+      route-planner: 1
+      drive-system: 4
+      localization: 3
+    arithmetic: >
+      Entity accounting under `basis: entities` charges each occurrence of an accounted entity along
+      the execution. The worst delivering trace halts and resumes three times: planning once (45 s),
+      driving four times (4 x 600 = 2400 s) and re-localizing three times (3 x 90 = 270 s), for
+      2,715 s against the declared 900 s. Four drive segments for three recoveries, because `resume`
+      returns the mission to `driving` and the occurrence is charged again -- a retry costs twice
+      because the trace visits the operation twice, never because two annotations were summed.
+    expected_ms: 2715000
+    note: >
+      The nominal delivery is the same sum with zero recoveries: 45 + 600 = 645 s, inside the budget
+      with 28% of margin, and that figure is `nominal-mission-duration`'s. The gap between 645 and
+      2,715 is the cost of the recovery policy, and it is why `recovery-is-bounded` and this
+      requirement cannot both be satisfied by editing one number.
+
+modifications:
+
+  - id: unsynchronized-fault-path
+    label: Let the mission fault without inhibiting motion
+    rationale: >
+      The guard-versus-synchronization lesson, and the most important modification here. The shipped
+      model enters `fault` through the `fault-detected` EVENT, which steps the mission and the
+      interlock atomically. This adds a LOCAL transition into `fault` that synchronizes with nothing
+      -- the shape an author writes when they think of the interlock as something to read rather than
+      something to change.
+
+      The invariant falls immediately, with a counterexample trace. Nothing about the interlock
+      machine changed; what changed is that the mission can now move without it. A reader who
+      believes the two machines are "linked by shared identity" should run this and watch the link
+      turn out to be the events.
+    transaction:
+      operations:
+        - op: add-transition
+          machine: mission
+          from: driving
+          to: fault
+          label: unsynchronized-fault
+    changes:
+      - query: motion-inhibited-whenever-faulted
+        from: holds
+        to: refuted
+    counterexample:
+      shape: trace
+      role: counterexample
+      labels_at_least: { unsynchronized-fault: 1 }
+      final:
+        mission.state: fault
+        motion-interlock.state: enabled
+    note: >
+      The pinned counterexample is the point: the final configuration has the mission faulted and
+      motion still enabled, which is precisely the situation the shipped model makes unreachable. It
+      is also the configuration the vector always admitted -- 4 of 56 -- so this modification reaches
+      an existing corner rather than inventing one, which is what "satisfiable but unreachable" means
+      in practice.
+
+  - id: unlimited-recovery
+    label: Remove the recovery attempt limit
+    rationale: >
+      Section 13.7's recovery question from the other direction. The shipped `resume` carries
+      `requires: recovery_count < 3`; this adds a second `resume` transition with no guard, which is
+      what "just keep trying" looks like as a model edit.
+
+      Two verdicts move, and only one of them changes outcome. `recovery-can-repeat-forever` flips
+      from refuted to holds, with a lasso whose cycle is halt-resume -- a genuinely repeated
+      configuration, because nothing advances any more. The duration ceiling stays refuted and its
+      REASON changes: the engine now reports the maximum as unbounded, naming the cycle's 690 s per
+      iteration and observing that every finite bound is eventually exceeded. A positive charge on a
+      repeatable cycle is a cycle witness rather than a refusal, which is the honest answer.
+
+      So this makes the termination requirement fail without making the budget requirement pass. That
+      is the tradeoff with the sign the student should not expect.
+    transaction:
+      operations:
+        - op: add-transition
+          machine: mission
+          from: recovering
+          to: driving
+          label: retry-without-limit
+          sync: resume
+    changes:
+      - query: recovery-can-repeat-forever
+        from: refuted
+        to: holds
+      # Pinned as unchanged on purpose: the obligation was already breached, and a modification that
+      # moves the REASON without moving the outcome is worth recording rather than hiding.
+      - query: delivering-missions-within-the-duration-budget
+        from: refuted
+        to: refuted
+
+  - id: wider-perception-buffers
+    label: Widen the perception buffers for a second camera
+    rationale: >
+      A real and defensible design change -- a second camera needs more frames in flight -- and it
+      costs RAM the carve-out does not have. 640 MB becomes 896 MB, the driving configuration becomes
+      448 + 896 = 1344 MB, and the pinned requirement goes from holds to refuted on one edited number.
+
+      That is the whole reason a quantity is not a decoration on the model: it decides a property. It
+      also shows the ceiling query is live rather than vacuously satisfied, which is the thing a
+      single green verdict cannot establish on its own.
+    transaction:
+      operations:
+        - op: set-quantity-value
+          id: perception-buffers-ram
+          value: 896 MB
+    changes:
+      - query: compute-payload-fits-onboard-ram
+        from: holds
+        to: refuted

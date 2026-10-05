@@ -71,17 +71,25 @@ import { Workspace } from "./services.ts";
  * example and left the card unchanged.
  *
  * What is NOT resolved here: §31 drops Worker Queue from its three while §18 keeps it, and nothing
- * in this wave adjudicated that. Five ship.
+ * in this wave adjudicated that. Six ship.
  *
- * Embedded Sensor Node sits LAST, and the position is a consequence rather than a preference.
+ * Embedded Sensor Node sits FIFTH, and the position is a consequence rather than a preference.
  * `exemplarFor` takes the FIRST shipped example instantiating a type, and three examples ahead of
  * this one already declare quantities — so appending leaves every existing Learn card's exemplar
  * where it is. The quantitative card's exemplar is a separate question from the menu's order: it is
  * decided by which example has an addressable quantitative model to render, not by position.
+ *
+ * Autonomous Delivery sits LAST, and here the position IS the decision: §19 orders the five
+ * flagships by the semantic surface each one needs, and this is the capstone — the only example that
+ * composes structure, behavior and quantity into one verdict. Appending keeps every `exemplarFor`
+ * exemplar where it is, which matters more here than anywhere else: this example declares five
+ * purposeful models, two machines and two ceilings, so inserting it earlier would re-point the
+ * behavior card, the quantitative card and the graph card all at once, at a system a first-time
+ * reader should meet last rather than first.
  */
 export const SHIPPED_EXAMPLE_IDS =
   ["message-bus", "transaction-workspace", "document-processing", "worker-queue",
-   "embedded-sensor-node"] as const;
+   "embedded-sensor-node", "autonomous-delivery"] as const;
 
 export type ShippedExampleId = (typeof SHIPPED_EXAMPLE_IDS)[number];
 

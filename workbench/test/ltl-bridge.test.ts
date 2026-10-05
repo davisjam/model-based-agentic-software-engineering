@@ -160,6 +160,21 @@ interface Tally {
   compared: number;
   skippedAvoid: number;
   skippedUnsettled: number;
+  /**
+   * Pairs where BOTH sides refused the question, which is agreement rather than a verdict.
+   *
+   * `unlicensed` reports that the model does not authorize the question — it is not a third truth
+   * value, so no duality between `reach p` and `G not p` has content when `p` itself does not
+   * resolve. Expecting the LTL side to answer `holds` there would be expecting it to claim the
+   * target never occurs, which is precisely the claim a refusal exists to withhold.
+   *
+   * Counted separately from `skippedUnsettled` because the two exclusions mean different things: an
+   * unsettled pair was SEARCHED and truncated, an unlicensed pair was never a question. And this one
+   * is not a bare skip — the guard below disagrees when only ONE side refuses, which is a real
+   * defect (one implementation answering a question the other will not accept) and was unreachable
+   * while no shipped model carried a refusing `reach`.
+   */
+  skippedUnlicensed: number;
   noBridge: number;
 }
 
@@ -188,9 +203,27 @@ interface CrossCheck {
 }
 
 function crossCheck(sabotage: Sabotage = "none"): CrossCheck {
-  const tally: Tally = { compared: 0, skippedAvoid: 0, skippedUnsettled: 0, noBridge: 0 };
+  const tally: Tally = {
+    compared: 0, skippedAvoid: 0, skippedUnsettled: 0, skippedUnlicensed: 0, noBridge: 0,
+  };
   const disagreements: string[] = [];
   const perForm = new Map<string, number>();
+
+  /**
+   * Whether this pair is a refusal rather than a comparison, recording a disagreement if the two
+   * sides disagree about REFUSING. Called by all three form rows before their duality is applied.
+   */
+  const refusalHandled = (where: string, left: Outcome, right: Outcome): boolean => {
+    if (left !== "unlicensed" && right !== "unlicensed") return false;
+    if (left !== right) {
+      disagreements.push(
+        `${where}: one side refused and the other answered — ${left} against ${right}. A question ` +
+        `the model does not license must be refused by both implementations, or one of them is ` +
+        `answering from vocabulary the other does not have`);
+    }
+    tally.skippedUnlicensed += 1;
+    return true;
+  };
 
   for (const subject of subjects()) {
     for (const saved of behaviorQueries(subject)) {
@@ -222,6 +255,7 @@ function crossCheck(sabotage: Sabotage = "none"): CrossCheck {
         const left = shipped(subject, saved);
         const right = ltl(subject,
           sabotage === "invariant-as-eventually" ? eventuallyOf(atom) : alwaysOf(atom));
+        if (refusalHandled(where, left, right.outcome)) continue;
         if (left === "inconclusive" || right.outcome === "inconclusive") {
           tally.skippedUnsettled += 1;
           continue;
@@ -237,6 +271,7 @@ function crossCheck(sabotage: Sabotage = "none"): CrossCheck {
       if (form === "reach") {
         const left = shipped(subject, saved);
         const right = ltl(subject, alwaysOf(notOf(atom)));
+        if (refusalHandled(where, left, right.outcome)) continue;
         if (left === "inconclusive" || right.outcome === "inconclusive") {
           tally.skippedUnsettled += 1;
           continue;
@@ -277,6 +312,7 @@ function crossCheck(sabotage: Sabotage = "none"): CrossCheck {
       // implication would miss a stutter-closure LEAK, which is the error this row exists to catch.
       const left = shipped(subject, saved);
       const right = ltl(subject, eventuallyOf(alwaysOf(notOf(atom))));
+      if (refusalHandled(where, left, right.outcome)) continue;
       if (left === "inconclusive" || right.outcome === "inconclusive") {
         tally.skippedUnsettled += 1;
         continue;
@@ -314,9 +350,19 @@ test("every bridgeable saved query agrees with its LTL formula", () => {
   assert.ok((perForm.get("invariant") ?? 0) >= 3, `invariant coverage: ${JSON.stringify([...perForm])}`);
   assert.ok((perForm.get("repeatable-cycle") ?? 0) >= 2,
     `repeatable-cycle coverage: ${JSON.stringify([...perForm])}`);
-  // And the exclusions stay exceptional. If `avoid` or an unsettled limit ever became the common
-  // case, the floors above would be met by a shrinking minority of the real questions.
-  assert.ok(tally.skippedAvoid + tally.skippedUnsettled <= tally.compared / 2,
+  // The refusal row is exercised by shipped data, which is what keeps `refusalHandled`'s
+  // disagreement arm from being a branch nothing reaches. `autonomous-delivery` ships a `reach` whose
+  // target names no declared machine, and both implementations refuse it; before that example there
+  // was no refusing behavior query in the corpus and this guard could not have been written against
+  // anything. A floor rather than an exact count, so a later example raises it without reddening.
+  assert.ok(tally.skippedUnlicensed >= 1,
+    `no shipped behavior query is refused, so the both-sides-refuse row is untested: ` +
+    `${JSON.stringify(tally)}`);
+
+  // And the exclusions stay exceptional. If `avoid`, an unsettled limit or a refused question ever
+  // became the common case, the floors above would be met by a shrinking minority of the real
+  // questions. All three exclusions count against the same ceiling for that reason.
+  assert.ok(tally.skippedAvoid + tally.skippedUnsettled + tally.skippedUnlicensed <= tally.compared / 2,
     `too much was excluded to call this a cross-check: ${JSON.stringify(tally)}`);
 });
 
