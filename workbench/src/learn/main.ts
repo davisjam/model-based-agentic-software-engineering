@@ -40,7 +40,7 @@
 import { parse } from "yaml";
 import { Workspace } from "../app/services.ts";
 import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../app/examples.ts";
-import { learnHrefForType } from "../app/learn.ts";
+import { learnHrefForType, type LearnEntry } from "../app/learn.ts";
 import type { CanonicalSystem } from "../ir/types.ts";
 import { renderView } from "../render/index.ts";
 import type { Point, RenderedView, SceneSubject } from "../render/types.ts";
@@ -194,6 +194,29 @@ function bulletList(items: readonly string[]): HTMLElement {
 const sub = (text: string): HTMLElement => el("p", text, "sublabel");
 
 /**
+ * What the kernel declares between a card's type and its pairing partner — §23.2's display rule.
+ *
+ * A description list, which is the page's existing spelling for "a term and what it means"
+ * (`dl.prov`): the term is the registered kind in §23.2's own form, and the definition is the
+ * registry entry's `interpretation`, so the student learns the name and the sentence together and
+ * this function words neither. The empty case gets a sentence rather than silence — see the call
+ * site for why that is the informative branch rather than a missing one.
+ */
+function relationshipKinds(pair: LearnEntry["combineWith"]): HTMLElement {
+  if (pair.bindings.length === 0 && pair.compositions.length === 0) {
+    return el("p", "The workbench declares no binding and no composition between these two model "
+      + "forms. Pairing them is a route through this page, not a relationship the model system "
+      + "states — the relationships it does state are below.", "intro");
+  }
+  const dl = el("dl", undefined, "prov");
+  for (const b of pair.bindings) dl.append(el("dt", `bound by: ${b.name}`), el("dd", b.interpretation));
+  for (const c of pair.compositions) {
+    dl.append(el("dt", `composed by: ${c.name}`), el("dd", c.interpretation));
+  }
+  return dl;
+}
+
+/**
  * A table in a horizontal-scroll container, with its header row.
  *
  * Extracted on the second site, not the third: the quantitative section built one inline and the
@@ -313,10 +336,19 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   // field's own name, which read as one more thing the model system declares. It is now a "try
   // next" pointer after the progression, and the registry field is unchanged — renaming it is a
   // registry change this wave does not own.
+  //
+  // §23.2 supplies the other half, and it is the half that keeps the demotion honest: *"do not
+  // teach students that every line between two models is a join"*, and *"once the relationship is
+  // established, display its actual semantic kind"* — `bound by: machine-of-entity`. So the
+  // pointer stays navigation-worded, and the KIND is rendered beside it from `BINDINGS` /
+  // `COMPOSITIONS`, in the registry's own words. An empty pair is rendered too, because it is the
+  // informative case: structure ↔ quantity is a route through this page and nothing the kernel
+  // declares, and a card that fell silent there would read as a line whose meaning went unsaid.
   section.append(sub(PART.next));
   const combine = el("div", undefined, "learn-combine");
   combine.append(el("p", `Add a ${s.entry.combineWith.partnerLabel} to this system.`, "outcome"));
   combine.append(el("p", `Then you can ask: “${s.entry.combineWith.richerQuestion}”`));
+  combine.append(relationshipKinds(s.entry.combineWith));
   if (s.combinedIn.length > 0) {
     const where = el("p", undefined, "intro");
     where.append(document.createTextNode("Both are declared in "));

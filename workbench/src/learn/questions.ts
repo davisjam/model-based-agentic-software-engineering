@@ -6,8 +6,9 @@
  * `workbench-guide.ts` holds sections nothing in the kernel derives, because nothing in a model
  * kernel knows how a pane reads. These are the opposite case: each one teaches a CAPABILITY, so
  * each one must come from a source the kernel consults or ships, and a section whose source went
- * away must change what it says. Five do it by running a question and rendering what comes back;
- * the sixth renders a gate's own verdict.
+ * away must change what it says. Most do it by running a question and rendering what comes back;
+ * one renders a gate's own verdict; the two cross-model sections render the binding and
+ * composition registries and then go and find real instances of them in the shipped corpus.
  *
  * So the declaration here carries only furniture — an anchor, the engineering question that is the
  * heading, one framing sentence — plus `derivedFrom`, the citations in the registry's own
@@ -27,6 +28,13 @@
  * between them is visible on the page and not only in CI. `question-agents` renders
  * `affordanceParityGate()`'s own headline, including a non-zero violation count if one appears.
  * `question-omissions` quotes the refusals the shipped questions actually earn.
+ * `question-bindings` states the §8 lesson — a binding does not merge the models — as two
+ * `Purpose` records read from one bound pair, so the claim is two declarations a reader can
+ * compare rather than this page's word for it, and it distinguishes "the corpus declares none"
+ * from "this page cannot read that spelling" instead of printing a zero for both.
+ * `question-compositions` asks the composed question AND the same question with the selection
+ * dropped, then once per state the bound machine declares: the verdict and the figure move with
+ * the selection, which is the composition, and no row of it is written down here.
  *
  * ## Where the operations section comes from, and why not from the facade
  *
@@ -72,13 +80,14 @@
  * pointed the other way.
  */
 import {
-  CLAUSE_OWED, MODEL_TYPES,
-  type ModelType, type ModelTypeId, type SchemaAuthority, type SemanticBasis,
+  BINDINGS, CLAUSE_OWED, COMPOSITIONS, MODEL_TYPES, modelTypeForQueryKind,
+  type BindingSemantics, type CompositionSemantics, type ModelType, type ModelTypeId,
+  type PrimitiveGate, type SchemaAuthority, type SemanticBasis,
 } from "../engine/model-types.ts";
 import { QUANTIFIERS, QUANTIFIER_EVIDENCE } from "../engine/types.ts";
 import { countElements, selectElements, type Cardinality } from "../engine/elements.ts";
 import { runQuery } from "../engine/index.ts";
-import type { CanonicalSystem, Evidence, QueryResult } from "../ir/types.ts";
+import type { CanonicalSystem, Evidence, Purpose, QueryResult } from "../ir/types.ts";
 import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../app/examples.ts";
 import { affordanceParityGate, CAPABILITIES, ESCAPE_HATCHES } from "../app/capabilities.ts";
 import { composedQuantityQuery, exemplarFor, savedStatements, type LoadedSystems } from "./content.ts";
@@ -179,6 +188,79 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
       {
         file: "src/ir/types.ts", symbol: "EvidenceShape",
         role: "the shapes evidence comes in: a path through a graph, a trace, a lasso",
+      },
+    ],
+  },
+  // The two cross-model sections, SIXTH and SEVENTH in the author's own page order (§16: "6. One
+  // system, several purposeful models — Bindings, Composition"), which puts them after the two
+  // kinds of evidence and before properties. The order is the pedagogy again: a student meets what
+  // one model answers, then how an answer is evidenced, and only then what a SECOND model adds —
+  // because the second model is reached through the first one's declared omissions.
+  {
+    anchor: "question-bindings",
+    heading: "One system, several purposeful models — what connects them?",
+    lede: "Two models of one system answer different questions. A binding states how their "
+      + "elements correspond — and it does not combine them into one larger model: each keeps its "
+      + "own purpose and its own omissions.",
+    derivedFrom: [
+      {
+        file: "src/engine/model-types.ts", symbol: "export const BINDINGS",
+        role: "every declared correspondence between elements in different purposeful models: the "
+          + "domains it runs between, what it means, what licenses it, and where a model authors "
+          + "it — the registry owns the count, so this section can neither add a binding nor keep "
+          + "one the kernel dropped",
+      },
+      {
+        file: "src/engine/model-types.ts", symbol: "export interface BindingSemantics",
+        role: "what a binding may declare, and what it may NOT: its licensing is a declaration "
+          + "gate rather than anything that could name a query, which is the typed form of \"a "
+          + "binding does not consume the result of a query\" — the line between this section and "
+          + "the next one",
+      },
+      {
+        file: "src/engine/model-types.ts", symbol: "export type BindingWitness",
+        role: "how a model document SPELLS a binding's reference — the authored keys and the "
+          + "shared-membership case, which is what lets this section find real correspondences in "
+          + "the shipped examples instead of asserting that they exist",
+      },
+      {
+        file: "src/ir/types.ts", symbol: "export interface Purpose",
+        role: "each model's own declared question, what it represents and what it omits — read per "
+          + "bound subject, which is how \"each retains its purpose and omissions\" is shown as "
+          + "two declarations rather than claimed in a sentence",
+      },
+    ],
+  },
+  {
+    anchor: "question-compositions",
+    heading: "Which questions need more than one model?",
+    lede: "A binding says which things correspond. A composition lets one model participate in "
+      + "answering a question over another — which is what makes the worst-case latency among "
+      + "successful executions one question rather than two.",
+    derivedFrom: [
+      {
+        file: "src/engine/model-types.ts", symbol: "export const COMPOSITIONS",
+        role: "every cross-domain composition the kernel admits — v0.2 admits exactly one, and the "
+          + "registry's own comment calls a second row a deliberate act with a ruling to cite "
+          + "rather than a convenience",
+      },
+      {
+        file: "src/engine/model-types.ts", symbol: "export interface CompositionSemantics",
+        role: "what a composition declares: the noun whose extension the source domain's result "
+          + "narrows, and a CITATION of the target dialect's own result type — a composition "
+          + "restricts a domain and introduces no result kind of its own",
+      },
+      {
+        file: "src/engine/types.ts", symbol: "export interface QuantityQuery",
+        role: "`target` — the reach predicate where a behavioural result enters a quantitative "
+          + "question; the one field the admitted composition is declared against, and the one "
+          + "this section fills from a shipped behavioural question to ask the composed question",
+      },
+      {
+        file: "src/quant/query.ts", symbol: "export function admitQuantityQuery",
+        role: "the admission that reads the selection and the ceiling before anything explores — "
+          + "so the sentence this section shows as the question is the evaluator's own reading of "
+          + "it, selection included, rather than the page's restatement",
       },
     ],
   },
@@ -330,11 +412,15 @@ function runSaved(system: CanonicalSystem, id: string): QueryResult | null {
   return saved === undefined ? null : runQuery(system, saved.raw).result;
 }
 
+/** A loaded query object, guarded. Saved `raw` is validated by the examples suite; this is reading. */
+const isObject = (v: unknown): v is Record<string, unknown> =>
+  typeof v === "object" && v !== null && !Array.isArray(v);
+
 /** A saved question's authored name, which is the statement its author gave it. */
 function statementOf(system: CanonicalSystem, id: string): string {
   const raw: unknown = system.queries.get(id)?.raw;
-  if (typeof raw === "object" && raw !== null && !Array.isArray(raw)) {
-    const name = (raw as Record<string, unknown>)["name"];
+  if (isObject(raw)) {
+    const name = raw["name"];
     if (typeof name === "string" && name.trim() !== "") return name.trim();
   }
   return id;
@@ -1102,6 +1188,512 @@ function omissionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
   return blocks;
 }
 
+// ---------------------------------------------------------------------------------------------
+// The cross-model relationships — the registry's own rows, and real correspondences in the corpus
+//
+// Two sections, and the split is §4.1's: a BINDING declares a correspondence and consumes no query
+// result; a COMPOSITION lets a result from one domain participate in evaluating a question in
+// another. Both read `BINDINGS` / `COMPOSITIONS`, which are separately typed and separately
+// totalized, so neither section can add a relationship the kernel does not declare, drop one it
+// does, or move a row across the line — the registry decides which array a row is in.
+//
+// What the page does NOT do with them: draw them. §23.3 asks for two models side by side with a
+// line between their canonical elements, and no cross-model canvas exists
+// (`DESIGN-render-rules-261004.md` §A.4 measured it: `SceneSubject` names ONE subject and nothing
+// composes two rendered views). So the correspondence is a readout, the two bound models are each
+// drawn in their own section by their own renderer, and `bindingBlocks` says so on the page rather
+// than leaving a reader to wonder where the picture went. Inventing a composer here would put a
+// second, unregistered source of cross-model edges in the app layer, which is the failure that
+// design's §E is written to prevent.
+// ---------------------------------------------------------------------------------------------
+
+const TYPE_LABELS: ReadonlyMap<ModelTypeId, string> =
+  new Map(MODEL_TYPES.map((t) => [t.id, t.label]));
+
+/** A model type's label. Throws on an unregistered id, which `ModelTypeId` already prevents. */
+function labelOf(id: ModelTypeId): string {
+  const label = TYPE_LABELS.get(id);
+  if (label === undefined) throw new Error(`'${id}' is not a registered model type`);
+  return label;
+}
+
+/**
+ * The two domains a relationship runs between.
+ *
+ * `from === to` is meaningful and the registry says why: the binding runs between purposeful models
+ * of ONE type, which is `appears-in`'s case. Rendering that as "X → X" would read as a typo.
+ */
+const betweenText = (from: ModelTypeId, to: ModelTypeId): string =>
+  from === to ? `two ${labelOf(from)}s` : `${labelOf(from)} → ${labelOf(to)}`;
+
+/** What licenses a relationship, in the gate's own words — a citation, or the by-construction why. */
+const gateText = (gate: PrimitiveGate): string =>
+  gate.kind === "declared"
+    ? `declared per system — ${gate.by.file} (${gate.by.symbol})`
+    : `by construction — ${gate.why}`;
+
+/**
+ * The correspondences one shipped system really declares for one binding, in the models' own words.
+ *
+ * Driven by the binding's `witness` rather than by a branch per binding name, because the witness
+ * field exists for exactly this: it declares how a model document SPELLS the reference. So the walk
+ * reads `keys` and the membership arm instead of knowing that `machine-of-entity` is spelled
+ * `entity`, and a binding whose spelling changes changes what this finds.
+ *
+ * `unwalkable` is the honest third answer, and it is not the same as zero. A correspondence whose
+ * source noun this page has no reader for (a `transition`, a `variable`) would otherwise be
+ * reported as "the shipped examples declare none", which is a claim about the corpus made from a
+ * gap in the walk. The reason names the noun, so the row says which of the two it is.
+ */
+type Witnessed =
+  | { readonly kind: "walked"; readonly phrases: readonly string[] }
+  | { readonly kind: "unwalkable"; readonly why: string };
+
+function witnessedBy(binding: BindingSemantics, system: CanonicalSystem): Witnessed {
+  const { source, target } = binding.correspondence;
+  if (binding.witness.kind === "shared-membership") {
+    if (source !== "entity" || target !== "model") {
+      return {
+        kind: "unwalkable",
+        why: `membership between a ${source} and a ${target} is not a walk this page performs`,
+      };
+    }
+    // The correspondence IS the membership: an element more than one purposeful model declares.
+    const declaredBy = new Map<string, string[]>();
+    for (const [modelId, model] of system.models) {
+      for (const entity of model.entities) {
+        declaredBy.set(entity, [...(declaredBy.get(entity) ?? []), modelId]);
+      }
+    }
+    return {
+      kind: "walked",
+      phrases: [...declaredBy]
+        .filter(([, models]) => models.length > 1)
+        .map(([entity, models]) => `${entity} is declared by ${models.join(", ")}`),
+    };
+  }
+
+  const keys = binding.witness.keys;
+  switch (source) {
+    case "machine": {
+      // `CanonMachine.entity` is the one authored machine-level reference the IR carries, so a
+      // declared key this page cannot read says so rather than finding nothing.
+      if (!keys.includes("entity")) {
+        return {
+          kind: "unwalkable",
+          why: `a machine reference spelled ${keys.join(", ")} is not a field the IR's machine `
+            + "record carries, so this page cannot read it",
+        };
+      }
+      const phrases: string[] = [];
+      for (const [machineId, machine] of system.machines) {
+        if (machine.entity !== null) phrases.push(`${machineId}.entity = ${machine.entity}`);
+      }
+      return { kind: "walked", phrases };
+    }
+    case "entity": {
+      const phrases: string[] = [];
+      for (const [entityId, entity] of system.entities) {
+        for (const key of keys) {
+          const value = entity.properties.get(key);
+          if (value !== undefined) phrases.push(`${entityId}.${key} = ${String(value.value)}`);
+        }
+      }
+      return { kind: "walked", phrases };
+    }
+    default:
+      return {
+        kind: "unwalkable",
+        why: `an authored ${source} reference (spelled ${keys.join(", ")}) is not a walk this page `
+          + "performs",
+      };
+  }
+}
+
+/** One binding, and what the shipped corpus declares of it. Total over `BINDINGS`, by construction. */
+interface BindingCorpusRow {
+  readonly binding: BindingSemantics;
+  readonly examples: readonly string[];
+  readonly count: number;
+  /** One real correspondence, as the models write it. Null when the corpus declares none. */
+  readonly instance: string | null;
+  /** Why the walk could not look, when it could not. Distinct from "it looked and found none". */
+  readonly unwalkable: string | null;
+}
+
+function bindingCorpusRows(systems: LoadedSystems): readonly BindingCorpusRow[] {
+  return BINDINGS.map((binding) => {
+    const examples: string[] = [];
+    let count = 0;
+    let instance: string | null = null;
+    let unwalkable: string | null = null;
+    for (const example of SHIPPED_EXAMPLE_IDS) {
+      const system = systems.get(example);
+      if (system === undefined) continue;
+      const found = witnessedBy(binding, system);
+      if (found.kind === "unwalkable") { unwalkable = found.why; continue; }
+      if (found.phrases.length === 0) continue;
+      examples.push(system.name);
+      count += found.phrases.length;
+      instance ??= `${found.phrases[0] ?? ""} — in ${system.name}`;
+    }
+    return { binding, examples, count, instance, unwalkable };
+  });
+}
+
+/**
+ * One real binding between a behavioural model and the structural model that declares its entity.
+ *
+ * The §8 lesson needs an INSTANCE, because the lesson is about two declarations: *"a binding does
+ * not combine the models into one larger model. Each retains its purpose and omissions."* Shown as
+ * two `Purpose` records read from one shipped system, that sentence is a readout; written as prose
+ * it is this page's word for it.
+ *
+ * Chosen by a stated rule, so the choice is defensible rather than picked: the first shipped
+ * example, in shipped order, with a machine→entity binding whose BOTH sides are real — a machine
+ * naming an entity, and a purposeful model declaring that entity. Null when the corpus has none,
+ * and the builder reports the absence rather than hiding it.
+ */
+interface BoundPair {
+  readonly binding: BindingSemantics;
+  readonly systemName: string;
+  readonly machineId: string;
+  readonly entityId: string;
+  readonly modelId: string;
+  readonly machinePurpose: Purpose;
+  readonly modelPurpose: Purpose;
+}
+
+function boundPair(systems: LoadedSystems): BoundPair | null {
+  const binding = BINDINGS.find(
+    (b) => b.correspondence.source === "machine" && b.correspondence.target === "entity");
+  if (binding === undefined) return null;
+  for (const example of SHIPPED_EXAMPLE_IDS) {
+    const system = systems.get(example);
+    if (system === undefined) continue;
+    for (const [machineId, machine] of system.machines) {
+      const entityId = machine.entity;
+      if (entityId === null) continue;
+      const owner = [...system.models].find(([, model]) => model.entities.includes(entityId));
+      if (owner === undefined) continue;
+      return {
+        binding, systemName: system.name, machineId, entityId,
+        modelId: owner[0], machinePurpose: machine.purpose, modelPurpose: owner[1].purpose,
+      };
+    }
+  }
+  return null;
+}
+
+/**
+ * The distinct binding bases, each with the bindings that declare it.
+ *
+ * Grouped by reference identity on the `SemanticBasis` object, not by its rendered sentence: two
+ * bases that happen to read alike are two claims and should separate, and one basis shared by three
+ * rows is one claim and should not be printed three times.
+ */
+function bindingBases(): readonly { readonly names: readonly string[]; readonly basis: SemanticBasis }[] {
+  const groups: { names: string[]; basis: SemanticBasis }[] = [];
+  for (const b of BINDINGS) {
+    const existing = groups.find((g) => g.basis === b.semanticBasis);
+    if (existing === undefined) groups.push({ names: [b.name], basis: b.semanticBasis });
+    else existing.names.push(b.name);
+  }
+  return groups;
+}
+
+/** A declared question, trimmed. Authored YAML block scalars carry trailing newlines. */
+const questionText = (purpose: Purpose): string =>
+  purpose.question === null ? "(none declared)" : purpose.question.trim();
+
+const semicolons = (items: readonly string[]): string =>
+  items.length === 0 ? "(none declared)" : items.join("; ");
+
+function bindingBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
+  const blocks: QuestionBlock[] = [{
+    kind: "rows",
+    label: "Every binding the workbench declares",
+    columns: ["Binding", "Between", "What the correspondence means", "What licenses it"],
+    rows: BINDINGS.map((b) => [
+      b.name, betweenText(b.from, b.to), b.interpretation, gateText(b.licensing),
+    ]),
+  }, {
+    kind: "rows",
+    label: "What each one puts in correspondence, and where a model writes it",
+    columns: ["Binding", "Corresponds", "Where it is authored"],
+    rows: BINDINGS.map((b) => [
+      b.name,
+      `${b.correspondence.source} → ${b.correspondence.target}`,
+      `${b.declaredBy.file} (${b.declaredBy.symbol})`,
+    ]),
+  }, {
+    // Grouped by the basis OBJECT rather than printed per row, for the reason the foundations
+    // section merges its own list: today all three bindings share one `SemanticBasis`, and a
+    // column would print the same subset paragraph three times — which reads as three separate
+    // claims about KerML. The grouping is by reference identity, so a binding that grows its own
+    // basis separates out on its own.
+    kind: "pairs",
+    label: "Where the binding semantics come from",
+    pairs: bindingBases().map(({ names, basis }) =>
+      [names.join(", "), basisAccount(basis)] as const),
+  }, {
+    kind: "rows",
+    label: "And where the shipped examples declare them",
+    columns: [
+      "Binding", "Shipped examples that declare it", "How many correspondences",
+      "One of them, as the models write it",
+    ],
+    rows: bindingCorpusRows(systems).map((r) => [
+      r.binding.name,
+      r.examples.length === 0 ? "—" : r.examples.join(", "),
+      r.count === 0 && r.unwalkable !== null ? "not readable from a model document" : String(r.count),
+      r.instance ?? r.unwalkable ?? "—",
+    ]),
+  }];
+
+  const pair = boundPair(systems);
+  if (pair === null) {
+    blocks.push({
+      kind: "prose",
+      text: "No shipped example declares a behavioural model against an entity a purposeful model "
+        + "also declares, so this page cannot show the two-declaration case from a real system.",
+    });
+    return blocks;
+  }
+
+  const shared = pair.machinePurpose.omits.filter((o) => pair.modelPurpose.omits.includes(o));
+  const onlyBehavioural = pair.machinePurpose.omits.filter((o) => !shared.includes(o));
+  const onlyStructural = pair.modelPurpose.omits.filter((o) => !shared.includes(o));
+  blocks.push({
+    kind: "pairs",
+    label: "Two models, bound — and each keeps its own purpose and omissions",
+    pairs: [
+      ["The binding", pair.binding.name],
+      ["Asked of", pair.systemName],
+      ["The correspondence, as the model writes it", `${pair.machineId}.entity = ${pair.entityId}`],
+      ["What the behavioural model asks", `${pair.machineId} — ${questionText(pair.machinePurpose)}`],
+      ["What the structural model asks", `${pair.modelId} — ${questionText(pair.modelPurpose)}`],
+      ["What the behavioural model leaves out", semicolons(pair.machinePurpose.omits)],
+      ["What the structural model leaves out", semicolons(pair.modelPurpose.omits)],
+      ["Omissions both of them declare", semicolons(shared)],
+    ] as const,
+  });
+  blocks.push({
+    kind: "prose",
+    text: `The binding changed neither list. ${onlyBehavioural.length} of the behavioural model's `
+      + `omissions are not the structural model's, and ${onlyStructural.length} of the structural `
+      + `model's are not the behavioural model's; a single merged model would have to drop both `
+      + "sets, and that is the reduction each author chose. The correspondence lets an answer in "
+      + "one model name an element the other declares, and nothing more.",
+  });
+  blocks.push({
+    kind: "prose",
+    text: `Each of those two models is drawn above, in its own section, by the renderer for its own `
+      + "model form — their boundaries are two pictures rather than one. The workbench does not "
+      + "yet draw the correspondence itself: there is no cross-model canvas, so the line between "
+      + "the two is this readout.",
+  });
+  return blocks;
+}
+
+/**
+ * The composed question, asked — and the same question with the selection dropped.
+ *
+ * §9's case, worked: a behavioural predicate selects the executions a quantitative question is
+ * evaluated over, which is what makes "the worst-case latency among successful executions" ONE
+ * question. Both halves are run, because the lesson is the difference between them and a page that
+ * showed only the composed figure would be showing a number, not a composition.
+ *
+ * The selection is a shipped saved behavioural question, not one written here, and the rule is:
+ * form `reach` — the behavioural form that denotes "executions reaching φ", which is what
+ * `QuantityQuery.target` means — with no `avoid` clause and a single-state target. The exclusions
+ * are the point. An `avoid` clause narrows by exclusion and the quantity's reach predicate has
+ * nowhere to put it, so carrying one across would show a selection the engine did not make; a
+ * multi-atom target would do the same to the state spread below.
+ */
+interface StateSelection {
+  readonly id: string;
+  readonly statement: string;
+  /** The ref the model's own question names, e.g. `document-lifecycle.state`. Never spelled here. */
+  readonly ref: string;
+  readonly value: string;
+}
+
+function stateSelections(system: CanonicalSystem): readonly StateSelection[] {
+  const out: StateSelection[] = [];
+  for (const id of system.queries.keys()) {
+    const raw: unknown = system.queries.get(id)?.raw;
+    if (!isObject(raw) || raw["kind"] !== "behavior") continue;
+    const behavior = raw["behavior"];
+    if (!isObject(behavior) || behavior["form"] !== "reach" || "avoid" in behavior) continue;
+    const target = behavior["target"];
+    if (!isObject(target)) continue;
+    const entries = Object.entries(target);
+    const only = entries.length === 1 ? entries[0] : undefined;
+    if (only === undefined) continue;
+    const [ref, value] = only;
+    if (typeof value !== "string") continue;
+    out.push({ id, statement: statementOf(system, id), ref, value });
+  }
+  return out;
+}
+
+interface ComposedReading {
+  readonly composition: CompositionSemantics;
+  readonly systemName: string;
+  readonly selection: StateSelection;
+  readonly metric: string;
+  readonly ceiling: string;
+  readonly composed: QueryResult;
+  readonly uncomposed: QueryResult;
+  /** The machine whose state vocabulary the selection's value belongs to. */
+  readonly machineId: string;
+  /** The same composed question, once per declared state of that machine. */
+  readonly spread: readonly { readonly state: string; readonly result: QueryResult }[];
+}
+
+function composedReading(systems: LoadedSystems): ComposedReading | null {
+  // Which composition can be ASKED here, derived from the registry's own query-kind mapping rather
+  // than from two literal type ids: the one whose source domain is the dialect a behavioural
+  // predicate belongs to and whose target domain is the dialect the question is asked in.
+  const behavioural = modelTypeForQueryKind("behavior");
+  const quantitative = modelTypeForQueryKind("quantity");
+  const composition = COMPOSITIONS.find(
+    (c) => c.from === behavioural.id && c.to === quantitative.id);
+  if (composition === undefined) return null;
+
+  for (const example of SHIPPED_EXAMPLE_IDS) {
+    const system = systems.get(example);
+    if (system === undefined) continue;
+    const selection = stateSelections(system)[0];
+    if (selection === undefined) continue;
+    const machine = [...system.machines].find(([, m]) => m.states.includes(selection.value));
+    if (machine === undefined) continue;
+    const composedQuery = composedQuantityQuery(
+      system, quantitative.query.forms, undefined, { [selection.ref]: selection.value });
+    const plainQuery = composedQuantityQuery(system, quantitative.query.forms);
+    if (composedQuery === null || plainQuery === null) continue;
+    const composed = runQuery(system, composedQuery.query).result;
+    const uncomposed = runQuery(system, plainQuery.query).result;
+    if (composed.refusal !== null || uncomposed.refusal !== null) continue;
+    return {
+      composition, systemName: system.name, selection,
+      metric: composedQuery.metric, ceiling: composedQuery.ceiling,
+      composed, uncomposed, machineId: machine[0],
+      spread: machine[1].states.map((state) => {
+        const q = composedQuantityQuery(
+          system, quantitative.query.forms, undefined, { [selection.ref]: state });
+        return {
+          state,
+          result: q === null ? uncomposed : runQuery(system, q.query).result,
+        };
+      }),
+    };
+  }
+  return null;
+}
+
+/**
+ * What the behavioural selection did to the answer, by comparing the two the engine returned.
+ *
+ * Exported so the gate can re-derive the comparison instead of matching the sentence, and written
+ * as a comparison rather than as a claim: the composed worst case is not guaranteed to be lower,
+ * because the globally worst execution may be one the selection keeps. When it is, the honest thing
+ * on the page is to say so and point at the spread, where a different selection does move it.
+ */
+export function selectionEffect(
+  reading: { readonly composed: QueryResult; readonly uncomposed: QueryResult },
+): string {
+  const after = magnitudeText(reading.composed);
+  const before = magnitudeText(reading.uncomposed);
+  if (after !== before) {
+    return `the worst case moved from ${before} to ${after}, because the executions measured are `
+      + "now only the selected ones";
+  }
+  if (reading.composed.outcome !== reading.uncomposed.outcome) {
+    return `the figure is unchanged at ${after}, but the verdict moved from `
+      + `${reading.uncomposed.outcome} to ${reading.composed.outcome}`;
+  }
+  return `nothing, for this selection: the worst execution this system has is one the selection `
+    + `keeps, so the figure stays at ${after}. Select a different state below and both the verdict `
+    + "and the figure move — which is the point, and why the composition is a question about two "
+    + "models rather than a filter that flatters one.";
+}
+
+function compositionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
+  const blocks: QuestionBlock[] = [{
+    kind: "rows",
+    label: "Every cross-domain composition the workbench admits",
+    columns: ["Composition", "Between", "What it means", "What it narrows"],
+    rows: COMPOSITIONS.map((c) => [
+      c.name, betweenText(c.from, c.to), c.interpretation, c.restricts,
+    ]),
+  }, {
+    kind: "rows",
+    label: "Where each one is grounded",
+    columns: ["Composition", "What licenses it", "Result type", "Semantic basis"],
+    rows: COMPOSITIONS.map((c) => [
+      c.name,
+      gateText(c.licensing),
+      `${c.result.file} (${c.result.symbol}) — ${c.result.role}`,
+      basisAccount(c.semanticBasis),
+    ]),
+  }];
+
+  const reading = composedReading(systems);
+  if (reading === null) {
+    blocks.push({
+      kind: "prose",
+      text: "No shipped example declares both a behavioural model and a quantitative ceiling with a "
+        + "saved reachability question to select on, so this page cannot show the composition at "
+        + "work on a real system.",
+    });
+    return blocks;
+  }
+
+  blocks.push({
+    kind: "pairs",
+    label: "The composed question, asked now",
+    pairs: [
+      ["Asked of", reading.systemName],
+      ["The behavioural selection, as its author stated it", reading.selection.statement],
+      ["The question, as the engine understood it", reading.composed.interpretedAs ?? "—"],
+      ["Verdict", reading.composed.outcome],
+      ["The figure that decides it", magnitudeText(reading.composed)],
+      ["Evidence", evidenceText(reading.composed.evidence)],
+      ["The declared ceiling it is decided against", reading.ceiling],
+    ] as const,
+  });
+  blocks.push({
+    kind: "pairs",
+    label: "The same metric and the same ceiling, with no behavioural selection",
+    pairs: [
+      ["The question, as the engine understood it", reading.uncomposed.interpretedAs ?? "—"],
+      ["Verdict", reading.uncomposed.outcome],
+      ["The figure that decides it", magnitudeText(reading.uncomposed)],
+      // READ off the two answers rather than promised beside them. A selection that happens to
+      // keep the worst execution changes nothing about the figure, and a page that implied
+      // otherwise would be teaching that selecting always flatters.
+      ["What this selection changed", selectionEffect(reading)],
+    ] as const,
+  });
+  blocks.push({
+    kind: "rows",
+    label: `The same question, selected on each state ${reading.machineId} declares`,
+    columns: ["Executions that reach", "Verdict", "The figure that decides it"],
+    rows: reading.spread.map((s) => [s.state, s.result.outcome, magnitudeText(s.result)]),
+  });
+  blocks.push({
+    kind: "prose",
+    text: "One question, and the behavioural model decides what it is about: the verdict and the "
+      + "figure both move as the selection moves, because the executions measured are the ones the "
+      + "behavioural predicate reaches. That is what a composition is — the quantitative dialect "
+      + "still returns its own kind of answer, a magnitude decided against a declared ceiling, and "
+      + "no new kind of result was introduced to join the two.",
+  });
+  return blocks;
+}
+
 /**
  * Every question section, built.
  *
@@ -1115,6 +1707,8 @@ export function buildQuestionSections(
     switch (section.anchor) {
       case "question-operations": return { section, blocks: operationBlocks(systems) };
       case "question-evidence": return { section, blocks: evidenceBlocks(systems) };
+      case "question-bindings": return { section, blocks: bindingBlocks(systems) };
+      case "question-compositions": return { section, blocks: compositionBlocks(systems) };
       case "question-properties": return { section, blocks: propertyBlocks(systems, fixtures) };
       case "question-requirements": return { section, blocks: requirementBlocks(systems, fixtures) };
       case "question-agents": return { section, blocks: agentBlocks() };

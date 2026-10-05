@@ -228,9 +228,17 @@ export function groundedIn(a: ModelTypeId, b: ModelTypeId, systems: LoadedSystem
  * shape first, with a comment explaining why it had to be derived. The page needs the same
  * question, and two derivations of one question shape would be two answers to "what can this system
  * be asked about cost" — free to disagree on the day a second ceiling lands.
+ *
+ * `selection` is §4.3's one admitted COMPOSITION, and it is a parameter of this function rather
+ * than a second builder for the same reason the paragraph above gives: the composed and uncomposed
+ * questions must differ in exactly one field or a reader cannot tell what the composition did.
+ * `QuantityQuery.target` is the field — the registry's `executions-selected-by-behaviour` row
+ * cites it as "the reach predicate where a behavioural result enters a quantitative question" — so
+ * passing a behavioural predicate here narrows the executions measured and changes nothing else.
+ * Omitted, the question ranges over every execution, which is the contrast the page shows beside it.
  */
 export function composedQuantityQuery(
-  system: CanonicalSystem, metrics: readonly string[], ceilingId?: string,
+  system: CanonicalSystem, metrics: readonly string[], ceilingId?: string, selection?: unknown,
 ): { readonly query: unknown; readonly metric: string; readonly ceiling: string } | null {
   const ceiling = [...system.quantities.values()].find(
     (q) => q.target.kind === "model" && (ceilingId === undefined || q.id === ceilingId));
@@ -241,7 +249,13 @@ export function composedQuantityQuery(
     ?? metrics.find((m) => !accounts(m));
   if (metric === undefined) return null;
   return {
-    query: { kind: "quantity", quantifier: "forall", quantity: { metric, within: ceiling.id } },
+    query: {
+      kind: "quantity", quantifier: "forall",
+      quantity: {
+        metric, within: ceiling.id,
+        ...(selection === undefined ? {} : { target: selection }),
+      },
+    },
     metric,
     ceiling: ceiling.id,
   };

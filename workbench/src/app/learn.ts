@@ -41,6 +41,17 @@
  * dependency to undo or an architecture decision to make and draw." Undone, because the registry
  * carries the same grounding and the Learn page is already permitted to read it.
  *
+ * ## The pairing is navigation, and the relationship beside it is not
+ *
+ * `combineWith` stays what §4.1 calls it — Learn-page navigation, not a semantic relationship — so
+ * the projection carries it unchanged. What it gained is a neighbour: the bindings and compositions
+ * the KERNEL declares between the card's type and its pairing partner, read from `BINDINGS` and
+ * `COMPOSITIONS`. That is §23.2's rule, and the two halves have to travel together or the card
+ * teaches the thing §23.2 forbids: *"do not teach students that every line between two models is a
+ * join."* A pointer with no kind beside it is such a line. A pointer whose kind is read off the
+ * registry is a route plus a fact, and the fact for one of the three cards is that the kernel
+ * declares nothing between those two domains at all.
+ *
  * ## The four-cards question, settled on a second axis
  *
  * The author's gallery sketch shows four cards; the kernel has three model types. The fourth,
@@ -62,7 +73,9 @@
  */
 import type { CanonicalSystem } from "../ir/types.ts";
 import {
-  MODEL_TYPES, type ModelType, type ModelTypeId, type QuerySubject, type SchemaAuthority,
+  BINDINGS, COMPOSITIONS, MODEL_TYPES,
+  type BindingSemantics, type CompositionSemantics,
+  type ModelType, type ModelTypeId, type QuerySubject, type SchemaAuthority,
 } from "../engine/model-types.ts";
 import type { RefusalDetail } from "../engine/types.ts";
 
@@ -89,8 +102,41 @@ export interface LearnEntry {
     readonly partner: ModelTypeId;
     readonly partnerLabel: string;
     readonly richerQuestion: string;
+    /**
+     * The relationships the KERNEL declares between this type and the partner — §23.2's "display
+     * its actual semantic kind" half, as `BINDINGS` / `COMPOSITIONS` rows held BY REFERENCE.
+     *
+     * The pairing itself is navigation (§4.1, and `ModelType.combineWith`'s own doc comment says
+     * so), which leaves a card with a line between two model forms and nothing to say about what
+     * that line MEANS. §23.2 forbids the easy answer — *"do not teach students that every line
+     * between two models is a join"* — and gives the honest one: once a relationship is
+     * established, show its registered kind, `bound by: machine-of-entity`. These two arrays are
+     * that, derived: whichever registry entries run between the two domains, in the registry's own
+     * order, and an EMPTY pair is the informative case rather than a gap — the structural ↔
+     * quantitative pairing is a route through the Learn page and nothing the kernel declares.
+     *
+     * Filtered here rather than in the engine because `bindingsOf` / `compositionsOf` ask "which
+     * touch this type", and a card asks the narrower "which run between these two". A fresh array
+     * either way (the V18 recompute discipline), so the identity that matters is the ENTRY's: each
+     * element is the registry object, never a projection of one.
+     */
+    readonly bindings: readonly BindingSemantics[];
+    readonly compositions: readonly CompositionSemantics[];
   };
 }
+
+/** The registry entries running between two domains, either direction. Recomputed, never stored. */
+const between = <T extends { readonly from: ModelTypeId; readonly to: ModelTypeId }>(
+  rows: readonly T[], a: ModelTypeId, b: ModelTypeId,
+): readonly T[] => rows.filter((r) => (r.from === a && r.to === b) || (r.from === b && r.to === a));
+
+/** The bindings the kernel declares between two model types. §23.2's `bound by:` line. */
+export const bindingsBetween = (a: ModelTypeId, b: ModelTypeId): readonly BindingSemantics[] =>
+  between(BINDINGS, a, b);
+
+/** The compositions the kernel declares between two model types. §23.2's `composed by:` line. */
+export const compositionsBetween = (a: ModelTypeId, b: ModelTypeId): readonly CompositionSemantics[] =>
+  between(COMPOSITIONS, a, b);
 
 const byId = new Map<ModelTypeId, ModelType>(MODEL_TYPES.map((t) => [t.id, t]));
 
@@ -112,6 +158,8 @@ const entryOf = (t: ModelType): LearnEntry => {
       partner: partner.id,
       partnerLabel: partner.label,
       richerQuestion: t.combineWith.richerQuestion,
+      bindings: bindingsBetween(t.id, partner.id),
+      compositions: compositionsBetween(t.id, partner.id),
     },
   };
 };
