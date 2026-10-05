@@ -37,7 +37,7 @@ import {
   compilePredicate, describePredicate, satisfiability, type CompiledPredicate,
 } from "./predicate.ts";
 import type { RefScope } from "./refs.ts";
-import { omissionCovering } from "./omission.ts";
+import { omissionCovering, omissionProse } from "./omission.ts";
 import {
   bounded, detail, exhaustive, refusedAdmission as refused, result, unlicensed, verdict,
   type Admission, type BehaviorForm, type BehaviorQuery, type Predicate, type Quantifier,
@@ -236,15 +236,11 @@ export function admitBehaviorQuery(
         const need = describeSelector(selector);
         const omitted = omissionCovering(system, need);
         if (omitted !== null) {
-          const one = omitted.declaredBy.length === 1;
-          const who = one
-            ? `model '${omitted.declaredBy[0] ?? ""}'`
-            : `models ${omitted.declaredBy.map((m) => `'${m}'`).join(", ")}`;
-          return refused(unlicensed(systemHash,
-            `no declared transition matches ${need}, and the absence is a declared modelling ` +
-            `decision: ${who} deliberately ${one ? "omits" : "omit"} '${omitted.text}'. ` +
-            `Answering would mean adding the distinction to a model that chose to leave it out.`,
-            interpretedAs, detail("missing-distinction", [omitted.text], omitted.declaredBy)));
+          // Same sentence as the graph path, from the one place it is worded; only the WRAPPER
+          // differs -- that path returns a Fail, this one a Verdict through `unlicensed`.
+          const said = omissionProse(`no declared transition matches ${need}`, omitted);
+          return refused(unlicensed(systemHash, said.prose, interpretedAs,
+            detail("missing-distinction", said.missing, said.models)));
         }
         return refused(unlicensed(systemHash,
           `no declared transition matches ${need}. The question is not ` +

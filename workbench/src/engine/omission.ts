@@ -94,17 +94,38 @@ export function omissionCovering(system: CanonicalSystem, need: string): Omissio
  * the structural clause also means the refusal a fixture pins does not change out from under it when
  * a model's purpose is edited; only the CAUSE does.
  */
-export function undeclared(system: CanonicalSystem, absence: string, need: string): Fail {
-  const omitted = omissionCovering(system, need);
-  if (omitted === null) return fail(`${absence}.`, detail("unknown-vocabulary"));
+/**
+ * THE sentence a declared omission earns, and the one place it is worded.
+ *
+ * Extracted because the behaviour path needs the same sentence in a different WRAPPER: the graph
+ * path returns a `Fail`, a `transition-live` refusal returns a `Verdict` through `unlicensed`. The
+ * wrapper differs; the prose must not. Two copies is how a third substrate ends up with a subtly
+ * different wording, and the wording IS the feature here — it is what turns a refusal from "the
+ * tool is limited" into "the model chose this, and here is where to add it".
+ */
+export function omissionProse(absence: string, omitted: Omission): {
+  readonly prose: string;
+  readonly missing: readonly string[];
+  readonly models: readonly string[];
+} {
   const one = omitted.declaredBy.length === 1;
   const who = one
     ? `model '${omitted.declaredBy[0] ?? ""}'`
     : `models ${omitted.declaredBy.map((m) => `'${m}'`).join(", ")}`;
-  return fail(
-    `${absence}, and the absence is a declared modelling decision: ${who} deliberately ` +
-    `${one ? "omits" : "omit"} '${omitted.text}'. There is no misspelling to hunt for — the model ` +
-    `represents what its purpose says it represents, and this is outside it. Answering would mean ` +
-    `adding the distinction to a model that chose to leave it out.`,
-    detail("missing-distinction", [omitted.text], omitted.declaredBy));
+  return {
+    prose:
+      `${absence}, and the absence is a declared modelling decision: ${who} deliberately ` +
+      `${one ? "omits" : "omit"} '${omitted.text}'. There is no misspelling to hunt for — the ` +
+      `model represents what its purpose says it represents, and this is outside it. Answering ` +
+      `would mean adding the distinction to a model that chose to leave it out.`,
+    missing: [omitted.text],
+    models: omitted.declaredBy,
+  };
+}
+
+export function undeclared(system: CanonicalSystem, absence: string, need: string): Fail {
+  const omitted = omissionCovering(system, need);
+  if (omitted === null) return fail(`${absence}.`, detail("unknown-vocabulary"));
+  const said = omissionProse(absence, omitted);
+  return fail(said.prose, detail("missing-distinction", said.missing, said.models));
 }
