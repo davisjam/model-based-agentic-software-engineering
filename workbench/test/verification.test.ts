@@ -275,7 +275,10 @@ const VERIFICATION_PER_STATUS: Readonly<Record<EvaluationStatus, {
       + "verdict that is not the one discharging the obligation",
   },
   exhausted: {
-    evaluation: () => ({ status: "exhausted", limit: "state-limit" }),
+    // `vacuous: null` is the ordinary truncation, and this table is about ordinary ones: the budget
+    // ran out and raising it is the remedy. The vacuous projection of this same row says the budget
+    // ran out and raising it CANNOT help, and it is pinned in `vacuous-precedence.test.ts`.
+    evaluation: () => ({ status: "exhausted", limit: "state-limit", vacuous: null }),
     satisfying: "inconclusive", breaching: "inconclusive",
     reason: "the search was bounded, so the obligation is not settled either way. The remedy is "
       + "budget, and the one thing this must never be is the accusation",

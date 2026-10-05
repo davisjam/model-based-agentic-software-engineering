@@ -867,12 +867,10 @@ export type QueryEvaluation =
      * V41's disclosure, projected for the one layer that must act on it. `null` is the earned
      * verdict, and the common case.
      *
-     * It rides the `completed` arm for the same reason `coverage` does: this is the only arm where
-     * a verdict exists to be qualified. And it rides BESIDE coverage rather than inside it because
-     * the two answer different questions. Coverage asks how much of the space was walked; this asks
-     * whether anything could have been charged at all. A vacuous verdict is reported under
-     * `exhaustive` coverage, so a reader consulting coverage alone sees a complete walk and a green
-     * verdict and has been told nothing.
+     * It rides BESIDE coverage rather than inside it because the two answer different questions.
+     * Coverage asks how much of the space was walked; this asks whether anything could have been
+     * charged at all. A vacuous verdict is reported under `exhaustive` coverage, so a reader
+     * consulting coverage alone sees a complete walk and a green verdict and has been told nothing.
      *
      * Typed as the `Compilation` itself rather than as a flag, which keeps the evaluator's own
      * sentence attached to the fact. This union's two non-completed arms already carry what their
@@ -885,8 +883,28 @@ export type QueryEvaluation =
      */
     readonly vacuous: Compilation | null;
   }
-  /** The evaluator's budget ran out. The remedy is a bigger budget, never a model change. */
-  | { readonly status: "exhausted"; readonly limit: Coverage["reason"] }
+  /** The evaluator's budget ran out — and `limit` alone is not yet enough to name the remedy. */
+  | {
+    readonly status: "exhausted";
+    readonly limit: Coverage["reason"];
+    /**
+     * The same disclosure, on the arm that reached no verdict at all (V43, amended).
+     *
+     * A truncated walk and an unsatisfiable predicate are independent facts, and an evaluation can
+     * carry both: satisfiability is decided before the walk begins (V44), so the disclosure travels
+     * at every budget while the OUTCOME still follows coverage. When both arrive, `limit` describes
+     * what stopped the walk and describes the wrong remedy — no budget makes an unreachable
+     * selection reachable — so an arm carrying `limit` alone forces the consuming layer to say
+     * "raise the bound" to an author whose bound can never help.
+     *
+     * Carried here rather than inferred downstream because the projection is the only place both
+     * facts are still in hand: past it the compilation is gone. Typed as the `Compilation` for
+     * V43's reason — the evaluator's own sentence is the remedy, and a flag would arrive with
+     * nowhere to go — and required for this union's standing reason: a construction site that has
+     * not decided does not compile.
+     */
+    readonly vacuous: Compilation | null;
+  }
   /** The purposeful models do not license the question. The remedy is a model. */
   | { readonly status: "unlicensed"; readonly refusal: string | null }
   /** The evaluation could not be performed or its declaration could not be read. */
@@ -924,20 +942,37 @@ export const evaluationOf = (
     case "refuted":
       return {
         status: "completed", verdict: res.outcome, coverage: res.coverage,
-        // Both proposition arms read it, not just `holds`. V41's table has a vacuous row under each:
-        // an `invariant` whose violation no state vector admits `holds`, and a `reach` whose target
-        // contradicts itself is `refuted`. Scoping this to `holds` would leave the second silent,
-        // and the second is the one a shipped query already produces.
-        vacuous: res.compilation.find((c) => c.kind === "vacuous") ?? null,
+        vacuous: disclosedVacuity(res.compilation),
       };
     // The kernel's `inconclusive` IS the author's `exhausted`: every evaluator that truncates a
-    // walk reports it under `bounded` coverage, and `reason` names which limit bit.
+    // walk reports it under `bounded` coverage, and `reason` names which limit bit. The disclosure
+    // comes along: an unsatisfiable predicate is decided before the walk (V44), so truncation finds
+    // it already true, and dropping it here would hand the next layer `limit` as the only remedy.
     case "inconclusive":
-      return { status: "exhausted", limit: res.coverage.reason };
+      return {
+        status: "exhausted", limit: res.coverage.reason,
+        vacuous: disclosedVacuity(res.compilation),
+      };
     case "unlicensed":
       return { status: "unlicensed", refusal: res.refusal };
   }
 };
+
+/**
+ * The vacuity disclosure on a result's compilation list, read ONCE for the two arms that carry it.
+ *
+ * Both proposition arms read it, not just `holds`. V41's table has a vacuous row under each: an
+ * `invariant` whose violation no state vector admits `holds`, and a `reach` whose target contradicts
+ * itself is `refuted`. Scoping this to `holds` would leave the second silent, and the second is the
+ * one a shipped query already produces.
+ *
+ * Extracted at the SECOND reading site rather than the third. The `exhausted` arm must find the same
+ * disclosure the `completed` arm does — a second copy of the predicate is how the two arms would
+ * drift, and a disclosure one arm recognises and the other does not is the defect this amendment
+ * closes.
+ */
+const disclosedVacuity = (compilation: readonly Compilation[]): Compilation | null =>
+  compilation.find((c) => c.kind === "vacuous") ?? null;
 
 /**
  * A disclosed rewrite or caveat on a result, in a closed vocabulary a renderer can branch on.

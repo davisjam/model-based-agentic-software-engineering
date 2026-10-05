@@ -57,7 +57,7 @@
  * for `violated` therefore returns two unrelated concepts, and this sentence is the mitigation.
  */
 import type {
-  Coverage, PropositionValue, QueryEvaluation, QueryResult,
+  Compilation, Coverage, PropositionValue, QueryEvaluation, QueryResult,
 } from "../ir/types.ts";
 import { bearsAConclusion, evaluationOf } from "../ir/types.ts";
 // Type-only, and only for the deciding query's SHAPE. The parse stays with the caller that holds
@@ -249,6 +249,28 @@ export const verificationError = (p: RequirementProblem): Verification =>
   ({ status: "error", requirement: null, problem: `${p.where}: ${p.problem}` });
 
 /**
+ * The vacuity disclosure an evaluation carries, over every arm that can carry one.
+ *
+ * TOTAL over `EvaluationStatus` by the compiler — no `default`, and a declared return type — the same
+ * discipline `verify` uses next door, and for the matching reason: a status added to the vocabulary
+ * must have someone decide whether an answer under it can be fixed by the author's own predicate. The
+ * `exhausted` arm answered that question wrongly by omission for a release, and omission is exactly
+ * what a total switch refuses.
+ *
+ * The two silent arms are silent on their own terms. An `unlicensed` evaluation has no answer for a
+ * predicate to have decided — the models declined the question before anything was evaluated — and an
+ * `error` is a statement about the declaration or the transport.
+ */
+const disclosedVacuity = (ev: QueryEvaluation): Compilation | null => {
+  switch (ev.status) {
+    case "completed": return ev.vacuous;
+    case "exhausted": return ev.vacuous;
+    case "unlicensed": return null;
+    case "error": return null;
+  }
+};
+
+/**
  * Interpret one evaluation against one requirement. The ONLY producer of `satisfied`/`violated`.
  *
  * TOTAL over `EvaluationStatus` by the compiler — no `default`, and a declared return type — so a
@@ -269,27 +291,33 @@ export function verify(req: Requirement, ev: QueryEvaluation | null): Verificati
   if (ev === null) {
     return { status: "inconclusive", requirement: id, because: { kind: "not-evaluated" } };
   }
+  // V43, and it outranks every arm below rather than only the two settled ones.
+  //
+  // A vacuous answer is a fact about the author's predicate or selection, which puts it on the same
+  // side of this layer's line as a declaration error: it says nothing about the system under design,
+  // so it can support neither a discharge nor an accusation. Reading it as `satisfied` reports an
+  // obligation met by a claim charged against nothing — the 2,750 ms against a declared 750 ms this
+  // rule was written for. Reading its mirror as `violated` accuses the system on a contradiction the
+  // author wrote, which is the same error pointed the other way and the one `verify`'s whole
+  // existence is owed to. And reading it as `bounded` sends the author to raise a budget that can
+  // never help, which is the third face of the same error and the one this hoist closes.
+  //
+  // ABOVE the switch, not inside two of its arms. The rule reads the disclosure and nothing else, so
+  // conditioning it on a status is the coverage-dependence V43 forbids by name; one check also means
+  // one precedence, and an arm cannot be added that silently declines to apply it.
+  //
+  // This does NOT breach the header's asymmetry — a witness is coverage-insensitive, and a vacuous
+  // answer is not a witness. V41's table is explicit that both of its vacuous rows carry no evidence
+  // at all, so there is no witness here for coverage to be insensitive about.
+  const vacuous = disclosedVacuity(ev);
+  if (vacuous !== null) {
+    return {
+      status: "inconclusive", requirement: id,
+      because: { kind: "vacuous", detail: vacuous.explanation },
+    };
+  }
   switch (ev.status) {
     case "completed":
-      // V43, and it outranks BOTH settled arms below rather than only the discharging one.
-      //
-      // A vacuous verdict is a fact about the author's predicate or selection, which puts it on the
-      // same side of this layer's line as a declaration error: it says nothing about the system
-      // under design, so it can support neither a discharge nor an accusation. Reading it as
-      // `satisfied` reports an obligation met by a claim charged against nothing — the 2,750 ms
-      // against a declared 750 ms this rule was written for. Reading its mirror as `violated`
-      // accuses the system on a contradiction the author wrote, which is the same error pointed the
-      // other way and the one `verify`'s whole existence is owed to.
-      //
-      // This does NOT breach the header's asymmetry — a witness is coverage-insensitive, and a
-      // vacuous verdict is not a witness. V41's table is explicit that both of its vacuous rows
-      // carry no evidence at all, so there is no witness here for coverage to be insensitive about.
-      if (ev.vacuous !== null) {
-        return {
-          status: "inconclusive", requirement: id,
-          because: { kind: "vacuous", detail: ev.vacuous.explanation },
-        };
-      }
       // Sound here, and ONLY here, because both sides are proposition values: see the header. The
       // breach is exhibited exactly when the verdict is not the one that discharges the obligation,
       // and a counterexample found inside a truncated search is a real counterexample.
