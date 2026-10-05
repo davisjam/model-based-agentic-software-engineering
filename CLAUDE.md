@@ -215,9 +215,19 @@ re-deriving these, so they live here:**
     the author on that false premise and had to be withdrawn.
     Both misses were structural, not careless: the first was scoped to the wrong subtree, the second
     searched for a spelling the design deliberately does not use. **So before writing an absence into
-    a brief, widen it on all three axes — PATH (is the subtree the whole corpus?), SPELLING (would the
-    codebase name this differently?), and SHAPE (could the capability exist without the token you
-    searched for?).** Then write the negative as a premise to refute and name the search that produced
+    a brief, widen it on all FOUR axes — PATH (is the subtree the whole corpus?), SPELLING (would the
+    codebase name this differently?), SHAPE (could the capability exist without the token you
+    searched for?), and TREE (am I searching the base the BRIEF will be cut from?).**
+    **TREE was added 261005, after the class recurred twice on that axis in one session** — and both
+    times the search itself was flawless, which is what makes it the nastiest of the four. (a) A probe
+    counted quantity-decided requirements on `main` and the figure went into a brief cut from a feature
+    branch that had two more; the agent corrected it. (b) A survey of the browser suite globbed
+    `test/browser/*.test.mjs`, concluded no test drives a student's click-path through edit-and-recheck,
+    and commissioned a design for the gap — the refuting file was `test/browser/a11y/keyboard.test.mjs`,
+    one directory down, in a subdir the same session had already listed. **A complete search of the
+    wrong scope reads exactly like a complete search.** So: run the probe on the brief's base sha, and
+    when a glob answers a question about a whole tier, check whether that tier has subdirectories.
+    Then write the negative as a premise to refute and name the search that produced
     it, so the agent can widen what you narrowed. That is what caught both: the joins brief said "if
     any part of this does not survive your own reading, say so and stop", and the quantification brief
     asked for evidence either way — the first was confirmed, the second refuted the premise it was
