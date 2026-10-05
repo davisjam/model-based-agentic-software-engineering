@@ -326,17 +326,17 @@ test("BOUNDARY: a statically sound pairing can still decide the wrong question, 
     "the evaluator must disclose the vacuity — this is the signal a later ruling joins to the "
     + "verification, and if it disappears that ruling loses its evidence");
 
-  // THE GAP, stated and not pinned as correct: the verification layer never sees that disclosure.
-  // `verifyDeclaration` takes a `Pick<QueryResult, "outcome" | "coverage" | "refusal">`, which does
-  // not carry `compilation`, so a vacuous `holds` and an earned `holds` are the same two words by
-  // the time anything interprets them. Closing it is a separate ruling with a different shape: it
-  // is a fact about the RESULT, so it belongs on the coverage-sensitive side of this file's
-  // asymmetry and needs the `Pick` widened — which is exactly the plumbing change §4 said to stop
-  // and report rather than smuggle into a static arm.
-  assert.equal(v.status, "satisfied",
-    "DOCUMENTED GAP, not an endorsement: a vacuous ceiling reads satisfied today. If this starts "
-    + "reading inconclusive, the vacuity ruling has landed — re-point this assertion at it rather "
-    + "than relaxing it");
+  // THE GAP, CLOSED — re-pointed per this assertion's own instruction rather than relaxed.
+  // `DECISIONS-RULED-vacuous-verification-261005.md` rules V43: `verifyDeclaration`'s `Pick` now
+  // carries `compilation`, and `verify` refuses to read a vacuous verdict as a discharge. The §4 arm
+  // above is untouched and still must not fire — the two rules compose, one static over the
+  // declaration and one over the result.
+  assert.equal(v.status, "inconclusive",
+    "the vacuity ruling (V43) has landed, so a vacuous ceiling must no longer read satisfied");
+  assert.ok(v.status === "inconclusive");
+  assert.equal(v.because.kind, "vacuous",
+    "and the CAUSE must be vacuity, not `bounded` — the walk was exhaustive, so sending the reader "
+    + "to raise a budget would report a selection defect as an evidence shortfall");
 });
 
 test("BOUNDARY: the wider family — a sound pairing against a more lenient declared ceiling", () => {

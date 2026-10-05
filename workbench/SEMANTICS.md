@@ -8,7 +8,7 @@ This is the authoritative semantics. The JSON Schemas beside it
 [`mage-transaction.schema.json`](mage-transaction.schema.json)) constrain *shape*; this document
 fixes *meaning*. Where a question is about what a model asserts, this file decides it.
 
-Validation rules are numbered **V1…V40** so implementations, tests, and error messages can cite them.
+Validation rules are numbered **V1…V43** so implementations, tests, and error messages can cite them.
 Numbers are append-only: a new rule takes the next free one and lands in the section that owns its
 subject, so the sequence stays stable rather than sorted.
 
@@ -908,6 +908,46 @@ a reader who takes it for the last has been misled by a correct answer.
 Vacuity is a property of the predicate, so **truncation cannot weaken it**: the disclosure travels
 under `bounded` coverage too. This is the one place V22's asymmetry does not apply, because nothing
 here depends on absence of evidence.
+
+⚠️ **As-built divergence, and it is a real one.** The sentence above holds for vacuity decided by
+PREDICATE SATISFIABILITY, which is settled before the walk begins. It does not describe the second
+route to a vacuous verdict: a quantity query whose `target:` selects configurations no execution
+reaches. There the emptiness of the selection is established BY the walk, so under truncation nothing
+is established, and the shipped quantity evaluator reports bounded absence rather than vacuity. Both
+readings are defensible and they are not the same claim — one is "no state vector admits this", the
+other "no execution reached it". A future unification should decide whether an unsatisfiable `target:`
+discloses vacuity at every budget on satisfiability grounds, which is what V41's letter asks for.
+V43 below is deliberately indifferent to that choice.
+
+**V43 — an obligation decided by a VACUOUS verdict is neither discharged nor breached.**
+
+V41 settles what the RESULT says and correctly leaves the outcome alone: a vacuous universal genuinely
+holds. A requirement asks a different question of the same result — whether an obligation is
+discharged on evidence that bears the weight — and the two questions come apart exactly here, because
+a vacuous verdict rests on no evidence whatsoever.
+
+The two vocabularies MUST NOT be conflated. Reading V41's preserved `holds` as a discharged obligation
+is what let a soundly authored ceiling requirement report **satisfied at 2,750 ms against a declared
+750 ms ceiling, on an exhaustive walk**. The verdict was right; the obligation was never charged.
+
+- An implementation MUST report the requirement as **inconclusive**, with a cause distinct from the
+  budget one, when the verdict deciding it carries a `vacuous` disclosure.
+- It MUST do so in **both directions**. A vacuous verdict that matches the discharging value must not
+  read as satisfied, and one that fails to match must not read as a breach — a contradiction the
+  author wrote is evidence for neither party. This is not an exception to V22's asymmetry: a witness
+  is coverage-insensitive, and a vacuous verdict is not a witness.
+- The cause MUST carry the remedy, which is a fourth one: **make the selection reachable, or fix the
+  predicate.** Folding it into the bounded cause would send the author to raise a budget, and no
+  budget makes an unreachable selection reachable — a model defect reported as an evidence shortfall.
+- The rule MUST NOT be conditioned on coverage. It reads the disclosure and nothing else, so the
+  obligation's status cannot depend on how far the walk got.
+- No new status word. The distinction travels as a CAUSE, which is where the requirements design sent
+  the fifth word it declined to mint.
+
+**The cost this moves, stated plainly:** emitting a `vacuous` disclosure now changes an answer rather
+than only informing a reader. An evaluator that discloses vacuity on an EARNED verdict downgrades a
+sound requirement, so V41's "MUST NOT emit when the predicate is satisfiable but unreachable" is paid
+in verdicts from here on.
 
 ### 7.2 Evidence shapes
 
