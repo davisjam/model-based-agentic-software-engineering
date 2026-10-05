@@ -36,6 +36,7 @@ chapter (filled as chapters settle; the generator still scans all chapters for s
 - injection point (where a mechanism attaches) @ch03
 - model (as map / cheaper approximation) @ch04
 - map and territory @ch04
+- semantic commitment @ch04
 - model drift @ch04
 - the semantic gap @ch04
 - right level of enforcement @ch04
@@ -257,6 +258,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: pre-canned-brief | The pre-canned brief
 - concept: model-zoo | The model zoo
 - concept: system-knowledge-graph | The system knowledge graph
+- concept: semantic-commitment | Semantic commitment
 - concept: rag | RAG (retrieval-augmented generation)
 - concept: graphrag | GraphRAG
 - concept: context-engineering | Context engineering

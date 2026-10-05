@@ -1224,6 +1224,12 @@
       "kind": "data-chart",
       "location": "part5",
       "rationale": "weekly commit provenance as a delegation proxy; supporting caption on the human-or-unknown residual being an upper bound on human-authored realization and a different quantity from inspection share"
+    },
+    "context-is-the-first-modeling-problem::Degrees of semantic commitment, in concrete artifacts": {
+      "tier": "B",
+      "kind": "conceptual-table",
+      "location": "part2",
+      "rationale": "the semantic-commitment spectrum in four named artifacts (sketch, UML 2.5.1 state machines, OpenAPI/JSON Schema, SysML v2 + KerML); supporting caption carrying the takeaway that commitment is not completeness and the rows are not maturity levels"
     }
   }
 }
