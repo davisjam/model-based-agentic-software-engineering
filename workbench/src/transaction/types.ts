@@ -125,6 +125,33 @@ export type Operation =
       readonly from?: string | undefined; readonly to?: string | undefined;
       readonly type?: string | undefined;
     }
+  /**
+   * Re-declare one quantity's point value, as a unit-bearing literal.
+   *
+   * ## The gap this closes
+   *
+   * Every other op above addresses structure or behaviour. None addressed a quantity, so the
+   * modify-then-recheck loop that works for a structural pin — change a property, re-ask the saved
+   * query, watch the verdict move — had no quantitative analogue. "Double the telemetry queue depth
+   * and recheck the memory budget" was unperformable through this vocabulary, by the agent path or
+   * the human one.
+   *
+   * ## Why `value` is a STRING
+   *
+   * A magnitude is authored as a unit-bearing literal and parsed during canonicalization rather than
+   * by the YAML loader — precisely so the two loaders' disagreements about exotic numeric spellings
+   * cannot reach it. An op taking a bare number would have to pick a unit on the author's behalf,
+   * and the only defensible pick is the dimension's base: a student doubling a `32 KB` queue would
+   * then write `0.0625` and read back a model they did not mean.
+   *
+   * ## Why only a POINT value
+   *
+   * The op refuses a quantity declaring a `range:` or an expression rather than overwriting it. A
+   * range is two declared ends and an expression is a dimensional claim; replacing either with a
+   * point discards a declaration the author made, and no stated question needs it. The refusal names
+   * what to do instead.
+   */
+  | { readonly op: "set-quantity-value"; readonly id: string; readonly value: string }
   | { readonly op: "save-query"; readonly id: string; readonly query: Readonly<Record<string, unknown>> }
   | { readonly op: "delete-query"; readonly id: string };
 

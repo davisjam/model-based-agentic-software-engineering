@@ -1,0 +1,174 @@
+# Expected results for the embedded-sensor-node example. Read by test/examples.test.ts, which drives
+# the real application seams and compares.
+#
+# Fixture discipline: semantic outcomes only. The outcome, the coverage KIND, and the evidence shape
+# and role -- never a step count the engine's tie-breaking could move, and never the number of
+# configurations explored, which moves if a state is added anywhere.
+#
+# ## What this fixture does NOT carry, and why
+#
+# No `quantitative_expectations:` block. The fixture's quantitative-expectation reader takes its
+# totals as integer megabytes (`expected_mb`, `resident_mb`, each a positive integer), and this
+# model's figures are sub-megabyte: 232 KB is 0.2265625 MB. There is no spelling of this example's
+# arithmetic in that schema that is not a rounding, so the hand-derived oracle lives in
+# test/quantitative-model.test.ts instead, where it re-derives the sum from the declarations rather
+# than restating it. The schema limitation is reported, not worked around with a rounded figure.
+#
+# The budget requirement is therefore joined by `expressed_as` -- the saved quantity query decides
+# it -- rather than by `decided_by`, which is the route that needs the integer-megabyte oracle.
+
+example: embedded-sensor-node
+system: system.mage.yaml
+title: Embedded Sensor Node
+summary: >
+  Nine SRAM allocations on a battery-powered sensor node, measured against the part's 256 KiB of
+  physical memory, so the margin is a number and doubling one queue is a decision that fails.
+
+# Two purposeful models, and no machine. That is the whole reduction: a resource budget needs
+# identity, ownership and magnitude, and it needs no behaviour at all until lifetimes enter the
+# question. The dataflow model is the companion that cannot answer the resource question.
+models:
+  - id: sensor-firmware
+    kind: graph
+  - id: sensor-dataflow
+    kind: graph
+
+requirements:
+  - id: firmware-fits-physical-sram
+    statement: >
+      The modeled firmware's SRAM allocations fit within the part's 256 KiB of physical SRAM.
+    expressed_as: sram-fits-budget
+    satisfied_when: holds
+    status: satisfied
+    note: >
+      Established over an exhaustively explored configuration space, which in this model is a space
+      of one: with no state machine there is a single reachable configuration and memory(c) over it
+      is the sum of the resident allocations. The claim is therefore exactly as strong as the model
+      is -- every declared allocation is held for the whole run, so the sum IS the peak. The
+      modification below breaks the requirement on demand, which is what separates a property that
+      holds from one that was never tested.
+
+      What this requirement does NOT establish: that the firmware fits when lifetimes are
+      considered, which would be a weaker premise and a stronger result. This model declares no
+      operating modes, so the question has no reading here.
+
+queries:
+
+  - id: sram-fits-budget
+    label: The modeled firmware fits in the 256 KiB SRAM budget
+    suggested: true
+    models: [sensor-firmware]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      # A ceiling decision that holds reports the observed figure and no witness: the claim is
+      # universal over the reachable configurations, and a universal that holds has no single
+      # configuration to point at. The counterexample appears only when it is refuted -- which the
+      # modification below exercises.
+      no_evidence: true
+    note: >
+      The example's pinned requirement. `forall` is forced by the question's shape: a ceiling claim
+      is universal and one counterexample refutes it, so declaring `exists` is refused by name.
+
+  - id: radio-stack-owns-buffers
+    label: The radio stack owns buffers of its own
+    suggested: true
+    models: [sensor-firmware]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        nodes_include: [radio-stack, telemetry-queue, packet-buffer]
+    note: >
+      The structural companion, and it earns its place by being unanswerable from the quantities
+      alone. The quantitative model says what each allocation costs; it has no notion of who holds
+      one. Reading the two side by side is what turns "72 KB is the largest allocation" into "the
+      inference engine's weights are the largest allocation", which is the sentence an engineer acts
+      on.
+
+  - id: optional-component-feeds-an-essential-one
+    label: An optional component feeds an essential one
+    suggested: true
+    models: [sensor-dataflow, sensor-firmware]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [inference-engine, telemetry-queue]
+    note: >
+      THE cross-model question, and the one neither reduction answers alone. The EDGE is the
+      dataflow model's -- `feeds` is declared nowhere else -- and the CRITICALITY ordering is the
+      firmware model's, which represents it while the dataflow model omits it by name. One knows the
+      path and not what matters; the other the reverse.
+
+      The answer is a finding about the design rather than a formality: it holds, and the witness is
+      the inference engine feeding the telemetry queue. An OPTIONAL classifier sits upstream of an
+      ESSENTIAL transmit path, so every sample's route to the radio runs through a component the
+      design says it could do without -- and that component owns the two largest allocations in the
+      budget. Pinning the witness pins the join: a comparison that stopped reading one side would
+      answer over the wrong pairs, and this expectation catches it.
+
+  - id: sample-reaches-the-radio
+    label: A sample reaches the radio from the sensor driver
+    suggested: false
+    models: [sensor-dataflow]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [sensor-driver, inference-engine, telemetry-queue, radio-stack]
+    note: >
+      A genuine multi-hop question: `feeds` declares `path: allowed`, so composing three edges is
+      licensed and the whole path comes back as the witness. Asked of the dataflow model, which is
+      the only one that represents flow -- and which represents no magnitude, so a reader who tries
+      to ask it what a step costs is told the question has no reading here rather than handed a zero.
+
+modifications:
+
+  - id: double-the-telemetry-queue
+    label: Double the telemetry queue depth
+    rationale: >
+      Section 11.4's Q5, and the example's reason to exist. A deeper queue buffers more telemetry
+      across a radio outage, which is a real and defensible design change -- and it costs 32 KB the
+      budget does not have. The requirement goes from holds to refuted on one edited number, which is
+      the whole lesson: a quantity is not a decoration on the model, it decides a property.
+
+      The operation is `set-quantity-value`, which this wave added. Before it, no operation in the
+      vocabulary addressed a quantity, so this modification could not be expressed at all -- the
+      modify-then-recheck loop that works for a structural pin had no quantitative analogue.
+    transaction:
+      operations:
+        - op: set-quantity-value
+          id: telemetry-queue-sram
+          value: 64 KB
+    changes:
+      - query: sram-fits-budget
+        from: holds
+        to: refuted
+
+  - id: halve-the-model-weights
+    label: Use a smaller classifier
+    rationale: >
+      One valid answer to section 11.4's Q6 -- restore margin -- and deliberately only one of
+      several. Halving the weights to 36 KB takes the total to 196 KB, which is 23.4% free: past the
+      20% the question asks for. Dropping the logging buffer and halving the radio stack instead
+      reaches 19.5% and does not, which is why Q6 is a search rather than a lookup.
+
+      Applied to the unmodified model, so the requirement still holds afterwards. The point is not
+      that the verdict changes -- it is that the margin does, and that a design change rather than a
+      budget change is what bought it.
+    transaction:
+      operations:
+        - op: set-quantity-value
+          id: model-weights-sram
+          value: 36 KB
+    changes:
+      - query: sram-fits-budget
+        from: holds
+        to: holds

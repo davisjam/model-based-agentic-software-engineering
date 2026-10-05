@@ -336,7 +336,14 @@ function splitLiteral(raw: unknown): SplitLiteral {
 const faulted = (lit: SplitLiteral, unit: string | null, fault: MagnitudeFault): Magnitude =>
   ({ raw: lit.text, unit, base: null, fault });
 
-/** One written magnitude, normalized against the dimension that was declared for it. */
+/**
+ * One written magnitude, normalized against the dimension that was declared for it.
+ *
+ * Exported as `parseMagnitude` below. The edit layer needs to tell an author that `64 ms` is not a
+ * memory literal BEFORE the write, and the only alternative to reusing this is a second parser —
+ * which would be a second set of opinions about exotic numeric spellings, the exact disagreement
+ * `isPlainDecimal` exists to close.
+ */
 function magnitude(raw: unknown, dimension: Dimension | null): Magnitude {
   const lit = splitLiteral(raw);
   if (lit.text === "") return faulted(lit, null, "absent");
@@ -617,3 +624,6 @@ export function canonicalize(doc: unknown): CanonicalSystem {
     queries,
   };
 }
+
+/** The literal parser, for a caller that must check a magnitude before writing it. One parser. */
+export const parseMagnitude = magnitude;

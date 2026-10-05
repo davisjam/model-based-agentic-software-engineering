@@ -67,6 +67,7 @@
         { "$ref": "#/$defs/opAddModelEntity" },
         { "$ref": "#/$defs/opDeleteModel" },
         { "$ref": "#/$defs/opAddNote" },
+        { "$ref": "#/$defs/opSetQuantityValue" },
         { "$ref": "#/$defs/opSaveQuery" },
         { "$ref": "#/$defs/opDeleteQuery" }
       ]
@@ -78,6 +79,17 @@
       "additionalProperties": false,
       "properties": {
         "op": { "const": "set-label" },
+        "id": { "$ref": "#/$defs/id" },
+        "value": { "type": "string" }
+      }
+    },
+    "opSetQuantityValue": {
+      "description": "Re-declare one quantity's point value. `value` is a unit-bearing literal in one of the quantity's declared dimension's units -- a bare number would force the op to choose a unit, and the only defensible choice is the dimension's base. Refused when the quantity declares a range or an expression: replacing either with a point discards a declaration the author made.",
+      "type": "object",
+      "required": ["op", "id", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "set-quantity-value" },
         "id": { "$ref": "#/$defs/id" },
         "value": { "type": "string" }
       }

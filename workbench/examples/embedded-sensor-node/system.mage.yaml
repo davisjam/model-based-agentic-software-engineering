@@ -5,14 +5,24 @@
 # the budget says what there is, and the margin between them is the whole design problem. Double one
 # queue and a pinned requirement fails -- which is the point: the number moves the verdict.
 #
-# ## One purposeful model, deliberately
+# ## Two purposeful models over one set of components
 #
 #   sensor-firmware   a graph. Which firmware component owns which buffer, what each allocation
 #                     costs in SRAM, and the declared 256 KiB ceiling the total is decided against.
+#   sensor-dataflow   a graph. What path a sample takes from the sensor to the radio. Carries no
+#                     magnitude at all.
+#
+# Neither answers the other's question, and the pair is the point. "What is the largest allocation"
+# has no reading in the dataflow model, which represents no sizes; "what path does a sample take"
+# has none in the firmware model, which represents ownership rather than flow. Reading them together
+# is what turns "72 KB is the largest allocation" into "the classifier's weights are the largest
+# allocation, and the classifier sits between the sensor and the radio" -- the sentence an engineer
+# acts on.
 #
 # The specification is explicit that the first view must not be overloaded with CPU, energy, flash
-# and timing at once, so this file represents SRAM and nothing else. Every other resource is a
-# declared omission on the model's purpose, where a reader can see it.
+# and timing at once, so the SRAM view represents SRAM and nothing else. Every other resource is a
+# declared omission on that model's purpose, where a reader can see it. A second MODEL is not an
+# overloaded first view: it is the reduction stated twice, differently.
 #
 # ## The unit, and a labelling defect worth knowing about
 #
@@ -60,6 +70,23 @@
 # Doubling telemetry-queue to 64 KB takes the total to 264 KB and the pinned requirement fails by
 # 8 KB. Restoring a 20% margin needs the total at or under 204.8 KB, which several changes achieve
 # and several near-misses do not; that search is the design activity, not a lookup.
+#
+# ## Why the total is not a saved query, and the budget decision is
+#
+# One saved quantity query ships here, and it is the one that makes a CLAIM: every reachable
+# configuration keeps memory(c) at or under the declared ceiling, refutable by a counterexample.
+#
+# The total, the largest allocation and the remaining margin are read from the quantitative model
+# instead. They answer "what is there" rather than "is this true" -- they carry no quantifier, reach
+# no outcome and produce no evidence -- and the line between the two is the one a student most needs
+# drawn. A saved query returning a figure and an outcome of `holds` would blur it: `holds` would mean
+# "a number was obtained", beside a sibling where `holds` means "the budget is met".
+#
+# There is a second reason, specific to this example. In Phase 1 there is no state machine, so there
+# is exactly one reachable configuration and the peak of memory(c) over it EQUALS the resident sum.
+# Pinning the total as a `peak_memory` measurement would therefore teach that the total is the peak
+# -- and the operating-modes expansion exists precisely to un-teach that. The coincidence is an
+# artifact of the reduction, and the setup should not spoil its own climax.
 
 mage: 1
 
@@ -67,7 +94,15 @@ system:
   id: embedded-sensor-node
   name: Embedded Sensor Node
 
-domains: {}
+domains:
+
+  criticality:
+    # An ORDERED enum, lowest first, because the example asks a question that COMPARES two
+    # components' criticality across a relation. V20's discipline: a comparison is licensed only
+    # when both operands range over one declared ordered domain, so the order is declared here
+    # rather than assumed from the spelling.
+    type: ordered-enum
+    values: [diagnostic, optional, essential]
 
 entities:
 
@@ -75,7 +110,7 @@ entities:
     type: firmware
     label: MCU runtime
     properties:
-      criticality: essential
+      criticality: { value: essential, domain: criticality }
     notes:
       - id: sram-budget-rationale
         kind: rationale
@@ -103,49 +138,49 @@ entities:
     type: firmware
     label: Sensor driver
     properties:
-      criticality: essential
+      criticality: { value: essential, domain: criticality }
 
   radio-stack:
     type: firmware
     label: Radio stack
     properties:
-      criticality: essential
+      criticality: { value: essential, domain: criticality }
 
   inference-engine:
     type: firmware
     label: Inference engine
     properties:
-      criticality: optional
+      criticality: { value: optional, domain: criticality }
 
   telemetry-queue:
     type: buffer
     label: Telemetry queue
     properties:
-      criticality: essential
+      criticality: { value: essential, domain: criticality }
 
   packet-buffer:
     type: buffer
     label: Packet buffer
     properties:
-      criticality: essential
+      criticality: { value: essential, domain: criticality }
 
   model-weights:
     type: buffer
     label: Model weights
     properties:
-      criticality: optional
+      criticality: { value: optional, domain: criticality }
 
   inference-workspace:
     type: buffer
     label: Inference workspace
     properties:
-      criticality: optional
+      criticality: { value: optional, domain: criticality }
 
   logging-buffer:
     type: buffer
     label: Logging buffer
     properties:
-      criticality: diagnostic
+      criticality: { value: diagnostic, domain: criticality }
 
 relation-types:
 
@@ -158,6 +193,19 @@ relation-types:
       # A buffer owns nothing, so a multi-hop ownership question has no reading. Unlicensed beats
       # false.
       path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
+  feeds:
+    description: The source component hands its output to the target component.
+    absence: >
+      No data path between the two is represented. Absence is not isolation -- it says this model
+      draws no flow there, not that none exists in the part.
+    composition:
+      # Flow composes: a sample that reaches the queue and a queue the radio drains means the sample
+      # reaches the radio. Reachability through `feeds` is a question with an answer.
+      path: allowed
     properties:
       symmetric: false
       acyclic: true
@@ -175,6 +223,7 @@ models:
         - each allocation's SRAM size in KiB
         - the declared 256 KiB SRAM ceiling
         - whether each allocation is held for the whole run
+        - which components the design treats as essential, optional or diagnostic
       # Checked against this model's real vocabulary. The first two are the flagship purposeful
       # omissions: without operating modes the model can answer "what if everything is live at once"
       # and cannot answer "is everything live at once", and that gap is what motivates expanding it.
@@ -233,6 +282,47 @@ models:
           firmware, not a default: MAGE refuses to infer either "idle component memory stays
           resident" or "idle component memory disappears", so the annotation says which, and an
           annotation declaring neither charges nothing anywhere.
+
+  sensor-dataflow:
+    type: graph
+    label: Sensor Data Path
+    purpose:
+      question: What path does a sample take from the sensor to the radio?
+      represents:
+        - the components a sample passes through
+        - the order they pass it in
+      # This model carries no magnitude, and the omission is the pair's whole argument: a question
+      # about size has no reading here, and asking it gets an unlicensed answer rather than a zero.
+      omits:
+        - how much SRAM any component holds
+        - which components the design treats as essential, so no criticality question reads here
+        - how long any step takes
+        - how often a sample is taken
+        - what happens when the queue is full
+        - the buffers themselves, which hold data rather than pass it
+    entities: [sensor-driver, inference-engine, telemetry-queue, radio-stack]
+    relations:
+
+      - id: driver-feeds-inference
+        from: sensor-driver
+        to: inference-engine
+        type: feeds
+      - id: inference-feeds-queue
+        from: inference-engine
+        to: telemetry-queue
+        type: feeds
+      - id: queue-feeds-radio
+        from: telemetry-queue
+        to: radio-stack
+        type: feeds
+
+    notes:
+      - id: sensor-dataflow-rationale
+        kind: rationale
+        text: >
+          This model represents the order a sample moves in and nothing about cost. It is here so
+          the resource model has a companion that cannot answer the resource question: the two name
+          the same components, and only one of them can be asked what they hold.
 
 quantities:
 
@@ -309,6 +399,14 @@ quantities:
     # may name. 256 KB in this table's binary units is exactly the part's 256 KiB of SRAM.
     description: The part's physical SRAM. The ceiling every allocation above is decided against.
 
+# ---------------------------------------------------------------------------
+# Suggested questions are EXECUTABLE artifacts, not instructional strings. Each is a saved query
+# re-run whenever the model changes; the natural-language label is the `name`.
+#
+# Expected outcomes live in expected-results.yaml, not in an `expect:` field here. One source of
+# truth: the fixture file also carries the models each question needs and the evidence it must
+# produce, and a second copy in this file would be free to drift from it.
+# ---------------------------------------------------------------------------
 queries:
 
   # The example's pinned requirement, and the one query here that makes a CLAIM. `forall` is forced
@@ -323,24 +421,49 @@ queries:
       metric: peak_memory
       within: sram-budget
 
-  # The measurement. No `within:`, so `exists` is forced and the figure travels on the result's
-  # magnitude with the witness configuration attached.
-  sram-total:
-    name: What SRAM does the modeled firmware hold
-    kind: quantity
-    quantifier: exists
-    quantity:
-      metric: peak_memory
-
   # The structural companion, and it is here to make a point rather than to pad the set: the
   # quantitative model says WHAT each allocation costs and the structural model says WHO holds it.
   # "Which buffers does the radio stack own" is answerable only by the second, and "what do they
   # cost" only by the first.
-  radio-owns-which-buffers:
-    name: Which buffers the radio stack owns
+  radio-stack-owns-buffers:
+    name: The radio stack owns buffers of its own
     kind: graph
     quantifier: exists
     graph:
       form: successors
       relation: owns_buffer
       from: radio-stack
+
+  # THE cross-model question, and the one neither model answers alone. The EDGE is the dataflow
+  # model's -- `feeds` is declared nowhere else -- and the CRITICALITY ordering is the firmware
+  # model's, which represents it while the dataflow model omits it by name. Neither reduction can
+  # state the question: one knows the path and not what matters, the other the reverse.
+  #
+  # The answer is a finding about this design rather than a formality. It holds, and the witness is
+  # the inference engine feeding the telemetry queue: an OPTIONAL classifier sits upstream of an
+  # ESSENTIAL transmit path, so a sample's route to the radio runs through a component the design
+  # says it could do without.
+  optional-component-feeds-an-essential-one:
+    name: An optional component feeds an essential one
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: feeds
+      where:
+        compare:
+          - left: source.criticality
+            op: lt
+            right: target.criticality
+
+  # Asked of the dataflow model, and answerable only there. `feeds` composes, so this is a genuine
+  # multi-hop question: driver -> inference -> queue -> radio, with the path returned as the witness.
+  sample-reaches-the-radio:
+    name: A sample reaches the radio from the sensor driver
+    kind: graph
+    quantifier: exists
+    graph:
+      form: reachability
+      relation: feeds
+      from: sensor-driver
+      to: radio-stack

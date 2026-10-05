@@ -23,6 +23,16 @@ export {
 export { assembleLayout, bounds, liftToOuter, place, sizes } from "./layout.ts";
 export type { LayoutEngine, LiftedEdge, Placement, Size, TextClass } from "./layout.ts";
 export { buildScene, buildGraphScene, buildMachineScene } from "./scene.ts";
+/**
+ * The quantitative projection. A SECOND projection beside the scene one, not a third scene arm: a
+ * budget's facts are extent and a threshold, and neither reads as a node or an edge. It keeps
+ * `renderView`'s contract — the picture is unobtainable without its twin — and takes DATA rather
+ * than the quantity layer's own type, so the renderer gains no edge to the engine's component.
+ */
+export { renderBudget } from "./budget.ts";
+export type {
+  AccessibleAllocation, AccessibleBudget, BudgetBar, BudgetFigures, BudgetView,
+} from "./budget.ts";
 export type { SceneGraph, SceneNode, SceneEdge } from "./scene.ts";
 export {
   buildAccessibleScene,

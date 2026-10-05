@@ -19,7 +19,7 @@ import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { validate } from "../src/validator/rules.ts";
-import { runSavedQueries } from "../src/engine/index.ts";
+import { runQuery, runSavedQueries } from "../src/engine/index.ts";
 import { budgetReadout, budgetReadoutFor, inDisplayUnit } from "../src/quant/budget.ts";
 import { memoryContributions } from "../src/quant/memory.ts";
 import { quantityMagnitude } from "../src/quant/types.ts";
@@ -348,12 +348,22 @@ test("doubling the telemetry queue refutes the budget, and the margin goes negat
   assert.equal(runSavedQueries(doubled).get("sram-fits-budget")?.result?.outcome, "refuted");
 });
 
-test("the readout's total and the pinned requirement's magnitude are the same figure", () => {
+test("the readout's total and the evaluator's peak are the same figure", () => {
   // Two surfaces, one number. If these drift, a student reads a margin the verdict does not share.
+  //
+  // The measurement is run here rather than saved in the example, which is itself the point: the
+  // total answers "what is there" and belongs to the readout, while the saved query answers "is this
+  // true". Equality between them is the invariant that lets both exist — and in THIS model they
+  // coincide only because there is one reachable configuration, which is the coincidence
+  // `expected-results.yaml` and the example header both refuse to teach as a rule.
   const system = sensorNode();
   const r = budgetReadoutFor(system, "memory");
   assert.ok(r.ok);
-  const magnitude = runSavedQueries(system).get("sram-total")?.result?.magnitude;
+  const peak = runQuery(system, {
+    kind: "quantity", quantifier: "exists", quantity: { metric: "peak_memory" },
+  });
+  assert.equal(peak.result?.outcome, "holds", peak.refusal?.prose ?? "");
+  const magnitude = peak.result?.magnitude;
   assert.ok(magnitude !== null && magnitude !== undefined);
   assert.equal(magnitude.value, r.value.total);
   assert.equal(magnitude.dimension, r.value.dimension);
