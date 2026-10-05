@@ -130,7 +130,7 @@ can never be discharged is a bad trigger.
   derived arm asserts the `VerificationStatus` that `verifySystemRequirements` computes from the
   authored model against a live query run, and the recorded-outcome arm is KEPT beside it because it
   pins the fixture's coverage kind, on which `verify` is coverage-sensitive — the two catch different
-  drift. Second, nine of eleven requirements migrated, not eleven: `expressed_as` joins to a SAVED
+  drift. Second, eight of ten requirements migrated, not all of them: `expressed_as` joins to a SAVED
   query by id, and document-processing's two `decided_by` requirements are decided by a question
   COMPOSED from a declared ceiling at analysis time, which no `queries:` entry saves. The authored
   shape has nowhere to name a ceiling instead of a query, so those two keep their fixture

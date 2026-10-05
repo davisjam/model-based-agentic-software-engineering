@@ -643,7 +643,11 @@ Today no shipped pair exhibits the divergence — every query deciding a migrate
 `coverage: exhaustive`, so the arms agree trivially. The retained arm is forward-policing, which is
 the same argument this project applies to authoring a lint at zero findings.
 
-**What did not migrate, and what that cost.** Nine of eleven requirements. `document-processing`'s
+**What did not migrate, and what that cost.** Eight of ten requirements migrated — one each in
+message-bus and embedded-sensor-node, two each in transaction-workspace and worker-queue, two of
+document-processing's four. (The first two commits of this wave say "nine of eleven" in their
+messages; that was a miscount, corrected here against a count of the authored blocks at HEAD.)
+`document-processing`'s
 `normal-processing-latency` and `peak-memory` take the `decided_by` route, and `expressed_as` joins
 to a SAVED query by id — a question composed from a declared ceiling at analysis time is saved
 nowhere to be named, and the authored shape has no key for a ceiling. Two things follow that the
